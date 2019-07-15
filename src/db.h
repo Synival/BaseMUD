@@ -25,37 +25,98 @@
  *   ROM license, in the file Rom24/doc/rom.license                        *
  **************************************************************************/
 
-/* vals from db.c */
+#ifndef __ROM_DB_H
+#define __ROM_DB_H
+
+#include "merc.h"
+
+/* Globals. */
+extern HELP_DATA *help_first, *help_last;
+extern SHOP_DATA *shop_first, *shop_last;
+extern AREA_DATA *area_first, *area_last;
+extern BAN_DATA  *ban_first,  *ban_last;
+extern HELP_AREA *had_first,  *had_last;
+
+extern MPROG_CODE *mprog_list;
+
+extern int newmobs;
+extern int newobjs;
+
+extern char bug_buf[2 * MAX_INPUT_LENGTH];
+extern CHAR_DATA *char_list;
+extern char *help_greeting;
+extern char log_buf[2 * MAX_INPUT_LENGTH];
+extern KILL_DATA kill_table[MAX_LEVEL];
+extern OBJ_DATA *object_list;
+extern TIME_INFO_DATA time_info;
+extern WEATHER_DATA weather_info;
+
+/* Locals. */
+extern MOB_INDEX_DATA *mob_index_hash[MAX_KEY_HASH];
+extern OBJ_INDEX_DATA *obj_index_hash[MAX_KEY_HASH];
+extern ROOM_INDEX_DATA *room_index_hash[MAX_KEY_HASH];
+extern char *string_hash[MAX_KEY_HASH];
+extern AREA_DATA *current_area;
+
+/* Semi-locals.  */
 extern bool fBootDb;
-extern int		newmobs;
-extern int		newobjs;
-extern MOB_INDEX_DATA 	* mob_index_hash          [MAX_KEY_HASH];
-extern OBJ_INDEX_DATA 	* obj_index_hash          [MAX_KEY_HASH];
-extern int		top_mob_index;
-extern int		top_obj_index;
-extern int  		top_affect;
-extern int		top_ed; 
-extern AREA_DATA 	* area_first;
-
-
-/* from db2.c */
-extern int	social_count;
-
-/* conversion from db.h */
-void	convert_mob(MOB_INDEX_DATA *mob);
-void	convert_obj(OBJ_INDEX_DATA *obj);
+extern FILE *fpArea;
+extern char strArea[MAX_INPUT_LENGTH];
 
 /* macro for flag swapping */
-#define GET_UNSET(flag1,flag2)	(~(flag1)&((flag1)|(flag2)))
+#define GET_UNSET(flag1,flag2)    (~(flag1)&((flag1)|(flag2)))
 
 /* Magic number for memory allocation */
 #define MAGIC_NUM 52571214
 
-/* func from db.c */
-extern void assign_area_vnum( int vnum );                    /* OLC */
+/* Function prototypes. */
+void db_export_json (void);
+void boot_db (void);
+void init_string_space (void);
+void init_time_weather (void);
+void init_gsns (void);
+void init_areas (void);
+void load_area (FILE * fp);
+void new_load_area (FILE * fp);
+void assign_area_vnum (int vnum);
+void load_helps (FILE * fp, char *fname);
+void load_old_mob (FILE * fp);
+void load_old_obj (FILE * fp);
+void fix_bogus_obj (OBJ_INDEX_DATA * obj);
+void room_take_reset (ROOM_INDEX_DATA * pR, RESET_DATA * pReset);
+void load_resets (FILE * fp);
+void load_rooms (FILE * fp);
+void load_shops (FILE * fp);
+void load_specials (FILE * fp);
+void fix_exit_doors (ROOM_INDEX_DATA *room_from, int dir_from,
+                     ROOM_INDEX_DATA *room_to,   int dir_to);
+void fix_exits (void);
+void load_mobprogs (FILE * fp);
+void fix_mobprogs (void);
+void area_update (void);
+void reset_room (ROOM_INDEX_DATA * pRoom);
+void reset_area (AREA_DATA * pArea);
+CHAR_DATA *create_mobile (MOB_INDEX_DATA * pMobIndex);
+void clone_mobile (CHAR_DATA * parent, CHAR_DATA * clone);
+OBJ_DATA *create_object (OBJ_INDEX_DATA * pObjIndex, int level);
+void clone_object (OBJ_DATA * parent, OBJ_DATA * clone);
+void clear_char (CHAR_DATA * ch);
+char *get_extra_descr (const char *name, EXTRA_DESCR_DATA * ed);
+MOB_INDEX_DATA *get_mob_index (int vnum);
+OBJ_INDEX_DATA *get_obj_index (int vnum);
+ROOM_INDEX_DATA *get_room_index (int vnum);
+MPROG_CODE *get_mprog_index (int vnum);
+char fread_letter (FILE * fp);
+int fread_number (FILE * fp);
+flag_t fread_flag (FILE * fp);
+flag_t flag_convert (char letter);
+char *fread_string (FILE * fp);
+char *fread_string_eol (FILE * fp);
+void fread_to_eol (FILE * fp);
+char *fread_word (FILE * fp);
+void fread_dice (FILE *fp, sh_int *out);
+char *memory_dump (char *eol);
+bool check_pet_affected(int vnum, AFFECT_DATA *paf);
+ROOM_INDEX_DATA *get_random_room (CHAR_DATA * ch);
 
-/* from db2.c */
- 
-void convert_mobile( MOB_INDEX_DATA *pMobIndex );            /* OLC ROM */
-void convert_objects( void );                                /* OLC ROM */
-void convert_object( OBJ_INDEX_DATA *pObjIndex );            /* OLC ROM */
+#endif

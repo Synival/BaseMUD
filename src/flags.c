@@ -13,239 +13,432 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
-#if defined(macintosh)
-#include <types.h>
-#include <time.h>
-#else
-#include <sys/types.h>
-#include <sys/time.h>
-#endif
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 #include "merc.h"
-#include "tables.h"
 
-int flag_lookup
-args ((const char *name, const struct flag_type * flag_table));
+/* various flag tables */
+const FLAG_TYPE act_flags[] = {
+    {"npc",           ACT_IS_NPC,        FALSE},
+    {"sentinel",      ACT_SENTINEL,      TRUE},
+    {"scavenger",     ACT_SCAVENGER,     TRUE},
+    {"unused_act_1",  ACT_UNUSED_FLAG_1, FALSE},
+    {"unused_act_2",  ACT_UNUSED_FLAG_2, FALSE},
+    {"aggressive",    ACT_AGGRESSIVE,    TRUE},
+    {"stay_area",     ACT_STAY_AREA,     TRUE},
+    {"wimpy",         ACT_WIMPY,         TRUE},
+    {"pet",           ACT_PET,           TRUE},
+    {"train",         ACT_TRAIN,         TRUE},
+    {"practice",      ACT_PRACTICE,      TRUE},
+    {"unused_act_3",  ACT_UNUSED_FLAG_3, FALSE},
+    {"unused_act_4",  ACT_UNUSED_FLAG_4, FALSE},
+    {"unused_act_5",  ACT_UNUSED_FLAG_5, FALSE},
+    {"undead",        ACT_UNDEAD,        TRUE},
+    {"unused_act_6",  ACT_UNUSED_FLAG_6, FALSE},
+    {"cleric",        ACT_CLERIC,        TRUE},
+    {"mage",          ACT_MAGE,          TRUE},
+    {"thief",         ACT_THIEF,         TRUE},
+    {"warrior",       ACT_WARRIOR,       TRUE},
+    {"noalign",       ACT_NOALIGN,       TRUE},
+    {"nopurge",       ACT_NOPURGE,       TRUE},
+    {"outdoors",      ACT_OUTDOORS,      TRUE},
+    {"unused_act_7",  ACT_UNUSED_FLAG_7, FALSE},
+    {"indoors",       ACT_INDOORS,       TRUE},
+    {"unused_act_8",  ACT_UNUSED_FLAG_8, FALSE},
+    {"healer",        ACT_IS_HEALER,     TRUE},
+    {"gain",          ACT_GAIN,          TRUE},
+    {"update_always", ACT_UPDATE_ALWAYS, TRUE},
+    {"changer",       ACT_IS_CHANGER,    TRUE},
+    {0}
+};
 
-void do_flag (CHAR_DATA * ch, char *argument)
-{
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH],
-        arg3[MAX_INPUT_LENGTH];
-    char word[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    long *flag, old = 0, new = 0, marked = 0, pos;
-    char type;
-    const struct flag_type *flag_table;
+const FLAG_TYPE plr_flags[] = {
+    {"!npc!",         PLR_IS_NPC,        FALSE},
+    {"unused_plr_1",  PLR_UNUSED_FLAG_1, FALSE},
+    {"autoassist",    PLR_AUTOASSIST,    FALSE},
+    {"autoexit",      PLR_AUTOEXIT,      FALSE},
+    {"autoloot",      PLR_AUTOLOOT,      FALSE},
+    {"autosac",       PLR_AUTOSAC,       FALSE},
+    {"autogold",      PLR_AUTOGOLD,      FALSE},
+    {"autosplit",     PLR_AUTOSPLIT,     FALSE},
+    {"unused_plr_2",  PLR_UNUSED_FLAG_2, FALSE},
+    {"unused_plr_3",  PLR_UNUSED_FLAG_3, FALSE},
+    {"unused_plr_4",  PLR_UNUSED_FLAG_4, FALSE},
+    {"unused_plr_5",  PLR_UNUSED_FLAG_5, FALSE},
+    {"unused_plr_6",  PLR_UNUSED_FLAG_6, FALSE},
+    {"holylight",     PLR_HOLYLIGHT,     FALSE},
+    {"unused_plr_7",  PLR_UNUSED_FLAG_7, FALSE},
+    {"can_loot",      PLR_CANLOOT,       FALSE},
+    {"nosummon",      PLR_NOSUMMON,      FALSE},
+    {"nofollow",      PLR_NOFOLLOW,      FALSE},
+    {"unused_plr_8",  PLR_UNUSED_FLAG_8, FALSE},
+    {"colour",        PLR_COLOUR,        FALSE},
+    {"permit",        PLR_PERMIT,        TRUE},
+    {"unused_plr_9",  PLR_UNUSED_FLAG_9, FALSE},
+    {"log",           PLR_LOG,           FALSE},
+    {"deny",          PLR_DENY,          FALSE},
+    {"freeze",        PLR_FREEZE,        FALSE},
+    {"thief",         PLR_THIEF,         FALSE},
+    {"killer",        PLR_KILLER,        FALSE},
+    {0}
+};
 
-    argument = one_argument (argument, arg1);
-    argument = one_argument (argument, arg2);
-    argument = one_argument (argument, arg3);
+const FLAG_TYPE affect_flags[] = {
+    {"blind",         AFF_BLIND,         TRUE},
+    {"invisible",     AFF_INVISIBLE,     TRUE},
+    {"detect_evil",   AFF_DETECT_EVIL,   TRUE},
+    {"detect_invis",  AFF_DETECT_INVIS,  TRUE},
+    {"detect_magic",  AFF_DETECT_MAGIC,  TRUE},
+    {"detect_hidden", AFF_DETECT_HIDDEN, TRUE},
+    {"detect_good",   AFF_DETECT_GOOD,   TRUE},
+    {"sanctuary",     AFF_SANCTUARY,     TRUE},
+    {"faerie_fire",   AFF_FAERIE_FIRE,   TRUE},
+    {"infrared",      AFF_INFRARED,      TRUE},
+    {"curse",         AFF_CURSE,         TRUE},
+    {"unused_aff_1",  AFF_UNUSED_FLAG_1, FALSE},
+    {"poison",        AFF_POISON,        TRUE},
+    {"protect_evil",  AFF_PROTECT_EVIL,  TRUE},
+    {"protect_good",  AFF_PROTECT_GOOD,  TRUE},
+    {"sneak",         AFF_SNEAK,         TRUE},
+    {"hide",          AFF_HIDE,          TRUE},
+    {"sleep",         AFF_SLEEP,         TRUE},
+    {"charm",         AFF_CHARM,         TRUE},
+    {"flying",        AFF_FLYING,        TRUE},
+    {"pass_door",     AFF_PASS_DOOR,     TRUE},
+    {"haste",         AFF_HASTE,         TRUE},
+    {"calm",          AFF_CALM,          TRUE},
+    {"plague",        AFF_PLAGUE,        TRUE},
+    {"weaken",        AFF_WEAKEN,        TRUE},
+    {"dark_vision",   AFF_DARK_VISION,   TRUE},
+    {"berserk",       AFF_BERSERK,       TRUE},
+    {"swim",          AFF_SWIM,          TRUE},
+    {"regeneration",  AFF_REGENERATION,  TRUE},
+    {"slow",          AFF_SLOW,          TRUE},
+    {0}
+};
 
-    type = argument[0];
+const FLAG_TYPE off_flags[] = {
+    {"area_attack",    OFF_AREA_ATTACK, TRUE},
+    {"backstab",       OFF_BACKSTAB,    TRUE},
+    {"bash",           OFF_BASH,        TRUE},
+    {"berserk",        OFF_BERSERK,     TRUE},
+    {"disarm",         OFF_DISARM,      TRUE},
+    {"dodge",          OFF_DODGE,       TRUE},
+    {"fade",           OFF_FADE,        TRUE},
+    {"fast",           OFF_FAST,        TRUE},
+    {"kick",           OFF_KICK,        TRUE},
+    {"dirt_kick",      OFF_KICK_DIRT,   TRUE},
+    {"parry",          OFF_PARRY,       TRUE},
+    {"rescue",         OFF_RESCUE,      TRUE},
+    {"tail",           OFF_TAIL,        TRUE},
+    {"trip",           OFF_TRIP,        TRUE},
+    {"crush",          OFF_CRUSH,       TRUE},
+    {"assist_all",     ASSIST_ALL,      TRUE},
+    {"assist_align",   ASSIST_ALIGN,    TRUE},
+    {"assist_race",    ASSIST_RACE,     TRUE},
+    {"assist_players", ASSIST_PLAYERS,  TRUE},
+    {"assist_guard",   ASSIST_GUARD,    TRUE},
+    {"assist_vnum",    ASSIST_VNUM,     TRUE},
+    {0}
+};
 
-    if (type == '=' || type == '-' || type == '+')
-        argument = one_argument (argument, word);
+const FLAG_TYPE form_flags[] = {
+    {"edible",        FORM_EDIBLE,        TRUE},
+    {"poison",        FORM_POISON,        TRUE},
+    {"magical",       FORM_MAGICAL,       TRUE},
+    {"instant_decay", FORM_INSTANT_DECAY, TRUE},
+    {"other",         FORM_OTHER,         TRUE},
+    {"unused_form_1", FORM_UNUSED_FLAG_1, FALSE},
+    {"animal",        FORM_ANIMAL,        TRUE},
+    {"sentient",      FORM_SENTIENT,      TRUE},
+    {"undead",        FORM_UNDEAD,        TRUE},
+    {"construct",     FORM_CONSTRUCT,     TRUE},
+    {"mist",          FORM_MIST,          TRUE},
+    {"intangible",    FORM_INTANGIBLE,    TRUE},
+    {"biped",         FORM_BIPED,         TRUE},
+    {"centaur",       FORM_CENTAUR,       TRUE},
+    {"insect",        FORM_INSECT,        TRUE},
+    {"spider",        FORM_SPIDER,        TRUE},
+    {"crustacean",    FORM_CRUSTACEAN,    TRUE},
+    {"worm",          FORM_WORM,          TRUE},
+    {"blob",          FORM_BLOB,          TRUE},
+    {"unused_form_2", FORM_UNUSED_FLAG_2, FALSE},
+    {"unused_form_3", FORM_UNUSED_FLAG_3, FALSE},
+    {"mammal",        FORM_MAMMAL,        TRUE},
+    {"bird",          FORM_BIRD,          TRUE},
+    {"reptile",       FORM_REPTILE,       TRUE},
+    {"snake",         FORM_SNAKE,         TRUE},
+    {"dragon",        FORM_DRAGON,        TRUE},
+    {"amphibian",     FORM_AMPHIBIAN,     TRUE},
+    {"fish",          FORM_FISH,          TRUE},
+    {"cold_blood",    FORM_COLD_BLOOD,    TRUE},
+    {0}
+};
 
-    if (arg1[0] == '\0')
-    {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  flag mob  <name> <field> <flags>\n\r", ch);
-        send_to_char ("  flag char <name> <field> <flags>\n\r", ch);
-        send_to_char ("  mob  flags: act,aff,off,imm,res,vuln,form,part\n\r",
-                      ch);
-        send_to_char ("  char flags: plr,comm,aff,imm,res,vuln,\n\r", ch);
-        send_to_char ("  +: add flag, -: remove flag, = set equal to\n\r",
-                      ch);
-        send_to_char ("  otherwise flag toggles the flags listed.\n\r", ch);
-        return;
-    }
+const FLAG_TYPE part_flags[] = {
+    {"head",          PART_HEAD,          TRUE},
+    {"arms",          PART_ARMS,          TRUE},
+    {"legs",          PART_LEGS,          TRUE},
+    {"heart",         PART_HEART,         TRUE},
+    {"brains",        PART_BRAINS,        TRUE},
+    {"guts",          PART_GUTS,          TRUE},
+    {"hands",         PART_HANDS,         TRUE},
+    {"feet",          PART_FEET,          TRUE},
+    {"fingers",       PART_FINGERS,       TRUE},
+    {"ear",           PART_EAR,           TRUE},
+    {"eye",           PART_EYE,           TRUE},
+    {"long_tongue",   PART_LONG_TONGUE,   TRUE},
+    {"eyestalks",     PART_EYESTALKS,     TRUE},
+    {"tentacles",     PART_TENTACLES,     TRUE},
+    {"fins",          PART_FINS,          TRUE},
+    {"wings",         PART_WINGS,         TRUE},
+    {"tail",          PART_TAIL,          TRUE},
+    {"unused_part_1", PART_UNUSED_FLAG_1, FALSE},
+    {"unused_part_2", PART_UNUSED_FLAG_2, FALSE},
+    {"unused_part_3", PART_UNUSED_FLAG_3, FALSE},
+    {"claws",         PART_CLAWS,         TRUE},
+    {"fangs",         PART_FANGS,         TRUE},
+    {"horns",         PART_HORNS,         TRUE},
+    {"scales",        PART_SCALES,        TRUE},
+    {"tusks",         PART_TUSKS,         TRUE},
+    {0}
+};
 
-    if (arg2[0] == '\0')
-    {
-        send_to_char ("What do you wish to set flags on?\n\r", ch);
-        return;
-    }
+const FLAG_TYPE comm_flags[] = {
+    {"quiet",         COMM_QUIET,         TRUE},
+    {"deaf",          COMM_DEAF,          TRUE},
+    {"nowiz",         COMM_NOWIZ,         TRUE},
+    {"noclangossip",  COMM_NOAUCTION,     TRUE},
+    {"nogossip",      COMM_NOGOSSIP,      TRUE},
+    {"noquestion",    COMM_NOQUESTION,    TRUE},
+    {"nomusic",       COMM_NOMUSIC,       TRUE},
+    {"noclan",        COMM_NOCLAN,        TRUE},
+    {"noquote",       COMM_NOQUOTE,       TRUE},
+    {"shoutsoff",     COMM_SHOUTSOFF,     TRUE},
+    {"unused_comm_1", COMM_UNUSED_FLAG_1, FALSE},
+    {"compact",       COMM_COMPACT,       TRUE},
+    {"brief",         COMM_BRIEF,         TRUE},
+    {"prompt",        COMM_PROMPT,        TRUE},
+    {"combine",       COMM_COMBINE,       TRUE},
+    {"telnet_ga",     COMM_TELNET_GA,     TRUE},
+    {"show_affects",  COMM_SHOW_AFFECTS,  TRUE},
+    {"nograts",       COMM_NOGRATS,       TRUE},
+    {"unused_comm_2", COMM_UNUSED_FLAG_2, FALSE},
+    {"noemote",       COMM_NOEMOTE,       FALSE},
+    {"noshout",       COMM_NOSHOUT,       FALSE},
+    {"notell",        COMM_NOTELL,        FALSE},
+    {"nochannels",    COMM_NOCHANNELS,    FALSE},
+    {"unused_comm_3", COMM_UNUSED_FLAG_3, FALSE},
+    {"snoop_proof",   COMM_SNOOP_PROOF,   FALSE},
+    {"afk",           COMM_AFK,           TRUE},
+    {0}
+};
 
-    if (arg3[0] == '\0')
-    {
-        send_to_char ("You need to specify a flag to set.\n\r", ch);
-        return;
-    }
+const FLAG_TYPE mprog_flags[] = {
+    {"act",    TRIG_ACT,    TRUE},
+    {"bribe",  TRIG_BRIBE,  TRUE},
+    {"death",  TRIG_DEATH,  TRUE},
+    {"entry",  TRIG_ENTRY,  TRUE},
+    {"fight",  TRIG_FIGHT,  TRUE},
+    {"give",   TRIG_GIVE,   TRUE},
+    {"greet",  TRIG_GREET,  TRUE},
+    {"grall",  TRIG_GRALL,  TRUE},
+    {"kill",   TRIG_KILL,   TRUE},
+    {"hpcnt",  TRIG_HPCNT,  TRUE},
+    {"random", TRIG_RANDOM, TRUE},
+    {"speech", TRIG_SPEECH, TRUE},
+    {"exit",   TRIG_EXIT,   TRUE},
+    {"exall",  TRIG_EXALL,  TRUE},
+    {"delay",  TRIG_DELAY,  TRUE},
+    {"surr",   TRIG_SURR,   TRUE},
+    {0}
+};
 
-    if (argument[0] == '\0')
-    {
-        send_to_char ("Which flags do you wish to change?\n\r", ch);
-        return;
-    }
+const FLAG_TYPE area_flags[] = {
+    {"changed", AREA_CHANGED, TRUE},
+    {"added",   AREA_ADDED,   TRUE},
+    {"loading", AREA_LOADING, FALSE},
+    {0}
+};
 
-    if (!str_prefix (arg1, "mob") || !str_prefix (arg1, "char"))
-    {
-        victim = get_char_world (ch, arg2);
-        if (victim == NULL)
-        {
-            send_to_char ("You can't find them.\n\r", ch);
-            return;
-        }
+const FLAG_TYPE exit_flags[] = {
+    {"door",          EX_ISDOOR,        TRUE},
+    {"closed",        EX_CLOSED,        TRUE},
+    {"locked",        EX_LOCKED,        TRUE},
+    {"unused_exit_1", EX_UNUSED_FLAG_1, FALSE},
+    {"unused_exit_2", EX_UNUSED_FLAG_2, FALSE},
+    {"pickproof",     EX_PICKPROOF,     TRUE},
+    {"nopass",        EX_NOPASS,        TRUE},
+    {"easy",          EX_EASY,          TRUE},
+    {"hard",          EX_HARD,          TRUE},
+    {"infuriating",   EX_INFURIATING,   TRUE},
+    {"noclose",       EX_NOCLOSE,       TRUE},
+    {"nolock",        EX_NOLOCK,        TRUE},
+    {0}
+};
 
-        /* select a flag to set */
-        if (!str_prefix (arg3, "act"))
-        {
-            if (!IS_NPC (victim))
-            {
-                send_to_char ("Use plr for PCs.\n\r", ch);
-                return;
-            }
+const FLAG_TYPE room_flags[] = {
+    {"dark",          ROOM_DARK,          TRUE},
+    {"unused_room_1", ROOM_UNUSED_FLAG_1, FALSE},
+    {"no_mob",        ROOM_NO_MOB,        TRUE},
+    {"indoors",       ROOM_INDOORS,       TRUE},
+    {"unused_room_2", ROOM_UNUSED_FLAG_2, FALSE},
+    {"unused_room_3", ROOM_UNUSED_FLAG_3, FALSE},
+    {"unused_room_4", ROOM_UNUSED_FLAG_4, FALSE},
+    {"unused_room_5", ROOM_UNUSED_FLAG_5, FALSE},
+    {"unused_room_6", ROOM_UNUSED_FLAG_6, FALSE},
+    {"private",       ROOM_PRIVATE,       TRUE},
+    {"safe",          ROOM_SAFE,          TRUE},
+    {"solitary",      ROOM_SOLITARY,      TRUE},
+    {"pet_shop",      ROOM_PET_SHOP,      TRUE},
+    {"no_recall",     ROOM_NO_RECALL,     TRUE},
+    {"imp_only",      ROOM_IMP_ONLY,      TRUE},
+    {"gods_only",     ROOM_GODS_ONLY,     TRUE},
+    {"heroes_only",   ROOM_HEROES_ONLY,   TRUE},
+    {"newbies_only",  ROOM_NEWBIES_ONLY,  TRUE},
+    {"law",           ROOM_LAW,           TRUE},
+    {"nowhere",       ROOM_NOWHERE,       TRUE},
+    {0}
+};
 
-            flag = &victim->act;
-            flag_table = act_flags;
-        }
+const FLAG_TYPE extra_flags[] = {
+    {"glow",          ITEM_GLOW,          TRUE},
+    {"hum",           ITEM_HUM,           TRUE},
+    {"dark",          ITEM_DARK,          TRUE},
+    {"lock",          ITEM_LOCK,          TRUE},
+    {"evil",          ITEM_EVIL,          TRUE},
+    {"invis",         ITEM_INVIS,         TRUE},
+    {"magic",         ITEM_MAGIC,         TRUE},
+    {"nodrop",        ITEM_NODROP,        TRUE},
+    {"bless",         ITEM_BLESS,         TRUE},
+    {"antigood",      ITEM_ANTI_GOOD,     TRUE},
+    {"antievil",      ITEM_ANTI_EVIL,     TRUE},
+    {"antineutral",   ITEM_ANTI_NEUTRAL,  TRUE},
+    {"noremove",      ITEM_NOREMOVE,      TRUE},
+    {"inventory",     ITEM_INVENTORY,     TRUE},
+    {"nopurge",       ITEM_NOPURGE,       TRUE},
+    {"rotdeath",      ITEM_ROT_DEATH,     TRUE},
+    {"visdeath",      ITEM_VIS_DEATH,     TRUE},
+    {"unused_extra_1",ITEM_UNUSED_FLAG_1, FALSE},
+    {"nonmetal",      ITEM_NONMETAL,      TRUE},
+    {"nolocate",      ITEM_NOLOCATE,      TRUE},
+    {"meltdrop",      ITEM_MELT_DROP,     TRUE},
+    {"hadtimer",      ITEM_HAD_TIMER,     TRUE},
+    {"sellextract",   ITEM_SELL_EXTRACT,  TRUE},
+    {"unused_extra_2",ITEM_UNUSED_FLAG_2, FALSE},
+    {"burnproof",     ITEM_BURN_PROOF,    TRUE},
+    {"nouncurse",     ITEM_NOUNCURSE,     TRUE},
+    {"corroded",      ITEM_CORRODED,      TRUE},
+    {0}
+};
 
-        else if (!str_prefix (arg3, "plr"))
-        {
-            if (IS_NPC (victim))
-            {
-                send_to_char ("Use act for NPCs.\n\r", ch);
-                return;
-            }
+const FLAG_TYPE wear_flags[] = {
+    {"take",      ITEM_TAKE,        TRUE},
+    {"finger",    ITEM_WEAR_FINGER, TRUE},
+    {"neck",      ITEM_WEAR_NECK,   TRUE},
+    {"body",      ITEM_WEAR_BODY,   TRUE},
+    {"head",      ITEM_WEAR_HEAD,   TRUE},
+    {"legs",      ITEM_WEAR_LEGS,   TRUE},
+    {"feet",      ITEM_WEAR_FEET,   TRUE},
+    {"hands",     ITEM_WEAR_HANDS,  TRUE},
+    {"arms",      ITEM_WEAR_ARMS,   TRUE},
+    {"shield",    ITEM_WEAR_SHIELD, TRUE},
+    {"about",     ITEM_WEAR_ABOUT,  TRUE},
+    {"waist",     ITEM_WEAR_WAIST,  TRUE},
+    {"wrist",     ITEM_WEAR_WRIST,  TRUE},
+    {"wield",     ITEM_WIELD,       TRUE},
+    {"hold",      ITEM_HOLD,        TRUE},
+    {"nosac",     ITEM_NO_SAC,      TRUE},
+    {"wearfloat", ITEM_WEAR_FLOAT,  TRUE},
+    {0}
+};
 
-            flag = &victim->act;
-            flag_table = plr_flags;
-        }
+const FLAG_TYPE container_flags[] = {
+    {"closeable", CONT_CLOSEABLE, TRUE},
+    {"pickproof", CONT_PICKPROOF, TRUE},
+    {"closed",    CONT_CLOSED,    TRUE},
+    {"locked",    CONT_LOCKED,    TRUE},
+    {"puton",     CONT_PUT_ON,    TRUE},
+    {0}
+};
 
-        else if (!str_prefix (arg3, "aff"))
-        {
-            flag = &victim->affected_by;
-            flag_table = affect_flags;
-        }
+const FLAG_TYPE weapon_flags[] = {
+    {"flaming",  WEAPON_FLAMING,   TRUE},
+    {"frost",    WEAPON_FROST,     TRUE},
+    {"vampiric", WEAPON_VAMPIRIC,  TRUE},
+    {"sharp",    WEAPON_SHARP,     TRUE},
+    {"vorpal",   WEAPON_VORPAL,    TRUE},
+    {"twohands", WEAPON_TWO_HANDS, TRUE},
+    {"shocking", WEAPON_SHOCKING,  TRUE},
+    {"poison",   WEAPON_POISON,    TRUE},
+    {0}
+};
 
-        else if (!str_prefix (arg3, "immunity"))
-        {
-            flag = &victim->imm_flags;
-            flag_table = imm_flags;
-        }
+const FLAG_TYPE res_flags[] = {
+    {"summon",        RES_SUMMON,        TRUE},
+    {"charm",         RES_CHARM,         TRUE},
+    {"magic",         RES_MAGIC,         TRUE},
+    {"weapon",        RES_WEAPON,        TRUE},
+    {"bash",          RES_BASH,          TRUE},
+    {"pierce",        RES_PIERCE,        TRUE},
+    {"slash",         RES_SLASH,         TRUE},
+    {"fire",          RES_FIRE,          TRUE},
+    {"cold",          RES_COLD,          TRUE},
+    {"lightning",     RES_LIGHTNING,     TRUE},
+    {"acid",          RES_ACID,          TRUE},
+    {"poison",        RES_POISON,        TRUE},
+    {"negative",      RES_NEGATIVE,      TRUE},
+    {"holy",          RES_HOLY,          TRUE},
+    {"energy",        RES_ENERGY,        TRUE},
+    {"mental",        RES_MENTAL,        TRUE},
+    {"disease",       RES_DISEASE,       TRUE},
+    {"drowning",      RES_DROWNING,      TRUE},
+    {"light",         RES_LIGHT,         TRUE},
+    {"sound",         RES_SOUND,         TRUE},
+    {"unused_res_1",  RES_UNUSED_FLAG_1, FALSE},
+    {"unused_res_2",  RES_UNUSED_FLAG_2, FALSE},
+    {"unused_res_3",  RES_UNUSED_FLAG_3, FALSE},
+    {"wood",          RES_WOOD,          TRUE},
+    {"silver",        RES_SILVER,        TRUE},
+    {"iron",          RES_IRON,          TRUE},
+    {0}
+};
 
-        else if (!str_prefix (arg3, "resist"))
-        {
-            flag = &victim->res_flags;
-            flag_table = imm_flags;
-        }
+const FLAG_TYPE portal_flags[] = {
+    {"normal_exit", GATE_NORMAL_EXIT, TRUE},
+    {"no_curse",    GATE_NOCURSE,     TRUE},
+    {"go_with",     GATE_GOWITH,      TRUE},
+    {"buggy",       GATE_BUGGY,       TRUE},
+    {"random",      GATE_RANDOM,      TRUE},
+    {0}
+};
 
-        else if (!str_prefix (arg3, "vuln"))
-        {
-            flag = &victim->vuln_flags;
-            flag_table = imm_flags;
-        }
-
-        else if (!str_prefix (arg3, "form"))
-        {
-            if (!IS_NPC (victim))
-            {
-                send_to_char ("Form can't be set on PCs.\n\r", ch);
-                return;
-            }
-
-            flag = &victim->form;
-            flag_table = form_flags;
-        }
-
-        else if (!str_prefix (arg3, "parts"))
-        {
-            if (!IS_NPC (victim))
-            {
-                send_to_char ("Parts can't be set on PCs.\n\r", ch);
-                return;
-            }
-
-            flag = &victim->parts;
-            flag_table = part_flags;
-        }
-
-        else if (!str_prefix (arg3, "comm"))
-        {
-            if (IS_NPC (victim))
-            {
-                send_to_char ("Comm can't be set on NPCs.\n\r", ch);
-                return;
-            }
-
-            flag = &victim->comm;
-            flag_table = comm_flags;
-        }
-
-        else
-        {
-            send_to_char ("That's not an acceptable flag.\n\r", ch);
-            return;
-        }
-
-        old = *flag;
-        victim->zone = NULL;
-
-        if (type != '=')
-            new = old;
-
-        /* mark the words */
-        for (;;)
-        {
-            argument = one_argument (argument, word);
-
-            if (word[0] == '\0')
-                break;
-
-            pos = flag_lookup (word, flag_table);
-
-            if (pos == NO_FLAG)
-            {
-                send_to_char ("That flag doesn't exist!\n\r", ch);
-                return;
-            }
-            else
-                SET_BIT (marked, pos);
-        }
-
-        for (pos = 0; flag_table[pos].name != NULL; pos++)
-        {
-            if (!flag_table[pos].settable
-                && IS_SET (old, flag_table[pos].bit))
-            {
-                SET_BIT (new, flag_table[pos].bit);
-                continue;
-            }
-
-            if (IS_SET (marked, flag_table[pos].bit))
-            {
-                switch (type)
-                {
-                    case '=':
-                    case '+':
-                        SET_BIT (new, flag_table[pos].bit);
-                        break;
-                    case '-':
-                        REMOVE_BIT (new, flag_table[pos].bit);
-                        break;
-                    default:
-                        if (IS_SET (new, flag_table[pos].bit))
-                            REMOVE_BIT (new, flag_table[pos].bit);
-                        else
-                            SET_BIT (new, flag_table[pos].bit);
-                }
-            }
-        }
-        *flag = new;
-        return;
-    }
-}
+const FLAG_TYPE furniture_flags[] = {
+    {"stand_at",   STAND_AT,   TRUE},
+    {"stand_on",   STAND_ON,   TRUE},
+    {"stand_in",   STAND_IN,   TRUE},
+    {"sit_at",     SIT_AT,     TRUE},
+    {"sit_on",     SIT_ON,     TRUE},
+    {"sit_in",     SIT_IN,     TRUE},
+    {"rest_at",    REST_AT,    TRUE},
+    {"rest_on",    REST_ON,    TRUE},
+    {"rest_in",    REST_IN,    TRUE},
+    {"sleep_at",   SLEEP_AT,   TRUE},
+    {"sleep_on",   SLEEP_ON,   TRUE},
+    {"sleep_in",   SLEEP_IN,   TRUE},
+    {"put_at",     PUT_AT,     TRUE},
+    {"put_on",     PUT_ON,     TRUE},
+    {"put_in",     PUT_IN,     TRUE},
+    {"put_inside", PUT_INSIDE, TRUE},
+    {0}
+};

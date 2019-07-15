@@ -25,160 +25,308 @@
  *   ROM license, in the file Rom24/doc/rom.license                        *
  **************************************************************************/
 
-#if defined(macintosh)
-#include <types.h>
-#else
-#include <sys/types.h>
-#endif
-#include <stdio.h>
-#include <time.h>
 #include <string.h>
-#include "merc.h"
-#include "tables.h"
 
-int flag_lookup (const char *name, const struct flag_type *flag_table)
+#include "utils.h"
+#include "interp.h"
+#include "db.h"
+#include "db2.h"
+#include "recycle.h"
+
+#include "lookup.h"
+
+/* TODO: the fewer macros we can have here, the better... */
+/* TODO: use more suitable names for ARRAY and HASH lookup functions. */
+/* TODO: lookup distinctions between sequential arrays that correspond
+ *       to their appropriate #defines */
+
+int lookup_backup (int (*func) (const char *str), char *str, char *errf,
+    int backup)
 {
-    int flag;
-
-    for (flag = 0; flag_table[flag].name != NULL; flag++)
-    {
-        if (LOWER (name[0]) == LOWER (flag_table[flag].name[0])
-            && !str_prefix (name, flag_table[flag].name))
-            return flag_table[flag].bit;
-    }
-
-    return NO_FLAG;
+    int num = func (str);
+    if (num >= 0)
+        return num;
+    bugf (errf, str);
+    return backup;
 }
 
-int clan_lookup (const char *name)
-{
-    int clan;
-
-    for (clan = 0; clan < MAX_CLAN; clan++)
-    {
-        if (LOWER (name[0]) == LOWER (clan_table[clan].name[0])
-            && !str_prefix (name, clan_table[clan].name))
-            return clan;
-    }
-
-    return 0;
+bool is_table_flagged (const void *table, flag_t t_flags, flag_t f_flags) {
+    int i;
+    for (i = 0; master_table[i].table; i++)
+        if (master_table[i].table == table)
+            return (ARE_SET (master_table[i].flags, t_flags) &&
+                   NONE_SET (master_table[i].flags, f_flags)) ? TRUE : FALSE;
+    return FALSE;
 }
 
-int position_lookup (const char *name)
-{
-    int pos;
+bool is_flag (const void *table)
+    { return is_table_flagged (table, TABLE_FLAG_TYPE | TABLE_BITS, 0); }
+bool is_type (const void *table)
+    { return is_table_flagged (table, TABLE_FLAG_TYPE, TABLE_BITS); }
+bool is_special (const void *table)
+    { return is_table_flagged (table, 0, TABLE_FLAG_TYPE); }
 
-    for (pos = 0; position_table[pos].name != NULL; pos++)
-    {
-        if (LOWER (name[0]) == LOWER (position_table[pos].name[0])
-            && !str_prefix (name, position_table[pos].name))
-            return pos;
+flag_t flag_value (const FLAG_TYPE *flag_table, char *argument) {
+    char word[MAX_INPUT_LENGTH];
+    bool found = FALSE;
+    flag_t bit;
+    flag_t marked = 0;
+
+    if (is_special (flag_table)) {
+        bug ("flag_value: cannot yet look up values for special types :(", 0);
+        return 0;
     }
+    if (!is_flag (flag_table))
+        return flag_lookup (argument, flag_table);
 
-    return -1;
+    /* Accept multiple flags. */
+    while (1) {
+        argument = one_argument (argument, word);
+        if (word[0] == '\0')
+            break;
+        if ((bit = flag_lookup (word, flag_table)) != NO_FLAG) {
+            SET_BIT (marked, bit);
+            found = TRUE;
+        }
+    }
+    if (found)
+        return marked;
+    else
+        return NO_FLAG;
 }
 
-int sex_lookup (const char *name)
-{
-    int sex;
+char *flag_string (const FLAG_TYPE *flag_table, flag_t bits) {
+    static char buf[2][512];
+    static int cnt = 0;
+    int i;
+    const TABLE_TYPE *mt;
+    bool bitflag;
 
-    for (sex = 0; sex_table[sex].name != NULL; sex++)
-    {
-        if (LOWER (name[0]) == LOWER (sex_table[sex].name[0])
-            && !str_prefix (name, sex_table[sex].name))
-            return sex;
+    if (++cnt > 1)
+        cnt = 0;
+
+    for (i = 0; master_table[i].table; i++)
+        if (master_table[i].table == flag_table)
+            break;
+    mt = &(master_table[i]);
+    if (mt->table == NULL)
+        return "none";
+    if (!IS_SET(mt->flags, TABLE_FLAG_TYPE)) {
+        bug ("flag_type: cannot yet lookup special tables :(", 0);
+        return "none";
     }
 
-    return -1;
+    buf[cnt][0] = '\0';
+    bitflag = IS_SET (mt->flags, TABLE_BITS);
+    for (i = 0; flag_table[i].name != NULL; i++) {
+        if (bitflag && IS_SET (bits, flag_table[i].bit)) {
+            strcat (buf[cnt], " ");
+            strcat (buf[cnt], flag_table[i].name);
+        }
+        else if (!bitflag && bits == flag_table[i].bit) {
+            strcat (buf[cnt], " ");
+            strcat (buf[cnt], flag_table[i].name);
+            break;
+        }
+    }
+    return (buf[cnt][0] != '\0') ? buf[cnt] + 1 : "none";
 }
 
-int size_lookup (const char *name)
-{
-    int size;
+flag_t flag_lookup (const char *name, const FLAG_TYPE *flag_table)
+    { SIMPLE_LOOKUP_PROP (flag_table, bit, name, NO_FLAG, 0); }
+flag_t flag_lookup_exact (const char *name, const FLAG_TYPE *flag_table)
+    { SIMPLE_LOOKUP_PROP_EXACT (flag_table, bit, name, NO_FLAG, 0); }
+const FLAG_TYPE *flag_get_by_name (const char *name, const FLAG_TYPE *flag_table)
+    { SIMPLE_GET_BY_NAME (flag_table, name, 0); }
+const FLAG_TYPE *flag_get_by_name_exact (const char *name, const FLAG_TYPE *flag_table)
+    { SIMPLE_GET_BY_NAME_EXACT (flag_table, name, 0); }
+const FLAG_TYPE *flag_get (flag_t bit, const FLAG_TYPE *flag_table)
+    { SIMPLE_GET (flag_table, bit, name, NULL, 0); }
+const char *flag_get_name (flag_t bit, const FLAG_TYPE *flag_table)
+    { SIMPLE_GET_NAME (FLAG_TYPE, flag_get(bit, flag_table), name); }
 
-    for (size = 0; size_table[size].name != NULL; size++)
-    {
-        if (LOWER (name[0]) == LOWER (size_table[size].name[0])
-            && !str_prefix (name, size_table[size].name))
-            return size;
-    }
+SIMPLE_ARRAY_BUNDLE (clan,     CLAN_TYPE,     CLAN_MAX);
+SIMPLE_ARRAY_BUNDLE (position, POSITION_TYPE, POS_MAX);
+SIMPLE_ARRAY_BUNDLE (sex,      SEX_TYPE,      SEX_MAX);
+SIMPLE_ARRAY_BUNDLE (size,     SIZE_TYPE,     SIZE_MAX_R);
+SIMPLE_ARRAY_BUNDLE (race,     RACE_TYPE,     RACE_MAX);
+SIMPLE_ARRAY_BUNDLE (liq,      LIQ_TYPE,      LIQ_MAX);
+SIMPLE_ARRAY_BUNDLE (attack,   ATTACK_TYPE,   ATTACK_MAX);
+SIMPLE_ARRAY_BUNDLE (class,    CLASS_TYPE,    CLASS_MAX);
+SIMPLE_ARRAY_BUNDLE (skill,    SKILL_TYPE,    SKILL_MAX);
+SIMPLE_ARRAY_BUNDLE (spec,     SPEC_TYPE,     SPEC_MAX);
+SIMPLE_ARRAY_BUNDLE (group,    GROUP_TYPE,    GROUP_MAX);
+SIMPLE_ARRAY_BUNDLE (wear,     WEAR_TYPE,     WEAR_MAX);
+SIMPLE_ARRAY_BUNDLE (recycle,  RECYCLE_TYPE,  RECYCLE_MAX);
+SIMPLE_ARRAY_BUNDLE (board,    BOARD_DATA,    BOARD_MAX);
+SIMPLE_ARRAY_BUNDLE (master,   TABLE_TYPE,    0);
 
-    return -1;
-}
+SIMPLE_HASH_BUNDLE (wiznet,     WIZNET_TYPE,      bit);
+SIMPLE_HASH_BUNDLE (weapon,     WEAPON_TYPE,      type);
+SIMPLE_HASH_BUNDLE (item,       ITEM_TYPE,        type);
+SIMPLE_HASH_BUNDLE (sector,     SECTOR_TYPE,      type);
+SIMPLE_HASH_BUNDLE (map_lookup, MAP_LOOKUP_TABLE, index);
+SIMPLE_HASH_BUNDLE (map_flags,  MAP_LOOKUP_TABLE, index);
+SIMPLE_HASH_BUNDLE (nanny,      NANNY_HANDLER,    state);
+SIMPLE_HASH_BUNDLE (furniture,  FURNITURE_BITS,   position);
+SIMPLE_HASH_BUNDLE (door,       DOOR_TYPE,        dir);
+SIMPLE_HASH_BUNDLE (material,   MATERIAL_TYPE,    type);
+SIMPLE_HASH_BUNDLE (dam,        DAM_TYPE,         type);
+SIMPLE_HASH_BUNDLE (colour,     COLOUR_TYPE,      code);
+SIMPLE_HASH_BUNDLE (colour_setting, COLOUR_SETTING_TYPE, index);
 
-/* returns race number */
-int race_lookup (const char *name)
-{
-    int race;
+SIMPLE_REC_BUNDLE (ban,         BAN_DATA,         RECYCLE_BAN_DATA);
+SIMPLE_REC_BUNDLE (area,        AREA_DATA,        RECYCLE_AREA_DATA);
+SIMPLE_REC_BUNDLE (room_index,  ROOM_INDEX_DATA,  RECYCLE_ROOM_INDEX_DATA);
+SIMPLE_REC_BUNDLE (obj_index,   OBJ_INDEX_DATA,   RECYCLE_OBJ_INDEX_DATA);
+SIMPLE_REC_BUNDLE (help,        HELP_DATA,        RECYCLE_HELP_DATA);
+SIMPLE_REC_BUNDLE (had,         HELP_AREA,        RECYCLE_HELP_AREA);
+SIMPLE_REC_BUNDLE (social,      SOCIAL_TYPE,      RECYCLE_SOCIAL_TYPE);
+SIMPLE_REC_BUNDLE (portal_exit, PORTAL_EXIT_TYPE, RECYCLE_PORTAL_EXIT_TYPE);
 
-    for (race = 0; race_table[race].name != NULL; race++)
-    {
-        if (LOWER (name[0]) == LOWER (race_table[race].name[0])
-            && !str_prefix (name, race_table[race].name))
-            return race;
-    }
-
-    return 0;
-}
-
-int item_lookup (const char *name)
-{
-    int type;
-
-    for (type = 0; item_table[type].name != NULL; type++)
-    {
-        if (LOWER (name[0]) == LOWER (item_table[type].name[0])
-            && !str_prefix (name, item_table[type].name))
-            return item_table[type].type;
-    }
-
-    return -1;
-}
-
-int liq_lookup (const char *name)
-{
-    int liq;
-
-    for (liq = 0; liq_table[liq].liq_name != NULL; liq++)
-    {
-        if (LOWER (name[0]) == LOWER (liq_table[liq].liq_name[0])
-            && !str_prefix (name, liq_table[liq].liq_name))
-            return liq;
-    }
-
-    return -1;
-}
-
-HELP_DATA *help_lookup (char *keyword)
-{
-    HELP_DATA *pHelp;
-    char temp[MIL], argall[MIL];
-
-    argall[0] = '\0';
-
-    while (keyword[0] != '\0')
-    {
-        keyword = one_argument (keyword, temp);
-        if (argall[0] != '\0')
-            strcat (argall, " ");
-        strcat (argall, temp);
-    }
-
-    for (pHelp = help_first; pHelp != NULL; pHelp = pHelp->next)
-        if (is_name (argall, pHelp->keyword))
-            return pHelp;
-
+SPEC_FUN* spec_lookup_function (const char *name)
+    { SIMPLE_LOOKUP_PROP (spec_table, function, name, NULL, SPEC_MAX); }
+const char *spec_function_name (SPEC_FUN *function) {
+    int i;
+    for (i = 0; spec_table[i].function != NULL; i++)
+        if (function == spec_table[i].function)
+            return spec_table[i].name;
     return NULL;
 }
 
-HELP_AREA *had_lookup (char *arg)
-{
-    HELP_AREA *temp;
-    extern HELP_AREA *had_list;
+const OBJ_MAP *obj_map_get (int item_type)
+    { SIMPLE_GET (obj_map_table, item_type, item_type, -1, 0); }
 
-    for (temp = had_list; temp; temp = temp->next)
-        if (!str_cmp (arg, temp->filename))
-            return temp;
+const char *map_lookup_get_string (int index, flag_t value) {
+    const MAP_LOOKUP_TABLE *lookup = map_lookup_get (index);
+    if (lookup == NULL)
+        return NULL;
+    if (lookup->flags)
+        return flag_get_name (value, lookup->flags);
+    else {
+        switch (lookup->index) {
+            case MAP_LOOKUP_WEAPON_TYPE: return weapon_get_name (value);
+            case MAP_LOOKUP_ATTACK_TYPE: return attack_get_name (value);
+            case MAP_LOOKUP_SKILL:       return skill_get_name (value);
+            case MAP_LOOKUP_LIQUID:      return liq_get_name (value);
 
+            default:
+                bugf("map_lookup_get_string: Unhandled type '%s'",
+                    lookup->name);
+                return NULL;
+        }
+    }
+}
+
+int map_flags_get_string (int index, flag_t value, char *buf, size_t size) {
+    const MAP_LOOKUP_TABLE *lookup = map_flags_get (index);
+    char *str = NULL;
+    if (lookup == NULL)
+        return 0;
+    if (lookup->flags)
+        str = flag_string (lookup->flags, value);
+    else {
+        switch (lookup->index) {
+            default:
+                bugf("map_flags_get_string: Unhandled type '%s'",
+                    lookup->name);
+                return 0;
+        }
+    }
+
+    if (str == NULL || !strcmp(str, "none"))
+        buf[0] = '\0';
+    else
+        snprintf (buf, size, "%s", str);
+
+    return 1;
+}
+
+const OBJ_MAP_VALUE *obj_map_value_get (const OBJ_MAP *map, int index) {
+    int i;
+    if (map == NULL)
+        return NULL;
+    for (i = 0; i < OBJ_VALUE_MAX; i++)
+        if (map->values[i].index == index)
+            return (map->values + i);
     return NULL;
 }
+
+const TABLE_TYPE *master_get_first (void)
+    { return &(master_table[0]); }
+const TABLE_TYPE *master_get_next (const TABLE_TYPE *table)
+    { return table[1].name == NULL ? NULL : &(table[1]); }
+
+AREA_DATA *area_get_by_vnum (int vnum) {
+    AREA_DATA *a;
+    for (a = area_get_first(); a; a = area_get_next (a))
+        if (a->vnum == vnum)
+            return a;
+    return NULL;
+}
+
+AREA_DATA *area_get_by_inner_vnum (int vnum) {
+    AREA_DATA *a;
+    for (a = area_get_first(); a; a = area_get_next (a))
+        if (vnum >= a->min_vnum && vnum <= a->max_vnum)
+            return a;
+    return NULL;
+}
+
+flag_t wear_get_type_by_loc (flag_t wear_loc) {
+    int i;
+    for (i = 0; wear_table[i].name != NULL; i++)
+        if (wear_loc == wear_table[i].wear_loc)
+            return wear_table[i].type;
+    return 0;
+}
+
+flag_t wear_get_loc_by_type (flag_t type) {
+    int i;
+    for (i = 0; wear_table[i].name != NULL; i++)
+        if (type == wear_table[i].type)
+            return wear_table[i].wear_loc;
+    return 0;
+}
+
+HELP_AREA *help_area_get_by_help (HELP_DATA * help) {
+    HELP_AREA *had;
+    HELP_DATA *h;
+    for (had = had_first; had; had = had->next)
+        for (h = had->first; h; h = h->next_area)
+            if (h == help)
+                return had;
+    return NULL;
+}
+
+char *affect_apply_name (flag_t type)
+    { return flag_string (affect_apply_types, type); }
+char *room_bit_name (flag_t flags)
+    { return flag_string (room_flags, flags); }
+char *affect_bit_name (flag_t flags)
+    { return flag_string (affect_flags, flags); }
+char *extra_bit_name (flag_t flags)
+    { return flag_string (extra_flags, flags); }
+char *act_bit_name (flag_t flags) {
+    int is_npc = IS_SET (flags, ACT_IS_NPC);
+    flags |= (A);
+    return is_npc
+        ? flag_string (act_flags, flags)
+        : flag_string (plr_flags, flags);
+}
+char *comm_bit_name (flag_t flags)
+    { return flag_string (comm_flags, flags); }
+char *res_bit_name (flag_t flags)
+    { return flag_string (res_flags, flags); }
+char *wear_bit_name (flag_t flags)
+    { return flag_string (wear_flags, flags); }
+char *form_bit_name (flag_t flags)
+    { return flag_string (form_flags, flags); }
+char *part_bit_name (flag_t flags)
+    { return flag_string (part_flags, flags); }
+char *weapon_bit_name (flag_t flags)
+    { return flag_string (weapon_flags, flags); }
+char *cont_bit_name (flag_t flags)
+    { return flag_string (container_flags, flags); }
+char *off_bit_name (flag_t flags)
+    { return flag_string (off_flags, flags); }

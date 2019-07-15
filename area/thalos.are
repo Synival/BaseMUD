@@ -7,7 +7,7 @@ Thalos~
 #MOBILES
 #5200
 oldstyle beholder~
-The mighty beholder~
+the mighty beholder~
 You meet a beholder's deadly gaze!
 ~
 It has a large central eye that projects an anti-magic ray and ten
@@ -23,7 +23,7 @@ stand stand none 1128
 0 0 medium 0
 #5201
 oldstyle lamia beast~
-The lamia~
+the lamia~
 A strange lamia stands here waiting for her next meal.
 ~
 This is a creature with the upper torso of a beautiful woman, but the lower
@@ -38,7 +38,7 @@ stand stand female 50
 0 0 medium 0
 #5202
 oldstyle mimic chest~
-The mimic~
+the mimic~
 A strong chest lies in one corner of the room.
 ~
 A strong, wooden chest bound with iron straps and a heavy pad-lock on the
@@ -53,7 +53,7 @@ stand stand none 0
 0 0 medium 0
 #5203
 oldstyle mimic boulder~
-The mimic~
+the mimic~
 Two skeletons lie crushed under a large boulder.
 ~
 ~
@@ -66,7 +66,7 @@ stand stand none 0
 0 0 medium 0
 #5204
 oldstyle mimic floor~
-The mimic~
+the mimic~
 The stone floor of this house has been ripped apart.
 ~
 ~
@@ -79,7 +79,7 @@ stand stand none 0
 0 0 medium 0
 #5205
 oldstyle mimic pottery~
-The mimic~
+the mimic~
 Some broken shards of pottery lie strewn about the floor.
 ~
 ~
@@ -92,7 +92,7 @@ stand stand none 0
 0 0 medium 0
 #5206
 oldstyle mimic planks~
-The mimic~
+the mimic~
 A few wooden planks lie stacked on a low shelf.
 ~
 ~
@@ -105,7 +105,7 @@ stand stand none 0
 0 0 medium 0
 #5207
 oldstyle lizard horned~
-The horned lizard~
+the horned lizard~
 A small horned lizard flicks his tongue and slithers away.
 ~
 A cute little lizard, that is, if you like reptiles!
@@ -119,7 +119,7 @@ stand stand none 0
 0 0 medium 0
 #5208
 oldstyle golem stone~
-The stone golem~
+the stone golem~
 In the corner you see a large, stone golem faithfully standing watch.
 ~
 It is a big chunk of rock that has been magically formed into a giant

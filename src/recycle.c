@@ -25,454 +25,535 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#if defined(macintosh)
-#include <types.h>
-#include <time.h>
-#else
-#include <sys/types.h>
-#include <sys/time.h>
-#endif
-#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "merc.h"
+
+#include "utils.h"
+#include "lookup.h"
+#include "db.h"
+#include "comm.h"
+#include "affects.h"
+#include "objs.h"
+
 #include "recycle.h"
 
+/* TODO: move defines to recycle.h */
+/* TODO: move non-recycle functions to appropriate places. */
 
-/* stuff for recycling ban structures */
-BAN_DATA *ban_free;
+/* Globals */
+#define RECYCLE_GLOBALS(type, name, vtype)   \
+    vtype * name ## _get_first (void)        \
+        { return recycle_get_first_obj (type); } \
+    vtype * name ## _get_next (const vtype * obj) \
+        { return (obj->rec_data.next) ? obj->rec_data.next->obj : NULL; } \
+    vtype * name ## _new (void)              \
+        { return recycle_new (type); }       \
+    void name ## _free (vtype *v)            \
+        { recycle_free (type, v); }
 
-BAN_DATA *new_ban (void)
-{
-    static BAN_DATA ban_zero;
-    BAN_DATA *ban;
+RECYCLE_GLOBALS (RECYCLE_BAN_DATA,         ban,         BAN_DATA);
+RECYCLE_GLOBALS (RECYCLE_AREA_DATA,        area,        AREA_DATA);
+RECYCLE_GLOBALS (RECYCLE_EXTRA_DESCR_DATA, extra_descr, EXTRA_DESCR_DATA);
+RECYCLE_GLOBALS (RECYCLE_EXIT_DATA,        exit,        EXIT_DATA);
+RECYCLE_GLOBALS (RECYCLE_ROOM_INDEX_DATA,  room_index,  ROOM_INDEX_DATA);
+RECYCLE_GLOBALS (RECYCLE_OBJ_INDEX_DATA,   obj_index,   OBJ_INDEX_DATA);
+RECYCLE_GLOBALS (RECYCLE_SHOP_DATA,        shop,        SHOP_DATA);
+RECYCLE_GLOBALS (RECYCLE_MOB_INDEX_DATA,   mob_index,   MOB_INDEX_DATA);
+RECYCLE_GLOBALS (RECYCLE_RESET_DATA,       reset_data,  RESET_DATA);
+RECYCLE_GLOBALS (RECYCLE_HELP_DATA,        help,        HELP_DATA);
+RECYCLE_GLOBALS (RECYCLE_MPROG_CODE,       mpcode,      MPROG_CODE);
+RECYCLE_GLOBALS (RECYCLE_DESCRIPTOR_DATA,  descriptor,  DESCRIPTOR_DATA);
+RECYCLE_GLOBALS (RECYCLE_GEN_DATA,         gen_data,    GEN_DATA);
+RECYCLE_GLOBALS (RECYCLE_AFFECT_DATA,      affect,      AFFECT_DATA);
+RECYCLE_GLOBALS (RECYCLE_OBJ_DATA,         obj,         OBJ_DATA);
+RECYCLE_GLOBALS (RECYCLE_CHAR_DATA,        char,        CHAR_DATA);
+RECYCLE_GLOBALS (RECYCLE_PC_DATA,          pcdata,      PC_DATA);
+RECYCLE_GLOBALS (RECYCLE_MEM_DATA,         mem_data,    MEM_DATA);
+RECYCLE_GLOBALS (RECYCLE_BUFFER,           buf,         BUFFER);
+RECYCLE_GLOBALS (RECYCLE_MPROG_LIST,       mprog,       MPROG_LIST);
+RECYCLE_GLOBALS (RECYCLE_HELP_AREA,        had,         HELP_AREA);
+RECYCLE_GLOBALS (RECYCLE_NOTE_DATA,        note,        NOTE_DATA);
+RECYCLE_GLOBALS (RECYCLE_SOCIAL_TYPE,      social,      SOCIAL_TYPE);
+RECYCLE_GLOBALS (RECYCLE_PORTAL_EXIT_TYPE, portal_exit, PORTAL_EXIT_TYPE);
+RECYCLE_GLOBALS (RECYCLE_PORTAL_TYPE,      portal,      PORTAL_TYPE);
 
-    if (ban_free == NULL)
-        ban = alloc_perm (sizeof (*ban));
-    else
-    {
-        ban = ban_free;
-        ban_free = ban_free->next;
+int mobile_count = 0;
+long last_pc_id  = 0;
+long last_mob_id = 0;
+size_t new_buf_current_size = BASE_BUF;
+
+void *recycle_new (int type) {
+    RECYCLE_TYPE *rec;
+    OBJ_RECYCLE_DATA *data;
+    void *obj;
+
+    /* This function is cool enough to disregard const.
+     * It's BAD, but... This can be fixed in a later refactoring.
+     * -- Synival */
+    if ((rec = (RECYCLE_TYPE *) recycle_get (type)) == NULL) {
+        bugf("new_recycle: Unknown type '%d'", type);
+        return NULL;
     }
 
-    *ban = ban_zero;
-    VALIDATE (ban);
-    ban->name = &str_empty[0];
-    return ban;
-}
-
-void free_ban (BAN_DATA * ban)
-{
-    if (!IS_VALID (ban))
-        return;
-
-    free_string (ban->name);
-    INVALIDATE (ban);
-
-    ban->next = ban_free;
-    ban_free = ban;
-}
-
-/* stuff for recycling descriptors */
-DESCRIPTOR_DATA *descriptor_free;
-
-DESCRIPTOR_DATA *new_descriptor (void)
-{
-    static DESCRIPTOR_DATA d_zero;
-    DESCRIPTOR_DATA *d;
-
-    if (descriptor_free == NULL)
-        d = alloc_perm (sizeof (*d));
-    else
-    {
-        d = descriptor_free;
-        descriptor_free = descriptor_free->next;
+    /* If there's nothing to recycle, allocate a new object. */
+    if (rec->free_front == NULL) {
+        obj  = alloc_perm (rec->size);
+        data = APPLY_OFFSET (OBJ_RECYCLE_DATA, obj, rec->obj_data_off);
+        rec->top++;
+    }
+    /* There's a recycled object - get it and pull it off the stack. */
+    else {
+        obj  = rec->free_front->obj;
+        data = rec->free_front;
+        LIST2_REMOVE (data, prev, next, rec->free_front, rec->free_back);
+        rec->free_count--;
     }
 
-    *d = d_zero;
-    VALIDATE (d);
+    /* Initialize with empty data and an optional initializer function. */
+    memset (obj, 0, rec->size);
+    data->obj = obj;
 
-    d->connected = CON_GET_NAME;
-    d->showstr_head = NULL;
-    d->showstr_point = NULL;
-    d->outsize = 2000;
-    d->outbuf = alloc_mem (d->outsize);
+    /* Push it to the back of our valid object list. */
+    LIST2_BACK (data, prev, next, rec->list_front, rec->list_back);
+    rec->list_count++;
 
-    return d;
-}
+    /* 'Validate' our object so we know it's in use. */
+    data->valid = TRUE;
 
-void free_descriptor (DESCRIPTOR_DATA * d)
-{
-    if (!IS_VALID (d))
-        return;
-
-    free_string (d->host);
-    free_mem (d->outbuf, d->outsize);
-    INVALIDATE (d);
-    d->next = descriptor_free;
-    descriptor_free = d;
-}
-
-/* stuff for recycling gen_data */
-GEN_DATA *gen_data_free;
-
-GEN_DATA *new_gen_data (void)
-{
-    static GEN_DATA gen_zero;
-    GEN_DATA *gen;
-
-    if (gen_data_free == NULL)
-        gen = alloc_perm (sizeof (*gen));
-    else
-    {
-        gen = gen_data_free;
-        gen_data_free = gen_data_free->next;
+    if (rec->init_fun) {
+        RECYCLE_INIT_FUN *func = rec->init_fun;
+        func (obj);
     }
-    *gen = gen_zero;
-    VALIDATE (gen);
-    return gen;
-}
-
-void free_gen_data (GEN_DATA * gen)
-{
-    if (!IS_VALID (gen))
-        return;
-
-    INVALIDATE (gen);
-
-    gen->next = gen_data_free;
-    gen_data_free = gen;
-}
-
-/* stuff for recycling extended descs */
-EXTRA_DESCR_DATA *extra_descr_free;
-
-EXTRA_DESCR_DATA *new_extra_descr (void)
-{
-    EXTRA_DESCR_DATA *ed;
-
-    if (extra_descr_free == NULL)
-        ed = alloc_perm (sizeof (*ed));
-    else
-    {
-        ed = extra_descr_free;
-        extra_descr_free = extra_descr_free->next;
-    }
-
-    ed->keyword = &str_empty[0];
-    ed->description = &str_empty[0];
-    VALIDATE (ed);
-    return ed;
-}
-
-void free_extra_descr (EXTRA_DESCR_DATA * ed)
-{
-    if (!IS_VALID (ed))
-        return;
-
-    free_string (ed->keyword);
-    free_string (ed->description);
-    INVALIDATE (ed);
-
-    ed->next = extra_descr_free;
-    extra_descr_free = ed;
-}
-
-
-/* stuff for recycling affects */
-AFFECT_DATA *affect_free;
-
-AFFECT_DATA *new_affect (void)
-{
-    static AFFECT_DATA af_zero;
-    AFFECT_DATA *af;
-
-    if (affect_free == NULL)
-        af = alloc_perm (sizeof (*af));
-    else
-    {
-        af = affect_free;
-        affect_free = affect_free->next;
-    }
-
-    *af = af_zero;
-
-
-    VALIDATE (af);
-    return af;
-}
-
-void free_affect (AFFECT_DATA * af)
-{
-    if (!IS_VALID (af))
-        return;
-
-    INVALIDATE (af);
-    af->next = affect_free;
-    affect_free = af;
-}
-
-/* stuff for recycling objects */
-OBJ_DATA *obj_free;
-
-OBJ_DATA *new_obj (void)
-{
-    static OBJ_DATA obj_zero;
-    OBJ_DATA *obj;
-
-    if (obj_free == NULL)
-        obj = alloc_perm (sizeof (*obj));
-    else
-    {
-        obj = obj_free;
-        obj_free = obj_free->next;
-    }
-    *obj = obj_zero;
-    VALIDATE (obj);
-
     return obj;
 }
 
-void free_obj (OBJ_DATA * obj)
-{
+void recycle_free (int type, void *obj) {
+    RECYCLE_TYPE *rec;
+    OBJ_RECYCLE_DATA *data;
+
+    if (obj == NULL)
+        return;
+
+    /* This function is cool enough to disregard const.
+     * It's BAD, but... This can be fixed in a later refactoring.
+     * -- Synival */
+    if ((rec = (RECYCLE_TYPE *) recycle_get (type)) == NULL) {
+        bugf("free_recycle: Unknown type '%d'", type);
+        return;
+    }
+
+    /* Don't free objects that are already invalidated. */
+    data = APPLY_OFFSET (OBJ_RECYCLE_DATA, obj, rec->obj_data_off);
+    if (!data->valid) {
+        bugf("free_recycle: Attempted to free invalidated %s\n", rec->name);
+        return;
+    }
+
+    /* Use a disposal function if we have one. */
+    if (rec->dispose_fun) {
+        RECYCLE_DISPOSE_FUN *func = rec->dispose_fun;
+        func (obj);
+    }
+
+    /* Remove from our valid object list and add to the 'free' list. */
+    LIST2_REMOVE (data, prev, next, rec->list_front, rec->list_back);
+    LIST2_BACK   (data, prev, next, rec->free_front, rec->free_back);
+    rec->list_count--;
+    rec->free_count++;
+
+    /* 'Invalidate' our object so we know it's no longer in use. */
+    data->valid = FALSE;
+}
+
+void *recycle_get_first_obj (int type) {
+    const RECYCLE_TYPE *rec = recycle_get (type);
+    return (rec->list_front) ? rec->list_front->obj : NULL;
+}
+
+void ban_init (void *obj) {
+    BAN_DATA *ban = obj;
+    ban->name = &str_empty[0];
+}
+
+void ban_dispose (void *obj) {
+    BAN_DATA *ban = obj;
+    str_free (ban->name);
+}
+
+void descriptor_init (void *obj) {
+    DESCRIPTOR_DATA *d = obj;
+    d->connected     = CON_GET_NAME;
+    d->showstr_head  = NULL;
+    d->showstr_point = NULL;
+    d->outsize       = 2000;
+    d->outbuf        = alloc_mem (d->outsize);
+}
+
+void descriptor_dispose (void *obj) {
+    DESCRIPTOR_DATA *d = obj;
+    str_free (d->host);
+    mem_free (d->outbuf, d->outsize);
+}
+
+void extra_descr_init (void *obj) {
+    EXTRA_DESCR_DATA *ed = obj;
+    ed->keyword = &str_empty[0];
+    ed->description = &str_empty[0];
+}
+
+void extra_descr_dispose (void *obj) {
+    EXTRA_DESCR_DATA *ed = obj;
+    str_free (ed->keyword);
+    str_free (ed->description);
+}
+
+void obj_dispose (void *vobj) {
+    OBJ_DATA *obj = vobj;
     AFFECT_DATA *paf, *paf_next;
     EXTRA_DESCR_DATA *ed, *ed_next;
 
-    if (!IS_VALID (obj))
-        return;
-
-    for (paf = obj->affected; paf != NULL; paf = paf_next)
-    {
+    for (paf = obj->affected; paf != NULL; paf = paf_next) {
         paf_next = paf->next;
-        free_affect (paf);
+        affect_free (paf);
     }
     obj->affected = NULL;
 
-    for (ed = obj->extra_descr; ed != NULL; ed = ed_next)
-    {
+    for (ed = obj->extra_descr; ed != NULL; ed = ed_next) {
         ed_next = ed->next;
-        free_extra_descr (ed);
+        extra_descr_free (ed);
     }
     obj->extra_descr = NULL;
 
-    free_string (obj->name);
-    free_string (obj->description);
-    free_string (obj->short_descr);
-    free_string (obj->owner);
-    INVALIDATE (obj);
-
-    obj->next = obj_free;
-    obj_free = obj;
+    str_free (obj->name);
+    str_free (obj->description);
+    str_free (obj->short_descr);
+    str_free (obj->owner);
 }
 
-
-/* stuff for recyling characters */
-CHAR_DATA *char_free;
-
-CHAR_DATA *new_char (void)
-{
-    static CHAR_DATA ch_zero;
-    CHAR_DATA *ch;
+void char_init (void *obj) {
+    CHAR_DATA *ch = obj;
     int i;
-
-    if (char_free == NULL)
-        ch = alloc_perm (sizeof (*ch));
-    else
-    {
-        ch = char_free;
-        char_free = char_free->next;
-    }
-
-    *ch = ch_zero;
-    VALIDATE (ch);
-    ch->name = &str_empty[0];
+    ch->name        = &str_empty[0];
     ch->short_descr = &str_empty[0];
-    ch->long_descr = &str_empty[0];
+    ch->long_descr  = &str_empty[0];
     ch->description = &str_empty[0];
-    ch->prompt = &str_empty[0];
-    ch->prefix = &str_empty[0];
-    ch->logon = current_time;
-    ch->lines = PAGELEN;
+    ch->prompt      = &str_empty[0];
+    ch->prefix      = &str_empty[0];
+    ch->logon       = current_time;
+    ch->lines       = PAGELEN;
+    ch->position    = POS_STANDING;
+    ch->hit         = 20;
+    ch->max_hit     = 20;
+    ch->mana        = 100;
+    ch->max_mana    = 100;
+    ch->move        = 100;
+    ch->max_move    = 100;
+
     for (i = 0; i < 4; i++)
         ch->armor[i] = 100;
-    ch->position = POS_STANDING;
-    ch->hit = 20;
-    ch->max_hit = 20;
-    ch->mana = 100;
-    ch->max_mana = 100;
-    ch->move = 100;
-    ch->max_move = 100;
-    for (i = 0; i < MAX_STATS; i++)
-    {
+    for (i = 0; i < STAT_MAX; i++) {
         ch->perm_stat[i] = 13;
         ch->mod_stat[i] = 0;
     }
-
-    return ch;
 }
 
-
-void free_char (CHAR_DATA * ch)
-{
+void char_dispose (void *vobj) {
+    CHAR_DATA *ch = vobj;
     OBJ_DATA *obj;
     OBJ_DATA *obj_next;
     AFFECT_DATA *paf;
     AFFECT_DATA *paf_next;
 
-    if (!IS_VALID (ch))
-        return;
-
     if (IS_NPC (ch))
         mobile_count--;
 
-    for (obj = ch->carrying; obj != NULL; obj = obj_next)
-    {
+    for (obj = ch->carrying; obj != NULL; obj = obj_next) {
         obj_next = obj->next_content;
-        extract_obj (obj);
+        obj_extract (obj);
     }
-
-    for (paf = ch->affected; paf != NULL; paf = paf_next)
-    {
+    for (paf = ch->affected; paf != NULL; paf = paf_next) {
         paf_next = paf->next;
         affect_remove (ch, paf);
     }
 
-    free_string (ch->name);
-    free_string (ch->short_descr);
-    free_string (ch->long_descr);
-    free_string (ch->description);
-    free_string (ch->prompt);
-    free_string (ch->prefix);
-/*    free_note (ch->pnote); */
+    str_free (ch->name);
+    str_free (ch->short_descr);
+    str_free (ch->long_descr);
+    str_free (ch->description);
+    str_free (ch->prompt);
+    str_free (ch->prefix);
+/*  note_free (ch->pnote); */
 #ifdef IMC
     imc_freechardata( ch );
 #endif
-    free_pcdata (ch->pcdata);
-
-    ch->next = char_free;
-    char_free = ch;
-
-    INVALIDATE (ch);
-    return;
+    pcdata_free (ch->pcdata);
 }
 
-PC_DATA *pcdata_free;
-
-PC_DATA *new_pcdata (void)
-{
+void pcdata_init (void *obj) {
+    PC_DATA *pcdata = obj;
     int alias;
-
-    static PC_DATA pcdata_zero;
-    PC_DATA *pcdata;
-
-    if (pcdata_free == NULL)
-        pcdata = alloc_perm (sizeof (*pcdata));
-    else
-    {
-        pcdata = pcdata_free;
-        pcdata_free = pcdata_free->next;
-    }
-
-    *pcdata = pcdata_zero;
-
-    for (alias = 0; alias < MAX_ALIAS; alias++)
-    {
+    for (alias = 0; alias < MAX_ALIAS; alias++) {
         pcdata->alias[alias] = NULL;
         pcdata->alias_sub[alias] = NULL;
     }
-
-    pcdata->buffer = new_buf ();
-
-    VALIDATE (pcdata);
-    return pcdata;
+    pcdata->buffer = buf_new ();
 }
 
-
-void free_pcdata (PC_DATA * pcdata)
-{
+void pcdata_dispose (void *obj) {
+    PC_DATA *pcdata = obj;
     int alias;
 
-    if (!IS_VALID (pcdata))
-        return;
+    str_free (pcdata->pwd);
+    str_free (pcdata->bamfin);
+    str_free (pcdata->bamfout);
+    str_free (pcdata->title);
+    buf_free (pcdata->buffer);
 
-    free_string (pcdata->pwd);
-    free_string (pcdata->bamfin);
-    free_string (pcdata->bamfout);
-    free_string (pcdata->title);
-    free_buf (pcdata->buffer);
-
-    for (alias = 0; alias < MAX_ALIAS; alias++)
-    {
-        free_string (pcdata->alias[alias]);
-        free_string (pcdata->alias_sub[alias]);
+    for (alias = 0; alias < MAX_ALIAS; alias++) {
+        str_free (pcdata->alias[alias]);
+        str_free (pcdata->alias_sub[alias]);
     }
-    INVALIDATE (pcdata);
-    pcdata->next = pcdata_free;
-    pcdata_free = pcdata;
-
-    return;
 }
 
+void buf_dispose (void *obj) {
+    BUFFER *buffer = obj;
+    mem_free (buffer->string, buffer->size);
+    buffer->string = NULL;
+    buffer->size = 0;
+    buffer->state = BUFFER_FREED;
+}
+
+void mprog_init (void *obj) {
+    MPROG_LIST *mp = obj;
+    mp->code = str_dup ("");
+}
+
+void mprog_dispose (void *obj) {
+    MPROG_LIST *mp = obj;
+    str_free (mp->code);
+}
+
+void had_dispose (void *obj) {
+    HELP_AREA *had = obj;
+    str_free (had->filename);
+    str_free (had->name);
+}
+
+void help_dispose (void *obj) {
+    HELP_DATA *help = obj;
+    str_free (help->keyword);
+    str_free (help->text);
+}
+
+void reset_data_init (void *obj) {
+    RESET_DATA *reset = obj;
+    reset->command = 'X';
+}
+
+void area_init (void *obj) {
+    AREA_DATA *area = obj;
+    char buf[MAX_INPUT_LENGTH];
+    area->title      = str_dup ("New area");
+/*  area->recall     = ROOM_VNUM_TEMPLE;      ROM OLC */
+    area->area_flags = AREA_ADDED;
+    area->security   = 1;
+    area->builders   = str_dup ("None");
+    area->empty      = TRUE;        /* ROM patch */
+    sprintf (buf, "area%d.are", area->vnum);
+    area->filename   = str_dup (buf);
+    area->vnum       = TOP(RECYCLE_AREA_DATA) - 1;
+}
+
+void area_dispose (void *obj) {
+    AREA_DATA *area = obj;
+    str_free (area->title);
+    str_free (area->name);
+    str_free (area->filename);
+    str_free (area->builders);
+    str_free (area->credits);
+}
+
+void exit_init (void *obj) {
+    EXIT_DATA *exit = obj;
+    exit->keyword     = &str_empty[0];
+    exit->description = &str_empty[0];
+}
+
+void exit_dispose (void *obj) {
+    EXIT_DATA *exit = obj;
+    str_free (exit->keyword);
+    str_free (exit->description);
+}
+
+void room_index_init (void *obj) {
+    ROOM_INDEX_DATA *room = obj;
+    room->name        = &str_empty[0];
+    room->description = &str_empty[0];
+    room->owner       = &str_empty[0];
+    room->heal_rate   = 100;
+    room->mana_rate   = 100;
+}
+
+void room_index_dispose (void *obj) {
+    ROOM_INDEX_DATA *room = obj;
+    int door;
+    EXTRA_DESCR_DATA *extra;
+    RESET_DATA *reset;
 
 
+    str_free (room->name);
+    str_free (room->description);
+    str_free (room->owner);
 
-/* stuff for setting ids */
-long last_pc_id;
-long last_mob_id;
+    for (door = 0; door < DIR_MAX; door++)
+        if (room->exit[door])
+            exit_free (room->exit[door]);
+    for (extra = room->extra_descr; extra; extra = extra->next)
+        extra_descr_free (extra);
+    for (reset = room->reset_first; reset; reset = reset->next)
+        reset_data_free (reset);
+}
 
-long get_pc_id (void)
-{
+void shop_init (void *obj) {
+    SHOP_DATA *shop = obj;
+    shop->profit_buy = 100;
+    shop->profit_sell = 100;
+    shop->open_hour = 0;
+    shop->close_hour = 23;
+}
+
+void obj_index_init (void *vobj) {
+    OBJ_INDEX_DATA *obj = vobj;
+    obj->name          = str_dup ("no name");
+    obj->short_descr   = str_dup ("(no short description)");
+    obj->description   = str_dup ("(no description)");
+    obj->item_type     = ITEM_TRASH;
+    obj->condition     = 100;
+    obj->material_str  = str_dup (material_get_name(0));
+    obj->new_format    = TRUE;
+}
+
+void obj_index_dispose (void *vobj) {
+    OBJ_INDEX_DATA *obj = vobj;
+    EXTRA_DESCR_DATA *extra, *extra_next;
+    AFFECT_DATA *af, *af_next;
+
+    str_free (obj->name);
+    str_free (obj->short_descr);
+    str_free (obj->description);
+    str_free (obj->item_type_str);
+
+    for (af = obj->affected; af; af = af_next) {
+        af_next = af->next;
+        affect_free (af);
+    }
+    obj->affected = NULL;
+
+    for (extra = obj->extra_descr; extra; extra = extra_next) {
+        extra_next = extra->next;
+        extra_descr_free (extra);
+    }
+    obj->extra_descr = NULL;
+}
+
+void mob_index_init (void *obj) {
+    MOB_INDEX_DATA *mob = obj;
+    mob->name         = str_dup ("no name");
+    mob->short_descr  = str_dup ("(no short description)");
+    mob->long_descr   = str_dup ("(no long description)\n\r");
+    mob->description  = &str_empty[0];
+    mob->act          = ACT_IS_NPC;
+    mob->race         = race_lookup ("human"); /* -- Hugin */
+    mob->material_str = str_dup (material_get_name(0));
+    mob->size         = SIZE_MEDIUM;           /* ROM patch -- Hugin */
+    mob->start_pos    = POS_STANDING;          /* -- Hugin */
+    mob->default_pos  = POS_STANDING;          /* -- Hugin */
+    mob->new_format   = TRUE;                  /* ROM */
+}
+
+void mob_index_dispose (void *obj) {
+    MOB_INDEX_DATA *mob = obj;
+    str_free (mob->name);
+    str_free (mob->short_descr);
+    str_free (mob->long_descr);
+    str_free (mob->description);
+    str_free (mob->race_str);
+    str_free (mob->dam_type_str);
+    str_free (mob->size_str);
+    str_free (mob->start_pos_str);
+    str_free (mob->default_pos_str);
+    str_free (mob->sex_str);
+    mprog_free (mob->mprogs);
+    shop_free (mob->pShop);
+}
+
+void mpcode_init (void *obj) {
+    MPROG_CODE *mpcode = obj;
+    mpcode->code = str_dup ("");
+}
+
+void mpcode_dispose (void *obj) {
+    MPROG_CODE *mpcode = obj;
+    str_free (mpcode->code);
+}
+
+void buf_init (void *obj) {
+    BUFFER *buffer = obj;
+    buffer->state = BUFFER_SAFE;
+    buffer->size  = get_size (new_buf_current_size);
+    if (buffer->size == -1) {
+        bug ("new_buf: buffer size %d too large.", new_buf_current_size);
+        exit (1);
+    }
+    buffer->string = alloc_mem (buffer->size);
+    buffer->string[0] = '\0';
+}
+
+void note_dispose (void *obj) {
+    NOTE_DATA *note = obj;
+    str_free (note->sender);
+    str_free (note->to_list);
+    str_free (note->subject);
+    str_free (note->date);
+    str_free (note->text);
+}
+
+void social_dispose (void *obj) {
+    SOCIAL_TYPE *soc = obj;
+    str_free (soc->char_no_arg);
+    str_free (soc->others_no_arg);
+    str_free (soc->char_found);
+    str_free (soc->others_found);
+    str_free (soc->vict_found);
+    str_free (soc->char_not_found);
+    str_free (soc->char_auto);
+    str_free (soc->others_auto);
+}
+
+void portal_exit_dispose (void *obj) {
+    PORTAL_EXIT_TYPE *pex = obj;
+    str_free (pex->name);
+}
+
+void portal_dispose (void *obj) {
+    PORTAL_TYPE *portal = obj;
+    if (portal->opposite)
+        portal->opposite->opposite = NULL;
+    str_free (portal->name_from);
+    str_free (portal->name_to);
+}
+
+long get_pc_id (void) {
     int val;
-
     val = (current_time <= last_pc_id) ? last_pc_id + 1 : current_time;
     last_pc_id = val;
     return val;
 }
 
-long get_mob_id (void)
-{
+long get_mob_id (void) {
     last_mob_id++;
     return last_mob_id;
 }
-
-MEM_DATA *mem_data_free;
-
-/* procedures and constants needed for buffering */
-
-BUFFER *buf_free;
-
-MEM_DATA *new_mem_data (void)
-{
-    MEM_DATA *memory;
-
-    if (mem_data_free == NULL)
-        memory = alloc_mem (sizeof (*memory));
-    else
-    {
-        memory = mem_data_free;
-        mem_data_free = mem_data_free->next;
-    }
-
-    memory->next = NULL;
-    memory->id = 0;
-    memory->reaction = 0;
-    memory->when = 0;
-    VALIDATE (memory);
-
-    return memory;
-}
-
-void free_mem_data (MEM_DATA * memory)
-{
-    if (!IS_VALID (memory))
-        return;
-
-    memory->next = mem_data_free;
-    mem_data_free = memory;
-    INVALIDATE (memory);
-}
-
-
 
 /* buffer sizes */
 const int buf_size[MAX_BUF_LIST] = {
@@ -481,88 +562,23 @@ const int buf_size[MAX_BUF_LIST] = {
 
 /* local procedure for finding the next acceptable size */
 /* -1 indicates out-of-boundary error */
-int get_size (int val)
-{
+int get_size (int val) {
     int i;
-
     for (i = 0; i < MAX_BUF_LIST; i++)
         if (buf_size[i] >= val)
-        {
             return buf_size[i];
-        }
-
     return -1;
 }
 
-BUFFER *new_buf ()
-{
-    BUFFER *buffer;
-
-    if (buf_free == NULL)
-        buffer = alloc_perm (sizeof (*buffer));
-    else
-    {
-        buffer = buf_free;
-        buf_free = buf_free->next;
-    }
-
-    buffer->next = NULL;
-    buffer->state = BUFFER_SAFE;
-    buffer->size = get_size (BASE_BUF);
-
-    buffer->string = alloc_mem (buffer->size);
-    buffer->string[0] = '\0';
-    VALIDATE (buffer);
-
-    return buffer;
+BUFFER *new_buf_size (int size) {
+    BUFFER *buf;
+    new_buf_current_size = size;
+    buf = buf_new ();
+    new_buf_current_size = BASE_BUF;
+    return buf;
 }
 
-BUFFER *new_buf_size (int size)
-{
-    BUFFER *buffer;
-
-    if (buf_free == NULL)
-        buffer = alloc_perm (sizeof (*buffer));
-    else
-    {
-        buffer = buf_free;
-        buf_free = buf_free->next;
-    }
-
-    buffer->next = NULL;
-    buffer->state = BUFFER_SAFE;
-    buffer->size = get_size (size);
-    if (buffer->size == -1)
-    {
-        bug ("new_buf: buffer size %d too large.", size);
-        exit (1);
-    }
-    buffer->string = alloc_mem (buffer->size);
-    buffer->string[0] = '\0';
-    VALIDATE (buffer);
-
-    return buffer;
-}
-
-
-void free_buf (BUFFER * buffer)
-{
-    if (!IS_VALID (buffer))
-        return;
-
-    free_mem (buffer->string, buffer->size);
-    buffer->string = NULL;
-    buffer->size = 0;
-    buffer->state = BUFFER_FREED;
-    INVALIDATE (buffer);
-
-    buffer->next = buf_free;
-    buf_free = buffer;
-}
-
-
-bool add_buf (BUFFER * buffer, char *string)
-{
+bool add_buf (BUFFER * buffer, char *string) {
     int len;
     char *oldstr;
     int oldsize;
@@ -574,13 +590,9 @@ bool add_buf (BUFFER * buffer, char *string)
         return FALSE;
 
     len = strlen (buffer->string) + strlen (string) + 1;
-
-    while (len >= buffer->size)
-    {                            /* increase the buffer size */
-        buffer->size = get_size (buffer->size + 1);
-        {
-            if (buffer->size == -1)
-            {                    /* overflow */
+    while (len >= buffer->size) { /* increase the buffer size */
+        buffer->size = get_size (buffer->size + 1); {
+            if (buffer->size == -1) { /* overflow */
                 buffer->size = oldsize;
                 buffer->state = BUFFER_OVERFLOW;
                 bug ("buffer overflow past size %d", buffer->size);
@@ -589,106 +601,21 @@ bool add_buf (BUFFER * buffer, char *string)
         }
     }
 
-    if (buffer->size != oldsize)
-    {
+    if (buffer->size != oldsize) {
         buffer->string = alloc_mem (buffer->size);
-
         strcpy (buffer->string, oldstr);
-        free_mem (oldstr, oldsize);
+        mem_free (oldstr, oldsize);
     }
 
     strcat (buffer->string, string);
     return TRUE;
 }
 
-
-void clear_buf (BUFFER * buffer)
-{
+void clear_buf (BUFFER * buffer) {
     buffer->string[0] = '\0';
     buffer->state = BUFFER_SAFE;
 }
 
-
-char *buf_string (BUFFER * buffer)
-{
+char *buf_string (BUFFER * buffer) {
     return buffer->string;
-}
-
-/* stuff for recycling mobprograms */
-MPROG_LIST *mprog_free;
-
-MPROG_LIST *new_mprog (void)
-{
-    static MPROG_LIST mp_zero;
-    MPROG_LIST *mp;
-
-    if (mprog_free == NULL)
-        mp = alloc_perm (sizeof (*mp));
-    else
-    {
-        mp = mprog_free;
-        mprog_free = mprog_free->next;
-    }
-
-    *mp = mp_zero;
-    mp->vnum = 0;
-    mp->trig_type = 0;
-    mp->code = str_dup ("");
-    VALIDATE (mp);
-    return mp;
-}
-
-void free_mprog (MPROG_LIST * mp)
-{
-    if (!IS_VALID (mp))
-        return;
-
-    INVALIDATE (mp);
-    mp->next = mprog_free;
-    mprog_free = mp;
-}
-
-HELP_AREA *had_free;
-
-HELP_AREA *new_had (void)
-{
-    HELP_AREA *had;
-    static HELP_AREA zHad;
-
-    if (had_free)
-    {
-        had = had_free;
-        had_free = had_free->next;
-    }
-    else
-        had = alloc_perm (sizeof (*had));
-
-    *had = zHad;
-
-    return had;
-}
-
-HELP_DATA *help_free;
-
-HELP_DATA *new_help (void)
-{
-    HELP_DATA *help;
-
-    if (help_free)
-    {
-        help = help_free;
-        help_free = help_free->next;
-    }
-    else
-        help = alloc_perm (sizeof (*help));
-
-    return help;
-}
-
-void free_help (HELP_DATA * help)
-{
-    free_string (help->keyword);
-    free_string (help->text);
-    help->next = help_free;
-    help_free = help;
 }

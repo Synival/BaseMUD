@@ -1,74 +1,78 @@
-/* Includes for board system */
-/* This is version 2 of the board system, (c) 1995-96 erwin@pip.dknet.dk */
+/***************************************************************************
+ *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
+ *  Michael Seifert, Hans Henrik Strfeldt, Tom Madsen, and Katja Nyboe.    *
+ *                                                                         *
+ *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
+ *  Chastain, Michael Quan, and Mitchell Tse.                              *
+ *                                                                         *
+ *  In order to use any part of this Merc Diku Mud, you must comply with   *
+ *  both the original Diku license in 'license.doc' as well the Merc       *
+ *  license in 'license.txt'.  In particular, you may not remove either of *
+ *  these copyright notices.                                               *
+ *                                                                         *
+ *  Much time and thought has gone into this software and you are          *
+ *  benefitting.  We hope that you share your changes too.  What goes      *
+ *  around, comes around.                                                  *
+ ***************************************************************************/
 
+/***************************************************************************
+ *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
+ *    ROM has been brought to you by the ROM consortium                    *
+ *        Russ Taylor (rtaylor@hypercube.org)                              *
+ *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
+ *        Brian Moore (zump@rom.org)                                       *
+ *    By using this code, you have agreed to follow the terms of the       *
+ *    ROM license, in the file Rom24/doc/rom.license                       *
+ ***************************************************************************/
 
-#define NOTE_DIR  				"../notes" /* set it to something you like */
+#ifndef __ROM_BOARD_H
+#define __ROM_BOARD_H
 
-#define DEF_NORMAL  0 /* No forced change, but default (any string)   */
-#define DEF_INCLUDE 1 /* 'names' MUST be included (only ONE name!)    */
-#define DEF_EXCLUDE 2 /* 'names' must NOT be included (one name only) */
+#include "merc.h"
 
-#define MAX_BOARD 	  5 
+/* Definitions and global variables. */
+#define L_SUP (MAX_LEVEL - 1) /* if not already defined */
+#define BOARD_NOACCESS -1
+#define BOARD_NOTFOUND -1
 
-#define DEFAULT_BOARD 0 /* default board is board #0 in the boards      */
-                        /* It should be readable by everyone!           */
-                        
-#define MAX_LINE_LENGTH 80 /* enforce a max length of 80 on text lines, reject longer lines */
-						   /* This only applies in the Body of the note */                        
-						   
-#define MAX_NOTE_TEXT (4*MAX_STRING_LENGTH - 1000)
-						
-#define BOARD_NOTFOUND -1 /* Error code from board_lookup() and board_number */
+extern const char *szFinishPrompt;
+extern long last_note_stamp;
 
-/* Data about a board */
-struct board_data
-{
-	char *short_name; /* Max 8 chars */
-	char *long_name;  /* Explanatory text, should be no more than 40 ? chars */
-	
-	int read_level; /* minimum level to see board */
-	int write_level;/* minimum level to post notes */
-
-	char *names;       /* Default recipient */
-	int force_type; /* Default action (DEF_XXX) */
-	
-	int purge_days; /* Default expiration */
-
-	/* Non-constant data */
-		
-	NOTE_DATA *note_first; /* pointer to board's first note */
-	bool changed; /* currently unused */
-		
-};
-
-typedef struct board_data BOARD_DATA;
-
-
-/* External variables */
-
-extern BOARD_DATA boards[MAX_BOARD]; /* Declare */
-
-
-/* Prototypes */
-
-void finish_note (BOARD_DATA *board, NOTE_DATA *note); /* attach a note to a board */
-void free_note   (NOTE_DATA *note); /* deallocate memory used by a note */
-void load_boards (void); /* load all boards */
-int board_lookup (const char *name); /* Find a board with that name */
-bool is_note_to (CHAR_DATA *ch, NOTE_DATA *note); /* is tha note to ch? */
-void personal_message (const char *sender, const char *to, const char *subject, const int expire_days, const char *text);
-void make_note (const char* board_name, const char *sender, const char *to, const char *subject, const int expire_days, const char *text);
+/* Function prototypes. */
+void append_note (FILE *fp, NOTE_DATA *note);
+void finish_note (BOARD_DATA *board, NOTE_DATA *note);
+int board_number (const BOARD_DATA *board);
+void unlink_note (BOARD_DATA *board, NOTE_DATA *note);
+NOTE_DATA* find_note (CHAR_DATA *ch, BOARD_DATA *board, int num);
+void save_board (BOARD_DATA *board);
+void show_note_to_char (CHAR_DATA *ch, NOTE_DATA *note, int num);
 void save_notes ();
+void load_board (BOARD_DATA *board);
+void load_boards ();
+bool is_note_to (CHAR_DATA *ch, NOTE_DATA *note);
+int unread_notes (CHAR_DATA *ch, BOARD_DATA *board);
+void personal_message (const char *sender, const char *to, const char *subject,
+    const int expire_days, const char *text);
+void make_note (const char* board_name, const char *sender, const char *to,
+    const char *subject, const int expire_days, const char *text);
+bool next_board (CHAR_DATA *ch);
 
 /* for nanny */
-void handle_con_note_to 		(DESCRIPTOR_DATA *d, char * argument);
-void handle_con_note_subject 	(DESCRIPTOR_DATA *d, char * argument);
-void handle_con_note_expire 	(DESCRIPTOR_DATA *d, char * argument);
-void handle_con_note_text 		(DESCRIPTOR_DATA *d, char * argument);
-void handle_con_note_finish 	(DESCRIPTOR_DATA *d, char * argument);
+NANNY_FUN handle_con_note_to;
+NANNY_FUN handle_con_note_subject;
+NANNY_FUN handle_con_note_expire;
+NANNY_FUN handle_con_note_text;
+NANNY_FUN handle_con_note_finish;
 
+/* DERP */
 
-/* Commands */
+void do_nwrite (CHAR_DATA *ch, char *argument);
+void do_nread_next (CHAR_DATA *ch, char *argument, time_t *last_note);
+void do_nread_number (CHAR_DATA *ch, char *argument, time_t *last_note,
+    int number);
+void do_nread (CHAR_DATA *ch, char *argument);
+void do_nremove (CHAR_DATA *ch, char *argument);
+void do_nlist (CHAR_DATA *ch, char *argument);
+void do_ncatchup (CHAR_DATA *ch, char *argument);
 
-DECLARE_DO_FUN (do_note		);
-DECLARE_DO_FUN (do_board	);
+#endif

@@ -7,8 +7,8 @@ Mob Factory~
 #MOBILES
 #9401
 oldstyle fido mutant dog~
-The mutant beastly fido~
-The mutant beastly fido is here, his eyes glowing green!
+the mutant beastly fido~
+the mutant beastly fido is here, his eyes glowing green!
 ~
 You see a mutant beastly fido, glaring at you with green eyes!  You wonder if
 this factory meets ASPCA guidlines....
@@ -38,10 +38,10 @@ sit stand male 50
 0 0 medium 0
 #9403
 oldstyle cityguard guard head~
-The Cityguard head~
-The Cityguard head floats around aimlessly.
+the cityguard head~
+the cityguard head floats around aimlessly.
 ~
-You see a Cityguard head floating around without a care in the world.
+You see a cityguard head floating around without a care in the world.
 Obviously, this one got past quality control!  Careful, those teeth look
 sharp...
 ~
@@ -54,8 +54,8 @@ stand stand none 0
 AHV AEJK medium 0
 #9404
 oldstyle revolving drunk~
-The revolving drunk~
-The Revolving drunk is here, spinning in place.
+the revolving drunk~
+the revolving drunk is here, spinning in place.
 ~
 You see and smell a drunk who looks much like other drunks...but he is spinning
 in place!  Someone should tell him that he is a REVOLTING drunk.
@@ -69,8 +69,8 @@ stand stand male 2
 0 0 medium 0
 #9405
 oldstyle toxic slime~
-The toxic slime~
-A pool of toxic slime lies on  the floor.
+the toxic slime~
+A pool of toxic slime lies on the floor.
 ~
 Yick.  Looks like someone had digestion problems!  Either that, or the 
 hydraulic fluid is leaking again.
@@ -84,7 +84,7 @@ sit sit none 0
 0 0 medium 0
 #9406
 oldstyle worker~
-The factory worker~
+the factory worker~
 A Mob Factory worker is standing here, looking bored.
 ~
 The worker wears a bright orange pair of overalls, with the words "Mob
@@ -99,7 +99,7 @@ stand stand male 2
 0 0 medium 0
 #9407
 oldstyle worker~
-The factory worker~
+the factory worker~
 A Mob Factory worker is here, asleep in a chair.
 ~
 If Floyd walks in, you can bet there'll be trouble.  Guess she shouldn't have

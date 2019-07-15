@@ -16,92 +16,61 @@
  ***************************************************************************/
 
 /***************************************************************************
- *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
- *  ROM has been brought to you by the ROM consortium                      *
- *      Russ Taylor (rtaylor@hypercube.org)                                *
- *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
- *      Brian Moore (zump@rom.org)                                         *
- *  By using this code, you have agreed to follow the terms of the         *
- *  ROM license, in the file Rom24/doc/rom.license                         *
+ *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
+ *    ROM has been brought to you by the ROM consortium                    *
+ *        Russ Taylor (rtaylor@hypercube.org)                              *
+ *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
+ *        Brian Moore (zump@rom.org)                                       *
+ *    By using this code, you have agreed to follow the terms of the       *
+ *    ROM license, in the file Rom24/doc/rom.license                       *
  ***************************************************************************/
 
-struct flag_type
-{
-    char *name;
-    int bit;
-    bool settable;
-};
+#ifndef __ROM_TABLES_H
+#define __ROM_TABLES_H
 
-struct clan_type
-{
-    char 	*name;
-    char 	*who_name;
-    sh_int 	hall;
-    bool	independent; /* true for loners */
-};
+#include "merc.h"
 
-struct position_type
-{
-    char *name;
-    char *short_name;
-};
+extern const TABLE_TYPE       master_table[];
 
-struct sex_type
-{
-    char *name;
-};
+extern const CLAN_TYPE        clan_table[CLAN_MAX + 1];
+extern const POSITION_TYPE    position_table[POS_MAX + 1];
+extern const SEX_TYPE         sex_table[SEX_MAX + 1];
+extern const SIZE_TYPE        size_table[SIZE_MAX_R + 1];
+extern const ITEM_TYPE        item_table[ITEM_MAX + 1];
+extern const WEAPON_TYPE      weapon_table[WEAPON_MAX + 1];
+extern const DAM_TYPE         dam_table[DAM_MAX + 1];
+extern const ATTACK_TYPE      attack_table[ATTACK_MAX + 1];
+extern const RACE_TYPE        race_table[RACE_MAX + 1];
+extern const PC_RACE_TYPE     pc_race_table[PC_RACE_MAX + 1];
+extern const CLASS_TYPE       class_table[CLASS_MAX + 1];
+extern const STR_APP_TYPE     str_app[ATTRIBUTE_MAX + 1];
+extern const INT_APP_TYPE     int_app[ATTRIBUTE_MAX + 1];
+extern const WIS_APP_TYPE     wis_app[ATTRIBUTE_MAX + 1];
+extern const DEX_APP_TYPE     dex_app[ATTRIBUTE_MAX + 1];
+extern const CON_APP_TYPE     con_app[ATTRIBUTE_MAX + 1];
+extern const LIQ_TYPE         liq_table[LIQ_MAX + 1];
+extern const SKILL_TYPE       skill_table[SKILL_MAX + 1];
+extern const GROUP_TYPE       group_table[GROUP_MAX + 1];
+extern const SECTOR_TYPE      sector_table[SECT_MAX + 1];
+extern const NANNY_HANDLER    nanny_table[NANNY_MAX + 1];
+extern const DOOR_TYPE        door_table[DIR_MAX + 1];
+extern const SPEC_TYPE        spec_table[SPEC_MAX + 1];
+extern const FURNITURE_BITS   furniture_table[POS_MAX + 1];
+extern const WEAR_TYPE        wear_table[WEAR_MAX + 1];
+extern const MATERIAL_TYPE    material_table[MATERIAL_MAX + 1];
+extern const COLOUR_SETTING_TYPE colour_setting_table[COLOUR_MAX + 1];
+extern const WIZNET_TYPE      wiznet_table[WIZNET_MAX + 1];
 
-struct size_type
-{
-    char *name;
-};
+extern const MAP_LOOKUP_TABLE map_lookup_table[];
+extern const MAP_LOOKUP_TABLE map_flags_table[];
+extern const OBJ_MAP          obj_map_table[];
+extern const COLOUR_TYPE      colour_table[];
 
-struct	bit_type
-{
-	const	struct	flag_type *	table;
-	char *				help;
-};
+/* non-const types. */
+extern RECYCLE_TYPE recycle_table[RECYCLE_MAX + 1];
+extern BOARD_DATA   board_table[BOARD_MAX + 1];
 
-/* game tables */
-extern	const	struct	clan_type	clan_table[MAX_CLAN];
-extern	const	struct	position_type	position_table[];
-extern	const	struct	sex_type	sex_table[];
-extern	const	struct	size_type	size_table[];
+/* other tables. */
+extern char * const title_table[CLASS_MAX][MAX_LEVEL + 1][2];
 
-/* flag tables */
-extern	const	struct	flag_type	act_flags[];
-extern	const	struct	flag_type	plr_flags[];
-extern	const	struct	flag_type	affect_flags[];
-extern	const	struct	flag_type	off_flags[];
-extern	const	struct	flag_type	imm_flags[];
-extern	const	struct	flag_type	form_flags[];
-extern	const	struct	flag_type	part_flags[];
-extern	const	struct	flag_type	comm_flags[];
-extern	const	struct	flag_type	extra_flags[];
-extern	const	struct	flag_type	wear_flags[];
-extern	const	struct	flag_type	weapon_flags[];
-extern	const	struct	flag_type	container_flags[];
-extern	const	struct	flag_type	portal_flags[];
-extern	const	struct	flag_type	room_flags[];
-extern	const	struct	flag_type	exit_flags[];
-extern 	const	struct  flag_type	mprog_flags[];
-extern	const	struct	flag_type	area_flags[];
-extern	const	struct	flag_type	sector_flags[];
-extern	const	struct	flag_type	door_resets[];
-extern	const	struct	flag_type	wear_loc_strings[];
-extern	const	struct	flag_type	wear_loc_flags[];
-extern	const	struct	flag_type	res_flags[];
-extern	const	struct	flag_type	imm_flags[];
-extern	const	struct	flag_type	vuln_flags[];
-extern	const	struct	flag_type	type_flags[];
-extern	const	struct	flag_type	apply_flags[];
-extern	const	struct	flag_type	sex_flags[];
-extern	const	struct	flag_type	furniture_flags[];
-extern	const	struct	flag_type	weapon_class[];
-extern	const	struct	flag_type	apply_types[];
-extern	const	struct	flag_type	weapon_type2[];
-extern	const	struct	flag_type	apply_types[];
-extern	const	struct	flag_type	size_flags[];
-extern	const	struct	flag_type	position_flags[];
-extern	const	struct	flag_type	ac_type[];
-extern	const	struct	bit_type	bitvector_type[];
+#endif

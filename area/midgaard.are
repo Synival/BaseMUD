@@ -1855,7 +1855,7 @@ Arms.
 ~
 #3134
 bench~
-the Bench~
+the bench~
 A white-painted wooden bench is standing here.~
 wood~
 furniture 0 0
@@ -2011,6 +2011,19 @@ beer bottle~
 It's a fine beer for serious drinkers, complete with the famous horse head
 logo.  Worth every penny.
 ~
+#3155
+comfy wooden bed~
+a comfy wooden bed~
+A comfy wooden bed is here.~
+wood~
+furniture 0 0
+0 0 0 0 0
+0 0 0 G
+E
+bed~
+This is a standard bed you'll find in most inns. Sleeping in or resting on
+it may yield positive results for your health!
+~
 #3161
 key white~
 a white key~
@@ -2043,7 +2056,7 @@ map midgaard~
     Down/   |                   Mota        Arena
           South               (Recall)
                                  |
-                                 |   /In the Air   /Defunct Reception
+                                 |   /In the Air   /Bedrooms
                   Cleric         | /             /
        Northern   Guild----Temple Square---Grunting---Bar    Northern
        Midgaard              (Fountain)    Boar Inn          Midgaard
@@ -2992,7 +3005,7 @@ S
 Entrance to the Grunting Boar Inn~
 You are standing in the entrance hall of the Grunting Boar Inn.  The hall
 has been wisely decorated with simple but functional furniture.  A small
-staircase leads up to the defunct reception room and the bar is to the east.
+staircase leads up to the bedroom area and the bar is to the east.
 ~
 0 DS 0
 D1
@@ -3006,7 +3019,7 @@ You see the temple square.
 ~
 0 -1 3005
 D4
-You see the defunct reception room.
+You see the bedroom area.
 ~
 ~
 0 -1 3008
@@ -3041,9 +3054,9 @@ Free instructions provided by the Grunting Boar Inn.
 ~
 S
 #3008
-The Defunct Reception~
-You are standing in a dusty, defunct reception.  The staircase leads
-down to the entrance hall.
+The Bedroom Area~
+Need some rest? Sleep in one of our many beds! The staircase leads down to
+the entrance hall.
 ~
 0 DS 0
 D5
@@ -6330,15 +6343,16 @@ E 1 3351  -1   16	*   a standard issue dagger
 O 0 3135  10 1200	* a fountain
 O 0 3200  -1 1200
 O 0 3135  10 3005	* a fountain
-O 0 3139  15 3008	* the receptionist's letter of resignation
-O 0 3140  15 3008	* the bank's notice of liquidation
+O 3 3155  15 3008   * comfy bed #1
+O 3 3155  15 3008   * comfy bed #2
+O 3 3155  15 3008   * comfy bed #3
 D 0 3110   3    2	* Cityguard Head Quarters west
 D 0 3142   1    2	* Captain's Office east
 D 0 3142   2    2	* Captain's Office south
 D 0 3143   0    2	* The Jail north
-O 0 3134   3 3101	* the Bench
-O 0 3134   3 3102	* the Bench
-O 0 3134   3 3103	* the Bench
+O 0 3134   3 3101	* the bench
+O 0 3134   3 3102	* the bench
+O 0 3134   3 3103	* the bench
 M 0 3100   1 3106  1	* the maid
 G 1 3100  -1     	*   a cup of tea
 G 1 3101  -1     	*   a cup of coffee

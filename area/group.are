@@ -72,7 +72,7 @@ wands		The use of wands and similar items (see 'help zap')
  
 -1 'GROUP HEADER'~
 The following skills and groups are available to your chacter:
-(this list may be seen again by typing list)
+(this list may be seen again by typing 'list')
 ~
 
 -1 'GROUP HELP'~
@@ -88,7 +88,8 @@ done	     exit the character generation process
 ~
 
 -1 'MENU CHOICE'~
-Choice (add,drop,list,help)?~
+Command? (list, learned, premise, add, drop, info, help, done)
+> ~
 
 -1 'GROUPS' 'INFO' 'PREMISE'~
 The ROM skill system allows you to fully customize your new character, making
@@ -900,8 +901,8 @@ that name (if such exist), and alias with both a word and and argument
 produces a new alias.  You cannot alias either alias or unalias to a new
 command.  Examples of use:
 
-alias gc get all corpse --> typing gc will equal typing 'get all corpse'
-alias ff cast 'fireball' --> ff orc will equal 'cast 'fireball' orc'
+alias gc get all corpse --> typing 'gc' will equal typing 'get all corpse'
+alias ff cast 'fireball' --> 'ff orc' will equal "cast 'fireball' orc"
 
 Only the first word on the line will be subsituted at this time.
 ~

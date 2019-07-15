@@ -116,10 +116,13 @@ reading them).
 
 -1 PROMPT~
 Syntax: prompt
+Syntax: prompt show
 Syntax: prompt all
 Syntax: prompt <%*>
  
 PROMPT with out an argument will turn your prompt on or off.
+
+PROMPT SHOW will print your current prompt string.
  
 PROMPT ALL will give you the standard "<hits mana moves>" prompt.
  

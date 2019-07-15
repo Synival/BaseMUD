@@ -25,106 +25,39 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#ifndef __ROM_MAGIC_H
+#define __ROM_MAGIC_H
 
-/*
- * Spell functions.
- * Defined in magic.c.
- */
-DECLARE_SPELL_FUN(	spell_null		);
-DECLARE_SPELL_FUN(	spell_acid_blast	);
-DECLARE_SPELL_FUN(	spell_armor		);
-DECLARE_SPELL_FUN(	spell_bless		);
-DECLARE_SPELL_FUN(	spell_blindness		);
-DECLARE_SPELL_FUN(	spell_burning_hands	);
-DECLARE_SPELL_FUN(	spell_call_lightning	);
-DECLARE_SPELL_FUN(      spell_calm		);
-DECLARE_SPELL_FUN(      spell_cancellation	);
-DECLARE_SPELL_FUN(	spell_cause_critical	);
-DECLARE_SPELL_FUN(	spell_cause_light	);
-DECLARE_SPELL_FUN(	spell_cause_serious	);
-DECLARE_SPELL_FUN(	spell_change_sex	);
-DECLARE_SPELL_FUN(      spell_chain_lightning   );
-DECLARE_SPELL_FUN(	spell_charm_person	);
-DECLARE_SPELL_FUN(	spell_chill_touch	);
-DECLARE_SPELL_FUN(	spell_colour_spray	);
-DECLARE_SPELL_FUN(	spell_continual_light	);
-DECLARE_SPELL_FUN(	spell_control_weather	);
-DECLARE_SPELL_FUN(	spell_create_food	);
-DECLARE_SPELL_FUN(	spell_create_rose	);
-DECLARE_SPELL_FUN(	spell_create_spring	);
-DECLARE_SPELL_FUN(	spell_create_water	);
-DECLARE_SPELL_FUN(	spell_cure_blindness	);
-DECLARE_SPELL_FUN(	spell_cure_critical	);
-DECLARE_SPELL_FUN(      spell_cure_disease	);
-DECLARE_SPELL_FUN(	spell_cure_light	);
-DECLARE_SPELL_FUN(	spell_cure_poison	);
-DECLARE_SPELL_FUN(	spell_cure_serious	);
-DECLARE_SPELL_FUN(	spell_curse		);
-DECLARE_SPELL_FUN(      spell_demonfire		);
-DECLARE_SPELL_FUN(	spell_detect_evil	);
-DECLARE_SPELL_FUN(	spell_detect_good	);
-DECLARE_SPELL_FUN(	spell_detect_hidden	);
-DECLARE_SPELL_FUN(	spell_detect_invis	);
-DECLARE_SPELL_FUN(	spell_detect_magic	);
-DECLARE_SPELL_FUN(	spell_detect_poison	);
-DECLARE_SPELL_FUN(	spell_dispel_evil	);
-DECLARE_SPELL_FUN(      spell_dispel_good       );
-DECLARE_SPELL_FUN(	spell_dispel_magic	);
-DECLARE_SPELL_FUN(	spell_earthquake	);
-DECLARE_SPELL_FUN(	spell_enchant_armor	);
-DECLARE_SPELL_FUN(	spell_enchant_weapon	);
-DECLARE_SPELL_FUN(	spell_energy_drain	);
-DECLARE_SPELL_FUN(	spell_faerie_fire	);
-DECLARE_SPELL_FUN(	spell_faerie_fog	);
-DECLARE_SPELL_FUN(	spell_farsight		);
-DECLARE_SPELL_FUN(	spell_fireball		);
-DECLARE_SPELL_FUN(	spell_fireproof		);
-DECLARE_SPELL_FUN(	spell_flamestrike	);
-DECLARE_SPELL_FUN(	spell_floating_disc	);
-DECLARE_SPELL_FUN(	spell_fly		);
-DECLARE_SPELL_FUN(      spell_frenzy		);
-DECLARE_SPELL_FUN(	spell_gate		);
-DECLARE_SPELL_FUN(	spell_giant_strength	);
-DECLARE_SPELL_FUN(	spell_harm		);
-DECLARE_SPELL_FUN(      spell_haste		);
-DECLARE_SPELL_FUN(	spell_heal		);
-DECLARE_SPELL_FUN(	spell_heat_metal	);
-DECLARE_SPELL_FUN(      spell_holy_word		);
-DECLARE_SPELL_FUN(	spell_identify		);
-DECLARE_SPELL_FUN(	spell_infravision	);
-DECLARE_SPELL_FUN(	spell_invis		);
-DECLARE_SPELL_FUN(	spell_know_alignment	);
-DECLARE_SPELL_FUN(	spell_lightning_bolt	);
-DECLARE_SPELL_FUN(	spell_locate_object	);
-DECLARE_SPELL_FUN(	spell_magic_missile	);
-DECLARE_SPELL_FUN(      spell_mass_healing	);
-DECLARE_SPELL_FUN(	spell_mass_invis	);
-DECLARE_SPELL_FUN(	spell_nexus		);
-DECLARE_SPELL_FUN(	spell_pass_door		);
-DECLARE_SPELL_FUN(      spell_plague		);
-DECLARE_SPELL_FUN(	spell_poison		);
-DECLARE_SPELL_FUN(	spell_portal		);
-DECLARE_SPELL_FUN(	spell_protection_evil	);
-DECLARE_SPELL_FUN(	spell_protection_good	);
-DECLARE_SPELL_FUN(	spell_ray_of_truth	);
-DECLARE_SPELL_FUN(	spell_recharge		);
-DECLARE_SPELL_FUN(	spell_refresh		);
-DECLARE_SPELL_FUN(	spell_remove_curse	);
-DECLARE_SPELL_FUN(	spell_sanctuary		);
-DECLARE_SPELL_FUN(	spell_shocking_grasp	);
-DECLARE_SPELL_FUN(	spell_shield		);
-DECLARE_SPELL_FUN(	spell_sleep		);
-DECLARE_SPELL_FUN(	spell_slow		);
-DECLARE_SPELL_FUN(	spell_stone_skin	);
-DECLARE_SPELL_FUN(	spell_summon		);
-DECLARE_SPELL_FUN(	spell_teleport		);
-DECLARE_SPELL_FUN(	spell_ventriloquate	);
-DECLARE_SPELL_FUN(	spell_weaken		);
-DECLARE_SPELL_FUN(	spell_word_of_recall	);
-DECLARE_SPELL_FUN(	spell_acid_breath	);
-DECLARE_SPELL_FUN(	spell_fire_breath	);
-DECLARE_SPELL_FUN(	spell_frost_breath	);
-DECLARE_SPELL_FUN(	spell_gas_breath	);
-DECLARE_SPELL_FUN(	spell_lightning_breath	);
-DECLARE_SPELL_FUN(	spell_general_purpose	);
-DECLARE_SPELL_FUN(	spell_high_explosive	);
+#include "merc.h"
+
+/* Definitions and globals. */
+extern char *target_name;
+
+/* Function prototypes. */
+int find_spell (CHAR_DATA * ch, const char *name);
+int slot_lookup (int slot);
+void say_spell (CHAR_DATA * ch, int sn, int class);
+bool saves_spell (int level, CHAR_DATA * victim, int dam_type);
+bool saves_dispel (int dis_level, int spell_level, int duration);
+bool check_dispel_act (int dis_level, CHAR_DATA * victim, int sn,
+    char *act_to_room);
+bool check_dispel (int dis_level, CHAR_DATA * victim, int sn);
+bool check_dispel_quick (int dis_level, CHAR_DATA * victim, char *skill,
+    char *act_to_room);
+int mana_cost (CHAR_DATA * ch, int min_mana, int level);
+bool spell_fight_back_if_possible (CHAR_DATA * ch, CHAR_DATA * victim,
+    int sn, int target);
+void do_cast (CHAR_DATA * ch, char *argument);
+void obj_cast_spell (int sn, int level, CHAR_DATA * ch, CHAR_DATA * victim,
+    OBJ_DATA * obj);
+int is_affected_with_act (CHAR_DATA * victim, int sn, flag_t flag,
+    CHAR_DATA * ch, char *to_self, char *to_victim);
+int isnt_affected_with_act (CHAR_DATA * victim, int sn, flag_t flag,
+    CHAR_DATA * ch, char *to_self, char *to_victim);
+void perform_breath_attack (CHAR_DATA * ch, ROOM_INDEX_DATA * room,
+    CHAR_DATA * victim, int dam_type, int level, int dam, int sn);
+
+/* Internal spells. */
+DECLARE_SPELL_FUN (spell_null);
+
+#endif

@@ -959,7 +959,7 @@ stand stand male 45
 F par GHIJK
 #9562
 oldstyle sultans guard~
-the sultans guard~
+the sultan's guard~
 A guard stands here, watching the gate.
 ~
 You see a trained fighter, ready to defend the city.
@@ -5432,7 +5432,7 @@ D1
 D2
 ~
 ~
-0 -1 9522
+1 9501 9522
 D3
 ~
 ~
@@ -5454,8 +5454,8 @@ D2
 0 -1 9670
 D3
 ~
-~
-0 -1 9531
+gate~
+1 9501 9531
 S
 #9669
 Outside the West Gate of New Thalos~
@@ -5858,8 +5858,7 @@ door~
 1 -1 9684
 D2
 ~
-secret door
-~
+secret door~
 1 -1 9688
 S
 #9690
@@ -6922,6 +6921,9 @@ S
 
 #RESETS
 M 0 9504   1 9501  1	* the receptionist
+O 3 3155  15 9501       * comfy bed #1
+O 3 3155  15 9501       * comfy bed #2
+O 3 3155  15 9501       * comfy bed #3
 M 0 9505   1 9502  1	* the withered mage/bartender
 G 1 9569 910     	*   a bottle of grog
 G 1 9568 910     	*   a glass of wine
@@ -6955,11 +6957,11 @@ M 0 9561  32 9512  2	* the sultan's guard
 E 1 9513  50   16	*   a scimitar
 E 1 9519  53    5	*   a suit of splintmail
 E 1 9521  52   11	*   a splinted shield
-M 0 9562  20 9513  5	* the sultans guard
+M 0 9562  20 9513  5	* the sultan's guard
 E 1 9513  50   16	*   a scimitar
 E 1 9519  53    5	*   a suit of splintmail
 E 1 9521  72   11	*   a splinted shield
-M 0 9562  20 9513  5	* the sultans guard
+M 0 9562  20 9513  5	* the sultan's guard
 E 1 9513  50   16	*   a scimitar
 E 1 9519  53    5	*   a suit of splintmail
 E 1 9521  42   11	*   a splinted shield
@@ -6982,20 +6984,20 @@ M 0 9561  32 9520  2	* the sultan's guard
 E 1 9513   1   16	*   a scimitar
 E 1 9519  43    5	*   a suit of splintmail
 E 1 9521  42   11	*   a splinted shield
-M 0 9562  20 9522  5	* the sultans guard
+M 0 9562  20 9522  5	* the sultan's guard
 E 1 9513   1   16	*   a scimitar
 E 1 9519  43    5	*   a suit of splintmail
 E 1 9521  42   11	*   a splinted shield
-M 0 9562  20 9522  5	* the sultans guard
+M 0 9562  20 9522  5	* the sultan's guard
 E 1 9513   1   16	*   a scimitar
 E 1 9519  43    5	*   a suit of splintmail
 E 1 9521  42   11	*   a splinted shield
 D 0 9522   0    1	* Inside the Northern Gate of New Thalos north
-M 0 9562  20 9523  5	* the sultans guard
+M 0 9562  20 9523  5	* the sultan's guard
 E 1 9513   1   16	*   a scimitar
 E 1 9519  43    5	*   a suit of splintmail
 E 1 9521  42   11	*   a splinted shield
-M 0 9562  20 9523  5	* the sultans guard
+M 0 9562  20 9523  5	* the sultan's guard
 E 1 9513   1   16	*   a scimitar
 E 1 9519  43    5	*   a suit of splintmail
 E 1 9521  42   11	*   a splinted shield
@@ -7011,10 +7013,10 @@ M 0 9568  15 9527  8	* a tourist
 M 0 9568  15 9528  8	* a tourist
 M 0 9544  20 9529  2	* the vulture
 M 0 9544  20 9530  2	* the vulture
-M 0 9562  20 9531  5	* the sultans guard
+M 0 9562  20 9531  5	* the sultan's guard
 E 1 9519  43    5	*   a suit of splintmail
 E 1 9521  42   11	*   a splinted shield
-M 0 9562  20 9531  5	* the sultans guard
+M 0 9562  20 9531  5	* the sultan's guard
 E 1 9519  43    5	*   a suit of splintmail
 E 1 9521  42   11	*   a splinted shield
 D 0 9531   1    1	* Inside the Eastern Gate of New Thalos east
@@ -7358,7 +7360,7 @@ M 9544 spec_fido           	* the vulture
 M 9548 spec_cast_mage      	* the lamia
 M 9555 spec_cast_cleric    	* Allah
 M 9561 spec_guard          	* the sultan's guard
-M 9562 spec_guard          	* the sultans guard
+M 9562 spec_guard          	* the sultan's guard
 M 9570 spec_breath_frost   	* the cryohydra
 M 9574 spec_breath_lightning	* the behir
 M 9575 spec_breath_fire    	* the chimera

@@ -26,25 +26,24 @@
  * $FreeBSD: src/lib/libmd/sha256.h,v 1.1 2005/03/09 19:23:04 cperciva Exp $
  */
 
-#ifndef _SHA256_H_
-#define _SHA256_H_
+#ifndef __ROM_SHA256_H
+#define __ROM_SHA256_H
 
 #include <sys/types.h>
 
-typedef struct SHA256Context
-{
+typedef struct sha256_context {
    int state[8];
    int count[2];
    unsigned char buf[64];
-} SHA256_CTX;
+} sha256_ctx;
 
-void SHA256_Init( SHA256_CTX * );
-void SHA256_Update( SHA256_CTX *, const unsigned char *, size_t );
-void SHA256_Final( unsigned char [32], SHA256_CTX * );
-char *SHA256_End( SHA256_CTX *, char * );
-char *SHA256_File( const char *, char * );
-char *SHA256_FileChunk( const char *, char *, off_t, off_t );
-char *SHA256_Data( const unsigned char *, unsigned int, char * );
-char *sha256_crypt( const char *pwd );
+void sha256_init (sha256_ctx *);
+void sha256_update (sha256_ctx *, const unsigned char *, size_t);
+void sha256_final (unsigned char [32], sha256_ctx *);
+char *sha256_end (sha256_ctx *, char *);
+char *sha256_file (const char *, char *);
+char *sha256_file_chunk (const char *, char *, off_t, off_t);
+char *sha256_data (const unsigned char *, unsigned int, char *);
+char *sha256_crypt (const char *pwd);
 
-#endif /* !_SHA256_H_ */
+#endif

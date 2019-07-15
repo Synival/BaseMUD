@@ -1,0 +1,218 @@
+ -------------------------------------------------------------------------------------------------------------------.
+| SPELL NAME          | DURATION                      | APPLY TO            MODIFIER / FLAG                          |
+|====================================================================================================================|
+| armor               | 24                            | APPLY_AC           -20                                       |
+| You are already armored.             | $N is already armored.               |                                      |
+| You feel someone protecting you.     | $N is protected by your magic.       | (null)                               |
+| You feel less armored.               | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| bless-char          | 6 + Lv                        | APPLY_HITROLL      Lv / 8                                    |
+|                     |                               | APPLY_SAVING_SPELL 0 - Lv / 8                                |
+| You are already blessed.             | $N already has divine favor.         |                                      |
+| You feel righteous.                  | You grant $N the favor of your god.  | (null)                               |
+| You feel less righteous.             | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| bless-object        | 6 + Lv                        | APPLY_SAVES        -1                                        |
+|                     |                               | TO_OBJECT          ITEM_BLESS                                |
+| (N/A)                                | $p is already blessed.               |                                      |
+| (N/A)                                | (null)                               | $p glows with a holy aura.           |
+| (N/A)                                | $p's holy aura fades.                |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| blindness           | 1 + Lv                        | APPLY_HITROLL      -4                                        |
+|                     |                               | TO_AFFECTS         AFF_BLIND                                 |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You can see again.                   | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| calm                | Lv / 4                        | APPLY_DAMROLL      (IS_NPC (vch) ? -2 : -5)                  |
+|                     |                               | APPLY_HITROLL      (IS_NPC (vch) ? -2 : -5)                  |
+|                     |                               | TO_AFFECTS         AFF_CALM                                  |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You have lost your peace of mind.    | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| change_sex          | 2 * Lv                        | APPLY_SEX          (opposite)                                |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| Your body feels familiar again.      | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| charm_person        | number_fuzzy (Lv / 4)         | TO_AFFECTS         AFF_CHARM                                 |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You feel more self-confident.        | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| chill_touch         | 6                             | APPLY_STR          -1                                        |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You feel less cold.                  | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| curse-char          | 2 * Lv                        | APPLY_HITROLL      -1 * (Lv / 8)                             |
+|                     |                               | APPLY_SAVING_SPELL Lv / 8                                    |
+|                     |                               | TO_AFFECTS         AFF_CURSE                                 |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| The curse wears off.                 | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| curse-object        | 2 * Lv                        | APPLY_SAVES        1                                         |
+|                     |                               | TO_OBJECT          ITEM_EVIL                                 |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| (null)                               | $p is no longer impure.              |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| detect_evil         | Lv                            | TO_AFFECTS         AFF_DETECT_EVIL                           |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| The red in your vision disappears.   | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| detect_good         | Lv                            | TO_AFFECTS         AFF_DETECT_GOOD                           |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| The gold in your vision disappears.  | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| detect_hidden       | Lv                            | TO_AFFECTS         AFF_DETECT_HIDDEN                         |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You feel less aware of your surroundings. | (null)                          |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| detect_invis        | Lv                            | TO_AFFECTS         AFF_DETECT_INVIS                          |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You no longer see invisible objects. | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| detect_magic        | Lv                            | TO_AFFECTS         AFF_DETECT_MAGIC                          |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| The detect magic wears off.          | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| enchant_armor       |--1                            | APPLY_AC           added                                     |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| (null)                               | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| enchant_weapon      |--1                            | APPLY_DAMROLL      added                                     |
+|                     |                               | APPLY_HITROLL      added                                     |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| (null)                               | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| faerie_fire         | Lv                            | APPLY_AC           2 * Lv                                    |
+|                     |                               | TO_AFFECTS         AFF_FAERIE_FIRE                           |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| The pink aura around you fades away. | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| fireproof           | number_fuzzy (Lv / 4)         | TO_OBJECT          ITEM_BURN_PROOF                           |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| (null)                               | $p's protective aura fades.          |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| fly                 | Lv + 3                        | TO_AFFECTS         AFF_FLYING                                |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You slowly float to the ground.      | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| frenzy              | Lv / 3                        | APPLY_AC           10 * (Lv / 12)                            |
+|                     |                               | APPLY_DAMROLL      Lv / 6                                    |
+|                     |                               | APPLY_HITROLL      Lv / 6                                    |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| Your rage ebbs.                      | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| giant_strength      | Lv                            | APPLY_STR          1 + (Lv >= 18) + (Lv >= 25) + (Lv >= 32)  |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You feel weaker.                     | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| haste               | Lv / ((victim == ch) ? 2 : 4) | APPLY_DEX          1 + (Lv >= 18) + (Lv >= 25) + (Lv >= 32)  |
+|                     |                               | TO_AFFECTS         AFF_HASTE                                 |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You feel yourself slow down.         | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| infravision         | 2 * Lv                        | TO_AFFECTS         AFF_INFRARED                              |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You no longer see in the dark.       | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| invis-char          | Lv + 12                       | TO_AFFECTS         AFF_INVISIBLE                             |
+|                     |                               | TO_OBJECT          ITEM_INVIS                                |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You are no longer invisible.         | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| invis-object        | Lv + 12                       | TO_OBJECT          ITEM_INVIS                                |
+| (N/A)                                | <target already affected>            |                                      |
+| (N/A)                                | <affected to-caster>                 | <affected to room>                   |
+| (N/A)                                | $p fades into view.                  |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| mass_invis          | 24                            | TO_AFFECTS         AFF_INVISIBLE                             |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You are no longer invisible.         | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| pass_door           | number_fuzzy (Lv / 4)         | TO_AFFECTS         AFF_PASS_DOOR                             |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You feel solid again.                | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| plague              | Lv * 4 / 3                    | APPLY_STR          -5                                        |
+|                     |                               | TO_AFFECTS         AFF_PLAGUE                                |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| Your sores vanish.                   | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| poison-char         | Lv                            | APPLY_STR          -2                                        |
+|                     |                               | TO_AFFECTS         AFF_POISON                                |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You feel less sick.                  | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| poison-object       | Lv / 4                        | TO_WEAPON          WEAPON_POISON                             |
+| (N/A)                                | <target already affected>            |                                      |
+| (N/A)                                | <affected to-caster>                 | <affected to room>                   |
+| (N/A)                                | The poison on $p dries up.           |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| protection_evil     | 24                            | APPLY_SAVING_SPELL -1                                        |
+|                     |                               | TO_AFFECTS         AFF_PROTECT_EVIL                          |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You feel less protected.             | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| protection_good     | 24                            | APPLY_SAVING_SPELL -1                                        |
+|                     |                               | TO_AFFECTS         AFF_PROTECT_GOOD                          |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You feel less protected.             | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| sanctuary           | Lv / 6                        | TO_AFFECTS         AFF_SANCTUARY                             |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| The white aura around your body fades. | (null)                             |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| shield              | 8 + Lv                        | APPLY_AC           -20                                       |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| Your force shield shimmers then fades away. | (null)                        |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| sleep               | 4 + Lv                        | TO_AFFECTS         AFF_SLEEP                                 |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You feel less tired.                 | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| slow                | Lv / 2                        | APPLY_DEX          -1 - (Lv >= 18) - (Lv >= 25) - (Lv >= 32) |
+|                     |                               | TO_AFFECTS         AFF_SLOW                                  |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You feel yourself speed up.          | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| stone_skin          | Lv                            | APPLY_AC           -40                                       |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| Your skin feels soft again.          | (null)                               |                                      |
+|---------------------|-------------------------------|--------------------------------------------------------------|
+| weaken              | Lv / 2                        | APPLY_STR          -1 * (Lv / 5)                             |
+|                     |                               | TO_AFFECTS         AFF_WEAKEN                                |
+| <self already affected>              | <target already affected>            |                                      |
+| <affected to-victim>                 | <affected to-caster>                 | <affected to room>                   |
+| You feel stronger.                   | (null)                               |                                      |
+ `------------------------------------------------------------------------------------------------------------------'

@@ -1,0 +1,9 @@
+*.o
+/player
+/gods
+/json
+/notes
+/area/shutdown.txt
+/area/*.dmp
+/area/orphaned_helps.txt
+/bin/rom
