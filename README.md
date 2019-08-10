@@ -41,7 +41,13 @@ if you'd like, create your own god character and raise them to level 60.
 
 BaseMUD is based on [QuickMUD](https://github.com/avinson/rom24-quickmud),
 which is based on the ROM 2.4 beta version of Merc 2.1 base code, which is in
-turn based on DikuMUD.
+turn based on DikuMUD. Credits in licenses:
+
+```
+ROM 2.4 copyright (c) 1993-1995 Russ Taylor.
+MERC 2.1 code by Hatchet, Furey, and Kahn.
+DikuMUD by Hans Staerfeldt, Katja Nyboe, Tom Madsen, Michael Seifert, and Sebastian Hammer
+```
 
 If you wish to use BaseMUD, you must comply with the following licenses:
 
