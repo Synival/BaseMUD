@@ -1,13 +1,15 @@
-BaseMUD - a thorough code review/overhaul of QuickMUD / ROM 2.4b6 for starting your MUD
+
+BaseMUD
 ==============
+**A thorough code review/overhaul of QuickMUD / ROM 2.4b6 for starting your MUD**
 
 BaseMUD is a work-in-progress fork of QuickMUD that has been heavily
 reorganized, refactored, and cleaned-up for clarity and easy extendability. This
 project has two main goals:
 
-# Provide an easy-to-modify codebase for those who want to play around with
+1. Provide an easy-to-modify codebase for those who want to play around with
   their own stock ROM mud, and
-# Provide a transitional project for porting the ROM codebase to C++ or another
+2. Provide a transitional project for porting the ROM codebase to C++ or another
   high-level language.
 
 ## Instructions
@@ -242,4 +244,5 @@ instead or in addition to the standard ".are" files. This is to help develop
 editing software other than notepad or OLC.
 
 Enjoy!
+
 -- Synival
