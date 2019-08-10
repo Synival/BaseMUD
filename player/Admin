@@ -1,0 +1,139 @@
+#PLAYER
+Name Admin~
+Id   1565440615
+LogO 1565440739
+Vers 5
+Prom <%hhp %mm %vmv> ~
+Race human~
+Sex  1
+Cla  3
+Levl 60
+Sec  0
+Plyd 103
+Scro 22
+Room 3700
+HMV  20 20 100 100 100 100
+Gold 0
+Silv 0
+Exp  1000
+Act  QT
+Comm NOP
+Pos  8
+Prac 5
+Trai 3
+Save  -1
+Alig  0
+Hit   1
+ACs 95 95 95 99
+Attr 16 13 13 13 13
+AMod 0 0 0 0 0
+Pass AdS9O3DYbGQ/I~
+Titl  the Implementor~
+Pnts 40
+TSex 1
+LLev 0
+HMVP 20 100 100
+Cnd  0 48 48 48
+Colour 0 1031
+Colour 1 1035
+Colour 2 1039
+Colour 3 1029
+Colour 4 1037
+Colour 5 1025
+Colour 6 1033
+Colour 7 1035
+Colour 8 1039
+Colour 9 1035
+Colour 10 1039
+Colour 11 1027
+Colour 12 1026
+Colour 13 1030
+Colour 14 1027
+Colour 15 1291
+Colour 16 1026
+Colour 17 1034
+Colour 18 1026
+Colour 19 1034
+Colour 20 1026
+Colour 21 1034
+Colour 22 1026
+Colour 23 1025
+Colour 24 1026
+Colour 25 1030
+Colour 26 1031
+Colour 27 1026
+Colour 28 1030
+Colour 29 1030
+Colour 30 1033
+Colour 31 1026
+Colour 32 1027
+Colour 33 1025
+Colour 34 1039
+Boards       5 General 0 Ideas 0 Announce 0 Bugs 0 Personal 0 
+Sk 1 'axe'
+Sk 1 'dagger'
+Sk 1 'flail'
+Sk 1 'mace'
+Sk 1 'polearm'
+Sk 1 'shield block'
+Sk 1 'spear'
+Sk 40 'sword'
+Sk 1 'whip'
+Sk 1 'bash'
+Sk 1 'disarm'
+Sk 1 'enhanced damage'
+Sk 1 'parry'
+Sk 1 'rescue'
+Sk 1 'second attack'
+Sk 1 'third attack'
+Sk 1 'scrolls'
+Sk 1 'staves'
+Sk 1 'wands'
+Sk 50 'recall'
+Gr 'rom basics'
+Gr 'warrior basics'
+Gr 'warrior default'
+Gr 'weaponsmaster'
+End
+
+#O
+Vnum 3716
+Nest 0
+Cond 0
+Wear 0
+Cost 0
+End
+
+#O
+Vnum 3703
+Nest 0
+Cond 0
+Wear 5
+Cost 0
+End
+
+#O
+Vnum 3702
+Nest 0
+Cond 0
+Wear 16
+Cost 360
+End
+
+#O
+Vnum 3704
+Nest 0
+Cond 0
+Wear 11
+Cost 0
+End
+
+#O
+Vnum 3162
+Nest 0
+Cond 0
+Wear -1
+Cost 500
+End
+
+#END

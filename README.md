@@ -10,6 +10,31 @@ project has two main goals:
 # Provide a transitional project for porting the ROM codebase to C++ or another
   high-level language.
 
+## Instructions
+
+*Note: The dockerfile from QuickMUD has been untouched and certainly won't
+work yet. Also, as it stands, this code as it is has only been tested in a Linux
+environment and must be compiled. Always something to do...*
+
+To compile and run:
+
+```
+cd src
+make
+cd ..
+./run.sh
+```
+
+To play:
+
+```
+telnet localhost 4000
+```
+
+BaseMUD comes packaged with a level 60 "Implementor" account.
+The name is `Admin` and the password is `Admin`. *Change the password* and,
+if you'd like, create your own god character and raise them to level 60.
+
 ## Legal Stuff
 
 BaseMUD is based on [QuickMUD](https://github.com/avinson/rom24-quickmud),
@@ -66,9 +91,7 @@ The affect code, for example, had all of its easy-to-read assignments replaced w
 incomprehensible one-liner functions. The long-term plan, in this case, is to move all of the
 affects to a table, at which point this will be fixed.
 
-Also: **As it stands, this code as it is has _only been tested
-in a Linux environment_ so some additional platform changes may be necessary.
-OLC and Copyover code is also largely untested, and may even crash! D:**
+Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
 
 ## Internal Changes
 
