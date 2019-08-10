@@ -215,7 +215,7 @@ void db_export_json (void) {
         }
     } while (0);
 
-    json_write_to_file (json_root(), JSON_DIR "everything.json");
+ // json_write_to_file (json_root(), JSON_DIR "everything.json");
     json_free (json_root());
 }
 
