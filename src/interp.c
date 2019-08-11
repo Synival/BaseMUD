@@ -181,6 +181,9 @@ const CMD_TYPE cmd_table[] = {
     {"description", do_description, POS_DEAD,     0,  LOG_NORMAL, 1},
     {"delet",       do_delet,       POS_DEAD,     0,  LOG_ALWAYS, 0},
     {"delete",      do_delete,      POS_STANDING, 0,  LOG_ALWAYS, 1},
+#ifndef VANILLA
+    {"materials",   do_materials,   POS_DEAD,     0,  LOG_NORMAL, 1},
+#endif
     {"nofollow",    do_nofollow,    POS_DEAD,     0,  LOG_NORMAL, 1},
     {"noloot",      do_noloot,      POS_DEAD,     0,  LOG_NORMAL, 1},
     {"nosummon",    do_nosummon,    POS_DEAD,     0,  LOG_NORMAL, 1},
@@ -403,7 +406,7 @@ void interpret (CHAR_DATA * ch, char *argument) {
     REMOVE_BIT (ch->affected_by, AFF_HIDE);
 
     /* Implement freeze command. */
-    if (!IS_NPC (ch) && IS_SET (ch->act, PLR_FREEZE)) {
+    if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_FREEZE)) {
         send_to_char ("You're totally frozen!\n\r", ch);
         return;
     }
@@ -445,7 +448,7 @@ void interpret (CHAR_DATA * ch, char *argument) {
      * to prevent crashes due to dollar signs in logstrings.
      * I threw in the above call to smash_dollar() just for
      * the sake of overkill :) JR -- 10/15/00 */
-    if ((!IS_NPC(ch) && IS_SET(ch->act, PLR_LOG))
+    if ((!IS_NPC(ch) && IS_SET(ch->plr, PLR_LOG))
         || fLogAll
         || cmd_table[cmd].log == LOG_ALWAYS)
     {

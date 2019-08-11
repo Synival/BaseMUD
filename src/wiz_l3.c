@@ -106,16 +106,16 @@ void do_pardon (CHAR_DATA * ch, char *argument) {
         return;
     }
     if (!str_cmp (arg2, "killer")) {
-        if (IS_SET (victim->act, PLR_KILLER)) {
-            REMOVE_BIT (victim->act, PLR_KILLER);
+        if (IS_SET (victim->plr, PLR_KILLER)) {
+            REMOVE_BIT (victim->plr, PLR_KILLER);
             send_to_char ("Killer flag removed.\n\r", ch);
             send_to_char ("You are no longer a KILLER.\n\r", victim);
         }
         return;
     }
     if (!str_cmp (arg2, "thief")) {
-        if (IS_SET (victim->act, PLR_THIEF)) {
-            REMOVE_BIT (victim->act, PLR_THIEF);
+        if (IS_SET (victim->plr, PLR_THIEF)) {
+            REMOVE_BIT (victim->plr, PLR_THIEF);
             send_to_char ("Thief flag removed.\n\r", ch);
             send_to_char ("You are no longer a THIEF.\n\r", victim);
         }

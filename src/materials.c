@@ -25,39 +25,24 @@
  *   ROM license, in the file Rom24/doc/rom.license                        *
  **************************************************************************/
 
-#ifndef __ROM_ACT_CONF_H
-#define __ROM_ACT_CONF_H
+#include <string.h>
 
-#include "merc.h"
+#include "materials.h"
 
-/* Sub-routines and filters. */
-void do_colour_one (CHAR_DATA * ch, const COLOUR_SETTING_TYPE * setting,
-    const COLOUR_TYPE * colour, bool use_default, char *buf);
-void do_colour_codes (CHAR_DATA * ch, char *argument);
-
-/* Commands. */
-DECLARE_DO_FUN (do_scroll);
-DECLARE_DO_FUN (do_colour);
-DECLARE_DO_FUN (do_autolist);
-DECLARE_DO_FUN (do_autoassist);
-DECLARE_DO_FUN (do_autoexit);
-DECLARE_DO_FUN (do_autogold);
-DECLARE_DO_FUN (do_autoloot);
-DECLARE_DO_FUN (do_autosac);
-DECLARE_DO_FUN (do_autosplit);
-DECLARE_DO_FUN (do_noloot);
-DECLARE_DO_FUN (do_nofollow);
-DECLARE_DO_FUN (do_telnetga);
-DECLARE_DO_FUN (do_brief);
-DECLARE_DO_FUN (do_compact);
-DECLARE_DO_FUN (do_show_affects);
-DECLARE_DO_FUN (do_combine);
-DECLARE_DO_FUN (do_materials);
-DECLARE_DO_FUN (do_nosummon);
-DECLARE_DO_FUN (do_autoall);
-DECLARE_DO_FUN (do_prompt);
-DECLARE_DO_FUN (do_alia);
-DECLARE_DO_FUN (do_alias);
-DECLARE_DO_FUN (do_unalias);
-
+char *material_format_part (const MATERIAL_TYPE *mat) {
+#ifndef VANILLA
+    static char buf[MAX_STRING_LENGTH];
+    if (mat == NULL || mat->type == MATERIAL_GENERIC)
+        return "";
+    else {
+        sprintf (buf, "[{%c%s{x] ", mat->color, mat->name);
+        return buf;
+    }
+#else
+    return "";
 #endif
+}
+
+char *material_strcat (char *buf, const MATERIAL_TYPE *mat) {
+    return strcat (buf, material_format_part (mat));
+}

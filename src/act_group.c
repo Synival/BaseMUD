@@ -267,11 +267,11 @@ void do_follow (CHAR_DATA * ch, char *argument) {
         return;
     }
 
-    BAIL_IF_ACT (!IS_NPC (victim) && IS_SET (victim->act, PLR_NOFOLLOW) &&
+    BAIL_IF_ACT (!IS_NPC (victim) && IS_SET (victim->plr, PLR_NOFOLLOW) &&
                  !IS_IMMORTAL (ch),
         "$N doesn't seem to want any followers.\n\r", ch, NULL, victim);
 
-    REMOVE_BIT (ch->act, PLR_NOFOLLOW);
+    REMOVE_BIT (ch->plr, PLR_NOFOLLOW);
     if (ch->master != NULL)
         stop_follower (ch);
 

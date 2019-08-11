@@ -307,13 +307,10 @@ char *affect_bit_name (flag_t flags)
     { return flag_string (affect_flags, flags); }
 char *extra_bit_name (flag_t flags)
     { return flag_string (extra_flags, flags); }
-char *act_bit_name (flag_t flags) {
-    int is_npc = IS_SET (flags, ACT_IS_NPC);
-    flags |= (A);
-    return is_npc
-        ? flag_string (act_flags, flags)
-        : flag_string (plr_flags, flags);
-}
+char *mob_bit_name (flag_t flags)
+    { return flag_string (mob_flags, flags); }
+char *plr_bit_name (flag_t flags)
+    { return flag_string (plr_flags, flags); }
 char *comm_bit_name (flag_t flags)
     { return flag_string (comm_flags, flags); }
 char *res_bit_name (flag_t flags)

@@ -104,7 +104,7 @@ static char *const sky_look[4] = {
 };
 
 bool do_filter_blind (CHAR_DATA * ch) {
-    if (!IS_NPC (ch) && IS_SET (ch->act, PLR_HOLYLIGHT))
+    if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT))
         return FALSE;
     FILTER (IS_AFFECTED (ch, AFF_BLIND),
         "You can't see a thing!\n\r", ch);
@@ -191,7 +191,7 @@ void do_look_room (CHAR_DATA * ch, int is_auto) {
     char sect_char = room_colour_char (ch->in_room);
     printf_to_char (ch, "{%c%s{x", sect_char, ch->in_room->name);
 
-    if ((IS_IMMORTAL (ch) && (IS_NPC (ch) || IS_SET (ch->act, PLR_HOLYLIGHT)))
+    if ((IS_IMMORTAL (ch) && (IS_NPC (ch) || IS_SET (ch->plr, PLR_HOLYLIGHT)))
         || IS_BUILDER (ch, ch->in_room->area))
         printf_to_char (ch, "{r [{RRoom %d{r]{x", ch->in_room->vnum);
     send_to_char ("\n\r", ch);
@@ -199,11 +199,11 @@ void do_look_room (CHAR_DATA * ch, int is_auto) {
     if (!is_auto || (!IS_NPC (ch) && !IS_SET (ch->comm, COMM_BRIEF)))
         printf_to_char(ch, "  {S%s{x", ch->in_room->description);
 
-    if (!IS_NPC (ch) && IS_SET (ch->act, PLR_AUTOEXIT))
+    if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_AUTOEXIT))
         do_function (ch, &do_exits, "auto");
 
     obj_list_show_to_char (ch->in_room->contents, ch, FALSE, FALSE);
-    char_show_to_char (ch->in_room->people, ch);
+    char_list_show_to_char (ch->in_room->people, ch);
 }
 
 void do_look_in (CHAR_DATA * ch, char *arg) {
@@ -374,11 +374,11 @@ void do_look (CHAR_DATA * ch, char *argument) {
     if (do_filter_blind (ch))
         return;
 
-    if (!IS_NPC (ch) && !IS_SET (ch->act, PLR_HOLYLIGHT) &&
+    if (!IS_NPC (ch) && !IS_SET (ch->plr, PLR_HOLYLIGHT) &&
         room_is_dark (ch->in_room))
     {
         send_to_char ("{DIt is pitch black ... {x\n\r", ch);
-        char_show_to_char (ch->in_room->people, ch);
+        char_list_show_to_char (ch->in_room->people, ch);
         return;
     }
 
@@ -401,7 +401,7 @@ void do_look (CHAR_DATA * ch, char *argument) {
 
     /* Looking at someone? */
     if ((victim = find_char_room (ch, arg1)) != NULL) {
-        char_show_to_char_1 (victim, ch);
+        char_look_at_char (victim, ch);
         return;
     }
 
@@ -696,7 +696,7 @@ void do_score (CHAR_DATA * ch, char *argument) {
     /* wizinvis and holy light */
     if (IS_IMMORTAL (ch)) {
         printf_to_char (ch, "Holy Light: %s",
-            IS_SET (ch->act, PLR_HOLYLIGHT) ? "ON" : "OFF");
+            IS_SET (ch->plr, PLR_HOLYLIGHT) ? "ON" : "OFF");
         if (ch->invis_level)
             printf_to_char (ch, "  Invisible: level %d", ch->invis_level);
         if (ch->incog_level)

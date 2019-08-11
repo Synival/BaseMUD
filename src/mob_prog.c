@@ -503,7 +503,7 @@ int cmd_eval (sh_int vnum, char *line, int check,
                                flag_lookup (buf, affect_flags)));
         case CHK_ACT:
             return (lval_char != NULL
-                    && IS_SET (lval_char->act, flag_lookup (buf, act_flags)));
+                    && IS_SET (lval_char->mob, flag_lookup (buf, mob_flags)));
         case CHK_IMM:
             return (lval_char != NULL
                     && IS_SET (lval_char->imm_flags, flag_lookup (buf, res_flags)));

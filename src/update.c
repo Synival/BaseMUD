@@ -246,7 +246,7 @@ void mobile_update (void) {
         if (!IS_NPC (ch) || ch->in_room == NULL
             || IS_AFFECTED (ch, AFF_CHARM))
             continue;
-        if (ch->in_room->area->empty && !IS_SET (ch->act, ACT_UPDATE_ALWAYS))
+        if (ch->in_room->area->empty && !IS_SET (ch->mob, MOB_UPDATE_ALWAYS))
             continue;
 
         /* Examine call for special procedure */
@@ -282,7 +282,7 @@ void mobile_update (void) {
             continue;
 
         /* Scavenge */
-        if (IS_SET (ch->act, ACT_SCAVENGER)
+        if (IS_SET (ch->mob, MOB_SCAVENGER)
             && ch->in_room->contents != NULL && number_bits (6) == 0)
         {
             OBJ_DATA *obj;
@@ -307,18 +307,18 @@ void mobile_update (void) {
         }
 
         /* Wander */
-        if (!IS_SET (ch->act, ACT_SENTINEL)
+        if (!IS_SET (ch->mob, MOB_SENTINEL)
             && number_bits (3) == 0
             && (door = number_bits (5)) <= 5
             && (pexit = ch->in_room->exit[door]) != NULL
             && pexit->to_room != NULL
             && !IS_SET (pexit->exit_flags, EX_CLOSED)
             && !IS_SET (pexit->to_room->room_flags, ROOM_NO_MOB)
-            && (!IS_SET (ch->act, ACT_STAY_AREA)
+            && (!IS_SET (ch->mob, MOB_STAY_AREA)
                 || pexit->to_room->area == ch->in_room->area)
-            && (!IS_SET (ch->act, ACT_OUTDOORS)
+            && (!IS_SET (ch->mob, MOB_OUTDOORS)
                 || !IS_SET (pexit->to_room->room_flags, ROOM_INDOORS))
-            && (!IS_SET (ch->act, ACT_INDOORS)
+            && (!IS_SET (ch->mob, MOB_INDOORS)
                 || IS_SET (pexit->to_room->room_flags, ROOM_INDOORS)))
         {
             char_move (ch, door, FALSE);
@@ -867,12 +867,12 @@ void aggr_update (void) {
             ch_next = ch->next_in_room;
 
             if (!IS_NPC (ch)
-                || !IS_SET (ch->act, ACT_AGGRESSIVE)
+                || !IS_SET (ch->mob, MOB_AGGRESSIVE)
                 || IS_SET (ch->in_room->room_flags, ROOM_SAFE)
                 || IS_AFFECTED (ch, AFF_CALM)
                 || ch->fighting != NULL || IS_AFFECTED (ch, AFF_CHARM)
                 || !IS_AWAKE (ch)
-                || (IS_SET (ch->act, ACT_WIMPY) && IS_AWAKE (wch))
+                || (IS_SET (ch->mob, MOB_WIMPY) && IS_AWAKE (wch))
                 || !char_can_see_in_room (ch, wch) || number_bits (1) == 0)
                 continue;
 
@@ -889,7 +889,7 @@ void aggr_update (void) {
                 if (!IS_NPC (vch)
                     && vch->level < LEVEL_IMMORTAL
                     && ch->level >= vch->level - 5
-                    && (!IS_SET (ch->act, ACT_WIMPY) || !IS_AWAKE (vch))
+                    && (!IS_SET (ch->mob, MOB_WIMPY) || !IS_AWAKE (vch))
                     && char_can_see_in_room (ch, vch))
                 {
                     if (number_range (0, count) == 0)

@@ -406,7 +406,7 @@ void do_give_money (CHAR_DATA *ch, char *arg1, char *arg2, char *argument) {
     if (IS_NPC (victim) && HAS_TRIGGER (victim, TRIG_BRIBE))
         mp_bribe_trigger (victim, ch, is_silver ? amount : amount * 100);
 
-    if (IS_NPC (victim) && IS_SET (victim->act, ACT_IS_CHANGER)) {
+    if (IS_NPC (victim) && IS_SET (victim->mob, MOB_IS_CHANGER)) {
         int change;
         int can_see;
 
@@ -917,7 +917,7 @@ void do_sacrifice (CHAR_DATA * ch, char *argument) {
     }
 
     ch->silver += silver;
-    if (IS_SET (ch->act, PLR_AUTOSPLIT)) { /* AUTOSPLIT code */
+    if (IS_SET (ch->plr, PLR_AUTOSPLIT)) { /* AUTOSPLIT code */
         members = 0;
         for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room)
             if (is_same_group (gch, ch))
@@ -1196,8 +1196,8 @@ void do_steal (CHAR_DATA * ch, char *argument) {
             else {
                 sprintf (buf, "$N tried to steal from %s.", victim->name);
                 wiznet (buf, ch, NULL, WIZ_FLAGS, 0, 0);
-                if (!IS_SET (ch->act, PLR_THIEF)) {
-                    SET_BIT (ch->act, PLR_THIEF);
+                if (!IS_SET (ch->plr, PLR_THIEF)) {
+                    SET_BIT (ch->plr, PLR_THIEF);
                     send_to_char ("*** You are now a THIEF!! ***\n\r", ch);
                     save_char_obj (ch);
                 }

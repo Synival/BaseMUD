@@ -74,12 +74,12 @@ void do_wizhelp (CHAR_DATA * ch, char *argument) {
 void do_holylight (CHAR_DATA * ch, char *argument) {
     if (IS_NPC (ch))
         return;
-    if (IS_SET (ch->act, PLR_HOLYLIGHT)) {
-        REMOVE_BIT (ch->act, PLR_HOLYLIGHT);
+    if (IS_SET (ch->plr, PLR_HOLYLIGHT)) {
+        REMOVE_BIT (ch->plr, PLR_HOLYLIGHT);
         send_to_char ("Holy light mode off.\n\r", ch);
     }
     else {
-        SET_BIT (ch->act, PLR_HOLYLIGHT);
+        SET_BIT (ch->plr, PLR_HOLYLIGHT);
         send_to_char ("Holy light mode on.\n\r", ch);
     }
 }
@@ -802,8 +802,8 @@ void do_mstat (CHAR_DATA * ch, char *argument) {
         send_to_char (buf, ch);
     }
 
-    sprintf (buf, "Act: %s\n\r", act_bit_name (victim->act));
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Mob: %s\n\r", mob_bit_name (victim->mob));
+    printf_to_char (ch, "Plr: %s\n\r", plr_bit_name (victim->plr));
 
     if (victim->comm) {
         sprintf (buf, "Comm: %s\n\r", comm_bit_name (victim->comm));

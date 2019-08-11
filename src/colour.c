@@ -88,7 +88,7 @@ int colour_code_to_ansi (CHAR_DATA * ch, int use_colour,
     char code[32];
     if (ch != NULL) {
         ch = OCH(ch);
-        use_colour = IS_SET(ch->act, PLR_COLOUR) ? 1 : 0;
+        use_colour = IS_SET(ch->plr, PLR_COLOUR) ? 1 : 0;
     }
 
     /* Look for a hard-coded colour code. */
@@ -148,7 +148,7 @@ int colour_puts (CHAR_DATA *ch, bool use_colour, const char *buf_in,
         return 0;
     if (ch != NULL) {
         ch = OCH(ch);
-        use_colour = IS_SET(ch->act, PLR_COLOUR) ? 1 : 0;
+        use_colour = IS_SET(ch->plr, PLR_COLOUR) ? 1 : 0;
     }
 
     buf_start = buf_out;

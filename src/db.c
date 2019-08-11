@@ -569,7 +569,7 @@ void load_old_mob (FILE * fp) {
         pMobIndex->long_descr[0] = UPPER (pMobIndex->long_descr[0]);
         pMobIndex->description[0] = UPPER (pMobIndex->description[0]);
 
-        pMobIndex->act = fread_flag (fp) | ACT_IS_NPC;
+        pMobIndex->mob = fread_flag (fp) | MOB_IS_NPC;
         pMobIndex->affected_by = fread_flag (fp);
         pMobIndex->pShop = NULL;
         pMobIndex->alignment = fread_number (fp);
@@ -1504,7 +1504,7 @@ void reset_room (ROOM_INDEX_DATA * pRoom) {
                 pRoomIndexPrev = get_room_index (pRoom->vnum - 1);
                 if (pRoomIndexPrev
                     && IS_SET (pRoomIndexPrev->room_flags, ROOM_PET_SHOP))
-                    SET_BIT (pMob->act, ACT_PET);
+                    SET_BIT (pMob->mob, MOB_PET);
 
                 char_to_room (pMob, pRoom);
                 LastMob = pMob;
@@ -1787,7 +1787,8 @@ CHAR_DATA *create_mobile (MOB_INDEX_DATA * pMobIndex) {
     if (pMobIndex->new_format) {
         /* read from prototype */
         mob->group    = pMobIndex->group;
-        mob->act      = pMobIndex->act;
+        mob->mob      = pMobIndex->mob;
+        mob->plr      = 0;
         mob->comm     = COMM_NOCHANNELS | COMM_NOSHOUT | COMM_NOTELL;
         mob->affected_by = pMobIndex->affected_by;
         mob->alignment = pMobIndex->alignment;
@@ -1833,22 +1834,22 @@ CHAR_DATA *create_mobile (MOB_INDEX_DATA * pMobIndex) {
         for (i = 0; i < STAT_MAX; i++)
             mob->perm_stat[i] = UMIN (25, 11 + mob->level / 4);
 
-        if (IS_SET (mob->act, ACT_WARRIOR)) {
+        if (IS_SET (mob->mob, MOB_WARRIOR)) {
             mob->perm_stat[STAT_STR] += 3;
             mob->perm_stat[STAT_INT] -= 1;
             mob->perm_stat[STAT_CON] += 2;
         }
-        if (IS_SET (mob->act, ACT_THIEF)) {
+        if (IS_SET (mob->mob, MOB_THIEF)) {
             mob->perm_stat[STAT_DEX] += 3;
             mob->perm_stat[STAT_INT] += 1;
             mob->perm_stat[STAT_WIS] -= 1;
         }
-        if (IS_SET (mob->act, ACT_CLERIC)) {
+        if (IS_SET (mob->mob, MOB_CLERIC)) {
             mob->perm_stat[STAT_WIS] += 3;
             mob->perm_stat[STAT_DEX] -= 1;
             mob->perm_stat[STAT_STR] += 1;
         }
-        if (IS_SET (mob->act, ACT_MAGE)) {
+        if (IS_SET (mob->mob, MOB_MAGE)) {
             mob->perm_stat[STAT_INT] += 3;
             mob->perm_stat[STAT_STR] -= 1;
             mob->perm_stat[STAT_DEX] += 1;
@@ -1879,7 +1880,8 @@ CHAR_DATA *create_mobile (MOB_INDEX_DATA * pMobIndex) {
     }
     /* read in old format and convert */
     else {
-        mob->act         = pMobIndex->act;
+        mob->mob         = pMobIndex->mob;
+        mob->plr         = 0;
         mob->affected_by = pMobIndex->affected_by;
         mob->alignment   = pMobIndex->alignment;
         mob->level       = pMobIndex->level;
@@ -1952,7 +1954,8 @@ void clone_mobile (CHAR_DATA * parent, CHAR_DATA * clone) {
     clone->gold        = parent->gold;
     clone->silver      = parent->silver;
     clone->exp         = parent->exp;
-    clone->act         = parent->act;
+    clone->mob         = parent->mob;
+    clone->plr         = parent->plr;
     clone->comm        = parent->comm;
     clone->imm_flags   = parent->imm_flags;
     clone->res_flags   = parent->res_flags;

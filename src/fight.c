@@ -149,7 +149,7 @@ int should_assist_group (CHAR_DATA * bystander, CHAR_DATA * attacker,
         return 0;
     if (is_safe (bystander, victim))
         return 0;
-    if (!IS_NPC (bystander) && IS_SET (bystander->act, PLR_AUTOASSIST))
+    if (!IS_NPC (bystander) && IS_SET (bystander->plr, PLR_AUTOASSIST))
         return 1;
     if (IS_AFFECTED (bystander, AFF_CHARM))
         return 1;
@@ -378,8 +378,8 @@ void mob_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
         case (2):
             if (IS_SET (ch->off_flags, OFF_DISARM)
                 || (char_get_weapon_sn (ch) != gsn_hand_to_hand
-                    && (IS_SET (ch->act, ACT_WARRIOR)
-                        || IS_SET (ch->act, ACT_THIEF))))
+                    && (IS_SET (ch->mob, MOB_WARRIOR) ||
+                        IS_SET (ch->mob, MOB_THIEF))))
                 do_function (ch, &do_disarm, "");
             break;
 
@@ -472,13 +472,13 @@ void one_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
     if (IS_NPC (ch)) {
         thac0_00 = 20;
         thac0_32 = -4; /* as good as a thief */
-        if (IS_SET (ch->act, ACT_WARRIOR))
+        if (IS_SET (ch->mob, MOB_WARRIOR))
             thac0_32 = -10;
-        else if (IS_SET (ch->act, ACT_THIEF))
+        else if (IS_SET (ch->mob, MOB_THIEF))
             thac0_32 = -4;
-        else if (IS_SET (ch->act, ACT_CLERIC))
+        else if (IS_SET (ch->mob, MOB_CLERIC))
             thac0_32 = 2;
-        else if (IS_SET (ch->act, ACT_MAGE))
+        else if (IS_SET (ch->mob, MOB_MAGE))
             thac0_32 = 6;
     }
     else {
@@ -865,10 +865,10 @@ bool damage (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
 
         /* dump the flags */
         if (ch != victim && !IS_NPC (ch) && !char_in_same_clan (ch, victim)) {
-            if (IS_SET (victim->act, PLR_KILLER))
-                REMOVE_BIT (victim->act, PLR_KILLER);
+            if (IS_SET (victim->plr, PLR_KILLER))
+                REMOVE_BIT (victim->plr, PLR_KILLER);
             else
-                REMOVE_BIT (victim->act, PLR_THIEF);
+                REMOVE_BIT (victim->plr, PLR_THIEF);
         }
 
         /* RT new auto commands */
@@ -880,20 +880,21 @@ bool damage (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
             OBJ_DATA *coins;
 
             corpse = find_obj_list (ch, ch->in_room->contents, "corpse");
-            if (IS_SET (ch->act, PLR_AUTOLOOT) && corpse && corpse->contains) {
-                /* exists and not empty */
-                do_function (ch, &do_get, "all corpse");
-            }
 
-            if (IS_SET (ch->act, PLR_AUTOGOLD) && corpse && corpse->contains &&    /* exists and not empty */
-                !IS_SET (ch->act, PLR_AUTOLOOT))
+            /* exists and not empty */
+            if (IS_SET (ch->plr, PLR_AUTOLOOT) && corpse && corpse->contains)
+                do_function (ch, &do_get, "all corpse");
+
+            /* exists and not empty */
+            if (IS_SET (ch->plr, PLR_AUTOGOLD) && corpse && corpse->contains &&
+                !IS_SET (ch->plr, PLR_AUTOLOOT))
             {
                 if ((coins = find_obj_list (ch, corpse->contains, "gcash")) != NULL)
                     do_function (ch, &do_get, "all.gcash corpse");
             }
 
-            if (IS_SET (ch->act, PLR_AUTOSAC)) {
-                if (IS_SET (ch->act, PLR_AUTOLOOT) && corpse && corpse->contains)
+            if (IS_SET (ch->plr, PLR_AUTOSAC)) {
+                if (IS_SET (ch->plr, PLR_AUTOLOOT) && corpse && corpse->contains)
                     return TRUE; /* leave if corpse has treasure */
                 else
                     do_function (ch, &do_sacrifice, "corpse");
@@ -915,7 +916,7 @@ bool damage (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
 
     /* Wimp out? */
     if (IS_NPC (victim) && dam > 0 && victim->wait < PULSE_VIOLENCE / 2) {
-        if ((IS_SET (victim->act, ACT_WIMPY) && number_bits (2) == 0
+        if ((IS_SET (victim->mob, MOB_WIMPY) && number_bits (2) == 0
              && victim->hit < victim->max_hit / 5)
             || (IS_AFFECTED (victim, AFF_CHARM) && victim->master != NULL
                 && victim->master->in_room != victim->in_room))
@@ -970,10 +971,10 @@ bool is_safe (CHAR_DATA * ch, CHAR_DATA * victim) {
         }
 
         /* no killing healers, trainers, etc */
-        if (IS_SET (victim->act, ACT_TRAIN)
-            || IS_SET (victim->act, ACT_PRACTICE)
-            || IS_SET (victim->act, ACT_IS_HEALER)
-            || IS_SET (victim->act, ACT_IS_CHANGER))
+        if (IS_SET (victim->mob, MOB_TRAIN)
+            || IS_SET (victim->mob, MOB_PRACTICE)
+            || IS_SET (victim->mob, MOB_IS_HEALER)
+            || IS_SET (victim->mob, MOB_IS_CHANGER))
         {
             send_to_char ("I don't think Mota would approve.\n\r", ch);
             return TRUE;
@@ -981,7 +982,7 @@ bool is_safe (CHAR_DATA * ch, CHAR_DATA * victim) {
 
         if (!IS_NPC (ch)) {
             /* no pets */
-            if (IS_SET (victim->act, ACT_PET)) {
+            if (IS_PET (victim)) {
                 act ("But $N looks so cute and cuddly...",
                      ch, NULL, victim, TO_CHAR);
                 return TRUE;
@@ -1018,8 +1019,8 @@ bool is_safe (CHAR_DATA * ch, CHAR_DATA * victim) {
                 send_to_char ("Join a clan if you want to kill players.\n\r", ch);
                 return TRUE;
             }
-            if (IS_SET (victim->act, PLR_KILLER)
-                || IS_SET (victim->act, PLR_THIEF))
+            if (IS_SET (victim->plr, PLR_KILLER)
+                || IS_SET (victim->plr, PLR_THIEF))
                 return FALSE;
 
             if (!char_has_clan (victim)) {
@@ -1054,15 +1055,15 @@ bool is_safe_spell (CHAR_DATA * ch, CHAR_DATA * victim, bool area) {
             return TRUE;
 
         /* no killing healers, trainers, etc */
-        if (IS_SET (victim->act, ACT_TRAIN)
-            || IS_SET (victim->act, ACT_PRACTICE)
-            || IS_SET (victim->act, ACT_IS_HEALER)
-            || IS_SET (victim->act, ACT_IS_CHANGER))
+        if (IS_SET (victim->mob, MOB_TRAIN)
+            || IS_SET (victim->mob, MOB_PRACTICE)
+            || IS_SET (victim->mob, MOB_IS_HEALER)
+            || IS_SET (victim->mob, MOB_IS_CHANGER))
             return TRUE;
 
         if (!IS_NPC (ch)) {
             /* no pets */
-            if (IS_SET (victim->act, ACT_PET))
+            if (IS_PET (victim))
                 return TRUE;
 
             /* no charmed creatures unless owner */
@@ -1104,8 +1105,8 @@ bool is_safe_spell (CHAR_DATA * ch, CHAR_DATA * victim, bool area) {
         else {
             if (!char_has_clan (ch))
                 return TRUE;
-            if (IS_SET (victim->act, PLR_KILLER)
-                || IS_SET (victim->act, PLR_THIEF))
+            if (IS_SET (victim->plr, PLR_KILLER)
+                || IS_SET (victim->plr, PLR_THIEF))
                 return FALSE;
             if (!char_has_clan (victim))
                 return TRUE;
@@ -1129,8 +1130,8 @@ void check_killer (CHAR_DATA * ch, CHAR_DATA * victim) {
     /* NPC's are fair game.
      * So are killers and thieves. */
     if (IS_NPC (victim)
-        || IS_SET (victim->act, PLR_KILLER)
-        || IS_SET (victim->act, PLR_THIEF))
+        || IS_SET (victim->plr, PLR_KILLER)
+        || IS_SET (victim->plr, PLR_THIEF))
         return;
 
     /* Charm-o-rama. */
@@ -1147,7 +1148,7 @@ void check_killer (CHAR_DATA * ch, CHAR_DATA * victim) {
         }
 /*
     send_to_char( "*** You are now a KILLER!! ***\n\r", ch->master );
-      SET_BIT(ch->master->act, PLR_KILLER);
+      SET_BIT(ch->master->plr, PLR_KILLER);
 */
 
         stop_follower (ch);
@@ -1160,11 +1161,11 @@ void check_killer (CHAR_DATA * ch, CHAR_DATA * victim) {
      * And current killers stay as they are. */
     if (IS_NPC (ch)
         || ch == victim || ch->level >= LEVEL_IMMORTAL || !char_has_clan (ch)
-        || IS_SET (ch->act, PLR_KILLER) || ch->fighting == victim)
+        || IS_SET (ch->plr, PLR_KILLER) || ch->fighting == victim)
         return;
 
     send_to_char ("*** You are now a KILLER!! ***\n\r", ch);
-    SET_BIT (ch->act, PLR_KILLER);
+    SET_BIT (ch->plr, PLR_KILLER);
     sprintf (buf, "$N is attempting to murder %s", victim->name);
     wiznet (buf, ch, NULL, WIZ_FLAGS, 0, 0);
     save_char_obj (ch);
@@ -1347,7 +1348,7 @@ void make_corpse (CHAR_DATA * ch) {
         name = ch->name;
         corpse = create_object (get_obj_index (OBJ_VNUM_CORPSE_PC), 0);
         corpse->timer = number_range (25, 40);
-        REMOVE_BIT (ch->act, PLR_CANLOOT);
+        REMOVE_BIT (ch->plr, PLR_CANLOOT);
         if (!char_has_clan (ch))
             corpse->owner = str_dup (ch->name);
         else {
@@ -1655,7 +1656,7 @@ int xp_compute (CHAR_DATA * gch, CHAR_DATA * victim, int total_levels) {
     align = victim->alignment - gch->alignment;
 
     /* no change */
-    if (IS_SET (victim->act, ACT_NOALIGN))
+    if (IS_SET (victim->mob, MOB_NOALIGN))
         ;
     /* monster is more good than slayer */
     else if (align > 500) {
@@ -1676,7 +1677,7 @@ int xp_compute (CHAR_DATA * gch, CHAR_DATA * victim, int total_levels) {
     }
 
     /* calculate exp multiplier */
-    if (IS_SET (victim->act, ACT_NOALIGN))
+    if (IS_SET (victim->mob, MOB_NOALIGN))
         xp = base_exp;
     /* for goodie two shoes */
     else if (gch->alignment > 500) {

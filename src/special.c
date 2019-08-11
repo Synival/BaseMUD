@@ -590,11 +590,11 @@ bool spec_executioner (CHAR_DATA * ch) {
             continue;
         if (!char_can_see_in_room (ch, victim))
             continue;
-        if (IS_SET (victim->act, PLR_KILLER)) {
+        if (IS_SET (victim->plr, PLR_KILLER)) {
             crime = "KILLER";
             break;
         }
-        if (IS_SET (victim->act, PLR_THIEF)) {
+        if (IS_SET (victim->plr, PLR_THIEF)) {
             crime = "THIEF";
             break;
         }
@@ -658,11 +658,11 @@ bool spec_guard (CHAR_DATA * ch) {
             continue;
         if (!char_can_see_in_room (ch, victim))
             continue;
-        if (IS_SET (victim->act, PLR_KILLER)) {
+        if (IS_SET (victim->plr, PLR_KILLER)) {
             crime = "KILLER";
             break;
         }
-        if (IS_SET (victim->act, PLR_KILLER)) {
+        if (IS_SET (victim->plr, PLR_KILLER)) {
             crime = "THIEF";
             break;
         }

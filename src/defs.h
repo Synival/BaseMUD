@@ -522,48 +522,6 @@
 #define MAX_MEM_LIST    11
 #define MAX_PERM_BLOCKS 1024
 
-/* Material types - currently unused, but neat. */
-#define MATERIAL_GENERIC     0
-#define MATERIAL_ADAMANTITE  1
-#define MATERIAL_ADAMITE     2
-#define MATERIAL_ALUMINUM    3
-#define MATERIAL_BRASS       4
-#define MATERIAL_BRONZE      5
-#define MATERIAL_CHINA       6
-#define MATERIAL_CLAY        7
-#define MATERIAL_CLOTH       8
-#define MATERIAL_COPPER      9
-#define MATERIAL_CRYSTAL    10
-#define MATERIAL_DIAMOND    11
-#define MATERIAL_ENERGY     12
-#define MATERIAL_FLESH      13
-#define MATERIAL_FOOD       14
-#define MATERIAL_FUR        15
-#define MATERIAL_GEM        16
-#define MATERIAL_GLASS      17
-#define MATERIAL_GOLD       18
-#define MATERIAL_ICE        19
-#define MATERIAL_IRON       20
-#define MATERIAL_IVORY      21
-#define MATERIAL_LEAD       22
-#define MATERIAL_LEATHER    23
-#define MATERIAL_MEAT       24
-#define MATERIAL_MITHRIL    25
-#define MATERIAL_OBSIDIAN   26
-#define MATERIAL_PAPER      27
-#define MATERIAL_PARCHMENT  28
-#define MATERIAL_PEARL      29
-#define MATERIAL_PLATINUM   30
-#define MATERIAL_RUBBER     31
-#define MATERIAL_SHADOW     32
-#define MATERIAL_SILVER     33
-#define MATERIAL_STEEL      34
-#define MATERIAL_TIN        35
-#define MATERIAL_VELLUM     36
-#define MATERIAL_WATER      37
-#define MATERIAL_WOOD       38
-#define MATERIAL_MAX        39
-
 /* Types of tables used for our master reference table. */
 #define TABLE_FLAG_TYPE 0x01
 #define TABLE_BITS      0x02

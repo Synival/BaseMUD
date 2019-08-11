@@ -129,10 +129,10 @@ int get_skill (CHAR_DATA * ch, int sn) {
             skill = ch->level * 2;
         else if (sn == gsn_shield_block)
             skill = 10 + 2 * ch->level;
-        else if (sn == gsn_second_attack && (IS_SET (ch->act, ACT_WARRIOR)
-                                             || IS_SET (ch->act, ACT_THIEF)))
+        else if (sn == gsn_second_attack && (IS_SET (ch->mob, MOB_WARRIOR)
+                                             || IS_SET (ch->mob, MOB_THIEF)))
             skill = 10 + 3 * ch->level;
-        else if (sn == gsn_third_attack && IS_SET (ch->act, ACT_WARRIOR))
+        else if (sn == gsn_third_attack && IS_SET (ch->mob, MOB_WARRIOR))
             skill = 4 * ch->level - 40;
         else if (sn == gsn_hand_to_hand)
             skill = 40 + 2 * ch->level;
@@ -141,14 +141,14 @@ int get_skill (CHAR_DATA * ch, int sn) {
         else if (sn == gsn_bash && IS_SET (ch->off_flags, OFF_BASH))
             skill = 10 + 3 * ch->level;
         else if (sn == gsn_disarm && (IS_SET (ch->off_flags, OFF_DISARM)
-                                      || IS_SET (ch->act, ACT_WARRIOR)
-                                      || IS_SET (ch->act, ACT_THIEF)))
+                                      || IS_SET (ch->mob, MOB_WARRIOR)
+                                      || IS_SET (ch->mob, MOB_THIEF)))
             skill = 20 + 3 * ch->level;
         else if (sn == gsn_berserk && IS_SET (ch->off_flags, OFF_BERSERK))
             skill = 3 * ch->level;
         else if (sn == gsn_kick)
             skill = 10 + 3 * ch->level;
-        else if (sn == gsn_backstab && IS_SET (ch->act, ACT_THIEF))
+        else if (sn == gsn_backstab && IS_SET (ch->mob, MOB_THIEF))
             skill = 20 + 2 * ch->level;
         else if (sn == gsn_rescue)
             skill = 40 + ch->level;

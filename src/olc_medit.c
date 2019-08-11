@@ -39,9 +39,8 @@ MEDIT (medit_show) {
              !pMob->area ? "No Area" : pMob->area->title);
     send_to_char (buf, ch);
 
-    sprintf (buf, "Act:         [%s]\n\r",
-             flag_string (act_flags, pMob->act_orig));
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Mob:         [%s]\n\r",
+        flag_string (mob_flags, pMob->mob_orig));
 
     sprintf (buf, "Vnum:        [%5d] Sex:   [%s]   Race: [%s]\n\r",
              pMob->vnum,
@@ -200,7 +199,7 @@ MEDIT (medit_create) {
     if (value > top_vnum_mob)
         top_vnum_mob = value;
 
-    pMob->act = ACT_IS_NPC;
+    pMob->mob = MOB_IS_NPC;
     iHash = value % MAX_KEY_HASH;
     LIST_FRONT (pMob, next, mob_index_hash[iHash]);
     ch->desc->pEdit = (void *) pMob;
@@ -471,11 +470,11 @@ MEDIT (medit_act) {
 
     if (argument[0] != '\0') {
         EDIT_MOB (ch, pMob);
-        if ((value = flag_value (act_flags, argument)) != NO_FLAG) {
-            pMob->act_orig ^= value;
-            SET_BIT (pMob->act_orig, ACT_IS_NPC);
+        if ((value = flag_value (mob_flags, argument)) != NO_FLAG) {
+            pMob->mob_orig ^= value;
+            SET_BIT (pMob->mob_orig, MOB_IS_NPC);
 
-            send_to_char ("Act flag toggled.\n\r", ch);
+            send_to_char ("Mob flag toggled.\n\r", ch);
             return TRUE;
         }
     }
@@ -853,7 +852,7 @@ MEDIT (medit_race) {
         EDIT_MOB (ch, pMob);
         pMob->race = race;
 
-        pMob->act         = pMob->act_orig         | race_table[race].act;
+        pMob->mob         = pMob->mob_orig         | race_table[race].mob;
         pMob->affected_by = pMob->affected_by_orig | race_table[race].aff;
         pMob->off_flags   = pMob->off_flags_orig   | race_table[race].off;
         pMob->imm_flags   = pMob->imm_flags_orig   | race_table[race].imm;

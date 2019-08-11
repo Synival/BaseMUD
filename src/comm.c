@@ -984,7 +984,7 @@ void bust_a_prompt (CHAR_DATA *ch) {
                 if (ch->in_room != NULL)
                     sprintf (buf2, "%s",
                              ((!IS_NPC
-                               (ch) && IS_SET (ch->act, PLR_HOLYLIGHT))
+                               (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT))
                               || (!IS_AFFECTED (ch, AFF_BLIND)
                                   && !room_is_dark (ch->
                                                     in_room))) ? ch->in_room->

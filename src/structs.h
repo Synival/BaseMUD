@@ -309,7 +309,7 @@ struct attack_type {
 struct race_type {
     char * name;  /* call name of the race          */
     bool pc_race; /* can be chosen by pcs           */
-    flag_t act;   /* act bits for the race          */
+    flag_t mob;   /* act bits for the race          */
     flag_t aff;   /* aff bits for the race          */
     flag_t off;   /* off bits for the race          */
     flag_t imm;   /* imm bits for the race          */
@@ -428,7 +428,7 @@ struct mob_index_data {
     char * short_descr;
     char * long_descr;
     char * description;
-    flag_t act_orig, act;
+    flag_t mob_orig, mob;
     flag_t affected_by_orig, affected_by;
     sh_int alignment;
     sh_int level;
@@ -522,7 +522,8 @@ struct char_data {
     long gold;
     long silver;
     int exp;
-    flag_t act;
+    flag_t mob;
+    flag_t plr;
     flag_t comm;   /* RT added to pad the vector */
     flag_t wiznet; /* wiz stuff */
     flag_t imm_flags;
@@ -896,6 +897,7 @@ struct wear_type {
 struct material_type {
     int type;
     const char *name;
+    char color;
 };
 
 struct flag_stat_type {
