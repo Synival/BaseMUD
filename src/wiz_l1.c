@@ -67,7 +67,7 @@ void do_deny (CHAR_DATA * ch, char *argument) {
         return;
     }
 
-    SET_BIT (victim->act, PLR_DENY);
+    SET_BIT (victim->plr, PLR_DENY);
     send_to_char ("You are denied access!\n\r", victim);
     sprintf (buf, "$N denies access to %s", victim->name);
     wiznet (buf, ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0);
@@ -189,12 +189,12 @@ void do_log (CHAR_DATA * ch, char *argument) {
     }
 
     /* No level check, gods can log anyone. */
-    if (IS_SET (victim->act, PLR_LOG)) {
-        REMOVE_BIT (victim->act, PLR_LOG);
+    if (IS_SET (victim->plr, PLR_LOG)) {
+        REMOVE_BIT (victim->plr, PLR_LOG);
         send_to_char ("LOG removed.\n\r", ch);
     }
     else {
-        SET_BIT (victim->act, PLR_LOG);
+        SET_BIT (victim->plr, PLR_LOG);
         send_to_char ("LOG set.\n\r", ch);
     }
 }

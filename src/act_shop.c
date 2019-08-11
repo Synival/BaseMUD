@@ -38,6 +38,7 @@
 #include "find.h"
 #include "act_comm.h"
 #include "spell_cure.h"
+#include "materials.h"
 
 #include "act_shop.h"
 
@@ -55,13 +56,13 @@ bool do_filter_get_keeper (CHAR_DATA *ch, CHAR_DATA **out_keeper) {
         "They don't have a shop.\n\r", ch);
 
     /* Undesirables. *
-    if (!IS_NPC(ch) && IS_SET(ch->act, PLR_KILLER)) {
+    if (!IS_NPC(ch) && IS_SET(ch->plr, PLR_KILLER)) {
         do_function (keeper, &do_say, "Killers are not welcome!");
         sprintf (buf, "%s the KILLER is over here!\n\r", ch->name);
         do_function (keeper, &do_yell, buf);
         return NULL;
     }
-    if (!IS_NPC(ch) && IS_SET(ch->act, PLR_THIEF)) {
+    if (!IS_NPC(ch) && IS_SET(ch->plr, PLR_THIEF)) {
         do_function (keeper, &do_say, "Thieves are not welcome!");
         sprintf (buf, "%s the THIEF is over here!\n\r", ch->name);
         do_function (keeper, &do_yell, buf);
@@ -117,7 +118,7 @@ void do_buy_pet (CHAR_DATA *ch, char *argument) {
     pet = find_char_room (ch, arg);
     ch->in_room = in_room;
 
-    BAIL_IF (pet == NULL || !IS_SET (pet->act, ACT_PET),
+    BAIL_IF (pet == NULL || !IS_PET (pet),
         "Sorry, you can't buy that here.\n\r", ch);
     BAIL_IF (ch->pet != NULL,
         "You already own a pet.\n\r", ch);
@@ -139,7 +140,7 @@ void do_buy_pet (CHAR_DATA *ch, char *argument) {
 
     char_reduce_money (ch, cost);
     pet = create_mobile (pet->pIndexData);
-    SET_BIT (pet->act, ACT_PET);
+    SET_BIT (pet->mob, MOB_PET);
     SET_BIT (pet->affected_by, AFF_CHARM);
     pet->comm = COMM_NOTELL | COMM_NOSHOUT | COMM_NOCHANNELS;
 
@@ -269,6 +270,7 @@ void do_list_pets (CHAR_DATA *ch, char *argument) {
     ROOM_INDEX_DATA *pRoomIndexNext;
     CHAR_DATA *pet;
     bool found;
+    char *material_str;
 
     /* hack to make new thalos pets work */
     if (ch->in_room->vnum == 9621)
@@ -283,15 +285,16 @@ void do_list_pets (CHAR_DATA *ch, char *argument) {
 
     found = FALSE;
     for (pet = pRoomIndexNext->people; pet; pet = pet->next_in_room) {
-        if (!IS_SET (pet->act, ACT_PET))
+        if (!IS_PET (pet))
             continue;
         if (!found) {
             found = TRUE;
             send_to_char ("Pets for sale:\n\r", ch);
         }
-        sprintf (buf, "[%2d] %8d - %s\n\r",
-                 pet->level,
-                 10 * pet->level * pet->level, pet->short_descr);
+        material_str = IS_SET (ch->comm, COMM_MATERIALS)
+            ? material_format_part (material_get (pet->material)) : "";
+        sprintf (buf, "[%2d] %8d - %s%s\n\r", pet->level,
+            10 * pet->level * pet->level, material_str, pet->short_descr);
         send_to_char (buf, ch);
     }
     if (!found)
@@ -305,6 +308,7 @@ void do_list_items (CHAR_DATA *ch, char *argument) {
     OBJ_DATA *obj;
     int cost, count;
     bool found;
+    char *material_str;
 
     if (do_filter_get_keeper (ch, &keeper))
         return;
@@ -326,9 +330,11 @@ void do_list_items (CHAR_DATA *ch, char *argument) {
             send_to_char ("[Lv Price Qty] Item\n\r", ch);
         }
 
+        material_str = IS_SET (ch->comm, COMM_MATERIALS)
+            ? material_format_part (material_get (obj->material)) : "";
         if (IS_OBJ_STAT (obj, ITEM_INVENTORY))
-            sprintf (buf, "[%2d %5d -- ] %s\n\r",
-                     obj->level, cost, obj->short_descr);
+            sprintf (buf, "[%2d %5d -- ] %s%s\n\r",
+                     obj->level, cost, material_str, obj->short_descr);
         else {
             count = 1;
             while (obj->next_content != NULL
@@ -339,8 +345,8 @@ void do_list_items (CHAR_DATA *ch, char *argument) {
                 obj = obj->next_content;
                 count++;
             }
-            sprintf (buf, "[%2d %5d %2d ] %s\n\r",
-                     obj->level, cost, count, obj->short_descr);
+            sprintf (buf, "[%2d %5d %2d ] %s%s\n\r",
+                     obj->level, cost, count, material_str, obj->short_descr);
         }
         send_to_char (buf, ch);
     }
@@ -452,7 +458,7 @@ void do_heal (CHAR_DATA * ch, char *argument) {
 
     /* check for healer */
     for (mob = ch->in_room->people; mob; mob = mob->next_in_room)
-        if (IS_NPC (mob) && IS_SET (mob->act, ACT_IS_HEALER))
+        if (IS_NPC (mob) && IS_SET (mob->mob, MOB_IS_HEALER))
             break;
     if (mob == NULL) {
         send_to_char ("You can't do that here.\n\r", ch);

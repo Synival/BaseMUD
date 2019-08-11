@@ -290,8 +290,8 @@ void do_peace (CHAR_DATA * ch, char *argument) {
     for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
         if (rch->fighting != NULL)
             stop_fighting (rch, TRUE);
-        if (IS_NPC (rch) && IS_SET (rch->act, ACT_AGGRESSIVE))
-            REMOVE_BIT (rch->act, ACT_AGGRESSIVE);
+        if (IS_NPC (rch) && IS_SET (rch->mob, MOB_AGGRESSIVE))
+            REMOVE_BIT (rch->mob, MOB_AGGRESSIVE);
     }
     send_to_char ("Ok.\n\r", ch);
 }

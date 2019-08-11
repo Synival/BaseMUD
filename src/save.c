@@ -186,8 +186,10 @@ void fwrite_char (CHAR_DATA * ch, FILE * fp) {
         fprintf (fp, "Silv 0\n");
 
     fprintf (fp, "Exp  %d\n", ch->exp);
-    if (ch->act != 0)
-        fprintf (fp, "Act  %s\n", print_flags (ch->act));
+    if (ch->mob != 0)
+        fprintf (fp, "Mob  %s\n", print_flags (ch->mob));
+    if (ch->plr != 0)
+        fprintf (fp, "Plr  %s\n", print_flags (ch->plr));
     if (ch->affected_by != 0)
         fprintf (fp, "AfBy %s\n", print_flags (ch->affected_by));
     fprintf (fp, "Comm %s\n", print_flags (ch->comm));
@@ -324,8 +326,10 @@ void fwrite_pet (CHAR_DATA * pet, FILE * fp) {
         fprintf (fp, "Silv %ld\n", pet->silver);
     if (pet->exp > 0)
         fprintf (fp, "Exp  %d\n", pet->exp);
-    if (pet->act != pet->pIndexData->act)
-        fprintf (fp, "Act  %s\n", print_flags (pet->act));
+    if (pet->mob != pet->pIndexData->mob)
+        fprintf (fp, "Mob  %s\n", print_flags (pet->mob));
+    if (pet->plr != 0)
+        fprintf (fp, "Plr  %s\n", print_flags (pet->plr));
     if (pet->affected_by != pet->pIndexData->affected_by)
         fprintf (fp, "AfBy %s\n", print_flags (pet->affected_by));
     if (pet->comm != 0)
@@ -473,7 +477,7 @@ bool load_char_obj (DESCRIPTOR_DATA * d, char *name) {
     ch->name = str_dup (name);
     ch->id = get_pc_id ();
     ch->race = race_lookup ("human");
-    ch->act = PLR_NOSUMMON;
+    ch->plr = PLR_NOSUMMON;
     ch->comm = COMM_COMBINE | COMM_PROMPT;
     ch->prompt = str_dup ("<%hhp %mm %vmv> ");
     ch->pcdata->confirm_delete = FALSE;
@@ -660,11 +664,19 @@ void fread_char (CHAR_DATA * ch, FILE * fp) {
                 break;
 
             case 'A':
-                KEY ("Act", ch->act, fread_flag (fp));
+                if (!str_cmp (word, "Act")) {
+                    fMatch = TRUE;
+                    flag_t flags = fread_flag (fp);
+                    if (IS_SET (flags, MOB_IS_NPC))
+                        ch->mob = flags;
+                    else
+                        ch->plr = flags;
+                }
+
                 KEY ("AffectedBy", ch->affected_by, fread_flag (fp));
-                KEY ("AfBy", ch->affected_by, fread_flag (fp));
-                KEY ("Alignment", ch->alignment, fread_flag (fp));
-                KEY ("Alig", ch->alignment, fread_number (fp));
+                KEY ("AfBy",       ch->affected_by, fread_flag (fp));
+                KEY ("Alignment",  ch->alignment, fread_flag (fp));
+                KEY ("Alig",       ch->alignment, fread_number (fp));
 
                 if (!str_cmp (word, "Alia")) {
                     if (count >= MAX_ALIAS) {
@@ -770,10 +782,10 @@ void fread_char (CHAR_DATA * ch, FILE * fp) {
                 break;
 
             case 'B':
-                KEY ("Bamfin", ch->pcdata->bamfin, fread_string (fp));
+                KEY ("Bamfin",  ch->pcdata->bamfin,  fread_string (fp));
                 KEY ("Bamfout", ch->pcdata->bamfout, fread_string (fp));
-                KEY ("Bin", ch->pcdata->bamfin, fread_string (fp));
-                KEY ("Bout", ch->pcdata->bamfout, fread_string (fp));
+                KEY ("Bin",     ch->pcdata->bamfin,  fread_string (fp));
+                KEY ("Bout",    ch->pcdata->bamfout, fread_string (fp));
 
                 /* Read in board status */
                 if (!str_cmp(word, "Boards" )) {
@@ -993,6 +1005,10 @@ void fread_char (CHAR_DATA * ch, FILE * fp) {
                 KEY ("LnD", ch->long_descr, fread_string (fp));
                 break;
 
+            case 'M':
+                KEY ("Mob", ch->mob, fread_flag (fp));
+                break;
+
             case 'N':
                 KEYS ("Name", ch->name, fread_string (fp));
                 break;
@@ -1002,6 +1018,7 @@ void fread_char (CHAR_DATA * ch, FILE * fp) {
                 KEY ("Pass", ch->pcdata->pwd, fread_string (fp));
                 KEY ("Played", ch->played, fread_number (fp));
                 KEY ("Plyd", ch->played, fread_number (fp));
+                KEY ("Plr", ch->plr, fread_flag (fp));
                 KEY ("Points", ch->pcdata->points, fread_number (fp));
                 KEY ("Pnts", ch->pcdata->points, fread_number (fp));
                 KEY ("Position", ch->position, fread_number (fp));
@@ -1140,9 +1157,17 @@ void fread_pet (CHAR_DATA * ch, FILE * fp) {
                 break;
 
             case 'A':
-                KEY ("Act", pet->act, fread_flag (fp));
+                if (!str_cmp (word, "Act")) {
+                    fMatch = TRUE;
+                    flag_t flags = fread_flag (fp);
+                    if (IS_SET (flags, MOB_IS_NPC))
+                        pet->mob = flags;
+                    else
+                        pet->plr = flags;
+                }
+
                 KEY ("AfBy", pet->affected_by, fread_flag (fp));
-                KEY ("Alig", pet->alignment, fread_number (fp));
+                KEY ("Alig", pet->alignment,   fread_number (fp));
 
                 if (!str_cmp (word, "ACs")) {
                     int i;
@@ -1277,11 +1302,16 @@ void fread_pet (CHAR_DATA * ch, FILE * fp) {
                 KEY ("LogO", lastlogoff, fread_number (fp));
                 break;
 
+            case 'M':
+                KEY ("Mob", pet->mob, fread_flag (fp));
+                break;
+
             case 'N':
                 KEY ("Name", pet->name, fread_string (fp));
                 break;
 
             case 'P':
+                KEY ("Plr", pet->plr,      fread_flag (fp));
                 KEY ("Pos", pet->position, fread_number (fp));
                 break;
 

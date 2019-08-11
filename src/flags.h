@@ -76,36 +76,36 @@
 
 /* ACT bits for mobs.
  * Used in #MOBILES. */
-#define ACT_IS_NPC         (A)  /* Auto set for mobs  */
-#define ACT_SENTINEL       (B)  /* Stays in one room  */
-#define ACT_SCAVENGER      (C)  /* Picks up objects   */
-#define ACT_UNUSED_FLAG_1  (D)  /* old: isnpc */
-#define ACT_UNUSED_FLAG_2  (E)  /* old: nice_thief */
-#define ACT_AGGRESSIVE     (F)  /* Attacks PC's       */
-#define ACT_STAY_AREA      (G)  /* Won't leave area   */
-#define ACT_WIMPY          (H)
-#define ACT_PET            (I)  /* Auto set for pets  */
-#define ACT_TRAIN          (J)  /* Can train PC's     */
-#define ACT_PRACTICE       (K)  /* Can practice PC's  */
-#define ACT_UNUSED_FLAG_3  (L)
-#define ACT_UNUSED_FLAG_4  (M)
-#define ACT_UNUSED_FLAG_5  (N)
-#define ACT_UNDEAD         (O)
-#define ACT_UNUSED_FLAG_6  (P)
-#define ACT_CLERIC         (Q)
-#define ACT_MAGE           (R)
-#define ACT_THIEF          (S)
-#define ACT_WARRIOR        (T)
-#define ACT_NOALIGN        (U)
-#define ACT_NOPURGE        (V)
-#define ACT_OUTDOORS       (W)
-#define ACT_UNUSED_FLAG_7  (X)
-#define ACT_INDOORS        (Y)
-#define ACT_UNUSED_FLAG_8  (Z)
-#define ACT_IS_HEALER      (aa)
-#define ACT_GAIN           (bb)
-#define ACT_UPDATE_ALWAYS  (cc)
-#define ACT_IS_CHANGER     (dd)
+#define MOB_IS_NPC         (A)  /* Auto set for mobs  */
+#define MOB_SENTINEL       (B)  /* Stays in one room  */
+#define MOB_SCAVENGER      (C)  /* Picks up objects   */
+#define MOB_UNUSED_FLAG_1  (D)  /* old: isnpc */
+#define MOB_UNUSED_FLAG_2  (E)  /* old: nice_thief */
+#define MOB_AGGRESSIVE     (F)  /* Attacks PC's       */
+#define MOB_STAY_AREA      (G)  /* Won't leave area   */
+#define MOB_WIMPY          (H)
+#define MOB_PET            (I)  /* Auto set for pets  */
+#define MOB_TRAIN          (J)  /* Can train PC's     */
+#define MOB_PRACTICE       (K)  /* Can practice PC's  */
+#define MOB_UNUSED_FLAG_3  (L)
+#define MOB_UNUSED_FLAG_4  (M)
+#define MOB_UNUSED_FLAG_5  (N)
+#define MOB_UNDEAD         (O)
+#define MOB_UNUSED_FLAG_6  (P)
+#define MOB_CLERIC         (Q)
+#define MOB_MAGE           (R)
+#define MOB_THIEF          (S)
+#define MOB_WARRIOR        (T)
+#define MOB_NOALIGN        (U)
+#define MOB_NOPURGE        (V)
+#define MOB_OUTDOORS       (W)
+#define MOB_UNUSED_FLAG_7  (X)
+#define MOB_INDOORS        (Y)
+#define MOB_UNUSED_FLAG_8  (Z)
+#define MOB_IS_HEALER      (aa)
+#define MOB_GAIN           (bb)
+#define MOB_UPDATE_ALWAYS  (cc)
+#define MOB_IS_CHANGER     (dd)
 
 /* OFF bits for mobiles */
 #define OFF_AREA_ATTACK    (A)
@@ -409,9 +409,8 @@
 #define PLR_CANLOOT       (P)
 #define PLR_NOSUMMON      (Q)
 #define PLR_NOFOLLOW      (R)
-#define PLR_UNUSED_FLAG_8 (S)
+#define PLR_UNUSED_FLAG_8 (S) /* reserved */
 #define PLR_COLOUR        (T)
-/* 1 bit reserved, S */
 
 /* penalty flags */
 #define PLR_PERMIT        (U)
@@ -453,6 +452,9 @@
 #define COMM_UNUSED_FLAG_3      (X)
 #define COMM_SNOOP_PROOF        (Y)
 #define COMM_AFK                (Z)
+
+/* BaseMUD flags */
+#define COMM_MATERIALS          (aa)
 
 /* WIZnet flags */
 #define WIZ_ON                  (A)
@@ -506,7 +508,7 @@
 #define AREA_LOADING  (C) /* Used for counting in db.c */
 
 /* Flag tables. */
-extern const FLAG_TYPE act_flags[];
+extern const FLAG_TYPE mob_flags[];
 extern const FLAG_TYPE plr_flags[];
 extern const FLAG_TYPE affect_flags[];
 extern const FLAG_TYPE off_flags[];

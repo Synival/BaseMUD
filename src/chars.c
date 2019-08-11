@@ -45,6 +45,7 @@
 #include "act_info.h"
 #include "act_group.h"
 #include "wiz_l6.h"
+#include "materials.h"
 
 #include "chars.h"
 
@@ -273,7 +274,7 @@ long int char_get_carry_weight (CHAR_DATA *ch) {
 int char_get_max_carry_count (CHAR_DATA * ch) {
     if (!IS_NPC (ch) && ch->level >= LEVEL_IMMORTAL)
         return 1000;
-    if (IS_NPC (ch) && IS_SET (ch->act, ACT_PET))
+    if (IS_PET (ch))
         return 0;
     return WEAR_MAX + 2 * char_get_curr_stat (ch, STAT_DEX) + ch->level;
 }
@@ -282,7 +283,7 @@ int char_get_max_carry_count (CHAR_DATA * ch) {
 long int char_get_max_carry_weight (CHAR_DATA * ch) {
     if (!IS_NPC (ch) && ch->level >= LEVEL_IMMORTAL)
         return 10000000;
-    if (IS_NPC (ch) && IS_SET (ch->act, ACT_PET))
+    if (IS_PET (ch))
         return 0;
     return str_app[char_get_curr_stat (ch, STAT_STR)].carry * 10 +
         ch->level * 25;
@@ -572,7 +573,7 @@ bool char_can_see_anywhere (CHAR_DATA * ch, CHAR_DATA * victim) {
     if (char_get_trust (ch) < victim->incog_level &&
         ch->in_room != victim->in_room)
         return FALSE;
-    if (  (!IS_NPC (ch) && IS_SET (ch->act, PLR_HOLYLIGHT))
+    if (  (!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT))
         || (IS_NPC (ch) && IS_IMMORTAL (ch)))
         return TRUE;
     if (IS_AFFECTED (ch, AFF_BLIND))
@@ -620,7 +621,7 @@ bool char_can_see_in_room (CHAR_DATA * ch, CHAR_DATA * victim) {
 
 /* True if char can see obj. */
 bool char_can_see_obj (CHAR_DATA * ch, OBJ_DATA * obj) {
-    if (!IS_NPC (ch) && IS_SET (ch->act, PLR_HOLYLIGHT))
+    if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT))
         return TRUE;
     if (IS_SET (obj->extra_flags, ITEM_VIS_DEATH))
         return FALSE;
@@ -834,7 +835,7 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
         {
 
             if (IS_SET (ch->in_room->room_flags, ROOM_LAW)
-                && (IS_NPC (fch) && IS_SET (fch->act, ACT_AGGRESSIVE)))
+                && (IS_NPC (fch) && IS_SET (fch->mob, MOB_AGGRESSIVE)))
             {
                 act ("You can't bring $N into the city.",
                      ch, NULL, fch, TO_CHAR);
@@ -856,8 +857,9 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
         mp_greet_trigger (ch);
 }
 
-void char_show_to_char_0 (CHAR_DATA * victim, CHAR_DATA * ch) {
-    char buf[MAX_STRING_LENGTH], message[MAX_STRING_LENGTH];
+char *char_format_to_char (CHAR_DATA *victim, CHAR_DATA *ch) {
+    static char buf[MAX_STRING_LENGTH];
+    char message[MAX_STRING_LENGTH];
     buf[0] = '\0';
 
 #ifndef VANILLA
@@ -889,9 +891,9 @@ void char_show_to_char_0 (CHAR_DATA * victim, CHAR_DATA * ch) {
     }
     if (IS_AFFECTED (victim, AFF_SANCTUARY))
         strcat (buf, "({WWhite Aura{x) ");
-    if (!IS_NPC (victim) && IS_SET (victim->act, PLR_KILLER))
+    if (!IS_NPC (victim) && IS_SET (victim->plr, PLR_KILLER))
         strcat (buf, "({RKILLER{k) ");
-    if (!IS_NPC (victim) && IS_SET (victim->act, PLR_THIEF))
+    if (!IS_NPC (victim) && IS_SET (victim->plr, PLR_THIEF))
         strcat (buf, "({RTHIEF{k) ");
 #else
     if (IS_SET (victim->comm, COMM_AFK))
@@ -914,18 +916,20 @@ void char_show_to_char_0 (CHAR_DATA * victim, CHAR_DATA * ch) {
         strcat (buf, "(Silver Aura) ");
     if (IS_AFFECTED (victim, AFF_SANCTUARY))
         strcat (buf, "(White Aura) ");
-    if (!IS_NPC (victim) && IS_SET (victim->act, PLR_KILLER))
+    if (!IS_NPC (victim) && IS_SET (victim->plr, PLR_KILLER))
         strcat (buf, "(KILLER) ");
-    if (!IS_NPC (victim) && IS_SET (victim->act, PLR_THIEF))
+    if (!IS_NPC (victim) && IS_SET (victim->plr, PLR_THIEF))
         strcat (buf, "(THIEF) ");
 #endif
+
+    if (IS_SET (ch->comm, COMM_MATERIALS))
+        material_strcat (buf, material_get (victim->material));
 
     if (victim->position == victim->start_pos
         && victim->long_descr[0] != '\0')
     {
         strcat (buf, victim->long_descr);
-        send_to_char (buf, ch);
-        return;
+        return buf;
     }
 
     strcat (buf, PERS_AW (victim, ch));
@@ -1000,10 +1004,10 @@ void char_show_to_char_0 (CHAR_DATA * victim, CHAR_DATA * ch) {
 
     strcat (buf, "\n\r");
     buf[0] = UPPER (buf[0]);
-    send_to_char (buf, ch);
+    return buf;
 }
 
-void char_show_to_char_1 (CHAR_DATA * victim, CHAR_DATA * ch) {
+void char_look_at_char (CHAR_DATA * victim, CHAR_DATA * ch) {
     char buf[MAX_STRING_LENGTH];
     OBJ_DATA *obj;
     int iWear;
@@ -1086,7 +1090,7 @@ void char_show_to_char_1 (CHAR_DATA * victim, CHAR_DATA * ch) {
     }
 }
 
-void char_show_to_char (CHAR_DATA * list, CHAR_DATA * ch) {
+void char_list_show_to_char (CHAR_DATA * list, CHAR_DATA * ch) {
     CHAR_DATA *rch;
 
     for (rch = list; rch != NULL; rch = rch->next_in_room) {
@@ -1096,7 +1100,7 @@ void char_show_to_char (CHAR_DATA * list, CHAR_DATA * ch) {
             continue;
 
         if (char_can_see_anywhere (ch, rch))
-            char_show_to_char_0 (rch, ch);
+            send_to_char (char_format_to_char (rch, ch), ch);
         else if (room_is_dark (ch->in_room)
                  && IS_AFFECTED (rch, AFF_INFRARED))
             send_to_char ("You see glowing red eyes watching YOU!\n\r", ch);
@@ -1152,7 +1156,7 @@ bool char_can_loot (CHAR_DATA * ch, OBJ_DATA * obj) {
         return TRUE;
     if (!str_cmp (ch->name, owner->name))
         return TRUE;
-    if (!IS_NPC (owner) && IS_SET (owner->act, PLR_CANLOOT))
+    if (!IS_NPC (owner) && IS_SET (owner->plr, PLR_CANLOOT))
         return TRUE;
     if (is_same_group (ch, owner))
         return TRUE;
@@ -1205,7 +1209,7 @@ void char_take_obj (CHAR_DATA * ch, OBJ_DATA * obj, OBJ_DATA * container) {
     if (obj->item_type == ITEM_MONEY) {
         ch->silver += obj->value[0];
         ch->gold += obj->value[1];
-        if (IS_SET (ch->act, PLR_AUTOSPLIT)) { /* AUTOSPLIT code */
+        if (IS_SET (ch->plr, PLR_AUTOSPLIT)) { /* AUTOSPLIT code */
             members = 0;
             for (gch = ch->in_room->people; gch; gch = gch->next_in_room)
                 if (!IS_AFFECTED (gch, AFF_CHARM) && is_same_group (gch, ch))
@@ -1493,8 +1497,8 @@ void char_get_who_string (CHAR_DATA * ch, CHAR_DATA *wch, char *buf,
         wch->invis_level >= LEVEL_HERO ? "(Wizi) " : "",
         clan_table[wch->clan].who_name,
         IS_SET (wch->comm, COMM_AFK) ? "[AFK] " : "",
-        IS_SET (wch->act, PLR_KILLER) ? "(KILLER) " : "",
-        IS_SET (wch->act, PLR_THIEF) ? "(THIEF) " : "",
+        IS_SET (wch->plr, PLR_KILLER) ? "(KILLER) " : "",
+        IS_SET (wch->plr, PLR_THIEF) ? "(THIEF) " : "",
         wch->name, IS_NPC (wch) ? "" : wch->pcdata->title);
 }
 
@@ -1631,7 +1635,7 @@ CHAR_DATA *char_get_keeper_room (CHAR_DATA *ch) {
 CHAR_DATA *char_get_trainer_room (CHAR_DATA *ch) {
     CHAR_DATA *t;
     for (t = ch->in_room->people; t; t = t->next_in_room)
-        if (IS_NPC (t) && IS_SET (t->act, ACT_TRAIN))
+        if (IS_NPC (t) && IS_SET (t->mob, MOB_TRAIN))
             return t;
     return NULL;
 }
@@ -1639,7 +1643,7 @@ CHAR_DATA *char_get_trainer_room (CHAR_DATA *ch) {
 CHAR_DATA *char_get_practicer_room (CHAR_DATA *ch) {
     CHAR_DATA *p;
     for (p = ch->in_room->people; p; p = p->next_in_room)
-        if (IS_NPC (p) && IS_SET (p->act, ACT_PRACTICE))
+        if (IS_NPC (p) && IS_SET (p->mob, MOB_PRACTICE))
             return p;
     return NULL;
 }
@@ -1647,7 +1651,7 @@ CHAR_DATA *char_get_practicer_room (CHAR_DATA *ch) {
 CHAR_DATA *char_get_gainer_room (CHAR_DATA *ch) {
     CHAR_DATA *g;
     for (g = ch->in_room->people; g; g = g->next_in_room)
-        if (IS_NPC (g) && IS_SET (g->act, ACT_GAIN))
+        if (IS_NPC (g) && IS_SET (g->mob, MOB_GAIN))
             return g;
     return NULL;
 }

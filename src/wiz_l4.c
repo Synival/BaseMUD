@@ -151,7 +151,7 @@ void do_flag (CHAR_DATA * ch, char *argument) {
         send_to_char ("Syntax:\n\r", ch);
         send_to_char ("  flag mob  <name> <field> <flags>\n\r", ch);
         send_to_char ("  flag char <name> <field> <flags>\n\r", ch);
-        send_to_char ("  mob  flags: act, aff, off, imm, res, vuln, form, part\n\r", ch);
+        send_to_char ("  mob  flags: mob, aff, off, imm, res, vuln, form, part\n\r", ch);
         send_to_char ("  char flags: plr, comm, aff, imm, res, vuln\n\r", ch);
         send_to_char ("  +: add flag, -: remove flag, = set equal to\n\r", ch);
         send_to_char ("  otherwise flag toggles the flags listed.\n\r", ch);
@@ -172,16 +172,16 @@ void do_flag (CHAR_DATA * ch, char *argument) {
         "You can't find them.\n\r", ch);
 
     /* select a flag to set */
-    if (!str_prefix (arg3, "act")) {
+    if (!str_prefix (arg3, "mob")) {
         BAIL_IF (!IS_NPC (victim),
             "Use plr for PCs.\n\r", ch);
-        flag = &victim->act;
-        flag_table = act_flags;
+        flag = &victim->mob;
+        flag_table = mob_flags;
     }
     else if (!str_prefix (arg3, "plr")) {
         BAIL_IF (IS_NPC (victim),
             "Use act for NPCs.\n\r", ch);
-        flag = &victim->act;
+        flag = &victim->plr;
         flag_table = plr_flags;
     }
     else if (!str_prefix (arg3, "aff")) {
@@ -290,15 +290,15 @@ void do_freeze (CHAR_DATA * ch, char *argument) {
         send_to_char ("You failed.\n\r", ch);
         return;
     }
-    if (IS_SET (victim->act, PLR_FREEZE)) {
-        REMOVE_BIT (victim->act, PLR_FREEZE);
+    if (IS_SET (victim->plr, PLR_FREEZE)) {
+        REMOVE_BIT (victim->plr, PLR_FREEZE);
         send_to_char ("You can play again.\n\r", victim);
         send_to_char ("FREEZE removed.\n\r", ch);
         sprintf (buf, "$N thaws %s.", victim->name);
         wiznet (buf, ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0);
     }
     else {
-        SET_BIT (victim->act, PLR_FREEZE);
+        SET_BIT (victim->plr, PLR_FREEZE);
         send_to_char ("You can't do ANYthing!\n\r", victim);
         send_to_char ("FREEZE set.\n\r", ch);
         sprintf (buf, "$N puts %s in the deep freeze.", victim->name);
@@ -441,7 +441,7 @@ void do_purge (CHAR_DATA * ch, char *argument) {
 
         for (victim = ch->in_room->people; victim != NULL; victim = vnext) {
             vnext = victim->next_in_room;
-            if (IS_NPC (victim) && !IS_SET (victim->act, ACT_NOPURGE)
+            if (IS_NPC (victim) && !IS_SET (victim->mob, MOB_NOPURGE)
                 && victim != ch /* safety precaution */ )
                 char_extract (victim, TRUE);
         }

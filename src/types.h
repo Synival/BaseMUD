@@ -182,6 +182,47 @@
 #define APPLY_SAVING_SPELL   24
 #define APPLY_SPELL_AFFECT   25
 
+/* Material types - currently unused, but neat. */
+#define MATERIAL_GENERIC     0
+#define MATERIAL_ADAMANTITE  1
+#define MATERIAL_ALUMINUM    2
+#define MATERIAL_BRASS       3
+#define MATERIAL_BRONZE      4
+#define MATERIAL_CHINA       5
+#define MATERIAL_CLAY        6
+#define MATERIAL_CLOTH       7
+#define MATERIAL_COPPER      8
+#define MATERIAL_CRYSTAL     9
+#define MATERIAL_DIAMOND    10
+#define MATERIAL_ENERGY     11
+#define MATERIAL_FLESH      12
+#define MATERIAL_FOOD       13
+#define MATERIAL_FUR        14
+#define MATERIAL_GEM        15
+#define MATERIAL_GLASS      16
+#define MATERIAL_GOLD       17
+#define MATERIAL_ICE        18
+#define MATERIAL_IRON       19
+#define MATERIAL_IVORY      20
+#define MATERIAL_LEAD       21
+#define MATERIAL_LEATHER    22
+#define MATERIAL_MEAT       23
+#define MATERIAL_MITHRIL    24
+#define MATERIAL_OBSIDIAN   25
+#define MATERIAL_PAPER      26
+#define MATERIAL_PARCHMENT  27
+#define MATERIAL_PEARL      28
+#define MATERIAL_PLATINUM   29
+#define MATERIAL_RUBBER     30
+#define MATERIAL_SHADOW     31
+#define MATERIAL_SILVER     32
+#define MATERIAL_STEEL      33
+#define MATERIAL_TIN        34
+#define MATERIAL_VELLUM     35
+#define MATERIAL_WATER      36
+#define MATERIAL_WOOD       37
+#define MATERIAL_MAX        38
+
 /* Type tables. */
 extern const FLAG_TYPE sex_types[];
 extern const FLAG_TYPE wear_loc_phrases[];

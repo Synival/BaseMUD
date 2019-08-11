@@ -49,7 +49,7 @@
 #define NONE_SET(flag, bit)  (((flag) & (bit)) == 0)
 
 /* Character macros. */
-#define IS_NPC(ch)           (IS_SET((ch)->act, ACT_IS_NPC))
+#define IS_NPC(ch)           (IS_SET((ch)->mob, MOB_IS_NPC))
 #define IS_IMMORTAL(ch)      (char_get_trust(ch) >= LEVEL_IMMORTAL)
 #define IS_HERO(ch)          (char_get_trust(ch) >= LEVEL_HERO)
 #define IS_TRUSTED(ch,level) (char_get_trust((ch)) >= (level))
@@ -69,6 +69,7 @@
                               (ch)->pcdata->condition[COND_HUNGER] > 40)
 #define IS_FULL(ch)          (!IS_NPC(ch) && (ch)->pcdata && \
                               (ch)->pcdata->condition[COND_FULL] > 40)
+#define IS_PET(ch)           (IS_NPC(ch) && IS_SET((ch)->mob, MOB_PET))
 
 #define GET_AGE(ch) \
     ((int) (17 + ((ch)->played \ + current_time - (ch)->logon ) / 72000))
@@ -82,8 +83,8 @@
 #define IS_AWAKE(ch)        (ch->position > POS_SLEEPING)
 
 #define IS_SAME_ALIGN(ch1, ch2) \
-    (!IS_SET (ch1->act, ACT_NOALIGN) && \
-     !IS_SET (ch2->act, ACT_NOALIGN) && \
+    (!IS_SET (ch1->mob, MOB_NOALIGN) && \
+     !IS_SET (ch2->mob, MOB_NOALIGN) && \
      ((IS_GOOD(ch1) && IS_GOOD(ch2)) || \
       (IS_EVIL(ch1) && IS_EVIL(ch2)) || \
       (IS_NEUTRAL(ch1) && IS_NEUTRAL(ch2))))

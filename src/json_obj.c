@@ -169,8 +169,8 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_DATA *mob) {
     json_prop_string  (new, "description", JSTR (mob->description));
     json_prop_string  (new, "race",        JSTR (mob->race_str));
     json_prop_string  (new, "material",    JSTR (mob->material_str));
-    json_prop_string  (new, "act_flags",   JBITS(
-        flag_string (act_flags, mob->act_orig & ~ACT_IS_NPC)));
+    json_prop_string  (new, "mob_flags",   JBITS(
+        flag_string (mob_flags, mob->mob_orig & ~MOB_IS_NPC)));
     json_prop_string  (new, "affected_by", JBITS(
         flag_string (affect_flags, mob->affected_by_orig)));
     json_prop_integer (new, "alignment",   mob->alignment);

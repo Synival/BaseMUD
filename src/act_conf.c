@@ -70,7 +70,7 @@ void do_colour_one (CHAR_DATA * ch, const COLOUR_SETTING_TYPE * setting,
     }
 
     /* Show us the colour... /in colour!/ */
-    if (IS_SET (ch->act, PLR_COLOUR))
+    if (IS_SET (ch->plr, PLR_COLOUR))
         colour_to_ansi (*col_flag, buf + strlen(buf), MAX_STRING_LENGTH);
 
     /* Arrange the color nicely. */
@@ -80,7 +80,7 @@ void do_colour_one (CHAR_DATA * ch, const COLOUR_SETTING_TYPE * setting,
         sprintf (buf + strlen(buf), " %-15s", arg);
     }
 
-    if (IS_SET (ch->act, PLR_COLOUR))
+    if (IS_SET (ch->plr, PLR_COLOUR))
         colour_to_ansi (CC_CLEAR, buf + strlen(buf), MAX_STRING_LENGTH);
 
     /* Done! */
@@ -175,17 +175,17 @@ void do_colour (CHAR_DATA * ch, char *argument) {
             "    colour <field>|all default\n\r"
             "    colour <field>|all <colour>\n\r"
             "    colour <field>|all beep|nobeep\n\r",
-            IS_SET (ch->act, PLR_COLOUR) ? "ON" : "OFF");
+            IS_SET (ch->plr, PLR_COLOUR) ? "ON" : "OFF");
         return;
     }
 
     if (!str_cmp (arg1, "on")) {
-        SET_BIT (ch->act, PLR_COLOUR);
+        SET_BIT (ch->plr, PLR_COLOUR);
         send_to_char("{RCo{ylor {Yis {Gno{gw {cON{b. A{Bma{Mzi{mng{r!!{x\n\r", ch);
         return;
     }
     if (!str_cmp (arg1, "off")) {
-        REMOVE_BIT (ch->act, PLR_COLOUR);
+        REMOVE_BIT (ch->plr, PLR_COLOUR);
         send_to_char("Color is now OFF. Lame!\n\r", ch);
         return;
     }
@@ -247,12 +247,12 @@ void do_autolist (CHAR_DATA * ch, char *argument) {
     send_to_char ("   action         status\n\r", ch);
     send_to_char ("---------------------------\n\r", ch);
 
-    do_autolist_flag ("autoassist",   ch, ch->act,  PLR_AUTOASSIST);
-    do_autolist_flag ("autoexit",     ch, ch->act,  PLR_AUTOEXIT);
-    do_autolist_flag ("autogold",     ch, ch->act,  PLR_AUTOGOLD);
-    do_autolist_flag ("autoloot",     ch, ch->act,  PLR_AUTOLOOT);
-    do_autolist_flag ("autosac",      ch, ch->act,  PLR_AUTOSAC);
-    do_autolist_flag ("autosplit",    ch, ch->act,  PLR_AUTOSPLIT);
+    do_autolist_flag ("autoassist",   ch, ch->plr,  PLR_AUTOASSIST);
+    do_autolist_flag ("autoexit",     ch, ch->plr,  PLR_AUTOEXIT);
+    do_autolist_flag ("autogold",     ch, ch->plr,  PLR_AUTOGOLD);
+    do_autolist_flag ("autoloot",     ch, ch->plr,  PLR_AUTOLOOT);
+    do_autolist_flag ("autosac",      ch, ch->plr,  PLR_AUTOSAC);
+    do_autolist_flag ("autosplit",    ch, ch->plr,  PLR_AUTOSPLIT);
 
     send_to_char ("---------------------------\n\r", ch);
     do_autolist_flag ("telnetga",     ch, ch->comm, COMM_TELNET_GA);
@@ -261,60 +261,63 @@ void do_autolist (CHAR_DATA * ch, char *argument) {
     do_autolist_flag ("showaffects",  ch, ch->comm, COMM_SHOW_AFFECTS);
     do_autolist_flag ("prompt",       ch, ch->comm, COMM_PROMPT);
     do_autolist_flag ("combineitems", ch, ch->comm, COMM_COMBINE);
+#ifndef VANILLA
+    do_autolist_flag ("materials",    ch, ch->comm, COMM_MATERIALS);
+#endif
 
     send_to_char ("---------------------------\n\r", ch);
-    do_autolist_flag ("noloot",       ch, ~ch->act, PLR_CANLOOT);
-    do_autolist_flag ("nosummon",     ch, ch->act,  PLR_NOSUMMON);
-    do_autolist_flag ("nofollow",     ch, ch->act,  PLR_NOFOLLOW);
+    do_autolist_flag ("noloot",       ch, ~ch->plr, PLR_CANLOOT);
+    do_autolist_flag ("nosummon",     ch, ch->plr,  PLR_NOSUMMON);
+    do_autolist_flag ("nofollow",     ch, ch->plr,  PLR_NOFOLLOW);
 }
 
 void do_autoassist (CHAR_DATA * ch, char *argument) {
-    do_flag_toggle (ch, TRUE, &(ch->act), PLR_AUTOASSIST,
+    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOASSIST,
         "Autoassist removed.\n\r",
         "You will now assist when needed.\n\r");
 }
 
 void do_autoexit (CHAR_DATA * ch, char *argument) {
-    do_flag_toggle (ch, FALSE, &(ch->act), PLR_AUTOEXIT,
+    do_flag_toggle (ch, FALSE, &(ch->plr), PLR_AUTOEXIT,
         "Exits will no longer be displayed.\n\r",
         "Exits will now be displayed.\n\r");
 }
 
 void do_autogold (CHAR_DATA * ch, char *argument) {
-    do_flag_toggle (ch, TRUE, &(ch->act), PLR_AUTOGOLD,
+    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOGOLD,
         "Autogold removed.\n\r",
         "Automatic gold looting set.\n\r");
 }
 
 void do_autoloot (CHAR_DATA * ch, char *argument) {
-    do_flag_toggle (ch, TRUE, &(ch->act), PLR_AUTOLOOT,
+    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOLOOT,
         "Autolooting removed.\n\r",
         "Automatic corpse looting set.\n\r");
 }
 
 void do_autosac (CHAR_DATA * ch, char *argument) {
-    do_flag_toggle (ch, TRUE, &(ch->act), PLR_AUTOSAC,
+    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOSAC,
         "Autosacrificing removed.\n\r",
         "Automatic corpse sacrificing set.\n\r");
 }
 
 void do_autosplit (CHAR_DATA * ch, char *argument) {
-    do_flag_toggle (ch, TRUE, &(ch->act), PLR_AUTOSPLIT,
+    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOSPLIT,
         "Autosplitting removed.\n\r",
         "Automatic gold splitting set.\n\r");
 }
 
 void do_noloot (CHAR_DATA * ch, char *argument) {
-    do_flag_toggle (ch, TRUE, &(ch->act), PLR_CANLOOT,
+    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_CANLOOT,
         "Your corpse is now safe from thieves.\n\r",
         "Your corpse may now be looted.\n\r");
 }
 
 void do_nofollow (CHAR_DATA * ch, char *argument) {
-    do_flag_toggle (ch, TRUE, &(ch->act), PLR_NOFOLLOW,
+    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_NOFOLLOW,
         "You now accept followers.\n\r",
         "You no longer accept followers.\n\r");
-    if (IS_SET (ch->act, PLR_NOFOLLOW))
+    if (IS_SET (ch->plr, PLR_NOFOLLOW))
         die_follower (ch);
 }
 
@@ -348,6 +351,12 @@ void do_combine (CHAR_DATA * ch, char *argument) {
         "Combined inventory selected.\n\r");
 }
 
+void do_materials (CHAR_DATA * ch, char *argument) {
+    do_flag_toggle (ch, FALSE, &(ch->comm), COMM_MATERIALS,
+        "Object and character materials will no longer be displayed.\n\r",
+        "You will now see object and character materials.\n\r");
+}
+
 void do_nosummon (CHAR_DATA * ch, char *argument) {
     if (IS_NPC (ch)) {
         do_flag_toggle (ch, FALSE, &(ch->imm_flags), RES_SUMMON,
@@ -355,7 +364,7 @@ void do_nosummon (CHAR_DATA * ch, char *argument) {
             "You are now immune to summoning.\n\r");
     }
     else {
-        do_flag_toggle (ch, FALSE, &(ch->act), PLR_NOSUMMON,
+        do_flag_toggle (ch, FALSE, &(ch->plr), PLR_NOSUMMON,
             "You are no longer immune to summon.\n\r",
             "You are now immune to summoning.\n\r");
     }
@@ -366,21 +375,21 @@ void do_autoall (CHAR_DATA *ch, char * argument) {
         "NPCs can't use player flags.\n\r", ch);
 
     if (!strcmp (argument, "on")) {
-        SET_BIT(ch->act, PLR_AUTOASSIST);
-        SET_BIT(ch->act, PLR_AUTOEXIT);
-        SET_BIT(ch->act, PLR_AUTOGOLD);
-        SET_BIT(ch->act, PLR_AUTOLOOT);
-        SET_BIT(ch->act, PLR_AUTOSAC);
-        SET_BIT(ch->act, PLR_AUTOSPLIT);
+        SET_BIT(ch->plr, PLR_AUTOASSIST);
+        SET_BIT(ch->plr, PLR_AUTOEXIT);
+        SET_BIT(ch->plr, PLR_AUTOGOLD);
+        SET_BIT(ch->plr, PLR_AUTOLOOT);
+        SET_BIT(ch->plr, PLR_AUTOSAC);
+        SET_BIT(ch->plr, PLR_AUTOSPLIT);
         send_to_char("All autos turned on.\n\r",ch);
     }
     else if (!strcmp (argument, "off")) {
-        REMOVE_BIT (ch->act, PLR_AUTOASSIST);
-        REMOVE_BIT (ch->act, PLR_AUTOEXIT);
-        REMOVE_BIT (ch->act, PLR_AUTOGOLD);
-        REMOVE_BIT (ch->act, PLR_AUTOLOOT);
-        REMOVE_BIT (ch->act, PLR_AUTOSAC);
-        REMOVE_BIT (ch->act, PLR_AUTOSPLIT);
+        REMOVE_BIT (ch->plr, PLR_AUTOASSIST);
+        REMOVE_BIT (ch->plr, PLR_AUTOEXIT);
+        REMOVE_BIT (ch->plr, PLR_AUTOGOLD);
+        REMOVE_BIT (ch->plr, PLR_AUTOLOOT);
+        REMOVE_BIT (ch->plr, PLR_AUTOSAC);
+        REMOVE_BIT (ch->plr, PLR_AUTOSPLIT);
         send_to_char("All autos turned off.\n\r", ch);
     }
     else

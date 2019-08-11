@@ -152,11 +152,11 @@ DEFINE_SPELL_FUN (spell_summon) {
             RES_SUMMON, DAM_OTHER))
         return;
 
-    BAIL_IF (!IS_NPC (victim) && IS_SET (victim->act, PLR_NOSUMMON),
+    BAIL_IF (!IS_NPC (victim) && IS_SET (victim->plr, PLR_NOSUMMON),
         "You failed.\n\r", ch);
     BAIL_IF (!IS_NPC (victim) && victim->level >= LEVEL_IMMORTAL,
         "You failed.\n\r", ch);
-    BAIL_IF (IS_NPC (victim) && IS_SET (victim->act, ACT_AGGRESSIVE),
+    BAIL_IF (IS_NPC (victim) && IS_SET (victim->mob, MOB_AGGRESSIVE),
         "You failed.\n\r", ch);
     BAIL_IF (IS_NPC (victim) && victim->pIndexData->pShop != NULL,
         "You failed.\n\r", ch);

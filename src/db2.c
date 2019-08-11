@@ -152,11 +152,11 @@ void load_mobiles (FILE * fp) {
         pMobIndex->long_descr[0] = UPPER (pMobIndex->long_descr[0]);
         pMobIndex->description[0] = UPPER (pMobIndex->description[0]);
 
-        pMobIndex->act_orig = fread_flag (fp);
+        pMobIndex->mob_orig = fread_flag (fp);
         pMobIndex->affected_by_orig = fread_flag (fp);
 
-        pMobIndex->act = pMobIndex->act_orig | ACT_IS_NPC
-            | race_table[pMobIndex->race].act;
+        pMobIndex->mob = pMobIndex->mob_orig | MOB_IS_NPC
+            | race_table[pMobIndex->race].mob;
         pMobIndex->affected_by = pMobIndex->affected_by_orig
             | race_table[pMobIndex->race].aff;
         pMobIndex->pShop = NULL;
@@ -234,8 +234,8 @@ void load_mobiles (FILE * fp) {
                 word = fread_word (fp);
                 vector = fread_flag (fp);
 
-                if (!str_prefix (word, "act"))
-                    REMOVE_BIT (pMobIndex->act, vector);
+                if (!str_prefix (word, "act") || !str_prefix (word, "mob"))
+                    REMOVE_BIT (pMobIndex->mob, vector);
                 else if (!str_prefix (word, "aff"))
                     REMOVE_BIT (pMobIndex->affected_by, vector);
                 else if (!str_prefix (word, "off"))
@@ -721,7 +721,7 @@ void convert_mobile (MOB_INDEX_DATA * pMobIndex) {
         return;
 
     level = pMobIndex->level;
-    pMobIndex->act |= ACT_WARRIOR;
+    pMobIndex->mob |= MOB_WARRIOR;
 
     /*
      * Calculate hit dice.  Gives close to the hitpoints

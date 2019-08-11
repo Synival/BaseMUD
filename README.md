@@ -187,6 +187,7 @@ phased out or at least optional. A handful of changes were just for fun.
   'giant strength' +2 str bonus will result in a +3 str bonus (the maximum of the two)
   rather the a +5 str bonus (the sum of the two). The same applies for negative bonuses like
   for 'chill touch' and 'plague'.
+* Object / character materials can now be shown with the 'materials' command.
 
 **Additional changes:**
 

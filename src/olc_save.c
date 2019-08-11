@@ -161,7 +161,7 @@ void save_mobile (FILE * fp, MOB_INDEX_DATA * pMobIndex)
     fprintf (fp, "%s~\n", fix_string (pMobIndex->long_descr));
     fprintf (fp, "%s~\n", fix_string (pMobIndex->description));
     fprintf (fp, "%s~\n", race_table[race].name);
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->act_orig, buf));
+    fprintf (fp, "%s ", fwrite_flag (pMobIndex->mob_orig, buf));
     fprintf (fp, "%s ", fwrite_flag (pMobIndex->affected_by_orig, buf));
     fprintf (fp, "%d %d\n", pMobIndex->alignment, pMobIndex->group);
     fprintf (fp, "%d ", pMobIndex->level);
@@ -192,7 +192,7 @@ void save_mobile (FILE * fp, MOB_INDEX_DATA * pMobIndex)
     fprintf (fp, "%s\n", if_null_str (
         (char *) material_get_name (pMobIndex->material), "unknown"));
 
-    if ((temp = DIF (race_table[race].act, pMobIndex->act)))
+    if ((temp = DIF (race_table[race].mob, pMobIndex->mob)))
         fprintf (fp, "F act %s\n", fwrite_flag (temp, buf));
     if ((temp = DIF (race_table[race].aff, pMobIndex->affected_by)))
         fprintf (fp, "F aff %s\n", fwrite_flag (temp, buf));

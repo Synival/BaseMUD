@@ -412,8 +412,8 @@ void do_kill (CHAR_DATA * ch, char *argument) {
 
 /*  Allow player killing
     if ( !IS_NPC(victim) ) {
-        if ( !IS_SET(victim->act, PLR_KILLER)
-        &&   !IS_SET(victim->act, PLR_THIEF) )
+        if ( !IS_SET(victim->plr, PLR_KILLER)
+        &&   !IS_SET(victim->plr, PLR_THIEF) )
         {
             send_to_char( "You must MURDER a player.\n\r", ch );
             return;
@@ -451,8 +451,7 @@ void do_murder (CHAR_DATA * ch, char *argument) {
 
     DO_REQUIRE_ARG (arg, "Murder whom?\n\r");
 
-    BAIL_IF (IS_AFFECTED (ch, AFF_CHARM) ||
-             (IS_NPC (ch) && IS_SET (ch->act, ACT_PET)),
+    BAIL_IF (IS_AFFECTED (ch, AFF_CHARM) || IS_PET (ch),
         "Only out of your own free will.\n\r", ch);
     BAIL_IF ((victim = find_char_room (ch, arg)) == NULL,
         "They aren't here.\n\r", ch);

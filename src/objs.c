@@ -33,6 +33,7 @@
 #include "recycle.h"
 #include "comm.h"
 #include "lookup.h"
+#include "materials.h"
 
 #include "objs.h"
 
@@ -329,6 +330,9 @@ char *obj_format_to_char (OBJ_DATA * obj, CHAR_DATA * ch, bool fShort) {
     if (IS_OBJ_STAT (obj, ITEM_CORRODED))
         strcat (buf, "(Corroded) ");
 #endif
+
+    if (IS_SET (ch->comm, COMM_MATERIALS))
+        material_strcat (buf, material_get (obj->material));
 
     if (fShort) {
         if (obj->short_descr != NULL)

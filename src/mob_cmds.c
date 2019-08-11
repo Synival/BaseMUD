@@ -452,7 +452,7 @@ void do_mppurge (CHAR_DATA * ch, char *argument) {
         for (victim = ch->in_room->people; victim != NULL; victim = vnext) {
             vnext = victim->next_in_room;
             if (IS_NPC (victim) && victim != ch
-                && !IS_SET (victim->act, ACT_NOPURGE))
+                && !IS_SET (victim->mob, MOB_NOPURGE))
                 char_extract (victim, TRUE);
         }
         for (obj = ch->in_room->contents; obj != NULL; obj = obj_next) {

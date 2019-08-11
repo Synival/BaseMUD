@@ -167,7 +167,7 @@ void nanny_get_player_name (DESCRIPTOR_DATA * d, char *argument) {
     fOld = load_char_obj (d, argument);
     ch = d->character;
 
-    if (IS_SET (ch->act, PLR_DENY)) {
+    if (IS_SET (ch->plr, PLR_DENY)) {
         sprintf (log_buf, "Denying access to %s@%s.", argument, d->host);
         log_string (log_buf);
         send_to_desc ("You are denied access.\n\r", d);
@@ -175,7 +175,7 @@ void nanny_get_player_name (DESCRIPTOR_DATA * d, char *argument) {
         return;
     }
 
-    if (check_ban (d->host, BAN_PERMIT) && !IS_SET (ch->act, PLR_PERMIT)) {
+    if (check_ban (d->host, BAN_PERMIT) && !IS_SET (ch->plr, PLR_PERMIT)) {
         send_to_desc ("Your site has been banned from this mud.\n\r", d);
         close_socket (d);
         return;
@@ -244,9 +244,9 @@ void nanny_get_old_password (DESCRIPTOR_DATA * d, char *argument) {
     wiznet (log_buf, NULL, NULL, WIZ_SITES, 0, char_get_trust (ch));
 
     if (ch->desc->ansi)
-        SET_BIT (ch->act, PLR_COLOUR);
+        SET_BIT (ch->plr, PLR_COLOUR);
     else
-        REMOVE_BIT (ch->act, PLR_COLOUR);
+        REMOVE_BIT (ch->plr, PLR_COLOUR);
 
     if (IS_IMMORTAL (ch)) {
         do_function (ch, &do_help, "imotd");
@@ -316,7 +316,7 @@ void nanny_confirm_new_name (DESCRIPTOR_DATA * d, char *argument) {
             send_to_desc (buf, d);
             d->connected = CON_GET_NEW_PASSWORD;
             if (ch->desc->ansi)
-                SET_BIT (ch->act, PLR_COLOUR);
+                SET_BIT (ch->plr, PLR_COLOUR);
             break;
 
         case 'N':
@@ -688,7 +688,7 @@ void nanny_read_motd (DESCRIPTOR_DATA * d, char *argument) {
 
     if (ch->level == 0) {
         if(mud_ansicolor)
-            SET_BIT (ch->act, PLR_COLOUR);
+            SET_BIT (ch->plr, PLR_COLOUR);
         if(mud_telnetga)
             SET_BIT (ch->comm, COMM_TELNET_GA);
 

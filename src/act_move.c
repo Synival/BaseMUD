@@ -638,7 +638,7 @@ void do_recall (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *victim;
     ROOM_INDEX_DATA *location;
 
-    BAIL_IF (IS_NPC (ch) && !IS_SET (ch->act, ACT_PET),
+    BAIL_IF (IS_NPC (ch) && !IS_PET (ch),
         "Only players can recall.\n\r", ch);
 
     act ("$n prays for transportation!", ch, NULL, NULL, TO_NOTCHAR);
@@ -725,7 +725,7 @@ void do_enter (CHAR_DATA * ch, char *argument) {
             !char_can_see_room (ch, location) ||
             (room_is_private (location) && !IS_TRUSTED (ch, IMPLEMENTOR)),
         "$p doesn't seem to go anywhere.", ch, portal, NULL);
-    BAIL_IF (IS_NPC (ch) && IS_SET (ch->act, ACT_AGGRESSIVE) &&
+    BAIL_IF (IS_NPC (ch) && IS_SET (ch->mob, MOB_AGGRESSIVE) &&
              IS_SET (location->room_flags, ROOM_LAW),
         "Something prevents you from leaving...\n\r", ch);
 
@@ -773,7 +773,7 @@ void do_enter (CHAR_DATA * ch, char *argument) {
 
             if (fch->master == ch && fch->position == POS_STANDING) {
                 if (IS_SET (ch->in_room->room_flags, ROOM_LAW)
-                    && (IS_NPC (fch) && IS_SET (fch->act, ACT_AGGRESSIVE)))
+                    && (IS_NPC (fch) && IS_SET (fch->mob, MOB_AGGRESSIVE)))
                 {
                     act ("You can't bring $N into the city.",
                          ch, NULL, fch, TO_CHAR);
