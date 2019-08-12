@@ -48,47 +48,27 @@ bool check_range (int lower, int upper) {
 
 AEDIT (aedit_show) {
     AREA_DATA *pArea;
-    char buf[MAX_STRING_LENGTH];
-
     EDIT_AREA (ch, pArea);
 
-    sprintf (buf, "Name:     [%5d] %s\n\r", pArea->vnum, pArea->name);
-    send_to_char (buf, ch);
-
-    sprintf (buf, "File:     %s\n\r", pArea->filename);
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Title:    %s\n\r", pArea->title);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Name:     [%5d] %s\n\r", pArea->vnum, pArea->name);
+    printf_to_char (ch, "File:     %s\n\r", pArea->filename);
+    printf_to_char (ch, "Title:    %s\n\r", pArea->title);
 
 #if 0                            /* ROM OLC */
-    sprintf (buf, "Recall:   [%5d] %s\n\r", pArea->recall,
-             get_room_index (pArea->recall)
-             ? get_room_index (pArea->recall)->name : "none");
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Recall:   [%5d] %s\n\r", pArea->recall,
+        get_room_index (pArea->recall) ? get_room_index (pArea->recall)->name
+                                       : "none");
 #endif /* ROM */
 
-    sprintf (buf, "Vnums:    [%d-%d]\n\r", pArea->min_vnum, pArea->max_vnum);
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Age:      [%d]\n\r", pArea->age);
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Players:  [%d]\n\r", pArea->nplayer);
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Security: [%d]\n\r", pArea->security);
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Builders: [%s]\n\r", pArea->builders);
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Credits : [%s]\n\r", pArea->credits);
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Flags:    [%s]\n\r",
-             flag_string (area_flags, pArea->area_flags));
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Vnums:    [%d-%d]\n\r",
+        pArea->min_vnum, pArea->max_vnum);
+    printf_to_char (ch, "Age:      [%d]\n\r", pArea->age);
+    printf_to_char (ch, "Players:  [%d]\n\r", pArea->nplayer);
+    printf_to_char (ch, "Security: [%d]\n\r", pArea->security);
+    printf_to_char (ch, "Builders: [%s]\n\r", pArea->builders);
+    printf_to_char (ch, "Credits : [%s]\n\r", pArea->credits);
+    printf_to_char (ch, "Flags:    [%s]\n\r",
+        flag_string (area_flags, pArea->area_flags));
 
     return FALSE;
 }
@@ -117,33 +97,17 @@ AEDIT (aedit_create) {
 AEDIT (aedit_title) {
     AREA_DATA *pArea;
     EDIT_AREA (ch, pArea);
-
-    if (argument[0] == '\0') {
-        send_to_char ("Syntax:   name [$name]\n\r", ch);
-        return FALSE;
-    }
-
-    str_free (pArea->title);
-    pArea->title = str_dup (argument);
-
-    send_to_char ("Title set.\n\r", ch);
-    return TRUE;
+    return olc_str_replace_dup (ch, &(pArea->title), argument,
+        "Syntax:   name [$name]\n\r",
+        "Title set.\n\r");
 }
 
 AEDIT (aedit_credits) {
     AREA_DATA *pArea;
     EDIT_AREA (ch, pArea);
-
-    if (argument[0] == '\0') {
-        send_to_char ("Syntax:   credits [$credits]\n\r", ch);
-        return FALSE;
-    }
-
-    str_free (pArea->credits);
-    pArea->credits = str_dup (argument);
-
-    send_to_char ("Credits set.\n\r", ch);
-    return TRUE;
+    return olc_str_replace_dup (ch, &(pArea->credits), argument,
+        "Syntax:   credits [$credits]\n\r",
+        "Credits set.\n\r");
 }
 
 AEDIT (aedit_file) {
@@ -154,49 +118,30 @@ AEDIT (aedit_file) {
     EDIT_AREA (ch, pArea);
     one_argument (argument, file); /* Forces Lowercase */
 
-    if (argument[0] == '\0') {
-        send_to_char ("Syntax: filename [$file]\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (argument[0] == '\0',
+        "Syntax: filename [$file]\n\r", ch, FALSE);
 
     /* Simple Syntax Check. */
     length = strlen (argument);
-    if (length > 8) {
-        send_to_char ("No more than eight characters allowed.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (length > 8,
+        "No more than eight characters allowed.\n\r", ch, FALSE);
 
     /* Allow only letters and numbers. */
-    for (i = 0; i < length; i++) {
-        if (!isalnum (file[i])) {
-            send_to_char ("Only letters and numbers are valid.\n\r", ch);
-            return FALSE;
-        }
-    }
+    for (i = 0; i < length; i++)
+        RETURN_IF (!isalnum (file[i]),
+            "Only letters and numbers are valid.\n\r", ch, FALSE);
 
-    str_free (pArea->filename);
     strcat (file, ".are");
-    pArea->filename = str_dup (file);
-
+    str_replace_dup (&(pArea->filename), file);
     send_to_char ("Filename set.\n\r", ch);
     return TRUE;
 }
 
 AEDIT (aedit_age) {
     AREA_DATA *pArea;
-    char age[MAX_STRING_LENGTH];
-
     EDIT_AREA (ch, pArea);
-    one_argument (argument, age);
-
-    if (!is_number (age) || age[0] == '\0') {
-        send_to_char ("Syntax:  age [#xage]\n\r", ch);
-        return FALSE;
-    }
-
-    pArea->age = atoi (age);
-    send_to_char ("Age set.\n\r", ch);
-    return TRUE;
+    return olc_sh_int_replace (ch, &(pArea->age), argument,
+        "Syntax:  age [#xage]\n\r", "Age set.\n\r");
 }
 
 #if 0 /* ROM OLC */
@@ -228,23 +173,18 @@ AEDIT (aedit_recall) {
 AEDIT (aedit_security) {
     AREA_DATA *pArea;
     char sec[MAX_STRING_LENGTH];
-    char buf[MAX_STRING_LENGTH];
     int value;
 
     EDIT_AREA (ch, pArea);
     one_argument (argument, sec);
 
-    if (!is_number (sec) || sec[0] == '\0') {
-        send_to_char ("Syntax:  security [#xlevel]\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (!is_number (sec) || sec[0] == '\0',
+        "Syntax:  security [#xlevel]\n\r", ch, FALSE);
 
     value = atoi (sec);
     if (value > ch->pcdata->security || value < 0) {
-        if (ch->pcdata->security != 0) {
-            sprintf (buf, "Security is 0-%d.\n\r", ch->pcdata->security);
-            send_to_char (buf, ch);
-        }
+        if (ch->pcdata->security != 0)
+            printf_to_char (ch, "Security is 0-%d.\n\r", ch->pcdata->security);
         else
             send_to_char ("Security is 0 only.\n\r", ch);
         return FALSE;
@@ -263,21 +203,17 @@ AEDIT (aedit_builder) {
     EDIT_AREA (ch, pArea);
     one_argument (argument, name);
 
-    if (name[0] == '\0') {
-        send_to_char ("Syntax:  builder [$name]  -toggles builder\n\r", ch);
-        send_to_char ("Syntax:  builder All      -allows everyone\n\r", ch);
-        return FALSE;
-    }
-    name[0] = UPPER (name[0]);
+    RETURN_IF (name[0] == '\0',
+        "Syntax:  builder [$name]  -toggles builder\n\r"
+        "Syntax:  builder All      -allows everyone\n\r", ch, FALSE);
 
+    name[0] = UPPER (name[0]);
     if (strstr (pArea->builders, name) != '\0') {
         pArea->builders = string_replace (pArea->builders, name, "\0");
         pArea->builders = string_unpad (pArea->builders);
 
-        if (pArea->builders[0] == '\0') {
-            str_free (pArea->builders);
-            pArea->builders = str_dup ("None");
-        }
+        if (pArea->builders[0] == '\0')
+            str_replace_dup (&(pArea->builders), "None");
         send_to_char ("Builder removed.\n\r", ch);
         return TRUE;
     }
@@ -300,7 +236,6 @@ AEDIT (aedit_builder) {
         send_to_char (pArea->builders, ch);
         return TRUE;
     }
-
     return FALSE;
 }
 
@@ -316,39 +251,29 @@ AEDIT (aedit_vnum) {
     argument = one_argument (argument, lower);
     one_argument (argument, upper);
 
-    if (!is_number (lower) || lower[0] == '\0'
-        || !is_number (upper) || upper[0] == '\0')
-    {
-        send_to_char ("Syntax:  vnum [#xlower] [#xupper]\n\r", ch);
-        return FALSE;
-    }
-    if ((ilower = atoi (lower)) > (iupper = atoi (upper))) {
-        send_to_char ("AEdit:  Upper must be larger then lower.\n\r", ch);
-        return FALSE;
-    }
-    if (!check_range (atoi (lower), atoi (upper))) {
-        send_to_char ("AEdit:  Range must include only this area.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (!is_number (lower) || lower[0] == '\0' ||
+               !is_number (upper) || upper[0] == '\0',
+        "Syntax:  vnum [#xlower] [#xupper]\n\r", ch, FALSE);
+
+    RETURN_IF ((ilower = atoi (lower)) > (iupper = atoi (upper)),
+        "AEdit:  Upper must be larger then lower.\n\r", ch, FALSE);
+    RETURN_IF (!check_range (atoi (lower), atoi (upper)),
+        "AEdit:  Range must include only this area.\n\r", ch, FALSE);
 
     other = area_get_by_inner_vnum (ilower);
-    if (other && other != pArea) {
-        send_to_char ("AEdit:  Lower vnum already assigned.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (other && other != pArea,
+        "AEdit:  Lower vnum already assigned.\n\r", ch, FALSE);
 
     pArea->min_vnum = ilower;
     send_to_char ("Lower vnum set.\n\r", ch);
 
     other = area_get_by_inner_vnum (iupper);
-    if (other && other != pArea) {
-        send_to_char ("AEdit:  Upper vnum already assigned.\n\r", ch);
-        return TRUE;            /* The lower value has been set. */
-    }
+    RETURN_IF (other && other != pArea,
+        "AEdit:  Upper vnum already assigned.\n\r", ch, TRUE);
+                        /* The lower value has been set ^^^^ */
 
     pArea->max_vnum = iupper;
     send_to_char ("Upper vnum set.\n\r", ch);
-
     return TRUE;
 }
 
@@ -362,24 +287,16 @@ AEDIT (aedit_lvnum) {
 
     one_argument (argument, lower);
 
-    if (!is_number (lower) || lower[0] == '\0') {
-        send_to_char ("Syntax:  min_vnum [#xlower]\n\r", ch);
-        return FALSE;
-    }
-    if ((ilower = atoi (lower)) > (iupper = pArea->max_vnum)) {
-        send_to_char ("AEdit:  Value must be less than the max_vnum.\n\r", ch);
-        return FALSE;
-    }
-    if (!check_range (ilower, iupper)) {
-        send_to_char ("AEdit:  Range must include only this area.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (!is_number (lower) || lower[0] == '\0',
+        "Syntax:  min_vnum [#xlower]\n\r", ch, FALSE);
+    RETURN_IF ((ilower = atoi (lower)) > (iupper = pArea->max_vnum),
+        "AEdit:  Value must be less than the max_vnum.\n\r", ch, FALSE);
+    RETURN_IF (!check_range (ilower, iupper),
+        "AEdit:  Range must include only this area.\n\r", ch, FALSE);
 
     other = area_get_by_inner_vnum (ilower);
-    if (other && other != pArea) {
-        send_to_char ("AEdit:  Lower vnum already assigned.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (other && other != pArea,
+        "AEdit:  Lower vnum already assigned.\n\r", ch, FALSE);
 
     pArea->min_vnum = ilower;
     send_to_char ("Lower vnum set.\n\r", ch);
@@ -395,27 +312,18 @@ AEDIT (aedit_uvnum) {
     EDIT_AREA (ch, pArea);
 
     one_argument (argument, upper);
-    if (!is_number (upper) || upper[0] == '\0') {
-        send_to_char ("Syntax:  max_vnum [#xupper]\n\r", ch);
-        return FALSE;
-    }
-    if ((ilower = pArea->min_vnum) > (iupper = atoi (upper))) {
-        send_to_char ("AEdit:  Upper must be larger then lower.\n\r", ch);
-        return FALSE;
-    }
-    if (!check_range (ilower, iupper)) {
-        send_to_char ("AEdit:  Range must include only this area.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (!is_number (upper) || upper[0] == '\0',
+        "Syntax:  max_vnum [#xupper]\n\r", ch, FALSE);
+    RETURN_IF ((ilower = pArea->min_vnum) > (iupper = atoi (upper)),
+        "AEdit:  Upper must be larger then lower.\n\r", ch, FALSE);
+    RETURN_IF (!check_range (ilower, iupper),
+        "AEdit:  Range must include only this area.\n\r", ch, FALSE);
 
     other = area_get_by_inner_vnum (iupper);
-    if (other && other != pArea) {
-        send_to_char ("AEdit:  Upper vnum already assigned.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (other && other != pArea,
+        "AEdit:  Upper vnum already assigned.\n\r", ch, FALSE);
 
     pArea->max_vnum = iupper;
     send_to_char ("Upper vnum set.\n\r", ch);
-
     return TRUE;
 }

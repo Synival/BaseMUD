@@ -35,16 +35,6 @@ const FLAG_TYPE sex_types[] = {
     {0}
 };
 
-const FLAG_TYPE affect_bit_types[] = {
-    {"affects", TO_AFFECTS, TRUE},
-    {"object",  TO_OBJECT,  TRUE},
-    {"immune",  TO_IMMUNE,  TRUE},
-    {"resist",  TO_RESIST,  TRUE},
-    {"vuln",    TO_VULN,    TRUE},
-    {"weapon",  TO_WEAPON,  TRUE},
-    {0}
-};
-
 const FLAG_TYPE affect_apply_types[] = {
     {"none",                  APPLY_NONE,          TRUE},
     {"strength",              APPLY_STR,           TRUE},

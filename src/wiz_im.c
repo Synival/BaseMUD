@@ -41,47 +41,36 @@
 #include "objs.h"
 #include "rooms.h"
 #include "find.h"
+#include "affects.h"
 
 #include "wiz_im.h"
 
 /* TODO: review most of these functions and test them thoroughly. */
-/* TODO: BAIL_IF() clauses. */
 /* TODO: employ tables whenever possible */
 /* TODO: do_stat() and its derivatives are GIGANTIC. deflate somehow? */
+/* TODO: merge do_invis() and do_incognito() */
 
 void do_wizhelp (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
-    int cmd;
-    int col;
+    int cmd, col;
 
     col = 0;
     for (cmd = 0; cmd_table[cmd].name[0] != '\0'; cmd++) {
         if (cmd_table[cmd].level >= LEVEL_HERO &&
             cmd_table[cmd].level <= char_get_trust (ch) && cmd_table[cmd].show)
         {
-            sprintf (buf, "%-12s", cmd_table[cmd].name);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "%-12s", cmd_table[cmd].name);
             if (++col % 6 == 0)
                 send_to_char ("\n\r", ch);
         }
     }
-
     if (col % 6 != 0)
         send_to_char ("\n\r", ch);
-    return;
 }
 
 void do_holylight (CHAR_DATA * ch, char *argument) {
-    if (IS_NPC (ch))
-        return;
-    if (IS_SET (ch->plr, PLR_HOLYLIGHT)) {
-        REMOVE_BIT (ch->plr, PLR_HOLYLIGHT);
-        send_to_char ("Holy light mode off.\n\r", ch);
-    }
-    else {
-        SET_BIT (ch->plr, PLR_HOLYLIGHT);
-        send_to_char ("Holy light mode on.\n\r", ch);
-    }
+    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_HOLYLIGHT,
+        "Holy light mode off.\n\r",
+        "Holy light mode on.\n\r");
 }
 
 void do_incognito (CHAR_DATA * ch, char *argument) {
@@ -103,21 +92,18 @@ void do_incognito (CHAR_DATA * ch, char *argument) {
             send_to_char ("You cloak your presence.\n\r", ch);
             act ("$n cloaks $s presence.", ch, NULL, NULL, TO_NOTCHAR);
         }
+        return;
     }
+
     /* do the level thing */
-    else {
-        level = atoi (arg);
-        if (level < 2 || level > char_get_trust (ch)) {
-            send_to_char ("Incog level must be between 2 and your level.\n\r", ch);
-            return;
-        }
-        else {
-            ch->reply = NULL;
-            ch->incog_level = level;
-            send_to_char ("You cloak your presence.\n\r", ch);
-            act ("$n cloaks $s presence.", ch, NULL, NULL, TO_NOTCHAR);
-        }
-    }
+    level = atoi (arg);
+    BAIL_IF (level < 2 || level > char_get_trust (ch),
+        "Incog level must be between 2 and your level.\n\r", ch);
+
+    ch->reply = NULL;
+    ch->incog_level = level;
+    send_to_char ("You cloak your presence.\n\r", ch);
+    act ("$n cloaks $s presence.", ch, NULL, NULL, TO_NOTCHAR);
 }
 
 /* New routines by Dionysos. */
@@ -140,21 +126,18 @@ void do_invis (CHAR_DATA * ch, char *argument) {
             send_to_char ("You slowly vanish into thin air.\n\r", ch);
             act ("$n slowly fades into thin air.", ch, NULL, NULL, TO_NOTCHAR);
         }
+        return;
     }
+
     /* do the level thing */
-    else {
-        level = atoi (arg);
-        if (level < 2 || level > char_get_trust (ch)) {
-            send_to_char ("Invis level must be between 2 and your level.\n\r", ch);
-            return;
-        }
-        else {
-            ch->reply = NULL;
-            ch->invis_level = level;
-            send_to_char ("You slowly vanish into thin air.\n\r", ch);
-            act ("$n slowly fades into thin air.", ch, NULL, NULL, TO_NOTCHAR);
-        }
-    }
+    level = atoi (arg);
+    BAIL_IF (level < 2 || level > char_get_trust (ch),
+        "Invis level must be between 2 and your level.\n\r", ch);
+
+    ch->reply = NULL;
+    ch->invis_level = level;
+    send_to_char ("You slowly vanish into thin air.\n\r", ch);
+    act ("$n slowly fades into thin air.", ch, NULL, NULL, TO_NOTCHAR);
 }
 
 void do_memory (CHAR_DATA * ch, char *argument) {
@@ -175,24 +158,28 @@ void do_mwhere (CHAR_DATA * ch, char *argument) {
         /* show characters logged */
         buffer = buf_new ();
         for (d = descriptor_list; d != NULL; d = d->next) {
-            if (d->character != NULL && d->connected == CON_PLAYING
-                && d->character->in_room != NULL
-                && char_can_see_anywhere (ch, d->character)
-                && char_can_see_room (ch, d->character->in_room))
-            {
-                victim = d->character;
-                count++;
-                if (d->original != NULL)
-                    sprintf (buf,
-                             "%3d) %s (in the body of %s) is in %s [%d]\n\r",
-                             count, d->original->name, victim->short_descr,
-                             victim->in_room->name, victim->in_room->vnum);
-                else
-                    sprintf (buf, "%3d) %s is in %s [%d]\n\r", count,
-                             victim->name, victim->in_room->name,
-                             victim->in_room->vnum);
-                add_buf (buffer, buf);
-            }
+            if (d->connected != CON_PLAYING)
+                continue;
+            if ((victim = d->character) == NULL)
+                continue;
+            if (victim->in_room == NULL)
+                continue;
+            if (!char_can_see_anywhere (ch, victim))
+                continue;
+            if (!char_can_see_room (ch, victim->in_room))
+                continue;
+
+            count++;
+            if (d->original != NULL)
+                sprintf (buf, "%3d) %s (in the body of %s) is in %s [%d]\n\r",
+                    count, d->original->name, victim->short_descr,
+                    victim->in_room->name, victim->in_room->vnum);
+            else
+                sprintf (buf, "%3d) %s is in %s [%d]\n\r", count,
+                    victim->name, victim->in_room->name,
+                    victim->in_room->vnum);
+
+            add_buf (buffer, buf);
         }
 
         page_to_char (buf_string (buffer), ch);
@@ -203,15 +190,18 @@ void do_mwhere (CHAR_DATA * ch, char *argument) {
     found = FALSE;
     buffer = buf_new ();
     for (victim = char_list; victim != NULL; victim = victim->next) {
-        if (victim->in_room != NULL && is_name (argument, victim->name)) {
-            found = TRUE;
-            count++;
-            sprintf (buf, "%3d) [%5d] %-28s [%5d] %s\n\r", count,
-                     IS_NPC (victim) ? victim->pIndexData->vnum : 0,
-                     IS_NPC (victim) ? victim->short_descr : victim->name,
-                     victim->in_room->vnum, victim->in_room->name);
-            add_buf (buffer, buf);
-        }
+        if (victim->in_room == NULL)
+            continue;
+        if (!is_name (argument, victim->name))
+            continue;
+
+        found = TRUE;
+        count++;
+        sprintf (buf, "%3d) [%5d] %-28s [%5d] %s\n\r", count,
+                 IS_NPC (victim) ? victim->pIndexData->vnum : 0,
+                 IS_NPC (victim) ? victim->short_descr : victim->name,
+                 victim->in_room->vnum, victim->in_room->name);
+        add_buf (buffer, buf);
     }
 
     if (!found)
@@ -235,14 +225,15 @@ void do_owhere (CHAR_DATA * ch, char *argument) {
     max_found = 200;
 
     buffer = buf_new ();
-    if (argument[0] == '\0') {
-        send_to_char ("Find what?\n\r", ch);
-        return;
-    }
+    BAIL_IF (argument[0] == '\0',
+        "Find what?\n\r", ch);
 
     for (obj = object_list; obj != NULL; obj = obj->next) {
-        if (!char_can_see_obj (ch, obj) || !is_name (argument, obj->name)
-            || ch->level < obj->level)
+        if (!char_can_see_obj (ch, obj))
+            continue;
+        if (!is_name (argument, obj->name))
+            continue;
+        if (ch->level < obj->level)
             continue;
 
         found = TRUE;
@@ -296,6 +287,8 @@ void do_stat (CHAR_DATA * ch, char *argument) {
         return;
     }
 
+    /* TODO: possibly use a table for this. */
+
     /* first, check for explicit types. */
     if (!str_cmp (arg, "room")) {
         do_function (ch, &do_rstat, string);
@@ -328,41 +321,30 @@ void do_stat (CHAR_DATA * ch, char *argument) {
 
 void do_rstat (CHAR_DATA * ch, char *argument) {
     char buf[MAX_STRING_LENGTH];
-    char arg[MAX_INPUT_LENGTH];
     ROOM_INDEX_DATA *location;
     OBJ_DATA *obj;
     CHAR_DATA *rch;
     int door;
 
-    one_argument (argument, arg);
-    location = (arg[0] == '\0') ? ch->in_room : find_location (ch, arg);
-    if (location == NULL) {
-        send_to_char ("No such location.\n\r", ch);
-        return;
-    }
+    location = (argument[0] == '\0')
+        ? ch->in_room : find_location (ch, argument);
+    BAIL_IF (location == NULL,
+        "No such location.\n\r", ch);
 
-    if (!room_is_owner (location, ch) && ch->in_room != location
-        && room_is_private (location) && !IS_TRUSTED (ch, IMPLEMENTOR))
-    {
-        send_to_char ("That room is private right now.\n\r", ch);
-        return;
-    }
+    BAIL_IF (!room_is_owner (location, ch) && ch->in_room != location &&
+            room_is_private (location) && !IS_TRUSTED (ch, IMPLEMENTOR),
+        "That room is private right now.\n\r", ch);
 
-    sprintf (buf, "Name: '%s'\n\rArea: '%s'\n\r",
-             location->name, location->area->title);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Name: '%s'\n\rArea: '%s'\n\r",
+        location->name, location->area->title);
 
-    sprintf (buf,
-             "Vnum: %d  Sector: %d  Light: %d  Healing: %d  Mana: %d\n\r",
-             location->vnum,
-             location->sector_type,
-             location->light, location->heal_rate, location->mana_rate);
-    send_to_char (buf, ch);
+    printf_to_char (ch,
+        "Vnum: %d  Sector: %d  Light: %d  Healing: %d  Mana: %d\n\r",
+        location->vnum, location->sector_type, location->light,
+        location->heal_rate, location->mana_rate);
 
-    sprintf (buf,
-             "Room flags: %ld.\n\rDescription:\n\r%s",
-             location->room_flags, location->description);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Room flags: %ld.\n\rDescription:\n\r%s",
+        location->room_flags, location->description);
 
     if (location->extra_descr != NULL) {
         EXTRA_DESCR_DATA *ed;
@@ -380,221 +362,144 @@ void do_rstat (CHAR_DATA * ch, char *argument) {
     for (rch = location->people; rch; rch = rch->next_in_room) {
         if (!char_can_see_anywhere (ch, rch))
             continue;
-        send_to_char (" ", ch);
         one_argument (rch->name, buf);
-        send_to_char (buf, ch);
+        printf_to_char (ch, " %s", buf);
     }
+    send_to_char (".\n\r", ch);
 
-    send_to_char (".\n\rObjects:   ", ch);
+    send_to_char ("Objects:   ", ch);
     for (obj = location->contents; obj; obj = obj->next_content) {
-        send_to_char (" ", ch);
         one_argument (obj->name, buf);
-        send_to_char (buf, ch);
+        printf_to_char (ch, " %s", buf);
     }
     send_to_char (".\n\r", ch);
 
     for (door = 0; door <= 5; door++) {
         EXIT_DATA *pexit;
-        if ((pexit = location->exit[door]) != NULL) {
-            sprintf (buf,
-                     "Door: %d.  To: %d.  Key: %d.  Exit flags: %ld.\n\r"
-                     "Keyword: '%s'.  Description: %s",
-                     door,
-                     (pexit->to_room ==
-                      NULL ? -1 : pexit->to_room->vnum), pexit->key,
-                     pexit->exit_flags, pexit->keyword,
-                     pexit->description[0] !=
-                     '\0' ? pexit->description : "(none).\n\r");
-            send_to_char (buf, ch);
-        }
+        if ((pexit = location->exit[door]) == NULL)
+            continue;
+
+        printf_to_char (ch,
+            "Door: %d.  To: %d.  Key: %d.  Exit flags: %ld.\n\r"
+            "Keyword: '%s'.  Description: %s",
+            door,
+            (pexit->to_room == NULL ? -1 : pexit->to_room->vnum),
+            pexit->key, pexit->exit_flags, pexit->keyword,
+            pexit->description[0] != '\0' ? pexit->description : "(none).\n\r"
+        );
     }
 }
 
 void do_ostat (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
-    char arg[MAX_INPUT_LENGTH];
     AFFECT_DATA *paf;
     OBJ_DATA *obj;
 
-    one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Stat what?\n\r", ch);
-        return;
-    }
-    if ((obj = find_obj_world (ch, argument)) == NULL) {
-        send_to_char ("Nothing like that in hell, earth, or heaven.\n\r", ch);
-        return;
-    }
+    BAIL_IF (argument[0] == '\0',
+        "Stat what?\n\r", ch);
+    BAIL_IF ((obj = find_obj_world (ch, argument)) == NULL,
+        "Nothing like that in hell, earth, or heaven.\n\r", ch);
 
-    sprintf (buf, "Name(s): %s\n\r", obj->name);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Name(s): %s\n\r", obj->name);
 
-    sprintf (buf, "Vnum: %d  Format: %s  Type: %s  Resets: %d\n\r",
-             obj->pIndexData->vnum,
-             obj->pIndexData->new_format ? "new" : "old",
-             item_get_name (obj->item_type), obj->pIndexData->reset_num);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Vnum: %d  Format: %s  Type: %s  Resets: %d\n\r",
+        obj->pIndexData->vnum,
+        obj->pIndexData->new_format ? "new" : "old",
+        item_get_name (obj->item_type), obj->pIndexData->reset_num);
 
-    sprintf (buf, "Short description: %s\n\rLong description: %s\n\r",
-             obj->short_descr, obj->description);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Short description: %s\n\rLong description: %s\n\r",
+        obj->short_descr, obj->description);
 
-    sprintf (buf, "Wear bits: %s\n\rExtra bits: %s\n\r",
-             wear_bit_name (obj->wear_flags),
-             extra_bit_name (obj->extra_flags));
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Wear bits: %s\n\rExtra bits: %s\n\r",
+        wear_bit_name (obj->wear_flags), extra_bit_name (obj->extra_flags));
 
-    sprintf (buf, "Number: %d/%d  Weight: %d/%d/%d (10th pounds)  Material: %s\n\r",
-             1, obj_get_carry_number (obj),
-             obj->weight, obj_get_weight (obj), obj_get_true_weight (obj),
-             if_null_str ((char *) material_get_name (obj->material), "unknown"));
-    send_to_char (buf, ch);
+    printf_to_char (ch,
+        "Number: %d/%d  Weight: %d/%d/%d (10th pounds)  Material: %s\n\r",
+        1, obj_get_carry_number (obj), obj->weight, obj_get_weight (obj),
+        obj_get_true_weight (obj),
+        if_null_str ((char *) material_get_name (obj->material), "unknown"));
 
-    sprintf (buf, "Level: %d  Cost: %d  Condition: %d  Timer: %d\n\r",
-             obj->level, obj->cost, obj->condition, obj->timer);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Level: %d  Cost: %d  Condition: %d  Timer: %d\n\r",
+        obj->level, obj->cost, obj->condition, obj->timer);
 
-    sprintf (buf,
-             "In room: %d  In object: %s  Carried by: %s  Wear_loc: %d\n\r",
-             obj->in_room == NULL ? 0 : obj->in_room->vnum,
-             obj->in_obj == NULL ? "(none)" : obj->in_obj->short_descr,
-             obj->carried_by == NULL ? "(none)" :
-             char_can_see_anywhere (ch, obj->carried_by) ? obj->carried_by->name
-             : "someone", obj->wear_loc);
-    send_to_char (buf, ch);
+    printf_to_char (ch,
+        "In room: %d  In object: %s  Carried by: %s  Wear_loc: %d\n\r",
+        obj->in_room == NULL ? 0 : obj->in_room->vnum,
+        obj->in_obj == NULL ? "(none)" : obj->in_obj->short_descr,
+        obj->carried_by == NULL ? "(none)" : PERS_AW(obj->carried_by, ch),
+        obj->wear_loc);
 
-    sprintf (buf, "Values: %d %d %d %d %d\n\r",
-             obj->value[0], obj->value[1], obj->value[2], obj->value[3],
-             obj->value[4]);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Values: %d %d %d %d %d\n\r",
+        obj->value[0], obj->value[1], obj->value[2], obj->value[3],
+        obj->value[4]);
 
     /* now give out vital statistics as per identify */
     switch (obj->item_type) {
         case ITEM_SCROLL:
         case ITEM_POTION:
         case ITEM_PILL:
-            sprintf (buf, "Level %d spells of:", obj->value[0]);
-            send_to_char (buf, ch);
-
-            if (obj->value[1] >= 0 && obj->value[1] < SKILL_MAX) {
-                send_to_char (" '", ch);
-                send_to_char (skill_table[obj->value[1]].name, ch);
-                send_to_char ("'", ch);
-            }
-            if (obj->value[2] >= 0 && obj->value[2] < SKILL_MAX) {
-                send_to_char (" '", ch);
-                send_to_char (skill_table[obj->value[2]].name, ch);
-                send_to_char ("'", ch);
-            }
-            if (obj->value[3] >= 0 && obj->value[3] < SKILL_MAX) {
-                send_to_char (" '", ch);
-                send_to_char (skill_table[obj->value[3]].name, ch);
-                send_to_char ("'", ch);
-            }
-            if (obj->value[4] >= 0 && obj->value[4] < SKILL_MAX) {
-                send_to_char (" '", ch);
-                send_to_char (skill_table[obj->value[4]].name, ch);
-                send_to_char ("'", ch);
-            }
-
+            printf_to_char (ch, "Level %d spells of:", obj->value[0]);
+            if (obj->value[1] >= 0 && obj->value[1] < SKILL_MAX)
+                printf_to_char (ch, " '%s'", skill_table[obj->value[1]].name);
+            if (obj->value[2] >= 0 && obj->value[2] < SKILL_MAX)
+                printf_to_char (ch, " '%s'", skill_table[obj->value[2]].name);
+            if (obj->value[3] >= 0 && obj->value[3] < SKILL_MAX)
+                printf_to_char (ch, " '%s'", skill_table[obj->value[3]].name);
+            if (obj->value[4] >= 0 && obj->value[4] < SKILL_MAX)
+                printf_to_char (ch, " '%s'", skill_table[obj->value[4]].name);
             send_to_char (".\n\r", ch);
             break;
 
         case ITEM_WAND:
         case ITEM_STAFF:
-            sprintf (buf, "Has %d(%d) charges of level %d",
-                     obj->value[1], obj->value[2], obj->value[0]);
-            send_to_char (buf, ch);
-
-            if (obj->value[3] >= 0 && obj->value[3] < SKILL_MAX) {
-                send_to_char (" '", ch);
-                send_to_char (skill_table[obj->value[3]].name, ch);
-                send_to_char ("'", ch);
-            }
+            printf_to_char (ch, "Has %d(%d) charges of level %d",
+                obj->value[1], obj->value[2], obj->value[0]);
+            if (obj->value[3] >= 0 && obj->value[3] < SKILL_MAX)
+                printf_to_char (ch, " '%s'", skill_table[obj->value[3]].name);
             send_to_char (".\n\r", ch);
             break;
 
         case ITEM_DRINK_CON:
-            sprintf (buf, "It holds %s-colored %s.\n\r",
-                     liq_table[obj->value[2]].color,
-                     liq_table[obj->value[2]].name);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "It holds %s-colored %s.\n\r",
+                liq_table[obj->value[2]].color,
+                liq_table[obj->value[2]].name);
             break;
 
         case ITEM_WEAPON:
-            send_to_char ("Weapon type is ", ch);
-            switch (obj->value[0]) {
-                case (WEAPON_EXOTIC):
-                    send_to_char ("exotic\n\r", ch);
-                    break;
-                case (WEAPON_SWORD):
-                    send_to_char ("sword\n\r", ch);
-                    break;
-                case (WEAPON_DAGGER):
-                    send_to_char ("dagger\n\r", ch);
-                    break;
-                case (WEAPON_SPEAR):
-                    send_to_char ("spear/staff\n\r", ch);
-                    break;
-                case (WEAPON_MACE):
-                    send_to_char ("mace/club\n\r", ch);
-                    break;
-                case (WEAPON_AXE):
-                    send_to_char ("axe\n\r", ch);
-                    break;
-                case (WEAPON_FLAIL):
-                    send_to_char ("flail\n\r", ch);
-                    break;
-                case (WEAPON_WHIP):
-                    send_to_char ("whip\n\r", ch);
-                    break;
-                case (WEAPON_POLEARM):
-                    send_to_char ("polearm\n\r", ch);
-                    break;
-                default:
-                    send_to_char ("unknown\n\r", ch);
-                    break;
-            }
+            printf_to_char (ch, "Weapon type is %s\n\r",
+                if_null_str (weapon_get_name (obj->value[0]), "unknown"));
+
             if (obj->pIndexData->new_format)
-                sprintf (buf, "Damage is %dd%d (average %d)\n\r",
-                         obj->value[1], obj->value[2],
-                         (1 + obj->value[2]) * obj->value[1] / 2);
+                printf_to_char (ch, "Damage is %dd%d (average %d)\n\r",
+                    obj->value[1], obj->value[2],
+                    (1 + obj->value[2]) * obj->value[1] / 2);
             else
-                sprintf (buf, "Damage is %d to %d (average %d)\n\r",
-                         obj->value[1], obj->value[2],
-                         (obj->value[1] + obj->value[2]) / 2);
-            send_to_char (buf, ch);
+                printf_to_char (ch, "Damage is %d to %d (average %d)\n\r",
+                    obj->value[1], obj->value[2],
+                    (obj->value[1] + obj->value[2]) / 2);
 
-            sprintf (buf, "Damage noun is %s.\n\r",
-                     (obj->value[3] > 0
-                      && obj->value[3] <
-                      ATTACK_MAX) ? attack_table[obj->value[3]].noun :
-                     "undefined");
-            send_to_char (buf, ch);
+            printf_to_char (ch, "Damage noun is %s.\n\r",
+                (obj->value[3] > 0 && obj->value[3] < ATTACK_MAX)
+                    ? attack_table[obj->value[3]].noun : "undefined");
 
-            if (obj->value[4]) { /* weapon flags */
-                sprintf (buf, "Weapons flags: %s\n\r",
-                         weapon_bit_name (obj->value[4]));
-                send_to_char (buf, ch);
-            }
+            if (obj->value[4] > 0)
+                printf_to_char (ch, "Weapons flags: %s\n\r",
+                    weapon_bit_name (obj->value[4]));
             break;
 
         case ITEM_ARMOR:
-            sprintf (buf, "Armor class is %d pierce, %d bash, %d slash, and %d vs. magic\n\r",
-                     obj->value[0], obj->value[1], obj->value[2],
-                     obj->value[3]);
-            send_to_char (buf, ch);
+            printf_to_char (ch,
+                "Armor class is %d pierce, %d bash, %d slash, and %d vs. magic\n\r",
+                obj->value[0], obj->value[1], obj->value[2], obj->value[3]);
             break;
 
         case ITEM_CONTAINER:
-            sprintf (buf, "Capacity: %d#  Maximum weight: %d#  flags: %s\n\r",
-                     obj->value[0], obj->value[3],
-                     cont_bit_name (obj->value[1]));
-            send_to_char (buf, ch);
-            if (obj->value[4] != 100) {
-                sprintf (buf, "Weight multiplier: %d%%\n\r", obj->value[4]);
-                send_to_char (buf, ch);
-            }
+            printf_to_char (ch,
+                "Capacity: %d#  Maximum weight: %d#  flags: %s\n\r",
+                obj->value[0], obj->value[3], cont_bit_name (obj->value[1]));
+
+            if (obj->value[4] != 100)
+                printf_to_char (ch, "Weight multiplier: %d%%\n\r",
+                    obj->value[4]);
             break;
     }
 
@@ -616,254 +521,160 @@ void do_ostat (CHAR_DATA * ch, char *argument) {
     }
 
     for (paf = obj->affected; paf != NULL; paf = paf->next) {
-        sprintf (buf, "Affects %s by %d, level %d",
-                 affect_apply_name (paf->apply), paf->modifier, paf->level);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "Affects %s by %d, level %d",
+            affect_apply_name (paf->apply), paf->modifier, paf->level);
+
         if (paf->duration > -1)
-            sprintf (buf, ", %d hours.\n\r", paf->duration);
+            printf_to_char (ch, ", %d hours.\n\r", paf->duration);
         else
-            sprintf (buf, ".\n\r");
-        send_to_char (buf, ch);
-        if (paf->bitvector) {
-            switch (paf->bit_type) {
-                case TO_AFFECTS:
-                    sprintf (buf, "Adds %s affect.\n",
-                             affect_bit_name (paf->bitvector));
-                    break;
-                case TO_WEAPON:
-                    sprintf (buf, "Adds %s weapon flags.\n",
-                             weapon_bit_name (paf->bitvector));
-                    break;
-                case TO_OBJECT:
-                    sprintf (buf, "Adds %s object flag.\n",
-                             extra_bit_name (paf->bitvector));
-                    break;
-                case TO_IMMUNE:
-                    sprintf (buf, "Adds immunity to %s.\n",
-                             res_bit_name (paf->bitvector));
-                    break;
-                case TO_RESIST:
-                    sprintf (buf, "Adds resistance to %s.\n\r",
-                             res_bit_name (paf->bitvector));
-                    break;
-                case TO_VULN:
-                    sprintf (buf, "Adds vulnerability to %s.\n\r",
-                             res_bit_name (paf->bitvector));
-                    break;
-                default:
-                    sprintf (buf, "Unknown bit %d: %ld\n\r",
-                             paf->bit_type, paf->bitvector);
-                    break;
-            }
-            send_to_char (buf, ch);
-        }
+            send_to_char (".\n\r", ch);
+
+        if (paf->bits)
+            send_to_char (affect_bit_message (paf->bit_type, paf->bits), ch);
     }
 
     if (!obj->enchanted) {
         for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
-            sprintf (buf, "Affects %s by %d, level %d.\n\r",
-                     affect_apply_name (paf->apply), paf->modifier,
-                     paf->level);
-            send_to_char (buf, ch);
-            if (paf->bitvector) {
-                switch (paf->bit_type) {
-                    case TO_AFFECTS:
-                        sprintf (buf, "Adds %s affect.\n",
-                                 affect_bit_name (paf->bitvector));
-                        break;
-                    case TO_OBJECT:
-                        sprintf (buf, "Adds %s object flag.\n",
-                                 extra_bit_name (paf->bitvector));
-                        break;
-                    case TO_IMMUNE:
-                        sprintf (buf, "Adds immunity to %s.\n",
-                                 res_bit_name (paf->bitvector));
-                        break;
-                    case TO_RESIST:
-                        sprintf (buf, "Adds resistance to %s.\n\r",
-                                 res_bit_name (paf->bitvector));
-                        break;
-                    case TO_VULN:
-                        sprintf (buf, "Adds vulnerability to %s.\n\r",
-                                 res_bit_name (paf->bitvector));
-                        break;
-                    default:
-                        sprintf (buf, "Unknown bit %d: %ld\n\r",
-                                 paf->bit_type, paf->bitvector);
-                        break;
-                }
-                send_to_char (buf, ch);
-            }
+            printf_to_char (ch, "Affects %s by %d, level %d.\n\r",
+                affect_apply_name (paf->apply), paf->modifier, paf->level);
+            if (paf->bits)
+                send_to_char (affect_bit_message (paf->bit_type, paf->bits), ch);
         }
     }
 }
 
 void do_mstat (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
-    char arg[MAX_INPUT_LENGTH];
     AFFECT_DATA *paf;
     CHAR_DATA *victim;
 
-    one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Stat whom?\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, argument)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
+    BAIL_IF (argument[0] == '\0',
+        "Stat whom?\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, argument)) == NULL,
+        "They aren't here.\n\r", ch);
 
-    sprintf (buf, "Name: %s\n\r", victim->name);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Name: %s\n\r", victim->name);
 
-    sprintf (buf, "Vnum: %d  Format: %s  Race: %s  Group: %d  Sex: %s  Room: %d\n\r",
-             IS_NPC (victim) ? victim->pIndexData->vnum : 0,
-             IS_NPC (victim) ? victim->
-             pIndexData->new_format ? "new" : "old" : "pc",
-             race_table[victim->race].name,
-             IS_NPC (victim) ? victim->group : 0, sex_table[victim->sex].name,
-             victim->in_room == NULL ? 0 : victim->in_room->vnum);
-    send_to_char (buf, ch);
+    printf_to_char (ch,
+        "Vnum: %d  Format: %s  Race: %s  Group: %d  Sex: %s  Room: %d\n\r",
+        IS_NPC (victim) ? victim->pIndexData->vnum : 0,
+        IS_NPC (victim) ? victim->pIndexData->new_format ? "new" : "old" : "pc",
+        race_table[victim->race].name,
+        IS_NPC (victim) ? victim->group : 0, sex_table[victim->sex].name,
+        victim->in_room == NULL ? 0 : victim->in_room->vnum);
 
-    if (IS_NPC (victim)) {
-        sprintf (buf, "Count: %d  Killed: %d\n\r",
-                 victim->pIndexData->count, victim->pIndexData->killed);
-        send_to_char (buf, ch);
-    }
+    if (IS_NPC (victim))
+        printf_to_char (ch, "Count: %d  Killed: %d\n\r",
+            victim->pIndexData->count, victim->pIndexData->killed);
 
-    sprintf (buf, "Str: %d(%d)  Int: %d(%d)  Wis: %d(%d)  Dex: %d(%d)  Con: %d(%d)\n\r",
-             victim->perm_stat[STAT_STR],
-             char_get_curr_stat (victim, STAT_STR),
-             victim->perm_stat[STAT_INT],
-             char_get_curr_stat (victim, STAT_INT),
-             victim->perm_stat[STAT_WIS],
-             char_get_curr_stat (victim, STAT_WIS),
-             victim->perm_stat[STAT_DEX],
-             char_get_curr_stat (victim, STAT_DEX),
-             victim->perm_stat[STAT_CON], char_get_curr_stat (victim, STAT_CON));
-    send_to_char (buf, ch);
+    printf_to_char (ch,
+        "Str: %d(%d)  Int: %d(%d)  Wis: %d(%d)  Dex: %d(%d)  Con: %d(%d)\n\r",
+        victim->perm_stat[STAT_STR], char_get_curr_stat (victim, STAT_STR),
+        victim->perm_stat[STAT_INT], char_get_curr_stat (victim, STAT_INT),
+        victim->perm_stat[STAT_WIS], char_get_curr_stat (victim, STAT_WIS),
+        victim->perm_stat[STAT_DEX], char_get_curr_stat (victim, STAT_DEX),
+        victim->perm_stat[STAT_CON], char_get_curr_stat (victim, STAT_CON));
 
-    sprintf (buf, "Hp: %d/%d  Mana: %d/%d  Move: %d/%d  Practices: %d\n\r",
-             victim->hit, victim->max_hit,
-             victim->mana, victim->max_mana,
-             victim->move, victim->max_move,
-             IS_NPC (ch) ? 0 : victim->practice);
-    send_to_char (buf, ch);
+    printf_to_char (ch,
+        "Hp: %d/%d  Mana: %d/%d  Move: %d/%d  Practices: %d\n\r",
+        victim->hit, victim->max_hit, victim->mana, victim->max_mana,
+        victim->move, victim->max_move, IS_NPC (ch) ? 0 : victim->practice);
 
-    sprintf (buf, "Lv: %d  Class: %s  Align: %d  Gold: %ld  Silver: %ld  Exp: %d\n\r",
-             victim->level,
-             IS_NPC (victim) ? "mobile" : class_table[victim->class].name,
-             victim->alignment, victim->gold, victim->silver, victim->exp);
-    send_to_char (buf, ch);
+    printf_to_char (ch,
+        "Lv: %d  Class: %s  Align: %d  Gold: %ld  Silver: %ld  Exp: %d\n\r",
+        victim->level,
+        IS_NPC (victim) ? "mobile" : class_table[victim->class].name,
+        victim->alignment, victim->gold, victim->silver, victim->exp);
 
-    sprintf (buf, "Armor: pierce: %d  bash: %d  slash: %d  magic: %d\n\r",
-             GET_AC (victim, AC_PIERCE), GET_AC (victim, AC_BASH),
-             GET_AC (victim, AC_SLASH), GET_AC (victim, AC_EXOTIC));
-    send_to_char (buf, ch);
+    printf_to_char (ch,
+        "Armor: pierce: %d  bash: %d  slash: %d  magic: %d\n\r",
+        GET_AC (victim, AC_PIERCE), GET_AC (victim, AC_BASH),
+        GET_AC (victim, AC_SLASH),  GET_AC (victim, AC_EXOTIC));
 
-    sprintf (buf, "Hit: %d  Dam: %d  Saves: %d  Size: %s  Position: %s  Wimpy: %d\n\r",
-             GET_HITROLL (victim), GET_DAMROLL (victim), victim->saving_throw,
-             size_table[victim->size].name,
-             position_table[victim->position].long_name, victim->wimpy);
-    send_to_char (buf, ch);
+    printf_to_char (ch,
+        "Hit: %d  Dam: %d  Saves: %d  Size: %s  Position: %s  Wimpy: %d\n\r",
+        GET_HITROLL (victim), GET_DAMROLL (victim), victim->saving_throw,
+        size_table[victim->size].name,
+        position_table[victim->position].long_name, victim->wimpy);
 
     if (IS_NPC (victim) && victim->pIndexData->new_format) {
-        sprintf (buf, "Damage: %dd%d  Message:  %s\n\r",
-                 victim->damage[DICE_NUMBER], victim->damage[DICE_TYPE],
-                 attack_table[victim->dam_type].noun);
-        send_to_char (buf, ch);
-    }
-    sprintf (buf, "Fighting: %s\n\r",
-             victim->fighting ? victim->fighting->name : "(none)");
-    send_to_char (buf, ch);
-
-    if (!IS_NPC (victim)) {
-        sprintf (buf, "Thirst: %d  Hunger: %d  Full: %d  Drunk: %d\n\r",
-                 victim->pcdata->condition[COND_THIRST],
-                 victim->pcdata->condition[COND_HUNGER],
-                 victim->pcdata->condition[COND_FULL],
-                 victim->pcdata->condition[COND_DRUNK]);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "Damage: %dd%d  Message:  %s\n\r",
+            victim->damage[DICE_NUMBER], victim->damage[DICE_TYPE],
+            attack_table[victim->dam_type].noun);
     }
 
-    sprintf (buf, "Carry number: %d  Carry weight: %ld  Material: %s\n\r",
-             victim->carry_number, char_get_carry_weight (victim) / 10,
-             if_null_str ((char *) material_get_name (victim->material),
-                "unknown"));
-    send_to_char (buf, ch);
-
+    printf_to_char (ch, "Fighting: %s\n\r",
+        victim->fighting ? victim->fighting->name : "(none)");
 
     if (!IS_NPC (victim)) {
-        sprintf (buf, "Age: %d  Played: %d  Last Level: %d  Timer: %d\n\r",
-                 char_get_age (victim),
-                 (int) (victim->played + current_time - victim->logon) / 3600,
-                 victim->pcdata->last_level, victim->timer);
-        send_to_char (buf, ch);
+        printf_to_char (ch,
+            "Thirst: %d  Hunger: %d  Full: %d  Drunk: %d\n\r",
+            victim->pcdata->condition[COND_THIRST],
+            victim->pcdata->condition[COND_HUNGER],
+            victim->pcdata->condition[COND_FULL],
+            victim->pcdata->condition[COND_DRUNK]);
+    }
+
+    printf_to_char (ch,
+        "Carry number: %d  Carry weight: %ld  Material: %s\n\r",
+        victim->carry_number, char_get_carry_weight (victim) / 10,
+        if_null_str ((char *) material_get_name (victim->material), "unknown"));
+
+    if (!IS_NPC (victim)) {
+        printf_to_char (ch,
+            "Age: %d  Played: %d  Last Level: %d  Timer: %d\n\r",
+            char_get_age (victim),
+            (int) (victim->played + current_time - victim->logon) / 3600,
+            victim->pcdata->last_level, victim->timer);
     }
 
     printf_to_char (ch, "Mob: %s\n\r", mob_bit_name (victim->mob));
     printf_to_char (ch, "Plr: %s\n\r", plr_bit_name (victim->plr));
 
-    if (victim->comm) {
-        sprintf (buf, "Comm: %s\n\r", comm_bit_name (victim->comm));
-        send_to_char (buf, ch);
-    }
-    if (IS_NPC (victim) && victim->off_flags) {
-        sprintf (buf, "Offense: %s\n\r", off_bit_name (victim->off_flags));
-        send_to_char (buf, ch);
-    }
-    if (victim->affected_by) {
-        sprintf (buf, "Affected by: %s\n\r", affect_bit_name (victim->affected_by));
-        send_to_char (buf, ch);
-    }
-    if (victim->imm_flags) {
-        sprintf (buf, "Immune to: %s\n\r", res_bit_name (victim->imm_flags));
-        send_to_char (buf, ch);
-    }
-    if (victim->res_flags) {
-        sprintf (buf, "Resist to: %s\n\r", res_bit_name (victim->res_flags));
-        send_to_char (buf, ch);
-    }
-    if (victim->vuln_flags) {
-        sprintf (buf, "Vulnerable to: %s\n\r", res_bit_name (victim->vuln_flags));
-        send_to_char (buf, ch);
-    }
+    if (victim->comm)
+        printf_to_char (ch, "Comm: %s\n\r",
+            comm_bit_name (victim->comm));
+    if (IS_NPC (victim) && victim->off_flags)
+        printf_to_char (ch, "Offense: %s\n\r",
+            off_bit_name (victim->off_flags));
+    if (victim->affected_by)
+        printf_to_char (ch, "Affected by: %s\n\r",
+            affect_bit_name (victim->affected_by));
+    if (victim->imm_flags)
+        printf_to_char (ch, "Immune to: %s\n\r",
+            res_bit_name (victim->imm_flags));
+    if (victim->res_flags)
+        printf_to_char (ch, "Resist to: %s\n\r",
+            res_bit_name (victim->res_flags));
+    if (victim->vuln_flags)
+        printf_to_char (ch, "Vulnerable to: %s\n\r",
+            res_bit_name (victim->vuln_flags));
 
-    sprintf (buf, "Form: %s\n\rParts: %s\n\r",
-             form_bit_name (victim->form), part_bit_name (victim->parts));
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Form: %s\n\rParts: %s\n\r",
+        form_bit_name (victim->form), part_bit_name (victim->parts));
 
-    sprintf (buf, "Master: %s  Leader: %s  Pet: %s\n\r",
-             victim->master ? victim->master->name : "(none)",
-             victim->leader ? victim->leader->name : "(none)",
-             victim->pet ? victim->pet->name : "(none)");
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Master: %s  Leader: %s  Pet: %s\n\r",
+        victim->master ? victim->master->name : "(none)",
+        victim->leader ? victim->leader->name : "(none)",
+        victim->pet ? victim->pet->name : "(none)");
 
-    if (!IS_NPC (victim)) {
-        sprintf (buf, "Security: %d.\n\r", victim->pcdata->security);    /* OLC */
-        send_to_char (buf, ch);    /* OLC */
-    }
+    /* OLC */
+    if (!IS_NPC (victim))
+        printf_to_char (ch, "Security: %d.\n\r", victim->pcdata->security);
 
-    sprintf (buf, "Short description: %s\n\rLong  description: %s",
-             victim->short_descr,
-             victim->long_descr[0] !=
-             '\0' ? victim->long_descr : "(none)\n\r");
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Short description: %s\n\rLong  description: %s",
+        victim->short_descr,
+        victim->long_descr[0] != '\0' ? victim->long_descr : "(none)\n\r");
 
-    if (IS_NPC (victim) && victim->spec_fun != 0) {
-        sprintf (buf, "Mobile has special procedure %s.\n\r",
-                 spec_function_name (victim->spec_fun));
-        send_to_char (buf, ch);
-    }
+    if (IS_NPC (victim) && victim->spec_fun != 0)
+        printf_to_char (ch, "Mobile has special procedure %s.\n\r",
+            spec_function_name (victim->spec_fun));
 
     for (paf = victim->affected; paf != NULL; paf = paf->next) {
-        sprintf (buf, "Spell: '%s' modifies %s by %d for %d hours with bits %s, level %d.\n\r",
-                 skill_table[(int) paf->type].name,
-                 affect_apply_name (paf->apply),
-                 paf->modifier,
-                 paf->duration, affect_bit_name (paf->bitvector), paf->level);
-        send_to_char (buf, ch);
+        printf_to_char (ch,
+            "Spell: '%s' modifies %s by %d for %d hours with bits %s, level %d.\n\r",
+            skill_table[(int) paf->type].name, affect_apply_name (paf->apply),
+            paf->modifier, paf->duration, affect_bit_name (paf->bits),
+            paf->level);
     }
 }
 
@@ -873,7 +684,7 @@ void do_wiznet (CHAR_DATA * ch, char *argument) {
     int i;
 
     if (argument[0] == '\0') {
-        do_flag_toggle(ch, FALSE, &(ch->wiznet), WIZ_ON,
+        do_flag_toggle (ch, FALSE, &(ch->wiznet), WIZ_ON,
             "Signing off of Wiznet.\n\r",
             "Welcome to Wiznet!\n\r");
         return;
@@ -928,10 +739,9 @@ void do_wiznet (CHAR_DATA * ch, char *argument) {
     }
 
     flag = wiznet_get_by_name (argument);
-    if (flag == NULL || char_get_trust (ch) < flag->level) {
-        send_to_char ("No such option.\n\r", ch);
-        return;
-    }
+    BAIL_IF (flag == NULL || char_get_trust (ch) < flag->level,
+        "No such option.\n\r", ch);
+
     if (IS_SET (ch->wiznet, flag->bit)) {
         printf_to_char (ch, "You will no longer see %s on wiznet.\n\r",
             flag->name);
@@ -977,18 +787,12 @@ void do_smote (CHAR_DATA * ch, char *argument) {
     char last[MAX_INPUT_LENGTH], temp[MAX_STRING_LENGTH];
     int matches = 0;
 
-    if (!IS_NPC (ch) && IS_SET (ch->comm, COMM_NOEMOTE)) {
-        send_to_char ("You can't show your emotions.\n\r", ch);
-        return;
-    }
-    if (argument[0] == '\0') {
-        send_to_char ("Emote what?\n\r", ch);
-        return;
-    }
-    if (strstr (argument, ch->name) == NULL) {
-        send_to_char ("You must include your name in an smote.\n\r", ch);
-        return;
-    }
+    BAIL_IF (!IS_NPC (ch) && IS_SET (ch->comm, COMM_NOEMOTE),
+        "You can't show your emotions.\n\r", ch);
+    BAIL_IF (argument[0] == '\0',
+        "Emote what?\n\r", ch);
+    BAIL_IF (strstr (argument, ch->name) == NULL,
+        "You must include your name in an smote.\n\r", ch);
 
     send_to_char (argument, ch);
     send_to_char ("\n\r", ch);
@@ -1051,24 +855,19 @@ void do_prefi (CHAR_DATA * ch, char *argument) {
 }
 
 void do_prefix (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_INPUT_LENGTH];
     if (argument[0] == '\0') {
-        if (ch->prefix[0] == '\0') {
-            send_to_char ("You have no prefix to clear.\r\n", ch);
-            return;
-        }
+        BAIL_IF (ch->prefix == NULL || ch->prefix[0] == '\0',
+            "You have no prefix to clear.\r\n", ch);
         send_to_char ("Prefix removed.\r\n", ch);
-        str_free (ch->prefix);
-        ch->prefix = str_dup ("");
+        str_replace_dup (&(ch->prefix), "");
         return;
     }
-    if (ch->prefix[0] != '\0') {
-        sprintf (buf, "Prefix changed to %s.\r\n", argument);
-        str_free (ch->prefix);
-    }
+
+    if (ch->prefix && ch->prefix[0] != '\0')
+        printf_to_char (ch, "Prefix changed to %s.\r\n", argument);
     else
-        sprintf (buf, "Prefix set to %s.\r\n", argument);
-    ch->prefix = str_dup (argument);
+        printf_to_char (ch, "Prefix set to %s.\r\n", argument);
+    str_replace_dup (&(ch->prefix), argument);
 }
 
 /* Displays the source code of a given MOBprogram
@@ -1088,52 +887,34 @@ void do_mpdump (CHAR_DATA * ch, char *argument) {
 /* Displays MOBprogram triggers of a mobile
  * Syntax: mpstat [name] */
 void do_mpstat (CHAR_DATA * ch, char *argument) {
-    char arg[MAX_STRING_LENGTH];
     MPROG_LIST *mprg;
     CHAR_DATA *victim;
     int i;
 
-    one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Mpstat whom?\n\r", ch);
-        return;
-    }
+    BAIL_IF (argument[0] == '\0',
+        "Mpstat whom?\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, argument)) == NULL,
+        "No such creature.\n\r", ch);
+    BAIL_IF (!IS_NPC (victim),
+        "That is not a mobile.\n\r", ch);
 
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("No such creature.\n\r", ch);
-        return;
-    }
-    if (!IS_NPC (victim)) {
-        send_to_char ("That is not a mobile.\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("No such creature visible.\n\r", ch);
-        return;
-    }
+    printf_to_char (ch, "Mobile #%-6d [%s]\n\r",
+        victim->pIndexData->vnum, victim->short_descr);
 
-    sprintf (arg, "Mobile #%-6d [%s]\n\r",
-             victim->pIndexData->vnum, victim->short_descr);
-    send_to_char (arg, ch);
+    printf_to_char (ch, "Delay   %-6d [%s]\n\r",
+        victim->mprog_delay,
+        victim->mprog_target == NULL
+            ? "No target" : victim->mprog_target->name);
 
-    sprintf (arg, "Delay   %-6d [%s]\n\r",
-             victim->mprog_delay,
-             victim->mprog_target == NULL
-             ? "No target" : victim->mprog_target->name);
-    send_to_char (arg, ch);
+    BAIL_IF (!victim->pIndexData->mprog_flags,
+        "[No programs set]\n\r", ch);
 
-    if (!victim->pIndexData->mprog_flags) {
-        send_to_char ("[No programs set]\n\r", ch);
-        return;
-    }
-
-    for (i = 0, mprg = victim->pIndexData->mprogs; mprg != NULL;
-         mprg = mprg->next)
+    for (i = 1, mprg = victim->pIndexData->mprogs; mprg != NULL;
+         mprg = mprg->next, i++)
     {
-        sprintf (arg, "[%2d] Trigger [%-8s] Program [%4d] Phrase [%s]\n\r",
-                 ++i,
-                 mprog_type_to_name (mprg->trig_type),
-                 mprg->vnum, mprg->trig_phrase);
-        send_to_char (arg, ch);
+        printf_to_char (ch,
+            "[%2d] Trigger [%-8s] Program [%4d] Phrase [%s]\n\r",
+            i, mprog_type_to_name (mprg->trig_type),
+            mprg->vnum, mprg->trig_phrase);
     }
 }

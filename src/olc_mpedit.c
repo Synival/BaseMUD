@@ -29,25 +29,16 @@ MPEDIT (mpedit_create) {
     int value = atoi (argument);
     AREA_DATA *ad;
 
-    if (IS_NULLSTR (argument) || value < 1) {
-        send_to_char ("Sintaxis : mpedit create [vnum]\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (IS_NULLSTR (argument) || value < 1,
+        "Sintaxis : mpedit create [vnum]\n\r", ch, FALSE);
 
     ad = area_get_by_inner_vnum (value);
-    if (ad == NULL) {
-        send_to_char ("MPEdit : VNUM no asignado a ningun area.\n\r", ch);
-        return FALSE;
-    }
-    if (!IS_BUILDER (ch, ad)) {
-        send_to_char
-            ("MPEdit : Insuficiente seguridad para crear MobProgs.\n\r", ch);
-        return FALSE;
-    }
-    if (get_mprog_index (value)) {
-        send_to_char ("MPEdit: Code vnum already exists.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (ad == NULL,
+        "MPEdit : VNUM no asignado a ningun area.\n\r", ch, FALSE);
+    RETURN_IF (!IS_BUILDER (ch, ad),
+        "MPEdit : Insuficiente seguridad para crear MobProgs.\n\r", ch, FALSE);
+    RETURN_IF (get_mprog_index (value),
+        "MPEdit: Code vnum already exists.\n\r", ch, FALSE);
 
     pMcode = mpcode_new ();
     pMcode->area = ad;
@@ -63,14 +54,11 @@ MPEDIT (mpedit_create) {
 
 MPEDIT (mpedit_show) {
     MPROG_CODE *pMcode;
-    char buf[MAX_STRING_LENGTH];
-
     EDIT_MPCODE (ch, pMcode);
-    sprintf (buf,
-             "Vnum:       [%d]\n\r"
-             "Code:\n\r%s\n\r", pMcode->vnum, pMcode->code);
-    send_to_char (buf, ch);
 
+    printf_to_char (ch,
+         "Vnum:       [%d]\n\r"
+         "Code:\n\r%s\n\r", pMcode->vnum, pMcode->code);
     return FALSE;
 }
 

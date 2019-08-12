@@ -231,7 +231,6 @@ extern const FLAG_TYPE ac_types[];
 extern const FLAG_TYPE size_types[];
 extern const FLAG_TYPE weapon_types[];
 extern const FLAG_TYPE position_types[];
-extern const FLAG_TYPE affect_bit_types[];
 extern const FLAG_TYPE affect_apply_types[];
 extern const FLAG_TYPE sector_types[];
 extern const FLAG_TYPE item_types[];

@@ -25,19 +25,10 @@
  *    ROM license, in the file Rom24/doc/rom.license                       *
  ***************************************************************************/
 
-#ifndef __ROM_MERC_H
-#define __ROM_MERC_H
+#ifndef __ROM_BASEMUD_H
+#define __ROM_BASEMUD_H
 
-#include <stdio.h>
-
-#include "basemud.h"
-#include "compat.h"
-#include "defs.h"
-#include "macros.h"
-#include "json.h"
-#include "structs.h"
-#include "types.h"
-#include "flags.h"
-#include "tables.h"
+/* Disables are optional features in BaseMUD. */
+#define VANILLA
 
 #endif

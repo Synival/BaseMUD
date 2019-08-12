@@ -12,6 +12,7 @@
  ***************************************************************************/
 
 #include <string.h>
+#include <stdlib.h>
 
 #include "utils.h"
 #include "interp.h"
@@ -751,8 +752,7 @@ void show_spec_cmds (CHAR_DATA * ch) {
     buf1[0] = '\0';
     col = 0;
     send_to_char ("Preceed special functions with 'spec_'\n\r\n\r", ch);
-    for (spec = 0; spec_table[spec].function != NULL; spec++)
-    {
+    for (spec = 0; spec_table[spec].function != NULL; spec++) {
         sprintf (buf, "%-19.18s", &spec_table[spec].name[5]);
         strcat (buf1, buf);
         if (++col % 4 == 0)
@@ -850,4 +850,53 @@ bool show_help (CHAR_DATA * ch, char *argument) {
 
     show_help (ch, "");
     return FALSE;
+}
+
+bool olc_str_replace_dup (CHAR_DATA *ch, char **old_str, char *new_str,
+    char *syntax_msg, char *success_msg)
+{
+    RETURN_IF (new_str == NULL || new_str[0] == '\0',
+        syntax_msg, ch, FALSE);
+    str_replace_dup (old_str, new_str);
+    send_to_char (success_msg, ch);
+    return TRUE;
+}
+
+bool olc_int_replace (CHAR_DATA *ch, int *old_val, char *new_val,
+    char *syntax_msg, char *success_msg)
+{
+    char buf[MAX_STRING_LENGTH];
+    one_argument (new_val, buf);
+
+    RETURN_IF (buf == NULL || buf[0] == '\0' || !is_number (buf),
+        syntax_msg, ch, FALSE);
+    *old_val = atoi (buf);
+    send_to_char (success_msg, ch);
+    return TRUE;
+}
+
+bool olc_sh_int_replace (CHAR_DATA *ch, sh_int *old_val, char *new_val,
+    char *syntax_msg, char *success_msg)
+{
+    char buf[MAX_STRING_LENGTH];
+    one_argument (new_val, buf);
+
+    RETURN_IF (buf == NULL || buf[0] == '\0' || !is_number (buf),
+        syntax_msg, ch, FALSE);
+    *old_val = atoi (buf);
+    send_to_char (success_msg, ch);
+    return TRUE;
+}
+
+bool olc_long_int_replace (CHAR_DATA *ch, long int *old_val, char *new_val,
+    char *syntax_msg, char *success_msg)
+{
+    char buf[MAX_STRING_LENGTH];
+    one_argument (new_val, buf);
+
+    RETURN_IF (buf == NULL || buf[0] == '\0' || !is_number (buf),
+        syntax_msg, ch, FALSE);
+    *old_val = atol (buf);
+    send_to_char (success_msg, ch);
+    return TRUE;
 }

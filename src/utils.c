@@ -542,7 +542,7 @@ void str_free (char *pstr) {
 }
 
 /* Returns 'str' if non-null, otherwise 'ifnull'. */
-char *if_null_str (char *str, char *ifnull) {
+const char *if_null_str (const char *str, const char *ifnull) {
     return str ? str : ifnull;
 }
 

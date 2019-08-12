@@ -36,10 +36,12 @@
 #include "db.h"
 #include "interp.h"
 #include "act_info.h"
+#include "affects.h"
 
 #include "spell_info.h"
 
 /* TODO: move lore messages in spell_identify_know_message() to table */
+/* TODO: merge a lot of spell_identity() with do_ostat(). */
 
 DEFINE_SPELL_FUN (spell_detect_poison) {
     OBJ_DATA *obj = (OBJ_DATA *) vo;
@@ -140,21 +142,17 @@ void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
             int i;
             char level_str[8];
 
-            snprintf(level_str, sizeof(level_str),
+            snprintf (level_str, sizeof(level_str),
                 KNOW_CHECK() ? "%d" : "???", obj->value[0]);
-            sprintf (buf, "Level %s spells of:", level_str);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "Level %s spells of:", level_str);
 
             for (i = 1; i <= 4; i++) {
                 if (!KNOW_CHECK())
                     continue;
-                if (obj->value[i] >= 0 && obj->value[i] < SKILL_MAX) {
-                    send_to_char (" '", ch);
-                    send_to_char (skill_table[obj->value[i]].name, ch);
-                    send_to_char ("'", ch);
-                }
+                if (obj->value[i] >= 0 && obj->value[i] < SKILL_MAX)
+                    printf_to_char (ch, " '%s'",
+                        skill_table[obj->value[i]].name);
             }
-
             send_to_char (".\n\r", ch);
             break;
         }
@@ -183,15 +181,14 @@ void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
 
         case ITEM_DRINK_CON:
             if (!KNOW_CHECK()) {
-                sprintf (buf, "It holds a %s-colored liquid.\n\r",
-                         liq_table[obj->value[2]].color);
+                printf_to_char (ch, "It holds a %s-colored liquid.\n\r",
+                    liq_table[obj->value[2]].color);
             }
             else {
-                sprintf (buf, "It holds %s-colored %s.\n\r",
-                         liq_table[obj->value[2]].color,
-                         liq_table[obj->value[2]].name);
+                printf_to_char (ch, "It holds %s-colored %s.\n\r",
+                    liq_table[obj->value[2]].color,
+                    liq_table[obj->value[2]].name);
             }
-            send_to_char (buf, ch);
             break;
 
         case ITEM_CONTAINER:
@@ -247,34 +244,12 @@ void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
         for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
             if (!KNOW_CHECK())
                 continue;
-            if (paf->apply != APPLY_NONE && paf->modifier != 0) {
-                sprintf (buf, "Affects %s by %d.\n\r",
-                         affect_apply_name (paf->apply), paf->modifier);
-                send_to_char (buf, ch);
-                if (paf->bitvector) {
-                    switch (paf->bit_type) {
-                        case TO_AFFECTS:
-                            sprintf (buf, "Adds %s affect.\n", affect_bit_name (paf->bitvector));
-                            break;
-                        case TO_OBJECT:
-                            sprintf (buf, "Adds %s object flag.\n", extra_bit_name (paf->bitvector));
-                            break;
-                        case TO_IMMUNE:
-                            sprintf (buf, "Adds immunity to %s.\n", res_bit_name (paf->bitvector));
-                            break;
-                        case TO_RESIST:
-                            sprintf (buf, "Adds resistance to %s.\n\r", res_bit_name (paf->bitvector));
-                            break;
-                        case TO_VULN:
-                            sprintf (buf, "Adds vulnerability to %s.\n\r", res_bit_name (paf->bitvector));
-                            break;
-                        default:
-                            sprintf (buf, "Unknown bit %d: %ld\n\r", paf->bit_type, paf->bitvector);
-                            break;
-                    }
-                    send_to_char (buf, ch);
-                }
-            }
+            if (paf->apply == APPLY_NONE || paf->modifier == 0)
+                continue;
+            printf_to_char (ch, "Affects %s by %d.\n\r",
+                affect_apply_name (paf->apply), paf->modifier);
+            if (paf->bits)
+                send_to_char (affect_bit_message (paf->bit_type, paf->bits), ch);
         }
     }
 
@@ -282,40 +257,14 @@ void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
         if (!KNOW_CHECK())
             continue;
         if (paf->apply != APPLY_NONE && paf->modifier != 0) {
-            sprintf (buf, "Affects %s by %d",
-                     affect_apply_name (paf->apply), paf->modifier);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "Affects %s by %d",
+                affect_apply_name (paf->apply), paf->modifier);
             if (paf->duration > -1)
-                sprintf (buf, ", %d hours.\n\r", paf->duration);
+                printf_to_char (ch, ", %d hours.\n\r", paf->duration);
             else
-                sprintf (buf, ".\n\r");
-            send_to_char (buf, ch);
-            if (paf->bitvector) {
-                switch (paf->bit_type) {
-                    case TO_AFFECTS:
-                        sprintf (buf, "Adds %s affect.\n", affect_bit_name (paf->bitvector));
-                        break;
-                    case TO_OBJECT:
-                        sprintf (buf, "Adds %s object flag.\n", extra_bit_name (paf->bitvector));
-                        break;
-                    case TO_WEAPON:
-                        sprintf (buf, "Adds %s weapon flags.\n", weapon_bit_name (paf->bitvector));
-                        break;
-                    case TO_IMMUNE:
-                        sprintf (buf, "Adds immunity to %s.\n", res_bit_name (paf->bitvector));
-                        break;
-                    case TO_RESIST:
-                        sprintf (buf, "Adds resistance to %s.\n\r", res_bit_name (paf->bitvector));
-                        break;
-                    case TO_VULN:
-                        sprintf (buf, "Adds vulnerability to %s.\n\r", res_bit_name (paf->bitvector));
-                        break;
-                    default:
-                        sprintf (buf, "Unknown bit %d: %ld\n\r", paf->bit_type, paf->bitvector);
-                        break;
-                }
-                send_to_char (buf, ch);
-            }
+                send_to_char (".\n\r", ch);
+            if (paf->bits)
+                send_to_char (affect_bit_message (paf->bit_type, paf->bits), ch);
         }
     }
 

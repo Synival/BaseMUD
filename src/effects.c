@@ -35,6 +35,7 @@
 #include "update.h"
 #include "affects.h"
 #include "objs.h"
+#include "chars.h"
 
 #include "effects.h"
 
@@ -145,7 +146,7 @@ void acid_effect (void *vo, int level, int dam, int target) {
             if (obj->carried_by != NULL && obj->wear_loc != WEAR_NONE)
                 for (i = 0; i < 4; i++)
                     obj->carried_by->armor[i] += 1;
-            SET_BIT(obj->extra_flags, ITEM_CORRODED);
+            SET_BIT (obj->extra_flags, ITEM_CORRODED);
             return;
         }
 

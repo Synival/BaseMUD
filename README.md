@@ -74,8 +74,8 @@ be modular enough that some sort of unit testing environment will be possible.
 Despite the heavy refactoring,
 BaseMUD strives to be a pure version of ROM 2.4. However, in the process of sifting
 through all this code, sometimes I just can't help myself.
-Some small changes and additions have been made, but most (eventually all)
-can be undone by uncommenting the line `#define VANILLA` in `src/defs.h`. Changes that
+Some small changes and additions have been made, which can be enabled by
+commenting out the line `#define VANILLA` in `src/basemud.h`. Changes that
 I've considered bugfixes, typo / spelling error fixes, or patches to small
 oversights (i.e, fixing spells that have no casting message) will be left in.
 
@@ -159,7 +159,7 @@ Some small changes have been made, most of which are small quality-of-life
 improvements, some of which are personal preferences that will eventually be
 phased out or at least optional. A handful of changes were just for fun.
 
-**New features that can be disabled by uncommenting `#define VANILLA` in `defs.h`:**
+**New features that can be disabled by uncommenting `#define VANILLA` in `basemud.h`:**
 
 * More status noficiations in addition to 'excellent', 'nasty wounds', etc.
 * Room titles are now colored based on their terrain type.
@@ -194,6 +194,8 @@ phased out or at least optional. A handful of changes were just for fun.
   rather the a +5 str bonus (the sum of the two). The same applies for negative bonuses like
   for 'chill touch' and 'plague'.
 * Object / character materials can now be shown with the 'materials' command.
+* Mobs can now be in stunned, incapacitated, and mortally wounded states.
+* Caster mobs now say their spells when casting just like players.
 
 **Additional changes:**
 
@@ -214,12 +216,12 @@ phased out or at least optional. A handful of changes were just for fun.
   issue several commands while knocked down, but you can't get back up!
 * Standing up in combat is automatic once the cooldown period has been reached.
   This is essentially the same as before where you would _always_ stand up during
-  combat, but now it allows for actual bashing.
+  combat when attacked, but now it's no longer instant.
 * Current position can be shown in prompt.
 * The 'lore' command has been implemented. It works like the 'identify' spell,
   but hand-picks information based on your skill percentage. What the player
   knows about is random, seeded by the player's name and the object's vnum.
-  It currently cannot be trained about 75%.
+  It currently cannot be practiced beyond 75%.
 * Tiny balance changes have been made to certain skills and stat regen amounts.
 * Form / parts for races have been reviewed and tweaked slightly. It makes no gameplay
   difference, but may in the future.
@@ -228,10 +230,9 @@ phased out or at least optional. A handful of changes were just for fun.
 * Doors are now properly closed and locked and both sides when loading zones. This
   fixes some resets as well.
 * Lots and lots of warning messages for mismatched doors or keys when loading zones.
-  This produces some warning messages from the stock zones - which are warranted.
-* Fast healing is only active when not standing or fighting.
-* Meditation is only active when sitting or resting, and NOT fighting.
-* NPCs now say their spells when casting just like players.
+  This produces some warning messages from the stock zones (which are warranted).
+* Fast healing is only active when sitting, resting, or sleeping.
+* Meditation is only active when sitting or resting.
 * New messages for passing through doors (for both sides).
 * Tweaked some stat tables very slightly to allow for steady progression in
   areas that looked like oversights.
@@ -242,7 +243,7 @@ phased out or at least optional. A handful of changes were just for fun.
   messages when the state changes via drink/eat.
 * 'Word of recall' now writes "Spell failed." to the _caster_ rather than
   the victim.
-* 'Heat metal' would fail _more_ if the opponent had more dexterity - this
+* 'Heat metal' would drop an item _more_ if the opponent had more dexterity - this
   is fixed, but still needs balancing.
 
 As a bonus feature, booting the MUD currently outputs several files to JSON

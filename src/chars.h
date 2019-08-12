@@ -82,7 +82,7 @@ char *char_format_to_char (CHAR_DATA *victim, CHAR_DATA *ch);
 void char_look_at_char (CHAR_DATA *victim, CHAR_DATA *ch);
 void char_list_show_to_char (CHAR_DATA *list, CHAR_DATA *ch);
 void char_take_obj (CHAR_DATA *ch, OBJ_DATA *obj, OBJ_DATA *container);
-bool char_remove_obj (CHAR_DATA *ch, int iWear, bool fReplace);
+bool char_remove_obj (CHAR_DATA * ch, int iWear, bool fReplace, bool quiet);
 void char_wear_obj (CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace);
 void char_set_title (CHAR_DATA *ch, char *title);
 bool char_drop_weapon_if_too_heavy (CHAR_DATA *ch);

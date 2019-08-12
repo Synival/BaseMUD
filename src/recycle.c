@@ -39,6 +39,8 @@
 
 /* TODO: move defines to recycle.h */
 /* TODO: move non-recycle functions to appropriate places. */
+/* TODO: init / dispose functions should probably be in their appropriate
+ *       files, since they're basically constructors / destructors. */
 
 /* Globals */
 #define RECYCLE_GLOBALS(type, name, vtype)   \

@@ -294,7 +294,7 @@ void load_mobiles (FILE * fp) {
 void load_objects (FILE * fp) {
     OBJ_INDEX_DATA *pObjIndex;
     sh_int location, modifier;
-    flag_t bitvector;
+    flag_t bits;
 
     if (!area_last) { /* OLC */
         bug ("load_objects: no #AREA seen yet.", 0);
@@ -440,9 +440,9 @@ void load_objects (FILE * fp) {
 
                 location  = fread_number (fp);
                 modifier  = fread_number (fp);
-                bitvector = fread_flag (fp);
+                bits = fread_flag (fp);
                 affect_init (paf, paf->bit_type, -1, pObjIndex->level, -1,
-                    location, modifier, bitvector);
+                    location, modifier, bits);
 
                 LIST_BACK (paf, next, pObjIndex->affected, AFFECT_DATA);
             }

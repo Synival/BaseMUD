@@ -77,6 +77,7 @@
  * several others for higher-level communication functions. split them up! */
 /* TODO: review most of this, it's been largely untouched. */
 /* TODO: compatibility is probably lost :-( */
+/* TODO: split socket / descriptor related functions to a different file. */
 
 /* Socket and TCP/IP stuff. */
 #if defined(macintosh) || defined(MSDOS)
@@ -88,7 +89,7 @@
 #if defined(unix)
     #include "telnet.h"
     const char echo_off_str[] = { IAC, WILL, TELOPT_ECHO, '\0' };
-    const char echo_on_str[] = { IAC, WONT, TELOPT_ECHO, '\0' };
+    const char echo_on_str[]  = { IAC, WONT, TELOPT_ECHO, '\0' };
     const char go_ahead_str[] = { IAC, GA, '\0' };
 #endif
 
@@ -335,7 +336,6 @@ void game_loop_mac_msdos (void) {
         last_time = now_time;
         current_time = (time_t) last_time.tv_sec;
     }
-    return;
 }
 #endif
 
@@ -379,9 +379,7 @@ void game_loop_unix (int control) {
             exit (1);
         }
 
-        /*
-         * New connection?
-         */
+        /* New connection? */
         if (FD_ISSET (control, &in_set))
             init_descriptor (control);
 
@@ -506,8 +504,6 @@ void game_loop_unix (int control) {
         gettimeofday (&last_time, NULL);
         current_time = (time_t) last_time.tv_sec;
     }
-
-    return;
 }
 #endif
 
@@ -599,8 +595,6 @@ void init_descriptor (int control) {
     }
     else
         send_to_desc ("Do you want ANSI? (Y/n) ", dnew);
-
-    return;
 }
 #endif
 
@@ -646,7 +640,6 @@ void close_socket (DESCRIPTOR_DATA * dclose) {
     #if defined(MSDOS) || defined(macintosh)
         exit (1);
     #endif
-    return;
 }
 
 bool read_from_descriptor (DESCRIPTOR_DATA * d) {
@@ -662,7 +655,7 @@ bool read_from_descriptor (DESCRIPTOR_DATA * d) {
         sprintf (log_buf, "%s input overflow!", d->host);
         log_string (log_buf);
         write_to_descriptor (d->descriptor,
-                             "\n\r*** PUT A LID ON IT!!! ***\n\r", 0);
+            "\n\r*** PUT A LID ON IT!!! ***\n\r", 0);
         return FALSE;
     }
 
@@ -784,7 +777,6 @@ void read_from_buffer (DESCRIPTOR_DATA * d) {
         i++;
     for (j = 0; (d->inbuf[j] = d->inbuf[i + j]) != '\0'; j++)
         ;
-    return;
 }
 
 /* Low level output function. */
@@ -1039,7 +1031,6 @@ void bust_a_prompt (CHAR_DATA *ch) {
 
     if (ch->prefix[0] != '\0')
         write_to_buffer (ch->desc, ch->prefix, 0);
-    return;
 }
 
 /* Append onto an output buffer. */
@@ -1074,7 +1065,6 @@ void write_to_buffer (DESCRIPTOR_DATA * d, const char *txt, int length) {
     /* Copy. */
     strncpy (d->outbuf + d->outtop, txt, length);
     d->outtop += length;
-    return;
 }
 
 /* Lowest level output function.
@@ -1609,7 +1599,6 @@ void act_new (const char *format, CHAR_DATA * ch, const void *arg1,
         else if (MOBtrigger)
             mp_act_trigger (buf, to, ch, arg1, arg2, TRIG_ACT);
     }
-    return;
 }
 
 /* Macintosh support functions. */

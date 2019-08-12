@@ -101,6 +101,7 @@ typedef struct table_type       TABLE_TYPE;
 typedef struct portal_exit_type PORTAL_EXIT_TYPE;
 typedef struct portal_type      PORTAL_TYPE;
 typedef struct cmd_type         CMD_TYPE;
+typedef struct affect_bit_type  AFFECT_BIT_TYPE;
 
 /* Function types. */
 typedef void DO_FUN     (CHAR_DATA *ch, char *argument);
@@ -358,7 +359,7 @@ struct affect_data {
     sh_int duration;
     sh_int apply;
     sh_int modifier;
-    flag_t bitvector;
+    flag_t bits;
     OBJ_RECYCLE_DATA rec_data;
 };
 
@@ -928,6 +929,13 @@ struct portal_type {
     PORTAL_EXIT_TYPE *from, *to;
     PORTAL_TYPE *opposite;
     OBJ_RECYCLE_DATA rec_data;
+};
+
+struct affect_bit_type {
+    char *name;
+    int type;
+    const FLAG_TYPE *flags;
+    char *help;
 };
 
 #endif

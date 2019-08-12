@@ -2636,7 +2636,7 @@ bool check_pet_affected(int vnum, AFFECT_DATA *paf) {
     petIndex = get_mob_index(vnum);
     if (petIndex == NULL)
         return FALSE;
-    if (paf->bit_type == TO_AFFECTS && IS_AFFECTED (petIndex, paf->bitvector))
+    if (paf->bit_type == TO_AFFECTS && IS_AFFECTED (petIndex, paf->bits))
         return TRUE;
     return FALSE;
 }
