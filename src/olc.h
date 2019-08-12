@@ -104,6 +104,16 @@ void show_skill_cmds (CHAR_DATA * ch, int tar);
 void show_spec_cmds (CHAR_DATA * ch);
 bool show_help (CHAR_DATA * ch, char *argument);
 
+/* Modification helper functions. */
+bool olc_str_replace_dup (CHAR_DATA *ch, char **old_str, char *new_str,
+    char *syntax_msg, char *success_msg);
+bool olc_int_replace (CHAR_DATA *ch, int *old_val, char *new_val,
+    char *syntax_msg, char *success_msg);
+bool olc_sh_int_replace (CHAR_DATA *ch, sh_int *old_val, char *new_val,
+    char *syntax_msg, char *success_msg);
+bool olc_long_int_replace (CHAR_DATA *ch, long int *old_val, char *new_val,
+    char *syntax_msg, char *success_msg);
+
 /* Interpreter Prototypes */
 void aedit  (CHAR_DATA *ch, char *argument);
 void redit  (CHAR_DATA *ch, char *argument);

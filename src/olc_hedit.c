@@ -27,14 +27,13 @@
 
 HEDIT (hedit_show) {
     HELP_DATA *help;
-    char buf[MSL * 2];
-
     EDIT_HELP (ch, help);
-    sprintf (buf, "Keyword : [%s]\n\r"
-             "Level   : [%d]\n\r"
-             "Text    :\n\r"
-             "%s-END-\n\r", help->keyword, help->level, help->text);
-    send_to_char (buf, ch);
+
+    printf_to_char (ch,
+        "Keyword : [%s]\n\r"
+        "Level   : [%d]\n\r"
+        "Text    :\n\r"
+        "%s-END-\n\r", help->keyword, help->level, help->text);
     return FALSE;
 }
 
@@ -43,10 +42,8 @@ HEDIT (hedit_level) {
     int lev;
 
     EDIT_HELP (ch, help);
-    if (IS_NULLSTR (argument) || !is_number (argument)) {
-        send_to_char ("Syntax: level [-1..MAX_LEVEL]\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (IS_NULLSTR (argument) || !is_number (argument),
+        "Syntax: level [-1..MAX_LEVEL]\n\r", ch, FALSE);
 
     lev = atoi (argument);
     if (lev < -1 || lev > MAX_LEVEL) {
@@ -64,14 +61,10 @@ HEDIT (hedit_keyword) {
     HELP_DATA *help;
     EDIT_HELP (ch, help);
 
-    if (IS_NULLSTR (argument)) {
-        send_to_char ("Syntax: keyword [keywords]\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (IS_NULLSTR (argument),
+        "Syntax: keyword [keywords]\n\r", ch, FALSE);
 
-    str_free (help->keyword);
-    help->keyword = str_dup (argument);
-
+    str_replace_dup (&(help->keyword), argument);
     send_to_char ("Ok.\n\r", ch);
     return TRUE;
 }
@@ -82,11 +75,9 @@ HEDIT (hedit_new) {
     HELP_DATA *help;
     extern HELP_DATA *help_last;
 
-    if (IS_NULLSTR (argument)) {
-        send_to_char ("Syntax: new [name]\n\r", ch);
-        send_to_char ("        new [area] [name]\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (IS_NULLSTR (argument),
+        "Syntax: new [name]\n\r"
+        "        new [area] [name]\n\r", ch, FALSE);
 
     strcpy (fullarg, argument);
     argument = one_argument (argument, arg);
@@ -95,10 +86,8 @@ HEDIT (hedit_new) {
         had = ch->in_room->area->helps;
         argument = fullarg;
     }
-    if (help_get_by_name (argument)) {
-        send_to_char ("HEdit : help exists.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (help_get_by_name (argument),
+        "HEdit : help exists.\n\r", ch, FALSE);
 
     /* the area has no helps */
     if (!had) {
@@ -131,10 +120,8 @@ HEDIT (hedit_text) {
     HELP_DATA *help;
     EDIT_HELP (ch, help);
 
-    if (!IS_NULLSTR (argument)) {
-        send_to_char ("Syntax: text\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (!IS_NULLSTR (argument),
+        "Syntax: text\n\r", ch, FALSE);
 
     string_append (ch, &help->text);
     return TRUE;
@@ -198,10 +185,8 @@ HEDIT (hedit_list) {
     }
 
     if (!str_cmp (argument, "area")) {
-        if (ch->in_room->area->helps == NULL) {
-            send_to_char ("No helps in this area.\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (ch->in_room->area->helps == NULL,
+            "No helps in this area.\n\r", ch, FALSE);
 
         buffer = buf_new ();
         for (pHelp = ch->in_room->area->helps->first; pHelp;
@@ -220,10 +205,9 @@ HEDIT (hedit_list) {
         return FALSE;
     }
 
-    if (IS_NULLSTR (argument)) {
-        send_to_char ("Syntax: list all\n\r", ch);
-        send_to_char ("        list area\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (IS_NULLSTR (argument),
+        "Syntax: list all\n\r"
+        "        list area\n\r", ch, FALSE);
+
     return FALSE;
 }
