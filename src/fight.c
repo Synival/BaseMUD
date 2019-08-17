@@ -1238,14 +1238,18 @@ bool check_dodge (CHAR_DATA * ch, CHAR_DATA * victim) {
 void update_pos (CHAR_DATA * victim) {
     if (victim->hit > 0) {
         if (victim->position <= POS_STUNNED)
-            victim->position = POS_STANDING;
+            victim->position = POS_RESTING;
     }
     else {
         int percent = victim->hit * 100 / victim->max_hit;
-        // if (IS_NPC (victim) && victim->hit < 1)
-        //    victim->position = POS_DEAD;
+
+#ifndef VANILLA
         if (percent <= -30)
             victim->position = POS_DEAD;
+#else
+        if (IS_NPC (victim) || percent <= -30)
+            victim->position = POS_DEAD;
+#endif
         else if (percent <= -20)
             victim->position = POS_MORTAL;
         else if (percent <= -10)

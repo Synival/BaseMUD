@@ -28,11 +28,6 @@
 #ifndef __ROM_DEFS_H
 #define __ROM_DEFS_H
 
-/* Disable this is you want some changed features. */
-/* Do a search for "#ifndef VANILLA" to find changed items. */
-
-/* #define VANILLA */
-
 /* Accommodate old non-Ansi compilers. */
 #if defined(TRADITIONAL)
     #define const

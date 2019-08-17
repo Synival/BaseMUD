@@ -455,7 +455,9 @@ bool spec_cast_cleric (CHAR_DATA * ch) {
 
     if ((sn = skill_lookup (spell)) < 0)
         return FALSE;
+#ifndef VANILLA
     say_spell (ch, sn, CLASS_CLERIC);
+#endif
     (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR);
     return TRUE;
 }
@@ -525,7 +527,9 @@ bool spec_cast_mage (CHAR_DATA * ch) {
 
     if ((sn = skill_lookup (spell)) < 0)
         return FALSE;
+#ifndef VANILLA
     say_spell (ch, sn, CLASS_MAGE);
+#endif
     (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR);
     return TRUE;
 }
@@ -568,7 +572,9 @@ bool spec_cast_undead (CHAR_DATA * ch) {
 
     if ((sn = skill_lookup (spell)) < 0)
         return FALSE;
+#ifndef VANILLA
     say_spell (ch, sn, CLASS_NONE);
+#endif
     (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR);
     return TRUE;
 }

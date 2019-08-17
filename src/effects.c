@@ -35,6 +35,7 @@
 #include "update.h"
 #include "affects.h"
 #include "objs.h"
+#include "chars.h"
 
 #include "effects.h"
 

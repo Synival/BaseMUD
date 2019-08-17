@@ -187,6 +187,7 @@ bool saves_spell (int level, CHAR_DATA *victim, int dam_type) {
     if (!IS_NPC (victim) && class_table[victim->class].fMana)
         save = 9 * save / 10;
     save = URANGE (5, save, 95);
+
     return number_percent () < save;
 }
 

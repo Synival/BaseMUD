@@ -416,8 +416,8 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
     bool is_weapon, is_worn, can_drop;
     bool fumbled, drop_item;
 
-    if (!saves_spell (level + 2, victim, DAM_FIRE)
-        && !IS_SET (victim->imm_flags, RES_FIRE))
+    if (saves_spell (level + 2, victim, DAM_FIRE)
+        || IS_SET (victim->imm_flags, RES_FIRE))
     {
         send_to_char ("Your spell had no effect.\n\r", ch);
         send_to_char ("You feel momentarily warmer.\n\r", victim);
@@ -452,16 +452,24 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
 
         /* Different conditions + damage + messages for worn items. */
         if (is_worn) {
-            fumbled = is_weapon ? TRUE : ((obj_lose->weight / 10) >
-                 number_range (1, 2 * char_get_curr_stat (victim, STAT_DEX)));
+            fumbled = FALSE;
+            if (is_weapon)
+                fumbled = TRUE;
+            else {
+                int dex        = char_get_curr_stat (victim, STAT_DEX);
+                int obj_weight = obj_lose->weight / 10;
+                int heaviest   = number_range (1, 2 * dex);
+                if (obj_weight > heaviest)
+                    fumbled = TRUE;
+            }
 
             if (can_drop && fumbled &&
-                char_remove_obj (victim, obj_lose->wear_loc, TRUE))
+                char_remove_obj (victim, obj_lose->wear_loc, TRUE, TRUE))
             {
                 act2 (
                     is_weapon ? "You throw your red-hot weapon to the ground!"
-                              : "You remove and drop $p before it burns you.",
-                    is_weapon ? "$n is burned by $p, and throws it to the ground."
+                              : "You remove and drop $p before it burns you!",
+                    is_weapon ? "$n is burned by $p, and throws it to the ground!"
                               : "$n yelps and throws $p to the ground!",
                     victim, obj_lose, NULL, 0, POS_RESTING);
 
@@ -479,8 +487,8 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
         /* Non-worn items. */
         else {
             if (can_drop) {
-                act2 (is_weapon ? "You and drop $p before it burns you."
-                                : "You and drop $p before it burns you.",
+                act2 (is_weapon ? "You drop $p before it burns you."
+                                : "You drop $p before it burns you.",
                       is_weapon ? "$n throws a burning hot $p to the ground!"
                                 : "$n yelps and throws $p to the ground!",
                     victim, obj_lose, NULL, 0, POS_RESTING);

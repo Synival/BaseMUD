@@ -861,7 +861,7 @@ void do_remove (CHAR_DATA * ch, char *argument) {
     DO_REQUIRE_ARG (arg, "Remove what?\n\r");
     BAIL_IF ((obj = find_eq (ch, arg)) == NULL,
         "You do not have that item.\n\r", ch);
-    char_remove_obj (ch, obj->wear_loc, TRUE);
+    char_remove_obj (ch, obj->wear_loc, TRUE, FALSE);
 }
 
 void do_sacrifice (CHAR_DATA * ch, char *argument) {

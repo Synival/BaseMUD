@@ -53,6 +53,8 @@
 /* TODO: review the function names for consistency. */
 /* TODO: remove any redundant functions, like simple lookup functions. */
 /* TODO: char_wear_obj() is pretty awful :( */
+/* TODO: replace fReplace in char_wear_obj() and char_remove_obj() with
+ *       flags for EQUIP_ONLY_IF_EMPTY and EQUIP_QUIET. */
 
 bool char_has_clan (CHAR_DATA * ch) {
     return ch->clan;
@@ -1228,7 +1230,7 @@ void char_take_obj (CHAR_DATA * ch, OBJ_DATA * obj, OBJ_DATA * container) {
 }
 
 /* Remove an object. */
-bool char_remove_obj (CHAR_DATA * ch, int iWear, bool fReplace) {
+bool char_remove_obj (CHAR_DATA * ch, int iWear, bool fReplace, bool quiet) {
     OBJ_DATA *obj;
 
     if ((obj = char_get_eq_by_wear (ch, iWear)) == NULL)
@@ -1236,13 +1238,16 @@ bool char_remove_obj (CHAR_DATA * ch, int iWear, bool fReplace) {
     if (!fReplace)
         return FALSE;
     if (IS_SET (obj->extra_flags, ITEM_NOREMOVE)) {
-        act ("You can't remove $p.", ch, obj, NULL, TO_CHAR);
+        if (!quiet)
+            act ("You can't remove $p.", ch, obj, NULL, TO_CHAR);
         return FALSE;
     }
 
     char_unequip (ch, obj);
-    act2 ("You stop using $p.",
-          "$n stops using $p.", ch, obj, NULL, 0, POS_RESTING);
+    if (!quiet) {
+        act2 ("You stop using $p.",
+              "$n stops using $p.", ch, obj, NULL, 0, POS_RESTING);
+    }
     return TRUE;
 }
 
@@ -1260,7 +1265,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
         return;
     }
     if (obj->item_type == ITEM_LIGHT) {
-        if (!char_remove_obj (ch, WEAR_LIGHT, fReplace))
+        if (!char_remove_obj (ch, WEAR_LIGHT, fReplace, FALSE))
             return;
         act ("You light $p and hold it.", ch, obj, NULL, TO_CHAR);
         act ("$n lights $p and holds it.", ch, obj, NULL, TO_NOTCHAR);
@@ -1270,8 +1275,8 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
     if (CAN_WEAR (obj, ITEM_WEAR_FINGER)) {
         if (char_get_eq_by_wear (ch, WEAR_FINGER_L) != NULL
             && char_get_eq_by_wear (ch, WEAR_FINGER_R) != NULL
-            && !char_remove_obj (ch, WEAR_FINGER_L, fReplace)
-            && !char_remove_obj (ch, WEAR_FINGER_R, fReplace))
+            && !char_remove_obj (ch, WEAR_FINGER_L, fReplace, FALSE)
+            && !char_remove_obj (ch, WEAR_FINGER_R, fReplace, FALSE))
             return;
 
         if (char_get_eq_by_wear (ch, WEAR_FINGER_L) == NULL) {
@@ -1295,8 +1300,8 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
     if (CAN_WEAR (obj, ITEM_WEAR_NECK)) {
         if (char_get_eq_by_wear (ch, WEAR_NECK_1) != NULL
             && char_get_eq_by_wear (ch, WEAR_NECK_2) != NULL
-            && !char_remove_obj (ch, WEAR_NECK_1, fReplace)
-            && !char_remove_obj (ch, WEAR_NECK_2, fReplace))
+            && !char_remove_obj (ch, WEAR_NECK_1, fReplace, FALSE)
+            && !char_remove_obj (ch, WEAR_NECK_2, fReplace, FALSE))
             return;
 
         if (char_get_eq_by_wear (ch, WEAR_NECK_1) == NULL) {
@@ -1317,7 +1322,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
         return;
     }
     if (CAN_WEAR (obj, ITEM_WEAR_BODY)) {
-        if (!char_remove_obj (ch, WEAR_BODY, fReplace))
+        if (!char_remove_obj (ch, WEAR_BODY, fReplace, FALSE))
             return;
         act ("You wear $p on your torso.", ch, obj, NULL, TO_CHAR);
         act ("$n wears $p on $s torso.", ch, obj, NULL, TO_NOTCHAR);
@@ -1325,7 +1330,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
         return;
     }
     if (CAN_WEAR (obj, ITEM_WEAR_HEAD)) {
-        if (!char_remove_obj (ch, WEAR_HEAD, fReplace))
+        if (!char_remove_obj (ch, WEAR_HEAD, fReplace, FALSE))
             return;
         act ("You wear $p on your head.", ch, obj, NULL, TO_CHAR);
         act ("$n wears $p on $s head.", ch, obj, NULL, TO_NOTCHAR);
@@ -1333,7 +1338,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
         return;
     }
     if (CAN_WEAR (obj, ITEM_WEAR_LEGS)) {
-        if (!char_remove_obj (ch, WEAR_LEGS, fReplace))
+        if (!char_remove_obj (ch, WEAR_LEGS, fReplace, FALSE))
             return;
         act ("You wear $p on your legs.", ch, obj, NULL, TO_CHAR);
         act ("$n wears $p on $s legs.", ch, obj, NULL, TO_NOTCHAR);
@@ -1341,7 +1346,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
         return;
     }
     if (CAN_WEAR (obj, ITEM_WEAR_FEET)) {
-        if (!char_remove_obj (ch, WEAR_FEET, fReplace))
+        if (!char_remove_obj (ch, WEAR_FEET, fReplace, FALSE))
             return;
         act ("You wear $p on your feet.", ch, obj, NULL, TO_CHAR);
         act ("$n wears $p on $s feet.", ch, obj, NULL, TO_NOTCHAR);
@@ -1349,7 +1354,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
         return;
     }
     if (CAN_WEAR (obj, ITEM_WEAR_HANDS)) {
-        if (!char_remove_obj (ch, WEAR_HANDS, fReplace))
+        if (!char_remove_obj (ch, WEAR_HANDS, fReplace, FALSE))
             return;
         act ("You wear $p on your hands.", ch, obj, NULL, TO_CHAR);
         act ("$n wears $p on $s hands.", ch, obj, NULL, TO_NOTCHAR);
@@ -1357,7 +1362,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
         return;
     }
     if (CAN_WEAR (obj, ITEM_WEAR_ARMS)) {
-        if (!char_remove_obj (ch, WEAR_ARMS, fReplace))
+        if (!char_remove_obj (ch, WEAR_ARMS, fReplace, FALSE))
             return;
         act ("You wear $p on your arms.", ch, obj, NULL, TO_CHAR);
         act ("$n wears $p on $s arms.", ch, obj, NULL, TO_NOTCHAR);
@@ -1365,7 +1370,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
         return;
     }
     if (CAN_WEAR (obj, ITEM_WEAR_ABOUT)) {
-        if (!char_remove_obj (ch, WEAR_ABOUT, fReplace))
+        if (!char_remove_obj (ch, WEAR_ABOUT, fReplace, FALSE))
             return;
         act ("You wear $p about your torso.", ch, obj, NULL, TO_CHAR);
         act ("$n wears $p about $s torso.", ch, obj, NULL, TO_NOTCHAR);
@@ -1373,7 +1378,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
         return;
     }
     if (CAN_WEAR (obj, ITEM_WEAR_WAIST)) {
-        if (!char_remove_obj (ch, WEAR_WAIST, fReplace))
+        if (!char_remove_obj (ch, WEAR_WAIST, fReplace, FALSE))
             return;
         act ("You wear $p about your waist.", ch, obj, NULL, TO_CHAR);
         act ("$n wears $p about $s waist.", ch, obj, NULL, TO_NOTCHAR);
@@ -1383,8 +1388,8 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
     if (CAN_WEAR (obj, ITEM_WEAR_WRIST)) {
         if (char_get_eq_by_wear (ch, WEAR_WRIST_L) != NULL
             && char_get_eq_by_wear (ch, WEAR_WRIST_R) != NULL
-            && !char_remove_obj (ch, WEAR_WRIST_L, fReplace)
-            && !char_remove_obj (ch, WEAR_WRIST_R, fReplace))
+            && !char_remove_obj (ch, WEAR_WRIST_L, fReplace, FALSE)
+            && !char_remove_obj (ch, WEAR_WRIST_R, fReplace, FALSE))
             return;
 
         if (char_get_eq_by_wear (ch, WEAR_WRIST_L) == NULL) {
@@ -1407,7 +1412,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
 
     if (CAN_WEAR (obj, ITEM_WEAR_SHIELD)) {
         OBJ_DATA *weapon;
-        if (!char_remove_obj (ch, WEAR_SHIELD, fReplace))
+        if (!char_remove_obj (ch, WEAR_SHIELD, fReplace, FALSE))
             return;
 
         weapon = char_get_eq_by_wear (ch, WEAR_WIELD);
@@ -1425,7 +1430,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
         char *msg;
         int sn, skill;
 
-        if (!char_remove_obj (ch, WEAR_WIELD, fReplace))
+        if (!char_remove_obj (ch, WEAR_WIELD, fReplace, FALSE))
             return;
         BAIL_IF (!IS_NPC (ch) && obj_get_weight (obj) >
                 (str_app[char_get_curr_stat (ch, STAT_STR)].wield * 10),
@@ -1457,7 +1462,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
     }
 
     if (CAN_WEAR (obj, ITEM_HOLD)) {
-        if (!char_remove_obj (ch, WEAR_HOLD, fReplace))
+        if (!char_remove_obj (ch, WEAR_HOLD, fReplace, FALSE))
             return;
         act ("You hold $p in your hand.", ch, obj, NULL, TO_CHAR);
         act ("$n holds $p in $s hand.", ch, obj, NULL, TO_NOTCHAR);
@@ -1466,7 +1471,7 @@ void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
     }
 
     if (CAN_WEAR (obj, ITEM_WEAR_FLOAT)) {
-        if (!char_remove_obj (ch, WEAR_FLOAT, fReplace))
+        if (!char_remove_obj (ch, WEAR_FLOAT, fReplace, FALSE))
             return;
         act ("You release $p and it floats next to you.", ch, obj, NULL, TO_CHAR);
         act ("$n releases $p to float next to $m.", ch, obj, NULL, TO_NOTCHAR);

@@ -98,9 +98,15 @@
     ((ch)->damroll + str_app[char_get_curr_stat(ch,STAT_STR)].todam)
 
 #define WAIT_STATE(ch, npulse) \
-    ((ch)->wait = UMAX((ch)->wait, (npulse)))
+    ((ch)->wait = (IS_TRUSTED(ch, IMPLEMENTOR) \
+        ? (ch)->wait \
+        : UMAX((ch)->wait, (npulse)) \
+    ))
 #define DAZE_STATE(ch, npulse) \
-    ((ch)->daze = UMAX((ch)->daze, (npulse)))
+    ((ch)->daze = (IS_TRUSTED(ch, IMPLEMENTOR) \
+        ? (ch)->daze \
+        : UMAX((ch)->daze, (npulse)) \
+    ))
 
 #define act(format, ch, arg1, arg2, flags) \
     act_new((format), (ch), (arg1), (arg2), (flags), POS_RESTING)
