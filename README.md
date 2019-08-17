@@ -204,7 +204,6 @@ phased out or at least optional. A handful of changes were just for fun.
 * Furthermore, `scan <dir>` only checks two rooms ahead rather than four. To see
   that far, you'll need to use the "farsight" spell :)
 * `scan` also doesn't see through doors anymore.
-* Mobs can now be in stunned, incapacitated, and mortally wounded states.
 * Stunned / incapacitated / mortally wounded / dead state checks are now based on
   percentage of max hit points.
 * Beds, tents, stools, etc. have automatic flags for `STAND_IN`, `STAND_AT`, etc.
