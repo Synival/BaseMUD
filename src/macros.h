@@ -131,7 +131,7 @@
         : "someone" \
     )
 #define PERS_IR(ch, looker) \
-    (char_can_see_anywhere((looker), (ch)) \
+    (char_can_see_in_room((looker), (ch)) \
         ? (IS_NPC(ch) ? (ch)->short_descr : (ch)->name) \
         : "someone" \
     )

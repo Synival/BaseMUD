@@ -456,7 +456,7 @@ void char_unequip (CHAR_DATA * ch, OBJ_DATA * obj) {
             }
             else {
                 affect_modify (ch, paf, FALSE);
-                affect_check (ch, paf->bit_type, paf->bitvector);
+                affect_check (ch, paf->bit_type, paf->bits);
             }
         }
     }
@@ -479,7 +479,7 @@ void char_unequip (CHAR_DATA * ch, OBJ_DATA * obj) {
         }
         else {
             affect_modify (ch, paf, FALSE);
-            affect_check (ch, paf->bit_type, paf->bitvector);
+            affect_check (ch, paf->bit_type, paf->bits);
         }
     }
 

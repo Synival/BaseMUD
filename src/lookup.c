@@ -95,14 +95,16 @@ flag_t flag_value (const FLAG_TYPE *flag_table, char *argument) {
         return NO_FLAG;
 }
 
+/* Increased buffers from 2 to 16! That should give us the illusion
+ * of stability. -- Synival */
 char *flag_string (const FLAG_TYPE *flag_table, flag_t bits) {
-    static char buf[2][512];
+    static char buf[16][512];
     static int cnt = 0;
     int i;
     const TABLE_TYPE *mt;
     bool bitflag;
 
-    if (++cnt > 1)
+    if (++cnt >= 16)
         cnt = 0;
 
     for (i = 0; master_table[i].table; i++)
@@ -174,6 +176,7 @@ SIMPLE_HASH_BUNDLE (material,   MATERIAL_TYPE,    type);
 SIMPLE_HASH_BUNDLE (dam,        DAM_TYPE,         type);
 SIMPLE_HASH_BUNDLE (colour,     COLOUR_TYPE,      code);
 SIMPLE_HASH_BUNDLE (colour_setting, COLOUR_SETTING_TYPE, index);
+SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_TYPE,  type);
 
 SIMPLE_REC_BUNDLE (ban,         BAN_DATA,         RECYCLE_BAN_DATA);
 SIMPLE_REC_BUNDLE (area,        AREA_DATA,        RECYCLE_AREA_DATA);

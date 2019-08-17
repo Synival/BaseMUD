@@ -86,7 +86,6 @@ const TABLE_TYPE master_table[] = {
 
     /* from types.h */
     TTYPES (sex_types,        "Sexes."),
-    TTYPES (affect_bit_types, "Affect bit vector types."),
     TTYPES (affect_apply_types, "Affect apply types."),
     TTYPES (wear_loc_phrases, "Phrases for wear locations."),
     TTYPES (wear_loc_types,   "Where mobile wears object."),
@@ -134,6 +133,7 @@ const TABLE_TYPE master_table[] = {
     TTABLE (colour_table,     "Colour values.",               NULL),
     TTABLE (recycle_table,    "Recycleable object types.",    NULL),
     TTABLE (board_table,      "Discussion boards.",           NULL),
+    TTABLE (affect_bit_table, "Affect bit vector types.",     NULL),
     {0}
 };
 
@@ -1585,4 +1585,14 @@ const WIZNET_TYPE wiznet_table[WIZNET_MAX + 1] = {
     {WIZ_SWITCHES,  "switches",  L2},
     {WIZ_SECURE,    "secure",    L1},
     {-1, NULL, 0}
+};
+
+const AFFECT_BIT_TYPE affect_bit_table[] = {
+    {"affects", TO_AFFECTS, affect_flags, "affect_flags"},
+    {"object",  TO_OBJECT,  extra_flags,  "extra_flags"},
+    {"immune",  TO_IMMUNE,  res_flags,    "res_flags"},
+    {"resist",  TO_RESIST,  res_flags,    "res_flags"},
+    {"vuln",    TO_VULN,    res_flags,    "res_flags"},
+    {"weapon",  TO_WEAPON,  weapon_flags, "weapon_flags"},
+    {NULL,      0,          NULL},
 };

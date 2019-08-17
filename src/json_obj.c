@@ -316,6 +316,7 @@ JSON_PROP_FUNC (obj_affect, const AFFECT_DATA *);
 JSON_T *json_new_obj_affect (const char *name, const AFFECT_DATA *aff) {
     JSON_T *new;
     const char *bv;
+    const AFFECT_BIT_TYPE *bits;
 
     if (aff == NULL)
         return json_new_null (name);
@@ -324,24 +325,21 @@ JSON_T *json_new_obj_affect (const char *name, const AFFECT_DATA *aff) {
     json_prop_string  (new, "apply",    flag_string (affect_apply_types, aff->apply));
     json_prop_integer (new, "level",    aff->level);
     json_prop_integer (new, "modifier", aff->modifier);
+    json_prop_string  (new, "bit_type", affect_bit_get_name (aff->bit_type));
 
-    json_prop_string  (new, "bit_type", flag_string (affect_bit_types, aff->bit_type));
-    bv = "";
     #define BV_BITS(flags) \
-        bv = JBITS (flag_string (flags, aff->bitvector))
-    switch (aff->bit_type) {
-        case TO_AFFECTS: BV_BITS (affect_flags); break;
-        case TO_OBJECT:  BV_BITS (extra_flags);  break;
-        case TO_IMMUNE:  BV_BITS (res_flags);    break;
-        case TO_RESIST:  BV_BITS (res_flags);    break;
-        case TO_VULN:    BV_BITS (res_flags);    break;
-        case TO_WEAPON:  BV_BITS (weapon_flags); break;
-        default:
-            bugf ("json_new_obj_affect: Unhandled bit_type '%d'", aff->bit_type);
+        bv = JBITS (flag_string (flags, aff->bits))
+
+    bv = NULL;
+    bits = affect_bit_get (aff->bit_type);
+    if (bits == NULL)
+        bugf ("json_new_obj_affect: Unhandled bit_type '%d'", aff->bit_type);
+    else {
+        bv = JBITS (flag_string (bits->flags, aff->bits));
+        if (bv != NULL && bv[0] == '\0')
+            bv = NULL;
     }
 
-    if (bv != NULL && bv[0] == '\0')
-        bv = NULL;
     json_prop_string (new, "bits", bv);
     return new;
 }

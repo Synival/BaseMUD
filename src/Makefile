@@ -245,7 +245,8 @@ act_shop.o: /usr/include/bits/sigset.h /usr/include/bits/time.h
 act_shop.o: /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h
 act_shop.o: /usr/include/sys/time.h macros.h json.h structs.h types.h flags.h
 act_shop.o: tables.h lookup.h comm.h interp.h utils.h db.h skills.h groups.h
-act_shop.o: chars.h objs.h find.h act_comm.h spell_cure.h act_shop.h
+act_shop.o: chars.h objs.h find.h act_comm.h spell_cure.h materials.h
+act_shop.o: act_shop.h
 act_skills.o: /usr/include/string.h /usr/include/features.h
 act_skills.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 act_skills.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -335,7 +336,7 @@ chars.o: /usr/include/bits/pthreadtypes.h /usr/include/sys/time.h macros.h
 chars.o: json.h structs.h types.h flags.h tables.h skills.h comm.h objs.h
 chars.o: affects.h lookup.h magic.h db.h groups.h fight.h interp.h recycle.h
 chars.o: rooms.h mob_prog.h act_move.h act_info.h act_group.h wiz_l6.h
-chars.o: chars.h
+chars.o: materials.h chars.h
 colour.o: /usr/include/string.h /usr/include/features.h
 colour.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 colour.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -637,6 +638,22 @@ main.o: /usr/include/wchar.h /usr/include/bits/wchar.h
 main.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 main.o: compat.h defs.h /usr/include/sys/time.h macros.h json.h structs.h
 main.o: types.h flags.h tables.h comm.h db.h utils.h signal.h
+materials.o: /usr/include/string.h /usr/include/features.h
+materials.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
+materials.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
+materials.o: /usr/include/xlocale.h materials.h merc.h /usr/include/stdio.h
+materials.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+materials.o: /usr/include/libio.h /usr/include/_G_config.h
+materials.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+materials.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+materials.o: compat.h defs.h /usr/include/sys/types.h /usr/include/time.h
+materials.o: /usr/include/endian.h /usr/include/bits/endian.h
+materials.o: /usr/include/bits/byteswap.h /usr/include/bits/byteswap-16.h
+materials.o: /usr/include/sys/select.h /usr/include/bits/select.h
+materials.o: /usr/include/bits/sigset.h /usr/include/bits/time.h
+materials.o: /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h
+materials.o: /usr/include/sys/time.h macros.h json.h structs.h types.h
+materials.o: flags.h tables.h
 mob_cmds.o: /usr/include/stdlib.h /usr/include/features.h
 mob_cmds.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 mob_cmds.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -724,7 +741,7 @@ objs.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
 objs.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
 objs.o: /usr/include/bits/pthreadtypes.h /usr/include/sys/time.h macros.h
 objs.o: json.h structs.h types.h flags.h tables.h chars.h db.h recycle.h
-objs.o: comm.h lookup.h objs.h
+objs.o: comm.h lookup.h materials.h objs.h
 olc_aedit.o: /usr/include/string.h /usr/include/features.h
 olc_aedit.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 olc_aedit.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -748,20 +765,23 @@ olc_aedit.o: utils.h interp.h olc.h olc_aedit.h
 olc.o: /usr/include/string.h /usr/include/features.h
 olc.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 olc.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-olc.o: /usr/include/xlocale.h utils.h merc.h /usr/include/stdio.h
-olc.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+olc.o: /usr/include/xlocale.h /usr/include/stdlib.h
+olc.o: /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h
+olc.o: /usr/include/endian.h /usr/include/bits/endian.h
+olc.o: /usr/include/bits/byteswap.h /usr/include/bits/types.h
+olc.o: /usr/include/bits/typesizes.h /usr/include/bits/byteswap-16.h
+olc.o: /usr/include/sys/types.h /usr/include/time.h /usr/include/sys/select.h
+olc.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
+olc.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
+olc.o: /usr/include/bits/pthreadtypes.h /usr/include/alloca.h
+olc.o: /usr/include/bits/stdlib-float.h utils.h merc.h /usr/include/stdio.h
 olc.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
 olc.o: /usr/include/bits/wchar.h /usr/include/bits/stdio_lim.h
 olc.o: /usr/include/bits/sys_errlist.h compat.h defs.h
-olc.o: /usr/include/sys/types.h /usr/include/time.h /usr/include/endian.h
-olc.o: /usr/include/bits/endian.h /usr/include/bits/byteswap.h
-olc.o: /usr/include/bits/byteswap-16.h /usr/include/sys/select.h
-olc.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
-olc.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
-olc.o: /usr/include/bits/pthreadtypes.h /usr/include/sys/time.h macros.h
-olc.o: json.h structs.h types.h flags.h tables.h interp.h comm.h db.h
-olc.o: recycle.h lookup.h magic.h act_olc.h olc_aedit.h olc_hedit.h
-olc.o: olc_medit.h olc_mpedit.h olc_oedit.h olc_redit.h olc.h
+olc.o: /usr/include/sys/time.h macros.h json.h structs.h types.h flags.h
+olc.o: tables.h interp.h comm.h db.h recycle.h lookup.h magic.h act_olc.h
+olc.o: olc_aedit.h olc_hedit.h olc_medit.h olc_mpedit.h olc_oedit.h
+olc.o: olc_redit.h olc.h
 olc_hedit.o: /usr/include/string.h /usr/include/features.h
 olc_hedit.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 olc_hedit.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -1091,7 +1111,8 @@ spell_info.o: /usr/include/bits/wchar.h /usr/include/xlocale.h
 spell_info.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 spell_info.o: compat.h defs.h /usr/include/sys/time.h macros.h json.h
 spell_info.o: structs.h types.h flags.h tables.h comm.h utils.h lookup.h
-spell_info.o: chars.h recycle.h db.h interp.h act_info.h spell_info.h
+spell_info.o: chars.h recycle.h db.h interp.h act_info.h affects.h
+spell_info.o: spell_info.h
 spell_misc.o: magic.h merc.h /usr/include/stdio.h /usr/include/features.h
 spell_misc.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 spell_misc.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -1268,7 +1289,7 @@ wiz_im.o: /usr/include/bits/wchar.h /usr/include/bits/stdio_lim.h
 wiz_im.o: /usr/include/bits/sys_errlist.h compat.h defs.h
 wiz_im.o: /usr/include/sys/time.h macros.h json.h structs.h types.h flags.h
 wiz_im.o: tables.h db.h utils.h comm.h lookup.h recycle.h do_sub.h mob_cmds.h
-wiz_im.o: act_info.h chars.h objs.h rooms.h find.h wiz_im.h
+wiz_im.o: act_info.h chars.h objs.h rooms.h find.h affects.h wiz_im.h
 wiz_l1.o: /usr/include/string.h /usr/include/features.h
 wiz_l1.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 wiz_l1.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h

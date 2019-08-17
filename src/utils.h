@@ -75,7 +75,7 @@ void str_replace_dup (char **old, const char *str);
 char *str_dup (const char *str);
 void str_free (char *pstr);
 char *capitalize (const char *str);
-char *if_null_str (char *str, char *ifnull);
+const char *if_null_str (const char *str, const char *ifnull);
 char *trim_extension (char *input);
 bool is_name (char *str, char *namelist);
 bool is_exact_name (char *str, char *namelist);

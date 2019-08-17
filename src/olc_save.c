@@ -342,7 +342,7 @@ void save_object (FILE * fp, OBJ_INDEX_DATA * pObjIndex) {
     fprintf (fp, "%c\n", letter);
 
     for (pAf = pObjIndex->affected; pAf; pAf = pAf->next) {
-        if (pAf->bit_type == TO_OBJECT || pAf->bitvector == 0)
+        if (pAf->bit_type == TO_OBJECT || pAf->bits == 0)
             fprintf (fp, "A\n%d %d\n", pAf->apply, pAf->modifier);
         else {
             fprintf (fp, "F\n");
@@ -358,7 +358,7 @@ void save_object (FILE * fp, OBJ_INDEX_DATA * pObjIndex) {
             }
 
             fprintf (fp, "%d %d %s\n", pAf->apply, pAf->modifier,
-                     fwrite_flag (pAf->bitvector, buf));
+                     fwrite_flag (pAf->bits, buf));
         }
     }
 

@@ -97,7 +97,7 @@ int check_immune (CHAR_DATA * ch, int dam_type) {
 
 /* enchanted stuff for eq */
 void affect_enchant (OBJ_DATA * obj) {
-    /* okay, move all the old flags into new vectors if we have to */
+    /* okay, move all the old flags into new bits if we have to */
     if (!obj->enchanted) {
         AFFECT_DATA *paf, *af_new;
         obj->enchanted = TRUE;
@@ -114,18 +114,18 @@ void affect_enchant (OBJ_DATA * obj) {
 void affect_modify_bits (CHAR_DATA * ch, AFFECT_DATA * paf, bool on) {
     if (on) {
         switch (paf->bit_type) {
-            case TO_AFFECTS: SET_BIT (ch->affected_by, paf->bitvector); break;
-            case TO_IMMUNE:  SET_BIT (ch->imm_flags,   paf->bitvector); break;
-            case TO_RESIST:  SET_BIT (ch->res_flags,   paf->bitvector); break;
-            case TO_VULN:    SET_BIT (ch->vuln_flags,  paf->bitvector); break;
+            case TO_AFFECTS: SET_BIT (ch->affected_by, paf->bits); break;
+            case TO_IMMUNE:  SET_BIT (ch->imm_flags,   paf->bits); break;
+            case TO_RESIST:  SET_BIT (ch->res_flags,   paf->bits); break;
+            case TO_VULN:    SET_BIT (ch->vuln_flags,  paf->bits); break;
         }
     }
     else {
         switch (paf->bit_type) {
-            case TO_AFFECTS: REMOVE_BIT (ch->affected_by, paf->bitvector); break;
-            case TO_IMMUNE:  REMOVE_BIT (ch->imm_flags,   paf->bitvector); break;
-            case TO_RESIST:  REMOVE_BIT (ch->res_flags,   paf->bitvector); break;
-            case TO_VULN:    REMOVE_BIT (ch->vuln_flags,  paf->bitvector); break;
+            case TO_AFFECTS: REMOVE_BIT (ch->affected_by, paf->bits); break;
+            case TO_IMMUNE:  REMOVE_BIT (ch->imm_flags,   paf->bits); break;
+            case TO_RESIST:  REMOVE_BIT (ch->res_flags,   paf->bits); break;
+            case TO_VULN:    REMOVE_BIT (ch->vuln_flags,  paf->bits); break;
         }
     }
 }
@@ -193,17 +193,17 @@ AFFECT_DATA *affect_find (AFFECT_DATA * paf, int sn) {
 }
 
 /* fix object affects when removing one */
-void affect_check (CHAR_DATA * ch, int bit_type, int vector) {
+void affect_check (CHAR_DATA * ch, int bit_type, flag_t bits) {
     AFFECT_DATA *paf;
     OBJ_DATA *obj;
 
     if (ch == NULL)
         return;
-    if (bit_type == TO_OBJECT || bit_type == TO_WEAPON || vector == 0)
+    if (bit_type == TO_OBJECT || bit_type == TO_WEAPON || bits == 0)
         return;
 
     for (paf = ch->affected; paf != NULL; paf = paf->next) {
-        if (paf->bit_type == bit_type && paf->bitvector == vector) {
+        if (paf->bit_type == bit_type && paf->bits == bits) {
             affect_modify_bits (ch, paf, TRUE);
             return;
         }
@@ -214,25 +214,25 @@ void affect_check (CHAR_DATA * ch, int bit_type, int vector) {
             continue;
 
         for (paf = obj->affected; paf != NULL; paf = paf->next)
-            if (paf->bit_type == bit_type && paf->bitvector == vector)
+            if (paf->bit_type == bit_type && paf->bits == bits)
                 affect_modify_bits (ch, paf, TRUE);
 
         if (obj->enchanted)
             continue;
         for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next)
-            if (paf->bit_type == bit_type && paf->bitvector == vector)
+            if (paf->bit_type == bit_type && paf->bits == bits)
                 affect_modify_bits (ch, paf, TRUE);
     }
 }
 
 void affect_copy (AFFECT_DATA *dest, AFFECT_DATA *src) {
-    dest->bit_type  = src->bit_type;
-    dest->type      = src->type;
-    dest->level     = src->level;
-    dest->duration  = src->duration;
-    dest->apply     = src->apply;
-    dest->modifier  = src->modifier;
-    dest->bitvector = src->bitvector;
+    dest->bit_type = src->bit_type;
+    dest->type     = src->type;
+    dest->level    = src->level;
+    dest->duration = src->duration;
+    dest->apply    = src->apply;
+    dest->modifier = src->modifier;
+    dest->bits     = src->bits;
 }
 
 /* Give an affect to a char. */
@@ -255,15 +255,15 @@ void affect_to_obj (OBJ_DATA *obj, AFFECT_DATA *paf) {
     affect_copy (paf_new, paf);
     LIST_FRONT (paf_new, next, obj->affected);
 
-    /* apply any affect vectors to the object's extra_flags */
-    if (paf->bitvector) {
+    /* apply any affect bits to the object's extra_flags */
+    if (paf->bits) {
         switch (paf->bit_type) {
             case TO_OBJECT:
-                SET_BIT (obj->extra_flags, paf->bitvector);
+                SET_BIT (obj->extra_flags, paf->bits);
                 break;
             case TO_WEAPON:
                 if (obj->item_type == ITEM_WEAPON)
-                    SET_BIT (obj->value[4], paf->bitvector);
+                    SET_BIT (obj->value[4], paf->bits);
                 break;
         }
     }
@@ -272,7 +272,7 @@ void affect_to_obj (OBJ_DATA *obj, AFFECT_DATA *paf) {
 /* Remove an affect from a char. */
 void affect_remove (CHAR_DATA * ch, AFFECT_DATA * paf) {
     int bit_type;
-    flag_t vector;
+    flag_t bits;
 
     if (ch->affected == NULL) {
         bug ("affect_remove: no affect.", 0);
@@ -281,15 +281,15 @@ void affect_remove (CHAR_DATA * ch, AFFECT_DATA * paf) {
 
     affect_modify (ch, paf, FALSE);
     bit_type = paf->bit_type;
-    vector = paf->bitvector;
+    bits     = paf->bits;
 
     LIST_REMOVE (paf, next, ch->affected, AFFECT_DATA, return);
     affect_free (paf);
-    affect_check (ch, bit_type, vector);
+    affect_check (ch, bit_type, bits);
 }
 
 void affect_remove_obj (OBJ_DATA * obj, AFFECT_DATA * paf) {
-    int bit_type, vector;
+    int bit_type, bits;
     if (obj->affected == NULL) {
         bug ("affect_remove_object: no affect.", 0);
         return;
@@ -299,17 +299,17 @@ void affect_remove_obj (OBJ_DATA * obj, AFFECT_DATA * paf) {
         affect_modify (obj->carried_by, paf, FALSE);
 
     bit_type = paf->bit_type;
-    vector = paf->bitvector;
+    bits     = paf->bits;
 
     /* remove flags from the object if needed */
-    if (paf->bitvector) {
+    if (paf->bits) {
         switch (paf->bit_type) {
             case TO_OBJECT:
-                REMOVE_BIT (obj->extra_flags, paf->bitvector);
+                REMOVE_BIT (obj->extra_flags, paf->bits);
                 break;
             case TO_WEAPON:
                 if (obj->item_type == ITEM_WEAPON)
-                    REMOVE_BIT (obj->value[4], paf->bitvector);
+                    REMOVE_BIT (obj->value[4], paf->bits);
                 break;
         }
     }
@@ -317,7 +317,7 @@ void affect_remove_obj (OBJ_DATA * obj, AFFECT_DATA * paf) {
     LIST_REMOVE (paf, next, obj->affected, AFFECT_DATA, return);
     affect_free (paf);
     if (obj->carried_by != NULL && obj->wear_loc != -1)
-        affect_check (obj->carried_by, bit_type, vector);
+        affect_check (obj->carried_by, bit_type, bits);
 }
 
 /* Strip all affects of a given sn. */
@@ -375,7 +375,7 @@ void affect_join (CHAR_DATA * ch, AFFECT_DATA * paf) {
 }
 
 void affect_init (AFFECT_DATA *af, sh_int bit_type, sh_int type, sh_int level,
-    sh_int duration, sh_int apply, sh_int modifier, flag_t bitvector)
+    sh_int duration, sh_int apply, sh_int modifier, flag_t bits)
 {
     memset (af, 0, sizeof (AFFECT_DATA));
     af->bit_type  = bit_type;
@@ -384,9 +384,34 @@ void affect_init (AFFECT_DATA *af, sh_int bit_type, sh_int type, sh_int level,
     af->duration  = duration;
     af->apply     = apply;
     af->modifier  = modifier;
-    af->bitvector = bitvector;
+    af->bits      = bits;
 
     /* presumably, we aren't initializing invalidated
      * objects... but this could break something if we did! */
     af->rec_data.valid = TRUE;
+}
+
+char *affect_bit_message (int bit_type, flag_t bits) {
+    static char buf[MAX_STRING_LENGTH];
+    switch (bit_type) {
+        case TO_AFFECTS:
+            sprintf (buf, "Adds %s affect.\n\r", affect_bit_name (bits));
+            break;
+        case TO_OBJECT:
+            sprintf (buf, "Adds %s object flag.\n\r", extra_bit_name (bits));
+            break;
+        case TO_IMMUNE:
+            sprintf (buf, "Adds immunity to %s.\n\r", res_bit_name (bits));
+            break;
+        case TO_RESIST:
+            sprintf (buf, "Adds resistance to %s.\n\r", res_bit_name (bits));
+            break;
+        case TO_VULN:
+            sprintf (buf, "Adds vulnerability to %s.\n\r", res_bit_name (bits));
+            break;
+        default:
+            sprintf (buf, "Unknown bit %d: %ld\n\r", bit_type, bits);
+            break;
+    }
+    return buf;
 }

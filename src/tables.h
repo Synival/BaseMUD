@@ -65,6 +65,7 @@ extern const MAP_LOOKUP_TABLE map_lookup_table[];
 extern const MAP_LOOKUP_TABLE map_flags_table[];
 extern const OBJ_MAP          obj_map_table[];
 extern const COLOUR_TYPE      colour_table[];
+extern const AFFECT_BIT_TYPE  affect_bit_table[];
 
 /* non-const types. */
 extern RECYCLE_TYPE recycle_table[RECYCLE_MAX + 1];

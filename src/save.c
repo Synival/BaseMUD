@@ -285,7 +285,7 @@ void fwrite_char (CHAR_DATA * ch, FILE * fp) {
         fprintf (fp, "Affc '%s' %3d %3d %3d %3d %3d %10ld\n",
                  skill_table[paf->type].name,
                  paf->bit_type, paf->level,
-                 paf->duration, paf->modifier, paf->apply, paf->bitvector);
+                 paf->duration, paf->modifier, paf->apply, paf->bits);
     }
 
 #ifdef IMC
@@ -361,7 +361,7 @@ void fwrite_pet (CHAR_DATA * pet, FILE * fp) {
         fprintf (fp, "Affc '%s' %3d %3d %3d %3d %3d %10ld\n",
                  skill_table[paf->type].name,
                  paf->bit_type, paf->level, paf->duration, paf->modifier,
-                 paf->apply, paf->bitvector);
+                 paf->apply, paf->bits);
     }
     fprintf (fp, "End\n");
 }
@@ -449,7 +449,7 @@ void fwrite_obj (CHAR_DATA * ch, OBJ_DATA * obj, FILE * fp, int iNest) {
         fprintf (fp, "Affc '%s' %3d %3d %3d %3d %3d %10ld\n",
                  skill_table[paf->type].name,
                  paf->bit_type, paf->level,
-                 paf->duration, paf->modifier, paf->apply, paf->bitvector);
+                 paf->duration, paf->modifier, paf->apply, paf->bits);
     }
 
     for (ed = obj->extra_descr; ed != NULL; ed = ed->next)
@@ -731,11 +731,11 @@ void fread_char (CHAR_DATA * ch, FILE * fp) {
                     else
                         paf->type = sn;
 
-                    paf->level     = fread_number (fp);
-                    paf->duration  = fread_number (fp);
-                    paf->modifier  = fread_number (fp);
-                    paf->apply     = fread_number (fp);
-                    paf->bitvector = fread_number (fp);
+                    paf->level    = fread_number (fp);
+                    paf->duration = fread_number (fp);
+                    paf->modifier = fread_number (fp);
+                    paf->apply    = fread_number (fp);
+                    paf->bits     = fread_number (fp);
                     LIST_FRONT (paf, next, ch->affected);
                     fMatch = TRUE;
                     break;
@@ -752,12 +752,12 @@ void fread_char (CHAR_DATA * ch, FILE * fp) {
                     else
                         paf->type = sn;
 
-                    paf->bit_type  = fread_number (fp);
-                    paf->level     = fread_number (fp);
-                    paf->duration  = fread_number (fp);
-                    paf->modifier  = fread_number (fp);
-                    paf->apply     = fread_number (fp);
-                    paf->bitvector = fread_number (fp);
+                    paf->bit_type = fread_number (fp);
+                    paf->level    = fread_number (fp);
+                    paf->duration = fread_number (fp);
+                    paf->modifier = fread_number (fp);
+                    paf->apply    = fread_number (fp);
+                    paf->bits     = fread_number (fp);
                     LIST_FRONT (paf, next, ch->affected);
                     fMatch = TRUE;
                     break;
@@ -1188,11 +1188,11 @@ void fread_pet (CHAR_DATA * ch, FILE * fp) {
                     else
                         paf->type = sn;
 
-                    paf->level     = fread_number (fp);
-                    paf->duration  = fread_number (fp);
-                    paf->modifier  = fread_number (fp);
-                    paf->apply     = fread_number (fp);
-                    paf->bitvector = fread_number (fp);
+                    paf->level    = fread_number (fp);
+                    paf->duration = fread_number (fp);
+                    paf->modifier = fread_number (fp);
+                    paf->apply    = fread_number (fp);
+                    paf->bits     = fread_number (fp);
                     LIST_FRONT (paf, next, pet->affected);
                     fMatch = TRUE;
                     break;
@@ -1209,12 +1209,12 @@ void fread_pet (CHAR_DATA * ch, FILE * fp) {
                     else
                         paf->type = sn;
 
-                    paf->bit_type  = fread_number (fp);
-                    paf->level     = fread_number (fp);
-                    paf->duration  = fread_number (fp);
-                    paf->modifier  = fread_number (fp);
-                    paf->apply     = fread_number (fp);
-                    paf->bitvector = fread_number (fp);
+                    paf->bit_type = fread_number (fp);
+                    paf->level    = fread_number (fp);
+                    paf->duration = fread_number (fp);
+                    paf->modifier = fread_number (fp);
+                    paf->apply    = fread_number (fp);
+                    paf->bits     = fread_number (fp);
 
                     /* Added here after Chris Litchfield (The Mage's Lair)
                      * pointed out a bug with duplicating affects in saved
@@ -1401,11 +1401,11 @@ void fread_obj (CHAR_DATA * ch, FILE * fp) {
                     else
                         paf->type = sn;
 
-                    paf->level     = fread_number (fp);
-                    paf->duration  = fread_number (fp);
-                    paf->modifier  = fread_number (fp);
-                    paf->apply     = fread_number (fp);
-                    paf->bitvector = fread_number (fp);
+                    paf->level    = fread_number (fp);
+                    paf->duration = fread_number (fp);
+                    paf->modifier = fread_number (fp);
+                    paf->apply    = fread_number (fp);
+                    paf->bits     = fread_number (fp);
                     LIST_FRONT (paf, next, obj->affected);
                     fMatch = TRUE;
                     break;
@@ -1422,12 +1422,12 @@ void fread_obj (CHAR_DATA * ch, FILE * fp) {
                     else
                         paf->type = sn;
 
-                    paf->bit_type  = fread_number (fp);
-                    paf->level     = fread_number (fp);
-                    paf->duration  = fread_number (fp);
-                    paf->modifier  = fread_number (fp);
-                    paf->apply     = fread_number (fp);
-                    paf->bitvector = fread_number (fp);
+                    paf->bit_type = fread_number (fp);
+                    paf->level    = fread_number (fp);
+                    paf->duration = fread_number (fp);
+                    paf->modifier = fread_number (fp);
+                    paf->apply    = fread_number (fp);
+                    paf->bits     = fread_number (fp);
                     LIST_FRONT (paf, next, obj->affected);
                     fMatch = TRUE;
                     break;

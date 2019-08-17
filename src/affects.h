@@ -36,7 +36,7 @@ void affect_modify_bits (CHAR_DATA * ch, AFFECT_DATA * paf, bool on);
 void affect_modify_apply (CHAR_DATA * ch, AFFECT_DATA * paf, bool on);
 void affect_modify (CHAR_DATA * ch, AFFECT_DATA * paf, bool on);
 AFFECT_DATA *affect_find (AFFECT_DATA * paf, int sn);
-void affect_check (CHAR_DATA * ch, int where, int vector);
+void affect_check (CHAR_DATA * ch, int where, flag_t bits);
 void affect_copy (AFFECT_DATA *dest, AFFECT_DATA *src);
 void affect_to_char (CHAR_DATA * ch, AFFECT_DATA * paf);
 void affect_to_obj (OBJ_DATA * obj, AFFECT_DATA * paf);
@@ -46,6 +46,7 @@ void affect_strip (CHAR_DATA * ch, int sn);
 bool is_affected (CHAR_DATA * ch, int sn);
 void affect_join (CHAR_DATA * ch, AFFECT_DATA * paf);
 void affect_init (AFFECT_DATA *af, sh_int target, sh_int type, sh_int level,
-    sh_int duration, sh_int apply, sh_int modifier, flag_t bitvector);
+    sh_int duration, sh_int apply, sh_int modifier, flag_t bits);
+char *affect_bit_message (int bit_type, flag_t bits);
 
 #endif

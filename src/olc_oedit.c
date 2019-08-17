@@ -27,167 +27,167 @@
 
 #include "olc_oedit.h"
 
+/* TODO: maybe incorporate object-type-specific values into the
+ *       object mapping? */
+/* TODO: set_obj_values() macros. */
+
 /* Object Editor Functions. */
 void show_obj_values (CHAR_DATA * ch, OBJ_INDEX_DATA * obj) {
-    char buf[MAX_STRING_LENGTH];
-
     switch (obj->item_type) {
-        default: /* No values. */
-            break;
-
         case ITEM_LIGHT:
-            if (obj->value[2] == -1 || obj->value[2] == 999)    /* ROM OLC */
-                sprintf (buf, "[v2] Light:  Infinite[-1]\n\r");
+            if (obj->value[2] == -1 || obj->value[2] == 999) /* ROM OLC */
+                send_to_char ("[v2] Light:  Infinite[-1]\n\r", ch);
             else
-                sprintf (buf, "[v2] Light:  [%d]\n\r", obj->value[2]);
-            send_to_char (buf, ch);
+                printf_to_char (ch, "[v2] Light:  [%d]\n\r", obj->value[2]);
             break;
 
         case ITEM_WAND:
         case ITEM_STAFF:
-            sprintf (buf,
-                     "[v0] Level:          [%d]\n\r"
-                     "[v1] Charges Total:  [%d]\n\r"
-                     "[v2] Charges Left:   [%d]\n\r"
-                     "[v3] Spell:          %s\n\r",
-                     obj->value[0],
-                     obj->value[1],
-                     obj->value[2],
-                     obj->value[3] != -1 ? skill_table[obj->value[3]].name
-                     : "none");
-            send_to_char (buf, ch);
+            printf_to_char (ch,
+                "[v0] Level:         [%d]\n\r"
+                "[v1] Charges Total: [%d]\n\r"
+                "[v2] Charges Left:  [%d]\n\r"
+                "[v3] Spell:         %s\n\r",
+                 obj->value[0],
+                 obj->value[1],
+                 obj->value[2],
+                 obj->value[3] != -1 ? skill_table[obj->value[3]].name
+                 : "none");
             break;
 
         case ITEM_PORTAL:
-            sprintf (buf,
-                     "[v0] Charges:        [%d]\n\r"
-                     "[v1] Exit Flags:     %s\n\r"
-                     "[v2] Portal Flags:   %s\n\r"
-                     "[v3] Goes to (vnum): [%d]\n\r",
-                     obj->value[0],
-                     flag_string (exit_flags, obj->value[1]),
-                     flag_string (portal_flags, obj->value[2]),
-                     obj->value[3]);
-            send_to_char (buf, ch);
+            printf_to_char (ch,
+                "[v0] Charges:        [%d]\n\r"
+                "[v1] Exit Flags:     %s\n\r"
+                "[v2] Portal Flags:   %s\n\r"
+                "[v3] Goes to (vnum): [%d]\n\r",
+                obj->value[0],
+                flag_string (exit_flags, obj->value[1]),
+                flag_string (portal_flags, obj->value[2]),
+                obj->value[3]);
             break;
 
         case ITEM_FURNITURE:
-            sprintf (buf,
-                     "[v0] Max people:      [%d]\n\r"
-                     "[v1] Max weight:      [%d]\n\r"
-                     "[v2] Furniture Flags: %s\n\r"
-                     "[v3] Heal bonus:      [%d]\n\r"
-                     "[v4] Mana bonus:      [%d]\n\r",
-                     obj->value[0],
-                     obj->value[1],
-                     flag_string (furniture_flags, obj->value[2]),
-                     obj->value[3], obj->value[4]);
-            send_to_char (buf, ch);
+            printf_to_char (ch,
+                "[v0] Max People:      [%d]\n\r"
+                "[v1] Max Weight:      [%d]\n\r"
+                "[v2] Furniture Flags: %s\n\r"
+                "[v3] Heal bonus:      [%d]\n\r"
+                "[v4] Mana bonus:      [%d]\n\r",
+                obj->value[0],
+                obj->value[1],
+                flag_string (furniture_flags, obj->value[2]),
+                obj->value[3], obj->value[4]);
             break;
 
         case ITEM_SCROLL:
         case ITEM_POTION:
         case ITEM_PILL:
-            sprintf (buf,
-                     "[v0] Level:  [%d]\n\r"
-                     "[v1] Spell:  %s\n\r"
-                     "[v2] Spell:  %s\n\r"
-                     "[v3] Spell:  %s\n\r"
-                     "[v4] Spell:  %s\n\r",
-                     obj->value[0],
-                     obj->value[1] != -1 ? skill_table[obj->value[1]].name
-                     : "none",
-                     obj->value[2] != -1 ? skill_table[obj->value[2]].name
-                     : "none",
-                     obj->value[3] != -1 ? skill_table[obj->value[3]].name
-                     : "none",
-                     obj->value[4] != -1 ? skill_table[obj->value[4]].name
-                     : "none");
-            send_to_char (buf, ch);
+            printf_to_char (ch,
+                "[v0] Level: [%d]\n\r"
+                "[v1] Spell: %s\n\r"
+                "[v2] Spell: %s\n\r"
+                "[v3] Spell: %s\n\r"
+                "[v4] Spell: %s\n\r",
+                obj->value[0],
+                obj->value[1] != -1 ? skill_table[obj->value[1]].name : "none",
+                obj->value[2] != -1 ? skill_table[obj->value[2]].name : "none",
+                obj->value[3] != -1 ? skill_table[obj->value[3]].name : "none",
+                obj->value[4] != -1 ? skill_table[obj->value[4]].name : "none");
             break;
 
         /* ARMOR for ROM */
         case ITEM_ARMOR:
-            sprintf (buf,
-                     "[v0] Ac pierce       [%d]\n\r"
-                     "[v1] Ac bash         [%d]\n\r"
-                     "[v2] Ac slash        [%d]\n\r"
-                     "[v3] Ac exotic       [%d]\n\r",
-                     obj->value[0], obj->value[1], obj->value[2],
-                     obj->value[3]);
-            send_to_char (buf, ch);
+            printf_to_char (ch,
+                "[v0] Ac Pierce: [%d]\n\r"
+                "[v1] Ac Bash:   [%d]\n\r"
+                "[v2] Ac Slash:  [%d]\n\r"
+                "[v3] Ac Exotic: [%d]\n\r",
+                obj->value[0],
+                obj->value[1],
+                obj->value[2],
+                obj->value[3]);
             break;
 
         /* WEAPON changed in ROM: */
         /* I had to split the output here, I have no idea why, but it helped -- Hugin */
         /* It somehow fixed a bug in showing scroll/pill/potions too ?! */
-        case ITEM_WEAPON:
-            sprintf (buf, "[v0] Weapon class:   %s\n\r",
-                     flag_string (weapon_types, obj->value[0]));
-            send_to_char (buf, ch);
-            sprintf (buf, "[v1] Number of dice: [%d]\n\r", obj->value[1]);
-            send_to_char (buf, ch);
-            sprintf (buf, "[v2] Type of dice:   [%d]\n\r", obj->value[2]);
-            send_to_char (buf, ch);
-            sprintf (buf, "[v3] Type:           %s\n\r",
-                     attack_table[obj->value[3]].name);
-            send_to_char (buf, ch);
-            sprintf (buf, "[v4] Special type:   %s\n\r",
-                     flag_string (weapon_flags, obj->value[4]));
-            send_to_char (buf, ch);
-            break;
 
-        case ITEM_CONTAINER:
-            sprintf (buf,
-                     "[v0] Weight:     [%d kg]\n\r"
-                     "[v1] Flags:      [%s]\n\r"
-                     "[v2] Key:     %s [%d]\n\r"
-                     "[v3] Capacity    [%d]\n\r"
-                     "[v4] Weight Mult [%d]\n\r",
-                     obj->value[0],
-                     flag_string (container_flags, obj->value[1]),
-                     get_obj_index (obj->value[2])
-                     ? get_obj_index (obj->value[2])->short_descr
-                     : "none", obj->value[2], obj->value[3], obj->value[4]);
-            send_to_char (buf, ch);
+        /* ^^^ flag_string() uses a static char[], which make be copied to at least one
+         *  separate buffer. -- Synival */
+        case ITEM_WEAPON: {
+            char wtype[MAX_STRING_LENGTH];
+            char wflags[MAX_STRING_LENGTH];
+            strcpy (wtype,  flag_string (weapon_types, obj->value[0]));
+            strcpy (wflags, flag_string (weapon_flags, obj->value[4]));
+
+            printf_to_char (ch,
+                "[v0] Weapon Class:   %s\n\r"
+                "[v1] Number of Dice: [%d]\n\r"
+                "[v2] Type of Dice:   [%d]\n\r"
+                "[v3] Type:           %s\n\r"
+                "[v4] Special Type:   %s\n\r",
+                wtype,
+                obj->value[1],
+                obj->value[2],
+                attack_table[obj->value[3]].name,
+                wflags);
             break;
+        }
+
+        case ITEM_CONTAINER: {
+            OBJ_INDEX_DATA *key = get_obj_index (obj->value[2]);
+            printf_to_char (ch,
+                "[v0] Weight:     [%d kg]\n\r"
+                "[v1] Flags:      [%s]\n\r"
+                "[v2] Key:        %s [%d]\n\r"
+                "[v3] Capacity    [%d]\n\r"
+                "[v4] Weight Mult [%d]\n\r",
+                obj->value[0],
+                flag_string (container_flags, obj->value[1]),
+                key ? key->short_descr : "none",
+                obj->value[2],
+                obj->value[3],
+                obj->value[4]);
+            break;
+        }
 
         case ITEM_DRINK_CON:
-            sprintf (buf,
-                     "[v0] Liquid Total: [%d]\n\r"
-                     "[v1] Liquid Left:  [%d]\n\r"
-                     "[v2] Liquid:       %s\n\r"
-                     "[v3] Poisoned:     %s\n\r",
-                     obj->value[0],
-                     obj->value[1],
-                     liq_table[obj->value[2]].name,
-                     obj->value[3] != 0 ? "Yes" : "No");
-            send_to_char (buf, ch);
+            printf_to_char (ch,
+                "[v0] Liquid Total: [%d]\n\r"
+                "[v1] Liquid Left:  [%d]\n\r"
+                "[v2] Liquid:       %s\n\r"
+                "[v3] Poisoned:     %s\n\r",
+                obj->value[0],
+                obj->value[1],
+                liq_table[obj->value[2]].name,
+                obj->value[3] != 0 ? "Yes" : "No");
             break;
 
         case ITEM_FOUNTAIN:
-            sprintf (buf,
-                     "[v0] Liquid Total: [%d]\n\r"
-                     "[v1] Liquid Left:  [%d]\n\r"
-                     "[v2] Liquid:        %s\n\r",
-                     obj->value[0],
-                     obj->value[1], liq_table[obj->value[2]].name);
-            send_to_char (buf, ch);
+            printf_to_char (ch,
+                "[v0] Liquid Total: [%d]\n\r"
+                "[v1] Liquid Left:  [%d]\n\r"
+                "[v2] Liquid:        %s\n\r",
+                obj->value[0],
+                obj->value[1],
+                liq_table[obj->value[2]].name);
             break;
 
         case ITEM_FOOD:
-            sprintf (buf,
-                     "[v0] Food hours: [%d]\n\r"
-                     "[v1] Full hours: [%d]\n\r"
-                     "[v3] Poisoned:   %s\n\r",
-                     obj->value[0],
-                     obj->value[1], obj->value[3] != 0 ? "Yes" : "No");
-            send_to_char (buf, ch);
+            printf_to_char (ch,
+                "[v0] Food hours: [%d]\n\r"
+                "[v1] Full hours: [%d]\n\r"
+                "[v3] Poisoned:   %s\n\r",
+                obj->value[0],
+                obj->value[1],
+                obj->value[3] != 0 ? "Yes" : "No");
             break;
 
         case ITEM_MONEY:
-            sprintf (buf, "[v0] Gold:   [%d]\n\r", obj->value[0]);
-            send_to_char (buf, ch);
+            printf_to_char (ch,
+                "[v0] Gold:   [%d]\n\r",
+                obj->value[0]);
             break;
     }
 }
@@ -409,7 +409,7 @@ bool set_obj_values (CHAR_DATA * ch, OBJ_INDEX_DATA * pObj, int value_num,
                     pObj->value[2] = atoi (argument);
                     break;
                 case 3:
-                    send_to_char ("CONTAINER MAX WEIGHT SET.\n\r", ch);
+                    send_to_char ("CONTAINER MAX WEIGHT SET.\n\r\n\r", ch);
                     pObj->value[3] = atoi (argument);
                     break;
                 case 4:
@@ -520,9 +520,9 @@ bool set_value (CHAR_DATA * ch, OBJ_INDEX_DATA * pObj, char *argument,
 }
 
 /*****************************************************************************
- Name:        oedit_values
+ Name:       oedit_values
  Purpose:    Finds the object and sets its value.
- Called by:    The four valueX functions below. (now five -- Hugin )
+ Called by:  The four valueX functions below. (now five -- Hugin )
  ****************************************************************************/
 bool oedit_values (CHAR_DATA * ch, char *argument, int value) {
     OBJ_INDEX_DATA *pObj;
@@ -534,79 +534,58 @@ bool oedit_values (CHAR_DATA * ch, char *argument, int value) {
 
 OEDIT (oedit_show) {
     OBJ_INDEX_DATA *pObj;
-    char buf[MAX_STRING_LENGTH];
     AFFECT_DATA *paf;
     int cnt;
 
     EDIT_OBJ (ch, pObj);
 
-    sprintf (buf, "Name:        [%s]\n\rArea:        [%5d] %s\n\r",
-             pObj->name,
-             !pObj->area ? -1 : pObj->area->vnum,
-             !pObj->area ? "No Area" : pObj->area->title);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Name:        [%s]\n\rArea:        [%5d] %s\n\r",
+        pObj->name,
+        !pObj->area ? -1 : pObj->area->vnum,
+        !pObj->area ? "No Area" : pObj->area->title);
 
-    sprintf (buf, "Vnum:        [%5d]\n\rType:        [%s]\n\r",
-             pObj->vnum, item_get_name (pObj->item_type));
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Level:       [%5d]\n\r", pObj->level);
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Wear flags:  [%s]\n\r",
-             flag_string (wear_flags, pObj->wear_flags));
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Extra flags: [%s]\n\r",
-             flag_string (extra_flags, pObj->extra_flags));
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Material:    [%s]\n\r",    /* ROM */
-             material_get_name (pObj->material));
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Condition:   [%5d]\n\r",    /* ROM */
-             pObj->condition);
-    send_to_char (buf, ch);
-
-    sprintf (buf, "Weight:      [%5d]\n\rCost:        [%5d]\n\r",
-             pObj->weight, pObj->cost);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Vnum:        [%5d]\n\rType:        [%s]\n\r",
+        pObj->vnum, item_get_name (pObj->item_type));
+    printf_to_char (ch, "Level:       [%5d]\n\r",
+        pObj->level);
+    printf_to_char (ch, "Wear flags:  [%s]\n\r",
+        flag_string (wear_flags, pObj->wear_flags));
+    printf_to_char (ch, "Extra flags: [%s]\n\r",
+        flag_string (extra_flags, pObj->extra_flags));
+    printf_to_char (ch, "Material:    [%s]\n\r",    /* ROM */
+        material_get_name (pObj->material));
+    printf_to_char (ch, "Condition:   [%5d]\n\r",    /* ROM */
+        pObj->condition);
+    printf_to_char (ch, "Weight:      [%5d]\n\rCost:        [%5d]\n\r",
+        pObj->weight, pObj->cost);
 
     if (pObj->extra_descr) {
         EXTRA_DESCR_DATA *ed;
-        send_to_char ("Ex desc kwd: ", ch);
+        send_to_char ("Ex desc kwd:", ch);
 
-        for (ed = pObj->extra_descr; ed; ed = ed->next) {
-            send_to_char ("[", ch);
-            send_to_char (ed->keyword, ch);
-            send_to_char ("]", ch);
-        }
+        for (ed = pObj->extra_descr; ed; ed = ed->next)
+            printf_to_char (ch, " [%s]", ed->keyword);
         send_to_char ("\n\r", ch);
     }
 
-    sprintf (buf, "Short desc:  %s\n\rLong desc:\n\r     %s\n\r",
-             pObj->short_descr, pObj->description);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Short desc:  %s\n\rLong desc:\n\r     %s\n\r",
+        pObj->short_descr, pObj->description);
 
     for (cnt = 0, paf = pObj->affected; paf; paf = paf->next) {
         if (cnt == 0) {
-            send_to_char ("Number Modifier Bits, Apply\n\r", ch);
-            send_to_char ("------ -------- -----------------\n\r", ch);
+            send_to_char ("Number Modifier Bits, Apply\n\r"
+                          "------ -------- -----------------\n\r", ch);
         }
-        sprintf (buf, "[%4d] %-8d %8s, %8s\n\r", cnt,
-                paf->modifier,
-                flag_string (affect_bit_types,   paf->bit_type),
-                flag_string (affect_apply_types, paf->apply));
-        send_to_char (buf, ch);
+        printf_to_char (ch, "[%4d] %-8d %8s, %8s\n\r",
+            cnt, paf->modifier,
+            affect_bit_get_name (paf->bit_type),
+            flag_string (affect_apply_types, paf->apply));
         cnt++;
     }
 
     show_obj_values (ch, pObj);
-
     return FALSE;
 }
-
 
 /* Need to issue warning if flag isn't valid. -- does so now -- Hugin.  */
 OEDIT (oedit_addaffect) {
@@ -621,10 +600,9 @@ OEDIT (oedit_addaffect) {
     argument = one_argument (argument, loc);
     one_argument (argument, mod);
 
-    if (loc[0] == '\0' || mod[0] == '\0' || !is_number (mod)) {
-        send_to_char ("Syntax:  addaffect [location] [#xmod]\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (loc[0] == '\0' || mod[0] == '\0' || !is_number (mod),
+        "Syntax:  addaffect [location] [#xmod]\n\r", ch, FALSE);
+
     if ((value = flag_value (affect_apply_types, loc)) == NO_FLAG) { /* Hugin */
         send_to_char ("Valid affects are:\n\r", ch);
         show_help (ch, "apply");
@@ -640,53 +618,56 @@ OEDIT (oedit_addaffect) {
 }
 
 OEDIT (oedit_addapply) {
-    int to, app;
-    flag_t bv;
+    int bit_type, app;
+    flag_t bit;
+    const AFFECT_BIT_TYPE *bit_type_obj;
     OBJ_INDEX_DATA *pObj;
     AFFECT_DATA *pAf;
-    char bit_buf[MAX_STRING_LENGTH];
+    char bit_type_buf[MAX_STRING_LENGTH];
     char app_buf[MAX_STRING_LENGTH];
     char mod[MAX_STRING_LENGTH];
-    char bvector[MAX_STRING_LENGTH];
+    char bit_buf[MAX_STRING_LENGTH];
 
     EDIT_OBJ (ch, pObj);
 
-    argument = one_argument (argument, bit_buf);
+    argument = one_argument (argument, bit_type_buf);
     argument = one_argument (argument, app_buf);
     argument = one_argument (argument, mod);
-    one_argument (argument, bvector);
+    one_argument (argument, bit_buf);
 
-    if (bit_buf[0] == '\0' || (to = flag_value (affect_bit_types, bit_buf)) == NO_FLAG) {
-        send_to_char ("Invalid bit type. Valid bit types are:\n\r", ch);
-        show_help (ch, "affect_bit_types");
+    if (mod[0] == '\0' || !is_number (mod)) {
+        send_to_char ("Syntax:  addapply [bit_type] [apply] [#xmod] [bit]\n\r", ch);
         return FALSE;
     }
 
-    if (app_buf[0] == '\0' || (app = flag_value (affect_apply_types, app_buf)) == NO_FLAG) {
+    if (bit_type_buf[0] == '\0' ||
+        (bit_type_obj = affect_bit_get_by_name (bit_type_buf)) == NULL)
+    {
+        send_to_char ("Invalid bit type. Valid bit types are:\n\r", ch);
+        show_help (ch, "affect_bit_table");
+        return FALSE;
+    }
+    bit_type = bit_type_obj->type;
+
+    if (app_buf[0] == '\0' ||
+        (app = flag_value (affect_apply_types, app_buf)) == NO_FLAG)
+    {
         send_to_char ("Invalid apply type. Valid apply types are:\n\r", ch);
         show_help (ch, "affect_apply_types");
         return FALSE;
     }
 
-    /* TODO: look this up... */
-#if 0
-    if (bvector[0] == '\0' || (bv = flag_value (bitvector_type[typ].table, bvector)) == NO_FLAG) {
-        send_to_char ("Invalid bitvector type.\n\r", ch);
-        send_to_char ("Valid bitvector types are:\n\r", ch);
-        //show_help (ch, bitvector_type[typ].help);
-        return FALSE;
-    }
-#else
-    bv = 0;
-#endif
-
-    if (mod[0] == '\0' || !is_number (mod)) {
-        send_to_char ("Syntax:  addapply [to] [apply] [#xmod] [bitvector]\n\r", ch);
+    if (bit_buf[0] == '\0' ||
+        (bit = flag_value (bit_type_obj->flags, bit_buf)) == NO_FLAG)
+    {
+        send_to_char ("Invalid bit. Valid bits are: \n\r", ch);
+        send_to_char ("Valid flag types are:\n\r", ch);
+        show_help (ch, bit_type_obj->help);
         return FALSE;
     }
 
     pAf = affect_new ();
-    affect_init (pAf, to, -1, pObj->level, -1, app, atoi (mod), bv);
+    affect_init (pAf, bit_type, -1, pObj->level, -1, app, atoi (mod), bit);
     LIST_FRONT (pAf, next, pObj->affected);
 
     send_to_char ("Apply added.\n\r", ch);
