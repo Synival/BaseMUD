@@ -159,7 +159,7 @@ Some small changes have been made, most of which are small quality-of-life
 improvements, some of which are personal preferences that will eventually be
 phased out or at least optional. A handful of changes were just for fun.
 
-**New features that can be disabled by uncommenting `#define VANILLA` in `basemud.h`:**
+**New features that can be enabled by uncommenting `#define VANILLA` in `basemud.h`:**
 
 * More status noficiations in addition to 'excellent', 'nasty wounds', etc.
 * Room titles are now colored based on their terrain type.
