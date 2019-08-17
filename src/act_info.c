@@ -564,7 +564,11 @@ void do_exits (CHAR_DATA * ch, char *argument) {
         found = TRUE;
 
         if (fAuto) {
+#ifndef VANILLA
             strcat (buf, closed ? " #" : isdoor ? " -" : " ");
+#else
+            strcat (buf, " ");
+#endif
             strcat (buf, door_get_name(door));
         }
         else {
