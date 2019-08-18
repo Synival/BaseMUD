@@ -60,6 +60,10 @@ extern const WEAR_TYPE        wear_table[WEAR_MAX + 1];
 extern const MATERIAL_TYPE    material_table[MATERIAL_MAX + 1];
 extern const COLOUR_SETTING_TYPE colour_setting_table[COLOUR_MAX + 1];
 extern const WIZNET_TYPE      wiznet_table[WIZNET_MAX + 1];
+extern const DAY_TYPE         day_table[DAY_MAX + 1];
+extern const MONTH_TYPE       month_table[MONTH_MAX + 1];
+extern const SKY_TYPE         sky_table[SKY_MAX + 1];
+extern const SUN_TYPE         sun_table[SUN_MAX + 1];
 
 extern const MAP_LOOKUP_TABLE map_lookup_table[];
 extern const MAP_LOOKUP_TABLE map_flags_table[];

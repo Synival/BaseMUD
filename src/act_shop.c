@@ -55,7 +55,8 @@ bool do_filter_get_keeper (CHAR_DATA *ch, CHAR_DATA **out_keeper) {
     FILTER ((shop = char_get_shop (keeper)) == NULL,
         "They don't have a shop.\n\r", ch);
 
-    /* Undesirables. *
+    /* Undesirables. */
+#if 0
     if (!IS_NPC(ch) && IS_SET(ch->plr, PLR_KILLER)) {
         do_function (keeper, &do_say, "Killers are not welcome!");
         sprintf (buf, "%s the KILLER is over here!\n\r", ch->name);
@@ -68,7 +69,7 @@ bool do_filter_get_keeper (CHAR_DATA *ch, CHAR_DATA **out_keeper) {
         do_function (keeper, &do_yell, buf);
         return NULL;
     }
-    */
+#endif
 
     /* Shop hours. */
     if (time_info.hour < shop->open_hour) {
@@ -115,7 +116,7 @@ void do_buy_pet (CHAR_DATA *ch, char *argument) {
 
     in_room = ch->in_room;
     ch->in_room = pRoomIndexNext;
-    pet = find_char_room (ch, arg);
+    pet = find_char_same_room (ch, arg);
     ch->in_room = in_room;
 
     BAIL_IF (pet == NULL || !IS_PET (pet),
@@ -373,7 +374,7 @@ void do_sell (CHAR_DATA * ch, char *argument) {
     if (do_filter_get_keeper (ch, &keeper))
         return;
 
-    BAIL_IF_ACT ((obj = find_carry (ch, arg)) == NULL,
+    BAIL_IF_ACT ((obj = find_obj_own_inventory (ch, arg)) == NULL,
         "$N tells you 'You don't have that item'.", ch, NULL, keeper);
     BAIL_IF (!char_can_drop_obj (ch, obj),
         "You can't let go of it.\n\r", ch);
@@ -435,7 +436,7 @@ void do_value (CHAR_DATA * ch, char *argument) {
     if (do_filter_get_keeper (ch, &keeper))
         return;
 
-    BAIL_IF_ACT ((obj = find_carry (ch, arg)) == NULL,
+    BAIL_IF_ACT ((obj = find_obj_own_inventory (ch, arg)) == NULL,
         "$N tells you 'You don't have that item'.", ch, NULL, keeper);
     BAIL_IF_ACT (!char_can_see_obj (keeper, obj),
         "$N doesn't see what you are offering.", ch, NULL, keeper);

@@ -227,6 +227,8 @@ static int json_indent_level = 0;
 static int json_nest_level = 0;
 static int json_indented = 0;
 
+#define INDENT_SIZE 2
+
 static void json_print_indent (FILE *fp) {
     static int last_indent = 0;
     static char space_buf[256];
@@ -236,19 +238,19 @@ static void json_print_indent (FILE *fp) {
         return;
 
     while (last_indent < json_indent_level) {
-        int pos = last_indent * 4;
-        for (i = 0; i < 4; i++)
+        int pos = last_indent * INDENT_SIZE;
+        for (i = 0; i < INDENT_SIZE; i++)
             space_buf[pos++] = ' ';
         space_buf[pos] = '\0';
         last_indent++;
     }
 
     if (last_indent > json_indent_level) {
-        space_buf[json_indent_level * 4] = '\0';
+        space_buf[json_indent_level * INDENT_SIZE] = '\0';
         last_indent = json_indent_level;
     }
 
-    fwrite (space_buf, sizeof (char), json_indent_level * 4, fp);
+    fwrite (space_buf, sizeof (char), json_indent_level * INDENT_SIZE, fp);
     json_indented = 1;
 }
 

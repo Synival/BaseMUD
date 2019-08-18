@@ -39,7 +39,7 @@ DEFINE_SPELL_FUN (spell_continual_light) {
     OBJ_DATA *light;
 
     if (target_name[0] != '\0') { /* do a glow on some object */
-        light = find_carry (ch, target_name);
+        light = find_obj_own_inventory (ch, target_name);
 
         BAIL_IF (light == NULL,
             "You don't see that here.\n\r", ch);

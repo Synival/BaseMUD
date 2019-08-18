@@ -25,6 +25,8 @@
  *   ROM license, in the file Rom24/doc/rom.license                        *
  ***************************************************************************/
 
+#include <stdlib.h>
+
 #include "interp.h"
 #include "utils.h"
 #include "chars.h"
@@ -33,23 +35,59 @@
 
 #include "find.h"
 
-/* TODO: find_obj_here() doesn't properly take 1., 2., etc. into account.
- *       it SHOULD build a large list of potential items and search through
- *       that. */
+/* TODO: this 'find_continue_count()' stuff is a big hack! eventually there
+ *       should be a fancier counting system that takes a big list of _all_
+ *       items, even of different types. Not so easy in C... */
 /* TODO: funnel ALL find_XXX() functions to 'find_XXX_array', which then
- *       handles all the 1., 2., etc. */
+ *       handles all the 1., 2., etc. (this will be slow, so maybe not... ) */
 /* TODO: write 'find_XXX_array_many' that can handle 'all' and the
  *       'all.' prefix */
 
-/* Find a char in the room. */
-CHAR_DATA *find_char_room (CHAR_DATA * ch, char *argument) {
+int find_last_count = 0;
+int find_next_count = 0;
+
+int find_number_argument (char *arg_in, char *arg_out) {
+    int number;
+    number = number_argument (arg_in, arg_out);
+    find_stop_counting ();
+    return number;
+}
+
+void find_continue_counting (void) {
+    find_next_count = find_last_count;
+}
+
+void find_stop_counting (void) {
+    find_next_count = 0;
+    find_last_count = 0;
+}
+
+ROOM_INDEX_DATA *find_location (CHAR_DATA * ch, char *arg) {
+    CHAR_DATA *victim;
+    OBJ_DATA *obj;
+
+    if (is_number (arg))
+        return get_room_index (atoi (arg));
+
+    if ((victim = find_char_world (ch, arg)) != NULL)
+        return victim->in_room;
+    find_continue_counting();
+
+    if ((obj = find_obj_world (ch, arg)) != NULL)
+        return obj->in_room;
+
+    return NULL;
+}
+
+CHAR_DATA *find_char_same_room (CHAR_DATA * ch, char *argument) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *rch;
     int number;
     int count;
 
-    number = number_argument (argument, arg);
-    count = 0;
+    count = find_next_count;
+    number = find_number_argument (argument, arg);
+
     if (!str_cmp (arg, "self"))
         return ch;
     for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
@@ -58,115 +96,115 @@ CHAR_DATA *find_char_room (CHAR_DATA * ch, char *argument) {
         if (!is_name (arg, rch->name))
             continue;
         if (++count == number)
-            return rch;
+            break;
     }
-    return NULL;
+
+    find_last_count = count;
+    return rch;
 }
 
-/* Find a char in the world. */
 CHAR_DATA *find_char_world (CHAR_DATA * ch, char *argument) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *wch;
     int number;
     int count;
 
-    if ((wch = find_char_room (ch, argument)) != NULL)
+    if ((wch = find_char_same_room (ch, argument)) != NULL)
         return wch;
+    find_continue_counting ();
 
-    number = number_argument (argument, arg);
-    count = 0;
+    count = find_next_count;
+    number = find_number_argument (argument, arg);
+
     for (wch = char_list; wch != NULL; wch = wch->next) {
+        /* Skip characters that aren't in the game. */
         if (wch->in_room == NULL)
             continue;
-        if (!char_can_see_anywhere (ch, wch))
+
+        /* We already checked objects here; skip them! */
+        if (wch->in_room == ch->in_room)
             continue;
         if (!is_name (arg, wch->name))
             continue;
+        if (!char_can_see_anywhere (ch, wch))
+            continue;
         if (++count == number)
-            return wch;
+            break;
     }
-    return NULL;
+
+    find_last_count = count;
+    return wch;
 }
 
-/* Find an obj in a list. */
-OBJ_DATA *find_obj_list (CHAR_DATA *ch, OBJ_DATA *list, char *argument) {
+#define WORN_NO     -1
+#define WORN_IGNORE  0
+#define WORN_YES     1
+
+OBJ_DATA *find_obj_room (CHAR_DATA *ch, ROOM_INDEX_DATA *room, char *argument)
+    { return find_obj_list (ch, room->contents, argument, WORN_IGNORE); }
+OBJ_DATA *find_obj_same_room (CHAR_DATA *ch, char *argument)
+    { return find_obj_room (ch, ch->in_room, argument); }
+OBJ_DATA *find_obj_container (CHAR_DATA *ch, OBJ_DATA *obj, char *argument)
+    { return find_obj_list (ch, obj->contains, argument, WORN_IGNORE); }
+
+OBJ_DATA *find_obj_char (CHAR_DATA *ch, CHAR_DATA *victim, char *argument)
+    { return find_obj_list (ch, victim->carrying, argument, WORN_IGNORE); }
+OBJ_DATA *find_obj_worn (CHAR_DATA * ch, CHAR_DATA *victim, char *argument)
+    { return find_obj_list (ch, victim->carrying, argument, WORN_YES); }
+OBJ_DATA *find_obj_inventory (CHAR_DATA *ch, CHAR_DATA *victim, char *argument)
+    { return find_obj_list (ch, victim->carrying, argument, WORN_NO); }
+
+OBJ_DATA *find_obj_own_char (CHAR_DATA *ch, char *argument)
+    { return find_obj_char (ch, ch, argument); }
+OBJ_DATA *find_obj_own_inventory (CHAR_DATA *ch, char *argument)
+    { return find_obj_inventory (ch, ch, argument); }
+OBJ_DATA *find_obj_own_worn (CHAR_DATA * ch, char *argument)
+    { return find_obj_worn (ch, ch, argument); }
+
+OBJ_DATA *find_obj_list (CHAR_DATA *ch, OBJ_DATA *list, char *argument,
+    int worn)
+{
     char arg[MAX_INPUT_LENGTH];
     OBJ_DATA *obj;
     int number;
     int count;
 
-    number = number_argument (argument, arg);
-    count = 0;
+    count = find_next_count;
+    number = find_number_argument (argument, arg);
+
     for (obj = list; obj != NULL; obj = obj->next_content) {
-        if (!char_can_see_obj (ch, obj))
+        if (worn == WORN_NO && obj->wear_loc != WEAR_NONE)
             continue;
-        if (!is_name (arg, obj->name))
-            continue;
-        if (++count == number)
-            return obj;
-    }
-    return NULL;
-}
-
-/* Find an obj in player's inventory. */
-OBJ_DATA *find_obj_char (CHAR_DATA *ch, CHAR_DATA *victim, char *argument) {
-    char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
-    int number;
-    int count;
-
-    number = number_argument (argument, arg);
-    count = 0;
-    for (obj = victim->carrying; obj != NULL; obj = obj->next_content) {
-        if (obj->wear_loc != WEAR_NONE)
+        if (worn == WORN_YES && obj->wear_loc == WEAR_NONE)
             continue;
         if (!char_can_see_obj (ch, obj))
             continue;
         if (!is_name (arg, obj->name))
             continue;
         if (++count == number)
-            return obj;
+            break;
     }
-    return NULL;
-}
 
-OBJ_DATA *find_carry (CHAR_DATA *ch, char *argument) {
-    return find_obj_char (ch, ch, argument);
-}
-
-/* Find an obj in player's equipment. */
-OBJ_DATA *find_eq (CHAR_DATA * ch, char *argument) {
-    char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
-    int number;
-    int count;
-
-    number = number_argument (argument, arg);
-    count = 0;
-    for (obj = ch->carrying; obj != NULL; obj = obj->next_content) {
-        if (obj->wear_loc == WEAR_NONE)
-            continue;
-        if (!char_can_see_obj (ch, obj))
-            continue;
-        if (!is_name (arg, obj->name))
-            continue;
-        if (++count == number)
-            return obj;
-    }
-    return NULL;
+    find_last_count = count;
+    return obj;
 }
 
 /* Find an obj in the room or in inventory. */
 OBJ_DATA *find_obj_here (CHAR_DATA * ch, char *argument) {
     OBJ_DATA *obj;
-    if ((obj = find_obj_list (ch, ch->in_room->contents, argument)) != NULL)
+
+    if ((obj = find_obj_same_room (ch, argument)) != NULL)
         return obj;
-    else if ((obj = find_carry (ch, argument)) != NULL)
+    find_continue_counting ();
+
+    if ((obj = find_obj_own_inventory (ch, argument)) != NULL)
         return obj;
-    else if ((obj = find_eq (ch, argument)) != NULL)
+    find_continue_counting ();
+
+    if ((obj = find_obj_own_worn (ch, argument)) != NULL)
         return obj;
-    else
-        return NULL;
+
+    return NULL;
 }
 
 /* Find an obj in the world. */
@@ -178,30 +216,40 @@ OBJ_DATA *find_obj_world (CHAR_DATA * ch, char *argument) {
 
     if ((obj = find_obj_here (ch, argument)) != NULL)
         return obj;
+    find_continue_counting ();
 
-    number = number_argument (argument, arg);
-    count = 0;
+    count = find_next_count;
+    number = find_number_argument (argument, arg);
+
     for (obj = object_list; obj != NULL; obj = obj->next) {
+        /* We already checked objects here; skip them! */
+        if (obj->carried_by == ch || obj->in_room == ch->in_room)
+            continue;
+
         if (!char_can_see_obj (ch, obj))
             continue;
         if (!is_name (arg, obj->name))
             continue;
         if (++count == number)
-            return obj;
+            break;
     }
-    return NULL;
+
+    find_last_count = count;
+    return obj;
 }
 
 /* get an object from a shopkeeper's list */
 OBJ_DATA *find_obj_keeper (CHAR_DATA * ch, CHAR_DATA * keeper,
-    char *argument) {
+    char *argument)
+{
     char arg[MAX_INPUT_LENGTH];
     OBJ_DATA *obj;
     int number;
     int count;
 
-    number = number_argument (argument, arg);
-    count = 0;
+    count = find_next_count;
+    number = find_number_argument (argument, arg);
+
     for (obj = keeper->carrying; obj != NULL; obj = obj->next_content) {
         if (obj->wear_loc != WEAR_NONE)
             continue;
@@ -212,7 +260,7 @@ OBJ_DATA *find_obj_keeper (CHAR_DATA * ch, CHAR_DATA * keeper,
         if (!is_name (arg, obj->name))
             continue;
         if (++count == number)
-            return obj;
+            break;
 
         /* skip other objects of the same name */
         while (obj->next_content != NULL
@@ -220,5 +268,36 @@ OBJ_DATA *find_obj_keeper (CHAR_DATA * ch, CHAR_DATA * keeper,
                && !str_cmp (obj->short_descr, obj->next_content->short_descr))
             obj = obj->next_content;
     }
-    return NULL;
+
+    find_last_count = count;
+    return obj;
+}
+
+int find_door_same_room (CHAR_DATA *ch, char *argument) {
+    char arg[MAX_INPUT_LENGTH];
+    EXIT_DATA *pexit;
+    int door;
+    int number;
+    int count;
+
+    count = find_next_count;
+    number = find_number_argument (argument, arg);
+
+    for (door = 0; door < DIR_MAX; door++) {
+        if ((pexit = ch->in_room->exit[door]) == NULL)
+            continue;
+        if (!IS_SET (pexit->exit_flags, EX_ISDOOR))
+            continue;
+        if (pexit->keyword == NULL)
+            continue;
+        if (!is_name (arg, pexit->keyword))
+            continue;
+        if (++count == number)
+            break;
+    }
+    if (door == DIR_MAX)
+        door = -1;
+
+    find_last_count = count;
+    return door;
 }

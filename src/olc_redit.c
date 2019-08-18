@@ -925,7 +925,7 @@ REDIT (redit_oreset) {
     }
     /* Load into object's inventory. */
     else if (argument[0] == '\0' &&
-        ((to_obj = find_obj_list (ch, pRoom->contents, arg2)) != NULL))
+        ((to_obj = find_obj_room (ch, pRoom, arg2)) != NULL))
     {
         pReset = reset_data_new ();
         pReset->command = 'P';
@@ -946,7 +946,7 @@ REDIT (redit_oreset) {
         send_to_char (output, ch);
     }
     /* Load into mobile's inventory. */
-    else if ((to_mob = find_char_room (ch, arg2)) != NULL) {
+    else if ((to_mob = find_char_same_room (ch, arg2)) != NULL) {
         int wear_loc;
 
         /* Make sure the location on mobile is valid.  */

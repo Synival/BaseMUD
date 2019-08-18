@@ -7,3 +7,5 @@
 /area/*.dmp
 /area/orphaned_helps.txt
 /bin/rom
+/Dockerfile
+/docker-compose.yml

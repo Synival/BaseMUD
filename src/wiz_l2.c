@@ -42,35 +42,29 @@
 #include "wiz_l2.h"
 
 /* TODO: review most of these functions and test them thoroughly. */
-/* TODO: BAIL_IF() clauses. */
-/* TODO: employ tables whenever possible */
+/* TODO: do_mset() should employ some sort of table for stats. */
+/* TODO: do_oset() should employ some sort of table for stats. */
 
 void do_allow (CHAR_DATA * ch, char *argument) {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_STRING_LENGTH];
     BAN_DATA *pban, *prev, *pban_next;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Remove which site from the ban list?\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Remove which site from the ban list?\n\r", ch);
 
     prev = NULL;
     for (pban = ban_first; pban; prev = pban, pban = pban_next) {
         pban_next = pban->next;
         if (str_cmp (arg, pban->name))
             continue;
-        if (pban->level > char_get_trust (ch)) {
-            send_to_char ("You are not powerful enough to lift that ban.\n\r", ch);
-            return;
-        }
+        BAIL_IF (pban->level > char_get_trust (ch),
+            "You are not powerful enough to lift that ban.\n\r", ch);
 
         LISTB_REMOVE_WITH_PREV (pban, prev, next, ban_first, ban_last);
         ban_free (pban);
 
-        sprintf (buf, "Ban on %s lifted.\n\r", arg);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "Ban on %s lifted.\n\r", arg);
         save_bans ();
         return;
     }
@@ -97,22 +91,16 @@ void do_set (CHAR_DATA * ch, char *argument) {
         send_to_char ("  set skill     <name> <spell or skill> <value>\n\r", ch);
         return;
     }
-    if (!str_prefix (arg, "mobile") || !str_prefix (arg, "character")) {
-        do_function (ch, &do_mset, argument);
-        return;
-    }
-    if (!str_prefix (arg, "skill") || !str_prefix (arg, "spell")) {
-        do_function (ch, &do_sset, argument);
-        return;
-    }
-    if (!str_prefix (arg, "object")) {
-        do_function (ch, &do_oset, argument);
-        return;
-    }
-    if (!str_prefix (arg, "room")) {
-        do_function (ch, &do_rset, argument);
-        return;
-    }
+
+    BAIL_IF_EXPR (!str_prefix (arg, "mobile") || !str_prefix (arg, "character"),
+        do_function (ch, &do_mset, argument));
+    BAIL_IF_EXPR (!str_prefix (arg, "skill") || !str_prefix (arg, "spell"),
+        do_function (ch, &do_sset, argument));
+    BAIL_IF_EXPR (!str_prefix (arg, "object"),
+        do_function (ch, &do_oset, argument));
+    BAIL_IF_EXPR (!str_prefix (arg, "room"),
+        do_function (ch, &do_rset, argument));
+
     /* echo syntax */
     do_function (ch, &do_set, "");
 }
@@ -138,33 +126,23 @@ void do_sset (CHAR_DATA * ch, char *argument) {
         return;
     }
 
-    if ((victim = find_char_world (ch, arg1)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (IS_NPC (victim)) {
-        send_to_char ("Not on NPC's.\n\r", ch);
-        return;
-    }
+    BAIL_IF ((victim = find_char_world (ch, arg1)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (IS_NPC (victim),
+        "Not on NPC's.\n\r", ch);
 
     fAll = !str_cmp (arg2, "all");
     sn = 0;
-    if (!fAll && (sn = skill_lookup (arg2)) < 0) {
-        send_to_char ("No such skill or spell.\n\r", ch);
-        return;
-    }
+    BAIL_IF (!fAll && (sn = skill_lookup (arg2)) < 0,
+        "No such skill or spell.\n\r", ch);
 
     /* Snarf the value. */
-    if (!is_number (arg3)) {
-        send_to_char ("Value must be numeric.\n\r", ch);
-        return;
-    }
+    BAIL_IF (!is_number (arg3),
+        "Value must be numeric.\n\r", ch);
 
     value = atoi (arg3);
-    if (value < 0 || value > 100) {
-        send_to_char ("Value range is 0 to 100.\n\r", ch);
-        return;
-    }
+    BAIL_IF (value < 0 || value > 100,
+        "Value range is 0 to 100.\n\r", ch);
 
     if (fAll) {
         for (sn = 0; sn < SKILL_MAX; sn++)
@@ -179,7 +157,6 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     char arg1[MIL];
     char arg2[MIL];
     char arg3[MIL];
-    char buf[100];
     CHAR_DATA *victim;
     int value;
 
@@ -199,10 +176,8 @@ void do_mset (CHAR_DATA * ch, char *argument) {
         return;
     }
 
-    if ((victim = find_char_world (ch, arg1)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
+    BAIL_IF ((victim = find_char_world (ch, arg1)) == NULL,
+        "They aren't here.\n\r", ch);
 
     /* clear zones for mobs */
     victim->zone = NULL;
@@ -213,10 +188,8 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     /* Set something. */
     if (!str_cmp (arg2, "str")) {
         if (value < 3 || value > char_get_max_train (victim, STAT_STR)) {
-            sprintf (buf,
-                     "Strength range is 3 to %d\n\r.",
-                     char_get_max_train (victim, STAT_STR));
-            send_to_char (buf, ch);
+            printf_to_char (ch, "Strength range is 3 to %d\n\r.",
+                char_get_max_train (victim, STAT_STR));
             return;
         }
         victim->perm_stat[STAT_STR] = value;
@@ -224,14 +197,10 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     }
 
     if (!str_cmp (arg2, "security")) { /* OLC */
-        if (IS_NPC (ch)) {
-            send_to_char ("NPC's can't set this value.\n\r", ch);
-            return;
-        }
-        if (IS_NPC (victim)) {
-            send_to_char ("Not on NPC's.\n\r", ch);
-            return;
-        }
+        BAIL_IF (IS_NPC (ch),
+            "NPC's can't set this value.\n\r", ch);
+        BAIL_IF (IS_NPC (victim),
+            "Not on NPC's.\n\r", ch);
         if (value > ch->pcdata->security || value < 0) {
             if (ch->pcdata->security != 0)
                 printf_to_char (ch, "Valid security is 0-%d.\n\r", ch->pcdata->security);
@@ -246,7 +215,7 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     if (!str_cmp (arg2, "int")) {
         if (value < 3 || value > char_get_max_train (victim, STAT_INT)) {
             printf_to_char (ch, "Intelligence range is 3 to %d.\n\r",
-                            char_get_max_train (victim, STAT_INT));
+                char_get_max_train (victim, STAT_INT));
             return;
         }
         victim->perm_stat[STAT_INT] = value;
@@ -256,7 +225,7 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     if (!str_cmp (arg2, "wis")) {
         if (value < 3 || value > char_get_max_train (victim, STAT_WIS)) {
             printf_to_char (ch, "Wisdom range is 3 to %d.\n\r",
-                            char_get_max_train (victim, STAT_WIS));
+                char_get_max_train (victim, STAT_WIS));
             return;
         }
         victim->perm_stat[STAT_WIS] = value;
@@ -266,7 +235,7 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     if (!str_cmp (arg2, "dex")) {
         if (value < 3 || value > char_get_max_train (victim, STAT_DEX)) {
             printf_to_char (ch, "Dexterity range is 3 to %d.\n\r",
-                            char_get_max_train (victim, STAT_DEX));
+                char_get_max_train (victim, STAT_DEX));
             return;
         }
         victim->perm_stat[STAT_DEX] = value;
@@ -276,7 +245,7 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     if (!str_cmp (arg2, "con")) {
         if (value < 3 || value > char_get_max_train (victim, STAT_CON)) {
             printf_to_char (ch, "Constitution range is 3 to %d.\n\r",
-                            char_get_max_train (victim, STAT_CON));
+                char_get_max_train (victim, STAT_CON));
             return;
         }
         victim->perm_stat[STAT_CON] = value;
@@ -284,10 +253,8 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     }
 
     if (!str_prefix (arg2, "sex")) {
-        if (value < 0 || value > 2) {
-            send_to_char ("Sex range is 0 to 2.\n\r", ch);
-            return;
-        }
+        BAIL_IF (value < 0 || value > 2,
+            "Sex range is 0 to 2.\n\r", ch);
         victim->sex = value;
         if (!IS_NPC (victim))
             victim->pcdata->true_sex = value;
@@ -296,10 +263,8 @@ void do_mset (CHAR_DATA * ch, char *argument) {
 
     if (!str_prefix (arg2, "class")) {
         int class;
-        if (IS_NPC (victim)) {
-            send_to_char ("Mobiles have no class.\n\r", ch);
-            return;
-        }
+        BAIL_IF (IS_NPC (victim),
+            "Mobiles have no class.\n\r", ch);
 
         class = class_lookup (arg3);
         if (class == -1) {
@@ -322,13 +287,10 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     }
 
     if (!str_prefix (arg2, "level")) {
-        if (!IS_NPC (victim)) {
-            send_to_char ("Not on PC's.\n\r", ch);
-            return;
-        }
+        BAIL_IF (!IS_NPC (victim),
+            "Not on PC's.\n\r", ch);
         if (value < 0 || value > MAX_LEVEL) {
-            sprintf (buf, "Level range is 0 to %d.\n\r", MAX_LEVEL);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "Level range is 0 to %d.\n\r", MAX_LEVEL);
             return;
         }
         victim->level = value;
@@ -344,10 +306,8 @@ void do_mset (CHAR_DATA * ch, char *argument) {
         return;
     }
     if (!str_prefix (arg2, "hp")) {
-        if (value < -10 || value > 30000) {
-            send_to_char ("Hp range is -10 to 30,000 hit points.\n\r", ch);
-            return;
-        }
+        BAIL_IF (value < -10 || value > 30000,
+            "Hp range is -10 to 30,000 hit points.\n\r", ch);
         victim->max_hit = value;
         if (!IS_NPC (victim))
             victim->pcdata->perm_hit = value;
@@ -355,10 +315,8 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     }
 
     if (!str_prefix (arg2, "mana")) {
-        if (value < 0 || value > 30000) {
-            send_to_char ("Mana range is 0 to 30,000 mana points.\n\r", ch);
-            return;
-        }
+        BAIL_IF (value < 0 || value > 30000,
+            "Mana range is 0 to 30,000 mana points.\n\r", ch);
         victim->max_mana = value;
         if (!IS_NPC (victim))
             victim->pcdata->perm_mana = value;
@@ -366,10 +324,8 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     }
 
     if (!str_prefix (arg2, "move")) {
-        if (value < 0 || value > 30000) {
-            send_to_char ("Move range is 0 to 30,000 move points.\n\r", ch);
-            return;
-        }
+        BAIL_IF (value < 0 || value > 30000,
+            "Move range is 0 to 30,000 move points.\n\r", ch);
         victim->max_move = value;
         if (!IS_NPC (victim))
             victim->pcdata->perm_move = value;
@@ -377,125 +333,91 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     }
 
     if (!str_prefix (arg2, "practice")) {
-        if (value < 0 || value > 250) {
-            send_to_char ("Practice range is 0 to 250 sessions.\n\r", ch);
-            return;
-        }
+        BAIL_IF (value < 0 || value > 250,
+            "Practice range is 0 to 250 sessions.\n\r", ch);
         victim->practice = value;
         return;
     }
 
     if (!str_prefix (arg2, "train")) {
-        if (value < 0 || value > 50) {
-            send_to_char ("Training session range is 0 to 50 sessions.\n\r", ch);
-            return;
-        }
+        BAIL_IF (value < 0 || value > 50,
+            "Training session range is 0 to 50 sessions.\n\r", ch);
         victim->train = value;
         return;
     }
 
     if (!str_prefix (arg2, "align")) {
-        if (value < -1000 || value > 1000) {
-            send_to_char ("Alignment range is -1000 to 1000.\n\r", ch);
-            return;
-        }
+        BAIL_IF (value < -1000 || value > 1000,
+            "Alignment range is -1000 to 1000.\n\r", ch);
         victim->alignment = value;
         return;
     }
 
     if (!str_prefix (arg2, "thirst")) {
-        if (IS_NPC (victim)) {
-            send_to_char ("Not on NPC's.\n\r", ch);
-            return;
-        }
-        if (value < -1 || value > 100) {
-            send_to_char ("Thirst range is -1 to 100.\n\r", ch);
-            return;
-        }
+        BAIL_IF (IS_NPC (victim),
+            "Not on NPC's.\n\r", ch);
+        BAIL_IF (value < -1 || value > 100,
+            "Thirst range is -1 to 100.\n\r", ch);
         victim->pcdata->condition[COND_THIRST] = value;
         return;
     }
 
     if (!str_prefix (arg2, "drunk")) {
-        if (IS_NPC (victim)) {
-            send_to_char ("Not on NPC's.\n\r", ch);
-            return;
-        }
-        if (value < -1 || value > 100) {
-            send_to_char ("Drunk range is -1 to 100.\n\r", ch);
-            return;
-        }
+        BAIL_IF (IS_NPC (victim),
+            "Not on NPC's.\n\r", ch);
+        BAIL_IF (value < -1 || value > 100,
+            "Drunk range is -1 to 100.\n\r", ch);
         victim->pcdata->condition[COND_DRUNK] = value;
         return;
     }
 
     if (!str_prefix (arg2, "full")) {
-        if (IS_NPC (victim)) {
-            send_to_char ("Not on NPC's.\n\r", ch);
-            return;
-        }
-        if (value < -1 || value > 100) {
-            send_to_char ("Full range is -1 to 100.\n\r", ch);
-            return;
-        }
+        BAIL_IF (IS_NPC (victim),
+            "Not on NPC's.\n\r", ch);
+        BAIL_IF (value < -1 || value > 100,
+            "Full range is -1 to 100.\n\r", ch);
         victim->pcdata->condition[COND_FULL] = value;
         return;
     }
 
     if (!str_prefix (arg2, "hunger")) {
-        if (IS_NPC (victim)) {
-            send_to_char ("Not on NPC's.\n\r", ch);
-            return;
-        }
-        if (value < -1 || value > 100) {
-            send_to_char ("Full range is -1 to 100.\n\r", ch);
-            return;
-        }
+        BAIL_IF (IS_NPC (victim),
+            "Not on NPC's.\n\r", ch);
+        BAIL_IF (value < -1 || value > 100,
+            "Full range is -1 to 100.\n\r", ch);
         victim->pcdata->condition[COND_HUNGER] = value;
         return;
     }
 
     if (!str_prefix (arg2, "race")) {
         int race = race_lookup (arg3);
-        if (race <= 0) {
-            send_to_char ("That is not a valid race.\n\r", ch);
-            return;
-        }
-        if (!IS_NPC (victim) && !race_table[race].pc_race) {
-            send_to_char ("That is not a valid player race.\n\r", ch);
-            return;
-        }
+        BAIL_IF (race <= 0,
+            "That is not a valid race.\n\r", ch);
+        BAIL_IF (!IS_NPC (victim) && !race_table[race].pc_race,
+            "That is not a valid player race.\n\r", ch);
         victim->race = race;
         return;
     }
 
     if (!str_prefix (arg2, "group")) {
-        if (!IS_NPC (victim)) {
-            send_to_char ("Only on NPCs.\n\r", ch);
-            return;
-        }
+        BAIL_IF (!IS_NPC (victim),
+            "Only on NPCs.\n\r", ch);
         victim->group = value;
         return;
     }
 
     if (!str_prefix (arg2, "hours")) {
-        if (IS_NPC (victim)) {
-            send_to_char ("Not on NPC's.\n\r", ch);
-            return;
-        }
-        if (!is_number (arg3)) {
-            send_to_char ("Value must be numeric.\n\r", ch);
-            return;
-        }
+        BAIL_IF (IS_NPC (victim),
+            "Not on NPC's.\n\r", ch);
+        BAIL_IF (!is_number (arg3),
+            "Value must be numeric.\n\r", ch);
 
         value = atoi (arg3);
-        if (value < 0 || value > 999) {
-            send_to_char ("Value must be between 0 and 999.\n\r", ch);
-            return;
-        }
+        BAIL_IF (value < 0 || value > 999,
+            "Value must be between 0 and 999.\n\r", ch);
 
-        victim->played = ( value * 3600 );
-        printf_to_char(ch, "%s's hours set to %d.", victim->name, value);
+        victim->played = value * 3600;
+        printf_to_char (ch, "%s's hours set to %d.", victim->name, value);
         return;
     }
 
@@ -523,59 +445,35 @@ void do_oset (CHAR_DATA * ch, char *argument) {
         send_to_char ("    extra wear level weight cost timer\n\r", ch);
         return;
     }
-    if ((obj = find_obj_world (ch, arg1)) == NULL) {
-        send_to_char ("Nothing like that in heaven or earth.\n\r", ch);
-        return;
-    }
+    BAIL_IF ((obj = find_obj_world (ch, arg1)) == NULL,
+        "Nothing like that in heaven or earth.\n\r", ch);
 
     /* Snarf the value (which need not be numeric). */
     value = atoi (arg3);
 
     /* Set something. */
-    if (!str_cmp (arg2, "value0") || !str_cmp (arg2, "v0")) {
-        obj->value[0] = UMIN (50, value);
-        return;
-    }
-    if (!str_cmp (arg2, "value1") || !str_cmp (arg2, "v1")) {
-        obj->value[1] = value;
-        return;
-    }
-    if (!str_cmp (arg2, "value2") || !str_cmp (arg2, "v2")) {
-        obj->value[2] = value;
-        return;
-    }
-    if (!str_cmp (arg2, "value3") || !str_cmp (arg2, "v3")) {
-        obj->value[3] = value;
-        return;
-    }
-    if (!str_cmp (arg2, "value4") || !str_cmp (arg2, "v4")) {
-        obj->value[4] = value;
-        return;
-    }
-    if (!str_prefix (arg2, "extra")) {
-        obj->extra_flags = value;
-        return;
-    }
-    if (!str_prefix (arg2, "wear")) {
-        obj->wear_flags = value;
-        return;
-    }
-    if (!str_prefix (arg2, "level")) {
-        obj->level = value;
-        return;
-    }
-    if (!str_prefix (arg2, "weight")) {
-        obj->weight = value;
-        return;
-    }
-    if (!str_prefix (arg2, "cost")) {
-        obj->cost = value;
-        return;
-    }
-    if (!str_prefix (arg2, "timer")) {
-        obj->timer = value;
-        return;
-    }
+    BAIL_IF_EXPR (!str_cmp (arg2, "value0") || !str_cmp (arg2, "v0"),
+        obj->value[0] = UMIN (50, value));
+    BAIL_IF_EXPR (!str_cmp (arg2, "value1") || !str_cmp (arg2, "v1"),
+        obj->value[1] = value);
+    BAIL_IF_EXPR (!str_cmp (arg2, "value2") || !str_cmp (arg2, "v2"),
+        obj->value[2] = value);
+    BAIL_IF_EXPR (!str_cmp (arg2, "value3") || !str_cmp (arg2, "v3"),
+        obj->value[3] = value);
+    BAIL_IF_EXPR (!str_cmp (arg2, "value4") || !str_cmp (arg2, "v4"),
+        obj->value[4] = value);
+    BAIL_IF_EXPR (!str_prefix (arg2, "extra"),
+        obj->extra_flags = value);
+    BAIL_IF_EXPR (!str_prefix (arg2, "wear"),
+        obj->wear_flags = value);
+    BAIL_IF_EXPR (!str_prefix (arg2, "level"),
+        obj->level = value);
+    BAIL_IF_EXPR (!str_prefix (arg2, "weight"),
+        obj->weight = value);
+    BAIL_IF_EXPR (!str_prefix (arg2, "cost"),
+        obj->cost = value);
+    BAIL_IF_EXPR (!str_prefix (arg2, "timer"),
+        obj->timer = value);
 
     /* Generate usage message. */
     do_function (ch, &do_oset, "");
@@ -600,33 +498,22 @@ void do_rset (CHAR_DATA * ch, char *argument) {
         send_to_char ("    flags sector\n\r", ch);
         return;
     }
-    if ((location = find_location (ch, arg1)) == NULL) {
-        send_to_char ("No such location.\n\r", ch);
-        return;
-    }
-    if (!room_is_owner (location, ch) && ch->in_room != location
-        && room_is_private (location) && !IS_TRUSTED (ch, IMPLEMENTOR))
-    {
-        send_to_char ("That room is private right now.\n\r", ch);
-        return;
-    }
+    BAIL_IF ((location = find_location (ch, arg1)) == NULL,
+        "No such location.\n\r", ch);
+    BAIL_IF (!room_is_owner (location, ch) && ch->in_room != location
+            && room_is_private (location) && !IS_TRUSTED (ch, IMPLEMENTOR),
+        "That room is private right now.\n\r", ch);
 
     /* Snarf the value. */
-    if (!is_number (arg3)) {
-        send_to_char ("Value must be numeric.\n\r", ch);
-        return;
-    }
+    BAIL_IF (!is_number (arg3),
+        "Value must be numeric.\n\r", ch);
     value = atoi (arg3);
 
     /* Set something. */
-    if (!str_prefix (arg2, "flags")) {
-        location->room_flags = value;
-        return;
-    }
-    if (!str_prefix (arg2, "sector")) {
-        location->sector_type = value;
-        return;
-    }
+    BAIL_IF_EXPR (!str_prefix (arg2, "flags"),
+        location->room_flags = value);
+    BAIL_IF_EXPR (!str_prefix (arg2, "sector"),
+        location->sector_type = value);
 
     /* Generate usage message. */
     do_function (ch, &do_rset, "");

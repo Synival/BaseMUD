@@ -35,37 +35,31 @@
 #include "act_info.h"
 #include "chars.h"
 #include "rooms.h"
+#include "find.h"
 
 #include "wiz_l8.h"
 
 /* TODO: review most of these functions and test them thoroughly. */
-/* TODO: BAIL_IF() clauses. */
 /* TODO: employ tables whenever possible */
+/* TODO: merge do_bamfin() and do_bamfout() */
 
 void do_goto (CHAR_DATA * ch, char *argument) {
     ROOM_INDEX_DATA *location;
     CHAR_DATA *rch;
     int count = 0;
 
-    if (argument[0] == '\0') {
-        send_to_char ("Goto where?\n\r", ch);
-        return;
-    }
-    if ((location = find_location (ch, argument)) == NULL) {
-        send_to_char ("No such location.\n\r", ch);
-        return;
-    }
+    BAIL_IF (argument[0] == '\0',
+        "Goto where?\n\r", ch);
+    BAIL_IF ((location = find_location (ch, argument)) == NULL,
+        "No such location.\n\r", ch);
 
     count = 0;
     for (rch = location->people; rch != NULL; rch = rch->next_in_room)
         count++;
 
-    if (!room_is_owner (location, ch) && room_is_private (location)
-        && (count > 1 || char_get_trust (ch) < MAX_LEVEL))
-    {
-        send_to_char ("That room is private right now.\n\r", ch);
-        return;
-    }
+    BAIL_IF (!room_is_owner (location, ch) && room_is_private (location) &&
+            (count > 1 || char_get_trust (ch) < MAX_LEVEL),
+        "That room is private right now.\n\r", ch);
 
     if (ch->fighting != NULL)
         stop_fighting (ch, TRUE);
@@ -103,18 +97,13 @@ void do_bamfin (CHAR_DATA * ch, char *argument) {
 
     smash_tilde (argument);
     if (argument[0] == '\0') {
-        sprintf (buf, "Your poofin is %s\n\r", ch->pcdata->bamfin);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "Your poofin is %s\n\r", ch->pcdata->bamfin);
         return;
     }
-    if (strstr (argument, ch->name) == NULL) {
-        send_to_char ("You must include your name.\n\r", ch);
-        return;
-    }
+    BAIL_IF (strstr (argument, ch->name) == NULL,
+        "You must include your name.\n\r", ch);
 
-    str_free (ch->pcdata->bamfin);
-    ch->pcdata->bamfin = str_dup (argument);
-
+    str_replace_dup (&(ch->pcdata->bamfin), argument);
     sprintf (buf, "Your poofin is now %s\n\r", ch->pcdata->bamfin);
     send_to_char (buf, ch);
 }
@@ -126,18 +115,13 @@ void do_bamfout (CHAR_DATA * ch, char *argument) {
 
     smash_tilde (argument);
     if (argument[0] == '\0') {
-        sprintf (buf, "Your poofout is %s\n\r", ch->pcdata->bamfout);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "Your poofout is %s\n\r", ch->pcdata->bamfout);
         return;
     }
-    if (strstr (argument, ch->name) == NULL) {
-        send_to_char ("You must include your name.\n\r", ch);
-        return;
-    }
+    BAIL_IF (strstr (argument, ch->name) == NULL,
+        "You must include your name.\n\r", ch);
 
-    str_free (ch->pcdata->bamfout);
-    ch->pcdata->bamfout = str_dup (argument);
-
+    str_replace_dup (&(ch->pcdata->bamfout), argument);
     sprintf (buf, "Your poofout is now %s\n\r", ch->pcdata->bamfout);
     send_to_char (buf, ch);
 }

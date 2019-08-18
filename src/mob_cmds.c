@@ -233,7 +233,7 @@ void do_mpkill (CHAR_DATA * ch, char *argument)
     if (arg[0] == '\0')
         return;
 
-    if ((victim = find_char_room (ch, arg)) == NULL)
+    if ((victim = find_char_same_room (ch, arg)) == NULL)
         return;
 
     if (victim == ch || IS_NPC (victim) || ch->position == POS_FIGHTING)
@@ -265,7 +265,7 @@ void do_mpassist (CHAR_DATA * ch, char *argument)
     if (arg[0] == '\0')
         return;
 
-    if ((victim = find_char_room (ch, arg)) == NULL)
+    if ((victim = find_char_same_room (ch, arg)) == NULL)
         return;
 
     if (victim == ch || ch->fighting != NULL || victim->fighting == NULL)
@@ -291,12 +291,12 @@ void do_mpjunk (CHAR_DATA * ch, char *argument) {
     if (arg[0] == '\0')
         return;
     if (str_cmp (arg, "all") && str_prefix ("all.", arg)) {
-        if ((obj = find_eq (ch, arg)) != NULL) {
+        if ((obj = find_obj_own_worn (ch, arg)) != NULL) {
             char_unequip (ch, obj);
             obj_extract (obj);
             return;
         }
-        if ((obj = find_carry (ch, arg)) == NULL)
+        if ((obj = find_obj_own_inventory (ch, arg)) == NULL)
             return;
         obj_extract (obj);
     }
@@ -321,7 +321,7 @@ void do_mpechoaround (CHAR_DATA * ch, char *argument) {
     argument = one_argument (argument, arg);
     if (arg[0] == '\0')
         return;
-    if ((victim = find_char_room (ch, arg)) == NULL)
+    if ((victim = find_char_same_room (ch, arg)) == NULL)
         return;
     act (argument, ch, NULL, victim, TO_OTHERS);
 }
@@ -335,7 +335,7 @@ void do_mpechoat (CHAR_DATA * ch, char *argument) {
     argument = one_argument (argument, arg);
     if (arg[0] == '\0' || argument[0] == '\0')
         return;
-    if ((victim = find_char_room (ch, arg)) == NULL)
+    if ((victim = find_char_same_room (ch, arg)) == NULL)
         return;
     act (argument, ch, NULL, victim, TO_VICT);
 }
@@ -462,7 +462,7 @@ void do_mppurge (CHAR_DATA * ch, char *argument) {
         }
         return;
     }
-    if ((victim = find_char_room (ch, arg)) == NULL) {
+    if ((victim = find_char_same_room (ch, arg)) == NULL) {
         if ((obj = find_obj_here (ch, arg)))
             obj_extract (obj);
         else
@@ -640,7 +640,7 @@ void do_mpgtransfer (CHAR_DATA * ch, char *argument)
         return;
     }
 
-    if ((who = find_char_room (ch, arg1)) == NULL)
+    if ((who = find_char_same_room (ch, arg1)) == NULL)
         return;
 
     for (victim = ch->in_room->people; victim; victim = victim_next)
@@ -681,7 +681,7 @@ void do_mpforce (CHAR_DATA * ch, char *argument) {
     }
     else {
         CHAR_DATA *victim;
-        if ((victim = find_char_room (ch, arg)) == NULL)
+        if ((victim = find_char_same_room (ch, arg)) == NULL)
             return;
         if (victim == ch)
             return;
@@ -708,7 +708,7 @@ void do_mpgforce (CHAR_DATA * ch, char *argument)
         return;
     }
 
-    if ((victim = find_char_room (ch, arg)) == NULL)
+    if ((victim = find_char_same_room (ch, arg)) == NULL)
         return;
 
     if (victim == ch)
@@ -799,7 +799,7 @@ void do_mpcast (CHAR_DATA * ch, char *argument)
              IS_NPC (ch) ? ch->pIndexData->vnum : 0);
         return;
     }
-    vch = find_char_room (ch, target);
+    vch = find_char_same_room (ch, target);
     obj = find_obj_here (ch, target);
     switch (skill_table[sn].target) {
         default:
@@ -855,7 +855,7 @@ void do_mpdamage (CHAR_DATA * ch, char *argument)
     }
     if (!str_cmp (target, "all"))
         fAll = TRUE;
-    else if ((victim = find_char_room (ch, target)) == NULL)
+    else if ((victim = find_char_same_room (ch, target)) == NULL)
         return;
 
     if (is_number (min))
@@ -980,7 +980,7 @@ void do_mpcall (CHAR_DATA * ch, char *argument) {
     obj1 = obj2 = NULL;
     argument = one_argument (argument, arg);
     if (arg[0] != '\0')
-        vch = find_char_room (ch, arg);
+        vch = find_char_same_room (ch, arg);
     argument = one_argument (argument, arg);
     if (arg[0] != '\0')
         obj1 = find_obj_here (ch, arg);
@@ -1070,7 +1070,7 @@ void do_mpremove (CHAR_DATA * ch, char *argument) {
     char arg[MAX_INPUT_LENGTH];
 
     argument = one_argument (argument, arg);
-    if ((victim = find_char_room (ch, arg)) == NULL)
+    if ((victim = find_char_same_room (ch, arg)) == NULL)
         return;
 
     one_argument (argument, arg);

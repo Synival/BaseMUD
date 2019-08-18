@@ -177,6 +177,10 @@ SIMPLE_HASH_BUNDLE (dam,        DAM_TYPE,         type);
 SIMPLE_HASH_BUNDLE (colour,     COLOUR_TYPE,      code);
 SIMPLE_HASH_BUNDLE (colour_setting, COLOUR_SETTING_TYPE, index);
 SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_TYPE,  type);
+SIMPLE_HASH_BUNDLE (day,        DAY_TYPE,         type);
+SIMPLE_HASH_BUNDLE (month,      MONTH_TYPE,       type);
+SIMPLE_HASH_BUNDLE (sky,        SKY_TYPE,         type);
+SIMPLE_HASH_BUNDLE (sun,        SUN_TYPE,         type);
 
 SIMPLE_REC_BUNDLE (ban,         BAN_DATA,         RECYCLE_BAN_DATA);
 SIMPLE_REC_BUNDLE (area,        AREA_DATA,        RECYCLE_AREA_DATA);
@@ -187,8 +191,9 @@ SIMPLE_REC_BUNDLE (had,         HELP_AREA,        RECYCLE_HELP_AREA);
 SIMPLE_REC_BUNDLE (social,      SOCIAL_TYPE,      RECYCLE_SOCIAL_TYPE);
 SIMPLE_REC_BUNDLE (portal_exit, PORTAL_EXIT_TYPE, RECYCLE_PORTAL_EXIT_TYPE);
 
-SPEC_FUN* spec_lookup_function (const char *name)
+SPEC_FUN *spec_lookup_function (const char *name)
     { SIMPLE_LOOKUP_PROP (spec_table, function, name, NULL, SPEC_MAX); }
+
 const char *spec_function_name (SPEC_FUN *function) {
     int i;
     for (i = 0; spec_table[i].function != NULL; i++)
@@ -300,6 +305,35 @@ HELP_AREA *help_area_get_by_help (HELP_DATA * help) {
             if (h == help)
                 return had;
     return NULL;
+}
+
+const DAY_TYPE *day_get_current ()
+    { return day_get ((time_info.day + 1) % DAY_MAX); }
+const MONTH_TYPE *month_get_current ()
+    { return month_get (time_info.month); }
+const SKY_TYPE *sky_get_current ()
+    { return sky_get (weather_info.sky); }
+const SUN_TYPE *sun_get_current ()
+    { return sun_get (weather_info.sunlight); }
+
+const SKY_TYPE *sky_get_by_mmhg (int mmhg) {
+    const SKY_TYPE *sky;
+    int i;
+    for (i = 0; i < SKY_MAX; i++) {
+        sky = &(sky_table[i]);
+        if ((mmhg >= sky->mmhg_min || sky->mmhg_min == -1) &&
+            (mmhg <  sky->mmhg_max || sky->mmhg_max == -1))
+            return sky;
+    }
+    return &(sky_table[0]);
+}
+
+const SUN_TYPE *sun_get_by_hour (int hour) {
+    int i;
+    for (i = 0; i < SUN_MAX; i++)
+        if (hour >= sun_table[i].hour_start && hour < sun_table[i].hour_end)
+            return &(sun_table[i]);
+    return &(sun_table[0]);
 }
 
 char *affect_apply_name (flag_t type)

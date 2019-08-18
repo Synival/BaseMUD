@@ -89,7 +89,7 @@ void do_order (CHAR_DATA * ch, char *argument) {
     }
     else {
         fAll = FALSE;
-        BAIL_IF ((victim = find_char_room (ch, arg)) == NULL,
+        BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
             "They aren't here.\n\r", ch);
         BAIL_IF (victim == ch,
             "Aye aye, right away!\n\r", ch);
@@ -129,7 +129,7 @@ void do_group (CHAR_DATA * ch, char *argument) {
         return;
     }
 
-    BAIL_IF ((victim = find_char_room (ch, arg)) == NULL,
+    BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
         "They aren't here.\n\r", ch);
     BAIL_IF (ch->master != NULL || (ch->leader != NULL && ch->leader != ch),
         "But you are following someone else!\n\r", ch);
@@ -256,7 +256,7 @@ void do_follow (CHAR_DATA * ch, char *argument) {
 
     DO_REQUIRE_ARG (arg, "Follow whom?\n\r");
 
-    BAIL_IF ((victim = find_char_room (ch, arg)) == NULL,
+    BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
         "They aren't here.\n\r", ch);
     BAIL_IF_ACT (IS_AFFECTED (ch, AFF_CHARM) && ch->master != NULL,
         "But you'd rather follow $N!", ch, NULL, ch->master);

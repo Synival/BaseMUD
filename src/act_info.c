@@ -59,19 +59,8 @@
 
 /* TODO: lots of commands in here - split it up? (act_conf.c?) */
 /* TODO: sub-routines to do_sub.c */
-/* TODO: move month, day, and weather info to tables. */
-/* TODO: auto-exits are very different. separate command? */
-/* TODO: scan_to_dir[] can be moved to dir_table[] as 'prep_phrase' */
 
 #define SCAN_ALL_DIRS -2
-static char *const scan_to_dir[DIR_MAX] = {
-    "to the north",
-    "to the east",
-    "to the south",
-    "to the west",
-    "above you",
-    "below you",
-};
 
 static char *const scan_distance[8] = {
     "right here.",
@@ -82,25 +71,6 @@ static char *const scan_distance[8] = {
     "very far %s.",
     "very, very far %s.",
     "extremely far %s.",
-};
-
-static char *const day_name[] = {
-    "the Moon", "the Bull", "Deception", "Thunder", "Freedom",
-    "the Great Gods", "the Sun"
-};
-
-static char *const month_name[] = {
-    "Winter", "the Winter Wolf", "the Frost Giant", "the Old Forces",
-    "the Grand Struggle", "the Spring", "Nature", "Futility", "the Dragon",
-    "the Sun", "the Heat", "the Battle", "the Dark Shades", "the Shadows",
-    "the Long Shadows", "the Ancient Darkness", "the Great Evil"
-};
-
-static char *const sky_look[4] = {
-    "cloudless",
-    "cloudy",
-    "rainy",
-    "lit by flashes of lightning"
 };
 
 bool do_filter_blind (CHAR_DATA * ch) {
@@ -132,8 +102,12 @@ void do_scan_list (ROOM_INDEX_DATA *scan_room, CHAR_DATA *ch,
 void do_scan_char (CHAR_DATA * victim, CHAR_DATA * ch, sh_int depth,
     sh_int door)
 {
+    const DOOR_TYPE *door_obj;
     char buf[MAX_INPUT_LENGTH];
-    sprintf (buf, scan_distance[depth], scan_to_dir[door]);
+
+    door_obj = door_get (door);
+    sprintf (buf, scan_distance[depth], door_obj->to_phrase);
+
     printf_to_char (ch, "%s, %s\n\r", PERS_AW (victim, ch), buf);
 }
 
@@ -400,7 +374,7 @@ void do_look (CHAR_DATA * ch, char *argument) {
     }
 
     /* Looking at someone? */
-    if ((victim = find_char_room (ch, arg1)) != NULL) {
+    if ((victim = find_char_same_room (ch, arg1)) != NULL) {
         char_look_at_char (victim, ch);
         return;
     }
@@ -741,8 +715,9 @@ void do_affects (CHAR_DATA * ch, char *argument) {
 }
 
 void do_time (CHAR_DATA * ch, char *argument) {
+    const DAY_TYPE *day_obj;
+    const MONTH_TYPE *month_obj;
     extern char str_boot_time[];
-    char buf[MAX_STRING_LENGTH];
     char *suf;
     int day = time_info.day + 1;
 
@@ -753,30 +728,32 @@ void do_time (CHAR_DATA * ch, char *argument) {
     else if (day % 10 == 3)       suf = "rd";
     else                          suf = "th";
 
-    sprintf (buf,
+    day_obj   = day_get_current();
+    month_obj = month_get_current();
+
+    printf_to_char (ch,
         "It is %d o'clock %s, Day of %s, %d%s the Month of %s.\n\r",
         (time_info.hour % 12 == 0) ? 12 : time_info.hour % 12,
         time_info.hour >= 12 ? "pm" : "am",
-        day_name[day % 7], day, suf, month_name[time_info.month]);
-    send_to_char (buf, ch);
+        day_obj->name, day, suf, month_obj->name);
 
-    sprintf (buf, "ROM started up at %s\n\rThe system time is %s.\n\r",
+    printf_to_char (ch, "ROM started up at %s\n\rThe system time is %s.\n\r",
         str_boot_time, (char *) ctime (&current_time));
-    send_to_char (buf, ch);
 }
 
 void do_weather (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
+    const SKY_TYPE *sky;
+    char *change;
 
     BAIL_IF (!IS_OUTSIDE (ch),
         "You can't see the weather indoors.\n\r", ch);
 
-    sprintf (buf, "The sky is %s and %s.\n\r",
-             sky_look[weather_info.sky],
-             weather_info.change >= 0
-             ? "a warm southerly breeze blows"
-             : "a cold northern gust blows");
-    send_to_char (buf, ch);
+    sky = sky_get_current ();
+    change = weather_info.change >= 0
+        ? "a warm southerly breeze blows"
+        : "a cold northern gust blows";
+
+    printf_to_char (ch, "The sky is %s and %s.\n\r", sky->description, change);
 }
 
 void do_help (CHAR_DATA * ch, char *argument) {
@@ -1074,21 +1051,26 @@ void do_compare (CHAR_DATA * ch, char *argument) {
     argument = one_argument (argument, arg1);
     BAIL_IF (arg1[0] == '\0',
         "Compare what to what?\n\r", ch);
-    BAIL_IF ((obj1 = find_carry (ch, arg1)) == NULL,
+    BAIL_IF ((obj1 = find_obj_own_inventory (ch, arg1)) == NULL,
         "You do not have that item.\n\r", ch);
 
     argument = one_argument (argument, arg2);
     if (arg2[0] == '\0') {
         for (obj2 = ch->carrying; obj2 != NULL; obj2 = obj2->next_content) {
-            if (obj2->wear_loc != WEAR_NONE && char_can_see_obj (ch, obj2)
-                && obj1->item_type == obj2->item_type
-                && (obj1->wear_flags & (obj2->wear_flags & ~ITEM_TAKE)) != 0)
-                break;
+            if (obj2->wear_loc == WEAR_NONE)
+                continue;
+            if (!char_can_see_obj (ch, obj2))
+                continue;
+            if (obj1->item_type != obj2->item_type)
+                continue;
+            if ((obj1->wear_flags & (obj2->wear_flags & ~ITEM_TAKE)) == 0)
+                continue;
+            break;
         }
         BAIL_IF (obj2 == NULL,
             "You aren't wearing anything comparable.\n\r", ch);
     }
-    else if ((obj2 = find_carry (ch, arg2)) == NULL) {
+    else if ((obj2 = find_obj_own_inventory (ch, arg2)) == NULL) {
         send_to_char ("You do not have that item.\n\r", ch);
         return;
     }
