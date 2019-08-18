@@ -187,8 +187,9 @@ SIMPLE_REC_BUNDLE (had,         HELP_AREA,        RECYCLE_HELP_AREA);
 SIMPLE_REC_BUNDLE (social,      SOCIAL_TYPE,      RECYCLE_SOCIAL_TYPE);
 SIMPLE_REC_BUNDLE (portal_exit, PORTAL_EXIT_TYPE, RECYCLE_PORTAL_EXIT_TYPE);
 
-SPEC_FUN* spec_lookup_function (const char *name)
+SPEC_FUN *spec_lookup_function (const char *name)
     { SIMPLE_LOOKUP_PROP (spec_table, function, name, NULL, SPEC_MAX); }
+
 const char *spec_function_name (SPEC_FUN *function) {
     int i;
     for (i = 0; spec_table[i].function != NULL; i++)

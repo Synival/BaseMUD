@@ -36,8 +36,6 @@
 #include "wiz_l6.h"
 
 /* TODO: review most of these functions and test them thoroughly. */
-/* TODO: BAIL_IF() clauses. */
-/* TODO: employ tables whenever possible */
 
 void do_at (CHAR_DATA * ch, char *argument) {
     char arg[MAX_INPUT_LENGTH];
@@ -76,19 +74,18 @@ void do_at (CHAR_DATA * ch, char *argument) {
 void do_recho (CHAR_DATA * ch, char *argument) {
     DESCRIPTOR_DATA *d;
 
-    if (argument[0] == '\0') {
-        send_to_char ("Local echo what?\n\r", ch);
-        return;
-    }
+    BAIL_IF (argument[0] == '\0',
+        "Local echo what?\n\r", ch);
+
     for (d = descriptor_list; d; d = d->next) {
-        if (d->connected == CON_PLAYING
-            && d->character->in_room == ch->in_room)
-        {
-            if (char_get_trust (d->character) >= char_get_trust (ch))
-                send_to_char ("local> ", d->character);
-            send_to_char (argument, d->character);
-            send_to_char ("\n\r", d->character);
-        }
+        if (d->connected != CON_PLAYING)
+            continue;
+        if (d->character->in_room != ch->in_room)
+            continue;
+
+        if (char_get_trust (d->character) >= char_get_trust (ch))
+            send_to_char ("local> ", d->character);
+        printf_to_char (d->character, "%s\n\r", argument);
     }
 }
 
@@ -97,14 +94,12 @@ void do_return (CHAR_DATA * ch, char *argument) {
 
     if (ch->desc == NULL)
         return;
-    if (ch->desc->original == NULL) {
-        send_to_char ("You aren't switched.\n\r", ch);
-        return;
-    }
+    BAIL_IF (ch->desc->original == NULL,
+        "You aren't switched.\n\r", ch);
 
-    send_to_char
-        ("You return to your original body. Type replay to see any missed tells.\n\r",
-         ch);
+    send_to_char ("You return to your original body. "
+                  "Type replay to see any missed tells.\n\r", ch);
+
     if (ch->prompt != NULL) {
         str_free (ch->prompt);
         ch->prompt = NULL;
@@ -124,40 +119,27 @@ void do_switch (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Switch into whom?\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Switch into whom?\n\r", ch);
+
     if (ch->desc == NULL)
         return;
+    BAIL_IF (ch->desc->original != NULL,
+        "You are already switched.\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (victim == ch,
+        "Ok.\n\r", ch);
+    BAIL_IF (!IS_NPC (victim),
+        "You can only switch into mobiles.\n\r", ch);
 
-    if (ch->desc->original != NULL) {
-        send_to_char ("You are already switched.\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (victim == ch) {
-        send_to_char ("Ok.\n\r", ch);
-        return;
-    }
-    if (!IS_NPC (victim)) {
-        send_to_char ("You can only switch into mobiles.\n\r", ch);
-        return;
-    }
-
-    if (!room_is_owner (victim->in_room, ch) && ch->in_room != victim->in_room
-        && room_is_private (victim->in_room) && !IS_TRUSTED (ch, IMPLEMENTOR))
-    {
-        send_to_char ("That character is in a private room.\n\r", ch);
-        return;
-    }
-    if (victim->desc != NULL) {
-        send_to_char ("Character in use.\n\r", ch);
-        return;
-    }
+    BAIL_IF (!room_is_owner (victim->in_room, ch) &&
+            ch->in_room != victim->in_room &&
+            room_is_private (victim->in_room) &&
+            !IS_TRUSTED (ch, IMPLEMENTOR),
+        "That character is in a private room.\n\r", ch);
+    BAIL_IF (victim->desc != NULL,
+        "Character in use.\n\r", ch);
 
     sprintf (buf, "$N switches into %s", victim->short_descr);
     wiznet (buf, ch, NULL, WIZ_SWITCHES, WIZ_SECURE, char_get_trust (ch));

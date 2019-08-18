@@ -622,15 +622,15 @@ void do_zecho (CHAR_DATA * ch, char *argument) {
     for (d = descriptor_list; d; d = d->next) {
         if (d->connected != CON_PLAYING)
             continue;
-        if ((vch = CH(d)) == NULL)
+        if ((vch = d->character) == NULL)
             continue;
         if (vch->in_room == NULL)
             continue;
         if (vch->in_room->area != ch->in_room->area)
             continue;
 
-        if (char_get_trust (d->character) >= char_get_trust (ch))
-            send_to_char ("zone> ", d->character);
+        if (char_get_trust (vch) >= char_get_trust (ch))
+            send_to_char ("zone> ", vch);
         printf_to_char (vch, "%s\n\r", argument);
     }
 }

@@ -48,8 +48,8 @@
 #include "wiz_l5.h"
 
 /* TODO: review most of these functions and test them thoroughly. */
-/* TODO: BAIL_IF() clauses. */
-/* TODO: employ tables whenever possible */
+/* TODO: merge do_nochannels(), do_noemote(), do_noshout(), do_notell() */
+/* TODO: use a table for do_string() */
 
 /* trust levels for load and clone */
 bool do_obj_load_check (CHAR_DATA * ch, OBJ_DATA * obj) {
@@ -70,12 +70,13 @@ bool do_obj_load_check (CHAR_DATA * ch, OBJ_DATA * obj) {
 void do_clone_recurse (CHAR_DATA * ch, OBJ_DATA * obj, OBJ_DATA * clone) {
     OBJ_DATA *c_obj, *t_obj;
     for (c_obj = obj->contains; c_obj != NULL; c_obj = c_obj->next_content) {
-        if (do_obj_load_check (ch, c_obj)) {
-            t_obj = create_object (c_obj->pIndexData, 0);
-            clone_object (c_obj, t_obj);
-            obj_to_obj (t_obj, clone);
-            do_clone_recurse (ch, c_obj, t_obj);
-        }
+        if (!do_obj_load_check (ch, c_obj))
+            continue;
+
+        t_obj = create_object (c_obj->pIndexData, 0);
+        clone_object (c_obj, t_obj);
+        obj_to_obj (t_obj, clone);
+        do_clone_recurse (ch, c_obj, t_obj);
     }
 }
 
@@ -85,18 +86,12 @@ void do_nochannels (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Nochannel whom?", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (char_get_trust (victim) >= char_get_trust (ch)) {
-        send_to_char ("You failed.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Nochannel whom?", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (char_get_trust (victim) >= char_get_trust (ch),
+        "You failed.\n\r", ch);
 
     if (IS_SET (victim->comm, COMM_NOCHANNELS)) {
         REMOVE_BIT (victim->comm, COMM_NOCHANNELS);
@@ -121,18 +116,13 @@ void do_noemote (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Noemote whom?\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (char_get_trust (victim) >= char_get_trust (ch)) {
-        send_to_char ("You failed.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Noemote whom?\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (char_get_trust (victim) >= char_get_trust (ch),
+        "You failed.\n\r", ch);
+
     if (IS_SET (victim->comm, COMM_NOEMOTE)) {
         REMOVE_BIT (victim->comm, COMM_NOEMOTE);
         send_to_char ("You can emote again.\n\r", victim);
@@ -154,22 +144,15 @@ void do_noshout (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Noshout whom?\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (IS_NPC (victim)) {
-        send_to_char ("Not on NPC's.\n\r", ch);
-        return;
-    }
-    if (char_get_trust (victim) >= char_get_trust (ch)) {
-        send_to_char ("You failed.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Noshout whom?\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (IS_NPC (victim),
+        "Not on NPC's.\n\r", ch);
+    BAIL_IF (char_get_trust (victim) >= char_get_trust (ch),
+        "You failed.\n\r", ch);
+
     if (IS_SET (victim->comm, COMM_NOSHOUT)) {
         REMOVE_BIT (victim->comm, COMM_NOSHOUT);
         send_to_char ("You can shout again.\n\r", victim);
@@ -191,18 +174,13 @@ void do_notell (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Notell whom?", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (char_get_trust (victim) >= char_get_trust (ch)) {
-        send_to_char ("You failed.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Notell whom?", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (char_get_trust (victim) >= char_get_trust (ch),
+        "You failed.\n\r", ch);
+
     if (IS_SET (victim->comm, COMM_NOTELL)) {
         REMOVE_BIT (victim->comm, COMM_NOTELL);
         send_to_char ("You can tell again.\n\r", victim);
@@ -228,11 +206,9 @@ void do_transfer (CHAR_DATA * ch, char *argument) {
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
+    BAIL_IF (arg1[0] == '\0',
+        "Transfer whom (and where)?\n\r", ch);
 
-    if (arg1[0] == '\0') {
-        send_to_char ("Transfer whom (and where)?\n\r", ch);
-        return;
-    }
     if (!str_cmp (arg1, "all")) {
         for (d = descriptor_list; d != NULL; d = d->next) {
             if (d->connected == CON_PLAYING
@@ -252,25 +228,16 @@ void do_transfer (CHAR_DATA * ch, char *argument) {
     if (arg2[0] == '\0')
         location = ch->in_room;
     else {
-        if ((location = find_location (ch, arg2)) == NULL) {
-            send_to_char ("No such location.\n\r", ch);
-            return;
-        }
-        if (!room_is_owner (location, ch) && room_is_private (location)
-            && char_get_trust (ch) < MAX_LEVEL)
-        {
-            send_to_char ("That room is private right now.\n\r", ch);
-            return;
-        }
+        BAIL_IF ((location = find_location (ch, arg2)) == NULL,
+            "No such location.\n\r", ch);
+        BAIL_IF (!room_is_owner (location, ch) && room_is_private (location) &&
+                char_get_trust (ch) < MAX_LEVEL,
+            "That room is private right now.\n\r", ch);
     }
-    if ((victim = find_char_world (ch, arg1)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (victim->in_room == NULL) {
-        send_to_char ("They are in limbo.\n\r", ch);
-        return;
-    }
+    BAIL_IF ((victim = find_char_world (ch, arg1)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (victim->in_room == NULL,
+        "They are in limbo.\n\r", ch);
 
     if (victim->fighting != NULL)
         stop_fighting (victim, TRUE);
@@ -303,18 +270,13 @@ void do_snoop (CHAR_DATA * ch, char *argument) {
     char buf[MAX_STRING_LENGTH];
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Snoop whom?\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (victim->desc == NULL) {
-        send_to_char ("No descriptor to snoop.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Snoop whom?\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (victim->desc == NULL,
+        "No descriptor to snoop.\n\r", ch);
+
     if (victim == ch) {
         send_to_char ("Cancelling all snoops.\n\r", ch);
         wiznet ("$N stops being such a snoop.",
@@ -324,31 +286,23 @@ void do_snoop (CHAR_DATA * ch, char *argument) {
                 d->snoop_by = NULL;
         return;
     }
-    if (victim->desc->snoop_by != NULL) {
-        send_to_char ("Busy already.\n\r", ch);
-        return;
-    }
-    if (!room_is_owner (victim->in_room, ch) && ch->in_room != victim->in_room
-        && room_is_private (victim->in_room) && !IS_TRUSTED (ch, IMPLEMENTOR))
-    {
-        send_to_char ("That character is in a private room.\n\r", ch);
-        return;
-    }
-    if (char_get_trust (victim) >= char_get_trust (ch)
-        || IS_SET (victim->comm, COMM_SNOOP_PROOF))
-    {
-        send_to_char ("You failed.\n\r", ch);
-        return;
-    }
+    BAIL_IF (victim->desc->snoop_by != NULL,
+        "Busy already.\n\r", ch);
 
-    if (ch->desc != NULL) {
-        for (d = ch->desc->snoop_by; d != NULL; d = d->snoop_by) {
-            if (d->character == victim || d->original == victim) {
-                send_to_char ("No snoop loops.\n\r", ch);
-                return;
-            }
-        }
-    }
+    BAIL_IF (!room_is_owner (victim->in_room, ch) &&
+            ch->in_room != victim->in_room &&
+            room_is_private (victim->in_room) &&
+            !IS_TRUSTED (ch, IMPLEMENTOR),
+        "That character is in a private room.\n\r", ch);
+
+    BAIL_IF (char_get_trust (victim) >= char_get_trust (ch) ||
+            IS_SET (victim->comm, COMM_SNOOP_PROOF),
+        "You failed.\n\r", ch);
+
+    if (ch->desc != NULL)
+        for (d = ch->desc->snoop_by; d != NULL; d = d->snoop_by)
+            BAIL_IF (d->character == victim || d->original == victim,
+                "No snoop loops.\n\r", ch);
 
     victim->desc->snoop_by = ch->desc;
     sprintf (buf, "$N starts snooping on %s",
@@ -383,95 +337,75 @@ void do_string (CHAR_DATA * ch, char *argument) {
     }
 
     if (!str_prefix (type, "character") || !str_prefix (type, "mobile")) {
-        if ((victim = find_char_world (ch, arg1)) == NULL) {
-            send_to_char ("They aren't here.\n\r", ch);
-            return;
-        }
+        BAIL_IF ((victim = find_char_world (ch, arg1)) == NULL,
+            "They aren't here.\n\r", ch);
 
         /* clear zone for mobs */
         victim->zone = NULL;
 
         /* string something */
-
         if (!str_prefix (arg2, "name")) {
-            if (!IS_NPC (victim)) {
-                send_to_char ("Not on PC's.\n\r", ch);
-                return;
-            }
-            str_free (victim->name);
-            victim->name = str_dup (arg3);
+            BAIL_IF (!IS_NPC (victim),
+                "Not on PC's.\n\r", ch);
+            str_replace_dup (&(victim->name), arg3);
             return;
         }
         if (!str_prefix (arg2, "description")) {
-            str_free (victim->description);
-            victim->description = str_dup (arg3);
+            str_replace_dup (&(victim->description), arg3);
             return;
         }
         if (!str_prefix (arg2, "short")) {
-            str_free (victim->short_descr);
-            victim->short_descr = str_dup (arg3);
+            str_replace_dup (&(victim->short_descr), arg3);
             return;
         }
         if (!str_prefix (arg2, "long")) {
-            str_free (victim->long_descr);
             strcat (arg3, "\n\r");
-            victim->long_descr = str_dup (arg3);
+            str_replace_dup (&(victim->long_descr), arg3);
             return;
         }
         if (!str_prefix (arg2, "title")) {
-            if (IS_NPC (victim)) {
-                send_to_char ("Not on NPC's.\n\r", ch);
-                return;
-            }
+            BAIL_IF (IS_NPC (victim),
+                "Not on NPC's.\n\r", ch);
             char_set_title (victim, arg3);
             return;
         }
         if (!str_prefix (arg2, "spec")) {
-            if (!IS_NPC (victim)) {
-                send_to_char ("Not on PC's.\n\r", ch);
-                return;
-            }
-            if ((victim->spec_fun = spec_lookup_function (arg3)) == 0) {
-                send_to_char ("No such spec fun.\n\r", ch);
-                return;
-            }
+            SPEC_FUN *spec_fun;
+            BAIL_IF (!IS_NPC (victim),
+                "Not on PC's.\n\r", ch);
+            BAIL_IF ((spec_fun = spec_lookup_function (arg3)) == NULL,
+                "No such spec fun.\n\r", ch);
+            victim->spec_fun = spec_fun;
             return;
         }
     }
 
     if (!str_prefix (type, "object")) {
         /* string an obj */
-        if ((obj = find_obj_world (ch, arg1)) == NULL) {
-            send_to_char ("Nothing like that in heaven or earth.\n\r", ch);
-            return;
-        }
+        BAIL_IF ((obj = find_obj_world (ch, arg1)) == NULL,
+            "Nothing like that in heaven or earth.\n\r", ch);
+
         if (!str_prefix (arg2, "name")) {
-            str_free (obj->name);
-            obj->name = str_dup (arg3);
+            str_replace_dup (&(obj->name), arg3);
             return;
         }
         if (!str_prefix (arg2, "short")) {
-            str_free (obj->short_descr);
-            obj->short_descr = str_dup (arg3);
+            str_replace_dup (&(obj->short_descr), arg3);
             return;
         }
         if (!str_prefix (arg2, "long")) {
-            str_free (obj->description);
-            obj->description = str_dup (arg3);
+            str_replace_dup (&(obj->description), arg3);
             return;
         }
         if (!str_prefix (arg2, "ed") || !str_prefix (arg2, "extended")) {
             EXTRA_DESCR_DATA *ed;
 
             argument = one_argument (argument, arg3);
-            if (argument == NULL) {
-                send_to_char ("Syntax: oset <object> ed <keyword> <string>\n\r", ch);
-                return;
-            }
+            BAIL_IF (argument == NULL,
+                "Syntax: oset <object> ed <keyword> <string>\n\r", ch);
             strcat (argument, "\n\r");
 
             ed = extra_descr_new ();
-
             ed->keyword = str_dup (arg3);
             ed->description = str_dup (argument);
             LIST_FRONT (ed, next, obj->extra_descr);
@@ -491,42 +425,31 @@ void do_clone (CHAR_DATA * ch, char *argument) {
     OBJ_DATA *obj;
 
     rest = one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Clone what?\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Clone what?\n\r", ch);
+
     if (!str_prefix (arg, "object")) {
         mob = NULL;
-        obj = find_obj_here (ch, rest);
-        if (obj == NULL) {
-            send_to_char ("You don't see that here.\n\r", ch);
-            return;
-        }
+        BAIL_IF ((obj = find_obj_here (ch, rest)) == NULL,
+            "You don't see that here.\n\r", ch);
     }
     else if (!str_prefix (arg, "mobile") || !str_prefix (arg, "character")) {
         obj = NULL;
-        mob = find_char_room (ch, rest);
-        if (mob == NULL) {
-            send_to_char ("You don't see that here.\n\r", ch);
-            return;
-        }
+        BAIL_IF ((mob = find_char_room (ch, rest)) == NULL,
+            "You don't see that here.\n\r", ch);
     }
     else { /* find both */
         mob = find_char_room (ch, argument);
         obj = find_obj_here (ch, argument);
-        if (mob == NULL && obj == NULL) {
-            send_to_char ("You don't see that here.\n\r", ch);
-            return;
-        }
+        BAIL_IF (mob == NULL && obj == NULL,
+            "You don't see that here.\n\r", ch);
     }
 
     /* clone an object */
     if (obj != NULL) {
         OBJ_DATA *clone;
-        if (!do_obj_load_check (ch, obj)) {
-            send_to_char ("Your powers are not great enough for such a task.\n\r", ch);
-            return;
-        }
+        BAIL_IF (!do_obj_load_check (ch, obj),
+            "Your powers are not great enough for such a task.\n\r", ch);
 
         clone = create_object (obj->pIndexData, 0);
         clone_object (obj, clone);
@@ -536,31 +459,27 @@ void do_clone (CHAR_DATA * ch, char *argument) {
             obj_to_room (clone, ch->in_room);
         do_clone_recurse (ch, obj, clone);
 
-        act ("You clone $p.", ch, clone, NULL, TO_CHAR);
-        act ("$n has created $p.", ch, clone, NULL, TO_NOTCHAR);
+        act2 ("You clone $p.", "$n has created $p.",
+            ch, clone, NULL, 0, POS_RESTING);
         wiznet ("$N clones $p.", ch, clone, WIZ_LOAD, WIZ_SECURE,
                 char_get_trust (ch));
         return;
     }
-    else if (mob != NULL) {
+
+    if (mob != NULL) {
         CHAR_DATA *clone;
         OBJ_DATA *new_obj;
         char buf[MAX_STRING_LENGTH];
 
-        if (!IS_NPC (mob)) {
-            send_to_char ("You can only clone mobiles.\n\r", ch);
-            return;
-        }
-        if ((mob->level > 20 && !IS_TRUSTED (ch, GOD))
-            || (mob->level > 10 && !IS_TRUSTED (ch, IMMORTAL))
-            || (mob->level > 5 && !IS_TRUSTED (ch, DEMI))
-            || (mob->level > 0 && !IS_TRUSTED (ch, ANGEL))
-            || !IS_TRUSTED (ch, AVATAR))
-        {
-            send_to_char
-                ("Your powers are not great enough for such a task.\n\r", ch);
-            return;
-        }
+        BAIL_IF (!IS_NPC (mob),
+            "You can only clone mobiles.\n\r", ch);
+
+        BAIL_IF ((mob->level > 20 && !IS_TRUSTED (ch, GOD)) ||
+                 (mob->level > 10 && !IS_TRUSTED (ch, IMMORTAL)) ||
+                 (mob->level >  5 && !IS_TRUSTED (ch, DEMI)) ||
+                 (mob->level >  0 && !IS_TRUSTED (ch, ANGEL)) ||
+                 !IS_TRUSTED (ch, AVATAR),
+            "Your powers are not great enough for such a task.\n\r", ch);
 
         clone = create_mobile (mob->pIndexData);
         clone_mobile (mob, clone);
@@ -574,8 +493,8 @@ void do_clone (CHAR_DATA * ch, char *argument) {
             }
         }
         char_to_room (clone, ch->in_room);
-        act ("You clone $N.", ch, NULL, clone, TO_CHAR);
-        act ("$n has created $N.", ch, NULL, clone, TO_NOTCHAR);
+        act2 ("You clone $N.", "$n has created $N.",
+            ch, NULL, clone, 0, POS_RESTING);
         sprintf (buf, "$N clones %s.", clone->short_descr);
         wiznet (buf, ch, NULL, WIZ_LOAD, WIZ_SECURE, char_get_trust (ch));
         return;
