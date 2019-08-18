@@ -92,10 +92,6 @@
 #define OHELPS_FILE     AREA_DIR "orphaned_helps.txt" /* Unmet 'help' requests */
 #define QMCONFIG_FILE   AREA_DIR "qmconfig.rc"
 
-/* ea */
-#define MSL MAX_STRING_LENGTH
-#define MIL MAX_INPUT_LENGTH
-
 /* String and memory management parameters. */
 #define MAX_KEY_HASH          1024
 #define MAX_STRING_LENGTH     4608

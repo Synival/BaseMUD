@@ -47,20 +47,13 @@ void do_at (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *wch;
 
     argument = one_argument (argument, arg);
-    if (arg[0] == '\0' || argument[0] == '\0') {
-        send_to_char ("At where what?\n\r", ch);
-        return;
-    }
-    if ((location = find_location (ch, arg)) == NULL) {
-        send_to_char ("No such location.\n\r", ch);
-        return;
-    }
-    if (!room_is_owner (location, ch) && room_is_private (location)
-        && char_get_trust (ch) < MAX_LEVEL)
-    {
-        send_to_char ("That room is private right now.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0' || argument[0] == '\0',
+        "At where what?\n\r", ch);
+    BAIL_IF ((location = find_location (ch, arg)) == NULL,
+        "No such location.\n\r", ch);
+    BAIL_IF (!room_is_owner (location, ch) && room_is_private (location) &&
+            char_get_trust (ch) < MAX_LEVEL,
+        "That room is private right now.\n\r", ch);
 
     original = ch->in_room;
     on = ch->on;

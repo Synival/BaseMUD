@@ -42,56 +42,43 @@
 #include "wiz_l1.h"
 
 /* TODO: review most of these functions and test them thoroughly. */
-/* TODO: BAIL_IF() clauses. */
-/* TODO: employ tables whenever possible */
 
 void do_deny (CHAR_DATA * ch, char *argument) {
     char arg[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Deny whom?\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (IS_NPC (victim)) {
-        send_to_char ("Not on NPC's.\n\r", ch);
-        return;
-    }
-    if (char_get_trust (victim) >= char_get_trust (ch)) {
-        send_to_char ("You failed.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Deny whom?\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (IS_NPC (victim),
+        "Not on NPC's.\n\r", ch);
+    BAIL_IF (char_get_trust (victim) >= char_get_trust (ch),
+        "You failed.\n\r", ch);
 
     SET_BIT (victim->plr, PLR_DENY);
     send_to_char ("You are denied access!\n\r", victim);
     sprintf (buf, "$N denies access to %s", victim->name);
     wiznet (buf, ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0);
     send_to_char ("OK.\n\r", ch);
+
     save_char_obj (victim);
     stop_fighting (victim, TRUE);
     do_function (victim, &do_quit, "");
 }
 
-void do_permban (CHAR_DATA * ch, char *argument) {
-    ban_site (ch, argument, TRUE);
-}
+void do_permban (CHAR_DATA * ch, char *argument)
+    { ban_site (ch, argument, TRUE); }
 
 void do_protect (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *victim;
 
-    if (argument[0] == '\0') {
-        send_to_char ("Protect whom from snooping?\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, argument)) == NULL) {
-        send_to_char ("You can't find them.\n\r", ch);
-        return;
-    }
+    BAIL_IF (argument[0] == '\0',
+        "Protect whom from snooping?\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, argument)) == NULL,
+        "You can't find them.\n\r", ch);
+
     if (IS_SET (victim->comm, COMM_SNOOP_PROOF)) {
         act_new ("$N is no longer snoop-proof.", ch, NULL, victim, TO_CHAR,
                  POS_DEAD);
@@ -164,10 +151,9 @@ void do_log (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Log whom?\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Log whom?\n\r", ch);
+
     if (!str_cmp (arg, "all")) {
         if (fLogAll) {
             fLogAll = FALSE;
@@ -179,14 +165,11 @@ void do_log (CHAR_DATA * ch, char *argument) {
         }
         return;
     }
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (IS_NPC (victim)) {
-        send_to_char ("Not on NPC's.\n\r", ch);
-        return;
-    }
+
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (IS_NPC (victim),
+        "Not on NPC's.\n\r", ch);
 
     /* No level check, gods can log anyone. */
     if (IS_SET (victim->plr, PLR_LOG)) {

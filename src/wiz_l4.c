@@ -40,59 +40,54 @@
 #include "chars.h"
 #include "objs.h"
 #include "find.h"
+#include "recycle.h"
 
 #include "wiz_l4.h"
 
-/* TODO: do_flag() is just ugly in general. */
+/* TODO: do_flag() is just ugly in general. use a table! */
 /* TODO: review most of these functions and test them thoroughly. */
-/* TODO: BAIL_IF() clauses. */
 /* TODO: employ tables whenever possible */
+/* TODO: sort do_mfind() by vnum */
+/* TODO: sort do_ofind() by vnum */
 
 void do_guild (CHAR_DATA * ch, char *argument) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
-    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
-    int clan;
+    char *cname;
+    int clan_index;
+    const CLAN_TYPE *clan;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
 
-    if (arg1[0] == '\0' || arg2[0] == '\0') {
-        send_to_char ("Syntax: guild <char> <cln name>\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg1)) == NULL) {
-        send_to_char ("They aren't playing.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg1[0] == '\0' || arg2[0] == '\0',
+        "Syntax: guild <char> none|<clan>\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg1)) == NULL,
+        "They aren't playing.\n\r", ch);
 
-    if (!str_prefix (arg2, "none")) {
+    if (!str_cmp (arg2, "none")) {
         send_to_char ("They are now clanless.\n\r", ch);
         send_to_char ("You are now a member of no clan!\n\r", victim);
         victim->clan = 0;
         return;
     }
 
-    if ((clan = clan_lookup (arg2)) == 0) {
-        send_to_char ("No such clan exists.\n\r", ch);
-        return;
-    }
+    BAIL_IF ((clan_index = clan_lookup (arg2)) < 0,
+        "No such clan exists.\n\r", ch);
+    clan = &(clan_table[clan_index]);
 
-    if (clan_table[clan].independent) {
-        sprintf (buf, "They are now a %s.\n\r", clan_table[clan].name);
-        send_to_char (buf, ch);
-        sprintf (buf, "You are now a %s.\n\r", clan_table[clan].name);
-        send_to_char (buf, victim);
+    if (clan->independent) {
+        cname = clan->name;
+        printf_to_char (ch,    "They are now a %s.\n\r", cname);
+        printf_to_char (victim, "You are now a %s.\n\r", cname);
     }
     else {
-        sprintf (buf, "They are now a member of clan %s.\n\r",
-                 capitalize (clan_table[clan].name));
-        send_to_char (buf, ch);
-        sprintf (buf, "You are now a member of clan %s.\n\r",
-                 capitalize (clan_table[clan].name));
+        cname = capitalize (clan->name);
+        printf_to_char (ch,    "They are now a member of clan %s.\n\r", cname);
+        printf_to_char (victim, "You are now a member of clan %s.\n\r", cname);
     }
 
-    victim->clan = clan;
+    victim->clan = clan_index;
 }
 
 void do_sockets (CHAR_DATA * ch, char *argument) {
@@ -119,10 +114,8 @@ void do_sockets (CHAR_DATA * ch, char *argument) {
                      d->character ? d->character->name : "(none)", d->host);
         }
     }
-    if (count == 0) {
-        send_to_char ("No one by that name is connected.\n\r", ch);
-        return;
-    }
+    BAIL_IF (count == 0,
+        "No one by that name is connected.\n\r", ch);
 
     sprintf (buf2, "%d user%s\n\r", count, count == 1 ? "" : "s");
     strcat (buf, buf2);
@@ -274,22 +267,14 @@ void do_freeze (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Freeze whom?\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (IS_NPC (victim)) {
-        send_to_char ("Not on NPC's.\n\r", ch);
-        return;
-    }
-    if (char_get_trust (victim) >= char_get_trust (ch)) {
-        send_to_char ("You failed.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Freeze whom?\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (IS_NPC (victim),
+        "Not on NPC's.\n\r", ch);
+    BAIL_IF (char_get_trust (victim) >= char_get_trust (ch),
+        "You failed.\n\r", ch);
     if (IS_SET (victim->plr, PLR_FREEZE)) {
         REMOVE_BIT (victim->plr, PLR_FREEZE);
         send_to_char ("You can play again.\n\r", victim);
@@ -319,14 +304,10 @@ void do_load (CHAR_DATA * ch, char *argument) {
         send_to_char ("  load obj <vnum> <level>\n\r", ch);
         return;
     }
-    if (!str_cmp (arg, "mob") || !str_cmp (arg, "char")) {
-        do_function (ch, &do_mload, argument);
-        return;
-    }
-    if (!str_cmp (arg, "obj")) {
-        do_function (ch, &do_oload, argument);
-        return;
-    }
+    BAIL_IF_EXPR (!str_cmp (arg, "mob") || !str_cmp (arg, "char"),
+        do_function (ch, &do_mload, argument));
+    BAIL_IF_EXPR (!str_cmp (arg, "obj"),
+        do_function (ch, &do_oload, argument));
 
     /* echo syntax */
     do_function (ch, &do_load, "");
@@ -339,15 +320,10 @@ void do_mload (CHAR_DATA * ch, char *argument) {
     char buf[MAX_STRING_LENGTH];
 
     one_argument (argument, arg);
-    if (arg[0] == '\0' || !is_number (arg)) {
-        send_to_char ("Syntax: load mob <vnum>.\n\r", ch);
-        return;
-    }
-
-    if ((pMobIndex = get_mob_index (atoi (arg))) == NULL) {
-        send_to_char ("No mob has that vnum.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0' || !is_number (arg),
+        "Syntax: load mob <vnum>.\n\r", ch);
+    BAIL_IF ((pMobIndex = get_mob_index (atoi (arg))) == NULL,
+        "No mob has that vnum.\n\r", ch);
 
     victim = create_mobile (pMobIndex);
     char_to_room (victim, ch->in_room);
@@ -366,29 +342,21 @@ void do_oload (CHAR_DATA * ch, char *argument) {
     argument = one_argument (argument, arg1);
     one_argument (argument, arg2);
 
-    if (arg1[0] == '\0' || !is_number (arg1)) {
-        send_to_char ("Syntax: load obj <vnum> <level>.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg1[0] == '\0' || !is_number (arg1),
+        "Syntax: load obj <vnum> <level>.\n\r", ch);
 
     level = char_get_trust (ch); /* default */
     if (arg2[0] != '\0') {
         /* load with a level */
-        if (!is_number (arg2)) {
-            send_to_char ("Syntax: oload <vnum> <level>.\n\r", ch);
-            return;
-        }
+        BAIL_IF (!is_number (arg2),
+            "Syntax: oload <vnum> <level>.\n\r", ch);
         level = atoi (arg2);
-        if (level < 0 || level > char_get_trust (ch)) {
-            send_to_char ("Level must be be between 0 and your level.\n\r", ch);
-            return;
-        }
+        BAIL_IF (level < 0 || level > char_get_trust (ch),
+            "Level must be be between 0 and your level.\n\r", ch);
     }
 
-    if ((pObjIndex = get_obj_index (atoi (arg1))) == NULL) {
-        send_to_char ("No object has that vnum.\n\r", ch);
-        return;
-    }
+    BAIL_IF ((pObjIndex = get_obj_index (atoi (arg1))) == NULL,
+        "No object has that vnum.\n\r", ch);
 
     obj = create_object (pObjIndex, level);
     if (CAN_WEAR (obj, ITEM_TAKE))
@@ -406,24 +374,17 @@ void do_pecho (CHAR_DATA * ch, char *argument) {
 
     argument = one_argument (argument, arg);
 
-    if (argument[0] == '\0' || arg[0] == '\0') {
-        send_to_char ("Personal echo what?\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("Target not found.\n\r", ch);
-        return;
-    }
+    BAIL_IF (argument[0] == '\0' || arg[0] == '\0',
+        "Personal echo what?\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "Target not found.\n\r", ch);
 
     if (char_get_trust (victim) >= char_get_trust (ch) &&
             char_get_trust (ch) != MAX_LEVEL)
         send_to_char ("personal> ", victim);
 
-    send_to_char (argument, victim);
-    send_to_char ("\n\r", victim);
-    send_to_char ("personal> ", ch);
-    send_to_char (argument, ch);
-    send_to_char ("\n\r", ch);
+    printf_to_char (victim, "%s\n\r", argument);
+    printf_to_char (ch, "personal> %s\n\r", argument);
 }
 
 void do_purge (CHAR_DATA * ch, char *argument) {
@@ -456,15 +417,13 @@ void do_purge (CHAR_DATA * ch, char *argument) {
         return;
     }
 
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
+
     if (!IS_NPC (victim)) {
-        if (ch == victim) {
-            send_to_char ("Ho ho ho.\n\r", ch);
-            return;
-        }
+        BAIL_IF (ch == victim,
+            "Ho ho ho.\n\r", ch);
+
         if (char_get_trust (ch) <= char_get_trust (victim)) {
             send_to_char ("Maybe that wasn't a good idea...\n\r", ch);
             sprintf (buf, "%s tried to purge you!\n\r", ch->name);
@@ -472,7 +431,9 @@ void do_purge (CHAR_DATA * ch, char *argument) {
             return;
         }
 
-        act ("$n disintegrates $N.", ch, 0, victim, TO_OTHERS);
+        act3 ("You disintegrate $N.",
+              "$n disintegrates you.",
+              "$n disintegrates $N.", ch, 0, victim, 0, POS_RESTING);
 
         if (victim->level > 1)
             save_char_obj (victim);
@@ -482,101 +443,80 @@ void do_purge (CHAR_DATA * ch, char *argument) {
             close_socket (d);
     }
 
-    act ("$n purges $N.", ch, NULL, victim, TO_OTHERS);
+    act3 ("You purge $N.", "$n purges you.", "$n purges $N.",
+        ch, 0, victim, 0, POS_RESTING);
     char_extract (victim, TRUE);
     return;
+}
+
+void do_restore_single (CHAR_DATA *ch, CHAR_DATA *vch) {
+    affect_strip (vch, gsn_plague);
+    affect_strip (vch, gsn_poison);
+    affect_strip (vch, gsn_blindness);
+    affect_strip (vch, gsn_sleep);
+    affect_strip (vch, gsn_curse);
+
+    vch->hit = vch->max_hit;
+    vch->mana = vch->max_mana;
+    vch->move = vch->max_move;
+    update_pos (vch);
+    if (vch->in_room != NULL)
+        act ("$n has restored you.", ch, NULL, vch, TO_VICT);
 }
 
 void do_restore (CHAR_DATA * ch, char *argument) {
     char arg[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
-    CHAR_DATA *vch;
     DESCRIPTOR_DATA *d;
 
     one_argument (argument, arg);
     if (arg[0] == '\0' || !str_cmp (arg, "room")) {
         /* cure room */
-        for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room) {
-            affect_strip (vch, gsn_plague);
-            affect_strip (vch, gsn_poison);
-            affect_strip (vch, gsn_blindness);
-            affect_strip (vch, gsn_sleep);
-            affect_strip (vch, gsn_curse);
-
-            vch->hit = vch->max_hit;
-            vch->mana = vch->max_mana;
-            vch->move = vch->max_move;
-            update_pos (vch);
-            act ("$n has restored you.", ch, NULL, vch, TO_VICT);
-        }
+        for (victim = ch->in_room->people; victim != NULL; victim = victim->next_in_room)
+            do_restore_single (ch, victim);
 
         sprintf (buf, "$N restored room %d.", ch->in_room->vnum);
         wiznet (buf, ch, NULL, WIZ_RESTORE, WIZ_SECURE, char_get_trust (ch));
-
         send_to_char ("Room restored.\n\r", ch);
         return;
-
     }
 
     if (char_get_trust (ch) >= MAX_LEVEL - 1 && !str_cmp (arg, "all")) {
         /* cure all */
         for (d = descriptor_list; d != NULL; d = d->next) {
             victim = d->character;
-
             if (victim == NULL || IS_NPC (victim))
                 continue;
-
-            affect_strip (victim, gsn_plague);
-            affect_strip (victim, gsn_poison);
-            affect_strip (victim, gsn_blindness);
-            affect_strip (victim, gsn_sleep);
-            affect_strip (victim, gsn_curse);
-
-            victim->hit = victim->max_hit;
-            victim->mana = victim->max_mana;
-            victim->move = victim->max_move;
-            update_pos (victim);
-            if (victim->in_room != NULL)
-                act ("$n has restored you.", ch, NULL, victim, TO_VICT);
+            do_restore_single (ch, victim);
         }
+
+        wiznet ("$N restored all players.", ch, NULL, WIZ_RESTORE, WIZ_SECURE,
+            char_get_trust (ch));
         send_to_char ("All active players restored.\n\r", ch);
         return;
     }
 
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
 
-    affect_strip (victim, gsn_plague);
-    affect_strip (victim, gsn_poison);
-    affect_strip (victim, gsn_blindness);
-    affect_strip (victim, gsn_sleep);
-    affect_strip (victim, gsn_curse);
-    victim->hit = victim->max_hit;
-    victim->mana = victim->max_mana;
-    victim->move = victim->max_move;
-    update_pos (victim);
-    act ("$n has restored you.", ch, NULL, victim, TO_VICT);
-    sprintf (buf, "$N restored %s",
-             IS_NPC (victim) ? victim->short_descr : victim->name);
+    do_restore_single (ch, victim);
+
+    sprintf (buf, "$N restored %s", PERS (victim));
     wiznet (buf, ch, NULL, WIZ_RESTORE, WIZ_SECURE, char_get_trust (ch));
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char (ch, "You restored %s.\n\r", PERS (victim));
 }
 
 void do_echo (CHAR_DATA * ch, char *argument) {
     DESCRIPTOR_DATA *d;
 
-    if (argument[0] == '\0') {
-        send_to_char ("Global echo what?\n\r", ch);
-        return;
-    }
+    BAIL_IF (argument[0] == '\0',
+        "Global echo what?\n\r", ch);
+
     for (d = descriptor_list; d; d = d->next) {
         if (d->connected == CON_PLAYING) {
             if (char_get_trust (d->character) >= char_get_trust (ch))
                 send_to_char ("global> ", d->character);
-            send_to_char (argument, d->character);
-            send_to_char ("\n\r", d->character);
+            printf_to_char (d->character, "%s\n\r", argument);
         }
     }
 }
@@ -595,18 +535,12 @@ void do_vnum (CHAR_DATA * ch, char *argument) {
         return;
     }
 
-    if (!str_cmp (arg, "obj")) {
-        do_function (ch, &do_ofind, string);
-        return;
-    }
-    if (!str_cmp (arg, "mob") || !str_cmp (arg, "char")) {
-        do_function (ch, &do_mfind, string);
-        return;
-    }
-    if (!str_cmp (arg, "skill") || !str_cmp (arg, "spell")) {
-        do_function (ch, &do_slookup, string);
-        return;
-    }
+    BAIL_IF_EXPR (!str_cmp (arg, "obj"),
+        do_function (ch, &do_ofind, string));
+    BAIL_IF_EXPR (!str_cmp (arg, "mob") || !str_cmp (arg, "char"),
+        do_function (ch, &do_mfind, string));
+    BAIL_IF_EXPR (!str_cmp (arg, "skill") || !str_cmp (arg, "spell"),
+        do_function (ch, &do_slookup, string));
 
     /* do both (not skills) */
     do_function (ch, &do_mfind, argument);
@@ -614,125 +548,89 @@ void do_vnum (CHAR_DATA * ch, char *argument) {
 }
 
 void do_slookup (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     int sn;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Lookup which skill or spell?\n\r", ch);
+    BAIL_IF (arg[0] == '\0',
+        "Lookup which skill or spell?\n\r", ch);
+
+    if (!str_cmp (arg, "all")) {
+        for (sn = 0; sn < SKILL_MAX && skill_table[sn].name; sn++)
+            printf_to_char (ch, "Sn: %3d  Slot: %3d  Skill/spell: '%s'\n\r",
+                sn, skill_table[sn].slot, skill_table[sn].name);
         return;
     }
-    if (!str_cmp (arg, "all")) {
-        for (sn = 0; sn < SKILL_MAX; sn++) {
-            if (skill_table[sn].name == NULL)
-                break;
-            sprintf (buf, "Sn: %3d  Slot: %3d  Skill/spell: '%s'\n\r",
-                     sn, skill_table[sn].slot, skill_table[sn].name);
-            send_to_char (buf, ch);
-        }
-    }
-    else {
-        if ((sn = skill_lookup (arg)) < 0) {
-            send_to_char ("No such skill or spell.\n\r", ch);
-            return;
-        }
-        sprintf (buf, "Sn: %3d  Slot: %3d  Skill/spell: '%s'\n\r",
-                 sn, skill_table[sn].slot, skill_table[sn].name);
-        send_to_char (buf, ch);
-    }
+
+    BAIL_IF ((sn = skill_lookup (arg)) < 0,
+        "No such skill or spell.\n\r", ch);
+    printf_to_char (ch, "Sn: %3d  Slot: %3d  Skill/spell: '%s'\n\r",
+        sn, skill_table[sn].slot, skill_table[sn].name);
 }
 
 void do_mfind (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
-    MOB_INDEX_DATA *pMobIndex;
-    int vnum;
-    int nMatch;
-    bool fAll;
-    bool found;
+    const MOB_INDEX_DATA *mob;
+    int matches = 0;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Find whom?\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Find whom?\n\r", ch);
 
-    fAll = FALSE;                /* !str_cmp( arg, "all" ); */
-    found = FALSE;
-    nMatch = 0;
-
-    /* Yeah, so iterating over all vnum's takes 10,000 loops.
-     * Get_mob_index is fast, and I don't feel like threading another link.
-     * Do you? -- Furey */
-    for (vnum = 0; nMatch < TOP (RECYCLE_MOB_INDEX_DATA); vnum++) {
-        if ((pMobIndex = get_mob_index (vnum)) != NULL) {
-            nMatch++;
-            if (fAll || is_name (argument, pMobIndex->name)) {
-                found = TRUE;
-                sprintf (buf, "[%5d] %s\n\r",
-                         pMobIndex->vnum, pMobIndex->short_descr);
-                send_to_char (buf, ch);
-            }
+    for (mob = mob_index_get_first(); mob; mob = mob_index_get_next (mob)) {
+        if (is_name (argument, mob->name)) {
+            printf_to_char (ch, "[%5d] %s\n\r", mob->vnum, mob->short_descr);
+            matches++;
         }
     }
-    if (!found)
+    if (matches == 0)
         send_to_char ("No mobiles by that name.\n\r", ch);
+    else
+        printf_to_char (ch, "Found %d mobiles.\n\r", matches);
 }
 
 void do_ofind (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
-    OBJ_INDEX_DATA *pObjIndex;
-    int vnum;
-    int nMatch;
-    bool fAll;
-    bool found;
+    const OBJ_INDEX_DATA *obj;
+    int matches = 0;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Find what?\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Find what?\n\r", ch);
 
-    fAll   = FALSE; /* !str_cmp( arg, "all" ); */
-    found  = FALSE;
-    nMatch = 0;
-
-    /* Yeah, so iterating over all vnum's takes 10,000 loops.
-     * Get_obj_index is fast, and I don't feel like threading another link.
-     * Do you? -- Furey */
-    for (vnum = 0; nMatch < TOP (RECYCLE_OBJ_INDEX_DATA); vnum++) {
-        if ((pObjIndex = get_obj_index (vnum)) != NULL) {
-            nMatch++;
-            if (fAll || is_name (argument, pObjIndex->name)) {
-                found = TRUE;
-                sprintf (buf, "[%5d] %s\n\r",
-                         pObjIndex->vnum, pObjIndex->short_descr);
-                send_to_char (buf, ch);
-            }
+    for (obj = obj_index_get_first(); obj; obj = obj_index_get_next (obj)) {
+        if (is_name (argument, obj->name)) {
+            printf_to_char (ch, "[%5d] %s\n\r", obj->vnum, obj->short_descr);
+            matches++;
         }
     }
-    if (!found)
+    if (matches == 0)
         send_to_char ("No objects by that name.\n\r", ch);
+    else
+        printf_to_char (ch, "Found %d objects.\n\r", matches);
 }
 
 void do_zecho (CHAR_DATA * ch, char *argument) {
     DESCRIPTOR_DATA *d;
+    CHAR_DATA *vch;
 
-    if (argument[0] == '\0') {
-        send_to_char ("Zone echo what?\n\r", ch);
-        return;
-    }
+    BAIL_IF (argument[0] == '\0',
+        "Zone echo what?\n\r", ch);
+    BAIL_IF (ch->in_room == NULL,
+        "Good idea - if only you were in a zone...\n\r", ch);
+
     for (d = descriptor_list; d; d = d->next) {
-        if (d->connected == CON_PLAYING
-            && d->character->in_room != NULL && ch->in_room != NULL
-            && d->character->in_room->area == ch->in_room->area)
-        {
-            if (char_get_trust (d->character) >= char_get_trust (ch))
-                send_to_char ("zone> ", d->character);
-            send_to_char (argument, d->character);
-            send_to_char ("\n\r", d->character);
-        }
+        if (d->connected != CON_PLAYING)
+            continue;
+        if ((vch = CH(d)) == NULL)
+            continue;
+        if (vch->in_room == NULL)
+            continue;
+        if (vch->in_room->area != ch->in_room->area)
+            continue;
+
+        if (char_get_trust (d->character) >= char_get_trust (ch))
+            send_to_char ("zone> ", d->character);
+        printf_to_char (vch, "%s\n\r", argument);
     }
 }

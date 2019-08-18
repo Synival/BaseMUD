@@ -38,8 +38,6 @@
 #include "wiz_l3.h"
 
 /* TODO: review most of these functions and test them thoroughly. */
-/* TODO: BAIL_IF() clauses. */
-/* TODO: employ tables whenever possible */
 
 void do_disconnect (CHAR_DATA * ch, char *argument) {
     char arg[MAX_INPUT_LENGTH];
@@ -47,10 +45,9 @@ void do_disconnect (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Disconnect whom?\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Disconnect whom?\n\r", ch);
+
     if (is_number (arg)) {
         int desc;
 
@@ -64,14 +61,10 @@ void do_disconnect (CHAR_DATA * ch, char *argument) {
         }
     }
 
-    if ((victim = find_char_world (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (victim->desc == NULL) {
-        act ("$N doesn't have a descriptor.", ch, NULL, victim, TO_CHAR);
-        return;
-    }
+    BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF_ACT (victim->desc == NULL,
+        "$N doesn't have a descriptor.", ch, NULL, victim);
 
     for (d = descriptor_list; d != NULL; d = d->next) {
         if (d == victim->desc) {
@@ -93,18 +86,13 @@ void do_pardon (CHAR_DATA * ch, char *argument) {
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
 
-    if (arg1[0] == '\0' || arg2[0] == '\0') {
-        send_to_char ("Syntax: pardon <character> <killer|thief>.\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg1)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (IS_NPC (victim)) {
-        send_to_char ("Not on NPC's.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg1[0] == '\0' || arg2[0] == '\0',
+        "Syntax: pardon <character> <killer|thief>.\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg1)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (IS_NPC (victim),
+        "Not on NPC's.\n\r", ch);
+
     if (!str_cmp (arg2, "killer")) {
         if (IS_SET (victim->plr, PLR_KILLER)) {
             REMOVE_BIT (victim->plr, PLR_KILLER);
@@ -125,34 +113,25 @@ void do_pardon (CHAR_DATA * ch, char *argument) {
     send_to_char ("Syntax: pardon <character> <killer|thief>.\n\r", ch);
 }
 
-void do_sla (CHAR_DATA * ch, char *argument) {
-    send_to_char ("If you want to SLAY, spell it out.\n\r", ch);
-}
+void do_sla (CHAR_DATA * ch, char *argument)
+    { send_to_char ("If you want to SLAY, spell it out.\n\r", ch); }
 
 void do_slay (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *victim;
     char arg[MAX_INPUT_LENGTH];
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Slay whom?\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_room (ch, arg)) == NULL) {
-        send_to_char ("They aren't here.\n\r", ch);
-        return;
-    }
-    if (ch == victim) {
-        send_to_char ("Suicide is a mortal sin.\n\r", ch);
-        return;
-    }
-    if (!IS_NPC (victim) && victim->level >= char_get_trust (ch)) {
-        send_to_char ("You failed.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0',
+        "Slay whom?\n\r", ch);
+    BAIL_IF ((victim = find_char_room (ch, arg)) == NULL,
+        "They aren't here.\n\r", ch);
+    BAIL_IF (ch == victim,
+        "Suicide is a mortal sin.\n\r", ch);
+    BAIL_IF (!IS_NPC (victim) && victim->level >= char_get_trust (ch),
+        "You failed.\n\r", ch);
 
-    act ("{1You slay $M in cold blood!{x",  ch, NULL, victim, TO_CHAR);
-    act ("{1$n slays you in cold blood!{x", ch, NULL, victim, TO_VICT);
-    act ("{1$n slays $N in cold blood!{x",  ch, NULL, victim, TO_OTHERS);
+    act3 ("{1You slay $M in cold blood!{x",
+          "{1$n slays you in cold blood!{x",
+          "{1$n slays $N in cold blood!{x", ch, NULL, victim, 0, POS_RESTING);
     raw_kill (victim);
 }

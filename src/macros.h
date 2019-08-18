@@ -131,16 +131,12 @@
     ((obj)->item_type == ITEM_CONTAINER ? (obj)->value[4] : 100)
 
 /* Description macros. */
+#define PERS(ch) \
+    (IS_NPC(ch) ? (ch)->short_descr : (ch)->name)
 #define PERS_AW(ch, looker) \
-    (char_can_see_anywhere((looker), (ch)) \
-        ? (IS_NPC(ch) ? (ch)->short_descr : (ch)->name) \
-        : "someone" \
-    )
+    (char_can_see_anywhere((looker), (ch)) ? (PERS(ch)) : "someone")
 #define PERS_IR(ch, looker) \
-    (char_can_see_in_room((looker), (ch)) \
-        ? (IS_NPC(ch) ? (ch)->short_descr : (ch)->name) \
-        : "someone" \
-    )
+    (char_can_see_in_room((looker), (ch)) ? (PERS(ch)) : "someone")
 
 /* Read in a char. */
 #if defined(KEY)
@@ -382,6 +378,14 @@
         } \
     } while (0)
 
+#define RETURN_IF_EXPR(cond, expr, rval) \
+    do { \
+        if (cond) { \
+            (expr); \
+            return rval; \
+        } \
+    } while (0)
+
 #define FILTER(cond, msg, ch) \
     RETURN_IF(cond, msg, ch, TRUE)
 #define FILTER_ACT(cond, msg, ch, arg1, arg2) \
@@ -391,6 +395,8 @@
     RETURN_IF(cond, msg, ch, )
 #define BAIL_IF_ACT(cond, msg, ch, arg1, arg2) \
     RETURN_IF_ACT(cond, msg, ch, arg1, arg2, )
+#define BAIL_IF_EXPR(cond, expr) \
+    RETURN_IF_EXPR(cond, expr, )
 
 #define DO_REQUIRE_ARG(buf, msg) \
     do { \
