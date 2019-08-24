@@ -82,10 +82,7 @@ void do_recho (CHAR_DATA * ch, char *argument) {
             continue;
         if (d->character->in_room != ch->in_room)
             continue;
-
-        if (char_get_trust (d->character) >= char_get_trust (ch))
-            send_to_char ("local> ", d->character);
-        printf_to_char (d->character, "%s\n\r", argument);
+        echo_to_char (d->character, ch, "local", argument);
     }
 }
 

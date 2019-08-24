@@ -512,13 +512,9 @@ void do_echo (CHAR_DATA * ch, char *argument) {
     BAIL_IF (argument[0] == '\0',
         "Global echo what?\n\r", ch);
 
-    for (d = descriptor_list; d; d = d->next) {
-        if (d->connected == CON_PLAYING) {
-            if (char_get_trust (d->character) >= char_get_trust (ch))
-                send_to_char ("global> ", d->character);
-            printf_to_char (d->character, "%s\n\r", argument);
-        }
-    }
+    for (d = descriptor_list; d; d = d->next)
+        if (d->connected == CON_PLAYING)
+            echo_to_char (d->character, ch, "global", argument);
 }
 
 /* ofind and mfind replaced with vnum, vnum skill also added */
@@ -628,9 +624,6 @@ void do_zecho (CHAR_DATA * ch, char *argument) {
             continue;
         if (vch->in_room->area != ch->in_room->area)
             continue;
-
-        if (char_get_trust (vch) >= char_get_trust (ch))
-            send_to_char ("zone> ", vch);
-        printf_to_char (vch, "%s\n\r", argument);
+        echo_to_char (vch, ch, "zone", argument);
     }
 }

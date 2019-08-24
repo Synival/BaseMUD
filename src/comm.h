@@ -309,5 +309,7 @@ bool position_change_message_to_resting (CHAR_DATA * ch, int from, OBJ_DATA *obj
 bool position_change_message_to_sitting (CHAR_DATA * ch, int from, OBJ_DATA *obj);
 bool position_change_message_to_sleeping (CHAR_DATA * ch, int from, OBJ_DATA *obj);
 void substitute_alias (DESCRIPTOR_DATA * d, char *argument);
+void echo_to_char (CHAR_DATA *to, CHAR_DATA *from, const char *type,
+    const char *msg);
 
 #endif

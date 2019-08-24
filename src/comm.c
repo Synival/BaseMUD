@@ -2091,3 +2091,14 @@ void substitute_alias (DESCRIPTOR_DATA * d, char *argument) {
     }
     interpret (d->character, buf);
 }
+
+void echo_to_char (CHAR_DATA *to, CHAR_DATA *from, const char *type,
+    const char *msg)
+{
+    if (char_get_trust (to) >= char_get_trust (from)) {
+        send_to_char (type, to);
+        send_to_char ("> ", to);
+    }
+    send_to_char (msg, to);
+    send_to_char ("\n\r", to);
+}
