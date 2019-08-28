@@ -102,6 +102,8 @@ typedef struct portal_exit_type PORTAL_EXIT_TYPE;
 typedef struct portal_type      PORTAL_TYPE;
 typedef struct cmd_type         CMD_TYPE;
 typedef struct affect_bit_type  AFFECT_BIT_TYPE;
+typedef struct day_type         DAY_TYPE;
+typedef struct month_type       MONTH_TYPE;
 
 /* Function types. */
 typedef void DO_FUN     (CHAR_DATA *ch, char *argument);
@@ -409,6 +411,7 @@ struct door_type {
     int dir;
     const char *name;
     const char *from;
+    const char *to_phrase;
     int reverse;
 };
 
@@ -936,6 +939,16 @@ struct affect_bit_type {
     int type;
     const FLAG_TYPE *flags;
     char *help;
+};
+
+struct day_type {
+    int type;
+    const char *name;
+};
+
+struct month_type {
+    int type;
+    const char *name;
 };
 
 #endif

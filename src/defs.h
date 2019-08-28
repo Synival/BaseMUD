@@ -521,4 +521,33 @@
 #define PORTAL_TO_ROOM  0
 #define PORTAL_TO_EXIT  1
 
+/* Days of the week. */
+#define DAY_MOON        0
+#define DAY_BULL        1
+#define DAY_DECEPTION   2
+#define DAY_THUNDER     3
+#define DAY_FREEDOM     4
+#define DAY_GREAT_GODS  5
+#define DAY_SUN         6
+#define DAY_MAX         7
+
+#define MONTH_WINTER            0
+#define MONTH_WINTER_WOLF       1
+#define MONTH_FROST_GIANT       2
+#define MONTH_OLD_FORCES        3
+#define MONTH_GRAND_STRUGGLE    4
+#define MONTH_SPRING            5
+#define MONTH_NATURE            6
+#define MONTH_FUTILITY          7
+#define MONTH_DRAGON            8
+#define MONTH_SUN               9
+#define MONTH_HEAT             10
+#define MONTH_BATTLE           11
+#define MONTH_DARK_SHADES      12
+#define MONTH_SHADOWS          13
+#define MONTH_LONG_SHADOWS     14
+#define MONTH_ANCIENT_DARKNESS 15
+#define MONTH_GREAT_EVIL       16
+#define MONTH_MAX              17
+
 #endif

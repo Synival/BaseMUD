@@ -1312,12 +1312,12 @@ const OBJ_MAP obj_map_table[] = {
 
 /* for doors */
 const DOOR_TYPE door_table[DIR_MAX + 1] = {
-    {DIR_NORTH, "north", "the north", DIR_SOUTH},
-    {DIR_EAST,  "east",  "the east",  DIR_WEST},
-    {DIR_SOUTH, "south", "the south", DIR_NORTH},
-    {DIR_WEST,  "west",  "the west",  DIR_EAST},
-    {DIR_UP,    "up",    "above",     DIR_DOWN},
-    {DIR_DOWN,  "down",  "below",     DIR_UP},
+    {DIR_NORTH, "north", "the north", "to the north", DIR_SOUTH},
+    {DIR_EAST,  "east",  "the east",  "to the east",  DIR_WEST},
+    {DIR_SOUTH, "south", "the south", "to the south", DIR_NORTH},
+    {DIR_WEST,  "west",  "the west",  "to the west",  DIR_EAST},
+    {DIR_UP,    "up",    "above",     "above you",    DIR_DOWN},
+    {DIR_DOWN,  "down",  "below",     "below you",    DIR_UP},
     {0},
 };
 
@@ -1595,4 +1595,36 @@ const AFFECT_BIT_TYPE affect_bit_table[] = {
     {"vuln",    TO_VULN,    res_flags,    "res_flags"},
     {"weapon",  TO_WEAPON,  weapon_flags, "weapon_flags"},
     {NULL,      0,          NULL},
+};
+
+const DAY_TYPE day_table[DAY_MAX + 1] = {
+    { DAY_MOON,       "the Moon" },
+    { DAY_BULL,       "the Bull" },
+    { DAY_DECEPTION,  "Deception" },
+    { DAY_THUNDER,    "Thunder" },
+    { DAY_FREEDOM,    "Freedom" },
+    { DAY_GREAT_GODS, "the Great Gods" },
+    { DAY_SUN,        "the Sun" },
+    { -1, NULL }
+};
+
+const MONTH_TYPE month_table[MONTH_MAX + 1] = {
+    { MONTH_WINTER,           "Winter" },
+    { MONTH_WINTER_WOLF,      "the Winter Wolf" },
+    { MONTH_FROST_GIANT,      "the Frost Giant" },
+    { MONTH_OLD_FORCES,       "the Old Forces" },
+    { MONTH_GRAND_STRUGGLE,   "the Grand Struggle" },
+    { MONTH_SPRING,           "the Spring" },
+    { MONTH_NATURE,           "Nature" },
+    { MONTH_FUTILITY,         "Futility" },
+    { MONTH_DRAGON,           "the Dragon" },
+    { MONTH_SUN,              "the Sun" },
+    { MONTH_HEAT,             "the Heat" },
+    { MONTH_BATTLE,           "the Battle" },
+    { MONTH_DARK_SHADES,      "the Dark Shades" },
+    { MONTH_SHADOWS,          "the Shadows" },
+    { MONTH_LONG_SHADOWS,     "the Long Shadows" },
+    { MONTH_ANCIENT_DARKNESS, "the Ancient Darkness" },
+    { MONTH_GREAT_EVIL,       "the Great Evil" },
+    { -1, NULL }
 };

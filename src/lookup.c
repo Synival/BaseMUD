@@ -177,6 +177,8 @@ SIMPLE_HASH_BUNDLE (dam,        DAM_TYPE,         type);
 SIMPLE_HASH_BUNDLE (colour,     COLOUR_TYPE,      code);
 SIMPLE_HASH_BUNDLE (colour_setting, COLOUR_SETTING_TYPE, index);
 SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_TYPE,  type);
+SIMPLE_HASH_BUNDLE (day,        DAY_TYPE,         type);
+SIMPLE_HASH_BUNDLE (month,      MONTH_TYPE,       type);
 
 SIMPLE_REC_BUNDLE (ban,         BAN_DATA,         RECYCLE_BAN_DATA);
 SIMPLE_REC_BUNDLE (area,        AREA_DATA,        RECYCLE_AREA_DATA);
@@ -301,6 +303,15 @@ HELP_AREA *help_area_get_by_help (HELP_DATA * help) {
             if (h == help)
                 return had;
     return NULL;
+}
+
+const DAY_TYPE *day_get_current () {
+    int day = (time_info.day + 1) % DAY_MAX;
+    return day_get (day);
+}
+
+const MONTH_TYPE *month_get_current () {
+    return month_get (time_info.month);
 }
 
 char *affect_apply_name (flag_t type)
