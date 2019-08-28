@@ -247,22 +247,24 @@ void boot_db (void) {
 }
 
 void init_time_weather (void) {
+    const SUN_TYPE *sun;
+    const SKY_TYPE *sky;
     long lhour, lday, lmonth;
 
+    /* Set the clock. */
     lhour = (current_time - 650336715) / (PULSE_TICK / PULSE_PER_SECOND);
-    time_info.hour = lhour % 24;
-    lday = lhour / 24;
-    time_info.day = lday % 35;
-    lmonth = lday / 35;
-    time_info.month = lmonth % 17;
-    time_info.year = lmonth / 17;
+    time_info.hour  = lhour  % HOURS_PER_DAY;
+    lday            = lhour  / HOURS_PER_DAY;
+    time_info.day   = lday   % DAYS_PER_MONTH;
+    lmonth          = lday   / DAYS_PER_MONTH;
+    time_info.month = lmonth % MONTH_MAX;
+    time_info.year  = lmonth / MONTH_MAX;
 
-         if (time_info.hour <  5) weather_info.sunlight = SUN_DARK;
-    else if (time_info.hour <  6) weather_info.sunlight = SUN_RISE;
-    else if (time_info.hour < 19) weather_info.sunlight = SUN_LIGHT;
-    else if (time_info.hour < 20) weather_info.sunlight = SUN_SET;
-    else                          weather_info.sunlight = SUN_DARK;
+    /* Set the sun type based on hour. */
+    sun = sun_get_by_hour (time_info.hour);
+    weather_info.sunlight = sun->type;
 
+    /* Randomize barometric pressure. Inner months are stormier. */
     weather_info.change = 0;
     weather_info.mmhg = 960;
     if (time_info.month >= 7 && time_info.month <= 12)
@@ -270,14 +272,9 @@ void init_time_weather (void) {
     else
         weather_info.mmhg += number_range (1, 80);
 
-    if (weather_info.mmhg <= 980)
-        weather_info.sky = SKY_LIGHTNING;
-    else if (weather_info.mmhg <= 1000)
-        weather_info.sky = SKY_RAINING;
-    else if (weather_info.mmhg <= 1020)
-        weather_info.sky = SKY_CLOUDY;
-    else
-        weather_info.sky = SKY_CLOUDLESS;
+    /* Set the sky type based on barometric pressure. */
+    sky = sky_get_by_mmhg (weather_info.mmhg);
+    weather_info.sky = sky->type;
 }
 
 void init_gsns (void) {

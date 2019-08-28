@@ -161,11 +161,13 @@
 #define SUN_RISE       1
 #define SUN_LIGHT      2
 #define SUN_SET        3
+#define SUN_MAX        4
 
 #define SKY_CLOUDLESS  0
 #define SKY_CLOUDY     1
 #define SKY_RAINING    2
 #define SKY_LIGHTNING  3
+#define SKY_MAX        4
 
 /* damage classes */
 #define DAM_NONE            0
@@ -531,6 +533,7 @@
 #define DAY_SUN         6
 #define DAY_MAX         7
 
+/* Months in the year. */
 #define MONTH_WINTER            0
 #define MONTH_WINTER_WOLF       1
 #define MONTH_FROST_GIANT       2
@@ -549,5 +552,9 @@
 #define MONTH_ANCIENT_DARKNESS 15
 #define MONTH_GREAT_EVIL       16
 #define MONTH_MAX              17
+
+/* Additional time information. */
+#define DAYS_PER_MONTH  35
+#define HOURS_PER_DAY   24
 
 #endif

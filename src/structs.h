@@ -104,6 +104,8 @@ typedef struct cmd_type         CMD_TYPE;
 typedef struct affect_bit_type  AFFECT_BIT_TYPE;
 typedef struct day_type         DAY_TYPE;
 typedef struct month_type       MONTH_TYPE;
+typedef struct sky_type         SKY_TYPE;
+typedef struct sun_type         SUN_TYPE;
 
 /* Function types. */
 typedef void DO_FUN     (CHAR_DATA *ch, char *argument);
@@ -949,6 +951,23 @@ struct day_type {
 struct month_type {
     int type;
     const char *name;
+};
+
+struct sky_type {
+    int type;
+    const char *name;
+    const char *description;
+    int mmhg_min;
+    int mmhg_max;
+};
+
+struct sun_type {
+    int type;
+    const char *name;
+    bool is_dark;
+    int hour_start;
+    int hour_end;
+    const char *message;
 };
 
 #endif

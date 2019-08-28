@@ -215,6 +215,8 @@ DEC_SIMPLE_HASH_BUNDLE (colour_setting, COLOUR_SETTING_TYPE);
 DEC_SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_TYPE);
 DEC_SIMPLE_HASH_BUNDLE (day,        DAY_TYPE);
 DEC_SIMPLE_HASH_BUNDLE (month,      MONTH_TYPE);
+DEC_SIMPLE_HASH_BUNDLE (sky,        SKY_TYPE);
+DEC_SIMPLE_HASH_BUNDLE (sun,        SUN_TYPE);
 
 DEC_SIMPLE_REC_BUNDLE (ban,         BAN_DATA);
 DEC_SIMPLE_REC_BUNDLE (area,        AREA_DATA);
@@ -243,6 +245,10 @@ flag_t wear_get_loc_by_type (flag_t type);
 HELP_AREA *help_area_get_by_help (HELP_DATA * help);
 const DAY_TYPE *day_get_current ();
 const MONTH_TYPE *month_get_current ();
+const SKY_TYPE *sky_get_current ();
+const SUN_TYPE *sun_get_current ();
+const SKY_TYPE *sky_get_by_mmhg (int mmhg);
+const SUN_TYPE *sun_get_by_hour (int hour);
 
 /* Bit functions from handler.c */
 char *affect_apply_name (flag_t type);

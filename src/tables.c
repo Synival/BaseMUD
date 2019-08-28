@@ -1628,3 +1628,19 @@ const MONTH_TYPE month_table[MONTH_MAX + 1] = {
     { MONTH_GREAT_EVIL,       "the Great Evil" },
     { -1, NULL }
 };
+
+const SKY_TYPE sky_table[SKY_MAX + 1] = {
+    { SKY_CLOUDLESS, "cloudless", "cloudless", 1020,   -1 },
+    { SKY_CLOUDY,    "cloudy",    "cloudy",    1000, 1020 },
+    { SKY_RAINING,   "raining",   "rainy",      980, 1000 },
+    { SKY_LIGHTNING, "lightning", "lit by flashes of lightning", -1, 980 },
+    { -1, NULL, NULL },
+};
+
+const SUN_TYPE sun_table[SUN_MAX + 1] = {
+    { SUN_DARK,  "dark",  TRUE,   0,  5, "The night has begun.\n\r" },
+    { SUN_RISE,  "rise",  FALSE,  5,  6, "The sun rises in the east.\n\r" },
+    { SUN_LIGHT, "light", FALSE,  6, 19, "The day has begun.\n\r" },
+    { SUN_SET,   "set",   TRUE,  19, 20, "The sun slowly disappears in the west.\n\r" },
+    { -1, NULL, 0 }
+};

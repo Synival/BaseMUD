@@ -74,13 +74,6 @@ static char *const scan_distance[8] = {
     "extremely far %s.",
 };
 
-static char *const sky_look[4] = {
-    "cloudless",
-    "cloudy",
-    "rainy",
-    "lit by flashes of lightning"
-};
-
 bool do_filter_blind (CHAR_DATA * ch) {
     if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT))
         return FALSE;
@@ -750,17 +743,17 @@ void do_time (CHAR_DATA * ch, char *argument) {
 }
 
 void do_weather (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
+    const SKY_TYPE *sky;
 
     BAIL_IF (!IS_OUTSIDE (ch),
         "You can't see the weather indoors.\n\r", ch);
 
-    sprintf (buf, "The sky is %s and %s.\n\r",
-             sky_look[weather_info.sky],
-             weather_info.change >= 0
-             ? "a warm southerly breeze blows"
-             : "a cold northern gust blows");
-    send_to_char (buf, ch);
+    sky = sky_get_current ();
+    printf_to_char (ch, "The sky is %s and %s.\n\r",
+        sky->description,
+        weather_info.change >= 0
+            ? "a warm southerly breeze blows"
+            : "a cold northern gust blows");
 }
 
 void do_help (CHAR_DATA * ch, char *argument) {

@@ -1253,7 +1253,7 @@ update.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
 update.o: /usr/include/bits/pthreadtypes.h /usr/include/sys/time.h macros.h
 update.o: json.h structs.h types.h flags.h tables.h music.h comm.h affects.h
 update.o: utils.h skills.h mob_prog.h fight.h save.h magic.h db.h
-update.o: act_player.h chars.h objs.h update.h
+update.o: act_player.h chars.h objs.h lookup.h update.h
 utils.o: /usr/include/stdlib.h /usr/include/features.h
 utils.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 utils.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -1365,7 +1365,8 @@ wiz_l4.o: /usr/include/wchar.h /usr/include/bits/wchar.h
 wiz_l4.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 wiz_l4.o: basemud.h compat.h defs.h /usr/include/sys/time.h macros.h json.h
 wiz_l4.o: structs.h types.h flags.h tables.h comm.h interp.h save.h fight.h
-wiz_l4.o: utils.h lookup.h skills.h affects.h chars.h objs.h find.h wiz_l4.h
+wiz_l4.o: utils.h lookup.h skills.h affects.h chars.h objs.h find.h recycle.h
+wiz_l4.o: wiz_l4.h
 wiz_l5.o: /usr/include/string.h /usr/include/features.h
 wiz_l5.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 wiz_l5.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
