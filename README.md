@@ -244,6 +244,8 @@ phased out or at least optional. A handful of changes were just for fun.
   the victim.
 * 'Heat metal' would drop an item _more_ if the opponent had more dexterity - this
   is fixed, but still needs balancing.
+* If standing on/at/in something, The `stand` command without any argument will
+  now step off/out.
 
 As a bonus feature, booting the MUD currently outputs several files to JSON
 format in the `json/` directory. In time, the MUD will be able to read these files

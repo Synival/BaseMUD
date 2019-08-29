@@ -37,6 +37,7 @@ void obj_extract (OBJ_DATA *obj);
 /* "Is" / "Can" functions. */
 bool obj_is_container (OBJ_DATA *obj);
 bool obj_can_fit_in (OBJ_DATA *obj, OBJ_DATA *container);
+bool obj_is_furniture (OBJ_DATA * obj, flag_t bits);
 
 /* "Get" functions. */
 int obj_count_users (OBJ_DATA *obj);
@@ -45,7 +46,10 @@ int obj_index_count_in_list (OBJ_INDEX_DATA *pObjIndex, OBJ_DATA *list);
 int obj_get_carry_number (OBJ_DATA *obj);
 int obj_get_weight (OBJ_DATA *obj);
 int obj_get_true_weight (OBJ_DATA *obj);
-const char *obj_furn_preposition (OBJ_DATA *obj, int position);
+int obj_furn_preposition_type (OBJ_DATA * obj, int position);
+const char *obj_furn_preposition_base (OBJ_DATA * obj, int position,
+    const char *at, const char *on, const char *in, const char *by);
+const char *obj_furn_preposition (OBJ_DATA * obj, int position);
 
 /* Action functions. */
 void obj_to_char (OBJ_DATA *obj, CHAR_DATA *ch);

@@ -59,7 +59,6 @@
 
 /* TODO: lots of commands in here - split it up? (act_conf.c?) */
 /* TODO: sub-routines to do_sub.c */
-/* TODO: weather info to a table. */
 
 #define SCAN_ALL_DIRS -2
 
@@ -744,16 +743,17 @@ void do_time (CHAR_DATA * ch, char *argument) {
 
 void do_weather (CHAR_DATA * ch, char *argument) {
     const SKY_TYPE *sky;
+    char *change;
 
     BAIL_IF (!IS_OUTSIDE (ch),
         "You can't see the weather indoors.\n\r", ch);
 
     sky = sky_get_current ();
-    printf_to_char (ch, "The sky is %s and %s.\n\r",
-        sky->description,
-        weather_info.change >= 0
-            ? "a warm southerly breeze blows"
-            : "a cold northern gust blows");
+    change = weather_info.change >= 0
+        ? "a warm southerly breeze blows"
+        : "a cold northern gust blows";
+
+    printf_to_char (ch, "The sky is %s and %s.\n\r", sky->description, change);
 }
 
 void do_help (CHAR_DATA * ch, char *argument) {

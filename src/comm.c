@@ -1915,6 +1915,25 @@ bool position_change_message_to_standing (CHAR_DATA * ch, int from, OBJ_DATA *ob
                 act ("$n stops sitting and stands $T $p.", ch, obj, prep, TO_NOTCHAR);
             }
             return TRUE;
+
+        case POS_STANDING:
+            if (ch->on == obj)
+                break;
+            if (obj == NULL && ch->on != NULL) {
+                prep = obj_furn_preposition_base (ch->on, POS_STANDING,
+                    "away from", "off of", "outside of", "away from");
+                act ("You step $T $p.", ch, ch->on, prep, TO_CHAR);
+                act ("$n steps $T $p.", ch, ch->on, prep, TO_NOTCHAR);
+            }
+            else if (obj != NULL) {
+                prep = obj_furn_preposition_base (obj, POS_STANDING,
+                    "toward", "onto", "inside", "beside");
+                act ("You step $T $p.", ch, obj, prep, TO_CHAR);
+                act ("$n steps $T $p.", ch, obj, prep, TO_NOTCHAR);
+            }
+            else
+                return FALSE;
+            return TRUE;
     }
     return FALSE;
 }

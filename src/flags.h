@@ -338,6 +338,12 @@
 #define PUT_IN      (O)
 #define PUT_INSIDE  (P)
 
+/* bits groups for furniture. */
+#define STAND_BITS  (STAND_AT | STAND_ON | STAND_IN)
+#define SIT_BITS    (SIT_AT   | SIT_ON   | SIT_IN)
+#define REST_BITS   (REST_AT  | REST_ON  | REST_IN)
+#define SLEEP_BITS  (SLEEP_AT | SLEEP_ON | SLEEP_IN)
+
 /* Values for containers (value[1]).
  * Used in #OBJECTS. */
 #define CONT_CLOSEABLE   (A)

@@ -49,6 +49,7 @@
 
 /* TODO: rename sub-routines and filters to follow naming scheme */
 /* TODO: many of the sub-routines can probably be put into a file 'door.c'. */
+/* TODO: do_stand / wake / rest / sit / sleep can probably be unified. */
 
 int door_filter_find (CHAR_DATA *ch, char *arg) {
     EXIT_DATA *pexit;
@@ -57,10 +58,15 @@ int door_filter_find (CHAR_DATA *ch, char *arg) {
     door = door_lookup (arg);
     if (door < 0) {
         for (door = 0; door < DIR_MAX; door++) {
-            if ((pexit = ch->in_room->exit[door]) != NULL
-                && IS_SET (pexit->exit_flags, EX_ISDOOR)
-                && pexit->keyword != NULL && is_name (arg, pexit->keyword))
-                return door;
+            if ((pexit = ch->in_room->exit[door]) == NULL)
+                continue;
+            if (!IS_SET (pexit->exit_flags, EX_ISDOOR))
+                continue;
+            if (pexit->keyword == NULL)
+                continue;
+            if (!is_name (arg, pexit->keyword))
+                continue;
+            return door;
         }
         act ("You see no $T here.", ch, NULL, arg, TO_CHAR);
         return -1;
@@ -399,14 +405,6 @@ void do_door (CHAR_DATA *ch, char *argument, char *arg_msg,
         func_door (ch, door);
 }
 
-bool obj_is_furniture (OBJ_DATA * obj, int bit_on, int bit_in, int bit_at) {
-    if (obj->item_type != ITEM_FURNITURE)
-        return FALSE;
-    return (IS_SET (obj->value[2], bit_on)
-         || IS_SET (obj->value[2], bit_in)
-         || IS_SET (obj->value[2], bit_at)) ? TRUE : FALSE;
-}
-
 void do_north (CHAR_DATA * ch, char *argument)
     { char_move (ch, DIR_NORTH, FALSE); }
 void do_east (CHAR_DATA * ch, char *argument)
@@ -431,6 +429,18 @@ void do_lock (CHAR_DATA * ch, char *argument)
 void do_pick (CHAR_DATA * ch, char *argument)
     { do_door (ch, argument, "Pick what?\n\r",   do_pick_object,   do_pick_door); }
 
+bool do_filter_change_position (CHAR_DATA *ch, int pos, char *same_msg) {
+    FILTER (ch->position == pos,
+        same_msg, ch);
+    FILTER (ch->position == POS_SLEEPING && IS_AFFECTED (ch, AFF_SLEEP),
+        "You can't wake up!\n\r", ch);
+    FILTER (ch->position == POS_FIGHTING,
+        "Maybe you should finish this fight first?\n\r", ch);
+    FILTER (ch->daze > 0,
+        "You're too dazed to re-orient yourself right now!\n\r", ch);
+    return FALSE;
+}
+
 void do_stand (CHAR_DATA * ch, char *argument) {
     OBJ_DATA *obj = NULL;
     int new_pos;
@@ -438,22 +448,33 @@ void do_stand (CHAR_DATA * ch, char *argument) {
     BAIL_IF (ch->position == POS_SLEEPING && IS_AFFECTED (ch, AFF_SLEEP),
         "You can't wake up!\n\r", ch);
 
+    /* For sit/rest/sleep, players need to stand up first to change their
+     * position to another object. For standing, however, we don't - the
+     * logic is a bit different. -- Synival */
     if (argument[0] == '\0') {
-        BAIL_IF (ch->position == POS_STANDING,
-            "You are already standing.\n\r", ch);
-        BAIL_IF (ch->position == POS_FIGHTING,
-            "You are already fighting!\n\r", ch);
+        if (ch->on) {
+            BAIL_IF (ch->position == POS_FIGHTING,
+                "Maybe you should finish fighting first?\n\r", ch);
+        }
+        else {
+            BAIL_IF (ch->position == POS_FIGHTING,
+                "You are already fighting!\n\r", ch);
+            BAIL_IF (ch->position == POS_STANDING,
+                "You are already standing.\n\r", ch);
+        }
         BAIL_IF (ch->daze > 0,
             "You're too dazed to re-orient yourself right now!\n\r", ch);
     }
     else {
         BAIL_IF (ch->position == POS_FIGHTING,
             "Maybe you should finish fighting first?\n\r", ch);
+        BAIL_IF (ch->daze > 0,
+            "You're too dazed to re-orient yourself right now!\n\r", ch);
 
         obj = find_obj_list (ch, ch->in_room->contents, argument);
         BAIL_IF (obj == NULL,
             "You don't see that here.\n\r", ch);
-        BAIL_IF (!obj_is_furniture(obj, STAND_ON, STAND_IN, STAND_AT),
+        BAIL_IF (!obj_is_furniture(obj, STAND_BITS),
             "You can't seem to find a place to stand.\n\r", ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >= obj->value[0],
             "There's no room to stand on $p.", ch, obj, NULL);
@@ -471,14 +492,9 @@ void do_stand (CHAR_DATA * ch, char *argument) {
 void do_rest (CHAR_DATA * ch, char *argument) {
     OBJ_DATA *obj = NULL;
 
-    BAIL_IF (ch->position == POS_SLEEPING && IS_AFFECTED (ch, AFF_SLEEP),
-        "You can't wake up!\n\r", ch);
-    BAIL_IF (ch->position == POS_FIGHTING,
-        "Maybe you should finish this fight first?\n\r", ch);
-    BAIL_IF (ch->position == POS_RESTING,
-        "You are already resting.\n\r", ch);
-    BAIL_IF (ch->daze > 0,
-        "You're too dazed to re-orient yourself right now!\n\r", ch);
+    if (do_filter_change_position (ch, POS_RESTING,
+            "You are already resting.\n\r"))
+        return;
 
     /* okay, now that we know we can rest, find an object to rest on */
     if (argument[0] != '\0') {
@@ -490,7 +506,7 @@ void do_rest (CHAR_DATA * ch, char *argument) {
         obj = ch->on;
 
     if (obj != NULL) {
-        BAIL_IF (!obj_is_furniture(obj, REST_ON, REST_IN, REST_AT),
+        BAIL_IF (!obj_is_furniture(obj, REST_BITS),
             "You can't rest on that.\n\r", ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >= obj->value[0],
             "There's no more room on $p.", ch, obj, NULL);
@@ -505,14 +521,9 @@ void do_rest (CHAR_DATA * ch, char *argument) {
 void do_sit (CHAR_DATA * ch, char *argument) {
     OBJ_DATA *obj = NULL;
 
-    BAIL_IF (ch->position == POS_SLEEPING && IS_AFFECTED (ch, AFF_SLEEP),
-        "You can't wake up!\n\r", ch);
-    BAIL_IF (ch->position == POS_FIGHTING,
-        "Maybe you should finish this fight first?\n\r", ch);
-    BAIL_IF (ch->position == POS_SITTING,
-        "You are already sitting down.\n\r", ch);
-    BAIL_IF (ch->daze > 0,
-        "You're too dazed to re-orient yourself right now!\n\r", ch);
+    if (do_filter_change_position (ch, POS_SITTING,
+            "You are already sitting down.\n\r"))
+        return;
 
     /* okay, now that we know we can sit, find an object to sit on */
     if (argument[0] != '\0') {
@@ -524,7 +535,7 @@ void do_sit (CHAR_DATA * ch, char *argument) {
         obj = ch->on;
 
     if (obj != NULL) {
-        BAIL_IF (!obj_is_furniture(obj, SIT_ON, SIT_IN, SIT_AT),
+        BAIL_IF (!obj_is_furniture(obj, SIT_BITS),
             "You can't sit on that.\n\r", ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >= obj->value[0],
             "There's no more room on $p.", ch, obj, NULL);
@@ -539,12 +550,9 @@ void do_sit (CHAR_DATA * ch, char *argument) {
 void do_sleep (CHAR_DATA * ch, char *argument) {
     OBJ_DATA *obj = NULL;
 
-    BAIL_IF (ch->position == POS_FIGHTING,
-        "Maybe you should finish this fight first?\n\r", ch);
-    BAIL_IF (ch->position == POS_SLEEPING,
-        "You are already sleeping.\n\r", ch);
-    BAIL_IF (ch->daze > 0,
-        "You're too dazed to re-orient right now!\n\r", ch);
+    if (do_filter_change_position (ch, POS_SLEEPING,
+            "You are already sleeping.\n\r"))
+        return;
 
     /* okay, now that we know we can sleep, find an object to sleep on */
     if (argument[0] != '\0') {
@@ -556,7 +564,7 @@ void do_sleep (CHAR_DATA * ch, char *argument) {
         obj = ch->on;
 
     if (obj != NULL) {
-        BAIL_IF (!obj_is_furniture(obj, SLEEP_ON, SLEEP_IN, SLEEP_AT),
+        BAIL_IF (!obj_is_furniture(obj, SLEEP_BITS),
             "You can't sleep on that!\n\r", ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >= obj->value[0],
             "There's no more room on $p.", ch, obj, NULL);

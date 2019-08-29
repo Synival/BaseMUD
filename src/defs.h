@@ -557,4 +557,13 @@
 #define DAYS_PER_MONTH  35
 #define HOURS_PER_DAY   24
 
+/* Preposition types for standing/resting/sitting. */
+#define POS_PREP_NO_OBJECT     -3
+#define POS_PREP_NOT_FURNITURE -2
+#define POS_PREP_BAD_POSITION  -1
+#define POS_PREP_AT             0
+#define POS_PREP_ON             1
+#define POS_PREP_IN             2
+#define POS_PREP_BY             3
+
 #endif
