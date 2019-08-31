@@ -49,6 +49,7 @@
 /* TODO: employ tables whenever possible */
 /* TODO: do_stat() and its derivatives are GIGANTIC. deflate somehow? */
 /* TODO: merge do_invis() and do_incognito() */
+/* TODO: possibly use a table for do_stat() */
 
 void do_wizhelp (CHAR_DATA * ch, char *argument) {
     int cmd, col;
@@ -287,35 +288,26 @@ void do_stat (CHAR_DATA * ch, char *argument) {
         return;
     }
 
-    /* TODO: possibly use a table for this. */
-
     /* first, check for explicit types. */
-    if (!str_cmp (arg, "room")) {
-        do_function (ch, &do_rstat, string);
-        return;
-    }
-    if (!str_cmp (arg, "obj")) {
-        do_function (ch, &do_ostat, string);
-        return;
-    }
-    if (!str_cmp (arg, "char") || !str_cmp (arg, "mob")) {
-        do_function (ch, &do_mstat, string);
-        return;
-    }
+    BAIL_IF_EXPR (!str_cmp (arg, "room"),
+        do_function (ch, &do_rstat, string));
+    BAIL_IF_EXPR (!str_cmp (arg, "obj"),
+        do_function (ch, &do_ostat, string));
+    BAIL_IF_EXPR (!str_cmp (arg, "char") || !str_cmp (arg, "mob"),
+        do_function (ch, &do_mstat, string));
 
     /* do it the old way */
-    if ((obj = find_obj_world (ch, argument)) != NULL) {
-        do_function (ch, &do_ostat, argument);
-        return;
-    }
-    if ((victim = find_char_world (ch, argument)) != NULL) {
-        do_function (ch, &do_mstat, argument);
-        return;
-    }
-    if ((location = find_location (ch, argument)) != NULL) {
-        do_function (ch, &do_rstat, argument);
-        return;
-    }
+    BAIL_IF_EXPR ((obj = find_obj_world (ch, argument)) != NULL,
+        do_function (ch, &do_ostat, argument));
+    find_continue_counting();
+
+    BAIL_IF_EXPR ((victim = find_char_world (ch, argument)) != NULL,
+        do_function (ch, &do_mstat, argument));
+    find_continue_counting();
+
+    BAIL_IF_EXPR ((location = find_location (ch, argument)) != NULL,
+        do_function (ch, &do_rstat, argument));
+
     send_to_char ("Nothing by that name found anywhere.\n\r", ch);
 }
 

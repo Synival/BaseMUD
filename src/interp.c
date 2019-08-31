@@ -588,7 +588,7 @@ bool check_social (CHAR_DATA * ch, char *command, char *argument) {
         act (soc->char_no_arg,   ch, NULL, victim, TO_CHAR);
         act (soc->others_no_arg, ch, NULL, victim, TO_NOTCHAR);
     }
-    else if ((victim = find_char_room (ch, arg)) == NULL)
+    else if ((victim = find_char_same_room (ch, arg)) == NULL)
         send_to_char ("They aren't here.\n\r", ch);
     else if (victim == ch) {
         act (soc->char_auto,   ch, NULL, victim, TO_CHAR);

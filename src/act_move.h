@@ -31,7 +31,7 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-int door_filter_find (CHAR_DATA * ch, char *arg);
+int door_filter_find (CHAR_DATA *ch, char *argument);
 bool door_filter_is_door (CHAR_DATA *ch, EXIT_DATA *pexit,
     OBJ_DATA *obj, flag_t *out_flags, bool *out_container, int *out_key);
 bool door_filter_can_open (CHAR_DATA *ch, EXIT_DATA *pexit,
@@ -57,7 +57,7 @@ void do_pick_door (CHAR_DATA *ch, int door);
 void do_door (CHAR_DATA *ch, char *argument, char *arg_msg,
     void (*func_obj)  (CHAR_DATA *, OBJ_DATA *),
     void (*func_door) (CHAR_DATA *, int));
-bool obj_is_furniture (OBJ_DATA * obj, int bit_on, int bit_in, int bit_at);
+bool do_filter_change_position (CHAR_DATA *ch, int pos, char *same_msg);
 
 /* Commands. */
 DECLARE_DO_FUN (do_north);

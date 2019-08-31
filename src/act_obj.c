@@ -192,7 +192,7 @@ void do_get_container (CHAR_DATA * ch, char *arg1, char *arg2) {
         "Don't be so greedy!\n\r", ch);
 
     obj_start = (type != OBJ_SINGLE) ? container->contains
-        : find_obj_list (ch, container->contains, arg1);
+        : find_obj_container (ch, container, arg1);
 
     for (obj = obj_start; obj != NULL; obj = obj_next) {
         obj_next = (type == OBJ_SINGLE) ? NULL : obj->next_content;
@@ -218,7 +218,7 @@ void do_get_room (CHAR_DATA * ch, char *arg) {
 
     arg = do_obj_parse_arg (arg, &type);
     obj_start = (type != OBJ_SINGLE) ? ch->in_room->contents
-        : find_obj_list (ch, ch->in_room->contents, arg);
+        : find_obj_same_room (ch, arg);
 
     for (obj = obj_start; obj != NULL; obj = obj_next) {
         obj_next = (type == OBJ_SINGLE) ? NULL : obj->next_content;
@@ -272,7 +272,7 @@ void do_put (CHAR_DATA * ch, char *argument) {
         "That's not a container.\n\r", ch);
 
     obj_start = (type != OBJ_SINGLE) ? ch->carrying
-        : find_carry (ch, arg);
+        : find_obj_own_inventory (ch, arg);
 
     for (obj = obj_start; obj != NULL; obj = obj_next) {
         obj_next = (type == OBJ_SINGLE) ? NULL : obj->next_content;
@@ -341,7 +341,7 @@ void do_drop (CHAR_DATA * ch, char *argument) {
 
     arg = do_obj_parse_arg (arg1, &type);
     obj_start = (type != OBJ_SINGLE) ? ch->carrying
-        : find_carry (ch, arg);
+        : find_obj_own_inventory (ch, arg);
 
     for (obj = obj_start; obj != NULL; obj = obj_next) {
         obj_next = (type == OBJ_SINGLE) ? NULL : obj->next_content;
@@ -379,7 +379,7 @@ void do_give_money (CHAR_DATA *ch, char *arg1, char *arg2, char *argument) {
 
     BAIL_IF (arg2[0] == '\0',
         "Give what to whom?\n\r", ch);
-    BAIL_IF ((victim = find_char_room (ch, arg2)) == NULL,
+    BAIL_IF ((victim = find_char_same_room (ch, arg2)) == NULL,
         "They aren't here.\n\r", ch);
     BAIL_IF ((!is_silver && ch->gold   < amount) ||
               (is_silver && ch->silver < amount),
@@ -484,9 +484,9 @@ void do_give (CHAR_DATA * ch, char *argument) {
         return;
     }
 
-    BAIL_IF ((obj = find_carry (ch, arg1)) == NULL,
+    BAIL_IF ((obj = find_obj_own_inventory (ch, arg1)) == NULL,
         "You do not have that item.\n\r", ch);
-    BAIL_IF ((victim = find_char_room (ch, arg2)) == NULL,
+    BAIL_IF ((victim = find_char_same_room (ch, arg2)) == NULL,
         "They aren't here.\n\r", ch);
     if (do_filter_can_give_item (ch, obj, victim, TRUE))
         return;
@@ -503,7 +503,7 @@ void do_envenom (CHAR_DATA * ch, char *argument) {
     /* find out what */
     BAIL_IF (argument[0] == '\0',
         "Envenom what item?\n\r", ch);
-    BAIL_IF ((obj = find_obj_list (ch, ch->carrying, argument)) == NULL,
+    BAIL_IF ((obj = find_obj_own_char (ch, argument)) == NULL,
         "You don't have that item.\n\r", ch);
     BAIL_IF ((skill = get_skill (ch, gsn_envenom)) < 1,
         "Are you crazy? You'd poison yourself!\n\r", ch);
@@ -579,7 +579,7 @@ void do_fill (CHAR_DATA * ch, char *argument) {
     char *liq;
 
     DO_REQUIRE_ARG (arg, "Fill what?\n\r");
-    BAIL_IF ((obj = find_carry (ch, arg)) == NULL,
+    BAIL_IF ((obj = find_obj_own_inventory (ch, arg)) == NULL,
         "You do not have that item.\n\r", ch);
 
     /* Find the first fountain in the room. */
@@ -620,7 +620,7 @@ void do_pour (CHAR_DATA * ch, char *argument) {
     DO_REQUIRE_ARG (arg1, "Pour what into what?\n\r");
     DO_REQUIRE_ARG (arg2, "Pour it into what?\n\r");
 
-    BAIL_IF ((out = find_carry (ch, arg1)) == NULL,
+    BAIL_IF ((out = find_obj_own_inventory (ch, arg1)) == NULL,
         "You don't have that item.\n\r", ch);
     BAIL_IF (out->item_type != ITEM_DRINK_CON,
         "That's not a drink container.\n\r", ch);
@@ -642,7 +642,7 @@ void do_pour (CHAR_DATA * ch, char *argument) {
     }
 
     if ((in = find_obj_here (ch, arg2)) == NULL) {
-        BAIL_IF ((vch = find_char_room (ch, arg2)) == NULL,
+        BAIL_IF ((vch = find_char_same_room (ch, arg2)) == NULL,
             "Pour into what?\n\r", ch);
         BAIL_IF ((in = char_get_eq_by_wear (vch, WEAR_HOLD)) == NULL,
             "They aren't holding anything.", ch);
@@ -800,7 +800,7 @@ void do_eat (CHAR_DATA * ch, char *argument) {
     OBJ_DATA *obj;
 
     DO_REQUIRE_ARG (arg, "Eat what?\n\r");
-    BAIL_IF ((obj = find_carry (ch, arg)) == NULL,
+    BAIL_IF ((obj = find_obj_own_inventory (ch, arg)) == NULL,
         "You do not have that item.\n\r", ch);
     if (!IS_IMMORTAL (ch)) {
         BAIL_IF (obj->item_type != ITEM_FOOD && obj->item_type != ITEM_PILL,
@@ -849,7 +849,7 @@ void do_wear (CHAR_DATA * ch, char *argument) {
         return;
     }
 
-    BAIL_IF ((obj = find_carry (ch, arg)) == NULL,
+    BAIL_IF ((obj = find_obj_own_inventory (ch, arg)) == NULL,
         "You do not have that item.\n\r", ch);
     char_wear_obj (ch, obj, TRUE);
 }
@@ -859,7 +859,7 @@ void do_remove (CHAR_DATA * ch, char *argument) {
     OBJ_DATA *obj;
 
     DO_REQUIRE_ARG (arg, "Remove what?\n\r");
-    BAIL_IF ((obj = find_eq (ch, arg)) == NULL,
+    BAIL_IF ((obj = find_obj_own_worn (ch, arg)) == NULL,
         "You do not have that item.\n\r", ch);
     char_remove_obj (ch, obj->wear_loc, TRUE, FALSE);
 }
@@ -886,7 +886,7 @@ void do_sacrifice (CHAR_DATA * ch, char *argument) {
         return;
     }
 
-    BAIL_IF ((obj = find_obj_list (ch, ch->in_room->contents, arg)) == NULL,
+    BAIL_IF ((obj = find_obj_same_room (ch, arg)) == NULL,
         "You can't find it.\n\r", ch);
     if (obj->item_type == ITEM_CORPSE_PC) {
         BAIL_IF (obj->contains,
@@ -938,7 +938,7 @@ void do_quaff (CHAR_DATA * ch, char *argument) {
     OBJ_DATA *obj;
 
     DO_REQUIRE_ARG (arg, "Quaff what?\n\r");
-    BAIL_IF ((obj = find_carry (ch, arg)) == NULL,
+    BAIL_IF ((obj = find_obj_own_inventory (ch, arg)) == NULL,
         "You do not have that potion.\n\r", ch);
     BAIL_IF (obj->item_type != ITEM_POTION,
         "You can quaff only potions.\n\r", ch);
@@ -965,7 +965,7 @@ void do_recite (CHAR_DATA * ch, char *argument) {
     DO_REQUIRE_ARG (arg1, "Recite what?\n\r");
     argument = one_argument (argument, arg2);
 
-    BAIL_IF ((scroll = find_carry (ch, arg1)) == NULL,
+    BAIL_IF ((scroll = find_obj_own_inventory (ch, arg1)) == NULL,
         "You do not have that scroll.\n\r", ch);
     BAIL_IF (scroll->item_type != ITEM_SCROLL,
         "You can recite only scrolls.\n\r", ch);
@@ -976,7 +976,7 @@ void do_recite (CHAR_DATA * ch, char *argument) {
     if (arg2[0] == '\0')
         victim = ch;
     else {
-        BAIL_IF ((victim = find_char_room (ch, arg2)) == NULL &&
+        BAIL_IF ((victim = find_char_same_room (ch, arg2)) == NULL &&
                  (obj = find_obj_here (ch, arg2)) == NULL,
             "You can't find it.\n\r", ch);
     }
@@ -1088,7 +1088,7 @@ void do_zap (CHAR_DATA * ch, char *argument) {
             "Zap whom or what?\n\r", ch);
     }
     else {
-        BAIL_IF ((victim = find_char_room (ch, arg)) == NULL &&
+        BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL &&
                  (obj = find_obj_here (ch, arg)) == NULL,
             "You can't find it.\n\r", ch);
     }
@@ -1137,7 +1137,7 @@ void do_steal (CHAR_DATA * ch, char *argument) {
     DO_REQUIRE_ARG (arg1, "Steal what from whom?\n\r");
     DO_REQUIRE_ARG (arg2, "Steal it from whom?\n\r");
 
-    BAIL_IF ((victim = find_char_room (ch, arg2)) == NULL,
+    BAIL_IF ((victim = find_char_same_room (ch, arg2)) == NULL,
         "They aren't here.\n\r", ch);
     BAIL_IF (victim == ch,
         "That's pointless.\n\r", ch);
@@ -1233,7 +1233,7 @@ void do_steal (CHAR_DATA * ch, char *argument) {
         return;
     }
 
-    BAIL_IF ((obj = find_obj_char (ch, victim, arg1)) == NULL,
+    BAIL_IF ((obj = find_obj_inventory (ch, victim, arg1)) == NULL,
         "You can't find it.\n\r", ch);
     BAIL_IF (!char_can_drop_obj (ch, obj) ||
             IS_SET (obj->extra_flags, ITEM_INVENTORY) ||

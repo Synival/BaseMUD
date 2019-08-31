@@ -40,6 +40,7 @@
 
 /* True if room is dark. */
 bool room_is_dark (ROOM_INDEX_DATA * pRoomIndex) {
+    const SUN_TYPE *sun;
     int sect;
 
     if (pRoomIndex->light > 0)
@@ -48,9 +49,10 @@ bool room_is_dark (ROOM_INDEX_DATA * pRoomIndex) {
         return TRUE;
 
     sect = pRoomIndex->sector_type;
+    sun = sun_get_current();
     if (sect == SECT_INSIDE || sect == SECT_CITY)
         return FALSE;
-    if (weather_info.sunlight == SUN_SET || weather_info.sunlight == SUN_DARK)
+    if (sun->is_dark)
         return TRUE;
 
     return FALSE;

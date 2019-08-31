@@ -41,6 +41,7 @@
 #include "act_player.h"
 #include "chars.h"
 #include "objs.h"
+#include "lookup.h"
 
 #include "update.h"
 
@@ -51,6 +52,10 @@
 /* TODO: remove redundancy between hit/mana/move gain calculations. */
 /* TODO: split up as much of these functions as possible -
  *       they do a lot of work! */
+/* TODO: move checks for learning fast healing / meditation to tick update.
+ *       (use the old code for the learn %) */
+/* TODO: create clock_update() from weather_update() */
+/* TODO: move weather changes to a table. */
 
 /* used for saving */
 int save_number = 0;
@@ -328,118 +333,133 @@ void mobile_update (void) {
 
 /* Update the weather. */
 void weather_update (void) {
+    const SUN_TYPE *sun;
+    const SKY_TYPE *sky;
     char buf[MAX_STRING_LENGTH];
     DESCRIPTOR_DATA *d;
     int diff;
 
-    buf[0] = '\0';
-    switch (++time_info.hour) {
-        case 5:
-            weather_info.sunlight = SUN_LIGHT;
-            strcat (buf, "The day has begun.\n\r");
-            break;
-        case 6:
-            weather_info.sunlight = SUN_RISE;
-            strcat (buf, "The sun rises in the east.\n\r");
-            break;
-        case 19:
-            weather_info.sunlight = SUN_SET;
-            strcat (buf, "The sun slowly disappears in the west.\n\r");
-            break;
-        case 20:
-            weather_info.sunlight = SUN_DARK;
-            strcat (buf, "The night has begun.\n\r");
-            break;
-        case 24:
-            time_info.hour = 0;
-            time_info.day++;
-            break;
-    }
+    int mmhg, mmhg_min, mmhg_max;
+    bool mmhg_rare;
+    bool sky_better, sky_better_rare;
+    bool sky_worse,  sky_worse_rare;
 
-    if (time_info.day >= 35) {
-        time_info.day = 0;
+    /* Update the clock. */
+    ++time_info.hour;
+    while (time_info.hour >= HOURS_PER_DAY) {
+        time_info.hour -= HOURS_PER_DAY;
+        time_info.day++;
+    }
+    while (time_info.day >= DAYS_PER_MONTH) {
+        time_info.day -= DAYS_PER_MONTH;
         time_info.month++;
     }
-    if (time_info.month >= 17) {
-        time_info.month = 0;
+    while (time_info.month >= MONTH_MAX) {
+        time_info.month -= MONTH_MAX;
         time_info.year++;
+    }
+
+    /* Update our sun position. */
+    buf[0] = '\0';
+    sun = sun_get_by_hour (++time_info.hour);
+    if (weather_info.sunlight != sun->type) {
+        weather_info.sunlight = sun->type;
+        strcat (buf, sun->message);
     }
 
     /* Weather change. */
     if (time_info.month >= 9 && time_info.month <= 16)
-        diff = weather_info.mmhg > 985 ? -2 : 2;
+        diff = (weather_info.mmhg) > 985 ? -2 : 2;
     else
-        diff = weather_info.mmhg > 1015 ? -2 : 2;
+        diff = (weather_info.mmhg) > 1015 ? -2 : 2;
 
     weather_info.change += diff * dice (1, 4) + dice (2, 6) - dice (2, 6);
     weather_info.change = UMAX (weather_info.change, -12);
-    weather_info.change = UMIN (weather_info.change, 12);
+    weather_info.change = UMIN (weather_info.change,  12);
 
     weather_info.mmhg += weather_info.change;
     weather_info.mmhg = UMAX (weather_info.mmhg, 960);
     weather_info.mmhg = UMIN (weather_info.mmhg, 1040);
 
-    switch (weather_info.sky) {
-        default:
-            bug ("weather_update: bad sky %d.", weather_info.sky);
-            weather_info.sky = SKY_CLOUDLESS;
-            break;
+    sky = sky_get_current ();
+    mmhg      = weather_info.mmhg;
+    mmhg_min  = sky->mmhg_min;
+    mmhg_max  = sky->mmhg_max;
+    mmhg_rare = (number_bits(2) == 0) ? TRUE : FALSE;
 
+    /* Determine if the weather can get better. */
+    if (mmhg_max == -1) {
+        sky_better      = FALSE;
+        sky_better_rare = FALSE;
+    }
+    else {
+        sky_better      = (mmhg > (mmhg_max + 30));
+        sky_better_rare = (mmhg > (mmhg_max + 10) && mmhg_rare);
+    }
+
+    /* Determine if the weather can get worse. */
+    if (mmhg_min == -1) {
+        sky_worse      = FALSE;
+        sky_worse_rare = FALSE;
+    }
+    else {
+        sky_worse      = (mmhg < (mmhg_min - 30));
+        sky_worse_rare = (mmhg < (mmhg_min - 10) && mmhg_rare);
+    }
+
+    /* Update our sky! */
+    switch (weather_info.sky) {
         case SKY_CLOUDLESS:
-            if (weather_info.mmhg < 990
-                || (weather_info.mmhg < 1010 && number_bits (2) == 0))
-            {
+            if (sky_worse || sky_worse_rare) {
                 strcat (buf, "The sky is getting cloudy.\n\r");
                 weather_info.sky = SKY_CLOUDY;
             }
             break;
 
         case SKY_CLOUDY:
-            if (weather_info.mmhg < 970
-                || (weather_info.mmhg < 990 && number_bits (2) == 0))
-            {
+            if (sky_worse || sky_worse_rare) {
                 strcat (buf, "It starts to rain.\n\r");
                 weather_info.sky = SKY_RAINING;
             }
-
-            if (weather_info.mmhg > 1030 && number_bits (2) == 0)
-            {
+            else if (sky_better_rare) {
                 strcat (buf, "The clouds disappear.\n\r");
                 weather_info.sky = SKY_CLOUDLESS;
             }
             break;
 
         case SKY_RAINING:
-            if (weather_info.mmhg < 970 && number_bits (2) == 0)
-            {
+            if (sky_worse_rare) {
                 strcat (buf, "Lightning flashes in the sky.\n\r");
                 weather_info.sky = SKY_LIGHTNING;
             }
-
-            if (weather_info.mmhg > 1030
-                || (weather_info.mmhg > 1010 && number_bits (2) == 0))
-            {
+            else if (sky_better || sky_better_rare) {
                 strcat (buf, "The rain stopped.\n\r");
                 weather_info.sky = SKY_CLOUDY;
             }
             break;
 
         case SKY_LIGHTNING:
-            if (weather_info.mmhg > 1010
-                || (weather_info.mmhg > 990 && number_bits (2) == 0))
-            {
+            if (sky_better || sky_better_rare) {
                 strcat (buf, "The lightning has stopped.\n\r");
                 weather_info.sky = SKY_RAINING;
-                break;
             }
+            break;
+
+        default:
+            bug ("weather_update: bad sky %d.", weather_info.sky);
+            weather_info.sky = SKY_CLOUDLESS;
             break;
     }
 
     if (buf[0] != '\0') {
         for (d = descriptor_list; d != NULL; d = d->next) {
-            if (d->connected == CON_PLAYING && IS_OUTSIDE (d->character)
-                && IS_AWAKE (d->character))
-                send_to_char (buf, d->character);
+            if (d->connected != CON_PLAYING)
+                continue;
+            if (!IS_OUTSIDE (d->character))
+                continue;
+            if (!IS_AWAKE (d->character))
+                continue;
+            send_to_char (buf, d->character);
         }
     }
 }
@@ -484,7 +504,7 @@ void health_update_ch_stat(CHAR_DATA *ch, sh_int *cur, sh_int *max,
         *cur += portion;
         *rem = remainder;
 
-        // Correct for overflow.
+        /* Correct for overflow. */
         if (*cur >= *max) {
             *cur = *max;
             *rem = 0;

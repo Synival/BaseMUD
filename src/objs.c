@@ -435,19 +435,40 @@ void obj_list_show_to_char (OBJ_DATA * list, CHAR_DATA * ch, bool fShort,
     mem_free (prgnShow, count * sizeof (int));
 }
 
-const char *obj_furn_preposition (OBJ_DATA * obj, int position) {
+int obj_furn_preposition_type (OBJ_DATA * obj, int position) {
     const FURNITURE_BITS *bits;
     if (obj == NULL)
-        return NULL;
+        return POS_PREP_NO_OBJECT;
     if (obj->item_type != ITEM_FURNITURE)
-        return "(not obj) ";
+        return POS_PREP_NOT_FURNITURE;
     if ((bits = furniture_get (position)) == NULL)
-        return "(bad pos) ";
+        return POS_PREP_BAD_POSITION;
 
-         if (obj->value[2] & bits->bit_at) return "at";
-    else if (obj->value[2] & bits->bit_on) return "on";
-    else if (obj->value[2] & bits->bit_in) return "in";
-    else                                   return "by";
+         if (obj->value[2] & bits->bit_at) return POS_PREP_AT;
+    else if (obj->value[2] & bits->bit_on) return POS_PREP_ON;
+    else if (obj->value[2] & bits->bit_in) return POS_PREP_IN;
+    else                                   return POS_PREP_BY;
+}
+
+const char *obj_furn_preposition_base (OBJ_DATA * obj, int position,
+    const char *at, const char *on, const char *in, const char *by)
+{
+    int pos_type;
+    pos_type = obj_furn_preposition_type (obj, position);
+    switch (pos_type) {
+        case POS_PREP_NO_OBJECT:     return "(no object)";
+        case POS_PREP_NOT_FURNITURE: return "(not furniture)";
+        case POS_PREP_BAD_POSITION:  return "(bad position)";
+        case POS_PREP_AT:            return at;
+        case POS_PREP_ON:            return on;
+        case POS_PREP_IN:            return in;
+        case POS_PREP_BY:            return by;
+        default:                     return "(unknown)";
+    }
+}
+
+const char *obj_furn_preposition (OBJ_DATA * obj, int position) {
+    return obj_furn_preposition_base (obj, position, "at", "on", "in", "by");
 }
 
 bool obj_is_container (OBJ_DATA *obj) {
@@ -509,4 +530,10 @@ void obj_to_keeper (OBJ_DATA * obj, CHAR_DATA * ch) {
     obj->in_obj = NULL;
     ch->carry_number += obj_get_carry_number (obj);
     ch->carry_weight += obj_get_weight (obj);
+}
+
+bool obj_is_furniture (OBJ_DATA * obj, flag_t bits) {
+    if (obj->item_type != ITEM_FURNITURE)
+        return FALSE;
+    return ((obj->value[2] & bits) != 0) ? TRUE : FALSE;
 }

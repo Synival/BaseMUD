@@ -92,10 +92,6 @@
 #define OHELPS_FILE     AREA_DIR "orphaned_helps.txt" /* Unmet 'help' requests */
 #define QMCONFIG_FILE   AREA_DIR "qmconfig.rc"
 
-/* ea */
-#define MSL MAX_STRING_LENGTH
-#define MIL MAX_INPUT_LENGTH
-
 /* String and memory management parameters. */
 #define MAX_KEY_HASH          1024
 #define MAX_STRING_LENGTH     4608
@@ -165,11 +161,13 @@
 #define SUN_RISE       1
 #define SUN_LIGHT      2
 #define SUN_SET        3
+#define SUN_MAX        4
 
 #define SKY_CLOUDLESS  0
 #define SKY_CLOUDY     1
 #define SKY_RAINING    2
 #define SKY_LIGHTNING  3
+#define SKY_MAX        4
 
 /* damage classes */
 #define DAM_NONE            0
@@ -524,5 +522,48 @@
 /* Types of portals. */
 #define PORTAL_TO_ROOM  0
 #define PORTAL_TO_EXIT  1
+
+/* Days of the week. */
+#define DAY_MOON        0
+#define DAY_BULL        1
+#define DAY_DECEPTION   2
+#define DAY_THUNDER     3
+#define DAY_FREEDOM     4
+#define DAY_GREAT_GODS  5
+#define DAY_SUN         6
+#define DAY_MAX         7
+
+/* Months in the year. */
+#define MONTH_WINTER            0
+#define MONTH_WINTER_WOLF       1
+#define MONTH_FROST_GIANT       2
+#define MONTH_OLD_FORCES        3
+#define MONTH_GRAND_STRUGGLE    4
+#define MONTH_SPRING            5
+#define MONTH_NATURE            6
+#define MONTH_FUTILITY          7
+#define MONTH_DRAGON            8
+#define MONTH_SUN               9
+#define MONTH_HEAT             10
+#define MONTH_BATTLE           11
+#define MONTH_DARK_SHADES      12
+#define MONTH_SHADOWS          13
+#define MONTH_LONG_SHADOWS     14
+#define MONTH_ANCIENT_DARKNESS 15
+#define MONTH_GREAT_EVIL       16
+#define MONTH_MAX              17
+
+/* Additional time information. */
+#define DAYS_PER_MONTH  35
+#define HOURS_PER_DAY   24
+
+/* Preposition types for standing/resting/sitting. */
+#define POS_PREP_NO_OBJECT     -3
+#define POS_PREP_NOT_FURNITURE -2
+#define POS_PREP_BAD_POSITION  -1
+#define POS_PREP_AT             0
+#define POS_PREP_ON             1
+#define POS_PREP_IN             2
+#define POS_PREP_BY             3
 
 #endif

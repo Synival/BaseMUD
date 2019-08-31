@@ -1652,19 +1652,6 @@ void wiznet (char *string, CHAR_DATA * ch, OBJ_DATA * obj,
     }
 }
 
-ROOM_INDEX_DATA *find_location (CHAR_DATA * ch, char *arg) {
-    CHAR_DATA *victim;
-    OBJ_DATA *obj;
-
-    if (is_number (arg))
-        return get_room_index (atoi (arg));
-    if ((victim = find_char_world (ch, arg)) != NULL)
-        return victim->in_room;
-    if ((obj = find_obj_world (ch, arg)) != NULL)
-        return obj->in_room;
-    return NULL;
-}
-
 void qmconfig_read (void) {
     FILE *fp;
     bool fMatch;
@@ -1915,6 +1902,25 @@ bool position_change_message_to_standing (CHAR_DATA * ch, int from, OBJ_DATA *ob
                 act ("$n stops sitting and stands $T $p.", ch, obj, prep, TO_NOTCHAR);
             }
             return TRUE;
+
+        case POS_STANDING:
+            if (ch->on == obj)
+                break;
+            if (obj == NULL && ch->on != NULL) {
+                prep = obj_furn_preposition_base (ch->on, POS_STANDING,
+                    "away from", "off of", "outside of", "away from");
+                act ("You step $T $p.", ch, ch->on, prep, TO_CHAR);
+                act ("$n steps $T $p.", ch, ch->on, prep, TO_NOTCHAR);
+            }
+            else if (obj != NULL) {
+                prep = obj_furn_preposition_base (obj, POS_STANDING,
+                    "toward", "onto", "inside", "beside");
+                act ("You step $T $p.", ch, obj, prep, TO_CHAR);
+                act ("$n steps $T $p.", ch, obj, prep, TO_NOTCHAR);
+            }
+            else
+                return FALSE;
+            return TRUE;
     }
     return FALSE;
 }
@@ -2090,4 +2096,15 @@ void substitute_alias (DESCRIPTOR_DATA * d, char *argument) {
         }
     }
     interpret (d->character, buf);
+}
+
+void echo_to_char (CHAR_DATA *to, CHAR_DATA *from, const char *type,
+    const char *msg)
+{
+    if (char_get_trust (to) >= char_get_trust (from)) {
+        send_to_char (type, to);
+        send_to_char ("> ", to);
+    }
+    send_to_char (msg, to);
+    send_to_char ("\n\r", to);
 }

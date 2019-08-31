@@ -74,8 +74,8 @@ be modular enough that some sort of unit testing environment will be possible.
 Despite the heavy refactoring,
 BaseMUD strives to be a pure version of ROM 2.4. However, in the process of sifting
 through all this code, sometimes I just can't help myself.
-Some small changes and additions have been made, which can be enabled by
-commenting out the line `#define VANILLA` in `src/basemud.h`. Changes that
+Some small changes and additions have been made, but most (eventually all)
+can be undone by uncommenting the line `#define VANILLA` in `src/basemud.h`. Changes that
 I've considered bugfixes, typo / spelling error fixes, or patches to small
 oversights (i.e, fixing spells that have no casting message) will be left in.
 
@@ -244,6 +244,15 @@ phased out or at least optional. A handful of changes were just for fun.
   the victim.
 * 'Heat metal' would drop an item _more_ if the opponent had more dexterity - this
   is fixed, but still needs balancing.
+* If standing on/at/in something, The `stand` command without any argument will
+  now step off/out.
+* In most cases, finding characters and objects by '1.thing', '2.thing', etc.
+  will now count correctly when searching multiple locations (e.g, check the room,
+  then the rest of the world). This is done by a `find_continue_count()` call.
+* Looking for doors by name now works the same way as looking for anything else.
+  You can now find a door by number - for example, if you're carrying "a portable door",
+  and there are two "door"s in the room, you can now say `open 3.door` to open the
+  room's second door.
 
 As a bonus feature, booting the MUD currently outputs several files to JSON
 format in the `json/` directory. In time, the MUD will be able to read these files

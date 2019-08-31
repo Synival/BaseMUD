@@ -28,7 +28,6 @@
 #include <stddef.h>
 
 #include "skills.h"
-// #include "magic.h"
 #include "nanny.h"
 #include "lookup.h"
 #include "recycle.h"
@@ -134,6 +133,10 @@ const TABLE_TYPE master_table[] = {
     TTABLE (recycle_table,    "Recycleable object types.",    NULL),
     TTABLE (board_table,      "Discussion boards.",           NULL),
     TTABLE (affect_bit_table, "Affect bit vector types.",     NULL),
+    TTABLE (day_table,        "Days of the week.",            NULL),
+    TTABLE (month_table,      "Months of the year.",          NULL),
+    TTABLE (sky_table,        "Skies based on the weather.",  NULL),
+    TTABLE (sun_table,        "Positions of the sun.",        NULL),
     {0}
 };
 
@@ -1312,12 +1315,12 @@ const OBJ_MAP obj_map_table[] = {
 
 /* for doors */
 const DOOR_TYPE door_table[DIR_MAX + 1] = {
-    {DIR_NORTH, "north", "the north", DIR_SOUTH},
-    {DIR_EAST,  "east",  "the east",  DIR_WEST},
-    {DIR_SOUTH, "south", "the south", DIR_NORTH},
-    {DIR_WEST,  "west",  "the west",  DIR_EAST},
-    {DIR_UP,    "up",    "above",     DIR_DOWN},
-    {DIR_DOWN,  "down",  "below",     DIR_UP},
+    {DIR_NORTH, "north", "the north", "to the north", DIR_SOUTH},
+    {DIR_EAST,  "east",  "the east",  "to the east",  DIR_WEST},
+    {DIR_SOUTH, "south", "the south", "to the south", DIR_NORTH},
+    {DIR_WEST,  "west",  "the west",  "to the west",  DIR_EAST},
+    {DIR_UP,    "up",    "above",     "above you",    DIR_DOWN},
+    {DIR_DOWN,  "down",  "below",     "below you",    DIR_UP},
     {0},
 };
 
@@ -1595,4 +1598,52 @@ const AFFECT_BIT_TYPE affect_bit_table[] = {
     {"vuln",    TO_VULN,    res_flags,    "res_flags"},
     {"weapon",  TO_WEAPON,  weapon_flags, "weapon_flags"},
     {NULL,      0,          NULL},
+};
+
+const DAY_TYPE day_table[DAY_MAX + 1] = {
+    { DAY_MOON,       "the Moon" },
+    { DAY_BULL,       "the Bull" },
+    { DAY_DECEPTION,  "Deception" },
+    { DAY_THUNDER,    "Thunder" },
+    { DAY_FREEDOM,    "Freedom" },
+    { DAY_GREAT_GODS, "the Great Gods" },
+    { DAY_SUN,        "the Sun" },
+    { -1, NULL }
+};
+
+const MONTH_TYPE month_table[MONTH_MAX + 1] = {
+    { MONTH_WINTER,           "Winter" },
+    { MONTH_WINTER_WOLF,      "the Winter Wolf" },
+    { MONTH_FROST_GIANT,      "the Frost Giant" },
+    { MONTH_OLD_FORCES,       "the Old Forces" },
+    { MONTH_GRAND_STRUGGLE,   "the Grand Struggle" },
+    { MONTH_SPRING,           "the Spring" },
+    { MONTH_NATURE,           "Nature" },
+    { MONTH_FUTILITY,         "Futility" },
+    { MONTH_DRAGON,           "the Dragon" },
+    { MONTH_SUN,              "the Sun" },
+    { MONTH_HEAT,             "the Heat" },
+    { MONTH_BATTLE,           "the Battle" },
+    { MONTH_DARK_SHADES,      "the Dark Shades" },
+    { MONTH_SHADOWS,          "the Shadows" },
+    { MONTH_LONG_SHADOWS,     "the Long Shadows" },
+    { MONTH_ANCIENT_DARKNESS, "the Ancient Darkness" },
+    { MONTH_GREAT_EVIL,       "the Great Evil" },
+    { -1, NULL }
+};
+
+const SKY_TYPE sky_table[SKY_MAX + 1] = {
+    { SKY_CLOUDLESS, "cloudless", "cloudless", 1020,   -1 },
+    { SKY_CLOUDY,    "cloudy",    "cloudy",    1000, 1020 },
+    { SKY_RAINING,   "raining",   "rainy",      980, 1000 },
+    { SKY_LIGHTNING, "lightning", "lit by flashes of lightning", -1, 980 },
+    { -1, NULL, NULL },
+};
+
+const SUN_TYPE sun_table[SUN_MAX + 1] = {
+    { SUN_DARK,  "dark",  TRUE,   0,  5, "The night has begun.\n\r" },
+    { SUN_RISE,  "rise",  FALSE,  5,  6, "The sun rises in the east.\n\r" },
+    { SUN_LIGHT, "light", FALSE,  6, 19, "The day has begun.\n\r" },
+    { SUN_SET,   "set",   TRUE,  19, 20, "The sun slowly disappears in the west.\n\r" },
+    { -1, NULL, 0 }
 };
