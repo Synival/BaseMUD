@@ -35,11 +35,11 @@
 
 #include "find.h"
 
-/* TODO: find_obj_here() doesn't properly take 1., 2., etc. into account.
- *       it SHOULD build a large list of potential items and search through
- *       that. */
+/* TODO: this 'find_continue_count()' stuff is a big hack! eventually there
+ *       should be a fancier counting system that takes a big list of _all_
+ *       items, even of different types. Not so easy in C... */
 /* TODO: funnel ALL find_XXX() functions to 'find_XXX_array', which then
- *       handles all the 1., 2., etc. */
+ *       handles all the 1., 2., etc. (this will be slow, so maybe not... ) */
 /* TODO: write 'find_XXX_array_many' that can handle 'all' and the
  *       'all.' prefix */
 

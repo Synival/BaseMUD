@@ -28,6 +28,8 @@
 #ifndef __ROM_BASEMUD_H
 #define __ROM_BASEMUD_H
 
+#define VERSION "0.0.2"
+
 /* Disables are optional features in BaseMUD. */
 // #define VANILLA
 

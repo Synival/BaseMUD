@@ -28,7 +28,6 @@
 #include <stddef.h>
 
 #include "skills.h"
-// #include "magic.h"
 #include "nanny.h"
 #include "lookup.h"
 #include "recycle.h"
@@ -134,6 +133,10 @@ const TABLE_TYPE master_table[] = {
     TTABLE (recycle_table,    "Recycleable object types.",    NULL),
     TTABLE (board_table,      "Discussion boards.",           NULL),
     TTABLE (affect_bit_table, "Affect bit vector types.",     NULL),
+    TTABLE (day_table,        "Days of the week.",            NULL),
+    TTABLE (month_table,      "Months of the year.",          NULL),
+    TTABLE (sky_table,        "Skies based on the weather.",  NULL),
+    TTABLE (sun_table,        "Positions of the sun.",        NULL),
     {0}
 };
 
