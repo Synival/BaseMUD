@@ -74,8 +74,8 @@ be modular enough that some sort of unit testing environment will be possible.
 Despite the heavy refactoring,
 BaseMUD strives to be a pure version of ROM 2.4. However, in the process of sifting
 through all this code, sometimes I just can't help myself.
-Some small changes and additions have been made, but most (eventually all)
-can be undone by uncommenting the line `#define VANILLA` in `src/basemud.h`. Changes that
+Some small changes and additions have been made, which can be enabled by
+commenting out the line `#define VANILLA` in `src/basemud.h`. Changes that
 I've considered bugfixes, typo / spelling error fixes, or patches to small
 oversights (i.e, fixing spells that have no casting message) will be left in.
 
@@ -159,7 +159,7 @@ Some small changes have been made, most of which are small quality-of-life
 improvements, some of which are personal preferences that will eventually be
 phased out or at least optional. A handful of changes were just for fun.
 
-**New features that can be enabled by uncommenting `#define VANILLA` in `basemud.h`:**
+**New features that can be enabled by commenting out `#define VANILLA` in `basemud.h`:**
 
 * More status noficiations in addition to 'excellent', 'nasty wounds', etc.
 * Room titles are now colored based on their terrain type.
