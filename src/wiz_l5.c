@@ -435,11 +435,11 @@ void do_clone (CHAR_DATA * ch, char *argument) {
     }
     else if (!str_prefix (arg, "mobile") || !str_prefix (arg, "character")) {
         obj = NULL;
-        BAIL_IF ((mob = find_char_room (ch, rest)) == NULL,
+        BAIL_IF ((mob = find_char_same_room (ch, rest)) == NULL,
             "You don't see that here.\n\r", ch);
     }
     else { /* find both */
-        mob = find_char_room (ch, argument);
+        mob = find_char_same_room (ch, argument);
         obj = find_obj_here (ch, argument);
         BAIL_IF (mob == NULL && obj == NULL,
             "You don't see that here.\n\r", ch);

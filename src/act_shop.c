@@ -115,7 +115,7 @@ void do_buy_pet (CHAR_DATA *ch, char *argument) {
 
     in_room = ch->in_room;
     ch->in_room = pRoomIndexNext;
-    pet = find_char_room (ch, arg);
+    pet = find_char_same_room (ch, arg);
     ch->in_room = in_room;
 
     BAIL_IF (pet == NULL || !IS_PET (pet),
@@ -373,7 +373,7 @@ void do_sell (CHAR_DATA * ch, char *argument) {
     if (do_filter_get_keeper (ch, &keeper))
         return;
 
-    BAIL_IF_ACT ((obj = find_carry (ch, arg)) == NULL,
+    BAIL_IF_ACT ((obj = find_obj_own_inventory (ch, arg)) == NULL,
         "$N tells you 'You don't have that item'.", ch, NULL, keeper);
     BAIL_IF (!char_can_drop_obj (ch, obj),
         "You can't let go of it.\n\r", ch);
@@ -435,7 +435,7 @@ void do_value (CHAR_DATA * ch, char *argument) {
     if (do_filter_get_keeper (ch, &keeper))
         return;
 
-    BAIL_IF_ACT ((obj = find_carry (ch, arg)) == NULL,
+    BAIL_IF_ACT ((obj = find_obj_own_inventory (ch, arg)) == NULL,
         "$N tells you 'You don't have that item'.", ch, NULL, keeper);
     BAIL_IF_ACT (!char_can_see_obj (keeper, obj),
         "$N doesn't see what you are offering.", ch, NULL, keeper);

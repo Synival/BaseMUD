@@ -374,7 +374,7 @@ void do_look (CHAR_DATA * ch, char *argument) {
     }
 
     /* Looking at someone? */
-    if ((victim = find_char_room (ch, arg1)) != NULL) {
+    if ((victim = find_char_same_room (ch, arg1)) != NULL) {
         char_look_at_char (victim, ch);
         return;
     }
@@ -1051,21 +1051,26 @@ void do_compare (CHAR_DATA * ch, char *argument) {
     argument = one_argument (argument, arg1);
     BAIL_IF (arg1[0] == '\0',
         "Compare what to what?\n\r", ch);
-    BAIL_IF ((obj1 = find_carry (ch, arg1)) == NULL,
+    BAIL_IF ((obj1 = find_obj_own_inventory (ch, arg1)) == NULL,
         "You do not have that item.\n\r", ch);
 
     argument = one_argument (argument, arg2);
     if (arg2[0] == '\0') {
         for (obj2 = ch->carrying; obj2 != NULL; obj2 = obj2->next_content) {
-            if (obj2->wear_loc != WEAR_NONE && char_can_see_obj (ch, obj2)
-                && obj1->item_type == obj2->item_type
-                && (obj1->wear_flags & (obj2->wear_flags & ~ITEM_TAKE)) != 0)
-                break;
+            if (obj2->wear_loc == WEAR_NONE)
+                continue;
+            if (!char_can_see_obj (ch, obj2))
+                continue;
+            if (obj1->item_type != obj2->item_type)
+                continue;
+            if ((obj1->wear_flags & (obj2->wear_flags & ~ITEM_TAKE)) == 0)
+                continue;
+            break;
         }
         BAIL_IF (obj2 == NULL,
             "You aren't wearing anything comparable.\n\r", ch);
     }
-    else if ((obj2 = find_carry (ch, arg2)) == NULL) {
+    else if ((obj2 = find_obj_own_inventory (ch, arg2)) == NULL) {
         send_to_char ("You do not have that item.\n\r", ch);
         return;
     }

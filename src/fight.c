@@ -873,13 +873,13 @@ bool damage (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
 
         /* RT new auto commands */
         if (!IS_NPC (ch)
-            && (corpse = find_obj_list (ch, ch->in_room->contents, "corpse")) != NULL
+            && (corpse = find_obj_same_room (ch, "corpse")) != NULL
             && corpse->item_type == ITEM_CORPSE_NPC
             && char_can_see_obj (ch, corpse))
         {
             OBJ_DATA *coins;
 
-            corpse = find_obj_list (ch, ch->in_room->contents, "corpse");
+            corpse = find_obj_same_room (ch, "corpse");
 
             /* exists and not empty */
             if (IS_SET (ch->plr, PLR_AUTOLOOT) && corpse && corpse->contains)
@@ -889,7 +889,7 @@ bool damage (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
             if (IS_SET (ch->plr, PLR_AUTOGOLD) && corpse && corpse->contains &&
                 !IS_SET (ch->plr, PLR_AUTOLOOT))
             {
-                if ((coins = find_obj_list (ch, corpse->contains, "gcash")) != NULL)
+                if ((coins = find_obj_container (ch, corpse, "gcash")) != NULL)
                     do_function (ch, &do_get, "all.gcash corpse");
             }
 

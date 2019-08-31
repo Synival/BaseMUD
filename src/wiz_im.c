@@ -299,8 +299,12 @@ void do_stat (CHAR_DATA * ch, char *argument) {
     /* do it the old way */
     BAIL_IF_EXPR ((obj = find_obj_world (ch, argument)) != NULL,
         do_function (ch, &do_ostat, argument));
+    find_continue_counting();
+
     BAIL_IF_EXPR ((victim = find_char_world (ch, argument)) != NULL,
         do_function (ch, &do_mstat, argument));
+    find_continue_counting();
+
     BAIL_IF_EXPR ((location = find_location (ch, argument)) != NULL,
         do_function (ch, &do_rstat, argument));
 

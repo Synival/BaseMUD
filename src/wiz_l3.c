@@ -123,7 +123,7 @@ void do_slay (CHAR_DATA * ch, char *argument) {
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
         "Slay whom?\n\r", ch);
-    BAIL_IF ((victim = find_char_room (ch, arg)) == NULL,
+    BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
         "They aren't here.\n\r", ch);
     BAIL_IF (ch == victim,
         "Suicide is a mortal sin.\n\r", ch);

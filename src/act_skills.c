@@ -621,7 +621,7 @@ void do_cast (CHAR_DATA * ch, char *argument) {
                     "Cast the spell on whom?\n\r", ch);
             }
             else {
-                BAIL_IF ((victim = find_char_room (ch, target_name)) == NULL,
+                BAIL_IF ((victim = find_char_same_room (ch, target_name)) == NULL,
                     "They aren't here.\n\r", ch);
             }
             if (!IS_NPC (ch)) {
@@ -639,7 +639,7 @@ void do_cast (CHAR_DATA * ch, char *argument) {
             if (arg2[0] == '\0')
                 victim = ch;
             else {
-                BAIL_IF ((victim = find_char_room (ch, target_name)) == NULL,
+                BAIL_IF ((victim = find_char_same_room (ch, target_name)) == NULL,
                     "They aren't here.\n\r", ch);
             }
             vo = (void *) victim;
@@ -656,7 +656,7 @@ void do_cast (CHAR_DATA * ch, char *argument) {
         case TAR_OBJ_INV:
             BAIL_IF (arg2[0] == '\0',
                 "What should the spell be cast upon?\n\r", ch);
-            BAIL_IF ((obj = find_carry (ch, target_name)) == NULL,
+            BAIL_IF ((obj = find_obj_own_inventory (ch, target_name)) == NULL,
                 "You are not carrying that.\n\r", ch);
             vo = (void *) obj;
             target = TARGET_OBJ;
@@ -668,7 +668,7 @@ void do_cast (CHAR_DATA * ch, char *argument) {
                     "Cast the spell on whom or what?\n\r", ch);
                 target = TARGET_CHAR;
             }
-            else if ((victim = find_char_room (ch, target_name)) != NULL)
+            else if ((victim = find_char_same_room (ch, target_name)) != NULL)
                 target = TARGET_CHAR;
 
             /* check the sanity of the attack */
@@ -697,11 +697,11 @@ void do_cast (CHAR_DATA * ch, char *argument) {
                 vo = (void *) ch;
                 target = TARGET_CHAR;
             }
-            else if ((victim = find_char_room (ch, target_name)) != NULL) {
+            else if ((victim = find_char_same_room (ch, target_name)) != NULL) {
                 vo = (void *) victim;
                 target = TARGET_CHAR;
             }
-            else if ((obj = find_carry (ch, target_name)) != NULL) {
+            else if ((obj = find_obj_own_inventory (ch, target_name)) != NULL) {
                 vo = (void *) obj;
                 target = TARGET_OBJ;
             }

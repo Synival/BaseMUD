@@ -35,6 +35,7 @@
 #include "act_info.h"
 #include "chars.h"
 #include "rooms.h"
+#include "find.h"
 
 #include "wiz_l8.h"
 

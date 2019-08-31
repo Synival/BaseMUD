@@ -364,7 +364,7 @@ int cmd_eval (sh_int vnum, char *line, int check,
             if (is_number (buf))
                 return (get_mob_vnum_room (mob, atoi (buf)));
             else
-                return ((bool) (find_char_room (mob, buf) != NULL));
+                return ((bool) (find_char_same_room (mob, buf) != NULL));
         case CHK_OBJHERE:
             if (is_number (buf))
                 return (get_obj_vnum_room (mob, atoi (buf)));
@@ -516,14 +516,14 @@ int cmd_eval (sh_int vnum, char *line, int check,
                         && has_item (lval_char, atoi (buf), -1, FALSE));
             else
                 return (lval_char != NULL
-                        && (find_carry (lval_char, buf) != NULL));
+                        && (find_obj_own_inventory (lval_char, buf) != NULL));
         case CHK_WEARS:
             if (is_number (buf))
                 return (lval_char != NULL
                         && has_item (lval_char, atoi (buf), -1, TRUE));
             else
                 return (lval_char != NULL
-                        && (find_eq (lval_char, buf) != NULL));
+                        && (find_obj_own_worn (lval_char, buf) != NULL));
         case CHK_HAS:
             return (lval_char != NULL
                     && has_item (lval_char, -1, item_lookup (buf), FALSE));

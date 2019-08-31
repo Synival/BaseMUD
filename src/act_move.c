@@ -49,33 +49,30 @@
 
 /* TODO: rename sub-routines and filters to follow naming scheme */
 /* TODO: many of the sub-routines can probably be put into a file 'door.c'. */
-/* TODO: do_stand / wake / rest / sit / sleep can probably be unified. */
+/* TODO: do_stand / sit / rest / sleep can probably be unified. */
 
-int door_filter_find (CHAR_DATA *ch, char *arg) {
+int door_filter_find (CHAR_DATA *ch, char *argument) {
+    char arg[MAX_STRING_LENGTH];
     EXIT_DATA *pexit;
     int door;
 
-    door = door_lookup (arg);
-    if (door < 0) {
-        for (door = 0; door < DIR_MAX; door++) {
-            if ((pexit = ch->in_room->exit[door]) == NULL)
-                continue;
-            if (!IS_SET (pexit->exit_flags, EX_ISDOOR))
-                continue;
-            if (pexit->keyword == NULL)
-                continue;
-            if (!is_name (arg, pexit->keyword))
-                continue;
-            return door;
-        }
-        act ("You see no $T here.", ch, NULL, arg, TO_CHAR);
-        return -1;
+    /* Lookup by direction. */
+    if ((door = door_lookup (argument)) >= 0) {
+        /* This method wants to continue from a previous find_() if looking
+         * for a door by name, so we can assume there was a
+         * find_continue_count() somewhere. This will "consume" it. */
+        find_next_count = 0;
+
+        RETURN_IF_ACT ((pexit = ch->in_room->exit[door]) == NULL,
+            "You see no door $T here.", ch, NULL, NULL, -1);
+        RETURN_IF_ACT (!IS_SET (pexit->exit_flags, EX_ISDOOR),
+            "You can't do that.", ch, NULL, NULL, -1);
+        return door;
     }
 
-    RETURN_IF_ACT ((pexit = ch->in_room->exit[door]) == NULL,
-        "You see no door $T here.", ch, NULL, NULL, -1);
-    RETURN_IF_ACT (!IS_SET (pexit->exit_flags, EX_ISDOOR),
-        "You can't do that.", ch, NULL, NULL, -1);
+    /* Lookup by name. */
+    RETURN_IF_ACT ((door == find_door_same_room (ch, argument)) == -1,
+        "You see no $T here.", ch, NULL, arg, -1);
     return door;
 }
 
@@ -401,8 +398,11 @@ void do_door (CHAR_DATA *ch, char *argument, char *arg_msg,
 
     if ((obj = find_obj_here (ch, arg)) != NULL)
         func_obj (ch, obj);
-    else if ((door = door_filter_find (ch, arg)) >= 0)
-        func_door (ch, door);
+    else {
+        find_continue_counting ();
+        if ((door = door_filter_find (ch, arg)) >= 0)
+            func_door (ch, door);
+    }
 }
 
 void do_north (CHAR_DATA * ch, char *argument)
@@ -449,7 +449,7 @@ void do_stand (CHAR_DATA * ch, char *argument) {
         "You can't wake up!\n\r", ch);
 
     /* For sit/rest/sleep, players need to stand up first to change their
-     * position to another object. For standing, however, we don't - the
+     * position to another object. For standing, however, we don't, so the
      * logic is a bit different. -- Synival */
     if (argument[0] == '\0') {
         if (ch->on) {
@@ -471,7 +471,7 @@ void do_stand (CHAR_DATA * ch, char *argument) {
         BAIL_IF (ch->daze > 0,
             "You're too dazed to re-orient yourself right now!\n\r", ch);
 
-        obj = find_obj_list (ch, ch->in_room->contents, argument);
+        obj = find_obj_same_room (ch, argument);
         BAIL_IF (obj == NULL,
             "You don't see that here.\n\r", ch);
         BAIL_IF (!obj_is_furniture(obj, STAND_BITS),
@@ -498,7 +498,7 @@ void do_rest (CHAR_DATA * ch, char *argument) {
 
     /* okay, now that we know we can rest, find an object to rest on */
     if (argument[0] != '\0') {
-        obj = find_obj_list (ch, ch->in_room->contents, argument);
+        obj = find_obj_same_room (ch, argument);
         BAIL_IF (obj == NULL,
             "You don't see that here.\n\r", ch);
     }
@@ -527,7 +527,7 @@ void do_sit (CHAR_DATA * ch, char *argument) {
 
     /* okay, now that we know we can sit, find an object to sit on */
     if (argument[0] != '\0') {
-        obj = find_obj_list (ch, ch->in_room->contents, argument);
+        obj = find_obj_same_room (ch, argument);
         BAIL_IF (obj == NULL,
             "You don't see that here.\n\r", ch);
     }
@@ -556,7 +556,7 @@ void do_sleep (CHAR_DATA * ch, char *argument) {
 
     /* okay, now that we know we can sleep, find an object to sleep on */
     if (argument[0] != '\0') {
-        obj = find_obj_list (ch, ch->in_room->contents, argument);
+        obj = find_obj_same_room (ch, argument);
         BAIL_IF (obj == NULL,
             "You don't see that here.\n\r", ch);
     }
@@ -588,7 +588,7 @@ void do_wake (CHAR_DATA * ch, char *argument) {
 
     BAIL_IF (!IS_AWAKE (ch),
         "You are asleep yourself!\n\r", ch);
-    BAIL_IF ((victim = find_char_room (ch, arg)) == NULL,
+    BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
         "They aren't here.\n\r", ch);
     BAIL_IF_ACT (IS_AWAKE (victim),
         "$N is already awake.", ch, NULL, victim);
@@ -706,7 +706,7 @@ void do_enter (CHAR_DATA * ch, char *argument) {
         "Nope, can't do it.\n\r", ch);
 
     /* Make sure we have a valid portal. */
-    portal = find_obj_list (ch, ch->in_room->contents, argument);
+    portal = find_obj_same_room (ch, argument);
     BAIL_IF (portal == NULL,
         "You don't see that here.\n\r", ch);
     BAIL_IF (portal->item_type != ITEM_PORTAL ||

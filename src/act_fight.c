@@ -70,7 +70,7 @@ bool fight_filter_skill_target (CHAR_DATA *ch, const char *argument,
             "But you aren't fighting anyone!\n\r", ch);
     }
     else {
-        FILTER ((victim = find_char_room (ch, arg)) == NULL,
+        FILTER ((victim = find_char_same_room (ch, arg)) == NULL,
             "They aren't here.\n\r", ch);
     }
 
@@ -407,7 +407,7 @@ void do_kill (CHAR_DATA * ch, char *argument) {
     CHAR_DATA *victim;
 
     DO_REQUIRE_ARG (arg, "Kill whom?\n\r");
-    BAIL_IF ((victim = find_char_room (ch, arg)) == NULL,
+    BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
         "They aren't here.\n\r", ch);
 
 /*  Allow player killing
@@ -453,7 +453,7 @@ void do_murder (CHAR_DATA * ch, char *argument) {
 
     BAIL_IF (IS_AFFECTED (ch, AFF_CHARM) || IS_PET (ch),
         "Only out of your own free will.\n\r", ch);
-    BAIL_IF ((victim = find_char_room (ch, arg)) == NULL,
+    BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
         "They aren't here.\n\r", ch);
     BAIL_IF (victim == ch,
         "Suicide is a mortal sin.\n\r", ch);
@@ -487,7 +487,7 @@ void do_backstab (CHAR_DATA * ch, char *argument) {
 
     BAIL_IF (ch->fighting != NULL,
         "You're facing the wrong end.\n\r", ch);
-    BAIL_IF ((victim = find_char_room (ch, arg)) == NULL,
+    BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
         "They aren't here.\n\r", ch);
     BAIL_IF (victim == ch,
         "How can you sneak up on yourself?\n\r", ch);
@@ -579,7 +579,7 @@ void do_rescue (CHAR_DATA * ch, char *argument) {
 
     DO_REQUIRE_ARG (arg, "Rescue whom?\n\r");
 
-    BAIL_IF ((victim = find_char_room (ch, arg)) == NULL,
+    BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
         "They aren't here.\n\r", ch);
     BAIL_IF (victim == ch,
         "What about fleeing instead?\n\r", ch);
@@ -728,7 +728,7 @@ void do_consider (CHAR_DATA * ch, char *argument) {
     int diff;
 
     DO_REQUIRE_ARG (arg, "Consider killing whom?\n\r");
-    BAIL_IF ((victim = find_char_room (ch, arg)) == NULL,
+    BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
         "They're not here.\n\r", ch);
     BAIL_IF (is_safe (ch, victim),
         "Don't even think about it.\n\r", ch);

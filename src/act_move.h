@@ -31,7 +31,7 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-int door_filter_find (CHAR_DATA * ch, char *arg);
+int door_filter_find (CHAR_DATA *ch, char *argument);
 bool door_filter_is_door (CHAR_DATA *ch, EXIT_DATA *pexit,
     OBJ_DATA *obj, flag_t *out_flags, bool *out_container, int *out_key);
 bool door_filter_can_open (CHAR_DATA *ch, EXIT_DATA *pexit,

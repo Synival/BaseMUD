@@ -1652,19 +1652,6 @@ void wiznet (char *string, CHAR_DATA * ch, OBJ_DATA * obj,
     }
 }
 
-ROOM_INDEX_DATA *find_location (CHAR_DATA * ch, char *arg) {
-    CHAR_DATA *victim;
-    OBJ_DATA *obj;
-
-    if (is_number (arg))
-        return get_room_index (atoi (arg));
-    if ((victim = find_char_world (ch, arg)) != NULL)
-        return victim->in_room;
-    if ((obj = find_obj_world (ch, arg)) != NULL)
-        return obj->in_room;
-    return NULL;
-}
-
 void qmconfig_read (void) {
     FILE *fp;
     bool fMatch;

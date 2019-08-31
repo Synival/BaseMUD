@@ -246,6 +246,13 @@ phased out or at least optional. A handful of changes were just for fun.
   is fixed, but still needs balancing.
 * If standing on/at/in something, The `stand` command without any argument will
   now step off/out.
+* In most cases, finding characters and objects by '1.thing', '2.thing', etc.
+  will now count correctly when searching multiple locations (e.g, check the room,
+  then the rest of the world). This is done by a `find_continue_count()` call.
+* Looking for doors by name now works the same way as looking for anything else.
+  You can now find a door by number - for example, if you're carrying "a portable door",
+  and there are two "door"s in the room, you can now say `open 3.door` to open the
+  room's second door.
 
 As a bonus feature, booting the MUD currently outputs several files to JSON
 format in the `json/` directory. In time, the MUD will be able to read these files

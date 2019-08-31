@@ -290,7 +290,6 @@ void printf_to_desc (DESCRIPTOR_DATA * d, char *fmt, ...);
 void printf_to_char (CHAR_DATA * ch, char *fmt, ...);
 void wiznet (char *string, CHAR_DATA * ch, OBJ_DATA * obj,
              flag_t flag, flag_t flag_skip, int min_level);
-ROOM_INDEX_DATA *find_location (CHAR_DATA * ch, char *arg);
 void qmconfig_read (void);
 const char *get_align_name (int align);
 const char *get_sex_name (int sex);
