@@ -61,7 +61,6 @@
 #include "board.h"
 
 /* TODO: move some of the code below to board.h or elsewhere */
-/* TODO: move do_*() to act_board.c or something similar */
 /* TODO: this is code pretty clean, but still needs a once-over */
 
 #define L_SUP (MAX_LEVEL - 1) /* if not already defined */

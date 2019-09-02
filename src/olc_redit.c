@@ -1025,7 +1025,7 @@ REDIT (redit_oreset) {
 
         obj_to_char (newobj, to_mob);
         if (pReset->command == 'E')
-            char_equip (to_mob, newobj, pReset->value[3]);
+            char_equip_obj (to_mob, newobj, pReset->value[3]);
 
         sprintf (output, "%s (%d) has been loaded "
                  "%s of %s (%d) and added to resets.\n\r",

@@ -43,9 +43,6 @@
 
 #include "act_skills.h"
 
-/* TODO: some of these functions are huge - break them down */
-/* TODO: simplify do_train() */
-
 void do_skills_or_spells (CHAR_DATA * ch, char *argument, int spells) {
     BUFFER *buffer;
     char arg[MAX_INPUT_LENGTH];

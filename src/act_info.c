@@ -57,9 +57,6 @@
 
 #include "act_info.h"
 
-/* TODO: lots of commands in here - split it up? (act_conf.c?) */
-/* TODO: sub-routines to do_sub.c */
-
 #define SCAN_ALL_DIRS -2
 
 static char *const scan_distance[8] = {

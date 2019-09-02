@@ -39,6 +39,9 @@
 
 #include "spell_aff.h"
 
+/* TODO: spell_enchant_weapon() and spell_enchant_armor() are
+ *       almost identical. unify them! */
+
 DEFINE_SPELL_FUN (spell_armor) {
     CHAR_DATA *victim = (CHAR_DATA *) vo;
     AFFECT_DATA af;
@@ -485,25 +488,17 @@ DEFINE_SPELL_FUN (spell_enchant_armor) {
     BAIL_IF (result <= fail,
         "Nothing seemed to happen.\n\r", ch);
 
-    /* okay, move all the old flags into new vectors if we have to */
-    if (!obj->enchanted) {
-        AFFECT_DATA *af_new;
-        obj->enchanted = TRUE;
+    /* make sure our object is enchanted. */
+    obj_enchant (obj);
 
-        for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
-            af_new = affect_new ();
-            affect_copy (af_new, paf);
-            af_new->type = UMAX (0, af_new->type);
-            LIST_FRONT (af_new, next, obj->affected);
-        }
-    }
-
+    /* normal enchantment. */
     if (result <= (90 - level / 5)) { /* success! */
         act ("$p shimmers with a gold aura.", ch, obj, NULL, TO_ALL);
         SET_BIT (obj->extra_flags, ITEM_MAGIC);
         added = -1;
     }
-    else { /* exceptional enchant */
+    /* exceptional enchant */
+    else {
         act ("$p glows a brillant gold!", ch, obj, NULL, TO_ALL);
         SET_BIT (obj->extra_flags, ITEM_MAGIC);
         SET_BIT (obj->extra_flags, ITEM_GLOW);
@@ -511,7 +506,7 @@ DEFINE_SPELL_FUN (spell_enchant_armor) {
     }
 
     /* now add the enchantments */
-    if (obj->level < LEVEL_HERO)
+    if (obj->level < LEVEL_HERO - 1)
         obj->level = UMIN (LEVEL_HERO - 1, obj->level + 1);
 
     if (ac_found) {
@@ -596,7 +591,8 @@ DEFINE_SPELL_FUN (spell_enchant_weapon) {
         return;
     }
 
-    if (result < (fail / 2)) { /* item disenchanted */
+    /* item disenchanted */
+    if (result < (fail / 2)) {
         AFFECT_DATA *paf_next;
         act ("$p glows brightly, then fades... oops.", ch, obj, NULL, TO_CHAR);
         act ("$p glows brightly, then fades.", ch, obj, NULL, TO_NOTCHAR);
@@ -614,28 +610,21 @@ DEFINE_SPELL_FUN (spell_enchant_weapon) {
         return;
     }
 
+    /* failed, no bad result */
     BAIL_IF (result <= fail,
         "Nothing seemed to happen.\n\r", ch);
 
-    /* okay, move all the old flags into new vectors if we have to */
-    if (!obj->enchanted) {
-        AFFECT_DATA *af_new;
-        obj->enchanted = TRUE;
+    /* make sure our object is enchanted. */
+    obj_enchant (obj);
 
-        for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
-            af_new = affect_new ();
-            affect_copy (af_new, paf);
-            af_new->type = UMAX (0, af_new->type);
-            LIST_FRONT (af_new, next, obj->affected);
-        }
-    }
-
+    /* normal enchantment. */
     if (result <= (100 - level / 5)) { /* success! */
         act ("$p glows blue.", ch, obj, NULL, TO_ALL);
         SET_BIT (obj->extra_flags, ITEM_MAGIC);
         added = 1;
     }
-    else { /* exceptional enchant */
+    /* exceptional enchant */
+    else {
         act ("$p glows a brillant blue!", ch, obj, NULL, TO_ALL);
         SET_BIT (obj->extra_flags, ITEM_MAGIC);
         SET_BIT (obj->extra_flags, ITEM_GLOW);

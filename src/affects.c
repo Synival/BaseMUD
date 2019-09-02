@@ -35,15 +35,9 @@
 
 #include "affects.h"
 
-/* TODO: functions to grab most affects from a table. */
-/* TODO: maybe implement height + weight affects? */
-/* TODO: maybe implement wood/silver/iron resistances? */
-/* TODO: review function names and order */
-
 /* for immunity, vulnerabiltiy, and resistant
    the 'globals' (magic and weapons) may be overriden
    three other cases -- wood, silver, and iron -- are checked in fight.c */
-/* TODO: ^^^^ no they're not! */
 int check_immune (CHAR_DATA * ch, int dam_type) {
     const DAM_TYPE *dam;
     int immune, def;
@@ -93,22 +87,6 @@ int check_immune (CHAR_DATA * ch, int dam_type) {
 
     /* return resistance-specific immunity or weapon/magic immunity. */
     return (immune == -1) ? def : immune;
-}
-
-/* enchanted stuff for eq */
-void affect_enchant (OBJ_DATA * obj) {
-    /* okay, move all the old flags into new bits if we have to */
-    if (!obj->enchanted) {
-        AFFECT_DATA *paf, *af_new;
-        obj->enchanted = TRUE;
-
-        for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
-            af_new = affect_new ();
-            affect_copy (af_new, paf);
-            af_new->type = UMAX (0, af_new->type);
-            LIST_FRONT (af_new, next, obj->affected);
-        }
-    }
 }
 
 void affect_modify_bits (CHAR_DATA * ch, AFFECT_DATA * paf, bool on) {

@@ -43,9 +43,6 @@
 
 #include "act_fight.h"
 
-/* TODO: better affect code? */
-/* TODO: move bash/backstab/etc to skills.c? */
-
 bool fight_filter_skill_target (CHAR_DATA *ch, const char *argument,
     int sn, flag_t npc_flag, const char *cant_msg, const char *self_msg,
     int *out_chance, CHAR_DATA **out_victim)

@@ -302,6 +302,7 @@
 #define ITEM_HOLD         (O)
 #define ITEM_NO_SAC       (P)
 #define ITEM_WEAR_FLOAT   (Q)
+#define ITEM_WEAR_LIGHT   (R)
 
 /* weapon types */
 #define WEAPON_FLAMING    (A)

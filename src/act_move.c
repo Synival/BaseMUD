@@ -47,10 +47,6 @@
 
 #include "act_move.h"
 
-/* TODO: rename sub-routines and filters to follow naming scheme */
-/* TODO: many of the sub-routines can probably be put into a file 'door.c'. */
-/* TODO: do_stand / sit / rest / sleep can probably be unified. */
-
 int door_filter_find (CHAR_DATA *ch, char *argument) {
     char arg[MAX_STRING_LENGTH];
     EXIT_DATA *pexit;

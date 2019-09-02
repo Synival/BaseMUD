@@ -42,10 +42,6 @@
 
 #include "act_shop.h"
 
-/* TODO: maybe a more appropriate mana spell for do_heal() */
-/* TODO: some sort of table for do_heal() */
-/* TODO: undo hack for New Thalos pet shop */
-
 bool do_filter_get_keeper (CHAR_DATA *ch, CHAR_DATA **out_keeper) {
     CHAR_DATA *keeper;
     SHOP_DATA *shop;

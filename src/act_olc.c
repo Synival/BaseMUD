@@ -34,11 +34,6 @@
 
 #include "act_olc.h"
 
-/* TODO: there's an outrageous amount of redundancy in here.
-         reduce, and test thoroughly! */
-/* TODO: BAIL_IF() everywhere */
-/* TODO: this file is HUGE. split into different olc files (medit, redit, etc) */
-/* TODO: move any universally-helpful functions to a different files. */
 /* TODO: move sub-routines and filters to the top. */
 /* TODO: rename sub-routines appropriately. */
 

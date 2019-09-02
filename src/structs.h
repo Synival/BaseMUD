@@ -897,6 +897,7 @@ struct wear_type {
     const char *name;
     const char *look_msg;
     flag_t wear_loc;
+    const char *msg_wear_self, *msg_wear_room;
 };
 
 /* Material types - currently unused. */

@@ -27,6 +27,7 @@
 
 #include <string.h>
 
+#include "affects.h"
 #include "utils.h"
 #include "chars.h"
 #include "db.h"
@@ -40,7 +41,6 @@
 /* TODO: lots of code can be put into tables. */
 /* TODO: review the function names for consistency. */
 /* TODO: remove any redundant functions, like simple lookup functions. */
-/* TODO: char_wear_obj() is pretty awful :( */
 
 /* returns number of people on an object */
 int obj_count_users (OBJ_DATA * obj) {
@@ -74,7 +74,7 @@ void obj_from_char (OBJ_DATA * obj) {
         return;
     }
     if (obj->wear_loc != WEAR_NONE)
-        char_unequip (ch, obj);
+        char_unequip_obj (ch, obj);
 
     LIST_REMOVE (obj, next_content, ch->carrying, OBJ_DATA, NO_FAIL);
     obj->carried_by = NULL;
@@ -536,4 +536,19 @@ bool obj_is_furniture (OBJ_DATA * obj, flag_t bits) {
     if (obj->item_type != ITEM_FURNITURE)
         return FALSE;
     return ((obj->value[2] & bits) != 0) ? TRUE : FALSE;
+}
+
+void obj_enchant (OBJ_DATA *obj) {
+    AFFECT_DATA *paf, *af_new;
+
+    if (obj->enchanted)
+        return;
+    obj->enchanted = TRUE;
+
+    for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
+        af_new = affect_new ();
+        affect_copy (af_new, paf);
+        af_new->type = UMAX (0, af_new->type);
+        LIST_FRONT (af_new, next, obj->affected);
+    }
 }

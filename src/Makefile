@@ -736,7 +736,7 @@ nanny.o: act_skills.h act_board.h act_obj.h chars.h objs.h nanny.h
 objs.o: /usr/include/string.h /usr/include/features.h
 objs.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 objs.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-objs.o: /usr/include/xlocale.h utils.h merc.h /usr/include/stdio.h
+objs.o: /usr/include/xlocale.h affects.h merc.h /usr/include/stdio.h
 objs.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
 objs.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
 objs.o: /usr/include/bits/wchar.h /usr/include/bits/stdio_lim.h
@@ -747,8 +747,8 @@ objs.o: /usr/include/bits/byteswap-16.h /usr/include/sys/select.h
 objs.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
 objs.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
 objs.o: /usr/include/bits/pthreadtypes.h /usr/include/sys/time.h macros.h
-objs.o: json.h structs.h types.h flags.h tables.h chars.h db.h recycle.h
-objs.o: comm.h lookup.h materials.h objs.h
+objs.o: json.h structs.h types.h flags.h tables.h utils.h chars.h db.h
+objs.o: recycle.h comm.h lookup.h materials.h objs.h
 olc_aedit.o: /usr/include/string.h /usr/include/features.h
 olc_aedit.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 olc_aedit.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h

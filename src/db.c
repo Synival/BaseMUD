@@ -1704,7 +1704,7 @@ void reset_room (ROOM_INDEX_DATA * pRoom) {
 
                 obj_to_char (pObj, LastMob);
                 if (pReset->command == 'E')
-                    char_equip (LastMob, pObj, pReset->value[3]);
+                    char_equip_obj (LastMob, pObj, pReset->value[3]);
                 last = TRUE;
                 break;
 
@@ -2156,7 +2156,6 @@ void clone_object (OBJ_DATA * parent, OBJ_DATA * clone) {
 
     /* affects */
     clone->enchanted = parent->enchanted;
-
     for (paf = parent->affected; paf != NULL; paf = paf->next)
         affect_to_obj (clone, paf);
 
