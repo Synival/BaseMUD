@@ -41,6 +41,7 @@
 #include "objs.h"
 #include "find.h"
 #include "recycle.h"
+#include "descs.h"
 
 #include "wiz_l4.h"
 

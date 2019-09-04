@@ -54,6 +54,8 @@
 /* TODO: remove any redundant functions, like simple lookup functions. */
 /* TODO: replace fReplace in char_wear_obj() and char_remove_obj() with
  *       flags for EQUIP_ONLY_IF_EMPTY and EQUIP_QUIET. */
+/* TODO: remove duplicated 'if (+/- enchanted)' logic. */
+/* TODO: char_is_friend() was unused, but it looks very useful! */
 
 bool char_has_clan (CHAR_DATA * ch) {
     return ch->clan;
@@ -180,8 +182,8 @@ void char_reset (CHAR_DATA * ch) {
 
     if (ch->pcdata->true_sex < 0 || ch->pcdata->true_sex > 2)
         ch->pcdata->true_sex = 0;
-    ch->sex = ch->pcdata->true_sex;
-    ch->max_hit = ch->pcdata->perm_hit;
+    ch->sex      = ch->pcdata->true_sex;
+    ch->max_hit  = ch->pcdata->perm_hit;
     ch->max_mana = ch->pcdata->perm_mana;
     ch->max_move = ch->pcdata->perm_move;
 
@@ -399,11 +401,9 @@ bool char_equip_obj (CHAR_DATA * ch, OBJ_DATA * obj, int iWear) {
         (IS_OBJ_STAT (obj, ITEM_ANTI_GOOD)    && IS_GOOD (ch)) ||
         (IS_OBJ_STAT (obj, ITEM_ANTI_NEUTRAL) && IS_NEUTRAL (ch)))
     {
-        /*
-         * Thanks to Morgenes for the bug fix here!
-         */
-        act ("You are zapped by $p and drop it.", ch, obj, NULL, TO_CHAR);
-        act ("$n is zapped by $p and drops it.", ch, obj, NULL, TO_NOTCHAR);
+        /* Thanks to Morgenes for the bug fix here! */
+        act2 ("You are zapped by $p and drop it.",
+              "$n is zapped by $p and drops it.", ch, obj, NULL, 0, POS_RESTING);
         obj_from_char (obj);
         obj_to_room (obj, ch->in_room);
         return FALSE;
@@ -413,15 +413,17 @@ bool char_equip_obj (CHAR_DATA * ch, OBJ_DATA * obj, int iWear) {
         ch->armor[i] -= obj_get_ac_type (obj, iWear, i);
     obj->wear_loc = iWear;
 
-    if (!obj->enchanted)
+    if (!obj->enchanted) {
         for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next)
             if (paf->apply != APPLY_SPELL_AFFECT)
                 affect_modify (ch, paf, TRUE);
-    for (paf = obj->affected; paf != NULL; paf = paf->next)
+    }
+    for (paf = obj->affected; paf != NULL; paf = paf->next) {
         if (paf->apply == APPLY_SPELL_AFFECT)
             affect_to_char (ch, paf);
         else
             affect_modify (ch, paf, TRUE);
+    }
 
     if (obj->item_type == ITEM_LIGHT && obj->value[2] != 0
         && ch->in_room != NULL)
@@ -503,14 +505,14 @@ void char_extract (CHAR_DATA * ch, bool fPull) {
     OBJ_DATA *obj_next;
 
     /* doesn't seem to be necessary
-    if ( ch->in_room == NULL ) {
-            bug( "Extract_char: NULL.", 0 );
-            return;
+    if (ch->in_room == NULL) {
+        bug( "Extract_char: NULL.", 0 );
+        return;
     }
     */
 
     nuke_pets (ch);
-    ch->pet = NULL;                /* just in case */
+    ch->pet = NULL; /* just in case */
 
     if (fPull)
         die_follower (ch);
@@ -675,27 +677,21 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
         bug ("char_move: bad door %d.", door);
         return;
     }
-    if (ch->daze > 0) {
-        send_to_char ("You're too dazed to move...\n\r", ch);
-        return;
-    }
-    if (ch->wait > 0) {
-        send_to_char ("You haven't quite recovered yet...\n\r", ch);
-        return;
-    }
+
+    BAIL_IF (ch->daze > 0,
+        "You're too dazed to move...\n\r", ch);
+    BAIL_IF (ch->wait > 0,
+        "You haven't quite recovered yet...\n\r", ch);
 
     /* Exit trigger, if activated, bail out. Only PCs are triggered. */
     if (!IS_NPC (ch) && mp_exit_trigger (ch, door))
         return;
 
     in_room = ch->in_room;
-    if ((pexit = in_room->exit[door]) == NULL
-        || (to_room = pexit->to_room) == NULL
-        || !char_can_see_room (ch, pexit->to_room))
-    {
-        send_to_char ("Alas, you cannot go that way.\n\r", ch);
-        return;
-    }
+    BAIL_IF ((pexit = in_room->exit[door]) == NULL ||
+             (to_room = pexit->to_room) == NULL ||
+             !char_can_see_room (ch, pexit->to_room),
+        "Alas, you cannot go that way.\n\r", ch);
 
     /* Determine if we're passing through a door. */
     if (!IS_SET (pexit->exit_flags, EX_CLOSED))
@@ -708,20 +704,13 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
     else
         pass_door = FALSE;
 
-    if (IS_SET (pexit->exit_flags, EX_CLOSED) && !pass_door) {
-        act ("The $d is closed.", ch, NULL, pexit->keyword, TO_CHAR);
-        return;
-    }
-    if (IS_AFFECTED (ch, AFF_CHARM) && ch->master != NULL &&
-        in_room == ch->master->in_room)
-    {
-        send_to_char ("What?  And leave your beloved master?\n\r", ch);
-        return;
-    }
-    if (!room_is_owner (to_room, ch) && room_is_private (to_room)) {
-        send_to_char ("That room is private right now.\n\r", ch);
-        return;
-    }
+    BAIL_IF_ACT (IS_SET (pexit->exit_flags, EX_CLOSED) && !pass_door,
+        "The $d is closed.", ch, NULL, pexit->keyword);
+    BAIL_IF (IS_AFFECTED (ch, AFF_CHARM) && ch->master != NULL &&
+            in_room == ch->master->in_room,
+        "What?  And leave your beloved master?\n\r", ch);
+    BAIL_IF (!room_is_owner (to_room, ch) && room_is_private (to_room),
+        "That room is private right now.\n\r", ch);
 
     /* Special conditions for players. */
     if (!IS_NPC (ch)) {
@@ -730,12 +719,9 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
 
         for (iClass = 0; iClass < CLASS_MAX; iClass++) {
             for (iGuild = 0; iGuild < MAX_GUILD; iGuild++) {
-                if (iClass != ch->class
-                    && to_room->vnum == class_table[iClass].guild[iGuild])
-                {
-                    send_to_char ("You aren't allowed in there.\n\r", ch);
-                    return;
-                }
+                BAIL_IF (iClass != ch->class &&
+                         to_room->vnum == class_table[iClass].guild[iGuild],
+                    "You aren't allowed in there.\n\r", ch);
             }
         }
 
@@ -743,10 +729,8 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
         to_sect = to_room->sector_type;
         flying = IS_AFFECTED (ch, AFF_FLYING) || IS_IMMORTAL (ch);
 
-        if ((in_sect == SECT_AIR || to_sect == SECT_AIR) && !flying) {
-            send_to_char ("You can't fly.\n\r", ch);
-            return;
-        }
+        BAIL_IF ((in_sect == SECT_AIR || to_sect == SECT_AIR) && !flying,
+            "You can't fly.\n\r", ch);
 
         if ((in_sect == SECT_WATER_NOSWIM || to_sect == SECT_WATER_NOSWIM) &&
              !flying)
@@ -756,10 +740,8 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
             for (boat = ch->carrying; boat != NULL; boat = boat->next_content)
                 if (boat->item_type == ITEM_BOAT)
                     break;
-            if (boat == NULL) {
-                send_to_char ("You need a boat to go there.\n\r", ch);
-                return;
-            }
+            BAIL_IF (boat == NULL,
+                "You need a boat to go there.\n\r", ch);
         }
 
         move = sector_table[UMIN (SECT_MAX - 1, in_room->sector_type)].move_loss
@@ -774,10 +756,8 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
         if (move < 1)
             move = 1;
 
-        if (ch->move < move) {
-            send_to_char ("You are too exhausted.\n\r", ch);
-            return;
-        }
+        BAIL_IF (ch->move < move,
+            "You are too exhausted.\n\r", ch);
 
         WAIT_STATE (ch, 1);
         ch->move -= move;
@@ -1362,15 +1342,16 @@ void char_get_who_string (CHAR_DATA * ch, CHAR_DATA *wch, char *buf,
     /* Format it up. */
     snprintf (buf, len, "[%2d %6s %s] %s%s%s%s%s%s%s%s\n\r",
         wch->level,
-        wch->race < PC_RACE_MAX ? pc_race_table[wch->race].who_name : "     ",
+        (wch->race < PC_RACE_MAX) ? pc_race_table[wch->race].who_name : "     ",
         class,
-        wch->incog_level >= LEVEL_HERO ? "(Incog) " : "",
-        wch->invis_level >= LEVEL_HERO ? "(Wizi) " : "",
+        (wch->incog_level >= LEVEL_HERO) ? "(Incog) " : "",
+        (wch->invis_level >= LEVEL_HERO) ? "(Wizi) " : "",
         clan_table[wch->clan].who_name,
         IS_SET (wch->comm, COMM_AFK) ? "[AFK] " : "",
         IS_SET (wch->plr, PLR_KILLER) ? "(KILLER) " : "",
         IS_SET (wch->plr, PLR_THIEF) ? "(THIEF) " : "",
-        wch->name, IS_NPC (wch) ? "" : wch->pcdata->title);
+        wch->name,
+        IS_NPC (wch) ? "" : wch->pcdata->title);
 }
 
 void char_set_title (CHAR_DATA * ch, char *title) {
@@ -1416,8 +1397,7 @@ bool char_drop_weapon_if_too_heavy (CHAR_DATA *ch) {
         return FALSE;
 
     depth++;
-    act ("You drop $p.", ch, wield, NULL, TO_CHAR);
-    act ("$n drops $p.", ch, wield, NULL, TO_NOTCHAR);
+    act2 ("You drop $p.", "$n drops $p.", ch, wield, NULL, 0, POS_RESTING);
     obj_from_char (wield);
     obj_to_room (wield, ch->in_room);
     depth--;

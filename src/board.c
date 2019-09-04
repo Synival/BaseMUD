@@ -57,6 +57,7 @@
 #include "recycle.h"
 #include "lookup.h"
 #include "chars.h"
+#include "descs.h"
 
 #include "board.h"
 

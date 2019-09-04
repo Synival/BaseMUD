@@ -34,6 +34,7 @@
 #include "utils.h"
 #include "chars.h"
 #include "find.h"
+#include "descs.h"
 
 #include "wiz_l3.h"
 

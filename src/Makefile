@@ -9,7 +9,7 @@ EXE     = ../bin/rom
 O_FILES = \
     act_board.o act_comm.o act_conf.o act_fight.o act_group.o act_info.o \
     act_move.o act_obj.o act_olc.o act_player.o act_shop.o act_skills.o \
-    affects.o ban.o board.o chars.o colour.o comm.o db2.o db.o do_sub.o \
+    affects.o ban.o board.o chars.o colour.o comm.o db2.o db.o descs.o do_sub.o \
     effects.o fight.o find.o flags.o groups.o interp.o json.o json_obj.o \
     json_tbl.o lookup.o main.o magic.o materials.o mob_cmds.o mob_prog.o music.o nanny.o \
     objs.o olc.o olc_aedit.o olc_hedit.o olc_medit.o olc_mpedit.o olc_oedit.o \

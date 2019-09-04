@@ -36,6 +36,7 @@
 #include "recycle.h"
 #include "chars.h"
 #include "find.h"
+#include "descs.h"
 
 #include "act_board.h"
 #include "act_comm.h"
