@@ -415,6 +415,7 @@ struct door_type {
     const char *from;
     const char *to_phrase;
     int reverse;
+    const char *short_name;
 };
 
 /* Prototype for a mob.

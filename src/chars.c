@@ -1549,3 +1549,99 @@ const char *get_wiz_class (int level) {
         default:          return NULL;
     }
 }
+
+int char_exit_string (CHAR_DATA *ch, ROOM_INDEX_DATA *room, int mode,
+    char *out_buf, size_t out_size)
+{
+    EXIT_DATA *pexit;
+    int door, isdoor, closed, count;
+    size_t len;
+
+    out_buf[0] = '\0';
+    len = 0;
+    count = 0;
+
+    for (door = 0; door <= 5; door++) {
+        pexit = room->exit[door];
+        if (pexit == NULL)
+            continue;
+        if (pexit->to_room == NULL)
+            continue;
+        if (!char_can_see_room (ch, pexit->to_room))
+            continue;
+
+        isdoor = IS_SET (pexit->exit_flags, EX_ISDOOR);
+        closed = IS_SET (pexit->exit_flags, EX_CLOSED);
+
+#ifdef VANILLA
+        if (closed)
+            continue;
+#endif
+
+        if (mode == EXITS_PROMPT) {
+            len += snprintf (out_buf + len, out_size - len, "%s%s",
+#ifndef VANILLA
+                closed ? "#" : isdoor ? "-" : ""
+#else
+                ""
+#endif
+                , door_get(door)->short_name
+            );
+        }
+        if (mode == EXITS_AUTO) {
+            if (out_buf[0] != '\0')
+                len += snprintf (out_buf + len, out_size - len, " ");
+            len += snprintf (out_buf + len, out_size - len,
+#ifndef VANILLA
+                closed ? "#" : isdoor ? "-" : ""
+#else
+                ""
+#endif
+            );
+
+            len += snprintf (out_buf + len, out_size - len, "%s",
+                door_get_name(door));
+        }
+        else if (mode == EXITS_LONG) {
+            /* exit information */
+            len += snprintf (out_buf + len, out_size - len, "%-5s ",
+                capitalize (door_get_name(door)));
+
+            if (isdoor) {
+                char dbuf[64];
+                char *dname = door_keyword_to_name (pexit->keyword,
+                    dbuf, sizeof (dbuf));
+                len += snprintf (out_buf + len, out_size - len, "(%s %s) ",
+                    closed ? "closed" : "open", dname);
+            }
+
+            /* room information (only if open) */
+            if (!closed || IS_IMMORTAL (ch)) {
+                ROOM_INDEX_DATA *room = pexit->to_room;
+                if (room_is_dark (room)) {
+                    len += snprintf (out_buf + len, out_size - len,
+                        "- {DToo dark to tell{x");
+                }
+                else {
+                    len += snprintf (out_buf + len, out_size - len, "- {%c%s{x",
+                        room_colour_char(room), room->name);
+                }
+            }
+
+            /* wiz info */
+            if (IS_IMMORTAL (ch))
+                len += snprintf (out_buf + len, out_size - len,
+                         " (room %d)\n\r", pexit->to_room->vnum);
+            else
+                len += snprintf (out_buf + len, out_size - len, "\n\r");
+        }
+        count++;
+    }
+
+    if (count == 0) {
+        len += snprintf (out_buf + len, out_size - len,
+            (mode == EXITS_LONG) ? "None.\n\r" : "none");
+    }
+
+    return count;
+}

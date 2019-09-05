@@ -566,4 +566,9 @@
 #define POS_PREP_IN             2
 #define POS_PREP_BY             3
 
+/* Parameters for char_exit_string() */
+#define EXITS_LONG      0
+#define EXITS_AUTO      1
+#define EXITS_PROMPT    2
+
 #endif

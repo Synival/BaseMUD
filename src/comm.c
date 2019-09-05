@@ -136,11 +136,6 @@ void bust_a_prompt (CHAR_DATA *ch) {
     char *point;
     char *pbuff;
     char buffer[MAX_STRING_LENGTH * 2];
-    char doors[MAX_INPUT_LENGTH];
-    EXIT_DATA *pexit;
-    bool found;
-    const char *dir_short_name[] = { "N", "E", "S", "W", "U", "D" };
-    int door;
 
     if (ch == NULL || ch->desc == NULL)
         return;
@@ -148,9 +143,8 @@ void bust_a_prompt (CHAR_DATA *ch) {
     point = buf;
     str = ch->prompt;
     if (str == NULL || str[0] == '\0') {
-        sprintf (buf, "{p<%dhp %dm %dmv>{x %s",
-                 ch->hit, ch->mana, ch->move, ch->prefix);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "{p<%dhp %dm %dmv>{x %s",
+            ch->hit, ch->mana, ch->move, ch->prefix);
         return;
     }
 
@@ -181,23 +175,8 @@ void bust_a_prompt (CHAR_DATA *ch) {
             case 'O': sprintf (buf2, "%s",  olc_ed_vnum (ch)); i = buf2; break;
 
             case 'e':
-                found = FALSE;
-                doors[0] = '\0';
-                for (door = 0; door < 6; door++) {
-                    if ((pexit = ch->in_room->exit[door]) != NULL
-                        && pexit->to_room != NULL
-                        && (char_can_see_room (ch, pexit->to_room)
-                            || (IS_AFFECTED (ch, AFF_INFRARED)
-                                && !IS_AFFECTED (ch, AFF_BLIND)))
-                        && !IS_SET (pexit->exit_flags, EX_CLOSED))
-                    {
-                        found = TRUE;
-                        strcat (doors, dir_short_name[door]);
-                    }
-                }
-                if (!found)
-                    strcat (doors, "none");
-                sprintf (buf2, "%s", doors);
+                char_exit_string (ch, ch->in_room, EXITS_PROMPT,
+                    buf2, sizeof (buf2));
                 i = buf2;
                 break;
 
@@ -212,31 +191,33 @@ void bust_a_prompt (CHAR_DATA *ch) {
                     sprintf (buf2, "%d", ch->alignment);
                 else
                     sprintf (buf2, "%s",
-                             IS_GOOD (ch) ? "good" : IS_EVIL (ch) ? "evil" :
-                             "neutral");
+                        IS_GOOD (ch) ? "good" :
+                        IS_EVIL (ch) ? "evil" :
+                                       "neutral");
                 i = buf2;
                 break;
 
             case 'r':
-                if (ch->in_room != NULL)
+                if (ch->in_room != NULL) {
                     sprintf (buf2, "%s",
-                             ((!IS_NPC
-                               (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT))
-                              || (!IS_AFFECTED (ch, AFF_BLIND)
-                                  && !room_is_dark (ch->
-                                                    in_room))) ? ch->in_room->
-                             name : "darkness");
+                        ((!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT)) ||
+                         (!IS_AFFECTED (ch, AFF_BLIND) &&
+                             !room_is_dark (ch->in_room))
+                        ) ? ch->in_room-> name : "darkness"
+                    );
+                    i = buf2;
+                }
                 else
-                    sprintf (buf2, " ");
-                i = buf2;
+                    i = " ";
                 break;
 
             case 'R':
-                if (IS_IMMORTAL (ch) && ch->in_room != NULL)
+                if (IS_IMMORTAL (ch) && ch->in_room != NULL) {
                     sprintf (buf2, "%d", ch->in_room->vnum);
+                    i = buf2;
+                }
                 else
-                    sprintf (buf2, " ");
-                i = buf2;
+                    i = " ";
                 break;
 
             case 'z':

@@ -87,6 +87,8 @@ bool char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace);
 void char_set_title (CHAR_DATA *ch, char *title);
 bool char_drop_weapon_if_too_heavy (CHAR_DATA *ch);
 void char_reduce_money (CHAR_DATA *ch, int cost);
+int char_exit_string (CHAR_DATA *ch, ROOM_INDEX_DATA *room, int mode,
+    char *out_buf, size_t out_size);
 
 /* Misc. utility functions. */
 char *condition_string (int percent);

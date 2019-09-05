@@ -1315,12 +1315,12 @@ const OBJ_MAP obj_map_table[] = {
 
 /* for doors */
 const DOOR_TYPE door_table[DIR_MAX + 1] = {
-    {DIR_NORTH, "north", "the north", "to the north", DIR_SOUTH},
-    {DIR_EAST,  "east",  "the east",  "to the east",  DIR_WEST},
-    {DIR_SOUTH, "south", "the south", "to the south", DIR_NORTH},
-    {DIR_WEST,  "west",  "the west",  "to the west",  DIR_EAST},
-    {DIR_UP,    "up",    "above",     "above you",    DIR_DOWN},
-    {DIR_DOWN,  "down",  "below",     "below you",    DIR_UP},
+    {DIR_NORTH, "north", "the north", "to the north", DIR_SOUTH, "N"},
+    {DIR_EAST,  "east",  "the east",  "to the east",  DIR_WEST,  "E"},
+    {DIR_SOUTH, "south", "the south", "to the south", DIR_NORTH, "S"},
+    {DIR_WEST,  "west",  "the west",  "to the west",  DIR_EAST,  "W"},
+    {DIR_UP,    "up",    "above",     "above you",    DIR_DOWN,  "U"},
+    {DIR_DOWN,  "down",  "below",     "below you",    DIR_UP,    "D"},
     {0},
 };
 

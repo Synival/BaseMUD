@@ -498,88 +498,27 @@ void do_lore (CHAR_DATA * ch, char *arg) {
 /* Thanks to Zrin for auto-exit part. */
 void do_exits (CHAR_DATA * ch, char *argument) {
     char buf[MAX_STRING_LENGTH];
-    bool found;
     bool fAuto;
-    int door;
+    int mode;
 
     fAuto = !str_cmp (argument, "auto");
     if (do_filter_blind (ch))
         return;
 
     if (fAuto)
-        sprintf (buf, "{o[Exits:");
+        sprintf (buf, "{o[Exits: ");
     else if (IS_IMMORTAL (ch))
         sprintf (buf, "Obvious exits from room %d:\n\r", ch->in_room->vnum);
     else
         sprintf (buf, "Obvious exits:\n\r");
-
-    found = FALSE;
-    for (door = 0; door <= 5; door++) {
-        int isdoor, closed;
-        EXIT_DATA *pexit = ch->in_room->exit[door];
-
-        if (pexit == NULL)
-            continue;
-        if (pexit->to_room == NULL)
-            continue;
-        if (!char_can_see_room (ch, pexit->to_room))
-            continue;
-
-        isdoor = IS_SET (pexit->exit_flags, EX_ISDOOR);
-        closed = IS_SET (pexit->exit_flags, EX_CLOSED);
-
-#ifdef VANILLA
-        if (closed)
-            continue;
-#endif
-        found = TRUE;
-
-        if (fAuto) {
-#ifndef VANILLA
-            strcat (buf, closed ? " #" : isdoor ? " -" : " ");
-#else
-            strcat (buf, " ");
-#endif
-            strcat (buf, door_get_name(door));
-        }
-        else {
-            /* exit information */
-            sprintf (buf + strlen (buf), "%-5s ",
-                     capitalize (door_get_name(door)));
-
-            if (isdoor) {
-                char dbuf[64];
-                char *dname = door_keyword_to_name (pexit->keyword,
-                    dbuf, sizeof (dbuf));
-                sprintf (buf + strlen (buf), "(%s %s) ",
-                         closed ? "closed" : "open", dname);
-            }
-
-            /* room information (only if open) */
-            if (!closed || IS_IMMORTAL (ch)) {
-                ROOM_INDEX_DATA *room = pexit->to_room;
-                if (room_is_dark (room))
-                    strcat (buf, "- {DToo dark to tell{x");
-                else
-                    sprintf (buf + strlen (buf), "- {%c%s{x",
-                        room_colour_char(room), room->name);
-            }
-
-            /* wiz info */
-            if (IS_IMMORTAL (ch))
-                sprintf (buf + strlen (buf),
-                         " (room %d)\n\r", pexit->to_room->vnum);
-            else
-                sprintf (buf + strlen (buf), "\n\r");
-        }
-    }
-
-    if (!found)
-        strcat (buf, fAuto ? " none" : "None.\n\r");
-    if (fAuto)
-        strcat (buf, "]{x\n\r");
-
     send_to_char (buf, ch);
+
+    mode = fAuto ? EXITS_AUTO : EXITS_LONG;
+    char_exit_string (ch, ch->in_room, mode, buf, sizeof (buf));
+    if (fAuto)
+        printf_to_char (ch, "%s]{x\n\r", buf);
+    else
+        printf_to_char (ch, "%s", buf);
 }
 
 void do_worth (CHAR_DATA * ch, char *argument) {
