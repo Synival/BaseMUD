@@ -303,6 +303,7 @@ struct dam_type {
     char *name;
     flag_t res;
     EFFECT_FUN *effect;
+    int dam_class;
 };
 
 struct attack_type {

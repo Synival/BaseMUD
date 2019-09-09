@@ -148,6 +148,7 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
 * NPC breath attacks now use a shared `perform_breath_attack()` function.
 * Some spells (like 'blindness') now can be invoked with or without messages
   so other spells that use cause the affect won't give "spell failed" messages.
+* Mob / object materials are now stored in a table rather than as a simple string.
 
 There are some higher-level abstractions that have likely caused a slight performance hit
 or a little more memory usage, but this is hardly an issue in 2019 ;) Some profiling will
@@ -159,8 +160,75 @@ Some small changes have been made, most of which are small quality-of-life
 improvements, some of which are personal preferences that will eventually be
 phased out or at least optional. A handful of changes were just for fun.
 
-**New features that can be enabled by uncommenting `#define VANILLA` in `basemud.h`:**
+**Bugfixes:**
+* The `scan` command now checks for mob visibility in rooms based on room light level.
+* `scan` doesn't peek through doors anymore.
+* Doors are now properly closed and locked and both sides when loading zones. This
+  fixes some resets as well.
+* Getting hit by fire or ice breath no longer makes you _less_ hungry or
+  thirsty. Whoops!
+* 'Word of recall' now writes "Spell failed." to the _caster_ rather than
+  the victim.
+* 'Heat metal' would drop an item _more_ if the opponent had more dexterity - this
+  is fixed, but still needs balancing.
+* In most cases, finding characters and objects by '1.thing', '2.thing', etc.
+  will now count correctly when searching multiple locations (e.g, check the room,
+  then the rest of the world). This is done by a `find_continue_count()` call.
+* Checks for immune/resistant/vulnerable flags completely ignored default
+  weapon/magic imm/res/vuln flags, despite existing code with implied behavior.
+  Resistance no longer overrides default immunity, and vulnerability now
+  properly _downgrades_ the default status (imm`->`res, res`->`normal,
+  normal`->`vuln).
 
+**Patched oversights:**
+* `scan <dir>` only checks two rooms ahead rather than four. To see
+  that far, you'll need to use the "farsight" spell :)
+* Tweaked some stat tables very slightly to allow for steady progression in
+  areas that looked like oversights. (Maximum weight capacity did not increase
+  steadily where it easily could have.)
+* You can no longer trip targets without feet or legs.
+* Looking for doors by name now works the same way as looking for anything else.
+  You can now find a door by number - for example, if you're carrying "a portable door",
+  and there are two "door"s in the room, you can now say `open 3.door` to open the
+  room's second door.
+
+**Quality of life features:**
+* Current position can be shown in prompt.
+* Exits in the prompt now show open/closed status (!VANILLA).
+* Stunned / incapacitated / mortally wounded / dead state checks are now based on
+  percentage of max hit points.
+* The 'lore' command has been implemented. It works like the 'identify' spell,
+  but hand-picks information based on your skill percentage. What the player
+  knows about is random, seeded by the player's name and the object's vnum.
+  It currently cannot be practiced beyond 75%.
+* Some, but not all, simple "Ok." messages have been replaced with useful things.
+* Lots and lots of warning messages for mismatched doors or keys when loading zones.
+  This produces some warning messages from the stock zones (which are warranted).
+* New messages for passing through doors (for both sides).
+* Drunkeness, thirst, hunger, and fullness now gives you more useful
+  messages when the state changes via drink/eat.
+* If standing on/at/in something, The `stand` command without any argument will
+  now step off/out.
+
+**Other changes:**
+* Door open / closed(!VANILLA) status is visible in the "exits" command.
+* Beds, tents, stools, etc. have automatic flags for `STAND_IN`, `STAND_AT`, etc.
+  in addition to some standard hit and move regeneration bonuses.
+* Bashing / tripping was effectively useless because combatants were
+  automatically moved back to standing position in `violence_update()`. This
+  is now a bit smarter, with cooldown rates.
+* You cannot change position while in a daze / cooldown state. You can still
+  issue several commands while knocked down, but you can't get back up!
+* Standing up in combat is automatic once the cooldown period has been reached.
+  This is essentially the same as before where you would _always_ stand up during
+  combat when attacked, but now it's no longer instant.
+* Form / parts for races have been reviewed and tweaked slightly (consistency between
+  canids). It makes no gameplay difference, but may in the future.
+* Tiny balance changes have been made to certain skills and stat regen amounts.
+* Fast healing is only active when sitting, resting, or sleeping.
+* Meditation is only active when sitting or resting.
+
+**New features that can be enabled by uncommenting `#define VANILLA` in `basemud.h`:**
 * More status noficiations in addition to 'excellent', 'nasty wounds', etc.
 * Room titles are now colored based on their terrain type.
 * The "pixie" race has been added just for fun. They can fly, and they're small,
@@ -196,63 +264,6 @@ phased out or at least optional. A handful of changes were just for fun.
 * Object / character materials can now be shown with the 'materials' command.
 * Mobs can now be in stunned, incapacitated, and mortally wounded states.
 * Caster mobs now say their spells when casting just like players.
-
-**Additional changes:**
-
-* Door open / closed status is visible in the "exits" command.
-* The `scan` command now checks for mob visibility in rooms based on room light level.
-* Furthermore, `scan <dir>` only checks two rooms ahead rather than four. To see
-  that far, you'll need to use the "farsight" spell :)
-* `scan` also doesn't see through doors anymore.
-* Stunned / incapacitated / mortally wounded / dead state checks are now based on
-  percentage of max hit points.
-* Beds, tents, stools, etc. have automatic flags for `STAND_IN`, `STAND_AT`, etc.
-  in addition to some standard hit and move regeneration bonuses.
-* Bashing / tripping was effectively useless because combatants were
-  automatically moved back to standing position in violence_update(). This
-  is now a bit smarter, with cooldown rates.
-* You cannot change position while in a daze / cooldown state. You can still
-  issue several commands while knocked down, but you can't get back up!
-* Standing up in combat is automatic once the cooldown period has been reached.
-  This is essentially the same as before where you would _always_ stand up during
-  combat when attacked, but now it's no longer instant.
-* Current position can be shown in prompt.
-* The 'lore' command has been implemented. It works like the 'identify' spell,
-  but hand-picks information based on your skill percentage. What the player
-  knows about is random, seeded by the player's name and the object's vnum.
-  It currently cannot be practiced beyond 75%.
-* Tiny balance changes have been made to certain skills and stat regen amounts.
-* Form / parts for races have been reviewed and tweaked slightly. It makes no gameplay
-  difference, but may in the future.
-* Mob / object materials are now stored in a table. They are, however, still unused.
-* Some, but not all, simple "Ok." messages have been replaced with useful things.
-* Doors are now properly closed and locked and both sides when loading zones. This
-  fixes some resets as well.
-* Lots and lots of warning messages for mismatched doors or keys when loading zones.
-  This produces some warning messages from the stock zones (which are warranted).
-* Fast healing is only active when sitting, resting, or sleeping.
-* Meditation is only active when sitting or resting.
-* New messages for passing through doors (for both sides).
-* Tweaked some stat tables very slightly to allow for steady progression in
-  areas that looked like oversights.
-* You can no longer trip targets without feet or legs.
-* Getting hit by fire or ice breath no longer makes you _less_ hungry or
-  thirsty. Whoops!
-* Drunkeness, thirst, hunger, and fullness now gives you more useful
-  messages when the state changes via drink/eat.
-* 'Word of recall' now writes "Spell failed." to the _caster_ rather than
-  the victim.
-* 'Heat metal' would drop an item _more_ if the opponent had more dexterity - this
-  is fixed, but still needs balancing.
-* If standing on/at/in something, The `stand` command without any argument will
-  now step off/out.
-* In most cases, finding characters and objects by '1.thing', '2.thing', etc.
-  will now count correctly when searching multiple locations (e.g, check the room,
-  then the rest of the world). This is done by a `find_continue_count()` call.
-* Looking for doors by name now works the same way as looking for anything else.
-  You can now find a door by number - for example, if you're carrying "a portable door",
-  and there are two "door"s in the room, you can now say `open 3.door` to open the
-  room's second door.
 
 As a bonus feature, booting the MUD currently outputs several files to JSON
 format in the `json/` directory. In time, the MUD will be able to read these files

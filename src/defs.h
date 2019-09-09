@@ -192,6 +192,10 @@
 #define DAM_SOUND          19
 #define DAM_MAX            20
 
+/* Damage classes. */
+#define DAM_PHYSICAL    0
+#define DAM_MAGICAL     1
+
 /* TO types for act. */
 #define TO_CHAR    (A) /* 'ch' only */
 #define TO_VICT    (B) /* 'vch' only */
