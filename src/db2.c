@@ -39,7 +39,6 @@
 
 #include "db2.h"
 
-/* TODO: load_socials() is filthy :( */
 /* TODO: this can be integrated into db.c, everything old should be
  *       moved to db_old.c */
 

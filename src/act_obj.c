@@ -1136,7 +1136,7 @@ void do_steal (CHAR_DATA * ch, char *argument) {
         "They aren't here.\n\r", ch);
     BAIL_IF (victim == ch,
         "That's pointless.\n\r", ch);
-    if (is_safe (ch, victim))
+    if (do_filter_can_attack (ch, victim))
         return;
     BAIL_IF (IS_NPC (victim) && (victim->fighting ||
             victim->position == POS_FIGHTING),

@@ -233,7 +233,7 @@ DEFINE_SPELL_FUN (spell_charm_person) {
     CHAR_DATA *victim = (CHAR_DATA *) vo;
     AFFECT_DATA af;
 
-    if (is_safe (ch, victim))
+    if (do_filter_can_attack (ch, victim))
         return;
 
     BAIL_IF (victim == ch,

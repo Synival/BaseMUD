@@ -52,8 +52,6 @@
 
 #include "descs.h"
 
-/* TODO: move a lot of #ifdef's and headers from comm.c / comm.h */
-
 #if defined(unix)
 int init_socket (int port) {
     static struct sockaddr_in sa_zero;

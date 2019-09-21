@@ -107,6 +107,10 @@
 #define MOB_UPDATE_ALWAYS  (cc)
 #define MOB_IS_CHANGER     (dd)
 
+/* Groups of bits. */
+#define MOB_FRIENDLY_BITS (MOB_TRAIN | MOB_PRACTICE | \
+                           MOB_IS_HEALER | MOB_IS_CHANGER)
+
 /* OFF bits for mobiles */
 #define OFF_AREA_ATTACK    (A)
 #define OFF_BACKSTAB       (B)

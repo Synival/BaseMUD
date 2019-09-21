@@ -74,7 +74,6 @@
 /* TODO: move game loop to 'main.c' */
 /* TODO: there's a lot of random functions that don't belong in here.
  *       move them to somewhere appropriate! */
-/* TODO: check for unnecessary headers (result of creating descs.c) */
 
 /* Socket and TCP/IP stuff. */
 #if defined(macintosh) || defined(MSDOS)

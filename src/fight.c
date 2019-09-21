@@ -57,7 +57,8 @@
 /* TODO: make sure NPCs check to see if their standing before doing
  *       certain offensive actions (bash) */
 /* TODO: drunk players... get a 90% damage TAKEN bonus? is that right? */
-/* TODO: is_safe() is actually a do_XXX() filter. */
+/* TODO: bug - the 'do_filter_can_attack()' check in 'should_assist_group()'
+ *       can produce a message. */
 
 /* Nasty, nasty globals. */
 char *damage_adj = NULL;
@@ -147,7 +148,7 @@ int should_assist_group (CHAR_DATA * bystander, CHAR_DATA * attacker,
         return 0;
     if (is_same_group (bystander, victim))
         return 0;
-    if (is_safe (bystander, victim))
+    if (do_filter_can_attack (bystander, victim))
         return 0;
     if (!IS_NPC (bystander) && IS_SET (bystander->plr, PLR_AUTOASSIST))
         return 1;
@@ -358,7 +359,7 @@ void mob_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
     }
 
     /* oh boy!  Fun stuff! */
-    if (ch->wait > 0)
+    if (ch->wait > 0 || ch->position < POS_STANDING)
         return;
 
     /* now for the skills */
@@ -395,7 +396,7 @@ void mob_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
 
         case (5):
             if (IS_SET (ch->off_flags, OFF_TAIL))
-                /* do_function(ch, &do_tail, "") */ ;
+                ; /* do_function(ch, &do_tail, "") */
             break;
 
         case (6):
@@ -405,7 +406,7 @@ void mob_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
 
         case (7):
             if (IS_SET (ch->off_flags, OFF_CRUSH))
-                /* do_function(ch, &do_crush, "") */ ;
+                ; /* do_function(ch, &do_crush, "") */
             break;
         case (8):
             if (IS_SET (ch->off_flags, OFF_BACKSTAB))
@@ -706,7 +707,7 @@ bool damage (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
     if (victim != ch) {
         /* Certain attacks are forbidden.
          * Most other attacks are returned. */
-        if (is_safe (ch, victim))
+        if (do_filter_can_attack (ch, victim))
             return FALSE;
         check_killer (ch, victim);
 
@@ -950,93 +951,21 @@ bool set_fighting_position_if_possible (CHAR_DATA * ch) {
     return TRUE;
 }
 
-bool is_safe (CHAR_DATA * ch, CHAR_DATA * victim) {
-    if (victim->in_room == NULL || ch->in_room == NULL)
-        return TRUE;
-    if (victim->fighting == ch || victim == ch)
-        return FALSE;
-    if (IS_IMMORTAL (ch) && ch->level > LEVEL_IMMORTAL)
-        return FALSE;
+bool do_filter_can_attack (CHAR_DATA *ch, CHAR_DATA *victim)
+    { return do_filter_can_attack_real (ch, victim, FALSE, FALSE); }
+bool do_filter_can_attack_spell (CHAR_DATA * ch, CHAR_DATA * victim, bool area)
+    { return do_filter_can_attack_real (ch, victim, area, FALSE); }
 
-    /* killing mobiles */
-    if (IS_NPC (victim)) {
-        /* safe room? */
-        if (IS_SET (victim->in_room->room_flags, ROOM_SAFE)) {
-            send_to_char ("Not in this room.\n\r", ch);
-            return TRUE;
-        }
-        if (victim->pIndexData->pShop != NULL) {
-            send_to_char ("The shopkeeper wouldn't like that.\n\r", ch);
-            return TRUE;
-        }
-
-        /* no killing healers, trainers, etc */
-        if (IS_SET (victim->mob, MOB_TRAIN)
-            || IS_SET (victim->mob, MOB_PRACTICE)
-            || IS_SET (victim->mob, MOB_IS_HEALER)
-            || IS_SET (victim->mob, MOB_IS_CHANGER))
-        {
-            send_to_char ("I don't think Mota would approve.\n\r", ch);
-            return TRUE;
-        }
-
-        if (!IS_NPC (ch)) {
-            /* no pets */
-            if (IS_PET (victim)) {
-                act ("But $N looks so cute and cuddly...",
-                     ch, NULL, victim, TO_CHAR);
-                return TRUE;
-            }
-
-            /* no charmed creatures unless owner */
-            if (IS_AFFECTED (victim, AFF_CHARM) && ch != victim->master) {
-                send_to_char ("You don't own that monster.\n\r", ch);
-                return TRUE;
-            }
-        }
-    }
-    /* killing players */
-    else {
-        /* NPC doing the killing */
-        if (IS_NPC (ch)) {
-            /* safe room check */
-            if (IS_SET (victim->in_room->room_flags, ROOM_SAFE)) {
-                send_to_char ("Not in this room.\n\r", ch);
-                return TRUE;
-            }
-
-            /* charmed mobs and pets cannot attack players while owned */
-            if (IS_AFFECTED (ch, AFF_CHARM) && ch->master != NULL
-                && ch->master->fighting != victim)
-            {
-                send_to_char ("Players are your friends!\n\r", ch);
-                return TRUE;
-            }
-        }
-        /* player doing the killing */
-        else {
-            if (!char_has_clan (ch)) {
-                send_to_char ("Join a clan if you want to kill players.\n\r", ch);
-                return TRUE;
-            }
-            if (IS_SET (victim->plr, PLR_KILLER)
-                || IS_SET (victim->plr, PLR_THIEF))
-                return FALSE;
-
-            if (!char_has_clan (victim)) {
-                send_to_char ("They aren't in a clan, leave them alone.\n\r", ch);
-                return TRUE;
-            }
-            if (ch->level > victim->level + 8) {
-                send_to_char ("Pick on someone your own size.\n\r", ch);
-                return TRUE;
-            }
-        }
-    }
-    return FALSE;
+bool can_attack (CHAR_DATA *ch, CHAR_DATA *victim) {
+    return do_filter_can_attack_real (ch, victim, FALSE, TRUE) ? FALSE : TRUE;
+}
+bool can_attack_spell (CHAR_DATA *ch, CHAR_DATA *victim, bool area) {
+    return do_filter_can_attack_real (ch, victim, area, TRUE) ? FALSE : TRUE;
 }
 
-bool is_safe_spell (CHAR_DATA * ch, CHAR_DATA * victim, bool area) {
+bool do_filter_can_attack_real (CHAR_DATA *ch, CHAR_DATA *victim, bool area,
+    bool quiet)
+{
     if (victim->in_room == NULL || ch->in_room == NULL)
         return TRUE;
     if (victim == ch && area)
@@ -1046,39 +975,36 @@ bool is_safe_spell (CHAR_DATA * ch, CHAR_DATA * victim, bool area) {
     if (IS_IMMORTAL (ch) && ch->level > LEVEL_IMMORTAL && !area)
         return FALSE;
 
+#define QU(x) ((quiet) ? NULL : (x))
     /* killing mobiles */
     if (IS_NPC (victim)) {
         /* safe room? */
-        if (IS_SET (victim->in_room->room_flags, ROOM_SAFE))
-            return TRUE;
-        if (victim->pIndexData->pShop != NULL)
-            return TRUE;
+        FILTER (IS_SET (victim->in_room->room_flags, ROOM_SAFE),
+            QU("Not in this room.\n\r"), ch);
 
-        /* no killing healers, trainers, etc */
-        if (IS_SET (victim->mob, MOB_TRAIN)
-            || IS_SET (victim->mob, MOB_PRACTICE)
-            || IS_SET (victim->mob, MOB_IS_HEALER)
-            || IS_SET (victim->mob, MOB_IS_CHANGER))
-            return TRUE;
+        /* no killing shopkeepers or healers, trainers, etc */
+        FILTER (victim->pIndexData->pShop != NULL,
+            QU("The shopkeeper wouldn't like that.\n\r"), ch);
+        FILTER ((victim->mob & MOB_FRIENDLY_BITS) != 0,
+            QU("I don't think Mota would approve.\n\r"), ch);
 
         if (!IS_NPC (ch)) {
-            /* no pets */
-            if (IS_PET (victim))
-                return TRUE;
-
-            /* no charmed creatures unless owner */
-            if (IS_AFFECTED (victim, AFF_CHARM)
-                && (area || ch != victim->master))
-                return TRUE;
+            /* no pets or charmed creatures (unless owner) */
+            FILTER_ACT (IS_PET (victim),
+                QU("But $N looks so cute and cuddly..."), ch, NULL, victim);
+            FILTER (IS_AFFECTED (victim, AFF_CHARM) &&
+                    (area || ch != victim->master),
+                QU("You don't own that monster.\n\r"), ch);
 
             /* legal kill? -- cannot hit mob fighting non-group member */
-            if (victim->fighting != NULL
-                && !is_same_group (ch, victim->fighting)) return TRUE;
+            FILTER (victim->fighting != NULL &&
+                    !is_same_group (ch, victim->fighting),
+                QU("Kill-stealing is not permitted.\n\r"), ch);
         }
         else {
             /* area effect spells do not hit other mobs */
-            if (area && !is_same_group (victim, ch->fighting))
-                return TRUE;
+            FILTER (area && !is_same_group (victim, ch->fighting),
+                QU("Kill-stealing is not permitted.\n\r"), ch);
         }
     }
     /* killing players */
@@ -1088,33 +1014,39 @@ bool is_safe_spell (CHAR_DATA * ch, CHAR_DATA * victim, bool area) {
 
         /* NPC doing the killing */
         if (IS_NPC (ch)) {
-            /* charmed mobs and pets cannot attack players while owned */
-            if (IS_AFFECTED (ch, AFF_CHARM) && ch->master != NULL
-                && ch->master->fighting != victim)
-                return TRUE;
+            /* safe room check */
+            FILTER (IS_SET (victim->in_room->room_flags, ROOM_SAFE),
+                QU("Not in this room.\n\r"), ch);
 
-            /* safe room? */
-            if (IS_SET (victim->in_room->room_flags, ROOM_SAFE))
-                return TRUE;
+            /* charmed mobs and pets cannot attack players while owned */
+            FILTER (IS_AFFECTED (ch, AFF_CHARM) && ch->master != NULL &&
+                    ch->master->fighting != victim,
+                 QU("Players are your friends!\n\r"), ch);
 
             /* legal kill? -- mobs only hit players grouped with opponent */
-            if (ch->fighting != NULL && !is_same_group (ch->fighting, victim))
-                return TRUE;
+            FILTER (ch->fighting != NULL && !is_same_group (ch->fighting,
+                    victim),
+                QU("Maybe finish fighting your current foes first?!\n\r"), ch);
         }
         /* player doing the killing */
         else {
-            if (!char_has_clan (ch))
-                return TRUE;
-            if (IS_SET (victim->plr, PLR_KILLER)
-                || IS_SET (victim->plr, PLR_THIEF))
-                return FALSE;
-            if (!char_has_clan (victim))
-                return TRUE;
-            if (ch->level > victim->level + 8)
-                return TRUE;
-        }
+            FILTER (!char_has_clan (ch),
+                QU("Join a clan if you want to kill players.\n\r"), ch);
 
+            /* Killing undesirables is allowed. */
+            if (IS_SET (victim->plr, PLR_KILLER) ||
+                IS_SET (victim->plr, PLR_THIEF))
+                return FALSE;
+
+            FILTER (!char_has_clan (victim),
+                QU("They aren't in a clan, leave them alone.\n\r"), ch);
+            FILTER (ch->level > victim->level + 8,
+                QU("Pick on someone your own size.\n\r"), ch);
+        }
     }
+#undef QU
+
+    /* All checks passed - don't filter. */
     return FALSE;
 }
 

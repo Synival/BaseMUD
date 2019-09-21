@@ -73,8 +73,8 @@ bool fight_filter_skill_target (CHAR_DATA *ch, const char *argument,
 
     FILTER (self_msg != NULL && victim == ch,
         self_msg, ch);
-    FILTER (is_safe (ch, victim),
-        NULL, ch);
+    if (do_filter_can_attack (ch, victim))
+        return TRUE;
     FILTER (IS_NPC (victim) && victim->fighting != NULL &&
              !is_same_group (ch, victim->fighting),
         "Kill stealing is not permitted.\n\r", ch);
@@ -423,7 +423,7 @@ void do_kill (CHAR_DATA * ch, char *argument) {
         multi_hit (ch, ch, TYPE_UNDEFINED);
         return;
     }
-    if (is_safe (ch, victim))
+    if (do_filter_can_attack (ch, victim))
         return;
     BAIL_IF (victim->fighting != NULL && !is_same_group (ch, victim->fighting),
         "Kill stealing is not permitted.\n\r", ch);
@@ -454,7 +454,7 @@ void do_murder (CHAR_DATA * ch, char *argument) {
         "They aren't here.\n\r", ch);
     BAIL_IF (victim == ch,
         "Suicide is a mortal sin.\n\r", ch);
-    if (is_safe (ch, victim))
+    if (do_filter_can_attack (ch, victim))
         return;
     BAIL_IF (IS_NPC (victim) && victim->fighting != NULL &&
              !is_same_group (ch, victim->fighting),
@@ -488,7 +488,7 @@ void do_backstab (CHAR_DATA * ch, char *argument) {
         "They aren't here.\n\r", ch);
     BAIL_IF (victim == ch,
         "How can you sneak up on yourself?\n\r", ch);
-    if (is_safe (ch, victim))
+    if (do_filter_can_attack (ch, victim))
         return;
     BAIL_IF (IS_NPC (victim) && victim->fighting != NULL &&
              !is_same_group (ch, victim->fighting),
@@ -727,7 +727,7 @@ void do_consider (CHAR_DATA * ch, char *argument) {
     DO_REQUIRE_ARG (arg, "Consider killing whom?\n\r");
     BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
         "They're not here.\n\r", ch);
-    BAIL_IF (is_safe (ch, victim),
+    BAIL_IF (do_filter_can_attack (ch, victim),
         "Don't even think about it.\n\r", ch);
 
     diff = victim->level - ch->level;

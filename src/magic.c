@@ -37,7 +37,7 @@
 
 #include "magic.h"
 
-/* TODO: BAIL_IF() for several spell entries. */
+/* TODO: BAIL() for several spell entries. */
 /* TODO: move as many affects to an affect table as possible. */
 /* TODO: move as many magic attacks to a new table as possible. */
 /* TODO: these spells are more optimized than you'd think, but try to
@@ -296,14 +296,10 @@ void obj_cast_spell (int sn, int level, CHAR_DATA *ch, CHAR_DATA *victim,
         case TAR_CHAR_OFFENSIVE:
             if (victim == NULL)
                 victim = ch->fighting;
-            if (victim == NULL) {
-                send_to_char ("You can't do that.\n\r", ch);
+            BAIL_IF (victim == NULL,
+                "You can't do that.\n\r", ch);
+            if (ch != victim && do_filter_can_attack (ch, victim))
                 return;
-            }
-            if (is_safe (ch, victim) && ch != victim) {
-                send_to_char ("Something isn't right...\n\r", ch);
-                return;
-            }
             vo = (void *) victim;
             target = TARGET_CHAR;
             break;
@@ -317,28 +313,22 @@ void obj_cast_spell (int sn, int level, CHAR_DATA *ch, CHAR_DATA *victim,
             break;
 
         case TAR_OBJ_INV:
-            if (obj == NULL) {
-                send_to_char ("You can't do that.\n\r", ch);
-                return;
-            }
+            BAIL_IF (obj == NULL,
+                "You can't do that.\n\r", ch);
             vo = (void *) obj;
             target = TARGET_OBJ;
             break;
 
         case TAR_OBJ_CHAR_OFF:
             if (victim == NULL && obj == NULL) {
-                if (ch->fighting != NULL)
-                    victim = ch->fighting;
-                else {
-                    send_to_char ("You can't do that.\n\r", ch);
-                    return;
-                }
+                BAIL_IF (ch->fighting == NULL,
+                    "You can't do that.\n\r", ch);
+                victim = ch->fighting;
             }
             if (victim != NULL) {
-                if (is_safe_spell (ch, victim, FALSE) && ch != victim) {
-                    send_to_char ("Something isn't right...\n\r", ch);
+                if (ch != victim && do_filter_can_attack_spell (
+                        ch, victim, FALSE))
                     return;
-                }
                 vo = (void *) victim;
                 target = TARGET_CHAR;
             }

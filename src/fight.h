@@ -48,8 +48,12 @@ void one_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt);
 bool damage (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
              int dam_type, bool show);
 bool set_fighting_position_if_possible (CHAR_DATA * ch);
-bool is_safe (CHAR_DATA * ch, CHAR_DATA * victim);
-bool is_safe_spell (CHAR_DATA * ch, CHAR_DATA * victim, bool area);
+bool do_filter_can_attack (CHAR_DATA *ch, CHAR_DATA *victim);
+bool do_filter_can_attack_spell (CHAR_DATA * ch, CHAR_DATA * victim, bool area);
+bool can_attack (CHAR_DATA *ch, CHAR_DATA *victim);
+bool can_attack_spell (CHAR_DATA *ch, CHAR_DATA *victim, bool area);
+bool do_filter_can_attack_real (CHAR_DATA *ch, CHAR_DATA *victim, bool area,
+    bool quiet);
 void check_killer (CHAR_DATA * ch, CHAR_DATA * victim);
 bool check_parry (CHAR_DATA * ch, CHAR_DATA * victim);
 bool check_shield_block (CHAR_DATA * ch, CHAR_DATA * victim);
