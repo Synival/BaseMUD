@@ -69,54 +69,69 @@ extern char strArea[MAX_INPUT_LENGTH];
 /* Magic number for memory allocation */
 #define MAGIC_NUM 52571214
 
-/* Function prototypes. */
-void db_export_json (void);
+/* Helper functions. */
+flag_t flag_convert (char letter);
+void assign_area_vnum (int vnum);
+void fix_bogus_obj (OBJ_INDEX_DATA * obj);
+void room_take_reset (ROOM_INDEX_DATA * pR, RESET_DATA * pReset);
+bool check_pet_affected (int vnum, AFFECT_DATA *paf);
+char *memory_dump (char *eol);
+
+/* World init functions. */
 void boot_db (void);
 void init_string_space (void);
 void init_time_weather (void);
 void init_gsns (void);
 void init_areas (void);
-void load_area (FILE * fp);
-void new_load_area (FILE * fp);
-void assign_area_vnum (int vnum);
-void load_helps (FILE * fp, char *fname);
-void load_old_mob (FILE * fp);
-void load_old_obj (FILE * fp);
-void fix_bogus_obj (OBJ_INDEX_DATA * obj);
-void room_take_reset (ROOM_INDEX_DATA * pR, RESET_DATA * pReset);
-void load_resets (FILE * fp);
-void load_rooms (FILE * fp);
-void load_shops (FILE * fp);
-void load_specials (FILE * fp);
-void fix_exit_doors (ROOM_INDEX_DATA *room_from, int dir_from,
-                     ROOM_INDEX_DATA *room_to,   int dir_to);
-void fix_exits (void);
-void load_mobprogs (FILE * fp);
-void fix_mobprogs (void);
-void area_update (void);
-void reset_room (ROOM_INDEX_DATA * pRoom);
-void reset_area (AREA_DATA * pArea);
-CHAR_DATA *create_mobile (MOB_INDEX_DATA * pMobIndex);
-void clone_mobile (CHAR_DATA * parent, CHAR_DATA * clone);
-OBJ_DATA *create_object (OBJ_INDEX_DATA * pObjIndex, int level);
-void clone_object (OBJ_DATA * parent, OBJ_DATA * clone);
-void clear_char (CHAR_DATA * ch);
-char *get_extra_descr (const char *name, EXTRA_DESCR_DATA * ed);
-MOB_INDEX_DATA *get_mob_index (int vnum);
-OBJ_INDEX_DATA *get_obj_index (int vnum);
-ROOM_INDEX_DATA *get_room_index (int vnum);
-MPROG_CODE *get_mprog_index (int vnum);
+
+/* Reading functions. */
 char fread_letter (FILE * fp);
 int fread_number (FILE * fp);
 flag_t fread_flag (FILE * fp);
-flag_t flag_convert (char letter);
 char *fread_string (FILE * fp);
 char *fread_string_eol (FILE * fp);
 void fread_to_eol (FILE * fp);
 char *fread_word (FILE * fp);
 void fread_dice (FILE *fp, sh_int *out);
-char *memory_dump (char *eol);
-bool check_pet_affected(int vnum, AFFECT_DATA *paf);
+bool fread_social_str (FILE *fp, char **str);
+
+/* Loading functions. */
+void load_area (FILE * fp);
+void load_area_olc (FILE * fp);
+void load_resets (FILE * fp);
+void load_rooms (FILE * fp);
+void load_shops (FILE * fp);
+void load_specials (FILE * fp);
+void load_socials (FILE * fp);
+void load_mobiles (FILE * fp);
+void load_objects (FILE * fp);
+void load_helps (FILE * fp, char *fname);
+void load_mobprogs (FILE * fp);
+
+/* Post-loading functions. */
+void fix_exit_doors (ROOM_INDEX_DATA *room_from, int dir_from,
+                     ROOM_INDEX_DATA *room_to,   int dir_to);
+void fix_exits (void);
+void fix_mobprogs (void);
+void db_export_json (void);
+
+/* Instantiation functions. */
+CHAR_DATA *create_mobile (MOB_INDEX_DATA * pMobIndex);
+OBJ_DATA *create_object (OBJ_INDEX_DATA * pObjIndex, int level);
+void clone_mobile (CHAR_DATA * parent, CHAR_DATA * clone);
+void clone_object (OBJ_DATA * parent, OBJ_DATA * clone);
+
+/* Reset / destruction functions. */
+void reset_room (ROOM_INDEX_DATA * pRoom);
+void reset_area (AREA_DATA * pArea);
+void clear_char (CHAR_DATA * ch);
+
+/* Getter functions. */
+char *get_extra_descr (const char *name, EXTRA_DESCR_DATA * ed);
+MOB_INDEX_DATA *get_mob_index (int vnum);
+OBJ_INDEX_DATA *get_obj_index (int vnum);
+ROOM_INDEX_DATA *get_room_index (int vnum);
 ROOM_INDEX_DATA *get_random_room (CHAR_DATA * ch);
+MPROG_CODE *get_mprog_index (int vnum);
 
 #endif

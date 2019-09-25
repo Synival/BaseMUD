@@ -236,6 +236,36 @@ void gain_condition (CHAR_DATA * ch, int iCond, int value) {
     }
 }
 
+/* Repopulate areas periodically. */
+void area_update (void) {
+    AREA_DATA *pArea;
+    char buf[MAX_STRING_LENGTH];
+
+    for (pArea = area_first; pArea != NULL; pArea = pArea->next) {
+        if (++pArea->age < 3)
+            continue;
+
+        /* Check age and reset.
+         * Note: Mud School resets every 3 minutes (not 15). */
+        if ((!pArea->empty && (pArea->nplayer == 0 || pArea->age >= 15))
+            || pArea->age >= 31)
+        {
+            ROOM_INDEX_DATA *pRoomIndex;
+
+            reset_area (pArea);
+            sprintf (buf, "%s has just been reset.", pArea->title);
+            wiznet (buf, NULL, NULL, WIZ_RESETS, 0, 0);
+
+            pArea->age = number_range (0, 3);
+            pRoomIndex = get_room_index (ROOM_VNUM_SCHOOL);
+            if (pRoomIndex != NULL && pArea == pRoomIndex->area)
+                pArea->age = 15 - 2;
+            else if (pArea->nplayer == 0)
+                pArea->empty = TRUE;
+        }
+    }
+}
+
 /* Mob autonomous action.
  * This function takes 25% to 35% of ALL Merc cpu time.
  * -- Furey */

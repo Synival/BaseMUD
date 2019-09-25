@@ -72,27 +72,6 @@ int find_spell (CHAR_DATA *ch, const char *name) {
     return found;
 }
 
-/* Lookup a skill by slot number.
- * Used for object loading. */
-int slot_lookup (int slot) {
-    extern bool fBootDb;
-    int sn;
-
-    if (slot <= 0)
-        return -1;
-
-    for (sn = 0; sn < SKILL_MAX; sn++)
-        if (slot == skill_table[sn].slot)
-            return sn;
-
-    if (fBootDb) {
-        bug ("slot_lookup: bad slot %d.", slot);
-        abort ();
-    }
-
-    return -1;
-}
-
 /* Utter mystical words for an sn. */
 void say_spell (CHAR_DATA *ch, int sn, int class) {
     char words[MAX_STRING_LENGTH];

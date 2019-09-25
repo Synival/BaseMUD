@@ -9,7 +9,7 @@ EXE     = ../bin/rom
 O_FILES = \
     act_board.o act_comm.o act_conf.o act_fight.o act_group.o act_info.o \
     act_move.o act_obj.o act_olc.o act_player.o act_shop.o act_skills.o \
-    affects.o ban.o board.o chars.o colour.o comm.o db2.o db.o descs.o do_sub.o \
+    affects.o ban.o board.o chars.o colour.o comm.o db_old.o db.o descs.o do_sub.o \
     effects.o fight.o find.o flags.o groups.o interp.o json.o json_obj.o \
     json_tbl.o lookup.o main.o magic.o materials.o mob_cmds.o mob_prog.o music.o nanny.o \
     objs.o olc.o olc_aedit.o olc_hedit.o olc_medit.o olc_mpedit.o olc_oedit.o \
@@ -148,9 +148,9 @@ act_info.o: /usr/include/wchar.h /usr/include/bits/wchar.h
 act_info.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 act_info.o: basemud.h compat.h defs.h /usr/include/sys/time.h macros.h json.h
 act_info.o: structs.h types.h flags.h tables.h magic.h recycle.h lookup.h
-act_info.o: utils.h comm.h skills.h groups.h db.h db2.h fight.h update.h
-act_info.o: save.h do_sub.h act_comm.h act_obj.h chars.h rooms.h objs.h
-act_info.o: find.h spell_info.h act_info.h
+act_info.o: utils.h comm.h skills.h groups.h db.h fight.h update.h save.h
+act_info.o: do_sub.h act_comm.h act_obj.h chars.h rooms.h objs.h find.h
+act_info.o: spell_info.h act_info.h
 act_move.o: /usr/include/string.h /usr/include/features.h
 act_move.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 act_move.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -228,7 +228,7 @@ act_player.o: /usr/include/bits/sigset.h /usr/include/bits/time.h
 act_player.o: /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h
 act_player.o: /usr/include/sys/time.h macros.h json.h structs.h types.h
 act_player.o: flags.h tables.h comm.h save.h utils.h fight.h interp.h
-act_player.o: recycle.h chars.h act_player.h
+act_player.o: recycle.h chars.h descs.h act_player.h
 act_shop.o: magic.h merc.h /usr/include/stdio.h /usr/include/features.h
 act_shop.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 act_shop.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -318,7 +318,8 @@ board.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
 board.o: /usr/include/bits/wchar.h /usr/include/bits/stdio_lim.h
 board.o: /usr/include/bits/sys_errlist.h basemud.h compat.h defs.h
 board.o: /usr/include/sys/time.h macros.h json.h structs.h types.h flags.h
-board.o: tables.h db.h utils.h comm.h recycle.h lookup.h chars.h board.h
+board.o: tables.h db.h utils.h comm.h recycle.h lookup.h chars.h descs.h
+board.o: board.h
 chars.o: /usr/include/string.h /usr/include/features.h
 chars.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 chars.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -358,44 +359,20 @@ comm.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
 comm.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
 comm.o: /usr/include/endian.h /usr/include/bits/endian.h
 comm.o: /usr/include/bits/byteswap.h /usr/include/bits/byteswap-16.h
-comm.o: /usr/include/xlocale.h /usr/include/errno.h /usr/include/bits/errno.h
-comm.o: /usr/include/linux/errno.h /usr/include/asm/errno.h
-comm.o: /usr/include/asm-generic/errno.h
-comm.o: /usr/include/asm-generic/errno-base.h /usr/include/string.h
-comm.o: /usr/include/stdlib.h /usr/include/bits/waitflags.h
-comm.o: /usr/include/bits/waitstatus.h /usr/include/sys/types.h
-comm.o: /usr/include/time.h /usr/include/sys/select.h
-comm.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
-comm.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
-comm.o: /usr/include/bits/pthreadtypes.h /usr/include/alloca.h
-comm.o: /usr/include/bits/stdlib-float.h /usr/include/unistd.h
-comm.o: /usr/include/bits/posix_opt.h /usr/include/bits/confname.h
-comm.o: /usr/include/getopt.h colour.h merc.h /usr/include/stdio.h
-comm.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+comm.o: /usr/include/xlocale.h /usr/include/string.h /usr/include/stdlib.h
+comm.o: /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h
+comm.o: /usr/include/sys/types.h /usr/include/time.h
+comm.o: /usr/include/sys/select.h /usr/include/bits/select.h
+comm.o: /usr/include/bits/sigset.h /usr/include/bits/time.h
+comm.o: /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h
+comm.o: /usr/include/alloca.h /usr/include/bits/stdlib-float.h colour.h
+comm.o: merc.h /usr/include/stdio.h /usr/include/libio.h
+comm.o: /usr/include/_G_config.h /usr/include/wchar.h
 comm.o: /usr/include/bits/wchar.h /usr/include/bits/stdio_lim.h
 comm.o: /usr/include/bits/sys_errlist.h basemud.h compat.h defs.h
 comm.o: /usr/include/sys/time.h macros.h json.h structs.h types.h flags.h
-comm.o: tables.h recycle.h utils.h ban.h fight.h update.h interp.h db.h olc.h
-comm.o: nanny.h save.h mob_prog.h lookup.h act_info.h chars.h rooms.h objs.h
-comm.o: find.h comm.h
-db2.o: /usr/include/string.h /usr/include/features.h
-db2.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
-db2.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-db2.o: /usr/include/xlocale.h /usr/include/stdlib.h
-db2.o: /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h
-db2.o: /usr/include/endian.h /usr/include/bits/endian.h
-db2.o: /usr/include/bits/byteswap.h /usr/include/bits/types.h
-db2.o: /usr/include/bits/typesizes.h /usr/include/bits/byteswap-16.h
-db2.o: /usr/include/sys/types.h /usr/include/time.h /usr/include/sys/select.h
-db2.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
-db2.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
-db2.o: /usr/include/bits/pthreadtypes.h /usr/include/alloca.h
-db2.o: /usr/include/bits/stdlib-float.h db.h merc.h /usr/include/stdio.h
-db2.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
-db2.o: /usr/include/bits/wchar.h /usr/include/bits/stdio_lim.h
-db2.o: /usr/include/bits/sys_errlist.h basemud.h compat.h defs.h
-db2.o: /usr/include/sys/time.h macros.h json.h structs.h types.h flags.h
-db2.o: tables.h lookup.h utils.h olc.h recycle.h affects.h db2.h
+comm.o: tables.h recycle.h utils.h fight.h interp.h db.h olc.h save.h
+comm.o: mob_prog.h lookup.h act_info.h chars.h rooms.h objs.h descs.h comm.h
 db.o: /usr/include/stdlib.h /usr/include/features.h
 db.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 db.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -414,8 +391,50 @@ db.o: /usr/include/wchar.h /usr/include/bits/wchar.h
 db.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h basemud.h
 db.o: compat.h defs.h /usr/include/sys/time.h macros.h json.h structs.h
 db.o: types.h flags.h tables.h recycle.h affects.h lookup.h json_obj.h
-db.o: music.h ban.h board.h comm.h db2.h interp.h magic.h olc.h portals.h
-db.o: chars.h rooms.h objs.h db.h
+db.o: music.h ban.h board.h comm.h interp.h magic.h olc.h portals.h chars.h
+db.o: rooms.h objs.h db.h
+db_old.o: /usr/include/string.h /usr/include/features.h
+db_old.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
+db_old.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
+db_old.o: /usr/include/xlocale.h /usr/include/stdlib.h
+db_old.o: /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h
+db_old.o: /usr/include/endian.h /usr/include/bits/endian.h
+db_old.o: /usr/include/bits/byteswap.h /usr/include/bits/types.h
+db_old.o: /usr/include/bits/typesizes.h /usr/include/bits/byteswap-16.h
+db_old.o: /usr/include/sys/types.h /usr/include/time.h
+db_old.o: /usr/include/sys/select.h /usr/include/bits/select.h
+db_old.o: /usr/include/bits/sigset.h /usr/include/bits/time.h
+db_old.o: /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h
+db_old.o: /usr/include/alloca.h /usr/include/bits/stdlib-float.h db.h merc.h
+db_old.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+db_old.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+db_old.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+db_old.o: basemud.h compat.h defs.h /usr/include/sys/time.h macros.h json.h
+db_old.o: structs.h types.h flags.h tables.h db_old.h
+descs.o: /usr/include/string.h /usr/include/features.h
+descs.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
+descs.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
+descs.o: /usr/include/xlocale.h /usr/include/ctype.h
+descs.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+descs.o: /usr/include/endian.h /usr/include/bits/endian.h
+descs.o: /usr/include/bits/byteswap.h /usr/include/bits/byteswap-16.h
+descs.o: /usr/include/stdlib.h /usr/include/bits/waitflags.h
+descs.o: /usr/include/bits/waitstatus.h /usr/include/sys/types.h
+descs.o: /usr/include/time.h /usr/include/sys/select.h
+descs.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
+descs.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
+descs.o: /usr/include/bits/pthreadtypes.h /usr/include/alloca.h
+descs.o: /usr/include/bits/stdlib-float.h /usr/include/errno.h
+descs.o: /usr/include/bits/errno.h /usr/include/linux/errno.h
+descs.o: /usr/include/asm/errno.h /usr/include/asm-generic/errno.h
+descs.o: /usr/include/asm-generic/errno-base.h /usr/include/unistd.h
+descs.o: /usr/include/bits/posix_opt.h /usr/include/bits/confname.h
+descs.o: /usr/include/getopt.h ban.h merc.h /usr/include/stdio.h
+descs.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+descs.o: /usr/include/bits/wchar.h /usr/include/bits/stdio_lim.h
+descs.o: /usr/include/bits/sys_errlist.h basemud.h compat.h defs.h
+descs.o: /usr/include/sys/time.h macros.h json.h structs.h types.h flags.h
+descs.o: tables.h chars.h colour.h comm.h db.h recycle.h utils.h descs.h
 do_sub.o: comm.h merc.h /usr/include/stdio.h /usr/include/features.h
 do_sub.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 do_sub.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -534,8 +553,8 @@ interp.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
 interp.o: /usr/include/wchar.h /usr/include/bits/wchar.h
 interp.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 interp.o: basemud.h compat.h defs.h /usr/include/sys/time.h macros.h json.h
-interp.o: structs.h types.h flags.h tables.h comm.h db.h db2.h recycle.h
-interp.o: chars.h find.h act_board.h act_comm.h act_conf.h act_fight.h
+interp.o: structs.h types.h flags.h tables.h comm.h db.h recycle.h chars.h
+interp.o: find.h descs.h act_board.h act_comm.h act_conf.h act_fight.h
 interp.o: act_group.h act_info.h act_move.h act_obj.h act_player.h act_shop.h
 interp.o: act_skills.h act_olc.h wiz_im.h wiz_l1.h wiz_l2.h wiz_l3.h wiz_l4.h
 interp.o: wiz_l5.h wiz_l6.h wiz_l7.h wiz_l8.h wiz_ml.h olc.h mob_cmds.h
@@ -605,8 +624,8 @@ lookup.o: /usr/include/bits/byteswap-16.h /usr/include/sys/select.h
 lookup.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
 lookup.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
 lookup.o: /usr/include/bits/pthreadtypes.h /usr/include/sys/time.h macros.h
-lookup.o: json.h structs.h types.h flags.h tables.h interp.h db.h db2.h
-lookup.o: recycle.h lookup.h
+lookup.o: json.h structs.h types.h flags.h tables.h interp.h db.h recycle.h
+lookup.o: lookup.h
 magic.o: /usr/include/stdlib.h /usr/include/features.h
 magic.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 magic.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -644,6 +663,7 @@ main.o: /usr/include/wchar.h /usr/include/bits/wchar.h
 main.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 main.o: basemud.h compat.h defs.h /usr/include/sys/time.h macros.h json.h
 main.o: structs.h types.h flags.h tables.h comm.h db.h utils.h signal.h
+main.o: descs.h save.h olc.h nanny.h update.h
 materials.o: /usr/include/string.h /usr/include/features.h
 materials.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 materials.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -732,7 +752,7 @@ nanny.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
 nanny.o: /usr/include/bits/pthreadtypes.h /usr/include/sys/time.h macros.h
 nanny.o: json.h structs.h types.h flags.h tables.h recycle.h lookup.h
 nanny.o: skills.h utils.h comm.h db.h save.h ban.h fight.h act_info.h
-nanny.o: act_skills.h act_board.h act_obj.h chars.h objs.h nanny.h
+nanny.o: act_skills.h act_board.h act_obj.h chars.h objs.h descs.h nanny.h
 objs.o: /usr/include/string.h /usr/include/features.h
 objs.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 objs.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -1313,7 +1333,8 @@ wiz_l1.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
 wiz_l1.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
 wiz_l1.o: /usr/include/bits/pthreadtypes.h /usr/include/sys/time.h macros.h
 wiz_l1.o: json.h structs.h types.h flags.h tables.h comm.h interp.h save.h
-wiz_l1.o: fight.h ban.h utils.h act_player.h wiz_l4.h chars.h find.h wiz_l1.h
+wiz_l1.o: fight.h ban.h utils.h act_player.h wiz_l4.h chars.h find.h descs.h
+wiz_l1.o: wiz_l1.h
 wiz_l2.o: /usr/include/string.h /usr/include/features.h
 wiz_l2.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 wiz_l2.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -1350,7 +1371,8 @@ wiz_l3.o: /usr/include/wchar.h /usr/include/bits/wchar.h
 wiz_l3.o: /usr/include/xlocale.h /usr/include/bits/stdio_lim.h
 wiz_l3.o: /usr/include/bits/sys_errlist.h basemud.h compat.h defs.h
 wiz_l3.o: /usr/include/sys/time.h macros.h json.h structs.h types.h flags.h
-wiz_l3.o: tables.h comm.h interp.h fight.h utils.h chars.h find.h wiz_l3.h
+wiz_l3.o: tables.h comm.h interp.h fight.h utils.h chars.h find.h descs.h
+wiz_l3.o: wiz_l3.h
 wiz_l4.o: /usr/include/string.h /usr/include/features.h
 wiz_l4.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 wiz_l4.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -1370,7 +1392,7 @@ wiz_l4.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 wiz_l4.o: basemud.h compat.h defs.h /usr/include/sys/time.h macros.h json.h
 wiz_l4.o: structs.h types.h flags.h tables.h comm.h interp.h save.h fight.h
 wiz_l4.o: utils.h lookup.h skills.h affects.h chars.h objs.h find.h recycle.h
-wiz_l4.o: wiz_l4.h
+wiz_l4.o: descs.h wiz_l4.h
 wiz_l5.o: /usr/include/string.h /usr/include/features.h
 wiz_l5.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 wiz_l5.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -1459,4 +1481,4 @@ wiz_ml.o: /usr/include/wchar.h /usr/include/bits/wchar.h
 wiz_ml.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 wiz_ml.o: basemud.h compat.h defs.h /usr/include/sys/time.h macros.h json.h
 wiz_ml.o: structs.h types.h flags.h tables.h comm.h interp.h save.h fight.h
-wiz_ml.o: utils.h act_info.h chars.h rooms.h find.h wiz_ml.h
+wiz_ml.o: utils.h act_info.h chars.h rooms.h find.h descs.h wiz_ml.h

@@ -14,3 +14,7 @@
 - Modified `stand` command to let you stand at/on/in different objects (or no object) when already standing. Likewise, typing `stand` without an argument while standing at/on/in something will step off/out of them.
 - Lots of refactoring to 'find_()' methods. Maybe have been renamed for consistency and clarity.
 - Added `find_door_same_room()` so you can type things like `open 2.door`.
+- Replaced `is_safe()` and `is_safe_spell()` with consolidated
+    `do_filter_can_attack_real()`. Added shorter functions:
+    `do_filter_can_attack()`, `do_filter_can_attack_spell()`,
+    `can_attack()`, and `can_attack_spell()`.

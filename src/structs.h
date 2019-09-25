@@ -921,7 +921,7 @@ struct table_type {
     const char *description;
 
     size_t type_size;
-    TABLE_JSON_FUN *json_write_func; /* TODO: write me */
+    TABLE_JSON_FUN *json_write_func;
     TABLE_JSON_FUN *json_read_func;
 };
 

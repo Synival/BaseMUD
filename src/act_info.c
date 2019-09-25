@@ -41,7 +41,6 @@
 #include "skills.h"
 #include "groups.h"
 #include "db.h"
-#include "db2.h"
 #include "fight.h"
 #include "update.h"
 #include "comm.h"

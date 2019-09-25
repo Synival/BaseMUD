@@ -149,6 +149,7 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
 * Some spells (like 'blindness') now can be invoked with or without messages
   so other spells that use cause the affect won't give "spell failed" messages.
 * Mob / object materials are now stored in a table rather than as a simple string.
+* Refactored `is_safe()` and `is_safe_spell()`.
 
 There are some higher-level abstractions that have likely caused a slight performance hit
 or a little more memory usage, but this is hardly an issue in 2019 ;) Some profiling will
