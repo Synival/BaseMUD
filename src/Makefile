@@ -391,8 +391,8 @@ db.o: /usr/include/wchar.h /usr/include/bits/wchar.h
 db.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h basemud.h
 db.o: compat.h defs.h /usr/include/sys/time.h macros.h json.h structs.h
 db.o: types.h flags.h tables.h recycle.h affects.h lookup.h json_obj.h
-db.o: music.h ban.h board.h comm.h interp.h magic.h olc.h portals.h chars.h
-db.o: rooms.h objs.h db.h
+db.o: music.h ban.h board.h comm.h olc.h portals.h chars.h rooms.h objs.h
+db.o: db_old.h update.h db.h
 db_old.o: /usr/include/string.h /usr/include/features.h
 db_old.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 db_old.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -410,7 +410,8 @@ db_old.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
 db_old.o: /usr/include/wchar.h /usr/include/bits/wchar.h
 db_old.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
 db_old.o: basemud.h compat.h defs.h /usr/include/sys/time.h macros.h json.h
-db_old.o: structs.h types.h flags.h tables.h db_old.h
+db_old.o: structs.h types.h flags.h tables.h recycle.h utils.h interp.h
+db_old.o: lookup.h olc.h affects.h db_old.h
 descs.o: /usr/include/string.h /usr/include/features.h
 descs.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 descs.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
@@ -613,19 +614,22 @@ json_tbl.o: tables.h json_tbl.h
 lookup.o: /usr/include/string.h /usr/include/features.h
 lookup.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 lookup.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h
-lookup.o: /usr/include/xlocale.h utils.h merc.h /usr/include/stdio.h
-lookup.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
-lookup.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+lookup.o: /usr/include/xlocale.h /usr/include/stdlib.h
+lookup.o: /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h
+lookup.o: /usr/include/endian.h /usr/include/bits/endian.h
+lookup.o: /usr/include/bits/byteswap.h /usr/include/bits/types.h
+lookup.o: /usr/include/bits/typesizes.h /usr/include/bits/byteswap-16.h
+lookup.o: /usr/include/sys/types.h /usr/include/time.h
+lookup.o: /usr/include/sys/select.h /usr/include/bits/select.h
+lookup.o: /usr/include/bits/sigset.h /usr/include/bits/time.h
+lookup.o: /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h
+lookup.o: /usr/include/alloca.h /usr/include/bits/stdlib-float.h utils.h
+lookup.o: merc.h /usr/include/stdio.h /usr/include/libio.h
+lookup.o: /usr/include/_G_config.h /usr/include/wchar.h
 lookup.o: /usr/include/bits/wchar.h /usr/include/bits/stdio_lim.h
 lookup.o: /usr/include/bits/sys_errlist.h basemud.h compat.h defs.h
-lookup.o: /usr/include/sys/types.h /usr/include/time.h /usr/include/endian.h
-lookup.o: /usr/include/bits/endian.h /usr/include/bits/byteswap.h
-lookup.o: /usr/include/bits/byteswap-16.h /usr/include/sys/select.h
-lookup.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
-lookup.o: /usr/include/bits/time.h /usr/include/sys/sysmacros.h
-lookup.o: /usr/include/bits/pthreadtypes.h /usr/include/sys/time.h macros.h
-lookup.o: json.h structs.h types.h flags.h tables.h interp.h db.h recycle.h
-lookup.o: lookup.h
+lookup.o: /usr/include/sys/time.h macros.h json.h structs.h types.h flags.h
+lookup.o: tables.h interp.h db.h recycle.h lookup.h
 magic.o: /usr/include/stdlib.h /usr/include/features.h
 magic.o: /usr/include/stdc-predef.h /usr/include/sys/cdefs.h
 magic.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h

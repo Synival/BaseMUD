@@ -69,8 +69,8 @@ be modular enough that some sort of unit testing environment will be possible.
 Despite the heavy refactoring,
 BaseMUD strives to be a pure version of ROM 2.4. However, in the process of sifting
 through all this code, sometimes I just can't help myself.
-Some small changes and additions have been made, but most (eventually all)
-can be undone by uncommenting the line `#define VANILLA` in `src/basemud.h`. Changes that
+Some small changes and additions have been made, which can be enabled by
+commenting out the line `#define VANILLA` in `src/basemud.h`. Changes that
 I've considered bugfixes, typo / spelling error fixes, or patches to small
 oversights (i.e, fixing spells that have no casting message) will be left in.
 
@@ -126,6 +126,8 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
 * Merged `db2.c` into `db.c` and separated old database functions into `db_old.c`.
 * The `wear` command now uses a table for looking up wear slots, as does `char_wear_obj()`.
   This is a big improvement from copy+pasted "You wear ___ on ___" code for each possible slot.
+* Separated descriptor functions in `comm.c` into new file `descs.c`.
+* Moved some game loop functions from `comm.c` to `main.c`.
 
 **Code Reduction:**
 
@@ -146,6 +148,7 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
     `do_filter_can_attack_real()`. Added shorter functions:
     `do_filter_can_attack()`, `do_filter_can_attack_spell()`,
     `can_attack()`, and `can_attack_spell()`.
+* Merged code for displaying exits in `look`, `exits`, and exits in the prompt.
 
 **Code Changes:**
 
@@ -170,6 +173,8 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
   with keywords. This doesn't change anything for gameplay or `.are` files, but will
   (eventually) make building easier by defining links between areas without writing in
   specific vnums (e.g, link `midgaard_west` to `midennir_east`).
+* Introduced `dam_type` classes `DAM_PHYSICAL` and `DAM_MAGICAL` for determining
+  immunity.
 
 There are some higher-level abstractions that have likely caused a slight performance hit
 or a little more memory usage, but this is hardly an issue in 2019 ;) Some profiling will
