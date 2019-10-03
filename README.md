@@ -268,7 +268,7 @@ phased out or at least optional. A handful of changes were just for fun.
   editing software other than notepad or OLC.
 
 **Optional Features (disabled by default - enable by uncommenting `#define VANILLA` in `basemud.h`):**
-* More status noficiations in addition to 'excellent', 'nasty wounds', etc.
+* More status notifications in addition to 'excellent', 'nasty wounds', etc.
 * Room titles are now colored based on their terrain type.
 * The "pixie" race has been added just for fun. They can fly, and they're small,
   but boy are they frail! (this will undoubtedly get rolled back at some point...)
