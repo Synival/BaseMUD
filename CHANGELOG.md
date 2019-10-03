@@ -17,7 +17,7 @@
     - Optional Features
 * Many of the "TO-DO's" have been moved to a Trello board for better tracking.
 
-** Bugfixes:**
+**Bugfixes:**
 
 * When wearing an item, _all_ potential slots are now checked, not just related
   slots (e.g, a ring can now be held as well as worn on a finger).
