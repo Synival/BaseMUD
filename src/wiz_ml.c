@@ -39,6 +39,7 @@
 #include "chars.h"
 #include "rooms.h"
 #include "find.h"
+#include "descs.h"
 
 #include "wiz_ml.h"
 #include "find.h"

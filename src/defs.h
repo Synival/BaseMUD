@@ -192,6 +192,10 @@
 #define DAM_SOUND          19
 #define DAM_MAX            20
 
+/* Damage classes. */
+#define DAM_PHYSICAL    0
+#define DAM_MAGICAL     1
+
 /* TO types for act. */
 #define TO_CHAR    (A) /* 'ch' only */
 #define TO_VICT    (B) /* 'vch' only */
@@ -565,5 +569,10 @@
 #define POS_PREP_ON             1
 #define POS_PREP_IN             2
 #define POS_PREP_BY             3
+
+/* Parameters for char_exit_string() */
+#define EXITS_LONG      0
+#define EXITS_AUTO      1
+#define EXITS_PROMPT    2
 
 #endif

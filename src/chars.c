@@ -52,9 +52,10 @@
 /* TODO: lots of code can be put into tables. */
 /* TODO: review the function names for consistency. */
 /* TODO: remove any redundant functions, like simple lookup functions. */
-/* TODO: char_wear_obj() is pretty awful :( */
 /* TODO: replace fReplace in char_wear_obj() and char_remove_obj() with
  *       flags for EQUIP_ONLY_IF_EMPTY and EQUIP_QUIET. */
+/* TODO: remove duplicated 'if (+/- enchanted)' logic. */
+/* TODO: char_is_friend() was unused, but it looks very useful! */
 
 bool char_has_clan (CHAR_DATA * ch) {
     return ch->clan;
@@ -181,8 +182,8 @@ void char_reset (CHAR_DATA * ch) {
 
     if (ch->pcdata->true_sex < 0 || ch->pcdata->true_sex > 2)
         ch->pcdata->true_sex = 0;
-    ch->sex = ch->pcdata->true_sex;
-    ch->max_hit = ch->pcdata->perm_hit;
+    ch->sex      = ch->pcdata->true_sex;
+    ch->max_hit  = ch->pcdata->perm_hit;
     ch->max_mana = ch->pcdata->perm_mana;
     ch->max_move = ch->pcdata->perm_move;
 
@@ -304,8 +305,9 @@ void char_from_room (CHAR_DATA * ch) {
         --ch->in_room->area->nplayer;
 
     if ((obj = char_get_eq_by_wear (ch, WEAR_LIGHT)) != NULL
-        && obj->item_type == ITEM_LIGHT
-        && obj->value[2] != 0 && ch->in_room->light > 0)
+        && obj->item_type == ITEM_LIGHT && obj->value[2] != 0
+        && ch->in_room->light > 0
+    )
         --ch->in_room->light;
 
     LIST_REMOVE (ch, next_in_room, ch->in_room->people, CHAR_DATA, NO_FAIL);
@@ -366,7 +368,8 @@ void char_to_room (CHAR_DATA * ch, ROOM_INDEX_DATA * pRoomIndex) {
     }
 
     if ((obj = char_get_eq_by_wear (ch, WEAR_LIGHT)) != NULL
-            && obj->item_type == ITEM_LIGHT && obj->value[2] != 0)
+        && obj->item_type == ITEM_LIGHT && obj->value[2] != 0
+    )
         ++ch->in_room->light;
 
     if (IS_AFFECTED (ch, AFF_PLAGUE))
@@ -385,57 +388,60 @@ OBJ_DATA *char_get_eq_by_wear (CHAR_DATA * ch, int iWear) {
 }
 
 /* Equip a char with an obj. */
-void char_equip (CHAR_DATA * ch, OBJ_DATA * obj, int iWear) {
+bool char_equip_obj (CHAR_DATA * ch, OBJ_DATA * obj, int iWear) {
     AFFECT_DATA *paf;
     int i;
 
     if (char_get_eq_by_wear (ch, iWear) != NULL) {
-        bug ("char_equip: already equipped (%d).", iWear);
-        return;
+        bug ("char_equip_obj: already equipped (%d).", iWear);
+        return FALSE;
     }
 
     if ((IS_OBJ_STAT (obj, ITEM_ANTI_EVIL)    && IS_EVIL (ch)) ||
         (IS_OBJ_STAT (obj, ITEM_ANTI_GOOD)    && IS_GOOD (ch)) ||
         (IS_OBJ_STAT (obj, ITEM_ANTI_NEUTRAL) && IS_NEUTRAL (ch)))
     {
-        /*
-         * Thanks to Morgenes for the bug fix here!
-         */
-        act ("You are zapped by $p and drop it.", ch, obj, NULL, TO_CHAR);
-        act ("$n is zapped by $p and drops it.", ch, obj, NULL, TO_NOTCHAR);
+        /* Thanks to Morgenes for the bug fix here! */
+        act2 ("You are zapped by $p and drop it.",
+              "$n is zapped by $p and drops it.", ch, obj, NULL, 0, POS_RESTING);
         obj_from_char (obj);
         obj_to_room (obj, ch->in_room);
-        return;
+        return FALSE;
     }
 
     for (i = 0; i < 4; i++)
         ch->armor[i] -= obj_get_ac_type (obj, iWear, i);
     obj->wear_loc = iWear;
 
-    if (!obj->enchanted)
+    if (!obj->enchanted) {
         for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next)
             if (paf->apply != APPLY_SPELL_AFFECT)
                 affect_modify (ch, paf, TRUE);
-    for (paf = obj->affected; paf != NULL; paf = paf->next)
+    }
+    for (paf = obj->affected; paf != NULL; paf = paf->next) {
         if (paf->apply == APPLY_SPELL_AFFECT)
             affect_to_char (ch, paf);
         else
             affect_modify (ch, paf, TRUE);
+    }
 
-    if (obj->item_type == ITEM_LIGHT
-        && obj->value[2] != 0 && ch->in_room != NULL) ++ch->in_room->light;
+    if (obj->item_type == ITEM_LIGHT && obj->value[2] != 0
+        && ch->in_room != NULL)
+        ++ch->in_room->light;
+
+    return TRUE;
 }
 
 /* Unequip a char with an obj. */
-void char_unequip (CHAR_DATA * ch, OBJ_DATA * obj) {
+bool char_unequip_obj (CHAR_DATA * ch, OBJ_DATA * obj) {
     AFFECT_DATA *paf = NULL;
     AFFECT_DATA *lpaf = NULL;
     AFFECT_DATA *lpaf_next = NULL;
     int i;
 
     if (obj->wear_loc == WEAR_NONE) {
-        bug ("char_unequip: already unequipped.", 0);
-        return;
+        bug ("char_unequip_obj: already unequipped.", 0);
+        return FALSE;
     }
 
     for (i = 0; i < 4; i++)
@@ -487,9 +493,9 @@ void char_unequip (CHAR_DATA * ch, OBJ_DATA * obj) {
 
     if (obj->item_type == ITEM_LIGHT && obj->value[2] != 0
         && ch->in_room != NULL && ch->in_room->light > 0)
-    {
         --ch->in_room->light;
-    }
+
+    return TRUE;
 }
 
 /* Extract a char from the world. */
@@ -499,14 +505,14 @@ void char_extract (CHAR_DATA * ch, bool fPull) {
     OBJ_DATA *obj_next;
 
     /* doesn't seem to be necessary
-    if ( ch->in_room == NULL ) {
-            bug( "Extract_char: NULL.", 0 );
-            return;
+    if (ch->in_room == NULL) {
+        bug( "Extract_char: NULL.", 0 );
+        return;
     }
     */
 
     nuke_pets (ch);
-    ch->pet = NULL;                /* just in case */
+    ch->pet = NULL; /* just in case */
 
     if (fPull)
         die_follower (ch);
@@ -671,27 +677,21 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
         bug ("char_move: bad door %d.", door);
         return;
     }
-    if (ch->daze > 0) {
-        send_to_char ("You're too dazed to move...\n\r", ch);
-        return;
-    }
-    if (ch->wait > 0) {
-        send_to_char ("You haven't quite recovered yet...\n\r", ch);
-        return;
-    }
+
+    BAIL_IF (ch->daze > 0,
+        "You're too dazed to move...\n\r", ch);
+    BAIL_IF (ch->wait > 0,
+        "You haven't quite recovered yet...\n\r", ch);
 
     /* Exit trigger, if activated, bail out. Only PCs are triggered. */
     if (!IS_NPC (ch) && mp_exit_trigger (ch, door))
         return;
 
     in_room = ch->in_room;
-    if ((pexit = in_room->exit[door]) == NULL
-        || (to_room = pexit->to_room) == NULL
-        || !char_can_see_room (ch, pexit->to_room))
-    {
-        send_to_char ("Alas, you cannot go that way.\n\r", ch);
-        return;
-    }
+    BAIL_IF ((pexit = in_room->exit[door]) == NULL ||
+             (to_room = pexit->to_room) == NULL ||
+             !char_can_see_room (ch, pexit->to_room),
+        "Alas, you cannot go that way.\n\r", ch);
 
     /* Determine if we're passing through a door. */
     if (!IS_SET (pexit->exit_flags, EX_CLOSED))
@@ -704,20 +704,13 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
     else
         pass_door = FALSE;
 
-    if (IS_SET (pexit->exit_flags, EX_CLOSED) && !pass_door) {
-        act ("The $d is closed.", ch, NULL, pexit->keyword, TO_CHAR);
-        return;
-    }
-    if (IS_AFFECTED (ch, AFF_CHARM) && ch->master != NULL &&
-        in_room == ch->master->in_room)
-    {
-        send_to_char ("What?  And leave your beloved master?\n\r", ch);
-        return;
-    }
-    if (!room_is_owner (to_room, ch) && room_is_private (to_room)) {
-        send_to_char ("That room is private right now.\n\r", ch);
-        return;
-    }
+    BAIL_IF_ACT (IS_SET (pexit->exit_flags, EX_CLOSED) && !pass_door,
+        "The $d is closed.", ch, NULL, pexit->keyword);
+    BAIL_IF (IS_AFFECTED (ch, AFF_CHARM) && ch->master != NULL &&
+            in_room == ch->master->in_room,
+        "What?  And leave your beloved master?\n\r", ch);
+    BAIL_IF (!room_is_owner (to_room, ch) && room_is_private (to_room),
+        "That room is private right now.\n\r", ch);
 
     /* Special conditions for players. */
     if (!IS_NPC (ch)) {
@@ -726,12 +719,9 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
 
         for (iClass = 0; iClass < CLASS_MAX; iClass++) {
             for (iGuild = 0; iGuild < MAX_GUILD; iGuild++) {
-                if (iClass != ch->class
-                    && to_room->vnum == class_table[iClass].guild[iGuild])
-                {
-                    send_to_char ("You aren't allowed in there.\n\r", ch);
-                    return;
-                }
+                BAIL_IF (iClass != ch->class &&
+                         to_room->vnum == class_table[iClass].guild[iGuild],
+                    "You aren't allowed in there.\n\r", ch);
             }
         }
 
@@ -739,10 +729,8 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
         to_sect = to_room->sector_type;
         flying = IS_AFFECTED (ch, AFF_FLYING) || IS_IMMORTAL (ch);
 
-        if ((in_sect == SECT_AIR || to_sect == SECT_AIR) && !flying) {
-            send_to_char ("You can't fly.\n\r", ch);
-            return;
-        }
+        BAIL_IF ((in_sect == SECT_AIR || to_sect == SECT_AIR) && !flying,
+            "You can't fly.\n\r", ch);
 
         if ((in_sect == SECT_WATER_NOSWIM || to_sect == SECT_WATER_NOSWIM) &&
              !flying)
@@ -752,10 +740,8 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
             for (boat = ch->carrying; boat != NULL; boat = boat->next_content)
                 if (boat->item_type == ITEM_BOAT)
                     break;
-            if (boat == NULL) {
-                send_to_char ("You need a boat to go there.\n\r", ch);
-                return;
-            }
+            BAIL_IF (boat == NULL,
+                "You need a boat to go there.\n\r", ch);
         }
 
         move = sector_table[UMIN (SECT_MAX - 1, in_room->sector_type)].move_loss
@@ -770,10 +756,8 @@ void char_move (CHAR_DATA * ch, int door, bool follow) {
         if (move < 1)
             move = 1;
 
-        if (ch->move < move) {
-            send_to_char ("You are too exhausted.\n\r", ch);
-            return;
-        }
+        BAIL_IF (ch->move < move,
+            "You are too exhausted.\n\r", ch);
 
         WAIT_STATE (ch, 1);
         ch->move -= move;
@@ -1242,8 +1226,9 @@ bool char_remove_obj (CHAR_DATA * ch, int iWear, bool fReplace, bool quiet) {
             act ("You can't remove $p.", ch, obj, NULL, TO_CHAR);
         return FALSE;
     }
+    if (!char_unequip_obj (ch, obj))
+        return FALSE;
 
-    char_unequip (ch, obj);
     if (!quiet) {
         act2 ("You stop using $p.",
               "$n stops using $p.", ch, obj, NULL, 0, POS_RESTING);
@@ -1254,233 +1239,94 @@ bool char_remove_obj (CHAR_DATA * ch, int iWear, bool fReplace, bool quiet) {
 /* Wear one object.
  * Optional replacement of existing objects.
  * Big repetitive code, ick. */
-void char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
-    char buf[MAX_STRING_LENGTH];
+bool char_wear_obj (CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace) {
+    const WEAR_TYPE *wear_slot, *wear_slots[WEAR_MAX];
+    int i, slot, slots;
+
     if (ch->level < obj->level) {
-        sprintf (buf, "You must be level %d to use this object.\n\r",
-                 obj->level);
-        send_to_char (buf, ch);
-        act ("$n tries to use $p, but is too inexperienced.",
-             ch, obj, NULL, TO_NOTCHAR);
-        return;
-    }
-    if (obj->item_type == ITEM_LIGHT) {
-        if (!char_remove_obj (ch, WEAR_LIGHT, fReplace, FALSE))
-            return;
-        act ("You light $p and hold it.", ch, obj, NULL, TO_CHAR);
-        act ("$n lights $p and holds it.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_LIGHT);
-        return;
-    }
-    if (CAN_WEAR (obj, ITEM_WEAR_FINGER)) {
-        if (char_get_eq_by_wear (ch, WEAR_FINGER_L) != NULL
-            && char_get_eq_by_wear (ch, WEAR_FINGER_R) != NULL
-            && !char_remove_obj (ch, WEAR_FINGER_L, fReplace, FALSE)
-            && !char_remove_obj (ch, WEAR_FINGER_R, fReplace, FALSE))
-            return;
-
-        if (char_get_eq_by_wear (ch, WEAR_FINGER_L) == NULL) {
-            act ("You wear $p on your left finger.", ch, obj, NULL, TO_CHAR);
-            act ("$n wears $p on $s left finger.", ch, obj, NULL, TO_NOTCHAR);
-            char_equip (ch, obj, WEAR_FINGER_L);
-            return;
+        if (fReplace) {
+            printf_to_char (ch,
+                "You must be level %d to use this object.\n\r", obj->level);
+            act ("$n tries to use $p, but is too inexperienced.",
+                 ch, obj, NULL, TO_NOTCHAR);
         }
-
-        if (char_get_eq_by_wear (ch, WEAR_FINGER_R) == NULL) {
-            act ("You wear $p on your right finger.", ch, obj, NULL, TO_CHAR);
-            act ("$n wears $p on $s right finger.", ch, obj, NULL, TO_NOTCHAR);
-            char_equip (ch, obj, WEAR_FINGER_R);
-            return;
-        }
-
-        bug ("char_wear_obj: no free finger.", 0);
-        send_to_char ("You already wear two rings.\n\r", ch);
-        return;
-    }
-    if (CAN_WEAR (obj, ITEM_WEAR_NECK)) {
-        if (char_get_eq_by_wear (ch, WEAR_NECK_1) != NULL
-            && char_get_eq_by_wear (ch, WEAR_NECK_2) != NULL
-            && !char_remove_obj (ch, WEAR_NECK_1, fReplace, FALSE)
-            && !char_remove_obj (ch, WEAR_NECK_2, fReplace, FALSE))
-            return;
-
-        if (char_get_eq_by_wear (ch, WEAR_NECK_1) == NULL) {
-            act ("You wear $p around your neck.", ch, obj, NULL, TO_CHAR);
-            act ("$n wears $p around $s neck.", ch, obj, NULL, TO_NOTCHAR);
-            char_equip (ch, obj, WEAR_NECK_1);
-            return;
-        }
-        if (char_get_eq_by_wear (ch, WEAR_NECK_2) == NULL) {
-            act ("You wear $p around your neck.", ch, obj, NULL, TO_CHAR);
-            act ("$n wears $p around $s neck.", ch, obj, NULL, TO_NOTCHAR);
-            char_equip (ch, obj, WEAR_NECK_2);
-            return;
-        }
-
-        bug ("char_wear_obj: no free neck.", 0);
-        send_to_char ("You already wear two neck items.\n\r", ch);
-        return;
-    }
-    if (CAN_WEAR (obj, ITEM_WEAR_BODY)) {
-        if (!char_remove_obj (ch, WEAR_BODY, fReplace, FALSE))
-            return;
-        act ("You wear $p on your torso.", ch, obj, NULL, TO_CHAR);
-        act ("$n wears $p on $s torso.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_BODY);
-        return;
-    }
-    if (CAN_WEAR (obj, ITEM_WEAR_HEAD)) {
-        if (!char_remove_obj (ch, WEAR_HEAD, fReplace, FALSE))
-            return;
-        act ("You wear $p on your head.", ch, obj, NULL, TO_CHAR);
-        act ("$n wears $p on $s head.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_HEAD);
-        return;
-    }
-    if (CAN_WEAR (obj, ITEM_WEAR_LEGS)) {
-        if (!char_remove_obj (ch, WEAR_LEGS, fReplace, FALSE))
-            return;
-        act ("You wear $p on your legs.", ch, obj, NULL, TO_CHAR);
-        act ("$n wears $p on $s legs.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_LEGS);
-        return;
-    }
-    if (CAN_WEAR (obj, ITEM_WEAR_FEET)) {
-        if (!char_remove_obj (ch, WEAR_FEET, fReplace, FALSE))
-            return;
-        act ("You wear $p on your feet.", ch, obj, NULL, TO_CHAR);
-        act ("$n wears $p on $s feet.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_FEET);
-        return;
-    }
-    if (CAN_WEAR (obj, ITEM_WEAR_HANDS)) {
-        if (!char_remove_obj (ch, WEAR_HANDS, fReplace, FALSE))
-            return;
-        act ("You wear $p on your hands.", ch, obj, NULL, TO_CHAR);
-        act ("$n wears $p on $s hands.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_HANDS);
-        return;
-    }
-    if (CAN_WEAR (obj, ITEM_WEAR_ARMS)) {
-        if (!char_remove_obj (ch, WEAR_ARMS, fReplace, FALSE))
-            return;
-        act ("You wear $p on your arms.", ch, obj, NULL, TO_CHAR);
-        act ("$n wears $p on $s arms.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_ARMS);
-        return;
-    }
-    if (CAN_WEAR (obj, ITEM_WEAR_ABOUT)) {
-        if (!char_remove_obj (ch, WEAR_ABOUT, fReplace, FALSE))
-            return;
-        act ("You wear $p about your torso.", ch, obj, NULL, TO_CHAR);
-        act ("$n wears $p about $s torso.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_ABOUT);
-        return;
-    }
-    if (CAN_WEAR (obj, ITEM_WEAR_WAIST)) {
-        if (!char_remove_obj (ch, WEAR_WAIST, fReplace, FALSE))
-            return;
-        act ("You wear $p about your waist.", ch, obj, NULL, TO_CHAR);
-        act ("$n wears $p about $s waist.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_WAIST);
-        return;
-    }
-    if (CAN_WEAR (obj, ITEM_WEAR_WRIST)) {
-        if (char_get_eq_by_wear (ch, WEAR_WRIST_L) != NULL
-            && char_get_eq_by_wear (ch, WEAR_WRIST_R) != NULL
-            && !char_remove_obj (ch, WEAR_WRIST_L, fReplace, FALSE)
-            && !char_remove_obj (ch, WEAR_WRIST_R, fReplace, FALSE))
-            return;
-
-        if (char_get_eq_by_wear (ch, WEAR_WRIST_L) == NULL) {
-            act ("You wear $p around your left wrist.", ch, obj, NULL, TO_CHAR);
-            act ("$n wears $p around $s left wrist.", ch, obj, NULL, TO_NOTCHAR);
-            char_equip (ch, obj, WEAR_WRIST_L);
-            return;
-        }
-        if (char_get_eq_by_wear (ch, WEAR_WRIST_R) == NULL) {
-            act ("You wear $p around your right wrist.", ch, obj, NULL, TO_CHAR);
-            act ("$n wears $p around $s right wrist.", ch, obj, NULL, TO_NOTCHAR);
-            char_equip (ch, obj, WEAR_WRIST_R);
-            return;
-        }
-
-        bug ("char_wear_obj: no free wrist.", 0);
-        send_to_char ("You already wear two wrist items.\n\r", ch);
-        return;
+        return FALSE;
     }
 
-    if (CAN_WEAR (obj, ITEM_WEAR_SHIELD)) {
-        OBJ_DATA *weapon;
-        if (!char_remove_obj (ch, WEAR_SHIELD, fReplace, FALSE))
-            return;
+    /* Find where this item can be worn / wielded / held / etc. */
+    slots = 0;
+    for (i = 0; wear_table[i].name != NULL; i++) {
+        if (!CAN_WEAR (obj, wear_table[i].wear_loc))
+            continue;
+        wear_slots[slots++] = &(wear_table[i]);
+    }
+    if (slots == 0) {
+        if (fReplace)
+            send_to_char ("You can't wear, wield, or hold that.\n\r", ch);
+        return FALSE;
+    }
 
-        weapon = char_get_eq_by_wear (ch, WEAR_WIELD);
-        BAIL_IF (weapon != NULL && ch->size < SIZE_LARGE &&
+    /* First, see if there's a free slot. */
+    for (i = 0; i < slots; i++)
+        if (char_get_eq_by_wear (ch, wear_slots[i]->type) == NULL)
+            break;
+    slot = i;
+
+    /* If we didn't find a free slot, try removing items. */
+    if (slot == slots)
+        for (i = 0; i < slots; i++)
+            if (char_remove_obj (ch, wear_slots[i]->type, fReplace, FALSE))
+                break;
+    slot = i;
+
+    /* If we STILL didn't find anything, give up. */
+    if (slot == slots)
+        return FALSE;
+
+    wear_slot = wear_slots[slot];
+
+    /* Shields cannot be worn while wielding a two-handed weapon. */
+    if (wear_slot->wear_loc == ITEM_WEAR_SHIELD) {
+        OBJ_DATA *weapon = char_get_eq_by_wear (ch, WEAR_WIELD);
+        RETURN_IF (weapon != NULL && ch->size < SIZE_LARGE &&
                 IS_WEAPON_STAT (weapon, WEAPON_TWO_HANDS),
-            "Your hands are tied up with your weapon!\n\r", ch);
-
-        act ("You wear $p as a shield.", ch, obj, NULL, TO_CHAR);
-        act ("$n wears $p as a shield.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_SHIELD);
-        return;
+            "Your hands are tied up with your weapon!\n\r", ch, FALSE);
     }
 
-    if (CAN_WEAR (obj, ITEM_WIELD)) {
-        char *msg;
-        int sn, skill;
-
-        if (!char_remove_obj (ch, WEAR_WIELD, fReplace, FALSE))
-            return;
-        BAIL_IF (!IS_NPC (ch) && obj_get_weight (obj) >
+    /* Likewise, two-handed weapons can't be wielded without a shield. */
+    if (wear_slot->wear_loc == ITEM_WIELD) {
+        RETURN_IF (!IS_NPC (ch) && obj_get_weight (obj) >
                 (str_app[char_get_curr_stat (ch, STAT_STR)].wield * 10),
-            "It is too heavy for you to wield.\n\r", ch);
-        BAIL_IF (!IS_NPC (ch) && ch->size < SIZE_LARGE &&
+            "It is too heavy for you to wield.\n\r", ch, FALSE);
+        RETURN_IF (!IS_NPC (ch) && ch->size < SIZE_LARGE &&
                 IS_WEAPON_STAT (obj, WEAPON_TWO_HANDS) &&
                 char_get_eq_by_wear (ch, WEAR_SHIELD) != NULL,
-            "You need two hands free for that weapon.\n\r", ch);
-
-        act ("You wield $p.", ch, obj, NULL, TO_CHAR);
-        act ("$n wields $p.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_WIELD);
-
-        sn = char_get_weapon_sn (ch);
-        if (sn == gsn_hand_to_hand)
-            return;
-
-        skill = char_get_weapon_skill (ch, sn);
-
-             if (skill >= 100) msg = "$p feels like a part of you!";
-        else if (skill >   85) msg = "You feel quite confident with $p.";
-        else if (skill >   70) msg = "You are skilled with $p.";
-        else if (skill >   50) msg = "Your skill with $p is adequate.";
-        else if (skill >   25) msg = "$p feels a little clumsy in your hands.";
-        else if (skill >    1) msg = "You fumble and almost drop $p.";
-        else                   msg = "You don't even know which end is up on $p.";
-        act (msg, ch, obj, NULL, TO_CHAR);
-        return;
+            "You need two hands free for that weapon.\n\r", ch, FALSE);
     }
 
-    if (CAN_WEAR (obj, ITEM_HOLD)) {
-        if (!char_remove_obj (ch, WEAR_HOLD, fReplace, FALSE))
-            return;
-        act ("You hold $p in your hand.", ch, obj, NULL, TO_CHAR);
-        act ("$n holds $p in $s hand.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_HOLD);
-        return;
-    }
+    /* Let everyone know we're wearing this. */
+    act2 (wear_slot->msg_wear_self, wear_slot->msg_wear_room,
+        ch, obj, NULL, 0, POS_RESTING);
+    if (!char_equip_obj (ch, obj, wear_slot->type))
+        return FALSE;
 
-    if (CAN_WEAR (obj, ITEM_WEAR_FLOAT)) {
-        if (!char_remove_obj (ch, WEAR_FLOAT, fReplace, FALSE))
-            return;
-        act ("You release $p and it floats next to you.", ch, obj, NULL, TO_CHAR);
-        act ("$n releases $p to float next to $m.", ch, obj, NULL, TO_NOTCHAR);
-        char_equip (ch, obj, WEAR_FLOAT);
-        return;
+    /* If wielding something, let us know how good we are at using it. */
+    if (wear_slot->wear_loc == ITEM_WIELD) {
+        int sn = char_get_weapon_sn (ch);
+        if (sn != gsn_hand_to_hand) {
+            char *msg;
+            int skill = char_get_weapon_skill (ch, sn);
+                 if (skill >= 100) msg = "$p feels like a part of you!";
+            else if (skill >   85) msg = "You feel quite confident with $p.";
+            else if (skill >   70) msg = "You are skilled with $p.";
+            else if (skill >   50) msg = "Your skill with $p is adequate.";
+            else if (skill >   25) msg = "$p feels a little clumsy in your hands.";
+            else if (skill >    1) msg = "You fumble and almost drop $p.";
+            else                   msg = "You don't even know which end is up on $p.";
+            act (msg, ch, obj, NULL, TO_CHAR);
+        }
     }
-
-    if (fReplace)
-        send_to_char ("You can't wear, wield, or hold that.\n\r", ch);
+    return TRUE;
 }
 
 void char_get_who_string (CHAR_DATA * ch, CHAR_DATA *wch, char *buf,
@@ -1496,15 +1342,16 @@ void char_get_who_string (CHAR_DATA * ch, CHAR_DATA *wch, char *buf,
     /* Format it up. */
     snprintf (buf, len, "[%2d %6s %s] %s%s%s%s%s%s%s%s\n\r",
         wch->level,
-        wch->race < PC_RACE_MAX ? pc_race_table[wch->race].who_name : "     ",
+        (wch->race < PC_RACE_MAX) ? pc_race_table[wch->race].who_name : "     ",
         class,
-        wch->incog_level >= LEVEL_HERO ? "(Incog) " : "",
-        wch->invis_level >= LEVEL_HERO ? "(Wizi) " : "",
+        (wch->incog_level >= LEVEL_HERO) ? "(Incog) " : "",
+        (wch->invis_level >= LEVEL_HERO) ? "(Wizi) " : "",
         clan_table[wch->clan].who_name,
         IS_SET (wch->comm, COMM_AFK) ? "[AFK] " : "",
         IS_SET (wch->plr, PLR_KILLER) ? "(KILLER) " : "",
         IS_SET (wch->plr, PLR_THIEF) ? "(THIEF) " : "",
-        wch->name, IS_NPC (wch) ? "" : wch->pcdata->title);
+        wch->name,
+        IS_NPC (wch) ? "" : wch->pcdata->title);
 }
 
 void char_set_title (CHAR_DATA * ch, char *title) {
@@ -1550,8 +1397,7 @@ bool char_drop_weapon_if_too_heavy (CHAR_DATA *ch) {
         return FALSE;
 
     depth++;
-    act ("You drop $p.", ch, wield, NULL, TO_CHAR);
-    act ("$n drops $p.", ch, wield, NULL, TO_NOTCHAR);
+    act2 ("You drop $p.", "$n drops $p.", ch, wield, NULL, 0, POS_RESTING);
     obj_from_char (wield);
     obj_to_room (wield, ch->in_room);
     depth--;
@@ -1702,4 +1548,100 @@ const char *get_wiz_class (int level) {
         case AVATAR:      return "AVA";
         default:          return NULL;
     }
+}
+
+int char_exit_string (CHAR_DATA *ch, ROOM_INDEX_DATA *room, int mode,
+    char *out_buf, size_t out_size)
+{
+    EXIT_DATA *pexit;
+    int door, isdoor, closed, count;
+    size_t len;
+
+    out_buf[0] = '\0';
+    len = 0;
+    count = 0;
+
+    for (door = 0; door <= 5; door++) {
+        pexit = room->exit[door];
+        if (pexit == NULL)
+            continue;
+        if (pexit->to_room == NULL)
+            continue;
+        if (!char_can_see_room (ch, pexit->to_room))
+            continue;
+
+        isdoor = IS_SET (pexit->exit_flags, EX_ISDOOR);
+        closed = IS_SET (pexit->exit_flags, EX_CLOSED);
+
+#ifdef VANILLA
+        if (closed)
+            continue;
+#endif
+
+        if (mode == EXITS_PROMPT) {
+            len += snprintf (out_buf + len, out_size - len, "%s%s",
+#ifndef VANILLA
+                closed ? "#" : isdoor ? "-" : ""
+#else
+                ""
+#endif
+                , door_get(door)->short_name
+            );
+        }
+        if (mode == EXITS_AUTO) {
+            if (out_buf[0] != '\0')
+                len += snprintf (out_buf + len, out_size - len, " ");
+            len += snprintf (out_buf + len, out_size - len,
+#ifndef VANILLA
+                closed ? "#" : isdoor ? "-" : ""
+#else
+                ""
+#endif
+            );
+
+            len += snprintf (out_buf + len, out_size - len, "%s",
+                door_get_name(door));
+        }
+        else if (mode == EXITS_LONG) {
+            /* exit information */
+            len += snprintf (out_buf + len, out_size - len, "%-5s ",
+                capitalize (door_get_name(door)));
+
+            if (isdoor) {
+                char dbuf[64];
+                char *dname = door_keyword_to_name (pexit->keyword,
+                    dbuf, sizeof (dbuf));
+                len += snprintf (out_buf + len, out_size - len, "(%s %s) ",
+                    closed ? "closed" : "open", dname);
+            }
+
+            /* room information (only if open) */
+            if (!closed || IS_IMMORTAL (ch)) {
+                ROOM_INDEX_DATA *room = pexit->to_room;
+                if (room_is_dark (room)) {
+                    len += snprintf (out_buf + len, out_size - len,
+                        "- {DToo dark to tell{x");
+                }
+                else {
+                    len += snprintf (out_buf + len, out_size - len, "- {%c%s{x",
+                        room_colour_char(room), room->name);
+                }
+            }
+
+            /* wiz info */
+            if (IS_IMMORTAL (ch))
+                len += snprintf (out_buf + len, out_size - len,
+                         " (room %d)\n\r", pexit->to_room->vnum);
+            else
+                len += snprintf (out_buf + len, out_size - len, "\n\r");
+        }
+        count++;
+    }
+
+    if (count == 0) {
+        len += snprintf (out_buf + len, out_size - len,
+            (mode == EXITS_LONG) ? "None.\n\r" : "none");
+    }
+
+    return count;
 }

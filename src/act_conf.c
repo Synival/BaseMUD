@@ -157,7 +157,6 @@ void do_colour (CHAR_DATA * ch, char *argument) {
     const COLOUR_TYPE *colour;
     bool use_default;
 
-    /* TODO: could we use the switched character? */
     if (IS_NPC (ch)) {
         send_to_char_bw ("Nice try, you dumb NPC!\n\r", ch);
         return;

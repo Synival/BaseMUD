@@ -249,6 +249,7 @@ const SKY_TYPE *sky_get_current ();
 const SUN_TYPE *sun_get_current ();
 const SKY_TYPE *sky_get_by_mmhg (int mmhg);
 const SUN_TYPE *sun_get_by_hour (int hour);
+int slot_lookup (int slot);
 
 /* Bit functions from handler.c */
 char *affect_apply_name (flag_t type);

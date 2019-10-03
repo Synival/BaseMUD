@@ -292,7 +292,7 @@ void do_mpjunk (CHAR_DATA * ch, char *argument) {
         return;
     if (str_cmp (arg, "all") && str_prefix ("all.", arg)) {
         if ((obj = find_obj_own_worn (ch, arg)) != NULL) {
-            char_unequip (ch, obj);
+            char_unequip_obj (ch, obj);
             obj_extract (obj);
             return;
         }
@@ -305,7 +305,7 @@ void do_mpjunk (CHAR_DATA * ch, char *argument) {
             obj_next = obj->next_content;
             if (arg[3] == '\0' || is_name (&arg[4], obj->name)) {
                 if (obj->wear_loc != WEAR_NONE)
-                    char_unequip (ch, obj);
+                    char_unequip_obj (ch, obj);
                 obj_extract (obj);
             }
         }
@@ -1052,7 +1052,7 @@ void do_mpotransfer (CHAR_DATA * ch, char *argument)
     else
     {
         if (obj->wear_loc != WEAR_NONE)
-            char_unequip (ch, obj);
+            char_unequip_obj (ch, obj);
         obj_from_char (obj);
     }
     obj_to_room (obj, location);
@@ -1087,7 +1087,7 @@ void do_mpremove (CHAR_DATA * ch, char *argument) {
     for (obj = victim->carrying; obj; obj = obj_next) {
         obj_next = obj->next_content;
         if (fAll || obj->pIndexData->vnum == vnum) {
-            char_unequip (ch, obj);
+            char_unequip_obj (ch, obj);
             obj_from_char (obj);
             obj_extract (obj);
         }

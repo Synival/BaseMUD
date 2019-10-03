@@ -140,7 +140,7 @@ DEFINE_SPELL_FUN (spell_chain_lightning) {
              tmp_vict != NULL; tmp_vict = next_vict)
         {
             next_vict = tmp_vict->next_in_room;
-            if (is_safe_spell (ch, tmp_vict, TRUE) || tmp_vict == last_vict)
+            if (tmp_vict == last_vict || !can_attack_spell (ch, tmp_vict, TRUE))
                 continue;
 
             found = TRUE;
@@ -324,7 +324,7 @@ DEFINE_SPELL_FUN (spell_earthquake) {
         if (vch->in_room == NULL)
             continue;
         if (vch->in_room == ch->in_room) {
-            if (vch != ch && !is_safe_spell (ch, vch, TRUE)) {
+            if (vch != ch && can_attack_spell (ch, vch, TRUE)) {
                 if (IS_AFFECTED (vch, AFF_FLYING))
                     damage (ch, vch, 0, sn, DAM_BASH, TRUE);
                 else
@@ -548,7 +548,7 @@ DEFINE_SPELL_FUN (spell_holy_word) {
         else if ((IS_GOOD (ch) && IS_EVIL (vch)) ||
                  (IS_EVIL (ch) && IS_GOOD (vch)))
         {
-            if (!is_safe_spell (ch, vch, TRUE)) {
+            if (can_attack_spell (ch, vch, TRUE)) {
                 send_to_char ("You are struck down!\n\r", vch);
                 dam = dice (level, 6);
                 damage (ch, vch, dam, sn, DAM_ENERGY, TRUE);
@@ -557,7 +557,7 @@ DEFINE_SPELL_FUN (spell_holy_word) {
             }
         }
         else if (IS_NEUTRAL (ch)) {
-            if (!is_safe_spell (ch, vch, TRUE)) {
+            if (can_attack_spell (ch, vch, TRUE)) {
                 send_to_char ("You are struck down!\n\r", vch);
                 dam = dice (level, 4);
                 damage (ch, vch, dam, sn, DAM_ENERGY, TRUE);

@@ -43,9 +43,6 @@
 
 #include "act_skills.h"
 
-/* TODO: some of these functions are huge - break them down */
-/* TODO: simplify do_train() */
-
 void do_skills_or_spells (CHAR_DATA * ch, char *argument, int spells) {
     BUFFER *buffer;
     char arg[MAX_INPUT_LENGTH];
@@ -625,8 +622,8 @@ void do_cast (CHAR_DATA * ch, char *argument) {
                     "They aren't here.\n\r", ch);
             }
             if (!IS_NPC (ch)) {
-                BAIL_IF (is_safe (ch, victim) && victim != ch,
-                    "Not on that target.\n\r", ch);
+                if (victim != ch && do_filter_can_attack (ch, victim))
+                    return;
                 check_killer (ch, victim);
             }
             BAIL_IF (IS_AFFECTED (ch, AFF_CHARM) && ch->master == victim,
@@ -673,8 +670,9 @@ void do_cast (CHAR_DATA * ch, char *argument) {
 
             /* check the sanity of the attack */
             if (target == TARGET_CHAR) {
-                BAIL_IF (is_safe_spell (ch, victim, FALSE) && victim != ch,
-                    "Not on that target.\n\r", ch);
+                if (victim != ch && do_filter_can_attack_spell (
+                        ch, victim, FALSE))
+                    return;
                 BAIL_IF (IS_AFFECTED (ch, AFF_CHARM) && ch->master == victim,
                     "You can't do that on your own follower.\n\r", ch);
                 if (!IS_NPC (ch))

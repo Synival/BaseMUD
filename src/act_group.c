@@ -40,21 +40,18 @@
 void do_group_show (CHAR_DATA *ch) {
     CHAR_DATA *gch;
     CHAR_DATA *leader;
-    char buf[MAX_STRING_LENGTH];
 
     leader = (ch->leader != NULL) ? ch->leader : ch;
-    sprintf (buf, "%s's group:\n\r", PERS_AW (leader, ch));
-    send_to_char (buf, ch);
+    printf_to_char (ch, "%s's group:\n\r", PERS_AW (leader, ch));
 
     for (gch = char_list; gch != NULL; gch = gch->next) {
         if (!is_same_group (gch, ch))
             continue;
-        sprintf (buf,
+        printf_to_char (ch,
             "[%2d %s] %-16s %4d/%4d hp %4d/%4d mana %4d/%4d mv %5d xp\n\r",
             gch->level, IS_NPC (gch) ? "Mob" : class_table[gch->class].who_name,
             capitalize (PERS_AW (gch, ch)), gch->hit, gch->max_hit,
             gch->mana, gch->max_mana, gch->move, gch->max_move, gch->exp);
-        send_to_char (buf, ch);
     }
 }
 

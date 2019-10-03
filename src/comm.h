@@ -213,21 +213,6 @@ extern const char go_ahead_str[];
     int write args ((int fd, char *buf, int nbyte));
 #endif
 
-/* OS-dependent local functions. */
-#if defined(macintosh) || defined(MSDOS)
-    void game_loop_mac_msdos args ((void));
-    bool read_from_descriptor args ((DESCRIPTOR_DATA * d));
-    bool write_to_descriptor args ((int desc, char *txt, int length));
-#endif
-
-#if defined(unix)
-    void game_loop_unix args ((int control));
-    int init_socket args ((int port));
-    void init_descriptor args ((int control));
-    bool read_from_descriptor args ((DESCRIPTOR_DATA * d));
-    bool write_to_descriptor args ((int desc, char *txt, int length));
-#endif
-
 /* Global variables. */
 extern DESCRIPTOR_DATA *descriptor_list; /* All open descriptors     */
 extern DESCRIPTOR_DATA *d_next;          /* Next descriptor in loop  */
@@ -254,39 +239,26 @@ extern int mud_ansiprompt, mud_ansicolor, mud_telnetga;
 extern char *mud_ipaddress;
 
 /* Function prototypes. */
-int main(int argc, char **argv);
-int init_socket (int port);
-void game_loop_mac_msdos (void);
-void game_loop_unix (int control);
-void init_descriptor (int control);
-void close_socket (DESCRIPTOR_DATA * dclose);
-bool read_from_descriptor (DESCRIPTOR_DATA * d);
-void read_from_buffer (DESCRIPTOR_DATA * d);
-bool process_output (DESCRIPTOR_DATA * d, bool fPrompt);
 void bust_a_prompt (CHAR_DATA *ch);
-void write_to_buffer (DESCRIPTOR_DATA * d, const char *txt, int length);
-bool write_to_descriptor (int desc, char *txt, int length);
 bool check_parse_name (char *name);
-bool check_reconnect (DESCRIPTOR_DATA * d, char *name, bool fConn);
-bool check_playing (DESCRIPTOR_DATA * d, char *name);
 void stop_idling (CHAR_DATA * ch);
 void send_to_char_bw (const char *txt, CHAR_DATA *ch);
 void page_to_char_bw (const char *txt, CHAR_DATA *ch);
 void send_to_char (const char *txt, CHAR_DATA * ch);
-void send_to_desc (const char *txt, DESCRIPTOR_DATA * d);
 void page_to_char (const char *txt, CHAR_DATA * ch);
-void clear_page (DESCRIPTOR_DATA *d);
-void append_to_page (DESCRIPTOR_DATA *d, const char *txt);
-int show_page (DESCRIPTOR_DATA *d);
 void fix_sex (CHAR_DATA * ch);
 void act2 (const char *to_char, const char *to_room, CHAR_DATA *ch,
            const void *arg1, const void *arg2, flag_t flags, int min_pos);
 void act3 (const char *to_char, const char *to_vict, const char *to_room,
            CHAR_DATA *ch, const void *arg1, const void *arg2, flag_t flags,
            int min_pos);
+bool act_is_valid_recipient (CHAR_DATA *to, flag_t flags,
+    CHAR_DATA *ch, CHAR_DATA *vch);
+char *act_code (char code, CHAR_DATA *ch, CHAR_DATA *vch, CHAR_DATA *to,
+    OBJ_DATA *obj1, OBJ_DATA *obj2, const void *arg1, const void *arg2,
+    char *out_buf, size_t size);
 void act_new (const char *format, CHAR_DATA * ch, const void *arg1,
               const void *arg2, flag_t flags, int min_pos);
-void printf_to_desc (DESCRIPTOR_DATA * d, char *fmt, ...);
 void printf_to_char (CHAR_DATA * ch, char *fmt, ...);
 void wiznet (char *string, CHAR_DATA * ch, OBJ_DATA * obj,
              flag_t flag, flag_t flag_skip, int min_level);

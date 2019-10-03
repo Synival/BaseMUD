@@ -126,7 +126,7 @@ void acid_effect (void *vo, int level, int dam, int target) {
             bool af_found = FALSE;
             int i;
 
-            affect_enchant (obj);
+            obj_enchant (obj);
             for (paf = obj->affected; paf != NULL; paf = paf->next) {
                 if (paf->apply == APPLY_AC) {
                     af_found = TRUE;

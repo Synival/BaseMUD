@@ -42,11 +42,6 @@
 
 #include "do_sub.h"
 
-/* TODO: some of these, especially the functions with return values, aren't
- *       necesarilly sub-routines for do_XXX() commands alone. put them in more
- *       appropriate places. */
-/* TODO: put some do_XXX() functions back to their respective files if they
- *       belong there and only there. */
 /* TODO: find a more appropriate naming scheme for these functions. */
 /* TODO: scour the act_*.c, wiz_*.c, and handler.c files for more functions
  *       that can be dropped into here. */

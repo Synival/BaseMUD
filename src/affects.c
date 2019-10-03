@@ -35,80 +35,56 @@
 
 #include "affects.h"
 
-/* TODO: functions to grab most affects from a table. */
-/* TODO: maybe implement height + weight affects? */
-/* TODO: maybe implement wood/silver/iron resistances? */
-/* TODO: review function names and order */
-
 /* for immunity, vulnerabiltiy, and resistant
    the 'globals' (magic and weapons) may be overriden
    three other cases -- wood, silver, and iron -- are checked in fight.c */
-/* TODO: ^^^^ no they're not! */
 int check_immune (CHAR_DATA * ch, int dam_type) {
     const DAM_TYPE *dam;
-    int immune, def;
+    int def;
     flag_t bit;
 
-    immune = -1;
-    def = IS_NORMAL;
-
+    /* no resistance for unclassed damage. sorry, hand-to-hand fighters! */
     if (dam_type == DAM_NONE)
-        return immune;
+        return IS_NORMAL;
 
-    /* if a physical attack (bash, pierce, slash), check weapon resistance */
-    /* TODO: magic number!! */
-    if (dam_type <= 3) {
-             if (IS_SET (ch->imm_flags,  RES_WEAPON)) def = IS_IMMUNE;
-        else if (IS_SET (ch->res_flags,  RES_WEAPON)) def = IS_RESISTANT;
-        else if (IS_SET (ch->vuln_flags, RES_WEAPON)) def = IS_VULNERABLE;
-    }
-    /* other, for magical attacks (anything else), check magic resistance */
-    else {
-             if (IS_SET (ch->imm_flags,  RES_MAGIC)) def = IS_IMMUNE;
-        else if (IS_SET (ch->res_flags,  RES_MAGIC)) def = IS_RESISTANT;
-        else if (IS_SET (ch->vuln_flags, RES_MAGIC)) def = IS_VULNERABLE;
-    }
-
-    /* check for resistance to the attack's specific resistance bit. */
     dam = dam_get (dam_type);
+    if (dam == NULL)
+        dam = &(dam_table[DAM_NONE]);
+
+    /* determine default resistance.  if it's a physical attack (bash, pierce,
+     * slash), check weapon resistance.  otherwise, check magic resistance. */
+    bit = (dam->dam_class == DAM_PHYSICAL) ? RES_WEAPON : RES_MAGIC;
+         if (IS_SET (ch->imm_flags,  bit)) def = IS_IMMUNE;
+    else if (IS_SET (ch->res_flags,  bit)) def = IS_RESISTANT;
+    else if (IS_SET (ch->vuln_flags, bit)) def = IS_VULNERABLE;
+    else                                   def = IS_NORMAL;
+
+    /* check for resistance to the attack's specific resistance bit.
+     * if there is none, we're done here. */
     if (dam == NULL || dam->res <= 0)
         return def;
-    bit = dam->res;
 
-    /* set immunity if that's the case... */
-    if (IS_SET (ch->imm_flags, bit))
-        immune = IS_IMMUNE;
-    /* ...set resistance if not already immune... */
-    else if (IS_SET (ch->res_flags, bit) && immune != IS_IMMUNE)
-        immune = IS_RESISTANT;
-    /* ...or set vulnerability by downgrading immunity. */
-    else if (IS_SET (ch->vuln_flags, bit)) {
-        if (immune == IS_IMMUNE)
-            immune = IS_RESISTANT;
-        else if (immune == IS_RESISTANT)
-            immune = IS_NORMAL;
+    /* if the character is immune, override default immunity. */
+    if (IS_SET (ch->imm_flags, dam->res))
+        return IS_IMMUNE;
+
+    /* if the character is resistant, upgrade to resistant (don't override
+     * complete immunity). */
+    if (IS_SET (ch->res_flags, dam->res))
+        return (def == IS_IMMUNE) ? IS_IMMUNE : IS_RESISTANT;
+
+    /* if vulnerable, downgrade default immunity by one level. */
+    if (IS_SET (ch->vuln_flags, dam->res)) {
+        if (def == IS_IMMUNE)
+            return IS_RESISTANT;
+        else if (def == IS_RESISTANT)
+            return IS_NORMAL;
         else
-            immune = IS_VULNERABLE;
+            return IS_VULNERABLE;
     }
 
-    /* return resistance-specific immunity or weapon/magic immunity. */
-    return (immune == -1) ? def : immune;
-}
-
-/* enchanted stuff for eq */
-void affect_enchant (OBJ_DATA * obj) {
-    /* okay, move all the old flags into new bits if we have to */
-    if (!obj->enchanted) {
-        AFFECT_DATA *paf, *af_new;
-        obj->enchanted = TRUE;
-
-        for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
-            af_new = affect_new ();
-            affect_copy (af_new, paf);
-            af_new->type = UMAX (0, af_new->type);
-            LIST_FRONT (af_new, next, obj->affected);
-        }
-    }
+    /* no specific immunity - use the default. */
+    return def;
 }
 
 void affect_modify_bits (CHAR_DATA * ch, AFFECT_DATA * paf, bool on) {

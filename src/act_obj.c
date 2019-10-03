@@ -53,18 +53,6 @@
 
 #include "act_obj.h"
 
-/* TODO: this file is hardly-touched. look over most of the functions. */
-/* TODO: lots and lots of BAIL_IFs. */
-/* TODO: sub-routines into do_sub.c, splitting up a lot of functions. */
-/* TODO: there's likely a lot of redundancy in here. consolidate! */
-/* TODO: finish going through these functions for BAIL_IF() */
-/* TODO: these commands are super similar: get, drop, give, put. */
-/* TODO: common routines for handling money. */
-/* TODO: fix magic number 'value[3] = 1' to indicate 'poisoned' for
- *       food and beverages */
-/* TODO: allow 'fill' command to accept a specific fountain. */
-/* TODO: use a table for 'do_change_conditions' */
-
 bool do_filter_can_drop_item (CHAR_DATA *ch, OBJ_DATA *obj, bool msg) {
     FILTER (!char_can_see_obj (ch, obj),
         (!msg) ? NULL : "You can't find it.\n\r", ch);
@@ -841,11 +829,18 @@ void do_wear (CHAR_DATA * ch, char *argument) {
     DO_REQUIRE_ARG (arg, "Wear, wield, or hold what?\n\r");
     if (!str_cmp (arg, "all")) {
         OBJ_DATA *obj_next;
+        bool success;
+
+        success = FALSE;
         for (obj = ch->carrying; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
             if (obj->wear_loc == WEAR_NONE && char_can_see_obj (ch, obj))
-                char_wear_obj (ch, obj, FALSE);
+                if (char_wear_obj (ch, obj, FALSE))
+                    success = TRUE;
         }
+        if (!success)
+            send_to_char ("You find nothing new to wear, wield, "
+                          "or hold.\n\r", ch);
         return;
     }
 
@@ -1141,7 +1136,7 @@ void do_steal (CHAR_DATA * ch, char *argument) {
         "They aren't here.\n\r", ch);
     BAIL_IF (victim == ch,
         "That's pointless.\n\r", ch);
-    if (is_safe (ch, victim))
+    if (do_filter_can_attack (ch, victim))
         return;
     BAIL_IF (IS_NPC (victim) && (victim->fighting ||
             victim->position == POS_FIGHTING),
@@ -1265,14 +1260,14 @@ void do_outfit (CHAR_DATA * ch, char *argument) {
         obj = create_object (get_obj_index (OBJ_VNUM_SCHOOL_BANNER), 0);
         obj->cost = 0;
         obj_to_char (obj, ch);
-        char_equip (ch, obj, WEAR_LIGHT);
+        char_equip_obj (ch, obj, WEAR_LIGHT);
     }
 
     if ((obj = char_get_eq_by_wear (ch, WEAR_BODY)) == NULL) {
         obj = create_object (get_obj_index (OBJ_VNUM_SCHOOL_VEST), 0);
         obj->cost = 0;
         obj_to_char (obj, ch);
-        char_equip (ch, obj, WEAR_BODY);
+        char_equip_obj (ch, obj, WEAR_BODY);
     }
 
     /* do the weapon thing */
@@ -1291,7 +1286,7 @@ void do_outfit (CHAR_DATA * ch, char *argument) {
 
         obj = create_object (get_obj_index (vnum), 0);
         obj_to_char (obj, ch);
-        char_equip (ch, obj, WEAR_WIELD);
+        char_equip_obj (ch, obj, WEAR_WIELD);
     }
 
     if (((obj = char_get_eq_by_wear (ch, WEAR_WIELD)) == NULL
@@ -1301,7 +1296,7 @@ void do_outfit (CHAR_DATA * ch, char *argument) {
         obj = create_object (get_obj_index (OBJ_VNUM_SCHOOL_SHIELD), 0);
         obj->cost = 0;
         obj_to_char (obj, ch);
-        char_equip (ch, obj, WEAR_SHIELD);
+        char_equip_obj (ch, obj, WEAR_SHIELD);
     }
 
     send_to_char ("You have been equipped by Mota.\n\r", ch);
