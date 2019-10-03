@@ -26,11 +26,11 @@
  **************************************************************************/
 
 #include <string.h>
+#include <stdlib.h>
 
 #include "utils.h"
 #include "interp.h"
 #include "db.h"
-#include "db2.h"
 #include "recycle.h"
 
 #include "lookup.h"
@@ -334,6 +334,24 @@ const SUN_TYPE *sun_get_by_hour (int hour) {
         if (hour >= sun_table[i].hour_start && hour < sun_table[i].hour_end)
             return &(sun_table[i]);
     return &(sun_table[0]);
+}
+
+/* Lookup a skill by slot number. Used for object loading. */
+int slot_lookup (int slot) {
+    extern bool fBootDb;
+    int sn;
+
+    if (slot <= 0)
+        return -1;
+    for (sn = 0; sn < SKILL_MAX; sn++)
+        if (slot == skill_table[sn].slot)
+            return sn;
+
+    if (fBootDb) {
+        bug ("slot_lookup: bad slot %d.", slot);
+        abort ();
+    }
+    return -1;
 }
 
 char *affect_apply_name (flag_t type)

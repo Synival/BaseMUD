@@ -47,12 +47,7 @@
 
 #include "act_move.h"
 
-/* TODO: rename sub-routines and filters to follow naming scheme */
-/* TODO: many of the sub-routines can probably be put into a file 'door.c'. */
-/* TODO: do_stand / sit / rest / sleep can probably be unified. */
-
 int door_filter_find (CHAR_DATA *ch, char *argument) {
-    char arg[MAX_STRING_LENGTH];
     EXIT_DATA *pexit;
     int door;
 
@@ -71,8 +66,8 @@ int door_filter_find (CHAR_DATA *ch, char *argument) {
     }
 
     /* Lookup by name. */
-    RETURN_IF_ACT ((door == find_door_same_room (ch, argument)) == -1,
-        "You see no $T here.", ch, NULL, arg, -1);
+    RETURN_IF_ACT ((door = find_door_same_room (ch, argument)) == -1,
+        "You see no $T here.", ch, NULL, argument, -1);
     return door;
 }
 
@@ -382,7 +377,7 @@ void do_pick_door (CHAR_DATA *ch, int door) {
         REMOVE_BIT (pexit_rev->exit_flags, EX_LOCKED);
 }
 
-void do_door (CHAR_DATA *ch, char *argument, char *arg_msg,
+void do_door (CHAR_DATA *ch, char *argument, char *verb,
     void (*func_obj)  (CHAR_DATA *, OBJ_DATA *),
     void (*func_door) (CHAR_DATA *, int))
 {
@@ -391,18 +386,17 @@ void do_door (CHAR_DATA *ch, char *argument, char *arg_msg,
     int door;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char (arg_msg, ch);
+    BAIL_IF_ACT (arg[0] == '\0',
+        "$t what?", ch, verb, NULL);
+
+    if ((obj = find_obj_here (ch, arg)) != NULL) {
+        func_obj (ch, obj);
         return;
     }
 
-    if ((obj = find_obj_here (ch, arg)) != NULL)
-        func_obj (ch, obj);
-    else {
-        find_continue_counting ();
-        if ((door = door_filter_find (ch, arg)) >= 0)
-            func_door (ch, door);
-    }
+    find_continue_counting ();
+    if ((door = door_filter_find (ch, arg)) >= 0)
+        func_door (ch, door);
 }
 
 void do_north (CHAR_DATA * ch, char *argument)
@@ -419,15 +413,15 @@ void do_down (CHAR_DATA * ch, char *argument)
     { char_move (ch, DIR_DOWN, FALSE); }
 
 void do_open (CHAR_DATA * ch, char *argument)
-    { do_door (ch, argument, "Open what?\n\r",   do_open_object,   do_open_door); }
+    { do_door (ch, argument, "open",   do_open_object,   do_open_door); }
 void do_close (CHAR_DATA * ch, char *argument)
-    { do_door (ch, argument, "Close what?\n\r",  do_close_object,  do_close_door); }
+    { do_door (ch, argument, "close",  do_close_object,  do_close_door); }
 void do_unlock (CHAR_DATA * ch, char *argument)
-    { do_door (ch, argument, "Unlock what?\n\r", do_unlock_object, do_unlock_door); }
+    { do_door (ch, argument, "unlock", do_unlock_object, do_unlock_door); }
 void do_lock (CHAR_DATA * ch, char *argument)
-    { do_door (ch, argument, "Lock what?\n\r",   do_lock_object,   do_lock_door); }
+    { do_door (ch, argument, "lock",   do_lock_object,   do_lock_door); }
 void do_pick (CHAR_DATA * ch, char *argument)
-    { do_door (ch, argument, "Pick what?\n\r",   do_pick_object,   do_pick_door); }
+    { do_door (ch, argument, "pick",   do_pick_object,   do_pick_door); }
 
 bool do_filter_change_position (CHAR_DATA *ch, int pos, char *same_msg) {
     FILTER (ch->position == pos,

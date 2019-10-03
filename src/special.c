@@ -65,7 +65,7 @@ bool spec_troll_member (CHAR_DATA * ch) {
         if (vch->pIndexData->vnum == MOB_VNUM_PATROLMAN)
             return FALSE;
         if (vch->pIndexData->group == GROUP_VNUM_OGRES
-            && ch->level > vch->level - 2 && !is_safe (ch, vch))
+            && ch->level > vch->level - 2 && !do_filter_can_attack (ch, vch))
         {
             if (number_range (0, count) == 0)
                 victim = vch;
@@ -126,7 +126,7 @@ bool spec_ogre_member (CHAR_DATA * ch) {
         if (vch->pIndexData->vnum == MOB_VNUM_PATROLMAN)
             return FALSE;
         if (vch->pIndexData->group == GROUP_VNUM_TROLLS
-            && ch->level > vch->level - 2 && !is_safe (ch, vch))
+            && ch->level > vch->level - 2 && !do_filter_can_attack (ch, vch))
         {
             if (number_range (0, count) == 0)
                 victim = vch;
@@ -146,7 +146,7 @@ bool spec_ogre_member (CHAR_DATA * ch) {
             message = "$n yells 'I've been looking for you, punk!'";
             break;
         case 1:
-            message = "With a scream of rage, $n attacks $N.'";
+            message = "With a scream of rage, $n attacks $N.";
             break;
         case 2:
             message = "$n says 'What's Troll filth like you doing around here?'";

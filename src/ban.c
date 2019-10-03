@@ -37,8 +37,6 @@
 
 #include "ban.h"
 
-/* TODO: do_*() should be in wiz_(something).c */
-
 void save_bans (void) {
     BAN_DATA *pban;
     FILE *fp;

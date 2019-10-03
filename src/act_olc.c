@@ -34,11 +34,6 @@
 
 #include "act_olc.h"
 
-/* TODO: there's an outrageous amount of redundancy in here.
-         reduce, and test thoroughly! */
-/* TODO: BAIL_IF() everywhere */
-/* TODO: this file is HUGE. split into different olc files (medit, redit, etc) */
-/* TODO: move any universally-helpful functions to a different files. */
 /* TODO: move sub-routines and filters to the top. */
 /* TODO: rename sub-routines appropriately. */
 
@@ -309,9 +304,9 @@ void do_hedit (CHAR_DATA *ch, char *argument) {
         }
     }
     if (!found) {
-        /* TODO: vvv outputting to the same buffer we're reading from??? */
-        argument = one_argument (arg1, arg1);
-        if (!str_cmp (arg1,"new")) {
+        char arg2[MAX_STRING_LENGTH];
+        argument = one_argument (arg1, arg2);
+        if (!str_cmp (arg2, "new")) {
             if (argument[0] == '\0') {
                 send_to_char ("Syntax: edit help new [topic]\n\r", ch);
                 return;

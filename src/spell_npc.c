@@ -56,9 +56,10 @@ void perform_breath_attack (CHAR_DATA * ch, ROOM_INDEX_DATA * room,
             if (vch == victim)
                 continue;
 
-            if (is_safe_spell (ch, vch, is_area_spell)
-                || (IS_NPC (vch) && IS_NPC (ch)
-                    && (ch->fighting != vch || vch->fighting != ch)))
+            if (IS_NPC (ch) && IS_NPC (vch) &&
+                    (ch->fighting != vch || vch->fighting != ch))
+                continue;
+            if (!can_attack_spell (ch, vch, is_area_spell))
                 continue;
 
             if (saves_spell (level - 2, vch, dam_type)) {
@@ -74,11 +75,13 @@ void perform_breath_attack (CHAR_DATA * ch, ROOM_INDEX_DATA * room,
 
     /* full damage to victim. */
     if (victim != NULL) {
-        if (is_safe_spell (ch, victim, is_area_spell)
-            || (IS_NPC (victim) && IS_NPC (ch)
-                && (ch->fighting != victim || victim->fighting != ch)))
-            ;
-        else {
+        do {
+            if (IS_NPC (ch) && IS_NPC (victim) &&
+                    (ch->fighting != victim || victim->fighting != ch))
+                break;
+            if (!can_attack_spell (ch, victim, is_area_spell))
+                break;
+
             if (saves_spell (level, victim, dam_type)) {
                 effect (victim, level / 2, dam / 4, TARGET_CHAR);
                 damage (ch, victim, dam / 2, sn, dam_type, TRUE);
@@ -87,7 +90,7 @@ void perform_breath_attack (CHAR_DATA * ch, ROOM_INDEX_DATA * room,
                 effect (victim, level, dam, TARGET_CHAR);
                 damage (ch, victim, dam, sn, dam_type, TRUE);
             }
-        }
+        } while (0);
     }
 }
 

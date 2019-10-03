@@ -38,6 +38,7 @@
 #include "wiz_l4.h"
 #include "chars.h"
 #include "find.h"
+#include "descs.h"
 
 #include "wiz_l1.h"
 

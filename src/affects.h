@@ -31,7 +31,6 @@
 #include "merc.h"
 
 int check_immune (CHAR_DATA * ch, int dam_type);
-void affect_enchant (OBJ_DATA * obj);
 void affect_modify_bits (CHAR_DATA * ch, AFFECT_DATA * paf, bool on);
 void affect_modify_apply (CHAR_DATA * ch, AFFECT_DATA * paf, bool on);
 void affect_modify (CHAR_DATA * ch, AFFECT_DATA * paf, bool on);

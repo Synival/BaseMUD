@@ -52,6 +52,7 @@
 #include "act_obj.h"
 #include "chars.h"
 #include "objs.h"
+#include "descs.h"
 
 #include "nanny.h"
 
@@ -60,54 +61,6 @@
 /* TODO: the whole code flow of these nanny functions is a bit odd.
  *       review it so it's less janky. */
 /* TODO: move the code below to nanny.h, if necessary... */
-
-#if defined(macintosh) || defined(MSDOS)
-    extern const char echo_off_str[];
-    extern const char echo_on_str[];
-    extern const char go_ahead_str[];
-#endif
-
-#if defined(unix)
-    #include <fcntl.h>
-    #include <netdb.h>
-    #include <netinet/in.h>
-    #include <sys/socket.h>
-    #include "telnet.h"
-    extern const char echo_off_str[];
-    extern const char echo_on_str[];
-    extern const char go_ahead_str[];
-#endif
-
-/* OS-dependent local functions. */
-#if defined(macintosh) || defined(MSDOS)
-    void game_loop_mac_msdos args ((void));
-    bool read_from_descriptor args ((DESCRIPTOR_DATA * d));
-    bool write_to_descriptor args ((int desc, char *txt, int length));
-#endif
-
-#if defined(unix)
-    void game_loop_unix args ((int control));
-    int init_socket args ((int port));
-    void init_descriptor args ((int control));
-    bool read_from_descriptor args ((DESCRIPTOR_DATA * d));
-    bool write_to_descriptor args ((int desc, char *txt, int length));
-#endif
-
-/* Other local functions (OS-independent). */
-bool check_parse_name args ((char *name));
-bool check_reconnect args ((DESCRIPTOR_DATA * d, char *name, bool fConn));
-bool check_playing args ((DESCRIPTOR_DATA * d, char *name));
-
-/* Global variables. */
-extern DESCRIPTOR_DATA *descriptor_list; /* All open descriptors   */
-extern DESCRIPTOR_DATA *d_next;        /* Next descriptor in loop  */
-extern FILE *fpReserve;                /* Reserved file handle     */
-extern bool god;                       /* All new chars are gods!  */
-extern bool merc_down;                 /* Shutdown                 */
-extern bool wizlock;                   /* Game is wizlocked        */
-extern bool newlock;                   /* Game is newlocked        */
-extern char str_boot_time[MAX_INPUT_LENGTH];
-extern time_t current_time;            /* time of this pulse */
 
 /* Deal with sockets that haven't logged in yet. */
 void nanny (DESCRIPTOR_DATA * d, char *argument) {

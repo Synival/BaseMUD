@@ -62,6 +62,7 @@ char *obj_format_to_char (OBJ_DATA *obj, CHAR_DATA *ch, bool fShort);
 void obj_list_show_to_char (OBJ_DATA *list, CHAR_DATA *ch, bool fShort,
     bool fShowNothing);
 void obj_to_keeper (OBJ_DATA *obj, CHAR_DATA *ch);
+void obj_enchant (OBJ_DATA *obj);
 
 /* Look-up functions. */
 OBJ_DATA *obj_get_by_index (OBJ_INDEX_DATA *pObjIndex);

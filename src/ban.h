@@ -28,6 +28,8 @@
 #ifndef __ROM_BAN_H
 #define __ROM_BAN_H
 
+#include "merc.h"
+
 /* Function prototypes. */
 void save_bans (void);
 void load_bans (void);

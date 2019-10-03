@@ -38,6 +38,7 @@
 #include "interp.h"
 #include "recycle.h"
 #include "chars.h"
+#include "descs.h"
 
 #include "act_player.h"
 

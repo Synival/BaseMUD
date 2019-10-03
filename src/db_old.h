@@ -25,16 +25,14 @@
  *   ROM license, in the file Rom24/doc/rom.license                        *
  **************************************************************************/
 
-#ifndef __ROM_DB2_H
-#define __ROM_DB2_H
+#ifndef __ROM_DB_OLD_H
+#define __ROM_DB_OLD_H
 
 #include "merc.h"
 
 /* Function prototypes. */
-bool load_socials_str (FILE *fp, char **str);
-void load_socials (FILE * fp);
-void load_mobiles (FILE * fp);
-void load_objects (FILE * fp);
+void load_old_mob (FILE * fp);
+void load_old_obj (FILE * fp);
 int convert_object_reset (RESET_DATA *pReset);
 void convert_objects (void);
 void convert_object (OBJ_INDEX_DATA * pObjIndex);

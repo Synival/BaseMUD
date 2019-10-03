@@ -32,13 +32,32 @@
 #include <time.h>
 #include <string.h>
 
+#if defined(unix)
+    #include <signal.h>
+#endif
+
 #include "interp.h"
 #include "comm.h"
 #include "db.h"
 #include "utils.h"
 #include "signal.h"
+#include "descs.h"
+#include "signal.h"
+#include "string.h"
+#include "save.h"
+#include "olc.h"
+#include "nanny.h"
+#include "update.h"
 
 /* TODO: feature - better command-line arguments? */
+
+#if defined(macintosh) || defined(MSDOS)
+    void game_loop_mac_msdos (void);
+#endif
+
+#if defined(unix)
+    void game_loop_unix (int control);
+#endif
 
 int main (int argc, char **argv) {
     struct timeval now_time;
@@ -133,3 +152,315 @@ int main (int argc, char **argv) {
     exit (0);
     return 0;
 }
+
+#if defined(macintosh) || defined(MSDOS)
+void game_loop_mac_msdos (void) {
+    struct timeval last_time;
+    struct timeval now_time;
+    static DESCRIPTOR_DATA dcon;
+
+    gettimeofday (&last_time, NULL);
+    current_time = (time_t) last_time.tv_sec;
+
+    /* New_descriptor analogue. */
+    dcon.descriptor = 0;
+    if (!mud_ansiprompt)
+        dcon.connected = CON_GET_NAME;
+    else
+        dcon.connected = CON_ANSI;
+    dcon.ansi = mud_ansicolor;
+    dcon.host = str_dup ("localhost");
+    dcon.outsize = 2000;
+    dcon.outbuf = alloc_mem (dcon.outsize);
+    dcon.next = descriptor_list;
+    dcon.showstr_head = NULL;
+    dcon.showstr_point = NULL;
+    dcon.pEdit = NULL;            /* OLC */
+    dcon.pString = NULL;        /* OLC */
+    dcon.editor = 0;            /* OLC */
+    descriptor_list = &dcon;
+
+    /* First Contact! */
+    if (!mud_ansiprompt) {
+        extern char * help_greeting;
+        if ( help_greeting[0] == '.' )
+            send_to_desc ( help_greeting+1, &dcon );
+        else
+            send_to_desc ( help_greeting  , &dcon );
+    }
+    else
+        write_to_buffer (&dcon, "Do you want ANSI? (Y/n) ", 0);
+
+    /* Main loop */
+    while (!merc_down) {
+        DESCRIPTOR_DATA *d;
+
+        /* Process input. */
+        for (d = descriptor_list; d != NULL; d = d_next) {
+            d_next = d->next;
+            d->fcommand = FALSE;
+
+            #if defined(MSDOS)
+                if (kbhit ())
+            #endif
+            {
+                if (d->character != NULL)
+                    d->character->timer = 0;
+                if (!read_from_descriptor (d)) {
+                    if (d->character != NULL && d->connected == CON_PLAYING)
+                        save_char_obj (d->character);
+                    d->outtop = 0;
+                    close_socket (d);
+                    continue;
+                }
+            }
+
+            if (d->character != NULL && d->character->wait > 0)
+                continue;
+
+            read_from_buffer (d);
+            if (d->incomm[0] != '\0') {
+                d->fcommand = TRUE;
+                stop_idling (d->character);
+
+                /* OLC */
+                if (d->showstr_point) {
+                    d->lines_written = 0;
+                    show_page (d);
+                }
+                else if (d->pString)
+                    string_add (d->character, d->incomm);
+                else {
+                    switch (d->connected) {
+                        case CON_PLAYING:
+                            if (!run_olc_editor (d))
+                                substitute_alias (d, d->incomm);
+                            break;
+                        default:
+                            nanny (d, d->incomm);
+                            break;
+                    }
+                }
+
+                d->incomm[0] = '\0';
+            }
+        }
+
+        /* Autonomous game motion.  */
+        update_handler ();
+
+        /* Output. */
+        for (d = descriptor_list; d != NULL; d = d_next) {
+            d_next = d->next;
+            if ((d->fcommand || d->outtop > 0)) {
+                if (!process_output (d, TRUE)) {
+                    if (d->character != NULL && d->connected == CON_PLAYING)
+                        save_char_obj (d->character);
+                    d->outtop = 0;
+                    close_socket (d);
+                }
+            }
+        }
+
+        /* Synchronize to a clock.
+         * Busy wait (blargh). */
+        now_time = last_time;
+        while (1) {
+            int delta;
+
+            #if defined(MSDOS)
+                if (kbhit ())
+            #endif
+            {
+                if (dcon.character != NULL)
+                    dcon.character->timer = 0;
+                if (!read_from_descriptor (&dcon)) {
+                    if (dcon.character != NULL && d->connected == CON_PLAYING)
+                        save_char_obj (d->character);
+                    dcon.outtop = 0;
+                    close_socket (&dcon);
+                }
+                #if defined(MSDOS)
+                    break;
+                #endif
+            }
+
+            gettimeofday (&now_time, NULL);
+            delta = (now_time.tv_sec - last_time.tv_sec) * 1000 * 1000
+                + (now_time.tv_usec - last_time.tv_usec);
+            if (delta >= (1000000 / PULSE_PER_SECOND) * 100 / PULSE_SPEED)
+                break;
+        }
+        last_time = now_time;
+        current_time = (time_t) last_time.tv_sec;
+    }
+}
+#endif
+
+#if defined(unix)
+void game_loop_unix (int control) {
+    static struct timeval null_time;
+    struct timeval last_time;
+
+    signal (SIGPIPE, SIG_IGN);
+    gettimeofday (&last_time, NULL);
+    current_time = (time_t) last_time.tv_sec;
+
+    /* Main loop */
+    while (!merc_down) {
+        fd_set in_set;
+        fd_set out_set;
+        fd_set exc_set;
+        DESCRIPTOR_DATA *d;
+        int maxdesc;
+
+#if defined(MALLOC_DEBUG)
+        if (malloc_verify () != 1)
+            abort ();
+#endif
+
+        /* Poll all active descriptors.  */
+        FD_ZERO (&in_set);
+        FD_ZERO (&out_set);
+        FD_ZERO (&exc_set);
+        FD_SET (control, &in_set);
+        maxdesc = control;
+        for (d = descriptor_list; d; d = d->next) {
+            maxdesc = UMAX (maxdesc, d->descriptor);
+            FD_SET (d->descriptor, &in_set);
+            FD_SET (d->descriptor, &out_set);
+            FD_SET (d->descriptor, &exc_set);
+        }
+
+        if (select (maxdesc + 1, &in_set, &out_set, &exc_set, &null_time) < 0) {
+            perror ("Game_loop: select: poll");
+            exit (1);
+        }
+
+        /* New connection? */
+        if (FD_ISSET (control, &in_set))
+            init_descriptor (control);
+
+        /* Kick out the freaky folks. */
+        for (d = descriptor_list; d != NULL; d = d_next) {
+            d_next = d->next;
+            if (FD_ISSET (d->descriptor, &exc_set)) {
+                FD_CLR (d->descriptor, &in_set);
+                FD_CLR (d->descriptor, &out_set);
+                if (d->character && d->connected == CON_PLAYING)
+                    save_char_obj (d->character);
+                d->outtop = 0;
+                close_socket (d);
+            }
+        }
+
+        /* Process input. */
+        for (d = descriptor_list; d != NULL; d = d_next) {
+            d_next = d->next;
+            d->fcommand = FALSE;
+
+            if (FD_ISSET (d->descriptor, &in_set)) {
+                if (d->character != NULL)
+                    d->character->timer = 0;
+                if (!read_from_descriptor (d)) {
+                    FD_CLR (d->descriptor, &out_set);
+                    if (d->character != NULL && d->connected == CON_PLAYING)
+                        save_char_obj (d->character);
+                    d->outtop = 0;
+                    close_socket (d);
+                    continue;
+                }
+            }
+
+            if (d->character != NULL && d->character->wait > 0)
+                continue;
+
+            read_from_buffer (d);
+            if (d->incomm[0] != '\0') {
+                d->fcommand = TRUE;
+                stop_idling (d->character);
+
+                /* OLC */
+                if (d->showstr_point) {
+                    d->lines_written = 0;
+                    show_page (d);
+                }
+                else if (d->pString)
+                    string_add (d->character, d->incomm);
+                else {
+                    switch (d->connected) {
+                        case CON_PLAYING:
+                            if (!run_olc_editor (d))
+                                substitute_alias (d, d->incomm);
+                            break;
+                        default:
+                            nanny (d, d->incomm);
+                            break;
+                    }
+                }
+                d->incomm[0] = '\0';
+            }
+        }
+
+        #ifdef IMC
+            imc_loop();
+        #endif
+
+        /* Autonomous game motion. */
+        update_handler ();
+
+        /* Output. */
+        for (d = descriptor_list; d != NULL; d = d_next) {
+            d_next = d->next;
+
+            if ((d->fcommand || d->outtop > 0)
+                && FD_ISSET (d->descriptor, &out_set))
+            {
+                if (!process_output (d, TRUE)) {
+                    if (d->character != NULL && d->connected == CON_PLAYING)
+                        save_char_obj (d->character);
+                    d->outtop = 0;
+                    close_socket (d);
+                }
+            }
+        }
+
+        /* Synchronize to a clock.
+         * Sleep( last_time + 1/PULSE_PER_SECOND - now ).
+         * Careful here of signed versus unsigned arithmetic. */
+        {
+            struct timeval now_time;
+            long secDelta;
+            long usecDelta;
+
+            gettimeofday (&now_time, NULL);
+            usecDelta = ((int) last_time.tv_usec) - ((int) now_time.tv_usec)
+                + ((1000000 / PULSE_PER_SECOND) * 100 / PULSE_SPEED);
+            secDelta = ((int) last_time.tv_sec) - ((int) now_time.tv_sec);
+            while (usecDelta < 0) {
+                usecDelta += 1000000;
+                secDelta -= 1;
+            }
+
+            while (usecDelta >= 1000000) {
+                usecDelta -= 1000000;
+                secDelta += 1;
+            }
+
+            if (secDelta > 0 || (secDelta == 0 && usecDelta > 0)) {
+                struct timeval stall_time;
+
+                stall_time.tv_usec = usecDelta;
+                stall_time.tv_sec = secDelta;
+                if (select (0, NULL, NULL, NULL, &stall_time) < 0) {
+                    perror ("Game_loop: select: stall");
+                    exit (1);
+                }
+            }
+        }
+
+        gettimeofday (&last_time, NULL);
+        current_time = (time_t) last_time.tv_sec;
+    }
+}
+#endif

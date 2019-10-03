@@ -303,6 +303,7 @@ struct dam_type {
     char *name;
     flag_t res;
     EFFECT_FUN *effect;
+    int dam_class;
 };
 
 struct attack_type {
@@ -415,6 +416,7 @@ struct door_type {
     const char *from;
     const char *to_phrase;
     int reverse;
+    const char *short_name;
 };
 
 /* Prototype for a mob.
@@ -897,6 +899,7 @@ struct wear_type {
     const char *name;
     const char *look_msg;
     flag_t wear_loc;
+    const char *msg_wear_self, *msg_wear_room;
 };
 
 /* Material types - currently unused. */
@@ -918,7 +921,7 @@ struct table_type {
     const char *description;
 
     size_t type_size;
-    TABLE_JSON_FUN *json_write_func; /* TODO: write me */
+    TABLE_JSON_FUN *json_write_func;
     TABLE_JSON_FUN *json_read_func;
 };
 
