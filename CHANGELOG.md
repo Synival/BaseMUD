@@ -18,7 +18,7 @@
     - Optional Features
 * Many of the "TO-DO's" have been moved to a Trello board for better tracking.
 
-** Bugfixes:**
+**Bugfixes:**
 
 * Fixed "heat metal" to abort if a save is SUCCESSFUL, not the opposite.
 * When wearing an item, _all_ potential slots are now checked, not just related
