@@ -1,4 +1,3 @@
-
 BaseMUD
 ==============
 **A thorough code review/overhaul of QuickMUD / ROM 2.4b6 for starting your MUD**
@@ -13,10 +12,6 @@ project has two main goals:
   high-level language.
 
 ## Instructions
-
-*Note: The dockerfile from QuickMUD has been untouched and certainly won't
-work yet. Also, as it stands, this code as it is has only been tested in a Linux
-environment and must be compiled. Always something to do...*
 
 To compile and run:
 
@@ -103,59 +98,84 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
 
 ## Internal Changes
 
+**Deployment:**
+
 * The `rom` executable is now in the `/bin` directory and run from the _root_
   directory. For convenience, you can use `run.sh` in the root directory.
-* Several systems have been overhauled completely, namely: the color system,
-  recycleable objects, and the "lookup" functions.
-* Extremely common code patterns were replaced with macros for brevity.
-  Most significant is `BAIL_IF(cond, msg, ch)` to replace
-  `if (cond) { send_to_char(msg, ch); return; }`.
-* **_LOTS_** of redundant code has been swapped up with small helper functions or...
-  (gulp) macros. Macros are indeed ugly and bad - hopefully they'll be replaced with
-  something better in a later iteration of refactoring.
+* The `Dockerfile` has been temporarilly removed until some of the structural
+  changes are accounted for.
+
+**Code Reorganization:**
+
 * Files have been split and rearranged so there is (hopefully) less time spent hunting
   for functions or data tables.
 * All `do_*()` functions are in appropriate `act_*.c` or `wiz_*.c` files.
-* Common shared code between `do_*()` functions have been separated out and moved to
-  `do_sub.c`. Non-void "filter" functions are subroutines that help with code flow.
+* Introduced `do_filter*()` functions whose role is to break out of code flow in `do_*()`
+  functions with appropriate messages.
 * Several functions have been renamed to follow the same naming scheme for consistency's sake.
-* More data has been moved from functions to tables facilitate easy modification, addition, or removal of features.
-* Exits between areas are tracked using a "portal" system that links exits/rooms together
-  with keywords. This doesn't chance anything for gameplay or .are files, but will
-  (eventually) make building easier by defining links between areas without writing
-  specific vnums in.
+* More data has been moved from functions to tables to facilitate easy modification,
+  addition, or removal of features.
+* Integrated board and OLC features into the main code.
+* `handler.c` has been seperated out into `chars.c`, `objs.c`, `rooms.c`, and `find.c`.
+* Mob / object materials are now stored in a table rather than as a simple string.
+* Unused flags in flag / type have been added to their respective tables so they're
+  accounted for.
+* Moved "day of the week", "months of the year", "weather", and "sun position" values
+  to a tables in `tables.c`.
+* Weather change calculations have been made easier to understand (but could still be better).
+* Merged `db2.c` into `db.c` and separated old database functions into `db_old.c`.
+* The `wear` command now uses a table for looking up wear slots, as does `char_wear_obj()`.
+  This is a big improvement from copy+pasted "You wear ___ on ___" code for each possible slot.
+
+**Code Reduction:**
+
+* **_LOTS_** of redundant code has been swapped up with small helper functions or...
+  (gulp) macros. Macros are indeed ugly and bad - they'll be replaced with
+  something better in a later iteration of refactoring, potentially using C++.
+* Common shared code between `do_*()` functions have been separated out and moved to
+  `do_sub.c`.
+* Extremely common code patterns were replaced with macros for brevity.
+  Most significant is `BAIL_IF(cond, msg, ch)` to replace
+  `if (cond) { send_to_char(msg, ch); return; }` found in 99% of `do_*()` functions.
 * Common linked-list code has been replaced with helper macros. This is a stepping-stone
   to a more reliable set of helper structs and functions to manage all lists.
+* `get`, `put`, `drop`, and `give` have been refactored to use a lot of
+  shared code.
+* NPC breath attacks now use a shared `perform_breath_attack()` function.
+* Replaced `is_safe()` and `is_safe_spell()` with consolidated
+    `do_filter_can_attack_real()`. Added shorter functions:
+    `do_filter_can_attack()`, `do_filter_can_attack_spell()`,
+    `can_attack()`, and `can_attack_spell()`.
+
+**Code Changes:**
+
+* Several systems have been overhauled completely, namely: the color system,
+  recycleable objects, and the "lookup" functions.
+* Separated mob- and player-specific flags (`ACT_*`) into separate `MOB_*` and `PLR_*`
+  flags, with separate variables. This should prevent a _lot_ of bugs.
 * `act_new()` now uses flags instead of an `int type` variable to determine recipients.
   Target `#define`s have been appropriately renamed to be more accurate. Flags
   could potentially be extended to have flags regarding visibility for blindness,
   deafness, or other options.
-* Replaced several "`if(X) { send_to_char(); return; }`" patterns in `do_` functions
-  with small macros to reduce brevity.
+* Introduced functions `act2()` (messages to char + room)  and `act3()` (messages to char + target +
+  room).
 * Replaced some groups of `act()` to CHAR/NOTCHAR and CHAR/VICT/OTHERS to `act2()`
   and `act3()` respectively.
-* Unused flags in flag / type tables have been added as future placeholders.
-* Integrated board and OLC features into the main code.
-* Clean-ups and bugfixes to OLC to ensure stock zones are saved exactly as they are loaded.
-  (Confirmed using `diff` comparisons on `.are` files and one gargantuan `everything.json`
-  file containing the _entire_ world in JSON format)
-* `get`, `put`, `drop`, and `give` have been refactored to use a lot of
-  shared code.
-* `handler.c` has been seperated out into `chars.c`, `objs.c`, `rooms.c`, and `find.c`.
-* Certain messages from shopkeepers, trainers, etc. would _try_ to look and act like the
-  `tell` command, but it wasn't consistent. Now they're just simple messages. Hopefully
-  this doesn't break any mob scripting or anything like that.
-* NPC breath attacks now use a shared `perform_breath_attack()` function.
 * Some spells (like 'blindness') now can be invoked with or without messages
   so other spells that use cause the affect won't give "spell failed" messages.
-* Mob / object materials are now stored in a table rather than as a simple string.
-* Refactored `is_safe()` and `is_safe_spell()`.
+  **(A better solution would be a way to 'scope' functions like this to have their
+     messages suppressed. C doesn't have anything like that, so perhaps a global
+     stack-based system?)**
+* Exits between areas are tracked internally using a "portal" system that link exits/rooms together
+  with keywords. This doesn't change anything for gameplay or `.are` files, but will
+  (eventually) make building easier by defining links between areas without writing in
+  specific vnums (e.g, link `midgaard_west` to `midennir_east`).
 
 There are some higher-level abstractions that have likely caused a slight performance hit
 or a little more memory usage, but this is hardly an issue in 2019 ;) Some profiling will
 likely happen later on down the line.
 
-## Gameplay Changes:
+## Game Changes:
 
 Some small changes have been made, most of which are small quality-of-life
 improvements, some of which are personal preferences that will eventually be
@@ -174,14 +194,17 @@ phased out or at least optional. A handful of changes were just for fun.
   is fixed, but still needs balancing.
 * In most cases, finding characters and objects by '1.thing', '2.thing', etc.
   will now count correctly when searching multiple locations (e.g, check the room,
-  then the rest of the world). This is done by a `find_continue_count()` call.
+  then the rest of the world). This is done by a `find_continue_count()` call
+  preceding the next check.
 * Checks for immune/resistant/vulnerable flags completely ignored default
   weapon/magic imm/res/vuln flags, despite existing code with implied behavior.
   Resistance no longer overrides default immunity, and vulnerability now
   properly _downgrades_ the default status (imm`->`res, res`->`normal,
   normal`->`vuln).
+* When wearing an item, _all_ potential slots are now checked, not just related
+  slots (e.g, a ring can now be held as well as worn on a finger).
 
-**Patched oversights:**
+**Patched Oversights:**
 * `scan <dir>` only checks two rooms ahead rather than four. To see
   that far, you'll need to use the "farsight" spell :)
 * Tweaked some stat tables very slightly to allow for steady progression in
@@ -192,8 +215,14 @@ phased out or at least optional. A handful of changes were just for fun.
   You can now find a door by number - for example, if you're carrying "a portable door",
   and there are two "door"s in the room, you can now say `open 3.door` to open the
   room's second door.
+* Clean-ups and bugfixes to OLC to ensure stock zones are saved exactly as they are loaded.
+  (Confirmed using `diff` comparisons on `.are` files and one gargantuan `everything.json`
+  file containing the _entire_ world in JSON format)
+* Certain messages from shopkeepers, trainers, etc. would _try_ to look and act like the
+  `tell` command, but it wasn't consistent and generally unecessary. Now they're just
+  simple messages. Hopefully this doesn't break any mob scripting or anything like that.
 
-**Quality of life features:**
+**Quality-of-Life Features:**
 * Current position can be shown in prompt.
 * Exits in the prompt now show open/closed status (!VANILLA).
 * Stunned / incapacitated / mortally wounded / dead state checks are now based on
@@ -211,7 +240,7 @@ phased out or at least optional. A handful of changes were just for fun.
 * If standing on/at/in something, The `stand` command without any argument will
   now step off/out.
 
-**Other changes:**
+**Gameplay Changes:**
 * Door open / closed(!VANILLA) status is visible in the "exits" command.
 * Beds, tents, stools, etc. have automatic flags for `STAND_IN`, `STAND_AT`, etc.
   in addition to some standard hit and move regeneration bonuses.
@@ -228,8 +257,12 @@ phased out or at least optional. A handful of changes were just for fun.
 * Tiny balance changes have been made to certain skills and stat regen amounts.
 * Fast healing is only active when sitting, resting, or sleeping.
 * Meditation is only active when sitting or resting.
+* As a bonus feature, booting the MUD currently outputs several files to JSON
+  format in the `json/` directory. In time, the MUD will be able to read these files
+  instead or in addition to the standard ".are" files. This is to help develop
+  editing software other than notepad or OLC.
 
-**New features that can be enabled by uncommenting `#define VANILLA` in `basemud.h`:**
+**Optional Features (disabled by default - enable by uncommenting `#define VANILLA` in `basemud.h`):**
 * More status noficiations in addition to 'excellent', 'nasty wounds', etc.
 * Room titles are now colored based on their terrain type.
 * The "pixie" race has been added just for fun. They can fly, and they're small,
@@ -265,11 +298,6 @@ phased out or at least optional. A handful of changes were just for fun.
 * Object / character materials can now be shown with the 'materials' command.
 * Mobs can now be in stunned, incapacitated, and mortally wounded states.
 * Caster mobs now say their spells when casting just like players.
-
-As a bonus feature, booting the MUD currently outputs several files to JSON
-format in the `json/` directory. In time, the MUD will be able to read these files
-instead or in addition to the standard ".are" files. This is to help develop
-editing software other than notepad or OLC.
 
 Enjoy!
 
