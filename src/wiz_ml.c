@@ -40,12 +40,12 @@
 #include "rooms.h"
 #include "find.h"
 #include "descs.h"
+#include "boot.h"
 
 #include "wiz_ml.h"
 #include "find.h"
 #include "find.h"
 
-/* TODO: make sure 'copyover' works. */
 /* TODO: look at qmconfig to see how it handles game flags. */
 /* TODO: make another wizcommand to toggle vanilla flags. */
 /* TODO: review most of these functions and test them thoroughly. */
@@ -162,11 +162,10 @@ void do_copyover (CHAR_DATA * ch, char *argument) {
         else {
             fprintf (fp, "%d %s %s\n", d->descriptor, och->name, d->host);
 #if 0                            /* This is not necessary for ROM */
-            if (och->level == 1)
-            {
+            if (och->level == 1) {
                 write_to_descriptor (d->descriptor,
-                                     "Since you are level one, and level one characters do not save, you gain a free level!\n\r",
-                                     0);
+                    "Since you are level one, and level one characters "
+                    "do not save, you gain a free level!\n\r", 0);
                 advance_level (och);
                 och->level++;    /* Advance_level doesn't do that */
             }
@@ -190,7 +189,7 @@ void do_copyover (CHAR_DATA * ch, char *argument) {
     sprintf (buf, "%d", port);
     sprintf (buf2, "%d", control);
 #ifdef IMC
-    if ( his_imcmud)
+    if (his_imcmud)
         snprintf (buf3, 100, "%d", this_imcmud->desc);
     else
         strncpy (buf3, "-1", 100);

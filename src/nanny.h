@@ -34,6 +34,7 @@
 #include "merc.h"
 
 /* Function prototypes. */
+bool new_player_name_is_valid (char *name);
 void nanny (DESCRIPTOR_DATA * d, char *argument);
 
 NANNY_FUN nanny_ansi;

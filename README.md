@@ -127,7 +127,7 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
 * The `wear` command now uses a table for looking up wear slots, as does `char_wear_obj()`.
   This is a big improvement from copy+pasted "You wear ___ on ___" code for each possible slot.
 * Separated descriptor functions in `comm.c` into new file `descs.c`.
-* Moved some game loop functions from `comm.c` to `main.c`.
+* Moved all top-level booting functions to `boot.c`.
 
 **Code Reduction:**
 

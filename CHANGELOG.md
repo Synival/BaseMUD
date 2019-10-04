@@ -1,5 +1,11 @@
 # Changelog for BaseMUD
 
+## Version 0.0.4 (TBD)
+
+**Internal Changes:**
+
+* Moved all top-level booting functions to `boot.c`.
+
 ## Version 0.0.3 (2019-10-03)
 
 **Project Organization:**

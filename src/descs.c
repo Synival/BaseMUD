@@ -49,6 +49,8 @@
 #include "db.h"
 #include "recycle.h"
 #include "utils.h"
+#include "interp.h"
+#include "lookup.h"
 
 #include "descs.h"
 
@@ -417,7 +419,7 @@ bool process_output (DESCRIPTOR_DATA * d, bool fPrompt) {
                     percent = -1;
 
                 sprintf (buf, "%s %s.\n\r", PERS_IR (victim, ch),
-                    condition_string(percent));
+                    condition_name_by_percent (percent));
                 buf[0] = UPPER (buf[0]);
                 pbuff = buffer;
                 colour_puts (CH(d), d->ansi, buf, pbuff, MAX_STRING_LENGTH);
@@ -662,4 +664,62 @@ void printf_to_desc (DESCRIPTOR_DATA * d, char *fmt, ...) {
     va_end (args);
 
     send_to_desc (buf, d);
+}
+
+/* does aliasing and other fun stuff */
+void desc_substitute_alias (DESCRIPTOR_DATA * d, char *argument) {
+    CHAR_DATA *ch;
+    char buf[MAX_STRING_LENGTH], prefix[MAX_INPUT_LENGTH],
+        name[MAX_INPUT_LENGTH];
+    char *point;
+    int alias;
+
+    ch = d->original ? d->original : d->character;
+
+    /* check for prefix */
+    if (ch->prefix[0] != '\0' && str_prefix ("prefix", argument)) {
+        if (strlen (ch->prefix) + strlen (argument) > MAX_INPUT_LENGTH - 2)
+            send_to_char ("Line to long, prefix not processed.\r\n", ch);
+        else
+        {
+            sprintf (prefix, "%s %s", ch->prefix, argument);
+            argument = prefix;
+        }
+    }
+
+    if (IS_NPC (ch) || ch->pcdata->alias[0] == NULL
+        || !str_prefix ("alias", argument) || !str_prefix ("una", argument)
+        || !str_prefix ("prefix", argument))
+    {
+        interpret (d->character, argument);
+        return;
+    }
+
+    strcpy (buf, argument);
+
+    for (alias = 0; alias < MAX_ALIAS; alias++) { /* go through the aliases */
+        if (ch->pcdata->alias[alias] == NULL)
+            break;
+
+        if (!str_prefix (ch->pcdata->alias[alias], argument)) {
+            point = one_argument (argument, name);
+            if (!strcmp (ch->pcdata->alias[alias], name)) {
+                /* More Edwin inspired fixes. JR -- 10/15/00 */
+                buf[0] = '\0';
+                strcat(buf,ch->pcdata->alias_sub[alias]);
+                if (point[0]) {
+                    strcat(buf," ");
+                    strcat(buf,point);
+                }
+
+                if (strlen (buf) > MAX_INPUT_LENGTH - 1) {
+                    send_to_char
+                        ("Alias substitution too long. Truncated.\r\n", ch);
+                    buf[MAX_INPUT_LENGTH - 1] = '\0';
+                }
+                break;
+            }
+        }
+    }
+    interpret (d->character, buf);
 }

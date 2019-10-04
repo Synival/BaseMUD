@@ -78,12 +78,11 @@ void do_nread_number (CHAR_DATA *ch, char *argument, time_t *last_note,
     for (p = ch->pcdata->board->note_first; p; p = p->next)
         if (++count == number)
             break;
-    if (!p || !is_note_to(ch, p))
-        send_to_char ("No such note.\n\r", ch);
-    else {
-        show_note_to_char (ch, p, count);
-        *last_note = UMAX (*last_note, p->date_stamp);
-    }
+    BAIL_IF (!p || !is_note_to(ch, p),
+        "No such note.\n\r", ch);
+
+    show_note_to_char (ch, p, count);
+    *last_note = UMAX (*last_note, p->date_stamp);
 }
 
 /* Start writing a note */
@@ -160,7 +159,7 @@ void do_nwrite (CHAR_DATA *ch, char *argument) {
         send_to_char (ch->pcdata->in_progress->text, ch);
 
         send_to_char ("\n\rEnter text. Type {W~{x or {WEND{x on an empty line to end note.\n\r"
-                            "=======================================================\n\r", ch);
+                          "=======================================================\n\r", ch);
 
         ch->desc->connected = CON_NOTE_TEXT;
     }
@@ -185,10 +184,8 @@ void do_nread (CHAR_DATA *ch, char *argument) {
 /* Remove a note */
 void do_nremove (CHAR_DATA *ch, char *argument) {
     NOTE_DATA *p;
-    if (!is_number(argument)) {
-        send_to_char ("Remove which note?\n\r", ch);
-        return;
-    }
+    BAIL_IF (!is_number(argument),
+        "Remove which note?\n\r", ch);
 
     p = find_note (ch, ch->pcdata->board, atoi(argument));
     BAIL_IF (!p,
@@ -228,9 +225,8 @@ void do_nlist (CHAR_DATA *ch, char *argument) {
             has_shown++; /* note that we want to see X VISIBLE note, not just last X */
             if (!show || ((count-show) < has_shown)) {
                 sprintf (buf, "{W%3d{x>{B%c{x{Y%-13s{x{y%s{x\n\r",
-                               num,
-                               last_note < p->date_stamp ? '*' : ' ',
-                               p->sender, p->subject);
+                    num, last_note < p->date_stamp ? '*' : ' ',
+                    p->sender, p->subject);
                 send_to_char (buf, ch);
             }
         }
@@ -244,13 +240,11 @@ void do_ncatchup (CHAR_DATA *ch, char *argument) {
     /* Find last note */
     for (p = ch->pcdata->board->note_first; p && p->next; p = p->next)
         ; /* empty */
+    BAIL_IF (!p,
+        "Alas, there are no notes in that board.\n\r", ch);
 
-    if (!p)
-        send_to_char ("Alas, there are no notes in that board.\n\r", ch);
-    else {
-        ch->pcdata->last_note[board_number(ch->pcdata->board)] = p->date_stamp;
-        send_to_char ("All mesages skipped.\n\r", ch);
-    }
+    ch->pcdata->last_note[board_number(ch->pcdata->board)] = p->date_stamp;
+    send_to_char ("All mesages skipped.\n\r", ch);
 }
 
 /* Show all accessible boards with their numbers of unread messages OR
@@ -321,7 +315,6 @@ void do_board (CHAR_DATA *ch, char *argument) {
     for (i = 0; i < BOARD_MAX; i++)
         if (!str_cmp (board_table[i].name, argument))
             break;
-
     BAIL_IF (i == BOARD_MAX,
         "No such board.\n\r", ch);
 

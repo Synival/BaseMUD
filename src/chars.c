@@ -49,14 +49,6 @@
 
 #include "chars.h"
 
-/* TODO: lots of code can be put into tables. */
-/* TODO: review the function names for consistency. */
-/* TODO: remove any redundant functions, like simple lookup functions. */
-/* TODO: replace fReplace in char_wear_obj() and char_remove_obj() with
- *       flags for EQUIP_ONLY_IF_EMPTY and EQUIP_QUIET. */
-/* TODO: remove duplicated 'if (+/- enchanted)' logic. */
-/* TODO: char_is_friend() was unused, but it looks very useful! */
-
 bool char_has_clan (CHAR_DATA * ch) {
     return ch->clan;
 }
@@ -994,19 +986,18 @@ char *char_format_to_char (CHAR_DATA *victim, CHAR_DATA *ch) {
 }
 
 void char_look_at_char (CHAR_DATA * victim, CHAR_DATA * ch) {
-    char buf[MAX_STRING_LENGTH];
+    char buf[MAX_STRING_LENGTH], *msg;
     OBJ_DATA *obj;
     int iWear;
     int percent;
     bool found;
 
-    if (char_can_see_in_room (victim, ch)) {
-        if (ch == victim)
-            act ("$n looks at $mself.", ch, NULL, NULL, TO_NOTCHAR);
-        else {
+    if (ch == victim)
+        act ("$n looks at $mself.", ch, NULL, NULL, TO_NOTCHAR);
+    else {
+        if (char_can_see_in_room (victim, ch))
             act ("$n looks at you.", ch, NULL, victim, TO_VICT);
-            act ("$n looks at $N.", ch, NULL, victim, TO_OTHERS);
-        }
+        act ("$n looks at $N.", ch, NULL, victim, TO_OTHERS);
     }
 
     if (victim->description[0] != '\0')
@@ -1019,35 +1010,22 @@ void char_look_at_char (CHAR_DATA * victim, CHAR_DATA * ch) {
     else
         percent = -1;
 
+    msg = NULL;
     switch (victim->position) {
-        case POS_DEAD:
-            act ("$E is... dead?!", ch, NULL, victim, TO_CHAR);
-            break;
-        case POS_MORTAL:
-            act ("$E is on the ground, mortally wounded.", ch, NULL, victim, TO_CHAR);
-            break;
-        case POS_INCAP:
-            act ("$E is on the ground, incapacitated.", ch, NULL, victim, TO_CHAR);
-            break;
-        case POS_STUNNED:
-            act ("$E is on the ground, stunned.", ch, NULL, victim, TO_CHAR);
-            break;
-        case POS_SLEEPING:
-            act ("$E is on the ground, sleeping.", ch, NULL, victim, TO_CHAR);
-            break;
-        case POS_RESTING:
-            act ("$E is sitting and resting.", ch, NULL, victim, TO_CHAR);
-            break;
-        case POS_SITTING:
-            act ("$E is sitting.", ch, NULL, victim, TO_CHAR);
-            break;
-        case POS_STANDING:
-            act ("$E is standing.", ch, NULL, victim, TO_CHAR);
-            break;
+        case POS_DEAD:     msg = "$E is... dead?!"; break;
+        case POS_MORTAL:   msg = "$E is on the ground, mortally wounded."; break;
+        case POS_INCAP:    msg = "$E is on the ground, incapacitated."; break;
+        case POS_STUNNED:  msg = "$E is on the ground, stunned."; break;
+        case POS_SLEEPING: msg = "$E is on the ground, sleeping."; break;
+        case POS_RESTING:  msg = "$E is sitting and resting."; break;
+        case POS_SITTING:  msg = "$E is sitting."; break;
+        case POS_STANDING: msg = "$E is standing."; break;
     }
+    if (msg != NULL)
+        act (msg, ch, NULL, victim, TO_CHAR);
 
     sprintf (buf, "%s %s.\n\r", PERS_AW (victim, ch),
-        condition_string (percent));
+        condition_name_by_percent (percent));
     buf[0] = UPPER (buf[0]);
     send_to_char (buf, ch);
 
@@ -1335,7 +1313,7 @@ void char_get_who_string (CHAR_DATA * ch, CHAR_DATA *wch, char *buf,
     const char *class;
 
     /* Figure out what to print for class. */
-    class = get_wiz_class(wch->level);
+    class = wiz_class_by_level (wch->level);
     if (class == NULL)
         class = class_table[wch->class].who_name;
 
@@ -1507,49 +1485,6 @@ CHAR_DATA *char_get_gainer_room (CHAR_DATA *ch) {
     return NULL;
 }
 
-char *condition_string (int percent) {
-#ifndef VANILLA
-         if (percent >= 100) return "is in excellent condition";
-    else if (percent >=  90) return "has a few scratches";
-    else if (percent >=  80) return "has a few bruises";
-    else if (percent >=  70) return "has some small wounds and bruises";
-    else if (percent >=  60) return "has some large wounds";
-    else if (percent >=  50) return "has quite a large few wounds";
-    else if (percent >=  40) return "has some big nasty wounds and scratches";
-    else if (percent >=  30) return "looks seriously wounded";
-    else if (percent >=  20) return "looks pretty hurt";
-    else if (percent >=  10) return "is in awful condition";
-    else if (percent >    0) return "is in critical condition";
-    else if (percent >  -10) return "is stunned on the floor";
-    else if (percent >  -20) return "is incapacitated and bleeding to death";
-    else                     return "is mortally wounded";
-#else
-         if (percent >= 100) return "is in excellent condition";
-    else if (percent >=  90) return "has a few scratches";
-    else if (percent >=  75) return "has some small wounds and bruises";
-    else if (percent >=  50) return "has quite a few wounds";
-    else if (percent >=  30) return "has some big nasty wounds and scratches";
-    else if (percent >=  15) return "looks pretty hurt";
-    else if (percent >=   0) return "is in awful condition";
-    else                     return "is bleeding to death";
-#endif
-}
-
-const char *get_wiz_class (int level) {
-    switch (level) {
-        case IMPLEMENTOR: return "IMP";
-        case CREATOR:     return "CRE";
-        case SUPREME:     return "SUP";
-        case DEITY:       return "DEI";
-        case GOD:         return "GOD";
-        case IMMORTAL:    return "IMM";
-        case DEMI:        return "DEM";
-        case ANGEL:       return "ANG";
-        case AVATAR:      return "AVA";
-        default:          return NULL;
-    }
-}
-
 int char_exit_string (CHAR_DATA *ch, ROOM_INDEX_DATA *room, int mode,
     char *out_buf, size_t out_size)
 {
@@ -1644,4 +1579,42 @@ int char_exit_string (CHAR_DATA *ch, ROOM_INDEX_DATA *room, int mode,
     }
 
     return count;
+}
+
+void char_stop_idling (CHAR_DATA * ch) {
+    if (ch == NULL
+        || ch->desc == NULL
+        || ch->desc->connected != CON_PLAYING
+        || ch->was_in_room == NULL
+        || ch->in_room != get_room_index (ROOM_VNUM_LIMBO)
+    )
+        return;
+
+    ch->timer = 0;
+    char_from_room (ch);
+    char_to_room (ch, ch->was_in_room);
+    ch->was_in_room = NULL;
+    act ("$n has returned from the void.", ch, NULL, NULL, TO_NOTCHAR);
+}
+
+const char *char_get_class_name (CHAR_DATA * ch)
+    { return (IS_NPC (ch)) ? "mobile" : class_table[ch->class].name; }
+
+const char *char_get_position_str (CHAR_DATA * ch, int position,
+    OBJ_DATA * on, int with_punct)
+{
+    static char buf[MAX_STRING_LENGTH];
+    const char *name = position_name (position);
+
+    if (on == NULL)
+        snprintf (buf, sizeof(buf), "%s", name);
+    else {
+        snprintf (buf, sizeof(buf), "%s %s %s",
+            name, obj_furn_preposition (on, position),
+            char_can_see_obj (ch, on) ? on->short_descr : "something");
+    }
+
+    if (with_punct)
+        strcat (buf, (position == POS_DEAD) ? "!!" : ".");
+    return buf;
 }

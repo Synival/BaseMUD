@@ -68,6 +68,9 @@ CHAR_DATA *char_get_keeper_room (CHAR_DATA *ch);
 CHAR_DATA *char_get_trainer_room (CHAR_DATA *ch);
 CHAR_DATA *char_get_practicer_room (CHAR_DATA *ch);
 CHAR_DATA *char_get_gainer_room (CHAR_DATA *ch);
+const char *char_get_class_name (CHAR_DATA * ch);
+const char *char_get_position_str (CHAR_DATA * ch, int position,
+    OBJ_DATA * on, int with_punct);
 
 /* Action functions. */
 void char_reset (CHAR_DATA *ch);
@@ -89,9 +92,6 @@ bool char_drop_weapon_if_too_heavy (CHAR_DATA *ch);
 void char_reduce_money (CHAR_DATA *ch, int cost);
 int char_exit_string (CHAR_DATA *ch, ROOM_INDEX_DATA *room, int mode,
     char *out_buf, size_t out_size);
-
-/* Misc. utility functions. */
-char *condition_string (int percent);
-const char *get_wiz_class (int level);
+void char_stop_idling (CHAR_DATA * ch);
 
 #endif

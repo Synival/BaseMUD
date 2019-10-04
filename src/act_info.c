@@ -543,7 +543,8 @@ void do_score (CHAR_DATA * ch, char *argument) {
             char_get_trust (ch));
 
     printf_to_char (ch, "Race: %s  Sex: %s  Class: %s\n\r",
-        race_table[ch->race].name, get_sex_name(ch->sex), get_ch_class_name(ch));
+        race_table[ch->race].name, sex_name(ch->sex),
+        char_get_class_name (ch));
 
     printf_to_char (ch, "You have %d/%d hit, %d/%d mana, %d/%d movement.\n\r",
         ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move, ch->max_move);
@@ -585,7 +586,7 @@ void do_score (CHAR_DATA * ch, char *argument) {
         send_to_char ("You are hungry.\n\r", ch);
 
     printf_to_char (ch, "You are %s\r\n",
-        get_character_position_str (ch, ch->position, ch->on, TRUE));
+        char_get_position_str (ch, ch->position, ch->on, TRUE));
 
     /* print attack information */
     if (ch->level >= 15)
@@ -600,11 +601,11 @@ void do_score (CHAR_DATA * ch, char *argument) {
 
     for (i = 0; i < 4; i++)
         printf_to_char (ch, "You are %s %s.\n\r",
-            get_ac_rating_phrase (GET_AC (ch, i)), get_ac_type_name(i));
+            ac_rating_phrase (GET_AC (ch, i)), ac_type_name(i));
 
     if (ch->level >= 10)
         printf_to_char (ch, "Alignment: %d.  ", ch->alignment);
-    printf_to_char (ch, "You are %s.\n\r", get_align_name (ch->alignment));
+    printf_to_char (ch, "You are %s.\n\r", align_name (ch->alignment));
 
     /* wizinvis and holy light */
     if (IS_IMMORTAL (ch)) {
