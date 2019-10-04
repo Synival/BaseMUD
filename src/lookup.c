@@ -354,31 +354,111 @@ int slot_lookup (int slot) {
     return -1;
 }
 
-char *affect_apply_name (flag_t type)
+const char *ac_rating_phrase (int ac) {
+         if (ac >=  101) return "hopelessly vulnerable to";
+    else if (ac >=   80) return "defenseless against";
+    else if (ac >=   60) return "barely protected from";
+    else if (ac >=   40) return "slightly armored against";
+    else if (ac >=   20) return "somewhat armored against";
+    else if (ac >=    0) return "armored against";
+    else if (ac >=  -20) return "well-armored against";
+    else if (ac >=  -40) return "very well-armored against";
+    else if (ac >=  -60) return "heavily armored against";
+    else if (ac >=  -80) return "superbly armored against";
+    else if (ac >= -100) return "almost invulnerable to";
+    else                 return "divinely armored against";
+}
+
+const char *align_name (int align) {
+         if (align >  900) return "angelic";
+    else if (align >  700) return "saintly";
+    else if (align >  350) return "good";
+    else if (align >  100) return "kind";
+    else if (align > -100) return "neutral";
+    else if (align > -350) return "mean";
+    else if (align > -700) return "evil";
+    else if (align > -900) return "demonic";
+    else                   return "satanic";
+}
+
+const char *condition_name_by_percent (int percent) {
+#ifndef VANILLA
+         if (percent >= 100) return "is in excellent condition";
+    else if (percent >=  90) return "has a few scratches";
+    else if (percent >=  80) return "has a few bruises";
+    else if (percent >=  70) return "has some small wounds and bruises";
+    else if (percent >=  60) return "has some large wounds";
+    else if (percent >=  50) return "has quite a large few wounds";
+    else if (percent >=  40) return "has some big nasty wounds and scratches";
+    else if (percent >=  30) return "looks seriously wounded";
+    else if (percent >=  20) return "looks pretty hurt";
+    else if (percent >=  10) return "is in awful condition";
+    else if (percent >    0) return "is in critical condition";
+    else if (percent >  -10) return "is stunned on the floor";
+    else if (percent >  -20) return "is incapacitated and bleeding to death";
+    else                     return "is mortally wounded";
+#else
+         if (percent >= 100) return "is in excellent condition";
+    else if (percent >=  90) return "has a few scratches";
+    else if (percent >=  75) return "has some small wounds and bruises";
+    else if (percent >=  50) return "has quite a few wounds";
+    else if (percent >=  30) return "has some big nasty wounds and scratches";
+    else if (percent >=  15) return "looks pretty hurt";
+    else if (percent >=   0) return "is in awful condition";
+    else                     return "is bleeding to death";
+#endif
+}
+
+const char *wiz_class_by_level (int level) {
+    switch (level) {
+        case IMPLEMENTOR: return "IMP";
+        case CREATOR:     return "CRE";
+        case SUPREME:     return "SUP";
+        case DEITY:       return "DEI";
+        case GOD:         return "GOD";
+        case IMMORTAL:    return "IMM";
+        case DEMI:        return "DEM";
+        case ANGEL:       return "ANG";
+        case AVATAR:      return "AVA";
+        default:          return NULL;
+    }
+}
+
+const char *position_name (int position) {
+    return (position < POS_DEAD || position > POS_STANDING)
+        ? "an unknown position (this is a bug!)"
+        : position_table[position].long_name;
+}
+
+const char *affect_apply_name (flag_t type)
     { return flag_string (affect_apply_types, type); }
-char *room_bit_name (flag_t flags)
+const char *room_bit_name (flag_t flags)
     { return flag_string (room_flags, flags); }
-char *affect_bit_name (flag_t flags)
+const char *affect_bit_name (flag_t flags)
     { return flag_string (affect_flags, flags); }
-char *extra_bit_name (flag_t flags)
+const char *extra_bit_name (flag_t flags)
     { return flag_string (extra_flags, flags); }
-char *mob_bit_name (flag_t flags)
+const char *mob_bit_name (flag_t flags)
     { return flag_string (mob_flags, flags); }
-char *plr_bit_name (flag_t flags)
+const char *plr_bit_name (flag_t flags)
     { return flag_string (plr_flags, flags); }
-char *comm_bit_name (flag_t flags)
+const char *comm_bit_name (flag_t flags)
     { return flag_string (comm_flags, flags); }
-char *res_bit_name (flag_t flags)
+const char *res_bit_name (flag_t flags)
     { return flag_string (res_flags, flags); }
-char *wear_bit_name (flag_t flags)
+const char *wear_bit_name (flag_t flags)
     { return flag_string (wear_flags, flags); }
-char *form_bit_name (flag_t flags)
+const char *form_bit_name (flag_t flags)
     { return flag_string (form_flags, flags); }
-char *part_bit_name (flag_t flags)
+const char *part_bit_name (flag_t flags)
     { return flag_string (part_flags, flags); }
-char *weapon_bit_name (flag_t flags)
+const char *weapon_bit_name (flag_t flags)
     { return flag_string (weapon_flags, flags); }
-char *cont_bit_name (flag_t flags)
+const char *cont_bit_name (flag_t flags)
     { return flag_string (container_flags, flags); }
-char *off_bit_name (flag_t flags)
+const char *off_bit_name (flag_t flags)
     { return flag_string (off_flags, flags); }
+const char *sex_name (int sex)
+    { return flag_string (sex_types, sex); }
+const char *ac_type_name (int type)
+    { return flag_string (ac_types, type); }

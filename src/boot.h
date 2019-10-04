@@ -25,35 +25,22 @@
  *    ROM license, in the file Rom24/doc/rom.license                       *
  ***************************************************************************/
 
-#ifndef __ROM_DESCS_H
-#define __ROM_DESCS_H
+#ifndef __ROM_BOOT_H
+#define __ROM_BOOT_H
 
-#include "merc.h"
+#include "boot.h"
 
-/* OS-dependent local functions. */
+/* Platform-specific function prototypes. */
 #if defined(macintosh) || defined(MSDOS)
-    bool read_from_descriptor args ((DESCRIPTOR_DATA * d));
-    bool write_to_descriptor args ((int desc, char *txt, int length));
+    void game_loop_mac_msdos (void);
 #endif
 
 #if defined(unix)
-    int init_socket args ((int port));
-    void init_descriptor args ((int control));
-    bool read_from_descriptor args ((DESCRIPTOR_DATA * d));
-    bool write_to_descriptor args ((int desc, char *txt, int length));
+    void game_loop_unix (int control);
 #endif
 
-void close_socket (DESCRIPTOR_DATA * dclose);
-void read_from_buffer (DESCRIPTOR_DATA * d);
-bool process_output (DESCRIPTOR_DATA * d, bool fPrompt);
-void write_to_buffer (DESCRIPTOR_DATA * d, const char *txt, int length);
-bool check_reconnect (DESCRIPTOR_DATA * d, char *name, bool fConn);
-bool check_playing (DESCRIPTOR_DATA * d, char *name);
-void send_to_desc (const char *txt, DESCRIPTOR_DATA * d);
-void clear_page (DESCRIPTOR_DATA *d);
-void append_to_page (DESCRIPTOR_DATA *d, const char *txt);
-int show_page (DESCRIPTOR_DATA *d);
-void printf_to_desc (DESCRIPTOR_DATA * d, char *fmt, ...);
-void desc_substitute_alias (DESCRIPTOR_DATA * d, char *argument);
+/* Function prototypes. */
+void copyover_recover (void);
+void qmconfig_read (void);
 
 #endif

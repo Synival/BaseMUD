@@ -250,21 +250,28 @@ const SUN_TYPE *sun_get_current ();
 const SKY_TYPE *sky_get_by_mmhg (int mmhg);
 const SUN_TYPE *sun_get_by_hour (int hour);
 int slot_lookup (int slot);
+const char *ac_rating_phrase (int ac);
+const char *align_name (int align);
+const char *position_name (int position);
 
 /* Bit functions from handler.c */
-char *affect_apply_name (flag_t type);
-char *room_bit_name (flag_t flags);
-char *affect_bit_name (flag_t flags);
-char *extra_bit_name (flag_t flags);
-char *mob_bit_name (flag_t flags);
-char *plr_bit_name (flag_t flags);
-char *comm_bit_name (flag_t flags);
-char *res_bit_name (flag_t flags);
-char *wear_bit_name (flag_t flags);
-char *form_bit_name (flag_t flags);
-char *part_bit_name (flag_t flags);
-char *weapon_bit_name (flag_t flags);
-char *cont_bit_name (flag_t flags);
-char *off_bit_name (flag_t flags);
+const char *affect_apply_name (flag_t type);
+const char *room_bit_name (flag_t flags);
+const char *affect_bit_name (flag_t flags);
+const char *extra_bit_name (flag_t flags);
+const char *mob_bit_name (flag_t flags);
+const char *plr_bit_name (flag_t flags);
+const char *comm_bit_name (flag_t flags);
+const char *res_bit_name (flag_t flags);
+const char *wear_bit_name (flag_t flags);
+const char *form_bit_name (flag_t flags);
+const char *part_bit_name (flag_t flags);
+const char *weapon_bit_name (flag_t flags);
+const char *cont_bit_name (flag_t flags);
+const char *off_bit_name (flag_t flags);
+const char *sex_name (int sex);
+const char *ac_type_name (int type);
+const char *condition_name_by_percent (int percent);
+const char *wiz_class_by_level (int level);
 
 #endif

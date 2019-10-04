@@ -48,16 +48,15 @@
 #include "olc.h"
 #include "nanny.h"
 #include "update.h"
+#include "chars.h"
+#include "descs.h"
+#include "recycle.h"
+#include "act_info.h"
 
-/* TODO: feature - better command-line arguments? */
+#include "boot.h"
 
-#if defined(macintosh) || defined(MSDOS)
-    void game_loop_mac_msdos (void);
-#endif
-
-#if defined(unix)
-    void game_loop_unix (int control);
-#endif
+/* TODO: feature - better command-line arguments?
+ *       (confirm it works with copyover) */
 
 int main (int argc, char **argv) {
     struct timeval now_time;
@@ -221,7 +220,7 @@ void game_loop_mac_msdos (void) {
             read_from_buffer (d);
             if (d->incomm[0] != '\0') {
                 d->fcommand = TRUE;
-                stop_idling (d->character);
+                char_stop_idling (d->character);
 
                 /* OLC */
                 if (d->showstr_point) {
@@ -234,7 +233,7 @@ void game_loop_mac_msdos (void) {
                     switch (d->connected) {
                         case CON_PLAYING:
                             if (!run_olc_editor (d))
-                                substitute_alias (d, d->incomm);
+                                desc_substitute_alias (d, d->incomm);
                             break;
                         default:
                             nanny (d, d->incomm);
@@ -378,7 +377,7 @@ void game_loop_unix (int control) {
             read_from_buffer (d);
             if (d->incomm[0] != '\0') {
                 d->fcommand = TRUE;
-                stop_idling (d->character);
+                char_stop_idling (d->character);
 
                 /* OLC */
                 if (d->showstr_point) {
@@ -391,7 +390,7 @@ void game_loop_unix (int control) {
                     switch (d->connected) {
                         case CON_PLAYING:
                             if (!run_olc_editor (d))
-                                substitute_alias (d, d->incomm);
+                                desc_substitute_alias (d, d->incomm);
                             break;
                         default:
                             nanny (d, d->incomm);
@@ -464,3 +463,128 @@ void game_loop_unix (int control) {
     }
 }
 #endif
+
+/* Recover from a copyover - load players */
+void copyover_recover (void) {
+    DESCRIPTOR_DATA *d;
+    FILE *fp;
+    char name[100];
+    char host[MSL];
+    int desc;
+    bool fOld;
+
+    log_f ("Copyover recovery initiated");
+    fp = fopen (COPYOVER_FILE, "r");
+
+    /* there are some descriptors open which will hang forever then ? */
+    if (!fp) {
+        perror ("copyover_recover:fopen");
+        log_f ("Copyover file not found. Exitting.\n\r");
+        exit (1);
+    }
+
+    /* In case something crashes - doesn't prevent reading  */
+    unlink (COPYOVER_FILE);
+    while (1) {
+        int errorcheck = fscanf (fp, "%d %s %s\n", &desc, name, host);
+        if (errorcheck < 0)
+            break;
+        if (desc == -1)
+            break;
+
+        /* Write something, and check if it goes error-free */
+        if (!write_to_descriptor (desc, "\n\rRestoring from copyover...\n\r", 0)) {
+            close (desc); /* nope */
+            continue;
+        }
+
+        d = descriptor_new ();
+        d->descriptor = desc;
+
+        d->host = str_dup (host);
+        LIST_FRONT (d, next, descriptor_list);
+        d->connected = CON_COPYOVER_RECOVER;    /* -15, so close_socket frees the char */
+
+        /* Now, find the pfile */
+        fOld = load_char_obj (d, name);
+
+        /* Player file not found?! */
+        if (!fOld) {
+            write_to_descriptor (desc,
+                "\n\rSomehow, your character was lost in the copyover. Sorry.\n\r", 0);
+            close_socket (d);
+            continue;
+        }
+
+        /* Player file found - ok! */
+        write_to_descriptor (desc, "\n\rCopyover recovery complete.\n\r", 0);
+
+        /* Just In Case */
+        if (!d->character->in_room)
+            d->character->in_room = get_room_index (ROOM_VNUM_TEMPLE);
+
+        /* Insert in the char_list */
+        LIST_FRONT (d->character, next, char_list);
+
+        char_to_room (d->character, d->character->in_room);
+        do_look (d->character, "auto");
+        act ("$n materializes!", d->character, NULL, NULL, TO_NOTCHAR);
+        d->connected = CON_PLAYING;
+
+        if (d->character->pet != NULL) {
+            char_to_room (d->character->pet, d->character->in_room);
+            act ("$n materializes!.", d->character->pet, NULL, NULL,
+                 TO_NOTCHAR);
+        }
+    }
+    fclose (fp);
+}
+
+void qmconfig_read (void) {
+    FILE *fp;
+    bool fMatch;
+    char *word;
+    extern int mud_ansiprompt, mud_ansicolor, mud_telnetga;
+
+    log_f ("Loading configuration settings from %s.", QMCONFIG_FILE);
+    fp = fopen(QMCONFIG_FILE, "r");
+    if (!fp) {
+        log_f ("%s not found. Using compiled-in defaults.", QMCONFIG_FILE);
+        return;
+    }
+
+    while (1) {
+        word = feof (fp) ? "END" : fread_word(fp);
+        fMatch = FALSE;
+
+        switch (UPPER(word[0])) {
+            case '#':
+                /* This is a comment line! */
+                fMatch = TRUE;
+                fread_to_eol (fp);
+                break;
+            case '*':
+                fMatch = TRUE;
+                fread_to_eol (fp);
+                break;
+
+            case 'A':
+                KEY ("Ansicolor", mud_ansicolor, fread_number(fp));
+                KEY ("Ansiprompt", mud_ansiprompt, fread_number(fp));
+                break;
+            case 'E':
+                if (!str_cmp(word, "END"))
+                    return;
+                break;
+            case 'T':
+                KEY ("Telnetga", mud_telnetga, fread_number(fp));
+                break;
+        }
+        if (!fMatch) {
+            log_f ("qmconfig_read: no match for %s!", word);
+            fread_to_eol(fp);
+        }
+    }
+    log_f ("Settings have been read from %s", QMCONFIG_FILE);
+    exit(0);
+}

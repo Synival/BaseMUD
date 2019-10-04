@@ -477,7 +477,7 @@ void do_stand (CHAR_DATA * ch, char *argument) {
     /* If we're fighting someone, move to fighting position instead. */
     new_pos = ch->fighting ? POS_FIGHTING : POS_STANDING;
 
-    BAIL_IF (!position_change_message(ch, ch->position, new_pos, obj),
+    BAIL_IF (!position_change_send_message(ch, ch->position, new_pos, obj),
         "You can't stand up from your current position.\n\r", ch);
     ch->position = new_pos;
     ch->on = obj;
@@ -506,7 +506,7 @@ void do_rest (CHAR_DATA * ch, char *argument) {
             "There's no more room on $p.", ch, obj, NULL);
     }
 
-    BAIL_IF (!position_change_message(ch, ch->position, POS_RESTING, obj),
+    BAIL_IF (!position_change_send_message(ch, ch->position, POS_RESTING, obj),
         "You can't rest from your current position.\n\r", ch);
     ch->position = POS_RESTING;
     ch->on = obj;
@@ -535,7 +535,7 @@ void do_sit (CHAR_DATA * ch, char *argument) {
             "There's no more room on $p.", ch, obj, NULL);
     }
 
-    BAIL_IF (!position_change_message(ch, ch->position, POS_SITTING, obj),
+    BAIL_IF (!position_change_send_message(ch, ch->position, POS_SITTING, obj),
         "You can't sit from your current position.\n\r", ch);
     ch->position = POS_SITTING;
     ch->on = obj;
@@ -564,7 +564,7 @@ void do_sleep (CHAR_DATA * ch, char *argument) {
             "There's no more room on $p.", ch, obj, NULL);
     }
 
-    BAIL_IF (!position_change_message(ch, ch->position, POS_SLEEPING, obj),
+    BAIL_IF (!position_change_send_message(ch, ch->position, POS_SLEEPING, obj),
         "You can't sleep from your current position.\n\r", ch);
     ch->position = POS_SLEEPING;
     ch->on = obj;

@@ -121,8 +121,8 @@ void affect_modify_apply (CHAR_DATA * ch, AFFECT_DATA * paf, bool on) {
         case APPLY_CLASS:         break;
         case APPLY_LEVEL:         break;
         case APPLY_AGE:           break;
-        case APPLY_HEIGHT:        break; /* TODO: aww why not? */
-        case APPLY_WEIGHT:        break; /* TODO: ditto */
+        case APPLY_HEIGHT:        break;
+        case APPLY_WEIGHT:        break;
         case APPLY_MANA:          ch->max_mana += mod; break;
         case APPLY_HIT:           ch->max_hit += mod; break;
         case APPLY_MOVE:          ch->max_move += mod; break;
@@ -155,7 +155,6 @@ void affect_modify (CHAR_DATA * ch, AFFECT_DATA * paf, bool on) {
     affect_modify_apply (ch, paf, on);
 
     /* Drop our weapon if it's suddenly too heavy. */
-    /* TODO: this is a bit extreme to do here! */
     char_drop_weapon_if_too_heavy (ch);
 }
 

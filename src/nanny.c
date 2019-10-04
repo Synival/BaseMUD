@@ -62,6 +62,116 @@
  *       review it so it's less janky. */
 /* TODO: move the code below to nanny.h, if necessary... */
 
+/* Parse a name for acceptability. */
+bool new_player_name_is_valid (char *name) {
+    int clan;
+
+    /* Reserved words. */
+    if (is_exact_name (name,
+            "all auto immortal self someone something the you loner none"))
+        return FALSE;
+
+    /* check clans */
+    for (clan = 0; clan < CLAN_MAX; clan++) {
+        if (LOWER (name[0]) == LOWER (clan_table[clan].name[0])
+            && !str_cmp (name, clan_table[clan].name))
+            return FALSE;
+    }
+
+    /* Restrict certain specific names. */
+    if (str_cmp (capitalize (name), "Alander") &&
+            (!str_prefix ("Alan", name) || !str_suffix ("Alander", name)))
+        return FALSE;
+
+    /* Length restrictions. */
+    if (strlen (name) < 2)
+        return FALSE;
+
+    #if defined(MSDOS)
+        if (strlen (name) > 8)
+            return FALSE;
+    #endif
+
+    #if defined(macintosh) || defined(unix)
+        if (strlen (name) > 12)
+            return FALSE;
+    #endif
+
+    /* Alphanumerics only.  Lock out IllIll twits. */
+    {
+        char *pc;
+        bool fIll, adjcaps = FALSE, cleancaps = FALSE;
+        int total_caps = 0;
+
+        fIll = TRUE;
+        for (pc = name; *pc != '\0'; pc++) {
+            if (!isalpha (*pc))
+                return FALSE;
+
+            if (isupper (*pc)) {
+                /* ugly anti-caps hack */
+                if (adjcaps)
+                    cleancaps = TRUE;
+                total_caps++;
+                adjcaps = TRUE;
+            }
+            else
+                adjcaps = FALSE;
+
+            if (LOWER (*pc) != 'i' && LOWER (*pc) != 'l')
+                fIll = FALSE;
+        }
+
+        if (fIll)
+            return FALSE;
+        if (cleancaps || (total_caps > (strlen (name)) / 2 && strlen (name) < 3))
+            return FALSE;
+    }
+
+    /* Prevent players from naming themselves after mobs. */
+    {
+        extern MOB_INDEX_DATA *mob_index_hash[MAX_KEY_HASH];
+        MOB_INDEX_DATA *pMobIndex;
+        int iHash;
+
+        for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
+            for (pMobIndex = mob_index_hash[iHash];
+                 pMobIndex != NULL; pMobIndex = pMobIndex->next)
+            {
+                if (is_name (name, pMobIndex->name))
+                    return FALSE;
+            }
+        }
+    }
+
+    /* Edwin's been here too. JR -- 10/15/00
+     *
+     * Check names of people playing. Yes, this is necessary for multiple
+     * newbies with the same name (thanks Saro) */
+    if (descriptor_list) {
+        int count = 0;
+        DESCRIPTOR_DATA *d, *dnext;
+
+        for (d = descriptor_list; d != NULL; d = dnext) {
+            dnext=d->next;
+            if (d->connected!=CON_PLAYING&&d->character&&d->character->name
+                && d->character->name[0] && !str_cmp(d->character->name,name))
+            {
+                count++;
+                close_socket(d);
+            }
+        }
+        if (count) {
+            sprintf (log_buf,"Double newbie alert (%s)", name);
+            wiznet (log_buf, NULL, NULL, WIZ_LOGINS, 0, 0);
+            return FALSE;
+        }
+    }
+
+    /* All checks passed - this name is valid. */
+    return TRUE;
+}
+
 /* Deal with sockets that haven't logged in yet. */
 void nanny (DESCRIPTOR_DATA * d, char *argument) {
     const NANNY_HANDLER *handler;
@@ -112,7 +222,7 @@ void nanny_get_player_name (DESCRIPTOR_DATA * d, char *argument) {
     }
 
     argument[0] = UPPER (argument[0]);
-    if (!check_parse_name (argument)) {
+    if (!new_player_name_is_valid (argument)) {
         send_to_desc ("Illegal name, try another.\n\rName: ", d);
         return;
     }

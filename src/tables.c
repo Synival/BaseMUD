@@ -166,7 +166,7 @@ const POSITION_TYPE position_table[POS_MAX + 1] = {
 
 /* for sex */
 const SEX_TYPE sex_table[SEX_MAX + 1] = {
-    {SEX_NEUTRAL, "none"},
+    {SEX_NEUTRAL, "neutral"},
     {SEX_MALE,    "male"},
     {SEX_FEMALE,  "female"},
     {SEX_EITHER,  "either"},

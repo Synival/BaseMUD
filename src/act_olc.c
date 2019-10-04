@@ -34,9 +34,6 @@
 
 #include "act_olc.h"
 
-/* TODO: move sub-routines and filters to the top. */
-/* TODO: rename sub-routines appropriately. */
-
 void display_resets (CHAR_DATA * ch) {
     ROOM_INDEX_DATA *pRoom;
     RESET_DATA *pReset;
@@ -255,24 +252,18 @@ void do_aedit (CHAR_DATA * ch, char *argument) {
 
     if (is_number (arg)) {
         value = atoi (arg);
-        if (!(pArea = area_get_by_vnum (value))) {
-            send_to_char ("That area vnum does not exist.\n\r", ch);
-            return;
-        }
+        BAIL_IF (!(pArea = area_get_by_vnum (value)),
+            "That area vnum does not exist.\n\r", ch);
     }
     else if (!str_cmp (arg, "create")) {
-        if (ch->pcdata->security < 9) {
-            send_to_char ("AEdit : Insufficient security to create area.\n\r", ch);
-            return;
-        }
+        BAIL_IF (ch->pcdata->security < 9,
+            "AEdit : Insufficient security to create area.\n\r", ch);
         aedit_create (ch, "");
         ch->desc->editor = ED_AREA;
         return;
     }
-    if (!IS_BUILDER (ch, pArea)) {
-        send_to_char ("Insufficient security to edit areas.\n\r", ch);
-        return;
-    }
+    BAIL_IF (!IS_BUILDER (ch, pArea),
+        "Insufficient security to edit areas.\n\r", ch);
 
     ch->desc->pEdit = (void *) pArea;
     ch->desc->editor = ED_AREA;
@@ -307,10 +298,8 @@ void do_hedit (CHAR_DATA *ch, char *argument) {
         char arg2[MAX_STRING_LENGTH];
         argument = one_argument (arg1, arg2);
         if (!str_cmp (arg2, "new")) {
-            if (argument[0] == '\0') {
-                send_to_char ("Syntax: edit help new [topic]\n\r", ch);
-                return;
-            }
+            BAIL_IF (argument[0] == '\0',
+                "Syntax: edit help new [topic]\n\r", ch);
             if (hedit_new (ch, argument))
                 ch->desc->editor = ED_HELP;
             return;
@@ -326,21 +315,17 @@ void do_medit (CHAR_DATA * ch, char *argument) {
     int value;
     char arg1[MAX_STRING_LENGTH];
 
-    argument = one_argument (argument, arg1);
-
     if (IS_NPC (ch))
         return;
 
+    argument = one_argument (argument, arg1);
+
     if (is_number (arg1)) {
         value = atoi (arg1);
-        if (!(pMob = get_mob_index (value))) {
-            send_to_char ("MEdit:  That vnum does not exist.\n\r", ch);
-            return;
-        }
-        if (!IS_BUILDER (ch, pMob->area)) {
-            send_to_char ("Insufficient security to modify mobs.\n\r", ch);
-            return;
-        }
+        BAIL_IF (!(pMob = get_mob_index (value)),
+            "MEdit:  That vnum does not exist.\n\r", ch);
+        BAIL_IF (!IS_BUILDER (ch, pMob->area),
+            "Insufficient security to modify mobs.\n\r", ch);
         ch->desc->pEdit = (void *) pMob;
         ch->desc->editor = ED_MOBILE;
         return;
@@ -348,20 +333,14 @@ void do_medit (CHAR_DATA * ch, char *argument) {
     else {
         if (!str_cmp (arg1, "create")) {
             value = atoi (argument);
-            if (arg1[0] == '\0' || value == 0) {
-                send_to_char ("Syntax:  edit mobile create [vnum]\n\r", ch);
-                return;
-            }
+            BAIL_IF (arg1[0] == '\0' || value == 0,
+                "Syntax:  edit mobile create [vnum]\n\r", ch);
 
             pArea = area_get_by_inner_vnum (value);
-            if (!pArea) {
-                send_to_char ("OEdit:  That vnum is not assigned an area.\n\r", ch);
-                return;
-            }
-            if (!IS_BUILDER (ch, pArea)) {
-                send_to_char ("Insufficient security to modify mobs.\n\r", ch);
-                return;
-            }
+            BAIL_IF (!pArea,
+                "OEdit:  That vnum is not assigned an area.\n\r", ch);
+            BAIL_IF (!IS_BUILDER (ch, pArea),
+                "Insufficient security to modify mobs.\n\r", ch);
             if (medit_create (ch, argument)) {
                 SET_BIT (pArea->area_flags, AREA_CHANGED);
                 ch->desc->editor = ED_MOBILE;
@@ -382,21 +361,14 @@ void do_mpedit (CHAR_DATA * ch, char *argument) {
         int vnum = atoi (command);
         AREA_DATA *ad;
 
-        if ((pMcode = get_mprog_index (vnum)) == NULL) {
-            send_to_char ("MPEdit : That vnum does not exist.\n\r", ch);
-            return;
-        }
+        BAIL_IF ((pMcode = get_mprog_index (vnum)) == NULL,
+            "MPEdit : That vnum does not exist.\n\r", ch);
 
         ad = area_get_by_inner_vnum (vnum);
-        if (ad == NULL) {
-            send_to_char ("MPEdit : VNUM no asignado a ningun area.\n\r", ch);
-            return;
-        }
-        if (!IS_BUILDER (ch, ad)) {
-            send_to_char
-                ("MPEdit : Insuficiente seguridad para editar area.\n\r", ch);
-            return;
-        }
+        BAIL_IF (ad == NULL,
+            "MPEdit : VNUM no asignado a ningun area.\n\r", ch);
+        BAIL_IF (!IS_BUILDER (ch, ad),
+            "MPEdit : Insuficiente seguridad para editar area.\n\r", ch);
 
         ch->desc->pEdit = (void *) pMcode;
         ch->desc->editor = ED_MPCODE;
@@ -404,10 +376,8 @@ void do_mpedit (CHAR_DATA * ch, char *argument) {
     }
 
     if (!str_cmp (command, "create")) {
-        if (argument[0] == '\0') {
-            send_to_char ("Sintaxis : mpedit create [vnum]\n\r", ch);
-            return;
-        }
+        BAIL_IF (argument[0] == '\0',
+            "Sintaxis : mpedit create [vnum]\n\r", ch);
         mpedit_create (ch, argument);
         return;
     }
@@ -430,14 +400,10 @@ void do_oedit (CHAR_DATA * ch, char *argument) {
 
     if (is_number (arg1)) {
         value = atoi (arg1);
-        if (!(pObj = get_obj_index (value))) {
-            send_to_char ("OEdit:  That vnum does not exist.\n\r", ch);
-            return;
-        }
-        if (!IS_BUILDER (ch, pObj->area)) {
-            send_to_char ("Insufficient security to modify objects.\n\r", ch);
-            return;
-        }
+        BAIL_IF (!(pObj = get_obj_index (value)),
+            "OEdit:  That vnum does not exist.\n\r", ch);
+        BAIL_IF (!IS_BUILDER (ch, pObj->area),
+            "Insufficient security to modify objects.\n\r", ch);
         ch->desc->pEdit = (void *) pObj;
         ch->desc->editor = ED_OBJECT;
         return;
@@ -445,20 +411,14 @@ void do_oedit (CHAR_DATA * ch, char *argument) {
     else {
         if (!str_cmp (arg1, "create")) {
             value = atoi (argument);
-            if (argument[0] == '\0' || value == 0) {
-                send_to_char ("Syntax:  edit object create [vnum]\n\r", ch);
-                return;
-            }
+            BAIL_IF (argument[0] == '\0' || value == 0,
+                "Syntax:  edit object create [vnum]\n\r", ch);
 
             pArea = area_get_by_inner_vnum (value);
-            if (!pArea) {
-                send_to_char ("OEdit:  That vnum is not assigned an area.\n\r", ch);
-                return;
-            }
-            if (!IS_BUILDER (ch, pArea)) {
-                send_to_char ("Insufficient security to modify objects.\n\r", ch);
-                return;
-            }
+            BAIL_IF (!pArea,
+                "OEdit:  That vnum is not assigned an area.\n\r", ch);
+            BAIL_IF (!IS_BUILDER (ch, pArea),
+                "Insufficient security to modify objects.\n\r", ch);
             if (oedit_create (ch, argument)) {
                 SET_BIT (pArea->area_flags, AREA_CHANGED);
                 ch->desc->editor = ED_OBJECT;
@@ -482,20 +442,16 @@ void do_redit (CHAR_DATA * ch, char *argument) {
     pRoom = ch->in_room;
 
     if (!str_cmp (arg1, "reset")) { /* redit reset */
-        if (!IS_BUILDER (ch, pRoom->area)) {
-            send_to_char ("Insufficient security to modify room.\n\r", ch);
-            return;
-        }
+        BAIL_IF (!IS_BUILDER (ch, pRoom->area),
+            "Insufficient security to modify room.\n\r", ch);
 
         reset_room (pRoom);
         send_to_char ("Room reset.\n\r", ch);
         return;
     }
     else if (!str_cmp (arg1, "create")) { /* redit create <vnum> */
-        if (argument[0] == '\0' || atoi (argument) == 0) {
-            send_to_char ("Syntax:  edit room create [vnum]\n\r", ch);
-            return;
-        }
+        BAIL_IF (argument[0] == '\0' || atoi (argument) == 0,
+            "Syntax:  edit room create [vnum]\n\r", ch);
         if (redit_create (ch, argument)) { /* pEdit == nuevo cuarto */
             ch->desc->editor = ED_ROOM;
             char_from_room (ch);
@@ -507,21 +463,15 @@ void do_redit (CHAR_DATA * ch, char *argument) {
     }
     else if (!IS_NULLSTR (arg1)) { /* redit <vnum> */
         pRoom = get_room_index (atoi (arg1));
-        if (!pRoom) {
-            send_to_char ("REdit : Nonexistant room.\n\r", ch);
-            return;
-        }
-        if (!IS_BUILDER (ch, pRoom->area)) {
-            send_to_char ("REdit : Insufficient security to modify room.\n\r", ch);
-            return;
-        }
+        BAIL_IF (!pRoom,
+            "REdit : Nonexistant room.\n\r", ch);
+        BAIL_IF (!IS_BUILDER (ch, pRoom->area),
+            "REdit : Insufficient security to modify room.\n\r", ch);
         char_from_room (ch);
         char_to_room (ch, pRoom);
     }
-    if (!IS_BUILDER (ch, pRoom->area)) {
-        send_to_char ("REdit : Insufficient security to modify room.\n\r", ch);
-        return;
-    }
+    BAIL_IF (!IS_BUILDER (ch, pRoom->area),
+        "REdit : Insufficient security to modify room.\n\r", ch);
 
     ch->desc->pEdit = (void *) pRoom;
     ch->desc->editor = ED_ROOM;
@@ -545,10 +495,8 @@ void do_resets (CHAR_DATA * ch, char *argument) {
     argument = one_argument (argument, arg6);
     argument = one_argument (argument, arg7);
 
-    if (!IS_BUILDER (ch, ch->in_room->area)) {
-        send_to_char ("Resets: Invalid security for editing this area.\n\r", ch);
-        return;
-    }
+    BAIL_IF (!IS_BUILDER (ch, ch->in_room->area),
+        "Resets: Invalid security for editing this area.\n\r", ch);
 
     /* Display resets in current room. */
     if (arg1[0] == '\0') {
@@ -568,10 +516,8 @@ void do_resets (CHAR_DATA * ch, char *argument) {
         /* Delete a reset. */
         if (!str_cmp (arg2, "delete")) {
             int insert_loc = atoi (arg1);
-            if (!ch->in_room->reset_first) {
-                send_to_char ("No resets in this area.\n\r", ch);
-                return;
-            }
+            BAIL_IF (!ch->in_room->reset_first,
+                "No resets in this area.\n\r", ch);
 
             if (insert_loc - 1 <= 0) {
                 pReset = pRoom->reset_first;
@@ -585,10 +531,8 @@ void do_resets (CHAR_DATA * ch, char *argument) {
 
                 LIST_FIND_WITH_PREV (++iReset == insert_loc, next,
                     pRoom->reset_first, pReset, prev);
-                if (!pReset) {
-                    send_to_char ("Reset not found.\n\r", ch);
-                    return;
-                }
+                BAIL_IF (!pReset,
+                    "Reset not found.\n\r", ch);
                 LISTB_REMOVE_WITH_PREV (pReset, prev, next,
                     pRoom->reset_first, pRoom->reset_last);
             }
@@ -602,10 +546,8 @@ void do_resets (CHAR_DATA * ch, char *argument) {
         {
             /* Check for Mobile reset. */
             if (!str_cmp (arg2, "mob")) {
-                if (get_mob_index (is_number (arg3) ? atoi (arg3) : 1) == NULL) {
-                    send_to_char ("Mob doesn't exist.\n\r", ch);
-                    return;
-                }
+                BAIL_IF (get_mob_index (is_number (arg3) ? atoi (arg3) : 1) == NULL,
+                    "Mob doesn't exist.\n\r", ch);
                 pReset = reset_data_new ();
                 pReset->command = 'M';
                 pReset->value[1] = atoi (arg3);
@@ -623,12 +565,9 @@ void do_resets (CHAR_DATA * ch, char *argument) {
                     OBJ_INDEX_DATA *temp;
 
                     temp = get_obj_index (is_number (arg5) ? atoi (arg5) : 1);
-                    if ((temp->item_type != ITEM_CONTAINER) &&
-                        (temp->item_type != ITEM_CORPSE_NPC))
-                    {
-                        send_to_char ("Object 2 is not a container.\n\r", ch);
-                        return;
-                    }
+                    BAIL_IF ((temp->item_type != ITEM_CONTAINER) &&
+                             (temp->item_type != ITEM_CORPSE_NPC),
+                        "Object 2 is not a container.\n\r", ch);
                     pReset->command = 'P';
                     pReset->value[2] = is_number (arg6) ? atoi (arg6) : 1;
                     pReset->value[3] = is_number (arg5) ? atoi (arg5) : 1;
@@ -636,10 +575,8 @@ void do_resets (CHAR_DATA * ch, char *argument) {
                 }
                 /* Inside the room. */
                 else if (!str_cmp (arg4, "room")) {
-                    if (get_obj_index (atoi (arg3)) == NULL) {
-                        send_to_char ("Vnum doesn't exist.\n\r", ch);
-                        return;
-                    }
+                    BAIL_IF (get_obj_index (atoi (arg3)) == NULL,
+                        "Vnum doesn't exist.\n\r", ch);
                     pReset->command = 'O';
                     pReset->value[2] = 0;
                     pReset->value[3] = ch->in_room->vnum;
@@ -647,14 +584,10 @@ void do_resets (CHAR_DATA * ch, char *argument) {
                 }
                 /* Into a Mobile's inventory. */
                 else {
-                    if (flag_value (wear_loc_types, arg4) == NO_FLAG) {
-                        send_to_char ("Resets: '? wear-loc'\n\r", ch);
-                        return;
-                    }
-                    if (get_obj_index (atoi (arg3)) == NULL) {
-                        send_to_char ("Vnum doesn't exist.\n\r", ch);
-                        return;
-                    }
+                    BAIL_IF (flag_value (wear_loc_types, arg4) == NO_FLAG,
+                        "Resets: '? wear-loc'\n\r", ch);
+                    BAIL_IF (get_obj_index (atoi (arg3)) == NULL,
+                        "Vnum doesn't exist.\n\r", ch);
                     pReset->value[1] = atoi (arg3);
                     pReset->value[3] = flag_value (wear_loc_types, arg4);
                     if (pReset->value[3] == WEAR_NONE)
@@ -668,10 +601,8 @@ void do_resets (CHAR_DATA * ch, char *argument) {
             send_to_char ("Reset added.\n\r", ch);
         }
         else if (!str_cmp (arg2, "random") && is_number (arg3)) {
-            if (atoi (arg3) < 1 || atoi (arg3) > 6) {
-                send_to_char ("Invalid argument.\n\r", ch);
-                return;
-            }
+            BAIL_IF (atoi (arg3) < 1 || atoi (arg3) > 6,
+                "Invalid argument.\n\r", ch);
             pReset = reset_data_new ();
             pReset->command = 'R';
             pReset->value[1] = ch->in_room->vnum;
@@ -745,16 +676,11 @@ void do_asave (CHAR_DATA * ch, char *argument) {
     if (arg1[0] == '\0') {
         if (ch) {
             send_to_char ("Syntax:\n\r", ch);
-            send_to_char ("  asave <vnum>   - saves a particular area\n\r",
-                          ch);
-            send_to_char ("  asave list     - saves the area.lst file\n\r",
-                          ch);
-            send_to_char
-                ("  asave area     - saves the area being edited\n\r", ch);
-            send_to_char ("  asave changed  - saves all changed zones\n\r",
-                          ch);
-            send_to_char ("  asave world    - saves the world! (db dump)\n\r",
-                          ch);
+            send_to_char ("  asave <vnum>   - saves a particular area\n\r", ch);
+            send_to_char ("  asave list     - saves the area.lst file\n\r", ch);
+            send_to_char ("  asave area     - saves the area being edited\n\r", ch);
+            send_to_char ("  asave changed  - saves all changed zones\n\r", ch);
+            send_to_char ("  asave world    - saves the world! (db dump)\n\r", ch);
             send_to_char ("\n\r", ch);
         }
         return;
@@ -762,19 +688,14 @@ void do_asave (CHAR_DATA * ch, char *argument) {
 
     /* Snarf the value (which need not be numeric). */
     value = atoi (arg1);
-    if (!(pArea = area_get_by_vnum (value)) && is_number (arg1)) {
-        if (ch)
-            send_to_char ("That area does not exist.\n\r", ch);
-        return;
-    }
+    BAIL_IF (!(pArea = area_get_by_vnum (value)) && is_number (arg1),
+        "That area does not exist.\n\r", ch);
 
     /* Save area of given vnum. */
     /* ------------------------ */
     if (is_number (arg1)) {
-        if (ch && !IS_BUILDER (ch, pArea)) {
-            send_to_char ("You are not a builder for this area.\n\r", ch);
-            return;
-        }
+        BAIL_IF (ch && !IS_BUILDER (ch, pArea),
+            "You are not a builder for this area.\n\r", ch);
         save_area_list ();
         save_area (pArea);
         return;
@@ -853,11 +774,9 @@ void do_asave (CHAR_DATA * ch, char *argument) {
             return;
 
         /* Is character currently editing. */
-        if (ch->desc->editor == ED_NONE) {
-            send_to_char ("You are not editing an area, "
-                          "therefore an area vnum is required.\n\r", ch);
-            return;
-        }
+        BAIL_IF (ch->desc->editor == ED_NONE,
+            "You are not editing an area, "
+            "therefore an area vnum is required.\n\r", ch);
 
         /* Find the area to save. */
         switch (ch->desc->editor) {
@@ -882,10 +801,8 @@ void do_asave (CHAR_DATA * ch, char *argument) {
                 break;
         }
 
-        if (!IS_BUILDER (ch, pArea)) {
-            send_to_char ("You are not a builder for this area.\n\r", ch);
-            return;
-        }
+        BAIL_IF (!IS_BUILDER (ch, pArea),
+            "You are not a builder for this area.\n\r", ch);
 
         save_area_list ();
         save_area (pArea);

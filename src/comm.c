@@ -28,8 +28,6 @@
 *    ROM license, in the file Rom24/doc/rom.license                         *
 ****************************************************************************/
 
-/* TODO: VVVV review that! VVVV */
-
 /* This file contains all of the OS-dependent stuff:
  *   startup, signals, BSD sockets for tcp/ip, i/o, timing.
  *
@@ -66,14 +64,7 @@
 
 #include "comm.h"
 
-/* TODO: move definitions to header files. */
-/* TODO: review names and usages of global variables. */
-/* TODO: review most of this, it's been largely untouched. */
-/* TODO: compatibility is probably lost :-( */
-/* TODO: split socket / descriptor related functions to a different file. */
-/* TODO: move game loop to 'main.c' */
-/* TODO: there's a lot of random functions that don't belong in here.
- *       move them to somewhere appropriate! */
+/* TODO: move functions to where they belong */
 
 /* Socket and TCP/IP stuff. */
 #if defined(macintosh) || defined(MSDOS)
@@ -188,11 +179,12 @@ void bust_a_prompt (CHAR_DATA *ch) {
             case 'a':
                 if (ch->level > 9)
                     sprintf (buf2, "%d", ch->alignment);
-                else
+                else {
                     sprintf (buf2, "%s",
                         IS_GOOD (ch) ? "good" :
                         IS_EVIL (ch) ? "evil" :
                                        "neutral");
+                }
                 i = buf2;
                 break;
 
@@ -229,7 +221,7 @@ void bust_a_prompt (CHAR_DATA *ch) {
 
             case 'p':
                 sprintf (buf2, "%s%s", ch->fighting ? "!" : "",
-                    get_character_position_str (ch, ch->position, ch->on, FALSE));
+                    char_get_position_str (ch, ch->position, ch->on, FALSE));
                 i = buf2;
                 break;
 
@@ -251,132 +243,6 @@ void bust_a_prompt (CHAR_DATA *ch) {
 
     if (ch->prefix[0] != '\0')
         write_to_buffer (ch->desc, ch->prefix, 0);
-}
-
-/* Parse a name for acceptability. */
-bool check_parse_name (char *name) {
-    int clan;
-
-    /* Reserved words. */
-    if (is_exact_name (name,
-            "all auto immortal self someone something the you loner none"))
-        return FALSE;
-
-    /* check clans */
-    for (clan = 0; clan < CLAN_MAX; clan++) {
-        if (LOWER (name[0]) == LOWER (clan_table[clan].name[0])
-            && !str_cmp (name, clan_table[clan].name))
-            return FALSE;
-    }
-
-    if (str_cmp (capitalize (name), "Alander") && (!str_prefix ("Alan", name)
-            || !str_suffix ("Alander", name)))
-        return FALSE;
-
-    /* Length restrictions. */
-    if (strlen (name) < 2)
-        return FALSE;
-
-    #if defined(MSDOS)
-        if (strlen (name) > 8)
-            return FALSE;
-    #endif
-
-    #if defined(macintosh) || defined(unix)
-        if (strlen (name) > 12)
-            return FALSE;
-    #endif
-
-    /* Alphanumerics only.
-     * Lock out IllIll twits. */
-    {
-        char *pc;
-        bool fIll, adjcaps = FALSE, cleancaps = FALSE;
-        int total_caps = 0;
-
-        fIll = TRUE;
-        for (pc = name; *pc != '\0'; pc++) {
-            if (!isalpha (*pc))
-                return FALSE;
-
-            if (isupper (*pc)) {
-                /* ugly anti-caps hack */
-                if (adjcaps)
-                    cleancaps = TRUE;
-                total_caps++;
-                adjcaps = TRUE;
-            }
-            else
-                adjcaps = FALSE;
-
-            if (LOWER (*pc) != 'i' && LOWER (*pc) != 'l')
-                fIll = FALSE;
-        }
-
-        if (fIll)
-            return FALSE;
-
-        if (cleancaps || (total_caps > (strlen (name)) / 2 && strlen (name) < 3))
-            return FALSE;
-    }
-
-    /* Prevent players from naming themselves after mobs. */
-    {
-        extern MOB_INDEX_DATA *mob_index_hash[MAX_KEY_HASH];
-        MOB_INDEX_DATA *pMobIndex;
-        int iHash;
-
-        for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-            for (pMobIndex = mob_index_hash[iHash];
-                 pMobIndex != NULL; pMobIndex = pMobIndex->next)
-            {
-                if (is_name (name, pMobIndex->name))
-                    return FALSE;
-            }
-        }
-    }
-
-    /* Edwin's been here too. JR -- 10/15/00
-     *
-     * Check names of people playing. Yes, this is necessary for multiple
-     * newbies with the same name (thanks Saro) */
-    if (descriptor_list) {
-        int count = 0;
-        DESCRIPTOR_DATA *d, *dnext;
-
-        for (d = descriptor_list; d != NULL; d = dnext) {
-            dnext=d->next;
-            if (d->connected!=CON_PLAYING&&d->character&&d->character->name
-                && d->character->name[0] && !str_cmp(d->character->name,name))
-            {
-                count++;
-                close_socket(d);
-            }
-        }
-        if (count) {
-            sprintf (log_buf,"Double newbie alert (%s)", name);
-            wiznet (log_buf, NULL, NULL, WIZ_LOGINS, 0, 0);
-            return FALSE;
-        }
-    }
-
-    return TRUE;
-}
-
-void stop_idling (CHAR_DATA * ch) {
-    if (ch == NULL
-        || ch->desc == NULL
-        || ch->desc->connected != CON_PLAYING
-        || ch->was_in_room == NULL
-        || ch->in_room != get_room_index (ROOM_VNUM_LIMBO)
-    )
-        return;
-
-    ch->timer = 0;
-    char_from_room (ch);
-    char_to_room (ch, ch->was_in_room);
-    ch->was_in_room = NULL;
-    act ("$n has returned from the void.", ch, NULL, NULL, TO_NOTCHAR);
 }
 
 /* Write to one char. */
@@ -433,12 +299,6 @@ void page_to_char (const char *txt, CHAR_DATA * ch) {
     colour_puts (ch, ch->desc->ansi, txt, buf, sizeof(buf));
     append_to_page (ch->desc, buf);
 #endif
-}
-
-/* quick sex fixer */
-void fix_sex (CHAR_DATA * ch) {
-    if (ch->sex < 0 || ch->sex > 2)
-        ch->sex = IS_NPC (ch) ? 0 : ch->pcdata->true_sex;
 }
 
 void act2 (const char *to_char, const char *to_room, CHAR_DATA *ch,
@@ -625,14 +485,6 @@ void act_new (const char *format, CHAR_DATA * ch, const void *arg1,
     }
 }
 
-/* Macintosh support functions. */
-#if defined(macintosh)
-int gettimeofday (struct timeval *tp, void *tzp) {
-    tp->tv_sec = time (NULL);
-    tp->tv_usec = 0;
-}
-#endif
-
 void printf_to_char (CHAR_DATA * ch, char *fmt, ...) {
     char buf[MAX_STRING_LENGTH];
     va_list args;
@@ -665,222 +517,27 @@ void wiznet (char *string, CHAR_DATA * ch, OBJ_DATA * obj,
     }
 }
 
-void qmconfig_read (void) {
-    FILE *fp;
-    bool fMatch;
-    char *word;
-    extern int mud_ansiprompt, mud_ansicolor, mud_telnetga;
-
-    log_f ("Loading configuration settings from %s.", QMCONFIG_FILE);
-    fp = fopen(QMCONFIG_FILE, "r");
-    if (!fp) {
-        log_f ("%s not found. Using compiled-in defaults.", QMCONFIG_FILE);
-        return;
-    }
-
-    while (1) {
-        word = feof (fp) ? "END" : fread_word(fp);
-        fMatch = FALSE;
-
-        switch (UPPER(word[0])) {
-            case '#':
-                /* This is a comment line! */
-                fMatch = TRUE;
-                fread_to_eol (fp);
-                break;
-            case '*':
-                fMatch = TRUE;
-                fread_to_eol (fp);
-                break;
-
-            case 'A':
-                KEY ("Ansicolor", mud_ansicolor, fread_number(fp));
-                KEY ("Ansiprompt", mud_ansiprompt, fread_number(fp));
-                break;
-            case 'E':
-                if (!str_cmp(word, "END"))
-                    return;
-                break;
-            case 'T':
-                KEY ("Telnetga", mud_telnetga, fread_number(fp));
-                break;
-        }
-        if (!fMatch) {
-            log_f ("qmconfig_read: no match for %s!", word);
-            fread_to_eol(fp);
-        }
-    }
-    log_f ("Settings have been read from %s", QMCONFIG_FILE);
-    exit(0);
-}
-
-const char *get_align_name (int align) {
-         if (align >  900) return "angelic";
-    else if (align >  700) return "saintly";
-    else if (align >  350) return "good";
-    else if (align >  100) return "kind";
-    else if (align > -100) return "neutral";
-    else if (align > -350) return "mean";
-    else if (align > -700) return "evil";
-    else if (align > -900) return "demonic";
-    else                   return "satanic";
-}
-
-const char *get_sex_name (int sex) {
-    switch (sex) {
-        case SEX_NEUTRAL: return "sexless";
-        case SEX_MALE:    return "male";
-        case SEX_FEMALE:  return "female";
-        default:          return "(unknown sex)";
-    }
-}
-
-const char *get_ch_class_name (CHAR_DATA * ch) {
-    if (IS_NPC (ch))
-        return "mobile";
-    else
-        return class_table[ch->class].name;
-}
-
-const char *get_ac_type_name (int type) {
-    return flag_string (ac_types, type);
-}
-
-const char *get_position_name (int position) {
-    if (position < POS_DEAD || position > POS_STANDING)
-        return "an unknown position (this is a bug!)";
-    return position_table[position].long_name;
-}
-
-const char *get_character_position_str (CHAR_DATA * ch, int position,
-    OBJ_DATA * on, int with_punct)
-{
-    static char buf[MAX_STRING_LENGTH];
-    const char *name = get_position_name (position);
-
-    if (on == NULL)
-        snprintf (buf, sizeof(buf), "%s", name);
-    else {
-        snprintf (buf, sizeof(buf), "%s %s %s",
-            name, obj_furn_preposition (on, position),
-            char_can_see_obj (ch, on) ? on->short_descr : "something");
-    }
-
-    if (with_punct)
-        strcat (buf, (position == POS_DEAD) ? "!!" : ".");
-    return buf;
-}
-
-const char *get_ac_rating_phrase (int ac) {
-         if (ac >= 101)  return "hopelessly vulnerable to";
-    else if (ac >=  80)  return "defenseless against";
-    else if (ac >=  60)  return "barely protected from";
-    else if (ac >=  40)  return "slightly armored against";
-    else if (ac >=  20)  return "somewhat armored against";
-    else if (ac >=   0)  return "armored against";
-    else if (ac >= -20)  return "well-armored against";
-    else if (ac >= -40)  return "very well-armored against";
-    else if (ac >= -60)  return "heavily armored against";
-    else if (ac >= -80)  return "superbly armored against";
-    else if (ac >= -100) return "almost invulnerable to";
-    else                 return "divinely armored against";
-}
-
-/* Recover from a copyover - load players */
-void copyover_recover () {
-    DESCRIPTOR_DATA *d;
-    FILE *fp;
-    char name[100];
-    char host[MSL];
-    int desc;
-    bool fOld;
-
-    log_f ("Copyover recovery initiated");
-    fp = fopen (COPYOVER_FILE, "r");
-
-    /* there are some descriptors open which will hang forever then ? */
-    if (!fp) {
-        perror ("copyover_recover:fopen");
-        log_f ("Copyover file not found. Exitting.\n\r");
-        exit (1);
-    }
-
-    /* In case something crashes - doesn't prevent reading  */
-    unlink (COPYOVER_FILE);
-    while (1) {
-        int errorcheck = fscanf (fp, "%d %s %s\n", &desc, name, host);
-        if (errorcheck < 0)
-            break;
-        if (desc == -1)
-            break;
-
-        /* Write something, and check if it goes error-free */
-        if (!write_to_descriptor (desc, "\n\rRestoring from copyover...\n\r", 0)) {
-            close (desc); /* nope */
-            continue;
-        }
-
-        d = descriptor_new ();
-        d->descriptor = desc;
-
-        d->host = str_dup (host);
-        LIST_FRONT (d, next, descriptor_list);
-        d->connected = CON_COPYOVER_RECOVER;    /* -15, so close_socket frees the char */
-
-        /* Now, find the pfile */
-        fOld = load_char_obj (d, name);
-
-        /* Player file not found?! */
-        if (!fOld) {
-            write_to_descriptor (desc,
-                "\n\rSomehow, your character was lost in the copyover. Sorry.\n\r", 0);
-            close_socket (d);
-        }
-        /* ok! */
-        else {
-            write_to_descriptor (desc, "\n\rCopyover recovery complete.\n\r", 0);
-
-            /* Just In Case */
-            if (!d->character->in_room)
-                d->character->in_room = get_room_index (ROOM_VNUM_TEMPLE);
-
-            /* Insert in the char_list */
-            LIST_FRONT (d->character, next, char_list);
-
-            char_to_room (d->character, d->character->in_room);
-            do_look (d->character, "auto");
-            act ("$n materializes!", d->character, NULL, NULL, TO_NOTCHAR);
-            d->connected = CON_PLAYING;
-
-            if (d->character->pet != NULL) {
-                char_to_room (d->character->pet, d->character->in_room);
-                act ("$n materializes!.", d->character->pet, NULL, NULL,
-                     TO_NOTCHAR);
-            }
-        }
-    }
-    fclose (fp);
-}
-
-bool position_change_message (CHAR_DATA * ch, int from, int to,
+bool position_change_send_message (CHAR_DATA * ch, int from, int to,
     OBJ_DATA *obj)
 {
     switch (to) {
         case POS_SLEEPING:
-            return position_change_message_to_sleeping(ch, from, obj);
+            return position_change_send_message_to_sleeping (ch, from, obj);
         case POS_RESTING:
-            return position_change_message_to_resting(ch, from, obj);
+            return position_change_send_message_to_resting (ch, from, obj);
         case POS_SITTING:
-            return position_change_message_to_sitting(ch, from, obj);
+            return position_change_send_message_to_sitting (ch, from, obj);
         case POS_STANDING:
-            return position_change_message_to_standing(ch, from, obj);
+            return position_change_send_message_to_standing (ch, from, obj);
         case POS_FIGHTING:
-            return position_change_message_to_fighting(ch, from, obj);
+            return position_change_send_message_to_fighting (ch, from, obj);
     }
     return FALSE;
 }
 
-bool position_change_message_to_standing (CHAR_DATA * ch, int from, OBJ_DATA *obj) {
+bool position_change_send_message_to_standing (CHAR_DATA * ch, int from,
+    OBJ_DATA *obj)
+{
     const char *prep = obj_furn_preposition (obj, POS_STANDING);
     switch (from) {
         case POS_SLEEPING:
@@ -938,7 +595,9 @@ bool position_change_message_to_standing (CHAR_DATA * ch, int from, OBJ_DATA *ob
     return FALSE;
 }
 
-bool position_change_message_to_fighting (CHAR_DATA * ch, int from, OBJ_DATA *obj) {
+bool position_change_send_message_to_fighting (CHAR_DATA * ch, int from,
+    OBJ_DATA *obj)
+{
     switch (from) {
         case POS_SLEEPING:
             send_to_char ("You wake up, stand up, and fight!\n\r", ch);
@@ -958,7 +617,9 @@ bool position_change_message_to_fighting (CHAR_DATA * ch, int from, OBJ_DATA *ob
     return FALSE;
 }
 
-bool position_change_message_to_resting (CHAR_DATA * ch, int from, OBJ_DATA *obj) {
+bool position_change_send_message_to_resting (CHAR_DATA * ch, int from,
+    OBJ_DATA *obj)
+{
     const char *prep = obj_furn_preposition (obj, POS_RESTING);
     switch (from) {
         case POS_SLEEPING:
@@ -997,7 +658,9 @@ bool position_change_message_to_resting (CHAR_DATA * ch, int from, OBJ_DATA *obj
     return FALSE;
 }
 
-bool position_change_message_to_sitting (CHAR_DATA * ch, int from, OBJ_DATA *obj) {
+bool position_change_send_message_to_sitting (CHAR_DATA * ch, int from,
+    OBJ_DATA *obj)
+{
     const char *prep = obj_furn_preposition (obj, POS_RESTING);
     switch (from) {
         case POS_SLEEPING:
@@ -1034,7 +697,9 @@ bool position_change_message_to_sitting (CHAR_DATA * ch, int from, OBJ_DATA *obj
     return FALSE;
 }
 
-bool position_change_message_to_sleeping (CHAR_DATA * ch, int from, OBJ_DATA *obj) {
+bool position_change_send_message_to_sleeping (CHAR_DATA * ch, int from,
+    OBJ_DATA *obj)
+{
     const char *prep = obj_furn_preposition (obj, POS_SLEEPING);
     switch (from) {
         case POS_RESTING:
@@ -1051,64 +716,6 @@ bool position_change_message_to_sleeping (CHAR_DATA * ch, int from, OBJ_DATA *ob
             return TRUE;
     }
     return FALSE;
-}
-
-/* does aliasing and other fun stuff */
-void substitute_alias (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA *ch;
-    char buf[MAX_STRING_LENGTH], prefix[MAX_INPUT_LENGTH],
-        name[MAX_INPUT_LENGTH];
-    char *point;
-    int alias;
-
-    ch = d->original ? d->original : d->character;
-
-    /* check for prefix */
-    if (ch->prefix[0] != '\0' && str_prefix ("prefix", argument)) {
-        if (strlen (ch->prefix) + strlen (argument) > MAX_INPUT_LENGTH - 2)
-            send_to_char ("Line to long, prefix not processed.\r\n", ch);
-        else
-        {
-            sprintf (prefix, "%s %s", ch->prefix, argument);
-            argument = prefix;
-        }
-    }
-
-    if (IS_NPC (ch) || ch->pcdata->alias[0] == NULL
-        || !str_prefix ("alias", argument) || !str_prefix ("una", argument)
-        || !str_prefix ("prefix", argument))
-    {
-        interpret (d->character, argument);
-        return;
-    }
-
-    strcpy (buf, argument);
-
-    for (alias = 0; alias < MAX_ALIAS; alias++) { /* go through the aliases */
-        if (ch->pcdata->alias[alias] == NULL)
-            break;
-
-        if (!str_prefix (ch->pcdata->alias[alias], argument)) {
-            point = one_argument (argument, name);
-            if (!strcmp (ch->pcdata->alias[alias], name)) {
-                /* More Edwin inspired fixes. JR -- 10/15/00 */
-                buf[0] = '\0';
-                strcat(buf,ch->pcdata->alias_sub[alias]);
-                if (point[0]) {
-                    strcat(buf," ");
-                    strcat(buf,point);
-                }
-
-                if (strlen (buf) > MAX_INPUT_LENGTH - 1) {
-                    send_to_char
-                        ("Alias substitution too long. Truncated.\r\n", ch);
-                    buf[MAX_INPUT_LENGTH - 1] = '\0';
-                }
-                break;
-            }
-        }
-    }
-    interpret (d->character, buf);
 }
 
 void echo_to_char (CHAR_DATA *to, CHAR_DATA *from, const char *type,
