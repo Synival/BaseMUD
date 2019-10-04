@@ -1526,13 +1526,10 @@ int char_exit_string (CHAR_DATA *ch, ROOM_INDEX_DATA *room, int mode,
         if (mode == EXITS_AUTO) {
             if (out_buf[0] != '\0')
                 len += snprintf (out_buf + len, out_size - len, " ");
-            len += snprintf (out_buf + len, out_size - len,
 #ifndef VANILLA
-                closed ? "#" : isdoor ? "-" : ""
-#else
-                ""
+            len += snprintf (out_buf + len, out_size - len,
+                closed ? "#" : isdoor ? "-" : "");
 #endif
-            );
 
             len += snprintf (out_buf + len, out_size - len, "%s",
                 door_get_name(door));

@@ -2518,6 +2518,11 @@ void load_mobiles (FILE * fp) {
         str_replace_dup (&pMobIndex->default_pos_str, fread_word (fp));
         str_replace_dup (&pMobIndex->sex_str,         fread_word (fp));
 
+        /* 'none' has been replaced with 'neutral' to avoid confusion
+         * between 'sexless' and 'sex is missing'. */
+        if (!str_cmp (pMobIndex->sex_str, "none"))
+            str_replace_dup (&(pMobIndex->sex_str), "neutral");
+
         pMobIndex->start_pos = lookup_backup (position_lookup_exact,
             pMobIndex->start_pos_str, "Unknown start position '%s'",
             POS_STANDING);
