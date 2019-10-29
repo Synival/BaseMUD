@@ -51,12 +51,18 @@ bool fight_filter_skill_target (CHAR_DATA *ch, const char *argument,
     CHAR_DATA *victim;
     int chance;
 
-    FILTER (sn >= 0 && (chance = get_skill (ch, sn)) == 0,
-        cant_msg, ch);
+    /* If a skill is available, make sure we can use it. */
+    if (sn >= 0) {
+        chance = get_skill (ch, sn);
+        FILTER (chance == 0,
+            cant_msg, ch);
+    }
+    else {
+        chance = 100;
+    }
+
     FILTER (IS_NPC (ch) && npc_flag != 0 && !IS_SET (ch->off_flags, npc_flag),
         cant_msg, ch);
-
-    chance = 100;
     FILTER (sn >= 0 && !IS_NPC (ch) &&
             ch->level < skill_table[sn].skill_level[ch->class],
         cant_msg, ch);
@@ -81,8 +87,11 @@ bool fight_filter_skill_target (CHAR_DATA *ch, const char *argument,
     FILTER_ACT (IS_AFFECTED (ch, AFF_CHARM) && ch->master == victim,
         "But $N is your friend!", ch, NULL, victim);
 
-    if (out_chance) *out_chance = chance;
-    if (out_victim) *out_victim = victim;
+    if (out_chance)
+        *out_chance = chance;
+    if (out_victim)
+        *out_victim = victim;
+
     return FALSE;
 }
 
@@ -90,10 +99,10 @@ DEFINE_DO_FUN (do_berserk) {
     AFFECT_DATA af;
     int chance, hp_percent;
 
-    if ((chance = get_skill (ch, gsn_berserk)) == 0
-        || (IS_NPC (ch) && !IS_SET (ch->off_flags, OFF_BERSERK))
-        || (!IS_NPC (ch)
-            && ch->level < skill_table[gsn_berserk].skill_level[ch->class]))
+    if ((chance = get_skill (ch, gsn_berserk)) == 0           ||
+        (IS_NPC (ch) && !IS_SET (ch->off_flags, OFF_BERSERK)) ||
+        (!IS_NPC (ch) && ch->level <
+            skill_table[gsn_berserk].skill_level[ch->class]))
     {
         send_to_char ("You turn red in the face, but nothing happens.\n\r", ch);
         return;
@@ -308,8 +317,7 @@ DEFINE_DO_FUN (do_trip) {
     int chance;
 
     if (fight_filter_skill_target (ch, argument, gsn_trip, OFF_TRIP,
-            "Tripping? What's that?\n\r", NULL,
-            &chance, &victim))
+            "Tripping? What's that?\n\r", NULL, &chance, &victim))
         return;
 
     BAIL_IF_ACT ((victim->parts & (PART_FEET | PART_LEGS)) == 0,
@@ -343,8 +351,7 @@ DEFINE_DO_FUN (do_trip) {
     /* speed */
     if (IS_SET (ch->off_flags, OFF_FAST) || IS_AFFECTED (ch, AFF_HASTE))
         chance += 10;
-    if (IS_SET (victim->off_flags, OFF_FAST)
-        || IS_AFFECTED (victim, AFF_HASTE))
+    if (IS_SET (victim->off_flags, OFF_FAST) || IS_AFFECTED (victim, AFF_HASTE))
         chance -= 20;
 
     /* level */

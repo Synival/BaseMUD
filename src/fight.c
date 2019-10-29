@@ -315,8 +315,10 @@ void mob_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
     }
 
     if (IS_AFFECTED (ch, AFF_HASTE) ||
-            (IS_SET (ch->off_flags, OFF_FAST) && !IS_AFFECTED (ch, AFF_SLOW)))
+        (IS_SET (ch->off_flags, OFF_FAST) && !IS_AFFECTED (ch, AFF_SLOW)))
+    {
         one_hit (ch, victim, dt);
+    }
     if (ch->fighting != victim || dt == gsn_backstab)
         return;
 
@@ -390,13 +392,13 @@ void mob_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
             if (IS_SET (ch->off_flags, OFF_CRUSH))
                 ; /* do_function(ch, &do_crush, "") */
             break;
+
         case (8):
             if (IS_SET (ch->off_flags, OFF_BACKSTAB))
                 do_function (ch, &do_backstab, "");
             break;
     }
 }
-
 
 /* Hit one guy once. */
 void one_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
@@ -1110,8 +1112,7 @@ bool check_shield_block (CHAR_DATA * ch, CHAR_DATA * victim) {
     if (number_percent () >= chance + victim->level - ch->level)
         return FALSE;
 
-    act ("You block $n's attack with your shield.", ch, NULL, victim,
-         TO_VICT);
+    act ("You block $n's attack with your shield.", ch, NULL, victim, TO_VICT);
     act ("$N blocks your attack with a shield.", ch, NULL, victim, TO_CHAR);
     check_improve (victim, gsn_shield_block, TRUE, 6);
     return TRUE;
@@ -1699,11 +1700,18 @@ void dam_message (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
 #endif
 
     /* Determine strength from damage percent. */
+#ifdef VANILLA
+         if (dam         == 0)  { vs = "miss";               vp = "misses"; }
+    else if (dam_percent <= 5)  { vs = "scratch";            vp = "scratches"; }
+    else if (dam_percent <= 10) { vs = "graze";              vp = "grazes"; }
+    else if (dam_percent <= 15) { vs = "hit";                vp = "hits"; }
+#else
          if (dam         == 0)  { vs = "miss";               vp = "misses"; }
     else if (dam_percent <= 3)  { vs = "scratch";            vp = "scratches"; }
     else if (dam_percent <= 6)  { vs = "scrape";             vp = "scrapes"; }
     else if (dam_percent <= 10) { vs = "graze";              vp = "grazes"; }
     else if (dam_percent <= 15) { vs = "bruise";             vp = "bruises"; }
+#endif
     else if (dam_percent <= 20) { vs = "injure";             vp = "injures"; }
     else if (dam_percent <= 25) { vs = "wound";              vp = "wounds"; }
     else if (dam_percent <= 30) { vs = "maul";               vp = "mauls"; }
@@ -1720,7 +1728,9 @@ void dam_message (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
     else if (dam_percent <= 85) { vs = "=== OBLITERATE ==="; vp = "=== OBLITERATES ==="; }
     else if (dam_percent <= 90) { vs = ">>> ANNIHILATE <<<"; vp = ">>> ANNIHILATES <<<"; }
     else if (dam_percent <= 95) { vs = "<<< ERADICATE >>>";  vp = "<<< ERADICATES >>>"; }
+#ifndef VANILLA
     else if (dam_percent < 100) { vs = "### DESTROY ###";    vp = "### DESTROYS ###"; }
+#endif
     else { vs = "do UNSPEAKABLE things to"; vp = "does UNSPEAKABLE things to"; }
 
     punct = (dam_percent <= 45) ? '.' : '!';

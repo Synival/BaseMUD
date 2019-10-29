@@ -11,6 +11,8 @@
 
 * Reset `'E'` and `'P'` "local limit" flag is unused or was misinterpreted. It's
     no longer saved in JSON files.
+* For some reason, skills were always evaluated with a chance of 100%. This has
+    been fixed.
 
 **Internal Changes:**
 
