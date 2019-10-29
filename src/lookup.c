@@ -35,11 +35,6 @@
 
 #include "lookup.h"
 
-/* TODO: the fewer macros we can have here, the better... */
-/* TODO: use more suitable names for ARRAY and HASH lookup functions. */
-/* TODO: lookup distinctions between sequential arrays that correspond
- *       to their appropriate #defines */
-
 int lookup_backup (int (*func) (const char *str), char *str, char *errf,
     int backup)
 {
@@ -72,10 +67,8 @@ flag_t flag_value (const FLAG_TYPE *flag_table, char *argument) {
     flag_t bit;
     flag_t marked = 0;
 
-    if (is_special (flag_table)) {
-        bug ("flag_value: cannot yet look up values for special types :(", 0);
-        return 0;
-    }
+    RETURN_IF_BUG (is_special (flag_table),
+        "flag_value: cannot yet look up values for special types :(", 0, 0);
     if (!is_flag (flag_table))
         return flag_lookup (argument, flag_table);
 
@@ -97,7 +90,12 @@ flag_t flag_value (const FLAG_TYPE *flag_table, char *argument) {
 
 /* Increased buffers from 2 to 16! That should give us the illusion
  * of stability. -- Synival */
-char *flag_string (const FLAG_TYPE *flag_table, flag_t bits) {
+const char *flag_string (const FLAG_TYPE *flag_table, flag_t bits)
+    { return flag_string_real (flag_table, bits, "none"); }
+
+const char *flag_string_real (const FLAG_TYPE *flag_table, flag_t bits,
+    const char *none_str)
+{
     static char buf[16][512];
     static int cnt = 0;
     int i;
@@ -112,11 +110,9 @@ char *flag_string (const FLAG_TYPE *flag_table, flag_t bits) {
             break;
     mt = &(master_table[i]);
     if (mt->table == NULL)
-        return "none";
-    if (!IS_SET(mt->flags, TABLE_FLAG_TYPE)) {
-        bug ("flag_type: cannot yet lookup special tables :(", 0);
-        return "none";
-    }
+        return none_str;
+    RETURN_IF_BUG (!IS_SET(mt->flags, TABLE_FLAG_TYPE),
+        "flag_type: cannot yet lookup special tables :(", 0, none_str);
 
     buf[cnt][0] = '\0';
     bitflag = IS_SET (mt->flags, TABLE_BITS);
@@ -131,7 +127,7 @@ char *flag_string (const FLAG_TYPE *flag_table, flag_t bits) {
             break;
         }
     }
-    return (buf[cnt][0] != '\0') ? buf[cnt] + 1 : "none";
+    return (buf[cnt][0] != '\0') ? buf[cnt] + 1 : none_str;
 }
 
 flag_t flag_lookup (const char *name, const FLAG_TYPE *flag_table)
@@ -158,7 +154,7 @@ SIMPLE_ARRAY_BUNDLE (class,    CLASS_TYPE,    CLASS_MAX);
 SIMPLE_ARRAY_BUNDLE (skill,    SKILL_TYPE,    SKILL_MAX);
 SIMPLE_ARRAY_BUNDLE (spec,     SPEC_TYPE,     SPEC_MAX);
 SIMPLE_ARRAY_BUNDLE (group,    GROUP_TYPE,    GROUP_MAX);
-SIMPLE_ARRAY_BUNDLE (wear,     WEAR_TYPE,     WEAR_MAX);
+SIMPLE_ARRAY_BUNDLE (wear_loc, WEAR_LOC_TYPE, WEAR_LOC_MAX);
 SIMPLE_ARRAY_BUNDLE (recycle,  RECYCLE_TYPE,  RECYCLE_MAX);
 SIMPLE_ARRAY_BUNDLE (board,    BOARD_DATA,    BOARD_MAX);
 SIMPLE_ARRAY_BUNDLE (master,   TABLE_TYPE,    0);
@@ -207,36 +203,37 @@ const OBJ_MAP *obj_map_get (int item_type)
 
 const char *map_lookup_get_string (int index, flag_t value) {
     const MAP_LOOKUP_TABLE *lookup = map_lookup_get (index);
+
     if (lookup == NULL)
         return NULL;
     if (lookup->flags)
         return flag_get_name (value, lookup->flags);
-    else {
-        switch (lookup->index) {
-            case MAP_LOOKUP_WEAPON_TYPE: return weapon_get_name (value);
-            case MAP_LOOKUP_ATTACK_TYPE: return attack_get_name (value);
-            case MAP_LOOKUP_SKILL:       return skill_get_name (value);
-            case MAP_LOOKUP_LIQUID:      return liq_get_name (value);
 
-            default:
-                bugf("map_lookup_get_string: Unhandled type '%s'",
-                    lookup->name);
-                return NULL;
-        }
+    switch (lookup->index) {
+        case MAP_LOOKUP_WEAPON_TYPE: return weapon_get_name (value);
+        case MAP_LOOKUP_ATTACK_TYPE: return attack_get_name (value);
+        case MAP_LOOKUP_SKILL:       return skill_get_name (value);
+        case MAP_LOOKUP_LIQUID:      return liq_get_name (value);
+
+        default:
+            bugf ("map_lookup_get_string: Unhandled type '%s'", lookup->name);
+            return NULL;
     }
 }
 
 int map_flags_get_string (int index, flag_t value, char *buf, size_t size) {
     const MAP_LOOKUP_TABLE *lookup = map_flags_get (index);
-    char *str = NULL;
+    const char *str = NULL;
+
     if (lookup == NULL)
         return 0;
+
     if (lookup->flags)
         str = flag_string (lookup->flags, value);
     else {
         switch (lookup->index) {
             default:
-                bugf("map_flags_get_string: Unhandled type '%s'",
+                bugf ("map_flags_get_string: Unhandled type '%s'",
                     lookup->name);
                 return 0;
         }
@@ -281,19 +278,19 @@ AREA_DATA *area_get_by_inner_vnum (int vnum) {
     return NULL;
 }
 
-flag_t wear_get_type_by_loc (flag_t wear_loc) {
+flag_t wear_get_loc_by_type (flag_t wear_flag) {
     int i;
-    for (i = 0; wear_table[i].name != NULL; i++)
-        if (wear_loc == wear_table[i].wear_loc)
-            return wear_table[i].type;
+    for (i = 0; wear_loc_table[i].name != NULL; i++)
+        if (wear_flag == wear_loc_table[i].wear_flag)
+            return wear_loc_table[i].type;
     return 0;
 }
 
-flag_t wear_get_loc_by_type (flag_t type) {
+flag_t wear_get_type_by_loc (flag_t wear_loc) {
     int i;
-    for (i = 0; wear_table[i].name != NULL; i++)
-        if (type == wear_table[i].type)
-            return wear_table[i].wear_loc;
+    for (i = 0; wear_loc_table[i].name != NULL; i++)
+        if (wear_loc == wear_loc_table[i].type)
+            return wear_loc_table[i].wear_flag;
     return 0;
 }
 
@@ -337,7 +334,7 @@ const SUN_TYPE *sun_get_by_hour (int hour) {
 }
 
 /* Lookup a skill by slot number. Used for object loading. */
-int slot_lookup (int slot) {
+int skill_get_index_by_slot (int slot) {
     extern bool fBootDb;
     int sn;
 
@@ -347,38 +344,129 @@ int slot_lookup (int slot) {
         if (slot == skill_table[sn].slot)
             return sn;
 
-    if (fBootDb) {
-        bug ("slot_lookup: bad slot %d.", slot);
-        abort ();
-    }
+    EXIT_IF_BUG (fBootDb,
+        "skill_get_index_by_slot: bad slot %d.", slot);
     return -1;
 }
 
-char *affect_apply_name (flag_t type)
+const char *ac_rating_phrase (int ac) {
+         if (ac >=  101) return "hopelessly vulnerable to";
+    else if (ac >=   80) return "defenseless against";
+    else if (ac >=   60) return "barely protected from";
+    else if (ac >=   40) return "slightly armored against";
+    else if (ac >=   20) return "somewhat armored against";
+    else if (ac >=    0) return "armored against";
+    else if (ac >=  -20) return "well-armored against";
+    else if (ac >=  -40) return "very well-armored against";
+    else if (ac >=  -60) return "heavily armored against";
+    else if (ac >=  -80) return "superbly armored against";
+    else if (ac >= -100) return "almost invulnerable to";
+    else                 return "divinely armored against";
+}
+
+const char *align_name (int align) {
+         if (align >  900) return "angelic";
+    else if (align >  700) return "saintly";
+    else if (align >  350) return "good";
+    else if (align >  100) return "kind";
+    else if (align > -100) return "neutral";
+    else if (align > -350) return "mean";
+    else if (align > -700) return "evil";
+    else if (align > -900) return "demonic";
+    else                   return "satanic";
+}
+
+const char *condition_name_by_percent (int percent) {
+#ifndef VANILLA
+         if (percent >= 100) return "is in excellent condition";
+    else if (percent >=  90) return "has a few scratches";
+    else if (percent >=  80) return "has a few bruises";
+    else if (percent >=  70) return "has some small wounds and bruises";
+    else if (percent >=  60) return "has some large wounds";
+    else if (percent >=  50) return "has quite a large few wounds";
+    else if (percent >=  40) return "has some big nasty wounds and scratches";
+    else if (percent >=  30) return "looks seriously wounded";
+    else if (percent >=  20) return "looks pretty hurt";
+    else if (percent >=  10) return "is in awful condition";
+    else if (percent >    0) return "is in critical condition";
+    else if (percent >  -10) return "is stunned on the floor";
+    else if (percent >  -20) return "is incapacitated and bleeding to death";
+    else                     return "is mortally wounded";
+#else
+         if (percent >= 100) return "is in excellent condition";
+    else if (percent >=  90) return "has a few scratches";
+    else if (percent >=  75) return "has some small wounds and bruises";
+    else if (percent >=  50) return "has quite a few wounds";
+    else if (percent >=  30) return "has some big nasty wounds and scratches";
+    else if (percent >=  15) return "looks pretty hurt";
+    else if (percent >=   0) return "is in awful condition";
+    else                     return "is bleeding to death";
+#endif
+}
+
+const char *wiz_class_by_level (int level) {
+    switch (level) {
+        case IMPLEMENTOR: return "IMP";
+        case CREATOR:     return "CRE";
+        case SUPREME:     return "SUP";
+        case DEITY:       return "DEI";
+        case GOD:         return "GOD";
+        case IMMORTAL:    return "IMM";
+        case DEMI:        return "DEM";
+        case ANGEL:       return "ANG";
+        case AVATAR:      return "AVA";
+        default:          return NULL;
+    }
+}
+
+const char *position_name (int position) {
+    return (position < POS_DEAD || position > POS_STANDING)
+        ? "an unknown position (this is a bug!)"
+        : position_table[position].long_name;
+}
+
+const char *affect_apply_name (flag_t type)
     { return flag_string (affect_apply_types, type); }
-char *room_bit_name (flag_t flags)
+const char *room_bit_name (flag_t flags)
     { return flag_string (room_flags, flags); }
-char *affect_bit_name (flag_t flags)
+const char *affect_bit_name (flag_t flags)
     { return flag_string (affect_flags, flags); }
-char *extra_bit_name (flag_t flags)
+const char *extra_bit_name (flag_t flags)
     { return flag_string (extra_flags, flags); }
-char *mob_bit_name (flag_t flags)
+const char *mob_bit_name (flag_t flags)
     { return flag_string (mob_flags, flags); }
-char *plr_bit_name (flag_t flags)
+const char *plr_bit_name (flag_t flags)
     { return flag_string (plr_flags, flags); }
-char *comm_bit_name (flag_t flags)
+const char *comm_bit_name (flag_t flags)
     { return flag_string (comm_flags, flags); }
-char *res_bit_name (flag_t flags)
+const char *res_bit_name (flag_t flags)
     { return flag_string (res_flags, flags); }
-char *wear_bit_name (flag_t flags)
+const char *wear_loc_name (flag_t type)
+    { return flag_string (wear_loc_types, type); }
+const char *wear_flag_name (flag_t flags)
     { return flag_string (wear_flags, flags); }
-char *form_bit_name (flag_t flags)
+const char *form_bit_name (flag_t flags)
     { return flag_string (form_flags, flags); }
-char *part_bit_name (flag_t flags)
+const char *part_bit_name (flag_t flags)
     { return flag_string (part_flags, flags); }
-char *weapon_bit_name (flag_t flags)
+const char *weapon_bit_name (flag_t flags)
     { return flag_string (weapon_flags, flags); }
-char *cont_bit_name (flag_t flags)
+const char *cont_bit_name (flag_t flags)
     { return flag_string (container_flags, flags); }
-char *off_bit_name (flag_t flags)
+const char *off_bit_name (flag_t flags)
     { return flag_string (off_flags, flags); }
+const char *sex_name (int sex)
+    { return flag_string (sex_types, sex); }
+const char *ac_type_name (int type)
+    { return flag_string (ac_types, type); }
+
+const STR_APP_TYPE *str_app_get (int attr)
+    { return str_app_table + URANGE(0, attr, ATTRIBUTE_HIGHEST); }
+const INT_APP_TYPE *int_app_get (int attr)
+    { return int_app_table + URANGE(0, attr, ATTRIBUTE_HIGHEST); }
+const WIS_APP_TYPE *wis_app_get (int attr)
+    { return wis_app_table + URANGE(0, attr, ATTRIBUTE_HIGHEST); }
+const DEX_APP_TYPE *dex_app_get (int attr)
+    { return dex_app_table + URANGE(0, attr, ATTRIBUTE_HIGHEST); }
+const CON_APP_TYPE *con_app_get (int attr)
+    { return con_app_table + URANGE(0, attr, ATTRIBUTE_HIGHEST); }

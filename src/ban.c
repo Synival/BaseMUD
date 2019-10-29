@@ -124,10 +124,8 @@ void ban_site (CHAR_DATA * ch, char *argument, bool fPerm) {
     argument = one_argument (argument, arg2);
 
     if (arg1[0] == '\0') {
-        if (ban_first == NULL) {
-            send_to_char ("No sites banned at this time.\n\r", ch);
-            return;
-        }
+        BAIL_IF (ban_first == NULL,
+            "No sites banned at this time.\n\r", ch);
         buffer = buf_new ();
 
         add_buf (buffer, "Banned sites  level  type     status\n\r");
@@ -174,24 +172,19 @@ void ban_site (CHAR_DATA * ch, char *argument, bool fPerm) {
         suffix = TRUE;
         name[strlen (name) - 1] = '\0';
     }
-    if (strlen (name) == 0) {
-        send_to_char ("You have to ban SOMETHING.\n\r", ch);
-        return;
-    }
+    BAIL_IF (strlen (name) == 0,
+        "You have to ban SOMETHING.\n\r", ch);
 
     prev = NULL;
     for (pban = ban_first; pban != NULL; prev = pban, pban = pban_next) {
         pban_next = pban->next;
         if (str_cmp (name, pban->name))
             continue;
-        if (pban->level > char_get_trust (ch)) {
-            send_to_char ("That ban was set by a higher power.\n\r", ch);
-            return;
-        }
-        else {
-            LISTB_REMOVE_WITH_PREV (pban, prev, next, ban_first, ban_last);
-            ban_free (pban);
-        }
+        BAIL_IF (pban->level > char_get_trust (ch),
+            "That ban was set by a higher power.\n\r", ch);
+
+        LISTB_REMOVE_WITH_PREV (pban, prev, next, ban_first, ban_last);
+        ban_free (pban);
     }
 
     pban = ban_new ();
@@ -211,7 +204,5 @@ void ban_site (CHAR_DATA * ch, char *argument, bool fPerm) {
     LISTB_FRONT (pban, next, ban_first, ban_last);
     save_bans ();
 
-    sprintf (buf, "%s has been banned.\n\r", pban->name);
-    send_to_char (buf, ch);
-    return;
+    printf_to_char (ch, "%s has been banned.\n\r", pban->name);
 }

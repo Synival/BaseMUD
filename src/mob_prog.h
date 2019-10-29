@@ -40,6 +40,70 @@
 
 #include "merc.h"
 
+/* These defines correspond to the entries in fn_keyword[] table.
+ * If you add a new if_check, you must also add a #define here. */
+#define CHK_RAND        (0)
+#define CHK_MOBHERE     (1)
+#define CHK_OBJHERE     (2)
+#define CHK_MOBEXISTS   (3)
+#define CHK_OBJEXISTS   (4)
+#define CHK_PEOPLE      (5)
+#define CHK_PLAYERS     (6)
+#define CHK_MOBS        (7)
+#define CHK_CLONES      (8)
+#define CHK_ORDER       (9)
+#define CHK_HOUR        (10)
+#define CHK_ISPC        (11)
+#define CHK_ISNPC       (12)
+#define CHK_ISGOOD      (13)
+#define CHK_ISEVIL      (14)
+#define CHK_ISNEUTRAL   (15)
+#define CHK_ISIMMORT    (16)
+#define CHK_ISCHARM     (17)
+#define CHK_ISFOLLOW    (18)
+#define CHK_ISACTIVE    (19)
+#define CHK_ISDELAY     (20)
+#define CHK_ISVISIBLE   (21)
+#define CHK_HASTARGET   (22)
+#define CHK_ISTARGET    (23)
+#define CHK_EXISTS      (24)
+#define CHK_AFFECTED    (25)
+#define CHK_ACT         (26)
+#define CHK_OFF         (27)
+#define CHK_IMM         (28)
+#define CHK_CARRIES     (29)
+#define CHK_WEARS       (30)
+#define CHK_HAS         (31)
+#define CHK_USES        (32)
+#define CHK_NAME        (33)
+#define CHK_POS         (34)
+#define CHK_CLAN        (35)
+#define CHK_RACE        (36)
+#define CHK_CLASS       (37)
+#define CHK_OBJTYPE     (38)
+#define CHK_VNUM        (39)
+#define CHK_HPCNT       (40)
+#define CHK_ROOM        (41)
+#define CHK_SEX         (42)
+#define CHK_LEVEL       (43)
+#define CHK_ALIGN       (44)
+#define CHK_MONEY       (45)
+#define CHK_OBJVAL0     (46)
+#define CHK_OBJVAL1     (47)
+#define CHK_OBJVAL2     (48)
+#define CHK_OBJVAL3     (49)
+#define CHK_OBJVAL4     (50)
+#define CHK_GRPSIZE     (51)
+
+/* These defines correspond to the entries in fn_evals[] table. */
+#define EVAL_EQ  0
+#define EVAL_GE  1
+#define EVAL_LE  2
+#define EVAL_GT  3
+#define EVAL_LT  4
+#define EVAL_NE  5
+
+/* Function prototypes. */
 int keyword_lookup (const char **table, char *keyword);
 int num_eval (int lval, int oper, int rval);
 CHAR_DATA *get_random_char (CHAR_DATA * mob);

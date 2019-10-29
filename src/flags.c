@@ -260,7 +260,7 @@ const FLAG_TYPE mprog_flags[] = {
     {"exit",   TRIG_EXIT,   TRUE},
     {"exall",  TRIG_EXALL,  TRUE},
     {"delay",  TRIG_DELAY,  TRUE},
-    {"surr",   TRIG_SURR,   TRUE},
+    {"surrender", TRIG_SURR, TRUE},
     {0}
 };
 
@@ -414,7 +414,7 @@ const FLAG_TYPE res_flags[] = {
     {0}
 };
 
-const FLAG_TYPE portal_flags[] = {
+const FLAG_TYPE gate_flags[] = {
     {"normal_exit", GATE_NORMAL_EXIT, TRUE},
     {"no_curse",    GATE_NOCURSE,     TRUE},
     {"go_with",     GATE_GOWITH,      TRUE},

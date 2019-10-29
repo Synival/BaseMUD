@@ -20,7 +20,7 @@
 #define EDIT_AREA(Ch, Area) (Area = (AREA_DATA *) Ch->desc->pEdit)
 
 /* Sub-routines and filters. */
-bool check_range (int lower, int upper);
+bool aedit_check_range (int lower, int upper);
 
 /* Commands (areas). */
 AEDIT (aedit_show);

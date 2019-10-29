@@ -26,6 +26,7 @@
  ***************************************************************************/
 
 #include <string.h>
+#include <stdlib.h>
 
 #include "affects.h"
 #include "utils.h"
@@ -38,9 +39,192 @@
 
 #include "objs.h"
 
-/* TODO: lots of code can be put into tables. */
-/* TODO: review the function names for consistency. */
-/* TODO: remove any redundant functions, like simple lookup functions. */
+/* Create an instance of an object. */
+OBJ_DATA *obj_create (OBJ_INDEX_DATA * pObjIndex, int level) {
+    AFFECT_DATA *paf;
+    OBJ_DATA *obj;
+    int i;
+
+    EXIT_IF_BUG (pObjIndex == NULL,
+        "obj_create: NULL pObjIndex.", 0);
+
+    obj = obj_new ();
+
+    obj->pIndexData = pObjIndex;
+    obj->in_room = NULL;
+    obj->enchanted = FALSE;
+
+    if (pObjIndex->new_format)
+        obj->level = pObjIndex->level;
+    else
+        obj->level = UMAX (0, level);
+    obj->wear_loc = -1;
+
+    str_replace_dup (&obj->name,        pObjIndex->name);        /* OLC */
+    str_replace_dup (&obj->short_descr, pObjIndex->short_descr); /* OLC */
+    str_replace_dup (&obj->description, pObjIndex->description); /* OLC */
+    obj->material    = pObjIndex->material;
+    obj->item_type   = pObjIndex->item_type;
+    obj->extra_flags = pObjIndex->extra_flags;
+    obj->wear_flags  = pObjIndex->wear_flags;
+    obj->weight      = pObjIndex->weight;
+    for (i = 0; i < OBJ_VALUE_MAX; i++)
+        obj->v.value[i] = pObjIndex->v.value[i];
+
+    if (level == -1 || pObjIndex->new_format)
+        obj->cost = pObjIndex->cost;
+    else
+        obj->cost = number_fuzzy (10)
+            * number_fuzzy (level) * number_fuzzy (level);
+
+    /* Mess with object properties. */
+    switch (obj->item_type) {
+        case ITEM_LIGHT:
+            if (obj->v.light.duration == 999)
+                obj->v.light.duration = -1;
+            break;
+
+        case ITEM_FURNITURE:
+        case ITEM_TRASH:
+        case ITEM_CONTAINER:
+        case ITEM_DRINK_CON:
+        case ITEM_KEY:
+        case ITEM_FOOD:
+        case ITEM_BOAT:
+        case ITEM_CORPSE_NPC:
+        case ITEM_CORPSE_PC:
+        case ITEM_FOUNTAIN:
+        case ITEM_MAP:
+        case ITEM_CLOTHING:
+        case ITEM_PORTAL:
+            if (!pObjIndex->new_format)
+                obj->cost /= 5;
+            break;
+
+        case ITEM_TREASURE:
+        case ITEM_WARP_STONE:
+        case ITEM_ROOM_KEY:
+        case ITEM_GEM:
+        case ITEM_JEWELRY:
+            break;
+
+        case ITEM_JUKEBOX:
+            for (i = 0; i < OBJ_VALUE_MAX; i++)
+                obj->v.value[i] = -1;
+            break;
+
+        case ITEM_SCROLL:
+            if (level != -1 && !pObjIndex->new_format)
+                obj->v.scroll.level = number_fuzzy (obj->v.scroll.level);
+            break;
+
+        case ITEM_WAND:
+            if (level != -1 && !pObjIndex->new_format) {
+                obj->v.wand.level    = number_fuzzy (obj->v.wand.level);
+                obj->v.wand.recharge = number_fuzzy (obj->v.wand.recharge);
+                obj->v.wand.charges  = obj->v.wand.recharge;
+            }
+            if (!pObjIndex->new_format)
+                obj->cost *= 2;
+            break;
+
+        case ITEM_STAFF:
+            if (level != -1 && !pObjIndex->new_format) {
+                obj->v.staff.level    = number_fuzzy (obj->v.staff.level);
+                obj->v.staff.recharge = number_fuzzy (obj->v.staff.recharge);
+                obj->v.staff.charges  = obj->v.staff.recharge;
+            }
+            if (!pObjIndex->new_format)
+                obj->cost *= 2;
+            break;
+
+        case ITEM_WEAPON:
+            if (level != -1 && !pObjIndex->new_format) {
+                obj->v.weapon.dice_num  = number_fuzzy (number_fuzzy (
+                    1 * level / 4 + 2));
+                obj->v.weapon.dice_size = number_fuzzy (number_fuzzy (
+                    3 * level / 4 + 6));
+            }
+            break;
+
+        case ITEM_ARMOR:
+            if (level != -1 && !pObjIndex->new_format) {
+                obj->v.armor.vs_pierce = number_fuzzy (level / 5 + 3);
+                obj->v.armor.vs_bash   = number_fuzzy (level / 5 + 3);
+                obj->v.armor.vs_slash  = number_fuzzy (level / 5 + 3);
+            }
+            break;
+
+        case ITEM_POTION:
+            if (level != -1 && !pObjIndex->new_format)
+                obj->v.potion.level = number_fuzzy (number_fuzzy (
+                    obj->v.potion.level));
+            break;
+
+        case ITEM_PILL:
+            if (level != -1 && !pObjIndex->new_format)
+                obj->v.pill.level = number_fuzzy (number_fuzzy (
+                    obj->v.pill.level));
+            break;
+
+        case ITEM_MONEY:
+            if (!pObjIndex->new_format)
+                obj->v.money.silver = obj->cost;
+            break;
+
+        default:
+            bug ("read_object: vnum %d bad type.", pObjIndex->vnum);
+            break;
+    }
+
+    for (paf = pObjIndex->affected; paf != NULL; paf = paf->next)
+        if (paf->apply == APPLY_SPELL_AFFECT)
+            affect_to_obj (obj, paf);
+
+    LIST_FRONT (obj, next, object_list);
+    pObjIndex->count++;
+    return obj;
+}
+
+/* duplicate an object exactly -- except contents */
+void obj_clone (OBJ_DATA * parent, OBJ_DATA * clone) {
+    int i;
+    AFFECT_DATA *paf;
+    EXTRA_DESCR_DATA *ed, *ed_new;
+
+    if (parent == NULL || clone == NULL)
+        return;
+
+    /* start fixing the object */
+    str_replace_dup (&clone->name,        parent->name);
+    str_replace_dup (&clone->short_descr, parent->short_descr);
+    str_replace_dup (&clone->description, parent->description);
+    clone->item_type   = parent->item_type;
+    clone->extra_flags = parent->extra_flags;
+    clone->wear_flags  = parent->wear_flags;
+    clone->weight      = parent->weight;
+    clone->cost        = parent->cost;
+    clone->level       = parent->level;
+    clone->condition   = parent->condition;
+    clone->material    = parent->material;
+    clone->timer       = parent->timer;
+
+    for (i = 0; i < OBJ_VALUE_MAX; i++)
+        clone->v.value[i] = parent->v.value[i];
+
+    /* affects */
+    clone->enchanted = parent->enchanted;
+    for (paf = parent->affected; paf != NULL; paf = paf->next)
+        affect_to_obj (clone, paf);
+
+    /* extended desc */
+    for (ed = parent->extra_descr; ed != NULL; ed = ed->next) {
+        ed_new = extra_descr_new ();
+        str_replace_dup (&ed_new->keyword, ed->keyword);
+        str_replace_dup (&ed_new->description, ed->description);
+        LIST_BACK (ed_new, next, clone->extra_descr, EXTRA_DESCR_DATA);
+    }
+}
 
 /* returns number of people on an object */
 int obj_count_users (OBJ_DATA * obj) {
@@ -69,10 +253,8 @@ void obj_to_char (OBJ_DATA * obj, CHAR_DATA * ch) {
 void obj_from_char (OBJ_DATA * obj) {
     CHAR_DATA *ch;
 
-    if ((ch = obj->carried_by) == NULL) {
-        bug ("obj_from_char: null ch.", 0);
-        return;
-    }
+    BAIL_IF_BUG ((ch = obj->carried_by) == NULL,
+        "obj_from_char: null ch.", 0);
     if (obj->wear_loc != WEAR_NONE)
         char_unequip_obj (ch, obj);
 
@@ -84,26 +266,43 @@ void obj_from_char (OBJ_DATA * obj) {
 
 /* Find the ac value of an obj, including position effect. */
 int obj_get_ac_type (OBJ_DATA * obj, int iWear, int type) {
+    flag_t ac_value;
     if (obj->item_type != ITEM_ARMOR)
         return 0;
 
-    switch (iWear) {
-        case WEAR_BODY:    return 3 * obj->value[type];
-        case WEAR_HEAD:    return 2 * obj->value[type];
-        case WEAR_LEGS:    return 2 * obj->value[type];
-        case WEAR_FEET:    return obj->value[type];
-        case WEAR_HANDS:   return obj->value[type];
-        case WEAR_ARMS:    return obj->value[type];
-        case WEAR_SHIELD:  return obj->value[type];
-        case WEAR_NECK_1:  return obj->value[type];
-        case WEAR_NECK_2:  return obj->value[type];
-        case WEAR_ABOUT:   return 2 * obj->value[type];
-        case WEAR_WAIST:   return obj->value[type];
-        case WEAR_WRIST_L: return obj->value[type];
-        case WEAR_WRIST_R: return obj->value[type];
-        case WEAR_HOLD:    return obj->value[type];
+    switch (type) {
+        case 0: ac_value = obj->v.armor.vs_pierce; break;
+        case 1: ac_value = obj->v.armor.vs_bash;   break;
+        case 2: ac_value = obj->v.armor.vs_slash;  break;
+        case 3: ac_value = obj->v.armor.vs_magic;  break;
+        default:
+            return 0;
     }
-    return 0;
+
+    switch (iWear) {
+        case WEAR_BODY:
+            return ac_value * 3;
+
+        case WEAR_HEAD:
+        case WEAR_LEGS:
+        case WEAR_ABOUT:
+            return ac_value * 2;
+
+        case WEAR_FEET:
+        case WEAR_HANDS:
+        case WEAR_ARMS:
+        case WEAR_SHIELD:
+        case WEAR_NECK_1:
+        case WEAR_NECK_2:
+        case WEAR_WAIST:
+        case WEAR_WRIST_L:
+        case WEAR_WRIST_R:
+        case WEAR_HOLD:
+            return ac_value;
+
+        default:
+            return 0;
+    }
 }
 
 /* Count occurrences of an obj in a list. */
@@ -123,10 +322,8 @@ void obj_from_room (OBJ_DATA * obj) {
     ROOM_INDEX_DATA *in_room;
     CHAR_DATA *ch;
 
-    if ((in_room = obj->in_room) == NULL) {
-        bug ("obj_from_room: NULL.", 0);
-        return;
-    }
+    BAIL_IF_BUG ((in_room = obj->in_room) == NULL,
+        "obj_from_room: NULL.", 0);
     for (ch = in_room->people; ch != NULL; ch = ch->next_in_room)
         if (ch->on == obj)
             ch->on = NULL;
@@ -164,10 +361,8 @@ void obj_to_obj (OBJ_DATA * obj, OBJ_DATA * obj_to) {
 /* Move an object out of an object. */
 void obj_from_obj (OBJ_DATA * obj) {
     OBJ_DATA *obj_from;
-    if ((obj_from = obj->in_obj) == NULL) {
-        bug ("obj_from_obj: null obj_from.", 0);
-        return;
-    }
+    BAIL_IF_BUG ((obj_from = obj->in_obj) == NULL,
+        "obj_from_obj: null obj_from.", 0);
 
     LIST_REMOVE (obj, next_content, obj_from->contains, OBJ_DATA, NO_FAIL);
     obj->in_obj = NULL;
@@ -201,7 +396,6 @@ void obj_extract (OBJ_DATA * obj) {
     LIST_REMOVE (obj, next, object_list, OBJ_DATA, return);
     --obj->pIndexData->count;
     obj_free (obj);
-    return;
 }
 
 /* Create a 'money' obj. */
@@ -216,34 +410,34 @@ OBJ_DATA *obj_create_money (int gold, int silver) {
     }
 
     if (gold == 0 && silver == 1)
-        obj = create_object (get_obj_index (OBJ_VNUM_SILVER_ONE), 0);
+        obj = obj_create (get_obj_index (OBJ_VNUM_SILVER_ONE), 0);
     else if (gold == 1 && silver == 0)
-        obj = create_object (get_obj_index (OBJ_VNUM_GOLD_ONE), 0);
+        obj = obj_create (get_obj_index (OBJ_VNUM_GOLD_ONE), 0);
     else if (silver == 0) {
-        obj = create_object (get_obj_index (OBJ_VNUM_GOLD_SOME), 0);
+        obj = obj_create (get_obj_index (OBJ_VNUM_GOLD_SOME), 0);
         sprintf (buf, obj->short_descr, gold);
         str_free (obj->short_descr);
         obj->short_descr = str_dup (buf);
-        obj->value[1] = gold;
+        obj->v.money.gold = gold;
         obj->cost = gold;
         obj->weight = gold / 5;
     }
     else if (gold == 0) {
-        obj = create_object (get_obj_index (OBJ_VNUM_SILVER_SOME), 0);
+        obj = obj_create (get_obj_index (OBJ_VNUM_SILVER_SOME), 0);
         sprintf (buf, obj->short_descr, silver);
         str_free (obj->short_descr);
         obj->short_descr = str_dup (buf);
-        obj->value[0] = silver;
+        obj->v.money.silver = silver;
         obj->cost = silver;
         obj->weight = silver / 20;
     }
     else {
-        obj = create_object (get_obj_index (OBJ_VNUM_COINS), 0);
+        obj = obj_create (get_obj_index (OBJ_VNUM_COINS), 0);
         sprintf (buf, obj->short_descr, silver, gold);
         str_free (obj->short_descr);
         obj->short_descr = str_dup (buf);
-        obj->value[0] = silver;
-        obj->value[1] = gold;
+        obj->v.money.silver = silver;
+        obj->v.money.gold   = gold;
         obj->cost = 100 * gold + silver;
         obj->weight = gold / 5 + silver / 20;
     }
@@ -444,10 +638,10 @@ int obj_furn_preposition_type (OBJ_DATA * obj, int position) {
     if ((bits = furniture_get (position)) == NULL)
         return POS_PREP_BAD_POSITION;
 
-         if (obj->value[2] & bits->bit_at) return POS_PREP_AT;
-    else if (obj->value[2] & bits->bit_on) return POS_PREP_ON;
-    else if (obj->value[2] & bits->bit_in) return POS_PREP_IN;
-    else                                   return POS_PREP_BY;
+         if (obj->v.furniture.flags & bits->bit_at) return POS_PREP_AT;
+    else if (obj->v.furniture.flags & bits->bit_on) return POS_PREP_ON;
+    else if (obj->v.furniture.flags & bits->bit_in) return POS_PREP_IN;
+    else                                            return POS_PREP_BY;
 }
 
 const char *obj_furn_preposition_base (OBJ_DATA * obj, int position,
@@ -485,9 +679,10 @@ bool obj_can_fit_in (OBJ_DATA *obj, OBJ_DATA *container) {
         return TRUE;
 
     weight = obj_get_weight (obj);
-    if (weight + obj_get_true_weight (container) > (container->value[0] * 10))
+    if (weight + obj_get_true_weight (container) >
+            (container->v.container.capacity * 10))
         return FALSE;
-    if (weight > (container->value[3] * 10))
+    if (weight > (container->v.container.max_weight * 10))
         return FALSE;
     return TRUE;
 }
@@ -535,7 +730,7 @@ void obj_to_keeper (OBJ_DATA * obj, CHAR_DATA * ch) {
 bool obj_is_furniture (OBJ_DATA * obj, flag_t bits) {
     if (obj->item_type != ITEM_FURNITURE)
         return FALSE;
-    return ((obj->value[2] & bits) != 0) ? TRUE : FALSE;
+    return ((obj->v.furniture.flags & bits) != 0) ? TRUE : FALSE;
 }
 
 void obj_enchant (OBJ_DATA *obj) {
@@ -551,4 +746,71 @@ void obj_enchant (OBJ_DATA *obj) {
         af_new->type = UMAX (0, af_new->type);
         LIST_FRONT (af_new, next, obj->affected);
     }
+}
+
+flag_t obj_exit_flag_for_container (flag_t exit_flag) {
+    switch (exit_flag) {
+        case EX_ISDOOR:    return CONT_CLOSEABLE;
+        case EX_CLOSED:    return CONT_CLOSED;
+        case EX_LOCKED:    return CONT_LOCKED;
+        case EX_PICKPROOF: return CONT_PICKPROOF;
+        default:           return 0;
+    }
+}
+
+bool obj_set_exit_flag (OBJ_DATA *obj, flag_t exit_flag) {
+    switch (obj->item_type) {
+        case ITEM_PORTAL:
+            SET_BIT (obj->v.portal.exit_flags, exit_flag);
+            return TRUE;
+        case ITEM_CONTAINER: {
+            flag_t container_flag;
+            if ((container_flag = obj_exit_flag_for_container (exit_flag)) == 0)
+                return FALSE;
+            SET_BIT (obj->v.container.flags, container_flag);
+            return TRUE;
+        }
+        default:
+            return FALSE;
+    }
+}
+
+bool obj_remove_exit_flag (OBJ_DATA *obj, flag_t exit_flag) {
+    switch (obj->item_type) {
+        case ITEM_PORTAL:
+            REMOVE_BIT (obj->v.portal.exit_flags, exit_flag);
+            return TRUE;
+        case ITEM_CONTAINER: {
+            flag_t container_flag;
+            if ((container_flag = obj_exit_flag_for_container (exit_flag)) == 0)
+                return FALSE;
+            REMOVE_BIT (obj->v.container.flags, container_flag);
+            return TRUE;
+        }
+        default:
+            return FALSE;
+    }
+}
+
+/* Former macros. */
+bool obj_can_wear_flag (OBJ_DATA *obj, flag_t flag) {
+    if (IS_SET ((obj)->wear_flags, flag))
+        return TRUE;
+    else if (obj->item_type == ITEM_LIGHT && flag == ITEM_WEAR_LIGHT)
+        return TRUE;
+    return FALSE;
+}
+
+bool obj_index_can_wear_flag (OBJ_INDEX_DATA *obj, flag_t flag) {
+    if (IS_SET ((obj)->wear_flags, flag))
+        return TRUE;
+    else if (obj->item_type == ITEM_LIGHT && flag == ITEM_WEAR_LIGHT)
+        return TRUE;
+    return FALSE;
+}
+
+int obj_get_weight_mult (OBJ_DATA *obj) {
+    return obj->item_type == ITEM_CONTAINER
+        ? obj->v.container.weight_mult
+        : 100;
 }

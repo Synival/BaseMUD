@@ -36,6 +36,7 @@ extern char *target_name;
 /* Function prototypes. */
 int find_spell (CHAR_DATA * ch, const char *name);
 void say_spell (CHAR_DATA * ch, int sn, int class);
+void say_spell_name (CHAR_DATA *ch, const char *name, int class);
 bool saves_spell (int level, CHAR_DATA * victim, int dam_type);
 bool saves_dispel (int dis_level, int spell_level, int duration);
 bool check_dispel_act (int dis_level, CHAR_DATA * victim, int sn,

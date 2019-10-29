@@ -45,10 +45,8 @@ void load_old_mob (FILE * fp) {
     int race;
     char name[MAX_STRING_LENGTH];
 
-    if (!area_last) { /* OLC */
-        bug ("load_mobiles: no #AREA seen yet.", 0);
-        exit (1);
-    }
+    EXIT_IF_BUG (!area_last, /* OLC */
+        "load_mobiles: no #AREA seen yet.", 0);
 
     while (1) {
         sh_int vnum;
@@ -56,20 +54,16 @@ void load_old_mob (FILE * fp) {
         int iHash;
 
         letter = fread_letter (fp);
-        if (letter != '#') {
-            bug ("load_mobiles: # not found.", 0);
-            exit (1);
-        }
+        EXIT_IF_BUG (letter != '#',
+            "load_mobiles: # not found.", 0);
 
         vnum = fread_number (fp);
         if (vnum == 0)
             break;
 
         fBootDb = FALSE;
-        if (get_mob_index (vnum) != NULL) {
-            bug ("load_mobiles: vnum %d duplicated.", vnum);
-            exit (1);
-        }
+        EXIT_IF_BUG (get_mob_index (vnum) != NULL,
+            "load_mobiles: vnum %d duplicated.", vnum);
         fBootDb = TRUE;
 
         pMobIndex = mob_index_new ();
@@ -130,7 +124,7 @@ void load_old_mob (FILE * fp) {
         one_argument (pMobIndex->name, name);
         if (name[0] == '\0' || (race = race_lookup_exact (name)) < 0) {
             if (name[0] != '\0')
-                bugf("Unknown race '%s'", name);
+                bugf ("Unknown race '%s'", name);
 
             /* fill in with blanks */
             pMobIndex->race = race_lookup_exact ("human");
@@ -157,10 +151,8 @@ void load_old_mob (FILE * fp) {
             pMobIndex->parts = race_table[race].parts;
         }
 
-        if (letter != 'S') {
-            bug ("load_mobiles: vnum %d non-S.", vnum);
-            exit (1);
-        }
+        EXIT_IF_BUG (letter != 'S',
+            "load_mobiles: vnum %d non-S.", vnum);
 
         convert_mobile (pMobIndex);    /* ROM OLC */
 
@@ -176,10 +168,8 @@ void load_old_mob (FILE * fp) {
 void load_old_obj (FILE * fp) {
     OBJ_INDEX_DATA *pObjIndex;
 
-    if (!area_last) { /* OLC */
-        bug ("load_objects: no #AREA seen yet.", 0);
-        exit (1);
-    }
+    EXIT_IF_BUG (!area_last, /* OLC */
+        "load_objects: no #AREA seen yet.", 0);
 
     while (1) {
         sh_int vnum;
@@ -187,20 +177,16 @@ void load_old_obj (FILE * fp) {
         int iHash;
 
         letter = fread_letter (fp);
-        if (letter != '#') {
-            bug ("load_objects: # not found.", 0);
-            exit (1);
-        }
+        EXIT_IF_BUG (letter != '#',
+            "load_objects: # not found.", 0);
 
         vnum = fread_number (fp);
         if (vnum == 0)
             break;
 
         fBootDb = FALSE;
-        if (get_obj_index (vnum) != NULL) {
-            bug ("load_objects: vnum %d duplicated.", vnum);
-            exit (1);
-        }
+        EXIT_IF_BUG (get_obj_index (vnum) != NULL,
+            "load_objects: vnum %d duplicated.", vnum);
         fBootDb = TRUE;
 
         pObjIndex = obj_index_new ();
@@ -220,11 +206,11 @@ void load_old_obj (FILE * fp) {
         pObjIndex->item_type = fread_number (fp);
         pObjIndex->extra_flags = fread_flag (fp);
         pObjIndex->wear_flags = fread_flag (fp);
-        pObjIndex->value[0] = fread_number (fp);
-        pObjIndex->value[1] = fread_number (fp);
-        pObjIndex->value[2] = fread_number (fp);
-        pObjIndex->value[3] = fread_number (fp);
-        pObjIndex->value[4] = 0;
+        pObjIndex->v.value[0] = fread_number (fp);
+        pObjIndex->v.value[1] = fread_number (fp);
+        pObjIndex->v.value[2] = fread_number (fp);
+        pObjIndex->v.value[3] = fread_number (fp);
+        pObjIndex->v.value[4] = 0;
         pObjIndex->level = 0;
         pObjIndex->condition = 100;
         pObjIndex->weight = fread_number (fp);
@@ -232,11 +218,11 @@ void load_old_obj (FILE * fp) {
         fread_number (fp); /* Cost per day? Unused? */
 
         if (pObjIndex->item_type == ITEM_WEAPON) {
-            if (is_name ("two", pObjIndex->name)
-                || is_name ("two-handed", pObjIndex->name)
-                || is_name ("claymore", pObjIndex->name))
+            if (is_name ("two",        pObjIndex->name) ||
+                is_name ("two-handed", pObjIndex->name) ||
+                is_name ("claymore",   pObjIndex->name))
             {
-                SET_BIT (pObjIndex->value[4], WEAPON_TWO_HANDS);
+                SET_BIT (pObjIndex->v.weapon.flags, WEAPON_TWO_HANDS);
             }
         }
 
@@ -248,7 +234,7 @@ void load_old_obj (FILE * fp) {
 
                 duration = fread_number (fp);
                 modifier = fread_number (fp);
-                affect_init (paf, TO_OBJECT, -1, 20, -1, duration, modifier, 0);
+                affect_init (paf, AFF_TO_OBJECT, -1, 20, -1, duration, modifier, 0);
                 LIST_BACK (paf, next, pObjIndex->affected, AFFECT_DATA);
             }
             else if (letter == 'E') {
@@ -266,24 +252,45 @@ void load_old_obj (FILE * fp) {
 
         /* fix armors */
         if (pObjIndex->item_type == ITEM_ARMOR) {
-            pObjIndex->value[1] = pObjIndex->value[0];
-            pObjIndex->value[2] = pObjIndex->value[1];
+            pObjIndex->v.armor.vs_pierce = pObjIndex->v.value[0];
+            pObjIndex->v.armor.vs_bash   = pObjIndex->v.value[0];
+            pObjIndex->v.armor.vs_slash  = pObjIndex->v.value[0];
         }
 
         /* Translate spell "slot numbers" to internal "skill numbers." */
         switch (pObjIndex->item_type) {
-            case ITEM_PILL:
-            case ITEM_POTION:
-            case ITEM_SCROLL:
-                pObjIndex->value[1] = slot_lookup (pObjIndex->value[1]);
-                pObjIndex->value[2] = slot_lookup (pObjIndex->value[2]);
-                pObjIndex->value[3] = slot_lookup (pObjIndex->value[3]);
-                pObjIndex->value[4] = slot_lookup (pObjIndex->value[4]);
+            case ITEM_PILL: {
+                int i;
+                for (i = 0; i < PILL_SKILL_MAX; i++)
+                    pObjIndex->v.pill.skill[i] = skill_get_index_by_slot (
+                        pObjIndex->v.value[i + 1]);
                 break;
+            }
+
+            case ITEM_POTION: {
+                int i;
+                for (i = 0; i < POTION_SKILL_MAX; i++)
+                    pObjIndex->v.potion.skill[i] = skill_get_index_by_slot (
+                        pObjIndex->v.value[i + 1]);
+                break;
+            }
+
+            case ITEM_SCROLL: {
+                int i;
+                for (i = 0; i < SCROLL_SKILL_MAX; i++)
+                    pObjIndex->v.scroll.skill[i] = skill_get_index_by_slot (
+                        pObjIndex->v.scroll.skill[i + 1]);
+                break;
+            }
 
             case ITEM_STAFF:
+                pObjIndex->v.staff.skill = skill_get_index_by_slot (
+                    pObjIndex->v.value[3]);
+                break;
+
             case ITEM_WAND:
-                pObjIndex->value[3] = slot_lookup (pObjIndex->value[3]);
+                pObjIndex->v.wand.skill = skill_get_index_by_slot (
+                    pObjIndex->v.value[3]);
                 break;
         }
 
@@ -292,83 +299,64 @@ void load_old_obj (FILE * fp) {
 
         iHash = vnum % MAX_KEY_HASH;
         LIST_FRONT (pObjIndex, next, obj_index_hash[iHash]);
-        top_vnum_obj = top_vnum_obj < vnum ? vnum : top_vnum_obj;    /* OLC */
-        assign_area_vnum (vnum);    /* OLC */
+        top_vnum_obj = top_vnum_obj < vnum ? vnum : top_vnum_obj; /* OLC */
+        assign_area_vnum (vnum);                                  /* OLC */
     }
 }
 
-/*****************************************************************************
- Name:       convert_objects
- Purpose:    Converts all old format objects to new format
- Called by:  boot_db (db.c).
- Note:       Loops over all resets to find the level of the mob
-             loaded before the object to determine the level of
-             the object.
-             It might be better to update the levels in load_resets().
-             This function is not pretty.. Sorry about that :)
- Author:        Hugin
- ****************************************************************************/
 static MOB_INDEX_DATA *convert_object_reset_mob = NULL;
 static OBJ_INDEX_DATA *convert_object_reset_obj = NULL;
 
 int convert_object_reset (RESET_DATA *pReset) {
+    RESET_VALUE_TYPE *v = &(pReset->v);
+
     #define pMob (convert_object_reset_mob)
     #define pObj (convert_object_reset_obj)
 
     switch (pReset->command) {
         case 'M':
-            if (!(pMob = get_mob_index (pReset->value[1]))) {
-                bug ("convert_objects: 'M': bad vnum %d.", pReset->value[1]);
-                return 0;
-            }
+            RETURN_IF_BUG (!(pMob = get_mob_index (v->mob.mob_vnum)),
+                "convert_objects: 'M': bad vnum %d.", v->mob.mob_vnum, 0);
             break;
 
         case 'O':
-            if (!(pObj = get_obj_index (pReset->value[1]))) {
-                bug ("convert_objects: 'O': bad vnum %d.", pReset->value[1]);
-                return 0;
-            }
+            RETURN_IF_BUG (!(pObj = get_obj_index (v->obj.obj_vnum)),
+                "convert_objects: 'O': bad vnum %d.", v->obj.obj_vnum, 0);
             if (pObj->new_format)
                 return 1;
-            if (!pMob) {
-                bug ("convert_objects: 'O': No mob reset yet.", 0);
-                return 0;
-            }
+
+            RETURN_IF_BUG (!pMob,
+                "convert_objects: 'O': No mob reset yet.", 0, 0);
             pObj->level = pObj->level < 1 ? pMob->level - 2
                 : UMIN (pObj->level, pMob->level - 2);
             break;
 
         case 'P': {
             OBJ_INDEX_DATA *pObj, *pObjTo;
-            if (!(pObj = get_obj_index (pReset->value[1]))) {
-                bug ("convert_objects: 'P': bad vnum %d.", pReset->value[1]);
-                return 0;
-            }
+            RETURN_IF_BUG (!(pObj = get_obj_index (v->put.obj_vnum)),
+                "convert_objects: 'P': bad vnum %d.", v->put.obj_vnum, 0);
             if (pObj->new_format)
                 return 1;
-            if (!(pObjTo = get_obj_index (pReset->value[3]))) {
-                bug ("convert_objects: 'P': bad vnum %d.", pReset->value[3]);
-                return 0;
-            }
+
+            RETURN_IF_BUG (!(pObjTo = get_obj_index (v->put.into_vnum)),
+                "convert_objects: 'P': bad vnum %d.", v->put.into_vnum, 0);
             pObj->level = pObj->level < 1 ? pObjTo->level
                 : UMIN (pObj->level, pObjTo->level);
             break;
         }
 
         case 'G':
-        case 'E':
-            if (!(pObj = get_obj_index (pReset->value[1]))) {
-                bug ("convert_objects: 'E' or 'G': bad vnum %d.",
-                    pReset->value[1]);
-                return 0;
-            }
-            if (!pMob) {
-                bug ("convert_objects: 'E' or 'G': null mob for vnum %d.",
-                    pReset->value[1]);
-                return 0;
-            }
+        case 'E': {
+            int obj_vnum = (pReset->command == 'G')
+                ? v->give.obj_vnum : v->equip.obj_vnum;
+
+            RETURN_IF_BUG (!(pObj = get_obj_index (obj_vnum)),
+                "convert_objects: 'E' or 'G': bad vnum %d.", obj_vnum, 0);
+            RETURN_IF_BUG (!pMob,
+                "convert_objects: 'E' or 'G': null mob for vnum %d.", obj_vnum, 0);
             if (pObj->new_format)
                 return 1;
+
             if (pMob->pShop) {
                 switch (pObj->item_type) {
                     default:
@@ -396,6 +384,7 @@ int convert_object_reset (RESET_DATA *pReset) {
                 pObj->level = pObj->level < 1 ? pMob->level
                     : UMIN (pObj->level, pMob->level);
             break;
+        }
 
         default:
             bug ("convert_objects: '%c': unknown command.", pReset->command);
@@ -407,6 +396,18 @@ int convert_object_reset (RESET_DATA *pReset) {
     return 1;
 }
 
+/*****************************************************************************
+ Name:       convert_objects
+ Purpose:    Converts all old format objects to new format
+ Called by:  boot_db (db.c).
+ Note:       Loops over all resets to find the level of the mob
+             loaded before the object to determine the level of
+             the object.
+             It might be better to update the levels in load_resets().
+             This function is not pretty.. Sorry about that :)
+             ^^^ Fixed! -- Synival
+ Author:        Hugin
+ ****************************************************************************/
 void convert_objects (void) {
     int vnum;
     AREA_DATA *pArea;
@@ -477,8 +478,11 @@ void convert_object (OBJ_INDEX_DATA * pObjIndex) {
             break;
 
         case ITEM_WAND:
+            pObjIndex->v.wand.charges = pObjIndex->v.value[1];
+            break;
+
         case ITEM_STAFF:
-            pObjIndex->value[2] = pObjIndex->value[1];
+            pObjIndex->v.staff.charges = pObjIndex->v.value[1];
             break;
 
         case ITEM_WEAPON:
@@ -510,14 +514,14 @@ void convert_object (OBJ_INDEX_DATA * pObjIndex) {
             number = UMIN (level / 4 + 1, 5);
             type = (level + 7) / number;
 
-            pObjIndex->value[1] = number;
-            pObjIndex->value[2] = type;
+            pObjIndex->v.weapon.dice_num  = number;
+            pObjIndex->v.weapon.dice_size = type;
             break;
 
         case ITEM_ARMOR:
-            pObjIndex->value[0] = level / 5 + 3;
-            pObjIndex->value[1] = pObjIndex->value[0];
-            pObjIndex->value[2] = pObjIndex->value[0];
+            pObjIndex->v.armor.vs_pierce = level / 5 + 3;
+            pObjIndex->v.armor.vs_bash   = pObjIndex->v.value[0];
+            pObjIndex->v.armor.vs_slash  = pObjIndex->v.value[0];
             break;
 
         case ITEM_POTION:
@@ -525,7 +529,7 @@ void convert_object (OBJ_INDEX_DATA * pObjIndex) {
             break;
 
         case ITEM_MONEY:
-            pObjIndex->value[0] = pObjIndex->cost;
+            pObjIndex->v.money.silver = pObjIndex->cost;
             break;
     }
 
@@ -537,7 +541,7 @@ void convert_object (OBJ_INDEX_DATA * pObjIndex) {
  Name:       convert_mobile
  Purpose:    Converts an old_format mob into new_format
  Called by:  load_old_mob (db.c).
- Note:       Dug out of create_mobile (db.c)
+ Note:       Dug out of char_create_mobile (db.c)
  Author:     Hugin
  ****************************************************************************/
 void convert_mobile (MOB_INDEX_DATA * pMobIndex) {
@@ -553,7 +557,7 @@ void convert_mobile (MOB_INDEX_DATA * pMobIndex) {
 
     /*
      * Calculate hit dice.  Gives close to the hitpoints
-     * of old format mobs created with create_mobile()  (db.c)
+     * of old format mobs created with char_create_mobile() (chars.c)
      * A high number of dice makes for less variance in mobiles
      * hitpoints.
      * (might be a good idea to reduce the max number of dice)
@@ -570,7 +574,7 @@ void convert_mobile (MOB_INDEX_DATA * pMobIndex) {
      30:    10d61+416    426(419)  1026(1026)   600( 607)   726(    )
      50:    10d169+920   930(923)  2610(2610)  1680(1688)  1770(    )
 
-     The values in parenthesis give the values generated in create_mobile.
+     The values in parenthesis give the values generated in char_create_mobile.
      Diff = max - min.  Mean is the arithmetic mean.
      (hmm.. must be some roundoff error in my calculations.. smurfette got
      1d6+23 hp at level 3 ? -- anyway.. the values above should be

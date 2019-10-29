@@ -31,6 +31,7 @@
 
 #include "lookup.h"
 #include "utils.h"
+#include "chars.h"
 
 #include "colour.h"
 
@@ -87,7 +88,7 @@ int colour_code_to_ansi (CHAR_DATA * ch, int use_colour,
 {
     char code[32];
     if (ch != NULL) {
-        ch = OCH(ch);
+        ch = REAL_CH (ch);
         use_colour = IS_SET(ch->plr, PLR_COLOUR) ? 1 : 0;
     }
 
@@ -147,7 +148,7 @@ int colour_puts (CHAR_DATA *ch, bool use_colour, const char *buf_in,
     if (buf_in == NULL || buf_out == NULL || size <= 0)
         return 0;
     if (ch != NULL) {
-        ch = OCH(ch);
+        ch = REAL_CH (ch);
         use_colour = IS_SET(ch->plr, PLR_COLOUR) ? 1 : 0;
     }
 

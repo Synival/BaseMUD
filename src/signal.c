@@ -34,7 +34,6 @@
 #include "signal.h"
 
 void handle_sigint (int sig) {
-    /* TODO: do we want to do anything here? */
     exit (128 + sig); /* UNIX convention. */
 }
 

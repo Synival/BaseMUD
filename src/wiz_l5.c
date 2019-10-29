@@ -47,10 +47,6 @@
 
 #include "wiz_l5.h"
 
-/* TODO: review most of these functions and test them thoroughly. */
-/* TODO: merge do_nochannels(), do_noemote(), do_noshout(), do_notell() */
-/* TODO: use a table for do_string() */
-
 /* trust levels for load and clone */
 bool do_obj_load_check (CHAR_DATA * ch, OBJ_DATA * obj) {
     if (IS_TRUSTED (ch, GOD))
@@ -73,16 +69,16 @@ void do_clone_recurse (CHAR_DATA * ch, OBJ_DATA * obj, OBJ_DATA * clone) {
         if (!do_obj_load_check (ch, c_obj))
             continue;
 
-        t_obj = create_object (c_obj->pIndexData, 0);
-        clone_object (c_obj, t_obj);
+        t_obj = obj_create (c_obj->pIndexData, 0);
+        obj_clone (c_obj, t_obj);
         obj_to_obj (t_obj, clone);
         do_clone_recurse (ch, c_obj, t_obj);
     }
 }
 
 /* RT nochannels command, for those spammers */
-void do_nochannels (CHAR_DATA * ch, char *argument) {
-    char arg[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_nochannels) {
+    char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
@@ -98,21 +94,21 @@ void do_nochannels (CHAR_DATA * ch, char *argument) {
         send_to_char ("The gods have restored your channel priviliges.\n\r",
                       victim);
         send_to_char ("NOCHANNELS removed.\n\r", ch);
-        sprintf (buf, "$N restores channels to %s", victim->name);
-        wiznet (buf, ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0);
+        wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
+            "$N restores channels to %s", victim->name);
     }
     else {
         SET_BIT (victim->comm, COMM_NOCHANNELS);
         send_to_char ("The gods have revoked your channel priviliges.\n\r",
                       victim);
         send_to_char ("NOCHANNELS set.\n\r", ch);
-        sprintf (buf, "$N revokes %s's channels.", victim->name);
-        wiznet (buf, ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0);
+        wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
+            "$N revokes %s's channels.", victim->name);
     }
 }
 
-void do_noemote (CHAR_DATA * ch, char *argument) {
-    char arg[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_noemote) {
+    char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
@@ -127,20 +123,20 @@ void do_noemote (CHAR_DATA * ch, char *argument) {
         REMOVE_BIT (victim->comm, COMM_NOEMOTE);
         send_to_char ("You can emote again.\n\r", victim);
         send_to_char ("NOEMOTE removed.\n\r", ch);
-        sprintf (buf, "$N restores emotes to %s.", victim->name);
-        wiznet (buf, ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0);
+        wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
+            "$N restores emotes to %s.", victim->name);
     }
     else {
         SET_BIT (victim->comm, COMM_NOEMOTE);
         send_to_char ("You can't emote!\n\r", victim);
         send_to_char ("NOEMOTE set.\n\r", ch);
-        sprintf (buf, "$N revokes %s's emotes.", victim->name);
-        wiznet (buf, ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0);
+        wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
+            "$N revokes %s's emotes.", victim->name);
     }
 }
 
-void do_noshout (CHAR_DATA * ch, char *argument) {
-    char arg[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_noshout) {
+    char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
@@ -157,20 +153,20 @@ void do_noshout (CHAR_DATA * ch, char *argument) {
         REMOVE_BIT (victim->comm, COMM_NOSHOUT);
         send_to_char ("You can shout again.\n\r", victim);
         send_to_char ("NOSHOUT removed.\n\r", ch);
-        sprintf (buf, "$N restores shouts to %s.", victim->name);
-        wiznet (buf, ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0);
+        wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
+            "$N restores shouts to %s.", victim->name);
     }
     else {
         SET_BIT (victim->comm, COMM_NOSHOUT);
         send_to_char ("You can't shout!\n\r", victim);
         send_to_char ("NOSHOUT set.\n\r", ch);
-        sprintf (buf, "$N revokes %s's shouts.", victim->name);
-        wiznet (buf, ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0);
+        wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
+            "$N revokes %s's shouts.", victim->name);
     }
 }
 
-void do_notell (CHAR_DATA * ch, char *argument) {
-    char arg[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_notell) {
+    char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
@@ -185,19 +181,19 @@ void do_notell (CHAR_DATA * ch, char *argument) {
         REMOVE_BIT (victim->comm, COMM_NOTELL);
         send_to_char ("You can tell again.\n\r", victim);
         send_to_char ("NOTELL removed.\n\r", ch);
-        sprintf (buf, "$N restores tells to %s.", victim->name);
-        wiznet (buf, ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0);
+        wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
+            "$N restores tells to %s.", victim->name);
     }
     else {
         SET_BIT (victim->comm, COMM_NOTELL);
         send_to_char ("You can't tell!\n\r", victim);
         send_to_char ("NOTELL set.\n\r", ch);
-        sprintf (buf, "$N revokes %s's tells.", victim->name);
-        wiznet (buf, ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0);
+        wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
+            "$N revokes %s's tells.", victim->name);
     }
 }
 
-void do_transfer (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_transfer) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     ROOM_INDEX_DATA *location;
@@ -251,7 +247,7 @@ void do_transfer (CHAR_DATA * ch, char *argument) {
     send_to_char ("Ok.\n\r", ch);
 }
 
-void do_peace (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_peace) {
     CHAR_DATA *rch;
 
     for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
@@ -263,11 +259,10 @@ void do_peace (CHAR_DATA * ch, char *argument) {
     send_to_char ("Ok.\n\r", ch);
 }
 
-void do_snoop (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_snoop) {
     char arg[MAX_INPUT_LENGTH];
     DESCRIPTOR_DATA *d;
     CHAR_DATA *victim;
-    char buf[MAX_STRING_LENGTH];
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
@@ -305,13 +300,12 @@ void do_snoop (CHAR_DATA * ch, char *argument) {
                 "No snoop loops.\n\r", ch);
 
     victim->desc->snoop_by = ch->desc;
-    sprintf (buf, "$N starts snooping on %s",
-             (IS_NPC (ch) ? victim->short_descr : victim->name));
-    wiznet (buf, ch, NULL, WIZ_SNOOPS, WIZ_SECURE, char_get_trust (ch));
+    wiznetf (ch, NULL, WIZ_SNOOPS, WIZ_SECURE, char_get_trust (ch),
+        "$N starts snooping on %s", PERS (victim));
     send_to_char ("Ok.\n\r", ch);
 }
 
-void do_string (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_string) {
     char type[MAX_INPUT_LENGTH];
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
@@ -418,7 +412,7 @@ void do_string (CHAR_DATA * ch, char *argument) {
 }
 
 /* command that is similar to load */
-void do_clone (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_clone) {
     char arg[MAX_INPUT_LENGTH];
     char *rest;
     CHAR_DATA *mob;
@@ -451,8 +445,8 @@ void do_clone (CHAR_DATA * ch, char *argument) {
         BAIL_IF (!do_obj_load_check (ch, obj),
             "Your powers are not great enough for such a task.\n\r", ch);
 
-        clone = create_object (obj->pIndexData, 0);
-        clone_object (obj, clone);
+        clone = obj_create (obj->pIndexData, 0);
+        obj_clone (obj, clone);
         if (obj->carried_by != NULL)
             obj_to_char (clone, ch);
         else
@@ -469,7 +463,6 @@ void do_clone (CHAR_DATA * ch, char *argument) {
     if (mob != NULL) {
         CHAR_DATA *clone;
         OBJ_DATA *new_obj;
-        char buf[MAX_STRING_LENGTH];
 
         BAIL_IF (!IS_NPC (mob),
             "You can only clone mobiles.\n\r", ch);
@@ -481,12 +474,12 @@ void do_clone (CHAR_DATA * ch, char *argument) {
                  !IS_TRUSTED (ch, AVATAR),
             "Your powers are not great enough for such a task.\n\r", ch);
 
-        clone = create_mobile (mob->pIndexData);
-        clone_mobile (mob, clone);
+        clone = char_create_mobile (mob->pIndexData);
+        char_clone_mobile (mob, clone);
         for (obj = mob->carrying; obj != NULL; obj = obj->next_content) {
             if (do_obj_load_check (ch, obj)) {
-                new_obj = create_object (obj->pIndexData, 0);
-                clone_object (obj, new_obj );
+                new_obj = obj_create (obj->pIndexData, 0);
+                obj_clone (obj, new_obj );
                 do_clone_recurse (ch, obj, new_obj );
                 obj_to_char (new_obj, clone);
                 new_obj->wear_loc = obj->wear_loc;
@@ -495,14 +488,14 @@ void do_clone (CHAR_DATA * ch, char *argument) {
         char_to_room (clone, ch->in_room);
         act2 ("You clone $N.", "$n has created $N.",
             ch, NULL, clone, 0, POS_RESTING);
-        sprintf (buf, "$N clones %s.", clone->short_descr);
-        wiznet (buf, ch, NULL, WIZ_LOAD, WIZ_SECURE, char_get_trust (ch));
+        wiznetf (ch, NULL, WIZ_LOAD, WIZ_SECURE, char_get_trust (ch),
+            "$N clones %s.", clone->short_descr);
         return;
     }
 }
 
 /* RT anti-newbie code */
-void do_newlock (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_newlock) {
     extern bool newlock;
     newlock = !newlock;
 

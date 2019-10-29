@@ -39,9 +39,6 @@
 
 #include "spell_aff.h"
 
-/* TODO: spell_enchant_weapon() and spell_enchant_armor() are
- *       almost identical. unify them! */
-
 DEFINE_SPELL_FUN (spell_armor) {
     CHAR_DATA *victim = (CHAR_DATA *) vo;
     AFFECT_DATA af;
@@ -51,7 +48,7 @@ DEFINE_SPELL_FUN (spell_armor) {
             "$N is already armored."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, 24, APPLY_AC, -20, 0);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, 24, APPLY_AC, -20, 0);
     affect_to_char (victim, &af);
 
     send_to_char ("You feel someone protecting you.\n\r", victim);
@@ -81,7 +78,7 @@ DEFINE_SPELL_FUN (spell_bless_object) {
         return;
     }
 
-    affect_init (&af, TO_OBJECT, sn, level, 6 + level, APPLY_SAVES, -1, ITEM_BLESS);
+    affect_init (&af, AFF_TO_OBJECT, sn, level, 6 + level, APPLY_SAVES, -1, ITEM_BLESS);
     affect_to_obj (obj, &af);
 
     act ("$p glows with a holy aura.", ch, obj, NULL, TO_ALL);
@@ -98,7 +95,7 @@ DEFINE_SPELL_FUN (spell_bless_char) {
             "$N already has divine favor."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, 6 + level, APPLY_HITROLL, level / 8, 0);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, 6 + level, APPLY_HITROLL, level / 8, 0);
     affect_to_char (victim, &af);
 
     af.apply = APPLY_SAVING_SPELL;
@@ -132,7 +129,7 @@ void spell_perform_blindness (int sn, int level, CHAR_DATA *ch,
     BAIL_IF (IS_AFFECTED (victim, AFF_BLIND),
         quiet ? NULL : "It doesn't seem to have an effect...\n\r", ch);
 
-    affect_init (&af, TO_AFFECTS, sn, level, 1 + level, APPLY_HITROLL, -4, AFF_BLIND);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, 1 + level, APPLY_HITROLL, -4, AFF_BLIND);
     affect_to_char (victim, &af);
 
     send_to_char ("You are blinded!\n\r", victim);
@@ -189,7 +186,7 @@ DEFINE_SPELL_FUN (spell_calm) {
         if (vch->fighting || vch->position == POS_FIGHTING)
             stop_fighting (vch, FALSE);
 
-        affect_init (&af, TO_AFFECTS, sn, level, level / 4, APPLY_HITROLL, (IS_NPC (vch) ? -2 : -5), AFF_CALM);
+        affect_init (&af, AFF_TO_AFFECTS, sn, level, level / 4, APPLY_HITROLL, (IS_NPC (vch) ? -2 : -5), AFF_CALM);
         affect_to_char (vch, &af);
 
         af.apply = APPLY_DAMROLL;
@@ -216,16 +213,11 @@ DEFINE_SPELL_FUN (spell_change_sex) {
     act ("$n doesn't look like $mself anymore...", victim, NULL, NULL,
          TO_NOTCHAR);
 
-    /* TODO: WHAT IS THIS?! so we're *tweaking* the sex by a positive or
-     * negative amount (see handlers.c)... what if we apply it multiple
-     * times????  what if we check it here, but another affect (possibly
-     * from an item) is removed afterwards?
-     * -- Synival */
     do {
         mod = number_range (0, 2) - victim->sex;
     } while (mod == 0);
 
-    affect_init (&af, TO_AFFECTS, sn, level, 2 * level, APPLY_SEX, mod, 0);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, 2 * level, APPLY_SEX, mod, 0);
     affect_to_char (victim, &af);
 }
 
@@ -254,7 +246,7 @@ DEFINE_SPELL_FUN (spell_charm_person) {
     add_follower (victim, ch);
     victim->leader = ch;
 
-    affect_init (&af, TO_AFFECTS, sn, level, number_fuzzy (level / 4), 0, 0, AFF_CHARM);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, number_fuzzy (level / 4), 0, 0, AFF_CHARM);
     affect_to_char (victim, &af);
 
     act ("Isn't $n just so nice?", ch, NULL, victim, TO_VICT);
@@ -285,7 +277,7 @@ DEFINE_SPELL_FUN (spell_curse_object) {
         return;
     }
 
-    affect_init (&af, TO_OBJECT, sn, level, 2 * level, APPLY_SAVES, 1, ITEM_EVIL);
+    affect_init (&af, AFF_TO_OBJECT, sn, level, 2 * level, APPLY_SAVES, 1, ITEM_EVIL);
     affect_to_obj (obj, &af);
 
     act ("$p glows with a malevolent aura.", ch, obj, NULL, TO_ALL);
@@ -308,7 +300,7 @@ void spell_perform_curse_char (int sn, int level, CHAR_DATA *ch,
     BAIL_IF (IS_AFFECTED (victim, AFF_CURSE),
         quiet ? NULL : "It doesn't seem to have an effect...\n\r", ch);
 
-    affect_init (&af, TO_AFFECTS, sn, level, 2 * level, APPLY_HITROLL, -1 * (level / 8), AFF_CURSE);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, 2 * level, APPLY_HITROLL, -1 * (level / 8), AFF_CURSE);
     affect_to_char (victim, &af);
 
     af.apply  = APPLY_SAVING_SPELL;
@@ -335,7 +327,7 @@ DEFINE_SPELL_FUN (spell_detect_evil) {
             "$N can already detect evil."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_EVIL);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_EVIL);
     affect_to_char (victim, &af);
 
     send_to_char ("Your eyes tingle.\n\r", victim);
@@ -352,7 +344,7 @@ DEFINE_SPELL_FUN (spell_detect_good) {
             "$N can already detect good."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_GOOD);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_GOOD);
     affect_to_char (victim, &af);
 
     send_to_char ("Your eyes tingle.\n\r", victim);
@@ -369,7 +361,7 @@ DEFINE_SPELL_FUN (spell_detect_hidden) {
             "$N can already sense hidden lifeforms."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_HIDDEN);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_HIDDEN);
     affect_to_char (victim, &af);
 
     send_to_char ("Your awareness improves.\n\r", victim);
@@ -386,7 +378,7 @@ DEFINE_SPELL_FUN (spell_detect_invis) {
             "$N can already see invisible things."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_INVIS);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_INVIS);
     affect_to_char (victim, &af);
 
     send_to_char ("Your eyes tingle.\n\r", victim);
@@ -403,7 +395,7 @@ DEFINE_SPELL_FUN (spell_detect_magic) {
             "$N can already detect magic."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_MAGIC);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_MAGIC);
     affect_to_char (victim, &af);
 
     send_to_char ("Your eyes tingle.\n\r", victim);
@@ -521,7 +513,7 @@ DEFINE_SPELL_FUN (spell_enchant_armor) {
     /* add a new affect */
     else {
         paf = affect_new ();
-        affect_init (paf, TO_OBJECT, sn, level, -1, APPLY_AC, added, 0);
+        affect_init (paf, AFF_TO_OBJECT, sn, level, -1, APPLY_AC, added, 0);
         LIST_FRONT (paf, next, obj->affected);
     }
 }
@@ -649,7 +641,7 @@ DEFINE_SPELL_FUN (spell_enchant_weapon) {
     /* add a new affect */
     else {
         paf = affect_new ();
-        affect_init (paf, TO_OBJECT, sn, level, -1, APPLY_DAMROLL, added, 0);
+        affect_init (paf, AFF_TO_OBJECT, sn, level, -1, APPLY_DAMROLL, added, 0);
         LIST_FRONT (paf, next, obj->affected);
     }
 
@@ -667,7 +659,7 @@ DEFINE_SPELL_FUN (spell_enchant_weapon) {
     /* add a new affect */
     else {
         paf = affect_new ();
-        affect_init (paf, TO_OBJECT, sn, level, -1, APPLY_HITROLL, added, 0);
+        affect_init (paf, AFF_TO_OBJECT, sn, level, -1, APPLY_HITROLL, added, 0);
         LIST_FRONT (paf, next, obj->affected);
     }
 }
@@ -679,7 +671,7 @@ DEFINE_SPELL_FUN (spell_fireproof) {
     BAIL_IF_ACT (IS_OBJ_STAT (obj, ITEM_BURN_PROOF),
         "$p is already protected from burning.", ch, obj, NULL);
 
-    affect_init (&af, TO_OBJECT, sn, level, number_fuzzy (level / 4), APPLY_NONE, 0, ITEM_BURN_PROOF);
+    affect_init (&af, AFF_TO_OBJECT, sn, level, number_fuzzy (level / 4), APPLY_NONE, 0, ITEM_BURN_PROOF);
     affect_to_obj (obj, &af);
 
     act ("You protect $p from fire.", ch, obj, NULL, TO_CHAR);
@@ -692,7 +684,7 @@ DEFINE_SPELL_FUN (spell_faerie_fire) {
 
     BAIL_IF_ACT (IS_AFFECTED (victim, AFF_FAERIE_FIRE),
         "The pink aura around $N seems unaffected.", ch, NULL, victim);
-    affect_init (&af, TO_AFFECTS, sn, level, level, APPLY_AC, 2 * level, AFF_FAERIE_FIRE);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_AC, 2 * level, AFF_FAERIE_FIRE);
     affect_to_char (victim, &af);
 
     send_to_char ("You are surrounded by a pink outline.\n\r", victim);
@@ -731,7 +723,7 @@ DEFINE_SPELL_FUN (spell_fly) {
             "$N doesn't need your help to fly."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, level + 3, 0, 0, AFF_FLYING);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level + 3, 0, 0, AFF_FLYING);
     affect_to_char (victim, &af);
 
     send_to_char ("Your feet rise off the ground.\n\r", victim);
@@ -756,7 +748,7 @@ DEFINE_SPELL_FUN (spell_frenzy) {
     BAIL_IF_ACT (!IS_SAME_ALIGN (ch, victim),
         "Your god doesn't seem to like $N.", ch, NULL, victim);
 
-    affect_init (&af, TO_AFFECTS, sn, level, level / 3, APPLY_HITROLL, level / 6, 0);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level / 3, APPLY_HITROLL, level / 6, 0);
     affect_to_char (victim, &af);
 
     af.apply = APPLY_DAMROLL;
@@ -779,7 +771,7 @@ DEFINE_SPELL_FUN (spell_giant_strength) {
             "$N can't get any stronger."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, level, APPLY_STR, 1 + (level >= 18) + (level >= 25) + (level >= 32), 0);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_STR, 1 + (level >= 18) + (level >= 25) + (level >= 32), 0);
     affect_to_char (victim, &af);
 
     send_to_char ("Your muscles surge with heightened power!\n\r", victim);
@@ -814,7 +806,7 @@ DEFINE_SPELL_FUN (spell_haste) {
         return;
     }
 
-    affect_init (&af, TO_AFFECTS, sn, level, level / ((victim == ch) ? 2 : 4), APPLY_DEX, 1 + (level >= 18) + (level >= 25) + (level >= 32), AFF_HASTE);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level / ((victim == ch) ? 2 : 4), APPLY_DEX, 1 + (level >= 18) + (level >= 25) + (level >= 32), AFF_HASTE);
     affect_to_char (victim, &af);
 
     send_to_char ("You feel yourself moving more quickly.\n\r", victim);
@@ -830,7 +822,7 @@ DEFINE_SPELL_FUN (spell_infravision) {
             "$N already has infravision."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, 2 * level, APPLY_NONE, 0, AFF_INFRARED);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, 2 * level, APPLY_NONE, 0, AFF_INFRARED);
     affect_to_char (victim, &af);
 
     send_to_char ("Your eyes glow red.\n\r", victim);
@@ -845,7 +837,7 @@ DEFINE_SPELL_FUN (spell_invis_object) {
         "$p is already invisible.", ch, obj, NULL);
 
     act ("$p fades out of sight.", ch, obj, NULL, TO_ALL);
-    affect_init (&af, TO_OBJECT, sn, level, level + 12, APPLY_NONE, 0, ITEM_INVIS);
+    affect_init (&af, AFF_TO_OBJECT, sn, level, level + 12, APPLY_NONE, 0, ITEM_INVIS);
     affect_to_obj (obj, &af);
 }
 
@@ -862,7 +854,7 @@ DEFINE_SPELL_FUN (spell_invis_char) {
     send_to_char ("You fade out of existence.\n\r", victim);
     act ("$n fades out of existence.", victim, NULL, NULL, TO_NOTCHAR);
 
-    affect_init (&af, TO_AFFECTS, sn, level, level + 12, APPLY_NONE, 0, AFF_INVISIBLE);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level + 12, APPLY_NONE, 0, AFF_INVISIBLE);
     affect_to_char (victim, &af);
 }
 
@@ -884,7 +876,7 @@ DEFINE_SPELL_FUN (spell_mass_invis) {
         send_to_char ("You slowly fade out of existence.\n\r", gch);
         act ("$n slowly fades out of existence.", gch, NULL, NULL, TO_NOTCHAR);
 
-        affect_init (&af, TO_AFFECTS, sn, level / 2, 24, APPLY_NONE, 0, AFF_INVISIBLE);
+        affect_init (&af, AFF_TO_AFFECTS, sn, level / 2, 24, APPLY_NONE, 0, AFF_INVISIBLE);
         affect_to_char (gch, &af);
         found = TRUE;
     }
@@ -901,7 +893,7 @@ DEFINE_SPELL_FUN (spell_pass_door) {
             "$N is already shifted out of phase."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, number_fuzzy (level / 4), APPLY_NONE, 0, AFF_PASS_DOOR);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, number_fuzzy (level / 4), APPLY_NONE, 0, AFF_PASS_DOOR);
     affect_to_char (victim, &af);
 
     send_to_char ("You turn translucent.\n\r", victim);
@@ -923,7 +915,7 @@ DEFINE_SPELL_FUN (spell_plague) {
         return;
     }
 
-    affect_init (&af, TO_AFFECTS, sn, level * 3 / 4, level, APPLY_STR, -5, AFF_PLAGUE);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level * 3 / 4, level, APPLY_STR, -5, AFF_PLAGUE);
     affect_join (victim, &af);
 
     send_to_char (
@@ -941,10 +933,18 @@ DEFINE_SPELL_FUN (spell_poison_object) {
         BAIL_IF_ACT (IS_OBJ_STAT (obj, ITEM_BLESS) ||
                      IS_OBJ_STAT (obj, ITEM_BURN_PROOF),
             "Your spell fails to corrupt $p.", ch, obj, NULL);
-        BAIL_IF_ACT (obj->value[3] == 1,
-            "$p is already poisoned.", ch, obj, NULL);
 
-        obj->value[3] = 1;
+        if (obj->item_type == ITEM_FOOD) {
+            BAIL_IF_ACT (obj->v.food.poisoned == 1,
+                "$p is already poisoned.", ch, obj, NULL);
+            obj->v.food.poisoned = 1;
+        }
+        else if (obj->item_type == ITEM_DRINK_CON) {
+            BAIL_IF_ACT (obj->v.drink_con.poisoned == 1,
+                "$p is already poisoned.", ch, obj, NULL);
+            obj->v.drink_con.poisoned = 1;
+        }
+
         act ("$p is infused with poisonous vapors.", ch, obj, NULL, TO_ALL);
         return;
     }
@@ -962,7 +962,7 @@ DEFINE_SPELL_FUN (spell_poison_object) {
         BAIL_IF_ACT (IS_WEAPON_STAT (obj, WEAPON_POISON),
             "$p is already envenomed.", ch, obj, NULL);
 
-        affect_init (&af, TO_WEAPON, sn, level / 2, level / 8, 0, 0, WEAPON_POISON);
+        affect_init (&af, AFF_TO_WEAPON, sn, level / 2, level / 8, 0, 0, WEAPON_POISON);
         affect_to_obj (obj, &af);
 
         act ("$p is coated with deadly venom.", ch, obj, NULL, TO_ALL);
@@ -983,7 +983,7 @@ DEFINE_SPELL_FUN (spell_poison_char) {
         return;
     }
 
-    affect_init (&af, TO_AFFECTS, sn, level, level, APPLY_STR, -2, AFF_POISON);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_STR, -2, AFF_POISON);
     affect_join (victim, &af);
 
     send_to_char ("You feel very sick.\n\r", victim);
@@ -1011,7 +1011,7 @@ DEFINE_SPELL_FUN (spell_protection_evil) {
         return;
     }
 
-    affect_init (&af, TO_AFFECTS, sn, level, 24, APPLY_SAVING_SPELL, -1, AFF_PROTECT_EVIL);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, 24, APPLY_SAVING_SPELL, -1, AFF_PROTECT_EVIL);
     affect_to_char (victim, &af);
 
     send_to_char ("You feel holy and pure.\n\r", victim);
@@ -1033,13 +1033,12 @@ DEFINE_SPELL_FUN (spell_protection_good) {
         return;
     }
 
-    affect_init (&af, TO_AFFECTS, sn, level, 24, APPLY_SAVING_SPELL, -1, AFF_PROTECT_GOOD);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, 24, APPLY_SAVING_SPELL, -1, AFF_PROTECT_GOOD);
     affect_to_char (victim, &af);
 
     send_to_char ("You feel aligned with darkness.\n\r", victim);
     if (ch != victim)
         act ("$N is protected from good.", ch, NULL, victim, TO_CHAR);
-    return;
 }
 
 DEFINE_SPELL_FUN (spell_sanctuary) {
@@ -1051,7 +1050,7 @@ DEFINE_SPELL_FUN (spell_sanctuary) {
             "$N is already in sanctuary."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, level / 6, APPLY_NONE, 0, AFF_SANCTUARY);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level / 6, APPLY_NONE, 0, AFF_SANCTUARY);
     affect_to_char (victim, &af);
 
     send_to_char ("You are surrounded by a white aura.\n\r", victim);
@@ -1067,7 +1066,7 @@ DEFINE_SPELL_FUN (spell_shield) {
             "$N is already protected by a shield."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, 8 + level, APPLY_AC, -20, 0);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, 8 + level, APPLY_AC, -20, 0);
     affect_to_char (victim, &af);
 
     act ("$n is surrounded by a force shield.", victim, NULL, NULL, TO_NOTCHAR);
@@ -1085,7 +1084,7 @@ DEFINE_SPELL_FUN (spell_sleep) {
             (level + 2) < victim->level,
         "Nothing happens.\n\r", ch);
 
-    affect_init (&af, TO_AFFECTS, sn, level, 4 + level, APPLY_NONE, 0, AFF_SLEEP);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, 4 + level, APPLY_NONE, 0, AFF_SLEEP);
     affect_join (victim, &af);
 
     if (!IS_AWAKE (victim)) {
@@ -1130,7 +1129,7 @@ DEFINE_SPELL_FUN (spell_slow) {
         return;
     }
 
-    affect_init (&af, TO_AFFECTS, sn, level, level / 2, APPLY_DEX, -1 - (level >= 18) - (level >= 25) - (level >= 32), AFF_SLOW);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level / 2, APPLY_DEX, -1 - (level >= 18) - (level >= 25) - (level >= 32), AFF_SLOW);
     affect_to_char (victim, &af);
 
     send_to_char ("You feel yourself slowing d o w n...\n\r", victim);
@@ -1146,7 +1145,7 @@ DEFINE_SPELL_FUN (spell_stone_skin) {
             "$N is already as hard as can be."))
         return;
 
-    affect_init (&af, TO_AFFECTS, sn, level, level, APPLY_AC, -40, 0);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_AC, -40, 0);
     affect_to_char (victim, &af);
 
     send_to_char ("Your skin turns to stone.\n\r", victim);
@@ -1165,7 +1164,7 @@ DEFINE_SPELL_FUN (spell_weaken) {
     BAIL_IF (saves_spell (level, victim, DAM_OTHER),
         "Spell failed.\n\r", ch);
 
-    affect_init (&af, TO_AFFECTS, sn, level, level / 2, APPLY_STR, -1 * (level / 5), AFF_WEAKEN);
+    affect_init (&af, AFF_TO_AFFECTS, sn, level, level / 2, APPLY_STR, -1 * (level / 5), AFF_WEAKEN);
     affect_to_char (victim, &af);
 
     send_to_char ("You feel your strength slip away.\n\r", victim);

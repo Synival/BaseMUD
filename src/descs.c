@@ -49,6 +49,8 @@
 #include "db.h"
 #include "recycle.h"
 #include "utils.h"
+#include "interp.h"
+#include "lookup.h"
 
 #include "descs.h"
 
@@ -163,10 +165,9 @@ void init_descriptor (int control) {
 
         addr = ntohl (sock.sin_addr.s_addr);
         sprintf (buf, "%d.%d.%d.%d",
-                 (addr >> 24) & 0xFF, (addr >> 16) & 0xFF,
-                 (addr >> 8) & 0xFF, (addr) & 0xFF);
-        sprintf (log_buf, "Sock.sinaddr:  %s", buf);
-        log_string (log_buf);
+            (addr >> 24) & 0xFF, (addr >> 16) & 0xFF,
+            (addr >> 8) & 0xFF, (addr) & 0xFF);
+        log_f ("Sock.sinaddr:  %s", buf);
         from = gethostbyaddr ((char *) &sock.sin_addr,
                               sizeof (sock.sin_addr), AF_INET);
         dnew->host = str_dup (from ? from->h_name : buf);
@@ -218,8 +219,8 @@ void close_socket (DESCRIPTOR_DATA * dclose) {
     }
 
     if ((ch = dclose->character) != NULL) {
-        sprintf (log_buf, "Closing link to %s.", ch->name);
-        log_string (log_buf);
+        log_f ("Closing link to %s.", ch->name);
+
         /* cut down on wiznet spam when rebooting */
         /* If ch is writing note or playing, just lose link otherwise clear char */
         if ((dclose->connected == CON_PLAYING && !merc_down)
@@ -256,8 +257,7 @@ bool read_from_descriptor (DESCRIPTOR_DATA * d) {
     /* Check for overflow. */
     iStart = strlen (d->inbuf);
     if (iStart >= sizeof (d->inbuf) - 10) {
-        sprintf (log_buf, "%s input overflow!", d->host);
-        log_string (log_buf);
+        log_f ("%s input overflow!", d->host);
         write_to_descriptor (d->descriptor,
             "\n\r*** PUT A LID ON IT!!! ***\n\r", 0);
         return FALSE;
@@ -353,8 +353,7 @@ void read_from_buffer (DESCRIPTOR_DATA * d) {
             if (++d->repeat >= 25 && d->character
                 && d->connected == CON_PLAYING)
             {
-                sprintf (log_buf, "%s input spamming!", d->host);
-                log_string (log_buf);
+                log_f ("%s input spamming!", d->host);
                 wiznet ("Spam spam spam $N spam spam spam spam spam!",
                         d->character, NULL, WIZ_SPAM, 0,
                         char_get_trust (d->character));
@@ -417,7 +416,7 @@ bool process_output (DESCRIPTOR_DATA * d, bool fPrompt) {
                     percent = -1;
 
                 sprintf (buf, "%s %s.\n\r", PERS_IR (victim, ch),
-                    condition_string(percent));
+                    condition_name_by_percent (percent));
                 buf[0] = UPPER (buf[0]);
                 pbuff = buffer;
                 colour_puts (CH(d), d->ansi, buf, pbuff, MAX_STRING_LENGTH);
@@ -540,8 +539,7 @@ bool check_reconnect (DESCRIPTOR_DATA * d, char *name, bool fConn) {
                 send_to_char ("Reconnecting. Type replay to see missed tells.\n\r", ch);
                 act ("$n has reconnected.", ch, NULL, NULL, TO_NOTCHAR);
 
-                sprintf (log_buf, "%s@%s reconnected.", ch->name, d->host);
-                log_string (log_buf);
+                log_f ("%s@%s reconnected.", ch->name, d->host);
                 wiznet ("$N groks the fullness of $S link.",
                         ch, NULL, WIZ_LINKS, 0, 0);
                 d->connected = CON_PLAYING;
@@ -662,4 +660,62 @@ void printf_to_desc (DESCRIPTOR_DATA * d, char *fmt, ...) {
     va_end (args);
 
     send_to_desc (buf, d);
+}
+
+/* does aliasing and other fun stuff */
+void desc_substitute_alias (DESCRIPTOR_DATA * d, char *argument) {
+    CHAR_DATA *ch;
+    char buf[MAX_STRING_LENGTH], prefix[MAX_INPUT_LENGTH],
+        name[MAX_INPUT_LENGTH];
+    char *point;
+    int alias;
+
+    ch = d->original ? d->original : d->character;
+
+    /* check for prefix */
+    if (ch->prefix[0] != '\0' && str_prefix ("prefix", argument)) {
+        if (strlen (ch->prefix) + strlen (argument) > MAX_INPUT_LENGTH - 2)
+            send_to_char ("Line to long, prefix not processed.\r\n", ch);
+        else
+        {
+            sprintf (prefix, "%s %s", ch->prefix, argument);
+            argument = prefix;
+        }
+    }
+
+    if (IS_NPC (ch) || ch->pcdata->alias[0] == NULL
+        || !str_prefix ("alias", argument) || !str_prefix ("una", argument)
+        || !str_prefix ("prefix", argument))
+    {
+        interpret (d->character, argument);
+        return;
+    }
+
+    strcpy (buf, argument);
+
+    for (alias = 0; alias < MAX_ALIAS; alias++) { /* go through the aliases */
+        if (ch->pcdata->alias[alias] == NULL)
+            break;
+
+        if (!str_prefix (ch->pcdata->alias[alias], argument)) {
+            point = one_argument (argument, name);
+            if (!strcmp (ch->pcdata->alias[alias], name)) {
+                /* More Edwin inspired fixes. JR -- 10/15/00 */
+                buf[0] = '\0';
+                strcat(buf,ch->pcdata->alias_sub[alias]);
+                if (point[0]) {
+                    strcat(buf," ");
+                    strcat(buf,point);
+                }
+
+                if (strlen (buf) > MAX_INPUT_LENGTH - 1) {
+                    send_to_char
+                        ("Alias substitution too long. Truncated.\r\n", ch);
+                    buf[MAX_INPUT_LENGTH - 1] = '\0';
+                }
+                break;
+            }
+        }
+    }
+    interpret (d->character, buf);
 }

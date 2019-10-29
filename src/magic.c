@@ -34,17 +34,9 @@
 #include "skills.h"
 #include "fight.h"
 #include "utils.h"
+#include "chars.h"
 
 #include "magic.h"
-
-/* TODO: BAIL() for several spell entries. */
-/* TODO: move as many affects to an affect table as possible. */
-/* TODO: move as many magic attacks to a new table as possible. */
-/* TODO: these spells are more optimized than you'd think, but try to
- *       deflate anything else... */
-/* TODO: no more 'target_name' */
-/* TODO: spell on/off messages to players, casters, and the room are a
- *       giant mess. fix it up! */
 
 /* The kludgy global is for spells who want more stuff from command line. */
 char *target_name;
@@ -74,11 +66,15 @@ int find_spell (CHAR_DATA *ch, const char *name) {
 
 /* Utter mystical words for an sn. */
 void say_spell (CHAR_DATA *ch, int sn, int class) {
+    say_spell_name (ch, skill_table[sn].name, class);
+}
+
+void say_spell_name (CHAR_DATA *ch, const char *name, int class) {
     char words[MAX_STRING_LENGTH];
     char buf1[MAX_STRING_LENGTH];
     char buf2[MAX_STRING_LENGTH];
     CHAR_DATA *rch;
-    char *pName, *plural;
+    const char *pName, *plural;
     int iSyl;
     int length;
 
@@ -122,7 +118,7 @@ void say_spell (CHAR_DATA *ch, int sn, int class) {
     };
 
     words[0] = '\0';
-    for (pName = skill_table[sn].name; *pName != '\0'; pName += length) {
+    for (pName = name; *pName != '\0'; pName += length) {
         for (iSyl = 0; (length = strlen (syl_table[iSyl].old)) != 0; iSyl++) {
             if (!str_prefix (syl_table[iSyl].old, pName)) {
                 strcat (words, syl_table[iSyl].new);
@@ -134,11 +130,10 @@ void say_spell (CHAR_DATA *ch, int sn, int class) {
             length = 1;
     }
 
-    plural = (strchr (skill_table[sn].name, ' ')) ? "s" : "";
-    printf_to_char (ch, "{5You utter the word%s, '%s'.{x\n\r",
-        plural, skill_table[sn].name);
-    sprintf (buf1, "{5$n utters the word%s, '%s'.{x",
-        plural, skill_table[sn].name);
+    plural = (strchr (name, ' ')) ? "s" : "";
+    printf_to_char (ch, "{5You utter the word%s, '%s'.{x\n\r", plural, name);
+    sprintf (buf1, "{5$n utters the word%s, '%s'.{x", plural, name);
+
     plural = (strchr (words, ' ')) ? "s" : "";
     sprintf (buf2, "{5$n utters the word%s, '%s'.{x", plural, words);
 
@@ -258,16 +253,10 @@ void obj_cast_spell (int sn, int level, CHAR_DATA *ch, CHAR_DATA *victim,
 
     if (sn <= 0)
         return;
-    if (sn >= SKILL_MAX || skill_table[sn].spell_fun == 0) {
-        bug ("obj_cast_spell: bad sn %d.", sn);
-        return;
-    }
+    BAIL_IF_BUG (sn >= SKILL_MAX || skill_table[sn].spell_fun == 0,
+        "obj_cast_spell: bad sn %d.", sn);
 
     switch (skill_table[sn].target) {
-        default:
-            bug ("obj_cast_spell: bad target for sn %d.", sn);
-            return;
-
         case TAR_IGNORE:
             vo = NULL;
             break;
@@ -331,6 +320,10 @@ void obj_cast_spell (int sn, int level, CHAR_DATA *ch, CHAR_DATA *victim,
                 target = TARGET_OBJ;
             }
             break;
+
+        default:
+            bug ("obj_cast_spell: bad target for sn %d.", sn);
+            return;
     }
 
     target_name = "";

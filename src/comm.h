@@ -116,7 +116,10 @@ extern const char go_ahead_str[];
     #endif
     static long theKeys[4];
 
-    int gettimeofday args ((struct timeval * tp, void *tzp));
+    int gettimeofday (struct timeval *tp, void *tzp) {
+        tp->tv_sec = time (NULL);
+        tp->tv_usec = 0;
+    }
 #endif
 
 #if defined(MIPS_OS)
@@ -240,13 +243,10 @@ extern char *mud_ipaddress;
 
 /* Function prototypes. */
 void bust_a_prompt (CHAR_DATA *ch);
-bool check_parse_name (char *name);
-void stop_idling (CHAR_DATA * ch);
 void send_to_char_bw (const char *txt, CHAR_DATA *ch);
 void page_to_char_bw (const char *txt, CHAR_DATA *ch);
 void send_to_char (const char *txt, CHAR_DATA * ch);
 void page_to_char (const char *txt, CHAR_DATA * ch);
-void fix_sex (CHAR_DATA * ch);
 void act2 (const char *to_char, const char *to_room, CHAR_DATA *ch,
            const void *arg1, const void *arg2, flag_t flags, int min_pos);
 void act3 (const char *to_char, const char *to_vict, const char *to_room,
@@ -259,27 +259,23 @@ char *act_code (char code, CHAR_DATA *ch, CHAR_DATA *vch, CHAR_DATA *to,
     char *out_buf, size_t size);
 void act_new (const char *format, CHAR_DATA * ch, const void *arg1,
               const void *arg2, flag_t flags, int min_pos);
-void printf_to_char (CHAR_DATA * ch, char *fmt, ...);
-void wiznet (char *string, CHAR_DATA * ch, OBJ_DATA * obj,
+void printf_to_char (CHAR_DATA * ch, const char *fmt, ...);
+void wiznet (const char *string, CHAR_DATA * ch, OBJ_DATA * obj,
              flag_t flag, flag_t flag_skip, int min_level);
-void qmconfig_read (void);
-const char *get_align_name (int align);
-const char *get_sex_name (int sex);
-const char *get_ch_class_name (CHAR_DATA * ch);
-const char *get_ac_type_name (int type);
-const char *get_position_name (int position);
-const char *get_character_position_str (CHAR_DATA * ch, int position,
-    OBJ_DATA * on, int with_punct);
-const char *get_ac_rating_phrase (int ac);
-void copyover_recover ();
-bool position_change_message (CHAR_DATA * ch, int from, int to,
+void wiznetf (CHAR_DATA * ch, OBJ_DATA * obj, flag_t flag, flag_t flag_skip,
+    int min_level, const char *fmt, ...);
+bool position_change_send_message (CHAR_DATA * ch, int from, int to,
     OBJ_DATA *obj);
-bool position_change_message_to_standing (CHAR_DATA * ch, int from, OBJ_DATA *obj);
-bool position_change_message_to_fighting (CHAR_DATA * ch, int from, OBJ_DATA *obj);
-bool position_change_message_to_resting (CHAR_DATA * ch, int from, OBJ_DATA *obj);
-bool position_change_message_to_sitting (CHAR_DATA * ch, int from, OBJ_DATA *obj);
-bool position_change_message_to_sleeping (CHAR_DATA * ch, int from, OBJ_DATA *obj);
-void substitute_alias (DESCRIPTOR_DATA * d, char *argument);
+bool position_change_send_message_to_standing (CHAR_DATA * ch, int from,
+    OBJ_DATA *obj);
+bool position_change_send_message_to_fighting (CHAR_DATA * ch, int from,
+    OBJ_DATA *obj);
+bool position_change_send_message_to_resting (CHAR_DATA * ch, int from,
+    OBJ_DATA *obj);
+bool position_change_send_message_to_sitting (CHAR_DATA * ch, int from,
+    OBJ_DATA *obj);
+bool position_change_send_message_to_sleeping (CHAR_DATA * ch, int from,
+    OBJ_DATA *obj);
 void echo_to_char (CHAR_DATA *to, CHAR_DATA *from, const char *type,
     const char *msg);
 

@@ -51,12 +51,18 @@ bool fight_filter_skill_target (CHAR_DATA *ch, const char *argument,
     CHAR_DATA *victim;
     int chance;
 
-    FILTER (sn >= 0 && (chance = get_skill (ch, sn)) == 0,
-        cant_msg, ch);
+    /* If a skill is available, make sure we can use it. */
+    if (sn >= 0) {
+        chance = get_skill (ch, sn);
+        FILTER (chance == 0,
+            cant_msg, ch);
+    }
+    else {
+        chance = 100;
+    }
+
     FILTER (IS_NPC (ch) && npc_flag != 0 && !IS_SET (ch->off_flags, npc_flag),
         cant_msg, ch);
-
-    chance = 100;
     FILTER (sn >= 0 && !IS_NPC (ch) &&
             ch->level < skill_table[sn].skill_level[ch->class],
         cant_msg, ch);
@@ -81,19 +87,22 @@ bool fight_filter_skill_target (CHAR_DATA *ch, const char *argument,
     FILTER_ACT (IS_AFFECTED (ch, AFF_CHARM) && ch->master == victim,
         "But $N is your friend!", ch, NULL, victim);
 
-    if (out_chance) *out_chance = chance;
-    if (out_victim) *out_victim = victim;
+    if (out_chance)
+        *out_chance = chance;
+    if (out_victim)
+        *out_victim = victim;
+
     return FALSE;
 }
 
-void do_berserk (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_berserk) {
     AFFECT_DATA af;
     int chance, hp_percent;
 
-    if ((chance = get_skill (ch, gsn_berserk)) == 0
-        || (IS_NPC (ch) && !IS_SET (ch->off_flags, OFF_BERSERK))
-        || (!IS_NPC (ch)
-            && ch->level < skill_table[gsn_berserk].skill_level[ch->class]))
+    if ((chance = get_skill (ch, gsn_berserk)) == 0           ||
+        (IS_NPC (ch) && !IS_SET (ch->off_flags, OFF_BERSERK)) ||
+        (!IS_NPC (ch) && ch->level <
+            skill_table[gsn_berserk].skill_level[ch->class]))
     {
         send_to_char ("You turn red in the face, but nothing happens.\n\r", ch);
         return;
@@ -140,7 +149,7 @@ void do_berserk (CHAR_DATA * ch, char *argument) {
     act ("$n gets a wild look in $s eyes.", ch, NULL, NULL, TO_NOTCHAR);
     check_improve (ch, gsn_berserk, TRUE, 2);
 
-    affect_init (&af, TO_AFFECTS, gsn_berserk, ch->level, number_fuzzy (ch->level / 8), 0, UMAX (1, ch->level / 5), AFF_BERSERK);
+    affect_init (&af, AFF_TO_AFFECTS, gsn_berserk, ch->level, number_fuzzy (ch->level / 8), 0, UMAX (1, ch->level / 5), AFF_BERSERK);
 
     af.apply = APPLY_HITROLL;
     affect_to_char (ch, &af);
@@ -153,7 +162,7 @@ void do_berserk (CHAR_DATA * ch, char *argument) {
     affect_to_char (ch, &af);
 }
 
-void do_bash (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_bash) {
     CHAR_DATA *victim;
     int chance;
 
@@ -223,7 +232,7 @@ void do_bash (CHAR_DATA * ch, char *argument) {
     check_killer (ch, victim);
 }
 
-void do_dirt (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_dirt) {
     CHAR_DATA *victim;
     int chance;
 
@@ -274,10 +283,8 @@ void do_dirt (CHAR_DATA * ch, char *argument) {
         case (SECT_AIR):          chance  =  0; break;
     }
 
-    if (chance == 0) {
-        send_to_char ("There isn't any dirt to kick.\n\r",  ch);
-        return;
-    }
+    BAIL_IF (chance == 0,
+        "There isn't any dirt to kick.\n\r", ch);
 
     /* now the attack */
     if (number_percent () < chance) {
@@ -294,7 +301,7 @@ void do_dirt (CHAR_DATA * ch, char *argument) {
         check_improve (ch, gsn_dirt, TRUE, 2);
         WAIT_STATE (ch, skill_table[gsn_dirt].beats);
 
-        affect_init (&af, TO_AFFECTS, gsn_dirt, ch->level, 0, APPLY_HITROLL, -4, AFF_BLIND);
+        affect_init (&af, AFF_TO_AFFECTS, gsn_dirt, ch->level, 0, APPLY_HITROLL, -4, AFF_BLIND);
         affect_to_char (victim, &af);
     }
     else {
@@ -305,13 +312,12 @@ void do_dirt (CHAR_DATA * ch, char *argument) {
     check_killer (ch, victim);
 }
 
-void do_trip (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_trip) {
     CHAR_DATA *victim;
     int chance;
 
     if (fight_filter_skill_target (ch, argument, gsn_trip, OFF_TRIP,
-            "Tripping? What's that?\n\r", NULL,
-            &chance, &victim))
+            "Tripping? What's that?\n\r", NULL, &chance, &victim))
         return;
 
     BAIL_IF_ACT ((victim->parts & (PART_FEET | PART_LEGS)) == 0,
@@ -345,8 +351,7 @@ void do_trip (CHAR_DATA * ch, char *argument) {
     /* speed */
     if (IS_SET (ch->off_flags, OFF_FAST) || IS_AFFECTED (ch, AFF_HASTE))
         chance += 10;
-    if (IS_SET (victim->off_flags, OFF_FAST)
-        || IS_AFFECTED (victim, AFF_HASTE))
+    if (IS_SET (victim->off_flags, OFF_FAST) || IS_AFFECTED (victim, AFF_HASTE))
         chance -= 20;
 
     /* level */
@@ -374,7 +379,7 @@ void do_trip (CHAR_DATA * ch, char *argument) {
     check_killer (ch, victim);
 }
 
-void do_kick (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_kick) {
     CHAR_DATA *victim;
     int chance;
 
@@ -399,7 +404,7 @@ void do_kick (CHAR_DATA * ch, char *argument) {
     check_killer (ch, victim);
 }
 
-void do_kill (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_kill) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
@@ -437,11 +442,11 @@ void do_kill (CHAR_DATA * ch, char *argument) {
     multi_hit (ch, victim, TYPE_UNDEFINED);
 }
 
-void do_murde (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_murde) {
     send_to_char ("If you want to MURDER, spell it out.\n\r", ch);
 }
 
-void do_murder (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_murder) {
     char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
@@ -475,7 +480,7 @@ void do_murder (CHAR_DATA * ch, char *argument) {
     multi_hit (ch, victim, TYPE_UNDEFINED);
 }
 
-void do_backstab (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_backstab) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
     OBJ_DATA *obj;
@@ -493,7 +498,7 @@ void do_backstab (CHAR_DATA * ch, char *argument) {
     BAIL_IF (IS_NPC (victim) && victim->fighting != NULL &&
              !is_same_group (ch, victim->fighting),
         "Kill stealing is not permitted.\n\r", ch);
-    BAIL_IF ((obj = char_get_eq_by_wear (ch, WEAR_WIELD)) == NULL,
+    BAIL_IF ((obj = char_get_eq_by_wear_loc (ch, WEAR_WIELD)) == NULL,
         "You need to wield a weapon to backstab.\n\r", ch);
     BAIL_IF_ACT (victim->hit < victim->max_hit / 3,
         "$N is hurt and suspicious ... you can't sneak up.", ch, NULL, victim);
@@ -512,7 +517,7 @@ void do_backstab (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_flee (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_flee) {
     ROOM_INDEX_DATA *was_in;
     ROOM_INDEX_DATA *now_in;
     CHAR_DATA *victim;
@@ -569,7 +574,7 @@ void do_flee (CHAR_DATA * ch, char *argument) {
     send_to_char ("PANIC! You couldn't escape!\n\r", ch);
 }
 
-void do_rescue (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_rescue) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
     CHAR_DATA *fch;
@@ -612,7 +617,7 @@ void do_rescue (CHAR_DATA * ch, char *argument) {
     set_fighting_one (fch, ch);
 }
 
-void do_disarm (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_disarm) {
     CHAR_DATA *victim;
     OBJ_DATA *obj;
     int chance, hth, ch_weapon, vict_weapon, ch_vict_weapon;
@@ -620,13 +625,13 @@ void do_disarm (CHAR_DATA * ch, char *argument) {
 
     BAIL_IF ((chance = get_skill (ch, gsn_disarm)) == 0,
         "You don't know how to disarm opponents.\n\r", ch);
-    BAIL_IF (char_get_eq_by_wear (ch, WEAR_WIELD) == NULL &&
+    BAIL_IF (char_get_eq_by_wear_loc (ch, WEAR_WIELD) == NULL &&
         ((hth = get_skill (ch, gsn_hand_to_hand)) == 0 ||
          (IS_NPC (ch) && !IS_SET (ch->off_flags, OFF_DISARM))),
         "You must wield a weapon to disarm.\n\r", ch);
     BAIL_IF ((victim = ch->fighting) == NULL,
         "You aren't fighting anyone.\n\r", ch);
-    BAIL_IF ((obj = char_get_eq_by_wear (victim, WEAR_WIELD)) == NULL,
+    BAIL_IF ((obj = char_get_eq_by_wear_loc (victim, WEAR_WIELD)) == NULL,
         "Your opponent is not wielding a weapon.\n\r", ch);
 
     /* find weapon skills */
@@ -637,7 +642,7 @@ void do_disarm (CHAR_DATA * ch, char *argument) {
     /* modifiers */
 
     /* skill */
-    if (char_get_eq_by_wear (ch, WEAR_WIELD) == NULL)
+    if (char_get_eq_by_wear_loc (ch, WEAR_WIELD) == NULL)
         chance = chance * hth / 150;
     else
         chance = chance * ch_weapon / 100;
@@ -668,7 +673,7 @@ void do_disarm (CHAR_DATA * ch, char *argument) {
     check_killer (ch, victim);
 }
 
-void do_surrender (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_surrender) {
     CHAR_DATA *mob;
     BAIL_IF ((mob = ch->fighting) == NULL,
         "But you're not fighting!\n\r", ch);
@@ -685,7 +690,7 @@ void do_surrender (CHAR_DATA * ch, char *argument) {
     stop_fighting (ch, TRUE);
 }
 
-void do_disengage (CHAR_DATA *ch, char *argument) {
+DEFINE_DO_FUN (do_disengage) {
     CHAR_DATA *rch;
 
     BAIL_IF (ch->fighting == NULL,
@@ -702,7 +707,7 @@ void do_disengage (CHAR_DATA *ch, char *argument) {
 }
 
 /* 'Wimpy' originally by Dionysos. */
-void do_wimpy (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_wimpy) {
     char arg[MAX_INPUT_LENGTH];
     int wimpy;
 
@@ -718,7 +723,7 @@ void do_wimpy (CHAR_DATA * ch, char *argument) {
     printf_to_char (ch, "Wimpy set to %d hit points.\n\r", wimpy);
 }
 
-void do_consider (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_consider) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
     char *msg;

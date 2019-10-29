@@ -176,42 +176,43 @@ void do_look_room (CHAR_DATA * ch, int is_auto) {
     char_list_show_to_char (ch->in_room->people, ch);
 }
 
-void do_look_in (CHAR_DATA * ch, char *arg) {
+void do_look_in (CHAR_DATA *ch, char *argument) {
     OBJ_DATA *obj;
 
-    /* 'look in' */
-    BAIL_IF (arg[0] == '\0',
+    BAIL_IF (argument[0] == '\0',
         "Look in what?\n\r", ch);
-    BAIL_IF ((obj = find_obj_here (ch, arg)) == NULL,
+    BAIL_IF ((obj = find_obj_here (ch, argument)) == NULL,
         "You do not see that here.\n\r", ch);
 
     switch (obj->item_type) {
         case ITEM_DRINK_CON:
-            if (obj->value[1] <= 0)
+            if (obj->v.drink_con.filled <= 0)
                 send_to_char ("It is empty.\n\r", ch);
-            else if (obj->value[1] >= obj->value[0]) {
+            else if (obj->v.drink_con.filled >= obj->v.drink_con.capacity) {
                 printf_to_char (ch,
                     "It's completely filled with a %s liquid.\n\r",
-                    liq_table[obj->value[2]].color);
+                    liq_table[obj->v.drink_con.liquid].color);
             }
             else {
                 int percent;
                 char *fullness;
 
-                percent = (obj->value[1] * 100) / obj->value[0];
+                percent = (obj->v.drink_con.filled * 100)
+                    / obj->v.drink_con.capacity;
+
                      if (percent >= 66) fullness = "more than half-filled";
                 else if (percent >= 33) fullness = "about half-filled";
                 else                    fullness = "less than half-filled";
 
                 printf_to_char (ch, "It's %s with a %s liquid.\n\r",
-                    fullness, liq_table[obj->value[2]].color);
+                    fullness, liq_table[obj->v.drink_con.liquid].color);
             }
             break;
 
         case ITEM_CONTAINER:
         case ITEM_CORPSE_NPC:
         case ITEM_CORPSE_PC:
-            if (IS_SET (obj->value[1], CONT_CLOSED))
+            if (IS_SET (obj->v.container.flags, CONT_CLOSED))
                 send_to_char ("It is closed.\n\r", ch);
             else {
                 act ("$p holds:", ch, obj, NULL, TO_CHAR);
@@ -311,20 +312,20 @@ bool do_filter_description_alter (CHAR_DATA *ch, char *argument) {
 }
 
 /* RT Commands to replace news, motd, imotd, etc from ROM */
-void do_motd (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_motd)
     { do_function (ch, &do_help, "motd"); }
-void do_rules (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_rules)
     { do_function (ch, &do_help, "rules"); }
-void do_story (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_story)
     { do_function (ch, &do_help, "story"); }
-void do_wizlist (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_wizlist)
     { do_function (ch, &do_help, "wizlist"); }
 
 /* Not-RT(?) commands that are similar */
-void do_credits (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_credits)
     { do_function (ch, &do_help, "diku"); }
 
-void do_look (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_look) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
@@ -430,10 +431,10 @@ void do_look (CHAR_DATA * ch, char *argument) {
 }
 
 /* RT added back for the hell of it */
-void do_read (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_read)
     { do_function (ch, &do_look, argument); }
 
-void do_examine (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_examine) {
     char *full_arg;
     char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
@@ -452,23 +453,25 @@ void do_examine (CHAR_DATA * ch, char *argument) {
             break;
 
         case ITEM_MONEY:
-            if (obj->value[0] == 0) {
-                if (obj->value[1] == 0)
+            if (obj->v.money.silver == 0) {
+                if (obj->v.money.gold == 0)
                     sprintf (buf, "Odd...there's no coins in the pile.\n\r");
-                else if (obj->value[1] == 1)
+                else if (obj->v.money.gold == 1)
                     sprintf (buf, "Wow. One gold coin.\n\r");
                 else
-                    sprintf (buf, "There are %d gold coins in the pile.\n\r", obj->value[1]);
+                    sprintf (buf, "There are %ld gold coins in the pile.\n\r",
+                        obj->v.money.gold);
             }
-            else if (obj->value[1] == 0) {
-                if (obj->value[0] == 1)
+            else if (obj->v.money.gold == 0) {
+                if (obj->v.money.silver == 1)
                     sprintf (buf, "Wow. One silver coin.\n\r");
                 else
-                    sprintf (buf, "There are %d silver coins in the pile.\n\r", obj->value[0]);
+                    sprintf (buf, "There are %ld silver coins in the pile.\n\r",
+                        obj->v.money.silver);
             }
             else
-                sprintf (buf, "There are %d gold and %d silver coins in the pile.\n\r",
-                    obj->value[1], obj->value[0]);
+                sprintf (buf, "There are %ld gold and %ld silver coins in the pile.\n\r",
+                    obj->v.money.gold, obj->v.money.silver);
             send_to_char (buf, ch);
             break;
 
@@ -481,21 +484,21 @@ void do_examine (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_lore (CHAR_DATA * ch, char *arg) {
+DEFINE_DO_FUN (do_lore) {
     OBJ_DATA *obj;
     int skill = get_skill (ch, gsn_lore);
 
     BAIL_IF (skill == 0,
         "You haven't studied any lore.\n\r", ch);
-    BAIL_IF (arg[0] == '\0',
+    BAIL_IF (argument[0] == '\0',
         "Check the lore on what?\n\r", ch);
-    BAIL_IF ((obj = find_obj_here (ch, arg)) == NULL,
+    BAIL_IF ((obj = find_obj_here (ch, argument)) == NULL,
         "You can't find that here.\n\r", ch);
     spell_identify_perform (ch, obj, skill);
 }
 
 /* Thanks to Zrin for auto-exit part. */
-void do_exits (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_exits) {
     char buf[MAX_STRING_LENGTH];
     bool fAuto;
     int mode;
@@ -520,7 +523,7 @@ void do_exits (CHAR_DATA * ch, char *argument) {
         printf_to_char (ch, "%s", buf);
 }
 
-void do_worth (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_worth) {
     if (IS_NPC (ch)) {
         printf_to_char (ch, "You have %ld gold and %ld silver.\n\r",
             ch->gold, ch->silver);
@@ -531,7 +534,7 @@ void do_worth (CHAR_DATA * ch, char *argument) {
         ch->gold, ch->silver, ch->exp, get_exp_to_level(ch));
 }
 
-void do_score (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_score) {
     int i;
 
     printf_to_char (ch, "You are %s%s, level %d, %d years old (%d hours).\n\r",
@@ -543,7 +546,8 @@ void do_score (CHAR_DATA * ch, char *argument) {
             char_get_trust (ch));
 
     printf_to_char (ch, "Race: %s  Sex: %s  Class: %s\n\r",
-        race_table[ch->race].name, get_sex_name(ch->sex), get_ch_class_name(ch));
+        race_table[ch->race].name, sex_name(ch->sex),
+        char_get_class_name (ch));
 
     printf_to_char (ch, "You have %d/%d hit, %d/%d mana, %d/%d movement.\n\r",
         ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move, ch->max_move);
@@ -585,7 +589,7 @@ void do_score (CHAR_DATA * ch, char *argument) {
         send_to_char ("You are hungry.\n\r", ch);
 
     printf_to_char (ch, "You are %s\r\n",
-        get_character_position_str (ch, ch->position, ch->on, TRUE));
+        char_get_position_str (ch, ch->position, ch->on, TRUE));
 
     /* print attack information */
     if (ch->level >= 15)
@@ -600,11 +604,11 @@ void do_score (CHAR_DATA * ch, char *argument) {
 
     for (i = 0; i < 4; i++)
         printf_to_char (ch, "You are %s %s.\n\r",
-            get_ac_rating_phrase (GET_AC (ch, i)), get_ac_type_name(i));
+            ac_rating_phrase (GET_AC (ch, i)), ac_type_name(i));
 
     if (ch->level >= 10)
         printf_to_char (ch, "Alignment: %d.  ", ch->alignment);
-    printf_to_char (ch, "You are %s.\n\r", get_align_name (ch->alignment));
+    printf_to_char (ch, "You are %s.\n\r", align_name (ch->alignment));
 
     /* wizinvis and holy light */
     if (IS_IMMORTAL (ch)) {
@@ -621,7 +625,7 @@ void do_score (CHAR_DATA * ch, char *argument) {
         do_function (ch, &do_affects, "");
 }
 
-void do_affects (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_affects) {
     AFFECT_DATA *paf, *paf_last = NULL;
 
     BAIL_IF (ch->affected == NULL,
@@ -649,7 +653,7 @@ void do_affects (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_time (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_time) {
     const DAY_TYPE *day_obj;
     const MONTH_TYPE *month_obj;
     extern char str_boot_time[];
@@ -676,7 +680,7 @@ void do_time (CHAR_DATA * ch, char *argument) {
         str_boot_time, (char *) ctime (&current_time));
 }
 
-void do_weather (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_weather) {
     const SKY_TYPE *sky;
     char *change;
 
@@ -691,7 +695,7 @@ void do_weather (CHAR_DATA * ch, char *argument) {
     printf_to_char (ch, "The sky is %s and %s.\n\r", sky->description, change);
 }
 
-void do_help (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_help) {
     HELP_DATA *pHelp;
     BUFFER *output;
     bool found = FALSE;
@@ -761,7 +765,7 @@ void do_help (CHAR_DATA * ch, char *argument) {
 }
 
 /* whois command */
-void do_whois (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_whois) {
     char arg[MAX_INPUT_LENGTH];
     BUFFER *output;
     char buf[MAX_STRING_LENGTH];
@@ -795,7 +799,7 @@ void do_whois (CHAR_DATA * ch, char *argument) {
 }
 
 /* New 'who' command originally by Alander of Rivers of Mud. */
-void do_who (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_who) {
     char buf[MAX_STRING_LENGTH];
     char buf2[MAX_STRING_LENGTH];
     BUFFER *output;
@@ -919,7 +923,7 @@ void do_who (CHAR_DATA * ch, char *argument) {
 
 /* for keeping track of the player count */
 static int max_on = 0;
-void do_count (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_count) {
     int count;
     DESCRIPTOR_DATA *d;
 
@@ -941,23 +945,23 @@ void do_count (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_inventory (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_inventory) {
     send_to_char ("You are carrying:\n\r", ch);
     obj_list_show_to_char (ch->carrying, ch, TRUE, TRUE);
 }
 
-void do_equipment (CHAR_DATA * ch, char *argument) {
-    const WEAR_TYPE *wear;
+DEFINE_DO_FUN (do_equipment) {
+    const WEAR_LOC_TYPE *wear;
     OBJ_DATA *obj;
     int iWear;
     bool found;
 
     send_to_char ("You are using:\n\r", ch);
     found = FALSE;
-    for (iWear = 0; iWear < WEAR_MAX; iWear++) {
-        if ((obj = char_get_eq_by_wear (ch, iWear)) == NULL)
+    for (iWear = 0; iWear < WEAR_LOC_MAX; iWear++) {
+        if ((obj = char_get_eq_by_wear_loc (ch, iWear)) == NULL)
             continue;
-        if ((wear = wear_get (iWear)) == NULL)
+        if ((wear = wear_loc_get (iWear)) == NULL)
             continue;
 
         send_to_char (wear->look_msg, ch);
@@ -974,7 +978,7 @@ void do_equipment (CHAR_DATA * ch, char *argument) {
         send_to_char ("Nothing.\n\r", ch);
 }
 
-void do_compare (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_compare) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     OBJ_DATA *obj1;
@@ -1005,9 +1009,9 @@ void do_compare (CHAR_DATA * ch, char *argument) {
         BAIL_IF (obj2 == NULL,
             "You aren't wearing anything comparable.\n\r", ch);
     }
-    else if ((obj2 = find_obj_own_inventory (ch, arg2)) == NULL) {
-        send_to_char ("You do not have that item.\n\r", ch);
-        return;
+    else {
+        BAIL_IF ((obj2 = find_obj_own_inventory (ch, arg2)) == NULL,
+            "You do not have that item.\n\r", ch);
     }
 
     msg = NULL;
@@ -1025,18 +1029,22 @@ void do_compare (CHAR_DATA * ch, char *argument) {
                 break;
 
             case ITEM_ARMOR:
-                value1 = obj1->value[0] + obj1->value[1] + obj1->value[2];
-                value2 = obj2->value[0] + obj2->value[1] + obj2->value[2];
+                value1 = obj1->v.armor.vs_pierce +
+                         obj1->v.armor.vs_bash +
+                         obj1->v.armor.vs_slash;
+                value2 = obj2->v.armor.vs_pierce +
+                         obj2->v.armor.vs_bash +
+                         obj2->v.armor.vs_slash;
                 break;
 
             case ITEM_WEAPON:
                 if (obj1->pIndexData->new_format) {
-                    value1 = (1 + obj1->value[2]) * obj1->value[1];
-                    value2 = (1 + obj2->value[2]) * obj2->value[1];
+                    value1 = (1 + obj1->v.weapon.dice_size) * obj1->v.weapon.dice_num;
+                    value2 = (1 + obj2->v.weapon.dice_size) * obj2->v.weapon.dice_num;
                 }
                 else {
-                    value1 = obj1->value[1] + obj1->value[2];
-                    value2 = obj2->value[1] + obj2->value[2];
+                    value1 = (obj1->v.weapon.dice_size) * obj1->v.weapon.dice_num;
+                    value2 = (obj2->v.weapon.dice_size) * obj2->v.weapon.dice_num;
                 }
                 break;
         }
@@ -1051,8 +1059,7 @@ void do_compare (CHAR_DATA * ch, char *argument) {
     act (msg, ch, obj1, obj2, TO_CHAR);
 }
 
-void do_where (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_where) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
     DESCRIPTOR_DATA *d;
@@ -1074,9 +1081,8 @@ void do_where (CHAR_DATA * ch, char *argument) {
                 && char_can_see_anywhere (ch, victim))
             {
                 found = TRUE;
-                sprintf (buf, "%-28s %s\n\r",
-                         victim->name, victim->in_room->name);
-                send_to_char (buf, ch);
+                printf_to_char (ch, "%-28s %s\n\r",
+                    victim->name, victim->in_room->name);
             }
         }
         if (!found)
@@ -1092,9 +1098,8 @@ void do_where (CHAR_DATA * ch, char *argument) {
                 && char_can_see_anywhere (ch, victim) && is_name (arg, victim->name))
             {
                 found = TRUE;
-                sprintf (buf, "%-28s %s\n\r",
-                         PERS_AW (victim, ch), victim->in_room->name);
-                send_to_char (buf, ch);
+                printf_to_char (ch, "%-28s %s\n\r",
+                    PERS_AW (victim, ch), victim->in_room->name);
                 break;
             }
         }
@@ -1103,7 +1108,7 @@ void do_where (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_title (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_title) {
     int i;
 
     if (IS_NPC (ch))
@@ -1129,7 +1134,7 @@ void do_title (CHAR_DATA * ch, char *argument) {
     send_to_char ("Ok.\n\r", ch);
 }
 
-void do_description (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_description) {
     if (argument[0] != '\0')
         if (do_filter_description_alter (ch, argument))
             return;
@@ -1138,7 +1143,7 @@ void do_description (CHAR_DATA * ch, char *argument) {
     send_to_char (ch->description ? ch->description : "(None).\n\r", ch);
 }
 
-void do_report (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_report) {
     char buf[MAX_INPUT_LENGTH];
     sprintf (buf, "I have %d/%d hp %d/%d mana %d/%d mv %d xp.",
         ch->hit, ch->max_hit, ch->mana, ch->max_mana,
@@ -1147,18 +1152,15 @@ void do_report (CHAR_DATA * ch, char *argument) {
 }
 
 /* Contributed by Alander. */
-void do_commands (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
-    int cmd;
-    int col;
+DEFINE_DO_FUN (do_commands) {
+    int cmd, col;
 
     col = 0;
     for (cmd = 0; cmd_table[cmd].name[0] != '\0'; cmd++) {
         if (cmd_table[cmd].level < LEVEL_HERO &&
             cmd_table[cmd].level <= char_get_trust (ch) && cmd_table[cmd].show)
         {
-            sprintf (buf, "%-12s", cmd_table[cmd].name);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "%-12s", cmd_table[cmd].name);
             if (++col % 6 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -1166,10 +1168,9 @@ void do_commands (CHAR_DATA * ch, char *argument) {
 
     if (col % 6 != 0)
         send_to_char ("\n\r", ch);
-    return;
 }
 
-void do_areas (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_areas) {
     char buf[MAX_STRING_LENGTH];
     AREA_DATA *pArea1;
     AREA_DATA *pArea2;
@@ -1195,7 +1196,7 @@ void do_areas (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_scan_short (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_scan_short)
     { do_scan_real (ch, argument, 1); }
-void do_scan_far (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_scan_far)
     { do_scan_real (ch, argument, 3); }

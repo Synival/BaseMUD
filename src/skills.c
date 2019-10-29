@@ -42,9 +42,6 @@
 
 #include "skills.h"
 
-/* TODO: make that giant series of gsn_* a little more digestable. */
-/* TODO: review function names. */
-
 /* Globals. */
 sh_int gsn_backstab;
 sh_int gsn_dodge;
@@ -178,18 +175,15 @@ int get_skill (CHAR_DATA * ch, int sn) {
 
 /* shows skills, groups and costs (only if not bought) */
 void list_group_costs (CHAR_DATA * ch) {
-    char buf[100];
     int gn, sn, col;
 
     if (IS_NPC (ch))
         return;
 
+    printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s\n\r",
+        "group", "cp", "group", "cp", "group", "cp");
+
     col = 0;
-
-    sprintf (buf, "%-18s %-5s %-18s %-5s %-18s %-5s\n\r", "group", "cp",
-             "group", "cp", "group", "cp");
-    send_to_char (buf, ch);
-
     for (gn = 0; gn < GROUP_MAX; gn++) {
         if (group_table[gn].name == NULL)
             break;
@@ -198,9 +192,8 @@ void list_group_costs (CHAR_DATA * ch) {
             && !ch->pcdata->group_known[gn]
             && group_table[gn].rating[ch->class] > 0)
         {
-            sprintf (buf, "%-18s %-5d ", group_table[gn].name,
-                     group_table[gn].rating[ch->class]);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "%-18s %-5d ", group_table[gn].name,
+                group_table[gn].rating[ch->class]);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -211,9 +204,8 @@ void list_group_costs (CHAR_DATA * ch) {
 
     col = 0;
 
-    sprintf (buf, "%-18s %-5s %-18s %-5s %-18s %-5s\n\r", "skill", "cp",
-             "skill", "cp", "skill", "cp");
-    send_to_char (buf, ch);
+    printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s\n\r",
+        "skill", "cp", "skill", "cp", "skill", "cp");
 
     for (sn = 0; sn < SKILL_MAX; sn++) {
         if (skill_table[sn].name == NULL)
@@ -224,9 +216,8 @@ void list_group_costs (CHAR_DATA * ch) {
             && skill_table[sn].spell_fun == spell_null
             && skill_table[sn].rating[ch->class] > 0)
         {
-            sprintf (buf, "%-18s %-5d ", skill_table[sn].name,
-                     skill_table[sn].rating[ch->class]);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "%-18s %-5d ", skill_table[sn].name,
+                skill_table[sn].rating[ch->class]);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -235,26 +226,21 @@ void list_group_costs (CHAR_DATA * ch) {
         send_to_char ("\n\r", ch);
     send_to_char ("\n\r", ch);
 
-    sprintf (buf, "Creation points: %d\n\r", ch->pcdata->points);
-    send_to_char (buf, ch);
-    sprintf (buf, "Experience per level: %d\n\r",
-             exp_per_level (ch, ch->gen_data->points_chosen));
-    send_to_char (buf, ch);
-    return;
+    printf_to_char (ch, "Creation points: %d\n\r", ch->pcdata->points);
+    printf_to_char (ch, "Experience per level: %d\n\r",
+        exp_per_level (ch, ch->gen_data->points_chosen));
 }
 
 void list_group_chosen (CHAR_DATA * ch) {
-    char buf[100];
     int gn, sn, col;
 
     if (IS_NPC (ch))
         return;
 
-    col = 0;
-    sprintf (buf, "%-18s %-5s %-18s %-5s %-18s %-5s", "group", "cp", "group",
-             "cp", "group", "cp\n\r");
-    send_to_char (buf, ch);
+    printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s",
+        "group", "cp", "group", "cp", "group", "cp\n\r");
 
+    col = 0;
     for (gn = 0; gn < GROUP_MAX; gn++) {
         if (group_table[gn].name == NULL)
             break;
@@ -262,9 +248,8 @@ void list_group_chosen (CHAR_DATA * ch) {
         if (ch->gen_data->group_chosen[gn]
             && group_table[gn].rating[ch->class] > 0)
         {
-            sprintf (buf, "%-18s %-5d ", group_table[gn].name,
-                     group_table[gn].rating[ch->class]);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "%-18s %-5d ", group_table[gn].name,
+                group_table[gn].rating[ch->class]);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -274,9 +259,8 @@ void list_group_chosen (CHAR_DATA * ch) {
     send_to_char ("\n\r", ch);
 
     col = 0;
-    sprintf (buf, "%-18s %-5s %-18s %-5s %-18s %-5s", "skill", "cp", "skill",
-             "cp", "skill", "cp\n\r");
-    send_to_char (buf, ch);
+    printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s",
+        "skill", "cp", "skill", "cp", "skill", "cp\n\r");
 
     for (sn = 0; sn < SKILL_MAX; sn++) {
         if (skill_table[sn].name == NULL)
@@ -285,9 +269,8 @@ void list_group_chosen (CHAR_DATA * ch) {
         if (ch->gen_data->skill_chosen[sn]
             && skill_table[sn].rating[ch->class] > 0)
         {
-            sprintf (buf, "%-18s %-5d ", skill_table[sn].name,
-                     skill_table[sn].rating[ch->class]);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "%-18s %-5d ", skill_table[sn].name,
+                skill_table[sn].rating[ch->class]);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -297,17 +280,14 @@ void list_group_chosen (CHAR_DATA * ch) {
         send_to_char ("\n\r", ch);
     send_to_char ("\n\r", ch);
 
-    sprintf (buf, "Creation points: %d\n\r", ch->gen_data->points_chosen);
-    send_to_char (buf, ch);
-    sprintf (buf, "Experience per level: %d\n\r",
-             exp_per_level (ch, ch->gen_data->points_chosen));
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Creation points: %d\n\r", ch->gen_data->points_chosen);
+    printf_to_char (ch, "Experience per level: %d\n\r",
+        exp_per_level (ch, ch->gen_data->points_chosen));
 }
 
 /* this procedure handles the input parsing for the skill generator */
 bool parse_gen_groups (CHAR_DATA * ch, char *argument) {
     char arg[MAX_INPUT_LENGTH];
-    char buf[100];
     int gn, sn, i;
 
     if (argument[0] == '\0')
@@ -350,8 +330,7 @@ bool parse_gen_groups (CHAR_DATA * ch, char *argument) {
                 return TRUE;
             }
 
-            sprintf (buf, "%s group added\n\r", group_table[gn].name);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "%s group added\n\r", group_table[gn].name);
             ch->gen_data->group_chosen[gn] = TRUE;
             ch->gen_data->points_chosen += group_table[gn].rating[ch->class];
             gn_add (ch, gn);
@@ -381,8 +360,7 @@ bool parse_gen_groups (CHAR_DATA * ch, char *argument) {
                 return TRUE;
             }
 
-            sprintf (buf, "%s skill added\n\r", skill_table[sn].name);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "%s skill added\n\r", skill_table[sn].name);
             ch->gen_data->skill_chosen[sn] = TRUE;
             ch->gen_data->points_chosen += skill_table[sn].rating[ch->class];
             ch->pcdata->learned[sn] = 1;
@@ -455,7 +433,6 @@ bool parse_gen_groups (CHAR_DATA * ch, char *argument) {
 /* checks for skill improvement */
 void check_improve (CHAR_DATA * ch, int sn, bool success, int multiplier) {
     int chance;
-    char buf[100];
 
     if (IS_NPC (ch))
         return;
@@ -467,7 +444,7 @@ void check_improve (CHAR_DATA * ch, int sn, bool success, int multiplier) {
         return;
 
     /* check to see if the character has a chance to learn */
-    chance = 10 * int_app[char_get_curr_stat (ch, STAT_INT)].learn;
+    chance = 10 * char_int_learn_rate (ch);
     chance /= (multiplier * skill_table[sn].rating[ch->class] * 4);
     chance += ch->level;
 
@@ -480,9 +457,8 @@ void check_improve (CHAR_DATA * ch, int sn, bool success, int multiplier) {
         chance = URANGE (5, 100 - ch->pcdata->learned[sn], 95);
         if (number_percent () < chance)
         {
-            sprintf (buf, "{5You have become better at %s!{x\n\r",
-                     skill_table[sn].name);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "{5You have become better at %s!{x\n\r",
+                skill_table[sn].name);
             ch->pcdata->learned[sn]++;
             gain_exp (ch, 2 * skill_table[sn].rating[ch->class]);
         }
@@ -490,10 +466,9 @@ void check_improve (CHAR_DATA * ch, int sn, bool success, int multiplier) {
     else {
         chance = URANGE (5, ch->pcdata->learned[sn] / 2, 30);
         if (number_percent () < chance) {
-            sprintf (buf,
-                     "{5You learn from your mistakes, and your %s skill improves.{x\n\r",
-                     skill_table[sn].name);
-            send_to_char (buf, ch);
+            printf_to_char (ch,
+                "{5You learn from your mistakes, and your %s skill improves.{x\n\r",
+                skill_table[sn].name);
             ch->pcdata->learned[sn] += number_range (1, 3);
             ch->pcdata->learned[sn] = UMIN (ch->pcdata->learned[sn], 100);
             gain_exp (ch, 2 * skill_table[sn].rating[ch->class]);

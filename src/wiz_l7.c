@@ -35,12 +35,8 @@
 
 #include "wiz_l7.h"
 
-/* TODO: review most of these functions and test them thoroughly. */
-/* TODO: employ tables whenever possible */
-/* TODO: use a sub-routine for do_force() */
-
 /* Thanks to Grodyn for pointing out bugs in this function. */
-void do_force (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_force) {
     char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];

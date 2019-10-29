@@ -40,20 +40,13 @@
 #include "rooms.h"
 #include "find.h"
 #include "descs.h"
+#include "boot.h"
 
 #include "wiz_ml.h"
 #include "find.h"
 #include "find.h"
 
-/* TODO: make sure 'copyover' works. */
-/* TODO: look at qmconfig to see how it handles game flags. */
-/* TODO: make another wizcommand to toggle vanilla flags. */
-/* TODO: review most of these functions and test them thoroughly. */
-/* TODO: BAIL_IF() clauses. */
-/* TODO: employ tables whenever possible */
-
-void do_advance (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_advance) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
@@ -63,27 +56,18 @@ void do_advance (CHAR_DATA * ch, char *argument) {
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
 
-    if (arg1[0] == '\0' || arg2[0] == '\0' || !is_number (arg2)) {
-        send_to_char ("Syntax: advance <char> <level>.\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg1)) == NULL) {
-        send_to_char ("That player is not here.\n\r", ch);
-        return;
-    }
-    if (IS_NPC (victim)) {
-        send_to_char ("Not on NPC's.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg1[0] == '\0' || arg2[0] == '\0' || !is_number (arg2),
+        "Syntax: advance <char> <level>.\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg1)) == NULL,
+        "That player is not here.\n\r", ch);
+    BAIL_IF (IS_NPC (victim),
+        "Not on NPC's.\n\r", ch);
     if ((level = atoi (arg2)) < 1 || level > MAX_LEVEL) {
-        sprintf (buf, "Level must be 1 to %d.\n\r", MAX_LEVEL);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "Level must be 1 to %d.\n\r", MAX_LEVEL);
         return;
     }
-    if (level > char_get_trust (ch)) {
-        send_to_char ("Limited to your trust level.\n\r", ch);
-        return;
-    }
+    BAIL_IF (level > char_get_trust (ch),
+        "Limited to your trust level.\n\r", ch);
 
     /* Lower level:
      *   Reset to level 1.
@@ -115,8 +99,7 @@ void do_advance (CHAR_DATA * ch, char *argument) {
         victim->level += 1;
         advance_level (victim, TRUE);
     }
-    sprintf (buf, "You are now level %d.\n\r", victim->level);
-    send_to_char (buf, victim);
+    printf_to_char (victim, "You are now level %d.\n\r", victim->level);
     victim->exp = exp_per_level (victim, victim->pcdata->points)
         * UMAX (1, victim->level);
     victim->trust = 0;
@@ -127,7 +110,7 @@ void do_advance (CHAR_DATA * ch, char *argument) {
  *  Adapted to Diku by Erwin S. Andreasen, <erwin@pip.dknet.dk>
  *  http://pip.dknet.dk/~pip1773
  *  Changed into a ROM patch after seeing the 100th request for it :) */
-void do_copyover (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_copyover) {
     FILE *fp;
     DESCRIPTOR_DATA *d, *d_next;
     char buf[100], buf2[100], buf3[100];
@@ -146,7 +129,7 @@ void do_copyover (CHAR_DATA * ch, char *argument) {
 
     /* do_asave (NULL, ""); - autosave changed areas */
     sprintf (buf, "\n\r *** COPYOVER by %s - please remain seated!\n\r",
-             ch->name);
+        ch->name);
 
     /* For each playing descriptor, save its state */
     for (d = descriptor_list; d; d = d_next) {
@@ -162,11 +145,10 @@ void do_copyover (CHAR_DATA * ch, char *argument) {
         else {
             fprintf (fp, "%d %s %s\n", d->descriptor, och->name, d->host);
 #if 0                            /* This is not necessary for ROM */
-            if (och->level == 1)
-            {
+            if (och->level == 1) {
                 write_to_descriptor (d->descriptor,
-                                     "Since you are level one, and level one characters do not save, you gain a free level!\n\r",
-                                     0);
+                    "Since you are level one, and level one characters "
+                    "do not save, you gain a free level!\n\r", 0);
                 advance_level (och);
                 och->level++;    /* Advance_level doesn't do that */
             }
@@ -190,12 +172,12 @@ void do_copyover (CHAR_DATA * ch, char *argument) {
     sprintf (buf, "%d", port);
     sprintf (buf2, "%d", control);
 #ifdef IMC
-    if ( his_imcmud)
-        snprintf (buf3, 100, "%d", this_imcmud->desc);
+    if (his_imcmud)
+        snprintf (buf3, sizeof(buf3), "%d", this_imcmud->desc);
     else
-        strncpy (buf3, "-1", 100);
+        strncpy (buf3, "-1", sizeof(buf3));
 #else
-    strncpy (buf3, "-1", 100);
+    strncpy (buf3, "-1", sizeof(buf3));
 #endif
     execl (EXE_FILE, "rom", buf, "copyover", buf2, buf3, (char *) NULL);
 
@@ -207,39 +189,30 @@ void do_copyover (CHAR_DATA * ch, char *argument) {
     fpReserve = fopen (NULL_FILE, "r");
 }
 
-void do_trust (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_trust) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
     int level;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
 
-    if (arg1[0] == '\0' || arg2[0] == '\0' || !is_number (arg2)) {
-        send_to_char ("Syntax: trust <char> <level>.\n\r", ch);
-        return;
-    }
-    if ((victim = find_char_world (ch, arg1)) == NULL) {
-        send_to_char ("That player is not here.\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg1[0] == '\0' || arg2[0] == '\0' || !is_number (arg2),
+        "Syntax: trust <char> <level>.\n\r", ch);
+    BAIL_IF ((victim = find_char_world (ch, arg1)) == NULL,
+        "That player is not here.\n\r", ch);
     if ((level = atoi (arg2)) < 0 || level > MAX_LEVEL) {
-        sprintf (buf, "Level must be 0 (reset) or 1 to %d.\n\r", MAX_LEVEL);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "Level must be 0 (reset) or 1 to %d.\n\r", MAX_LEVEL);
         return;
     }
-    if (level > char_get_trust (ch)) {
-        send_to_char ("Limited to your trust.\n\r", ch);
-        return;
-    }
+    BAIL_IF (level > char_get_trust (ch),
+        "Limited to your trust.\n\r", ch);
 
     victim->trust = level;
-    return;
 }
 
-void do_dump (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_dump) {
     MOB_INDEX_DATA *pMobIndex;
     OBJ_INDEX_DATA *pObjIndex;
     FILE *fp;
@@ -288,22 +261,17 @@ void do_dump (CHAR_DATA * ch, char *argument) {
     fpReserve = fopen (NULL_FILE, "r");
 }
 
-void do_violate (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_violate) {
     ROOM_INDEX_DATA *location;
     CHAR_DATA *rch;
 
-    if (argument[0] == '\0') {
-        send_to_char ("Goto where?\n\r", ch);
-        return;
-    }
-    if ((location = find_location (ch, argument)) == NULL) {
-        send_to_char ("No such location.\n\r", ch);
-        return;
-    }
-    if (!room_is_private (location)) {
-        send_to_char ("That room isn't private, use goto.\n\r", ch);
-        return;
-    }
+    BAIL_IF (argument[0] == '\0',
+        "Goto where?\n\r", ch);
+    BAIL_IF ((location = find_location (ch, argument)) == NULL,
+        "No such location.\n\r", ch);
+    BAIL_IF (!room_is_private (location),
+        "That room isn't private, use goto.\n\r", ch);
+
     if (ch->fighting != NULL)
         stop_fighting (ch, TRUE);
 
@@ -333,7 +301,7 @@ void do_violate (CHAR_DATA * ch, char *argument) {
 
 /* This _should_ encompass all the QuickMUD config commands */
 /* -- JR 11/24/00                                           */
-void do_qmconfig (CHAR_DATA * ch, char * argument) {
+DEFINE_DO_FUN (do_qmconfig) {
     extern int mud_ansiprompt;
     extern int mud_ansicolor;
     extern int mud_telnetga;

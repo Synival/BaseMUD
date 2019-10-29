@@ -34,11 +34,6 @@
 
 #include "olc_save.h"
 
-/* TODO: basically untouched - change that! */
-/* TODO: formatting */
-/* TODO: should we write in new JSON format, too? */
-/* TODO: try saving the ENTIRE world and comparing it to existing files */
-
 /* Verbose writes reset data in plain english into the comments
  * section of the resets.  It makes areas considerably larger but
  * may aid in debugging. */
@@ -263,67 +258,62 @@ void save_object (FILE * fp, OBJ_INDEX_DATA * pObjIndex) {
 
     switch (pObjIndex->item_type) {
         default:
-            fprintf (fp, "%s ", fwrite_flag (pObjIndex->value[0], buf));
-            fprintf (fp, "%s ", fwrite_flag (pObjIndex->value[1], buf));
-            fprintf (fp, "%s ", fwrite_flag (pObjIndex->value[2], buf));
-            fprintf (fp, "%s ", fwrite_flag (pObjIndex->value[3], buf));
-            fprintf (fp, "%s\n", fwrite_flag (pObjIndex->value[4], buf));
+            fprintf (fp, "%s ",  fwrite_flag (pObjIndex->v.value[0], buf));
+            fprintf (fp, "%s ",  fwrite_flag (pObjIndex->v.value[1], buf));
+            fprintf (fp, "%s ",  fwrite_flag (pObjIndex->v.value[2], buf));
+            fprintf (fp, "%s ",  fwrite_flag (pObjIndex->v.value[3], buf));
+            fprintf (fp, "%s\n", fwrite_flag (pObjIndex->v.value[4], buf));
             break;
 
         case ITEM_DRINK_CON:
         case ITEM_FOUNTAIN:
-            fprintf (fp, "%d %d '%s' %d %d\n",
-                     pObjIndex->value[0],
-                     pObjIndex->value[1],
-                     liq_table[pObjIndex->value[2]].name,
-                     pObjIndex->value[3], pObjIndex->value[4]);
+            fprintf (fp, "%ld %ld '%s' %ld %ld\n",
+                     pObjIndex->v.value[0],
+                     pObjIndex->v.value[1],
+                     liq_table[pObjIndex->v.value[2]].name,
+                     pObjIndex->v.value[3],
+                     pObjIndex->v.value[4]);
             break;
 
         case ITEM_CONTAINER:
-            fprintf (fp, "%d %s %d %d %d\n",
-                     pObjIndex->value[0],
-                     fwrite_flag (pObjIndex->value[1], buf),
-                     pObjIndex->value[2],
-                     pObjIndex->value[3], pObjIndex->value[4]);
+            fprintf (fp, "%ld %s %ld %ld %ld\n",
+                     pObjIndex->v.value[0],
+                     fwrite_flag (pObjIndex->v.value[1], buf),
+                     pObjIndex->v.value[2],
+                     pObjIndex->v.value[3],
+                     pObjIndex->v.value[4]);
             break;
 
         case ITEM_WEAPON:
-            fprintf (fp, "%s %d %d %s %s\n",
-                     weapon_get_name (pObjIndex->value[0]),
-                     pObjIndex->value[1],
-                     pObjIndex->value[2],
-                     attack_table[pObjIndex->value[3]].name,
-                     fwrite_flag (pObjIndex->value[4], buf));
+            fprintf (fp, "%s %ld %ld %s %s\n",
+                     weapon_get_name (pObjIndex->v.value[0]),
+                     pObjIndex->v.value[1],
+                     pObjIndex->v.value[2],
+                     attack_table[pObjIndex->v.value[3]].name,
+                     fwrite_flag (pObjIndex->v.value[4], buf));
             break;
 
         case ITEM_PILL:
         case ITEM_POTION:
         case ITEM_SCROLL:
-            fprintf (fp, "%d '%s' '%s' '%s' '%s'\n", pObjIndex->value[0] > 0 ?    /* no negative numbers */
-                     pObjIndex->value[0]
-                     : 0,
-                     pObjIndex->value[1] != -1 ?
-                     skill_table[pObjIndex->value[1]].name
-                     : "",
-                     pObjIndex->value[2] != -1 ?
-                     skill_table[pObjIndex->value[2]].name
-                     : "",
-                     pObjIndex->value[3] != -1 ?
-                     skill_table[pObjIndex->value[3]].name
-                     : "",
-                     pObjIndex->value[4] != -1 ?
-                     skill_table[pObjIndex->value[4]].name : "");
+            /* no negative numbers */
+            fprintf (fp, "%ld '%s' '%s' '%s' '%s'\n",
+                     pObjIndex->v.value[0]  >  0 ? pObjIndex->v.value[0] : 0,
+                     pObjIndex->v.value[1] != -1 ? skill_table[pObjIndex->v.value[1]].name : "",
+                     pObjIndex->v.value[2] != -1 ? skill_table[pObjIndex->v.value[2]].name : "",
+                     pObjIndex->v.value[3] != -1 ? skill_table[pObjIndex->v.value[3]].name : "",
+                     pObjIndex->v.value[4] != -1 ? skill_table[pObjIndex->v.value[4]].name : "");
             break;
 
         case ITEM_STAFF:
         case ITEM_WAND:
-            fprintf (fp, "%d %d %d '%s' %d\n",
-                     pObjIndex->value[0],
-                     pObjIndex->value[1],
-                     pObjIndex->value[2],
-                     pObjIndex->value[3] != -1 ?
-                     skill_table[pObjIndex->value[3]].name :
-                     "", pObjIndex->value[4]);
+            fprintf (fp, "%ld %ld %ld '%s' %ld\n",
+                     pObjIndex->v.value[0],
+                     pObjIndex->v.value[1],
+                     pObjIndex->v.value[2],
+                     pObjIndex->v.value[3] != -1
+                        ? skill_table[pObjIndex->v.value[3]].name : "",
+                     pObjIndex->v.value[4]);
             break;
     }
 
@@ -342,16 +332,16 @@ void save_object (FILE * fp, OBJ_INDEX_DATA * pObjIndex) {
     fprintf (fp, "%c\n", letter);
 
     for (pAf = pObjIndex->affected; pAf; pAf = pAf->next) {
-        if (pAf->bit_type == TO_OBJECT || pAf->bits == 0)
+        if (pAf->bit_type == AFF_TO_OBJECT || pAf->bits == 0)
             fprintf (fp, "A\n%d %d\n", pAf->apply, pAf->modifier);
         else {
             fprintf (fp, "F\n");
 
             switch (pAf->bit_type) {
-                case TO_AFFECTS: fprintf (fp, "A "); break;
-                case TO_IMMUNE:  fprintf (fp, "I "); break;
-                case TO_RESIST:  fprintf (fp, "R "); break;
-                case TO_VULN:    fprintf (fp, "V "); break;
+                case AFF_TO_AFFECTS: fprintf (fp, "A "); break;
+                case AFF_TO_IMMUNE:  fprintf (fp, "I "); break;
+                case AFF_TO_RESIST:  fprintf (fp, "R "); break;
+                case AFF_TO_VULN:    fprintf (fp, "V "); break;
                 default:
                     bug ("olc_save: Invalid Affect->where", 0);
                     break;
@@ -490,60 +480,61 @@ void save_specials (FILE * fp, AREA_DATA * pArea) {
         for (pMobIndex = mob_index_hash[iHash]; pMobIndex;
              pMobIndex = pMobIndex->next)
         {
-            if (pMobIndex && pMobIndex->area == pArea && pMobIndex->spec_fun) {
-#if defined( VERBOSE )
-                fprintf (fp, "M %5d %-20s * load to: %s\n", pMobIndex->vnum,
-                         spec_function_name (pMobIndex->spec_fun),
-                         pMobIndex->short_descr);
+            if (pMobIndex == NULL)
+                continue;
+            if (pMobIndex->area != pArea)
+                continue;
+            if (!pMobIndex->spec_fun)
+                continue;
+
+#if defined(VERBOSE)
+            fprintf (fp, "M %5d %-20s * load to: %s\n", pMobIndex->vnum,
+                spec_function_name (pMobIndex->spec_fun),
+                pMobIndex->short_descr);
 #else
-                fprintf (fp, "M %5d %-20s\n", pMobIndex->vnum,
-                         spec_function_name (pMobIndex->spec_fun));
+            fprintf (fp, "M %5d %-20s\n", pMobIndex->vnum,
+                spec_function_name (pMobIndex->spec_fun));
 #endif
-            }
         }
     }
     fprintf (fp, "S\n\n");
 }
 
-/*
- * This function is obsolete.  It it not needed but has been left here
+/* This function is obsolete.  It it not needed but has been left here
  * for historical reasons.  It is used currently for the same reason.
  *
- * I don't think it's obsolete in ROM -- Hugin.
- */
+ * I don't think it's obsolete in ROM -- Hugin. */
 void save_door_resets (FILE * fp, AREA_DATA * pArea) {
     int iHash;
-    ROOM_INDEX_DATA *pRoomIndex;
+    ROOM_INDEX_DATA *room;
     EXIT_DATA *pExit;
     int door;
 
     for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-        for (pRoomIndex = room_index_hash[iHash]; pRoomIndex;
-             pRoomIndex = pRoomIndex->next)
-        {
-            if (pRoomIndex->area != pArea)
+        for (room = room_index_hash[iHash]; room; room = room->next) {
+            if (room->area != pArea)
                 continue;
             for (door = 0; door < DIR_MAX; door++) {
-                if ((pExit = pRoomIndex->exit[door])
-                    && pExit->to_room
-                    && (IS_SET (pExit->rs_flags, EX_CLOSED)
-                        || IS_SET (pExit->rs_flags, EX_LOCKED)))
+                if ((pExit = room->exit[door]) == NULL)
+                    continue;
+                if (pExit->to_room == NULL)
+                    continue;
+                if (!(IS_SET (pExit->rs_flags, EX_CLOSED) ||
+                      IS_SET (pExit->rs_flags, EX_LOCKED)))
+                    continue;
+
 #if defined(VERBOSE)
-                    fprintf (fp, "D 0 %5d %3d %5d    * The %s door of %s is %s\n",
-                             pRoomIndex->vnum,
-                             pExit->orig_door,
-                             IS_SET (pExit->rs_flags, EX_LOCKED) ? 2 : 1,
-                             door_get_name(pExit->orig_door),
-                             pRoomIndex->name,
-                             IS_SET (pExit->rs_flags,
-                                     EX_LOCKED) ? "closed and locked" :
-                             "closed");
-#endif
-#if !defined(VERBOSE)
+                fprintf (fp, "D 0 %5d %3d %5d    * The %s door of %s is %s\n",
+                    room->vnum, pExit->orig_door,
+                    IS_SET (pExit->rs_flags, EX_LOCKED) ? 2 : 1,
+                    door_get_name(pExit->orig_door), room->name,
+                    IS_SET (pExit->rs_flags, EX_LOCKED)
+                        ? "closed and locked"
+                        : "closed");
+#else
                 fprintf (fp, "D 0 %5d %3d %5d\n",
-                         pRoomIndex->vnum,
-                         pExit->orig_door,
-                         IS_SET (pExit->rs_flags, EX_LOCKED) ? 2 : 1);
+                    room->vnum, pExit->orig_door,
+                    IS_SET (pExit->rs_flags, EX_LOCKED) ? 2 : 1);
 #endif
             }
         }
@@ -557,115 +548,89 @@ void save_door_resets (FILE * fp, AREA_DATA * pArea) {
  Called by:    save_area(olc_save.c)
  ****************************************************************************/
 void save_resets (FILE * fp, AREA_DATA * pArea) {
-    RESET_DATA *pReset;
+    RESET_DATA *r;
     MOB_INDEX_DATA *pLastMob = NULL;
     OBJ_INDEX_DATA *pLastObj;
     ROOM_INDEX_DATA *pRoom;
-    char buf[MAX_STRING_LENGTH];
     int iHash;
 
     fprintf (fp, "#RESETS\n");
     save_door_resets (fp, pArea);
     for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
         for (pRoom = room_index_hash[iHash]; pRoom; pRoom = pRoom->next) {
-            if (pRoom->area == pArea) {
-                for (pReset = pRoom->reset_first; pReset;
-                     pReset = pReset->next)
-                {
-                    switch (pReset->command) {
-                        default:
-                            bug ("save_resets: bad command %c.",
-                                 pReset->command);
-                            break;
+            if (pRoom->area != pArea)
+                continue;
 
-                        case 'M':
-                            pLastMob = get_mob_index (pReset->value[1]);
-                            fprintf (fp, "M %d %5d %3d %5d %2d * load %s\n",
-                                     pReset->value[0],
-                                     pReset->value[1],
-                                     pReset->value[2],
-                                     pReset->value[3],
-                                     pReset->value[4], pLastMob->short_descr);
-                            break;
+            for (r = pRoom->reset_first; r; r = r->next) {
+                switch (r->command) {
+                    case 'M':
+                        pLastMob = get_mob_index (r->v.value[1]);
+                        fprintf (fp, "M %d %5d %3d %5d %2d * load %s\n",
+                            r->v.value[0], r->v.value[1], r->v.value[2],
+                            r->v.value[3], r->v.value[4], pLastMob->short_descr);
+                        break;
 
-                        case 'O':
-                            pLastObj = get_obj_index (pReset->value[1]);
-                            pRoom = get_room_index (pReset->value[3]);
-                            fprintf (fp, "O %d %5d %3d %5d    * %s loaded to %s\n",
-                                     pReset->value[0],
-                                     pReset->value[1],
-                                     pReset->value[2],
-                                     pReset->value[3],
-                                     capitalize (pLastObj->short_descr),
-                                     pRoom->name);
-                            break;
+                    case 'O':
+                        pLastObj = get_obj_index (r->v.value[1]);
+                        pRoom = get_room_index (r->v.value[3]);
+                        fprintf (fp,
+                            "O %d %5d %3d %5d    * %s loaded to %s\n",
+                            r->v.value[0], r->v.value[1], r->v.value[2],
+                            r->v.value[3], capitalize (pLastObj->short_descr),
+                            pRoom->name);
+                        break;
 
-                        case 'P':
-                            pLastObj = get_obj_index (pReset->value[1]);
-                            fprintf (fp, "P %d %5d %3d %5d %2d %s * put inside %s\n",
-                                     pReset->value[0],
-                                     pReset->value[1],
-                                     pReset->value[2],
-                                     pReset->value[3],
-                                     pReset->value[4],
-                                     capitalize (get_obj_index
-                                                 (pReset->value[1])->short_descr),
-                                     pLastObj->short_descr);
-                            break;
+                    case 'P':
+                        pLastObj = get_obj_index (r->v.value[1]);
+                        fprintf (fp,
+                            "P %d %5d %3d %5d %2d %s * put inside %s\n",
+                            r->v.value[0], r->v.value[1], r->v.value[2],
+                            r->v.value[3], r->v.value[4],
+                            capitalize (get_obj_index (r->v.value[1])->short_descr),
+                            pLastObj->short_descr);
+                        break;
 
-                        case 'G':
-                            fprintf (fp, "G %d %5d %3d          * %s is given to %s\n",
-                                     pReset->value[0],
-                                     pReset->value[1],
-                                     pReset->value[2],
-                                     capitalize (get_obj_index
-                                                 (pReset->value[1])->short_descr),
-                                     pLastMob ? pLastMob->short_descr :
-                                     "!NO_MOB!");
-                            if (!pLastMob)
-                            {
-                                sprintf (buf, "Save_resets: !NO_MOB! in [%s]",
-                                         pArea->filename);
-                                bug (buf, 0);
-                            }
-                            break;
+                    case 'G':
+                        fprintf (fp,
+                            "G %d %5d %3d          * %s is given to %s\n",
+                            r->v.value[0], r->v.value[1], r->v.value[2],
+                            capitalize (get_obj_index (r->v.value[1])->short_descr),
+                            pLastMob ? pLastMob->short_descr : "!NO_MOB!");
 
-                        case 'E':
-                            fprintf (fp,
-                                     "E %d %5d %3d %5d    * %s is loaded %s of %s\n",
-                                     pReset->value[0],
-                                     pReset->value[1],
-                                     pReset->value[2],
-                                     pReset->value[3],
-                                     capitalize (get_obj_index
-                                                 (pReset->value[1])->short_descr),
-                                     flag_string (wear_loc_phrases,
-                                                  pReset->value[3]),
-                                     pLastMob ? pLastMob->short_descr :
-                                     "!NO_MOB!");
-                            if (!pLastMob) {
-                                sprintf (buf, "Save_resets: !NO_MOB! in [%s]",
-                                         pArea->filename);
-                                bug (buf, 0);
-                            }
-                            break;
+                        if (!pLastMob)
+                            bugf ("Save_resets: !NO_MOB! in [%s]", pArea->filename);
+                        break;
 
-                        case 'D':
-                            break;
+                    case 'E':
+                        fprintf (fp,
+                            "E %d %5d %3d %5d    * %s is loaded %s of %s\n",
+                            r->v.value[0], r->v.value[1], r->v.value[2],
+                            r->v.value[3],
+                            capitalize (get_obj_index (r->v.value[1])->short_descr),
+                            flag_string (wear_loc_phrases, r->v.value[3]),
+                            pLastMob ? pLastMob->short_descr : "!NO_MOB!");
 
-                        case 'R':
-                            pRoom = get_room_index (pReset->value[1]);
-                            fprintf (fp, "R %d %5d %3d          * randomize %s\n",
-                                     pReset->value[0],
-                                     pReset->value[1],
-                                     pReset->value[2],
-                                     pRoom->name);
-                            break;
-                    }
+                        if (!pLastMob)
+                            bugf ("Save_resets: !NO_MOB! in [%s]", pArea->filename);
+                        break;
+
+                    case 'D':
+                        break;
+
+                    case 'R':
+                        pRoom = get_room_index (r->v.value[1]);
+                        fprintf (fp, "R %d %5d %3d          * randomize %s\n",
+                            r->v.value[0], r->v.value[1], r->v.value[2],
+                            pRoom->name);
+                        break;
+
+                    default:
+                        bug ("save_resets: bad command %c.", r->command);
+                        break;
                 }
-            }                    /* End if correct area */
-        }                        /* End for pRoom */
-    }                            /* End for iHash */
+            }
+        }
+    }
 
     fprintf (fp, "S\n\n");
 }
@@ -718,25 +683,29 @@ void save_helps (FILE * fp, HELP_AREA * ha) {
     ha->changed = FALSE;
 }
 
-void save_other_helps (CHAR_DATA * ch) {
+int save_other_helps (CHAR_DATA * ch) {
     HELP_AREA *ha;
     FILE *fp;
+    int saved = 0;
 
     for (ha = had_first; ha; ha = ha->next) {
         if (ha->changed != TRUE)
             break;
         if (!(fp = fopen (ha->filename, "w"))) {
             perror (ha->filename);
-            return;
+            return saved;
         }
 
         save_helps (fp, ha);
-        if (ch)
-            printf_to_char (ch, "%s\n\r", ha->filename);
-
         fprintf (fp, "#$\n");
         fclose (fp);
+
+        saved++;
+        if (ch)
+            printf_to_char (ch, "%s\n\r", ha->filename);
     }
+
+    return saved;
 }
 
 /*****************************************************************************

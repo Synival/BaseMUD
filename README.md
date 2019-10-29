@@ -127,7 +127,10 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
 * The `wear` command now uses a table for looking up wear slots, as does `char_wear_obj()`.
   This is a big improvement from copy+pasted "You wear ___ on ___" code for each possible slot.
 * Separated descriptor functions in `comm.c` into new file `descs.c`.
-* Moved some game loop functions from `comm.c` to `main.c`.
+* Moved all top-level booting functions to `boot.c`.
+* Moved mob/obj instantiation and clone functions to `chars.c` and `objs.c`. They
+    are now named `char_create_mobile()`, `char_clone_mobile()`, `obj_create()`
+    and `obj_clone()`.
 
 **Code Reduction:**
 
@@ -149,11 +152,21 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
     `do_filter_can_attack()`, `do_filter_can_attack_spell()`,
     `can_attack()`, and `can_attack_spell()`.
 * Merged code for displaying exits in `look`, `exits`, and exits in the prompt.
+* Replaced "sprintf(), send_to_char()" with "printf_to_char()" wherever possible
+* Replaced "sprintf(), log_string()" with "log_f()" wherever possible
+* Replaced "sprintf(), bug()" with "bugf()" wherever possible
+* Replaced "sprintf(), wiznet()" with "wiznetf()" wherever possible
 
 **Code Changes:**
 
 * Several systems have been overhauled completely, namely: the color system,
   recycleable objects, and the "lookup" functions.
+* Object values now use a union with all property types. Nearly all references
+    to `obj->value[x]` have been replaced by `obj->v.<type>.<property>`. 
+    Example: `obj->value[0]` for weapons is now `obj->v.weapon.weapon_type`.
+* Reset values now use a union with all property types. Nearly all references
+    to `reset->value[x]` has been replaced by `reset->v.<type>.<property>`. 
+    Example: `reset->value[3]` for the `'E'` (equip) command is now `reset->v.equip.slot`.
 * Separated mob- and player-specific flags (`ACT_*`) into separate `MOB_*` and `PLR_*`
   flags, with separate variables. This should prevent a _lot_ of bugs.
 * `act_new()` now uses flags instead of an `int type` variable to determine recipients.
@@ -175,6 +188,19 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
   specific vnums (e.g, link `midgaard_west` to `midennir_east`).
 * Introduced `dam_type` classes `DAM_PHYSICAL` and `DAM_MAGICAL` for determining
   immunity.
+* The "TO_XXX" affect flags have been renamed to "AFF_TO_XXX" to avoid conflict
+    with act() flags (TO_CHAR, TO_NOTCHAR, etc)
+* Clarified wear _flags_ (head, finger, wrist) vs. wear _locations_ (head, lfinger,
+    rfinger, lwrist, rwrist). Most code now uses `wear_flag` and `wear_loc` to
+    distinguish the two. A few random bugs (likely by me) from this confusion
+    have been patched.
+* All `do_*()` functions are now defined using `DEFINE_DO_FUNC(do_*)`. This way,
+    if the arguments to a top-level command are changed, every function doesn't
+    need to be modified.
+* Replaced most character and object macros with small functions. Macros have
+    been left in place as shorthand functions.
+* Replaced <attr>_app[] lookups with `<attr>_app_get()`, `char_get_curr_<attr>()`
+    functions.  Added lookup functions for all stat bonuses.
 
 There are some higher-level abstractions that have likely caused a slight performance hit
 or a little more memory usage, but this is hardly an issue in 2019 ;) Some profiling will
@@ -239,6 +265,9 @@ phased out or at least optional. A handful of changes were just for fun.
 * Some, but not all, simple "Ok." messages have been replaced with useful things.
 * Lots and lots of warning messages for mismatched doors or keys when loading zones.
   This produces some warning messages from the stock zones (which are warranted).
+* Added warnings for `'E'` resets with unequippable wear locations for the item
+  or wear locations that are already taken on the mob. Many of these errors are
+  acceptable with the stock world, but many indicate real bugs.
 * New messages for passing through doors (for both sides).
 * Drunkeness, thirst, hunger, and fullness now gives you more useful
   messages when the state changes via drink/eat.
@@ -303,6 +332,7 @@ phased out or at least optional. A handful of changes were just for fun.
 * Object / character materials can now be shown with the 'materials' command.
 * Mobs can now be in stunned, incapacitated, and mortally wounded states.
 * Caster mobs now say their spells when casting just like players.
+* Added OLC editor and vnum to the front of the prompt by default.
 
 Enjoy!
 

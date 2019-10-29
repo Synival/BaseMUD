@@ -83,5 +83,3 @@ JSON_T *json_tblw_size (const void *obj) {
     json_prop_string  (new, "name", JSTR (size->name));
     return new;
 }
-
-/* TODO: ...the rest of our table structures! */

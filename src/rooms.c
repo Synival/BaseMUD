@@ -33,11 +33,6 @@
 
 #include "rooms.h"
 
-/* TODO: lots of code can be put into tables. */
-/* TODO: review the function names for consistency. */
-/* TODO: remove any redundant functions, like simple lookup functions. */
-/* TODO: char_wear_obj() is pretty awful :( */
-
 /* True if room is dark. */
 bool room_is_dark (ROOM_INDEX_DATA * pRoomIndex) {
     const SUN_TYPE *sun;
@@ -151,18 +146,18 @@ void room_add_money (ROOM_INDEX_DATA *room, int gold, int silver) {
                 break;
 
             case OBJ_VNUM_SILVER_SOME:
-                silver += obj->value[0];
+                silver += obj->v.money.silver;
                 obj_extract (obj);
                 break;
 
             case OBJ_VNUM_GOLD_SOME:
-                gold += obj->value[1];
+                gold += obj->v.money.gold;
                 obj_extract (obj);
                 break;
 
             case OBJ_VNUM_COINS:
-                silver += obj->value[0];
-                gold += obj->value[1];
+                silver += obj->v.money.silver;
+                gold   += obj->v.money.gold;
                 obj_extract (obj);
                 break;
         }

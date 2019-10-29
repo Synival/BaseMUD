@@ -42,10 +42,8 @@
 
 #include "wiz_l1.h"
 
-/* TODO: review most of these functions and test them thoroughly. */
-
-void do_deny (CHAR_DATA * ch, char *argument) {
-    char arg[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_deny) {
+    char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
@@ -60,19 +58,19 @@ void do_deny (CHAR_DATA * ch, char *argument) {
 
     SET_BIT (victim->plr, PLR_DENY);
     send_to_char ("You are denied access!\n\r", victim);
-    sprintf (buf, "$N denies access to %s", victim->name);
-    wiznet (buf, ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0);
-    send_to_char ("OK.\n\r", ch);
+    wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
+        "$N denies access to %s", victim->name);
+    send_to_char ("Ok.\n\r", ch);
 
     save_char_obj (victim);
     stop_fighting (victim, TRUE);
     do_function (victim, &do_quit, "");
 }
 
-void do_permban (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_permban)
     { ban_site (ch, argument, TRUE); }
 
-void do_protect (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_protect) {
     CHAR_DATA *victim;
 
     BAIL_IF (argument[0] == '\0',
@@ -94,12 +92,11 @@ void do_protect (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_reboo (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_reboo) {
     send_to_char ("If you want to REBOOT, spell it out.\n\r", ch);
-    return;
 }
 
-void do_reboot (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_reboot) {
     char buf[MAX_STRING_LENGTH];
     extern bool merc_down;
     DESCRIPTOR_DATA *d, *d_next;
@@ -120,12 +117,11 @@ void do_reboot (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_shutdow (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_shutdow) {
     send_to_char ("If you want to SHUTDOWN, spell it out.\n\r", ch);
-    return;
 }
 
-void do_shutdown (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_shutdown) {
     char buf[MAX_STRING_LENGTH];
     extern bool merc_down;
     DESCRIPTOR_DATA *d, *d_next;
@@ -147,7 +143,7 @@ void do_shutdown (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_log (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_log) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 

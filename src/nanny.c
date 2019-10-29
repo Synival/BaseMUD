@@ -56,11 +56,115 @@
 
 #include "nanny.h"
 
-/* TODO: although no longer a gargantuan switch() statement, the nanny
- *       functions themselves could still be cleaned up. */
-/* TODO: the whole code flow of these nanny functions is a bit odd.
- *       review it so it's less janky. */
-/* TODO: move the code below to nanny.h, if necessary... */
+/* Parse a name for acceptability. */
+bool new_player_name_is_valid (char *name) {
+    int clan;
+
+    /* Reserved words. */
+    if (is_exact_name (name,
+            "all auto immortal self someone something the you loner none"))
+        return FALSE;
+
+    /* check clans */
+    for (clan = 0; clan < CLAN_MAX; clan++) {
+        if (LOWER (name[0]) == LOWER (clan_table[clan].name[0])
+            && !str_cmp (name, clan_table[clan].name))
+            return FALSE;
+    }
+
+    /* Restrict certain specific names. */
+    if (str_cmp (capitalize (name), "Alander") &&
+            (!str_prefix ("Alan", name) || !str_suffix ("Alander", name)))
+        return FALSE;
+
+    /* Length restrictions. */
+    if (strlen (name) < 2)
+        return FALSE;
+
+    #if defined(MSDOS)
+        if (strlen (name) > 8)
+            return FALSE;
+    #endif
+
+    #if defined(macintosh) || defined(unix)
+        if (strlen (name) > 12)
+            return FALSE;
+    #endif
+
+    /* Alphanumerics only.  Lock out IllIll twits. */
+    {
+        char *pc;
+        bool fIll, adjcaps = FALSE, cleancaps = FALSE;
+        int total_caps = 0;
+
+        fIll = TRUE;
+        for (pc = name; *pc != '\0'; pc++) {
+            if (!isalpha (*pc))
+                return FALSE;
+
+            if (isupper (*pc)) {
+                /* ugly anti-caps hack */
+                if (adjcaps)
+                    cleancaps = TRUE;
+                total_caps++;
+                adjcaps = TRUE;
+            }
+            else
+                adjcaps = FALSE;
+
+            if (LOWER (*pc) != 'i' && LOWER (*pc) != 'l')
+                fIll = FALSE;
+        }
+
+        if (fIll)
+            return FALSE;
+        if (cleancaps || (total_caps > (strlen (name)) / 2 && strlen (name) < 3))
+            return FALSE;
+    }
+
+    /* Prevent players from naming themselves after mobs. */
+    {
+        extern MOB_INDEX_DATA *mob_index_hash[MAX_KEY_HASH];
+        MOB_INDEX_DATA *pMobIndex;
+        int iHash;
+
+        for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
+            for (pMobIndex = mob_index_hash[iHash];
+                 pMobIndex != NULL; pMobIndex = pMobIndex->next)
+            {
+                if (is_name (name, pMobIndex->name))
+                    return FALSE;
+            }
+        }
+    }
+
+    /* Edwin's been here too. JR -- 10/15/00
+     *
+     * Check names of people playing. Yes, this is necessary for multiple
+     * newbies with the same name (thanks Saro) */
+    if (descriptor_list) {
+        int count = 0;
+        DESCRIPTOR_DATA *d, *dnext;
+
+        for (d = descriptor_list; d != NULL; d = dnext) {
+            dnext=d->next;
+            if (d->connected!=CON_PLAYING&&d->character&&d->character->name
+                && d->character->name[0] && !str_cmp(d->character->name,name))
+            {
+                count++;
+                close_socket(d);
+            }
+        }
+        if (count) {
+            wiznetf (NULL, NULL, WIZ_LOGINS, 0, 0,
+                "newbie alert (%s)", name);
+            return FALSE;
+        }
+    }
+
+    /* All checks passed - this name is valid. */
+    return TRUE;
+}
 
 /* Deal with sockets that haven't logged in yet. */
 void nanny (DESCRIPTOR_DATA * d, char *argument) {
@@ -104,7 +208,6 @@ void nanny_ansi (DESCRIPTOR_DATA * d, char *argument) {
 void nanny_get_player_name (DESCRIPTOR_DATA * d, char *argument) {
     bool fOld;
     CHAR_DATA *ch;
-    char buf[MAX_STRING_LENGTH];
 
     if (argument[0] == '\0') {
         close_socket (d);
@@ -112,7 +215,7 @@ void nanny_get_player_name (DESCRIPTOR_DATA * d, char *argument) {
     }
 
     argument[0] = UPPER (argument[0]);
-    if (!check_parse_name (argument)) {
+    if (!new_player_name_is_valid (argument)) {
         send_to_desc ("Illegal name, try another.\n\rName: ", d);
         return;
     }
@@ -121,8 +224,7 @@ void nanny_get_player_name (DESCRIPTOR_DATA * d, char *argument) {
     ch = d->character;
 
     if (IS_SET (ch->plr, PLR_DENY)) {
-        sprintf (log_buf, "Denying access to %s@%s.", argument, d->host);
-        log_string (log_buf);
+        log_f ("Denying access to %s@%s.", argument, d->host);
         send_to_desc ("You are denied access.\n\r", d);
         close_socket (d);
         return;
@@ -166,8 +268,7 @@ void nanny_get_player_name (DESCRIPTOR_DATA * d, char *argument) {
             return;
         }
 
-        sprintf (buf, "Did I get that right, %s (Y/N)? ", argument);
-        send_to_desc (buf, d);
+        printf_to_desc (d, "Did I get that right, %s (Y/N)? ", argument);
         d->connected = CON_CONFIRM_NEW_NAME;
         return;
     }
@@ -260,13 +361,11 @@ void nanny_break_connect_confirm (DESCRIPTOR_DATA * d, char *argument) {
 
 void nanny_confirm_new_name (DESCRIPTOR_DATA * d, char *argument) {
     CHAR_DATA * ch = d->character;
-    char buf[MAX_STRING_LENGTH];
 
     switch (UPPER(argument[0])) {
         case 'Y':
-            sprintf (buf, "New character.\n\rGive me a password for %s: %s",
-               ch->name, echo_off_str);
-            send_to_desc (buf, d);
+            printf_to_desc (d, "New character.\n\r"
+                "Give me a password for %s: %s", ch->name, echo_off_str);
             d->connected = CON_GET_NEW_PASSWORD;
             if (ch->desc->ansi)
                 SET_BIT (ch->plr, PLR_COLOUR);
@@ -574,28 +673,25 @@ void nanny_gen_groups_done (DESCRIPTOR_DATA * d, char *argument) {
     char buf[MAX_STRING_LENGTH];
     int i;
 
-    if (ch->pcdata->points == pc_race_table[ch->race].points) {
-        send_to_char ("You didn't pick anything.\n\r", ch);
-        return;
-    }
+    BAIL_IF (ch->pcdata->points == pc_race_table[ch->race].points,
+        "You didn't pick anything.\n\r", ch);
 
     if (ch->pcdata->points < 40 + pc_race_table[ch->race].points) {
-        sprintf (buf,
+        printf_to_char (ch,
              "You must take at least %d points of skills "
              "and groups.\n\r", 40 + pc_race_table[ch->race].points);
-        send_to_char (buf, ch);
         return;
     }
 
-    sprintf (buf, "Creation points: %d\n\r", ch->pcdata->points);
-    send_to_char (buf, ch);
-    sprintf (buf, "Experience per level: %d\n\r",
-             exp_per_level (ch, ch->gen_data->points_chosen));
+    printf_to_char (ch, "Creation points: %d\n\r", ch->pcdata->points);
+    printf_to_char (ch, "Experience per level: %d\n\r",
+        exp_per_level (ch, ch->gen_data->points_chosen));
+
     if (ch->pcdata->points < 40)
         ch->train = (40 - ch->pcdata->points + 1) / 2;
     gen_data_free (ch->gen_data);
     ch->gen_data = NULL;
-    send_to_char (buf, ch);
+
     write_to_buffer (d, "\n\r", 2);
     write_to_buffer (d, "Please pick a weapon from the following choices:\n\r", 0);
     buf[0] = '\0';
@@ -659,8 +755,7 @@ void nanny_read_motd (DESCRIPTOR_DATA * d, char *argument) {
         char_set_title (ch, buf);
 
         do_function (ch, &do_outfit, "");
-        obj_to_char (create_object (get_obj_index (OBJ_VNUM_MAP), 0),
-                     ch);
+        obj_to_char (obj_create (get_obj_index (OBJ_VNUM_MAP), 0), ch);
 
         char_to_room (ch, get_room_index (ROOM_VNUM_SCHOOL));
         send_to_char ("\n\r", ch);

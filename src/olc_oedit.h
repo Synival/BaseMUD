@@ -30,10 +30,10 @@
     }
 
 /* Sub-routines and filters. */
-void show_obj_values (CHAR_DATA * ch, OBJ_INDEX_DATA * obj);
-bool set_obj_values (CHAR_DATA * ch, OBJ_INDEX_DATA * pObj, int value_num,
-    char *argument);
-bool set_value (CHAR_DATA * ch, OBJ_INDEX_DATA * pObj, char *argument,
+void oedit_show_obj_values (CHAR_DATA * ch, OBJ_INDEX_DATA * obj);
+bool oedit_set_obj_values (CHAR_DATA * ch, OBJ_INDEX_DATA * pObj,
+    int value_num, char *argument);
+bool oedit_set_value (CHAR_DATA * ch, OBJ_INDEX_DATA * pObj, char *argument,
     int value);
 bool oedit_values (CHAR_DATA * ch, char *argument, int value);
 

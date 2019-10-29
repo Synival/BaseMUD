@@ -43,11 +43,11 @@
 #include "act_player.h"
 
 /* RT code to delete yourself */
-void do_delet (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_delet) {
     send_to_char ("You must type the full command to delete yourself.\n\r", ch);
 }
 
-void do_delete (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_delete) {
     char strsave[MAX_INPUT_LENGTH];
 
     if (IS_NPC (ch))
@@ -60,8 +60,8 @@ void do_delete (CHAR_DATA * ch, char *argument) {
             return;
         }
         else {
-            sprintf (strsave, "%s%s", PLAYER_DIR, capitalize (ch->name));
             wiznet ("$N turns $Mself into line noise.", ch, NULL, 0, 0, 0);
+            sprintf (strsave, "%s%s", PLAYER_DIR, capitalize (ch->name));
             stop_fighting (ch, TRUE);
             do_function (ch, &do_quit, "");
             unlink (strsave);
@@ -82,15 +82,15 @@ void do_delete (CHAR_DATA * ch, char *argument) {
         char_get_trust (ch));
 }
 
-void do_rent (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_rent) {
     send_to_char ("There is no rent here.  Just save and quit.\n\r", ch);
 }
 
-void do_qui (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_qui) {
     send_to_char ("If you want to QUIT, you have to spell it out.\n\r", ch);
 }
 
-void do_quit (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_quit) {
     DESCRIPTOR_DATA *d, *d_next;
     int id;
 
@@ -104,8 +104,7 @@ void do_quit (CHAR_DATA * ch, char *argument) {
 
     send_to_char ("Alas, all good things must come to an end.\n\r", ch);
     act ("$n has left the game.", ch, NULL, NULL, TO_NOTCHAR);
-    sprintf (log_buf, "%s has quit.", ch->name);
-    log_string (log_buf);
+    log_f ("%s has quit.", ch->name);
     wiznet ("$N rejoins the real world.", ch, NULL, WIZ_LOGINS, 0,
         char_get_trust (ch));
 
@@ -135,7 +134,7 @@ void do_quit (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_save (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_save) {
     if (IS_NPC (ch))
         return;
 
@@ -144,7 +143,7 @@ void do_save (CHAR_DATA * ch, char *argument) {
     WAIT_STATE (ch, PULSE_VIOLENCE);
 }
 
-void do_password (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_password) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char *pArg;

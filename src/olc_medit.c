@@ -24,15 +24,9 @@
 #include "string.h"
 #include "olc.h"
 #include "mob_cmds.h"
+#include "chars.h"
 
 #include "olc_medit.h"
-
-/* TODO: re-write medit_ac() */
-/* TODO: review anything that uses _orig flags. there should probably be no
- *       need for it whatsoever, and rather add racial flags in
- *       create_mobile(). */
-/* TODO: rename medit_act() */
-/* TODO: better procedures for reading dice. */
 
 MEDIT (medit_show) {
     MOB_INDEX_DATA *pMob;
@@ -155,15 +149,15 @@ MEDIT (medit_create) {
 
     value = atoi (argument);
     RETURN_IF (argument[0] == '\0' || value == 0,
-        "Syntax:  medit create [vnum]\n\r", ch, FALSE);
+        "Syntax: medit create [vnum]\n\r", ch, FALSE);
 
     pArea = area_get_by_inner_vnum (value);
     RETURN_IF (!pArea,
-        "MEdit:  That vnum is not assigned an area.\n\r", ch, FALSE);
+        "MEdit: That vnum is not assigned an area.\n\r", ch, FALSE);
     RETURN_IF (!IS_BUILDER (ch, pArea),
-        "MEdit:  Vnum in an area you cannot build in.\n\r", ch, FALSE);
+        "MEdit: Vnum in an area you cannot build in.\n\r", ch, FALSE);
     RETURN_IF (get_mob_index (value),
-        "MEdit:  Mobile vnum already exists.\n\r", ch, FALSE);
+        "MEdit: Mobile vnum already exists.\n\r", ch, FALSE);
 
     pMob = mob_index_new ();
     pMob->area = pArea;
@@ -178,7 +172,7 @@ MEDIT (medit_create) {
     LIST_FRONT (pMob, next, mob_index_hash[iHash]);
     ch->desc->pEdit = (void *) pMob;
 
-    send_to_char ("Mobile Created.\n\r", ch);
+    send_to_char ("Mobile created.\n\r", ch);
     return TRUE;
 }
 
@@ -187,7 +181,7 @@ MEDIT (medit_spec) {
     EDIT_MOB (ch, pMob);
 
     RETURN_IF (argument[0] == '\0',
-        "Syntax:  spec [special function]\n\r", ch, FALSE);
+        "Syntax: spec [special function]\n\r", ch, FALSE);
 
     if (!str_cmp (argument, "none")) {
         pMob->spec_fun = NULL;
@@ -209,7 +203,7 @@ MEDIT (medit_damtype) {
     EDIT_MOB (ch, pMob);
 
     RETURN_IF (argument[0] == '\0',
-        "Syntax:  damtype [damage message]\n\r"
+        "Syntax: damtype [damage message]\n\r"
         "For a list of damage types, type '? weapon'.\n\r", ch, FALSE);
 
     pMob->dam_type = attack_lookup (argument);
@@ -221,7 +215,7 @@ MEDIT (medit_align) {
     MOB_INDEX_DATA *pMob;
     EDIT_MOB (ch, pMob);
     return olc_sh_int_replace (ch, &(pMob->alignment), argument,
-        "Syntax:  alignment [number]\n\r",
+        "Syntax: alignment [number]\n\r",
         "Alignment set.\n\r");
 }
 
@@ -229,7 +223,7 @@ MEDIT (medit_level) {
     MOB_INDEX_DATA *pMob;
     EDIT_MOB (ch, pMob);
     return olc_sh_int_replace (ch, &(pMob->level), argument,
-        "Syntax:  level [number]\n\r",
+        "Syntax: level [number]\n\r",
         "Level set.\n\r");
 }
 
@@ -241,7 +235,7 @@ MEDIT (medit_desc) {
         string_append (ch, &pMob->description);
         return TRUE;
     }
-    send_to_char ("Syntax:  desc    - line edit\n\r", ch);
+    send_to_char ("Syntax: desc    - line edit\n\r", ch);
     return FALSE;
 }
 
@@ -250,7 +244,7 @@ MEDIT (medit_long) {
     EDIT_MOB (ch, pMob);
 
     RETURN_IF (argument[0] == '\0',
-        "Syntax:  long [string]\n\r", ch, FALSE);
+        "Syntax: long [string]\n\r", ch, FALSE);
 
     strcat (argument, "\n\r");
     argument[0] = UPPER (argument[0]);
@@ -264,7 +258,7 @@ MEDIT (medit_short) {
     MOB_INDEX_DATA *pMob;
     EDIT_MOB (ch, pMob);
     return olc_str_replace_dup (ch, &(pMob->short_descr), argument,
-        "Syntax:  short [string]\n\r",
+        "Syntax: short [string]\n\r",
         "Short description set.\n\r");
 }
 
@@ -272,7 +266,7 @@ MEDIT (medit_name) {
     MOB_INDEX_DATA *pMob;
     EDIT_MOB (ch, pMob);
     return olc_str_replace_dup (ch, &(pMob->name), argument,
-        "Syntax:  name [string]\n\r",
+        "Syntax: name [string]\n\r",
         "Name set.\n\r");
 }
 
@@ -287,18 +281,18 @@ MEDIT (medit_shop) {
     EDIT_MOB (ch, pMob);
 
     RETURN_IF (command[0] == '\0',
-        "Syntax:  shop hours [#xopening] [#xclosing]\n\r"
-        "         shop profit [#xbuying%] [#xselling%]\n\r"
-        "         shop type [#x0-4] [item type]\n\r"
-        "         shop assign\n\r"
-        "         shop remove\n\r", ch, FALSE);
+        "Syntax: shop hours [#xopening] [#xclosing]\n\r"
+        "        shop profit [#xbuying%] [#xselling%]\n\r"
+        "        shop type [#x0-4] [item type]\n\r"
+        "        shop assign\n\r"
+        "        shop remove\n\r", ch, FALSE);
 
     if (!str_cmp (command, "hours")) {
         RETURN_IF (arg1[0] == '\0' || !is_number (arg1) ||
                    argument[0] == '\0' || !is_number (argument),
-            "Syntax:  shop hours [#xopening] [#xclosing]\n\r", ch, FALSE);
+            "Syntax: shop hours [#xopening] [#xclosing]\n\r", ch, FALSE);
         RETURN_IF (!pMob->pShop,
-            "MEdit:  You must create the shop first (shop assign).\n\r", ch, FALSE);
+            "MEdit: You must create the shop first (shop assign).\n\r", ch, FALSE);
 
         pMob->pShop->open_hour  = atoi (arg1);
         pMob->pShop->close_hour = atoi (argument);
@@ -310,9 +304,9 @@ MEDIT (medit_shop) {
     if (!str_cmp (command, "profit")) {
         RETURN_IF (arg1[0] == '\0' || !is_number (arg1) ||
                    argument[0] == '\0' || !is_number (argument),
-            "Syntax:  shop profit [#xbuying%] [#xselling%]\n\r", ch, FALSE);
+            "Syntax: shop profit [#xbuying%] [#xselling%]\n\r", ch, FALSE);
         RETURN_IF (!pMob->pShop,
-            "MEdit:  You must create the shop first (shop assign).\n\r", ch, FALSE);
+            "MEdit: You must create the shop first (shop assign).\n\r", ch, FALSE);
 
         pMob->pShop->profit_buy = atoi (arg1);
         pMob->pShop->profit_sell = atoi (argument);
@@ -322,20 +316,18 @@ MEDIT (medit_shop) {
     }
 
     if (!str_cmp (command, "type")) {
-        char buf[MAX_INPUT_LENGTH];
         int value;
 
         RETURN_IF (arg1[0] == '\0' || !is_number (arg1) || argument[0] == '\0',
-            "Syntax:  shop type [#x0-4] [item type]\n\r", ch, FALSE);
+            "Syntax: shop type [#x0-4] [item type]\n\r", ch, FALSE);
         if (atoi (arg1) >= MAX_TRADE) {
-            sprintf (buf, "MEdit:  May sell %d items max.\n\r", MAX_TRADE);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "MEdit:  May sell %d items max.\n\r", MAX_TRADE);
             return FALSE;
         }
         RETURN_IF (!pMob->pShop,
-            "MEdit:  You must create the shop first (shop assign).\n\r", ch, FALSE);
+            "MEdit: You must create the shop first (shop assign).\n\r", ch, FALSE);
         RETURN_IF ((value = item_lookup (argument)) < 0,
-            "MEdit:  That type of item is not known.\n\r", ch, FALSE);
+            "MEdit: That type of item is not known.\n\r", ch, FALSE);
         pMob->pShop->buy_type[atoi (arg1)] = value;
 
         send_to_char ("Shop type set.\n\r", ch);
@@ -479,8 +471,8 @@ MEDIT (medit_ac) {
     while (FALSE); /* Just do it once.. */
 
     send_to_char (
-        "Syntax:  ac [ac-pierce [ac-bash [ac-slash [ac-exotic]]]]\n\r"
-        "help MOB_AC  gives a list of reasonable ac-values.\n\r", ch);
+        "Syntax: ac [ac-pierce [ac-bash [ac-slash [ac-exotic]]]]\n\r"
+        "help MOB_AC gives a list of reasonable ac-values.\n\r", ch);
     return FALSE;
 }
 
@@ -582,7 +574,7 @@ MEDIT (medit_material) {
             return TRUE;
         }
     }
-    send_to_char ("Syntax:  material [type]\n\r", ch);
+    send_to_char ("Syntax: material [type]\n\r", ch);
     return FALSE;
 }
 
@@ -622,7 +614,7 @@ MEDIT (medit_size) {
 
 MEDIT (medit_hitdice) {
     static const char *syntax =
-        "Syntax:  hitdice <number> d <type> + <bonus>\n\r";
+        "Syntax: hitdice <number> d <type> + <bonus>\n\r";
     char *num, *type, *bonus, *cp;
     MOB_INDEX_DATA *pMob;
 
@@ -662,7 +654,7 @@ MEDIT (medit_hitdice) {
 
 MEDIT (medit_manadice) {
     static const char *syntax =
-        "Syntax:  manadice <number> d <type> + <bonus>\n\r";
+        "Syntax: manadice <number> d <type> + <bonus>\n\r";
     char *num, *type, *bonus, *cp;
     MOB_INDEX_DATA *pMob;
 
@@ -705,7 +697,7 @@ MEDIT (medit_manadice) {
 
 MEDIT (medit_damdice) {
     static const char *syntax =
-        "Syntax:  damdice <number> d <type> + <bonus>\n\r";
+        "Syntax: damdice <number> d <type> + <bonus>\n\r";
     char *num, *type, *bonus, *cp;
     MOB_INDEX_DATA *pMob;
 
@@ -769,20 +761,18 @@ MEDIT (medit_race) {
     }
 
     if (argument[0] == '?') {
-        char buf[MAX_STRING_LENGTH];
         send_to_char ("Available races are:", ch);
 
         for (race = 0; race_table[race].name != NULL; race++) {
             if ((race % 3) == 0)
                 send_to_char ("\n\r", ch);
-            sprintf (buf, " %-15s", race_table[race].name);
-            send_to_char (buf, ch);
+            printf_to_char (ch, " %-15s", race_table[race].name);
         }
 
         send_to_char ("\n\r", ch);
         return FALSE;
     }
-    send_to_char ("Syntax:  race [race]\n\r"
+    send_to_char ("Syntax: race [race]\n\r"
                   "Type 'race ?' for a list of races.\n\r", ch);
     return FALSE;
 }
@@ -822,7 +812,7 @@ MEDIT (medit_position) {
             return TRUE;
     }
 
-    send_to_char ("Syntax:  position [start/default] [position]\n\r"
+    send_to_char ("Syntax: position [start/default] [position]\n\r"
                   "Type '? position' for a list of positions.\n\r", ch);
     return FALSE;
 }
@@ -831,7 +821,7 @@ MEDIT (medit_gold) {
     MOB_INDEX_DATA *pMob;
     EDIT_MOB (ch, pMob);
     return olc_long_int_replace (ch, &(pMob->wealth), argument,
-        "Syntax:  wealth [number]\n\r",
+        "Syntax: wealth [number]\n\r",
         "Wealth set.\n\r");
 }
 
@@ -839,7 +829,7 @@ MEDIT (medit_hitroll) {
     MOB_INDEX_DATA *pMob;
     EDIT_MOB (ch, pMob);
     return olc_sh_int_replace (ch, &(pMob->hitroll), argument,
-        "Syntax:  hitroll [number]\n\r",
+        "Syntax: hitroll [number]\n\r",
         "Hitroll set.\n\r");
 }
 
@@ -905,12 +895,12 @@ MEDIT (medit_addmprog) {
     argument = one_argument (argument, phrase);
 
     RETURN_IF (!is_number (num) || trigger[0] == '\0' || phrase[0] == '\0',
-        "Syntax:   addmprog [vnum] [trigger] [phrase]\n\r", ch, FALSE);
+        "Syntax: addmprog [vnum] [trigger] [phrase]\n\r", ch, FALSE);
 
     vnum = atoi (num);
     area = area_get_by_inner_vnum (vnum);
     RETURN_IF (!area,
-        "MEdit:  That vnum is not assigned an area.\n\r", ch, FALSE);
+        "MEdit: That vnum is not assigned an area.\n\r", ch, FALSE);
 
     if ((value = flag_value (mprog_flags, trigger)) == NO_FLAG) {
         send_to_char ("Valid flags are:\n\r", ch);
@@ -918,7 +908,7 @@ MEDIT (medit_addmprog) {
         return FALSE;
     }
     RETURN_IF ((code = get_mprog_index (atoi (num))) == NULL,
-        "No such MOBProgram.\n\r", ch, FALSE);
+        "No such mob program.\n\r", ch, FALSE);
 
     list = mprog_new ();
     list->area = area;
@@ -930,7 +920,7 @@ MEDIT (medit_addmprog) {
     SET_BIT (pMob->mprog_flags, value);
     LIST_FRONT (list, next, pMob->mprogs);
 
-    send_to_char ("Mprog Added.\n\r", ch);
+    send_to_char ("Mob program created.\n\r", ch);
     return TRUE;
 }
 
@@ -945,7 +935,7 @@ MEDIT (medit_delmprog) {
     one_argument (argument, mprog);
 
     RETURN_IF (!is_number (mprog) || mprog[0] == '\0',
-        "Syntax:  delmprog [#mprog]\n\r", ch, FALSE);
+        "Syntax: delmprog [#mprog]\n\r", ch, FALSE);
 
     value = atoi (mprog);
     RETURN_IF (value < 0,
@@ -955,12 +945,12 @@ MEDIT (medit_delmprog) {
     LIST_FIND_WITH_PREV (value >= cnt++, next, pMob->mprogs,
         pList, pList_prev);
     RETURN_IF (!pList,
-        "MEdit:  Non-existant mprog.\n\r", ch, FALSE);
+        "MEdit: Non-existant mob program.\n\r", ch, FALSE);
 
     LIST_REMOVE_WITH_PREV (pList, pList_prev, next, pMob->mprogs);
     REMOVE_BIT (pMob->mprog_flags, pList->trig_type);
     mprog_free (pList);
 
-    send_to_char ("Mprog removed.\n\r", ch);
+    send_to_char ("Mob program removed.\n\r", ch);
     return TRUE;
 }

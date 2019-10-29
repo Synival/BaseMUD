@@ -50,16 +50,6 @@
 
 #include "fight.h"
 
-/* TODO: feature - re-implement tail-sweeping and 'crushing'? */
-/* TODO: feature - more body parts that can fly off? */
-/* TODO: move as much as possible into tables. */
-/* TODO: break a lot of these large functions up into sub-routines. */
-/* TODO: make sure NPCs check to see if their standing before doing
- *       certain offensive actions (bash) */
-/* TODO: drunk players... get a 90% damage TAKEN bonus? is that right? */
-/* TODO: bug - the 'do_filter_can_attack()' check in 'should_assist_group()'
- *       can produce a message. */
-
 /* Nasty, nasty globals. */
 char *damage_adj = NULL;
 
@@ -78,11 +68,10 @@ void advance_level (CHAR_DATA * ch, bool hide) {
         (ch->played + (int) (current_time - ch->logon)) / 3600;
 
     sprintf (buf, "the %s",
-             title_table[ch->class][ch->level][ch->sex == SEX_FEMALE ? 1 : 0]);
+        title_table[ch->class][ch->level][ch->sex == SEX_FEMALE ? 1 : 0]);
     char_set_title (ch, buf);
 
-    add_hp =
-        con_app[char_get_curr_stat (ch, STAT_CON)].hitp +
+    add_hp = char_con_level_hp (ch) +
         number_range (class_table[ch->class].hp_min,
                       class_table[ch->class].hp_max);
     add_mana = number_range (2, (2 * char_get_curr_stat (ch, STAT_INT)
@@ -91,7 +80,7 @@ void advance_level (CHAR_DATA * ch, bool hide) {
         add_mana /= 2;
     add_move = number_range (1, (char_get_curr_stat (ch, STAT_CON)
                                  + char_get_curr_stat (ch, STAT_DEX)) / 6);
-    add_prac = wis_app[char_get_curr_stat (ch, STAT_WIS)].practice;
+    add_prac = char_wis_level_practices (ch);
 
     add_hp   = add_hp   * 9 / 10;
     add_mana = add_mana * 9 / 10;
@@ -112,17 +101,13 @@ void advance_level (CHAR_DATA * ch, bool hide) {
     ch->pcdata->perm_move += add_move;
 
     if (!hide) {
-        sprintf (buf, "You gain %d hit point%s, %d mana, %d move, and "
+        printf_to_char (ch, "You gain %d hit point%s, %d mana, %d move, and "
             "%d practice%s.\n\r", add_hp, add_hp == 1 ? "" : "s", add_mana,
             add_move, add_prac, add_prac == 1 ? "" : "s");
-        send_to_char (buf, ch);
     }
-    return;
 }
 
 void gain_exp (CHAR_DATA * ch, int gain) {
-    char buf[MAX_STRING_LENGTH];
-
     if (IS_NPC (ch) || ch->level >= LEVEL_HERO)
         return;
 
@@ -132,10 +117,9 @@ void gain_exp (CHAR_DATA * ch, int gain) {
     {
         send_to_char ("{GYou raise a level!!  {x", ch);
         ch->level += 1;
-        sprintf (buf, "%s gained level %d", ch->name, ch->level);
-        log_string (buf);
-        sprintf (buf, "$N has attained level %d!", ch->level);
-        wiznet (buf, ch, NULL, WIZ_LEVELS, 0, 0);
+        log_f ("%s gained level %d", ch->name, ch->level);
+        wiznetf (ch, NULL, WIZ_LEVELS, 0, 0,
+            "$N has attained level %d!", ch->level);
         advance_level (ch, FALSE);
         save_char_obj (ch);
     }
@@ -310,8 +294,6 @@ void multi_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
         if (ch->fighting != victim)
             return;
     }
-
-    return;
 }
 
 /* procedure for all mobile attacks */
@@ -333,8 +315,10 @@ void mob_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
     }
 
     if (IS_AFFECTED (ch, AFF_HASTE) ||
-            (IS_SET (ch->off_flags, OFF_FAST) && !IS_AFFECTED (ch, AFF_SLOW)))
+        (IS_SET (ch->off_flags, OFF_FAST) && !IS_AFFECTED (ch, AFF_SLOW)))
+    {
         one_hit (ch, victim, dt);
+    }
     if (ch->fighting != victim || dt == gsn_backstab)
         return;
 
@@ -408,13 +392,13 @@ void mob_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
             if (IS_SET (ch->off_flags, OFF_CRUSH))
                 ; /* do_function(ch, &do_crush, "") */
             break;
+
         case (8):
             if (IS_SET (ch->off_flags, OFF_BACKSTAB))
                 do_function (ch, &do_backstab, "");
             break;
     }
 }
-
 
 /* Hit one guy once. */
 void one_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
@@ -444,18 +428,18 @@ void one_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
         return;
 
     /* Figure out the type of damage message. */
-    wield = char_get_eq_by_wear (ch, WEAR_WIELD);
+    wield = char_get_eq_by_wear_loc (ch, WEAR_WIELD);
     if (dt == TYPE_UNDEFINED) {
         dt = TYPE_HIT;
         if (wield != NULL && wield->item_type == ITEM_WEAPON)
-            dt += wield->value[3];
+            dt += wield->v.weapon.attack_type;
         else
             dt += ch->dam_type;
     }
 
     if (dt < TYPE_HIT) {
         if (wield != NULL)
-            dam_type = attack_table[wield->value[3]].damage;
+            dam_type = attack_table[wield->v.weapon.attack_type].damage;
         else
             dam_type = attack_table[ch->dam_type].damage;
     }
@@ -544,12 +528,13 @@ void one_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
             check_improve (ch, sn, TRUE, 5);
         if (wield != NULL) {
             if (wield->pIndexData->new_format)
-                dam = dice (wield->value[1], wield->value[2]) * skill / 100;
+                dam = dice (wield->v.weapon.dice_num,
+                            wield->v.weapon.dice_size) * skill / 100;
             else
-                dam = number_range (wield->value[1] * skill / 100,
-                                    wield->value[2] * skill / 100);
+                dam = number_range (wield->v.weapon.dice_num  * skill / 100,
+                                    wield->v.weapon.dice_size * skill / 100);
 
-            if (char_get_eq_by_wear (ch, WEAR_SHIELD) == NULL)    /* no shield = more */
+            if (char_get_eq_by_wear_loc (ch, WEAR_SHIELD) == NULL)    /* no shield = more */
                 dam = dam * 11 / 10;
 
             /* sharpness! */
@@ -580,7 +565,7 @@ void one_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
         dam = dam * 3 / 2;
 
     if (dt == gsn_backstab && wield != NULL) {
-        if (wield->value[0] != 2)
+        if (wield->v.weapon.weapon_type != WEAPON_DAGGER)
             dam *= 2 + (ch->level / 10);
         else
             dam *= 2 + (ch->level / 8);
@@ -616,7 +601,7 @@ void one_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
                 act ("$n is poisoned by the venom on $p.",
                      victim, wield, NULL, TO_NOTCHAR);
 
-                affect_init (&af, TO_AFFECTS, gsn_poison, level * 3 / 4, level / 2, APPLY_STR, -1, AFF_POISON);
+                affect_init (&af, AFF_TO_AFFECTS, gsn_poison, level * 3 / 4, level / 2, APPLY_STR, -1, AFF_POISON);
                 affect_join (victim, &af);
             }
 
@@ -669,7 +654,6 @@ void one_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt) {
     }
 
     tail_chain ();
-    return;
 }
 
 
@@ -680,6 +664,7 @@ bool damage (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
     OBJ_DATA *corpse;
     bool immune;
     int orig_dam = dam, last_pos;
+    int log_target;
 
     if (victim->position == POS_DEAD)
         return FALSE;
@@ -690,7 +675,7 @@ bool damage (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
         dam = 1200;
         if (!IS_IMMORTAL (ch)) {
             OBJ_DATA *obj;
-            obj = char_get_eq_by_wear (ch, WEAR_WIELD);
+            obj = char_get_eq_by_wear_loc (ch, WEAR_WIELD);
             send_to_char ("You really shouldn't cheat.\n\r", ch);
             if (obj != NULL)
                 obj_extract (obj);
@@ -830,11 +815,8 @@ bool damage (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
         stop_fighting (victim, TRUE);
         group_gain (ch, victim);
         if (!IS_NPC (victim)) {
-            sprintf (log_buf, "%s killed by %s at %d",
-                     victim->name,
-                     (IS_NPC (ch) ? ch->short_descr : ch->name),
-                     ch->in_room->vnum);
-            log_string (log_buf);
+            log_f ("%s killed by %s at %d",
+                victim->name, PERS (ch), ch->in_room->vnum);
 
             /* Dying penalty: 2/3 way back to previous level. */
             if (victim->exp > exp_per_level (victim, victim->pcdata->points)
@@ -846,15 +828,10 @@ bool damage (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
             }
         }
 
-        sprintf (log_buf, "%s got toasted by %s at %s [room %d]",
-                 (IS_NPC (victim) ? victim->short_descr : victim->name),
-                 (IS_NPC (ch) ? ch->short_descr : ch->name),
-                 ch->in_room->name, ch->in_room->vnum);
-
-        if (IS_NPC (victim))
-            wiznet (log_buf, NULL, NULL, WIZ_MOBDEATHS, 0, 0);
-        else
-            wiznet (log_buf, NULL, NULL, WIZ_DEATHS, 0, 0);
+        log_target = (IS_NPC (victim)) ? WIZ_MOBDEATHS : WIZ_DEATHS;
+        wiznetf (NULL, NULL, log_target, 0, 0,
+            "%s got toasted by %s at %s [room %d]",
+            PERS (victim), PERS (ch), ch->in_room->name, ch->in_room->vnum);
 
         /* Death trigger */
         if (IS_NPC (victim) && HAS_TRIGGER (victim, TRIG_DEATH)) {
@@ -945,7 +922,7 @@ bool set_fighting_position_if_possible (CHAR_DATA * ch) {
     else if (ch->fighting == NULL)
         return FALSE;
     if (ch->position != POS_FIGHTING) {
-        position_change_message(ch, ch->position, POS_FIGHTING, ch->on);
+        position_change_send_message(ch, ch->position, POS_FIGHTING, ch->on);
         ch->position = POS_FIGHTING;
     }
     return TRUE;
@@ -1052,8 +1029,6 @@ bool do_filter_can_attack_real (CHAR_DATA *ch, CHAR_DATA *victim, bool area,
 
 /* See if an attack justifies a KILLER flag. */
 void check_killer (CHAR_DATA * ch, CHAR_DATA * victim) {
-    char buf[MAX_STRING_LENGTH];
-
     /* Follow charm thread to responsible character.
      * Attacking someone's charmed char is hostile! */
     while (IS_AFFECTED (victim, AFF_CHARM) && victim->master != NULL)
@@ -1069,11 +1044,7 @@ void check_killer (CHAR_DATA * ch, CHAR_DATA * victim) {
     /* Charm-o-rama. */
     if (IS_SET (ch->affected_by, AFF_CHARM)) {
         if (ch->master == NULL) {
-            char buf[MAX_STRING_LENGTH];
-
-            sprintf (buf, "Check_killer: %s bad AFF_CHARM",
-                     IS_NPC (ch) ? ch->short_descr : ch->name);
-            bug (buf, 0);
+            bugf ("Check_killer: %s bad AFF_CHARM", PERS (ch));
             affect_strip (ch, gsn_charm_person);
             REMOVE_BIT (ch->affected_by, AFF_CHARM);
             return;
@@ -1098,8 +1069,8 @@ void check_killer (CHAR_DATA * ch, CHAR_DATA * victim) {
 
     send_to_char ("*** You are now a KILLER!! ***\n\r", ch);
     SET_BIT (ch->plr, PLR_KILLER);
-    sprintf (buf, "$N is attempting to murder %s", victim->name);
-    wiznet (buf, ch, NULL, WIZ_FLAGS, 0, 0);
+    wiznetf (ch, NULL, WIZ_FLAGS, 0, 0,
+        "$N is attempting to murder %s", victim->name);
     save_char_obj (ch);
 }
 
@@ -1111,7 +1082,7 @@ bool check_parry (CHAR_DATA * ch, CHAR_DATA * victim) {
         return FALSE;
 
     chance = get_skill (victim, gsn_parry) / 2;
-    if (char_get_eq_by_wear (victim, WEAR_WIELD) == NULL) {
+    if (char_get_eq_by_wear_loc (victim, WEAR_WIELD) == NULL) {
         if (IS_NPC (victim))
             chance /= 2;
         else
@@ -1134,15 +1105,14 @@ bool check_shield_block (CHAR_DATA * ch, CHAR_DATA * victim) {
 
     if (!IS_AWAKE (victim))
         return FALSE;
-    if (char_get_eq_by_wear (victim, WEAR_SHIELD) == NULL)
+    if (char_get_eq_by_wear_loc (victim, WEAR_SHIELD) == NULL)
         return FALSE;
 
     chance = get_skill (victim, gsn_shield_block) / 5 + 3;
     if (number_percent () >= chance + victim->level - ch->level)
         return FALSE;
 
-    act ("You block $n's attack with your shield.", ch, NULL, victim,
-         TO_VICT);
+    act ("You block $n's attack with your shield.", ch, NULL, victim, TO_VICT);
     act ("$N blocks your attack with a shield.", ch, NULL, victim, TO_CHAR);
     check_improve (victim, gsn_shield_block, TRUE, 6);
     return TRUE;
@@ -1202,10 +1172,8 @@ void set_fighting_both (CHAR_DATA * ch, CHAR_DATA * victim) {
 void set_fighting_one (CHAR_DATA * ch, CHAR_DATA * victim) {
     int daze_mult = 0;
 
-    if (ch->fighting != NULL) {
-        bug ("set_fighting: already fighting", 0);
-        return;
-    }
+    BAIL_IF_BUG (ch->fighting != NULL,
+        "set_fighting: already fighting", 0);
 
     if (IS_AFFECTED (ch, AFF_SLEEP))
         affect_strip (ch, gsn_sleep);
@@ -1271,7 +1239,7 @@ void make_corpse (CHAR_DATA * ch) {
 
     if (IS_NPC (ch)) {
         name = ch->short_descr;
-        corpse = create_object (get_obj_index (OBJ_VNUM_CORPSE_NPC), 0);
+        corpse = obj_create (get_obj_index (OBJ_VNUM_CORPSE_NPC), 0);
         corpse->timer = number_range (3, 6);
         if (ch->gold > 0) {
             obj_to_obj (obj_create_money (ch->gold, ch->silver), corpse);
@@ -1282,7 +1250,7 @@ void make_corpse (CHAR_DATA * ch) {
     }
     else {
         name = ch->name;
-        corpse = create_object (get_obj_index (OBJ_VNUM_CORPSE_PC), 0);
+        corpse = obj_create (get_obj_index (OBJ_VNUM_CORPSE_PC), 0);
         corpse->timer = number_range (25, 40);
         REMOVE_BIT (ch->plr, PLR_CANLOOT);
         if (!char_has_clan (ch))
@@ -1372,7 +1340,7 @@ void death_cry (CHAR_DATA * ch) {
             msg = "$n hits the ground ... DEAD.";
             break;
         case 1:
-            if (char_get_eq_by_wear (ch, WEAR_BODY))
+            if (char_get_eq_by_wear_loc (ch, WEAR_BODY))
                 msg = "$n splatters blood on your armor.";
             break;
         case 2:
@@ -1419,8 +1387,8 @@ void death_cry (CHAR_DATA * ch) {
         OBJ_DATA *obj;
         char *name;
 
-        name = IS_NPC (ch) ? ch->short_descr : ch->name;
-        obj = create_object (get_obj_index (vnum), 0);
+        name = PERS (ch);
+        obj = obj_create (get_obj_index (vnum), 0);
         obj->timer = number_range (4, 7);
 
         sprintf (buf, obj->short_descr, name);
@@ -1433,7 +1401,7 @@ void death_cry (CHAR_DATA * ch) {
 
         if (obj->item_type == ITEM_FOOD) {
             if (IS_SET (ch->form, FORM_POISON))
-                obj->value[3] = 1;
+                obj->v.food.poisoned = 1;
             else if (!IS_SET (ch->form, FORM_EDIBLE))
                 obj->item_type = ITEM_TRASH;
         }
@@ -1457,7 +1425,6 @@ void death_cry (CHAR_DATA * ch) {
         }
     }
     ch->in_room = was_in_room;
-    return;
 }
 
 void raw_kill (CHAR_DATA * victim) {
@@ -1485,12 +1452,11 @@ void raw_kill (CHAR_DATA * victim) {
     victim->mana = UMAX (1, victim->mana);
     victim->move = UMAX (1, victim->move);
 
-/*  save_char_obj( victim ); we're stable enough to not need this :) */
-    return;
+    /* we're stable enough to not need this :) */
+    /* save_char_obj (victim); */
 }
 
 void group_gain (CHAR_DATA * ch, CHAR_DATA * victim) {
-    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *gch;
  /* CHAR_DATA *lch; */
     int xp;
@@ -1539,8 +1505,7 @@ void group_gain (CHAR_DATA * ch, CHAR_DATA * victim) {
 #endif
 
         xp = xp_compute (gch, victim, group_levels);
-        sprintf (buf, "You receive %d experience points.\n\r", xp);
-        send_to_char (buf, gch);
+        printf_to_char (gch, "You receive %d experience points.\n\r", xp);
         gain_exp (gch, xp);
 
         for (obj = ch->carrying; obj != NULL; obj = obj_next) {
@@ -1735,11 +1700,18 @@ void dam_message (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
 #endif
 
     /* Determine strength from damage percent. */
+#ifdef VANILLA
+         if (dam         == 0)  { vs = "miss";               vp = "misses"; }
+    else if (dam_percent <= 5)  { vs = "scratch";            vp = "scratches"; }
+    else if (dam_percent <= 10) { vs = "graze";              vp = "grazes"; }
+    else if (dam_percent <= 15) { vs = "hit";                vp = "hits"; }
+#else
          if (dam         == 0)  { vs = "miss";               vp = "misses"; }
     else if (dam_percent <= 3)  { vs = "scratch";            vp = "scratches"; }
     else if (dam_percent <= 6)  { vs = "scrape";             vp = "scrapes"; }
     else if (dam_percent <= 10) { vs = "graze";              vp = "grazes"; }
     else if (dam_percent <= 15) { vs = "bruise";             vp = "bruises"; }
+#endif
     else if (dam_percent <= 20) { vs = "injure";             vp = "injures"; }
     else if (dam_percent <= 25) { vs = "wound";              vp = "wounds"; }
     else if (dam_percent <= 30) { vs = "maul";               vp = "mauls"; }
@@ -1756,16 +1728,18 @@ void dam_message (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
     else if (dam_percent <= 85) { vs = "=== OBLITERATE ==="; vp = "=== OBLITERATES ==="; }
     else if (dam_percent <= 90) { vs = ">>> ANNIHILATE <<<"; vp = ">>> ANNIHILATES <<<"; }
     else if (dam_percent <= 95) { vs = "<<< ERADICATE >>>";  vp = "<<< ERADICATES >>>"; }
+#ifndef VANILLA
     else if (dam_percent < 100) { vs = "### DESTROY ###";    vp = "### DESTROYS ###"; }
+#endif
     else { vs = "do UNSPEAKABLE things to"; vp = "does UNSPEAKABLE things to"; }
 
     punct = (dam_percent <= 45) ? '.' : '!';
 
     if (dt == TYPE_HIT) {
         if (damage_adj == NULL)
-            strcpy(buf_hit, "hit");
+            strcpy (buf_hit, "hit");
         else
-            sprintf(buf_hit, "%s hit", damage_adj);
+            sprintf (buf_hit, "%s hit", damage_adj);
         attack = buf_hit;
 
         if (ch == victim) {
@@ -1789,7 +1763,7 @@ void dam_message (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
             attack = attack_table[0].name;
         }
         if (damage_adj != NULL) {
-            sprintf(buf_hit, "%s %s", damage_adj, attack);
+            sprintf (buf_hit, "%s %s", damage_adj, attack);
             attack = buf_hit;
         }
 
@@ -1828,7 +1802,6 @@ void dam_message (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
         act (buf3, ch, NULL, victim, TO_OTHERS);
     }
     damage_adj = NULL;
-    return;
 }
 
 /* Disarm a creature.
@@ -1836,7 +1809,7 @@ void dam_message (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
 void disarm (CHAR_DATA * ch, CHAR_DATA * victim) {
     OBJ_DATA *obj;
 
-    if ((obj = char_get_eq_by_wear (victim, WEAR_WIELD)) == NULL)
+    if ((obj = char_get_eq_by_wear_loc (victim, WEAR_WIELD)) == NULL)
         return;
 
     if (IS_OBJ_STAT (obj, ITEM_NOREMOVE)) {

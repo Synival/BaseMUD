@@ -66,9 +66,6 @@
 
 #include "interp.h"
 
-/* TODO: this function has been hardly reviewed. look over most of it! */
-/* TODO: move position messages to tables. */
-
 bool check_social args ((CHAR_DATA * ch, char *command, char *argument));
 
 /* Command logging types. */
@@ -406,10 +403,8 @@ void interpret (CHAR_DATA * ch, char *argument) {
     REMOVE_BIT (ch->affected_by, AFF_HIDE);
 
     /* Implement freeze command. */
-    if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_FREEZE)) {
-        send_to_char ("You're totally frozen!\n\r", ch);
-        return;
-    }
+    BAIL_IF (!IS_NPC (ch) && IS_SET (ch->plr, PLR_FREEZE),
+        "You're totally frozen!\n\r", ch);
 
     /* Grab the command word.
      * Special parsing so ' can be a command,
@@ -457,6 +452,7 @@ void interpret (CHAR_DATA * ch, char *argument) {
 
         ps = s;
         sprintf (log_buf, "Log %s: %s", ch->name, logline);
+
         /* Make sure that was is displayed is what is typed */
         for (i = 0; log_buf[i]; i++) {
             *ps++ = log_buf[i];
@@ -520,7 +516,6 @@ void interpret (CHAR_DATA * ch, char *argument) {
     (*cmd_table[cmd].do_fun) (ch, argument);
 
     tail_chain ();
-    return;
 }
 
 /* function to keep argument safe in all commands -- no static strings */

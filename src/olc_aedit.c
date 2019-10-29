@@ -27,11 +27,11 @@
 #include "olc_aedit.h"
 
 /*****************************************************************************
- Name:        check_range( lower vnum, upper vnum )
+ Name:       aedit_check_range( lower vnum, upper vnum )
  Purpose:    Ensures the range spans only one area.
- Called by:    aedit_vnum(olc_act.c).
+ Called by:  aedit_vnum(olc_act.c).
  ****************************************************************************/
-bool check_range (int lower, int upper) {
+bool aedit_check_range (int lower, int upper) {
     AREA_DATA *pArea;
     int cnt = 0;
 
@@ -90,7 +90,7 @@ AEDIT (aedit_create) {
     ch->desc->pEdit = (void *) pArea;
 
     SET_BIT (pArea->area_flags, AREA_ADDED);
-    send_to_char ("Area Created.\n\r", ch);
+    send_to_char ("Area created.\n\r", ch);
     return FALSE;
 }
 
@@ -98,7 +98,7 @@ AEDIT (aedit_title) {
     AREA_DATA *pArea;
     EDIT_AREA (ch, pArea);
     return olc_str_replace_dup (ch, &(pArea->title), argument,
-        "Syntax:   name [$name]\n\r",
+        "Syntax: name [$name]\n\r",
         "Title set.\n\r");
 }
 
@@ -106,7 +106,7 @@ AEDIT (aedit_credits) {
     AREA_DATA *pArea;
     EDIT_AREA (ch, pArea);
     return olc_str_replace_dup (ch, &(pArea->credits), argument,
-        "Syntax:   credits [$credits]\n\r",
+        "Syntax: credits [$credits]\n\r",
         "Credits set.\n\r");
 }
 
@@ -141,7 +141,7 @@ AEDIT (aedit_age) {
     AREA_DATA *pArea;
     EDIT_AREA (ch, pArea);
     return olc_sh_int_replace (ch, &(pArea->age), argument,
-        "Syntax:  age [#xage]\n\r", "Age set.\n\r");
+        "Syntax: age [#xage]\n\r", "Age set.\n\r");
 }
 
 #if 0 /* ROM OLC */
@@ -179,7 +179,7 @@ AEDIT (aedit_security) {
     one_argument (argument, sec);
 
     RETURN_IF (!is_number (sec) || sec[0] == '\0',
-        "Syntax:  security [#xlevel]\n\r", ch, FALSE);
+        "Syntax: security [#xlevel]\n\r", ch, FALSE);
 
     value = atoi (sec);
     if (value > ch->pcdata->security || value < 0) {
@@ -204,8 +204,8 @@ AEDIT (aedit_builder) {
     one_argument (argument, name);
 
     RETURN_IF (name[0] == '\0',
-        "Syntax:  builder [$name]  -toggles builder\n\r"
-        "Syntax:  builder All      -allows everyone\n\r", ch, FALSE);
+        "Syntax: builder [$name]  -toggles builder\n\r"
+        "Syntax: builder All      -allows everyone\n\r", ch, FALSE);
 
     name[0] = UPPER (name[0]);
     if (strstr (pArea->builders, name) != '\0') {
@@ -253,23 +253,23 @@ AEDIT (aedit_vnum) {
 
     RETURN_IF (!is_number (lower) || lower[0] == '\0' ||
                !is_number (upper) || upper[0] == '\0',
-        "Syntax:  vnum [#xlower] [#xupper]\n\r", ch, FALSE);
+        "Syntax: vnum [#xlower] [#xupper]\n\r", ch, FALSE);
 
     RETURN_IF ((ilower = atoi (lower)) > (iupper = atoi (upper)),
-        "AEdit:  Upper must be larger then lower.\n\r", ch, FALSE);
-    RETURN_IF (!check_range (atoi (lower), atoi (upper)),
-        "AEdit:  Range must include only this area.\n\r", ch, FALSE);
+        "AEdit: Upper must be larger then lower.\n\r", ch, FALSE);
+    RETURN_IF (!aedit_check_range (atoi (lower), atoi (upper)),
+        "AEdit: Range must include only this area.\n\r", ch, FALSE);
 
     other = area_get_by_inner_vnum (ilower);
     RETURN_IF (other && other != pArea,
-        "AEdit:  Lower vnum already assigned.\n\r", ch, FALSE);
+        "AEdit: Lower vnum already assigned.\n\r", ch, FALSE);
 
     pArea->min_vnum = ilower;
     send_to_char ("Lower vnum set.\n\r", ch);
 
     other = area_get_by_inner_vnum (iupper);
     RETURN_IF (other && other != pArea,
-        "AEdit:  Upper vnum already assigned.\n\r", ch, TRUE);
+        "AEdit: Upper vnum already assigned.\n\r", ch, TRUE);
                         /* The lower value has been set ^^^^ */
 
     pArea->max_vnum = iupper;
@@ -288,15 +288,15 @@ AEDIT (aedit_lvnum) {
     one_argument (argument, lower);
 
     RETURN_IF (!is_number (lower) || lower[0] == '\0',
-        "Syntax:  min_vnum [#xlower]\n\r", ch, FALSE);
+        "Syntax: min_vnum [#xlower]\n\r", ch, FALSE);
     RETURN_IF ((ilower = atoi (lower)) > (iupper = pArea->max_vnum),
-        "AEdit:  Value must be less than the max_vnum.\n\r", ch, FALSE);
-    RETURN_IF (!check_range (ilower, iupper),
-        "AEdit:  Range must include only this area.\n\r", ch, FALSE);
+        "AEdit: Value must be less than the max_vnum.\n\r", ch, FALSE);
+    RETURN_IF (!aedit_check_range (ilower, iupper),
+        "AEdit: Range must include only this area.\n\r", ch, FALSE);
 
     other = area_get_by_inner_vnum (ilower);
     RETURN_IF (other && other != pArea,
-        "AEdit:  Lower vnum already assigned.\n\r", ch, FALSE);
+        "AEdit: Lower vnum already assigned.\n\r", ch, FALSE);
 
     pArea->min_vnum = ilower;
     send_to_char ("Lower vnum set.\n\r", ch);
@@ -313,15 +313,15 @@ AEDIT (aedit_uvnum) {
 
     one_argument (argument, upper);
     RETURN_IF (!is_number (upper) || upper[0] == '\0',
-        "Syntax:  max_vnum [#xupper]\n\r", ch, FALSE);
+        "Syntax: max_vnum [#xupper]\n\r", ch, FALSE);
     RETURN_IF ((ilower = pArea->min_vnum) > (iupper = atoi (upper)),
-        "AEdit:  Upper must be larger then lower.\n\r", ch, FALSE);
-    RETURN_IF (!check_range (ilower, iupper),
-        "AEdit:  Range must include only this area.\n\r", ch, FALSE);
+        "AEdit: Upper must be larger then lower.\n\r", ch, FALSE);
+    RETURN_IF (!aedit_check_range (ilower, iupper),
+        "AEdit: Range must include only this area.\n\r", ch, FALSE);
 
     other = area_get_by_inner_vnum (iupper);
     RETURN_IF (other && other != pArea,
-        "AEdit:  Upper vnum already assigned.\n\r", ch, FALSE);
+        "AEdit: Upper vnum already assigned.\n\r", ch, FALSE);
 
     pArea->max_vnum = iupper;
     send_to_char ("Upper vnum set.\n\r", ch);

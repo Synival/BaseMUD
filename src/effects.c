@@ -39,9 +39,6 @@
 
 #include "effects.h"
 
-/* TODO: split XXX_effect() into XXX_effect_obj(), _room(), _char(). */
-/* TODO: ^^^ after that, consolidate code in the respective function groups */
-
 void acid_effect (void *vo, int level, int dam, int target) {
     /* nail objects on the floor */
     if (target == TARGET_ROOM) {
@@ -140,7 +137,7 @@ void acid_effect (void *vo, int level, int dam, int target) {
             /* needs a new affect */
             if (!af_found) {
                 paf = affect_new ();
-                affect_init (paf, TO_AFFECTS, -1, level, -1, APPLY_AC, 1, 0);
+                affect_init (paf, AFF_TO_AFFECTS, -1, level, -1, APPLY_AC, 1, 0);
                 LIST_FRONT (paf, next, obj->affected);
             }
             if (obj->carried_by != NULL && obj->wear_loc != WEAR_NONE)
@@ -197,7 +194,7 @@ void cold_effect (void *vo, int level, int dam, int target) {
             act ("A chill sinks deep into your bones.", victim, NULL, NULL, TO_CHAR);
             act ("$n turns blue and shivers.", victim, NULL, NULL, TO_NOTCHAR);
 
-            affect_init (&af, TO_AFFECTS, skill_lookup ("chill touch"), level, 6, APPLY_STR, -1, 0);
+            affect_init (&af, AFF_TO_AFFECTS, skill_lookup ("chill touch"), level, 6, APPLY_STR, -1, 0);
             affect_join (victim, &af);
         }
 
@@ -286,7 +283,7 @@ void fire_effect (void *vo, int level, int dam, int target) {
                  victim, NULL, NULL, TO_CHAR);
             act ("$n is blinded by smoke!", victim, NULL, NULL, TO_NOTCHAR);
 
-            affect_init (&af, TO_AFFECTS, skill_lookup ("fire breath"), level, number_range (0, level / 10), APPLY_HITROLL, -4, AFF_BLIND);
+            affect_init (&af, AFF_TO_AFFECTS, skill_lookup ("fire breath"), level, number_range (0, level / 10), APPLY_HITROLL, -4, AFF_BLIND);
             affect_to_char (victim, &af);
         }
 
@@ -406,7 +403,7 @@ void poison_effect (void *vo, int level, int dam, int target) {
                           victim);
             act ("$n looks very ill.", victim, NULL, NULL, TO_NOTCHAR);
 
-            affect_init (&af, TO_AFFECTS, gsn_poison, level, level / 2, APPLY_STR, -1, AFF_POISON);
+            affect_init (&af, AFF_TO_AFFECTS, gsn_poison, level, level / 2, APPLY_STR, -1, AFF_POISON);
             affect_join (victim, &af);
         }
 
@@ -442,7 +439,7 @@ void poison_effect (void *vo, int level, int dam, int target) {
             case ITEM_FOOD:
                 break;
             case ITEM_DRINK_CON:
-                if (obj->value[0] == obj->value[1])
+                if (obj->v.drink_con.capacity == obj->v.drink_con.filled)
                     return;
                 break;
         }
@@ -451,7 +448,15 @@ void poison_effect (void *vo, int level, int dam, int target) {
         if (number_percent () > chance)
             return;
 
-        obj->value[3] = 1;
+        switch (obj->item_type) {
+            case ITEM_FOOD:
+                obj->v.food.poisoned = 1;
+                break;
+
+            case ITEM_DRINK_CON:
+                obj->v.drink_con.poisoned = 1;
+                break;
+        }
         return;
     }
 }

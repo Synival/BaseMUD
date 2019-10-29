@@ -21,6 +21,7 @@
 #include "string.h"
 #include "lookup.h"
 #include "olc.h"
+#include "chars.h"
 
 #include "olc_mpedit.h"
 
@@ -30,15 +31,15 @@ MPEDIT (mpedit_create) {
     AREA_DATA *ad;
 
     RETURN_IF (IS_NULLSTR (argument) || value < 1,
-        "Sintaxis : mpedit create [vnum]\n\r", ch, FALSE);
+        "Syntax: mpedit create [vnum]\n\r", ch, FALSE);
 
     ad = area_get_by_inner_vnum (value);
     RETURN_IF (ad == NULL,
-        "MPEdit : VNUM no asignado a ningun area.\n\r", ch, FALSE);
+        "MPEdit: That area vnum does not exist.\n\r", ch, FALSE);
     RETURN_IF (!IS_BUILDER (ch, ad),
-        "MPEdit : Insuficiente seguridad para crear MobProgs.\n\r", ch, FALSE);
+        "MPEdit: Vnum in an area you cannot build in.\n\r", ch, FALSE);
     RETURN_IF (get_mprog_index (value),
-        "MPEdit: Code vnum already exists.\n\r", ch, FALSE);
+        "MPEdit: Mob program vnum already exists.\n\r", ch, FALSE);
 
     pMcode = mpcode_new ();
     pMcode->area = ad;
@@ -48,7 +49,7 @@ MPEDIT (mpedit_create) {
     ch->desc->pEdit = (void *) pMcode;
     ch->desc->editor = ED_MPCODE;
 
-    send_to_char ("MobProgram Code Created.\n\r", ch);
+    send_to_char ("Mob program created.\n\r", ch);
     return TRUE;
 }
 

@@ -47,21 +47,6 @@
 #include "spell_npc.h"
 #include "spell_off.h"
 
-/* TODO: move convenience macros to tables.h */
-/* TODO: feature - more output functions for JSON objects. */
-/* TODO: review table lookups for proper 'not found' entries
- *       (should be -1) */
-/* TODO: we should hardly ever have -1 as an index in any of these tables */
-
-#define TFLAGS(table, desc) \
-    { table, #table, TABLE_FLAG_TYPE | TABLE_BITS, desc, \
-      sizeof (FLAG_TYPE), json_tblw_flag }
-#define TTYPES(table, desc) \
-    { table, #table, TABLE_FLAG_TYPE, desc, \
-      sizeof (FLAG_TYPE), json_tblw_flag }
-#define TTABLE(table, desc, jwrite) \
-    { table, #table, 0, desc, sizeof(table[0]), jwrite }
-
 const TABLE_TYPE master_table[] = {
     /* from flags.h */
     TFLAGS (mob_flags,        "Mobile flags."),
@@ -76,11 +61,11 @@ const TABLE_TYPE master_table[] = {
     TFLAGS (exit_flags,       "Exit types."),
     TFLAGS (room_flags,       "Room attributes."),
     TFLAGS (extra_flags,      "Object attributes."),
-    TFLAGS (wear_flags,       "Where to wear object."),
+    TFLAGS (wear_flags,       "Types of wear locations."),
     TFLAGS (container_flags,  "Container status."),
     TFLAGS (weapon_flags,     "Special weapon type."),
     TFLAGS (res_flags,        "Mobile immunity."),
-    TFLAGS (portal_flags,     "Portal types."),
+    TFLAGS (gate_flags,       "Portal gate flags."),
     TFLAGS (furniture_flags,  "Flags for furniture."),
 
     /* from types.h */
@@ -97,7 +82,6 @@ const TABLE_TYPE master_table[] = {
     TTYPES (door_resets,      "Door reset types"),
 
     /* from tables.h */
-    /* TODO: json writing functions for these tables ->->-->->-, */
     TTABLE (clan_table,       "Player clans.",                NULL),
     TTABLE (position_table,   "Character positions.",         NULL),
     TTABLE (sex_table,        "Gender settings.",             NULL),
@@ -109,11 +93,11 @@ const TABLE_TYPE master_table[] = {
     TTABLE (race_table,       "Races and statistics.",        NULL),
     TTABLE (pc_race_table,    "Playable race data.",          NULL),
     TTABLE (class_table,      "Classes and statistics.",      NULL),
-    TTABLE (str_app,          "Str apply table.",             NULL),
-    TTABLE (int_app,          "Int apply table.",             NULL),
-    TTABLE (wis_app,          "Wis apply table.",             NULL),
-    TTABLE (dex_app,          "Dex apply table.",             NULL),
-    TTABLE (con_app,          "Con apply table.",             NULL),
+    TTABLE (str_app_table,    "Str apply table.",             NULL),
+    TTABLE (int_app_table,    "Int apply table.",             NULL),
+    TTABLE (wis_app_table,    "Wis apply table.",             NULL),
+    TTABLE (dex_app_table,    "Dex apply table.",             NULL),
+    TTABLE (con_app_table,    "Con apply table.",             NULL),
     TTABLE (liq_table,        "Liquid types.",                NULL),
     TTABLE (skill_table,      "Master skill table.",          NULL),
     TTABLE (group_table,      "Ability group table.",         NULL),
@@ -122,7 +106,7 @@ const TABLE_TYPE master_table[] = {
     TTABLE (door_table,       "Exit names.",                  NULL),
     TTABLE (spec_table,       "Specialized mobile behavior.", NULL),
     TTABLE (furniture_table, "Furniture flags for positions.",NULL),
-    TTABLE (wear_table,       "Wearable item table.",         NULL),
+    TTABLE (wear_loc_table,   "Wearable item table.",         NULL),
     TTABLE (material_table,   "Material properties",          NULL),
     TTABLE (colour_setting_table, "Configurable colours.",    NULL),
     TTABLE (wiznet_table,     "Wiznet channels.",             NULL),
@@ -166,7 +150,7 @@ const POSITION_TYPE position_table[POS_MAX + 1] = {
 
 /* for sex */
 const SEX_TYPE sex_table[SEX_MAX + 1] = {
-    {SEX_NEUTRAL, "none"},
+    {SEX_NEUTRAL, "neutral"},
     {SEX_MALE,    "male"},
     {SEX_FEMALE,  "female"},
     {SEX_EITHER,  "either"},
@@ -695,162 +679,162 @@ char *const title_table[CLASS_MAX][MAX_LEVEL + 1][2] = {
 };
 
 /* Attribute bonus tables. */
-const STR_APP_TYPE str_app[ATTRIBUTE_MAX + 1] = {
+const STR_APP_TYPE str_app_table[ATTRIBUTE_HIGHEST + 2] = {
     /* stat, tohit, todam, carry, wield */
-    { 0, -5, -4,   0,  0},
+    { 0, -5, -4,   0,  0}, /* 0 */
     { 1, -4, -3,   3,  1},
     { 2, -3, -2,   6,  2},
     { 3, -3, -1,  10,  3},
     { 4, -2, -1,  25,  4},
-    { 5, -2, -1,  55,  5},
+    { 5, -2, -1,  55,  5}, /* 5 */
     { 6, -1,  0,  80,  6},
     { 7, -1,  0,  90,  7},
     { 8,  0,  0, 100,  8},
     { 9,  0,  0, 107,  9},
-    {10,  0,  0, 115, 10},
+    {10,  0,  0, 115, 10}, /* 10 */
     {11,  0,  0, 123, 11},
     {12,  0,  0, 130, 12},
     {13,  0,  0, 137, 13},
     {14,  0,  1, 143, 14},
-    {15,  1,  1, 150, 15},
+    {15,  1,  1, 150, 15}, /* 15 */
     {16,  1,  2, 165, 16},
     {17,  2,  3, 180, 22},
     {18,  2,  3, 200, 25},
     {19,  3,  4, 225, 30},
-    {20,  3,  5, 250, 35},
+    {20,  3,  5, 250, 35}, /* 20 */
     {21,  4,  6, 300, 40},
     {22,  4,  6, 350, 45},
     {23,  5,  7, 400, 50},
     {24,  5,  8, 450, 55},
-    {25,  6,  9, 500, 60},
+    {25,  6,  9, 500, 60}, /* 25 */
 
     { -999},
 };
 
-const INT_APP_TYPE int_app[ATTRIBUTE_MAX + 1] = {
+const INT_APP_TYPE int_app_table[ATTRIBUTE_HIGHEST + 2] = {
     /* stat, learn */
-    { 0,  3},
+    { 0,  3}, /* 0 */
     { 1,  5},
     { 2,  7},
     { 3,  8},
     { 4,  9},
-    { 5, 10},
+    { 5, 10}, /* 5 */
     { 6, 11},
     { 7, 12},
     { 8, 13},
     { 9, 15},
-    {10, 17},
+    {10, 17}, /* 10 */
     {11, 19},
     {12, 22},
     {13, 25},
     {14, 28},
-    {15, 31},
+    {15, 31}, /* 15 */
     {16, 34},
     {17, 37},
     {18, 40},
     {19, 44},
-    {20, 49},
+    {20, 49}, /* 20 */
     {21, 55},
     {22, 60},
     {23, 70},
     {24, 80},
-    {25, 85},
+    {25, 85}, /* 25 */
 
     {-999}
 };
 
-const WIS_APP_TYPE wis_app[ATTRIBUTE_MAX + 1] = {
+const WIS_APP_TYPE wis_app_table[ATTRIBUTE_HIGHEST + 2] = {
     /* stat, practice */
-    { 0, 0},
+    { 0, 0}, /* 0 */
     { 1, 0},
     { 2, 0},
     { 3, 0},
     { 4, 0},
-    { 5, 1},
+    { 5, 1}, /* 5 */
     { 6, 1},
     { 7, 1},
     { 8, 1},
     { 9, 1},
-    {10, 1},
+    {10, 1}, /* 10 */
     {11, 1},
     {12, 1},
     {13, 1},
     {14, 1},
-    {15, 2},
+    {15, 2}, /* 15 */
     {16, 2},
     {17, 2},
     {18, 3},
     {19, 3},
-    {20, 3},
+    {20, 3}, /* 20 */
     {21, 3},
     {22, 4},
     {23, 4},
     {24, 4},
-    {25, 5},
+    {25, 5}, /* 25 */
 
     {-999}
 };
 
-const DEX_APP_TYPE dex_app[ATTRIBUTE_MAX + 1] = {
+const DEX_APP_TYPE dex_app_table[ATTRIBUTE_HIGHEST + 2] = {
     /* stat, defensive */
-    { 0,  60},
+    { 0,  60}, /* 0 */
     { 1,  50},
     { 2,  50},
     { 3,  40},
     { 4,  30},
-    { 5,  20},
+    { 5,  20}, /* 5 */
     { 6,  10},
     { 7,   0},
     { 8,   0},
     { 9,   0},
-    {10,   0},
+    {10,   0}, /* 10 */
     {11,   0},
     {12,   0},
     {13,   0},
     {14,   0},
-    {15,  -10},
+    {15,  -10}, /* 15 */
     {16,  -15},
     {17,  -20},
     {18,  -30},
     {19,  -40},
-    {20,  -50},
+    {20,  -50}, /* 20 */
     {21,  -60},
     {22,  -75},
     {23,  -90},
     {24, -105},
-    {25, -120},
+    {25, -120}, /* 25 */
 
     {-999}
 };
 
-const CON_APP_TYPE con_app[ATTRIBUTE_MAX + 1] = {
+const CON_APP_TYPE con_app_table[ATTRIBUTE_HIGHEST + 2] = {
     /* stat, hitp, shock */
-    { 0, -4, 20},
+    { 0, -4, 20}, /* 0 */
     { 1, -3, 25},
     { 2, -2, 30},
     { 3, -2, 35},
     { 4, -1, 40},
-    { 5, -1, 45},
+    { 5, -1, 45}, /* 5 */
     { 6, -1, 50},
     { 7,  0, 55},
     { 8,  0, 60},
     { 9,  0, 65},
-    {10,  0, 70},
+    {10,  0, 70}, /* 10 */
     {11,  0, 75},
     {12,  0, 80},
     {13,  0, 85},
     {14,  0, 88},
-    {15,  1, 90},
+    {15,  1, 90}, /* 15 */
     {16,  2, 95},
     {17,  2, 97},
     {18,  3, 99},
     {19,  3, 99},
-    {20,  4, 99},
+    {20,  4, 99}, /* 20 */
     {21,  4, 99},
     {22,  5, 99},
     {23,  6, 99},
     {24,  7, 99},
-    {25,  8, 99},
+    {25,  8, 99}, /* 25 */
 
     { -999},
 };
@@ -1173,7 +1157,7 @@ const MAP_LOOKUP_TABLE map_flags_table[] = {
     {MAP_FLAGS_CONT,      "container", container_flags},
     {MAP_FLAGS_FURNITURE, "furniture", furniture_flags},
     {MAP_FLAGS_EXIT,      "exit",      exit_flags},
-    {MAP_FLAGS_PORTAL,    "portal",    portal_flags},
+    {MAP_FLAGS_GATE,      "gate",      gate_flags},
     {-1, NULL, NULL},
 };
 
@@ -1286,7 +1270,7 @@ const OBJ_MAP obj_map_table[] = {
     {ITEM_PORTAL, {
         {0, "charges",     MAP_INTEGER, 0},
         {1, "exit_flags",  MAP_FLAGS, MAP_FLAGS_EXIT},
-        {2, "portal_flags",MAP_FLAGS, MAP_FLAGS_PORTAL},
+        {2, "gate_flags",  MAP_FLAGS, MAP_FLAGS_GATE},
         {3, "to_vnum",     MAP_INTEGER, 0},
         {4, "key",         MAP_INTEGER, 0},
     }},
@@ -1441,7 +1425,7 @@ const COLOUR_TYPE colour_table[] = {
     {0}
 };
 
-const WEAR_TYPE wear_table[WEAR_MAX + 1] = {
+const WEAR_LOC_TYPE wear_loc_table[WEAR_LOC_MAX + 1] = {
     {WEAR_LIGHT,    "light",        "<used as light>       ", ITEM_WEAR_LIGHT,  "You light $p and hold it.", "$n lights $p and holds it."},
     {WEAR_FINGER_L, "left finger",  "<worn on L-finger>    ", ITEM_WEAR_FINGER, "You wear $p on your left finger.", "$n wears $p on $s left finger."},
     {WEAR_FINGER_R, "right finger", "<worn on R-finger>    ", ITEM_WEAR_FINGER, "You wear $p on your right finger.", "$n wears $p on $s right finger."},
@@ -1590,14 +1574,14 @@ const WIZNET_TYPE wiznet_table[WIZNET_MAX + 1] = {
     {-1, NULL, 0}
 };
 
-const AFFECT_BIT_TYPE affect_bit_table[] = {
-    {"affects", TO_AFFECTS, affect_flags, "affect_flags"},
-    {"object",  TO_OBJECT,  extra_flags,  "extra_flags"},
-    {"immune",  TO_IMMUNE,  res_flags,    "res_flags"},
-    {"resist",  TO_RESIST,  res_flags,    "res_flags"},
-    {"vuln",    TO_VULN,    res_flags,    "res_flags"},
-    {"weapon",  TO_WEAPON,  weapon_flags, "weapon_flags"},
-    {NULL,      0,          NULL},
+const AFFECT_BIT_TYPE affect_bit_table[AFF_TO_MAX + 1] = {
+    {"affects", AFF_TO_AFFECTS, affect_flags, "affect_flags"},
+    {"object",  AFF_TO_OBJECT,  extra_flags,  "extra_flags"},
+    {"immune",  AFF_TO_IMMUNE,  res_flags,    "res_flags"},
+    {"resist",  AFF_TO_RESIST,  res_flags,    "res_flags"},
+    {"vuln",    AFF_TO_VULN,    res_flags,    "res_flags"},
+    {"weapon",  AFF_TO_WEAPON,  weapon_flags, "weapon_flags"},
+    {NULL,      0,              NULL},
 };
 
 const DAY_TYPE day_table[DAY_MAX + 1] = {

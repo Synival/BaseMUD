@@ -16,21 +16,17 @@
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
+ *   ROM has been brought to you by the ROM consortium                     *
+ *       Russ Taylor (rtaylor@hypercube.org)                               *
+ *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
+ *       Brian Moore (zump@rom.org)                                        *
+ *   By using this code, you have agreed to follow the terms of the        *
+ *   ROM license, in the file Rom24/doc/rom.license                        *
  ***************************************************************************/
 
 #ifndef __ROM_MACROS_H
 #define __ROM_MACROS_H
-
-/* Thanks Dingo for making life a bit easier ;) */
-#define CH(d)   ((d)->original ? (d)->original : (d)->character)
-#define OCH(ch) (((ch)->desc) ? CH((ch)->desc) : (ch))
 
 /* Utility macros. */
 #define IS_VALID(data)       ((data) != NULL && (data)->rec_data.valid)
@@ -48,97 +44,13 @@
 #define ARE_SET(flag, bit)   (((flag) & (bit)) == (bit))
 #define NONE_SET(flag, bit)  (((flag) & (bit)) == 0)
 
-/* Character macros. */
-#define IS_NPC(ch)           (IS_SET((ch)->mob, MOB_IS_NPC))
-#define IS_IMMORTAL(ch)      (char_get_trust(ch) >= LEVEL_IMMORTAL)
-#define IS_HERO(ch)          (char_get_trust(ch) >= LEVEL_HERO)
-#define IS_TRUSTED(ch,level) (char_get_trust((ch)) >= (level))
-#define IS_AFFECTED(ch, sn)  (IS_SET((ch)->affected_by, (sn)))
-
-#define IS_SOBER(ch)         (!IS_NPC(ch) && (ch)->pcdata && \
-                              (ch)->pcdata->condition[COND_DRUNK] <= 0)
-#define IS_DRUNK(ch)         (!IS_NPC(ch) && (ch)->pcdata && \
-                              (ch)->pcdata->condition[COND_DRUNK] > 10)
-#define IS_THIRSTY(ch)       (!IS_NPC(ch) && (ch)->pcdata && \
-                              (ch)->pcdata->condition[COND_THIRST] <= 0)
-#define IS_QUENCHED(ch)      (!IS_NPC(ch) && (ch)->pcdata && \
-                              (ch)->pcdata->condition[COND_THIRST] > 40)
-#define IS_HUNGRY(ch)        (!IS_NPC(ch) && (ch)->pcdata && \
-                              (ch)->pcdata->condition[COND_HUNGER] <= 0)
-#define IS_FED(ch)           (!IS_NPC(ch) && (ch)->pcdata && \
-                              (ch)->pcdata->condition[COND_HUNGER] > 40)
-#define IS_FULL(ch)          (!IS_NPC(ch) && (ch)->pcdata && \
-                              (ch)->pcdata->condition[COND_FULL] > 40)
-#define IS_PET(ch)           (IS_NPC(ch) && IS_SET((ch)->mob, MOB_PET))
-
-#define GET_AGE(ch) \
-    ((int) (17 + ((ch)->played \ + current_time - (ch)->logon ) / 72000))
-
-#define IS_GOOD(ch)         (ch->alignment >=  350)
-#define IS_EVIL(ch)         (ch->alignment <= -350)
-#define IS_REALLY_GOOD(ch)  (ch->alignment >=  750)
-#define IS_REALLY_EVIL(ch)  (ch->alignment <= -750)
-#define IS_NEUTRAL(ch)      (!IS_GOOD(ch) && !IS_EVIL(ch))
-#define IS_OUTSIDE(ch)      (!IS_SET ((ch)->in_room->room_flags, ROOM_INDOORS))
-#define IS_AWAKE(ch)        (ch->position > POS_SLEEPING)
-
-#define IS_SAME_ALIGN(ch1, ch2) \
-    (!IS_SET (ch1->mob, MOB_NOALIGN) && \
-     !IS_SET (ch2->mob, MOB_NOALIGN) && \
-     ((IS_GOOD(ch1) && IS_GOOD(ch2)) || \
-      (IS_EVIL(ch1) && IS_EVIL(ch2)) || \
-      (IS_NEUTRAL(ch1) && IS_NEUTRAL(ch2))))
-
-#define GET_AC(ch,type) \
-    ((ch)->armor[type] + (IS_AWAKE(ch) \
-        ? dex_app[char_get_curr_stat(ch,STAT_DEX)].defensive : 0 ))
-#define GET_HITROLL(ch) \
-    ((ch)->hitroll + str_app[char_get_curr_stat(ch,STAT_STR)].tohit)
-#define GET_DAMROLL(ch) \
-    ((ch)->damroll + str_app[char_get_curr_stat(ch,STAT_STR)].todam)
-
-#define WAIT_STATE(ch, npulse) \
-    ((ch)->wait = (IS_TRUSTED(ch, IMPLEMENTOR) \
-        ? (ch)->wait \
-        : UMAX((ch)->wait, (npulse)) \
-    ))
-#define DAZE_STATE(ch, npulse) \
-    ((ch)->daze = (IS_TRUSTED(ch, IMPLEMENTOR) \
-        ? (ch)->daze \
-        : UMAX((ch)->daze, (npulse)) \
-    ))
-
+/* Alias for "new" act function. */
 #define act(format, ch, arg1, arg2, flags) \
     act_new((format), (ch), (arg1), (arg2), (flags), POS_RESTING)
 
-#define HAS_TRIGGER(ch,trig)  (IS_SET((ch)->pIndexData->mprog_flags,(trig)))
+/* Mob program macros. */
+#define HAS_TRIGGER(ch, trig) (IS_SET((ch)->pIndexData->mprog_flags,(trig)))
 #define HAS_ANY_TRIGGER(ch)   ((ch)->pIndexData->mprog_flags != 0)
-
-#define IS_SWITCHED( ch )     ( ch->desc && ch->desc->original )
-#define IS_BUILDER(ch, area) \
-    ( !IS_NPC(ch) && !IS_SWITCHED(ch) && \
-        ( ch->pcdata->security >= area->security \
-          || strstr(area->builders, ch->name ) \
-          || strstr(area->builders, "All" ) \
-        ) \
-    )
-
-/* Object macros. */
-#define CAN_WEAR(obj, part) \
-    ((IS_SET((obj)->wear_flags, (part))) || \
-     ((obj)->item_type == ITEM_LIGHT && (part) == ITEM_WEAR_LIGHT))
-#define IS_OBJ_STAT(obj, stat)    (IS_SET((obj)->extra_flags, (stat)))
-#define IS_WEAPON_STAT(obj,stat)  (IS_SET((obj)->value[4],(stat)))
-#define WEIGHT_MULT(obj) \
-    ((obj)->item_type == ITEM_CONTAINER ? (obj)->value[4] : 100)
-
-/* Description macros. */
-#define PERS(ch) \
-    (IS_NPC(ch) ? (ch)->short_descr : (ch)->name)
-#define PERS_AW(ch, looker) \
-    (char_can_see_anywhere((looker), (ch)) ? (PERS(ch)) : "someone")
-#define PERS_IR(ch, looker) \
-    (char_can_see_in_room((looker), (ch)) ? (PERS(ch)) : "someone")
 
 /* Read in a char. */
 #if defined(KEY)
@@ -365,8 +277,27 @@
 #define RETURN_IF(cond, msg, ch, rval) \
     do { \
         if (cond) { \
-            if (ch && msg) \
-                send_to_char (msg, ch); \
+            if ((ch) && (msg)) { \
+                send_to_char ((msg), (ch)); \
+            } \
+            return rval; \
+        } \
+    } while (0)
+
+#define RETURN_IF_BUG(cond, msg, param, rval) \
+    do { \
+        if (cond) { \
+            if (msg) { \
+                bug ((msg), (param)); \
+            } \
+            return rval; \
+        } \
+    } while (0)
+
+#define RETURN_IF_BUGF(cond, rval, ...) \
+    do { \
+        if (cond) { \
+            bugf (__VA_ARGS__); \
             return rval; \
         } \
     } while (0)
@@ -374,8 +305,9 @@
 #define RETURN_IF_ACT(cond, msg, ch, arg1, arg2, rval) \
     do { \
         if (cond) { \
-            if (ch && msg) \
-                act_new (msg, ch, arg1, arg2, TO_CHAR, POS_DEAD); \
+            if ((ch) && (msg)) { \
+                act_new ((msg), (ch), (arg1), (arg2), TO_CHAR, POS_DEAD); \
+            } \
             return rval; \
         } \
     } while (0)
@@ -388,6 +320,24 @@
         } \
     } while (0)
 
+#define EXIT_IF_BUG(cond, msg, param) \
+    do { \
+        if (cond) { \
+            if (msg) { \
+                bug ((msg), (param)); \
+            } \
+            exit (1); \
+        } \
+    } while (0)
+
+#define EXIT_IF_BUGF(cond, ...) \
+    do { \
+        if (cond) { \
+            bugf (__VA_ARGS__); \
+            exit (1); \
+        } \
+    } while (0)
+
 #define FILTER(cond, msg, ch) \
     RETURN_IF(cond, msg, ch, TRUE)
 #define FILTER_ACT(cond, msg, ch, arg1, arg2) \
@@ -395,8 +345,16 @@
 
 #define BAIL_IF(cond, msg, ch) \
     RETURN_IF(cond, msg, ch, )
+
+#define BAIL_IF_BUG(cond, msg, param) \
+    RETURN_IF_BUG(cond, msg, param, )
+
+#define BAIL_IF_BUGF(cond, ...) \
+    RETURN_IF_BUGF(cond, , __VA_ARGS__)
+
 #define BAIL_IF_ACT(cond, msg, ch, arg1, arg2) \
     RETURN_IF_ACT(cond, msg, ch, arg1, arg2, )
+
 #define BAIL_IF_EXPR(cond, expr) \
     RETURN_IF_EXPR(cond, expr, )
 

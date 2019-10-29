@@ -1,0 +1,359 @@
+(general)
+---------
+Remove hard-coded vnums for rooms
+Remove hard-coded vnums for newbie equipment
+Remove hungarian notation! boo
+Fix functions that return static char[] to be thread-safe and multi-use safe
+Replace all 'Ok.' messages with useful messages.
+
+act_olc.c
+---------
+/* TODO: review most of these functions */
+/* TODO: unify behavior in similar functions: oedit, medit, etc */
+
+affects.c
+---------
+/* TODO: let affects modify height and weight */
+/* TODO: don't check to drop a weapon if it's too heavy on EVERY affect application. */
+/* TODO: affect code using tables */
+/* TODO: check for negative saving throws */
+/* TODO: properly implement saves vs para, petri, rod, etc. */
+/* TODO: add material checks for resistances. */
+
+boards.c
+--------
+/* TODO: move some of the code below to board.h or elsewhere */
+/* TODO: this is code pretty clean, but still needs a once-over */
+
+boot.c
+------
+/* TODO: feature - better command-line arguments?
+ *       (confirm it works with copyover) */
+
+chars.c
+-------
+/* TODO: lots of code can be put into tables:
+ *       - default weapon (newbie weapons)
+ *       - position messages (standing, mortally wounded, etc) */
+/* TODO: review the function names for consistency. */
+/* TODO: remove any redundant functions, like simple lookup functions. */
+/* TODO: replace fReplace in char_wear_obj() and char_remove_obj() with
+ *       flags for EQUIP_ONLY_IF_EMPTY and EQUIP_QUIET. */
+/* TODO: remove duplicated 'if (+/- enchanted)' logic. */
+/* TODO: char_is_friend() was unused, but it looks very useful! */
+/* TODO: use stat lookup functions for tables so they could potentially be
+ *       swapped out. */
+/* TODO: char_reset() doesn't revert imm/res/vuln flags */
+
+comm.c
+------
+/* TODO: review giant comment about the game loop and place it into main.c */
+/* TODO: review names and usages of global variables. */
+/* TODO: review most of this, it's been largely untouched. */
+/* TODO: compatibility is probably lost :-( */
+/* TODO: split socket / descriptor related functions to a different file. */
+/* TODO: somehow unify "position_to_()" functions
+/* TODO: review compatability functions into "comm.h"
+         (they are no longer relevant to comm.c and should be shuffled) */
+
+db.c
+----
+/* TODO: my JSON-saving code is the worst thing ever produced. rewrite :( */
+/* TODO: this file is giant, and lots of the loading routines are ugly.
+ *       split it up, and clean it up! */
+/* TODO: move compat #defines at top into header files */
+/* TODO: evaluate what globals belong here */
+/* TODO: don't hard-code 'immort.are' vnums in fix_exits().
+ *       use a flag instead. */
+
+do_sub.c
+--------
+/* TODO: find a more appropriate naming scheme for these functions. */
+/* TODO: scour the act_*.c, wiz_*.c, and handler.c files for more functions
+ *       that can be dropped into here. */
+
+effects.c
+---------
+/* TODO: split XXX_effect() into XXX_effect_obj(), _room(), _char(). */
+/* TODO: ^^^ after that, consolidate code in the respective function groups */
+
+fight.c
+-------
+/* TODO: feature - re-implement tail-sweeping and 'crushing'? */
+/* TODO: feature - more body parts that can fly off? */
+/* TODO: move as much as possible into tables. */
+/* TODO: break a lot of these large functions up into sub-routines. */
+/* TODO: make sure NPCs check to see if their standing before doing
+ *       certain offensive actions (bash) */
+/* TODO: drunk players... get a 90% damage TAKEN bonus? is that right? */
+/* TODO: bug - the 'do_filter_can_attack()' check in 'should_assist_group()'
+ *       can produce a message. */
+
+find.c
+------
+/* TODO: this 'find_continue_count()' stuff is a big hack! eventually there
+ *       should be a fancier counting system that takes a big list of _all_
+ *       items, even of different types. Not so easy in C...
+ *       or perhaps we could have a 'find_context_type'? */
+/* TODO: funnel ALL find_XXX() functions to 'find_XXX_array', which then
+ *       handles all the 1., 2., etc. (this will be slow, so maybe not... ) */
+/* TODO: write 'find_XXX_array_many' that can handle 'all' and the
+ *       'all.' prefix */
+
+groups.c
+--------
+/* TODO: is_friend() and should_assist_group() probably have some overlap. */
+/* TODO: any other functions from other files that should be dumped here? */
+
+interp.c
+--------
+/* TODO: this file has been hardly reviewed. look over most of it! */
+/* TODO: move position messages to tables. */
+
+json_obj.c
+----------
+/* TODO: mob programs? */
+
+json_tbl.c
+----------
+/* TODO: ...the rest of our table structures! */
+
+lookup.c
+--------
+/* TODO: the fewer macros we can have here, the better... */
+/* TODO: use more suitable names for ARRAY and HASH lookup functions. */
+/* TODO: lookup distinctions between sequential arrays that correspond
+ *       to their appropriate #defines */
+
+magic.c
+-------
+(for all spell_XXX.c)
+/* TODO: move as many affects to an affect table as possible. */
+/* TODO: move as many magic attacks to a new table as possible. */
+/* TODO: these spells are more optimized than you'd think, but try to
+ *       deflate anything else... */
+/* TODO: no more 'target_name' */
+/* TODO: spell on/off messages to players, casters, and the room are a
+ *       giant mess. fix it up! */
+/* TODO: remove kludgy 'target_name' global. */
+
+mob_cmds.c
+----------
+/* TODO: simple visual clean-up of code without altering functionality. */
+/* TODO: not only have these not been reviewed, they can't even be teseted
+ *       because there are no stock areas with mob commands. find some! */
+/* TODO: once there are some mob commands to test, test them thoroughly. */
+/* TODO: mprog_type_to_name() could do a flag_string_real() lookup, as long
+         as it can be capitalized safely. */
+/* TODO: BAIL_IF_BUGF would be very useful! */
+
+mob_prog.c
+----------
+/* TODO: this code looks fantastic for the most part, but there's still
+ *       some redundancy that could be removed. */
+
+music.c
+-------
+/* TODO: determine what in the world the values are used for... */
+
+nanny.c
+-------
+/* TODO: although no longer a gargantuan switch() statement, the nanny
+ *       functions themselves could still be cleaned up. */
+/* TODO: the whole code flow of these nanny functions is a bit odd.
+ *       review it so it's less janky. */
+
+obj.c
+-----
+/* TODO: lots of code can be put into tables. */
+/* TODO: review the function names for consistency. */
+/* TODO: remove any redundant functions, like simple lookup functions. */
+
+olc.c
+-----
+/* TODO: find out exactly how and where these functions are for. */
+/* TODO: test these functions thoroughly to understand what they do! */
+/* TODO: do a first-pass clean-up. */
+/* TODO: remove or at least trim-down the gargantuan comment blocks... */
+
+olc_medit.c
+-----------
+/* TODO: re-write medit_ac() */
+/* TODO: review anything that uses _orig flags. there should probably be no
+ *       need for it whatsoever, and rather add racial flags in
+ *       create_mobile(). */
+/* TODO: rename medit_act() */
+/* TODO: better procedures for reading dice. */
+
+olc_oedit.c
+-----------
+/* TODO: maybe incorporate object-type-specific values into the
+ *       object mapping? */
+/* TODO: set_obj_values() macros. */
+/* TODO: replace all the "v.value" with new union values. */
+
+olc_redit.c
+-----------
+/* TODO: allow placing more than one of the same item into a chest. */
+
+olc_save.c
+----------
+/* TODO: basically untouched - change that! */
+/* TODO: formatting */
+/* TODO: should we write in new JSON format, too? */
+/* TODO: try saving the ENTIRE world and comparing it to existing files */
+
+portals.c
+---------
+/* TODO: use common code for finding opposite exits */
+/* TODO: in portal_shuffle_all: somehow make doors consistent. maybe swap them? */
+
+recycle.c
+---------
+/* TODO: move non-recycle functions to appropriate places. */
+/* TODO: init / dispose functions should probably be in their appropriate
+ *       files, since they're basically constructors / destructors. */
+
+rooms.c
+-------
+/* TODO: lots of code can be put into tables. */
+/* TODO: review the function names for consistency. */
+/* TODO: remove any redundant functions, like simple lookup functions. */
+
+save.c
+------
+/* TODO: code is largely untouched. review for formatting. */
+/* TODO: split giant functions up when useful. */
+
+skills.c
+--------
+/* TODO: make that giant series of gsn_* a little more digestable. */
+/* TODO: review function names. */
+
+spell_aff.c
+-----------
+/* TODO: spell_enchant_weapon() and spell_enchant_armor() are
+ *       almost identical. unify them! */
+/* TODO: spell_change_sex(): WHAT IS THIS?!
+ *       so we're *tweaking* the sex by a positive or negative amount
+ *       (see handlers.c)... what if we apply it multiple times????
+ *       what if we check it here, but another affect (possibly from
+ *       an item) is removed afterwards? */
+
+spell_info.c
+------------
+/* TODO: move lore messages in spell_identify_know_message() to table */
+/* TODO: merge a lot of spell_identity() with do_ostat(). */
+
+spell_misc.c
+------------
+/* TODO: spell_cancellation(): these messages should be associated with the spells themselves. */
+
+spell_move.c
+------------
+/* TODO: what exactly does the 'NOT trust' comment mean? */
+
+spell_off.c
+-----------
+/* TODO: should spell_holy_word() use quiet versions of bless/frenzy? */
+/* TODO: maybe change spell_heat_metal() to take material into account? */
+/* TODO: is ITEM_NONMETAL redundant? */
+/* TODO: should non-wielded flaming weapons be unaffected by
+ *       spell_heat_metal() as well? */
+
+string.c
+--------
+/* TODO: presumably this is an olc string editor. review it, format it,
+ *       make sure it works! */
+
+tables.c
+--------
+/* TODO: move convenience macros to tables.h */
+/* TODO: feature - more output functions for JSON objects. */
+/* TODO: review table lookups for proper 'not found' entries
+ *       (should be -1 for 'types', and 0 for 'flags') */
+/* TODO: we should hardly ever have -1 as an index in any of these tables */
+/* TODO: fix 'WEAR_NONE' = -1 issue. */
+
+update.c
+--------
+/* TODO: recovery during fighting (check for current target)
+ *       should always be the same as POS_FIGHTING. */
+/* TODO: a lot of these functions do a lot of intensive brute-force checks.
+ *       try to clean that up. */
+/* TODO: remove redundancy between hit/mana/move gain calculations. */
+/* TODO: split up as much of these functions as possible -
+ *       they do a lot of work! */
+/* TODO: move checks for learning fast healing / meditation to tick update.
+ *       (use the old code for the learn %) */
+/* TODO: create clock_update() from weather_update() */
+/* TODO: move weather changes to a table. */
+
+utils.c
+-------
+/* TODO: some non-util functions ended up here. make sure only general-use
+ * functions are here, preferably functions that don't care about the game. */
+/* TODO: review function naming schemes. */
+/* TODO: that's a lot of global variables below... do we need them all? */
+/* TODO: rid this page of foul hungarian notation! */
+/* TODO: trim_extension() is not thread safe. */
+
+wiz_im.c
+--------
+/* TODO: review most of these functions and test them thoroughly. */
+/* TODO: employ tables whenever possible */
+/* TODO: do_stat() and its derivatives are GIGANTIC. deflate somehow? */
+/* TODO: merge do_invis() and do_incognito() */
+/* TODO: possibly use a table for do_stat() */
+
+wiz_l1.c
+--------
+/* TODO: review most of these functions and test them thoroughly. */
+
+wiz_l2.c
+--------
+/* TODO: review most of these functions and test them thoroughly. */
+/* TODO: do_mset() should employ some sort of table for stats. */
+/* TODO: do_oset() should employ some sort of table for stats. */
+
+wiz_l3.c
+--------
+/* TODO: review most of these functions and test them thoroughly. */
+
+wiz_l4.c
+--------
+/* TODO: do_flag() is just ugly in general. use a table! */
+/* TODO: review most of these functions and test them thoroughly. */
+/* TODO: employ tables whenever possible */
+/* TODO: sort do_mfind() by vnum */
+/* TODO: sort do_ofind() by vnum */
+
+wiz_l5.c
+--------
+/* TODO: review most of these functions and test them thoroughly. */
+/* TODO: merge do_nochannels(), do_noemote(), do_noshout(), do_notell() */
+/* TODO: use a table for do_string() */
+
+wiz_l6.c
+--------
+/* TODO: review most of these functions and test them thoroughly. */
+
+wiz_l7.c
+--------
+/* TODO: review most of these functions and test them thoroughly. */
+/* TODO: employ tables whenever possible */
+/* TODO: use a sub-routine for do_force() */
+
+wiz_l8.c
+--------
+/* TODO: review most of these functions and test them thoroughly. */
+/* TODO: employ tables whenever possible */
+/* TODO: merge do_bamfin() and do_bamfout() */
+
+wiz_ml.c
+--------
+/* TODO: look at qmconfig to see how it handles game flags. */
+/* TODO: make another wizcommand to toggle vanilla flags. */
+/* TODO: review most of these functions and test them thoroughly. */
+/* TODO: BAIL_IF() clauses. */
+/* TODO: employ tables whenever possible */

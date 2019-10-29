@@ -55,14 +55,13 @@ void do_group_show (CHAR_DATA *ch) {
     }
 }
 
-void do_order_all (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_order_all) {
     char buf[MAX_STRING_LENGTH];
-    snprintf(buf, sizeof(buf), "all %s", argument);
-    do_order(ch, buf);
+    snprintf (buf, sizeof(buf), "all %s", argument);
+    do_order (ch, buf);
 }
 
-void do_order (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_order) {
     char arg[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
     CHAR_DATA *och;
@@ -103,8 +102,7 @@ void do_order (CHAR_DATA * ch, char *argument) {
             continue;
 
         found = TRUE;
-        sprintf (buf, "$n orders you to '%s'.", argument);
-        act (buf, ch, NULL, och, TO_VICT);
+        act ("$n orders you to '$T'.", ch, argument, och, TO_VICT);
         interpret (och, argument);
     }
 
@@ -116,7 +114,7 @@ void do_order (CHAR_DATA * ch, char *argument) {
         send_to_char ("You have no followers here.\n\r", ch);
 }
 
-void do_group (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_group) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
@@ -154,7 +152,7 @@ void do_group (CHAR_DATA * ch, char *argument) {
 }
 
 /* 'Split' originally by Gnort, God of Chaos. */
-void do_split (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_split) {
     char buf[MAX_STRING_LENGTH];
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     CHAR_DATA *gch;
@@ -232,7 +230,7 @@ void do_split (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_gtell (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_gtell) {
     CHAR_DATA *gch;
 
     BAIL_IF (argument[0] == '\0',
@@ -246,7 +244,7 @@ void do_gtell (CHAR_DATA * ch, char *argument) {
                      ch, argument, gch, TO_VICT, POS_SLEEPING);
 }
 
-void do_follow (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_follow) {
     /* RT changed to allow unlimited following and follow the NOFOLLOW rules */
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;

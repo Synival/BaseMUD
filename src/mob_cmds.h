@@ -38,13 +38,12 @@
 
 #include "merc.h"
 
-struct mob_cmd_type {
-    char *const name;
-    DO_FUN *do_fun;
-};
-
 /* the command table itself */
 extern const struct mob_cmd_type mob_cmd_table[];
+
+/* Function prototypes. */
+void mob_interpret (CHAR_DATA * ch, char *argument);
+char *mprog_type_to_name (flag_t type);
 
 /* Command functions.
  * Defined in mob_cmds.c */
@@ -80,9 +79,5 @@ DECLARE_DO_FUN (do_mpcall);
 DECLARE_DO_FUN (do_mpflee);
 DECLARE_DO_FUN (do_mpotransfer);
 DECLARE_DO_FUN (do_mpremove);
-
-/* Function prototypes. */
-void mob_interpret (CHAR_DATA * ch, char *argument);
-char *mprog_type_to_name (int type);
 
 #endif

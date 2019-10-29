@@ -31,6 +31,8 @@
 #include "utils.h"
 #include "lookup.h"
 #include "fight.h"
+#include "chars.h"
+#include "objs.h"
 
 #include "spell_cure.h"
 

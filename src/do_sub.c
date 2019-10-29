@@ -39,12 +39,9 @@
  *    --- Synival */
 
 #include "comm.h"
+#include "chars.h"
 
 #include "do_sub.h"
-
-/* TODO: find a more appropriate naming scheme for these functions. */
-/* TODO: scour the act_*.c, wiz_*.c, and handler.c files for more functions
- *       that can be dropped into here. */
 
 void do_autolist_flag (char *name, CHAR_DATA * ch, flag_t flags, flag_t flag) {
     int padding = 15, i;

@@ -54,5 +54,6 @@ void clear_page (DESCRIPTOR_DATA *d);
 void append_to_page (DESCRIPTOR_DATA *d, const char *txt);
 int show_page (DESCRIPTOR_DATA *d);
 void printf_to_desc (DESCRIPTOR_DATA * d, char *fmt, ...);
+void desc_substitute_alias (DESCRIPTOR_DATA * d, char *argument);
 
 #endif

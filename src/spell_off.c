@@ -39,12 +39,6 @@
 
 #include "spell_off.h"
 
-/* TODO: should spell_holy_word() use quiet versions of bless/frenzy? */
-/* TODO: maybe change spell_heat_metal() to take material into account? */
-/* TODO: is ITEM_NONMETAL redundant? */
-/* TODO: should non-wielded flaming weapons be unaffected by
- *       spell_heat_metal() as well? */
-
 DEFINE_SPELL_FUN (spell_acid_blast) {
     CHAR_DATA *victim = (CHAR_DATA *) vo;
     int dam;
@@ -201,7 +195,7 @@ DEFINE_SPELL_FUN (spell_chill_touch) {
         act2 ("You feel a sudden chill and shiver.",
               "$n turns blue and shivers.", victim, NULL, NULL,
             0, POS_RESTING);
-        affect_init (&af, TO_AFFECTS, sn, level, 6, APPLY_STR, -1, 0);
+        affect_init (&af, AFF_TO_AFFECTS, sn, level, 6, APPLY_STR, -1, 0);
         affect_join (victim, &af);
     }
     else

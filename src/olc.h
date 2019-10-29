@@ -91,7 +91,7 @@ extern const struct olc_cmd_type hedit_table[];
 
 /* General Functions */
 bool run_olc_editor (DESCRIPTOR_DATA * d);
-char *olc_ed_name (CHAR_DATA * ch);
+const char *olc_ed_name (CHAR_DATA * ch);
 char *olc_ed_vnum (CHAR_DATA * ch);
 void show_olc_cmds (CHAR_DATA * ch, const struct olc_cmd_type *olc_table);
 bool show_commands (CHAR_DATA * ch, char *argument);

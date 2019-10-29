@@ -38,9 +38,7 @@
 
 #include "wiz_l3.h"
 
-/* TODO: review most of these functions and test them thoroughly. */
-
-void do_disconnect (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_disconnect) {
     char arg[MAX_INPUT_LENGTH];
     DESCRIPTOR_DATA *d;
     CHAR_DATA *victim;
@@ -79,7 +77,7 @@ void do_disconnect (CHAR_DATA * ch, char *argument) {
     send_to_char ("Descriptor not found!\n\r", ch);
 }
 
-void do_pardon (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_pardon) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
@@ -114,10 +112,10 @@ void do_pardon (CHAR_DATA * ch, char *argument) {
     send_to_char ("Syntax: pardon <character> <killer|thief>.\n\r", ch);
 }
 
-void do_sla (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_sla)
     { send_to_char ("If you want to SLAY, spell it out.\n\r", ch); }
 
-void do_slay (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_slay) {
     CHAR_DATA *victim;
     char arg[MAX_INPUT_LENGTH];
 
