@@ -2,8 +2,9 @@
 
 ## Version 0.0.4 (TBD)
 
-** Project Organization: **
+**Project Organization:**
 
+* This project now has a rough roadmap for version 0.1.0 up to 1.0.0 in `BENCHMARKS.md`.
 * All TODO messages have been moved to `src/TODO.txt` for staging into
     Github issues.
 
