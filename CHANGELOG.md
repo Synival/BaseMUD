@@ -1,6 +1,6 @@
 # Changelog for BaseMUD
 
-## Version 0.0.4 (TBD)
+## Version 0.0.4
 
 **Project Organization:**
 
