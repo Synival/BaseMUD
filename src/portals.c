@@ -31,8 +31,6 @@
 
 #include "portals.h"
 
-/* TODO: use common code for finding opposite exits */
-
 PORTAL_EXIT_TYPE *portal_exit_new_from_room (ROOM_INDEX_DATA *room, int dir) {
     PORTAL_EXIT_TYPE *pex;
     char buf[256];
@@ -218,7 +216,5 @@ void portal_shuffle_all (void) {
         p1->to  ->room->exit[p1->to  ->dir]->area_vnum = p1->from->room->area->vnum;
         p1->to  ->room->exit[p1->to  ->dir]->room_anum = p1->from->room->anum;
         log_f ("Portals shuffled: [%s <-> %s]", p1->from->name, p1->to->name);
-
-        /* TODO: somehow make doors consistent. maybe swap them? */
     }
 }

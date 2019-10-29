@@ -33,6 +33,7 @@
 #include "affects.h"
 #include "objs.h"
 #include "interp.h"
+#include "chars.h"
 
 #include "spell_misc.h"
 
@@ -50,7 +51,6 @@ DEFINE_SPELL_FUN (spell_cancellation) {
     /* unlike dispel magic, the victim gets NO save */
 
     /* begin running through the spells */
-    /* TODO: these messages should be associated with the spells themselves. */
     found += check_dispel_quick (level, victim, "armor",           NULL);
     found += check_dispel_quick (level, victim, "bless",           NULL);
     found += check_dispel_quick (level, victim, "blindness",       "$n is no longer blinded.");
@@ -88,11 +88,11 @@ DEFINE_SPELL_FUN (spell_cancellation) {
 DEFINE_SPELL_FUN (spell_control_weather) {
     if (!str_cmp (target_name, "better")) {
         weather_info.change += dice (level / 3, 4);
-        send_to_char ("Ok.\n\r", ch);
+        send_to_char ("You sense the clouds clearing up...\n\r", ch);
     }
     else if (!str_cmp (target_name, "worse")) {
         weather_info.change -= dice (level / 3, 4);
-        send_to_char ("Ok.\n\r", ch);
+        send_to_char ("You sense a storm gathering...\n\r", ch);
     }
     else
         send_to_char ("Do you want it to get better or worse?\n\r", ch);
@@ -157,45 +157,62 @@ DEFINE_SPELL_FUN (spell_dispel_magic) {
 DEFINE_SPELL_FUN (spell_recharge) {
     OBJ_DATA *obj = (OBJ_DATA *) vo;
     int chance, percent;
+    flag_t wlevel, *recharge_ptr, *charges_ptr;
 
-    BAIL_IF (obj->item_type != ITEM_WAND && obj->item_type != ITEM_STAFF,
-        "That item does not carry charges.\n\r", ch);
-    BAIL_IF (obj->value[0] >= 3 * level / 2,
+    switch (obj->item_type) {
+        case ITEM_WAND:
+            wlevel       = obj->v.wand.level;
+            recharge_ptr = &(obj->v.wand.recharge);
+            charges_ptr  = &(obj->v.wand.charges);
+            break;
+
+        case ITEM_STAFF:
+            wlevel       = obj->v.staff.level;
+            recharge_ptr = &(obj->v.staff.recharge);
+            charges_ptr  = &(obj->v.staff.charges);
+            break;
+
+        default:
+            send_to_char ("That item does not carry charges.\n\r", ch);
+            return;
+    }
+
+    BAIL_IF (wlevel >= 3 * level / 2,
         "Your skills are not great enough for that.\n\r", ch);
-    BAIL_IF (obj->value[1] == 0,
+    BAIL_IF (*recharge_ptr == 0,
         "That item has already been recharged once.\n\r", ch);
 
     chance = 40 + 2 * level;
-    chance -= obj->value[0]; /* harder to do high-level spells */
-    chance -= (obj->value[1] - obj->value[2]) *
-              (obj->value[1] - obj->value[2]);
+    chance -= wlevel; /* harder to do high-level spells */
+    chance -= (*recharge_ptr - *charges_ptr) *
+              (*recharge_ptr - *charges_ptr);
     chance = UMAX (level / 2, chance);
 
     percent = number_percent ();
     if (percent < chance / 2) {
         act ("$p glows softly.", ch, obj, NULL, TO_ALL);
-        obj->value[2] = UMAX (obj->value[1], obj->value[2]);
-        obj->value[1] = 0;
+        *charges_ptr  = UMAX (*recharge_ptr, *charges_ptr);
+        *recharge_ptr = 0;
         return;
     }
     else if (percent <= chance) {
         int chargeback, chargemax;
         act ("$p glows softly for a moment.", ch, obj, NULL, TO_ALL);
 
-        chargemax = obj->value[1] - obj->value[2];
+        chargemax = *recharge_ptr - *charges_ptr;
         if (chargemax > 0)
             chargeback = UMAX (1, chargemax * percent / 100);
         else
             chargeback = 0;
 
-        obj->value[2] += chargeback;
-        obj->value[1] = 0;
+        *charges_ptr += chargeback;
+        *recharge_ptr = 0;
         return;
     }
     else if (percent <= UMIN (95, 3 * chance / 2)) {
         send_to_char ("Nothing seems to happen.\n\r", ch);
-        if (obj->value[1] > 1)
-            obj->value[1]--;
+        if (*recharge_ptr > 0)
+            (*recharge_ptr)--;
         return;
     }
     else { /* whoops! */

@@ -92,7 +92,7 @@ typedef struct dex_app_type     DEX_APP_TYPE;
 typedef struct con_app_type     CON_APP_TYPE;
 typedef struct social_type      SOCIAL_TYPE;
 typedef struct board_data       BOARD_DATA;
-typedef struct wear_type        WEAR_TYPE;
+typedef struct wear_loc_type    WEAR_LOC_TYPE;
 typedef struct recycle_type     RECYCLE_TYPE;
 typedef struct obj_recycle_data OBJ_RECYCLE_DATA;
 typedef struct material_type    MATERIAL_TYPE;
@@ -106,6 +106,11 @@ typedef struct day_type         DAY_TYPE;
 typedef struct month_type       MONTH_TYPE;
 typedef struct sky_type         SKY_TYPE;
 typedef struct sun_type         SUN_TYPE;
+typedef struct mob_cmd_type     MOB_CMD_TYPE;
+
+/* Union types. */
+typedef union obj_value_type   OBJ_VALUE_TYPE;
+typedef union reset_value_type RESET_VALUE_TYPE;
 
 /* Function types. */
 typedef void DO_FUN     (CHAR_DATA *ch, char *argument);
@@ -652,6 +657,214 @@ struct extra_descr_data {
     OBJ_RECYCLE_DATA rec_data;
 };
 
+/* Object values for all item types. */
+struct obj_values_weapon {
+    flag_t weapon_type;
+    flag_t dice_num;
+    flag_t dice_size;
+    flag_t attack_type;
+    flag_t flags;
+};
+
+struct obj_values_container {
+    flag_t capacity;
+    flag_t flags;
+    flag_t key;
+    flag_t max_weight;
+    flag_t weight_mult;
+};
+
+struct obj_values_drink_con {
+    flag_t capacity;
+    flag_t filled;
+    flag_t liquid;
+    flag_t poisoned;
+    flag_t _value5;
+};
+
+struct obj_values_fountain {
+    flag_t capacity;
+    flag_t filled;
+    flag_t liquid;
+    flag_t poisoned;
+    flag_t _value5;
+};
+
+struct obj_values_wand {
+    flag_t level;
+    flag_t recharge;
+    flag_t charges;
+    flag_t skill;
+    flag_t _value5;
+};
+
+struct obj_values_staff {
+    flag_t level;
+    flag_t recharge;
+    flag_t charges;
+    flag_t skill;
+    flag_t _value5;
+};
+
+struct obj_values_food {
+    flag_t hunger;
+    flag_t fullness;
+    flag_t _value3;
+    flag_t poisoned;
+    flag_t _value5;
+};
+
+struct obj_values_money {
+    flag_t silver;
+    flag_t gold;
+    flag_t _value_3;
+    flag_t _value_4;
+    flag_t _value_5;
+};
+
+struct obj_values_armor {
+    flag_t vs_pierce;
+    flag_t vs_bash;
+    flag_t vs_slash;
+    flag_t vs_magic;
+    flag_t _value_5;
+};
+
+struct obj_values_potion {
+    flag_t level;
+    flag_t skill[POTION_SKILL_MAX];
+};
+
+struct obj_values_pill {
+    flag_t level;
+    flag_t skill[PILL_SKILL_MAX];
+};
+
+struct obj_values_scroll {
+    flag_t level;
+    flag_t skill[SCROLL_SKILL_MAX];
+};
+
+struct obj_values_map {
+    flag_t persist;
+    flag_t _value_2;
+    flag_t _value_3;
+    flag_t _value_4;
+    flag_t _value_5;
+};
+
+struct obj_values_furniture {
+    flag_t max_people;
+    flag_t max_weight;
+    flag_t flags;
+    flag_t heal_rate;
+    flag_t mana_rate;
+};
+
+struct obj_values_light {
+    flag_t _value_1;
+    flag_t _value_2;
+    flag_t duration;
+    flag_t _value_4;
+    flag_t _value_5;
+};
+
+struct obj_values_portal {
+    flag_t charges;
+    flag_t exit_flags;
+    flag_t gate_flags;
+    flag_t to_vnum;
+    flag_t key;
+};
+
+union obj_value_type {
+    flag_t value[OBJ_VALUE_MAX];
+    struct obj_values_weapon    weapon;
+    struct obj_values_container container;
+    struct obj_values_drink_con drink_con;
+    struct obj_values_fountain  fountain;
+    struct obj_values_wand      wand;
+    struct obj_values_staff     staff;
+    struct obj_values_food      food;
+    struct obj_values_money     money;
+    struct obj_values_armor     armor;
+    struct obj_values_potion    potion;
+    struct obj_values_pill      pill;
+    struct obj_values_scroll    scroll;
+    struct obj_values_map       map;
+    struct obj_values_furniture furniture;
+    struct obj_values_light     light;
+    struct obj_values_portal    portal;
+};
+
+/* Reset values for all reset types. */
+struct reset_values_mob {
+    sh_int _value1;
+    sh_int mob_vnum;
+    sh_int global_limit;
+    sh_int room_vnum;
+    sh_int room_limit;
+};
+
+struct reset_values_obj {
+    sh_int room_limit;
+    sh_int obj_vnum;
+    sh_int global_limit;
+    sh_int room_vnum;
+    sh_int _value5;
+};
+
+struct reset_values_give {
+    sh_int _value1;
+    sh_int obj_vnum;
+    sh_int global_limit;
+    sh_int _value4;
+    sh_int _value5;
+};
+
+struct reset_values_equip {
+    sh_int _value1;
+    sh_int obj_vnum;
+    sh_int global_limit;
+    sh_int wear_loc;
+    sh_int _value5;
+};
+
+struct reset_values_put {
+    sh_int _value1;
+    sh_int obj_vnum;
+    sh_int global_limit;
+    sh_int into_vnum;
+    sh_int put_count;
+};
+
+struct reset_values_door {
+    sh_int _value1;
+    sh_int room_vnum;
+    sh_int dir;
+    sh_int locks;
+    sh_int _value5;
+};
+
+struct reset_values_randomize {
+    sh_int _value1;
+    sh_int room_vnum;
+    sh_int dir_count;
+    sh_int _value4;
+    sh_int _value5;
+};
+
+union reset_value_type {
+    sh_int value[RESET_VALUE_MAX];
+    struct reset_values_mob       mob;
+    struct reset_values_obj       obj;
+    struct reset_values_give      give;
+    struct reset_values_equip     equip;
+    struct reset_values_put       put;
+    struct reset_values_randomize randomize;
+    struct reset_values_door      door;
+};
+
 /* Prototype for an object. */
 struct obj_index_data {
     OBJ_INDEX_DATA *next;
@@ -675,8 +888,8 @@ struct obj_index_data {
     sh_int count;
     sh_int weight;
     int cost;
-    int value[OBJ_VALUE_MAX];
     OBJ_RECYCLE_DATA rec_data;
+    OBJ_VALUE_TYPE v;
 };
 
 /* Object stat <-> value[] mapping. */
@@ -718,8 +931,8 @@ struct obj_data {
     sh_int condition;
     sh_int material;
     sh_int timer;
-    int value[5];
     OBJ_RECYCLE_DATA rec_data;
+    OBJ_VALUE_TYPE v;
 };
 
 /* Exit data. */
@@ -752,7 +965,7 @@ struct reset_data {
     RESET_DATA *next;
     AREA_DATA *area;
     char command;
-    sh_int value[5];
+    RESET_VALUE_TYPE v;
     OBJ_RECYCLE_DATA rec_data;
 };
 
@@ -786,7 +999,7 @@ struct room_index_data {
     OBJ_DATA *contents;
     EXTRA_DESCR_DATA *extra_descr;
     AREA_DATA *area;
-    EXIT_DATA *exit[6];
+    EXIT_DATA *exit[DIR_MAX];
     RESET_DATA *reset_first; /* OLC */
     RESET_DATA *reset_last;  /* OLC */
     char *name;
@@ -894,11 +1107,11 @@ struct board_data {
 };
 
 /* Things we can wear, wield, hold, etc. */
-struct wear_type {
+struct wear_loc_type {
     int type;
     const char *name;
     const char *look_msg;
-    flag_t wear_loc;
+    flag_t wear_flag;
     const char *msg_wear_self, *msg_wear_room;
 };
 
@@ -971,6 +1184,11 @@ struct sun_type {
     int hour_start;
     int hour_end;
     const char *message;
+};
+
+struct mob_cmd_type {
+    char *const name;
+    DO_FUN *do_fun;
 };
 
 #endif

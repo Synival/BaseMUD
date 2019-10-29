@@ -45,18 +45,6 @@
 
 #include "update.h"
 
-/* TODO: recovery during fighting (check for current target)
- *       should always be the same as POS_FIGHTING. */
-/* TODO: a lot of these functions do a lot of intensive brute-force checks.
- *       try to clean that up. */
-/* TODO: remove redundancy between hit/mana/move gain calculations. */
-/* TODO: split up as much of these functions as possible -
- *       they do a lot of work! */
-/* TODO: move checks for learning fast healing / meditation to tick update.
- *       (use the old code for the learn %) */
-/* TODO: create clock_update() from weather_update() */
-/* TODO: move weather changes to a table. */
-
 /* used for saving */
 int save_number = 0;
 
@@ -105,7 +93,7 @@ int hit_gain (CHAR_DATA * ch, bool apply_learning) {
 
     gain = gain * ch->in_room->heal_rate / 100;
     if (ch->on != NULL && ch->on->item_type == ITEM_FURNITURE)
-        gain = gain * ch->on->value[3] / 100;
+        gain = gain * ch->on->v.furniture.heal_rate / 100;
 
     if (IS_AFFECTED (ch, AFF_HASTE) || IS_AFFECTED (ch, AFF_SLOW))
         gain /= 2;
@@ -165,7 +153,7 @@ int mana_gain (CHAR_DATA * ch, bool apply_learning) {
 
     gain = gain * ch->in_room->mana_rate / 100;
     if (ch->on != NULL && ch->on->item_type == ITEM_FURNITURE)
-        gain = gain * ch->on->value[4] / 100;
+        gain = gain * ch->on->v.furniture.mana_rate / 100;
 
     if (IS_AFFECTED (ch, AFF_HASTE) || IS_AFFECTED (ch, AFF_SLOW))
         gain /= 2;
@@ -197,7 +185,7 @@ int move_gain (CHAR_DATA * ch, bool apply_learning) {
 
     gain = gain * ch->in_room->heal_rate / 100;
     if (ch->on != NULL && ch->on->item_type == ITEM_FURNITURE)
-        gain = gain * ch->on->value[3] / 100;
+        gain = gain * ch->on->v.furniture.heal_rate / 100;
 
     if (IS_AFFECTED (ch, AFF_HASTE) || IS_AFFECTED (ch, AFF_SLOW))
         gain /= 2;
@@ -239,7 +227,6 @@ void gain_condition (CHAR_DATA * ch, int iCond, int value) {
 /* Repopulate areas periodically. */
 void area_update (void) {
     AREA_DATA *pArea;
-    char buf[MAX_STRING_LENGTH];
 
     for (pArea = area_first; pArea != NULL; pArea = pArea->next) {
         if (++pArea->age < 3)
@@ -253,8 +240,8 @@ void area_update (void) {
             ROOM_INDEX_DATA *pRoomIndex;
 
             reset_area (pArea);
-            sprintf (buf, "%s has just been reset.", pArea->title);
-            wiznet (buf, NULL, NULL, WIZ_RESETS, 0, 0);
+            wiznetf (NULL, NULL, WIZ_RESETS, 0, 0,
+                "%s has just been reset.", pArea->title);
 
             pArea->age = number_range (0, 3);
             pRoomIndex = get_room_index (ROOM_VNUM_SCHOOL);
@@ -327,7 +314,7 @@ void mobile_update (void) {
             max = 1;
             obj_best = 0;
             for (obj = ch->in_room->contents; obj; obj = obj->next_content) {
-                if (CAN_WEAR (obj, ITEM_TAKE) && char_can_loot (ch, obj)
+                if (CAN_WEAR_FLAG (obj, ITEM_TAKE) && char_can_loot (ch, obj)
                     && obj->cost > max && obj->cost > 0)
                 {
                     obj_best = obj;
@@ -607,16 +594,16 @@ void char_update (void) {
         if (!IS_NPC (ch) && ch->level < LEVEL_IMMORTAL) {
             OBJ_DATA *obj;
 
-            if ((obj = char_get_eq_by_wear (ch, WEAR_LIGHT)) != NULL
-                && obj->item_type == ITEM_LIGHT && obj->value[2] > 0)
+            if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LIGHT)) != NULL
+                && obj->item_type == ITEM_LIGHT && obj->v.light.duration > 0)
             {
-                if (--obj->value[2] == 0 && ch->in_room != NULL) {
+                if (--obj->v.light.duration == 0 && ch->in_room != NULL) {
                     --ch->in_room->light;
                     act ("$p flickers and goes out.", ch, obj, NULL, TO_CHAR);
                     act ("$p goes out.", ch, obj, NULL, TO_NOTCHAR);
                     obj_extract (obj);
                 }
-                else if (obj->value[2] <= 5 && ch->in_room != NULL)
+                else if (obj->v.light.duration <= 5 && ch->in_room != NULL)
                     act ("$p flickers.", ch, obj, NULL, TO_CHAR);
             }
 
@@ -693,7 +680,7 @@ void char_update (void) {
             if (af->level == 1)
                 continue;
 
-            affect_init (&plague, TO_AFFECTS, gsn_plague, af->level - 1, number_range (1, 2 * plague.level), APPLY_STR, -5, AFF_PLAGUE);
+            affect_init (&plague, AFF_TO_AFFECTS, gsn_plague, af->level - 1, number_range (1, 2 * plague.level), APPLY_STR, -5, AFF_PLAGUE);
 
             for (vch = ch->in_room->people; vch != NULL;
                  vch = vch->next_in_room)
@@ -737,12 +724,10 @@ void char_update (void) {
     for (ch = char_list; ch != NULL; ch = ch_next) {
         /* Edwin's fix for possible pet-induced problem
          * JR -- 10/15/00 */
-        if (!IS_VALID(ch)) {
-            bug("update_char: Trying to work with an invalidated character.\n",0);
-            break;
-        }
-        ch_next = ch->next;
+        BAIL_IF_BUG (!IS_VALID (ch),
+            "update_char: Trying to work with an invalidated character.\n", 0);
 
+        ch_next = ch->next;
         if (ch->desc != NULL && ch->desc->descriptor % 30 == save_number)
             save_char_obj (ch);
         if (ch == ch_quit)
@@ -820,7 +805,7 @@ void obj_update (void) {
                 message = "$p fades out of existence.";
                 break;
             case ITEM_CONTAINER:
-                if (CAN_WEAR (obj, ITEM_WEAR_FLOAT))
+                if (CAN_WEAR_FLAG (obj, ITEM_WEAR_FLOAT))
                     if (obj->contains)
                         message =
                             "$p flickers and vanishes, spilling its contents on the floor.";
@@ -843,7 +828,7 @@ void obj_update (void) {
         }
         else if (obj->in_room != NULL && (rch = obj->in_room->people) != NULL) {
             if (!(obj->in_obj && obj->in_obj->pIndexData->vnum == OBJ_VNUM_PIT
-                  && !CAN_WEAR (obj->in_obj, ITEM_TAKE)))
+                  && !CAN_WEAR_FLAG (obj->in_obj, ITEM_TAKE)))
             {
                 act (message, rch, obj, NULL, TO_CHAR);
                 act (message, rch, obj, NULL, TO_NOTCHAR);
@@ -986,7 +971,6 @@ void violence_update (void) {
                 mp_hprct_trigger (ch, victim);
         }
     }
-    return;
 }
 
 void pulse_update(void) {
@@ -1058,7 +1042,5 @@ void update_handler (void) {
 
     aggr_update ();
     pulse_update ();
-
     tail_chain ();
-    return;
 }

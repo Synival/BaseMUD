@@ -10,14 +10,16 @@
 
 ### 0.1.0
 
-[ ] Check code for all BAIL_IF() and BAIL_IF_ACT()s
+[X] World can be saved to JSON files
+[ ] JSON code for database saving has been massively cleaned up...
+[X] Check code for all BAIL_IF() and BAIL_IF_ACT()s
+[ ] OLC is translated from Spanish to English
 [ ] All "Low-hanging fruit" changes have been made (i.e, cleaning up obvious things
     that don't require big overhauls)
 [ ] All functions are named and placed according to their objects
-[ ] World can be saved and loaded in JSON format
+[ ] World can be loaded from JSON files
 [ ] Code can be easily deployed
 [ ] Dockerfile is back
-[ ] JSON code for database saving has been massively cleaned up...
 [ ] JSON-format world is confirmed to save->load->save->load without changes
 [ ] All other "TO-DOs" have been transferred to Trello board
 [ ] OLC behaves as expected.
@@ -27,13 +29,13 @@
 [ ] Documentation has been organized in a way that makes sense for _this_ project.
 [ ] Code style documentation
 [ ] Contribution guide
-[ ] OLC is translated from Spanish to English
 
 ### 0.2.0
 
 [ ] Tasks in Trello organized into month-long sprints somehow
 [ ] All "TO-DOs" from 0.1.0 are accounted for
 [ ] JSON tools are extracted as standalone apps
+[ ] Special tables are exported to JSON objects
 [ ] Simple JSON world editor
 [ ] All bit flags replaced with more extendible system
 [ ] World state object that contains most global variables

@@ -536,7 +536,7 @@ extern const FLAG_TYPE wear_flags[];
 extern const FLAG_TYPE container_flags[];
 extern const FLAG_TYPE weapon_flags[];
 extern const FLAG_TYPE res_flags[];
-extern const FLAG_TYPE portal_flags[];
+extern const FLAG_TYPE gate_flags[];
 extern const FLAG_TYPE furniture_flags[];
 
 #endif

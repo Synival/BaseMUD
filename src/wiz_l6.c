@@ -35,9 +35,7 @@
 
 #include "wiz_l6.h"
 
-/* TODO: review most of these functions and test them thoroughly. */
-
-void do_at (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_at) {
     char arg[MAX_INPUT_LENGTH];
     ROOM_INDEX_DATA *location;
     ROOM_INDEX_DATA *original;
@@ -71,7 +69,7 @@ void do_at (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_recho (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_recho) {
     DESCRIPTOR_DATA *d;
 
     BAIL_IF (argument[0] == '\0',
@@ -86,9 +84,7 @@ void do_recho (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_return (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
-
+DEFINE_DO_FUN (do_return) {
     if (ch->desc == NULL)
         return;
     BAIL_IF (ch->desc->original == NULL,
@@ -102,17 +98,16 @@ void do_return (CHAR_DATA * ch, char *argument) {
         ch->prompt = NULL;
     }
 
-    sprintf (buf, "$N returns from %s.", ch->short_descr);
-    wiznet (buf, ch->desc->original, 0, WIZ_SWITCHES, WIZ_SECURE,
-            char_get_trust (ch));
+    wiznetf (ch->desc->original, 0, WIZ_SWITCHES, WIZ_SECURE,
+        char_get_trust (ch), "$N returns from %s.", ch->short_descr);
     ch->desc->character = ch->desc->original;
     ch->desc->original = NULL;
     ch->desc->character->desc = ch->desc;
     ch->desc = NULL;
 }
 
-void do_switch (CHAR_DATA * ch, char *argument) {
-    char arg[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_switch) {
+    char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
     one_argument (argument, arg);
@@ -138,8 +133,8 @@ void do_switch (CHAR_DATA * ch, char *argument) {
     BAIL_IF (victim->desc != NULL,
         "Character in use.\n\r", ch);
 
-    sprintf (buf, "$N switches into %s", victim->short_descr);
-    wiznet (buf, ch, NULL, WIZ_SWITCHES, WIZ_SECURE, char_get_trust (ch));
+    wiznetf (ch, NULL, WIZ_SWITCHES, WIZ_SECURE, char_get_trust (ch),
+        "$N switches into %s", victim->short_descr);
 
     ch->desc->character = victim;
     ch->desc->original = ch;

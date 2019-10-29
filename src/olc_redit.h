@@ -20,8 +20,8 @@
 #define EDIT_ROOM(Ch, Room) (Room = Ch->in_room)
 
 /* Sub-routines and filters. */
-void add_reset (ROOM_INDEX_DATA * room, RESET_DATA * pReset, int index);
-bool change_exit (CHAR_DATA * ch, char *argument, int door);
+void redit_add_reset (ROOM_INDEX_DATA * room, RESET_DATA * pReset, int index);
+bool redit_change_exit (CHAR_DATA * ch, char *argument, int door);
 
 /* Commands (rooms). */
 REDIT (redit_rlist);

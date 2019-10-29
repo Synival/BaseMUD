@@ -259,9 +259,11 @@ char *act_code (char code, CHAR_DATA *ch, CHAR_DATA *vch, CHAR_DATA *to,
     char *out_buf, size_t size);
 void act_new (const char *format, CHAR_DATA * ch, const void *arg1,
               const void *arg2, flag_t flags, int min_pos);
-void printf_to_char (CHAR_DATA * ch, char *fmt, ...);
-void wiznet (char *string, CHAR_DATA * ch, OBJ_DATA * obj,
+void printf_to_char (CHAR_DATA * ch, const char *fmt, ...);
+void wiznet (const char *string, CHAR_DATA * ch, OBJ_DATA * obj,
              flag_t flag, flag_t flag_skip, int min_level);
+void wiznetf (CHAR_DATA * ch, OBJ_DATA * obj, flag_t flag, flag_t flag_skip,
+    int min_level, const char *fmt, ...);
 bool position_change_send_message (CHAR_DATA * ch, int from, int to,
     OBJ_DATA *obj);
 bool position_change_send_message_to_standing (CHAR_DATA * ch, int from,

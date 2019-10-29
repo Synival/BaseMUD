@@ -64,8 +64,6 @@
 
 #include "comm.h"
 
-/* TODO: move functions to where they belong */
-
 /* Socket and TCP/IP stuff. */
 #if defined(macintosh) || defined(MSDOS)
     const char echo_off_str[] = { '\0' };
@@ -129,6 +127,11 @@ void bust_a_prompt (CHAR_DATA *ch) {
 
     if (ch == NULL || ch->desc == NULL)
         return;
+
+#ifndef VANILLA
+    if (ch->desc->editor != ED_NONE)
+        printf_to_char (ch, "[%s %s] ", olc_ed_name (ch), olc_ed_vnum (ch));
+#endif
 
     point = buf;
     str = ch->prompt;
@@ -344,10 +347,8 @@ char *act_code (char code, CHAR_DATA *ch, CHAR_DATA *vch, CHAR_DATA *to,
 
     #define FILTER_BAD_CODE(true_cond, message) \
         do { \
-            if (!(true_cond)) { \
-                bug ("act: " message, 0); \
-                return " <@@@> "; \
-            } \
+            RETURN_IF_BUG (!(true_cond), \
+                "act: " message, 0, " <@@@> "); \
         } while (0)
 
     switch (code) {
@@ -425,10 +426,8 @@ void act_new (const char *format, CHAR_DATA * ch, const void *arg1,
 
     to = ch->in_room->people;
     if (flags == TO_VICT) {
-        if (vch == NULL) {
-            bug ("act: null vch with TO_VICT.", 0);
-            return;
-        }
+        BAIL_IF_BUG (vch == NULL,
+            "act: null vch with TO_VICT.", 0);
         if (vch->in_room == NULL)
             return;
         to = vch->in_room->people;
@@ -485,17 +484,17 @@ void act_new (const char *format, CHAR_DATA * ch, const void *arg1,
     }
 }
 
-void printf_to_char (CHAR_DATA * ch, char *fmt, ...) {
+void printf_to_char (CHAR_DATA * ch, const char *fmt, ...) {
     char buf[MAX_STRING_LENGTH];
     va_list args;
     va_start (args, fmt);
-    vsprintf (buf, fmt, args);
+    vsnprintf (buf, sizeof(buf), fmt, args);
     va_end (args);
 
     send_to_char (buf, ch);
 }
 
-void wiznet (char *string, CHAR_DATA * ch, OBJ_DATA * obj,
+void wiznet (const char *string, CHAR_DATA * ch, OBJ_DATA * obj,
              flag_t flag, flag_t flag_skip, int min_level)
 {
     DESCRIPTOR_DATA *d;
@@ -515,6 +514,17 @@ void wiznet (char *string, CHAR_DATA * ch, OBJ_DATA * obj,
             send_to_char ("{x", d->character);
         }
     }
+}
+
+void wiznetf (CHAR_DATA * ch, OBJ_DATA * obj, flag_t flag, flag_t flag_skip,
+    int min_level, const char *fmt, ...)
+{
+    char buf[2 * MSL];
+    va_list args;
+    va_start (args, fmt);
+    vsnprintf (buf, sizeof(buf), fmt, args);
+    va_end (args);
+    wiznet (buf, ch, obj, flag, flag_skip, min_level);
 }
 
 bool position_change_send_message (CHAR_DATA * ch, int from, int to,

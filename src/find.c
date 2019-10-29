@@ -35,14 +35,6 @@
 
 #include "find.h"
 
-/* TODO: this 'find_continue_count()' stuff is a big hack! eventually there
- *       should be a fancier counting system that takes a big list of _all_
- *       items, even of different types. Not so easy in C... */
-/* TODO: funnel ALL find_XXX() functions to 'find_XXX_array', which then
- *       handles all the 1., 2., etc. (this will be slow, so maybe not... ) */
-/* TODO: write 'find_XXX_array_many' that can handle 'all' and the
- *       'all.' prefix */
-
 int find_last_count = 0;
 int find_next_count = 0;
 

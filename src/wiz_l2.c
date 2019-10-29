@@ -41,11 +41,7 @@
 
 #include "wiz_l2.h"
 
-/* TODO: review most of these functions and test them thoroughly. */
-/* TODO: do_mset() should employ some sort of table for stats. */
-/* TODO: do_oset() should employ some sort of table for stats. */
-
-void do_allow (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_allow) {
     char arg[MAX_INPUT_LENGTH];
     BAN_DATA *pban, *prev, *pban_next;
 
@@ -72,12 +68,12 @@ void do_allow (CHAR_DATA * ch, char *argument) {
     send_to_char ("Site is not banned.\n\r", ch);
 }
 
-void do_ban (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_ban) {
     ban_site (ch, argument, FALSE);
 }
 
 /* RT set replaces sset, mset, oset, and rset */
-void do_set (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_set) {
     char arg[MAX_INPUT_LENGTH];
 
     argument = one_argument (argument, arg);
@@ -105,7 +101,7 @@ void do_set (CHAR_DATA * ch, char *argument) {
     do_function (ch, &do_set, "");
 }
 
-void do_sset (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_sset) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
@@ -153,7 +149,7 @@ void do_sset (CHAR_DATA * ch, char *argument) {
         victim->pcdata->learned[sn] = value;
 }
 
-void do_mset (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mset) {
     char arg1[MIL];
     char arg2[MIL];
     char arg3[MIL];
@@ -425,7 +421,7 @@ void do_mset (CHAR_DATA * ch, char *argument) {
     do_function (ch, &do_mset, "");
 }
 
-void do_oset (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_oset) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
@@ -453,15 +449,15 @@ void do_oset (CHAR_DATA * ch, char *argument) {
 
     /* Set something. */
     BAIL_IF_EXPR (!str_cmp (arg2, "value0") || !str_cmp (arg2, "v0"),
-        obj->value[0] = UMIN (50, value));
+        obj->v.value[0] = UMIN (50, value));
     BAIL_IF_EXPR (!str_cmp (arg2, "value1") || !str_cmp (arg2, "v1"),
-        obj->value[1] = value);
+        obj->v.value[1] = value);
     BAIL_IF_EXPR (!str_cmp (arg2, "value2") || !str_cmp (arg2, "v2"),
-        obj->value[2] = value);
+        obj->v.value[2] = value);
     BAIL_IF_EXPR (!str_cmp (arg2, "value3") || !str_cmp (arg2, "v3"),
-        obj->value[3] = value);
+        obj->v.value[3] = value);
     BAIL_IF_EXPR (!str_cmp (arg2, "value4") || !str_cmp (arg2, "v4"),
-        obj->value[4] = value);
+        obj->v.value[4] = value);
     BAIL_IF_EXPR (!str_prefix (arg2, "extra"),
         obj->extra_flags = value);
     BAIL_IF_EXPR (!str_prefix (arg2, "wear"),
@@ -479,7 +475,7 @@ void do_oset (CHAR_DATA * ch, char *argument) {
     do_function (ch, &do_oset, "");
 }
 
-void do_rset (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_rset) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
@@ -519,7 +515,7 @@ void do_rset (CHAR_DATA * ch, char *argument) {
     do_function (ch, &do_rset, "");
 }
 
-void do_wizlock (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_wizlock) {
     extern bool wizlock;
     wizlock = !wizlock;
 

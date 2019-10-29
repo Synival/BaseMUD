@@ -32,8 +32,6 @@
 
 #include "json_obj.h"
 
-/* TODO: mob programs? */
-
 const char *json_not_none (const char *value) {
     return (value == NULL || !strcmp (value, "none"))
         ? NULL : value;
@@ -157,6 +155,8 @@ JSON_T *json_new_obj_shop (const char *name, const SHOP_DATA *shop) {
 JSON_PROP_FUNC (obj_mobile, const MOB_INDEX_DATA *);
 JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_DATA *mob) {
     JSON_T *new, *sub;
+    int i;
+
     if (mob == NULL)
         return json_new_null (name);
     new = json_new_object (name, JSON_OBJ_MOBILE);
@@ -182,12 +182,9 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_DATA *mob) {
     json_prop_dice    (new, "damage_dice", mob->damage);
     json_prop_string  (new, "dam_type",    mob->dam_type_str);
 
-    /* TODO: iterate over a table of armor class types. -- Synival */
     sub = json_prop_object (new, "ac", JSON_OBJ_ANY);
-    json_prop_integer (sub, "pierce", mob->ac[AC_PIERCE]);
-    json_prop_integer (sub, "bash",   mob->ac[AC_BASH]);
-    json_prop_integer (sub, "slash",  mob->ac[AC_SLASH]);
-    json_prop_integer (sub, "exotic", mob->ac[AC_EXOTIC]);
+    for (i = 0; i < AC_MAX; i++)
+        json_prop_integer (sub, ac_types[i].name, mob->ac[ac_types[i].bit]);
 
     json_prop_string  (new, "offense", JBITS(
         flag_string (off_flags, mob->off_flags_orig)));
@@ -207,7 +204,6 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_DATA *mob) {
     json_prop_string  (new, "size",        JSTR (mob->size_str));
     json_prop_obj_shop(new, "shop",        mob->pShop);
 
-    /* TODO: mob programs */
     if (mob->mprogs)
         printf ("*** Ignoring '%s' (#%d) mprogs ***\n", mob->short_descr, mob->vnum);
 
@@ -234,7 +230,7 @@ JSON_T *json_new_obj_object (const char *name, const OBJ_INDEX_DATA *obj) {
     json_prop_string  (new, "material",    JSTR (obj->material_str));
     json_prop_string  (new, "item_type",   JBITS(item_get_name (obj->item_type)));
     json_prop_string  (new, "extra_flags", JBITS(extra_bit_name (obj->extra_flags)));
-    json_prop_string  (new, "wear_flags",  JBITS(wear_bit_name (obj->wear_flags)));
+    json_prop_string  (new, "wear_flags",  JBITS(wear_flag_name (obj->wear_flags)));
 
     sub = json_prop_object (new, "values", JSON_OBJ_ANY);
     map = obj_map_get (obj->item_type);
@@ -253,7 +249,7 @@ JSON_T *json_new_obj_object (const char *name, const OBJ_INDEX_DATA *obj) {
                 continue;
 
             vjson = NULL;
-            vobj = obj->value[i];
+            vobj = obj->v.value[i];
 
             switch (value->type) {
                 case MAP_INTEGER:
@@ -372,6 +368,7 @@ JSON_T *json_new_obj_anum (const char *name, AREA_DATA *area_from, int vnum) {
 JSON_PROP_FUNC (obj_reset, const RESET_DATA *);
 JSON_T *json_new_obj_reset (const char *name, const RESET_DATA *reset) {
     JSON_T *new, *sub;
+    const RESET_VALUE_TYPE *v;
     char *command, letter_buf[2];
 
     if (reset == NULL)
@@ -395,51 +392,50 @@ JSON_T *json_new_obj_reset (const char *name, const RESET_DATA *reset) {
     json_prop_string (new, "command", command);
 
     sub = json_prop_object (new, "values", JSON_OBJ_ANY);
+    v = &(reset->v);
     switch (reset->command) {
         case 'M':
-            json_prop_obj_anum (sub, "mob",  reset->area, reset->value[1]);
-            json_prop_integer  (sub, "global_limit", reset->value[2]);
-            json_prop_integer  (sub, "local_limit",  reset->value[4]);
+            json_prop_obj_anum (sub, "mob", reset->area, v->mob.mob_vnum);
+            json_prop_integer  (sub, "global_limit", v->mob.global_limit);
+            json_prop_integer  (sub, "room_limit",   v->mob.room_limit);
             break;
 
         case 'O':
-            json_prop_obj_anum (sub, "obj",  reset->area, reset->value[1]);
-            json_prop_integer  (sub, "global_limit", reset->value[2]);
-            json_prop_integer  (sub, "local_limit",  reset->value[0]);
+            json_prop_obj_anum (sub, "obj", reset->area, v->obj.obj_vnum);
+            json_prop_integer  (sub, "global_limit", v->obj.global_limit);
+            json_prop_integer  (sub, "room_limit",   v->obj.room_limit);
             break;
 
         case 'G':
-            json_prop_obj_anum (sub, "obj",  reset->area, reset->value[1]);
-            json_prop_integer  (sub, "global_limit", reset->value[2]);
-            json_prop_integer  (sub, "local_limit",  reset->value[0]);
+            json_prop_obj_anum (sub, "obj", reset->area, v->give.obj_vnum);
+            json_prop_integer  (sub, "global_limit", v->give.global_limit);
             break;
 
         case 'E':
-            json_prop_obj_anum (sub, "obj", reset->area, reset->value[1]);
-            json_prop_string   (sub, "slot", flag_string (wear_loc_types,
-                reset->value[3]));
-            json_prop_integer  (sub, "global_limit", reset->value[2]);
-            json_prop_integer  (sub, "local_limit",  reset->value[0]);
+            json_prop_obj_anum (sub, "obj", reset->area, v->equip.obj_vnum);
+            json_prop_string   (sub, "wear_loc", flag_string (wear_loc_types,
+                v->equip.wear_loc));
+            json_prop_integer  (sub, "global_limit", v->equip.global_limit);
             break;
 
         case 'P':
-            json_prop_obj_anum (sub, "obj",  reset->area, reset->value[1]);
-            json_prop_obj_anum (sub, "into", reset->area, reset->value[3]);
-            json_prop_integer  (sub, "global_limit", reset->value[2]);
-            json_prop_integer  (sub, "local_limit",  reset->value[4]);
+            json_prop_obj_anum (sub, "obj",  reset->area, v->put.obj_vnum);
+            json_prop_obj_anum (sub, "into", reset->area, v->put.into_vnum);
+            json_prop_integer  (sub, "global_limit", v->put.global_limit);
+            json_prop_integer  (sub, "put_count",    v->put.put_count);
             break;
 
         case 'R':
-            json_prop_integer (sub, "dir_count", reset->value[2]);
+            json_prop_integer (sub, "dir_count", v->randomize.dir_count);
             break;
 
         default:
             bugf ("json_new_obj_reset: Unhandled command '%c'", reset->command);
-            json_prop_integer (sub, "arg0", reset->value[0]);
-            json_prop_integer (sub, "arg1", reset->value[1]);
-            json_prop_integer (sub, "arg2", reset->value[2]);
-            json_prop_integer (sub, "arg3", reset->value[3]);
-            json_prop_integer (sub, "arg4", reset->value[4]);
+            json_prop_integer (sub, "value0", reset->v.value[0]);
+            json_prop_integer (sub, "value1", reset->v.value[1]);
+            json_prop_integer (sub, "value2", reset->v.value[2]);
+            json_prop_integer (sub, "value3", reset->v.value[3]);
+            json_prop_integer (sub, "value4", reset->v.value[4]);
     }
 
     return new;

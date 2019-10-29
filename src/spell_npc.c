@@ -31,6 +31,7 @@
 #include "effects.h"
 #include "fight.h"
 #include "comm.h"
+#include "chars.h"
 
 #include "spell_npc.h"
 

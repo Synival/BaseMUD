@@ -56,12 +56,6 @@
 
 #include "nanny.h"
 
-/* TODO: although no longer a gargantuan switch() statement, the nanny
- *       functions themselves could still be cleaned up. */
-/* TODO: the whole code flow of these nanny functions is a bit odd.
- *       review it so it's less janky. */
-/* TODO: move the code below to nanny.h, if necessary... */
-
 /* Parse a name for acceptability. */
 bool new_player_name_is_valid (char *name) {
     int clan;
@@ -162,8 +156,8 @@ bool new_player_name_is_valid (char *name) {
             }
         }
         if (count) {
-            sprintf (log_buf,"Double newbie alert (%s)", name);
-            wiznet (log_buf, NULL, NULL, WIZ_LOGINS, 0, 0);
+            wiznetf (NULL, NULL, WIZ_LOGINS, 0, 0,
+                "newbie alert (%s)", name);
             return FALSE;
         }
     }
@@ -214,7 +208,6 @@ void nanny_ansi (DESCRIPTOR_DATA * d, char *argument) {
 void nanny_get_player_name (DESCRIPTOR_DATA * d, char *argument) {
     bool fOld;
     CHAR_DATA *ch;
-    char buf[MAX_STRING_LENGTH];
 
     if (argument[0] == '\0') {
         close_socket (d);
@@ -231,8 +224,7 @@ void nanny_get_player_name (DESCRIPTOR_DATA * d, char *argument) {
     ch = d->character;
 
     if (IS_SET (ch->plr, PLR_DENY)) {
-        sprintf (log_buf, "Denying access to %s@%s.", argument, d->host);
-        log_string (log_buf);
+        log_f ("Denying access to %s@%s.", argument, d->host);
         send_to_desc ("You are denied access.\n\r", d);
         close_socket (d);
         return;
@@ -276,8 +268,7 @@ void nanny_get_player_name (DESCRIPTOR_DATA * d, char *argument) {
             return;
         }
 
-        sprintf (buf, "Did I get that right, %s (Y/N)? ", argument);
-        send_to_desc (buf, d);
+        printf_to_desc (d, "Did I get that right, %s (Y/N)? ", argument);
         d->connected = CON_CONFIRM_NEW_NAME;
         return;
     }
@@ -370,13 +361,11 @@ void nanny_break_connect_confirm (DESCRIPTOR_DATA * d, char *argument) {
 
 void nanny_confirm_new_name (DESCRIPTOR_DATA * d, char *argument) {
     CHAR_DATA * ch = d->character;
-    char buf[MAX_STRING_LENGTH];
 
     switch (UPPER(argument[0])) {
         case 'Y':
-            sprintf (buf, "New character.\n\rGive me a password for %s: %s",
-               ch->name, echo_off_str);
-            send_to_desc (buf, d);
+            printf_to_desc (d, "New character.\n\r"
+                "Give me a password for %s: %s", ch->name, echo_off_str);
             d->connected = CON_GET_NEW_PASSWORD;
             if (ch->desc->ansi)
                 SET_BIT (ch->plr, PLR_COLOUR);
@@ -684,28 +673,25 @@ void nanny_gen_groups_done (DESCRIPTOR_DATA * d, char *argument) {
     char buf[MAX_STRING_LENGTH];
     int i;
 
-    if (ch->pcdata->points == pc_race_table[ch->race].points) {
-        send_to_char ("You didn't pick anything.\n\r", ch);
-        return;
-    }
+    BAIL_IF (ch->pcdata->points == pc_race_table[ch->race].points,
+        "You didn't pick anything.\n\r", ch);
 
     if (ch->pcdata->points < 40 + pc_race_table[ch->race].points) {
-        sprintf (buf,
+        printf_to_char (ch,
              "You must take at least %d points of skills "
              "and groups.\n\r", 40 + pc_race_table[ch->race].points);
-        send_to_char (buf, ch);
         return;
     }
 
-    sprintf (buf, "Creation points: %d\n\r", ch->pcdata->points);
-    send_to_char (buf, ch);
-    sprintf (buf, "Experience per level: %d\n\r",
-             exp_per_level (ch, ch->gen_data->points_chosen));
+    printf_to_char (ch, "Creation points: %d\n\r", ch->pcdata->points);
+    printf_to_char (ch, "Experience per level: %d\n\r",
+        exp_per_level (ch, ch->gen_data->points_chosen));
+
     if (ch->pcdata->points < 40)
         ch->train = (40 - ch->pcdata->points + 1) / 2;
     gen_data_free (ch->gen_data);
     ch->gen_data = NULL;
-    send_to_char (buf, ch);
+
     write_to_buffer (d, "\n\r", 2);
     write_to_buffer (d, "Please pick a weapon from the following choices:\n\r", 0);
     buf[0] = '\0';
@@ -769,8 +755,7 @@ void nanny_read_motd (DESCRIPTOR_DATA * d, char *argument) {
         char_set_title (ch, buf);
 
         do_function (ch, &do_outfit, "");
-        obj_to_char (create_object (get_obj_index (OBJ_VNUM_MAP), 0),
-                     ch);
+        obj_to_char (obj_create (get_obj_index (OBJ_VNUM_MAP), 0), ch);
 
         char_to_room (ch, get_room_index (ROOM_VNUM_SCHOOL));
         send_to_char ("\n\r", ch);

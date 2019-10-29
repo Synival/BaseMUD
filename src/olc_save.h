@@ -34,7 +34,7 @@ void save_door_resets (FILE * fp, AREA_DATA * pArea);
 void save_resets (FILE * fp, AREA_DATA * pArea);
 void save_shops (FILE * fp, AREA_DATA * pArea);
 void save_helps (FILE * fp, HELP_AREA * ha);
-void save_other_helps (CHAR_DATA * ch);
+int save_other_helps (CHAR_DATA * ch);
 void save_area (AREA_DATA * pArea);
 char *fix_string (const char *str);
 

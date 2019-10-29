@@ -23,9 +23,6 @@
 
 #include "string.h"
 
-/* TODO: presumably this is an olc string editor. review it, format it,
- *       make sure it works! */
-
 /*****************************************************************************
  Name:       string_edit
  Purpose:    Clears string and puts player into editing mode.
@@ -128,8 +125,7 @@ void string_add (CHAR_DATA * ch, char *argument) {
 
             *ch->desc->pString =
                 string_replace (*ch->desc->pString, arg2, arg3);
-            sprintf (buf, "'%s' replaced with '%s'.\n\r", arg2, arg3);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "'%s' replaced with '%s'.\n\r", arg2, arg3);
             return;
         }
         if (!str_cmp (arg1, ".f")) {
@@ -190,8 +186,8 @@ void string_add (CHAR_DATA * ch, char *argument) {
                     for (mob = mob_index_hash[hash]; mob; mob = mob->next)
                         for (mpl = mob->mprogs; mpl; mpl = mpl->next)
                             if (mpl->vnum == mpc->vnum) {
-                                sprintf (buf, "Editting mob %d.\n\r", mob->vnum);
-                                send_to_char (buf, ch);
+                                printf_to_char (ch, "Editting mob %d.\n\r",
+                                    mob->vnum);
                                 mpl->code = mpc->code;
                             }
         }

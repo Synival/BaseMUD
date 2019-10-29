@@ -86,7 +86,7 @@ void do_nread_number (CHAR_DATA *ch, char *argument, time_t *last_note,
 }
 
 /* Start writing a note */
-void do_nwrite (CHAR_DATA *ch, char *argument) {
+DEFINE_DO_FUN (do_nwrite) {
     char *strtime;
     char buf[200];
 
@@ -166,7 +166,7 @@ void do_nwrite (CHAR_DATA *ch, char *argument) {
 }
 
 /* Read next note in current group. If no more notes, go to next board */
-void do_nread (CHAR_DATA *ch, char *argument) {
+DEFINE_DO_FUN (do_nread) {
     time_t *last_note = &ch->pcdata->last_note[board_number(ch->pcdata->board)];
 
     /* if "again", do nothing - we'll show the same note. */
@@ -182,7 +182,7 @@ void do_nread (CHAR_DATA *ch, char *argument) {
 }
 
 /* Remove a note */
-void do_nremove (CHAR_DATA *ch, char *argument) {
+DEFINE_DO_FUN (do_nremove) {
     NOTE_DATA *p;
     BAIL_IF (!is_number(argument),
         "Remove which note?\n\r", ch);
@@ -202,11 +202,10 @@ void do_nremove (CHAR_DATA *ch, char *argument) {
 
 /* List all notes or if argument given, list N of the last notes */
 /* Shows REAL note numbers! */
-void do_nlist (CHAR_DATA *ch, char *argument) {
+DEFINE_DO_FUN (do_nlist) {
     int count = 0, show = 0, num = 0, has_shown = 0;
     time_t last_note;
     NOTE_DATA *p;
-    char buf[MAX_STRING_LENGTH];
 
     if (is_number(argument)) { /* first, count the number of notes */
         show = atoi(argument);
@@ -224,17 +223,16 @@ void do_nlist (CHAR_DATA *ch, char *argument) {
         if (is_note_to(ch, p)) {
             has_shown++; /* note that we want to see X VISIBLE note, not just last X */
             if (!show || ((count-show) < has_shown)) {
-                sprintf (buf, "{W%3d{x>{B%c{x{Y%-13s{x{y%s{x\n\r",
+                printf_to_char (ch, "{W%3d{x>{B%c{x{Y%-13s{x{y%s{x\n\r",
                     num, last_note < p->date_stamp ? '*' : ' ',
                     p->sender, p->subject);
-                send_to_char (buf, ch);
             }
         }
     }
 }
 
 /* catch up with some notes */
-void do_ncatchup (CHAR_DATA *ch, char *argument) {
+DEFINE_DO_FUN (do_ncatchup) {
     NOTE_DATA *p;
 
     /* Find last note */
@@ -250,9 +248,8 @@ void do_ncatchup (CHAR_DATA *ch, char *argument) {
 /* Show all accessible boards with their numbers of unread messages OR
    change board. New board name can be given as a number or as a name (e.g.
    board personal or board 4 */
-void do_board (CHAR_DATA *ch, char *argument) {
+DEFINE_DO_FUN (do_board) {
     int i, count, number;
-    char buf[200];
 
     if (IS_NPC(ch))
         return;
@@ -299,12 +296,11 @@ void do_board (CHAR_DATA *ch, char *argument) {
 
         if (count == number) { /* found the board.. change to it */
             ch->pcdata->board = &board_table[i];
-            sprintf (buf, "Current board changed to {W%s{x. %s.\n\r",
+            printf_to_char (ch, "Current board changed to {W%s{x. %s.\n\r",
                 board_table[i].name,
                 (char_get_trust(ch) < board_table[i].write_level)
                 ? "You can only read here"
                 : "You can both read and write here");
-            send_to_char (buf, ch);
         }
         else
             send_to_char ("No such board.\n\r", ch);
@@ -323,16 +319,15 @@ void do_board (CHAR_DATA *ch, char *argument) {
         "No such board.\n\r", ch);
 
     ch->pcdata->board = &board_table[i];
-    sprintf (buf, "Current board changed to {W%s{x. %s.\n\r",
+    printf_to_char (ch, "Current board changed to {W%s{x. %s.\n\r",
         board_table[i].name,
         (char_get_trust(ch) < board_table[i].write_level)
             ? "You can only read here"
             : "You can both read and write here");
-    send_to_char (buf, ch);
 }
 
 /* Dispatch function for backwards compatibility */
-void do_note (CHAR_DATA *ch, char *argument) {
+DEFINE_DO_FUN (do_note) {
     char arg[MAX_INPUT_LENGTH];
 
     if (IS_NPC(ch))

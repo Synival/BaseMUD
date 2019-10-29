@@ -34,14 +34,9 @@
 #include "comm.h"
 #include "db.h"
 #include "interp.h"
+#include "chars.h"
 
 #include "utils.h"
-
-/* TODO: some non-util functions ended up here. make sure general-use
- * functions are here, preferably functions that don't care about the game. */
-/* TODO: review function naming schemes. */
-/* TODO: that's a lot of global variables below... do we need them all? */
-/* TODO: rid this page of foul hungarian notation! */
 
 /* Globals. */
 int nAllocString;
@@ -66,10 +61,8 @@ extern FILE *fpArea;
 extern char strArea[MAX_INPUT_LENGTH];
 
 void init_string_space (void) {
-    if ((string_space = calloc (1, MAX_STRING)) == NULL) {
-        bug ("init_string_space: can't alloc %d string space.", MAX_STRING);
-        exit (1);
-    }
+    EXIT_IF_BUG ((string_space = calloc (1, MAX_STRING)) == NULL,
+        "init_string_space: can't alloc %d string space.", MAX_STRING);
     top_string = string_space;
 }
 
@@ -230,14 +223,10 @@ void smash_dollar( char *str ) {
  * Return TRUE if different
  *   (compatibility with historical functions). */
 bool str_cmp (const char *astr, const char *bstr) {
-    if (astr == NULL) {
-        bug ("str_cmp: null astr.", 0);
-        return TRUE;
-    }
-    else if (bstr == NULL) {
-        bug ("str_cmp: null bstr.", 0);
-        return TRUE;
-    }
+    RETURN_IF_BUG (astr == NULL,
+        "str_cmp: null astr.", 0, TRUE);
+    RETURN_IF_BUG (bstr == NULL,
+        "str_cmp: null bstr.", 0, TRUE);
 
     for (; *astr || *bstr; astr++, bstr++)
         if (LOWER (*astr) != LOWER (*bstr))
@@ -249,14 +238,10 @@ bool str_cmp (const char *astr, const char *bstr) {
  * Return TRUE if astr not a prefix of bstr
  *   (compatibility with historical functions). */
 bool str_prefix (const char *astr, const char *bstr) {
-    if (astr == NULL) {
-        bug ("str_prefix: null astr.", 0);
-        return TRUE;
-    }
-    else if (bstr == NULL) {
-        bug ("str_prefix: null bstr.", 0);
-        return TRUE;
-    }
+    RETURN_IF_BUG (astr == NULL,
+        "str_prefix: null astr.", 0, TRUE);
+    RETURN_IF_BUG (bstr == NULL,
+        "str_prefix: null bstr.", 0, TRUE);
 
     for (; *astr; astr++, bstr++)
         if (LOWER (*astr) != LOWER (*bstr))
@@ -339,14 +324,12 @@ void bug (const char *str, int param) {
             fseek (fpArea, iChar, 0);
         }
 
-        sprintf (buf, "[*****] FILE: %s LINE: %d", strArea, iLine);
-        log_string (buf);
+        log_f ("[*****] FILE: %s LINE: %d", strArea, iLine);
 
 /* RT removed because we don't want bugs shutting the mud
-        if ( ( fp = fopen( "shutdown.txt", "a" ) ) != NULL )
-        {
-            fprintf( fp, "[*****] %s\n", buf );
-            fclose( fp );
+        if ((fp = fopen("shutdown.txt", "a")) != NULL) {
+            fprintf (fp, "[*****] %s\n", buf);
+            fclose (fp);
         }
 */
     }
@@ -356,21 +339,20 @@ void bug (const char *str, int param) {
     log_string (buf);
 
 /* RT removed due to bug-file spamming
-    fclose( fpReserve );
-    if ( ( fp = fopen( BUG_FILE, "a" ) ) != NULL )
-    {
-    fprintf( fp, "%s\n", buf );
-    fclose( fp );
+    fclose (fpReserve);
+    if ((fp = fopen(BUG_FILE, "a")) != NULL) {
+        fprintf(fp, "%s\n", buf);
+        fclose(fp);
     }
-    fpReserve = fopen( NULL_FILE, "r" );
+    fpReserve = fopen (NULL_FILE, "r");
 */
 }
 
-void bugf (char *fmt, ...) {
+void bugf (const char *fmt, ...) {
     char buf[2 * MSL];
     va_list args;
     va_start (args, fmt);
-    vsprintf (buf, fmt, args);
+    vsnprintf (buf, sizeof(buf), fmt, args);
     va_end (args);
     bug (buf, 0);
 }
@@ -383,11 +365,11 @@ void log_string (const char *str) {
     fprintf (stderr, "%s :: %s\n", strtime, str);
 }
 
-void log_f (char *fmt, ...) {
+void log_f (const char *fmt, ...) {
     char buf[2 * MSL];
     va_list args;
     va_start (args, fmt);
-    vsprintf (buf, fmt, args);
+    vsnprintf (buf, sizeof(buf), fmt, args);
     va_end (args);
     log_string (buf);
 }
@@ -420,10 +402,8 @@ void *alloc_mem (int sMem) {
         if (sMem <= rgSizeList[iList])
             break;
 
-    if (iList == MAX_MEM_LIST) {
-        bug ("alloc_mem: size %d too large.", sMem);
-        exit (1);
-    }
+    EXIT_IF_BUG (iList == MAX_MEM_LIST,
+        "alloc_mem: size %d too large.", sMem);
 
     if (rgFreeList[iList] == NULL)
         pMem = alloc_perm (rgSizeList[iList]);
@@ -461,10 +441,8 @@ void mem_free (void *pMem, int sMem) {
         if (sMem <= rgSizeList[iList])
             break;
 
-    if (iList == MAX_MEM_LIST) {
-        bug ("mem_free: size %d too large.", sMem);
-        exit (1);
-    }
+    EXIT_IF_BUG (iList == MAX_MEM_LIST,
+        "mem_free: size %d too large.", sMem);
 
     *((void **) pMem) = rgFreeList[iList];
     rgFreeList[iList] = pMem;
@@ -480,10 +458,8 @@ void *alloc_perm (int sMem) {
 
     while (sMem % sizeof (long) != 0)
         sMem++;
-    if (sMem > MAX_PERM_BLOCK) {
-        bug ("alloc_perm: %d too large.", sMem);
-        exit (1);
-    }
+    EXIT_IF_BUG (sMem > MAX_PERM_BLOCK,
+        "alloc_perm: %d too large.", sMem);
 
     if (pMemPerm == NULL || iMemPerm + sMem > MAX_PERM_BLOCK) {
         iMemPerm = 0;
@@ -546,7 +522,6 @@ const char *if_null_str (const char *str, const char *ifnull) {
     return str ? str : ifnull;
 }
 
-/* TODO: not thread-safe :( */
 char *trim_extension (char *input) {
     static char fbuf[256], *period;
     snprintf (fbuf, sizeof (fbuf), "%s", input);

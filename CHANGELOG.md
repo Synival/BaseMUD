@@ -2,9 +2,59 @@
 
 ## Version 0.0.4 (TBD)
 
+** Project Organization: **
+
+* All TODO messages have been moved to `src/TODO.txt` for staging into
+    Github issues.
+
+**Bug Fixes:**
+
+* Reset `'E'` and `'P'` "local limit" flag is unused or was misinterpreted. It's
+    no longer saved in JSON files.
+
 **Internal Changes:**
 
+* Object values now use a union with all property types. Nearly all references
+    to `obj->value[x]` have been replaced by `obj->v.<type>.<property>`. 
+    Example: `obj->value[0]` for weapons is now `obj->v.weapon.weapon_type`.
+* Reset values now use a union with all property types. Nearly all references
+    to `reset->value[x]` has been replaced by `reset->v.<type>.<property>`. 
+    Example: `reset->value[3]` for the `'E'` (equip) command is now `reset->v.equip.slot`.
+* Replaced most character and object macros with small functions. Macros have
+    been left in place as shorthand functions.
 * Moved all top-level booting functions to `boot.c`.
+* Replaced "sprintf(), send_to_char()" with "printf_to_char()" wherever possible
+* Replaced "sprintf(), log_string()" with "log_f()" wherever possible
+* Replaced "sprintf(), bug()" with "bugf()" wherever possible
+* Replaced "sprintf(), wiznet()" with "wiznetf()" wherever possible
+* Added RETURN_IF_BUG() family of macros to reduce code for common bug early
+    exit patterns
+* The "TO_XXX" affect flags have been renamed to "AFF_TO_XXX" to avoid conflict
+    with act() flags (TO_CHAR, TO_NOTCHAR, etc)
+* Clarified wear _flags_ (head, finger, wrist) vs. wear _locations_ (head, lfinger,
+    rfinger, lwrist, rwrist). Most code now uses `wear_flag` and `wear_loc` to
+    distinguish the two. A few random bugs (likely by me) from this confusion
+    have been patched.
+* Some error messages in OLC were in Spanish - all messages are now in English.
+* All `do_*()` functions are now defined using `DEFINE_DO_FUNC(do_*)`. This way,
+    if the arguments to a top-level command are changed, every function doesn't
+    need to be modified.
+* Moved mob/obj instantiation and clone functions to `chars.c` and `objs.c`. They
+    are now named `char_create_mobile()`, `char_clone_mobile()`, `obj_create()`
+    and `obj_clone()`.
+* Replaced <attr>_app[] lookups with `<attr>_app_get()`, `char_get_curr_<attr>()`
+    functions.  Added lookup functions for all stat bonuses.
+
+**New Features:**
+
+* Clarified some error messages caused by `fix_exits()` and `reset_room_reset()`.
+* Added warnings for `'E'` resets with unequippable wear locations for the item
+  or wear locations that are already taken on the mob. Many of these errors are
+  acceptable with the stock world, but many indicate real bugs.
+
+**New Features (if `VANILLA` is disabled):**
+
+* Added OLC editor and vnum to the front of the prompt by default.
 
 ## Version 0.0.3 (2019-10-03)
 

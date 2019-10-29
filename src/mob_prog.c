@@ -51,73 +51,6 @@
 
 #include "mob_prog.h"
 
-/* TODO: this code looks fantastic for the most part, but there's still
- * some redundancy that could be removed. */
-/* TODO: move the #define's below to mob_prob.h */
-
-/* These defines correspond to the entries in fn_keyword[] table.
- * If you add a new if_check, you must also add a #define here. */
-#define CHK_RAND        (0)
-#define CHK_MOBHERE     (1)
-#define CHK_OBJHERE     (2)
-#define CHK_MOBEXISTS   (3)
-#define CHK_OBJEXISTS   (4)
-#define CHK_PEOPLE      (5)
-#define CHK_PLAYERS     (6)
-#define CHK_MOBS        (7)
-#define CHK_CLONES      (8)
-#define CHK_ORDER       (9)
-#define CHK_HOUR        (10)
-#define CHK_ISPC        (11)
-#define CHK_ISNPC       (12)
-#define CHK_ISGOOD      (13)
-#define CHK_ISEVIL      (14)
-#define CHK_ISNEUTRAL   (15)
-#define CHK_ISIMMORT    (16)
-#define CHK_ISCHARM     (17)
-#define CHK_ISFOLLOW    (18)
-#define CHK_ISACTIVE    (19)
-#define CHK_ISDELAY     (20)
-#define CHK_ISVISIBLE   (21)
-#define CHK_HASTARGET   (22)
-#define CHK_ISTARGET    (23)
-#define CHK_EXISTS      (24)
-#define CHK_AFFECTED    (25)
-#define CHK_ACT         (26)
-#define CHK_OFF         (27)
-#define CHK_IMM         (28)
-#define CHK_CARRIES     (29)
-#define CHK_WEARS       (30)
-#define CHK_HAS         (31)
-#define CHK_USES        (32)
-#define CHK_NAME        (33)
-#define CHK_POS         (34)
-#define CHK_CLAN        (35)
-#define CHK_RACE        (36)
-#define CHK_CLASS       (37)
-#define CHK_OBJTYPE     (38)
-#define CHK_VNUM        (39)
-#define CHK_HPCNT       (40)
-#define CHK_ROOM        (41)
-#define CHK_SEX         (42)
-#define CHK_LEVEL       (43)
-#define CHK_ALIGN       (44)
-#define CHK_MONEY       (45)
-#define CHK_OBJVAL0     (46)
-#define CHK_OBJVAL1     (47)
-#define CHK_OBJVAL2     (48)
-#define CHK_OBJVAL3     (49)
-#define CHK_OBJVAL4     (50)
-#define CHK_GRPSIZE     (51)
-
-/* These defines correspond to the entries in fn_evals[] table. */
-#define EVAL_EQ  0
-#define EVAL_GE  1
-#define EVAL_LE  2
-#define EVAL_GT  3
-#define EVAL_LT  4
-#define EVAL_NE  5
-
 /* if-check keywords: */
 const char *fn_keyword[] = {
     "rand",      /* if rand 30           - if random number < 30 */
@@ -394,12 +327,8 @@ int cmd_eval (sh_int vnum, char *line, int check,
 
     /* Case 2 continued: evaluate expression */
     if (rval >= 0) {
-        if ((oper = keyword_lookup (fn_evals, buf)) < 0) {
-            sprintf (buf, "Cmd_eval: prog %d syntax error(2) '%s'",
-                     vnum, original);
-            bug (buf, 0);
-            return FALSE;
-        }
+        RETURN_IF_BUGF ((oper = keyword_lookup (fn_evals, buf)) < 0, FALSE,
+            "Cmd_eval: prog %d syntax error(2) '%s'", vnum, original);
         one_argument (line, buf);
         lval = rval;
         rval = atoi (buf);
@@ -407,15 +336,10 @@ int cmd_eval (sh_int vnum, char *line, int check,
     }
 
     /* Case 3,4,5: Grab actors from $* codes */
-    if (buf[0] != '$' || buf[1] == '\0') {
-        sprintf (buf, "Cmd_eval: prog %d syntax error(3) '%s'",
-                 vnum, original);
-        bug (buf, 0);
-        return FALSE;
-    }
-    else
-        code = buf[1];
+    RETURN_IF_BUGF (buf[0] != '$' || buf[1] == '\0', FALSE,
+        "Cmd_eval: prog %d syntax error(3) '%s'", vnum, original);
 
+    code = buf[1];
     switch (code) {
         case 'i':
             lval_char = mob;
@@ -439,9 +363,7 @@ int cmd_eval (sh_int vnum, char *line, int check,
             lval_char = mob->mprog_target;
             break;
         default:
-            sprintf (buf, "Cmd_eval: prog %d syntax error(4) '%s'",
-                     vnum, original);
-            bug (buf, 0);
+            bugf ("Cmd_eval: prog %d syntax error(4) '%s'", vnum, original);
             return FALSE;
     }
 
@@ -564,12 +486,8 @@ int cmd_eval (sh_int vnum, char *line, int check,
     }
 
     /* Case 5: Keyword, actor, comparison and value */
-    if ((oper = keyword_lookup (fn_evals, buf)) < 0) {
-        sprintf (buf, "Cmd_eval: prog %d syntax error(5): '%s'",
-                 vnum, original);
-        bug (buf, 0);
-        return FALSE;
-    }
+    RETURN_IF_BUGF ((oper = keyword_lookup (fn_evals, buf)) < 0, FALSE,
+        "Cmd_eval: prog %d syntax error(5): '%s'", vnum, original);
     one_argument (line, buf);
     rval = atoi (buf);
 
@@ -612,29 +530,29 @@ int cmd_eval (sh_int vnum, char *line, int check,
             if (lval_char != NULL)
                 lval = lval_char->alignment;
             break;
-        case CHK_MONEY:        /* Money is converted to silver... */
+        case CHK_MONEY: /* Money is converted to silver... */
             if (lval_char != NULL)
                 lval = lval_char->gold + (lval_char->silver * 100);
             break;
         case CHK_OBJVAL0:
             if (lval_obj != NULL)
-                lval = lval_obj->value[0];
+                lval = lval_obj->v.value[0];
             break;
         case CHK_OBJVAL1:
             if (lval_obj != NULL)
-                lval = lval_obj->value[1];
+                lval = lval_obj->v.value[1];
             break;
         case CHK_OBJVAL2:
             if (lval_obj != NULL)
-                lval = lval_obj->value[2];
+                lval = lval_obj->v.value[2];
             break;
         case CHK_OBJVAL3:
             if (lval_obj != NULL)
-                lval = lval_obj->value[3];
+                lval = lval_obj->v.value[3];
             break;
         case CHK_OBJVAL4:
             if (lval_obj != NULL)
-                lval = lval_obj->value[4];
+                lval = lval_obj->v.value[4];
             break;
         case CHK_GRPSIZE:
             if (lval_char != NULL)
@@ -658,12 +576,12 @@ void expand_arg (char *buf,
                  CHAR_DATA * mob, CHAR_DATA * ch,
                  const void *arg1, const void *arg2, CHAR_DATA * rch)
 {
-    static char *const he_she[] = { "it", "he", "she" };
+    static char *const he_she[]  = { "it", "he", "she" };
     static char *const him_her[] = { "it", "him", "her" };
     static char *const his_her[] = { "its", "his", "her" };
-    const char *someone = "someone";
+    const char *someone   = "someone";
     const char *something = "something";
-    const char *someones = "someone's";
+    const char *someones  = "someone's";
 
     char fname[MAX_INPUT_LENGTH];
     CHAR_DATA *vch = (CHAR_DATA *) arg2;
@@ -707,10 +625,7 @@ void expand_arg (char *buf,
                 break;
             case 'N':
                 i = (ch != NULL && char_can_see_anywhere (mob, ch))
-                    ? (IS_NPC (ch)
-                        ? ch->short_descr
-                        : ch->name)
-                    : someone;
+                    ? PERS (ch) : someone;
                 break;
             case 't':
                 i = someone;
@@ -721,10 +636,7 @@ void expand_arg (char *buf,
                 break;
             case 'T':
                 i = (vch != NULL && char_can_see_anywhere (mob, vch))
-                        ? (IS_NPC (vch)
-                            ? vch->short_descr
-                            : vch->name)
-                    : someone;
+                    ? PERS (vch) : someone;
                 break;
             case 'r':
                 if (rch == NULL)
@@ -739,27 +651,21 @@ void expand_arg (char *buf,
                 if (rch == NULL)
                     rch = get_random_char (mob);
                 i = (rch != NULL && char_can_see_anywhere (mob, rch))
-                        ? (IS_NPC (ch)
-                            ? ch->short_descr
-                            : ch->name)
-                        : someone;
+                    ? PERS (ch) : someone;
                 break;
             case 'q':
                 i = someone;
-                if (mob->mprog_target != NULL
-                    && char_can_see_anywhere (mob, mob->mprog_target))
+                if (mob->mprog_target != NULL &&
+                    char_can_see_anywhere (mob, mob->mprog_target))
                 {
                     one_argument (mob->mprog_target->name, fname);
                     i = capitalize (fname);
                 }
                 break;
             case 'Q':
-                i = (mob->mprog_target != NULL
-                     && char_can_see_anywhere (mob, mob->mprog_target))
-                        ? (IS_NPC (mob->mprog_target)
-                             ? mob->mprog_target->short_descr
-                             : mob->mprog_target->name)
-                        : someone;
+                i = (mob->mprog_target != NULL &&
+                     char_can_see_anywhere (mob, mob->mprog_target))
+                        ? PERS (mob->mprog_target) : someone;
                 break;
             case 'j':
                 i = he_she[URANGE (0, mob->sex, 2)];
@@ -830,8 +736,7 @@ void expand_arg (char *buf,
                 break;
             case 'o':
                 i = something;
-                if (obj1 != NULL && char_can_see_obj (mob, obj1))
-                {
+                if (obj1 != NULL && char_can_see_obj (mob, obj1)) {
                     one_argument (obj1->name, fname);
                     i = fname;
                 }
@@ -842,8 +747,7 @@ void expand_arg (char *buf,
                 break;
             case 'p':
                 i = something;
-                if (obj2 != NULL && char_can_see_obj (mob, obj2))
-                {
+                if (obj2 != NULL && char_can_see_obj (mob, obj2)) {
                     one_argument (obj2->name, fname);
                     i = fname;
                 }
@@ -860,8 +764,6 @@ void expand_arg (char *buf,
 
     }
     *point = '\0';
-
-    return;
 }
 
 /*
@@ -897,11 +799,8 @@ void program_flow (sh_int pvnum,    /* For diagnostic purposes */
       cond[MAX_NESTED_LEVEL];    /* Boolean value based on the last if-check */
 
     sh_int mvnum = mob->pIndexData->vnum;
-    if (++call_level > MAX_CALL_LEVEL) {
-        bug ("program_flow: MAX_CALL_LEVEL exceeded, vnum %d",
-             mob->pIndexData->vnum);
-        return;
-    }
+    BAIL_IF_BUG (++call_level > MAX_CALL_LEVEL,
+        "program_flow: MAX_CALL_LEVEL exceeded, vnum %d", mob->pIndexData->vnum);
 
     /* Reset "stack" */
     for (level = 0; level < MAX_NESTED_LEVEL; level++) {
@@ -940,106 +839,68 @@ void program_flow (sh_int pvnum,    /* For diagnostic purposes */
 
         if (buf[0] == '\0')
             break;
-        if (buf[0] == '*')        /* Comment */
+        if (buf[0] == '*') /* Comment */
             continue;
 
         line = data;
         /* Match control words */
         if (!str_cmp (control, "if")) {
-            if (state[level] == BEGIN_BLOCK) {
-                sprintf (buf,
-                         "Mobprog: misplaced if statement, mob %d prog %d",
-                         mvnum, pvnum);
-                bug (buf, 0);
-                return;
-            }
+            BAIL_IF_BUGF (state[level] == BEGIN_BLOCK,
+                "Mobprog: misplaced if statement, mob %d prog %d", mvnum, pvnum);
             state[level] = BEGIN_BLOCK;
-            if (++level >= MAX_NESTED_LEVEL) {
-                sprintf (buf,
-                         "Mobprog: Max nested level exceeded, mob %d prog %d",
-                         mvnum, pvnum);
-                bug (buf, 0);
-                return;
-            }
+
+            BAIL_IF_BUGF (++level >= MAX_NESTED_LEVEL,
+                "Mobprog: Max nested level exceeded, mob %d prog %d", mvnum, pvnum);
+
             if (level && cond[level - 1] == FALSE) {
                 cond[level] = FALSE;
                 continue;
             }
             line = one_argument (line, control);
-            if ((check = keyword_lookup (fn_keyword, control)) >= 0) {
-                cond[level] =
-                    cmd_eval (pvnum, line, check, mob, ch, arg1, arg2, rch);
-            }
-            else {
-                sprintf (buf,
-                         "Mobprog: invalid if_check (if), mob %d prog %d",
-                         mvnum, pvnum);
-                bug (buf, 0);
-                return;
-            }
+
+            BAIL_IF_BUGF ((check = keyword_lookup (fn_keyword, control)) < 0,
+                "Mobprog: invalid if_check (if), mob %d prog %d", mvnum, pvnum);
+            cond[level] = cmd_eval (
+                pvnum, line, check, mob, ch, arg1, arg2, rch);
+
             state[level] = END_BLOCK;
         }
         else if (!str_cmp (control, "or")) {
-            if (!level || state[level - 1] != BEGIN_BLOCK) {
-                sprintf (buf, "Mobprog: or without if, mob %d prog %d",
-                         mvnum, pvnum);
-                bug (buf, 0);
-                return;
-            }
+            BAIL_IF_BUGF (!level || state[level - 1] != BEGIN_BLOCK,
+                "Mobprog: or without if, mob %d prog %d", mvnum, pvnum);
             if (level && cond[level - 1] == FALSE)
                 continue;
+
             line = one_argument (line, control);
-            if ((check = keyword_lookup (fn_keyword, control)) >= 0)
-                eval = cmd_eval (pvnum, line, check, mob, ch, arg1, arg2, rch);
-            else {
-                sprintf (buf,
-                         "Mobprog: invalid if_check (or), mob %d prog %d",
-                         mvnum, pvnum);
-                bug (buf, 0);
-                return;
-            }
+
+            BAIL_IF_BUGF ((check = keyword_lookup (fn_keyword, control)) < 0,
+                "Mobprog: invalid if_check (or), mob %d prog %d", mvnum, pvnum);
+            eval = cmd_eval (pvnum, line, check, mob, ch, arg1, arg2, rch);
             cond[level] = (eval == TRUE) ? TRUE : cond[level];
         }
         else if (!str_cmp (control, "and")) {
-            if (!level || state[level - 1] != BEGIN_BLOCK) {
-                sprintf (buf, "Mobprog: and without if, mob %d prog %d",
-                         mvnum, pvnum);
-                bug (buf, 0);
-                return;
-            }
+            BAIL_IF_BUGF (!level || state[level - 1] != BEGIN_BLOCK,
+                "Mobprog: and without if, mob %d prog %d", mvnum, pvnum);
             if (level && cond[level - 1] == FALSE)
                 continue;
+
             line = one_argument (line, control);
-            if ((check = keyword_lookup (fn_keyword, control)) >= 0)
-                eval = cmd_eval (pvnum, line, check, mob, ch, arg1, arg2, rch);
-            else {
-                sprintf (buf,
-                         "Mobprog: invalid if_check (and), mob %d prog %d",
-                         mvnum, pvnum);
-                bug (buf, 0);
-                return;
-            }
+            BAIL_IF_BUGF ((check = keyword_lookup (fn_keyword, control)) < 0,
+                "Mobprog: invalid if_check (and), mob %d prog %d", mvnum, pvnum);
+            eval = cmd_eval (pvnum, line, check, mob, ch, arg1, arg2, rch);
             cond[level] = (cond[level] == TRUE)
                 && (eval == TRUE) ? TRUE : FALSE;
         }
         else if (!str_cmp (control, "endif")) {
-            if (!level || state[level - 1] != BEGIN_BLOCK) {
-                sprintf (buf, "Mobprog: endif without if, mob %d prog %d",
-                         mvnum, pvnum);
-                bug (buf, 0);
-                return;
-            }
+            BAIL_IF_BUGF (!level || state[level - 1] != BEGIN_BLOCK,
+                "Mobprog: endif without if, mob %d prog %d", mvnum, pvnum);
             cond[level] = TRUE;
             state[level] = IN_BLOCK;
             state[--level] = END_BLOCK;
         }
         else if (!str_cmp (control, "else")) {
-            if (!level || state[level - 1] != BEGIN_BLOCK) {
-                sprintf (buf, "Mobprog: else without if, mob %d prog %d",
-                         mvnum, pvnum);
-                bug (buf, 0);
-                return;
-            }
+            BAIL_IF_BUGF (!level || state[level - 1] != BEGIN_BLOCK,
+                "Mobprog: else without if, mob %d prog %d", mvnum, pvnum);
             if (level && cond[level - 1] == FALSE)
                 continue;
             state[level] = IN_BLOCK;
@@ -1069,12 +930,10 @@ void program_flow (sh_int pvnum,    /* For diagnostic purposes */
     call_level--;
 }
 
-/*
- * ---------------------------------------------------------------------
+/* ---------------------------------------------------------------------
  * Trigger handlers. These are called from various parts of the code
  * when an event is triggered.
- * ---------------------------------------------------------------------
- */
+ * --------------------------------------------------------------------- */
 
 /* A general purpose string trigger. Matches argument to a string trigger
  * phrase. */

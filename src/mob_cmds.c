@@ -47,20 +47,12 @@
 #include "objs.h"
 #include "rooms.h"
 #include "find.h"
+#include "act_info.h"
 
 #include "mob_cmds.h"
 
-/* TODO: simple visual clean-up of code without altering functionality. */
-/* TODO: not only have these not been reviewed, they can't even be teseted
- *       because there are no stock areas with mob commands. find some! */
-/* TODO: once there are some mob commands to test, test them thoroughly. */
-/* TODO: mprog_type_to_name() looks redundant. */
-
-DECLARE_DO_FUN (do_look);
-extern ROOM_INDEX_DATA *find_location (CHAR_DATA *, char *);
-
 /* Command table. */
-const struct mob_cmd_type mob_cmd_table[] = {
+const MOB_CMD_TYPE mob_cmd_table[] = {
     {"asound",     do_mpasound},
     {"gecho",      do_mpgecho},
     {"zecho",      do_mpzecho},
@@ -93,19 +85,10 @@ const struct mob_cmd_type mob_cmd_table[] = {
     {NULL, 0}
 };
 
-void do_mob (CHAR_DATA * ch, char *argument) {
-    /* Security check! */
-    if (ch->desc != NULL && char_get_trust (ch) < MAX_LEVEL)
-        return;
-    mob_interpret (ch, argument);
-}
-
-/*
- * Mob command interpreter. Implemented separately for security and speed
- * reasons. A trivial hack of interpret()
- */
+/* Mob command interpreter. Implemented separately for security and speed
+ * reasons. A trivial hack of interpret() */
 void mob_interpret (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH], command[MAX_INPUT_LENGTH];
+    char command[MAX_INPUT_LENGTH];
     int cmd;
 
     argument = one_argument (argument, command);
@@ -120,43 +103,47 @@ void mob_interpret (CHAR_DATA * ch, char *argument) {
             return;
         }
     }
-    sprintf (buf, "Mob_interpret: invalid cmd from mob %d: '%s'",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0, command);
-    bug (buf, 0);
+    bugf ("mob_interpret: invalid cmd from mob %d: '%s'",
+        CH_VNUM (ch), command);
 }
 
-char *mprog_type_to_name (int type) {
+char *mprog_type_to_name (flag_t type) {
     switch (type) {
         case TRIG_ACT:    return "ACT";
-        case TRIG_SPEECH: return "SPEECH";
-        case TRIG_RANDOM: return "RANDOM";
-        case TRIG_FIGHT:  return "FIGHT";
-        case TRIG_HPCNT:  return "HPCNT";
+        case TRIG_BRIBE:  return "BRIBE";
         case TRIG_DEATH:  return "DEATH";
         case TRIG_ENTRY:  return "ENTRY";
+        case TRIG_FIGHT:  return "FIGHT";
+        case TRIG_GIVE:   return "GIVE";
         case TRIG_GREET:  return "GREET";
         case TRIG_GRALL:  return "GRALL";
-        case TRIG_GIVE:   return "GIVE";
-        case TRIG_BRIBE:  return "BRIBE";
         case TRIG_KILL:   return "KILL";
-        case TRIG_DELAY:  return "DELAY";
-        case TRIG_SURR:   return "SURRENDER";
+        case TRIG_HPCNT:  return "HPCNT";
+        case TRIG_RANDOM: return "RANDOM";
+        case TRIG_SPEECH: return "SPEECH";
         case TRIG_EXIT:   return "EXIT";
         case TRIG_EXALL:  return "EXALL";
+        case TRIG_DELAY:  return "DELAY";
+        case TRIG_SURR:   return "SURRENDER";
         default:          return "ERROR";
     }
 }
 
+DEFINE_DO_FUN (do_mob) {
+    /* Security check! */
+    if (ch->desc != NULL && char_get_trust (ch) < MAX_LEVEL)
+        return;
+    mob_interpret (ch, argument);
+}
+
 /* Prints the argument to all active players in the game
  * Syntax: mob gecho [string] */
-void do_mpgecho (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpgecho) {
     DESCRIPTOR_DATA *d;
 
-    if (argument[0] == '\0') {
-        bug ("do_mpgecho: missing argument from vnum %d",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (argument[0] == '\0',
+        "do_mpgecho: missing argument from vnum %d", CH_VNUM (ch));
+
     for (d = descriptor_list; d; d = d->next) {
         if (d->connected == CON_PLAYING) {
             if (IS_IMMORTAL (d->character))
@@ -169,14 +156,12 @@ void do_mpgecho (CHAR_DATA * ch, char *argument) {
 
 /* Prints the argument to all players in the same area as the mob
  * Syntax: mob zecho [string] */
-void do_mpzecho (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpzecho) {
     DESCRIPTOR_DATA *d;
 
-    if (argument[0] == '\0') {
-        bug ("do_mpzecho: missing argument from vnum %d",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (argument[0] == '\0',
+        "do_mpzecho: missing argument from vnum %d", CH_VNUM (ch));
+
     if (ch->in_room == NULL)
         return;
 
@@ -195,7 +180,7 @@ void do_mpzecho (CHAR_DATA * ch, char *argument) {
 
 /* Prints the argument to all the rooms aroud the mobile
  * Syntax: mob asound [string] */
-void do_mpasound (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpasound) {
     ROOM_INDEX_DATA *was_in_room;
     int door;
 
@@ -203,7 +188,7 @@ void do_mpasound (CHAR_DATA * ch, char *argument) {
         return;
 
     was_in_room = ch->in_room;
-    for (door = 0; door < 6; door++) {
+    for (door = 0; door < DIR_MAX; door++) {
         EXIT_DATA *pexit;
 
         if ((pexit = was_in_room->exit[door]) != NULL
@@ -218,13 +203,9 @@ void do_mpasound (CHAR_DATA * ch, char *argument) {
     ch->in_room = was_in_room;
 }
 
-/*
- * Lets the mobile kill any player or mobile without murder
- *
- * Syntax: mob kill [victim]
- */
-void do_mpkill (CHAR_DATA * ch, char *argument)
-{
+/* Lets the mobile kill any player or mobile without murder
+ * Syntax: mob kill [victim] */
+DEFINE_DO_FUN (do_mpkill) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
@@ -232,31 +213,20 @@ void do_mpkill (CHAR_DATA * ch, char *argument)
 
     if (arg[0] == '\0')
         return;
-
     if ((victim = find_char_same_room (ch, arg)) == NULL)
         return;
-
     if (victim == ch || IS_NPC (victim) || ch->position == POS_FIGHTING)
         return;
 
-    if (IS_AFFECTED (ch, AFF_CHARM) && ch->master == victim)
-    {
-        bug ("MpKill - Charmed mob attacking master from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (IS_AFFECTED (ch, AFF_CHARM) && ch->master == victim,
+        "MpKill - Charmed mob attacking master from vnum %d.", CH_VNUM (ch));
 
     multi_hit (ch, victim, TYPE_UNDEFINED);
-    return;
 }
 
-/*
- * Lets the mobile assist another mob or player
- *
- * Syntax: mob assist [character]
- */
-void do_mpassist (CHAR_DATA * ch, char *argument)
-{
+/* Lets the mobile assist another mob or player
+ * Syntax: mob assist [character] */
+DEFINE_DO_FUN (do_mpassist) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
@@ -264,15 +234,12 @@ void do_mpassist (CHAR_DATA * ch, char *argument)
 
     if (arg[0] == '\0')
         return;
-
     if ((victim = find_char_same_room (ch, arg)) == NULL)
         return;
-
     if (victim == ch || ch->fighting != NULL || victim->fighting == NULL)
         return;
 
     multi_hit (ch, victim->fighting, TYPE_UNDEFINED);
-    return;
 }
 
 
@@ -281,7 +248,7 @@ void do_mpassist (CHAR_DATA * ch, char *argument)
  * items using all.xxxxx or just plain all of them
  *
  * Syntax: mob junk [item] */
-void do_mpjunk (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpjunk) {
     char arg[MAX_INPUT_LENGTH];
     OBJ_DATA *obj;
     OBJ_DATA *obj_next;
@@ -314,7 +281,7 @@ void do_mpjunk (CHAR_DATA * ch, char *argument) {
 
 /* Prints the message to everyone in the room other than the mob and victim
  * Syntax: mob echoaround [victim] [string] */
-void do_mpechoaround (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpechoaround) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
@@ -328,7 +295,7 @@ void do_mpechoaround (CHAR_DATA * ch, char *argument) {
 
 /* Prints the message to only the victim
  * Syntax: mob echoat [victim] [string] */
-void do_mpechoat (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpechoat) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
@@ -342,7 +309,7 @@ void do_mpechoat (CHAR_DATA * ch, char *argument) {
 
 /* Prints the message to the room at large
  * Syntax: mpecho [string] */
-void do_mpecho (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpecho) {
     if (argument[0] == '\0')
         return;
     act (argument, ch, NULL, NULL, TO_NOTCHAR);
@@ -350,7 +317,7 @@ void do_mpecho (CHAR_DATA * ch, char *argument) {
 
 /* Lets the mobile load another mobile.
  * Syntax: mob mload [vnum] */
-void do_mpmload (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpmload) {
     char arg[MAX_INPUT_LENGTH];
     MOB_INDEX_DATA *pMobIndex;
     CHAR_DATA *victim;
@@ -361,19 +328,16 @@ void do_mpmload (CHAR_DATA * ch, char *argument) {
         return;
 
     vnum = atoi (arg);
-    if ((pMobIndex = get_mob_index (vnum)) == NULL) {
-        sprintf (arg, "Mpmload: bad mob index (%d) from mob %d",
-                 vnum, IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        bug (arg, 0);
-        return;
-    }
-    victim = create_mobile (pMobIndex);
+    BAIL_IF_BUGF ((pMobIndex = get_mob_index (vnum)) == NULL,
+        "Mpmload: bad mob index (%d) from mob %d", vnum, CH_VNUM (ch));
+
+    victim = char_create_mobile (pMobIndex);
     char_to_room (victim, ch->in_room);
 }
 
 /* Lets the mobile load an object
  * Syntax: mob oload [vnum] [level] {R} */
-void do_mpoload (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpoload) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
@@ -386,26 +350,19 @@ void do_mpoload (CHAR_DATA * ch, char *argument) {
     argument = one_argument (argument, arg2);
     one_argument (argument, arg3);
 
-    if (arg1[0] == '\0' || !is_number (arg1)) {
-        bug ("Mpoload - Bad syntax from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (arg1[0] == '\0' || !is_number (arg1),
+        "Mpoload - Bad syntax from vnum %d.", CH_VNUM (ch));
+
     if (arg2[0] == '\0')
         level = char_get_trust (ch);
     else {
         /* New feature from Alander. */
-        if (!is_number (arg2)) {
-            bug ("Mpoload - Bad syntax from vnum %d.",
-                 IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-            return;
-        }
+        BAIL_IF_BUG (!is_number (arg2),
+            "Mpoload - Bad syntax from vnum %d.", CH_VNUM (ch));
+
         level = atoi (arg2);
-        if (level < 0 || level > char_get_trust (ch)) {
-            bug ("Mpoload - Bad level from vnum %d.",
-                 IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-            return;
-        }
+        BAIL_IF_BUG (level < 0 || level > char_get_trust (ch),
+            "Mpoload - Bad level from vnum %d.", CH_VNUM (ch));
     }
 
     /* Added 3rd argument
@@ -417,14 +374,11 @@ void do_mpoload (CHAR_DATA * ch, char *argument) {
     else if (arg3[0] == 'W' || arg3[0] == 'w')
         fWear = TRUE;
 
-    if ((pObjIndex = get_obj_index (atoi (arg1))) == NULL) {
-        bug ("Mpoload - Bad vnum arg from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG ((pObjIndex = get_obj_index (atoi (arg1))) == NULL,
+        "Mpoload - Bad vnum arg from vnum %d.", CH_VNUM (ch));
 
-    obj = create_object (pObjIndex, level);
-    if ((fWear || !fToroom) && CAN_WEAR (obj, ITEM_TAKE)) {
+    obj = obj_create (pObjIndex, level);
+    if ((fWear || !fToroom) && CAN_WEAR_FLAG (obj, ITEM_TAKE)) {
         obj_to_char (obj, ch);
         if (fWear)
             char_wear_obj (ch, obj, TRUE);
@@ -438,7 +392,7 @@ void do_mpoload (CHAR_DATA * ch, char *argument) {
  * purge itself for safety reasons.
  *
  * syntax mob purge {target} */
-void do_mppurge (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mppurge) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
     OBJ_DATA *obj;
@@ -463,38 +417,28 @@ void do_mppurge (CHAR_DATA * ch, char *argument) {
         return;
     }
     if ((victim = find_char_same_room (ch, arg)) == NULL) {
-        if ((obj = find_obj_here (ch, arg)))
-            obj_extract (obj);
-        else
-            bug ("Mppurge - Bad argument from vnum %d.",
-                 IS_NPC (ch) ? ch->pIndexData->vnum : 0);
+        BAIL_IF_BUG ((obj = find_obj_here (ch, arg)) == NULL,
+            "Mppurge - Bad argument from vnum %d.", CH_VNUM (ch));
+        obj_extract (obj);
         return;
     }
-    if (!IS_NPC (victim)) {
-        bug ("Mppurge - Purging a PC from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+
+    BAIL_IF_BUG (!IS_NPC (victim),
+        "Mppurge - Purging a PC from vnum %d.", CH_VNUM (ch));
     char_extract (victim, TRUE);
 }
 
 /* Lets the mobile goto any location it wishes that is not private.
  * Syntax: mob goto [location] */
-void do_mpgoto (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpgoto) {
     char arg[MAX_INPUT_LENGTH];
     ROOM_INDEX_DATA *location;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        bug ("Mpgoto - No argument from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
-    if ((location = find_location (ch, arg)) == NULL) {
-        bug ("Mpgoto - No such location from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (arg[0] == '\0',
+        "Mpgoto - No argument from vnum %d.", CH_VNUM (ch));
+    BAIL_IF_BUG ((location = find_location (ch, arg)) == NULL,
+        "Mpgoto - No such location from vnum %d.", CH_VNUM (ch));
 
     if (ch->fighting != NULL)
         stop_fighting (ch, TRUE);
@@ -505,7 +449,7 @@ void do_mpgoto (CHAR_DATA * ch, char *argument) {
 
 /* Lets the mobile do a command at another location.
  * Syntax: mob at [location] [commands] */
-void do_mpat (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpat) {
     char arg[MAX_INPUT_LENGTH];
     ROOM_INDEX_DATA *location;
     ROOM_INDEX_DATA *original;
@@ -513,16 +457,10 @@ void do_mpat (CHAR_DATA * ch, char *argument) {
     OBJ_DATA *on;
 
     argument = one_argument (argument, arg);
-    if (arg[0] == '\0' || argument[0] == '\0') {
-        bug ("Mpat - Bad argument from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
-    if ((location = find_location (ch, arg)) == NULL) {
-        bug ("Mpat - No such location from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (arg[0] == '\0' || argument[0] == '\0',
+        "Mpat - Bad argument from vnum %d.", CH_VNUM (ch));
+    BAIL_IF_BUG ((location = find_location (ch, arg)) == NULL,
+        "Mpat - No such location from vnum %d.", CH_VNUM (ch));
 
     original = ch->in_room;
     on = ch->on;
@@ -542,14 +480,11 @@ void do_mpat (CHAR_DATA * ch, char *argument) {
     }
 }
 
-/*
- * Lets the mobile transfer people.  The 'all' argument transfers
+/* Lets the mobile transfer people.  The 'all' argument transfers
  *  everyone in the current room to the specified location
  *
- * Syntax: mob transfer [target|'all'] [location]
- */
-void do_mptransfer (CHAR_DATA * ch, char *argument)
-{
+ * Syntax: mob transfer [target|'all'] [location] */
+DEFINE_DO_FUN (do_mptransfer) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char buf[MAX_STRING_LENGTH];
@@ -559,23 +494,17 @@ void do_mptransfer (CHAR_DATA * ch, char *argument)
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
 
-    if (arg1[0] == '\0')
-    {
-        bug ("Mptransfer - Bad syntax from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (arg1[0] == '\0',
+        "Mptransfer - Bad syntax from vnum %d.", CH_VNUM (ch));
 
-    if (!str_cmp (arg1, "all"))
-    {
+    if (!str_cmp (arg1, "all")) {
         CHAR_DATA *victim_next;
 
         for (victim = ch->in_room->people; victim != NULL;
              victim = victim_next)
         {
             victim_next = victim->next_in_room;
-            if (!IS_NPC (victim))
-            {
+            if (!IS_NPC (victim)) {
                 sprintf (buf, "%s %s", victim->name, arg2);
                 do_mptransfer (ch, buf);
             }
@@ -583,29 +512,18 @@ void do_mptransfer (CHAR_DATA * ch, char *argument)
         return;
     }
 
-    /*
-     * Thanks to Grodyn for the optional location parameter.
-     */
+    /* Thanks to Grodyn for the optional location parameter. */
     if (arg2[0] == '\0')
-    {
         location = ch->in_room;
-    }
-    else
-    {
-        if ((location = find_location (ch, arg2)) == NULL)
-        {
-            bug ("Mptransfer - No such location from vnum %d.",
-                 IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-            return;
-        }
-
+    else {
+        BAIL_IF_BUG ((location = find_location (ch, arg2)) == NULL,
+            "Mptransfer - No such location from vnum %d.", CH_VNUM (ch));
         if (room_is_private (location))
             return;
     }
 
     if ((victim = find_char_world (ch, arg1)) == NULL)
         return;
-
     if (victim->in_room == NULL)
         return;
 
@@ -614,17 +532,11 @@ void do_mptransfer (CHAR_DATA * ch, char *argument)
     char_from_room (victim);
     char_to_room (victim, location);
     do_look (victim, "auto");
-
-    return;
 }
 
-/*
- * Lets the mobile transfer all chars in same group as the victim.
- *
- * Syntax: mob gtransfer [victim] [location]
- */
-void do_mpgtransfer (CHAR_DATA * ch, char *argument)
-{
+/* Lets the mobile transfer all chars in same group as the victim.
+ * Syntax: mob gtransfer [victim] [location] */
+DEFINE_DO_FUN (do_mpgtransfer) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char buf[MAX_STRING_LENGTH];
@@ -633,41 +545,30 @@ void do_mpgtransfer (CHAR_DATA * ch, char *argument)
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
 
-    if (arg1[0] == '\0')
-    {
-        bug ("Mpgtransfer - Bad syntax from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
-
+    BAIL_IF_BUG (arg1[0] == '\0',
+        "Mpgtransfer - Bad syntax from vnum %d.", CH_VNUM (ch));
     if ((who = find_char_same_room (ch, arg1)) == NULL)
         return;
 
-    for (victim = ch->in_room->people; victim; victim = victim_next)
-    {
+    for (victim = ch->in_room->people; victim; victim = victim_next) {
         victim_next = victim->next_in_room;
-        if (is_same_group (who, victim))
-        {
+        if (is_same_group (who, victim)) {
             sprintf (buf, "%s %s", victim->name, arg2);
             do_mptransfer (ch, buf);
         }
     }
-    return;
 }
 
 /* Lets the mobile force someone to do something. Must be mortal level
  * and the all argument only affects those in the room with the mobile.
  *
  * Syntax: mob force [victim] [commands] */
-void do_mpforce (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpforce) {
     char arg[MAX_INPUT_LENGTH];
 
     argument = one_argument (argument, arg);
-    if (arg[0] == '\0' || argument[0] == '\0') {
-        bug ("Mpforce - Bad syntax from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (arg[0] == '\0' || argument[0] == '\0',
+        "Mpforce - Bad syntax from vnum %d.", CH_VNUM (ch));
 
     if (!str_cmp (arg, "all")) {
         CHAR_DATA *vch;
@@ -689,94 +590,58 @@ void do_mpforce (CHAR_DATA * ch, char *argument) {
     }
 }
 
-/*
- * Lets the mobile force a group something. Must be mortal level.
- *
- * Syntax: mob gforce [victim] [commands]
- */
-void do_mpgforce (CHAR_DATA * ch, char *argument)
-{
+/* Lets the mobile force a group something. Must be mortal level.
+ * Syntax: mob gforce [victim] [commands] */
+DEFINE_DO_FUN (do_mpgforce) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim, *vch, *vch_next;
 
     argument = one_argument (argument, arg);
-
-    if (arg[0] == '\0' || argument[0] == '\0')
-    {
-        bug ("MpGforce - Bad syntax from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (arg[0] == '\0' || argument[0] == '\0',
+        "MpGforce - Bad syntax from vnum %d.", CH_VNUM (ch));
 
     if ((victim = find_char_same_room (ch, arg)) == NULL)
         return;
-
     if (victim == ch)
         return;
 
-    for (vch = victim->in_room->people; vch != NULL; vch = vch_next)
-    {
+    for (vch = victim->in_room->people; vch != NULL; vch = vch_next) {
         vch_next = vch->next_in_room;
-
         if (is_same_group (victim, vch))
-        {
             interpret (vch, argument);
-        }
     }
-    return;
 }
 
-/*
- * Forces all mobiles of certain vnum to do something (except ch)
- *
- * Syntax: mob vforce [vnum] [commands]
- */
-void do_mpvforce (CHAR_DATA * ch, char *argument)
-{
+/* Forces all mobiles of certain vnum to do something (except ch)
+ * Syntax: mob vforce [vnum] [commands] */
+DEFINE_DO_FUN (do_mpvforce) {
     CHAR_DATA *victim, *victim_next;
     char arg[MAX_INPUT_LENGTH];
     int vnum;
 
     argument = one_argument (argument, arg);
-
-    if (arg[0] == '\0' || argument[0] == '\0')
-    {
-        bug ("MpVforce - Bad syntax from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
-
-    if (!is_number (arg))
-    {
-        bug ("MpVforce - Non-number argument vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
-
+    BAIL_IF_BUG (arg[0] == '\0' || argument[0] == '\0',
+        "MpVforce - Bad syntax from vnum %d.", CH_VNUM (ch));
+    BAIL_IF_BUG (!is_number (arg),
+        "MpVforce - Non-number argument vnum %d.", CH_VNUM (ch));
     vnum = atoi (arg);
 
-    for (victim = char_list; victim; victim = victim_next)
-    {
+    for (victim = char_list; victim; victim = victim_next) {
         victim_next = victim->next;
-        if (IS_NPC (victim) && victim->pIndexData->vnum == vnum
-            && ch != victim && victim->fighting == NULL)
+        if (IS_NPC (victim) && victim->pIndexData->vnum == vnum &&
+                ch != victim && victim->fighting == NULL)
             interpret (victim, argument);
     }
-    return;
 }
 
-
-/*
- * Lets the mobile cast spells --
+/* Lets the mobile cast spells --
  * Beware: this does only crude checking on the target validity
  * and does not account for mana etc., so you should do all the
  * necessary checking in your mob program before issuing this cmd!
  *
- * Syntax: mob cast [spell] {target}
- */
+ * Syntax: mob cast [spell] {target} */
 
-void do_mpcast (CHAR_DATA * ch, char *argument)
-{
+DEFINE_DO_FUN (do_mpcast) {
     CHAR_DATA *vch;
     OBJ_DATA *obj;
     void *victim = NULL;
@@ -786,57 +651,52 @@ void do_mpcast (CHAR_DATA * ch, char *argument)
     argument = one_argument (argument, spell);
     one_argument (argument, target);
 
-    if (spell[0] == '\0')
-    {
-        bug ("MpCast - Bad syntax from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (spell[0] == '\0',
+        "MpCast - Bad syntax from vnum %d.", CH_VNUM (ch));
+    BAIL_IF_BUG ((sn = skill_lookup (spell)) < 0,
+        "MpCast - No such spell from vnum %d.", CH_VNUM (ch));
 
-    if ((sn = skill_lookup (spell)) < 0)
-    {
-        bug ("MpCast - No such spell from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
     vch = find_char_same_room (ch, target);
     obj = find_obj_here (ch, target);
+
     switch (skill_table[sn].target) {
-        default:
-            return;
         case TAR_IGNORE:
             break;
+
         case TAR_CHAR_OFFENSIVE:
             if (vch == NULL || vch == ch)
                 return;
             victim = (void *) vch;
             break;
+
         case TAR_CHAR_DEFENSIVE:
             victim = vch == NULL ? (void *) ch : (void *) vch;
             break;
+
         case TAR_CHAR_SELF:
             victim = (void *) ch;
             break;
+
         case TAR_OBJ_CHAR_DEF:
         case TAR_OBJ_CHAR_OFF:
         case TAR_OBJ_INV:
             if (obj == NULL)
                 return;
             victim = (void *) obj;
+            break;
+
+        default:
+            return;
     }
     (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim,
                                   skill_table[sn].target);
-    return;
 }
 
-/*
- * Lets mob cause unconditional damage to someone. Nasty, use with caution.
+/* Lets mob cause unconditional damage to someone. Nasty, use with caution.
  * Also, this is silent, you must show your own damage message...
- *
- * Syntax: mob damage [victim] [min] [max] {kill}
- */
-void do_mpdamage (CHAR_DATA * ch, char *argument)
-{
+ * Syntax: mob damage [victim] [min] [max] {kill} */
+
+DEFINE_DO_FUN (do_mpdamage) {
     CHAR_DATA *victim = NULL, *victim_next;
     char target[MAX_INPUT_LENGTH],
         min[MAX_INPUT_LENGTH], max[MAX_INPUT_LENGTH];
@@ -847,82 +707,62 @@ void do_mpdamage (CHAR_DATA * ch, char *argument)
     argument = one_argument (argument, min);
     argument = one_argument (argument, max);
 
-    if (target[0] == '\0')
-    {
-        bug ("MpDamage - Bad syntax from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (target[0] == '\0',
+        "MpDamage - Bad syntax from vnum %d.", CH_VNUM (ch));
+
     if (!str_cmp (target, "all"))
         fAll = TRUE;
     else if ((victim = find_char_same_room (ch, target)) == NULL)
         return;
 
-    if (is_number (min))
-        low = atoi (min);
-    else
-    {
-        bug ("MpDamage - Bad damage min vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
-    if (is_number (max))
-        high = atoi (max);
-    else
-    {
-        bug ("MpDamage - Bad damage max vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (!is_number (min),
+        "MpDamage - Bad damage min vnum %d.", CH_VNUM (ch));
+    low = atoi (min);
+
+    BAIL_IF_BUG (!is_number (max),
+        "MpDamage - Bad damage max vnum %d.", CH_VNUM (ch));
+    high = atoi (max);
+
     one_argument (argument, target);
 
-    /*
-     * If kill parameter is omitted, this command is "safe" and will not
-     * kill the victim.
-     */
-
+    /* If kill parameter is omitted, this command is "safe" and will not
+     * kill the victim.  */
     if (target[0] != '\0')
         fKill = TRUE;
-    if (fAll)
-    {
-        for (victim = ch->in_room->people; victim; victim = victim_next)
-        {
+    if (fAll) {
+        for (victim = ch->in_room->people; victim; victim = victim_next) {
             victim_next = victim->next_in_room;
-            if (victim != ch)
+            if (victim != ch) {
                 damage (victim, victim,
-                        fKill ?
-                        number_range (low, high) : UMIN (victim->hit,
-                                                         number_range (low,
-                                                                       high)),
-                        TYPE_UNDEFINED, DAM_NONE, FALSE);
+                    fKill ? number_range (low, high)
+                          : UMIN (victim->hit, number_range (low, high)),
+                    TYPE_UNDEFINED, DAM_NONE, FALSE);
+            }
         }
     }
-    else
+    else {
         damage (victim, victim,
-                fKill ?
-                number_range (low, high) : UMIN (victim->hit,
-                                                 number_range (low, high)),
-                TYPE_UNDEFINED, DAM_NONE, FALSE);
-    return;
+            fKill ? number_range (low, high)
+                  : UMIN (victim->hit, number_range (low, high)),
+            TYPE_UNDEFINED, DAM_NONE, FALSE);
+    }
 }
 
 /* Lets the mobile to remember a target. The target can be referred to
  * with $q and $Q codes in MOBprograms. See also "mob forget".
  *
  * Syntax: mob remember [victim] */
-void do_mpremember (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpremember) {
     char arg[MAX_INPUT_LENGTH];
     one_argument (argument, arg);
-    if (arg[0] != '\0')
-        ch->mprog_target = find_char_world (ch, arg);
-    else
-        bug ("do_mpremember: missing argument from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
+    BAIL_IF_BUG (arg[0] == '\0',
+        "do_mpremember: missing argument from vnum %d.", CH_VNUM (ch));
+    ch->mprog_target = find_char_world (ch, arg);
 }
 
 /* Reverse of "mob remember".
  * Syntax: mob forget */
-void do_mpforget (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpforget) {
     ch->mprog_target = NULL;
 }
 
@@ -931,21 +771,17 @@ void do_mpforget (CHAR_DATA * ch, char *argument) {
  * one is found, it is executed. Delay is counted in PULSE_MOBILE
  *
  * Syntax: mob delay [pulses] */
-void do_mpdelay (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpdelay) {
     char arg[MAX_INPUT_LENGTH];
-
     one_argument (argument, arg);
-    if (!is_number (arg)) {
-        bug ("do_mp_delay: invalid arg from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (!is_number (arg),
+        "do_mp_delay: invalid arg from vnum %d.", CH_VNUM (ch));
     ch->mprog_delay = atoi (arg);
 }
 
 /* Reverse of "mob delay", deactivates the timer.
  * Syntax: mob cancel */
-void do_mpcancel (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpcancel) {
     ch->mprog_delay = -1;
 }
 
@@ -956,7 +792,7 @@ void do_mpcancel (CHAR_DATA * ch, char *argument) {
  * mobile.
  *
  * Syntax: mob call [vnum] [victim|'null'] [object1|'null'] [object2|'null'] */
-void do_mpcall (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpcall) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *vch;
     OBJ_DATA *obj1, *obj2;
@@ -965,16 +801,10 @@ void do_mpcall (CHAR_DATA * ch, char *argument) {
                               const void *, const void *);
 
     argument = one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        bug ("do_mpcall: missing arguments from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
-    if ((prg = get_mprog_index (atoi (arg))) == NULL) {
-        bug ("do_mpcall: invalid prog from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (arg[0] == '\0',
+        "do_mpcall: missing arguments from vnum %d.", CH_VNUM (ch));
+    BAIL_IF_BUG ((prg = get_mprog_index (atoi (arg))) == NULL,
+        "do_mpcall: invalid prog from vnum %d.", CH_VNUM (ch));
 
     vch = NULL;
     obj1 = obj2 = NULL;
@@ -993,7 +823,7 @@ void do_mpcall (CHAR_DATA * ch, char *argument) {
 
 /* Forces the mobile to flee.
  * Syntax: mob flee */
-void do_mpflee (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpflee) {
     ROOM_INDEX_DATA *was_in;
     EXIT_DATA *pexit;
     int door, attempt;
@@ -1018,39 +848,29 @@ void do_mpflee (CHAR_DATA * ch, char *argument) {
     }
 }
 
-/*
- * Lets the mobile to transfer an object. The object must be in the same
+/* Lets the mobile to transfer an object. The object must be in the same
  * room with the mobile.
  *
- * Syntax: mob otransfer [item name] [location]
- */
-void do_mpotransfer (CHAR_DATA * ch, char *argument)
-{
+ * Syntax: mob otransfer [item name] [location] */
+DEFINE_DO_FUN (do_mpotransfer) {
     OBJ_DATA *obj;
     ROOM_INDEX_DATA *location;
     char arg[MAX_INPUT_LENGTH];
     char buf[MAX_INPUT_LENGTH];
 
     argument = one_argument (argument, arg);
-    if (arg[0] == '\0')
-    {
-        bug ("MpOTransfer - Missing argument from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG (arg[0] == '\0',
+        "MpOTransfer - Missing argument from vnum %d.", CH_VNUM (ch));
+
     one_argument (argument, buf);
-    if ((location = find_location (ch, buf)) == NULL)
-    {
-        bug ("MpOTransfer - No such location from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
+    BAIL_IF_BUG ((location = find_location (ch, buf)) == NULL,
+        "MpOTransfer - No such location from vnum %d.", CH_VNUM (ch));
+
     if ((obj = find_obj_here (ch, arg)) == NULL)
         return;
     if (obj->carried_by == NULL)
         obj_from_room (obj);
-    else
-    {
+    else {
         if (obj->wear_loc != WEAR_NONE)
             char_unequip_obj (ch, obj);
         obj_from_char (obj);
@@ -1062,7 +882,7 @@ void do_mpotransfer (CHAR_DATA * ch, char *argument)
  * Useful for removing e.g. quest objects from a character.
  *
  * Syntax: mob remove [victim] [object vnum|'all'] */
-void do_mpremove (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpremove) {
     CHAR_DATA *victim;
     OBJ_DATA *obj, *obj_next;
     sh_int vnum = 0;
@@ -1076,13 +896,11 @@ void do_mpremove (CHAR_DATA * ch, char *argument) {
     one_argument (argument, arg);
     if (!str_cmp (arg, "all"))
         fAll = TRUE;
-    else if (!is_number (arg)) {
-        bug ("do_mpremove: Invalid object from vnum %d.",
-             IS_NPC (ch) ? ch->pIndexData->vnum : 0);
-        return;
-    }
-    else
+    else {
+        BAIL_IF_BUG (!is_number (arg),
+            "do_mpremove: Invalid object from vnum %d.", CH_VNUM (ch));
         vnum = atoi (arg);
+    }
 
     for (obj = victim->carrying; obj; obj = obj_next) {
         obj_next = obj->next_content;

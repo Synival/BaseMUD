@@ -38,6 +38,7 @@
 #include "utils.h"
 #include "lookup.h"
 #include "do_sub.h"
+#include "chars.h"
 
 #include "act_conf.h"
 
@@ -87,7 +88,7 @@ void do_colour_one (CHAR_DATA * ch, const COLOUR_SETTING_TYPE * setting,
     strcat (buf, "\n\r");
 }
 
-void do_colour_codes (CHAR_DATA * ch, char *argument) {
+void do_colour_codes (CHAR_DATA *ch, char *argument) {
     flag_t last_mask = 0;
     int i, col = 0;
 
@@ -114,9 +115,8 @@ void do_colour_codes (CHAR_DATA * ch, char *argument) {
 }
 
 /* changes your scroll */
-void do_scroll (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_scroll) {
     char arg[MAX_INPUT_LENGTH];
-    char buf[100];
     int lines;
 
     one_argument (argument, arg);
@@ -124,9 +124,8 @@ void do_scroll (CHAR_DATA * ch, char *argument) {
         if (ch->lines == 0)
             send_to_char ("You do not page long messages.\n\r", ch);
         else {
-            sprintf (buf, "You currently display %d lines per page.\n\r",
-                     ch->lines + 2);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "You currently display %d lines per page.\n\r",
+                ch->lines + 2);
         }
         return;
     }
@@ -142,15 +141,14 @@ void do_scroll (CHAR_DATA * ch, char *argument) {
     BAIL_IF (lines < 10 || lines > 100,
         "You must provide a reasonable number.\n\r", ch);
 
-    sprintf (buf, "Scroll set to %d lines.\n\r", lines);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Scroll set to %d lines.\n\r", lines);
     ch->lines = lines - 2;
 }
 
 /* ColoUr setting and unsetting, way cool, Ant Oct 94
  * revised to include config colour, Ant Feb 95
  * Modified by Synival */
-void do_colour (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_colour) {
     char buf[MAX_STRING_LENGTH];
     char arg1[MAX_STRING_LENGTH], arg2[MAX_STRING_LENGTH];
     const COLOUR_SETTING_TYPE *setting;
@@ -238,7 +236,7 @@ void do_colour (CHAR_DATA * ch, char *argument) {
 
 /* RT this following section holds all the auto commands from ROM, as well as
    replacements for config */
-void do_autolist (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_autolist) {
     /* lists most player flags */
     BAIL_IF (IS_NPC (ch),
         "NPCs can't use player flags.\n\r", ch);
@@ -270,49 +268,49 @@ void do_autolist (CHAR_DATA * ch, char *argument) {
     do_autolist_flag ("nofollow",     ch, ch->plr,  PLR_NOFOLLOW);
 }
 
-void do_autoassist (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_autoassist) {
     do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOASSIST,
         "Autoassist removed.\n\r",
         "You will now assist when needed.\n\r");
 }
 
-void do_autoexit (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_autoexit) {
     do_flag_toggle (ch, FALSE, &(ch->plr), PLR_AUTOEXIT,
         "Exits will no longer be displayed.\n\r",
         "Exits will now be displayed.\n\r");
 }
 
-void do_autogold (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_autogold) {
     do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOGOLD,
         "Autogold removed.\n\r",
         "Automatic gold looting set.\n\r");
 }
 
-void do_autoloot (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_autoloot) {
     do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOLOOT,
         "Autolooting removed.\n\r",
         "Automatic corpse looting set.\n\r");
 }
 
-void do_autosac (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_autosac) {
     do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOSAC,
         "Autosacrificing removed.\n\r",
         "Automatic corpse sacrificing set.\n\r");
 }
 
-void do_autosplit (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_autosplit) {
     do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOSPLIT,
         "Autosplitting removed.\n\r",
         "Automatic gold splitting set.\n\r");
 }
 
-void do_noloot (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_noloot) {
     do_flag_toggle (ch, TRUE, &(ch->plr), PLR_CANLOOT,
         "Your corpse is now safe from thieves.\n\r",
         "Your corpse may now be looted.\n\r");
 }
 
-void do_nofollow (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_nofollow) {
     do_flag_toggle (ch, TRUE, &(ch->plr), PLR_NOFOLLOW,
         "You now accept followers.\n\r",
         "You no longer accept followers.\n\r");
@@ -320,43 +318,43 @@ void do_nofollow (CHAR_DATA * ch, char *argument) {
         die_follower (ch);
 }
 
-void do_telnetga (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_telnetga) {
     do_flag_toggle (ch, FALSE, &(ch->comm), COMM_TELNET_GA,
         "Telnet GA removed.\n\r",
         "Telnet GA enabled.\n\r");
 }
 
-void do_brief (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_brief) {
     do_flag_toggle (ch, FALSE, &(ch->comm), COMM_BRIEF,
         "Full descriptions activated.\n\r",
         "Short descriptions activated.\n\r");
 }
 
-void do_compact (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_compact) {
     do_flag_toggle (ch, FALSE, &(ch->comm), COMM_COMPACT,
         "Compact mode removed.\n\r",
         "Compact mode set.\n\r");
 }
 
-void do_show_affects (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_show_affects) {
     do_flag_toggle (ch, FALSE, &(ch->comm), COMM_SHOW_AFFECTS,
         "Affects will no longer be shown in score.\n\r",
         "Affects will now be shown in score.\n\r");
 }
 
-void do_combine (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_combine) {
     do_flag_toggle (ch, FALSE, &(ch->comm), COMM_COMBINE,
         "Long inventory selected.\n\r",
         "Combined inventory selected.\n\r");
 }
 
-void do_materials (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_materials) {
     do_flag_toggle (ch, FALSE, &(ch->comm), COMM_MATERIALS,
         "Object and character materials will no longer be displayed.\n\r",
         "You will now see object and character materials.\n\r");
 }
 
-void do_nosummon (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_nosummon) {
     if (IS_NPC (ch)) {
         do_flag_toggle (ch, FALSE, &(ch->imm_flags), RES_SUMMON,
             "You are no longer immune to summon.\n\r",
@@ -369,7 +367,7 @@ void do_nosummon (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_autoall (CHAR_DATA *ch, char * argument) {
+DEFINE_DO_FUN (do_autoall) {
     BAIL_IF (IS_NPC (ch),
         "NPCs can't use player flags.\n\r", ch);
 
@@ -395,7 +393,7 @@ void do_autoall (CHAR_DATA *ch, char * argument) {
         send_to_char("Usage: autoall [on|off]\n\r", ch);
 }
 
-void do_prompt (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_prompt) {
     char buf[MAX_STRING_LENGTH];
 
     if (argument[0] == '\0') {
@@ -423,22 +421,20 @@ void do_prompt (CHAR_DATA * ch, char *argument) {
 
     str_free (ch->prompt);
     ch->prompt = str_dup (buf);
-    sprintf (buf, "Prompt set to %s\n\r", ch->prompt);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Prompt set to %s\n\r", ch->prompt);
 }
 
-void do_alia (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_alia) {
     send_to_char ("I'm sorry, alias must be entered in full.\n\r", ch);
-    return;
 }
 
-void do_alias (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_alias) {
     CHAR_DATA *rch;
-    char arg[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH];
+    char arg[MAX_INPUT_LENGTH];
     int pos;
 
     smash_tilde (argument);
-    rch = OCH(ch);
+    rch = REAL_CH (ch);
     if (IS_NPC (rch))
         return;
 
@@ -494,8 +490,8 @@ void do_alias (CHAR_DATA * ch, char *argument) {
         if (!str_cmp (arg, rch->pcdata->alias[pos])) { /* redefine an alias */
             str_free (rch->pcdata->alias_sub[pos]);
             rch->pcdata->alias_sub[pos] = str_dup (argument);
-            sprintf (buf, "%s is now realiased to '%s'.\n\r", arg, argument);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "%s is now realiased to '%s'.\n\r",
+                arg, argument);
             return;
         }
     }
@@ -509,13 +505,13 @@ void do_alias (CHAR_DATA * ch, char *argument) {
     printf_to_char (ch, "%s is now aliased to '%s'.\n\r", arg, argument);
 }
 
-void do_unalias (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_unalias) {
     CHAR_DATA *rch;
     char arg[MAX_INPUT_LENGTH];
     int pos;
     bool found = FALSE;
 
-    rch = OCH(ch);
+    rch = REAL_CH (ch);
     if (IS_NPC (rch))
         return;
     DO_REQUIRE_ARG (arg, "Unalias what?\n\r");

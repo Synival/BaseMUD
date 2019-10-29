@@ -84,10 +84,10 @@ void song_update (void) {
     }
 
     for (obj = object_list; obj != NULL; obj = obj->next) {
-        if (obj->item_type != ITEM_JUKEBOX || obj->value[1] < 0)
+        if (obj->item_type != ITEM_JUKEBOX || obj->v.value[1] < 0)
             continue;
-        if (obj->value[1] >= MAX_SONGS) {
-            obj->value[1] = -1;
+        if (obj->v.value[1] >= MAX_SONGS) {
+            obj->v.value[1] = -1;
             continue;
         }
 
@@ -99,31 +99,31 @@ void song_update (void) {
                 continue;
         }
 
-        if (obj->value[0] < 0) {
+        if (obj->v.value[0] < 0) {
             sprintf (buf, "$p starts playing %s, %s.",
-                     song_table[obj->value[1]].group,
-                     song_table[obj->value[1]].name);
+                     song_table[obj->v.value[1]].group,
+                     song_table[obj->v.value[1]].name);
             if (room->people != NULL)
                 act (buf, room->people, obj, NULL, TO_ALL);
-            obj->value[0] = 0;
+            obj->v.value[0] = 0;
             continue;
         }
         else {
-            if (obj->value[0] >= MAX_LINES
-                || obj->value[0] >= song_table[obj->value[1]].lines)
+            if (obj->v.value[0] >= MAX_LINES ||
+                obj->v.value[0] >= song_table[obj->v.value[1]].lines)
             {
-                obj->value[0] = -1;
+                obj->v.value[0] = -1;
 
                 /* scroll songs forward */
-                obj->value[1] = obj->value[2];
-                obj->value[2] = obj->value[3];
-                obj->value[3] = obj->value[4];
-                obj->value[4] = -1;
+                obj->v.value[1] = obj->v.value[2];
+                obj->v.value[2] = obj->v.value[3];
+                obj->v.value[3] = obj->v.value[4];
+                obj->v.value[4] = -1;
                 continue;
             }
 
-            line = song_table[obj->value[1]].lyrics[obj->value[0]];
-            obj->value[0]++;
+            line = song_table[obj->v.value[1]].lyrics[obj->v.value[0]];
+            obj->v.value[0]++;
         }
 
         sprintf (buf, "{e$p bops: '{E%s{e'{x", line);

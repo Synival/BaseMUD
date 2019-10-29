@@ -34,55 +34,42 @@
 #include "comm.h"
 #include "affects.h"
 #include "objs.h"
+#include "chars.h"
 
 #include "recycle.h"
 
-/* TODO: move defines to recycle.h */
-/* TODO: move non-recycle functions to appropriate places. */
-/* TODO: init / dispose functions should probably be in their appropriate
- *       files, since they're basically constructors / destructors. */
-
-/* Globals */
-#define RECYCLE_GLOBALS(type, name, vtype)   \
-    vtype * name ## _get_first (void)        \
-        { return recycle_get_first_obj (type); } \
-    vtype * name ## _get_next (const vtype * obj) \
-        { return (obj->rec_data.next) ? obj->rec_data.next->obj : NULL; } \
-    vtype * name ## _new (void)              \
-        { return recycle_new (type); }       \
-    void name ## _free (vtype *v)            \
-        { recycle_free (type, v); }
-
-RECYCLE_GLOBALS (RECYCLE_BAN_DATA,         ban,         BAN_DATA);
-RECYCLE_GLOBALS (RECYCLE_AREA_DATA,        area,        AREA_DATA);
-RECYCLE_GLOBALS (RECYCLE_EXTRA_DESCR_DATA, extra_descr, EXTRA_DESCR_DATA);
-RECYCLE_GLOBALS (RECYCLE_EXIT_DATA,        exit,        EXIT_DATA);
-RECYCLE_GLOBALS (RECYCLE_ROOM_INDEX_DATA,  room_index,  ROOM_INDEX_DATA);
-RECYCLE_GLOBALS (RECYCLE_OBJ_INDEX_DATA,   obj_index,   OBJ_INDEX_DATA);
-RECYCLE_GLOBALS (RECYCLE_SHOP_DATA,        shop,        SHOP_DATA);
-RECYCLE_GLOBALS (RECYCLE_MOB_INDEX_DATA,   mob_index,   MOB_INDEX_DATA);
-RECYCLE_GLOBALS (RECYCLE_RESET_DATA,       reset_data,  RESET_DATA);
-RECYCLE_GLOBALS (RECYCLE_HELP_DATA,        help,        HELP_DATA);
-RECYCLE_GLOBALS (RECYCLE_MPROG_CODE,       mpcode,      MPROG_CODE);
-RECYCLE_GLOBALS (RECYCLE_DESCRIPTOR_DATA,  descriptor,  DESCRIPTOR_DATA);
-RECYCLE_GLOBALS (RECYCLE_GEN_DATA,         gen_data,    GEN_DATA);
-RECYCLE_GLOBALS (RECYCLE_AFFECT_DATA,      affect,      AFFECT_DATA);
-RECYCLE_GLOBALS (RECYCLE_OBJ_DATA,         obj,         OBJ_DATA);
-RECYCLE_GLOBALS (RECYCLE_CHAR_DATA,        char,        CHAR_DATA);
-RECYCLE_GLOBALS (RECYCLE_PC_DATA,          pcdata,      PC_DATA);
-RECYCLE_GLOBALS (RECYCLE_MEM_DATA,         mem_data,    MEM_DATA);
-RECYCLE_GLOBALS (RECYCLE_BUFFER,           buf,         BUFFER);
-RECYCLE_GLOBALS (RECYCLE_MPROG_LIST,       mprog,       MPROG_LIST);
-RECYCLE_GLOBALS (RECYCLE_HELP_AREA,        had,         HELP_AREA);
-RECYCLE_GLOBALS (RECYCLE_NOTE_DATA,        note,        NOTE_DATA);
-RECYCLE_GLOBALS (RECYCLE_SOCIAL_TYPE,      social,      SOCIAL_TYPE);
-RECYCLE_GLOBALS (RECYCLE_PORTAL_EXIT_TYPE, portal_exit, PORTAL_EXIT_TYPE);
-RECYCLE_GLOBALS (RECYCLE_PORTAL_TYPE,      portal,      PORTAL_TYPE);
-
+/* Global variables. */
 int mobile_count = 0;
 long last_pc_id  = 0;
 long last_mob_id = 0;
 size_t new_buf_current_size = BASE_BUF;
+
+/* Bundles of recycle functions. */
+RECYCLE_BUNDLE (RECYCLE_BAN_DATA,         ban,         BAN_DATA);
+RECYCLE_BUNDLE (RECYCLE_AREA_DATA,        area,        AREA_DATA);
+RECYCLE_BUNDLE (RECYCLE_EXTRA_DESCR_DATA, extra_descr, EXTRA_DESCR_DATA);
+RECYCLE_BUNDLE (RECYCLE_EXIT_DATA,        exit,        EXIT_DATA);
+RECYCLE_BUNDLE (RECYCLE_ROOM_INDEX_DATA,  room_index,  ROOM_INDEX_DATA);
+RECYCLE_BUNDLE (RECYCLE_OBJ_INDEX_DATA,   obj_index,   OBJ_INDEX_DATA);
+RECYCLE_BUNDLE (RECYCLE_SHOP_DATA,        shop,        SHOP_DATA);
+RECYCLE_BUNDLE (RECYCLE_MOB_INDEX_DATA,   mob_index,   MOB_INDEX_DATA);
+RECYCLE_BUNDLE (RECYCLE_RESET_DATA,       reset_data,  RESET_DATA);
+RECYCLE_BUNDLE (RECYCLE_HELP_DATA,        help,        HELP_DATA);
+RECYCLE_BUNDLE (RECYCLE_MPROG_CODE,       mpcode,      MPROG_CODE);
+RECYCLE_BUNDLE (RECYCLE_DESCRIPTOR_DATA,  descriptor,  DESCRIPTOR_DATA);
+RECYCLE_BUNDLE (RECYCLE_GEN_DATA,         gen_data,    GEN_DATA);
+RECYCLE_BUNDLE (RECYCLE_AFFECT_DATA,      affect,      AFFECT_DATA);
+RECYCLE_BUNDLE (RECYCLE_OBJ_DATA,         obj,         OBJ_DATA);
+RECYCLE_BUNDLE (RECYCLE_CHAR_DATA,        char,        CHAR_DATA);
+RECYCLE_BUNDLE (RECYCLE_PC_DATA,          pcdata,      PC_DATA);
+RECYCLE_BUNDLE (RECYCLE_MEM_DATA,         mem_data,    MEM_DATA);
+RECYCLE_BUNDLE (RECYCLE_BUFFER,           buf,         BUFFER);
+RECYCLE_BUNDLE (RECYCLE_MPROG_LIST,       mprog,       MPROG_LIST);
+RECYCLE_BUNDLE (RECYCLE_HELP_AREA,        had,         HELP_AREA);
+RECYCLE_BUNDLE (RECYCLE_NOTE_DATA,        note,        NOTE_DATA);
+RECYCLE_BUNDLE (RECYCLE_SOCIAL_TYPE,      social,      SOCIAL_TYPE);
+RECYCLE_BUNDLE (RECYCLE_PORTAL_EXIT_TYPE, portal_exit, PORTAL_EXIT_TYPE);
+RECYCLE_BUNDLE (RECYCLE_PORTAL_TYPE,      portal,      PORTAL_TYPE);
 
 void *recycle_new (int type) {
     RECYCLE_TYPE *rec;
@@ -92,10 +79,8 @@ void *recycle_new (int type) {
     /* This function is cool enough to disregard const.
      * It's BAD, but... This can be fixed in a later refactoring.
      * -- Synival */
-    if ((rec = (RECYCLE_TYPE *) recycle_get (type)) == NULL) {
-        bugf("new_recycle: Unknown type '%d'", type);
-        return NULL;
-    }
+    RETURN_IF_BUG ((rec = (RECYCLE_TYPE *) recycle_get (type)) == NULL,
+        "new_recycle: Unknown type '%d'", type, NULL);
 
     /* If there's nothing to recycle, allocate a new object. */
     if (rec->free_front == NULL) {
@@ -139,17 +124,13 @@ void recycle_free (int type, void *obj) {
     /* This function is cool enough to disregard const.
      * It's BAD, but... This can be fixed in a later refactoring.
      * -- Synival */
-    if ((rec = (RECYCLE_TYPE *) recycle_get (type)) == NULL) {
-        bugf("free_recycle: Unknown type '%d'", type);
-        return;
-    }
+    BAIL_IF_BUG  ((rec = (RECYCLE_TYPE *) recycle_get (type)) == NULL,
+        "free_recycle: Unknown type '%d'", type);
 
     /* Don't free objects that are already invalidated. */
     data = APPLY_OFFSET (OBJ_RECYCLE_DATA, obj, rec->obj_data_off);
-    if (!data->valid) {
-        bugf("free_recycle: Attempted to free invalidated %s\n", rec->name);
-        return;
-    }
+    BAIL_IF_BUGF (!data->valid,
+        "free_recycle: Attempted to free invalidated %s\n", rec->name);
 
     /* Use a disposal function if we have one. */
     if (rec->dispose_fun) {
@@ -502,11 +483,11 @@ void mpcode_dispose (void *obj) {
 void buf_init (void *obj) {
     BUFFER *buffer = obj;
     buffer->state = BUFFER_SAFE;
+
     buffer->size  = get_size (new_buf_current_size);
-    if (buffer->size == -1) {
-        bug ("new_buf: buffer size %d too large.", new_buf_current_size);
-        exit (1);
-    }
+    EXIT_IF_BUG (buffer->size == -1,
+        "new_buf: buffer size %d too large.", new_buf_current_size);
+
     buffer->string = alloc_mem (buffer->size);
     buffer->string[0] = '\0';
 }

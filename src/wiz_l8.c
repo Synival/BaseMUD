@@ -39,11 +39,7 @@
 
 #include "wiz_l8.h"
 
-/* TODO: review most of these functions and test them thoroughly. */
-/* TODO: employ tables whenever possible */
-/* TODO: merge do_bamfin() and do_bamfout() */
-
-void do_goto (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_goto) {
     ROOM_INDEX_DATA *location;
     CHAR_DATA *rch;
     int count = 0;
@@ -87,11 +83,9 @@ void do_goto (CHAR_DATA * ch, char *argument) {
     }
 
     do_function (ch, &do_look, "auto");
-    return;
 }
 
-void do_bamfin (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_bamfin) {
     if (IS_NPC (ch))
         return;
 
@@ -104,12 +98,10 @@ void do_bamfin (CHAR_DATA * ch, char *argument) {
         "You must include your name.\n\r", ch);
 
     str_replace_dup (&(ch->pcdata->bamfin), argument);
-    sprintf (buf, "Your poofin is now %s\n\r", ch->pcdata->bamfin);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Your poofin is now %s\n\r", ch->pcdata->bamfin);
 }
 
-void do_bamfout (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_bamfout) {
     if (IS_NPC (ch))
         return;
 
@@ -122,6 +114,5 @@ void do_bamfout (CHAR_DATA * ch, char *argument) {
         "You must include your name.\n\r", ch);
 
     str_replace_dup (&(ch->pcdata->bamfout), argument);
-    sprintf (buf, "Your poofout is now %s\n\r", ch->pcdata->bamfout);
-    send_to_char (buf, ch);
+    printf_to_char (ch, "Your poofout is now %s\n\r", ch->pcdata->bamfout);
 }

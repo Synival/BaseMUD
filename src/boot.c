@@ -55,9 +55,6 @@
 
 #include "boot.h"
 
-/* TODO: feature - better command-line arguments?
- *       (confirm it works with copyover) */
-
 int main (int argc, char **argv) {
     struct timeval now_time;
     bool fCopyOver = FALSE;

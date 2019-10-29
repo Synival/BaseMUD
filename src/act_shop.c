@@ -130,13 +130,12 @@ void do_buy_pet (CHAR_DATA *ch, char *argument) {
     roll = number_percent ();
     if (roll < get_skill (ch, gsn_haggle)) {
         cost -= cost / 2 * roll / 100;
-        sprintf (buf, "You haggle the price down to %d coins.\n\r", cost);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "You haggle the price down to %d coins.\n\r", cost);
         check_improve (ch, gsn_haggle, TRUE, 4);
     }
 
     char_reduce_money (ch, cost);
-    pet = create_mobile (pet->pIndexData);
+    pet = char_create_mobile (pet->pIndexData);
     SET_BIT (pet->mob, MOB_PET);
     SET_BIT (pet->affected_by, AFF_CHARM);
     pet->comm = COMM_NOTELL | COMM_NOSHOUT | COMM_NOCHANNELS;
@@ -149,7 +148,7 @@ void do_buy_pet (CHAR_DATA *ch, char *argument) {
     }
 
     sprintf (buf, "%sA neck tag says 'I belong to %s'.\n\r",
-             pet->description, ch->name);
+        pet->description, ch->name);
     str_free (pet->description);
     pet->description = str_dup (buf);
 
@@ -220,8 +219,7 @@ void do_buy_item (CHAR_DATA *ch, char *argument) {
         check_improve (ch, gsn_haggle, TRUE, 4);
     }
     if (number > 1) {
-        sprintf (buf, "You buy $p[%d] for %d silver.", number,
-                 cost * number);
+        sprintf (buf, "You buy $p[%d] for %d silver.", number, cost * number);
         act (buf, ch, obj, NULL, TO_CHAR);
         sprintf (buf, "$n buys $p[%d].", number);
         act (buf, ch, obj, NULL, TO_NOTCHAR);
@@ -237,7 +235,7 @@ void do_buy_item (CHAR_DATA *ch, char *argument) {
 
     for (count = 0; count < number; count++) {
         if (IS_SET (obj->extra_flags, ITEM_INVENTORY))
-            t_obj = create_object (obj->pIndexData, obj->level);
+            t_obj = obj_create (obj->pIndexData, obj->level);
         else {
             t_obj = obj;
             obj = obj->next_content;
@@ -253,7 +251,7 @@ void do_buy_item (CHAR_DATA *ch, char *argument) {
     }
 }
 
-void do_buy (CHAR_DATA *ch, char *argument) {
+DEFINE_DO_FUN (do_buy) {
     BAIL_IF (argument[0] == '\0',
         "Buy what?\n\r", ch);
     if (IS_SET (ch->in_room->room_flags, ROOM_PET_SHOP))
@@ -263,7 +261,6 @@ void do_buy (CHAR_DATA *ch, char *argument) {
 }
 
 void do_list_pets (CHAR_DATA *ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
     ROOM_INDEX_DATA *pRoomIndexNext;
     CHAR_DATA *pet;
     bool found;
@@ -290,9 +287,8 @@ void do_list_pets (CHAR_DATA *ch, char *argument) {
         }
         material_str = IS_SET (ch->comm, COMM_MATERIALS)
             ? material_format_part (material_get (pet->material)) : "";
-        sprintf (buf, "[%2d] %8d - %s%s\n\r", pet->level,
+        printf_to_char (ch, "[%2d] %8d - %s%s\n\r", pet->level,
             10 * pet->level * pet->level, material_str, pet->short_descr);
-        send_to_char (buf, ch);
     }
     if (!found)
         send_to_char ("Sorry, we're out of pets right now.\n\r", ch);
@@ -329,9 +325,11 @@ void do_list_items (CHAR_DATA *ch, char *argument) {
 
         material_str = IS_SET (ch->comm, COMM_MATERIALS)
             ? material_format_part (material_get (obj->material)) : "";
-        if (IS_OBJ_STAT (obj, ITEM_INVENTORY))
+
+        if (IS_OBJ_STAT (obj, ITEM_INVENTORY)) {
             sprintf (buf, "[%2d %5d -- ] %s%s\n\r",
-                     obj->level, cost, material_str, obj->short_descr);
+                obj->level, cost, material_str, obj->short_descr);
+        }
         else {
             count = 1;
             while (obj->next_content != NULL
@@ -343,7 +341,7 @@ void do_list_items (CHAR_DATA *ch, char *argument) {
                 count++;
             }
             sprintf (buf, "[%2d %5d %2d ] %s%s\n\r",
-                     obj->level, cost, count, material_str, obj->short_descr);
+                obj->level, cost, count, material_str, obj->short_descr);
         }
         send_to_char (buf, ch);
     }
@@ -352,14 +350,14 @@ void do_list_items (CHAR_DATA *ch, char *argument) {
         send_to_char ("You can't buy anything here.\n\r", ch);
 }
 
-void do_list (CHAR_DATA *ch, char *argument) {
+DEFINE_DO_FUN (do_list) {
     if (IS_SET (ch->in_room->room_flags, ROOM_PET_SHOP))
         do_list_pets (ch, argument);
     else
         do_list_items (ch, argument);
 }
 
-void do_sell (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_sell) {
     char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *keeper;
@@ -421,7 +419,7 @@ void do_sell (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_value (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_value) {
     char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *keeper;
@@ -447,7 +445,7 @@ void do_value (CHAR_DATA * ch, char *argument) {
     act (buf, ch, obj, keeper, TO_CHAR);
 }
 
-void do_heal (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_heal) {
     CHAR_DATA *mob;
     char arg[MAX_INPUT_LENGTH];
     int cost, sn;
@@ -457,10 +455,8 @@ void do_heal (CHAR_DATA * ch, char *argument) {
     for (mob = ch->in_room->people; mob; mob = mob->next_in_room)
         if (IS_NPC (mob) && IS_SET (mob->mob, MOB_IS_HEALER))
             break;
-    if (mob == NULL) {
-        send_to_char ("You can't do that here.\n\r", ch);
-        return;
-    }
+    BAIL_IF (mob == NULL,
+        "You can't do that here.\n\r", ch);
 
     one_argument (argument, arg);
     if (arg[0] == '\0') {
@@ -551,6 +547,7 @@ void do_heal (CHAR_DATA * ch, char *argument) {
     if (spell == NULL) {
         ch->mana += dice (2, 8) + mob->level / 3;
         ch->mana = UMIN (ch->mana, ch->max_mana);
+        say_spell_name (mob, "restore mana", CLASS_CLERIC);
         send_to_char ("A warm glow passes through you.\n\r", ch);
         return;
     }

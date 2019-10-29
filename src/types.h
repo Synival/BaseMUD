@@ -143,14 +143,14 @@
 #define WEAR_WIELD    16
 #define WEAR_HOLD     17
 #define WEAR_FLOAT    18
-#define WEAR_MAX      19
+#define WEAR_LOC_MAX  19
 
 /* AC types */
 #define AC_PIERCE    0
 #define AC_BASH      1
 #define AC_SLASH     2
 #define AC_EXOTIC    3
-#define AC_LAST      4
+#define AC_MAX       4
 
 /* Apply types (for affects).
  * Used in #OBJECTS. */
@@ -181,6 +181,7 @@
 #define APPLY_SAVING_BREATH  23
 #define APPLY_SAVING_SPELL   24
 #define APPLY_SPELL_AFFECT   25
+#define APPLY_MAX            26
 
 /* Material types - currently unused, but neat. */
 #define MATERIAL_GENERIC     0
@@ -223,16 +224,22 @@
 #define MATERIAL_WOOD       37
 #define MATERIAL_MAX        38
 
+/* Door resets. */
+#define RESET_OPEN      0
+#define RESET_CLOSED    1
+#define RESET_LOCKED    2
+#define RESET_MAX       3
+
 /* Type tables. */
-extern const FLAG_TYPE sex_types[];
-extern const FLAG_TYPE wear_loc_phrases[];
-extern const FLAG_TYPE wear_loc_types[];
-extern const FLAG_TYPE ac_types[];
-extern const FLAG_TYPE size_types[];
-extern const FLAG_TYPE weapon_types[];
-extern const FLAG_TYPE position_types[];
-extern const FLAG_TYPE affect_apply_types[];
-extern const FLAG_TYPE sector_types[];
-extern const FLAG_TYPE item_types[];
+extern const FLAG_TYPE sex_types[SEX_MAX + 1];
+extern const FLAG_TYPE wear_loc_phrases[WEAR_LOC_MAX + 2];
+extern const FLAG_TYPE wear_loc_types[WEAR_LOC_MAX + 2];
+extern const FLAG_TYPE ac_types[AC_MAX + 1];
+extern const FLAG_TYPE size_types[SIZE_MAX_R + 1];
+extern const FLAG_TYPE weapon_types[WEAPON_MAX + 1];
+extern const FLAG_TYPE position_types[POS_MAX + 1];
+extern const FLAG_TYPE affect_apply_types[APPLY_MAX + 1];
+extern const FLAG_TYPE sector_types[SECT_MAX + 1];
+extern const FLAG_TYPE item_types[ITEM_MAX + 1];
 
 #endif

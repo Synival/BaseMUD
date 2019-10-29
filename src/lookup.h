@@ -180,7 +180,9 @@ bool is_flag (const void *table);
 bool is_type (const void *table);
 bool is_special (const void *table);
 flag_t flag_value  (const FLAG_TYPE *flag_table, char *argument);
-char *flag_string (const FLAG_TYPE *flag_table, flag_t bits);
+const char *flag_string (const FLAG_TYPE *flag_table, flag_t bits);
+const char *flag_string_real (const FLAG_TYPE *flag_table, flag_t bits,
+    const char *none_str);
 
 /* Lookup bundles. */
 DEC_SIMPLE_ARRAY_BUNDLE (clan,       CLAN_TYPE);
@@ -195,7 +197,7 @@ DEC_SIMPLE_ARRAY_BUNDLE (attack,     ATTACK_TYPE);
 DEC_SIMPLE_ARRAY_BUNDLE (skill,      SKILL_TYPE);
 DEC_SIMPLE_ARRAY_BUNDLE (spec,       SPEC_TYPE);
 DEC_SIMPLE_ARRAY_BUNDLE (group,      GROUP_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (wear,       WEAR_TYPE);
+DEC_SIMPLE_ARRAY_BUNDLE (wear_loc,   WEAR_LOC_TYPE);
 DEC_SIMPLE_ARRAY_BUNDLE (recycle,    RECYCLE_TYPE);
 DEC_SIMPLE_ARRAY_BUNDLE (board,      BOARD_DATA);
 DEC_SIMPLE_ARRAY_BUNDLE (master,     TABLE_TYPE);
@@ -240,8 +242,8 @@ const TABLE_TYPE *master_get_first (void);
 const TABLE_TYPE *master_get_next (const TABLE_TYPE *table);
 AREA_DATA *area_get_by_vnum (int vnum);
 AREA_DATA *area_get_by_inner_vnum (int vnum);
+flag_t wear_get_loc_by_type (flag_t wear_flag);
 flag_t wear_get_type_by_loc (flag_t wear_loc);
-flag_t wear_get_loc_by_type (flag_t type);
 HELP_AREA *help_area_get_by_help (HELP_DATA * help);
 const DAY_TYPE *day_get_current ();
 const MONTH_TYPE *month_get_current ();
@@ -249,10 +251,19 @@ const SKY_TYPE *sky_get_current ();
 const SUN_TYPE *sun_get_current ();
 const SKY_TYPE *sky_get_by_mmhg (int mmhg);
 const SUN_TYPE *sun_get_by_hour (int hour);
-int slot_lookup (int slot);
+int skill_get_index_by_slot (int slot);
 const char *ac_rating_phrase (int ac);
 const char *align_name (int align);
 const char *position_name (int position);
+const char *sex_name (int sex);
+const char *ac_type_name (int type);
+const char *condition_name_by_percent (int percent);
+const char *wiz_class_by_level (int level);
+const STR_APP_TYPE *str_app_get (int attr);
+const INT_APP_TYPE *int_app_get (int attr);
+const WIS_APP_TYPE *wis_app_get (int attr);
+const DEX_APP_TYPE *dex_app_get (int attr);
+const CON_APP_TYPE *con_app_get (int attr);
 
 /* Bit functions from handler.c */
 const char *affect_apply_name (flag_t type);
@@ -263,15 +274,12 @@ const char *mob_bit_name (flag_t flags);
 const char *plr_bit_name (flag_t flags);
 const char *comm_bit_name (flag_t flags);
 const char *res_bit_name (flag_t flags);
-const char *wear_bit_name (flag_t flags);
+const char *wear_loc_name (flag_t type);
+const char *wear_flag_name (flag_t flags);
 const char *form_bit_name (flag_t flags);
 const char *part_bit_name (flag_t flags);
 const char *weapon_bit_name (flag_t flags);
 const char *cont_bit_name (flag_t flags);
 const char *off_bit_name (flag_t flags);
-const char *sex_name (int sex);
-const char *ac_type_name (int type);
-const char *condition_name_by_percent (int percent);
-const char *wiz_class_by_level (int level);
 
 #endif

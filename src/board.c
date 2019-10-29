@@ -100,10 +100,8 @@ void finish_note (BOARD_DATA *board, NOTE_DATA *note) {
 
     /* append note to note file */
     sprintf (filename, "%s/%s", NOTE_DIR, board->name);
-
-    fp = fopen (filename, "a");
-    if (!fp) {
-        bug ("Could not open one of the note files in append mode",0);
+    if ((fp = fopen (filename, "a")) == NULL) {
+        bug ("Could not open one of the note files in append mode", 0);
         board->changed = TRUE; /* set it to TRUE hope it will be OK later? */
         return;
     }
@@ -147,15 +145,12 @@ void save_board (BOARD_DATA *board) {
     NOTE_DATA *note;
 
     sprintf (filename, "%s/%s", NOTE_DIR, board->name);
+    BAIL_IF_BUGF ((fp = fopen (filename, "w")) == NULL,
+        "Error writing to: %s", filename);
 
-    fp = fopen (filename, "w");
-    if (!fp)
-        bugf ("Error writing to: %s", filename);
-    else {
-        for (note = board->note_first; note ; note = note->next)
-            append_note (fp, note);
-        fclose (fp);
-    }
+    for (note = board->note_first; note ; note = note->next)
+        append_note (fp, note);
+    fclose (fp);
 }
 
 /* Show one not to a character */
@@ -239,7 +234,7 @@ void load_board (BOARD_DATA *board) {
             sprintf (archive_name, "%s/%s.old", NOTE_DIR, board->name);
             fp_archive = fopen (archive_name, "a");
             if (!fp_archive)
-                bug ("Could not open archive boards for writing",0);
+                bug ("Could not open archive boards for writing", 0);
             else {
                 append_note (fp_archive, pnote);
                 fclose (fp_archive); /* it might be more efficient to close this later */
@@ -252,7 +247,7 @@ void load_board (BOARD_DATA *board) {
         LISTB_BACK (pnote, next, board->note_first, last_note);
     }
 
-    bug("load_notes: bad key word.", 0);
+    bug ("load_notes: bad key word.", 0);
 }
 
 /* Initialize structures. Load all boards. */
@@ -330,14 +325,10 @@ void make_note (const char* board_name, const char *sender, const char *to,
     NOTE_DATA *note;
     char *strtime;
 
-    if (board_index == BOARD_NOTFOUND) {
-        bug ("make_note: board not found",0);
-        return;
-    }
-    if (strlen(text) > MAX_NOTE_TEXT) {
-        bug ("make_note: text too long (%d bytes)", strlen(text));
-        return;
-    }
+    BAIL_IF_BUG (board_index == BOARD_NOTFOUND,
+        "make_note: board not found", 0);
+    BAIL_IF_BUG (strlen(text) > MAX_NOTE_TEXT,
+        "make_note: text too long (%d bytes)", strlen (text));
 
     board = &board_table[board_index];
 
@@ -410,14 +401,16 @@ void handle_con_note_to (DESCRIPTOR_DATA *d, char * argument) {
         case DEF_EXCLUDE: /* forced exclude */
             if (!buf[0]) {
                 send_to_desc ("You must specify a recipient.\n\r"
-                                    "{YTo{x:      ", d);
+                              "{YTo{x:      ", d);
                 return;
             }
             if (is_full_name (ch->pcdata->board->names, buf)) {
-                sprintf (buf, "You are not allowed to send notes to %s on this board. Try again.\n\r"
-                         "{YTo{x:      ", ch->pcdata->board->names);
-                send_to_desc (buf, d);
-                return; /* return from nanny, not changing to the next state! */
+                printf_to_desc (d,
+                    "You are not allowed to send notes to %s on this board. Try again.\n\r"
+                    "{YTo{x:      ", ch->pcdata->board->names);
+
+                /* return from nanny, not changing to the next state! */
+                return;
             }
             else
                 ch->pcdata->in_progress->to_list = str_dup (buf);

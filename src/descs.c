@@ -165,10 +165,9 @@ void init_descriptor (int control) {
 
         addr = ntohl (sock.sin_addr.s_addr);
         sprintf (buf, "%d.%d.%d.%d",
-                 (addr >> 24) & 0xFF, (addr >> 16) & 0xFF,
-                 (addr >> 8) & 0xFF, (addr) & 0xFF);
-        sprintf (log_buf, "Sock.sinaddr:  %s", buf);
-        log_string (log_buf);
+            (addr >> 24) & 0xFF, (addr >> 16) & 0xFF,
+            (addr >> 8) & 0xFF, (addr) & 0xFF);
+        log_f ("Sock.sinaddr:  %s", buf);
         from = gethostbyaddr ((char *) &sock.sin_addr,
                               sizeof (sock.sin_addr), AF_INET);
         dnew->host = str_dup (from ? from->h_name : buf);
@@ -220,8 +219,8 @@ void close_socket (DESCRIPTOR_DATA * dclose) {
     }
 
     if ((ch = dclose->character) != NULL) {
-        sprintf (log_buf, "Closing link to %s.", ch->name);
-        log_string (log_buf);
+        log_f ("Closing link to %s.", ch->name);
+
         /* cut down on wiznet spam when rebooting */
         /* If ch is writing note or playing, just lose link otherwise clear char */
         if ((dclose->connected == CON_PLAYING && !merc_down)
@@ -258,8 +257,7 @@ bool read_from_descriptor (DESCRIPTOR_DATA * d) {
     /* Check for overflow. */
     iStart = strlen (d->inbuf);
     if (iStart >= sizeof (d->inbuf) - 10) {
-        sprintf (log_buf, "%s input overflow!", d->host);
-        log_string (log_buf);
+        log_f ("%s input overflow!", d->host);
         write_to_descriptor (d->descriptor,
             "\n\r*** PUT A LID ON IT!!! ***\n\r", 0);
         return FALSE;
@@ -355,8 +353,7 @@ void read_from_buffer (DESCRIPTOR_DATA * d) {
             if (++d->repeat >= 25 && d->character
                 && d->connected == CON_PLAYING)
             {
-                sprintf (log_buf, "%s input spamming!", d->host);
-                log_string (log_buf);
+                log_f ("%s input spamming!", d->host);
                 wiznet ("Spam spam spam $N spam spam spam spam spam!",
                         d->character, NULL, WIZ_SPAM, 0,
                         char_get_trust (d->character));
@@ -542,8 +539,7 @@ bool check_reconnect (DESCRIPTOR_DATA * d, char *name, bool fConn) {
                 send_to_char ("Reconnecting. Type replay to see missed tells.\n\r", ch);
                 act ("$n has reconnected.", ch, NULL, NULL, TO_NOTCHAR);
 
-                sprintf (log_buf, "%s@%s reconnected.", ch->name, d->host);
-                log_string (log_buf);
+                log_f ("%s@%s reconnected.", ch->name, d->host);
                 wiznet ("$N groks the fullness of $S link.",
                         ch, NULL, WIZ_LINKS, 0, 0);
                 d->connected = CON_PLAYING;

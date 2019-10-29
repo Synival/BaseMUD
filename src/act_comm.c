@@ -41,6 +41,7 @@
 #include "do_sub.h"
 #include "chars.h"
 #include "find.h"
+#include "chars.h"
 
 #include "act_comm.h"
 
@@ -186,15 +187,13 @@ void do_comm_try_tell (CHAR_DATA *ch, CHAR_DATA *victim, char *msg) {
 }
 
 /* RT does socials */
-void do_socials (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_socials) {
     SOCIAL_TYPE *soc;
-    char buf[MAX_STRING_LENGTH];
     int col;
 
     col = 0;
     for (soc = social_get_first(); soc != NULL; soc = social_get_next(soc)) {
-        sprintf (buf, "%-12s", soc->name);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "%-12s", soc->name);
         if (++col % 6 == 0)
             send_to_char ("\n\r", ch);
     }
@@ -203,9 +202,7 @@ void do_socials (CHAR_DATA * ch, char *argument) {
 }
 
 /* RT code to display channel status */
-void do_channels (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
-
+DEFINE_DO_FUN (do_channels) {
     /* lists all channels and their status */
     send_to_char ("   Channel        Status\n\r", ch);
     send_to_char ("---------------------------\n\r", ch);
@@ -228,18 +225,15 @@ void do_channels (CHAR_DATA * ch, char *argument) {
     send_to_char ("---------------------------\n\r", ch);
     if (ch->lines != PAGELEN) {
         if (ch->lines) {
-            sprintf (buf, "You display %d lines of scroll.\n\r",
-                     ch->lines + 2);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "You display %d lines of scroll.\n\r",
+                ch->lines + 2);
         }
         else
             send_to_char ("Scroll buffering is off.\n\r", ch);
     }
 
-    if (ch->prompt != NULL) {
-        sprintf (buf, "Your current prompt is: %s\n\r", ch->prompt);
-        send_to_char (buf, ch);
-    }
+    if (ch->prompt != NULL)
+        printf_to_char (ch, "Your current prompt is: %s\n\r", ch->prompt);
 
     if (IS_SET (ch->comm, COMM_NOSHOUT))
         send_to_char ("You cannot shout.\n\r", ch);
@@ -252,27 +246,27 @@ void do_channels (CHAR_DATA * ch, char *argument) {
 }
 
 /* RT deaf blocks out all shouts */
-void do_deaf (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_deaf) {
     do_flag_toggle (ch, FALSE, &(ch->comm), COMM_DEAF,
         "{kYou can now hear tells again.{x\n\r",
         "{kFrom now on, you won't hear tells.{x\n\r");
 }
 
 /* RT quiet blocks out all communication */
-void do_quiet (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_quiet) {
     do_flag_toggle (ch, FALSE, &(ch->comm), COMM_QUIET,
         "{tQuiet mode removed.{x\n\r",
         "{tFrom now on, you will only hear says and emotes.{x\n\r");
 }
 
 /* afk command */
-void do_afk (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_afk) {
     do_flag_toggle (ch, FALSE, &(ch->comm), COMM_AFK,
         "AFK mode removed. Type 'replay' to see tells.\n\r",
         "You are now in AFK mode.\n\r");
 }
 
-void do_replay (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_replay) {
     BAIL_IF (IS_NPC (ch),
         "You can't replay.\n\r", ch);
     BAIL_IF (buf_string (ch->pcdata->buffer)[0] == '\0',
@@ -281,7 +275,7 @@ void do_replay (CHAR_DATA * ch, char *argument) {
     clear_buf (ch->pcdata->buffer);
 }
 
-void do_auction (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_auction) {
     do_comm_channel_global (ch, argument, COMM_NOAUCTION,
         "{aAuction channel is now ON.{x\n\r",
         "{aAuction channel is now OFF.{x\n\r",
@@ -290,7 +284,7 @@ void do_auction (CHAR_DATA * ch, char *argument) {
         POS_DEAD);
 }
 
-void do_gossip (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_gossip) {
     do_comm_channel_global (ch, argument, COMM_NOGOSSIP,
         "{dGossip channel is now ON.{x\n\r",
         "{dGossip channel is now OFF.{x\n\r",
@@ -298,7 +292,7 @@ void do_gossip (CHAR_DATA * ch, char *argument) {
         "{d$n gossips '{9$t{d'{x", POS_SLEEPING);
 }
 
-void do_grats (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_grats) {
     do_comm_channel_global (ch, argument, COMM_NOGRATS,
         "{tGrats channel is now ON.{x\n\r",
         "{tGrats channel is now OFF.{x\n\r",
@@ -306,7 +300,7 @@ void do_grats (CHAR_DATA * ch, char *argument) {
         "{t$n grats '$t'{x", POS_SLEEPING);
 }
 
-void do_quote (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_quote) {
     do_comm_channel_global (ch, argument, COMM_NOQUOTE,
         "{hQuote channel is now ON.{x\n\r",
         "{hQuote channel is now OFF.{x\n\r",
@@ -315,7 +309,7 @@ void do_quote (CHAR_DATA * ch, char *argument) {
 }
 
 /* RT question channel */
-void do_question (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_question) {
     do_comm_channel_global (ch, argument, COMM_NOQUESTION,
         "{qQ{x/{fA{x channel is now ON.\n\r",
         "{qQ{x/{fA{x channel is now OFF.\n\r",
@@ -324,7 +318,7 @@ void do_question (CHAR_DATA * ch, char *argument) {
 }
 
 /* RT answer channel - uses same line as questions */
-void do_answer (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_answer) {
     do_comm_channel_global (ch, argument, COMM_NOQUESTION,
         "{qQ{x/{fA{x channel is now ON.\n\r",
         "{qQ{x/{fA{x channel is now OFF.\n\r",
@@ -333,7 +327,7 @@ void do_answer (CHAR_DATA * ch, char *argument) {
 }
 
 /* RT music channel */
-void do_music (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_music) {
     do_comm_channel_global (ch, argument, COMM_NOMUSIC,
         "Music channel is now ON.\n\r",
         "Music channel is now OFF.\n\r",
@@ -342,7 +336,7 @@ void do_music (CHAR_DATA * ch, char *argument) {
 }
 
 /* clan channels */
-void do_clantalk (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_clantalk) {
     DESCRIPTOR_DATA *d;
 
     BAIL_IF (!char_has_clan (ch) || clan_table[ch->clan].independent,
@@ -368,7 +362,7 @@ void do_clantalk (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_say (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_say) {
     BAIL_IF (argument[0] == '\0',
         "Say what?\n\r", ch);
 
@@ -387,7 +381,7 @@ void do_say (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_shout (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_shout) {
     DESCRIPTOR_DATA *d;
 
     if (do_comm_toggle_channel_if_blank (ch, argument, COMM_SHOUTSOFF,
@@ -410,7 +404,7 @@ void do_shout (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_tell (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_tell) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
@@ -427,7 +421,7 @@ void do_tell (CHAR_DATA * ch, char *argument) {
     do_comm_try_tell (ch, victim, argument);
 }
 
-void do_reply (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_reply) {
     CHAR_DATA *victim;
     if (do_comm_filter_can_tell_or_reply (ch))
         return;
@@ -436,7 +430,7 @@ void do_reply (CHAR_DATA * ch, char *argument) {
     do_comm_try_tell (ch, victim, argument);
 }
 
-void do_yell (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_yell) {
     DESCRIPTOR_DATA *d;
 
     BAIL_IF (IS_SET (ch->comm, COMM_NOSHOUT),
@@ -461,7 +455,7 @@ void do_yell (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_emote (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_emote) {
     if (do_comm_filter_emote (ch, argument))
         return;
 
@@ -471,7 +465,7 @@ void do_emote (CHAR_DATA * ch, char *argument) {
     MOBtrigger = TRUE;
 }
 
-void do_pmote (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_pmote) {
     CHAR_DATA *vch;
     char *letter, *name;
     char last[MAX_INPUT_LENGTH], temp[MAX_STRING_LENGTH];
@@ -695,7 +689,7 @@ const struct pose_table_type pose_table[] = {
       "Atlas asks $n to relieve him."}}
 };
 
-void do_pose (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_pose) {
     int level;
     int pose;
 
@@ -711,12 +705,12 @@ void do_pose (CHAR_DATA * ch, char *argument) {
          TO_NOTCHAR);
 }
 
-void do_bug (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_bug) {
     append_file (ch, BUG_FILE, argument);
     send_to_char ("Bug logged.\n\r", ch);
 }
 
-void do_typo (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_typo) {
     append_file (ch, TYPO_FILE, argument);
     send_to_char ("Typo logged.\n\r", ch);
 }

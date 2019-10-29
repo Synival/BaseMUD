@@ -34,9 +34,6 @@
 
 #include "groups.h"
 
-/* TODO: is_friend() and should_assist_group() probably have some overlap. */
-/* TODO: any other functions from other files that should be dumped here? */
-
 /* It is very important that this be an equivalence relation:
  * (1) A ~ A
  * (2) if A ~ B then B ~ A
@@ -53,10 +50,8 @@ bool is_same_group (CHAR_DATA * ach, CHAR_DATA * bch) {
 }
 
 void add_follower (CHAR_DATA * ch, CHAR_DATA * master) {
-    if (ch->master != NULL) {
-        bug ("add_follower: non-null master.", 0);
-        return;
-    }
+    BAIL_IF_BUG (ch->master != NULL,
+        "add_follower: non-null master.", 0);
 
     ch->master = master;
     ch->leader = NULL;
@@ -67,10 +62,8 @@ void add_follower (CHAR_DATA * ch, CHAR_DATA * master) {
 }
 
 void stop_follower (CHAR_DATA * ch) {
-    if (ch->master == NULL) {
-        bug ("stop_follower: null master.", 0);
-        return;
-    }
+    BAIL_IF_BUG (ch->master == NULL,
+        "stop_follower: null master.", 0);
 
     if (IS_AFFECTED (ch, AFF_CHARM)) {
         REMOVE_BIT (ch->affected_by, AFF_CHARM);

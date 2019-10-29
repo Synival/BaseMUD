@@ -170,7 +170,7 @@ void do_skills_or_spells (CHAR_DATA * ch, char *argument, int spells) {
 }
 
 /* used to get new skills */
-void do_gain (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_gain) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *trainer;
     int gn = 0, sn = 0;
@@ -295,15 +295,15 @@ void do_gain (CHAR_DATA * ch, char *argument) {
     act ("$N tells you 'I do not understand...'", ch, NULL, trainer, TO_CHAR);
 }
 
-void do_skills (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_skills)
     { do_skills_or_spells (ch, argument, FALSE); }
-void do_spells (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_spells)
     { do_skills_or_spells (ch, argument, TRUE); }
-void do_abilities (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_abilities)
     { do_skills_or_spells (ch, argument, -1); }
 
 /* shows all groups, or the sub-members of a group */
-void do_groups (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_groups) {
     int gn, sn, col;
     if (IS_NPC (ch))
         return;
@@ -356,7 +356,7 @@ void do_groups (CHAR_DATA * ch, char *argument) {
         send_to_char ("\n\r", ch);
 }
 
-void do_train (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_train) {
     char buf[MAX_STRING_LENGTH];
     CHAR_DATA *mob;
     sh_int stat = -1;
@@ -370,8 +370,7 @@ void do_train (CHAR_DATA * ch, char *argument) {
     BAIL_IF ((mob = char_get_trainer_room (ch)) == NULL,
         "You can't do that here.\n\r", ch);
     if (argument[0] == '\0') {
-        sprintf (buf, "You have %d training sessions.\n\r", ch->train);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "You have %d training sessions.\n\r", ch->train);
         argument = "foo";
     }
 
@@ -471,8 +470,7 @@ void do_train (CHAR_DATA * ch, char *argument) {
     act ("$n's $T increases!", ch, NULL, pOutput, TO_NOTCHAR);
 }
 
-void do_practice (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_practice) {
     int sn, level, col, rating;
     CHAR_DATA *mob;
     int adept, top_level = UMAX(LEVEL_HERO, ch->level);
@@ -494,9 +492,8 @@ void do_practice (CHAR_DATA * ch, char *argument) {
             if (!IS_IMMORTAL(ch) && ch->pcdata->learned[sn] < 1)
                 continue;
 
-            sprintf (buf, "%-18s %3d%%  ",
-                     skill_table[sn].name, ch->pcdata->learned[sn]);
-            send_to_char (buf, ch);
+            printf_to_char (ch, "%-18s %3d%%  ",
+                skill_table[sn].name, ch->pcdata->learned[sn]);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -504,9 +501,8 @@ void do_practice (CHAR_DATA * ch, char *argument) {
         if (col % 3 != 0)
             send_to_char ("\n\r", ch);
 
-        sprintf (buf, "You have %d practice sessions left.\n\r",
-                 ch->practice);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "You have %d practice sessions left.\n\r",
+            ch->practice);
         return;
     }
 
@@ -543,9 +539,7 @@ void do_practice (CHAR_DATA * ch, char *argument) {
 
     ch->practice--;
     rating = skill_table[sn].rating[ch->class];
-    ch->pcdata->learned[sn] +=
-        int_app[char_get_curr_stat (ch, STAT_INT)].learn /
-        (rating < 1 ? 1 : rating);
+    ch->pcdata->learned[sn] += char_int_learn_rate (ch) / UMAX (1, rating);
     if (ch->pcdata->learned[sn] < adept) {
         act2 ("You practice $T.", "$n practices $T.",
             ch, NULL, skill_table[sn].name, 0, POS_RESTING);
@@ -557,7 +551,7 @@ void do_practice (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_cast (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_cast) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
@@ -572,10 +566,8 @@ void do_cast (CHAR_DATA * ch, char *argument) {
         return;
 
     target_name = one_argument (argument, arg1);
-    if (arg1[0] == '\0') {
-        send_to_char ("Cast which what where?\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg1[0] == '\0',
+        "Cast which what where?\n\r", ch);
     one_argument (target_name, arg2);
 
     BAIL_IF ((sn = find_spell (ch, arg1)) < 1,
@@ -605,10 +597,6 @@ void do_cast (CHAR_DATA * ch, char *argument) {
     target = TARGET_NONE;
 
     switch (skill_table[sn].target) {
-        default:
-            bug ("do_cast: bad target for sn %d.", sn);
-            return;
-
         case TAR_IGNORE:
             break;
 
@@ -708,6 +696,10 @@ void do_cast (CHAR_DATA * ch, char *argument) {
                 return;
             }
             break;
+
+        default:
+            bug ("do_cast: bad target for sn %d.", sn);
+            return;
     }
 
     BAIL_IF (!IS_NPC (ch) && ch->mana < mana,

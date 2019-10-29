@@ -46,8 +46,6 @@
 /* POSSIBLE FEATURE: You know what would be neat? If 'word of recall'
  * teleported NPCs back to their original loading room. */
 
-/* TODO: what exactly does the 'NOT trust' comment mean? */
-
 bool spell_filter_is_valid_move_target (CHAR_DATA *ch, CHAR_DATA *victim,
     int level, flag_t res_type, flag_t dam_type)
 {
@@ -91,7 +89,7 @@ bool spell_filter_can_go_to (CHAR_DATA *ch, CHAR_DATA *victim,
 }
 
 bool spell_filter_use_warp_stone (CHAR_DATA *ch) {
-    OBJ_DATA *stone = char_get_eq_by_wear (ch, WEAR_HOLD);
+    OBJ_DATA *stone = char_get_eq_by_wear_loc (ch, WEAR_HOLD);
     FILTER (!IS_IMMORTAL (ch) && (
             stone == NULL || stone->item_type != ITEM_WARP_STONE),
         "You lack the proper component for this spell.\n\r", ch);
@@ -107,9 +105,9 @@ bool spell_filter_use_warp_stone (CHAR_DATA *ch) {
 OBJ_DATA *spell_sub_create_portal (ROOM_INDEX_DATA *from_room,
     ROOM_INDEX_DATA *to_room, int duration)
 {
-    OBJ_DATA *portal = create_object (get_obj_index (OBJ_VNUM_PORTAL), 0);
+    OBJ_DATA *portal = obj_create (get_obj_index (OBJ_VNUM_PORTAL), 0);
     portal->timer = duration;
-    portal->value[3] = to_room->vnum;
+    portal->v.portal.to_vnum = to_room->vnum;
     obj_to_room (portal, from_room);
     return portal;
 }

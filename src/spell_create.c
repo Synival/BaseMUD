@@ -51,7 +51,7 @@ DEFINE_SPELL_FUN (spell_continual_light) {
         return;
     }
 
-    light = create_object (get_obj_index (OBJ_VNUM_LIGHT_BALL), 0);
+    light = obj_create (get_obj_index (OBJ_VNUM_LIGHT_BALL), 0);
     obj_to_room (light, ch->in_room);
     act ("You twiddle your thumbs and $p appears.", ch, light, NULL, TO_CHAR);
     act ("$n twiddles $s thumbs and $p appears.", ch, light, NULL, TO_NOTCHAR);
@@ -59,16 +59,16 @@ DEFINE_SPELL_FUN (spell_continual_light) {
 
 DEFINE_SPELL_FUN (spell_create_food) {
     OBJ_DATA *mushroom;
-    mushroom = create_object (get_obj_index (OBJ_VNUM_MUSHROOM), 0);
-    mushroom->value[0] = level / 2;
-    mushroom->value[1] = level;
+    mushroom = obj_create (get_obj_index (OBJ_VNUM_MUSHROOM), 0);
+    mushroom->v.food.hunger   = level / 2;
+    mushroom->v.food.fullness = level;
     obj_to_room (mushroom, ch->in_room);
     act ("$p suddenly appears.", ch, mushroom, NULL, TO_ALL);
 }
 
 DEFINE_SPELL_FUN (spell_create_rose) {
     OBJ_DATA *rose;
-    rose = create_object (get_obj_index (OBJ_VNUM_ROSE), 0);
+    rose = obj_create (get_obj_index (OBJ_VNUM_ROSE), 0);
     obj_to_char (rose, ch);
     send_to_char ("You create a beautiful red rose.\n\r", ch);
     act ("$n has created a beautiful red rose.", ch, rose, NULL, TO_NOTCHAR);
@@ -76,7 +76,7 @@ DEFINE_SPELL_FUN (spell_create_rose) {
 
 DEFINE_SPELL_FUN (spell_create_spring) {
     OBJ_DATA *spring;
-    spring = create_object (get_obj_index (OBJ_VNUM_SPRING), 0);
+    spring = obj_create (get_obj_index (OBJ_VNUM_SPRING), 0);
     spring->timer = level;
     obj_to_room (spring, ch->in_room);
     act ("$p flows from the ground.", ch, spring, NULL, TO_ALL);
@@ -88,38 +88,38 @@ DEFINE_SPELL_FUN (spell_create_water) {
 
     BAIL_IF (obj->item_type != ITEM_DRINK_CON,
         "It is unable to hold water.\n\r", ch);
-    BAIL_IF (obj->value[2] != LIQ_WATER && obj->value[1] != 0,
+    BAIL_IF (obj->v.drink_con.liquid != LIQ_WATER && obj->v.drink_con.filled != 0,
         "It contains some other liquid.\n\r", ch);
 
     water = UMIN (level * (weather_info.sky >= SKY_RAINING ? 4 : 2),
-                  obj->value[0] - obj->value[1]);
+                  obj->v.drink_con.capacity - obj->v.drink_con.filled);
 
-    if (water > 0) {
-        obj->value[2] = LIQ_WATER;
-        obj->value[1] += water;
-        if (!is_name ("water", obj->name)) {
-            char buf[MAX_STRING_LENGTH];
+    BAIL_IF_ACT (water <= 0,
+        "The spell fails and $p refuses to fill.", ch, obj, NULL);
 
-            sprintf (buf, "%s water", obj->name);
-            str_free (obj->name);
-            obj->name = str_dup (buf);
-        }
-        act ("$p is filled.", ch, obj, NULL, TO_CHAR);
+    obj->v.drink_con.liquid = LIQ_WATER;
+    obj->v.drink_con.filled += water;
+    if (!is_name ("water", obj->name)) {
+        char buf[MAX_STRING_LENGTH];
+
+        sprintf (buf, "%s water", obj->name);
+        str_free (obj->name);
+        obj->name = str_dup (buf);
     }
-    else
-        act ("The spell fails and $p refuses to fill.", ch, obj, NULL, TO_CHAR);
+
+    act ("$p is filled.", ch, obj, NULL, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_floating_disc) {
     OBJ_DATA *disc, *floating;
 
-    floating = char_get_eq_by_wear (ch, WEAR_FLOAT);
+    floating = char_get_eq_by_wear_loc (ch, WEAR_FLOAT);
     BAIL_IF_ACT (floating != NULL && IS_OBJ_STAT (floating, ITEM_NOREMOVE),
         "You can't remove $p.", ch, floating, NULL);
 
-    disc = create_object (get_obj_index (OBJ_VNUM_DISC), 0);
-    disc->value[0] = ch->level * 10; /* 10 pounds per level capacity */
-    disc->value[3] = ch->level *  5;  /* 5 pounds per level max per item */
+    disc = obj_create (get_obj_index (OBJ_VNUM_DISC), 0);
+    disc->v.container.capacity   = ch->level * 10; /* 10 pounds/level */
+    disc->v.container.max_weight = ch->level *  5;  /* 5 pounds/level */
     disc->timer = ch->level * 2 - number_range (0, level / 2);
 
     send_to_char ("You create a floating disc.\n\r", ch);

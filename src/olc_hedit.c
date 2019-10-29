@@ -30,9 +30,9 @@ HEDIT (hedit_show) {
     EDIT_HELP (ch, help);
 
     printf_to_char (ch,
-        "Keyword : [%s]\n\r"
-        "Level   : [%d]\n\r"
-        "Text    :\n\r"
+        "Keyword: [%s]\n\r"
+        "Level  : [%d]\n\r"
+        "Text   :\n\r"
         "%s-END-\n\r", help->keyword, help->level, help->text);
     return FALSE;
 }
@@ -47,8 +47,8 @@ HEDIT (hedit_level) {
 
     lev = atoi (argument);
     if (lev < -1 || lev > MAX_LEVEL) {
-        printf_to_char (ch, "HEdit : levels are between -1 and %d inclusive.\n\r",
-                        MAX_LEVEL);
+        printf_to_char (ch,
+            "HEdit: levels are between -1 and %d inclusive.\n\r", MAX_LEVEL);
         return FALSE;
     }
 
@@ -87,7 +87,7 @@ HEDIT (hedit_new) {
         argument = fullarg;
     }
     RETURN_IF (help_get_by_name (argument),
-        "HEdit : help exists.\n\r", ch, FALSE);
+        "HEdit: Help already exists.\n\r", ch, FALSE);
 
     /* the area has no helps */
     if (!had) {
@@ -112,7 +112,7 @@ HEDIT (hedit_new) {
     ch->desc->pEdit = (HELP_DATA *) help;
     ch->desc->editor = ED_HELP;
 
-    send_to_char ("Ok.\n\r", ch);
+    send_to_char ("Help created.\n\r", ch);
     return FALSE;
 }
 
@@ -151,13 +151,11 @@ HEDIT (hedit_delete) {
             break;
         }
     }
-    if (!found) {
-        bugf ("hedit_delete : help %s not found in had_list", pHelp->keyword);
-        return FALSE;
-    }
+    RETURN_IF_BUGF (!found, FALSE,
+        "HEdit delete: Help %s not found in had_list.", pHelp->keyword);
     help_free (pHelp);
 
-    send_to_char ("Ok.\n\r", ch);
+    send_to_char ("Help deleted.\n\r", ch);
     return TRUE;
 }
 

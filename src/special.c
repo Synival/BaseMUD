@@ -197,9 +197,9 @@ bool spec_patrolman (CHAR_DATA * ch) {
             && victim->spec_fun == ch->spec_fun))
         return FALSE;
 
-    if (((obj = char_get_eq_by_wear (ch, WEAR_NECK_1)) != NULL
+    if (((obj = char_get_eq_by_wear_loc (ch, WEAR_NECK_1)) != NULL
          && obj->pIndexData->vnum == OBJ_VNUM_WHISTLE)
-        || ((obj = char_get_eq_by_wear (ch, WEAR_NECK_2)) != NULL
+        || ((obj = char_get_eq_by_wear_loc (ch, WEAR_NECK_2)) != NULL
             && obj->pIndexData->vnum == OBJ_VNUM_WHISTLE))
     {
         act ("You blow down hard on $p.", ch, obj, NULL, TO_CHAR);
@@ -610,7 +610,7 @@ bool spec_executioner (CHAR_DATA * ch) {
         return FALSE;
 
     sprintf (buf, "%s is a %s!  PROTECT THE INNOCENT!  MORE BLOOOOD!!!",
-             victim->name, crime);
+        victim->name, crime);
     REMOVE_BIT (ch->comm, COMM_NOSHOUT);
     do_function (ch, &do_yell, buf);
     multi_hit (ch, victim, TYPE_UNDEFINED);
@@ -683,7 +683,7 @@ bool spec_guard (CHAR_DATA * ch) {
 
     if (victim != NULL) {
         sprintf (buf, "%s is a %s!  PROTECT THE INNOCENT!!  BANZAI!!",
-                 victim->name, crime);
+            victim->name, crime);
         REMOVE_BIT (ch->comm, COMM_NOSHOUT);
         do_function (ch, &do_yell, buf);
         multi_hit (ch, victim, TYPE_UNDEFINED);

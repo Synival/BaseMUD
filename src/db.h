@@ -115,12 +115,6 @@ void fix_exits (void);
 void fix_mobprogs (void);
 void db_export_json (void);
 
-/* Instantiation functions. */
-CHAR_DATA *create_mobile (MOB_INDEX_DATA * pMobIndex);
-OBJ_DATA *create_object (OBJ_INDEX_DATA * pObjIndex, int level);
-void clone_mobile (CHAR_DATA * parent, CHAR_DATA * clone);
-void clone_object (OBJ_DATA * parent, OBJ_DATA * clone);
-
 /* Reset / destruction functions. */
 void reset_room (ROOM_INDEX_DATA * pRoom);
 void reset_area (AREA_DATA * pArea);

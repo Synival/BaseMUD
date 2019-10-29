@@ -37,17 +37,23 @@
 #include "interp.h"
 #include "act_info.h"
 #include "affects.h"
+#include "objs.h"
 
 #include "spell_info.h"
 
-/* TODO: move lore messages in spell_identify_know_message() to table */
-/* TODO: merge a lot of spell_identity() with do_ostat(). */
-
 DEFINE_SPELL_FUN (spell_detect_poison) {
+    int poisoned;
     OBJ_DATA *obj = (OBJ_DATA *) vo;
+
     BAIL_IF (!(obj->item_type == ITEM_DRINK_CON || obj->item_type == ITEM_FOOD),
         "It doesn't look poisoned.\n\r", ch);
-    send_to_char ((obj->value[3] != 0)
+
+    poisoned =
+        (obj->item_type == ITEM_DRINK_CON) ? obj->v.drink_con.poisoned :
+        (obj->item_type == ITEM_FOOD)      ? obj->v.food.poisoned :
+        0;
+
+    send_to_char ((poisoned != 0)
         ? "You smell poisonous fumes.\n\r"
         : "It looks delicious.\n\r", ch);
 }
@@ -117,11 +123,10 @@ const char *spell_identify_know_message (int percent) {
 void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
     int know_pos = 0;
     int know_count = 0;
-    char buf[MAX_STRING_LENGTH];
     AFFECT_DATA *paf;
 
     #define KNOW_CHECK() \
-        (spell_identify_know_check(ch, obj, know_pos++, power, &know_count))
+        (spell_identify_know_check (ch, obj, know_pos++, power, &know_count))
 
     printf_to_char (ch, "Object '%s' (%s):\n\r", obj->short_descr, obj->name);
     if (KNOW_CHECK())
@@ -143,15 +148,15 @@ void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
             char level_str[8];
 
             snprintf (level_str, sizeof(level_str),
-                KNOW_CHECK() ? "%d" : "???", obj->value[0]);
+                KNOW_CHECK() ? "%ld" : "???", obj->v.value[0]);
             printf_to_char (ch, "Level %s spells of:", level_str);
 
             for (i = 1; i <= 4; i++) {
                 if (!KNOW_CHECK())
                     continue;
-                if (obj->value[i] >= 0 && obj->value[i] < SKILL_MAX)
-                    printf_to_char (ch, " '%s'",
-                        skill_table[obj->value[i]].name);
+                if (obj->v.value[i] < 0 || obj->v.value[i] >= SKILL_MAX)
+                    continue;
+                printf_to_char (ch, " '%s'", skill_table[obj->v.value[i]].name);
             }
             send_to_char (".\n\r", ch);
             break;
@@ -161,17 +166,21 @@ void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
         case ITEM_STAFF: {
             int know_spell;
             char charges_str[8], level_str[8];
+
             snprintf (charges_str, sizeof(charges_str),
-                KNOW_CHECK() ? "%d" : "???", obj->value[2]);
+                KNOW_CHECK() ? "%ld" : "???", obj->v.value[2]);
             printf_to_char (ch, "Has %s charges of", charges_str);
 
-            know_spell = (KNOW_CHECK()
-                && obj->value[3] >= 0 && obj->value[3] < SKILL_MAX);
+            know_spell = (KNOW_CHECK() &&
+                obj->v.value[3] >= 0 && obj->v.value[3] < SKILL_MAX);
+
             snprintf (level_str, sizeof(level_str),
-                KNOW_CHECK() ? "%d" : "???", obj->value[0]);
-            if (know_spell)
+                KNOW_CHECK() ? "%ld" : "???", obj->v.value[0]);
+
+            if (know_spell) {
                 printf_to_char (ch, " level %s '%s'", level_str,
-                    skill_table[obj->value[3]].name);
+                    skill_table[obj->v.value[3]].name);
+            }
             else
                 printf_to_char (ch, " a level %s ability", level_str);
 
@@ -179,64 +188,87 @@ void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
             break;
         }
 
-        case ITEM_DRINK_CON:
+        case ITEM_DRINK_CON: {
+            const LIQ_TYPE *liquid = &(liq_table[obj->v.drink_con.liquid]);
             if (!KNOW_CHECK()) {
                 printf_to_char (ch, "It holds a %s-colored liquid.\n\r",
-                    liq_table[obj->value[2]].color);
+                    liquid->color);
             }
             else {
                 printf_to_char (ch, "It holds %s-colored %s.\n\r",
-                    liq_table[obj->value[2]].color,
-                    liq_table[obj->value[2]].name);
+                    liquid->color, liquid->name);
             }
             break;
+        }
 
         case ITEM_CONTAINER:
-            if (KNOW_CHECK())
-                printf_to_char (ch, "Capacity: %d\n\r", obj->value[0]);
-            if (KNOW_CHECK())
-                printf_to_char (ch, "Maximum weight: %d\n\r", obj->value[3]);
-            if (KNOW_CHECK())
-                printf_to_char (ch, "Flags: %s\n\r", cont_bit_name(obj->value[1]));
-            if (KNOW_CHECK() && obj->value[4] != 100) {
-                sprintf (buf, "Weight multiplier: %d%%\n\r", obj->value[4]);
-                send_to_char (buf, ch);
+            if (KNOW_CHECK()) {
+                printf_to_char (ch, "Capacity: %ld\n\r",
+                    obj->v.container.capacity);
+            }
+            if (KNOW_CHECK()) {
+                printf_to_char (ch, "Maximum weight: %ld\n\r",
+                    obj->v.container.max_weight);
+            }
+            if (KNOW_CHECK()) {
+                printf_to_char (ch, "Flags: %s\n\r",
+                    cont_bit_name (obj->v.container.flags));
+            }
+            if (KNOW_CHECK() && obj->v.container.weight_mult != 100) {
+                printf_to_char (ch, "Weight multiplier: %ld%%\n\r",
+                    obj->v.container.weight_mult);
             }
             break;
 
         case ITEM_WEAPON:
             if (KNOW_CHECK()) {
-                const FLAG_TYPE *wtype = flag_get(obj->value[0], weapon_types);
+                const FLAG_TYPE *wtype = flag_get(
+                    obj->v.weapon.weapon_type, weapon_types);
                 printf_to_char (ch, "Weapon type is %s.\n\r",
                     (wtype == NULL) ? "unknown" : wtype->name);
             }
             if (KNOW_CHECK()) {
-                if (obj->pIndexData->new_format)
-                    sprintf (buf, "Damage is %dd%d (average %d).\n\r",
-                             obj->value[1], obj->value[2],
-                             (1 + obj->value[2]) * obj->value[1] / 2);
-                else
-                    sprintf (buf, "Damage is %d to %d (average %d).\n\r",
-                             obj->value[1], obj->value[2],
-                             (obj->value[1] + obj->value[2]) / 2);
-                send_to_char (buf, ch);
+                if (obj->pIndexData->new_format) {
+                    printf_to_char (ch, "Damage is %ldd%ld (average %ld).\n\r",
+                        obj->v.weapon.dice_num, obj->v.weapon.dice_size,
+                       (obj->v.weapon.dice_size + 1) * obj->v.weapon.dice_num / 2);
+                }
+                else {
+                    printf_to_char (ch, "Damage is %ld to %ld (average %ld).\n\r",
+                        obj->v.weapon.dice_num, obj->v.weapon.dice_size,
+                       (obj->v.weapon.dice_num + obj->v.weapon.dice_size) / 2);
+                }
             }
-            if (KNOW_CHECK() && obj->value[4]) { /* weapon flags */
-                sprintf (buf, "Weapons flags: %s\n\r",
-                         weapon_bit_name (obj->value[4]));
-                send_to_char (buf, ch);
+            if (KNOW_CHECK() && obj->v.weapon.attack_type >= 0 &&
+                obj->v.weapon.attack_type < ATTACK_MAX)
+            {
+                const ATTACK_TYPE *atk = &(
+                    attack_table[obj->v.weapon.attack_type]);
+                printf_to_char (ch, "Attack type: %s\n\r", atk->noun);
+            }
+            if (KNOW_CHECK() && obj->v.weapon.flags > 0) {
+                printf_to_char (ch, "Weapons flags: %s\n\r",
+                    weapon_bit_name (obj->v.weapon.flags));
             }
             break;
 
         case ITEM_ARMOR:
-            if (KNOW_CHECK())
-                printf_to_char (ch, "Armor class vs pierce: %d\n\r", obj->value[0]);
-            if (KNOW_CHECK())
-                printf_to_char (ch, "Armor class vs bash: %d\n\r", obj->value[1]);
-            if (KNOW_CHECK())
-                printf_to_char (ch, "Armor class vs slash: %d\n\r", obj->value[2]);
-            if (KNOW_CHECK())
-                printf_to_char (ch, "Armor class vs magic: %d\n\r", obj->value[3]);
+            if (KNOW_CHECK()) {
+                printf_to_char (ch, "Armor class vs pierce: %ld\n\r",
+                    obj->v.armor.vs_pierce);
+            }
+            if (KNOW_CHECK()) {
+                printf_to_char (ch, "Armor class vs bash: %ld\n\r",
+                    obj->v.armor.vs_bash);
+            }
+            if (KNOW_CHECK()) {
+                printf_to_char (ch, "Armor class vs slash: %ld\n\r",
+                    obj->v.armor.vs_slash);
+            }
+            if (KNOW_CHECK()) {
+                printf_to_char (ch, "Armor class vs magic: %ld\n\r",
+                    obj->v.armor.vs_magic);
+            }
             break;
     }
 
@@ -305,9 +337,15 @@ DEFINE_SPELL_FUN (spell_locate_object) {
 
     buffer = buf_new ();
     for (obj = object_list; obj != NULL; obj = obj->next) {
-        if (!char_can_see_obj (ch, obj) || !is_name (target_name, obj->name)
-            || IS_OBJ_STAT (obj, ITEM_NOLOCATE)
-            || number_percent () > 2 * level || ch->level < obj->level)
+        if (!char_can_see_obj (ch, obj))
+            continue;
+        if (!is_name (target_name, obj->name))
+            continue;
+        if (IS_OBJ_STAT (obj, ITEM_NOLOCATE))
+            continue;
+        if (number_percent () > 2 * level)
+            continue;
+        if (ch->level < obj->level)
             continue;
 
         found = TRUE;

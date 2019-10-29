@@ -45,13 +45,7 @@
 
 #include "wiz_im.h"
 
-/* TODO: review most of these functions and test them thoroughly. */
-/* TODO: employ tables whenever possible */
-/* TODO: do_stat() and its derivatives are GIGANTIC. deflate somehow? */
-/* TODO: merge do_invis() and do_incognito() */
-/* TODO: possibly use a table for do_stat() */
-
-void do_wizhelp (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_wizhelp) {
     int cmd, col;
 
     col = 0;
@@ -68,13 +62,13 @@ void do_wizhelp (CHAR_DATA * ch, char *argument) {
         send_to_char ("\n\r", ch);
 }
 
-void do_holylight (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_holylight) {
     do_flag_toggle (ch, TRUE, &(ch->plr), PLR_HOLYLIGHT,
         "Holy light mode off.\n\r",
         "Holy light mode on.\n\r");
 }
 
-void do_incognito (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_incognito) {
     int level;
     char arg[MAX_STRING_LENGTH];
 
@@ -108,7 +102,7 @@ void do_incognito (CHAR_DATA * ch, char *argument) {
 }
 
 /* New routines by Dionysos. */
-void do_invis (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_invis) {
     int level;
     char arg[MAX_STRING_LENGTH];
 
@@ -141,12 +135,12 @@ void do_invis (CHAR_DATA * ch, char *argument) {
     act ("$n slowly fades into thin air.", ch, NULL, NULL, TO_NOTCHAR);
 }
 
-void do_memory (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_memory) {
     char *buf = memory_dump ("\n\r");
     send_to_char (buf, ch);
 }
 
-void do_mwhere (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mwhere) {
     char buf[MAX_STRING_LENGTH];
     BUFFER *buffer;
     CHAR_DATA *victim;
@@ -199,9 +193,8 @@ void do_mwhere (CHAR_DATA * ch, char *argument) {
         found = TRUE;
         count++;
         sprintf (buf, "%3d) [%5d] %-28s [%5d] %s\n\r", count,
-                 IS_NPC (victim) ? victim->pIndexData->vnum : 0,
-                 IS_NPC (victim) ? victim->short_descr : victim->name,
-                 victim->in_room->vnum, victim->in_room->name);
+            IS_NPC (victim) ? victim->pIndexData->vnum : 0,
+            PERS (victim), victim->in_room->vnum, victim->in_room->name);
         add_buf (buffer, buf);
     }
 
@@ -213,7 +206,7 @@ void do_mwhere (CHAR_DATA * ch, char *argument) {
     buf_free (buffer);
 }
 
-void do_owhere (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_owhere) {
     char buf[MAX_INPUT_LENGTH];
     BUFFER *buffer;
     OBJ_DATA *obj;
@@ -245,15 +238,15 @@ void do_owhere (CHAR_DATA * ch, char *argument) {
         if (in_obj->carried_by != NULL && char_can_see_anywhere (ch, in_obj->carried_by)
             && in_obj->carried_by->in_room != NULL)
             sprintf (buf, "%3d) %s is carried by %s [Room %d]\n\r",
-                     number, obj->short_descr, PERS_AW (in_obj->carried_by, ch),
-                     in_obj->carried_by->in_room->vnum);
+                number, obj->short_descr, PERS_AW (in_obj->carried_by, ch),
+                in_obj->carried_by->in_room->vnum);
         else if (in_obj->in_room != NULL && char_can_see_room (ch, in_obj->in_room))
             sprintf (buf, "%3d) %s is in %s [Room %d]\n\r",
-                     number, obj->short_descr, in_obj->in_room->name,
-                     in_obj->in_room->vnum);
+                number, obj->short_descr, in_obj->in_room->name,
+                in_obj->in_room->vnum);
         else
             sprintf (buf, "%3d) %s is somewhere\n\r", number,
-                     obj->short_descr);
+                obj->short_descr);
 
         buf[0] = UPPER (buf[0]);
         add_buf (buffer, buf);
@@ -271,7 +264,7 @@ void do_owhere (CHAR_DATA * ch, char *argument) {
 }
 
 /* RT to replace the 3 stat commands */
-void do_stat (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_stat) {
     char arg[MAX_INPUT_LENGTH];
     char *string;
     OBJ_DATA *obj;
@@ -311,7 +304,7 @@ void do_stat (CHAR_DATA * ch, char *argument) {
     send_to_char ("Nothing by that name found anywhere.\n\r", ch);
 }
 
-void do_rstat (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_rstat) {
     char buf[MAX_STRING_LENGTH];
     ROOM_INDEX_DATA *location;
     OBJ_DATA *obj;
@@ -382,7 +375,7 @@ void do_rstat (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_ostat (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_ostat) {
     AFFECT_DATA *paf;
     OBJ_DATA *obj;
 
@@ -402,7 +395,7 @@ void do_ostat (CHAR_DATA * ch, char *argument) {
         obj->short_descr, obj->description);
 
     printf_to_char (ch, "Wear bits: %s\n\rExtra bits: %s\n\r",
-        wear_bit_name (obj->wear_flags), extra_bit_name (obj->extra_flags));
+        wear_flag_name (obj->wear_flags), extra_bit_name (obj->extra_flags));
 
     printf_to_char (ch,
         "Number: %d/%d  Weight: %d/%d/%d (10th pounds)  Material: %s\n\r",
@@ -415,83 +408,91 @@ void do_ostat (CHAR_DATA * ch, char *argument) {
 
     printf_to_char (ch,
         "In room: %d  In object: %s  Carried by: %s  Wear_loc: %d\n\r",
-        obj->in_room == NULL ? 0 : obj->in_room->vnum,
-        obj->in_obj == NULL ? "(none)" : obj->in_obj->short_descr,
-        obj->carried_by == NULL ? "(none)" : PERS_AW(obj->carried_by, ch),
+        (obj->in_room    == NULL) ? 0        : obj->in_room->vnum,
+        (obj->in_obj     == NULL) ? "(none)" : obj->in_obj->short_descr,
+        (obj->carried_by == NULL) ? "(none)" : PERS_AW (obj->carried_by, ch),
         obj->wear_loc);
 
-    printf_to_char (ch, "Values: %d %d %d %d %d\n\r",
-        obj->value[0], obj->value[1], obj->value[2], obj->value[3],
-        obj->value[4]);
+    printf_to_char (ch, "Values: %ld %ld %ld %ld %ld\n\r",
+        obj->v.value[0], obj->v.value[1], obj->v.value[2], obj->v.value[3],
+        obj->v.value[4]);
 
     /* now give out vital statistics as per identify */
     switch (obj->item_type) {
         case ITEM_SCROLL:
         case ITEM_POTION:
         case ITEM_PILL:
-            printf_to_char (ch, "Level %d spells of:", obj->value[0]);
-            if (obj->value[1] >= 0 && obj->value[1] < SKILL_MAX)
-                printf_to_char (ch, " '%s'", skill_table[obj->value[1]].name);
-            if (obj->value[2] >= 0 && obj->value[2] < SKILL_MAX)
-                printf_to_char (ch, " '%s'", skill_table[obj->value[2]].name);
-            if (obj->value[3] >= 0 && obj->value[3] < SKILL_MAX)
-                printf_to_char (ch, " '%s'", skill_table[obj->value[3]].name);
-            if (obj->value[4] >= 0 && obj->value[4] < SKILL_MAX)
-                printf_to_char (ch, " '%s'", skill_table[obj->value[4]].name);
+            printf_to_char (ch, "Level %ld spells of:", obj->v.value[0]);
+            if (obj->v.value[1] >= 0 && obj->v.value[1] < SKILL_MAX)
+                printf_to_char (ch, " '%s'", skill_table[obj->v.value[1]].name);
+            if (obj->v.value[2] >= 0 && obj->v.value[2] < SKILL_MAX)
+                printf_to_char (ch, " '%s'", skill_table[obj->v.value[2]].name);
+            if (obj->v.value[3] >= 0 && obj->v.value[3] < SKILL_MAX)
+                printf_to_char (ch, " '%s'", skill_table[obj->v.value[3]].name);
+            if (obj->v.value[4] >= 0 && obj->v.value[4] < SKILL_MAX)
+                printf_to_char (ch, " '%s'", skill_table[obj->v.value[4]].name);
             send_to_char (".\n\r", ch);
             break;
 
         case ITEM_WAND:
         case ITEM_STAFF:
-            printf_to_char (ch, "Has %d(%d) charges of level %d",
-                obj->value[1], obj->value[2], obj->value[0]);
-            if (obj->value[3] >= 0 && obj->value[3] < SKILL_MAX)
-                printf_to_char (ch, " '%s'", skill_table[obj->value[3]].name);
+            printf_to_char (ch, "Has %ld(%ld) charges of level %ld",
+                obj->v.value[1], obj->v.value[2], obj->v.value[0]);
+            if (obj->v.value[3] >= 0 && obj->v.value[3] < SKILL_MAX)
+                printf_to_char (ch, " '%s'", skill_table[obj->v.value[3]].name);
             send_to_char (".\n\r", ch);
             break;
 
-        case ITEM_DRINK_CON:
+        case ITEM_DRINK_CON: {
+            const LIQ_TYPE *liq = &(liq_table[obj->v.drink_con.liquid]);
             printf_to_char (ch, "It holds %s-colored %s.\n\r",
-                liq_table[obj->value[2]].color,
-                liq_table[obj->value[2]].name);
+                liq->color, liq->name);
             break;
+        }
 
         case ITEM_WEAPON:
             printf_to_char (ch, "Weapon type is %s\n\r",
-                if_null_str (weapon_get_name (obj->value[0]), "unknown"));
+                if_null_str (weapon_get_name (obj->v.weapon.weapon_type), "unknown"));
 
-            if (obj->pIndexData->new_format)
-                printf_to_char (ch, "Damage is %dd%d (average %d)\n\r",
-                    obj->value[1], obj->value[2],
-                    (1 + obj->value[2]) * obj->value[1] / 2);
-            else
-                printf_to_char (ch, "Damage is %d to %d (average %d)\n\r",
-                    obj->value[1], obj->value[2],
-                    (obj->value[1] + obj->value[2]) / 2);
+            if (obj->pIndexData->new_format) {
+                printf_to_char (ch, "Damage is %ldd%ld (average %ld)\n\r",
+                    obj->v.weapon.dice_num, obj->v.weapon.dice_size,
+                   (obj->v.weapon.dice_size + 1) * obj->v.weapon.dice_num / 2);
+            }
+            else {
+                printf_to_char (ch, "Damage is %ld to %ld (average %ld)\n\r",
+                    obj->v.weapon.dice_num, obj->v.weapon.dice_size,
+                   (obj->v.weapon.dice_num + obj->v.weapon.dice_size) / 2);
+            }
 
             printf_to_char (ch, "Damage noun is %s.\n\r",
-                (obj->value[3] > 0 && obj->value[3] < ATTACK_MAX)
-                    ? attack_table[obj->value[3]].noun : "undefined");
+                (obj->v.weapon.attack_type >= 0 &&
+                 obj->v.weapon.attack_type < ATTACK_MAX)
+                    ? attack_table[obj->v.weapon.attack_type].noun
+                    : "undefined");
 
-            if (obj->value[4] > 0)
+            if (obj->v.weapon.flags > 0)
                 printf_to_char (ch, "Weapons flags: %s\n\r",
-                    weapon_bit_name (obj->value[4]));
+                    weapon_bit_name (obj->v.weapon.flags));
             break;
 
         case ITEM_ARMOR:
             printf_to_char (ch,
-                "Armor class is %d pierce, %d bash, %d slash, and %d vs. magic\n\r",
-                obj->value[0], obj->value[1], obj->value[2], obj->value[3]);
+                "Armor class is %ld pierce, %ld bash, %ld slash, "
+                "and %ld vs. magic\n\r",
+                obj->v.armor.vs_pierce, obj->v.armor.vs_bash,
+                obj->v.armor.vs_slash,  obj->v.armor.vs_magic);
             break;
 
         case ITEM_CONTAINER:
             printf_to_char (ch,
-                "Capacity: %d#  Maximum weight: %d#  flags: %s\n\r",
-                obj->value[0], obj->value[3], cont_bit_name (obj->value[1]));
+                "Capacity: %ld#  Maximum weight: %ld#  flags: %s\n\r",
+                obj->v.container.capacity, obj->v.container.max_weight,
+                cont_bit_name (obj->v.container.flags));
 
-            if (obj->value[4] != 100)
-                printf_to_char (ch, "Weight multiplier: %d%%\n\r",
-                    obj->value[4]);
+            if (obj->v.container.weight_mult != 100)
+                printf_to_char (ch, "Weight multiplier: %ld%%\n\r",
+                    obj->v.container.weight_mult);
             break;
     }
 
@@ -535,7 +536,7 @@ void do_ostat (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_mstat (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mstat) {
     AFFECT_DATA *paf;
     CHAR_DATA *victim;
 
@@ -670,7 +671,7 @@ void do_mstat (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_wiznet (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_wiznet) {
     const WIZNET_TYPE *flag;
     char buf[MAX_STRING_LENGTH];
     int i;
@@ -747,7 +748,7 @@ void do_wiznet (CHAR_DATA * ch, char *argument) {
     }
 }
 
-void do_immtalk (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_immtalk) {
     DESCRIPTOR_DATA *d;
 
     if (do_comm_toggle_channel_if_blank (ch, argument, COMM_NOWIZ,
@@ -770,10 +771,10 @@ void do_immtalk (CHAR_DATA * ch, char *argument) {
 }
 
 /* (from act_info.c): RT Commands to replace news, motd, imotd, etc from ROM */
-void do_imotd (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_imotd)
     { do_function (ch, &do_help, "imotd"); }
 
-void do_smote (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_smote) {
     CHAR_DATA *vch;
     char *letter, *name;
     char last[MAX_INPUT_LENGTH], temp[MAX_STRING_LENGTH];
@@ -842,11 +843,11 @@ void do_smote (CHAR_DATA * ch, char *argument) {
 }
 
 /* prefix command: it will put the string typed on each line typed */
-void do_prefi (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_prefi) {
     send_to_char ("You cannot abbreviate the prefix command.\r\n", ch);
 }
 
-void do_prefix (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_prefix) {
     if (argument[0] == '\0') {
         BAIL_IF (ch->prefix == NULL || ch->prefix[0] == '\0',
             "You have no prefix to clear.\r\n", ch);
@@ -864,21 +865,19 @@ void do_prefix (CHAR_DATA * ch, char *argument) {
 
 /* Displays the source code of a given MOBprogram
  * Syntax: mpdump [vnum] */
-void do_mpdump (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpdump) {
     char buf[MAX_INPUT_LENGTH];
     MPROG_CODE *mprg;
 
     one_argument (argument, buf);
-    if ((mprg = get_mprog_index (atoi (buf))) == NULL) {
-        send_to_char ("No such MOBprogram.\n\r", ch);
-        return;
-    }
+    BAIL_IF ((mprg = get_mprog_index (atoi (buf))) == NULL,
+        "No such MOBprogram.\n\r", ch);
     page_to_char (mprg->code, ch);
 }
 
 /* Displays MOBprogram triggers of a mobile
  * Syntax: mpstat [name] */
-void do_mpstat (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_mpstat) {
     MPROG_LIST *mprg;
     CHAR_DATA *victim;
     int i;

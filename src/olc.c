@@ -21,6 +21,7 @@
 #include "recycle.h"
 #include "lookup.h"
 #include "magic.h"
+#include "chars.h"
 
 #include "act_olc.h"
 #include "olc_aedit.h"
@@ -31,11 +32,6 @@
 #include "olc_redit.h"
 
 #include "olc.h"
-
-/* TODO: find out exactly how and where these functions are fun. */
-/* TODO: test these functions thoroughly to understand what they do! */
-/* TODO: do a first-pass clean-up. */
-/* TODO: remove or at least trim-down the gargantuan comment blocks... */
 
 /* Global variables. */
 int top_vnum_room = 0;
@@ -226,20 +222,16 @@ bool run_olc_editor (DESCRIPTOR_DATA * d) {
     return TRUE;
 }
 
-char *olc_ed_name (CHAR_DATA * ch) {
-    static char buf[10];
-
-    buf[0] = '\0';
+const char *olc_ed_name (CHAR_DATA * ch) {
     switch (ch->desc->editor) {
-        case ED_AREA:   sprintf (buf, "AEdit");  break;
-        case ED_ROOM:   sprintf (buf, "REdit");  break;
-        case ED_OBJECT: sprintf (buf, "OEdit");  break;
-        case ED_MOBILE: sprintf (buf, "MEdit");  break;
-        case ED_MPCODE: sprintf (buf, "MPEdit"); break;
-        case ED_HELP:   sprintf (buf, "HEdit");  break;
-        default:        sprintf (buf, " ");      break;
+        case ED_AREA:   return "AEdit";  break;
+        case ED_ROOM:   return "REdit";  break;
+        case ED_OBJECT: return "OEdit";  break;
+        case ED_MOBILE: return "MEdit";  break;
+        case ED_MPCODE: return "MPEdit"; break;
+        case ED_HELP:   return "HEdit";  break;
+        default:        return " ";      break;
     }
-    return buf;
 }
 
 char *olc_ed_vnum (CHAR_DATA * ch) {
@@ -433,7 +425,6 @@ void redit (CHAR_DATA * ch, char *argument) {
 
     /* Default to Standard Interpreter. */
     interpret (ch, arg);
-    return;
 }
 
 /* Object Interpreter, called by do_oedit. */
@@ -698,7 +689,6 @@ void show_flag_cmds (CHAR_DATA * ch, const FLAG_TYPE *flag_table) {
         strcat (buf1, "\n\r");
 
     send_to_char (buf1, ch);
-    return;
 }
 
 /*****************************************************************************
@@ -733,9 +723,7 @@ void show_skill_cmds (CHAR_DATA * ch, int tar) {
 
     if (col % 4 != 0)
         strcat (buf1, "\n\r");
-
     send_to_char (buf1, ch);
-    return;
 }
 
 /*****************************************************************************
@@ -771,7 +759,6 @@ void show_spec_cmds (CHAR_DATA * ch) {
  Called by:  olc interpreters.
  ****************************************************************************/
 bool show_help (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     char spell[MAX_INPUT_LENGTH];
     int cnt;
@@ -783,12 +770,9 @@ bool show_help (CHAR_DATA * ch, char *argument) {
     if (arg[0] == '\0') {
         send_to_char ("Syntax:  ? [command]\n\r\n\r", ch);
         send_to_char ("[command]          [description]\n\r", ch);
-        for (cnt = 0; master_table[cnt].table != NULL; cnt++) {
-            sprintf (buf, "%-18.18s -%s\n\r",
-                     master_table[cnt].name,
-                     master_table[cnt].description);
-            send_to_char (buf, ch);
-        }
+        for (cnt = 0; master_table[cnt].table != NULL; cnt++)
+            printf_to_char (ch, "%-18.18s -%s\n\r",
+                master_table[cnt].name, master_table[cnt].description);
         return FALSE;
     }
 

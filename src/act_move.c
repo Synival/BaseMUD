@@ -82,14 +82,14 @@ bool door_filter_is_door (CHAR_DATA *ch, EXIT_DATA *pexit,
     if (obj) {
         switch (obj->item_type) {
             case ITEM_PORTAL:
-                flags     = obj->value[1];
+                flags     = obj->v.portal.exit_flags;
                 container = FALSE;
-                key       = obj->value[4];
+                key       = obj->v.portal.key;
                 break;
             case ITEM_CONTAINER:
-                flags     = obj->value[1];
+                flags     = obj->v.container.flags;
                 container = TRUE;
-                key       = obj->value[2];
+                key       = obj->v.container.key;
                 break;
             default:
                 send_to_char ("That's not a container.\n\r", ch);
@@ -232,50 +232,35 @@ bool door_filter_can_pick (CHAR_DATA *ch, EXIT_DATA *pexit,
 void do_open_object (CHAR_DATA *ch, OBJ_DATA *obj) {
     if (door_filter_can_open (ch, NULL, obj))
         return;
-    switch (obj->item_type) {
-        case ITEM_PORTAL:    REMOVE_BIT (obj->value[1], EX_CLOSED);   break;
-        case ITEM_CONTAINER: REMOVE_BIT (obj->value[1], CONT_CLOSED); break;
-    }
+    obj_remove_exit_flag (obj, EX_CLOSED);
     act2 ("You open $p.", "$n opens $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_close_object (CHAR_DATA *ch, OBJ_DATA *obj) {
     if (door_filter_can_close (ch, NULL, obj))
         return;
-    switch (obj->item_type) {
-        case ITEM_PORTAL:    SET_BIT (obj->value[1], EX_CLOSED);   break;
-        case ITEM_CONTAINER: SET_BIT (obj->value[1], CONT_CLOSED); break;
-    }
+    obj_set_exit_flag (obj, EX_CLOSED);
     act2 ("You close $p.", "$n closes $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_unlock_object (CHAR_DATA *ch, OBJ_DATA *obj) {
     if (door_filter_can_unlock (ch, NULL, obj))
         return;
-    switch (obj->item_type) {
-        case ITEM_PORTAL:    REMOVE_BIT (obj->value[1], EX_LOCKED);   break;
-        case ITEM_CONTAINER: REMOVE_BIT (obj->value[1], CONT_LOCKED); break;
-    }
+    obj_remove_exit_flag (obj, EX_LOCKED);
     act2 ("You unlock $p.", "$n unlocks $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_lock_object (CHAR_DATA *ch, OBJ_DATA *obj) {
     if (door_filter_can_lock (ch, NULL, obj))
         return;
-    switch (obj->item_type) {
-        case ITEM_PORTAL:    SET_BIT (obj->value[1], EX_LOCKED);   break;
-        case ITEM_CONTAINER: SET_BIT (obj->value[1], CONT_LOCKED); break;
-    }
+    obj_set_exit_flag (obj, EX_LOCKED);
     act2 ("You lock $p.", "$n locks $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_pick_object (CHAR_DATA *ch, OBJ_DATA *obj) {
     if (door_filter_can_pick (ch, NULL, obj))
         return;
-    switch (obj->item_type) {
-        case ITEM_PORTAL:    REMOVE_BIT (obj->value[1], EX_LOCKED);   break;
-        case ITEM_CONTAINER: REMOVE_BIT (obj->value[1], CONT_LOCKED); break;
-    }
+    obj_remove_exit_flag (obj, EX_LOCKED);
     act2 ("You pick the lock on $p.", "$n picks the lock on $p.",
         ch, obj, NULL, 0, POS_RESTING);
     check_improve (ch, gsn_pick_lock, TRUE, 2);
@@ -399,28 +384,28 @@ void do_door (CHAR_DATA *ch, char *argument, char *verb,
         func_door (ch, door);
 }
 
-void do_north (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_north)
     { char_move (ch, DIR_NORTH, FALSE); }
-void do_east (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_east)
     { char_move (ch, DIR_EAST, FALSE); }
-void do_south (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_south)
     { char_move (ch, DIR_SOUTH, FALSE); }
-void do_west (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_west)
     { char_move (ch, DIR_WEST, FALSE); }
-void do_up (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_up)
     { char_move (ch, DIR_UP, FALSE); }
-void do_down (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_down)
     { char_move (ch, DIR_DOWN, FALSE); }
 
-void do_open (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_open)
     { do_door (ch, argument, "open",   do_open_object,   do_open_door); }
-void do_close (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_close)
     { do_door (ch, argument, "close",  do_close_object,  do_close_door); }
-void do_unlock (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_unlock)
     { do_door (ch, argument, "unlock", do_unlock_object, do_unlock_door); }
-void do_lock (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_lock)
     { do_door (ch, argument, "lock",   do_lock_object,   do_lock_door); }
-void do_pick (CHAR_DATA * ch, char *argument)
+DEFINE_DO_FUN (do_pick)
     { do_door (ch, argument, "pick",   do_pick_object,   do_pick_door); }
 
 bool do_filter_change_position (CHAR_DATA *ch, int pos, char *same_msg) {
@@ -435,7 +420,7 @@ bool do_filter_change_position (CHAR_DATA *ch, int pos, char *same_msg) {
     return FALSE;
 }
 
-void do_stand (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_stand) {
     OBJ_DATA *obj = NULL;
     int new_pos;
 
@@ -470,7 +455,8 @@ void do_stand (CHAR_DATA * ch, char *argument) {
             "You don't see that here.\n\r", ch);
         BAIL_IF (!obj_is_furniture(obj, STAND_BITS),
             "You can't seem to find a place to stand.\n\r", ch);
-        BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >= obj->value[0],
+        BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
+                obj->v.furniture.max_people,
             "There's no room to stand on $p.", ch, obj, NULL);
     }
 
@@ -483,7 +469,7 @@ void do_stand (CHAR_DATA * ch, char *argument) {
     ch->on = obj;
 }
 
-void do_rest (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_rest) {
     OBJ_DATA *obj = NULL;
 
     if (do_filter_change_position (ch, POS_RESTING,
@@ -502,7 +488,8 @@ void do_rest (CHAR_DATA * ch, char *argument) {
     if (obj != NULL) {
         BAIL_IF (!obj_is_furniture(obj, REST_BITS),
             "You can't rest on that.\n\r", ch);
-        BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >= obj->value[0],
+        BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
+                obj->v.furniture.max_people,
             "There's no more room on $p.", ch, obj, NULL);
     }
 
@@ -512,7 +499,7 @@ void do_rest (CHAR_DATA * ch, char *argument) {
     ch->on = obj;
 }
 
-void do_sit (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_sit) {
     OBJ_DATA *obj = NULL;
 
     if (do_filter_change_position (ch, POS_SITTING,
@@ -531,7 +518,8 @@ void do_sit (CHAR_DATA * ch, char *argument) {
     if (obj != NULL) {
         BAIL_IF (!obj_is_furniture(obj, SIT_BITS),
             "You can't sit on that.\n\r", ch);
-        BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >= obj->value[0],
+        BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
+                obj->v.furniture.max_people,
             "There's no more room on $p.", ch, obj, NULL);
     }
 
@@ -541,7 +529,7 @@ void do_sit (CHAR_DATA * ch, char *argument) {
     ch->on = obj;
 }
 
-void do_sleep (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_sleep) {
     OBJ_DATA *obj = NULL;
 
     if (do_filter_change_position (ch, POS_SLEEPING,
@@ -560,7 +548,8 @@ void do_sleep (CHAR_DATA * ch, char *argument) {
     if (obj != NULL) {
         BAIL_IF (!obj_is_furniture(obj, SLEEP_BITS),
             "You can't sleep on that!\n\r", ch);
-        BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >= obj->value[0],
+        BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
+                obj->v.furniture.max_people,
             "There's no more room on $p.", ch, obj, NULL);
     }
 
@@ -570,7 +559,7 @@ void do_sleep (CHAR_DATA * ch, char *argument) {
     ch->on = obj;
 }
 
-void do_wake (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_wake) {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
 
@@ -594,7 +583,7 @@ void do_wake (CHAR_DATA * ch, char *argument) {
     do_function (victim, &do_stand, "");
 }
 
-void do_sneak (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_sneak) {
     AFFECT_DATA af;
 
     send_to_char ("You attempt to move silently.\n\r", ch);
@@ -604,14 +593,14 @@ void do_sneak (CHAR_DATA * ch, char *argument) {
         return;
     if (number_percent () < get_skill (ch, gsn_sneak)) {
         check_improve (ch, gsn_sneak, TRUE, 3);
-        affect_init (&af, TO_AFFECTS, gsn_sneak, ch->level, ch->level, APPLY_NONE, 0, AFF_SNEAK);
+        affect_init (&af, AFF_TO_AFFECTS, gsn_sneak, ch->level, ch->level, APPLY_NONE, 0, AFF_SNEAK);
         affect_to_char (ch, &af);
     }
     else
         check_improve (ch, gsn_sneak, FALSE, 3);
 }
 
-void do_hide (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_hide) {
     send_to_char ("You attempt to hide.\n\r", ch);
 
     if (IS_AFFECTED (ch, AFF_HIDE))
@@ -625,7 +614,7 @@ void do_hide (CHAR_DATA * ch, char *argument) {
 }
 
 /* Contributed by Alander. */
-void do_visible (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_visible) {
     affect_strip (ch, gsn_invis);
     affect_strip (ch, gsn_mass_invis);
     affect_strip (ch, gsn_sneak);
@@ -635,8 +624,7 @@ void do_visible (CHAR_DATA * ch, char *argument) {
     send_to_char ("Ok.\n\r", ch);
 }
 
-void do_recall (CHAR_DATA * ch, char *argument) {
-    char buf[MAX_STRING_LENGTH];
+DEFINE_DO_FUN (do_recall) {
     CHAR_DATA *victim;
     ROOM_INDEX_DATA *location;
 
@@ -661,16 +649,15 @@ void do_recall (CHAR_DATA * ch, char *argument) {
         if (number_percent () < 80 * skill / 100) {
             check_improve (ch, gsn_recall, FALSE, 6);
             WAIT_STATE (ch, 4);
-            sprintf (buf, "You failed!.\n\r");
-            send_to_char (buf, ch);
+            send_to_char ("You failed!\n\r", ch);
             return;
         }
 
         lose = (ch->desc != NULL) ? 25 : 50;
         gain_exp (ch, 0 - lose);
         check_improve (ch, gsn_recall, TRUE, 4);
-        sprintf (buf, "You recall from combat!  You lose %d exps.\n\r", lose);
-        send_to_char (buf, ch);
+        printf_to_char (ch, "You recall from combat!  You lose %d exps.\n\r",
+            lose);
         stop_fighting (ch, TRUE);
     }
 
@@ -686,7 +673,7 @@ void do_recall (CHAR_DATA * ch, char *argument) {
 }
 
 /* RT Enter portals */
-void do_enter (CHAR_DATA * ch, char *argument) {
+DEFINE_DO_FUN (do_enter) {
     ROOM_INDEX_DATA *location;
     ROOM_INDEX_DATA *old_room;
     OBJ_DATA *portal;
@@ -704,23 +691,27 @@ void do_enter (CHAR_DATA * ch, char *argument) {
     BAIL_IF (portal == NULL,
         "You don't see that here.\n\r", ch);
     BAIL_IF (portal->item_type != ITEM_PORTAL ||
-            (IS_SET (portal->value[1], EX_CLOSED) && !IS_TRUSTED (ch, ANGEL)),
+            (IS_SET (portal->v.portal.exit_flags, EX_CLOSED) &&
+             !IS_TRUSTED (ch, ANGEL)),
         "You can't seem to find a way in.\n\r", ch);
     BAIL_IF (!IS_TRUSTED (ch, ANGEL) &&
-             !IS_SET (portal->value[2], GATE_NOCURSE) &&
+             !IS_SET (portal->v.portal.gate_flags, GATE_NOCURSE) &&
              (IS_AFFECTED (ch, AFF_CURSE) ||
               IS_SET (ch->in_room->room_flags, ROOM_NO_RECALL)),
         "Something prevents you from leaving...\n\r", ch);
 
     /* Determine the target room. */
-    if (IS_SET (portal->value[2], GATE_RANDOM) || portal->value[3] == -1) {
+    if (IS_SET (portal->v.portal.gate_flags, GATE_RANDOM) ||
+            portal->v.portal.to_vnum == -1)
+    {
         location = get_random_room (ch);
-        portal->value[3] = location->vnum; /* for record keeping :) */
+        portal->v.portal.to_vnum = location->vnum; /* for record keeping :) */
     }
-    else if (IS_SET (portal->value[2], GATE_BUGGY) && (number_percent () < 5))
+    else if (IS_SET (portal->v.portal.gate_flags, GATE_BUGGY) &&
+            (number_percent () < 5))
         location = get_random_room (ch);
     else
-        location = get_room_index (portal->value[3]);
+        location = get_room_index (portal->v.portal.to_vnum);
 
     /* Check if the target room if valid. */
     BAIL_IF_ACT (location == NULL || location == ch->in_room ||
@@ -732,7 +723,7 @@ void do_enter (CHAR_DATA * ch, char *argument) {
         "Something prevents you from leaving...\n\r", ch);
 
     /* We're leaving! Outgoing message. */
-    msg = IS_SET (portal->value[2], GATE_NORMAL_EXIT)
+    msg = IS_SET (portal->v.portal.gate_flags, GATE_NORMAL_EXIT)
         ? "You enter $p."
         : "You walk through $p and find yourself somewhere else...";
     act2 (msg, "$n steps into $p.", ch, portal, NULL, 0, POS_RESTING);
@@ -741,23 +732,23 @@ void do_enter (CHAR_DATA * ch, char *argument) {
     old_room = ch->in_room;
     char_from_room (ch);
     char_to_room (ch, location);
-    if (IS_SET (portal->value[2], GATE_GOWITH)) {
+    if (IS_SET (portal->v.portal.gate_flags, GATE_GOWITH)) {
         obj_from_room (portal);
         obj_to_room (portal, location);
     }
 
     /* Arrival messages. */
-    msg = IS_SET (portal->value[2], GATE_NORMAL_EXIT)
+    msg = IS_SET (portal->v.portal.gate_flags, GATE_NORMAL_EXIT)
         ? "$n has arrived."
         : "$n has arrived through $p.";
     act (msg, ch, portal, NULL, TO_NOTCHAR);
     do_function (ch, &do_look, "auto");
 
     /* Charges. Zero charges = infinite uses. */
-    if (portal->value[0] > 0) {
-        portal->value[0]--;
-        if (portal->value[0] == 0)
-            portal->value[0] = -1;
+    if (portal->v.portal.charges > 0) {
+        portal->v.portal.charges--;
+        if (portal->v.portal.charges == 0)
+            portal->v.portal.charges = -1;
     }
 
     /* Perform follows. */
@@ -765,8 +756,8 @@ void do_enter (CHAR_DATA * ch, char *argument) {
         for (fch = old_room->people; fch != NULL; fch = fch_next) {
             fch_next = fch->next_in_room;
 
-            if (portal == NULL || portal->value[0] == -1)
-                /* no following through dead portals */
+            /* no following through dead portals */
+            if (portal == NULL || portal->v.portal.charges == -1)
                 continue;
 
             if (fch->master == ch && IS_AFFECTED (fch, AFF_CHARM)
@@ -791,7 +782,7 @@ void do_enter (CHAR_DATA * ch, char *argument) {
     }
 
     /* If the portal is defunct, destroy it now. */
-    if (portal != NULL && portal->value[0] == -1) {
+    if (portal != NULL && portal->v.portal.charges == -1) {
         act ("$p fades out of existence.", ch, portal, NULL, TO_CHAR);
         if (ch->in_room == old_room)
             act ("$p fades out of existence.", ch, portal, NULL, TO_NOTCHAR);

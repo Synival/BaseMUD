@@ -217,12 +217,13 @@
 #define STAT_MAX  5
 
 /* where definitions */
-#define TO_AFFECTS   0
-#define TO_OBJECT    1
-#define TO_IMMUNE    2
-#define TO_RESIST    3
-#define TO_VULN      4
-#define TO_WEAPON    5
+#define AFF_TO_AFFECTS  0
+#define AFF_TO_OBJECT   1
+#define AFF_TO_IMMUNE   2
+#define AFF_TO_RESIST   3
+#define AFF_TO_VULN     4
+#define AFF_TO_WEAPON   5
+#define AFF_TO_MAX      6
 
 /* Well known mob virtual numbers.
  * Defined in #MOBILES. */
@@ -295,7 +296,11 @@
 #define OBJ_VNUM_WHISTLE           2116
 
 /* magic numbers. */
-#define OBJ_VALUE_MAX   5
+#define OBJ_VALUE_MAX       5
+#define RESET_VALUE_MAX     5
+#define PILL_SKILL_MAX      4
+#define SCROLL_SKILL_MAX    4
+#define POTION_SKILL_MAX    4
 
 /* Values for object mapping.
  * Used in #OBJECTS. */
@@ -316,7 +321,7 @@
 #define MAP_FLAGS_CONT          1
 #define MAP_FLAGS_FURNITURE     3
 #define MAP_FLAGS_EXIT          4
-#define MAP_FLAGS_PORTAL        5
+#define MAP_FLAGS_GATE          5
 
 /* Well known room virtual numbers.
  * Defined in #ROOMS. */
@@ -435,7 +440,7 @@
 #define SKILL_MAX           150
 #define GROUP_MAX           30
 #define SPEC_MAX            22
-#define ATTRIBUTE_MAX       26
+#define ATTRIBUTE_HIGHEST   25
 #define ATTACK_MAX          40
 #define BOARD_MAX           5
 
@@ -574,5 +579,10 @@
 #define EXITS_LONG      0
 #define EXITS_AUTO      1
 #define EXITS_PROMPT    2
+
+/* Door reset types. */
+#define RESET_DOOR_NONE     0
+#define RESET_DOOR_CLOSED   1
+#define RESET_DOOR_LOCKED   2
 
 #endif
