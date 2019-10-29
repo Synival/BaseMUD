@@ -11,28 +11,28 @@
 ### 0.1.0
 
 [X] World can be saved to JSON files
-[ ] JSON code for database saving has been massively cleaned up...
 [X] Check code for all BAIL_IF() and BAIL_IF_ACT()s
-[ ] OLC is translated from Spanish to English
-[ ] All "Low-hanging fruit" changes have been made (i.e, cleaning up obvious things
+[X] OLC is translated from Spanish to English
+[X] All "Low-hanging fruit" changes have been made (i.e, cleaning up obvious things
     that don't require big overhauls)
+[ ] All "TO-DOs" have been transferred to Github issues
+[ ] Code style documentation
+[ ] Contribution guide
+[ ] JSON code for database saving has been massively cleaned up...
 [ ] All functions are named and placed according to their objects
 [ ] World can be loaded from JSON files
 [ ] Code can be easily deployed
 [ ] Dockerfile is back
 [ ] JSON-format world is confirmed to save->load->save->load without changes
-[ ] All other "TO-DOs" have been transferred to Trello board
 [ ] OLC behaves as expected.
 [ ] Mob progs behave as expected.
 [ ] All gameplay changes that aren't bugfixes, obvious oversights, or
     quality-of-life upgrades are disabled by default.
 [ ] Documentation has been organized in a way that makes sense for _this_ project.
-[ ] Code style documentation
-[ ] Contribution guide
 
 ### 0.2.0
 
-[ ] Tasks in Trello organized into month-long sprints somehow
+[ ] Tasks in Github organized into month-long sprints somehow
 [ ] All "TO-DOs" from 0.1.0 are accounted for
 [ ] JSON tools are extracted as standalone apps
 [ ] Special tables are exported to JSON objects
