@@ -1,6 +1,6 @@
 # Changelog for BaseMUD
 
-## Version 0.0.4
+## Version 0.0.4 (2019-10-29)
 
 **Project Organization:**
 
