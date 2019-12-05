@@ -20,15 +20,16 @@
 #include "utils.h"
 #include "string.h"
 #include "lookup.h"
-#include "olc.h"
 #include "chars.h"
+#include "globals.h"
+#include "olc.h"
 
 #include "olc_mpedit.h"
 
 MPEDIT (mpedit_create) {
-    MPROG_CODE *pMcode;
+    MPROG_CODE_T *pMcode;
     int value = atoi (argument);
-    AREA_DATA *ad;
+    AREA_T *ad;
 
     RETURN_IF (IS_NULLSTR (argument) || value < 1,
         "Syntax: mpedit create [vnum]\n\r", ch, FALSE);
@@ -54,7 +55,7 @@ MPEDIT (mpedit_create) {
 }
 
 MPEDIT (mpedit_show) {
-    MPROG_CODE *pMcode;
+    MPROG_CODE_T *pMcode;
     EDIT_MPCODE (ch, pMcode);
 
     printf_to_char (ch,
@@ -64,7 +65,7 @@ MPEDIT (mpedit_show) {
 }
 
 MPEDIT (mpedit_code) {
-    MPROG_CODE *pMcode;
+    MPROG_CODE_T *pMcode;
     EDIT_MPCODE (ch, pMcode);
 
     if (argument[0] == '\0') {
@@ -78,12 +79,12 @@ MPEDIT (mpedit_code) {
 
 MPEDIT (mpedit_list) {
     int count = 1;
-    MPROG_CODE *mprg;
+    MPROG_CODE_T *mprg;
     char buf[MAX_STRING_LENGTH];
-    BUFFER *buffer;
+    BUFFER_T *buffer;
     bool fAll = !str_cmp (argument, "all");
     char chr;
-    AREA_DATA *ad;
+    AREA_T *ad;
 
     buffer = buf_new ();
     for (mprg = mprog_list; mprg != NULL; mprg = mprg->next) {

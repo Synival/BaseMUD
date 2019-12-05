@@ -31,7 +31,7 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-void do_group_show (CHAR_DATA *ch);
+void do_group_show (CHAR_T *ch);
 
 /* Commands. */
 DECLARE_DO_FUN (do_order_all);

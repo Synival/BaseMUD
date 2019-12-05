@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "limbo",
+  "filename": "limbo.are",
+  "title": "Limbo",
+  "credits": "{None } Diku    Limbo",
+  "min_vnum": 0,
+  "max_vnum": 99,
+  "builders": "None",
+  "security": 9
+}}]

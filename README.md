@@ -69,10 +69,11 @@ be modular enough that some sort of unit testing environment will be possible.
 Despite the heavy refactoring,
 BaseMUD strives to be a pure version of ROM 2.4. However, in the process of sifting
 through all this code, sometimes I just can't help myself.
-Some small changes and additions have been made, which can be enabled by
-commenting out the line `#define VANILLA` in `src/basemud.h`. Changes that
-I've considered bugfixes, typo / spelling error fixes, or patches to small
-oversights (i.e, fixing spells that have no casting message) will be left in.
+Some small changes and additions have been made, which can be enabled/disabled by
+uncommenting/commenting the `#define BASEMUD_(FEATURE)` lines in `src/basemud.h`.
+Changes that I've considered bugfixes, typo / spelling error fixes, or patches
+to small oversights (i.e, fixing spells that have no casting message) will be
+left in.
 
 Most of the code has been manually linted for better readability and brevity.
 Some changes are subject to taste, but much care has been spent to make the
@@ -96,7 +97,15 @@ affects to a table, at which point this will be fixed.
 
 Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
 
-## Internal Changes
+## Game Changes:
+
+Some small changes have been made, most of which are small quality-of-life
+improvements, some of which are personal preferences that will eventually be
+phased out or at least optional. A handful of changes were just for fun.
+
+**Major features:**
+
+* The world can now be exported and imported in JSON format.
 
 **Deployment:**
 
@@ -104,6 +113,166 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
   directory. For convenience, you can use `run.sh` in the root directory.
 * The `Dockerfile` has been temporarilly removed until some of the structural
   changes are accounted for.
+
+**Optional Features - enable/disabled by uncommenting/commenting `#define BASEMUD_(FEATURE)` in `basemud.h`:**
+
+* `BASEMUD_SHOW_DOORS`:
+    Open and closed doors are now visible in auto exits. This reveals some otherwise
+    hidden exits but makes exploring _sooo_ much nicer.
+* `BASEMUD_SHOW_ARRIVAL_DIRECTIONS`:
+    When a character arrives in the room via standard movement, you will now see in what
+    direction they came from.
+* `BASEMUD_SHOW_OLC_IN_PROMPT`:
+    Added OLC editor and vnum to the front of the prompt by default.
+* `BASEMUD_SHOW_ABSOLUTE_HIT_DAMAGE`:
+    Hits and misses have additional adjectives to show their power in addition
+    to the verb that shows percentage of max hit points. Example: "You wound a scary
+    beholder with your **excellent** slash."
+* `BASEMUD_SHOW_ENHANCED_DAMAGE`:
+    Attacks from successful enhanced damage rolls are now displayed as "heavy <type>".
+    Example: "You scratch a lich with your epic **heavy** pierce."
+* `BASEMUD_SHOW_RECOVERY_RATE`:
+    The `score` command now shows your current hit/mana/move rates. This was a
+    debug feature that I felt was nice enough to have.
+* `BASEMUD_COLOR_STATUS_EFFECTS`:
+    The (Glowing), (White Aura), (Red Aura) etc. tags have appropriate colors.
+* `BASEMUD_COLOR_ROOMS_BY_SECTOR`:
+    Room titles are colored based on their terrain type.
+* `BASEMUD_MORE_PRECISE_CONDITIONS`:
+    More status notifications in addition to 'excellent', 'nasty wounds', etc.
+    There are now different messages for every interval of 10% of hp.
+* `BASEMUD_MORE_PRECISE_RELATIVE_DAMAGE`:
+    More low-level damage verbs during combat. The 1~15% damage range verbs
+    change from "scratch, graze" to "annoy, scratch, graze, scrape, bruise".
+* `BASEMUD_MOBS_SAY_SPELLS`:
+    Caster mobs now say their spells when casting just like players.
+* `BASEMUD_NO_RECALL_TO_SAME_ROOM`:
+    Recall attempts to the target recall room are now ignored completely.
+* `BASEMUD_NO_WORTHLESS_SACRIFICES`:
+    You can no longer sacrifice worthless objects.
+* `BASEMUD_GRADUAL_RECOVERY`:
+    Hit / mana / move generation now happens on every pulse rather than in
+    singular giant ticks. This is undoubtedly a CPU hog, and will need to be
+    improved in some way! In the meantime, it's very luxurious :)
+* `BASEMUD_CAP_JOINED_AFFECTS`:
+    When affects are joined, the duration will stack as before, but the modifier will
+    cap out at the min/max between the two affects. For example: the 'chill touch'
+    spell will reduce strength, but when stacked, the strength penalty will use the
+    stronger penalty between the old and new affects, rather than add them together
+    as before.
+* `BASEMUD_ALLOW_STUNNED_MOBS`:
+    Mobs can now be in stunned, incapacitated, and mortally wounded states.
+* `BASEMUD_DETECT_EXTREME_ALIGNMENTS`:
+    Added (Golden Aura) and (Black Aura) for extreme good/evil characters.
+* `BASEMUD_MATERIALS_COMMAND`:
+    Object / character materials can now be shown with the 'materials' command.
+* `BASEMUD_DISENGAGE_COMMAND`:
+    Added the `disengage` command to let spellcasters stop fighting and recover mana.
+    Doesn't work if they're being targetted by anyone in the room.
+* `BASEMUD_ORDER_ALL_COMMAND`:
+    Added `@` command as a shortcut for `order all`.
+* `BASEMUD_ABILITIES_COMMAND`:
+    Added `abilities` command, which shows both skills _and_ spells.
+* `BASEMUD_PIXIE_RACE`:
+    The "pixie" race has been added just for fun. They can fly, and they're
+    small, they detect good/evil, and are extremely frail!
+* `BASEMUD_IMPORT_JSON`:
+    Imports all `.json` files in the `json/` folder before loading the
+    traditional `.are` files.
+
+**Quality-of-Life Features:**
+
+* Current position can be shown in prompt.
+* Exits in the prompt now show open/closed status (requires `#define BASEMUD_FEATURES`).
+* Stunned / incapacitated / mortally wounded / dead state checks are now based on
+  percentage of max hit points.
+* The 'lore' command has been implemented. It works like the 'identify' spell,
+  but hand-picks information based on your skill percentage. What the player
+  knows about is random, seeded by the player's name and the object's vnum.
+  It currently cannot be practiced beyond 75%.
+* Some, but not all, simple "Ok." messages have been replaced with useful things.
+* Lots and lots of warning messages for mismatched doors or keys when loading zones.
+  This produces some warning messages from the stock zones (which are warranted).
+* Added warnings for `'E'` resets with unequippable wear locations for the item
+  or wear locations that are already taken on the mob. Many of these errors are
+  acceptable with the stock world, but many indicate real bugs.
+* New messages for passing through doors (for both sides).
+* Drunkeness, thirst, hunger, and fullness now gives you more useful
+  messages when the state changes via drink/eat.
+* If standing on/at/in something, The `stand` command without any argument will
+  now step off/out.
+* Modified the `dump` command to allow `dump stats` or
+    `dump world <raw | json>`. Files are dumped to the `dump/` directory.
+* Areas already loaded by JSON importing are now ignored.
+* Warnings are now produced if non-doors have keys.
+* Warnings are now produced for keys that don't exist.
+
+**Gameplay Changes:**
+
+* Door open(always) and closed(w/ `BASEMUD_FEATURES`) statuses are visible in the "exits" command.
+* Beds, tents, stools, etc. have automatic flags for `STAND_IN`, `STAND_AT`, etc.
+  in addition to some standard hit and move regeneration bonuses.
+* Bashing / tripping was effectively useless because combatants were
+  automatically moved back to standing position in `violence_update()`. This
+  is now a bit smarter, with cooldown rates.
+* You cannot change position while in a daze / cooldown state. You can still
+  issue several commands while knocked down, but you can't get back up!
+* Standing up in combat is automatic once the cooldown period has been reached.
+  This is essentially the same as before where you would _always_ stand up during
+  combat when attacked, but now it's no longer instant.
+* Form / parts for races have been reviewed and tweaked slightly (consistency between
+  canids). It makes no gameplay difference, but may in the future.
+* Tiny balance changes have been made to certain skills and stat regen amounts.
+* Fast healing is only active when sitting, resting, or sleeping.
+* Meditation is only active when sitting or resting.
+
+**Patched Oversights:**
+
+* `scan <dir>` only checks two rooms ahead rather than four. To see
+  that far, you'll need to use the "farsight" spell :)
+* Tweaked some stat tables very slightly to allow for steady progression in
+  areas that looked like oversights. (Maximum weight capacity did not increase
+  steadily where it easily could have.)
+* You can no longer trip targets without feet or legs.
+* Looking for doors by name now works the same way as looking for anything else.
+  You can now find a door by number - for example, if you're carrying "a portable door",
+  and there are two "door"s in the room, you can now say `open 3.door` to open the
+  room's second door.
+* Clean-ups and bugfixes to OLC to ensure stock zones are saved exactly as they are loaded.
+  (Confirmed using `diff` comparisons on `.are` files and one gargantuan `everything.json`
+  file containing the _entire_ world in JSON format)
+* Certain messages from shopkeepers, trainers, etc. would _try_ to look and act like the
+  `tell` command, but it wasn't consistent and generally unecessary. Now they're just
+  simple messages. Hopefully this doesn't break any mob scripting or anything like that.
+* Area files can now be loaded in any order.
+* NPCs can no longer bash, trip, kick, etc. while they're on the ground.
+
+**Bug Fixes:**
+
+* The `scan` command now checks for mob visibility in rooms based on room light level.
+* `scan` doesn't peek through doors anymore.
+* Doors are now properly closed and locked and both sides when loading zones. This
+  fixes some resets as well.
+* Getting hit by fire or ice breath no longer makes you _less_ hungry or
+  thirsty. Whoops!
+* 'Word of recall' now writes "Spell failed." to the _caster_ rather than
+  the victim.
+* 'Heat metal' would drop an item _more_ if the opponent had more dexterity - this
+  is fixed, but still needs balancing.
+* In most cases, finding characters and objects by '1.thing', '2.thing', etc.
+  will now count correctly when searching multiple locations (e.g, check the room,
+  then the rest of the world). This is done by a `find_continue_count()` call
+  preceding the next check.
+* Checks for immune/resistant/vulnerable flags completely ignored default
+  weapon/magic imm/res/vuln flags, despite existing code with implied behavior.
+  Resistance no longer overrides default immunity, and vulnerability now
+  properly _downgrades_ the default status (imm`->`res, res`->`normal,
+  normal`->`vuln).
+* When wearing an item, _all_ potential slots are now checked, not just related
+  slots (e.g, a ring can now be held as well as worn on a finger).
+* The AREA_LOADING flag is no removed for the last area loaded.
+
+## Internal Changes
 
 **Code Reorganization:**
 
@@ -131,6 +300,13 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
 * Moved mob/obj instantiation and clone functions to `chars.c` and `objs.c`. They
     are now named `char_create_mobile()`, `char_clone_mobile()`, `obj_create()`
     and `obj_clone()`.
+* Moved all shared global variables to new `globals.c` and `globals.h`. All
+    other global variables used in a single file are now marked `static`.
+* Moved all string or memory allocation functions from `utils.c` to new
+    `memory.c`. Functions in `memory.c` have been renamed more appropriately,
+    reviewed, and wiped clean of hungarian notation (yay).
+* Moved all typedefs to new `typedefs.h`. This way, structures can be used in
+    all headers before they're defined.
 
 **Code Reduction:**
 
@@ -201,138 +377,15 @@ Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
     been left in place as shorthand functions.
 * Replaced <attr>_app[] lookups with `<attr>_app_get()`, `char_get_curr_<attr>()`
     functions.  Added lookup functions for all stat bonuses.
+* Replaced key 0 and -1 with KEY_NO_KEY and KEY_NOKEYHOLE wherever it was seen.
+* Non-doors now always have their key set to KEY_NOKEYHOLE.
+* Separated room/mob/obj hash registration process into separate functions.
+* Removed `target_name` global variable - it is now explicitly provided to the
+    functions that require it.
 
 There are some higher-level abstractions that have likely caused a slight performance hit
 or a little more memory usage, but this is hardly an issue in 2019 ;) Some profiling will
 likely happen later on down the line.
-
-## Game Changes:
-
-Some small changes have been made, most of which are small quality-of-life
-improvements, some of which are personal preferences that will eventually be
-phased out or at least optional. A handful of changes were just for fun.
-
-**Bugfixes:**
-* The `scan` command now checks for mob visibility in rooms based on room light level.
-* `scan` doesn't peek through doors anymore.
-* Doors are now properly closed and locked and both sides when loading zones. This
-  fixes some resets as well.
-* Getting hit by fire or ice breath no longer makes you _less_ hungry or
-  thirsty. Whoops!
-* 'Word of recall' now writes "Spell failed." to the _caster_ rather than
-  the victim.
-* 'Heat metal' would drop an item _more_ if the opponent had more dexterity - this
-  is fixed, but still needs balancing.
-* In most cases, finding characters and objects by '1.thing', '2.thing', etc.
-  will now count correctly when searching multiple locations (e.g, check the room,
-  then the rest of the world). This is done by a `find_continue_count()` call
-  preceding the next check.
-* Checks for immune/resistant/vulnerable flags completely ignored default
-  weapon/magic imm/res/vuln flags, despite existing code with implied behavior.
-  Resistance no longer overrides default immunity, and vulnerability now
-  properly _downgrades_ the default status (imm`->`res, res`->`normal,
-  normal`->`vuln).
-* When wearing an item, _all_ potential slots are now checked, not just related
-  slots (e.g, a ring can now be held as well as worn on a finger).
-
-**Patched Oversights:**
-* `scan <dir>` only checks two rooms ahead rather than four. To see
-  that far, you'll need to use the "farsight" spell :)
-* Tweaked some stat tables very slightly to allow for steady progression in
-  areas that looked like oversights. (Maximum weight capacity did not increase
-  steadily where it easily could have.)
-* You can no longer trip targets without feet or legs.
-* Looking for doors by name now works the same way as looking for anything else.
-  You can now find a door by number - for example, if you're carrying "a portable door",
-  and there are two "door"s in the room, you can now say `open 3.door` to open the
-  room's second door.
-* Clean-ups and bugfixes to OLC to ensure stock zones are saved exactly as they are loaded.
-  (Confirmed using `diff` comparisons on `.are` files and one gargantuan `everything.json`
-  file containing the _entire_ world in JSON format)
-* Certain messages from shopkeepers, trainers, etc. would _try_ to look and act like the
-  `tell` command, but it wasn't consistent and generally unecessary. Now they're just
-  simple messages. Hopefully this doesn't break any mob scripting or anything like that.
-
-**Quality-of-Life Features:**
-* Current position can be shown in prompt.
-* Exits in the prompt now show open/closed status (!VANILLA).
-* Stunned / incapacitated / mortally wounded / dead state checks are now based on
-  percentage of max hit points.
-* The 'lore' command has been implemented. It works like the 'identify' spell,
-  but hand-picks information based on your skill percentage. What the player
-  knows about is random, seeded by the player's name and the object's vnum.
-  It currently cannot be practiced beyond 75%.
-* Some, but not all, simple "Ok." messages have been replaced with useful things.
-* Lots and lots of warning messages for mismatched doors or keys when loading zones.
-  This produces some warning messages from the stock zones (which are warranted).
-* Added warnings for `'E'` resets with unequippable wear locations for the item
-  or wear locations that are already taken on the mob. Many of these errors are
-  acceptable with the stock world, but many indicate real bugs.
-* New messages for passing through doors (for both sides).
-* Drunkeness, thirst, hunger, and fullness now gives you more useful
-  messages when the state changes via drink/eat.
-* If standing on/at/in something, The `stand` command without any argument will
-  now step off/out.
-
-**Gameplay Changes:**
-* Door open / closed(!VANILLA) status is visible in the "exits" command.
-* Beds, tents, stools, etc. have automatic flags for `STAND_IN`, `STAND_AT`, etc.
-  in addition to some standard hit and move regeneration bonuses.
-* Bashing / tripping was effectively useless because combatants were
-  automatically moved back to standing position in `violence_update()`. This
-  is now a bit smarter, with cooldown rates.
-* You cannot change position while in a daze / cooldown state. You can still
-  issue several commands while knocked down, but you can't get back up!
-* Standing up in combat is automatic once the cooldown period has been reached.
-  This is essentially the same as before where you would _always_ stand up during
-  combat when attacked, but now it's no longer instant.
-* Form / parts for races have been reviewed and tweaked slightly (consistency between
-  canids). It makes no gameplay difference, but may in the future.
-* Tiny balance changes have been made to certain skills and stat regen amounts.
-* Fast healing is only active when sitting, resting, or sleeping.
-* Meditation is only active when sitting or resting.
-* As a bonus feature, booting the MUD currently outputs several files to JSON
-  format in the `json/` directory. In time, the MUD will be able to read these files
-  instead or in addition to the standard ".are" files. This is to help develop
-  editing software other than notepad or OLC.
-
-**Optional Features (disabled by default - enable by uncommenting `#define VANILLA` in `basemud.h`):**
-* More status noficiations in addition to 'excellent', 'nasty wounds', etc.
-* Room titles are now colored based on their terrain type.
-* The "pixie" race has been added just for fun. They can fly, and they're small,
-  but boy are they frail! (this will undoubtedly get rolled back at some point...)
-* The `score` command now shows your current hit/mana/move rates. This was a
-  debug feature that I felt was nice enough to have.
-* Hits and misses have additional adjectives to show their power in addition
-  to the verb that shows percentage of max hit points. Example: "You wound a scary
-  beholder with your  **excellent** slash."
-* Attacks from successful enhanced damage rolls are now displayed as "heavy <type>".
-  Example: "You scratch a lich with your epic **heavy** pierce."
-* Open and closed doors are now visible in auto exits. This reveals some otherwise
-  hidden exits but makes exploring _sooo_ much nicer.
-* Hit / mana / move generation now happens on every pulse rather than in
-  singular giant ticks. This is undoubtedly a CPU hog, and will need to be
-  improved in some way! In the meantime, it's very luxurious :)
-* When a character arrives in the room via standard movement, you will now see in what
-  direction they came from.
-* The (Glowing), (White Aura), (Red Aura) etc. tags have appropriate colors.
-* Added (Golden Aura) and (Black Aura) for extreme good/evil characters.
-* Added the `disengage` command to let spellcasters stop fighting and recover mana.
-  Doesn't work if they're being targetted by anyone in the room.
-* You can no longer sacrifice worthless objects.
-* Added `@` command as a shortcut for `order all`.
-* Added `abilities` command, which shows both skills _and_ spells.
-* NPCs can no longer bash, trip, kick, etc. while they're on the ground.
-* When affects are joined, the duration will stack as before, but the modifier will
-  cap out at the min/max between the two affects. For example: Suppose the 'giant strength'
-  spell could be stacked. Casting 'giant strength' with a +3 str bonus onto a target who already has a
-  'giant strength' +2 str bonus will result in a +3 str bonus (the maximum of the two)
-  rather the a +5 str bonus (the sum of the two). The same applies for negative bonuses like
-  for 'chill touch' and 'plague'.
-* Object / character materials can now be shown with the 'materials' command.
-* Mobs can now be in stunned, incapacitated, and mortally wounded states.
-* Caster mobs now say their spells when casting just like players.
-* Added OLC editor and vnum to the front of the prompt by default.
 
 Enjoy!
 

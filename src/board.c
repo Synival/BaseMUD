@@ -58,21 +58,23 @@
 #include "lookup.h"
 #include "chars.h"
 #include "descs.h"
+#include "memory.h"
+#include "globals.h"
 
 #include "board.h"
 
 #define L_SUP (MAX_LEVEL - 1) /* if not already defined */
 
 /* The prompt that the character is given after finishing a note with ~ or END */
-const char * szFinishPrompt = "({WC{x)ontinue, ({WV{x)iew, ({WP{x)ost or ({WF{x)orget it?";
-
-long last_note_stamp = 0; /* To generate unique timestamps on notes */
+static const char *note_finish_prompt =
+    "({WC{x)ontinue, ({WV{x)iew, ({WP{x)ost or ({WF{x)orget it?";
+static long last_note_stamp = 0; /* To generate unique timestamps on notes */
 
 #define BOARD_NOACCESS -1
 #define BOARD_NOTFOUND -1
 
 /* append this note to the given file */
-void append_note (FILE *fp, NOTE_DATA *note) {
+void append_note (FILE *fp, NOTE_T *note) {
     fprintf (fp, "Sender  %s~\n", note->sender);
     fprintf (fp, "Date    %s~\n", note->date);
     fprintf (fp, "Stamp   %ld\n", note->date_stamp);
@@ -83,7 +85,7 @@ void append_note (FILE *fp, NOTE_DATA *note) {
 }
 
 /* Save a note in a given board */
-void finish_note (BOARD_DATA *board, NOTE_DATA *note) {
+void finish_note (BOARD_T *board, NOTE_T *note) {
     FILE *fp;
     char filename[200];
 
@@ -96,7 +98,7 @@ void finish_note (BOARD_DATA *board, NOTE_DATA *note) {
     }
 
     /* place this note at the end of the note list. */
-    LIST_BACK (note, next, board->note_first, NOTE_DATA);
+    LIST_BACK (note, next, board->note_first, NOTE_T);
 
     /* append note to note file */
     sprintf (filename, "%s/%s", NOTE_DIR, board->name);
@@ -111,7 +113,7 @@ void finish_note (BOARD_DATA *board, NOTE_DATA *note) {
 }
 
 /* Find the number of a board */
-int board_number (const BOARD_DATA *board) {
+int board_number (const BOARD_T *board) {
     int i;
     for (i = 0; i < BOARD_MAX; i++)
         if (board == &board_table[i])
@@ -120,14 +122,14 @@ int board_number (const BOARD_DATA *board) {
 }
 
 /* Remove list from the list. Do not free note */
-void unlink_note (BOARD_DATA *board, NOTE_DATA *note) {
-    LIST_REMOVE (note, next, board->note_first, NOTE_DATA, NO_FAIL);
+void unlink_note (BOARD_T *board, NOTE_T *note) {
+    LIST_REMOVE (note, next, board->note_first, NOTE_T, NO_FAIL);
 }
 
 /* Find the nth note on a board. Return NULL if ch has no access to that note */
-NOTE_DATA* find_note (CHAR_DATA *ch, BOARD_DATA *board, int num) {
+NOTE_T* find_note (CHAR_T *ch, BOARD_T *board, int num) {
     int count = 0;
-    NOTE_DATA *p;
+    NOTE_T *p;
 
     for (p = board->note_first; p ; p = p->next)
             if (++count == num)
@@ -139,10 +141,10 @@ NOTE_DATA* find_note (CHAR_DATA *ch, BOARD_DATA *board, int num) {
 }
 
 /* save a single board */
-void save_board (BOARD_DATA *board) {
+void save_board (BOARD_T *board) {
     FILE *fp;
     char filename[200];
-    NOTE_DATA *note;
+    NOTE_T *note;
 
     sprintf (filename, "%s/%s", NOTE_DIR, board->name);
     BAIL_IF_BUGF ((fp = fopen (filename, "w")) == NULL,
@@ -154,7 +156,7 @@ void save_board (BOARD_DATA *board) {
 }
 
 /* Show one not to a character */
-void show_note_to_char (CHAR_DATA *ch, NOTE_DATA *note, int num) {
+void show_note_to_char (CHAR_T *ch, NOTE_T *note, int num) {
     /* Ugly colors ? */
     printf_to_char (ch,
         "[{W%4d{x] {Y%s{x: {g%s{x\n\r"
@@ -175,9 +177,9 @@ void save_notes () {
 }
 
 /* Load a single board */
-void load_board (BOARD_DATA *board) {
+void load_board (BOARD_T *board) {
     FILE *fp, *fp_archive;
-    NOTE_DATA *last_note;
+    NOTE_T *last_note;
     char filename[200];
 
     sprintf (filename, "%s/%s", NOTE_DIR, board->name);
@@ -191,7 +193,7 @@ void load_board (BOARD_DATA *board) {
     last_note = NULL;
 
     while (1) {
-        NOTE_DATA *pnote;
+        NOTE_T *pnote;
         char letter;
 
         do {
@@ -258,7 +260,7 @@ void load_boards () {
 }
 
 /* Returns TRUE if the specified note is address to ch */
-bool is_note_to (CHAR_DATA *ch, NOTE_DATA *note) {
+bool is_note_to (CHAR_T *ch, NOTE_T *note) {
     if (!str_cmp (ch->name, note->sender))
         return TRUE;
     if (is_full_name ("all", note->to_list))
@@ -292,8 +294,8 @@ bool is_note_to (CHAR_DATA *ch, NOTE_DATA *note) {
 
 /* Return the number of unread notes 'ch' has in 'board' */
 /* Returns BOARD_NOACCESS if ch has no access to board */
-int unread_notes (CHAR_DATA *ch, BOARD_DATA *board) {
-    NOTE_DATA *note;
+int unread_notes (CHAR_T *ch, BOARD_T *board) {
+    NOTE_T *note;
     time_t last_read;
     int count = 0;
 
@@ -321,8 +323,8 @@ void make_note (const char* board_name, const char *sender, const char *to,
     const char *subject, const int expire_days, const char *text)
 {
     int board_index = board_lookup (board_name);
-    BOARD_DATA *board;
-    NOTE_DATA *note;
+    BOARD_T *board;
+    NOTE_T *note;
     char *strtime;
 
     BAIL_IF_BUG (board_index == BOARD_NOTFOUND,
@@ -334,7 +336,7 @@ void make_note (const char* board_name, const char *sender, const char *to,
 
     note = note_new (); /* allocate new note */
     note->sender  = str_dup (sender);
-    note->to_list = str_dup(to);
+    note->to_list = str_dup (to);
     note->subject = str_dup (subject);
     note->expire  = current_time + expire_days * 60 * 60 * 24;
     note->text    = str_dup (text);
@@ -348,7 +350,7 @@ void make_note (const char* board_name, const char *sender, const char *to,
 }
 
 /* tries to change to the next accessible board */
-bool next_board (CHAR_DATA *ch) {
+bool next_board (CHAR_T *ch) {
     int i = board_number (ch->pcdata->board) + 1;
     while ((i < BOARD_MAX) && (unread_notes(ch, &board_table[i]) == BOARD_NOACCESS))
         i++;
@@ -360,9 +362,9 @@ bool next_board (CHAR_DATA *ch) {
     }
 }
 
-void handle_con_note_to (DESCRIPTOR_DATA *d, char * argument) {
+void handle_con_note_to (DESCRIPTOR_T *d, char *argument) {
     char buf [MAX_INPUT_LENGTH];
-    CHAR_DATA *ch = d->character;
+    CHAR_T *ch = d->character;
 
     if (!ch->pcdata->in_progress) {
         d->connected = CON_PLAYING;
@@ -388,7 +390,7 @@ void handle_con_note_to (DESCRIPTOR_DATA *d, char * argument) {
             if (!is_full_name (ch->pcdata->board->names, buf)) {
                 strcat (buf, " ");
                 strcat (buf, ch->pcdata->board->names);
-                ch->pcdata->in_progress->to_list = str_dup(buf);
+                ch->pcdata->in_progress->to_list = str_dup (buf);
 
                 printf_to_desc (d, "\n\rYou did not specify %s as recipient, so it was automatically added.\n\r"
                          "{YNew To{x :  %s\n\r",
@@ -421,9 +423,9 @@ void handle_con_note_to (DESCRIPTOR_DATA *d, char * argument) {
     d->connected = CON_NOTE_SUBJECT;
 }
 
-void handle_con_note_subject (DESCRIPTOR_DATA *d, char * argument) {
+void handle_con_note_subject (DESCRIPTOR_T *d, char *argument) {
     char buf [MAX_INPUT_LENGTH];
-    CHAR_DATA *ch = d->character;
+    CHAR_T *ch = d->character;
 
     if (!ch->pcdata->in_progress) {
         d->connected = CON_PLAYING;
@@ -445,7 +447,7 @@ void handle_con_note_subject (DESCRIPTOR_DATA *d, char * argument) {
     }
     /* advance to next stage */
     else {
-        ch->pcdata->in_progress->subject = str_dup(buf);
+        ch->pcdata->in_progress->subject = str_dup (buf);
         if (IS_IMMORTAL(ch)) { /* immortals get to choose number of expire days */
             printf_to_desc (d, "\n\r"
                 "How many days do you want this note to expire in?\n\r"
@@ -468,8 +470,8 @@ void handle_con_note_subject (DESCRIPTOR_DATA *d, char * argument) {
     }
 }
 
-void handle_con_note_expire (DESCRIPTOR_DATA *d, char * argument) {
-    CHAR_DATA *ch = d->character;
+void handle_con_note_expire (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     time_t expire;
     int days;
@@ -510,8 +512,8 @@ void handle_con_note_expire (DESCRIPTOR_DATA *d, char * argument) {
     d->connected = CON_NOTE_TEXT;
 }
 
-void handle_con_note_text (DESCRIPTOR_DATA *d, char * argument) {
-    CHAR_DATA *ch = d->character;
+void handle_con_note_text (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     char letter[4*MAX_STRING_LENGTH];
 
@@ -525,7 +527,7 @@ void handle_con_note_text (DESCRIPTOR_DATA *d, char * argument) {
     strcpy (buf, argument);
     if (!str_cmp(buf, "~") || !str_cmp(buf, "END")) {
         write_to_buffer (d, "\n\r\n\r",0);
-        printf_to_desc (d, "%s", szFinishPrompt);
+        printf_to_desc (d, "%s", note_finish_prompt);
         write_to_buffer (d, "\n\r", 0);
         d->connected = CON_NOTE_FINISH;
         return;
@@ -548,8 +550,7 @@ void handle_con_note_text (DESCRIPTOR_DATA *d, char * argument) {
     /* How would the system react to strcpy( , NULL) ? */
     if (ch->pcdata->in_progress->text) {
         strcpy (letter, ch->pcdata->in_progress->text);
-        str_free (ch->pcdata->in_progress->text);
-        ch->pcdata->in_progress->text = NULL;
+        str_free (&(ch->pcdata->in_progress->text));
     }
     else
         strcpy (letter, "");
@@ -571,8 +572,8 @@ void handle_con_note_text (DESCRIPTOR_DATA *d, char * argument) {
     ch->pcdata->in_progress->text = str_dup (letter);
 }
 
-void handle_con_note_finish (DESCRIPTOR_DATA *d, char * argument) {
-    CHAR_DATA *ch = d->character;
+void handle_con_note_finish (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
 
     if (!ch->pcdata->in_progress) {
         d->connected = CON_PLAYING;
@@ -593,7 +594,7 @@ void handle_con_note_finish (DESCRIPTOR_DATA *d, char * argument) {
             }
             else
                 write_to_buffer (d,"You haven't written a thing!\n\r\n\r",0);
-            printf_to_desc (d, "%s", szFinishPrompt);
+            printf_to_desc (d, "%s", note_finish_prompt);
             write_to_buffer (d, "\n\r",0);
             break;
 
@@ -616,7 +617,7 @@ void handle_con_note_finish (DESCRIPTOR_DATA *d, char * argument) {
 
         default: /* invalid response */
             write_to_buffer (d, "Huh? Valid answers are:\n\r\n\r",0);
-            printf_to_desc (d, "%s", szFinishPrompt);
+            printf_to_desc (d, "%s", note_finish_prompt);
             write_to_buffer (d, "\n\r",0);
     }
 }

@@ -30,13 +30,12 @@
 #include <string.h>
 
 #include "lookup.h"
-#include "utils.h"
 #include "chars.h"
 
 #include "colour.h"
 
 int colour_to_ansi (flag_t colour, char *buf_out, size_t size) {
-    const char *flag_str = "", *fg_str = "", *bg_str = "", *beep_str;
+    const char *flag_str = "", *fg_str = "", *bg_str = "", *beep_str = "";
     if (buf_out == NULL || size <= 0)
         return 0;
 
@@ -83,7 +82,7 @@ int colour_to_ansi (flag_t colour, char *buf_out, size_t size) {
         flag_str, fg_str, bg_str, beep_str);
 }
 
-int colour_code_to_ansi (CHAR_DATA * ch, int use_colour,
+int colour_code_to_ansi (CHAR_T *ch, int use_colour,
     char type, char *buf_out, size_t size)
 {
     char code[32];
@@ -125,7 +124,7 @@ int colour_code_to_ansi (CHAR_DATA * ch, int use_colour,
 
     /* if we didn't find a code, look one up. */
     if (code[0] == '\0' && ch != NULL && ch->pcdata) {
-        const COLOUR_SETTING_TYPE *setting;
+        const COLOUR_SETTING_T *setting;
         setting = colour_setting_get_by_char(type);
         if (setting != NULL)
             CTA(ch->pcdata->colour[setting->index]);
@@ -139,7 +138,7 @@ int colour_code_to_ansi (CHAR_DATA * ch, int use_colour,
     return snprintf (buf_out, size, "%s", code);
 }
 
-int colour_puts (CHAR_DATA *ch, bool use_colour, const char *buf_in,
+int colour_puts (CHAR_T *ch, bool use_colour, const char *buf_in,
     char *buf_out, size_t size)
 {
     const char *buf_start, *point;
@@ -185,7 +184,7 @@ int colour_to_full_name (flag_t colour, char *buf_out, size_t size) {
 
     len = 0;
     for (i = 0; colour_table[i].name != NULL; i++) {
-        const COLOUR_TYPE *c = &(colour_table[i]);
+        const COLOUR_T *c = &(colour_table[i]);
         flag_t mask = colour & c->mask;
         if (mask == c->code) {
             len += snprintf (buf_out + len, size - len, "%s%s",
@@ -195,7 +194,7 @@ int colour_to_full_name (flag_t colour, char *buf_out, size_t size) {
     return len;
 }
 
-const COLOUR_SETTING_TYPE *colour_setting_get_by_char (char ch) {
+const COLOUR_SETTING_T *colour_setting_get_by_char (char ch) {
     int i;
     for (i = 0; i < COLOUR_MAX; i++)
         if (colour_setting_table[i].act_char == ch)

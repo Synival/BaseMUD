@@ -35,13 +35,14 @@
 #include "chars.h"
 #include "find.h"
 #include "descs.h"
+#include "globals.h"
 
 #include "wiz_l3.h"
 
 DEFINE_DO_FUN (do_disconnect) {
     char arg[MAX_INPUT_LENGTH];
-    DESCRIPTOR_DATA *d;
-    CHAR_DATA *victim;
+    DESCRIPTOR_T *d;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
@@ -80,7 +81,7 @@ DEFINE_DO_FUN (do_disconnect) {
 DEFINE_DO_FUN (do_pardon) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -116,7 +117,7 @@ DEFINE_DO_FUN (do_sla)
     { send_to_char ("If you want to SLAY, spell it out.\n\r", ch); }
 
 DEFINE_DO_FUN (do_slay) {
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     char arg[MAX_INPUT_LENGTH];
 
     one_argument (argument, arg);

@@ -46,7 +46,7 @@
     } while (0)
 
 JSON_T *json_tblw_flag (const void *obj) {
-    JSON_TBLW_START (FLAG_TYPE, flag, flag->name == NULL);
+    JSON_TBLW_START (FLAG_T, flag, flag->name == NULL);
     json_prop_string  (new, "name",     flag->name);
     json_prop_integer (new, "bit",      flag->bit);
     json_prop_boolean (new, "settable", flag->settable);
@@ -54,7 +54,7 @@ JSON_T *json_tblw_flag (const void *obj) {
 }
 
 JSON_T *json_tblw_clan (const void *obj) {
-    JSON_TBLW_START (CLAN_TYPE, clan, clan->name == NULL);
+    JSON_TBLW_START (CLAN_T, clan, clan->name == NULL);
     json_prop_string  (new, "name",        JSTR (clan->name));
     json_prop_string  (new, "who_name",    JSTR (clan->who_name));
     json_prop_integer (new, "hall",        clan->hall);
@@ -63,7 +63,7 @@ JSON_T *json_tblw_clan (const void *obj) {
 }
 
 JSON_T *json_tblw_position (const void *obj) {
-    JSON_TBLW_START (POSITION_TYPE, pos, pos->name == NULL);
+    JSON_TBLW_START (POSITION_T, pos, pos->name == NULL);
     json_prop_integer (new, "position",   pos->pos);
     json_prop_string  (new, "name",       JSTR (pos->name));
     json_prop_string  (new, "long_name",  JSTR (pos->long_name));
@@ -71,14 +71,14 @@ JSON_T *json_tblw_position (const void *obj) {
 }
 
 JSON_T *json_tblw_sex (const void *obj) {
-    JSON_TBLW_START (SEX_TYPE, sex, sex->name == NULL);
+    JSON_TBLW_START (SEX_T, sex, sex->name == NULL);
     json_prop_integer (new, "sex",  sex->sex);
     json_prop_string  (new, "name", JSTR (sex->name));
     return new;
 }
 
 JSON_T *json_tblw_size (const void *obj) {
-    JSON_TBLW_START (SIZE_TYPE, size, size->name == NULL);
+    JSON_TBLW_START (SIZE_T, size, size->name == NULL);
     json_prop_integer (new, "size", size->size);
     json_prop_string  (new, "name", JSTR (size->name));
     return new;

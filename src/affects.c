@@ -29,7 +29,6 @@
 
 #include "recycle.h"
 #include "utils.h"
-#include "comm.h"
 #include "lookup.h"
 #include "chars.h"
 
@@ -38,8 +37,8 @@
 /* for immunity, vulnerabiltiy, and resistant
    the 'globals' (magic and weapons) may be overriden
    three other cases -- wood, silver, and iron -- are checked in fight.c */
-int check_immune (CHAR_DATA * ch, int dam_type) {
-    const DAM_TYPE *dam;
+int check_immune (CHAR_T *ch, int dam_type) {
+    const DAM_T *dam;
     int def;
     flag_t bit;
 
@@ -87,7 +86,7 @@ int check_immune (CHAR_DATA * ch, int dam_type) {
     return def;
 }
 
-void affect_modify_bits (CHAR_DATA * ch, AFFECT_DATA * paf, bool on) {
+void affect_modify_bits (CHAR_T *ch, AFFECT_T *paf, bool on) {
     if (on) {
         switch (paf->bit_type) {
             case AFF_TO_AFFECTS: SET_BIT (ch->affected_by, paf->bits); break;
@@ -106,7 +105,7 @@ void affect_modify_bits (CHAR_DATA * ch, AFFECT_DATA * paf, bool on) {
     }
 }
 
-void affect_modify_apply (CHAR_DATA * ch, AFFECT_DATA * paf, bool on) {
+void affect_modify_apply (CHAR_T *ch, AFFECT_T *paf, bool on) {
     int mod, i;
 
     mod = on ? (paf->modifier) : (0 - paf->modifier);
@@ -149,7 +148,7 @@ void affect_modify_apply (CHAR_DATA * ch, AFFECT_DATA * paf, bool on) {
 }
 
 /* Apply or remove an affect to a character. */
-void affect_modify (CHAR_DATA * ch, AFFECT_DATA * paf, bool on) {
+void affect_modify (CHAR_T *ch, AFFECT_T *paf, bool on) {
     /* Modifiy various bits and other stats from 'apply'. */
     affect_modify_bits  (ch, paf, on);
     affect_modify_apply (ch, paf, on);
@@ -159,8 +158,8 @@ void affect_modify (CHAR_DATA * ch, AFFECT_DATA * paf, bool on) {
 }
 
 /* find an effect in an affect list */
-AFFECT_DATA *affect_find (AFFECT_DATA * paf, int sn) {
-    AFFECT_DATA *paf_find;
+AFFECT_T *affect_find (AFFECT_T *paf, int sn) {
+    AFFECT_T *paf_find;
     for (paf_find = paf; paf_find != NULL; paf_find = paf_find->next)
         if (paf_find->type == sn)
             return paf_find;
@@ -168,9 +167,9 @@ AFFECT_DATA *affect_find (AFFECT_DATA * paf, int sn) {
 }
 
 /* fix object affects when removing one */
-void affect_check (CHAR_DATA * ch, int bit_type, flag_t bits) {
-    AFFECT_DATA *paf;
-    OBJ_DATA *obj;
+void affect_check (CHAR_T *ch, int bit_type, flag_t bits) {
+    AFFECT_T *paf;
+    OBJ_T *obj;
 
     if (ch == NULL)
         return;
@@ -200,7 +199,7 @@ void affect_check (CHAR_DATA * ch, int bit_type, flag_t bits) {
     }
 }
 
-void affect_copy (AFFECT_DATA *dest, AFFECT_DATA *src) {
+void affect_copy (AFFECT_T *dest, AFFECT_T *src) {
     dest->bit_type = src->bit_type;
     dest->type     = src->type;
     dest->level    = src->level;
@@ -211,8 +210,8 @@ void affect_copy (AFFECT_DATA *dest, AFFECT_DATA *src) {
 }
 
 /* Give an affect to a char. */
-void affect_to_char (CHAR_DATA *ch, AFFECT_DATA *paf) {
-    AFFECT_DATA *paf_new;
+void affect_to_char (CHAR_T *ch, AFFECT_T *paf) {
+    AFFECT_T *paf_new;
 
     paf_new = affect_new ();
     affect_copy (paf_new, paf);
@@ -222,8 +221,8 @@ void affect_to_char (CHAR_DATA *ch, AFFECT_DATA *paf) {
 }
 
 /* give an affect to an object */
-void affect_to_obj (OBJ_DATA *obj, AFFECT_DATA *paf) {
-    AFFECT_DATA *paf_new;
+void affect_to_obj (OBJ_T *obj, AFFECT_T *paf) {
+    AFFECT_T *paf_new;
 
     paf_new = affect_new ();
     affect_copy (paf_new, paf);
@@ -246,7 +245,7 @@ void affect_to_obj (OBJ_DATA *obj, AFFECT_DATA *paf) {
 }
 
 /* Remove an affect from a char. */
-void affect_remove (CHAR_DATA * ch, AFFECT_DATA * paf) {
+void affect_remove (CHAR_T *ch, AFFECT_T *paf) {
     int bit_type;
     flag_t bits;
 
@@ -257,12 +256,12 @@ void affect_remove (CHAR_DATA * ch, AFFECT_DATA * paf) {
     bit_type = paf->bit_type;
     bits     = paf->bits;
 
-    LIST_REMOVE (paf, next, ch->affected, AFFECT_DATA, return);
+    LIST_REMOVE (paf, next, ch->affected, AFFECT_T, return);
     affect_free (paf);
     affect_check (ch, bit_type, bits);
 }
 
-void affect_remove_obj (OBJ_DATA * obj, AFFECT_DATA * paf) {
+void affect_remove_obj (OBJ_T *obj, AFFECT_T *paf) {
     int bit_type, bits;
 
     BAIL_IF_BUG (obj->affected == NULL,
@@ -287,16 +286,16 @@ void affect_remove_obj (OBJ_DATA * obj, AFFECT_DATA * paf) {
         }
     }
 
-    LIST_REMOVE (paf, next, obj->affected, AFFECT_DATA, return);
+    LIST_REMOVE (paf, next, obj->affected, AFFECT_T, return);
     affect_free (paf);
     if (obj->carried_by != NULL && obj->wear_loc != -1)
         affect_check (obj->carried_by, bit_type, bits);
 }
 
 /* Strip all affects of a given sn. */
-void affect_strip (CHAR_DATA * ch, int sn) {
-    AFFECT_DATA *paf;
-    AFFECT_DATA *paf_next;
+void affect_strip (CHAR_T *ch, int sn) {
+    AFFECT_T *paf;
+    AFFECT_T *paf_next;
 
     for (paf = ch->affected; paf != NULL; paf = paf_next) {
         paf_next = paf->next;
@@ -306,8 +305,8 @@ void affect_strip (CHAR_DATA * ch, int sn) {
 }
 
 /* Return true if a char is affected by a spell. */
-bool is_affected (CHAR_DATA * ch, int sn) {
-    AFFECT_DATA *paf;
+bool is_affected (CHAR_T *ch, int sn) {
+    AFFECT_T *paf;
     for (paf = ch->affected; paf != NULL; paf = paf->next)
         if (paf->type == sn)
             return TRUE;
@@ -315,10 +314,10 @@ bool is_affected (CHAR_DATA * ch, int sn) {
 }
 
 /* Add or enhance an affect. */
-void affect_join (CHAR_DATA * ch, AFFECT_DATA * paf) {
-    AFFECT_DATA *paf_old;
-#ifndef VANILLA
-    int min, max;
+void affect_join (CHAR_T *ch, AFFECT_T *paf) {
+    AFFECT_T *paf_old;
+#ifdef BASEMUD_CAP_JOINED_AFFECTS
+    int lower, higher, sum;
 #endif
 
     for (paf_old = ch->affected; paf_old != NULL; paf_old = paf_old->next) {
@@ -326,16 +325,14 @@ void affect_join (CHAR_DATA * ch, AFFECT_DATA * paf) {
             paf->level = (paf->level + paf_old->level) / 2;
             paf->duration += paf_old->duration;
 
-#ifndef VANILLA
-            min = UMIN (paf->modifier, paf_old->modifier);
-            max = UMAX (paf->modifier, paf_old->modifier);
-            paf->modifier += paf_old->modifier;
-
+#ifdef BASEMUD_CAP_JOINED_AFFECTS
             /* we can't be weaker or stronger than either one of the affects
              * we're merging.  otherwise, something like chill touch could
-             * cause -10 str penalty or something nuts. */
-            paf->modifier = UMAX (paf->modifier, min);
-            paf->modifier = UMIN (paf->modifier, max);
+             * cause -10 str penalty upon multiple hits, which is crazy OP. */
+            lower  = UMIN (paf->modifier, paf_old->modifier);
+            higher = UMAX (paf->modifier, paf_old->modifier);
+            sum    = paf->modifier + paf_old->modifier;
+            paf->modifier = URANGE (lower, sum, higher);
 #else
             paf->modifier += paf_old->modifier;
 #endif
@@ -347,10 +344,10 @@ void affect_join (CHAR_DATA * ch, AFFECT_DATA * paf) {
     affect_to_char (ch, paf);
 }
 
-void affect_init (AFFECT_DATA *af, sh_int bit_type, sh_int type, sh_int level,
+void affect_init (AFFECT_T *af, sh_int bit_type, sh_int type, sh_int level,
     sh_int duration, sh_int apply, sh_int modifier, flag_t bits)
 {
-    memset (af, 0, sizeof (AFFECT_DATA));
+    memset (af, 0, sizeof (AFFECT_T));
     af->bit_type  = bit_type;
     af->type      = type;
     af->level     = level;

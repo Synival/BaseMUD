@@ -30,41 +30,31 @@
 
 #include "merc.h"
 
-/* Global variables. */
-extern int find_last_count;
-extern int find_next_count;
-
 /* Relative-to-char lookup functions. */
-int find_number_argument (char *arg_in, char *arg_out);
+int find_number_argument (const char *arg_in, char *arg_out);
 void find_continue_counting (void);
 void find_stop_counting (void);
 
-ROOM_INDEX_DATA *find_location (CHAR_DATA * ch, char *arg);
+ROOM_INDEX_T *find_location (CHAR_T *ch, const char *arg);
 
-CHAR_DATA *find_char_same_room (CHAR_DATA *ch, char *argument);
-CHAR_DATA *find_char_world (CHAR_DATA *ch, char *argument);
+CHAR_T *find_char_same_room (CHAR_T *ch, const char *argument);
+CHAR_T *find_char_world (CHAR_T *ch, const char *argument);
 
-OBJ_DATA *find_obj_room (CHAR_DATA *ch, ROOM_INDEX_DATA *room, char *argument);
-OBJ_DATA *find_obj_same_room (CHAR_DATA *ch, char *argument);
-OBJ_DATA *find_obj_container (CHAR_DATA *ch, OBJ_DATA *obj, char *argument);
+OBJ_T *find_obj_room (CHAR_T *ch, ROOM_INDEX_T *room, const char *argument);
+OBJ_T *find_obj_same_room (CHAR_T *ch, const char *argument);
+OBJ_T *find_obj_container (CHAR_T *ch, OBJ_T *obj, const char *argument);
+OBJ_T *find_obj_char (CHAR_T *ch, CHAR_T *victim, const char *argument);
+OBJ_T *find_obj_worn (CHAR_T *ch, CHAR_T *victim, const char *argument);
+OBJ_T *find_obj_inventory (CHAR_T *ch, CHAR_T *victim, const char *argument);
+OBJ_T *find_obj_own_char (CHAR_T *ch, const char *argument);
+OBJ_T *find_obj_own_inventory (CHAR_T *ch, const char *argument);
+OBJ_T *find_obj_own_worn (CHAR_T *ch, const char *argument);
 
-OBJ_DATA *find_obj_room (CHAR_DATA *ch, ROOM_INDEX_DATA *room, char *argument);
-OBJ_DATA *find_obj_same_room (CHAR_DATA *ch, char *argument);
-OBJ_DATA *find_obj_container (CHAR_DATA *ch, OBJ_DATA *obj, char *argument);
-OBJ_DATA *find_obj_char (CHAR_DATA *ch, CHAR_DATA *victim, char *argument);
-OBJ_DATA *find_obj_worn (CHAR_DATA * ch, CHAR_DATA *victim, char *argument);
-OBJ_DATA *find_obj_inventory (CHAR_DATA *ch, CHAR_DATA *victim, char *argument);
-OBJ_DATA *find_obj_own_char (CHAR_DATA *ch, char *argument);
-OBJ_DATA *find_obj_own_inventory (CHAR_DATA *ch, char *argument);
-OBJ_DATA *find_obj_own_worn (CHAR_DATA * ch, char *argument);
+OBJ_T *find_obj_list (CHAR_T *ch, OBJ_T *list, const char *argument, int worn);
+OBJ_T *find_obj_here (CHAR_T *ch, const char *argument);
+OBJ_T *find_obj_world (CHAR_T *ch, const char *argument);
+OBJ_T *find_obj_keeper (CHAR_T *ch, CHAR_T *keeper, const char *argument);
 
-OBJ_DATA *find_obj_list (CHAR_DATA *ch, OBJ_DATA *list, char *argument,
-    int worn);
-OBJ_DATA *find_obj_here (CHAR_DATA *ch, char *argument);
-OBJ_DATA *find_obj_world (CHAR_DATA *ch, char *argument);
-OBJ_DATA *find_obj_keeper (CHAR_DATA *ch, CHAR_DATA *keeper,
-    char *argument);
-
-int find_door_same_room (CHAR_DATA *ch, char *argument);
+int find_door_same_room (CHAR_T *ch, const char *argument);
 
 #endif

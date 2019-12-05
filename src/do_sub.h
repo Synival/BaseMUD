@@ -30,10 +30,10 @@
 
 #include "merc.h"
 
-void do_autolist_flag (char *name, CHAR_DATA * ch, flag_t flags, flag_t flag);
-void do_flag_toggle (CHAR_DATA * ch, int player_only, flag_t *flags,
-    flag_t flag, char *off_msg, char *on_msg);
-bool do_comm_toggle_channel_if_blank (CHAR_DATA *ch, char *argument,
+void do_autolist_flag (char *name, CHAR_T *ch, flag_t flags, flag_t flag);
+void do_flag_toggle (CHAR_T *ch, int player_only, flag_t *flags, flag_t flag,
+    char *off_msg, char *on_msg);
+bool do_comm_toggle_channel_if_blank (CHAR_T *ch, char *argument,
     flag_t channel, char *message_on, char *message_off);
 
 #endif

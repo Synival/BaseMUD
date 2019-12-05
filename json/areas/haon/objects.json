@@ -1,0 +1,445 @@
+[
+  {"object": {
+    "area": "haon",
+    "anum": 0,
+    "name": "axe lumber two-handed",
+    "short_descr": "a lumber axe",
+    "description": "A heavy lumber axe lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "axe",
+      "dice_num": 2,
+      "dice_size": 6,
+      "attack_type": "chop",
+      "flags": "twohands"
+    },
+    "level": 8,
+    "weight": 100,
+    "cost": 820,
+    "condition": 100,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "axe lumber",
+      "description": "It is a heavy axe of the kind lumberjacks use to chop down trees.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 1,
+    "name": "shirt",
+    "short_descr": "a chequered shirt",
+    "description": "A chequered shirt lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 3,
+      "vs_slash": 3
+    },
+    "level": 3,
+    "weight": 20,
+    "cost": 610,
+    "condition": 100,
+    "wear_flags": "take body",
+    "extra_description": [{
+      "keyword": "shirt",
+      "description": "It is an extra large, chequered shirt made from heavy cloth.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 2,
+    "name": "boots",
+    "short_descr": "a pair of leather boots",
+    "description": "A pair of leather boots lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 3,
+      "vs_slash": 3
+    },
+    "level": 3,
+    "weight": 40,
+    "cost": 310,
+    "condition": 100,
+    "wear_flags": "take feet",
+    "extra_description": [{
+      "keyword": "boots",
+      "description": "They are fashioned from rough leather that has been oiled frequently to make\nit stay waterproof.  They look worn but quite functional.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 3,
+    "name": "fireplace",
+    "short_descr": "a fireplace",
+    "description": "A fireplace made from stone is set against the east wall.",
+    "item_type": "container",
+    "values": {
+      "capacity": 200,
+      "max_weight": 200,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "condition": 100,
+    "extra_description": [{
+      "keyword": "fireplace",
+      "description": "It is fashioned from stones of various sizes that have been stacked on top of\neach other and fastened with mortar.  Its chimney is constructed likewise and\nleads the smoke out through the low cabin ceiling.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 5,
+    "name": "chest",
+    "short_descr": "a wooden chest",
+    "description": "A wooden chest stands in the corner.",
+    "item_type": "container",
+    "values": {
+      "capacity": 100,
+      "flags": "closeable closed locked",
+      "key": 6006,
+      "max_weight": 20,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 400,
+    "cost": 100,
+    "condition": 100,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "chest",
+      "description": "It is a robust chest made from short, heavy planks that have been fastened\ntogether with tenons.  It is equipped with a simple brass lock.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 6,
+    "name": "key",
+    "short_descr": "a small brass key",
+    "description": "A small brass key lies here.",
+    "item_type": "key",
+    "values": {"value0": 6005},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 100,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "key",
+      "description": "It is a small, simple brass key with no inscriptions or marks of any kind.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 7,
+    "name": "coins silver",
+    "short_descr": "a heap of silver coins",
+    "description": "Some silver coins lie piled up in a heap on the floor.",
+    "item_type": "money",
+    "values": {
+      "silver": 89,
+      "gold": 1
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 100,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "coins",
+      "description": "The coins seem to be gold.  They are obviously valuable.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 10,
+    "name": "blackberries",
+    "short_descr": "some blackberries",
+    "description": "Some blackberries grow on a bush nearby.",
+    "item_type": "food",
+    "values": {
+      "hunger": 3,
+      "fullness": 3
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 100,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "blackberries",
+      "description": "They look very tasty indeed.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 11,
+    "name": "mushroom",
+    "short_descr": "a mushroom",
+    "description": "A small mushroom grows nearby.",
+    "item_type": "food",
+    "values": {
+      "hunger": 6,
+      "fullness": 6
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 100,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "mushroom",
+      "description": "It is a tasty little thing.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 13,
+    "name": "water barrel",
+    "short_descr": "the barrel",
+    "description": "A water barrel has been left here.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 256,
+      "filled": 256,
+      "liquid": "water"
+    },
+    "level": 0,
+    "weight": 200,
+    "cost": 20,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 102,
+    "name": "tree opening",
+    "short_descr": "a colossal tree",
+    "description": "A colossal tree blocks the way westwards.",
+    "item_type": "container",
+    "values": {
+      "capacity": 1000,
+      "max_weight": 400,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "condition": 100,
+    "extra_description": [
+      {
+        "keyword": "opening",
+        "description": "The opening is far too narrow for you to squeeze through but it looks as if the\ntree is hollow.\n"
+      },
+      {
+        "keyword": "tree",
+        "description": "This enormous tree must be a thousand years old.  Its rough bark looks grey\nand pale and is decorated with scratches and claw marks.  On its west side is a\nsmall opening just above ground level.\n"
+      }
+    ]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 103,
+    "name": "branch",
+    "short_descr": "a long, grey branch",
+    "description": "A long, grey branch rests heavily on the ground.",
+    "item_type": "light",
+    "values": {"duration": 25},
+    "level": 0,
+    "weight": 200,
+    "cost": 0,
+    "condition": 100,
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 104,
+    "name": "branch",
+    "short_descr": "a long, grey branch",
+    "description": "A long, grey branch rests heavily on the ground.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 5,
+      "attack_type": "pound"
+    },
+    "level": 6,
+    "weight": 300,
+    "cost": 290,
+    "condition": 100,
+    "wear_flags": "take wield",
+    "affects": [{
+      "apply": "hit roll",
+      "level": 6,
+      "modifier": -2,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 105,
+    "name": "branch",
+    "short_descr": "a long, grey branch",
+    "description": "A long, grey branch rests heavily on the ground.",
+    "item_type": "trash",
+    "values": {},
+    "level": 0,
+    "weight": 400,
+    "cost": 0,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 106,
+    "name": "toadstool",
+    "short_descr": "a toadstool",
+    "description": "A large toadstool grows nearby.",
+    "item_type": "food",
+    "values": {
+      "hunger": 12,
+      "fullness": 12
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 0,
+    "condition": 100,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "toadstool",
+      "description": "It is a large, brown boletus that must weigh nearly five pounds.  The top\nsurface is covered in a thin layer of transparent slime that emits a weak,\nmusty smell.  Not the most delicious thing you have seen.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 107,
+    "name": "toadstool",
+    "short_descr": "a toadstool",
+    "description": "A large toadstool grows nearby.",
+    "item_type": "food",
+    "values": {
+      "hunger": 12,
+      "fullness": 12,
+      "poisoned": true
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 0,
+    "condition": 100,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "toadstool",
+      "description": "It is a large, brown boletus that must weigh nearly five pounds.  It has small\nwhite spots and the top surface is covered in a thin layer of transparent slime\nthat emits a weak, musty smell.  Not the most delicious thing you have seen.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 110,
+    "name": "potion yellow",
+    "short_descr": "a yellow potion",
+    "description": "A yellow potion has been left here.",
+    "item_type": "potion",
+    "values": {
+      "level": 15,
+      "skill1": "giant strength"
+    },
+    "level": 4,
+    "weight": 20,
+    "cost": 350,
+    "condition": 100,
+    "extra_flags": "magic",
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "potion yellow",
+      "description": "It has a deep yellow colour and and a strong spicy smell.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 111,
+    "name": "shield large",
+    "short_descr": "a large round shield",
+    "description": "A large round shield has been left here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 6,
+      "vs_slash": 6,
+      "vs_magic": 3
+    },
+    "level": 15,
+    "weight": 150,
+    "cost": 1760,
+    "condition": 100,
+    "wear_flags": "take shield",
+    "extra_description": [{
+      "keyword": "shield large",
+      "description": "It is made from hard wood that has been reinforced with heavy iron bands.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 112,
+    "name": "crown iron",
+    "short_descr": "an iron crown",
+    "description": "An iron crown rests on the ground.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 6,
+      "vs_slash": 6
+    },
+    "level": 15,
+    "weight": 100,
+    "cost": 1050,
+    "condition": 100,
+    "extra_flags": "magic",
+    "wear_flags": "take head",
+    "extra_description": [{
+      "keyword": "crown iron",
+      "description": "It is a heavy human-sized crown made from solid iron.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 114,
+    "name": "ring iron",
+    "short_descr": "an iron ring",
+    "description": "An iron ring has been left here.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 50,
+    "condition": 100,
+    "extra_flags": "magic",
+    "wear_flags": "take finger",
+    "extra_description": [{
+      "keyword": "ring iron",
+      "description": "It is a quite heavy human-sized ring made from solid iron.  It lacks\ndecorations of any kind.\n"
+    }]
+  }},
+  {"object": {
+    "area": "haon",
+    "anum": 155,
+    "name": "morning-star star morning",
+    "short_descr": "the morning star",
+    "description": "The morning star is here collecting dust while it lies on the ground.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 8,
+      "attack_type": "crush"
+    },
+    "level": 15,
+    "weight": 100,
+    "cost": 750,
+    "condition": 100,
+    "extra_flags": "magic",
+    "wear_flags": "take wield"
+  }}
+]

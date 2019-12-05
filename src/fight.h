@@ -31,47 +31,48 @@
 #include "merc.h"
 
 /* Function prototypes. */
-void advance_level (CHAR_DATA * ch, bool hide);
-void gain_exp (CHAR_DATA * ch, int gain);
-int should_assist_group (CHAR_DATA * bystander, CHAR_DATA * attacker,
-    CHAR_DATA *victim);
-int npc_should_assist_player (CHAR_DATA * bystander, CHAR_DATA * player,
-    CHAR_DATA *victim);
-bool npc_should_assist_attacker (CHAR_DATA * bystander, CHAR_DATA * attacker,
-    CHAR_DATA * victim);
-CHAR_DATA * random_group_target_in_room (CHAR_DATA * bystander,
-    CHAR_DATA * ch);
-void check_assist (CHAR_DATA * ch, CHAR_DATA * victim);
-void multi_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt);
-void mob_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt);
-void one_hit (CHAR_DATA * ch, CHAR_DATA * victim, int dt);
-bool damage (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
-             int dam_type, bool show);
-bool set_fighting_position_if_possible (CHAR_DATA * ch);
-bool do_filter_can_attack (CHAR_DATA *ch, CHAR_DATA *victim);
-bool do_filter_can_attack_spell (CHAR_DATA * ch, CHAR_DATA * victim, bool area);
-bool can_attack (CHAR_DATA *ch, CHAR_DATA *victim);
-bool can_attack_spell (CHAR_DATA *ch, CHAR_DATA *victim, bool area);
-bool do_filter_can_attack_real (CHAR_DATA *ch, CHAR_DATA *victim, bool area,
+void advance_level (CHAR_T *ch, bool hide);
+void gain_exp (CHAR_T *ch, int gain);
+int should_assist_group (CHAR_T *bystander, CHAR_T *attacker, CHAR_T *victim);
+int npc_should_assist_player (CHAR_T *bystander, CHAR_T *player,
+    CHAR_T *victim);
+bool npc_should_assist_attacker (CHAR_T *bystander, CHAR_T *attacker,
+    CHAR_T *victim);
+CHAR_T *random_group_target_in_room (CHAR_T *bystander, CHAR_T *ch);
+void check_assist (CHAR_T *ch, CHAR_T *victim);
+void multi_hit (CHAR_T *ch, CHAR_T *victim, int dt);
+void mob_hit (CHAR_T *ch, CHAR_T *victim, int dt);
+void one_hit (CHAR_T *ch, CHAR_T *victim, int dt);
+bool damage_quiet (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type);
+bool damage_visible (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
+    const char *damage_adj);
+bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
+    bool show, const char *damage_adj);
+bool set_fighting_position_if_possible (CHAR_T *ch);
+bool do_filter_can_attack (CHAR_T *ch, CHAR_T *victim);
+bool do_filter_can_attack_spell (CHAR_T *ch, CHAR_T *victim, bool area);
+bool can_attack (CHAR_T *ch, CHAR_T *victim);
+bool can_attack_spell (CHAR_T *ch, CHAR_T *victim, bool area);
+bool do_filter_can_attack_real (CHAR_T *ch, CHAR_T *victim, bool area,
     bool quiet);
-void check_killer (CHAR_DATA * ch, CHAR_DATA * victim);
-bool check_parry (CHAR_DATA * ch, CHAR_DATA * victim);
-bool check_shield_block (CHAR_DATA * ch, CHAR_DATA * victim);
-bool check_dodge (CHAR_DATA * ch, CHAR_DATA * victim);
-void update_pos (CHAR_DATA * victim);
-void set_fighting_both (CHAR_DATA * ch, CHAR_DATA * victim);
-void set_fighting_one (CHAR_DATA * ch, CHAR_DATA * victim);
-void stop_fighting_one (CHAR_DATA * ch);
-void stop_fighting (CHAR_DATA * ch, bool fBoth);
-void make_corpse (CHAR_DATA * ch);
-void death_cry (CHAR_DATA * ch);
-void raw_kill (CHAR_DATA * victim);
-void group_gain (CHAR_DATA * ch, CHAR_DATA * victim);
-int xp_compute (CHAR_DATA * gch, CHAR_DATA * victim, int total_levels);
-void dam_message (CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt,
-                  bool immune, int orig_dam);
-void disarm (CHAR_DATA * ch, CHAR_DATA * victim);
-int get_exp_to_level (CHAR_DATA * ch);
-int exp_per_level (CHAR_DATA * ch, int points);
+void check_killer (CHAR_T *ch, CHAR_T *victim);
+bool check_parry (CHAR_T *ch, CHAR_T *victim);
+bool check_shield_block (CHAR_T *ch, CHAR_T *victim);
+bool check_dodge (CHAR_T *ch, CHAR_T *victim);
+void update_pos (CHAR_T *victim);
+void set_fighting_both (CHAR_T *ch, CHAR_T *victim);
+void set_fighting_one (CHAR_T *ch, CHAR_T *victim);
+void stop_fighting_one (CHAR_T *ch);
+void stop_fighting (CHAR_T *ch, bool fBoth);
+void make_corpse (CHAR_T *ch);
+void death_cry (CHAR_T *ch);
+void raw_kill (CHAR_T *victim);
+void group_gain (CHAR_T *ch, CHAR_T *victim);
+int xp_compute (CHAR_T *gch, CHAR_T *victim, int total_levels);
+void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt, bool immune,
+    int orig_dam, const char *damage_adj);
+void disarm (CHAR_T *ch, CHAR_T *victim);
+int get_exp_to_level (CHAR_T *ch);
+int exp_per_level (CHAR_T *ch, int points);
 
 #endif

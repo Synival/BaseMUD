@@ -31,8 +31,8 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-bool do_obj_load_check (CHAR_DATA * ch, OBJ_DATA * obj);
-void do_clone_recurse (CHAR_DATA * ch, OBJ_DATA * obj, OBJ_DATA * clone);
+bool do_obj_load_check (CHAR_T *ch, OBJ_T *obj);
+void do_clone_recurse (CHAR_T *ch, OBJ_T *obj, OBJ_T *clone);
 
 /* Commands. */
 DECLARE_DO_FUN (do_nochannels);

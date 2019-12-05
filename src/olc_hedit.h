@@ -16,8 +16,8 @@
 
 #include "merc.h"
 
-#define HEDIT(fun)          bool fun(CHAR_DATA *ch, char *argument)
-#define EDIT_HELP(ch, help) (help = (HELP_DATA *) ch->desc->pEdit)
+#define HEDIT(fun)          bool fun(CHAR_T *ch, char *argument)
+#define EDIT_HELP(ch, help) (help = (HELP_T *) ch->desc->pEdit)
 
 /* Commands (help). */
 HEDIT (hedit_show);

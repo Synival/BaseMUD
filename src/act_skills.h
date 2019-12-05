@@ -31,7 +31,7 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-void do_skills_or_spells (CHAR_DATA * ch, char *argument, int spells);
+void do_skills_or_spells (CHAR_T *ch, char *argument, int spells);
 
 /* Commands. */
 DECLARE_DO_FUN (do_gain);

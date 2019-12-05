@@ -32,11 +32,13 @@
 #include "objs.h"
 #include "utils.h"
 #include "chars.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "spell_create.h"
 
 DEFINE_SPELL_FUN (spell_continual_light) {
-    OBJ_DATA *light;
+    OBJ_T *light;
 
     if (target_name[0] != '\0') { /* do a glow on some object */
         light = find_obj_own_inventory (ch, target_name);
@@ -58,7 +60,7 @@ DEFINE_SPELL_FUN (spell_continual_light) {
 }
 
 DEFINE_SPELL_FUN (spell_create_food) {
-    OBJ_DATA *mushroom;
+    OBJ_T *mushroom;
     mushroom = obj_create (get_obj_index (OBJ_VNUM_MUSHROOM), 0);
     mushroom->v.food.hunger   = level / 2;
     mushroom->v.food.fullness = level;
@@ -67,7 +69,7 @@ DEFINE_SPELL_FUN (spell_create_food) {
 }
 
 DEFINE_SPELL_FUN (spell_create_rose) {
-    OBJ_DATA *rose;
+    OBJ_T *rose;
     rose = obj_create (get_obj_index (OBJ_VNUM_ROSE), 0);
     obj_to_char (rose, ch);
     send_to_char ("You create a beautiful red rose.\n\r", ch);
@@ -75,7 +77,7 @@ DEFINE_SPELL_FUN (spell_create_rose) {
 }
 
 DEFINE_SPELL_FUN (spell_create_spring) {
-    OBJ_DATA *spring;
+    OBJ_T *spring;
     spring = obj_create (get_obj_index (OBJ_VNUM_SPRING), 0);
     spring->timer = level;
     obj_to_room (spring, ch->in_room);
@@ -83,7 +85,7 @@ DEFINE_SPELL_FUN (spell_create_spring) {
 }
 
 DEFINE_SPELL_FUN (spell_create_water) {
-    OBJ_DATA *obj = (OBJ_DATA *) vo;
+    OBJ_T *obj = (OBJ_T *) vo;
     int water;
 
     BAIL_IF (obj->item_type != ITEM_DRINK_CON,
@@ -103,15 +105,14 @@ DEFINE_SPELL_FUN (spell_create_water) {
         char buf[MAX_STRING_LENGTH];
 
         sprintf (buf, "%s water", obj->name);
-        str_free (obj->name);
-        obj->name = str_dup (buf);
+        str_replace_dup (&(obj->name), buf);
     }
 
     act ("$p is filled.", ch, obj, NULL, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_floating_disc) {
-    OBJ_DATA *disc, *floating;
+    OBJ_T *disc, *floating;
 
     floating = char_get_eq_by_wear_loc (ch, WEAR_FLOAT);
     BAIL_IF_ACT (floating != NULL && IS_OBJ_STAT (floating, ITEM_NOREMOVE),

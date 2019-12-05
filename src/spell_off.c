@@ -36,21 +36,22 @@
 #include "skills.h"
 #include "chars.h"
 #include "objs.h"
+#include "globals.h"
 
 #include "spell_off.h"
 
 DEFINE_SPELL_FUN (spell_acid_blast) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam;
 
     dam = dice (level, 12);
     if (saves_spell (level, victim, DAM_ACID))
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_ACID, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_ACID, NULL);
 }
 
 DEFINE_SPELL_FUN (spell_burning_hands) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     static const sh_int dam_each[] = {
          0,
          0,  0,  0,  0, 14, 17, 20, 23, 26, 29,
@@ -66,12 +67,12 @@ DEFINE_SPELL_FUN (spell_burning_hands) {
     dam = number_range (dam_each[level] / 2, dam_each[level] * 2);
     if (saves_spell (level, victim, DAM_FIRE))
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_FIRE, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_FIRE, NULL);
 }
 
 DEFINE_SPELL_FUN (spell_call_lightning) {
-    CHAR_DATA *vch;
-    CHAR_DATA *vch_next;
+    CHAR_T *vch;
+    CHAR_T *vch_next;
     int dam;
 
     BAIL_IF (!IS_OUTSIDE (ch),
@@ -90,8 +91,9 @@ DEFINE_SPELL_FUN (spell_call_lightning) {
             continue;
         if (vch->in_room == ch->in_room) {
             if (vch != ch && (IS_NPC (ch) ? !IS_NPC (vch) : IS_NPC (vch)))
-                damage (ch, vch, saves_spell (level, vch, DAM_LIGHTNING)
-                        ? dam / 2 : dam, sn, DAM_LIGHTNING, TRUE);
+                damage_visible (ch, vch,
+                    saves_spell (level, vch, DAM_LIGHTNING)
+                        ? dam / 2 : dam, sn, DAM_LIGHTNING, NULL);
             continue;
         }
 
@@ -101,16 +103,24 @@ DEFINE_SPELL_FUN (spell_call_lightning) {
     }
 }
 
-DEFINE_SPELL_FUN (spell_cause_light)
-    { damage (ch, (CHAR_DATA *) vo, dice (1, 8) + level / 3, sn, DAM_HARM, TRUE); }
-DEFINE_SPELL_FUN (spell_cause_serious)
-    { damage (ch, (CHAR_DATA *) vo, dice (2, 8) + level / 2, sn, DAM_HARM, TRUE); }
-DEFINE_SPELL_FUN (spell_cause_critical)
-    { damage (ch, (CHAR_DATA *) vo, dice (3, 8) + level - 6, sn, DAM_HARM, TRUE); }
+DEFINE_SPELL_FUN (spell_cause_light) {
+    damage_visible (ch, (CHAR_T *) vo, dice (1, 8) + level / 3,
+        sn, DAM_HARM, NULL);
+}
+
+DEFINE_SPELL_FUN (spell_cause_serious) {
+    damage_visible (ch, (CHAR_T *) vo, dice (2, 8) + level / 2,
+        sn, DAM_HARM, NULL);
+}
+
+DEFINE_SPELL_FUN (spell_cause_critical) {
+    damage_visible (ch, (CHAR_T *) vo, dice (3, 8) + level - 6,
+        sn, DAM_HARM, NULL);
+}
 
 DEFINE_SPELL_FUN (spell_chain_lightning) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    CHAR_DATA *tmp_vict, *last_vict, *next_vict;
+    CHAR_T *victim = (CHAR_T *) vo;
+    CHAR_T *tmp_vict, *last_vict, *next_vict;
     bool found;
     int dam;
 
@@ -123,7 +133,7 @@ DEFINE_SPELL_FUN (spell_chain_lightning) {
     dam = dice (level, 6);
     if (saves_spell (level, victim, DAM_LIGHTNING))
         dam /= 3;
-    damage (ch, victim, dam, sn, DAM_LIGHTNING, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_LIGHTNING, NULL);
     last_vict = victim;
     level -= 4; /* decrement damage */
 
@@ -144,7 +154,7 @@ DEFINE_SPELL_FUN (spell_chain_lightning) {
             dam = dice (level, 6);
             if (saves_spell (level, tmp_vict, DAM_LIGHTNING))
                 dam /= 3;
-            damage (ch, tmp_vict, dam, sn, DAM_LIGHTNING, TRUE);
+            damage_visible (ch, tmp_vict, dam, sn, DAM_LIGHTNING, NULL);
             level -= 4; /* decrement damage */
         }
 
@@ -167,7 +177,7 @@ DEFINE_SPELL_FUN (spell_chain_lightning) {
             dam = dice (level, 6);
             if (saves_spell (level, ch, DAM_LIGHTNING))
                 dam /= 3;
-            damage (ch, ch, dam, sn, DAM_LIGHTNING, TRUE);
+            damage_visible (ch, ch, dam, sn, DAM_LIGHTNING, NULL);
             level -= 4; /* decrement damage */
         }
 
@@ -176,7 +186,7 @@ DEFINE_SPELL_FUN (spell_chain_lightning) {
 }
 
 DEFINE_SPELL_FUN (spell_chill_touch) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     static const sh_int dam_each[] = {
          0,
          0,  0,  6,  7,  8,  9, 12, 13, 13, 13,
@@ -185,7 +195,7 @@ DEFINE_SPELL_FUN (spell_chill_touch) {
         20, 21, 21, 21, 22, 22, 22, 23, 23, 23,
         24, 24, 24, 25, 25, 25, 26, 26, 26, 27
     };
-    AFFECT_DATA af;
+    AFFECT_T af;
     int dam;
 
     level = UMIN (level, sizeof (dam_each) / sizeof (dam_each[0]) - 1);
@@ -200,11 +210,11 @@ DEFINE_SPELL_FUN (spell_chill_touch) {
     }
     else
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_COLD, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_COLD, NULL);
 }
 
 DEFINE_SPELL_FUN (spell_colour_spray) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     static const sh_int dam_each[] = {
          0,
          0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -222,14 +232,14 @@ DEFINE_SPELL_FUN (spell_colour_spray) {
         dam /= 2;
     else
         spell_blindness_quiet (gsn_blindness, level / 2, ch,
-            (void *) victim, TARGET_CHAR);
+            (void *) victim, TARGET_CHAR, target_name);
 
-    damage (ch, victim, dam, sn, DAM_LIGHT, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_LIGHT, NULL);
 }
 
 /* RT replacement demonfire spell */
 DEFINE_SPELL_FUN (spell_demonfire) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam;
 
     if (!IS_NPC (ch) && !IS_EVIL (ch)) {
@@ -248,13 +258,13 @@ DEFINE_SPELL_FUN (spell_demonfire) {
     dam = dice (level, 10);
     if (saves_spell (level, victim, DAM_NEGATIVE))
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_NEGATIVE, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_NEGATIVE, NULL);
     spell_curse_char_quiet (gsn_curse, 3 * level / 4, ch, (void *) victim,
-        TARGET_CHAR);
+        TARGET_CHAR, target_name);
 }
 
 DEFINE_SPELL_FUN (spell_dispel_evil) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam;
 
     if (!IS_NPC (ch) && IS_EVIL (ch))
@@ -276,12 +286,12 @@ DEFINE_SPELL_FUN (spell_dispel_evil) {
         dam = UMAX (victim->hit, dice (level, 4));
     if (saves_spell (level, victim, DAM_HOLY))
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_HOLY, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_HOLY, NULL);
 }
 
 
 DEFINE_SPELL_FUN (spell_dispel_good) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam;
 
     if (!IS_NPC (ch) && IS_GOOD (ch))
@@ -303,12 +313,12 @@ DEFINE_SPELL_FUN (spell_dispel_good) {
         dam = UMAX (victim->hit, dice (level, 4));
     if (saves_spell (level, victim, DAM_NEGATIVE))
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_NEGATIVE, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_NEGATIVE, NULL);
 }
 
 DEFINE_SPELL_FUN (spell_earthquake) {
-    CHAR_DATA *vch;
-    CHAR_DATA *vch_next;
+    CHAR_T *vch;
+    CHAR_T *vch_next;
 
     send_to_char ("The earth trembles beneath your feet!\n\r", ch);
     act ("$n makes the earth tremble and shiver.", ch, NULL, NULL, TO_NOTCHAR);
@@ -320,9 +330,10 @@ DEFINE_SPELL_FUN (spell_earthquake) {
         if (vch->in_room == ch->in_room) {
             if (vch != ch && can_attack_spell (ch, vch, TRUE)) {
                 if (IS_AFFECTED (vch, AFF_FLYING))
-                    damage (ch, vch, 0, sn, DAM_BASH, TRUE);
+                    damage_visible (ch, vch, 0, sn, DAM_BASH, NULL);
                 else
-                    damage (ch, vch, level + dice (2, 8), sn, DAM_BASH, TRUE);
+                    damage_visible (ch, vch, level + dice (2, 8),
+                        sn, DAM_BASH, NULL);
             }
             continue;
         }
@@ -334,7 +345,7 @@ DEFINE_SPELL_FUN (spell_earthquake) {
 /* Drain XP, MANA, HP.
  * Caster gains HP. */
 DEFINE_SPELL_FUN (spell_energy_drain) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam;
 
     if (victim != ch)
@@ -358,11 +369,11 @@ DEFINE_SPELL_FUN (spell_energy_drain) {
 
     send_to_char ("You feel your life slipping away!\n\r", victim);
     send_to_char ("Wow....what a rush!\n\r", ch);
-    damage (ch, victim, dam, sn, DAM_NEGATIVE, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_NEGATIVE, NULL);
 }
 
 DEFINE_SPELL_FUN (spell_fireball) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     static const sh_int dam_each[] = {
           0,
           0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
@@ -378,33 +389,33 @@ DEFINE_SPELL_FUN (spell_fireball) {
     dam = number_range (dam_each[level] / 2, dam_each[level] * 2);
     if (saves_spell (level, victim, DAM_FIRE))
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_FIRE, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_FIRE, NULL);
 }
 
 DEFINE_SPELL_FUN (spell_flamestrike) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam;
 
     dam = dice (6 + level / 2, 8);
     if (saves_spell (level, victim, DAM_FIRE))
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_FIRE, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_FIRE, NULL);
 }
 
 DEFINE_SPELL_FUN (spell_harm) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam;
 
     dam = UMAX (20, victim->hit - dice (1, 4));
     if (saves_spell (level, victim, DAM_HARM))
         dam = UMIN (50, dam / 2);
     dam = UMIN (100, dam);
-    damage (ch, victim, dam, sn, DAM_HARM, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_HARM, NULL);
 }
 
 DEFINE_SPELL_FUN (spell_heat_metal) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    OBJ_DATA *obj_lose, *obj_next;
+    CHAR_T *victim = (CHAR_T *) vo;
+    OBJ_T *obj_lose, *obj_next;
     int dam = 0;
     bool success = FALSE;
     bool is_weapon, is_worn, can_drop;
@@ -514,13 +525,13 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
     /* damage! */
     if (saves_spell (level, victim, DAM_FIRE))
         dam = 2 * dam / 3;
-    damage (ch, victim, dam, sn, DAM_FIRE, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_FIRE, NULL);
 }
 
 /* RT really nasty high-level attack spell */
 DEFINE_SPELL_FUN (spell_holy_word) {
-    CHAR_DATA *vch;
-    CHAR_DATA *vch_next;
+    CHAR_T *vch;
+    CHAR_T *vch_next;
     int dam;
     int bless_num, curse_num, frenzy_num;
 
@@ -536,8 +547,10 @@ DEFINE_SPELL_FUN (spell_holy_word) {
 
         if (IS_SAME_ALIGN (ch, vch)) {
             send_to_char ("You feel even more powerful.\n\r", vch);
-            spell_frenzy (frenzy_num, level, ch, (void *) vch, TARGET_CHAR);
-            spell_bless (bless_num, level, ch, (void *) vch, TARGET_CHAR);
+            spell_frenzy (frenzy_num, level, ch, (void *) vch, TARGET_CHAR,
+                target_name);
+            spell_bless (bless_num, level, ch, (void *) vch, TARGET_CHAR,
+                target_name);
         }
         else if ((IS_GOOD (ch) && IS_EVIL (vch)) ||
                  (IS_EVIL (ch) && IS_GOOD (vch)))
@@ -545,18 +558,18 @@ DEFINE_SPELL_FUN (spell_holy_word) {
             if (can_attack_spell (ch, vch, TRUE)) {
                 send_to_char ("You are struck down!\n\r", vch);
                 dam = dice (level, 6);
-                damage (ch, vch, dam, sn, DAM_ENERGY, TRUE);
+                damage_visible (ch, vch, dam, sn, DAM_ENERGY, NULL);
                 spell_curse_char_quiet (curse_num, level, ch, (void *) vch,
-                    TARGET_CHAR);
+                    TARGET_CHAR, target_name);
             }
         }
         else if (IS_NEUTRAL (ch)) {
             if (can_attack_spell (ch, vch, TRUE)) {
                 send_to_char ("You are struck down!\n\r", vch);
                 dam = dice (level, 4);
-                damage (ch, vch, dam, sn, DAM_ENERGY, TRUE);
+                damage_visible (ch, vch, dam, sn, DAM_ENERGY, NULL);
                 spell_curse_char_quiet (curse_num, level / 2, ch, (void *) vch,
-                    TARGET_CHAR);
+                    TARGET_CHAR, target_name);
             }
         }
     }
@@ -567,7 +580,7 @@ DEFINE_SPELL_FUN (spell_holy_word) {
 }
 
 DEFINE_SPELL_FUN (spell_lightning_bolt) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     static const sh_int dam_each[] = {
          0,
          0,  0,  0,  0,  0,  0,  0,  0, 25, 28,
@@ -583,11 +596,11 @@ DEFINE_SPELL_FUN (spell_lightning_bolt) {
     dam = number_range (dam_each[level] / 2, dam_each[level] * 2);
     if (saves_spell (level, victim, DAM_LIGHTNING))
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_LIGHTNING, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_LIGHTNING, NULL);
 }
 
 DEFINE_SPELL_FUN (spell_magic_missile) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     static const sh_int dam_each[] = {
          0,
          3,  3,  4,  4,  5,  6,  6,  6,  6,  6,
@@ -603,11 +616,11 @@ DEFINE_SPELL_FUN (spell_magic_missile) {
     dam = number_range (dam_each[level] / 2, dam_each[level] * 2);
     if (saves_spell (level, victim, DAM_ENERGY))
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_ENERGY, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_ENERGY, NULL);
 }
 
 DEFINE_SPELL_FUN (spell_ray_of_truth) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam, align;
 
     if (IS_EVIL (ch)) {
@@ -638,13 +651,13 @@ DEFINE_SPELL_FUN (spell_ray_of_truth) {
         align = -1000 + (align + 1000) / 3;
     dam = (dam * align * align) / 1000000;
 
-    damage (ch, victim, dam, sn, DAM_HOLY, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_HOLY, NULL);
     spell_blindness_quiet (gsn_blindness, 3 * level / 4, ch, (void *) victim,
-        TARGET_CHAR);
+        TARGET_CHAR, target_name);
 }
 
 DEFINE_SPELL_FUN (spell_shocking_grasp) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     static const int dam_each[] = {
          0,
          0,  0,  0,  0,  0,  0, 20, 25, 29, 33,
@@ -660,5 +673,5 @@ DEFINE_SPELL_FUN (spell_shocking_grasp) {
     dam = number_range (dam_each[level] / 2, dam_each[level] * 2);
     if (saves_spell (level, victim, DAM_LIGHTNING))
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_LIGHTNING, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_LIGHTNING, NULL);
 }

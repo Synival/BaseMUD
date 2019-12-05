@@ -33,62 +33,63 @@
 /* Useful macros for defining rows in our master table. */
 #define TFLAGS(table, desc) \
     { table, #table, TABLE_FLAG_TYPE | TABLE_BITS, desc, \
-      sizeof (FLAG_TYPE), json_tblw_flag }
+      sizeof (FLAG_T), json_tblw_flag }
 #define TTYPES(table, desc) \
     { table, #table, TABLE_FLAG_TYPE, desc, \
-      sizeof (FLAG_TYPE), json_tblw_flag }
+      sizeof (FLAG_T), json_tblw_flag }
 #define TTABLE(table, desc, jwrite) \
     { table, #table, 0, desc, sizeof(table[0]), jwrite }
 
 /* A table containing every table of every type. */
-extern const TABLE_TYPE       master_table[];
+extern const TABLE_T          master_table[];
 
 /* All tables. */
-extern const CLAN_TYPE        clan_table[CLAN_MAX + 1];
-extern const POSITION_TYPE    position_table[POS_MAX + 1];
-extern const SEX_TYPE         sex_table[SEX_MAX + 1];
-extern const SIZE_TYPE        size_table[SIZE_MAX_R + 1];
-extern const ITEM_TYPE        item_table[ITEM_MAX + 1];
-extern const WEAPON_TYPE      weapon_table[WEAPON_MAX + 1];
-extern const DAM_TYPE         dam_table[DAM_MAX + 1];
-extern const ATTACK_TYPE      attack_table[ATTACK_MAX + 1];
-extern const RACE_TYPE        race_table[RACE_MAX + 1];
-extern const PC_RACE_TYPE     pc_race_table[PC_RACE_MAX + 1];
-extern const CLASS_TYPE       class_table[CLASS_MAX + 1];
-extern const STR_APP_TYPE     str_app_table[ATTRIBUTE_HIGHEST + 2];
-extern const INT_APP_TYPE     int_app_table[ATTRIBUTE_HIGHEST + 2];
-extern const WIS_APP_TYPE     wis_app_table[ATTRIBUTE_HIGHEST + 2];
-extern const DEX_APP_TYPE     dex_app_table[ATTRIBUTE_HIGHEST + 2];
-extern const CON_APP_TYPE     con_app_table[ATTRIBUTE_HIGHEST + 2];
-extern const LIQ_TYPE         liq_table[LIQ_MAX + 1];
-extern const SKILL_TYPE       skill_table[SKILL_MAX + 1];
-extern const GROUP_TYPE       group_table[GROUP_MAX + 1];
-extern const SECTOR_TYPE      sector_table[SECT_MAX + 1];
-extern const NANNY_HANDLER    nanny_table[NANNY_MAX + 1];
-extern const DOOR_TYPE        door_table[DIR_MAX + 1];
-extern const SPEC_TYPE        spec_table[SPEC_MAX + 1];
-extern const FURNITURE_BITS   furniture_table[POS_MAX + 1];
-extern const WEAR_LOC_TYPE    wear_loc_table[WEAR_LOC_MAX + 1];
-extern const MATERIAL_TYPE    material_table[MATERIAL_MAX + 1];
-extern const COLOUR_SETTING_TYPE colour_setting_table[COLOUR_MAX + 1];
-extern const WIZNET_TYPE      wiznet_table[WIZNET_MAX + 1];
-extern const DAY_TYPE         day_table[DAY_MAX + 1];
-extern const MONTH_TYPE       month_table[MONTH_MAX + 1];
-extern const SKY_TYPE         sky_table[SKY_MAX + 1];
-extern const SUN_TYPE         sun_table[SUN_MAX + 1];
-extern const AFFECT_BIT_TYPE  affect_bit_table[AFF_TO_MAX + 1];
+extern const CLAN_T           clan_table[CLAN_MAX + 1];
+extern const POSITION_T       position_table[POS_MAX + 1];
+extern const SEX_T            sex_table[SEX_MAX + 1];
+extern const SIZE_T           size_table[SIZE_MAX_R + 1];
+extern const ITEM_T           item_table[ITEM_MAX + 1];
+extern const WEAPON_T         weapon_table[WEAPON_MAX + 1];
+extern const DAM_T            dam_table[DAM_MAX + 1];
+extern const ATTACK_T         attack_table[ATTACK_MAX + 1];
+extern const RACE_T           race_table[RACE_MAX + 1];
+extern const PC_RACE_T        pc_race_table[PC_RACE_MAX + 1];
+extern const CLASS_T          class_table[CLASS_MAX + 1];
+extern const STR_APP_T        str_app_table[ATTRIBUTE_HIGHEST + 2];
+extern const INT_APP_T        int_app_table[ATTRIBUTE_HIGHEST + 2];
+extern const WIS_APP_T        wis_app_table[ATTRIBUTE_HIGHEST + 2];
+extern const DEX_APP_T        dex_app_table[ATTRIBUTE_HIGHEST + 2];
+extern const CON_APP_T        con_app_table[ATTRIBUTE_HIGHEST + 2];
+extern const LIQ_T            liq_table[LIQ_MAX + 1];
+extern const SKILL_T          skill_table[SKILL_MAX + 1];
+extern const GROUP_T          group_table[GROUP_MAX + 1];
+extern const SECTOR_T         sector_table[SECT_MAX + 1];
+extern const NANNY_HANDLER_T  nanny_table[NANNY_MAX + 1];
+extern const DOOR_T           door_table[DIR_MAX + 1];
+extern const SPEC_T           spec_table[SPEC_MAX + 1];
+extern const FURNITURE_BITS_T furniture_table[POS_MAX + 1];
+extern const WEAR_LOC_T       wear_loc_table[WEAR_LOC_MAX + 1];
+extern const MATERIAL_T       material_table[MATERIAL_MAX + 1];
+extern const COLOUR_SETTING_T colour_setting_table[COLOUR_MAX + 1];
+extern const WIZNET_T         wiznet_table[WIZNET_MAX + 1];
+extern const DAY_T            day_table[DAY_MAX + 1];
+extern const MONTH_T          month_table[MONTH_MAX + 1];
+extern const SKY_T            sky_table[SKY_MAX + 1];
+extern const SUN_T            sun_table[SUN_MAX + 1];
+extern const AFFECT_BIT_T     affect_bit_table[AFF_TO_MAX + 1];
 
 /* Tables with flexible sizes. */
-extern const MAP_LOOKUP_TABLE map_lookup_table[];
-extern const MAP_LOOKUP_TABLE map_flags_table[];
-extern const OBJ_MAP          obj_map_table[];
-extern const COLOUR_TYPE      colour_table[];
+extern const MAP_LOOKUP_TABLE_T map_lookup_table[];
+extern const MAP_LOOKUP_TABLE_T map_flags_table[];
+extern const OBJ_MAP_T        obj_map_table[];
+extern const COLOUR_T         colour_table[];
+extern const POSE_T           pose_table[];
 
 /* Non-const types. */
-extern RECYCLE_TYPE recycle_table[RECYCLE_MAX + 1];
-extern BOARD_DATA   board_table[BOARD_MAX + 1];
+extern RECYCLE_T recycle_table[RECYCLE_MAX + 1];
+extern BOARD_T   board_table[BOARD_MAX + 1];
 
 /* Other tables. */
-extern char * const title_table[CLASS_MAX][MAX_LEVEL + 1][2];
+extern char *const title_table[CLASS_MAX][MAX_LEVEL + 1][2];
 
 #endif

@@ -30,8 +30,6 @@
 
 #include "merc.h"
 
-#include "json.h"
-
 /* dead-simple functions for creating JSON objects. */
 TABLE_JSON_FUN (json_tblw_flag);
 TABLE_JSON_FUN (json_tblw_clan);

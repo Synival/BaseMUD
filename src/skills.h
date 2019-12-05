@@ -88,14 +88,14 @@ extern sh_int gsn_recall;
 extern sh_int gsn_frenzy;
 
 /* Function prototypes. */
-int get_skill (CHAR_DATA * ch, int sn);
-void list_group_costs (CHAR_DATA * ch);
-void list_group_chosen (CHAR_DATA * ch);
-bool parse_gen_groups (CHAR_DATA * ch, char *argument);
-void check_improve (CHAR_DATA * ch, int sn, bool success, int multiplier);
-void gn_add (CHAR_DATA * ch, int gn);
-void gn_remove (CHAR_DATA * ch, int gn);
-void group_add (CHAR_DATA * ch, const char *name, bool deduct);
-void group_remove (CHAR_DATA * ch, const char *name);
+int get_skill (CHAR_T *ch, int sn);
+void list_group_costs (CHAR_T *ch);
+void list_group_chosen (CHAR_T *ch);
+bool parse_gen_groups (CHAR_T *ch, char *argument);
+void check_improve (CHAR_T *ch, int sn, bool success, int multiplier);
+void gn_add (CHAR_T *ch, int gn);
+void gn_remove (CHAR_T *ch, int gn);
+void group_add (CHAR_T *ch, const char *name, bool deduct);
+void group_remove (CHAR_T *ch, const char *name);
 
 #endif

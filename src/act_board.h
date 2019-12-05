@@ -31,8 +31,8 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-void do_nread_next (CHAR_DATA *ch, char *argument, time_t *last_note);
-void do_nread_number (CHAR_DATA *ch, char *argument, time_t *last_note,
+void do_nread_next (CHAR_T *ch, char *argument, time_t *last_note);
+void do_nread_number (CHAR_T *ch, char *argument, time_t *last_note,
     int number);
 
 /* Commands. */

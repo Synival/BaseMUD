@@ -34,12 +34,13 @@
 #include "db.h"
 #include "chars.h"
 #include "find.h"
+#include "globals.h"
 
 #include "act_group.h"
 
-void do_group_show (CHAR_DATA *ch) {
-    CHAR_DATA *gch;
-    CHAR_DATA *leader;
+void do_group_show (CHAR_T *ch) {
+    CHAR_T *gch;
+    CHAR_T *leader;
 
     leader = (ch->leader != NULL) ? ch->leader : ch;
     printf_to_char (ch, "%s's group:\n\r", PERS_AW (leader, ch));
@@ -63,9 +64,7 @@ DEFINE_DO_FUN (do_order_all) {
 
 DEFINE_DO_FUN (do_order) {
     char arg[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    CHAR_DATA *och;
-    CHAR_DATA *och_next;
+    CHAR_T *victim, *och, *och_next;
     bool found;
     bool fAll;
 
@@ -116,7 +115,7 @@ DEFINE_DO_FUN (do_order) {
 
 DEFINE_DO_FUN (do_group) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     if (arg[0] == '\0') {
@@ -155,7 +154,7 @@ DEFINE_DO_FUN (do_group) {
 DEFINE_DO_FUN (do_split) {
     char buf[MAX_STRING_LENGTH];
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
-    CHAR_DATA *gch;
+    CHAR_T *gch;
     int members;
     int amount_gold = 0, amount_silver = 0;
     int share_gold, share_silver;
@@ -231,7 +230,7 @@ DEFINE_DO_FUN (do_split) {
 }
 
 DEFINE_DO_FUN (do_gtell) {
-    CHAR_DATA *gch;
+    CHAR_T *gch;
 
     BAIL_IF (argument[0] == '\0',
         "Tell your group what?\n\r", ch);
@@ -247,7 +246,7 @@ DEFINE_DO_FUN (do_gtell) {
 DEFINE_DO_FUN (do_follow) {
     /* RT changed to allow unlimited following and follow the NOFOLLOW rules */
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     DO_REQUIRE_ARG (arg, "Follow whom?\n\r");
 

@@ -46,11 +46,12 @@
 #include "chars.h"
 #include "objs.h"
 #include "spell_aff.h"
+#include "globals.h"
 
 #include "special.h"
 
-bool spec_troll_member (CHAR_DATA * ch) {
-    CHAR_DATA *vch, *victim = NULL;
+bool spec_troll_member (CHAR_T *ch) {
+    CHAR_T *vch, *victim = NULL;
     int count = 0;
     char *message;
 
@@ -110,8 +111,8 @@ bool spec_troll_member (CHAR_DATA * ch) {
     return TRUE;
 }
 
-bool spec_ogre_member (CHAR_DATA * ch) {
-    CHAR_DATA *vch, *victim = NULL;
+bool spec_ogre_member (CHAR_T *ch) {
+    CHAR_T *vch, *victim = NULL;
     int count = 0;
     char *message;
 
@@ -171,9 +172,9 @@ bool spec_ogre_member (CHAR_DATA * ch) {
     return TRUE;
 }
 
-bool spec_patrolman (CHAR_DATA * ch) {
-    CHAR_DATA *vch, *victim = NULL;
-    OBJ_DATA *obj;
+bool spec_patrolman (CHAR_T *ch) {
+    CHAR_T *vch, *victim = NULL;
+    OBJ_T *obj;
     char *message;
     int count = 0;
 
@@ -251,8 +252,8 @@ bool spec_patrolman (CHAR_DATA * ch) {
     return TRUE;
 }
 
-bool spec_nasty (CHAR_DATA * ch) {
-    CHAR_DATA *victim, *v_next;
+bool spec_nasty (CHAR_T *ch) {
+    CHAR_T *victim, *v_next;
     long gold;
 
     if (!IS_AWAKE (ch))
@@ -303,9 +304,8 @@ bool spec_nasty (CHAR_DATA * ch) {
 }
 
 /* Core procedure for dragons. */
-bool dragon (CHAR_DATA * ch, char *spell_name) {
-    CHAR_DATA *victim;
-    CHAR_DATA *v_next;
+bool dragon (CHAR_T *ch, char *spell_name) {
+    CHAR_T *victim, *v_next;
     int sn;
 
     if (ch->position != POS_FIGHTING)
@@ -321,14 +321,14 @@ bool dragon (CHAR_DATA * ch, char *spell_name) {
         return FALSE;
     if ((sn = skill_lookup (spell_name)) < 0)
         return FALSE;
-    (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR);
+    (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR, "");
     return TRUE;
 }
 
 /*
  * Special procedures for mobiles.
  */
-bool spec_breath_any (CHAR_DATA * ch) {
+bool spec_breath_any (CHAR_T *ch) {
     if (ch->position != POS_FIGHTING)
         return FALSE;
 
@@ -350,35 +350,35 @@ bool spec_breath_any (CHAR_DATA * ch) {
     return FALSE;
 }
 
-bool spec_breath_acid (CHAR_DATA * ch) {
+bool spec_breath_acid (CHAR_T *ch) {
     return dragon (ch, "acid breath");
 }
 
-bool spec_breath_fire (CHAR_DATA * ch) {
+bool spec_breath_fire (CHAR_T *ch) {
     return dragon (ch, "fire breath");
 }
 
-bool spec_breath_frost (CHAR_DATA * ch) {
+bool spec_breath_frost (CHAR_T *ch) {
     return dragon (ch, "frost breath");
 }
 
-bool spec_breath_gas (CHAR_DATA * ch) {
+bool spec_breath_gas (CHAR_T *ch) {
     int sn;
     if (ch->position != POS_FIGHTING)
         return FALSE;
     if ((sn = skill_lookup ("gas breath")) < 0)
         return FALSE;
-    (*skill_table[sn].spell_fun) (sn, ch->level, ch, NULL, TARGET_CHAR);
+    (*skill_table[sn].spell_fun) (sn, ch->level, ch, NULL, TARGET_CHAR, "");
     return TRUE;
 }
 
-bool spec_breath_lightning (CHAR_DATA * ch) {
+bool spec_breath_lightning (CHAR_T *ch) {
     return dragon (ch, "lightning breath");
 }
 
-bool spec_cast_adept (CHAR_DATA * ch) {
-    CHAR_DATA *victim;
-    CHAR_DATA *v_next;
+bool spec_cast_adept (CHAR_T *ch) {
+    CHAR_T *victim;
+    CHAR_T *v_next;
     char *spell;
     int sn;
 
@@ -410,13 +410,13 @@ bool spec_cast_adept (CHAR_DATA * ch) {
     if ((sn = skill_lookup (spell)) < 0)
         return FALSE;
     say_spell (ch, sn, CLASS_CLERIC);
-    (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR);
+    (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR, "");
     return TRUE;
 }
 
-bool spec_cast_cleric (CHAR_DATA * ch) {
-    CHAR_DATA *victim;
-    CHAR_DATA *v_next;
+bool spec_cast_cleric (CHAR_T *ch) {
+    CHAR_T *victim;
+    CHAR_T *v_next;
     char *spell;
     int sn;
 
@@ -455,16 +455,16 @@ bool spec_cast_cleric (CHAR_DATA * ch) {
 
     if ((sn = skill_lookup (spell)) < 0)
         return FALSE;
-#ifndef VANILLA
+#ifdef BASEMUD_MOBS_SAY_SPELLS
     say_spell (ch, sn, CLASS_CLERIC);
 #endif
-    (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR);
+    (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR, "");
     return TRUE;
 }
 
-bool spec_cast_judge (CHAR_DATA * ch) {
-    CHAR_DATA *victim;
-    CHAR_DATA *v_next;
+bool spec_cast_judge (CHAR_T *ch) {
+    CHAR_T *victim;
+    CHAR_T *v_next;
     char *spell;
     int sn;
 
@@ -483,13 +483,13 @@ bool spec_cast_judge (CHAR_DATA * ch) {
     spell = "high explosive";
     if ((sn = skill_lookup (spell)) < 0)
         return FALSE;
-    (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR);
+    (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR, "");
     return TRUE;
 }
 
-bool spec_cast_mage (CHAR_DATA * ch) {
-    CHAR_DATA *victim;
-    CHAR_DATA *v_next;
+bool spec_cast_mage (CHAR_T *ch) {
+    CHAR_T *victim;
+    CHAR_T *v_next;
     char *spell;
     int sn;
 
@@ -527,16 +527,16 @@ bool spec_cast_mage (CHAR_DATA * ch) {
 
     if ((sn = skill_lookup (spell)) < 0)
         return FALSE;
-#ifndef VANILLA
+#ifdef BASEMUD_MOBS_SAY_SPELLS
     say_spell (ch, sn, CLASS_MAGE);
 #endif
-    (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR);
+    (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR, "");
     return TRUE;
 }
 
-bool spec_cast_undead (CHAR_DATA * ch) {
-    CHAR_DATA *victim;
-    CHAR_DATA *v_next;
+bool spec_cast_undead (CHAR_T *ch) {
+    CHAR_T *victim;
+    CHAR_T *v_next;
     char *spell;
     int sn;
 
@@ -572,18 +572,18 @@ bool spec_cast_undead (CHAR_DATA * ch) {
 
     if ((sn = skill_lookup (spell)) < 0)
         return FALSE;
-#ifndef VANILLA
+#ifdef BASEMUD_MOBS_SAY_SPELLS
     say_spell (ch, sn, CLASS_NONE);
 #endif
-    (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR);
+    (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR, "");
     return TRUE;
 }
 
 
-bool spec_executioner (CHAR_DATA * ch) {
+bool spec_executioner (CHAR_T *ch) {
     char buf[MAX_STRING_LENGTH];
-    CHAR_DATA *victim;
-    CHAR_DATA *v_next;
+    CHAR_T *victim;
+    CHAR_T *v_next;
     char *crime;
 
     if (!IS_AWAKE (ch) || ch->fighting != NULL)
@@ -617,11 +617,11 @@ bool spec_executioner (CHAR_DATA * ch) {
     return TRUE;
 }
 
-bool spec_fido (CHAR_DATA * ch) {
-    OBJ_DATA *corpse;
-    OBJ_DATA *c_next;
-    OBJ_DATA *obj;
-    OBJ_DATA *obj_next;
+bool spec_fido (CHAR_T *ch) {
+    OBJ_T *corpse;
+    OBJ_T *c_next;
+    OBJ_T *obj;
+    OBJ_T *obj_next;
 
     if (!IS_AWAKE (ch))
         return FALSE;
@@ -643,11 +643,11 @@ bool spec_fido (CHAR_DATA * ch) {
     return FALSE;
 }
 
-bool spec_guard (CHAR_DATA * ch) {
+bool spec_guard (CHAR_T *ch) {
     char buf[MAX_STRING_LENGTH];
-    CHAR_DATA *victim;
-    CHAR_DATA *v_next;
-    CHAR_DATA *ech;
+    CHAR_T *victim;
+    CHAR_T *v_next;
+    CHAR_T *ech;
     char *crime;
     int max_evil;
 
@@ -699,9 +699,9 @@ bool spec_guard (CHAR_DATA * ch) {
     return FALSE;
 }
 
-bool spec_janitor (CHAR_DATA * ch) {
-    OBJ_DATA *trash;
-    OBJ_DATA *trash_next;
+bool spec_janitor (CHAR_T *ch) {
+    OBJ_T *trash;
+    OBJ_T *trash_next;
 
     if (!IS_AWAKE (ch))
         return FALSE;
@@ -722,7 +722,7 @@ bool spec_janitor (CHAR_DATA * ch) {
     return FALSE;
 }
 
-bool spec_mayor (CHAR_DATA * ch) {
+bool spec_mayor (CHAR_T *ch) {
     static const char open_path[] =
         "W3a3003b33000c111d0d111Oe333333Oe22c222112212111a1S.";
 
@@ -818,8 +818,8 @@ bool spec_mayor (CHAR_DATA * ch) {
     return FALSE;
 }
 
-bool spec_poison (CHAR_DATA * ch) {
-    CHAR_DATA *victim;
+bool spec_poison (CHAR_T *ch) {
+    CHAR_T *victim;
 
     if (ch->position != POS_FIGHTING
         || (victim = ch->fighting) == NULL
@@ -828,13 +828,13 @@ bool spec_poison (CHAR_DATA * ch) {
     act ("You bite $N!",  ch, NULL, victim, TO_CHAR);
     act ("$n bites $N!",  ch, NULL, victim, TO_OTHERS);
     act ("$n bites you!", ch, NULL, victim, TO_VICT);
-    spell_poison (gsn_poison, ch->level, ch, victim, TARGET_CHAR);
+    spell_poison (gsn_poison, ch->level, ch, victim, TARGET_CHAR, "");
     return TRUE;
 }
 
-bool spec_thief (CHAR_DATA * ch) {
-    CHAR_DATA *victim;
-    CHAR_DATA *v_next;
+bool spec_thief (CHAR_T *ch) {
+    CHAR_T *victim;
+    CHAR_T *v_next;
     long gold, silver;
 
     if (ch->position != POS_STANDING)

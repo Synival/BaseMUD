@@ -35,14 +35,17 @@
 #define URANGE(a, b, c)      ((b) < (a) ? (a) : ((b) > (c) ? (c) : (b)))
 #define LOWER(c)             ((c) >= 'A' && (c) <= 'Z' ? (c)+'a'-'A' : (c))
 #define UPPER(c)             ((c) >= 'a' && (c) <= 'z' ? (c)+'A'-'a' : (c))
-#define IS_SET(flag, bit)    ((flag) & (bit))
-#define SET_BIT(var, bit)    ((var) |= (bit))
-#define REMOVE_BIT(var, bit) ((var) &= ~(bit))
-#define TOGGLE_BIT(var, bit) ((var) ^= (bit))
 #define IS_NULLSTR(str)      ((str) == NULL || (str)[0] == '\0')
-#define ENTRE(min,num,max)   (((min) < (num)) && ((num) < (max)))
-#define ARE_SET(flag, bit)   (((flag) & (bit)) == (bit))
-#define NONE_SET(flag, bit)  (((flag) & (bit)) == 0)
+#define ENTRE(min, num, max) (((min) < (num)) && ((num) < (max)))
+
+/* Bit macros. */
+#define IS_SET(flag, bit)      ((flag) & (bit))
+#define SET_BIT(var, bit)      ((var) |= (bit))
+#define REMOVE_BIT(var, bit)   ((var) &= ~(bit))
+#define TOGGLE_BIT(var, bit)   ((var) ^= (bit))
+#define MISSING_BITS(var, bit) (~((~var) | (bit)))
+#define ARE_SET(flag, bit)     (((flag) & (bit)) == (bit))
+#define NONE_SET(flag, bit)    (((flag) & (bit)) == 0)
 
 /* Alias for "new" act function. */
 #define act(format, ch, arg1, arg2, flags) \
@@ -69,7 +72,7 @@
 #endif
 #define KEYS(literal, field, value) \
     if (!str_cmp(word, literal)) {  \
-        str_free(field);            \
+        str_free (&(field));        \
         field  = value;             \
         fMatch = TRUE;              \
         break;                      \

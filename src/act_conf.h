@@ -31,9 +31,9 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-void do_colour_one (CHAR_DATA * ch, const COLOUR_SETTING_TYPE * setting,
-    const COLOUR_TYPE * colour, bool use_default, char *buf);
-void do_colour_codes (CHAR_DATA * ch, char *argument);
+void do_colour_one (CHAR_T *ch, const COLOUR_SETTING_T *setting,
+    const COLOUR_T *colour, bool use_default, char *buf);
+void do_colour_codes (CHAR_T *ch, char *argument);
 
 /* Commands. */
 DECLARE_DO_FUN (do_scroll);

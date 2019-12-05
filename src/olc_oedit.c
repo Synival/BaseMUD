@@ -23,13 +23,15 @@
 #include "string.h"
 #include "affects.h"
 #include "act_info.h"
-#include "olc.h"
 #include "chars.h"
+#include "globals.h"
+#include "olc.h"
+#include "memory.h"
 
 #include "olc_oedit.h"
 
 /* Object Editor Functions. */
-void oedit_show_obj_values (CHAR_DATA * ch, OBJ_INDEX_DATA * obj) {
+void oedit_show_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj) {
     switch (obj->item_type) {
         case ITEM_LIGHT:
             if (obj->v.light.duration == -1 ||
@@ -168,7 +170,7 @@ void oedit_show_obj_values (CHAR_DATA * ch, OBJ_INDEX_DATA * obj) {
         }
 
         case ITEM_CONTAINER: {
-            OBJ_INDEX_DATA *key = get_obj_index (obj->v.container.key);
+            OBJ_INDEX_T *key = get_obj_index (obj->v.container.key);
             printf_to_char (ch,
                 "[v0] Weight:     [%ld kg]\n\r"
                 "[v1] Flags:      [%s]\n\r"
@@ -228,7 +230,7 @@ void oedit_show_obj_values (CHAR_DATA * ch, OBJ_INDEX_DATA * obj) {
     }
 }
 
-bool oedit_set_obj_values (CHAR_DATA * ch, OBJ_INDEX_DATA * pObj,
+bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
     int value_num, char *argument)
 {
     switch (pObj->item_type) {
@@ -543,7 +545,7 @@ bool oedit_set_obj_values (CHAR_DATA * ch, OBJ_INDEX_DATA * pObj,
     return TRUE;
 }
 
-bool oedit_set_value (CHAR_DATA * ch, OBJ_INDEX_DATA * pObj, char *argument,
+bool oedit_set_value (CHAR_T *ch, OBJ_INDEX_T *pObj, char *argument,
     int value)
 {
     if (argument[0] == '\0') {
@@ -561,8 +563,8 @@ bool oedit_set_value (CHAR_DATA * ch, OBJ_INDEX_DATA * pObj, char *argument,
  Purpose:    Finds the object and sets its value.
  Called by:  The four valueX functions below. (now five -- Hugin )
  ****************************************************************************/
-bool oedit_values (CHAR_DATA * ch, char *argument, int value) {
-    OBJ_INDEX_DATA *pObj;
+bool oedit_values (CHAR_T *ch, char *argument, int value) {
+    OBJ_INDEX_T *pObj;
     EDIT_OBJ (ch, pObj);
     if (oedit_set_value (ch, pObj, argument, value))
         return TRUE;
@@ -570,8 +572,8 @@ bool oedit_values (CHAR_DATA * ch, char *argument, int value) {
 }
 
 OEDIT (oedit_show) {
-    OBJ_INDEX_DATA *pObj;
-    AFFECT_DATA *paf;
+    OBJ_INDEX_T *pObj;
+    AFFECT_T *paf;
     int cnt;
 
     EDIT_OBJ (ch, pObj);
@@ -597,7 +599,7 @@ OEDIT (oedit_show) {
         pObj->weight, pObj->cost);
 
     if (pObj->extra_descr) {
-        EXTRA_DESCR_DATA *ed;
+        EXTRA_DESCR_T *ed;
         send_to_char ("Ex desc kwd:", ch);
 
         for (ed = pObj->extra_descr; ed; ed = ed->next)
@@ -627,8 +629,8 @@ OEDIT (oedit_show) {
 /* Need to issue warning if flag isn't valid. -- does so now -- Hugin.  */
 OEDIT (oedit_addaffect) {
     int value;
-    OBJ_INDEX_DATA *pObj;
-    AFFECT_DATA *pAf;
+    OBJ_INDEX_T *pObj;
+    AFFECT_T *pAf;
     char loc[MAX_STRING_LENGTH];
     char mod[MAX_STRING_LENGTH];
 
@@ -657,9 +659,9 @@ OEDIT (oedit_addaffect) {
 OEDIT (oedit_addapply) {
     int bit_type, app;
     flag_t bit;
-    const AFFECT_BIT_TYPE *bit_type_obj;
-    OBJ_INDEX_DATA *pObj;
-    AFFECT_DATA *pAf;
+    const AFFECT_BIT_T *bit_type_obj;
+    OBJ_INDEX_T *pObj;
+    AFFECT_T *pAf;
     char bit_type_buf[MAX_STRING_LENGTH];
     char app_buf[MAX_STRING_LENGTH];
     char mod[MAX_STRING_LENGTH];
@@ -714,8 +716,8 @@ OEDIT (oedit_addapply) {
 /* My thanks to Hans Hvidsten Birkeland and Noam Krendel(Walker)
  * for really teaching me how to manipulate pointers. */
 OEDIT (oedit_delaffect) {
-    OBJ_INDEX_DATA *pObj;
-    AFFECT_DATA *pAf, *pAf_prev;
+    OBJ_INDEX_T *pObj;
+    AFFECT_T *pAf, *pAf_prev;
     char affect[MAX_STRING_LENGTH];
     int value;
     int cnt = 0;
@@ -749,7 +751,7 @@ OEDIT (oedit_delaffect) {
 }
 
 OEDIT (oedit_name) {
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_T *pObj;
     EDIT_OBJ (ch, pObj);
 
     if (argument[0] == '\0') {
@@ -757,15 +759,14 @@ OEDIT (oedit_name) {
         return FALSE;
     }
 
-    str_free (pObj->name);
-    pObj->name = str_dup (argument);
+    str_replace_dup (&(pObj->name), argument);
 
     send_to_char ("Name set.\n\r", ch);
     return TRUE;
 }
 
 OEDIT (oedit_short) {
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_T *pObj;
     EDIT_OBJ (ch, pObj);
 
     if (argument[0] == '\0') {
@@ -773,8 +774,7 @@ OEDIT (oedit_short) {
         return FALSE;
     }
 
-    str_free (pObj->short_descr);
-    pObj->short_descr = str_dup (argument);
+    str_replace_dup (&(pObj->short_descr), argument);
     pObj->short_descr[0] = LOWER (pObj->short_descr[0]);
 
     send_to_char ("Short description set.\n\r", ch);
@@ -782,7 +782,7 @@ OEDIT (oedit_short) {
 }
 
 OEDIT (oedit_long) {
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_T *pObj;
     EDIT_OBJ (ch, pObj);
 
     if (argument[0] == '\0') {
@@ -790,8 +790,7 @@ OEDIT (oedit_long) {
         return FALSE;
     }
 
-    str_free (pObj->description);
-    pObj->description = str_dup (argument);
+    str_replace_dup (&(pObj->description), argument);
     pObj->description[0] = UPPER (pObj->description[0]);
 
     send_to_char ("Long description set.\n\r", ch);
@@ -810,7 +809,7 @@ OEDIT (oedit_value4)
     { return oedit_values (ch, argument, 4) ? TRUE : FALSE; }
 
 OEDIT (oedit_weight) {
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_T *pObj;
     EDIT_OBJ (ch, pObj);
 
     if (argument[0] == '\0' || !is_number (argument)) {
@@ -824,7 +823,7 @@ OEDIT (oedit_weight) {
 }
 
 OEDIT (oedit_cost) {
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_T *pObj;
     EDIT_OBJ (ch, pObj);
 
     if (argument[0] == '\0' || !is_number (argument)) {
@@ -838,8 +837,8 @@ OEDIT (oedit_cost) {
 }
 
 OEDIT (oedit_create) {
-    OBJ_INDEX_DATA *pObj;
-    AREA_DATA *pArea;
+    OBJ_INDEX_T *pObj;
+    AREA_T *pArea;
     int value;
     int iHash;
 
@@ -880,8 +879,8 @@ OEDIT (oedit_create) {
 }
 
 OEDIT (oedit_ed) {
-    OBJ_INDEX_DATA *pObj;
-    EXTRA_DESCR_DATA *ed;
+    OBJ_INDEX_T *pObj;
+    EXTRA_DESCR_T *ed;
     char command[MAX_INPUT_LENGTH];
     char keyword[MAX_INPUT_LENGTH];
 
@@ -927,7 +926,7 @@ OEDIT (oedit_ed) {
     }
 
     if (!str_cmp (command, "delete")) {
-        EXTRA_DESCR_DATA *ped;
+        EXTRA_DESCR_T *ped;
         if (keyword[0] == '\0') {
             send_to_char ("Syntax: ed delete [keyword]\n\r", ch);
             return FALSE;
@@ -969,7 +968,7 @@ OEDIT (oedit_ed) {
 /* ROM object functions : */
 /* Moved out of oedit() due to naming conflicts -- Hugin */
 OEDIT (oedit_extra) {
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_T *pObj;
     int value;
 
     if (argument[0] != '\0') {
@@ -988,7 +987,7 @@ OEDIT (oedit_extra) {
 
 /* Moved out of oedit() due to naming conflicts -- Hugin */
 OEDIT (oedit_wear) {
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_T *pObj;
     int value;
 
     if (argument[0] != '\0') {
@@ -1007,7 +1006,7 @@ OEDIT (oedit_wear) {
 
 /* Moved out of oedit() due to naming conflicts -- Hugin */
 OEDIT (oedit_type) {
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_T *pObj;
     int value, i;
 
     if (argument[0] != '\0') {
@@ -1027,13 +1026,12 @@ OEDIT (oedit_type) {
 }
 
 OEDIT (oedit_material) {
-    OBJ_INDEX_DATA *pObj;
-    const MATERIAL_TYPE *mat;
+    OBJ_INDEX_T *pObj;
+    const MATERIAL_T *mat;
 
     if (argument[0] != '\0') {
         EDIT_OBJ (ch, pObj);
         if ((mat = material_get_by_name (argument)) != NULL) {
-            str_replace_dup (&(pObj->material_str), mat->name);
             pObj->material = mat->type;
             send_to_char ("Material type changed.\n\r", ch);
             return TRUE;
@@ -1045,7 +1043,7 @@ OEDIT (oedit_material) {
 }
 
 OEDIT (oedit_level) {
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_T *pObj;
     EDIT_OBJ (ch, pObj);
 
     if (argument[0] == '\0' || !is_number (argument)) {
@@ -1059,7 +1057,7 @@ OEDIT (oedit_level) {
 }
 
 OEDIT (oedit_condition) {
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_T *pObj;
     int value;
 
     if (argument[0] != '\0'

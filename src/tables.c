@@ -47,7 +47,7 @@
 #include "spell_npc.h"
 #include "spell_off.h"
 
-const TABLE_TYPE master_table[] = {
+const TABLE_T master_table[] = {
     /* from flags.h */
     TFLAGS (mob_flags,        "Mobile flags."),
     TFLAGS (plr_flags,        "Player flags."),
@@ -125,7 +125,7 @@ const TABLE_TYPE master_table[] = {
 };
 
 /* for clans */
-const CLAN_TYPE clan_table[CLAN_MAX + 1] = {
+const CLAN_T clan_table[CLAN_MAX + 1] = {
     /* name, who entry, death-transfer room, independent */
     /* independent should be FALSE if is a real clan */
     {"",      "",           ROOM_VNUM_ALTAR, TRUE},
@@ -135,7 +135,7 @@ const CLAN_TYPE clan_table[CLAN_MAX + 1] = {
 };
 
 /* for position */
-const POSITION_TYPE position_table[POS_MAX + 1] = {
+const POSITION_T position_table[POS_MAX + 1] = {
     {POS_DEAD,     "dead",             "dead"},
     {POS_MORTAL,   "mortally wounded", "mort"},
     {POS_INCAP,    "incapacitated",    "incap"},
@@ -149,7 +149,7 @@ const POSITION_TYPE position_table[POS_MAX + 1] = {
 };
 
 /* for sex */
-const SEX_TYPE sex_table[SEX_MAX + 1] = {
+const SEX_T sex_table[SEX_MAX + 1] = {
     {SEX_NEUTRAL, "neutral"},
     {SEX_MALE,    "male"},
     {SEX_FEMALE,  "female"},
@@ -158,7 +158,7 @@ const SEX_TYPE sex_table[SEX_MAX + 1] = {
 };
 
 /* for sizes */
-const SIZE_TYPE size_table[SIZE_MAX_R + 1] = {
+const SIZE_T size_table[SIZE_MAX_R + 1] = {
     {SIZE_TINY,   "tiny"},
     {SIZE_SMALL,  "small"},
     {SIZE_MEDIUM, "medium"},
@@ -169,23 +169,28 @@ const SIZE_TYPE size_table[SIZE_MAX_R + 1] = {
 };
 
 /* item type list */
-const ITEM_TYPE item_table[ITEM_MAX + 1] = {
+const ITEM_T item_table[ITEM_MAX + 1] = {
     {ITEM_LIGHT,      "light"},
     {ITEM_SCROLL,     "scroll"},
     {ITEM_WAND,       "wand"},
     {ITEM_STAFF,      "staff"},
     {ITEM_WEAPON,     "weapon"},
+    {ITEM_UNUSED_1,   "unused_item_1"},
+    {ITEM_UNUSED_2,   "unused_item_2"},
     {ITEM_TREASURE,   "treasure"},
     {ITEM_ARMOR,      "armor"},
     {ITEM_POTION,     "potion"},
     {ITEM_CLOTHING,   "clothing"},
     {ITEM_FURNITURE,  "furniture"},
     {ITEM_TRASH,      "trash"},
+    {ITEM_UNUSED_3,   "unused_item_3"},
     {ITEM_CONTAINER,  "container"},
+    {ITEM_UNUSED_4,   "unused_item_4"},
     {ITEM_DRINK_CON,  "drink"},
     {ITEM_KEY,        "key"},
     {ITEM_FOOD,       "food"},
     {ITEM_MONEY,      "money"},
+    {ITEM_UNUSED_5,   "unused_item_5"},
     {ITEM_BOAT,       "boat"},
     {ITEM_CORPSE_NPC, "npc_corpse"},
     {ITEM_CORPSE_PC,  "pc_corpse"},
@@ -203,7 +208,7 @@ const ITEM_TYPE item_table[ITEM_MAX + 1] = {
 };
 
 /* weapon selection table */
-const WEAPON_TYPE weapon_table[WEAPON_MAX + 1] = {
+const WEAPON_T weapon_table[WEAPON_MAX + 1] = {
     {WEAPON_SWORD,   "sword",   OBJ_VNUM_SCHOOL_SWORD,   &gsn_sword},
     {WEAPON_MACE,    "mace",    OBJ_VNUM_SCHOOL_MACE,    &gsn_mace},
     {WEAPON_DAGGER,  "dagger",  OBJ_VNUM_SCHOOL_DAGGER,  &gsn_dagger},
@@ -215,7 +220,7 @@ const WEAPON_TYPE weapon_table[WEAPON_MAX + 1] = {
     {-1, NULL, 0, NULL}
 };
 
-const DAM_TYPE dam_table[DAM_MAX + 1] = {
+const DAM_T dam_table[DAM_MAX + 1] = {
     {DAM_NONE,      "none",      -1,            empty_effect,  DAM_PHYSICAL},
     {DAM_BASH,      "bash",      RES_BASH,      empty_effect,  DAM_PHYSICAL},
     {DAM_PIERCE,    "pierce",    RES_PIERCE,    empty_effect,  DAM_PHYSICAL},
@@ -240,7 +245,7 @@ const DAM_TYPE dam_table[DAM_MAX + 1] = {
 };
 
 /* attack table  -- not very organized :( */
-const ATTACK_TYPE attack_table[ATTACK_MAX + 1] = {
+const ATTACK_T attack_table[ATTACK_MAX + 1] = {
     {"none",      "hit",           -1},          /*  0 */
     {"slice",     "slice",         DAM_SLASH},
     {"stab",      "stab",          DAM_PIERCE},
@@ -313,7 +318,7 @@ const ATTACK_TYPE attack_table[ATTACK_MAX + 1] = {
     (PARTS_ALIVE | PART_HEAD | PART_LEGS | PART_FEET | PART_EYE | PART_WINGS)
 
 /* race table */
-const RACE_TYPE race_table[RACE_MAX + 1] = {
+const RACE_T race_table[RACE_MAX + 1] = {
 
  /* {name, pc_race?, act bits, aff_by bits, off bits, imm, res, vuln, form, parts} */
     {"unique",         FALSE, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -321,7 +326,7 @@ const RACE_TYPE race_table[RACE_MAX + 1] = {
     {"elf",            TRUE,  0, AFF_INFRARED, 0, 0, RES_CHARM, RES_IRON, FORMS_HUMANOID, PARTS_HUMANOID},
     {"dwarf",          TRUE,  0, AFF_INFRARED, 0, 0, RES_POISON | RES_DISEASE, RES_DROWNING, FORMS_HUMANOID, PARTS_HUMANOID},
     {"giant",          TRUE,  0, 0, 0, 0, RES_FIRE | RES_COLD, RES_MENTAL | RES_LIGHTNING, FORMS_HUMANOID, PARTS_HUMANOID},
-#ifndef VANILLA
+#ifdef BASEMUD_PIXIE_RACE
     {"pixie",          TRUE,  0, AFF_FLYING | AFF_DETECT_GOOD | AFF_DETECT_EVIL | AFF_DETECT_MAGIC, 0, 0, 0, 0, FORMS_HUMANOID | FORM_MAGICAL, PARTS_HUMANOID | PART_WINGS},
 #else
     {"pixie",          FALSE, 0, AFF_FLYING | AFF_DETECT_GOOD | AFF_DETECT_EVIL | AFF_DETECT_MAGIC, 0, 0, 0, 0, FORMS_HUMANOID | FORM_MAGICAL, PARTS_HUMANOID | PART_WINGS},
@@ -353,21 +358,21 @@ const RACE_TYPE race_table[RACE_MAX + 1] = {
     {0}
 };
 
-const PC_RACE_TYPE pc_race_table[PC_RACE_MAX + 1] = {
+const PC_RACE_T pc_race_table[PC_RACE_MAX + 1] = {
  /* {"race name", short name, points, { class multipliers }, { bonus skills }, { base stats }, { max stats }, size}, */
     {"null race",   "", 0, {100, 100, 100, 100}, {""},                     {13, 13, 13, 13, 13}, {18, 18, 18, 18, 18}, 0},
     {"human",  "Human", 0, {100, 100, 100, 100}, {""},                     {13, 13, 13, 13, 13}, {18, 18, 18, 18, 18}, SIZE_MEDIUM},
     {"elf",    " Elf ", 5, {100, 125, 100, 125}, {"sneak", "hide"},        {12, 14, 13, 15, 11}, {16, 20, 18, 21, 15}, SIZE_SMALL},
     {"dwarf",  "Dwarf", 8, {150, 100, 125, 100}, {"berserk"},              {14, 12, 14, 10, 15}, {20, 16, 19, 14, 21}, SIZE_MEDIUM},
     {"giant",  "Giant", 6, {200, 150, 150, 100}, {"bash", "fast healing"}, {16, 11, 13, 11, 14}, {22, 15, 18, 15, 20}, SIZE_LARGE},
-#ifndef VANILLA
+#ifdef BASEMUD_PIXIE_RACE
     {"pixie",  "Pixie", 7, {100, 150, 150, 150}, {"dodge"},                {11, 15, 15, 14, 10}, {15, 21, 20, 20, 14}, SIZE_TINY},
 #endif
     {0}
 };
 
 /* Class table.  */
-const CLASS_TYPE class_table[CLASS_MAX + 1] = {
+const CLASS_T class_table[CLASS_MAX + 1] = {
     {CLASS_MAGE,    "mage",    "Mag", STAT_INT, OBJ_VNUM_SCHOOL_DAGGER, {3018, 9618}, 75, 20,   6,  6,  8, TRUE,  "mage basics",    "mage default"},
     {CLASS_CLERIC,  "cleric",  "Cle", STAT_WIS, OBJ_VNUM_SCHOOL_MACE,   {3003, 9619}, 75, 20,   2,  7, 10, TRUE,  "cleric basics",  "cleric default"},
     {CLASS_THIEF,   "thief",   "Thi", STAT_DEX, OBJ_VNUM_SCHOOL_DAGGER, {3028, 9639}, 75, 20,  -4,  8, 13, FALSE, "thief basics",   "thief default"},
@@ -679,7 +684,7 @@ char *const title_table[CLASS_MAX][MAX_LEVEL + 1][2] = {
 };
 
 /* Attribute bonus tables. */
-const STR_APP_TYPE str_app_table[ATTRIBUTE_HIGHEST + 2] = {
+const STR_APP_T str_app_table[ATTRIBUTE_HIGHEST + 2] = {
     /* stat, tohit, todam, carry, wield */
     { 0, -5, -4,   0,  0}, /* 0 */
     { 1, -4, -3,   3,  1},
@@ -711,7 +716,7 @@ const STR_APP_TYPE str_app_table[ATTRIBUTE_HIGHEST + 2] = {
     { -999},
 };
 
-const INT_APP_TYPE int_app_table[ATTRIBUTE_HIGHEST + 2] = {
+const INT_APP_T int_app_table[ATTRIBUTE_HIGHEST + 2] = {
     /* stat, learn */
     { 0,  3}, /* 0 */
     { 1,  5},
@@ -743,7 +748,7 @@ const INT_APP_TYPE int_app_table[ATTRIBUTE_HIGHEST + 2] = {
     {-999}
 };
 
-const WIS_APP_TYPE wis_app_table[ATTRIBUTE_HIGHEST + 2] = {
+const WIS_APP_T wis_app_table[ATTRIBUTE_HIGHEST + 2] = {
     /* stat, practice */
     { 0, 0}, /* 0 */
     { 1, 0},
@@ -775,7 +780,7 @@ const WIS_APP_TYPE wis_app_table[ATTRIBUTE_HIGHEST + 2] = {
     {-999}
 };
 
-const DEX_APP_TYPE dex_app_table[ATTRIBUTE_HIGHEST + 2] = {
+const DEX_APP_T dex_app_table[ATTRIBUTE_HIGHEST + 2] = {
     /* stat, defensive */
     { 0,  60}, /* 0 */
     { 1,  50},
@@ -807,7 +812,7 @@ const DEX_APP_TYPE dex_app_table[ATTRIBUTE_HIGHEST + 2] = {
     {-999}
 };
 
-const CON_APP_TYPE con_app_table[ATTRIBUTE_HIGHEST + 2] = {
+const CON_APP_T con_app_table[ATTRIBUTE_HIGHEST + 2] = {
     /* stat, hitp, shock */
     { 0, -4, 20}, /* 0 */
     { 1, -3, 25},
@@ -840,7 +845,7 @@ const CON_APP_TYPE con_app_table[ATTRIBUTE_HIGHEST + 2] = {
 };
 
 /* Liquid properties. */
-const LIQ_TYPE liq_table[LIQ_MAX + 1] = {
+const LIQ_T liq_table[LIQ_MAX + 1] = {
   /* name                   color         proof, full, thirst, food, ssize */
     {"water",               "clear",     {0,     1,    10,     0,    16}},
     {"beer",                "amber",     {12,    1,    8,      1,    12}},
@@ -898,7 +903,7 @@ const LIQ_TYPE liq_table[LIQ_MAX + 1] = {
 #define PR POS_RESTING
 #define PP POS_SLEEPING
 
-const SKILL_TYPE skill_table[SKILL_MAX + 1] = {
+const SKILL_T skill_table[SKILL_MAX + 1] = {
     /* Magic spells. */
     {"reserved",        {99, 99, 99, 99}, {99, 99, 99, 99}, NULL,                  TI,   PS, NULL,                 SLOT (0),   0,   0,  "",               "", ""},
     {"acid blast",      {28, 53, 35, 32}, {1, 1, 2, 2},     spell_acid_blast,      TCO,  PF, NULL,                 SLOT (70),  20,  12, "acid blast",     "!Acid Blast!", ""},
@@ -1061,7 +1066,7 @@ const SKILL_TYPE skill_table[SKILL_MAX + 1] = {
 #undef PR
 #undef PP
 
-const GROUP_TYPE group_table[GROUP_MAX + 1] = {
+const GROUP_T group_table[GROUP_MAX + 1] = {
     {"rom basics",      { 0,  0,  0,  0}, {"scrolls", "staves", "wands", "recall"}},
     {"mage basics",     { 0, -1, -1, -1}, {"dagger"}},
     {"cleric basics",   {-1,  0, -1, -1}, {"mace"}},
@@ -1092,7 +1097,7 @@ const GROUP_TYPE group_table[GROUP_MAX + 1] = {
     {0}
 };
 
-const SECTOR_TYPE sector_table[SECT_MAX + 1] = {
+const SECTOR_T sector_table[SECT_MAX + 1] = {
     {SECT_INSIDE,       "inside",      1, 'C'},
     {SECT_CITY,         "city",        2, 'c'},
     {SECT_FIELD,        "field",       2, 'G'},
@@ -1107,7 +1112,7 @@ const SECTOR_TYPE sector_table[SECT_MAX + 1] = {
     {0}
 };
 
-const NANNY_HANDLER nanny_table[NANNY_MAX + 1] = {
+const NANNY_HANDLER_T nanny_table[NANNY_MAX + 1] = {
     {CON_ANSI,             "ansi",                 nanny_ansi},
     {CON_GET_NAME,         "get_player_name",      nanny_get_player_name},
     {CON_GET_OLD_PASSWORD, "get_old_password",     nanny_get_old_password},
@@ -1136,7 +1141,7 @@ const NANNY_HANDLER nanny_table[NANNY_MAX + 1] = {
     {-1, NULL}
 };
 
-const FURNITURE_BITS furniture_table[] = {
+const FURNITURE_BITS_T furniture_table[] = {
     {POS_STANDING, "standing", STAND_AT, STAND_ON, STAND_IN},
     {POS_SITTING,  "sitting",  SIT_AT,   SIT_ON,   SIT_IN},
     {POS_RESTING,  "resting",  REST_AT,  REST_ON,  REST_IN},
@@ -1144,7 +1149,7 @@ const FURNITURE_BITS furniture_table[] = {
     {-1, NULL, 0, 0}
 };
 
-const MAP_LOOKUP_TABLE map_lookup_table[] = {
+const MAP_LOOKUP_TABLE_T map_lookup_table[] = {
     {MAP_LOOKUP_WEAPON_TYPE, "weapon_type", NULL},
     {MAP_LOOKUP_ATTACK_TYPE, "attack_type", NULL},
     {MAP_LOOKUP_LIQUID,      "liquid",      NULL},
@@ -1152,7 +1157,7 @@ const MAP_LOOKUP_TABLE map_lookup_table[] = {
     {-1, NULL, NULL},
 };
 
-const MAP_LOOKUP_TABLE map_flags_table[] = {
+const MAP_LOOKUP_TABLE_T map_flags_table[] = {
     {MAP_FLAGS_WEAPON,    "weapon",    weapon_flags},
     {MAP_FLAGS_CONT,      "container", container_flags},
     {MAP_FLAGS_FURNITURE, "furniture", furniture_flags},
@@ -1161,125 +1166,125 @@ const MAP_LOOKUP_TABLE map_flags_table[] = {
     {-1, NULL, NULL},
 };
 
-const OBJ_MAP obj_map_table[] = {
+const OBJ_MAP_T obj_map_table[] = {
     {ITEM_WEAPON, {
-        {0, "weapon_type", MAP_LOOKUP, MAP_LOOKUP_WEAPON_TYPE},
-        {1, "dice_num",    MAP_INTEGER, 0},
-        {2, "dice_size",   MAP_INTEGER, 0},
-        {3, "attack_type", MAP_LOOKUP, MAP_LOOKUP_ATTACK_TYPE},
-        {4, "flags",       MAP_FLAGS, MAP_FLAGS_WEAPON},
+        {0, -1, "weapon_type", MAP_LOOKUP, MAP_LOOKUP_WEAPON_TYPE},
+        {1,  0, "dice_num",    MAP_INTEGER, 0},
+        {2,  0, "dice_size",   MAP_INTEGER, 0},
+        {3, -1, "attack_type", MAP_LOOKUP, MAP_LOOKUP_ATTACK_TYPE},
+        {4,  0, "flags",       MAP_FLAGS, MAP_FLAGS_WEAPON},
     }},
     {ITEM_CONTAINER, {
-        {0, "capacity",    MAP_INTEGER, 0},
-        {1, "flags",       MAP_FLAGS, MAP_FLAGS_CONT},
-        {2, "key",         MAP_INTEGER, 0},
-        {3, "max_weight",  MAP_INTEGER, 0},
-        {4, "weight_mult", MAP_INTEGER, 0}
+        {0,  0, "capacity",    MAP_INTEGER, 0},
+        {1,  0, "flags",       MAP_FLAGS, MAP_FLAGS_CONT},
+        {2,  0, "key",         MAP_INTEGER, 0},
+        {3,  0, "max_weight",  MAP_INTEGER, 0},
+        {4,  0, "weight_mult", MAP_INTEGER, 0}
     }},
     {ITEM_DRINK_CON, {
-        {0, "capacity",    MAP_INTEGER, 0},
-        {1, "filled",      MAP_INTEGER, 0},
-        {2, "liquid",      MAP_LOOKUP, MAP_LOOKUP_LIQUID},
-        {3, "poisoned",    MAP_BOOLEAN, 0},
-        {4, NULL,          MAP_IGNORE, 0}
+        {0,  0, "capacity",    MAP_INTEGER, 0},
+        {1,  0, "filled",      MAP_INTEGER, 0},
+        {2, -1, "liquid",      MAP_LOOKUP, MAP_LOOKUP_LIQUID},
+        {3,  0, "poisoned",    MAP_BOOLEAN, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0}
     }},
     {ITEM_FOUNTAIN, {
-        {0, "capacity",    MAP_INTEGER, 0},
-        {1, "filled",      MAP_INTEGER, 0},
-        {2, "liquid",      MAP_LOOKUP, MAP_LOOKUP_LIQUID},
-        {3, "poisoned",    MAP_BOOLEAN, 0},
-        {4, NULL,          MAP_IGNORE, 0}
+        {0,  0, "capacity",    MAP_INTEGER, 0},
+        {1,  0, "filled",      MAP_INTEGER, 0},
+        {2, -1, "liquid",      MAP_LOOKUP, MAP_LOOKUP_LIQUID},
+        {3,  0, "poisoned",    MAP_BOOLEAN, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0}
     }},
     {ITEM_WAND, {
-        {0, "level",       MAP_INTEGER, 0},
-        {1, "recharge",    MAP_INTEGER, 0},
-        {2, "charges",     MAP_INTEGER, 0},
-        {3, "skill",       MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {4, NULL,          MAP_IGNORE, 0}
+        {0,  0, "level",       MAP_INTEGER, 0},
+        {1,  0, "recharge",    MAP_INTEGER, 0},
+        {2,  0, "charges",     MAP_INTEGER, 0},
+        {3, -1, "skill",       MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {4,  0, NULL,          MAP_IGNORE, 0}
     }},
     {ITEM_STAFF, {
-        {0, "level",       MAP_INTEGER, 0},
-        {1, "recharge",    MAP_INTEGER, 0},
-        {2, "charges",     MAP_INTEGER, 0},
-        {3, "skill",       MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {4, NULL,          MAP_IGNORE, 0}
+        {0,  0, "level",       MAP_INTEGER, 0},
+        {1,  0, "recharge",    MAP_INTEGER, 0},
+        {2,  0, "charges",     MAP_INTEGER, 0},
+        {3, -1, "skill",       MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {4,  0, NULL,          MAP_IGNORE, 0}
     }},
     {ITEM_FOOD, {
-        {0, "hunger",      MAP_INTEGER, 0},
-        {1, "fullness",    MAP_INTEGER, 0},
-        {2, NULL,          MAP_IGNORE, 0},
-        {3, "poisoned",    MAP_BOOLEAN, 0},
-        {4, NULL,          MAP_IGNORE, 0}
+        {0,  0, "hunger",      MAP_INTEGER, 0},
+        {1,  0, "fullness",    MAP_INTEGER, 0},
+        {2,  0, NULL,          MAP_IGNORE, 0},
+        {3,  0, "poisoned",    MAP_BOOLEAN, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0}
     }},
     {ITEM_MONEY, {
-        {0, "silver",      MAP_INTEGER, 0},
-        {1, "gold",        MAP_INTEGER, 0},
-        {2, NULL,          MAP_IGNORE, 0},
-        {3, NULL,          MAP_IGNORE, 0},
-        {4, NULL,          MAP_IGNORE, 0}
+        {0,  0, "silver",      MAP_INTEGER, 0},
+        {1,  0, "gold",        MAP_INTEGER, 0},
+        {2,  0, NULL,          MAP_IGNORE, 0},
+        {3,  0, NULL,          MAP_IGNORE, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0}
     }},
     {ITEM_ARMOR, {
-        {0, "vs_pierce",   MAP_INTEGER, 0},
-        {1, "vs_bash",     MAP_INTEGER, 0},
-        {2, "vs_slash",    MAP_INTEGER, 0},
-        {3, "vs_magic",    MAP_INTEGER, 0},
-        {4, NULL,          MAP_IGNORE, 0}
+        {0,  0, "vs_pierce",   MAP_INTEGER, 0},
+        {1,  0, "vs_bash",     MAP_INTEGER, 0},
+        {2,  0, "vs_slash",    MAP_INTEGER, 0},
+        {3,  0, "vs_magic",    MAP_INTEGER, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0}
     }},
     {ITEM_POTION, {
-        {0, "level",       MAP_INTEGER, 0},
-        {1, "skill1",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {2, "skill2",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {3, "skill3",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {4, "skill4",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {0,  0, "level",       MAP_INTEGER, 0},
+        {1, -1, "skill1",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {2, -1, "skill2",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {3, -1, "skill3",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {4, -1, "skill4",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
     }},
     {ITEM_PILL, {
-        {0, "level",       MAP_INTEGER, 0},
-        {1, "skill1",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {2, "skill2",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {3, "skill3",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {4, "skill4",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {0,  0, "level",       MAP_INTEGER, 0},
+        {1, -1, "skill1",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {2, -1, "skill2",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {3, -1, "skill3",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {4, -1, "skill4",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
     }},
     {ITEM_SCROLL, {
-        {0, "level",       MAP_INTEGER, 0},
-        {1, "skill1",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {2, "skill2",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {3, "skill3",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {4, "skill4",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {0,  0, "level",       MAP_INTEGER, 0},
+        {1, -1, "skill1",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {2, -1, "skill2",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {3, -1, "skill3",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {4, -1, "skill4",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
     }},
     {ITEM_MAP, {
-        {0, "persist",     MAP_BOOLEAN, 0},
-        {1, NULL,          MAP_IGNORE, 0},
-        {2, NULL,          MAP_IGNORE, 0},
-        {3, NULL,          MAP_IGNORE, 0},
-        {4, NULL,          MAP_IGNORE, 0},
+        {0,  0, "persist",     MAP_BOOLEAN, 0},
+        {1,  0, NULL,          MAP_IGNORE, 0},
+        {2,  0, NULL,          MAP_IGNORE, 0},
+        {3,  0, NULL,          MAP_IGNORE, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0},
     }},
     {ITEM_FURNITURE, {
-        {0, "max_people",  MAP_INTEGER, 0},
-        {1, "max_weight",  MAP_INTEGER, 0},
-        {2, "flags",       MAP_FLAGS, MAP_FLAGS_FURNITURE},
-        {3, "heal_rate",   MAP_INTEGER, 0},
-        {4, "mana_rate",   MAP_INTEGER, 0},
+        {0,  0, "max_people",  MAP_INTEGER, 0},
+        {1,  0, "max_weight",  MAP_INTEGER, 0},
+        {2,  0, "flags",       MAP_FLAGS, MAP_FLAGS_FURNITURE},
+        {3,  0, "heal_rate",   MAP_INTEGER, 0},
+        {4,  0, "mana_rate",   MAP_INTEGER, 0},
     }},
     {ITEM_LIGHT, {
-        {0, NULL,          MAP_IGNORE, 0},
-        {1, NULL,          MAP_IGNORE, 0},
-        {2, "duration",    MAP_INTEGER, 0},
-        {3, NULL,          MAP_IGNORE, 0},
-        {4, NULL,          MAP_IGNORE, 0},
+        {0,  0, NULL,          MAP_IGNORE, 0},
+        {1,  0, NULL,          MAP_IGNORE, 0},
+        {2,  0, "duration",    MAP_INTEGER, 0},
+        {3,  0, NULL,          MAP_IGNORE, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0},
     }},
     {ITEM_PORTAL, {
-        {0, "charges",     MAP_INTEGER, 0},
-        {1, "exit_flags",  MAP_FLAGS, MAP_FLAGS_EXIT},
-        {2, "gate_flags",  MAP_FLAGS, MAP_FLAGS_GATE},
-        {3, "to_vnum",     MAP_INTEGER, 0},
-        {4, "key",         MAP_INTEGER, 0},
+        {0,  0, "charges",     MAP_INTEGER, 0},
+        {1,  0, "exit_flags",  MAP_FLAGS, MAP_FLAGS_EXIT},
+        {2,  0, "gate_flags",  MAP_FLAGS, MAP_FLAGS_GATE},
+        {3,  0, "to_vnum",     MAP_INTEGER, 0},
+        {4,  0, "key",         MAP_INTEGER, 0},
     }},
 
     #define OBJ_MAP_NO_VALUES(type) \
         { type, { \
-            { 0, NULL, MAP_IGNORE, 0 }, { 1, NULL, MAP_IGNORE, 0 }, \
-            { 2, NULL, MAP_IGNORE, 0 }, { 3, NULL, MAP_IGNORE, 0 }, \
-            { 4, NULL, MAP_IGNORE, 0 } \
+            { 0, 0, NULL, MAP_IGNORE, 0 }, { 1, 0, NULL, MAP_IGNORE, 0 }, \
+            { 2, 0, NULL, MAP_IGNORE, 0 }, { 3, 0, NULL, MAP_IGNORE, 0 }, \
+            { 4, 0, NULL, MAP_IGNORE, 0 } \
         }}
 
     OBJ_MAP_NO_VALUES(ITEM_TRASH),
@@ -1298,7 +1303,7 @@ const OBJ_MAP obj_map_table[] = {
 };
 
 /* for doors */
-const DOOR_TYPE door_table[DIR_MAX + 1] = {
+const DOOR_T door_table[DIR_MAX + 1] = {
     {DIR_NORTH, "north", "the north", "to the north", DIR_SOUTH, "N"},
     {DIR_EAST,  "east",  "the east",  "to the east",  DIR_WEST,  "E"},
     {DIR_SOUTH, "south", "the south", "to the south", DIR_NORTH, "S"},
@@ -1309,7 +1314,7 @@ const DOOR_TYPE door_table[DIR_MAX + 1] = {
 };
 
 /* the function table */
-const SPEC_TYPE spec_table[SPEC_MAX + 1] = {
+const SPEC_T spec_table[SPEC_MAX + 1] = {
     {"spec_breath_any",       spec_breath_any},
     {"spec_breath_acid",      spec_breath_acid},
     {"spec_breath_fire",      spec_breath_fire},
@@ -1335,7 +1340,7 @@ const SPEC_TYPE spec_table[SPEC_MAX + 1] = {
     {0}
 };
 
-const COLOUR_SETTING_TYPE colour_setting_table[COLOUR_MAX + 1] = {
+const COLOUR_SETTING_T colour_setting_table[COLOUR_MAX + 1] = {
     {COLOUR_TEXT,          "text",          't', CC_BACK_DEFAULT | CC_WHITE},
     {COLOUR_AUCTION,       "auction",       'a', CC_BACK_DEFAULT | CC_BRIGHT_YELLOW},
     {COLOUR_AUCTION_TEXT,  "auction_text",  'A', CC_BACK_DEFAULT | CC_BRIGHT_WHITE},
@@ -1374,7 +1379,7 @@ const COLOUR_SETTING_TYPE colour_setting_table[COLOUR_MAX + 1] = {
     {0}
 };
 
-const COLOUR_TYPE colour_table[] = {
+const COLOUR_T colour_table[] = {
     /* All forecolors */
     {CM_FORECOLOUR, CC_DEFAULT,        "none"},
     {CM_FORECOLOUR, CC_BLACK,          "black"},
@@ -1425,7 +1430,7 @@ const COLOUR_TYPE colour_table[] = {
     {0}
 };
 
-const WEAR_LOC_TYPE wear_loc_table[WEAR_LOC_MAX + 1] = {
+const WEAR_LOC_T wear_loc_table[WEAR_LOC_MAX + 1] = {
     {WEAR_LIGHT,    "light",        "<used as light>       ", ITEM_WEAR_LIGHT,  "You light $p and hold it.", "$n lights $p and holds it."},
     {WEAR_FINGER_L, "left finger",  "<worn on L-finger>    ", ITEM_WEAR_FINGER, "You wear $p on your left finger.", "$n wears $p on $s left finger."},
     {WEAR_FINGER_R, "right finger", "<worn on R-finger>    ", ITEM_WEAR_FINGER, "You wear $p on your right finger.", "$n wears $p on $s right finger."},
@@ -1448,7 +1453,7 @@ const WEAR_LOC_TYPE wear_loc_table[WEAR_LOC_MAX + 1] = {
     {0}
 };
 
-const MATERIAL_TYPE material_table[MATERIAL_MAX + 1] = {
+const MATERIAL_T material_table[MATERIAL_MAX + 1] = {
     {MATERIAL_GENERIC,    "generic",    'x'},
     {MATERIAL_ADAMANTITE, "adamantite", 'D'},
     {MATERIAL_ALUMINUM,   "aluminum",   'w'},
@@ -1510,37 +1515,37 @@ const MATERIAL_TYPE material_table[MATERIAL_MAX + 1] = {
 
 #define BLANK -1
 
-RECYCLE_TYPE recycle_table[RECYCLE_MAX + 1] = {
-    RECYCLE_N_ENTRY (RECYCLE_BAN_DATA,         ban,         BAN_DATA,         name, ban_init,         ban_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_AREA_DATA,        area,        AREA_DATA,        name, area_init,        area_dispose),
-    RECYCLE_ENTRY   (RECYCLE_EXTRA_DESCR_DATA, extra_descr, EXTRA_DESCR_DATA,       extra_descr_init, extra_descr_dispose),
-    RECYCLE_ENTRY   (RECYCLE_EXIT_DATA,        exit,        EXIT_DATA,              exit_init,        exit_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_ROOM_INDEX_DATA,  room_index,  ROOM_INDEX_DATA,  name, room_index_init,  room_index_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_OBJ_INDEX_DATA,   obj_index,   OBJ_INDEX_DATA,   name, obj_index_init,   obj_index_dispose),
-    RECYCLE_ENTRY   (RECYCLE_SHOP_DATA,        shop,        SHOP_DATA,              shop_init,        NULL),
-    RECYCLE_ENTRY   (RECYCLE_MOB_INDEX_DATA,   mob_index,   MOB_INDEX_DATA,         mob_index_init,   mob_index_dispose),
-    RECYCLE_ENTRY   (RECYCLE_RESET_DATA,       reset_data,  RESET_DATA,             reset_data_init,  NULL),
-    RECYCLE_N_ENTRY (RECYCLE_HELP_DATA,        help,        HELP_DATA,     keyword, NULL,             help_dispose),
-    RECYCLE_ENTRY   (RECYCLE_MPROG_CODE,       mpcode,      MPROG_CODE,             mpcode_init,      mpcode_dispose),
-    RECYCLE_ENTRY   (RECYCLE_DESCRIPTOR_DATA,  descriptor,  DESCRIPTOR_DATA,        descriptor_init,  descriptor_dispose),
-    RECYCLE_ENTRY   (RECYCLE_GEN_DATA,         gen_data,    GEN_DATA,               NULL,             NULL),
-    RECYCLE_ENTRY   (RECYCLE_AFFECT_DATA,      affect,      AFFECT_DATA,            NULL,             NULL),
-    RECYCLE_ENTRY   (RECYCLE_OBJ_DATA,         obj,         OBJ_DATA,               NULL,             obj_dispose),
-    RECYCLE_ENTRY   (RECYCLE_CHAR_DATA,        char,        CHAR_DATA,              char_init,        char_dispose),
-    RECYCLE_ENTRY   (RECYCLE_PC_DATA,          pcdata,      PC_DATA,                pcdata_init,      pcdata_dispose),
-    RECYCLE_ENTRY   (RECYCLE_MEM_DATA,         mem_data,    MEM_DATA,               NULL,             NULL),
-    RECYCLE_ENTRY   (RECYCLE_BUFFER,           buf,         BUFFER,                 buf_init,         buf_dispose),
-    RECYCLE_ENTRY   (RECYCLE_MPROG_LIST,       mprog,       MPROG_LIST,             mprog_init,       mprog_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_HELP_AREA,        had,         HELP_AREA,    filename, NULL,             had_dispose),
-    RECYCLE_ENTRY   (RECYCLE_NOTE_DATA,        note,        NOTE_DATA,              NULL,             note_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_SOCIAL_TYPE,      social,      SOCIAL_TYPE,      name, NULL,             social_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_PORTAL_EXIT_TYPE, portal_exit, PORTAL_EXIT_TYPE, name, NULL,             portal_exit_dispose),
-    RECYCLE_ENTRY   (RECYCLE_PORTAL_TYPE,      portal,      PORTAL_TYPE,            NULL,             portal_dispose),
+RECYCLE_T recycle_table[RECYCLE_MAX + 1] = {
+    RECYCLE_N_ENTRY (RECYCLE_BAN_T,         ban,         BAN_T,         name, ban_init,         ban_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_AREA_T,        area,        AREA_T,        name, area_init,        area_dispose),
+    RECYCLE_ENTRY   (RECYCLE_EXTRA_DESCR_T, extra_descr, EXTRA_DESCR_T,       extra_descr_init, extra_descr_dispose),
+    RECYCLE_ENTRY   (RECYCLE_EXIT_T,        exit,        EXIT_T,              exit_init,        exit_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_ROOM_INDEX_T,  room_index,  ROOM_INDEX_T,  name, room_index_init,  room_index_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_OBJ_INDEX_T,   obj_index,   OBJ_INDEX_T,   name, obj_index_init,   obj_index_dispose),
+    RECYCLE_ENTRY   (RECYCLE_SHOP_T,        shop,        SHOP_T,              shop_init,        NULL),
+    RECYCLE_ENTRY   (RECYCLE_MOB_INDEX_T,   mob_index,   MOB_INDEX_T,         mob_index_init,   mob_index_dispose),
+    RECYCLE_ENTRY   (RECYCLE_RESET_T,       reset_data,  RESET_T,             reset_data_init,  NULL),
+    RECYCLE_N_ENTRY (RECYCLE_HELP_T,        help,        HELP_T,     keyword, NULL,             help_dispose),
+    RECYCLE_ENTRY   (RECYCLE_MPROG_CODE_T,  mpcode,      MPROG_CODE_T,        mpcode_init,      mpcode_dispose),
+    RECYCLE_ENTRY   (RECYCLE_DESCRIPTOR_T,  descriptor,  DESCRIPTOR_T,        descriptor_init,  descriptor_dispose),
+    RECYCLE_ENTRY   (RECYCLE_GEN_T,         gen_data,    GEN_T,               NULL,             NULL),
+    RECYCLE_ENTRY   (RECYCLE_AFFECT_T,      affect,      AFFECT_T,            NULL,             NULL),
+    RECYCLE_ENTRY   (RECYCLE_OBJ_T,         obj,         OBJ_T,               NULL,             obj_dispose),
+    RECYCLE_ENTRY   (RECYCLE_CHAR_T,        char,        CHAR_T,              char_init,        char_dispose),
+    RECYCLE_ENTRY   (RECYCLE_PC_T,          pcdata,      PC_T,                pcdata_init,      pcdata_dispose),
+    RECYCLE_ENTRY   (RECYCLE_MEM_T,         mem_data,    MEM_T,               NULL,             NULL),
+    RECYCLE_ENTRY   (RECYCLE_BUFFER_T,      buf,         BUFFER_T,            buf_init,         buf_dispose),
+    RECYCLE_ENTRY   (RECYCLE_MPROG_LIST_T,  mprog,       MPROG_LIST_T,        mprog_init,       mprog_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_HELP_AREA_T,   had,         HELP_AREA_T, filename, NULL,           had_dispose),
+    RECYCLE_ENTRY   (RECYCLE_NOTE_T,        note,        NOTE_T,              NULL,             note_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_SOCIAL_T,      social,      SOCIAL_T,      name, NULL,             social_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_PORTAL_EXIT_T, portal_exit, PORTAL_EXIT_T, name, NULL,             portal_exit_dispose),
+    RECYCLE_ENTRY   (RECYCLE_PORTAL_T,      portal,      PORTAL_T,            NULL,             portal_dispose),
     {0}
 };
 
 /* Technically not const, but this is a good place to have it! */
-BOARD_DATA board_table[BOARD_MAX + 1] = {
+BOARD_T board_table[BOARD_MAX + 1] = {
     {"General",  "General discussion",           0, 2,     "all", DEF_INCLUDE, 21, NULL, FALSE},
     {"Ideas",    "Suggestion for improvement",   0, 2,     "all", DEF_NORMAL,  60, NULL, FALSE},
     {"Announce", "Announcements from Immortals", 0, L_IMM, "all", DEF_NORMAL,  60, NULL, FALSE},
@@ -1550,7 +1555,7 @@ BOARD_DATA board_table[BOARD_MAX + 1] = {
 };
 
 /* wiznet table and prototype for future flag setting */
-const WIZNET_TYPE wiznet_table[WIZNET_MAX + 1] = {
+const WIZNET_T wiznet_table[WIZNET_MAX + 1] = {
     {WIZ_ON,        "on",        IM},
     {WIZ_PREFIX,    "prefix",    IM},
     {WIZ_TICKS,     "ticks",     IM},
@@ -1574,7 +1579,7 @@ const WIZNET_TYPE wiznet_table[WIZNET_MAX + 1] = {
     {-1, NULL, 0}
 };
 
-const AFFECT_BIT_TYPE affect_bit_table[AFF_TO_MAX + 1] = {
+const AFFECT_BIT_T affect_bit_table[AFF_TO_MAX + 1] = {
     {"affects", AFF_TO_AFFECTS, affect_flags, "affect_flags"},
     {"object",  AFF_TO_OBJECT,  extra_flags,  "extra_flags"},
     {"immune",  AFF_TO_IMMUNE,  res_flags,    "res_flags"},
@@ -1584,7 +1589,7 @@ const AFFECT_BIT_TYPE affect_bit_table[AFF_TO_MAX + 1] = {
     {NULL,      0,              NULL},
 };
 
-const DAY_TYPE day_table[DAY_MAX + 1] = {
+const DAY_T day_table[DAY_MAX + 1] = {
     { DAY_MOON,       "the Moon" },
     { DAY_BULL,       "the Bull" },
     { DAY_DECEPTION,  "Deception" },
@@ -1595,7 +1600,7 @@ const DAY_TYPE day_table[DAY_MAX + 1] = {
     { -1, NULL }
 };
 
-const MONTH_TYPE month_table[MONTH_MAX + 1] = {
+const MONTH_T month_table[MONTH_MAX + 1] = {
     { MONTH_WINTER,           "Winter" },
     { MONTH_WINTER_WOLF,      "the Winter Wolf" },
     { MONTH_FROST_GIANT,      "the Frost Giant" },
@@ -1616,7 +1621,7 @@ const MONTH_TYPE month_table[MONTH_MAX + 1] = {
     { -1, NULL }
 };
 
-const SKY_TYPE sky_table[SKY_MAX + 1] = {
+const SKY_T sky_table[SKY_MAX + 1] = {
     { SKY_CLOUDLESS, "cloudless", "cloudless", 1020,   -1 },
     { SKY_CLOUDY,    "cloudy",    "cloudy",    1000, 1020 },
     { SKY_RAINING,   "raining",   "rainy",      980, 1000 },
@@ -1624,10 +1629,184 @@ const SKY_TYPE sky_table[SKY_MAX + 1] = {
     { -1, NULL, NULL },
 };
 
-const SUN_TYPE sun_table[SUN_MAX + 1] = {
+const SUN_T sun_table[SUN_MAX + 1] = {
     { SUN_DARK,  "dark",  TRUE,   0,  5, "The night has begun.\n\r" },
     { SUN_RISE,  "rise",  FALSE,  5,  6, "The sun rises in the east.\n\r" },
     { SUN_LIGHT, "light", FALSE,  6, 19, "The day has begun.\n\r" },
     { SUN_SET,   "set",   TRUE,  19, 20, "The sun slowly disappears in the west.\n\r" },
     { -1, NULL, 0 }
+};
+
+const POSE_T pose_table[POSE_MAX + 1] = {
+    /* 0 */
+    {{"You sizzle with energy.",
+      "$n sizzles with energy.",
+      "You feel very holy.",
+      "$n looks very holy.",
+      "You perform a small card trick.",
+      "$n performs a small card trick.",
+      "You show your bulging muscles.",
+      "$n shows $s bulging muscles."}},
+
+    /* 1 */
+    {{"You turn into a butterfly, then return to your normal shape.",
+      "$n turns into a butterfly, then returns to $s normal shape.",
+      "You nonchalantly turn wine into water.",
+      "$n nonchalantly turns wine into water.",
+      "You wiggle your ears alternately.",
+      "$n wiggles $s ears alternately.",
+      "You crack nuts between your fingers.",
+      "$n cracks nuts between $s fingers."}},
+
+    /* 2 */
+    {{"Blue sparks fly from your fingers.",
+      "Blue sparks fly from $n's fingers.",
+      "A halo appears over your head.",
+      "A halo appears over $n's head.",
+      "You nimbly tie yourself into a knot.",
+      "$n nimbly ties $mself into a knot.",
+      "You grizzle your teeth and look mean.",
+      "$n grizzles $s teeth and looks mean."}},
+
+    /* 3 */
+    {{"Little red lights dance in your eyes.",
+      "Little red lights dance in $n's eyes.",
+      "You recite words of wisdom.",
+      "$n recites words of wisdom.",
+      "You juggle with daggers, apples, and eyeballs.",
+      "$n juggles with daggers, apples, and eyeballs.",
+      "You hit your head, and your eyes roll.",
+      "$n hits $s head, and $s eyes roll."}},
+
+    /* 4 */
+    {{"A slimy green monster appears before you and bows.",
+      "A slimy green monster appears before $n and bows.",
+      "Deep in prayer, you levitate.",
+      "Deep in prayer, $n levitates.",
+      "You steal the underwear off every person in the room.",
+      "Your underwear is gone!  $n stole it!",
+      "Crunch, crunch -- you munch a bottle.",
+      "Crunch, crunch -- $n munches a bottle."}},
+
+    /* 5 */
+    {{"You turn everybody into a little pink elephant.",
+      "You are turned into a little pink elephant by $n.",
+      "An angel consults you.",
+      "An angel consults $n.",
+      "The dice roll ... and you win again.",
+      "The dice roll ... and $n wins again.",
+      "... 98, 99, 100 ... you do pushups.",
+      "... 98, 99, 100 ... $n does pushups."}},
+
+    /* 6 */
+    {{"A small ball of light dances on your fingertips.",
+      "A small ball of light dances on $n's fingertips.",
+      "Your body glows with an unearthly light.",
+      "$n's body glows with an unearthly light.",
+      "You count the money in everyone's pockets.",
+      "Check your money, $n is counting it.",
+      "Arnold Schwarzenegger admires your physique.",
+      "Arnold Schwarzenegger admires $n's physique."}},
+
+    /* 7 */
+    {{"Smoke and fumes leak from your nostrils.",
+      "Smoke and fumes leak from $n's nostrils.",
+      "A spot light hits you.",
+      "A spot light hits $n.",
+      "You balance a pocket knife on your tongue.",
+      "$n balances a pocket knife on your tongue.",
+      "Watch your feet, you are juggling granite boulders.",
+      "Watch your feet, $n is juggling granite boulders."}},
+
+    /* 8 */
+    {{"The light flickers as you rap in magical languages.",
+      "The light flickers as $n raps in magical languages.",
+      "Everyone levitates as you pray.",
+      "You levitate as $n prays.",
+      "You produce a coin from everyone's ear.",
+      "$n produces a coin from your ear.",
+      "Oomph!  You squeeze water out of a granite boulder.",
+      "Oomph!  $n squeezes water out of a granite boulder."}},
+
+    /* 9 */
+    {{"Your head disappears.",
+      "$n's head disappears.",
+      "A cool breeze refreshes you.",
+      "A cool breeze refreshes $n.",
+      "You step behind your shadow.",
+      "$n steps behind $s shadow.",
+      "You pick your teeth with a spear.",
+      "$n picks $s teeth with a spear."}},
+
+    /* 10 */
+    {{"A fire elemental singes your hair.",
+      "A fire elemental singes $n's hair.",
+      "The sun pierces through the clouds to illuminate you.",
+      "The sun pierces through the clouds to illuminate $n.",
+      "Your eyes dance with greed.",
+      "$n's eyes dance with greed.",
+      "Everyone is swept off their foot by your hug.",
+      "You are swept off your feet by $n's hug."}},
+
+    /* 11 */
+    {{"The sky changes colour to match your eyes.",
+      "The sky changes colour to match $n's eyes.",
+      "The ocean parts before you.",
+      "The ocean parts before $n.",
+      "You deftly steal everyone's weapon.",
+      "$n deftly steals your weapon.",
+      "Your karate chop splits a tree.",
+      "$n's karate chop splits a tree."}},
+
+    /* 12 */
+    {{"The stones dance to your command.",
+      "The stones dance to $n's command.",
+      "A thunder cloud kneels to you.",
+      "A thunder cloud kneels to $n.",
+      "The Grey Mouser buys you a beer.",
+      "The Grey Mouser buys $n a beer.",
+      "A strap of your armor breaks over your mighty thews.",
+      "A strap of $n's armor breaks over $s mighty thews."}},
+
+    /* 13 */
+    {{"The heavens and grass change colour as you smile.",
+      "The heavens and grass change colour as $n smiles.",
+      "The Burning Man speaks to you.",
+      "The Burning Man speaks to $n.",
+      "Everyone's pocket explodes with your fireworks.",
+      "Your pocket explodes with $n's fireworks.",
+      "A boulder cracks at your frown.",
+      "A boulder cracks at $n's frown."}},
+
+    /* 14 */
+    {{"Everyone's clothes are transparent, and you are laughing.",
+      "Your clothes are transparent, and $n is laughing.",
+      "An eye in a pyramid winks at you.",
+      "An eye in a pyramid winks at $n.",
+      "Everyone discovers your dagger a centimeter from their eye.",
+      "You discover $n's dagger a centimeter from your eye.",
+      "Mercenaries arrive to do your bidding.",
+      "Mercenaries arrive to do $n's bidding."}},
+
+    /* 15 */
+    {{"A black hole swallows you.",
+      "A black hole swallows $n.",
+      "Valentine Michael Smith offers you a glass of water.",
+      "Valentine Michael Smith offers $n a glass of water.",
+      "Where did you go?",
+      "Where did $n go?",
+      "Four matched Percherons bring in your chariot.",
+      "Four matched Percherons bring in $n's chariot."}},
+
+    /* 16 */
+    {{"The world shimmers in time with your whistling.",
+      "The world shimmers in time with $n's whistling.",
+      "The great god Mota gives you a staff.",
+      "The great god Mota gives $n a staff.",
+      "Click.",
+      "Click.",
+      "Atlas asks you to relieve him.",
+      "Atlas asks $n to relieve him."}},
+
+    {{0}}
 };

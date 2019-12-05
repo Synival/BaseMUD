@@ -42,15 +42,16 @@
 #include "find.h"
 #include "recycle.h"
 #include "descs.h"
+#include "globals.h"
 
 #include "wiz_l4.h"
 
 DEFINE_DO_FUN (do_guild) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     char *cname;
     int clan_index;
-    const CLAN_TYPE *clan;
+    const CLAN_T *clan;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -89,7 +90,7 @@ DEFINE_DO_FUN (do_sockets) {
     char buf[2 * MAX_STRING_LENGTH];
     char buf2[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
     int count;
 
     count = 0;
@@ -122,10 +123,10 @@ DEFINE_DO_FUN (do_flag) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH],
         arg3[MAX_INPUT_LENGTH];
     char word[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     flag_t *flag, old = 0, new = 0, marked = 0, pos;
     char type;
-    const FLAG_TYPE *flag_table;
+    const FLAG_T *flag_table;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -260,7 +261,7 @@ DEFINE_DO_FUN (do_flag) {
 
 DEFINE_DO_FUN (do_freeze) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
@@ -311,8 +312,8 @@ DEFINE_DO_FUN (do_load) {
 
 DEFINE_DO_FUN (do_mload) {
     char arg[MAX_INPUT_LENGTH];
-    MOB_INDEX_DATA *pMobIndex;
-    CHAR_DATA *victim;
+    MOB_INDEX_T *pMobIndex;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0' || !is_number (arg),
@@ -330,8 +331,8 @@ DEFINE_DO_FUN (do_mload) {
 
 DEFINE_DO_FUN (do_oload) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
-    OBJ_INDEX_DATA *pObjIndex;
-    OBJ_DATA *obj;
+    OBJ_INDEX_T *pObjIndex;
+    OBJ_T *obj;
     int level;
 
     argument = one_argument (argument, arg1);
@@ -365,7 +366,7 @@ DEFINE_DO_FUN (do_oload) {
 
 DEFINE_DO_FUN (do_pecho) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     argument = one_argument (argument, arg);
 
@@ -384,15 +385,15 @@ DEFINE_DO_FUN (do_pecho) {
 
 DEFINE_DO_FUN (do_purge) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    OBJ_DATA *obj;
-    DESCRIPTOR_DATA *d;
+    CHAR_T *victim;
+    OBJ_T *obj;
+    DESCRIPTOR_T *d;
 
     one_argument (argument, arg);
     if (arg[0] == '\0') {
         /* 'purge' */
-        CHAR_DATA *vnext;
-        OBJ_DATA *obj_next;
+        CHAR_T *vnext;
+        OBJ_T *obj_next;
 
         for (victim = ch->in_room->people; victim != NULL; victim = vnext) {
             vnext = victim->next_in_room;
@@ -441,7 +442,7 @@ DEFINE_DO_FUN (do_purge) {
     char_extract (victim, TRUE);
 }
 
-void do_restore_single (CHAR_DATA *ch, CHAR_DATA *vch) {
+void do_restore_single (CHAR_T *ch, CHAR_T *vch) {
     affect_strip (vch, gsn_plague);
     affect_strip (vch, gsn_poison);
     affect_strip (vch, gsn_blindness);
@@ -458,8 +459,8 @@ void do_restore_single (CHAR_DATA *ch, CHAR_DATA *vch) {
 
 DEFINE_DO_FUN (do_restore) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    DESCRIPTOR_DATA *d;
+    CHAR_T *victim;
+    DESCRIPTOR_T *d;
 
     one_argument (argument, arg);
     if (arg[0] == '\0' || !str_cmp (arg, "room")) {
@@ -499,7 +500,7 @@ DEFINE_DO_FUN (do_restore) {
 }
 
 DEFINE_DO_FUN (do_echo) {
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
 
     BAIL_IF (argument[0] == '\0',
         "Global echo what?\n\r", ch);
@@ -558,7 +559,7 @@ DEFINE_DO_FUN (do_slookup) {
 
 DEFINE_DO_FUN (do_mfind) {
     char arg[MAX_INPUT_LENGTH];
-    const MOB_INDEX_DATA *mob;
+    const MOB_INDEX_T *mob;
     int matches = 0;
 
     one_argument (argument, arg);
@@ -579,7 +580,7 @@ DEFINE_DO_FUN (do_mfind) {
 
 DEFINE_DO_FUN (do_ofind) {
     char arg[MAX_INPUT_LENGTH];
-    const OBJ_INDEX_DATA *obj;
+    const OBJ_INDEX_T *obj;
     int matches = 0;
 
     one_argument (argument, arg);
@@ -599,8 +600,8 @@ DEFINE_DO_FUN (do_ofind) {
 }
 
 DEFINE_DO_FUN (do_zecho) {
-    DESCRIPTOR_DATA *d;
-    CHAR_DATA *vch;
+    DESCRIPTOR_T *d;
+    CHAR_T *vch;
 
     BAIL_IF (argument[0] == '\0',
         "Zone echo what?\n\r", ch);

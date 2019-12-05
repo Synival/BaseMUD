@@ -51,6 +51,8 @@
 #include "utils.h"
 #include "interp.h"
 #include "lookup.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "descs.h"
 
@@ -116,7 +118,7 @@ int init_socket (int port) {
 #if defined(unix)
 void init_descriptor (int control) {
     char buf[MAX_STRING_LENGTH];
-    DESCRIPTOR_DATA *dnew;
+    DESCRIPTOR_T *dnew;
     struct sockaddr_in sock;
     struct hostent *from;
     size_t desc;
@@ -144,14 +146,15 @@ void init_descriptor (int control) {
         dnew->connected = CON_GET_NAME;
     else
         dnew->connected = CON_ANSI;
-    dnew->ansi = mud_ansicolor;
-    dnew->showstr_head = NULL;
+
+    dnew->ansi          = mud_ansicolor;
+    dnew->showstr_head  = NULL;
     dnew->showstr_point = NULL;
-    dnew->outsize = 2000;
-    dnew->pEdit = NULL;            /* OLC */
-    dnew->pString = NULL;        /* OLC */
-    dnew->editor = 0;            /* OLC */
-    dnew->outbuf = alloc_mem (dnew->outsize);
+    dnew->outsize       = 2000;
+    dnew->pEdit         = NULL; /* OLC */
+    dnew->pString       = NULL; /* OLC */
+    dnew->editor        = 0;    /* OLC */
+    dnew->outbuf        = mem_alloc (dnew->outsize);
 
     size = sizeof (sock);
     if (getpeername (desc, (struct sockaddr *) &sock, &size) < 0) {
@@ -203,8 +206,8 @@ void init_descriptor (int control) {
 }
 #endif
 
-void close_socket (DESCRIPTOR_DATA * dclose) {
-    CHAR_DATA *ch;
+void close_socket (DESCRIPTOR_T *dclose) {
+    CHAR_T *ch;
 
     if (dclose->outtop > 0)
         process_output (dclose, FALSE);
@@ -212,7 +215,7 @@ void close_socket (DESCRIPTOR_DATA * dclose) {
         write_to_buffer (dclose->snoop_by, "Your victim has left the game.\n\r", 0);
 
     {
-        DESCRIPTOR_DATA *d;
+        DESCRIPTOR_T *d;
         for (d = descriptor_list; d != NULL; d = d->next)
             if (d->snoop_by == dclose)
                 d->snoop_by = NULL;
@@ -238,7 +241,7 @@ void close_socket (DESCRIPTOR_DATA * dclose) {
     if (d_next == dclose)
         d_next = d_next->next;
 
-    LIST_REMOVE (dclose, next, descriptor_list, DESCRIPTOR_DATA, NO_FAIL);
+    LIST_REMOVE (dclose, next, descriptor_list, DESCRIPTOR_T, NO_FAIL);
 
     close (dclose->descriptor);
     descriptor_free (dclose);
@@ -247,7 +250,7 @@ void close_socket (DESCRIPTOR_DATA * dclose) {
     #endif
 }
 
-bool read_from_descriptor (DESCRIPTOR_DATA * d) {
+bool read_from_descriptor (DESCRIPTOR_T *d) {
     int iStart;
 
     /* Hold horses if pending command already. */
@@ -307,7 +310,7 @@ bool read_from_descriptor (DESCRIPTOR_DATA * d) {
 }
 
 /* Transfer one line from input buffer to input line. */
-void read_from_buffer (DESCRIPTOR_DATA * d) {
+void read_from_buffer (DESCRIPTOR_T *d) {
     int i, j, k;
 
     /* Hold horses if pending command already. */
@@ -383,7 +386,7 @@ void read_from_buffer (DESCRIPTOR_DATA * d) {
 }
 
 /* Low level output function. */
-bool process_output (DESCRIPTOR_DATA * d, bool fPrompt) {
+bool process_output (DESCRIPTOR_T *d, bool fPrompt) {
     extern bool merc_down;
 
     /* Bust a prompt. */
@@ -398,9 +401,7 @@ bool process_output (DESCRIPTOR_DATA * d, bool fPrompt) {
         else if (fPrompt && d->pString && d->connected == CON_PLAYING)
             write_to_buffer (d, "> ", 2);
         else if (fPrompt && d->connected == CON_PLAYING) {
-            CHAR_DATA *ch;
-            CHAR_DATA *victim;
-
+            CHAR_T *ch, *victim;
             ch = d->character;
 
             /* battle prompt */
@@ -446,6 +447,13 @@ bool process_output (DESCRIPTOR_DATA * d, bool fPrompt) {
     }
 
     /* OS-dependent output. */
+    return desc_flush_output (d);
+}
+
+bool desc_flush_output (DESCRIPTOR_T *d) {
+    if (d == NULL)
+        return FALSE;
+
     if (!write_to_descriptor (d->descriptor, d->outbuf, d->outtop)) {
         d->outtop = 0;
         return FALSE;
@@ -457,7 +465,7 @@ bool process_output (DESCRIPTOR_DATA * d, bool fPrompt) {
 }
 
 /* Append onto an output buffer. */
-void write_to_buffer (DESCRIPTOR_DATA * d, const char *txt, int length) {
+void write_to_buffer (DESCRIPTOR_T *d, const char *txt, int length) {
     /* Find length in case caller didn't. */
     if (length <= 0)
         length = strlen (txt);
@@ -478,7 +486,7 @@ void write_to_buffer (DESCRIPTOR_DATA * d, const char *txt, int length) {
             close_socket (d);
             return;
         }
-        outbuf = alloc_mem (2 * d->outsize);
+        outbuf = mem_alloc (2 * d->outsize);
         strncpy (outbuf, d->outbuf, d->outtop);
         mem_free (d->outbuf, d->outsize);
         d->outbuf = outbuf;
@@ -519,8 +527,8 @@ bool write_to_descriptor (int desc, char *txt, int length) {
 }
 
 /* Look for link-dead player to reconnect. */
-bool check_reconnect (DESCRIPTOR_DATA * d, char *name, bool fConn) {
-    CHAR_DATA *ch;
+bool check_reconnect (DESCRIPTOR_T *d, char *name, bool fConn) {
+    CHAR_T *ch;
 
     for (ch = char_list; ch != NULL; ch = ch->next) {
         if (!IS_NPC (ch)
@@ -528,8 +536,7 @@ bool check_reconnect (DESCRIPTOR_DATA * d, char *name, bool fConn) {
             && !str_cmp (d->character->name, ch->name))
         {
             if (fConn == FALSE) {
-                str_free (d->character->pcdata->pwd);
-                d->character->pcdata->pwd = str_dup (ch->pcdata->pwd);
+                str_replace_dup (&(d->character->pcdata->pwd), ch->pcdata->pwd);
             }
             else {
                 char_free (d->character);
@@ -557,8 +564,8 @@ bool check_reconnect (DESCRIPTOR_DATA * d, char *name, bool fConn) {
 }
 
 /* Check if already playing. */
-bool check_playing (DESCRIPTOR_DATA * d, char *name) {
-    DESCRIPTOR_DATA *dold;
+bool check_playing (DESCRIPTOR_T *d, char *name) {
+    DESCRIPTOR_T *dold;
 
     for (dold = descriptor_list; dold; dold = dold->next) {
         if (dold != d
@@ -579,7 +586,7 @@ bool check_playing (DESCRIPTOR_DATA * d, char *name) {
 }
 
 /* Page to one descriptor using Lope's color. */
-void send_to_desc (const char *txt, DESCRIPTOR_DATA * d) {
+void send_to_desc (const char *txt, DESCRIPTOR_T *d) {
     char buf[MAX_STRING_LENGTH * 4];
     int len;
 
@@ -590,7 +597,7 @@ void send_to_desc (const char *txt, DESCRIPTOR_DATA * d) {
     write_to_buffer (d, buf, len);
 }
 
-void clear_page (DESCRIPTOR_DATA *d) {
+void clear_page (DESCRIPTOR_T *d) {
     if (d->showstr_head) {
         mem_free (d->showstr_head, strlen (d->showstr_head));
         d->showstr_head = NULL;
@@ -598,20 +605,20 @@ void clear_page (DESCRIPTOR_DATA *d) {
     d->showstr_point = NULL;
 }
 
-void append_to_page (DESCRIPTOR_DATA *d, const char *txt) {
+void append_to_page (DESCRIPTOR_T *d, const char *txt) {
     int len;
     if (d == NULL || txt == NULL)
         return;
 
     len = strlen (txt);
     if (d->showstr_head == NULL) {
-        d->showstr_head  = alloc_mem (len + 1);
+        d->showstr_head  = mem_alloc (len + 1);
         d->showstr_point = d->showstr_head;
         strcpy (d->showstr_head, txt);
     }
     else {
         int offset = d->showstr_point - d->showstr_head;
-        char *new_buf = alloc_mem (strlen (d->showstr_head) + len + 1);
+        char *new_buf = mem_alloc (strlen (d->showstr_head) + len + 1);
         strcpy (new_buf, d->showstr_head);
         strcat (new_buf, txt);
 
@@ -626,7 +633,7 @@ void append_to_page (DESCRIPTOR_DATA *d, const char *txt) {
 }
 
 /* string pager */
-int show_page (DESCRIPTOR_DATA *d) {
+int show_page (DESCRIPTOR_T *d) {
     char buffer[4 * MAX_STRING_LENGTH];
     register char *scan;
     int crlf = 0;
@@ -652,7 +659,7 @@ int show_page (DESCRIPTOR_DATA *d) {
 }
 
 /* source: EOD, by John Booth <???> */
-void printf_to_desc (DESCRIPTOR_DATA * d, char *fmt, ...) {
+void printf_to_desc (DESCRIPTOR_T *d, char *fmt, ...) {
     char buf[MSL];
     va_list args;
     va_start (args, fmt);
@@ -663,8 +670,8 @@ void printf_to_desc (DESCRIPTOR_DATA * d, char *fmt, ...) {
 }
 
 /* does aliasing and other fun stuff */
-void desc_substitute_alias (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA *ch;
+void desc_substitute_alias (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch;
     char buf[MAX_STRING_LENGTH], prefix[MAX_INPUT_LENGTH],
         name[MAX_INPUT_LENGTH];
     char *point;

@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "trollden",
+  "filename": "trollden.are",
+  "title": "Troll Den",
+  "credits": "{10 15} Merc    Troll Den",
+  "min_vnum": 2800,
+  "max_vnum": 2899,
+  "builders": "None",
+  "security": 9
+}}]

@@ -30,102 +30,76 @@
 
 #include "merc.h"
 
-/* Globals. */
-extern HELP_DATA *help_first, *help_last;
-extern SHOP_DATA *shop_first, *shop_last;
-extern AREA_DATA *area_first, *area_last;
-extern BAN_DATA  *ban_first,  *ban_last;
-extern HELP_AREA *had_first,  *had_last;
-
-extern MPROG_CODE *mprog_list;
-
-extern int newmobs;
-extern int newobjs;
-
-extern char bug_buf[2 * MAX_INPUT_LENGTH];
-extern CHAR_DATA *char_list;
-extern char *help_greeting;
-extern char log_buf[2 * MAX_INPUT_LENGTH];
-extern KILL_DATA kill_table[MAX_LEVEL];
-extern OBJ_DATA *object_list;
-extern TIME_INFO_DATA time_info;
-extern WEATHER_DATA weather_info;
-
-/* Locals. */
-extern MOB_INDEX_DATA *mob_index_hash[MAX_KEY_HASH];
-extern OBJ_INDEX_DATA *obj_index_hash[MAX_KEY_HASH];
-extern ROOM_INDEX_DATA *room_index_hash[MAX_KEY_HASH];
-extern char *string_hash[MAX_KEY_HASH];
-extern AREA_DATA *current_area;
-
-/* Semi-locals.  */
-extern bool fBootDb;
-extern FILE *fpArea;
-extern char strArea[MAX_INPUT_LENGTH];
-
 /* macro for flag swapping */
 #define GET_UNSET(flag1,flag2)    (~(flag1)&((flag1)|(flag2)))
 
-/* Magic number for memory allocation */
-#define MAGIC_NUM 52571214
-
 /* Helper functions. */
 flag_t flag_convert (char letter);
-void assign_area_vnum (int vnum);
-void fix_bogus_obj (OBJ_INDEX_DATA * obj);
-void room_take_reset (ROOM_INDEX_DATA * pR, RESET_DATA * pReset);
-bool check_pet_affected (int vnum, AFFECT_DATA *paf);
-char *memory_dump (char *eol);
+void assign_area_vnum (int vnum, AREA_T *area);
+bool check_pet_affected (int vnum, AFFECT_T *paf);
+void db_dump_world (const char *filename);
 
 /* World init functions. */
 void boot_db (void);
-void init_string_space (void);
 void init_time_weather (void);
 void init_gsns (void);
+void db_link_areas (void);
+void db_import_json (void);
 void init_areas (void);
 
 /* Reading functions. */
-char fread_letter (FILE * fp);
-int fread_number (FILE * fp);
-flag_t fread_flag (FILE * fp);
-char *fread_string (FILE * fp);
-char *fread_string_eol (FILE * fp);
-void fread_to_eol (FILE * fp);
-char *fread_word (FILE * fp);
-void fread_dice (FILE *fp, sh_int *out);
+char fread_letter (FILE *fp);
+int fread_number (FILE *fp);
+flag_t fread_flag (FILE *fp);
+char *fread_string (FILE *fp);
+char *fread_string_eol (FILE *fp);
+void fread_to_eol (FILE *fp);
+char *fread_word (FILE *fp);
+void fread_dice (FILE *fp, DICE_T *out);
 bool fread_social_str (FILE *fp, char **str);
 
 /* Loading functions. */
-void load_area (FILE * fp);
-void load_area_olc (FILE * fp);
-void load_resets (FILE * fp);
-void load_rooms (FILE * fp);
-void load_shops (FILE * fp);
-void load_specials (FILE * fp);
-void load_socials (FILE * fp);
-void load_mobiles (FILE * fp);
-void load_objects (FILE * fp);
-void load_helps (FILE * fp, char *fname);
-void load_mobprogs (FILE * fp);
+void load_area (FILE *fp);
+void load_area_olc (FILE *fp);
+void load_resets (FILE *fp);
+void load_rooms (FILE *fp);
+void load_shops (FILE *fp);
+void load_specials (FILE *fp);
+void load_socials (FILE *fp);
+void load_mobiles (FILE *fp);
+void load_objects (FILE *fp);
+void load_helps (FILE *fp, char *fname);
+void load_mobprogs (FILE *fp);
 
 /* Post-loading functions. */
-void fix_exit_doors (ROOM_INDEX_DATA *room_from, int dir_from,
-                     ROOM_INDEX_DATA *room_to,   int dir_to);
+void db_finalize_mob (MOB_INDEX_T *mob);
+void db_finalize_obj (OBJ_INDEX_T *obj);
+void db_register_new_room (ROOM_INDEX_T *room);
+void db_register_new_mob (MOB_INDEX_T *mob);
+void db_register_new_obj (OBJ_INDEX_T *obj);
+void fix_exit_doors (ROOM_INDEX_T *room_from, int dir_from,
+                     ROOM_INDEX_T *room_to,   int dir_to);
+void fix_resets (void);
 void fix_exits (void);
 void fix_mobprogs (void);
-void db_export_json (void);
+void db_export_json (bool write_indiv, const char *everything);
 
 /* Reset / destruction functions. */
-void reset_room (ROOM_INDEX_DATA * pRoom);
-void reset_area (AREA_DATA * pArea);
-void clear_char (CHAR_DATA * ch);
+void reset_room (ROOM_INDEX_T *pRoom);
+void reset_area (AREA_T *pArea);
+void clear_char (CHAR_T *ch);
 
 /* Getter functions. */
-char *get_extra_descr (const char *name, EXTRA_DESCR_DATA * ed);
-MOB_INDEX_DATA *get_mob_index (int vnum);
-OBJ_INDEX_DATA *get_obj_index (int vnum);
-ROOM_INDEX_DATA *get_room_index (int vnum);
-ROOM_INDEX_DATA *get_random_room (CHAR_DATA * ch);
-MPROG_CODE *get_mprog_index (int vnum);
+char *get_extra_descr (const char *name, EXTRA_DESCR_T *ed);
+MOB_INDEX_T *get_mob_index (int vnum);
+OBJ_INDEX_T *get_obj_index (int vnum);
+ROOM_INDEX_T *get_room_index (int vnum);
+ROOM_INDEX_T *get_random_room (CHAR_T *ch);
+MPROG_CODE_T *get_mprog_index (int vnum);
+int help_area_count_pages (HELP_AREA_T *had);
+
+/* Temporary objects used during loading. */
+ANUM_T *anum_new (void);
+void anum_free (ANUM_T *anum);
 
 #endif

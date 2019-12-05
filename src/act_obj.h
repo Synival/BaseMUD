@@ -35,19 +35,18 @@
 #define OBJ_ALL     2
 
 /* Sub-routines and filters. */
-void do_drop_single_item (CHAR_DATA *ch, OBJ_DATA *obj);
-void do_put_single_item (CHAR_DATA *ch, OBJ_DATA *obj, OBJ_DATA *container);
-bool do_filter_can_put_item (CHAR_DATA *ch, OBJ_DATA *obj, OBJ_DATA *container,
+void do_drop_single_item (CHAR_T *ch, OBJ_T *obj);
+void do_put_single_item (CHAR_T *ch, OBJ_T *obj, OBJ_T *container);
+bool do_filter_can_put_item (CHAR_T *ch, OBJ_T *obj, OBJ_T *container,
     bool msg);
-bool do_filter_put_or_get_valid_container (CHAR_DATA *ch, char *arg,
-    OBJ_DATA **out_container);
-bool do_filter_can_give_item (CHAR_DATA *ch, OBJ_DATA *obj, CHAR_DATA *victim,
-    bool msg);
-void do_get_container (CHAR_DATA * ch, char *arg1, char *arg2);
-void do_get_room (CHAR_DATA * ch, char *arg);
+bool do_filter_put_or_get_valid_container (CHAR_T *ch, char *arg,
+    OBJ_T **out_container);
+bool do_filter_can_give_item (CHAR_T *ch, OBJ_T *obj, CHAR_T *victim, bool msg);
+void do_get_container (CHAR_T *ch, char *arg1, char *arg2);
+void do_get_room (CHAR_T *ch, char *arg);
 char *do_obj_parse_arg (const char *arg, int *out_type);
-void do_drop_money (CHAR_DATA *ch, char *arg1, char *argument);
-void do_give_money (CHAR_DATA *ch, char *arg1, char *arg2, char *argument);
+void do_drop_money (CHAR_T *ch, char *arg1, char *argument);
+void do_give_money (CHAR_T *ch, char *arg1, char *arg2, char *argument);
 
 /* Commands. */
 DECLARE_DO_FUN (do_get);

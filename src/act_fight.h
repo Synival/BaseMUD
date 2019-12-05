@@ -31,9 +31,9 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-bool fight_filter_skill_target (CHAR_DATA *ch, const char *argument,
+bool fight_filter_skill_target (CHAR_T *ch, const char *argument,
     int sn, flag_t npc_flag, const char *cant_msg, const char *self_msg,
-    int *out_chance, CHAR_DATA **out_victim);
+    int *out_chance, CHAR_T **out_victim);
 
 /* Commands. */
 DECLARE_DO_FUN (do_berserk);

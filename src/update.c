@@ -42,11 +42,12 @@
 #include "chars.h"
 #include "objs.h"
 #include "lookup.h"
+#include "globals.h"
 
 #include "update.h"
 
 /* used for saving */
-int save_number = 0;
+static int save_number = 0;
 
 int recovery_in_position (int gain, int position) {
     switch (position) {
@@ -60,7 +61,7 @@ int recovery_in_position (int gain, int position) {
 }
 
 /* Regeneration stuff. */
-int hit_gain (CHAR_DATA * ch, bool apply_learning) {
+int hit_gain (CHAR_T *ch, bool apply_learning) {
     int gain;
     int number;
 
@@ -105,7 +106,7 @@ int hit_gain (CHAR_DATA * ch, bool apply_learning) {
     return gain;
 }
 
-int mana_gain (CHAR_DATA * ch, bool apply_learning) {
+int mana_gain (CHAR_T *ch, bool apply_learning) {
     int gain;
     int number;
 
@@ -165,7 +166,7 @@ int mana_gain (CHAR_DATA * ch, bool apply_learning) {
     return gain;
 }
 
-int move_gain (CHAR_DATA * ch, bool apply_learning) {
+int move_gain (CHAR_T *ch, bool apply_learning) {
     int gain;
 
     if (ch->in_room == NULL)
@@ -197,7 +198,7 @@ int move_gain (CHAR_DATA * ch, bool apply_learning) {
     return gain;
 }
 
-void gain_condition (CHAR_DATA * ch, int iCond, int value) {
+void gain_condition (CHAR_T *ch, int iCond, int value) {
     int condition;
 
     if (value == 0 || IS_NPC (ch) || ch->level >= LEVEL_IMMORTAL)
@@ -226,7 +227,7 @@ void gain_condition (CHAR_DATA * ch, int iCond, int value) {
 
 /* Repopulate areas periodically. */
 void area_update (void) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
 
     for (pArea = area_first; pArea != NULL; pArea = pArea->next) {
         if (++pArea->age < 3)
@@ -237,7 +238,7 @@ void area_update (void) {
         if ((!pArea->empty && (pArea->nplayer == 0 || pArea->age >= 15))
             || pArea->age >= 31)
         {
-            ROOM_INDEX_DATA *pRoomIndex;
+            ROOM_INDEX_T *pRoomIndex;
 
             reset_area (pArea);
             wiznetf (NULL, NULL, WIZ_RESETS, 0, 0,
@@ -257,9 +258,9 @@ void area_update (void) {
  * This function takes 25% to 35% of ALL Merc cpu time.
  * -- Furey */
 void mobile_update (void) {
-    CHAR_DATA *ch;
-    CHAR_DATA *ch_next;
-    EXIT_DATA *pexit;
+    CHAR_T *ch;
+    CHAR_T *ch_next;
+    EXIT_T *pexit;
     int door;
 
     /* Examine all mobs. */
@@ -307,8 +308,8 @@ void mobile_update (void) {
         if (IS_SET (ch->mob, MOB_SCAVENGER)
             && ch->in_room->contents != NULL && number_bits (6) == 0)
         {
-            OBJ_DATA *obj;
-            OBJ_DATA *obj_best;
+            OBJ_T *obj;
+            OBJ_T *obj_best;
             int max;
 
             max = 1;
@@ -350,10 +351,10 @@ void mobile_update (void) {
 
 /* Update the weather. */
 void weather_update (void) {
-    const SUN_TYPE *sun;
-    const SKY_TYPE *sky;
+    const SUN_T *sun;
+    const SKY_T *sky;
     char buf[MAX_STRING_LENGTH];
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
     int diff;
 
     int mmhg, mmhg_min, mmhg_max;
@@ -482,7 +483,7 @@ void weather_update (void) {
 }
 
 void health_update(void) {
-    CHAR_DATA *ch, *ch_next;
+    CHAR_T *ch, *ch_next;
     for (ch = char_list; ch != NULL; ch = ch_next) {
         ch_next = ch->next;
         if (ch->position >= POS_STUNNED)
@@ -490,7 +491,7 @@ void health_update(void) {
     }
 }
 
-void health_update_ch(CHAR_DATA *ch) {
+void health_update_ch(CHAR_T *ch) {
     health_update_ch_stat(ch, &(ch->hit), &(ch->max_hit),
         &(ch->gain_hit_remainder), hit_gain);
     health_update_ch_stat(ch, &(ch->mana), &(ch->max_mana),
@@ -499,8 +500,8 @@ void health_update_ch(CHAR_DATA *ch) {
         &(ch->gain_move_remainder), move_gain);
 }
 
-void health_update_ch_stat(CHAR_DATA *ch, sh_int *cur, sh_int *max,
-    sh_int *rem, int (*func) (CHAR_DATA *, bool))
+void health_update_ch_stat(CHAR_T *ch, sh_int *cur, sh_int *max,
+    sh_int *rem, int (*func) (CHAR_T *, bool))
 {
     if (*cur == *max)
         return;
@@ -529,8 +530,8 @@ void health_update_ch_stat(CHAR_DATA *ch, sh_int *cur, sh_int *max,
     }
 }
 
-void damage_if_wounded (CHAR_DATA *ch) {
-    CHAR_DATA *rch;
+void damage_if_wounded (CHAR_T *ch) {
+    CHAR_T *rch;
     int div = 2;
 
     if (ch->position > POS_INCAP)
@@ -548,15 +549,14 @@ void damage_if_wounded (CHAR_DATA *ch) {
             return;
     }
 
-    damage (ch, ch, (ch->level / div) + 1, TYPE_UNDEFINED,
-        DAM_NONE, FALSE);
+    damage_quiet (ch, ch, (ch->level / div) + 1, TYPE_UNDEFINED, DAM_NONE);
 }
 
 /* Update all chars, including mobs. */
 void char_update (void) {
-    CHAR_DATA *ch;
-    CHAR_DATA *ch_next;
-    CHAR_DATA *ch_quit;
+    CHAR_T *ch;
+    CHAR_T *ch_next;
+    CHAR_T *ch_quit;
 
     ch_quit = NULL;
 
@@ -567,8 +567,8 @@ void char_update (void) {
         save_number = 0;
 
     for (ch = char_list; ch != NULL; ch = ch_next) {
-        AFFECT_DATA *paf;
-        AFFECT_DATA *paf_next;
+        AFFECT_T *paf;
+        AFFECT_T *paf_next;
 
         ch_next = ch->next;
 
@@ -592,7 +592,7 @@ void char_update (void) {
             update_pos (ch);
 
         if (!IS_NPC (ch) && ch->level < LEVEL_IMMORTAL) {
-            OBJ_DATA *obj;
+            OBJ_T *obj;
 
             if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LIGHT)) != NULL
                 && obj->item_type == ITEM_LIGHT && obj->v.light.duration > 0)
@@ -657,8 +657,8 @@ void char_update (void) {
          * MUST NOT refer to ch after damage taken,
          * as it may be lethal damage (on NPC). */
         if (is_affected (ch, gsn_plague) && ch != NULL) {
-            AFFECT_DATA *af, plague;
-            CHAR_DATA *vch;
+            AFFECT_T *af, plague;
+            CHAR_T *vch;
             int dam;
 
             if (ch->in_room == NULL)
@@ -699,20 +699,20 @@ void char_update (void) {
             dam = UMIN (ch->level, af->level / 5 + 1);
             ch->mana -= dam;
             ch->move -= dam;
-            damage (ch, ch, dam, gsn_plague, DAM_DISEASE, FALSE);
+            damage_quiet (ch, ch, dam, gsn_plague, DAM_DISEASE);
         }
         else if (IS_AFFECTED (ch, AFF_POISON) && ch != NULL
                  && !IS_AFFECTED (ch, AFF_SLOW))
         {
-            AFFECT_DATA *poison;
+            AFFECT_T *poison;
 
             poison = affect_find (ch->affected, gsn_poison);
 
             if (poison != NULL) {
                 send_to_char ("You shiver and suffer.\n\r", ch);
                 act ("$n shivers and suffers.", ch, NULL, NULL, TO_NOTCHAR);
-                damage (ch, ch, poison->level / 10 + 1, gsn_poison,
-                        DAM_POISON, FALSE);
+                damage_quiet (ch, ch, poison->level / 10 + 1, gsn_poison,
+                        DAM_POISON);
             }
         }
         else
@@ -738,12 +738,12 @@ void char_update (void) {
 /* Update all objs.
  * This function is performance sensitive. */
 void obj_update (void) {
-    OBJ_DATA *obj;
-    OBJ_DATA *obj_next;
-    AFFECT_DATA *paf, *paf_next;
+    OBJ_T *obj;
+    OBJ_T *obj_next;
+    AFFECT_T *paf, *paf_next;
 
     for (obj = object_list; obj != NULL; obj = obj_next) {
-        CHAR_DATA *rch;
+        CHAR_T *rch;
         char *message;
 
         obj_next = obj->next;
@@ -839,7 +839,7 @@ void obj_update (void) {
         if ((obj->item_type == ITEM_CORPSE_PC || obj->wear_loc == WEAR_FLOAT)
             && obj->contains)
         {
-            OBJ_DATA *t_obj, *next_obj;
+            OBJ_T *t_obj, *next_obj;
             for (t_obj = obj->contains; t_obj != NULL; t_obj = next_obj) {
                 next_obj = t_obj->next_content;
                 obj_from_obj (t_obj);
@@ -883,13 +883,13 @@ void obj_update (void) {
  *
  * -- Furey */
 void aggr_update (void) {
-    CHAR_DATA *wch;
-    CHAR_DATA *wch_next;
-    CHAR_DATA *ch;
-    CHAR_DATA *ch_next;
-    CHAR_DATA *vch;
-    CHAR_DATA *vch_next;
-    CHAR_DATA *victim;
+    CHAR_T *wch;
+    CHAR_T *wch_next;
+    CHAR_T *ch;
+    CHAR_T *ch_next;
+    CHAR_T *vch;
+    CHAR_T *vch_next;
+    CHAR_T *victim;
 
     for (wch = char_list; wch != NULL; wch = wch_next) {
         wch_next = wch->next;
@@ -944,9 +944,9 @@ void aggr_update (void) {
 /* Control the fights going on.
  * Called periodically by update_handler. */
 void violence_update (void) {
-    CHAR_DATA *ch;
-    CHAR_DATA *ch_next;
-    CHAR_DATA *victim;
+    CHAR_T *ch;
+    CHAR_T *ch_next;
+    CHAR_T *victim;
 
     for (ch = char_list; ch != NULL; ch = ch_next) {
         ch_next = ch->next;
@@ -974,7 +974,7 @@ void violence_update (void) {
 }
 
 void pulse_update(void) {
-    CHAR_DATA *ch, *ch_next;
+    CHAR_T *ch, *ch_next;
     int dazed;
 
     for (ch = char_list; ch != NULL; ch = ch_next) {

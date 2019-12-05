@@ -1,0 +1,1793 @@
+[
+  {"room": {
+    "area": "school",
+    "anum": 0,
+    "name": "Entrance to Mud School",
+    "description": "This is the entrance to the Merc Mud School.  Go north to go through mud\nschool.  If you have been here before and want to go directly to the arena,\ngo south.\n\nA sign warns 'You may not pass these doors once you have passed level 5.'\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 57,
+        "description": "You see the doorway into the Mud School Building.\n"
+      },
+      {
+        "dir": "south",
+        "to": 44,
+        "keyword": "door",
+        "description": "You see the one way door into the Arena of Mud School.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "down",
+        "to": null,
+        "description": "You see the Temple of Midgaard.\n",
+        "portal": "school-down-1"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 1,
+    "name": "A Room in Mud School",
+    "description": "You are in a square white room.  The walls are all blank, with no windows.\nLight fluoresces off the ceiling in soft white tones.  Of course, there is a\nsign on the wall.  The exits are west and south.  A small plaque is on the\nwall.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 57,
+        "description": "You see a path into another room.\n"
+      },
+      {
+        "dir": "west",
+        "to": 2,
+        "description": "You see a path into another room.\n"
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "sign",
+        "description": "Equipment check time!  Type 'EQUIPMENT' to see your current equipment.  Right\nnow, you have just a vest, a shield, and a weapon.  As you go through Mud\nSchool you will acquire a complete set of equipment.\n\nTo pick up items on the ground as you see them, type 'GET item'.\nTo wear a piece of armor, type 'WEAR item'.\nTo hold a light source, type 'HOLD item'.\nTo wield a weapon, type 'WIELD weapon'.\nTo wear, hold, and wield everything you have, type 'WEAR ALL'.\nTo stop using a piece of equipment, type 'REMOVE item'.\nFinally, to see the items in your inventory, type 'INVENTORY'.\n\nWhen you are ready to continue, go west.\n"
+      },
+      {
+        "keyword": "plaque",
+        "description": "This zone (Mud School) is created by Hatchet for any Merc Mud.\nCopyright 1992, 1993.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 0,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 2,
+    "name": "The Center Room",
+    "description": "You are in a square white room.  The walls are all blank, with no windows.\nLight fluoresces off the ceiling in soft white tones.  Of course, there is a\nsign on the wall.  Exits lead in ALL directions.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 3,
+        "description": "You see the room north that will lead you to the next section.\n"
+      },
+      {
+        "dir": "east",
+        "to": 1,
+        "description": "You see a room.\n"
+      },
+      {
+        "dir": "south",
+        "to": 5,
+        "description": "You see a room.\n"
+      },
+      {
+        "dir": "west",
+        "to": 4,
+        "description": "You see a room.\n"
+      },
+      {
+        "dir": "up",
+        "to": 8,
+        "description": "You see a room.\n"
+      },
+      {
+        "dir": "down",
+        "to": 7,
+        "description": "You see a room.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "This is the direction practicing room.  The directions you can go in any\nroom are: north, south, east, west, up, or down.  Of course, not all rooms\nhave all exits available.\n\nTo see the obvious exits in a room, type 'EXITS'.\n\nSometimes doors are closed, or locked, or secret.  Then you have to notice\nclues in the room description, or try going into that direction and seeing\nif you bump into a door.\n\nTry going into each direction from here.  When you are done, go NORTH.\n"
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 3,
+    "name": "A Room in Mud School",
+    "description": "You are in a square white room.  The walls are all blank, with no windows.\nLight fluoresces off the ceiling in soft white tones.  Of course, there is a\nsign on the wall.  Exits lead north and south.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 9,
+        "description": "You see the next station ahead.\n"
+      },
+      {
+        "dir": "south",
+        "to": 2,
+        "description": "You see the central room.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Since you are here, let us have another lesson.  You can see the statistics on\nyourself by typing 'SCORE'.  Do that right now.  At higher levels, 'SCORE'\ngives you more information.\n"
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 4,
+    "name": "A Room in Mud School",
+    "description": "You are in a square white room.  The walls are all blank, with no windows.\nLight fluoresces off the ceiling in soft white tones.  Of course, there is a\nsign on the wall.  The only exit is east.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [{
+      "dir": "east",
+      "to": 2,
+      "description": "You see the central room.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Just go east to the central room.\n"
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 5,
+    "name": "A Room in Mud School",
+    "description": "You are in a square white room.  The walls are all blank, with no windows.\nLight fluoresces off the ceiling in soft white tones.  Of course, there is a\nsign on the wall.  The only exit is north.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [{
+      "dir": "north",
+      "to": 2,
+      "description": "You see the central room.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Just go north to the central room.\n"
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 7,
+    "name": "A Room in Mud School",
+    "description": "You are in a square white room.  The walls are all blank, with no windows.\nLight fluoresces off the ceiling in soft white tones.  Of course, there is a\nsign on the wall.  The only exit is up.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [{
+      "dir": "up",
+      "to": 2,
+      "description": "You see the central room.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Just go up to the central room.\n"
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 8,
+    "name": "A Room in Mud School",
+    "description": "You are in a square white room.  The walls are all blank, with no windows.\nLight fluoresces off the ceiling in soft white tones.  Of course, there is a\nsign on the wall.  The only exit is down.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [{
+      "dir": "down",
+      "to": 2,
+      "description": "You see the central room.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Just go down to the central room.\n"
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 9,
+    "name": "A Room in Mud School",
+    "description": "You are in a square white room.  The walls are all blank, with no windows.\nLight fluoresces off the ceiling in soft white tones.  Of course, there is a\nsign on the wall.  Exits reach west and down.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 11,
+        "description": "You see the next station of Mud School.\n"
+      },
+      {
+        "dir": "down",
+        "to": 10,
+        "description": "You see a cage.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Welcome to combat training.\n\nThe first lesson is knowing whom to fight.  Use the command 'CONSIDER' to\nconsider killing a monster.  Avoid fighting monsters that will kill you\neasily.\n\nThe second lesson is running away.  There is a monster in the room down.\nHe is too strong for you to kill, but he won't kill you.  So go 'DOWN' from\nhere, then 'CONSIDER' him, then 'KILL' him.  After a while, type 'FLEE' to\nescape from him.\n\nYou can also set your character to flee automatically with the 'WIMPY' command.\nType 'HELP WIMPY' to find out more about 'WIMPY'.\n\nAfter you flee, you will be back in this room.  When you are ready to go on\nto the next station, go 'WEST'.\n"
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 10,
+    "name": "The Blob Cage",
+    "description": "You are in a smelly cage.  Strangely, the walls are still clean!\nYou see a sign here.  The only exit is up.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors newbies_only",
+    "doors": [{
+      "dir": "up",
+      "to": 9,
+      "description": "You see a safe room up.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Remember, don't fight the blob to the finish!  Just type 'KILL BLOB', then\nwhen you are fighting, type 'FLEE', until you flee and are out of here.\n"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 11,
+    "name": "A Room in Mud School",
+    "description": "You are in a square white room.  The walls are all blank, with no windows.\nLight fluoresces off the ceiling in soft white tones.  Of course, there is a\nsign on the wall.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 9,
+        "description": "You see the next station of Mud School.\n"
+      },
+      {
+        "dir": "down",
+        "to": 12,
+        "description": "You see the combat hall.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Welcome to the next station.  Here, you will actually fight real monsters,\nwithout fleeing!  Kill every mob, since they hold some equipment you need.\nTo start, go down.\n"
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 12,
+    "name": "The Cage Room",
+    "description": "You are in the cage room.  All around are 4 cages.  Light fluoresces off the\nceiling in soft white tones.  Of course, there is a big sign on the wall.\nExits lead into the cardinal directions plus down.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 13,
+        "description": "You see the aggressive monster inside!\n"
+      },
+      {
+        "dir": "east",
+        "to": 16,
+        "description": "You see the unmodified monster inside!\n"
+      },
+      {
+        "dir": "south",
+        "to": 15,
+        "description": "You see the wimpy monster inside!\n"
+      },
+      {
+        "dir": "west",
+        "to": 14,
+        "description": "You see the aggressive wimpy monster inside!\n"
+      },
+      {
+        "dir": "down",
+        "to": 17,
+        "description": "You see the next station below.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Welcome to the cage room.  The adepts of mud school have captured some\nmonsters for you to kill.  In the four cages are four monsters of various\ntypes.  Kill them all!\n\nAfter you kill each monster, get all of the equipment from their corpses\nwith the command 'GET ALL CORPSE'.  You can then use the command 'WEAR ALL'\nto wear your newly won equipment.\n\nWhen you are done with the corpse, 'SACRIFICE CORPSE' to give it to your God.\nGod will reward you for this.\n\nBetween combat, you may need to rest or sleep to regenerate hit points.\nYou can 'REST' to regenerate hit points, or you can 'SLEEP'.  'SLEEP' will\nrefresh you faster than 'REST', but you will be less aware of your\nsurroundings.\n"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 7,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 13,
+    "name": "A Cage",
+    "description": "You are in a cage.  Blood and gore are everywhere.  The keepers must be lax\nin the upkeep here!  There is a sign on the wall.  The only exit is south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors newbies_only",
+    "doors": [{
+      "dir": "south",
+      "to": 12,
+      "description": "You see the Cage Room.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "There is an aggressive monster in this room.  Kill him and get out of here\nfast!  Remember to loot and sacrifice the corpse.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 7,
+          "wear_loc": "legs",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 12,
+          "wear_loc": "waist",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 14,
+    "name": "A Cage",
+    "description": "You are in a cage.  Blood and gore are everywhere.  The keepers must be lax\nin the upkeep here!  There is a sign on the wall.  The only exit is east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors newbies_only",
+    "doors": [{
+      "dir": "east",
+      "to": 12,
+      "description": "You see the Cage Room.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "There is a wimpy, aggressive monster in this room.  Kill him and get out of\nhere fast!  Remember to loot and sacrifice the corpse.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 8,
+          "wear_loc": "feet",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 13,
+          "wear_loc": "lwrist",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 15,
+    "name": "A Cage",
+    "description": "You are in a cage.  Blood and gore are everywhere.  The keepers must be lax\nin the upkeep here!  There is a sign on the wall.  The only exit is north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors newbies_only",
+    "doors": [{
+      "dir": "north",
+      "to": 12,
+      "description": "You see the Cage Room.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "There is a wimpy monster in this room.  Kill him and get out of here fast!\nRemember to loot and sacrifice the corpse.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 6,
+          "wear_loc": "head",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 11,
+          "wear_loc": "about",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 16,
+    "name": "A Cage",
+    "description": "You are in a cage.  Blood and gore are everywhere.  The keepers must be lax\nin the upkeep here!  There is a sign on the wall.  The only exit is west.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors newbies_only",
+    "doors": [{
+      "dir": "west",
+      "to": 12,
+      "description": "You see the Cage Room.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "There is a monster in this room.  Kill him and get out of here fast!\nRemember to loot and sacrifice the corpse.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 5,
+          "wear_loc": "neck1",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 5,
+          "wear_loc": "neck2",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 17,
+    "name": "A Room in Mud School",
+    "description": "You are in a square white room.  The walls are all blank, with no windows.\nLight fluoresces off the ceiling in soft white tones.  Of course, there is a\nsign on the wall.  Find your own exit here.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 19,
+        "keyword": "door",
+        "description": "You see the next station of Mud School.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "south",
+        "to": 18,
+        "description": "You see the Shop.\n"
+      },
+      {
+        "dir": "up",
+        "to": 12,
+        "description": "You see the Cage room.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "By now, you must be hungry and thirsty.  Time to buy groceries!\nTo the south is a store.  Inside the store, you can use these commands:\n\n    BUY    Buy an item\n    LIST   List what is for sale\n\nAfter buying some food and drink, you can 'EAT' and 'DRINK' it.\n\nAfter that, find the next exit yourself.\n"
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 18,
+    "name": "The Store in Mud School",
+    "description": "You are in a cramped room.  Stacked neatly on shelves everywhere are items\nand packages.  Light fluoresces off the ceiling in soft white tones.  Of\ncourse, there is a sign on the wall.  The only exit is north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors newbies_only",
+    "doors": [{
+      "dir": "north",
+      "to": 17,
+      "description": "You see the only exit out of here.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "The sign reads:\n\n   Buy   - Buy something from the storekeeper.\n   List  - The storekeeper will tell you what's for sale.\n   Value - The storekeeper will tell you how much he will give to you for\n           that item.\n   Sell  - Sell that item to the storekeeper.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 138
+          },
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 31
+          },
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 19,
+    "name": "A Room in Mud School",
+    "description": "You are in a square white room.  The walls are all blank, with no windows.\nLight fluoresces off the ceiling in soft white tones.  Of course, there is a\nsign on the wall.  The exits are north and west, with a door to the east.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 20,
+        "description": "You see a darkened room inside.\n"
+      },
+      {
+        "dir": "east",
+        "to": 21,
+        "keyword": "door",
+        "description": "You see the next station of Mud School.\n",
+        "exit_flags": "door closed locked pickproof",
+        "key": 14
+      },
+      {
+        "dir": "west",
+        "to": 17,
+        "keyword": "door",
+        "description": "You see the room you just came from.\n",
+        "exit_flags": "door closed"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "North of you is a dark room.  I hope you still have the lantern!  If not,\nyou have to back to the store and buy one.\n\nIn the room is a monster with a key that you need.  After killing the\nmonster and getting the key, come back here, UNLOCK EAST, OPEN EAST,\nand continue east.\n"
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 20,
+    "name": "The Darkened Room",
+    "description": "This room was purposefully darkened so that you would need to hold on to a\nlight source to go through.  The walls are, of course, blank, and white.\nThe only exit is south.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors newbies_only",
+    "doors": [{
+      "dir": "south",
+      "to": 19,
+      "description": "You see the room that you have come from.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "hands",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 10,
+          "wear_loc": "arms",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 14,
+          "wear_loc": "hold",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 13,
+          "wear_loc": "lwrist",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 21,
+    "name": "The End of Mud School!",
+    "description": "This is a very bright room, with a marble pedestal in the center.  Behind\nthe pedestal stands a person cloaked in Silver.  Tapestries flow from every\nwall, and you feel very happy to be here right now.  There is a big sign here.\nThe only exit is on the other side of the gate north of you.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors newbies_only",
+    "doors": [{
+      "dir": "north",
+      "to": 22,
+      "keyword": "gate",
+      "description": "You see the Arena ahead.\n",
+      "exit_flags": "door closed"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "You have graduated from Mud School!  Take your diploma...if you can.\nGo 'NORTH' from here to visit our arena.  There are plenty of low-level\nmonsters, but DON'T attack other players.\n\nIf you want to go directly back to the temple at any time, type 'RECALL'.\n\nDon't forget to type save to protect your character.  You won't be saved after\nquitting until you reach level 2, so also type save before you type quit.\n\nIf you need more help during the game, type 'HELP'.  If you see something\nwrong or have comments, use 'BUG', 'IDEA', or 'TYPO' to report them.\n\nMay your visit here be ... mercenary.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 20,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 22,
+    "name": "South Wall of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 29
+      },
+      {
+        "dir": "east",
+        "to": 25
+      },
+      {
+        "dir": "west",
+        "to": 23
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 23,
+    "name": "South Wall of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 28
+      },
+      {
+        "dir": "east",
+        "to": 22
+      },
+      {
+        "dir": "west",
+        "to": 24
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 24,
+    "name": "South West Corner of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 27
+      },
+      {
+        "dir": "east",
+        "to": 23
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 13,
+        "global_limit": 5,
+        "room_limit": 5
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 25,
+    "name": "South Wall of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 30
+      },
+      {
+        "dir": "east",
+        "to": 26
+      },
+      {
+        "dir": "west",
+        "to": 22
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 26,
+    "name": "South East Corner of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 31
+      },
+      {
+        "dir": "west",
+        "to": 25
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 12,
+        "global_limit": 3,
+        "room_limit": 3
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 27,
+    "name": "West Wall of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 32
+      },
+      {
+        "dir": "east",
+        "to": 28
+      },
+      {
+        "dir": "south",
+        "to": 24
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 28,
+    "name": "Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 33
+      },
+      {
+        "dir": "east",
+        "to": 29
+      },
+      {
+        "dir": "south",
+        "to": 23
+      },
+      {
+        "dir": "west",
+        "to": 27
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 29,
+    "name": "Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 34
+      },
+      {
+        "dir": "east",
+        "to": 30
+      },
+      {
+        "dir": "south",
+        "to": 22
+      },
+      {
+        "dir": "west",
+        "to": 28
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 30,
+    "name": "Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 35
+      },
+      {
+        "dir": "east",
+        "to": 31
+      },
+      {
+        "dir": "south",
+        "to": 25
+      },
+      {
+        "dir": "west",
+        "to": 29
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 31,
+    "name": "East Wall of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 36
+      },
+      {
+        "dir": "south",
+        "to": 26
+      },
+      {
+        "dir": "west",
+        "to": 30
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 32,
+    "name": "West Wall of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 37
+      },
+      {
+        "dir": "east",
+        "to": 33
+      },
+      {
+        "dir": "south",
+        "to": 27
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 33,
+    "name": "Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 38
+      },
+      {
+        "dir": "east",
+        "to": 34
+      },
+      {
+        "dir": "south",
+        "to": 28
+      },
+      {
+        "dir": "west",
+        "to": 32
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 34,
+    "name": "Center of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.  There is a BIG SIGN here.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 39
+      },
+      {
+        "dir": "east",
+        "to": 35
+      },
+      {
+        "dir": "south",
+        "to": 29
+      },
+      {
+        "dir": "west",
+        "to": 33
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      },
+      {
+        "dir": "down",
+        "to": 48,
+        "keyword": "grate",
+        "description": "You see a dark murky dungeon below.\n",
+        "exit_flags": "door closed"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Those with high bravery or low senses of cautiousness might wish to go below\nto the Dungeon.  However, know that there are aggressive monsters down there,\nand there is no quick escape back out of here when you are in the dungeon.\n"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 9,
+        "global_limit": 4,
+        "room_limit": 4
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 35,
+    "name": "Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 40
+      },
+      {
+        "dir": "east",
+        "to": 36
+      },
+      {
+        "dir": "south",
+        "to": 30
+      },
+      {
+        "dir": "west",
+        "to": 34
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 36,
+    "name": "East Wall of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 41
+      },
+      {
+        "dir": "south",
+        "to": 31
+      },
+      {
+        "dir": "west",
+        "to": 35
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 37,
+    "name": "West Wall of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 42
+      },
+      {
+        "dir": "east",
+        "to": 38
+      },
+      {
+        "dir": "south",
+        "to": 32
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 38,
+    "name": "Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 43
+      },
+      {
+        "dir": "east",
+        "to": 39
+      },
+      {
+        "dir": "south",
+        "to": 33
+      },
+      {
+        "dir": "west",
+        "to": 37
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 39,
+    "name": "Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 44
+      },
+      {
+        "dir": "east",
+        "to": 40
+      },
+      {
+        "dir": "south",
+        "to": 34
+      },
+      {
+        "dir": "west",
+        "to": 38
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 40,
+    "name": "Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 45
+      },
+      {
+        "dir": "east",
+        "to": 41
+      },
+      {
+        "dir": "south",
+        "to": 35
+      },
+      {
+        "dir": "west",
+        "to": 39
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 41,
+    "name": "East Wall of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 46
+      },
+      {
+        "dir": "south",
+        "to": 36
+      },
+      {
+        "dir": "west",
+        "to": 40
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 42,
+    "name": "North West Corner of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 43
+      },
+      {
+        "dir": "south",
+        "to": 37
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 10,
+        "global_limit": 3,
+        "room_limit": 3
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 43,
+    "name": "North Wall of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  You can barely see the ceiling.  You feel as if you are being watched\nby some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 44
+      },
+      {
+        "dir": "south",
+        "to": 38
+      },
+      {
+        "dir": "west",
+        "to": 42
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 44,
+    "name": "North Wall of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 45
+      },
+      {
+        "dir": "south",
+        "to": 39
+      },
+      {
+        "dir": "west",
+        "to": 43
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 45,
+    "name": "North Wall of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 46
+      },
+      {
+        "dir": "south",
+        "to": 40
+      },
+      {
+        "dir": "west",
+        "to": 44
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 46,
+    "name": "North East Corner of Arena",
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\ngo up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\nbeing watched by some divine being.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 41
+      },
+      {
+        "dir": "west",
+        "to": 45
+      },
+      {
+        "dir": "up",
+        "to": 60,
+        "description": "You see the EXIT.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 11,
+        "global_limit": 3,
+        "room_limit": 3
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 48,
+    "name": "The Center of the Dungeon",
+    "description": "You are in the center of a large room.  A faint light from above shows that\nthe floors are all covered with slime.  A feeling of dread comes over you as\nyou notice that this is NOT a great place to go.  Exits go in all directions.\nOf special note is the one that brings you back up!!!\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 50,
+        "description": "You see the north wall.\n"
+      },
+      {
+        "dir": "east",
+        "to": 53,
+        "description": "You see the east wall.\n"
+      },
+      {
+        "dir": "south",
+        "to": 55,
+        "description": "You see the south wall.\n"
+      },
+      {
+        "dir": "west",
+        "to": 52,
+        "description": "You see the west wall.\n"
+      },
+      {
+        "dir": "up",
+        "to": 34,
+        "keyword": "grate",
+        "description": "You see safety!\n",
+        "exit_flags": "door closed"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 49,
+    "name": "The North West Corner of the Dungeon",
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\nany windows in the area explains the smell around you.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 50,
+        "description": "You see the north wall.\n"
+      },
+      {
+        "dir": "south",
+        "to": 52,
+        "description": "You see the south wall.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 14,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 50,
+    "name": "The North Wall of the Dungeon",
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\nany windows in the area explains the smell around you.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 51,
+        "description": "You see the north east corner.\n"
+      },
+      {
+        "dir": "south",
+        "to": 48,
+        "description": "You see the center of the dungeon.\n"
+      },
+      {
+        "dir": "west",
+        "to": 49,
+        "description": "You see the north west corner.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 51,
+    "name": "The North East Corner of the Dungeon",
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\nany windows in the area explains the smell around you.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 53,
+        "description": "You see the east wall.\n"
+      },
+      {
+        "dir": "west",
+        "to": 50,
+        "description": "You see the north wall.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 15,
+        "global_limit": 2,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 52,
+    "name": "The West Wall of the Dungeon",
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\nany windows in the area explains the smell around you.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 49,
+        "description": "You see the north west corner.\n"
+      },
+      {
+        "dir": "east",
+        "to": 48,
+        "description": "You see the center of the dungeon.\n"
+      },
+      {
+        "dir": "south",
+        "to": 54,
+        "description": "You see the south west corner.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 53,
+    "name": "The East Wall of the Dungeon",
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\nany windows in the area explains the smell around you.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 51,
+        "description": "You see the north east corner.\n"
+      },
+      {
+        "dir": "south",
+        "to": 56,
+        "description": "You see the south east corner.\n"
+      },
+      {
+        "dir": "west",
+        "to": 48,
+        "description": "You see the center of the dungeon.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 54,
+    "name": "The South West Corner of the Dungeon",
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\nany windows in the area explains the smell around you.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 52,
+        "description": "You see the north wall.\n"
+      },
+      {
+        "dir": "east",
+        "to": 55,
+        "description": "You see the south wall.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 16,
+        "global_limit": 2,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 55,
+    "name": "The South Wall of the Dungeon",
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\nany windows in the area explains the smell around you.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 48,
+        "description": "You see the center of the dungeon.\n"
+      },
+      {
+        "dir": "east",
+        "to": 56,
+        "description": "You see the south east corner.\n"
+      },
+      {
+        "dir": "west",
+        "to": 54,
+        "description": "You see the south west corner.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 56,
+    "name": "The South East Corner of the Dungeon",
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\nany windows in the area explains the smell around you.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 53,
+        "description": "You see the east wall.\n"
+      },
+      {
+        "dir": "west",
+        "to": 55,
+        "description": "You see the south wall.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 57,
+    "name": "A Room in Mud School",
+    "description": "You are in a room in Mud School.  Paintings of the heroic graduates of mud\nschool adorn the walls. To the west is Furey's Training Room, and to the east\nis Zump's Guild Room.  North of you is the next Station of Mud School.\nThere is a sign on the wall (type 'LOOK SIGN' to read it).\n",
+    "sector_type": "city",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 1,
+        "description": "You see the next station of Mud School.\n"
+      },
+      {
+        "dir": "east",
+        "to": 59,
+        "description": "You see Zump's Guild Room.  Go there to practice your skills.\n"
+      },
+      {
+        "dir": "south",
+        "to": 0,
+        "description": "You see the entrance to Mud School.\n"
+      },
+      {
+        "dir": "west",
+        "to": 58,
+        "description": "You see Furey's Training Room.  Go there to train your attributes.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "To find out your attributes, type 'score'.  You can improve your attributes\nin Furey's Training Room to the west.  You can practice your skills and spells\nin Zump's Guild Room to the east.  You can continue through mud school by\ngoing north.\n\nIf you are a new character, you should go 'WEST' from here, train your\nabilities, and then come back here and go 'NORTH'.\n"
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 58,
+    "name": "Furey's Training Room",
+    "description": "You are in Furey's Training Room.  Around you are all sorts of physical\nand mental training tools.  The whole room is filled with magic, holiness, \nand sweat.  There is a sign on the wall.\n",
+    "sector_type": "city",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [{
+      "dir": "east",
+      "to": 57,
+      "description": "You see the room you came from, and the room you should go to.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Welcome to Furey's Training Room.  Here you can train your attributes.  To \ntrain an attribute, you need enough practices.  To find out how many practice\nsessions you have, type 'train' while you are in this room.  To train for a \nspecific attribute, type 'train <attr>' where attr is the first 3 letters of\nthe attribute you want increased.  Type 'help train' for more information.\n"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 18,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 59,
+    "name": "Zump's Guild Room",
+    "description": "You are in a room filled with weapons, books, and many combat dummies, some\ncut and stabbed many times, others burnt to a crisp.  The room is filled with\nsweat and an aura of magic.  There is a sign on the wall.\n",
+    "sector_type": "city",
+    "room_flags": "no_mob indoors newbies_only",
+    "doors": [{
+      "dir": "west",
+      "to": 57,
+      "description": "You see the room you came from and the room you should go to.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Welcome to Zump's Guild Room.  Here you will learn your skills and spells.\nTo find out what skills and spells you can practice and how many practice\nsessions you have, type 'practice'.  To practice the specific skill, type\n'practice <skill>', where 'skill' is the skill or spell you wish to practice.\nPracticing increases the amount you know of that skill or spell, up to a\ncertain maximum.  When you have practiced all you wish to practice, go west.\n"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 19,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "school",
+    "anum": 60,
+    "name": "A Safe Room",
+    "description": "You are in a safe room, away from all the mean rabbits and snails of the Arena.\nYou can rest here, and go up to go back to the Temple of Midgaard.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors",
+    "doors": [{
+      "dir": "up",
+      "to": null,
+      "description": "You see the Temple of Midgaard.\n",
+      "portal": "school-up-1"
+    }]
+  }}
+]

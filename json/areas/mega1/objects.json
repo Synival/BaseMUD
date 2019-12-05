@@ -1,0 +1,436 @@
+[
+  {"object": {
+    "area": "mega1",
+    "anum": 0,
+    "name": "spitgun spit gun",
+    "short_descr": "a spit gun",
+    "description": "There is a spit gun laying here.",
+    "item_type": "wand",
+    "values": {
+      "level": 20,
+      "recharge": 10,
+      "charges": 10,
+      "skill": "general purpose"
+    },
+    "level": 17,
+    "weight": 20,
+    "cost": 48900,
+    "condition": 100,
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "spit gun",
+      "description": "A standard weapon in Mega-City One.  It uses general\npurpose ammunition.\n"
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 1,
+    "name": "knee pads",
+    "short_descr": "a set of knee pads",
+    "description": "There are some knee pads laying here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 4
+    },
+    "level": 5,
+    "weight": 30,
+    "cost": 480,
+    "condition": 100,
+    "wear_flags": "take legs",
+    "extra_description": [{
+      "keyword": "knee pads",
+      "description": "It is a set of Grak Brothers knee pads.  They are currently\npopular with the juve and punk gangs.\n"
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 2,
+    "name": "stooky gland",
+    "short_descr": "a stooky gland",
+    "description": "There is a stooky gland laying here.",
+    "item_type": "pill",
+    "values": {
+      "level": 20,
+      "skill2": "cure poison",
+      "skill3": "heal"
+    },
+    "level": 13,
+    "weight": 10,
+    "cost": 1000,
+    "condition": 100,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "stooky gland",
+      "description": "Stooky glands are known for the restorative properties.\n"
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 3,
+    "name": "lawgiver",
+    "short_descr": "a lawgiver",
+    "description": "There is a lawgiver laying here.",
+    "item_type": "wand",
+    "values": {
+      "level": 30,
+      "recharge": 10,
+      "charges": 10,
+      "skill": "high explosive"
+    },
+    "level": 27,
+    "weight": 20,
+    "cost": 58000,
+    "condition": 100,
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "lawgiver gun",
+      "description": "The standard weapon for the city's Judges.  It uses general\nhigh explosive ammunition.\n"
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 4,
+    "name": "safe",
+    "short_descr": "the magnetically shielded safe",
+    "description": "A indestructible, immobile safe is here.",
+    "item_type": "container",
+    "values": {
+      "capacity": 1005,
+      "flags": "closeable closed locked",
+      "key": 8005,
+      "max_weight": 200,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "condition": 100,
+    "extra_flags": "hum",
+    "extra_description": [{
+      "keyword": "safe",
+      "description": "This safe looks like not even a Sov-Cit Nuke could open it.\nYou better find the code box.\n"
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 5,
+    "name": "code box",
+    "short_descr": "a code box",
+    "description": "A code box of indeterminate use is here.",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 100,
+    "extra_flags": "hum",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "code box",
+      "description": "The box looks like some kind of access device.\n"
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 6,
+    "name": "bashball bat two-handed",
+    "short_descr": "a bashball bat",
+    "description": "A bashball bat is laying here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 3,
+      "dice_size": 5,
+      "attack_type": "pound",
+      "flags": "twohands"
+    },
+    "level": 14,
+    "weight": 30,
+    "cost": 870,
+    "condition": 100,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "bashball bat",
+      "description": "This is the same type of bat used by the little spuggers\nto play bashball.\n"
+    }],
+    "affects": [{
+      "apply": "damage roll",
+      "level": 14,
+      "modifier": 1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 7,
+    "name": "vibroblade",
+    "short_descr": "the vibroblade",
+    "description": "The vibroblade is here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 3,
+      "dice_size": 5,
+      "attack_type": "slash"
+    },
+    "level": 18,
+    "weight": 20,
+    "cost": 2800,
+    "condition": 100,
+    "extra_flags": "glow hum invis",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "vibroblade",
+      "description": "Obviously of alien manufacture, this blade enhances fighting\nand survival skills.\n"
+    }],
+    "affects": [
+      {
+        "apply": "dexterity",
+        "level": 18,
+        "modifier": 1,
+        "bit_type": "object",
+        "bits": null
+      },
+      {
+        "apply": "constitution",
+        "level": 18,
+        "modifier": 1,
+        "bit_type": "object",
+        "bits": null
+      },
+      {
+        "apply": "damage roll",
+        "level": 18,
+        "modifier": 2,
+        "bit_type": "object",
+        "bits": null
+      },
+      {
+        "apply": "hit roll",
+        "level": 18,
+        "modifier": 2,
+        "bit_type": "object",
+        "bits": null
+      }
+    ]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 8,
+    "name": "vacuum cleaner two-handed",
+    "short_descr": "a Hoover vacuum cleaner",
+    "description": "A Hoover vacuum cleaner is here idling.",
+    "item_type": "weapon",
+    "values": {
+      "dice_num": 4,
+      "dice_size": 4,
+      "attack_type": "suction",
+      "flags": "twohands"
+    },
+    "level": 15,
+    "weight": 100,
+    "cost": 2100,
+    "condition": 100,
+    "extra_flags": "hum",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "vacuum cleaner",
+      "description": "This vacuum looks well built and will last you many years of\ncleaning pleasure.\n"
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 9,
+    "name": "knife",
+    "short_descr": "a knife",
+    "description": "A knife is sitting here...contemplating life.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 2,
+      "dice_size": 4,
+      "attack_type": "slice"
+    },
+    "level": 5,
+    "weight": 10,
+    "cost": 360,
+    "condition": 100,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "knife",
+      "description": "It is a knife. 'Nuff said. (Marvel joke).\n"
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 10,
+    "name": "wet noodle",
+    "short_descr": "a wet noodle",
+    "description": "A wet noodle is laying here with clam sauce on it.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "whip",
+      "dice_num": 1,
+      "dice_size": 4,
+      "attack_type": "whip"
+    },
+    "level": 5,
+    "weight": 10,
+    "cost": 670,
+    "condition": 100,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "noodle",
+      "description": "It looks like a noodle freshly made at the Olive Garden.\n"
+    }],
+    "affects": [{
+      "apply": "intelligence",
+      "level": 5,
+      "modifier": 1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 11,
+    "name": "judge club",
+    "short_descr": "a Judge's club",
+    "description": "A Judge's club is resting here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 8,
+      "attack_type": "pound"
+    },
+    "level": 17,
+    "weight": 30,
+    "cost": 1050,
+    "condition": 100,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "judge club",
+      "description": "It is a standard Justice Hall issue club.  Many a Perp's\nhead has been bashed with this baby.\n"
+    }],
+    "affects": [{
+      "apply": "damage roll",
+      "level": 17,
+      "modifier": 2,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 12,
+    "name": "vault key",
+    "short_descr": "a vault key",
+    "description": "A vault key is here.",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 100,
+    "extra_flags": "hum",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "vault key",
+      "description": "The key looks like it could be useful.\n"
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 13,
+    "name": "key card",
+    "short_descr": "a key card",
+    "description": "A key card is laying here.",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 100,
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "key card",
+      "description": "It looks like it fits a slot somewhere.\n"
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 14,
+    "name": "judge club",
+    "short_descr": "a Judge's club",
+    "description": "A Judge's club is resting here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 12,
+      "attack_type": "pound"
+    },
+    "level": 26,
+    "weight": 30,
+    "cost": 1700,
+    "condition": 100,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "judge club",
+      "description": "It is a head judge Justice Hall issue club.  Many a Perp's\nhead has been bashed with this baby.\n"
+    }],
+    "affects": [{
+      "apply": "damage roll",
+      "level": 26,
+      "modifier": 2,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 15,
+    "name": "club electric shock",
+    "short_descr": "a shock club",
+    "description": "A sparking electric club is here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 3,
+      "dice_size": 5,
+      "attack_type": "shock"
+    },
+    "level": 15,
+    "weight": 30,
+    "cost": 750,
+    "condition": 100,
+    "extra_flags": "glow",
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "mega1",
+    "anum": 16,
+    "name": "stunner police stick",
+    "short_descr": "a police stun stick",
+    "description": "A police issue stunner is here, must be stolen.",
+    "material": "rubber",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 11,
+      "attack_type": "pound",
+      "flags": "shocking"
+    },
+    "level": 23,
+    "weight": 20,
+    "cost": 1160,
+    "condition": 100,
+    "wear_flags": "take wield"
+  }}
+]

@@ -32,6 +32,7 @@
 #include "chars.h"
 #include "rooms.h"
 #include "find.h"
+#include "globals.h"
 
 #include "wiz_l7.h"
 
@@ -55,7 +56,7 @@ DEFINE_DO_FUN (do_force) {
      * corrupting pfiles in certain pet-infested situations.
      * JR -- 10/15/00 */
     if (!str_cmp (arg, "all")) {
-        DESCRIPTOR_DATA *desc,*desc_next;
+        DESCRIPTOR_T *desc,*desc_next;
         BAIL_IF (char_get_trust(ch) < MAX_LEVEL - 3,
             "Not at your level!\n\r", ch);
         for (desc = descriptor_list; desc != NULL; desc = desc_next) {
@@ -69,8 +70,8 @@ DEFINE_DO_FUN (do_force) {
         }
     }
     else if (!str_cmp (arg, "players")) {
-        CHAR_DATA *vch;
-        CHAR_DATA *vch_next;
+        CHAR_T *vch;
+        CHAR_T *vch_next;
 
         BAIL_IF (char_get_trust (ch) < MAX_LEVEL - 2,
             "Not at your level!\n\r", ch);
@@ -85,8 +86,8 @@ DEFINE_DO_FUN (do_force) {
         }
     }
     else if (!str_cmp (arg, "gods")) {
-        CHAR_DATA *vch;
-        CHAR_DATA *vch_next;
+        CHAR_T *vch;
+        CHAR_T *vch_next;
 
         BAIL_IF (char_get_trust (ch) < MAX_LEVEL - 2,
             "Not at your level!\n\r", ch);
@@ -101,7 +102,7 @@ DEFINE_DO_FUN (do_force) {
         }
     }
     else {
-        CHAR_DATA *victim;
+        CHAR_T *victim;
         BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
             "They aren't here.\n\r", ch);
         BAIL_IF (victim == ch,

@@ -43,8 +43,8 @@
 
 #include "act_skills.h"
 
-void do_skills_or_spells (CHAR_DATA * ch, char *argument, int spells) {
-    BUFFER *buffer;
+void do_skills_or_spells (CHAR_T *ch, char *argument, int spells) {
+    BUFFER_T *buffer;
     char arg[MAX_INPUT_LENGTH];
     char skill_list[MAX_LEVEL + 1][MAX_STRING_LENGTH];
     char skill_columns[MAX_LEVEL + 1];
@@ -172,7 +172,7 @@ void do_skills_or_spells (CHAR_DATA * ch, char *argument, int spells) {
 /* used to get new skills */
 DEFINE_DO_FUN (do_gain) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *trainer;
+    CHAR_T *trainer;
     int gn = 0, sn = 0;
 
     if (IS_NPC (ch))
@@ -358,7 +358,7 @@ DEFINE_DO_FUN (do_groups) {
 
 DEFINE_DO_FUN (do_train) {
     char buf[MAX_STRING_LENGTH];
-    CHAR_DATA *mob;
+    CHAR_T *mob;
     sh_int stat = -1;
     char *pOutput = NULL;
     int cost;
@@ -472,7 +472,7 @@ DEFINE_DO_FUN (do_train) {
 
 DEFINE_DO_FUN (do_practice) {
     int sn, level, col, rating;
-    CHAR_DATA *mob;
+    CHAR_T *mob;
     int adept, top_level = UMAX(LEVEL_HERO, ch->level);
 
     if (IS_NPC (ch))
@@ -552,10 +552,11 @@ DEFINE_DO_FUN (do_practice) {
 }
 
 DEFINE_DO_FUN (do_cast) {
+    char *target_name;
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    OBJ_DATA *obj;
+    CHAR_T *victim;
+    OBJ_T *obj;
     void *vo;
     int mana;
     int sn;
@@ -717,11 +718,15 @@ DEFINE_DO_FUN (do_cast) {
     }
     else {
         ch->mana -= mana;
-        if (IS_NPC (ch) || class_table[ch->class].fMana)
+        if (IS_NPC (ch) || class_table[ch->class].fMana) {
             /* class has spells */
-            (*skill_table[sn].spell_fun) (sn, ch->level, ch, vo, target);
-        else
-            (*skill_table[sn].spell_fun) (sn, ch->level * 3 / 4, ch, vo, target);
+            (*skill_table[sn].spell_fun) (sn, ch->level, ch, vo, target,
+                target_name);
+        }
+        else {
+            (*skill_table[sn].spell_fun) (sn, ch->level * 3 / 4, ch, vo, target,
+                target_name);
+        }
         check_improve (ch, sn, TRUE, 1);
     }
 

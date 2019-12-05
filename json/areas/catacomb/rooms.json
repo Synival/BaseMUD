@@ -1,0 +1,2323 @@
+[
+  {"room": {
+    "area": "catacomb",
+    "anum": 1,
+    "name": "North entrance to the catacombs",
+    "description": "You are almost surprised to see a tunnel leading off to the south\ninto utter darkness.  The floorboards above you haven't been moved\nin a long time, yet there is life down here.  A beam of light from\nthe opening above you falls upon a message scrawled on the wall here.\n\nThe message reads:\n     Adventure for the strong yet calculating\n     Death for the weak and shallow\n     Treasure for the smart and lucky\n     Death for the stupid and accursed\n\nAn ancient Glyph above the entrance keeps monsters from wandering up\nfrom the catacombs.\n",
+    "sector_type": "city",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 2
+      },
+      {
+        "dir": "up",
+        "to": null,
+        "keyword": "floorboard board",
+        "exit_flags": "door closed",
+        "portal": "catacomb-up-1"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 2,
+    "name": "North/south tunnel",
+    "description": "This part of the catacombs looked roughly hewn and man-made. There is\na large cross painted on the floor of the tunnel.To the south it seems\nmaybe a bit lighter for some odd reason.  To the north a ray of light\ncomes in from a hole in the ceiling.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 1
+      },
+      {
+        "dir": "south",
+        "to": 7
+      }
+    ],
+    "extra_description": [{
+      "keyword": "cross paint floor",
+      "description": "The cross is a Templar's cross. It seems to have had a fresh coat of\npaint recently."
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 3,
+    "name": "Weapon training area",
+    "description": "This is a place to keep up on there weapon skills.  Much of the\nequipment looks old and worn but upon further inspection seems quite\nsturdy in fact.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 4
+      },
+      {
+        "dir": "south",
+        "to": 8
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 12,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 4,
+    "name": "Prayer training area",
+    "description": "The templar's curious mix of religion and fighting is evident here.\nA central painting depicts a cross composed of swords.  The elders\nteach the ancient art of prayer to the young pages.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 5
+      },
+      {
+        "dir": "west",
+        "to": 3
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 12,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 5,
+    "name": "Junction of hallways",
+    "description": "Training facilities are evident to the west. To the south lies a hallway\nwhich has doors every couple of feet, looks like living quarters of some\nsort.  To the east the tunnel leads back into the natural catacombs.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 6
+      },
+      {
+        "dir": "south",
+        "to": 10
+      },
+      {
+        "dir": "west",
+        "to": 4
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 8,
+        "global_limit": 12,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 6,
+    "name": "Hallway",
+    "description": "The hallway takes on a more indoor look to the west.  To the east it\nlooks awfully dark.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 7
+      },
+      {
+        "dir": "west",
+        "to": 5
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 12,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 7,
+    "name": "Intersection",
+    "description": "The tunnel continues to the north and the south, becoming less hewn and\nmore natural to the south.  A passageway lined with paneling leads west.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 2
+      },
+      {
+        "dir": "south",
+        "to": 12
+      },
+      {
+        "dir": "west",
+        "to": 6
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 8,
+    "name": "Pages' sleeping quarters",
+    "description": "Several bunk beds are lined up across the room.  It looks rather spartan\nand there is little evidence of toys or games.  Most of the desks are\nfilled with books and papers of little interest.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 3
+      },
+      {
+        "dir": "east",
+        "to": 9
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 9,
+    "name": "Templar Knights sleeping quarters",
+    "description": "This is a huge room which is filled wall to wall with beds. Apparently\nall the low level knights all sleep in this one room.  A door on the\nsouth wall is labelled \"Elders only!\".\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 13
+      },
+      {
+        "dir": "west",
+        "to": 8
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 12,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 12,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 12,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 10,
+    "name": "N/S hallway",
+    "description": "The hallway leads north an south.  A door leads to a templar's room to\nthe east.  The decoration looks rather sparse here.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 5
+      },
+      {
+        "dir": "east",
+        "to": 11
+      },
+      {
+        "dir": "south",
+        "to": 14
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 2,
+        "global_limit": 8,
+        "room_limit": 8
+      }
+    }]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 11,
+    "name": "A Middle-aged templar's room",
+    "description": "This is a room furnished in a room becoming a low level templar scribe.\nNo real amenities but better than a communal sleeping quarters. As far\nas you can tell he would be a rank equivalent to a Sargeant.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [{
+      "dir": "west",
+      "to": 10
+    }]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 12,
+    "name": "Humid, damp tunnel",
+    "description": "As the tunnel leads south it gets more humid and damp.  Moss covers the\nwalls and ferns even grow in the cracks here and there.  To the north it\nseems much more sterile.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 7
+      },
+      {
+        "dir": "south",
+        "to": 19
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 13,
+    "name": "Administration room",
+    "description": "The elders gather here to discuss training strategies and count their\nloot.  You notice papers which look like important secret documents\nlying around. An escape passage leads west.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 9
+      },
+      {
+        "dir": "south",
+        "to": 16
+      },
+      {
+        "dir": "west",
+        "to": 69
+      }
+    ],
+    "extra_description": [{
+      "keyword": "papers documents secrets",
+      "description": "It seems that the loot comes from raids on the towns in the surrounding\nareas above ground.  From the documents it seems that the pages and\ntrainees are kidnapped from the villages too!\n"
+    }]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 14,
+    "name": "N/S hallway",
+    "description": "The hallway continues to become more important-looking as you wander\nsouth.  A room to the east looks rather more pleasant that some of the\nothers.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 10
+      },
+      {
+        "dir": "east",
+        "to": 15
+      },
+      {
+        "dir": "south",
+        "to": 17
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 15,
+    "name": "Mid-level leader's room",
+    "description": "A rather nice looking room considering the drab conditions down here.\nThrough all the signs of decoration you can still see evidence of water\nleaks.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [{
+      "dir": "west",
+      "to": 14
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 16,
+    "name": "Mess hall",
+    "description": "The a huge table with an immaculate white table cloth stretches way off\nto the south.  The room is kept immaculately clean by the nights\nthemselves.  They truly belive that cleanliness is next to godliness.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 13
+      },
+      {
+        "dir": "south",
+        "to": 23
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 12,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 12,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 12,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 6,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 6,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 6,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 17,
+    "name": "N/S hallway",
+    "description": "The hallway continues north and south.  A peculiar kind of glow seems\nto come from somewhere further along the hallway to the south. The room\nto the east looks like the lap of luxury.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 14
+      },
+      {
+        "dir": "east",
+        "to": 18
+      },
+      {
+        "dir": "south",
+        "to": 24
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 18,
+    "name": "High officer's room",
+    "description": "First thing you notice in this room is the pleasant aroma of cedar.  All\nthe paneling in the room is made of fine cedar.  A painting of an\nelegant knight hangs on the wall.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [{
+      "dir": "west",
+      "to": 17
+    }],
+    "extra_description": [{
+      "keyword": "painting elegant knight",
+      "description": "Something oddly familiar about the knight.  He carries a glowing sword\nwith a silvery blade.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 19,
+    "name": "Mossy intersection",
+    "description": "There is a turn off to the passage here.  The main passage leads north\nand south. To the south it seems to get impossibly darker.  To the east\nyou hear... birds?  A small rivulet of water seeps in from the passage\neast.  The air is very humid and damp here.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 12
+      },
+      {
+        "dir": "east",
+        "to": 20
+      },
+      {
+        "dir": "south",
+        "to": 26
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 6,
+        "global_limit": 7,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 20,
+    "name": "The holy grove",
+    "description": "A small grove of birches grow seem to grow from solid rock.  You hear\nbirds singing but try as you might you cant see any.  A strange glow\nemanates from a place somewhere to the southeast in the grove.\n",
+    "sector_type": "forest",
+    "room_flags": "indoors private",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 21
+      },
+      {
+        "dir": "west",
+        "to": 19
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 21,
+    "name": "The holy grove",
+    "description": "The trees seem real enough even though they take root in solid rock.\nYou hear other small animals scampering through the light undergrowth\nyet you see nothing. The grove continues south, east and west. An out of\nplace passage way for some reason heads north.\n",
+    "sector_type": "forest",
+    "room_flags": "indoors private",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 68
+      },
+      {
+        "dir": "east",
+        "to": 22
+      },
+      {
+        "dir": "south",
+        "to": 27
+      },
+      {
+        "dir": "west",
+        "to": 20
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 22,
+    "name": "The holy grove",
+    "description": "The grove continues west and south.  The glow is roughly to the south\nsomewhere.\n",
+    "sector_type": "forest",
+    "room_flags": "indoors private",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 28
+      },
+      {
+        "dir": "west",
+        "to": 21
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 23,
+    "name": "Mess hall",
+    "description": "\"mess\" isn't exactly the best word to describe this room.  On the\ncontrary, it is immaculately clean.  A very long table stretches way off\nto the north. A hallway is to the east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 16
+      },
+      {
+        "dir": "east",
+        "to": 24
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 12,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 12,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 24,
+    "name": "End of a hallway",
+    "description": "You hear voices coming from a room to the west.  the hallway goes north.\nTo the east lies a room which seems to glow with power and piety.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 17
+      },
+      {
+        "dir": "east",
+        "to": 25
+      },
+      {
+        "dir": "west",
+        "to": 23
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 25,
+    "name": "Grand Templar's room",
+    "description": "All the items in this room look ancient yet strangely very powerful and\nrich.  There is an aura of great holiness about the room.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_6",
+    "doors": [{
+      "dir": "west",
+      "to": 24
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 10,
+          "wear_loc": "neck1",
+          "global_limit": 9
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 1,
+          "wear_loc": "light",
+          "global_limit": 9
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 8,
+          "wear_loc": "hold",
+          "global_limit": 9
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 26,
+    "name": "Very dark passage",
+    "description": "This room is so dark that even powerful magic lights seems to barely\nilluminate the ground in front of you.  If its possible it seems even\ndarker to the south.  The passage also leads back north.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 19
+      },
+      {
+        "dir": "south",
+        "to": 30
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 14,
+          "wear_loc": "about",
+          "global_limit": 25
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 27,
+    "name": "The holy grove",
+    "description": "The grove continues north and east.  To the east a strange humming can\nbarely be heard.\n",
+    "sector_type": "forest",
+    "room_flags": "indoors private",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 21
+      },
+      {
+        "dir": "east",
+        "to": 28
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 28,
+    "name": "The holy grove",
+    "description": "All of a sudden all the mysterious sounds of the grove stop. Or perhaps\nits just the strange humming and glowing from a clearing to the south\ndrowning out everything else. There is a sort of magical forcefield door\nto the south.\n",
+    "sector_type": "forest",
+    "room_flags": "indoors private",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 22
+      },
+      {
+        "dir": "south",
+        "to": 32,
+        "keyword": "glow glowing field forcefield door",
+        "description": "a glowing forcefield with a small circular hole in it.\n",
+        "exit_flags": "door closed locked pickproof",
+        "key": 1
+      },
+      {
+        "dir": "west",
+        "to": 27
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 6,
+        "global_limit": 7,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 29,
+    "name": "Very dark caveway",
+    "description": "This room is so very dark that no one is quite sure whats in it, so\nthere's nothing really to describe except maybe the powerful sense of\nevil coming from the east and the almost overcoming urge to run to the\nwest.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 30
+      },
+      {
+        "dir": "west",
+        "to": 33
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 30,
+    "name": "Deep within the catacombs",
+    "description": "It stinks like a lair in here.  A rotten smell of humanoid flesh\nlingers.  You stumble over what you think are corpses in the utter\ndarkness. You sense a evil growl from somewhere in the room. maybe\neverywhere in the room. . ..\n",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 26
+      },
+      {
+        "dir": "east",
+        "to": 31
+      },
+      {
+        "dir": "west",
+        "to": 29
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 3,
+          "wear_loc": "rfinger",
+          "global_limit": 9
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "body",
+          "global_limit": 9
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 6,
+          "wear_loc": "hold",
+          "global_limit": 9
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 31,
+    "name": "Very dark cavern",
+    "description": "The cavern is hard to describe due to the extreme magical darkness.\nProbing with a light source seems to reveal nothing but more darkness.\n",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 34
+      },
+      {
+        "dir": "west",
+        "to": 30
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 32,
+    "name": "The holy place",
+    "description": "A glowing stone lies in the center of the clearing.  You recognize it as\nthe stone of the Excalibur.  The strange humming glowing makes it\ndifficult to see if the Excalibur is there or not. Might want to take a\ncloser look if possible.\n",
+    "sector_type": "forest",
+    "room_flags": "indoors private",
+    "doors": [{
+      "dir": "north",
+      "to": 28,
+      "keyword": "glow glowing field forcefield door",
+      "description": "a glowing forcefield with a small circular hole in it.\n",
+      "exit_flags": "door closed locked pickproof",
+      "key": 1
+    }],
+    "resets": [
+      {
+        "command": "object",
+        "values": {
+          "obj": 7,
+          "global_limit": 1,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 5,
+          "into": 7,
+          "global_limit": 9,
+          "put_count": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 33,
+    "name": "Misty passageway",
+    "description": "Warm mist swirl about you making you feel threatened as well as\nprotected at the same time.  The swirling mist makes it tough to tell\ndirections quite clearly, but you seem to be able to go north or south.\nThe mist gets denser to the south.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 29
+      },
+      {
+        "dir": "south",
+        "to": 42
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 7,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 9,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 35
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 34,
+    "name": "Intersection of caverns",
+    "description": "Caverns head north, south and east from this peculiar spot. Medium\nsized caverns from the east and the north join to form a huge cavern\nheading south.  The walls of the cavern are made of a bizarre mixture\nof many shiny crystals.\n",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 31
+      },
+      {
+        "dir": "east",
+        "to": 35
+      },
+      {
+        "dir": "south",
+        "to": 44
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 35,
+    "name": "Entrance to the burial grounds",
+    "description": "You have entered what appears to be a burial ground of sorts. The\ntemplars buried their dead here.  Chills go down your spine as you feel\nsomething watching you.  You hear the random groan of a ghost, the howl\nof a wraith, and the dry clanking of bones.\n",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 36
+      },
+      {
+        "dir": "west",
+        "to": 34
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 36,
+    "name": "The burial grounds",
+    "description": "Random tombs to unknown warriors were lain in rows as far as the eye\ncan see.  To your horror many of the graves are empty and desecrated.\nA gap in the rows of tombs leads south and there are more graves to the\neast and west.\n",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 37
+      },
+      {
+        "dir": "south",
+        "to": 45
+      },
+      {
+        "dir": "west",
+        "to": 35
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 7,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 11,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 37,
+    "name": "The burial grounds",
+    "description": "It seems as if many of the warriors could not stop fighting even in\ndeath.  They fight amongst each other and flail at any living being\nthat would wander near.\n",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 38
+      },
+      {
+        "dir": "west",
+        "to": 36
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 11,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 38,
+    "name": "The burial grounds",
+    "description": "Legions of skeletal warriors wander by and battle the enemy even in\ndeath.  Old battlelines have been forgotten and new ones made. Its a\ngruesome scene.\n",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 39
+      },
+      {
+        "dir": "west",
+        "to": 37
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 7,
+        "global_limit": 4,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 39,
+    "name": "New graves",
+    "description": "The tombs in this section seem somewhat more recent.  Rotting zombie\nwarriors groan and wail with blank stares.  You hear sounds of digging\noff a bit to the south.\n",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 47
+      },
+      {
+        "dir": "west",
+        "to": 38
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 7,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 40,
+    "name": "Misty cavern",
+    "description": "A chilling icy mist swirl about you.  The dampness and warmth has become\nbitter cold.  The walls of the cavern are several feet thick with ice\nhere.  An icy wind blows from the south.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 41
+      },
+      {
+        "dir": "south",
+        "to": 48
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 7,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 9,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 35
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 9,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 35
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 41,
+    "name": "Misty cavern",
+    "description": "The temperature is a pleasant and mild here.  This is due to a warm wind\nblowing in from the east and a chilly breeze blowing in from the west.\nThe updrafts create bizarre icy-steamy mists which dance along the\nwalls.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 42
+      },
+      {
+        "dir": "west",
+        "to": 40
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 9,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 35
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 9,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 35
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 42,
+    "name": "Mist cavern",
+    "description": "A warm wind blows in from the east.  The air is still stifling hot in\nhere despite the breeze.  The mist seems thick enough to be alive. . .\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 33
+      },
+      {
+        "dir": "east",
+        "to": 43
+      },
+      {
+        "dir": "west",
+        "to": 41
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 9,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 35
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 43,
+    "name": "Waterfall of mist",
+    "description": "River of hot mist pour down in a cascade from a hole in the cavern.  It\nfalls like water down from the heights like a waterfall and creates\nbeautiful swirls.  It causes a hot wind to flow west.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [{
+      "dir": "west",
+      "to": 42
+    }],
+    "extra_description": [{
+      "keyword": "hole height waterfall cascade",
+      "description": "The hole is much too high up for you to reach.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 9,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 35
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 9,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 35
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 9,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 35
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 44,
+    "name": "Huge multicolored tunnel",
+    "description": "The tunnel leads north and south.  To the south there is an odd\ntwinkling phenomenon.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 34
+      },
+      {
+        "dir": "south",
+        "to": 50
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 45,
+    "name": "Desolate ruins",
+    "description": "Several mausoleums used to grace the way here but these have been\ndefiled. And most have been torn down and burned by looters. Some still\nseem to be intact to the south.  To the northwest is a seeming field of\ntombs of soldiers, now a battleground for the undead.\n",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 51
+    }]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 46,
+    "name": "Curators place",
+    "description": "The undertaker, the historian and the curator used to be here. Now they\ntoo have joined the legions of the undead.  From the looks of the place\nthey seem to have starved to death.  Rickety stairs head down into a\nsort of basement.\n",
+    "sector_type": "hills",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 47
+      },
+      {
+        "dir": "down",
+        "to": 52
+      }
+    ],
+    "extra_description": [{
+      "keyword": "stairs basement",
+      "description": "Surprisingly the stairs look sturdy enough.\n"
+    }]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 47,
+    "name": "Fresh graves",
+    "description": "Graves of recent casualties lie here.  Even the most recent don't seem to\nhave been left undisturbed.  You hear sounds of digging in progress\nfurther to the south.\n",
+    "sector_type": "hills",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 39
+      },
+      {
+        "dir": "south",
+        "to": 53
+      },
+      {
+        "dir": "west",
+        "to": 46
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 11,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 48,
+    "name": "Twisty cavern",
+    "description": "The way twist this way and that and its all you can do to keep your head\nfrom spinning.  The air is very cold here and layers of ice on the wall.\nThe sounds of metal on ice echo through the cavern. A side passage leads\neast and the main passage goes north and south.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 40
+      },
+      {
+        "dir": "east",
+        "to": 49
+      },
+      {
+        "dir": "south",
+        "to": 56
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 49,
+    "name": "Striped tunnel",
+    "description": "The walls of the tunnels have many brilliant colors in them from the\nvarious veins of crystals running in them.  An odd twinkling comes from\nthe east.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 50
+      },
+      {
+        "dir": "west",
+        "to": 48
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 6,
+        "global_limit": 7,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 50,
+    "name": "Prism cave",
+    "description": "The roof of this cave peaks over a hundred feet high making it one of\nthe biggest in the catacombs.  Crystals of every color cast prismatic\nsprays of light everywhere.  The light from your lamp causes almost a\nblinding flare of brilliance as more light is added to the multi-colored\ntwinkling phenomenon that exists here.  This is also the lair of the\nfabled and feared Prism Dragon.\n",
+    "sector_type": "mountain",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 44
+      },
+      {
+        "dir": "east",
+        "to": 58
+      },
+      {
+        "dir": "south",
+        "to": 57
+      },
+      {
+        "dir": "west",
+        "to": 49
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 12,
+          "wear_loc": "body",
+          "global_limit": 9
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 13,
+          "wear_loc": "hold",
+          "global_limit": 9
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 51,
+    "name": "Ruined monument",
+    "description": "A monument to a famous king once stood here. Not much is left to even\nsignify that is was here at all.  A building of some sort can be entered\nthrough a basement to the east.  The southern gate of the grounds is to\nthe south.\n",
+    "sector_type": "hills",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 45
+      },
+      {
+        "dir": "east",
+        "to": 52
+      },
+      {
+        "dir": "south",
+        "to": 54
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 52,
+    "name": "Basement",
+    "description": "Its dark and it smells like. ...BATS down here!  All you see is a swirl\nof the darkness and lots of scratching bats madly flailing around. A set\nof stairs go up into the building and a broken window leads west.\n",
+    "sector_type": "hills",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 51
+      },
+      {
+        "dir": "up",
+        "to": 46
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 6,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 6,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 6,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 13,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 9
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 6,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 6,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 6,
+          "room_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 53,
+    "name": "Fresh graves",
+    "description": "The graves here seem very recent.  You notice many signs of digging and\ndefilement.  There are piles of fresh bodies here awaiting burial.  A\nstrange sense of evil magic from the south makes the hairs on the back\nof your neck to stand on end!\n",
+    "sector_type": "hills",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 47
+      },
+      {
+        "dir": "south",
+        "to": 55
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 11,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 54,
+    "name": "Southern gate",
+    "description": "A rusty gate here no longer keeps anyone out or in.  You see a lonely\nE/W passage to the south.  A little used trail winds east through a\ncrack in the wall.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 51
+      },
+      {
+        "dir": "east",
+        "to": 66
+      },
+      {
+        "dir": "south",
+        "to": 59
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 55,
+    "name": "Scene of ghastly horror",
+    "description": "An army of undead creatures of all types are lined up patiently. Their\nleader is an evil demonoid necromancer.  His plans to use his army of\nundead to take over the world seem about ready to get underway.\n",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 53
+      },
+      {
+        "dir": "south",
+        "to": 62
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 11,
+          "wear_loc": "shield",
+          "global_limit": 9
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 56,
+    "name": "Twisty passage",
+    "description": "The passage bends north and east here.  To the east your not certain\nwhat lies ahead due to all the twists and turns you've made.  To the\nnorth is seems cold.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 48
+      },
+      {
+        "dir": "east",
+        "to": 57
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 57,
+    "name": "Cross of caverns",
+    "description": "A little-used cavern enters from the south. A passage twists away to\nthe west.  An odd twinkling comes from the cave to the north.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 50
+      },
+      {
+        "dir": "south",
+        "to": 66
+      },
+      {
+        "dir": "west",
+        "to": 56
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 58,
+    "name": "Lonely tunnel",
+    "description": "Something indescribable makes you feel lonesome and sad here. Its just\na feeling you get from this tunnel.  The tunnel east and west.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 59
+      },
+      {
+        "dir": "west",
+        "to": 50
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 59,
+    "name": "Lonely tunnel",
+    "description": "Something indescribable makes you feel lonesome and sad here. You see a\ngate to a burial ground to the north.  This lonesome tunnel sighs along\nwest and east.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 54
+      },
+      {
+        "dir": "east",
+        "to": 60
+      },
+      {
+        "dir": "west",
+        "to": 58
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 60,
+    "name": "Bend in the lonely tunnel",
+    "description": "Something indescribable makes you feel lonesome and sad here. The\ntunnel bends west and south.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 61
+      },
+      {
+        "dir": "west",
+        "to": 59
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 61,
+    "name": "Lonely tunnel",
+    "description": "Something indescribable makes you feel lonesome and sad here. The very\nwalls of the tunnel seems to groan.  to the north the tunnel bends and\neast is an intersection.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 60
+      },
+      {
+        "dir": "east",
+        "to": 62
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 62,
+    "name": "Intersection",
+    "description": "To the north you enter the burial grounds.  a trail of blood leads that\ndirection.  Also you feel an ominous sense of evil magic from there.\nThe tunnel to the west creaks and sighs as if alive.  To the south you\nsmell a hint of fresh air.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 55
+      },
+      {
+        "dir": "south",
+        "to": 63
+      },
+      {
+        "dir": "west",
+        "to": 61
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 63,
+    "name": "Tunnel",
+    "description": "The tunnel heads north and south.  North you see an intersection and\nfar to the south you sense light and smell a fresh breeze.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 62
+      },
+      {
+        "dir": "south",
+        "to": 64
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 64,
+    "name": "Tunnel",
+    "description": "The tunnel slopes noticeably down to the north and you sense the surface\ncould be reached to the south.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 63
+      },
+      {
+        "dir": "south",
+        "to": 65
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 65,
+    "name": "Southern entrance to the catacombs",
+    "description": "Through a trapdoor above you streams light.  Through a doorway to\nthe south streams darkness.  A message has been scrawled upon the wall\nhere.  The message reads:\n     Adventure for the strong yet calculating\n     Death for the weak and shallow\n     Treasure for the smart and lucky\n     Death for the stupid and accursed\nAn ancient Glyph above the entrance keeps monsters from wandering up\nfrom the catacombs.\n",
+    "sector_type": "field",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 64
+      },
+      {
+        "dir": "up",
+        "to": null,
+        "keyword": "floorboard board",
+        "exit_flags": "door closed",
+        "portal": "catacomb-up-2"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 66,
+    "name": "Unknown passage",
+    "description": "Oh dear you seem to have lost your way.  You look back from whence you\ncame but there's no exit there anymore.  There are exits in other\ndirections but you have a feeling that you are hopelessly lost.\n",
+    "sector_type": "field",
+    "room_flags": "dark no_mob indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 67
+      },
+      {
+        "dir": "south",
+        "to": 68
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 67,
+    "name": "Unknown passage",
+    "description": "Oh dear you seem to have lost your way.  You look back from whence you\ncame but there's no exit there anymore.  There are exits in other\ndirections but you have a feeling that you are hopelessly lost.\n",
+    "sector_type": "field",
+    "room_flags": "dark no_mob indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 69
+      },
+      {
+        "dir": "west",
+        "to": 66
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 68,
+    "name": "Unknown passage",
+    "description": "Oh dear you seem to have lost your way.  You look back from whence you\ncame but there's no exit there anymore.  There are exits in other\ndirections but you have a feeling that you are hopelessly lost.\n",
+    "sector_type": "field",
+    "room_flags": "dark no_mob indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 66
+      },
+      {
+        "dir": "east",
+        "to": 69
+      }
+    ]
+  }},
+  {"room": {
+    "area": "catacomb",
+    "anum": 69,
+    "name": "Unknown passage",
+    "description": "Oh dear you seem to have lost your way.  You look back from whence you\ncame but there's no exit there anymore.  There are exits in other\ndirections but you have a feeling that you are hopelessly lost.\n",
+    "sector_type": "field",
+    "room_flags": "dark no_mob indoors unused_room_6",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 67
+      },
+      {
+        "dir": "west",
+        "to": 68
+      }
+    ]
+  }}
+]

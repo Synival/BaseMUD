@@ -1,0 +1,2473 @@
+[
+  {"room": {
+    "area": "canyon",
+    "anum": 1,
+    "name": "A Mountain Path",
+    "description": "You are on a mountain path which ascends a steep mountainside.  The trail\ncurves around the mountain so that you cannot really see what lies ahead.\nYou do sense great power though coming from the area behind the mountain.\n",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": null,
+        "portal": "canyon-north-1"
+      },
+      {
+        "dir": "up",
+        "to": 2
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 3,
+        "room_limit": 3
+      }
+    }]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 2,
+    "name": "A Mountain Path",
+    "description": "You are on a rocky mountain path leading up and around a steep mountainside.\nYou sense a glow from the area beyond the mountain, which you cannot see yet.\n",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 3
+      },
+      {
+        "dir": "down",
+        "to": 1
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 31,
+          "global_limit": 30
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 36,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 3,
+    "name": "Mountainside Tombs",
+    "description": "There are a few stone heaps here and there, the tombs of those who did not\nlast the arduous journey up the mountain.  Curiously you notice a few\nuncovered bodies which don't seem to have died of exhaustion.  The path curves\neast around the mountain.\n",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 4
+      },
+      {
+        "dir": "down",
+        "to": 2
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "bodies body dead",
+        "description": "They look as if their necks have been broken and their flesh, chewed.\n"
+      },
+      {
+        "keyword": "heaps stones tombs",
+        "description": "You are sure glad that YOU aren't under one of those piles!\nMany of the tombstones have the same name on them, 'Raff'.  He must come\nhere a lot.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 38,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 31,
+          "global_limit": 30
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 4,
+    "name": "A Blind Curve on the Mountain Path.",
+    "description": "This looks like a normal mountain path, but it is NOT!  This section of the\npath is habitated by a huge (and of course, man-eating) Cyclops.  The path\nmakes its final ascent to an overlook.\n",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 5
+      },
+      {
+        "dir": "down",
+        "to": 3
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 0,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 13,
+          "wear_loc": "arms",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 14,
+          "wear_loc": "legs",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 5,
+    "name": "Vista",
+    "description": "This is a stunning vista overlooking a canyon.  There is a sign here that says:\n\n\tBEHOLD -- ELEMENTAL CANYON\n\nFire leaps up from firepits in the western part of the canyon.  The sky looks\nfunny, and the air seems hazy to the northwest.  Electricity sparks\nintermittently in the northeast.  To the east you see a strong, magic-looking\nriver flowing through the canyon.  Also to the east you spy a cave entrance\nleading into the canyon wall.  The path descends to the north to another\noverlook.\n",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 6
+      },
+      {
+        "dir": "down",
+        "to": 4
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 6,
+    "name": "The Overlook",
+    "description": "You see various elemental servants wandering around the canyon.  The noise of\nhumming coming from the canyon gets louder.  The path makes a steep descent\ninto the canyon here.\n",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 5
+      },
+      {
+        "dir": "down",
+        "to": 7
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 7,
+    "name": "Entrance to Elemental Canyon",
+    "description": "You are awed by the sounds and sights of great powers at works here.\nElemental servants bustle back and forth doing the biddings of the elemental\nrulers.  You see a sort of cross roads to the north, and you can climb up to\nthe overlook here.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 9
+      },
+      {
+        "dir": "up",
+        "to": 6
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 12,
+          "room_limit": 12
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 36,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 8,
+    "name": "The Floor of the Canyon",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at all.\nIn general, it is calm, yet there is always a incessant buzz of things\ngoing on about.  The canyon continues north and east.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 11
+      },
+      {
+        "dir": "east",
+        "to": 9
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 32,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 9,
+    "name": "Elemental Gateway",
+    "description": "To the west a path dips and winds among some flowing firepits.  To the\nnortheast a path goes toward the river.  Beyond toward the northeast and\nnorthwest are outcrops which rise up from the canyon floor. To the east there\nis a cave mouth which leads into the canyon wall.  And to the south the path\nleads up, away, and out of the canyon.  Various pure and cross-breeds of\nelemental forms wander the canyon floor, which extends in a wide swath\nnorthwards.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 12
+      },
+      {
+        "dir": "east",
+        "to": 10
+      },
+      {
+        "dir": "south",
+        "to": 7
+      },
+      {
+        "dir": "west",
+        "to": 8
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 11,
+          "wear_loc": "neck1",
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 12,
+          "wear_loc": "lwrist",
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 12,
+          "room_limit": 12
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 6,
+          "room_limit": 6
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 32,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "wielded",
+          "global_limit": 16
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 10,
+    "name": "The Floor of the Canyon",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always a incessant buzz of\nthings going on about.  The canyon floor extends north and west.  There is a\ncave mouth set into the canyon wall to the east.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 13
+      },
+      {
+        "dir": "east",
+        "to": 20
+      },
+      {
+        "dir": "west",
+        "to": 9
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 23,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 11,
+    "name": "The Floor of the Canyon",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The canyon floor extends off to the north, east,\nand south.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 14
+      },
+      {
+        "dir": "east",
+        "to": 12
+      },
+      {
+        "dir": "south",
+        "to": 8
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 31,
+          "global_limit": 5,
+          "room_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 12,
+    "name": "The Floor of the Canyon",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The canyon floor extends in all directions.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 15
+      },
+      {
+        "dir": "east",
+        "to": 13
+      },
+      {
+        "dir": "south",
+        "to": 9
+      },
+      {
+        "dir": "west",
+        "to": 11
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 9,
+          "room_limit": 9
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "hold",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 5,
+          "room_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 13,
+    "name": "The Floor of the Canyon",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The canyon floor extends north, south, and west.\nA path follows a stream to the east.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 16
+      },
+      {
+        "dir": "east",
+        "to": 28
+      },
+      {
+        "dir": "south",
+        "to": 10
+      },
+      {
+        "dir": "west",
+        "to": 12
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 22,
+        "global_limit": 8,
+        "room_limit": 8
+      }
+    }]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 14,
+    "name": "The Floor of the Canyon",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about. The canyon floor extends north, east, and south.\nTo the west a garden is on fire.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 17
+      },
+      {
+        "dir": "east",
+        "to": 15
+      },
+      {
+        "dir": "south",
+        "to": 11
+      },
+      {
+        "dir": "west",
+        "to": 37
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 15,
+    "name": "The Floor of the Canyon",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The canyon floor extends in all directions.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 18
+      },
+      {
+        "dir": "east",
+        "to": 16
+      },
+      {
+        "dir": "south",
+        "to": 12
+      },
+      {
+        "dir": "west",
+        "to": 14
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 16,
+    "name": "The Floor of the Canyon",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The Canyon floor extends north, south and west.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 19
+      },
+      {
+        "dir": "south",
+        "to": 13
+      },
+      {
+        "dir": "west",
+        "to": 15
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 31,
+          "global_limit": 5,
+          "room_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 17,
+    "name": "The Floor of the Canyon",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about. The canyon floor extends east and south.  You can\nclimb a rise in the canyon floor to the north.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 53
+      },
+      {
+        "dir": "east",
+        "to": 18
+      },
+      {
+        "dir": "south",
+        "to": 14
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 15,
+        "room_limit": 15
+      }
+    }]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 18,
+    "name": "The Floor of the Canyon",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The canyon floor extends east, south, and west.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 19
+      },
+      {
+        "dir": "south",
+        "to": 15
+      },
+      {
+        "dir": "west",
+        "to": 17
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 6,
+          "room_limit": 6
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 6,
+          "room_limit": 6
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 23,
+          "wear_loc": "hold",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 33,
+          "global_limit": 7,
+          "room_limit": 7
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 19,
+    "name": "The Floor of the Canyon",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The canyon floor extends south and west.  You can\nclimb a rise in the canyon floor to the north.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 54
+      },
+      {
+        "dir": "south",
+        "to": 16
+      },
+      {
+        "dir": "west",
+        "to": 18
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 25,
+          "wear_loc": "hold",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 20,
+    "name": "Dark Cave",
+    "description": "You notice a path winding east among some huge boulders.  You feel a powerful\nsource of energy from that direction.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 21
+      },
+      {
+        "dir": "west",
+        "to": 10
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 36,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 20,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "hold",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 21,
+    "name": "Darker Caves",
+    "description": "You can barely see your way even with a light source.  The rocks of the cave\nare even darker than the darkness.  You hear a powerful humming all around\nyou.  Cave paths go south and east roughly, its hard to tell exactly when you\ncan't see where you are going.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 22
+      },
+      {
+        "dir": "south",
+        "to": 23
+      },
+      {
+        "dir": "west",
+        "to": 20
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 20,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 23,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 22,
+    "name": "Darker Caves",
+    "description": "You can barely see your way even with a light source.  The rocks of the cave\nare even darker than the darkness.  You hear a powerful humming all around\nyou.  Cave paths go south and west roughly; it's hard to tell exactly when you\ncan't see where you are going.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 24
+      },
+      {
+        "dir": "west",
+        "to": 21
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 12,
+          "room_limit": 12
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 24,
+          "wear_loc": "hold",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 24,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 25,
+          "wear_loc": "body",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 23,
+    "name": "Darker Caves",
+    "description": "You can barely see your way even with a light source.  The rocks of the cave\nare even darker than the darkness.  You hear a powerful humming all around you.\nCave paths go north, south and east roughly; it's hard to tell exactly when\nyou can't see where you are going.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 21
+      },
+      {
+        "dir": "east",
+        "to": 24
+      },
+      {
+        "dir": "south",
+        "to": 25
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 17,
+          "wear_loc": "hold",
+          "global_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 24,
+    "name": "Darker Caves",
+    "description": "You can barely see your way even with a light source.  The rocks of the cave\nare even darker than the darkness.  You hear a powerful humming all around you.\nCave paths go north, south and west roughly, it's hard to tell exactly when you\ncan't see where you are going.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 22
+      },
+      {
+        "dir": "south",
+        "to": 26
+      },
+      {
+        "dir": "west",
+        "to": 23
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 17,
+        "global_limit": 15,
+        "room_limit": 15
+      }
+    }]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 25,
+    "name": "Darkest Caves",
+    "description": "Your light doesn't even seem to work here.  Even magical light sources seem\nonly to illuminate about a foot ahead of you.  You suddenly realize that the\npath has descended quite a bit but you didn't notice before because of the\ndarkness.  You sense a great presence off to the east aways.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 23
+      },
+      {
+        "dir": "east",
+        "to": 26
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 9,
+          "room_limit": 9
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 19,
+          "wear_loc": "hold",
+          "global_limit": 7
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 5,
+          "room_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 26,
+    "name": "Darkest Caves",
+    "description": "Your light doesn't even seem to work here.  Even magical light sources seem\nonly to illuminate about a foot ahead of you.  You suddenly realize that the\npath has descended quite a bit but you didn't notice before because of the\ndarkness.  You sense a great presence directly to the east.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 24
+      },
+      {
+        "dir": "east",
+        "to": 27
+      },
+      {
+        "dir": "west",
+        "to": 25
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 17,
+        "global_limit": 15,
+        "room_limit": 15
+      }
+    }]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 27,
+    "name": "Earth Chamber",
+    "description": "This is the abode of the Earth Ruler.  He decides about earthquakes,\nlandslides, and avalanches.  The Earth Ruler sits upon a huge marble throne\ncarved into the wall.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 26
+    }],
+    "extra_description": [{
+      "keyword": "marble throne",
+      "description": "The ruler notices your stare, and doesn't like it one bit!  The whole\nearth seems to shake with his emotion.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 1,
+          "wear_loc": "lfinger",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "body",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 24,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 28,
+    "name": "By the River",
+    "description": "The water in the river seems to bubble and froth with magic.  Though it\nsplashes playfully on you, it does not seem wet.  The path leads north closer\nto the water. To the west you see a T-intersection.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 29
+      },
+      {
+        "dir": "west",
+        "to": 13
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 36,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 19,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 29,
+    "name": "In the River",
+    "description": "To continue you had to walk right in the river.  Though you walk along in\nwater up to your knees, you do not seem to get wet.  A bay stretches out to\nthe north and the river goes south.\n",
+    "sector_type": "swim",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 30
+      },
+      {
+        "dir": "south",
+        "to": 28
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 19,
+        "global_limit": 8,
+        "room_limit": 8
+      }
+    }]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 30,
+    "name": "Elemental Bay",
+    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\nbelow you.  Then you realize you are walking on the water itself.  Truly\nmagical water indeed.  Though you splash through the bay you do not get wet.\n",
+    "sector_type": "swim",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 33
+      },
+      {
+        "dir": "east",
+        "to": 31
+      },
+      {
+        "dir": "south",
+        "to": 29
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 34,
+          "global_limit": 6,
+          "room_limit": 6
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 18,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 31,
+    "name": "Elemental Bay",
+    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\nbelow you.  Then you realize you are walking on the water itself.  Truly\nmagical water indeed.  Though you splash through the bay you do not get wet.\n",
+    "sector_type": "swim",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 34
+      },
+      {
+        "dir": "east",
+        "to": 32
+      },
+      {
+        "dir": "west",
+        "to": 30
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 32,
+    "name": "Elemental Bay",
+    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\nbelow you.  Then you realize you are walking on the water itself.  Truly\nmagical water indeed.  Though you splash through the bay you do not get wet.\n",
+    "sector_type": "swim",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 35
+      },
+      {
+        "dir": "west",
+        "to": 31
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 5,
+          "room_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 5,
+          "room_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 22,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 33,
+    "name": "Elemental Bay",
+    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\nbelow you.  Then you realize you are walking on the water itself.  Truly\nmagical water indeed.  Though you splash through the bay you do not get wet.\n",
+    "sector_type": "swim",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 34
+      },
+      {
+        "dir": "south",
+        "to": 30
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "hold",
+          "global_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 34,
+    "name": "Elemental Bay",
+    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\nbelow you.  Then you realize you are walking on the water itself.  Truly\nmagical water indeed.  Though you splash through the bay you do not get wet.\n",
+    "sector_type": "swim",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 35
+      },
+      {
+        "dir": "south",
+        "to": 31
+      },
+      {
+        "dir": "west",
+        "to": 33
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 12,
+          "room_limit": 12
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 35,
+    "name": "Elemental Bay",
+    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\nbelow you.  Then you realize you are walking on the water itself.  Truly\nmagical water indeed.  Though you splash through the bay you do not get wet.\n",
+    "sector_type": "swim",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 32
+      },
+      {
+        "dir": "west",
+        "to": 34
+      },
+      {
+        "dir": "down",
+        "to": 36
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 24,
+          "wear_loc": "hold",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 36,
+    "name": "Water Chamber",
+    "description": "This chamber was magically created here on the floor of the bay.  It looks\nlike it's been here for a long, long time.  Though you are 'under water' there\nis no difficulty breathing normally, and oddly you do not feel the pressure of\nthe water above you.\n",
+    "sector_type": "swim",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "up",
+      "to": 35
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "waist",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 10,
+          "wear_loc": "about",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 37,
+    "name": "A Fiery Pathway",
+    "description": "You tread carefully along a path which dips and turns among geysers of fire.\nMiniature volcanoes spew lava in rivers.  The fire is hot but not altogether\ndangerous.  The path extends east and south.\n",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 14
+      },
+      {
+        "dir": "south",
+        "to": 38
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 36,
+        "global_limit": 15,
+        "room_limit": 15
+      }
+    }]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 38,
+    "name": "A Fiery Pathway",
+    "description": "You tread carefully along a path which dips and turns among pits of fire and\nbeds of coals.  A garden to the west glows with an everlasting fire.\n",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 37
+      },
+      {
+        "dir": "west",
+        "to": 42
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 26,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 26,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 27,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 34,
+          "global_limit": 6,
+          "room_limit": 6
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 17,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 19,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 20,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 42,
+    "name": "The Burning Gardens",
+    "description": "Everywhere around you the landscape is afire; the rocks, the shrubs and even\nthe air seems to be aflame.  Curiously, the magical fire does not seem to\nconsume its hosts.  A path leads east among some fire pits.\n",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 38
+      },
+      {
+        "dir": "west",
+        "to": 45
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 6,
+          "room_limit": 6
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 28,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 27,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 29,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 28,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 30,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 29,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 20,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 45,
+    "name": "The Fire Chamber",
+    "description": "The fire ruler sits upon a throne made of blue flame.  Little flickers of\nflame dance to and fro for the entertainment of the ruler.\n",
+    "sector_type": "forest",
+    "doors": [{
+      "dir": "east",
+      "to": 42
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 3,
+          "wear_loc": "wielded",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "neck1",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "hold",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 46,
+    "name": "Electric Pathway",
+    "description": "The pathway glows and hums because of the electricity pulsing through it.\nIt seems almost soothing to your weary feet.  To the north there is a\nsunken-in area.  A path leads east also.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 48
+      },
+      {
+        "dir": "east",
+        "to": 53
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 9,
+          "room_limit": 9
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 36,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 18,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 19,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 47,
+    "name": "The Electric Playground",
+    "description": "Though there is a seemingly carefree atmosphere here, you sense that\nsomething much more important takes place near by.  The electric playground\nextends north and east.\n",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 49
+      },
+      {
+        "dir": "east",
+        "to": 48
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 18,
+        "global_limit": 15,
+        "room_limit": 15
+      }
+    }]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 48,
+    "name": "The Electric Playground",
+    "description": "Though there is a seemingly carefree atmosphere here, you sense that\nsomething much more important takes place near by.  There is an electric\npath heading away south.  The playground extends north and west.\n",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 50
+      },
+      {
+        "dir": "south",
+        "to": 46
+      },
+      {
+        "dir": "west",
+        "to": 47
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 18,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 23,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 49,
+    "name": "The Electric Playground",
+    "description": "Though there is a seemingly carefree atmosphere here, you sense that\nsomething much more important takes place near by.  The playground continues\nsouth and east.\n",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 50
+      },
+      {
+        "dir": "south",
+        "to": 47
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 35,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 18,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 50,
+    "name": "The Electric Playground",
+    "description": "Though there is a seemingly carefree atmosphere here, you sense that\nsomething much more important takes place near by.  The playground is\nsouth and west.  Something more important catches your eye to the east.\n",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 51
+      },
+      {
+        "dir": "south",
+        "to": 48
+      },
+      {
+        "dir": "west",
+        "to": 49
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 12,
+          "room_limit": 12
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 18,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 19,
+          "wear_loc": "hold",
+          "global_limit": 7
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 51,
+    "name": "Lightning Causeway",
+    "description": "Up a set of stairs carved into the hill you see intermittent flashes of\nlightning.  A continuous hum also comes form that direction.  To the west\nis the electric playground.\n",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 50
+      },
+      {
+        "dir": "up",
+        "to": 52
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 18,
+        "global_limit": 15,
+        "room_limit": 15
+      }
+    }]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 52,
+    "name": "Lightning Chamber",
+    "description": "There is some sort of control panel here. Apparently the Lightning Ruler\nobserves and controls electric forces from here.  A set of steps carved into\nthe hill lead down to a causeway.\n",
+    "sector_type": "swim",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "down",
+      "to": 51
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 11,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 7,
+          "wear_loc": "wielded",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 8,
+          "wear_loc": "shield",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 18,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 18,
+          "wear_loc": "hold",
+          "global_limit": 7
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 18,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 53,
+    "name": "Mesa West",
+    "description": "An electric path starts to the west.  The mesa continues to the east.\nOr you can climb down to the canyon floor to the south.\n",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 54
+      },
+      {
+        "dir": "south",
+        "to": 17
+      },
+      {
+        "dir": "west",
+        "to": 46
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 33,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 23,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 54,
+    "name": "Mesa East",
+    "description": "A path starts to the north.  The mesa continues to the west.\nOr you can climb down to the canyon floor to the south.\n",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 55
+      },
+      {
+        "dir": "south",
+        "to": 19
+      },
+      {
+        "dir": "west",
+        "to": 53
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 9,
+          "room_limit": 9
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 22,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 55,
+    "name": "Floating in Air",
+    "description": "Last you knew, you were walking on the mesa.  Abruptly the path dropped\nfrom beneath your feet much to quick for you to recover.  Instead of\nplunging to your death, you seemingly miss the ground and begin walking\non air.  The space to the north and east seems just thin air, but you can\nwalk there.  The pathway you came from is to the south.\n",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 57
+      },
+      {
+        "dir": "east",
+        "to": 56
+      },
+      {
+        "dir": "south",
+        "to": 54
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 33,
+          "global_limit": 7,
+          "room_limit": 7
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 36,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 25,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 18,
+          "wear_loc": "hold",
+          "global_limit": 7
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 25,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 25,
+          "wear_loc": "hold",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 22,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 56,
+    "name": "Floating in Air",
+    "description": "You look down and see the ground 100 feet below you.  The wind whispering\nin your ear seems to reassure you that this is fine.  To the north aways\nyou spy a portal of sorts.  To the west is more thin air.\n",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 58
+      },
+      {
+        "dir": "west",
+        "to": 55
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 25,
+        "global_limit": 15,
+        "room_limit": 15
+      }
+    }]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 57,
+    "name": "Floating in Air",
+    "description": "You look down and see the ground 100 feet below you.  The wind whispering\nin your ear seems to reassure you that this is fine.  To the east aways\nyou spy a portal of sorts.  To the south is more thin air.\n",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 58
+      },
+      {
+        "dir": "south",
+        "to": 55
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 35,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 25,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 24,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 58,
+    "name": "Floating in Air",
+    "description": "You look down and see the ground 100 feet below you.  The wind whispering\nin your ear seems to reassure you that this is fine. There is a portal\nhanging in midair here. It is to the east.  You can float south or west\nif you'd like.\n",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 59
+      },
+      {
+        "dir": "south",
+        "to": 56
+      },
+      {
+        "dir": "west",
+        "to": 57
+      }
+    ],
+    "extra_description": [{
+      "keyword": "portal",
+      "description": "Through the portal you see a tunnel.\n"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 25,
+        "global_limit": 15,
+        "room_limit": 15
+      }
+    }]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 59,
+    "name": "Windy Tunnel",
+    "description": "A tunnel leads east.  To the west you can enter a portal. The wind in\nthis tunnel is quite fierce, it seems as if it's forced.  \n",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 60
+      },
+      {
+        "dir": "west",
+        "to": 58
+      }
+    ],
+    "extra_description": [{
+      "keyword": "portal",
+      "description": "Through the portal you see nothing but sky.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 25,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 24,
+          "global_limit": 8,
+          "room_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "canyon",
+    "anum": 60,
+    "name": "Air Chamber",
+    "description": "Tiny tornadoes come and go and dance along the ground here.  At the back\nof the chamber you notice a huge throne made of swirling clouds.\nA tunnel leads west.\n",
+    "sector_type": "swim",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 59
+    }],
+    "extra_description": [{
+      "keyword": "throne clouds",
+      "description": "Although the cloud throne appears solid enough to sit on, I wouldn't try\nit if I were you!\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 5,
+          "wear_loc": "feet",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 6,
+          "wear_loc": "head",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 6,
+          "room_limit": 6
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "wielded",
+          "global_limit": 16
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 25,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 25,
+          "global_limit": 15,
+          "room_limit": 15
+        }
+      }
+    ]
+  }}
+]

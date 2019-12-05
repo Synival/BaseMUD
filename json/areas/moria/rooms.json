@@ -1,0 +1,3517 @@
+[
+  {"room": {
+    "area": "moria",
+    "anum": 0,
+    "name": "West trail around Midgaard",
+    "description": "You are on a dusty trail following the outside wall of Midgaard.\nTo the east the wall towers over you and to the west you see the\nforest of Haon-Dor. The trail leads north and south along the wall. \n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 1,
+        "description": "The dusty trail winds north closely to the wall.\n"
+      },
+      {
+        "dir": "south",
+        "to": null,
+        "description": "The dusty trail leads to outside the west gate of Midgaard.\n",
+        "portal": "moria-south-2"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 1,
+    "name": "West trail around Midgaard",
+    "description": "You are on a dusty trail following the outside wall of Midgaard.\nTo the east the wall towers over you and to the west you see the\nforest of Haon-Dor. The trail leads north and south along the wall. \n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 2,
+        "description": "To the north you notice the path makes a turn, following the City wall. \n"
+      },
+      {
+        "dir": "south",
+        "to": 0,
+        "description": "The dusty trail continues towards the south.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 2,
+    "name": "Northwest corner of dusty trail.",
+    "description": "You are standing outside the northwestern corner of the city wall.\nThe trail leads east following the north wall and south towards the gate.  \n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 3,
+        "description": "The dusty trail winds close up to the north wall of Midgaard.\n"
+      },
+      {
+        "dir": "south",
+        "to": 1,
+        "description": "The dusty trail leads south towards the gate.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 3,
+    "name": "Dusty trail along north wall.",
+    "description": "You are walking on the trail following the outside of Midgaard's\nnorthern wall.  \n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 4,
+        "description": "The dusty trail is winding along the north wall of Midgaard.\n"
+      },
+      {
+        "dir": "west",
+        "to": 2,
+        "description": "The dusty trail turns left around the corner of the wall, behind it Haon-Dor. \n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 4,
+    "name": "The long dusty trail following the north wall.",
+    "description": "You are just outside the northern gate of Midgaard.  You can continue along\nthe trail to the east or west, head onwards to the plains of the north, or\nenter Midgaard to the south.  You can just barely make out the buildings of\nMidgaard from here, the Temple of Mota looks impressive even from this\ndistance.  \n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": null,
+        "description": "A small path extends into the plains.\n",
+        "portal": "moria-north-1"
+      },
+      {
+        "dir": "east",
+        "to": 5,
+        "description": "The dusty trail is winding along the north wall of Midgaard. \n"
+      },
+      {
+        "dir": "south",
+        "to": null,
+        "description": "You see the south gate of Midgaard.\n",
+        "portal": "moria-south-4"
+      },
+      {
+        "dir": "west",
+        "to": 3,
+        "description": "The dusty trail is winding along the north wall of Midgaard.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 5,
+    "name": "Dusty trail along north wall.",
+    "description": "You are walking on the trail following the outside of Midgaard's\nnorthern wall.  \n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 6,
+        "description": "The dusty trail turns right around the corner of the wall. \nYou notice some mountains in the distance.\n"
+      },
+      {
+        "dir": "west",
+        "to": 4,
+        "description": "The dusty trail is winding along the north wall of Midgaard.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 6,
+    "name": "Northeast corner of dusty trail.",
+    "description": "You are standing outside the northeastern corner of the city wall.\nThe trail leads west following the north wall and south towards the gate.  \n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 7,
+        "description": "The dusty trail leads south towards the gate.\n"
+      },
+      {
+        "dir": "west",
+        "to": 5,
+        "description": "The dusty trail winds close up to the north wall of Midgaard.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 7,
+    "name": "East trail around Midgaard",
+    "description": "You are on a dusty trail following the outside wall of Midgaard.\nTo the west the wall towers over you and far to the east you see\nsome mountains. The trail leads north and south along the wall. \n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 6,
+        "description": "To the north you notice the path makes a turn, following the City wall. \n"
+      },
+      {
+        "dir": "south",
+        "to": 8,
+        "description": "The dusty trail continues towards the south.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 8,
+    "name": "East trail around Midgaard",
+    "description": "You are on a dusty trail following the outside wall of Midgaard.\nTo the west the wall towers over you and far to the east you see\nsome mountains. The trail leads north and south along the wall. \n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 7,
+        "description": "The dusty trail winds north closely to the wall.\n"
+      },
+      {
+        "dir": "south",
+        "to": null,
+        "description": "The dusty trail leads to outside the east gate of Midgaard.\n",
+        "portal": "moria-south-3"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 100,
+    "name": "The hills",
+    "description": "You are on a small bewildered path winding its way between the hills in\nlack of better things to do. To the south you have a splendid view over the\nflat, vast, desolate plains. To the north the hills grow steadily darker and\nforeboding. This is the cause of no sunset, it is rather the power of evil\npenetrating these quiet hills. Glancing around you notice only a single bird.\nThe mountains of the dwarven kingdom rise up to your east, you can barely\nmake out the queen's mines from here.\n",
+    "sector_type": "hills",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 101
+      },
+      {
+        "dir": "east",
+        "to": null,
+        "description": "You see the mountains of the dwarven kingdom. \n",
+        "portal": "moria-east-1"
+      },
+      {
+        "dir": "south",
+        "to": null,
+        "portal": "moria-south-1"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 101,
+    "name": "The hills",
+    "description": "You are surrounded by dark and sinister hills. Although they seemed fairly\nsmall from a distance you now get the feeling that they're closing in on you,\ntowering over you, overwhelming you ...  The small path seems to have second\nthoughts about these hills because it starts winding unnecessarily, turning\nseveral times around itself.  To the south the hills have a lighter hue of\ndark. To the north however, the hills have become nightblack holes in the\ndistant mountains.\n",
+    "sector_type": "hills",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 102
+      },
+      {
+        "dir": "south",
+        "to": 100
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 102,
+    "name": "End of the path",
+    "description": "At this point the path has had enough. With a terrified shudder it cowers\nto the ground, only staying here because you're standing on it. with a slight\nfeeling of unease you look around noticing only a few bushes and a large sign\ncarved into the mountain.  You feel you can hear the cry of help from a\nthousand silent voices all coming from an even darker hole in the mountain to\nthe north marking the entrance to a cave (or a grave :-).\n",
+    "sector_type": "hills",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 110
+      },
+      {
+        "dir": "south",
+        "to": 101
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "sign",
+        "description": "The sign says:\n\n        /---------------------\\\n        | The Mines of Moria! |\n        |                     |\n        | Four levels.        |\n        |                     |\n        | Watch for mages!    |\n        |                     |\n        \\---------------------/\n                 | |\n                 | |\n                 | |\n                 | |\n                 | |\n"
+      },
+      {
+        "keyword": "bushes",
+        "description": "Small crippled bushes desperately trying to grow south.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 110,
+    "name": "The cave",
+    "description": "You are in a large cave. The ceiling is lost somewhere above the reach of\nyour light. The floor, however, is highly illuminated, your light flickering\nover several tombstones. Only one is whole, the rest have been shattered by\nsome savage blow. The remaining tombstone looks disturbingly new...\nA small breeze of fresh air enters from the south (probably lost too). Take a\ngood breath, it may be your last mouthful of air in a long, long time that\nothers haven't breathed before you.\nTo the north a small tunnel continues into the mountain.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 111
+      },
+      {
+        "dir": "south",
+        "to": 102
+      }
+    ],
+    "extra_description": [{
+      "keyword": "tombstone",
+      "description": "The stone is inscribed with the unfortunate player's famous last words:\n\n  \"What are you worrying about, it is just a small harmless snake\"\n"
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 111,
+    "name": "The tunnel",
+    "description": "You squeeze your way through a small, narrow tunnel. The sharp-edged rocks\nprotruding from the walls threaten to scratch and cut you. \nTo the south you sense a freshness in the air which is rather unusual in these\ndamp, stuffy tunnels. To the north the tunnel continues.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 114
+      },
+      {
+        "dir": "south",
+        "to": 110
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 112,
+    "name": "The tunnel",
+    "description": "You are in a part of the tunnel that looks uncannily like the rest except\nthat it goes in a east-north direction. To the north the tunnel widens into\na cave.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 116
+      },
+      {
+        "dir": "east",
+        "to": 113
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 113,
+    "name": "The tunnel",
+    "description": "This tunnel, leading east-west, seems seldom used.  A thick layer of dust\ncovers the floor, making the air stuffy and dry. \n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 114
+      },
+      {
+        "dir": "west",
+        "to": 112
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 103,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 21
+          },
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 117
+          },
+          "wear_loc": "shield",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 103,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 23
+          },
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 114,
+    "name": "The tunnel",
+    "description": "You are walking in a narrow tunnel. The walls are only roughly shaped,\nsharp rocks protruding everywhere, even from the floor making you stumble in\nthe flickering light. To the south the tunnel narrows even more making it\nalmost impossible to pass. To the north it slowly widens into a cave. There\nis a branch of the tunnel going west.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 118
+      },
+      {
+        "dir": "east",
+        "to": 115
+      },
+      {
+        "dir": "south",
+        "to": 111
+      },
+      {
+        "dir": "west",
+        "to": 113
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 115,
+    "name": "The tunnel",
+    "description": "You are in a corner tunnel leading west and north.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 119
+      },
+      {
+        "dir": "west",
+        "to": 114
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 101,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 104,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 29
+          },
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 116,
+    "name": "The large cave",
+    "description": "You are in a large cave, the cave continues east and west, to the south\nyou notice a small tunnel.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 117
+      },
+      {
+        "dir": "south",
+        "to": 112
+      },
+      {
+        "dir": "west",
+        "to": 123
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 117,
+    "name": "The large cave",
+    "description": "You are in the east end of the large cave.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 116
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 102,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 118,
+    "name": "The cave",
+    "description": "You are in the south end of a cave, to the south you see a tunnel. You\nnotice a large pile of bones in the corner.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 125
+      },
+      {
+        "dir": "south",
+        "to": 114
+      }
+    ],
+    "extra_description": [{
+      "keyword": "pile bones",
+      "description": "Some of the bones are human!\n"
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 119,
+    "name": "The tunnel",
+    "description": "You are in a north-south leading tunnel.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 126
+      },
+      {
+        "dir": "south",
+        "to": 115
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 120,
+    "name": "The hole",
+    "description": "You are by a hole in the floor, you can leave down, or north.\n",
+    "sector_type": "forest",
+    "room_flags": "dark no_mob indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 127
+      },
+      {
+        "dir": "down",
+        "to": 164
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 102,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 121,
+    "name": "The hole",
+    "description": "A hole in the floor leads down here.\n",
+    "sector_type": "forest",
+    "room_flags": "dark no_mob indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 122
+      },
+      {
+        "dir": "down",
+        "to": 215
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 103,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 103,
+          "wear_loc": "wielded",
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 103,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 23
+          },
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 122,
+    "name": "The damp tunnel",
+    "description": "You are in a damp tunnel.  Your clothes feel wet.  The tunnel continues\nto the north; to the west you see a hole in the floor; and to the east\nthere is a large cave.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 123
+      },
+      {
+        "dir": "east",
+        "to": 124
+      },
+      {
+        "dir": "west",
+        "to": 121
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 105,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 100,
+          "wear_loc": "lfinger",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 22
+          },
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 114
+          },
+          "wear_loc": "hands",
+          "global_limit": 9
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 123,
+    "name": "The large cave",
+    "description": "You are in the western part of the large cave, to the south you see\na damp tunnel.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 116
+      },
+      {
+        "dir": "south",
+        "to": 122
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 102,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 124,
+    "name": "The damp tunnel",
+    "description": "You are in a corner of a damp tunnel.  You can go west or south.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 159
+      },
+      {
+        "dir": "west",
+        "to": 122
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 125,
+    "name": "The cave",
+    "description": "You are in the north end of a cave.  To the east you see many tunnels.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 126
+      },
+      {
+        "dir": "south",
+        "to": 118
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 101,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 126,
+    "name": "The many tunnels",
+    "description": "You are at the intersection of many tunnels.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 128
+      },
+      {
+        "dir": "east",
+        "to": 127
+      },
+      {
+        "dir": "south",
+        "to": 119
+      },
+      {
+        "dir": "west",
+        "to": 125
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 127,
+    "name": "The tunnel",
+    "description": "You are in a north-south leading tunnel, you also notice a tunnel to\nthe west. From the north you sense the fresh air!\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 129
+      },
+      {
+        "dir": "south",
+        "to": 120
+      },
+      {
+        "dir": "west",
+        "to": 126
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 103,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 21
+          },
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 103,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 25
+          },
+          "wear_loc": "wielded",
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 117
+          },
+          "wear_loc": "shield",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 128,
+    "name": "The smelly tunnel",
+    "description": "You are in a north-south leading tunnel, you see a small light\nto the north. You notice a strange smell from the north..\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 130
+      },
+      {
+        "dir": "south",
+        "to": 126
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 104,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 104,
+          "wear_loc": "wielded",
+          "global_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 104,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 129,
+    "name": "The cave",
+    "description": "You are in a cave that is filled with fresh air, you sense the\nwind blowing from the north. To the south you see a small tunnel\ncontinue into the mountain.\n",
+    "sector_type": "field",
+    "room_flags": "dark no_mob indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 131
+      },
+      {
+        "dir": "south",
+        "to": 127
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 130,
+    "name": "The light cave",
+    "description": "You are in a light cave, through a hole large above you, you see \nthe sky. A small tunnel to the south is the only way out.\n",
+    "sector_type": "field",
+    "doors": [{
+      "dir": "south",
+      "to": 128
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 100,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 101,
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 102,
+          "into": 101,
+          "global_limit": -1,
+          "put_count": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 254,
+          "global_limit": 9
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 131,
+    "name": "The valley",
+    "description": "You are in a small valley, surrounded by hills and a mountain to \nthe south. In the mountain there is a cave.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 132
+      },
+      {
+        "dir": "south",
+        "to": 129
+      }
+    ],
+    "extra_description": [{
+      "keyword": "cave",
+      "description": "Well it doesn't look nice, but it's the only way out.\n"
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 132,
+    "name": "The foothills",
+    "description": "You are on a winding path that leads through the foothills on the\nother side of the mountain.  The path continues north.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 133
+      },
+      {
+        "dir": "south",
+        "to": 131
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 133,
+    "name": "The intersection in the foothills",
+    "description": "The small path you are following splits here.  The path continues\nnorth and south or you can follow a trail east into the mountains.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 134
+      },
+      {
+        "dir": "east",
+        "to": 137
+      },
+      {
+        "dir": "south",
+        "to": 132
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 134,
+    "name": "The grassy area of the foothills",
+    "description": "The grass here is unusually high.  You notice several areas where\nsomeone or something large has crushed spots of the grass down.  Several very\nlarge rocks litter this area.  You can go north, west or south.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 135
+      },
+      {
+        "dir": "south",
+        "to": 133
+      },
+      {
+        "dir": "west",
+        "to": 142
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 135,
+    "name": "The foothills end",
+    "description": "At this point you are leaving the foothills.  You see a plains area\nto the north of here.  You can spot a small city in the distance from\nhere.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 136
+      },
+      {
+        "dir": "south",
+        "to": 134
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 136,
+    "name": "The plains",
+    "description": "The plains.  Exits are south.\n",
+    "sector_type": "field",
+    "doors": [{
+      "dir": "south",
+      "to": 135
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 137,
+    "name": "The foothills path",
+    "description": "Exits are east and west.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 138
+      },
+      {
+        "dir": "west",
+        "to": 133
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 138,
+    "name": "Base of the mountain",
+    "description": "Exits are east and west.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 139
+      },
+      {
+        "dir": "west",
+        "to": 137
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 139,
+    "name": "A trail up the mountain",
+    "description": "Exits are east and west.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 140
+      },
+      {
+        "dir": "west",
+        "to": 138
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 140,
+    "name": "The mountain top.",
+    "description": "Exits are north, east, and west.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 141
+      },
+      {
+        "dir": "east",
+        "to": null,
+        "description": "It doesn't look safe this way.\n",
+        "portal": "moria-east-2"
+      },
+      {
+        "dir": "west",
+        "to": 139
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 141,
+    "name": "The lion's den",
+    "description": "Exits are south.\n",
+    "sector_type": "field",
+    "doors": [{
+      "dir": "south",
+      "to": 140
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 142,
+    "name": "The level foothills",
+    "description": "Exits are east and west.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 134
+      },
+      {
+        "dir": "west",
+        "to": 143
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 157,
+        "global_limit": 2,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 143,
+    "name": "The cave entrance",
+    "description": "Exits are east and west.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 142
+      },
+      {
+        "dir": "west",
+        "to": 144
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 144,
+    "name": "The hill giant cave",
+    "description": "Exits are east.\n",
+    "sector_type": "field",
+    "doors": [{
+      "dir": "east",
+      "to": 143
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 158,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 105,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 106,
+          "wear_loc": "about",
+          "global_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 150,
+    "name": "The tunnel",
+    "description": "The tunnel turns here, continuing to the east and south.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 151
+      },
+      {
+        "dir": "south",
+        "to": 153
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 151,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 156,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 77
+          },
+          "wear_loc": "arms",
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 151,
+    "name": "The tunnel",
+    "description": "You are in a narrow east-west tunnel.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 152
+      },
+      {
+        "dir": "west",
+        "to": 150
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 152,
+    "name": "The tunnel",
+    "description": "You are at a turn, the tunnel continues south and west.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 200
+      },
+      {
+        "dir": "west",
+        "to": 151
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 154,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 153,
+    "name": "The tunnel",
+    "description": "You are at a turn, the tunnel continues north and east.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 150
+      },
+      {
+        "dir": "east",
+        "to": 154
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 154,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 154,
+    "name": "The light cave",
+    "description": "You are in a cave, to south from you there is a large fire that lights\nthe entire cave, to the east and west tunnels leads off.\n",
+    "sector_type": "field",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 155
+      },
+      {
+        "dir": "south",
+        "to": 156
+      },
+      {
+        "dir": "west",
+        "to": 153
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 155,
+    "name": "The maze",
+    "description": "You are in a maze of small damp tunnels.  The only exit is west.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 154
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 151,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 157,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 74
+          },
+          "wear_loc": "legs",
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 156,
+    "name": "The light cave",
+    "description": "You are in a light cave, a large fire in front of you lights the room.\nThe cave continues to the north and south.\n",
+    "sector_type": "field",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 154
+      },
+      {
+        "dir": "south",
+        "to": 161
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 152,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 23
+          },
+          "wear_loc": "wielded",
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 157,
+    "name": "The maze",
+    "description": "You are in a maze of small damp tunnels.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 158
+      },
+      {
+        "dir": "south",
+        "to": 162
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 156,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 26
+          },
+          "wear_loc": "wielded",
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 158,
+    "name": "The maze",
+    "description": "You are in a maze of small damp tunnels.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 163
+      },
+      {
+        "dir": "west",
+        "to": 157
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 153,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 159,
+    "name": "The tunnel",
+    "description": "You are in a tunnel, only exit is to the east. You sense that the\ntunnel leads slightly down.\n",
+    "sector_type": "forest",
+    "room_flags": "dark no_mob indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 124
+      },
+      {
+        "dir": "east",
+        "to": 160
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 152,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 28
+          },
+          "wear_loc": "wielded",
+          "global_limit": 29
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 160,
+    "name": "The tunnel",
+    "description": "You are in a small tunnel, to the west the tunnel continues and \nto the east you see some light.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 161
+      },
+      {
+        "dir": "west",
+        "to": 159
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 154,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 161,
+    "name": "The light cave",
+    "description": "You are in the south end of a light cave.\n",
+    "sector_type": "field",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 156
+      },
+      {
+        "dir": "west",
+        "to": 160
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 162,
+    "name": "The maze",
+    "description": "You are in a maze of small damp tunnels.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 157
+      },
+      {
+        "dir": "east",
+        "to": 165
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 150,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 151,
+          "wear_loc": "head",
+          "global_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 154,
+          "wear_loc": "wielded",
+          "global_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 116
+          },
+          "wear_loc": "shield",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 163,
+    "name": "The maze",
+    "description": "You are in a maze of small damp tunnels.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 158
+      },
+      {
+        "dir": "east",
+        "to": 164
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 164,
+    "name": "The tunnel",
+    "description": "You are at the eastern end of a tunnel.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 163
+      },
+      {
+        "dir": "up",
+        "to": 120
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 155,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 158,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 150,
+          "global_limit": 15
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 165,
+    "name": "The maze",
+    "description": "You are in a maze of small damp tunnels.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 166
+      },
+      {
+        "dir": "west",
+        "to": 162
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 152,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 25
+          },
+          "wear_loc": "wielded",
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 166,
+    "name": "The maze",
+    "description": "You are in a maze of small damp tunnels.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 167
+      },
+      {
+        "dir": "south",
+        "to": 169
+      },
+      {
+        "dir": "west",
+        "to": 165
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 167,
+    "name": "The maze",
+    "description": "You are in a maze of small damp tunnels.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 166
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 156,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 104,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 97
+          },
+          "wear_loc": "shield",
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 168,
+    "name": "The large cave",
+    "description": "You are in the northwest end of a large cave.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 169
+      },
+      {
+        "dir": "south",
+        "to": 170
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 153,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 152,
+          "global_limit": 8,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 169,
+    "name": "The large cave",
+    "description": "You are in the northeast end of a large cave. To the north the\nis a small damp tunnel.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 166
+      },
+      {
+        "dir": "south",
+        "to": 171
+      },
+      {
+        "dir": "west",
+        "to": 168
+      }
+    ],
+    "resets": [{
+      "command": "object",
+      "values": {
+        "obj": 152,
+        "global_limit": 8,
+        "room_limit": 0
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 170,
+    "name": "The large cave",
+    "description": "You are in the southwest end of a large cave.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 168
+      },
+      {
+        "dir": "east",
+        "to": 171
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 151,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 27
+          },
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 72
+          },
+          "wear_loc": "head",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 152,
+          "global_limit": 8,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 171,
+    "name": "The large cave",
+    "description": "You are in the southeast end of a large cave. To the east you\nnotice a small tunnel.\n",
+    "sector_type": "field",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 169
+      },
+      {
+        "dir": "east",
+        "to": 172
+      },
+      {
+        "dir": "west",
+        "to": 170
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 155,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 159,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 150,
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 152,
+          "global_limit": 8,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 172,
+    "name": "The tunnel",
+    "description": "You are in a narrow tunnel, which leads both to the east and the\nsouth. There is also an exit towards the west, where you see a large\ncave.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 173
+      },
+      {
+        "dir": "south",
+        "to": 174
+      },
+      {
+        "dir": "west",
+        "to": 171
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 173,
+    "name": "End of tunnel",
+    "description": "The tunnel stops here.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 172
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 151,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 155,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 72
+          },
+          "wear_loc": "body",
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 174,
+    "name": "The hole",
+    "description": "You are at a small hole in the floor, you can either leave north\nor try your luck and leave down into the unknown!\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 172
+      },
+      {
+        "dir": "down",
+        "to": 271
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 200,
+    "name": "The tunnel",
+    "description": "Suddenly you feel that the tunnel leads slightly down.\n",
+    "sector_type": "forest",
+    "room_flags": "dark no_mob indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 152
+      },
+      {
+        "dir": "west",
+        "to": 201
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 201,
+    "name": "The long tunnel",
+    "description": "You are in a long east-west leading tunnel. The tunnel is quite\nwide at this point.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 200
+      },
+      {
+        "dir": "west",
+        "to": 202
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 202,
+    "name": "The long tunnel",
+    "description": "You are in a long east-west leading tunnel. The tunnel becomes\nnarrow to the west.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 201
+      },
+      {
+        "dir": "west",
+        "to": 203
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 203,
+    "name": "The long tunnel",
+    "description": "You are in a long east-west leading tunnel. The tunnel is quite\nnarrow at this point. You notice a small hole leading south.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 202
+      },
+      {
+        "dir": "south",
+        "to": 206
+      },
+      {
+        "dir": "west",
+        "to": 204
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 202,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 203,
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 203,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 153,
+          "wear_loc": "wielded",
+          "global_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 68
+          },
+          "wear_loc": "legs",
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 66
+          },
+          "wear_loc": "body",
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 69
+          },
+          "wear_loc": "feet",
+          "global_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 204,
+    "name": "The long tunnel",
+    "description": "You are in a long east-west leading tunnel. The tunnel starts sloping\ndown towards the west.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 203
+      },
+      {
+        "dir": "west",
+        "to": 252
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 205,
+    "name": "The golden cave",
+    "description": "You are in a giant cave, all the walls are shining with a soft golden\nlight. The cave continues to the south and west.\n",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 208
+      },
+      {
+        "dir": "west",
+        "to": 206
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 206,
+    "name": "The golden cave",
+    "description": "You are in a giant cave, all the walls are shining with a soft golden\nlight. The cave continues to the south and east, to the north is a narrow\ntunnel.\n",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 203
+      },
+      {
+        "dir": "east",
+        "to": 205
+      },
+      {
+        "dir": "south",
+        "to": 209
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 207,
+    "name": "The passage",
+    "description": "You are in a small passage, it leads south, to the west is a golden\ncave.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 213
+      },
+      {
+        "dir": "west",
+        "to": 208
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 208,
+    "name": "The golden cave",
+    "description": "You are in a giant cave, all the walls are shining with a soft golden\nlight. The cave continues to the north and west, east from you there is\na small passage.\n",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 205
+      },
+      {
+        "dir": "east",
+        "to": 207
+      },
+      {
+        "dir": "west",
+        "to": 209
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 205,
+        "global_limit": 3,
+        "room_limit": 3
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 209,
+    "name": "The golden cave",
+    "description": "You are in a giant cave, all the walls are shining with a soft golden\nlight. The cave continues to the south, east and north.\n",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 206
+      },
+      {
+        "dir": "east",
+        "to": 208
+      },
+      {
+        "dir": "south",
+        "to": 214
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 210,
+    "name": "The tunnel",
+    "description": "You are at the end of the tunnel.\n",
+    "sector_type": "forest",
+    "room_flags": "dark no_mob indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 211
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 211,
+    "name": "The tunnel",
+    "description": "You are in a small tunnel, it leads from east to the west.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 210
+      },
+      {
+        "dir": "west",
+        "to": 212
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 202,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 203,
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 202,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 204,
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 212,
+    "name": "The tunnel",
+    "description": "You are in a larger tunnel, it leads from west to east.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 211
+      },
+      {
+        "dir": "west",
+        "to": 213
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 213,
+    "name": "The passage",
+    "description": "You are in a passage that leads towards the south. To the east \nyou see a tunnel.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 207
+      },
+      {
+        "dir": "east",
+        "to": 212
+      },
+      {
+        "dir": "south",
+        "to": 216
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 206,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 205,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 201,
+          "wear_loc": "hands",
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 214,
+    "name": "The golden cave",
+    "description": "You are in a giant cave, all the walls are shining with a soft golden\nlight. The cave continues to the north, to the west you see a dark \npassage.\n",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 209
+      },
+      {
+        "dir": "west",
+        "to": 215
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 200,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 202,
+          "global_limit": 4
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 255,
+          "global_limit": 9
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 351
+          },
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 215,
+    "name": "The dark passage.",
+    "description": "You are in a dark passage, that leads east. In the ceiling you notice\na small hole, just big enough to pass through.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 214
+      },
+      {
+        "dir": "up",
+        "to": 121
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 216,
+    "name": "The passage",
+    "description": "You are in a passage that leads north-south. You notice a small\nlight to the south.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 213
+      },
+      {
+        "dir": "south",
+        "to": 220
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 217,
+    "name": "The secret chamber",
+    "description": "You are in a secret chamber.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 222
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 218,
+    "name": "The cave",
+    "description": "You are in a light cave, from torches several feet above your\nhead fire lights the room. The cave continues to the west and south.\nTo the north a small hole leads to a tunnel.\n",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 223
+      },
+      {
+        "dir": "west",
+        "to": 219
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 219,
+    "name": "The cave",
+    "description": "You are in a light cave, from torches several feet above your\nhead fire lights the room. The cave continues to the east and south.\n",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 218
+      },
+      {
+        "dir": "south",
+        "to": 224
+      },
+      {
+        "dir": "west",
+        "to": 221
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 207,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 23
+          },
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 204,
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 220,
+    "name": "The passage",
+    "description": "You are in a north-south leading passage. To the south you see light.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 216
+      },
+      {
+        "dir": "south",
+        "to": 225
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 221,
+    "name": "The secret tunnel",
+    "description": "You are in a secret tunnel that leads west, you feel evilness\napproaching you as you continue west.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 219
+      },
+      {
+        "dir": "west",
+        "to": 222
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 222,
+    "name": "The secret chamber",
+    "description": "You are in a secret chamber, the room is filled with an evil\nfeeling.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 217
+      },
+      {
+        "dir": "east",
+        "to": 221
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 201,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 200,
+          "wear_loc": "wielded",
+          "global_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 223,
+    "name": "The cave",
+    "description": "You are in a light cave, from torches several feet above your\nhead fire lights the room. The cave continues to the north and west.\n",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 218
+      },
+      {
+        "dir": "west",
+        "to": 224
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 224,
+    "name": "The cave",
+    "description": "You are in a light cave, from torches several feet above your\nhead fire lights the room. The cave continues to the east and north.\nTo the west a passage leads north.\n",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 219
+      },
+      {
+        "dir": "east",
+        "to": 223
+      },
+      {
+        "dir": "west",
+        "to": 225
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 204,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 157,
+          "wear_loc": "wielded",
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 204,
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 225,
+    "name": "The passage",
+    "description": "You are in a passage, to the east you see a cave. Light from the\ncave lights up the passage. To the north the passage leads into\nthe darkness.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 220
+      },
+      {
+        "dir": "east",
+        "to": 224
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 250,
+    "name": "The dark hole",
+    "description": "You are standing at a hole, a small passage leads south. You see\nsome inscriptions on the wall, most of 'em the usual stuff, like:\n'Super Snude was here' and 'Why does the mayor likes secretaries with\nsmall hands?' - But one inscription gets your attention, it says:\nThe Balrog is ALIVE ...\n",
+    "sector_type": "forest",
+    "room_flags": "dark no_mob indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 251
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 251,
+    "name": "The small passage",
+    "description": "You are in a small passage, to the north you see a hole, and to\nthe south you see a large tunnel. The air is damp in this area.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 250
+      },
+      {
+        "dir": "south",
+        "to": 256
+      },
+      {
+        "dir": "west",
+        "to": 255
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 256,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 205,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 252,
+    "name": "The tunnel",
+    "description": "You suddenly feel that the tunnel leads down.\n",
+    "sector_type": "forest",
+    "room_flags": "dark no_mob indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 204
+      },
+      {
+        "dir": "south",
+        "to": 253
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 253,
+    "name": "The large tunnel",
+    "description": "You are in a large tunnel leading from the south to the east. The\nair is damp in the area.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 252
+      },
+      {
+        "dir": "east",
+        "to": 254
+      },
+      {
+        "dir": "south",
+        "to": 257
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 259,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 254,
+    "name": "The large tunnel",
+    "description": "You are in a large east-west leading tunnel, the air is damp and\nthe floor is wet.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 255
+      },
+      {
+        "dir": "west",
+        "to": 253
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 255,
+    "name": "The large tunnel",
+    "description": "You are in a large tunnel, the tunnel leads west, and to the east\nyou notice a long tunnel. The air is damp in this area.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 251
+      },
+      {
+        "dir": "west",
+        "to": 254
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 250,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 252,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 256,
+    "name": "The long tunnel",
+    "description": "You are standing in a long north-south tunnel.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 251
+      },
+      {
+        "dir": "south",
+        "to": 260
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 257,
+    "name": "The wet tunnel",
+    "description": "You are in a wet, north-south leading tunnel, the floor is\npartly covered by water.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 253
+      },
+      {
+        "dir": "east",
+        "to": 258
+      },
+      {
+        "dir": "south",
+        "to": 261
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 251,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 254,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 258,
+    "name": "The small maze",
+    "description": "You are in a small maze, exits leads off to the east,  south\nand west. The floor is partly covered by water.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 259
+      },
+      {
+        "dir": "south",
+        "to": 262
+      },
+      {
+        "dir": "west",
+        "to": 257
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 255,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 252,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 259,
+    "name": "The small maze",
+    "description": "You are in a small maze, exits leads off only to the south\nand west. The air is damp in this maze.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 263
+      },
+      {
+        "dir": "west",
+        "to": 258
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 251,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 252,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 260,
+    "name": "In the tunnel at the inscription",
+    "description": "You are in a north-south leading tunnel, the air is damp. On\nthe wall there is an inscription.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 256
+      },
+      {
+        "dir": "south",
+        "to": 264
+      }
+    ],
+    "extra_description": [{
+      "keyword": "inscription",
+      "description": "It says:\n\n    Year 631 after the destruction of the dwarven realm.\n\n  We found the sword of the dwarven king, but it was guarded\nby a large green dragon. All but two died immediately as the\ndragon breathed poison gas; we are also going to die soon.\n\n       Trather and Oralane\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 260,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 45
+          },
+          "wear_loc": "body",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 155,
+          "wear_loc": "wielded",
+          "global_limit": 9
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 250,
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 261,
+    "name": "The wet tunnel",
+    "description": "You are in a north-south leading tunnel.  The floor is fully\ncovered by water.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 257
+      },
+      {
+        "dir": "south",
+        "to": 265
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 260,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 110
+          },
+          "wear_loc": "body",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 26
+          },
+          "wear_loc": "wielded",
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 262,
+    "name": "The small maze",
+    "description": "You are in a small maze. The floor is mainly covered by\nwater, exits leads north, east and south.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 258
+      },
+      {
+        "dir": "east",
+        "to": 263
+      },
+      {
+        "dir": "south",
+        "to": 266
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 258,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 263,
+    "name": "The small maze",
+    "description": "You are in a small maze, where the air is damp. Exits\nleads to the north and east.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 259
+      },
+      {
+        "dir": "east",
+        "to": 264
+      },
+      {
+        "dir": "west",
+        "to": 262
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 264,
+    "name": "The entrance to the small maze",
+    "description": "You are in a north-south leading tunnel, and the air is damp.\nTo the west you see a small maze.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 260
+      },
+      {
+        "dir": "south",
+        "to": 268
+      },
+      {
+        "dir": "west",
+        "to": 263
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 253,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 254,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 265,
+    "name": "In the water",
+    "description": "You are standing in water, the tunnel continues both to the\nnorth and south.\n",
+    "sector_type": "swim",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 261
+      },
+      {
+        "dir": "south",
+        "to": 269
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 266,
+    "name": "The wet maze",
+    "description": "You are in a part of the maze where the floor is fully covered\nby water. The maze continues to the north, east and south.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 262
+      },
+      {
+        "dir": "east",
+        "to": 267
+      },
+      {
+        "dir": "south",
+        "to": 270
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 267,
+    "name": "The wet maze",
+    "description": "You are in a small maze, the floor is covered by water, the\nmaze continues east, west and south.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 268
+      },
+      {
+        "dir": "south",
+        "to": 271
+      },
+      {
+        "dir": "west",
+        "to": 266
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 257,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 351
+          },
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 257,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 251,
+          "wear_loc": "hold",
+          "global_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 351
+          },
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 268,
+    "name": "The end of the tunnel",
+    "description": "The tunnel suddenly stops here, only exit is to the west.\nThe air is damp here.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 264
+      },
+      {
+        "dir": "west",
+        "to": 267
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 259,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 269,
+    "name": "In the water",
+    "description": "You are standing in the water, exits leads both north and east.\n",
+    "sector_type": "swim",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 265
+      },
+      {
+        "dir": "east",
+        "to": 270
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 258,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 270,
+    "name": "In the water",
+    "description": "You are standing in the water, it continues east and west.\n",
+    "sector_type": "swim",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 266
+      },
+      {
+        "dir": "east",
+        "to": 272
+      },
+      {
+        "dir": "west",
+        "to": 269
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 250,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 253,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 271,
+    "name": "End of maze",
+    "description": "You are at the end of the small maze which continues north.\nAbove you a hole leads up.\n",
+    "sector_type": "forest",
+    "room_flags": "dark no_mob indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 267
+      },
+      {
+        "dir": "up",
+        "to": 174
+      }
+    ]
+  }},
+  {"room": {
+    "area": "moria",
+    "anum": 272,
+    "name": "At the sand bar",
+    "description": "You are on a little sand bar in the water.\n",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 270
+    }]
+  }}
+]

@@ -1,0 +1,1502 @@
+[
+  {"room": {
+    "area": "midennir",
+    "anum": 0,
+    "name": "The Plains",
+    "description": "You are standing on the plains. This is a vast desolate place where the\nwind can howl undisturbed since nothing but you bars its way. However you\nare not the first to wander here. Before you somebody has left a small path.\nThe path looks rather bewildered and is not the kind of path to lead to\nanywhere significant or important but it seems to have made up its mind to\nenter the hills far away north.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": null,
+        "portal": "midennir-north-2"
+      },
+      {
+        "dir": "south",
+        "to": 1
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 1,
+    "name": "The Lane",
+    "description": "You are strolling along a pleasant, shady lane. The road is lined on both\nsides by tall, stately trees which lend the scene with a sense of quiet\nserenity. You can follow the road north or south.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 0
+      },
+      {
+        "dir": "south",
+        "to": 2
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 2,
+    "name": "The Cross Roads",
+    "description": "Here, the great eastern road intersects with an older road between the mines\nof Moria and the ruined city of Thalos.  The outskirts of Midgaard lie to your\nwest, and the highway continues the the east.  An old northern road leads to\nthe dwarven kingdom and the abandoned mines of Moria, while the southern road\nshows the scars of the war which destroyed Thalos.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 1,
+        "description": "An old road leads towards the abandoned mines of Moria and the Dwarven Kingom.\n"
+      },
+      {
+        "dir": "east",
+        "to": 25,
+        "description": "The road continues east, where you hear faint singing.\n"
+      },
+      {
+        "dir": "south",
+        "to": null,
+        "description": "A once mighty road leads through the dwarf forest towards ruined Thalos.\n",
+        "portal": "midennir-south-2"
+      },
+      {
+        "dir": "west",
+        "to": 3,
+        "description": "The road leads west towards Midgaard.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 3,
+    "name": "City Entrance",
+    "description": "You stand on the outskirts of a large city - Midgaard; the capital of this\nland. The road leads east into the peace and quiet - and dangers - of the\nforest; and to the west it becomes the main street of the town; surrounded by\na confusion of shops, bars, and market places.\n",
+    "sector_type": "city",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 2
+      },
+      {
+        "dir": "west",
+        "to": null,
+        "portal": "midennir-west-1"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 5,
+    "name": "The Trail to Miden'nir",
+    "description": "You are in a light forest. A path leads south, but the passage to the\neast is easy enough. To the west, smoke can be seen rising above the\ntreetops. The sprawl of Midgaard lies north of here.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": null,
+        "description": "To the north, you see the southern gates of Midgaard.\n",
+        "portal": "midennir-north-3"
+      },
+      {
+        "dir": "east",
+        "to": 6,
+        "description": "More light forest.\n"
+      },
+      {
+        "dir": "south",
+        "to": 7,
+        "description": "This path cuts through the darkness of the Miden'nir.\n"
+      },
+      {
+        "dir": "west",
+        "to": 70,
+        "description": "The Woodsman's Inn.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "credits credit author",
+      "description": "+-------------------------------------------------+\n| This area originally written for Copper II DIKU |\n|   by ?                                          |\n| Modifications and alterations for MERCmud DIKU  |\n|   by VampLestat                        1 JAN 93 |\n+-------------------------------------------------+\n"
+    }]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 6,
+    "name": "The Miden'nir",
+    "description": "You are in a dark forest. To the east, mountains block passage. From\nhere, only the lighter forest to the west or south offer a way to travel.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 50
+      },
+      {
+        "dir": "south",
+        "to": 9,
+        "description": "The forest is darker to the south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 5,
+        "description": "The forest gets lighter as you go west.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 10,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 0,
+          "wear_loc": "wielded",
+          "global_limit": 18
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 74
+          },
+          "wear_loc": "legs",
+          "global_limit": 6
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 7,
+    "name": "The Miden'nir",
+    "description": "The forest is deep here and the wind blows through the trees and\nthrough your hair. To the north, the forest gets lighter. However, the\nsouthern and western paths place you even deeper in the wood.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 5,
+        "description": "The forest is lighter in this direction.\n"
+      },
+      {
+        "dir": "south",
+        "to": 10,
+        "description": "More and darker woods.\n"
+      },
+      {
+        "dir": "west",
+        "to": 8,
+        "description": "There is a small path leading west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 8,
+    "name": "On a Small Path",
+    "description": "A path is here, leading east and south through the dark woods of\nMiden'nir. Mountains slash the scenery to the west of here.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 7,
+        "description": "Wind-swept forest.\n"
+      },
+      {
+        "dir": "south",
+        "to": 11,
+        "description": "To the south, the trail continues.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 9,
+    "name": "The Miden'nir",
+    "description": "The trees of Miden'nir are lush and green, hiding the evil that lurks\nin these woods. The trees become too thick to the west, but you may go\nnorth, south or travel toward the mountains that lie east of here.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 6,
+        "description": "The trees lighten up a bit this way.\n"
+      },
+      {
+        "dir": "east",
+        "to": 12,
+        "description": "Huge grey mountains lie in this direction.\n"
+      },
+      {
+        "dir": "south",
+        "to": 14,
+        "description": "The forest continues.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 10,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 0,
+          "wear_loc": "wielded",
+          "global_limit": 18
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 72
+          },
+          "wear_loc": "body",
+          "global_limit": 6
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 10,
+    "name": "A Crossroads",
+    "description": "Here footworn paths meet leading north, south and east. The trees seem to\nbe closing in on you at this point, and you can barely see the sky\nthrough the thick branches above your head.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 7,
+        "description": "Trees as far as the eye can see.\n"
+      },
+      {
+        "dir": "east",
+        "to": 14,
+        "description": "There is an especially dark part of the forest this way.\n"
+      },
+      {
+        "dir": "south",
+        "to": 16,
+        "description": "There is an especially dark section of forest this way.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 11,
+    "name": "The Trail",
+    "description": "You are on a north-south trail through the woods. To the west, impassable\nmountains glare at you, and the thick woods and undergrowth prevent any\nmovement westward.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 8,
+        "description": "The trail bends to the north.\n"
+      },
+      {
+        "dir": "south",
+        "to": 15,
+        "description": "To the south, the path re-enters the forest.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 12,
+    "name": "The Miden'nir",
+    "description": "The trees of Miden'nir are lush and green, hiding the evil that lurks\nin these woods. You can go north toward the mountains, or west to the\nforest, but the steep mountains prevent any movement east.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 50
+      },
+      {
+        "dir": "south",
+        "to": 13,
+        "description": "A light section of forest.\n"
+      },
+      {
+        "dir": "west",
+        "to": 9,
+        "description": "The forest continues here.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 8,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 0,
+          "wear_loc": "wielded",
+          "global_limit": 18
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 45
+          },
+          "wear_loc": "body",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 10,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 0,
+          "wear_loc": "wielded",
+          "global_limit": 18
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "head",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 75
+          },
+          "wear_loc": "feet",
+          "global_limit": 6
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 13,
+    "name": "The Miden'nir",
+    "description": "The forest is dark, and becomes even darker west.  You sense\nthat there is something evil hidden in these woods.  The forest gets\nlighter to the north.  The wind kicks up as you ponder your options.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 12,
+        "description": "There is a small clearing to the north.\n"
+      },
+      {
+        "dir": "west",
+        "to": 14,
+        "description": "It gets darker and thicker this way.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 10,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 0,
+          "wear_loc": "wielded",
+          "global_limit": 18
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 77
+          },
+          "wear_loc": "arms",
+          "global_limit": 6
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 14,
+    "name": "Deep Forest",
+    "description": "It is quite dark here, forest surrounds you. With each step, the forest\nseems to close around you, and get darker and more foreboding.  It might just\nbe time to head back to somewhere safe.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 9,
+        "description": "More forest.\n"
+      },
+      {
+        "dir": "east",
+        "to": 13,
+        "description": "Lighter forest and mountains in the distance.\n"
+      },
+      {
+        "dir": "south",
+        "to": 17,
+        "description": "More trees.\n"
+      },
+      {
+        "dir": "west",
+        "to": 10,
+        "description": "The forest continues.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 15,
+    "name": "Light Forest",
+    "description": "The forest is light here and you can easily pick your way through the \ntrail.  To the east, the forest becomes thick and darker. South, the trail\ncontinues.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 11,
+        "description": "A trail leading north-south.\n"
+      },
+      {
+        "dir": "east",
+        "to": 16,
+        "description": "The trees get thicker as you go east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 18,
+        "description": "More trees and some small hills.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 16,
+    "name": "Muddy Ground",
+    "description": "The ground is quite muddy here and puddles are all around. Your boots\nmake a disgusting SQUISH as you walk here. You can go in any of the\nfour cardinal directions from here. Hopefully, it will be dryer.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 10,
+        "description": "The Miden'nir continues.\n"
+      },
+      {
+        "dir": "east",
+        "to": 17,
+        "description": "More trees.\n"
+      },
+      {
+        "dir": "south",
+        "to": 19,
+        "description": "The trees get VERY thick to the south. You can barely see...\n"
+      },
+      {
+        "dir": "west",
+        "to": 15,
+        "description": "Some light trees and daylight.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 17,
+    "name": "Near the Mountains",
+    "description": "The most prominent feature here is the mountains that lie to the east.\nYou can only go north and west from here as the rocks stop all other\nmovement.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 14,
+        "description": "Many trees to the north.\n"
+      },
+      {
+        "dir": "west",
+        "to": 16,
+        "description": "There is a bit of a slope downward to the west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 18,
+    "name": "The Fading Trail",
+    "description": "The trail becomes nearly unpassable here. You can go north\nas the forest is relatively light. To the south, you can see a path.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 15,
+        "description": "You can see a trail this way.\n"
+      },
+      {
+        "dir": "east",
+        "to": null,
+        "description": "The trees are nearly trunk-to-trunk this way.\n",
+        "portal": "midennir-east-1"
+      },
+      {
+        "dir": "south",
+        "to": 22,
+        "description": "Dark forests.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 19,
+    "name": "The Dark Path",
+    "description": "You are hemmed in by trees on either side of you.  The path\ncontinues north and south, and while is much to thick to explore west,\nyou can head off into the woods to the east.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 16,
+        "description": "The forest gets lighter this way.\n"
+      },
+      {
+        "dir": "east",
+        "to": 20,
+        "description": "The forest continues.\n"
+      },
+      {
+        "dir": "south",
+        "to": 21,
+        "description": "There is a strong stench coming from this direction.\n"
+      },
+      {
+        "dir": "west",
+        "to": null,
+        "description": "The trees are nearly trunk-to-trunk this way.\n",
+        "portal": "midennir-west-2"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 20,
+    "name": "The Dark Forest",
+    "description": "You stomp your way through the underbrush.  The dark forest of Miden'nir\nget pretty thick here, and the branches high above your head are so thick that\nthey block out all direct sunlight.  While it is much too thick to go\nfurther east, you might be able to make your way though the forest to the\nsouth and west.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 23,
+        "description": "The thick forest continues.\n"
+      },
+      {
+        "dir": "west",
+        "to": 19,
+        "description": "The thick forest continues.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 21,
+    "name": "Carnage",
+    "description": "Here, you see a gruesome sight. Blood is everywhere... on the trees and\nsoaked into the ground. Two carcasses lie in front of you, seeming to look\nup at you. The forest is impassible to the south, but the other directions\nlook ok.\n",
+    "sector_type": "forest",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 19,
+        "description": "Darkness...\n"
+      },
+      {
+        "dir": "east",
+        "to": 23,
+        "description": "Your light does not extend that far.\n"
+      },
+      {
+        "dir": "west",
+        "to": 22,
+        "description": "More dark forest.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "carcass body corpse carcasses bodies corpses",
+      "description": "The corpses looked as if they have been pierced by a large, jagged\nspear. The damage these people sustained is simply amazing. Worse, the\nlips on the bodies are a light shade of blue, hinting at poison in\ntheir systems.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 22,
+    "name": "Deep in the Forest of Miden'nir",
+    "description": "There is a sickening stench here. It smells of blood and death.\nTo the north, you catch glimpses of daylight. To the east, you\nsimply cannot see. The trees are close and stifling.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 18,
+        "description": "You see daylight and a trail to follow.\n"
+      },
+      {
+        "dir": "east",
+        "to": 21,
+        "description": "The stench seems to becoming from this direction.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 23,
+    "name": "The Dark Forest",
+    "description": "The branches above you block out all direct sunlight, making the forest\nin this area rather dark.  The forest continues east, where it meets the\nmountains. The air is still and stuffy - a stench comes from the west and an\nugly feeling causes the hair to rise on the back of your neck!\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 20,
+        "description": "It appears to get much darker that direction.\n"
+      },
+      {
+        "dir": "east",
+        "to": 51
+      },
+      {
+        "dir": "west",
+        "to": 21,
+        "description": "The sky becomes lighter in this direction.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 25,
+    "name": "Along the Eastern Road",
+    "description": "You are walking along a well-travelled road between Midgaard and lands\neast.  A northern road crosses this one to the west, towards Midgaard.  You\nhear faint, happy singing to the north.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": null,
+        "description": "You see a faint trail, covered with tiny footprints. The singing grows louder.\n",
+        "portal": "midennir-north-4"
+      },
+      {
+        "dir": "east",
+        "to": 26,
+        "description": "The road continues to the east.\n"
+      },
+      {
+        "dir": "west",
+        "to": 2,
+        "description": "You can see the crossroads.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 26,
+    "name": "Along the Eastern Road",
+    "description": "You are travelling down the eastern road between Midgaard and the eastern\nlands.  The road back to Midgaard is west of you, and a heavily guarded\ncheckpoint is east.  A beautiful grove of trees is north, and a dirt path \nwanders off to the south.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": null,
+        "description": "You see a beautiful, shady grove -- it looks like a peaceful place to relax.\n",
+        "portal": "midennir-north-1"
+      },
+      {
+        "dir": "east",
+        "to": 27,
+        "description": "The road continues west towards a guarded checkpoint.\n"
+      },
+      {
+        "dir": "south",
+        "to": null,
+        "description": "A dirt path leads to the gnome village.\n",
+        "portal": "midennir-south-1"
+      },
+      {
+        "dir": "west",
+        "to": 25,
+        "description": "The road continues west towards midgaard.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 27,
+    "name": "The Checkpoint",
+    "description": "You are met by a group of heavily armored knights.  They check you over\nfor contraband, and then allow you to pass on.  One of the knights cautions to\nnot stray into the desert, lest you lose your way.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 28,
+        "description": "The continues east towards New Thalos.\n"
+      },
+      {
+        "dir": "west",
+        "to": 26,
+        "description": "The road continues west towards midgaard.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 28,
+    "name": "Along the Eastern Road",
+    "description": "You are walking along a well-travelled road, just east of a heavily \nguarded checkpoint.  You have covered about half the distance between\nthe city of Midgaard and New Thalos.  The air is getting drier and the heat\nmore oppressive as you near the the barren wastes of the Sands of Sorrow.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 29,
+        "description": "The road continues ahead, growing more arid as you near the desert.\n"
+      },
+      {
+        "dir": "west",
+        "to": 27,
+        "description": "You see a heavily guarded checkpoint to the west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 29,
+    "name": "Along the Eastern Road",
+    "description": "The tempatures are climbing as you near the Sands of Sorrow, a barren\nwasteland blasted by arcane powers.  Ahead of you, the road is partially\nburied by the creeping sands, and the air grows even hotter.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 30,
+        "description": "You see the Sands of Sorrow spilling over the road.\n"
+      },
+      {
+        "dir": "west",
+        "to": 28,
+        "description": "The road continues to the west, towards distant Midgaard.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 30,
+    "name": "Near the Sands of Sorrow",
+    "description": "The eastern road is losing ground to the creeping desert here.  You stagger\nin the growing heat, and wonder if you have enough water.  The endless waste\nof the Sands of Sorrows is south, and the road continues east and west.  The \nsun paints illusions at the edge of your vision, one of them looks like a far \noff city...\n",
+    "sector_type": "desert",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 31,
+        "description": "The road ahead is almost lost in the desert.\n"
+      },
+      {
+        "dir": "west",
+        "to": 29,
+        "description": "You see a clearer section of road. \n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 31,
+    "name": "Near the Sands of Sorrow",
+    "description": "The road is almost completely swallowed by the desert here.  The heat is\nsucking the life from your body, you wonder if it will ever end.  To your\nsouth, the Sands of Sorrow stretch on for miles, and to the east you think\nyou see the towers of a magnificent city...or is it just a mirage?\n",
+    "sector_type": "desert",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 32,
+        "description": "You can barely make out enough road to follow.\n"
+      },
+      {
+        "dir": "west",
+        "to": 30,
+        "description": "The desert thins a little to the west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 32,
+    "name": "On the Outskirts of New Thalos",
+    "description": "The sun is hot enough to melt your armor, but salvation is at hand.  To the\neast, you see the mighty gates of New Thalos, one of the most prosperous cities\nof all of Thera.  To the south, you see the endless wasteland of the Sands\nof Sorrows, and to the west you can barely make out a faint, but well-used,\nroad leading to the City of Midgaard. \n",
+    "sector_type": "desert",
+    "doors": [
+      {
+        "dir": "east",
+        "to": null,
+        "description": "You see the west gate of New Thalos.\n",
+        "portal": "midennir-east-2"
+      },
+      {
+        "dir": "west",
+        "to": 31,
+        "description": "You see the road to Midgaard, covered with sand.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 50,
+    "name": "At The Foot of The Mountains",
+    "description": "You find yourself at the foot of the mountains, where it is much to steep\nto continue north or east.  You see the lush, green forest of Miden'nir to the\nsouth and west.\n",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 12,
+        "description": "The forest of Miden'nir spreads out before you.\n"
+      },
+      {
+        "dir": "west",
+        "to": 6,
+        "description": "The forest of Miden'nir spreads out before you.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 51,
+    "name": "The Deep in the Forest of Miden'nir",
+    "description": "The branches above you block out all direct sunlight, making the forest\nin this area very dark.  The forest continues west, but mountains block\nfurther exploration in all other directions, except south, where you notice a\nsmall tunnel dug into the mountainside.\n",
+    "sector_type": "forest",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 52
+      },
+      {
+        "dir": "west",
+        "to": 23
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "head",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 0,
+          "wear_loc": "wielded",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 72
+          },
+          "wear_loc": "body",
+          "global_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 52,
+    "name": "A Tunnel in the Mountains",
+    "description": "The walls of this tunnel were carved out many years ago by the goblins of\nthis forest.  The floor is well worn, and continues south, into the\nmountain, or back north out into the forest.\n",
+    "sector_type": "city",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 51,
+        "description": "Outside, you see the forest of Miden'nir.\n"
+      },
+      {
+        "dir": "south",
+        "to": 53,
+        "description": "The tunnel continues to the south.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 53,
+    "name": "A Tunnel in the Mountains",
+    "description": "The tunnel gets lighter to the north, presumably leading out, while to\nthe south the passage gets smaller and smaller.  A small alcove has been\ncarved into the east wall.\n",
+    "sector_type": "city",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 52,
+        "description": "The tunnel gets wider in this direction.\n"
+      },
+      {
+        "dir": "east",
+        "to": 54,
+        "description": "You see a small alcove.\n"
+      },
+      {
+        "dir": "south",
+        "to": 55,
+        "description": "The tunnel gets smaller in this direction.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 54,
+    "name": "A Small Alcove",
+    "description": "A small alcove has been carved out here.  There are a bunch of twigs\nand leaves thrown into a pile here, probably serving as a bed.\n",
+    "sector_type": "city",
+    "room_flags": "dark",
+    "doors": [{
+      "dir": "west",
+      "to": 53,
+      "description": "You see the main passageway.\n"
+    }],
+    "extra_description": [{
+      "keyword": "twigs leaves bead",
+      "description": "The twigs and leaves have all been piled together as a makeshift bed for\nsome small humanoid.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 55,
+    "name": "A Tunnel in the Mountains",
+    "description": "As you explore further into the mountainside, the tunnel gets smaller and\nsmaller to the south.  You almost have to hunch over to make your way thru\nthis area.  A small archway to the south leads into a large chamber.\n",
+    "sector_type": "city",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 53,
+        "description": "The tunnel continues north.\n"
+      },
+      {
+        "dir": "south",
+        "to": 56,
+        "description": "You see a small cavern.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 56,
+    "name": "The Goblin Headquarters",
+    "description": "The tunnel widens into a large (well, large for goblins) cavern that\nserves as the living quarters for the goblins of Miden'nir.  The bones of\nnumbers woodland creatures are strewn about the room, the remanents of a\nrecent meal.\n",
+    "sector_type": "city",
+    "room_flags": "dark",
+    "doors": [{
+      "dir": "north",
+      "to": 55,
+      "description": "The tunnel heads north.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 10,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 0,
+          "wear_loc": "wielded",
+          "global_limit": 18
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 76
+          },
+          "wear_loc": "hands",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 0,
+          "wear_loc": "wielded",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "head",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 72
+          },
+          "wear_loc": "body",
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 72
+          },
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 1,
+          "wear_loc": "wielded",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "head",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 70,
+    "name": "The Front of the Inn",
+    "description": "You are standing on a well-worn path which opens into a clearing.\nAn old, wooden building is here with smoke billowing from its\nchimney. A painted sign is visible on the porch to the west. You\ncould go north or south around the building or leave this place and\nreturn to the forest.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 71,
+        "description": "You can go north around the inn.\n"
+      },
+      {
+        "dir": "east",
+        "to": 5,
+        "description": "Back through the trees to the Miden'nir.\n"
+      },
+      {
+        "dir": "south",
+        "to": 72,
+        "description": "You can go south around the inn.\n"
+      },
+      {
+        "dir": "west",
+        "to": 74,
+        "description": "The front door of the inn beckons.\n"
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "credits credit author",
+        "description": "+-------------------------------------------------+\n| This zone originally written for Copper II DIKU |\n|   by ?                                          |\n| Modification and alterations for MERCmud DIKU   |\n|   by VampLestat                        1 JAN 93 |\n+-------------------------------------------------+\n"
+      },
+      {
+        "keyword": "sign",
+        "description": "The sign reads:\n   The Woodsman\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 71,
+    "name": "North of the Inn",
+    "description": "You are standing north of the inn. Things don't look much different\nfrom this angle.  The air here is filled with smells of smoke and cooking.\nSouth, the front porch is waiting for you... or you can see if there is\na back door.\n",
+    "sector_type": "forest",
+    "doors": [{
+      "dir": "south",
+      "to": 70,
+      "description": "You see the front of the Inn.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 72,
+    "name": "South of the Inn",
+    "description": "You are standing south of the inn.  You could easily go north and enter\nthrough the front door, or west and to the rear of the establishment.  You\nhere some muffled cries from a tiny trail leading south of here.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 70,
+        "description": "This way leads to the front of the inn.\n"
+      },
+      {
+        "dir": "south",
+        "to": 75,
+        "description": "The trail heads south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 73,
+        "description": "This way leads to the back of the inn.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 73,
+    "name": "Behind the Inn",
+    "description": "You now stand behind the inn. The smell here is not so pleasant as\nthe keeper and his help throw a good deal of garbage here. A couple of\npiles of rubbish are to the west, but you will smell the worse for\nmeddling there. As a clean alternative, you can go north or east around\nthe inn.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 72,
+        "description": "You can go around the inn this way.\n"
+      },
+      {
+        "dir": "west",
+        "to": 78,
+        "description": "Only rats and fool adventurers play in garbage.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 74,
+    "name": "The Woodsman Inn",
+    "description": "You are in the common room of the Woodsman Inn. A thin haze of smoke sits\nin the air here. The Inn is often empty, as the forest has become overrun by\ngoblins as of late, and it is no longer safe in these parts. The bar is just\nnorth of here. If you'd rather have your own table, one is empty to the\nsouth.\n",
+    "sector_type": "city",
+    "room_flags": "no_mob indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 76,
+        "description": "The bar is here, manned by the innkeeper.\n"
+      },
+      {
+        "dir": "east",
+        "to": 70,
+        "description": "You can leave now and return to fresher air.\n"
+      },
+      {
+        "dir": "south",
+        "to": 79,
+        "description": "An empty table is a rare commodity.\n"
+      },
+      {
+        "dir": "west",
+        "to": 77
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 75,
+    "name": "The Ambush Point",
+    "description": "This is a overgrown foot-trail south of the inn. It leads west, but you\nwould be hard pressed to follow it far. A number of bushes are trampled on\nand some medium sized branches have been knocked down.  Obviously there has\nbeen a battle here rather recently.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 72,
+        "description": "The inn lies to the north.\n"
+      },
+      {
+        "dir": "west",
+        "to": 81,
+        "description": "A trail thru the woods.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 2,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 76,
+    "name": "The Bar",
+    "description": "This is where people use to come and enjoy the food, drink and hospitality\nof the innkeeper, but as of late, he only serves the few adventurers that\nmanage to survive a trip thru the forest. You can leave south and return to the\ncommon room.\n",
+    "sector_type": "city",
+    "doors": [{
+      "dir": "south",
+      "to": 74,
+      "description": "You may retreat south back to the common room.\n"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 77,
+    "name": "The Bard's Table",
+    "description": "You are in a darker corner in the Inn.  A large round table with a few\nwooden chairs sits here.  There is a large stain on the table, the remnants\nof a spilled drink.\n",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 74,
+      "description": "You see the main floor of the Inn to the east.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 5,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 78,
+    "name": "Garbage dump",
+    "description": "You stand knee deep in garbage.  YECCH!!! It smells terrible and who knows\nwhat vermin live in these piles of filth ...\n",
+    "sector_type": "forest",
+    "doors": [{
+      "dir": "east",
+      "to": 73,
+      "description": "You can return to cleaner lands this way.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 79,
+    "name": "A Quieter Section of the Inn",
+    "description": "There seems to be no one in this end of the Woodsman, probably a safe place\nto rest and lick your wounds ...\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 74,
+      "description": "You see the common room.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 81,
+    "name": "On the Trail of the Horsemen",
+    "description": "The path continues east and west of here.  You notice fresh tracks in\nthe soft ground that show the horsemen fled to the west.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 75,
+        "description": "Back to ambush point.\n"
+      },
+      {
+        "dir": "west",
+        "to": 82,
+        "description": "The trail continues.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 82,
+    "name": "On the Trail of the Horsemen",
+    "description": "The path continues east and south.  You notice fresh tracks in\nthe soft ground that show the horsemen turned, and fled south.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 81,
+        "description": "The trail continues.\n"
+      },
+      {
+        "dir": "south",
+        "to": 83,
+        "description": "The tracks lead south.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 83,
+    "name": "On the Trail of the Horsemen",
+    "description": "The trail of the horsemen continues east and north along this path through\nthe forest.  The tracks are still fresh, so they must be near.\n",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 82,
+        "description": "The trail continues.\n"
+      },
+      {
+        "dir": "west",
+        "to": 84,
+        "description": "The tracks lead east.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 3,
+          "wear_loc": "neck1",
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 22
+          },
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midennir",
+    "anum": 84,
+    "name": "A Dead End Trail",
+    "description": "The path comes to an abrupt end here, as the trees close around you and\nmake any further exploration impossible.  Fresh tracks cover the ground, and\nend right here.  The horsemen must be nearby.\n",
+    "sector_type": "forest",
+    "doors": [{
+      "dir": "east",
+      "to": 83,
+      "description": "Back to along the trail.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "lwrist",
+          "global_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 22
+          },
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      }
+    ]
+  }}
+]

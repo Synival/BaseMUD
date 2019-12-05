@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "smurf",
+  "filename": "smurf.are",
+  "title": "Smurfville",
+  "credits": "{ 1 10} Generic Smurf Village",
+  "min_vnum": 100,
+  "max_vnum": 199,
+  "builders": "None",
+  "security": 9
+}}]

@@ -42,26 +42,27 @@
 #include "chars.h"
 #include "find.h"
 #include "chars.h"
+#include "globals.h"
 
 #include "act_comm.h"
 
-bool do_comm_filter_quiet (CHAR_DATA *ch) {
+bool do_comm_filter_quiet (CHAR_T *ch) {
     FILTER_ACT (IS_SET (ch->comm, COMM_QUIET),
         "You must turn off quiet mode first.", ch, NULL, NULL);
     return FALSE;
 }
 
-bool do_comm_filter_nochannels (CHAR_DATA *ch) {
+bool do_comm_filter_nochannels (CHAR_T *ch) {
     FILTER_ACT (IS_SET (ch->comm, COMM_NOCHANNELS),
         "The gods have revoked your channel priviliges.", ch, NULL, NULL);
     return FALSE;
 }
 
-bool do_comm_filter_quiet_nochannels (CHAR_DATA *ch) {
+bool do_comm_filter_quiet_nochannels (CHAR_T *ch) {
     return do_comm_filter_quiet (ch) || do_comm_filter_nochannels (ch);
 }
 
-bool do_comm_filter_emote (CHAR_DATA *ch, char *argument) {
+bool do_comm_filter_emote (CHAR_T *ch, char *argument) {
     FILTER (!IS_NPC (ch) && IS_SET (ch->comm, COMM_NOEMOTE),
         "You can't show your emotions.\n\r", ch);
     FILTER (argument[0] == '\0',
@@ -74,11 +75,11 @@ bool do_comm_filter_emote (CHAR_DATA *ch, char *argument) {
     return FALSE;
 }
 
-void do_comm_channel_global (CHAR_DATA *ch, char *argument, flag_t channel,
+void do_comm_channel_global (CHAR_T *ch, char *argument, flag_t channel,
     char *message_on, char *message_off, char *act_self, char *act_world,
     int max_pos)
 {
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
 
     if (do_comm_toggle_channel_if_blank (ch, argument, channel,
             message_on, message_off))
@@ -89,7 +90,7 @@ void do_comm_channel_global (CHAR_DATA *ch, char *argument, flag_t channel,
 
     printf_to_char (ch, act_self, argument);
     for (d = descriptor_list; d != NULL; d = d->next) {
-        CHAR_DATA *victim = CH(d);
+        CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
         if (IS_SET (victim->comm, channel) || IS_SET (victim->comm, COMM_QUIET))
@@ -98,7 +99,7 @@ void do_comm_channel_global (CHAR_DATA *ch, char *argument, flag_t channel,
     }
 }
 
-bool do_comm_filter_can_tell_or_reply (CHAR_DATA *ch) {
+bool do_comm_filter_can_tell_or_reply (CHAR_T *ch) {
     FILTER_ACT (IS_SET (ch->comm, COMM_NOTELL),
         "Your message didn't get through.", ch, NULL, NULL);
     FILTER_ACT (IS_SET (ch->comm, COMM_DEAF),
@@ -108,15 +109,15 @@ bool do_comm_filter_can_tell_or_reply (CHAR_DATA *ch) {
     return FALSE;
 }
 
-void do_comm_tell_to_buffer (CHAR_DATA *ch, CHAR_DATA *victim, char *msg) {
+void do_comm_tell_to_buffer (CHAR_T *ch, CHAR_T *victim, char *msg) {
     char buf[MAX_STRING_LENGTH];
     sprintf (buf, "{k%s tells you '{K%s{k'{x\n\r", PERS_AW (ch, victim), msg);
     buf[2] = UPPER (buf[2]);
     add_buf (victim->pcdata->buffer, buf);
 }
 
-bool do_comm_filter_tell_target_can_receive_tells(CHAR_DATA *ch,
-    CHAR_DATA *victim)
+bool do_comm_filter_tell_target_can_receive_tells(CHAR_T *ch,
+    CHAR_T *victim)
 {
     FILTER_ACT (ch == victim,
         "Yeah, keep telling yourself that.", ch, NULL, NULL);
@@ -139,7 +140,7 @@ bool do_comm_filter_tell_target_can_receive_tells(CHAR_DATA *ch,
     return FALSE;
 }
 
-bool do_comm_filter_tell_not_now (CHAR_DATA *ch, CHAR_DATA *victim, char *msg) {
+bool do_comm_filter_tell_not_now (CHAR_T *ch, CHAR_T *victim, char *msg) {
     if (!IS_NPC (victim) && !victim->desc) {
         act_new ("$N seems to have misplaced $S link, but your tell will go "
                  "through when $E returns.", ch, NULL, victim, TO_CHAR, POS_DEAD);
@@ -167,7 +168,7 @@ bool do_comm_filter_tell_not_now (CHAR_DATA *ch, CHAR_DATA *victim, char *msg) {
     return FALSE;
 }
 
-void do_comm_tell_send_message (CHAR_DATA *ch, CHAR_DATA *victim, char *msg) {
+void do_comm_tell_send_message (CHAR_T *ch, CHAR_T *victim, char *msg) {
     act_new ("{kYou tell $N '{K$t{k'{x",  ch, msg, victim, TO_CHAR, POS_DEAD);
     act_new ("{k$n tells you '{K$t{k'{x", ch, msg, victim, TO_VICT, POS_DEAD);
     victim->reply = ch;
@@ -176,7 +177,7 @@ void do_comm_tell_send_message (CHAR_DATA *ch, CHAR_DATA *victim, char *msg) {
         mp_act_trigger (msg, victim, ch, NULL, NULL, TRIG_SPEECH);
 }
 
-void do_comm_try_tell (CHAR_DATA *ch, CHAR_DATA *victim, char *msg) {
+void do_comm_try_tell (CHAR_T *ch, CHAR_T *victim, char *msg) {
     BAIL_IF_ACT (msg[0] == '\0',
         "Tell $M what?", ch, NULL, victim);
     if (do_comm_filter_tell_target_can_receive_tells (ch, victim))
@@ -188,7 +189,7 @@ void do_comm_try_tell (CHAR_DATA *ch, CHAR_DATA *victim, char *msg) {
 
 /* RT does socials */
 DEFINE_DO_FUN (do_socials) {
-    SOCIAL_TYPE *soc;
+    SOCIAL_T *soc;
     int col;
 
     col = 0;
@@ -337,7 +338,7 @@ DEFINE_DO_FUN (do_music) {
 
 /* clan channels */
 DEFINE_DO_FUN (do_clantalk) {
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
 
     BAIL_IF (!char_has_clan (ch) || clan_table[ch->clan].independent,
         "You aren't in a clan.\n\r", ch);
@@ -351,7 +352,7 @@ DEFINE_DO_FUN (do_clantalk) {
 
     printf_to_char (ch, "You clan '%s'{x\n\r", argument);
     for (d = descriptor_list; d != NULL; d = d->next) {
-        CHAR_DATA *victim = CH(d);
+        CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
         if (IS_SET (victim->comm, COMM_NOCLAN) || IS_SET (victim->comm, COMM_QUIET))
@@ -371,7 +372,7 @@ DEFINE_DO_FUN (do_say) {
         ch, NULL, argument, 0, POS_RESTING);
 
     if (!IS_NPC (ch)) {
-        CHAR_DATA *mob, *mob_next;
+        CHAR_T *mob, *mob_next;
         for (mob = ch->in_room->people; mob != NULL; mob = mob_next) {
             mob_next = mob->next_in_room;
             if (IS_NPC (mob) && HAS_TRIGGER (mob, TRIG_SPEECH)
@@ -382,7 +383,7 @@ DEFINE_DO_FUN (do_say) {
 }
 
 DEFINE_DO_FUN (do_shout) {
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
 
     if (do_comm_toggle_channel_if_blank (ch, argument, COMM_SHOUTSOFF,
             "{tYou can hear shouts again.{x\n\r",
@@ -395,7 +396,7 @@ DEFINE_DO_FUN (do_shout) {
 
     act ("You shout '$T'", ch, NULL, argument, TO_CHAR);
     for (d = descriptor_list; d != NULL; d = d->next) {
-        CHAR_DATA *victim = CH(d);
+        CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
         if (IS_SET (victim->comm, COMM_SHOUTSOFF) || IS_SET (victim->comm, COMM_QUIET))
@@ -406,7 +407,7 @@ DEFINE_DO_FUN (do_shout) {
 
 DEFINE_DO_FUN (do_tell) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     if (do_comm_filter_can_tell_or_reply (ch))
         return;
@@ -422,7 +423,7 @@ DEFINE_DO_FUN (do_tell) {
 }
 
 DEFINE_DO_FUN (do_reply) {
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     if (do_comm_filter_can_tell_or_reply (ch))
         return;
     BAIL_IF ((victim = ch->reply) == NULL,
@@ -431,7 +432,7 @@ DEFINE_DO_FUN (do_reply) {
 }
 
 DEFINE_DO_FUN (do_yell) {
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
 
     BAIL_IF (IS_SET (ch->comm, COMM_NOSHOUT),
         "You can't yell.\n\r", ch);
@@ -442,7 +443,7 @@ DEFINE_DO_FUN (do_yell) {
     WAIT_STATE (ch, 12);
 
     for (d = descriptor_list; d != NULL; d = d->next) {
-        CHAR_DATA *victim = CH(d);
+        CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
         if (IS_SET (victim->comm, COMM_SHOUTSOFF) || IS_SET (victim->comm, COMM_QUIET))
@@ -466,7 +467,7 @@ DEFINE_DO_FUN (do_emote) {
 }
 
 DEFINE_DO_FUN (do_pmote) {
-    CHAR_DATA *vch;
+    CHAR_T *vch;
     char *letter, *name;
     char last[MAX_INPUT_LENGTH], temp[MAX_STRING_LENGTH];
     int matches = 0;
@@ -529,180 +530,19 @@ DEFINE_DO_FUN (do_pmote) {
     }
 }
 
-/* All the posing stuff. */
-struct pose_table_type {
-    char *message[2 * CLASS_MAX];
-};
-
-const struct pose_table_type pose_table[] = {
-    {{"You sizzle with energy.",
-      "$n sizzles with energy.",
-      "You feel very holy.",
-      "$n looks very holy.",
-      "You perform a small card trick.",
-      "$n performs a small card trick.",
-      "You show your bulging muscles.",
-      "$n shows $s bulging muscles."}},
-
-    {{"You turn into a butterfly, then return to your normal shape.",
-      "$n turns into a butterfly, then returns to $s normal shape.",
-      "You nonchalantly turn wine into water.",
-      "$n nonchalantly turns wine into water.",
-      "You wiggle your ears alternately.",
-      "$n wiggles $s ears alternately.",
-      "You crack nuts between your fingers.",
-      "$n cracks nuts between $s fingers."}},
-
-    {{"Blue sparks fly from your fingers.",
-      "Blue sparks fly from $n's fingers.",
-      "A halo appears over your head.",
-      "A halo appears over $n's head.",
-      "You nimbly tie yourself into a knot.",
-      "$n nimbly ties $mself into a knot.",
-      "You grizzle your teeth and look mean.",
-      "$n grizzles $s teeth and looks mean."}},
-
-    {{"Little red lights dance in your eyes.",
-      "Little red lights dance in $n's eyes.",
-      "You recite words of wisdom.",
-      "$n recites words of wisdom.",
-      "You juggle with daggers, apples, and eyeballs.",
-      "$n juggles with daggers, apples, and eyeballs.",
-      "You hit your head, and your eyes roll.",
-      "$n hits $s head, and $s eyes roll."}},
-
-    {{"A slimy green monster appears before you and bows.",
-      "A slimy green monster appears before $n and bows.",
-      "Deep in prayer, you levitate.",
-      "Deep in prayer, $n levitates.",
-      "You steal the underwear off every person in the room.",
-      "Your underwear is gone!  $n stole it!",
-      "Crunch, crunch -- you munch a bottle.",
-      "Crunch, crunch -- $n munches a bottle."}},
-
-    {{"You turn everybody into a little pink elephant.",
-      "You are turned into a little pink elephant by $n.",
-      "An angel consults you.",
-      "An angel consults $n.",
-      "The dice roll ... and you win again.",
-      "The dice roll ... and $n wins again.",
-      "... 98, 99, 100 ... you do pushups.",
-      "... 98, 99, 100 ... $n does pushups."}},
-
-    {{"A small ball of light dances on your fingertips.",
-      "A small ball of light dances on $n's fingertips.",
-      "Your body glows with an unearthly light.",
-      "$n's body glows with an unearthly light.",
-      "You count the money in everyone's pockets.",
-      "Check your money, $n is counting it.",
-      "Arnold Schwarzenegger admires your physique.",
-      "Arnold Schwarzenegger admires $n's physique."}},
-
-    {{"Smoke and fumes leak from your nostrils.",
-      "Smoke and fumes leak from $n's nostrils.",
-      "A spot light hits you.",
-      "A spot light hits $n.",
-      "You balance a pocket knife on your tongue.",
-      "$n balances a pocket knife on your tongue.",
-      "Watch your feet, you are juggling granite boulders.",
-      "Watch your feet, $n is juggling granite boulders."}},
-
-    {{"The light flickers as you rap in magical languages.",
-      "The light flickers as $n raps in magical languages.",
-      "Everyone levitates as you pray.",
-      "You levitate as $n prays.",
-      "You produce a coin from everyone's ear.",
-      "$n produces a coin from your ear.",
-      "Oomph!  You squeeze water out of a granite boulder.",
-      "Oomph!  $n squeezes water out of a granite boulder."}},
-
-    {{"Your head disappears.",
-      "$n's head disappears.",
-      "A cool breeze refreshes you.",
-      "A cool breeze refreshes $n.",
-      "You step behind your shadow.",
-      "$n steps behind $s shadow.",
-      "You pick your teeth with a spear.",
-      "$n picks $s teeth with a spear."}},
-
-    {{"A fire elemental singes your hair.",
-      "A fire elemental singes $n's hair.",
-      "The sun pierces through the clouds to illuminate you.",
-      "The sun pierces through the clouds to illuminate $n.",
-      "Your eyes dance with greed.",
-      "$n's eyes dance with greed.",
-      "Everyone is swept off their foot by your hug.",
-      "You are swept off your feet by $n's hug."}},
-
-    {{"The sky changes colour to match your eyes.",
-      "The sky changes colour to match $n's eyes.",
-      "The ocean parts before you.",
-      "The ocean parts before $n.",
-      "You deftly steal everyone's weapon.",
-      "$n deftly steals your weapon.",
-      "Your karate chop splits a tree.",
-      "$n's karate chop splits a tree."}},
-
-    {{"The stones dance to your command.",
-      "The stones dance to $n's command.",
-      "A thunder cloud kneels to you.",
-      "A thunder cloud kneels to $n.",
-      "The Grey Mouser buys you a beer.",
-      "The Grey Mouser buys $n a beer.",
-      "A strap of your armor breaks over your mighty thews.",
-      "A strap of $n's armor breaks over $s mighty thews."}},
-
-    {{"The heavens and grass change colour as you smile.",
-      "The heavens and grass change colour as $n smiles.",
-      "The Burning Man speaks to you.",
-      "The Burning Man speaks to $n.",
-      "Everyone's pocket explodes with your fireworks.",
-      "Your pocket explodes with $n's fireworks.",
-      "A boulder cracks at your frown.",
-      "A boulder cracks at $n's frown."}},
-
-    {{"Everyone's clothes are transparent, and you are laughing.",
-      "Your clothes are transparent, and $n is laughing.",
-      "An eye in a pyramid winks at you.",
-      "An eye in a pyramid winks at $n.",
-      "Everyone discovers your dagger a centimeter from their eye.",
-      "You discover $n's dagger a centimeter from your eye.",
-      "Mercenaries arrive to do your bidding.",
-      "Mercenaries arrive to do $n's bidding."}},
-
-    {{"A black hole swallows you.",
-      "A black hole swallows $n.",
-      "Valentine Michael Smith offers you a glass of water.",
-      "Valentine Michael Smith offers $n a glass of water.",
-      "Where did you go?",
-      "Where did $n go?",
-      "Four matched Percherons bring in your chariot.",
-      "Four matched Percherons bring in $n's chariot."}},
-
-    {{"The world shimmers in time with your whistling.",
-      "The world shimmers in time with $n's whistling.",
-      "The great god Mota gives you a staff.",
-      "The great god Mota gives $n a staff.",
-      "Click.",
-      "Click.",
-      "Atlas asks you to relieve him.",
-      "Atlas asks $n to relieve him."}}
-};
-
 DEFINE_DO_FUN (do_pose) {
-    int level;
-    int pose;
+    int level, pose, message;
 
     BAIL_IF (IS_NPC (ch) || ch->class < 0 || ch->class >= CLASS_MAX,
         "You have no profession to demonstrate. Sorry!\n\r", ch);
 
-    level = UMIN (ch->level, sizeof (pose_table) / sizeof (pose_table[0]) - 1);
-    pose = number_range (0, level);
+    level = UMIN (ch->level, POS_MAX - 1);
+    pose  = number_range (0, level);
+    message = 2 * ch->class;
 
-    act (pose_table[pose].message[2 * ch->class + 0], ch, NULL, NULL,
-         TO_CHAR);
-    act (pose_table[pose].message[2 * ch->class + 1], ch, NULL, NULL,
-         TO_NOTCHAR);
+    act2 (pose_table[pose].message[message + 0],
+          pose_table[pose].message[message + 1],
+          ch, NULL, NULL, 0, POS_RESTING);
 }
 
 DEFINE_DO_FUN (do_bug) {

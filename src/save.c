@@ -33,9 +33,10 @@
 #include "recycle.h"
 #include "skills.h"
 #include "board.h"
-#include "comm.h"
 #include "chars.h"
 #include "objs.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "save.h"
 
@@ -70,12 +71,12 @@ char *print_flags (flag_t flags) {
 
 /* Array of containers read for proper re-nesting of objects. */
 #define MAX_NEST    100
-static OBJ_DATA *rgObjNest[MAX_NEST];
+static OBJ_T *rgObjNest[MAX_NEST];
 
 /* Save a character and inventory.
  * Would be cool to save NPC's too for quest purposes,
  *   some of the infrastructure is provided. */
-void save_char_obj (CHAR_DATA * ch) {
+void save_char_obj (CHAR_T *ch) {
     char strsave[MAX_INPUT_LENGTH];
     FILE *fp;
 
@@ -131,8 +132,8 @@ void save_char_obj (CHAR_DATA * ch) {
 }
 
 /* Write the char. */
-void fwrite_char (CHAR_DATA * ch, FILE * fp) {
-    AFFECT_DATA *paf;
+void fwrite_char (CHAR_T *ch, FILE *fp) {
+    AFFECT_T *paf;
     int sn, gn, pos, i;
 
     fprintf (fp, "#%s\n", IS_NPC (ch) ? "MOB" : "PLAYER");
@@ -163,7 +164,7 @@ void fwrite_char (CHAR_DATA * ch, FILE * fp) {
     fprintf (fp, "Room %d\n", (ch->in_room == get_room_index (ROOM_VNUM_LIMBO)
                                && ch->was_in_room != NULL)
              ? ch->was_in_room->vnum
-             : ch->in_room == NULL ? 3001 : ch->in_room->vnum);
+             : ch->in_room == NULL ? ROOM_VNUM_TEMPLE : ch->in_room->vnum);
 
     fprintf (fp, "HMV  %d %d %d %d %d %d\n",
              ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move,
@@ -288,8 +289,8 @@ void fwrite_char (CHAR_DATA * ch, FILE * fp) {
 }
 
 /* write a pet */
-void fwrite_pet (CHAR_DATA * pet, FILE * fp) {
-    AFFECT_DATA *paf;
+void fwrite_pet (CHAR_T *pet, FILE *fp) {
+    AFFECT_T *paf;
 
     fprintf (fp, "#PET\n");
 
@@ -319,11 +320,11 @@ void fwrite_pet (CHAR_DATA * pet, FILE * fp) {
         fprintf (fp, "Silv %ld\n", pet->silver);
     if (pet->exp > 0)
         fprintf (fp, "Exp  %d\n", pet->exp);
-    if (pet->mob != pet->pIndexData->mob)
+    if (pet->mob != pet->pIndexData->mob_final)
         fprintf (fp, "Mob  %s\n", print_flags (pet->mob));
     if (pet->plr != 0)
         fprintf (fp, "Plr  %s\n", print_flags (pet->plr));
-    if (pet->affected_by != pet->pIndexData->affected_by)
+    if (pet->affected_by != pet->pIndexData->affected_by_final)
         fprintf (fp, "AfBy %s\n", print_flags (pet->affected_by));
     if (pet->comm != 0)
         fprintf (fp, "Comm %s\n", print_flags (pet->comm));
@@ -335,7 +336,7 @@ void fwrite_pet (CHAR_DATA * pet, FILE * fp) {
         fprintf (fp, "Alig %d\n", pet->alignment);
     if (pet->hitroll != pet->pIndexData->hitroll)
         fprintf (fp, "Hit  %d\n", pet->hitroll);
-    if (pet->damroll != pet->pIndexData->damage[DICE_BONUS])
+    if (pet->damroll != pet->pIndexData->damage.bonus)
         fprintf (fp, "Dam  %d\n", pet->damroll);
     fprintf (fp, "ACs  %d %d %d %d\n",
              pet->armor[0], pet->armor[1], pet->armor[2], pet->armor[3]);
@@ -360,9 +361,9 @@ void fwrite_pet (CHAR_DATA * pet, FILE * fp) {
 }
 
 /* Write an object and its contents. */
-void fwrite_obj (CHAR_DATA * ch, OBJ_DATA * obj, FILE * fp, int iNest) {
-    EXTRA_DESCR_DATA *ed;
-    AFFECT_DATA *paf;
+void fwrite_obj (CHAR_T *ch, OBJ_T *obj, FILE *fp, int iNest) {
+    EXTRA_DESCR_T *ed;
+    AFFECT_T *paf;
 
     /* Slick recursion to write lists backwards,
      * so loading them will load in forwards order. */
@@ -486,10 +487,10 @@ void fwrite_obj (CHAR_DATA * ch, OBJ_DATA * obj, FILE * fp, int iNest) {
 }
 
 /* Load a char and inventory into a new ch structure. */
-bool load_char_obj (DESCRIPTOR_DATA * d, char *name) {
+bool load_char_obj (DESCRIPTOR_T *d, char *name) {
     char strsave[MAX_INPUT_LENGTH];
     char buf[100];
-    CHAR_DATA *ch;
+    CHAR_T *ch;
     FILE *fp;
     bool found;
     int stat;
@@ -626,8 +627,8 @@ bool load_char_obj (DESCRIPTOR_DATA * d, char *name) {
     return found;
 }
 
-void load_old_colour (CHAR_DATA * ch, FILE * fp, char *name) {
-    const COLOUR_SETTING_TYPE *setting;
+void load_old_colour (CHAR_T *ch, FILE *fp, char *name) {
+    const COLOUR_SETTING_T *setting;
     int number;
     flag_t flag;
 
@@ -665,7 +666,7 @@ void load_old_colour (CHAR_DATA * ch, FILE * fp, char *name) {
     ch->pcdata->colour[setting->index] = flag;
 }
 
-void fread_char (CHAR_DATA * ch, FILE * fp) {
+void fread_char (CHAR_T *ch, FILE *fp) {
     char buf[MAX_STRING_LENGTH];
     char *word;
     bool fMatch;
@@ -743,7 +744,7 @@ void fread_char (CHAR_DATA * ch, FILE * fp) {
                 }
 
                 if (!str_cmp (word, "AffD")) {
-                    AFFECT_DATA *paf;
+                    AFFECT_T *paf;
                     int sn;
 
                     paf = affect_new ();
@@ -758,13 +759,13 @@ void fread_char (CHAR_DATA * ch, FILE * fp) {
                     paf->modifier = fread_number (fp);
                     paf->apply    = fread_number (fp);
                     paf->bits     = fread_number (fp);
-                    LIST_BACK (paf, next, ch->affected, AFFECT_DATA);
+                    LIST_BACK (paf, next, ch->affected, AFFECT_T);
                     fMatch = TRUE;
                     break;
                 }
 
                 if (!str_cmp (word, "Affc")) {
-                    AFFECT_DATA *paf;
+                    AFFECT_T *paf;
                     int sn;
 
                     paf = affect_new ();
@@ -780,7 +781,7 @@ void fread_char (CHAR_DATA * ch, FILE * fp) {
                     paf->modifier = fread_number (fp);
                     paf->apply    = fread_number (fp);
                     paf->bits     = fread_number (fp);
-                    LIST_BACK (paf, next, ch->affected, AFFECT_DATA);
+                    LIST_BACK (paf, next, ch->affected, AFFECT_T);
                     fMatch = TRUE;
                     break;
                 }
@@ -1106,8 +1107,7 @@ void fread_char (CHAR_DATA * ch, FILE * fp) {
                         && ch->pcdata->title[0] != '?')
                     {
                         sprintf (buf, " %s", ch->pcdata->title);
-                        str_free (ch->pcdata->title);
-                        ch->pcdata->title = str_dup (buf);
+                        str_replace_dup (&(ch->pcdata->title), buf);
                     }
                     fMatch = TRUE;
                     break;
@@ -1141,9 +1141,9 @@ void fread_char (CHAR_DATA * ch, FILE * fp) {
 }
 
 /* load a pet from the forgotten reaches */
-void fread_pet (CHAR_DATA * ch, FILE * fp) {
+void fread_pet (CHAR_T *ch, FILE *fp) {
     char *word;
-    CHAR_DATA *pet;
+    CHAR_T *pet;
     bool fMatch;
     int lastlogoff = current_time;
     int percent;
@@ -1197,7 +1197,7 @@ void fread_pet (CHAR_DATA * ch, FILE * fp) {
                 }
 
                 if (!str_cmp (word, "AffD")) {
-                    AFFECT_DATA *paf;
+                    AFFECT_T *paf;
                     int sn;
 
                     paf = affect_new ();
@@ -1212,13 +1212,13 @@ void fread_pet (CHAR_DATA * ch, FILE * fp) {
                     paf->modifier = fread_number (fp);
                     paf->apply    = fread_number (fp);
                     paf->bits     = fread_number (fp);
-                    LIST_BACK (paf, next, pet->affected, AFFECT_DATA);
+                    LIST_BACK (paf, next, pet->affected, AFFECT_T);
                     fMatch = TRUE;
                     break;
                 }
 
                 if (!str_cmp (word, "Affc")) {
-                    AFFECT_DATA *paf;
+                    AFFECT_T *paf;
                     int sn;
 
                     paf = affect_new ();
@@ -1239,7 +1239,7 @@ void fread_pet (CHAR_DATA * ch, FILE * fp) {
                      * pointed out a bug with duplicating affects in saved
                      * pets. -- JR 2002/01/31 */
                     if (!check_pet_affected (vnum, paf))
-                        LIST_BACK (paf, next, pet->affected, AFFECT_DATA);
+                        LIST_BACK (paf, next, pet->affected, AFFECT_T);
                     else
                         affect_free (paf);
                     fMatch = TRUE;
@@ -1353,8 +1353,8 @@ void fread_pet (CHAR_DATA * ch, FILE * fp) {
     }
 }
 
-void fread_obj (CHAR_DATA * ch, FILE * fp) {
-    OBJ_DATA *obj;
+void fread_obj (CHAR_T *ch, FILE *fp) {
+    OBJ_T *obj;
     char *word;
     int iNest;
     bool fMatch;
@@ -1410,7 +1410,7 @@ void fread_obj (CHAR_DATA * ch, FILE * fp) {
 
             case 'A':
                 if (!str_cmp (word, "AffD")) {
-                    AFFECT_DATA *paf;
+                    AFFECT_T *paf;
                     int sn;
 
                     paf = affect_new ();
@@ -1425,13 +1425,13 @@ void fread_obj (CHAR_DATA * ch, FILE * fp) {
                     paf->modifier = fread_number (fp);
                     paf->apply    = fread_number (fp);
                     paf->bits     = fread_number (fp);
-                    LIST_BACK (paf, next, obj->affected, AFFECT_DATA);
+                    LIST_BACK (paf, next, obj->affected, AFFECT_T);
                     fMatch = TRUE;
                     break;
                 }
 
                 if (!str_cmp (word, "Affc")) {
-                    AFFECT_DATA *paf;
+                    AFFECT_T *paf;
                     int sn;
 
                     paf = affect_new ();
@@ -1447,7 +1447,7 @@ void fread_obj (CHAR_DATA * ch, FILE * fp) {
                     paf->modifier = fread_number (fp);
                     paf->apply    = fread_number (fp);
                     paf->bits     = fread_number (fp);
-                    LIST_BACK (paf, next, obj->affected, AFFECT_DATA);
+                    LIST_BACK (paf, next, obj->affected, AFFECT_T);
                     fMatch = TRUE;
                     break;
                 }
@@ -1474,12 +1474,12 @@ void fread_obj (CHAR_DATA * ch, FILE * fp) {
                 KEY ("ExtF", obj->extra_flags, fread_flag (fp));
 
                 if (!str_cmp (word, "ExtraDescr") || !str_cmp (word, "ExDe")) {
-                    EXTRA_DESCR_DATA *ed;
+                    EXTRA_DESCR_T *ed;
 
                     ed = extra_descr_new ();
                     ed->keyword = fread_string (fp);
                     ed->description = fread_string (fp);
-                    LIST_BACK (ed, next, obj->extra_descr, EXTRA_DESCR_DATA);
+                    LIST_BACK (ed, next, obj->extra_descr, EXTRA_DESCR_T);
                     fMatch = TRUE;
                 }
 

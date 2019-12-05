@@ -36,11 +36,11 @@
 #include "spell_npc.h"
 
 /* NPC spells. */
-void perform_breath_attack (CHAR_DATA * ch, ROOM_INDEX_DATA * room,
-    CHAR_DATA * victim, int dam_type, int level, int dam, int sn)
+void perform_breath_attack (CHAR_T *ch, ROOM_INDEX_T *room,
+    CHAR_T *victim, int dam_type, int level, int dam, int sn)
 {
-    const DAM_TYPE *damt;
-    CHAR_DATA *vch, *vch_next;
+    const DAM_T *damt;
+    CHAR_T *vch, *vch_next;
     EFFECT_FUN *effect;
     bool is_area_spell;
 
@@ -65,11 +65,11 @@ void perform_breath_attack (CHAR_DATA * ch, ROOM_INDEX_DATA * room,
 
             if (saves_spell (level - 2, vch, dam_type)) {
                 effect (vch, level / 4, dam / 8, TARGET_CHAR);
-                damage (ch, vch, dam / 4, sn, dam_type, TRUE);
+                damage_visible (ch, vch, dam / 4, sn, dam_type, NULL);
             }
             else {
                 effect (vch, level / 2, dam / 4, TARGET_CHAR);
-                damage (ch, vch, dam / 2, sn, dam_type, TRUE);
+                damage_visible (ch, vch, dam / 2, sn, dam_type, NULL);
             }
         }
     }
@@ -85,18 +85,18 @@ void perform_breath_attack (CHAR_DATA * ch, ROOM_INDEX_DATA * room,
 
             if (saves_spell (level, victim, dam_type)) {
                 effect (victim, level / 2, dam / 4, TARGET_CHAR);
-                damage (ch, victim, dam / 2, sn, dam_type, TRUE);
+                damage_visible (ch, victim, dam / 2, sn, dam_type, NULL);
             }
             else {
                 effect (victim, level, dam, TARGET_CHAR);
-                damage (ch, victim, dam, sn, dam_type, TRUE);
+                damage_visible (ch, victim, dam, sn, dam_type, NULL);
             }
         } while (0);
     }
 }
 
 DEFINE_SPELL_FUN (spell_acid_breath) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam, hp_dam, dice_dam, hpch;
 
     act3 ("You spit acid at $N.",
@@ -114,7 +114,7 @@ DEFINE_SPELL_FUN (spell_acid_breath) {
 }
 
 DEFINE_SPELL_FUN (spell_fire_breath) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam, hp_dam, dice_dam;
     int hpch;
 
@@ -133,7 +133,7 @@ DEFINE_SPELL_FUN (spell_fire_breath) {
 }
 
 DEFINE_SPELL_FUN (spell_frost_breath) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam, hp_dam, dice_dam, hpch;
 
     act3 ("You breathe out a cone of frost.",
@@ -167,7 +167,7 @@ DEFINE_SPELL_FUN (spell_gas_breath) {
 }
 
 DEFINE_SPELL_FUN (spell_lightning_breath) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam, hp_dam, dice_dam, hpch;
 
     act3 ("You breathe a bolt of lightning at $N.",
@@ -186,21 +186,21 @@ DEFINE_SPELL_FUN (spell_lightning_breath) {
 
 /* Spells for mega1.are from Glop/Erkenbrand. */
 DEFINE_SPELL_FUN (spell_general_purpose) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam;
 
     dam = number_range (25, 100);
     if (saves_spell (level, victim, DAM_PIERCE))
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_PIERCE, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_PIERCE, NULL);
 }
 
 DEFINE_SPELL_FUN (spell_high_explosive) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int dam;
 
     dam = number_range (30, 120);
     if (saves_spell (level, victim, DAM_PIERCE))
         dam /= 2;
-    damage (ch, victim, dam, sn, DAM_PIERCE, TRUE);
+    damage_visible (ch, victim, dam, sn, DAM_PIERCE, NULL);
 }

@@ -44,11 +44,13 @@
 #include "objs.h"
 #include "rooms.h"
 #include "find.h"
+#include "memory.h"
+#include "globals.h"
 
 #include "wiz_l5.h"
 
 /* trust levels for load and clone */
-bool do_obj_load_check (CHAR_DATA * ch, OBJ_DATA * obj) {
+bool do_obj_load_check (CHAR_T *ch, OBJ_T *obj) {
     if (IS_TRUSTED (ch, GOD))
         return TRUE;
     if (IS_TRUSTED (ch, IMMORTAL) && obj->level <= 20 && obj->cost <= 1000)
@@ -63,8 +65,8 @@ bool do_obj_load_check (CHAR_DATA * ch, OBJ_DATA * obj) {
 }
 
 /* for clone, to insure that cloning goes many levels deep */
-void do_clone_recurse (CHAR_DATA * ch, OBJ_DATA * obj, OBJ_DATA * clone) {
-    OBJ_DATA *c_obj, *t_obj;
+void do_clone_recurse (CHAR_T *ch, OBJ_T *obj, OBJ_T *clone) {
+    OBJ_T *c_obj, *t_obj;
     for (c_obj = obj->contains; c_obj != NULL; c_obj = c_obj->next_content) {
         if (!do_obj_load_check (ch, c_obj))
             continue;
@@ -79,7 +81,7 @@ void do_clone_recurse (CHAR_DATA * ch, OBJ_DATA * obj, OBJ_DATA * clone) {
 /* RT nochannels command, for those spammers */
 DEFINE_DO_FUN (do_nochannels) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
@@ -109,7 +111,7 @@ DEFINE_DO_FUN (do_nochannels) {
 
 DEFINE_DO_FUN (do_noemote) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
@@ -137,7 +139,7 @@ DEFINE_DO_FUN (do_noemote) {
 
 DEFINE_DO_FUN (do_noshout) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
@@ -167,7 +169,7 @@ DEFINE_DO_FUN (do_noshout) {
 
 DEFINE_DO_FUN (do_notell) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
@@ -196,9 +198,9 @@ DEFINE_DO_FUN (do_notell) {
 DEFINE_DO_FUN (do_transfer) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    ROOM_INDEX_DATA *location;
-    DESCRIPTOR_DATA *d;
-    CHAR_DATA *victim;
+    ROOM_INDEX_T *location;
+    DESCRIPTOR_T *d;
+    CHAR_T *victim;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -248,7 +250,7 @@ DEFINE_DO_FUN (do_transfer) {
 }
 
 DEFINE_DO_FUN (do_peace) {
-    CHAR_DATA *rch;
+    CHAR_T *rch;
 
     for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
         if (rch->fighting != NULL)
@@ -261,8 +263,8 @@ DEFINE_DO_FUN (do_peace) {
 
 DEFINE_DO_FUN (do_snoop) {
     char arg[MAX_INPUT_LENGTH];
-    DESCRIPTOR_DATA *d;
-    CHAR_DATA *victim;
+    DESCRIPTOR_T *d;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
@@ -310,8 +312,8 @@ DEFINE_DO_FUN (do_string) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    OBJ_DATA *obj;
+    CHAR_T *victim;
+    OBJ_T *obj;
 
     smash_tilde (argument);
     argument = one_argument (argument, type);
@@ -392,7 +394,7 @@ DEFINE_DO_FUN (do_string) {
             return;
         }
         if (!str_prefix (arg2, "ed") || !str_prefix (arg2, "extended")) {
-            EXTRA_DESCR_DATA *ed;
+            EXTRA_DESCR_T *ed;
 
             argument = one_argument (argument, arg3);
             BAIL_IF (argument == NULL,
@@ -415,8 +417,8 @@ DEFINE_DO_FUN (do_string) {
 DEFINE_DO_FUN (do_clone) {
     char arg[MAX_INPUT_LENGTH];
     char *rest;
-    CHAR_DATA *mob;
-    OBJ_DATA *obj;
+    CHAR_T *mob;
+    OBJ_T *obj;
 
     rest = one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
@@ -441,7 +443,7 @@ DEFINE_DO_FUN (do_clone) {
 
     /* clone an object */
     if (obj != NULL) {
-        OBJ_DATA *clone;
+        OBJ_T *clone;
         BAIL_IF (!do_obj_load_check (ch, obj),
             "Your powers are not great enough for such a task.\n\r", ch);
 
@@ -461,8 +463,8 @@ DEFINE_DO_FUN (do_clone) {
     }
 
     if (mob != NULL) {
-        CHAR_DATA *clone;
-        OBJ_DATA *new_obj;
+        CHAR_T *clone;
+        OBJ_T *new_obj;
 
         BAIL_IF (!IS_NPC (mob),
             "You can only clone mobiles.\n\r", ch);

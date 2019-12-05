@@ -30,8 +30,6 @@
 
 #include "merc.h"
 
-#include "json.h"
-
 /* useful macros. */
 #define JBITS(val) \
     json_not_none(val)
@@ -43,41 +41,41 @@ const char *json_not_none (const char *value);
 const char *json_not_blank (const char *value);
 
 /* node creation. */
-JSON_T *json_new_obj_room (const char *name, const ROOM_INDEX_DATA *room);
-JSON_T *json_new_obj_extra_descr (const char *name, const EXTRA_DESCR_DATA *ed);
-JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_DATA *from, int dir, const EXIT_DATA *ex);
-JSON_T *json_new_obj_shop (const char *name, const SHOP_DATA *shop);
-JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_DATA *mob);
-JSON_T *json_new_obj_object (const char *name, const OBJ_INDEX_DATA *obj);
-JSON_T *json_new_obj_affect (const char *name, const AFFECT_DATA *aff);
-JSON_T *json_new_obj_anum (const char *name, AREA_DATA *area_from, int vnum);
-JSON_T *json_new_obj_reset (const char *name, const RESET_DATA *reset);
-JSON_T *json_new_obj_shop (const char *name, const SHOP_DATA *shop);
-JSON_T *json_new_obj_area (const char *name, const AREA_DATA *area);
-JSON_T *json_new_obj_social (const char *name, const SOCIAL_TYPE *soc);
-JSON_T *json_new_obj_table (const char *name, const TABLE_TYPE *table);
-JSON_T *json_new_obj_portal_exit (const char *name, const PORTAL_EXIT_TYPE *pex);
-JSON_T *json_new_obj_portal (const char *name, const PORTAL_TYPE *portal);
-JSON_T *json_new_obj_help_area (const char *name, const HELP_AREA *had);
-JSON_T *json_new_obj_help (const char *name, const HELP_DATA *help);
+JSON_T *json_new_obj_room (const char *name, const ROOM_INDEX_T *room);
+JSON_T *json_new_obj_extra_descr (const char *name, const EXTRA_DESCR_T *ed);
+JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_T *from, int dir, const EXIT_T *ex);
+JSON_T *json_new_obj_shop (const char *name, const SHOP_T *shop);
+JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob);
+JSON_T *json_new_obj_object (const char *name, const OBJ_INDEX_T *obj);
+JSON_T *json_new_obj_affect (const char *name, const AFFECT_T *aff);
+JSON_T *json_new_obj_anum (const char *name, AREA_T *area_from, int vnum);
+JSON_T *json_new_obj_reset (const char *name, const RESET_T *reset);
+JSON_T *json_new_obj_shop (const char *name, const SHOP_T *shop);
+JSON_T *json_new_obj_area (const char *name, const AREA_T *area);
+JSON_T *json_new_obj_social (const char *name, const SOCIAL_T *soc);
+JSON_T *json_new_obj_table (const char *name, const TABLE_T *table);
+JSON_T *json_new_obj_portal_exit (const char *name, const PORTAL_EXIT_T *pex);
+JSON_T *json_new_obj_portal (const char *name, const PORTAL_T *portal);
+JSON_T *json_new_obj_help_area (const char *name, const HELP_AREA_T *had);
+JSON_T *json_new_obj_help (const char *name, const HELP_T *help);
 
 /* shorthand-functions for node creation as properties. */
-JSON_T *json_prop_obj_room (JSON_T *parent, const char *name, const ROOM_INDEX_DATA *room);
-JSON_T *json_prop_obj_extra_descr (JSON_T *parent, const char *name, const EXTRA_DESCR_DATA *ed);
-JSON_T *json_prop_obj_exit (JSON_T *parent, const char *name, const ROOM_INDEX_DATA *from, int dir, const EXIT_DATA *ex);
-JSON_T *json_prop_obj_shop (JSON_T *parent, const char *name, const SHOP_DATA *shop);
-JSON_T *json_prop_obj_mobile (JSON_T *parent, const char *name, const MOB_INDEX_DATA *mob);
-JSON_T *json_prop_obj_object (JSON_T *parent, const char *name, const OBJ_INDEX_DATA *obj);
-JSON_T *json_prop_obj_affect (JSON_T *parent, const char *name, const AFFECT_DATA *aff);
-JSON_T *json_prop_obj_anum (JSON_T *parent, const char *name, AREA_DATA *area_from, int vnum);
-JSON_T *json_prop_obj_reset (JSON_T *parent, const char *name, const RESET_DATA *reset);
-JSON_T *json_prop_obj_shop (JSON_T *parent, const char *name, const SHOP_DATA *shop);
-JSON_T *json_prop_obj_area (JSON_T *parent, const char *name, const AREA_DATA *area);
-JSON_T *json_prop_obj_social (JSON_T *parent, const char *name, const SOCIAL_TYPE *soc);
-JSON_T *json_prop_obj_table (JSON_T *parent, const char *name, const TABLE_TYPE *table);
-JSON_T *json_prop_obj_portal_exit (JSON_T *parent, const char *name, const PORTAL_EXIT_TYPE *pex);
-JSON_T *json_prop_obj_portal (JSON_T *parent, const char *name, const PORTAL_TYPE *portal);
-JSON_T *json_prop_obj_help_area (JSON_T *parent, const char *name, const HELP_AREA *had);
-JSON_T *json_prop_obj_help (JSON_T *parent, const char *name, const HELP_DATA *help);
+JSON_T *json_prop_obj_room (JSON_T *parent, const char *name, const ROOM_INDEX_T *room);
+JSON_T *json_prop_obj_extra_descr (JSON_T *parent, const char *name, const EXTRA_DESCR_T *ed);
+JSON_T *json_prop_obj_exit (JSON_T *parent, const char *name, const ROOM_INDEX_T *from, int dir, const EXIT_T *ex);
+JSON_T *json_prop_obj_shop (JSON_T *parent, const char *name, const SHOP_T *shop);
+JSON_T *json_prop_obj_mobile (JSON_T *parent, const char *name, const MOB_INDEX_T *mob);
+JSON_T *json_prop_obj_object (JSON_T *parent, const char *name, const OBJ_INDEX_T *obj);
+JSON_T *json_prop_obj_affect (JSON_T *parent, const char *name, const AFFECT_T *aff);
+JSON_T *json_prop_obj_anum (JSON_T *parent, const char *name, AREA_T *area_from, int vnum);
+JSON_T *json_prop_obj_reset (JSON_T *parent, const char *name, const RESET_T *reset);
+JSON_T *json_prop_obj_shop (JSON_T *parent, const char *name, const SHOP_T *shop);
+JSON_T *json_prop_obj_area (JSON_T *parent, const char *name, const AREA_T *area);
+JSON_T *json_prop_obj_social (JSON_T *parent, const char *name, const SOCIAL_T *soc);
+JSON_T *json_prop_obj_table (JSON_T *parent, const char *name, const TABLE_T *table);
+JSON_T *json_prop_obj_portal_exit (JSON_T *parent, const char *name, const PORTAL_EXIT_T *pex);
+JSON_T *json_prop_obj_portal (JSON_T *parent, const char *name, const PORTAL_T *portal);
+JSON_T *json_prop_obj_help_area (JSON_T *parent, const char *name, const HELP_AREA_T *had);
+JSON_T *json_prop_obj_help (JSON_T *parent, const char *name, const HELP_T *help);
 
 #endif

@@ -37,6 +37,14 @@
     #include <sys/time.h>
 #endif
 
+/* Accommodate old non-Ansi compilers. */
+#if defined(TRADITIONAL)
+    #define const
+    #define args(list) ()
+#else
+    #define args(list) list
+#endif
+
 #if defined(_AIX)
     typedef int sh_int;
     typedef int bool;
@@ -54,21 +62,21 @@ int system();
  * These are all very standard library functions,
  *   but some systems have incomplete or non-ansi header files. */
 #if defined(_AIX)
-    char * crypt args( ( const char *key, const char *salt ) );
+    char *crypt args( ( const char *key, const char *salt ) );
 #endif
 
 #if defined(apollo)
     int atoi args( ( const char *string ) );
     void * calloc args( ( unsigned nelem, size_t size ) );
-    char * crypt args( ( const char *key, const char *salt ) );
+    char *crypt args( ( const char *key, const char *salt ) );
 #endif
 
 #if defined(hpux)
-    char * crypt args( ( const char *key, const char *salt ) );
+    char *crypt args( ( const char *key, const char *salt ) );
 #endif
 
 #if defined(linux)
-    char * crypt args( ( const char *key, const char *salt ) );
+    char *crypt args( ( const char *key, const char *salt ) );
 #endif
 
 #if defined(macintosh)
@@ -79,7 +87,7 @@ int system();
 #endif
 
 #if defined(MIPS_OS)
-    char * crypt args( ( const char *key, const char *salt ) );
+    char *crypt args( ( const char *key, const char *salt ) );
 #endif
 
 #if defined(MSDOS)
@@ -90,11 +98,11 @@ int system();
 #endif
 
 #if defined(NeXT)
-    char * crypt args( ( const char *key, const char *salt ) );
+    char *crypt args( ( const char *key, const char *salt ) );
 #endif
 
 #if defined(sequent)
-    char * crypt args( ( const char *key, const char *salt ) );
+    char *crypt args( ( const char *key, const char *salt ) );
     int fclose args( ( FILE *stream ) );
     int fprintf args( ( FILE *stream, const char *format, ... ) );
     int fread args( ( void *ptr, int size, int n, FILE *stream ) );
@@ -104,7 +112,7 @@ int system();
 #endif
 
 #if defined(sun)
-    char * crypt args( ( const char *key, const char *salt ) );
+    char *crypt args( ( const char *key, const char *salt ) );
     int fclose args( ( FILE *stream ) );
     int fprintf args( ( FILE *stream, const char *format, ... ) );
 #if defined(SYSV)
@@ -118,7 +126,7 @@ int system();
 #endif
 
 #if defined(ultrix)
-    char * crypt args( ( const char *key, const char *salt ) );
+    char *crypt args( ( const char *key, const char *salt ) );
 #endif
 
 /* The crypt(3) function is not available on some operating systems.
@@ -129,15 +137,5 @@ int system();
 #if defined(NOCRYPT)
     #define crypt(s1, s2) (s1)
 #endif
-
-/* Data files used by the server.
- *
- * AREA_LIST contains a list of areas to boot.
- * All files are read in completely at bootup.
- * Most output files (bug, idea, typo, shutdown) are append-only.
- *
- * The NULL_FILE is held open so that we have a stream handle in reserve,
- *   so players can go ahead and telnet to all the other descriptors.
- * Then we close it whenever we need to open a file (e.g. a save file). */
 
 #endif

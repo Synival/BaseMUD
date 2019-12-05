@@ -48,11 +48,12 @@
 #include "chars.h"
 #include "objs.h"
 #include "find.h"
+#include "globals.h"
 
 #include "mob_prog.h"
 
 /* if-check keywords: */
-const char *fn_keyword[] = {
+static const char *fn_keyword[] = {
     "rand",      /* if rand 30           - if random number < 30 */
     "mobhere",   /* if mobhere fido      - is there a 'fido' here */
                  /* if mobhere 1233      - is there mob vnum 1233 here */
@@ -117,7 +118,7 @@ const char *fn_keyword[] = {
     "\n",        /* Table terminator */
 };
 
-const char *fn_evals[] = {
+static const char *fn_evals[] = {
     "==",
     ">=",
     "<=",
@@ -157,8 +158,8 @@ int num_eval (int lval, int oper, int rval) {
  * ---------------------------------------------------------------------- */
 
 /* Get a random PC in the room (for $r parameter) */
-CHAR_DATA *get_random_char (CHAR_DATA * mob) {
-    CHAR_DATA *vch, *victim = NULL;
+CHAR_T *get_random_char (CHAR_T *mob) {
+    CHAR_T *vch, *victim = NULL;
     int now = 0, highest = 0;
     for (vch = mob->in_room->people; vch; vch = vch->next_in_room) {
         if (mob != vch && !IS_NPC (vch) && char_can_see_in_room (mob, vch) &&
@@ -171,7 +172,7 @@ CHAR_DATA *get_random_char (CHAR_DATA * mob) {
     return victim;
 }
 
-bool count_people_room_check (CHAR_DATA * mob, CHAR_DATA * vch, int iFlag) {
+bool count_people_room_check (CHAR_T *mob, CHAR_T *vch, int iFlag) {
     switch (iFlag) {
         case CHK_PEOPLE:
             return TRUE;
@@ -191,8 +192,8 @@ bool count_people_room_check (CHAR_DATA * mob, CHAR_DATA * vch, int iFlag) {
 }
 
 /* How many other players / mobs are there in the room */
-int count_people_room (CHAR_DATA * mob, int iFlag) {
-    CHAR_DATA *vch;
+int count_people_room (CHAR_T *mob, int iFlag) {
+    CHAR_T *vch;
     int count = 0;
     for (vch = mob->in_room->people; vch; vch = vch->next_in_room) {
         if (mob == vch)
@@ -209,8 +210,8 @@ int count_people_room (CHAR_DATA * mob, int iFlag) {
 /* Get the order of a mob in the room. Useful when several mobs in
  * a room have the same trigger and you want only the first of them
  * to act */
-int get_order (CHAR_DATA * ch) {
-    CHAR_DATA *vch;
+int get_order (CHAR_T *ch) {
+    CHAR_T *vch;
     int i;
 
     if (!IS_NPC (ch))
@@ -228,8 +229,8 @@ int get_order (CHAR_DATA * ch) {
  * vnum: item vnum or -1
  * item_type: item type or -1
  * fWear: TRUE: item must be worn, FALSE: don't care */
-bool has_item (CHAR_DATA * ch, sh_int vnum, sh_int item_type, bool fWear) {
-    OBJ_DATA *obj;
+bool has_item (CHAR_T *ch, sh_int vnum, sh_int item_type, bool fWear) {
+    OBJ_T *obj;
     for (obj = ch->carrying; obj; obj = obj->next_content)
         if ((vnum < 0 || obj->pIndexData->vnum == vnum)
             && (item_type < 0 || obj->pIndexData->item_type == item_type)
@@ -239,8 +240,8 @@ bool has_item (CHAR_DATA * ch, sh_int vnum, sh_int item_type, bool fWear) {
 }
 
 /* Check if there's a mob with given vnum in the room */
-bool get_mob_vnum_room (CHAR_DATA * ch, sh_int vnum) {
-    CHAR_DATA *mob;
+bool get_mob_vnum_room (CHAR_T *ch, sh_int vnum) {
+    CHAR_T *mob;
     for (mob = ch->in_room->people; mob; mob = mob->next_in_room)
         if (IS_NPC (mob) && mob->pIndexData->vnum == vnum)
             return TRUE;
@@ -248,8 +249,8 @@ bool get_mob_vnum_room (CHAR_DATA * ch, sh_int vnum) {
 }
 
 /* Check if there's an object with given vnum in the room */
-bool get_obj_vnum_room (CHAR_DATA * ch, sh_int vnum) {
-    OBJ_DATA *obj;
+bool get_obj_vnum_room (CHAR_T *ch, sh_int vnum) {
+    OBJ_T *obj;
     for (obj = ch->in_room->contents; obj; obj = obj->next_content)
         if (obj->pIndexData->vnum == vnum)
             return TRUE;
@@ -268,14 +269,14 @@ bool get_obj_vnum_room (CHAR_DATA * ch, sh_int vnum) {
  *
  *----------------------------------------------------------------------*/
 int cmd_eval (sh_int vnum, char *line, int check,
-              CHAR_DATA * mob, CHAR_DATA * ch,
-              const void *arg1, const void *arg2, CHAR_DATA * rch)
+              CHAR_T *mob, CHAR_T *ch,
+              const void *arg1, const void *arg2, CHAR_T *rch)
 {
-    CHAR_DATA *lval_char = mob;
-    CHAR_DATA *vch = (CHAR_DATA *) arg2;
-    OBJ_DATA *obj1 = (OBJ_DATA *) arg1;
-    OBJ_DATA *obj2 = (OBJ_DATA *) arg2;
-    OBJ_DATA *lval_obj = NULL;
+    CHAR_T *lval_char = mob;
+    CHAR_T *vch = (CHAR_T *) arg2;
+    OBJ_T *obj1 = (OBJ_T *) arg1;
+    OBJ_T *obj2 = (OBJ_T *) arg2;
+    OBJ_T *lval_obj = NULL;
 
     char *original, buf[MAX_INPUT_LENGTH], code;
     int lval = 0, oper = 0, rval = -1;
@@ -573,8 +574,8 @@ int cmd_eval (sh_int vnum, char *line, int check,
  */
 void expand_arg (char *buf,
                  const char *format,
-                 CHAR_DATA * mob, CHAR_DATA * ch,
-                 const void *arg1, const void *arg2, CHAR_DATA * rch)
+                 CHAR_T *mob, CHAR_T *ch,
+                 const void *arg1, const void *arg2, CHAR_T *rch)
 {
     static char *const he_she[]  = { "it", "he", "she" };
     static char *const him_her[] = { "it", "him", "her" };
@@ -584,9 +585,9 @@ void expand_arg (char *buf,
     const char *someones  = "someone's";
 
     char fname[MAX_INPUT_LENGTH];
-    CHAR_DATA *vch = (CHAR_DATA *) arg2;
-    OBJ_DATA *obj1 = (OBJ_DATA *) arg1;
-    OBJ_DATA *obj2 = (OBJ_DATA *) arg2;
+    CHAR_T *vch = (CHAR_T *) arg2;
+    OBJ_T *obj1 = (OBJ_T *) arg1;
+    OBJ_T *obj2 = (OBJ_T *) arg2;
     const char *str;
     const char *i;
     char *point;
@@ -784,10 +785,10 @@ void expand_arg (char *buf,
 
 void program_flow (sh_int pvnum,    /* For diagnostic purposes */
                    char *source,    /* the actual MOBprog code */
-                   CHAR_DATA * mob, CHAR_DATA * ch, const void *arg1,
+                   CHAR_T *mob, CHAR_T *ch, const void *arg1,
                    const void *arg2)
 {
-    CHAR_DATA *rch = NULL;
+    CHAR_T *rch = NULL;
     char *code, *line;
     char buf[MAX_STRING_LENGTH];
     char control[MAX_INPUT_LENGTH], data[MAX_STRING_LENGTH];
@@ -937,10 +938,10 @@ void program_flow (sh_int pvnum,    /* For diagnostic purposes */
 
 /* A general purpose string trigger. Matches argument to a string trigger
  * phrase. */
-bool mp_act_trigger (char *argument, CHAR_DATA * mob, CHAR_DATA * ch,
+bool mp_act_trigger (char *argument, CHAR_T *mob, CHAR_T *ch,
                      const void *arg1, const void *arg2, int type)
 {
-    MPROG_LIST *prg;
+    MPROG_LIST_T *prg;
     if (!IS_NPC(mob))
         return FALSE;
 
@@ -957,10 +958,10 @@ bool mp_act_trigger (char *argument, CHAR_DATA * mob, CHAR_DATA * ch,
 
 /* A general purpose percentage trigger. Checks if a random percentage
  * number is less than trigger phrase */
-bool mp_percent_trigger (CHAR_DATA * mob, CHAR_DATA * ch,
+bool mp_percent_trigger (CHAR_T *mob, CHAR_T *ch,
                          const void *arg1, const void *arg2, int type)
 {
-    MPROG_LIST *prg;
+    MPROG_LIST_T *prg;
     if (!IS_NPC(mob))
         return FALSE;
 
@@ -975,8 +976,8 @@ bool mp_percent_trigger (CHAR_DATA * mob, CHAR_DATA * ch,
     return FALSE;
 }
 
-bool mp_bribe_trigger (CHAR_DATA * mob, CHAR_DATA * ch, int amount) {
-    MPROG_LIST *prg;
+bool mp_bribe_trigger (CHAR_T *mob, CHAR_T *ch, int amount) {
+    MPROG_LIST_T *prg;
     if (!IS_NPC(mob))
         return FALSE;
 
@@ -992,9 +993,9 @@ bool mp_bribe_trigger (CHAR_DATA * mob, CHAR_DATA * ch, int amount) {
     return FALSE;
 }
 
-bool mp_exit_trigger (CHAR_DATA * ch, int dir) {
-    CHAR_DATA *mob;
-    MPROG_LIST *prg;
+bool mp_exit_trigger (CHAR_T *ch, int dir) {
+    CHAR_T *mob;
+    MPROG_LIST_T *prg;
 
     for (mob = ch->in_room->people; mob != NULL; mob = mob->next_in_room) {
         if (!IS_NPC (mob))
@@ -1025,9 +1026,9 @@ bool mp_exit_trigger (CHAR_DATA * ch, int dir) {
     return FALSE;
 }
 
-bool mp_give_trigger (CHAR_DATA * mob, CHAR_DATA * ch, OBJ_DATA * obj) {
+bool mp_give_trigger (CHAR_T *mob, CHAR_T *ch, OBJ_T *obj) {
     char buf[MAX_INPUT_LENGTH], *p;
-    MPROG_LIST *prg;
+    MPROG_LIST_T *prg;
     if (!IS_NPC (mob))
         return FALSE;
 
@@ -1059,8 +1060,8 @@ bool mp_give_trigger (CHAR_DATA * mob, CHAR_DATA * ch, OBJ_DATA * obj) {
     return FALSE;
 }
 
-bool mp_greet_trigger (CHAR_DATA * ch) {
-    CHAR_DATA *mob;
+bool mp_greet_trigger (CHAR_T *ch) {
+    CHAR_T *mob;
     bool rval = FALSE;
 
     for (mob = ch->in_room->people; mob != NULL; mob = mob->next_in_room) {
@@ -1085,8 +1086,8 @@ bool mp_greet_trigger (CHAR_DATA * ch) {
     return rval;
 }
 
-bool mp_hprct_trigger (CHAR_DATA * mob, CHAR_DATA * ch) {
-    MPROG_LIST *prg;
+bool mp_hprct_trigger (CHAR_T *mob, CHAR_T *ch) {
+    MPROG_LIST_T *prg;
     if (!IS_NPC (mob))
         return FALSE;
 

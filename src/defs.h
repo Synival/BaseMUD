@@ -28,24 +28,13 @@
 #ifndef __ROM_DEFS_H
 #define __ROM_DEFS_H
 
-/* Accommodate old non-Ansi compilers. */
-#if defined(TRADITIONAL)
-    #define const
-    #define args(list)              ()
-    #define DECLARE_DO_FUN(fun)     void fun()
-    #define DECLARE_SPEC_FUN(fun)   bool fun()
-    #define DECLARE_SPELL_FUN(fun)  void fun()
-#else
-    #define args(list)              list
-    #define DECLARE_DO_FUN(fun)     DO_FUN    fun
-    #define DECLARE_SPEC_FUN(fun)   SPEC_FUN  fun
-    #define DECLARE_SPELL_FUN(fun)  SPELL_FUN fun
-#endif
-
 /* Function definitions in *.c */
-#define DEFINE_DO_FUN(fun)      void fun (CHAR_DATA *ch, char *argument)
-#define DEFINE_SPELL_FUN(fun)   void fun (int sn, int level, CHAR_DATA *ch, \
-                                          void *vo, int target)
+#define DEFINE_DO_FUN(fun) \
+    void fun (CHAR_T *ch, char *argument)
+
+#define DEFINE_SPELL_FUN(fun) \
+    void fun (int sn, int level, CHAR_T *ch, void *vo, int target, \
+              const char *target_name)
 
 /* Short scalar types.
  * Diavolo reports AIX compiler has bugs with short types. */
@@ -62,6 +51,16 @@
         #define const
     #endif
 #endif
+
+/* Data files used by the server.
+ *
+ * AREA_LIST contains a list of areas to boot.
+ * All files are read in completely at bootup.
+ * Most output files (bug, idea, typo, shutdown) are append-only.
+ *
+ * The NULL_FILE is held open so that we have a stream handle in reserve,
+ *   so players can go ahead and telnet to all the other descriptors.
+ * Then we close it whenever we need to open a file (e.g. a save file). */
 
 #if defined(macintosh)
     #define PLAYER_DIR  "player/"           /* Player files          */
@@ -83,6 +82,7 @@
 #endif
 
 #define AREA_DIR        "area/"
+#define DUMP_DIR        "dump/"
 #define AREA_LIST       AREA_DIR "area.lst"     /* List of areas       */
 #define BUG_FILE        AREA_DIR "bugs.txt"     /* For 'bug' and bug() */
 #define TYPO_FILE       AREA_DIR "typos.txt"    /* For 'typo'          */
@@ -125,10 +125,10 @@
 #define PULSE_AREA       (120 * PULSE_PER_SECOND)
 
 /* Amount of hit/mana/move we're dividing by when running health_update() */
-#ifdef VANILLA
-    #define PULSE_DIVISOR    1 
-#else
+#ifdef BASEMUD_GRADUAL_RECOVERY
     #define PULSE_DIVISOR    30
+#else
+    #define PULSE_DIVISOR    1 
 #endif
 #define PULSE_HEALTH     (PULSE_TICK / PULSE_DIVISOR)
 
@@ -245,11 +245,6 @@
 #define LIQ_WATER   0
 /* ... lots of stuff ... */
 #define LIQ_MAX     36
-
-/* dice */
-#define DICE_NUMBER  0
-#define DICE_TYPE    1
-#define DICE_BONUS   2
 
 /* Well known object virtual numbers.
  * Defined in #OBJECTS. */
@@ -489,40 +484,40 @@
 #define EXE_FILE      "bin/rom"
 
 /* Recycleable types. */
-#define RECYCLE_BAN_DATA            0
-#define RECYCLE_AREA_DATA           1
-#define RECYCLE_EXTRA_DESCR_DATA    2
-#define RECYCLE_EXIT_DATA           3
-#define RECYCLE_ROOM_INDEX_DATA     4
-#define RECYCLE_OBJ_INDEX_DATA      5
-#define RECYCLE_SHOP_DATA           6
-#define RECYCLE_MOB_INDEX_DATA      7
-#define RECYCLE_RESET_DATA          8
-#define RECYCLE_HELP_DATA           9
-#define RECYCLE_MPROG_CODE         10
-#define RECYCLE_DESCRIPTOR_DATA    11
-#define RECYCLE_GEN_DATA           12
-#define RECYCLE_AFFECT_DATA        13
-#define RECYCLE_OBJ_DATA           14
-#define RECYCLE_CHAR_DATA          15
-#define RECYCLE_PC_DATA            16
-#define RECYCLE_MEM_DATA           17
-#define RECYCLE_BUFFER             18
-#define RECYCLE_MPROG_LIST         19
-#define RECYCLE_HELP_AREA          20
-#define RECYCLE_NOTE_DATA          21
-#define RECYCLE_SOCIAL_TYPE        22
-#define RECYCLE_PORTAL_EXIT_TYPE   23
-#define RECYCLE_PORTAL_TYPE        24
-#define RECYCLE_MAX                25
+#define RECYCLE_BAN_T         0
+#define RECYCLE_AREA_T        1
+#define RECYCLE_EXTRA_DESCR_T 2
+#define RECYCLE_EXIT_T        3
+#define RECYCLE_ROOM_INDEX_T  4
+#define RECYCLE_OBJ_INDEX_T   5
+#define RECYCLE_SHOP_T        6
+#define RECYCLE_MOB_INDEX_T   7
+#define RECYCLE_RESET_T       8
+#define RECYCLE_HELP_T        9
+#define RECYCLE_MPROG_CODE_T  10
+#define RECYCLE_DESCRIPTOR_T  11
+#define RECYCLE_GEN_T         12
+#define RECYCLE_AFFECT_T      13
+#define RECYCLE_OBJ_T         14
+#define RECYCLE_CHAR_T        15
+#define RECYCLE_PC_T          16
+#define RECYCLE_MEM_T         17
+#define RECYCLE_BUFFER_T      18
+#define RECYCLE_MPROG_LIST_T  19
+#define RECYCLE_HELP_AREA_T   20
+#define RECYCLE_NOTE_T        21
+#define RECYCLE_SOCIAL_T      22
+#define RECYCLE_PORTAL_EXIT_T 23
+#define RECYCLE_PORTAL_T      24
+#define RECYCLE_MAX           25
 
 /* Memory management.
  * Increase MAX_STRING if you have too.
  * Tune the others only if you understand what you're doing. */
-#define MAX_STRING      1413120
-#define MAX_PERM_BLOCK  131072
-#define MAX_MEM_LIST    11
-#define MAX_PERM_BLOCKS 1024
+#define MAX_STRING_SPACE    2097152 /* 2^21 */
+#define MAX_PERM_BLOCK      131072
+#define MAX_MEM_LIST        11
+#define MAX_PERM_BLOCKS     1024
 
 /* Types of tables used for our master reference table. */
 #define TABLE_FLAG_TYPE 0x01
@@ -584,5 +579,28 @@
 #define RESET_DOOR_NONE     0
 #define RESET_DOOR_CLOSED   1
 #define RESET_DOOR_LOCKED   2
+
+/* Types of anum references used for assignment. */
+#define ANUM_ROOM   0
+#define ANUM_MOB    1
+#define ANUM_OBJ    2
+
+/* Special identifiers for exit key cases. */
+#define KEY_NOKEYHOLE  -1
+#define KEY_NOKEY       0
+#define KEY_VALID       1 /* Everything here and higher is a real key. */
+
+/* Command logging types. */
+#define LOG_NORMAL  0
+#define LOG_ALWAYS  1
+#define LOG_NEVER   2
+
+/* Pose stuff. */
+#define POSE_MAX 17
+
+/* Music stuff. */
+#define MAX_SONGS       20
+#define MAX_SONG_LINES  100 /* this boils down to about 1k per song */
+#define MAX_SONG_GLOBAL 10  /* max songs the global jukebox can hold */
 
 #endif

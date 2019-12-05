@@ -17,10 +17,10 @@
 #include "merc.h"
 
 /* Function prototypes. */
-void string_edit (CHAR_DATA * ch, char **pString);
-void string_append (CHAR_DATA * ch, char **pString);
+void string_edit (CHAR_T *ch, char **pString);
+void string_append (CHAR_T *ch, char **pString);
 char *string_replace (char *orig, char *old, char *new);
-void string_add (CHAR_DATA * ch, char *argument);
+void string_add (CHAR_T *ch, char *argument);
 char *format_string (char *oldstring /*, bool fSpace */ );
 char *first_arg (char *argument, char *arg_first, bool fCase);
 char *string_unpad (char *argument);

@@ -23,6 +23,7 @@
 #include "olc_save.h"
 #include "act_info.h"
 #include "chars.h"
+#include "globals.h"
 
 #include "olc_aedit.h"
 #include "olc_hedit.h"
@@ -34,11 +35,11 @@
 
 #include "act_olc.h"
 
-void do_resets_display (CHAR_DATA * ch) {
-    ROOM_INDEX_DATA *pRoom;
-    RESET_DATA *pReset;
-    RESET_VALUE_TYPE *v;
-    MOB_INDEX_DATA *pMob = NULL;
+void do_resets_display (CHAR_T *ch) {
+    ROOM_INDEX_T *pRoom;
+    RESET_T *pReset;
+    RESET_VALUE_T *v;
+    MOB_INDEX_T *pMob = NULL;
     char buf[MAX_STRING_LENGTH];
     char final[MAX_STRING_LENGTH * 2];
     int iReset = 0;
@@ -53,11 +54,11 @@ void do_resets_display (CHAR_DATA * ch) {
          "\n\r", ch);
 
     for (pReset = pRoom->reset_first; pReset; pReset = pReset->next) {
-        OBJ_INDEX_DATA *pObj;
-        MOB_INDEX_DATA *pMobIndex;
-        OBJ_INDEX_DATA *pObjIndex;
-        OBJ_INDEX_DATA *pObjToIndex;
-        ROOM_INDEX_DATA *pRoomIndex;
+        OBJ_INDEX_T *pObj;
+        MOB_INDEX_T *pMobIndex;
+        OBJ_INDEX_T *pObjIndex;
+        OBJ_INDEX_T *pObjToIndex;
+        ROOM_INDEX_T *pRoomIndex;
 
         final[0] = '\0';
         sprintf (final, "[%2d] ", ++iReset);
@@ -65,7 +66,7 @@ void do_resets_display (CHAR_DATA * ch) {
         v = &(pReset->v);
         switch (pReset->command) {
             case 'M': {
-                ROOM_INDEX_DATA *pRoomIndexPrev;
+                ROOM_INDEX_T *pRoomIndexPrev;
 
                 if (!(pMobIndex = get_mob_index (v->mob.mob_vnum))) {
                     sprintf (buf, "Load Mobile - Bad Mob %d\n\r", v->mob.mob_vnum);
@@ -244,7 +245,7 @@ DEFINE_DO_FUN (do_olc) {
 
 /* Entry point for editing area_data. */
 DEFINE_DO_FUN (do_aedit) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
     int value;
     char arg1[MAX_STRING_LENGTH];
 
@@ -274,7 +275,7 @@ DEFINE_DO_FUN (do_aedit) {
 }
 
 DEFINE_DO_FUN (do_hedit) {
-    HELP_DATA *pHelp;
+    HELP_T *pHelp;
     char arg1[MIL];
     char argall[MAX_INPUT_LENGTH], argone[MAX_INPUT_LENGTH];
     bool found = FALSE;
@@ -314,8 +315,8 @@ DEFINE_DO_FUN (do_hedit) {
 
 /* Entry point for editing mob_index_data. */
 DEFINE_DO_FUN (do_medit) {
-    MOB_INDEX_DATA *pMob;
-    AREA_DATA *pArea;
+    MOB_INDEX_T *pMob;
+    AREA_T *pArea;
     int value;
     char arg1[MAX_STRING_LENGTH];
 
@@ -355,13 +356,13 @@ DEFINE_DO_FUN (do_medit) {
 }
 
 DEFINE_DO_FUN (do_mpedit) {
-    MPROG_CODE *pMcode;
+    MPROG_CODE_T *pMcode;
     char command[MAX_INPUT_LENGTH];
 
     argument = one_argument (argument, command);
     if (is_number (command)) {
         int vnum = atoi (command);
-        AREA_DATA *ad;
+        AREA_T *ad;
 
         BAIL_IF ((pMcode = get_mprog_index (vnum)) == NULL,
             "MPEdit: That vnum does not exist.\n\r", ch);
@@ -389,8 +390,8 @@ DEFINE_DO_FUN (do_mpedit) {
 
 /* Entry point for editing obj_index_data. */
 DEFINE_DO_FUN (do_oedit) {
-    OBJ_INDEX_DATA *pObj;
-    AREA_DATA *pArea;
+    OBJ_INDEX_T *pObj;
+    AREA_T *pArea;
     char arg1[MAX_STRING_LENGTH];
     int value;
 
@@ -431,8 +432,8 @@ DEFINE_DO_FUN (do_oedit) {
 
 /* Entry point for editing room_index_data. */
 DEFINE_DO_FUN (do_redit) {
-    ROOM_INDEX_DATA *pRoom;
-    AREA_DATA *pArea;
+    ROOM_INDEX_T *pRoom;
+    AREA_T *pArea;
     char arg1[MAX_STRING_LENGTH];
     int value;
 
@@ -481,7 +482,7 @@ DEFINE_DO_FUN (do_redit) {
             ch->desc->editor = ED_ROOM;
             char_from_room (ch);
             char_to_room (ch, ch->desc->pEdit);
-            SET_BIT (((ROOM_INDEX_DATA *) ch->desc->pEdit)->area->area_flags,
+            SET_BIT (((ROOM_INDEX_T *) ch->desc->pEdit)->area->area_flags,
                      AREA_CHANGED);
         }
         return;
@@ -498,8 +499,8 @@ DEFINE_DO_FUN (do_resets) {
     char arg5[MAX_INPUT_LENGTH];
     char arg6[MAX_INPUT_LENGTH];
     char arg7[MAX_INPUT_LENGTH];
-    RESET_DATA *pReset = NULL;
-    RESET_VALUE_TYPE *v;
+    RESET_T *pReset = NULL;
+    RESET_VALUE_T *v;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -525,7 +526,7 @@ DEFINE_DO_FUN (do_resets) {
 
     /* Take index number and search for commands. */
     if (is_number (arg1)) {
-        ROOM_INDEX_DATA *pRoom = ch->in_room;
+        ROOM_INDEX_T *pRoom = ch->in_room;
 
         /* Delete a reset. */
         if (!str_cmp (arg2, "delete")) {
@@ -541,7 +542,7 @@ DEFINE_DO_FUN (do_resets) {
             }
             else {
                 int iReset = 0;
-                RESET_DATA *prev;
+                RESET_T *prev;
 
                 LIST_FIND_WITH_PREV (++iReset == insert_loc, next,
                     pRoom->reset_first, pReset, prev);
@@ -578,7 +579,7 @@ DEFINE_DO_FUN (do_resets) {
 
                 /* Inside another object. */
                 if (!str_prefix (arg4, "inside")) {
-                    OBJ_INDEX_DATA *temp;
+                    OBJ_INDEX_T *temp;
 
                     temp = get_obj_index (is_number (arg5) ? atoi (arg5) : 1);
                     BAIL_IF ((temp->item_type != ITEM_CONTAINER) &&
@@ -630,6 +631,8 @@ DEFINE_DO_FUN (do_resets) {
                 "Invalid argument.\n\r", ch);
             pReset = reset_data_new ();
             pReset->command = 'R';
+            v = &(pReset->v);
+
             v->randomize.room_vnum = ch->in_room->vnum;
             v->randomize.dir_count = atoi (arg3);
             redit_add_reset (ch->in_room, pReset, atoi (arg1));
@@ -655,7 +658,7 @@ DEFINE_DO_FUN (do_resets) {
 DEFINE_DO_FUN (do_alist) {
     char buf[MAX_STRING_LENGTH];
     char result[MAX_STRING_LENGTH * 2];    /* May need tweaking. */
-    AREA_DATA *pArea;
+    AREA_T *pArea;
 
     if (IS_NPC (ch))
         return;
@@ -682,7 +685,7 @@ DEFINE_DO_FUN (do_alist) {
  ****************************************************************************/
 DEFINE_DO_FUN (do_asave) {
     char arg1[MAX_INPUT_LENGTH];
-    AREA_DATA *pArea;
+    AREA_T *pArea;
     int value;
 
     smash_tilde (argument);
@@ -752,15 +755,16 @@ DEFINE_DO_FUN (do_asave) {
                 continue;
 
             /* Save changed areas. */
-            if (IS_SET (pArea->area_flags, AREA_CHANGED)) {
-                save_area (pArea);
-                sprintf (buf, "%24s - '%s'", pArea->title, pArea->filename);
-                if (ch)
-                    printf_to_char (ch, "%s\n\r", buf);
-                else
-                    log_string (buf);
-                REMOVE_BIT (pArea->area_flags, AREA_CHANGED);
-            }
+            if (!IS_SET (pArea->area_flags, AREA_CHANGED))
+                continue;
+
+            save_area (pArea);
+            sprintf (buf, "%24s - '%s'", pArea->title, pArea->filename);
+            if (ch)
+                printf_to_char (ch, "%s\n\r", buf);
+            else
+                log_string (buf);
+            REMOVE_BIT (pArea->area_flags, AREA_CHANGED);
         }
 
         save_other_helps (ch);
@@ -794,16 +798,16 @@ DEFINE_DO_FUN (do_asave) {
         /* Find the area to save. */
         switch (ch->desc->editor) {
             case ED_AREA:
-                pArea = (AREA_DATA *) ch->desc->pEdit;
+                pArea = (AREA_T *) ch->desc->pEdit;
                 break;
             case ED_ROOM:
                 pArea = ch->in_room->area;
                 break;
             case ED_OBJECT:
-                pArea = ((OBJ_INDEX_DATA *) ch->desc->pEdit)->area;
+                pArea = ((OBJ_INDEX_T *) ch->desc->pEdit)->area;
                 break;
             case ED_MOBILE:
-                pArea = ((MOB_INDEX_DATA *) ch->desc->pEdit)->area;
+                pArea = ((MOB_INDEX_T *) ch->desc->pEdit)->area;
                 break;
             case ED_HELP: {
                 int saved;

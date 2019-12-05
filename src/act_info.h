@@ -31,18 +31,18 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-bool do_filter_blind (CHAR_DATA * ch);
-void do_scan_list (ROOM_INDEX_DATA *scan_room, CHAR_DATA *ch,
+bool do_filter_blind (CHAR_T *ch);
+void do_scan_list (ROOM_INDEX_T *scan_room, CHAR_T *ch,
     sh_int depth, sh_int door);
-void do_scan_char (CHAR_DATA * victim, CHAR_DATA * ch, sh_int depth,
+void do_scan_char (CHAR_T *victim, CHAR_T *ch, sh_int depth,
     sh_int door);
-void do_scan_real (CHAR_DATA * ch, char *argument, int max_depth);
-void do_look_room (CHAR_DATA * ch, int is_auto);
-void do_look_in (CHAR_DATA * ch, char *arg);
-void do_look_direction (CHAR_DATA * ch, int door);
-bool do_filter_description_remove_line (CHAR_DATA *ch);
-bool do_filter_description_append (CHAR_DATA *ch, char *argument);
-bool do_filter_description_alter (CHAR_DATA *ch, char *argument);
+void do_scan_real (CHAR_T *ch, char *argument, int max_depth);
+void do_look_room (CHAR_T *ch, int is_auto);
+void do_look_in (CHAR_T *ch, char *arg);
+void do_look_direction (CHAR_T *ch, int door);
+bool do_filter_description_remove_line (CHAR_T *ch);
+bool do_filter_description_append (CHAR_T *ch, char *argument);
+bool do_filter_description_alter (CHAR_T *ch, char *argument);
 
 /* Commands. */
 DECLARE_DO_FUN (do_motd);

@@ -3406,12 +3406,12 @@ E 1  662  99   16	*   the golden claw
 S
 
 #SHOPS
- 604  5  9 15  0  0 	 120  80 	 0 23 	* Jim the Blacksmith
- 605  9  0  0  0  0 	 120  80 	 0 23 	* Sam
- 606  8 12 13  0  0 	 120  80 	 0 23 	* Madam Tracy
- 607  0 19  0  0  0 	 120  10 	 0 23 	* Marty
- 608  0 17 19  0  0 	 120  10 	 0 23 	* Farmer Elizabeth
- 622  0 17  0  0  0 	 120  10 	 0 23 	* Nyles the Bartender
+ 604  5   9 15  0  0  120  80 	 0 23 	* Jim the Blacksmith
+ 605  9   0  0  0  0  120  80 	 0 23 	* Sam
+ 606  8  12 13  0  0  120  80 	 0 23 	* Madam Tracy
+ 607  19  0  0  0  0  120  10 	 0 23 	* Marty
+ 608  17 19  0  0  0  120  10 	 0 23 	* Farmer Elizabeth
+ 622  17  0  0  0  0  120  10 	 0 23 	* Nyles the Bartender
 0
 
 #SPECIALS

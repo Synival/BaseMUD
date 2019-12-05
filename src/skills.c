@@ -99,7 +99,7 @@ sh_int gsn_recall;
 sh_int gsn_frenzy;
 
 /* for returning skill information */
-int get_skill (CHAR_DATA * ch, int sn) {
+int get_skill (CHAR_T *ch, int sn) {
     int skill;
 
     /* shorthand for level based skills */
@@ -174,7 +174,7 @@ int get_skill (CHAR_DATA * ch, int sn) {
 }
 
 /* shows skills, groups and costs (only if not bought) */
-void list_group_costs (CHAR_DATA * ch) {
+void list_group_costs (CHAR_T *ch) {
     int gn, sn, col;
 
     if (IS_NPC (ch))
@@ -231,7 +231,7 @@ void list_group_costs (CHAR_DATA * ch) {
         exp_per_level (ch, ch->gen_data->points_chosen));
 }
 
-void list_group_chosen (CHAR_DATA * ch) {
+void list_group_chosen (CHAR_T *ch) {
     int gn, sn, col;
 
     if (IS_NPC (ch))
@@ -286,7 +286,7 @@ void list_group_chosen (CHAR_DATA * ch) {
 }
 
 /* this procedure handles the input parsing for the skill generator */
-bool parse_gen_groups (CHAR_DATA * ch, char *argument) {
+bool parse_gen_groups (CHAR_T *ch, char *argument) {
     char arg[MAX_INPUT_LENGTH];
     int gn, sn, i;
 
@@ -431,7 +431,7 @@ bool parse_gen_groups (CHAR_DATA * ch, char *argument) {
 }
 
 /* checks for skill improvement */
-void check_improve (CHAR_DATA * ch, int sn, bool success, int multiplier) {
+void check_improve (CHAR_T *ch, int sn, bool success, int multiplier) {
     int chance;
 
     if (IS_NPC (ch))
@@ -477,7 +477,7 @@ void check_improve (CHAR_DATA * ch, int sn, bool success, int multiplier) {
 }
 
 /* recursively adds a group given its number -- uses group_add */
-void gn_add (CHAR_DATA * ch, int gn) {
+void gn_add (CHAR_T *ch, int gn) {
     int i;
     ch->pcdata->group_known[gn] = TRUE;
     for (i = 0; i < MAX_IN_GROUP; i++) {
@@ -488,7 +488,7 @@ void gn_add (CHAR_DATA * ch, int gn) {
 }
 
 /* recusively removes a group given its number -- uses group_remove */
-void gn_remove (CHAR_DATA * ch, int gn) {
+void gn_remove (CHAR_T *ch, int gn) {
     int i;
     ch->pcdata->group_known[gn] = FALSE;
     for (i = 0; i < MAX_IN_GROUP; i++) {
@@ -499,9 +499,9 @@ void gn_remove (CHAR_DATA * ch, int gn) {
 }
 
 /* use for processing a skill or group for addition  */
-void group_add (CHAR_DATA * ch, const char *name, bool deduct) {
+void group_add (CHAR_T *ch, const char *name, bool deduct) {
     int sn, gn;
-    if (IS_NPC (ch))            /* NPCs do not have skills */
+    if (IS_NPC (ch)) /* NPCs do not have skills */
         return;
 
     sn = skill_lookup (name);
@@ -522,12 +522,12 @@ void group_add (CHAR_DATA * ch, const char *name, bool deduct) {
             if (deduct)
                 ch->pcdata->points += group_table[gn].rating[ch->class];
         }
-        gn_add (ch, gn);        /* make sure all skills in the group are known */
+        gn_add (ch, gn); /* make sure all skills in the group are known */
     }
 }
 
 /* used for processing a skill or group for deletion -- no points back! */
-void group_remove (CHAR_DATA * ch, const char *name) {
+void group_remove (CHAR_T *ch, const char *name) {
     int sn, gn;
     sn = skill_lookup (name);
 
@@ -540,6 +540,6 @@ void group_remove (CHAR_DATA * ch, const char *name) {
     gn = group_lookup (name);
     if (gn != -1 && ch->pcdata->group_known[gn] == TRUE) {
         ch->pcdata->group_known[gn] = FALSE;
-        gn_remove (ch, gn);        /* be sure to call gn_add on all remaining groups */
+        gn_remove (ch, gn); /* be sure to call gn_add on all remaining groups */
     }
 }

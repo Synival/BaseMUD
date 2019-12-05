@@ -39,6 +39,8 @@
 #include "recycle.h"
 #include "chars.h"
 #include "descs.h"
+#include "memory.h"
+#include "globals.h"
 
 #include "act_player.h"
 
@@ -91,7 +93,7 @@ DEFINE_DO_FUN (do_qui) {
 }
 
 DEFINE_DO_FUN (do_quit) {
-    DESCRIPTOR_DATA *d, *d_next;
+    DESCRIPTOR_T *d, *d_next;
     int id;
 
     if (IS_NPC (ch))
@@ -123,7 +125,7 @@ DEFINE_DO_FUN (do_quit) {
 
     /* toast evil cheating bastards */
     for (d = descriptor_list; d != NULL; d = d_next) {
-        CHAR_DATA *tch;
+        CHAR_T *tch;
         d_next = d->next;
 
         tch = d->original ? d->original : d->character;
@@ -207,7 +209,7 @@ DEFINE_DO_FUN (do_password) {
         BAIL_IF (*p == '~',
             "New password not acceptable, try again.\n\r", ch);
 
-    str_free (ch->pcdata->pwd);
+    str_free (&(ch->pcdata->pwd));
     ch->pcdata->pwd = str_dup (pwdnew);
     save_char_obj (ch);
     send_to_char ("Ok.\n\r", ch);

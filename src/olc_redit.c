@@ -22,12 +22,14 @@
 #include "interp.h"
 #include "string.h"
 #include "act_info.h"
-#include "olc.h"
-#include "olc_medit.h"
-#include "olc_oedit.h"
 #include "chars.h"
 #include "objs.h"
 #include "find.h"
+#include "globals.h"
+#include "olc.h"
+#include "olc_medit.h"
+#include "olc_oedit.h"
+#include "memory.h"
 
 #include "olc_redit.h"
 
@@ -36,8 +38,8 @@
  Purpose:    Inserts a new reset in the given index slot.
  Called by:  do_resets(olc.c).
  ****************************************************************************/
-void redit_add_reset (ROOM_INDEX_DATA * room, RESET_DATA * pReset, int index) {
-    RESET_DATA *prev;
+void redit_add_reset (ROOM_INDEX_T *room, RESET_T *pReset, int index) {
+    RESET_T *prev;
     int iReset = 0;
 
     /* No resets or first slot (1) selected. */
@@ -58,8 +60,8 @@ void redit_add_reset (ROOM_INDEX_DATA * room, RESET_DATA * pReset, int index) {
 }
 
 /* Local function. */
-bool redit_change_exit (CHAR_DATA * ch, char *argument, int door) {
-    ROOM_INDEX_DATA *pRoom;
+bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
+    ROOM_INDEX_T *pRoom;
     char command[MAX_INPUT_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     int value;
@@ -69,7 +71,7 @@ bool redit_change_exit (CHAR_DATA * ch, char *argument, int door) {
     /* Set the exit flags, needs full argument.
      * ---------------------------------------- */
     if ((value = flag_value (exit_flags, argument)) != NO_FLAG) {
-        ROOM_INDEX_DATA *pToRoom;
+        ROOM_INDEX_T *pToRoom;
         sh_int rev;                /* ROM OLC */
 
         if (!pRoom->exit[door]) {
@@ -110,7 +112,7 @@ bool redit_change_exit (CHAR_DATA * ch, char *argument, int door) {
     }
 
     if (!str_cmp (command, "delete")) {
-        ROOM_INDEX_DATA *pToRoom;
+        ROOM_INDEX_T *pToRoom;
         sh_int rev; /* ROM OLC */
 
         if (!pRoom->exit[door]) {
@@ -136,8 +138,8 @@ bool redit_change_exit (CHAR_DATA * ch, char *argument, int door) {
     }
 
     if (!str_cmp (command, "link")) {
-        EXIT_DATA *pExit;
-        ROOM_INDEX_DATA *toRoom;
+        EXIT_T *pExit;
+        ROOM_INDEX_T *toRoom;
 
         if (arg[0] == '\0' || !is_number (arg)) {
             send_to_char ("Syntax: [direction] link [vnum]\n\r", ch);
@@ -188,7 +190,7 @@ bool redit_change_exit (CHAR_DATA * ch, char *argument, int door) {
     }
 
     if (!str_cmp (command, "room")) {
-        ROOM_INDEX_DATA *toRoom;
+        ROOM_INDEX_T *toRoom;
 
         if (arg[0] == '\0' || !is_number (arg)) {
             send_to_char ("Syntax: [direction] room [vnum]\n\r", ch);
@@ -212,7 +214,7 @@ bool redit_change_exit (CHAR_DATA * ch, char *argument, int door) {
     }
 
     if (!str_cmp (command, "key")) {
-        OBJ_INDEX_DATA *key;
+        OBJ_INDEX_T *key;
         if (arg[0] == '\0' || !is_number (arg)) {
             send_to_char ("Syntax: [direction] key [vnum]\n\r", ch);
             return FALSE;
@@ -247,8 +249,8 @@ bool redit_change_exit (CHAR_DATA * ch, char *argument, int door) {
             send_to_char ("Exit doesn't exist.\n\r", ch);
             return FALSE;
         }
-        str_free (pRoom->exit[door]->keyword);
 
+        str_free (&(pRoom->exit[door]->keyword));
         if (str_cmp (arg, "none"))
             pRoom->exit[door]->keyword = str_dup (arg);
         else
@@ -275,10 +277,10 @@ bool redit_change_exit (CHAR_DATA * ch, char *argument, int door) {
 }
 
 REDIT (redit_rlist) {
-    ROOM_INDEX_DATA *pRoomIndex;
-    AREA_DATA *pArea;
+    ROOM_INDEX_T *pRoomIndex;
+    AREA_T *pArea;
     char buf[MAX_STRING_LENGTH];
-    BUFFER *buf1;
+    BUFFER_T *buf1;
     char arg[MAX_INPUT_LENGTH];
     bool found;
     int vnum;
@@ -316,10 +318,10 @@ REDIT (redit_rlist) {
 }
 
 REDIT (redit_mlist) {
-    MOB_INDEX_DATA *pMobIndex;
-    AREA_DATA *pArea;
+    MOB_INDEX_T *pMobIndex;
+    AREA_T *pArea;
     char buf[MAX_STRING_LENGTH];
-    BUFFER *buf1;
+    BUFFER_T *buf1;
     char arg[MAX_INPUT_LENGTH];
     bool fAll, found;
     int vnum;
@@ -365,10 +367,10 @@ REDIT (redit_mlist) {
 }
 
 REDIT (redit_olist) {
-    OBJ_INDEX_DATA *pObjIndex;
-    AREA_DATA *pArea;
+    OBJ_INDEX_T *pObjIndex;
+    AREA_T *pArea;
     char buf[MAX_STRING_LENGTH];
-    BUFFER *buf1;
+    BUFFER_T *buf1;
     char arg[MAX_INPUT_LENGTH];
     bool fAll, found;
     int vnum, item_type;
@@ -413,7 +415,7 @@ REDIT (redit_olist) {
 }
 
 REDIT (redit_mshow) {
-    MOB_INDEX_DATA *pMob;
+    MOB_INDEX_T *pMob;
     int value;
 
     if (argument[0] == '\0') {
@@ -440,7 +442,7 @@ REDIT (redit_mshow) {
 }
 
 REDIT (redit_oshow) {
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_T *pObj;
     int value;
 
     if (argument[0] == '\0') {
@@ -467,11 +469,11 @@ REDIT (redit_oshow) {
 
 /* Room Editor Functions. */
 REDIT (redit_show) {
-    ROOM_INDEX_DATA *pRoom;
+    ROOM_INDEX_T *pRoom;
     char buf[MAX_STRING_LENGTH];
     char buf1[2 * MAX_STRING_LENGTH];
-    OBJ_DATA *obj;
-    CHAR_DATA *rch;
+    OBJ_T *obj;
+    CHAR_T *rch;
     int door;
     bool fcnt;
 
@@ -509,7 +511,7 @@ REDIT (redit_show) {
         strcat (buf1, buf);
     }
     if (pRoom->extra_descr) {
-        EXTRA_DESCR_DATA *ed;
+        EXTRA_DESCR_T *ed;
 
         strcat (buf1, "Desc Kwds:  [");
         for (ed = pRoom->extra_descr; ed; ed = ed->next) {
@@ -553,7 +555,7 @@ REDIT (redit_show) {
         strcat (buf1, "none]\n\r");
 
     for (door = 0; door < DIR_MAX; door++) {
-        EXIT_DATA *pexit;
+        EXIT_T *pexit;
         if ((pexit = pRoom->exit[door])) {
             const char *state;
             char word[MAX_INPUT_LENGTH];
@@ -617,8 +619,8 @@ REDIT (redit_down)
     { return redit_change_exit (ch, argument, DIR_DOWN)  ? TRUE : FALSE; }
 
 REDIT (redit_ed) {
-    ROOM_INDEX_DATA *pRoom;
-    EXTRA_DESCR_DATA *ed;
+    ROOM_INDEX_T *pRoom;
+    EXTRA_DESCR_T *ed;
     char command[MAX_INPUT_LENGTH];
     char keyword[MAX_INPUT_LENGTH];
 
@@ -665,7 +667,7 @@ REDIT (redit_ed) {
     }
 
     if (!str_cmp (command, "delete")) {
-        EXTRA_DESCR_DATA *ped;
+        EXTRA_DESCR_T *ped;
         if (keyword[0] == '\0') {
             send_to_char ("Syntax: ed delete [keyword]\n\r", ch);
             return FALSE;
@@ -704,8 +706,8 @@ REDIT (redit_ed) {
 }
 
 REDIT (redit_create) {
-    AREA_DATA *pArea;
-    ROOM_INDEX_DATA *pRoom;
+    AREA_T *pArea;
+    ROOM_INDEX_T *pRoom;
     int value;
     int iHash;
 
@@ -748,7 +750,7 @@ REDIT (redit_create) {
 }
 
 REDIT (redit_name) {
-    ROOM_INDEX_DATA *pRoom;
+    ROOM_INDEX_T *pRoom;
     EDIT_ROOM (ch, pRoom);
 
     if (argument[0] == '\0') {
@@ -756,15 +758,14 @@ REDIT (redit_name) {
         return FALSE;
     }
 
-    str_free (pRoom->name);
-    pRoom->name = str_dup (argument);
+    str_replace_dup (&(pRoom->name), argument);
 
     send_to_char ("Name set.\n\r", ch);
     return TRUE;
 }
 
 REDIT (redit_desc) {
-    ROOM_INDEX_DATA *pRoom;
+    ROOM_INDEX_T *pRoom;
     EDIT_ROOM (ch, pRoom);
 
     if (argument[0] == '\0') {
@@ -777,7 +778,7 @@ REDIT (redit_desc) {
 }
 
 REDIT (redit_heal) {
-    ROOM_INDEX_DATA *pRoom;
+    ROOM_INDEX_T *pRoom;
 
     EDIT_ROOM (ch, pRoom);
     if (is_number (argument)) {
@@ -791,7 +792,7 @@ REDIT (redit_heal) {
 }
 
 REDIT (redit_mana) {
-    ROOM_INDEX_DATA *pRoom;
+    ROOM_INDEX_T *pRoom;
 
     EDIT_ROOM (ch, pRoom);
     if (is_number (argument)) {
@@ -805,7 +806,7 @@ REDIT (redit_mana) {
 }
 
 REDIT (redit_clan) {
-    ROOM_INDEX_DATA *pRoom;
+    ROOM_INDEX_T *pRoom;
 
     EDIT_ROOM (ch, pRoom);
     pRoom->clan = clan_lookup (argument);
@@ -815,7 +816,7 @@ REDIT (redit_clan) {
 }
 
 REDIT (redit_format) {
-    ROOM_INDEX_DATA *pRoom;
+    ROOM_INDEX_T *pRoom;
 
     EDIT_ROOM (ch, pRoom);
     pRoom->description = format_string (pRoom->description);
@@ -825,12 +826,12 @@ REDIT (redit_format) {
 }
 
 REDIT (redit_mreset) {
-    ROOM_INDEX_DATA *pRoom;
-    MOB_INDEX_DATA *pMobIndex;
-    CHAR_DATA *newmob;
+    ROOM_INDEX_T *pRoom;
+    MOB_INDEX_T *pMobIndex;
+    CHAR_T *newmob;
     char arg[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    RESET_DATA *pReset;
+    RESET_T *pReset;
 
     EDIT_ROOM (ch, pRoom);
 
@@ -873,15 +874,15 @@ REDIT (redit_mreset) {
 }
 
 REDIT (redit_oreset) {
-    ROOM_INDEX_DATA *pRoom;
-    OBJ_INDEX_DATA *pObjIndex;
-    OBJ_DATA *newobj;
-    OBJ_DATA *to_obj;
-    CHAR_DATA *to_mob;
+    ROOM_INDEX_T *pRoom;
+    OBJ_INDEX_T *pObjIndex;
+    OBJ_T *newobj;
+    OBJ_T *to_obj;
+    CHAR_T *to_mob;
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     int olevel = 0;
-    RESET_DATA *pReset;
+    RESET_T *pReset;
 
     EDIT_ROOM (ch, pRoom);
     argument = one_argument (argument, arg1);
@@ -1037,7 +1038,7 @@ REDIT (redit_oreset) {
 }
 
 REDIT (redit_owner) {
-    ROOM_INDEX_DATA *pRoom;
+    ROOM_INDEX_T *pRoom;
     EDIT_ROOM (ch, pRoom);
 
     if (argument[0] == '\0') {
@@ -1046,7 +1047,7 @@ REDIT (redit_owner) {
         return FALSE;
     }
 
-    str_free (pRoom->owner);
+    str_free (&(pRoom->owner));
     if (!str_cmp (argument, "none"))
         pRoom->owner = str_dup ("");
     else
@@ -1057,7 +1058,7 @@ REDIT (redit_owner) {
 }
 
 REDIT (redit_room) {
-    ROOM_INDEX_DATA *room;
+    ROOM_INDEX_T *room;
     int value;
 
     EDIT_ROOM (ch, room);
@@ -1072,7 +1073,7 @@ REDIT (redit_room) {
 }
 
 REDIT (redit_sector) {
-    ROOM_INDEX_DATA *room;
+    ROOM_INDEX_T *room;
     int value;
 
     EDIT_ROOM (ch, room);

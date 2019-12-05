@@ -21,12 +21,14 @@
 #include "utils.h"
 #include "interp.h"
 #include "string.h"
+#include "globals.h"
 #include "olc.h"
+#include "memory.h"
 
 #include "olc_hedit.h"
 
 HEDIT (hedit_show) {
-    HELP_DATA *help;
+    HELP_T *help;
     EDIT_HELP (ch, help);
 
     printf_to_char (ch,
@@ -38,7 +40,7 @@ HEDIT (hedit_show) {
 }
 
 HEDIT (hedit_level) {
-    HELP_DATA *help;
+    HELP_T *help;
     int lev;
 
     EDIT_HELP (ch, help);
@@ -58,7 +60,7 @@ HEDIT (hedit_level) {
 }
 
 HEDIT (hedit_keyword) {
-    HELP_DATA *help;
+    HELP_T *help;
     EDIT_HELP (ch, help);
 
     RETURN_IF (IS_NULLSTR (argument),
@@ -71,9 +73,9 @@ HEDIT (hedit_keyword) {
 
 HEDIT (hedit_new) {
     char arg[MIL], fullarg[MIL];
-    HELP_AREA *had;
-    HELP_DATA *help;
-    extern HELP_DATA *help_last;
+    HELP_AREA_T *had;
+    HELP_T *help;
+    extern HELP_T *help_last;
 
     RETURN_IF (IS_NULLSTR (argument),
         "Syntax: new [name]\n\r"
@@ -109,7 +111,7 @@ HEDIT (hedit_new) {
     LISTB_BACK (help, next, help_first, help_last);
     LISTB_BACK (help, next_area, had->first, had->last);
 
-    ch->desc->pEdit = (HELP_DATA *) help;
+    ch->desc->pEdit = (HELP_T *) help;
     ch->desc->editor = ED_HELP;
 
     send_to_char ("Help created.\n\r", ch);
@@ -117,7 +119,7 @@ HEDIT (hedit_new) {
 }
 
 HEDIT (hedit_text) {
-    HELP_DATA *help;
+    HELP_T *help;
     EDIT_HELP (ch, help);
 
     RETURN_IF (!IS_NULLSTR (argument),
@@ -128,18 +130,18 @@ HEDIT (hedit_text) {
 }
 
 HEDIT (hedit_delete) {
-    HELP_DATA *pHelp, *hlp, *phlp;
-    HELP_AREA *had;
-    DESCRIPTOR_DATA *d;
+    HELP_T *pHelp, *hlp, *phlp;
+    HELP_AREA_T *had;
+    DESCRIPTOR_T *d;
     bool found = FALSE;
 
     EDIT_HELP (ch, pHelp);
     for (d = descriptor_list; d; d = d->next)
-        if (d->editor == ED_HELP && pHelp == (HELP_DATA *) d->pEdit)
+        if (d->editor == ED_HELP && pHelp == (HELP_T *) d->pEdit)
             edit_done (d->character);
 
     /* Remove help from the global help list. Bail if this fails. */
-    LISTB_REMOVE (pHelp, next, help_first, help_last, HELP_DATA, return FALSE);
+    LISTB_REMOVE (pHelp, next, help_first, help_last, HELP_T, return FALSE);
 
     /* Find a help area with this help entry. If found, remove it. */
     for (had = had_first; had; had = had->next) {
@@ -162,8 +164,8 @@ HEDIT (hedit_delete) {
 HEDIT (hedit_list) {
     char buf[MIL];
     int cnt = 0;
-    HELP_DATA *pHelp;
-    BUFFER *buffer;
+    HELP_T *pHelp;
+    BUFFER_T *buffer;
 
     EDIT_HELP (ch, pHelp);
 

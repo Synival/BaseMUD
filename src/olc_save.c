@@ -30,6 +30,7 @@
 #include "mob_cmds.h"
 #include "comm.h"
 #include "interp.h"
+#include "globals.h"
 #include "olc.h"
 
 #include "olc_save.h"
@@ -68,8 +69,8 @@ char *fix_string (const char *str) {
  ****************************************************************************/
 void save_area_list () {
     FILE *fp;
-    AREA_DATA *pArea;
-    HELP_AREA *ha;
+    AREA_T *pArea;
+    HELP_AREA_T *ha;
 
     if ((fp = fopen ("area.lst", "w")) == NULL) {
         bug ("save_area_list: fopen", 0);
@@ -124,8 +125,8 @@ char *fwrite_flag (long flags, char buf[]) {
     return buf;
 }
 
-void save_mobprogs (FILE * fp, AREA_DATA * pArea) {
-    MPROG_CODE *pMprog;
+void save_mobprogs (FILE *fp, AREA_T *pArea) {
+    MPROG_CODE_T *pMprog;
     int i;
 
     fprintf (fp, "#MOBPROGS\n");
@@ -143,66 +144,66 @@ void save_mobprogs (FILE * fp, AREA_DATA * pArea) {
  Purpose:    Save one mobile to file, new format -- Hugin
  Called by:    save_mobiles (below).
  ****************************************************************************/
-void save_mobile (FILE * fp, MOB_INDEX_DATA * pMobIndex)
+void save_mobile (FILE *fp, MOB_INDEX_T *pMobIndex)
 {
-    sh_int race = pMobIndex->race;
-    MPROG_LIST *pMprog;
+    MPROG_LIST_T *pMprog;
+    const RACE_T *race;
     char buf[MAX_STRING_LENGTH];
-    long temp;
 
+    race = &(race_table[pMobIndex->race]);
     fprintf (fp, "#%d\n", pMobIndex->vnum);
     fprintf (fp, "%s~\n", pMobIndex->name);
     fprintf (fp, "%s~\n", pMobIndex->short_descr);
     fprintf (fp, "%s~\n", fix_string (pMobIndex->long_descr));
     fprintf (fp, "%s~\n", fix_string (pMobIndex->description));
-    fprintf (fp, "%s~\n", race_table[race].name);
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->mob_orig, buf));
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->affected_by_orig, buf));
+    fprintf (fp, "%s~\n", race->name);
+    fprintf (fp, "%s ", fwrite_flag (pMobIndex->mob_plus, buf));
+    fprintf (fp, "%s ", fwrite_flag (pMobIndex->affected_by_plus, buf));
     fprintf (fp, "%d %d\n", pMobIndex->alignment, pMobIndex->group);
     fprintf (fp, "%d ", pMobIndex->level);
     fprintf (fp, "%d ", pMobIndex->hitroll);
-    fprintf (fp, "%dd%d+%d ", pMobIndex->hit[DICE_NUMBER],
-             pMobIndex->hit[DICE_TYPE], pMobIndex->hit[DICE_BONUS]);
-    fprintf (fp, "%dd%d+%d ", pMobIndex->mana[DICE_NUMBER],
-             pMobIndex->mana[DICE_TYPE], pMobIndex->mana[DICE_BONUS]);
-    fprintf (fp, "%dd%d+%d ", pMobIndex->damage[DICE_NUMBER],
-             pMobIndex->damage[DICE_TYPE], pMobIndex->damage[DICE_BONUS]);
+    fprintf (fp, "%dd%d+%d ", pMobIndex->hit.number,
+             pMobIndex->hit.size, pMobIndex->hit.bonus);
+    fprintf (fp, "%dd%d+%d ", pMobIndex->mana.number,
+             pMobIndex->mana.size, pMobIndex->mana.bonus);
+    fprintf (fp, "%dd%d+%d ", pMobIndex->damage.number,
+             pMobIndex->damage.size, pMobIndex->damage.bonus);
     fprintf (fp, "%s\n", attack_table[pMobIndex->dam_type].name);
     fprintf (fp, "%d %d %d %d\n",
              pMobIndex->ac[AC_PIERCE] / 10,
              pMobIndex->ac[AC_BASH] / 10,
              pMobIndex->ac[AC_SLASH] / 10, pMobIndex->ac[AC_EXOTIC] / 10);
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->off_flags_orig, buf));
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->imm_flags_orig, buf));
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->res_flags_orig, buf));
-    fprintf (fp, "%s\n", fwrite_flag (pMobIndex->vuln_flags_orig, buf));
+    fprintf (fp, "%s ", fwrite_flag (pMobIndex->off_flags_plus, buf));
+    fprintf (fp, "%s ", fwrite_flag (pMobIndex->imm_flags_plus, buf));
+    fprintf (fp, "%s ", fwrite_flag (pMobIndex->res_flags_plus, buf));
+    fprintf (fp, "%s\n", fwrite_flag (pMobIndex->vuln_flags_plus, buf));
     fprintf (fp, "%s %s %s %ld\n",
              position_table[pMobIndex->start_pos].name,
              position_table[pMobIndex->default_pos].name,
              sex_table[pMobIndex->sex].name, pMobIndex->wealth);
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->form_orig, buf));
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->parts_orig, buf));
+    fprintf (fp, "%s ", fwrite_flag (pMobIndex->form_plus, buf));
+    fprintf (fp, "%s ", fwrite_flag (pMobIndex->parts_plus, buf));
 
     fprintf (fp, "%s ", size_table[pMobIndex->size].name);
     fprintf (fp, "%s\n", if_null_str (
         (char *) material_get_name (pMobIndex->material), "unknown"));
 
-    if ((temp = DIF (race_table[race].mob, pMobIndex->mob)))
-        fprintf (fp, "F act %s\n", fwrite_flag (temp, buf));
-    if ((temp = DIF (race_table[race].aff, pMobIndex->affected_by)))
-        fprintf (fp, "F aff %s\n", fwrite_flag (temp, buf));
-    if ((temp = DIF (race_table[race].off, pMobIndex->off_flags)))
-        fprintf (fp, "F off %s\n", fwrite_flag (temp, buf));
-    if ((temp = DIF (race_table[race].imm, pMobIndex->imm_flags)))
-        fprintf (fp, "F imm %s\n", fwrite_flag (temp, buf));
-    if ((temp = DIF (race_table[race].res, pMobIndex->res_flags)))
-        fprintf (fp, "F res %s\n", fwrite_flag (temp, buf));
-    if ((temp = DIF (race_table[race].vuln, pMobIndex->vuln_flags)))
-        fprintf (fp, "F vul %s\n", fwrite_flag (temp, buf));
-    if ((temp = DIF (race_table[race].form, pMobIndex->form)))
-        fprintf (fp, "F for %s\n", fwrite_flag (temp, buf));
-    if ((temp = DIF (race_table[race].parts, pMobIndex->parts)))
-        fprintf (fp, "F par %s\n", fwrite_flag (temp, buf));
+    if (pMobIndex->mob_minus != 0)
+        fprintf (fp, "F act %s\n", fwrite_flag (pMobIndex->mob_minus, buf));
+    if (pMobIndex->affected_by_minus != 0)
+        fprintf (fp, "F aff %s\n", fwrite_flag (pMobIndex->affected_by_minus, buf));
+    if (pMobIndex->off_flags_minus != 0)
+        fprintf (fp, "F off %s\n", fwrite_flag (pMobIndex->off_flags_minus, buf));
+    if (pMobIndex->imm_flags_minus != 0)
+        fprintf (fp, "F imm %s\n", fwrite_flag (pMobIndex->imm_flags_minus, buf));
+    if (pMobIndex->res_flags_minus != 0)
+        fprintf (fp, "F res %s\n", fwrite_flag (pMobIndex->res_flags_minus, buf));
+    if (pMobIndex->vuln_flags_minus != 0)
+        fprintf (fp, "F vul %s\n", fwrite_flag (pMobIndex->vuln_flags_minus, buf));
+    if (pMobIndex->form_minus != 0)
+        fprintf (fp, "F for %s\n", fwrite_flag (pMobIndex->form_minus, buf));
+    if (pMobIndex->parts_minus != 0)
+        fprintf (fp, "F par %s\n", fwrite_flag (pMobIndex->parts_minus, buf));
 
     for (pMprog = pMobIndex->mprogs; pMprog; pMprog = pMprog->next)
         fprintf (fp, "M %s %d %s~\n",
@@ -217,9 +218,9 @@ void save_mobile (FILE * fp, MOB_INDEX_DATA * pMobIndex)
  Called by:    save_area(olc_save.c).
  Notes:         Changed for ROM OLC.
  ****************************************************************************/
-void save_mobiles (FILE * fp, AREA_DATA * pArea) {
+void save_mobiles (FILE *fp, AREA_T *pArea) {
     int i;
-    MOB_INDEX_DATA *pMob;
+    MOB_INDEX_T *pMob;
 
     fprintf (fp, "#MOBILES\n");
     for (i = pArea->min_vnum; i <= pArea->max_vnum; i++)
@@ -234,10 +235,10 @@ void save_mobiles (FILE * fp, AREA_DATA * pArea) {
                 new ROM format saving -- Hugin
  Called by:    save_objects (below).
  ****************************************************************************/
-void save_object (FILE * fp, OBJ_INDEX_DATA * pObjIndex) {
+void save_object (FILE *fp, OBJ_INDEX_T *pObjIndex) {
     char letter;
-    AFFECT_DATA *pAf;
-    EXTRA_DESCR_DATA *pEd;
+    AFFECT_T *pAf;
+    EXTRA_DESCR_T *pEd;
     char buf[MAX_STRING_LENGTH];
 
     fprintf (fp, "#%d\n", pObjIndex->vnum);
@@ -363,9 +364,9 @@ void save_object (FILE * fp, OBJ_INDEX_DATA * pObjIndex) {
  Called by:  save_area(olc_save.c).
  Notes:      Changed for ROM OLC.
  ****************************************************************************/
-void save_objects (FILE * fp, AREA_DATA * pArea) {
+void save_objects (FILE *fp, AREA_T *pArea) {
     int i;
-    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_T *pObj;
 
     fprintf (fp, "#OBJECTS\n");
     for (i = pArea->min_vnum; i <= pArea->max_vnum; i++)
@@ -374,9 +375,9 @@ void save_objects (FILE * fp, AREA_DATA * pArea) {
     fprintf (fp, "#0\n\n");
 }
 
-void save_room (FILE * fp, ROOM_INDEX_DATA * pRoomIndex) {
-    EXTRA_DESCR_DATA *pEd;
-    EXIT_DATA *pExit;
+void save_room (FILE *fp, ROOM_INDEX_T *pRoomIndex) {
+    EXTRA_DESCR_T *pEd;
+    EXIT_T *pExit;
     char buf[MAX_STRING_LENGTH];
     int door;
 
@@ -455,8 +456,8 @@ void save_room (FILE * fp, ROOM_INDEX_DATA * pRoomIndex) {
  Purpose:    Save #ROOMS section of an area file.
  Called by:  save_area(olc_save.c).
  ****************************************************************************/
-void save_rooms (FILE * fp, AREA_DATA * pArea) {
-    ROOM_INDEX_DATA *pRoomIndex;
+void save_rooms (FILE *fp, AREA_T *pArea) {
+    ROOM_INDEX_T *pRoomIndex;
     int i;
 
     fprintf (fp, "#ROOMS\n");
@@ -471,9 +472,9 @@ void save_rooms (FILE * fp, AREA_DATA * pArea) {
  Purpose:    Save #SPECIALS section of area file.
  Called by:  save_area(olc_save.c).
  ****************************************************************************/
-void save_specials (FILE * fp, AREA_DATA * pArea) {
+void save_specials (FILE *fp, AREA_T *pArea) {
     int iHash;
-    MOB_INDEX_DATA *pMobIndex;
+    MOB_INDEX_T *pMobIndex;
 
     fprintf (fp, "#SPECIALS\n");
     for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
@@ -504,10 +505,10 @@ void save_specials (FILE * fp, AREA_DATA * pArea) {
  * for historical reasons.  It is used currently for the same reason.
  *
  * I don't think it's obsolete in ROM -- Hugin. */
-void save_door_resets (FILE * fp, AREA_DATA * pArea) {
+void save_door_resets (FILE *fp, AREA_T *pArea) {
     int iHash;
-    ROOM_INDEX_DATA *room;
-    EXIT_DATA *pExit;
+    ROOM_INDEX_T *room;
+    EXIT_T *pExit;
     int door;
 
     for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
@@ -547,11 +548,11 @@ void save_door_resets (FILE * fp, AREA_DATA * pArea) {
  Purpose:    Saves the #RESETS section of an area file.
  Called by:    save_area(olc_save.c)
  ****************************************************************************/
-void save_resets (FILE * fp, AREA_DATA * pArea) {
-    RESET_DATA *r;
-    MOB_INDEX_DATA *pLastMob = NULL;
-    OBJ_INDEX_DATA *pLastObj;
-    ROOM_INDEX_DATA *pRoom;
+void save_resets (FILE *fp, AREA_T *pArea) {
+    RESET_T *r;
+    MOB_INDEX_T *pLastMob = NULL;
+    OBJ_INDEX_T *pLastObj;
+    ROOM_INDEX_T *pRoom;
     int iHash;
 
     fprintf (fp, "#RESETS\n");
@@ -640,9 +641,9 @@ void save_resets (FILE * fp, AREA_DATA * pArea) {
  Purpose:    Saves the #SHOPS section of an area file.
  Called by:  save_area(olc_save.c)
  ****************************************************************************/
-void save_shops (FILE * fp, AREA_DATA * pArea) {
-    SHOP_DATA *pShopIndex;
-    MOB_INDEX_DATA *pMobIndex;
+void save_shops (FILE *fp, AREA_T *pArea) {
+    SHOP_T *pShopIndex;
+    MOB_INDEX_T *pMobIndex;
     int iTrade;
     int iHash;
 
@@ -671,8 +672,8 @@ void save_shops (FILE * fp, AREA_DATA * pArea) {
     fprintf (fp, "0\n\n");
 }
 
-void save_helps (FILE * fp, HELP_AREA * ha) {
-    HELP_DATA *help = ha->first;
+void save_helps (FILE *fp, HELP_AREA_T *ha) {
+    HELP_T *help = ha->first;
 
     fprintf (fp, "#HELPS\n");
     for (; help; help = help->next_area) {
@@ -683,8 +684,8 @@ void save_helps (FILE * fp, HELP_AREA * ha) {
     ha->changed = FALSE;
 }
 
-int save_other_helps (CHAR_DATA * ch) {
-    HELP_AREA *ha;
+int save_other_helps (CHAR_T *ch) {
+    HELP_AREA_T *ha;
     FILE *fp;
     int saved = 0;
 
@@ -713,7 +714,7 @@ int save_other_helps (CHAR_DATA * ch) {
  Purpose:    Save an area, note that this format is new.
  Called by:    do_asave(olc_save.c).
  ****************************************************************************/
-void save_area (AREA_DATA * pArea) {
+void save_area (AREA_T *pArea) {
     FILE *fp;
 
     fclose (fpReserve);

@@ -29,8 +29,8 @@
 
 #include "materials.h"
 
-char *material_format_part (const MATERIAL_TYPE *mat) {
-#ifndef VANILLA
+char *material_format_part (const MATERIAL_T *mat) {
+#ifdef BASEMUD_MATERIALS_COMMAND
     static char buf[MAX_STRING_LENGTH];
     if (mat == NULL || mat->type == MATERIAL_GENERIC)
         return "";
@@ -43,6 +43,6 @@ char *material_format_part (const MATERIAL_TYPE *mat) {
 #endif
 }
 
-char *material_strcat (char *buf, const MATERIAL_TYPE *mat) {
+char *material_strcat (char *buf, const MATERIAL_T *mat) {
     return strcat (buf, material_format_part (mat));
 }

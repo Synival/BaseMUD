@@ -48,11 +48,12 @@
 #include "rooms.h"
 #include "find.h"
 #include "act_info.h"
+#include "globals.h"
 
 #include "mob_cmds.h"
 
 /* Command table. */
-const MOB_CMD_TYPE mob_cmd_table[] = {
+const MOB_CMD_T mob_cmd_table[] = {
     {"asound",     do_mpasound},
     {"gecho",      do_mpgecho},
     {"zecho",      do_mpzecho},
@@ -87,7 +88,7 @@ const MOB_CMD_TYPE mob_cmd_table[] = {
 
 /* Mob command interpreter. Implemented separately for security and speed
  * reasons. A trivial hack of interpret() */
-void mob_interpret (CHAR_DATA * ch, char *argument) {
+void mob_interpret (CHAR_T *ch, char *argument) {
     char command[MAX_INPUT_LENGTH];
     int cmd;
 
@@ -139,7 +140,7 @@ DEFINE_DO_FUN (do_mob) {
 /* Prints the argument to all active players in the game
  * Syntax: mob gecho [string] */
 DEFINE_DO_FUN (do_mpgecho) {
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
 
     BAIL_IF_BUG (argument[0] == '\0',
         "do_mpgecho: missing argument from vnum %d", CH_VNUM (ch));
@@ -157,7 +158,7 @@ DEFINE_DO_FUN (do_mpgecho) {
 /* Prints the argument to all players in the same area as the mob
  * Syntax: mob zecho [string] */
 DEFINE_DO_FUN (do_mpzecho) {
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
 
     BAIL_IF_BUG (argument[0] == '\0',
         "do_mpzecho: missing argument from vnum %d", CH_VNUM (ch));
@@ -181,7 +182,7 @@ DEFINE_DO_FUN (do_mpzecho) {
 /* Prints the argument to all the rooms aroud the mobile
  * Syntax: mob asound [string] */
 DEFINE_DO_FUN (do_mpasound) {
-    ROOM_INDEX_DATA *was_in_room;
+    ROOM_INDEX_T *was_in_room;
     int door;
 
     if (argument[0] == '\0')
@@ -189,7 +190,7 @@ DEFINE_DO_FUN (do_mpasound) {
 
     was_in_room = ch->in_room;
     for (door = 0; door < DIR_MAX; door++) {
-        EXIT_DATA *pexit;
+        EXIT_T *pexit;
 
         if ((pexit = was_in_room->exit[door]) != NULL
             && pexit->to_room != NULL && pexit->to_room != was_in_room)
@@ -207,7 +208,7 @@ DEFINE_DO_FUN (do_mpasound) {
  * Syntax: mob kill [victim] */
 DEFINE_DO_FUN (do_mpkill) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
 
@@ -228,7 +229,7 @@ DEFINE_DO_FUN (do_mpkill) {
  * Syntax: mob assist [character] */
 DEFINE_DO_FUN (do_mpassist) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
 
@@ -250,8 +251,8 @@ DEFINE_DO_FUN (do_mpassist) {
  * Syntax: mob junk [item] */
 DEFINE_DO_FUN (do_mpjunk) {
     char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
-    OBJ_DATA *obj_next;
+    OBJ_T *obj;
+    OBJ_T *obj_next;
 
     one_argument (argument, arg);
 
@@ -283,7 +284,7 @@ DEFINE_DO_FUN (do_mpjunk) {
  * Syntax: mob echoaround [victim] [string] */
 DEFINE_DO_FUN (do_mpechoaround) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     argument = one_argument (argument, arg);
     if (arg[0] == '\0')
@@ -297,7 +298,7 @@ DEFINE_DO_FUN (do_mpechoaround) {
  * Syntax: mob echoat [victim] [string] */
 DEFINE_DO_FUN (do_mpechoat) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     argument = one_argument (argument, arg);
     if (arg[0] == '\0' || argument[0] == '\0')
@@ -319,8 +320,8 @@ DEFINE_DO_FUN (do_mpecho) {
  * Syntax: mob mload [vnum] */
 DEFINE_DO_FUN (do_mpmload) {
     char arg[MAX_INPUT_LENGTH];
-    MOB_INDEX_DATA *pMobIndex;
-    CHAR_DATA *victim;
+    MOB_INDEX_T *pMobIndex;
+    CHAR_T *victim;
     int vnum;
 
     one_argument (argument, arg);
@@ -341,8 +342,8 @@ DEFINE_DO_FUN (do_mpoload) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
-    OBJ_INDEX_DATA *pObjIndex;
-    OBJ_DATA *obj;
+    OBJ_INDEX_T *pObjIndex;
+    OBJ_T *obj;
     int level;
     bool fToroom = FALSE, fWear = FALSE;
 
@@ -394,14 +395,14 @@ DEFINE_DO_FUN (do_mpoload) {
  * syntax mob purge {target} */
 DEFINE_DO_FUN (do_mppurge) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    OBJ_DATA *obj;
+    CHAR_T *victim;
+    OBJ_T *obj;
 
     one_argument (argument, arg);
     if (arg[0] == '\0') {
         /* 'purge' */
-        CHAR_DATA *vnext;
-        OBJ_DATA *obj_next;
+        CHAR_T *vnext;
+        OBJ_T *obj_next;
 
         for (victim = ch->in_room->people; victim != NULL; victim = vnext) {
             vnext = victim->next_in_room;
@@ -432,7 +433,7 @@ DEFINE_DO_FUN (do_mppurge) {
  * Syntax: mob goto [location] */
 DEFINE_DO_FUN (do_mpgoto) {
     char arg[MAX_INPUT_LENGTH];
-    ROOM_INDEX_DATA *location;
+    ROOM_INDEX_T *location;
 
     one_argument (argument, arg);
     BAIL_IF_BUG (arg[0] == '\0',
@@ -451,10 +452,10 @@ DEFINE_DO_FUN (do_mpgoto) {
  * Syntax: mob at [location] [commands] */
 DEFINE_DO_FUN (do_mpat) {
     char arg[MAX_INPUT_LENGTH];
-    ROOM_INDEX_DATA *location;
-    ROOM_INDEX_DATA *original;
-    CHAR_DATA *wch;
-    OBJ_DATA *on;
+    ROOM_INDEX_T *location;
+    ROOM_INDEX_T *original;
+    CHAR_T *wch;
+    OBJ_T *on;
 
     argument = one_argument (argument, arg);
     BAIL_IF_BUG (arg[0] == '\0' || argument[0] == '\0',
@@ -488,8 +489,8 @@ DEFINE_DO_FUN (do_mptransfer) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char buf[MAX_STRING_LENGTH];
-    ROOM_INDEX_DATA *location;
-    CHAR_DATA *victim;
+    ROOM_INDEX_T *location;
+    CHAR_T *victim;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -498,7 +499,7 @@ DEFINE_DO_FUN (do_mptransfer) {
         "Mptransfer - Bad syntax from vnum %d.", CH_VNUM (ch));
 
     if (!str_cmp (arg1, "all")) {
-        CHAR_DATA *victim_next;
+        CHAR_T *victim_next;
 
         for (victim = ch->in_room->people; victim != NULL;
              victim = victim_next)
@@ -540,7 +541,7 @@ DEFINE_DO_FUN (do_mpgtransfer) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char buf[MAX_STRING_LENGTH];
-    CHAR_DATA *who, *victim, *victim_next;
+    CHAR_T *who, *victim, *victim_next;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -571,8 +572,8 @@ DEFINE_DO_FUN (do_mpforce) {
         "Mpforce - Bad syntax from vnum %d.", CH_VNUM (ch));
 
     if (!str_cmp (arg, "all")) {
-        CHAR_DATA *vch;
-        CHAR_DATA *vch_next;
+        CHAR_T *vch;
+        CHAR_T *vch_next;
         for (vch = char_list; vch != NULL; vch = vch_next) {
             vch_next = vch->next;
             if (char_get_trust (vch) < char_get_trust (ch) &&
@@ -581,7 +582,7 @@ DEFINE_DO_FUN (do_mpforce) {
         }
     }
     else {
-        CHAR_DATA *victim;
+        CHAR_T *victim;
         if ((victim = find_char_same_room (ch, arg)) == NULL)
             return;
         if (victim == ch)
@@ -594,7 +595,7 @@ DEFINE_DO_FUN (do_mpforce) {
  * Syntax: mob gforce [victim] [commands] */
 DEFINE_DO_FUN (do_mpgforce) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim, *vch, *vch_next;
+    CHAR_T *victim, *vch, *vch_next;
 
     argument = one_argument (argument, arg);
     BAIL_IF_BUG (arg[0] == '\0' || argument[0] == '\0',
@@ -615,7 +616,7 @@ DEFINE_DO_FUN (do_mpgforce) {
 /* Forces all mobiles of certain vnum to do something (except ch)
  * Syntax: mob vforce [vnum] [commands] */
 DEFINE_DO_FUN (do_mpvforce) {
-    CHAR_DATA *victim, *victim_next;
+    CHAR_T *victim, *victim_next;
     char arg[MAX_INPUT_LENGTH];
     int vnum;
 
@@ -642,8 +643,8 @@ DEFINE_DO_FUN (do_mpvforce) {
  * Syntax: mob cast [spell] {target} */
 
 DEFINE_DO_FUN (do_mpcast) {
-    CHAR_DATA *vch;
-    OBJ_DATA *obj;
+    CHAR_T *vch;
+    OBJ_T *obj;
     void *victim = NULL;
     char spell[MAX_INPUT_LENGTH], target[MAX_INPUT_LENGTH];
     int sn;
@@ -689,7 +690,7 @@ DEFINE_DO_FUN (do_mpcast) {
             return;
     }
     (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim,
-                                  skill_table[sn].target);
+        skill_table[sn].target, "");
 }
 
 /* Lets mob cause unconditional damage to someone. Nasty, use with caution.
@@ -697,7 +698,7 @@ DEFINE_DO_FUN (do_mpcast) {
  * Syntax: mob damage [victim] [min] [max] {kill} */
 
 DEFINE_DO_FUN (do_mpdamage) {
-    CHAR_DATA *victim = NULL, *victim_next;
+    CHAR_T *victim = NULL, *victim_next;
     char target[MAX_INPUT_LENGTH],
         min[MAX_INPUT_LENGTH], max[MAX_INPUT_LENGTH];
     int low, high;
@@ -733,18 +734,18 @@ DEFINE_DO_FUN (do_mpdamage) {
         for (victim = ch->in_room->people; victim; victim = victim_next) {
             victim_next = victim->next_in_room;
             if (victim != ch) {
-                damage (victim, victim,
+                damage_quiet (victim, victim,
                     fKill ? number_range (low, high)
                           : UMIN (victim->hit, number_range (low, high)),
-                    TYPE_UNDEFINED, DAM_NONE, FALSE);
+                    TYPE_UNDEFINED, DAM_NONE);
             }
         }
     }
     else {
-        damage (victim, victim,
+        damage_quiet (victim, victim,
             fKill ? number_range (low, high)
                   : UMIN (victim->hit, number_range (low, high)),
-            TYPE_UNDEFINED, DAM_NONE, FALSE);
+            TYPE_UNDEFINED, DAM_NONE);
     }
 }
 
@@ -794,10 +795,10 @@ DEFINE_DO_FUN (do_mpcancel) {
  * Syntax: mob call [vnum] [victim|'null'] [object1|'null'] [object2|'null'] */
 DEFINE_DO_FUN (do_mpcall) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *vch;
-    OBJ_DATA *obj1, *obj2;
-    MPROG_CODE *prg;
-    extern void program_flow (sh_int, char *, CHAR_DATA *, CHAR_DATA *,
+    CHAR_T *vch;
+    OBJ_T *obj1, *obj2;
+    MPROG_CODE_T *prg;
+    extern void program_flow (sh_int, char *, CHAR_T *, CHAR_T *,
                               const void *, const void *);
 
     argument = one_argument (argument, arg);
@@ -824,8 +825,8 @@ DEFINE_DO_FUN (do_mpcall) {
 /* Forces the mobile to flee.
  * Syntax: mob flee */
 DEFINE_DO_FUN (do_mpflee) {
-    ROOM_INDEX_DATA *was_in;
-    EXIT_DATA *pexit;
+    ROOM_INDEX_T *was_in;
+    EXIT_T *pexit;
     int door, attempt;
 
     if (ch->fighting != NULL)
@@ -853,8 +854,8 @@ DEFINE_DO_FUN (do_mpflee) {
  *
  * Syntax: mob otransfer [item name] [location] */
 DEFINE_DO_FUN (do_mpotransfer) {
-    OBJ_DATA *obj;
-    ROOM_INDEX_DATA *location;
+    OBJ_T *obj;
+    ROOM_INDEX_T *location;
     char arg[MAX_INPUT_LENGTH];
     char buf[MAX_INPUT_LENGTH];
 
@@ -883,8 +884,8 @@ DEFINE_DO_FUN (do_mpotransfer) {
  *
  * Syntax: mob remove [victim] [object vnum|'all'] */
 DEFINE_DO_FUN (do_mpremove) {
-    CHAR_DATA *victim;
-    OBJ_DATA *obj, *obj_next;
+    CHAR_T *victim;
+    OBJ_T *obj, *obj_next;
     sh_int vnum = 0;
     bool fAll = FALSE;
     char arg[MAX_INPUT_LENGTH];

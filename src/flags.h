@@ -519,24 +519,24 @@
 #define AREA_LOADING  (C) /* Used for counting in db.c */
 
 /* Flag tables. */
-extern const FLAG_TYPE mob_flags[];
-extern const FLAG_TYPE plr_flags[];
-extern const FLAG_TYPE affect_flags[];
-extern const FLAG_TYPE off_flags[];
-extern const FLAG_TYPE form_flags[];
-extern const FLAG_TYPE part_flags[];
-extern const FLAG_TYPE comm_flags[];
-extern const FLAG_TYPE mprog_flags[];
-extern const FLAG_TYPE area_flags[];
-extern const FLAG_TYPE exit_flags[];
-extern const FLAG_TYPE door_resets[];
-extern const FLAG_TYPE room_flags[];
-extern const FLAG_TYPE extra_flags[];
-extern const FLAG_TYPE wear_flags[];
-extern const FLAG_TYPE container_flags[];
-extern const FLAG_TYPE weapon_flags[];
-extern const FLAG_TYPE res_flags[];
-extern const FLAG_TYPE gate_flags[];
-extern const FLAG_TYPE furniture_flags[];
+extern const FLAG_T mob_flags[];
+extern const FLAG_T plr_flags[];
+extern const FLAG_T affect_flags[];
+extern const FLAG_T off_flags[];
+extern const FLAG_T form_flags[];
+extern const FLAG_T part_flags[];
+extern const FLAG_T comm_flags[];
+extern const FLAG_T mprog_flags[];
+extern const FLAG_T area_flags[];
+extern const FLAG_T exit_flags[];
+extern const FLAG_T door_resets[];
+extern const FLAG_T room_flags[];
+extern const FLAG_T extra_flags[];
+extern const FLAG_T wear_flags[];
+extern const FLAG_T container_flags[];
+extern const FLAG_T weapon_flags[];
+extern const FLAG_T res_flags[];
+extern const FLAG_T gate_flags[];
+extern const FLAG_T furniture_flags[];
 
 #endif

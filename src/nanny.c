@@ -53,6 +53,8 @@
 #include "chars.h"
 #include "objs.h"
 #include "descs.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "nanny.h"
 
@@ -124,8 +126,8 @@ bool new_player_name_is_valid (char *name) {
 
     /* Prevent players from naming themselves after mobs. */
     {
-        extern MOB_INDEX_DATA *mob_index_hash[MAX_KEY_HASH];
-        MOB_INDEX_DATA *pMobIndex;
+        extern MOB_INDEX_T *mob_index_hash[MAX_KEY_HASH];
+        MOB_INDEX_T *pMobIndex;
         int iHash;
 
         for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
@@ -144,7 +146,7 @@ bool new_player_name_is_valid (char *name) {
      * newbies with the same name (thanks Saro) */
     if (descriptor_list) {
         int count = 0;
-        DESCRIPTOR_DATA *d, *dnext;
+        DESCRIPTOR_T *d, *dnext;
 
         for (d = descriptor_list; d != NULL; d = dnext) {
             dnext=d->next;
@@ -167,8 +169,8 @@ bool new_player_name_is_valid (char *name) {
 }
 
 /* Deal with sockets that haven't logged in yet. */
-void nanny (DESCRIPTOR_DATA * d, char *argument) {
-    const NANNY_HANDLER *handler;
+void nanny (DESCRIPTOR_T *d, char *argument) {
+    const NANNY_HANDLER_T *handler;
 
     /* Delete leading spaces UNLESS character is writing a note */
     if (d->connected != CON_NOTE_TEXT)
@@ -183,7 +185,7 @@ void nanny (DESCRIPTOR_DATA * d, char *argument) {
     handler->action (d, argument);
 }
 
-void nanny_ansi (DESCRIPTOR_DATA * d, char *argument) {
+void nanny_ansi (DESCRIPTOR_T *d, char *argument) {
     extern char *help_greeting;
     if (argument[0] == '\0' || UPPER (argument[0]) == 'Y') {
         d->ansi = TRUE;
@@ -205,9 +207,9 @@ void nanny_ansi (DESCRIPTOR_DATA * d, char *argument) {
     d->connected = CON_GET_NAME;
 }
 
-void nanny_get_player_name (DESCRIPTOR_DATA * d, char *argument) {
+void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
     bool fOld;
-    CHAR_DATA *ch;
+    CHAR_T *ch;
 
     if (argument[0] == '\0') {
         close_socket (d);
@@ -274,8 +276,8 @@ void nanny_get_player_name (DESCRIPTOR_DATA * d, char *argument) {
     }
 }
 
-void nanny_get_old_password (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
+void nanny_get_old_password (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
 
 #if defined(unix)
     write_to_buffer (d, "\n\r", 2);
@@ -312,7 +314,7 @@ void nanny_get_old_password (DESCRIPTOR_DATA * d, char *argument) {
     }
 }
 
-void nanny_break_connect (DESCRIPTOR_DATA * d, char *argument) {
+void nanny_break_connect (DESCRIPTOR_T *d, char *argument) {
     switch (UPPER(argument[0])) {
         case 'Y':
             nanny_break_connect_confirm (d, argument);
@@ -333,9 +335,9 @@ void nanny_break_connect (DESCRIPTOR_DATA * d, char *argument) {
     }
 }
 
-void nanny_break_connect_confirm (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
-    DESCRIPTOR_DATA *d_old, *d_next;
+void nanny_break_connect_confirm (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
+    DESCRIPTOR_T *d_old, *d_next;
 
     for (d_old = descriptor_list; d_old != NULL; d_old = d_next) {
         d_next = d_old->next;
@@ -359,8 +361,8 @@ void nanny_break_connect_confirm (DESCRIPTOR_DATA * d, char *argument) {
     d->connected = CON_GET_NAME;
 }
 
-void nanny_confirm_new_name (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
+void nanny_confirm_new_name (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
 
     switch (UPPER(argument[0])) {
         case 'Y':
@@ -384,8 +386,8 @@ void nanny_confirm_new_name (DESCRIPTOR_DATA * d, char *argument) {
     }
 }
 
-void nanny_get_new_password (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
+void nanny_get_new_password (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
     char *pwdnew, *p;
 
 #if defined(unix)
@@ -409,14 +411,13 @@ void nanny_get_new_password (DESCRIPTOR_DATA * d, char *argument) {
         }
     }
 
-    str_free (ch->pcdata->pwd);
-    ch->pcdata->pwd = str_dup (pwdnew);
+    str_replace_dup (&(ch->pcdata->pwd), pwdnew);
     send_to_desc ("Please retype password: ", d);
     d->connected = CON_CONFIRM_PASSWORD;
 }
 
-void nanny_confirm_new_password (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
+void nanny_confirm_new_password (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
     int race;
 
 #if defined(unix)
@@ -442,9 +443,9 @@ void nanny_confirm_new_password (DESCRIPTOR_DATA * d, char *argument) {
     d->connected = CON_GET_NEW_RACE;
 }
 
-void nanny_get_new_race (DESCRIPTOR_DATA * d, char *argument) {
+void nanny_get_new_race (DESCRIPTOR_T *d, char *argument) {
     char arg[MAX_STRING_LENGTH];
-    CHAR_DATA * ch = d->character;
+    CHAR_T *ch = d->character;
     int i, race;
 
     one_argument (argument, arg);
@@ -500,8 +501,8 @@ void nanny_get_new_race (DESCRIPTOR_DATA * d, char *argument) {
     d->connected = CON_GET_NEW_SEX;
 }
 
-void nanny_get_new_sex (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
+void nanny_get_new_sex (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     int iClass;
 
@@ -530,8 +531,8 @@ void nanny_get_new_sex (DESCRIPTOR_DATA * d, char *argument) {
     d->connected = CON_GET_NEW_CLASS;
 }
 
-void nanny_get_new_class (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
+void nanny_get_new_class (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
     int iClass;
 
     iClass = class_lookup (argument);
@@ -553,8 +554,8 @@ void nanny_get_new_class (DESCRIPTOR_DATA * d, char *argument) {
     d->connected = CON_GET_ALIGNMENT;
 }
 
-void nanny_get_alignment (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
+void nanny_get_alignment (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
     switch (UPPER(argument[0])) {
         case 'G': ch->alignment =  750; break;
         case 'N': ch->alignment =    0; break;
@@ -579,8 +580,8 @@ void nanny_get_alignment (DESCRIPTOR_DATA * d, char *argument) {
     d->connected = CON_DEFAULT_CHOICE;
 }
 
-void nanny_default_choice (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
+void nanny_default_choice (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     int i;
 
@@ -626,9 +627,9 @@ void nanny_default_choice (DESCRIPTOR_DATA * d, char *argument) {
     }
 }
 
-void nanny_pick_weapon (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
-    const WEAPON_TYPE *weapon;
+void nanny_pick_weapon (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
+    const WEAPON_T *weapon;
     char buf[MAX_STRING_LENGTH];
     int i;
 
@@ -655,8 +656,8 @@ void nanny_pick_weapon (DESCRIPTOR_DATA * d, char *argument) {
     d->connected = CON_READ_MOTD;
 }
 
-void nanny_gen_groups (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
+void nanny_gen_groups (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
 
     if (!str_cmp (argument, "done")) {
         nanny_gen_groups_done (d, argument);
@@ -668,8 +669,8 @@ void nanny_gen_groups (DESCRIPTOR_DATA * d, char *argument) {
     do_function (ch, &do_help, "menu choice");
 }
 
-void nanny_gen_groups_done (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
+void nanny_gen_groups_done (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     int i;
 
@@ -706,16 +707,16 @@ void nanny_gen_groups_done (DESCRIPTOR_DATA * d, char *argument) {
     d->connected = CON_PICK_WEAPON;
 }
 
-void nanny_read_imotd (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
+void nanny_read_imotd (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
 
     write_to_buffer (d, "\n\r", 2);
     do_function (ch, &do_help, "motd");
     d->connected = CON_READ_MOTD;
 }
 
-void nanny_read_motd (DESCRIPTOR_DATA * d, char *argument) {
-    CHAR_DATA * ch = d->character;
+void nanny_read_motd (DESCRIPTOR_T *d, char *argument) {
+    CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
 
     extern int mud_telnetga, mud_ansicolor;

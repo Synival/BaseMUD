@@ -31,14 +31,11 @@
 #include "utils.h"
 #include "chars.h"
 #include "db.h"
-#include "act_comm.h"
+#include "globals.h"
 
 #include "find.h"
 
-int find_last_count = 0;
-int find_next_count = 0;
-
-int find_number_argument (char *arg_in, char *arg_out) {
+int find_number_argument (const char *arg_in, char *arg_out) {
     int number;
     number = number_argument (arg_in, arg_out);
     find_stop_counting ();
@@ -54,9 +51,9 @@ void find_stop_counting (void) {
     find_last_count = 0;
 }
 
-ROOM_INDEX_DATA *find_location (CHAR_DATA * ch, char *arg) {
-    CHAR_DATA *victim;
-    OBJ_DATA *obj;
+ROOM_INDEX_T *find_location (CHAR_T *ch, const char *arg) {
+    CHAR_T *victim;
+    OBJ_T *obj;
 
     if (is_number (arg))
         return get_room_index (atoi (arg));
@@ -71,9 +68,9 @@ ROOM_INDEX_DATA *find_location (CHAR_DATA * ch, char *arg) {
     return NULL;
 }
 
-CHAR_DATA *find_char_same_room (CHAR_DATA * ch, char *argument) {
+CHAR_T *find_char_same_room (CHAR_T *ch, const char *argument) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *rch;
+    CHAR_T *rch;
     int number;
     int count;
 
@@ -95,9 +92,9 @@ CHAR_DATA *find_char_same_room (CHAR_DATA * ch, char *argument) {
     return rch;
 }
 
-CHAR_DATA *find_char_world (CHAR_DATA * ch, char *argument) {
+CHAR_T *find_char_world (CHAR_T *ch, const char *argument) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *wch;
+    CHAR_T *wch;
     int number;
     int count;
 
@@ -132,32 +129,30 @@ CHAR_DATA *find_char_world (CHAR_DATA * ch, char *argument) {
 #define WORN_IGNORE  0
 #define WORN_YES     1
 
-OBJ_DATA *find_obj_room (CHAR_DATA *ch, ROOM_INDEX_DATA *room, char *argument)
+OBJ_T *find_obj_room (CHAR_T *ch, ROOM_INDEX_T *room, const char *argument)
     { return find_obj_list (ch, room->contents, argument, WORN_IGNORE); }
-OBJ_DATA *find_obj_same_room (CHAR_DATA *ch, char *argument)
+OBJ_T *find_obj_same_room (CHAR_T *ch, const char *argument)
     { return find_obj_room (ch, ch->in_room, argument); }
-OBJ_DATA *find_obj_container (CHAR_DATA *ch, OBJ_DATA *obj, char *argument)
+OBJ_T *find_obj_container (CHAR_T *ch, OBJ_T *obj, const char *argument)
     { return find_obj_list (ch, obj->contains, argument, WORN_IGNORE); }
 
-OBJ_DATA *find_obj_char (CHAR_DATA *ch, CHAR_DATA *victim, char *argument)
+OBJ_T *find_obj_char (CHAR_T *ch, CHAR_T *victim, const char *argument)
     { return find_obj_list (ch, victim->carrying, argument, WORN_IGNORE); }
-OBJ_DATA *find_obj_worn (CHAR_DATA * ch, CHAR_DATA *victim, char *argument)
+OBJ_T *find_obj_worn (CHAR_T *ch, CHAR_T *victim, const char *argument)
     { return find_obj_list (ch, victim->carrying, argument, WORN_YES); }
-OBJ_DATA *find_obj_inventory (CHAR_DATA *ch, CHAR_DATA *victim, char *argument)
+OBJ_T *find_obj_inventory (CHAR_T *ch, CHAR_T *victim, const char *argument)
     { return find_obj_list (ch, victim->carrying, argument, WORN_NO); }
 
-OBJ_DATA *find_obj_own_char (CHAR_DATA *ch, char *argument)
+OBJ_T *find_obj_own_char (CHAR_T *ch, const char *argument)
     { return find_obj_char (ch, ch, argument); }
-OBJ_DATA *find_obj_own_inventory (CHAR_DATA *ch, char *argument)
+OBJ_T *find_obj_own_inventory (CHAR_T *ch, const char *argument)
     { return find_obj_inventory (ch, ch, argument); }
-OBJ_DATA *find_obj_own_worn (CHAR_DATA * ch, char *argument)
+OBJ_T *find_obj_own_worn (CHAR_T *ch, const char *argument)
     { return find_obj_worn (ch, ch, argument); }
 
-OBJ_DATA *find_obj_list (CHAR_DATA *ch, OBJ_DATA *list, char *argument,
-    int worn)
-{
+OBJ_T *find_obj_list (CHAR_T *ch, OBJ_T *list, const char *argument, int worn) {
     char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
     int number;
     int count;
 
@@ -182,8 +177,8 @@ OBJ_DATA *find_obj_list (CHAR_DATA *ch, OBJ_DATA *list, char *argument,
 }
 
 /* Find an obj in the room or in inventory. */
-OBJ_DATA *find_obj_here (CHAR_DATA * ch, char *argument) {
-    OBJ_DATA *obj;
+OBJ_T *find_obj_here (CHAR_T *ch, const char *argument) {
+    OBJ_T *obj;
 
     if ((obj = find_obj_same_room (ch, argument)) != NULL)
         return obj;
@@ -200,9 +195,9 @@ OBJ_DATA *find_obj_here (CHAR_DATA * ch, char *argument) {
 }
 
 /* Find an obj in the world. */
-OBJ_DATA *find_obj_world (CHAR_DATA * ch, char *argument) {
+OBJ_T *find_obj_world (CHAR_T *ch, const char *argument) {
     char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
     int number;
     int count;
 
@@ -231,11 +226,9 @@ OBJ_DATA *find_obj_world (CHAR_DATA * ch, char *argument) {
 }
 
 /* get an object from a shopkeeper's list */
-OBJ_DATA *find_obj_keeper (CHAR_DATA * ch, CHAR_DATA * keeper,
-    char *argument)
-{
+OBJ_T *find_obj_keeper (CHAR_T *ch, CHAR_T *keeper, const char *argument) {
     char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
     int number;
     int count;
 
@@ -265,9 +258,9 @@ OBJ_DATA *find_obj_keeper (CHAR_DATA * ch, CHAR_DATA * keeper,
     return obj;
 }
 
-int find_door_same_room (CHAR_DATA *ch, char *argument) {
+int find_door_same_room (CHAR_T *ch, const char *argument) {
     char arg[MAX_INPUT_LENGTH];
-    EXIT_DATA *pexit;
+    EXIT_T *pexit;
     int door;
     int number;
     int count;

@@ -19,10 +19,11 @@
 #include "lookup.h"
 #include "db.h"
 #include "recycle.h"
-#include "utils.h"
 #include "interp.h"
 #include "string.h"
+#include "globals.h"
 #include "olc.h"
+#include "memory.h"
 
 #include "olc_aedit.h"
 
@@ -32,7 +33,7 @@
  Called by:  aedit_vnum(olc_act.c).
  ****************************************************************************/
 bool aedit_check_range (int lower, int upper) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
     int cnt = 0;
 
     for (pArea = area_first; pArea; pArea = pArea->next) {
@@ -47,7 +48,7 @@ bool aedit_check_range (int lower, int upper) {
 }
 
 AEDIT (aedit_show) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
     EDIT_AREA (ch, pArea);
 
     printf_to_char (ch, "Name:     [%5d] %s\n\r", pArea->vnum, pArea->name);
@@ -74,7 +75,7 @@ AEDIT (aedit_show) {
 }
 
 AEDIT (aedit_reset) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
     EDIT_AREA (ch, pArea);
 
     reset_area (pArea);
@@ -83,7 +84,7 @@ AEDIT (aedit_reset) {
 }
 
 AEDIT (aedit_create) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
 
     pArea = area_new ();
     LISTB_BACK (pArea, next, area_first, area_last);
@@ -95,7 +96,7 @@ AEDIT (aedit_create) {
 }
 
 AEDIT (aedit_title) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
     EDIT_AREA (ch, pArea);
     return olc_str_replace_dup (ch, &(pArea->title), argument,
         "Syntax: name [$name]\n\r",
@@ -103,7 +104,7 @@ AEDIT (aedit_title) {
 }
 
 AEDIT (aedit_credits) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
     EDIT_AREA (ch, pArea);
     return olc_str_replace_dup (ch, &(pArea->credits), argument,
         "Syntax: credits [$credits]\n\r",
@@ -111,7 +112,7 @@ AEDIT (aedit_credits) {
 }
 
 AEDIT (aedit_file) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
     char file[MAX_STRING_LENGTH];
     int i, length;
 
@@ -138,7 +139,7 @@ AEDIT (aedit_file) {
 }
 
 AEDIT (aedit_age) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
     EDIT_AREA (ch, pArea);
     return olc_sh_int_replace (ch, &(pArea->age), argument,
         "Syntax: age [#xage]\n\r", "Age set.\n\r");
@@ -146,7 +147,7 @@ AEDIT (aedit_age) {
 
 #if 0 /* ROM OLC */
 AEDIT (aedit_recall) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
     char room[MAX_STRING_LENGTH];
     int value;
 
@@ -171,7 +172,7 @@ AEDIT (aedit_recall) {
 #endif /* ROM OLC */
 
 AEDIT (aedit_security) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
     char sec[MAX_STRING_LENGTH];
     int value;
 
@@ -196,7 +197,7 @@ AEDIT (aedit_security) {
 }
 
 AEDIT (aedit_builder) {
-    AREA_DATA *pArea;
+    AREA_T *pArea;
     char name[MAX_STRING_LENGTH];
     char buf[MAX_STRING_LENGTH];
 
@@ -229,7 +230,7 @@ AEDIT (aedit_builder) {
         }
 
         strcat (buf, name);
-        str_free (pArea->builders);
+        str_free (&(pArea->builders));
         pArea->builders = string_proper (str_dup (buf));
 
         send_to_char ("Builder added.\n\r", ch);
@@ -240,7 +241,7 @@ AEDIT (aedit_builder) {
 }
 
 AEDIT (aedit_vnum) {
-    AREA_DATA *pArea, *other;
+    AREA_T *pArea, *other;
     char lower[MAX_STRING_LENGTH];
     char upper[MAX_STRING_LENGTH];
     int ilower;
@@ -278,7 +279,7 @@ AEDIT (aedit_vnum) {
 }
 
 AEDIT (aedit_lvnum) {
-    AREA_DATA *pArea, *other;
+    AREA_T *pArea, *other;
     char lower[MAX_STRING_LENGTH];
     int ilower;
     int iupper;
@@ -304,7 +305,7 @@ AEDIT (aedit_lvnum) {
 }
 
 AEDIT (aedit_uvnum) {
-    AREA_DATA *pArea, *other;
+    AREA_T *pArea, *other;
     char upper[MAX_STRING_LENGTH];
     int ilower;
     int iupper;

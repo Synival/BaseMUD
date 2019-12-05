@@ -28,6 +28,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <stddef.h>
+#include <dirent.h>
 
 #include "utils.h"
 #include "recycle.h"
@@ -35,10 +37,12 @@
 #include "lookup.h"
 #include "json.h"
 #include "json_obj.h"
+#include "json_write.h"
+#include "json_read.h"
+#include "json_import.h"
 #include "music.h"
 #include "ban.h"
 #include "board.h"
-#include "comm.h"
 #include "olc.h"
 #include "portals.h"
 #include "chars.h"
@@ -46,6 +50,8 @@
 #include "objs.h"
 #include "db_old.h"
 #include "update.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "db.h"
 
@@ -68,42 +74,180 @@
     time_t time (time_t * tloc);
 #endif
 
-/* Globals.  */
-HELP_DATA *help_first, *help_last;
-SHOP_DATA *shop_first, *shop_last;
-AREA_DATA *area_first, *area_last;
-BAN_DATA  *ban_first,  *ban_last;
-HELP_AREA *had_first,  *had_last;
+/* Globals used only during loading. */
+static AREA_T *current_area;
 
-CHAR_DATA *char_list;
-MPROG_CODE *mprog_list;
-OBJ_DATA *object_list;
+AREA_T *db_link_areas_get_area (char **name) {
+    AREA_T *area;
 
-int newmobs = 0;
-int newobjs = 0;
+    if (*name == NULL)
+        return NULL;
 
-char bug_buf[2 * MAX_INPUT_LENGTH];
-char *help_greeting;
-char log_buf[2 * MAX_INPUT_LENGTH];
-KILL_DATA kill_table[MAX_LEVEL];
-TIME_INFO_DATA time_info;
-WEATHER_DATA weather_info;
+    area = area_get_by_name (*name);
+    if (area == NULL)
+        bugf ("db_link_areas_get_area(): area '%s' not found.", *name);
+    str_free (&(*name));
 
-/* Locals. */
-MOB_INDEX_DATA *mob_index_hash[MAX_KEY_HASH];
-OBJ_INDEX_DATA *obj_index_hash[MAX_KEY_HASH];
-ROOM_INDEX_DATA *room_index_hash[MAX_KEY_HASH];
-char *string_hash[MAX_KEY_HASH];
-AREA_DATA *current_area;
+    return area;
+}
 
-/* Semi-locals.  */
-bool fBootDb;
-FILE *fpArea;
-char strArea[MAX_INPUT_LENGTH];
+void db_link_areas (void) {
+    HELP_AREA_T *had;
+    AREA_T *area;
+    ROOM_INDEX_T *room, *to_room;
+    MOB_INDEX_T *mob;
+    OBJ_INDEX_T *obj;
+    EXIT_T *exit;
+    ANUM_T *anum, *anum_next;
+    RESET_T *reset;
+    int i;
 
-void db_export_json (void) {
+    /* For each 'anum' value, determine the 'vnum'. */
+    for (anum = anum_first; anum != NULL; anum = anum_next) {
+        anum_next = anum->next;
+        do {
+            if (anum->vnum_ref == NULL)
+                continue;
+            if ((area = db_link_areas_get_area (&(anum->area_str))) == NULL)
+                continue;
+            *(anum->vnum_ref) = area->min_vnum + anum->anum;
+        } while (0);
+        anum_free (anum);
+    }
+
+    /* Link rooms and their resets to areas and register them. */
+    for (room = room_index_get_first(); room != NULL;
+         room = room_index_get_next(room))
+    {
+        if ((area = db_link_areas_get_area (&(room->area_str))) == NULL)
+            continue;
+        room->area = area;
+        room->vnum = room->anum + area->min_vnum;
+        for (reset = room->reset_first; reset != NULL; reset = reset->next)
+            reset->room_vnum = room->vnum;
+        db_register_new_room (room);
+    }
+
+    /* Now that rooms have vnums, link exits. */
+    for (room = room_index_get_first(); room != NULL;
+         room = room_index_get_next(room))
+    {
+        for (i = 0; i < DIR_MAX; i++) {
+            if ((exit = room->exit[i]) == NULL)
+                continue;
+            exit->area_vnum = -1;
+            if (exit->room_anum < 0)
+                continue;
+
+            exit->vnum = exit->room_anum + room->area->min_vnum;
+            if ((to_room = get_room_index (exit->vnum)) == NULL) {
+                bugf ("db_link_areas(): Room '%s' (%d) exit '%d' cannot find "
+                    "room with vnum %d.\n", room->name, room->vnum, i,
+                    exit->vnum);
+                continue;
+            }
+            exit->to_room = to_room;
+            exit->area_vnum = to_room->area->vnum;
+        }
+    }
+
+    /* Link mobs to areas and register them. */
+    for (mob = mob_index_get_first(); mob != NULL;
+         mob = mob_index_get_next(mob))
+    {
+        if ((area = db_link_areas_get_area (&(mob->area_str))) == NULL)
+            continue;
+        mob->area = area;
+        mob->vnum = mob->anum + area->min_vnum;
+        if (mob->pShop)
+            mob->pShop->keeper = mob->vnum;
+
+        db_register_new_mob (mob);
+    }
+
+    /* Link objs to areas and register them. */
+    for (obj = obj_index_get_first(); obj != NULL;
+         obj = obj_index_get_next(obj))
+    {
+        if ((area = db_link_areas_get_area (&(obj->area_str))) == NULL)
+            continue;
+        obj->area = area;
+        obj->vnum = obj->anum + area->min_vnum;
+        db_register_new_obj (obj);
+    }
+
+    /* Link help groups to areas. */
+    for (had = had_get_first(); had != NULL; had = had_get_next(had)) {
+        if ((area = db_link_areas_get_area (&(had->area_str))) == NULL)
+            continue;
+        area->helps = had;
+        had->area = area;
+    }
+}
+
+void db_register_new_room (ROOM_INDEX_T *room) {
+    int vnum = room->vnum;
+    int hash = vnum % MAX_KEY_HASH;
+
+    LIST_FRONT (room, next, room_index_hash[hash]);
+    top_vnum_room = top_vnum_room < vnum ? vnum : top_vnum_room; /* OLC */
+    assign_area_vnum (vnum, room->area); /* OLC */
+}
+
+void db_register_new_mob (MOB_INDEX_T *mob) {
+    int vnum = mob->vnum;
+    int hash = vnum % MAX_KEY_HASH;
+
+    LIST_FRONT (mob, next, mob_index_hash[hash]);
+    top_vnum_mob = top_vnum_mob < vnum ? vnum : top_vnum_mob; /* OLC */
+    assign_area_vnum (vnum, mob->area); /* OLC */
+    kill_table[URANGE (0, mob->level, MAX_LEVEL - 1)].number++;
+}
+
+void db_register_new_obj (OBJ_INDEX_T *obj) {
+    int vnum = obj->vnum;
+    int hash = vnum % MAX_KEY_HASH;
+
+    LIST_FRONT (obj, next, obj_index_hash[hash]);
+    top_vnum_obj = top_vnum_obj < vnum ? vnum : top_vnum_obj; /* OLC */
+    assign_area_vnum (vnum, obj->area); /* OLC */
+}
+
+void db_import_json (void) {
+    JSON_T *json;
+    int imported;
+
+    /* read all files instead simple JSON objects. */
+    imported = 0;
+    log_f ("Loading JSON objects from '%s'...", JSON_DIR);
+    json = json_read_directory_recursive (JSON_DIR,
+        json_import_objects, &imported);
+
+    /* reconstruct the world based on the JSON read. */
+    log_f ("%d object(s) loaded successfully.", imported);
+
+    /* free any leftover generated json. */
+    if (json != NULL)
+        json_free (json);
+
+    /* link any objects with 'area_str' to their respective objects. */
+    log_f ("Linking everything together...");
+    db_link_areas ();
+    portal_link_exits ();
+}
+
+int help_area_count_pages (HELP_AREA_T *had) {
+    HELP_T *h;
+    int count = 0;
+
+    for (h = had->first; h != NULL; h = h->next_area)
+        count++;
+    return count;
+}
+
+void db_export_json (bool write_indiv, const char *everything) {
     JSON_T *jarea, *jgrp, *json;
-    AREA_DATA *area;
+    AREA_T *area;
     char buf[256], fbuf[256];
 
     /* Write all areas. */
@@ -114,17 +258,24 @@ void db_export_json (void) {
         jarea = json_root_area (buf);
         jgrp = json_prop_array (jarea, NULL);
 
+        if (write_indiv)
+            log_f("Exporting JSON: %sareas/%s*", JSON_DIR, fbuf);
+
         json = json_wrap_obj(json_new_obj_area (NULL, area), "area");
         json_attach_under (json, jgrp);
 
-        log_f("Exporting JSON: %sareas/%s*", JSON_DIR, fbuf);
-        snprintf (buf, sizeof(buf), "%sareas/%sarea.json", JSON_DIR, fbuf);
-        json_mkdir_to (buf);
-        json_write_to_file (jgrp, buf);
+        if (write_indiv) {
+            snprintf (buf, sizeof(buf), "%sareas/%sarea.json", JSON_DIR, fbuf);
+            json_mkdir_to (buf);
+            json_write_to_file (jgrp, buf);
+        }
 
+        /* NOTE: This is extremely nasty, but refactoring it into a function
+         * or having copy-pasted code is even nastier. This is the least-worst
+         * solution, IMO. -- Synival */
         #define ADD_AREA_JSON(oname, fname, btype, vtype, func) \
             do { \
-                vtype *obj; \
+                const vtype *obj; \
                 jgrp = json_prop_array (jarea, NULL); \
                 \
                 for (obj = btype ## _get_first(); obj != NULL; \
@@ -138,27 +289,28 @@ void db_export_json (void) {
                     json = json_wrap_obj (func (NULL, obj), oname); \
                     json_attach_under (json, jgrp); \
                 } \
-                if (jgrp->first_child) { \
+                if (jgrp->first_child && write_indiv) { \
                     snprintf (buf, sizeof (buf), "%sareas/%s" fname, JSON_DIR, fbuf); \
                     json_mkdir_to (buf); \
                     json_write_to_file (jgrp, buf); \
                 } \
             } while (0)
 
-        ADD_AREA_JSON ("room",   "rooms.json",   room_index, ROOM_INDEX_DATA, json_new_obj_room);
-        ADD_AREA_JSON ("object", "objects.json", obj_index,  OBJ_INDEX_DATA,  json_new_obj_object);
-        ADD_AREA_JSON ("mobile", "mobiles.json", mob_index,  MOB_INDEX_DATA,  json_new_obj_mobile);
+        ADD_AREA_JSON ("room",   "rooms.json",   room_index, ROOM_INDEX_T, json_new_obj_room);
+        ADD_AREA_JSON ("object", "objects.json", obj_index,  OBJ_INDEX_T,  json_new_obj_object);
+        ADD_AREA_JSON ("mobile", "mobiles.json", mob_index,  MOB_INDEX_T,  json_new_obj_mobile);
     }
 
     /* Write json that doesn't need subdirectories. */
     #define ADD_META_JSON(oname, fname, btype, vtype, func, check) \
         jarea = json_root_area (fname); \
-        log_f("Exporting JSON: %s%s.json", JSON_DIR, fname); \
+        if (write_indiv) \
+            log_f("Exporting JSON: %s%s.json", JSON_DIR, fname); \
         do { \
-            vtype *obj; \
+            const vtype *obj; \
             \
-            for (obj = (vtype *) btype ## _get_first(); obj != NULL; \
-                 obj = (vtype *) btype ## _get_next((const vtype *) obj)) \
+            for (obj = btype ## _get_first(); obj != NULL; \
+                 obj = btype ## _get_next(obj)) \
             { \
                 if (!(check)) \
                     continue; \
@@ -166,71 +318,91 @@ void db_export_json (void) {
                 json_attach_under (json, jarea); \
             } \
             \
-            if (jarea->first_child) { \
+            if (jarea->first_child && write_indiv) { \
                 snprintf (buf, sizeof (buf), "%s" fname ".json", JSON_DIR); \
                 json_mkdir_to (buf); \
                 json_write_to_file (jarea, buf); \
             } \
         } while (0)
 
-    ADD_META_JSON ("social", "config/socials", social, SOCIAL_TYPE,
+    ADD_META_JSON ("social", "config/socials", social, SOCIAL_T,
         json_new_obj_social, 1);
-    ADD_META_JSON ("portal", "config/portals", portal, PORTAL_TYPE,
-        json_new_obj_portal,
-           (obj->opposite == NULL ||
-            obj->from->dir == DIR_NORTH ||
-            obj->from->dir == DIR_EAST ||
-            obj->from->dir == DIR_UP));
+    ADD_META_JSON ("portal", "config/portals", portal, PORTAL_T,
+        json_new_obj_portal, (obj->generated == FALSE));
 
-    ADD_META_JSON ("table", "meta/flags", master, TABLE_TYPE,
+    ADD_META_JSON ("table", "meta/flags", master, TABLE_T,
         json_new_obj_table, ARE_SET (obj->flags, TABLE_FLAG_TYPE | TABLE_BITS));
-    ADD_META_JSON ("table", "meta/types", master, TABLE_TYPE,
+    ADD_META_JSON ("table", "meta/types", master, TABLE_T,
         json_new_obj_table, IS_SET (obj->flags, TABLE_FLAG_TYPE) &&
                            !IS_SET (obj->flags, TABLE_BITS));
-    ADD_META_JSON ("table", "meta/tables", master, TABLE_TYPE,
+    ADD_META_JSON ("table", "meta/tables", master, TABLE_T,
         json_new_obj_table, !IS_SET (obj->flags, TABLE_FLAG_TYPE) &&
                              obj->json_write_func);
 
     /* Add help areas. */
     do {
-        HELP_AREA *had;
+        HELP_AREA_T *had;
         for (had = had_get_first(); had; had = had_get_next (had)) {
             snprintf (buf, sizeof(buf), "help/%s", had->name);
             jarea = json_root_area (buf);
             snprintf (fbuf, sizeof (fbuf), "%shelp/%s.json", JSON_DIR, had->name);
-            log_f("Exporting JSON: %s", fbuf);
+
+            if (write_indiv)
+                log_f("Exporting JSON: %s", fbuf);
 
             json = json_wrap_obj (json_new_obj_help_area (NULL, had), "help");
             json_attach_under (json, jarea);
-            json_mkdir_to (fbuf);
-            json_write_to_file (jarea, fbuf);
+
+            if (write_indiv) {
+                json_mkdir_to (fbuf);
+                json_write_to_file (jarea, fbuf);
+            }
         }
     } while (0);
 
-    json_write_to_file (json_root(), JSON_DIR "everything.json");
+    /* Write one giant file with everything. */
+    if (everything) {
+        log_f("Exporting JSON: %s", everything);
+        json_write_to_file (json_root(), everything);
+    }
+
+    /* Free all allocated JSON. */
     json_free (json_root());
 }
 
 /* Big mama top level function. */
 void boot_db (void) {
+    HELP_T *help;
+
     /* Declare that we're booting the database. */
     fBootDb = TRUE;
 
-    init_string_space ();
+    string_space_init ();
     init_mm ();
     init_time_weather ();
     init_gsns ();
+
+#ifdef BASEMUD_IMPORT_JSON
+    db_import_json ();
+#else
+    log_string ("Ignoring JSON files. "
+        "Define BASEMUD_IMPORT_JSON in 'basemud.h' to enable.");
+#endif
     init_areas ();
 
+    EXIT_IF_BUGF ((help = help_get_by_name ("greeting")) == NULL,
+        "boot_db(): Cannot find help entry 'greeting'.");
+    help_greeting = help->text;
+
+    fix_resets ();
     fix_exits ();
     portal_create_missing ();
     fix_mobprogs ();
 
     /* Boot process is over(?) */
     fBootDb = FALSE;
-
     convert_objects (); /* ROM OLC */
-    db_export_json ();
+
     area_update ();
     load_boards ();
     save_notes ();
@@ -239,8 +411,8 @@ void boot_db (void) {
 }
 
 void init_time_weather (void) {
-    const SUN_TYPE *sun;
-    const SKY_TYPE *sky;
+    const SUN_T *sun;
+    const SKY_T *sky;
     long lhour, lday, lmonth;
 
     /* Set the clock. */
@@ -296,6 +468,15 @@ void init_areas (void) {
             fpArea = stdin;
         else {
             snprintf (fname, sizeof (fname), "%s%s", AREA_DIR, strArea);
+            if (area_get_by_filename (strArea) != NULL) {
+                log_f ("Ignoring loaded area '%s'", fname);
+                continue;
+            }
+            if (help_area_get_by_filename (strArea) != NULL) {
+                log_f ("Ignoring loaded help area '%s'", fname);
+                continue;
+            }
+
             if ((fpArea = fopen (fname, "r")) == NULL) {
                 perror (fname);
                 exit (1);
@@ -336,24 +517,26 @@ void init_areas (void) {
             fclose (fpArea);
         fpArea = NULL;
     }
+    if (area_last)
+        REMOVE_BIT (area_last->area_flags, AREA_LOADING); /* OLC */
     fclose (fpList);
 }
 
 /* Snarf an 'area' header line. */
-void load_area (FILE * fp) {
-    AREA_DATA *pArea, *pLast;
+void load_area (FILE *fp) {
+    AREA_T *pArea, *pLast;
 
     pArea = area_new ();
     str_replace_dup (&pArea->filename, fread_string (fp));
     str_replace_dup (&pArea->name, trim_extension (pArea->filename));
 
     /* Pretty up the log a little */
-    log_f("Loading area %s", pArea->filename);
+    log_f("Loading area '%s'", pArea->filename);
 
     pArea->area_flags = AREA_LOADING;           /* OLC */
     pArea->security = 9;                        /* OLC 9 -- Hugin */
     str_replace_dup (&pArea->builders, "None"); /* OLC */
-    pArea->vnum = TOP(RECYCLE_AREA_DATA);       /* OLC */
+    pArea->vnum = TOP(RECYCLE_AREA_T);          /* OLC */
 
     str_replace_dup (&pArea->title,   fread_string (fp));
     str_replace_dup (&pArea->credits, fread_string (fp));
@@ -384,11 +567,11 @@ void load_area (FILE * fp) {
         break;                      \
     }
 
-#define SKEY(string, field)        \
-    if (!str_cmp (word, string)) { \
-        str_free (field);          \
-        field = fread_string (fp); \
-        break;                     \
+#define SKEY(string, field)          \
+    if (!str_cmp (word, (string))) { \
+        str_free (&(field));         \
+        (field) = fread_string (fp); \
+        break;                       \
     }
 
 /* OLC
@@ -400,15 +583,15 @@ void load_area (FILE * fp) {
  * Repop  A teacher pops in the room and says, 'Repop coming!'~
  * Recall 3001
  * End */
-void load_area_olc (FILE * fp) {
-    AREA_DATA *pArea;
+void load_area_olc (FILE *fp) {
+    AREA_T *pArea;
     char *word;
 
     pArea = area_new ();
     pArea->age = 15;
     pArea->nplayer = 0;
     str_replace_dup (&pArea->filename, strArea);
-    pArea->vnum = TOP(RECYCLE_AREA_DATA);
+    pArea->vnum = TOP(RECYCLE_AREA_T);
     str_replace_dup (&pArea->title, "New Area");
     str_replace_dup (&pArea->builders, "");
     pArea->security = 9;        /* 9 -- Hugin */
@@ -458,25 +641,25 @@ void load_area_olc (FILE * fp) {
 }
 
 /* Sets vnum range for area using OLC protection features. */
-void assign_area_vnum (int vnum) {
-    if (area_last->min_vnum == 0 && area_last->max_vnum == 0)
-        area_last->min_vnum = area_last->max_vnum = vnum;
-    if (vnum != URANGE (area_last->min_vnum, vnum, area_last->max_vnum)) {
-        if (vnum < area_last->min_vnum)
-            area_last->min_vnum = vnum;
+void assign_area_vnum (int vnum, AREA_T *area) {
+    if (area->min_vnum == 0 && area->max_vnum == 0)
+        area->min_vnum = area->max_vnum = vnum;
+    if (vnum != URANGE (area->min_vnum, vnum, area->max_vnum)) {
+        if (vnum < area->min_vnum)
+            area->min_vnum = vnum;
         else
-            area_last->max_vnum = vnum;
+            area->max_vnum = vnum;
     }
 }
 
 /* Snarf a help section. */
-void load_helps (FILE * fp, char *fname) {
-    HELP_DATA *pHelp;
+void load_helps (FILE *fp, char *fname) {
+    HELP_T *pHelp;
     int level;
     char *keyword;
 
     while (1) {
-        HELP_AREA *had;
+        HELP_AREA_T *had;
 
         level = fread_number (fp);
         keyword = fread_string (fp);
@@ -501,15 +684,12 @@ void load_helps (FILE * fp, char *fname) {
         str_replace_dup (&pHelp->keyword, keyword);
         str_replace_dup (&pHelp->text, fread_string (fp));
 
-        if (!str_cmp (pHelp->keyword, "greeting"))
-            help_greeting = pHelp->text;
-
         LISTB_BACK (pHelp, next, help_first, help_last);
         LISTB_BACK (pHelp, next_area, had->first, had->last);
     }
 }
 
-void fix_bogus_obj (OBJ_INDEX_DATA * obj) {
+void db_finalize_obj (OBJ_INDEX_T *obj) {
     switch (obj->item_type) {
         case ITEM_FURNITURE: {
             int min_occupants = 0;
@@ -571,21 +751,10 @@ void fix_bogus_obj (OBJ_INDEX_DATA * obj) {
     }
 }
 
-/* Adds a reset to a room.  OLC
- * Similar to add_reset in olc.c */
-void room_take_reset (ROOM_INDEX_DATA *room, RESET_DATA *reset) {
-    if (!room || !reset)
-        return;
-    reset->area = room->area;
-    LISTB_BACK (reset, next, room->reset_first, room->reset_last);
-}
-
 /* Snarf a reset section. */
-void load_resets (FILE * fp) {
-    RESET_DATA *pReset;
-    RESET_VALUE_TYPE *v;
-    EXIT_DATA *pexit;
-    ROOM_INDEX_DATA *pRoomIndex;
+void load_resets (FILE *fp) {
+    RESET_T *pReset;
+    RESET_VALUE_T *v;
     int rVnum = -1;
 
     EXIT_IF_BUG (!area_last,
@@ -661,17 +830,51 @@ void load_resets (FILE * fp) {
                 v->door.locks     = fread_number (fp);
                 v->door._value5   = 0;
                 fread_to_eol (fp);
+                rVnum = v->door.room_vnum;
+                break;
 
-                pRoomIndex = get_room_index (rVnum = v->door.room_vnum);
+            case 'R':
+                v->randomize._value1   = fread_number (fp);
+                v->randomize.room_vnum = fread_number (fp);
+                v->randomize.dir_count = fread_number (fp);
+                v->randomize._value4   = 0;
+                v->randomize._value5   = 0;
+                fread_to_eol (fp);
+                rVnum = v->randomize.room_vnum;
+                break;
+        }
+
+        EXIT_IF_BUG (rVnum == -1,
+            "load_resets: rVnum == -1", 0);
+        pReset->room_vnum = rVnum;
+    }
+}
+
+void fix_resets (void) {
+    RESET_T *pReset, *next;
+    RESET_VALUE_T *v;
+    EXIT_T *pexit;
+    ROOM_INDEX_T *pRoomIndex;
+    bool fail;
+
+    for (pReset = reset_data_get_first(); pReset != NULL; pReset = next) {
+        next = reset_data_get_next (pReset);
+        v = &(pReset->v);
+        fail = FALSE;
+
+        switch (pReset->command) {
+            case 'D':
+                pRoomIndex = get_room_index (v->door.room_vnum);
                 if (v->door.dir < 0 ||
                     v->door.dir >= DIR_MAX ||
                     !pRoomIndex ||
                     !(pexit = pRoomIndex->exit[v->door.dir]) ||
                     !IS_SET (pexit->rs_flags, EX_ISDOOR))
                 {
-                    bugf ("Load_resets: 'D': exit %d, room %d not door.",
+                    bugf ("fix_resets: 'D': exit %d, room %d not door.",
                           v->door.dir, v->door.room_vnum);
-                    exit (1);
+                    fail = TRUE;
+                    break;
                 }
 
                 switch (v->door.locks) {
@@ -690,31 +893,36 @@ void load_resets (FILE * fp) {
                 }
                 pexit->rs_flags = pexit->exit_flags;
                 break;
-
-            case 'R':
-                v->randomize._value1   = fread_number (fp);
-                v->randomize.room_vnum = fread_number (fp);
-                v->randomize.dir_count = fread_number (fp);
-                v->randomize._value4   = 0;
-                v->randomize._value5   = 0;
-                fread_to_eol (fp);
-                rVnum = v->randomize.room_vnum;
-                break;
         }
 
-        EXIT_IF_BUG (rVnum == -1,
-            "load_resets: rVnum == -1", 0);
+        /* Remove broken resets. */
+        if (fail == TRUE) {
+            reset_data_free (pReset);
+            continue;
+        }
+
+        /* Door resets are removed - all others belong to their room. */
         if (pReset->command == 'D') {
             reset_data_free (pReset);
             continue;
         }
-        room_take_reset (get_room_index (rVnum), pReset);
+
+        /* Complain if resets don't belong to any particular room. */
+        if ((pRoomIndex = get_room_index (pReset->room_vnum)) == NULL) {
+            bugf ("fix_resets: '%c': room %d does not exist.",
+                pReset->command, pReset->room_vnum);
+            reset_data_free (pReset);
+            continue;
+        }
+
+        /* Assign the reset to the room. */
+        room_take_reset (pRoomIndex, pReset);
     }
 }
 
 /* Snarf a room section. */
-void load_rooms (FILE * fp) {
-    ROOM_INDEX_DATA *pRoomIndex;
+void load_rooms (FILE *fp) {
+    ROOM_INDEX_T *pRoomIndex;
 
     EXIT_IF_BUG (area_last == NULL,
         "load_resets: no #AREA seen yet.", 0);
@@ -723,7 +931,6 @@ void load_rooms (FILE * fp) {
         sh_int vnum;
         char letter;
         int door;
-        int iHash;
 
         letter = fread_letter (fp);
         EXIT_IF_BUG (letter != '#',
@@ -740,12 +947,13 @@ void load_rooms (FILE * fp) {
 
         pRoomIndex = room_index_new ();
         str_replace_dup (&pRoomIndex->owner, "");
-        pRoomIndex->people = NULL;
-        pRoomIndex->contents = NULL;
+        pRoomIndex->people      = NULL;
+        pRoomIndex->contents    = NULL;
         pRoomIndex->extra_descr = NULL;
-        pRoomIndex->area = area_last;
-        pRoomIndex->vnum = vnum;
-        pRoomIndex->anum = vnum - area_last->min_vnum;
+        pRoomIndex->area        = area_last;
+        pRoomIndex->vnum        = vnum;
+        pRoomIndex->anum        = vnum - area_last->min_vnum;
+
         str_replace_dup (&pRoomIndex->name, fread_string (fp));
         str_replace_dup (&pRoomIndex->description, fread_string (fp));
         /* Area number */ fread_number (fp);
@@ -772,19 +980,18 @@ void load_rooms (FILE * fp) {
                 pRoomIndex->mana_rate = fread_number (fp);
             else if (letter == 'C') { /* clan */
                 char *clan_str = fread_string (fp);
-                EXIT_IF_BUG (pRoomIndex->clan_str,
+                EXIT_IF_BUG (pRoomIndex->clan != 0,
                     "load_rooms: duplicate clan fields.", 0);
-                str_replace_dup (&pRoomIndex->clan_str, clan_str);
                 pRoomIndex->clan = lookup_backup (clan_lookup_exact, clan_str,
                     "Unknown clan '%s'", 0);
             }
             else if (letter == 'D') {
-                EXIT_DATA *pexit;
+                EXIT_T *pexit;
                 int locks;
 
                 door = fread_number (fp);
                 EXIT_IF_BUG (door < 0 || door > 5,
-                    "fread_rooms: vnum %d has bad door number.", vnum);
+                    "load_rooms: vnum %d has bad door number.", vnum);
 
                 pexit = exit_new ();
                 str_replace_dup (&pexit->description, fread_string (fp));
@@ -794,10 +1001,17 @@ void load_rooms (FILE * fp) {
                 pexit->vnum = fread_number (fp);
                 pexit->area_vnum = -1;
                 pexit->room_anum = -1;
-                pexit->orig_door = door;    /* OLC */
+                pexit->orig_door = door; /* OLC */
 
                 switch (locks) {
                     case 0:
+                        /* Some exits without doors are stored with key 0
+                         * (no key) when it should be -1 (no keyhole). Fix
+                         * that. */
+                        if (pexit->key >= KEY_VALID)
+                            bugf ("Warning: Room %d with non-door exit %d has "
+                                  "key %d", pRoomIndex->vnum, door, pexit->key);
+                        pexit->key = KEY_NOKEYHOLE;
                         break;
                     case 1:
                         pexit->exit_flags = EX_ISDOOR;
@@ -818,11 +1032,10 @@ void load_rooms (FILE * fp) {
                 pRoomIndex->exit[door] = pexit;
             }
             else if (letter == 'E') {
-                EXTRA_DESCR_DATA *ed = extra_descr_new ();
-                ed = alloc_perm (sizeof (*ed));
+                EXTRA_DESCR_T *ed = extra_descr_new ();
                 str_replace_dup (&ed->keyword,     fread_string (fp));
                 str_replace_dup (&ed->description, fread_string (fp));
-                LIST_BACK (ed, next, pRoomIndex->extra_descr, EXTRA_DESCR_DATA);
+                LIST_BACK (ed, next, pRoomIndex->extra_descr, EXTRA_DESCR_T);
             }
             else if (letter == 'O') {
                 EXIT_IF_BUG (pRoomIndex->owner[0] != '\0',
@@ -835,29 +1048,26 @@ void load_rooms (FILE * fp) {
             }
         }
 
-        iHash = vnum % MAX_KEY_HASH;
-        LIST_FRONT (pRoomIndex, next, room_index_hash[iHash]);
-        top_vnum_room = top_vnum_room < vnum ? vnum : top_vnum_room; /* OLC */
-        assign_area_vnum (vnum); /* OLC */
+        db_register_new_room (pRoomIndex);
     }
 }
 
 /* Snarf a shop section. */
-void load_shops (FILE * fp) {
-    SHOP_DATA *pShop;
+void load_shops (FILE *fp) {
+    SHOP_T *pShop;
     int keeper = 0;
 
     while (1) {
-        MOB_INDEX_DATA *pMobIndex;
+        MOB_INDEX_T *pMobIndex;
         int iTrade;
 
-        // ROM mem leak fix, check the keeper before allocating the memory
-        // to the SHOP_DATA variable.  -Rhien
+        /* ROM mem leak fix, check the keeper before allocating the memory
+         * to the SHOP_T variable.  -Rhien */
         keeper = fread_number(fp);
         if (keeper == 0)
             break;
 
-        // Now that we have a non zero keeper number we can allocate
+        /* Now that we have a non zero keeper number we can allocate */
         pShop = shop_new ();
         pShop->keeper = keeper;
 
@@ -877,10 +1087,10 @@ void load_shops (FILE * fp) {
 }
 
 /* Snarf spec proc declarations. */
-void load_specials (FILE * fp) {
+void load_specials (FILE *fp) {
     char *func_name;
     while (1) {
-        MOB_INDEX_DATA *pMobIndex;
+        MOB_INDEX_T *pMobIndex;
         char letter;
 
         switch (letter = fread_letter (fp)) {
@@ -907,11 +1117,11 @@ void load_specials (FILE * fp) {
     }
 }
 
-void fix_exit_doors (ROOM_INDEX_DATA *room_from, int dir_from,
-                     ROOM_INDEX_DATA *room_to,   int dir_to)
+void fix_exit_doors (ROOM_INDEX_T *room_from, int dir_from,
+                     ROOM_INDEX_T *room_to,   int dir_to)
 {
-    EXIT_DATA *exit_from = room_from->exit[dir_from];
-    EXIT_DATA *exit_to   = room_to  ->exit[dir_to];
+    EXIT_T *exit_from = room_from->exit[dir_from];
+    EXIT_T *exit_to   = room_to  ->exit[dir_to];
     flag_t flags_from = exit_from->exit_flags;
     flag_t flags_to   = exit_to  ->exit_flags;
 
@@ -949,8 +1159,8 @@ void fix_exit_doors (ROOM_INDEX_DATA *room_from, int dir_from,
     /* Different keys is bad! But we don't care if one side is pick-proof
      * and the other isn't. */
     if (exit_from->key != exit_to->key &&
-        exit_from->key != -1 &&
-        exit_to->key != -1)
+        exit_from->key != KEY_NOKEYHOLE &&
+        exit_to->key   != KEY_NOKEYHOLE)
     {
         bugf ("Warning: Exits %d[%s] and %d[%s] have "
             "different keys [%d, %d]",
@@ -964,15 +1174,16 @@ void fix_exit_doors (ROOM_INDEX_DATA *room_from, int dir_from,
  * Has to be done after all rooms are read in.
  * Check for bad reverse exits. */
 void fix_exits (void) {
-    ROOM_INDEX_DATA *pRoomIndex;
-    ROOM_INDEX_DATA *to_room;
-    EXIT_DATA *pexit;
-    EXIT_DATA *pexit_rev;
-    RESET_DATA *pReset;
-    RESET_VALUE_TYPE *v;
-    ROOM_INDEX_DATA *iLastRoom, *iLastObj;
+    ROOM_INDEX_T *pRoomIndex;
+    ROOM_INDEX_T *to_room;
+    EXIT_T *pexit;
+    EXIT_T *pexit_rev;
+    RESET_T *pReset;
+    RESET_VALUE_T *v;
+    ROOM_INDEX_T *iLastRoom, *iLastObj;
+    OBJ_INDEX_T *key;
     int iHash;
-    int door;
+    int door, oldBootDb;
 
     for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
         for (pRoomIndex = room_index_hash[iHash];
@@ -1001,14 +1212,14 @@ void fix_exits (void) {
                     case 'P':
                         get_obj_index (v->obj.obj_vnum);
                         EXIT_IF_BUG (iLastObj == NULL,
-                            "fix_exits: reset in room %d with iLastObj NULL",
+                            "fix_exits: reset 'P' in room %d with iLastObj NULL",
                             pRoomIndex->vnum);
                         break;
 
                     case 'G':
                         get_obj_index (v->give.obj_vnum);
                         EXIT_IF_BUG (iLastRoom == NULL,
-                            "fix_exits: reset in room %d with iLastRoom NULL",
+                            "fix_exits: reset 'G' in room %d with iLastRoom NULL",
                             pRoomIndex->vnum);
                         iLastObj = iLastRoom;
                         break;
@@ -1016,7 +1227,7 @@ void fix_exits (void) {
                     case 'E':
                         get_obj_index (v->equip.obj_vnum);
                         EXIT_IF_BUG (iLastRoom == NULL,
-                            "fix_exits: reset in room %d with iLastRoom NULL",
+                            "fix_exits: reset 'E' in room %d with iLastRoom NULL",
                             pRoomIndex->vnum);
                         iLastObj = iLastRoom;
                         break;
@@ -1029,10 +1240,10 @@ void fix_exits (void) {
                         get_room_index (v->randomize.room_vnum);
                         int dir_count = v->randomize.dir_count;
                         EXIT_IF_BUGF (dir_count < 0,
-                            "fix_exits: reset in room %d with dir_count %d < 0",
+                            "fix_exits: reset 'R' in room %d with dir_count %d < 0",
                             pRoomIndex->vnum, dir_count);
                         EXIT_IF_BUGF (dir_count > DIR_MAX,
-                            "fix_exits: reset in room %d with dir_count %d > DIR_MAX",
+                            "fix_exits: reset 'R' in room %d with dir_count %d > DIR_MAX",
                             pRoomIndex->vnum, dir_count);
                         break;
                     }
@@ -1057,6 +1268,16 @@ void fix_exits (void) {
                     pexit->area_vnum = pexit->to_room->area->vnum;
                     pexit->room_anum = pexit->to_room->anum;
                 }
+
+                oldBootDb = fBootDb;
+                fBootDb = FALSE;
+                if (pexit->key >= KEY_VALID &&
+                    !(key = get_obj_index (pexit->key)))
+                {
+                    bugf ("Warning: Cannot find key %d for room %d exit %d",
+                        pexit->key, pRoomIndex->vnum, door);
+                }
+                fBootDb = oldBootDb;
             }
             if (!fexit)
                 SET_BIT (pRoomIndex->room_flags, ROOM_NO_MOB);
@@ -1099,8 +1320,8 @@ void fix_exits (void) {
 }
 
 /* Load mobprogs section */
-void load_mobprogs (FILE * fp) {
-    MPROG_CODE *pMprog;
+void load_mobprogs (FILE *fp) {
+    MPROG_CODE_T *pMprog;
 
     EXIT_IF_BUG (area_last == NULL,
         "load_mobprogs: no #AREA seen yet.", 0);
@@ -1133,9 +1354,9 @@ void load_mobprogs (FILE * fp) {
 
 /* Translate mobprog vnums pointers to real code */
 void fix_mobprogs (void) {
-    MOB_INDEX_DATA *pMobIndex;
-    MPROG_LIST *list;
-    MPROG_CODE *prog;
+    MOB_INDEX_T *pMobIndex;
+    MPROG_LIST_T *list;
+    MPROG_CODE_T *prog;
     int iHash;
 
     for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
@@ -1153,11 +1374,11 @@ void fix_mobprogs (void) {
 
 /* OLC
  * Reset one room.  Called by reset_area and olc. */
-static CHAR_DATA *lastMob = NULL;
-static OBJ_DATA *lastObj = NULL;
-static bool lastCreated = FALSE;
+static CHAR_T *reset_last_mob = NULL;
+static OBJ_T  *reset_last_obj = NULL;
+static bool    reset_last_created = FALSE;
 
-int reset_room_reset_shop_obj_level (OBJ_INDEX_DATA *pObjIndex) {
+int reset_room_reset_shop_obj_level (OBJ_INDEX_T *pObjIndex) {
     if (pObjIndex->new_format)
         return 0;
 
@@ -1216,14 +1437,14 @@ int reset_room_reset_shop_obj_level (OBJ_INDEX_DATA *pObjIndex) {
     }
 }
 
-void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
-    MOB_INDEX_DATA *pMobIndex;
-    OBJ_INDEX_DATA *pObjIndex;
-    OBJ_INDEX_DATA *pObjToIndex;
-    ROOM_INDEX_DATA *pRoomIndex;
-    ROOM_INDEX_DATA *pRoomIndexPrev;
-    CHAR_DATA *pMob;
-    OBJ_DATA *pObj;
+void reset_room_reset (ROOM_INDEX_T *pRoom, RESET_T *pReset) {
+    MOB_INDEX_T *pMobIndex;
+    OBJ_INDEX_T *pObjIndex;
+    OBJ_INDEX_T *pObjToIndex;
+    ROOM_INDEX_T *pRoomIndex;
+    ROOM_INDEX_T *pRoomIndexPrev;
+    CHAR_T *pMob;
+    OBJ_T *pObj;
     int level = 0;
     int count, limit;
 
@@ -1235,7 +1456,7 @@ void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
                 "reset_room: 'M': bad room_vnum %d.", pReset->v.mob.room_vnum);
 
             if (pMobIndex->count >= pReset->v.mob.global_limit) {
-                lastCreated = FALSE;
+                reset_last_created = FALSE;
                 return;
             }
 
@@ -1249,7 +1470,7 @@ void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
                     break;
             }
             if (count >= pReset->v.mob.room_limit) {
-                lastCreated = FALSE;
+                reset_last_created = FALSE;
                 return;
             }
 
@@ -1266,9 +1487,9 @@ void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
                 SET_BIT (pMob->mob, MOB_PET);
 
             char_to_room (pMob, pRoomIndex);
-            lastMob = pMob;
+            reset_last_mob = pMob;
             level = URANGE (0, pMob->level - 2, LEVEL_HERO - 1); /* -1 ROM */
-            lastCreated = TRUE;
+            reset_last_created = TRUE;
             break;
 
         case 'O': {
@@ -1293,7 +1514,7 @@ void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
                 obj_index_count_in_list (pObjIndex, pRoomIndex->contents)
                     >= obj_count)
             {
-                lastCreated = FALSE;
+                reset_last_created = FALSE;
                 return;
             }
 
@@ -1302,7 +1523,7 @@ void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
             if (pObj->item_type != ITEM_TREASURE)
                 pObj->cost = 0;
             obj_to_room (pObj, pRoomIndex);
-            lastCreated = TRUE;
+            reset_last_created = TRUE;
             break;
         }
 
@@ -1325,28 +1546,28 @@ void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
                 limit = pReset->v.put.global_limit;
 
             if (pRoom->area->nplayer > 0                           ||
-                (lastObj = obj_get_by_index (pObjToIndex)) == NULL ||
-                (lastObj->in_room == NULL && !lastCreated)         ||
+                (reset_last_obj = obj_get_by_index (pObjToIndex)) == NULL ||
+                (reset_last_obj->in_room == NULL && !reset_last_created)    ||
                 (pObjIndex->count >= limit)                        ||
                 (count = obj_index_count_in_list (pObjIndex,
-                    lastObj->contains)) > pReset->v.put.put_count)
+                    reset_last_obj->contains)) > pReset->v.put.put_count)
             {
-                lastCreated = FALSE;
+                reset_last_created = FALSE;
                 return;
             }
 
             while (count < pReset->v.put.put_count) {
                 pObj = obj_create (pObjIndex,
-                    number_fuzzy (lastObj->level));
-                obj_to_obj (pObj, lastObj);
+                    number_fuzzy (reset_last_obj->level));
+                obj_to_obj (pObj, reset_last_obj);
                 if (++pObjIndex->count >= limit)
                     break;
             }
 
             /* fix object lock state! */
-            lastObj->v.container.flags =
-                lastObj->pIndexData->v.container.flags;
-            lastCreated = TRUE;
+            reset_last_obj->v.container.flags =
+                reset_last_obj->pIndexData->v.container.flags;
+            reset_last_created = TRUE;
             break;
 
         case 'G':
@@ -1364,11 +1585,11 @@ void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
 
             /* If we haven't instantiated the previous mob (at least we
              * ASSUME the command was 'M'), don't give or equip. */
-            if (!lastCreated)
+            if (!reset_last_created)
                 return;
 
-            if (!lastMob) {
-                lastCreated = FALSE;
+            if (!reset_last_mob) {
+                reset_last_created = FALSE;
                 bug ("reset_room: 'E' or 'G': null mob for vnum %d.",
                     obj_vnum);
                 return;
@@ -1383,17 +1604,17 @@ void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
                         obj_vnum, pObjIndex->short_descr,
                         wear_loc_name (eq->wear_loc));
                 }
-                if (!char_has_available_wear_loc (lastMob, eq->wear_loc)) {
+                if (!char_has_available_wear_loc (reset_last_mob, eq->wear_loc)) {
                     bugf ("Warning: 'E' for object %d (%s) on mob %d (%s), "
                           "wear loc '%s' is already taken.",
                         obj_vnum, pObjIndex->short_descr,
-                        lastMob->pIndexData->vnum, lastMob->short_descr,
+                        reset_last_mob->pIndexData->vnum, reset_last_mob->short_descr,
                         wear_loc_name (eq->wear_loc));
                 }
             }
 
             /* Shop-keeper? */
-            if (lastMob->pIndexData->pShop) {
+            if (reset_last_mob->pIndexData->pShop) {
                 int olevel = reset_room_reset_shop_obj_level (pObjIndex);
                 pObj = obj_create (pObjIndex, olevel);
                 SET_BIT (pObj->extra_flags, ITEM_INVENTORY); /* ROM OLC */
@@ -1423,14 +1644,12 @@ void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
                     UMIN (number_fuzzy (level), LEVEL_HERO - 1));
 
                 /* Warnings for various bad ideas. */
-                if (pObj->level > lastMob->level + 3)
-                {
+                if (pObj->level > reset_last_mob->level + 3)
                     warn_type = "too strong";
-                }
                 else if (
                     pObj->item_type == ITEM_WEAPON   &&
                     pReset->command == 'E'           &&
-                    pObj->level < lastMob->level - 5 &&
+                    pObj->level < reset_last_mob->level - 5 &&
                     pObj->level < 45)
                 {
                     warn_type = "too weak";
@@ -1447,16 +1666,16 @@ void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
                         pObj->level,
                         pObj->short_descr);
                     log_f ("     Mob: (VNUM %5d)(Level %2d) %s",
-                        lastMob->pIndexData->vnum,
-                        lastMob->level,
-                        lastMob->short_descr);
+                        reset_last_mob->pIndexData->vnum,
+                        reset_last_mob->level,
+                        reset_last_mob->short_descr);
                 }
             }
 
-            obj_to_char (pObj, lastMob);
+            obj_to_char (pObj, reset_last_mob);
             if (cmd == 'E')
-                char_equip_obj (lastMob, pObj, eq->wear_loc);
-            lastCreated = TRUE;
+                char_equip_obj (reset_last_mob, pObj, eq->wear_loc);
+            reset_last_created = TRUE;
             break;
         }
 
@@ -1464,7 +1683,7 @@ void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
             break;
 
         case 'R': {
-            EXIT_DATA *pExit;
+            EXIT_T *pExit;
             int d1, d2;
 
             BAIL_IF_BUG (!(pRoomIndex = get_room_index (pReset->v.randomize.room_vnum)),
@@ -1485,20 +1704,20 @@ void reset_room_reset (ROOM_INDEX_DATA *pRoom, RESET_DATA *pReset) {
     }
 }
 
-void reset_room (ROOM_INDEX_DATA * pRoom) {
-    RESET_DATA *pReset;
+void reset_room (ROOM_INDEX_T *pRoom) {
+    RESET_T *pReset;
     int iExit;
 
     if (!pRoom)
         return;
 
-    lastMob = NULL;
-    lastObj = NULL;
-    lastCreated = FALSE;
+    reset_last_mob = NULL;
+    reset_last_obj = NULL;
+    reset_last_created = FALSE;
 
     /* Reset exits. */
     for (iExit = 0; iExit < DIR_MAX; iExit++) {
-        EXIT_DATA *pExit, *pRev;
+        EXIT_T *pExit, *pRev;
         if ((pExit = pRoom->exit[iExit]) == NULL)
             continue;
      /* if (IS_SET (pExit->exit_flags, EX_BASHED))
@@ -1519,8 +1738,8 @@ void reset_room (ROOM_INDEX_DATA * pRoom) {
 
 /* OLC
  * Reset one area. */
-void reset_area (AREA_DATA * pArea) {
-    ROOM_INDEX_DATA *pRoom;
+void reset_area (AREA_T *pArea) {
+    ROOM_INDEX_T *pRoom;
     int vnum;
     for (vnum = pArea->min_vnum; vnum <= pArea->max_vnum; vnum++)
         if ((pRoom = get_room_index (vnum)))
@@ -1528,8 +1747,8 @@ void reset_area (AREA_DATA * pArea) {
 }
 
 /* Clear a new character. */
-void clear_char (CHAR_DATA * ch) {
-    static CHAR_DATA ch_zero;
+void clear_char (CHAR_T *ch) {
+    static CHAR_T ch_zero;
     int i;
 
     *ch = ch_zero;
@@ -1557,7 +1776,7 @@ void clear_char (CHAR_DATA * ch) {
 }
 
 /* Get an extra description from a list. */
-char *get_extra_descr (const char *name, EXTRA_DESCR_DATA * ed) {
+char *get_extra_descr (const char *name, EXTRA_DESCR_T *ed) {
     for (; ed != NULL; ed = ed->next)
         if (is_name ((char *) name, ed->keyword))
             return ed->description;
@@ -1566,8 +1785,8 @@ char *get_extra_descr (const char *name, EXTRA_DESCR_DATA * ed) {
 
 /* Translates mob virtual number to its mob index struct.
  * Hash table lookup. */
-MOB_INDEX_DATA *get_mob_index (int vnum) {
-    MOB_INDEX_DATA *pMobIndex;
+MOB_INDEX_T *get_mob_index (int vnum) {
+    MOB_INDEX_T *pMobIndex;
 
     for (pMobIndex = mob_index_hash[vnum % MAX_KEY_HASH];
          pMobIndex != NULL; pMobIndex = pMobIndex->next)
@@ -1587,8 +1806,8 @@ MOB_INDEX_DATA *get_mob_index (int vnum) {
 
 /* Translates mob virtual number to its obj index struct.
  * Hash table lookup. */
-OBJ_INDEX_DATA *get_obj_index (int vnum) {
-    OBJ_INDEX_DATA *pObjIndex;
+OBJ_INDEX_T *get_obj_index (int vnum) {
+    OBJ_INDEX_T *pObjIndex;
 
     for (pObjIndex = obj_index_hash[vnum % MAX_KEY_HASH];
          pObjIndex != NULL; pObjIndex = pObjIndex->next)
@@ -1608,8 +1827,8 @@ OBJ_INDEX_DATA *get_obj_index (int vnum) {
 
 /* Translates mob virtual number to its room index struct.
  * Hash table lookup. */
-ROOM_INDEX_DATA *get_room_index (int vnum) {
-    ROOM_INDEX_DATA *pRoomIndex;
+ROOM_INDEX_T *get_room_index (int vnum) {
+    ROOM_INDEX_T *pRoomIndex;
 
     for (pRoomIndex = room_index_hash[vnum % MAX_KEY_HASH];
          pRoomIndex != NULL; pRoomIndex = pRoomIndex->next)
@@ -1627,8 +1846,8 @@ ROOM_INDEX_DATA *get_room_index (int vnum) {
     return NULL;
 }
 
-MPROG_CODE *get_mprog_index (int vnum) {
-    MPROG_CODE *prg;
+MPROG_CODE_T *get_mprog_index (int vnum) {
+    MPROG_CODE_T *prg;
     for (prg = mprog_list; prg; prg = prg->next)
         if (prg->vnum == vnum)
             return (prg);
@@ -1636,7 +1855,7 @@ MPROG_CODE *get_mprog_index (int vnum) {
 }
 
 /* Read a letter from a file.  */
-char fread_letter (FILE * fp) {
+char fread_letter (FILE *fp) {
     char c;
     do {
         c = getc (fp);
@@ -1645,7 +1864,7 @@ char fread_letter (FILE * fp) {
 }
 
 /* Read a number from a file. */
-int fread_number (FILE * fp) {
+int fread_number (FILE *fp) {
     int number = 0;
     bool sign = FALSE;
     char c = fread_letter(fp);
@@ -1676,7 +1895,7 @@ int fread_number (FILE * fp) {
     return number;
 }
 
-flag_t fread_flag (FILE * fp) {
+flag_t fread_flag (FILE *fp) {
     int number = 0;
     bool negative = FALSE;
     char c = fread_letter(fp);
@@ -1730,17 +1949,16 @@ flag_t flag_convert (char letter) {
  *   each string prepended with hash pointer to prev string,
  *   hash code is simply the string length.
  *   this function takes 40% to 50% of boot-up time. */
-char *fread_string (FILE * fp) {
-    char *plast;
+char *fread_string (FILE *fp) {
+    char *str, *plast;
     char c;
 
-    plast = top_string + sizeof (char *);
-    EXIT_IF_BUG (plast > &string_space[MAX_STRING - MAX_STRING_LENGTH],
-        "fread_string: MAX_STRING %d exceeded.", MAX_STRING);
+    str = string_space_next ();
+    plast = str;
 
     c = fread_letter(fp);
     if ((*plast++ = c) == '~')
-        return &str_empty[0];
+        return str_empty;
 
     while (1) {
         /* Back off the char type lookup,
@@ -1752,8 +1970,6 @@ char *fread_string (FILE * fp) {
                 /* temp fix */
                 bug ("fread_string: EOF", 0);
                 return NULL;
-                /* exit( 1 ); */
-                break;
 
             case '\n':
                 plast++;
@@ -1763,49 +1979,9 @@ char *fread_string (FILE * fp) {
             case '\r':
                 break;
 
-            case '~': {
-                union {
-                    char *pc;
-                    char rgc[sizeof (char *)];
-                } u1;
-
-                int ic;
-                int iHash;
-                char *pHash;
-                char *pHashPrev;
-                char *pString;
-
-                plast++;
-                plast[-1] = '\0';
-                iHash = UMIN (MAX_KEY_HASH - 1, plast - 1 - top_string);
-                for (pHash = string_hash[iHash]; pHash; pHash = pHashPrev) {
-                    for (ic = 0; ic < sizeof (char *); ic++)
-                        u1.rgc[ic] = pHash[ic];
-                    pHashPrev = u1.pc;
-                    pHash += sizeof (char *);
-
-                    if (top_string[sizeof (char *)] == pHash[0]
-                        && !strcmp (top_string + sizeof (char *) + 1,
-                                    pHash + 1))
-                        return pHash;
-                }
-
-                if (fBootDb) {
-                    pString = top_string;
-                    top_string = plast;
-                    u1.pc = string_hash[iHash];
-                    for (ic = 0; ic < sizeof (char *); ic++)
-                        pString[ic] = u1.rgc[ic];
-                    string_hash[iHash] = pString;
-
-                    nAllocString += 1;
-                    sAllocString += top_string - pString;
-                    return pString + sizeof (char *);
-                }
-                else
-                    return str_dup (top_string + sizeof (char *));
-                break;
-            }
+            case '~':
+                *plast = '\0';
+                return str_dup (str);
 
             default:
                 plast++;
@@ -1814,10 +1990,9 @@ char *fread_string (FILE * fp) {
     }
 }
 
-char *fread_string_eol (FILE * fp) {
+char *fread_string_eol (FILE *fp) {
     static bool char_special[256 - EOF];
-    char *plast;
-    char c;
+    char *str, *plast;
 
     if (char_special[EOF - EOF] != TRUE) {
         char_special[EOF - EOF]  = TRUE;
@@ -1825,13 +2000,12 @@ char *fread_string_eol (FILE * fp) {
         char_special['\r' - EOF] = TRUE;
     }
 
-    plast = top_string + sizeof (char *);
-    EXIT_IF_BUG (plast > &string_space[MAX_STRING - MAX_STRING_LENGTH],
-        "fread_string_eol: MAX_STRING %d exceeded.", MAX_STRING);
+    str = string_space_next ();
+    plast = str;
 
-    c = fread_letter(fp);
-    if ((*plast++ = c) == '\n')
-        return &str_empty[0];
+    *plast++ = fread_letter(fp);
+    if (plast[-1] == '\n' || plast[-1] == '\r')
+        return str_empty;
 
     while (1) {
         if (!char_special[(*plast++ = getc (fp)) - EOF])
@@ -1844,48 +2018,10 @@ char *fread_string_eol (FILE * fp) {
                 break;
 
             case '\n':
-            case '\r': {
-                union {
-                    char *pc;
-                    char rgc[sizeof (char *)];
-                } u1;
-
-                int ic;
-                int iHash;
-                char *pHash;
-                char *pHashPrev;
-                char *pString;
-
-                plast[-1] = '\0';
-                iHash = UMIN (MAX_KEY_HASH - 1, plast - 1 - top_string);
-                for (pHash = string_hash[iHash]; pHash; pHash = pHashPrev) {
-                    for (ic = 0; ic < sizeof (char *); ic++)
-                        u1.rgc[ic] = pHash[ic];
-                    pHashPrev = u1.pc;
-                    pHash += sizeof (char *);
-
-                    if (top_string[sizeof (char *)] == pHash[0]
-                        && !strcmp (top_string + sizeof (char *) + 1,
-                                    pHash + 1))
-                        return pHash;
-                }
-
-                if (fBootDb) {
-                    pString = top_string;
-                    top_string = plast;
-                    u1.pc = string_hash[iHash];
-                    for (ic = 0; ic < sizeof (char *); ic++)
-                        pString[ic] = u1.rgc[ic];
-                    string_hash[iHash] = pString;
-
-                    nAllocString += 1;
-                    sAllocString += top_string - pString;
-                    return pString + sizeof (char *);
-                }
-                else
-                    return str_dup (top_string + sizeof (char *));
-                break;
-            }
+            case '\r':
+                plast--;
+                *plast = '\0';
+                return str_dup (str);
 
             default:
                 break;
@@ -1894,7 +2030,7 @@ char *fread_string_eol (FILE * fp) {
 }
 
 /* Read to end of line (for comments). */
-void fread_to_eol (FILE * fp) {
+void fread_to_eol (FILE *fp) {
     char c;
 
     do {
@@ -1909,7 +2045,7 @@ void fread_to_eol (FILE * fp) {
 }
 
 /* Read one word (into static buffer). */
-char *fread_word (FILE * fp) {
+char *fread_word (FILE *fp) {
     static char word[MAX_INPUT_LENGTH];
     char *pword;
     char cEnd;
@@ -1938,52 +2074,25 @@ char *fread_word (FILE * fp) {
     return NULL;
 }
 
-void fread_dice (FILE *fp, sh_int *out) {
-    out[DICE_NUMBER] = fread_number (fp);
-    /* 'd'          */ fread_letter (fp);
-    out[DICE_TYPE]   = fread_number (fp);
-    /* '+'          */ fread_letter (fp);
-    out[DICE_BONUS]  = fread_number (fp);
-}
-
-char *memory_dump (char *eol) {
-    static char buf[MAX_STRING_LENGTH];
-    const RECYCLE_TYPE *rec;
-    int i;
-    size_t size, len;
-
-    buf[0] = '\0';
-    size = sizeof(buf);
-    len = 0;
-
-    for (i = 0; i < RECYCLE_MAX; i++) {
-        rec = &(recycle_table[i]);
-        len += snprintf (buf + len, size - len,
-            "%-11s %5d (%8ld bytes, %d:%d in use:freed)%s", rec->name,
-            rec->top, rec->top * rec->size, rec->list_count, rec->free_count,
-            eol);
-    }
-    len += snprintf (buf + len, size - len,
-        "strings     %5d of %7d bytes (max %d)%s",
-        nAllocString, sAllocString, MAX_STRING, eol);
-    len += snprintf (buf + len, size - len,
-        "blocks      %5d of %7d bytes (%d pages)%s",
-        nAllocPerm, sAllocPerm, nMemPermCount, eol);
-
-    return buf;
+void fread_dice (FILE *fp, DICE_T *out) {
+    out->number = fread_number (fp);
+    /* 'd'     */ fread_letter (fp);
+    out->size   = fread_number (fp);
+    /* '+'     */ fread_letter (fp);
+    out->bonus  = fread_number (fp);
 }
 
 /* Added this as part of a bugfix suggested by Chris Litchfield (of
  * "The Mage's Lair" fame). Pets were being loaded with any saved
  * affects, then having those affects loaded again. -- JR 2002/01/31 */
-bool check_pet_affected(int vnum, AFFECT_DATA *paf) {
-    MOB_INDEX_DATA *petIndex;
+bool check_pet_affected(int vnum, AFFECT_T *paf) {
+    MOB_INDEX_T *petIndex;
 
     petIndex = get_mob_index(vnum);
     if (petIndex == NULL)
         return FALSE;
     if (paf->bit_type == AFF_TO_AFFECTS &&
-        IS_SET (petIndex->affected_by, paf->bits))
+        IS_SET (petIndex->affected_by_final, paf->bits))
     {
         return TRUE;
     }
@@ -1991,8 +2100,8 @@ bool check_pet_affected(int vnum, AFFECT_DATA *paf) {
 }
 
 /* random room generation procedure */
-ROOM_INDEX_DATA *get_random_room (CHAR_DATA * ch) {
-    ROOM_INDEX_DATA *room;
+ROOM_INDEX_T *get_random_room (CHAR_T *ch) {
+    ROOM_INDEX_T *room;
 
     while (1) {
         room = get_room_index (number_range (0, 65535));
@@ -2027,9 +2136,9 @@ bool fread_social_str (FILE *fp, char **str) {
 }
 
 /* snarf a socials file */
-void load_socials (FILE * fp) {
+void load_socials (FILE *fp) {
     while (1) {
-        SOCIAL_TYPE *new;
+        SOCIAL_T *new;
         char *temp;
 
         temp = fread_word (fp);
@@ -2046,21 +2155,27 @@ void load_socials (FILE * fp) {
         new->name[sizeof (new->name) - 1] = '\0';
         fread_to_eol (fp);
 
-        if (!fread_social_str (fp, &(new->char_no_arg)))    continue;
-        if (!fread_social_str (fp, &(new->others_no_arg)))  continue;
-        if (!fread_social_str (fp, &(new->char_found)))     continue;
-        if (!fread_social_str (fp, &(new->others_found)))   continue;
-        if (!fread_social_str (fp, &(new->vict_found)))     continue;
-        if (!fread_social_str (fp, &(new->char_not_found))) continue;
-        if (!fread_social_str (fp, &(new->char_auto)))      continue;
-        if (!fread_social_str (fp, &(new->others_auto)))    continue;
+        do {
+            if (!fread_social_str (fp, &(new->char_no_arg)))    break;
+            if (!fread_social_str (fp, &(new->others_no_arg)))  break;
+            if (!fread_social_str (fp, &(new->char_found)))     break;
+            if (!fread_social_str (fp, &(new->others_found)))   break;
+            if (!fread_social_str (fp, &(new->vict_found)))     break;
+            if (!fread_social_str (fp, &(new->char_not_found))) break;
+            if (!fread_social_str (fp, &(new->char_auto)))      break;
+            if (!fread_social_str (fp, &(new->others_auto)))    break;
+        } while (0);
+
+        /* if this social already exists, don't load it. */
+        if (social_lookup_exact (new->name) != new)
+            social_free (new);
     }
 }
 
 /* Snarf a mob section.  new style */
-void load_mobiles (FILE * fp) {
-    MOB_INDEX_DATA *pMobIndex;
-    char *name;
+void load_mobiles (FILE *fp) {
+    MOB_INDEX_T *pMobIndex;
+    char *name, *str;
 
     EXIT_IF_BUG (!area_last, /* OLC */
         "load_mobiles: no #AREA seen yet.", 0);
@@ -2068,7 +2183,6 @@ void load_mobiles (FILE * fp) {
     while (1) {
         sh_int vnum;
         char letter;
-        int iHash;
 
         letter = fread_letter (fp);
         EXIT_IF_BUG (letter != '#',
@@ -2103,20 +2217,17 @@ void load_mobiles (FILE * fp) {
         str_replace_dup (&pMobIndex->short_descr, fread_string (fp));
         str_replace_dup (&pMobIndex->long_descr,  fread_string (fp));
         str_replace_dup (&pMobIndex->description, fread_string (fp));
-        str_replace_dup (&pMobIndex->race_str,    fread_string (fp));
-        pMobIndex->race = lookup_backup (race_lookup_exact, pMobIndex->race_str,
-            "Unknown race '%s'", 0);
+
+        str = fread_string (fp);
+        pMobIndex->race = lookup_backup (race_lookup_exact,
+            str, "Unknown race '%s'", 0);
 
         pMobIndex->long_descr[0] = UPPER (pMobIndex->long_descr[0]);
         pMobIndex->description[0] = UPPER (pMobIndex->description[0]);
 
-        pMobIndex->mob_orig = fread_flag (fp);
-        pMobIndex->affected_by_orig = fread_flag (fp);
+        pMobIndex->mob_plus = fread_flag (fp) & ~MOB_IS_NPC;
+        pMobIndex->affected_by_plus = fread_flag (fp);
 
-        pMobIndex->mob = pMobIndex->mob_orig | MOB_IS_NPC
-            | race_table[pMobIndex->race].mob;
-        pMobIndex->affected_by = pMobIndex->affected_by_orig
-            | race_table[pMobIndex->race].aff;
         pMobIndex->pShop = NULL;
         pMobIndex->alignment = fread_number (fp);
         pMobIndex->group = fread_number (fp);
@@ -2125,13 +2236,13 @@ void load_mobiles (FILE * fp) {
         pMobIndex->hitroll = fread_number (fp);
 
         /* read hit, mana, dam dice */
-        fread_dice (fp, pMobIndex->hit);
-        fread_dice (fp, pMobIndex->mana);
-        fread_dice (fp, pMobIndex->damage);
+        fread_dice (fp, &(pMobIndex->hit));
+        fread_dice (fp, &(pMobIndex->mana));
+        fread_dice (fp, &(pMobIndex->damage));
 
-        str_replace_dup (&pMobIndex->dam_type_str, fread_word (fp));
+        str = fread_word (fp);
         pMobIndex->dam_type = lookup_backup (attack_lookup_exact,
-            pMobIndex->dam_type_str, "Unknown damage type '%s'", 0);
+            str, "Unknown damage type '%s'", 0);
 
         /* read armor class */
         pMobIndex->ac[AC_PIERCE] = fread_number (fp) * 10;
@@ -2140,53 +2251,44 @@ void load_mobiles (FILE * fp) {
         pMobIndex->ac[AC_EXOTIC] = fread_number (fp) * 10;
 
         /* read flags and add in data from the race table */
-        pMobIndex->off_flags_orig  = fread_flag (fp);
-        pMobIndex->imm_flags_orig  = fread_flag (fp);
-        pMobIndex->res_flags_orig  = fread_flag (fp);
-        pMobIndex->vuln_flags_orig = fread_flag (fp);
-
-        pMobIndex->off_flags  = pMobIndex->off_flags_orig  | race_table[pMobIndex->race].off;
-        pMobIndex->imm_flags  = pMobIndex->imm_flags_orig  | race_table[pMobIndex->race].imm;
-        pMobIndex->res_flags  = pMobIndex->res_flags_orig  | race_table[pMobIndex->race].res;
-        pMobIndex->vuln_flags = pMobIndex->vuln_flags_orig | race_table[pMobIndex->race].vuln;
+        pMobIndex->off_flags_plus  = fread_flag (fp);
+        pMobIndex->imm_flags_plus  = fread_flag (fp);
+        pMobIndex->res_flags_plus  = fread_flag (fp);
+        pMobIndex->vuln_flags_plus = fread_flag (fp);
 
         /* vital statistics */
-        str_replace_dup (&pMobIndex->start_pos_str,   fread_word (fp));
-        str_replace_dup (&pMobIndex->default_pos_str, fread_word (fp));
-        str_replace_dup (&pMobIndex->sex_str,         fread_word (fp));
-
-        /* 'none' has been replaced with 'neutral' to avoid confusion
-         * between 'sexless' and 'sex is missing'. */
-        if (!str_cmp (pMobIndex->sex_str, "none"))
-            str_replace_dup (&(pMobIndex->sex_str), "neutral");
-
+        str = fread_word (fp);
         pMobIndex->start_pos = lookup_backup (position_lookup_exact,
-            pMobIndex->start_pos_str, "Unknown start position '%s'",
-            POS_STANDING);
+            str, "Unknown start position '%s'", POS_STANDING);
+
+        str = fread_word (fp);
         pMobIndex->default_pos = lookup_backup (position_lookup_exact,
-            pMobIndex->default_pos_str, "Unknown default position '%s'",
-            POS_STANDING);
+            str, "Unknown default position '%s'", POS_STANDING);
+
+        /* read sex. 'none' has been replaced with 'neutral' to avoid confusion
+         * between 'sexless' and 'sex is missing'. */
+        str = fread_word (fp);
+        if (!str_cmp (str, "none"))
+            str = "neutral";
         pMobIndex->sex = lookup_backup (sex_lookup_exact,
-            pMobIndex->sex_str, "Unknown sex '%s'", SEX_EITHER);
+            str, "Unknown sex '%s'", SEX_EITHER);
 
         pMobIndex->wealth     = fread_number (fp);
-        pMobIndex->form_orig  = fread_flag (fp);
-        pMobIndex->parts_orig = fread_flag (fp);
-        pMobIndex->form  = pMobIndex->form_orig  | race_table[pMobIndex->race].form;
-        pMobIndex->parts = pMobIndex->parts_orig | race_table[pMobIndex->race].parts;
+        pMobIndex->form_plus  = fread_flag (fp);
+        pMobIndex->parts_plus = fread_flag (fp);
 
         /* Size. */
-        str_replace_dup (&pMobIndex->size_str, fread_word (fp));
-        pMobIndex->size = lookup_backup (size_lookup_exact, pMobIndex->size_str,
+        str = fread_word (fp);
+        pMobIndex->size = lookup_backup (size_lookup_exact, str,
             "Unknown size '%s'", SIZE_MEDIUM);
 
         /* Material. Sometimes this is '0', in which case, just replace it
          * with the default material's keyword. */
-        str_replace_dup (&pMobIndex->material_str, fread_word (fp));
-        if (!str_cmp (pMobIndex->material_str, "0") || pMobIndex->material_str[0] == '\0')
-            str_replace_dup (&pMobIndex->material_str, material_get_name(0));
+        str = fread_word (fp);
+        if (!str_cmp (str, "0") || str[0] == '\0')
+            str = (char *) material_get_name (MATERIAL_GENERIC);
         pMobIndex->material = lookup_backup (material_lookup_exact,
-            pMobIndex->material_str, "Unknown material '%s'", 0);
+            str, "Unknown material '%s'", MATERIAL_GENERIC);
 
         while (1) {
             letter = fread_letter (fp);
@@ -2198,28 +2300,28 @@ void load_mobiles (FILE * fp) {
                 vector = fread_flag (fp);
 
                 if (!str_prefix (word, "act") || !str_prefix (word, "mob"))
-                    REMOVE_BIT (pMobIndex->mob, vector);
+                    pMobIndex->mob_minus = vector;
                 else if (!str_prefix (word, "aff"))
-                    REMOVE_BIT (pMobIndex->affected_by, vector);
+                    pMobIndex->affected_by_minus = vector;
                 else if (!str_prefix (word, "off"))
-                    REMOVE_BIT (pMobIndex->off_flags, vector);
+                    pMobIndex->off_flags_minus = vector;
                 else if (!str_prefix (word, "imm"))
-                    REMOVE_BIT (pMobIndex->imm_flags, vector);
+                    pMobIndex->imm_flags_minus = vector;
                 else if (!str_prefix (word, "res"))
-                    REMOVE_BIT (pMobIndex->res_flags, vector);
+                    pMobIndex->res_flags_minus = vector;
                 else if (!str_prefix (word, "vul"))
-                    REMOVE_BIT (pMobIndex->vuln_flags, vector);
+                    pMobIndex->vuln_flags_minus = vector;
                 else if (!str_prefix (word, "for"))
-                    REMOVE_BIT (pMobIndex->form, vector);
+                    pMobIndex->form_minus = vector;
                 else if (!str_prefix (word, "par"))
-                    REMOVE_BIT (pMobIndex->parts, vector);
+                    pMobIndex->parts_minus = vector;
                 else {
                     EXIT_IF_BUG (TRUE,
                         "flag remove: flag not found.", 0);
                 }
             }
             else if (letter == 'M') {
-                MPROG_LIST *pMprog;
+                MPROG_LIST_T *pMprog;
                 char *word;
                 int trigger = 0;
 
@@ -2234,7 +2336,7 @@ void load_mobiles (FILE * fp) {
                 pMprog->anum = pMprog->vnum - area_last->min_vnum;
                 str_replace_dup (&pMprog->trig_phrase, fread_string (fp));
 
-                LIST_BACK (pMprog, next, pMobIndex->mprogs, MPROG_LIST);
+                LIST_BACK (pMprog, next, pMobIndex->mprogs, MPROG_LIST_T);
             }
             else {
                 ungetc (letter, fp);
@@ -2242,18 +2344,53 @@ void load_mobiles (FILE * fp) {
             }
         }
 
-        iHash = vnum % MAX_KEY_HASH;
-        LIST_FRONT (pMobIndex, next, mob_index_hash[iHash]);
+        /* Perform post-processing on loaded mob. */
+        db_finalize_mob (pMobIndex);
 
-        top_vnum_mob = top_vnum_mob < vnum ? vnum : top_vnum_mob;    /* OLC */
-        assign_area_vnum (vnum);    /* OLC */
-        kill_table[URANGE (0, pMobIndex->level, MAX_LEVEL - 1)].number++;
+        /* Loading finished - register our mob. */
+        db_register_new_mob (pMobIndex);
     }
 }
 
+void db_finalize_mob (MOB_INDEX_T *mob) {
+    if (mob->race >= 0 || mob->race < RACE_MAX) {
+        const RACE_T *race;
+        race = &(race_table[mob->race]);
+
+        mob->mob_final         = mob->mob_plus | MOB_IS_NPC | race->mob;
+        mob->affected_by_final = mob->affected_by_plus | race->aff;
+        mob->off_flags_final   = mob->off_flags_plus   | race->off;
+        mob->imm_flags_final   = mob->imm_flags_plus   | race->imm;
+        mob->res_flags_final   = mob->res_flags_plus   | race->res;
+        mob->vuln_flags_final  = mob->vuln_flags_plus  | race->vuln;
+        mob->form_final        = mob->form_plus        | race->form;
+        mob->parts_final       = mob->parts_plus       | race->parts;
+    }
+    else {
+        mob->mob_final         = mob->mob_plus | MOB_IS_NPC;
+        mob->affected_by_final = mob->affected_by_plus;
+        mob->off_flags_final   = mob->off_flags_plus;
+        mob->imm_flags_final   = mob->imm_flags_plus;
+        mob->res_flags_final   = mob->res_flags_plus;
+        mob->vuln_flags_final  = mob->vuln_flags_plus;
+        mob->form_final        = mob->form_plus;
+        mob->parts_final       = mob->parts_plus;
+    }
+
+    REMOVE_BIT (mob->mob_final,         mob->mob_minus);
+    REMOVE_BIT (mob->affected_by_final, mob->affected_by_minus);
+    REMOVE_BIT (mob->off_flags_final,   mob->off_flags_minus);
+    REMOVE_BIT (mob->imm_flags_final,   mob->imm_flags_minus);
+    REMOVE_BIT (mob->res_flags_final,   mob->res_flags_minus);
+    REMOVE_BIT (mob->vuln_flags_final,  mob->vuln_flags_minus);
+    REMOVE_BIT (mob->form_final,        mob->form_minus);
+    REMOVE_BIT (mob->parts_final,       mob->parts_minus);
+}
+
 /* Snarf an obj section. new style */
-void load_objects (FILE * fp) {
-    OBJ_INDEX_DATA *pObjIndex;
+void load_objects (FILE *fp) {
+    OBJ_INDEX_T *pObjIndex;
+    char *str;
     sh_int location, modifier;
     flag_t bits;
 
@@ -2263,7 +2400,6 @@ void load_objects (FILE * fp) {
     while (1) {
         sh_int vnum;
         char letter;
-        int iHash;
 
         letter = fread_letter (fp);
         EXIT_IF_BUG (letter != '#',
@@ -2288,16 +2424,17 @@ void load_objects (FILE * fp) {
         str_replace_dup (&pObjIndex->name,          fread_string (fp));
         str_replace_dup (&pObjIndex->short_descr,   fread_string (fp));
         str_replace_dup (&pObjIndex->description,   fread_string (fp));
-        str_replace_dup (&pObjIndex->material_str,  fread_string (fp));
-        str_replace_dup (&pObjIndex->item_type_str, fread_word (fp));
 
-        if (!str_cmp (pObjIndex->material_str, "oldstyle") || /* strange! */
-             pObjIndex->material_str[0] == '\0')
-            str_replace_dup (&pObjIndex->material_str, material_get_name(0));
+        /* Read material, and replace 'oldstyle' (???) or 'blank' with 'generic'. */
+        str = fread_string (fp);
+        if (!str_cmp (str, "oldstyle") || str[0] == '\0')
+            str_replace_dup (&str, material_get_name (MATERIAL_GENERIC));
         pObjIndex->material = lookup_backup (material_lookup_exact,
-            pObjIndex->material_str, "Unknown material '%s'", 0);
+            str, "Unknown material '%s'", MATERIAL_GENERIC);
+
+        str = fread_word (fp);
         pObjIndex->item_type = lookup_backup (item_lookup_exact,
-            pObjIndex->item_type_str, "Unknown item type '%s'", 0);
+            str, "Unknown item type '%s'", 0);
 
         pObjIndex->extra_flags = fread_flag (fp);
         pObjIndex->wear_flags = fread_flag (fp);
@@ -2406,16 +2543,16 @@ void load_objects (FILE * fp) {
         while (1) {
             char letter = fread_letter (fp);
             if (letter == 'A') {
-                AFFECT_DATA *paf = affect_new ();
+                AFFECT_T *paf = affect_new ();
 
                 location = fread_number (fp);
                 modifier = fread_number (fp);
                 affect_init (paf, AFF_TO_OBJECT, -1, pObjIndex->level, -1, location, modifier, 0);
 
-                LIST_BACK (paf, next, pObjIndex->affected, AFFECT_DATA);
+                LIST_BACK (paf, next, pObjIndex->affected, AFFECT_T);
             }
             else if (letter == 'F') {
-                AFFECT_DATA *paf = affect_new ();
+                AFFECT_T *paf = affect_new ();
 
                 letter = fread_letter (fp);
                 switch (letter) {
@@ -2434,13 +2571,13 @@ void load_objects (FILE * fp) {
                 affect_init (paf, paf->bit_type, -1, pObjIndex->level, -1,
                     location, modifier, bits);
 
-                LIST_BACK (paf, next, pObjIndex->affected, AFFECT_DATA);
+                LIST_BACK (paf, next, pObjIndex->affected, AFFECT_T);
             }
             else if (letter == 'E') {
-                EXTRA_DESCR_DATA *ed = extra_descr_new ();
+                EXTRA_DESCR_T *ed = extra_descr_new ();
                 str_replace_dup (&ed->keyword,     fread_string (fp));
                 str_replace_dup (&ed->description, fread_string (fp));
-                LIST_BACK (ed, next, pObjIndex->extra_descr, EXTRA_DESCR_DATA);
+                LIST_BACK (ed, next, pObjIndex->extra_descr, EXTRA_DESCR_T);
             }
             else {
                 ungetc (letter, fp);
@@ -2448,13 +2585,299 @@ void load_objects (FILE * fp) {
             }
         }
 
-        /* Check for some bogus items. */
-        fix_bogus_obj (pObjIndex);
+        /* Perform post-processing on loaded obj. */
+        db_finalize_obj (pObjIndex);
 
-        iHash = vnum % MAX_KEY_HASH;
-        LIST_FRONT (pObjIndex, next, obj_index_hash[iHash]);
-
-        top_vnum_obj = top_vnum_obj < vnum ? vnum : top_vnum_obj; /* OLC */
-        assign_area_vnum (vnum); /* OLC */
+        /* Loading finished - register our object. */
+        db_register_new_obj (pObjIndex);
     }
+}
+
+void db_dump_world (const char *filename) {
+    FILE *file = fopen (filename, "w");
+    const AREA_T *area;
+    const ROOM_INDEX_T *room;
+    const EXTRA_DESCR_T *ed;
+    const RESET_T *reset;
+    const MOB_INDEX_T *mob;
+    const OBJ_INDEX_T *obj;
+    const AFFECT_T *aff;
+    const HELP_AREA_T *had;
+    const HELP_T *help;
+    const SOCIAL_T *soc;
+    const PORTAL_T *portal;
+    int i, count = 0;
+
+    log_f ("Dumping entire world to '%s'", filename);
+
+    for (area = area_get_first(); area; area = area_get_next (area)) {
+        fprintf (file, "next:       %s\n",  area->next  ? "yes" : "no");
+        fprintf (file, "helps:      %s\n",  area->helps ? "yes" : "no");
+        fprintf (file, "name:       %s\n",  area->name);
+        fprintf (file, "filename:   %s\n",  area->filename);
+        fprintf (file, "title:      %s\n",  area->title);
+        fprintf (file, "credits:    %s\n",  area->credits);
+        fprintf (file, "age:        %d\n",  area->age);
+        fprintf (file, "nplayer:    %d\n",  area->nplayer);
+        fprintf (file, "low_range:  %d\n",  area->low_range);
+        fprintf (file, "high_range: %d\n",  area->high_range);
+        fprintf (file, "min_vnum:   %d\n",  area->min_vnum);
+        fprintf (file, "max_vnum:   %d\n",  area->max_vnum);
+        fprintf (file, "empty:      %d\n",  area->empty);
+        fprintf (file, "builders:   %s\n",  area->builders);
+        fprintf (file, "vnum:       %d\n",  area->vnum);
+        fprintf (file, "area_flags: %ld\n", area->area_flags);
+        fprintf (file, "security:   %d\n",  area->security);
+        fprintf (file, "-\n");
+        count++;
+    }
+
+    for (room = room_index_get_first(); room;
+         room = room_index_get_next (room))
+    {
+        fprintf (file, "next:        %s\n", room->next        ? "yes" : "no");
+        fprintf (file, "people:      %s\n", room->people      ? "yes" : "no");
+        fprintf (file, "contents:    %s\n", room->contents    ? "yes" : "no");
+        fprintf (file, "extra_descr: %s\n", room->extra_descr ? "yes" : "no");
+        for (ed = room->extra_descr; ed != NULL; ed = ed->next) {
+            fprintf (file, "   keyword:     %s\n", ed->keyword);
+            fprintf (file, "   description: %s\n", ed->description);
+        }
+
+        fprintf (file, "area_str:    %s\n", room->area_str);
+        fprintf (file, "area:        %s\n", room->area        ? "yes" : "no");
+        for (i = 0; i < DIR_MAX; i++) {
+            fprintf (file, "exit[%d]:    %s\n", i, room->exit[i] ? "yes" : "no");
+            if (room->exit[i]) {
+                EXIT_T *exit = room->exit[i];
+                fprintf (file, "   to_room:     %s\n",  exit->to_room ? "yes" : "no");
+                fprintf (file, "   vnum:        %d\n",  exit->vnum);
+                fprintf (file, "   area_vnum:   %d\n",  exit->area_vnum);
+                fprintf (file, "   room_anum:   %d\n",  exit->room_anum);
+                fprintf (file, "   exit_flags:  %ld\n", exit->exit_flags);
+                fprintf (file, "   key:         %d\n",  exit->key);
+                fprintf (file, "   keyword:     %s\n",  exit->keyword);
+                fprintf (file, "   description: %s\n",  exit->description);
+                fprintf (file, "   rs_flags:    %ld\n", exit->rs_flags);
+                fprintf (file, "   orig_door:   %d\n",  exit->orig_door);
+                fprintf (file, "   portal:      %s\n",  exit->portal ? "yes" : "no");
+            }
+        }
+
+        fprintf (file, "reset_first: %s\n",  room->reset_first   ? "yes" : "no");
+        fprintf (file, "reset_last:  %s\n",  room->reset_last    ? "yes" : "no");
+        for (reset = room->reset_first; reset != NULL; reset = reset->next) {
+            fprintf (file, "   next:      %s\n",   reset->next ? "yes" : "no");
+            fprintf (file, "   area:      %s\n",   reset->area ? "yes" : "no");
+            fprintf (file, "   command:   '%c'\n", reset->command);
+            fprintf (file, "   room_vnum: %d\n",   reset->room_vnum);
+            for (i = 0; i < RESET_VALUE_MAX; i++)
+                fprintf (file, "   v[%d]:      %d\n", i, reset->v.value[i]);
+        }
+
+        fprintf (file, "name:        %s\n",  room->name);
+        fprintf (file, "description: %s\n",  room->description);
+        fprintf (file, "owner:       %s\n",  room->owner);
+        fprintf (file, "vnum:        %d\n",  room->vnum);
+        fprintf (file, "anum:        %d\n",  room->anum);
+        fprintf (file, "room_flags:  %ld\n", room->room_flags);
+        fprintf (file, "light:       %d\n",  room->light);
+        fprintf (file, "sector_type: %d\n",  room->sector_type);
+        fprintf (file, "heal_rate:   %d\n",  room->heal_rate);
+        fprintf (file, "mana_rate:   %d\n",  room->mana_rate);
+        fprintf (file, "clan:        %d\n",  room->clan);
+        fprintf (file, "portal:      %s\n",  room->portal ? "yes" : "no");
+        fprintf (file, "-\n");
+        count++;
+    }
+
+    for (mob = mob_index_get_first(); mob; mob = mob_index_get_next (mob)) {
+        fprintf (file, "next:               %s\n",  mob->next ? "yes" : "no");
+        fprintf (file, "spec_fun:           %s\n",  spec_function_name (mob->spec_fun));
+        fprintf (file, "pShop:              %s\n",  mob->pShop ? "yes" : "no");
+        if (mob->pShop) {
+            SHOP_T *shop = mob->pShop;
+            fprintf (file, "   next:         %s\n", shop->next ? "yes" : "no");
+            fprintf (file, "   keeper:       %d\n", shop->keeper);
+            for (i = 0; i < MAX_TRADE; i++)
+                if (shop->buy_type[i] != 0)
+                    fprintf (file, "   buy_type[%d]: %d\n", i, shop->buy_type[i]);
+            fprintf (file, "   profit_buy:   %d\n", shop->profit_buy);
+            fprintf (file, "   profit_sell:  %d\n", shop->profit_sell);
+            fprintf (file, "   open_hour:    %d\n", shop->open_hour);
+            fprintf (file, "   close_hour:   %d\n", shop->close_hour);
+        }
+        fprintf (file, "mprogs:             %s\n",  mob->mprogs ? "yes" : "no");
+        fprintf (file, "area_str:           %s\n",  mob->area_str);
+        fprintf (file, "area:               %s\n",  mob->area ? "yes" : "no");
+        fprintf (file, "vnum:               %d\n",  mob->vnum);
+        fprintf (file, "anum:               %d\n",  mob->anum);
+        fprintf (file, "group:              %d\n",  mob->group);
+        fprintf (file, "new_format:         %d\n",  mob->new_format);
+        fprintf (file, "count:              %d\n",  mob->count);
+        fprintf (file, "killed:             %d\n",  mob->killed);
+        fprintf (file, "name:               %s\n",  mob->name);
+        fprintf (file, "short_descr:        %s\n",  mob->short_descr);
+        fprintf (file, "long_descr:         %s\n",  mob->long_descr);
+        fprintf (file, "description:        %s\n",  mob->description);
+        fprintf (file, "alignment:          %d\n",  mob->alignment);
+        fprintf (file, "level:              %d\n",  mob->level);
+        fprintf (file, "hitroll:            %d\n",  mob->hitroll);
+        fprintf (file, "hit.number:         %d\n",  mob->hit.number);
+        fprintf (file, "hit.size:           %d\n",  mob->hit.size);
+        fprintf (file, "hit.bonus:          %d\n",  mob->hit.bonus);
+        fprintf (file, "mana.number:        %d\n",  mob->mana.number);
+        fprintf (file, "mana.size:          %d\n",  mob->mana.size);
+        fprintf (file, "mana.bonus:         %d\n",  mob->mana.bonus);
+        fprintf (file, "damage.number:      %d\n",  mob->damage.number);
+        fprintf (file, "damage.size:        %d\n",  mob->damage.size);
+        fprintf (file, "damage.bonus:       %d\n",  mob->damage.bonus);
+        fprintf (file, "ac[0]:              %d\n",  mob->ac[0]);
+        fprintf (file, "ac[1]:              %d\n",  mob->ac[1]);
+        fprintf (file, "ac[2]:              %d\n",  mob->ac[2]);
+        fprintf (file, "ac[3]:              %d\n",  mob->ac[3]);
+        fprintf (file, "dam_type:           %d\n",  mob->dam_type);
+        fprintf (file, "start_pos:          %d\n",  mob->start_pos);
+        fprintf (file, "default_pos:        %d\n",  mob->default_pos);
+        fprintf (file, "sex:                %d\n",  mob->sex);
+        fprintf (file, "race:               %d\n",  mob->race);
+        fprintf (file, "wealth:             %ld\n", mob->wealth);
+        fprintf (file, "size:               %d\n",  mob->size);
+        fprintf (file, "material:           %d\n",  mob->material);
+        fprintf (file, "mprog_flags:        %ld\n", mob->mprog_flags);
+        fprintf (file, "mob_plus:           %ld\n", mob->mob_plus);
+        fprintf (file, "mob_final:          %ld\n", mob->mob_final);
+        fprintf (file, "mob_minus:          %ld\n", mob->mob_minus);
+        fprintf (file, "affected_by_plus:   %ld\n", mob->affected_by_plus);
+        fprintf (file, "affected_by_final:  %ld\n", mob->affected_by_final);
+        fprintf (file, "affected_by_minus:  %ld\n", mob->affected_by_minus);
+        fprintf (file, "off_flags_plus:     %ld\n", mob->off_flags_plus);
+        fprintf (file, "off_flags_final:    %ld\n", mob->off_flags_final);
+        fprintf (file, "off_flags_minus:    %ld\n", mob->off_flags_minus);
+        fprintf (file, "imm_flags_plus:     %ld\n", mob->imm_flags_plus);
+        fprintf (file, "imm_flags_final:    %ld\n", mob->imm_flags_final);
+        fprintf (file, "imm_flags_minus:    %ld\n", mob->imm_flags_minus);
+        fprintf (file, "res_flags_plus:     %ld\n", mob->res_flags_plus);
+        fprintf (file, "res_flags_final:    %ld\n", mob->res_flags_final);
+        fprintf (file, "res_flags_minus:    %ld\n", mob->res_flags_minus);
+        fprintf (file, "vuln_flags_plus:    %ld\n", mob->vuln_flags_plus);
+        fprintf (file, "vuln_flags_final:   %ld\n", mob->vuln_flags_final);
+        fprintf (file, "vuln_flags_minus:   %ld\n", mob->vuln_flags_minus);
+        fprintf (file, "form_plus:          %ld\n", mob->form_plus);
+        fprintf (file, "form_final:         %ld\n", mob->form_final);
+        fprintf (file, "form_minus:         %ld\n", mob->form_minus);
+        fprintf (file, "parts_plus:         %ld\n", mob->parts_plus);
+        fprintf (file, "parts_final:        %ld\n", mob->parts_final);
+        fprintf (file, "parts_minus:        %ld\n", mob->parts_minus);
+        fprintf (file, "-\n");
+        count++;
+    }
+
+    for (obj = obj_index_get_first(); obj; obj = obj_index_get_next (obj)) {
+        fprintf (file, "next:          %s\n",  obj->next ? "yes" : "no");
+        fprintf (file, "extra_descr:   %s\n",  obj->extra_descr ? "yes" : "no");
+        for (ed = obj->extra_descr; ed != NULL; ed = ed->next) {
+            fprintf (file, "   keyword:     %s\n", ed->keyword);
+            fprintf (file, "   description: %s\n", ed->description);
+        }
+
+        fprintf (file, "affected:      %s\n",  obj->affected ? "yes" : "no");
+        for (aff = obj->affected; ed != NULL; ed = ed->next) {
+            fprintf (file, "   next:     %s\n",  aff->next ? "yes" : "no");
+            fprintf (file, "   bit_type: %d\n",  aff->bit_type);
+            fprintf (file, "   type:     %d\n",  aff->type);
+            fprintf (file, "   level:    %d\n",  aff->level);
+            fprintf (file, "   duration: %d\n",  aff->duration);
+            fprintf (file, "   apply:    %d\n",  aff->apply);
+            fprintf (file, "   modifier: %d\n",  aff->modifier);
+            fprintf (file, "   bits:     %ld\n", aff->bits);
+        }
+
+        fprintf (file, "area_str:      %s\n",  obj->area_str);
+        fprintf (file, "area:          %s\n",  obj->area ? "yes" : "no");
+        fprintf (file, "new_format:    %d\n",  obj->new_format);
+        fprintf (file, "name:          %s\n",  obj->name);
+        fprintf (file, "short_descr:   %s\n",  obj->short_descr);
+        fprintf (file, "description:   %s\n",  obj->description);
+        fprintf (file, "vnum:          %d\n",  obj->vnum);
+        fprintf (file, "anum:          %d\n",  obj->anum);
+        fprintf (file, "reset_num:     %d\n",  obj->reset_num);
+        fprintf (file, "material:      %d\n",  obj->material);
+        fprintf (file, "item_type:     %d\n",  obj->item_type);
+        fprintf (file, "extra_flags:   %ld\n", obj->extra_flags);
+        fprintf (file, "wear_flags:    %ld\n", obj->wear_flags);
+        fprintf (file, "level:         %d\n",  obj->level);
+        fprintf (file, "condition:     %d\n",  obj->condition);
+        fprintf (file, "count:         %d\n",  obj->count);
+        fprintf (file, "weight:        %d\n",  obj->weight);
+        fprintf (file, "cost:          %d\n",  obj->cost);
+        for (i = 0; i < OBJ_VALUE_MAX; i++)
+            fprintf (file, "v.value[%d]:    %ld\n", i, obj->v.value[i]);
+        fprintf (file, "-\n");
+        count++;
+    }
+
+    for (had = had_get_first(); had; had = had_get_next (had)) {
+        fprintf (file, "next:     %s\n", had->next  ? "yes" : "no");
+        fprintf (file, "first:    %s\n", had->first ? "yes" : "no");
+        fprintf (file, "last:     %s\n", had->last  ? "yes" : "no");
+        fprintf (file, "area_str: %s\n", had->area_str);
+        fprintf (file, "area:     %s\n", had->area  ? "yes" : "no");
+        fprintf (file, "filename: %s\n", had->filename);
+        fprintf (file, "name:     %s\n", had->name);
+        fprintf (file, "changed:  %d\n", had->changed);
+        fprintf (file, "-\n");
+        count++;
+    }
+
+    for (help = help_get_first(); help; help = help_get_next (help)) {
+        fprintf (file, "next:      %s\n", help->next      ? "yes" : "no");
+        fprintf (file, "next_area: %s\n", help->next_area ? "yes" : "no");
+        fprintf (file, "level:     %d\n", help->level);
+        fprintf (file, "keyword:   %s\n", help->keyword);
+        fprintf (file, "text:      %s\n", help->text);
+        fprintf (file, "-\n");
+        count++;
+    }
+
+    for (soc = social_get_first(); soc; soc = social_get_next (soc)) {
+        fprintf (file, "name:           %s\n", soc->name);
+        fprintf (file, "char_no_arg:    %s\n", soc->char_no_arg);
+        fprintf (file, "others_no_arg:  %s\n", soc->others_no_arg);
+        fprintf (file, "char_found:     %s\n", soc->char_found);
+        fprintf (file, "others_found:   %s\n", soc->others_found);
+        fprintf (file, "vict_found:     %s\n", soc->vict_found);
+        fprintf (file, "char_not_found: %s\n", soc->char_not_found);
+        fprintf (file, "char_auto:      %s\n", soc->char_auto);
+        fprintf (file, "others_auto:    %s\n", soc->others_auto);
+        fprintf (file, "-\n");
+        count++;
+    }
+
+    for (portal = portal_get_first(); portal; portal = portal_get_next (portal)) {
+        if (portal->generated)
+            continue;
+            fprintf (file, "name_from: %s\n", portal->name_from);
+            fprintf (file, "name_to:   %s\n", portal->name_to);
+            fprintf (file, "two_way:   %d\n", portal->two_way);
+            fprintf (file, "from:      %s\n", portal->from ? "yes" : "no");
+            fprintf (file, "to:        %s\n", portal->to   ? "yes" : "no");
+        count++;
+    }
+
+    log_f ("%d entities dumped.", count);
+    fclose (file);
+}
+
+ANUM_T *anum_new (void) {
+    ANUM_T *anum;
+    anum = calloc (1, sizeof (ANUM_T));
+    LIST2_BACK (anum, prev, next, anum_first, anum_last);
+    return anum;
+}
+
+void anum_free (ANUM_T *anum) {
+    str_free (&(anum->area_str));
+    LIST2_REMOVE (anum, prev, next, anum_first, anum_last);
+    free (anum);
 }

@@ -1,3 +1,2 @@
 # Contribution Guide
-
 (WIP)

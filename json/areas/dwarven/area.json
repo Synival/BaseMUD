@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "dwarven",
+  "filename": "dwarven.are",
+  "title": "Dwarven Kingdom",
+  "credits": "{10 25} Anon    Dwarven Kingdom",
+  "min_vnum": 6500,
+  "max_vnum": 6599,
+  "builders": "None",
+  "security": 9
+}}]

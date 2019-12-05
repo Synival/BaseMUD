@@ -16,8 +16,8 @@
 
 #include "merc.h"
 
-#define MPEDIT(fun)           bool fun(CHAR_DATA *ch, char *argument)
-#define EDIT_MPCODE(Ch, Code) (Code = (MPROG_CODE*) Ch->desc->pEdit)
+#define MPEDIT(fun)           bool fun(CHAR_T *ch, char *argument)
+#define EDIT_MPCODE(ch, code) (code = (MPROG_CODE_T *) ch->desc->pEdit)
 
 /* Commands (mobile programs). */
 MPEDIT (mpedit_create);

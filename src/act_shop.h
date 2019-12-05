@@ -31,11 +31,11 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-bool do_filter_get_keeper (CHAR_DATA *ch, CHAR_DATA **out_keeper);
-void do_buy_pet (CHAR_DATA *ch, char *argument);
-void do_buy_item (CHAR_DATA *ch, char *argument);
-void do_list_pets (CHAR_DATA *ch, char *argument);
-void do_list_items (CHAR_DATA *ch, char *argument);
+bool do_filter_get_keeper (CHAR_T *ch, CHAR_T **out_keeper);
+void do_buy_pet (CHAR_T *ch, char *argument);
+void do_buy_item (CHAR_T *ch, char *argument);
+void do_list_pets (CHAR_T *ch, char *argument);
+void do_list_items (CHAR_T *ch, char *argument);
 
 /* Commands. */
 DECLARE_DO_FUN (do_buy);

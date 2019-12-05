@@ -25,14 +25,11 @@
  *    ROM license, in the file Rom24/doc/rom.license                       *
  ***************************************************************************/
 
-#include <sys/stat.h>
 #include <sys/types.h>
 
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
-
-#include "utils.h"
 
 #include "json.h"
 
@@ -63,7 +60,7 @@ void json_root_area_attach (const char *name, JSON_T *json) {
     json_attach_under (json, area);
 }
 
-JSON_T *json_get (JSON_T *json, const char *name) {
+JSON_T *json_get (const JSON_T *json, const char *name) {
     JSON_T *j;
     if (json == NULL || name == NULL || json->type != JSON_OBJECT)
         return NULL;
@@ -143,36 +140,36 @@ void json_free (JSON_T *json) {
     free (json);
 }
 
-JSON_PROP_FUNC (string, const char *);
+JSON_PROP_FUN (string, const char *);
 JSON_T *json_new_string (const char *name, const char *str) {
     return (str == NULL)
         ? json_new_null (name)
         : json_new (name, JSON_STRING, strdup (str), strlen (str) + 1);
 }
 
-JSON_PROP_FUNC (number, json_num);
+JSON_PROP_FUN (number, json_num);
 JSON_T *json_new_number (const char *name, json_num value) {
     JSON_SIMPLE (JSON_NUMBER, json_num);
     return new;
 }
 
-JSON_PROP_FUNC (integer, json_int);
+JSON_PROP_FUN (integer, json_int);
 JSON_T *json_new_integer (const char *name, json_int value) {
     JSON_SIMPLE (JSON_INTEGER , json_int);
     return new;
 }
 
-JSON_PROP_FUNC (boolean, bool);
+JSON_PROP_FUN (boolean, bool);
 JSON_T *json_new_boolean (const char *name, bool value) {
     JSON_SIMPLE (JSON_BOOLEAN, bool);
     return new;
 }
 
-JSON_PROP_FUNC_0 (null);
+JSON_PROP_FUN_0 (null);
 JSON_T *json_new_null (const char *name)
     { return json_new (name, JSON_NULL, NULL, 0); }
 
-JSON_PROP_FUNC (object, int);
+JSON_PROP_FUN (object, int);
 JSON_T *json_new_object (const char *name, int value) {
     JSON_SIMPLE (JSON_OBJECT, int);
     return new;
@@ -196,13 +193,14 @@ JSON_T *json_new_array (const char *name, JSON_T *first, ...) {
     return new;
 }
 
-JSON_PROP_FUNC (dice, const sh_int *);
-JSON_T *json_new_dice (const char *name, const sh_int *dice) {
+JSON_PROP_FUN (dice, const DICE_T *);
+JSON_T *json_new_dice (const char *name, const DICE_T *dice) {
     char buf[256];
 
     if (dice == NULL)
         return json_new_null (name);
-    snprintf (buf, sizeof (buf), "%dd%d%+d", dice[0], dice[1], dice[2]);
+    snprintf (buf, sizeof (buf), "%dd%d%+d",
+        dice->number, dice->size, dice->bonus);
     return json_new (name, JSON_DICE, strdup (buf), strlen (buf) + 1);
 }
 
@@ -223,188 +221,184 @@ JSON_T *json_wrap_obj (JSON_T *json, char *inner_name) {
     return new;
 }
 
-static int json_indent_level = 0;
-static int json_nest_level = 0;
-static int json_indented = 0;
+bool json_expand_newlines (char *buf_in, size_t len) {
+    char *buf_out, *ch_in, *ch_out;
 
-#define INDENT_SIZE 4
+    /* Don't do anything if there aren't any newlines at all. */
+    if (!strchr (buf_in, '\n'))
+        return FALSE;
 
-static void json_print_indent (FILE *fp) {
-    static int last_indent = 0;
-    static char space_buf[256];
-    int i;
+    buf_out = malloc (sizeof (char) * len);
+    for (ch_in = buf_in, ch_out = buf_out; 1; ch_in++, ch_out++) {
+        if ((ch_in - buf_in) >= (len - 1))
+            break;
+        if ((ch_out - buf_out) >= (len - 1))
+            break;
+        if (*ch_in == '\0')
+            break;
 
-    if (json_indented)
-        return;
-
-    while (last_indent < json_indent_level) {
-        int pos = last_indent * INDENT_SIZE;
-        for (i = 0; i < INDENT_SIZE; i++)
-            space_buf[pos++] = ' ';
-        space_buf[pos] = '\0';
-        last_indent++;
-    }
-
-    if (last_indent > json_indent_level) {
-        space_buf[json_indent_level * INDENT_SIZE] = '\0';
-        last_indent = json_indent_level;
-    }
-
-    fwrite (space_buf, sizeof (char), json_indent_level * INDENT_SIZE, fp);
-    json_indented = 1;
-}
-
-static void json_next_line (FILE *fp) {
-    fwrite ("\n", sizeof(char), 1, fp);
-    json_indented = 0;
-}
-
-const char *json_escaped_string (const char *value) {
-    static char buf[MAX_STRING_LENGTH * 4];
-    char *pos = buf;
-
-    *pos = '\0';
-    while (*value != '\0') {
-        switch (*value) {
-            case '\b': strcat (pos, "\\b");  pos += 2; break;
-            case '\f': strcat (pos, "\\f");  pos += 2; break;
-            case '\n': strcat (pos, "\\n");  pos += 2; break;
-            case '\t': strcat (pos, "\\t");  pos += 2; break;
-            case '"':  strcat (pos, "\\\""); pos += 2; break;
-            case '\\': strcat (pos, "\\\\"); pos += 2; break;
-
-            case '\r': break;
-            default:   *(pos++) = *value; *pos = '\0'; break;
+        *ch_out = *ch_in;
+        if (*ch_in == '\n' && (ch_out - buf_out) < (len - 2)) {
+            ch_out++;
+            *ch_out = '\r';
         }
-        ++value;
     }
-    return buf;
+    *ch_out = '\0';
+
+    for (ch_in = buf_in, ch_out = buf_out; 1; ch_in++, ch_out++) {
+        *ch_in = *ch_out;
+        if (*ch_in == '\0')
+            break;
+    }
+
+    free (buf_out);
+    return TRUE;
 }
 
-void json_print_real (JSON_T *json, FILE *fp, int new_line) {
-    json_print_indent (fp);
-    if (json_nest_level > 0 && json->parent->type != JSON_ARRAY)
-        fprintf (fp, "\"%s\": ", json->name
-            ? json_escaped_string (json->name)
-            : "NULL");
+char *json_value_as_string (const JSON_T *json, char *buf, size_t size) {
+    if (size > 0 && buf != NULL)
+        buf[0] = '\0';
+    if (json == NULL)
+        return NULL;
+
     switch (json->type) {
+        case JSON_STRING:
         case JSON_DICE:
-        case JSON_STRING: {
-            char *value = (char *) json->value;
-            fprintf (fp, "\"%s\"", json_escaped_string (value));
-            break;
-        }
-        case JSON_NUMBER: {
-            json_num *value = (json_num *) json->value;
-            fprintf (fp, "%g", *value);
-            break;
-        }
-        case JSON_INTEGER: {
-            json_int *value = (json_int *) json->value;
-            fprintf (fp, "%ld", *value);
-            break;
-        }
-        case JSON_BOOLEAN: {
-            bool *value = (bool *) json->value;
-            fprintf (fp, "%s", *value ? "true" : "false");
-            break;
-        }
+            snprintf (buf, size, "%s", (const char *) json->value);
+            json_expand_newlines (buf, size);
+            return buf;
         case JSON_NULL:
-            fprintf (fp, "null");
-            break;
+            return NULL;
+        default:
+            fprintf (stderr, "json_value_as_string(): Unhandled type '%d'.\n",
+                json->type);
+            return NULL;
+    }
+}
 
-        case JSON_OBJECT:
-        case JSON_ARRAY: {
-            JSON_T *j;
-            char pleft  = (json->type == JSON_OBJECT) ? '{' : '[';
-            char pright = (json->type == JSON_OBJECT) ? '}' : ']';
+json_int json_value_as_int (const JSON_T *json) {
+    if (json == NULL)
+        return 0;
 
-            if (json->first_child == NULL)
-                fprintf (fp, "%c%c", pleft, pright);
-            else if (json->child_count == 1) {
-                fprintf (fp, "%c", pleft);
-                json_nest_level++;
-                json_print_real (json->first_child, fp, 0);
-                json_nest_level--;
-                fprintf (fp, "%c", pright);
-            }
-            else {
-                fprintf (fp, "%c", pleft);
-                json_next_line (fp);
-                json_indent_level++;
-                json_nest_level++;
-                for (j = json->first_child; j != NULL; j = j->next)
-                    json_print (j, fp);
-                json_nest_level--;
-                json_indent_level--;
-                json_print_indent (fp);
-                fprintf (fp, "%c", pright);
-            }
-            break;
+    switch (json->type) {
+        case JSON_NUMBER: {
+            json_num *value = json->value;
+            return *value;
         }
+
+        case JSON_INTEGER: {
+            json_int *value = json->value;
+            return *value;
+        }
+
+        case JSON_BOOLEAN: {
+            bool *value = json->value;
+            return (*value == TRUE) ? 1 : 0;
+        }
+
+        case JSON_NULL:
+            return 0;
 
         default:
-            bugf ("json_print: Unhandled type %d", json->type);
-            fprintf (fp, "BAD-TYPE");
-            break;
+            fprintf (stderr, "json_value_as_int(): Unhandled type '%d'.\n",
+                json->type);
+            return 0;
     }
-    if (json->next)
-        fprintf (fp, ",");
-
-    #define IS_SIMPLE_TYPE(x) \
-        ((x)->type == JSON_NULL || (x)->type == JSON_NUMBER || \
-         (x)->type == JSON_INTEGER || ( \
-            (x)->type == JSON_STRING && strlen((char *) (x)->value) <= 15))
-
-    if (new_line) {
-        if (json->parent && json->parent->type == JSON_ARRAY && json->next &&
-              IS_SIMPLE_TYPE(json) && IS_SIMPLE_TYPE(json->next))
-            fwrite (" ", sizeof(char), 1, fp);
-        else
-            json_next_line (fp);
-    }
-
-    #undef IS_SIMPLE_TYPE
 }
 
-void json_print (JSON_T *json, FILE *fp) {
-    json_print_real (json, fp, 1);
-}
-
-void json_write_to_file (JSON_T *json, const char *filename) {
-    FILE *fp = fopen (filename, "w");
-    BAIL_IF_BUGF (fp == NULL,
-        "json_write_to_file: Couldn't open '%s' for writing", filename);
-    json_print (json, fp);
-    fclose (fp);
-}
-
-int json_mkdir (const char *dir) {
-    const char *last_slash, *end;
-    if (dir == NULL || dir[0] == '\0')
+bool json_value_as_bool (const JSON_T *json) {
+    if (json == NULL)
         return 0;
-    last_slash = strrchr (dir, '/');
-    end = last_slash ? (last_slash + 1) : dir;
-    if (!strcmp (end, ".") || !strcmp (end, ".."))
-        return 0;
-     return mkdir (dir, 0777) == 0;
+
+    switch (json->type) {
+        case JSON_NUMBER: {
+            json_num *value = json->value;
+            return *value ? TRUE : FALSE;
+        }
+
+        case JSON_INTEGER: {
+            json_int *value = json->value;
+            return *value ? TRUE : FALSE;
+        }
+
+        case JSON_BOOLEAN: {
+            bool *value = json->value;
+            return *value;
+        }
+
+        case JSON_NULL:
+            return FALSE;
+
+        default:
+            fprintf (stderr, "json_value_as_bool(): Unhandled type '%d'.\n",
+                json->type);
+            return 0;
+    }
 }
 
-int json_mkdir_to (const char *filename) {
-    const char *pos, *next;
-    char buf[256];
-    int len = 0, made = 0;
+DICE_T json_value_as_dice (const JSON_T *json) {
+    DICE_T rval;
 
-    buf[0] = '\0';
-    pos = filename;
-    while (pos != NULL && *pos != '\0') {
-        next = strchr (pos, '/');
-        if (!next)
-            break;
-        len += snprintf (buf + len, sizeof (buf) - len, "%s%.*s",
-            (buf[0] == '\0') ? "" : "/", (int) (next - pos), pos);
-        json_mkdir (buf);
-        pos = next + 1;
+    rval.number = 0;
+    rval.size   = 0;
+    rval.bonus  = 0;
+
+    if (json == NULL)
+        return rval;
+
+    switch (json->type) {
+        case JSON_STRING:
+        case JSON_DICE: {
+            char buf[256], *num = NULL, *size = NULL, *bonus = NULL;
+            int bonus_sign = 1;
+            snprintf (buf, sizeof (buf), "%s", (const char *) json->value);
+
+            num = buf;
+            if ((size = strchr (num, 'd')) != NULL) {
+                *size = '\0';
+                size++;
+
+                if ((bonus = strchr (size, '+')) != NULL) {
+                    *bonus = '\0';
+                    bonus++;
+                }
+                else if ((bonus = strchr (size, '-')) != NULL) {
+                    *bonus = '\0';
+                    bonus++;
+                    bonus_sign = -1;
+                }
+            }
+
+            if (num)   rval.number = atoi (num);
+            if (size)  rval.size   = atoi (size);
+            if (bonus) rval.bonus  = atoi (bonus) * bonus_sign;
+
+            if (bonus_sign != 1)
+            printf ("[%8d] [%8d] (%c) [%8d]\n",
+                rval.number, rval.size, bonus_sign == 1 ? '+' : '-',
+                rval.bonus / bonus_sign);
+
+            return rval;
+        }
+
+        case JSON_NUMBER: {
+            json_num *value = json->value;
+            rval.bonus = *value;
+            return rval;
+        }
+
+        case JSON_INTEGER: {
+            json_int *value = json->value;
+            rval.bonus = *value;
+            return rval;
+        }
+
+        case JSON_NULL:
+            return rval;
+
+        default:
+            fprintf (stderr, "json_value_as_dice(): Unhandled type '%d'.\n",
+                json->type);
+            return rval;
     }
-    return made;
 }

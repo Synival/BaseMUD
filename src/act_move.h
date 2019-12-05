@@ -31,33 +31,28 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-int door_filter_find (CHAR_DATA *ch, char *argument);
-bool door_filter_is_door (CHAR_DATA *ch, EXIT_DATA *pexit,
-    OBJ_DATA *obj, flag_t *out_flags, bool *out_container, int *out_key);
-bool door_filter_can_open (CHAR_DATA *ch, EXIT_DATA *pexit,
-    OBJ_DATA *obj);
-bool door_filter_can_close (CHAR_DATA *ch, EXIT_DATA *pexit,
-    OBJ_DATA *obj);
-bool door_filter_can_lock (CHAR_DATA *ch, EXIT_DATA *pexit,
-    OBJ_DATA *obj);
-bool door_filter_can_unlock (CHAR_DATA *ch, EXIT_DATA *pexit,
-    OBJ_DATA *obj);
-bool door_filter_can_pick (CHAR_DATA *ch, EXIT_DATA *pexit,
-    OBJ_DATA *obj);
-void do_open_object (CHAR_DATA *ch, OBJ_DATA *obj);
-void do_close_object (CHAR_DATA *ch, OBJ_DATA *obj);
-void do_unlock_object (CHAR_DATA *ch, OBJ_DATA *obj);
-void do_lock_object (CHAR_DATA *ch, OBJ_DATA *obj);
-void do_pick_object (CHAR_DATA *ch, OBJ_DATA *obj);
-void do_open_door (CHAR_DATA *ch, int door);
-void do_close_door (CHAR_DATA *ch, int door);
-void do_unlock_door (CHAR_DATA *ch, int door);
-void do_lock_door (CHAR_DATA *ch, int door);
-void do_pick_door (CHAR_DATA *ch, int door);
-void do_door (CHAR_DATA *ch, char *argument, char *arg_msg,
-    void (*func_obj)  (CHAR_DATA *, OBJ_DATA *),
-    void (*func_door) (CHAR_DATA *, int));
-bool do_filter_change_position (CHAR_DATA *ch, int pos, char *same_msg);
+int door_filter_find (CHAR_T *ch, char *argument);
+bool door_filter_is_door (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj,
+    flag_t *out_flags, bool *out_container, int *out_key);
+bool door_filter_can_open   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool door_filter_can_close  (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool door_filter_can_lock   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool door_filter_can_unlock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool door_filter_can_pick   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+void do_open_object   (CHAR_T *ch, OBJ_T *obj);
+void do_close_object  (CHAR_T *ch, OBJ_T *obj);
+void do_unlock_object (CHAR_T *ch, OBJ_T *obj);
+void do_lock_object   (CHAR_T *ch, OBJ_T *obj);
+void do_pick_object   (CHAR_T *ch, OBJ_T *obj);
+void do_open_door     (CHAR_T *ch, int door);
+void do_close_door    (CHAR_T *ch, int door);
+void do_unlock_door   (CHAR_T *ch, int door);
+void do_lock_door     (CHAR_T *ch, int door);
+void do_pick_door     (CHAR_T *ch, int door);
+void do_door (CHAR_T *ch, char *argument, char *arg_msg,
+    void (*func_obj)  (CHAR_T *, OBJ_T *),
+    void (*func_door) (CHAR_T *, int));
+bool do_filter_change_position (CHAR_T *ch, int pos, char *same_msg);
 
 /* Commands. */
 DECLARE_DO_FUN (do_north);

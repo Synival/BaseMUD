@@ -37,7 +37,6 @@
 #include "recycle.h"
 #include "lookup.h"
 #include "utils.h"
-#include "comm.h"
 #include "skills.h"
 #include "groups.h"
 #include "db.h"
@@ -53,23 +52,14 @@
 #include "objs.h"
 #include "find.h"
 #include "spell_info.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "act_info.h"
 
 #define SCAN_ALL_DIRS -2
 
-static char *const scan_distance[8] = {
-    "right here.",
-    "nearby %s.",
-    "not far %s.",
-    "a bit far %s.",
-    "far %s.",
-    "very far %s.",
-    "very, very far %s.",
-    "extremely far %s.",
-};
-
-bool do_filter_blind (CHAR_DATA * ch) {
+bool do_filter_blind (CHAR_T *ch) {
     if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT))
         return FALSE;
     FILTER (IS_AFFECTED (ch, AFF_BLIND),
@@ -77,10 +67,10 @@ bool do_filter_blind (CHAR_DATA * ch) {
     return FALSE;
 }
 
-void do_scan_list (ROOM_INDEX_DATA *scan_room, CHAR_DATA *ch,
+void do_scan_list (ROOM_INDEX_T *scan_room, CHAR_T *ch,
     sh_int depth, sh_int door)
 {
-    CHAR_DATA *rch;
+    CHAR_T *rch;
 
     if (scan_room == NULL)
         return;
@@ -95,10 +85,21 @@ void do_scan_list (ROOM_INDEX_DATA *scan_room, CHAR_DATA *ch,
     }
 }
 
-void do_scan_char (CHAR_DATA * victim, CHAR_DATA * ch, sh_int depth,
+static char *const scan_distance[8] = {
+    "right here.",
+    "nearby %s.",
+    "not far %s.",
+    "a bit far %s.",
+    "far %s.",
+    "very far %s.",
+    "very, very far %s.",
+    "extremely far %s.",
+};
+
+void do_scan_char (CHAR_T *victim, CHAR_T *ch, sh_int depth,
     sh_int door)
 {
-    const DOOR_TYPE *door_obj;
+    const DOOR_T *door_obj;
     char buf[MAX_INPUT_LENGTH];
 
     door_obj = door_get (door);
@@ -107,11 +108,11 @@ void do_scan_char (CHAR_DATA * victim, CHAR_DATA * ch, sh_int depth,
     printf_to_char (ch, "%s, %s\n\r", PERS_AW (victim, ch), buf);
 }
 
-void do_scan_real (CHAR_DATA * ch, char *argument, int max_depth) {
+void do_scan_real (CHAR_T *ch, char *argument, int max_depth) {
     char arg1[MAX_INPUT_LENGTH], buf[MAX_INPUT_LENGTH];
     int min_depth, i;
-    ROOM_INDEX_DATA *scan_room;
-    EXIT_DATA *pExit;
+    ROOM_INDEX_T *scan_room;
+    EXIT_T *pExit;
     sh_int door, depth;
 
     argument = one_argument (argument, arg1);
@@ -157,7 +158,7 @@ void do_scan_real (CHAR_DATA * ch, char *argument, int max_depth) {
     }
 }
 
-void do_look_room (CHAR_DATA * ch, int is_auto) {
+void do_look_room (CHAR_T *ch, int is_auto) {
     char sect_char = room_colour_char (ch->in_room);
     printf_to_char (ch, "{%c%s{x", sect_char, ch->in_room->name);
 
@@ -176,8 +177,8 @@ void do_look_room (CHAR_DATA * ch, int is_auto) {
     char_list_show_to_char (ch->in_room->people, ch);
 }
 
-void do_look_in (CHAR_DATA *ch, char *argument) {
-    OBJ_DATA *obj;
+void do_look_in (CHAR_T *ch, char *argument) {
+    OBJ_T *obj;
 
     BAIL_IF (argument[0] == '\0',
         "Look in what?\n\r", ch);
@@ -226,8 +227,8 @@ void do_look_in (CHAR_DATA *ch, char *argument) {
     }
 }
 
-void do_look_direction (CHAR_DATA * ch, int door) {
-    EXIT_DATA *pexit;
+void do_look_direction (CHAR_T *ch, int door) {
+    EXIT_T *pexit;
 
     BAIL_IF ((pexit = ch->in_room->exit[door]) == NULL,
         "Nothing special there.\n\r", ch);
@@ -247,7 +248,7 @@ void do_look_direction (CHAR_DATA * ch, int door) {
     }
 }
 
-bool do_filter_description_remove_line (CHAR_DATA *ch) {
+bool do_filter_description_remove_line (CHAR_T *ch) {
     char buf[MAX_STRING_LENGTH];
     int len;
     bool found = FALSE;
@@ -265,7 +266,7 @@ bool do_filter_description_remove_line (CHAR_DATA *ch) {
             }
             else { /* found the second one */
                 buf[len + 1] = '\0';
-                str_free (ch->description);
+                str_free (&(ch->description));
                 ch->description = str_dup (buf);
                 send_to_char ("Your description is:\n\r", ch);
                 send_to_char (ch->description ? ch->description :
@@ -276,13 +277,13 @@ bool do_filter_description_remove_line (CHAR_DATA *ch) {
     }
 
     buf[0] = '\0';
-    str_free (ch->description);
+    str_free (&(ch->description));
     ch->description = str_dup (buf);
     send_to_char ("Description cleared.\n\r", ch);
     return FALSE;
 }
 
-bool do_filter_description_append (CHAR_DATA *ch, char *argument) {
+bool do_filter_description_append (CHAR_T *ch, char *argument) {
     char buf[MAX_STRING_LENGTH];
     buf[0] = '\0';
 
@@ -303,7 +304,7 @@ bool do_filter_description_append (CHAR_DATA *ch, char *argument) {
     return FALSE;
 }
 
-bool do_filter_description_alter (CHAR_DATA *ch, char *argument) {
+bool do_filter_description_alter (CHAR_T *ch, char *argument) {
     smash_tilde (argument);
     if (argument[0] == '-')
         return do_filter_description_remove_line (ch);
@@ -329,8 +330,8 @@ DEFINE_DO_FUN (do_look) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    OBJ_DATA *obj_list, *obj;
+    CHAR_T *victim;
+    OBJ_T *obj_list, *obj;
     char *pdesc1, *pdesc2;
     int i, door;
     int number, count;
@@ -438,7 +439,7 @@ DEFINE_DO_FUN (do_examine) {
     char *full_arg;
     char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
 
     full_arg = argument;
     DO_REQUIRE_ARG (arg, "Examine what?\n\r");
@@ -485,7 +486,7 @@ DEFINE_DO_FUN (do_examine) {
 }
 
 DEFINE_DO_FUN (do_lore) {
-    OBJ_DATA *obj;
+    OBJ_T *obj;
     int skill = get_skill (ch, gsn_lore);
 
     BAIL_IF (skill == 0,
@@ -552,7 +553,7 @@ DEFINE_DO_FUN (do_score) {
     printf_to_char (ch, "You have %d/%d hit, %d/%d mana, %d/%d movement.\n\r",
         ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move, ch->max_move);
 
-#ifndef VANILLA
+#ifdef BASEMUD_SHOW_RECOVERY_RATE
     printf_to_char (ch, "Your recovery rates are %+d hit, %+d mana, %+d movement.\n\r",
         hit_gain(ch, FALSE), mana_gain(ch, FALSE), move_gain(ch, FALSE));
 #endif
@@ -626,7 +627,7 @@ DEFINE_DO_FUN (do_score) {
 }
 
 DEFINE_DO_FUN (do_affects) {
-    AFFECT_DATA *paf, *paf_last = NULL;
+    AFFECT_T *paf, *paf_last = NULL;
 
     BAIL_IF (ch->affected == NULL,
         "You are not affected by any spells.\n\r", ch);
@@ -654,8 +655,8 @@ DEFINE_DO_FUN (do_affects) {
 }
 
 DEFINE_DO_FUN (do_time) {
-    const DAY_TYPE *day_obj;
-    const MONTH_TYPE *month_obj;
+    const DAY_T *day_obj;
+    const MONTH_T *month_obj;
     extern char str_boot_time[];
     char *suf;
     int day = time_info.day + 1;
@@ -681,7 +682,7 @@ DEFINE_DO_FUN (do_time) {
 }
 
 DEFINE_DO_FUN (do_weather) {
-    const SKY_TYPE *sky;
+    const SKY_T *sky;
     char *change;
 
     BAIL_IF (!IS_OUTSIDE (ch),
@@ -696,8 +697,8 @@ DEFINE_DO_FUN (do_weather) {
 }
 
 DEFINE_DO_FUN (do_help) {
-    HELP_DATA *pHelp;
-    BUFFER *output;
+    HELP_T *pHelp;
+    BUFFER_T *output;
     bool found = FALSE;
     char argall[MAX_INPUT_LENGTH], argone[MAX_INPUT_LENGTH];
     int level;
@@ -767,16 +768,16 @@ DEFINE_DO_FUN (do_help) {
 /* whois command */
 DEFINE_DO_FUN (do_whois) {
     char arg[MAX_INPUT_LENGTH];
-    BUFFER *output;
+    BUFFER_T *output;
     char buf[MAX_STRING_LENGTH];
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
     bool found = FALSE;
 
     DO_REQUIRE_ARG (arg, "You must provide a name.\n\r");
 
     output = buf_new ();
     for (d = descriptor_list; d != NULL; d = d->next) {
-        CHAR_DATA *wch = CH(d);
+        CHAR_T *wch = CH(d);
         if (d->connected != CON_PLAYING)
             continue;
         if (!char_can_see_anywhere (ch, d->character))
@@ -802,8 +803,8 @@ DEFINE_DO_FUN (do_whois) {
 DEFINE_DO_FUN (do_who) {
     char buf[MAX_STRING_LENGTH];
     char buf2[MAX_STRING_LENGTH];
-    BUFFER *output;
-    DESCRIPTOR_DATA *d;
+    BUFFER_T *output;
+    DESCRIPTOR_T *d;
     int iClass, iRace, iClan, iLevelLower, iLevelUpper;
     int nNumber, nMatch;
     bool rgfClass[CLASS_MAX];
@@ -891,7 +892,7 @@ DEFINE_DO_FUN (do_who) {
     buf[0] = '\0';
     output = buf_new ();
     for (d = descriptor_list; d != NULL; d = d->next) {
-        CHAR_DATA *wch = CH(d);
+        CHAR_T *wch = CH(d);
 
         /* Check for match against restrictions.
          * Don't use trust as that exposes trusted mortals.  */
@@ -925,7 +926,7 @@ DEFINE_DO_FUN (do_who) {
 static int max_on = 0;
 DEFINE_DO_FUN (do_count) {
     int count;
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
 
     count = 0;
     for (d = descriptor_list; d != NULL; d = d->next)
@@ -951,8 +952,8 @@ DEFINE_DO_FUN (do_inventory) {
 }
 
 DEFINE_DO_FUN (do_equipment) {
-    const WEAR_LOC_TYPE *wear;
-    OBJ_DATA *obj;
+    const WEAR_LOC_T *wear;
+    OBJ_T *obj;
     int iWear;
     bool found;
 
@@ -981,8 +982,8 @@ DEFINE_DO_FUN (do_equipment) {
 DEFINE_DO_FUN (do_compare) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj1;
-    OBJ_DATA *obj2;
+    OBJ_T *obj1;
+    OBJ_T *obj2;
     int value1;
     int value2;
     char *msg;
@@ -1061,8 +1062,8 @@ DEFINE_DO_FUN (do_compare) {
 
 DEFINE_DO_FUN (do_where) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    DESCRIPTOR_DATA *d;
+    CHAR_T *victim;
+    DESCRIPTOR_T *d;
     bool found;
 
     one_argument (argument, arg);
@@ -1172,15 +1173,15 @@ DEFINE_DO_FUN (do_commands) {
 
 DEFINE_DO_FUN (do_areas) {
     char buf[MAX_STRING_LENGTH];
-    AREA_DATA *pArea1;
-    AREA_DATA *pArea2;
+    AREA_T *pArea1;
+    AREA_T *pArea2;
     int iArea;
     int iAreaHalf;
 
     BAIL_IF (argument[0] != '\0',
         "No argument is used with this command.\n\r", ch);
 
-    iAreaHalf = (TOP(RECYCLE_AREA_DATA) + 1) / 2;
+    iAreaHalf = (TOP(RECYCLE_AREA_T) + 1) / 2;
     pArea1 = area_first;
     pArea2 = area_first;
     for (iArea = 0; iArea < iAreaHalf; iArea++)

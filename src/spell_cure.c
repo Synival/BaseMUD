@@ -37,7 +37,7 @@
 #include "spell_cure.h"
 
 DEFINE_SPELL_FUN (spell_cure_blindness) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
 
     if (isnt_affected_with_act (victim, gsn_blindness, 0, ch,
             "You aren't blind.",
@@ -52,7 +52,7 @@ DEFINE_SPELL_FUN (spell_cure_blindness) {
 }
 
 DEFINE_SPELL_FUN (spell_cure_critical) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int heal;
 
     heal = dice (3, 8) + level - 6;
@@ -65,7 +65,7 @@ DEFINE_SPELL_FUN (spell_cure_critical) {
 
 /* RT added to cure plague */
 DEFINE_SPELL_FUN (spell_cure_disease) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
 
     if (isnt_affected_with_act (victim, gsn_plague, 0, ch,
             "You aren't ill.",
@@ -81,7 +81,7 @@ DEFINE_SPELL_FUN (spell_cure_disease) {
 }
 
 DEFINE_SPELL_FUN (spell_cure_light) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int heal;
 
     heal = dice (1, 8) + level / 3;
@@ -93,7 +93,7 @@ DEFINE_SPELL_FUN (spell_cure_light) {
 }
 
 DEFINE_SPELL_FUN (spell_cure_poison) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
 
     if (isnt_affected_with_act (victim, gsn_poison, 0, ch,
             "You aren't poisoned.",
@@ -108,7 +108,7 @@ DEFINE_SPELL_FUN (spell_cure_poison) {
 }
 
 DEFINE_SPELL_FUN (spell_cure_serious) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     int heal;
 
     heal = dice (2, 8) + level / 2;
@@ -120,7 +120,7 @@ DEFINE_SPELL_FUN (spell_cure_serious) {
 }
 
 DEFINE_SPELL_FUN (spell_heal) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     victim->hit = UMIN (victim->hit + 100, victim->max_hit);
     update_pos (victim);
 
@@ -130,7 +130,7 @@ DEFINE_SPELL_FUN (spell_heal) {
 }
 
 DEFINE_SPELL_FUN (spell_mass_healing) {
-    CHAR_DATA *gch;
+    CHAR_T *gch;
     int heal_num, refresh_num;
 
     heal_num    = skill_lookup ("heal");
@@ -138,14 +138,16 @@ DEFINE_SPELL_FUN (spell_mass_healing) {
 
     for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room) {
         if ((IS_NPC (ch) && IS_NPC (gch)) || (!IS_NPC (ch) && !IS_NPC (gch))) {
-            spell_heal (heal_num, level, ch, (void *) gch, TARGET_CHAR);
-            spell_refresh (refresh_num, level, ch, (void *) gch, TARGET_CHAR);
+            spell_heal (heal_num, level, ch, (void *) gch, TARGET_CHAR,
+                target_name);
+            spell_refresh (refresh_num, level, ch, (void *) gch, TARGET_CHAR,
+                target_name);
         }
     }
 }
 
 DEFINE_SPELL_FUN (spell_refresh) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     victim->move = UMIN (victim->move + level, victim->max_move);
     if (victim->max_move == victim->move) {
         send_to_char ("You feel fully refreshed!\n\r", victim);
@@ -158,7 +160,7 @@ DEFINE_SPELL_FUN (spell_refresh) {
 }
 
 DEFINE_SPELL_FUN (spell_remove_curse_object) {
-    OBJ_DATA *obj = (OBJ_DATA *) vo;
+    OBJ_T *obj = (OBJ_T *) vo;
 
     if (IS_OBJ_STAT (obj, ITEM_NODROP)
         || IS_OBJ_STAT (obj, ITEM_NOREMOVE))
@@ -179,8 +181,8 @@ DEFINE_SPELL_FUN (spell_remove_curse_object) {
 }
 
 DEFINE_SPELL_FUN (spell_remove_curse_char) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    OBJ_DATA *obj;
+    CHAR_T *victim = (CHAR_T *) vo;
+    OBJ_T *obj;
     bool found = FALSE;
 
     if (check_dispel (level, victim, gsn_curse)) {
@@ -213,7 +215,7 @@ DEFINE_SPELL_FUN (spell_remove_curse_char) {
 
 DEFINE_SPELL_FUN (spell_remove_curse) {
     if (target == TARGET_OBJ)
-        spell_remove_curse_object (sn, level, ch, vo, target);
+        spell_remove_curse_object (sn, level, ch, vo, target, target_name);
     else
-        spell_remove_curse_char (sn, level, ch, vo, target);
+        spell_remove_curse_char (sn, level, ch, vo, target, target_name);
 }

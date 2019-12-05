@@ -31,10 +31,10 @@
 #include "merc.h"
 
 /* Filters and sub-routines. */
-void spell_perform_curse_char (int sn, int level, CHAR_DATA *ch,
-    CHAR_DATA *victim, bool quiet);
-void spell_perform_blindness (int sn, int level, CHAR_DATA *ch,
-    CHAR_DATA *victim, bool quet);
+void spell_perform_curse_char (int sn, int level, CHAR_T *ch,
+    CHAR_T *victim, bool quiet);
+void spell_perform_blindness (int sn, int level, CHAR_T *ch,
+    CHAR_T *victim, bool quet);
 
 /* Spells. */
 DECLARE_SPELL_FUN (spell_armor);

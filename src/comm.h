@@ -216,67 +216,38 @@ extern const char go_ahead_str[];
     int write args ((int fd, char *buf, int nbyte));
 #endif
 
-/* Global variables. */
-extern DESCRIPTOR_DATA *descriptor_list; /* All open descriptors     */
-extern DESCRIPTOR_DATA *d_next;          /* Next descriptor in loop  */
-extern FILE *fpReserve;                  /* Reserved file handle     */
-extern bool god;                         /* All new chars are gods!  */
-extern bool merc_down;                   /* Shutdown         */
-extern bool wizlock;                     /* Game is wizlocked        */
-extern bool newlock;                     /* Game is newlocked        */
-extern char str_boot_time[MAX_INPUT_LENGTH];
-extern time_t current_time;              /* time of this pulse */
-extern bool MOBtrigger;                  /* act() switch */
-
-/* Needs to be global because of do_copyover */
-extern int port, control;
-
-/* Put global mud config values here. Look at qmconfig command for clues.     */
-/*   -- JR 09/23/2000                                                         */
-/* Set values for all but IP address in ../area/qmconfig.rc file.             */
-/*   -- JR 05/10/2001                                                         */
-extern int mud_ansiprompt, mud_ansicolor, mud_telnetga;
-
-/* Set this to the IP address you want to listen on (127.0.0.1 is good for    */
-/* paranoid types who don't want the 'net at large peeking at their MUD)      */
-extern char *mud_ipaddress;
-
 /* Function prototypes. */
-void bust_a_prompt (CHAR_DATA *ch);
-void send_to_char_bw (const char *txt, CHAR_DATA *ch);
-void page_to_char_bw (const char *txt, CHAR_DATA *ch);
-void send_to_char (const char *txt, CHAR_DATA * ch);
-void page_to_char (const char *txt, CHAR_DATA * ch);
-void act2 (const char *to_char, const char *to_room, CHAR_DATA *ch,
-           const void *arg1, const void *arg2, flag_t flags, int min_pos);
+void bust_a_prompt (CHAR_T *ch);
+void send_to_char_bw (const char *txt, CHAR_T *ch);
+void page_to_char_bw (const char *txt, CHAR_T *ch);
+void send_to_char (const char *txt, CHAR_T *ch);
+void page_to_char (const char *txt, CHAR_T *ch);
+void act2 (const char *to_char, const char *to_room, CHAR_T *ch,
+    const void *arg1, const void *arg2, flag_t flags, int min_pos);
 void act3 (const char *to_char, const char *to_vict, const char *to_room,
-           CHAR_DATA *ch, const void *arg1, const void *arg2, flag_t flags,
-           int min_pos);
-bool act_is_valid_recipient (CHAR_DATA *to, flag_t flags,
-    CHAR_DATA *ch, CHAR_DATA *vch);
-char *act_code (char code, CHAR_DATA *ch, CHAR_DATA *vch, CHAR_DATA *to,
-    OBJ_DATA *obj1, OBJ_DATA *obj2, const void *arg1, const void *arg2,
-    char *out_buf, size_t size);
-void act_new (const char *format, CHAR_DATA * ch, const void *arg1,
-              const void *arg2, flag_t flags, int min_pos);
-void printf_to_char (CHAR_DATA * ch, const char *fmt, ...);
-void wiznet (const char *string, CHAR_DATA * ch, OBJ_DATA * obj,
-             flag_t flag, flag_t flag_skip, int min_level);
-void wiznetf (CHAR_DATA * ch, OBJ_DATA * obj, flag_t flag, flag_t flag_skip,
+    CHAR_T *ch, const void *arg1, const void *arg2, flag_t flags, int min_pos);
+bool act_is_valid_recipient (CHAR_T *to, flag_t flags, CHAR_T *ch, CHAR_T *vch);
+char *act_code (char code, CHAR_T *ch, CHAR_T *vch, CHAR_T *to, OBJ_T *obj1,
+    OBJ_T *obj2, const void *arg1, const void *arg2, char *out_buf,
+    size_t size);
+void act_new (const char *format, CHAR_T *ch, const void *arg1,
+    const void *arg2, flag_t flags, int min_pos);
+void printf_to_char (CHAR_T *ch, const char *fmt, ...);
+void wiznet (const char *string, CHAR_T *ch, OBJ_T *obj, flag_t flag,
+    flag_t flag_skip, int min_level);
+void wiznetf (CHAR_T *ch, OBJ_T *obj, flag_t flag, flag_t flag_skip,
     int min_level, const char *fmt, ...);
-bool position_change_send_message (CHAR_DATA * ch, int from, int to,
-    OBJ_DATA *obj);
-bool position_change_send_message_to_standing (CHAR_DATA * ch, int from,
-    OBJ_DATA *obj);
-bool position_change_send_message_to_fighting (CHAR_DATA * ch, int from,
-    OBJ_DATA *obj);
-bool position_change_send_message_to_resting (CHAR_DATA * ch, int from,
-    OBJ_DATA *obj);
-bool position_change_send_message_to_sitting (CHAR_DATA * ch, int from,
-    OBJ_DATA *obj);
-bool position_change_send_message_to_sleeping (CHAR_DATA * ch, int from,
-    OBJ_DATA *obj);
-void echo_to_char (CHAR_DATA *to, CHAR_DATA *from, const char *type,
-    const char *msg);
+bool position_change_send_message (CHAR_T *ch, int from, int to, OBJ_T *obj);
+bool position_change_send_message_to_standing (CHAR_T *ch, int from,
+    OBJ_T *obj);
+bool position_change_send_message_to_fighting (CHAR_T *ch, int from,
+    OBJ_T *obj);
+bool position_change_send_message_to_resting (CHAR_T *ch, int from,
+    OBJ_T *obj);
+bool position_change_send_message_to_sitting (CHAR_T *ch, int from,
+    OBJ_T *obj);
+bool position_change_send_message_to_sleeping (CHAR_T *ch, int from,
+    OBJ_T *obj);
+void echo_to_char (CHAR_T *to, CHAR_T *from, const char *type, const char *msg);
 
 #endif

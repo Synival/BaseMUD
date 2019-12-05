@@ -42,6 +42,8 @@
 #include "rooms.h"
 #include "find.h"
 #include "affects.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "wiz_im.h"
 
@@ -136,19 +138,19 @@ DEFINE_DO_FUN (do_invis) {
 }
 
 DEFINE_DO_FUN (do_memory) {
-    char *buf = memory_dump ("\n\r");
+    char *buf = mem_dump ("\n\r");
     send_to_char (buf, ch);
 }
 
 DEFINE_DO_FUN (do_mwhere) {
     char buf[MAX_STRING_LENGTH];
-    BUFFER *buffer;
-    CHAR_DATA *victim;
+    BUFFER_T *buffer;
+    CHAR_T *victim;
     bool found;
     int count = 0;
 
     if (argument[0] == '\0') {
-        DESCRIPTOR_DATA *d;
+        DESCRIPTOR_T *d;
 
         /* show characters logged */
         buffer = buf_new ();
@@ -208,9 +210,9 @@ DEFINE_DO_FUN (do_mwhere) {
 
 DEFINE_DO_FUN (do_owhere) {
     char buf[MAX_INPUT_LENGTH];
-    BUFFER *buffer;
-    OBJ_DATA *obj;
-    OBJ_DATA *in_obj;
+    BUFFER_T *buffer;
+    OBJ_T *obj;
+    OBJ_T *in_obj;
     bool found;
     int number = 0, max_found;
 
@@ -267,9 +269,9 @@ DEFINE_DO_FUN (do_owhere) {
 DEFINE_DO_FUN (do_stat) {
     char arg[MAX_INPUT_LENGTH];
     char *string;
-    OBJ_DATA *obj;
-    ROOM_INDEX_DATA *location;
-    CHAR_DATA *victim;
+    OBJ_T *obj;
+    ROOM_INDEX_T *location;
+    CHAR_T *victim;
 
     string = one_argument (argument, arg);
     if (arg[0] == '\0') {
@@ -306,9 +308,9 @@ DEFINE_DO_FUN (do_stat) {
 
 DEFINE_DO_FUN (do_rstat) {
     char buf[MAX_STRING_LENGTH];
-    ROOM_INDEX_DATA *location;
-    OBJ_DATA *obj;
-    CHAR_DATA *rch;
+    ROOM_INDEX_T *location;
+    OBJ_T *obj;
+    CHAR_T *rch;
     int door;
 
     location = (argument[0] == '\0')
@@ -332,7 +334,7 @@ DEFINE_DO_FUN (do_rstat) {
         location->room_flags, location->description);
 
     if (location->extra_descr != NULL) {
-        EXTRA_DESCR_DATA *ed;
+        EXTRA_DESCR_T *ed;
 
         send_to_char ("Extra description keywords: '", ch);
         for (ed = location->extra_descr; ed; ed = ed->next) {
@@ -360,7 +362,7 @@ DEFINE_DO_FUN (do_rstat) {
     send_to_char (".\n\r", ch);
 
     for (door = 0; door <= 5; door++) {
-        EXIT_DATA *pexit;
+        EXIT_T *pexit;
         if ((pexit = location->exit[door]) == NULL)
             continue;
 
@@ -376,8 +378,8 @@ DEFINE_DO_FUN (do_rstat) {
 }
 
 DEFINE_DO_FUN (do_ostat) {
-    AFFECT_DATA *paf;
-    OBJ_DATA *obj;
+    AFFECT_T *paf;
+    OBJ_T *obj;
 
     BAIL_IF (argument[0] == '\0',
         "Stat what?\n\r", ch);
@@ -444,7 +446,7 @@ DEFINE_DO_FUN (do_ostat) {
             break;
 
         case ITEM_DRINK_CON: {
-            const LIQ_TYPE *liq = &(liq_table[obj->v.drink_con.liquid]);
+            const LIQ_T *liq = &(liq_table[obj->v.drink_con.liquid]);
             printf_to_char (ch, "It holds %s-colored %s.\n\r",
                 liq->color, liq->name);
             break;
@@ -497,7 +499,7 @@ DEFINE_DO_FUN (do_ostat) {
     }
 
     if (obj->extra_descr != NULL || obj->pIndexData->extra_descr != NULL) {
-        EXTRA_DESCR_DATA *ed;
+        EXTRA_DESCR_T *ed;
 
         send_to_char ("Extra description keywords: '", ch);
         for (ed = obj->extra_descr; ed != NULL; ed = ed->next) {
@@ -537,8 +539,8 @@ DEFINE_DO_FUN (do_ostat) {
 }
 
 DEFINE_DO_FUN (do_mstat) {
-    AFFECT_DATA *paf;
-    CHAR_DATA *victim;
+    AFFECT_T *paf;
+    CHAR_T *victim;
 
     BAIL_IF (argument[0] == '\0',
         "Stat whom?\n\r", ch);
@@ -591,7 +593,7 @@ DEFINE_DO_FUN (do_mstat) {
 
     if (IS_NPC (victim) && victim->pIndexData->new_format) {
         printf_to_char (ch, "Damage: %dd%d  Message:  %s\n\r",
-            victim->damage[DICE_NUMBER], victim->damage[DICE_TYPE],
+            victim->damage.number, victim->damage.size,
             attack_table[victim->dam_type].noun);
     }
 
@@ -672,7 +674,7 @@ DEFINE_DO_FUN (do_mstat) {
 }
 
 DEFINE_DO_FUN (do_wiznet) {
-    const WIZNET_TYPE *flag;
+    const WIZNET_T *flag;
     char buf[MAX_STRING_LENGTH];
     int i;
 
@@ -749,7 +751,7 @@ DEFINE_DO_FUN (do_wiznet) {
 }
 
 DEFINE_DO_FUN (do_immtalk) {
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
 
     if (do_comm_toggle_channel_if_blank (ch, argument, COMM_NOWIZ,
             "{iImmortal channel is now ON{k\n\r",
@@ -759,7 +761,7 @@ DEFINE_DO_FUN (do_immtalk) {
 
     act_new ("{i[{I$n{i]: $t{x", ch, argument, NULL, TO_CHAR, POS_DEAD);
     for (d = descriptor_list; d != NULL; d = d->next) {
-        CHAR_DATA *victim = CH(d);
+        CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
         if (IS_SET (victim->comm, COMM_NOWIZ))
@@ -775,7 +777,7 @@ DEFINE_DO_FUN (do_imotd)
     { do_function (ch, &do_help, "imotd"); }
 
 DEFINE_DO_FUN (do_smote) {
-    CHAR_DATA *vch;
+    CHAR_T *vch;
     char *letter, *name;
     char last[MAX_INPUT_LENGTH], temp[MAX_STRING_LENGTH];
     int matches = 0;
@@ -867,7 +869,7 @@ DEFINE_DO_FUN (do_prefix) {
  * Syntax: mpdump [vnum] */
 DEFINE_DO_FUN (do_mpdump) {
     char buf[MAX_INPUT_LENGTH];
-    MPROG_CODE *mprg;
+    MPROG_CODE_T *mprg;
 
     one_argument (argument, buf);
     BAIL_IF ((mprg = get_mprog_index (atoi (buf))) == NULL,
@@ -878,8 +880,8 @@ DEFINE_DO_FUN (do_mpdump) {
 /* Displays MOBprogram triggers of a mobile
  * Syntax: mpstat [name] */
 DEFINE_DO_FUN (do_mpstat) {
-    MPROG_LIST *mprg;
-    CHAR_DATA *victim;
+    MPROG_LIST_T *mprg;
+    CHAR_T *victim;
     int i;
 
     BAIL_IF (argument[0] == '\0',

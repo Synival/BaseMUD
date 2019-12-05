@@ -1,0 +1,832 @@
+[
+  {"object": {
+    "area": "moria",
+    "anum": 100,
+    "name": "ring yellow green",
+    "short_descr": "a yellow and green ring",
+    "description": "A ring, with yellow and green ornamentation. It looks very old.",
+    "material": "copper",
+    "item_type": "treasure",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 75,
+    "wear_flags": "take finger",
+    "extra_description": [{
+      "keyword": "ring",
+      "description": "It feels heavy.\n"
+    }],
+    "affects": [{
+      "apply": "strength",
+      "level": 0,
+      "modifier": -2,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 101,
+    "name": "corpse",
+    "short_descr": "a corpse",
+    "description": "A halfway decayed corpse of a cartographer.",
+    "material": "flesh",
+    "item_type": "npc_corpse",
+    "values": {},
+    "level": 0,
+    "weight": 1000,
+    "cost": 0,
+    "condition": 100,
+    "extra_flags": "rotdeath",
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "corpse",
+      "description": "Ew.  This must have been the mapper that was lost in Moria.  His rotted hand\nstill clutches a partially digested map...\n"
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 102,
+    "name": "coins",
+    "short_descr": "some coins",
+    "description": "A small pile of coins.",
+    "material": "silver",
+    "item_type": "money",
+    "values": {
+      "silver": 200,
+      "gold": 3
+    },
+    "level": 0,
+    "weight": 5000,
+    "cost": 0,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 103,
+    "name": "dagger rusty",
+    "short_descr": "a rusty dagger",
+    "description": "A worn and rusty dagger is here.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 1,
+      "dice_size": 5,
+      "attack_type": "stab"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 165,
+    "condition": 50,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "dagger",
+      "description": "It's old and rusted, but it still has a good edge.\n"
+    }],
+    "affects": [{
+      "apply": "hit roll",
+      "level": 0,
+      "modifier": -1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 104,
+    "name": "bullwhip whip",
+    "short_descr": "a bullwhip",
+    "description": "A coiled length of leather is here...looks like a nasty whip!",
+    "material": "leather",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "whip",
+      "dice_num": 1,
+      "dice_size": 7,
+      "attack_type": "whip"
+    },
+    "level": 3,
+    "weight": 30,
+    "cost": 240,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "affects": [{
+      "apply": "hit roll",
+      "level": 3,
+      "modifier": 1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 105,
+    "name": "club tree huge",
+    "short_descr": "a huge club",
+    "description": "An uprooted tree leans against the wall.",
+    "material": "wood",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 9,
+      "attack_type": "crush",
+      "flags": "twohands"
+    },
+    "level": 14,
+    "weight": 250,
+    "cost": 780,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "club tree",
+      "description": "This is the biggest club you have ever seen!  The giant didn't even bother to\ntrim the roots off the end.\n"
+    }],
+    "affects": [{
+      "apply": "hit roll",
+      "level": 14,
+      "modifier": -2,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 106,
+    "name": "furs smelly",
+    "short_descr": "some smelly furs",
+    "description": "A heap of smelly furs sit here.",
+    "material": "fur",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 6,
+      "vs_slash": 5,
+      "vs_magic": 1,
+      "value4": 3
+    },
+    "level": 8,
+    "weight": 100,
+    "cost": 510,
+    "condition": 75,
+    "wear_flags": "take about",
+    "extra_description": [{
+      "keyword": "furs",
+      "description": "They're heavy and smelly and would probably slow you down...but they do look\nlike good armor.\n"
+    }],
+    "affects": [{
+      "apply": "dexterity",
+      "level": 8,
+      "modifier": -1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 150,
+    "name": "potion purple",
+    "short_descr": "a purple potion",
+    "description": "A purple potion is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 13,
+      "skill1": "cure blindness",
+      "skill2": "sanctuary"
+    },
+    "level": 11,
+    "weight": 10,
+    "cost": 720,
+    "condition": 90,
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "potion purple",
+      "description": "It looks rather strange!\n"
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 151,
+    "name": "helmet metal",
+    "short_descr": "a metal helmet",
+    "description": "A metal helmet is here.",
+    "material": "iron",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 3,
+      "vs_magic": 2,
+      "value4": 1
+    },
+    "level": 5,
+    "weight": 40,
+    "cost": 650,
+    "condition": 90,
+    "extra_flags": "magic",
+    "wear_flags": "take head",
+    "affects": [{
+      "apply": "saves",
+      "level": 5,
+      "modifier": -1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 152,
+    "name": "mushroom",
+    "short_descr": "a mushroom",
+    "description": "A small mushroom is here.",
+    "material": "food",
+    "item_type": "food",
+    "values": {
+      "hunger": 2,
+      "fullness": 2,
+      "poisoned": true
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 90,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "mushroom",
+      "description": "Let's put it this way - I wouldn't eat it !\n"
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 153,
+    "name": "dirk",
+    "short_descr": "a thieves dirk",
+    "description": "A beautifully crafted dirk is lying here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 2,
+      "dice_size": 5,
+      "attack_type": "stab"
+    },
+    "level": 8,
+    "weight": 20,
+    "cost": 590,
+    "condition": 90,
+    "extra_flags": "magic",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "dirk",
+      "description": "It's a medium sized, beautifully crafted dirk made from grey alloy.\nIts blade is double-edged and very thin ... this looks like a good\nthieves weapon.\n"
+    }],
+    "affects": [
+      {
+        "apply": "damage roll",
+        "level": 8,
+        "modifier": 1,
+        "bit_type": "object",
+        "bits": null
+      },
+      {
+        "apply": "hit roll",
+        "level": 8,
+        "modifier": 1,
+        "bit_type": "object",
+        "bits": null
+      }
+    ]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 154,
+    "name": "axe war",
+    "short_descr": "a war axe",
+    "description": "A razor-sharp war axe rests on the ground.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "axe",
+      "dice_num": 3,
+      "dice_size": 4,
+      "attack_type": "chop"
+    },
+    "level": 12,
+    "weight": 70,
+    "cost": 930,
+    "condition": 100,
+    "extra_flags": "magic",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "axe",
+      "description": "It has an edge sharp enough to cut a passing thought. A good find, this.\n"
+    }],
+    "affects": [{
+      "apply": "damage roll",
+      "level": 12,
+      "modifier": 1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 155,
+    "name": "sword broad",
+    "short_descr": "a broad sword",
+    "description": "A well-polished broadsword sits here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 1,
+      "dice_size": 10,
+      "attack_type": "chop"
+    },
+    "level": 6,
+    "weight": 80,
+    "cost": 550,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "sword",
+      "description": "It's much heavier than a long sword, but not as well balanced.\n"
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 156,
+    "name": "flail two two-headed",
+    "short_descr": "a two-headed flail",
+    "description": "A flail with two heavy, spiked heads is here.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "flail",
+      "dice_num": 1,
+      "dice_size": 7,
+      "attack_type": "smash"
+    },
+    "level": 3,
+    "weight": 70,
+    "cost": 290,
+    "condition": 75,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "flail",
+      "description": "It's a stout wooden rod with two spiked balls attached, each weighing over 2\npounds.  It's a little worn for wear, but looks most painful.\n"
+    }],
+    "affects": [
+      {
+        "apply": "armor class",
+        "level": 3,
+        "modifier": 1,
+        "bit_type": "object",
+        "bits": null
+      },
+      {
+        "apply": "damage roll",
+        "level": 3,
+        "modifier": 2,
+        "bit_type": "object",
+        "bits": null
+      }
+    ]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 157,
+    "name": "mace heavy",
+    "short_descr": "a heavy iron mace",
+    "description": "A large iron mace with a wicked head rests on the ground.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 4,
+      "attack_type": "pound"
+    },
+    "level": 6,
+    "weight": 100,
+    "cost": 390,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "mace",
+      "description": "A metal shaft mounted with an iron head, shaped into armor-shattering form.\n"
+    }],
+    "affects": [{
+      "apply": "damage roll",
+      "level": 6,
+      "modifier": 1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 158,
+    "name": "falchion sword",
+    "short_descr": "a falchion",
+    "description": "A curved sword with a heavy tip sits here.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 2,
+      "dice_size": 4,
+      "attack_type": "chop"
+    },
+    "level": 5,
+    "weight": 80,
+    "cost": 490,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "falchion",
+      "description": "It's curved like a scimitar, only with no recurved blade and a tip designed\nfor piercing as well as slashing.\n"
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 159,
+    "name": "voulge polearm",
+    "short_descr": "a voulge",
+    "description": "A long polearm with a curved blade is here.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "polearm",
+      "dice_num": 2,
+      "dice_size": 6,
+      "attack_type": "slash",
+      "flags": "twohands"
+    },
+    "level": 10,
+    "weight": 120,
+    "cost": 520,
+    "condition": 75,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "voulge",
+      "description": "It looks a lot like a staff with a pruning knife tied to the end, but it's\nquite effective.\n"
+    }],
+    "affects": [{
+      "apply": "armor class",
+      "level": 10,
+      "modifier": -1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 200,
+    "name": "blade black demon",
+    "short_descr": "the black demon blade",
+    "description": "An evil black demon blade is here.",
+    "material": "adamantite",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 3,
+      "dice_size": 4,
+      "attack_type": "cleave",
+      "flags": "vampiric twohands"
+    },
+    "level": 11,
+    "weight": 80,
+    "cost": 940,
+    "condition": 100,
+    "extra_flags": "magic antigood antineutral",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "blade",
+      "description": "You'll become as evil as the weapon, if you use it!\n"
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 201,
+    "name": "gloves",
+    "short_descr": "swordsman's gloves",
+    "description": "Some gloves are here.  They look like the right equipment for fighting.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 3,
+      "vs_slash": 3,
+      "vs_magic": 1,
+      "value4": 1
+    },
+    "level": 7,
+    "weight": 10,
+    "cost": 730,
+    "condition": 90,
+    "extra_flags": "magic",
+    "wear_flags": "take hands",
+    "affects": [
+      {
+        "apply": "damage roll",
+        "level": 7,
+        "modifier": 1,
+        "bit_type": "object",
+        "bits": null
+      },
+      {
+        "apply": "hit roll",
+        "level": 7,
+        "modifier": 1,
+        "bit_type": "object",
+        "bits": null
+      }
+    ]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 202,
+    "name": "scroll ysafg",
+    "short_descr": "a scroll which reads \"ysafg\"",
+    "description": "A scroll which reads \"ysafg\", it looks very fragile and quite old.",
+    "material": "parchment",
+    "item_type": "scroll",
+    "values": {
+      "level": 10,
+      "skill1": "identify"
+    },
+    "level": 7,
+    "weight": 10,
+    "cost": 840,
+    "condition": 50,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "scroll",
+      "description": "It looks informative.\n"
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 203,
+    "name": "slime mold",
+    "short_descr": "a green slime mold",
+    "description": "A green slime mold is here. It smells REAL bad.",
+    "material": "food",
+    "item_type": "food",
+    "values": {
+      "hunger": 24,
+      "fullness": 24
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 90,
+    "extra_flags": "rotdeath",
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "slime mold",
+      "description": "It wasn't meant to be food, - Certainly not for humans.\n"
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 204,
+    "name": "slime mold",
+    "short_descr": "a green slime mold",
+    "description": "A green slime mold is here. It smells REAL bad.",
+    "material": "food",
+    "item_type": "food",
+    "values": {
+      "hunger": 24,
+      "fullness": 24,
+      "poisoned": true
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 90,
+    "extra_flags": "rotdeath",
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "slime mold",
+      "description": "It wasn't meant to be food, - Certainly not for humans.\n"
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 205,
+    "name": "staff iron iron-shod",
+    "short_descr": "an iron-shod staff",
+    "description": "A long staff capped with iron leans against a wall.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "staff",
+      "dice_num": 2,
+      "dice_size": 5,
+      "attack_type": "pound",
+      "flags": "twohands"
+    },
+    "level": 10,
+    "weight": 60,
+    "cost": 630,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "staff",
+      "description": "It's a superb weapon for warrior or mage.\n"
+    }],
+    "affects": [{
+      "apply": "armor class",
+      "level": 10,
+      "modifier": -2,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 250,
+    "name": "black potion",
+    "short_descr": "a black potion",
+    "description": "A thick black potion is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 9,
+      "skill1": "cure critical"
+    },
+    "level": 5,
+    "weight": 10,
+    "cost": 320,
+    "condition": 90,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "potion black",
+      "description": "It looks healthy.\n"
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 251,
+    "name": "staff oak",
+    "short_descr": "a heavy oak staff",
+    "description": "A ancient heavy oak staff is here.",
+    "material": "wood",
+    "item_type": "staff",
+    "values": {
+      "level": 15,
+      "recharge": 4,
+      "charges": 2,
+      "skill": "harm"
+    },
+    "level": 13,
+    "weight": 50,
+    "cost": 5400,
+    "condition": 90,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [
+      {
+        "keyword": "runes",
+        "description": "The runes says : Funthark.\n"
+      },
+      {
+        "keyword": "staff oak",
+        "description": "You see it has some sort of runes on it.\n"
+      }
+    ],
+    "affects": [{
+      "apply": "mana",
+      "level": 13,
+      "modifier": -20,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 252,
+    "name": "dagger light silver",
+    "short_descr": "a light silver dagger",
+    "description": "A light silver dagger is here.",
+    "material": "silver",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 2,
+      "dice_size": 4,
+      "attack_type": "stab"
+    },
+    "level": 7,
+    "weight": 20,
+    "cost": 660,
+    "condition": 100,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "dagger light silver",
+      "description": "It looks like an excellent weapon for thieves.\n"
+    }],
+    "affects": [
+      {
+        "apply": "armor class",
+        "level": 7,
+        "modifier": -1,
+        "bit_type": "object",
+        "bits": null
+      },
+      {
+        "apply": "hit roll",
+        "level": 7,
+        "modifier": 1,
+        "bit_type": "object",
+        "bits": null
+      }
+    ]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 253,
+    "name": "star morning morningstar",
+    "short_descr": "a morning star",
+    "description": "A heavy, spiked morning star is here.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 6,
+      "attack_type": "smash"
+    },
+    "level": 9,
+    "weight": 120,
+    "cost": 270,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "star morning",
+      "description": "It's a huge length of wood studded with iron spikes and bands. You wouldn't\nwant to meet this in a dark alley...\n"
+    }],
+    "affects": [
+      {
+        "apply": "dexterity",
+        "level": 9,
+        "modifier": -1,
+        "bit_type": "object",
+        "bits": null
+      },
+      {
+        "apply": "damage roll",
+        "level": 9,
+        "modifier": 1,
+        "bit_type": "object",
+        "bits": null
+      }
+    ]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 254,
+    "name": "map moria second",
+    "short_descr": "a map of the second level of Moria",
+    "description": "A rolled up map is here.",
+    "material": "paper",
+    "item_type": "map",
+    "values": {"persist": true},
+    "level": 0,
+    "weight": 10,
+    "cost": 100,
+    "condition": 50,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "map moria second",
+      "description": ".\n    * * * MORIA - Map 2 * * *\n     = = =============== = =\n\nMaze--Maze\n |     |    (Map 1)\n |    Maze--Tunnel*\n |\nMaze--Maze--Maze--Maze\n              |\n     Large--Large\n     Cave   Cave\n      |       |\n     Large--Large--Tunnel--End of\n     Cave    Cave    |     Tunnel\n                   *Hole\n                  (Map 3)\n"
+    }]
+  }},
+  {"object": {
+    "area": "moria",
+    "anum": 255,
+    "name": "map moria third",
+    "short_descr": "a map of the third level of Moria",
+    "description": "A rolled up map is here.",
+    "material": "paper",
+    "item_type": "map",
+    "values": {"persist": true},
+    "level": 0,
+    "weight": 10,
+    "cost": 200,
+    "condition": 90,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "map moria third",
+      "description": ".\n                                                   (Map 1*)\n                             Long                     |\n        Tunnel----Tunnel----Tunnel--Tunnel--Tunnel--Tunnel\n          |                   |\n          |                  Gold--Gold\n          |                  Cave  Cave\n          |                   |      |\n          |                  Gold--Gold---Passage\n          |                  Cave  Cave      |\n          |                   |           Passage--Tunnel--Tunnel--Tunnel\n          |          Dark*---Gold            |\n          |         Passage  Cave            |     Secret\n          |                               Passage  Chamber\n          |                      Hole        |       |\n          |                        |      Passage  Secret\n        Large   Large   Large    Small       |     Chamber--Cave--Cave\n        Tunnel--Tunnel--Tunnel--Passage      |                |      |\n          |                        |      Passage-----------Cave--Cave\n          |                       Long\n          |                      Tunnel\n         Wet    Small  Small       |\n        Tunnel--Maze---Maze   Inscription\n          |       |      |         |\n         Wet    Small--Small-----Small\n        Tunnel  Maze   Maze      Maze\n          |       |                |\n          |      Wet    Wet      End of\n        Water    Maze---Maze-----Tunnel\n          |       |      |\n        Water---Water  End of\n                       Maze*\n                      (Map 2)\n"
+    }]
+  }}
+]

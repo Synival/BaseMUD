@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "moria",
+  "filename": "moria.are",
+  "title": "Moria",
+  "credits": "{ 5 15} Alfa    Moria",
+  "min_vnum": 3900,
+  "max_vnum": 4199,
+  "builders": "None",
+  "security": 9
+}}]

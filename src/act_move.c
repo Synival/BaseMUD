@@ -44,11 +44,12 @@
 #include "rooms.h"
 #include "objs.h"
 #include "find.h"
+#include "globals.h"
 
 #include "act_move.h"
 
-int door_filter_find (CHAR_DATA *ch, char *argument) {
-    EXIT_DATA *pexit;
+int door_filter_find (CHAR_T *ch, char *argument) {
+    EXIT_T *pexit;
     int door;
 
     /* Lookup by direction. */
@@ -59,7 +60,7 @@ int door_filter_find (CHAR_DATA *ch, char *argument) {
         find_next_count = 0;
 
         RETURN_IF_ACT ((pexit = ch->in_room->exit[door]) == NULL,
-            "You see no door $T here.", ch, NULL, NULL, -1);
+            "You see no door $T here.", ch, NULL, door_get_name (door), -1);
         RETURN_IF_ACT (!IS_SET (pexit->exit_flags, EX_ISDOOR),
             "You can't do that.", ch, NULL, NULL, -1);
         return door;
@@ -71,8 +72,8 @@ int door_filter_find (CHAR_DATA *ch, char *argument) {
     return door;
 }
 
-bool door_filter_is_door (CHAR_DATA *ch, EXIT_DATA *pexit,
-    OBJ_DATA *obj, flag_t *out_flags, bool *out_container, int *out_key)
+bool door_filter_is_door (CHAR_T *ch, EXIT_T *pexit,
+    OBJ_T *obj, flag_t *out_flags, bool *out_container, int *out_key)
 {
     flag_t flags;
     bool container = FALSE;
@@ -120,9 +121,7 @@ bool door_filter_is_door (CHAR_DATA *ch, EXIT_DATA *pexit,
     return FALSE;
 }
 
-bool door_filter_can_open (CHAR_DATA *ch, EXIT_DATA *pexit,
-    OBJ_DATA *obj)
-{
+bool door_filter_can_open (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
 
@@ -135,9 +134,7 @@ bool door_filter_can_open (CHAR_DATA *ch, EXIT_DATA *pexit,
     return FALSE;
 }
 
-bool door_filter_can_close (CHAR_DATA *ch, EXIT_DATA *pexit,
-    OBJ_DATA *obj)
-{
+bool door_filter_can_close (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
 
@@ -148,9 +145,7 @@ bool door_filter_can_close (CHAR_DATA *ch, EXIT_DATA *pexit,
     return FALSE;
 }
 
-bool door_filter_can_lock (CHAR_DATA *ch, EXIT_DATA *pexit,
-    OBJ_DATA *obj)
-{
+bool door_filter_can_lock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
     int key;
@@ -161,16 +156,14 @@ bool door_filter_can_lock (CHAR_DATA *ch, EXIT_DATA *pexit,
         "It's not closed.\n\r", ch);
     FILTER (IS_SET (flags, container ? CONT_LOCKED : EX_LOCKED),
         "It's already locked.\n\r", ch);
-    FILTER (key < 0,
+    FILTER (key == KEY_NOKEYHOLE,
         "It can't be locked.\n\r", ch);
     FILTER (!(IS_IMMORTAL (ch) || char_has_key (ch, key)),
         "You lack the key.\n\r", ch);
     return FALSE;
 }
 
-bool door_filter_can_unlock (CHAR_DATA *ch, EXIT_DATA *pexit,
-    OBJ_DATA *obj)
-{
+bool door_filter_can_unlock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
     int key;
@@ -181,16 +174,14 @@ bool door_filter_can_unlock (CHAR_DATA *ch, EXIT_DATA *pexit,
         "It's not closed.\n\r", ch);
     FILTER (!IS_SET (flags, container ? CONT_LOCKED : EX_LOCKED),
         "It's already unlocked.\n\r", ch);
-    FILTER (key < 0,
+    FILTER (key == KEY_NOKEYHOLE,
         "It can't be unlocked.\n\r", ch);
     FILTER (!(IS_IMMORTAL (ch) || char_has_key (ch, key)),
         "You lack the key.\n\r", ch);
     return FALSE;
 }
 
-bool door_filter_can_pick (CHAR_DATA *ch, EXIT_DATA *pexit,
-    OBJ_DATA *obj)
-{
+bool door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
     int key;
@@ -201,12 +192,12 @@ bool door_filter_can_pick (CHAR_DATA *ch, EXIT_DATA *pexit,
         "It's not closed.\n\r", ch);
     FILTER (!IS_SET (flags, container ? CONT_LOCKED : EX_LOCKED),
         "It's already unlocked.\n\r", ch);
-    FILTER (key < 0,
+    FILTER (key == KEY_NOKEYHOLE,
         "It can't be unlocked.\n\r", ch);
 
     /* look for guards, but not if it's ch's own object. */
     if (obj == NULL || obj->carried_by != ch) {
-        CHAR_DATA *gch;
+        CHAR_T *gch;
         for (gch = ch->in_room->people; gch; gch = gch->next_in_room) {
             if (IS_NPC (gch) && IS_AWAKE (gch) && ch->level + 5 < gch->level) {
                 act ("$N is standing too close to the lock.", ch, NULL, gch, TO_CHAR);
@@ -229,35 +220,35 @@ bool door_filter_can_pick (CHAR_DATA *ch, EXIT_DATA *pexit,
     return FALSE;
 }
 
-void do_open_object (CHAR_DATA *ch, OBJ_DATA *obj) {
+void do_open_object (CHAR_T *ch, OBJ_T *obj) {
     if (door_filter_can_open (ch, NULL, obj))
         return;
     obj_remove_exit_flag (obj, EX_CLOSED);
     act2 ("You open $p.", "$n opens $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
-void do_close_object (CHAR_DATA *ch, OBJ_DATA *obj) {
+void do_close_object (CHAR_T *ch, OBJ_T *obj) {
     if (door_filter_can_close (ch, NULL, obj))
         return;
     obj_set_exit_flag (obj, EX_CLOSED);
     act2 ("You close $p.", "$n closes $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
-void do_unlock_object (CHAR_DATA *ch, OBJ_DATA *obj) {
+void do_unlock_object (CHAR_T *ch, OBJ_T *obj) {
     if (door_filter_can_unlock (ch, NULL, obj))
         return;
     obj_remove_exit_flag (obj, EX_LOCKED);
     act2 ("You unlock $p.", "$n unlocks $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
-void do_lock_object (CHAR_DATA *ch, OBJ_DATA *obj) {
+void do_lock_object (CHAR_T *ch, OBJ_T *obj) {
     if (door_filter_can_lock (ch, NULL, obj))
         return;
     obj_set_exit_flag (obj, EX_LOCKED);
     act2 ("You lock $p.", "$n locks $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
-void do_pick_object (CHAR_DATA *ch, OBJ_DATA *obj) {
+void do_pick_object (CHAR_T *ch, OBJ_T *obj) {
     if (door_filter_can_pick (ch, NULL, obj))
         return;
     obj_remove_exit_flag (obj, EX_LOCKED);
@@ -266,9 +257,9 @@ void do_pick_object (CHAR_DATA *ch, OBJ_DATA *obj) {
     check_improve (ch, gsn_pick_lock, TRUE, 2);
 }
 
-void do_open_door (CHAR_DATA *ch, int door) {
-    EXIT_DATA *pexit;
-    EXIT_DATA *pexit_rev;
+void do_open_door (CHAR_T *ch, int door) {
+    EXIT_T *pexit;
+    EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
     if (door_filter_can_open (ch, pexit, NULL))
@@ -280,7 +271,7 @@ void do_open_door (CHAR_DATA *ch, int door) {
 
     /* open the other side */
     if ((pexit_rev = room_get_opposite_exit (ch->in_room, door, NULL)) != NULL) {
-        CHAR_DATA *rch;
+        CHAR_T *rch;
         REMOVE_BIT (pexit_rev->exit_flags, EX_CLOSED);
         for (rch = pexit->to_room->people; rch != NULL; rch = rch->next_in_room)
             act ("The $d is opened from the other side.", rch, NULL,
@@ -288,9 +279,9 @@ void do_open_door (CHAR_DATA *ch, int door) {
     }
 }
 
-void do_close_door (CHAR_DATA *ch, int door) {
-    EXIT_DATA *pexit;
-    EXIT_DATA *pexit_rev;
+void do_close_door (CHAR_T *ch, int door) {
+    EXIT_T *pexit;
+    EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
     if (door_filter_can_close (ch, pexit, NULL))
@@ -302,7 +293,7 @@ void do_close_door (CHAR_DATA *ch, int door) {
 
     /* close the other side */
     if ((pexit_rev = room_get_opposite_exit (ch->in_room, door, NULL)) != NULL) {
-        CHAR_DATA *rch;
+        CHAR_T *rch;
         SET_BIT (pexit_rev->exit_flags, EX_CLOSED);
         for (rch = pexit->to_room->people; rch != NULL; rch = rch->next_in_room)
             act ("The $d is closed from the other side.", rch, NULL,
@@ -310,9 +301,9 @@ void do_close_door (CHAR_DATA *ch, int door) {
     }
 }
 
-void do_unlock_door (CHAR_DATA *ch, int door) {
-    EXIT_DATA *pexit;
-    EXIT_DATA *pexit_rev;
+void do_unlock_door (CHAR_T *ch, int door) {
+    EXIT_T *pexit;
+    EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
     if (door_filter_can_unlock (ch, pexit, NULL))
@@ -327,9 +318,9 @@ void do_unlock_door (CHAR_DATA *ch, int door) {
         REMOVE_BIT (pexit_rev->exit_flags, EX_LOCKED);
 }
 
-void do_lock_door (CHAR_DATA *ch, int door) {
-    EXIT_DATA *pexit;
-    EXIT_DATA *pexit_rev;
+void do_lock_door (CHAR_T *ch, int door) {
+    EXIT_T *pexit;
+    EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
     if (door_filter_can_lock (ch, pexit, NULL))
@@ -344,9 +335,9 @@ void do_lock_door (CHAR_DATA *ch, int door) {
         SET_BIT (pexit_rev->exit_flags, EX_LOCKED);
 }
 
-void do_pick_door (CHAR_DATA *ch, int door) {
-    EXIT_DATA *pexit;
-    EXIT_DATA *pexit_rev;
+void do_pick_door (CHAR_T *ch, int door) {
+    EXIT_T *pexit;
+    EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
     if (door_filter_can_pick (ch, pexit, NULL))
@@ -362,12 +353,12 @@ void do_pick_door (CHAR_DATA *ch, int door) {
         REMOVE_BIT (pexit_rev->exit_flags, EX_LOCKED);
 }
 
-void do_door (CHAR_DATA *ch, char *argument, char *verb,
-    void (*func_obj)  (CHAR_DATA *, OBJ_DATA *),
-    void (*func_door) (CHAR_DATA *, int))
+void do_door (CHAR_T *ch, char *argument, char *verb,
+    void (*func_obj)  (CHAR_T *, OBJ_T *),
+    void (*func_door) (CHAR_T *, int))
 {
     char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
     int door;
 
     one_argument (argument, arg);
@@ -408,7 +399,7 @@ DEFINE_DO_FUN (do_lock)
 DEFINE_DO_FUN (do_pick)
     { do_door (ch, argument, "pick",   do_pick_object,   do_pick_door); }
 
-bool do_filter_change_position (CHAR_DATA *ch, int pos, char *same_msg) {
+bool do_filter_change_position (CHAR_T *ch, int pos, char *same_msg) {
     FILTER (ch->position == pos,
         same_msg, ch);
     FILTER (ch->position == POS_SLEEPING && IS_AFFECTED (ch, AFF_SLEEP),
@@ -421,7 +412,7 @@ bool do_filter_change_position (CHAR_DATA *ch, int pos, char *same_msg) {
 }
 
 DEFINE_DO_FUN (do_stand) {
-    OBJ_DATA *obj = NULL;
+    OBJ_T *obj = NULL;
     int new_pos;
 
     BAIL_IF (ch->position == POS_SLEEPING && IS_AFFECTED (ch, AFF_SLEEP),
@@ -470,7 +461,7 @@ DEFINE_DO_FUN (do_stand) {
 }
 
 DEFINE_DO_FUN (do_rest) {
-    OBJ_DATA *obj = NULL;
+    OBJ_T *obj = NULL;
 
     if (do_filter_change_position (ch, POS_RESTING,
             "You are already resting.\n\r"))
@@ -500,7 +491,7 @@ DEFINE_DO_FUN (do_rest) {
 }
 
 DEFINE_DO_FUN (do_sit) {
-    OBJ_DATA *obj = NULL;
+    OBJ_T *obj = NULL;
 
     if (do_filter_change_position (ch, POS_SITTING,
             "You are already sitting down.\n\r"))
@@ -530,7 +521,7 @@ DEFINE_DO_FUN (do_sit) {
 }
 
 DEFINE_DO_FUN (do_sleep) {
-    OBJ_DATA *obj = NULL;
+    OBJ_T *obj = NULL;
 
     if (do_filter_change_position (ch, POS_SLEEPING,
             "You are already sleeping.\n\r"))
@@ -561,7 +552,7 @@ DEFINE_DO_FUN (do_sleep) {
 
 DEFINE_DO_FUN (do_wake) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     if (arg[0] == '\0') {
@@ -584,7 +575,7 @@ DEFINE_DO_FUN (do_wake) {
 }
 
 DEFINE_DO_FUN (do_sneak) {
-    AFFECT_DATA af;
+    AFFECT_T af;
 
     send_to_char ("You attempt to move silently.\n\r", ch);
     affect_strip (ch, gsn_sneak);
@@ -625,8 +616,8 @@ DEFINE_DO_FUN (do_visible) {
 }
 
 DEFINE_DO_FUN (do_recall) {
-    CHAR_DATA *victim;
-    ROOM_INDEX_DATA *location;
+    CHAR_T *victim;
+    ROOM_INDEX_T *location;
 
     BAIL_IF (IS_NPC (ch) && !IS_PET (ch),
         "Only players can recall.\n\r", ch);
@@ -634,7 +625,7 @@ DEFINE_DO_FUN (do_recall) {
     act ("$n prays for transportation!", ch, NULL, NULL, TO_NOTCHAR);
     BAIL_IF ((location = get_room_index (ROOM_VNUM_TEMPLE)) == NULL,
         "You are completely lost.\n\r", ch);
-#ifndef VANILLA
+#ifdef BASEMUD_NO_RECALL_TO_SAME_ROOM
     BAIL_IF (ch->in_room == location,
         "Mota ignores your frivolous request.\n\r", ch);
 #endif
@@ -674,10 +665,10 @@ DEFINE_DO_FUN (do_recall) {
 
 /* RT Enter portals */
 DEFINE_DO_FUN (do_enter) {
-    ROOM_INDEX_DATA *location;
-    ROOM_INDEX_DATA *old_room;
-    OBJ_DATA *portal;
-    CHAR_DATA *fch, *fch_next;
+    ROOM_INDEX_T *location;
+    ROOM_INDEX_T *old_room;
+    OBJ_T *portal;
+    CHAR_T *fch, *fch_next;
     char *msg;
 
     /* Basic character / command checks. */

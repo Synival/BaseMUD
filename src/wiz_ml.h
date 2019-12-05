@@ -31,7 +31,9 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-/* (none) */
+void do_dump_stats (CHAR_T *ch);
+void do_dump_world_raw (CHAR_T *ch);
+void do_dump_world_json (CHAR_T *ch);
 
 /* Commands. */
 DECLARE_DO_FUN (do_advance);

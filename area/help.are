@@ -135,13 +135,13 @@ PROMPT <%*> where the %* are the various variables you may set yourself.
         %v :  Display your current moves
         %V :  Display your maximum moves
         %x :  Display your current experience
-	%X :  Display experience to level
+        %X :  Display experience to level
         %g :  Display your gold held
-	%s :  Display silver carried
+        %s :  Display silver carried
         %a :  Display your alignment
         %r :  Display the room name you are in
-	%e :  Display the exits from the room in NESWDU style
-	%c :  Display a carriage return (useful for multi-line prompts)
+        %e :  Display the exits from the room in NESWDU style
+        %c :  Display a carriage return (useful for multi-line prompts)
         %R :  Display the vnum you are in (IMMORTAL ONLY)
         %z :  Display the area name you are in (IMMORTAL ONLY)
  
@@ -827,9 +827,9 @@ group who are in the same room as you.  It's customary to SPLIT
 the loot after a kill.  The first argument is the amount of silver
 the split (0 is acceptable), and the second gold (optional).
 Examples:
-split 30 	--> split 30 silver
-split 20 50	--> split 20 silver, 50 gold
-split  0 10	--> split 10 gold
+split 30    --> split 30 silver
+split 20 50 --> split 20 silver, 50 gold
+split  0 10 --> split 10 gold
 ~
 
 0 STEAL~
@@ -899,9 +899,9 @@ A trust of 0 means to use the character's natural level again.
 ~
 
 58 ALLOW BAN PERMBAN~
-Syntax: allow   <site>
-	ban     <site> <newbies|all|permit>
-	ban
+Syntax: allow <site>
+    ban <site> <newbies|all|permit>
+    ban
 
 BAN <site> prohibits players from that site from logging in.  BAN with
 no arguments lists the banned sites.  ALLOW <site> removes a site from
@@ -916,7 +916,7 @@ sites with a wildcard.  Bans do not save unless the permban command is used.
 
 59 REBOOT SHUTDOWN~
 Syntax: reboot
-	shutdown
+    shutdown
 
 Reboot shuts down the server.  When the normal 'startup' script is used
 to control the server, a delay of fifteen seconds will ensue (to allow
@@ -929,7 +929,7 @@ from restarting it.
 
 56 WIZLOCK NEWLOCK~
 Syntax: wizlock
-	newlock
+    newlock
 
 Wizlock and newlock both block login attempts to ROM. Wizlock locks
 out all non-gods (i.e. level less than 51), except for link-dead players who
@@ -979,7 +979,7 @@ This is typically used for 'force all save'.
 
 56 SOCKETS~
 Syntax: sockets
-	sockets <name> 
+    sockets <name> 
 
 SOCKETS reports all of the visible users connected to the server, including 
 users in the process of logging in.  The two numbers inside brackets are the 
@@ -993,7 +993,7 @@ into an orc).
 
 56 LOAD~
 Syntax: load mob <vnum>
-	load obj <vnum> <level>
+    load obj <vnum> <level>
 
 The load command is used to load new objects or mobiles (use clone to 
 duplicate strung items and mobs).  The vnums can be found with the vnum
@@ -1007,11 +1007,11 @@ format objects have a preset level that cannot be changed without set.
 ~
 
 58 SET~
-Syntax: set mob   <mobile> <field> <value>
-	set obj   <object> <field> <value>
-	set room  <number> <field> <value>
-	set skill <char>   <name>  <rating>
-	set skill <char>   all     <rating>
+Syntax: set mob <mobile> <field> <value>
+    set obj   <object> <field> <value>
+    set room  <number> <field> <value>
+    set skill <char>   <name>  <rating>
+    set skill <char>   all     <rating>
 
 The set command is used to change the numerical values of the various data
 structures. Type set <class> without an argument to see a listing of options.
@@ -1022,7 +1022,7 @@ given.  Use string to change the strings on an object or mobile.
 
 55 STRING~
 Syntax: string obj <field> <string>
-	string mob <field> <string>
+    string mob <field> <string>
 
 The string command changes the various strings associated with an object or
 mobile.  A full list of fields can be viewed by typing string obj or string
@@ -1031,9 +1031,9 @@ mob.  Sorry, multi-line strings are not yet supported.
 
 55 NOCHANNEL NOEMOTE NOSHOUT NOTELL~
 Syntax: nochannel <character>
-	noemote   <character>
-	noshout   <character>
-	notell    <character>
+    noemote <character>
+    noshout <character>
+    notell  <character>
 
 Noemote, noshout, and notell are used to muffle other characters, by
 preventing them from emoting, shouting, and telling, respectively.
@@ -1047,7 +1047,7 @@ Nochannels usually result from swearing or spamming on public channels.
 
 57 PARDON~
 Syntax: pardon <character> killer
-	pardon <character> thief
+    pardon <character> thief
 
 Pardon pardons a player for their crimes.  Don't pardon a player unless you
 are sure they deserve it.  Being killed by Hassan acts as an automatic
@@ -1056,7 +1056,7 @@ pardon.
 
 56 PURGE~
 Syntax: purge
-	purge <character>
+    purge <character>
 
 Purge is used to clean up the world.  Purge with no arguments removes all the
 NPC's and objects in the current room.  Purge with an argument purges one
@@ -1069,8 +1069,8 @@ purged if they are called directly by name.
 
 56 RESTORE~
 Syntax: restore <character>
-	restore room
-	restore all
+    restore room
+    restore all
 
 Restore restores full hit points, mana points, and movement points to the
 target character.  It also heals poison, plague, and blindness.
@@ -1090,9 +1090,9 @@ command on players if you enjoy being a god.
 
 55 TRANSFER TELEPORT~
 Syntax: transfer <character>
-	transfer all
-	transfer <character> <location>
-	transfer all         <location>
+    transfer all
+    transfer <character> <location>
+    transfer all         <location>
 
 Transfer transfers the target character, or ALL player characters,
 to your current location (default) or to a specified location. Trans all 
@@ -1113,9 +1113,9 @@ location).
 ~
 
 54 ECHO GECHO PECHO~
-Syntax: echo  <message>
-	gecho <message>
-	pecho <character> <message>
+Syntax: echo <message>
+    gecho <message>
+    pecho <character> <message>
 
 These commands all perform similar functions.  Echo sends the message to
 all characters in the same room as the user, with no indication of who sent
@@ -1141,7 +1141,7 @@ Implementors can use the violate command to get into private rooms.
 
 52 HOLYLIGHT INVIS WIZINVIS~
 Syntax: holylight
-	wiznvis <level>
+    wiznvis <level>
 
 Holylight is a toggle that allows you to see (almost) every character and
 mobile in the game.  With holy light, you can see what's in the game more
@@ -1177,8 +1177,8 @@ on the number and size of these blocks.
 
 56 VNUM~
 Syntax: vnum <name>
-	vnum <obj or mob> <name>
-	vnum skill <name>
+    vnum <obj or mob> <name>
+    vnum skill <name>
 
 Vnum finds all objects and mobiles with a particular name, and prints out
 the results.  Use vnum obj or vnum mob to limit the search.  This vnum is
@@ -1189,9 +1189,9 @@ the slot number (for making new zones) of a skill name.
 
 53 STAT~
 Syntax: stat <name>
-	stat mob  <name>
-	stat obj  <name>
-	stat room <number>
+    stat mob  <name>
+    stat obj  <name>
+    stat room <number>
 
 The stat command gives you detailed information on an object, mobile, or room
 within the game.  Without a class argument, the command will return a object
@@ -1235,9 +1235,9 @@ protected status from a character WILL be seen by that character.
 ~
 
 55 LOG SNOOP~
-Syntax: log   <character>
-	log   all
-	snoop <character>
+Syntax: log <character>
+    log   all
+    snoop <character>
 
 Log <character> causes all of a character's commands to be logged into
 the server's log file.  Like Freeze, it is a permanent character toggle.
@@ -1259,7 +1259,7 @@ Snoop yourself to cancel all outstanding snoops.
 
 54 SWITCH RETURN~
 Syntax: switch <character>
-	return
+    return
 
 Switch switches you into the body of another character (who must not
 already have a descriptor, e.g. you can't switch into a PC). You also cannot
@@ -1270,7 +1270,7 @@ Return returns you to your original body.
 
 51 IMMTALK :~
 Syntax: immtalk <message>
-	immtalk
+    immtalk
 
 Immtalk sends a message to all immortals.  : is a synonym for immtalk.
 Using this command with no argument turns off the immortal channel (or
@@ -1279,9 +1279,9 @@ turns it back on).
 
 52 WIZNET~
 Syntax: wiznet 
-	wiznet show
-	wiznet status
-	wiznet <field>
+    wiznet show
+    wiznet status
+    wiznet <field>
 
 Wiznet is sort of an immortal news service, to show important events to
 the wiznetted immoral.  Wiznet by itself turns wiznet on and off, 
