@@ -26,3 +26,25 @@ Exits between areas no longer need to reference room vnums directly. Instead, ex
     "to": "air-down-1"
   }},
 ```
+
+Here is the "from" exit in `json/areas/midgaard/rooms.json`:
+
+```
+      {
+        "dir": "up",
+        "to": null,
+        "description": "More of the same.\n",
+        "portal": "midgaard-up-1"
+      },
+```
+
+...and the "to" exit in `json/areas/air/rooms.json`:
+
+```
+      {
+        "dir": "down",
+        "to": null,
+        "description": "More of the same\n",
+        "portal": "air-down-1"
+      } 
+```
