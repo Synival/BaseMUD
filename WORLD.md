@@ -20,31 +20,31 @@ In a future update, I'd like to allow vnums as well. The reason for the "anums" 
 Exits between areas no longer need to reference room vnums directly. Instead, exits and rooms can be assigned a "portal" name, and one-way or two-way exits can be defined in `json/config/portals.json`. The portal format is pretty straight-forward:
 
 ```
-  {"portal": {
-    "two-way": true,
-    "from": "midgaard-up-1",
-    "to": "air-down-1"
-  }},
+{"portal": {
+  "two-way": true,
+  "from": "midgaard-up-1",
+  "to": "air-down-1"
+}},
 ```
 
 Here is the "from" exit in `json/areas/midgaard/rooms.json`:
 
 ```
-      {
-        "dir": "up",
-        "to": null,
-        "description": "More of the same.\n",
-        "portal": "midgaard-up-1"
-      },
+{
+  "dir": "up",
+  "to": null,
+  "description": "More of the same.\n",
+  "portal": "midgaard-up-1"
+},
 ```
 
 ...and the "to" exit in `json/areas/air/rooms.json`:
 
 ```
-      {
-        "dir": "down",
-        "to": null,
-        "description": "More of the same\n",
-        "portal": "air-down-1"
-      } 
+{
+  "dir": "down",
+  "to": null,
+  "description": "More of the same\n",
+  "portal": "air-down-1"
+} 
 ```
