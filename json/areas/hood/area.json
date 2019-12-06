@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "hood",
+  "filename": "hood.are",
+  "title": "Gangland",
+  "credits": "{ 5 15} Raff    Dangerous Neighborhood",
+  "min_vnum": 2100,
+  "max_vnum": 2199,
+  "builders": "None",
+  "security": 9
+}}]

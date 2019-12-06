@@ -1,0 +1,3919 @@
+[
+  {"room": {
+    "area": "ofcol2",
+    "anum": 0,
+    "name": "Granny's Still Room",
+    "description": "You are in Granny Jenkins' still room.  The smell of whiskey is heady, and\nthe bottles of it on the floor make your mouth water and your mind swirl.  You\nalso see a very large still.  So THIS is why there are so many grain fields!\nThe exit is to the east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 16,
+      "keyword": "door",
+      "description": "You see the storage shed.\n",
+      "exit_flags": "door closed"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 49,
+          "global_limit": 99,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 1,
+    "name": "The Big Intersection",
+    "description": "You are in the big intersection between Raff Way and Impy Way.  Crowds \nof people walk past you as they go on their daily tasks.  Raff Way continues\neast and west, and Impy Way runs north and south.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 25,
+        "description": "Impy Way continues north.\n"
+      },
+      {
+        "dir": "east",
+        "to": 66,
+        "description": "Raff Way continues east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 2,
+        "description": "Impy Way continues south.\n"
+      },
+      {
+        "dir": "west",
+        "to": null,
+        "description": "Raff Way continues west.\n",
+        "portal": "ofcol2-west-1"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 8,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 24,
+          "wear_loc": "feet",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 39,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 40,
+          "wear_loc": "head",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 41,
+          "wear_loc": "legs",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 42,
+          "wear_loc": "feet",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 43,
+          "wear_loc": "hands",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 44,
+          "wear_loc": "arms",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 45,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 46,
+          "wear_loc": "waist",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 47,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 2,
+    "name": "Impy Way",
+    "description": "You are on Impy Way.  You can see a leather shop east and a blacksmith\nwest.  To the north you see a big intersection, and Impy Way continues south.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 1,
+        "description": "You see the big intersection.\n"
+      },
+      {
+        "dir": "east",
+        "to": 4,
+        "description": "You see the leather shop.\n"
+      },
+      {
+        "dir": "south",
+        "to": 5,
+        "description": "Impy Way continues south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 3,
+        "description": "You see the blacksmith.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 3,
+    "name": "The Blacksmith",
+    "description": "You are in a black and smelly room.  Pieces of metal are strewn all over\nthe floor, and a wave of heat from a big furnace hits you.  An anvil sits on \none side of the room, and on the other side is a workbench.  The exit is east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 2,
+      "description": "You see Impy Way.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 0,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 1,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 15,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 67,
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 4,
+    "name": "The Leather Shop",
+    "description": "You are in a brown and smelly room.  Pieces of leather are strewn all over\nthe floor.  The smell of burnt hide assaults your nose.  You can tell by the\nlooks that the tanning is done VERY CLOSE to here!   A table is near the\nentrance.  The exit is west.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 2,
+      "description": "You see Impy Way.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 8,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 23,
+          "wear_loc": "legs",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 16,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 17,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 18,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 19,
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 5,
+    "name": "Impy Way",
+    "description": "You are on Impy Way.  To the east is a meat store, and to the west is a\npawn shop.  Impy Way continues north and south.  People are rushing around you\nto go to these stores.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 2,
+        "description": "Impy Way continues North.\n"
+      },
+      {
+        "dir": "east",
+        "to": 7,
+        "description": "You see the Meat Store.\n"
+      },
+      {
+        "dir": "south",
+        "to": 8,
+        "description": "Impy Way continues south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 6,
+        "description": "You see the Pawn Shop.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 6,
+    "name": "The Pawn Shop.",
+    "description": "You are in a little shop filled with a lot of knick knacks and semi-\nvaluable goods.  There is a display case full of little treasures that you are\nsure that you or any other little kid would like to touch!  The exit is east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 5,
+      "description": "You see Impy Way.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 6,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 7,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 8,
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 7,
+    "name": "The Meat Store",
+    "description": "You are in a meat store.  Hanging on hooks are meats of many kinds of\nanimals.  In the background, you can hear the sound of blade against flesh.\nIt smells like meat here (which is not a good smell).  The exit is west.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 5,
+      "description": "You see Impy Way.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 2,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 3,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 4,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 5,
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 8,
+    "name": "Impy Way",
+    "description": "You are on Impy Way.  To the east is Farmer's Market, and to the west is\nNyles' House of Ale.  Impy Way runs north and ends south of here.  You can hear\nthe sound of housewives gossiping at the market.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 5,
+        "description": "Impy Way continues north.\n"
+      },
+      {
+        "dir": "east",
+        "to": 10,
+        "description": "You see the Farmer's Market.\n"
+      },
+      {
+        "dir": "south",
+        "to": 11,
+        "description": "You see the end of Impy Way.\n"
+      },
+      {
+        "dir": "west",
+        "to": 9,
+        "description": "You see Nyles' House of Ale.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 8,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "head",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 9,
+    "name": "Nyles' House of Ale",
+    "description": "This is a very busy bar, with everyone holding homemade bottles of\nale.  You see even the more gentile persons here, laughing along with\nNyles, who offers you a quart of ale too.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 8,
+      "description": "You see Impy Way.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 22,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 48,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 49,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 50,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 24,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 10,
+    "name": "Farmer's Market",
+    "description": "You see many carts filled with fruits and vegetables.  Many farmers are\nall trying to sell you their produce, each saying their's is better.  The exit\nis west.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 8,
+      "description": "You see Impy Way.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 9,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 10,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 11,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 12,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 13,
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 11,
+    "name": "The End of Impy Way",
+    "description": "You are at the end of Impy and of the city part of Ofcol.  To the east is\na dirt road leading toward the farm animals.  West from here are fields.  Impy\nWay continues north.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 8,
+        "description": "Impy Way continues north.\n"
+      },
+      {
+        "dir": "east",
+        "to": 68,
+        "description": "You see the dirt road.\n"
+      },
+      {
+        "dir": "west",
+        "to": 12,
+        "description": "You see the fields.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 18,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 12,
+    "name": "Fields",
+    "description": "You are in a corn field.  You can't see far, since the corn stalks are\ntaller than you are.  You remember that the end of Impy Way is east of here, \nand you think you see a building to the north.  The field continues south and \nwest.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 16,
+        "description": "You think you see a building north of here.\n"
+      },
+      {
+        "dir": "east",
+        "to": 11,
+        "description": "You remember that the end of Impy Way is east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 13,
+        "description": "You can make a path to the fields south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 15,
+        "description": "You can make a path to the fields west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 13,
+    "name": "Fields",
+    "description": "You are among fruit trees in a field.  You see many apple and orange \ntrees.  You can make out the corn fields north and some vegetable patches west.\nThe sight of the fruit makes your mouth water.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 12,
+        "description": "You see the corn fields.\n"
+      },
+      {
+        "dir": "west",
+        "to": 14,
+        "description": "You see the vegetable fields.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 14,
+    "name": "Fields",
+    "description": "You are among the vegetable fields.  You see many cabbage and lettuce\npatches, along with tomato bushes and potato plants.  To the east are some\nfruit trees, and north are some wheat fields.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 15,
+        "description": "You see the wheat fields.\n"
+      },
+      {
+        "dir": "east",
+        "to": 13,
+        "description": "You see the fruit trees.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 15,
+    "name": "Fields",
+    "description": "You are among the wheat fields.  The gentle caress of the wheat and the\ncool shadow from the tall stalks and scarecrow lulls you to sleep and dream\nof a little girl and little dog from a faraway place.  To the east are the corn\nstalks, and south of you are the vegetable patches.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 12,
+        "description": "You see the corn fields.\n"
+      },
+      {
+        "dir": "south",
+        "to": 14,
+        "description": "You see the vegetable patches.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 16,
+    "name": "The Shed",
+    "description": "You are in the storage shed.  Bales of wheat, corn and hay are piled\nagainst the wall, and some vegetables are in carts.  You see a small door\nto the west.  The main exit is south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 12,
+        "description": "You see the corn fields.\n"
+      },
+      {
+        "dir": "west",
+        "to": 0,
+        "keyword": "door",
+        "description": "You see the door.\n",
+        "exit_flags": "door closed"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 17,
+    "name": "Slaughterhouse",
+    "description": "You are in the slaughterhouse, where all the animals are slaughtered so\nthat they can be sold or their skins be tanned.  The scream of dying animals\nmakes your stomach churn.  The exit is to the west.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 68,
+      "description": "You see the dirt road.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 1,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 18,
+    "name": "Dirt Road",
+    "description": "You are on a dirt road.  To the east is a barn, and you see a big chicken\ncoop south of you.  The dirt road continues north and west.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 68,
+        "description": "You see the dirt road.\n"
+      },
+      {
+        "dir": "east",
+        "to": 20,
+        "description": "You see the barn.\n"
+      },
+      {
+        "dir": "south",
+        "to": 19,
+        "keyword": "coop",
+        "description": "You see the chicken coop.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "west",
+        "to": 21,
+        "description": "You see the dirt road.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 19,
+    "name": "Chicken Coop",
+    "description": "You are in the chicken coop.  The smell of chickens and chicken droppings\nmakes you gasp.  The exit is north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 18,
+      "description": "You can sense the fresh air.\n",
+      "exit_flags": "door closed"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 20,
+    "name": "Barn",
+    "description": "You are in a barn.  There are some cows here, munching on mounds of hay.\nMilk is milked and bottled here.  You see the exit west.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 18,
+      "description": "You see the dirt road.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 11,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 14,
+          "global_limit": 99,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 11,
+          "global_limit": 99,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 21,
+    "name": "Dirt Road",
+    "description": "You are on a dirt road.  To the north and south, you see some grass \nfields.  There is a pigsty west, and the dirt road continues east.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 22,
+        "description": "You see some grass fields.\n"
+      },
+      {
+        "dir": "east",
+        "to": 18,
+        "description": "You see the dirt road.\n"
+      },
+      {
+        "dir": "south",
+        "to": 23,
+        "description": "You see some grass fields.\n"
+      },
+      {
+        "dir": "west",
+        "to": 24,
+        "description": "You see the pigsty.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 22,
+    "name": "Grass Field",
+    "description": "You are in a grass field.  Fences block the way north, east, and west.\nThe dirt road is to the south.\n",
+    "sector_type": "field",
+    "doors": [{
+      "dir": "south",
+      "to": 21,
+      "description": "You see the dirt road.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 23,
+    "name": "Grass Field",
+    "description": "You are in a grass field.  Fences block the way south, east, and west.\nThe dirt road is to the north.\n",
+    "sector_type": "field",
+    "doors": [{
+      "dir": "north",
+      "to": 21,
+      "description": "You see the dirt road.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 13,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 13,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 13,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 24,
+    "name": "Pig Sty",
+    "description": "For some reason, you are in a pig sty.  You wonder why you are standing in\nmuck.  To realize your senses and notice the dirt road is to the east.\n",
+    "sector_type": "field",
+    "doors": [{
+      "dir": "east",
+      "to": 21,
+      "description": "You see the dry dirt road.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 25,
+    "name": "Impy Way",
+    "description": "You are on Impy Way.  East and west of you are big houses.  Impy Way\ncontinues north and reaches a big intersection south.  Children are running to\nfrom home to home.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 32,
+        "description": "Impy Way continues north.\n"
+      },
+      {
+        "dir": "east",
+        "to": 26,
+        "keyword": "door",
+        "description": "You see a big house.\n",
+        "exit_flags": "door closed locked",
+        "key": 65
+      },
+      {
+        "dir": "south",
+        "to": 1,
+        "description": "You see a big intersection.\n"
+      },
+      {
+        "dir": "west",
+        "to": 29,
+        "keyword": "door",
+        "description": "You see a big house.\n",
+        "exit_flags": "door closed locked",
+        "key": 65
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 26,
+    "name": "Big House",
+    "description": "You are in a big house.  Evidently, the owners of this house are richer\nthan the average citizen, since there is more than one room to this house.  A\ndoor leads to the kitchen east, and a bedroom is upstairs.  The exit is to the\nwest.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 28,
+        "description": "You see the kitchen.\n"
+      },
+      {
+        "dir": "west",
+        "to": 25,
+        "keyword": "door",
+        "description": "You see Impy Way.\n",
+        "exit_flags": "door closed locked",
+        "key": 65
+      },
+      {
+        "dir": "up",
+        "to": 27,
+        "description": "You see the bedroom.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 27,
+    "name": "Bedroom",
+    "description": "You are in the bedroom.  There isn't much of interest except for a bed and\na closet.  The stairs lead back down.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "down",
+      "to": 26,
+      "description": "You see the main room of the house.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 65,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 28,
+    "name": "Kitchen",
+    "description": "You are in a kitchen.  There isn't much of interest here.  The main room\nis west of here.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 26,
+      "description": "You see the main room of the house.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 29,
+    "name": "Big House",
+    "description": "You are in a big house.  Evidently, the owners of this house are richer\nthan the average citizen, since there is more than one room to this house.  A\ndoor leads to the kitchen west, and a bedroom is upstairs.  The exit is to the\neast.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 25,
+        "keyword": "door",
+        "description": "You see Impy Way.\n",
+        "exit_flags": "door closed locked",
+        "key": 65
+      },
+      {
+        "dir": "west",
+        "to": 31,
+        "description": "You see the kitchen.\n"
+      },
+      {
+        "dir": "up",
+        "to": 30,
+        "description": "You see the bedroom.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 65,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 30,
+    "name": "Bedroom",
+    "description": "You are in the bedroom.  There isn't much of interest except for a bed and\na closet.  The stairs lead back down.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "down",
+      "to": 29,
+      "description": "You see the main room of the house.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 31,
+    "name": "Kitchen",
+    "description": "You are in a kitchen.  There isn't much of interest here.  The main room\nis east of here.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 29,
+      "description": "You see the main room of the house.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 32,
+    "name": "Impy Way",
+    "description": "You are on Impy Way.  Houses are to the east and west of here.  Impy Way\ncontinues north and south.  There are many people walking along the streets.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 37,
+        "description": "Impy Way continues north.\n"
+      },
+      {
+        "dir": "east",
+        "to": 33,
+        "keyword": "door",
+        "description": "You see a house.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "south",
+        "to": 25,
+        "description": "Impy Way continues south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 35,
+        "keyword": "door",
+        "description": "You see a house.\n",
+        "exit_flags": "door closed"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 33,
+    "name": "House",
+    "description": "You are in a house.  The living room and kitchen are all bundled into\nthis room.  There is a bedroom south of here.  The exit is west.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 34,
+        "description": "You see the bedroom.\n"
+      },
+      {
+        "dir": "west",
+        "to": 32,
+        "keyword": "door",
+        "description": "You see Impy Way.\n",
+        "exit_flags": "door closed"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 34,
+    "name": "Bedroom",
+    "description": "You are in a bedroom.  There isn't much of interest here except for a bed\nand a dresser.  The main room of the house is north of here.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 33,
+      "description": "You see the main room of the house.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 35,
+    "name": "House",
+    "description": "You are in a house.  The living room and kitchen are all bundled into\nthis room.  There is a bedroom south of here.  The exit is east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 32,
+        "keyword": "door",
+        "description": "You see Impy Way.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "south",
+        "to": 36,
+        "description": "You see the bedroom.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 20,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 36,
+    "name": "Bedroom",
+    "description": "You are in a bedroom.  There isn't much of interest here except for a bed\nand a dresser.  The main room of the house is north of here.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 35,
+      "description": "You see the main room of the house.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 37,
+    "name": "Impy Way",
+    "description": "You are on Impy Way.  Houses are to the east and west of here.  Impy Way\ncontinues south.  To the north is a big intersection.  There are many people\nwalking along the streets.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 42,
+        "description": "You see a big intersection.\n"
+      },
+      {
+        "dir": "east",
+        "to": 38,
+        "keyword": "door",
+        "description": "You see a house.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "south",
+        "to": 32,
+        "description": "Impy Way continues south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 40,
+        "keyword": "door",
+        "description": "You see a house.\n",
+        "exit_flags": "door closed"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 8,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 29,
+          "wear_loc": "lwrist",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 18,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 38,
+    "name": "House",
+    "description": "You are in a house.  The living room and kitchen are all bundled into\nthis room.  There is a bedroom south of here.  The exit is west.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 39,
+        "description": "You see the bedroom.\n"
+      },
+      {
+        "dir": "west",
+        "to": 37,
+        "keyword": "door",
+        "description": "You see Impy Way.\n",
+        "exit_flags": "door closed"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 39,
+    "name": "Bedroom",
+    "description": "You are in a bedroom.  There isn't much of interest here except for a bed\nand a dresser.  The main room of the house is north of here.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 38,
+      "description": "You see the main room of the house.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 40,
+    "name": "House",
+    "description": "You are in a house.  The living room and kitchen are all bundled into\nthis room.  There is a bedroom south of here.  The exit is east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 37,
+        "keyword": "door",
+        "description": "You see Impy Way.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "south",
+        "to": 41,
+        "description": "You see the bedroom.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 41,
+    "name": "Bedroom",
+    "description": "You are in a bedroom.  There isn't much of interest here except for a bed\nand a dresser.  The main room of the house is north of here.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 40,
+      "description": "You see the main room of the house.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 42,
+    "name": "The Big Intersection",
+    "description": "You are on the intersection of Impy Way and Swiftest Way.  To the north of\nyou is a big house.  Swiftest Way runs east and west, and Impy way continues\nsouth.  There are quite a few people on this intersection.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 43,
+        "keyword": "door",
+        "description": "You see the big house.\n",
+        "exit_flags": "door closed locked",
+        "key": 65
+      },
+      {
+        "dir": "east",
+        "to": 46,
+        "description": "Swiftest Way continues east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 37,
+        "description": "Impy Way continues south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 49,
+        "description": "Swiftest Way continues west.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 8,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 26,
+          "wear_loc": "arms",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 43,
+    "name": "Big House",
+    "description": "You are in a big house.  Evidently, the owners of this house are richer\nthan the average citizen, since there is more than one room to this house.  A\ndoor leads to the kitchen north, and a bedroom is upstairs.  The exit is to \nthe south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 45,
+        "description": "You see the kitchen.\n"
+      },
+      {
+        "dir": "south",
+        "to": 42,
+        "keyword": "door",
+        "description": "You see Impy Way.\n",
+        "exit_flags": "door closed locked",
+        "key": 65
+      },
+      {
+        "dir": "up",
+        "to": 44,
+        "description": "You see the bedroom.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 65,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 44,
+    "name": "Bedroom",
+    "description": "You are in the bedroom.  There isn't much of interest except for a bed \nand a closet.  The stairs lead back down.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "down",
+      "to": 43,
+      "description": "You see the main room of the house.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 45,
+    "name": "Kitchen",
+    "description": "You are in a kitchen.  There isn't much of interest here.  The main room\nis east of here.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 43,
+      "description": "You see the main room of the house.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 46,
+    "name": "Swiftest Way",
+    "description": "You are on Swiftest Way, the commoner's residential area.  Small houses\nare north and south of you.  Swiftest Way continues east, and west is a big\nintersection.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 52,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "east",
+        "to": 47,
+        "description": "Swiftest Way continues east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 53,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "west",
+        "to": 42,
+        "description": "You see a big intersection.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 47,
+    "name": "Swiftest Way",
+    "description": "You are on Swiftest Way, the commoner's residential area.  Small houses\nare north and south of you.  Swiftest Way continues east and west.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 54,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "east",
+        "to": 48,
+        "description": "You see the end of Swiftest Way.\n"
+      },
+      {
+        "dir": "south",
+        "to": 55,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "west",
+        "to": 46,
+        "description": "Swiftest Way continues west.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 8,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 27,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 48,
+    "name": "End of Swiftest Way",
+    "description": "You are on Swiftest Way, the commoner's residential area.  Small houses\nare north, south, and east of you.  Swiftest Way continues west.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 56,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "east",
+        "to": 57,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "south",
+        "to": 58,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "west",
+        "to": 47,
+        "description": "Swiftest Way continues west.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 17,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 49,
+    "name": "Swiftest Way",
+    "description": "You are on Swiftest Way, the commoner's residential area.  Small houses\nare north and south of you.  Swiftest Way continues west, and to the east you\nsee a big intersection.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 59,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "east",
+        "to": 42,
+        "description": "You see the big intersection.\n"
+      },
+      {
+        "dir": "south",
+        "to": 60,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "west",
+        "to": 50,
+        "description": "Swiftest Way continues west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 50,
+    "name": "Swiftest Way",
+    "description": "You are on Swiftest Way, the commoner's residential area.  Small houses\nare north and south of you.  Swiftest Way continues east and west.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 61,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "east",
+        "to": 49,
+        "description": "Swiftest Way continues east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 62,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "west",
+        "to": 51,
+        "description": "You see the end of Swiftest Way.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 8,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 25,
+          "wear_loc": "hands",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 51,
+    "name": "The end of Swiftest Way",
+    "description": "You are on Swiftest Way, the commoner's residential area.  Small houses\nare north, south, and west of you.  Swiftest Way continues east.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 63,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "east",
+        "to": 50,
+        "description": "Swiftest Way continues east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 64,
+        "description": "You see a small house.\n"
+      },
+      {
+        "dir": "west",
+        "to": 65,
+        "description": "You see a small house.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 52,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 46,
+      "description": "You see Swiftest Way.\n"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 20,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 53,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 46,
+      "description": "You see Swiftest Way.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 54,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 47,
+      "description": "You see Swiftest Way.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 55,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 47,
+      "description": "You see Swiftest Way.\n"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 19,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 56,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 48,
+      "description": "You see the end of Swiftest Way.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 57,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the west.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 48,
+      "description": "You see the end of Swiftest Way.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 58,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 48,
+      "description": "You see the end of Swiftest Way.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 59,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 49,
+      "description": "You see Swiftest Way.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 60,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 49,
+      "description": "You see Swiftest Way.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 61,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 50,
+      "description": "You see Swiftest Way.\n"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 19,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 62,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 50,
+      "description": "You see Swiftest Way.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 63,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 51,
+      "description": "You see the end of Swiftest Way.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 64,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 51,
+      "description": "You see the end of Swiftest Way.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 65,
+    "name": "Small House",
+    "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much\nof value here to you, but you'd bet that the owner really cherishes the pile\nof stuff here.  The exit is to the east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 51,
+      "description": "You see the end of Swiftest Way.\n"
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 66,
+    "name": "Raff Way",
+    "description": "You are on Raff Way.  To the west, you can see a big intersection.  To \nthe east, you see Raff Way continue toward the Golden Citadel.  There are \nbeautiful flowers growing along the road here, making this more of a garden\nthan a road.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 67,
+        "description": "Raff Way continues east.\n"
+      },
+      {
+        "dir": "west",
+        "to": 1,
+        "description": "You see the big intersection.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 18,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 67,
+    "name": "Raff Way",
+    "description": "You are on Raff Way.  Raff Way continues west to the city of Ofcol.  To \nthe east, you see Raff Way continue toward the Golden Citadel.  There are \nbeautiful flowers growing along the road here, making this more of a garden\nthan a road.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 99,
+        "description": "You see the entrance of the Golden Citadel.\n"
+      },
+      {
+        "dir": "west",
+        "to": 66,
+        "description": "Raff Way continues west.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 8,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 28,
+          "wear_loc": "waist",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 68,
+    "name": "Dirt Road",
+    "description": "You are on a dirt road.  To the east is a large building with a bad smell\nemanating from it.  To the west is the end of Impy Way, and this road continues\nsouth.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 17,
+        "description": "You see the large building with the bad smell.\n"
+      },
+      {
+        "dir": "south",
+        "to": 18,
+        "description": "The dirt road continues south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 11,
+        "description": "You see the end of Impy Way.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 69,
+    "name": "The Temple of Ofcol",
+    "description": "You are in the Temple of Ofcol.  Golden tiles cover the floor, and solid\ngold columns reach the twelve foot ceiling of this vast chamber.  Servants in\ngolden livery wander this place, making even the raggiest messenger boy look\nricher than you are.  Exits lead to the anterooms in the cardinal directions.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 70
+      },
+      {
+        "dir": "east",
+        "to": 72
+      },
+      {
+        "dir": "south",
+        "to": 73
+      },
+      {
+        "dir": "west",
+        "to": 71
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 31,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 53,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 32,
+          "wear_loc": "head",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 33,
+          "wear_loc": "legs",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 34,
+          "wear_loc": "feet",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 35,
+          "wear_loc": "hands",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 26,
+          "wear_loc": "arms",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 27,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 28,
+          "wear_loc": "waist",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 28,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 64,
+          "wear_loc": "about",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 52,
+          "wear_loc": "neck1",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 70,
+    "name": "The Anteroom to the Temple of Ofcol",
+    "description": "You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the\nfloor, and servants in golden livery pass you by peaceably.  The temple is to\nthe south, and to the north is a hallway.  A stairways leads up.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 75
+      },
+      {
+        "dir": "south",
+        "to": 69
+      },
+      {
+        "dir": "up",
+        "to": 86
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 71,
+    "name": "The Anteroom to the Temple of Ofcol",
+    "description": "You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the\nfloor, and servants in golden livery pass you by peaceably.  The temple is to\nthe east, and to the west is a hallway.  A stairways leads up.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 69
+      },
+      {
+        "dir": "west",
+        "to": 79
+      },
+      {
+        "dir": "up",
+        "to": 87
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 72,
+    "name": "The Anteroom to the Temple of Ofcol",
+    "description": "You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the\nfloor, and servants in golden livery pass you by peaceably.  The temple is to\nthe west, and to the east is a hallway.  A stairways leads up.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 80
+      },
+      {
+        "dir": "west",
+        "to": 69
+      },
+      {
+        "dir": "up",
+        "to": 89
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 73,
+    "name": "The Anteroom to the Temple of Ofcol",
+    "description": "You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the\nfloor, and servants in golden livery pass you by peaceably.  The temple is to\nthe north, and to the south is a hallway.  A stairways leads up.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 69
+      },
+      {
+        "dir": "south",
+        "to": 84
+      },
+      {
+        "dir": "up",
+        "to": 90
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 25,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 74,
+    "name": "A Hallway of the Golden Citadel",
+    "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,\nand rich golden tapestries drape the walls.  Servants in golden livery pass you\nby peaceably.  Exits lead east and south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 75
+      },
+      {
+        "dir": "south",
+        "to": 77
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 25,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 75,
+    "name": "A Hallway of the Golden Citadel",
+    "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,\nand rich golden tapestries drape the walls.  Servants in golden livery pass you\nby peaceably.  Exits lead east, west, and south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 76
+      },
+      {
+        "dir": "south",
+        "to": 70
+      },
+      {
+        "dir": "west",
+        "to": 74
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 76,
+    "name": "A Hallway of the Golden Citadel",
+    "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,\nand rich golden tapestries drape the walls.  Servants in golden livery pass you\nby peaceably.  Exits lead west and south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 78
+      },
+      {
+        "dir": "west",
+        "to": 75
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 33,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 54,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 60,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 62,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 77,
+    "name": "A Hallway of the Golden Citadel",
+    "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,\nand rich golden tapestries drape the walls.  Servants in golden livery pass you\nby peaceably.  Exits lead north and south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 74
+      },
+      {
+        "dir": "south",
+        "to": 79
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 78,
+    "name": "A Hallway of the Golden Citadel",
+    "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,\nand rich golden tapestries drape the walls.  Servants in golden livery pass you\nby peaceably.  Exits lead north and south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 76
+      },
+      {
+        "dir": "south",
+        "to": 80
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 27,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 79,
+    "name": "A Hallway of the Golden Citadel",
+    "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,\nand rich golden tapestries drape the walls.  Servants in golden livery pass you\nby peaceably.  Exits lead to the cardinal directions, with the east leading\ntoward the Temple of Ofcol, and west leading toward the City of Ofcol.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 77
+      },
+      {
+        "dir": "east",
+        "to": 71
+      },
+      {
+        "dir": "south",
+        "to": 81
+      },
+      {
+        "dir": "west",
+        "to": 98
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 80,
+    "name": "A Hallway of the Golden Citadel",
+    "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,\nand rich golden tapestries drape the walls.  Servants in golden livery pass you\nby peaceably.  Exits lead west, north and south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 78
+      },
+      {
+        "dir": "south",
+        "to": 82
+      },
+      {
+        "dir": "west",
+        "to": 72
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 81,
+    "name": "A Hallway of the Golden Citadel",
+    "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,\nand rich golden tapestries drape the walls.  Servants in golden livery pass you\nby peaceably.  Exits lead north and south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 79
+      },
+      {
+        "dir": "south",
+        "to": 83
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 33,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 54,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 60,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 62,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 82,
+    "name": "A Hallway of the Golden Citadel",
+    "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,\nand rich golden tapestries drape the walls.  Servants in golden livery pass you\nby peaceably.  Exits lead north and south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 80
+      },
+      {
+        "dir": "south",
+        "to": 85
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 26,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 83,
+    "name": "A Hallway of the Golden Citadel",
+    "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,\nand rich golden tapestries drape the walls.  Servants in golden livery pass you\nby peaceably.  Exits lead north and east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 81
+      },
+      {
+        "dir": "east",
+        "to": 84
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 26,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 84,
+    "name": "A Hallway of the Golden Citadel",
+    "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,\nand rich golden tapestries drape the walls.  Servants in golden livery pass you\nby peaceably.  Exits lead east, west, and north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 73
+      },
+      {
+        "dir": "east",
+        "to": 85
+      },
+      {
+        "dir": "west",
+        "to": 83
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 85,
+    "name": "A Hallway of the Golden Citadel",
+    "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,\nand rich golden tapestries drape the walls.  Servants in golden livery pass you\nby peaceably.  Exits lead west and north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 82
+      },
+      {
+        "dir": "west",
+        "to": 84
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 86,
+    "name": "An Upper Chamber of the Golden Citadel",
+    "description": "You are in one of the upper chambers of the Golden Citadel.  The decora-\ntions of this place surpass even those of the first floor.  Gold tiles etched\nwith platinum cover the floor, walls and the ceiling.  The lights from numerous\ntorches reflect from these shimmering planes, giving the illusion that you are\nstanding in a gem.  Stairways lead up and down, and the hall leads south. \n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 88
+      },
+      {
+        "dir": "up",
+        "to": 91
+      },
+      {
+        "dir": "down",
+        "to": 70
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 87,
+    "name": "An Upper Chamber of the Golden Citadel",
+    "description": "You are in one of the upper chambers of the Golden Citadel.  The decora-\ntions of this place surpass even those of the first floor.  Gold tiles etched\nwith platinum cover the floor, walls and the ceiling.  The lights from numerous\ntorches reflect from these shimmering planes, giving the illusion that you are\nstanding in a gem.  Stairways lead up and down, and the hall leads east. \n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 88
+      },
+      {
+        "dir": "up",
+        "to": 92
+      },
+      {
+        "dir": "down",
+        "to": 71
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 88,
+    "name": "The Hall of the DragonLords",
+    "description": "You are in a vast hall, filled with the commanders of the Golden Citadel.\nGolden tiles etched with platinum cover the floors, and weapons of all types\nare mounted on the walls of this meeting hall.  Surrounding a solid gold table\nare four sons of the Keeper of the Golden Citadel.  They smile at you and ask \nyou to join them in lunch.  Exits lead to the cardinal directions. \n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 86
+      },
+      {
+        "dir": "east",
+        "to": 89
+      },
+      {
+        "dir": "south",
+        "to": 90
+      },
+      {
+        "dir": "west",
+        "to": 87
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 29,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 64,
+          "wear_loc": "about",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 30,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 54,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 60,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 69,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 56,
+          "wear_loc": "head",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 57,
+          "wear_loc": "legs",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 30,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 54,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 60,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 69,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 57,
+          "wear_loc": "feet",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 58,
+          "wear_loc": "hands",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 30,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 54,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 60,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 69,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 59,
+          "wear_loc": "arms",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 61,
+          "wear_loc": "waist",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 89,
+    "name": "An Upper Chamber of the Golden Citadel",
+    "description": "You are in one of the upper chambers of the Golden Citadel.  The decora-\ntions of this place surpass even those of the first floor.  Gold tiles etched\nwith platinum cover the floor, walls and the ceiling.  The lights from numerous\ntorches reflect from these shimmering planes, giving the illusion that you are\nstanding in a gem.  Stairways lead up and down, and the hall leads west. \n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 88
+      },
+      {
+        "dir": "up",
+        "to": 94
+      },
+      {
+        "dir": "down",
+        "to": 72
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 90,
+    "name": "An Upper Chamber of the Golden Citadel",
+    "description": "You are in one of the upper chambers of the Golden Citadel.  The decora-\ntions of this place surpass even those of the first floor.  Gold tiles etched\nwith platinum cover the floor, walls and the ceiling.  The lights from numerous\ntorches reflect from these shimmering planes, giving the illusion that you are\nstanding in a gem.  Stairways lead up and down, and the hall leads north. \n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 88
+      },
+      {
+        "dir": "up",
+        "to": 95
+      },
+      {
+        "dir": "down",
+        "to": 73
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 33,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 54,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 60,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 62,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 91,
+    "name": "A Top Chamber of the Golden Citadel",
+    "description": "You are in one of the top chambers of the Golden Citadel.  The decorations\nof this room looks like a dragon's hoard.  The whole room is carved out of pure\ngold, and gems of all types glitter from the walls, ceiling, even the floor.\nIt is obvious that this room was not meant for you to intrude upon.  A stair-\ncase leads back down, and a doorway leads south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 93
+      },
+      {
+        "dir": "down",
+        "to": 86
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 92,
+    "name": "A Top Chamber of the Golden Citadel",
+    "description": "You are in one of the top chambers of the Golden Citadel.  The decorations\nof this room looks like a dragon's hoard.  The whole room is carved out of pure\ngold, and gems of all types glitter from the walls, ceiling, even the floor.\nIt is obvious that this room was not meant for you to intrude upon.  A stair-\ncase leads back down, and a doorway leads east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 93
+      },
+      {
+        "dir": "down",
+        "to": 87
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 93,
+    "name": "The Dragon Chamber",
+    "description": "You are in a vast chamber carved from gold and platinum.  Gems the size of\na man's fist protrude from the walls, ceiling, and the floor, making your step\npainful.  A vast open sky-light lets fresh air come in from the top.  In the\ncenter of this chamber, you see a great wealth of coins, and on top of that\npile of coins, you see a golden dragon squinting at you.  Exits lead to the\ncardinal directions to the anterooms.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 91
+      },
+      {
+        "dir": "east",
+        "to": 94
+      },
+      {
+        "dir": "south",
+        "to": 95
+      },
+      {
+        "dir": "west",
+        "to": 92
+      },
+      {
+        "dir": "up",
+        "to": 96
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 31,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 68,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 63,
+          "wear_loc": "hold",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 32,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 64,
+          "wear_loc": "about",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 32,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 64,
+          "wear_loc": "about",
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 94,
+    "name": "A Top Chamber of the Golden Citadel",
+    "description": "You are in one of the top chambers of the Golden Citadel.  The decorations\nof this room looks like a dragon's hoard.  The whole room is carved out of pure\ngold, and gems of all types glitter from the walls, ceiling, even the floor.\nIt is obvious that this room was not meant for you to intrude upon.  A stair-\ncase leads back down, and a doorway leads west.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 93
+      },
+      {
+        "dir": "down",
+        "to": 89
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 95,
+    "name": "A Top Chamber of the Golden Citadel",
+    "description": "You are in one of the top chambers of the Golden Citadel.  The decorations\nof this room looks like a dragon's hoard.  The whole room is carved out of pure\ngold, and gems of all types glitter from the walls, ceiling, even the floor.\nIt is obvious that this room was not meant for you to intrude upon.  A stair-\ncase leads back down, and a doorway leads north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 93
+      },
+      {
+        "dir": "down",
+        "to": 90
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 96,
+    "name": "Above the Dragon Chamber",
+    "description": "You are above the Dragon Chamber.  You curiously note that this shaft that\nconnects the chamber to the sky is wide enough that even a dragon can fit\nthrough.  This shaft leads up and down.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 97
+      },
+      {
+        "dir": "down",
+        "to": 93
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 97,
+    "name": "In the Shaft from the Dragon Chamber",
+    "description": "You are in the shaft leading from the Dragon Chamber.  Below you lies the\nDragon Chamber of the Golden Citadel.  Above you, you see the sky, but \ncurrently, the way out is sealed by a layer of diamond that looks impenetrable.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "down",
+      "to": 96
+    }]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 98,
+    "name": "Inside the Entrance to the Golden Citadel",
+    "description": "You are inside the entrance to the Golden Citadel.  Rich golden tapestries\nline the walls, and golden tiles cover the floors.  The exit to this citadel is\nto the west, while the citadel itself is to the east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 79
+      },
+      {
+        "dir": "west",
+        "to": 99,
+        "keyword": "gate",
+        "exit_flags": "door",
+        "key": 51
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 34,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 27,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 51,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 34,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 27,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 51,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 34,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 27,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 51,
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "ofcol2",
+    "anum": 99,
+    "name": "Outside the Entrance to the Golden Citadel",
+    "description": "You are outside the entrance to the Golden Citadel.  A great gate is to\nto the east, marking the entranceway into the citadel.  The road also leads\nback west to Raff Way.\n",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 98,
+        "exit_flags": "door",
+        "key": 51
+      },
+      {
+        "dir": "west",
+        "to": 67
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 31,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 53,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 32,
+          "wear_loc": "head",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 23,
+          "wear_loc": "legs",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 24,
+          "wear_loc": "feet",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 25,
+          "wear_loc": "hands",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 36,
+          "wear_loc": "arms",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 37,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 38,
+          "wear_loc": "waist",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 23,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 27,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 51,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 23,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 27,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 51,
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 23,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "lfinger",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 27,
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 51,
+          "global_limit": 99
+        }
+      }
+    ]
+  }}
+]

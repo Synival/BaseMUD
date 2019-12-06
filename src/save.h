@@ -32,14 +32,14 @@
 
 /* Function prototypes. */
 char *print_flags (flag_t flags);
-void save_char_obj (CHAR_DATA * ch);
-void fwrite_char (CHAR_DATA * ch, FILE * fp);
-void fwrite_pet (CHAR_DATA * pet, FILE * fp);
-void fwrite_obj (CHAR_DATA * ch, OBJ_DATA * obj, FILE * fp, int iNest);
-bool load_char_obj (DESCRIPTOR_DATA * d, char *name);
-void load_old_colour (CHAR_DATA * ch, FILE * fp, char *name);
-void fread_char (CHAR_DATA * ch, FILE * fp);
-void fread_pet (CHAR_DATA * ch, FILE * fp);
-void fread_obj (CHAR_DATA * ch, FILE * fp);
+void save_char_obj (CHAR_T *ch);
+void fwrite_char (CHAR_T *ch, FILE *fp);
+void fwrite_pet (CHAR_T *pet, FILE *fp);
+void fwrite_obj (CHAR_T *ch, OBJ_T *obj, FILE *fp, int iNest);
+bool load_char_obj (DESCRIPTOR_T *d, char *name);
+void load_old_colour (CHAR_T *ch, FILE *fp, char *name);
+void fread_char (CHAR_T *ch, FILE *fp);
+void fread_pet (CHAR_T *ch, FILE *fp);
+void fread_obj (CHAR_T *ch, FILE *fp);
 
 #endif

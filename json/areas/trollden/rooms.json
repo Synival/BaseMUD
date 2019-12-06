@@ -1,0 +1,308 @@
+[
+  {"room": {
+    "area": "trollden",
+    "anum": 1,
+    "name": "Wastedump",
+    "description": "This room is filled with bone shards and fragments.  Something (or things)\nvery big lives here.  A small plaque is on the wall.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": null,
+        "description": "You reach civilization again.\n",
+        "portal": "trollden-north-1"
+      },
+      {
+        "dir": "south",
+        "to": 3,
+        "description": "You find the stench is stronger inside.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "plaque",
+      "description": "This zone (trollden) is created by MERC for any MERC Mud.\ncopyright 1992\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 5,
+          "global_limit": 10,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "trollden",
+    "anum": 2,
+    "name": "Troll's Larder",
+    "description": "This room has blood and grime all over the walls.  You see maggots and other\ninsects crawling up them.  The resident is definitely uncivilized.  Half-eaten\nand rotting body parts scatter the floor, each having its own colony of flies,\nworms, and maggots.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 3,
+      "description": "You welcome the fresh breeze coming from the east, but wrinkle your nose when\nthe stench bears down on you once more.\n"
+    }],
+    "extra_description": [{
+      "keyword": "Half-eaten body rotting corpse",
+      "description": "YUCK!  You find worms crawling in and out this poor unfortunate former human.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 10,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 10,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "trollden",
+    "anum": 3,
+    "name": "Troll's Living Room",
+    "description": "This small cave opens to the north, south, east, and west.  You are\novercome by the stench and consider turning around.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 1,
+        "description": "There is a trail of bone shards and fragments leading north.\n"
+      },
+      {
+        "dir": "east",
+        "to": 4,
+        "description": "Good God!  You spy corpses all over the floor in there.  It looks like a\nvirtual graveyard in there.\n"
+      },
+      {
+        "dir": "south",
+        "to": 5,
+        "description": "Whoa!  You reel back from the stench.  You believe you have found the source\nof this bad smell.\n"
+      },
+      {
+        "dir": "west",
+        "to": 2,
+        "description": "You puke as you watch worms crawl between this room and the room west of here\nas they bore new holes into a corpse laying on the far wall of the west room.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 10,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 10,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "trollden",
+    "anum": 4,
+    "name": "The Playpen",
+    "description": "The walls are covered with blood (and body parts!?!?).  Plastered on the far\nwall you see what looks like a human arm.  A half-eaten body lies here with\nits chest ripped out.  The predator seems disinterested in it.\n",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 3,
+      "description": "You welcome the fresh breeze coming from the west, but wrinkle your nose when\nthe stench bears down on you once more.\n"
+    }],
+    "extra_description": [{
+      "keyword": "arm rotting",
+      "description": "This reminds you of what a baby would do to its formula during dinnertime,\nplastering it on the wall.\n"
+    }],
+    "resets": [
+      {
+        "command": "object",
+        "values": {
+          "obj": 0,
+          "global_limit": 10,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 4,
+          "into": 0,
+          "global_limit": -1,
+          "put_count": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 10,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "trollden",
+    "anum": 5,
+    "name": "Troll's Bedroom",
+    "description": "Obviously something REALLY big lives here.  The stench is quite unbearable.\nThere are piles and piles of rotten and half-eaten body parts of animals,\norcs, (and humans?) strewn across the floor.  There is a larger, more\nprominent pile of rotten parts over in a corner.  It seems to have been\nflattened by something.\n",
+    "sector_type": "mountain",
+    "room_flags": "dark no_mob indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 3,
+      "description": "You welcome the fresh breeze coming from the north, but wrinkle your nose when\nthe stench bears down on you once more.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "about",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 1,
+          "global_limit": 10,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 3,
+          "into": 1,
+          "global_limit": 5,
+          "put_count": 1
+        }
+      }
+    ]
+  }}
+]

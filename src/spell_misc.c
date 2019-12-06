@@ -34,11 +34,12 @@
 #include "objs.h"
 #include "interp.h"
 #include "chars.h"
+#include "globals.h"
 
 #include "spell_misc.h"
 
 DEFINE_SPELL_FUN (spell_cancellation) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     bool found = FALSE;
 
     level += 2;
@@ -100,7 +101,7 @@ DEFINE_SPELL_FUN (spell_control_weather) {
 
 /* modified for enhanced use */
 DEFINE_SPELL_FUN (spell_dispel_magic) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     bool found = FALSE;
 
     if (saves_spell (level, victim, DAM_OTHER)) {
@@ -155,7 +156,7 @@ DEFINE_SPELL_FUN (spell_dispel_magic) {
 }
 
 DEFINE_SPELL_FUN (spell_recharge) {
-    OBJ_DATA *obj = (OBJ_DATA *) vo;
+    OBJ_T *obj = (OBJ_T *) vo;
     int chance, percent;
     flag_t wlevel, *recharge_ptr, *charges_ptr;
 
@@ -225,7 +226,7 @@ DEFINE_SPELL_FUN (spell_ventriloquate) {
     char buf1[MAX_STRING_LENGTH];
     char buf2[MAX_STRING_LENGTH];
     char speaker[MAX_INPUT_LENGTH];
-    CHAR_DATA *vch;
+    CHAR_T *vch;
 
     target_name = one_argument (target_name, speaker);
     sprintf (buf1, "%s says '%s'.\n\r", speaker, target_name);

@@ -50,10 +50,11 @@
 #include "objs.h"
 #include "rooms.h"
 #include "find.h"
+#include "globals.h"
 
 #include "act_obj.h"
 
-bool do_filter_can_drop_item (CHAR_DATA *ch, OBJ_DATA *obj, bool msg) {
+bool do_filter_can_drop_item (CHAR_T *ch, OBJ_T *obj, bool msg) {
     FILTER (!char_can_see_obj (ch, obj),
         (!msg) ? NULL : "You can't find it.\n\r", ch);
     FILTER (obj->wear_loc != WEAR_NONE,
@@ -61,7 +62,7 @@ bool do_filter_can_drop_item (CHAR_DATA *ch, OBJ_DATA *obj, bool msg) {
     return FALSE;
 }
 
-bool do_filter_can_put_item (CHAR_DATA *ch, OBJ_DATA *obj, OBJ_DATA *container,
+bool do_filter_can_put_item (CHAR_T *ch, OBJ_T *obj, OBJ_T *container,
     bool msg)
 {
     FILTER (obj == container,
@@ -71,10 +72,10 @@ bool do_filter_can_put_item (CHAR_DATA *ch, OBJ_DATA *obj, OBJ_DATA *container,
     return FALSE;
 }
 
-bool do_filter_put_or_get_valid_container (CHAR_DATA *ch, char *arg,
-    OBJ_DATA **out_container)
+bool do_filter_put_or_get_valid_container (CHAR_T *ch, char *arg,
+    OBJ_T **out_container)
 {
-    OBJ_DATA *container;
+    OBJ_T *container;
     FILTER (!str_cmp (arg, "all") || !str_prefix ("all.", arg),
         "You can't do that.\n\r", ch);
     FILTER_ACT ((container = find_obj_here (ch, arg)) == NULL,
@@ -88,7 +89,7 @@ bool do_filter_put_or_get_valid_container (CHAR_DATA *ch, char *arg,
     return FALSE;
 }
 
-bool do_filter_can_give_item (CHAR_DATA *ch, OBJ_DATA *obj, CHAR_DATA *victim,
+bool do_filter_can_give_item (CHAR_T *ch, OBJ_T *obj, CHAR_T *victim,
     bool msg)
 {
     if (do_filter_can_drop_item (ch, obj, msg))
@@ -111,7 +112,7 @@ char *do_obj_parse_arg (const char *arg, int *out_type) {
     }
 }
 
-void do_drop_single_item (CHAR_DATA *ch, OBJ_DATA *obj) {
+void do_drop_single_item (CHAR_T *ch, OBJ_T *obj) {
     BAIL_IF_ACT (!char_can_drop_obj (ch, obj),
         "$p: You can't let go of it.", ch, obj, NULL);
 
@@ -126,7 +127,7 @@ void do_drop_single_item (CHAR_DATA *ch, OBJ_DATA *obj) {
     }
 }
 
-void do_put_single_item (CHAR_DATA *ch, OBJ_DATA *obj, OBJ_DATA *container) {
+void do_put_single_item (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
     BAIL_IF_ACT (!char_can_drop_obj (ch, obj),
         "$p: You can't let go of it.", ch, obj, NULL);
     BAIL_IF_ACT (WEIGHT_MULT (obj) != 100,
@@ -155,9 +156,9 @@ void do_put_single_item (CHAR_DATA *ch, OBJ_DATA *obj, OBJ_DATA *container) {
               "$n puts $p in $P.", ch, obj, container, 0, POS_RESTING);
 }
 
-void do_get_container (CHAR_DATA * ch, char *arg1, char *arg2) {
-    OBJ_DATA *container;
-    OBJ_DATA *obj, *obj_start, *obj_next;
+void do_get_container (CHAR_T *ch, char *arg1, char *arg2) {
+    OBJ_T *container;
+    OBJ_T *obj, *obj_start, *obj_next;
     int type;
     bool found = FALSE, failed = FALSE;
 
@@ -199,8 +200,8 @@ void do_get_container (CHAR_DATA * ch, char *arg1, char *arg2) {
     }
 }
 
-void do_get_room (CHAR_DATA *ch, char *argument) {
-    OBJ_DATA *obj, *obj_start, *obj_next;
+void do_get_room (CHAR_T *ch, char *argument) {
+    OBJ_T *obj, *obj_start, *obj_next;
     int type;
     bool found = FALSE, failed = FALSE;
 
@@ -242,8 +243,8 @@ DEFINE_DO_FUN (do_get) {
 }
 
 DEFINE_DO_FUN (do_put) {
-    OBJ_DATA *container;
-    OBJ_DATA *obj, *obj_start, *obj_next;
+    OBJ_T *container;
+    OBJ_T *obj, *obj_start, *obj_next;
     char arg1[MAX_INPUT_LENGTH], *arg;
     char arg2[MAX_INPUT_LENGTH];
     int type;
@@ -281,7 +282,7 @@ DEFINE_DO_FUN (do_put) {
     }
 }
 
-void do_drop_money (CHAR_DATA *ch, char *arg1, char *argument) {
+void do_drop_money (CHAR_T *ch, char *arg1, char *argument) {
     char arg[MAX_INPUT_LENGTH];
     int gold = 0, silver = 0;
     bool is_silver;
@@ -315,7 +316,7 @@ void do_drop_money (CHAR_DATA *ch, char *arg1, char *argument) {
 
 DEFINE_DO_FUN (do_drop) {
     char arg1[MAX_INPUT_LENGTH], *arg;
-    OBJ_DATA *obj, *obj_start, *obj_next;
+    OBJ_T *obj, *obj_start, *obj_next;
     int type;
     bool found = FALSE, failed = FALSE;
 
@@ -350,10 +351,10 @@ DEFINE_DO_FUN (do_drop) {
     }
 }
 
-void do_give_money (CHAR_DATA *ch, char *arg1, char *arg2, char *argument) {
+void do_give_money (CHAR_T *ch, char *arg1, char *arg2, char *argument) {
     /* 'give NNNN coins victim' */
     char buf[MAX_STRING_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     bool is_silver;
     int amount = atoi (arg1);
 
@@ -429,7 +430,7 @@ void do_give_money (CHAR_DATA *ch, char *arg1, char *arg2, char *argument) {
     }
 }
 
-void do_give_single_item (CHAR_DATA *ch, OBJ_DATA *obj, CHAR_DATA *victim) {
+void do_give_single_item (CHAR_T *ch, OBJ_T *obj, CHAR_T *victim) {
     BAIL_IF_ACT (victim->carry_number + obj_get_carry_number (obj) >
             char_get_max_carry_count (victim),
         "$N has $S hands full.", ch, NULL, victim);
@@ -461,8 +462,8 @@ void do_give_single_item (CHAR_DATA *ch, OBJ_DATA *obj, CHAR_DATA *victim) {
 DEFINE_DO_FUN (do_give) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    OBJ_DATA *obj;
+    CHAR_T *victim;
+    OBJ_T *obj;
 
     DO_REQUIRE_ARG (arg1, "Give what to whom?\n\r");
     DO_REQUIRE_ARG (arg2, "Give it to whom?\n\r");
@@ -484,8 +485,8 @@ DEFINE_DO_FUN (do_give) {
 
 /* for poisoning weapons and food/drink */
 DEFINE_DO_FUN (do_envenom) {
-    OBJ_DATA *obj;
-    AFFECT_DATA af;
+    OBJ_T *obj;
+    AFFECT_T af;
     int percent, skill;
 
     /* find out what */
@@ -508,7 +509,7 @@ DEFINE_DO_FUN (do_envenom) {
             "You fail to poison $p.", ch, obj, NULL);
         if (number_percent () >= skill) {
             act ("You fail to poison $p.", ch, obj, NULL, TO_CHAR);
-            if (!*pflag)
+            if (*pflag == 0)
                 check_improve (ch, gsn_envenom, FALSE, 4);
             WAIT_STATE (ch, skill_table[gsn_envenom].beats);
             return;
@@ -516,8 +517,8 @@ DEFINE_DO_FUN (do_envenom) {
 
         act ("You treat $p with deadly poison.", ch, obj, NULL, TO_CHAR);
         act ("$n treats $p with deadly poison.", ch, obj, NULL, TO_NOTCHAR);
-        if (!*pflag) {
-            *pflag = 1;
+        if (*pflag == 0) {
+            *pflag = TRUE;
             check_improve (ch, gsn_envenom, TRUE, 4);
         }
         WAIT_STATE (ch, skill_table[gsn_envenom].beats);
@@ -569,8 +570,8 @@ DEFINE_DO_FUN (do_fill) {
     char arg[MAX_INPUT_LENGTH];
     char buf1[MAX_STRING_LENGTH];
     char buf2[MAX_STRING_LENGTH];
-    OBJ_DATA *obj;
-    OBJ_DATA *fountain;
+    OBJ_T *obj;
+    OBJ_T *fountain;
     char *liq;
 
     /* Find a valid container. */
@@ -597,7 +598,8 @@ DEFINE_DO_FUN (do_fill) {
     BAIL_IF (obj->v.drink_con.filled >= obj->v.drink_con.capacity,
         "Your container is full.\n\r", ch);
 
-    obj->v.drink_con.capacity = fountain->v.fountain.capacity;
+    obj->v.drink_con.liquid   = fountain->v.fountain.liquid;
+    obj->v.drink_con.poisoned = fountain->v.fountain.poisoned;
     obj->v.drink_con.filled   = obj->v.drink_con.capacity;
 
     liq = liq_table[fountain->v.fountain.liquid].name;
@@ -613,8 +615,8 @@ DEFINE_DO_FUN (do_pour) {
     char buf2[MAX_STRING_LENGTH];
     char buf3[MAX_STRING_LENGTH];
     char *liq;
-    OBJ_DATA *out, *in;
-    CHAR_DATA *vch = NULL;
+    OBJ_T *out, *in;
+    CHAR_T *vch = NULL;
     int amount;
 
     DO_REQUIRE_ARG (arg1, "Pour what into what?\n\r");
@@ -680,7 +682,7 @@ DEFINE_DO_FUN (do_pour) {
     }
 }
 
-void do_change_conditions (CHAR_DATA *ch, int drunk, int full, int thirst,
+void do_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
     int hunger)
 {
     if (IS_NPC (ch))
@@ -730,7 +732,7 @@ void do_change_conditions (CHAR_DATA *ch, int drunk, int full, int thirst,
 
 DEFINE_DO_FUN (do_drink) {
     char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
     int amount;
     int liquid;
     const sh_int *affs;
@@ -785,7 +787,7 @@ DEFINE_DO_FUN (do_drink) {
         amount * affs[COND_THIRST] / 10, amount * affs[COND_HUNGER] / 2);
 
     if (obj->v.drink_con.poisoned != 0) {
-        AFFECT_DATA af;
+        AFFECT_T af;
 
         /* The drink was poisoned! */
         send_to_char ("You choke and gag.\n\r", ch);
@@ -802,7 +804,7 @@ DEFINE_DO_FUN (do_drink) {
 
 DEFINE_DO_FUN (do_eat) {
     char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
 
     DO_REQUIRE_ARG (arg, "Eat what?\n\r");
     BAIL_IF ((obj = find_obj_own_inventory (ch, arg)) == NULL,
@@ -820,7 +822,7 @@ DEFINE_DO_FUN (do_eat) {
             do_change_conditions (ch, 0, obj->v.food.hunger, 0,
                 obj->v.food.fullness);
             if (obj->v.food.poisoned != 0) {
-                AFFECT_DATA af;
+                AFFECT_T af;
 
                 /* The food was poisoned! */
                 send_to_char ("You choke and gag.\n\r", ch);
@@ -846,11 +848,11 @@ DEFINE_DO_FUN (do_eat) {
 
 DEFINE_DO_FUN (do_wear) {
     char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
 
     DO_REQUIRE_ARG (arg, "Wear, wield, or hold what?\n\r");
     if (!str_cmp (arg, "all")) {
-        OBJ_DATA *obj_next;
+        OBJ_T *obj_next;
         bool success;
 
         success = FALSE;
@@ -873,7 +875,7 @@ DEFINE_DO_FUN (do_wear) {
 
 DEFINE_DO_FUN (do_remove) {
     char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
 
     DO_REQUIRE_ARG (arg, "Remove what?\n\r");
     BAIL_IF ((obj = find_obj_own_worn (ch, arg)) == NULL,
@@ -883,11 +885,11 @@ DEFINE_DO_FUN (do_remove) {
 
 DEFINE_DO_FUN (do_sacrifice) {
     char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
     int silver;
 
     /* variables for AUTOSPLIT */
-    CHAR_DATA *gch;
+    CHAR_T *gch;
     int members;
     char buffer[100];
 
@@ -921,7 +923,7 @@ DEFINE_DO_FUN (do_sacrifice) {
     if (obj->item_type != ITEM_CORPSE_NPC && obj->item_type != ITEM_CORPSE_PC)
         silver = UMIN (silver, obj->cost);
 
-#ifndef VANILLA
+#ifdef BASEMUD_NO_WORTHLESS_SACRIFICES
     BAIL_IF (silver == 0,
         "Mota ignores your paltry offering.\n\r", ch);
 #endif
@@ -952,7 +954,7 @@ DEFINE_DO_FUN (do_sacrifice) {
 
 DEFINE_DO_FUN (do_quaff) {
     char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
     int i, level;
 
     DO_REQUIRE_ARG (arg, "Quaff what?\n\r");
@@ -976,9 +978,9 @@ DEFINE_DO_FUN (do_quaff) {
 DEFINE_DO_FUN (do_recite) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    OBJ_DATA *scroll;
-    OBJ_DATA *obj;
+    CHAR_T *victim;
+    OBJ_T *scroll;
+    OBJ_T *obj;
 
     DO_REQUIRE_ARG (arg1, "Recite what?\n\r");
     argument = one_argument (argument, arg2);
@@ -1017,9 +1019,9 @@ DEFINE_DO_FUN (do_recite) {
 }
 
 DEFINE_DO_FUN (do_brandish) {
-    CHAR_DATA *vch;
-    CHAR_DATA *vch_next;
-    OBJ_DATA *staff;
+    CHAR_T *vch;
+    CHAR_T *vch_next;
+    OBJ_T *staff;
     int sn;
 
     BAIL_IF ((staff = char_get_eq_by_wear_loc (ch, WEAR_HOLD)) == NULL,
@@ -1086,9 +1088,9 @@ DEFINE_DO_FUN (do_brandish) {
 
 DEFINE_DO_FUN (do_zap) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    OBJ_DATA *wand;
-    OBJ_DATA *obj;
+    CHAR_T *victim;
+    OBJ_T *wand;
+    OBJ_T *obj;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0' && ch->fighting == NULL,
@@ -1147,8 +1149,8 @@ DEFINE_DO_FUN (do_steal) {
     char buf[MAX_STRING_LENGTH];
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    OBJ_DATA *obj;
+    CHAR_T *victim;
+    OBJ_T *obj;
     int percent;
 
     DO_REQUIRE_ARG (arg1, "Steal what from whom?\n\r");
@@ -1272,7 +1274,7 @@ DEFINE_DO_FUN (do_steal) {
 
 /* equips a character */
 DEFINE_DO_FUN (do_outfit) {
-    OBJ_DATA *obj;
+    OBJ_T *obj;
     int i, sn, vnum;
 
     BAIL_IF (ch->level > 5 || IS_NPC (ch),
@@ -1325,7 +1327,7 @@ DEFINE_DO_FUN (do_outfit) {
 }
 
 DEFINE_DO_FUN (do_play) {
-    OBJ_DATA *juke;
+    OBJ_T *juke;
     char *str, arg[MAX_INPUT_LENGTH];
     int song, i;
     bool global = FALSE;
@@ -1341,7 +1343,7 @@ DEFINE_DO_FUN (do_play) {
         "Play what?\n\r", ch);
 
     if (!str_cmp (arg, "list")) {
-        BUFFER *buffer;
+        BUFFER_T *buffer;
         char buf[MAX_STRING_LENGTH];
         int col = 0;
         bool artist = FALSE, match = FALSE;
@@ -1392,7 +1394,7 @@ DEFINE_DO_FUN (do_play) {
     }
     BAIL_IF (argument[0] == '\0',
         "Play what?\n\r", ch);
-    BAIL_IF ((global && channel_songs[MAX_GLOBAL] > -1) ||
+    BAIL_IF ((global && channel_songs[MAX_SONG_GLOBAL] > -1) ||
              (!global && juke->v.value[4] > -1),
         "The jukebox is full up right now.\n\r", ch);
 
@@ -1404,7 +1406,7 @@ DEFINE_DO_FUN (do_play) {
 
     send_to_char ("Coming right up.\n\r", ch);
     if (global) {
-        for (i = 1; i <= MAX_GLOBAL; i++) {
+        for (i = 1; i <= MAX_SONG_GLOBAL; i++) {
             if (channel_songs[i] >= 0)
                 continue;
             if (i == 1)

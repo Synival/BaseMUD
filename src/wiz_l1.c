@@ -39,12 +39,13 @@
 #include "chars.h"
 #include "find.h"
 #include "descs.h"
+#include "globals.h"
 
 #include "wiz_l1.h"
 
 DEFINE_DO_FUN (do_deny) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
@@ -71,7 +72,7 @@ DEFINE_DO_FUN (do_permban)
     { ban_site (ch, argument, TRUE); }
 
 DEFINE_DO_FUN (do_protect) {
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     BAIL_IF (argument[0] == '\0',
         "Protect whom from snooping?\n\r", ch);
@@ -99,8 +100,8 @@ DEFINE_DO_FUN (do_reboo) {
 DEFINE_DO_FUN (do_reboot) {
     char buf[MAX_STRING_LENGTH];
     extern bool merc_down;
-    DESCRIPTOR_DATA *d, *d_next;
-    CHAR_DATA *vch;
+    DESCRIPTOR_T *d, *d_next;
+    CHAR_T *vch;
 
     if (ch->invis_level < LEVEL_HERO) {
         sprintf (buf, "Reboot by %s.", ch->name);
@@ -124,8 +125,8 @@ DEFINE_DO_FUN (do_shutdow) {
 DEFINE_DO_FUN (do_shutdown) {
     char buf[MAX_STRING_LENGTH];
     extern bool merc_down;
-    DESCRIPTOR_DATA *d, *d_next;
-    CHAR_DATA *vch;
+    DESCRIPTOR_T *d, *d_next;
+    CHAR_T *vch;
 
     if (ch->invis_level < LEVEL_HERO)
         sprintf (buf, "Shutdown by %s.", ch->name);
@@ -145,7 +146,7 @@ DEFINE_DO_FUN (do_shutdown) {
 
 DEFINE_DO_FUN (do_log) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',

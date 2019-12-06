@@ -43,11 +43,13 @@
 #include "interp.h"
 #include "act_info.h"
 #include "chars.h"
+#include "memory.h"
+#include "globals.h"
 
 #include "act_board.h"
 
-void do_nread_next (CHAR_DATA *ch, char *argument, time_t *last_note) {
-    NOTE_DATA *p;
+void do_nread_next (CHAR_T *ch, char *argument, time_t *last_note) {
+    NOTE_T *p;
     char buf[200];
     int count = 1;
 
@@ -68,11 +70,11 @@ void do_nread_next (CHAR_DATA *ch, char *argument, time_t *last_note) {
     send_to_char (buf, ch);
 }
 
-void do_nread_number (CHAR_DATA *ch, char *argument, time_t *last_note,
+void do_nread_number (CHAR_T *ch, char *argument, time_t *last_note,
     int number)
 {
     int count = 0;
-    NOTE_DATA *p;
+    NOTE_T *p;
     number = atoi(argument);
 
     for (p = ch->pcdata->board->note_first; p; p = p->next)
@@ -183,7 +185,7 @@ DEFINE_DO_FUN (do_nread) {
 
 /* Remove a note */
 DEFINE_DO_FUN (do_nremove) {
-    NOTE_DATA *p;
+    NOTE_T *p;
     BAIL_IF (!is_number(argument),
         "Remove which note?\n\r", ch);
 
@@ -205,7 +207,7 @@ DEFINE_DO_FUN (do_nremove) {
 DEFINE_DO_FUN (do_nlist) {
     int count = 0, show = 0, num = 0, has_shown = 0;
     time_t last_note;
-    NOTE_DATA *p;
+    NOTE_T *p;
 
     if (is_number(argument)) { /* first, count the number of notes */
         show = atoi(argument);
@@ -233,7 +235,7 @@ DEFINE_DO_FUN (do_nlist) {
 
 /* catch up with some notes */
 DEFINE_DO_FUN (do_ncatchup) {
-    NOTE_DATA *p;
+    NOTE_T *p;
 
     /* Find last note */
     for (p = ch->pcdata->board->note_first; p && p->next; p = p->next)

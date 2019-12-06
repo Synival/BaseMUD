@@ -1,0 +1,583 @@
+[
+  {"room": {
+    "area": "immort",
+    "anum": 0,
+    "name": "The Chat Room",
+    "description": "You are lounging in a quiet cosy parlour, warmed by a gentle magical fire\nwhich twinkles happily in a warm fireplace.  This is one of the many rooms\nwhere the heroes and gods come to socialize.  It is by far one of the most\ncomfortable! \n",
+    "sector_type": "inside",
+    "room_flags": "indoors private heroes_only",
+    "doors": [{
+      "dir": "south",
+      "to": 13,
+      "description": "Asgard lies to the south.\n"
+    }],
+    "resets": [
+      {
+        "command": "object",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 135
+          },
+          "global_limit": 10,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": {
+            "area": "midgaard",
+            "anum": 200
+          },
+          "global_limit": -1,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 1,
+    "name": "Moses' Hangout",
+    "description": "You see here a cozy little room with a fireplace.  You can tell it is Moses'\nroom by the two stone tablets and a bible on a small ledge near the fireplace.\nThis room was designed for total relaxation.  You can watch television, listen\nto the stereo, even soak in a hot tub.\nThere is a bell here for the butler.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors heroes_only",
+    "doors": [{
+      "dir": "north",
+      "to": 13,
+      "description": "Asgard lies to the north.\n"
+    }]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 2,
+    "name": "The Center of the Universe",
+    "description": "You are at the centre of the universe, everything is filled with bright\nlight in all colors. You feel time and space no longer exist here.\nExits fill the room in all 42 dimensions, leading everywhere.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors private heroes_only",
+    "doors": [{
+      "dir": "east",
+      "to": 13,
+      "description": "Asgard lies to the east.\n"
+    }]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 3,
+    "name": "Valhalla",
+    "description": "This is the huge Hall of Valhalla, where the Gods rule supreme.  The\ncavernous building stretches infinitely in all directions.  Valhalla \ncontinues to the east, and the gods make their homes north and south of\nthe halls.  The golden gates are to the west.  You know not what lies \nupward...\n",
+    "sector_type": "inside",
+    "room_flags": "indoors gods_only",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 9,
+        "keyword": "door",
+        "description": "Alander's workroom is to the north.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "east",
+        "to": 17,
+        "description": "Valhalla continues east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 8,
+        "keyword": "door",
+        "description": "A sea cave is south of here.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "west",
+        "to": 16,
+        "description": "The entrance to Valhalla is to the west.\n"
+      },
+      {
+        "dir": "up",
+        "to": null,
+        "description": "If you want to know what is up there, you shall have to go look...\n",
+        "portal": "immort-up-1"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 4,
+    "name": "Priscilla's Pleasure Palace ",
+    "description": "As you look around you, you see the largest collection of erotic toys\nin the world!!!  On a table in the middle of the room lies a book titled :\n\"All You Ever Wanted to Know About Sex..But Were Afraid to Ask\"\nThere are things here that you never even imagined in your wildest dreams!\n",
+    "sector_type": "inside",
+    "room_flags": "indoors private gods_only",
+    "doors": [{
+      "dir": "north",
+      "to": 18,
+      "keyword": "door",
+      "description": "Valhalla is to the north.\n",
+      "exit_flags": "door closed"
+    }]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 5,
+    "name": "The Eye of the Hurricane",
+    "description": "The shrieking winds of a monstrous storm surround you, spinning you around\nin an endless web of fury. But then, in the middle of turmoil, you find a\nstrange calm. You find yourself hovering in the calm eye of a hurricane. All\naround you you can see the desruction caused by the powerful storm. White\nhot flashes of lightning flicker from the depths of the hurricane.  But\neverything is strangely peaceful in here, with the sun shining in from above\nand a flock of birds winging across the sky.  You stretch out and relax, this\nstorm is going to be here a while.\n",
+    "sector_type": "air",
+    "room_flags": "no_mob indoors private no_recall imp_only"
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 6,
+    "name": "Walking on the Moon",
+    "description": "The proud and lonely silence of Mare Imbrium surrounds you, as you gaze upon\nthe sterile splendor of the moon.  All around is the velvet curtain of night,\nstudded with a thousand gleaming jewels.  Below you hangs the beautiful\nfields of Earth, looking fragile and far away, but full of hope.  A sense of\nwistful regret touches you, as you think about what might have been, and what\nwill be.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob private no_recall imp_only",
+    "extra_description": [{
+      "keyword": "crater mare imbrium",
+      "description": "A small shipping tag is pinned to the ground with a worn hunting knife.\nUpon it is a dedication to Robert Anson Heinlein, the father of the future.\n"
+    }]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 7,
+    "name": "The Satin Memorial Reading Room",
+    "description": "Half read books lie everywhere: Yeats, Tennyson, Chandler, Barrie;\na battered paperback de Laclos; a dusty leather-bound Donne.  A\ndamp novel perches precariously on the edge of a large bathtub.\nAs your eyes travel beyond the steam rising to the air toward the\nrose-brambled balcony railing, you notice a well-creased printout\nof a poem sitting on a the velvet cushions of a rosewood chair\nthat has been set so as to see the stark black mountains\nfrom one angle, or the wine-dark sea from another.\n",
+    "sector_type": "hills",
+    "room_flags": "indoors private no_recall gods_only",
+    "doors": [{
+      "dir": "south",
+      "to": 17,
+      "keyword": "door",
+      "description": "Valhalla is to the south.\n",
+      "exit_flags": "door closed"
+    }],
+    "extra_description": [
+      {
+        "keyword": "rose rose-brambled balcony railing",
+        "description": "Climbing white roses have swarmed over the original marble to obscure\nit almost completely.  The air is sweet not with roses, though,\nbut with Satin's sandalwood perfume.\n"
+      },
+      {
+        "keyword": "rosewood chair",
+        "description": "It looks comfortable, and the cushions are ivory velvet.\n"
+      },
+      {
+        "keyword": "stark black mountains wine wine-dark dark sea",
+        "description": "The ocean is constantly smashing up against the cliffs and rending\nhuge slabs from it.  The beach is scarcely a beach at all, more a\ncollection of rough flakes varying in size from a small car to a\nsmall fist.  As the water comes up over the rocks and ebbs back\ndown, it filters through the spaces and makes an unnerving rattling\nsound.\n"
+      },
+      {
+        "keyword": "print out print-out creased well poem",
+        "description": "This page has been read over so many times that you can barely discern\nthe words, and in fact with much poring only the following becomes\nclear:\n        'I know that I am studly - Heck, I'm sexy, cute and cuddly\n         And I know that I'm extremely modest too.'\n"
+      },
+      {
+        "keyword": "yeats",
+        "description": "The page it is flipped open to reads:\n\nA sudden blow: the great wings beating still\nAbove the staggering girl, her thighs carressed\nBy the dark webs, her nape caught in his bill,\nhe holds her helpless breast upon his breast.\nHow can those terrified vague fingers push\nThe feathered glory from her loosening thighs?\nAnd how can body, laid in that white rush,\nBut feel that strange heart beating where it lies?\nA shudder in the loins engenders there\nThe broken wall, the burning roof and tower\nAnd Agammemnon dead.  Being so caught up,\nSo mastered by this brute blood of the air,\nDid she put on his knowledge with his power\nBefore his indifferent beak could let her drop?\n"
+      },
+      {
+        "keyword": "chandler",
+        "description": "She has just started the Lady in the Lake:\n\nGillerain Regal, the Champagne of Perfumes.  It was definitely\nthe stuff to get.  One drop of that in the hollow of your\nthroat and the matched pink pearls started falling off you like\nsummer rain.\n"
+      },
+      {
+        "keyword": "barrie",
+        "description": "A copy of Peter Pan is opened near the end:\n\nWhat sort of form was Hook showing?  Misguided man though he\nwas, we may be glad, without sympathising with him, that in\nthe end he stayed true to the traditions of his race.  The\nother boys were flying about him now, flouting, scornful; and\nas he staggered about the deck striking at them impotently, his\nmind was no longer with them; it was slouching in the playing\nfields of long ago, or being sent up for good, or watching\nthe wall-game from a famous wall.  And his shoes were right,\nand his waistcoat was right, and his tie was right, and his\nsocks were right.\n\nJames Hook, thou not wholly unheroic figure, farewell.\n"
+      },
+      {
+        "keyword": "tennyson",
+        "description": ".       \"My mariners\n         Souls that have toiled, and wrought, and thought with me -\n         The ever with a frolic welcome took\n         The thunder and the sunshine, and opposed\n         Free hearts, free foreheads - you and I are old;\n         Old age hath yet his honour and the toil\n         Death closes all; but something ere the end,\n         Some work of noble note, may yet be done,\n         Not unbecoming of men that strove with the gods.\n         The lights begin to twinkle from the rocks;\n         The long day wanes; the slow moon climbs; the deep\n         Moans round with many voices.\"\n"
+      },
+      {
+        "keyword": "battered paperback de Laclos",
+        "description": ".       'One is very soon bored of everything, my angel; it is a law\n        of nature.  It is not my fault.\n        If, that is to say, that I am bored with an adventure that has\n        claimed my attentions for four mortal months, it is not my fault.\n        If, that is to say, my love is equal to your virtue - and that\n        is certainly saying a great deal - it is not surprising that\n        one should come to the end at the same time as the other.  It\n        is not my fault.\n        A woman that I love madly now insists that I give you up for\n        her.  It is not my fault.\n        I quite realize that this is the perfect opportunity to accuse\n        me of perjury: but if, where nature has gifted men with no\n        more than constancy, she has given women obstinacy, it is\n        not my fault.\n        Believe this, you should take another lover, even as I take\n        another mistress.  This is good, very good advice: if you\n        find it bad, it is not my fault.\n        Good-bye, my angel.  I took you with pleasure, I leave you\n        without regret.  I shall come back perhaps.  Such is life.\n        It is not my fault.\n"
+      },
+      {
+        "keyword": "dusty leather bound leather-bound Donne",
+        "description": ".       `Cruel and sudden, hast thou since\n        Purpled thy nail in blood of innocence?\n        Wherein could this flea guilty be,\n        Except in the drop it sucked from thee?\n        Yet thou trimph'st and say'st that thou\n        Find'st not thyself, nor me the weaker now;\n          'Tis true, then learn how false fears be:\n          Just so much honour when thou yield'st to me\n          Will waste as this flea's death took life from thee.'\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 8,
+    "name": "A Sea Cave",
+    "description": "You are in a small cave in a cliff next to a deep green sea.  Fine\ngold and pink sand blanket the floor.  Shells are scattered and strewn\nabout.  A blow hole in the roof of the cave allows beams of light to stream\nin and illuminate the cave.  The wind blows outside the entrance, but\nyou are protected from the weather in your cozy cave.  The foamy surf\nnever seems to quite reach your feet.  Several boulders here have been\nworn by time into a shape similar to a comfortable chair.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors private gods_only",
+    "doors": [{
+      "dir": "north",
+      "to": 3,
+      "keyword": "door",
+      "description": "Valhalla lies to the north.\n",
+      "exit_flags": "door closed"
+    }]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 9,
+    "name": "The Archmage's Workroom",
+    "description": "This well-lit room is absolutely filled with clutter -- enchanting gear,\nreagents, spell components, ancient tomes, scrolls, braziers, exotic incense\nand countless other tools of the magical trade, all jumbled together with\nseemingly no attention paid to organization.  You have no doubts that Alander\ncan find whatever he needs without delay, however.  A heavy oak door stands\nbarred to the south, to discourage idle visitors, and Alander's quarters\nare east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors safe",
+    "doors": [{
+      "dir": "south",
+      "to": 3,
+      "keyword": "door",
+      "description": "Valhalla is to the south.\n",
+      "exit_flags": "door closed"
+    }],
+    "extra_description": [
+      {
+        "keyword": "tools scrolls braziers components",
+        "description": "It's all worth a fortune, but you'd better not touch it.  Alander keeps\ninventory and holds grudges.\n"
+      },
+      {
+        "keyword": "clutter mess",
+        "description": "You notice Jimmy Hoffa's ring.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 10,
+    "name": "Office",
+    "description": "The first thing you notice about this office is the floor; it\nis a black & white checkerboard pattern, with 8 squares to a side.  The\nsouth wall is a HUGE picture window that produces a magnificent view of \nthe land.  In front of the window is a large desk.  Completely covering\nthe east wall is a bookshelf, that is crammed full.  In the northwest\ncorner, you notice a statue.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors private gods_only",
+    "doors": [{
+      "dir": "north",
+      "to": 17,
+      "keyword": "door",
+      "description": "Valhalla is to the north\n",
+      "exit_flags": "door closed"
+    }],
+    "extra_description": [
+      {
+        "keyword": "desk",
+        "description": "This desk is much larger than anyone could possibly need.  At one end you \nnotice a large, disorderly mass of papers; it must be all his immortal\npaperwork.  At the other end is a magnificent wooden inlaid board with\nhandcrafted ebony and hardwood pieces.\n"
+      },
+      {
+        "keyword": "statue",
+        "description": "You recognize this as a statue of Robert James Fischer, one of the most \ncreative, if not eccentric, players of all time.  The inscription on the\nbase reads, \"I like the moment when I crush a man's ego.\"\n"
+      },
+      {
+        "keyword": "bookshelf",
+        "description": "This is the most amazing collection of chess books you have ever seen.\nEverything from Damiano's manuscripts, to a complete collection of the\nEncyclopedia of Chess Openings, to the latest Imformants are all here.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 11,
+    "name": "Arena of Judgement",
+    "description": "The scene lain before you is one that gives you the feeling of being placed\nunder a higher authority.  The jury is out.  A statue of Pontius Pilate is\nin the aft of the Arena.  Staring balefully, the statue faces a distant\nhillside where many aged crosses still stand.  The Arena is set in a wide\npit-like field of trampled bloodstained grass, and is guarded by high walls\nof veinous marble.  A bloodstone seat awaits the true paragon of Romanity.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors private gods_only",
+    "doors": [{
+      "dir": "south",
+      "to": 18,
+      "keyword": "door",
+      "description": "Valhalla is to the south.\n",
+      "exit_flags": "door closed"
+    }],
+    "extra_description": [{
+      "keyword": "statue",
+      "description": "A statue of Pontius Pilate is here.  On it's face is the expression of some\nage old contemplation.  Standing at the statues bronzy feet is a Blood red\nshield that glimmers like a pool of blood.\n"
+    }]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 12,
+    "name": "The Realm of the Dead",
+    "description": "You are standing on an immense, grey stone floor that stretches as far as you\ncan see in all directions.  Rough winds plunging from the dark, starless sky\ntear savagely at your fragile body.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors no_recall",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 12,
+        "description": "The hard floor seems to go on forever.\n"
+      },
+      {
+        "dir": "east",
+        "to": 12,
+        "description": "The hard floor seems to go on forever.\n"
+      },
+      {
+        "dir": "south",
+        "to": 12,
+        "description": "The hard floor seems to go on forever.\n"
+      },
+      {
+        "dir": "west",
+        "to": 12,
+        "description": "The hard floor seems to go on forever.\n"
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "sky wind winds",
+        "description": "Cold winds plunge ceaselessly at you from the dark, cloudless sky.\n"
+      },
+      {
+        "keyword": "floor",
+        "description": "The stone floor is the same shade of grey as the sky and is completely plain\nand unscratched.  It is probably too hard for anything to leave as much as a\nscratch on it.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 13,
+    "name": "Asgard",
+    "description": "You stand on a huge expanse of glass.  Below you are clouds and the \npains of mortality.  As you stand in Asgard, home of the bravest of the\nbrave, you are frozen in awe of the power held within these walls.  A \nhuge mansion lies to the east beyond a set of magnificent golden doors. \n",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 0,
+        "description": "The chat room is to the north.\n"
+      },
+      {
+        "dir": "east",
+        "to": 16,
+        "description": "The golden doors of Valhalla are to the east\n"
+      },
+      {
+        "dir": "south",
+        "to": 1,
+        "description": "Moses' hangout is to the south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 2,
+        "description": "The center of the universe is to the west.\n"
+      },
+      {
+        "dir": "down",
+        "to": 15,
+        "description": "The Rainbow Bridge is below you.  You can barely see it through the clouds.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 14,
+    "name": "The Room of Lost Souls",
+    "description": "This is the room full of souls that never made it to Asgard.  They are \ntrapped here eternally, left to wander about in misery.  They were infidels\nand cowards.  Their cries of misery send a shiver down your spine.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "down",
+      "to": 19
+    }]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 15,
+    "name": "Head of the Rainbow Bridge",
+    "description": "Standing on the mortal end of the Rainbow Bridge, the bridge arches up \nbefore you and seems to disappear into the clouds.  You wonder if it is \nwise to venture upward into the realm of the gods.  But it seems so calm\nand peaceful here that it would be a shame to leave...\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 20,
+        "description": "The Rainbow Bridge stretches ahead before you.\n"
+      },
+      {
+        "dir": "down",
+        "to": null,
+        "description": "The altar of Midgaard is below you.\n",
+        "portal": "immort-down-1"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 16,
+    "name": "The Entrance of Valhalla",
+    "description": "The huge ornate entrance of Valhalla is before you.  It seems as though\natleast eight-hundred soldiers could walk abreast of one another through\nthese doors. You stare in awe at the sparkling mansion before you.  You\nwonder what secrets are held behind these doors and long to hear the stories\nof bravery and glory that you know are kept within the walls of Valhalla.\n",
+    "sector_type": "city",
+    "room_flags": "gods_only",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 3,
+        "description": "Valhalla lies to the east.\n"
+      },
+      {
+        "dir": "west",
+        "to": 13,
+        "description": "Asgard lies to the west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 17,
+    "name": "Valhalla",
+    "description": "You are standing in the halls of Valhalla.  Pictures of Odin, Thor, Tyr,\nLoki, Freyr, Feyja, and Balder line the walls.  The cavernous hall extends\nto the east and west.  Rooms belonging to the gods lie to the north and \nsouth.  There appears to be an exit above you, but you do not know what is\nup there...\n",
+    "sector_type": "inside",
+    "room_flags": "gods_only",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 7,
+        "keyword": "door",
+        "description": "The Satin Memorial Reading Room is north of here.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "east",
+        "to": 18,
+        "description": "Valhalla continues east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 10,
+        "keyword": "door",
+        "description": "Bigfoots' room is south of here.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "west",
+        "to": 3,
+        "description": "Valhalla continues west.\n"
+      },
+      {
+        "dir": "up",
+        "to": 12,
+        "description": "If you want to know what is up there you shall have to go and look...\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 18,
+    "name": "Valhalla",
+    "description": "You are standing in the halls of Valhalla.  Tapestries of the gods line\nthe walls.  A statue of Odin is here.  The halls continue to the east and\nwest, and there are doors to the north and south of you.  There is some \nsort of exit above you, but you do not know where it leads...\n",
+    "sector_type": "inside",
+    "room_flags": "gods_only",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 11,
+        "keyword": "door",
+        "description": "Pontius' room is north of here.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "east",
+        "to": 19,
+        "description": "Valhalla continues east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 4,
+        "keyword": "door",
+        "description": "Priscilla's Pleasure Palace is south of here.\n",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "west",
+        "to": 17,
+        "description": "Valhalla continues west.\n"
+      },
+      {
+        "dir": "up",
+        "to": null,
+        "description": "If you want to know what is up there you shall have to go up and see...\n",
+        "portal": "immort-up-2"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "statue odin",
+      "description": "The statue of Odin has been exquisitely crafted.  It is of white marble\nwith black and gold veins.  It looks to be of magical origin.\n"
+    }]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 19,
+    "name": "Valhalla",
+    "description": "You have reached the end of the halls of Valhalla.  There are heavy doors\non 3 walls.  They lead into the rooms of the gods.  The hall goes back to\nthe west, and there is some sort of an exit above you.  Torches sputter\nsoftly and the scent of incense is strong here.\n",
+    "sector_type": "inside",
+    "room_flags": "gods_only",
+    "portal": "immort-room-1",
+    "doors": [
+      {
+        "dir": "north",
+        "to": null,
+        "description": "Melancholys' room is north of here.\n",
+        "portal": "immort-north-1"
+      },
+      {
+        "dir": "east",
+        "to": null,
+        "description": "Kates' room is east of here.\n",
+        "portal": "immort-east-1"
+      },
+      {
+        "dir": "south",
+        "to": null,
+        "description": "The Temple of Stupid is south of here.\n",
+        "portal": "immort-south-1"
+      },
+      {
+        "dir": "west",
+        "to": 18,
+        "description": "Valhalla goes back to the west.\n"
+      },
+      {
+        "dir": "up",
+        "to": 14,
+        "description": "If you want to know what is up from here, you shall have to go up and see...\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 20,
+    "name": "On the Rainbow Bridge",
+    "description": "You have reached the center of the Rainbow Bridge.  Clouds and mist swirl\naround your feet.  The view from here is incredible.  It is little wonder \nthat the heavens were saved for the gods personal pleasures.\n",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 21,
+        "description": "The Rainbow Bridge continues upwards into the heavens.\n"
+      },
+      {
+        "dir": "down",
+        "to": 15,
+        "description": "The Rainbow Bridge disappears down into the clouds.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "clouds",
+      "description": "The clouds are beautiful.  There are shades of gray, pink and purple swirled\ninto the blue sky.\n"
+    }]
+  }},
+  {"room": {
+    "area": "immort",
+    "anum": 21,
+    "name": "The End of the Rainbow Bridge",
+    "description": "You have reached the end of the Rainbow Bridge.  Asgard stretches out above \nyou.  Looking around, you search for the legendary guardian of Asgard.  The\nclouds are far below you and a sense of beauty and peacefulness surrounds you. \n",
+    "sector_type": "unknown",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 13,
+        "description": "Asgard is above you, spread out in all its glory.\n"
+      },
+      {
+        "dir": "down",
+        "to": 20,
+        "description": "Bifrost, the Rainbow Bridge leads down to the Temple of Midgaard.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 0,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }}
+]

@@ -31,11 +31,11 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-bool spell_filter_can_go_to (CHAR_DATA *ch, CHAR_DATA *victim,
-    int level, flag_t res_type, flag_t dam_type);
-bool spell_filter_use_warp_stone (CHAR_DATA *ch);
-OBJ_DATA *spell_sub_create_portal (ROOM_INDEX_DATA *from_room,
-    ROOM_INDEX_DATA *to_room, int duration);
+bool spell_filter_can_go_to (CHAR_T *ch, CHAR_T *victim, int level,
+    flag_t res_type, flag_t dam_type);
+bool spell_filter_use_warp_stone (CHAR_T *ch);
+OBJ_T *spell_sub_create_portal (ROOM_INDEX_T *from_room, ROOM_INDEX_T *to_room,
+    int duration);
 
 /* Spells. */
 DECLARE_SPELL_FUN (spell_gate);

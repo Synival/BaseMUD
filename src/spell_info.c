@@ -38,12 +38,13 @@
 #include "act_info.h"
 #include "affects.h"
 #include "objs.h"
+#include "globals.h"
 
 #include "spell_info.h"
 
 DEFINE_SPELL_FUN (spell_detect_poison) {
     int poisoned;
-    OBJ_DATA *obj = (OBJ_DATA *) vo;
+    OBJ_T *obj = (OBJ_T *) vo;
 
     BAIL_IF (!(obj->item_type == ITEM_DRINK_CON || obj->item_type == ITEM_FOOD),
         "It doesn't look poisoned.\n\r", ch);
@@ -59,10 +60,10 @@ DEFINE_SPELL_FUN (spell_detect_poison) {
 }
 
 DEFINE_SPELL_FUN (spell_identify) {
-    spell_identify_perform (ch, (OBJ_DATA *) vo, 101);
+    spell_identify_perform (ch, (OBJ_T *) vo, 101);
 }
 
-long int spell_identify_seed (CHAR_DATA * ch, OBJ_DATA * obj) {
+long int spell_identify_seed (CHAR_T *ch, OBJ_T *obj) {
     long int next_seed = random();
     unsigned long hash;
     char *name1 = ch->name;
@@ -83,7 +84,7 @@ long int spell_identify_seed (CHAR_DATA * ch, OBJ_DATA * obj) {
     return next_seed;
 }
 
-int spell_identify_know_check (CHAR_DATA * ch, OBJ_DATA * obj, int pos,
+int spell_identify_know_check (CHAR_T *ch, OBJ_T *obj, int pos,
     int skill, int *know_count)
 {
     int chance, success;
@@ -96,7 +97,7 @@ int spell_identify_know_check (CHAR_DATA * ch, OBJ_DATA * obj, int pos,
     return success;
 }
 
-void spell_identify_perform (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
+void spell_identify_perform (CHAR_T *ch, OBJ_T *obj, int power) {
     long int next_seed = spell_identify_seed (ch, obj);
     spell_identify_perform_seeded (ch, obj, power);
     srandom (next_seed);
@@ -120,10 +121,10 @@ const char *spell_identify_know_message (int percent) {
     else return   "You know absolutely everything about this object.\n\r";
 }
 
-void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
+void spell_identify_perform_seeded (CHAR_T *ch, OBJ_T *obj, int power) {
     int know_pos = 0;
     int know_count = 0;
-    AFFECT_DATA *paf;
+    AFFECT_T *paf;
 
     #define KNOW_CHECK() \
         (spell_identify_know_check (ch, obj, know_pos++, power, &know_count))
@@ -189,7 +190,7 @@ void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
         }
 
         case ITEM_DRINK_CON: {
-            const LIQ_TYPE *liquid = &(liq_table[obj->v.drink_con.liquid]);
+            const LIQ_T *liquid = &(liq_table[obj->v.drink_con.liquid]);
             if (!KNOW_CHECK()) {
                 printf_to_char (ch, "It holds a %s-colored liquid.\n\r",
                     liquid->color);
@@ -222,7 +223,7 @@ void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
 
         case ITEM_WEAPON:
             if (KNOW_CHECK()) {
-                const FLAG_TYPE *wtype = flag_get(
+                const FLAG_T *wtype = flag_get(
                     obj->v.weapon.weapon_type, weapon_types);
                 printf_to_char (ch, "Weapon type is %s.\n\r",
                     (wtype == NULL) ? "unknown" : wtype->name);
@@ -242,7 +243,7 @@ void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
             if (KNOW_CHECK() && obj->v.weapon.attack_type >= 0 &&
                 obj->v.weapon.attack_type < ATTACK_MAX)
             {
-                const ATTACK_TYPE *atk = &(
+                const ATTACK_T *atk = &(
                     attack_table[obj->v.weapon.attack_type]);
                 printf_to_char (ch, "Attack type: %s\n\r", atk->noun);
             }
@@ -307,7 +308,7 @@ void spell_identify_perform_seeded (CHAR_DATA * ch, OBJ_DATA * obj, int power) {
 }
 
 DEFINE_SPELL_FUN (spell_know_alignment) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    CHAR_T *victim = (CHAR_T *) vo;
     char *msg;
     int ap;
 
@@ -325,9 +326,9 @@ DEFINE_SPELL_FUN (spell_know_alignment) {
 
 DEFINE_SPELL_FUN (spell_locate_object) {
     char buf[MAX_INPUT_LENGTH];
-    BUFFER *buffer;
-    OBJ_DATA *obj;
-    OBJ_DATA *in_obj;
+    BUFFER_T *buffer;
+    OBJ_T *obj;
+    OBJ_T *in_obj;
     bool found;
     int number = 0, max_found;
 
@@ -384,7 +385,11 @@ DEFINE_SPELL_FUN (spell_locate_object) {
 }
 
 DEFINE_SPELL_FUN (spell_farsight) {
+    char arg_buf[16];
+
     BAIL_IF (IS_AFFECTED (ch, AFF_BLIND),
         "Maybe it would help if you could see?\n\r", ch);
-    do_function (ch, &do_scan_far, target_name);
+
+    arg_buf[0] = '\0';
+    do_function (ch, &do_scan_far, arg_buf);
 }

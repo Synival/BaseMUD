@@ -43,7 +43,7 @@
 
 #include "do_sub.h"
 
-void do_autolist_flag (char *name, CHAR_DATA * ch, flag_t flags, flag_t flag) {
+void do_autolist_flag (char *name, CHAR_T *ch, flag_t flags, flag_t flag) {
     int padding = 15, i;
     char *msg = IS_SET (flags, flag) ? "{GON{x" : "{ROFF{x";
 
@@ -53,7 +53,7 @@ void do_autolist_flag (char *name, CHAR_DATA * ch, flag_t flags, flag_t flag) {
     printf_to_char (ch, "   %-*s%s\n\r", padding, name, msg);
 }
 
-void do_flag_toggle (CHAR_DATA * ch, int player_only, flag_t *flags,
+void do_flag_toggle (CHAR_T *ch, int player_only, flag_t *flags,
     flag_t flag, char *off_msg, char *on_msg)
 {
     BAIL_IF (player_only && IS_NPC (ch),
@@ -69,7 +69,7 @@ void do_flag_toggle (CHAR_DATA * ch, int player_only, flag_t *flags,
     }
 }
 
-bool do_comm_toggle_channel_if_blank (CHAR_DATA *ch, char *argument,
+bool do_comm_toggle_channel_if_blank (CHAR_T *ch, char *argument,
     flag_t channel, char *message_on, char *message_off)
 {
     if (argument[0] != '\0')

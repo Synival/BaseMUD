@@ -38,12 +38,13 @@
 #include "chars.h"
 #include "rooms.h"
 #include "find.h"
+#include "globals.h"
 
 #include "wiz_l2.h"
 
 DEFINE_DO_FUN (do_allow) {
     char arg[MAX_INPUT_LENGTH];
-    BAN_DATA *pban, *prev, *pban_next;
+    BAN_T *pban, *prev, *pban_next;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
@@ -105,7 +106,7 @@ DEFINE_DO_FUN (do_sset) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     int value;
     int sn;
     bool fAll;
@@ -153,7 +154,7 @@ DEFINE_DO_FUN (do_mset) {
     char arg1[MIL];
     char arg2[MIL];
     char arg3[MIL];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     int value;
 
     smash_tilde (argument);
@@ -425,7 +426,7 @@ DEFINE_DO_FUN (do_oset) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
     int value;
 
     smash_tilde (argument);
@@ -479,7 +480,7 @@ DEFINE_DO_FUN (do_rset) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
-    ROOM_INDEX_DATA *location;
+    ROOM_INDEX_T *location;
     int value;
 
     smash_tilde (argument);

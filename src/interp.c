@@ -36,6 +36,8 @@
 #include "chars.h"
 #include "find.h"
 #include "descs.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "act_board.h"
 #include "act_comm.h"
@@ -66,18 +68,8 @@
 
 #include "interp.h"
 
-bool check_social args ((CHAR_DATA * ch, char *command, char *argument));
-
-/* Command logging types. */
-#define LOG_NORMAL  0
-#define LOG_ALWAYS  1
-#define LOG_NEVER   2
-
-/* Log-all switch. */
-bool fLogAll = FALSE;
-
 /* Command table. */
-const CMD_TYPE cmd_table[] = {
+const CMD_T cmd_table[] = {
     /* Common movement commands. */
     {"north",       do_north,       POS_STANDING, 0,  LOG_NEVER,  0},
     {"east",        do_east,        POS_STANDING, 0,  LOG_NEVER,  0},
@@ -93,7 +85,7 @@ const CMD_TYPE cmd_table[] = {
     {"auction",     do_auction,     POS_SLEEPING, 0,  LOG_NORMAL, 1},
     {"buy",         do_buy,         POS_RESTING,  0,  LOG_NORMAL, 1},
     {"channels",    do_channels,    POS_DEAD,     0,  LOG_NORMAL, 1},
-#ifndef VANILLA
+#ifdef BASEMUD_DISENGAGE_COMMAND
     {"disengage",   do_disengage,   POS_RESTING,  0,  LOG_NORMAL, 1},
 #endif
     {"exits",       do_exits,       POS_RESTING,  0,  LOG_NORMAL, 1},
@@ -108,7 +100,7 @@ const CMD_TYPE cmd_table[] = {
     {"clan",        do_clantalk,    POS_SLEEPING, 0,  LOG_NORMAL, 1},
     {"music",       do_music,       POS_SLEEPING, 0,  LOG_NORMAL, 1},
     {"order",       do_order,       POS_RESTING,  0,  LOG_NORMAL, 1},
-#ifndef VANILLA
+#ifdef BASEMUD_ORDER_ALL_COMMAND
     {"@",           do_order_all,   POS_RESTING,  0,  LOG_NORMAL, 1},
 #endif
     {"practice",    do_practice,    POS_SLEEPING, 0,  LOG_NORMAL, 1},
@@ -123,7 +115,7 @@ const CMD_TYPE cmd_table[] = {
     {"wizhelp",     do_wizhelp,     POS_DEAD,     IM, LOG_NORMAL, 1},
 
     /* Informational commands. */
-#ifndef VANILLA
+#ifdef BASEMUD_ABILITIES_COMMAND
     {"abilities",   do_abilities,   POS_DEAD,     0,  LOG_NORMAL, 1},
 #endif
     {"affects",     do_affects,     POS_DEAD,     0,  LOG_NORMAL, 1},
@@ -178,7 +170,7 @@ const CMD_TYPE cmd_table[] = {
     {"description", do_description, POS_DEAD,     0,  LOG_NORMAL, 1},
     {"delet",       do_delet,       POS_DEAD,     0,  LOG_ALWAYS, 0},
     {"delete",      do_delete,      POS_STANDING, 0,  LOG_ALWAYS, 1},
-#ifndef VANILLA
+#ifdef BASEMUD_MATERIALS_COMMAND
     {"materials",   do_materials,   POS_DEAD,     0,  LOG_NORMAL, 1},
 #endif
     {"nofollow",    do_nofollow,    POS_DEAD,     0,  LOG_NORMAL, 1},
@@ -386,7 +378,7 @@ const CMD_TYPE cmd_table[] = {
 
 /* The main entry point for executing commands.
  * Can be recursively called from 'at', 'order', 'force'. */
-void interpret (CHAR_DATA * ch, char *argument) {
+void interpret (CHAR_T *ch, char *argument) {
     char command[MAX_INPUT_LENGTH];
     char logline[MAX_INPUT_LENGTH];
     int cmd;
@@ -519,7 +511,7 @@ void interpret (CHAR_DATA * ch, char *argument) {
 }
 
 /* function to keep argument safe in all commands -- no static strings */
-void do_function (CHAR_DATA *ch, DO_FUN *do_fun, char *argument) {
+void do_function (CHAR_T *ch, DO_FUN *do_fun, char *argument) {
     char *command_string;
 
     /* copy the string */
@@ -529,12 +521,12 @@ void do_function (CHAR_DATA *ch, DO_FUN *do_fun, char *argument) {
     (*do_fun) (ch, command_string);
 
     /* free the string */
-    str_free (command_string);
+    str_free (&(command_string));
 }
 
-bool check_social (CHAR_DATA * ch, char *command, char *argument) {
-    CHAR_DATA *victim;
-    SOCIAL_TYPE *soc;
+bool check_social (CHAR_T *ch, char *command, char *argument) {
+    CHAR_T *victim;
+    SOCIAL_T *soc;
     char arg[MAX_INPUT_LENGTH];
     bool found;
 
@@ -631,7 +623,7 @@ bool check_social (CHAR_DATA * ch, char *command, char *argument) {
 }
 
 /* Return true if an argument is completely numeric. */
-bool is_number (char *arg) {
+bool is_number (const char *arg) {
     if (*arg == '\0')
         return FALSE;
     if (*arg == '+' || *arg == '-')
@@ -643,40 +635,40 @@ bool is_number (char *arg) {
 }
 
 /* Given a string like 14.foo, return 14 and 'foo' */
-int number_argument (char *argument, char *arg) {
-    char *pdot;
-    int number;
+int number_argument (const char *arg_in, char *arg_out) {
+    char out[16];
+    int pos, number;
 
-    for (pdot = argument; *pdot != '\0'; pdot++) {
-        if (*pdot == '.') {
-            *pdot = '\0';
-            number = atoi (argument);
-            *pdot = '.';
-            strcpy (arg, pdot + 1);
+    for (pos = 0; pos < 16 && arg_in[pos] != '\0'; pos++) {
+        out[pos] = arg_in[pos];
+        if (out[pos] == '.') {
+            out[pos] = '\0';
+            number = atoi (out);
+            strcpy (arg_out, arg_in + pos + 1);
             return number;
         }
     }
 
-    strcpy (arg, argument);
+    strcpy (arg_out, arg_in);
     return 1;
 }
 
 /* Given a string like 14*foo, return 14 and 'foo' */
-int mult_argument (char *argument, char *arg) {
-    char *pdot;
-    int number;
+int mult_argument (const char *arg_in, char *arg_out) {
+    char out[16];
+    int pos, number;
 
-    for (pdot = argument; *pdot != '\0'; pdot++) {
-        if (*pdot == '*') {
-            *pdot = '\0';
-            number = atoi (argument);
-            *pdot = '*';
-            strcpy (arg, pdot + 1);
+    for (pos = 0; pos < 16 && arg_in[pos] != '\0'; pos++) {
+        out[pos] = arg_in[pos];
+        if (out[pos] == '*') {
+            out[pos] = '\0';
+            number = atoi (out);
+            strcpy (arg_out, arg_in + pos + 1);
             return number;
         }
     }
 
-    strcpy (arg, argument);
+    strcpy (arg_out, arg_in);
     return 1;
 }
 

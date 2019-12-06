@@ -33,6 +33,7 @@
 #include "basemud.h"
 #include "compat.h"
 #include "defs.h"
+#include "typedefs.h"
 #include "macros.h"
 #include "json.h"
 #include "structs.h"

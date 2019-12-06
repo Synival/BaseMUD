@@ -1,8 +1,79 @@
 # Changelog for BaseMUD
 
-## Version 0.0.4 (TBD)
+## Version 0.0.5 (2019-12-06)
 
-** Project Organization: **
+**Project Organization:**
+* All "TO-DO" notes have been transferred to issues in the GitHub repository
+    and given appropriate labels.
+
+**New Features:**
+* Area files can now be loaded in any order.
+* JSON files can now be imported.
+* JSON importing is an option defined by `BASEMUD_IMPORT_JSON` in basemud.h
+* Modified the `dump` command to allow `dump stats` or
+    `dump world <raw | json>`. Files are dumped to the `dump/` directory.
+* Areas already loaded by JSON importing are now ignored.
+* Warnings are now produced if non-doors have keys.
+* Warnings are now produced for keys that don't exist.
+* Added db_dump_world() to dump _every_ field of every loaded structure for change comparisons.
+* During the JSON export process, several properties with their default values are now ignored.
+* The "poisoned" flag from fountains is now applied to containers when filling.
+
+**Bug Fixes:**
+* Fixed "You see no door <dir> here" broken message.
+* The `AREA_LOADING` flag is no removed for the last area loaded.
+* Duplicate socials are now removed.
+* Added `db_finalize_mob()` to produce final flags based on race.
+* Fixed several missing, improperly handled, or unnecessary fields during JSON export process.
+* Replaced tabs in help files with spaces.
+
+**Other Changes:**
+* JSON is no longer automatically exported.
+* Non-doors now always have their key set to KEY_NOKEYHOLE.
+* Added nicer error messages in fix_exits().
+* Changed `#ifndef VANILLA` checks to `#ifdef BASEMUD_(FEATURE)`.
+* The default material is now `MATERIAL_GENERIC` instead of `0`.
+* The "poisoned" flag for food and drink is now set to `TRUE` instead of 1.
+
+**Internal Changes:**
+* Moved all shared global variables to new `globals.c` and `globals.h`. All
+    other global variables used in a single file are now marked `static`.
+* Moved all string or memory allocation functions from `utils.c` to new
+    `memory.c`. Functions in `memory.c` have been renamed more appropriately,
+    reviewed, and wiped clean of hungarian notation (yay).
+* Moved all typedefs to new `typedefs.h`. This way, structures can be used in
+    all headers before they're defined.
+* Removed some unused global variables.
+* Removed `target_name` and `damage_adj` global variables - they are now
+    explicitly provided to the functions that require them.
+* All structure typedefs (except for 'flags' and 'types') are now named with
+    `_T` for consistency. For example:
+    `CHAR_DATA` is not `CHAR_T` and `DOOR_TYPE` is now `DOOR_T`.
+* Replaced key 0 and -1 with KEY_NO_KEY and KEY_NOKEYHOLE wherever it was seen.
+* Replaced flags for mobiles that are overridden by flags - now uses "_plus", "_minus", and "_final" flags when building final flags.
+* Removed all "_str" fields except for "area_str".
+* Separated room/mob/obj hash registration process into separate functions.
+* Removed "opposite" pointer in portals; added "generated" flag to account for portals that were created while generating missing portals.
+* Renamed basemud version from VERSION to BASEMUD_VERSION.
+* assign_area_vnum() now takes an explicit area instead of using area_last.
+* Renamed fix_bogus_obj() to db_finalize_obj().
+* Added ANUM_TYPE for linking area+anum combinations to objects during JSON import process.
+* Fixed json_get() to allow for const inputs.
+* Added json_expand_newlines() for replacing "\n" with "\n\r" during JSON import process.
+* Added json_value_as_*() functions to quickly get JSON values as C types.
+* Added json_import_obj_*() functions to convert JSON objects to world objects.
+* flag_value() now uses flag_value_real(), which can specify a "no flag" return value.
+* Added various lookup functions required by JSON import process.
+* Grouped bit macros together in "macros.h".
+* Removed DIF() macro from OLC and replaced it with MISSING_BITS() in "macros.h".
+* Modified OLC to account for internal changes (needs testing!!)
+* Added several default object values to *_init() functions in "recycle.c".
+* Added default values for object_index value mapping used during JSON object export/import processes.
+* Added unused item types to item_table[] (which can probably be removed anyway).
+
+## Version 0.0.4 (2019-10-29)
+
+**Project Organization:**
 
 * All TODO messages have been moved to `src/TODO.txt` for staging into
     Github issues.

@@ -46,7 +46,7 @@
 /* POSSIBLE FEATURE: You know what would be neat? If 'word of recall'
  * teleported NPCs back to their original loading room. */
 
-bool spell_filter_is_valid_move_target (CHAR_DATA *ch, CHAR_DATA *victim,
+bool spell_filter_is_valid_move_target (CHAR_T *ch, CHAR_T *victim,
     int level, flag_t res_type, flag_t dam_type)
 {
     FILTER (victim == ch,
@@ -70,7 +70,7 @@ bool spell_filter_is_valid_move_target (CHAR_DATA *ch, CHAR_DATA *victim,
     return FALSE;
 }
 
-bool spell_filter_can_go_to (CHAR_DATA *ch, CHAR_DATA *victim,
+bool spell_filter_can_go_to (CHAR_T *ch, CHAR_T *victim,
     int level, flag_t res_type, flag_t dam_type)
 {
     if (spell_filter_is_valid_move_target (ch, victim, level,
@@ -88,8 +88,8 @@ bool spell_filter_can_go_to (CHAR_DATA *ch, CHAR_DATA *victim,
     return FALSE;
 }
 
-bool spell_filter_use_warp_stone (CHAR_DATA *ch) {
-    OBJ_DATA *stone = char_get_eq_by_wear_loc (ch, WEAR_HOLD);
+bool spell_filter_use_warp_stone (CHAR_T *ch) {
+    OBJ_T *stone = char_get_eq_by_wear_loc (ch, WEAR_HOLD);
     FILTER (!IS_IMMORTAL (ch) && (
             stone == NULL || stone->item_type != ITEM_WARP_STONE),
         "You lack the proper component for this spell.\n\r", ch);
@@ -102,17 +102,17 @@ bool spell_filter_use_warp_stone (CHAR_DATA *ch) {
     return FALSE;
 }
 
-OBJ_DATA *spell_sub_create_portal (ROOM_INDEX_DATA *from_room,
-    ROOM_INDEX_DATA *to_room, int duration)
+OBJ_T *spell_sub_create_portal (ROOM_INDEX_T *from_room,
+    ROOM_INDEX_T *to_room, int duration)
 {
-    OBJ_DATA *portal = obj_create (get_obj_index (OBJ_VNUM_PORTAL), 0);
+    OBJ_T *portal = obj_create (get_obj_index (OBJ_VNUM_PORTAL), 0);
     portal->timer = duration;
     portal->v.portal.to_vnum = to_room->vnum;
     obj_to_room (portal, from_room);
     return portal;
 }
 
-void spell_do_gate_teleport (CHAR_DATA *ch, ROOM_INDEX_DATA *to_room) {
+void spell_do_gate_teleport (CHAR_T *ch, ROOM_INDEX_T *to_room) {
     send_to_char ("You step through a gate and vanish.\n\r", ch);
     act ("$n steps through a gate and vanishes.", ch, NULL, NULL, TO_NOTCHAR);
     char_from_room (ch);
@@ -123,7 +123,7 @@ void spell_do_gate_teleport (CHAR_DATA *ch, ROOM_INDEX_DATA *to_room) {
 
 /* RT ROM-style gate */
 DEFINE_SPELL_FUN (spell_gate) {
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     bool gate_pet;
 
     BAIL_IF ((victim = find_char_world (ch, target_name)) == NULL,
@@ -142,7 +142,7 @@ DEFINE_SPELL_FUN (spell_gate) {
 }
 
 DEFINE_SPELL_FUN (spell_summon) {
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     BAIL_IF ((victim = find_char_world (ch, target_name)) == NULL,
         "You failed.\n\r", ch);
@@ -173,8 +173,8 @@ DEFINE_SPELL_FUN (spell_summon) {
 }
 
 DEFINE_SPELL_FUN (spell_teleport) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    ROOM_INDEX_DATA *pRoomIndex;
+    CHAR_T *victim = (CHAR_T *) vo;
+    ROOM_INDEX_T *pRoomIndex;
 
     BAIL_IF (victim->in_room == NULL,
         "You failed.\n\r", ch);
@@ -200,8 +200,8 @@ DEFINE_SPELL_FUN (spell_teleport) {
 
 /* RT recall spell is back */
 DEFINE_SPELL_FUN (spell_word_of_recall) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    ROOM_INDEX_DATA *location;
+    CHAR_T *victim = (CHAR_T *) vo;
+    ROOM_INDEX_T *location;
 
     BAIL_IF_ACT (IS_NPC (victim),
         "Your spell ignores $N.", ch, NULL, victim);
@@ -223,8 +223,8 @@ DEFINE_SPELL_FUN (spell_word_of_recall) {
 }
 
 DEFINE_SPELL_FUN (spell_portal) {
-    CHAR_DATA *victim;
-    OBJ_DATA *portal;
+    CHAR_T *victim;
+    OBJ_T *portal;
 
     BAIL_IF ((victim = find_char_world (ch, target_name)) == NULL,
         "You failed.\n\r", ch);
@@ -240,9 +240,9 @@ DEFINE_SPELL_FUN (spell_portal) {
 }
 
 DEFINE_SPELL_FUN (spell_nexus) {
-    CHAR_DATA *victim;
-    OBJ_DATA *portal;
-    ROOM_INDEX_DATA *to_room, *from_room;
+    CHAR_T *victim;
+    OBJ_T *portal;
+    ROOM_INDEX_T *to_room, *from_room;
 
     BAIL_IF ((victim = find_char_world (ch, target_name)) == NULL,
         "You failed.\n\r", ch);

@@ -1,0 +1,6120 @@
+[
+  {"room": {
+    "area": "midgaard",
+    "anum": 1,
+    "name": "The Temple Of Mota",
+    "description": "You are in the southern end of the temple hall in the Temple of Mota.\nThe temple has been constructed from giant marble blocks, eternal in\nappearance, and most of the walls are covered by ancient wall paintings\npicturing gods, giants and peasants.\n   Large steps lead down through the grand temple gate, descending the huge\nmound upon which the temple is built and ends on the temple square below.\n   Equally large steps lead UP through a small door into the ENTRANCE to MUD \nSCHOOL.  (type 'up' to go to MUD SCHOOL.)  A small plaque is on this wall.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors law",
+    "portal": "midgaard-room-1",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 54,
+        "description": "At the northern end of the temple hall is a statue and a huge altar.\n"
+      },
+      {
+        "dir": "south",
+        "to": 5,
+        "description": "You see the temple square.\n"
+      },
+      {
+        "dir": "up",
+        "to": null,
+        "description": "You see the entrance to Mud School.\n",
+        "portal": "midgaard-up-4"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "plaque",
+      "description": "This entire world has been integrated, modified, debugged, and enhanced by\nHatchet, Kahn, and Furey of MERC Industries to be run by any MERC Mud.\n1992 December 17\nROM enhancements by Alander.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 11,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 5,
+          "wear_loc": "wielded",
+          "global_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 2,
+    "name": "Cleric's Inner Sanctum",
+    "description": "This is the inner sanctum.  A picture of the mighty Mota is hanging on\nthe wall, just above the altar which is set against the western wall.  A well\nin the middle of the floor leads down into darkness.  Vile smells waft from\nthe depths.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 3,
+        "description": "You see your favorite place, the bar of divination.\n"
+      },
+      {
+        "dir": "down",
+        "to": null,
+        "description": "You can't see what is down there, it is too dark.  Looks like it would be\nimpossible to climb back up.\n",
+        "portal": "midgaard-down-1"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 21,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 3,
+    "name": "Cleric's Bar",
+    "description": "The bar is one of the finest in the land, lucky it is members only.  Fine\nfurniture is set all around the room.  A small sign is hanging on the wall.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors law",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 4,
+        "description": "You see the entrance.\n"
+      },
+      {
+        "dir": "west",
+        "to": 2,
+        "description": "You see the inner sanctum.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "The sign reads:\nFree instructions provided by the waiter:\n\n   Buy  - Buy something (drinkable) from the waiter.\n   List - The waiter will show you all the different drinks and\n          specialties, and tell the price of each.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 43,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 2,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 4,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 200,
+          "global_limit": -1,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 4,
+    "name": "Entrance to Cleric's Guild",
+    "description": "The entrance hall is a small modest room, reflecting the true nature of\nthe Clerics.  The exit leads east to the temple square.  A small entrance to\nthe bar is in the northern wall.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 3,
+        "description": "You see the bar, richly decorated with really stylish furniture.\n"
+      },
+      {
+        "dir": "east",
+        "to": 5,
+        "description": "You see the Temple Square.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 25,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 60,
+          "global_limit": 18,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 355,
+          "wear_loc": "neck2",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 5,
+    "name": "The Temple Square",
+    "description": "You are standing on the temple square.  Huge marble steps lead up to the\ntemple gate.  The entrance to the Clerics Guild is to the west, and the old\nGrunting Boar Inn, is to the east.  Just south of here you see the market\nsquare, the center of Midgaard.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 1,
+        "description": "You see the temple.\n"
+      },
+      {
+        "dir": "east",
+        "to": 6,
+        "description": "You see the good old Grunting Boar Inn.\n"
+      },
+      {
+        "dir": "south",
+        "to": 14,
+        "description": "You see the Market Square.\n"
+      },
+      {
+        "dir": "west",
+        "to": 4,
+        "description": "You see the entrance to the Clerics Guild.\n"
+      },
+      {
+        "dir": "up",
+        "to": 57,
+        "description": "You see the air.\n"
+      }
+    ],
+    "resets": [{
+      "command": "object",
+      "values": {
+        "obj": 135,
+        "global_limit": 10,
+        "room_limit": 0
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 6,
+    "name": "Entrance to the Grunting Boar Inn",
+    "description": "You are standing in the entrance hall of the Grunting Boar Inn.  The hall\nhas been wisely decorated with simple but functional furniture.  A small\nstaircase leads up to the bedroom area and the bar is to the east.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 7,
+        "description": "Surprise! You see the bar.\n"
+      },
+      {
+        "dir": "west",
+        "to": 5,
+        "description": "You see the temple square.\n"
+      },
+      {
+        "dir": "up",
+        "to": 8,
+        "description": "You see the bedroom area.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 61,
+        "global_limit": 5,
+        "room_limit": 5
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 7,
+    "name": "The Grunting Boar",
+    "description": "You are standing in the bar.  The bar is set against the northern wall, old\narchaic writing, carvings and symbols cover its top.  A fireplace is built into\nthe western wall, and through the southeastern windows you can see the temple\nsquare.  This place makes you feel like home.\nA small sign with big letters is fastened to the bar.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "west",
+      "to": 6,
+      "description": "You see the exit to the entrance hall.\n"
+    }],
+    "extra_description": [
+      {
+        "keyword": "writing carving carvings symbols symbol",
+        "description": "Although it is very hard to understand, you think it looks a lot like beer,\npoems about beer, and small beer-mugs.\n"
+      },
+      {
+        "keyword": "sign",
+        "description": "The sign reads:\nFree instructions provided by the Grunting Boar Inn.\n\n   Buy  - Buy something (drinkable) from the bartender.\n   List - The bartender will show you all the different drinks and\n          specialties, and tell the price of each.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 40,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 0,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 1,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 64,
+          "global_limit": 3,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 200,
+          "global_limit": -1,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 8,
+    "name": "The Bedroom Area",
+    "description": "Need some rest? Sleep in one of our many beds! The staircase leads down to\nthe entrance hall.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "down",
+      "to": 6,
+      "description": "You see the entrance hall.\n"
+    }],
+    "resets": [
+      {
+        "command": "object",
+        "values": {
+          "obj": 155,
+          "global_limit": 15,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 155,
+          "global_limit": 15,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 155,
+          "global_limit": 15,
+          "room_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 9,
+    "name": "The Bakery",
+    "description": "You are standing inside the small bakery.  A sweet scent of Danish and\nfine bread fills the room.  The bread and Danish are arranged in fine order\non the shelves, and seem to be of the finest quality.\nA small sign is on the counter.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "south",
+      "to": 13,
+      "description": "You see the main street.\n"
+    }],
+    "extra_description": [
+      {
+        "keyword": "sign",
+        "description": "Free instructions provided by the store:\n\n   Buy  - Will buy you some bread or pastry.\n   List - The baker will kindly tell you the price and sort of the bread in\n          his bakery.\n"
+      },
+      {
+        "keyword": "danish pastry",
+        "description": "You see that this is truly delicious pastry.  Must be made by a Dane from\nDenmark (which surely is not the capital of Sweden!).  Former ruler of\nScandinavia, England, Northern Germany, Northern France, Russia, Greenland,\nIceland, Estonia etc. etc.\n   The sight of those large, wholesome chokoladeboller makes your mouth water\nand your soul sing.\n\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 9,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 11,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 12,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 13,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 14,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "wielded",
+          "global_limit": 100
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 10,
+    "name": "The General Store",
+    "description": "You are inside the general store.  All sorts of items are stacked on shelves\nbehind the counter, safely out of your reach.\nA small note hangs on the wall.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "south",
+      "to": 15,
+      "description": "You see the main street.\n"
+    }],
+    "extra_description": [{
+      "keyword": "note",
+      "description": "The note reads:\n\n  List  - Show which various items are in the store.\n  Buy   - Buy an item.\n  Value - The shopkeeper will (free of charge) tell how much he will\n          pay for your item.\n  Sell  - Sell an item.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 30,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 31,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 138,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 32,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 33,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "wielded",
+          "global_limit": 900
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 11,
+    "name": "The Weapon Shop",
+    "description": "You are inside the weapon shop.  There is a small note on the counter.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "south",
+      "to": 16,
+      "description": "You see the main street.\n"
+    }],
+    "extra_description": [{
+      "keyword": "note",
+      "description": "The note reads:\n\n  List  - Show which various items are in the store.\n  Buy   - Buy an item.\n  Value - The shopkeeper will (free of charge) tell how much he will\n          pay for your item.\n  Sell  - Sell an item.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 20,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 21,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 22,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 23,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 24,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 25,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 26,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 27,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 28,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 29,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 12,
+    "name": "Main Street",
+    "description": "You are at the end of the main street of Midgaard.  South of here is the\nentrance to the Guild of Magic Users.  The street continues east towards the\nmarket square.  The magic shop is to the north and to the west is the city\ngate.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 33,
+        "description": "You see the magic shop.\n"
+      },
+      {
+        "dir": "east",
+        "to": 13,
+        "description": "You see the main street.\n"
+      },
+      {
+        "dir": "south",
+        "to": 17,
+        "description": "You see the entrance to the Guild of Magic Users.\n"
+      },
+      {
+        "dir": "west",
+        "to": 40,
+        "description": "You see the city gate.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 62,
+        "global_limit": 16,
+        "room_limit": 4
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 13,
+    "name": "Main Street",
+    "description": "You are on the main street passing through the City of Midgaard.  South of\nhere is the entrance to the Armoury, and the bakery is to the north.  East of\nhere is the market square.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 9,
+        "description": "You see the bakery.\n"
+      },
+      {
+        "dir": "east",
+        "to": 14,
+        "description": "You see the market square.\n"
+      },
+      {
+        "dir": "south",
+        "to": 20,
+        "description": "You see the armoury.\n"
+      },
+      {
+        "dir": "west",
+        "to": 12,
+        "description": "You see the main street.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 14,
+    "name": "Market Square",
+    "description": "You are standing on the market square, the famous Square of Midgaard.\nA large, peculiar looking statue is standing in the middle of the square.\nRoads lead in every direction, north to the temple square, south to the\ncommon square, east and westbound is the main street.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 5,
+        "description": "You see the temple square.\n"
+      },
+      {
+        "dir": "east",
+        "to": 15,
+        "description": "You see the main street.\n"
+      },
+      {
+        "dir": "south",
+        "to": 25,
+        "description": "You see the common square.\n"
+      },
+      {
+        "dir": "west",
+        "to": 13,
+        "description": "You see the main street.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "statue",
+      "description": "What you see is the Midgaard Worm, stretching around the Palace of Midgaard.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 60,
+          "global_limit": 18,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 356,
+          "wear_loc": "head",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 15,
+    "name": "The Main Street",
+    "description": "You are on Main Street crossing through town.  To the north is the general\nstore, and the main street continues east.  To the west you see and hear the\nmarket place and to the south is the Jeweller's Shop.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 10,
+        "description": "You see the general store.\n"
+      },
+      {
+        "dir": "east",
+        "to": 16,
+        "description": "You see Main Street.\n"
+      },
+      {
+        "dir": "south",
+        "to": 34,
+        "description": "You see the Jeweller's Shop.\n"
+      },
+      {
+        "dir": "west",
+        "to": 14,
+        "description": "You see the market square.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 16,
+    "name": "The Main Street",
+    "description": "The main street, to the north is the weapon shop and to the south is the\nGuild of Swordsmen.  To the east you leave town and to the west the street\nleads to the market square.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 11,
+        "description": "You see the weapon shop.\n"
+      },
+      {
+        "dir": "east",
+        "to": 41,
+        "description": "You see the city gate.\n"
+      },
+      {
+        "dir": "south",
+        "to": 21,
+        "description": "You see the swordsmen's guild.\n"
+      },
+      {
+        "dir": "west",
+        "to": 15,
+        "description": "You see the main street leading to the market square.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 62,
+        "global_limit": 16,
+        "room_limit": 4
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 17,
+    "name": "Entrance to Mage's Guild",
+    "description": "The entrance hall is a small, poor lighted room.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 12,
+        "description": "You see the main street.\n"
+      },
+      {
+        "dir": "south",
+        "to": 18,
+        "description": "You see your favorite place, the Mage's Bar.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 24,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 60,
+          "global_limit": 18,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 357,
+          "wear_loc": "legs",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 18,
+    "name": "Mage's Bar",
+    "description": "The bar is one of the wierdest in the land.  Mystical images float around\nthe air.  Illusions of fine furniture appear all around the room.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 17,
+        "description": "You see the lobby.\n"
+      },
+      {
+        "dir": "east",
+        "to": 19,
+        "description": "You see the laboratory.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 42,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 2,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 3,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 200,
+          "global_limit": -1,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 19,
+    "name": "Mage's Laboratory",
+    "description": "This is the Magical Experiments Laboratory.  Dark smoke-stained stones\narch over numerous huge oaken tables, most of these cluttered with strange-\nlooking pipes and flasks.  The floor is covered with half-erased pentagrams\nand even weirder symbols, and a blackboard in a dark corner has only been\npartially cleaned, some painful-looking letters faintly visible.  A well in\nthe middle of the floor leads down into darkness.  Vile smells waft from the\ndepths.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors law",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 18,
+        "description": "You see the bar.\n"
+      },
+      {
+        "dir": "down",
+        "to": null,
+        "description": "You can't see what is down there, it is too dark.  Looks like it would be\nimpossible to climb back up.\n",
+        "portal": "midgaard-down-2"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 20,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 20,
+    "name": "The Armoury",
+    "description": "The armoury with all kinds of armours on the walls and in the window.  You\nsee helmets, shields and chain mails.  To the north is the main street.\nOn the wall is a small note.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "north",
+      "to": 13,
+      "description": "You see the main street.\n"
+    }],
+    "extra_description": [{
+      "keyword": "note",
+      "description": "You can use these commands for trading:\n\n  value <item>     To get the price of an item in your possession.\n  sell <item>      To sell something.\n  buy <item>       To buy something (provided that the shop has it in store).\n  list             Gives you a listing of the shop's inventory.\n\n        WE DON'T GIVE CREDIT; WE DON'T EXPECT TO RECEIVE CREDIT!\n                             NO HAGGLING\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 72,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 73,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 74,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 75,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 76,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 77,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 110,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 111,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 112,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 113,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 114,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 115,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 116,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 97,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 117,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 21,
+    "name": "Entrance Hall to the Guild of Swordsmen",
+    "description": "The entrance hall to the Guild of Swordsmen.  A place where one has to be\ncareful not to say something wrong (or right).  To the east is the bar and to\nthe north is the main street.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 16,
+        "description": "You see the main street.\n"
+      },
+      {
+        "dir": "east",
+        "to": 22,
+        "description": "You see the swordsmen's bar, many noises comes from there.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 27,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 349,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 60,
+          "global_limit": 18,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 358,
+          "wear_loc": "feet",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 22,
+    "name": "The Bar of Swordsmen",
+    "description": "The bar of swordsmen, once upon a time beautifully furnished.  But now the\nfurniture is all around you in small pieces.  To the south is the yard, and\nto the west is the entrance hall.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors law",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 23,
+        "description": "You see the practice yard.\n"
+      },
+      {
+        "dir": "west",
+        "to": 21,
+        "description": "You see the entrance hall to the thieves guild.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 45,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 2,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 3,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 4,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 200,
+          "global_limit": -1,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 23,
+    "name": "The Tournament and Practice Yard",
+    "description": "The practice yard of the fighters.  To the north is the bar.  A well leads\ndown into darkness.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 22,
+        "description": "You see the bar.\n"
+      },
+      {
+        "dir": "down",
+        "to": null,
+        "description": "You can't see what is down there, it is too dark.  Looks like it would be\nimpossible to climb back up.\n",
+        "portal": "midgaard-down-3"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 23,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 24,
+    "name": "Eastern End of Poor Alley",
+    "description": "You are at the poor alley. South of here is the Grubby Inn and to the\neast you see common square. Melancholy's map shop is north. The alley continues \nfurther west.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 160,
+        "description": "You see Melancholy's Map Shop\n"
+      },
+      {
+        "dir": "east",
+        "to": 25,
+        "description": "You see the common square.\n"
+      },
+      {
+        "dir": "south",
+        "to": 48,
+        "description": "You see the Inn.\n"
+      },
+      {
+        "dir": "west",
+        "to": 44,
+        "description": "You see the poor alley.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 62,
+        "global_limit": 16,
+        "room_limit": 4
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 25,
+    "name": "The Common Square",
+    "description": "The common square, people pass you, talking to each other.  To the west is\nthe poor alley and to the east is the dark alley.  To the north, this square\nis connected to the market square.  From the south you notice a nasty smell.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 14,
+        "description": "You see the market square.\n"
+      },
+      {
+        "dir": "east",
+        "to": 26,
+        "description": "You see the dark alley.\n"
+      },
+      {
+        "dir": "south",
+        "to": 30,
+        "description": "You see the city dump.\n"
+      },
+      {
+        "dir": "west",
+        "to": 24,
+        "description": "You see the poor alley.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 62,
+        "global_limit": 16,
+        "room_limit": 4
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 26,
+    "name": "The Dark Alley",
+    "description": "The dark alley, to the west is the common square and to the south is the\nGuild of Thieves.  Grebe's Tavern, the famous sailor's dive, is north.\nThe alley continues east.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 352,
+        "description": "You see a foul-smelling sailor's dive.\n"
+      },
+      {
+        "dir": "east",
+        "to": 45,
+        "description": "The alley continues east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 27,
+        "description": "You see the entrance to the thieves guild.\n"
+      },
+      {
+        "dir": "west",
+        "to": 25,
+        "description": "You see the common square.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "guild",
+      "description": "It is the thieves guild, don't enter if you care about your health or money.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 63,
+          "global_limit": 5,
+          "room_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 52,
+          "wear_loc": "rwrist",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 66,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 27,
+    "name": "Entrance Hall to the Guild of Thieves",
+    "description": "The entrance hall to the thieves' and assassins' guild.  A place where you\ncan lose both your life and your money, if you are not careful.  To the north\nis the dark alley and to the east is the thieves' bar.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 26,
+        "description": "You see the alley.\n"
+      },
+      {
+        "dir": "east",
+        "to": 28,
+        "description": "You see the thieves bar, where everything disappears.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 26,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 349,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 60,
+          "global_limit": 18,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 359,
+          "wear_loc": "hands",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 351,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 28,
+    "name": "The Thieves Bar",
+    "description": "The bar of the thieves.  Once upon a time this place was beautifully\nfurnished, but now it seems almost empty.  To the south is the yard, and to\nthe west is the entrance hall.\n   (Maybe the furniture has been stolen?!)\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors law",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 29,
+        "description": "You see the secret yard.\n"
+      },
+      {
+        "dir": "west",
+        "to": 27,
+        "description": "You see the entrance hall to the thieves guild.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "furniture",
+      "description": "As you look at the furniture, the chair you sit on disappears.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 44,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 3,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 4,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 200,
+          "global_limit": -1,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 29,
+    "name": "The Secret Yard",
+    "description": "The secret practice yard of thieves and assassins.  To the north is the\nbar.  A well leads down into darkness.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 28,
+        "description": "You see the bar.\n"
+      },
+      {
+        "dir": "down",
+        "to": null,
+        "description": "You can't see what is down there, it is too dark.  Looks like it would be\nimpossible to climb back up.\n",
+        "portal": "midgaard-down-4"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 22,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 30,
+    "name": "The Dump",
+    "description": "The dump, where the people from the city drop their garbage.  Through the\ngarbage you can see a large junction of pipes, looks like the entrance to the\nsewer system.  South of here you see the river and to the north is the common\nsquare.  A rickety old bridge leads south to the promenade.\n",
+    "sector_type": "field",
+    "room_flags": "no_mob law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 25,
+        "description": "You see the common square.\n"
+      },
+      {
+        "dir": "south",
+        "to": 254,
+        "description": "You see a river between northern and southern Midgaard.  A small bridge\nspans the flow.\n"
+      },
+      {
+        "dir": "down",
+        "to": null,
+        "description": "You see the sewers.\n",
+        "portal": "midgaard-down-5"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 31,
+    "name": "The Pet Shop",
+    "description": "The Pet Shop is a small crowded store, full of cages and animals of\nvarious sorts and sizes.  There is a sign on the wall.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors pet_shop law",
+    "doors": [{
+      "dir": "south",
+      "to": 45,
+      "description": "You see the Alley.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "The sign reads:\n\n  Use 'List' to see the available pets.\n  Use 'Buy <pet> <name>' to buy yourself a pet and name it.\n\n  You can use 'order <pet> <instructions>' to order your pets around.\n  If you abuse your pet, it will no longer regard you as its master.\n  If you have several pets you may use 'order all <instructions>'\n\n Regards,\n\n   The Shopkeeper\n"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 8,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 32,
+    "name": "Pet Shop Store",
+    "description": "This is the small dark room in which the Pet Shop Boy keeps his pets.\nIt is vital that this room be immediately after the pet shop.\n",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors law",
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 90,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 91,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 92,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 93,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 94,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 33,
+    "name": "The Magic Shop",
+    "description": "You are in a small room that smells of rare chemicals and spices.\nDividing the room in two is a large desk, and on the wall behind it are\nnumerous shelves crammed with jars, bottles, books and scrolls of all\nsorts and sizes.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "south",
+      "to": 12,
+      "description": "You see the main street.\n"
+    }],
+    "extra_description": [
+      {
+        "keyword": "scrolls",
+        "description": "Each scroll is stored in a leather tube that protects it from moist.\n"
+      },
+      {
+        "keyword": "books",
+        "description": "Most of them appear to be very old and dusty.\n"
+      },
+      {
+        "keyword": "jars bottles",
+        "description": "Some of them are transparent enabling you to see that some contain colored\npowders while others contain body parts of various animals.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 40,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 41,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 39,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 42,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 43,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 44,
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 34,
+    "name": "The Jeweller's Shop",
+    "description": "You are in a small, beautifully furnished room.  The warm light emanating\nfrom the small oil lamps on the walls is reflected in the hard, polished\nsurface of the big mahogany desk that stands in the centre of the room.\nA small sign with golden letters stands on the desk.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "north",
+      "to": 15,
+      "description": "You see Main Street.\n"
+    }],
+    "extra_description": [
+      {
+        "keyword": "sign",
+        "description": "The golden letters say :-\n\n    Use 'list' to see what is in store,\n        'buy <item>' to buy an item,\n        'sell <item>' to sell an item and\n        'value <item>' to make the jeweller evaluate an item.\n"
+      },
+      {
+        "keyword": "desk",
+        "description": "Your face is reflected in its surface.\n"
+      },
+      {
+        "keyword": "oil lamps",
+        "description": "They are made from polished gold and looks as if they are securely fastened\nto the smooth stone walls.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 378,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 377,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 376,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 375,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 374,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 373,
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 35,
+    "name": "The Leather Shop",
+    "description": "An acrid smell fills this large room.  Along the walls are numerous\nshelves containing all sorts of animal hide and in the crackling fireplace\nhangs a big iron pot with boiling water.  In the middle of the room is a\nlarge oak table.\nA wooden sign is hanging above the fireplace.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "south",
+      "to": 44,
+      "description": "You see the alley.\n"
+    }],
+    "extra_description": [
+      {
+        "keyword": "sign",
+        "description": "The wooden sign says :-\n\n    Use 'list' to see what is in store,\n        'buy <item>' to buy an item,\n        'sell <item>' to sell an item and\n        'value <item>' to make the leather worker evaluate an item.\n"
+      },
+      {
+        "keyword": "pot",
+        "description": "Several large pieces of leather hide are boiling in the iron pot.\n"
+      },
+      {
+        "keyword": "table",
+        "description": "It is made from solid oak but appears to be very used.  Its surface is\ncovered in marks and scratches.  A large burning candle stands directly on\nthe table surface, tallow flowing down its sides.\n"
+      },
+      {
+        "keyword": "fireplace",
+        "description": "It is a rather large fireplace made from heavy granite rocks.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 60,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 61,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 62,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 63,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 64,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 65,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 66,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 67,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 68,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 69,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 70,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 71,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 52,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 53,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 54,
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 40,
+    "name": "Inside the West Gate of Midgaard",
+    "description": "You are by two small towers that have been built into the city wall and\nconnected with a footbridge across the heavy wooden gate.  Main Street leads\neast and Wall Road leads both north and south from here.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 257,
+        "description": "Wall road runs along the inner city wall to the north.\n"
+      },
+      {
+        "dir": "east",
+        "to": 12,
+        "description": "You see Main Street.\n"
+      },
+      {
+        "dir": "south",
+        "to": 42,
+        "description": "You see the road running along the inner side of the city wall.  You notice\nthat it is called Wall Road.\n"
+      },
+      {
+        "dir": "west",
+        "to": 52,
+        "keyword": "gate",
+        "description": "The city gate is to the west.\n",
+        "exit_flags": "door",
+        "key": 133
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "wall",
+        "description": "It is built from large grey rocks that have been fastened to each other with\nsome kind of mortar.  It is far too high to climb.\n"
+      },
+      {
+        "keyword": "tower towers",
+        "description": "Both of the towers are built from large grey rocks that have been fastened to\neach other with some kind of mortar, just like the city wall.\n"
+      },
+      {
+        "keyword": "gate",
+        "description": "It is a set of very big double doors made from hard wood.  They have been\nreinforced with large iron bands to make them even more sturdy.  One of the\ndoors is equipped with a very big lock.\n"
+      },
+      {
+        "keyword": "bridge footbridge",
+        "description": "It is too high up to reach but it looks as if one easily could walk across it\nfrom one tower to the other.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 68,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 361,
+          "wear_loc": "about",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 68,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 362,
+          "wear_loc": "waist",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 41,
+    "name": "Inside the East Gate of Midgaard",
+    "description": "You are by two small towers that have been built into the city wall and\nconnected with a footbridge across the heavy wooden gate.  Main Street leads\nwest from here.  Wall road crosses the street, heading north and south along\nthe city wall.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 267,
+        "description": "Wall road heads north along the city wall.\n"
+      },
+      {
+        "dir": "east",
+        "to": 53,
+        "keyword": "gate",
+        "description": "You see the city gate.\n",
+        "exit_flags": "door",
+        "key": 133
+      },
+      {
+        "dir": "south",
+        "to": 250,
+        "description": "Wall road heads south towards the poor section of town.\n"
+      },
+      {
+        "dir": "west",
+        "to": 16,
+        "description": "You see Main Street."
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "wall",
+        "description": "It is built from large grey rocks that have been fastened to each other with\nsome kind of mortar.  It is far too high to climb.\n"
+      },
+      {
+        "keyword": "tower towers",
+        "description": "Both of the towers are built from large grey rocks that have been fastened to\neach other with some kind of mortar, just like the city wall.\n"
+      },
+      {
+        "keyword": "gate",
+        "description": "It is a set of very big double doors made from hard wood.  They have been\nreinforced with large iron bands to make them even more sturdy.  One of the\ndoors is equipped with a very big lock.\n"
+      },
+      {
+        "keyword": "bridge footbridge",
+        "description": "It is too high up to reach but it looks as if one easily could walk across it\nfrom one tower to the other.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 67,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 360,
+          "wear_loc": "arms",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 67,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 354,
+          "wear_loc": "shield",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 42,
+    "name": "Wall Road",
+    "description": "You are walking next to the western city wall.  The road continues further\nsouth and the city gate is just north of here.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 40,
+        "description": "You see the city gate.\n"
+      },
+      {
+        "dir": "south",
+        "to": 43,
+        "description": "The road continues further south.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "wall",
+      "description": "It is built from large grey rocks that have been fastened to each other with\nsome kind of mortar.  It is far too high to climb.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 43,
+    "name": "Wall Road",
+    "description": "You are walking next to the western city wall.  Wall Road continues further\nnorth and south.  A small, poor alley leads east.\nSome letters have been written on the wall here.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 42,
+        "description": "The road continues further north.\n"
+      },
+      {
+        "dir": "east",
+        "to": 44,
+        "description": "The alley leads east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 47,
+        "description": "The road continues further south.\n"
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "wall",
+        "description": "It is built from large grey rocks that have been fastened to each other with\nsome kind of mortar.  It is far too high to climb.\n"
+      },
+      {
+        "keyword": "letters",
+        "description": "It says 'Who watches the watchmen?'\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 44,
+    "name": "Poor Alley",
+    "description": "You are in narrow and dirty alley leading east and west.  The leather shop\nis to the north.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 35,
+        "description": "The leather shop is to the north.\n"
+      },
+      {
+        "dir": "east",
+        "to": 24,
+        "description": "The alley leads east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 170,
+        "description": "There is an ornate doorway to the south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 43,
+        "description": "The alley leads west.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 65,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 45,
+    "name": "Alley at Levee",
+    "description": "You are standing in the alley which continues east and west.  South of\nhere you see the levee.  North is the Pet Shop.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 31,
+        "description": "You see, hear, and smell the pet shop.\n"
+      },
+      {
+        "dir": "east",
+        "to": 46,
+        "description": "The alley leads east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 49,
+        "description": "You see the levee.\n"
+      },
+      {
+        "dir": "west",
+        "to": 26,
+        "description": "The alley leads west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 46,
+    "name": "Eastern end of Alley",
+    "description": "You are standing at the eastern end of the alley,  near the city walls.  \nWall road loops around the city to your east, and you can see an old \nthree-story warehouse to the south.  The Fountain of Youth Apothecary is \nnorth.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 56,
+        "description": "You see a pricey-looking potion shop.\n"
+      },
+      {
+        "dir": "east",
+        "to": 251,
+        "description": "You see wall road, running a north-south loop around the city.\n"
+      },
+      {
+        "dir": "south",
+        "to": 50,
+        "description": "You see the warehouse.\n"
+      },
+      {
+        "dir": "west",
+        "to": 45,
+        "description": "You see the alley.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 47,
+    "name": "Wall Road",
+    "description": "You are standing on the road next to the western city wall which\ncontinues north.  South of here is a bridge across the river.  To the east,\nyou see an odd looking building painted bright orange with purple trim...\nit must be the Mob Factory!\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 43,
+        "description": "You see the road.\n"
+      },
+      {
+        "dir": "east",
+        "to": null,
+        "description": "You see the purple-and-orange Mob Factory.  Someone has no taste.\n",
+        "portal": "midgaard-east-5"
+      },
+      {
+        "dir": "south",
+        "to": 51,
+        "description": "You see the bridge.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "wall",
+      "description": "It is built from large grey rocks that have been fastened to each other with\nsome kind of mortar.  It is far too high to climb.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 48,
+    "name": "Grubby Inn",
+    "description": "You are inside the old Grubby Inn.  This place has not been cleaned for\nseveral decades, vile smells make you dizzy.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "north",
+      "to": 24,
+      "description": "You see the alley.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 46,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 3,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 4,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 163,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 65,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 49,
+    "name": "Levee",
+    "description": "You are at the levee.  South of here you see the river gently flowing west.\nThe river bank is very low making it possible to enter the river.  Directly\nacross the river you can see a small boat landing built off of Kate's Diner.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 45,
+        "description": "You see the Alley.\n"
+      },
+      {
+        "dir": "south",
+        "to": 203,
+        "description": "You see the river flowing west.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 50,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 51,
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 50,
+    "name": "Abandoned Warehouse",
+    "description": "You are inside the only room in the old warehouse.  The place is very dusty\nand appears to have been unused for many years.  The skylight spills\nviolet-tinged light.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 46,
+        "description": "You see the alley.\n"
+      },
+      {
+        "dir": "up",
+        "to": null,
+        "description": "You see machine dreams and taste violet phosphor.\n",
+        "portal": "midgaard-up-2"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 7,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 51,
+    "name": "On the Bridge",
+    "description": "You are standing on the stone bridge crosses the river.  The bridge is\nbuilt out from the western city wall and the river flows west through an\nopening in the wall ten feet below the bridge.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 47,
+        "description": "You see the road.\n"
+      },
+      {
+        "dir": "south",
+        "to": 100,
+        "description": "You see the Concourse.\n"
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "wall",
+        "description": "It is built from large grey rocks that have been fastened to each other with\nsome kind of mortar.  It is far too high to climb.\n"
+      },
+      {
+        "keyword": "opening",
+        "description": "You cannot really see it from here as it is somewhere beneath your feet.\n"
+      },
+      {
+        "keyword": "bridge",
+        "description": "It is built from large grey rocks that have been fastened to each other with\nsome kind of mortar, just like the wall.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 52,
+    "name": "Outside the West Gate of Midgaard",
+    "description": "You are by two small towers that have been built into the city wall and\nconnected with a footbridge across the heavy wooden gate.  To the west you\ncan see the edge of a big forest. A small dusty trail leads north along the\nwall.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": null,
+        "description": "The trail continues around the City of Midgaard.\n",
+        "portal": "midgaard-north-1"
+      },
+      {
+        "dir": "east",
+        "to": 40,
+        "keyword": "gate",
+        "description": "The city gate is to the east.\n",
+        "exit_flags": "door",
+        "key": 133
+      },
+      {
+        "dir": "west",
+        "to": null,
+        "description": "The forest edge is to the west.\n",
+        "portal": "midgaard-west-1"
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "wall",
+        "description": "It is built from large grey rocks that have been fastened to each other with\nsome kind of mortar.  It is far too high to climb.\n"
+      },
+      {
+        "keyword": "tower towers",
+        "description": "Both of the towers are built from large grey rocks that have been fastened to\neach other with some kind of mortar, just like the city wall.\n"
+      },
+      {
+        "keyword": "gate",
+        "description": "It is a set of very big double doors made from hard wood.  They have been\nreinforced with large iron bands to make them even more sturdy.  One of the\ndoors is equipped with a very big lock.\n"
+      },
+      {
+        "keyword": "bridge footbridge",
+        "description": "It is too high up to reach but it looks as if one easily could walk across it\nfrom one tower to the other.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 53,
+    "name": "Outside the East Gate of Midgaard",
+    "description": "You are by two small towers that have been built into the city wall and\nconnected with a footbridge across the heavy wooden gate.  To the east the\nplains stretch out in the distance. To the north a small dusty trail follow\nthe city wall.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": null,
+        "description": "The trail continues around the City of Midgaard.\n",
+        "portal": "midgaard-north-2"
+      },
+      {
+        "dir": "east",
+        "to": null,
+        "description": "You see the plains.",
+        "portal": "midgaard-east-4"
+      },
+      {
+        "dir": "west",
+        "to": 41,
+        "keyword": "gate",
+        "description": "You see the city gate.\n",
+        "exit_flags": "door",
+        "key": 133
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "wall",
+        "description": "It is built from large grey rocks that have been fastened to each other with\nsome kind of mortar.  It is far too high to climb.\n"
+      },
+      {
+        "keyword": "tower towers",
+        "description": "Both of the towers are built from large grey rocks that have been fastened to\neach other with some kind of mortar, just like the city wall.\n"
+      },
+      {
+        "keyword": "gate",
+        "description": "It is a set of very big double doors made from hard wood.  They have been\nreinforced with large iron bands to make them even more sturdy.  One of the\ndoors is equipped with a very big lock.\n"
+      },
+      {
+        "keyword": "bridge footbridge",
+        "description": "It is too high up to reach but it looks as if one easily could walk across it\nfrom one tower to the other.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 54,
+    "name": "By the Temple Altar",
+    "description": "You are by the temple altar in the northern end of the Temple of Mota.\nA huge altar made from white polished marble is standing in front of you and\nbehind it is a ten foot tall sitting statue of Odin, the King of the Gods.\nThe back of the altar opens into a a beautiful atrium, above which can be\nseen a rainbow.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors safe law",
+    "heal_rate": 110,
+    "mana_rate": 110,
+    "doors": [
+      {
+        "dir": "south",
+        "to": 1,
+        "description": "You see the southern end of the temple.\n"
+      },
+      {
+        "dir": "up",
+        "to": null,
+        "description": "Bifrost, the Rainbow Bridge, hangs in the sky above you.\n",
+        "portal": "midgaard-up-3"
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "statue Mota king god",
+        "description": "The statue represents the Great God Mota, holding a staff.  He has long, grey\nhair and beard and a kindly look on his face.  His staff is topped by a painted\ncube, the 6 faces of which represent the 6 aspects of his power.\n"
+      },
+      {
+        "keyword": "altar",
+        "description": "Even though the altar is more than ten feet long it appears to be made from a\nsingle block of white virgin marble.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "object",
+        "values": {
+          "obj": 10,
+          "global_limit": 1,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 56,
+    "name": "The Fountain of Youth Apothecary",
+    "description": "An old man putters around behind the counter, making strange love potions\nand curative philtres.  He turns as you enter, and looks on with avarice.\nJudging from the furnishings, he's been made very wealthy by his trade.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "south",
+      "to": 46,
+      "description": "You see the eastern end of alley.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 70,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 80,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 81,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 82,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 83,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 84,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 85,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 86,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 87,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 88,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 89,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 90,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 91,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 92,
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 57,
+    "name": "In the air...",
+    "description": "WOW you can fly!  You are floating in the air above Temple Square of Midgaard.\n",
+    "sector_type": "air",
+    "room_flags": "no_mob law",
+    "doors": [
+      {
+        "dir": "up",
+        "to": null,
+        "description": "More of the same.\n",
+        "portal": "midgaard-up-1"
+      },
+      {
+        "dir": "down",
+        "to": 5,
+        "description": "Back down on the earth where you should be!\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 100,
+    "name": "Northwest end of Concourse",
+    "description": "You are at the concourse, the city wall is just west.  A small promenade\ngoes east, and the bridge is just north of here.  The concourse continues\nsouth along the city wall.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 51,
+        "description": "You see the Bridge.\n"
+      },
+      {
+        "dir": "east",
+        "to": 101,
+        "description": "You see the promenade.\n"
+      },
+      {
+        "dir": "south",
+        "to": 270,
+        "description": "The concourse continues south.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 101,
+    "name": "Promenade",
+    "description": "The river gently flows west just north of here.  The promenade continues\nfurther east and to the west you see the city wall.  Park Road leads south\nfrom here.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 102,
+        "description": "The promenade.\n"
+      },
+      {
+        "dir": "south",
+        "to": 131,
+        "description": "Park Road leads south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 100,
+        "description": "You see the Concourse.\n"
+      }
+    ],
+    "resets": [{
+      "command": "object",
+      "values": {
+        "obj": 134,
+        "global_limit": 3,
+        "room_limit": 0
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 102,
+    "name": "Promenade",
+    "description": "The river gently flows west just north of here.  The promenade continues\nboth east and west.  A rickety bridge crosses the river to the north, towards\nthe city dump (fortunately, the wind is blowing towards the dump today). \nSouth of here you see the entrance to the park, and a small building seems\nto be just west of the entrance.  Austral Square, home of Kate's Diner, lies\nto your east.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 254,
+        "description": "A rickety old bridge crosses the river, heading towards the city dump.\n"
+      },
+      {
+        "dir": "east",
+        "to": 103,
+        "description": "You see people moving in and out of Kate's Diner.\n"
+      },
+      {
+        "dir": "south",
+        "to": 105,
+        "description": "You see the park entrance.\n"
+      },
+      {
+        "dir": "west",
+        "to": 101,
+        "description": "You see the promenade.\n"
+      }
+    ],
+    "resets": [{
+      "command": "object",
+      "values": {
+        "obj": 134,
+        "global_limit": 3,
+        "room_limit": 0
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 103,
+    "name": "Austral Square",
+    "description": "The Promenade opens here onto Austral Square, on the south bank of the\nMidgaard River.  All around you is the bustle of Southern Midgaard--\nshopkeepers on break, a town gossip or two prattling away.  You hear the\nriver lapping at the pilings of the dock by Kate's Diner, which is to your\nnorth.  Emerald Avenue begins to the south, the Promenade continues west,\nand the concourse ends to your east.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 150,
+        "description": "You smell the heavenly scents of Kate's Diner.\n"
+      },
+      {
+        "dir": "east",
+        "to": 104,
+        "description": "You see the Concourse.\n"
+      },
+      {
+        "dir": "south",
+        "to": 132,
+        "description": "The small path leads south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 102,
+        "description": "You see the promenade.\n"
+      }
+    ],
+    "resets": [{
+      "command": "object",
+      "values": {
+        "obj": 134,
+        "global_limit": 3,
+        "room_limit": 0
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 104,
+    "name": "Northeast end of Concourse",
+    "description": "You are at the Concourse.  The city wall is just east and Austral Square,\nhome of Kate's Diner, is west.  Looking across the river you see an old  \nwarehouse.  A strong stone bridge crosses the river to the north, where the\nconcourse becomes wall road.  The Concourse continues south along the wall.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 253,
+        "description": "A strong stone bridge crosses the river.\n"
+      },
+      {
+        "dir": "south",
+        "to": 272,
+        "description": "The Concourse continues south, towards an intersection with Penny Lane.\n"
+      },
+      {
+        "dir": "west",
+        "to": 103,
+        "description": "You Austral Square.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "wall",
+      "description": "It is built from large grey rocks that have been fastened to each other with\nsome kind of mortar.  It is far too high to climb.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 105,
+    "name": "Park Entrance",
+    "description": "You are standing just inside the small park of Midgaard.  To the north is\nthe promenade and a small path leads south into the park.  To your east is\nthe famous Park Cafe.\n",
+    "sector_type": "city",
+    "room_flags": "no_mob law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 102,
+        "description": "You see the promenade.\n"
+      },
+      {
+        "dir": "east",
+        "to": 106,
+        "description": "You see Park Cafe.\n"
+      },
+      {
+        "dir": "south",
+        "to": 108,
+        "description": "You see the park.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 106,
+    "name": "Park Cafe",
+    "description": "You are inside Park Cafe, a very well lighted, cosy place. The cafe\nis built from large logs. Through the windows in the northern wall you\nsee the river, and through the southern window you see many vigorous\ncolorful plants.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "west",
+      "to": 105,
+      "description": "You see the park entrance.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 100,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 100,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 101,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 102,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 120,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 121,
+          "global_limit": 2
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 200,
+          "global_limit": -1,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 107,
+    "name": "Small path through the park",
+    "description": "You are walking along a small path through the park.  The path continues\nsouth and east.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 108
+      },
+      {
+        "dir": "south",
+        "to": 113
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 108,
+    "name": "Small path in the park",
+    "description": "You are standing on a small path inside the park.  The park entrance is\njust north of here, and Park Cafe is just east of the entrance.  The path\nleads further east and west.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 105,
+        "description": "You see the northern park entrance.\n"
+      },
+      {
+        "dir": "east",
+        "to": 109
+      },
+      {
+        "dir": "west",
+        "to": 107
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 109,
+    "name": "Small path in the park",
+    "description": "You are on a small path running through the park.  It continues west and\nsouth and just north of here you see the southern wall of Park Cafe.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 115
+      },
+      {
+        "dir": "west",
+        "to": 108
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 123,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 60,
+          "global_limit": 18,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 363,
+          "wear_loc": "rwrist",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 110,
+    "name": "Cityguard Head Quarters",
+    "description": "You are inside a tidy office.  A big desk made from dark wood is standing\nin the centre of the room.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 111,
+        "keyword": "door",
+        "description": "You see Park Road.\n",
+        "exit_flags": "door"
+      },
+      {
+        "dir": "west",
+        "to": 142,
+        "keyword": "door",
+        "description": "You see a sign saying 'KEEP OUT'.\n",
+        "exit_flags": "door closed locked",
+        "key": 120
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 111,
+    "name": "Park Road",
+    "description": "The road continues north and south.  A building is just west of here, you\nnotice a sign on the door.  The park entrance is to the east.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 131
+      },
+      {
+        "dir": "east",
+        "to": 112,
+        "description": "You see the park entrance.\n"
+      },
+      {
+        "dir": "south",
+        "to": 118
+      },
+      {
+        "dir": "west",
+        "to": 110,
+        "keyword": "door",
+        "description": "You see the cityguard head quarters.\n",
+        "exit_flags": "door"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "building door sign",
+      "description": "The sign on the door says:-\n\n                 Cityguard Head Quarters\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 60,
+          "global_limit": 18,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 120,
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 60,
+          "global_limit": 18,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 363,
+          "wear_loc": "rwrist",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 112,
+    "name": "Western Park Entrance",
+    "description": "You are standing at the western end of the park.  A small path leads east\ninto the park and going west through the entrance you will reach Park Road.\n",
+    "sector_type": "city",
+    "room_flags": "no_mob law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 113
+      },
+      {
+        "dir": "west",
+        "to": 111
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 113,
+    "name": "A path in the park",
+    "description": "You are in the park.  The paths lead north and west.  Westwards is the\npark entrance and to the east you see a small pond.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 107
+      },
+      {
+        "dir": "east",
+        "to": 114,
+        "description": "You see the pond.\n"
+      },
+      {
+        "dir": "west",
+        "to": 112,
+        "description": "You see the western park entrance.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 124,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 114,
+    "name": "The Pond",
+    "description": "You are swimming around in the pond, feeling rather stupid.  You can get\nback on the path from the eastern and western end of the pond.\n",
+    "sector_type": "swim",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 115
+      },
+      {
+        "dir": "west",
+        "to": 113
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 121,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 122,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 115,
+    "name": "A path in the park",
+    "description": "You are in the park.  The paths lead north and east.  Eastwards is the\npark entrance and to the west you see a small pond.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 109
+      },
+      {
+        "dir": "east",
+        "to": 116
+      },
+      {
+        "dir": "west",
+        "to": 114
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 124,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 116,
+    "name": "Eastern Park Entrance",
+    "description": "You are standing at the eastern end of the park.  A small path leads west\ninto the park.  Going east through the entrance you will reach Emerald\nAvenue.\n",
+    "sector_type": "city",
+    "room_flags": "no_mob law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 117
+      },
+      {
+        "dir": "west",
+        "to": 115
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 117,
+    "name": "Emerald Avenue",
+    "description": "You are at Emerald Avenue which continues north and south.  To the west is\nthe park entrance and to the east is the not very big Town Hall of Midgaard.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 132
+      },
+      {
+        "dir": "east",
+        "to": 137
+      },
+      {
+        "dir": "south",
+        "to": 119
+      },
+      {
+        "dir": "west",
+        "to": 116
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 60,
+          "global_limit": 18,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 118,
+    "name": "Park Road",
+    "description": "You are on Park Road which leads north and south.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 111
+      },
+      {
+        "dir": "south",
+        "to": 135
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 119,
+    "name": "Emerald Avenue",
+    "description": "You are standing at a bend on Emerald Avenue.  The road leads north and west.\nTo the east, you see some run-down slums...it looks like the bad part of\ntown.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 117
+      },
+      {
+        "dir": "east",
+        "to": null,
+        "description": "You see some dangerous looking slums...just the right place for a gang.\n",
+        "portal": "midgaard-east-2"
+      },
+      {
+        "dir": "west",
+        "to": 133
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 120,
+    "name": "Road Crossing",
+    "description": "You are in the middle of the road cross.  Roads lead in all directions.\nA huge black iron chain as thick as a tree trunk is fastened into the ground\nat the centre of the road cross.  Its other end leads directly upwards towards\nthe sky.\nA road sign is here.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 133
+      },
+      {
+        "dir": "east",
+        "to": 136
+      },
+      {
+        "dir": "south",
+        "to": 134
+      },
+      {
+        "dir": "west",
+        "to": 135
+      },
+      {
+        "dir": "up",
+        "to": null,
+        "description": "The chain disappears in the clouds.",
+        "portal": "midgaard-up-5"
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "chain",
+        "description": "The the chain reaches the clouds high above you.  It must take some really\npowerful magic to hold such a chain in place.\n"
+      },
+      {
+        "keyword": "sign",
+        "description": "The sign points in all directions:\n\n   North - Emerald Avenue.\n   East  - Park Road.\n   South - Emerald Avenue.\n   West  - Park Road.\n\nSomeone has added the following with red paint:\n\n   Up    - Redferne's Flying Citadel.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 60,
+          "global_limit": 18,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 144,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 121,
+    "name": "Emerald Avenue",
+    "description": "You are standing at a bend on Emerald Avenue.  The road leads south and\neast.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 134
+      },
+      {
+        "dir": "south",
+        "to": 125
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 122,
+    "name": "Park Road",
+    "description": "You are on Park Road which leads south and north.  Elm Street is east of\nhere.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 136
+      },
+      {
+        "dir": "east",
+        "to": 123
+      },
+      {
+        "dir": "south",
+        "to": 126
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 123,
+    "name": "Elm Street",
+    "description": "You are on Elm street.  Park Road is to the west and Elm Street continues\nin eastward direction.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 124
+      },
+      {
+        "dir": "west",
+        "to": 122
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 124,
+    "name": "Elm Street",
+    "description": "You near the end of Elm Street.  An old elm tree grows here.  A heavy\niron grating is south, surrounding the city's graveyard.  You can see a sign\nhanging on the grate.  The concourse joins Elm Street to the east, and the\nstreet ends to the north near a run-down neighborhood.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 144,
+        "description": "You see the beginnings of Midgaard's bad neighborhoods.\n"
+      },
+      {
+        "dir": "east",
+        "to": 273,
+        "description": "You see the concourse.\n"
+      },
+      {
+        "dir": "south",
+        "to": null,
+        "keyword": "grate",
+        "description": "Through the solid iron bars you see the graveyard.\n",
+        "exit_flags": "door closed locked",
+        "key": 121,
+        "portal": "midgaard-south-1"
+      },
+      {
+        "dir": "west",
+        "to": 123
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "elm tree",
+        "description": "The fresh young leaves of the elm tree wave gently in the wind.\n"
+      },
+      {
+        "keyword": "sign",
+        "description": "The sign says :-\n \n                          Graveyard of Midgaard\n \n    Many brave adventurers have found their final resting place here.\n          Please show respect and do not desecrate their tombs.\n"
+      },
+      {
+        "keyword": "grate grating",
+        "description": "Looks heavy.  A small sign is hanging on it.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 125,
+    "name": "Emerald Avenue",
+    "description": "You are on Emerald Avenue which continues north.\nThe Concourse is south of here.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 121
+      },
+      {
+        "dir": "south",
+        "to": 128
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 60,
+          "global_limit": 18,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 126,
+    "name": "Park Road",
+    "description": "You are on Park Road which continues north.  The Concourse is south of here.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "portal": "midgaard-room-5",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 122
+      },
+      {
+        "dir": "south",
+        "to": 129
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 127,
+    "name": "On the Concourse",
+    "description": "You are at the southwest corner of the city wall.  The Concourse leads\nboth north and east.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 271
+      },
+      {
+        "dir": "east",
+        "to": 128
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 128,
+    "name": "On the Concourse",
+    "description": "You are walking around the scenic concourse as it continues its path around\nthe city of Midgaard.  The south gate of the city lies to your east, and the \nsouthwestern corner of the city wall is west.  Emerald Avenue stretches out\nto the north.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 125,
+        "description": "Emerald avenue lies to the north.\n"
+      },
+      {
+        "dir": "east",
+        "to": 255,
+        "description": "You can see the heavily guarded southern gate of Midgaard.\n"
+      },
+      {
+        "dir": "west",
+        "to": 127
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 351,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 129,
+    "name": "On the Concourse",
+    "description": "The concourse continues its path around the city.  The southern gates of the\ncity are west of here, and park road lies north.  The northeastern corner of\nthe city wall is east.\n",
+    "sector_type": "city",
+    "room_flags": "dark law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 126
+      },
+      {
+        "dir": "east",
+        "to": 130
+      },
+      {
+        "dir": "west",
+        "to": 255,
+        "description": "You see the south gate of Midgaard.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 130,
+    "name": "On the Concourse",
+    "description": "You are at the southeast corner of the city wall.  The Concourse leads\nboth north and west.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 273
+      },
+      {
+        "dir": "west",
+        "to": 129
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 131,
+    "name": "Park Road",
+    "description": "You are at Park Road which continues north and south.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 101
+      },
+      {
+        "dir": "south",
+        "to": 111
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 132,
+    "name": "Emerald Avenue",
+    "description": "You are standing on the north end of Emerald Avenue.  To the north is \nAustral Square and Kate's Diner, to the east is the small street Penny Lane.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 103
+      },
+      {
+        "dir": "east",
+        "to": 139
+      },
+      {
+        "dir": "south",
+        "to": 117
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 133,
+    "name": "Emerald Avenue",
+    "description": "You are standing at a bend on Emerald Avenue.  To the east the road goes on\nand to the south is the Road Crossing.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 119
+      },
+      {
+        "dir": "south",
+        "to": 120
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 134,
+    "name": "Emerald Avenue",
+    "description": "You are standing at a bend on Emerald Avenue.  To the west the road goes on\nand to the north is the Road Crossing.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 120
+      },
+      {
+        "dir": "west",
+        "to": 121
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 135,
+    "name": "Park Road",
+    "description": "You are at a bend on Park Road.  To the north the road goes on and to the\neast is the Road Crossing.  To the south, the ancient cliffs rise from deep\nunder the ground, forming a wall.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 118
+      },
+      {
+        "dir": "east",
+        "to": 120
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 136,
+    "name": "Park Road",
+    "description": "You are at a bend on Park Road.  To the south the road goes on and to the\nwest is the Road Crossing.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 122
+      },
+      {
+        "dir": "west",
+        "to": 120
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 137,
+    "name": "The Waiting Room",
+    "description": "You are standing in the waiting room at the town hall.  Wooden chairs stand\nalong the walls and a long desk is placed in the middle of the room.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 138,
+        "description": "It looks like some kind of office.\n"
+      },
+      {
+        "dir": "west",
+        "to": 117,
+        "description": "The exit west leads to Emerald Avenue.\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 142,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 138,
+    "name": "The Mayor's Office",
+    "description": "You are in the not very big office of the Mayor of Midgaard.  A large and\npolished but completely empty desk is standing in front of an armchair that\nlooks so comfortable that it most of all resembles a bed with the head end\nraised slightly.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "west",
+      "to": 137,
+      "description": "The waiting room is to the west.\n"
+    }],
+    "extra_description": [{
+      "keyword": "chair armchair",
+      "description": "This chair is really a masterpiece.  A chair where one can sit as comfortably\nas in a bed.  All lecture halls should be equipped with these things.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 143,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 124,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 69,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 69,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 69,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 69,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 139,
+    "name": "Penny Lane",
+    "description": "You are on Penny Lane.  Emerald Avenue is to the west and Penny Lane\ncontinues in eastward direction.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 140
+      },
+      {
+        "dir": "west",
+        "to": 132
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 140,
+    "name": "Penny Lane",
+    "description": "You are on Penny Lane.  The narrow road continues north and west, and\nthe concourse intersects this street to the east.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 141
+      },
+      {
+        "dir": "east",
+        "to": 272,
+        "description": "You see the concourse.\n"
+      },
+      {
+        "dir": "west",
+        "to": 139
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 141,
+    "name": "The end of Penny Lane",
+    "description": "You are at the end of Penny Lane.  The only exit appears to be south.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [{
+      "dir": "south",
+      "to": 140
+    }],
+    "resets": [
+      {
+        "command": "object",
+        "values": {
+          "obj": 135,
+          "global_limit": 2,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 136,
+          "global_limit": -1,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 142,
+    "name": "Captain's Office",
+    "description": "You are in the Office of the Captain of the Guard.  The Midgaard Coat of\nArms is hanging on the north wall and a heavy steel door is to the south.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 110,
+        "keyword": "door",
+        "description": "You see the Cityguard Head Quarters.\n",
+        "exit_flags": "door closed locked",
+        "key": 120
+      },
+      {
+        "dir": "south",
+        "to": 143,
+        "keyword": "door",
+        "description": "You see the heavy steel door.\n",
+        "exit_flags": "door closed locked",
+        "key": 137
+      }
+    ],
+    "extra_description": [{
+      "keyword": "arms",
+      "description": "Although a bit dusty the Coat of Arms is an excellent piece of work.\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 140,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 122,
+          "global_limit": 2
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 137,
+          "global_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 141,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 141,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 141,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 141,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 130,
+          "global_limit": 1,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 123,
+          "into": 130,
+          "global_limit": 1,
+          "put_count": 1
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 131,
+          "global_limit": 1,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 132,
+          "into": 131,
+          "global_limit": 1,
+          "put_count": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 143,
+    "name": "The Jail",
+    "description": "You are in a dark and humid jail.  The dark stone walls are hard and cold\nto the touch.  A heavy steel door is to the north.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "north",
+      "to": 142,
+      "keyword": "door",
+      "description": "You see the heavy steel door.\n",
+      "exit_flags": "door closed locked",
+      "key": 137
+    }],
+    "extra_description": [{
+      "keyword": "wall walls",
+      "description": "The walls are marked with lots of scratches.  Some of them spell sentences\nlike \"JAIL IS BETTER THAN SQL\" and \"BIGFOOTDAMOOSE IS ALIVE\".\n"
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 144,
+    "name": "The end of Elm Street",
+    "description": "Elm street ends here, next to a dangerous-looking run down neighborhood.\nYou can enter the slums to the east, or head towards the graveyard to the\nsouth.  It occurs to you that this isn't the happiest section of town.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": null,
+        "description": "You see a run-down slum neighborood.\n",
+        "portal": "midgaard-east-3"
+      },
+      {
+        "dir": "south",
+        "to": 124,
+        "description": "Elm street continues towards a graveyard.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 150,
+    "name": "Kate's Diner",
+    "description": "The smells of baking bread and simmering stew lead you dancing through\nthe doorway of the diner.  No greasy spoons to be seen here-- the\nbooth walls are covered in casual paisleys; the chairs are carved wood,\nrescued from garage sales.  Most tables have chess or backgammon boards\ncarved and painted on their fingertip-smooth tops.  The refrain of some\nmusical or other from the 1930's blends with the dusty golden light and the\nwonderful smells to put you completely at ease.  A huge picture window\nlooks out over the Midgaard River, and a doorway leads north onto the dock\nand the South Bank river landing, while the main entrance to the south\nreturns you to Austral Square.\nOn most days you will find Kate here, testing a batch of stew or brewing\na special pot of cinnamon coffee, eerily just in time for your arrival\nPull up a chair, perhaps play a game, and take time out to talk.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors safe law",
+    "portal": "midgaard-room-3",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 203,
+        "description": "A small boat landing lets boats land at the diner.\n"
+      },
+      {
+        "dir": "south",
+        "to": 103,
+        "description": "You see Austral Square.\n"
+      },
+      {
+        "dir": "up",
+        "to": null,
+        "description": "You see the far-off halls of Valhalla.\n",
+        "portal": "midgaard-up-6"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "window landing",
+      "description": "You can see a rickety bridge to your northwest, leading back into\nCentral Midgaard.  A rustic dock connects the Diner with the Midgaard\nRiver, and a boat or two floats lazily past.  Across the river you can see\nthe Levee and the Guild of Thieves, but they seem very far away from all\nof this...\n"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 150,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 154,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 152,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 153,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 151,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": {
+            "area": "shire",
+            "anum": 3
+          },
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 150,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 100,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "object",
+        "values": {
+          "obj": 200,
+          "global_limit": -1,
+          "room_limit": 0
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 160,
+    "name": "Melancholy's Maps",
+    "description": "As you walk in, a sudden gust of wind enters the shop and sends several\nscraps of paper fly around the room.  You blink as the dust you've stirred \nup stings your eyes, and take a look around the shop.  This shop is cluttered \nwith old pieces of parchment, stacks of books, and odd scraps.  A desk with \nslightly less clutter than the rest of the shop is in front of you.  A scroll \ncase full of scrolls is behind the desk.  A bookcase is to the right of you, \nand to the left is a window overlooking the Common Square.  A small door, \nhalf hidden by a stack of books, leads to a room in the back of the shop.\n",
+    "sector_type": "inside",
+    "room_flags": "unused_room_1 no_mob law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 161,
+        "keyword": "door",
+        "description": "A sign on the door says, \"Unauthorized Personel Prohibited\".\n",
+        "exit_flags": "door closed locked pickproof",
+        "key": 161
+      },
+      {
+        "dir": "south",
+        "to": 24,
+        "description": "To the south is the Poor Alley.  Across the alley, you see the Grubby Inn.\n"
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "window",
+        "description": "You peer out the window and see a cityguard beating up an old lady.\n"
+      },
+      {
+        "keyword": "bookcase",
+        "description": "You see many cartographer journals and topographical studies.  You also see\nquite a few tomes written by someone named \"Anson MacDonald\".\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 160,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 168,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 167,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 166,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 165,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 164,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 163,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 162,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 161,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 161,
+    "name": "Melancholy's Room",
+    "description": "A faint smell of incense teases your nose as you enter this room.  You \nstep onto a soft bearskin rug and look around.  A simple bed lies against\nthe far wall.  At the foot of it is a sturdy, ironbound chest, most likely\nfull of Melancholy's trappings from her adventuring days.  On a small table\nunder a window to the east is a vase with a single white rose.  Other than\nthat, the room is quite bare.  \n",
+    "sector_type": "inside",
+    "room_flags": "unused_room_1 no_mob private law",
+    "portal": "midgaard-room-2",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 160,
+        "keyword": "door",
+        "description": "A small door to the south leads out into the map shop.\n",
+        "exit_flags": "door closed locked pickproof",
+        "key": 161
+      },
+      {
+        "dir": "up",
+        "to": null,
+        "portal": "midgaard-up-7"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "chest",
+      "description": "This chest is firmly locked, and the device by which it opens is beyond your\nreckoning.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 170,
+    "name": "Temple Of Stupid",
+    "description": "As you enter the abandoned warehouse your eyes blink violently to\nadjust to the almost total darkness.  You wonder where the windows are\nas you step into a mud puddle in the middle of the floor.  As your eyes\nadjust, you realize that there are mud puddles all around the room, and\nthis is some weird version of windows.  In a flash of revelation, you\nrealize that you've entered the Temple of Stupid.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "portal": "midgaard-room-4",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 44,
+        "description": "Poor Alley is to the north.\n"
+      },
+      {
+        "dir": "up",
+        "to": null,
+        "portal": "midgaard-up-8"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "puddle puddles",
+      "description": "The puddles on the floor are filthy and exude a foul stench.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 200,
+    "name": "Under the Bridge",
+    "description": "The arch under the bridge is covered by seaweed for one foot above the\nsurface of the river.  The water gently flows through an opening in the lower\npart of the city wall.\n",
+    "sector_type": "noswim",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 201
+      },
+      {
+        "dir": "west",
+        "to": null,
+        "description": "You see the river flowing west into the Forest of Haon-Dor.",
+        "portal": "midgaard-west-2"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "wall",
+      "description": "It is built from large grey rocks that have been fastened to each other with\nsome kind of mortar.  Looks pretty solid.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 201,
+    "name": "On the River",
+    "description": "North of here you see the miserable buildings of the poor alley.  The\nriver flows west towards the bridge.  The riverbanks are too steep to climb.\n",
+    "sector_type": "noswim",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 202
+      },
+      {
+        "dir": "west",
+        "to": 200
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 202,
+    "name": "On the River",
+    "description": "North of here you see the dump.  The river flows from east to west.  The\nriverbanks are too steep to climb.  A bridge passes overhead, connecting the\ndump to the promenade.\n",
+    "sector_type": "noswim",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 203
+      },
+      {
+        "dir": "west",
+        "to": 201
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 203,
+    "name": "On the River",
+    "description": "The levee is directly north of here, and a small boat landing for Kate's\nDiner is to the south.  The river flows in an east west direction.\n",
+    "sector_type": "noswim",
+    "room_flags": "no_mob law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 49
+      },
+      {
+        "dir": "east",
+        "to": 204
+      },
+      {
+        "dir": "south",
+        "to": 150,
+        "description": "You see the landing in the back of Kate's Diner. \n"
+      },
+      {
+        "dir": "west",
+        "to": 202
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 204,
+    "name": "On the River",
+    "description": "You see the warehouse on the northern riverbank.  East of here the river\npasses under the eastern bridge and through the city wall. The banks of the \nlevee are west, in the direction of the current.\n",
+    "sector_type": "noswim",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 205
+      },
+      {
+        "dir": "west",
+        "to": 203
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 205,
+    "name": "On the River",
+    "description": "The river enters from a hole in the eastern city wall.  The hole has been\nblocked by several vertically positioned iron bars set into the wall. Overhead\nyou can see the stone buttresses of the eastern bridge.\n",
+    "sector_type": "noswim",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": null,
+        "description": "The iron bars are broken, allowing passage through the hole in the wall.\nBeyond the bars you see a dark tunnel.\nbars",
+        "portal": "midgaard-east-1"
+      },
+      {
+        "dir": "west",
+        "to": 204
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 250,
+    "name": "Wall Road",
+    "description": "Wall road extends north and south along the eastern walls of the city.\nThe east gate is north of you, south is an intersection with a dark alley. You\ncheck to make sure you still have your wallet.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 41,
+        "description": "The eastern gate of the city is north.\n"
+      },
+      {
+        "dir": "south",
+        "to": 251,
+        "description": "You see an intersection with a dark alley.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 251,
+    "name": "Wall Road",
+    "description": "You are walking along the eastern wall of the city, on a road extending \nbetween the east gate and a bridge to the south.  A dark, dirty alley lies west \nof here.  You step carefully around a pool of liquid...who knows what it could \nbe in a place this foul...\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 250,
+        "description": "Wall road continues to the north, heading towards the gate.\n"
+      },
+      {
+        "dir": "south",
+        "to": 252,
+        "description": "Wall road continues to the south, towards a bridge over the Midgaard river.\n"
+      },
+      {
+        "dir": "west",
+        "to": 46,
+        "description": "A dirty, unlight alley lies to the west...it looks like a perfect spot for a\nmugging.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 252,
+    "name": "Wall Road",
+    "description": "The walls of Midgaard tower above you to the east, keeping the city safe\nfrom its enemies...you hope.  An intersection with a dark alley lies north,\nand a bridge over the Midgaard river is south.  Beyond the bridge wall road \nturns in the concourse.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 251,
+        "description": "You see an intersection with a dark alley.\n"
+      },
+      {
+        "dir": "south",
+        "to": 253,
+        "description": "The eastern bridge crosses the river to the south.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 253,
+    "name": "On the Bridge",
+    "description": "You are crossing a strong stone bridge, which spans the Midgaard river.\nBelow you, the river flows into an opening in the city wall, sealed with\nstrong metal bars.  North of you is wall road, south of here the concourse\nloops around the inside of the city walls.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 252,
+        "description": "Wall road continues to the north.\n"
+      },
+      {
+        "dir": "south",
+        "to": 104,
+        "description": "The concourse stretches around the southern parts of Midgaard.\n"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "opening bars river",
+      "description": "Hmm...some of the bars have been ripped out of the wall.  Enough to pass a\ngood sized raft or canoe, or perhaps even a barge.  You wonder what sort of\nbeast had the strength to do this.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 254,
+    "name": "The South Bridge",
+    "description": "You are standing on a small, rickety bridge leading from the Midgaard\nCity Dump to the much more attractive promenade of the southern parts of \nMidgaard.  You can smell the stench of the dump to the north, the fresher\nair of the promenade seems preferable.  Below you are the swift-moving \ncurrents of the Midgaard river.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 30,
+        "description": "You can see the clutter of the City Dump.\n"
+      },
+      {
+        "dir": "south",
+        "to": 102,
+        "description": "The beautiful promenade lies along the river.  What a romantic place to visit!\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 255,
+    "name": "Inside the South Gate of Midgaard",
+    "description": "Two strong stone towers surround a heavy wooden gate set into the city wall,\nto guard against the goblins that lurk in the southern forests.  You can exit\nthe city to the south, if you dare, or walk down the concourse to the east\nor west.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 129,
+        "description": "The concourse heads east along the inside of the city wall.\n"
+      },
+      {
+        "dir": "south",
+        "to": 256,
+        "description": "You see the southern gate.\n",
+        "exit_flags": "door",
+        "key": 133
+      },
+      {
+        "dir": "west",
+        "to": 128,
+        "description": "The concourse heads west along the inside of the city wall.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 71,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 361,
+          "wear_loc": "about",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 71,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 362,
+          "wear_loc": "waist",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 256,
+    "name": "Outside the South Gate of Midgaard",
+    "description": "You are standing outside the strong wooden gate on the southern walls of\nMidgaard.  Guards eye you suspiciously from the two towers on either side of\nthe gate, as they stand watch to protect the city from the goblins of this\nforest.  The trees and goblins of the Miden'nir are south, the gate back to \nMigaard lies north.\n",
+    "sector_type": "forest",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 255,
+        "description": "You see the southern gate.\n",
+        "exit_flags": "door",
+        "key": 133
+      },
+      {
+        "dir": "south",
+        "to": null,
+        "description": "The green forests of the Miden'nir are south, hiding countless goblin warriors.\n",
+        "portal": "midgaard-south-2"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 257,
+    "name": "Wall Road",
+    "description": "You are walking along wall road, just north of the west gate of Midgaard.  \nThe road continues along the western wall to the north, towards an intersection\nwith a busy Clan street.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 258,
+        "description": "You see an intersection between wall road and a busy Clan street.\n"
+      },
+      {
+        "dir": "south",
+        "to": 40,
+        "description": "The west gate of the city lies south.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 258,
+    "name": "Wall Road",
+    "description": "Wall road intersects with a crowded Clan Road here, filled with shops and\nartisans.  The street stretches off to the east, towards the far wall of the\ncity.  Wall road continues to the north and south.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 259,
+        "description": "Wall road continues to the north, towards the northwestern corner of the wall.\n"
+      },
+      {
+        "dir": "east",
+        "to": 301,
+        "description": "You see the shops and clan halls of Clan Road.\n"
+      },
+      {
+        "dir": "south",
+        "to": 257,
+        "description": "Wall road continues alongside the western wall, heading towards the west gate.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 259,
+    "name": "Wall Road",
+    "description": "You are walking along wall road, which extends along the inside of the western\nwall of Midgaard.  To the south, you can see an intersection with a crowded\nClan street.  The northwestern corner of the city wall lies ahead to the\nnorth.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 260,
+        "description": "You see the northwestern corner of the city wall.\n"
+      },
+      {
+        "dir": "south",
+        "to": 258,
+        "description": "To the south, wall road intersects with a crowded Clan street.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 260,
+    "name": "The Northwest Corner",
+    "description": "You are standing beneath the northwestern corner of the city wall, on a turn\nin wall road.  You can head south, towards the west gate, or east, to the \nnorth gate.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 261,
+        "description": "Wall road continues along the northern wall of the city.\n"
+      },
+      {
+        "dir": "south",
+        "to": 259,
+        "description": "Wall road continues along the western wall of the city.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 261,
+    "name": "Wall Road",
+    "description": "The city walls tower over you as walk down wall road, between the northwestern\ncorner of the wall to the west, and the northern gate of Midgaard to the east.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 262,
+        "description": "Wall road continues to the east, towards the northern gate of Midgaard.\n"
+      },
+      {
+        "dir": "west",
+        "to": 260,
+        "description": "You can see the northwest corner of the city wall to the west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 262,
+    "name": "Inside the North Gate of Midgaard",
+    "description": "Two small towers surround a strong wooden gate, connected by a small stone\nbridge set with murder holes.  This gate is not as heavily guarded as the \nothers, as the plains outside are safe to travel.  You can leave midgaard to\nthe north, or continues along wall road to the west and east.  A teeming clan\nstreet is visible to the south, and beyond that the graceful spires of the\nTemple of Mota, but there is no way to reach them from here.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 268,
+        "description": "The northern plains are visible through the gate.\n",
+        "exit_flags": "door",
+        "key": 133
+      },
+      {
+        "dir": "east",
+        "to": 263,
+        "description": "Wall road continues to the east, alongside the northern wall.\n"
+      },
+      {
+        "dir": "west",
+        "to": 261,
+        "description": "Wall road continues to the west, alongside the northern wall.\n"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 72,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 365,
+          "wear_loc": "light",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 364,
+          "wear_loc": "lfinger",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 350,
+          "wear_loc": "wielded",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 353,
+          "wear_loc": "body",
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 354,
+          "wear_loc": "shield",
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 263,
+    "name": "Wall Road",
+    "description": "You are walking along wall road, between the northern gate of the city and the\nnortheastern corner of the city walls.  You can see bloodstains on the road...\nbetter be on guard for thieves.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 264,
+        "description": "You see the northeastern corner of the city walls.\n"
+      },
+      {
+        "dir": "west",
+        "to": 262,
+        "description": "The northern gate of the city lies east.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 264,
+    "name": "The Northeast Corner",
+    "description": "Wall road turns the corner here, as you pass by the northeastern edge of the\ncity wall.  The north gate lies to your west, and the road south leads to the\neastern gate of Midgaard.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 265,
+        "description": "Wall road continues to the south, along the eastern wall of the city.\n"
+      },
+      {
+        "dir": "west",
+        "to": 263,
+        "description": "Wall road continues to the west, along the northern wall of the city.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 265,
+    "name": "Wall Road",
+    "description": "Just south of you is an intersection with a crowded clan street.  The \neastern wall of Midgaard is beside you, and to the north you can see the \nnortheast corner of the city wall.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 264,
+        "description": "You can see the northeast corner of the city wall.\n"
+      },
+      {
+        "dir": "south",
+        "to": 266,
+        "description": "You see an intersection with a crowded street.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 266,
+    "name": "Wall Road",
+    "description": "Here, wall road meets up with a busy clan street heading off towards the \nwest, and the far wall of the city.  You can smell spices, perfume, freshly\ncured hide, and other strange scents, all mingle together in one heady aroma.\nWall road continues to the north and south.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 265,
+        "description": "Wall road continues to the north, along the eastern wall of the city.\n"
+      },
+      {
+        "dir": "south",
+        "to": 267,
+        "description": "Wall road continues to the south, towards the east gate of Midgaard.\n"
+      },
+      {
+        "dir": "west",
+        "to": 316,
+        "description": "You see a mass of people heading down Clan Road.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 267,
+    "name": "Wall Road",
+    "description": "You are near the center of wall road, just north of the east gate of the city.\nTo the north, you can see an intersection with a crowded clan street.\nThe guards at the gate eye you suspiciously from afar.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 266,
+        "description": "You see an intersection with a busy clan street.\n"
+      },
+      {
+        "dir": "south",
+        "to": 41,
+        "description": "You see the well-guarded east gate of Midgaard.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 268,
+    "name": "Outside the North Gate of Midgaard",
+    "description": "You stand outside the north gate of the walled city of Midgaard.  A dusty \ntrail is visibile to the north, it stretches around the walls of the city.  \nFurther north are the wide expanses of the northern plains, leading to the \nvillage of Ofcol.  You can return to Midgaard to the south.\n",
+    "sector_type": "field",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": null,
+        "description": "You see a dusty trail leading around the city.\n",
+        "portal": "midgaard-north-3"
+      },
+      {
+        "dir": "south",
+        "to": 262,
+        "description": "You see the north gate of Midgaard.\n",
+        "exit_flags": "door",
+        "key": 133
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 270,
+    "name": "On the Concourse",
+    "description": "The strong stone walls of Midgaard rise up to the west, keeping evil at bay.\nThe concourse heads towards a bridge to the north, and continues south \nalongside a beautiful park.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 100,
+        "description": "The concourse continues to the north, along the city wall.\n"
+      },
+      {
+        "dir": "south",
+        "to": 271,
+        "description": "The concourse heads south, passing by a beautiful park.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 271,
+    "name": "On the Concourse near the park",
+    "description": "You are walking down the Concoruse, along the western wall of Midgaard.  To\nthe north, the road passes by a beautiful park, to the south, you can see\nthe southwest corner of the city wall.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 270,
+        "description": "The concourse heads north, passing by a beautiful park.\n"
+      },
+      {
+        "dir": "south",
+        "to": 127,
+        "description": "You can see the southwest corner of the city wall.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 272,
+    "name": "On the Concourse at Penny Lane",
+    "description": "You are on a road leading around the inner walls of Midgaard.  To the north,\nthe concourse heads towards a bridge into northern Midgaard.  To the south, \nyou can see an intersection with Elm Street.  The quaint paved streets of\nPenny Lane lie west.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 104,
+        "description": "The concourse continues to the north, towards the east bridge.\n"
+      },
+      {
+        "dir": "south",
+        "to": 273,
+        "description": "The concourse continues south, towards an intersection with Elm Street.\n"
+      },
+      {
+        "dir": "west",
+        "to": 140,
+        "description": "You see Penny Lane.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 273,
+    "name": "On the Concourse at Elm Street",
+    "description": "The air grows chill as you pass near the Elm Street graveyard.  The walls of\nMidgaard are to the east, and the concourse continues to the north and south.\nTo your west, you see Elm Street at the graveyard entrance.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 272,
+        "description": "The concourse continues to the north, towards an intersection with Penny Lane.\n"
+      },
+      {
+        "dir": "south",
+        "to": 130,
+        "description": "The concourse continues to the south, towards the southeast corner of the wall.\n"
+      },
+      {
+        "dir": "west",
+        "to": 124,
+        "description": "You see Elm Street and the graveyard entrance.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 301,
+    "name": "Clan Road",
+    "description": "You are standing on the western end of Clan Road.  The traffic here  \nis light.  This is a quieter section of Midgaard.  You can hear the sound of\nhaggling coming from the east.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 302,
+        "description": "Clan Road continues east.\n"
+      },
+      {
+        "dir": "west",
+        "to": 258,
+        "description": "Wall Road is to the west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 302,
+    "name": "Clan Road",
+    "description": "You are walking along Clan Road.  To the south of you is the money changer.  \nClan Road continues on to the east and the west.  \n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 303,
+        "description": "Clan Road continues east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 334,
+        "description": "The money changer is to the south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 301,
+        "description": "Clan Road continues west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 303,
+    "name": "Clan Road",
+    "description": "The shops on this stretch of Clan road are long-closed and boarded up.\nNot much traffic passes through this part, as there is nothing to buy.  \n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 314,
+        "description": "Clan Road continues to the east.\n"
+      },
+      {
+        "dir": "west",
+        "to": 302,
+        "description": "Clan Road continues to the west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 314,
+    "name": "Clan Road",
+    "description": "Noise and light abound on this part of Clan Road.  Clan road continues off\nto the east and west.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 315,
+        "description": "Clan Road continues to the east.\n"
+      },
+      {
+        "dir": "west",
+        "to": 303,
+        "description": "Clan Road continues to the west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 315,
+    "name": "Clan Road",
+    "description": "Clan Road seems to widen here slightly, allowing more traffic to \ntravel through the area.  To the south is another entrance to the busy\npub.  This door is also open wide and spilling forth the sounds of\nhappy patrons.  Clan Road continues to the east and west.\n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 316,
+        "description": "Clan Road continues to the east.\n"
+      },
+      {
+        "dir": "south",
+        "to": 356,
+        "description": "A busy pub is to the south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 314,
+        "description": "Clan Road continues to the west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 316,
+    "name": "Clan Road",
+    "description": "You are at the eastern end of Clan Road.  To the east of you, the  \ntall wall around the city looms up before you and casts its shadow on\nyou.  Clan Road continues to the west.  \n",
+    "sector_type": "city",
+    "room_flags": "law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 266,
+        "description": "Wall Road is east of here.\n"
+      },
+      {
+        "dir": "west",
+        "to": 315,
+        "description": "Clan Road continues to the west.\n"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 334,
+    "name": "A Money Changer's Room",
+    "description": "A few strategically placed lanterns keep this place well-lit in the \nabsence of any windows.  The room is surprisingly well appointed with  \ntapestries hanging on the walls.  You'd wager your life the moneylender's\nguards are behind them, as there are none here.  The moneylender himself\nworks from behind a large desk, no doubt holding a fortune in gold and silver.\nA smallish sign hangs on the wall, lettered in common.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "north",
+      "to": 302,
+      "description": "Clan Road is to the north.\n"
+    }],
+    "extra_description": [
+      {
+        "keyword": "tapestries walls",
+        "description": "You think about peeking behind the tapestries, but think better of it.\n"
+      },
+      {
+        "keyword": "sign",
+        "description": "Give me your coins, and I shall change them for you, taking but 1 in 20 for\nmy fee.  --- Otho the Changer\n"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 162,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 352,
+    "name": "Grebe's Tavern",
+    "description": "Dive.  That's all you can say about this place; its a\ndive.  You step carefully over the dead and/or drunk sailors\non the floor toward the center of the room.  There's no\ndecorations on the wall; they've all been ripped down in anger\nor for use as weapons at one time or another.  Looking around,\nyou search vainly for a clean table to sit at, and then give up.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "south",
+      "to": 26,
+      "description": "A dark alley is to the south.\n"
+    }],
+    "extra_description": [
+      {
+        "keyword": "wall walls",
+        "description": "Bare, except for the holes.\n"
+      },
+      {
+        "keyword": "table tables",
+        "description": "You find a table that's relatively vomit-free.\n"
+      }
+    ],
+    "resets": [{
+      "command": "object",
+      "values": {
+        "obj": 200,
+        "global_limit": -1,
+        "room_limit": 0
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 355,
+    "name": "Andy's Pub",
+    "description": "The busy pub is filled with patrons.  People are laughing and singing.\nA minstrel plays his lute in another part of the pub, and a few people\nare even dancing.  Andy, the pubs owner, wanders around and checks to see\nthat the needs of his customers are met.  The bar is to your south.  East\nof you is another section of the pub.  You know that there are rooms to\nbe had somewhere around here...\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 356,
+        "description": "You see another room in the pub.\n"
+      },
+      {
+        "dir": "south",
+        "to": 357,
+        "description": "The bar is to the south of you.\n"
+      }
+    ],
+    "resets": [{
+      "command": "object",
+      "values": {
+        "obj": 200,
+        "global_limit": -1,
+        "room_limit": 0
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 356,
+    "name": "A Room in the Pub",
+    "description": "This part of the pub is filled with dancing and singing.  A wandering\nminstrel is on a chair in a corner with his lute.  A busty red headed\nwoman is standing near him and singing a tale of comedic heroism. Drunk\nmen sit laughing at their tables and busy bar maids weave through the\ncrowd with full mugs and horns of ale and mead.  Another part of the pub\nis located to your west. The bar is to the south.  A set of steps occupy\nin a corner of the room.  They lead up to the inn section of this\nprosperous establishment.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 315,
+        "description": "Clan Road is to the north.\n"
+      },
+      {
+        "dir": "south",
+        "to": 358,
+        "description": "The bar is to your south.\n"
+      },
+      {
+        "dir": "west",
+        "to": 355,
+        "description": "Another room in the pub is to your west.\n"
+      },
+      {
+        "dir": "up",
+        "to": 359,
+        "description": "A set of stairs leads up to the reception area.\n"
+      }
+    ],
+    "resets": [{
+      "command": "object",
+      "values": {
+        "obj": 200,
+        "global_limit": -1,
+        "room_limit": 0
+      }
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 357,
+    "name": "The Bar",
+    "description": "A long mahogany bar is set in the back of the pub.  Mugs line a shelf\nbehind the bar.  Bottles of strong, nasty looking liquids decorate one\nof the lower shelves.  A large cask rests on a table behind the bar.  A\nstrong but friendly-looking bartender stands next to the cask polishing\nglasses.  A couple of the bar maids stand in a corner and throw the most\ninviting glances your way.\nA sign is on the wall.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "north",
+      "to": 355,
+      "description": "The pub proper is to the north.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "The sign says: Don't forget our dinner menu.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 358,
+    "name": "The Bar",
+    "description": "A long mahogany bar is set in the back of the pub.  Mugs line a shelf\nbehind the bar.  Bottles of strong, nasty looking liquids decorate one\nof the lower shelves.  A large cask rests on a table behind the bar.  A\nstrong but friendly looking bartender stands next to the cask polishing\nglasses.  A couple of the bar maids stand in a corner and throw the most\ninviting glances your way.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "north",
+      "to": 356,
+      "description": "The pub proper is to the north.\n"
+    }],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "The sign says: Don't forget our dinner menu.\n"
+    }]
+  }},
+  {"room": {
+    "area": "midgaard",
+    "anum": 359,
+    "name": "The Inn",
+    "description": "You are standing upstairs from Andy's Pub at Andy's Inn.  A few chairs\nand a couple of end tables give the room a `homey' atmosphere.  A large\nstone fireplace burns brightly against one wall and warms the room.  A\nlarge oak desk is nestled in one corner of the room.  A small man with\nwire-framed glasses sits behind the desk working dilligently on his books.\nHe looks up as you enter the room.  He looks at you quizzically.  He is\nprobably waiting for you to ask him for a room.\n",
+    "sector_type": "inside",
+    "room_flags": "indoors law",
+    "doors": [{
+      "dir": "down",
+      "to": 356,
+      "description": "The stairs lead back down to the pub.\n"
+    }]
+  }}
+]

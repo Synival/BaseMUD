@@ -41,44 +41,44 @@ And the man pages, outdate.
         |::XXXX|                                            |::XXXX|
         |X::XXX|              Implementors [60]             |X::XXX|
         |XX::XX|              *****************             |XX::XX|
-        |XXX::X|     				            |XXX::X|
+        |XXX::X|                                            |XXX::X|
         |XXXX::|                                            |XXXX::|
         |::XXXX|                                            |::XXXX|
         |X::XXX|                Creators [59]               |X::XXX|
         |XX::XX|                *************               |XX::XX|
-        |XXXX::|         			            |XXXX::|
+        |XXXX::|                                            |XXXX::|
         |::XXXX|                                            |::XXXX|
 /<<>>\/<<>>\/<<>>\/<<>>\                            /<<>>\/<<>>\/<<>>\/<<>>\
 \<<>>/\<<>>/\<<>>/\<<>>/      Supremacies [58]      \<<>>/\<<>>/\<<>>/\<<>>/
        |.  /  . |             ****************             |.  /  . |
-       | .//\.  |            		                   | .//\.  |
-       |.  /  . |            		                   |.  /  . |
+       | .//\.  |                                          | .//\.  |
+       |.  /  . |                                          |.  /  . |
        | .//\.  |                                          | .//\.  |
        |.  /  . |               Deities [57]               |.  /  . |
        | .//\.  |               ************               | .//\.  |
-       |.  /  . |           		      	           |.  /  . |
+       |.  /  . |                                          |.  /  . |
        | .//\.  |                                          | .//\.  |
        | .//\.  |                Gods [56]                 | .//\.  |
        |.  /  . |                *********                 |.  /  . |
-       | .//\.  |              	                           | .//\.  |
+       | .//\.  |                                          | .//\.  |
        | .//\.  |                                          | .//\.  |
        |.  /\ . |              Immortals [55]              |.  /  . |
        | .//\.  |              **************              | .//\.  |
-       |.  /  . |              		                   |.  /  . |
+       |.  /  . |                                          |.  /  . |
        | .//\.  |                                          | .//\.  |
        |.  /  . |               DemiGods [54]              |.  /  . |
        | .//\.  |               *************              | .//\.  |
-       |.  /\ . |                  	  	           |.  /  . |
+       |.  /\ . |                                          |.  /  . |
        |.  /  . |                                          |.  /  . |
        | .//\.  |               Angels [53]                | .//\.  |
        |.  /  . |               ***********                |.  /  . |
-       |.  /  . |             	   	                   |.  /  . |
-       | .//\.  |             		                   | .//\.  |
+       |.  /  . |                                          |.  /  . |
+       | .//\.  |                                          | .//\.  |
        | .//\.  |                                          | .//\.  |
        |.  /  . |               Avatars [52]               |.  /  . |
        | .//\.  |               ************               | .//\.  |
-       |.  /  . |                 	                   |.  /  . |
-       |.  /  . |                  	                   |.  /  . |
+       |.  /  . |                                          |.  /  . |
+       |.  /  . |                                          |.  /  . |
         \ //\. /                                            \ //\. /
          \ /. /                                              \ /. /
           \ //                                                \ //
@@ -207,10 +207,10 @@ strip        stroke      strut        sulk          swoon       tackle
 tease        thank       threaten     tickle        tip         tongue
 twiddle      type        undress      view          wave        whine
 whistle      wiggle      wince        wink          wonder      worry
-worship      yawn        yeehaw       yodel         rose	laces
-tank	     starve	 aargh	      homework	    puff	differ
-yae	     lightbulb   voodoo       ogg	    confused	beam
-bite	     discodance  scuff        whap	    lag		chortle
+worship      yawn        yeehaw       yodel         rose        laces
+tank         starve      aargh        homework      puff        differ
+yae          lightbulb   voodoo       ogg           confused    beam
+bite         discodance  scuff        whap          lag         chortle
 zerbert      twitch
  
 ~
@@ -450,7 +450,7 @@ gold and sacrificing corpses.  The commands are as follows:
 autolist  : list all automatic actions
 autoloot  : take all equipment from dead mobiles
 autogold  : take all gold from dead mobiles
-autosac	  : sacrifice dead monsters (if autoloot is on, only empty corpes)
+autosac   : sacrifice dead monsters (if autoloot is on, only empty corpes)
 autoexit  : display room exits upon entering a room
 autosplit : split up spoils from combat among your group members
 autoassit : makes you help group members in combat

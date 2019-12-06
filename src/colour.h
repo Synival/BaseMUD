@@ -88,12 +88,12 @@
 #define CC_BACK_BRIGHT_WHITE   (CC_BRIGHT_WHITE   << 4)
 
 /* functions */
-int colour_to_full_name args ((flag_t colour, char *buf_out, size_t size));
-int colour_code_to_ansi args ((CHAR_DATA * ch, int use_colour,
-                               char type, char *buf_out, size_t size));
-int colour_puts args ((CHAR_DATA *ch, bool use_colour, const char *buf_in,
-                       char *buf_out, size_t size));
-int colour_to_ansi args ((flag_t colour, char *buf_out, size_t size));
-const COLOUR_SETTING_TYPE *colour_setting_get_by_char (char ch);
+int colour_to_full_name (flag_t colour, char *buf_out, size_t size);
+int colour_code_to_ansi (CHAR_T *ch, int use_colour, char type, char *buf_out,
+    size_t size);
+int colour_puts (CHAR_T *ch, bool use_colour, const char *buf_in, char *buf_out,
+    size_t size);
+int colour_to_ansi (flag_t colour, char *buf_out, size_t size);
+const COLOUR_SETTING_T *colour_setting_get_by_char (char ch);
 
 #endif

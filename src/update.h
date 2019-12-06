@@ -30,17 +30,17 @@
 
 /* Function prototypes. */
 int recovery_in_position (int gain, int position);
-int hit_gain (CHAR_DATA * ch, bool apply_learning);
-int mana_gain (CHAR_DATA * ch, bool apply_learning);
-int move_gain (CHAR_DATA * ch, bool apply_learning);
-void gain_condition (CHAR_DATA * ch, int iCond, int value);
+int hit_gain (CHAR_T *ch, bool apply_learning);
+int mana_gain (CHAR_T *ch, bool apply_learning);
+int move_gain (CHAR_T *ch, bool apply_learning);
+void gain_condition (CHAR_T *ch, int iCond, int value);
 void area_update (void);
 void mobile_update (void);
 void weather_update (void);
 void health_update (void);
-void health_update_ch (CHAR_DATA *ch);
-void health_update_ch_stat (CHAR_DATA *ch, sh_int *cur, sh_int *max,
-    sh_int *rem, int (*func) (CHAR_DATA *, bool));
+void health_update_ch (CHAR_T *ch);
+void health_update_ch_stat (CHAR_T *ch, sh_int *cur, sh_int *max,
+    sh_int *rem, int (*func) (CHAR_T *, bool));
 void char_update (void);
 void obj_update (void);
 void aggr_update (void);

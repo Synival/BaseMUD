@@ -38,10 +38,7 @@
 
 #include "magic.h"
 
-/* The kludgy global is for spells who want more stuff from command line. */
-char *target_name;
-
-int find_spell (CHAR_DATA *ch, const char *name) {
+int find_spell (CHAR_T *ch, const char *name) {
     /* finds a spell the character can cast if possible */
     int sn, found = -1;
 
@@ -65,15 +62,15 @@ int find_spell (CHAR_DATA *ch, const char *name) {
 }
 
 /* Utter mystical words for an sn. */
-void say_spell (CHAR_DATA *ch, int sn, int class) {
+void say_spell (CHAR_T *ch, int sn, int class) {
     say_spell_name (ch, skill_table[sn].name, class);
 }
 
-void say_spell_name (CHAR_DATA *ch, const char *name, int class) {
+void say_spell_name (CHAR_T *ch, const char *name, int class) {
     char words[MAX_STRING_LENGTH];
     char buf1[MAX_STRING_LENGTH];
     char buf2[MAX_STRING_LENGTH];
-    CHAR_DATA *rch;
+    CHAR_T *rch;
     const char *pName, *plural;
     int iSyl;
     int length;
@@ -145,7 +142,7 @@ void say_spell_name (CHAR_DATA *ch, const char *name, int class) {
 
 /* Compute a saving throw.
  * Negative apply's make saving throw better. */
-bool saves_spell (int level, CHAR_DATA *victim, int dam_type) {
+bool saves_spell (int level, CHAR_T *victim, int dam_type) {
     int save;
 
     save = 50 + (victim->level - level) * 5 - victim->saving_throw * 2;
@@ -179,10 +176,10 @@ bool saves_dispel (int dis_level, int spell_level, int duration) {
 }
 
 /* co-routine for dispel magic and cancellation */
-bool check_dispel_act (int dis_level, CHAR_DATA *victim, int sn,
+bool check_dispel_act (int dis_level, CHAR_T *victim, int sn,
     char *act_to_room)
 {
-    AFFECT_DATA *af;
+    AFFECT_T *af;
 
     if (!is_affected (victim, sn))
         return FALSE;
@@ -203,11 +200,11 @@ bool check_dispel_act (int dis_level, CHAR_DATA *victim, int sn,
     return FALSE;
 }
 
-bool check_dispel (int dis_level, CHAR_DATA *victim, int sn) {
+bool check_dispel (int dis_level, CHAR_T *victim, int sn) {
     return check_dispel_act (dis_level, victim, sn, NULL);
 }
 
-bool check_dispel_quick (int dis_level, CHAR_DATA *victim, char *skill,
+bool check_dispel_quick (int dis_level, CHAR_T *victim, char *skill,
     char *act_to_room)
 {
     return check_dispel_act (dis_level, victim, skill_lookup(skill),
@@ -215,17 +212,17 @@ bool check_dispel_quick (int dis_level, CHAR_DATA *victim, char *skill,
 }
 
 /* for finding mana costs -- temporary version */
-int mana_cost (CHAR_DATA *ch, int min_mana, int level) {
+int mana_cost (CHAR_T *ch, int min_mana, int level) {
     if (ch->level + 2 == level)
         return 1000;
     return UMAX (min_mana, (100 / (2 + ch->level - level)));
 }
 
-bool spell_fight_back_if_possible (CHAR_DATA *ch, CHAR_DATA *victim,
+bool spell_fight_back_if_possible (CHAR_T *ch, CHAR_T *victim,
     int sn, int target)
 {
-    CHAR_DATA *vch;
-    CHAR_DATA *vch_next;
+    CHAR_T *vch;
+    CHAR_T *vch_next;
 
     if (victim == ch || victim == NULL || victim->master == ch)
         return FALSE;
@@ -245,8 +242,8 @@ bool spell_fight_back_if_possible (CHAR_DATA *ch, CHAR_DATA *victim,
 }
 
 /* Cast spells at targets using a magical object. */
-void obj_cast_spell (int sn, int level, CHAR_DATA *ch, CHAR_DATA *victim,
-                     OBJ_DATA *obj)
+void obj_cast_spell (int sn, int level, CHAR_T *ch, CHAR_T *victim,
+                     OBJ_T *obj)
 {
     void *vo;
     int target = TARGET_NONE;
@@ -326,13 +323,12 @@ void obj_cast_spell (int sn, int level, CHAR_DATA *ch, CHAR_DATA *victim,
             return;
     }
 
-    target_name = "";
-    (*skill_table[sn].spell_fun) (sn, level, ch, vo, target);
+    (*skill_table[sn].spell_fun) (sn, level, ch, vo, target, "");
     spell_fight_back_if_possible (ch, victim, sn, target);
 }
 
-int is_affected_with_act (CHAR_DATA *victim, int sn, flag_t flag,
-    CHAR_DATA * ch, char *to_self, char *to_victim)
+int is_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
+    CHAR_T *ch, char *to_self, char *to_victim)
 {
     if ((sn   >= 0 && is_affected (victim, sn)) ||
         (flag >  0 && IS_AFFECTED (victim, flag)))
@@ -343,8 +339,8 @@ int is_affected_with_act (CHAR_DATA *victim, int sn, flag_t flag,
     return 0;
 }
 
-int isnt_affected_with_act (CHAR_DATA * victim, int sn, flag_t flag,
-    CHAR_DATA * ch, char *to_self, char *to_victim)
+int isnt_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
+    CHAR_T *ch, char *to_self, char *to_victim)
 {
     if (!((sn   >= 0 && is_affected (victim, sn)) ||
           (flag >  0 && IS_AFFECTED (victim, flag))))

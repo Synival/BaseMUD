@@ -39,11 +39,12 @@
 #include "lookup.h"
 #include "do_sub.h"
 #include "chars.h"
+#include "memory.h"
 
 #include "act_conf.h"
 
-void do_colour_one (CHAR_DATA * ch, const COLOUR_SETTING_TYPE * setting,
-    const COLOUR_TYPE * colour, bool use_default, char *buf)
+void do_colour_one (CHAR_T *ch, const COLOUR_SETTING_T *setting,
+    const COLOUR_T *colour, bool use_default, char *buf)
 {
     char colour_buf[256], *argument, arg[256];
     flag_t *col_flag;
@@ -88,7 +89,7 @@ void do_colour_one (CHAR_DATA * ch, const COLOUR_SETTING_TYPE * setting,
     strcat (buf, "\n\r");
 }
 
-void do_colour_codes (CHAR_DATA *ch, char *argument) {
+void do_colour_codes (CHAR_T *ch, char *argument) {
     flag_t last_mask = 0;
     int i, col = 0;
 
@@ -151,8 +152,8 @@ DEFINE_DO_FUN (do_scroll) {
 DEFINE_DO_FUN (do_colour) {
     char buf[MAX_STRING_LENGTH];
     char arg1[MAX_STRING_LENGTH], arg2[MAX_STRING_LENGTH];
-    const COLOUR_SETTING_TYPE *setting;
-    const COLOUR_TYPE *colour;
+    const COLOUR_SETTING_T *setting;
+    const COLOUR_T *colour;
     bool use_default;
 
     if (IS_NPC (ch)) {
@@ -258,7 +259,7 @@ DEFINE_DO_FUN (do_autolist) {
     do_autolist_flag ("showaffects",  ch, ch->comm, COMM_SHOW_AFFECTS);
     do_autolist_flag ("prompt",       ch, ch->comm, COMM_PROMPT);
     do_autolist_flag ("combineitems", ch, ch->comm, COMM_COMBINE);
-#ifndef VANILLA
+#ifdef BASEMUD_MATERIALS_COMMAND
     do_autolist_flag ("materials",    ch, ch->comm, COMM_MATERIALS);
 #endif
 
@@ -419,7 +420,7 @@ DEFINE_DO_FUN (do_prompt) {
             strcat (buf, " ");
     }
 
-    str_free (ch->prompt);
+    str_free (&(ch->prompt));
     ch->prompt = str_dup (buf);
     printf_to_char (ch, "Prompt set to %s\n\r", ch->prompt);
 }
@@ -429,7 +430,7 @@ DEFINE_DO_FUN (do_alia) {
 }
 
 DEFINE_DO_FUN (do_alias) {
-    CHAR_DATA *rch;
+    CHAR_T *rch;
     char arg[MAX_INPUT_LENGTH];
     int pos;
 
@@ -488,7 +489,7 @@ DEFINE_DO_FUN (do_alias) {
             break;
 
         if (!str_cmp (arg, rch->pcdata->alias[pos])) { /* redefine an alias */
-            str_free (rch->pcdata->alias_sub[pos]);
+            str_free (&(rch->pcdata->alias_sub[pos]));
             rch->pcdata->alias_sub[pos] = str_dup (argument);
             printf_to_char (ch, "%s is now realiased to '%s'.\n\r",
                 arg, argument);
@@ -506,7 +507,7 @@ DEFINE_DO_FUN (do_alias) {
 }
 
 DEFINE_DO_FUN (do_unalias) {
-    CHAR_DATA *rch;
+    CHAR_T *rch;
     char arg[MAX_INPUT_LENGTH];
     int pos;
     bool found = FALSE;
@@ -530,8 +531,8 @@ DEFINE_DO_FUN (do_unalias) {
 
         if (!strcmp (arg, rch->pcdata->alias[pos])) {
             send_to_char ("Alias removed.\n\r", ch);
-            str_free (rch->pcdata->alias[pos]);
-            str_free (rch->pcdata->alias_sub[pos]);
+            str_free (&(rch->pcdata->alias[pos]));
+            str_free (&(rch->pcdata->alias_sub[pos]));
             rch->pcdata->alias[pos] = NULL;
             rch->pcdata->alias_sub[pos] = NULL;
             found = TRUE;

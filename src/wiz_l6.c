@@ -28,19 +28,20 @@
 #include "db.h"
 #include "comm.h"
 #include "interp.h"
-#include "utils.h"
 #include "chars.h"
 #include "rooms.h"
 #include "find.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "wiz_l6.h"
 
 DEFINE_DO_FUN (do_at) {
     char arg[MAX_INPUT_LENGTH];
-    ROOM_INDEX_DATA *location;
-    ROOM_INDEX_DATA *original;
-    OBJ_DATA *on;
-    CHAR_DATA *wch;
+    ROOM_INDEX_T *location;
+    ROOM_INDEX_T *original;
+    OBJ_T *on;
+    CHAR_T *wch;
 
     argument = one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0' || argument[0] == '\0',
@@ -70,7 +71,7 @@ DEFINE_DO_FUN (do_at) {
 }
 
 DEFINE_DO_FUN (do_recho) {
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
 
     BAIL_IF (argument[0] == '\0',
         "Local echo what?\n\r", ch);
@@ -93,10 +94,8 @@ DEFINE_DO_FUN (do_return) {
     send_to_char ("You return to your original body. "
                   "Type replay to see any missed tells.\n\r", ch);
 
-    if (ch->prompt != NULL) {
-        str_free (ch->prompt);
-        ch->prompt = NULL;
-    }
+    if (ch->prompt != NULL)
+        str_replace_dup (&(ch->prompt), NULL);
 
     wiznetf (ch->desc->original, 0, WIZ_SWITCHES, WIZ_SECURE,
         char_get_trust (ch), "$N returns from %s.", ch->short_descr);
@@ -108,7 +107,7 @@ DEFINE_DO_FUN (do_return) {
 
 DEFINE_DO_FUN (do_switch) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',

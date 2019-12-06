@@ -30,17 +30,15 @@
 #include "comm.h"
 #include "db.h"
 #include "interp.h"
+#include "globals.h"
 
 #include "music.h"
 
-int channel_songs[MAX_GLOBAL + 1];
-struct song_data song_table[MAX_SONGS];
-
 void song_update (void) {
-    OBJ_DATA *obj;
-    CHAR_DATA *victim;
-    ROOM_INDEX_DATA *room;
-    DESCRIPTOR_DATA *d;
+    OBJ_T *obj;
+    CHAR_T *victim;
+    ROOM_INDEX_T *room;
+    DESCRIPTOR_T *d;
     char buf[MAX_STRING_LENGTH];
     char *line;
     int i;
@@ -50,15 +48,15 @@ void song_update (void) {
         channel_songs[1] = -1;
 
     if (channel_songs[1] > -1) {
-        if (channel_songs[0] >= MAX_LINES
+        if (channel_songs[0] >= MAX_SONG_LINES
             || channel_songs[0] >= song_table[channel_songs[1]].lines)
         {
             channel_songs[0] = -1;
 
             /* advance songs */
-            for (i = 1; i < MAX_GLOBAL; i++)
+            for (i = 1; i < MAX_SONG_GLOBAL; i++)
                 channel_songs[i] = channel_songs[i + 1];
-            channel_songs[MAX_GLOBAL] = -1;
+            channel_songs[MAX_SONG_GLOBAL] = -1;
         }
         else {
             if (channel_songs[0] < 0) {
@@ -109,7 +107,7 @@ void song_update (void) {
             continue;
         }
         else {
-            if (obj->v.value[0] >= MAX_LINES ||
+            if (obj->v.value[0] >= MAX_SONG_LINES ||
                 obj->v.value[0] >= song_table[obj->v.value[1]].lines)
             {
                 obj->v.value[0] = -1;
@@ -138,7 +136,7 @@ void load_songs (void) {
     char letter;
 
     /* reset global */
-    for (i = 0; i <= MAX_GLOBAL; i++)
+    for (i = 0; i <= MAX_SONG_GLOBAL; i++)
         channel_songs[i] = -1;
 
     if ((fp = fopen (MUSIC_FILE, "r")) == NULL) {
@@ -171,8 +169,9 @@ void load_songs (void) {
             }
             else
                 ungetc (letter, fp);
-            if (lines >= MAX_LINES) {
-                bug ("Too many lines in a song -- limit is  %d.", MAX_LINES);
+            if (lines >= MAX_SONG_LINES) {
+                bug ("Too many lines in a song -- limit is %d.",
+                    MAX_SONG_LINES);
                 break;
             }
             song_table[count].lyrics[lines] = fread_string_eol (fp);

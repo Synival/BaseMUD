@@ -28,7 +28,7 @@
 #include "merc.h"
 
 /* various flag tables */
-const FLAG_TYPE mob_flags[] = {
+const FLAG_T mob_flags[] = {
     {"npc",           MOB_IS_NPC,        FALSE},
     {"sentinel",      MOB_SENTINEL,      TRUE},
     {"scavenger",     MOB_SCAVENGER,     TRUE},
@@ -62,7 +62,7 @@ const FLAG_TYPE mob_flags[] = {
     {0}
 };
 
-const FLAG_TYPE plr_flags[] = {
+const FLAG_T plr_flags[] = {
     {"!npc!",         PLR_IS_NPC,        FALSE},
     {"unused_plr_1",  PLR_UNUSED_FLAG_1, FALSE},
     {"autoassist",    PLR_AUTOASSIST,    FALSE},
@@ -93,7 +93,7 @@ const FLAG_TYPE plr_flags[] = {
     {0}
 };
 
-const FLAG_TYPE affect_flags[] = {
+const FLAG_T affect_flags[] = {
     {"blind",         AFF_BLIND,         TRUE},
     {"invisible",     AFF_INVISIBLE,     TRUE},
     {"detect_evil",   AFF_DETECT_EVIL,   TRUE},
@@ -127,7 +127,7 @@ const FLAG_TYPE affect_flags[] = {
     {0}
 };
 
-const FLAG_TYPE off_flags[] = {
+const FLAG_T off_flags[] = {
     {"area_attack",    OFF_AREA_ATTACK, TRUE},
     {"backstab",       OFF_BACKSTAB,    TRUE},
     {"bash",           OFF_BASH,        TRUE},
@@ -152,7 +152,7 @@ const FLAG_TYPE off_flags[] = {
     {0}
 };
 
-const FLAG_TYPE form_flags[] = {
+const FLAG_T form_flags[] = {
     {"edible",        FORM_EDIBLE,        TRUE},
     {"poison",        FORM_POISON,        TRUE},
     {"magical",       FORM_MAGICAL,       TRUE},
@@ -185,7 +185,7 @@ const FLAG_TYPE form_flags[] = {
     {0}
 };
 
-const FLAG_TYPE part_flags[] = {
+const FLAG_T part_flags[] = {
     {"head",          PART_HEAD,          TRUE},
     {"arms",          PART_ARMS,          TRUE},
     {"legs",          PART_LEGS,          TRUE},
@@ -214,7 +214,7 @@ const FLAG_TYPE part_flags[] = {
     {0}
 };
 
-const FLAG_TYPE comm_flags[] = {
+const FLAG_T comm_flags[] = {
     {"quiet",         COMM_QUIET,         TRUE},
     {"deaf",          COMM_DEAF,          TRUE},
     {"nowiz",         COMM_NOWIZ,         TRUE},
@@ -244,7 +244,7 @@ const FLAG_TYPE comm_flags[] = {
     {0}
 };
 
-const FLAG_TYPE mprog_flags[] = {
+const FLAG_T mprog_flags[] = {
     {"act",    TRIG_ACT,    TRUE},
     {"bribe",  TRIG_BRIBE,  TRUE},
     {"death",  TRIG_DEATH,  TRUE},
@@ -264,14 +264,14 @@ const FLAG_TYPE mprog_flags[] = {
     {0}
 };
 
-const FLAG_TYPE area_flags[] = {
+const FLAG_T area_flags[] = {
     {"changed", AREA_CHANGED, TRUE},
     {"added",   AREA_ADDED,   TRUE},
     {"loading", AREA_LOADING, FALSE},
     {0}
 };
 
-const FLAG_TYPE exit_flags[] = {
+const FLAG_T exit_flags[] = {
     {"door",          EX_ISDOOR,        TRUE},
     {"closed",        EX_CLOSED,        TRUE},
     {"locked",        EX_LOCKED,        TRUE},
@@ -287,7 +287,7 @@ const FLAG_TYPE exit_flags[] = {
     {0}
 };
 
-const FLAG_TYPE room_flags[] = {
+const FLAG_T room_flags[] = {
     {"dark",          ROOM_DARK,          TRUE},
     {"unused_room_1", ROOM_UNUSED_FLAG_1, FALSE},
     {"no_mob",        ROOM_NO_MOB,        TRUE},
@@ -311,7 +311,7 @@ const FLAG_TYPE room_flags[] = {
     {0}
 };
 
-const FLAG_TYPE extra_flags[] = {
+const FLAG_T extra_flags[] = {
     {"glow",          ITEM_GLOW,          TRUE},
     {"hum",           ITEM_HUM,           TRUE},
     {"dark",          ITEM_DARK,          TRUE},
@@ -342,7 +342,7 @@ const FLAG_TYPE extra_flags[] = {
     {0}
 };
 
-const FLAG_TYPE wear_flags[] = {
+const FLAG_T wear_flags[] = {
     {"take",      ITEM_TAKE,        TRUE},
     {"finger",    ITEM_WEAR_FINGER, TRUE},
     {"neck",      ITEM_WEAR_NECK,   TRUE},
@@ -363,7 +363,7 @@ const FLAG_TYPE wear_flags[] = {
     {0}
 };
 
-const FLAG_TYPE container_flags[] = {
+const FLAG_T container_flags[] = {
     {"closeable", CONT_CLOSEABLE, TRUE},
     {"pickproof", CONT_PICKPROOF, TRUE},
     {"closed",    CONT_CLOSED,    TRUE},
@@ -372,7 +372,7 @@ const FLAG_TYPE container_flags[] = {
     {0}
 };
 
-const FLAG_TYPE weapon_flags[] = {
+const FLAG_T weapon_flags[] = {
     {"flaming",  WEAPON_FLAMING,   TRUE},
     {"frost",    WEAPON_FROST,     TRUE},
     {"vampiric", WEAPON_VAMPIRIC,  TRUE},
@@ -384,7 +384,7 @@ const FLAG_TYPE weapon_flags[] = {
     {0}
 };
 
-const FLAG_TYPE res_flags[] = {
+const FLAG_T res_flags[] = {
     {"summon",        RES_SUMMON,        TRUE},
     {"charm",         RES_CHARM,         TRUE},
     {"magic",         RES_MAGIC,         TRUE},
@@ -414,7 +414,7 @@ const FLAG_TYPE res_flags[] = {
     {0}
 };
 
-const FLAG_TYPE gate_flags[] = {
+const FLAG_T gate_flags[] = {
     {"normal_exit", GATE_NORMAL_EXIT, TRUE},
     {"no_curse",    GATE_NOCURSE,     TRUE},
     {"go_with",     GATE_GOWITH,      TRUE},
@@ -423,7 +423,7 @@ const FLAG_TYPE gate_flags[] = {
     {0}
 };
 
-const FLAG_TYPE furniture_flags[] = {
+const FLAG_T furniture_flags[] = {
     {"stand_at",   STAND_AT,   TRUE},
     {"stand_on",   STAND_ON,   TRUE},
     {"stand_in",   STAND_IN,   TRUE},

@@ -36,12 +36,13 @@
 #include "chars.h"
 #include "rooms.h"
 #include "find.h"
+#include "memory.h"
 
 #include "wiz_l8.h"
 
 DEFINE_DO_FUN (do_goto) {
-    ROOM_INDEX_DATA *location;
-    CHAR_DATA *rch;
+    ROOM_INDEX_T *location;
+    CHAR_T *rch;
     int count = 0;
 
     BAIL_IF (argument[0] == '\0',

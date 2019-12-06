@@ -34,11 +34,13 @@
 #include "interp.h"
 #include "comm.h"
 #include "chars.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "ban.h"
 
 void save_bans (void) {
-    BAN_DATA *pban;
+    BAN_T *pban;
     FILE *fp;
     bool found = FALSE;
 
@@ -67,7 +69,7 @@ void load_bans (void) {
         return;
 
     while (1) {
-        BAN_DATA *pban;
+        BAN_T *pban;
         if (feof (fp)) {
             fclose (fp);
             return;
@@ -84,7 +86,7 @@ void load_bans (void) {
 }
 
 bool check_ban (char *site, int type) {
-    BAN_DATA *pban;
+    BAN_T *pban;
     char host[MAX_STRING_LENGTH];
 
     strcpy (host, capitalize (site));
@@ -111,12 +113,12 @@ bool check_ban (char *site, int type) {
     return FALSE;
 }
 
-void ban_site (CHAR_DATA * ch, char *argument, bool fPerm) {
+void ban_site (CHAR_T *ch, char *argument, bool fPerm) {
     char buf[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH];
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     char *name;
-    BUFFER *buffer;
-    BAN_DATA *pban, *prev, *pban_next;
+    BUFFER_T *buffer;
+    BAN_T *pban, *prev, *pban_next;
     bool prefix = FALSE, suffix = FALSE;
     int type;
 

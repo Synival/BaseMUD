@@ -52,12 +52,15 @@
 #include "descs.h"
 #include "recycle.h"
 #include "act_info.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "boot.h"
 
 int main (int argc, char **argv) {
     struct timeval now_time;
     bool fCopyOver = FALSE;
+    int free_count;
     #ifdef IMC
         int imcsocket = -1;
     #endif
@@ -143,6 +146,23 @@ int main (int argc, char **argv) {
         #endif
     #endif
 
+    /* Free allocated memory so we can track what was lost due to
+     * memory leaks. */
+    log_string ("Freeing all objects.");
+    free_count = recycle_free_all ();
+    log_f ("   %d object(s) freed.", free_count);
+
+    /* Free allocated memory so we can track what was lost due to
+     * memory leaks. */
+    log_string ("Freeing all allocated memory.");
+    free_count = string_space_dispose ();
+    log_f ("   %d bytes of string space freed.", free_count);
+    free_count = mem_pages_dispose ();
+    log_f ("   %d bytes of paged memory freed.", free_count);
+
+    /* Close our reserved file. */
+    fclose (fpReserve);
+
     /* That's all, folks. */
     log_string ("Normal termination of game.");
     exit (0);
@@ -153,7 +173,7 @@ int main (int argc, char **argv) {
 void game_loop_mac_msdos (void) {
     struct timeval last_time;
     struct timeval now_time;
-    static DESCRIPTOR_DATA dcon;
+    static DESCRIPTOR_T dcon;
 
     gettimeofday (&last_time, NULL);
     current_time = (time_t) last_time.tv_sec;
@@ -167,7 +187,7 @@ void game_loop_mac_msdos (void) {
     dcon.ansi = mud_ansicolor;
     dcon.host = str_dup ("localhost");
     dcon.outsize = 2000;
-    dcon.outbuf = alloc_mem (dcon.outsize);
+    dcon.outbuf = mem_alloc (dcon.outsize);
     dcon.next = descriptor_list;
     dcon.showstr_head = NULL;
     dcon.showstr_point = NULL;
@@ -178,7 +198,7 @@ void game_loop_mac_msdos (void) {
 
     /* First Contact! */
     if (!mud_ansiprompt) {
-        extern char * help_greeting;
+        extern char *help_greeting;
         if ( help_greeting[0] == '.' )
             send_to_desc ( help_greeting+1, &dcon );
         else
@@ -189,7 +209,7 @@ void game_loop_mac_msdos (void) {
 
     /* Main loop */
     while (!merc_down) {
-        DESCRIPTOR_DATA *d;
+        DESCRIPTOR_T *d;
 
         /* Process input. */
         for (d = descriptor_list; d != NULL; d = d_next) {
@@ -307,7 +327,7 @@ void game_loop_unix (int control) {
         fd_set in_set;
         fd_set out_set;
         fd_set exc_set;
-        DESCRIPTOR_DATA *d;
+        DESCRIPTOR_T *d;
         int maxdesc;
 
 #if defined(MALLOC_DEBUG)
@@ -463,7 +483,7 @@ void game_loop_unix (int control) {
 
 /* Recover from a copyover - load players */
 void copyover_recover (void) {
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
     FILE *fp;
     char name[100];
     char host[MSL];
@@ -539,18 +559,19 @@ void copyover_recover (void) {
 
 void qmconfig_read (void) {
     FILE *fp;
-    bool fMatch;
+    bool fMatch, fReading;
     char *word;
     extern int mud_ansiprompt, mud_ansicolor, mud_telnetga;
 
     log_f ("Loading configuration settings from %s.", QMCONFIG_FILE);
-    fp = fopen(QMCONFIG_FILE, "r");
+    fp = fopen (QMCONFIG_FILE, "r");
     if (!fp) {
         log_f ("%s not found. Using compiled-in defaults.", QMCONFIG_FILE);
         return;
     }
 
-    while (1) {
+    fReading = TRUE;
+    while (fReading) {
         word = feof (fp) ? "END" : fread_word(fp);
         fMatch = FALSE;
 
@@ -560,6 +581,7 @@ void qmconfig_read (void) {
                 fMatch = TRUE;
                 fread_to_eol (fp);
                 break;
+
             case '*':
                 fMatch = TRUE;
                 fread_to_eol (fp);
@@ -569,10 +591,14 @@ void qmconfig_read (void) {
                 KEY ("Ansicolor", mud_ansicolor, fread_number(fp));
                 KEY ("Ansiprompt", mud_ansiprompt, fread_number(fp));
                 break;
+
             case 'E':
-                if (!str_cmp(word, "END"))
-                    return;
+                if (!str_cmp (word, "END")) {
+                    fReading = FALSE;
+                    fMatch = TRUE;
+                }
                 break;
+
             case 'T':
                 KEY ("Telnetga", mud_telnetga, fread_number(fp));
                 break;
@@ -582,6 +608,7 @@ void qmconfig_read (void) {
             fread_to_eol(fp);
         }
     }
-    log_f ("Settings have been read from %s", QMCONFIG_FILE);
-    exit(0);
+
+ // log_f ("Settings have been read from %s", QMCONFIG_FILE);
+    fclose (fp);
 }

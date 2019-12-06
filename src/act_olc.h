@@ -17,7 +17,7 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-void do_resets_display (CHAR_DATA * ch);
+void do_resets_display (CHAR_T *ch);
 
 /* Commands. */
 DECLARE_DO_FUN (do_olc);

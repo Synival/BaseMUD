@@ -64,14 +64,14 @@
 #define JSON_OBJ_MAX            17
 
 /* useful macros. */
-#define JSON_PROP_FUNC_0(vname) \
+#define JSON_PROP_FUN_0(vname) \
     JSON_T *json_prop_ ## vname (JSON_T *parent, const char *name) { \
         JSON_T *new = json_new_ ## vname (name); \
         json_attach_under (new, parent); \
         return new; \
     }
 
-#define JSON_PROP_FUNC(vname, vptype) \
+#define JSON_PROP_FUN(vname, vptype) \
     JSON_T *json_prop_ ## vname (JSON_T *parent, const char *name, \
         vptype arg) \
     { \
@@ -86,6 +86,13 @@
     *ptr = value; \
     new = json_new (name, jtype, ptr, sizeof (ctype))
 
+#define JSON_GET_INT(json, prop) \
+    (json_value_as_int (json_get ((json), (prop))))
+#define JSON_GET_STR(json, prop, buf) \
+    (json_value_as_string (json_get ((json), (prop)), (buf), sizeof (buf)))
+#define JSON_GET_BOOL(json, prop) \
+    (json_value_as_bool (json_get ((json), (prop))))
+
 /* data structures */
 struct json_t {
     int type;
@@ -96,16 +103,11 @@ struct json_t {
     int child_count;
 };
 
-/* useful typedefs */
-typedef struct json_t JSON_T;
-typedef double json_num;
-typedef long int json_int;
-
 /* function declarations */
 JSON_T *json_root (void);
 JSON_T *json_root_area (const char *name);
 void    json_root_area_attach (const char *name, JSON_T *json);
-JSON_T *json_get (JSON_T *json, const char *name);
+JSON_T *json_get (const JSON_T *json, const char *name);
 JSON_T *json_new (const char *name, int type, void *value, size_t value_size);
 void    json_attach_after (JSON_T *json, JSON_T *after, JSON_T *parent);
 void    json_attach_under (JSON_T *json, JSON_T *ref);
@@ -121,7 +123,7 @@ JSON_T *json_new_boolean (const char *name, bool value);
 JSON_T *json_new_null (const char *name);
 JSON_T *json_new_object (const char *name, int value);
 JSON_T *json_new_array (const char *name, JSON_T *first, ...);
-JSON_T *json_new_dice (const char *name, const sh_int *dice);
+JSON_T *json_new_dice (const char *name, const DICE_T *dice);
 
 /* shorthand-functions for node creation as properties. */
 JSON_T *json_prop_string (JSON_T *parent, const char *name, const char *value);
@@ -131,13 +133,14 @@ JSON_T *json_prop_boolean (JSON_T *parent, const char *name, bool value);
 JSON_T *json_prop_null (JSON_T *parent, const char *name);
 JSON_T *json_prop_object (JSON_T *parent, const char *name, int value);
 JSON_T *json_prop_array (JSON_T *parent, const char *name);
-JSON_T *json_prop_dice (JSON_T *parent, const char *name, const sh_int *dice);
+JSON_T *json_prop_dice (JSON_T *parent, const char *name,
+    const DICE_T *dice);
 
-const char *json_escaped_string (const char *value);
-void json_print_real (JSON_T *json, FILE *fp, int new_line);
-void json_print (JSON_T *json, FILE *fp);
-void json_write_to_file (JSON_T *json, const char *filename);
-int json_mkdir (const char *dir);
-int json_mkdir_to (const char *filename);
+/* data retrieval. */
+bool     json_expand_newlines (char *buf_in, size_t len);
+char    *json_value_as_string (const JSON_T *json, char *buf, size_t size);
+json_int json_value_as_int (const JSON_T *json);
+bool     json_value_as_bool (const JSON_T *json);
+struct dice_type json_value_as_dice (const JSON_T *json);
 
 #endif

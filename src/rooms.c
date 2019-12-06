@@ -34,8 +34,8 @@
 #include "rooms.h"
 
 /* True if room is dark. */
-bool room_is_dark (ROOM_INDEX_DATA * pRoomIndex) {
-    const SUN_TYPE *sun;
+bool room_is_dark (ROOM_INDEX_T *pRoomIndex) {
+    const SUN_T *sun;
     int sect;
 
     if (pRoomIndex->light > 0)
@@ -53,15 +53,15 @@ bool room_is_dark (ROOM_INDEX_DATA * pRoomIndex) {
     return FALSE;
 }
 
-bool room_is_owner (ROOM_INDEX_DATA *room, CHAR_DATA *ch) {
+bool room_is_owner (ROOM_INDEX_T *room, CHAR_T *ch) {
     if (room->owner == NULL || room->owner[0] == '\0')
         return FALSE;
     return is_name (ch->name, room->owner);
 }
 
 /* True if room is private. */
-bool room_is_private (ROOM_INDEX_DATA * pRoomIndex) {
-    CHAR_DATA *rch;
+bool room_is_private (ROOM_INDEX_T *pRoomIndex) {
+    CHAR_T *rch;
     int count;
 
     if (pRoomIndex->owner != NULL && pRoomIndex->owner[0] != '\0')
@@ -79,10 +79,10 @@ bool room_is_private (ROOM_INDEX_DATA * pRoomIndex) {
     return FALSE;
 }
 
-char room_colour_char (ROOM_INDEX_DATA * room) {
-#ifndef VANILLA
+char room_colour_char (ROOM_INDEX_T *room) {
+#ifdef BASEMUD_COLOR_ROOMS_BY_SECTOR
     int sect;
-    const struct sector_type *sect_data;
+    const SECTOR_T *sect_data;
 
     if (room == NULL)
         return 's';
@@ -101,11 +101,11 @@ char room_colour_char (ROOM_INDEX_DATA * room) {
 #endif
 }
 
-EXIT_DATA *room_get_opposite_exit (ROOM_INDEX_DATA *from_room, int dir,
-    ROOM_INDEX_DATA **out_room)
+EXIT_T *room_get_opposite_exit (ROOM_INDEX_T *from_room, int dir,
+    ROOM_INDEX_T **out_room)
 {
-    ROOM_INDEX_DATA *to_room;
-    EXIT_DATA *pexit, *pexit_rev;;
+    ROOM_INDEX_T *to_room;
+    EXIT_T *pexit, *pexit_rev;;
 
     if (from_room == NULL)
         return NULL;
@@ -130,8 +130,8 @@ char *door_keyword_to_name (const char *keyword, char *out_buf, size_t size) {
     return out_buf;
 }
 
-void room_add_money (ROOM_INDEX_DATA *room, int gold, int silver) {
-    OBJ_DATA *obj, *obj_next;
+void room_add_money (ROOM_INDEX_T *room, int gold, int silver) {
+    OBJ_T *obj, *obj_next;
     for (obj = room->contents; obj != NULL; obj = obj_next) {
         obj_next = obj->next_content;
         switch (obj->pIndexData->vnum) {
@@ -163,4 +163,13 @@ void room_add_money (ROOM_INDEX_DATA *room, int gold, int silver) {
         }
     }
     obj_to_room (obj_create_money (gold, silver), room);
+}
+
+/* Adds a reset to a room.  OLC
+ * Similar to add_reset in olc.c */
+void room_take_reset (ROOM_INDEX_T *room, RESET_T *reset) {
+    if (!room || !reset)
+        return;
+    reset->area = room->area;
+    LISTB_BACK (reset, next, room->reset_first, room->reset_last);
 }

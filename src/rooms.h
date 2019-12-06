@@ -31,13 +31,14 @@
 #include "merc.h"
 
 /* Room functions. */
-bool room_is_dark (ROOM_INDEX_DATA * pRoomIndex);
-bool room_is_private (ROOM_INDEX_DATA * pRoomIndex);
-char room_colour_char (ROOM_INDEX_DATA * room);
-void room_add_money (ROOM_INDEX_DATA *room, int gold, int silver);
-bool room_is_owner (ROOM_INDEX_DATA *room, CHAR_DATA *ch);
-EXIT_DATA *room_get_opposite_exit (ROOM_INDEX_DATA *from_room, int dir,
-    ROOM_INDEX_DATA **out_room);
+bool room_is_dark (ROOM_INDEX_T *pRoomIndex);
+bool room_is_private (ROOM_INDEX_T *pRoomIndex);
+char room_colour_char (ROOM_INDEX_T *room);
+void room_add_money (ROOM_INDEX_T *room, int gold, int silver);
+bool room_is_owner (ROOM_INDEX_T *room, CHAR_T *ch);
+EXIT_T *room_get_opposite_exit (ROOM_INDEX_T *from_room, int dir,
+    ROOM_INDEX_T **out_room);
+void room_take_reset (ROOM_INDEX_T *pR, RESET_T *pReset);
 
 /* Utilities. */
 char *door_keyword_to_name (const char *keyword, char *out_buf, size_t size);

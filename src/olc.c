@@ -22,6 +22,7 @@
 #include "lookup.h"
 #include "magic.h"
 #include "chars.h"
+#include "memory.h"
 
 #include "act_olc.h"
 #include "olc_aedit.h"
@@ -33,15 +34,7 @@
 
 #include "olc.h"
 
-/* Global variables. */
-int top_vnum_room = 0;
-int top_vnum_mob  = 0;
-int top_vnum_obj  = 0;
-
-/*****************************************************************************
- *                           Interpreter Tables.                             *
- *****************************************************************************/
-const struct editor_cmd_type editor_table[] = {
+const EDITOR_CMD_T editor_table[] = {
     {"area",   do_aedit},
     {"room",   do_redit},
     {"object", do_oedit},
@@ -51,7 +44,7 @@ const struct editor_cmd_type editor_table[] = {
     {0}
 };
 
-const struct olc_cmd_type aedit_table[] = {
+const OLC_CMD_T aedit_table[] = {
     {"age",      aedit_age},
     {"builder",  aedit_builder}, /* s removed -- Hugin */
     {"commands", show_commands},
@@ -71,20 +64,74 @@ const struct olc_cmd_type aedit_table[] = {
     {0}
 };
 
-const struct olc_cmd_type hedit_table[] = {
-    {"keyword",  hedit_keyword},
-    {"text",     hedit_text},
-    {"new",      hedit_new},
-    {"level",    hedit_level},
+const OLC_CMD_T redit_table[] = {
     {"commands", show_commands},
-    {"delete",   hedit_delete},
-    {"list",     hedit_list},
-    {"show",     hedit_show},
+    {"create",   redit_create},
+    {"desc",     redit_desc},
+    {"ed",       redit_ed},
+    {"format",   redit_format},
+    {"name",     redit_name},
+    {"show",     redit_show},
+    {"heal",     redit_heal},
+    {"mana",     redit_mana},
+    {"clan",     redit_clan},
+
+    {"north",    redit_north},
+    {"south",    redit_south},
+    {"east",     redit_east},
+    {"west",     redit_west},
+    {"up",       redit_up},
+    {"down",     redit_down},
+
+    /* New reset commands. */
+    {"mreset",   redit_mreset},
+    {"oreset",   redit_oreset},
+    {"mlist",    redit_mlist},
+    {"rlist",    redit_rlist},
+    {"olist",    redit_olist},
+    {"mshow",    redit_mshow},
+    {"oshow",    redit_oshow},
+    {"owner",    redit_owner},
+    {"room",     redit_room},
+    {"sector",   redit_sector},
+
     {"?",        show_help},
-    {0}
+    {"version",  show_version},
+    {0},
 };
 
-const struct olc_cmd_type medit_table[] = {
+const OLC_CMD_T oedit_table[] = {
+    {"addaffect", oedit_addaffect},
+    {"addapply",  oedit_addapply},
+    {"commands",  show_commands},
+    {"cost",      oedit_cost},
+    {"create",    oedit_create},
+    {"delaffect", oedit_delaffect},
+    {"ed",        oedit_ed},
+    {"long",      oedit_long},
+    {"name",      oedit_name},
+    {"short",     oedit_short},
+    {"show",      oedit_show},
+    {"v0",        oedit_value0},
+    {"v1",        oedit_value1},
+    {"v2",        oedit_value2},
+    {"v3",        oedit_value3},
+    {"v4",        oedit_value4},    /* ROM */
+    {"weight",    oedit_weight},
+
+    {"extra",     oedit_extra},     /* ROM */
+    {"wear",      oedit_wear},      /* ROM */
+    {"type",      oedit_type},      /* ROM */
+    {"material",  oedit_material},  /* ROM */
+    {"level",     oedit_level},     /* ROM */
+    {"condition", oedit_condition}, /* ROM */
+
+    {"?",         show_help},
+    {"version",   show_version},
+    {0},
+};
+
+const OLC_CMD_T medit_table[] = {
     {"alignment", medit_align},
     {"commands",  show_commands},
     {"create",    medit_create},
@@ -126,7 +173,7 @@ const struct olc_cmd_type medit_table[] = {
     {0}
 };
 
-const struct olc_cmd_type mpedit_table[] = {
+const OLC_CMD_T mpedit_table[] = {
     {"commands", show_commands},
     {"create",   mpedit_create},
     {"code",     mpedit_code},
@@ -136,79 +183,21 @@ const struct olc_cmd_type mpedit_table[] = {
     {0}
 };
 
-const struct olc_cmd_type oedit_table[] = {
-    {"addaffect", oedit_addaffect},
-    {"addapply",  oedit_addapply},
-    {"commands",  show_commands},
-    {"cost",      oedit_cost},
-    {"create",    oedit_create},
-    {"delaffect", oedit_delaffect},
-    {"ed",        oedit_ed},
-    {"long",      oedit_long},
-    {"name",      oedit_name},
-    {"short",     oedit_short},
-    {"show",      oedit_show},
-    {"v0",        oedit_value0},
-    {"v1",        oedit_value1},
-    {"v2",        oedit_value2},
-    {"v3",        oedit_value3},
-    {"v4",        oedit_value4},    /* ROM */
-    {"weight",    oedit_weight},
-
-    {"extra",     oedit_extra},     /* ROM */
-    {"wear",      oedit_wear},      /* ROM */
-    {"type",      oedit_type},      /* ROM */
-    {"material",  oedit_material},  /* ROM */
-    {"level",     oedit_level},     /* ROM */
-    {"condition", oedit_condition}, /* ROM */
-
-    {"?",         show_help},
-    {"version",   show_version},
-    {0},
-};
-
-const struct olc_cmd_type redit_table[] = {
+const OLC_CMD_T hedit_table[] = {
+    {"keyword",  hedit_keyword},
+    {"text",     hedit_text},
+    {"new",      hedit_new},
+    {"level",    hedit_level},
     {"commands", show_commands},
-    {"create",   redit_create},
-    {"desc",     redit_desc},
-    {"ed",       redit_ed},
-    {"format",   redit_format},
-    {"name",     redit_name},
-    {"show",     redit_show},
-    {"heal",     redit_heal},
-    {"mana",     redit_mana},
-    {"clan",     redit_clan},
-
-    {"north",    redit_north},
-    {"south",    redit_south},
-    {"east",     redit_east},
-    {"west",     redit_west},
-    {"up",       redit_up},
-    {"down",     redit_down},
-
-    /* New reset commands. */
-    {"mreset",   redit_mreset},
-    {"oreset",   redit_oreset},
-    {"mlist",    redit_mlist},
-    {"rlist",    redit_rlist},
-    {"olist",    redit_olist},
-    {"mshow",    redit_mshow},
-    {"oshow",    redit_oshow},
-    {"owner",    redit_owner},
-    {"room",     redit_room},
-    {"sector",   redit_sector},
-
+    {"delete",   hedit_delete},
+    {"list",     hedit_list},
+    {"show",     hedit_show},
     {"?",        show_help},
-    {"version",  show_version},
-    {0},
+    {0}
 };
-
-/*****************************************************************************
- *                          End Interpreter Tables.                          *
- *****************************************************************************/
 
 /* Executed from comm.c.  Minimizes compiling when changes are made. */
-bool run_olc_editor (DESCRIPTOR_DATA * d) {
+bool run_olc_editor (DESCRIPTOR_T *d) {
     switch (d->editor) {
         case ED_AREA:   aedit  (d->character, d->incomm); break;
         case ED_ROOM:   redit  (d->character, d->incomm); break;
@@ -222,7 +211,7 @@ bool run_olc_editor (DESCRIPTOR_DATA * d) {
     return TRUE;
 }
 
-const char *olc_ed_name (CHAR_DATA * ch) {
+const char *olc_ed_name (CHAR_T *ch) {
     switch (ch->desc->editor) {
         case ED_AREA:   return "AEdit";  break;
         case ED_ROOM:   return "REdit";  break;
@@ -234,19 +223,19 @@ const char *olc_ed_name (CHAR_DATA * ch) {
     }
 }
 
-char *olc_ed_vnum (CHAR_DATA * ch) {
-    AREA_DATA *pArea;
-    ROOM_INDEX_DATA *pRoom;
-    OBJ_INDEX_DATA *pObj;
-    MOB_INDEX_DATA *pMob;
-    MPROG_CODE *pMprog;
-    HELP_DATA *pHelp;
+char *olc_ed_vnum (CHAR_T *ch) {
+    AREA_T *pArea;
+    ROOM_INDEX_T *pRoom;
+    OBJ_INDEX_T *pObj;
+    MOB_INDEX_T *pMob;
+    MPROG_CODE_T *pMprog;
+    HELP_T *pHelp;
     static char buf[MIL];
 
     buf[0] = '\0';
     switch (ch->desc->editor) {
         case ED_AREA:
-            pArea = (AREA_DATA *) ch->desc->pEdit;
+            pArea = (AREA_T *) ch->desc->pEdit;
             sprintf (buf, "%d", pArea ? pArea->vnum : 0);
             break;
         case ED_ROOM:
@@ -254,19 +243,19 @@ char *olc_ed_vnum (CHAR_DATA * ch) {
             sprintf (buf, "%d", pRoom ? pRoom->vnum : 0);
             break;
         case ED_OBJECT:
-            pObj = (OBJ_INDEX_DATA *) ch->desc->pEdit;
+            pObj = (OBJ_INDEX_T *) ch->desc->pEdit;
             sprintf (buf, "%d", pObj ? pObj->vnum : 0);
             break;
         case ED_MOBILE:
-            pMob = (MOB_INDEX_DATA *) ch->desc->pEdit;
+            pMob = (MOB_INDEX_T *) ch->desc->pEdit;
             sprintf (buf, "%d", pMob ? pMob->vnum : 0);
             break;
         case ED_MPCODE:
-            pMprog = (MPROG_CODE *) ch->desc->pEdit;
+            pMprog = (MPROG_CODE_T *) ch->desc->pEdit;
             sprintf (buf, "%d", pMprog ? pMprog->vnum : 0);
             break;
         case ED_HELP:
-            pHelp = (HELP_DATA *) ch->desc->pEdit;
+            pHelp = (HELP_T *) ch->desc->pEdit;
             sprintf (buf, "%s", pHelp ? pHelp->keyword : "");
             break;
         default:
@@ -281,7 +270,7 @@ char *olc_ed_vnum (CHAR_DATA * ch) {
  Purpose:    Format up the commands from given table.
  Called by:  show_commands(olc_act.c).
  ****************************************************************************/
-void show_olc_cmds (CHAR_DATA * ch, const struct olc_cmd_type *olc_table) {
+void show_olc_cmds (CHAR_T *ch, const struct olc_cmd_type *olc_table) {
     char buf[MAX_STRING_LENGTH];
     char buf1[MAX_STRING_LENGTH];
     int cmd;
@@ -306,7 +295,7 @@ void show_olc_cmds (CHAR_DATA * ch, const struct olc_cmd_type *olc_table) {
  Purpose:    Display all olc commands.
  Called by:  olc interpreters.
  ****************************************************************************/
-bool show_commands (CHAR_DATA * ch, char *argument) {
+bool show_commands (CHAR_T *ch, char *argument) {
     switch (ch->desc->editor) {
         case ED_AREA:   show_olc_cmds (ch, aedit_table);  break;
         case ED_ROOM:   show_olc_cmds (ch, redit_table);  break;
@@ -323,7 +312,7 @@ bool show_commands (CHAR_DATA * ch, char *argument) {
  Purpose:    Resets builder information on completion.
  Called by:    aedit, redit, oedit, medit(olc.c)
  ****************************************************************************/
-bool edit_done (CHAR_DATA * ch) {
+bool edit_done (CHAR_T *ch) {
     send_to_char ("Exiting OLC.\n\r", ch);
     ch->desc->pEdit = NULL;
     ch->desc->editor = 0;
@@ -335,8 +324,8 @@ bool edit_done (CHAR_DATA * ch) {
  *****************************************************************************/
 
 /* Area Interpreter, called by do_aedit. */
-void aedit (CHAR_DATA * ch, char *argument) {
-    AREA_DATA *pArea;
+void aedit (CHAR_T *ch, char *argument) {
+    AREA_T *pArea;
     char command[MAX_INPUT_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     int cmd;
@@ -383,9 +372,9 @@ void aedit (CHAR_DATA * ch, char *argument) {
 }
 
 /* Room Interpreter, called by do_redit. */
-void redit (CHAR_DATA * ch, char *argument) {
-    AREA_DATA *pArea;
-    ROOM_INDEX_DATA *pRoom;
+void redit (CHAR_T *ch, char *argument) {
+    AREA_T *pArea;
+    ROOM_INDEX_T *pRoom;
     char arg[MAX_STRING_LENGTH];
     char command[MAX_INPUT_LENGTH];
     int cmd;
@@ -428,9 +417,9 @@ void redit (CHAR_DATA * ch, char *argument) {
 }
 
 /* Object Interpreter, called by do_oedit. */
-void oedit (CHAR_DATA * ch, char *argument) {
-    AREA_DATA *pArea;
-    OBJ_INDEX_DATA *pObj;
+void oedit (CHAR_T *ch, char *argument) {
+    AREA_T *pArea;
+    OBJ_INDEX_T *pObj;
     char arg[MAX_STRING_LENGTH];
     char command[MAX_INPUT_LENGTH];
     int cmd;
@@ -473,9 +462,9 @@ void oedit (CHAR_DATA * ch, char *argument) {
 }
 
 /* Mobile Interpreter, called by do_medit. */
-void medit (CHAR_DATA * ch, char *argument) {
-    AREA_DATA *pArea;
-    MOB_INDEX_DATA *pMob;
+void medit (CHAR_T *ch, char *argument) {
+    AREA_T *pArea;
+    MOB_INDEX_T *pMob;
     char command[MAX_INPUT_LENGTH];
     char arg[MAX_STRING_LENGTH];
     int cmd;
@@ -517,12 +506,12 @@ void medit (CHAR_DATA * ch, char *argument) {
     interpret (ch, arg);
 }
 
-void mpedit (CHAR_DATA * ch, char *argument) {
-    MPROG_CODE *pMcode;
+void mpedit (CHAR_T *ch, char *argument) {
+    MPROG_CODE_T *pMcode;
     char arg[MAX_INPUT_LENGTH];
     char command[MAX_INPUT_LENGTH];
     int cmd;
-    AREA_DATA *ad;
+    AREA_T *ad;
 
     smash_tilde (argument);
     strcpy (arg, argument);
@@ -564,9 +553,9 @@ void mpedit (CHAR_DATA * ch, char *argument) {
     interpret (ch, arg);
 }
 
-void hedit (CHAR_DATA * ch, char *argument) {
-    HELP_DATA *pHelp;
-    HELP_AREA *had;
+void hedit (CHAR_T *ch, char *argument) {
+    HELP_T *pHelp;
+    HELP_AREA_T *had;
     char arg[MAX_INPUT_LENGTH];
     char command[MAX_INPUT_LENGTH];
     int cmd;
@@ -608,7 +597,7 @@ void hedit (CHAR_DATA * ch, char *argument) {
     interpret (ch, arg);
 }
 
-bool show_version (CHAR_DATA * ch, char *argument) {
+bool show_version (CHAR_T *ch, char *argument) {
     send_to_char (OLC_VERSION, ch);
     send_to_char ("\n\r", ch);
     send_to_char (OLC_AUTHOR, ch);
@@ -620,9 +609,9 @@ bool show_version (CHAR_DATA * ch, char *argument) {
     return FALSE;
 }
 
-void show_liqlist (CHAR_DATA * ch) {
+void show_liqlist (CHAR_T *ch) {
     int liq;
-    BUFFER *buffer;
+    BUFFER_T *buffer;
     char buf[MAX_STRING_LENGTH];
 
     buffer = buf_new ();
@@ -644,9 +633,9 @@ void show_liqlist (CHAR_DATA * ch) {
     buf_free (buffer);
 }
 
-void show_damlist (CHAR_DATA * ch) {
+void show_damlist (CHAR_T *ch) {
     int att;
-    BUFFER *buffer;
+    BUFFER_T *buffer;
     char buf[MAX_STRING_LENGTH];
 
     buffer = buf_new ();
@@ -668,7 +657,7 @@ void show_damlist (CHAR_DATA * ch) {
  Purpose:    Displays settable flags and stats.
  Called by:    show_help(olc_act.c).
  ****************************************************************************/
-void show_flag_cmds (CHAR_DATA * ch, const FLAG_TYPE *flag_table) {
+void show_flag_cmds (CHAR_T *ch, const FLAG_T *flag_table) {
     char buf[MAX_STRING_LENGTH];
     char buf1[MAX_STRING_LENGTH];
     int flag;
@@ -700,7 +689,7 @@ void show_flag_cmds (CHAR_DATA * ch, const FLAG_TYPE *flag_table) {
          (2) Adding a check for a level range.
  Called by:    show_help(olc_act.c).
  ****************************************************************************/
-void show_skill_cmds (CHAR_DATA * ch, int tar) {
+void show_skill_cmds (CHAR_T *ch, int tar) {
     char buf[MAX_STRING_LENGTH];
     char buf1[MAX_STRING_LENGTH * 2];
     int sn;
@@ -731,7 +720,7 @@ void show_skill_cmds (CHAR_DATA * ch, int tar) {
  Purpose:    Displays settable special functions.
  Called by:  show_help(olc_act.c).
  ****************************************************************************/
-void show_spec_cmds (CHAR_DATA * ch) {
+void show_spec_cmds (CHAR_T *ch) {
     char buf[MAX_STRING_LENGTH];
     char buf1[MAX_STRING_LENGTH];
     int spec;
@@ -758,7 +747,7 @@ void show_spec_cmds (CHAR_DATA * ch) {
  Purpose:    Displays help for many tables used in OLC.
  Called by:  olc interpreters.
  ****************************************************************************/
-bool show_help (CHAR_DATA * ch, char *argument) {
+bool show_help (CHAR_T *ch, char *argument) {
     char arg[MAX_INPUT_LENGTH];
     char spell[MAX_INPUT_LENGTH];
     int cnt;
@@ -836,7 +825,7 @@ bool show_help (CHAR_DATA * ch, char *argument) {
     return FALSE;
 }
 
-bool olc_str_replace_dup (CHAR_DATA *ch, char **old_str, char *new_str,
+bool olc_str_replace_dup (CHAR_T *ch, char **old_str, char *new_str,
     char *syntax_msg, char *success_msg)
 {
     RETURN_IF (new_str == NULL || new_str[0] == '\0',
@@ -846,7 +835,7 @@ bool olc_str_replace_dup (CHAR_DATA *ch, char **old_str, char *new_str,
     return TRUE;
 }
 
-bool olc_int_replace (CHAR_DATA *ch, int *old_val, char *new_val,
+bool olc_int_replace (CHAR_T *ch, int *old_val, char *new_val,
     char *syntax_msg, char *success_msg)
 {
     char buf[MAX_STRING_LENGTH];
@@ -859,7 +848,7 @@ bool olc_int_replace (CHAR_DATA *ch, int *old_val, char *new_val,
     return TRUE;
 }
 
-bool olc_sh_int_replace (CHAR_DATA *ch, sh_int *old_val, char *new_val,
+bool olc_sh_int_replace (CHAR_T *ch, sh_int *old_val, char *new_val,
     char *syntax_msg, char *success_msg)
 {
     char buf[MAX_STRING_LENGTH];
@@ -872,7 +861,7 @@ bool olc_sh_int_replace (CHAR_DATA *ch, sh_int *old_val, char *new_val,
     return TRUE;
 }
 
-bool olc_long_int_replace (CHAR_DATA *ch, long int *old_val, char *new_val,
+bool olc_long_int_replace (CHAR_T *ch, long int *old_val, char *new_val,
     char *syntax_msg, char *success_msg)
 {
     char buf[MAX_STRING_LENGTH];

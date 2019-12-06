@@ -30,100 +30,6 @@
 
 #include "merc.h"
 
-typedef long int flag_t;
-
-/* Structure types. */
-typedef struct affect_data      AFFECT_DATA;
-typedef struct area_data        AREA_DATA;
-typedef struct ban_data         BAN_DATA;
-typedef struct buf_type         BUFFER;
-typedef struct char_data        CHAR_DATA;
-typedef struct descriptor_data  DESCRIPTOR_DATA;
-typedef struct exit_data        EXIT_DATA;
-typedef struct extra_descr_data EXTRA_DESCR_DATA;
-typedef struct help_data        HELP_DATA;
-typedef struct help_area_data   HELP_AREA;
-typedef struct kill_data        KILL_DATA;
-typedef struct mem_data         MEM_DATA;
-typedef struct mob_index_data   MOB_INDEX_DATA;
-typedef struct note_data        NOTE_DATA;
-typedef struct obj_data         OBJ_DATA;
-typedef struct obj_map          OBJ_MAP;
-typedef struct obj_map_value    OBJ_MAP_VALUE;
-typedef struct obj_index_data   OBJ_INDEX_DATA;
-typedef struct pc_data          PC_DATA;
-typedef struct gen_data         GEN_DATA;
-typedef struct reset_data       RESET_DATA;
-typedef struct room_index_data  ROOM_INDEX_DATA;
-typedef struct shop_data        SHOP_DATA;
-typedef struct time_info_data   TIME_INFO_DATA;
-typedef struct weather_data     WEATHER_DATA;
-typedef struct mprog_list       MPROG_LIST;
-typedef struct mprog_code       MPROG_CODE;
-typedef struct nanny_handler    NANNY_HANDLER;
-typedef struct furniture_bits   FURNITURE_BITS;
-typedef struct colour_type      COLOUR_TYPE;
-typedef struct colour_setting_type COLOUR_SETTING_TYPE;
-typedef struct map_lookup_table MAP_LOOKUP_TABLE;
-typedef struct liq_type         LIQ_TYPE;
-typedef struct skill_type       SKILL_TYPE;
-typedef struct weapon_type      WEAPON_TYPE;
-typedef struct item_type        ITEM_TYPE;
-typedef struct dam_type         DAM_TYPE;
-typedef struct attack_type      ATTACK_TYPE;
-typedef struct wiznet_type      WIZNET_TYPE;
-typedef struct clan_type        CLAN_TYPE;
-typedef struct position_type    POSITION_TYPE;
-typedef struct sex_type         SEX_TYPE;
-typedef struct size_type        SIZE_TYPE;
-typedef struct sector_type      SECTOR_TYPE;
-typedef struct race_type        RACE_TYPE;
-typedef struct pc_race_type     PC_RACE_TYPE;
-typedef struct class_type       CLASS_TYPE;
-typedef struct skill_type       SKILL_TYPE;
-typedef struct spec_type        SPEC_TYPE;
-typedef struct group_type       GROUP_TYPE;
-typedef struct flag_type        FLAG_TYPE;
-typedef struct door_type        DOOR_TYPE;
-typedef struct str_app_type     STR_APP_TYPE;
-typedef struct int_app_type     INT_APP_TYPE;
-typedef struct wis_app_type     WIS_APP_TYPE;
-typedef struct dex_app_type     DEX_APP_TYPE;
-typedef struct con_app_type     CON_APP_TYPE;
-typedef struct social_type      SOCIAL_TYPE;
-typedef struct board_data       BOARD_DATA;
-typedef struct wear_loc_type    WEAR_LOC_TYPE;
-typedef struct recycle_type     RECYCLE_TYPE;
-typedef struct obj_recycle_data OBJ_RECYCLE_DATA;
-typedef struct material_type    MATERIAL_TYPE;
-typedef struct flag_stat_type   FLAG_STAT_TYPE;
-typedef struct table_type       TABLE_TYPE;
-typedef struct portal_exit_type PORTAL_EXIT_TYPE;
-typedef struct portal_type      PORTAL_TYPE;
-typedef struct cmd_type         CMD_TYPE;
-typedef struct affect_bit_type  AFFECT_BIT_TYPE;
-typedef struct day_type         DAY_TYPE;
-typedef struct month_type       MONTH_TYPE;
-typedef struct sky_type         SKY_TYPE;
-typedef struct sun_type         SUN_TYPE;
-typedef struct mob_cmd_type     MOB_CMD_TYPE;
-
-/* Union types. */
-typedef union obj_value_type   OBJ_VALUE_TYPE;
-typedef union reset_value_type RESET_VALUE_TYPE;
-
-/* Function types. */
-typedef void DO_FUN     (CHAR_DATA *ch, char *argument);
-typedef bool SPEC_FUN   (CHAR_DATA *ch);
-typedef void SPELL_FUN  (int sn, int level, CHAR_DATA *ch, void *vo,
-                         int target);
-typedef void EFFECT_FUN (void *vo, int level, int dam, int target);
-typedef void NANNY_FUN  (DESCRIPTOR_DATA * d, char *argument);
-typedef JSON_T *TABLE_JSON_FUN (const void *obj);
-
-typedef void RECYCLE_INIT_FUN (void *obj);
-typedef void RECYCLE_DISPOSE_FUN (void *obj);
-
 /* Objects that can be instantiated, freed, recycled, and catalogued. */
 struct recycle_type {
     int type;
@@ -136,31 +42,31 @@ struct recycle_type {
 
     /* internal - do not set in definition table! */
     int top, list_count, free_count;
-    OBJ_RECYCLE_DATA *list_front, *list_back;
-    OBJ_RECYCLE_DATA *free_front, *free_back;
+    OBJ_RECYCLE_T *list_front, *list_back;
+    OBJ_RECYCLE_T *free_front, *free_back;
 };
 
 /* Data stored in individual objects to make recycling work. */
 struct obj_recycle_data {
     void *obj;
-    OBJ_RECYCLE_DATA *prev, *next;
+    OBJ_RECYCLE_T *prev, *next;
     bool valid;
 };
 
 /* Structures, ahoy!*/
 struct ban_data {
-    BAN_DATA *next;
+    BAN_T *next;
     flag_t ban_flags;
     sh_int level;
     char *name;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 struct buf_type {
     sh_int state;  /* error state of the buffer */
     sh_int size;   /* size in k */
     char *string; /* buffer's string */
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 struct time_info_data {
@@ -179,10 +85,10 @@ struct weather_data {
 
 /* Descriptor (channel) structure. */
 struct descriptor_data {
-    DESCRIPTOR_DATA *next;
-    DESCRIPTOR_DATA *snoop_by;
-    CHAR_DATA *character;
-    CHAR_DATA *original;
+    DESCRIPTOR_T *next;
+    DESCRIPTOR_T *snoop_by;
+    CHAR_T *character;
+    CHAR_T *original;
     bool ansi;
     char *host;
     sh_int descriptor;
@@ -201,7 +107,7 @@ struct descriptor_data {
     void *pEdit;    /* OLC */
     char **pString; /* OLC */
     int editor;     /* OLC */
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* Attribute bonus structures. */
@@ -211,7 +117,7 @@ struct str_app_type {
     sh_int todam;
     sh_int carry;
     sh_int wield;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 struct int_app_type {
@@ -237,39 +143,40 @@ struct con_app_type {
 
 /* Help table types. */
 struct help_data {
-    HELP_DATA *next;
-    HELP_DATA *next_area;
+    HELP_T *next;
+    HELP_T *next_area;
     sh_int level;
     char *keyword;
     char *text;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 struct help_area_data {
-    HELP_AREA *next;
-    HELP_DATA *first;
-    HELP_DATA *last;
-    AREA_DATA *area;
+    HELP_AREA_T *next;
+    HELP_T *first;
+    HELP_T *last;
+    char *area_str;
+    AREA_T *area;
     char *filename;
     char *name;
     bool changed;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 struct shop_data {
-    SHOP_DATA *next;
+    SHOP_T *next;
     sh_int keeper;                /* Vnum of shop keeper mob     */
     sh_int buy_type [MAX_TRADE];  /* Item types shop will buy    */
     sh_int profit_buy;            /* Cost multiplier for buying  */
     sh_int profit_sell;           /* Cost multiplier for selling */
     sh_int open_hour;             /* First opening hour          */
     sh_int close_hour;            /* First closing hour          */
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 struct class_type {
     int type;
-    char * name;             /* the full name of the class  */
+    char *name;              /* the full name of the class  */
     char who_name    [4];    /* Three-letter name for 'who' */
     sh_int attr_prime;       /* Prime attribute             */
     sh_int weapon;           /* First weapon                */
@@ -280,14 +187,14 @@ struct class_type {
     sh_int hp_min;           /* Min hp gained on leveling   */
     sh_int hp_max;           /* Max hp gained on leveling   */
     bool fMana;              /* Class gains mana on level   */
-    char * base_group;       /* base skills gained          */
-    char * default_group;    /* default skills gained       */
-    OBJ_RECYCLE_DATA rec_data;
+    char *base_group;        /* base skills gained          */
+    char *default_group;     /* default skills gained       */
+    OBJ_RECYCLE_T rec_data;
 };
 
 struct item_type {
     int type;
-    char * name;
+    char *name;
 };
 
 struct weapon_type {
@@ -318,7 +225,7 @@ struct attack_type {
 };
 
 struct race_type {
-    char * name;  /* call name of the race          */
+    char *name;   /* call name of the race          */
     bool pc_race; /* can be chosen by pcs           */
     flag_t mob;   /* act bits for the race          */
     flag_t aff;   /* aff bits for the race          */
@@ -331,38 +238,38 @@ struct race_type {
 };
 
 struct pc_race_type {             /* additional data for pc races    */
-    char * name;                  /* MUST be in race_type            */
+    char *name;                   /* MUST be in race_type            */
     char who_name[8];
     sh_int points;                /* cost in points of the race      */
     sh_int class_mult[CLASS_MAX]; /* exp multiplier for class, * 100 */
-    char * skills[5];             /* bonus skills for the race       */
+    char *skills[5];              /* bonus skills for the race       */
     sh_int stats[STAT_MAX];       /* starting stats                  */
     sh_int max_stats[STAT_MAX];   /* maximum stats                   */
     sh_int size;                  /* aff bits for the race           */
 };
 
 struct spec_type {
-    char * name;         /* special function name */
-    SPEC_FUN * function; /* the function          */
+    char *name;         /* special function name */
+    SPEC_FUN *function; /* the function          */
 };
 
 /* Data structure for notes. */
 struct note_data {
-    NOTE_DATA *next;
+    NOTE_T *next;
     sh_int type;
-    char * sender;
-    char * date;
-    char * to_list;
-    char * subject;
-    char * text;
+    char *sender;
+    char *date;
+    char *to_list;
+    char *subject;
+    char *text;
     time_t date_stamp;
     time_t expire;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* An affect.  */
 struct affect_data {
-    AFFECT_DATA *next;
+    AFFECT_T *next;
     sh_int bit_type;
     sh_int type;
     sh_int level;
@@ -370,7 +277,7 @@ struct affect_data {
     sh_int apply;
     sh_int modifier;
     flag_t bits;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* A kill structure (indexed by level). */
@@ -424,55 +331,55 @@ struct door_type {
     const char *short_name;
 };
 
+struct dice_type {
+    sh_int number;
+    sh_int size;
+    sh_int bonus;
+};
+
 /* Prototype for a mob.
  * This is the in-memory version of #MOBILES. */
 struct mob_index_data {
-    MOB_INDEX_DATA *next;
+    MOB_INDEX_T *next;
     SPEC_FUN *spec_fun;
-    SHOP_DATA *pShop;
-    MPROG_LIST *mprogs;
-    AREA_DATA *area; /* OLC */
+    SHOP_T *pShop;
+    MPROG_LIST_T *mprogs;
+    char *area_str;
+    AREA_T *area; /* OLC */
     sh_int vnum, anum;
     sh_int group;
     bool new_format;
     sh_int count;
     sh_int killed;
-    char * name;
-    char * short_descr;
-    char * long_descr;
-    char * description;
-    flag_t mob_orig, mob;
-    flag_t affected_by_orig, affected_by;
+    char *name;
+    char *short_descr;
+    char *long_descr;
+    char *description;
     sh_int alignment;
     sh_int level;
     sh_int hitroll;
-    sh_int hit[3];
-    sh_int mana[3];
-    sh_int damage[3];
+    DICE_T hit;
+    DICE_T mana;
+    DICE_T damage;
     sh_int ac[4];
-    char *dam_type_str;
     sh_int dam_type;
-    flag_t off_flags_orig, off_flags;
-    flag_t imm_flags_orig, imm_flags;
-    flag_t res_flags_orig, res_flags;
-    flag_t vuln_flags_orig, vuln_flags;
-    char *start_pos_str;
-    char *default_pos_str;
-    char *sex_str;
-    char *race_str;
-    char *size_str;
-    char *material_str;
     sh_int start_pos;
     sh_int default_pos;
     sh_int sex;
     sh_int race;
     long wealth;
-    flag_t form_orig, form;
-    flag_t parts_orig, parts;
     sh_int size;
     sh_int material;
     flag_t mprog_flags;
-    OBJ_RECYCLE_DATA rec_data;
+    flag_t mob_plus,         mob_final,         mob_minus;
+    flag_t affected_by_plus, affected_by_final, affected_by_minus;
+    flag_t off_flags_plus,   off_flags_final,   off_flags_minus;
+    flag_t imm_flags_plus,   imm_flags_final,   imm_flags_minus;
+    flag_t res_flags_plus,   res_flags_final,   res_flags_minus;
+    flag_t vuln_flags_plus,  vuln_flags_final,  vuln_flags_minus;
+    flag_t form_plus,        form_final,        form_minus;
+    flag_t parts_plus,       parts_final,       parts_minus;
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* memory for mobs */
@@ -480,31 +387,31 @@ struct mem_data {
     int id;
     int reaction;
     time_t when;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* One character (PC or NPC). */
 struct char_data {
-    CHAR_DATA *next;
-    CHAR_DATA *next_in_room;
-    CHAR_DATA *master;
-    CHAR_DATA *leader;
-    CHAR_DATA *fighting;
-    CHAR_DATA *reply;
-    CHAR_DATA *pet;
-    CHAR_DATA *mprog_target;
-    MEM_DATA *memory;
+    CHAR_T *next;
+    CHAR_T *next_in_room;
+    CHAR_T *master;
+    CHAR_T *leader;
+    CHAR_T *fighting;
+    CHAR_T *reply;
+    CHAR_T *pet;
+    CHAR_T *mprog_target;
+    MEM_T *memory;
     SPEC_FUN *spec_fun;
-    MOB_INDEX_DATA *pIndexData;
-    DESCRIPTOR_DATA *desc;
-    AFFECT_DATA *affected;
-    OBJ_DATA *carrying;
-    OBJ_DATA *on;
-    ROOM_INDEX_DATA *in_room;
-    ROOM_INDEX_DATA *was_in_room;
-    AREA_DATA *zone;
-    PC_DATA *pcdata;
-    GEN_DATA *gen_data;
+    MOB_INDEX_T *pIndexData;
+    DESCRIPTOR_T *desc;
+    AFFECT_T *affected;
+    OBJ_T *carrying;
+    OBJ_T *on;
+    ROOM_INDEX_T *in_room;
+    ROOM_INDEX_T *was_in_room;
+    AREA_T *zone;
+    PC_T *pcdata;
+    GEN_T *gen_data;
     char *name;
     long id;
     sh_int version;
@@ -569,7 +476,7 @@ struct char_data {
 
     /* mobile stuff */
     flag_t off_flags;
-    sh_int damage[3];
+    DICE_T damage;
     sh_int dam_type;
     sh_int start_pos;
     sh_int default_pos;
@@ -579,7 +486,7 @@ struct char_data {
     sh_int gain_hit_remainder;
     sh_int gain_mana_remainder;
     sh_int gain_move_remainder;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* Colour settings */
@@ -601,12 +508,12 @@ struct colour_type {
 struct map_lookup_table {
     int index;
     char *name;
-    const FLAG_TYPE *flags;
+    const FLAG_T *flags;
 };
 
 /* Data which only PC's have. */
 struct pc_data {
-    BUFFER *buffer;
+    BUFFER_T *buffer;
     char *pwd;
     char *bamfin;
     char *bamfout;
@@ -623,16 +530,16 @@ struct pc_data {
     bool confirm_delete;
     char *alias[MAX_ALIAS];
     char *alias_sub[MAX_ALIAS];
-    BOARD_DATA *board;           /* The current board        */
+    BOARD_T *board;           /* The current board        */
     time_t last_note[BOARD_MAX]; /* last note for the boards */
-    NOTE_DATA *in_progress;
+    NOTE_T *in_progress;
     int security;                /* OLC - Builder security */
     flag_t colour[COLOUR_MAX];
 
 #ifdef IMC
     IMC_CHARDATA *imcchardata;
 #endif
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* Data for generating characters -- only used during generation */
@@ -640,21 +547,21 @@ struct gen_data {
     bool skill_chosen[SKILL_MAX];
     bool group_chosen[GROUP_MAX];
     int points_chosen;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 struct liq_type {
-    char * name;
-    char * color;
+    char *name;
+    char *color;
     sh_int affect[5];
 };
 
 /* Extra description data for a room or object. */
 struct extra_descr_data {
-    EXTRA_DESCR_DATA *next;
-    char * keyword;          /* Keyword in look/examine */
-    char * description;      /* What to see             */
-    OBJ_RECYCLE_DATA rec_data;
+    EXTRA_DESCR_T *next;
+    char *keyword;          /* Keyword in look/examine */
+    char *description;      /* What to see             */
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* Object values for all item types. */
@@ -867,18 +774,17 @@ union reset_value_type {
 
 /* Prototype for an object. */
 struct obj_index_data {
-    OBJ_INDEX_DATA *next;
-    EXTRA_DESCR_DATA *extra_descr;
-    AFFECT_DATA *affected;
-    AREA_DATA *area; /* OLC */
+    OBJ_INDEX_T *next;
+    EXTRA_DESCR_T *extra_descr;
+    AFFECT_T *affected;
+    char *area_str;
+    AREA_T *area; /* OLC */
     bool new_format;
     char *name;
     char *short_descr;
     char *description;
     sh_int vnum, anum;
     sh_int reset_num;
-    char *material_str;
-    char *item_type_str;
     sh_int material;
     sh_int item_type;
     flag_t extra_flags;
@@ -888,13 +794,14 @@ struct obj_index_data {
     sh_int count;
     sh_int weight;
     int cost;
-    OBJ_RECYCLE_DATA rec_data;
-    OBJ_VALUE_TYPE v;
+    OBJ_RECYCLE_T rec_data;
+    OBJ_VALUE_T v;
 };
 
 /* Object stat <-> value[] mapping. */
 struct obj_map_value {
     int index;
+    flag_t default_value;
     char *name;
     int type, sub_type;
 };
@@ -906,16 +813,16 @@ struct obj_map {
 
 /* One object. */
 struct obj_data {
-    OBJ_DATA *next;
-    OBJ_DATA *next_content;
-    OBJ_DATA *contains;
-    OBJ_DATA *in_obj;
-    OBJ_DATA *on;
-    CHAR_DATA *carried_by;
-    EXTRA_DESCR_DATA *extra_descr;
-    AFFECT_DATA *affected;
-    OBJ_INDEX_DATA *pIndexData;
-    ROOM_INDEX_DATA *in_room;
+    OBJ_T *next;
+    OBJ_T *next_content;
+    OBJ_T *contains;
+    OBJ_T *in_obj;
+    OBJ_T *on;
+    CHAR_T *carried_by;
+    EXTRA_DESCR_T *extra_descr;
+    AFFECT_T *affected;
+    OBJ_INDEX_T *pIndexData;
+    ROOM_INDEX_T *in_room;
     bool enchanted;
     char *owner;
     char *name;
@@ -931,13 +838,13 @@ struct obj_data {
     sh_int condition;
     sh_int material;
     sh_int timer;
-    OBJ_RECYCLE_DATA rec_data;
-    OBJ_VALUE_TYPE v;
+    OBJ_RECYCLE_T rec_data;
+    OBJ_VALUE_T v;
 };
 
 /* Exit data. */
 struct exit_data {
-    ROOM_INDEX_DATA *to_room;
+    ROOM_INDEX_T *to_room;
     sh_int vnum, area_vnum, room_anum;
     flag_t exit_flags;
     sh_int key;
@@ -945,8 +852,8 @@ struct exit_data {
     char *description;
     flag_t rs_flags;  /* OLC */
     int orig_door;    /* OLC */
-    PORTAL_EXIT_TYPE *portal;
-    OBJ_RECYCLE_DATA rec_data;
+    PORTAL_EXIT_T *portal;
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* Reset commands:
@@ -962,17 +869,18 @@ struct exit_data {
 
 /* Area-reset definition. */
 struct reset_data {
-    RESET_DATA *next;
-    AREA_DATA *area;
+    RESET_T *next;
+    AREA_T *area;
     char command;
-    RESET_VALUE_TYPE v;
-    OBJ_RECYCLE_DATA rec_data;
+    int room_vnum;
+    RESET_VALUE_T v;
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* Area definition.  */
 struct area_data {
-    AREA_DATA *next;
-    HELP_AREA *helps;
+    AREA_T *next;
+    HELP_AREA_T *helps;
     char *name;
     char *filename;
     char *title;
@@ -988,20 +896,20 @@ struct area_data {
     int vnum;          /* OLC - Area vnum  */
     flag_t area_flags; /* OLC              */
     int security;      /* OLC - Value 1-9  */
-    int portal_count;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* Room type. */
 struct room_index_data {
-    ROOM_INDEX_DATA *next;
-    CHAR_DATA *people;
-    OBJ_DATA *contents;
-    EXTRA_DESCR_DATA *extra_descr;
-    AREA_DATA *area;
-    EXIT_DATA *exit[DIR_MAX];
-    RESET_DATA *reset_first; /* OLC */
-    RESET_DATA *reset_last;  /* OLC */
+    ROOM_INDEX_T *next;
+    CHAR_T *people;
+    OBJ_T *contents;
+    EXTRA_DESCR_T *extra_descr;
+    char *area_str;
+    AREA_T *area;
+    EXIT_T *exit[DIR_MAX];
+    RESET_T *reset_first; /* OLC */
+    RESET_T *reset_last;  /* OLC */
     char *name;
     char *description;
     char *owner;
@@ -1012,9 +920,8 @@ struct room_index_data {
     sh_int heal_rate;
     sh_int mana_rate;
     sh_int clan;
-    char *clan_str;
-    PORTAL_EXIT_TYPE *portal;
-    OBJ_RECYCLE_DATA rec_data;
+    PORTAL_EXIT_T *portal;
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* Skills include spells as a particular case. */
@@ -1035,27 +942,27 @@ struct skill_type {
 };
 
 struct  group_type {
-    char * name;
+    char *name;
     sh_int rating[CLASS_MAX];
-    char * spells[MAX_IN_GROUP];
+    char *spells[MAX_IN_GROUP];
 };
 
 struct mprog_list {
-    MPROG_LIST *next;
+    MPROG_LIST_T *next;
     int trig_type;
     char *trig_phrase;
-    AREA_DATA *area;
+    AREA_T *area;
     sh_int vnum, anum;
     char *code;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 struct mprog_code {
-    MPROG_CODE *next;
-    AREA_DATA *area;
+    MPROG_CODE_T *next;
+    AREA_T *area;
     sh_int vnum, anum;
-    char * code;
-    OBJ_RECYCLE_DATA rec_data;
+    char *code;
+    OBJ_RECYCLE_T rec_data;
 };
 
 struct nanny_handler {
@@ -1083,7 +990,7 @@ struct social_type {
     char *char_not_found;
     char *char_auto;
     char *others_auto;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 /* Data about a board */
@@ -1100,8 +1007,8 @@ struct board_data {
     int purge_days;  /* Default expiration */
 
     /* Non-constant data */
-    BOARD_DATA *next;
-    NOTE_DATA *note_first; /* pointer to board's first note */
+    BOARD_T *next;
+    NOTE_T *note_first; /* pointer to board's first note */
     bool changed;          /* currently unused */
 
 };
@@ -1123,7 +1030,7 @@ struct material_type {
 };
 
 struct flag_stat_type {
-    const FLAG_TYPE *structure;
+    const FLAG_T *structure;
     bool stat;
 };
 
@@ -1139,23 +1046,23 @@ struct table_type {
 };
 
 struct portal_exit_type {
-    ROOM_INDEX_DATA *room;
+    ROOM_INDEX_T *room;
     char *name;
     int dir;
-    OBJ_RECYCLE_DATA rec_data;
+    OBJ_RECYCLE_T rec_data;
 };
 
 struct portal_type {
     char *name_from, *name_to;
-    PORTAL_EXIT_TYPE *from, *to;
-    PORTAL_TYPE *opposite;
-    OBJ_RECYCLE_DATA rec_data;
+    bool two_way, generated;
+    PORTAL_EXIT_T *from, *to;
+    OBJ_RECYCLE_T rec_data;
 };
 
 struct affect_bit_type {
     char *name;
     int type;
-    const FLAG_TYPE *flags;
+    const FLAG_T *flags;
     char *help;
 };
 
@@ -1187,8 +1094,51 @@ struct sun_type {
 };
 
 struct mob_cmd_type {
+    const char *name;
+    DO_FUN *do_fun;
+};
+
+struct anum_type {
+    int type;
+    sh_int *vnum_ref;
+    char *area_str;
+    int anum;
+    ANUM_T *prev, *next;
+};
+
+/* Structure for a command in the command lookup table. */
+struct cmd_type {
     char *const name;
     DO_FUN *do_fun;
+    sh_int position;
+    sh_int level;
+    sh_int log;
+    sh_int show;
+};
+
+/* Structure for an OLC editor command. */
+struct olc_cmd_type {
+    char *const name;
+    OLC_FUN *olc_fun;
+};
+
+/* Structure for an OLC editor startup command. */
+struct editor_cmd_type {
+    char *const name;
+    DO_FUN *do_fun;
+};
+
+/* All the posing stuff. */
+struct pose_type {
+    char *message[2 * CLASS_MAX];
+};
+
+/* Music stuff. */
+struct song_type {
+    char *group;
+    char *name;
+    char *lyrics[MAX_SONG_LINES];
+    int lines;
 };
 
 #endif

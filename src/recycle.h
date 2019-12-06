@@ -57,41 +57,38 @@
     vtype * name ## _get_first (void);            \
     vtype * name ## _get_next (const vtype * obj) \
 
-/* External globals. */
-extern int mobile_count;
-extern long last_pc_id;
-extern long last_mob_id;
-
 /* Recycle globals and necessary functions. */
-DEC_RECYCLE_BUNDLE (ban,         BAN_DATA);
-DEC_RECYCLE_BUNDLE (area,        AREA_DATA);
-DEC_RECYCLE_BUNDLE (extra_descr, EXTRA_DESCR_DATA);
-DEC_RECYCLE_BUNDLE (exit,        EXIT_DATA);
-DEC_RECYCLE_BUNDLE (room_index,  ROOM_INDEX_DATA);
-DEC_RECYCLE_BUNDLE (obj_index,   OBJ_INDEX_DATA);
-DEC_RECYCLE_BUNDLE (shop,        SHOP_DATA);
-DEC_RECYCLE_BUNDLE (mob_index,   MOB_INDEX_DATA);
-DEC_RECYCLE_BUNDLE (reset_data,  RESET_DATA);
-DEC_RECYCLE_BUNDLE (help,        HELP_DATA);
-DEC_RECYCLE_BUNDLE (mpcode,      MPROG_CODE);
-DEC_RECYCLE_BUNDLE (descriptor,  DESCRIPTOR_DATA);
-DEC_RECYCLE_BUNDLE (gen_data,    GEN_DATA);
-DEC_RECYCLE_BUNDLE (affect,      AFFECT_DATA);
-DEC_RECYCLE_BUNDLE (obj,         OBJ_DATA);
-DEC_RECYCLE_BUNDLE (char,        CHAR_DATA);
-DEC_RECYCLE_BUNDLE (pcdata,      PC_DATA);
-DEC_RECYCLE_BUNDLE (mem_data,    MEM_DATA);
-DEC_RECYCLE_BUNDLE (buf,         BUFFER);
-DEC_RECYCLE_BUNDLE (mprog,       MPROG_LIST);
-DEC_RECYCLE_BUNDLE (had,         HELP_AREA);
-DEC_RECYCLE_BUNDLE (note,        NOTE_DATA);
-DEC_RECYCLE_BUNDLE (social,      SOCIAL_TYPE);
-DEC_RECYCLE_BUNDLE (portal_exit, PORTAL_EXIT_TYPE);
-DEC_RECYCLE_BUNDLE (portal,      PORTAL_TYPE);
+DEC_RECYCLE_BUNDLE (ban,         BAN_T);
+DEC_RECYCLE_BUNDLE (area,        AREA_T);
+DEC_RECYCLE_BUNDLE (extra_descr, EXTRA_DESCR_T);
+DEC_RECYCLE_BUNDLE (exit,        EXIT_T);
+DEC_RECYCLE_BUNDLE (room_index,  ROOM_INDEX_T);
+DEC_RECYCLE_BUNDLE (obj_index,   OBJ_INDEX_T);
+DEC_RECYCLE_BUNDLE (shop,        SHOP_T);
+DEC_RECYCLE_BUNDLE (mob_index,   MOB_INDEX_T);
+DEC_RECYCLE_BUNDLE (reset_data,  RESET_T);
+DEC_RECYCLE_BUNDLE (help,        HELP_T);
+DEC_RECYCLE_BUNDLE (mpcode,      MPROG_CODE_T);
+DEC_RECYCLE_BUNDLE (descriptor,  DESCRIPTOR_T);
+DEC_RECYCLE_BUNDLE (gen_data,    GEN_T);
+DEC_RECYCLE_BUNDLE (affect,      AFFECT_T);
+DEC_RECYCLE_BUNDLE (obj,         OBJ_T);
+DEC_RECYCLE_BUNDLE (char,        CHAR_T);
+DEC_RECYCLE_BUNDLE (pcdata,      PC_T);
+DEC_RECYCLE_BUNDLE (mem_data,    MEM_T);
+DEC_RECYCLE_BUNDLE (buf,         BUFFER_T);
+DEC_RECYCLE_BUNDLE (mprog,       MPROG_LIST_T);
+DEC_RECYCLE_BUNDLE (had,         HELP_AREA_T);
+DEC_RECYCLE_BUNDLE (note,        NOTE_T);
+DEC_RECYCLE_BUNDLE (social,      SOCIAL_T);
+DEC_RECYCLE_BUNDLE (portal_exit, PORTAL_EXIT_T);
+DEC_RECYCLE_BUNDLE (portal,      PORTAL_T);
 
 /* Function prototypes (recycle operations). */
 void *recycle_new (int type);
 void recycle_free (int type, void *obj);
+int recycle_free_all (void);
+int recycle_free_all_type (int type);
 void *recycle_get_first_obj (int type);
 
 /* Initialization / disposal functions. */
@@ -132,13 +129,13 @@ void portal_exit_dispose (void *obj);
 void portal_dispose (void *obj);
 
 /* Functions related to specific recycleable objects. */
-int      get_size      (int val);
-BUFFER   *new_buf_size (int size);
-bool     add_buf       (BUFFER *buffer, char *string);
-void     clear_buf     (BUFFER *buffer);
-char     *buf_string   (BUFFER *buffer);
-MEM_DATA *find_memory  (MEM_DATA *memory, long id);
-long     get_pc_id     (void);
-long     get_mob_id    (void);
+int       get_size      (int val);
+BUFFER_T *new_buf_size  (int size);
+bool      add_buf       (BUFFER_T *buffer, char *string);
+void      clear_buf     (BUFFER_T *buffer);
+char     *buf_string    (BUFFER_T *buffer);
+MEM_T    *find_memory   (MEM_T *memory, long id);
+long      get_pc_id     (void);
+long      get_mob_id    (void);
 
 #endif

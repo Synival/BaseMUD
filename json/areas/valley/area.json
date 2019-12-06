@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "valley",
+  "filename": "valley.are",
+  "title": "Valley of the Elves",
+  "credits": "{ 5 20} Hatchet Valley of the Elves",
+  "min_vnum": 7800,
+  "max_vnum": 7899,
+  "builders": "None",
+  "security": 9
+}}]

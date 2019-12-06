@@ -31,7 +31,7 @@
 #include "merc.h"
 
 /* Function prototypes. */
-char *material_format_part (const MATERIAL_TYPE *mat);
-char *material_strcat (char *buf, const MATERIAL_TYPE *mat);
+char *material_format_part (const MATERIAL_T *mat);
+char *material_strcat (char *buf, const MATERIAL_T *mat);
 
 #endif

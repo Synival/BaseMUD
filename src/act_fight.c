@@ -43,12 +43,12 @@
 
 #include "act_fight.h"
 
-bool fight_filter_skill_target (CHAR_DATA *ch, const char *argument,
+bool fight_filter_skill_target (CHAR_T *ch, const char *argument,
     int sn, flag_t npc_flag, const char *cant_msg, const char *self_msg,
-    int *out_chance, CHAR_DATA **out_victim)
+    int *out_chance, CHAR_T **out_victim)
 {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     int chance;
 
     /* If a skill is available, make sure we can use it. */
@@ -96,7 +96,7 @@ bool fight_filter_skill_target (CHAR_DATA *ch, const char *argument,
 }
 
 DEFINE_DO_FUN (do_berserk) {
-    AFFECT_DATA af;
+    AFFECT_T af;
     int chance, hp_percent;
 
     if ((chance = get_skill (ch, gsn_berserk)) == 0           ||
@@ -163,7 +163,7 @@ DEFINE_DO_FUN (do_berserk) {
 }
 
 DEFINE_DO_FUN (do_bash) {
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     int chance;
 
     if (fight_filter_skill_target (ch, argument, gsn_bash, OFF_BASH,
@@ -215,8 +215,8 @@ DEFINE_DO_FUN (do_bash) {
         DAZE_STATE (victim, PULSE_VIOLENCE * 5 / 2);
         WAIT_STATE (ch, skill_table[gsn_bash].beats);
         victim->position = POS_SITTING;
-        damage (ch, victim, number_range (2, 2 + 2 * ch->size + chance / 20),
-                gsn_bash, DAM_BASH, FALSE);
+        damage_quiet (ch, victim, number_range (2, 2 + 2*ch->size + chance/20),
+            gsn_bash, DAM_BASH);
     }
     else {
         act3 ("{5You fall flat on your face!{x",
@@ -227,13 +227,13 @@ DEFINE_DO_FUN (do_bash) {
 
         WAIT_STATE (ch, skill_table[gsn_bash].beats * 3 / 2);
         ch->position = POS_SITTING;
-        damage (ch, victim, 0, gsn_bash, DAM_BASH, FALSE);
+        damage_quiet (ch, victim, 0, gsn_bash, DAM_BASH);
     }
     check_killer (ch, victim);
 }
 
 DEFINE_DO_FUN (do_dirt) {
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     int chance;
 
     if (fight_filter_skill_target (ch, argument, gsn_dirt, OFF_KICK_DIRT,
@@ -288,14 +288,14 @@ DEFINE_DO_FUN (do_dirt) {
 
     /* now the attack */
     if (number_percent () < chance) {
-        AFFECT_DATA af;
+        AFFECT_T af;
 
         act3 ("{You kick dirt in $N's eyes!{x",
               "{5$n kicks dirt in your eyes!{x",
               "{5$n kicks dirt in $N's eyes!{x",
             ch, NULL, victim, 0, POS_RESTING);
 
-        damage (ch, victim, number_range (2, 5), gsn_dirt, DAM_NONE, FALSE);
+        damage_quiet (ch, victim, number_range (2, 5), gsn_dirt, DAM_NONE);
         send_to_char ("{5You can't see a thing!{x\n\r", victim);
 
         check_improve (ch, gsn_dirt, TRUE, 2);
@@ -305,7 +305,7 @@ DEFINE_DO_FUN (do_dirt) {
         affect_to_char (victim, &af);
     }
     else {
-        damage (ch, victim, 0, gsn_dirt, DAM_NONE, TRUE);
+        damage_visible (ch, victim, 0, gsn_dirt, DAM_NONE, NULL);
         check_improve (ch, gsn_dirt, FALSE, 2);
         WAIT_STATE (ch, skill_table[gsn_dirt].beats);
     }
@@ -313,7 +313,7 @@ DEFINE_DO_FUN (do_dirt) {
 }
 
 DEFINE_DO_FUN (do_trip) {
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     int chance;
 
     if (fight_filter_skill_target (ch, argument, gsn_trip, OFF_TRIP,
@@ -368,19 +368,19 @@ DEFINE_DO_FUN (do_trip) {
         DAZE_STATE (victim, PULSE_VIOLENCE * 3 / 2);
         WAIT_STATE (ch, skill_table[gsn_trip].beats);
         victim->position = POS_SITTING;
-        damage (ch, victim, number_range (2, 2 + 2 * victim->size), gsn_trip,
-                DAM_BASH, TRUE);
+        damage_visible (ch, victim, number_range (2, 2 + 2 * victim->size),
+            gsn_trip, DAM_BASH, NULL);
     }
     else {
         check_improve (ch, gsn_trip, FALSE, 1);
         WAIT_STATE (ch, skill_table[gsn_trip].beats * 2 / 3);
-        damage (ch, victim, 0, gsn_trip, DAM_BASH, TRUE);
+        damage_visible (ch, victim, 0, gsn_trip, DAM_BASH, NULL);
     }
     check_killer (ch, victim);
 }
 
 DEFINE_DO_FUN (do_kick) {
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     int chance;
 
     if (fight_filter_skill_target (ch, argument, gsn_kick, OFF_KICK,
@@ -393,12 +393,12 @@ DEFINE_DO_FUN (do_kick) {
 
     WAIT_STATE (ch, skill_table[gsn_kick].beats);
     if (chance > number_percent ()) {
-        damage (ch, victim, number_range (1, ch->level), gsn_kick, DAM_BASH,
-                TRUE);
+        damage_visible (ch, victim, number_range (1, ch->level), gsn_kick,
+            DAM_BASH, NULL);
         check_improve (ch, gsn_kick, TRUE, 1);
     }
     else {
-        damage (ch, victim, 0, gsn_kick, DAM_BASH, TRUE);
+        damage_visible (ch, victim, 0, gsn_kick, DAM_BASH, NULL);
         check_improve (ch, gsn_kick, FALSE, 1);
     }
     check_killer (ch, victim);
@@ -406,7 +406,7 @@ DEFINE_DO_FUN (do_kick) {
 
 DEFINE_DO_FUN (do_kill) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     DO_REQUIRE_ARG (arg, "Kill whom?\n\r");
     BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
@@ -449,7 +449,7 @@ DEFINE_DO_FUN (do_murde) {
 DEFINE_DO_FUN (do_murder) {
     char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
 
     DO_REQUIRE_ARG (arg, "Murder whom?\n\r");
 
@@ -482,8 +482,8 @@ DEFINE_DO_FUN (do_murder) {
 
 DEFINE_DO_FUN (do_backstab) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    OBJ_DATA *obj;
+    CHAR_T *victim;
+    OBJ_T *obj;
 
     DO_REQUIRE_ARG (arg, "Backstab whom?\n\r");
 
@@ -513,14 +513,14 @@ DEFINE_DO_FUN (do_backstab) {
     }
     else {
         check_improve (ch, gsn_backstab, FALSE, 1);
-        damage (ch, victim, 0, gsn_backstab, DAM_NONE, TRUE);
+        damage_visible (ch, victim, 0, gsn_backstab, DAM_NONE, NULL);
     }
 }
 
 DEFINE_DO_FUN (do_flee) {
-    ROOM_INDEX_DATA *was_in;
-    ROOM_INDEX_DATA *now_in;
-    CHAR_DATA *victim;
+    ROOM_INDEX_T *was_in;
+    ROOM_INDEX_T *now_in;
+    CHAR_T *victim;
     int attempt;
 
     if ((victim = ch->fighting) == NULL) {
@@ -534,7 +534,7 @@ DEFINE_DO_FUN (do_flee) {
 
     was_in = ch->in_room;
     for (attempt = 0; attempt < 6; attempt++) {
-        EXIT_DATA *pexit;
+        EXIT_T *pexit;
         int door;
 
         door = number_door ();
@@ -576,8 +576,8 @@ DEFINE_DO_FUN (do_flee) {
 
 DEFINE_DO_FUN (do_rescue) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-    CHAR_DATA *fch;
+    CHAR_T *victim;
+    CHAR_T *fch;
 
     DO_REQUIRE_ARG (arg, "Rescue whom?\n\r");
 
@@ -618,8 +618,8 @@ DEFINE_DO_FUN (do_rescue) {
 }
 
 DEFINE_DO_FUN (do_disarm) {
-    CHAR_DATA *victim;
-    OBJ_DATA *obj;
+    CHAR_T *victim;
+    OBJ_T *obj;
     int chance, hth, ch_weapon, vict_weapon, ch_vict_weapon;
     hth = 0;
 
@@ -674,7 +674,7 @@ DEFINE_DO_FUN (do_disarm) {
 }
 
 DEFINE_DO_FUN (do_surrender) {
-    CHAR_DATA *mob;
+    CHAR_T *mob;
     BAIL_IF ((mob = ch->fighting) == NULL,
         "But you're not fighting!\n\r", ch);
     act3 ("You surrender to $N!",
@@ -691,7 +691,7 @@ DEFINE_DO_FUN (do_surrender) {
 }
 
 DEFINE_DO_FUN (do_disengage) {
-    CHAR_DATA *rch;
+    CHAR_T *rch;
 
     BAIL_IF (ch->fighting == NULL,
         "You're not fighting anybody.\n\r", ch);
@@ -725,7 +725,7 @@ DEFINE_DO_FUN (do_wimpy) {
 
 DEFINE_DO_FUN (do_consider) {
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     char *msg;
     int diff;
 

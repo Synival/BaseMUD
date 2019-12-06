@@ -25,8 +25,8 @@
  *    ROM license, in the file Rom24/doc/rom.license                       *
  ***************************************************************************/
 
-#ifndef __ROM_TYPEDEFS_H
-#define __ROM_TYPEDEFS_H
+#ifndef __ROM_TYPES_H
+#define __ROM_TYPES_H
 
 #include "merc.h"
 
@@ -231,15 +231,15 @@
 #define RESET_MAX       3
 
 /* Type tables. */
-extern const FLAG_TYPE sex_types[SEX_MAX + 1];
-extern const FLAG_TYPE wear_loc_phrases[WEAR_LOC_MAX + 2];
-extern const FLAG_TYPE wear_loc_types[WEAR_LOC_MAX + 2];
-extern const FLAG_TYPE ac_types[AC_MAX + 1];
-extern const FLAG_TYPE size_types[SIZE_MAX_R + 1];
-extern const FLAG_TYPE weapon_types[WEAPON_MAX + 1];
-extern const FLAG_TYPE position_types[POS_MAX + 1];
-extern const FLAG_TYPE affect_apply_types[APPLY_MAX + 1];
-extern const FLAG_TYPE sector_types[SECT_MAX + 1];
-extern const FLAG_TYPE item_types[ITEM_MAX + 1];
+extern const FLAG_T sex_types[SEX_MAX + 1];
+extern const FLAG_T wear_loc_phrases[WEAR_LOC_MAX + 2];
+extern const FLAG_T wear_loc_types[WEAR_LOC_MAX + 2];
+extern const FLAG_T ac_types[AC_MAX + 1];
+extern const FLAG_T size_types[SIZE_MAX_R + 1];
+extern const FLAG_T weapon_types[WEAPON_MAX + 1];
+extern const FLAG_T position_types[POS_MAX + 1];
+extern const FLAG_T affect_apply_types[APPLY_MAX + 1];
+extern const FLAG_T sector_types[SECT_MAX + 1];
+extern const FLAG_T item_types[ITEM_MAX + 1];
 
 #endif

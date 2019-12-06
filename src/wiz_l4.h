@@ -31,7 +31,7 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-void do_restore_single (CHAR_DATA *ch, CHAR_DATA *vch);
+void do_restore_single (CHAR_T *ch, CHAR_T *vch);
 
 /* Commands. */
 DECLARE_DO_FUN (do_guild);

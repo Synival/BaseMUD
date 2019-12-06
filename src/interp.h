@@ -30,27 +30,15 @@
 
 #include "merc.h"
 
-/* Structure for a command in the command lookup table. */
-struct cmd_type {
-    char *const name;
-    DO_FUN *do_fun;
-    sh_int position;
-    sh_int level;
-    sh_int log;
-    sh_int show;
-};
-
-/* Globals. */
-extern const struct cmd_type cmd_table[];
-extern bool fLogAll;
+extern const CMD_T cmd_table[];
 
 /* Function prototpyes. */
-void interpret (CHAR_DATA *ch, char *argument);
-void do_function (CHAR_DATA *ch, DO_FUN *do_fun, char *argument);
-bool check_social (CHAR_DATA *ch, char *command, char *argument);
-bool is_number (char *arg);
-int number_argument (char *argument, char *arg);
-int mult_argument (char *argument, char *arg);
+void interpret (CHAR_T *ch, char *argument);
+void do_function (CHAR_T *ch, DO_FUN *do_fun, char *argument);
+bool check_social (CHAR_T *ch, char *command, char *argument);
+bool is_number (const char *arg);
+int number_argument (const char *arg_in, char *arg_out);
+int mult_argument (const char *arg_in, char *arg_out);
 char *one_argument (const char *argument, char *arg_first);
 
 #endif

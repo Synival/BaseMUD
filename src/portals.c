@@ -28,20 +28,25 @@
 #include "lookup.h"
 #include "recycle.h"
 #include "utils.h"
+#include "memory.h"
 
 #include "portals.h"
 
-PORTAL_EXIT_TYPE *portal_exit_new_from_room (ROOM_INDEX_DATA *room, int dir) {
-    PORTAL_EXIT_TYPE *pex;
+PORTAL_EXIT_T *portal_exit_new_from_room (ROOM_INDEX_T *room, int dir) {
+    PORTAL_EXIT_T *pex;
     char buf[256];
-    int num;
+    int num = 1;
 
-    num = ++(room->area->portal_count);
-    if (dir == DIR_NONE)
-        snprintf (buf, sizeof(buf), "%s-%d", room->area->name, num);
+    if (dir == DIR_NONE) {
+        do {
+            snprintf (buf, sizeof(buf), "%s-room-%d", room->area->name, num++);
+        } while (portal_exit_lookup_exact (buf));
+    }
     else {
-        snprintf (buf, sizeof(buf), "%s-%d-%s", room->area->name,
-            num, door_get_name(dir));
+        do {
+            snprintf (buf, sizeof(buf), "%s-%s-%d", room->area->name,
+                door_get_name(dir), num++);
+        } while (portal_exit_lookup_exact (buf));
     }
 
     pex = portal_exit_new ();
@@ -51,23 +56,74 @@ PORTAL_EXIT_TYPE *portal_exit_new_from_room (ROOM_INDEX_DATA *room, int dir) {
     return pex;
 }
 
-void portal_assign (PORTAL_TYPE *portal, PORTAL_EXIT_TYPE *pex_from,
-    PORTAL_EXIT_TYPE *pex_to)
+void portal_assign (PORTAL_T *portal, PORTAL_EXIT_T *pex_from,
+    PORTAL_EXIT_T *pex_to)
 {
     str_replace_dup (&(portal->name_from), pex_from->name);
     str_replace_dup (&(portal->name_to),   pex_to->name);
 
     portal->from = pex_from;
     portal->to   = pex_to;
-    portal_link_opposites (portal);
+
+    /* If this new portal has found an opposite, mark it as
+     * 'generated' so we don't save multiple two-way portals. */
+    if (portal_link_opposites (portal))
+        portal->generated = TRUE;
 }
 
-bool portal_link_opposites (PORTAL_TYPE *portal) {
-    PORTAL_TYPE *p;
+void portal_link_to_assignment (PORTAL_T *portal)
+{
+    PORTAL_EXIT_T *from, *to;
+    EXIT_T *exit_from, *exit_to;
+
+    if (portal->name_from == NULL || portal->name_to == NULL) {
+        printf ("no\n");
+        return;
+    }
+
+    /* Make sure both portal points exist. */
+    BAIL_IF_BUGF ((from = portal_exit_lookup_exact (portal->name_from)) == NULL,
+        "portal_link_to_assignment(): Cannot find portal exit from '%s'\n",
+        portal->name_from);
+    BAIL_IF_BUGF ((to = portal_exit_lookup_exact (portal->name_to)) == NULL,
+        "portal_link_to_assignment(): Cannot find portal exit to '%s'\n",
+        portal->name_to);
+
+    BAIL_IF_BUGF (from->dir == DIR_NONE,
+        "portal_link_to_assignment(): From '%s' is a room",
+        from->room->name, from->name);
+    BAIL_IF_BUGF ((exit_from = from->room->exit[from->dir]) == NULL,
+        "portal_link_to_assignment(): Room %d does not have exit %d\n",
+        from->room->vnum, from->dir);
+
+    if (portal->two_way) {
+        BAIL_IF_BUGF (to->dir == DIR_NONE,
+            "portal_link_to_assignment(): To '%s' is a room",
+            to->room->name, to->name);
+        BAIL_IF_BUGF ((exit_to = to->room->exit[to->dir]) == NULL,
+            "portal_link_to_assignment(): Room %d does not have exit %d\n",
+            to->room->vnum, to->dir);
+
+        exit_from->to_room = to->room;
+        exit_from->vnum    = to->room->vnum;
+        exit_to->to_room = from->room;
+        exit_to->vnum    = from->room->vnum;
+    }
+    else {
+        exit_from->to_room = to->room;
+        exit_from->vnum    = to->room->vnum;
+    }
+
+    portal->from = from;
+    portal->to   = to;
+}
+
+bool portal_link_opposites (PORTAL_T *portal) {
+    PORTAL_T *p;
 
     if (portal->from == NULL || portal->to == NULL)
         return FALSE;
-    if (portal->opposite != NULL)
+    if (portal->two_way == TRUE)
         return FALSE;
     if (portal->from->dir == DIR_NONE || portal->to->dir == DIR_NONE)
         return FALSE;
@@ -75,11 +131,11 @@ bool portal_link_opposites (PORTAL_TYPE *portal) {
         return FALSE;
 
     for (p = portal_get_first(); p != NULL; p = portal_get_next(p)) {
-        if (p == portal || p->opposite)
+        if (p == portal || p->two_way == TRUE)
             continue;
         if (p->to == portal->from && p->from == portal->to) {
-            portal->opposite = p;
-            p->opposite = portal;
+            portal->two_way = TRUE;
+            p->two_way = TRUE;
             return TRUE;
         }
     }
@@ -88,10 +144,10 @@ bool portal_link_opposites (PORTAL_TYPE *portal) {
 }
 
 void portal_create_missing (void) {
-    ROOM_INDEX_DATA *room_from, *room_to;
-    EXIT_DATA *exit_from, *exit_to;
-    PORTAL_EXIT_TYPE *pex_from, *pex_to;
-    PORTAL_TYPE *portal;
+    ROOM_INDEX_T *room_from, *room_to;
+    EXIT_T *exit_from, *exit_to;
+    PORTAL_EXIT_T *pex_from, *pex_to;
+    PORTAL_T *portal;
     int dir, rev, count;
 
     count = 0;
@@ -146,8 +202,9 @@ void portal_create_missing (void) {
     log_f ("Created %d missing portals", count);
 }
 
+#if 0
 void portal_shuffle_all (void) {
-    PORTAL_TYPE *p1, *p2, *next;
+    PORTAL_T *p1, *p2, *next;
     int count;
 
     for (p1 = portal_get_first(); p1 != NULL; p1 = next) {
@@ -178,8 +235,8 @@ void portal_shuffle_all (void) {
                  p1->from->room->area == p2->from->room->area)
                 continue;
             if (--count == 0) {
-                PORTAL_TYPE *tmp1 = p1->opposite;
-                PORTAL_TYPE *tmp2 = p2->opposite;
+                PORTAL_T *tmp1 = p1->opposite;
+                PORTAL_T *tmp2 = p2->opposite;
 
                 /* Link P1 and P2 together. */
                 p1->opposite = p2;
@@ -217,4 +274,28 @@ void portal_shuffle_all (void) {
         p1->to  ->room->exit[p1->to  ->dir]->room_anum = p1->from->room->anum;
         log_f ("Portals shuffled: [%s <-> %s]", p1->from->name, p1->to->name);
     }
+}
+#endif
+
+void portal_link_exits (void) {
+    PORTAL_T *portal;
+    for (portal = portal_get_first(); portal; portal = portal_get_next (portal))
+        portal_link_to_assignment (portal);
+}
+
+PORTAL_EXIT_T *portal_exit_create (const char *name, ROOM_INDEX_T *room,
+    int dir)
+{
+    PORTAL_EXIT_T *pex;
+    RETURN_IF_BUGF ((pex = portal_exit_lookup_exact (name)) != NULL, NULL,
+        "portal_exit_create(): Portal '%s' for '%s' dir=%d already exists "
+        "for '%s', dir=%d\n",
+        name, room->name, dir,
+        pex->name, pex->room->name, pex->dir);
+
+    pex = portal_exit_new ();
+    str_replace_dup (&pex->name, name);
+    pex->room = (ROOM_INDEX_T *) room;
+    pex->dir = dir;
+    return pex;
 }

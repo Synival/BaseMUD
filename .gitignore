@@ -1,7 +1,7 @@
 *.o
+/dump
 /player
 /gods
-/json
 /notes
 /area/shutdown.txt
 /area/*.dmp

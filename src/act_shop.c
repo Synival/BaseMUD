@@ -39,12 +39,14 @@
 #include "act_comm.h"
 #include "spell_cure.h"
 #include "materials.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "act_shop.h"
 
-bool do_filter_get_keeper (CHAR_DATA *ch, CHAR_DATA **out_keeper) {
-    CHAR_DATA *keeper;
-    SHOP_DATA *shop;
+bool do_filter_get_keeper (CHAR_T *ch, CHAR_T **out_keeper) {
+    CHAR_T *keeper;
+    SHOP_T *shop;
 
     FILTER ((keeper = char_get_keeper_room (ch)) == NULL,
         "You can't do that here.\n\r", ch);
@@ -86,12 +88,12 @@ bool do_filter_get_keeper (CHAR_DATA *ch, CHAR_DATA **out_keeper) {
     return FALSE;
 }
 
-void do_buy_pet (CHAR_DATA *ch, char *argument) {
+void do_buy_pet (CHAR_T *ch, char *argument) {
     char arg[MAX_INPUT_LENGTH];
     char buf[MAX_STRING_LENGTH];
-    CHAR_DATA *pet;
-    ROOM_INDEX_DATA *pRoomIndexNext;
-    ROOM_INDEX_DATA *in_room;
+    CHAR_T *pet;
+    ROOM_INDEX_T *pRoomIndexNext;
+    ROOM_INDEX_T *in_room;
     int cost, roll;
 
     smash_tilde (argument);
@@ -143,14 +145,12 @@ void do_buy_pet (CHAR_DATA *ch, char *argument) {
     argument = one_argument (argument, arg);
     if (arg[0] != '\0') {
         sprintf (buf, "%s %s", pet->name, arg);
-        str_free (pet->name);
-        pet->name = str_dup (buf);
+        str_replace_dup (&(pet->name), buf);
     }
 
     sprintf (buf, "%sA neck tag says 'I belong to %s'.\n\r",
         pet->description, ch->name);
-    str_free (pet->description);
-    pet->description = str_dup (buf);
+    str_replace_dup (&(pet->description), buf);
 
     char_to_room (pet, ch->in_room);
     add_follower (pet, ch);
@@ -160,9 +160,9 @@ void do_buy_pet (CHAR_DATA *ch, char *argument) {
     act ("$n bought $N as a pet.", ch, NULL, pet, TO_NOTCHAR);
 }
 
-void do_buy_item (CHAR_DATA *ch, char *argument) {
-    CHAR_DATA *keeper;
-    OBJ_DATA *obj, *t_obj;
+void do_buy_item (CHAR_T *ch, char *argument) {
+    CHAR_T *keeper;
+    OBJ_T *obj, *t_obj;
     char arg[MAX_INPUT_LENGTH];
     char buf[MAX_STRING_LENGTH];
     int number, count = 1;
@@ -260,9 +260,9 @@ DEFINE_DO_FUN (do_buy) {
         do_buy_item (ch, argument);
 }
 
-void do_list_pets (CHAR_DATA *ch, char *argument) {
-    ROOM_INDEX_DATA *pRoomIndexNext;
-    CHAR_DATA *pet;
+void do_list_pets (CHAR_T *ch, char *argument) {
+    ROOM_INDEX_T *pRoomIndexNext;
+    CHAR_T *pet;
     bool found;
     char *material_str;
 
@@ -294,11 +294,11 @@ void do_list_pets (CHAR_DATA *ch, char *argument) {
         send_to_char ("Sorry, we're out of pets right now.\n\r", ch);
 }
 
-void do_list_items (CHAR_DATA *ch, char *argument) {
+void do_list_items (CHAR_T *ch, char *argument) {
     char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *keeper;
-    OBJ_DATA *obj;
+    CHAR_T *keeper;
+    OBJ_T *obj;
     int cost, count;
     bool found;
     char *material_str;
@@ -360,8 +360,8 @@ DEFINE_DO_FUN (do_list) {
 DEFINE_DO_FUN (do_sell) {
     char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *keeper;
-    OBJ_DATA *obj;
+    CHAR_T *keeper;
+    OBJ_T *obj;
     int cost, roll;
 
     DO_REQUIRE_ARG (arg, "Sell what?\n\r");
@@ -422,8 +422,8 @@ DEFINE_DO_FUN (do_sell) {
 DEFINE_DO_FUN (do_value) {
     char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *keeper;
-    OBJ_DATA *obj;
+    CHAR_T *keeper;
+    OBJ_T *obj;
     int cost;
 
     DO_REQUIRE_ARG (arg, "Value what?\n\r");
@@ -446,7 +446,7 @@ DEFINE_DO_FUN (do_value) {
 }
 
 DEFINE_DO_FUN (do_heal) {
-    CHAR_DATA *mob;
+    CHAR_T *mob;
     char arg[MAX_INPUT_LENGTH];
     int cost, sn;
     SPELL_FUN *spell;
@@ -555,6 +555,6 @@ DEFINE_DO_FUN (do_heal) {
         return;
     else {
         say_spell (mob, sn, CLASS_CLERIC);
-        spell (sn, mob->level, mob, ch, TARGET_CHAR);
+        spell (sn, mob->level, mob, ch, TARGET_CHAR, "");
     }
 }

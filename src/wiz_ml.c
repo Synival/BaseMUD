@@ -41,15 +41,16 @@
 #include "find.h"
 #include "descs.h"
 #include "boot.h"
+#include "memory.h"
+#include "globals.h"
+#include "find.h"
 
 #include "wiz_ml.h"
-#include "find.h"
-#include "find.h"
 
 DEFINE_DO_FUN (do_advance) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     int level;
     int iLevel;
 
@@ -112,7 +113,7 @@ DEFINE_DO_FUN (do_advance) {
  *  Changed into a ROM patch after seeing the 100th request for it :) */
 DEFINE_DO_FUN (do_copyover) {
     FILE *fp;
-    DESCRIPTOR_DATA *d, *d_next;
+    DESCRIPTOR_T *d, *d_next;
     char buf[100], buf2[100], buf3[100];
     extern int port, control;    /* db.c */
 
@@ -133,7 +134,7 @@ DEFINE_DO_FUN (do_copyover) {
 
     /* For each playing descriptor, save its state */
     for (d = descriptor_list; d; d = d_next) {
-        CHAR_DATA *och = CH (d);
+        CHAR_T *och = CH (d);
         d_next = d->next;        /* We delete from the list , so need to save this */
 
         /* drop those logging on */
@@ -192,7 +193,7 @@ DEFINE_DO_FUN (do_copyover) {
 DEFINE_DO_FUN (do_trust) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
+    CHAR_T *victim;
     int level;
 
     argument = one_argument (argument, arg1);
@@ -212,9 +213,45 @@ DEFINE_DO_FUN (do_trust) {
     victim->trust = level;
 }
 
+#define DO_DUMP_SYNTAX \
+    "Syntax: dump <stats | world <raw | json>>\n\r"
+#define DO_DUMP_WORLD_SYNTAX \
+    "Syntax: dump world <raw | json>\n\r"
+
 DEFINE_DO_FUN (do_dump) {
-    MOB_INDEX_DATA *pMobIndex;
-    OBJ_INDEX_DATA *pObjIndex;
+    char arg1[MAX_STRING_LENGTH];
+    char arg2[MAX_STRING_LENGTH];
+
+    argument = one_argument (argument, arg1);
+    BAIL_IF (arg1[0] == '\0', DO_DUMP_SYNTAX, ch);
+
+    if (strcasecmp (arg1, "stats") == 0) {
+        do_dump_stats (ch);
+        return;
+    }
+    else if (strcasecmp (arg1, "world") == 0) {
+        argument = one_argument (argument, arg2);
+        BAIL_IF (arg2[0] == '\0', DO_DUMP_WORLD_SYNTAX, ch);
+
+        if (strcasecmp (arg2, "raw") == 0) {
+            do_dump_world_raw (ch);
+            return;
+        }
+        else if (strcasecmp (arg2, "json") == 0) {
+            do_dump_world_json (ch);
+            return;
+        }
+
+        send_to_char (DO_DUMP_WORLD_SYNTAX, ch);
+        return;
+    }
+
+    send_to_char (DO_DUMP_SYNTAX, ch);
+}
+
+void do_dump_stats (CHAR_T *ch) {
+    MOB_INDEX_T *pMobIndex;
+    OBJ_INDEX_T *pObjIndex;
     FILE *fp;
     int vnum, nMatch = 0;
 
@@ -222,17 +259,21 @@ DEFINE_DO_FUN (do_dump) {
     fclose (fpReserve);
 
     /* standard memory dump */
-    fp = fopen ("mem.dmp", "w");
-    fprintf (fp, "%s", memory_dump ("\n"));
+    printf_to_char (ch, "Writing '%smemory.dump'...\n\r", DUMP_DIR);
+    desc_flush_output (ch->desc);
+    fp = fopen (DUMP_DIR "memory.dump", "w");
+    fprintf (fp, "%s", mem_dump ("\n"));
     fclose (fp);
 
     /* start printing out mobile data */
-    fp = fopen ("mob.dmp", "w");
+    printf_to_char (ch, "Writing '%smob.dump'...\n\r", DUMP_DIR);
+    desc_flush_output (ch->desc);
+    fp = fopen (DUMP_DIR "mob.dump", "w");
 
     fprintf (fp, "Mobile Analysis\n");
     fprintf (fp, "---------------\n");
     nMatch = 0;
-    for (vnum = 0; nMatch < TOP(RECYCLE_MOB_INDEX_DATA); vnum++) {
+    for (vnum = 0; nMatch < TOP(RECYCLE_MOB_INDEX_T); vnum++) {
         if ((pMobIndex = get_mob_index (vnum)) != NULL) {
             nMatch++;
             fprintf (fp, "#%-4d %3d active %3d killed     %s\n",
@@ -243,11 +284,13 @@ DEFINE_DO_FUN (do_dump) {
     fclose (fp);
 
     /* start printing out object data */
-    fp = fopen ("obj.dmp", "w");
+    printf_to_char (ch, "Writing '%sobj.dump'...\n\r", DUMP_DIR);
+    desc_flush_output (ch->desc);
+    fp = fopen (DUMP_DIR "obj.dump", "w");
     fprintf (fp, "Object Analysis\n");
     fprintf (fp, "---------------\n");
     nMatch = 0;
-    for (vnum = 0; nMatch < TOP(RECYCLE_OBJ_INDEX_DATA); vnum++) {
+    for (vnum = 0; nMatch < TOP(RECYCLE_OBJ_INDEX_T); vnum++) {
         if ((pObjIndex = get_obj_index (vnum)) != NULL) {
             nMatch++;
             fprintf (fp, "#%-4d %3d active %3d reset      %s\n",
@@ -259,11 +302,36 @@ DEFINE_DO_FUN (do_dump) {
 
     /* unlock writing? */
     fpReserve = fopen (NULL_FILE, "r");
+    send_to_char ("Done.\n\r", ch);
+}
+
+void do_dump_world_raw (CHAR_T *ch) {
+    /* lock writing, dump, unlock writing. */
+    fclose (fpReserve);
+
+    printf_to_char (ch, "Writing '%sworld.dump'...\n\r", DUMP_DIR);
+    desc_flush_output (ch->desc);
+    db_dump_world (DUMP_DIR "world.dump");
+
+    fpReserve = fopen (NULL_FILE, "r");
+    send_to_char ("Done.\n\r", ch);
+}
+
+void do_dump_world_json (CHAR_T *ch) {
+    /* lock writing, dump, unlock writing. */
+    fclose (fpReserve);
+
+    printf_to_char (ch, "Writing '%sworld.json'...\n\r", DUMP_DIR);
+    desc_flush_output (ch->desc);
+    db_export_json (FALSE, DUMP_DIR "world.json");
+
+    fpReserve = fopen (NULL_FILE, "r");
+    send_to_char ("Done.\n\r", ch);
 }
 
 DEFINE_DO_FUN (do_violate) {
-    ROOM_INDEX_DATA *location;
-    CHAR_DATA *rch;
+    ROOM_INDEX_T *location;
+    CHAR_T *rch;
 
     BAIL_IF (argument[0] == '\0',
         "Goto where?\n\r", ch);

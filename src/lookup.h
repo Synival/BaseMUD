@@ -95,7 +95,7 @@
     return NULL
 
 #define SIMPLE_GET_NAME(vtype, val, name) \
-    const vtype * looked_up = val;        \
+    const vtype *looked_up = val;         \
     return (looked_up != NULL) ? looked_up->name : "unknown"
 
 #define SIMPLE_ARRAY_BUNDLE(btype, vtype, max)                      \
@@ -110,7 +110,7 @@
     const vtype * btype ## _get (int type)                          \
         { return (type < 0 || type >= max)                          \
             ? NULL : (btype ## _table + type); }                    \
-    const char * btype ## _get_name (int type)                      \
+    const char *btype ## _get_name (int type)                       \
         { return (type < 0 || type >= max)                          \
             ? NULL : (btype ## _get)(type)->name; }
 
@@ -125,17 +125,17 @@
         { SIMPLE_GET_BY_NAME_EXACT (btype ## _table, name, 0); }    \
     const vtype * btype ## _get (int ref)                           \
         { SIMPLE_GET (btype ## _table, ref, name, NULL, 0); }       \
-    const char * btype ## _get_name (int ref)                       \
+    const char *btype ## _get_name (int ref)                        \
         { SIMPLE_GET_NAME (vtype, btype ## _get (ref), name); }
 
 #define SIMPLE_REC_BUNDLE(btype, vtype, rtype)                             \
     vtype * btype ## _get_by_name (const char *name) {                     \
-        const OBJ_RECYCLE_DATA *orec = btype ## _get_rec_by_name (name);   \
+        const OBJ_RECYCLE_T *orec = btype ## _get_rec_by_name (name);      \
         return (orec == NULL) ? NULL : (vtype *) orec->obj;                \
     }                                                                      \
-    const OBJ_RECYCLE_DATA *btype ## _get_rec_by_name (const char *name) { \
-        const RECYCLE_TYPE *rec;                                           \
-        OBJ_RECYCLE_DATA *orec;                                            \
+    const OBJ_RECYCLE_T *btype ## _get_rec_by_name (const char *name) {    \
+        const RECYCLE_T *rec;                                              \
+        OBJ_RECYCLE_T *orec;                                               \
         rec = recycle_get (rtype);                                         \
         if (rec->obj_name_off < 0)                                         \
             return NULL;                                                   \
@@ -152,7 +152,7 @@
     const vtype * btype ## _get_by_name  (const char *name); \
     const vtype * btype ## _get_by_name_exact (const char *name); \
     const vtype * btype ## _get          (int type);         \
-    const char *  btype ## _get_name     (int type)
+    const char *btype ## _get_name     (int type)
 
 #define DEC_SIMPLE_HASH_BUNDLE(btype, vtype)                 \
     int           btype ## _lookup       (const char *name); \
@@ -160,97 +160,103 @@
     const vtype * btype ## _get_by_name  (const char *name); \
     const vtype * btype ## _get_by_name_exact (const char *name); \
     const vtype * btype ## _get          (int type);         \
-    const char *  btype ## _get_name     (int type)
+    const char *btype ## _get_name     (int type)
 
-#define DEC_SIMPLE_REC_BUNDLE(btype, vtype)                                \
-    vtype *                  btype ## _get_by_name     (const char *name); \
-    const OBJ_RECYCLE_DATA * btype ## _get_rec_by_name (const char *name)
+#define DEC_SIMPLE_REC_BUNDLE(btype, vtype)                             \
+    vtype *               btype ## _get_by_name     (const char *name); \
+    const OBJ_RECYCLE_T *btype ## _get_rec_by_name (const char *name)
 
 /* Function prototypes for flag management. */
 int lookup_backup (int (*func) (const char *str), char *str, char *errf,
     int backup);
-flag_t flag_lookup (const char *name, const FLAG_TYPE *flag_table);
-flag_t flag_lookup_exact (const char *name, const FLAG_TYPE *flag_table);
-const FLAG_TYPE *flag_get_by_name (const char *name, const FLAG_TYPE *flag_table);
-const FLAG_TYPE *flag_get_by_name_exact (const char *name, const FLAG_TYPE *flag_table);
-const FLAG_TYPE *flag_get (flag_t bit, const FLAG_TYPE *flag_table);
-const char *flag_get_name (flag_t bit, const FLAG_TYPE *flag_table);
+flag_t flag_lookup (const char *name, const FLAG_T *flag_table);
+flag_t flag_lookup_exact (const char *name, const FLAG_T *flag_table);
+const FLAG_T *flag_get_by_name (const char *name, const FLAG_T *flag_table);
+const FLAG_T *flag_get_by_name_exact (const char *name, const FLAG_T *flag_table);
+const FLAG_T *flag_get (flag_t bit, const FLAG_T *flag_table);
+const char *flag_get_name (flag_t bit, const FLAG_T *flag_table);
 bool is_table_flagged (const void *table, flag_t t_flags, flag_t f_flags);
 bool is_flag (const void *table);
 bool is_type (const void *table);
 bool is_special (const void *table);
-flag_t flag_value  (const FLAG_TYPE *flag_table, char *argument);
-const char *flag_string (const FLAG_TYPE *flag_table, flag_t bits);
-const char *flag_string_real (const FLAG_TYPE *flag_table, flag_t bits,
+flag_t flag_value (const FLAG_T *flag_table, const char *argument);
+flag_t flag_value_real (const FLAG_T *flag_table, const char *argument,
+    flag_t no_flag, bool exact);
+const char *flag_string (const FLAG_T *flag_table, flag_t bits);
+const char *flag_string_real (const FLAG_T *flag_table, flag_t bits,
     const char *none_str);
 
 /* Lookup bundles. */
-DEC_SIMPLE_ARRAY_BUNDLE (clan,       CLAN_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (position,   POSITION_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (sex,        SEX_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (size,       SIZE_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (race,       RACE_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (liq,        LIQ_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (class,      CLASS_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (dam,        DAM_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (attack,     ATTACK_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (skill,      SKILL_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (spec,       SPEC_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (group,      GROUP_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (wear_loc,   WEAR_LOC_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (recycle,    RECYCLE_TYPE);
-DEC_SIMPLE_ARRAY_BUNDLE (board,      BOARD_DATA);
-DEC_SIMPLE_ARRAY_BUNDLE (master,     TABLE_TYPE);
+DEC_SIMPLE_ARRAY_BUNDLE (clan,       CLAN_T);
+DEC_SIMPLE_ARRAY_BUNDLE (position,   POSITION_T);
+DEC_SIMPLE_ARRAY_BUNDLE (sex,        SEX_T);
+DEC_SIMPLE_ARRAY_BUNDLE (size,       SIZE_T);
+DEC_SIMPLE_ARRAY_BUNDLE (race,       RACE_T);
+DEC_SIMPLE_ARRAY_BUNDLE (liq,        LIQ_T);
+DEC_SIMPLE_ARRAY_BUNDLE (class,      CLASS_T);
+DEC_SIMPLE_ARRAY_BUNDLE (dam,        DAM_T);
+DEC_SIMPLE_ARRAY_BUNDLE (attack,     ATTACK_T);
+DEC_SIMPLE_ARRAY_BUNDLE (skill,      SKILL_T);
+DEC_SIMPLE_ARRAY_BUNDLE (spec,       SPEC_T);
+DEC_SIMPLE_ARRAY_BUNDLE (group,      GROUP_T);
+DEC_SIMPLE_ARRAY_BUNDLE (wear_loc,   WEAR_LOC_T);
+DEC_SIMPLE_ARRAY_BUNDLE (recycle,    RECYCLE_T);
+DEC_SIMPLE_ARRAY_BUNDLE (board,      BOARD_T);
+DEC_SIMPLE_ARRAY_BUNDLE (master,     TABLE_T);
 
-DEC_SIMPLE_HASH_BUNDLE (wiznet,     WIZNET_TYPE);
-DEC_SIMPLE_HASH_BUNDLE (weapon,     WEAPON_TYPE);
-DEC_SIMPLE_HASH_BUNDLE (item,       ITEM_TYPE);
-DEC_SIMPLE_HASH_BUNDLE (sector,     SECTOR_TYPE);
-DEC_SIMPLE_HASH_BUNDLE (map_lookup, MAP_LOOKUP_TABLE);
-DEC_SIMPLE_HASH_BUNDLE (map_flags,  MAP_LOOKUP_TABLE);
-DEC_SIMPLE_HASH_BUNDLE (nanny,      NANNY_HANDLER);
-DEC_SIMPLE_HASH_BUNDLE (furniture,  FURNITURE_BITS);
-DEC_SIMPLE_HASH_BUNDLE (door,       DOOR_TYPE);
-DEC_SIMPLE_HASH_BUNDLE (material,   MATERIAL_TYPE);
-DEC_SIMPLE_HASH_BUNDLE (colour,     COLOUR_TYPE);
-DEC_SIMPLE_HASH_BUNDLE (colour_setting, COLOUR_SETTING_TYPE);
-DEC_SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_TYPE);
-DEC_SIMPLE_HASH_BUNDLE (day,        DAY_TYPE);
-DEC_SIMPLE_HASH_BUNDLE (month,      MONTH_TYPE);
-DEC_SIMPLE_HASH_BUNDLE (sky,        SKY_TYPE);
-DEC_SIMPLE_HASH_BUNDLE (sun,        SUN_TYPE);
+DEC_SIMPLE_HASH_BUNDLE (wiznet,     WIZNET_T);
+DEC_SIMPLE_HASH_BUNDLE (weapon,     WEAPON_T);
+DEC_SIMPLE_HASH_BUNDLE (item,       ITEM_T);
+DEC_SIMPLE_HASH_BUNDLE (sector,     SECTOR_T);
+DEC_SIMPLE_HASH_BUNDLE (map_lookup, MAP_LOOKUP_TABLE_T);
+DEC_SIMPLE_HASH_BUNDLE (map_flags,  MAP_LOOKUP_TABLE_T);
+DEC_SIMPLE_HASH_BUNDLE (nanny,      NANNY_HANDLER_T);
+DEC_SIMPLE_HASH_BUNDLE (furniture,  FURNITURE_BITS_T);
+DEC_SIMPLE_HASH_BUNDLE (door,       DOOR_T);
+DEC_SIMPLE_HASH_BUNDLE (material,   MATERIAL_T);
+DEC_SIMPLE_HASH_BUNDLE (colour,     COLOUR_T);
+DEC_SIMPLE_HASH_BUNDLE (colour_setting, COLOUR_SETTING_T);
+DEC_SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_T);
+DEC_SIMPLE_HASH_BUNDLE (day,        DAY_T);
+DEC_SIMPLE_HASH_BUNDLE (month,      MONTH_T);
+DEC_SIMPLE_HASH_BUNDLE (sky,        SKY_T);
+DEC_SIMPLE_HASH_BUNDLE (sun,        SUN_T);
 
-DEC_SIMPLE_REC_BUNDLE (ban,         BAN_DATA);
-DEC_SIMPLE_REC_BUNDLE (area,        AREA_DATA);
-DEC_SIMPLE_REC_BUNDLE (room_index,  ROOM_INDEX_DATA);
-DEC_SIMPLE_REC_BUNDLE (obj_index,   OBJ_INDEX_DATA);
-DEC_SIMPLE_REC_BUNDLE (help,        HELP_DATA);
-DEC_SIMPLE_REC_BUNDLE (had,         HELP_AREA);
-DEC_SIMPLE_REC_BUNDLE (social,      SOCIAL_TYPE);
-DEC_SIMPLE_REC_BUNDLE (portal_exit, PORTAL_EXIT_TYPE);
+DEC_SIMPLE_REC_BUNDLE (ban,         BAN_T);
+DEC_SIMPLE_REC_BUNDLE (area,        AREA_T);
+DEC_SIMPLE_REC_BUNDLE (room_index,  ROOM_INDEX_T);
+DEC_SIMPLE_REC_BUNDLE (obj_index,   OBJ_INDEX_T);
+DEC_SIMPLE_REC_BUNDLE (help,        HELP_T);
+DEC_SIMPLE_REC_BUNDLE (had,         HELP_AREA_T);
+DEC_SIMPLE_REC_BUNDLE (social,      SOCIAL_T);
+DEC_SIMPLE_REC_BUNDLE (portal_exit, PORTAL_EXIT_T);
 
 /* Special lookup functions. */
 SPEC_FUN* spec_lookup_function (const char *name);
 const char *spec_function_name (SPEC_FUN *function);
 
-const OBJ_MAP        *obj_map_get        (int item_type);
-const OBJ_MAP_VALUE  *obj_map_value_get  (const OBJ_MAP *map, int index);
+const OBJ_MAP_T       *obj_map_get       (int item_type);
+const OBJ_MAP_VALUE_T *obj_map_value_get (const OBJ_MAP_T *map, int index);
 
 const char *map_lookup_get_string (int index, flag_t value);
+flag_t      map_lookup_get_type (int index, const char *str);
 int         map_flags_get_string  (int index, flag_t value, char *buf, size_t size);
-const TABLE_TYPE *master_get_first (void);
-const TABLE_TYPE *master_get_next (const TABLE_TYPE *table);
-AREA_DATA *area_get_by_vnum (int vnum);
-AREA_DATA *area_get_by_inner_vnum (int vnum);
+flag_t      map_flags_get_value (int index, const char *str);
+const TABLE_T *master_get_first (void);
+const TABLE_T *master_get_next (const TABLE_T *table);
+AREA_T *area_get_by_vnum (int vnum);
+AREA_T *area_get_by_filename (const char *filename);
+AREA_T *area_get_by_inner_vnum (int vnum);
 flag_t wear_get_loc_by_type (flag_t wear_flag);
 flag_t wear_get_type_by_loc (flag_t wear_loc);
-HELP_AREA *help_area_get_by_help (HELP_DATA * help);
-const DAY_TYPE *day_get_current ();
-const MONTH_TYPE *month_get_current ();
-const SKY_TYPE *sky_get_current ();
-const SUN_TYPE *sun_get_current ();
-const SKY_TYPE *sky_get_by_mmhg (int mmhg);
-const SUN_TYPE *sun_get_by_hour (int hour);
+HELP_AREA_T *help_area_get_by_help (HELP_T *help);
+HELP_AREA_T *help_area_get_by_filename (const char *filename);
+const DAY_T *day_get_current ();
+const MONTH_T *month_get_current ();
+const SKY_T *sky_get_current ();
+const SUN_T *sun_get_current ();
+const SKY_T *sky_get_by_mmhg (int mmhg);
+const SUN_T *sun_get_by_hour (int hour);
 int skill_get_index_by_slot (int slot);
 const char *ac_rating_phrase (int ac);
 const char *align_name (int align);
@@ -259,11 +265,13 @@ const char *sex_name (int sex);
 const char *ac_type_name (int type);
 const char *condition_name_by_percent (int percent);
 const char *wiz_class_by_level (int level);
-const STR_APP_TYPE *str_app_get (int attr);
-const INT_APP_TYPE *int_app_get (int attr);
-const WIS_APP_TYPE *wis_app_get (int attr);
-const DEX_APP_TYPE *dex_app_get (int attr);
-const CON_APP_TYPE *con_app_get (int attr);
+const STR_APP_T *str_app_get (int attr);
+const INT_APP_T *int_app_get (int attr);
+const WIS_APP_T *wis_app_get (int attr);
+const DEX_APP_T *dex_app_get (int attr);
+const CON_APP_T *con_app_get (int attr);
+PORTAL_EXIT_T *portal_exit_lookup_exact (const char *name);
+SOCIAL_T *social_lookup_exact (const char *name);
 
 /* Bit functions from handler.c */
 const char *affect_apply_name (flag_t type);

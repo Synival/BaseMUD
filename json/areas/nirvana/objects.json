@@ -1,0 +1,64 @@
+[
+  {"object": {
+    "area": "nirvana",
+    "anum": 0,
+    "name": "sword long the",
+    "short_descr": "THE long sword",
+    "description": "THE long sword of Primus is here.",
+    "material": "adamantite",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 5,
+      "dice_size": 6,
+      "attack_type": "slash",
+      "flags": "vorpal twohands"
+    },
+    "level": 39,
+    "weight": 400,
+    "cost": 8800,
+    "condition": 100,
+    "extra_flags": "glow magic antigood antievil",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "sword long the",
+      "description": "This is an extremely long and heavy sword, with many magical runes inscribed\non it.  It glows with the power of Primus, Lord of the Plane of Nirvana.\n"
+    }],
+    "affects": [
+      {
+        "apply": "damage roll",
+        "level": 39,
+        "modifier": 5,
+        "bit_type": "object",
+        "bits": null
+      },
+      {
+        "apply": "hit roll",
+        "level": 39,
+        "modifier": 5,
+        "bit_type": "object",
+        "bits": null
+      }
+    ]
+  }},
+  {"object": {
+    "area": "nirvana",
+    "anum": 1,
+    "name": "moonstone moon stone white",
+    "short_descr": "a luminescent moonstone",
+    "description": "A softly glowing white stone rests on the floor.",
+    "material": "gem",
+    "item_type": "warp_stone",
+    "values": {"value0": 24},
+    "level": 0,
+    "weight": 0,
+    "cost": 500,
+    "condition": 100,
+    "extra_flags": "glow nolocate",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "moonstone moon stone white",
+      "description": "Looking into the smooth surface of this moonstone, you feel strangely at \npeace and balance with the world around you.\n"
+    }]
+  }}
+]

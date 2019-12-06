@@ -42,7 +42,7 @@
 extern const struct mob_cmd_type mob_cmd_table[];
 
 /* Function prototypes. */
-void mob_interpret (CHAR_DATA * ch, char *argument);
+void mob_interpret (CHAR_T *ch, char *argument);
 char *mprog_type_to_name (flag_t type);
 
 /* Command functions.

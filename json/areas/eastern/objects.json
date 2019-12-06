@@ -1,0 +1,649 @@
+[
+  {"object": {
+    "area": "eastern",
+    "anum": 0,
+    "name": "pick",
+    "short_descr": "a small mining pick",
+    "description": "A small mining pick made of what appears to be silver lies on the ground.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 1,
+      "dice_size": 9,
+      "attack_type": "pierce"
+    },
+    "level": 5,
+    "weight": 30,
+    "cost": 320,
+    "condition": 100,
+    "extra_flags": "antigood",
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 1,
+    "name": "banded mail",
+    "short_descr": "a glowing suit of banded mail",
+    "description": "A glowing suit of banded mail lies on the ground.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 7,
+      "vs_bash": 7,
+      "vs_slash": 7
+    },
+    "level": 23,
+    "weight": 0,
+    "cost": 7300,
+    "condition": 100,
+    "extra_flags": "glow magic",
+    "wear_flags": "take body",
+    "affects": [
+      {
+        "apply": "armor class",
+        "level": 23,
+        "modifier": -4,
+        "bit_type": "object",
+        "bits": null
+      },
+      {
+        "apply": "dexterity",
+        "level": 23,
+        "modifier": 2,
+        "bit_type": "object",
+        "bits": null
+      }
+    ]
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 2,
+    "name": "halberd",
+    "short_descr": "the halberd",
+    "description": "A mighty halberd lies against the wall.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "polearm",
+      "dice_num": 2,
+      "dice_size": 14,
+      "attack_type": "cleave",
+      "flags": "twohands"
+    },
+    "level": 29,
+    "weight": 160,
+    "cost": 1620,
+    "condition": 100,
+    "extra_flags": "magic bless",
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "apply": "damage roll",
+        "level": 29,
+        "modifier": 2,
+        "bit_type": "object",
+        "bits": null
+      },
+      {
+        "apply": "hit roll",
+        "level": 29,
+        "modifier": 2,
+        "bit_type": "object",
+        "bits": null
+      }
+    ]
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 3,
+    "name": "amulet",
+    "short_descr": "the amulet",
+    "description": "A mushroom shaped amulet lies on the ground.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 5,
+    "weight": 20,
+    "cost": 550,
+    "condition": 100,
+    "extra_flags": "magic",
+    "wear_flags": "take neck",
+    "affects": [{
+      "apply": "constitution",
+      "level": 5,
+      "modifier": 1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 5,
+    "name": "bone",
+    "short_descr": "a large leg bone",
+    "description": "A large leg bone rests on the ground.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 1,
+      "dice_size": 4,
+      "attack_type": "pound"
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 140,
+    "condition": 100,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 6,
+    "name": "cactus",
+    "short_descr": "a small cactus cup",
+    "description": "A small cactus cup lies on the ground.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 5,
+      "filled": 5,
+      "liquid": "water"
+    },
+    "level": 0,
+    "weight": 60,
+    "cost": 5,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 7,
+    "name": "basket",
+    "short_descr": "a small wicker basket",
+    "description": "A small wicker basket sits on the ground.",
+    "item_type": "container",
+    "values": {
+      "capacity": 100,
+      "flags": "closeable closed",
+      "max_weight": 10,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 20,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 8,
+    "name": "basket",
+    "short_descr": "a small wicker basket",
+    "description": "A small wicker basket sits on the ground.",
+    "item_type": "container",
+    "values": {
+      "capacity": 100,
+      "flags": "closeable closed",
+      "max_weight": 10,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 20,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 9,
+    "name": "basket",
+    "short_descr": "a small wicker basket",
+    "description": "A small wicker basket sits on the ground.",
+    "item_type": "container",
+    "values": {
+      "capacity": 100,
+      "flags": "closeable closed",
+      "max_weight": 10,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 20,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 10,
+    "name": "basket",
+    "short_descr": "a small wicker basket",
+    "description": "A small wicker basket sits on the ground.",
+    "item_type": "container",
+    "values": {
+      "capacity": 100,
+      "flags": "closeable closed",
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "condition": 100
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 11,
+    "name": "rope",
+    "short_descr": "a coil of rope",
+    "description": "A long coil of rope lies on the ground.",
+    "item_type": "furniture",
+    "values": {
+      "heal_rate": 100,
+      "mana_rate": 100
+    },
+    "level": 0,
+    "weight": 120,
+    "cost": 20,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 12,
+    "name": "stakes",
+    "short_descr": "a bunch of stakes",
+    "description": "A small bundle of stakes lies here.",
+    "item_type": "furniture",
+    "values": {
+      "heal_rate": 100,
+      "mana_rate": 100
+    },
+    "level": 0,
+    "weight": 60,
+    "cost": 20,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 13,
+    "name": "map",
+    "short_descr": "an old, tattered map",
+    "description": "An old, tattered, and much faded map lies here.",
+    "item_type": "furniture",
+    "values": {
+      "heal_rate": 100,
+      "mana_rate": 100
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 5,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 14,
+    "name": "turban",
+    "short_descr": "a thick padded turban",
+    "description": "A thick padded turban lies here.",
+    "item_type": "clothing",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 10,
+    "condition": 100,
+    "extra_flags": "magic nodrop",
+    "wear_flags": "take head",
+    "affects": [{
+      "apply": "armor class",
+      "level": 0,
+      "modifier": 1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 15,
+    "name": "coins",
+    "short_descr": "a great pile of treasure",
+    "description": "A great, gleaming pile of treasure lies at your feet.",
+    "item_type": "money",
+    "values": {
+      "silver": 427,
+      "gold": 12
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 16,
+    "name": "sabre",
+    "short_descr": "a long, curved sabre",
+    "description": "A long, curved sabre stands upright in the ground.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 2,
+      "dice_size": 8,
+      "attack_type": "slash"
+    },
+    "level": 16,
+    "weight": 70,
+    "cost": 1410,
+    "condition": 100,
+    "extra_flags": "antineutral",
+    "wear_flags": "take wield",
+    "affects": [{
+      "apply": "hit roll",
+      "level": 16,
+      "modifier": 2,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 17,
+    "name": "scimitar",
+    "short_descr": "a curved scimitar",
+    "description": "A curved scimitar lies at your feet.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 2,
+      "dice_size": 7,
+      "attack_type": "slash"
+    },
+    "level": 12,
+    "weight": 60,
+    "cost": 990,
+    "condition": 100,
+    "extra_flags": "antineutral",
+    "wear_flags": "take wield",
+    "affects": [{
+      "apply": "hit roll",
+      "level": 12,
+      "modifier": 1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 18,
+    "name": "cutlass",
+    "short_descr": "a long, pointed cutlass",
+    "description": "A long, pointed cutlass lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 2,
+      "dice_size": 7,
+      "attack_type": "slash"
+    },
+    "level": 12,
+    "weight": 50,
+    "cost": 930,
+    "condition": 100,
+    "extra_flags": "antineutral",
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 19,
+    "name": "potion pink",
+    "short_descr": "a pink potion",
+    "description": "A pink potion stands here.",
+    "item_type": "potion",
+    "values": {
+      "level": 25,
+      "skill1": "heal",
+      "skill2": "remove curse"
+    },
+    "level": 13,
+    "weight": 60,
+    "cost": 1220,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 20,
+    "name": "wand platinum",
+    "short_descr": "a platinum wand",
+    "description": "A platinum wand lies here.",
+    "item_type": "wand",
+    "values": {
+      "level": 30,
+      "recharge": 10,
+      "charges": 10,
+      "skill": "magic missile"
+    },
+    "level": 2,
+    "weight": 80,
+    "cost": 990,
+    "condition": 100,
+    "extra_flags": "hum",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 21,
+    "name": "bow energy strange",
+    "short_descr": "a strange energy bow",
+    "description": "A strange energy bow lies here.",
+    "item_type": "weapon",
+    "values": {
+      "dice_num": 4,
+      "dice_size": 5,
+      "attack_type": "blast"
+    },
+    "level": 21,
+    "weight": 200,
+    "cost": 2600,
+    "condition": 100,
+    "extra_flags": "glow hum magic bless",
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 22,
+    "name": "scroll encrypted",
+    "short_descr": "an encrypted scroll",
+    "description": "An encrypted scroll lies at your feet.",
+    "item_type": "scroll",
+    "values": {
+      "level": 22,
+      "skill1": "cure blindness",
+      "skill2": "remove curse",
+      "skill3": "cure poison"
+    },
+    "level": 11,
+    "weight": 70,
+    "cost": 1730,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 23,
+    "name": "chest",
+    "short_descr": "an iron bound chest",
+    "description": "An iron bound chest with a shiny lock sits here.",
+    "item_type": "container",
+    "values": {
+      "capacity": 200,
+      "flags": "closeable closed locked",
+      "key": 5024,
+      "max_weight": 200,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "condition": 100
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 24,
+    "name": "key golden",
+    "short_descr": "a golden key",
+    "description": "A shiny golden key lies here.",
+    "item_type": "key",
+    "values": {"value0": 10},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 25,
+    "name": "bracelet copper",
+    "short_descr": "a copper bracelet",
+    "description": "A tarnished copper bracelet lies at your feet.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 20,
+    "weight": 100,
+    "cost": 1300,
+    "condition": 100,
+    "extra_flags": "magic nodrop",
+    "wear_flags": "take wrist",
+    "affects": [
+      {
+        "apply": "damage roll",
+        "level": 20,
+        "modifier": 2,
+        "bit_type": "object",
+        "bits": null
+      },
+      {
+        "apply": "hp",
+        "level": 20,
+        "modifier": 10,
+        "bit_type": "object",
+        "bits": null
+      }
+    ]
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 26,
+    "name": "gem ruby",
+    "short_descr": "a large ruby",
+    "description": "A large ruby lies on the ground collecting dust.",
+    "item_type": "gem",
+    "values": {"value0": 20},
+    "level": 0,
+    "weight": 1,
+    "cost": 5000,
+    "condition": 100,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 27,
+    "name": "gem diamond glittering",
+    "short_descr": "a glittering diamond",
+    "description": "A glittering diamond lies at your feet.",
+    "item_type": "gem",
+    "values": {"value0": 21},
+    "level": 0,
+    "weight": 1,
+    "cost": 6000,
+    "condition": 100,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 28,
+    "name": "gem sapphire",
+    "short_descr": "a brilliant sapphire",
+    "description": "A brilliant sapphire lies here twinkling.",
+    "item_type": "gem",
+    "values": {"value0": 22},
+    "level": 0,
+    "weight": 1,
+    "cost": 2000,
+    "condition": 100,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 29,
+    "name": "gem lapis",
+    "short_descr": "a deep blue lapis lazuli",
+    "description": "A deep blue lapis lazuli gem lies here.",
+    "item_type": "gem",
+    "values": {"value0": 24},
+    "level": 0,
+    "weight": 1,
+    "cost": 800,
+    "condition": 100,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 30,
+    "name": "jewel tiger",
+    "short_descr": "the tiger jewel",
+    "description": "The Tiger Jewel lies here blazing.",
+    "item_type": "gem",
+    "values": {},
+    "level": 5,
+    "weight": 1,
+    "cost": 550,
+    "condition": 100,
+    "extra_flags": "bless",
+    "wear_flags": "take hold",
+    "affects": [{
+      "apply": "dexterity",
+      "level": 5,
+      "modifier": 1,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 31,
+    "name": "jewel red-eyed",
+    "short_descr": "the red-eyed jewel",
+    "description": "The red-eyed jewel glares at you greedily.",
+    "item_type": "gem",
+    "values": {},
+    "level": 15,
+    "weight": 1,
+    "cost": 2600,
+    "condition": 100,
+    "wear_flags": "take hold",
+    "affects": [{
+      "apply": "intelligence",
+      "level": 15,
+      "modifier": 2,
+      "bit_type": "object",
+      "bits": null
+    }]
+  }},
+  {"object": {
+    "area": "eastern",
+    "anum": 32,
+    "name": "gem emerald",
+    "short_descr": "a fiery green emerald",
+    "description": "A fiery green emerald sits here.",
+    "item_type": "warp_stone",
+    "values": {"value0": 23},
+    "level": 0,
+    "weight": 1,
+    "cost": 4000,
+    "condition": 100,
+    "extra_flags": "nolocate",
+    "wear_flags": "take hold"
+  }}
+]

@@ -31,11 +31,11 @@
 #include "merc.h"
 
 /* Function prototypes. */
-void load_old_mob (FILE * fp);
-void load_old_obj (FILE * fp);
-int convert_object_reset (RESET_DATA *pReset);
+void load_old_mob (FILE *fp);
+void load_old_obj (FILE *fp);
+int convert_object_reset (RESET_T *pReset);
 void convert_objects (void);
-void convert_object (OBJ_INDEX_DATA * pObjIndex);
-void convert_mobile (MOB_INDEX_DATA * pMobIndex);
+void convert_object (OBJ_INDEX_T *pObjIndex);
+void convert_mobile (MOB_INDEX_T *pMobIndex);
 
 #endif

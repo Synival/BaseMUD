@@ -36,13 +36,15 @@
 #include "comm.h"
 #include "lookup.h"
 #include "materials.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "objs.h"
 
 /* Create an instance of an object. */
-OBJ_DATA *obj_create (OBJ_INDEX_DATA * pObjIndex, int level) {
-    AFFECT_DATA *paf;
-    OBJ_DATA *obj;
+OBJ_T *obj_create (OBJ_INDEX_T *pObjIndex, int level) {
+    AFFECT_T *paf;
+    OBJ_T *obj;
     int i;
 
     EXIT_IF_BUG (pObjIndex == NULL,
@@ -187,10 +189,10 @@ OBJ_DATA *obj_create (OBJ_INDEX_DATA * pObjIndex, int level) {
 }
 
 /* duplicate an object exactly -- except contents */
-void obj_clone (OBJ_DATA * parent, OBJ_DATA * clone) {
+void obj_clone (OBJ_T *parent, OBJ_T *clone) {
     int i;
-    AFFECT_DATA *paf;
-    EXTRA_DESCR_DATA *ed, *ed_new;
+    AFFECT_T *paf;
+    EXTRA_DESCR_T *ed, *ed_new;
 
     if (parent == NULL || clone == NULL)
         return;
@@ -222,13 +224,13 @@ void obj_clone (OBJ_DATA * parent, OBJ_DATA * clone) {
         ed_new = extra_descr_new ();
         str_replace_dup (&ed_new->keyword, ed->keyword);
         str_replace_dup (&ed_new->description, ed->description);
-        LIST_BACK (ed_new, next, clone->extra_descr, EXTRA_DESCR_DATA);
+        LIST_BACK (ed_new, next, clone->extra_descr, EXTRA_DESCR_T);
     }
 }
 
 /* returns number of people on an object */
-int obj_count_users (OBJ_DATA * obj) {
-    CHAR_DATA *fch;
+int obj_count_users (OBJ_T *obj) {
+    CHAR_T *fch;
     int count = 0;
 
     if (obj->in_room == NULL)
@@ -240,7 +242,7 @@ int obj_count_users (OBJ_DATA * obj) {
 }
 
 /* Give an obj to a char. */
-void obj_to_char (OBJ_DATA * obj, CHAR_DATA * ch) {
+void obj_to_char (OBJ_T *obj, CHAR_T *ch) {
     LIST_FRONT (obj, next_content, ch->carrying);
     obj->carried_by = ch;
     obj->in_room = NULL;
@@ -250,22 +252,22 @@ void obj_to_char (OBJ_DATA * obj, CHAR_DATA * ch) {
 }
 
 /* Take an obj from its character. */
-void obj_from_char (OBJ_DATA * obj) {
-    CHAR_DATA *ch;
+void obj_from_char (OBJ_T *obj) {
+    CHAR_T *ch;
 
     BAIL_IF_BUG ((ch = obj->carried_by) == NULL,
         "obj_from_char: null ch.", 0);
     if (obj->wear_loc != WEAR_NONE)
         char_unequip_obj (ch, obj);
 
-    LIST_REMOVE (obj, next_content, ch->carrying, OBJ_DATA, NO_FAIL);
+    LIST_REMOVE (obj, next_content, ch->carrying, OBJ_T, NO_FAIL);
     obj->carried_by = NULL;
     ch->carry_number -= obj_get_carry_number (obj);
     ch->carry_weight -= obj_get_weight (obj);
 }
 
 /* Find the ac value of an obj, including position effect. */
-int obj_get_ac_type (OBJ_DATA * obj, int iWear, int type) {
+int obj_get_ac_type (OBJ_T *obj, int iWear, int type) {
     flag_t ac_value;
     if (obj->item_type != ITEM_ARMOR)
         return 0;
@@ -306,8 +308,8 @@ int obj_get_ac_type (OBJ_DATA * obj, int iWear, int type) {
 }
 
 /* Count occurrences of an obj in a list. */
-int obj_index_count_in_list (OBJ_INDEX_DATA *pObjIndex, OBJ_DATA *list) {
-    OBJ_DATA *obj;
+int obj_index_count_in_list (OBJ_INDEX_T *pObjIndex, OBJ_T *list) {
+    OBJ_T *obj;
     int nMatch;
 
     nMatch = 0;
@@ -318,9 +320,9 @@ int obj_index_count_in_list (OBJ_INDEX_DATA *pObjIndex, OBJ_DATA *list) {
 }
 
 /* Move an obj out of a room. */
-void obj_from_room (OBJ_DATA * obj) {
-    ROOM_INDEX_DATA *in_room;
-    CHAR_DATA *ch;
+void obj_from_room (OBJ_T *obj) {
+    ROOM_INDEX_T *in_room;
+    CHAR_T *ch;
 
     BAIL_IF_BUG ((in_room = obj->in_room) == NULL,
         "obj_from_room: NULL.", 0);
@@ -328,12 +330,12 @@ void obj_from_room (OBJ_DATA * obj) {
         if (ch->on == obj)
             ch->on = NULL;
 
-    LIST_REMOVE (obj, next_content, in_room->contents, OBJ_DATA, NO_FAIL);
+    LIST_REMOVE (obj, next_content, in_room->contents, OBJ_T, NO_FAIL);
     obj->in_room = NULL;
 }
 
 /* Move an obj into a room. */
-void obj_to_room (OBJ_DATA * obj, ROOM_INDEX_DATA * pRoomIndex) {
+void obj_to_room (OBJ_T *obj, ROOM_INDEX_T *pRoomIndex) {
     LIST_FRONT (obj, next_content, pRoomIndex->contents);
     obj->in_room = pRoomIndex;
     obj->carried_by = NULL;
@@ -341,7 +343,7 @@ void obj_to_room (OBJ_DATA * obj, ROOM_INDEX_DATA * pRoomIndex) {
 }
 
 /* Move an object into an object. */
-void obj_to_obj (OBJ_DATA * obj, OBJ_DATA * obj_to) {
+void obj_to_obj (OBJ_T *obj, OBJ_T *obj_to) {
     LIST_FRONT (obj, next_content, obj_to->contains);
     obj->in_obj = obj_to;
     obj->in_room = NULL;
@@ -359,12 +361,12 @@ void obj_to_obj (OBJ_DATA * obj, OBJ_DATA * obj_to) {
 }
 
 /* Move an object out of an object. */
-void obj_from_obj (OBJ_DATA * obj) {
-    OBJ_DATA *obj_from;
+void obj_from_obj (OBJ_T *obj) {
+    OBJ_T *obj_from;
     BAIL_IF_BUG ((obj_from = obj->in_obj) == NULL,
         "obj_from_obj: null obj_from.", 0);
 
-    LIST_REMOVE (obj, next_content, obj_from->contains, OBJ_DATA, NO_FAIL);
+    LIST_REMOVE (obj, next_content, obj_from->contains, OBJ_T, NO_FAIL);
     obj->in_obj = NULL;
 
     for (; obj_from != NULL; obj_from = obj_from->in_obj) {
@@ -377,9 +379,9 @@ void obj_from_obj (OBJ_DATA * obj) {
 }
 
 /* Extract an obj from the world. */
-void obj_extract (OBJ_DATA * obj) {
-    OBJ_DATA *obj_content;
-    OBJ_DATA *obj_next;
+void obj_extract (OBJ_T *obj) {
+    OBJ_T *obj_content;
+    OBJ_T *obj_next;
 
     if (obj->in_room != NULL)
         obj_from_room (obj);
@@ -393,15 +395,15 @@ void obj_extract (OBJ_DATA * obj) {
         obj_extract (obj_content);
     }
 
-    LIST_REMOVE (obj, next, object_list, OBJ_DATA, return);
+    LIST_REMOVE (obj, next, object_list, OBJ_T, return);
     --obj->pIndexData->count;
     obj_free (obj);
 }
 
 /* Create a 'money' obj. */
-OBJ_DATA *obj_create_money (int gold, int silver) {
+OBJ_T *obj_create_money (int gold, int silver) {
     char buf[MAX_STRING_LENGTH];
-    OBJ_DATA *obj;
+    OBJ_T *obj;
 
     if (gold < 0 || silver < 0 || (gold == 0 && silver == 0)) {
         bug ("obj_create_money: zero or negative money.", UMIN (gold, silver));
@@ -416,8 +418,7 @@ OBJ_DATA *obj_create_money (int gold, int silver) {
     else if (silver == 0) {
         obj = obj_create (get_obj_index (OBJ_VNUM_GOLD_SOME), 0);
         sprintf (buf, obj->short_descr, gold);
-        str_free (obj->short_descr);
-        obj->short_descr = str_dup (buf);
+        str_replace_dup (&(obj->short_descr), buf);
         obj->v.money.gold = gold;
         obj->cost = gold;
         obj->weight = gold / 5;
@@ -425,8 +426,7 @@ OBJ_DATA *obj_create_money (int gold, int silver) {
     else if (gold == 0) {
         obj = obj_create (get_obj_index (OBJ_VNUM_SILVER_SOME), 0);
         sprintf (buf, obj->short_descr, silver);
-        str_free (obj->short_descr);
-        obj->short_descr = str_dup (buf);
+        str_replace_dup (&(obj->short_descr), buf);
         obj->v.money.silver = silver;
         obj->cost = silver;
         obj->weight = silver / 20;
@@ -434,8 +434,7 @@ OBJ_DATA *obj_create_money (int gold, int silver) {
     else {
         obj = obj_create (get_obj_index (OBJ_VNUM_COINS), 0);
         sprintf (buf, obj->short_descr, silver, gold);
-        str_free (obj->short_descr);
-        obj->short_descr = str_dup (buf);
+        str_replace_dup (&(obj->short_descr), buf);
         obj->v.money.silver = silver;
         obj->v.money.gold   = gold;
         obj->cost = 100 * gold + silver;
@@ -446,7 +445,7 @@ OBJ_DATA *obj_create_money (int gold, int silver) {
 
 /* Return # of objects which an object counts as.
  * Thanks to Tony Chamberlain for the correct recursive code here. */
-int obj_get_carry_number (OBJ_DATA * obj) {
+int obj_get_carry_number (OBJ_T *obj) {
     int number;
     switch (obj->item_type) {
         case ITEM_CONTAINER:
@@ -464,7 +463,7 @@ int obj_get_carry_number (OBJ_DATA * obj) {
 }
 
 /* Return weight of an object, including weight of contents. */
-int obj_get_weight (OBJ_DATA * obj) {
+int obj_get_weight (OBJ_T *obj) {
     int weight, mult;
 
     weight = obj->weight;
@@ -475,7 +474,7 @@ int obj_get_weight (OBJ_DATA * obj) {
     return weight;
 }
 
-int obj_get_true_weight (OBJ_DATA * obj) {
+int obj_get_true_weight (OBJ_T *obj) {
     int weight;
 
     weight = obj->weight;
@@ -485,7 +484,7 @@ int obj_get_true_weight (OBJ_DATA * obj) {
     return weight;
 }
 
-char *obj_format_to_char (OBJ_DATA * obj, CHAR_DATA * ch, bool fShort) {
+char *obj_format_to_char (OBJ_T *obj, CHAR_T *ch, bool fShort) {
     static char buf[MAX_STRING_LENGTH];
     buf[0] = '\0';
 
@@ -493,7 +492,7 @@ char *obj_format_to_char (OBJ_DATA * obj, CHAR_DATA * ch, bool fShort) {
         || (obj->description == NULL || obj->description[0] == '\0'))
         return buf;
 
-#ifndef VANILLA
+#ifdef BASEMUD_COLOR_STATUS_EFFECTS
     if (IS_OBJ_STAT (obj, ITEM_INVIS))
         strcat (buf, "({DInvis{x) ");
     if (IS_AFFECTED (ch, AFF_DETECT_EVIL) && IS_OBJ_STAT (obj, ITEM_EVIL))
@@ -542,15 +541,15 @@ char *obj_format_to_char (OBJ_DATA * obj, CHAR_DATA * ch, bool fShort) {
 
 /* Show a list to a character.
  * Can coalesce duplicated items.  */
-void obj_list_show_to_char (OBJ_DATA * list, CHAR_DATA * ch, bool fShort,
+void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool fShort,
     bool fShowNothing)
 {
     char buf[MAX_STRING_LENGTH];
-    BUFFER *output;
+    BUFFER_T *output;
     char **prgpstrShow;
     int *prgnShow;
     char *pstrShow;
-    OBJ_DATA *obj;
+    OBJ_T *obj;
     int nShow;
     int iShow;
     int count;
@@ -565,8 +564,8 @@ void obj_list_show_to_char (OBJ_DATA * list, CHAR_DATA * ch, bool fShort,
     count = 0;
     for (obj = list; obj != NULL; obj = obj->next_content)
         count++;
-    prgpstrShow = alloc_mem (count * sizeof (char *));
-    prgnShow = alloc_mem (count * sizeof (int));
+    prgpstrShow = mem_alloc (count * sizeof (char *));
+    prgnShow = mem_alloc (count * sizeof (int));
     nShow = 0;
 
     /* Format the list of objects.  */
@@ -599,7 +598,7 @@ void obj_list_show_to_char (OBJ_DATA * list, CHAR_DATA * ch, bool fShort,
     /* Output the formatted list. */
     for (iShow = 0; iShow < nShow; iShow++) {
         if (prgpstrShow[iShow][0] == '\0') {
-            str_free (prgpstrShow[iShow]);
+            str_free (&(prgpstrShow[iShow]));
             continue;
         }
 
@@ -613,7 +612,7 @@ void obj_list_show_to_char (OBJ_DATA * list, CHAR_DATA * ch, bool fShort,
         }
         add_buf (output, prgpstrShow[iShow]);
         add_buf (output, "\n\r");
-        str_free (prgpstrShow[iShow]);
+        str_free (&(prgpstrShow[iShow]));
     }
 
     if (fShowNothing && nShow == 0) {
@@ -629,8 +628,8 @@ void obj_list_show_to_char (OBJ_DATA * list, CHAR_DATA * ch, bool fShort,
     mem_free (prgnShow, count * sizeof (int));
 }
 
-int obj_furn_preposition_type (OBJ_DATA * obj, int position) {
-    const FURNITURE_BITS *bits;
+int obj_furn_preposition_type (OBJ_T *obj, int position) {
+    const FURNITURE_BITS_T *bits;
     if (obj == NULL)
         return POS_PREP_NO_OBJECT;
     if (obj->item_type != ITEM_FURNITURE)
@@ -644,7 +643,7 @@ int obj_furn_preposition_type (OBJ_DATA * obj, int position) {
     else                                            return POS_PREP_BY;
 }
 
-const char *obj_furn_preposition_base (OBJ_DATA * obj, int position,
+const char *obj_furn_preposition_base (OBJ_T *obj, int position,
     const char *at, const char *on, const char *in, const char *by)
 {
     int pos_type;
@@ -661,17 +660,17 @@ const char *obj_furn_preposition_base (OBJ_DATA * obj, int position,
     }
 }
 
-const char *obj_furn_preposition (OBJ_DATA * obj, int position) {
+const char *obj_furn_preposition (OBJ_T *obj, int position) {
     return obj_furn_preposition_base (obj, position, "at", "on", "in", "by");
 }
 
-bool obj_is_container (OBJ_DATA *obj) {
+bool obj_is_container (OBJ_T *obj) {
     return obj->item_type == ITEM_CONTAINER ||
            obj->item_type == ITEM_CORPSE_NPC ||
            obj->item_type == ITEM_CORPSE_PC;
 }
 
-bool obj_can_fit_in (OBJ_DATA *obj, OBJ_DATA *container) {
+bool obj_can_fit_in (OBJ_T *obj, OBJ_T *container) {
     int weight;
     if (!obj_is_container (container))
         return FALSE;
@@ -689,8 +688,8 @@ bool obj_can_fit_in (OBJ_DATA *obj, OBJ_DATA *container) {
 
 /* Find some object with a given index data.
  * Used by area-reset 'P' command. */
-OBJ_DATA *obj_get_by_index (OBJ_INDEX_DATA * pObjIndex) {
-    OBJ_DATA *obj;
+OBJ_T *obj_get_by_index (OBJ_INDEX_T *pObjIndex) {
+    OBJ_T *obj;
     for (obj = object_list; obj != NULL; obj = obj->next)
         if (obj->pIndexData == pObjIndex)
             return obj;
@@ -698,8 +697,8 @@ OBJ_DATA *obj_get_by_index (OBJ_INDEX_DATA * pObjIndex) {
 }
 
 /* insert an object at the right spot for the keeper */
-void obj_to_keeper (OBJ_DATA * obj, CHAR_DATA * ch) {
-    OBJ_DATA *t_obj, *t_obj_next;
+void obj_to_keeper (OBJ_T *obj, CHAR_T *ch) {
+    OBJ_T *t_obj, *t_obj_next;
 
     /* see if any duplicates are found */
     for (t_obj = ch->carrying; t_obj != NULL; t_obj = t_obj_next) {
@@ -727,14 +726,14 @@ void obj_to_keeper (OBJ_DATA * obj, CHAR_DATA * ch) {
     ch->carry_weight += obj_get_weight (obj);
 }
 
-bool obj_is_furniture (OBJ_DATA * obj, flag_t bits) {
+bool obj_is_furniture (OBJ_T *obj, flag_t bits) {
     if (obj->item_type != ITEM_FURNITURE)
         return FALSE;
     return ((obj->v.furniture.flags & bits) != 0) ? TRUE : FALSE;
 }
 
-void obj_enchant (OBJ_DATA *obj) {
-    AFFECT_DATA *paf, *af_new;
+void obj_enchant (OBJ_T *obj) {
+    AFFECT_T *paf, *af_new;
 
     if (obj->enchanted)
         return;
@@ -758,7 +757,7 @@ flag_t obj_exit_flag_for_container (flag_t exit_flag) {
     }
 }
 
-bool obj_set_exit_flag (OBJ_DATA *obj, flag_t exit_flag) {
+bool obj_set_exit_flag (OBJ_T *obj, flag_t exit_flag) {
     switch (obj->item_type) {
         case ITEM_PORTAL:
             SET_BIT (obj->v.portal.exit_flags, exit_flag);
@@ -775,7 +774,7 @@ bool obj_set_exit_flag (OBJ_DATA *obj, flag_t exit_flag) {
     }
 }
 
-bool obj_remove_exit_flag (OBJ_DATA *obj, flag_t exit_flag) {
+bool obj_remove_exit_flag (OBJ_T *obj, flag_t exit_flag) {
     switch (obj->item_type) {
         case ITEM_PORTAL:
             REMOVE_BIT (obj->v.portal.exit_flags, exit_flag);
@@ -793,7 +792,7 @@ bool obj_remove_exit_flag (OBJ_DATA *obj, flag_t exit_flag) {
 }
 
 /* Former macros. */
-bool obj_can_wear_flag (OBJ_DATA *obj, flag_t flag) {
+bool obj_can_wear_flag (OBJ_T *obj, flag_t flag) {
     if (IS_SET ((obj)->wear_flags, flag))
         return TRUE;
     else if (obj->item_type == ITEM_LIGHT && flag == ITEM_WEAR_LIGHT)
@@ -801,7 +800,7 @@ bool obj_can_wear_flag (OBJ_DATA *obj, flag_t flag) {
     return FALSE;
 }
 
-bool obj_index_can_wear_flag (OBJ_INDEX_DATA *obj, flag_t flag) {
+bool obj_index_can_wear_flag (OBJ_INDEX_T *obj, flag_t flag) {
     if (IS_SET ((obj)->wear_flags, flag))
         return TRUE;
     else if (obj->item_type == ITEM_LIGHT && flag == ITEM_WEAR_LIGHT)
@@ -809,7 +808,7 @@ bool obj_index_can_wear_flag (OBJ_INDEX_DATA *obj, flag_t flag) {
     return FALSE;
 }
 
-int obj_get_weight_mult (OBJ_DATA *obj) {
+int obj_get_weight_mult (OBJ_T *obj) {
     return obj->item_type == ITEM_CONTAINER
         ? obj->v.container.weight_mult
         : 100;

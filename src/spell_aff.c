@@ -40,8 +40,8 @@
 #include "spell_aff.h"
 
 DEFINE_SPELL_FUN (spell_armor) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, sn, 0, ch,
             "You are already armored.",
@@ -57,14 +57,14 @@ DEFINE_SPELL_FUN (spell_armor) {
 }
 
 DEFINE_SPELL_FUN (spell_bless_object) {
-    OBJ_DATA *obj = (OBJ_DATA *) vo;
-    AFFECT_DATA af;
+    OBJ_T *obj = (OBJ_T *) vo;
+    AFFECT_T af;
 
     BAIL_IF_ACT (IS_OBJ_STAT (obj, ITEM_BLESS),
         "$p is already blessed.", ch, obj, NULL);
 
     if (IS_OBJ_STAT (obj, ITEM_EVIL)) {
-        AFFECT_DATA *paf = affect_find (obj->affected, gsn_curse);
+        AFFECT_T *paf = affect_find (obj->affected, gsn_curse);
         int paf_level = (paf != NULL) ? paf->level : obj->level;
 
         BAIL_IF_ACT (saves_dispel (level, paf_level, 0),
@@ -87,8 +87,8 @@ DEFINE_SPELL_FUN (spell_bless_object) {
 }
 
 DEFINE_SPELL_FUN (spell_bless_char) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, sn, 0, ch,
             "You are already blessed.",
@@ -109,20 +109,20 @@ DEFINE_SPELL_FUN (spell_bless_char) {
 
 DEFINE_SPELL_FUN (spell_bless) {
     if (target == TARGET_OBJ)
-        spell_bless_object (sn, level, ch, vo, target);
+        spell_bless_object (sn, level, ch, vo, target, target_name);
     else
-        spell_bless_char (sn, level, ch, vo, target);
+        spell_bless_char (sn, level, ch, vo, target, target_name);
 }
 
 DEFINE_SPELL_FUN (spell_blindness)
-    { spell_perform_blindness (sn, level, ch, (CHAR_DATA *) vo, FALSE); }
+    { spell_perform_blindness (sn, level, ch, (CHAR_T *) vo, FALSE); }
 DEFINE_SPELL_FUN (spell_blindness_quiet)
-    { spell_perform_blindness (sn, level, ch, (CHAR_DATA *) vo, TRUE); }
+    { spell_perform_blindness (sn, level, ch, (CHAR_T *) vo, TRUE); }
 
-void spell_perform_blindness (int sn, int level, CHAR_DATA *ch,
-    CHAR_DATA *victim, bool quiet)
+void spell_perform_blindness (int sn, int level, CHAR_T *ch,
+    CHAR_T *victim, bool quiet)
 {
-    AFFECT_DATA af;
+    AFFECT_T af;
 
     BAIL_IF_ACT (saves_spell (level, victim, DAM_OTHER),
         quiet ? NULL : "$E resists your spell!", ch, NULL, victim);
@@ -138,12 +138,12 @@ void spell_perform_blindness (int sn, int level, CHAR_DATA *ch,
 
 /* RT calm spell stops all fighting in the room */
 DEFINE_SPELL_FUN (spell_calm) {
-    CHAR_DATA *vch;
+    CHAR_T *vch;
     int mlevel = 0;
     int count;
     int high_level = 0;
     int chance;
-    AFFECT_DATA af;
+    AFFECT_T af;
 
     /* get sum of all mobile levels in the room */
     count = 0;
@@ -198,8 +198,8 @@ DEFINE_SPELL_FUN (spell_calm) {
 }
 
 DEFINE_SPELL_FUN (spell_change_sex) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
     int mod;
 
     if (is_affected_with_act (victim, sn, 0, ch,
@@ -222,8 +222,8 @@ DEFINE_SPELL_FUN (spell_change_sex) {
 }
 
 DEFINE_SPELL_FUN (spell_charm_person) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (do_filter_can_attack (ch, victim))
         return;
@@ -255,14 +255,14 @@ DEFINE_SPELL_FUN (spell_charm_person) {
 }
 
 DEFINE_SPELL_FUN (spell_curse_object) {
-    OBJ_DATA *obj = (OBJ_DATA *) vo;
-    AFFECT_DATA af;
+    OBJ_T *obj = (OBJ_T *) vo;
+    AFFECT_T af;
 
     BAIL_IF_ACT (IS_OBJ_STAT (obj, ITEM_EVIL),
         "$p is already filled with evil.", ch, obj, NULL);
 
     if (IS_OBJ_STAT (obj, ITEM_BLESS)) {
-        AFFECT_DATA *paf;
+        AFFECT_T *paf;
 
         paf = affect_find (obj->affected, skill_lookup ("bless"));
         BAIL_IF_ACT (saves_dispel (level, paf != NULL
@@ -290,10 +290,10 @@ DEFINE_SPELL_FUN (spell_curse_char)
 DEFINE_SPELL_FUN (spell_curse_char_quiet)
     { spell_perform_curse_char (sn, level, ch, vo, TRUE); }
 
-void spell_perform_curse_char (int sn, int level, CHAR_DATA *ch,
-    CHAR_DATA *victim, bool quiet)
+void spell_perform_curse_char (int sn, int level, CHAR_T *ch,
+    CHAR_T *victim, bool quiet)
 {
-    AFFECT_DATA af;
+    AFFECT_T af;
 
     BAIL_IF_ACT (saves_spell (level, victim, DAM_NEGATIVE),
         quiet ? NULL : "$E resists your spell!", ch, NULL, victim);
@@ -313,14 +313,14 @@ void spell_perform_curse_char (int sn, int level, CHAR_DATA *ch,
 
 DEFINE_SPELL_FUN (spell_curse) {
     if (target == TARGET_OBJ)
-        spell_curse_object (sn, level, ch, vo, target);
+        spell_curse_object (sn, level, ch, vo, target, target_name);
     else
-        spell_curse_char (sn, level, ch, vo, target);
+        spell_curse_char (sn, level, ch, vo, target, target_name);
 }
 
 DEFINE_SPELL_FUN (spell_detect_evil) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, -1, AFF_DETECT_EVIL, ch,
             "You can already sense evil.",
@@ -336,8 +336,8 @@ DEFINE_SPELL_FUN (spell_detect_evil) {
 }
 
 DEFINE_SPELL_FUN (spell_detect_good) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, -1, AFF_DETECT_GOOD, ch,
             "You can already sense good.",
@@ -353,8 +353,8 @@ DEFINE_SPELL_FUN (spell_detect_good) {
 }
 
 DEFINE_SPELL_FUN (spell_detect_hidden) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, -1, AFF_DETECT_HIDDEN, ch,
             "You are already as alert as you can be.",
@@ -370,8 +370,8 @@ DEFINE_SPELL_FUN (spell_detect_hidden) {
 }
 
 DEFINE_SPELL_FUN (spell_detect_invis) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, -1, AFF_DETECT_INVIS, ch,
             "You can already see invisible.",
@@ -387,8 +387,8 @@ DEFINE_SPELL_FUN (spell_detect_invis) {
 }
 
 DEFINE_SPELL_FUN (spell_detect_magic) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, -1, AFF_DETECT_MAGIC, ch,
             "You can already sense magical auras.",
@@ -404,8 +404,8 @@ DEFINE_SPELL_FUN (spell_detect_magic) {
 }
 
 DEFINE_SPELL_FUN (spell_enchant_armor) {
-    OBJ_DATA *obj = (OBJ_DATA *) vo;
-    AFFECT_DATA *paf;
+    OBJ_T *obj = (OBJ_T *) vo;
+    AFFECT_T *paf;
     int result, fail;
     int ac_bonus, added;
     bool ac_found = FALSE;
@@ -459,7 +459,7 @@ DEFINE_SPELL_FUN (spell_enchant_armor) {
 
     /* item disenchanted */
     if (result < (fail / 3)) {
-        AFFECT_DATA *paf_next;
+        AFFECT_T *paf_next;
         act ("$p glows brightly, then fades... oops.", ch, obj, NULL, TO_CHAR);
         act ("$p glows brightly, then fades.", ch, obj, NULL, TO_NOTCHAR);
         obj->enchanted = TRUE;
@@ -519,8 +519,8 @@ DEFINE_SPELL_FUN (spell_enchant_armor) {
 }
 
 DEFINE_SPELL_FUN (spell_enchant_weapon) {
-    OBJ_DATA *obj = (OBJ_DATA *) vo;
-    AFFECT_DATA *paf;
+    OBJ_T *obj = (OBJ_T *) vo;
+    AFFECT_T *paf;
     int result, fail;
     int hit_bonus, dam_bonus, added;
     bool hit_found = FALSE, dam_found = FALSE;
@@ -585,7 +585,7 @@ DEFINE_SPELL_FUN (spell_enchant_weapon) {
 
     /* item disenchanted */
     if (result < (fail / 2)) {
-        AFFECT_DATA *paf_next;
+        AFFECT_T *paf_next;
         act ("$p glows brightly, then fades... oops.", ch, obj, NULL, TO_CHAR);
         act ("$p glows brightly, then fades.", ch, obj, NULL, TO_NOTCHAR);
         obj->enchanted = TRUE;
@@ -665,8 +665,8 @@ DEFINE_SPELL_FUN (spell_enchant_weapon) {
 }
 
 DEFINE_SPELL_FUN (spell_fireproof) {
-    OBJ_DATA *obj = (OBJ_DATA *) vo;
-    AFFECT_DATA af;
+    OBJ_T *obj = (OBJ_T *) vo;
+    AFFECT_T af;
 
     BAIL_IF_ACT (IS_OBJ_STAT (obj, ITEM_BURN_PROOF),
         "$p is already protected from burning.", ch, obj, NULL);
@@ -679,8 +679,8 @@ DEFINE_SPELL_FUN (spell_fireproof) {
 }
 
 DEFINE_SPELL_FUN (spell_faerie_fire) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     BAIL_IF_ACT (IS_AFFECTED (victim, AFF_FAERIE_FIRE),
         "The pink aura around $N seems unaffected.", ch, NULL, victim);
@@ -692,7 +692,7 @@ DEFINE_SPELL_FUN (spell_faerie_fire) {
 }
 
 DEFINE_SPELL_FUN (spell_faerie_fog) {
-    CHAR_DATA *ich;
+    CHAR_T *ich;
 
     send_to_char ("You conjure a cloud of purple smoke.\n\r", ch);
     act ("$n conjures a cloud of purple smoke.", ch, NULL, NULL, TO_NOTCHAR);
@@ -715,8 +715,8 @@ DEFINE_SPELL_FUN (spell_faerie_fog) {
 }
 
 DEFINE_SPELL_FUN (spell_fly) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, -1, AFF_FLYING, ch,
             "You are already airborne.",
@@ -732,8 +732,8 @@ DEFINE_SPELL_FUN (spell_fly) {
 
 /* RT clerical berserking spell */
 DEFINE_SPELL_FUN (spell_frenzy) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, sn, AFF_BERSERK, ch,
             "You are already in a frenzy.",
@@ -763,8 +763,8 @@ DEFINE_SPELL_FUN (spell_frenzy) {
 }
 
 DEFINE_SPELL_FUN (spell_giant_strength) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, sn, 0, ch,
             "You are already as strong as you can get!",
@@ -780,8 +780,8 @@ DEFINE_SPELL_FUN (spell_giant_strength) {
 
 /* RT haste spell */
 DEFINE_SPELL_FUN (spell_haste) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected (victim, sn) || IS_AFFECTED (victim, AFF_HASTE)
         || IS_SET (victim->off_flags, OFF_FAST))
@@ -814,8 +814,8 @@ DEFINE_SPELL_FUN (spell_haste) {
 }
 
 DEFINE_SPELL_FUN (spell_infravision) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, -1, AFF_INFRARED, ch,
             "You can already see in the dark.",
@@ -830,8 +830,8 @@ DEFINE_SPELL_FUN (spell_infravision) {
 }
 
 DEFINE_SPELL_FUN (spell_invis_object) {
-    OBJ_DATA *obj = (OBJ_DATA *) vo;
-    AFFECT_DATA af;
+    OBJ_T *obj = (OBJ_T *) vo;
+    AFFECT_T af;
 
     BAIL_IF_ACT (IS_OBJ_STAT (obj, ITEM_INVIS),
         "$p is already invisible.", ch, obj, NULL);
@@ -842,10 +842,10 @@ DEFINE_SPELL_FUN (spell_invis_object) {
 }
 
 DEFINE_SPELL_FUN (spell_invis_char) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
-    victim = (CHAR_DATA *) vo;
+    victim = (CHAR_T *) vo;
     if (is_affected_with_act (victim, -1, AFF_INVISIBLE, ch,
             "You are already invisible.",
             "$N is already invisible."))
@@ -860,14 +860,14 @@ DEFINE_SPELL_FUN (spell_invis_char) {
 
 DEFINE_SPELL_FUN (spell_invis) {
     if (target == TARGET_OBJ)
-        spell_invis_object (sn, level, ch, vo, target);
+        spell_invis_object (sn, level, ch, vo, target, target_name);
     else
-        spell_invis_char (sn, level, ch, vo, target);
+        spell_invis_char (sn, level, ch, vo, target, target_name);
 }
 
 DEFINE_SPELL_FUN (spell_mass_invis) {
-    AFFECT_DATA af;
-    CHAR_DATA *gch;
+    AFFECT_T af;
+    CHAR_T *gch;
     bool found = FALSE;
 
     for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room) {
@@ -885,8 +885,8 @@ DEFINE_SPELL_FUN (spell_mass_invis) {
 }
 
 DEFINE_SPELL_FUN (spell_pass_door) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, -1, AFF_PASS_DOOR, ch,
             "You are already out of phase.",
@@ -902,8 +902,8 @@ DEFINE_SPELL_FUN (spell_pass_door) {
 
 /* RT plague spell, very nasty */
 DEFINE_SPELL_FUN (spell_plague) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (saves_spell (level, victim, DAM_DISEASE) ||
         (IS_NPC (victim) && IS_SET (victim->mob, MOB_UNDEAD)))
@@ -926,8 +926,8 @@ DEFINE_SPELL_FUN (spell_plague) {
 }
 
 DEFINE_SPELL_FUN (spell_poison_object) {
-    OBJ_DATA *obj = (OBJ_DATA *) vo;
-    AFFECT_DATA af;
+    OBJ_T *obj = (OBJ_T *) vo;
+    AFFECT_T af;
 
     if (obj->item_type == ITEM_FOOD || obj->item_type == ITEM_DRINK_CON) {
         BAIL_IF_ACT (IS_OBJ_STAT (obj, ITEM_BLESS) ||
@@ -935,14 +935,14 @@ DEFINE_SPELL_FUN (spell_poison_object) {
             "Your spell fails to corrupt $p.", ch, obj, NULL);
 
         if (obj->item_type == ITEM_FOOD) {
-            BAIL_IF_ACT (obj->v.food.poisoned == 1,
+            BAIL_IF_ACT (obj->v.food.poisoned != 0,
                 "$p is already poisoned.", ch, obj, NULL);
-            obj->v.food.poisoned = 1;
+            obj->v.food.poisoned = TRUE;
         }
         else if (obj->item_type == ITEM_DRINK_CON) {
-            BAIL_IF_ACT (obj->v.drink_con.poisoned == 1,
+            BAIL_IF_ACT (obj->v.drink_con.poisoned != 0,
                 "$p is already poisoned.", ch, obj, NULL);
-            obj->v.drink_con.poisoned = 1;
+            obj->v.drink_con.poisoned = TRUE;
         }
 
         act ("$p is infused with poisonous vapors.", ch, obj, NULL, TO_ALL);
@@ -973,8 +973,8 @@ DEFINE_SPELL_FUN (spell_poison_object) {
 }
 
 DEFINE_SPELL_FUN (spell_poison_char) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (saves_spell (level, victim, DAM_POISON)) {
         send_to_char ("You feel momentarily ill, but it passes.\n\r", victim);
@@ -992,14 +992,14 @@ DEFINE_SPELL_FUN (spell_poison_char) {
 
 DEFINE_SPELL_FUN (spell_poison) {
     if (target == TARGET_OBJ)
-        spell_poison_object (sn, level, ch, vo, target);
+        spell_poison_object (sn, level, ch, vo, target, target_name);
     else
-        spell_poison_char (sn, level, ch, vo, target);
+        spell_poison_char (sn, level, ch, vo, target, target_name);
 }
 
 DEFINE_SPELL_FUN (spell_protection_evil) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (IS_AFFECTED (victim, AFF_PROTECT_EVIL) ||
         IS_AFFECTED (victim, AFF_PROTECT_GOOD))
@@ -1020,8 +1020,8 @@ DEFINE_SPELL_FUN (spell_protection_evil) {
 }
 
 DEFINE_SPELL_FUN (spell_protection_good) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (IS_AFFECTED (victim, AFF_PROTECT_GOOD)
      || IS_AFFECTED (victim, AFF_PROTECT_EVIL))
@@ -1042,8 +1042,8 @@ DEFINE_SPELL_FUN (spell_protection_good) {
 }
 
 DEFINE_SPELL_FUN (spell_sanctuary) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act(victim, -1, AFF_SANCTUARY, ch,
             "You are already in sanctuary.",
@@ -1058,8 +1058,8 @@ DEFINE_SPELL_FUN (spell_sanctuary) {
 }
 
 DEFINE_SPELL_FUN (spell_shield) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, sn, -1, ch,
             "You are already shielded from harm.",
@@ -1074,8 +1074,8 @@ DEFINE_SPELL_FUN (spell_shield) {
 }
 
 DEFINE_SPELL_FUN (spell_sleep) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     BAIL_IF_ACT (saves_spell (level - 4, victim, DAM_CHARM),
         "$e resists your spell!", ch, NULL, NULL);
@@ -1098,8 +1098,8 @@ DEFINE_SPELL_FUN (spell_sleep) {
 }
 
 DEFINE_SPELL_FUN (spell_slow) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, sn, AFF_SLOW, ch,
             "You can't move any slower!",
@@ -1137,8 +1137,8 @@ DEFINE_SPELL_FUN (spell_slow) {
 }
 
 DEFINE_SPELL_FUN (spell_stone_skin) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, sn, 0, ch,
             "Your skin is already as hard as a rock.",
@@ -1153,8 +1153,8 @@ DEFINE_SPELL_FUN (spell_stone_skin) {
 }
 
 DEFINE_SPELL_FUN (spell_weaken) {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
+    CHAR_T *victim = (CHAR_T *) vo;
+    AFFECT_T af;
 
     if (is_affected_with_act (victim, sn, 0, ch,
             "You're weak enough as it is!",

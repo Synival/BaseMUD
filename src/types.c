@@ -27,7 +27,7 @@
 
 #include "merc.h"
 
-const FLAG_TYPE sex_types[SEX_MAX + 1] = {
+const FLAG_T sex_types[SEX_MAX + 1] = {
     {"neutral", SEX_NEUTRAL, TRUE},
     {"male",    SEX_MALE,    TRUE},
     {"female",  SEX_FEMALE,  TRUE},
@@ -35,7 +35,7 @@ const FLAG_TYPE sex_types[SEX_MAX + 1] = {
     {0}
 };
 
-const FLAG_TYPE affect_apply_types[APPLY_MAX + 1] = {
+const FLAG_T affect_apply_types[APPLY_MAX + 1] = {
     {"none",                  APPLY_NONE,          TRUE},
     {"strength",              APPLY_STR,           TRUE},
     {"dexterity",             APPLY_DEX,           TRUE},
@@ -67,7 +67,7 @@ const FLAG_TYPE affect_apply_types[APPLY_MAX + 1] = {
 
 /* NOTE: This has TWO extra loc_types because of WEAR_NONE (-1)
  *       at the bottom. */
-const FLAG_TYPE wear_loc_phrases[WEAR_LOC_MAX + 2] = {
+const FLAG_T wear_loc_phrases[WEAR_LOC_MAX + 2] = {
     {"as a light",          WEAR_LIGHT,    TRUE},
     {"on the left finger",  WEAR_FINGER_L, TRUE},
     {"on the right finger", WEAR_FINGER_R, TRUE},
@@ -93,7 +93,7 @@ const FLAG_TYPE wear_loc_phrases[WEAR_LOC_MAX + 2] = {
 
 /* NOTE: This has TWO extra loc_types because of WEAR_NONE (-1)
  *       at the bottom. */
-const FLAG_TYPE wear_loc_types[WEAR_LOC_MAX + 2] = {
+const FLAG_T wear_loc_types[WEAR_LOC_MAX + 2] = {
     {"light",    WEAR_LIGHT,    TRUE},
     {"lfinger",  WEAR_FINGER_L, TRUE},
     {"rfinger",  WEAR_FINGER_R, TRUE},
@@ -117,7 +117,7 @@ const FLAG_TYPE wear_loc_types[WEAR_LOC_MAX + 2] = {
     {0}
 };
 
-const FLAG_TYPE ac_types[AC_MAX + 1] = {
+const FLAG_T ac_types[AC_MAX + 1] = {
     {"pierce", AC_PIERCE, TRUE},
     {"bash",   AC_BASH,   TRUE},
     {"slash",  AC_SLASH,  TRUE},
@@ -125,7 +125,7 @@ const FLAG_TYPE ac_types[AC_MAX + 1] = {
     {0}
 };
 
-const FLAG_TYPE size_types[SIZE_MAX_R + 1] = {
+const FLAG_T size_types[SIZE_MAX_R + 1] = {
     {"tiny",   SIZE_TINY,   TRUE},
     {"small",  SIZE_SMALL,  TRUE},
     {"medium", SIZE_MEDIUM, TRUE},
@@ -135,7 +135,7 @@ const FLAG_TYPE size_types[SIZE_MAX_R + 1] = {
     {0}
 };
 
-const FLAG_TYPE weapon_types[WEAPON_MAX + 1] = {
+const FLAG_T weapon_types[WEAPON_MAX + 1] = {
     {"exotic",  WEAPON_EXOTIC,  TRUE},
     {"sword",   WEAPON_SWORD,   TRUE},
     {"dagger",  WEAPON_DAGGER,  TRUE},
@@ -148,7 +148,7 @@ const FLAG_TYPE weapon_types[WEAPON_MAX + 1] = {
     {0}
 };
 
-const FLAG_TYPE position_types[POS_MAX + 1] = {
+const FLAG_T position_types[POS_MAX + 1] = {
     {"dead",     POS_DEAD,     FALSE},
     {"mortal",   POS_MORTAL,   FALSE},
     {"incap",    POS_INCAP,    FALSE},
@@ -161,7 +161,7 @@ const FLAG_TYPE position_types[POS_MAX + 1] = {
     {0}
 };
 
-const FLAG_TYPE sector_types[SECT_MAX + 1] = {
+const FLAG_T sector_types[SECT_MAX + 1] = {
     {"inside",   SECT_INSIDE,       TRUE},
     {"city",     SECT_CITY,         TRUE},
     {"field",    SECT_FIELD,        TRUE},
@@ -176,7 +176,7 @@ const FLAG_TYPE sector_types[SECT_MAX + 1] = {
     {0}
 };
 
-const FLAG_TYPE item_types[ITEM_MAX + 1] = {
+const FLAG_T item_types[ITEM_MAX + 1] = {
     {"none",       ITEM_NONE,       FALSE},
     {"light",      ITEM_LIGHT,      TRUE},
     {"scroll",     ITEM_SCROLL,     TRUE},
@@ -215,7 +215,7 @@ const FLAG_TYPE item_types[ITEM_MAX + 1] = {
     {0}
 };
 
-const FLAG_TYPE door_resets[RESET_MAX + 1] = {
+const FLAG_T door_resets[RESET_MAX + 1] = {
     {"open and unlocked",   RESET_OPEN,   TRUE},
     {"closed and unlocked", RESET_CLOSED, TRUE},
     {"closed and locked",   RESET_LOCKED, TRUE},

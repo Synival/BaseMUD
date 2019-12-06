@@ -20,6 +20,8 @@
 #include "olc.h"
 #include "db.h"
 #include "olc_mpedit.h"
+#include "globals.h"
+#include "memory.h"
 
 #include "string.h"
 
@@ -28,7 +30,7 @@
  Purpose:    Clears string and puts player into editing mode.
  Called by:  none
  ****************************************************************************/
-void string_edit (CHAR_DATA * ch, char **pString) {
+void string_edit (CHAR_T *ch, char **pString) {
     send_to_char ("-========- Entering EDIT Mode -=========-\n\r", ch);
     send_to_char ("    Type .h on a new line for help\n\r", ch);
     send_to_char (" Terminate with a ~ or @ on a blank line.\n\r", ch);
@@ -46,7 +48,7 @@ void string_edit (CHAR_DATA * ch, char **pString) {
  Purpose:    Puts player into append mode for given string.
  Called by:  (many)olc_act.c
  ****************************************************************************/
-void string_append (CHAR_DATA * ch, char **pString) {
+void string_append (CHAR_T *ch, char **pString) {
     send_to_char ("-=======- Entering APPEND Mode -========-\n\r", ch);
     send_to_char ("    Type .h on a new line for help\n\r", ch);
     send_to_char (" Terminate with a ~ or @ on a blank line.\n\r", ch);
@@ -79,7 +81,7 @@ char *string_replace (char *orig, char *old, char *new) {
         xbuf[i] = '\0';
         strcat (xbuf, new);
         strcat (xbuf, &orig[i + strlen (old)]);
-        str_free (orig);
+        str_free (&(orig));
     }
 
     return str_dup (xbuf);
@@ -90,7 +92,7 @@ char *string_replace (char *orig, char *old, char *new) {
  Purpose:    Interpreter for string editing.
  Called by:  game_loop_xxxx(comm.c).
  ****************************************************************************/
-void string_add (CHAR_DATA * ch, char *argument) {
+void string_add (CHAR_T *ch, char *argument) {
     char buf[MAX_STRING_LENGTH];
 
     /* Thanks to James Seng */
@@ -108,8 +110,7 @@ void string_add (CHAR_DATA * ch, char *argument) {
 
         if (!str_cmp (arg1, ".c")) {
             send_to_char ("String cleared.\n\r", ch);
-            str_free (*ch->desc->pString);
-            *ch->desc->pString = str_dup ("");
+            str_replace_dup (ch->desc->pString, "");
             return;
         }
         if (!str_cmp (arg1, ".s")) {
@@ -174,10 +175,10 @@ void string_add (CHAR_DATA * ch, char *argument) {
 
     if (*argument == '~' || *argument == '@') {
         if (ch->desc->editor == ED_MPCODE) { /* for the mobprogs */
-            MOB_INDEX_DATA *mob;
+            MOB_INDEX_T *mob;
             int hash;
-            MPROG_LIST *mpl;
-            MPROG_CODE *mpc;
+            MPROG_LIST_T *mpl;
+            MPROG_CODE_T *mpc;
 
             EDIT_MPCODE (ch, mpc);
 
@@ -216,8 +217,7 @@ void string_add (CHAR_DATA * ch, char *argument) {
 
     strcat (buf, argument);
     strcat (buf, "\n\r");
-    str_free (*ch->desc->pString);
-    *ch->desc->pString = str_dup (buf);
+    str_replace_dup (ch->desc->pString, buf);
 }
 
 /* Thanks to Kalgen for the new procedure (no more bug!)
@@ -351,7 +351,7 @@ char *format_string (char *oldstring /*, bool fSpace */ ) {
     if (xbuf[strlen (xbuf) - 2] != '\n')
         strcat (xbuf, "\n\r");
 
-    str_free (oldstring);
+    str_free (&(oldstring));
     return (str_dup (xbuf));
 }
 
@@ -428,7 +428,7 @@ char *string_unpad (char *argument) {
         *s = '\0';
     }
 
-    str_free (argument);
+    str_free (&(argument));
     return str_dup (buf);
 }
 
@@ -473,7 +473,7 @@ char *string_linedel (char *string, int line) {
 
     buf[tmp] = '\0';
 
-    str_free (string);
+    str_free (&(string));
     return str_dup (buf);
 }
 
@@ -505,7 +505,7 @@ char *string_lineadd (char *string, char *newstr, int line) {
         buf[tmp] = '\0';
     }
 
-    str_free (string);
+    str_free (&(string));
     return str_dup (buf);
 }
 

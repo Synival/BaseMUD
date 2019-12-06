@@ -31,6 +31,7 @@
 #include "skills.h"
 #include "db.h"
 #include "chars.h"
+#include "globals.h"
 
 #include "groups.h"
 
@@ -38,7 +39,7 @@
  * (1) A ~ A
  * (2) if A ~ B then B ~ A
  * (3) if A ~ B  and B ~ C, then A ~ C */
-bool is_same_group (CHAR_DATA * ach, CHAR_DATA * bch) {
+bool is_same_group (CHAR_T *ach, CHAR_T *bch) {
     if (ach == NULL || bch == NULL)
         return FALSE;
 
@@ -49,7 +50,7 @@ bool is_same_group (CHAR_DATA * ach, CHAR_DATA * bch) {
     return ach == bch;
 }
 
-void add_follower (CHAR_DATA * ch, CHAR_DATA * master) {
+void add_follower (CHAR_T *ch, CHAR_T *master) {
     BAIL_IF_BUG (ch->master != NULL,
         "add_follower: non-null master.", 0);
 
@@ -61,7 +62,7 @@ void add_follower (CHAR_DATA * ch, CHAR_DATA * master) {
     act ("You now follow $N.", ch, NULL, master, TO_CHAR);
 }
 
-void stop_follower (CHAR_DATA * ch) {
+void stop_follower (CHAR_T *ch) {
     BAIL_IF_BUG (ch->master == NULL,
         "stop_follower: null master.", 0);
 
@@ -81,8 +82,8 @@ void stop_follower (CHAR_DATA * ch) {
 }
 
 /* nukes charmed monsters and pets */
-void nuke_pets (CHAR_DATA * ch) {
-    CHAR_DATA *pet;
+void nuke_pets (CHAR_T *ch) {
+    CHAR_T *pet;
 
     if ((pet = ch->pet) != NULL) {
         stop_follower (pet);
@@ -93,8 +94,8 @@ void nuke_pets (CHAR_DATA * ch) {
     ch->pet = NULL;
 }
 
-void die_follower (CHAR_DATA * ch) {
-    CHAR_DATA *fch;
+void die_follower (CHAR_T *ch) {
+    CHAR_T *fch;
 
     if (ch->master != NULL) {
         if (ch->master->pet == ch)

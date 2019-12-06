@@ -31,11 +31,11 @@
 #include "merc.h"
 
 /* Function prototypes. */
-bool is_same_group (CHAR_DATA *ach, CHAR_DATA *bch);
-void add_follower (CHAR_DATA *ch, CHAR_DATA *master);
-void stop_follower (CHAR_DATA *ch);
-void nuke_pets (CHAR_DATA *ch);
-void die_follower (CHAR_DATA *ch);
-bool is_same_group (CHAR_DATA *ach, CHAR_DATA *bch);
+bool is_same_group (CHAR_T *ach, CHAR_T *bch);
+void add_follower (CHAR_T *ch, CHAR_T *master);
+void stop_follower (CHAR_T *ch);
+void nuke_pets (CHAR_T *ch);
+void die_follower (CHAR_T *ch);
+bool is_same_group (CHAR_T *ach, CHAR_T *bch);
 
 #endif

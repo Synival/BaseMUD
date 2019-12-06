@@ -61,22 +61,9 @@
 #include "rooms.h"
 #include "objs.h"
 #include "descs.h"
+#include "globals.h"
 
 #include "comm.h"
-
-/* Socket and TCP/IP stuff. */
-#if defined(macintosh) || defined(MSDOS)
-    const char echo_off_str[] = { '\0' };
-    const char echo_on_str[]  = { '\0' };
-    const char go_ahead_str[] = { '\0' };
-#endif
-
-#if defined(unix)
-    #include "telnet.h"
-    const char echo_off_str[] = { IAC, WILL, TELOPT_ECHO, '\0' };
-    const char echo_on_str[]  = { IAC, WONT, TELOPT_ECHO, '\0' };
-    const char go_ahead_str[] = { IAC, GA, '\0' };
-#endif
 
 /* Malloc debugging stuff. */
 #if defined(sun)
@@ -89,34 +76,9 @@
     extern int malloc_verify args ((void));
 #endif
 
-/* Global variables. */
-DESCRIPTOR_DATA *descriptor_list; /* All open descriptors     */
-DESCRIPTOR_DATA *d_next;          /* Next descriptor in loop  */
-FILE *fpReserve;                  /* Reserved file handle     */
-bool god;                         /* All new chars are gods!  */
-bool merc_down;                   /* Shutdown         */
-bool wizlock;                     /* Game is wizlocked        */
-bool newlock;                     /* Game is newlocked        */
-char str_boot_time[MAX_INPUT_LENGTH];
-time_t current_time;              /* time of this pulse */
-bool MOBtrigger = TRUE;           /* act() switch */
-
-/* Needs to be global because of do_copyover */
-int port, control;
-
-/* Put global mud config values here. Look at qmconfig command for clues.     */
-/*   -- JR 09/23/2000                                                         */
-/* Set values for all but IP address in ../area/qmconfig.rc file.             */
-/*   -- JR 05/10/2001                                                         */
-int mud_ansiprompt, mud_ansicolor, mud_telnetga;
-
-/* Set this to the IP address you want to listen on (127.0.0.1 is good for    */
-/* paranoid types who don't want the 'net at large peeking at their MUD)      */
-char *mud_ipaddress = "0.0.0.0";
-
 /* Bust a prompt (player settable prompt)
  * coded by Morgenes for Aldara Mud */
-void bust_a_prompt (CHAR_DATA *ch) {
+void bust_a_prompt (CHAR_T *ch) {
     char buf[MAX_STRING_LENGTH];
     char buf2[MAX_STRING_LENGTH];
     const char *str;
@@ -128,7 +90,7 @@ void bust_a_prompt (CHAR_DATA *ch) {
     if (ch == NULL || ch->desc == NULL)
         return;
 
-#ifndef VANILLA
+#ifdef BASEMUD_SHOW_OLC_IN_PROMPT
     if (ch->desc->editor != ED_NONE)
         printf_to_char (ch, "[%s %s] ", olc_ed_name (ch), olc_ed_vnum (ch));
 #endif
@@ -249,14 +211,14 @@ void bust_a_prompt (CHAR_DATA *ch) {
 }
 
 /* Write to one char. */
-void send_to_char_bw (const char *txt, CHAR_DATA *ch) {
+void send_to_char_bw (const char *txt, CHAR_T *ch) {
     if (txt == NULL || ch == NULL || ch->desc == NULL)
         return;
     write_to_buffer (ch->desc, txt, strlen (txt));
 }
 
 /* Send a page to one char. */
-void page_to_char_bw (const char *txt, CHAR_DATA *ch) {
+void page_to_char_bw (const char *txt, CHAR_T *ch) {
     if (txt == NULL || ch == NULL || ch->desc == NULL)
         return;
     if (ch->lines == 0) {
@@ -272,7 +234,7 @@ void page_to_char_bw (const char *txt, CHAR_DATA *ch) {
 }
 
 /* Page to one char, new colour version, by Lope. */
-void send_to_char (const char *txt, CHAR_DATA * ch) {
+void send_to_char (const char *txt, CHAR_T *ch) {
     char buf[MAX_STRING_LENGTH * 4];
     int len;
 
@@ -283,7 +245,7 @@ void send_to_char (const char *txt, CHAR_DATA * ch) {
     write_to_buffer (ch->desc, buf, len);
 }
 
-void page_to_char (const char *txt, CHAR_DATA * ch) {
+void page_to_char (const char *txt, CHAR_T *ch) {
 #if !defined(macintosh)
     char buf[MAX_STRING_LENGTH * 4];
 #endif
@@ -304,7 +266,7 @@ void page_to_char (const char *txt, CHAR_DATA * ch) {
 #endif
 }
 
-void act2 (const char *to_char, const char *to_room, CHAR_DATA *ch,
+void act2 (const char *to_char, const char *to_room, CHAR_T *ch,
            const void *arg1, const void *arg2, flag_t flags, int min_pos)
 {
     if (to_char)
@@ -314,7 +276,7 @@ void act2 (const char *to_char, const char *to_room, CHAR_DATA *ch,
 }
 
 void act3 (const char *to_char, const char *to_vict, const char *to_room,
-           CHAR_DATA *ch, const void *arg1, const void *arg2, flag_t flags,
+           CHAR_T *ch, const void *arg1, const void *arg2, flag_t flags,
            int min_pos)
 {
     if (to_char)
@@ -325,8 +287,8 @@ void act3 (const char *to_char, const char *to_vict, const char *to_room,
         act_new (to_room, ch, arg1, arg2, flags | TO_OTHERS, min_pos);
 }
 
-bool act_is_valid_recipient (CHAR_DATA *to, flag_t flags,
-    CHAR_DATA *ch, CHAR_DATA *vch)
+bool act_is_valid_recipient (CHAR_T *to, flag_t flags,
+    CHAR_T *ch, CHAR_T *vch)
 {
     if ((flags & TO_CHAR) && to == ch)
         return TRUE;
@@ -337,8 +299,8 @@ bool act_is_valid_recipient (CHAR_DATA *to, flag_t flags,
     return FALSE;
 }
 
-char *act_code (char code, CHAR_DATA *ch, CHAR_DATA *vch, CHAR_DATA *to,
-    OBJ_DATA *obj1, OBJ_DATA *obj2, const void *arg1, const void *arg2,
+char *act_code (char code, CHAR_T *ch, CHAR_T *vch, CHAR_T *to,
+    OBJ_T *obj1, OBJ_T *obj2, const void *arg1, const void *arg2,
     char *out_buf, size_t size)
 {
     static char *const he_she[]  = { "it",  "he",  "she" };
@@ -401,15 +363,15 @@ char *act_code (char code, CHAR_DATA *ch, CHAR_DATA *vch, CHAR_DATA *to,
     }
 }
 
-void act_new (const char *format, CHAR_DATA * ch, const void *arg1,
+void act_new (const char *format, CHAR_T *ch, const void *arg1,
               const void *arg2, flag_t flags, int min_pos)
 {
     char buf[MAX_STRING_LENGTH];
     char code_buf[MAX_INPUT_LENGTH];
-    CHAR_DATA *to;
-    CHAR_DATA *vch = (CHAR_DATA *) arg2;
-    OBJ_DATA *obj1 = (OBJ_DATA *) arg1;
-    OBJ_DATA *obj2 = (OBJ_DATA *) arg2;
+    CHAR_T *to;
+    CHAR_T *vch = (CHAR_T *) arg2;
+    OBJ_T *obj1 = (OBJ_T *) arg1;
+    OBJ_T *obj2 = (OBJ_T *) arg2;
     const char *str;
     const char *i;
     char *point;
@@ -484,7 +446,7 @@ void act_new (const char *format, CHAR_DATA * ch, const void *arg1,
     }
 }
 
-void printf_to_char (CHAR_DATA * ch, const char *fmt, ...) {
+void printf_to_char (CHAR_T *ch, const char *fmt, ...) {
     char buf[MAX_STRING_LENGTH];
     va_list args;
     va_start (args, fmt);
@@ -494,10 +456,10 @@ void printf_to_char (CHAR_DATA * ch, const char *fmt, ...) {
     send_to_char (buf, ch);
 }
 
-void wiznet (const char *string, CHAR_DATA * ch, OBJ_DATA * obj,
+void wiznet (const char *string, CHAR_T *ch, OBJ_T *obj,
              flag_t flag, flag_t flag_skip, int min_level)
 {
-    DESCRIPTOR_DATA *d;
+    DESCRIPTOR_T *d;
 
     for (d = descriptor_list; d != NULL; d = d->next) {
         if (d->connected == CON_PLAYING && IS_IMMORTAL (d->character)
@@ -516,7 +478,7 @@ void wiznet (const char *string, CHAR_DATA * ch, OBJ_DATA * obj,
     }
 }
 
-void wiznetf (CHAR_DATA * ch, OBJ_DATA * obj, flag_t flag, flag_t flag_skip,
+void wiznetf (CHAR_T *ch, OBJ_T *obj, flag_t flag, flag_t flag_skip,
     int min_level, const char *fmt, ...)
 {
     char buf[2 * MSL];
@@ -527,8 +489,8 @@ void wiznetf (CHAR_DATA * ch, OBJ_DATA * obj, flag_t flag, flag_t flag_skip,
     wiznet (buf, ch, obj, flag, flag_skip, min_level);
 }
 
-bool position_change_send_message (CHAR_DATA * ch, int from, int to,
-    OBJ_DATA *obj)
+bool position_change_send_message (CHAR_T *ch, int from, int to,
+    OBJ_T *obj)
 {
     switch (to) {
         case POS_SLEEPING:
@@ -545,8 +507,8 @@ bool position_change_send_message (CHAR_DATA * ch, int from, int to,
     return FALSE;
 }
 
-bool position_change_send_message_to_standing (CHAR_DATA * ch, int from,
-    OBJ_DATA *obj)
+bool position_change_send_message_to_standing (CHAR_T *ch, int from,
+    OBJ_T *obj)
 {
     const char *prep = obj_furn_preposition (obj, POS_STANDING);
     switch (from) {
@@ -605,8 +567,8 @@ bool position_change_send_message_to_standing (CHAR_DATA * ch, int from,
     return FALSE;
 }
 
-bool position_change_send_message_to_fighting (CHAR_DATA * ch, int from,
-    OBJ_DATA *obj)
+bool position_change_send_message_to_fighting (CHAR_T *ch, int from,
+    OBJ_T *obj)
 {
     switch (from) {
         case POS_SLEEPING:
@@ -627,8 +589,8 @@ bool position_change_send_message_to_fighting (CHAR_DATA * ch, int from,
     return FALSE;
 }
 
-bool position_change_send_message_to_resting (CHAR_DATA * ch, int from,
-    OBJ_DATA *obj)
+bool position_change_send_message_to_resting (CHAR_T *ch, int from,
+    OBJ_T *obj)
 {
     const char *prep = obj_furn_preposition (obj, POS_RESTING);
     switch (from) {
@@ -668,8 +630,8 @@ bool position_change_send_message_to_resting (CHAR_DATA * ch, int from,
     return FALSE;
 }
 
-bool position_change_send_message_to_sitting (CHAR_DATA * ch, int from,
-    OBJ_DATA *obj)
+bool position_change_send_message_to_sitting (CHAR_T *ch, int from,
+    OBJ_T *obj)
 {
     const char *prep = obj_furn_preposition (obj, POS_RESTING);
     switch (from) {
@@ -707,8 +669,8 @@ bool position_change_send_message_to_sitting (CHAR_DATA * ch, int from,
     return FALSE;
 }
 
-bool position_change_send_message_to_sleeping (CHAR_DATA * ch, int from,
-    OBJ_DATA *obj)
+bool position_change_send_message_to_sleeping (CHAR_T *ch, int from,
+    OBJ_T *obj)
 {
     const char *prep = obj_furn_preposition (obj, POS_SLEEPING);
     switch (from) {
@@ -728,7 +690,7 @@ bool position_change_send_message_to_sleeping (CHAR_DATA * ch, int from,
     return FALSE;
 }
 
-void echo_to_char (CHAR_DATA *to, CHAR_DATA *from, const char *type,
+void echo_to_char (CHAR_T *to, CHAR_T *from, const char *type,
     const char *msg)
 {
     if (char_get_trust (to) >= char_get_trust (from)) {
