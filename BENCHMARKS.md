@@ -33,16 +33,16 @@
 
 ### 0.2.0
 
-[ ] JSON code for database saving has been massively cleaned up...
-[ ] Tasks in Github organized into month-long sprints somehow
+[X] Extra features are highly customizable via `basemud.h`.
 [ ] All "TO-DOs" from 0.1.0 are accounted for
+[ ] JSON code for database saving has been massively cleaned up...
+[ ] Tasks in GitHub organized into month-long sprints somehow
 [ ] JSON tools are extracted as standalone apps
 [ ] Special tables are exported to JSON objects
 [ ] Simple JSON world editor
 [ ] All bit flags replaced with more extendible system
 [ ] World state object that contains most global variables
 [ ] Code is testable, even if only some tests exist
-[ ] Extra features are highly customizable via `basemud.h`.
 [ ] Affects refactored to use affect tables
 [ ] (more tbd)
 
