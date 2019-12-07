@@ -63,9 +63,9 @@ bool spec_troll_member (CHAR_T *ch) {
     for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room) {
         if (!IS_NPC (vch) || ch == vch)
             continue;
-        if (vch->pIndexData->vnum == MOB_VNUM_PATROLMAN)
+        if (vch->index_data->vnum == MOB_VNUM_PATROLMAN)
             return FALSE;
-        if (vch->pIndexData->group == GROUP_VNUM_OGRES
+        if (vch->index_data->group == GROUP_VNUM_OGRES
             && ch->level > vch->level - 2 && !do_filter_can_attack (ch, vch))
         {
             if (number_range (0, count) == 0)
@@ -124,9 +124,9 @@ bool spec_ogre_member (CHAR_T *ch) {
     for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room) {
         if (!IS_NPC (vch) || ch == vch)
             continue;
-        if (vch->pIndexData->vnum == MOB_VNUM_PATROLMAN)
+        if (vch->index_data->vnum == MOB_VNUM_PATROLMAN)
             return FALSE;
-        if (vch->pIndexData->group == GROUP_VNUM_TROLLS
+        if (vch->index_data->group == GROUP_VNUM_TROLLS
             && ch->level > vch->level - 2 && !do_filter_can_attack (ch, vch))
         {
             if (number_range (0, count) == 0)
@@ -199,9 +199,9 @@ bool spec_patrolman (CHAR_T *ch) {
         return FALSE;
 
     if (((obj = char_get_eq_by_wear_loc (ch, WEAR_NECK_1)) != NULL
-         && obj->pIndexData->vnum == OBJ_VNUM_WHISTLE)
+         && obj->index_data->vnum == OBJ_VNUM_WHISTLE)
         || ((obj = char_get_eq_by_wear_loc (ch, WEAR_NECK_2)) != NULL
-            && obj->pIndexData->vnum == OBJ_VNUM_WHISTLE))
+            && obj->index_data->vnum == OBJ_VNUM_WHISTLE))
     {
         act ("You blow down hard on $p.", ch, obj, NULL, TO_CHAR);
         act ("$n blows on $p, ***WHEEEEEEEEEEEET***", ch, obj, NULL, TO_NOTCHAR);

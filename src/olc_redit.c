@@ -277,7 +277,7 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
 }
 
 REDIT (redit_rlist) {
-    ROOM_INDEX_T *pRoomIndex;
+    ROOM_INDEX_T *room_index;
     AREA_T *pArea;
     char buf[MAX_STRING_LENGTH];
     BUFFER_T *buf1;
@@ -294,10 +294,10 @@ REDIT (redit_rlist) {
     found = FALSE;
 
     for (vnum = pArea->min_vnum; vnum <= pArea->max_vnum; vnum++) {
-        if ((pRoomIndex = get_room_index (vnum))) {
+        if ((room_index = get_room_index (vnum))) {
             found = TRUE;
             sprintf (buf, "[%5d] %-17.16s",
-                     vnum, capitalize (pRoomIndex->name));
+                     vnum, capitalize (room_index->name));
             add_buf (buf1, buf);
             if (++col % 3 == 0)
                 add_buf (buf1, "\n\r");
@@ -318,12 +318,12 @@ REDIT (redit_rlist) {
 }
 
 REDIT (redit_mlist) {
-    MOB_INDEX_T *pMobIndex;
+    MOB_INDEX_T *mob_index;
     AREA_T *pArea;
     char buf[MAX_STRING_LENGTH];
     BUFFER_T *buf1;
     char arg[MAX_INPUT_LENGTH];
-    bool fAll, found;
+    bool all, found;
     int vnum;
     int col = 0;
 
@@ -336,16 +336,16 @@ REDIT (redit_mlist) {
     buf1 = buf_new ();
     pArea = ch->in_room->area;
 /*    buf1[0] = '\0'; */
-    fAll = !str_cmp (arg, "all");
+    all = !str_cmp (arg, "all");
     found = FALSE;
 
     for (vnum = pArea->min_vnum; vnum <= pArea->max_vnum; vnum++) {
-        if ((pMobIndex = get_mob_index (vnum)) != NULL) {
-            if (fAll || is_name (arg, pMobIndex->name)) {
+        if ((mob_index = get_mob_index (vnum)) != NULL) {
+            if (all || is_name (arg, mob_index->name)) {
                 found = TRUE;
                 sprintf (buf, "[%5d] %-17.16s",
-                         pMobIndex->vnum,
-                         capitalize (pMobIndex->short_descr));
+                         mob_index->vnum,
+                         capitalize (mob_index->short_descr));
                 add_buf (buf1, buf);
                 if (++col % 3 == 0)
                     add_buf (buf1, "\n\r");
@@ -367,12 +367,12 @@ REDIT (redit_mlist) {
 }
 
 REDIT (redit_olist) {
-    OBJ_INDEX_T *pObjIndex;
+    OBJ_INDEX_T *obj_index;
     AREA_T *pArea;
     char buf[MAX_STRING_LENGTH];
     BUFFER_T *buf1;
     char arg[MAX_INPUT_LENGTH];
-    bool fAll, found;
+    bool all, found;
     int vnum, item_type;
     int col = 0;
 
@@ -385,17 +385,19 @@ REDIT (redit_olist) {
     pArea = ch->in_room->area;
     buf1 = buf_new ();
 /*  buf1[0] = '\0'; */
-    fAll = !str_cmp (arg, "all");
+    all = !str_cmp (arg, "all");
     found = FALSE;
 
     item_type = item_lookup (arg);
     for (vnum = pArea->min_vnum; vnum <= pArea->max_vnum; vnum++) {
-        if ((pObjIndex = get_obj_index (vnum))) {
-            if (fAll || is_name (arg, pObjIndex->name) || item_type == pObjIndex->item_type) {
+        if ((obj_index = get_obj_index (vnum))) {
+            if (all || is_name (arg, obj_index->name) ||
+                item_type == obj_index->item_type)
+            {
                 found = TRUE;
                 sprintf (buf, "[%5d] %-17.16s",
-                         pObjIndex->vnum,
-                         capitalize (pObjIndex->short_descr));
+                         obj_index->vnum,
+                         capitalize (obj_index->short_descr));
                 add_buf (buf1, buf);
                 if (++col % 3 == 0)
                     add_buf (buf1, "\n\r");
@@ -827,7 +829,7 @@ REDIT (redit_format) {
 
 REDIT (redit_mreset) {
     ROOM_INDEX_T *pRoom;
-    MOB_INDEX_T *pMobIndex;
+    MOB_INDEX_T *mob_index;
     CHAR_T *newmob;
     char arg[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
@@ -842,11 +844,11 @@ REDIT (redit_mreset) {
         send_to_char ("Syntax: mreset <vnum> <max #x> <mix #x>\n\r", ch);
         return FALSE;
     }
-    if (!(pMobIndex = get_mob_index (atoi (arg)))) {
+    if (!(mob_index = get_mob_index (atoi (arg)))) {
         send_to_char ("REdit: No mobile has that vnum.\n\r", ch);
         return FALSE;
     }
-    if (pMobIndex->area != pRoom->area) {
+    if (mob_index->area != pRoom->area) {
         send_to_char ("REdit: No such mobile in this area.\n\r", ch);
         return FALSE;
     }
@@ -854,28 +856,28 @@ REDIT (redit_mreset) {
     /* Create the mobile reset. */
     pReset = reset_data_new ();
     pReset->command = 'M';
-    pReset->v.mob.mob_vnum     = pMobIndex->vnum;
+    pReset->v.mob.mob_vnum     = mob_index->vnum;
     pReset->v.mob.global_limit = is_number (arg2) ? atoi (arg2) : MAX_MOB;
     pReset->v.mob.room_vnum    = pRoom->vnum;
     pReset->v.mob.room_limit   = is_number (argument) ? atoi (argument) : 1;
     redit_add_reset (pRoom, pReset, 0 /* Last slot */ );
 
     /* Create the mobile. */
-    newmob = char_create_mobile (pMobIndex);
+    newmob = char_create_mobile (mob_index);
     char_to_room (newmob, pRoom);
 
     printf_to_char (ch,
         "%s (%d) has been loaded and added to resets.\n\r"
         "There will be a maximum of %d loaded to this room.\n\r",
-        capitalize (pMobIndex->short_descr),
-        pMobIndex->vnum, pReset->v.mob.room_limit);
+        capitalize (mob_index->short_descr),
+        mob_index->vnum, pReset->v.mob.room_limit);
     act ("$n has created $N!", ch, NULL, newmob, TO_NOTCHAR);
     return TRUE;
 }
 
 REDIT (redit_oreset) {
     ROOM_INDEX_T *pRoom;
-    OBJ_INDEX_T *pObjIndex;
+    OBJ_INDEX_T *obj_index;
     OBJ_T *newobj;
     OBJ_T *to_obj;
     CHAR_T *to_mob;
@@ -895,11 +897,11 @@ REDIT (redit_oreset) {
         send_to_char ("        -<mob_name> <wear_loc> = into mob\n\r", ch);
         return FALSE;
     }
-    if (!(pObjIndex = get_obj_index (atoi (arg1)))) {
+    if (!(obj_index = get_obj_index (atoi (arg1)))) {
         send_to_char ("REdit: No object has that vnum.\n\r", ch);
         return FALSE;
     }
-    if (pObjIndex->area != pRoom->area) {
+    if (obj_index->area != pRoom->area) {
         send_to_char ("REdit: No such object in this area.\n\r", ch);
         return FALSE;
     }
@@ -908,16 +910,16 @@ REDIT (redit_oreset) {
     if (arg2[0] == '\0') {
         pReset = reset_data_new ();
         pReset->command = 'O';
-        pReset->v.obj.obj_vnum     = pObjIndex->vnum;
+        pReset->v.obj.obj_vnum     = obj_index->vnum;
         pReset->v.obj.global_limit = 0;
         pReset->v.obj.room_vnum    = pRoom->vnum;
         redit_add_reset (pRoom, pReset, 0 /* Last slot */ );
 
-        newobj = obj_create (pObjIndex, number_fuzzy (olevel));
+        newobj = obj_create (obj_index, number_fuzzy (olevel));
         obj_give_to_room (newobj, pRoom);
 
         printf_to_char (ch, "%s (%d) has been loaded and added to resets.\n\r",
-            capitalize (pObjIndex->short_descr), pObjIndex->vnum);
+            capitalize (obj_index->short_descr), obj_index->vnum);
     }
     /* Load into object's inventory. */
     else if (argument[0] == '\0' &&
@@ -925,20 +927,20 @@ REDIT (redit_oreset) {
     {
         pReset = reset_data_new ();
         pReset->command = 'P';
-        pReset->v.put.obj_vnum      = pObjIndex->vnum;
+        pReset->v.put.obj_vnum      = obj_index->vnum;
         pReset->v.put.global_limit  = 0;
-        pReset->v.put.into_vnum     = to_obj->pIndexData->vnum;
+        pReset->v.put.into_vnum     = to_obj->index_data->vnum;
         pReset->v.put.put_count     = 1;
         redit_add_reset (pRoom, pReset, 0 /* Last slot */ );
 
-        newobj = obj_create (pObjIndex, number_fuzzy (olevel));
+        newobj = obj_create (obj_index, number_fuzzy (olevel));
         newobj->cost = 0;
         obj_give_to_obj (newobj, to_obj);
 
         printf_to_char (ch, "%s (%d) has been loaded into "
             "%s (%d) and added to resets.\n\r",
-            capitalize (newobj->short_descr), newobj->pIndexData->vnum,
-            to_obj->short_descr, to_obj->pIndexData->vnum);
+            capitalize (newobj->short_descr), newobj->index_data->vnum,
+            to_obj->short_descr, to_obj->index_data->vnum);
     }
     /* Load into mobile's inventory. */
     else if ((to_mob = find_char_same_room (ch, arg2)) != NULL) {
@@ -949,10 +951,10 @@ REDIT (redit_oreset) {
             "REdit: Invalid wear_loc.  '? wear-loc'\n\r", ch, FALSE);
 
         /* Disallow loading a sword (WEAR_WIELD) into WEAR_HEAD. */
-        if (!IS_SET (pObjIndex->wear_flags, wear_get_type_by_loc (wear_loc))) {
+        if (!IS_SET (obj_index->wear_flags, wear_get_type_by_loc (wear_loc))) {
             printf_to_char (ch, "%s (%d) has wear flags: [%s]\n\r",
-                capitalize (pObjIndex->short_descr), pObjIndex->vnum,
-                flag_string (wear_flags, pObjIndex->wear_flags));
+                capitalize (obj_index->short_descr), obj_index->vnum,
+                flag_string (wear_flags, obj_index->wear_flags));
         }
 
         /* Can't load into same position.  */
@@ -962,12 +964,12 @@ REDIT (redit_oreset) {
         pReset = reset_data_new ();
         if (wear_loc == WEAR_NONE) {
             pReset->command = 'G';
-            pReset->v.give.obj_vnum     = pObjIndex->vnum;
+            pReset->v.give.obj_vnum     = obj_index->vnum;
             pReset->v.give.global_limit = 0;
         }
         else {
             pReset->command = 'E';
-            pReset->v.equip.obj_vnum     = pObjIndex->vnum;
+            pReset->v.equip.obj_vnum     = obj_index->vnum;
             pReset->v.equip.global_limit = 0;
             pReset->v.equip.wear_loc     = wear_loc;
         }
@@ -975,11 +977,11 @@ REDIT (redit_oreset) {
         redit_add_reset (pRoom, pReset, 0 /* Last slot */ );
 
         olevel = URANGE (0, to_mob->level - 2, LEVEL_HERO);
-        newobj = obj_create (pObjIndex, number_fuzzy (olevel));
+        newobj = obj_create (obj_index, number_fuzzy (olevel));
 
         /* Shop-keeper? */
-        if (to_mob->pIndexData->pShop) {
-            switch (pObjIndex->item_type) {
+        if (to_mob->index_data->shop) {
+            switch (obj_index->item_type) {
                 default:
                     olevel = 0;
                     break;
@@ -1009,12 +1011,12 @@ REDIT (redit_oreset) {
                     break;
             }
 
-            newobj = obj_create (pObjIndex, olevel);
+            newobj = obj_create (obj_index, olevel);
             if (wear_loc == WEAR_NONE)
                 SET_BIT (newobj->extra_flags, ITEM_INVENTORY);
         }
         else
-            newobj = obj_create (pObjIndex, number_fuzzy (olevel));
+            newobj = obj_create (obj_index, number_fuzzy (olevel));
 
         obj_give_to_char (newobj, to_mob);
         if (pReset->command == 'E')
@@ -1022,10 +1024,10 @@ REDIT (redit_oreset) {
 
         printf_to_char (ch,
             "%s (%d) has been loaded %s of %s (%d) and added to resets.\n\r",
-            capitalize (pObjIndex->short_descr),
-            pObjIndex->vnum,
+            capitalize (obj_index->short_descr),
+            obj_index->vnum,
             flag_string (wear_loc_phrases, wear_loc),
-            to_mob->short_descr, to_mob->pIndexData->vnum);
+            to_mob->short_descr, to_mob->index_data->vnum);
     }
     /* Display Syntax */
     else {

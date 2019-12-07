@@ -525,7 +525,7 @@ void handle_con_note_text (DESCRIPTOR_T *d, char *argument) {
 
     /* First, check for EndOfNote marker */
     strcpy (buf, argument);
-    if (!str_cmp(buf, "~") || !str_cmp(buf, "END")) {
+    if (!str_cmp (buf, "~") || !str_cmp (buf, "END")) {
         write_to_buffer (d, "\n\r\n\r",0);
         printf_to_desc (d, "%s", note_finish_prompt);
         write_to_buffer (d, "\n\r", 0);

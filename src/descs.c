@@ -386,7 +386,7 @@ void read_from_buffer (DESCRIPTOR_T *d) {
 }
 
 /* Low level output function. */
-bool process_output (DESCRIPTOR_T *d, bool fPrompt) {
+bool process_output (DESCRIPTOR_T *d, bool prompt) {
     extern bool merc_down;
 
     /* Bust a prompt. */
@@ -398,9 +398,9 @@ bool process_output (DESCRIPTOR_T *d, bool fPrompt) {
 
         if (d->showstr_point)
             write_to_buffer (d, "[Hit Return to continue] ", 0);
-        else if (fPrompt && d->pString && d->connected == CON_PLAYING)
+        else if (prompt && d->pString && d->connected == CON_PLAYING)
             write_to_buffer (d, "> ", 2);
-        else if (fPrompt && d->connected == CON_PLAYING) {
+        else if (prompt && d->connected == CON_PLAYING) {
             CHAR_T *ch, *victim;
             ch = d->character;
 
@@ -527,15 +527,15 @@ bool write_to_descriptor (int desc, char *txt, int length) {
 }
 
 /* Look for link-dead player to reconnect. */
-bool check_reconnect (DESCRIPTOR_T *d, char *name, bool fConn) {
+bool check_reconnect (DESCRIPTOR_T *d, char *name, bool conn) {
     CHAR_T *ch;
 
     for (ch = char_list; ch != NULL; ch = ch->next) {
         if (!IS_NPC (ch)
-            && (!fConn || ch->desc == NULL)
+            && (!conn || ch->desc == NULL)
             && !str_cmp (d->character->name, ch->name))
         {
-            if (fConn == FALSE) {
+            if (conn == FALSE) {
                 str_replace_dup (&(d->character->pcdata->pwd), ch->pcdata->pwd);
             }
             else {

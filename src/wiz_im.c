@@ -195,7 +195,7 @@ DEFINE_DO_FUN (do_mwhere) {
         found = TRUE;
         count++;
         sprintf (buf, "%3d) [%5d] %-28s [%5d] %s\n\r", count,
-            IS_NPC (victim) ? victim->pIndexData->vnum : 0,
+            IS_NPC (victim) ? victim->index_data->vnum : 0,
             PERS (victim), victim->in_room->vnum, victim->in_room->name);
         add_buf (buffer, buf);
     }
@@ -389,9 +389,9 @@ DEFINE_DO_FUN (do_ostat) {
     printf_to_char (ch, "Name(s): %s\n\r", obj->name);
 
     printf_to_char (ch, "Vnum: %d  Format: %s  Type: %s  Resets: %d\n\r",
-        obj->pIndexData->vnum,
-        obj->pIndexData->new_format ? "new" : "old",
-        item_get_name (obj->item_type), obj->pIndexData->reset_num);
+        obj->index_data->vnum,
+        obj->index_data->new_format ? "new" : "old",
+        item_get_name (obj->item_type), obj->index_data->reset_num);
 
     printf_to_char (ch, "Short description: %s\n\rLong description: %s\n\r",
         obj->short_descr, obj->description);
@@ -456,7 +456,7 @@ DEFINE_DO_FUN (do_ostat) {
             printf_to_char (ch, "Weapon type is %s\n\r",
                 if_null_str (weapon_get_name (obj->v.weapon.weapon_type), "unknown"));
 
-            if (obj->pIndexData->new_format) {
+            if (obj->index_data->new_format) {
                 printf_to_char (ch, "Damage is %ldd%ld (average %ld)\n\r",
                     obj->v.weapon.dice_num, obj->v.weapon.dice_size,
                    (obj->v.weapon.dice_size + 1) * obj->v.weapon.dice_num / 2);
@@ -498,7 +498,7 @@ DEFINE_DO_FUN (do_ostat) {
             break;
     }
 
-    if (obj->extra_descr != NULL || obj->pIndexData->extra_descr != NULL) {
+    if (obj->extra_descr != NULL || obj->index_data->extra_descr != NULL) {
         EXTRA_DESCR_T *ed;
 
         send_to_char ("Extra description keywords: '", ch);
@@ -507,7 +507,7 @@ DEFINE_DO_FUN (do_ostat) {
             if (ed->next != NULL)
                 send_to_char (" ", ch);
         }
-        for (ed = obj->pIndexData->extra_descr; ed != NULL; ed = ed->next) {
+        for (ed = obj->index_data->extra_descr; ed != NULL; ed = ed->next) {
             send_to_char (ed->keyword, ch);
             if (ed->next != NULL)
                 send_to_char (" ", ch);
@@ -529,7 +529,7 @@ DEFINE_DO_FUN (do_ostat) {
     }
 
     if (!obj->enchanted) {
-        for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
+        for (paf = obj->index_data->affected; paf != NULL; paf = paf->next) {
             printf_to_char (ch, "Affects %s by %d, level %d.\n\r",
                 affect_apply_name (paf->apply), paf->modifier, paf->level);
             if (paf->bits)
@@ -551,15 +551,15 @@ DEFINE_DO_FUN (do_mstat) {
 
     printf_to_char (ch,
         "Vnum: %d  Format: %s  Race: %s  Group: %d  Sex: %s  Room: %d\n\r",
-        IS_NPC (victim) ? victim->pIndexData->vnum : 0,
-        IS_NPC (victim) ? victim->pIndexData->new_format ? "new" : "old" : "pc",
+        IS_NPC (victim) ? victim->index_data->vnum : 0,
+        IS_NPC (victim) ? victim->index_data->new_format ? "new" : "old" : "pc",
         race_table[victim->race].name,
         IS_NPC (victim) ? victim->group : 0, sex_table[victim->sex].name,
         victim->in_room == NULL ? 0 : victim->in_room->vnum);
 
     if (IS_NPC (victim))
         printf_to_char (ch, "Count: %d  Killed: %d\n\r",
-            victim->pIndexData->count, victim->pIndexData->killed);
+            victim->index_data->count, victim->index_data->killed);
 
     printf_to_char (ch,
         "Str: %d(%d)  Int: %d(%d)  Wis: %d(%d)  Dex: %d(%d)  Con: %d(%d)\n\r",
@@ -591,7 +591,7 @@ DEFINE_DO_FUN (do_mstat) {
         size_table[victim->size].name,
         position_table[victim->position].long_name, victim->wimpy);
 
-    if (IS_NPC (victim) && victim->pIndexData->new_format) {
+    if (IS_NPC (victim) && victim->index_data->new_format) {
         printf_to_char (ch, "Damage: %dd%d  Message:  %s\n\r",
             victim->damage.number, victim->damage.size,
             attack_table[victim->dam_type].noun);
@@ -892,17 +892,17 @@ DEFINE_DO_FUN (do_mpstat) {
         "That is not a mobile.\n\r", ch);
 
     printf_to_char (ch, "Mobile #%-6d [%s]\n\r",
-        victim->pIndexData->vnum, victim->short_descr);
+        victim->index_data->vnum, victim->short_descr);
 
     printf_to_char (ch, "Delay   %-6d [%s]\n\r",
         victim->mprog_delay,
         victim->mprog_target == NULL
             ? "No target" : victim->mprog_target->name);
 
-    BAIL_IF (!victim->pIndexData->mprog_flags,
+    BAIL_IF (!victim->index_data->mprog_flags,
         "[No programs set]\n\r", ch);
 
-    for (i = 1, mprg = victim->pIndexData->mprogs; mprg != NULL;
+    for (i = 1, mprg = victim->index_data->mprogs; mprg != NULL;
          mprg = mprg->next, i++)
     {
         printf_to_char (ch,

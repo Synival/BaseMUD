@@ -92,7 +92,7 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
     char arg[MAX_INPUT_LENGTH];
     char buf[MAX_STRING_LENGTH];
     CHAR_T *pet;
-    ROOM_INDEX_T *pRoomIndexNext;
+    ROOM_INDEX_T *room_index_next;
     ROOM_INDEX_T *in_room;
     int cost, roll;
 
@@ -103,17 +103,17 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
 
     /* hack to make new thalos pets work */
     if (ch->in_room->vnum == 9621)
-        pRoomIndexNext = get_room_index (9706);
+        room_index_next = get_room_index (9706);
     else
-        pRoomIndexNext = get_room_index (ch->in_room->vnum + 1);
-    if (pRoomIndexNext == NULL) {
+        room_index_next = get_room_index (ch->in_room->vnum + 1);
+    if (room_index_next == NULL) {
         bug ("do_buy: bad pet shop at vnum %d.", ch->in_room->vnum);
         send_to_char ("Sorry, you can't buy that here.\n\r", ch);
         return;
     }
 
     in_room = ch->in_room;
-    ch->in_room = pRoomIndexNext;
+    ch->in_room = room_index_next;
     pet = find_char_same_room (ch, arg);
     ch->in_room = in_room;
 
@@ -137,7 +137,7 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
     }
 
     char_reduce_money (ch, cost);
-    pet = char_create_mobile (pet->pIndexData);
+    pet = char_create_mobile (pet->index_data);
     SET_BIT (pet->mob, MOB_PET);
     SET_BIT (pet->affected_by, AFF_CHARM);
     pet->comm = COMM_NOTELL | COMM_NOSHOUT | COMM_NOCHANNELS;
@@ -184,7 +184,7 @@ void do_buy_item (CHAR_T *ch, char *argument) {
         for (t_obj = obj->next_content;
              count < number && t_obj != NULL; t_obj = t_obj->next_content)
         {
-            if (t_obj->pIndexData == obj->pIndexData
+            if (t_obj->index_data == obj->index_data
                 && !str_cmp (t_obj->short_descr, obj->short_descr))
                 count++;
             else
@@ -235,7 +235,7 @@ void do_buy_item (CHAR_T *ch, char *argument) {
 
     for (count = 0; count < number; count++) {
         if (IS_SET (obj->extra_flags, ITEM_INVENTORY))
-            t_obj = obj_create (obj->pIndexData, obj->level);
+            t_obj = obj_create (obj->index_data, obj->level);
         else {
             t_obj = obj;
             obj = obj->next_content;
@@ -261,24 +261,24 @@ DEFINE_DO_FUN (do_buy) {
 }
 
 void do_list_pets (CHAR_T *ch, char *argument) {
-    ROOM_INDEX_T *pRoomIndexNext;
+    ROOM_INDEX_T *room_index_next;
     CHAR_T *pet;
     bool found;
     char *material_str;
 
     /* hack to make new thalos pets work */
     if (ch->in_room->vnum == 9621)
-        pRoomIndexNext = get_room_index (9706);
+        room_index_next = get_room_index (9706);
     else
-        pRoomIndexNext = get_room_index (ch->in_room->vnum + 1);
-    if (pRoomIndexNext == NULL) {
+        room_index_next = get_room_index (ch->in_room->vnum + 1);
+    if (room_index_next == NULL) {
         bug ("do_list: bad pet shop at vnum %d.", ch->in_room->vnum);
         send_to_char ("You can't do that here.\n\r", ch);
         return;
     }
 
     found = FALSE;
-    for (pet = pRoomIndexNext->people; pet; pet = pet->next_in_room) {
+    for (pet = room_index_next->people; pet; pet = pet->next_in_room) {
         if (!IS_PET (pet))
             continue;
         if (!found) {
@@ -333,7 +333,7 @@ void do_list_items (CHAR_T *ch, char *argument) {
         else {
             count = 1;
             while (obj->next_content != NULL
-                   && obj->pIndexData == obj->next_content->pIndexData
+                   && obj->index_data == obj->next_content->index_data
                    && !str_cmp (obj->short_descr,
                                 obj->next_content->short_descr))
             {

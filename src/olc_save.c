@@ -144,68 +144,68 @@ void save_mobprogs (FILE *fp, AREA_T *pArea) {
  Purpose:    Save one mobile to file, new format -- Hugin
  Called by:    save_mobiles (below).
  ****************************************************************************/
-void save_mobile (FILE *fp, MOB_INDEX_T *pMobIndex)
+void save_mobile (FILE *fp, MOB_INDEX_T *mob_index)
 {
     MPROG_LIST_T *pMprog;
     const RACE_T *race;
     char buf[MAX_STRING_LENGTH];
 
-    race = &(race_table[pMobIndex->race]);
-    fprintf (fp, "#%d\n", pMobIndex->vnum);
-    fprintf (fp, "%s~\n", pMobIndex->name);
-    fprintf (fp, "%s~\n", pMobIndex->short_descr);
-    fprintf (fp, "%s~\n", fix_string (pMobIndex->long_descr));
-    fprintf (fp, "%s~\n", fix_string (pMobIndex->description));
+    race = &(race_table[mob_index->race]);
+    fprintf (fp, "#%d\n", mob_index->vnum);
+    fprintf (fp, "%s~\n", mob_index->name);
+    fprintf (fp, "%s~\n", mob_index->short_descr);
+    fprintf (fp, "%s~\n", fix_string (mob_index->long_descr));
+    fprintf (fp, "%s~\n", fix_string (mob_index->description));
     fprintf (fp, "%s~\n", race->name);
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->mob_plus, buf));
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->affected_by_plus, buf));
-    fprintf (fp, "%d %d\n", pMobIndex->alignment, pMobIndex->group);
-    fprintf (fp, "%d ", pMobIndex->level);
-    fprintf (fp, "%d ", pMobIndex->hitroll);
-    fprintf (fp, "%dd%d+%d ", pMobIndex->hit.number,
-             pMobIndex->hit.size, pMobIndex->hit.bonus);
-    fprintf (fp, "%dd%d+%d ", pMobIndex->mana.number,
-             pMobIndex->mana.size, pMobIndex->mana.bonus);
-    fprintf (fp, "%dd%d+%d ", pMobIndex->damage.number,
-             pMobIndex->damage.size, pMobIndex->damage.bonus);
-    fprintf (fp, "%s\n", attack_table[pMobIndex->dam_type].name);
+    fprintf (fp, "%s ", fwrite_flag (mob_index->mob_plus, buf));
+    fprintf (fp, "%s ", fwrite_flag (mob_index->affected_by_plus, buf));
+    fprintf (fp, "%d %d\n", mob_index->alignment, mob_index->group);
+    fprintf (fp, "%d ", mob_index->level);
+    fprintf (fp, "%d ", mob_index->hitroll);
+    fprintf (fp, "%dd%d+%d ", mob_index->hit.number,
+             mob_index->hit.size, mob_index->hit.bonus);
+    fprintf (fp, "%dd%d+%d ", mob_index->mana.number,
+             mob_index->mana.size, mob_index->mana.bonus);
+    fprintf (fp, "%dd%d+%d ", mob_index->damage.number,
+             mob_index->damage.size, mob_index->damage.bonus);
+    fprintf (fp, "%s\n", attack_table[mob_index->dam_type].name);
     fprintf (fp, "%d %d %d %d\n",
-             pMobIndex->ac[AC_PIERCE] / 10,
-             pMobIndex->ac[AC_BASH] / 10,
-             pMobIndex->ac[AC_SLASH] / 10, pMobIndex->ac[AC_EXOTIC] / 10);
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->off_flags_plus, buf));
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->imm_flags_plus, buf));
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->res_flags_plus, buf));
-    fprintf (fp, "%s\n", fwrite_flag (pMobIndex->vuln_flags_plus, buf));
+             mob_index->ac[AC_PIERCE] / 10,
+             mob_index->ac[AC_BASH] / 10,
+             mob_index->ac[AC_SLASH] / 10, mob_index->ac[AC_EXOTIC] / 10);
+    fprintf (fp, "%s ", fwrite_flag (mob_index->off_flags_plus, buf));
+    fprintf (fp, "%s ", fwrite_flag (mob_index->imm_flags_plus, buf));
+    fprintf (fp, "%s ", fwrite_flag (mob_index->res_flags_plus, buf));
+    fprintf (fp, "%s\n", fwrite_flag (mob_index->vuln_flags_plus, buf));
     fprintf (fp, "%s %s %s %ld\n",
-             position_table[pMobIndex->start_pos].name,
-             position_table[pMobIndex->default_pos].name,
-             sex_table[pMobIndex->sex].name, pMobIndex->wealth);
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->form_plus, buf));
-    fprintf (fp, "%s ", fwrite_flag (pMobIndex->parts_plus, buf));
+             position_table[mob_index->start_pos].name,
+             position_table[mob_index->default_pos].name,
+             sex_table[mob_index->sex].name, mob_index->wealth);
+    fprintf (fp, "%s ", fwrite_flag (mob_index->form_plus, buf));
+    fprintf (fp, "%s ", fwrite_flag (mob_index->parts_plus, buf));
 
-    fprintf (fp, "%s ", size_table[pMobIndex->size].name);
+    fprintf (fp, "%s ", size_table[mob_index->size].name);
     fprintf (fp, "%s\n", if_null_str (
-        (char *) material_get_name (pMobIndex->material), "unknown"));
+        (char *) material_get_name (mob_index->material), "unknown"));
 
-    if (pMobIndex->mob_minus != 0)
-        fprintf (fp, "F act %s\n", fwrite_flag (pMobIndex->mob_minus, buf));
-    if (pMobIndex->affected_by_minus != 0)
-        fprintf (fp, "F aff %s\n", fwrite_flag (pMobIndex->affected_by_minus, buf));
-    if (pMobIndex->off_flags_minus != 0)
-        fprintf (fp, "F off %s\n", fwrite_flag (pMobIndex->off_flags_minus, buf));
-    if (pMobIndex->imm_flags_minus != 0)
-        fprintf (fp, "F imm %s\n", fwrite_flag (pMobIndex->imm_flags_minus, buf));
-    if (pMobIndex->res_flags_minus != 0)
-        fprintf (fp, "F res %s\n", fwrite_flag (pMobIndex->res_flags_minus, buf));
-    if (pMobIndex->vuln_flags_minus != 0)
-        fprintf (fp, "F vul %s\n", fwrite_flag (pMobIndex->vuln_flags_minus, buf));
-    if (pMobIndex->form_minus != 0)
-        fprintf (fp, "F for %s\n", fwrite_flag (pMobIndex->form_minus, buf));
-    if (pMobIndex->parts_minus != 0)
-        fprintf (fp, "F par %s\n", fwrite_flag (pMobIndex->parts_minus, buf));
+    if (mob_index->mob_minus != 0)
+        fprintf (fp, "F act %s\n", fwrite_flag (mob_index->mob_minus, buf));
+    if (mob_index->affected_by_minus != 0)
+        fprintf (fp, "F aff %s\n", fwrite_flag (mob_index->affected_by_minus, buf));
+    if (mob_index->off_flags_minus != 0)
+        fprintf (fp, "F off %s\n", fwrite_flag (mob_index->off_flags_minus, buf));
+    if (mob_index->imm_flags_minus != 0)
+        fprintf (fp, "F imm %s\n", fwrite_flag (mob_index->imm_flags_minus, buf));
+    if (mob_index->res_flags_minus != 0)
+        fprintf (fp, "F res %s\n", fwrite_flag (mob_index->res_flags_minus, buf));
+    if (mob_index->vuln_flags_minus != 0)
+        fprintf (fp, "F vul %s\n", fwrite_flag (mob_index->vuln_flags_minus, buf));
+    if (mob_index->form_minus != 0)
+        fprintf (fp, "F for %s\n", fwrite_flag (mob_index->form_minus, buf));
+    if (mob_index->parts_minus != 0)
+        fprintf (fp, "F par %s\n", fwrite_flag (mob_index->parts_minus, buf));
 
-    for (pMprog = pMobIndex->mprogs; pMprog; pMprog = pMprog->next)
+    for (pMprog = mob_index->mprogs; pMprog; pMprog = pMprog->next)
         fprintf (fp, "M %s %d %s~\n",
                  mprog_type_to_name (pMprog->trig_type), pMprog->vnum,
                  pMprog->trig_phrase);
@@ -235,21 +235,21 @@ void save_mobiles (FILE *fp, AREA_T *pArea) {
                 new ROM format saving -- Hugin
  Called by:    save_objects (below).
  ****************************************************************************/
-void save_object (FILE *fp, OBJ_INDEX_T *pObjIndex) {
+void save_object (FILE *fp, OBJ_INDEX_T *obj_index) {
     char letter;
     AFFECT_T *pAf;
     EXTRA_DESCR_T *pEd;
     char buf[MAX_STRING_LENGTH];
 
-    fprintf (fp, "#%d\n", pObjIndex->vnum);
-    fprintf (fp, "%s~\n", pObjIndex->name);
-    fprintf (fp, "%s~\n", pObjIndex->short_descr);
-    fprintf (fp, "%s~\n", fix_string (pObjIndex->description));
+    fprintf (fp, "#%d\n", obj_index->vnum);
+    fprintf (fp, "%s~\n", obj_index->name);
+    fprintf (fp, "%s~\n", obj_index->short_descr);
+    fprintf (fp, "%s~\n", fix_string (obj_index->description));
     fprintf (fp, "%s~\n", if_null_str (
-        (char *) material_get_name (pObjIndex->material), "unknown"));
-    fprintf (fp, "%s ", item_get_name (pObjIndex->item_type));
-    fprintf (fp, "%s ", fwrite_flag (pObjIndex->extra_flags, buf));
-    fprintf (fp, "%s\n", fwrite_flag (pObjIndex->wear_flags, buf));
+        (char *) material_get_name (obj_index->material), "unknown"));
+    fprintf (fp, "%s ", item_get_name (obj_index->item_type));
+    fprintf (fp, "%s ", fwrite_flag (obj_index->extra_flags, buf));
+    fprintf (fp, "%s\n", fwrite_flag (obj_index->wear_flags, buf));
 
 /*
  *  Using fwrite_flag to write most values gives a strange
@@ -257,41 +257,41 @@ void save_object (FILE *fp, OBJ_INDEX_T *pObjIndex) {
  *  item type later.
  */
 
-    switch (pObjIndex->item_type) {
+    switch (obj_index->item_type) {
         default:
-            fprintf (fp, "%s ",  fwrite_flag (pObjIndex->v.value[0], buf));
-            fprintf (fp, "%s ",  fwrite_flag (pObjIndex->v.value[1], buf));
-            fprintf (fp, "%s ",  fwrite_flag (pObjIndex->v.value[2], buf));
-            fprintf (fp, "%s ",  fwrite_flag (pObjIndex->v.value[3], buf));
-            fprintf (fp, "%s\n", fwrite_flag (pObjIndex->v.value[4], buf));
+            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[0], buf));
+            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[1], buf));
+            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[2], buf));
+            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[3], buf));
+            fprintf (fp, "%s\n", fwrite_flag (obj_index->v.value[4], buf));
             break;
 
         case ITEM_DRINK_CON:
         case ITEM_FOUNTAIN:
             fprintf (fp, "%ld %ld '%s' %ld %ld\n",
-                     pObjIndex->v.value[0],
-                     pObjIndex->v.value[1],
-                     liq_table[pObjIndex->v.value[2]].name,
-                     pObjIndex->v.value[3],
-                     pObjIndex->v.value[4]);
+                     obj_index->v.value[0],
+                     obj_index->v.value[1],
+                     liq_table[obj_index->v.value[2]].name,
+                     obj_index->v.value[3],
+                     obj_index->v.value[4]);
             break;
 
         case ITEM_CONTAINER:
             fprintf (fp, "%ld %s %ld %ld %ld\n",
-                     pObjIndex->v.value[0],
-                     fwrite_flag (pObjIndex->v.value[1], buf),
-                     pObjIndex->v.value[2],
-                     pObjIndex->v.value[3],
-                     pObjIndex->v.value[4]);
+                     obj_index->v.value[0],
+                     fwrite_flag (obj_index->v.value[1], buf),
+                     obj_index->v.value[2],
+                     obj_index->v.value[3],
+                     obj_index->v.value[4]);
             break;
 
         case ITEM_WEAPON:
             fprintf (fp, "%s %ld %ld %s %s\n",
-                     weapon_get_name (pObjIndex->v.value[0]),
-                     pObjIndex->v.value[1],
-                     pObjIndex->v.value[2],
-                     attack_table[pObjIndex->v.value[3]].name,
-                     fwrite_flag (pObjIndex->v.value[4], buf));
+                     weapon_get_name (obj_index->v.value[0]),
+                     obj_index->v.value[1],
+                     obj_index->v.value[2],
+                     attack_table[obj_index->v.value[3]].name,
+                     fwrite_flag (obj_index->v.value[4], buf));
             break;
 
         case ITEM_PILL:
@@ -299,40 +299,40 @@ void save_object (FILE *fp, OBJ_INDEX_T *pObjIndex) {
         case ITEM_SCROLL:
             /* no negative numbers */
             fprintf (fp, "%ld '%s' '%s' '%s' '%s'\n",
-                     pObjIndex->v.value[0]  >  0 ? pObjIndex->v.value[0] : 0,
-                     pObjIndex->v.value[1] != -1 ? skill_table[pObjIndex->v.value[1]].name : "",
-                     pObjIndex->v.value[2] != -1 ? skill_table[pObjIndex->v.value[2]].name : "",
-                     pObjIndex->v.value[3] != -1 ? skill_table[pObjIndex->v.value[3]].name : "",
-                     pObjIndex->v.value[4] != -1 ? skill_table[pObjIndex->v.value[4]].name : "");
+                     obj_index->v.value[0]  >  0 ? obj_index->v.value[0] : 0,
+                     obj_index->v.value[1] != -1 ? skill_table[obj_index->v.value[1]].name : "",
+                     obj_index->v.value[2] != -1 ? skill_table[obj_index->v.value[2]].name : "",
+                     obj_index->v.value[3] != -1 ? skill_table[obj_index->v.value[3]].name : "",
+                     obj_index->v.value[4] != -1 ? skill_table[obj_index->v.value[4]].name : "");
             break;
 
         case ITEM_STAFF:
         case ITEM_WAND:
             fprintf (fp, "%ld %ld %ld '%s' %ld\n",
-                     pObjIndex->v.value[0],
-                     pObjIndex->v.value[1],
-                     pObjIndex->v.value[2],
-                     pObjIndex->v.value[3] != -1
-                        ? skill_table[pObjIndex->v.value[3]].name : "",
-                     pObjIndex->v.value[4]);
+                     obj_index->v.value[0],
+                     obj_index->v.value[1],
+                     obj_index->v.value[2],
+                     obj_index->v.value[3] != -1
+                        ? skill_table[obj_index->v.value[3]].name : "",
+                     obj_index->v.value[4]);
             break;
     }
 
-    fprintf (fp, "%d ", pObjIndex->level);
-    fprintf (fp, "%d ", pObjIndex->weight);
-    fprintf (fp, "%d ", pObjIndex->cost);
+    fprintf (fp, "%d ", obj_index->level);
+    fprintf (fp, "%d ", obj_index->weight);
+    fprintf (fp, "%d ", obj_index->cost);
 
-         if (pObjIndex->condition > 90) letter = 'P';
-    else if (pObjIndex->condition > 75) letter = 'G';
-    else if (pObjIndex->condition > 50) letter = 'A';
-    else if (pObjIndex->condition > 25) letter = 'W';
-    else if (pObjIndex->condition > 10) letter = 'D';
-    else if (pObjIndex->condition >  0) letter = 'B';
+         if (obj_index->condition > 90) letter = 'P';
+    else if (obj_index->condition > 75) letter = 'G';
+    else if (obj_index->condition > 50) letter = 'A';
+    else if (obj_index->condition > 25) letter = 'W';
+    else if (obj_index->condition > 10) letter = 'D';
+    else if (obj_index->condition >  0) letter = 'B';
     else                                letter = 'R';
 
     fprintf (fp, "%c\n", letter);
 
-    for (pAf = pObjIndex->affected; pAf; pAf = pAf->next) {
+    for (pAf = obj_index->affected; pAf; pAf = pAf->next) {
         if (pAf->bit_type == AFF_TO_OBJECT || pAf->bits == 0)
             fprintf (fp, "A\n%d %d\n", pAf->apply, pAf->modifier);
         else {
@@ -353,7 +353,7 @@ void save_object (FILE *fp, OBJ_INDEX_T *pObjIndex) {
         }
     }
 
-    for (pEd = pObjIndex->extra_descr; pEd; pEd = pEd->next)
+    for (pEd = obj_index->extra_descr; pEd; pEd = pEd->next)
         fprintf (fp, "E\n%s~\n%s~\n", pEd->keyword,
                  fix_string (pEd->description));
 }
@@ -375,22 +375,22 @@ void save_objects (FILE *fp, AREA_T *pArea) {
     fprintf (fp, "#0\n\n");
 }
 
-void save_room (FILE *fp, ROOM_INDEX_T *pRoomIndex) {
+void save_room (FILE *fp, ROOM_INDEX_T *room_index) {
     EXTRA_DESCR_T *pEd;
     EXIT_T *pExit;
     char buf[MAX_STRING_LENGTH];
     int door;
 
-    fprintf (fp, "#%d\n", pRoomIndex->vnum);
-    fprintf (fp, "%s~\n", pRoomIndex->name);
-    fprintf (fp, "%s~\n", fix_string (pRoomIndex->description));
+    fprintf (fp, "#%d\n", room_index->vnum);
+    fprintf (fp, "%s~\n", room_index->name);
+    fprintf (fp, "%s~\n", fix_string (room_index->description));
     fprintf (fp, "0 ");
-    fprintf (fp, "%s ", fwrite_flag (pRoomIndex->room_flags, buf));
-    fprintf (fp, "%d\n", pRoomIndex->sector_type);
+    fprintf (fp, "%s ", fwrite_flag (room_index->room_flags, buf));
+    fprintf (fp, "%d\n", room_index->sector_type);
 
     for (door = 0; door < DIR_MAX; door++) {
         int locks = 0;
-        if (!(pExit = pRoomIndex->exit[door]))
+        if (!(pExit = room_index->exit[door]))
             continue;
 
 #if 0
@@ -436,17 +436,17 @@ void save_room (FILE *fp, ROOM_INDEX_T *pRoomIndex) {
             (pExit->to_room ? pExit->to_room->vnum : -1));
     }
 
-    for (pEd = pRoomIndex->extra_descr; pEd; pEd = pEd->next)
+    for (pEd = room_index->extra_descr; pEd; pEd = pEd->next)
         fprintf (fp, "E\n%s~\n%s~\n", pEd->keyword,
                  fix_string (pEd->description));
 
-    if (!IS_NULLSTR (pRoomIndex->owner))
-        fprintf (fp, "O %s~\n", pRoomIndex->owner);
+    if (!IS_NULLSTR (room_index->owner))
+        fprintf (fp, "O %s~\n", room_index->owner);
 
-    if (pRoomIndex->mana_rate != 100 || pRoomIndex->heal_rate != 100)
-        fprintf (fp, "M %d H %d\n", pRoomIndex->mana_rate, pRoomIndex->heal_rate);
-    if (pRoomIndex->clan > 0)
-        fprintf (fp, "C %s~\n", clan_table[pRoomIndex->clan].name);
+    if (room_index->mana_rate != 100 || room_index->heal_rate != 100)
+        fprintf (fp, "M %d H %d\n", room_index->mana_rate, room_index->heal_rate);
+    if (room_index->clan > 0)
+        fprintf (fp, "C %s~\n", clan_table[room_index->clan].name);
 
     fprintf (fp, "S\n");
 }
@@ -457,13 +457,13 @@ void save_room (FILE *fp, ROOM_INDEX_T *pRoomIndex) {
  Called by:  save_area(olc_save.c).
  ****************************************************************************/
 void save_rooms (FILE *fp, AREA_T *pArea) {
-    ROOM_INDEX_T *pRoomIndex;
+    ROOM_INDEX_T *room_index;
     int i;
 
     fprintf (fp, "#ROOMS\n");
     for (i = pArea->min_vnum; i <= pArea->max_vnum; i++)
-        if ((pRoomIndex = get_room_index (i)))
-            save_room (fp, pRoomIndex);
+        if ((room_index = get_room_index (i)))
+            save_room (fp, room_index);
     fprintf (fp, "#0\n\n");
 }
 
@@ -474,27 +474,27 @@ void save_rooms (FILE *fp, AREA_T *pArea) {
  ****************************************************************************/
 void save_specials (FILE *fp, AREA_T *pArea) {
     int iHash;
-    MOB_INDEX_T *pMobIndex;
+    MOB_INDEX_T *mob_index;
 
     fprintf (fp, "#SPECIALS\n");
     for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-        for (pMobIndex = mob_index_hash[iHash]; pMobIndex;
-             pMobIndex = pMobIndex->next)
+        for (mob_index = mob_index_hash[iHash]; mob_index;
+             mob_index = mob_index->next)
         {
-            if (pMobIndex == NULL)
+            if (mob_index == NULL)
                 continue;
-            if (pMobIndex->area != pArea)
+            if (mob_index->area != pArea)
                 continue;
-            if (!pMobIndex->spec_fun)
+            if (!mob_index->spec_fun)
                 continue;
 
 #if defined(VERBOSE)
-            fprintf (fp, "M %5d %-20s * load to: %s\n", pMobIndex->vnum,
-                spec_function_name (pMobIndex->spec_fun),
-                pMobIndex->short_descr);
+            fprintf (fp, "M %5d %-20s * load to: %s\n", mob_index->vnum,
+                spec_function_name (mob_index->spec_fun),
+                mob_index->short_descr);
 #else
-            fprintf (fp, "M %5d %-20s\n", pMobIndex->vnum,
-                spec_function_name (pMobIndex->spec_fun));
+            fprintf (fp, "M %5d %-20s\n", mob_index->vnum,
+                spec_function_name (mob_index->spec_fun));
 #endif
         }
     }
@@ -642,30 +642,30 @@ void save_resets (FILE *fp, AREA_T *pArea) {
  Called by:  save_area(olc_save.c)
  ****************************************************************************/
 void save_shops (FILE *fp, AREA_T *pArea) {
-    SHOP_T *pShopIndex;
-    MOB_INDEX_T *pMobIndex;
+    SHOP_T *shop_index;
+    MOB_INDEX_T *mob_index;
     int iTrade;
     int iHash;
 
     fprintf (fp, "#SHOPS\n");
     for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-        for (pMobIndex = mob_index_hash[iHash]; pMobIndex;
-             pMobIndex = pMobIndex->next)
+        for (mob_index = mob_index_hash[iHash]; mob_index;
+             mob_index = mob_index->next)
         {
-            if (pMobIndex && pMobIndex->area == pArea && pMobIndex->pShop) {
-                pShopIndex = pMobIndex->pShop;
+            if (mob_index && mob_index->area == pArea && mob_index->shop) {
+                shop_index = mob_index->shop;
 
-                fprintf (fp, "%5d ", pShopIndex->keeper);
+                fprintf (fp, "%5d ", shop_index->keeper);
                 for (iTrade = 0; iTrade < MAX_TRADE; iTrade++) {
-                    if (pShopIndex->buy_type[iTrade] != 0)
-                        fprintf (fp, "%2d ", pShopIndex->buy_type[iTrade]);
+                    if (shop_index->buy_type[iTrade] != 0)
+                        fprintf (fp, "%2d ", shop_index->buy_type[iTrade]);
                     else
                         fprintf (fp, " 0 ");
                 }
-                fprintf (fp, "%3d %3d ", pShopIndex->profit_buy,
-                         pShopIndex->profit_sell);
-                fprintf (fp, "%2d %2d\n", pShopIndex->open_hour,
-                         pShopIndex->close_hour);
+                fprintf (fp, "%3d %3d ", shop_index->profit_buy,
+                         shop_index->profit_sell);
+                fprintf (fp, "%2d %2d\n", shop_index->open_hour,
+                         shop_index->close_hour);
             }
         }
     }

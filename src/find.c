@@ -249,7 +249,7 @@ OBJ_T *find_obj_keeper (CHAR_T *ch, CHAR_T *keeper, const char *argument) {
 
         /* skip other objects of the same name */
         while (obj->next_content != NULL
-               && obj->pIndexData == obj->next_content->pIndexData
+               && obj->index_data == obj->next_content->index_data
                && !str_cmp (obj->short_descr, obj->next_content->short_descr))
             obj = obj->next_content;
     }

@@ -156,7 +156,7 @@ DEFINE_SPELL_FUN (spell_summon) {
         "You failed.\n\r", ch);
     BAIL_IF (IS_NPC (victim) && IS_SET (victim->mob, MOB_AGGRESSIVE),
         "You failed.\n\r", ch);
-    BAIL_IF (IS_NPC (victim) && victim->pIndexData->pShop != NULL,
+    BAIL_IF (IS_NPC (victim) && victim->index_data->shop != NULL,
         "You failed.\n\r", ch);
     BAIL_IF (IS_SET (ch->in_room->room_flags, ROOM_SAFE),
         "You failed.\n\r", ch);
@@ -174,7 +174,7 @@ DEFINE_SPELL_FUN (spell_summon) {
 
 DEFINE_SPELL_FUN (spell_teleport) {
     CHAR_T *victim = (CHAR_T *) vo;
-    ROOM_INDEX_T *pRoomIndex;
+    ROOM_INDEX_T *room_index;
 
     BAIL_IF (victim->in_room == NULL,
         "You failed.\n\r", ch);
@@ -187,13 +187,13 @@ DEFINE_SPELL_FUN (spell_teleport) {
     BAIL_IF (victim != ch && (saves_spell (level - 5, victim, DAM_OTHER)),
         "You failed.\n\r", ch);
 
-    pRoomIndex = get_random_room (victim);
+    room_index = get_random_room (victim);
     if (victim != ch)
         send_to_char ("You have been teleported!\n\r", victim);
 
     act ("$n vanishes!", victim, NULL, NULL, TO_NOTCHAR);
     char_from_room (victim);
-    char_to_room (victim, pRoomIndex);
+    char_to_room (victim, room_index);
     act ("$n slowly fades into existence.", victim, NULL, NULL, TO_NOTCHAR);
     do_function (victim, &do_look, "auto");
 }

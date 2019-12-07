@@ -79,9 +79,9 @@ bool char_is_friend (CHAR_T *ch, CHAR_T *victim);
 #endif
 
 /* Creation / destruction. */
-CHAR_T *char_create_mobile (MOB_INDEX_T *pMobIndex);
+CHAR_T *char_create_mobile (MOB_INDEX_T *mob_index);
 void char_clone_mobile (CHAR_T *parent, CHAR_T *clone);
-void char_extract (CHAR_T *ch, bool fPull);
+void char_extract (CHAR_T *ch, bool pull);
 
 /* "Is" / "Can" functions. */
 bool char_is_trusted (CHAR_T *ch, int level);
@@ -109,7 +109,7 @@ bool char_is_switched (CHAR_T *ch);
 bool char_is_builder (CHAR_T *ch, AREA_T *area);
 bool char_has_clan (CHAR_T *ch);
 bool char_in_same_clan (CHAR_T *ch, CHAR_T *victim);
-bool char_can_see_room (CHAR_T *ch, ROOM_INDEX_T *pRoomIndex);
+bool char_can_see_room (CHAR_T *ch, ROOM_INDEX_T *room_index);
 bool char_can_see_anywhere (CHAR_T *ch, CHAR_T *victim);
 bool char_can_see_in_room (CHAR_T *ch, CHAR_T *victim);
 bool char_can_see_obj (CHAR_T *ch, OBJ_T *obj);
@@ -130,7 +130,7 @@ long int char_get_carry_weight (CHAR_T *ch);
 int char_get_max_carry_count (CHAR_T *ch);
 long int char_get_max_carry_weight (CHAR_T *ch);
 void char_get_who_string (CHAR_T *ch, CHAR_T *wch, char *buf, size_t len);
-int char_get_obj_cost (CHAR_T *ch, OBJ_T *obj, bool fBuy);
+int char_get_obj_cost (CHAR_T *ch, OBJ_T *obj, bool buy);
 OBJ_T *char_get_eq_by_wear_loc (CHAR_T *ch, flag_t iWear);
 SHOP_T *char_get_shop (CHAR_T *ch);
 CHAR_T *char_get_keeper_room (CHAR_T *ch);
@@ -167,7 +167,7 @@ int char_con_level_hp (CHAR_T *ch);
 void char_reset (CHAR_T *ch);
 void char_from_room (CHAR_T *ch);
 void char_to_room_apply_plague (CHAR_T *ch);
-void char_to_room (CHAR_T *ch, ROOM_INDEX_T *pRoomIndex);
+void char_to_room (CHAR_T *ch, ROOM_INDEX_T *room_index);
 bool char_equip_obj (CHAR_T *ch, OBJ_T *obj, flag_t iWear);
 bool char_unequip_obj (CHAR_T *ch, OBJ_T *obj);
 void char_reset_colour (CHAR_T *ch);

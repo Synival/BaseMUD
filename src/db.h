@@ -85,8 +85,8 @@ void fix_mobprogs (void);
 void db_export_json (bool write_indiv, const char *everything);
 
 /* Reset / destruction functions. */
-void reset_room (ROOM_INDEX_T *pRoom);
-void reset_area (AREA_T *pArea);
+void reset_room (ROOM_INDEX_T *room);
+void reset_area (AREA_T *area);
 void clear_char (CHAR_T *ch);
 
 /* Getter functions. */

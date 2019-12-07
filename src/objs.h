@@ -38,7 +38,7 @@
 #define WEIGHT_MULT(obj)         (obj_get_weight_mult (obj))
 
 /* Creation / destruction */
-OBJ_T *obj_create (OBJ_INDEX_T *pObjIndex, int level);
+OBJ_T *obj_create (OBJ_INDEX_T *obj_index, int level);
 OBJ_T *obj_create_money (int gold, int silver);
 void obj_clone (OBJ_T *parent, OBJ_T *clone);
 void obj_extract (OBJ_T *obj);
@@ -53,7 +53,7 @@ bool obj_index_can_wear_flag (OBJ_INDEX_T *obj, flag_t flag);
 /* "Get" functions. */
 int obj_count_users (OBJ_T *obj);
 int obj_get_ac_type (OBJ_T *obj, int iWear, int type);
-int obj_index_count_in_list (OBJ_INDEX_T *pObjIndex, OBJ_T *list);
+int obj_index_count_in_list (OBJ_INDEX_T *obj_index, OBJ_T *list);
 int obj_get_carry_number (OBJ_T *obj);
 int obj_get_weight (OBJ_T *obj);
 int obj_get_true_weight (OBJ_T *obj);
@@ -65,7 +65,7 @@ int obj_get_weight_mult (OBJ_T *obj);
 
 /* Object transfer functions. */
 void obj_give_to_char (OBJ_T *obj, CHAR_T *ch);
-void obj_give_to_room (OBJ_T *obj, ROOM_INDEX_T *pRoomIndex);
+void obj_give_to_room (OBJ_T *obj, ROOM_INDEX_T *room_index);
 void obj_give_to_obj (OBJ_T *obj, OBJ_T *obj_to);
 void obj_give_to_keeper (OBJ_T *obj, CHAR_T *ch);
 void obj_take (OBJ_T *obj);
@@ -74,15 +74,15 @@ void obj_take_from_room (OBJ_T *obj);
 void obj_take_from_obj (OBJ_T *obj);
 
 /* Action functions. */
-char *obj_format_to_char (OBJ_T *obj, CHAR_T *ch, bool fShort);
-void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool fShort,
-    bool fShowNothing);
+char *obj_format_to_char (OBJ_T *obj, CHAR_T *ch, bool is_short);
+void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool is_short,
+    bool show_nothing);
 void obj_enchant (OBJ_T *obj);
 bool obj_set_exit_flag (OBJ_T *obj, flag_t exit_flag);
 bool obj_remove_exit_flag (OBJ_T *obj, flag_t exit_flag);
 
 /* Look-up functions. */
-OBJ_T *obj_get_by_index (OBJ_INDEX_T *pObjIndex);
+OBJ_T *obj_get_by_index (OBJ_INDEX_T *obj_index);
 
 /* Misc. utility functions. */
 flag_t obj_exit_flag_for_container (flag_t exit_flag);

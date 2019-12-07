@@ -718,7 +718,7 @@ DEFINE_DO_FUN (do_cast) {
     }
     else {
         ch->mana -= mana;
-        if (IS_NPC (ch) || class_table[ch->class].fMana) {
+        if (IS_NPC (ch) || class_table[ch->class].gains_mana) {
             /* class has spells */
             (*skill_table[sn].spell_fun) (sn, ch->level, ch, vo, target,
                 target_name);

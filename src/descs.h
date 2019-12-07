@@ -45,10 +45,10 @@
 
 void close_socket (DESCRIPTOR_T *dclose);
 void read_from_buffer (DESCRIPTOR_T *d);
-bool process_output (DESCRIPTOR_T *d, bool fPrompt);
+bool process_output (DESCRIPTOR_T *d, bool prompt);
 bool desc_flush_output (DESCRIPTOR_T *d);
 void write_to_buffer (DESCRIPTOR_T *d, const char *txt, int length);
-bool check_reconnect (DESCRIPTOR_T *d, char *name, bool fConn);
+bool check_reconnect (DESCRIPTOR_T *d, char *name, bool conn);
 bool check_playing (DESCRIPTOR_T *d, char *name);
 void send_to_desc (const char *txt, DESCRIPTOR_T *d);
 void clear_page (DESCRIPTOR_T *d);

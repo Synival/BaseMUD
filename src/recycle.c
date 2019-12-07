@@ -522,7 +522,7 @@ void mob_index_dispose (void *obj) {
     str_free (&(mob->description));
     str_free (&(mob->area_str));
     mprog_free (mob->mprogs);
-    shop_free (mob->pShop);
+    shop_free (mob->shop);
 }
 
 void mpcode_init (void *obj) {

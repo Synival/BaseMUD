@@ -31,8 +31,8 @@
 #include "merc.h"
 
 /* Room functions. */
-bool room_is_dark (ROOM_INDEX_T *pRoomIndex);
-bool room_is_private (ROOM_INDEX_T *pRoomIndex);
+bool room_is_dark (ROOM_INDEX_T *room_index);
+bool room_is_private (ROOM_INDEX_T *room_index);
 char room_colour_char (ROOM_INDEX_T *room);
 void room_add_money (ROOM_INDEX_T *room, int gold, int silver);
 bool room_is_owner (ROOM_INDEX_T *room, CHAR_T *ch);

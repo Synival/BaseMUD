@@ -420,7 +420,7 @@ DEFINE_SPELL_FUN (spell_enchant_armor) {
 
     /* find the bonuses */
     if (!obj->enchanted) {
-        for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
+        for (paf = obj->index_data->affected; paf != NULL; paf = paf->next) {
             if (paf->apply == APPLY_AC) {
                 ac_bonus = paf->modifier;
                 ac_found = TRUE;
@@ -536,7 +536,7 @@ DEFINE_SPELL_FUN (spell_enchant_weapon) {
 
     /* find the bonuses */
     if (!obj->enchanted) {
-        for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
+        for (paf = obj->index_data->affected; paf != NULL; paf = paf->next) {
             if (paf->apply == APPLY_HITROLL) {
                 hit_bonus = paf->modifier;
                 hit_found = TRUE;

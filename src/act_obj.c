@@ -135,7 +135,7 @@ void do_put_single_item (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
     BAIL_IF_ACT (!obj_can_fit_in (obj, container),
         "$p: It won't fit.", ch, obj, NULL);
 
-    if (container->pIndexData->vnum == OBJ_VNUM_PIT &&
+    if (container->index_data->vnum == OBJ_VNUM_PIT &&
         !CAN_WEAR_FLAG (obj, ITEM_TAKE))
     {
         if (obj->timer)
@@ -177,7 +177,7 @@ void do_get_container (CHAR_T *ch, char *arg1, char *arg2) {
                  IS_SET (container->v.container.flags, CONT_CLOSED),
         "The $p is closed.", ch, container, NULL);
     BAIL_IF (type != OBJ_SINGLE && !IS_IMMORTAL (ch) &&
-             container->pIndexData->vnum == OBJ_VNUM_PIT,
+             container->index_data->vnum == OBJ_VNUM_PIT,
         "Don't be so greedy!\n\r", ch);
 
     obj_start = (type != OBJ_SINGLE) ? container->contains
@@ -440,7 +440,7 @@ void do_give_single_item (CHAR_T *ch, OBJ_T *obj, CHAR_T *victim) {
     BAIL_IF_ACT (!char_can_see_obj (victim, obj),
         "$N can't see it.", ch, NULL, victim);
 
-    if (IS_NPC (victim) && victim->pIndexData->pShop != NULL) {
+    if (IS_NPC (victim) && victim->index_data->shop != NULL) {
         act ("$N tells you 'Sorry, you'll have to sell that.'",
              ch, NULL, victim, TO_CHAR);
         return;

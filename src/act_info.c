@@ -399,7 +399,7 @@ DEFINE_DO_FUN (do_look) {
             if (!char_can_see_obj (ch, obj))
                 continue;
             pdesc1 = get_extra_descr (arg3, obj->extra_descr);
-            pdesc2 = get_extra_descr (arg3, obj->pIndexData->extra_descr);
+            pdesc2 = get_extra_descr (arg3, obj->index_data->extra_descr);
 
             CHECK_LOOK (pdesc1 != NULL, pdesc1, FALSE);
             CHECK_LOOK (pdesc2 != NULL, pdesc2, FALSE);
@@ -1041,7 +1041,7 @@ DEFINE_DO_FUN (do_compare) {
                 break;
 
             case ITEM_WEAPON:
-                if (obj1->pIndexData->new_format) {
+                if (obj1->index_data->new_format) {
                     value1 = (1 + obj1->v.weapon.dice_size) * obj1->v.weapon.dice_num;
                     value2 = (1 + obj2->v.weapon.dice_size) * obj2->v.weapon.dice_num;
                 }

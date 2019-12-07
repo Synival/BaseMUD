@@ -182,7 +182,7 @@ bool count_people_room_check (CHAR_T *mob, CHAR_T *vch, int iFlag) {
             return (IS_NPC (vch));
         case CHK_CLONES:
             return (IS_NPC (mob) && IS_NPC (vch) &&
-                    mob->pIndexData->vnum == vch->pIndexData->vnum);
+                    mob->index_data->vnum == vch->index_data->vnum);
         case CHK_GRPSIZE:
             return (is_same_group (mob, vch));
         default:
@@ -219,7 +219,7 @@ int get_order (CHAR_T *ch) {
     for (i = 0, vch = ch->in_room->people; vch; vch = vch->next_in_room) {
         if (vch == ch)
             return i;
-        if (IS_NPC (vch) && vch->pIndexData->vnum == ch->pIndexData->vnum)
+        if (IS_NPC (vch) && vch->index_data->vnum == ch->index_data->vnum)
             i++;
     }
     return 0;
@@ -228,13 +228,13 @@ int get_order (CHAR_T *ch) {
 /* Check if ch has a given item or item type
  * vnum: item vnum or -1
  * item_type: item type or -1
- * fWear: TRUE: item must be worn, FALSE: don't care */
-bool has_item (CHAR_T *ch, sh_int vnum, sh_int item_type, bool fWear) {
+ * wear: TRUE: item must be worn, FALSE: don't care */
+bool has_item (CHAR_T *ch, sh_int vnum, sh_int item_type, bool wear) {
     OBJ_T *obj;
     for (obj = ch->carrying; obj; obj = obj->next_content)
-        if ((vnum < 0 || obj->pIndexData->vnum == vnum)
-            && (item_type < 0 || obj->pIndexData->item_type == item_type)
-            && (!fWear || obj->wear_loc != WEAR_NONE))
+        if ((vnum < 0 || obj->index_data->vnum == vnum)
+            && (item_type < 0 || obj->index_data->item_type == item_type)
+            && (!wear || obj->wear_loc != WEAR_NONE))
             return TRUE;
     return FALSE;
 }
@@ -243,7 +243,7 @@ bool has_item (CHAR_T *ch, sh_int vnum, sh_int item_type, bool fWear) {
 bool get_mob_vnum_room (CHAR_T *ch, sh_int vnum) {
     CHAR_T *mob;
     for (mob = ch->in_room->people; mob; mob = mob->next_in_room)
-        if (IS_NPC (mob) && mob->pIndexData->vnum == vnum)
+        if (IS_NPC (mob) && mob->index_data->vnum == vnum)
             return TRUE;
     return FALSE;
 }
@@ -252,7 +252,7 @@ bool get_mob_vnum_room (CHAR_T *ch, sh_int vnum) {
 bool get_obj_vnum_room (CHAR_T *ch, sh_int vnum) {
     OBJ_T *obj;
     for (obj = ch->in_room->contents; obj; obj = obj->next_content)
-        if (obj->pIndexData->vnum == vnum)
+        if (obj->index_data->vnum == vnum)
             return TRUE;
     return FALSE;
 }
@@ -502,12 +502,12 @@ int cmd_eval (sh_int vnum, char *line, int check,
                 case 'r':
                 case 'q':
                     if (lval_char != NULL && IS_NPC (lval_char))
-                        lval = lval_char->pIndexData->vnum;
+                        lval = lval_char->index_data->vnum;
                     break;
                 case 'o':
                 case 'p':
                     if (lval_obj != NULL)
-                        lval = lval_obj->pIndexData->vnum;
+                        lval = lval_obj->index_data->vnum;
             }
             break;
         case CHK_HPCNT:
@@ -799,9 +799,9 @@ void program_flow (sh_int pvnum,    /* For diagnostic purposes */
     int state[MAX_NESTED_LEVEL],    /* Block state (BEGIN,IN,END) */
       cond[MAX_NESTED_LEVEL];    /* Boolean value based on the last if-check */
 
-    sh_int mvnum = mob->pIndexData->vnum;
+    sh_int mvnum = mob->index_data->vnum;
     BAIL_IF_BUG (++call_level > MAX_CALL_LEVEL,
-        "program_flow: MAX_CALL_LEVEL exceeded, vnum %d", mob->pIndexData->vnum);
+        "program_flow: MAX_CALL_LEVEL exceeded, vnum %d", mob->index_data->vnum);
 
     /* Reset "stack" */
     for (level = 0; level < MAX_NESTED_LEVEL; level++) {
@@ -945,7 +945,7 @@ bool mp_act_trigger (char *argument, CHAR_T *mob, CHAR_T *ch,
     if (!IS_NPC(mob))
         return FALSE;
 
-    for (prg = mob->pIndexData->mprogs; prg != NULL; prg = prg->next) {
+    for (prg = mob->index_data->mprogs; prg != NULL; prg = prg->next) {
         if (prg->trig_type == type
             && strstr (argument, prg->trig_phrase) != NULL)
         {
@@ -965,7 +965,7 @@ bool mp_percent_trigger (CHAR_T *mob, CHAR_T *ch,
     if (!IS_NPC(mob))
         return FALSE;
 
-    for (prg = mob->pIndexData->mprogs; prg != NULL; prg = prg->next) {
+    for (prg = mob->index_data->mprogs; prg != NULL; prg = prg->next) {
         if (!(prg->trig_type == type
             && number_percent () < atoi (prg->trig_phrase))
         )
@@ -984,7 +984,7 @@ bool mp_bribe_trigger (CHAR_T *mob, CHAR_T *ch, int amount) {
     /* Original MERC 2.2 MOBprograms used to create a money object
      * and give it to the mobile. WTF was that? Funcs in act_obj()
      * handle it just fine. */
-    for (prg = mob->pIndexData->mprogs; prg; prg = prg->next) {
+    for (prg = mob->index_data->mprogs; prg; prg = prg->next) {
         if (!(prg->trig_type == TRIG_BRIBE && amount >= atoi (prg->trig_phrase)))
             continue;
         program_flow (prg->vnum, prg->code, mob, ch, NULL, NULL);
@@ -1003,13 +1003,13 @@ bool mp_exit_trigger (CHAR_T *ch, int dir) {
         if (!(HAS_TRIGGER (mob, TRIG_EXIT) || HAS_TRIGGER (mob, TRIG_EXALL)))
             continue;
 
-        for (prg = mob->pIndexData->mprogs; prg; prg = prg->next) {
+        for (prg = mob->index_data->mprogs; prg; prg = prg->next) {
             /* Exit trigger works only if the mobile is not busy
              * (fighting etc.). If you want to be sure all players
              * are caught, use ExAll trigger */
             if (prg->trig_type == TRIG_EXIT
                 && dir == atoi (prg->trig_phrase)
-                && mob->position == mob->pIndexData->default_pos
+                && mob->position == mob->index_data->default_pos
                 && char_can_see_anywhere (mob, ch))
             {
                 program_flow (prg->vnum, prg->code, mob, ch, NULL, NULL);
@@ -1032,14 +1032,14 @@ bool mp_give_trigger (CHAR_T *mob, CHAR_T *ch, OBJ_T *obj) {
     if (!IS_NPC (mob))
         return FALSE;
 
-    for (prg = mob->pIndexData->mprogs; prg; prg = prg->next) {
+    for (prg = mob->index_data->mprogs; prg; prg = prg->next) {
         if (prg->trig_type != TRIG_GIVE)
             continue;
 
         p = prg->trig_phrase;
         /* Vnum argument */
         if (is_number (p)) {
-            if (obj->pIndexData->vnum == atoi (p)) {
+            if (obj->index_data->vnum == atoi (p)) {
                 program_flow (prg->vnum, prg->code, mob, ch, (void *) obj,
                               NULL);
                 return TRUE;
@@ -1072,7 +1072,7 @@ bool mp_greet_trigger (CHAR_T *ch) {
          * (fighting etc.). If you want to catch all players, use
          * GrAll trigger */
         if (HAS_TRIGGER (mob, TRIG_GREET)
-            && mob->position == mob->pIndexData->default_pos
+            && mob->position == mob->index_data->default_pos
             && char_can_see_anywhere (mob, ch))
         {
             mp_percent_trigger (mob, ch, NULL, NULL, TRIG_GREET);
@@ -1091,7 +1091,7 @@ bool mp_hprct_trigger (CHAR_T *mob, CHAR_T *ch) {
     if (!IS_NPC (mob))
         return FALSE;
 
-    for (prg = mob->pIndexData->mprogs; prg != NULL; prg = prg->next) {
+    for (prg = mob->index_data->mprogs; prg != NULL; prg = prg->next) {
         if ((prg->trig_type == TRIG_HPCNT)
             && ((100 * mob->hit / mob->max_hit) < atoi (prg->trig_phrase)))
         {

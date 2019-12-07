@@ -82,15 +82,15 @@ MPEDIT (mpedit_list) {
     MPROG_CODE_T *mprg;
     char buf[MAX_STRING_LENGTH];
     BUFFER_T *buffer;
-    bool fAll = !str_cmp (argument, "all");
+    bool all = !str_cmp (argument, "all");
     char chr;
     AREA_T *ad;
 
     buffer = buf_new ();
     for (mprg = mprog_list; mprg != NULL; mprg = mprg->next) {
-        if (fAll
-            || ENTRE (ch->in_room->area->min_vnum, mprg->vnum,
-                      ch->in_room->area->max_vnum))
+        if (all || ENTRE (
+            ch->in_room->area->min_vnum, mprg->vnum,
+            ch->in_room->area->max_vnum))
         {
             ad = area_get_by_inner_vnum (mprg->vnum);
             if (ad == NULL)
@@ -107,7 +107,7 @@ MPEDIT (mpedit_list) {
     }
 
     if (count == 1) {
-        if (fAll)
+        if (all)
             add_buf (buffer, "MobPrograms do not exist!\n\r");
         else
             add_buf (buffer, "MobPrograms do not exist in this area.\n\r");

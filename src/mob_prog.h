@@ -110,7 +110,7 @@ CHAR_T *get_random_char (CHAR_T *mob);
 bool count_people_room_check (CHAR_T *mob, CHAR_T *vch, int iFlag);
 int count_people_room (CHAR_T *mob, int iFlag);
 int get_order (CHAR_T *ch);
-bool has_item (CHAR_T *ch, sh_int vnum, sh_int item_type, bool fWear);
+bool has_item (CHAR_T *ch, sh_int vnum, sh_int item_type, bool wear);
 bool get_mob_vnum_room (CHAR_T *ch, sh_int vnum);
 bool get_obj_vnum_room (CHAR_T *ch, sh_int vnum);
 int cmd_eval (sh_int vnum, char *line, int check, CHAR_T *mob, CHAR_T *ch,

@@ -142,7 +142,7 @@ int mana_gain (CHAR_T *ch, bool apply_learning) {
                 check_improve (ch, gsn_meditation, TRUE, 8 * PULSE_DIVISOR);
         }
 
-        if (!class_table[ch->class].fMana)
+        if (!class_table[ch->class].gains_mana)
             gain /= 2;
         gain = recovery_in_position (gain, ch->position);
 
@@ -238,15 +238,15 @@ void area_update (void) {
         if ((!pArea->empty && (pArea->nplayer == 0 || pArea->age >= 15))
             || pArea->age >= 31)
         {
-            ROOM_INDEX_T *pRoomIndex;
+            ROOM_INDEX_T *room_index;
 
             reset_area (pArea);
             wiznetf (NULL, NULL, WIZ_RESETS, 0, 0,
                 "%s has just been reset.", pArea->title);
 
             pArea->age = number_range (0, 3);
-            pRoomIndex = get_room_index (ROOM_VNUM_SCHOOL);
-            if (pRoomIndex != NULL && pArea == pRoomIndex->area)
+            room_index = get_room_index (ROOM_VNUM_SCHOOL);
+            if (room_index != NULL && pArea == room_index->area)
                 pArea->age = 15 - 2;
             else if (pArea->nplayer == 0)
                 pArea->empty = TRUE;
@@ -278,15 +278,15 @@ void mobile_update (void) {
                 continue;
 
         /* give him some gold */
-        if (ch->pIndexData->pShop != NULL) {
-            if ((ch->gold * 100 + ch->silver) < ch->pIndexData->wealth) {
-                ch->gold   += ch->pIndexData->wealth * number_range (1, 20) / 5000000;
-                ch->silver += ch->pIndexData->wealth * number_range (1, 20) / 50000;
+        if (ch->index_data->shop != NULL) {
+            if ((ch->gold * 100 + ch->silver) < ch->index_data->wealth) {
+                ch->gold   += ch->index_data->wealth * number_range (1, 20) / 5000000;
+                ch->silver += ch->index_data->wealth * number_range (1, 20) / 50000;
             }
         }
 
         /* Check triggers only if mobile still in default position */
-        if (ch->position == ch->pIndexData->default_pos) {
+        if (ch->position == ch->index_data->default_pos) {
             /* Delay */
             if (HAS_TRIGGER (ch, TRIG_DELAY) && ch->mprog_delay > 0) {
                 if (--ch->mprog_delay <= 0) {
@@ -818,7 +818,7 @@ void obj_update (void) {
 
         if (obj->carried_by != NULL) {
             if (IS_NPC (obj->carried_by)
-                    && obj->carried_by->pIndexData->pShop != NULL)
+                    && obj->carried_by->index_data->shop != NULL)
                 obj->carried_by->silver += obj->cost / 5;
             else {
                 act (message, obj->carried_by, obj, NULL, TO_CHAR);
@@ -827,7 +827,7 @@ void obj_update (void) {
             }
         }
         else if (obj->in_room != NULL && (rch = obj->in_room->people) != NULL) {
-            if (!(obj->in_obj && obj->in_obj->pIndexData->vnum == OBJ_VNUM_PIT
+            if (!(obj->in_obj && obj->in_obj->index_data->vnum == OBJ_VNUM_PIT
                   && !CAN_WEAR_FLAG (obj->in_obj, ITEM_TAKE)))
             {
                 act (message, rch, obj, NULL, TO_CHAR);

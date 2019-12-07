@@ -376,7 +376,7 @@ DEFINE_DO_FUN (do_say) {
         for (mob = ch->in_room->people; mob != NULL; mob = mob_next) {
             mob_next = mob->next_in_room;
             if (IS_NPC (mob) && HAS_TRIGGER (mob, TRIG_SPEECH)
-                && mob->position == mob->pIndexData->default_pos)
+                && mob->position == mob->index_data->default_pos)
                 mp_act_trigger (argument, mob, ch, NULL, NULL, TRIG_SPEECH);
         }
     }

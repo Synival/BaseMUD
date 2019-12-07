@@ -75,7 +75,7 @@ void advance_level (CHAR_T *ch, bool hide) {
                       class_table[ch->class].hp_max);
     add_mana = number_range (2, (2 * char_get_curr_stat (ch, STAT_INT)
                                  + char_get_curr_stat (ch, STAT_WIS)) / 5);
-    if (!class_table[ch->class].fMana)
+    if (!class_table[ch->class].gains_mana)
         add_mana /= 2;
     add_move = number_range (1, (char_get_curr_stat (ch, STAT_CON)
                                  + char_get_curr_stat (ch, STAT_DEX)) / 6);
@@ -175,7 +175,7 @@ bool npc_should_assist_attacker (CHAR_T *bystander, CHAR_T *attacker,
         return TRUE;
 
     /* programmed to assist a specific vnum? */
-    if (bystander->pIndexData == attacker->pIndexData &&
+    if (bystander->index_data == attacker->index_data &&
             IS_SET (bystander->off_flags, ASSIST_VNUM))
         return TRUE;
 
@@ -502,8 +502,8 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
         missed = TRUE;
 
     /* Hit.  Calc damage. */
-    if (IS_NPC (ch) && (!ch->pIndexData->new_format || wield == NULL)) {
-        if (!ch->pIndexData->new_format) {
+    if (IS_NPC (ch) && (!ch->index_data->new_format || wield == NULL)) {
+        if (!ch->index_data->new_format) {
             dam = number_range (ch->level / 2, ch->level * 3 / 2);
             if (wield != NULL)
                 dam += dam / 2;
@@ -515,7 +515,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
         if (sn != -1)
             check_improve (ch, sn, TRUE, 5);
         if (wield != NULL) {
-            if (wield->pIndexData->new_format)
+            if (wield->index_data->new_format)
                 dam = dice (wield->v.weapon.dice_num,
                             wield->v.weapon.dice_size) * skill / 100;
             else
@@ -956,7 +956,7 @@ bool do_filter_can_attack_real (CHAR_T *ch, CHAR_T *victim, bool area,
             QU("Not in this room.\n\r"), ch);
 
         /* no killing shopkeepers or healers, trainers, etc */
-        FILTER (victim->pIndexData->pShop != NULL,
+        FILTER (victim->index_data->shop != NULL,
             QU("The shopkeeper wouldn't like that.\n\r"), ch);
         FILTER ((victim->mob & MOB_FRIENDLY_BITS) != 0,
             QU("I don't think Mota would approve.\n\r"), ch);
@@ -1214,13 +1214,13 @@ void stop_fighting_one (CHAR_T *ch) {
     update_pos (ch);
 }
 
-void stop_fighting (CHAR_T *ch, bool fBoth) {
-    if (!fBoth)
+void stop_fighting (CHAR_T *ch, bool both) {
+    if (!both)
         stop_fighting_one(ch);
     else {
         CHAR_T *fch;
         for (fch = char_list; fch != NULL; fch = fch->next)
-            if (fch == ch || (fBoth && fch->fighting == ch))
+            if (fch == ch || (both && fch->fighting == ch))
                 stop_fighting_one (fch);
     }
 }
@@ -1427,7 +1427,7 @@ void raw_kill (CHAR_T *victim) {
     make_corpse (victim);
 
     if (IS_NPC (victim)) {
-        victim->pIndexData->killed++;
+        victim->index_data->killed++;
         kill_table[URANGE (0, victim->level, MAX_LEVEL - 1)].killed++;
         char_extract (victim, TRUE);
         return;

@@ -155,7 +155,7 @@ bool saves_spell (int level, CHAR_T *victim, int dam_type) {
         case IS_VULNERABLE: save -= 2; break;
     }
 
-    if (!IS_NPC (victim) && class_table[victim->class].fMana)
+    if (!IS_NPC (victim) && class_table[victim->class].gains_mana)
         save = 9 * save / 10;
     save = URANGE (5, save, 95);
 

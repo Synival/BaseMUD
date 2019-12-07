@@ -250,8 +250,8 @@ DEFINE_DO_FUN (do_dump) {
 }
 
 void do_dump_stats (CHAR_T *ch) {
-    MOB_INDEX_T *pMobIndex;
-    OBJ_INDEX_T *pObjIndex;
+    MOB_INDEX_T *mob_index;
+    OBJ_INDEX_T *obj_index;
     FILE *fp;
     int vnum, nMatch = 0;
 
@@ -274,11 +274,11 @@ void do_dump_stats (CHAR_T *ch) {
     fprintf (fp, "---------------\n");
     nMatch = 0;
     for (vnum = 0; nMatch < TOP(RECYCLE_MOB_INDEX_T); vnum++) {
-        if ((pMobIndex = get_mob_index (vnum)) != NULL) {
+        if ((mob_index = get_mob_index (vnum)) != NULL) {
             nMatch++;
             fprintf (fp, "#%-4d %3d active %3d killed     %s\n",
-                     pMobIndex->vnum, pMobIndex->count,
-                     pMobIndex->killed, pMobIndex->short_descr);
+                     mob_index->vnum, mob_index->count,
+                     mob_index->killed, mob_index->short_descr);
         }
     }
     fclose (fp);
@@ -291,11 +291,11 @@ void do_dump_stats (CHAR_T *ch) {
     fprintf (fp, "---------------\n");
     nMatch = 0;
     for (vnum = 0; nMatch < TOP(RECYCLE_OBJ_INDEX_T); vnum++) {
-        if ((pObjIndex = get_obj_index (vnum)) != NULL) {
+        if ((obj_index = get_obj_index (vnum)) != NULL) {
             nMatch++;
             fprintf (fp, "#%-4d %3d active %3d reset      %s\n",
-                     pObjIndex->vnum, pObjIndex->count,
-                     pObjIndex->reset_num, pObjIndex->short_descr);
+                     obj_index->vnum, obj_index->count,
+                     obj_index->reset_num, obj_index->short_descr);
         }
     }
     fclose (fp);

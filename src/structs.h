@@ -186,7 +186,7 @@ struct class_type {
     sh_int thac0_32;         /* Thac0 for level 32          */
     sh_int hp_min;           /* Min hp gained on leveling   */
     sh_int hp_max;           /* Max hp gained on leveling   */
-    bool fMana;              /* Class gains mana on level   */
+    bool gains_mana;         /* Class gains mana on level   */
     char *base_group;        /* base skills gained          */
     char *default_group;     /* default skills gained       */
     OBJ_RECYCLE_T rec_data;
@@ -342,7 +342,7 @@ struct dice_type {
 struct mob_index_data {
     MOB_INDEX_T *next;
     SPEC_FUN *spec_fun;
-    SHOP_T *pShop;
+    SHOP_T *shop;
     MPROG_LIST_T *mprogs;
     char *area_str;
     AREA_T *area; /* OLC */
@@ -402,7 +402,7 @@ struct char_data {
     CHAR_T *mprog_target;
     MEM_T *memory;
     SPEC_FUN *spec_fun;
-    MOB_INDEX_T *pIndexData;
+    MOB_INDEX_T *index_data;
     DESCRIPTOR_T *desc;
     AFFECT_T *affected;
     OBJ_T *carrying;
@@ -821,7 +821,7 @@ struct obj_data {
     CHAR_T *carried_by;
     EXTRA_DESCR_T *extra_descr;
     AFFECT_T *affected;
-    OBJ_INDEX_T *pIndexData;
+    OBJ_INDEX_T *index_data;
     ROOM_INDEX_T *in_room;
     bool enchanted;
     char *owner;

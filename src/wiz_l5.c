@@ -71,7 +71,7 @@ void do_clone_recurse (CHAR_T *ch, OBJ_T *obj, OBJ_T *clone) {
         if (!do_obj_load_check (ch, c_obj))
             continue;
 
-        t_obj = obj_create (c_obj->pIndexData, 0);
+        t_obj = obj_create (c_obj->index_data, 0);
         obj_clone (c_obj, t_obj);
         obj_give_to_obj (t_obj, clone);
         do_clone_recurse (ch, c_obj, t_obj);
@@ -447,7 +447,7 @@ DEFINE_DO_FUN (do_clone) {
         BAIL_IF (!do_obj_load_check (ch, obj),
             "Your powers are not great enough for such a task.\n\r", ch);
 
-        clone = obj_create (obj->pIndexData, 0);
+        clone = obj_create (obj->index_data, 0);
         obj_clone (obj, clone);
         if (obj->carried_by != NULL)
             obj_give_to_char (clone, ch);
@@ -476,11 +476,11 @@ DEFINE_DO_FUN (do_clone) {
                  !IS_TRUSTED (ch, AVATAR),
             "Your powers are not great enough for such a task.\n\r", ch);
 
-        clone = char_create_mobile (mob->pIndexData);
+        clone = char_create_mobile (mob->index_data);
         char_clone_mobile (mob, clone);
         for (obj = mob->carrying; obj != NULL; obj = obj->next_content) {
             if (do_obj_load_check (ch, obj)) {
-                new_obj = obj_create (obj->pIndexData, 0);
+                new_obj = obj_create (obj->index_data, 0);
                 obj_clone (obj, new_obj );
                 do_clone_recurse (ch, obj, new_obj );
                 obj_give_to_char (new_obj, clone);

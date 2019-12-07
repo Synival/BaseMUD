@@ -34,16 +34,16 @@
 #include "rooms.h"
 
 /* True if room is dark. */
-bool room_is_dark (ROOM_INDEX_T *pRoomIndex) {
+bool room_is_dark (ROOM_INDEX_T *room_index) {
     const SUN_T *sun;
     int sect;
 
-    if (pRoomIndex->light > 0)
+    if (room_index->light > 0)
         return FALSE;
-    if (IS_SET (pRoomIndex->room_flags, ROOM_DARK))
+    if (IS_SET (room_index->room_flags, ROOM_DARK))
         return TRUE;
 
-    sect = pRoomIndex->sector_type;
+    sect = room_index->sector_type;
     sun = sun_get_current();
     if (sect == SECT_INSIDE || sect == SECT_CITY)
         return FALSE;
@@ -60,21 +60,21 @@ bool room_is_owner (ROOM_INDEX_T *room, CHAR_T *ch) {
 }
 
 /* True if room is private. */
-bool room_is_private (ROOM_INDEX_T *pRoomIndex) {
+bool room_is_private (ROOM_INDEX_T *room_index) {
     CHAR_T *rch;
     int count;
 
-    if (pRoomIndex->owner != NULL && pRoomIndex->owner[0] != '\0')
+    if (room_index->owner != NULL && room_index->owner[0] != '\0')
         return TRUE;
 
     count = 0;
-    for (rch = pRoomIndex->people; rch != NULL; rch = rch->next_in_room)
+    for (rch = room_index->people; rch != NULL; rch = rch->next_in_room)
         count++;
-    if (IS_SET (pRoomIndex->room_flags, ROOM_PRIVATE) && count >= 2)
+    if (IS_SET (room_index->room_flags, ROOM_PRIVATE) && count >= 2)
         return TRUE;
-    if (IS_SET (pRoomIndex->room_flags, ROOM_SOLITARY) && count >= 1)
+    if (IS_SET (room_index->room_flags, ROOM_SOLITARY) && count >= 1)
         return TRUE;
-    if (IS_SET (pRoomIndex->room_flags, ROOM_IMP_ONLY))
+    if (IS_SET (room_index->room_flags, ROOM_IMP_ONLY))
         return TRUE;
     return FALSE;
 }
@@ -134,7 +134,7 @@ void room_add_money (ROOM_INDEX_T *room, int gold, int silver) {
     OBJ_T *obj, *obj_next;
     for (obj = room->contents; obj != NULL; obj = obj_next) {
         obj_next = obj->next_content;
-        switch (obj->pIndexData->vnum) {
+        switch (obj->index_data->vnum) {
             case OBJ_VNUM_SILVER_ONE:
                 silver += 1;
                 obj_extract (obj);

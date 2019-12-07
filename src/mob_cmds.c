@@ -320,7 +320,7 @@ DEFINE_DO_FUN (do_mpecho) {
  * Syntax: mob mload [vnum] */
 DEFINE_DO_FUN (do_mpmload) {
     char arg[MAX_INPUT_LENGTH];
-    MOB_INDEX_T *pMobIndex;
+    MOB_INDEX_T *mob_index;
     CHAR_T *victim;
     int vnum;
 
@@ -329,10 +329,10 @@ DEFINE_DO_FUN (do_mpmload) {
         return;
 
     vnum = atoi (arg);
-    BAIL_IF_BUGF ((pMobIndex = get_mob_index (vnum)) == NULL,
+    BAIL_IF_BUGF ((mob_index = get_mob_index (vnum)) == NULL,
         "Mpmload: bad mob index (%d) from mob %d", vnum, CH_VNUM (ch));
 
-    victim = char_create_mobile (pMobIndex);
+    victim = char_create_mobile (mob_index);
     char_to_room (victim, ch->in_room);
 }
 
@@ -342,10 +342,10 @@ DEFINE_DO_FUN (do_mpoload) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
-    OBJ_INDEX_T *pObjIndex;
+    OBJ_INDEX_T *obj_index;
     OBJ_T *obj;
     int level;
-    bool fToroom = FALSE, fWear = FALSE;
+    bool to_room = FALSE, wear = FALSE;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -371,17 +371,17 @@ DEFINE_DO_FUN (do_mpoload) {
      * 'R'     - load to room
      * 'W'     - load to mobile and force wear */
     if (arg3[0] == 'R' || arg3[0] == 'r')
-        fToroom = TRUE;
+        to_room = TRUE;
     else if (arg3[0] == 'W' || arg3[0] == 'w')
-        fWear = TRUE;
+        wear = TRUE;
 
-    BAIL_IF_BUG ((pObjIndex = get_obj_index (atoi (arg1))) == NULL,
+    BAIL_IF_BUG ((obj_index = get_obj_index (atoi (arg1))) == NULL,
         "Mpoload - Bad vnum arg from vnum %d.", CH_VNUM (ch));
 
-    obj = obj_create (pObjIndex, level);
-    if ((fWear || !fToroom) && CAN_WEAR_FLAG (obj, ITEM_TAKE)) {
+    obj = obj_create (obj_index, level);
+    if ((wear || !to_room) && CAN_WEAR_FLAG (obj, ITEM_TAKE)) {
         obj_give_to_char (obj, ch);
-        if (fWear)
+        if (wear)
             char_wear_obj (ch, obj, TRUE);
     }
     else
@@ -629,7 +629,7 @@ DEFINE_DO_FUN (do_mpvforce) {
 
     for (victim = char_list; victim; victim = victim_next) {
         victim_next = victim->next;
-        if (IS_NPC (victim) && victim->pIndexData->vnum == vnum &&
+        if (IS_NPC (victim) && victim->index_data->vnum == vnum &&
                 ch != victim && victim->fighting == NULL)
             interpret (victim, argument);
     }
@@ -702,7 +702,7 @@ DEFINE_DO_FUN (do_mpdamage) {
     char target[MAX_INPUT_LENGTH],
         min[MAX_INPUT_LENGTH], max[MAX_INPUT_LENGTH];
     int low, high;
-    bool fAll = FALSE, fKill = FALSE;
+    bool all = FALSE, kill = FALSE;
 
     argument = one_argument (argument, target);
     argument = one_argument (argument, min);
@@ -712,7 +712,7 @@ DEFINE_DO_FUN (do_mpdamage) {
         "MpDamage - Bad syntax from vnum %d.", CH_VNUM (ch));
 
     if (!str_cmp (target, "all"))
-        fAll = TRUE;
+        all = TRUE;
     else if ((victim = find_char_same_room (ch, target)) == NULL)
         return;
 
@@ -729,13 +729,13 @@ DEFINE_DO_FUN (do_mpdamage) {
     /* If kill parameter is omitted, this command is "safe" and will not
      * kill the victim.  */
     if (target[0] != '\0')
-        fKill = TRUE;
-    if (fAll) {
+        kill = TRUE;
+    if (all) {
         for (victim = ch->in_room->people; victim; victim = victim_next) {
             victim_next = victim->next_in_room;
             if (victim != ch) {
                 damage_quiet (victim, victim,
-                    fKill ? number_range (low, high)
+                    kill ? number_range (low, high)
                           : UMIN (victim->hit, number_range (low, high)),
                     TYPE_UNDEFINED, DAM_NONE);
             }
@@ -743,7 +743,7 @@ DEFINE_DO_FUN (do_mpdamage) {
     }
     else {
         damage_quiet (victim, victim,
-            fKill ? number_range (low, high)
+            kill ? number_range (low, high)
                   : UMIN (victim->hit, number_range (low, high)),
             TYPE_UNDEFINED, DAM_NONE);
     }
@@ -887,7 +887,7 @@ DEFINE_DO_FUN (do_mpremove) {
     CHAR_T *victim;
     OBJ_T *obj, *obj_next;
     sh_int vnum = 0;
-    bool fAll = FALSE;
+    bool all = FALSE;
     char arg[MAX_INPUT_LENGTH];
 
     argument = one_argument (argument, arg);
@@ -896,7 +896,7 @@ DEFINE_DO_FUN (do_mpremove) {
 
     one_argument (argument, arg);
     if (!str_cmp (arg, "all"))
-        fAll = TRUE;
+        all = TRUE;
     else {
         BAIL_IF_BUG (!is_number (arg),
             "do_mpremove: Invalid object from vnum %d.", CH_VNUM (ch));
@@ -905,7 +905,7 @@ DEFINE_DO_FUN (do_mpremove) {
 
     for (obj = victim->carrying; obj; obj = obj_next) {
         obj_next = obj->next_content;
-        if (fAll || obj->pIndexData->vnum == vnum) {
+        if (all || obj->index_data->vnum == vnum) {
             char_unequip_obj (ch, obj);
             obj_take_from_char (obj);
             obj_extract (obj);

@@ -227,7 +227,7 @@ void string_add (CHAR_T *ch, char *argument) {
  Purpose:    Special string formating and word-wrapping.
  Called by:    string_add(string.c) (many)olc_act.c
  ****************************************************************************/
-char *format_string (char *oldstring /*, bool fSpace */ ) {
+char *format_string (char *oldstring /*, bool space */ ) {
     char xbuf[MAX_STRING_LENGTH];
     char xbuf2[MAX_STRING_LENGTH];
     char *rdesc;
@@ -356,7 +356,7 @@ char *format_string (char *oldstring /*, bool fSpace */ ) {
 }
 
 /* Used above in string_add.  Because this function does not
- * modify case if fCase is FALSE and because it understands
+ * modify case if mod_case is FALSE and because it understands
  * parenthesis, it would probably make a nice replacement
  * for one_argument. */
 
@@ -367,7 +367,7 @@ char *format_string (char *oldstring /*, bool fSpace */ ) {
           percentages.
  Called by:    string_add(string.c)
  ****************************************************************************/
-char *first_arg (char *argument, char *arg_first, bool fCase) {
+char *first_arg (char *argument, char *arg_first, bool mod_case) {
     char cEnd;
 
     while (*argument == ' ')
@@ -389,7 +389,7 @@ char *first_arg (char *argument, char *arg_first, bool fCase) {
             argument++;
             break;
         }
-        if (fCase)
+        if (mod_case)
             *arg_first = LOWER (*argument);
         else
             *arg_first = *argument;

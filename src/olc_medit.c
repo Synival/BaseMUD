@@ -98,28 +98,28 @@ MEDIT (medit_show) {
 
     printf_to_char (ch, "Description:\n\r%s", pMob->description);
 
-    if (pMob->pShop) {
-        SHOP_T *pShop;
+    if (pMob->shop) {
+        SHOP_T *shop;
         int iTrade;
 
-        pShop = pMob->pShop;
+        shop = pMob->shop;
         printf_to_char (ch, "Shop data for [%5d]:\n\r"
                             "  Markup for purchaser: %d%%\n\r"
                             "  Markdown for seller:  %d%%\n\r",
-            pShop->keeper, pShop->profit_buy, pShop->profit_sell);
+            shop->keeper, shop->profit_buy, shop->profit_sell);
 
         printf_to_char (ch, "  Hours: %d to %d.\n\r",
-            pShop->open_hour, pShop->close_hour);
+            shop->open_hour, shop->close_hour);
 
         for (iTrade = 0; iTrade < MAX_TRADE; iTrade++) {
-            if (pShop->buy_type[iTrade] == 0)
+            if (shop->buy_type[iTrade] == 0)
                 continue;
             if (iTrade == 0) {
                 send_to_char ("  Number Trades Type\n\r", ch);
                 send_to_char ("  ------ -----------\n\r", ch);
             }
             printf_to_char (ch, "  [%4d] %s\n\r", iTrade,
-                item_get_name (pShop->buy_type[iTrade]));
+                item_get_name (shop->buy_type[iTrade]));
         }
     }
 
@@ -294,11 +294,11 @@ MEDIT (medit_shop) {
         RETURN_IF (arg1[0] == '\0' || !is_number (arg1) ||
                    argument[0] == '\0' || !is_number (argument),
             "Syntax: shop hours [#xopening] [#xclosing]\n\r", ch, FALSE);
-        RETURN_IF (!pMob->pShop,
+        RETURN_IF (!pMob->shop,
             "MEdit: You must create the shop first (shop assign).\n\r", ch, FALSE);
 
-        pMob->pShop->open_hour  = atoi (arg1);
-        pMob->pShop->close_hour = atoi (argument);
+        pMob->shop->open_hour  = atoi (arg1);
+        pMob->shop->close_hour = atoi (argument);
 
         send_to_char ("Shop hours set.\n\r", ch);
         return TRUE;
@@ -308,11 +308,11 @@ MEDIT (medit_shop) {
         RETURN_IF (arg1[0] == '\0' || !is_number (arg1) ||
                    argument[0] == '\0' || !is_number (argument),
             "Syntax: shop profit [#xbuying%] [#xselling%]\n\r", ch, FALSE);
-        RETURN_IF (!pMob->pShop,
+        RETURN_IF (!pMob->shop,
             "MEdit: You must create the shop first (shop assign).\n\r", ch, FALSE);
 
-        pMob->pShop->profit_buy = atoi (arg1);
-        pMob->pShop->profit_sell = atoi (argument);
+        pMob->shop->profit_buy = atoi (arg1);
+        pMob->shop->profit_sell = atoi (argument);
 
         send_to_char ("Shop profit set.\n\r", ch);
         return TRUE;
@@ -327,11 +327,11 @@ MEDIT (medit_shop) {
             printf_to_char (ch, "MEdit:  May sell %d items max.\n\r", MAX_TRADE);
             return FALSE;
         }
-        RETURN_IF (!pMob->pShop,
+        RETURN_IF (!pMob->shop,
             "MEdit: You must create the shop first (shop assign).\n\r", ch, FALSE);
         RETURN_IF ((value = item_lookup (argument)) < 0,
             "MEdit: That type of item is not known.\n\r", ch, FALSE);
-        pMob->pShop->buy_type[atoi (arg1)] = value;
+        pMob->shop->buy_type[atoi (arg1)] = value;
 
         send_to_char ("Shop type set.\n\r", ch);
         return TRUE;
@@ -339,22 +339,22 @@ MEDIT (medit_shop) {
 
     /* shop assign && shop delete by Phoenix */
     if (!str_prefix (command, "assign")) {
-        RETURN_IF (pMob->pShop,
+        RETURN_IF (pMob->shop,
             "Mob already has a shop assigned to it.\n\r", ch, FALSE);
 
-        pMob->pShop = shop_new ();
-        LISTB_BACK (pMob->pShop, next, shop_first, shop_last);
-        pMob->pShop->keeper = pMob->vnum;
+        pMob->shop = shop_new ();
+        LISTB_BACK (pMob->shop, next, shop_first, shop_last);
+        pMob->shop->keeper = pMob->vnum;
 
         send_to_char ("New shop assigned to mobile.\n\r", ch);
         return TRUE;
     }
 
     if (!str_prefix (command, "remove")) {
-        LISTB_REMOVE (pMob->pShop, next, shop_first, shop_last,
+        LISTB_REMOVE (pMob->shop, next, shop_first, shop_last,
             SHOP_T, NO_FAIL);
-        shop_free (pMob->pShop);
-        pMob->pShop = NULL;
+        shop_free (pMob->shop);
+        pMob->shop = NULL;
 
         send_to_char ("Mobile is no longer a shopkeeper.\n\r", ch);
         return TRUE;

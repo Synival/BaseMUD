@@ -55,10 +55,10 @@ void do_resets_display (CHAR_T *ch) {
 
     for (pReset = pRoom->reset_first; pReset; pReset = pReset->next) {
         OBJ_INDEX_T *pObj;
-        MOB_INDEX_T *pMobIndex;
-        OBJ_INDEX_T *pObjIndex;
+        MOB_INDEX_T *mob_index;
+        OBJ_INDEX_T *obj_index;
         OBJ_INDEX_T *pObjToIndex;
-        ROOM_INDEX_T *pRoomIndex;
+        ROOM_INDEX_T *room_index;
 
         final[0] = '\0';
         sprintf (final, "[%2d] ", ++iReset);
@@ -66,45 +66,45 @@ void do_resets_display (CHAR_T *ch) {
         v = &(pReset->v);
         switch (pReset->command) {
             case 'M': {
-                ROOM_INDEX_T *pRoomIndexPrev;
+                ROOM_INDEX_T *room_index_prev;
 
-                if (!(pMobIndex = get_mob_index (v->mob.mob_vnum))) {
+                if (!(mob_index = get_mob_index (v->mob.mob_vnum))) {
                     sprintf (buf, "Load Mobile - Bad Mob %d\n\r", v->mob.mob_vnum);
                     strcat (final, buf);
                     continue;
                 }
 
-                if (!(pRoomIndex = get_room_index (v->mob.room_vnum))) {
+                if (!(room_index = get_room_index (v->mob.room_vnum))) {
                     sprintf (buf, "Load Mobile - Bad Room %d\n\r", v->mob.room_vnum);
                     strcat (final, buf);
                     continue;
                 }
 
-                pMob = pMobIndex;
+                pMob = mob_index;
                 sprintf (buf,
                     "M[%5d] %-13.13s in room             "
                     "R[%5d] %2d-%2d %-15.15s\n\r",
                     v->mob.mob_vnum, pMob->short_descr, v->mob.room_vnum,
-                    v->mob.global_limit, v->mob.room_limit, pRoomIndex->name);
+                    v->mob.global_limit, v->mob.room_limit, room_index->name);
                 strcat (final, buf);
 
                 /* Check for pet shop. */
-                pRoomIndexPrev = get_room_index (pRoomIndex->vnum - 1);
-                if (pRoomIndexPrev
-                    && IS_SET (pRoomIndexPrev->room_flags, ROOM_PET_SHOP))
+                room_index_prev = get_room_index (room_index->vnum - 1);
+                if (room_index_prev
+                    && IS_SET (room_index_prev->room_flags, ROOM_PET_SHOP))
                     final[5] = 'P';
                 break;
             }
 
             case 'O':
-                if (!(pObjIndex = get_obj_index (v->obj.obj_vnum))) {
+                if (!(obj_index = get_obj_index (v->obj.obj_vnum))) {
                     sprintf (buf, "Load Object - Bad Object %d\n\r", v->obj.obj_vnum);
                     strcat (final, buf);
                     continue;
                 }
 
-                pObj = pObjIndex;
-                if (!(pRoomIndex = get_room_index (v->obj.room_vnum))) {
+                pObj = obj_index;
+                if (!(room_index = get_room_index (v->obj.room_vnum))) {
                     sprintf (buf, "Load Object - Bad Room %d\n\r", v->obj.room_vnum);
                     strcat (final, buf);
                     continue;
@@ -114,18 +114,18 @@ void do_resets_display (CHAR_T *ch) {
                     "O[%5d] %-13.13s in room             "
                     "R[%5d] %2d-%2d %-15.15s\n\r",
                     v->obj.obj_vnum, pObj->short_descr, v->obj.room_vnum,
-                    v->obj.global_limit, v->obj.room_limit, pRoomIndex->name);
+                    v->obj.global_limit, v->obj.room_limit, room_index->name);
                 strcat (final, buf);
                 break;
 
             case 'P':
-                if (!(pObjIndex = get_obj_index (v->put.obj_vnum))) {
+                if (!(obj_index = get_obj_index (v->put.obj_vnum))) {
                     sprintf (buf, "Put Object - Bad Object %d\n\r", v->put.obj_vnum);
                     strcat (final, buf);
                     continue;
                 }
 
-                pObj = pObjIndex;
+                pObj = obj_index;
                 if (!(pObjToIndex = get_obj_index (v->put.into_vnum))) {
                     sprintf (buf, "Put Object - Bad To Object %d\n\r", v->put.into_vnum);
                     strcat (final, buf);
@@ -147,20 +147,20 @@ void do_resets_display (CHAR_T *ch) {
                 const char *cmdName = (cmd == 'G') ? "Give" : "Equip";
                 int obj_vnum = (cmd == 'G') ? v->give.obj_vnum : v->equip.obj_vnum;
 
-                if (!(pObjIndex = get_obj_index (obj_vnum))) {
+                if (!(obj_index = get_obj_index (obj_vnum))) {
                     sprintf (buf, "%s Object - Bad Object %d\n\r",
                         cmdName, obj_vnum);
                     strcat (final, buf);
                     continue;
                 }
 
-                pObj = pObjIndex;
+                pObj = obj_index;
                 if (!pMob) {
                     sprintf (buf, "%s Object - No Previous Mobile\n\r", cmdName);
                     strcat (final, buf);
                     break;
                 }
-                if (pMob->pShop) {
+                if (pMob->shop) {
                     sprintf (buf,
                         "O[%5d] %-13.13s in the inventory of S[%5d]       "
                         "%-15.15s\n\r",
@@ -186,25 +186,25 @@ void do_resets_display (CHAR_T *ch) {
              * line in the case 'D' in load_resets in db.c and here. */
             /* ^^^ new_reset() is now room_take_reset(). -- Synival */
             case 'D':
-                pRoomIndex = get_room_index (v->door.room_vnum);
+                room_index = get_room_index (v->door.room_vnum);
                 sprintf (buf, "R[%5d] %s door of %-19.19s reset to %s\n\r",
                     v->door.room_vnum,
                     capitalize (door_table[v->door.dir].name),
-                    pRoomIndex->name,
+                    room_index->name,
                     flag_string (door_resets, v->door.locks));
                 strcat (final, buf);
 
                 break;
 
             case 'R':
-                if (!(pRoomIndex = get_room_index (v->randomize.room_vnum))) {
+                if (!(room_index = get_room_index (v->randomize.room_vnum))) {
                     sprintf (buf, "Randomize Exits - Bad Room %d\n\r", v->randomize.room_vnum);
                     strcat (final, buf);
                     continue;
                 }
 
                 sprintf (buf, "R[%5d] Exits are randomized in %s\n\r",
-                    v->randomize.room_vnum, pRoomIndex->name);
+                    v->randomize.room_vnum, room_index->name);
                 strcat (final, buf);
                 break;
 

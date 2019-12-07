@@ -52,18 +52,18 @@
     act_new((format), (ch), (arg1), (arg2), (flags), POS_RESTING)
 
 /* Mob program macros. */
-#define HAS_TRIGGER(ch, trig) (IS_SET((ch)->pIndexData->mprog_flags,(trig)))
-#define HAS_ANY_TRIGGER(ch)   ((ch)->pIndexData->mprog_flags != 0)
+#define HAS_TRIGGER(ch, trig) (IS_SET((ch)->index_data->mprog_flags,(trig)))
+#define HAS_ANY_TRIGGER(ch)   ((ch)->index_data->mprog_flags != 0)
 
 /* Read in a char. */
 #if defined(KEY)
     #undef KEY
 #endif
-#define KEY(literal, field, value)  \
-    if (!str_cmp(word, literal)) {  \
-        field  = value;             \
-        fMatch = TRUE;              \
-        break;                      \
+#define KEY(literal, field, value) \
+    if (!str_cmp(word, literal)) { \
+        field = value;             \
+        match = TRUE;              \
+        break;                     \
     }
 
 /* provided to free strings */
@@ -73,8 +73,8 @@
 #define KEYS(literal, field, value) \
     if (!str_cmp(word, literal)) {  \
         str_free (&(field));        \
-        field  = value;             \
-        fMatch = TRUE;              \
+        field = value;              \
+        match = TRUE;               \
         break;                      \
     }
 

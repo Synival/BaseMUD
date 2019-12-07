@@ -113,7 +113,7 @@ bool check_ban (char *site, int type) {
     return FALSE;
 }
 
-void ban_site (CHAR_T *ch, char *argument, bool fPerm) {
+void ban_site (CHAR_T *ch, char *argument, bool perm) {
     char buf[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH];
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     char *name;
@@ -200,7 +200,7 @@ void ban_site (CHAR_T *ch, char *argument, bool fPerm) {
         SET_BIT (pban->ban_flags, BAN_PREFIX);
     if (suffix)
         SET_BIT (pban->ban_flags, BAN_SUFFIX);
-    if (fPerm)
+    if (perm)
         SET_BIT (pban->ban_flags, BAN_PERMANENT);
 
     LISTB_FRONT (pban, next, ban_first, ban_last);

@@ -53,60 +53,60 @@
 #include "chars.h"
 
 /* Create an instance of a mobile. */
-CHAR_T *char_create_mobile (MOB_INDEX_T *pMobIndex) {
+CHAR_T *char_create_mobile (MOB_INDEX_T *mob_index) {
     CHAR_T *mob;
     int i;
     AFFECT_T af;
 
     mobile_count++;
-    EXIT_IF_BUG (pMobIndex == NULL,
-        "char_create_mobile: NULL pMobIndex.", 0);
+    EXIT_IF_BUG (mob_index == NULL,
+        "char_create_mobile: NULL mob_index.", 0);
 
     mob = char_new ();
 
-    mob->pIndexData   = pMobIndex;
-    str_replace_dup (&mob->name,        pMobIndex->name);        /* OLC */
-    str_replace_dup (&mob->short_descr, pMobIndex->short_descr); /* OLC */
-    str_replace_dup (&mob->long_descr,  pMobIndex->long_descr);  /* OLC */
-    str_replace_dup (&mob->description, pMobIndex->description); /* OLC */
+    mob->index_data = mob_index;
+    str_replace_dup (&mob->name,        mob_index->name);        /* OLC */
+    str_replace_dup (&mob->short_descr, mob_index->short_descr); /* OLC */
+    str_replace_dup (&mob->long_descr,  mob_index->long_descr);  /* OLC */
+    str_replace_dup (&mob->description, mob_index->description); /* OLC */
     mob->id           = get_mob_id ();
-    mob->spec_fun     = pMobIndex->spec_fun;
+    mob->spec_fun     = mob_index->spec_fun;
     mob->prompt       = NULL;
     mob->mprog_target = NULL;
     mob->class        = CLASS_NONE;
 
-    if (pMobIndex->wealth == 0) {
+    if (mob_index->wealth == 0) {
         mob->silver = 0;
         mob->gold = 0;
     }
     else {
         long wealth;
-        wealth = number_range (pMobIndex->wealth / 2, 3 * pMobIndex->wealth / 2);
+        wealth = number_range (mob_index->wealth / 2, 3 * mob_index->wealth / 2);
         mob->gold = number_range (wealth / 200, wealth / 100);
         mob->silver = wealth - (mob->gold * 100);
     }
 
     /* load in new style */
-    if (pMobIndex->new_format) {
+    if (mob_index->new_format) {
         /* read from prototype */
-        mob->group    = pMobIndex->group;
-        mob->mob      = pMobIndex->mob_final;
+        mob->group    = mob_index->group;
+        mob->mob      = mob_index->mob_final;
         mob->plr      = 0;
         mob->comm     = COMM_NOCHANNELS | COMM_NOSHOUT | COMM_NOTELL;
-        mob->affected_by = pMobIndex->affected_by_final;
-        mob->alignment = pMobIndex->alignment;
-        mob->level    = pMobIndex->level;
-        mob->hitroll  = pMobIndex->hitroll;
-        mob->damroll  = pMobIndex->damage.bonus;
-        mob->max_hit  = dice (pMobIndex->hit.number, pMobIndex->hit.size)
-            + pMobIndex->hit.bonus;
+        mob->affected_by = mob_index->affected_by_final;
+        mob->alignment = mob_index->alignment;
+        mob->level    = mob_index->level;
+        mob->hitroll  = mob_index->hitroll;
+        mob->damroll  = mob_index->damage.bonus;
+        mob->max_hit  = dice (mob_index->hit.number, mob_index->hit.size)
+            + mob_index->hit.bonus;
         mob->hit      = mob->max_hit;
-        mob->max_mana = dice (pMobIndex->mana.number, pMobIndex->mana.size)
-            + pMobIndex->mana.bonus;
+        mob->max_mana = dice (mob_index->mana.number, mob_index->mana.size)
+            + mob_index->mana.bonus;
         mob->mana     = mob->max_mana;
-        mob->damage   = pMobIndex->damage;
+        mob->damage   = mob_index->damage;
         mob->damage.bonus = 0;
-        mob->dam_type = pMobIndex->dam_type;
+        mob->dam_type = mob_index->dam_type;
 
         if (mob->dam_type == 0) {
             switch (number_range (1, 3)) {
@@ -116,22 +116,22 @@ CHAR_T *char_create_mobile (MOB_INDEX_T *pMobIndex) {
             }
         }
         for (i = 0; i < 4; i++)
-            mob->armor[i] = pMobIndex->ac[i];
-        mob->off_flags   = pMobIndex->off_flags_final;
-        mob->imm_flags   = pMobIndex->imm_flags_final;
-        mob->res_flags   = pMobIndex->res_flags_final;
-        mob->vuln_flags  = pMobIndex->vuln_flags_final;
-        mob->start_pos   = pMobIndex->start_pos;
-        mob->default_pos = pMobIndex->default_pos;
+            mob->armor[i] = mob_index->ac[i];
+        mob->off_flags   = mob_index->off_flags_final;
+        mob->imm_flags   = mob_index->imm_flags_final;
+        mob->res_flags   = mob_index->res_flags_final;
+        mob->vuln_flags  = mob_index->vuln_flags_final;
+        mob->start_pos   = mob_index->start_pos;
+        mob->default_pos = mob_index->default_pos;
 
-        mob->sex = pMobIndex->sex;
+        mob->sex = mob_index->sex;
         if (mob->sex == 3) /* random sex */
             mob->sex = number_range (1, 2);
-        mob->race     = pMobIndex->race;
-        mob->form     = pMobIndex->form_final;
-        mob->parts    = pMobIndex->parts_final;
-        mob->size     = pMobIndex->size;
-        mob->material = pMobIndex->material;
+        mob->race     = mob_index->race;
+        mob->form     = mob_index->form_final;
+        mob->parts    = mob_index->parts_final;
+        mob->size     = mob_index->size;
+        mob->material = mob_index->material;
 
         /* computed on the spot */
         for (i = 0; i < STAT_MAX; i++)
@@ -183,12 +183,12 @@ CHAR_T *char_create_mobile (MOB_INDEX_T *pMobIndex) {
     }
     /* read in old format and convert */
     else {
-        mob->mob         = pMobIndex->mob_final;
+        mob->mob         = mob_index->mob_final;
         mob->plr         = 0;
-        mob->affected_by = pMobIndex->affected_by_final;
-        mob->alignment   = pMobIndex->alignment;
-        mob->level       = pMobIndex->level;
-        mob->hitroll     = pMobIndex->hitroll;
+        mob->affected_by = mob_index->affected_by_final;
+        mob->alignment   = mob_index->alignment;
+        mob->level       = mob_index->level;
+        mob->hitroll     = mob_index->hitroll;
         mob->damroll     = 0;
         mob->max_hit     = (mob->level * 8 + number_range
             (mob->level * mob->level / 4, mob->level * mob->level)) * 9 / 10;
@@ -203,16 +203,16 @@ CHAR_T *char_create_mobile (MOB_INDEX_T *pMobIndex) {
         for (i = 0; i < 3; i++)
             mob->armor[i] = interpolate (mob->level, 100, -100);
         mob->armor[3]    = interpolate (mob->level, 100, 0);
-        mob->race        = pMobIndex->race;
-        mob->off_flags   = pMobIndex->off_flags_final;
-        mob->imm_flags   = pMobIndex->imm_flags_final;
-        mob->res_flags   = pMobIndex->res_flags_final;
-        mob->vuln_flags  = pMobIndex->vuln_flags_final;
-        mob->start_pos   = pMobIndex->start_pos;
-        mob->default_pos = pMobIndex->default_pos;
-        mob->sex         = pMobIndex->sex;
-        mob->form        = pMobIndex->form_final;
-        mob->parts       = pMobIndex->parts_final;
+        mob->race        = mob_index->race;
+        mob->off_flags   = mob_index->off_flags_final;
+        mob->imm_flags   = mob_index->imm_flags_final;
+        mob->res_flags   = mob_index->res_flags_final;
+        mob->vuln_flags  = mob_index->vuln_flags_final;
+        mob->start_pos   = mob_index->start_pos;
+        mob->default_pos = mob_index->default_pos;
+        mob->sex         = mob_index->sex;
+        mob->form        = mob_index->form_final;
+        mob->parts       = mob_index->parts_final;
         mob->size        = SIZE_MEDIUM;
 
         for (i = 0; i < STAT_MAX; i++)
@@ -222,7 +222,7 @@ CHAR_T *char_create_mobile (MOB_INDEX_T *pMobIndex) {
 
     /* link the mob to the world list */
     LIST_FRONT (mob, next, char_list);
-    pMobIndex->count++;
+    mob_index->count++;
     return mob;
 }
 
@@ -374,7 +374,7 @@ void char_reset (CHAR_T *ch) {
             if (obj == NULL)
                 continue;
             if (!obj->enchanted) {
-                for (af = obj->pIndexData->affected; af != NULL;
+                for (af = obj->index_data->affected; af != NULL;
                      af = af->next)
                 {
                     mod = af->modifier;
@@ -443,7 +443,7 @@ void char_reset (CHAR_T *ch) {
             ch->armor[i] -= obj_get_ac_type (obj, loc, i);
         if (obj->enchanted)
             continue;
-        for (af = obj->pIndexData->affected; af != NULL; af = af->next)
+        for (af = obj->index_data->affected; af != NULL; af = af->next)
             affect_modify_apply (ch, af, TRUE);
         for (af = obj->affected; af != NULL; af = af->next)
             affect_modify_apply (ch, af, TRUE);
@@ -578,10 +578,10 @@ void char_to_room_apply_plague (CHAR_T *ch) {
 }
 
 /* Move a char into a room. */
-void char_to_room (CHAR_T *ch, ROOM_INDEX_T *pRoomIndex) {
+void char_to_room (CHAR_T *ch, ROOM_INDEX_T *room_index) {
     OBJ_T *obj;
 
-    if (pRoomIndex == NULL) {
+    if (room_index == NULL) {
         ROOM_INDEX_T *room;
         bug ("char_to_room: NULL.", 0);
         if ((room = get_room_index (ROOM_VNUM_TEMPLE)) != NULL)
@@ -589,8 +589,8 @@ void char_to_room (CHAR_T *ch, ROOM_INDEX_T *pRoomIndex) {
         return;
     }
 
-    ch->in_room = pRoomIndex;
-    LIST_FRONT (ch, next_in_room, pRoomIndex->people);
+    ch->in_room = room_index;
+    LIST_FRONT (ch, next_in_room, room_index->people);
 
     if (!IS_NPC (ch)) {
         if (ch->in_room->area->empty) {
@@ -646,7 +646,7 @@ bool char_equip_obj (CHAR_T *ch, OBJ_T *obj, flag_t iWear) {
     obj->wear_loc = iWear;
 
     if (!obj->enchanted) {
-        for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next)
+        for (paf = obj->index_data->affected; paf != NULL; paf = paf->next)
             if (paf->apply != APPLY_SPELL_AFFECT)
                 affect_modify (ch, paf, TRUE);
     }
@@ -681,7 +681,7 @@ bool char_unequip_obj (CHAR_T *ch, OBJ_T *obj) {
     obj->wear_loc = -1;
 
     if (!obj->enchanted) {
-        for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
+        for (paf = obj->index_data->affected; paf != NULL; paf = paf->next) {
             if (paf->apply == APPLY_SPELL_AFFECT) {
                 for (lpaf = ch->affected; lpaf != NULL; lpaf = lpaf_next) {
                     lpaf_next = lpaf->next;
@@ -733,7 +733,7 @@ bool char_unequip_obj (CHAR_T *ch, OBJ_T *obj) {
 }
 
 /* Extract a char from the world. */
-void char_extract (CHAR_T *ch, bool fPull) {
+void char_extract (CHAR_T *ch, bool pull) {
     CHAR_T *wch;
     OBJ_T *obj;
     OBJ_T *obj_next;
@@ -747,7 +747,7 @@ void char_extract (CHAR_T *ch, bool fPull) {
     nuke_pets (ch);
     ch->pet = NULL; /* just in case */
 
-    if (fPull)
+    if (pull)
         die_follower (ch);
 
     stop_fighting (ch, TRUE);
@@ -760,13 +760,13 @@ void char_extract (CHAR_T *ch, bool fPull) {
         char_from_room (ch);
 
     /* Death room is set in the clan table now */
-    if (!fPull) {
+    if (!pull) {
         char_to_room (ch, get_room_index (clan_table[ch->clan].hall));
         return;
     }
 
     if (IS_NPC (ch))
-        --ch->pIndexData->count;
+        --ch->index_data->count;
 
     if (ch->desc != NULL && ch->desc->original != NULL) {
         do_function (ch, &do_return, "");
@@ -788,9 +788,9 @@ void char_extract (CHAR_T *ch, bool fPull) {
 }
 
 /* visibility on a room -- for entering and exits */
-bool char_can_see_room (CHAR_T *ch, ROOM_INDEX_T *pRoomIndex) {
-    int flags = pRoomIndex->room_flags;
-    if (ch == NULL || pRoomIndex == NULL)
+bool char_can_see_room (CHAR_T *ch, ROOM_INDEX_T *room_index) {
+    int flags = room_index->room_flags;
+    if (ch == NULL || room_index == NULL)
         return FALSE;
     if (IS_SET (flags, ROOM_IMP_ONLY) && char_get_trust (ch) < MAX_LEVEL)
         return FALSE;
@@ -800,7 +800,7 @@ bool char_can_see_room (CHAR_T *ch, ROOM_INDEX_T *pRoomIndex) {
         return FALSE;
     if (IS_SET (flags, ROOM_NEWBIES_ONLY) && ch->level > 5 && !IS_IMMORTAL (ch))
         return FALSE;
-    if (!IS_IMMORTAL (ch) && pRoomIndex->clan && ch->clan != pRoomIndex->clan)
+    if (!IS_IMMORTAL (ch) && room_index->clan && ch->clan != room_index->clan)
         return FALSE;
     return TRUE;
 }
@@ -1350,7 +1350,7 @@ bool char_is_friend (CHAR_T *ch, CHAR_T *victim) {
     if (ch->group && ch->group == victim->group)
         return TRUE;
     if (IS_SET (ch->off_flags, ASSIST_VNUM)
-        && ch->pIndexData == victim->pIndexData)
+        && ch->index_data == victim->index_data)
         return TRUE;
     if (IS_SET (ch->off_flags, ASSIST_RACE) && ch->race == victim->race)
         return TRUE;
@@ -1407,11 +1407,11 @@ void char_take_obj (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
                 "$N appears to be using $p.", ch, obj, gch);
 
     if (container != NULL) {
-        BAIL_IF (container->pIndexData->vnum == OBJ_VNUM_PIT &&
+        BAIL_IF (container->index_data->vnum == OBJ_VNUM_PIT &&
                 char_get_trust (ch) < obj->level,
             "You are not powerful enough to use it.\n\r", ch);
 
-        if (container->pIndexData->vnum == OBJ_VNUM_PIT
+        if (container->index_data->vnum == OBJ_VNUM_PIT
             && !CAN_WEAR_FLAG (container, ITEM_TAKE)
             && !IS_OBJ_STAT (obj, ITEM_HAD_TIMER))
             obj->timer = 0;
@@ -1632,7 +1632,7 @@ void char_set_title (CHAR_T *ch, char *title) {
 bool char_has_key (CHAR_T *ch, int key) {
     OBJ_T *obj;
     for (obj = ch->carrying; obj != NULL; obj = obj->next_content)
-        if (obj->pIndexData->vnum == key)
+        if (obj->index_data->vnum == key)
             return TRUE;
     return FALSE;
 }
@@ -1682,30 +1682,30 @@ void char_reduce_money (CHAR_T *ch, int cost) {
     }
 }
 
-int char_get_obj_cost (CHAR_T *ch, OBJ_T *obj, bool fBuy) {
-    SHOP_T *pShop;
+int char_get_obj_cost (CHAR_T *ch, OBJ_T *obj, bool buy) {
+    SHOP_T *shop;
     int cost;
 
-    if (obj == NULL || (pShop = ch->pIndexData->pShop) == NULL)
+    if (obj == NULL || (shop = ch->index_data->shop) == NULL)
         return 0;
 
-    if (fBuy)
-        cost = obj->cost * pShop->profit_buy / 100;
+    if (buy)
+        cost = obj->cost * shop->profit_buy / 100;
     else {
         OBJ_T *obj2;
         int itype;
 
         cost = 0;
         for (itype = 0; itype < MAX_TRADE; itype++) {
-            if (obj->item_type == pShop->buy_type[itype]) {
-                cost = obj->cost * pShop->profit_sell / 100;
+            if (obj->item_type == shop->buy_type[itype]) {
+                cost = obj->cost * shop->profit_sell / 100;
                 break;
             }
         }
 
         if (!IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT)) {
             for (obj2 = ch->carrying; obj2; obj2 = obj2->next_content) {
-                if (obj->pIndexData == obj2->pIndexData
+                if (obj->index_data == obj2->index_data
                     && !str_cmp (obj->short_descr, obj2->short_descr))
                 {
                     if (IS_OBJ_STAT (obj2, ITEM_INVENTORY))
@@ -1737,9 +1737,9 @@ int char_get_obj_cost (CHAR_T *ch, OBJ_T *obj, bool fBuy) {
 }
 
 SHOP_T *char_get_shop (CHAR_T *ch) {
-    if (ch->pIndexData == NULL)
+    if (ch->index_data == NULL)
         return NULL;
-    return ch->pIndexData->pShop;
+    return ch->index_data->shop;
 }
 
 CHAR_T *char_get_keeper_room (CHAR_T *ch) {
@@ -2026,7 +2026,7 @@ bool char_is_builder (CHAR_T *ch, AREA_T *area) {
 }
 
 int char_get_vnum (CHAR_T *ch)
-    { return IS_NPC(ch) ? (ch)->pIndexData->vnum : 0; }
+    { return IS_NPC(ch) ? (ch)->index_data->vnum : 0; }
 
 int char_set_max_wait_state (CHAR_T *ch, int npulse)
 {

@@ -312,16 +312,16 @@ DEFINE_DO_FUN (do_load) {
 
 DEFINE_DO_FUN (do_mload) {
     char arg[MAX_INPUT_LENGTH];
-    MOB_INDEX_T *pMobIndex;
+    MOB_INDEX_T *mob_index;
     CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0' || !is_number (arg),
         "Syntax: load mob <vnum>.\n\r", ch);
-    BAIL_IF ((pMobIndex = get_mob_index (atoi (arg))) == NULL,
+    BAIL_IF ((mob_index = get_mob_index (atoi (arg))) == NULL,
         "No mob has that vnum.\n\r", ch);
 
-    victim = char_create_mobile (pMobIndex);
+    victim = char_create_mobile (mob_index);
     char_to_room (victim, ch->in_room);
     act ("$n has created $N!", ch, NULL, victim, TO_NOTCHAR);
     wiznetf (ch, NULL, WIZ_LOAD, WIZ_SECURE, char_get_trust (ch),
@@ -331,7 +331,7 @@ DEFINE_DO_FUN (do_mload) {
 
 DEFINE_DO_FUN (do_oload) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
-    OBJ_INDEX_T *pObjIndex;
+    OBJ_INDEX_T *obj_index;
     OBJ_T *obj;
     int level;
 
@@ -351,10 +351,10 @@ DEFINE_DO_FUN (do_oload) {
             "Level must be be between 0 and your level.\n\r", ch);
     }
 
-    BAIL_IF ((pObjIndex = get_obj_index (atoi (arg1))) == NULL,
+    BAIL_IF ((obj_index = get_obj_index (atoi (arg1))) == NULL,
         "No object has that vnum.\n\r", ch);
 
-    obj = obj_create (pObjIndex, level);
+    obj = obj_create (obj_index, level);
     if (CAN_WEAR_FLAG (obj, ITEM_TAKE))
         obj_give_to_char (obj, ch);
     else

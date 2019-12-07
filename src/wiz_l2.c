@@ -109,7 +109,7 @@ DEFINE_DO_FUN (do_sset) {
     CHAR_T *victim;
     int value;
     int sn;
-    bool fAll;
+    bool all;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -128,9 +128,9 @@ DEFINE_DO_FUN (do_sset) {
     BAIL_IF (IS_NPC (victim),
         "Not on NPC's.\n\r", ch);
 
-    fAll = !str_cmp (arg2, "all");
+    all = !str_cmp (arg2, "all");
     sn = 0;
-    BAIL_IF (!fAll && (sn = skill_lookup (arg2)) < 0,
+    BAIL_IF (!all && (sn = skill_lookup (arg2)) < 0,
         "No such skill or spell.\n\r", ch);
 
     /* Snarf the value. */
@@ -141,7 +141,7 @@ DEFINE_DO_FUN (do_sset) {
     BAIL_IF (value < 0 || value > 100,
         "Value range is 0 to 100.\n\r", ch);
 
-    if (fAll) {
+    if (all) {
         for (sn = 0; sn < SKILL_MAX; sn++)
             if (skill_table[sn].name != NULL)
                 victim->pcdata->learned[sn] = value;

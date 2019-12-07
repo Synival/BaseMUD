@@ -34,6 +34,6 @@
 void save_bans (void);
 void load_bans (void);
 bool check_ban (char *site, int type);
-void ban_site (CHAR_T *ch, char *argument, bool fPerm);
+void ban_site (CHAR_T *ch, char *argument, bool perm);
 
 #endif

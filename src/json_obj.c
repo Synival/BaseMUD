@@ -241,9 +241,9 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob) {
         json_prop_string  (new, "sex",
             JSTR (sex_get_name (mob->sex)));
 
-    json_prop_integer (new, "wealth", mob->wealth);
-    json_prop_string  (new, "size",   JSTR (size_get_name (mob->size)));
-    json_prop_obj_shop(new, "shop",   mob->pShop);
+    json_prop_integer  (new, "wealth", mob->wealth);
+    json_prop_string   (new, "size",   JSTR (size_get_name (mob->size)));
+    json_prop_obj_shop (new, "shop",   mob->shop);
 
     if (mob->mob_plus != 0)
         json_prop_string (new, "mob_flags",   JBITSF (mob_flags, mob->mob_plus & ~MOB_IS_NPC));

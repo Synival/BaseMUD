@@ -42,39 +42,39 @@
 #include "objs.h"
 
 /* Create an instance of an object. */
-OBJ_T *obj_create (OBJ_INDEX_T *pObjIndex, int level) {
+OBJ_T *obj_create (OBJ_INDEX_T *obj_index, int level) {
     AFFECT_T *paf;
     OBJ_T *obj;
     int i;
 
-    EXIT_IF_BUG (pObjIndex == NULL,
-        "obj_create: NULL pObjIndex.", 0);
+    EXIT_IF_BUG (obj_index == NULL,
+        "obj_create: NULL obj_index.", 0);
 
     obj = obj_new ();
 
-    obj->pIndexData = pObjIndex;
+    obj->index_data = obj_index;
     obj->in_room = NULL;
     obj->enchanted = FALSE;
 
-    if (pObjIndex->new_format)
-        obj->level = pObjIndex->level;
+    if (obj_index->new_format)
+        obj->level = obj_index->level;
     else
         obj->level = UMAX (0, level);
     obj->wear_loc = -1;
 
-    str_replace_dup (&obj->name,        pObjIndex->name);        /* OLC */
-    str_replace_dup (&obj->short_descr, pObjIndex->short_descr); /* OLC */
-    str_replace_dup (&obj->description, pObjIndex->description); /* OLC */
-    obj->material    = pObjIndex->material;
-    obj->item_type   = pObjIndex->item_type;
-    obj->extra_flags = pObjIndex->extra_flags;
-    obj->wear_flags  = pObjIndex->wear_flags;
-    obj->weight      = pObjIndex->weight;
+    str_replace_dup (&obj->name,        obj_index->name);        /* OLC */
+    str_replace_dup (&obj->short_descr, obj_index->short_descr); /* OLC */
+    str_replace_dup (&obj->description, obj_index->description); /* OLC */
+    obj->material    = obj_index->material;
+    obj->item_type   = obj_index->item_type;
+    obj->extra_flags = obj_index->extra_flags;
+    obj->wear_flags  = obj_index->wear_flags;
+    obj->weight      = obj_index->weight;
     for (i = 0; i < OBJ_VALUE_MAX; i++)
-        obj->v.value[i] = pObjIndex->v.value[i];
+        obj->v.value[i] = obj_index->v.value[i];
 
-    if (level == -1 || pObjIndex->new_format)
-        obj->cost = pObjIndex->cost;
+    if (level == -1 || obj_index->new_format)
+        obj->cost = obj_index->cost;
     else
         obj->cost = number_fuzzy (10)
             * number_fuzzy (level) * number_fuzzy (level);
@@ -99,7 +99,7 @@ OBJ_T *obj_create (OBJ_INDEX_T *pObjIndex, int level) {
         case ITEM_MAP:
         case ITEM_CLOTHING:
         case ITEM_PORTAL:
-            if (!pObjIndex->new_format)
+            if (!obj_index->new_format)
                 obj->cost /= 5;
             break;
 
@@ -116,32 +116,32 @@ OBJ_T *obj_create (OBJ_INDEX_T *pObjIndex, int level) {
             break;
 
         case ITEM_SCROLL:
-            if (level != -1 && !pObjIndex->new_format)
+            if (level != -1 && !obj_index->new_format)
                 obj->v.scroll.level = number_fuzzy (obj->v.scroll.level);
             break;
 
         case ITEM_WAND:
-            if (level != -1 && !pObjIndex->new_format) {
+            if (level != -1 && !obj_index->new_format) {
                 obj->v.wand.level    = number_fuzzy (obj->v.wand.level);
                 obj->v.wand.recharge = number_fuzzy (obj->v.wand.recharge);
                 obj->v.wand.charges  = obj->v.wand.recharge;
             }
-            if (!pObjIndex->new_format)
+            if (!obj_index->new_format)
                 obj->cost *= 2;
             break;
 
         case ITEM_STAFF:
-            if (level != -1 && !pObjIndex->new_format) {
+            if (level != -1 && !obj_index->new_format) {
                 obj->v.staff.level    = number_fuzzy (obj->v.staff.level);
                 obj->v.staff.recharge = number_fuzzy (obj->v.staff.recharge);
                 obj->v.staff.charges  = obj->v.staff.recharge;
             }
-            if (!pObjIndex->new_format)
+            if (!obj_index->new_format)
                 obj->cost *= 2;
             break;
 
         case ITEM_WEAPON:
-            if (level != -1 && !pObjIndex->new_format) {
+            if (level != -1 && !obj_index->new_format) {
                 obj->v.weapon.dice_num  = number_fuzzy (number_fuzzy (
                     1 * level / 4 + 2));
                 obj->v.weapon.dice_size = number_fuzzy (number_fuzzy (
@@ -150,7 +150,7 @@ OBJ_T *obj_create (OBJ_INDEX_T *pObjIndex, int level) {
             break;
 
         case ITEM_ARMOR:
-            if (level != -1 && !pObjIndex->new_format) {
+            if (level != -1 && !obj_index->new_format) {
                 obj->v.armor.vs_pierce = number_fuzzy (level / 5 + 3);
                 obj->v.armor.vs_bash   = number_fuzzy (level / 5 + 3);
                 obj->v.armor.vs_slash  = number_fuzzy (level / 5 + 3);
@@ -158,33 +158,33 @@ OBJ_T *obj_create (OBJ_INDEX_T *pObjIndex, int level) {
             break;
 
         case ITEM_POTION:
-            if (level != -1 && !pObjIndex->new_format)
+            if (level != -1 && !obj_index->new_format)
                 obj->v.potion.level = number_fuzzy (number_fuzzy (
                     obj->v.potion.level));
             break;
 
         case ITEM_PILL:
-            if (level != -1 && !pObjIndex->new_format)
+            if (level != -1 && !obj_index->new_format)
                 obj->v.pill.level = number_fuzzy (number_fuzzy (
                     obj->v.pill.level));
             break;
 
         case ITEM_MONEY:
-            if (!pObjIndex->new_format)
+            if (!obj_index->new_format)
                 obj->v.money.silver = obj->cost;
             break;
 
         default:
-            bug ("read_object: vnum %d bad type.", pObjIndex->vnum);
+            bug ("read_object: vnum %d bad type.", obj_index->vnum);
             break;
     }
 
-    for (paf = pObjIndex->affected; paf != NULL; paf = paf->next)
+    for (paf = obj_index->affected; paf != NULL; paf = paf->next)
         if (paf->apply == APPLY_SPELL_AFFECT)
             affect_to_obj (obj, paf);
 
     LIST_FRONT (obj, next, object_list);
-    pObjIndex->count++;
+    obj_index->count++;
     return obj;
 }
 
@@ -253,10 +253,10 @@ void obj_give_to_char (OBJ_T *obj, CHAR_T *ch) {
 }
 
 /* Move an obj into a room. */
-void obj_give_to_room (OBJ_T *obj, ROOM_INDEX_T *pRoomIndex) {
-    LIST_FRONT (obj, next_content, pRoomIndex->contents);
+void obj_give_to_room (OBJ_T *obj, ROOM_INDEX_T *room_index) {
+    LIST_FRONT (obj, next_content, room_index->contents);
     obj->carried_by = NULL;
-    obj->in_room    = pRoomIndex;
+    obj->in_room    = room_index;
     obj->in_obj     = NULL;
 }
 
@@ -267,7 +267,7 @@ void obj_give_to_obj (OBJ_T *obj, OBJ_T *obj_to) {
     obj->in_room    = NULL;
     obj->in_obj     = obj_to;
 
-    if (obj_to->pIndexData->vnum == OBJ_VNUM_PIT)
+    if (obj_to->index_data->vnum == OBJ_VNUM_PIT)
         obj->cost = 0;
 
     for (; obj_to != NULL; obj_to = obj_to->in_obj) {
@@ -286,7 +286,7 @@ void obj_give_to_keeper (OBJ_T *obj, CHAR_T *ch) {
     /* see if any duplicates are found */
     for (t_obj = ch->carrying; t_obj != NULL; t_obj = t_obj_next) {
         t_obj_next = t_obj->next_content;
-        if (obj->pIndexData != t_obj->pIndexData)
+        if (obj->index_data != t_obj->index_data)
             continue;
         if (str_cmp (obj->short_descr, t_obj->short_descr) != 0)
             continue;
@@ -416,13 +416,13 @@ int obj_get_ac_type (OBJ_T *obj, int iWear, int type) {
 }
 
 /* Count occurrences of an obj in a list. */
-int obj_index_count_in_list (OBJ_INDEX_T *pObjIndex, OBJ_T *list) {
+int obj_index_count_in_list (OBJ_INDEX_T *obj_index, OBJ_T *list) {
     OBJ_T *obj;
     int nMatch;
 
     nMatch = 0;
     for (obj = list; obj != NULL; obj = obj->next_content)
-        if (obj->pIndexData == pObjIndex)
+        if (obj->index_data == obj_index)
             nMatch++;
     return nMatch;
 }
@@ -445,7 +445,7 @@ void obj_extract (OBJ_T *obj) {
     }
 
     LIST_REMOVE (obj, next, object_list, OBJ_T, return);
-    --obj->pIndexData->count;
+    --obj->index_data->count;
     obj_free (obj);
 }
 
@@ -533,11 +533,11 @@ int obj_get_true_weight (OBJ_T *obj) {
     return weight;
 }
 
-char *obj_format_to_char (OBJ_T *obj, CHAR_T *ch, bool fShort) {
+char *obj_format_to_char (OBJ_T *obj, CHAR_T *ch, bool is_short) {
     static char buf[MAX_STRING_LENGTH];
     buf[0] = '\0';
 
-    if ((fShort && (obj->short_descr == NULL || obj->short_descr[0] == '\0'))
+    if ((is_short && (obj->short_descr == NULL || obj->short_descr[0] == '\0'))
         || (obj->description == NULL || obj->description[0] == '\0'))
         return buf;
 
@@ -576,7 +576,7 @@ char *obj_format_to_char (OBJ_T *obj, CHAR_T *ch, bool fShort) {
     if (IS_SET (ch->comm, COMM_MATERIALS))
         material_strcat (buf, material_get (obj->material));
 
-    if (fShort) {
+    if (is_short) {
         if (obj->short_descr != NULL)
             strcat (buf, obj->short_descr);
     }
@@ -590,8 +590,8 @@ char *obj_format_to_char (OBJ_T *obj, CHAR_T *ch, bool fShort) {
 
 /* Show a list to a character.
  * Can coalesce duplicated items.  */
-void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool fShort,
-    bool fShowNothing)
+void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool is_short,
+    bool show_nothing)
 {
     char buf[MAX_STRING_LENGTH];
     BUFFER_T *output;
@@ -602,7 +602,7 @@ void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool fShort,
     int nShow;
     int iShow;
     int count;
-    bool fCombine;
+    bool combine;
 
     if (ch->desc == NULL)
         return;
@@ -624,8 +624,8 @@ void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool fShort,
         if (!char_can_see_obj (ch, obj))
             continue;
 
-        pstrShow = obj_format_to_char (obj, ch, fShort);
-        fCombine = FALSE;
+        pstrShow = obj_format_to_char (obj, ch, is_short);
+        combine = FALSE;
 
         if (IS_NPC (ch) || IS_SET (ch->comm, COMM_COMBINE)) {
             /* Look for duplicates, case sensitive.
@@ -633,14 +633,14 @@ void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool fShort,
             for (iShow = nShow - 1; iShow >= 0; iShow--) {
                 if (!strcmp (prgpstrShow[iShow], pstrShow)) {
                     prgnShow[iShow]++;
-                    fCombine = TRUE;
+                    combine = TRUE;
                     break;
                 }
             }
         }
 
         /* Couldn't combine, or didn't want to. */
-        if (!fCombine) {
+        if (!combine) {
             prgpstrShow[nShow] = str_dup (pstrShow);
             prgnShow[nShow] = 1;
             nShow++;
@@ -667,7 +667,7 @@ void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool fShort,
         str_free (&(prgpstrShow[iShow]));
     }
 
-    if (fShowNothing && nShow == 0) {
+    if (show_nothing && nShow == 0) {
         if (IS_NPC (ch) || IS_SET (ch->comm, COMM_COMBINE))
             send_to_char ("     ", ch);
         send_to_char ("Nothing.\n\r", ch);
@@ -740,10 +740,10 @@ bool obj_can_fit_in (OBJ_T *obj, OBJ_T *container) {
 
 /* Find some object with a given index data.
  * Used by area-reset 'P' command. */
-OBJ_T *obj_get_by_index (OBJ_INDEX_T *pObjIndex) {
+OBJ_T *obj_get_by_index (OBJ_INDEX_T *obj_index) {
     OBJ_T *obj;
     for (obj = object_list; obj != NULL; obj = obj->next)
-        if (obj->pIndexData == pObjIndex)
+        if (obj->index_data == obj_index)
             return obj;
     return NULL;
 }
@@ -761,7 +761,7 @@ void obj_enchant (OBJ_T *obj) {
         return;
     obj->enchanted = TRUE;
 
-    for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
+    for (paf = obj->index_data->affected; paf != NULL; paf = paf->next) {
         af_new = affect_new ();
         affect_copy (af_new, paf);
         af_new->type = UMAX (0, af_new->type);

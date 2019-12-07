@@ -96,10 +96,10 @@ bool new_player_name_is_valid (char *name) {
     /* Alphanumerics only.  Lock out IllIll twits. */
     {
         char *pc;
-        bool fIll, adjcaps = FALSE, cleancaps = FALSE;
+        bool ill, adjcaps = FALSE, cleancaps = FALSE;
         int total_caps = 0;
 
-        fIll = TRUE;
+        ill = TRUE;
         for (pc = name; *pc != '\0'; pc++) {
             if (!isalpha (*pc))
                 return FALSE;
@@ -115,10 +115,10 @@ bool new_player_name_is_valid (char *name) {
                 adjcaps = FALSE;
 
             if (LOWER (*pc) != 'i' && LOWER (*pc) != 'l')
-                fIll = FALSE;
+                ill = FALSE;
         }
 
-        if (fIll)
+        if (ill)
             return FALSE;
         if (cleancaps || (total_caps > (strlen (name)) / 2 && strlen (name) < 3))
             return FALSE;
@@ -127,14 +127,14 @@ bool new_player_name_is_valid (char *name) {
     /* Prevent players from naming themselves after mobs. */
     {
         extern MOB_INDEX_T *mob_index_hash[MAX_KEY_HASH];
-        MOB_INDEX_T *pMobIndex;
+        MOB_INDEX_T *mob_index;
         int iHash;
 
         for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-            for (pMobIndex = mob_index_hash[iHash];
-                 pMobIndex != NULL; pMobIndex = pMobIndex->next)
+            for (mob_index = mob_index_hash[iHash];
+                 mob_index != NULL; mob_index = mob_index->next)
             {
-                if (is_name (name, pMobIndex->name))
+                if (is_name (name, mob_index->name))
                     return FALSE;
             }
         }
@@ -208,7 +208,7 @@ void nanny_ansi (DESCRIPTOR_T *d, char *argument) {
 }
 
 void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
-    bool fOld;
+    bool old;
     CHAR_T *ch;
 
     if (argument[0] == '\0') {
@@ -222,7 +222,7 @@ void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
         return;
     }
 
-    fOld = load_char_obj (d, argument);
+    old = load_char_obj (d, argument);
     ch = d->character;
 
     if (IS_SET (ch->plr, PLR_DENY)) {
@@ -239,7 +239,7 @@ void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
     }
 
     if (check_reconnect (d, argument, FALSE))
-        fOld = TRUE;
+        old = TRUE;
     else {
         if (wizlock && !IS_IMMORTAL (ch)) {
             send_to_desc ("The game is wizlocked.\n\r", d);
@@ -248,7 +248,7 @@ void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
         }
     }
 
-    if (fOld) {
+    if (old) {
         /* Old player */
         send_to_desc ("Password: ", d);
         write_to_buffer (d, echo_off_str, 0);

@@ -59,7 +59,7 @@
 
 int main (int argc, char **argv) {
     struct timeval now_time;
-    bool fCopyOver = FALSE;
+    bool copyover = FALSE;
     int free_count;
     #ifdef IMC
         int imcsocket = -1;
@@ -106,14 +106,14 @@ int main (int argc, char **argv) {
 
         /* Are we recovering from a copyover? */
         if (argv[2] && argv[2][0]) {
-            fCopyOver = TRUE;
+            copyover = TRUE;
             control = atoi (argv[3]);
             #ifdef IMC
                 imcsocket = atoi (argv[4]);
             #endif
         }
         else
-            fCopyOver = FALSE;
+            copyover = FALSE;
     }
 
     /* Run the game. */
@@ -126,17 +126,17 @@ int main (int argc, char **argv) {
 
     #if defined(unix)
         qmconfig_read(); /* Here so we can set the IP adress. -- JR 05/06/01 */
-        if (!fCopyOver)
+        if (!copyover)
             control = init_socket (port);
         boot_db ();
         log_f ("ROM is ready to rock on port %d (%s).", port, mud_ipaddress);
 
         #ifdef IMC
             /* Initialize and connect to IMC2 */
-            imc_startup (FALSE, imcsocket, fCopyOver);
+            imc_startup (FALSE, imcsocket, copyover);
         #endif
 
-        if (fCopyOver)
+        if (copyover)
             copyover_recover ();
 
         game_loop_unix (control);
@@ -488,7 +488,7 @@ void copyover_recover (void) {
     char name[100];
     char host[MSL];
     int desc;
-    bool fOld;
+    bool old;
 
     log_f ("Copyover recovery initiated");
     fp = fopen (COPYOVER_FILE, "r");
@@ -523,10 +523,10 @@ void copyover_recover (void) {
         d->connected = CON_COPYOVER_RECOVER;    /* -15, so close_socket frees the char */
 
         /* Now, find the pfile */
-        fOld = load_char_obj (d, name);
+        old = load_char_obj (d, name);
 
         /* Player file not found?! */
-        if (!fOld) {
+        if (!old) {
             write_to_descriptor (desc,
                 "\n\rSomehow, your character was lost in the copyover. Sorry.\n\r", 0);
             close_socket (d);
@@ -559,7 +559,7 @@ void copyover_recover (void) {
 
 void qmconfig_read (void) {
     FILE *fp;
-    bool fMatch, fReading;
+    bool match, reading;
     char *word;
     extern int mud_ansiprompt, mud_ansicolor, mud_telnetga;
 
@@ -570,20 +570,20 @@ void qmconfig_read (void) {
         return;
     }
 
-    fReading = TRUE;
-    while (fReading) {
+    reading = TRUE;
+    while (reading) {
         word = feof (fp) ? "END" : fread_word(fp);
-        fMatch = FALSE;
+        match = FALSE;
 
         switch (UPPER(word[0])) {
             case '#':
                 /* This is a comment line! */
-                fMatch = TRUE;
+                match = TRUE;
                 fread_to_eol (fp);
                 break;
 
             case '*':
-                fMatch = TRUE;
+                match = TRUE;
                 fread_to_eol (fp);
                 break;
 
@@ -594,8 +594,8 @@ void qmconfig_read (void) {
 
             case 'E':
                 if (!str_cmp (word, "END")) {
-                    fReading = FALSE;
-                    fMatch = TRUE;
+                    reading = FALSE;
+                    match = TRUE;
                 }
                 break;
 
@@ -603,7 +603,7 @@ void qmconfig_read (void) {
                 KEY ("Telnetga", mud_telnetga, fread_number(fp));
                 break;
         }
-        if (!fMatch) {
+        if (!match) {
             log_f ("qmconfig_read: no match for %s!", word);
             fread_to_eol(fp);
         }

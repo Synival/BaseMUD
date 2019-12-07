@@ -620,7 +620,7 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
 
     sub = json_get (json, "shop");
     if (sub != NULL && sub->type != JSON_NULL)
-        mob->pShop = json_import_obj_shop (sub, mob->area_str);
+        mob->shop = json_import_obj_shop (sub, mob->area_str);
 
     READ_PROP_STR (buf, "spec_fun");
     if (buf[0] != '\0') {

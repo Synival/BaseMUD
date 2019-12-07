@@ -193,7 +193,7 @@ void affect_check (CHAR_T *ch, int bit_type, flag_t bits) {
 
         if (obj->enchanted)
             continue;
-        for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next)
+        for (paf = obj->index_data->affected; paf != NULL; paf = paf->next)
             if (paf->bit_type == bit_type && paf->bits == bits)
                 affect_modify_bits (ch, paf, TRUE);
     }
