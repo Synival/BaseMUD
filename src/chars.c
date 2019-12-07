@@ -636,8 +636,8 @@ bool char_equip_obj (CHAR_T *ch, OBJ_T *obj, flag_t iWear) {
         /* Thanks to Morgenes for the bug fix here! */
         act2 ("You are zapped by $p and drop it.",
               "$n is zapped by $p and drops it.", ch, obj, NULL, 0, POS_RESTING);
-        obj_from_char (obj);
-        obj_to_room (obj, ch->in_room);
+        obj_take_from_char (obj);
+        obj_give_to_room (obj, ch->in_room);
         return FALSE;
     }
 
@@ -1418,12 +1418,12 @@ void char_take_obj (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
         act ("You get $p from $P.", ch, obj, container, TO_CHAR);
         act ("$n gets $p from $P.", ch, obj, container, TO_NOTCHAR);
         REMOVE_BIT (obj->extra_flags, ITEM_HAD_TIMER);
-        obj_from_obj (obj);
+        obj_take_from_obj (obj);
     }
     else {
         act ("You get $p.", ch, obj, container, TO_CHAR);
         act ("$n gets $p.", ch, obj, container, TO_NOTCHAR);
-        obj_from_room (obj);
+        obj_take_from_room (obj);
     }
 
     if (obj->item_type == ITEM_MONEY) {
@@ -1451,7 +1451,7 @@ void char_take_obj (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
         obj_extract (obj);
     }
     else
-        obj_to_char (obj, ch);
+        obj_give_to_char (obj, ch);
 }
 
 /* Remove an object. */
@@ -1654,8 +1654,8 @@ bool char_drop_weapon_if_too_heavy (CHAR_T *ch) {
 
     depth++;
     act2 ("You drop $p.", "$n drops $p.", ch, wield, NULL, 0, POS_RESTING);
-    obj_from_char (wield);
-    obj_to_room (wield, ch->in_room);
+    obj_take_from_char (wield);
+    obj_give_to_room (wield, ch->in_room);
     depth--;
     return TRUE;
 }

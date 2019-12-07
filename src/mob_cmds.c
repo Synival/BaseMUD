@@ -380,12 +380,12 @@ DEFINE_DO_FUN (do_mpoload) {
 
     obj = obj_create (pObjIndex, level);
     if ((fWear || !fToroom) && CAN_WEAR_FLAG (obj, ITEM_TAKE)) {
-        obj_to_char (obj, ch);
+        obj_give_to_char (obj, ch);
         if (fWear)
             char_wear_obj (ch, obj, TRUE);
     }
     else
-        obj_to_room (obj, ch->in_room);
+        obj_give_to_room (obj, ch->in_room);
 }
 
 /* Lets the mobile purge all objects and other npcs in the room,
@@ -870,13 +870,13 @@ DEFINE_DO_FUN (do_mpotransfer) {
     if ((obj = find_obj_here (ch, arg)) == NULL)
         return;
     if (obj->carried_by == NULL)
-        obj_from_room (obj);
+        obj_take_from_room (obj);
     else {
         if (obj->wear_loc != WEAR_NONE)
             char_unequip_obj (ch, obj);
-        obj_from_char (obj);
+        obj_take_from_char (obj);
     }
-    obj_to_room (obj, location);
+    obj_give_to_room (obj, location);
 }
 
 /* Lets the mobile to strip an object or all objects from the victim.
@@ -907,7 +907,7 @@ DEFINE_DO_FUN (do_mpremove) {
         obj_next = obj->next_content;
         if (fAll || obj->pIndexData->vnum == vnum) {
             char_unequip_obj (ch, obj);
-            obj_from_char (obj);
+            obj_take_from_char (obj);
             obj_extract (obj);
         }
     }

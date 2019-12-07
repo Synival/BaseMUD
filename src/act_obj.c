@@ -116,8 +116,8 @@ void do_drop_single_item (CHAR_T *ch, OBJ_T *obj) {
     BAIL_IF_ACT (!char_can_drop_obj (ch, obj),
         "$p: You can't let go of it.", ch, obj, NULL);
 
-    obj_from_char (obj);
-    obj_to_room (obj, ch->in_room);
+    obj_take_from_char (obj);
+    obj_give_to_room (obj, ch->in_room);
     act2 ("You drop $p.",
           "$n drops $p.", ch, obj, NULL, 0, POS_RESTING);
 
@@ -144,8 +144,8 @@ void do_put_single_item (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
             obj->timer = number_range (100, 200);
     }
 
-    obj_from_char (obj);
-    obj_to_obj (obj, container);
+    obj_take_from_char (obj);
+    obj_give_to_obj (obj, container);
 
     if (container->item_type == ITEM_CONTAINER &&
             IS_SET (container->v.container.flags, CONT_PUT_ON))
@@ -446,8 +446,8 @@ void do_give_single_item (CHAR_T *ch, OBJ_T *obj, CHAR_T *victim) {
         return;
     }
 
-    obj_from_char (obj);
-    obj_to_char (obj, victim);
+    obj_take_from_char (obj);
+    obj_give_to_char (obj, victim);
     MOBtrigger = FALSE;
     act3 ("$n gives $p to $N.",
           "$n gives you $p.",
@@ -1265,8 +1265,8 @@ DEFINE_DO_FUN (do_steal) {
                 char_get_max_carry_weight (ch),
         "You can't carry that much weight.\n\r", ch);
 
-    obj_from_char (obj);
-    obj_to_char (obj, ch);
+    obj_take_from_char (obj);
+    obj_give_to_char (obj, ch);
     act ("You pocket $p.", ch, obj, NULL, TO_CHAR);
     check_improve (ch, gsn_steal, TRUE, 2);
     send_to_char ("Got it!\n\r", ch);
@@ -1283,14 +1283,14 @@ DEFINE_DO_FUN (do_outfit) {
     if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LIGHT)) == NULL) {
         obj = obj_create (get_obj_index (OBJ_VNUM_SCHOOL_BANNER), 0);
         obj->cost = 0;
-        obj_to_char (obj, ch);
+        obj_give_to_char (obj, ch);
         char_equip_obj (ch, obj, WEAR_LIGHT);
     }
 
     if ((obj = char_get_eq_by_wear_loc (ch, WEAR_BODY)) == NULL) {
         obj = obj_create (get_obj_index (OBJ_VNUM_SCHOOL_VEST), 0);
         obj->cost = 0;
-        obj_to_char (obj, ch);
+        obj_give_to_char (obj, ch);
         char_equip_obj (ch, obj, WEAR_BODY);
     }
 
@@ -1309,7 +1309,7 @@ DEFINE_DO_FUN (do_outfit) {
         }
 
         obj = obj_create (get_obj_index (vnum), 0);
-        obj_to_char (obj, ch);
+        obj_give_to_char (obj, ch);
         char_equip_obj (ch, obj, WEAR_WIELD);
     }
 
@@ -1319,7 +1319,7 @@ DEFINE_DO_FUN (do_outfit) {
     {
         obj = obj_create (get_obj_index (OBJ_VNUM_SCHOOL_SHIELD), 0);
         obj->cost = 0;
-        obj_to_char (obj, ch);
+        obj_give_to_char (obj, ch);
         char_equip_obj (ch, obj, WEAR_SHIELD);
     }
 

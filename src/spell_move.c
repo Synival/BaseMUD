@@ -108,7 +108,7 @@ OBJ_T *spell_sub_create_portal (ROOM_INDEX_T *from_room,
     OBJ_T *portal = obj_create (get_obj_index (OBJ_VNUM_PORTAL), 0);
     portal->timer = duration;
     portal->v.portal.to_vnum = to_room->vnum;
-    obj_to_room (portal, from_room);
+    obj_give_to_room (portal, from_room);
     return portal;
 }
 

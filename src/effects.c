@@ -151,11 +151,11 @@ void acid_effect (void *vo, int level, int dam, int target) {
         if (obj->contains) { /* dump contents */
             for (t_obj = obj->contains; t_obj != NULL; t_obj = n_obj) {
                 n_obj = t_obj->next_content;
-                obj_from_obj (t_obj);
+                obj_take_from_obj (t_obj);
                 if (obj->in_room != NULL)
-                    obj_to_room (t_obj, obj->in_room);
+                    obj_give_to_room (t_obj, obj->in_room);
                 else if (obj->carried_by != NULL)
-                    obj_to_room (t_obj, obj->carried_by->in_room);
+                    obj_give_to_room (t_obj, obj->carried_by->in_room);
                 else {
                     obj_extract (t_obj);
                     continue;
@@ -163,7 +163,6 @@ void acid_effect (void *vo, int level, int dam, int target) {
                 acid_effect (t_obj, level / 2, dam / 2, TARGET_OBJ);
             }
         }
-
         obj_extract (obj);
         return;
     }
@@ -361,11 +360,11 @@ void fire_effect (void *vo, int level, int dam, int target) {
         if (obj->contains) {
             for (t_obj = obj->contains; t_obj != NULL; t_obj = n_obj) {
                 n_obj = t_obj->next_content;
-                obj_from_obj (t_obj);
+                obj_take_from_obj (t_obj);
                 if (obj->in_room != NULL)
-                    obj_to_room (t_obj, obj->in_room);
+                    obj_give_to_room (t_obj, obj->in_room);
                 else if (obj->carried_by != NULL)
-                    obj_to_room (t_obj, obj->carried_by->in_room);
+                    obj_give_to_room (t_obj, obj->carried_by->in_room);
                 else {
                     obj_extract (t_obj);
                     continue;

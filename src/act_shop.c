@@ -239,13 +239,13 @@ void do_buy_item (CHAR_T *ch, char *argument) {
         else {
             t_obj = obj;
             obj = obj->next_content;
-            obj_from_char (t_obj);
+            obj_take_from_char (t_obj);
         }
 
         if (t_obj->timer > 0 && !IS_OBJ_STAT (t_obj, ITEM_HAD_TIMER))
             t_obj->timer = 0;
         REMOVE_BIT (t_obj->extra_flags, ITEM_HAD_TIMER);
-        obj_to_char (t_obj, ch);
+        obj_give_to_char (t_obj, ch);
         if (cost < t_obj->cost)
             t_obj->cost = cost;
     }
@@ -410,12 +410,12 @@ DEFINE_DO_FUN (do_sell) {
     if (obj->item_type == ITEM_TRASH || IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT))
         obj_extract (obj);
     else {
-        obj_from_char (obj);
+        obj_take_from_char (obj);
         if (obj->timer)
             SET_BIT (obj->extra_flags, ITEM_HAD_TIMER);
         else
             obj->timer = number_range (50, 100);
-        obj_to_keeper (obj, keeper);
+        obj_give_to_keeper (obj, keeper);
     }
 }
 

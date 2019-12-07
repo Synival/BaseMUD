@@ -634,8 +634,8 @@ bool spec_fido (CHAR_T *ch) {
         act ("$n savagely devours a corpse.", ch, NULL, NULL, TO_NOTCHAR);
         for (obj = corpse->contains; obj; obj = obj_next) {
             obj_next = obj->next_content;
-            obj_from_obj (obj);
-            obj_to_room (obj, ch->in_room);
+            obj_take_from_obj (obj);
+            obj_give_to_room (obj, ch->in_room);
         }
         obj_extract (corpse);
         return TRUE;
@@ -714,8 +714,8 @@ bool spec_janitor (CHAR_T *ch) {
             || trash->item_type == ITEM_TRASH || trash->cost < 10)
         {
             act ("$n picks up some trash.", ch, NULL, NULL, TO_NOTCHAR);
-            obj_from_room (trash);
-            obj_to_char (trash, ch);
+            obj_take_from_room (trash);
+            obj_give_to_char (trash, ch);
             return TRUE;
         }
     }

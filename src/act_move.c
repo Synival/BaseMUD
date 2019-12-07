@@ -724,8 +724,8 @@ DEFINE_DO_FUN (do_enter) {
     char_from_room (ch);
     char_to_room (ch, location);
     if (IS_SET (portal->v.portal.gate_flags, GATE_GOWITH)) {
-        obj_from_room (portal);
-        obj_to_room (portal, location);
+        obj_take_from_room (portal);
+        obj_give_to_room (portal, location);
     }
 
     /* Arrival messages. */

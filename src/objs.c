@@ -242,21 +242,96 @@ int obj_count_users (OBJ_T *obj) {
 }
 
 /* Give an obj to a char. */
-void obj_to_char (OBJ_T *obj, CHAR_T *ch) {
+void obj_give_to_char (OBJ_T *obj, CHAR_T *ch) {
     LIST_FRONT (obj, next_content, ch->carrying);
     obj->carried_by = ch;
-    obj->in_room = NULL;
-    obj->in_obj = NULL;
+    obj->in_room    = NULL;
+    obj->in_obj     = NULL;
+
     ch->carry_number += obj_get_carry_number (obj);
     ch->carry_weight += obj_get_weight (obj);
 }
 
+/* Move an obj into a room. */
+void obj_give_to_room (OBJ_T *obj, ROOM_INDEX_T *pRoomIndex) {
+    LIST_FRONT (obj, next_content, pRoomIndex->contents);
+    obj->carried_by = NULL;
+    obj->in_room    = pRoomIndex;
+    obj->in_obj     = NULL;
+}
+
+/* Move an object into an object. */
+void obj_give_to_obj (OBJ_T *obj, OBJ_T *obj_to) {
+    LIST_FRONT (obj, next_content, obj_to->contains);
+    obj->carried_by = NULL;
+    obj->in_room    = NULL;
+    obj->in_obj     = obj_to;
+
+    if (obj_to->pIndexData->vnum == OBJ_VNUM_PIT)
+        obj->cost = 0;
+
+    for (; obj_to != NULL; obj_to = obj_to->in_obj) {
+        if (obj_to->carried_by != NULL) {
+            obj_to->carried_by->carry_number += obj_get_carry_number (obj);
+            obj_to->carried_by->carry_weight += obj_get_weight (obj)
+                * WEIGHT_MULT (obj_to) / 100;
+        }
+    }
+}
+
+/* insert an object at the right spot for the keeper */
+void obj_give_to_keeper (OBJ_T *obj, CHAR_T *ch) {
+    OBJ_T *t_obj, *t_obj_next;
+
+    /* see if any duplicates are found */
+    for (t_obj = ch->carrying; t_obj != NULL; t_obj = t_obj_next) {
+        t_obj_next = t_obj->next_content;
+        if (obj->pIndexData != t_obj->pIndexData)
+            continue;
+        if (str_cmp (obj->short_descr, t_obj->short_descr) != 0)
+            continue;
+
+        /* if this is an unlimited item, destroy the new one */
+        if (IS_OBJ_STAT (t_obj, ITEM_INVENTORY)) {
+            obj_extract (obj);
+            return;
+        }
+        obj->cost = t_obj->cost; /* keep it standard */
+    }
+
+    LIST_INSERT_AFTER (obj, t_obj, next_content, ch->carrying);
+    obj->carried_by = ch;
+    obj->in_room    = NULL;
+    obj->in_obj     = NULL;
+
+    ch->carry_number += obj_get_carry_number (obj);
+    ch->carry_weight += obj_get_weight (obj);
+}
+
+/* Take the object from whoever or whatever is holding it. */
+void obj_take (OBJ_T *obj)
+{
+    if (obj->carried_by) {
+        obj_take_from_char (obj);
+        return;
+    }
+    else if (obj->in_room) {
+        obj_take_from_room (obj);
+        return;
+    }
+    else if (obj->in_obj) {
+        obj_take_from_obj (obj);
+        return;
+    }
+    bug ("obj_take: object not carried, in room, or in object.", 0);
+}
+
 /* Take an obj from its character. */
-void obj_from_char (OBJ_T *obj) {
+void obj_take_from_char (OBJ_T *obj) {
     CHAR_T *ch;
 
     BAIL_IF_BUG ((ch = obj->carried_by) == NULL,
-        "obj_from_char: null ch.", 0);
+        "obj_take_from_char: null ch.", 0);
     if (obj->wear_loc != WEAR_NONE)
         char_unequip_obj (ch, obj);
 
@@ -264,6 +339,39 @@ void obj_from_char (OBJ_T *obj) {
     obj->carried_by = NULL;
     ch->carry_number -= obj_get_carry_number (obj);
     ch->carry_weight -= obj_get_weight (obj);
+}
+
+/* Move an obj out of a room. */
+void obj_take_from_room (OBJ_T *obj) {
+    ROOM_INDEX_T *in_room;
+    CHAR_T *ch;
+
+    BAIL_IF_BUG ((in_room = obj->in_room) == NULL,
+        "obj_take_from_room: NULL.", 0);
+    for (ch = in_room->people; ch != NULL; ch = ch->next_in_room)
+        if (ch->on == obj)
+            ch->on = NULL;
+
+    LIST_REMOVE (obj, next_content, in_room->contents, OBJ_T, NO_FAIL);
+    obj->in_room = NULL;
+}
+
+/* Move an object out of an object. */
+void obj_take_from_obj (OBJ_T *obj) {
+    OBJ_T *obj_from;
+    BAIL_IF_BUG ((obj_from = obj->in_obj) == NULL,
+        "obj_take_from_obj: null obj_from.", 0);
+
+    LIST_REMOVE (obj, next_content, obj_from->contains, OBJ_T, NO_FAIL);
+    obj->in_obj = NULL;
+
+    for (; obj_from != NULL; obj_from = obj_from->in_obj) {
+        if (obj_from->carried_by != NULL) {
+            obj_from->carried_by->carry_number -= obj_get_carry_number (obj);
+            obj_from->carried_by->carry_weight -= obj_get_weight (obj)
+                * WEIGHT_MULT (obj_from) / 100;
+        }
+    }
 }
 
 /* Find the ac value of an obj, including position effect. */
@@ -319,76 +427,17 @@ int obj_index_count_in_list (OBJ_INDEX_T *pObjIndex, OBJ_T *list) {
     return nMatch;
 }
 
-/* Move an obj out of a room. */
-void obj_from_room (OBJ_T *obj) {
-    ROOM_INDEX_T *in_room;
-    CHAR_T *ch;
-
-    BAIL_IF_BUG ((in_room = obj->in_room) == NULL,
-        "obj_from_room: NULL.", 0);
-    for (ch = in_room->people; ch != NULL; ch = ch->next_in_room)
-        if (ch->on == obj)
-            ch->on = NULL;
-
-    LIST_REMOVE (obj, next_content, in_room->contents, OBJ_T, NO_FAIL);
-    obj->in_room = NULL;
-}
-
-/* Move an obj into a room. */
-void obj_to_room (OBJ_T *obj, ROOM_INDEX_T *pRoomIndex) {
-    LIST_FRONT (obj, next_content, pRoomIndex->contents);
-    obj->in_room = pRoomIndex;
-    obj->carried_by = NULL;
-    obj->in_obj = NULL;
-}
-
-/* Move an object into an object. */
-void obj_to_obj (OBJ_T *obj, OBJ_T *obj_to) {
-    LIST_FRONT (obj, next_content, obj_to->contains);
-    obj->in_obj = obj_to;
-    obj->in_room = NULL;
-    obj->carried_by = NULL;
-    if (obj_to->pIndexData->vnum == OBJ_VNUM_PIT)
-        obj->cost = 0;
-
-    for (; obj_to != NULL; obj_to = obj_to->in_obj) {
-        if (obj_to->carried_by != NULL) {
-            obj_to->carried_by->carry_number += obj_get_carry_number (obj);
-            obj_to->carried_by->carry_weight += obj_get_weight (obj)
-                * WEIGHT_MULT (obj_to) / 100;
-        }
-    }
-}
-
-/* Move an object out of an object. */
-void obj_from_obj (OBJ_T *obj) {
-    OBJ_T *obj_from;
-    BAIL_IF_BUG ((obj_from = obj->in_obj) == NULL,
-        "obj_from_obj: null obj_from.", 0);
-
-    LIST_REMOVE (obj, next_content, obj_from->contains, OBJ_T, NO_FAIL);
-    obj->in_obj = NULL;
-
-    for (; obj_from != NULL; obj_from = obj_from->in_obj) {
-        if (obj_from->carried_by != NULL) {
-            obj_from->carried_by->carry_number -= obj_get_carry_number (obj);
-            obj_from->carried_by->carry_weight -= obj_get_weight (obj)
-                * WEIGHT_MULT (obj_from) / 100;
-        }
-    }
-}
-
 /* Extract an obj from the world. */
 void obj_extract (OBJ_T *obj) {
     OBJ_T *obj_content;
     OBJ_T *obj_next;
 
     if (obj->in_room != NULL)
-        obj_from_room (obj);
+        obj_take_from_room (obj);
     else if (obj->carried_by != NULL)
-        obj_from_char (obj);
+        obj_take_from_char (obj);
     else if (obj->in_obj != NULL)
-        obj_from_obj (obj);
+        obj_take_from_obj (obj);
 
     for (obj_content = obj->contains; obj_content; obj_content = obj_next) {
         obj_next = obj_content->next_content;
@@ -570,28 +619,31 @@ void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool fShort,
 
     /* Format the list of objects.  */
     for (obj = list; obj != NULL; obj = obj->next_content) {
-        if (obj->wear_loc == WEAR_NONE && char_can_see_obj (ch, obj)) {
-            pstrShow = obj_format_to_char (obj, ch, fShort);
-            fCombine = FALSE;
+        if (obj->wear_loc != WEAR_NONE)
+            continue;
+        if (!char_can_see_obj (ch, obj))
+            continue;
 
-            if (IS_NPC (ch) || IS_SET (ch->comm, COMM_COMBINE)) {
-                /* Look for duplicates, case sensitive.
-                 * Matches tend to be near end so run loop backwords. */
-                for (iShow = nShow - 1; iShow >= 0; iShow--) {
-                    if (!strcmp (prgpstrShow[iShow], pstrShow)) {
-                        prgnShow[iShow]++;
-                        fCombine = TRUE;
-                        break;
-                    }
+        pstrShow = obj_format_to_char (obj, ch, fShort);
+        fCombine = FALSE;
+
+        if (IS_NPC (ch) || IS_SET (ch->comm, COMM_COMBINE)) {
+            /* Look for duplicates, case sensitive.
+             * Matches tend to be near end so run loop backwords. */
+            for (iShow = nShow - 1; iShow >= 0; iShow--) {
+                if (!strcmp (prgpstrShow[iShow], pstrShow)) {
+                    prgnShow[iShow]++;
+                    fCombine = TRUE;
+                    break;
                 }
             }
+        }
 
-            /* Couldn't combine, or didn't want to. */
-            if (!fCombine) {
-                prgpstrShow[nShow] = str_dup (pstrShow);
-                prgnShow[nShow] = 1;
-                nShow++;
-            }
+        /* Couldn't combine, or didn't want to. */
+        if (!fCombine) {
+            prgpstrShow[nShow] = str_dup (pstrShow);
+            prgnShow[nShow] = 1;
+            nShow++;
         }
     }
 
@@ -674,7 +726,7 @@ bool obj_can_fit_in (OBJ_T *obj, OBJ_T *container) {
     int weight;
     if (!obj_is_container (container))
         return FALSE;
-    if (container->item_type != ITEM_CONTAINER)
+    if (container->item_type != ITEM_CONTAINER) /* for corpses */
         return TRUE;
 
     weight = obj_get_weight (obj);
@@ -694,36 +746,6 @@ OBJ_T *obj_get_by_index (OBJ_INDEX_T *pObjIndex) {
         if (obj->pIndexData == pObjIndex)
             return obj;
     return NULL;
-}
-
-/* insert an object at the right spot for the keeper */
-void obj_to_keeper (OBJ_T *obj, CHAR_T *ch) {
-    OBJ_T *t_obj, *t_obj_next;
-
-    /* see if any duplicates are found */
-    for (t_obj = ch->carrying; t_obj != NULL; t_obj = t_obj_next) {
-        t_obj_next = t_obj->next_content;
-
-        if (obj->pIndexData == t_obj->pIndexData
-            && !str_cmp (obj->short_descr, t_obj->short_descr))
-        {
-            /* if this is an unlimited item, destroy the new one */
-            if (IS_OBJ_STAT (t_obj, ITEM_INVENTORY)) {
-                obj_extract (obj);
-                return;
-            }
-            obj->cost = t_obj->cost;    /* keep it standard */
-            break;
-        }
-    }
-
-    LIST_INSERT_AFTER (obj, t_obj, next_content, ch->carrying);
-    obj->carried_by = ch;
-
-    obj->in_room = NULL;
-    obj->in_obj = NULL;
-    ch->carry_number += obj_get_carry_number (obj);
-    ch->carry_weight += obj_get_weight (obj);
 }
 
 bool obj_is_furniture (OBJ_T *obj, flag_t bits) {

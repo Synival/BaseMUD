@@ -511,8 +511,8 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
 
         /* Checks passed to drop item - so drop it! */
         if (drop_item) {
-            obj_from_char (obj_lose);
-            obj_to_room (obj_lose, victim->in_room);
+            obj_take_from_char (obj_lose);
+            obj_give_to_room (obj_lose, victim->in_room);
         }
     }
 

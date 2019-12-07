@@ -914,7 +914,7 @@ REDIT (redit_oreset) {
         redit_add_reset (pRoom, pReset, 0 /* Last slot */ );
 
         newobj = obj_create (pObjIndex, number_fuzzy (olevel));
-        obj_to_room (newobj, pRoom);
+        obj_give_to_room (newobj, pRoom);
 
         printf_to_char (ch, "%s (%d) has been loaded and added to resets.\n\r",
             capitalize (pObjIndex->short_descr), pObjIndex->vnum);
@@ -933,7 +933,7 @@ REDIT (redit_oreset) {
 
         newobj = obj_create (pObjIndex, number_fuzzy (olevel));
         newobj->cost = 0;
-        obj_to_obj (newobj, to_obj);
+        obj_give_to_obj (newobj, to_obj);
 
         printf_to_char (ch, "%s (%d) has been loaded into "
             "%s (%d) and added to resets.\n\r",
@@ -1016,7 +1016,7 @@ REDIT (redit_oreset) {
         else
             newobj = obj_create (pObjIndex, number_fuzzy (olevel));
 
-        obj_to_char (newobj, to_mob);
+        obj_give_to_char (newobj, to_mob);
         if (pReset->command == 'E')
             char_equip_obj (to_mob, newobj, pReset->v.equip.wear_loc);
 

@@ -756,7 +756,7 @@ void nanny_read_motd (DESCRIPTOR_T *d, char *argument) {
         char_set_title (ch, buf);
 
         do_function (ch, &do_outfit, "");
-        obj_to_char (obj_create (get_obj_index (OBJ_VNUM_MAP), 0), ch);
+        obj_give_to_char (obj_create (get_obj_index (OBJ_VNUM_MAP), 0), ch);
 
         char_to_room (ch, get_room_index (ROOM_VNUM_SCHOOL));
         send_to_char ("\n\r", ch);

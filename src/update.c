@@ -323,8 +323,8 @@ void mobile_update (void) {
                 }
             }
             if (obj_best) {
-                obj_from_room (obj_best);
-                obj_to_char (obj_best, ch);
+                obj_take_from_room (obj_best);
+                obj_give_to_char (obj_best, ch);
                 act ("$n gets $p.", ch, obj_best, NULL, TO_NOTCHAR);
             }
         }
@@ -842,25 +842,25 @@ void obj_update (void) {
             OBJ_T *t_obj, *next_obj;
             for (t_obj = obj->contains; t_obj != NULL; t_obj = next_obj) {
                 next_obj = t_obj->next_content;
-                obj_from_obj (t_obj);
+                obj_take_from_obj (t_obj);
 
                 /* in another object */
                 if (obj->in_obj)
-                    obj_to_obj (t_obj, obj->in_obj);
+                    obj_give_to_obj (t_obj, obj->in_obj);
                 /* carried */
                 else if (obj->carried_by) {
                     if (obj->wear_loc == WEAR_FLOAT) {
                         if (obj->carried_by->in_room == NULL)
                             obj_extract (t_obj);
                         else
-                            obj_to_room (t_obj, obj->carried_by->in_room);
+                            obj_give_to_room (t_obj, obj->carried_by->in_room);
                     }
                     else
-                        obj_to_char (t_obj, obj->carried_by);
+                        obj_give_to_char (t_obj, obj->carried_by);
                 }
                 /* to a room */
                 else if (obj->in_room)
-                    obj_to_room (t_obj, obj->in_room);
+                    obj_give_to_room (t_obj, obj->in_room);
                 /* nowhere - destroy it! */
                 else
                     obj_extract (t_obj);

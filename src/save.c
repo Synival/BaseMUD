@@ -1516,9 +1516,9 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                             obj->wear_loc = wear;
                         }
                         if (iNest == 0 || rgObjNest[iNest] == NULL)
-                            obj_to_char (obj, ch);
+                            obj_give_to_char (obj, ch);
                         else
-                            obj_to_obj (obj, rgObjNest[iNest - 1]);
+                            obj_give_to_obj (obj, rgObjNest[iNest - 1]);
                         return;
                     }
                 }

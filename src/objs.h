@@ -63,17 +63,20 @@ const char *obj_furn_preposition_base (OBJ_T *obj, int position,
 const char *obj_furn_preposition (OBJ_T *obj, int position);
 int obj_get_weight_mult (OBJ_T *obj);
 
+/* Object transfer functions. */
+void obj_give_to_char (OBJ_T *obj, CHAR_T *ch);
+void obj_give_to_room (OBJ_T *obj, ROOM_INDEX_T *pRoomIndex);
+void obj_give_to_obj (OBJ_T *obj, OBJ_T *obj_to);
+void obj_give_to_keeper (OBJ_T *obj, CHAR_T *ch);
+void obj_take (OBJ_T *obj);
+void obj_take_from_char (OBJ_T *obj);
+void obj_take_from_room (OBJ_T *obj);
+void obj_take_from_obj (OBJ_T *obj);
+
 /* Action functions. */
-void obj_to_char (OBJ_T *obj, CHAR_T *ch);
-void obj_from_char (OBJ_T *obj);
-void obj_from_room (OBJ_T *obj);
-void obj_to_room (OBJ_T *obj, ROOM_INDEX_T *pRoomIndex);
-void obj_to_obj (OBJ_T *obj, OBJ_T *obj_to);
-void obj_from_obj (OBJ_T *obj);
 char *obj_format_to_char (OBJ_T *obj, CHAR_T *ch, bool fShort);
 void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool fShort,
     bool fShowNothing);
-void obj_to_keeper (OBJ_T *obj, CHAR_T *ch);
 void obj_enchant (OBJ_T *obj);
 bool obj_set_exit_flag (OBJ_T *obj, flag_t exit_flag);
 bool obj_remove_exit_flag (OBJ_T *obj, flag_t exit_flag);

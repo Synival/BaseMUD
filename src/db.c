@@ -1522,7 +1522,7 @@ void reset_room_reset (ROOM_INDEX_T *pRoom, RESET_T *pReset) {
                UMIN (number_fuzzy (level), LEVEL_HERO - 1));
             if (pObj->item_type != ITEM_TREASURE)
                 pObj->cost = 0;
-            obj_to_room (pObj, pRoomIndex);
+            obj_give_to_room (pObj, pRoomIndex);
             reset_last_created = TRUE;
             break;
         }
@@ -1559,7 +1559,7 @@ void reset_room_reset (ROOM_INDEX_T *pRoom, RESET_T *pReset) {
             while (count < pReset->v.put.put_count) {
                 pObj = obj_create (pObjIndex,
                     number_fuzzy (reset_last_obj->level));
-                obj_to_obj (pObj, reset_last_obj);
+                obj_give_to_obj (pObj, reset_last_obj);
                 if (++pObjIndex->count >= limit)
                     break;
             }
@@ -1672,7 +1672,7 @@ void reset_room_reset (ROOM_INDEX_T *pRoom, RESET_T *pReset) {
                 }
             }
 
-            obj_to_char (pObj, reset_last_mob);
+            obj_give_to_char (pObj, reset_last_mob);
             if (cmd == 'E')
                 char_equip_obj (reset_last_mob, pObj, eq->wear_loc);
             reset_last_created = TRUE;

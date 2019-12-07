@@ -73,7 +73,7 @@ void do_clone_recurse (CHAR_T *ch, OBJ_T *obj, OBJ_T *clone) {
 
         t_obj = obj_create (c_obj->pIndexData, 0);
         obj_clone (c_obj, t_obj);
-        obj_to_obj (t_obj, clone);
+        obj_give_to_obj (t_obj, clone);
         do_clone_recurse (ch, c_obj, t_obj);
     }
 }
@@ -450,9 +450,9 @@ DEFINE_DO_FUN (do_clone) {
         clone = obj_create (obj->pIndexData, 0);
         obj_clone (obj, clone);
         if (obj->carried_by != NULL)
-            obj_to_char (clone, ch);
+            obj_give_to_char (clone, ch);
         else
-            obj_to_room (clone, ch->in_room);
+            obj_give_to_room (clone, ch->in_room);
         do_clone_recurse (ch, obj, clone);
 
         act2 ("You clone $p.", "$n has created $p.",
@@ -483,7 +483,7 @@ DEFINE_DO_FUN (do_clone) {
                 new_obj = obj_create (obj->pIndexData, 0);
                 obj_clone (obj, new_obj );
                 do_clone_recurse (ch, obj, new_obj );
-                obj_to_char (new_obj, clone);
+                obj_give_to_char (new_obj, clone);
                 new_obj->wear_loc = obj->wear_loc;
             }
         }

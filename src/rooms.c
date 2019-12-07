@@ -162,7 +162,7 @@ void room_add_money (ROOM_INDEX_T *room, int gold, int silver) {
                 break;
         }
     }
-    obj_to_room (obj_create_money (gold, silver), room);
+    obj_give_to_room (obj_create_money (gold, silver), room);
 }
 
 /* Adds a reset to a room.  OLC

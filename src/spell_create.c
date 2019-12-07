@@ -54,7 +54,7 @@ DEFINE_SPELL_FUN (spell_continual_light) {
     }
 
     light = obj_create (get_obj_index (OBJ_VNUM_LIGHT_BALL), 0);
-    obj_to_room (light, ch->in_room);
+    obj_give_to_room (light, ch->in_room);
     act ("You twiddle your thumbs and $p appears.", ch, light, NULL, TO_CHAR);
     act ("$n twiddles $s thumbs and $p appears.", ch, light, NULL, TO_NOTCHAR);
 }
@@ -64,14 +64,14 @@ DEFINE_SPELL_FUN (spell_create_food) {
     mushroom = obj_create (get_obj_index (OBJ_VNUM_MUSHROOM), 0);
     mushroom->v.food.hunger   = level / 2;
     mushroom->v.food.fullness = level;
-    obj_to_room (mushroom, ch->in_room);
+    obj_give_to_room (mushroom, ch->in_room);
     act ("$p suddenly appears.", ch, mushroom, NULL, TO_ALL);
 }
 
 DEFINE_SPELL_FUN (spell_create_rose) {
     OBJ_T *rose;
     rose = obj_create (get_obj_index (OBJ_VNUM_ROSE), 0);
-    obj_to_char (rose, ch);
+    obj_give_to_char (rose, ch);
     send_to_char ("You create a beautiful red rose.\n\r", ch);
     act ("$n has created a beautiful red rose.", ch, rose, NULL, TO_NOTCHAR);
 }
@@ -80,7 +80,7 @@ DEFINE_SPELL_FUN (spell_create_spring) {
     OBJ_T *spring;
     spring = obj_create (get_obj_index (OBJ_VNUM_SPRING), 0);
     spring->timer = level;
-    obj_to_room (spring, ch->in_room);
+    obj_give_to_room (spring, ch->in_room);
     act ("$p flows from the ground.", ch, spring, NULL, TO_ALL);
 }
 
@@ -126,6 +126,6 @@ DEFINE_SPELL_FUN (spell_floating_disc) {
     send_to_char ("You create a floating disc.\n\r", ch);
     act ("$n has created a floating black disc.", ch, NULL, NULL, TO_NOTCHAR);
 
-    obj_to_char (disc, ch);
+    obj_give_to_char (disc, ch);
     char_wear_obj (ch, disc, TRUE);
 }

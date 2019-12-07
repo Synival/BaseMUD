@@ -356,9 +356,9 @@ DEFINE_DO_FUN (do_oload) {
 
     obj = obj_create (pObjIndex, level);
     if (CAN_WEAR_FLAG (obj, ITEM_TAKE))
-        obj_to_char (obj, ch);
+        obj_give_to_char (obj, ch);
     else
-        obj_to_room (obj, ch->in_room);
+        obj_give_to_room (obj, ch->in_room);
     send_to_char ("Ok.\n\r", ch);
     act ("$n has created $p!", ch, obj, NULL, TO_NOTCHAR);
     wiznet ("$N loads $p.", ch, obj, WIZ_LOAD, WIZ_SECURE, char_get_trust (ch));

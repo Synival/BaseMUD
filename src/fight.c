@@ -1238,7 +1238,7 @@ void make_corpse (CHAR_T *ch) {
         corpse = obj_create (get_obj_index (OBJ_VNUM_CORPSE_NPC), 0);
         corpse->timer = number_range (3, 6);
         if (ch->gold > 0) {
-            obj_to_obj (obj_create_money (ch->gold, ch->silver), corpse);
+            obj_give_to_obj (obj_create_money (ch->gold, ch->silver), corpse);
             ch->gold = 0;
             ch->silver = 0;
         }
@@ -1254,7 +1254,7 @@ void make_corpse (CHAR_T *ch) {
         else {
             corpse->owner = NULL;
             if (ch->gold > 1 || ch->silver > 1) {
-                obj_to_obj (obj_create_money (ch->gold / 2, ch->silver / 2),
+                obj_give_to_obj (obj_create_money (ch->gold / 2, ch->silver / 2),
                             corpse);
                 ch->gold -= ch->gold / 2;
                 ch->silver -= ch->silver / 2;
@@ -1277,7 +1277,7 @@ void make_corpse (CHAR_T *ch) {
         obj_next = obj->next_content;
         if (obj->wear_loc == WEAR_FLOAT)
             floating = TRUE;
-        obj_from_char (obj);
+        obj_take_from_char (obj);
         if (obj->item_type == ITEM_POTION)
             obj->timer = number_range (500, 1000);
         if (obj->item_type == ITEM_SCROLL)
@@ -1299,8 +1299,8 @@ void make_corpse (CHAR_T *ch) {
                          ch, obj, NULL, TO_NOTCHAR);
                     for (in = obj->contains; in != NULL; in = in_next) {
                         in_next = in->next_content;
-                        obj_from_obj (in);
-                        obj_to_room (in, ch->in_room);
+                        obj_take_from_obj (in);
+                        obj_give_to_room (in, ch->in_room);
                     }
                 }
                 else
@@ -1309,14 +1309,14 @@ void make_corpse (CHAR_T *ch) {
             }
             else {
                 act ("$p falls to the floor.", ch, obj, NULL, TO_NOTCHAR);
-                obj_to_room (obj, ch->in_room);
+                obj_give_to_room (obj, ch->in_room);
             }
         }
         else
-            obj_to_obj (obj, corpse);
+            obj_give_to_obj (obj, corpse);
     }
 
-    obj_to_room (corpse, ch->in_room);
+    obj_give_to_room (corpse, ch->in_room);
 }
 
 /* Improved Death_cry contributed by Diavolo. */
@@ -1397,7 +1397,7 @@ void death_cry (CHAR_T *ch) {
             else if (!IS_SET (ch->form, FORM_EDIBLE))
                 obj->item_type = ITEM_TRASH;
         }
-        obj_to_room (obj, ch->in_room);
+        obj_give_to_room (obj, ch->in_room);
     }
 
     if (IS_NPC (ch))
@@ -1511,8 +1511,8 @@ void group_gain (CHAR_T *ch, CHAR_T *victim) {
             {
                 act ("You are zapped by $p.", ch, obj, NULL, TO_CHAR);
                 act ("$n is zapped by $p.", ch, obj, NULL, TO_NOTCHAR);
-                obj_from_char (obj);
-                obj_to_room (obj, ch->in_room);
+                obj_take_from_char (obj);
+                obj_give_to_room (obj, ch->in_room);
             }
         }
     }
@@ -1818,11 +1818,11 @@ void disarm (CHAR_T *ch, CHAR_T *victim) {
     act ("{5You disarm $N!{x", ch, NULL, victim, TO_CHAR);
     act ("{5$n disarms $N!{x", ch, NULL, victim, TO_OTHERS);
 
-    obj_from_char (obj);
+    obj_take_from_char (obj);
     if (IS_OBJ_STAT (obj, ITEM_NODROP) || IS_OBJ_STAT (obj, ITEM_INVENTORY))
-        obj_to_char (obj, victim);
+        obj_give_to_char (obj, victim);
     else {
-        obj_to_room (obj, victim->in_room);
+        obj_give_to_room (obj, victim->in_room);
         if (IS_NPC (victim) && victim->wait == 0 && char_can_see_obj (victim, obj))
             char_take_obj (victim, obj, NULL);
     }
