@@ -460,10 +460,10 @@ DEFINE_DO_FUN (do_emote) {
     if (do_comm_filter_emote (ch, argument))
         return;
 
-    MOBtrigger = FALSE;
+    trigger_mobs = FALSE;
     act ("$n $T", ch, NULL, argument, TO_CHAR);
     act ("$n $T", ch, NULL, argument, TO_NOTCHAR);
-    MOBtrigger = TRUE;
+    trigger_mobs = TRUE;
 }
 
 DEFINE_DO_FUN (do_pmote) {
@@ -481,9 +481,9 @@ DEFINE_DO_FUN (do_pmote) {
             continue;
 
         if ((letter = strstr (argument, vch->name)) == NULL) {
-            MOBtrigger = FALSE;
+            trigger_mobs = FALSE;
             act ("$N $t", vch, argument, ch, TO_CHAR);
-            MOBtrigger = TRUE;
+            trigger_mobs = TRUE;
             continue;
         }
 
@@ -524,9 +524,9 @@ DEFINE_DO_FUN (do_pmote) {
             name = vch->name;
         }
 
-        MOBtrigger = FALSE;
+        trigger_mobs = FALSE;
         act ("$N $t", vch, temp, ch, TO_CHAR);
-        MOBtrigger = TRUE;
+        trigger_mobs = TRUE;
     }
 }
 

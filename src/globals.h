@@ -54,9 +54,9 @@ extern MOB_INDEX_T  *mob_index_hash[MAX_KEY_HASH];
 extern OBJ_INDEX_T  *obj_index_hash[MAX_KEY_HASH];
 extern ROOM_INDEX_T *room_index_hash[MAX_KEY_HASH];
 
-extern bool fBootDb;
-extern FILE *fpArea;
-extern char strArea[MAX_INPUT_LENGTH];
+extern bool in_boot_db;
+extern FILE *current_area_file;
+extern char current_area_filename[MAX_INPUT_LENGTH];
 
 /* Socket and TCP/IP stuff. */
 extern const char echo_off_str[];
@@ -65,14 +65,14 @@ extern const char go_ahead_str[];
 
 extern DESCRIPTOR_T *descriptor_list; /* All open descriptors     */
 extern DESCRIPTOR_T *d_next;          /* Next descriptor in loop  */
-extern FILE *fpReserve;               /* Reserved file handle     */
+extern FILE *reserve_file;            /* Reserved file handle     */
 extern bool god;                      /* All new chars are gods!  */
 extern bool merc_down;                /* Shutdown         */
 extern bool wizlock;                  /* Game is wizlocked        */
 extern bool newlock;                  /* Game is newlocked        */
 extern char str_boot_time[MAX_INPUT_LENGTH];
 extern time_t current_time;           /* time of this pulse */
-extern bool MOBtrigger;               /* act() switch */
+extern bool trigger_mobs;             /* act() switch */
 
 extern int port, control;
 extern int mud_ansiprompt, mud_ansicolor, mud_telnetga;
@@ -81,7 +81,7 @@ extern char *mud_ipaddress;
 extern int find_last_count;
 extern int find_next_count;
 
-extern bool fLogAll;
+extern bool log_all_commands;
 
 extern int top_vnum_room;
 extern int top_vnum_mob;

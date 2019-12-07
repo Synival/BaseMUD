@@ -62,10 +62,10 @@ void load_old_mob (FILE *fp) {
         if (vnum == 0)
             break;
 
-        fBootDb = FALSE;
+        in_boot_db = FALSE;
         EXIT_IF_BUG (get_mob_index (vnum) != NULL,
             "load_mobiles: vnum %d duplicated.", vnum);
-        fBootDb = TRUE;
+        in_boot_db = TRUE;
 
         pMobIndex = mob_index_new ();
         pMobIndex->area = area_last;    /* OLC */
@@ -182,10 +182,10 @@ void load_old_obj (FILE *fp) {
         if (vnum == 0)
             break;
 
-        fBootDb = FALSE;
+        in_boot_db = FALSE;
         EXIT_IF_BUG (get_obj_index (vnum) != NULL,
             "load_objects: vnum %d duplicated.", vnum);
-        fBootDb = TRUE;
+        in_boot_db = TRUE;
 
         pObjIndex = obj_index_new ();
         pObjIndex->area = area_last; /* OLC */

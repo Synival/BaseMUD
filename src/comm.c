@@ -441,7 +441,7 @@ void act_new (const char *format, CHAR_T *ch, const void *arg1,
             buf, pbuff, MAX_STRING_LENGTH);
         if (to->desc && (to->desc->connected == CON_PLAYING))
             write_to_buffer (to->desc, buffer, 0); /* changed to buffer to reflect prev. fix */
-        else if (MOBtrigger)
+        else if (trigger_mobs)
             mp_act_trigger (buf, to, ch, arg1, arg2, TRIG_ACT);
     }
 }

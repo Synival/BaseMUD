@@ -196,9 +196,9 @@ DEFINE_DO_FUN (do_mpasound) {
             && pexit->to_room != NULL && pexit->to_room != was_in_room)
         {
             ch->in_room = pexit->to_room;
-            MOBtrigger = FALSE;
+            trigger_mobs = FALSE;
             act (argument, ch, NULL, NULL, TO_NOTCHAR);
-            MOBtrigger = TRUE;
+            trigger_mobs = TRUE;
         }
     }
     ch->in_room = was_in_room;

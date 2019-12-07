@@ -1455,12 +1455,12 @@ void char_take_obj (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
 }
 
 /* Remove an object. */
-bool char_remove_obj (CHAR_T *ch, flag_t iWear, bool fReplace, bool quiet) {
+bool char_remove_obj (CHAR_T *ch, flag_t iWear, bool replace, bool quiet) {
     OBJ_T *obj;
 
     if ((obj = char_get_eq_by_wear_loc (ch, iWear)) == NULL)
         return TRUE;
-    if (!fReplace)
+    if (!replace)
         return FALSE;
     if (IS_SET (obj->extra_flags, ITEM_NOREMOVE)) {
         if (!quiet)
@@ -1498,12 +1498,12 @@ bool char_has_available_wear_flag (CHAR_T *ch, flag_t wear_flag) {
 /* Wear one object.
  * Optional replacement of existing objects.
  * Big repetitive code, ick. */
-bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool fReplace) {
+bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool replace) {
     const WEAR_LOC_T *wear_loc, *wear_locs[WEAR_LOC_MAX];
     int i, loc, locs;
 
     if (ch->level < obj->level) {
-        if (fReplace) {
+        if (replace) {
             printf_to_char (ch,
                 "You must be level %d to use this object.\n\r", obj->level);
             act ("$n tries to use $p, but is too inexperienced.",
@@ -1520,7 +1520,7 @@ bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool fReplace) {
         wear_locs[locs++] = &(wear_loc_table[i]);
     }
     if (locs == 0) {
-        if (fReplace)
+        if (replace)
             send_to_char ("You can't wear, wield, or hold that.\n\r", ch);
         return FALSE;
     }
@@ -1534,7 +1534,7 @@ bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool fReplace) {
     /* If we didn't find a free location, try removing items. */
     if (loc == locs)
         for (i = 0; i < locs; i++)
-            if (char_remove_obj (ch, wear_locs[i]->type, fReplace, FALSE))
+            if (char_remove_obj (ch, wear_locs[i]->type, replace, FALSE))
                 break;
     loc = i;
 

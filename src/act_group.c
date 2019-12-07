@@ -65,8 +65,7 @@ DEFINE_DO_FUN (do_order_all) {
 DEFINE_DO_FUN (do_order) {
     char arg[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     CHAR_T *victim, *och, *och_next;
-    bool found;
-    bool fAll;
+    bool found, all;
 
     argument = one_argument (argument, arg);
     one_argument (argument, arg2);
@@ -79,11 +78,11 @@ DEFINE_DO_FUN (do_order) {
         "You feel like taking, not giving, orders.\n\r", ch);
 
     if (!str_cmp (arg, "all")) {
-        fAll = TRUE;
+        all = TRUE;
         victim = NULL;
     }
     else {
-        fAll = FALSE;
+        all = FALSE;
         BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
             "They aren't here.\n\r", ch);
         BAIL_IF (victim == ch,
@@ -97,7 +96,7 @@ DEFINE_DO_FUN (do_order) {
     for (och = ch->in_room->people; och != NULL; och = och_next) {
         och_next = och->next_in_room;
         if (!(IS_AFFECTED (och, AFF_CHARM) &&
-              och->master == ch && (fAll || och == victim)))
+              och->master == ch && (all || och == victim)))
             continue;
 
         found = TRUE;

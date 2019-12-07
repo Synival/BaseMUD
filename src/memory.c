@@ -99,7 +99,7 @@ char *str_dup (const char *str) {
         return str_empty;
     if (str >= string_space && str < top_string)
         return (char *) str;
-    if (fBootDb)
+    if (in_boot_db)
         return str_register (str, strlen (str));
 
     str_new = mem_alloc (strlen (str) + 1);

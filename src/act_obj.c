@@ -448,11 +448,11 @@ void do_give_single_item (CHAR_T *ch, OBJ_T *obj, CHAR_T *victim) {
 
     obj_take_from_char (obj);
     obj_give_to_char (obj, victim);
-    MOBtrigger = FALSE;
+    trigger_mobs = FALSE;
     act3 ("$n gives $p to $N.",
           "$n gives you $p.",
           "You give $p to $N.", ch, obj, victim, 0, POS_RESTING);
-    MOBtrigger = TRUE;
+    trigger_mobs = TRUE;
 
     /* Give trigger */
     if (IS_NPC (victim) && HAS_TRIGGER (victim, TRIG_GIVE))

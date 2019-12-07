@@ -153,12 +153,12 @@ DEFINE_DO_FUN (do_log) {
         "Log whom?\n\r", ch);
 
     if (!str_cmp (arg, "all")) {
-        if (fLogAll) {
-            fLogAll = FALSE;
+        if (log_all_commands) {
+            log_all_commands = FALSE;
             send_to_char ("Log ALL off.\n\r", ch);
         }
         else {
-            fLogAll = TRUE;
+            log_all_commands = TRUE;
             send_to_char ("Log ALL on.\n\r", ch);
         }
         return;

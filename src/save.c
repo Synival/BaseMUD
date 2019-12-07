@@ -97,7 +97,7 @@ void save_char_obj (CHAR_T *ch) {
 #if defined(unix)
     /* create god log */
     if (IS_IMMORTAL (ch) || ch->level >= LEVEL_IMMORTAL) {
-        fclose (fpReserve);
+        fclose (reserve_file);
         sprintf (strsave, "%s%s", GOD_DIR, capitalize (ch->name));
         if ((fp = fopen (strsave, "w")) == NULL) {
             bug ("save_char_obj: fopen", 0);
@@ -107,11 +107,11 @@ void save_char_obj (CHAR_T *ch) {
         fprintf (fp, "Lev %2d Trust %2d  %s%s\n",
             ch->level, char_get_trust (ch), ch->name, ch->pcdata->title);
         fclose (fp);
-        fpReserve = fopen (NULL_FILE, "r");
+        reserve_file = fopen (NULL_FILE, "r");
     }
 #endif
 
-    fclose (fpReserve);
+    fclose (reserve_file);
     sprintf (strsave, "%s%s", PLAYER_DIR, capitalize (ch->name));
     if ((fp = fopen (TEMP_FILE, "w")) == NULL) {
         bug ("save_char_obj: fopen", 0);
@@ -128,7 +128,7 @@ void save_char_obj (CHAR_T *ch) {
     }
     fclose (fp);
     rename (TEMP_FILE, strsave);
-    fpReserve = fopen (NULL_FILE, "r");
+    reserve_file = fopen (NULL_FILE, "r");
 }
 
 /* Write the char. */
@@ -524,7 +524,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
     imc_initchar( ch );
 #endif
     found = FALSE;
-    fclose (fpReserve);
+    fclose (reserve_file);
 
 #if defined(unix)
     /* decompress if .gz file exists */
@@ -571,7 +571,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
         fclose (fp);
     }
 
-    fpReserve = fopen (NULL_FILE, "r");
+    reserve_file = fopen (NULL_FILE, "r");
 
     /* initialize race */
     if (found) {

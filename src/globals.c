@@ -51,9 +51,9 @@ MOB_INDEX_T  *mob_index_hash[MAX_KEY_HASH];
 OBJ_INDEX_T  *obj_index_hash[MAX_KEY_HASH];
 ROOM_INDEX_T *room_index_hash[MAX_KEY_HASH];
 
-bool  fBootDb;
-FILE *fpArea;
-char  strArea[MAX_INPUT_LENGTH];
+bool  in_boot_db;
+FILE *current_area_file;
+char  current_area_filename[MAX_INPUT_LENGTH];
 
 /* Socket and TCP/IP stuff. */
 #if defined(macintosh) || defined(MSDOS)
@@ -72,14 +72,14 @@ char  strArea[MAX_INPUT_LENGTH];
 /* Global variables. */
 DESCRIPTOR_T *descriptor_list; /* All open descriptors     */
 DESCRIPTOR_T *d_next;          /* Next descriptor in loop  */
-FILE *fpReserve;               /* Reserved file handle     */
+FILE *reserve_file;            /* Reserved file handle     */
 bool god;                      /* All new chars are gods!  */
 bool merc_down;                /* Shutdown                 */
 bool wizlock;                  /* Game is wizlocked        */
 bool newlock;                  /* Game is newlocked        */
 char str_boot_time[MAX_INPUT_LENGTH];
 time_t current_time;           /* time of this pulse */
-bool MOBtrigger = TRUE;        /* act() switch */
+bool trigger_mobs = TRUE;      /* act() switch */
 
 /* Needs to be global because of do_copyover */
 int port, control;
@@ -98,7 +98,7 @@ int find_last_count = 0;
 int find_next_count = 0;
 
 /* Log-all switch. */
-bool fLogAll = FALSE;
+bool log_all_commands = FALSE;
 
 int top_vnum_room = 0;
 int top_vnum_mob  = 0;

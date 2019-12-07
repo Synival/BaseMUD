@@ -394,7 +394,7 @@ const SUN_T *sun_get_by_hour (int hour) {
 
 /* Lookup a skill by slot number. Used for object loading. */
 int skill_get_index_by_slot (int slot) {
-    extern bool fBootDb;
+    extern bool in_boot_db;
     int sn;
 
     if (slot <= 0)
@@ -403,7 +403,7 @@ int skill_get_index_by_slot (int slot) {
         if (slot == skill_table[sn].slot)
             return sn;
 
-    EXIT_IF_BUG (fBootDb,
+    EXIT_IF_BUG (in_boot_db,
         "skill_get_index_by_slot: bad slot %d.", slot);
     return -1;
 }

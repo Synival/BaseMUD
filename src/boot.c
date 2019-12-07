@@ -87,7 +87,7 @@ int main (int argc, char **argv) {
     #endif
 
     /* Reserve one channel for our use. */
-    if ((fpReserve = fopen (NULL_FILE, "r")) == NULL) {
+    if ((reserve_file = fopen (NULL_FILE, "r")) == NULL) {
         perror (NULL_FILE);
         exit (1);
     }
@@ -161,7 +161,7 @@ int main (int argc, char **argv) {
     log_f ("   %d bytes of paged memory freed.", free_count);
 
     /* Close our reserved file. */
-    fclose (fpReserve);
+    fclose (reserve_file);
 
     /* That's all, folks. */
     log_string ("Normal termination of game.");

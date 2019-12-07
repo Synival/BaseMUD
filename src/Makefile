@@ -24,7 +24,7 @@ rom: $(O_FILES)
 	$(CC) $(L_FLAGS) -o $(EXE) $(O_FILES) $(LIBS)
 
 depend:
-	makedepend -Y. *.c
+	makedepend -Y. *.c 2>/dev/null
 
 .c.o: merc.h
 	$(CC) -c $(C_FLAGS) $<

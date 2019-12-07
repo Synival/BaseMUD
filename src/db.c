@@ -375,7 +375,7 @@ void boot_db (void) {
     HELP_T *help;
 
     /* Declare that we're booting the database. */
-    fBootDb = TRUE;
+    in_boot_db = TRUE;
 
     string_space_init ();
     init_mm ();
@@ -400,7 +400,7 @@ void boot_db (void) {
     fix_mobprogs ();
 
     /* Boot process is over(?) */
-    fBootDb = FALSE;
+    in_boot_db = FALSE;
     convert_objects (); /* ROM OLC */
 
     area_update ();
@@ -458,26 +458,27 @@ void init_areas (void) {
     }
 
     while (1) {
-        strcpy (strArea, fread_word (fpList));
-        if (strArea[0] == '$')
+        strcpy (current_area_filename, fread_word (fpList));
+        if (current_area_filename[0] == '$')
             break;
-        if (strArea[0] == '#')
+        if (current_area_filename[0] == '#')
             continue;
 
-        if (strArea[0] == '-')
-            fpArea = stdin;
+        if (current_area_filename[0] == '-')
+            current_area_file = stdin;
         else {
-            snprintf (fname, sizeof (fname), "%s%s", AREA_DIR, strArea);
-            if (area_get_by_filename (strArea) != NULL) {
+            snprintf (fname, sizeof (fname), "%s%s", AREA_DIR,
+                current_area_filename);
+            if (area_get_by_filename (current_area_filename) != NULL) {
                 log_f ("Ignoring loaded area '%s'", fname);
                 continue;
             }
-            if (help_area_get_by_filename (strArea) != NULL) {
+            if (help_area_get_by_filename (current_area_filename) != NULL) {
                 log_f ("Ignoring loaded help area '%s'", fname);
                 continue;
             }
 
-            if ((fpArea = fopen (fname, "r")) == NULL) {
+            if ((current_area_file = fopen (fname, "r")) == NULL) {
                 perror (fname);
                 exit (1);
             }
@@ -487,35 +488,36 @@ void init_areas (void) {
         while (1) {
             char *word;
 
-            EXIT_IF_BUG (fread_letter (fpArea) != '#',
+            EXIT_IF_BUG (fread_letter (current_area_file) != '#',
                 "boot_db: # not found.", 0);
 
-            word = fread_word (fpArea);
+            word = fread_word (current_area_file);
             if (word[0] == '$')
                 break;
 
-                 if (!str_cmp (word, "AREA"))     load_area (fpArea);
-            else if (!str_cmp (word, "AREADATA")) load_area_olc (fpArea); /* OLC */
-            else if (!str_cmp (word, "HELPS"))    load_helps (fpArea, strArea);
-            else if (!str_cmp (word, "MOBOLD"))   load_old_mob (fpArea);
-            else if (!str_cmp (word, "MOBILES"))  load_mobiles (fpArea);
-            else if (!str_cmp (word, "MOBPROGS")) load_mobprogs (fpArea);
-            else if (!str_cmp (word, "OBJOLD"))   load_old_obj (fpArea);
-            else if (!str_cmp (word, "OBJECTS"))  load_objects (fpArea);
-            else if (!str_cmp (word, "RESETS"))   load_resets (fpArea);
-            else if (!str_cmp (word, "ROOMS"))    load_rooms (fpArea);
-            else if (!str_cmp (word, "SHOPS"))    load_shops (fpArea);
-            else if (!str_cmp (word, "SOCIALS"))  load_socials (fpArea);
-            else if (!str_cmp (word, "SPECIALS")) load_specials (fpArea);
+            #define CAF current_area_file
+                 if (!str_cmp (word, "AREA"))     load_area     (CAF);
+            else if (!str_cmp (word, "AREADATA")) load_area_olc (CAF); /* OLC */
+            else if (!str_cmp (word, "HELPS"))    load_helps    (CAF, current_area_filename);
+            else if (!str_cmp (word, "MOBOLD"))   load_old_mob  (CAF);
+            else if (!str_cmp (word, "MOBILES"))  load_mobiles  (CAF);
+            else if (!str_cmp (word, "MOBPROGS")) load_mobprogs (CAF);
+            else if (!str_cmp (word, "OBJOLD"))   load_old_obj  (CAF);
+            else if (!str_cmp (word, "OBJECTS"))  load_objects  (CAF);
+            else if (!str_cmp (word, "RESETS"))   load_resets   (CAF);
+            else if (!str_cmp (word, "ROOMS"))    load_rooms    (CAF);
+            else if (!str_cmp (word, "SHOPS"))    load_shops    (CAF);
+            else if (!str_cmp (word, "SOCIALS"))  load_socials  (CAF);
+            else if (!str_cmp (word, "SPECIALS")) load_specials (CAF);
+            #undef CAF
             else {
-                EXIT_IF_BUG (TRUE,
-                    "boot_db: bad section name.", 0);
+                EXIT_IF_BUG (TRUE, "boot_db: bad section name.", 0);
             }
         }
 
-        if (fpArea != stdin)
-            fclose (fpArea);
-        fpArea = NULL;
+        if (current_area_file != stdin)
+            fclose (current_area_file);
+        current_area_file = NULL;
     }
     if (area_last)
         REMOVE_BIT (area_last->area_flags, AREA_LOADING); /* OLC */
@@ -590,7 +592,7 @@ void load_area_olc (FILE *fp) {
     pArea = area_new ();
     pArea->age = 15;
     pArea->nplayer = 0;
-    str_replace_dup (&pArea->filename, strArea);
+    str_replace_dup (&pArea->filename, current_area_filename);
     pArea->vnum = TOP(RECYCLE_AREA_T);
     str_replace_dup (&pArea->title, "New Area");
     str_replace_dup (&pArea->builders, "");
@@ -940,10 +942,10 @@ void load_rooms (FILE *fp) {
         if (vnum == 0)
             break;
 
-        fBootDb = FALSE;
+        in_boot_db = FALSE;
         EXIT_IF_BUG (get_room_index (vnum) != NULL,
             "load_rooms: vnum %d duplicated.", vnum);
-        fBootDb = TRUE;
+        in_boot_db = TRUE;
 
         pRoomIndex = room_index_new ();
         str_replace_dup (&pRoomIndex->owner, "");
@@ -1269,15 +1271,15 @@ void fix_exits (void) {
                     pexit->room_anum = pexit->to_room->anum;
                 }
 
-                oldBootDb = fBootDb;
-                fBootDb = FALSE;
+                oldBootDb = in_boot_db;
+                in_boot_db = FALSE;
                 if (pexit->key >= KEY_VALID &&
                     !(key = get_obj_index (pexit->key)))
                 {
                     bugf ("Warning: Cannot find key %d for room %d exit %d",
                         pexit->key, pRoomIndex->vnum, door);
                 }
-                fBootDb = oldBootDb;
+                in_boot_db = oldBootDb;
             }
             if (!fexit)
                 SET_BIT (pRoomIndex->room_flags, ROOM_NO_MOB);
@@ -1338,10 +1340,10 @@ void load_mobprogs (FILE *fp) {
         if (vnum == 0)
             break;
 
-        fBootDb = FALSE;
+        in_boot_db = FALSE;
         EXIT_IF_BUG (get_mprog_index (vnum) != NULL,
             "load_mobprogs: vnum %d duplicated.", vnum);
-        fBootDb = TRUE;
+        in_boot_db = TRUE;
 
         pMprog = mpcode_new ();
         pMprog->area = area_last;
@@ -1796,7 +1798,7 @@ MOB_INDEX_T *get_mob_index (int vnum) {
     /* NOTE: This did cause the server not to boot, but that seems a bit
      *       extreme. So we just return NULL instead, and keep on booting.
      *       -- Synival */
-    if (fBootDb) {
+    if (in_boot_db) {
         bug ("get_mob_index: bad vnum %d.", vnum);
      // exit (1);
     }
@@ -1817,7 +1819,7 @@ OBJ_INDEX_T *get_obj_index (int vnum) {
     /* NOTE: This did cause the server not to boot, but that seems a bit
      *       extreme. So we just return NULL instead, and keep on booting.
      *       -- Synival */
-    if (fBootDb) {
+    if (in_boot_db) {
         bug ("get_obj_index: bad vnum %d.", vnum);
      // exit (1);
     }
@@ -1838,7 +1840,7 @@ ROOM_INDEX_T *get_room_index (int vnum) {
     /* NOTE: This did cause the server not to boot, but that seems a bit
      *       extreme. So we just return NULL instead, and keep on booting.
      *       -- Synival */
-    if (fBootDb) {
+    if (in_boot_db) {
         bug ("get_room_index: bad vnum %d.", vnum);
      // exit (1);
     }
@@ -2192,10 +2194,10 @@ void load_mobiles (FILE *fp) {
         if (vnum == 0)
             break;
 
-        fBootDb = FALSE;
+        in_boot_db = FALSE;
         EXIT_IF_BUG (get_mob_index (vnum) != NULL,
             "load_mobiles: vnum %d duplicated.", vnum);
-        fBootDb = TRUE;
+        in_boot_db = TRUE;
 
         pMobIndex = mob_index_new ();
         pMobIndex->area = area_last; /* OLC */
@@ -2409,10 +2411,10 @@ void load_objects (FILE *fp) {
         if (vnum == 0)
             break;
 
-        fBootDb = FALSE;
+        in_boot_db = FALSE;
         EXIT_IF_BUG (get_obj_index (vnum) != NULL,
             "load_objects: vnum %d duplicated.", vnum);
-        fBootDb = TRUE;
+        in_boot_db = TRUE;
 
         pObjIndex = obj_index_new ();
         pObjIndex->area = area_last; /* OLC */

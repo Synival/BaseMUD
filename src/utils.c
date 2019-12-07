@@ -339,7 +339,7 @@ void append_file (CHAR_T *ch, char *file, char *str) {
     if (IS_NPC (ch) || str[0] == '\0')
         return;
 
-    fclose (fpReserve);
+    fclose (reserve_file);
     if ((fp = fopen (file, "a")) == NULL) {
         perror (file);
         send_to_char ("Could not open the file!\n\r", ch);
@@ -349,28 +349,26 @@ void append_file (CHAR_T *ch, char *file, char *str) {
         fclose (fp);
     }
 
-    fpReserve = fopen (NULL_FILE, "r");
+    reserve_file = fopen (NULL_FILE, "r");
 }
 
 /* Reports a bug. */
 void bug (const char *str, int param) {
     char buf[MAX_STRING_LENGTH];
 
-    if (fpArea != NULL) {
-        int iLine;
-        int iChar;
-
-        if (fpArea == stdin)
-            iLine = 0;
+    if (current_area_file != NULL) {
+        int line, ch;
+        if (current_area_file == stdin)
+            line = 0;
         else {
-            iChar = ftell (fpArea);
-            fseek (fpArea, 0, 0);
-            for (iLine = 0; ftell (fpArea) < iChar; iLine++)
-                while (getc (fpArea) != '\n');
-            fseek (fpArea, iChar, 0);
+            ch = ftell (current_area_file);
+            fseek (current_area_file, 0, 0);
+            for (line = 0; ftell (current_area_file) < ch; line++)
+                while (getc (current_area_file) != '\n');
+            fseek (current_area_file, ch, 0);
         }
 
-        log_f ("[*****] FILE: %s LINE: %d", strArea, iLine);
+        log_f ("[*****] FILE: %s LINE: %d", current_area_filename, line);
 
 /* RT removed because we don't want bugs shutting the mud
         if ((fp = fopen("shutdown.txt", "a")) != NULL) {
@@ -385,12 +383,12 @@ void bug (const char *str, int param) {
     log_string (buf);
 
 /* RT removed due to bug-file spamming
-    fclose (fpReserve);
+    fclose (reserve_file);
     if ((fp = fopen(BUG_FILE, "a")) != NULL) {
         fprintf(fp, "%s\n", buf);
         fclose(fp);
     }
-    fpReserve = fopen (NULL_FILE, "r");
+    reserve_file = fopen (NULL_FILE, "r");
 */
 }
 

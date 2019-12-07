@@ -163,7 +163,7 @@ DEFINE_DO_FUN (do_copyover) {
     fclose (fp);
 
     /* Close reserve and other always-open files and release other resources */
-    fclose (fpReserve);
+    fclose (reserve_file);
 
 #ifdef IMC
     imc_hotboot();
@@ -186,8 +186,8 @@ DEFINE_DO_FUN (do_copyover) {
     perror ("do_copyover: execl");
     send_to_char ("Copyover FAILED!\n\r", ch);
 
-    /* Here you might want to reopen fpReserve */
-    fpReserve = fopen (NULL_FILE, "r");
+    /* Here you might want to reopen reserve_file */
+    reserve_file = fopen (NULL_FILE, "r");
 }
 
 DEFINE_DO_FUN (do_trust) {
@@ -256,7 +256,7 @@ void do_dump_stats (CHAR_T *ch) {
     int vnum, nMatch = 0;
 
     /* lock writing? */
-    fclose (fpReserve);
+    fclose (reserve_file);
 
     /* standard memory dump */
     printf_to_char (ch, "Writing '%smemory.dump'...\n\r", DUMP_DIR);
@@ -301,31 +301,31 @@ void do_dump_stats (CHAR_T *ch) {
     fclose (fp);
 
     /* unlock writing? */
-    fpReserve = fopen (NULL_FILE, "r");
+    reserve_file = fopen (NULL_FILE, "r");
     send_to_char ("Done.\n\r", ch);
 }
 
 void do_dump_world_raw (CHAR_T *ch) {
     /* lock writing, dump, unlock writing. */
-    fclose (fpReserve);
+    fclose (reserve_file);
 
     printf_to_char (ch, "Writing '%sworld.dump'...\n\r", DUMP_DIR);
     desc_flush_output (ch->desc);
     db_dump_world (DUMP_DIR "world.dump");
 
-    fpReserve = fopen (NULL_FILE, "r");
+    reserve_file = fopen (NULL_FILE, "r");
     send_to_char ("Done.\n\r", ch);
 }
 
 void do_dump_world_json (CHAR_T *ch) {
     /* lock writing, dump, unlock writing. */
-    fclose (fpReserve);
+    fclose (reserve_file);
 
     printf_to_char (ch, "Writing '%sworld.json'...\n\r", DUMP_DIR);
     desc_flush_output (ch->desc);
     db_export_json (FALSE, DUMP_DIR "world.json");
 
-    fpReserve = fopen (NULL_FILE, "r");
+    reserve_file = fopen (NULL_FILE, "r");
     send_to_char ("Done.\n\r", ch);
 }
 

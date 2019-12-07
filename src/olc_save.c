@@ -717,7 +717,7 @@ int save_other_helps (CHAR_T *ch) {
 void save_area (AREA_T *pArea) {
     FILE *fp;
 
-    fclose (fpReserve);
+    fclose (reserve_file);
     if (!(fp = fopen (pArea->filename, "w"))) {
         bug ("save_area: fopen", 0);
         perror (pArea->filename);
@@ -744,5 +744,5 @@ void save_area (AREA_T *pArea) {
     fprintf (fp, "#$\n");
 
     fclose (fp);
-    fpReserve = fopen (NULL_FILE, "r");
+    reserve_file = fopen (NULL_FILE, "r");
 }

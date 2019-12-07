@@ -501,14 +501,14 @@ DEFINE_DO_FUN (do_lore) {
 /* Thanks to Zrin for auto-exit part. */
 DEFINE_DO_FUN (do_exits) {
     char buf[MAX_STRING_LENGTH];
-    bool fAuto;
+    bool auto_exits;
     int mode;
 
-    fAuto = !str_cmp (argument, "auto");
+    auto_exits = !str_cmp (argument, "auto");
     if (do_filter_blind (ch))
         return;
 
-    if (fAuto)
+    if (auto_exits)
         sprintf (buf, "{o[Exits: ");
     else if (IS_IMMORTAL (ch))
         sprintf (buf, "Obvious exits from room %d:\n\r", ch->in_room->vnum);
@@ -516,9 +516,9 @@ DEFINE_DO_FUN (do_exits) {
         sprintf (buf, "Obvious exits:\n\r");
     send_to_char (buf, ch);
 
-    mode = fAuto ? EXITS_AUTO : EXITS_LONG;
+    mode = auto_exits ? EXITS_AUTO : EXITS_LONG;
     char_exit_string (ch, ch->in_room, mode, buf, sizeof (buf));
-    if (fAuto)
+    if (auto_exits)
         printf_to_char (ch, "%s]{x\n\r", buf);
     else
         printf_to_char (ch, "%s", buf);
@@ -805,29 +805,29 @@ DEFINE_DO_FUN (do_who) {
     char buf2[MAX_STRING_LENGTH];
     BUFFER_T *output;
     DESCRIPTOR_T *d;
-    int iClass, iRace, iClan, iLevelLower, iLevelUpper;
-    int nNumber, nMatch;
-    bool rgfClass[CLASS_MAX];
-    bool rgfRace[PC_RACE_MAX];
-    bool rgfClan[CLAN_MAX];
-    bool fClassRestrict = FALSE;
-    bool fClanRestrict = FALSE;
-    bool fClan = FALSE;
-    bool fRaceRestrict = FALSE;
-    bool fImmortalOnly = FALSE;
+    int i, level_lower, level_upper;
+    int current_number, matches;
+    bool restrict_class = FALSE;
+    bool restrict_clan = FALSE;
+    bool only_clan = FALSE;
+    bool restrict_race = FALSE;
+    bool only_immortal = FALSE;
+    bool show_class[CLASS_MAX];
+    bool show_race[PC_RACE_MAX];
+    bool show_clan[CLAN_MAX];
 
     /* Set default arguments. */
-    iLevelLower = 0;
-    iLevelUpper = MAX_LEVEL;
-    for (iClass = 0; iClass < CLASS_MAX; iClass++)
-        rgfClass[iClass] = FALSE;
-    for (iRace = 0; iRace < PC_RACE_MAX; iRace++)
-        rgfRace[iRace] = FALSE;
-    for (iClan = 0; iClan < CLAN_MAX; iClan++)
-        rgfClan[iClan] = FALSE;
+    level_lower = 0;
+    level_upper = MAX_LEVEL;
+    for (i = 0; i < CLASS_MAX; i++)
+        show_class[i] = FALSE;
+    for (i = 0; i < PC_RACE_MAX; i++)
+        show_race[i] = FALSE;
+    for (i = 0; i < CLAN_MAX; i++)
+        show_clan[i] = FALSE;
 
     /* Parse arguments. */
-    nNumber = 0;
+    current_number = 0;
     while (1) {
         char arg[MAX_STRING_LENGTH];
         argument = one_argument (argument, arg);
@@ -836,9 +836,9 @@ DEFINE_DO_FUN (do_who) {
 
         /* Check for level arguments. */
         if (is_number (arg)) {
-            switch (++nNumber) {
-                case 1: iLevelLower = atoi (arg); break;
-                case 2: iLevelUpper = atoi (arg); break;
+            switch (++current_number) {
+                case 1: level_lower = atoi (arg); break;
+                case 2: level_upper = atoi (arg); break;
                 default:
                     send_to_char ("Only two level numbers allowed.\n\r", ch);
                     return;
@@ -848,37 +848,35 @@ DEFINE_DO_FUN (do_who) {
 
         /* Look for classes to turn on. */
         if (!str_prefix (arg, "immortals")) {
-            fImmortalOnly = TRUE;
+            only_immortal = TRUE;
             continue;
         }
 
         /* Check for explicit classes. */
-        iClass = class_lookup (arg);
-        if (iClass >= 0) {
-            fClassRestrict = TRUE;
-            rgfClass[iClass] = TRUE;
+        if ((i = class_lookup (arg)) >= 0) {
+            restrict_class = TRUE;
+            show_class[i] = TRUE;
             continue;
         }
 
         /* Check for explicit races. */
-        iRace = race_lookup (arg);
-        if (iRace > 0 && iRace < PC_RACE_MAX) {
-            fRaceRestrict = TRUE;
-            rgfRace[iRace] = TRUE;
+        i = race_lookup (arg);
+        if (i > 0 && i < PC_RACE_MAX) {
+            restrict_race = TRUE;
+            show_race[i] = TRUE;
             continue;
         }
 
         /* Check for anyone with a clan. */
         if (!str_prefix (arg, "clan")) {
-            fClan = TRUE;
+            only_clan = TRUE;
             continue;
         }
 
         /* Check for specific clans. */
-        iClan = clan_lookup (arg);
-        if (iClan) {
-            fClanRestrict = TRUE;
-            rgfClan[iClan] = TRUE;
+        if ((i = clan_lookup (arg)) >= 0) {
+            restrict_clan = TRUE;
+            show_clan[i] = TRUE;
             continue;
         }
 
@@ -888,7 +886,7 @@ DEFINE_DO_FUN (do_who) {
     }
 
     /* Now show matching chars.  */
-    nMatch = 0;
+    matches = 0;
     buf[0] = '\0';
     output = buf_new ();
     for (d = descriptor_list; d != NULL; d = d->next) {
@@ -902,21 +900,25 @@ DEFINE_DO_FUN (do_who) {
             continue;
         if (!char_can_see_anywhere (ch, wch))
             continue;
-        if (wch->level < iLevelLower
-            || wch->level > iLevelUpper
-            || (fImmortalOnly && wch->level < LEVEL_IMMORTAL)
-            || (fClassRestrict && !rgfClass[wch->class])
-            || (fRaceRestrict && !rgfRace[wch->race])
-            || (fClan && !char_has_clan (wch))
-            || (fClanRestrict && !rgfClan[wch->clan]))
+        if (wch->level < level_lower || wch->level > level_upper)
+            continue;
+        if (only_immortal && wch->level < LEVEL_IMMORTAL)
+            continue;
+        if (restrict_class && !show_class[wch->class])
+            continue;
+        if (restrict_race && !show_race[wch->race])
+            continue;
+        if (only_clan && !char_has_clan (wch))
+            continue;
+        if (restrict_clan && !show_clan[wch->clan])
             continue;
 
-        nMatch++;
+        matches++;
         char_get_who_string (ch, wch, buf, sizeof(buf));
         add_buf (output, buf);
     }
 
-    sprintf (buf2, "\n\rPlayers found: %d\n\r", nMatch);
+    sprintf (buf2, "\n\rPlayers found: %d\n\r", matches);
     add_buf (output, buf2);
     page_to_char (buf_string (output), ch);
     buf_free (output);

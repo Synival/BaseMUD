@@ -436,7 +436,7 @@ void interpret (CHAR_T *ch, char *argument) {
      * I threw in the above call to smash_dollar() just for
      * the sake of overkill :) JR -- 10/15/00 */
     if ((!IS_NPC(ch) && IS_SET(ch->plr, PLR_LOG))
-        || fLogAll
+        || log_all_commands
         || cmd_table[cmd].log == LOG_ALWAYS)
     {
         char s[2 * MAX_INPUT_LENGTH], *ps;
