@@ -38,7 +38,7 @@ void room_add_money (ROOM_INDEX_T *room, int gold, int silver);
 bool room_is_owner (ROOM_INDEX_T *room, CHAR_T *ch);
 EXIT_T *room_get_opposite_exit (ROOM_INDEX_T *from_room, int dir,
     ROOM_INDEX_T **out_room);
-void room_take_reset (ROOM_INDEX_T *pR, RESET_T *reset);
+void room_take_reset (ROOM_INDEX_T *room, RESET_T *reset);
 
 /* Utilities. */
 char *door_keyword_to_name (const char *keyword, char *out_buf, size_t size);

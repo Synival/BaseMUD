@@ -852,7 +852,7 @@ MEDIT (medit_hitroll) {
 
 MEDIT (medit_group) {
     MOB_INDEX_T *mob;
-    MOB_INDEX_T *pMTemp;
+    MOB_INDEX_T *mob_temp;
     char arg[MAX_STRING_LENGTH];
     char buf[MAX_STRING_LENGTH];
     int temp;
@@ -877,10 +877,10 @@ MEDIT (medit_group) {
 
         buffer = buf_new ();
         for (temp = 0; temp < 65536; temp++) {
-            pMTemp = get_mob_index (temp);
-            if (pMTemp && (pMTemp->group == atoi (argument))) {
+            mob_temp = get_mob_index (temp);
+            if (mob_temp && (mob_temp->group == atoi (argument))) {
                 found = TRUE;
-                sprintf (buf, "[%5d] %s\n\r", pMTemp->vnum, pMTemp->name);
+                sprintf (buf, "[%5d] %s\n\r", mob_temp->vnum, mob_temp->name);
                 add_buf (buffer, buf);
             }
         }
