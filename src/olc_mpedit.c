@@ -27,7 +27,7 @@
 #include "olc_mpedit.h"
 
 MPEDIT (mpedit_create) {
-    MPROG_CODE_T *pMcode;
+    MPROG_CODE_T *mcode;
     int value = atoi (argument);
     AREA_T *ad;
 
@@ -42,12 +42,12 @@ MPEDIT (mpedit_create) {
     RETURN_IF (get_mprog_index (value),
         "MPEdit: Mob program vnum already exists.\n\r", ch, FALSE);
 
-    pMcode = mpcode_new ();
-    pMcode->area = ad;
-    pMcode->vnum = value;
-    pMcode->anum = value - ad->min_vnum;
-    LIST_FRONT (pMcode, next, mprog_list);
-    ch->desc->pEdit = (void *) pMcode;
+    mcode = mpcode_new ();
+    mcode->area = ad;
+    mcode->vnum = value;
+    mcode->anum = value - ad->min_vnum;
+    LIST_FRONT (mcode, next, mprog_list);
+    ch->desc->olc_edit = (void *) mcode;
     ch->desc->editor = ED_MPCODE;
 
     send_to_char ("Mob program created.\n\r", ch);
@@ -55,21 +55,21 @@ MPEDIT (mpedit_create) {
 }
 
 MPEDIT (mpedit_show) {
-    MPROG_CODE_T *pMcode;
-    EDIT_MPCODE (ch, pMcode);
+    MPROG_CODE_T *mcode;
+    EDIT_MPCODE (ch, mcode);
 
     printf_to_char (ch,
          "Vnum:       [%d]\n\r"
-         "Code:\n\r%s\n\r", pMcode->vnum, pMcode->code);
+         "Code:\n\r%s\n\r", mcode->vnum, mcode->code);
     return FALSE;
 }
 
 MPEDIT (mpedit_code) {
-    MPROG_CODE_T *pMcode;
-    EDIT_MPCODE (ch, pMcode);
+    MPROG_CODE_T *mcode;
+    EDIT_MPCODE (ch, mcode);
 
     if (argument[0] == '\0') {
-        string_append (ch, &pMcode->code);
+        string_append (ch, &mcode->code);
         return TRUE;
     }
 

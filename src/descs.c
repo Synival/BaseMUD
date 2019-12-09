@@ -151,8 +151,8 @@ void init_descriptor (int control) {
     dnew->showstr_head  = NULL;
     dnew->showstr_point = NULL;
     dnew->outsize       = 2000;
-    dnew->pEdit         = NULL; /* OLC */
-    dnew->pString       = NULL; /* OLC */
+    dnew->olc_edit      = NULL; /* OLC */
+    dnew->string_edit   = NULL; /* OLC */
     dnew->editor        = 0;    /* OLC */
     dnew->outbuf        = mem_alloc (dnew->outsize);
 
@@ -398,7 +398,7 @@ bool process_output (DESCRIPTOR_T *d, bool prompt) {
 
         if (d->showstr_point)
             write_to_buffer (d, "[Hit Return to continue] ", 0);
-        else if (prompt && d->pString && d->connected == CON_PLAYING)
+        else if (prompt && d->string_edit && d->connected == CON_PLAYING)
             write_to_buffer (d, "> ", 2);
         else if (prompt && d->connected == CON_PLAYING) {
             CHAR_T *ch, *victim;

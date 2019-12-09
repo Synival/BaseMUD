@@ -103,10 +103,10 @@ struct descriptor_data {
     int outtop;
     char *showstr_head;
     char *showstr_point;
-    int lines_written; /* for the pager */
-    void *pEdit;    /* OLC */
-    char **pString; /* OLC */
-    int editor;     /* OLC */
+    int lines_written;  /* for the pager */
+    void *olc_edit;     /* OLC */
+    char **string_edit; /* OLC */
+    int editor;         /* OLC */
     OBJ_RECYCLE_T rec_data;
 };
 

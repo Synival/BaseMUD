@@ -230,10 +230,10 @@ void oedit_show_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj) {
     }
 }
 
-bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
+bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj,
     int value_num, char *argument)
 {
-    switch (pObj->item_type) {
+    switch (obj->item_type) {
         default:
             break;
 
@@ -244,7 +244,7 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                     return FALSE;
                 case 2:
                     send_to_char ("HOURS OF LIGHT SET.\n\r\n\r", ch);
-                    pObj->v.value[2] = atoi (argument);
+                    obj->v.value[2] = atoi (argument);
                     break;
             }
             break;
@@ -257,19 +257,19 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                     return FALSE;
                 case 0:
                     send_to_char ("SPELL LEVEL SET.\n\r\n\r", ch);
-                    pObj->v.value[0] = atoi (argument);
+                    obj->v.value[0] = atoi (argument);
                     break;
                 case 1:
                     send_to_char ("TOTAL NUMBER OF CHARGES SET.\n\r\n\r", ch);
-                    pObj->v.value[1] = atoi (argument);
+                    obj->v.value[1] = atoi (argument);
                     break;
                 case 2:
                     send_to_char ("CURRENT NUMBER OF CHARGES SET.\n\r\n\r", ch);
-                    pObj->v.value[2] = atoi (argument);
+                    obj->v.value[2] = atoi (argument);
                     break;
                 case 3:
                     send_to_char ("SPELL TYPE SET.\n\r", ch);
-                    pObj->v.value[3] = skill_lookup (argument);
+                    obj->v.value[3] = skill_lookup (argument);
                     break;
             }
             break;
@@ -283,23 +283,23 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                     return FALSE;
                 case 0:
                     send_to_char ("SPELL LEVEL SET.\n\r\n\r", ch);
-                    pObj->v.value[0] = atoi (argument);
+                    obj->v.value[0] = atoi (argument);
                     break;
                 case 1:
                     send_to_char ("SPELL TYPE 1 SET.\n\r\n\r", ch);
-                    pObj->v.value[1] = skill_lookup (argument);
+                    obj->v.value[1] = skill_lookup (argument);
                     break;
                 case 2:
                     send_to_char ("SPELL TYPE 2 SET.\n\r\n\r", ch);
-                    pObj->v.value[2] = skill_lookup (argument);
+                    obj->v.value[2] = skill_lookup (argument);
                     break;
                 case 3:
                     send_to_char ("SPELL TYPE 3 SET.\n\r\n\r", ch);
-                    pObj->v.value[3] = skill_lookup (argument);
+                    obj->v.value[3] = skill_lookup (argument);
                     break;
                 case 4:
                     send_to_char ("SPELL TYPE 4 SET.\n\r\n\r", ch);
-                    pObj->v.value[4] = skill_lookup (argument);
+                    obj->v.value[4] = skill_lookup (argument);
                     break;
             }
             break;
@@ -312,19 +312,19 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                     return FALSE;
                 case 0:
                     send_to_char ("AC PIERCE SET.\n\r\n\r", ch);
-                    pObj->v.value[0] = atoi (argument);
+                    obj->v.value[0] = atoi (argument);
                     break;
                 case 1:
                     send_to_char ("AC BASH SET.\n\r\n\r", ch);
-                    pObj->v.value[1] = atoi (argument);
+                    obj->v.value[1] = atoi (argument);
                     break;
                 case 2:
                     send_to_char ("AC SLASH SET.\n\r\n\r", ch);
-                    pObj->v.value[2] = atoi (argument);
+                    obj->v.value[2] = atoi (argument);
                     break;
                 case 3:
                     send_to_char ("AC EXOTIC SET.\n\r\n\r", ch);
-                    pObj->v.value[3] = atoi (argument);
+                    obj->v.value[3] = atoi (argument);
                     break;
             }
             break;
@@ -337,24 +337,24 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                     return FALSE;
                 case 0:
                     send_to_char ("WEAPON CLASS SET.\n\r\n\r", ch);
-                    ALT_FLAGVALUE_SET (pObj->v.value[0], weapon_types,
+                    ALT_FLAGVALUE_SET (obj->v.value[0], weapon_types,
                                        argument);
                     break;
                 case 1:
                     send_to_char ("NUMBER OF DICE SET.\n\r\n\r", ch);
-                    pObj->v.value[1] = atoi (argument);
+                    obj->v.value[1] = atoi (argument);
                     break;
                 case 2:
                     send_to_char ("TYPE OF DICE SET.\n\r\n\r", ch);
-                    pObj->v.value[2] = atoi (argument);
+                    obj->v.value[2] = atoi (argument);
                     break;
                 case 3:
                     send_to_char ("WEAPON TYPE SET.\n\r\n\r", ch);
-                    pObj->v.value[3] = attack_lookup (argument);
+                    obj->v.value[3] = attack_lookup (argument);
                     break;
                 case 4:
                     send_to_char ("SPECIAL WEAPON TYPE TOGGLED.\n\r\n\r", ch);
-                    ALT_FLAGVALUE_TOGGLE (pObj->v.value[4], weapon_flags,
+                    ALT_FLAGVALUE_TOGGLE (obj->v.value[4], weapon_flags,
                                           argument);
                     break;
             }
@@ -367,19 +367,19 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                     return FALSE;
                 case 0:
                     send_to_char ("CHARGES SET.\n\r\n\r", ch);
-                    pObj->v.value[0] = atoi (argument);
+                    obj->v.value[0] = atoi (argument);
                     break;
                 case 1:
                     send_to_char ("EXIT FLAGS SET.\n\r\n\r", ch);
-                    ALT_FLAGVALUE_SET (pObj->v.value[1], exit_flags, argument);
+                    ALT_FLAGVALUE_SET (obj->v.value[1], exit_flags, argument);
                     break;
                 case 2:
                     send_to_char ("PORTAL FLAGS SET.\n\r\n\r", ch);
-                    ALT_FLAGVALUE_SET (pObj->v.value[2], gate_flags, argument);
+                    ALT_FLAGVALUE_SET (obj->v.value[2], gate_flags, argument);
                     break;
                 case 3:
                     send_to_char ("EXIT VNUM SET.\n\r\n\r", ch);
-                    pObj->v.value[3] = atoi (argument);
+                    obj->v.value[3] = atoi (argument);
                     break;
             }
             break;
@@ -391,23 +391,23 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                     return FALSE;
                 case 0:
                     send_to_char ("NUMBER OF PEOPLE SET.\n\r\n\r", ch);
-                    pObj->v.value[0] = atoi (argument);
+                    obj->v.value[0] = atoi (argument);
                     break;
                 case 1:
                     send_to_char ("MAX WEIGHT SET.\n\r\n\r", ch);
-                    pObj->v.value[1] = atoi (argument);
+                    obj->v.value[1] = atoi (argument);
                     break;
                 case 2:
                     send_to_char ("FURNITURE FLAGS TOGGLED.\n\r\n\r", ch);
-                    ALT_FLAGVALUE_TOGGLE (pObj->v.value[2], furniture_flags, argument);
+                    ALT_FLAGVALUE_TOGGLE (obj->v.value[2], furniture_flags, argument);
                     break;
                 case 3:
                     send_to_char ("HEAL BONUS SET.\n\r\n\r", ch);
-                    pObj->v.value[3] = atoi (argument);
+                    obj->v.value[3] = atoi (argument);
                     break;
                 case 4:
                     send_to_char ("MANA BONUS SET.\n\r\n\r", ch);
-                    pObj->v.value[4] = atoi (argument);
+                    obj->v.value[4] = atoi (argument);
                     break;
             }
             break;
@@ -420,12 +420,12 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                     return FALSE;
                 case 0:
                     send_to_char ("WEIGHT CAPACITY SET.\n\r\n\r", ch);
-                    pObj->v.value[0] = atoi (argument);
+                    obj->v.value[0] = atoi (argument);
                     break;
                 case 1:
                     if ((value = flag_value (container_flags, argument)) !=
                         NO_FLAG)
-                        TOGGLE_BIT (pObj->v.value[1], value);
+                        TOGGLE_BIT (obj->v.value[1], value);
                     else {
                         do_help (ch, "ITEM_CONTAINER");
                         return FALSE;
@@ -444,15 +444,15 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                         }
                     }
                     send_to_char ("CONTAINER KEY SET.\n\r\n\r", ch);
-                    pObj->v.value[2] = atoi (argument);
+                    obj->v.value[2] = atoi (argument);
                     break;
                 case 3:
                     send_to_char ("CONTAINER MAX WEIGHT SET.\n\r\n\r", ch);
-                    pObj->v.value[3] = atoi (argument);
+                    obj->v.value[3] = atoi (argument);
                     break;
                 case 4:
                     send_to_char ("WEIGHT MULTIPLIER SET.\n\r\n\r", ch);
-                    pObj->v.value[4] = atoi (argument);
+                    obj->v.value[4] = atoi (argument);
                     break;
             }
             break;
@@ -465,20 +465,20 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                     return FALSE;
                 case 0:
                     send_to_char ("MAXIMUM AMOUT OF LIQUID HOURS SET.\n\r\n\r", ch);
-                    pObj->v.value[0] = atoi (argument);
+                    obj->v.value[0] = atoi (argument);
                     break;
                 case 1:
                     send_to_char ("CURRENT AMOUNT OF LIQUID HOURS SET.\n\r\n\r", ch);
-                    pObj->v.value[1] = atoi (argument);
+                    obj->v.value[1] = atoi (argument);
                     break;
                 case 2:
                     send_to_char ("LIQUID TYPE SET.\n\r\n\r", ch);
-                    pObj->v.value[2] = (liq_lookup (argument) >= 0 ?
+                    obj->v.value[2] = (liq_lookup (argument) >= 0 ?
                                       liq_lookup (argument) : 0);
                     break;
                 case 3:
                     send_to_char ("POISON VALUE TOGGLED.\n\r\n\r", ch);
-                    pObj->v.value[3] = (pObj->v.value[3] == 0) ? 1 : 0;
+                    obj->v.value[3] = (obj->v.value[3] == 0) ? 1 : 0;
                     break;
             }
             break;
@@ -491,15 +491,15 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                     return FALSE;
                 case 0:
                     send_to_char ("MAXIMUM AMOUT OF LIQUID HOURS SET.\n\r\n\r", ch);
-                    pObj->v.value[0] = atoi (argument);
+                    obj->v.value[0] = atoi (argument);
                     break;
                 case 1:
                     send_to_char ("CURRENT AMOUNT OF LIQUID HOURS SET.\n\r\n\r", ch);
-                    pObj->v.value[1] = atoi (argument);
+                    obj->v.value[1] = atoi (argument);
                     break;
                 case 2:
                     send_to_char ("LIQUID TYPE SET.\n\r\n\r", ch);
-                    pObj->v.value[2] = (liq_lookup (argument) >= 0 ?
+                    obj->v.value[2] = (liq_lookup (argument) >= 0 ?
                                         liq_lookup (argument) : 0);
                     break;
             }
@@ -512,15 +512,15 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                     return FALSE;
                 case 0:
                     send_to_char ("HOURS OF FOOD SET.\n\r\n\r", ch);
-                    pObj->v.value[0] = atoi (argument);
+                    obj->v.value[0] = atoi (argument);
                     break;
                 case 1:
                     send_to_char ("HOURS OF FULL SET.\n\r\n\r", ch);
-                    pObj->v.value[1] = atoi (argument);
+                    obj->v.value[1] = atoi (argument);
                     break;
                 case 3:
                     send_to_char ("POISON VALUE TOGGLED.\n\r\n\r", ch);
-                    pObj->v.value[3] = (pObj->v.value[3] == 0) ? 1 : 0;
+                    obj->v.value[3] = (obj->v.value[3] == 0) ? 1 : 0;
                     break;
             }
             break;
@@ -532,28 +532,28 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
                     return FALSE;
                 case 0:
                     send_to_char ("GOLD AMOUNT SET.\n\r\n\r", ch);
-                    pObj->v.value[0] = atoi (argument);
+                    obj->v.value[0] = atoi (argument);
                     break;
                 case 1:
                     send_to_char ("SILVER AMOUNT SET.\n\r\n\r", ch);
-                    pObj->v.value[1] = atoi (argument);
+                    obj->v.value[1] = atoi (argument);
                     break;
             }
             break;
     }
-    oedit_show_obj_values (ch, pObj);
+    oedit_show_obj_values (ch, obj);
     return TRUE;
 }
 
-bool oedit_set_value (CHAR_T *ch, OBJ_INDEX_T *pObj, char *argument,
+bool oedit_set_value (CHAR_T *ch, OBJ_INDEX_T *obj, char *argument,
     int value)
 {
     if (argument[0] == '\0') {
         /* '\0' changed to "" -- Hugin */
-        oedit_set_obj_values (ch, pObj, -1, "");
+        oedit_set_obj_values (ch, obj, -1, "");
         return FALSE;
     }
-    if (oedit_set_obj_values (ch, pObj, value, argument))
+    if (oedit_set_obj_values (ch, obj, value, argument))
         return TRUE;
     return FALSE;
 }
@@ -564,53 +564,53 @@ bool oedit_set_value (CHAR_T *ch, OBJ_INDEX_T *pObj, char *argument,
  Called by:  The four valueX functions below. (now five -- Hugin )
  ****************************************************************************/
 bool oedit_values (CHAR_T *ch, char *argument, int value) {
-    OBJ_INDEX_T *pObj;
-    EDIT_OBJ (ch, pObj);
-    if (oedit_set_value (ch, pObj, argument, value))
+    OBJ_INDEX_T *obj;
+    EDIT_OBJ (ch, obj);
+    if (oedit_set_value (ch, obj, argument, value))
         return TRUE;
     return FALSE;
 }
 
 OEDIT (oedit_show) {
-    OBJ_INDEX_T *pObj;
+    OBJ_INDEX_T *obj;
     AFFECT_T *paf;
     int cnt;
 
-    EDIT_OBJ (ch, pObj);
+    EDIT_OBJ (ch, obj);
 
     printf_to_char (ch, "Name:        [%s]\n\rArea:        [%5d] %s\n\r",
-        pObj->name,
-        !pObj->area ? -1 : pObj->area->vnum,
-        !pObj->area ? "No Area" : pObj->area->title);
+        obj->name,
+        !obj->area ? -1 : obj->area->vnum,
+        !obj->area ? "No Area" : obj->area->title);
 
     printf_to_char (ch, "Vnum:        [%5d]\n\rType:        [%s]\n\r",
-        pObj->vnum, item_get_name (pObj->item_type));
+        obj->vnum, item_get_name (obj->item_type));
     printf_to_char (ch, "Level:       [%5d]\n\r",
-        pObj->level);
+        obj->level);
     printf_to_char (ch, "Wear flags:  [%s]\n\r",
-        flag_string (wear_flags, pObj->wear_flags));
+        flag_string (wear_flags, obj->wear_flags));
     printf_to_char (ch, "Extra flags: [%s]\n\r",
-        flag_string (extra_flags, pObj->extra_flags));
+        flag_string (extra_flags, obj->extra_flags));
     printf_to_char (ch, "Material:    [%s]\n\r",    /* ROM */
-        material_get_name (pObj->material));
+        material_get_name (obj->material));
     printf_to_char (ch, "Condition:   [%5d]\n\r",    /* ROM */
-        pObj->condition);
+        obj->condition);
     printf_to_char (ch, "Weight:      [%5d]\n\rCost:        [%5d]\n\r",
-        pObj->weight, pObj->cost);
+        obj->weight, obj->cost);
 
-    if (pObj->extra_descr) {
+    if (obj->extra_descr) {
         EXTRA_DESCR_T *ed;
         send_to_char ("Ex desc kwd:", ch);
 
-        for (ed = pObj->extra_descr; ed; ed = ed->next)
+        for (ed = obj->extra_descr; ed; ed = ed->next)
             printf_to_char (ch, " [%s]", ed->keyword);
         send_to_char ("\n\r", ch);
     }
 
     printf_to_char (ch, "Short desc:  %s\n\rLong desc:\n\r     %s\n\r",
-        pObj->short_descr, pObj->description);
+        obj->short_descr, obj->description);
 
-    for (cnt = 0, paf = pObj->affected; paf; paf = paf->next) {
+    for (cnt = 0, paf = obj->affected; paf; paf = paf->next) {
         if (cnt == 0) {
             send_to_char ("Number Modifier Bits, Apply\n\r"
                           "------ -------- -----------------\n\r", ch);
@@ -622,19 +622,19 @@ OEDIT (oedit_show) {
         cnt++;
     }
 
-    oedit_show_obj_values (ch, pObj);
+    oedit_show_obj_values (ch, obj);
     return FALSE;
 }
 
 /* Need to issue warning if flag isn't valid. -- does so now -- Hugin.  */
 OEDIT (oedit_addaffect) {
     int value;
-    OBJ_INDEX_T *pObj;
-    AFFECT_T *pAf;
+    OBJ_INDEX_T *obj;
+    AFFECT_T *aff;
     char loc[MAX_STRING_LENGTH];
     char mod[MAX_STRING_LENGTH];
 
-    EDIT_OBJ (ch, pObj);
+    EDIT_OBJ (ch, obj);
 
     argument = one_argument (argument, loc);
     one_argument (argument, mod);
@@ -648,9 +648,9 @@ OEDIT (oedit_addaffect) {
         return FALSE;
     }
 
-    pAf = affect_new ();
-    affect_init (pAf, AFF_TO_OBJECT, -1, pObj->level, -1, value, atoi (mod), 0);
-    LIST_FRONT (pAf, next, pObj->affected);
+    aff = affect_new ();
+    affect_init (aff, AFF_TO_OBJECT, -1, obj->level, -1, value, atoi (mod), 0);
+    LIST_FRONT (aff, next, obj->affected);
 
     send_to_char ("Affect added.\n\r", ch);
     return TRUE;
@@ -660,14 +660,14 @@ OEDIT (oedit_addapply) {
     int bit_type, app;
     flag_t bit;
     const AFFECT_BIT_T *bit_type_obj;
-    OBJ_INDEX_T *pObj;
-    AFFECT_T *pAf;
+    OBJ_INDEX_T *obj;
+    AFFECT_T *aff;
     char bit_type_buf[MAX_STRING_LENGTH];
     char app_buf[MAX_STRING_LENGTH];
     char mod[MAX_STRING_LENGTH];
     char bit_buf[MAX_STRING_LENGTH];
 
-    EDIT_OBJ (ch, pObj);
+    EDIT_OBJ (ch, obj);
 
     argument = one_argument (argument, bit_type_buf);
     argument = one_argument (argument, app_buf);
@@ -705,9 +705,9 @@ OEDIT (oedit_addapply) {
         return FALSE;
     }
 
-    pAf = affect_new ();
-    affect_init (pAf, bit_type, -1, pObj->level, -1, app, atoi (mod), bit);
-    LIST_FRONT (pAf, next, pObj->affected);
+    aff = affect_new ();
+    affect_init (aff, bit_type, -1, obj->level, -1, app, atoi (mod), bit);
+    LIST_FRONT (aff, next, obj->affected);
 
     send_to_char ("Apply added.\n\r", ch);
     return TRUE;
@@ -716,13 +716,13 @@ OEDIT (oedit_addapply) {
 /* My thanks to Hans Hvidsten Birkeland and Noam Krendel(Walker)
  * for really teaching me how to manipulate pointers. */
 OEDIT (oedit_delaffect) {
-    OBJ_INDEX_T *pObj;
-    AFFECT_T *pAf, *pAf_prev;
+    OBJ_INDEX_T *obj;
+    AFFECT_T *aff, *aff_prev;
     char affect[MAX_STRING_LENGTH];
     int value;
     int cnt = 0;
 
-    EDIT_OBJ (ch, pObj);
+    EDIT_OBJ (ch, obj);
     one_argument (argument, affect);
 
     if (!is_number (affect) || affect[0] == '\0') {
@@ -736,62 +736,62 @@ OEDIT (oedit_delaffect) {
     }
 
     /* Find the affect and its previous link in the list. */
-    LIST_FIND_WITH_PREV (value >= cnt++, next, pObj->affected,
-        pAf, pAf_prev);
-    if (!pAf) {
+    LIST_FIND_WITH_PREV (value >= cnt++, next, obj->affected,
+        aff, aff_prev);
+    if (!aff) {
         send_to_char ("OEdit: Non-existant affect.\n\r", ch);
         return FALSE;
     }
 
-    LIST_REMOVE_WITH_PREV (pAf, pAf_prev, next, pObj->affected);
-    affect_free (pAf);
+    LIST_REMOVE_WITH_PREV (aff, aff_prev, next, obj->affected);
+    affect_free (aff);
 
     send_to_char ("Affect removed.\n\r", ch);
     return TRUE;
 }
 
 OEDIT (oedit_name) {
-    OBJ_INDEX_T *pObj;
-    EDIT_OBJ (ch, pObj);
+    OBJ_INDEX_T *obj;
+    EDIT_OBJ (ch, obj);
 
     if (argument[0] == '\0') {
         send_to_char ("Syntax: name [string]\n\r", ch);
         return FALSE;
     }
 
-    str_replace_dup (&(pObj->name), argument);
+    str_replace_dup (&(obj->name), argument);
 
     send_to_char ("Name set.\n\r", ch);
     return TRUE;
 }
 
 OEDIT (oedit_short) {
-    OBJ_INDEX_T *pObj;
-    EDIT_OBJ (ch, pObj);
+    OBJ_INDEX_T *obj;
+    EDIT_OBJ (ch, obj);
 
     if (argument[0] == '\0') {
         send_to_char ("Syntax: short [string]\n\r", ch);
         return FALSE;
     }
 
-    str_replace_dup (&(pObj->short_descr), argument);
-    pObj->short_descr[0] = LOWER (pObj->short_descr[0]);
+    str_replace_dup (&(obj->short_descr), argument);
+    obj->short_descr[0] = LOWER (obj->short_descr[0]);
 
     send_to_char ("Short description set.\n\r", ch);
     return TRUE;
 }
 
 OEDIT (oedit_long) {
-    OBJ_INDEX_T *pObj;
-    EDIT_OBJ (ch, pObj);
+    OBJ_INDEX_T *obj;
+    EDIT_OBJ (ch, obj);
 
     if (argument[0] == '\0') {
         send_to_char ("Syntax: long [string]\n\r", ch);
         return FALSE;
     }
 
-    str_replace_dup (&(pObj->description), argument);
-    pObj->description[0] = UPPER (pObj->description[0]);
+    str_replace_dup (&(obj->description), argument);
+    obj->description[0] = UPPER (obj->description[0]);
 
     send_to_char ("Long description set.\n\r", ch);
     return TRUE;
@@ -809,36 +809,36 @@ OEDIT (oedit_value4)
     { return oedit_values (ch, argument, 4) ? TRUE : FALSE; }
 
 OEDIT (oedit_weight) {
-    OBJ_INDEX_T *pObj;
-    EDIT_OBJ (ch, pObj);
+    OBJ_INDEX_T *obj;
+    EDIT_OBJ (ch, obj);
 
     if (argument[0] == '\0' || !is_number (argument)) {
         send_to_char ("Syntax: weight [number]\n\r", ch);
         return FALSE;
     }
-    pObj->weight = atoi (argument);
+    obj->weight = atoi (argument);
 
     send_to_char ("Weight set.\n\r", ch);
     return TRUE;
 }
 
 OEDIT (oedit_cost) {
-    OBJ_INDEX_T *pObj;
-    EDIT_OBJ (ch, pObj);
+    OBJ_INDEX_T *obj;
+    EDIT_OBJ (ch, obj);
 
     if (argument[0] == '\0' || !is_number (argument)) {
         send_to_char ("Syntax: cost [number]\n\r", ch);
         return FALSE;
     }
-    pObj->cost = atoi (argument);
+    obj->cost = atoi (argument);
 
     send_to_char ("Cost set.\n\r", ch);
     return TRUE;
 }
 
 OEDIT (oedit_create) {
-    OBJ_INDEX_T *pObj;
-    AREA_T *pArea;
+    OBJ_INDEX_T *obj;
+    AREA_T *area;
     int value;
     int iHash;
 
@@ -848,12 +848,12 @@ OEDIT (oedit_create) {
         return FALSE;
     }
 
-    pArea = area_get_by_inner_vnum (value);
-    if (!pArea) {
+    area = area_get_by_inner_vnum (value);
+    if (!area) {
         send_to_char ("OEdit: That vnum is not assigned an area.\n\r", ch);
         return FALSE;
     }
-    if (!IS_BUILDER (ch, pArea)) {
+    if (!IS_BUILDER (ch, area)) {
         send_to_char ("OEdit: Vnum in an area you cannot build in.\n\r", ch);
         return FALSE;
     }
@@ -862,29 +862,29 @@ OEDIT (oedit_create) {
         return FALSE;
     }
 
-    pObj = obj_index_new ();
-    pObj->area = pArea;
-    pObj->vnum = value;
-    pObj->anum = value - pArea->min_vnum;
+    obj = obj_index_new ();
+    obj->area = area;
+    obj->vnum = value;
+    obj->anum = value - area->min_vnum;
 
     if (value > top_vnum_obj)
         top_vnum_obj = value;
 
     iHash = value % MAX_KEY_HASH;
-    LIST_FRONT (pObj, next, obj_index_hash[iHash]);
-    ch->desc->pEdit = (void *) pObj;
+    LIST_FRONT (obj, next, obj_index_hash[iHash]);
+    ch->desc->olc_edit = (void *) obj;
 
     send_to_char ("Object created.\n\r", ch);
     return TRUE;
 }
 
 OEDIT (oedit_ed) {
-    OBJ_INDEX_T *pObj;
+    OBJ_INDEX_T *obj;
     EXTRA_DESCR_T *ed;
     char command[MAX_INPUT_LENGTH];
     char keyword[MAX_INPUT_LENGTH];
 
-    EDIT_OBJ (ch, pObj);
+    EDIT_OBJ (ch, obj);
 
     argument = one_argument (argument, command);
     one_argument (argument, keyword);
@@ -903,7 +903,7 @@ OEDIT (oedit_ed) {
         }
         ed = extra_descr_new ();
         ed->keyword = str_dup (keyword);
-        LIST_FRONT (ed, next, pObj->extra_descr);
+        LIST_FRONT (ed, next, obj->extra_descr);
 
         string_append (ch, &ed->description);
         return TRUE;
@@ -915,7 +915,7 @@ OEDIT (oedit_ed) {
             return FALSE;
         }
         LIST_FIND (is_name (keyword, ed->keyword), next,
-            pObj->extra_descr, ed);
+            obj->extra_descr, ed);
         if (!ed) {
             send_to_char ("OEdit: Extra description keyword not found.\n\r", ch);
             return FALSE;
@@ -932,12 +932,12 @@ OEDIT (oedit_ed) {
             return FALSE;
         }
         LIST_FIND_WITH_PREV (is_name (keyword, ed->keyword),
-            next, pObj->extra_descr, ed, ped);
+            next, obj->extra_descr, ed, ped);
         if (!ed) {
             send_to_char ("OEdit: Extra description keyword not found.\n\r", ch);
             return FALSE;
         }
-        LIST_REMOVE_WITH_PREV (ed, ped, next, pObj->extra_descr);
+        LIST_REMOVE_WITH_PREV (ed, ped, next, obj->extra_descr);
 
         extra_descr_free (ed);
         send_to_char ("Extra description deleted.\n\r", ch);
@@ -950,7 +950,7 @@ OEDIT (oedit_ed) {
             return FALSE;
         }
         LIST_FIND (is_name (keyword, ed->keyword), next,
-            pObj->extra_descr, ed);
+            obj->extra_descr, ed);
         if (!ed) {
             send_to_char ("OEdit: Extra description keyword not found.\n\r", ch);
             return FALSE;
@@ -968,13 +968,13 @@ OEDIT (oedit_ed) {
 /* ROM object functions : */
 /* Moved out of oedit() due to naming conflicts -- Hugin */
 OEDIT (oedit_extra) {
-    OBJ_INDEX_T *pObj;
+    OBJ_INDEX_T *obj;
     int value;
 
     if (argument[0] != '\0') {
-        EDIT_OBJ (ch, pObj);
+        EDIT_OBJ (ch, obj);
         if ((value = flag_value (extra_flags, argument)) != NO_FLAG) {
-            TOGGLE_BIT (pObj->extra_flags, value);
+            TOGGLE_BIT (obj->extra_flags, value);
             send_to_char ("Extra flag toggled.\n\r", ch);
             return TRUE;
         }
@@ -987,13 +987,13 @@ OEDIT (oedit_extra) {
 
 /* Moved out of oedit() due to naming conflicts -- Hugin */
 OEDIT (oedit_wear) {
-    OBJ_INDEX_T *pObj;
+    OBJ_INDEX_T *obj;
     int value;
 
     if (argument[0] != '\0') {
-        EDIT_OBJ (ch, pObj);
+        EDIT_OBJ (ch, obj);
         if ((value = flag_value (wear_flags, argument)) != NO_FLAG) {
-            TOGGLE_BIT (pObj->wear_flags, value);
+            TOGGLE_BIT (obj->wear_flags, value);
             send_to_char ("Wear flag toggled.\n\r", ch);
             return TRUE;
         }
@@ -1006,16 +1006,16 @@ OEDIT (oedit_wear) {
 
 /* Moved out of oedit() due to naming conflicts -- Hugin */
 OEDIT (oedit_type) {
-    OBJ_INDEX_T *pObj;
+    OBJ_INDEX_T *obj;
     int value, i;
 
     if (argument[0] != '\0') {
-        EDIT_OBJ (ch, pObj);
+        EDIT_OBJ (ch, obj);
         if ((value = item_lookup (argument)) >= 0) {
-            pObj->item_type = value;
+            obj->item_type = value;
             send_to_char ("Type set.\n\r", ch);
             for (i = 0; i < OBJ_VALUE_MAX; i++)
-                pObj->v.value[i] = 0;
+                obj->v.value[i] = 0;
             return TRUE;
         }
     }
@@ -1026,13 +1026,13 @@ OEDIT (oedit_type) {
 }
 
 OEDIT (oedit_material) {
-    OBJ_INDEX_T *pObj;
+    OBJ_INDEX_T *obj;
     const MATERIAL_T *mat;
 
     if (argument[0] != '\0') {
-        EDIT_OBJ (ch, pObj);
+        EDIT_OBJ (ch, obj);
         if ((mat = material_get_by_name (argument)) != NULL) {
-            pObj->material = mat->type;
+            obj->material = mat->type;
             send_to_char ("Material type changed.\n\r", ch);
             return TRUE;
         }
@@ -1043,28 +1043,28 @@ OEDIT (oedit_material) {
 }
 
 OEDIT (oedit_level) {
-    OBJ_INDEX_T *pObj;
-    EDIT_OBJ (ch, pObj);
+    OBJ_INDEX_T *obj;
+    EDIT_OBJ (ch, obj);
 
     if (argument[0] == '\0' || !is_number (argument)) {
         send_to_char ("Syntax: level [number]\n\r", ch);
         return FALSE;
     }
-    pObj->level = atoi (argument);
+    obj->level = atoi (argument);
 
     send_to_char ("Level set.\n\r", ch);
     return TRUE;
 }
 
 OEDIT (oedit_condition) {
-    OBJ_INDEX_T *pObj;
+    OBJ_INDEX_T *obj;
     int value;
 
     if (argument[0] != '\0'
         && (value = atoi (argument)) >= 0 && (value <= 100))
     {
-        EDIT_OBJ (ch, pObj);
-        pObj->condition = value;
+        EDIT_OBJ (ch, obj);
+        obj->condition = value;
         send_to_char ("Condition set.\n\r", ch);
         return TRUE;
     }

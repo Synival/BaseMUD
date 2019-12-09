@@ -52,7 +52,7 @@ bool obj_index_can_wear_flag (OBJ_INDEX_T *obj, flag_t flag);
 
 /* "Get" functions. */
 int obj_count_users (OBJ_T *obj);
-int obj_get_ac_type (OBJ_T *obj, int iWear, int type);
+int obj_get_ac_type (OBJ_T *obj, int wear_loc, int type);
 int obj_index_count_in_list (OBJ_INDEX_T *obj_index, OBJ_T *list);
 int obj_get_carry_number (OBJ_T *obj);
 int obj_get_weight (OBJ_T *obj);

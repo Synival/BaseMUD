@@ -224,39 +224,39 @@ const char *olc_ed_name (CHAR_T *ch) {
 }
 
 char *olc_ed_vnum (CHAR_T *ch) {
-    AREA_T *pArea;
-    ROOM_INDEX_T *pRoom;
-    OBJ_INDEX_T *pObj;
-    MOB_INDEX_T *pMob;
-    MPROG_CODE_T *pMprog;
-    HELP_T *pHelp;
+    AREA_T *area;
+    ROOM_INDEX_T *room;
+    OBJ_INDEX_T *obj;
+    MOB_INDEX_T *mob;
+    MPROG_CODE_T *mprog;
+    HELP_T *help;
     static char buf[MIL];
 
     buf[0] = '\0';
     switch (ch->desc->editor) {
         case ED_AREA:
-            pArea = (AREA_T *) ch->desc->pEdit;
-            sprintf (buf, "%d", pArea ? pArea->vnum : 0);
+            area = (AREA_T *) ch->desc->olc_edit;
+            sprintf (buf, "%d", area ? area->vnum : 0);
             break;
         case ED_ROOM:
-            pRoom = ch->in_room;
-            sprintf (buf, "%d", pRoom ? pRoom->vnum : 0);
+            room = ch->in_room;
+            sprintf (buf, "%d", room ? room->vnum : 0);
             break;
         case ED_OBJECT:
-            pObj = (OBJ_INDEX_T *) ch->desc->pEdit;
-            sprintf (buf, "%d", pObj ? pObj->vnum : 0);
+            obj = (OBJ_INDEX_T *) ch->desc->olc_edit;
+            sprintf (buf, "%d", obj ? obj->vnum : 0);
             break;
         case ED_MOBILE:
-            pMob = (MOB_INDEX_T *) ch->desc->pEdit;
-            sprintf (buf, "%d", pMob ? pMob->vnum : 0);
+            mob = (MOB_INDEX_T *) ch->desc->olc_edit;
+            sprintf (buf, "%d", mob ? mob->vnum : 0);
             break;
         case ED_MPCODE:
-            pMprog = (MPROG_CODE_T *) ch->desc->pEdit;
-            sprintf (buf, "%d", pMprog ? pMprog->vnum : 0);
+            mprog = (MPROG_CODE_T *) ch->desc->olc_edit;
+            sprintf (buf, "%d", mprog ? mprog->vnum : 0);
             break;
         case ED_HELP:
-            pHelp = (HELP_T *) ch->desc->pEdit;
-            sprintf (buf, "%s", pHelp ? pHelp->keyword : "");
+            help = (HELP_T *) ch->desc->olc_edit;
+            sprintf (buf, "%s", help ? help->keyword : "");
             break;
         default:
             sprintf (buf, " ");
@@ -314,7 +314,7 @@ bool show_commands (CHAR_T *ch, char *argument) {
  ****************************************************************************/
 bool edit_done (CHAR_T *ch) {
     send_to_char ("Exiting OLC.\n\r", ch);
-    ch->desc->pEdit = NULL;
+    ch->desc->olc_edit = NULL;
     ch->desc->editor = 0;
     return FALSE;
 }
@@ -325,18 +325,18 @@ bool edit_done (CHAR_T *ch) {
 
 /* Area Interpreter, called by do_aedit. */
 void aedit (CHAR_T *ch, char *argument) {
-    AREA_T *pArea;
+    AREA_T *area;
     char command[MAX_INPUT_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     int cmd;
     int value;
 
-    EDIT_AREA (ch, pArea);
+    EDIT_AREA (ch, area);
     smash_tilde (argument);
     strcpy (arg, argument);
     argument = one_argument (argument, command);
 
-    if (!IS_BUILDER (ch, pArea)) {
+    if (!IS_BUILDER (ch, area)) {
         send_to_char ("AEdit:  Insufficient security to modify area.\n\r", ch);
         edit_done (ch);
         return;
@@ -350,7 +350,7 @@ void aedit (CHAR_T *ch, char *argument) {
         return;
     }
     if ((value = flag_value (area_flags, command)) != NO_FLAG) {
-        TOGGLE_BIT (pArea->area_flags, value);
+        TOGGLE_BIT (area->area_flags, value);
         send_to_char ("Flag toggled.\n\r", ch);
         return;
     }
@@ -359,7 +359,7 @@ void aedit (CHAR_T *ch, char *argument) {
     for (cmd = 0; aedit_table[cmd].name != NULL; cmd++) {
         if (!str_prefix (command, aedit_table[cmd].name)) {
             if ((*aedit_table[cmd].olc_fun) (ch, argument)) {
-                SET_BIT (pArea->area_flags, AREA_CHANGED);
+                SET_BIT (area->area_flags, AREA_CHANGED);
                 return;
             }
             else
@@ -373,20 +373,20 @@ void aedit (CHAR_T *ch, char *argument) {
 
 /* Room Interpreter, called by do_redit. */
 void redit (CHAR_T *ch, char *argument) {
-    AREA_T *pArea;
-    ROOM_INDEX_T *pRoom;
+    AREA_T *area;
+    ROOM_INDEX_T *room;
     char arg[MAX_STRING_LENGTH];
     char command[MAX_INPUT_LENGTH];
     int cmd;
 
-    EDIT_ROOM (ch, pRoom);
-    pArea = pRoom->area;
+    EDIT_ROOM (ch, room);
+    area = room->area;
 
     smash_tilde (argument);
     strcpy (arg, argument);
     argument = one_argument (argument, command);
 
-    if (!IS_BUILDER (ch, pArea)) {
+    if (!IS_BUILDER (ch, area)) {
         send_to_char ("REdit:  Insufficient security to modify room.\n\r", ch);
         edit_done (ch);
         return;
@@ -404,7 +404,7 @@ void redit (CHAR_T *ch, char *argument) {
     for (cmd = 0; redit_table[cmd].name != NULL; cmd++) {
         if (!str_prefix (command, redit_table[cmd].name)) {
             if ((*redit_table[cmd].olc_fun) (ch, argument)) {
-                SET_BIT (pArea->area_flags, AREA_CHANGED);
+                SET_BIT (area->area_flags, AREA_CHANGED);
                 return;
             }
             else
@@ -418,8 +418,8 @@ void redit (CHAR_T *ch, char *argument) {
 
 /* Object Interpreter, called by do_oedit. */
 void oedit (CHAR_T *ch, char *argument) {
-    AREA_T *pArea;
-    OBJ_INDEX_T *pObj;
+    AREA_T *area;
+    OBJ_INDEX_T *obj;
     char arg[MAX_STRING_LENGTH];
     char command[MAX_INPUT_LENGTH];
     int cmd;
@@ -428,10 +428,10 @@ void oedit (CHAR_T *ch, char *argument) {
     strcpy (arg, argument);
     argument = one_argument (argument, command);
 
-    EDIT_OBJ (ch, pObj);
-    pArea = pObj->area;
+    EDIT_OBJ (ch, obj);
+    area = obj->area;
 
-    if (!IS_BUILDER (ch, pArea)) {
+    if (!IS_BUILDER (ch, area)) {
         send_to_char ("OEdit: Insufficient security to modify area.\n\r", ch);
         edit_done (ch);
         return;
@@ -449,7 +449,7 @@ void oedit (CHAR_T *ch, char *argument) {
     for (cmd = 0; oedit_table[cmd].name != NULL; cmd++) {
         if (!str_prefix (command, oedit_table[cmd].name)) {
             if ((*oedit_table[cmd].olc_fun) (ch, argument)) {
-                SET_BIT (pArea->area_flags, AREA_CHANGED);
+                SET_BIT (area->area_flags, AREA_CHANGED);
                 return;
             }
             else
@@ -463,8 +463,8 @@ void oedit (CHAR_T *ch, char *argument) {
 
 /* Mobile Interpreter, called by do_medit. */
 void medit (CHAR_T *ch, char *argument) {
-    AREA_T *pArea;
-    MOB_INDEX_T *pMob;
+    AREA_T *area;
+    MOB_INDEX_T *mob;
     char command[MAX_INPUT_LENGTH];
     char arg[MAX_STRING_LENGTH];
     int cmd;
@@ -473,10 +473,10 @@ void medit (CHAR_T *ch, char *argument) {
     strcpy (arg, argument);
     argument = one_argument (argument, command);
 
-    EDIT_MOB (ch, pMob);
-    pArea = pMob->area;
+    EDIT_MOB (ch, mob);
+    area = mob->area;
 
-    if (!IS_BUILDER (ch, pArea)) {
+    if (!IS_BUILDER (ch, area)) {
         send_to_char ("MEdit: Insufficient security to modify area.\n\r", ch);
         edit_done (ch);
         return;
@@ -494,7 +494,7 @@ void medit (CHAR_T *ch, char *argument) {
     for (cmd = 0; medit_table[cmd].name != NULL; cmd++) {
         if (!str_prefix (command, medit_table[cmd].name)) {
             if ((*medit_table[cmd].olc_fun) (ch, argument)) {
-                SET_BIT (pArea->area_flags, AREA_CHANGED);
+                SET_BIT (area->area_flags, AREA_CHANGED);
                 return;
             }
             else
@@ -507,7 +507,7 @@ void medit (CHAR_T *ch, char *argument) {
 }
 
 void mpedit (CHAR_T *ch, char *argument) {
-    MPROG_CODE_T *pMcode;
+    MPROG_CODE_T *mcode;
     char arg[MAX_INPUT_LENGTH];
     char command[MAX_INPUT_LENGTH];
     int cmd;
@@ -517,10 +517,10 @@ void mpedit (CHAR_T *ch, char *argument) {
     strcpy (arg, argument);
     argument = one_argument (argument, command);
 
-    EDIT_MPCODE (ch, pMcode);
+    EDIT_MPCODE (ch, mcode);
 
-    if (pMcode) {
-        ad = area_get_by_inner_vnum (pMcode->vnum);
+    if (mcode) {
+        ad = area_get_by_inner_vnum (mcode->vnum);
         if (ad == NULL) { /* ??? */
             edit_done (ch);
             return;
@@ -543,8 +543,8 @@ void mpedit (CHAR_T *ch, char *argument) {
     }
     for (cmd = 0; mpedit_table[cmd].name != NULL; cmd++) {
         if (!str_prefix (command, mpedit_table[cmd].name)) {
-            if ((*mpedit_table[cmd].olc_fun) (ch, argument) && pMcode)
-                if ((ad = area_get_by_inner_vnum (pMcode->vnum)) != NULL)
+            if ((*mpedit_table[cmd].olc_fun) (ch, argument) && mcode)
+                if ((ad = area_get_by_inner_vnum (mcode->vnum)) != NULL)
                     SET_BIT (ad->area_flags, AREA_CHANGED);
             return;
         }
@@ -554,7 +554,7 @@ void mpedit (CHAR_T *ch, char *argument) {
 }
 
 void hedit (CHAR_T *ch, char *argument) {
-    HELP_T *pHelp;
+    HELP_T *help;
     HELP_AREA_T *had;
     char arg[MAX_INPUT_LENGTH];
     char command[MAX_INPUT_LENGTH];
@@ -564,11 +564,11 @@ void hedit (CHAR_T *ch, char *argument) {
     strcpy (arg, argument);
     argument = one_argument (argument, command);
 
-    EDIT_HELP (ch, pHelp);
+    EDIT_HELP (ch, help);
 
-    had = help_area_get_by_help (pHelp);
+    had = help_area_get_by_help (help);
     if (had == NULL) {
-        bugf ("hedit : had for help %s NULL", pHelp->keyword);
+        bugf ("hedit : had for help %s NULL", help->keyword);
         edit_done (ch);
         return;
     }

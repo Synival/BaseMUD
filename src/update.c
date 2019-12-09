@@ -227,29 +227,29 @@ void gain_condition (CHAR_T *ch, int iCond, int value) {
 
 /* Repopulate areas periodically. */
 void area_update (void) {
-    AREA_T *pArea;
+    AREA_T *area;
 
-    for (pArea = area_first; pArea != NULL; pArea = pArea->next) {
-        if (++pArea->age < 3)
+    for (area = area_first; area != NULL; area = area->next) {
+        if (++area->age < 3)
             continue;
 
         /* Check age and reset.
          * Note: Mud School resets every 3 minutes (not 15). */
-        if ((!pArea->empty && (pArea->nplayer == 0 || pArea->age >= 15))
-            || pArea->age >= 31)
+        if ((!area->empty && (area->nplayer == 0 || area->age >= 15))
+            || area->age >= 31)
         {
             ROOM_INDEX_T *room_index;
 
-            reset_area (pArea);
+            reset_area (area);
             wiznetf (NULL, NULL, WIZ_RESETS, 0, 0,
-                "%s has just been reset.", pArea->title);
+                "%s has just been reset.", area->title);
 
-            pArea->age = number_range (0, 3);
+            area->age = number_range (0, 3);
             room_index = get_room_index (ROOM_VNUM_SCHOOL);
-            if (room_index != NULL && pArea == room_index->area)
-                pArea->age = 15 - 2;
-            else if (pArea->nplayer == 0)
-                pArea->empty = TRUE;
+            if (room_index != NULL && area == room_index->area)
+                area->age = 15 - 2;
+            else if (area->nplayer == 0)
+                area->empty = TRUE;
         }
     }
 }

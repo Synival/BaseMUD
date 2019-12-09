@@ -17,7 +17,7 @@
 #include "merc.h"
 
 #define AEDIT(fun)          bool fun(CHAR_T *ch, char *argument)
-#define EDIT_AREA(ch, area) (area = (AREA_T *) ch->desc->pEdit)
+#define EDIT_AREA(ch, area) (area = (AREA_T *) ch->desc->olc_edit)
 
 /* Sub-routines and filters. */
 bool aedit_check_range (int lower, int upper);

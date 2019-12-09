@@ -17,8 +17,8 @@
 #include "merc.h"
 
 /* Function prototypes. */
-void string_edit (CHAR_T *ch, char **pString);
-void string_append (CHAR_T *ch, char **pString);
+void string_edit (CHAR_T *ch, char **string_edit);
+void string_append (CHAR_T *ch, char **string_edit);
 char *string_replace (char *orig, char *old, char *new);
 void string_add (CHAR_T *ch, char *argument);
 char *format_string (char *oldstring /*, bool space */ );

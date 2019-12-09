@@ -360,7 +360,7 @@ DEFINE_DO_FUN (do_train) {
     char buf[MAX_STRING_LENGTH];
     CHAR_T *mob;
     sh_int stat = -1;
-    char *pOutput = NULL;
+    char *output = NULL;
     int cost;
 
     if (IS_NPC (ch))
@@ -379,31 +379,31 @@ DEFINE_DO_FUN (do_train) {
         if (class_table[ch->class].attr_prime == STAT_STR)
             cost = 1;
         stat = STAT_STR;
-        pOutput = "strength";
+        output = "strength";
     }
     else if (!str_cmp (argument, "int")) {
         if (class_table[ch->class].attr_prime == STAT_INT)
             cost = 1;
         stat = STAT_INT;
-        pOutput = "intelligence";
+        output = "intelligence";
     }
     else if (!str_cmp (argument, "wis")) {
         if (class_table[ch->class].attr_prime == STAT_WIS)
             cost = 1;
         stat = STAT_WIS;
-        pOutput = "wisdom";
+        output = "wisdom";
     }
     else if (!str_cmp (argument, "dex")) {
         if (class_table[ch->class].attr_prime == STAT_DEX)
             cost = 1;
         stat = STAT_DEX;
-        pOutput = "dexterity";
+        output = "dexterity";
     }
     else if (!str_cmp (argument, "con")) {
         if (class_table[ch->class].attr_prime == STAT_CON)
             cost = 1;
         stat = STAT_CON;
-        pOutput = "constitution";
+        output = "constitution";
     }
     else if (!str_cmp (argument, "hp"))
         cost = 1;
@@ -460,14 +460,14 @@ DEFINE_DO_FUN (do_train) {
     }
 
     if (ch->perm_stat[stat] >= char_get_max_train (ch, stat)) {
-        act ("Your $T is already at maximum.", ch, NULL, pOutput, TO_CHAR);
+        act ("Your $T is already at maximum.", ch, NULL, output, TO_CHAR);
         return;
     }
 
     ch->train -= cost;
     ch->perm_stat[stat] += 1;
-    act ("Your $T increases!", ch, NULL, pOutput, TO_CHAR);
-    act ("$n's $T increases!", ch, NULL, pOutput, TO_NOTCHAR);
+    act ("Your $T increases!", ch, NULL, output, TO_CHAR);
+    act ("$n's $T increases!", ch, NULL, output, TO_NOTCHAR);
 }
 
 DEFINE_DO_FUN (do_practice) {

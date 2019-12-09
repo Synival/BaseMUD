@@ -375,7 +375,7 @@ void obj_take_from_obj (OBJ_T *obj) {
 }
 
 /* Find the ac value of an obj, including position effect. */
-int obj_get_ac_type (OBJ_T *obj, int iWear, int type) {
+int obj_get_ac_type (OBJ_T *obj, int wear_loc, int type) {
     flag_t ac_value;
     if (obj->item_type != ITEM_ARMOR)
         return 0;
@@ -389,7 +389,7 @@ int obj_get_ac_type (OBJ_T *obj, int iWear, int type) {
             return 0;
     }
 
-    switch (iWear) {
+    switch (wear_loc) {
         case WEAR_BODY:
             return ac_value * 3;
 
@@ -418,13 +418,13 @@ int obj_get_ac_type (OBJ_T *obj, int iWear, int type) {
 /* Count occurrences of an obj in a list. */
 int obj_index_count_in_list (OBJ_INDEX_T *obj_index, OBJ_T *list) {
     OBJ_T *obj;
-    int nMatch;
+    int matches;
 
-    nMatch = 0;
+    matches = 0;
     for (obj = list; obj != NULL; obj = obj->next_content)
         if (obj->index_data == obj_index)
-            nMatch++;
-    return nMatch;
+            matches++;
+    return matches;
 }
 
 /* Extract an obj from the world. */

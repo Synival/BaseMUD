@@ -31,78 +31,78 @@
 #include "olc_medit.h"
 
 MEDIT (medit_show) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     MPROG_LIST_T *list;
-    EDIT_MOB (ch, pMob);
+    EDIT_MOB (ch, mob);
 
     printf_to_char (ch, "Name:        [%s]\n\rArea:        [%5d] %s\n\r",
-        pMob->name, !pMob->area ? -1 : pMob->area->vnum,
-        !pMob->area ? "No Area" : pMob->area->title);
+        mob->name, !mob->area ? -1 : mob->area->vnum,
+        !mob->area ? "No Area" : mob->area->title);
 
     printf_to_char (ch, "Mob:         [%s]\n\r",
-        flag_string (mob_flags, pMob->mob_final));
+        flag_string (mob_flags, mob->mob_final));
 
     printf_to_char (ch, "Vnum:        [%5d] Sex:   [%s]   Race: [%s]\n\r",
-         pMob->vnum,
-         pMob->sex == SEX_MALE   ? "male   " :
-         pMob->sex == SEX_FEMALE ? "female " :
-         pMob->sex == 3          ? "random " : "neutral",
-         race_table[pMob->race].name);
+         mob->vnum,
+         mob->sex == SEX_MALE   ? "male   " :
+         mob->sex == SEX_FEMALE ? "female " :
+         mob->sex == 3          ? "random " : "neutral",
+         race_table[mob->race].name);
 
     printf_to_char (ch, "Level:       [%2d]    Align: [%4d]      "
                         "Hitroll: [%2d] Dam Type:    [%s]\n\r",
-        pMob->level, pMob->alignment, pMob->hitroll,
-        attack_table[pMob->dam_type].name);
+        mob->level, mob->alignment, mob->hitroll,
+        attack_table[mob->dam_type].name);
 
-    if (pMob->group)
-        printf_to_char (ch, "Group:       [%5d]\n\r", pMob->group);
+    if (mob->group)
+        printf_to_char (ch, "Group:       [%5d]\n\r", mob->group);
 
     printf_to_char (ch, "Hit dice:    [%2dd%-3d+%4d] ",
-        pMob->hit.number, pMob->hit.size, pMob->hit.bonus);
+        mob->hit.number, mob->hit.size, mob->hit.bonus);
 
     printf_to_char (ch, "Damage dice: [%2dd%-3d+%4d] ",
-        pMob->damage.number, pMob->damage.size, pMob->damage.bonus);
+        mob->damage.number, mob->damage.size, mob->damage.bonus);
 
     printf_to_char (ch, "Mana dice:   [%2dd%-3d+%4d]\n\r",
-        pMob->mana.number, pMob->mana.size, pMob->mana.bonus);
+        mob->mana.number, mob->mana.size, mob->mana.bonus);
 
     /* ROM values end */
     printf_to_char (ch, "Affected by: [%s]\n\r",
-        flag_string (affect_flags, pMob->affected_by_final));
+        flag_string (affect_flags, mob->affected_by_final));
 
     /* ROM values: */
     printf_to_char (ch, "Armor:       [pierce: %d  bash: %d  "
                         "slash: %d  magic: %d]\n\r",
-        pMob->ac[AC_PIERCE], pMob->ac[AC_BASH], pMob->ac[AC_SLASH],
-        pMob->ac[AC_EXOTIC]);
+        mob->ac[AC_PIERCE], mob->ac[AC_BASH], mob->ac[AC_SLASH],
+        mob->ac[AC_EXOTIC]);
 
-    printf_to_char (ch, "Form:        [%s]\n\r", flag_string (form_flags, pMob->form_final));
-    printf_to_char (ch, "Parts:       [%s]\n\r", flag_string (part_flags, pMob->parts_final));
-    printf_to_char (ch, "Imm:         [%s]\n\r", flag_string (res_flags, pMob->imm_flags_final));
-    printf_to_char (ch, "Res:         [%s]\n\r", flag_string (res_flags, pMob->res_flags_final));
-    printf_to_char (ch, "Vuln:        [%s]\n\r", flag_string (res_flags, pMob->vuln_flags_final));
-    printf_to_char (ch, "Off:         [%s]\n\r", flag_string (off_flags, pMob->off_flags_final));
-    printf_to_char (ch, "Size:        [%s]\n\r", flag_string (size_types, pMob->size));
-    printf_to_char (ch, "Material:    [%s]\n\r", material_get_name (pMob->material));
-    printf_to_char (ch, "Start pos.   [%s]\n\r", flag_string (position_types, pMob->start_pos));
-    printf_to_char (ch, "Default pos  [%s]\n\r", flag_string (position_types, pMob->default_pos));
-    printf_to_char (ch, "Wealth:      [%5ld]\n\r", pMob->wealth);
+    printf_to_char (ch, "Form:        [%s]\n\r", flag_string (form_flags, mob->form_final));
+    printf_to_char (ch, "Parts:       [%s]\n\r", flag_string (part_flags, mob->parts_final));
+    printf_to_char (ch, "Imm:         [%s]\n\r", flag_string (res_flags, mob->imm_flags_final));
+    printf_to_char (ch, "Res:         [%s]\n\r", flag_string (res_flags, mob->res_flags_final));
+    printf_to_char (ch, "Vuln:        [%s]\n\r", flag_string (res_flags, mob->vuln_flags_final));
+    printf_to_char (ch, "Off:         [%s]\n\r", flag_string (off_flags, mob->off_flags_final));
+    printf_to_char (ch, "Size:        [%s]\n\r", flag_string (size_types, mob->size));
+    printf_to_char (ch, "Material:    [%s]\n\r", material_get_name (mob->material));
+    printf_to_char (ch, "Start pos.   [%s]\n\r", flag_string (position_types, mob->start_pos));
+    printf_to_char (ch, "Default pos  [%s]\n\r", flag_string (position_types, mob->default_pos));
+    printf_to_char (ch, "Wealth:      [%5ld]\n\r", mob->wealth);
 
     /* ROM values end */
-    if (pMob->spec_fun)
+    if (mob->spec_fun)
         printf_to_char (ch, "Spec fun:    [%s]\n\r",
-            spec_function_name (pMob->spec_fun));
+            spec_function_name (mob->spec_fun));
 
     printf_to_char (ch, "Short descr: %s\n\rLong descr:\n\r%s",
-        pMob->short_descr, pMob->long_descr);
+        mob->short_descr, mob->long_descr);
 
-    printf_to_char (ch, "Description:\n\r%s", pMob->description);
+    printf_to_char (ch, "Description:\n\r%s", mob->description);
 
-    if (pMob->shop) {
+    if (mob->shop) {
         SHOP_T *shop;
         int iTrade;
 
-        shop = pMob->shop;
+        shop = mob->shop;
         printf_to_char (ch, "Shop data for [%5d]:\n\r"
                             "  Markup for purchaser: %d%%\n\r"
                             "  Markdown for seller:  %d%%\n\r",
@@ -123,11 +123,11 @@ MEDIT (medit_show) {
         }
     }
 
-    if (pMob->mprogs) {
+    if (mob->mprogs) {
         int cnt;
 
-        printf_to_char (ch, "\n\rMOBPrograms for [%5d]:\n\r", pMob->vnum);
-        for (cnt = 0, list = pMob->mprogs; list; list = list->next) {
+        printf_to_char (ch, "\n\rMOBPrograms for [%5d]:\n\r", mob->vnum);
+        for (cnt = 0, list = mob->mprogs; list; list = list->next) {
             if (cnt == 0) {
                 send_to_char (" Number Vnum Trigger Phrase\n\r", ch);
                 send_to_char (" ------ ---- ------- ------\n\r", ch);
@@ -143,8 +143,8 @@ MEDIT (medit_show) {
 }
 
 MEDIT (medit_create) {
-    MOB_INDEX_T *pMob;
-    AREA_T *pArea;
+    MOB_INDEX_T *mob;
+    AREA_T *area;
     int value;
     int iHash;
 
@@ -152,47 +152,47 @@ MEDIT (medit_create) {
     RETURN_IF (argument[0] == '\0' || value == 0,
         "Syntax: medit create [vnum]\n\r", ch, FALSE);
 
-    pArea = area_get_by_inner_vnum (value);
-    RETURN_IF (!pArea,
+    area = area_get_by_inner_vnum (value);
+    RETURN_IF (!area,
         "MEdit: That vnum is not assigned an area.\n\r", ch, FALSE);
-    RETURN_IF (!IS_BUILDER (ch, pArea),
+    RETURN_IF (!IS_BUILDER (ch, area),
         "MEdit: Vnum in an area you cannot build in.\n\r", ch, FALSE);
     RETURN_IF (get_mob_index (value),
         "MEdit: Mobile vnum already exists.\n\r", ch, FALSE);
 
-    pMob = mob_index_new ();
-    pMob->area = pArea;
-    pMob->vnum = value;
-    pMob->anum = value - pArea->min_vnum;
+    mob = mob_index_new ();
+    mob->area = area;
+    mob->vnum = value;
+    mob->anum = value - area->min_vnum;
 
     if (value > top_vnum_mob)
         top_vnum_mob = value;
 
-    pMob->mob_plus = MOB_IS_NPC;
+    mob->mob_plus = MOB_IS_NPC;
     iHash = value % MAX_KEY_HASH;
-    LIST_FRONT (pMob, next, mob_index_hash[iHash]);
-    ch->desc->pEdit = (void *) pMob;
+    LIST_FRONT (mob, next, mob_index_hash[iHash]);
+    ch->desc->olc_edit = (void *) mob;
 
-    db_finalize_mob (pMob);
+    db_finalize_mob (mob);
 
     send_to_char ("Mobile created.\n\r", ch);
     return TRUE;
 }
 
 MEDIT (medit_spec) {
-    MOB_INDEX_T *pMob;
-    EDIT_MOB (ch, pMob);
+    MOB_INDEX_T *mob;
+    EDIT_MOB (ch, mob);
 
     RETURN_IF (argument[0] == '\0',
         "Syntax: spec [special function]\n\r", ch, FALSE);
 
     if (!str_cmp (argument, "none")) {
-        pMob->spec_fun = NULL;
+        mob->spec_fun = NULL;
         send_to_char ("Spec removed.\n\r", ch);
         return TRUE;
     }
     else if (spec_lookup (argument) >= 0) {
-        pMob->spec_fun = spec_lookup_function (argument);
+        mob->spec_fun = spec_lookup_function (argument);
         send_to_char ("Spec set.\n\r", ch);
         return TRUE;
     }
@@ -202,40 +202,40 @@ MEDIT (medit_spec) {
 }
 
 MEDIT (medit_damtype) {
-    MOB_INDEX_T *pMob;
-    EDIT_MOB (ch, pMob);
+    MOB_INDEX_T *mob;
+    EDIT_MOB (ch, mob);
 
     RETURN_IF (argument[0] == '\0',
         "Syntax: damtype [damage message]\n\r"
         "For a list of damage types, type '? weapon'.\n\r", ch, FALSE);
 
-    pMob->dam_type = attack_lookup (argument);
+    mob->dam_type = attack_lookup (argument);
     send_to_char ("Damage type set.\n\r", ch);
     return TRUE;
 }
 
 MEDIT (medit_align) {
-    MOB_INDEX_T *pMob;
-    EDIT_MOB (ch, pMob);
-    return olc_sh_int_replace (ch, &(pMob->alignment), argument,
+    MOB_INDEX_T *mob;
+    EDIT_MOB (ch, mob);
+    return olc_sh_int_replace (ch, &(mob->alignment), argument,
         "Syntax: alignment [number]\n\r",
         "Alignment set.\n\r");
 }
 
 MEDIT (medit_level) {
-    MOB_INDEX_T *pMob;
-    EDIT_MOB (ch, pMob);
-    return olc_sh_int_replace (ch, &(pMob->level), argument,
+    MOB_INDEX_T *mob;
+    EDIT_MOB (ch, mob);
+    return olc_sh_int_replace (ch, &(mob->level), argument,
         "Syntax: level [number]\n\r",
         "Level set.\n\r");
 }
 
 MEDIT (medit_desc) {
-    MOB_INDEX_T *pMob;
-    EDIT_MOB (ch, pMob);
+    MOB_INDEX_T *mob;
+    EDIT_MOB (ch, mob);
 
     if (argument[0] == '\0') {
-        string_append (ch, &pMob->description);
+        string_append (ch, &mob->description);
         return TRUE;
     }
     send_to_char ("Syntax: desc    - line edit\n\r", ch);
@@ -243,45 +243,45 @@ MEDIT (medit_desc) {
 }
 
 MEDIT (medit_long) {
-    MOB_INDEX_T *pMob;
-    EDIT_MOB (ch, pMob);
+    MOB_INDEX_T *mob;
+    EDIT_MOB (ch, mob);
 
     RETURN_IF (argument[0] == '\0',
         "Syntax: long [string]\n\r", ch, FALSE);
 
     strcat (argument, "\n\r");
     argument[0] = UPPER (argument[0]);
-    str_replace_dup (&(pMob->long_descr), argument);
+    str_replace_dup (&(mob->long_descr), argument);
 
     send_to_char ("Long description set.\n\r", ch);
     return TRUE;
 }
 
 MEDIT (medit_short) {
-    MOB_INDEX_T *pMob;
-    EDIT_MOB (ch, pMob);
-    return olc_str_replace_dup (ch, &(pMob->short_descr), argument,
+    MOB_INDEX_T *mob;
+    EDIT_MOB (ch, mob);
+    return olc_str_replace_dup (ch, &(mob->short_descr), argument,
         "Syntax: short [string]\n\r",
         "Short description set.\n\r");
 }
 
 MEDIT (medit_name) {
-    MOB_INDEX_T *pMob;
-    EDIT_MOB (ch, pMob);
-    return olc_str_replace_dup (ch, &(pMob->name), argument,
+    MOB_INDEX_T *mob;
+    EDIT_MOB (ch, mob);
+    return olc_str_replace_dup (ch, &(mob->name), argument,
         "Syntax: name [string]\n\r",
         "Name set.\n\r");
 }
 
 MEDIT (medit_shop) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     char command[MAX_INPUT_LENGTH];
     char arg1[MAX_INPUT_LENGTH];
 
     argument = one_argument (argument, command);
     argument = one_argument (argument, arg1);
 
-    EDIT_MOB (ch, pMob);
+    EDIT_MOB (ch, mob);
 
     RETURN_IF (command[0] == '\0',
         "Syntax: shop hours [#xopening] [#xclosing]\n\r"
@@ -294,11 +294,11 @@ MEDIT (medit_shop) {
         RETURN_IF (arg1[0] == '\0' || !is_number (arg1) ||
                    argument[0] == '\0' || !is_number (argument),
             "Syntax: shop hours [#xopening] [#xclosing]\n\r", ch, FALSE);
-        RETURN_IF (!pMob->shop,
+        RETURN_IF (!mob->shop,
             "MEdit: You must create the shop first (shop assign).\n\r", ch, FALSE);
 
-        pMob->shop->open_hour  = atoi (arg1);
-        pMob->shop->close_hour = atoi (argument);
+        mob->shop->open_hour  = atoi (arg1);
+        mob->shop->close_hour = atoi (argument);
 
         send_to_char ("Shop hours set.\n\r", ch);
         return TRUE;
@@ -308,11 +308,11 @@ MEDIT (medit_shop) {
         RETURN_IF (arg1[0] == '\0' || !is_number (arg1) ||
                    argument[0] == '\0' || !is_number (argument),
             "Syntax: shop profit [#xbuying%] [#xselling%]\n\r", ch, FALSE);
-        RETURN_IF (!pMob->shop,
+        RETURN_IF (!mob->shop,
             "MEdit: You must create the shop first (shop assign).\n\r", ch, FALSE);
 
-        pMob->shop->profit_buy = atoi (arg1);
-        pMob->shop->profit_sell = atoi (argument);
+        mob->shop->profit_buy = atoi (arg1);
+        mob->shop->profit_sell = atoi (argument);
 
         send_to_char ("Shop profit set.\n\r", ch);
         return TRUE;
@@ -327,11 +327,11 @@ MEDIT (medit_shop) {
             printf_to_char (ch, "MEdit:  May sell %d items max.\n\r", MAX_TRADE);
             return FALSE;
         }
-        RETURN_IF (!pMob->shop,
+        RETURN_IF (!mob->shop,
             "MEdit: You must create the shop first (shop assign).\n\r", ch, FALSE);
         RETURN_IF ((value = item_lookup (argument)) < 0,
             "MEdit: That type of item is not known.\n\r", ch, FALSE);
-        pMob->shop->buy_type[atoi (arg1)] = value;
+        mob->shop->buy_type[atoi (arg1)] = value;
 
         send_to_char ("Shop type set.\n\r", ch);
         return TRUE;
@@ -339,22 +339,22 @@ MEDIT (medit_shop) {
 
     /* shop assign && shop delete by Phoenix */
     if (!str_prefix (command, "assign")) {
-        RETURN_IF (pMob->shop,
+        RETURN_IF (mob->shop,
             "Mob already has a shop assigned to it.\n\r", ch, FALSE);
 
-        pMob->shop = shop_new ();
-        LISTB_BACK (pMob->shop, next, shop_first, shop_last);
-        pMob->shop->keeper = pMob->vnum;
+        mob->shop = shop_new ();
+        LISTB_BACK (mob->shop, next, shop_first, shop_last);
+        mob->shop->keeper = mob->vnum;
 
         send_to_char ("New shop assigned to mobile.\n\r", ch);
         return TRUE;
     }
 
     if (!str_prefix (command, "remove")) {
-        LISTB_REMOVE (pMob->shop, next, shop_first, shop_last,
+        LISTB_REMOVE (mob->shop, next, shop_first, shop_last,
             SHOP_T, NO_FAIL);
-        shop_free (pMob->shop);
-        pMob->shop = NULL;
+        shop_free (mob->shop);
+        mob->shop = NULL;
 
         send_to_char ("Mobile is no longer a shopkeeper.\n\r", ch);
         return TRUE;
@@ -367,13 +367,13 @@ MEDIT (medit_shop) {
 /* ROM medit functions: */
 /* Moved out of medit() due to naming conflicts -- Hugin */
 MEDIT (medit_sex) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     int value;
 
     if (argument[0] != '\0') {
-        EDIT_MOB (ch, pMob);
+        EDIT_MOB (ch, mob);
         if ((value = flag_value (sex_types, argument)) != NO_FLAG) {
-            pMob->sex = value;
+            mob->sex = value;
             send_to_char ("Sex set.\n\r", ch);
             return TRUE;
         }
@@ -385,16 +385,16 @@ MEDIT (medit_sex) {
 
 /* Moved out of medit() due to naming conflicts -- Hugin */
 MEDIT (medit_act) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     int value;
 
     if (argument[0] != '\0') {
-        EDIT_MOB (ch, pMob);
+        EDIT_MOB (ch, mob);
         if ((value = flag_value (mob_flags, argument)) != NO_FLAG) {
-            TOGGLE_BIT (pMob->mob_final, value);
-            SET_BIT (pMob->mob_final, MOB_IS_NPC);
-            pMob->mob_plus  = MISSING_BITS (pMob->mob_final, race_table[pMob->race].mob);
-            pMob->mob_minus = MISSING_BITS (race_table[pMob->race].mob, pMob->mob_final);
+            TOGGLE_BIT (mob->mob_final, value);
+            SET_BIT (mob->mob_final, MOB_IS_NPC);
+            mob->mob_plus  = MISSING_BITS (mob->mob_final, race_table[mob->race].mob);
+            mob->mob_minus = MISSING_BITS (race_table[mob->race].mob, mob->mob_final);
 
             send_to_char ("Mob flag toggled.\n\r", ch);
             return TRUE;
@@ -407,15 +407,15 @@ MEDIT (medit_act) {
 
 /* Moved out of medit() due to naming conflicts -- Hugin */
 MEDIT (medit_affect) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     int value;
 
     if (argument[0] != '\0') {
-        EDIT_MOB (ch, pMob);
+        EDIT_MOB (ch, mob);
         if ((value = flag_value (affect_flags, argument)) != NO_FLAG) {
-            TOGGLE_BIT (pMob->affected_by_final, value);
-            pMob->affected_by_plus  = MISSING_BITS (pMob->affected_by_final, race_table[pMob->race].aff);
-            pMob->affected_by_minus = MISSING_BITS (race_table[pMob->race].aff, pMob->affected_by_final);
+            TOGGLE_BIT (mob->affected_by_final, value);
+            mob->affected_by_plus  = MISSING_BITS (mob->affected_by_final, race_table[mob->race].aff);
+            mob->affected_by_minus = MISSING_BITS (race_table[mob->race].aff, mob->affected_by_final);
 
             send_to_char ("Affect flag toggled.\n\r", ch);
             return TRUE;
@@ -427,7 +427,7 @@ MEDIT (medit_affect) {
 }
 
 MEDIT (medit_ac) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     char arg[MAX_INPUT_LENGTH];
     int pierce, bash, slash, exotic;
 
@@ -435,7 +435,7 @@ MEDIT (medit_ac) {
     do {
         if (argument[0] == '\0')
             break;
-        EDIT_MOB (ch, pMob);
+        EDIT_MOB (ch, mob);
 
         argument = one_argument (argument, arg);
         if (!is_number (arg))
@@ -450,7 +450,7 @@ MEDIT (medit_ac) {
             argument = one_argument (argument, arg);
         }
         else
-            bash = pMob->ac[AC_BASH];
+            bash = mob->ac[AC_BASH];
 
         if (arg[0] != '\0') {
             if (!is_number (arg))
@@ -459,7 +459,7 @@ MEDIT (medit_ac) {
             argument = one_argument (argument, arg);
         }
         else
-            slash = pMob->ac[AC_SLASH];
+            slash = mob->ac[AC_SLASH];
 
         if (arg[0] != '\0') {
             if (!is_number (arg))
@@ -467,12 +467,12 @@ MEDIT (medit_ac) {
             exotic = atoi (arg);
         }
         else
-            exotic = pMob->ac[AC_EXOTIC];
+            exotic = mob->ac[AC_EXOTIC];
 
-        pMob->ac[AC_PIERCE] = pierce;
-        pMob->ac[AC_BASH]   = bash;
-        pMob->ac[AC_SLASH]  = slash;
-        pMob->ac[AC_EXOTIC] = exotic;
+        mob->ac[AC_PIERCE] = pierce;
+        mob->ac[AC_BASH]   = bash;
+        mob->ac[AC_SLASH]  = slash;
+        mob->ac[AC_EXOTIC] = exotic;
 
         send_to_char ("Ac set.\n\r", ch);
         return TRUE;
@@ -486,15 +486,15 @@ MEDIT (medit_ac) {
 }
 
 MEDIT (medit_form) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     int value;
 
     if (argument[0] != '\0') {
-        EDIT_MOB (ch, pMob);
+        EDIT_MOB (ch, mob);
         if ((value = flag_value (form_flags, argument)) != NO_FLAG) {
-            TOGGLE_BIT (pMob->form_plus, value);
-            pMob->form_plus  = MISSING_BITS (pMob->form_final, race_table[pMob->race].form);
-            pMob->form_minus = MISSING_BITS (race_table[pMob->race].form, pMob->form_final);
+            TOGGLE_BIT (mob->form_plus, value);
+            mob->form_plus  = MISSING_BITS (mob->form_final, race_table[mob->race].form);
+            mob->form_minus = MISSING_BITS (race_table[mob->race].form, mob->form_final);
 
             send_to_char ("Form toggled.\n\r", ch);
             return TRUE;
@@ -506,15 +506,15 @@ MEDIT (medit_form) {
 }
 
 MEDIT (medit_part) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     int value;
 
     if (argument[0] != '\0') {
-        EDIT_MOB (ch, pMob);
+        EDIT_MOB (ch, mob);
         if ((value = flag_value (part_flags, argument)) != NO_FLAG) {
-            TOGGLE_BIT (pMob->parts_plus, value);
-            pMob->parts_plus  = MISSING_BITS (pMob->parts_final, race_table[pMob->race].parts);
-            pMob->parts_minus = MISSING_BITS (race_table[pMob->race].parts, pMob->parts_final);
+            TOGGLE_BIT (mob->parts_plus, value);
+            mob->parts_plus  = MISSING_BITS (mob->parts_final, race_table[mob->race].parts);
+            mob->parts_minus = MISSING_BITS (race_table[mob->race].parts, mob->parts_final);
 
             send_to_char ("Parts toggled.\n\r", ch);
             return TRUE;
@@ -526,15 +526,15 @@ MEDIT (medit_part) {
 }
 
 MEDIT (medit_imm) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     int value;
 
     if (argument[0] != '\0') {
-        EDIT_MOB (ch, pMob);
+        EDIT_MOB (ch, mob);
         if ((value = flag_value (res_flags, argument)) != NO_FLAG) {
-            TOGGLE_BIT (pMob->imm_flags_plus, value);
-            pMob->imm_flags_plus  = MISSING_BITS (pMob->imm_flags_final, race_table[pMob->race].imm);
-            pMob->imm_flags_minus = MISSING_BITS (race_table[pMob->race].imm, pMob->imm_flags_final);
+            TOGGLE_BIT (mob->imm_flags_plus, value);
+            mob->imm_flags_plus  = MISSING_BITS (mob->imm_flags_final, race_table[mob->race].imm);
+            mob->imm_flags_minus = MISSING_BITS (race_table[mob->race].imm, mob->imm_flags_final);
 
             send_to_char ("Immunity toggled.\n\r", ch);
             return TRUE;
@@ -546,15 +546,15 @@ MEDIT (medit_imm) {
 }
 
 MEDIT (medit_res) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     int value;
 
     if (argument[0] != '\0') {
-        EDIT_MOB (ch, pMob);
+        EDIT_MOB (ch, mob);
         if ((value = flag_value (res_flags, argument)) != NO_FLAG) {
-            TOGGLE_BIT (pMob->res_flags_plus, value);
-            pMob->res_flags_plus  = MISSING_BITS (pMob->res_flags_final, race_table[pMob->race].res);
-            pMob->res_flags_minus = MISSING_BITS (race_table[pMob->race].res, pMob->res_flags_final);
+            TOGGLE_BIT (mob->res_flags_plus, value);
+            mob->res_flags_plus  = MISSING_BITS (mob->res_flags_final, race_table[mob->race].res);
+            mob->res_flags_minus = MISSING_BITS (race_table[mob->race].res, mob->res_flags_final);
 
             send_to_char ("Resistance toggled.\n\r", ch);
             return TRUE;
@@ -566,15 +566,15 @@ MEDIT (medit_res) {
 }
 
 MEDIT (medit_vuln) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     int value;
 
     if (argument[0] != '\0') {
-        EDIT_MOB (ch, pMob);
+        EDIT_MOB (ch, mob);
         if ((value = flag_value (res_flags, argument)) != NO_FLAG) {
-            TOGGLE_BIT (pMob->vuln_flags_plus, value);
-            pMob->vuln_flags_plus  = MISSING_BITS (pMob->vuln_flags_final, race_table[pMob->race].vuln);
-            pMob->vuln_flags_minus = MISSING_BITS (race_table[pMob->race].vuln, pMob->vuln_flags_final);
+            TOGGLE_BIT (mob->vuln_flags_plus, value);
+            mob->vuln_flags_plus  = MISSING_BITS (mob->vuln_flags_final, race_table[mob->race].vuln);
+            mob->vuln_flags_minus = MISSING_BITS (race_table[mob->race].vuln, mob->vuln_flags_final);
 
             send_to_char ("Vulnerability toggled.\n\r", ch);
             return TRUE;
@@ -586,13 +586,13 @@ MEDIT (medit_vuln) {
 }
 
 MEDIT (medit_material) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     const MATERIAL_T *mat;
 
     if (argument[0] != '\0') {
-        EDIT_MOB (ch, pMob);
+        EDIT_MOB (ch, mob);
         if ((mat = material_get_by_name (argument)) != NULL) {
-            pMob->material = mat->type;
+            mob->material = mat->type;
             send_to_char ("Material type changed.\n\r", ch);
             return TRUE;
         }
@@ -602,15 +602,15 @@ MEDIT (medit_material) {
 }
 
 MEDIT (medit_off) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     int value;
 
     if (argument[0] != '\0') {
-        EDIT_MOB (ch, pMob);
+        EDIT_MOB (ch, mob);
         if ((value = flag_value (off_flags, argument)) != NO_FLAG) {
-            TOGGLE_BIT (pMob->off_flags_plus, value);
-            pMob->off_flags_plus  = MISSING_BITS (pMob->off_flags_final, race_table[pMob->race].off);
-            pMob->off_flags_minus = MISSING_BITS (race_table[pMob->race].off, pMob->off_flags_final);
+            TOGGLE_BIT (mob->off_flags_plus, value);
+            mob->off_flags_plus  = MISSING_BITS (mob->off_flags_final, race_table[mob->race].off);
+            mob->off_flags_minus = MISSING_BITS (race_table[mob->race].off, mob->off_flags_final);
 
             send_to_char ("Offensive behaviour toggled.\n\r", ch);
             return TRUE;
@@ -622,13 +622,13 @@ MEDIT (medit_off) {
 }
 
 MEDIT (medit_size) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     int value;
 
     if (argument[0] != '\0') {
-        EDIT_MOB (ch, pMob);
+        EDIT_MOB (ch, mob);
         if ((value = flag_value (size_types, argument)) != NO_FLAG) {
-            pMob->size = value;
+            mob->size = value;
             send_to_char ("Size set.\n\r", ch);
             return TRUE;
         }
@@ -642,9 +642,9 @@ MEDIT (medit_hitdice) {
     static const char *syntax =
         "Syntax: hitdice <number> d <type> + <bonus>\n\r";
     char *num, *type, *bonus, *cp;
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
 
-    EDIT_MOB (ch, pMob);
+    EDIT_MOB (ch, mob);
     RETURN_IF (argument[0] == '\0', syntax, ch, FALSE);
 
     num = cp = argument;
@@ -670,9 +670,9 @@ MEDIT (medit_hitdice) {
                (!is_number (bonus) || atoi (bonus) < 0),
         syntax, ch, FALSE);
 
-    pMob->hit.number = atoi (num);
-    pMob->hit.size   = atoi (type);
-    pMob->hit.bonus  = atoi (bonus);
+    mob->hit.number = atoi (num);
+    mob->hit.size   = atoi (type);
+    mob->hit.bonus  = atoi (bonus);
 
     send_to_char ("Hitdice set.\n\r", ch);
     return TRUE;
@@ -682,9 +682,9 @@ MEDIT (medit_manadice) {
     static const char *syntax =
         "Syntax: manadice <number> d <type> + <bonus>\n\r";
     char *num, *type, *bonus, *cp;
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
 
-    EDIT_MOB (ch, pMob);
+    EDIT_MOB (ch, mob);
     RETURN_IF (argument[0] == '\0', syntax, ch, FALSE);
 
     num = cp = argument;
@@ -713,9 +713,9 @@ MEDIT (medit_manadice) {
                (!is_number (bonus) || atoi (bonus) < 0),
         syntax, ch, FALSE);
 
-    pMob->mana.number = atoi (num);
-    pMob->mana.size   = atoi (type);
-    pMob->mana.bonus  = atoi (bonus);
+    mob->mana.number = atoi (num);
+    mob->mana.size   = atoi (type);
+    mob->mana.bonus  = atoi (bonus);
 
     send_to_char ("Manadice set.\n\r", ch);
     return TRUE;
@@ -725,9 +725,9 @@ MEDIT (medit_damdice) {
     static const char *syntax =
         "Syntax: damdice <number> d <type> + <bonus>\n\r";
     char *num, *type, *bonus, *cp;
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
 
-    EDIT_MOB (ch, pMob);
+    EDIT_MOB (ch, mob);
     RETURN_IF (argument[0] == '\0',
         syntax, ch, FALSE);
 
@@ -757,22 +757,22 @@ MEDIT (medit_damdice) {
                (!is_number (bonus) || atoi (bonus) < 0),
         syntax, ch, FALSE);
 
-    pMob->damage.number = atoi (num);
-    pMob->damage.size   = atoi (type);
-    pMob->damage.bonus  = atoi (bonus);
+    mob->damage.number = atoi (num);
+    mob->damage.size   = atoi (type);
+    mob->damage.bonus  = atoi (bonus);
 
     send_to_char ("Damdice set.\n\r", ch);
     return TRUE;
 }
 
 MEDIT (medit_race) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     int race;
 
     if (argument[0] != '\0' && (race = race_lookup (argument)) >= 0) {
-        EDIT_MOB (ch, pMob);
-        pMob->race = race;
-        db_finalize_mob (pMob);
+        EDIT_MOB (ch, mob);
+        mob->race = race;
+        db_finalize_mob (mob);
 
         send_to_char ("Race set.\n\r", ch);
         return TRUE;
@@ -796,7 +796,7 @@ MEDIT (medit_race) {
 }
 
 MEDIT (medit_position) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     char arg[MAX_INPUT_LENGTH];
     int value;
 
@@ -812,8 +812,8 @@ MEDIT (medit_position) {
             if ((value = flag_value (position_types, argument)) == NO_FLAG)
                 break;
 
-            EDIT_MOB (ch, pMob);
-            pMob->start_pos = value;
+            EDIT_MOB (ch, mob);
+            mob->start_pos = value;
             send_to_char ("Start position set.\n\r", ch);
             return TRUE;
 
@@ -824,8 +824,8 @@ MEDIT (medit_position) {
             if ((value = flag_value (position_types, argument)) == NO_FLAG)
                 break;
 
-            EDIT_MOB (ch, pMob);
-            pMob->default_pos = value;
+            EDIT_MOB (ch, mob);
+            mob->default_pos = value;
             send_to_char ("Default position set.\n\r", ch);
             return TRUE;
     }
@@ -836,23 +836,23 @@ MEDIT (medit_position) {
 }
 
 MEDIT (medit_gold) {
-    MOB_INDEX_T *pMob;
-    EDIT_MOB (ch, pMob);
-    return olc_long_int_replace (ch, &(pMob->wealth), argument,
+    MOB_INDEX_T *mob;
+    EDIT_MOB (ch, mob);
+    return olc_long_int_replace (ch, &(mob->wealth), argument,
         "Syntax: wealth [number]\n\r",
         "Wealth set.\n\r");
 }
 
 MEDIT (medit_hitroll) {
-    MOB_INDEX_T *pMob;
-    EDIT_MOB (ch, pMob);
-    return olc_sh_int_replace (ch, &(pMob->hitroll), argument,
+    MOB_INDEX_T *mob;
+    EDIT_MOB (ch, mob);
+    return olc_sh_int_replace (ch, &(mob->hitroll), argument,
         "Syntax: hitroll [number]\n\r",
         "Hitroll set.\n\r");
 }
 
 MEDIT (medit_group) {
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     MOB_INDEX_T *pMTemp;
     char arg[MAX_STRING_LENGTH];
     char buf[MAX_STRING_LENGTH];
@@ -860,13 +860,13 @@ MEDIT (medit_group) {
     BUFFER_T *buffer;
     bool found = FALSE;
 
-    EDIT_MOB (ch, pMob);
+    EDIT_MOB (ch, mob);
     RETURN_IF (argument[0] == '\0',
         "Syntax: group [number]\n\r"
         "        group show [number]\n\r", ch, FALSE);
 
     if (is_number (argument)) {
-        pMob->group = atoi (argument);
+        mob->group = atoi (argument);
         send_to_char ("Group set.\n\r", ch);
         return TRUE;
     }
@@ -899,7 +899,7 @@ MEDIT (medit_group) {
 
 MEDIT (medit_addmprog) {
     int value, vnum;
-    MOB_INDEX_T *pMob;
+    MOB_INDEX_T *mob;
     MPROG_LIST_T *list;
     MPROG_CODE_T *code;
     AREA_T *area;
@@ -907,7 +907,7 @@ MEDIT (medit_addmprog) {
     char phrase[MAX_STRING_LENGTH];
     char num[MAX_STRING_LENGTH];
 
-    EDIT_MOB (ch, pMob);
+    EDIT_MOB (ch, mob);
     argument = one_argument (argument, num);
     argument = one_argument (argument, trigger);
     argument = one_argument (argument, phrase);
@@ -935,21 +935,21 @@ MEDIT (medit_addmprog) {
     list->trig_type = value;
     list->trig_phrase = str_dup (phrase);
     list->code = code->code;
-    SET_BIT (pMob->mprog_flags, value);
-    LIST_FRONT (list, next, pMob->mprogs);
+    SET_BIT (mob->mprog_flags, value);
+    LIST_FRONT (list, next, mob->mprogs);
 
     send_to_char ("Mob program created.\n\r", ch);
     return TRUE;
 }
 
 MEDIT (medit_delmprog) {
-    MOB_INDEX_T *pMob;
-    MPROG_LIST_T *pList, *pList_prev;
+    MOB_INDEX_T *mob;
+    MPROG_LIST_T *mplist, *mplist_prev;
     char mprog[MAX_STRING_LENGTH];
     int value;
     int cnt = 0;
 
-    EDIT_MOB (ch, pMob);
+    EDIT_MOB (ch, mob);
     one_argument (argument, mprog);
 
     RETURN_IF (!is_number (mprog) || mprog[0] == '\0',
@@ -960,14 +960,14 @@ MEDIT (medit_delmprog) {
         "Only non-negative mprog-numbers allowed.\n\r", ch, FALSE);
 
     /* Find the affect and its previous link in the list. */
-    LIST_FIND_WITH_PREV (value >= cnt++, next, pMob->mprogs,
-        pList, pList_prev);
-    RETURN_IF (!pList,
+    LIST_FIND_WITH_PREV (value >= cnt++, next, mob->mprogs,
+        mplist, mplist_prev);
+    RETURN_IF (!mplist,
         "MEdit: Non-existant mob program.\n\r", ch, FALSE);
 
-    LIST_REMOVE_WITH_PREV (pList, pList_prev, next, pMob->mprogs);
-    REMOVE_BIT (pMob->mprog_flags, pList->trig_type);
-    mprog_free (pList);
+    LIST_REMOVE_WITH_PREV (mplist, mplist_prev, next, mob->mprogs);
+    REMOVE_BIT (mob->mprog_flags, mplist->trig_type);
+    mprog_free (mplist);
 
     send_to_char ("Mob program removed.\n\r", ch);
     return TRUE;

@@ -611,23 +611,23 @@ void char_to_room (CHAR_T *ch, ROOM_INDEX_T *room_index) {
 }
 
 /* Find a piece of eq on a character. */
-OBJ_T *char_get_eq_by_wear_loc (CHAR_T *ch, flag_t iWear) {
+OBJ_T *char_get_eq_by_wear_loc (CHAR_T *ch, flag_t wear_loc) {
     OBJ_T *obj;
     if (ch == NULL)
         return NULL;
     for (obj = ch->carrying; obj != NULL; obj = obj->next_content)
-        if (obj->wear_loc == iWear)
+        if (obj->wear_loc == wear_loc)
             return obj;
     return NULL;
 }
 
 /* Equip a char with an obj. */
-bool char_equip_obj (CHAR_T *ch, OBJ_T *obj, flag_t iWear) {
+bool char_equip_obj (CHAR_T *ch, OBJ_T *obj, flag_t wear_loc) {
     AFFECT_T *paf;
     int i;
 
-    RETURN_IF_BUG (char_get_eq_by_wear_loc (ch, iWear) != NULL,
-        "char_equip_obj: already equipped (%d).", iWear, FALSE);
+    RETURN_IF_BUG (char_get_eq_by_wear_loc (ch, wear_loc) != NULL,
+        "char_equip_obj: already equipped (%d).", wear_loc, FALSE);
 
     if ((IS_OBJ_STAT (obj, ITEM_ANTI_EVIL)    && IS_EVIL (ch)) ||
         (IS_OBJ_STAT (obj, ITEM_ANTI_GOOD)    && IS_GOOD (ch)) ||
@@ -642,8 +642,8 @@ bool char_equip_obj (CHAR_T *ch, OBJ_T *obj, flag_t iWear) {
     }
 
     for (i = 0; i < 4; i++)
-        ch->armor[i] -= obj_get_ac_type (obj, iWear, i);
-    obj->wear_loc = iWear;
+        ch->armor[i] -= obj_get_ac_type (obj, wear_loc, i);
+    obj->wear_loc = wear_loc;
 
     if (!obj->enchanted) {
         for (paf = obj->index_data->affected; paf != NULL; paf = paf->next)
@@ -1247,7 +1247,7 @@ char *char_format_to_char (CHAR_T *victim, CHAR_T *ch) {
 void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
     char buf[MAX_STRING_LENGTH], *msg;
     OBJ_T *obj;
-    flag_t iWear;
+    flag_t wear_loc;
     int percent;
     bool found;
 
@@ -1289,8 +1289,8 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
     send_to_char (buf, ch);
 
     found = FALSE;
-    for (iWear = 0; iWear < WEAR_LOC_MAX; iWear++) {
-        if ((obj = char_get_eq_by_wear_loc (victim, iWear)) != NULL
+    for (wear_loc = 0; wear_loc < WEAR_LOC_MAX; wear_loc++) {
+        if ((obj = char_get_eq_by_wear_loc (victim, wear_loc)) != NULL
             && char_can_see_obj (ch, obj))
         {
             if (!found) {
@@ -1298,7 +1298,7 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
                 act ("$N is using:", ch, NULL, victim, TO_CHAR);
                 found = TRUE;
             }
-            send_to_char (wear_loc_table[iWear].look_msg, ch);
+            send_to_char (wear_loc_table[wear_loc].look_msg, ch);
             send_to_char (obj_format_to_char (obj, ch, TRUE), ch);
             send_to_char ("\n\r", ch);
         }
@@ -1455,10 +1455,10 @@ void char_take_obj (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
 }
 
 /* Remove an object. */
-bool char_remove_obj (CHAR_T *ch, flag_t iWear, bool replace, bool quiet) {
+bool char_remove_obj (CHAR_T *ch, flag_t wear_loc, bool replace, bool quiet) {
     OBJ_T *obj;
 
-    if ((obj = char_get_eq_by_wear_loc (ch, iWear)) == NULL)
+    if ((obj = char_get_eq_by_wear_loc (ch, wear_loc)) == NULL)
         return TRUE;
     if (!replace)
         return FALSE;

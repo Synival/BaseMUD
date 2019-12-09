@@ -184,17 +184,18 @@ void game_loop_mac_msdos (void) {
         dcon.connected = CON_GET_NAME;
     else
         dcon.connected = CON_ANSI;
-    dcon.ansi = mud_ansicolor;
-    dcon.host = str_dup ("localhost");
-    dcon.outsize = 2000;
-    dcon.outbuf = mem_alloc (dcon.outsize);
-    dcon.next = descriptor_list;
-    dcon.showstr_head = NULL;
+
+    dcon.ansi          = mud_ansicolor;
+    dcon.host          = str_dup ("localhost");
+    dcon.outsize       = 2000;
+    dcon.outbuf        = mem_alloc (dcon.outsize);
+    dcon.next          = descriptor_list;
+    dcon.showstr_head  = NULL;
     dcon.showstr_point = NULL;
-    dcon.pEdit = NULL;            /* OLC */
-    dcon.pString = NULL;        /* OLC */
-    dcon.editor = 0;            /* OLC */
-    descriptor_list = &dcon;
+    dcon.olc_edit      = NULL; /* OLC */
+    dcon.string_edit   = NULL; /* OLC */
+    dcon.editor        = 0;    /* OLC */
+    descriptor_list    = &dcon;
 
     /* First Contact! */
     if (!mud_ansiprompt) {
@@ -244,7 +245,7 @@ void game_loop_mac_msdos (void) {
                     d->lines_written = 0;
                     show_page (d);
                 }
-                else if (d->pString)
+                else if (d->string_edit)
                     string_add (d->character, d->incomm);
                 else {
                     switch (d->connected) {
@@ -401,7 +402,7 @@ void game_loop_unix (int control) {
                     d->lines_written = 0;
                     show_page (d);
                 }
-                else if (d->pString)
+                else if (d->string_edit)
                     string_add (d->character, d->incomm);
                 else {
                     switch (d->connected) {

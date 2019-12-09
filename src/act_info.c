@@ -112,7 +112,7 @@ void do_scan_real (CHAR_T *ch, char *argument, int max_depth) {
     char arg1[MAX_INPUT_LENGTH], buf[MAX_INPUT_LENGTH];
     int min_depth, i;
     ROOM_INDEX_T *scan_room;
-    EXIT_T *pExit;
+    EXIT_T *ex;
     sh_int door, depth;
 
     argument = one_argument (argument, arg1);
@@ -145,11 +145,11 @@ void do_scan_real (CHAR_T *ch, char *argument, int max_depth) {
         for (depth = 1; depth <= max_depth; depth++) {
             if (depth < min_depth)
                 continue;
-            if ((pExit = scan_room->exit[i]) == NULL)
+            if ((ex = scan_room->exit[i]) == NULL)
                 break;
-            if (IS_SET (pExit->exit_flags, EX_CLOSED))
+            if (IS_SET (ex->exit_flags, EX_CLOSED))
                 break;
-            if ((scan_room = pExit->to_room) == NULL)
+            if ((scan_room = ex->to_room) == NULL)
                 break;
             if (!char_can_see_room (ch, scan_room))
                 break;
@@ -697,7 +697,7 @@ DEFINE_DO_FUN (do_weather) {
 }
 
 DEFINE_DO_FUN (do_help) {
-    HELP_T *pHelp;
+    HELP_T *help;
     BUFFER_T *output;
     bool found = FALSE;
     char argall[MAX_INPUT_LENGTH], argone[MAX_INPUT_LENGTH];
@@ -716,26 +716,26 @@ DEFINE_DO_FUN (do_help) {
         strcat (argall, argone);
     }
 
-    for (pHelp = help_first; pHelp != NULL; pHelp = pHelp->next) {
-        level = (pHelp->level < 0) ? -1 * pHelp->level - 1 : pHelp->level;
+    for (help = help_first; help != NULL; help = help->next) {
+        level = (help->level < 0) ? -1 * help->level - 1 : help->level;
         if (level > char_get_trust (ch))
             continue;
 
-        if (is_name (argall, pHelp->keyword)) {
+        if (is_name (argall, help->keyword)) {
             /* add seperator if found */
             if (found)
                 add_buf (output,
                     "\n\r============================================================\n\r\n\r");
-            if (pHelp->level >= 0 && str_cmp (argall, "imotd")) {
-                add_buf (output, pHelp->keyword);
+            if (help->level >= 0 && str_cmp (argall, "imotd")) {
+                add_buf (output, help->keyword);
                 add_buf (output, "\n\r");
             }
 
             /* Strip leading '.' to allow initial blanks. */
-            if (pHelp->text[0] == '.')
-                add_buf (output, pHelp->text + 1);
+            if (help->text[0] == '.')
+                add_buf (output, help->text + 1);
             else
-                add_buf (output, pHelp->text);
+                add_buf (output, help->text);
             found = TRUE;
 
             /* small hack :) */
@@ -956,15 +956,15 @@ DEFINE_DO_FUN (do_inventory) {
 DEFINE_DO_FUN (do_equipment) {
     const WEAR_LOC_T *wear;
     OBJ_T *obj;
-    int iWear;
+    int wear_loc;
     bool found;
 
     send_to_char ("You are using:\n\r", ch);
     found = FALSE;
-    for (iWear = 0; iWear < WEAR_LOC_MAX; iWear++) {
-        if ((obj = char_get_eq_by_wear_loc (ch, iWear)) == NULL)
+    for (wear_loc = 0; wear_loc < WEAR_LOC_MAX; wear_loc++) {
+        if ((obj = char_get_eq_by_wear_loc (ch, wear_loc)) == NULL)
             continue;
-        if ((wear = wear_loc_get (iWear)) == NULL)
+        if ((wear = wear_loc_get (wear_loc)) == NULL)
             continue;
 
         send_to_char (wear->look_msg, ch);
@@ -1175,8 +1175,8 @@ DEFINE_DO_FUN (do_commands) {
 
 DEFINE_DO_FUN (do_areas) {
     char buf[MAX_STRING_LENGTH];
-    AREA_T *pArea1;
-    AREA_T *pArea2;
+    AREA_T *area1;
+    AREA_T *area2;
     int iArea;
     int iAreaHalf;
 
@@ -1184,18 +1184,18 @@ DEFINE_DO_FUN (do_areas) {
         "No argument is used with this command.\n\r", ch);
 
     iAreaHalf = (TOP(RECYCLE_AREA_T) + 1) / 2;
-    pArea1 = area_first;
-    pArea2 = area_first;
+    area1 = area_first;
+    area2 = area_first;
     for (iArea = 0; iArea < iAreaHalf; iArea++)
-        pArea2 = pArea2->next;
+        area2 = area2->next;
 
     for (iArea = 0; iArea < iAreaHalf; iArea++) {
         sprintf (buf, "%-39s%-39s\n\r",
-                 pArea1->credits, (pArea2 != NULL) ? pArea2->credits : "");
+                 area1->credits, (area2 != NULL) ? area2->credits : "");
         send_to_char_bw (buf, ch);
-        pArea1 = pArea1->next;
-        if (pArea2 != NULL)
-            pArea2 = pArea2->next;
+        area1 = area1->next;
+        if (area2 != NULL)
+            area2 = area2->next;
     }
 }
 

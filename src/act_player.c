@@ -148,7 +148,7 @@ DEFINE_DO_FUN (do_save) {
 DEFINE_DO_FUN (do_password) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    char *pArg;
+    char *arg;
     char *pwdnew;
     char *p;
     char cEnd;
@@ -158,7 +158,7 @@ DEFINE_DO_FUN (do_password) {
 
     /* Can't use one_argument here because it smashes case.
      * So we just steal all its code. Bleagh. */
-    pArg = arg1;
+    arg = arg1;
     while (isspace (*argument))
         argument++;
 
@@ -171,11 +171,11 @@ DEFINE_DO_FUN (do_password) {
             argument++;
             break;
         }
-        *pArg++ = *argument++;
+        *arg++ = *argument++;
     }
-    *pArg = '\0';
+    *arg = '\0';
 
-    pArg = arg2;
+    arg = arg2;
     while (isspace (*argument))
         argument++;
 
@@ -188,9 +188,9 @@ DEFINE_DO_FUN (do_password) {
             argument++;
             break;
         }
-        *pArg++ = *argument++;
+        *arg++ = *argument++;
     }
-    *pArg = '\0';
+    *arg = '\0';
 
     BAIL_IF (arg1[0] == '\0' || arg2[0] == '\0',
         "Syntax: password <old> <new>.\n\r", ch);

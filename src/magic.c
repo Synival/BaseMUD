@@ -71,8 +71,8 @@ void say_spell_name (CHAR_T *ch, const char *name, int class) {
     char buf1[MAX_STRING_LENGTH];
     char buf2[MAX_STRING_LENGTH];
     CHAR_T *rch;
-    const char *pName, *plural;
-    int iSyl;
+    const char *name_pos, *plural;
+    int syl;
     int length;
 
     struct syl_type {
@@ -115,10 +115,10 @@ void say_spell_name (CHAR_T *ch, const char *name, int class) {
     };
 
     words[0] = '\0';
-    for (pName = name; *pName != '\0'; pName += length) {
-        for (iSyl = 0; (length = strlen (syl_table[iSyl].old)) != 0; iSyl++) {
-            if (!str_prefix (syl_table[iSyl].old, pName)) {
-                strcat (words, syl_table[iSyl].new);
+    for (name_pos = name; *name_pos != '\0'; name_pos += length) {
+        for (syl = 0; (length = strlen (syl_table[syl].old)) != 0; syl++) {
+            if (!str_prefix (syl_table[syl].old, name_pos)) {
+                strcat (words, syl_table[syl].new);
                 break;
             }
         }

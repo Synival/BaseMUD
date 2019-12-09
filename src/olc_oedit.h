@@ -17,7 +17,7 @@
 #include "merc.h"
 
 #define OEDIT(fun)        bool fun(CHAR_T *ch, char *argument)
-#define EDIT_OBJ(ch, obj) (obj = (OBJ_INDEX_T *) ch->desc->pEdit)
+#define EDIT_OBJ(ch, obj) (obj = (OBJ_INDEX_T *) ch->desc->olc_edit)
 
 #define ALT_FLAGVALUE_SET(_blargh, _table, _arg) { \
         int blah = flag_value( _table, _arg );     \
@@ -31,9 +31,9 @@
 
 /* Sub-routines and filters. */
 void oedit_show_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj);
-bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *pObj,
+bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj,
     int value_num, char *argument);
-bool oedit_set_value (CHAR_T *ch, OBJ_INDEX_T *pObj, char *argument,
+bool oedit_set_value (CHAR_T *ch, OBJ_INDEX_T *obj, char *argument,
     int value);
 bool oedit_values (CHAR_T *ch, char *argument, int value);
 

@@ -253,7 +253,7 @@ void do_dump_stats (CHAR_T *ch) {
     MOB_INDEX_T *mob_index;
     OBJ_INDEX_T *obj_index;
     FILE *fp;
-    int vnum, nMatch = 0;
+    int vnum, matches = 0;
 
     /* lock writing? */
     fclose (reserve_file);
@@ -272,10 +272,10 @@ void do_dump_stats (CHAR_T *ch) {
 
     fprintf (fp, "Mobile Analysis\n");
     fprintf (fp, "---------------\n");
-    nMatch = 0;
-    for (vnum = 0; nMatch < TOP(RECYCLE_MOB_INDEX_T); vnum++) {
+    matches = 0;
+    for (vnum = 0; matches < TOP(RECYCLE_MOB_INDEX_T); vnum++) {
         if ((mob_index = get_mob_index (vnum)) != NULL) {
-            nMatch++;
+            matches++;
             fprintf (fp, "#%-4d %3d active %3d killed     %s\n",
                      mob_index->vnum, mob_index->count,
                      mob_index->killed, mob_index->short_descr);
@@ -289,10 +289,10 @@ void do_dump_stats (CHAR_T *ch) {
     fp = fopen (DUMP_DIR "obj.dump", "w");
     fprintf (fp, "Object Analysis\n");
     fprintf (fp, "---------------\n");
-    nMatch = 0;
-    for (vnum = 0; nMatch < TOP(RECYCLE_OBJ_INDEX_T); vnum++) {
+    matches = 0;
+    for (vnum = 0; matches < TOP(RECYCLE_OBJ_INDEX_T); vnum++) {
         if ((obj_index = get_obj_index (vnum)) != NULL) {
-            nMatch++;
+            matches++;
             fprintf (fp, "#%-4d %3d active %3d reset      %s\n",
                      obj_index->vnum, obj_index->count,
                      obj_index->reset_num, obj_index->short_descr);
