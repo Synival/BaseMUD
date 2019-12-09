@@ -5,7 +5,8 @@
     "name": "dervish raggity",
     "short_descr": "The dervish",
     "long_descr": "The raggity dervish walks on aimlessly.\n",
-    "description": "Dressed in loose fitting rags, this man looks like he could use\nsome rest.\n",
+    "description": "Dressed in loose fitting rags, this man looks like he could use\n
+                   |some rest.\n",
     "race": "human",
     "alignment": 900,
     "level": 5,
@@ -33,7 +34,8 @@
     "name": "dervish large",
     "short_descr": "The dervish",
     "long_descr": "The large dervish watches for signs of trouble.\n",
-    "description": "Dressed in loose fitting rags, this man looks like he could use\nLOTS of rest.\n",
+    "description": "Dressed in loose fitting rags, this man looks like he could use\n
+                   |LOTS of rest.\n",
     "race": "human",
     "alignment": 650,
     "level": 8,
@@ -61,7 +63,8 @@
     "name": "snake coral",
     "short_descr": "The coral snake",
     "long_descr": "A brightly colored snake slithers along the sands.\n",
-    "description": "This relatively harmless snake has bright alternating bands of red, yellow\nand black.\n",
+    "description": "This relatively harmless snake has bright alternating bands of red, yellow\n
+                   |and black.\n",
     "race": "snake",
     "alignment": -10,
     "level": 4,
@@ -141,7 +144,8 @@
     "anum": 5,
     "name": "dragon brass",
     "short_descr": "the brass dragon",
-    "long_descr": "The brass dragon steps out of the darkness and says 'Hello'.\nThen adds to it, 'Prepare to die, have a nice day!'\n",
+    "long_descr": "The brass dragon steps out of the darkness and says 'Hello'.\n
+                  |Then adds to it, 'Prepare to die, have a nice day!'\n",
     "description": null,
     "race": "dragon",
     "alignment": 450,
@@ -171,7 +175,9 @@
     "name": "nomad leader",
     "short_descr": "The nomad leader",
     "long_descr": "The nomad leader sits silently in prayer.\n",
-    "description": "He is clad in silk robes lined with gold thread. At his side\nis a large, engraved cutlass. He has an especially haughty air\nabout him.\n",
+    "description": "He is clad in silk robes lined with gold thread. At his side\n
+                   |is a large, engraved cutlass. He has an especially haughty air\n
+                   |about him.\n",
     "race": "human",
     "alignment": 950,
     "level": 14,
@@ -200,7 +206,8 @@
     "name": "nomad commander",
     "short_descr": "The nomad commander",
     "long_descr": "The nomad commander stands here staring suspiciously at you.\n",
-    "description": "This is the nomad leader's second in command. His clothes are richly\nwoven of silk and gold thread. A nasty cutlass hangs at his side.\n",
+    "description": "This is the nomad leader's second in command. His clothes are richly\n
+                   |woven of silk and gold thread. A nasty cutlass hangs at his side.\n",
     "race": "human",
     "alignment": 900,
     "level": 12,
@@ -283,7 +290,8 @@
     "name": "dracolich lich",
     "short_descr": "The dracolich",
     "long_descr": "A pile of bones rises up to form a skeletal dracolich.\n",
-    "description": "The dracolich is now only bone with pieces of flesh hanging from it.\nObviously it no longer fears death.\n",
+    "description": "The dracolich is now only bone with pieces of flesh hanging from it.\n
+                   |Obviously it no longer fears death.\n",
     "race": "human",
     "alignment": -1000,
     "level": 30,
@@ -368,7 +376,8 @@
     "name": "myconoid",
     "short_descr": "the myconoid",
     "long_descr": "A myconoid lumbers along peacefully.\n",
-    "description": "The myconoid looks something like a giant mushroom (and probably\nhas the same effect).\n",
+    "description": "The myconoid looks something like a giant mushroom (and probably\n
+                   |has the same effect).\n",
     "race": "human",
     "alignment": 850,
     "level": 6,

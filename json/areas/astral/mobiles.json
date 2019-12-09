@@ -5,7 +5,8 @@
     "name": "astral guardian",
     "short_descr": "The Astral Guardian",
     "long_descr": "A grey figure guards the entrance to the astral plane.\n",
-    "description": "You see a slate grey vaguely humanoid shape, devoid of any true features.\nIt stands before you with arms folded, seemingly uninterested in you.\n",
+    "description": "You see a slate grey vaguely humanoid shape, devoid of any true features.\n
+                   |It stands before you with arms folded, seemingly uninterested in you.\n",
     "race": "human",
     "alignment": 0,
     "level": 37,
@@ -33,7 +34,9 @@
     "name": "nightmare",
     "short_descr": "A pitch-black nightmare",
     "long_descr": "A nightmare is here, kicking at you with its flaming hooves.\n",
-    "description": "The nightmare is a wholly evil being, sent out by the rulers of the lower \nplanes to torment mortals.  It vaguely resembles a horse, with a hide blacker\nthan the darkest night, and hooves that burn with unholy fires.\n",
+    "description": "The nightmare is a wholly evil being, sent out by the rulers of the lower \n
+                   |planes to torment mortals.  It vaguely resembles a horse, with a hide blacker\n
+                   |than the darkest night, and hooves that burn with unholy fires.\n",
     "race": "human",
     "alignment": -950,
     "level": 18,
@@ -61,7 +64,9 @@
     "name": "night hag",
     "short_descr": "An evil night hag",
     "long_descr": "A night hag reaches out to steal your soul.\n",
-    "description": "You see a shadowy creature with long talons and an evil grin, whose sole \npurpose is to hunt down and slay mortals in order to obtain souls for her foul\nmaster to torment.\n",
+    "description": "You see a shadowy creature with long talons and an evil grin, whose sole \n
+                   |purpose is to hunt down and slay mortals in order to obtain souls for her foul\n
+                   |master to torment.\n",
     "race": "human",
     "alignment": -1000,
     "level": 24,
@@ -90,7 +95,8 @@
     "name": "stalker invisible",
     "short_descr": "An invisible stalker",
     "long_descr": "You see a wavy distortion in the air.\n",
-    "description": "You see only a wavy distortion in the air.  You reach out to touch it, and\nfeel nothing, not even the slightest of motions.\n",
+    "description": "You see only a wavy distortion in the air.  You reach out to touch it, and\n
+                   |feel nothing, not even the slightest of motions.\n",
     "race": "human",
     "alignment": 200,
     "level": 17,
@@ -118,7 +124,8 @@
     "name": "soulless one",
     "short_descr": "A poor soulless being",
     "long_descr": "The soulless one wanders mindlessly.\n",
-    "description": "This unfortunate being has had its very soul torn from its body.  It now roams\nmindlessly, unaware of its surroundings.\n",
+    "description": "This unfortunate being has had its very soul torn from its body.  It now roams\n
+                   |mindlessly, unaware of its surroundings.\n",
     "race": "human",
     "alignment": 0,
     "level": 10,
@@ -144,7 +151,9 @@
     "name": "githyanki hunter",
     "short_descr": "A githyanki hunter",
     "long_descr": "A githyanki hunter searches for signs of the githzerai.\n",
-    "description": "You see a leathery-skinned humanoid creature that stands almost as tall as a\nnormal man.  Like all githyanki, his teeth are fanged and his eyes hollow\nand sunken.\n",
+    "description": "You see a leathery-skinned humanoid creature that stands almost as tall as a\n
+                   |normal man.  Like all githyanki, his teeth are fanged and his eyes hollow\n
+                   |and sunken.\n",
     "race": "human",
     "alignment": -500,
     "level": 11,
@@ -173,7 +182,10 @@
     "name": "githyanki warrior",
     "short_descr": "A githyanki warrior",
     "long_descr": "You see a humanoid figure clad in splinted armor.\n",
-    "description": "You see a leathery-skinned humanoid creature that stands as tall as a normal\nman.  Like all githyanki, his teeth are fanged and his eyes hollow and sunken.\nHe is clad in ornately designed splinted armor, and wields a sword that\nwhistles through the air as it slices towards your neck.\n",
+    "description": "You see a leathery-skinned humanoid creature that stands as tall as a normal\n
+                   |man.  Like all githyanki, his teeth are fanged and his eyes hollow and sunken.\n
+                   |He is clad in ornately designed splinted armor, and wields a sword that\n
+                   |whistles through the air as it slices towards your neck.\n",
     "race": "human",
     "alignment": -500,
     "level": 15,
@@ -200,7 +212,10 @@
     "name": "githyanki guardian",
     "short_descr": "A githyanki guardian",
     "long_descr": "A humanoid figure clad in splinted armor blocks your way.\n",
-    "description": "You see a leathery-skinned humanoid creature that stands as tall as a normal\nman.  Like all githyanki, his teeth are fanged and his eyes hollow and sunken.\nHe is clad in ornately designed splinted armor, and wields a sword that\nwhistles through the air as it slices towards your neck.\n",
+    "description": "You see a leathery-skinned humanoid creature that stands as tall as a normal\n
+                   |man.  Like all githyanki, his teeth are fanged and his eyes hollow and sunken.\n
+                   |He is clad in ornately designed splinted armor, and wields a sword that\n
+                   |whistles through the air as it slices towards your neck.\n",
     "race": "human",
     "alignment": -500,
     "level": 15,
@@ -228,7 +243,10 @@
     "name": "githyanki knight",
     "short_descr": "A githyanki knight",
     "long_descr": "A tall figure armored in black observes you quietly.\n",
-    "description": "You see a leathery-skinned humanoid creature that stands a full foot taller\nthan a normal man.  His features are obscured by a suit of ornately designed\nsplinted armor -- you only hear the hissing of his breath and the scraping\nof his sword against its scabbard as it is unsheathed.\n",
+    "description": "You see a leathery-skinned humanoid creature that stands a full foot taller\n
+                   |than a normal man.  His features are obscured by a suit of ornately designed\n
+                   |splinted armor -- you only hear the hissing of his breath and the scraping\n
+                   |of his sword against its scabbard as it is unsheathed.\n",
     "race": "human",
     "alignment": -500,
     "level": 25,
@@ -255,7 +273,10 @@
     "name": "githyanki protector",
     "short_descr": "A githyanki protector",
     "long_descr": "A black knight of the githyanki protects his queen.\n",
-    "description": "You see a leathery-skinned humanoid creature that stands a full foot taller\nthan a normal man.  His features are obscured by a suit of ornately designed\nsplinted armor -- you only hear the hissing of his breath and the scraping\nof his sword against its scabbard as it is unsheathed.\n",
+    "description": "You see a leathery-skinned humanoid creature that stands a full foot taller\n
+                   |than a normal man.  His features are obscured by a suit of ornately designed\n
+                   |splinted armor -- you only hear the hissing of his breath and the scraping\n
+                   |of his sword against its scabbard as it is unsheathed.\n",
     "race": "human",
     "alignment": -500,
     "level": 25,
@@ -283,7 +304,10 @@
     "name": "githyanki gish",
     "short_descr": "An evil gish",
     "long_descr": "A small githyanki laughs at you through fanged teeth.\n",
-    "description": "You see a leathery-skinned humanoid creature that stands nearly as tall as a\nnormal man.  Like all githyanki, his teeth are fanged and his eyes hollow and\nsunken.  The gish are well-versed in the arcane arts, unlike the normal gith\npeople.  You notice this from the blast of lightning headed towards you.\n",
+    "description": "You see a leathery-skinned humanoid creature that stands nearly as tall as a\n
+                   |normal man.  Like all githyanki, his teeth are fanged and his eyes hollow and\n
+                   |sunken.  The gish are well-versed in the arcane arts, unlike the normal gith\n
+                   |people.  You notice this from the blast of lightning headed towards you.\n",
     "race": "human",
     "alignment": -500,
     "level": 11,
@@ -312,7 +336,10 @@
     "name": "githyanki gish",
     "short_descr": "An evil gish",
     "long_descr": "A gish laughs as flame leaps from his hands towards your face.\n",
-    "description": "You see a leathery-skinned humanoid creature that stands nearly as tall as a\nnormal man.  Like all githyanki, his teeth are fanged and his eyes hollow and\nsunken.  The gish are well-versed in the arcane arts, unlike the normal gith\npeople.  You notice this from the blast of lightning headed towards you.\n",
+    "description": "You see a leathery-skinned humanoid creature that stands nearly as tall as a\n
+                   |normal man.  Like all githyanki, his teeth are fanged and his eyes hollow and\n
+                   |sunken.  The gish are well-versed in the arcane arts, unlike the normal gith\n
+                   |people.  You notice this from the blast of lightning headed towards you.\n",
     "race": "human",
     "alignment": -500,
     "level": 11,
@@ -341,7 +368,10 @@
     "name": "githyanki warlock",
     "short_descr": "A warlock of the Gith",
     "long_descr": "A humanoid figure stands here, holding a silvery sword.\n",
-    "description": "You see a leathery-skinned creature, clad all in black and bearing a silvery-\ncolored sword.  Like all githyanki, his teeth are fanged and his eyes hollow\nand sunken.  As you turn to flee, you feel the impact of a fireball against\nyour back.\n",
+    "description": "You see a leathery-skinned creature, clad all in black and bearing a silvery-\n
+                   |colored sword.  Like all githyanki, his teeth are fanged and his eyes hollow\n
+                   |and sunken.  As you turn to flee, you feel the impact of a fireball against\n
+                   |your back.\n",
     "race": "human",
     "alignment": -500,
     "level": 20,
@@ -370,7 +400,10 @@
     "name": "githyanki lich queen",
     "short_descr": "The lich-queen",
     "long_descr": "The evil lich-queen of the Gith reaches out to destroy you.\n",
-    "description": "The lich-queen of the githyanki was once human, but no longer.  Her skin has\ncompletely shrunken around her skull, held together solely by the force of\nunholy magic and the powers of this plane of existence.  The cold glare of her\nhollow eyes sends you into paroxysms of fright.\n",
+    "description": "The lich-queen of the githyanki was once human, but no longer.  Her skin has\n
+                   |completely shrunken around her skull, held together solely by the force of\n
+                   |unholy magic and the powers of this plane of existence.  The cold glare of her\n
+                   |hollow eyes sends you into paroxysms of fright.\n",
     "race": "human",
     "alignment": -750,
     "level": 30,
@@ -398,8 +431,15 @@
     "anum": 14,
     "name": "lord gith",
     "short_descr": "Lord Gith",
-    "long_descr": "Lord Gith suddenly forms from a cloud of blackness.\nHe stares right through you with deadly, cold eyes.\n",
-    "description": "Lord Gith is the dead savior of the githyanki people, the warrior who led them\nto freedom from their former enslavers, the mind flayers.  He has been dead\nfor centuries and stands before you now due to an unholy alliance with powers\nbeyond mortal ken.\n\nHe gestures towards you.  You feel your heart tremble and your throat begin\nto tighten.  You are about to die.\n",
+    "long_descr": "Lord Gith suddenly forms from a cloud of blackness.\n
+                  |He stares right through you with deadly, cold eyes.\n",
+    "description": "Lord Gith is the dead savior of the githyanki people, the warrior who led them\n
+                   |to freedom from their former enslavers, the mind flayers.  He has been dead\n
+                   |for centuries and stands before you now due to an unholy alliance with powers\n
+                   |beyond mortal ken.\n
+                   |\n
+                   |He gestures towards you.  You feel your heart tremble and your throat begin\n
+                   |to tighten.  You are about to die.\n",
     "race": "human",
     "alignment": -900,
     "level": 35,
@@ -428,7 +468,10 @@
     "name": "ghost",
     "short_descr": "An insubstantial ghost",
     "long_descr": "A ghost wanders here, intent on destroying all life.\n",
-    "description": "The ghost makes no sound.  It is a shadowy shell of its former self, cursed\nnow to roam forever without rest.  The mind of this creature has been twisted\nand destroyed in this torment, and it now envys and intends to destroy all the\ntrue living beings it encounters, including you.\n",
+    "description": "The ghost makes no sound.  It is a shadowy shell of its former self, cursed\n
+                   |now to roam forever without rest.  The mind of this creature has been twisted\n
+                   |and destroyed in this torment, and it now envys and intends to destroy all the\n
+                   |true living beings it encounters, including you.\n",
     "race": "human",
     "alignment": -1000,
     "level": 16,
@@ -456,7 +499,9 @@
     "name": "githzerai prisoner",
     "short_descr": "An imprisoned githzerai",
     "long_descr": "A githzerai plots his escape plan.\n",
-    "description": "You see a conniving humanoid, a descendant of a race of humans once enslaved\nby the mindflayers and related to the githyanki.  Unfortunately, the two races\nare bitter enemies, and this one happened to get caught.  He intends to escape.\n",
+    "description": "You see a conniving humanoid, a descendant of a race of humans once enslaved\n
+                   |by the mindflayers and related to the githyanki.  Unfortunately, the two races\n
+                   |are bitter enemies, and this one happened to get caught.  He intends to escape.\n",
     "race": "human",
     "alignment": -250,
     "level": 10,
@@ -483,7 +528,9 @@
     "name": "mindflayer prisoner",
     "short_descr": "A tortured mindflayer prisoner",
     "long_descr": "A mindflayer lies here, scarred from the torture inflicted by the Gith.\n",
-    "description": "You see a formerly tall humanoid creature, with four tentacles hanging from the\nmiddle of its head.  It is hunched over, bent and scarred from torture inflicted\nby the githyanki.  It cringes as you approach.\n",
+    "description": "You see a formerly tall humanoid creature, with four tentacles hanging from the\n
+                   |middle of its head.  It is hunched over, bent and scarred from torture inflicted\n
+                   |by the githyanki.  It cringes as you approach.\n",
     "race": "human",
     "alignment": 0,
     "level": 8,
@@ -511,7 +558,10 @@
     "name": "dragon red slave",
     "short_descr": "The enslaved red dragon",
     "long_descr": "A giant red dragon is chained here, his breath heating the furnace.\n",
-    "description": "The mighty scaled beast has been magically bound and subdued by the residents\nof the keep.  Nevertheless, he is still an impressive sight, some twenty feet\nin length with an even more massive wingspan.  He watches you, smoke drifting\nfrom his open mouth.\n",
+    "description": "The mighty scaled beast has been magically bound and subdued by the residents\n
+                   |of the keep.  Nevertheless, he is still an impressive sight, some twenty feet\n
+                   |in length with an even more massive wingspan.  He watches you, smoke drifting\n
+                   |from his open mouth.\n",
     "race": "dragon",
     "alignment": -400,
     "level": 28,

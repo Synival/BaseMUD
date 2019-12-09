@@ -3,7 +3,9 @@
     "area": "grave",
     "anum": 0,
     "name": "A Gravel Road in the Graveyard",
-    "description": "You are on a well-kept gravel road that leads north-south through the\ngraveyard.  On both sides of the road grow dark evergreen trees.  An iron\ngrate is to the north and narrow gravel paths lead east and west.\n",
+    "description": "You are on a well-kept gravel road that leads north-south through the\n
+                   |graveyard.  On both sides of the road grow dark evergreen trees.  An iron\n
+                   |grate is to the north and narrow gravel paths lead east and west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -38,7 +40,8 @@
     "area": "grave",
     "anum": 1,
     "name": "A Gravel Road in the Graveyard",
-    "description": "You are on a well-kept gravel road that leads north-south through the\ngraveyard.  On both sides of the road grow dark evergreen trees.\n",
+    "description": "You are on a well-kept gravel road that leads north-south through the\n
+                   |graveyard.  On both sides of the road grow dark evergreen trees.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -57,7 +60,8 @@
     "area": "grave",
     "anum": 2,
     "name": "A Gravel Road in the Graveyard",
-    "description": "You are on a well-kept gravel road that leads north-south through the\ngraveyard.  On both sides of the road grow dark evergreen trees.\n",
+    "description": "You are on a well-kept gravel road that leads north-south through the\n
+                   |graveyard.  On both sides of the road grow dark evergreen trees.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -76,7 +80,8 @@
     "area": "grave",
     "anum": 3,
     "name": "A Gravel Road in the Graveyard",
-    "description": "You are on a well-kept gravel road that leads north-south through the\ngraveyard.  On both sides of the road grow dark evergreen trees.\n",
+    "description": "You are on a well-kept gravel road that leads north-south through the\n
+                   |graveyard.  On both sides of the road grow dark evergreen trees.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -87,7 +92,8 @@
       {
         "dir": "south",
         "to": 4,
-        "description": "The gravel road continues southwards to an open space before a small\nbuilding.\n"
+        "description": "The gravel road continues southwards to an open space before a small\n
+                       |building.\n"
       }
     ]
   }},
@@ -95,7 +101,8 @@
     "area": "grave",
     "anum": 4,
     "name": "In front of the Chapel",
-    "description": "You are on an open space before a small chapel.  A gravel road leads north\nthrough the graveyard and the chapel entrance is to the south.\n",
+    "description": "You are on an open space before a small chapel.  A gravel road leads north\n
+                   |through the graveyard and the chapel entrance is to the south.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -134,7 +141,8 @@
     "area": "grave",
     "anum": 6,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -156,7 +164,8 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }],
     "resets": [{
       "command": "mobile",
@@ -171,7 +180,8 @@
     "area": "grave",
     "anum": 7,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -193,7 +203,8 @@
     "area": "grave",
     "anum": 8,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and west.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads north and west.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -215,14 +226,16 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }]
   }},
   {"room": {
     "area": "grave",
     "anum": 9,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -244,7 +257,8 @@
     "area": "grave",
     "anum": 10,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads east and south.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads east and south.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -266,14 +280,16 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }]
   }},
   {"room": {
     "area": "grave",
     "anum": 11,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -305,7 +321,8 @@
     "area": "grave",
     "anum": 12,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and east.  A small shed is to the west.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads north and east.  A small shed is to the west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -339,7 +356,8 @@
     "area": "grave",
     "anum": 13,
     "name": "In a shed on the Graveyard",
-    "description": "You are in a small shed that looks as if it is used to store all sorts of\ngardening equipment.  The only exit appears to be through a door to the east.\n",
+    "description": "You are in a small shed that looks as if it is used to store all sorts of\n
+                   |gardening equipment.  The only exit appears to be through a door to the east.\n",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [{
@@ -402,7 +420,8 @@
     "area": "grave",
     "anum": 14,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads south and west.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads south and west.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -424,14 +443,16 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }]
   }},
   {"room": {
     "area": "grave",
     "anum": 15,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -453,7 +474,8 @@
     "area": "grave",
     "anum": 16,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and south.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads north and south.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -475,14 +497,16 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }]
   }},
   {"room": {
     "area": "grave",
     "anum": 17,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -513,7 +537,8 @@
     "area": "grave",
     "anum": 18,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and east.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads north and east.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -535,14 +560,16 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }]
   }},
   {"room": {
     "area": "grave",
     "anum": 19,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -564,7 +591,8 @@
     "area": "grave",
     "anum": 38,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and west.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads north and west.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -586,7 +614,8 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }],
     "resets": [{
       "command": "mobile",
@@ -601,7 +630,8 @@
     "area": "grave",
     "anum": 39,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -623,7 +653,8 @@
     "area": "grave",
     "anum": 40,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and south.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads north and south.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -645,7 +676,8 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }],
     "resets": [{
       "command": "mobile",
@@ -660,7 +692,8 @@
     "area": "grave",
     "anum": 41,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -682,7 +715,8 @@
     "area": "grave",
     "anum": 42,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads east and south.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads east and south.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -704,14 +738,16 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }]
   }},
   {"room": {
     "area": "grave",
     "anum": 43,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -733,7 +769,8 @@
     "area": "grave",
     "anum": 44,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and west.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads north and west.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -755,7 +792,8 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }],
     "resets": [{
       "command": "mobile",
@@ -770,7 +808,8 @@
     "area": "grave",
     "anum": 45,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -801,7 +840,8 @@
     "area": "grave",
     "anum": 46,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads south and west.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads south and west.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -823,14 +863,16 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }]
   }},
   {"room": {
     "area": "grave",
     "anum": 47,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -852,7 +894,8 @@
     "area": "grave",
     "anum": 48,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads north and east.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads north and east.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -874,14 +917,16 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }]
   }},
   {"room": {
     "area": "grave",
     "anum": 49,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -903,7 +948,8 @@
     "area": "grave",
     "anum": 50,
     "name": "A Gravel Path on the Graveyard",
-    "description": "You are on a gravel path winding its way between dark evergreen trees on\nthe graveyard.  The path leads south and west.  An old tomb is here.\n",
+    "description": "You are on a gravel path winding its way between dark evergreen trees on\n
+                   |the graveyard.  The path leads south and west.  An old tomb is here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -925,14 +971,16 @@
     ],
     "extra_description": [{
       "keyword": "tomb stone",
-      "description": "It is a large rectangular slab of dark grey stone that has been placed face\nup in the ground.  The name has been erased by the ravages of time.\n"
+      "description": "It is a large rectangular slab of dark grey stone that has been placed face\n
+                     |up in the ground.  The name has been erased by the ravages of time.\n"
     }]
   }},
   {"room": {
     "area": "grave",
     "anum": 51,
     "name": "In a dusty Tomb",
-    "description": "You are in a dark burial chamber beneath a large tomb stone.\nThe only exit appears to be up.\n",
+    "description": "You are in a dark burial chamber beneath a large tomb stone.\n
+                   |The only exit appears to be up.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{

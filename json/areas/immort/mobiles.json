@@ -4,7 +4,10 @@
   "name": "Heimdall",
   "short_descr": "Heimdall",
   "long_descr": "Heimdall, guardian of Bifrost, stands guard over the Rainbow Bridge.\n",
-  "description": "Standing over 7 feet tall and muscled as only a god can be, Heimdall keeps\nhis unsleeping gaze over the Rainbow bridge.  His trusty Gjallor-horn never\nleaves his side, and shall remain unwinded until the dread ship Naglfar sails\ntowards Valhalla on the dawn of Ragnarok.\n",
+  "description": "Standing over 7 feet tall and muscled as only a god can be, Heimdall keeps\n
+                 |his unsleeping gaze over the Rainbow bridge.  His trusty Gjallor-horn never\n
+                 |leaves his side, and shall remain unwinded until the dread ship Naglfar sails\n
+                 |towards Valhalla on the dawn of Ragnarok.\n",
   "race": "human",
   "alignment": 1000,
   "level": 57,

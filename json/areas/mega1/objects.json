@@ -18,7 +18,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "spit gun",
-      "description": "A standard weapon in Mega-City One.  It uses general\npurpose ammunition.\n"
+      "description": "A standard weapon in Mega-City One.  It uses general\n
+                     |purpose ammunition.\n"
     }]
   }},
   {"object": {
@@ -39,7 +40,8 @@
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "knee pads",
-      "description": "It is a set of Grak Brothers knee pads.  They are currently\npopular with the juve and punk gangs.\n"
+      "description": "It is a set of Grak Brothers knee pads.  They are currently\n
+                     |popular with the juve and punk gangs.\n"
     }]
   }},
   {"object": {
@@ -82,7 +84,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "lawgiver gun",
-      "description": "The standard weapon for the city's Judges.  It uses general\nhigh explosive ammunition.\n"
+      "description": "The standard weapon for the city's Judges.  It uses general\n
+                     |high explosive ammunition.\n"
     }]
   }},
   {"object": {
@@ -105,7 +108,8 @@
     "extra_flags": "hum",
     "extra_description": [{
       "keyword": "safe",
-      "description": "This safe looks like not even a Sov-Cit Nuke could open it.\nYou better find the code box.\n"
+      "description": "This safe looks like not even a Sov-Cit Nuke could open it.\n
+                     |You better find the code box.\n"
     }]
   }},
   {"object": {
@@ -146,7 +150,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "bashball bat",
-      "description": "This is the same type of bat used by the little spuggers\nto play bashball.\n"
+      "description": "This is the same type of bat used by the little spuggers\n
+                     |to play bashball.\n"
     }],
     "affects": [{
       "apply": "damage roll",
@@ -176,7 +181,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "vibroblade",
-      "description": "Obviously of alien manufacture, this blade enhances fighting\nand survival skills.\n"
+      "description": "Obviously of alien manufacture, this blade enhances fighting\n
+                     |and survival skills.\n"
     }],
     "affects": [
       {
@@ -229,7 +235,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "vacuum cleaner",
-      "description": "This vacuum looks well built and will last you many years of\ncleaning pleasure.\n"
+      "description": "This vacuum looks well built and will last you many years of\n
+                     |cleaning pleasure.\n"
     }]
   }},
   {"object": {
@@ -302,7 +309,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "judge club",
-      "description": "It is a standard Justice Hall issue club.  Many a Perp's\nhead has been bashed with this baby.\n"
+      "description": "It is a standard Justice Hall issue club.  Many a Perp's\n
+                     |head has been bashed with this baby.\n"
     }],
     "affects": [{
       "apply": "damage roll",
@@ -366,7 +374,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "judge club",
-      "description": "It is a head judge Justice Hall issue club.  Many a Perp's\nhead has been bashed with this baby.\n"
+      "description": "It is a head judge Justice Hall issue club.  Many a Perp's\n
+                     |head has been bashed with this baby.\n"
     }],
     "affects": [{
       "apply": "damage roll",

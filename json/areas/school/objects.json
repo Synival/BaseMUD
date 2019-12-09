@@ -20,7 +20,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "mace",
-      "description": "You see a mace of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a mace of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }],
     "affects": [{
       "apply": "hit roll",
@@ -51,7 +52,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dagger",
-      "description": "You see a dagger of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a dagger of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }],
     "affects": [{
       "apply": "hit roll",
@@ -82,7 +84,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword",
-      "description": "You see a sword of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a sword of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }],
     "affects": [{
       "apply": "hit roll",
@@ -112,7 +115,8 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "vest",
-      "description": "You see a vest of great but cheap craftsmanship.  Stamped on the side is:\nMerc Industries\n"
+      "description": "You see a vest of great but cheap craftsmanship.  Stamped on the side is:\n
+                     |Merc Industries\n"
     }]
   }},
   {"object": {
@@ -135,7 +139,8 @@
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "shield",
-      "description": "You see a shield of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a shield of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }]
   }},
   {"object": {
@@ -159,7 +164,8 @@
     "wear_flags": "take neck",
     "extra_description": [{
       "keyword": "cloak",
-      "description": "You see a cloak of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a cloak of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }]
   }},
   {"object": {
@@ -182,7 +188,8 @@
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "helmet",
-      "description": "You see a helmet of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a helmet of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }]
   }},
   {"object": {
@@ -205,7 +212,8 @@
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "leggings",
-      "description": "You see leggings of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see leggings of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }]
   }},
   {"object": {
@@ -228,7 +236,8 @@
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "boots",
-      "description": "You see boots of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see boots of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }]
   }},
   {"object": {
@@ -251,7 +260,8 @@
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "gloves",
-      "description": "You see gloves of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see gloves of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }]
   }},
   {"object": {
@@ -274,7 +284,8 @@
     "wear_flags": "take arms",
     "extra_description": [{
       "keyword": "sleeves",
-      "description": "You see sleeves of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see sleeves of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }]
   }},
   {"object": {
@@ -297,7 +308,8 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "cape",
-      "description": "You see a cape of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a cape of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }]
   }},
   {"object": {
@@ -320,7 +332,8 @@
     "wear_flags": "take waist",
     "extra_description": [{
       "keyword": "belt",
-      "description": "You see a belt of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a belt of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }]
   }},
   {"object": {
@@ -342,7 +355,8 @@
     "wear_flags": "take wrist",
     "extra_description": [{
       "keyword": "bracer",
-      "description": "You see a bracer of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a bracer of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }]
   }},
   {"object": {
@@ -376,7 +390,10 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "diploma",
-      "description": "This document shows that you have graduated from Mud School.\nIt also has magical effects on your abilities if you hold it!\n\nMerc Industries\n"
+      "description": "This document shows that you have graduated from Mud School.\n
+                     |It also has magical effects on your abilities if you hold it!\n
+                     |\n
+                     |Merc Industries\n"
     }],
     "affects": [
       {
@@ -451,7 +468,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "spear",
-      "description": "You see a spear of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a spear of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }],
     "affects": [{
       "apply": "hit roll",
@@ -483,7 +501,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "staff",
-      "description": "You see a staff of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a staff of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }],
     "affects": [
       {
@@ -523,7 +542,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "axe",
-      "description": "You see an axe of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see an axe of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }],
     "affects": [{
       "apply": "hit roll",
@@ -554,7 +574,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "flail",
-      "description": "You see a flail of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a flail of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }],
     "affects": [{
       "apply": "damage roll",
@@ -585,7 +606,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "whip",
-      "description": "You see a whip of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a whip of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }],
     "affects": [{
       "apply": "hit roll",
@@ -617,7 +639,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "glaive",
-      "description": "You see a glaive of great but cheap craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a glaive of great but cheap craftsmanship.  Imprinted on the side is:\n
+                     |Merc Industries\n"
     }],
     "affects": [{
       "apply": "damage roll",

@@ -3,7 +3,9 @@
     "area": "arachnos",
     "anum": 0,
     "name": "On the spider web",
-    "description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place.  To the south leads a strand to a cave-like structure made from\nmany layers of a spider web.  Another silky strand continues to the north.\n",
+    "description": "You are balancing carefully on the giant sticky threads that holds the giant\n
+                   |web in place.  To the south leads a strand to a cave-like structure made from\n
+                   |many layers of a spider web.  Another silky strand continues to the north.\n",
     "sector_type": "swim",
     "room_flags": "dark indoors",
     "doors": [
@@ -25,7 +27,9 @@
     "area": "arachnos",
     "anum": 1,
     "name": "On the spider web",
-    "description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place.  To the north leads a strand to a cave-like structure made from\nmany layers of a spider web.\n",
+    "description": "You are balancing carefully on the giant sticky threads that holds the giant\n
+                   |web in place.  To the north leads a strand to a cave-like structure made from\n
+                   |many layers of a spider web.\n",
     "sector_type": "swim",
     "room_flags": "dark indoors",
     "doors": [{
@@ -41,7 +45,9 @@
     "area": "arachnos",
     "anum": 2,
     "name": "On the spider web",
-    "description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place.  To the east leads a strand to a cave-like structure made from\nmany layers of a spider web.\n",
+    "description": "You are balancing carefully on the giant sticky threads that holds the giant\n
+                   |web in place.  To the east leads a strand to a cave-like structure made from\n
+                   |many layers of a spider web.\n",
     "sector_type": "swim",
     "room_flags": "dark indoors",
     "doors": [{
@@ -57,7 +63,9 @@
     "area": "arachnos",
     "anum": 3,
     "name": "On the spider web",
-    "description": "You are balancing carefully on the giant sticky threads that holds the giant\nweb in place. A single silky strand lead to the south, while another leads\noff into the northern direction.\n",
+    "description": "You are balancing carefully on the giant sticky threads that holds the giant\n
+                   |web in place. A single silky strand lead to the south, while another leads\n
+                   |off into the northern direction.\n",
     "sector_type": "swim",
     "room_flags": "dark indoors",
     "doors": [
@@ -79,7 +87,11 @@
     "area": "arachnos",
     "anum": 101,
     "name": "Webbed Entrance",
-    "description": "Sticky, sticky, sticky!  The ground is cluttered with leaves, decayed\nremains of webbed crickets, beetle, rats, dogs (?), and even humans.\nYou begin to wonder about what lies ahead.  The air is damp here,\nand even the little light that shines through the canopy seems\nabsorbed into the webbing.\n",
+    "description": "Sticky, sticky, sticky!  The ground is cluttered with leaves, decayed\n
+                   |remains of webbed crickets, beetle, rats, dogs (?), and even humans.\n
+                   |You begin to wonder about what lies ahead.  The air is damp here,\n
+                   |and even the little light that shines through the canopy seems\n
+                   |absorbed into the webbing.\n",
     "sector_type": "city",
     "room_flags": "no_mob",
     "doors": [
@@ -105,7 +117,10 @@
     "area": "arachnos",
     "anum": 102,
     "name": "Webby Passage",
-    "description": "You find that footing here is very good, almost too good.  The\nlimbs are coated with cobwebs and seem unusually strong for tree\nbranches.  Paths lead in four directions.  The eastward path goes\ndown a bit.\n",
+    "description": "You find that footing here is very good, almost too good.  The\n
+                   |limbs are coated with cobwebs and seem unusually strong for tree\n
+                   |branches.  Paths lead in four directions.  The eastward path goes\n
+                   |down a bit.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -130,7 +145,9 @@
     "area": "arachnos",
     "anum": 103,
     "name": "Wasp Hive",
-    "description": "Drones scuttle about in this room.  The cells on the walls\nare honeycomb in shape and many of the maggots and wasps you see\nhave fang-marks on there bodies.  You sense some order in their markings.\n",
+    "description": "Drones scuttle about in this room.  The cells on the walls\n
+                   |are honeycomb in shape and many of the maggots and wasps you see\n
+                   |have fang-marks on there bodies.  You sense some order in their markings.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "east",
@@ -149,7 +166,8 @@
     "area": "arachnos",
     "anum": 104,
     "name": "Webby Passage",
-    "description": "Another webby passage, all sticky and wet.  Tiny ballooning\nspiders fill the air.  It seems that these young ones are newborns.\n",
+    "description": "Another webby passage, all sticky and wet.  Tiny ballooning\n
+                   |spiders fill the air.  It seems that these young ones are newborns.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "south",
@@ -168,7 +186,9 @@
     "area": "arachnos",
     "anum": 105,
     "name": "Beneath the Busy Path",
-    "description": "You hear the sounds of crawling arachnids above.  The rhythms of\nthe footsteps suggest a primitive order in their movement.  The light\nseems brighter upwards.\n",
+    "description": "You hear the sounds of crawling arachnids above.  The rhythms of\n
+                   |the footsteps suggest a primitive order in their movement.  The light\n
+                   |seems brighter upwards.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -185,7 +205,9 @@
     "area": "arachnos",
     "anum": 106,
     "name": "On the Busy Path",
-    "description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\nwith one big difference.  The spiders here are carrying ant-corpses,\nas well as rats, wolves, and humans.\n",
+    "description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\n
+                   |with one big difference.  The spiders here are carrying ant-corpses,\n
+                   |as well as rats, wolves, and humans.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -220,7 +242,9 @@
     "area": "arachnos",
     "anum": 107,
     "name": "On the Busy Path",
-    "description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\nwith one big difference.  The spiders here are carrying ant-corpses,\nas well as cats, wolves, and humans.\n",
+    "description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\n
+                   |with one big difference.  The spiders here are carrying ant-corpses,\n
+                   |as well as cats, wolves, and humans.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -237,7 +261,9 @@
     "area": "arachnos",
     "anum": 108,
     "name": "On the Busy Path",
-    "description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\nwith one big difference.  The spiders here are carrying ant-corpses,\nas well as cats, dogs, and humans.\n",
+    "description": "Spiders, spiders, everywhere!  It is almost ant-like in efficiency\n
+                   |with one big difference.  The spiders here are carrying ant-corpses,\n
+                   |as well as cats, dogs, and humans.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -296,7 +322,10 @@
     "area": "arachnos",
     "anum": 109,
     "name": "A Split in the Path",
-    "description": "As always, there is a split in the road.  One road is strewn\nwith cricket feelers.  The other is well-kept and suitable for smooth\ntravelling.  The webbing that was prevalent in earlier rooms is almost\nnon-existent now.\n",
+    "description": "As always, there is a split in the road.  One road is strewn\n
+                   |with cricket feelers.  The other is well-kept and suitable for smooth\n
+                   |travelling.  The webbing that was prevalent in earlier rooms is almost\n
+                   |non-existent now.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -317,7 +346,9 @@
     "area": "arachnos",
     "anum": 110,
     "name": "Fuzzy Tree Limb",
-    "description": "You are on a \"fuzzy\" tree limb.  Interesting, since the branches\nseem to have \"hairs\" sprouting from its bark.  As you look\ncloser you see millions of aphids covering each limb.\n",
+    "description": "You are on a \"fuzzy\" tree limb.  Interesting, since the branches\n
+                   |seem to have \"hairs\" sprouting from its bark.  As you look\n
+                   |closer you see millions of aphids covering each limb.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -334,7 +365,8 @@
     "area": "arachnos",
     "anum": 111,
     "name": "Tree Trunk",
-    "description": "You feel that you can rest here safely.  There is evidence of\nwebbing here, but it is of a finer quality.\n",
+    "description": "You feel that you can rest here safely.  There is evidence of\n
+                   |webbing here, but it is of a finer quality.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -351,7 +383,10 @@
     "area": "arachnos",
     "anum": 112,
     "name": "Tree Lair Entrance",
-    "description": "It seems the inhabitant of this place does not web her\nvictims, as evidenced by the remains before you.  The area\nis cluttered with desiccated corpses, apparently bitten\nbut unwebbed, and drained of their life juices.\n",
+    "description": "It seems the inhabitant of this place does not web her\n
+                   |victims, as evidenced by the remains before you.  The area\n
+                   |is cluttered with desiccated corpses, apparently bitten\n
+                   |but unwebbed, and drained of their life juices.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -368,7 +403,9 @@
     "area": "arachnos",
     "anum": 113,
     "name": "Wolf Spider Lair",
-    "description": "Very dark, as all lairs of spiders are.  Not much of furnishings\nsave an exit.  The wolf spider keeps no corpses here, but rather\nthrows them out at her leisure.\n",
+    "description": "Very dark, as all lairs of spiders are.  Not much of furnishings\n
+                   |save an exit.  The wolf spider keeps no corpses here, but rather\n
+                   |throws them out at her leisure.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "east",
@@ -387,7 +424,9 @@
     "area": "arachnos",
     "anum": 120,
     "name": "The Webless Path",
-    "description": "Strange.  No webbing here.  In fact, no sounds whatsoever.\nThe path continues northward, where you find that you may have to\ntightrope your way across a ravine.\n",
+    "description": "Strange.  No webbing here.  In fact, no sounds whatsoever.\n
+                   |The path continues northward, where you find that you may have to\n
+                   |tightrope your way across a ravine.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -404,7 +443,11 @@
     "area": "arachnos",
     "anum": 121,
     "name": "Above the Ravine",
-    "description": "Stranger still.  Your feet get a real firm grip on the spiderline.\nYou are above a deep ravine.  This line connects you between two trees.\nBelow you can see a prismatic web with lots of animal bones caught in it:\nsome bear and small deer bones in fact.  No human skeletons are visible\n(yet).\n",
+    "description": "Stranger still.  Your feet get a real firm grip on the spiderline.\n
+                   |You are above a deep ravine.  This line connects you between two trees.\n
+                   |Below you can see a prismatic web with lots of animal bones caught in it:\n
+                   |some bear and small deer bones in fact.  No human skeletons are visible\n
+                   |(yet).\n",
     "sector_type": "field",
     "doors": [
       {
@@ -433,7 +476,9 @@
     "area": "arachnos",
     "anum": 122,
     "name": "The Rainbow Web",
-    "description": "This is the rainbow web--each strand, each link, a hue of violently\nsharp colors and contrasts.  The resident here seems to have a command\nof light as well.\n",
+    "description": "This is the rainbow web--each strand, each link, a hue of violently\n
+                   |sharp colors and contrasts.  The resident here seems to have a command\n
+                   |of light as well.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "up",
@@ -444,7 +489,9 @@
     "area": "arachnos",
     "anum": 123,
     "name": "The Web Forest",
-    "description": "The trees here take on a different appearance--they are not trees\nanymore, but disjointed make-shift silken made shafts, sticky to the touch,\nand webby in texture.  This is another world it would appear.\n",
+    "description": "The trees here take on a different appearance--they are not trees\n
+                   |anymore, but disjointed make-shift silken made shafts, sticky to the touch,\n
+                   |and webby in texture.  This is another world it would appear.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -461,7 +508,9 @@
     "area": "arachnos",
     "anum": 124,
     "name": "The Slave Pit",
-    "description": "You have entered the slave pit.  A voice blares in the distance,\n\"Get back to work, maggots!\"  Rails upon rails of mined gold and silver\nclutter the trail beneath you.\n",
+    "description": "You have entered the slave pit.  A voice blares in the distance,\n
+                   |\"Get back to work, maggots!\"  Rails upon rails of mined gold and silver\n
+                   |clutter the trail beneath you.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -478,7 +527,9 @@
     "area": "arachnos",
     "anum": 125,
     "name": "The Tether Path",
-    "description": "Another tether path just like the rest of them.  Surprisingly well\n-lit by the golden orbs that hang from the sides, you can see the paths\nbecome finer and finer in quality.\n",
+    "description": "Another tether path just like the rest of them.  Surprisingly well\n
+                   |-lit by the golden orbs that hang from the sides, you can see the paths\n
+                   |become finer and finer in quality.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -512,7 +563,10 @@
     "area": "arachnos",
     "anum": 127,
     "name": "A Leader Strand",
-    "description": "This strand is weightier, more sturdy.  It shimmers as you step on\nit.  You are definitely not in the Midgaardian realms anymore.  Just\nwhere you are you can't tell.  It feels like you're moving through\nether.  You can still get back down to more surer lands.\n",
+    "description": "This strand is weightier, more sturdy.  It shimmers as you step on\n
+                   |it.  You are definitely not in the Midgaardian realms anymore.  Just\n
+                   |where you are you can't tell.  It feels like you're moving through\n
+                   |ether.  You can still get back down to more surer lands.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -537,7 +591,9 @@
     "area": "arachnos",
     "anum": 128,
     "name": "The Entrance of the Ethereal Web",
-    "description": "You are at the entrance to ethereal web.  Flickering in and out,\nin and out, each strand reveals a different hue from black to green\nto blue.\n",
+    "description": "You are at the entrance to ethereal web.  Flickering in and out,\n
+                   |in and out, each strand reveals a different hue from black to green\n
+                   |to blue.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -554,7 +610,11 @@
     "area": "arachnos",
     "anum": 130,
     "name": "The Young Wormkin's Crib",
-    "description": "A playpen of sorts, with maggots of wasps and other baby vermin\nlying about.  You feel that humans have been played with here too,\nand eaten later.  You sense that the maker of this place has\nan appetite for dragon meat, and uses this room as a breeding\narea.\n",
+    "description": "A playpen of sorts, with maggots of wasps and other baby vermin\n
+                   |lying about.  You feel that humans have been played with here too,\n
+                   |and eaten later.  You sense that the maker of this place has\n
+                   |an appetite for dragon meat, and uses this room as a breeding\n
+                   |area.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "south",
@@ -583,7 +643,10 @@
     "area": "arachnos",
     "anum": 131,
     "name": "The Base of the Web",
-    "description": "Large strands connect at this point.  The node shimmers and\nflickers within the ether.  You see many flying creatures--\ninsects, pegasi, and dragon wormkins--navigate the dangerous\npassages of the web.  Exits go in many directions.\n",
+    "description": "Large strands connect at this point.  The node shimmers and\n
+                   |flickers within the ether.  You see many flying creatures--\n
+                   |insects, pegasi, and dragon wormkins--navigate the dangerous\n
+                   |passages of the web.  Exits go in many directions.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -612,7 +675,9 @@
     "area": "arachnos",
     "anum": 132,
     "name": "Through the Trees",
-    "description": "This part of the web intersects through the branches of some\ntrees.  Various leaves and other debris that the many drones\nhave not picked up yet lie here.\n",
+    "description": "This part of the web intersects through the branches of some\n
+                   |trees.  Various leaves and other debris that the many drones\n
+                   |have not picked up yet lie here.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "west",
@@ -631,7 +696,9 @@
     "area": "arachnos",
     "anum": 133,
     "name": "Above the Clouds",
-    "description": "You can see all of Midgaard in this ethereal web.  Many\nof the larger dragons that do wish to fly seem to fly\naway from the sticky strands of the web.\n",
+    "description": "You can see all of Midgaard in this ethereal web.  Many\n
+                   |of the larger dragons that do wish to fly seem to fly\n
+                   |away from the sticky strands of the web.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -660,7 +727,8 @@
     "area": "arachnos",
     "anum": 134,
     "name": "On A Cloud",
-    "description": "Rather thick in consistency.  You realize this is not\na typical cloud, but it might be the nest of an aerial creature.\n",
+    "description": "Rather thick in consistency.  You realize this is not\n
+                   |a typical cloud, but it might be the nest of an aerial creature.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "north",
@@ -671,7 +739,8 @@
     "area": "arachnos",
     "anum": 135,
     "name": "A Link in the Ethereal Web",
-    "description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.\n",
+    "description": "This is another link in the ethereal web.  Various creatures\n
+                   |seem to get caught (or hypnotized) by its sticky strands.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -696,7 +765,8 @@
     "area": "arachnos",
     "anum": 136,
     "name": "The Tenuous Strand",
-    "description": "Very windy here since it goes up into the sky somewhat.\nStill, it's safe enough to move around.\n",
+    "description": "Very windy here since it goes up into the sky somewhat.\n
+                   |Still, it's safe enough to move around.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -717,7 +787,8 @@
     "area": "arachnos",
     "anum": 140,
     "name": "The Elder Wormkin's Room",
-    "description": "A more mature wormkin it seems resides here.  Various tomes of\narcane lore clutter the area, along with shards of armor and weaponry.\n",
+    "description": "A more mature wormkin it seems resides here.  Various tomes of\n
+                   |arcane lore clutter the area, along with shards of armor and weaponry.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "north",
@@ -736,7 +807,8 @@
     "area": "arachnos",
     "anum": 141,
     "name": "Another Tree Limb",
-    "description": "Once again the web crosses another tree limb.  To the side you\nsee the possible entrance to another creatures lair.\n",
+    "description": "Once again the web crosses another tree limb.  To the side you\n
+                   |see the possible entrance to another creatures lair.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -757,7 +829,9 @@
     "area": "arachnos",
     "anum": 142,
     "name": "The Bird Spider's Lair",
-    "description": "This is a big game hunter among most spiders.  Crush jewels\nand other weapons suggest the inhabitant must have powerful jaws.\nBeware!\n",
+    "description": "This is a big game hunter among most spiders.  Crush jewels\n
+                   |and other weapons suggest the inhabitant must have powerful jaws.\n
+                   |Beware!\n",
     "sector_type": "field",
     "doors": [{
       "dir": "north",
@@ -776,7 +850,8 @@
     "area": "arachnos",
     "anum": 145,
     "name": "A Link in the Ethereal Web",
-    "description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.\n",
+    "description": "This is another link in the ethereal web.  Various creatures\n
+                   |seem to get caught (or hypnotized) by its sticky strands.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -814,7 +889,9 @@
     "area": "arachnos",
     "anum": 147,
     "name": "On The Web",
-    "description": "RRRRRRRRRRROOOOOOOOOOOOOAAAAAAAAAAAAAARR!  You hear the roar\nof a powerful beast.  Dragon, you think.  You shiver in your boots\nas you tiptoe on this section of the web.\n",
+    "description": "RRRRRRRRRRROOOOOOOOOOOOOAAAAAAAAAAAAAARR!  You hear the roar\n
+                   |of a powerful beast.  Dragon, you think.  You shiver in your boots\n
+                   |as you tiptoe on this section of the web.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -831,7 +908,8 @@
     "area": "arachnos",
     "anum": 150,
     "name": "The Ki-Rin Chamber",
-    "description": "A wise ki-rin was entrapped here many years ago.  It is from her\nthat the ruler of this realm steals his magical strength.\n",
+    "description": "A wise ki-rin was entrapped here many years ago.  It is from her\n
+                   |that the ruler of this realm steals his magical strength.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "north",
@@ -866,7 +944,9 @@
     "area": "arachnos",
     "anum": 155,
     "name": "A Link in the Ethereal Web",
-    "description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.  To\nthe north you sense the heavy breathing of a fiery animal.\n",
+    "description": "This is another link in the ethereal web.  Various creatures\n
+                   |seem to get caught (or hypnotized) by its sticky strands.  To\n
+                   |the north you sense the heavy breathing of a fiery animal.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -887,7 +967,9 @@
     "area": "arachnos",
     "anum": 160,
     "name": "Yevaud's Lair",
-    "description": "Yevaud, the Usurper of Midgaard, resides here.  A voice cries\nout, \"BEWARE, the Usurper of Midgaard lives here!  FLEE while you can!\"\nBut even Yevaud has his master...or so you deduce.\n",
+    "description": "Yevaud, the Usurper of Midgaard, resides here.  A voice cries\n
+                   |out, \"BEWARE, the Usurper of Midgaard lives here!  FLEE while you can!\"\n
+                   |But even Yevaud has his master...or so you deduce.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "east",
@@ -915,7 +997,10 @@
     "area": "arachnos",
     "anum": 165,
     "name": "A Link in the Ethereal Web",
-    "description": "This is another link in the ethereal web.  Various creatures\nseem to get caught (or hypnotized) by its sticky strands.  A single\nspider line lies to the north, while ghastly seemings are due\nsouthward.  The grim entrance of Arachnos' Lair is downward.\n",
+    "description": "This is another link in the ethereal web.  Various creatures\n
+                   |seem to get caught (or hypnotized) by its sticky strands.  A single\n
+                   |spider line lies to the north, while ghastly seemings are due\n
+                   |southward.  The grim entrance of Arachnos' Lair is downward.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -940,7 +1025,10 @@
     "area": "arachnos",
     "anum": 166,
     "name": "Entrance to the Donjonkeep",
-    "description": "A dark path at the end of the web strand, you see ahead\na torch lit chamber where the souls of unavenged adventurers\ncome and gnash their teeth.  The howls and screams of many echo\nthrough the hall ways.  You see one definite path ahead.\n",
+    "description": "A dark path at the end of the web strand, you see ahead\n
+                   |a torch lit chamber where the souls of unavenged adventurers\n
+                   |come and gnash their teeth.  The howls and screams of many echo\n
+                   |through the hall ways.  You see one definite path ahead.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "east",
@@ -951,7 +1039,8 @@
     "area": "arachnos",
     "anum": 167,
     "name": "The Guardian's Room",
-    "description": "A chair sits here for a tireless guardian who ensures that no\nsoul escapes.  The room is undecorated.\n",
+    "description": "A chair sits here for a tireless guardian who ensures that no\n
+                   |soul escapes.  The room is undecorated.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -980,7 +1069,10 @@
     "area": "arachnos",
     "anum": 168,
     "name": "Realm of the Hopeless",
-    "description": "Here you see many misguided souls who think they still live.\nThey search for those who killed them without warrant, and seek the\nfree souls of living beings to inhabit and perhaps adventure once\nmore.\n",
+    "description": "Here you see many misguided souls who think they still live.\n
+                   |They search for those who killed them without warrant, and seek the\n
+                   |free souls of living beings to inhabit and perhaps adventure once\n
+                   |more.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -997,7 +1089,10 @@
     "area": "arachnos",
     "anum": 169,
     "name": "Realm of the Hopeless",
-    "description": "Here you see many misguided souls who think they still live.\nThey search for those who killed them without warrant, and seek the\nfree souls of living beings to inhabit and perhaps adventure once\nmore.\n",
+    "description": "Here you see many misguided souls who think they still live.\n
+                   |They search for those who killed them without warrant, and seek the\n
+                   |free souls of living beings to inhabit and perhaps adventure once\n
+                   |more.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1014,7 +1109,11 @@
     "area": "arachnos",
     "anum": 170,
     "name": "The Donjonkeep",
-    "description": "No souls have ever lived in this place.  The wails of slaves\nand the howls of wolves are the only way you can describe the sounds\nyou hear.  The walls are thin and wispy.  The only light you receive\nis the shimmering from the strand of the ethereal web you used to get\nhere.\n",
+    "description": "No souls have ever lived in this place.  The wails of slaves\n
+                   |and the howls of wolves are the only way you can describe the sounds\n
+                   |you hear.  The walls are thin and wispy.  The only light you receive\n
+                   |is the shimmering from the strand of the ethereal web you used to get\n
+                   |here.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1048,7 +1147,10 @@
     "area": "arachnos",
     "anum": 171,
     "name": "The Single Spider Line",
-    "description": "A single spider line supports you once more.  As you look\nacross the ether you seen a single shack up ahead with a light in\nthe window.  You sense a great evil coming from the east and feel\ninclined to go back on the ethereal web and take your chances there.\n",
+    "description": "A single spider line supports you once more.  As you look\n
+                   |across the ether you seen a single shack up ahead with a light in\n
+                   |the window.  You sense a great evil coming from the east and feel\n
+                   |inclined to go back on the ethereal web and take your chances there.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1065,7 +1167,8 @@
     "area": "arachnos",
     "anum": 172,
     "name": "The Single Spider Line",
-    "description": "A single spider line supports you once more.  The shack comes\ncloser into view and you are even more inclined to go back now.\n",
+    "description": "A single spider line supports you once more.  The shack comes\n
+                   |closer into view and you are even more inclined to go back now.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1082,7 +1185,10 @@
     "area": "arachnos",
     "anum": 173,
     "name": "The Hermit's Corner",
-    "description": "Here you see evidence of a vagrant's abode.  The shack is to the\neast, if you dare enter it.  You get the sneaking feeling you should\ngo back now.  The skies above you darken and roar with the laughter\nof thunder.\n",
+    "description": "Here you see evidence of a vagrant's abode.  The shack is to the\n
+                   |east, if you dare enter it.  You get the sneaking feeling you should\n
+                   |go back now.  The skies above you darken and roar with the laughter\n
+                   |of thunder.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1107,7 +1213,9 @@
     "area": "arachnos",
     "anum": 180,
     "name": "Mahatma's Inescapable Trap",
-    "description": "Mahatma, that silly thief, is here, and he steals everything you\nhave.  He says, 'Here, have a quick trip to the Temple of Midgaard.'\nHe plunges a black dagger into your back ...\n",
+    "description": "Mahatma, that silly thief, is here, and he steals everything you\n
+                   |have.  He says, 'Here, have a quick trip to the Temple of Midgaard.'\n
+                   |He plunges a black dagger into your back ...\n",
     "sector_type": "inside",
     "room_flags": "no_mob"
   }},
@@ -1115,7 +1223,8 @@
     "area": "arachnos",
     "anum": 190,
     "name": "The Entrance to the Arachnos' Lair",
-    "description": "All strands inevitably lead here, the center of the web, the\nentrance to Arachnos' Lair.\n",
+    "description": "All strands inevitably lead here, the center of the web, the\n
+                   |entrance to Arachnos' Lair.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1132,7 +1241,11 @@
     "area": "arachnos",
     "anum": 191,
     "name": "The Sticky Chamber",
-    "description": "You can still bail out since your knees are shaking from the\nanticipation (or is it fear?).  The sky is clear on this strand of\nweb, surprisingly unsticky.  The strand does not vibrate like the\nothers.  A few ballooning spiders pass by, cackling \"You're gonna\ndie, you're gonna fry.  Good bye!\"\n",
+    "description": "You can still bail out since your knees are shaking from the\n
+                   |anticipation (or is it fear?).  The sky is clear on this strand of\n
+                   |web, surprisingly unsticky.  The strand does not vibrate like the\n
+                   |others.  A few ballooning spiders pass by, cackling \"You're gonna\n
+                   |die, you're gonna fry.  Good bye!\"\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1149,7 +1262,9 @@
     "area": "arachnos",
     "anum": 192,
     "name": "The Great Door",
-    "description": "Before you you see a large, web-like door.  Various designs\nof ancient runes and names of Midgaard heroes are etched into\nthe webwork.  Perhaps lists of victims?  You can't tell.\n",
+    "description": "Before you you see a large, web-like door.  Various designs\n
+                   |of ancient runes and names of Midgaard heroes are etched into\n
+                   |the webwork.  Perhaps lists of victims?  You can't tell.\n",
     "sector_type": "field",
     "room_flags": "indoors",
     "doors": [
@@ -1170,7 +1285,12 @@
     "area": "arachnos",
     "anum": 199,
     "name": "The Lair of Arachnos",
-    "description": "This is the lair of the Empress Spider, Arachnos.  A lavishly\nadorned rainbow web, her lair allows her to move to any universe\nshe wishes by using her magical strands to the Prime Material Plane.\nCoffers upon coffers of gold, magical jewels and gems await.  Unfor-\ntunately Arachnos is a baggy spider too, and webs all her treasures\nto her beautiful silken body.\n",
+    "description": "This is the lair of the Empress Spider, Arachnos.  A lavishly\n
+                   |adorned rainbow web, her lair allows her to move to any universe\n
+                   |she wishes by using her magical strands to the Prime Material Plane.\n
+                   |Coffers upon coffers of gold, magical jewels and gems await.  Unfor-\n
+                   |tunately Arachnos is a baggy spider too, and webs all her treasures\n
+                   |to her beautiful silken body.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "south",

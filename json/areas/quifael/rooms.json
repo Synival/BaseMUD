@@ -3,7 +3,8 @@
     "area": "quifael",
     "anum": 0,
     "name": "Quifael's monster pen",
-    "description": "You are in a big, subterranean room with heavy massive stone walls and no\nwindows whatsoever.  A virtual ladder leads upwards.\n",
+    "description": "You are in a big, subterranean room with heavy massive stone walls and no\n
+                   |windows whatsoever.  A virtual ladder leads upwards.\n",
     "sector_type": "inside",
     "room_flags": "indoors private",
     "doors": [{
@@ -16,7 +17,10 @@
     "area": "quifael",
     "anum": 1,
     "name": "Quifael's study",
-    "description": "You are in a small, comfortable study room.  The walls are lined with\nbookcases filled with dusty volumes of all sizes.  In the fireplace burns a\ncrackling fire that makes the room warm and cosy, and in front of an oakwood\nreading desk is a large old-fashioned chair.\n",
+    "description": "You are in a small, comfortable study room.  The walls are lined with\n
+                   |bookcases filled with dusty volumes of all sizes.  In the fireplace burns a\n
+                   |crackling fire that makes the room warm and cosy, and in front of an oakwood\n
+                   |reading desk is a large old-fashioned chair.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors private",
     "doors": [{
@@ -39,7 +43,11 @@
       },
       {
         "keyword": "bookcase bookcases volume volumes book books",
-        "description": "Most of the books are heavy, leatherbound and covered in a thin layer of dust.\nThere are many titles on necromancy, conjuring and other spheres of Magick,\nbut also some on computer science (although these seem to be VERY dusty\nindeed) and a fair collection of horror literature, ranging from Bram Stoker\nand H. P. Lovecraft to Anne Rice and Stephen King.\n"
+        "description": "Most of the books are heavy, leatherbound and covered in a thin layer of dust.\n
+                       |There are many titles on necromancy, conjuring and other spheres of Magick,\n
+                       |but also some on computer science (although these seem to be VERY dusty\n
+                       |indeed) and a fair collection of horror literature, ranging from Bram Stoker\n
+                       |and H. P. Lovecraft to Anne Rice and Stephen King.\n"
       }
     ]
   }},
@@ -47,7 +55,11 @@
     "area": "quifael",
     "anum": 2,
     "name": "Quifael's laboratory",
-    "description": "You are in a room filled with shelves containing all sorts of weird equipment.\nThe walls are lined with numerous shelves and a massive working desk is by\nthe north wall.  The air smells of rare chemicals and spices.\nA virtual ladder leads downwards.\nA magical portal is hovering in the air just in front of the east wall.\n",
+    "description": "You are in a room filled with shelves containing all sorts of weird equipment.\n
+                   |The walls are lined with numerous shelves and a massive working desk is by\n
+                   |the north wall.  The air smells of rare chemicals and spices.\n
+                   |A virtual ladder leads downwards.\n
+                   |A magical portal is hovering in the air just in front of the east wall.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors private",
     "doors": [
@@ -70,11 +82,16 @@
     "extra_description": [
       {
         "keyword": "desk",
-        "description": "On the desk is a peculiar apparatus of glass bottles and globes connected by\nsmall pipelines.  The green liquid inside the apparatus' globes and pipelines\nis bubbling steadily.\n"
+        "description": "On the desk is a peculiar apparatus of glass bottles and globes connected by\n
+                       |small pipelines.  The green liquid inside the apparatus' globes and pipelines\n
+                       |is bubbling steadily.\n"
       },
       {
         "keyword": "shelves",
-        "description": "The shelves contain a mass of bottles, jars and boxes of different shapes and\nsizes, of which some contain powders and liquids in various colours.  Others\ncontain dragon's claws, giant's eyes, rabbit's ears and other body parts of\ndifferent monsters.\n"
+        "description": "The shelves contain a mass of bottles, jars and boxes of different shapes and\n
+                       |sizes, of which some contain powders and liquids in various colours.  Others\n
+                       |contain dragon's claws, giant's eyes, rabbit's ears and other body parts of\n
+                       |different monsters.\n"
       }
     ]
   }},
@@ -82,7 +99,12 @@
     "area": "quifael",
     "anum": 3,
     "name": "Quifael's virtual balcony",
-    "description": "You are on a transparent balcony hanging in mid-air.  You notice a faint blue\nglow surrounding everything, even yourself, making it seem as transparent as\nthe balcony itself.  From here, you have a terrific view of the whole Forest\nof Haon-Dor.\nA transparent bronze plate has been bolted to the balcony railing.\nA magical portal is hovering in the air to the west.\n",
+    "description": "You are on a transparent balcony hanging in mid-air.  You notice a faint blue\n
+                   |glow surrounding everything, even yourself, making it seem as transparent as\n
+                   |the balcony itself.  From here, you have a terrific view of the whole Forest\n
+                   |of Haon-Dor.\n
+                   |A transparent bronze plate has been bolted to the balcony railing.\n
+                   |A magical portal is hovering in the air to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors private",
     "doors": [{
@@ -93,15 +115,30 @@
     "extra_description": [
       {
         "keyword": "forest Haon-Dor view",
-        "description": "Through the tree crowns, you see fellow adventurers walking around in the\nforest, gathering mushrooms, eating blackberries, committing rabbit genocide\nand generally having a good time.\n"
+        "description": "Through the tree crowns, you see fellow adventurers walking around in the\n
+                       |forest, gathering mushrooms, eating blackberries, committing rabbit genocide\n
+                       |and generally having a good time.\n"
       },
       {
         "keyword": "plate",
-        "description": "The transparent bronze plate looks quite strange, but the engraved letters are\nquite easy to read, nevertheless :-\n \n              Quifael's Virtual Balcony\n \n                   Do not lean out!\n \n  Please do not try to attract the attention of any\n      adventurers in the forest, as you are not\n         really in existence at the moment.\n \n        (This could possibly mess up Reality,\n      and we wouldn't want to do that, would we?)\n"
+        "description": "The transparent bronze plate looks quite strange, but the engraved letters are\n
+                       |quite easy to read, nevertheless :-\n
+                       | \n
+                       |              Quifael's Virtual Balcony\n
+                       | \n
+                       |                   Do not lean out!\n
+                       | \n
+                       |  Please do not try to attract the attention of any\n
+                       |      adventurers in the forest, as you are not\n
+                       |         really in existence at the moment.\n
+                       | \n
+                       |        (This could possibly mess up Reality,\n
+                       |      and we wouldn't want to do that, would we?)\n"
       },
       {
         "keyword": "balcony railing",
-        "description": "Quite transparent, but visible anyway, because of the blue glow that surrounds\nthe whole place.\n"
+        "description": "Quite transparent, but visible anyway, because of the blue glow that surrounds\n
+                       |the whole place.\n"
       }
     ]
   }},
@@ -109,7 +146,9 @@
     "area": "quifael",
     "anum": 4,
     "name": "Quifael's hall",
-    "description": "You are in sparsely decorated and quite dusty hall.  Old wooden doors lead\nnorth, east and south and to the west is the front door.\nAn old mirror hangs on the wall.\n",
+    "description": "You are in sparsely decorated and quite dusty hall.  Old wooden doors lead\n
+                   |north, east and south and to the west is the front door.\n
+                   |An old mirror hangs on the wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors private",
     "doors": [

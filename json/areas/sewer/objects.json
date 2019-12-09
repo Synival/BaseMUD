@@ -49,7 +49,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "devil rod",
-      "description": "This is indeed a mysterious rod.  It is dark black at the base but has four\nvery sharp purple tentacles at the end.\n"
+      "description": "This is indeed a mysterious rod.  It is dark black at the base but has four\n
+                     |very sharp purple tentacles at the end.\n"
     }],
     "affects": [
       {
@@ -88,7 +89,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "large mace",
-      "description": "The mace is pretty large with a weight of 10 lbs.  The head is actually four\npurple tentacles tied together.\n"
+      "description": "The mace is pretty large with a weight of 10 lbs.  The head is actually four\n
+                     |purple tentacles tied together.\n"
     }],
     "affects": [{
       "apply": "damage roll",
@@ -118,7 +120,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "small mace",
-      "description": "This weapon doesn't look like it does a lot of damage, but then you never know.\nIt consists of a black handle and a purple head.\n"
+      "description": "This weapon doesn't look like it does a lot of damage, but then you never know.\n
+                     |It consists of a black handle and a purple head.\n"
     }],
     "affects": [{
       "apply": "damage roll",
@@ -209,7 +212,8 @@
       },
       {
         "keyword": "white skull",
-        "description": "The skull has two small horns in the forehead. You notice some writing on\nthe inside.\n"
+        "description": "The skull has two small horns in the forehead. You notice some writing on\n
+                       |the inside.\n"
       }
     ],
     "affects": [{
@@ -239,7 +243,8 @@
       },
       {
         "keyword": "small stick",
-        "description": "The small stick does not look interesting at all.  But just as you are going\nto throw it away you notice some small letters.\n"
+        "description": "The small stick does not look interesting at all.  But just as you are going\n
+                       |to throw it away you notice some small letters.\n"
       }
     ]
   }},
@@ -375,7 +380,8 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "plate breast silvery",
-      "description": "On the breast plate you notice a relief of large rose. The metal seems to be \nsome kind of silver or platinum.\n"
+      "description": "On the breast plate you notice a relief of large rose. The metal seems to be \n
+                     |some kind of silver or platinum.\n"
     }],
     "affects": [{
       "apply": "strength",
@@ -474,7 +480,8 @@
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "helmet silvery",
-      "description": "The helmet is made from platinum or silver and has a white fur brush attached\non the top.\n"
+      "description": "The helmet is made from platinum or silver and has a white fur brush attached\n
+                     |on the top.\n"
     }],
     "affects": [{
       "apply": "wisdom",
@@ -504,7 +511,8 @@
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "shield",
-      "description": "On the shield you see a clear and perfect painting of a dark red rose on a white\nbackground. You also notice the inscription :'Pax Est Sanctuum'.\n"
+      "description": "On the shield you see a clear and perfect painting of a dark red rose on a white\n
+                     |background. You also notice the inscription :'Pax Est Sanctuum'.\n"
     }],
     "affects": [{
       "apply": "armor class",
@@ -594,7 +602,8 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "cloak white",
-      "description": "This is a very fine made cloak from an unknown material, in a bright white\ncolor.\n"
+      "description": "This is a very fine made cloak from an unknown material, in a bright white\n
+                     |color.\n"
     }],
     "affects": [{
       "apply": "saves",

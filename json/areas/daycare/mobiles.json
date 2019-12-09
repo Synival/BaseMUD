@@ -120,7 +120,8 @@
     "name": "bear ugly",
     "short_descr": "the ugly bear",
     "long_descr": "An ugly stuffed bear stands here.\n",
-    "description": "This is obviously a reject from the factory.\nHe snarls and growls at you.\n",
+    "description": "This is obviously a reject from the factory.\n
+                   |He snarls and growls at you.\n",
     "race": "doll",
     "material": "cloth",
     "alignment": -400,
@@ -177,7 +178,8 @@
     "name": "nanny",
     "short_descr": "the nanny",
     "long_descr": "An old wrinkled nanny stands here, looking over the little ones.\n",
-    "description": "You see an old dwarven lady who has been hunched over with age.  However, it\nappears that there is still some fight left in her.\n",
+    "description": "You see an old dwarven lady who has been hunched over with age.  However, it\n
+                   |appears that there is still some fight left in her.\n",
     "race": "dwarf",
     "alignment": 10,
     "level": 5,
@@ -205,7 +207,8 @@
     "name": "guard",
     "short_descr": "the armed guard",
     "long_descr": "An armed guard stands here looking lost.\n",
-    "description": "This is a big mean bully who is tired of being lost in this maze.\nYou suddenly think that you had better flee.\n",
+    "description": "This is a big mean bully who is tired of being lost in this maze.\n
+                   |You suddenly think that you had better flee.\n",
     "race": "dwarf",
     "alignment": -800,
     "level": 8,
@@ -233,7 +236,8 @@
     "name": "brat spoiled",
     "short_descr": "the spoiled brat",
     "long_descr": "A spoiled brat is crying here.\n",
-    "description": "You see a little tyke who has always gotten what he wanted.  You have the\nbiggest urge to put him out of his misery.\n",
+    "description": "You see a little tyke who has always gotten what he wanted.  You have the\n
+                   |biggest urge to put him out of his misery.\n",
     "race": "dwarf",
     "alignment": -400,
     "level": 1,

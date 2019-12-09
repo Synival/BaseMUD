@@ -39,7 +39,9 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "sand robes",
-      "description": "The robes are colored a sandy off-white, and are in fact caked and covered\nwith sand as well.  You don't seem to be able to remove all of the sand, no\nmatter how much you try.\n"
+      "description": "The robes are colored a sandy off-white, and are in fact caked and covered\n
+                     |with sand as well.  You don't seem to be able to remove all of the sand, no\n
+                     |matter how much you try.\n"
     }]
   }},
   {"object": {
@@ -91,7 +93,8 @@
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "cloth turban",
-      "description": "The turban used to be white cloth, now it is covered with oil and dirt from\nthe head and hair of its previous owner, who must not have bathed much.\n"
+      "description": "The turban used to be white cloth, now it is covered with oil and dirt from\n
+                     |the head and hair of its previous owner, who must not have bathed much.\n"
     }],
     "affects": [
       {
@@ -225,7 +228,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "stone scimitar",
-      "description": "The scimitar is formed from solid stone, chipped and carved to perfection,\nwith a sharp, cold blade that is marred only by a few nicks here and there.\n"
+      "description": "The scimitar is formed from solid stone, chipped and carved to perfection,\n
+                     |with a sharp, cold blade that is marred only by a few nicks here and there.\n"
     }],
     "affects": [
       {
@@ -280,7 +284,13 @@
     "cost": 0,
     "extra_description": [{
       "keyword": "stone sarcophagus",
-      "description": "The sarcophagus is engraved on the sides with the images of pharoahs,\ngreat wars fought long ago, mighty pyramids being constructed...\n\nA raised image atop the sarcophagus is formed in the visage of one of\nthe mighty pharoahs, painted in gold and studded with precious gems.\n\nYou see a small keyhole in the side of the sarcophagus.\n"
+      "description": "The sarcophagus is engraved on the sides with the images of pharoahs,\n
+                     |great wars fought long ago, mighty pyramids being constructed...\n
+                     |\n
+                     |A raised image atop the sarcophagus is formed in the visage of one of\n
+                     |the mighty pharoahs, painted in gold and studded with precious gems.\n
+                     |\n
+                     |You see a small keyhole in the side of the sarcophagus.\n"
     }]
   }},
   {"object": {
@@ -297,7 +307,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "dust",
-      "description": "The dust is old.  As you sift it through your hands you find tiny chips\nof aged bone inside -- it must be the ancient remains of something.\n"
+      "description": "The dust is old.  As you sift it through your hands you find tiny chips\n
+                     |of aged bone inside -- it must be the ancient remains of something.\n"
     }]
   }},
   {"object": {
@@ -314,7 +325,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "scarab",
-      "description": "The scarab is intricately detailed, down to the tiny hairs on its\ninsectile legs and the faceting of the emeralds in its eyes.\n"
+      "description": "The scarab is intricately detailed, down to the tiny hairs on its\n
+                     |insectile legs and the faceting of the emeralds in its eyes.\n"
     }]
   }},
   {"object": {
@@ -337,7 +349,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "lamp",
-      "description": "The lamp is quite old and tarnished.  You rub at it to get some of the\ngrime off, but it doesn't seem like anybody is home.\n"
+      "description": "The lamp is quite old and tarnished.  You rub at it to get some of the\n
+                     |grime off, but it doesn't seem like anybody is home.\n"
     }],
     "affects": [
       {
@@ -371,7 +384,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "ankh",
-      "description": "The ankh is a small brass symbol of an ancient religion.\nIt glows with a soft bright light that is soothing to you.\n"
+      "description": "The ankh is a small brass symbol of an ancient religion.\n
+                     |It glows with a soft bright light that is soothing to you.\n"
     }],
     "affects": [
       {
@@ -416,7 +430,9 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "book riddles",
-      "description": "The book has well-worn pages, containing many befuddling riddles\nto surprise, confuse, and amuse you.  You find yourself bewildered\nby its contents and put it down to sort your head out.\n"
+      "description": "The book has well-worn pages, containing many befuddling riddles\n
+                     |to surprise, confuse, and amuse you.  You find yourself bewildered\n
+                     |by its contents and put it down to sort your head out.\n"
     }]
   }},
   {"object": {
@@ -438,7 +454,9 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "lion paw",
-      "description": "The massive paw has straps on it formed of bronze, so that it will\nfit snugly over your hand.  As you put it on, it melds with your hand,\nbecoming an extension of your arm.\n"
+      "description": "The massive paw has straps on it formed of bronze, so that it will\n
+                     |fit snugly over your hand.  As you put it on, it melds with your hand,\n
+                     |becoming an extension of your arm.\n"
     }],
     "affects": [
       {
@@ -478,7 +496,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "answer hieroglyphics",
-      "description": "You cannot decipher the strange hieroglyphics that cover the\nsheet of parchment.\n"
+      "description": "You cannot decipher the strange hieroglyphics that cover the\n
+                     |sheet of parchment.\n"
     }]
   }},
   {"object": {
@@ -498,7 +517,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "treasure",
-      "description": "The treasure is incredibly large, filled with gold coins and valuables, more \nwealth than you could ever possibly imagine accumulated in one place.\n"
+      "description": "The treasure is incredibly large, filled with gold coins and valuables, more \n
+                     |wealth than you could ever possibly imagine accumulated in one place.\n"
     }]
   }},
   {"object": {
@@ -533,7 +553,9 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "curse mummy",
-      "description": "Rumor has it that whomever disturbs the grave of the mummy shall be \ncursed for all eternity, and that the descendents of that person shall\nlikewise be cursed for ten generations to follow.\n"
+      "description": "Rumor has it that whomever disturbs the grave of the mummy shall be \n
+                     |cursed for all eternity, and that the descendents of that person shall\n
+                     |likewise be cursed for ten generations to follow.\n"
     }],
     "affects": [
       {
@@ -593,7 +615,9 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "small elixir",
-      "description": "The elixir is deceptively small.  Something tells you that its\ncontents are truly quite potent.  Perhaps too potent for ordinary\nmortals to attempt to consume.\n"
+      "description": "The elixir is deceptively small.  Something tells you that its\n
+                     |contents are truly quite potent.  Perhaps too potent for ordinary\n
+                     |mortals to attempt to consume.\n"
     }]
   }},
   {"object": {
@@ -616,7 +640,10 @@
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "golden mask",
-      "description": "This beautiful mask was shaped from solid gold and magically enchanted\nto perfectly fit the face of any who choose to wear it, its golden features\nand turquoise highlights even moving to match the expressions of the face\nof the wearer.\n"
+      "description": "This beautiful mask was shaped from solid gold and magically enchanted\n
+                     |to perfectly fit the face of any who choose to wear it, its golden features\n
+                     |and turquoise highlights even moving to match the expressions of the face\n
+                     |of the wearer.\n"
     }],
     "affects": [
       {
@@ -663,7 +690,10 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "diamond",
-      "description": "Aha!\n\nYou see a multifaceted gemstone, which strangely reflects no\nlight, making it very hard to see when it lies on the ground.\n"
+      "description": "Aha!\n
+                     |\n
+                     |You see a multifaceted gemstone, which strangely reflects no\n
+                     |light, making it very hard to see when it lies on the ground.\n"
     }]
   }},
   {"object": {
@@ -686,7 +716,9 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "sun wand",
-      "description": "This small brass shaft is a holy weapon used by the ancient people of \nthis land to defend against the deadliest of foes.  It shines with the \nbrilliant blazing light of the sun.\n"
+      "description": "This small brass shaft is a holy weapon used by the ancient people of \n
+                     |this land to defend against the deadliest of foes.  It shines with the \n
+                     |brilliant blazing light of the sun.\n"
     }],
     "affects": [{
       "apply": "saves",
@@ -711,7 +743,8 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "sandy ring",
-      "description": "The ring is small, smooth, sandy-colored and unremarkable, save that\nit gives off a continuous low humming noise that tickles your fingertips.\n"
+      "description": "The ring is small, smooth, sandy-colored and unremarkable, save that\n
+                     |it gives off a continuous low humming noise that tickles your fingertips.\n"
     }],
     "affects": [
       {
@@ -745,7 +778,9 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "golden sphinx",
-      "description": "The golden sphinx is incredibly detailed and very small, fitting easily\ninto the palm of your hand.  You can even make out the expression\nof wisdom and peace on its face.\n"
+      "description": "The golden sphinx is incredibly detailed and very small, fitting easily\n
+                     |into the palm of your hand.  You can even make out the expression\n
+                     |of wisdom and peace on its face.\n"
     }],
     "affects": [{
       "apply": "wisdom",
@@ -775,7 +810,9 @@
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "sphinxian leggings",
-      "description": "These magically fashioned leggings impart the strength and stamina\nof the mightiest of the ancient sphinxes.  You feel ancient power \nemanating from them; they seem to be almost alive.\n"
+      "description": "These magically fashioned leggings impart the strength and stamina\n
+                     |of the mightiest of the ancient sphinxes.  You feel ancient power \n
+                     |emanating from them; they seem to be almost alive.\n"
     }],
     "affects": [
       {

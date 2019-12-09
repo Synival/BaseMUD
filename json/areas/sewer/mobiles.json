@@ -5,7 +5,9 @@
     "name": "mud monster mudmonster",
     "short_descr": "the horrifying mudmonster",
     "long_descr": "A horrifying mudmonster is slowly evolving from the mud ...\n",
-    "description": "It sure looks like something out of a horror movie. It strongly resembles\na huge figure made up from mud alone, and it sure looks like it had human \nflesh for breakfast and is strongly intent on having the same for dinner.\n",
+    "description": "It sure looks like something out of a horror movie. It strongly resembles\n
+                   |a huge figure made up from mud alone, and it sure looks like it had human \n
+                   |flesh for breakfast and is strongly intent on having the same for dinner.\n",
     "race": "human",
     "alignment": -250,
     "level": 12,
@@ -35,7 +37,9 @@
     "name": "bat",
     "short_descr": "the small bat",
     "long_descr": "The small fierce-looking bat is hanging from the ceiling.\n",
-    "description": "You have never in your entire life seen such a mean looking small creature,\nthough it looks rather peaceful, hanging there. The thought of arousing this\ncruel creature doesn't seem appealing.\n",
+    "description": "You have never in your entire life seen such a mean looking small creature,\n
+                   |though it looks rather peaceful, hanging there. The thought of arousing this\n
+                   |cruel creature doesn't seem appealing.\n",
     "race": "bat",
     "alignment": -500,
     "level": 1,
@@ -232,7 +236,9 @@
     "name": "homonculus homo",
     "short_descr": "the homonculus",
     "long_descr": "The homonculus is here, looking at you with an evil look.\n",
-    "description": "The Homonculus appears in a man-like form, about 18'' tall, it has a\ngreenish, reptilian skin, leathery wings, and a bat-like mouth, with\nteeth gleaming yellow.\n",
+    "description": "The Homonculus appears in a man-like form, about 18'' tall, it has a\n
+                   |greenish, reptilian skin, leathery wings, and a bat-like mouth, with\n
+                   |teeth gleaming yellow.\n",
     "race": "human",
     "alignment": -780,
     "level": 11,
@@ -259,7 +265,8 @@
     "name": "chreffn",
     "short_descr": "the evil chreffn",
     "long_descr": "The chreffn are crawling here, looking around with their yellow eyes.\n",
-    "description": "The head and torso of a chreffn is copper-covered, with yellow,\nglowing eyes. The lower body is in an orange shading.\n",
+    "description": "The head and torso of a chreffn is copper-covered, with yellow,\n
+                   |glowing eyes. The lower body is in an orange shading.\n",
     "race": "human",
     "alignment": -830,
     "level": 12,
@@ -287,7 +294,9 @@
     "name": "morkoth",
     "short_descr": "the shadowy morkoth",
     "long_descr": "The morkoth is standing here, waiting for someone to KILL!\n",
-    "description": "It's a five feet tall, shadow monster. The shape of this creature lies\nsomewhere between a human and a rat. It breaths very heavily, while staring\nat you with such a glint in the eyes that reminds you of immense hunger.\n",
+    "description": "It's a five feet tall, shadow monster. The shape of this creature lies\n
+                   |somewhere between a human and a rat. It breaths very heavily, while staring\n
+                   |at you with such a glint in the eyes that reminds you of immense hunger.\n",
     "race": "human",
     "alignment": -900,
     "level": 10,
@@ -315,7 +324,9 @@
     "name": "mud monster mudmonster",
     "short_descr": "the horrifying mudmonster",
     "long_descr": "A horrifying mudmonster is slowly evolving from the mud ...\n",
-    "description": "It sure looks like something out of a horror movie. It strongly resembles\na huge figure made up from mud alone, and it sure looks like it had human \nflesh for breakfast and is strongly intent on having the same for dinner.\n",
+    "description": "It sure looks like something out of a horror movie. It strongly resembles\n
+                   |a huge figure made up from mud alone, and it sure looks like it had human \n
+                   |flesh for breakfast and is strongly intent on having the same for dinner.\n",
     "race": "human",
     "alignment": -250,
     "level": 12,
@@ -345,7 +356,9 @@
     "name": "red dragon",
     "short_descr": "the red dragon",
     "long_descr": "The red fierce-looking dragon stares at you angrily.\n",
-    "description": "The red dragon stares at you, angrily, as it wakes when you\narrives.  It says 'Oh, human YOU woke me up ... Hsss', while\nit moves closer.  'Can one NEVER sleep in peace ... Hsss'.\n",
+    "description": "The red dragon stares at you, angrily, as it wakes when you\n
+                   |arrives.  It says 'Oh, human YOU woke me up ... Hsss', while\n
+                   |it moves closer.  'Can one NEVER sleep in peace ... Hsss'.\n",
     "race": "human",
     "alignment": -1000,
     "level": 32,
@@ -374,7 +387,9 @@
     "name": "sea hag",
     "short_descr": "the sea hag",
     "long_descr": "The sea hag is swimming around here.\n",
-    "description": "The sea hag is so ghastly looking that you feel the deepest fear.\nBig yellow eyes and sharp teeth.  Its ears are very big,\nand it has small sharp horns.  It hates beauty.\n",
+    "description": "The sea hag is so ghastly looking that you feel the deepest fear.\n
+                   |Big yellow eyes and sharp teeth.  Its ears are very big,\n
+                   |and it has small sharp horns.  It hates beauty.\n",
     "race": "human",
     "alignment": -800,
     "level": 14,
@@ -403,7 +418,10 @@
     "name": "guardian naga",
     "short_descr": "the guardian naga",
     "long_descr": "The guardian naga looks kindly at you.\n",
-    "description": "The naga are a snake-liked creature. She is covered in green-gold\nscale with silvery triangles along her back. Her eyes are golden.\nShe notice that you look at her, and she says: 'Watch out. This way\nleads to some evil creatures'.\n",
+    "description": "The naga are a snake-liked creature. She is covered in green-gold\n
+                   |scale with silvery triangles along her back. Her eyes are golden.\n
+                   |She notice that you look at her, and she says: 'Watch out. This way\n
+                   |leads to some evil creatures'.\n",
     "race": "human",
     "alignment": 700,
     "level": 12,
@@ -432,7 +450,9 @@
     "name": "basilisk",
     "short_descr": "the scaled basilisk",
     "long_descr": "The scaled basilisk crawls towards you slowly.\n",
-    "description": "The basilisk is a reptilian monster. It has eight legs, and a strong\ntoothy jaws. It is dull brown with yellowish underbelly. It's eyes are\nglowing pale green.\n",
+    "description": "The basilisk is a reptilian monster. It has eight legs, and a strong\n
+                   |toothy jaws. It is dull brown with yellowish underbelly. It's eyes are\n
+                   |glowing pale green.\n",
     "race": "human",
     "alignment": -250,
     "level": 13,
@@ -461,7 +481,10 @@
     "name": "lemure blob",
     "short_descr": "the lemure blob",
     "long_descr": "The lemure blob slithers terribly precisely towards you for an attack!\n",
-    "description": "This looks like a vaguely human blob. Big black yellow eyes, and a\nmouth going a little bit out from the face. The lemure does not look\ninterested in you at all, but anyway it attacks. It looks like it's\nmind has been burned out.\n",
+    "description": "This looks like a vaguely human blob. Big black yellow eyes, and a\n
+                   |mouth going a little bit out from the face. The lemure does not look\n
+                   |interested in you at all, but anyway it attacks. It looks like it's\n
+                   |mind has been burned out.\n",
     "race": "human",
     "alignment": -500,
     "level": 5,
@@ -489,7 +512,9 @@
     "name": "jones cruncher ettin",
     "short_descr": "Jones",
     "long_descr": "Jones 'Cruncher' the ettin is standing here glaring at you.\n",
-    "description": "At the first sight you thought Jones was an orc, but when it came\ncloser you saw his second head. He wears an animal skin dress,\nfilthy and moth eaten. Jones really stinks...\n",
+    "description": "At the first sight you thought Jones was an orc, but when it came\n
+                   |closer you saw his second head. He wears an animal skin dress,\n
+                   |filthy and moth eaten. Jones really stinks...\n",
     "race": "human",
     "alignment": -480,
     "level": 10,
@@ -519,7 +544,9 @@
     "name": "herald mouse killer ettin",
     "short_descr": "Herald",
     "long_descr": "Herald 'Mouse-Killer' the ettin is standing here looking confused at you.\n",
-    "description": "When you look at Herald, you feel pity. His dress are really poor,\nand the one of his heads hangs down. At the rope around his stomach\nhangs dead mouses and rats. He does not smell good.\n",
+    "description": "When you look at Herald, you feel pity. His dress are really poor,\n
+                   |and the one of his heads hangs down. At the rope around his stomach\n
+                   |hangs dead mouses and rats. He does not smell good.\n",
     "race": "human",
     "alignment": 200,
     "level": 6,
@@ -549,7 +576,9 @@
     "name": "master mind mindflayer",
     "short_descr": "the master mindflayer",
     "long_descr": "The master mindflayer is here, looking at you with an evil look.\n",
-    "description": "It's a seven foot tall humanoid dressed in a purple cloak, and swinging a\nblack and purple rod above its head as if it was going to attack you any\nmoment now. In the middle of its head are four tentacles with sharp points.\n",
+    "description": "It's a seven foot tall humanoid dressed in a purple cloak, and swinging a\n
+                   |black and purple rod above its head as if it was going to attack you any\n
+                   |moment now. In the middle of its head are four tentacles with sharp points.\n",
     "race": "human",
     "alignment": -800,
     "level": 14,
@@ -578,7 +607,9 @@
     "name": "senior mind mindflayer",
     "short_descr": "the senior mindflayer",
     "long_descr": "The senior mindflayer walks around here, looking for something useful.\n",
-    "description": "This is a horrifying monster indeed, 6'6\" high. Dressed in purple and black,\nand carrying a large mace in its hand. In the center of its head are four large\ntentacles with very sharp points.\n",
+    "description": "This is a horrifying monster indeed, 6'6\" high. Dressed in purple and black,\n
+                   |and carrying a large mace in its hand. In the center of its head are four large\n
+                   |tentacles with very sharp points.\n",
     "race": "human",
     "alignment": -600,
     "level": 8,
@@ -607,7 +638,9 @@
     "name": "junior mind mindflayer",
     "short_descr": "the junior mindflayer",
     "long_descr": "The junior mindflayer is here, watching you carefully from the corner.\n",
-    "description": "This mindflayer is six foot high. It has a small mace in its belt, and is\ndressed in purple and black cloth. It has four small tentacles in the \ncenter of its head.\n",
+    "description": "This mindflayer is six foot high. It has a small mace in its belt, and is\n
+                   |dressed in purple and black cloth. It has four small tentacles in the \n
+                   |center of its head.\n",
     "race": "human",
     "alignment": -350,
     "level": 6,
@@ -636,7 +669,8 @@
     "name": "wererat rat were",
     "short_descr": "the ugly wererat",
     "long_descr": "An ugly wererat is here, looking at you with a strange flick in his eyes.\n",
-    "description": "The wererat is about four foot tall. It looks very much like rat, except\nthat it is standing.\n",
+    "description": "The wererat is about four foot tall. It looks very much like rat, except\n
+                   |that it is standing.\n",
     "race": "human",
     "alignment": -700,
     "level": 6,
@@ -665,7 +699,8 @@
     "name": "rat gigantic",
     "short_descr": "the gigantic rat",
     "long_descr": "There is a gigantic rat here, looking at you with a hungry look.\n",
-    "description": "The gigantic rat is about ten foot long from head to tail and has claws\nthe size of your head looking very nasty.\n",
+    "description": "The gigantic rat is about ten foot long from head to tail and has claws\n
+                   |the size of your head looking very nasty.\n",
     "race": "human",
     "alignment": -800,
     "level": 12,

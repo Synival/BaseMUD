@@ -50,7 +50,8 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "troll skin",
-      "description": "This is the skin from a huge (and dead) beast.  It looks bad, smells bad,\nand feels bad.\n"
+      "description": "This is the skin from a huge (and dead) beast.  It looks bad, smells bad,\n
+                     |and feels bad.\n"
     }],
     "affects": [{
       "apply": "strength",
@@ -126,7 +127,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "bone",
-      "description": "This piece of bone looks sturdy enough to be used as a weapon, but you\nwouldn't want to entrust your life to it.\n"
+      "description": "This piece of bone looks sturdy enough to be used as a weapon, but you\n
+                     |wouldn't want to entrust your life to it.\n"
     }],
     "affects": [
       {

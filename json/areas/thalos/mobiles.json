@@ -5,7 +5,9 @@
     "name": "beholder",
     "short_descr": "the mighty beholder",
     "long_descr": "You meet a beholder's deadly gaze!\n",
-    "description": "It has a large central eye that projects an anti-magic ray and ten\neyestalks atop the round body which can do anything from charm you\nto disintegrate you.  Beholders are not known for their personality.\n",
+    "description": "It has a large central eye that projects an anti-magic ray and ten\n
+                   |eyestalks atop the round body which can do anything from charm you\n
+                   |to disintegrate you.  Beholders are not known for their personality.\n",
     "race": "human",
     "alignment": -870,
     "level": 25,
@@ -34,7 +36,8 @@
     "name": "lamia beast",
     "short_descr": "the lamia",
     "long_descr": "A strange lamia stands here waiting for her next meal.\n",
-    "description": "This is a creature with the upper torso of a beautiful woman, but the lower\nbody of a four-legged beast.  She licks her lips as she looks at you greedily.\n",
+    "description": "This is a creature with the upper torso of a beautiful woman, but the lower\n
+                   |body of a four-legged beast.  She licks her lips as she looks at you greedily.\n",
     "race": "human",
     "alignment": -999,
     "level": 9,
@@ -61,7 +64,8 @@
     "name": "mimic chest",
     "short_descr": "the mimic",
     "long_descr": "A strong chest lies in one corner of the room.\n",
-    "description": "A strong, wooden chest bound with iron straps and a heavy pad-lock on the\nfront.\n",
+    "description": "A strong, wooden chest bound with iron straps and a heavy pad-lock on the\n
+                   |front.\n",
     "race": "human",
     "alignment": 10,
     "level": 11,
@@ -228,7 +232,8 @@
     "name": "golem stone",
     "short_descr": "the stone golem",
     "long_descr": "In the corner you see a large, stone golem faithfully standing watch.\n",
-    "description": "It is a big chunk of rock that has been magically formed into a giant\nstone creature. He stands here still guarding the city.\n",
+    "description": "It is a big chunk of rock that has been magically formed into a giant\n
+                   |stone creature. He stands here still guarding the city.\n",
     "race": "human",
     "alignment": 600,
     "level": 25,

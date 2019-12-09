@@ -22,7 +22,9 @@
       },
       {
         "keyword": "bells morris",
-        "description": "These are a set of sturdy leather leggings with small brass bells sewn on.\nThey look like the leggings worn by Morris dancers.  There is a motto tooled\ninto the leather.\n"
+        "description": "These are a set of sturdy leather leggings with small brass bells sewn on.\n
+                       |They look like the leggings worn by Morris dancers.  There is a motto tooled\n
+                       |into the leather.\n"
       }
     ]
   }},
@@ -87,7 +89,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "stick staff",
-      "description": "Made from the wood of a Yule Tree, this staff is about one meter long and\nhighly polished.  It looks more like a ritual device than a weapon.\n"
+      "description": "Made from the wood of a Yule Tree, this staff is about one meter long and\n
+                     |highly polished.  It looks more like a ritual device than a weapon.\n"
     }]
   }}
 ]

@@ -69,7 +69,7 @@ static void json_next_line (FILE *fp) {
     json_indented = 0;
 }
 
-const char *json_escaped_string (const char *value) {
+const char *json_escaped_string (const char *value, int newline_pos) {
     static char buf[MAX_STRING_LENGTH * 4];
     char *pos = buf;
 
@@ -78,13 +78,29 @@ const char *json_escaped_string (const char *value) {
         switch (*value) {
             case '\b': strcat (pos, "\\b");  pos += 2; break;
             case '\f': strcat (pos, "\\f");  pos += 2; break;
-            case '\n': strcat (pos, "\\n");  pos += 2; break;
             case '\t': strcat (pos, "\\t");  pos += 2; break;
             case '"':  strcat (pos, "\\\""); pos += 2; break;
             case '\\': strcat (pos, "\\\\"); pos += 2; break;
 
-            case '\r': break;
-            default:   *(pos++) = *value; *pos = '\0'; break;
+            case '\n': {
+                const char *next_ch = value + 1;
+                while (*next_ch == '\r' && *next_ch != '\0')
+                    next_ch++;
+                if (*next_ch == '\0') {
+                    strcat (pos, "\\n");
+                    pos += 2;
+                }
+                else
+                    pos += sprintf (pos, "\\n\n%*c", newline_pos + 1, '|');
+                break;
+            }
+
+            case '\r':
+                break;
+            default:
+                *(pos++) = *value;
+                *pos = '\0';
+                break;
         }
         ++value;
     }
@@ -92,16 +108,23 @@ const char *json_escaped_string (const char *value) {
 }
 
 void json_print_real (JSON_T *json, FILE *fp, int new_line) {
+    int newline_pos;
+
     json_print_indent (fp);
-    if (json_nest_level > 0 && json->parent->type != JSON_ARRAY)
-        fprintf (fp, "\"%s\": ", json->name
-            ? json_escaped_string (json->name)
-            : "NULL");
+    newline_pos = INDENT_SIZE * json_indent_level;
+
+    if (json_nest_level > 0 && json->parent->type != JSON_ARRAY) {
+        const char *json_name = json->name
+            ? json_escaped_string (json->name, newline_pos) : "NULL";
+        fprintf (fp, "\"%s\": ", json_name);
+        newline_pos += 4 + strlen (json_name);
+    }
+
     switch (json->type) {
         case JSON_DICE:
         case JSON_STRING: {
             char *value = (char *) json->value;
-            fprintf (fp, "\"%s\"", json_escaped_string (value));
+            fprintf (fp, "\"%s\"", json_escaped_string (value, newline_pos));
             break;
         }
         case JSON_NUMBER: {

@@ -5,7 +5,10 @@
     "name": "cityguard guard",
     "short_descr": "the Ofcol cityguard",
     "long_descr": "An Ofcol cityguard is standing here, making sure there is no trouble.\n",
-    "description": "This guard is surely a trained and skilled fighter.  He is fully armed and\narmored, and he uses his equipment with a practiced precision.  Luckily for \nyou, this guard will only use his deadly skills for the good of the citizens of\nOfcol.\n",
+    "description": "This guard is surely a trained and skilled fighter.  He is fully armed and\n
+                   |armored, and he uses his equipment with a practiced precision.  Luckily for \n
+                   |you, this guard will only use his deadly skills for the good of the citizens of\n
+                   |Ofcol.\n",
     "race": "human",
     "alignment": 1000,
     "level": 19,
@@ -34,7 +37,11 @@
     "name": "marshall diana",
     "short_descr": "Marshall Diana",
     "long_descr": "Diana, the Marshall of Ofcol, stands here proudly.\n",
-    "description": "Diana is a beautiful, powerfully built woman.  She wears platinum armor for\nthree reasons.  The first is to show she is strong enough to withstand the\nweight.  The second is to show her rank of office.  The third is that platinum\nis the hardest metal she can find.  She is willing to defend Ofcol to her \ndeath.\n",
+    "description": "Diana is a beautiful, powerfully built woman.  She wears platinum armor for\n
+                   |three reasons.  The first is to show she is strong enough to withstand the\n
+                   |weight.  The second is to show her rank of office.  The third is that platinum\n
+                   |is the hardest metal she can find.  She is willing to defend Ofcol to her \n
+                   |death.\n",
     "race": "human",
     "alignment": 1000,
     "level": 33,
@@ -63,7 +70,10 @@
     "name": "derrick captain guard cityguard",
     "short_descr": "Captain Derrick",
     "long_descr": "Derrick, Captain of the Guard, is here disciplining his guards.\n",
-    "description": "Derrick is a very big man.  He has acquired this station, not by brains or\ncharm, but by brute strength.  He had fought in three orc wars and is a\ndescendent of a surviving cityguard of old Thalos.  He believes that everything\nhas to be hard won to be kept, and that laxity is for the weak.\n",
+    "description": "Derrick is a very big man.  He has acquired this station, not by brains or\n
+                   |charm, but by brute strength.  He had fought in three orc wars and is a\n
+                   |descendent of a surviving cityguard of old Thalos.  He believes that everything\n
+                   |has to be hard won to be kept, and that laxity is for the weak.\n",
     "race": "human",
     "alignment": 1000,
     "level": 27,
@@ -92,7 +102,11 @@
     "name": "jacklyn captain guard cityguard",
     "short_descr": "Captain Jacklyn",
     "long_descr": "Jacklyn, Captain of the Citadel Guard, is here raising morale.\n",
-    "description": "Jacklyn is pale and wiry, but then, so are most other witches.  The fact that\nJacklyn is a mage and a warrior makes her the perfect captain of the citadel\nguards.  Jacklyn is very beautiful, but whether it is due to her pale softness\nor her magic, no one has ever found out.  She isn't very strong physically, but\nshe need not be.\n",
+    "description": "Jacklyn is pale and wiry, but then, so are most other witches.  The fact that\n
+                   |Jacklyn is a mage and a warrior makes her the perfect captain of the citadel\n
+                   |guards.  Jacklyn is very beautiful, but whether it is due to her pale softness\n
+                   |or her magic, no one has ever found out.  She isn't very strong physically, but\n
+                   |she need not be.\n",
     "race": "human",
     "alignment": 1000,
     "level": 27,
@@ -121,7 +135,9 @@
     "name": "jim blacksmith",
     "short_descr": "Jim the Blacksmith",
     "long_descr": "Jim the Blacksmith is here, selling his latest works of metal.\n",
-    "description": "Jim is big and brawny, just like what you'd expect of a blacksmith.  He is\nsmiling a very big smile, as he looks at your coins.  You wonder if he likes\nthe metals or the value of the coins.\n",
+    "description": "Jim is big and brawny, just like what you'd expect of a blacksmith.  He is\n
+                   |smiling a very big smile, as he looks at your coins.  You wonder if he likes\n
+                   |the metals or the value of the coins.\n",
     "race": "human",
     "alignment": 1000,
     "level": 30,
@@ -158,7 +174,8 @@
     "name": "sam",
     "short_descr": "Sam",
     "long_descr": "Sam is here, selling his leather works.\n",
-    "description": "Sam is a middle-aged workman.  He looks tired, but never too tired to get that\nlast sale from you.  He grins at you slightly.\n",
+    "description": "Sam is a middle-aged workman.  He looks tired, but never too tired to get that\n
+                   |last sale from you.  He grins at you slightly.\n",
     "race": "human",
     "alignment": 1000,
     "level": 30,
@@ -193,7 +210,9 @@
     "name": "madam tracy",
     "short_descr": "Madam Tracy",
     "long_descr": "Madam Tracy is here, selling and buying little treasures.\n",
-    "description": "Madam Tracy is a bit old, but not to the point of senility.  Besides, she knows\nthe hard ways of this world and is ready for it.  She spends her time at the\nshop, trading little things (for a wee bit of profit).\n",
+    "description": "Madam Tracy is a bit old, but not to the point of senility.  Besides, she knows\n
+                   |the hard ways of this world and is ready for it.  She spends her time at the\n
+                   |shop, trading little things (for a wee bit of profit).\n",
     "race": "human",
     "alignment": 1000,
     "level": 20,
@@ -230,7 +249,9 @@
     "name": "marty",
     "short_descr": "Marty",
     "long_descr": "Marty the meat store owner is here, selling you his choice meats.\n",
-    "description": "Marty is a big man.  He used to hunt the animals he sells, but now he lets his\nson, Jim, raise and slaughter the animals for him.  Marty still knows how to\nkill, though.\n",
+    "description": "Marty is a big man.  He used to hunt the animals he sells, but now he lets his\n
+                   |son, Jim, raise and slaughter the animals for him.  Marty still knows how to\n
+                   |kill, though.\n",
     "race": "human",
     "alignment": 1000,
     "level": 30,
@@ -265,7 +286,10 @@
     "name": "elizabeth farmer",
     "short_descr": "Farmer Elizabeth",
     "long_descr": "Farmer Elizabeth is here, selling the latest crop.\n",
-    "description": "Elizabeth is a very happy woman.  She can't believe the nice weather here in\nOfcol, and the great vegetables this land produces is unbelievable to her too.\nFarmer Elizabeth smiles at you nicely, but you bet she is doing that just to\nget a good price off of you!\n",
+    "description": "Elizabeth is a very happy woman.  She can't believe the nice weather here in\n
+                   |Ofcol, and the great vegetables this land produces is unbelievable to her too.\n
+                   |Farmer Elizabeth smiles at you nicely, but you bet she is doing that just to\n
+                   |get a good price off of you!\n",
     "race": "human",
     "alignment": 1000,
     "level": 20,
@@ -302,7 +326,10 @@
     "name": "granny jenkins",
     "short_descr": "Granny Jenkins",
     "long_descr": "Granny Jenkins is here, running the still.\n",
-    "description": "Granny Jenkins is a feeble woman, but she knows her brew.  She might be very\nold, but she is still in charge of the still.  She cackles lightly at herself\nevery time she tastes her whiskey, which is quite often!\nGranny Jenkins cackles again.\n",
+    "description": "Granny Jenkins is a feeble woman, but she knows her brew.  She might be very\n
+                   |old, but she is still in charge of the still.  She cackles lightly at herself\n
+                   |every time she tastes her whiskey, which is quite often!\n
+                   |Granny Jenkins cackles again.\n",
     "race": "human",
     "alignment": 500,
     "level": 6,
@@ -330,7 +357,9 @@
     "name": "jack",
     "short_descr": "Jack",
     "long_descr": "Jack is here slaughtering away at the animals.\n",
-    "description": "Jack is the son of Marty, and you can see the family resemblance (especially in\ntheir shared affinity for slaughtering animals.)  Jack leers at you as you\nenter.  \"Came by to watch, eh?\", he asks.\n",
+    "description": "Jack is the son of Marty, and you can see the family resemblance (especially in\n
+                   |their shared affinity for slaughtering animals.)  Jack leers at you as you\n
+                   |enter.  \"Came by to watch, eh?\", he asks.\n",
     "race": "human",
     "alignment": 200,
     "level": 12,
@@ -357,7 +386,9 @@
     "name": "Sarah farmer",
     "short_descr": "Farmer Sara",
     "long_descr": "Farmer Sara is here, milking the cows.\n",
-    "description": "Farmer Sara is all covered with bits of straw and grime, but underneath all\nthat, she doesn't look that bad.  She smiles at you demurely, and goes back to\nher work.\n",
+    "description": "Farmer Sara is all covered with bits of straw and grime, but underneath all\n
+                   |that, she doesn't look that bad.  She smiles at you demurely, and goes back to\n
+                   |her work.\n",
     "race": "human",
     "alignment": 800,
     "level": 5,
@@ -384,7 +415,8 @@
     "name": "chicken hen",
     "short_descr": "a hen",
     "long_descr": "A hen is here, squawking at your intrusion.\n",
-    "description": "The hen has yellow feathers and small wings.  It looks like a chicken, if\nyou've ever seen one.\n",
+    "description": "The hen has yellow feathers and small wings.  It looks like a chicken, if\n
+                   |you've ever seen one.\n",
     "race": "human",
     "alignment": 0,
     "level": 1,
@@ -465,7 +497,8 @@
     "name": "horse young",
     "short_descr": "the young horse",
     "long_descr": "A young horse is here, grazing.\n",
-    "description": "The horse whinnies at you, then runs around you a few times, then just goes\nback to grazing.\n",
+    "description": "The horse whinnies at you, then runs around you a few times, then just goes\n
+                   |back to grazing.\n",
     "race": "human",
     "alignment": 0,
     "level": 6,
@@ -519,7 +552,9 @@
     "name": "citizen man",
     "short_descr": "the citizen",
     "long_descr": "A citizen is here, smiling at you.\n",
-    "description": "The citizen smiles at you.  He is having a great day, and he wishes the same\nfor you.  He looks at you strangely, though, wondering why you are so armed and\narmored.\n",
+    "description": "The citizen smiles at you.  He is having a great day, and he wishes the same\n
+                   |for you.  He looks at you strangely, though, wondering why you are so armed and\n
+                   |armored.\n",
     "race": "human",
     "alignment": 500,
     "level": 5,
@@ -546,7 +581,9 @@
     "name": "citizen woman",
     "short_descr": "the citizen",
     "long_descr": "A citizen is here, smiling at you.\n",
-    "description": "The citizen smiles at you.  She is having a great day, and she wishes the same\nfor you.  She looks at you strangely, though, wondering why you are so armed\nand armored.\n",
+    "description": "The citizen smiles at you.  She is having a great day, and she wishes the same\n
+                   |for you.  She looks at you strangely, though, wondering why you are so armed\n
+                   |and armored.\n",
     "race": "human",
     "alignment": 500,
     "level": 5,
@@ -573,7 +610,8 @@
     "name": "child boy",
     "short_descr": "the boy",
     "long_descr": "A boy is here, playing tag and other kids' games.\n",
-    "description": "The little boy looks up at you and says, 'Hi.  Can I have a piece of candy?'\nHe then smiles and runs away, remembering his game.\n",
+    "description": "The little boy looks up at you and says, 'Hi.  Can I have a piece of candy?'\n
+                   |He then smiles and runs away, remembering his game.\n",
     "race": "human",
     "alignment": 500,
     "level": 3,
@@ -600,7 +638,8 @@
     "name": "child girl",
     "short_descr": "the girl",
     "long_descr": "A girl is here, playing jump jacks and other kids' games.\n",
-    "description": "The little girl looks up at you and says, 'Hi.  Can I have a pretty little\ncoin?'  She then smiles and runs away, remembering her game.\n",
+    "description": "The little girl looks up at you and says, 'Hi.  Can I have a pretty little\n
+                   |coin?'  She then smiles and runs away, remembering her game.\n",
     "race": "human",
     "alignment": 500,
     "level": 3,
@@ -627,7 +666,9 @@
     "name": "maid woman",
     "short_descr": "the maid",
     "long_descr": "A maid is here, cleaning the house and preparing the next meal.\n",
-    "description": "The maid startles at your presence.  'You are ruining my floors!  Wait till\nMaster and Mistress come back.  You will get me in trouble!  Shoo!', she says.\nShe hits you with her broom.\n",
+    "description": "The maid startles at your presence.  'You are ruining my floors!  Wait till\n
+                   |Master and Mistress come back.  You will get me in trouble!  Shoo!', she says.\n
+                   |She hits you with her broom.\n",
     "race": "human",
     "alignment": 500,
     "level": 5,
@@ -655,7 +696,9 @@
     "name": "Nyles",
     "short_descr": "Nyles the Bartender",
     "long_descr": "Nyles the Bartender is here, ready to serve you up a good brew.\n",
-    "description": "Nyles is a hefty guy, who looks like he's waiting for the next bar fight to\njoin in.  He keeps an eye on you and his glasses, making sure you don't steal\nany.\n",
+    "description": "Nyles is a hefty guy, who looks like he's waiting for the next bar fight to\n
+                   |join in.  He keeps an eye on you and his glasses, making sure you don't steal\n
+                   |any.\n",
     "race": "human",
     "alignment": 1000,
     "level": 30,
@@ -689,7 +732,10 @@
     "name": "cityguard guard",
     "short_descr": "the Ofcol cityguard",
     "long_descr": "An Ofcol cityguard is posted here to guard the gate.\n",
-    "description": "This guard is surely a trained and skilled fighter.  He is fully armed and\narmored, and he uses his equipment with a practiced precision.  Luckily for \nyou, this guard will only use his deadly skills for the good of the citizens of\nOfcol.\n",
+    "description": "This guard is surely a trained and skilled fighter.  He is fully armed and\n
+                   |armored, and he uses his equipment with a practiced precision.  Luckily for \n
+                   |you, this guard will only use his deadly skills for the good of the citizens of\n
+                   |Ofcol.\n",
     "race": "human",
     "alignment": 1000,
     "level": 19,
@@ -718,7 +764,9 @@
     "name": "bard",
     "short_descr": "a bard",
     "long_descr": "A bard is here, singing of the glories of Ofcol.\n",
-    "description": "After years of traveling around the world, this bard has decided to stay in the\npeaceful city of Ofcol, and to sing of its unmatched glories.  He smiles at\nyou, hinting toward a tip from you in ever a subtle way.\n",
+    "description": "After years of traveling around the world, this bard has decided to stay in the\n
+                   |peaceful city of Ofcol, and to sing of its unmatched glories.  He smiles at\n
+                   |you, hinting toward a tip from you in ever a subtle way.\n",
     "race": "human",
     "alignment": 800,
     "level": 13,
@@ -829,8 +877,11 @@
     "anum": 28,
     "name": "priestess",
     "short_descr": "the Priestess of Ofcol",
-    "long_descr": "The Priestess of Ofcol is here, blessing you \nwith her beatific smile.\n",
-    "description": "The Priestess of Ofcol is an old woman, perfectly at peace with herself and \nwith the world.  She devotes all her time to help teach you the ways of her\ngod, Bahamut.  The dragon symbol around her neck looks almost alive.\n",
+    "long_descr": "The Priestess of Ofcol is here, blessing you \n
+                  |with her beatific smile.\n",
+    "description": "The Priestess of Ofcol is an old woman, perfectly at peace with herself and \n
+                   |with the world.  She devotes all her time to help teach you the ways of her\n
+                   |god, Bahamut.  The dragon symbol around her neck looks almost alive.\n",
     "race": "human",
     "alignment": 1000,
     "level": 30,
@@ -858,8 +909,11 @@
     "anum": 29,
     "name": "chaplain Jerrold",
     "short_descr": "Chaplain Jerrold",
-    "long_descr": "Jerrold, the chaplain of this Citadel, is here \ndirecting the activities of the people around here.\n",
-    "description": "He smiles at you, with the enthusiasm of a little kid.  \"What're you doing just\nSTANDING here, young man?  Go help that other squire there!\", he yells.  He\nturns to you and with a consipatory tone, whispers, \"Kids!\"\n",
+    "long_descr": "Jerrold, the chaplain of this Citadel, is here \n
+                  |directing the activities of the people around here.\n",
+    "description": "He smiles at you, with the enthusiasm of a little kid.  \"What're you doing just\n
+                   |STANDING here, young man?  Go help that other squire there!\", he yells.  He\n
+                   |turns to you and with a consipatory tone, whispers, \"Kids!\"\n",
     "race": "human",
     "alignment": 1000,
     "level": 20,
@@ -888,7 +942,9 @@
     "name": "dragonlord lord dragon",
     "short_descr": "a Dragonlord",
     "long_descr": "A knight wearing the scales of a dragon stands here.\n",
-    "description": "This person looks almost like a dragon itself.  His golden scales gleam with\npower.  He smiles at you with a vicious grin.  You're happy that he doesn't\nlook upset at your presence. \n",
+    "description": "This person looks almost like a dragon itself.  His golden scales gleam with\n
+                   |power.  He smiles at you with a vicious grin.  You're happy that he doesn't\n
+                   |look upset at your presence. \n",
     "race": "human",
     "alignment": 1000,
     "level": 29,
@@ -916,8 +972,11 @@
     "anum": 31,
     "name": "dragon gold",
     "short_descr": "The Ancient Gold Dragon",
-    "long_descr": "An old dragon shimmering with the colors of this \ncavern peers at you sleepily.\n",
-    "description": "This dragon's head is taller than you.  He is annoyed at your disturbance, but\nrealizing that you're no danger to him, he ignores you.  He waves to one of\nhis attendants to escort you away.\n",
+    "long_descr": "An old dragon shimmering with the colors of this \n
+                  |cavern peers at you sleepily.\n",
+    "description": "This dragon's head is taller than you.  He is annoyed at your disturbance, but\n
+                   |realizing that you're no danger to him, he ignores you.  He waves to one of\n
+                   |his attendants to escort you away.\n",
     "race": "dragon",
     "alignment": 1000,
     "level": 42,
@@ -946,7 +1005,8 @@
     "name": "attendant",
     "short_descr": "an attendant of the dragon",
     "long_descr": "A person robed in gold is attending to the Keeper of the Citadel.\n",
-    "description": "This elder servant to the Gold Dragon is very loyal to him, willing to risk\nhis life for his liege.\n",
+    "description": "This elder servant to the Gold Dragon is very loyal to him, willing to risk\n
+                   |his life for his liege.\n",
     "race": "human",
     "alignment": 1000,
     "level": 21,
@@ -974,8 +1034,10 @@
     "anum": 33,
     "name": "dragonknight knight dragon",
     "short_descr": "a Dragonknight",
-    "long_descr": "A person dressed in the scales of a gold dragon \nstands here, guarding the Golden Citadel.\n",
-    "description": "This person looks like a dragon itself.  His golden scales gleam with power.\nHe smiles at you, showing very sharp teeth.\n",
+    "long_descr": "A person dressed in the scales of a gold dragon \n
+                  |stands here, guarding the Golden Citadel.\n",
+    "description": "This person looks like a dragon itself.  His golden scales gleam with power.\n
+                   |He smiles at you, showing very sharp teeth.\n",
     "race": "human",
     "alignment": 1000,
     "level": 21,
@@ -1004,7 +1066,10 @@
     "name": "cityguard guard",
     "short_descr": "the Ofcol cityguard",
     "long_descr": "An Ofcol cityguard is posted here to guard the gate.\n",
-    "description": "This guard is surely a trained and skilled fighter.  He is fully armed and\narmored, and he uses his equipment with a practiced precision.  Luckily for \nyou, this guard will only use his deadly skills for the good of the citizens of\nOfcol.\n",
+    "description": "This guard is surely a trained and skilled fighter.  He is fully armed and\n
+                   |armored, and he uses his equipment with a practiced precision.  Luckily for \n
+                   |you, this guard will only use his deadly skills for the good of the citizens of\n
+                   |Ofcol.\n",
     "race": "human",
     "alignment": 1000,
     "level": 19,

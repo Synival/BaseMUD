@@ -24,7 +24,8 @@
     "anum": 1,
     "name": "herbs herb gyvel",
     "short_descr": "a small dusk of black gyvel",
-    "description": "Some black gyvel is lying here, dark green with black leaves and tiny\nblood red flowers.",
+    "description": "Some black gyvel is lying here, dark green with black leaves and tiny\n
+                   |blood red flowers.",
     "item_type": "food",
     "values": {
       "hunger": 1,
@@ -57,7 +58,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "plant ivy",
-      "description": "This plant has dark green juicy leaves.\nYou notice some small white thorns on it."
+      "description": "This plant has dark green juicy leaves.\n
+                     |You notice some small white thorns on it."
     }]
   }},
   {"object": {
@@ -78,7 +80,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "blood jar",
-      "description": "The jar is made of dry clay, covered with markings suggesting its\noccult origin.\n"
+      "description": "The jar is made of dry clay, covered with markings suggesting its\n
+                     |occult origin.\n"
     }]
   }},
   {"object": {
@@ -96,7 +99,8 @@
     "wear_flags": "take head hold",
     "extra_description": [{
       "keyword": "wild flowers",
-      "description": "These wild flowers are really pretty.\nJust like the flowers you would wear in your hair."
+      "description": "These wild flowers are really pretty.\n
+                     |Just like the flowers you would wear in your hair."
     }]
   }},
   {"object": {
@@ -114,7 +118,9 @@
     "wear_flags": "take neck",
     "extra_description": [{
       "keyword": "amulet",
-      "description": "Judging from the signs inscripted in the amulet, you gather it must\nhave belonged to a druid.  It is weird looking with symbols from nature\ndominating it.\n"
+      "description": "Judging from the signs inscripted in the amulet, you gather it must\n
+                     |have belonged to a druid.  It is weird looking with symbols from nature\n
+                     |dominating it.\n"
     }],
     "affects": [{
       "apply": "saves",
@@ -138,7 +144,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "staff stick",
-      "description": "Then staff is about 5 ft long, engraved with mythical signs and figures.\nOtherwise the staff seems of no real interest.\n"
+      "description": "Then staff is about 5 ft long, engraved with mythical signs and figures.\n
+                     |Otherwise the staff seems of no real interest.\n"
     }]
   }},
   {"object": {
@@ -158,7 +165,9 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "roast rabbit wabbit",
-      "description": "Well the rabbit looks rather dead.\nYou guess that this once was a ferocious rabbit who's life now has\nchanged to that of a tasty wabbit woast.\n"
+      "description": "Well the rabbit looks rather dead.\n
+                     |You guess that this once was a ferocious rabbit who's life now has\n
+                     |changed to that of a tasty wabbit woast.\n"
     }]
   }},
   {"object": {
@@ -181,7 +190,11 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "template scroll metal",
-      "description": "The template is made of an exotic green metal and looks\ncenturies old.\nInscripted upon is the words 'Ep ep fi'hur G'harne\n                             G'harne fhtagn Shudde-M'ell hyas Negg'h'\nAnd beneath the inscription you see horrifying death scenes depicted.\n"
+      "description": "The template is made of an exotic green metal and looks\n
+                     |centuries old.\n
+                     |Inscripted upon is the words 'Ep ep fi'hur G'harne\n
+                     |                             G'harne fhtagn Shudde-M'ell hyas Negg'h'\n
+                     |And beneath the inscription you see horrifying death scenes depicted.\n"
     }]
   }},
   {"object": {
@@ -205,11 +218,14 @@
     "extra_description": [
       {
         "keyword": "leather",
-        "description": "The leather wrapped around the potion is old and decayed, originating\nfrom an, to you, unknown creature."
+        "description": "The leather wrapped around the potion is old and decayed, originating\n
+                       |from an, to you, unknown creature."
       },
       {
         "keyword": "potion clear",
-        "description": "As you examine the potion more, you notice the oddities of this\npotion. When you look through it you notice strange things...\nThe clear potion is certainly not of this world.\n"
+        "description": "As you examine the potion more, you notice the oddities of this\n
+                       |potion. When you look through it you notice strange things...\n
+                       |The clear potion is certainly not of this world.\n"
       }
     ]
   }},
@@ -231,11 +247,15 @@
     "extra_description": [
       {
         "keyword": "ritual men drawings",
-        "description": "The drawing pictures people gathered round giant stone formations,\nworshipping a giant worm like creature.\nIt seems they are sacrificing some of their own species.\n"
+        "description": "The drawing pictures people gathered round giant stone formations,\n
+                       |worshipping a giant worm like creature.\n
+                       |It seems they are sacrificing some of their own species.\n"
       },
       {
         "keyword": "scroll jhyfrdow",
-        "description": "The scroll is titled 'jhyfrdow' and looks very old.\nAs you examine it closer you notice primitive drawings of\nmen doing some kind of a ritual.\n"
+        "description": "The scroll is titled 'jhyfrdow' and looks very old.\n
+                       |As you examine it closer you notice primitive drawings of\n
+                       |men doing some kind of a ritual.\n"
       }
     ]
   }}

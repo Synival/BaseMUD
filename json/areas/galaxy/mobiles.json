@@ -115,7 +115,8 @@
     "name": "red supergiant",
     "short_descr": "a red supergiant",
     "long_descr": "An enormous, red supergiant is forced to protect the galaxy.\n",
-    "description": "You notice the giant is not as tough as his name sounds ...\nStill he can be very powerful.\n",
+    "description": "You notice the giant is not as tough as his name sounds ...\n
+                   |Still he can be very powerful.\n",
     "race": "human",
     "alignment": 0,
     "level": 15,
@@ -144,7 +145,8 @@
     "name": "white dwarf",
     "short_descr": "a white dwarf",
     "long_descr": "A tiny white dwarf is trying to sneak away from duty. \n",
-    "description": "Like the red giant, he is also appointed to stand guard for the galaxy.\nBut somehow he manages to escape.  Though tiny, it can take a lot of hits!\n",
+    "description": "Like the red giant, he is also appointed to stand guard for the galaxy.\n
+                   |But somehow he manages to escape.  Though tiny, it can take a lot of hits!\n",
     "race": "human",
     "alignment": 0,
     "level": 15,
@@ -171,7 +173,8 @@
     "name": "horsehead nebula",
     "short_descr": "a horsehead nebula",
     "long_descr": "A huge nebula is here, resembling a horsehead.\n",
-    "description": "You can only make out its shape from the darkness.  He was cursed to stay in\nhere and his face may never be seen by anyone again.\n",
+    "description": "You can only make out its shape from the darkness.  He was cursed to stay in\n
+                   |here and his face may never be seen by anyone again.\n",
     "race": "human",
     "alignment": -1000,
     "level": 18,
@@ -201,7 +204,8 @@
     "name": "andromeda",
     "short_descr": "poor Andromeda",
     "long_descr": "The poor Andromeda is chained to the wall, suffering ...\n",
-    "description": "She was once a princess of beauty.  However, her beauty has led to a Goddess's\njealousy and she has to suffer here endlessly until Perseus comes.\n",
+    "description": "She was once a princess of beauty.  However, her beauty has led to a Goddess's\n
+                   |jealousy and she has to suffer here endlessly until Perseus comes.\n",
     "race": "human",
     "alignment": 1000,
     "level": 18,
@@ -229,7 +233,9 @@
     "name": "hercules",
     "short_descr": "the mighty Hercules",
     "long_descr": "The Mighty Hercules is working hard on his extra Labours for the Gods.\n",
-    "description": "He has been put to do the Ten Labours -- ten impossible tasks, by Hera, the\nqueen goddess, who disliked him.  But he finished them all and at the end was\ngranted immortality. He is a very brave and strong fighter.\n",
+    "description": "He has been put to do the Ten Labours -- ten impossible tasks, by Hera, the\n
+                   |queen goddess, who disliked him.  But he finished them all and at the end was\n
+                   |granted immortality. He is a very brave and strong fighter.\n",
     "race": "human",
     "alignment": 1000,
     "level": 19,
@@ -284,7 +290,10 @@
     "name": "orion",
     "short_descr": "Orion the hunter",
     "long_descr": "Orion is still hunting for Scorpio.\n",
-    "description": "He is the legendary hunter who almost defeated Taurus the bull, but got\nkilled by Scorpio.  The gods put them both up as constellations but one\nappears on one side of the sky and the other the other side so they will\nnever meet. \n",
+    "description": "He is the legendary hunter who almost defeated Taurus the bull, but got\n
+                   |killed by Scorpio.  The gods put them both up as constellations but one\n
+                   |appears on one side of the sky and the other the other side so they will\n
+                   |never meet. \n",
     "race": "human",
     "alignment": 300,
     "level": 19,
@@ -312,7 +321,8 @@
     "name": "pleiades",
     "short_descr": "the Pleiades",
     "long_descr": "The Pleiades are here, weeping for the loss of their sisters.\n",
-    "description": "These are the seven sisters of the Myths, and as for why they are here, no\none knows; even the Gods themselves have forgotten.\n",
+    "description": "These are the seven sisters of the Myths, and as for why they are here, no\n
+                   |one knows; even the Gods themselves have forgotten.\n",
     "race": "human",
     "alignment": 300,
     "level": 11,
@@ -339,7 +349,9 @@
     "name": "draco head",
     "short_descr": "the Head of Draco",
     "long_descr": "The gigantic Head of Draco lurks out from beneath and prepares to roast you.\n",
-    "description": "This evil-looking head is even larger than a giant.  He is the last guardian \nbefore entering the inner galaxy.  His neck is flexing in a random fashion so \nhitting the head is certainly not easy.\n",
+    "description": "This evil-looking head is even larger than a giant.  He is the last guardian \n
+                   |before entering the inner galaxy.  His neck is flexing in a random fashion so \n
+                   |hitting the head is certainly not easy.\n",
     "race": "human",
     "alignment": -1000,
     "level": 25,
@@ -368,7 +380,9 @@
     "name": "draco baby",
     "short_descr": "a baby draco",
     "long_descr": "A baby draco is crawling on the Draco's body.\n",
-    "description": "You see a tiny creature which looks like a dragon except that its body\nresembles a snake.  Gosh, is this a draco, you wonder, is this the thing\nwe are on now?\n",
+    "description": "You see a tiny creature which looks like a dragon except that its body\n
+                   |resembles a snake.  Gosh, is this a draco, you wonder, is this the thing\n
+                   |we are on now?\n",
     "race": "human",
     "alignment": -700,
     "level": 9,
@@ -396,7 +410,8 @@
     "name": "aries",
     "short_descr": "Aries",
     "long_descr": "Aries is sitting here, welcoming you.\n",
-    "description": "You see a white goat here, the first guardian of the Zodiac,\nalso the ruler of Spring. He looks as if he is expecting you.\n",
+    "description": "You see a white goat here, the first guardian of the Zodiac,\n
+                   |also the ruler of Spring. He looks as if he is expecting you.\n",
     "race": "human",
     "alignment": 700,
     "level": 22,
@@ -427,7 +442,8 @@
     "name": "taurus",
     "short_descr": "Taurus",
     "long_descr": "Taurus wants to leave, but has been forced to stay as a guardian here.\n",
-    "description": "You see a wild-looking bull with a bad temper.  He is well-built and looks like \nhe can fight well ... indeed he has fought with Orion before and survived.\n",
+    "description": "You see a wild-looking bull with a bad temper.  He is well-built and looks like \n
+                   |he can fight well ... indeed he has fought with Orion before and survived.\n",
     "race": "human",
     "alignment": -100,
     "level": 22,
@@ -456,7 +472,8 @@
     "name": "gemini",
     "short_descr": "Gemini",
     "long_descr": "Gemini is looking for his brother; have you seen him?\n",
-    "description": "As soon as you see him you know that he is the most perfect man you have seen.\nYou can't find any imperfections on him.\n",
+    "description": "As soon as you see him you know that he is the most perfect man you have seen.\n
+                   |You can't find any imperfections on him.\n",
     "race": "human",
     "alignment": 1000,
     "level": 22,
@@ -485,7 +502,8 @@
     "name": "gemini",
     "short_descr": "Gemini",
     "long_descr": "Gemini is hiding from his brother, grinning evilly at you.\n",
-    "description": "As soon as you see him you see the most imperfect man you have ever seen.\nHow can there be such a contrast?  You wonder ...\n",
+    "description": "As soon as you see him you see the most imperfect man you have ever seen.\n
+                   |How can there be such a contrast?  You wonder ...\n",
     "race": "human",
     "alignment": -1000,
     "level": 15,
@@ -514,7 +532,9 @@
     "name": "cancer",
     "short_descr": "Cancer",
     "long_descr": "Cancer the crab is here, hoarding the treasure away from you.\n",
-    "description": "You see a gigantic crab (YES, it is bigger than you!) with a crushed shell.\nLegend is that he was crushed by Hercules when he was sent by Hera to kill him.\nSo Hera made Cancer a constellation for his work. \n",
+    "description": "You see a gigantic crab (YES, it is bigger than you!) with a crushed shell.\n
+                   |Legend is that he was crushed by Hercules when he was sent by Hera to kill him.\n
+                   |So Hera made Cancer a constellation for his work. \n",
     "race": "human",
     "alignment": 0,
     "level": 22,
@@ -543,7 +563,9 @@
     "name": "leo",
     "short_descr": "Leo",
     "long_descr": "Leo the lion is roaring at you, ready for a strike!\n",
-    "description": "His metallic skin means that he could be the one which was killed by Hercules\nduring his first Labour.  His skin is so weapon-proof that Hercules had to use\nhis bare hands to tear the lion into two from its mouth!\n",
+    "description": "His metallic skin means that he could be the one which was killed by Hercules\n
+                   |during his first Labour.  His skin is so weapon-proof that Hercules had to use\n
+                   |his bare hands to tear the lion into two from its mouth!\n",
     "race": "human",
     "alignment": -100,
     "level": 22,
@@ -572,7 +594,9 @@
     "name": "virgo",
     "short_descr": "Virgo",
     "long_descr": "Virgo is sitting here, winking at you suggestively ... you are alarmed!\n",
-    "description": "From what you have seen, you now realize that legends are legends, and Virgo\nmay not be the maid of chastity and purity at all!  But still she looks\ngorgeous and is waiting for your first move, whatever it is ...\n",
+    "description": "From what you have seen, you now realize that legends are legends, and Virgo\n
+                   |may not be the maid of chastity and purity at all!  But still she looks\n
+                   |gorgeous and is waiting for your first move, whatever it is ...\n",
     "race": "human",
     "alignment": 1000,
     "level": 22,
@@ -603,7 +627,8 @@
     "name": "libra",
     "short_descr": "Libra",
     "long_descr": "Libra, the fair and just, is staring at you, weighing up the sins of your past.\n",
-    "description": "He is a wise old man and can see people's thoughts through their eyes....\nNow all he can see from you is greed and bloodshed.\n",
+    "description": "He is a wise old man and can see people's thoughts through their eyes....\n
+                   |Now all he can see from you is greed and bloodshed.\n",
     "race": "human",
     "alignment": 1000,
     "level": 22,
@@ -632,7 +657,8 @@
     "name": "scorpio",
     "short_descr": "Scorpio",
     "long_descr": "Scorpio is moving his tail towards you, waiting to put an end to some mortals.\n",
-    "description": "Ever since he killed Orion in the myths, he has been punished by having \nSagittarius' arrow aimed at his heart forever.\n",
+    "description": "Ever since he killed Orion in the myths, he has been punished by having \n
+                   |Sagittarius' arrow aimed at his heart forever.\n",
     "race": "human",
     "alignment": -200,
     "level": 22,
@@ -690,7 +716,9 @@
     "name": "capricorn",
     "short_descr": "Capricorn",
     "long_descr": "Capricorn is here, feeling bored ... he wants a fight!\n",
-    "description": "You see a mean-looking ram here.  He used to be a fierce fighter in the ancient\nwar but now the gods have decided to put him here, to live out the rest of his \ndays in peace.\n",
+    "description": "You see a mean-looking ram here.  He used to be a fierce fighter in the ancient\n
+                   |war but now the gods have decided to put him here, to live out the rest of his \n
+                   |days in peace.\n",
     "race": "human",
     "alignment": 700,
     "level": 22,
@@ -719,7 +747,8 @@
     "name": "aquarius",
     "short_descr": "Aquarius",
     "long_descr": "The beautiful Aquarius is standing here, holding THE vessel.\n",
-    "description": "The pretty Water Bearer is smiling at you, you think you'd better give her a \nhand with holding the vessel. \n",
+    "description": "The pretty Water Bearer is smiling at you, you think you'd better give her a \n
+                   |hand with holding the vessel. \n",
     "race": "human",
     "alignment": 1000,
     "level": 22,
@@ -748,7 +777,8 @@
     "name": "pisces mermaid",
     "short_descr": "Pisces the mermaid",
     "long_descr": "Pisces the mermaid is sitting here, waiting for your help.\n",
-    "description": "She has been forced to serve her husband, who had been cursed to turn into a\nfish and she deserves your pity.\n",
+    "description": "She has been forced to serve her husband, who had been cursed to turn into a\n
+                   |fish and she deserves your pity.\n",
     "race": "human",
     "alignment": 1000,
     "level": 22,
@@ -779,7 +809,8 @@
     "name": "pisces fish",
     "short_descr": "Pisces the fish",
     "long_descr": "Pisces the fish, is jealous of your approach...\n",
-    "description": "He was once a very handsome man but now has turned into an ugly big fish.\nSo he becomes jealous of any living thing which is more handsome than him.\n",
+    "description": "He was once a very handsome man but now has turned into an ugly big fish.\n
+                   |So he becomes jealous of any living thing which is more handsome than him.\n",
     "race": "human",
     "alignment": -1000,
     "level": 22,
@@ -808,7 +839,8 @@
     "name": "bear ursa major",
     "short_descr": "Ursa Major the bear",
     "long_descr": "Ursa Major the bear is the last defense against any intruders.\n",
-    "description": "The Huge Bear which resides in the northern skies is here. \nYou think you'd better turn back.  At least you have got a chance of survival.\n",
+    "description": "The Huge Bear which resides in the northern skies is here. \n
+                   |You think you'd better turn back.  At least you have got a chance of survival.\n",
     "race": "bear",
     "alignment": 0,
     "level": 27,
@@ -868,7 +900,8 @@
     "name": "cepheus king",
     "short_descr": "Cepheus the King",
     "long_descr": "Cepheus, the king of the Universe, is sitting on his throne.\n",
-    "description": "He is the King of Might as well as of the Universe. You suddenly feel very\nweak and useless in front of him.\n",
+    "description": "He is the King of Might as well as of the Universe. You suddenly feel very\n
+                   |weak and useless in front of him.\n",
     "race": "human",
     "alignment": 700,
     "level": 26,
@@ -899,7 +932,10 @@
     "name": "polaris polar star",
     "short_descr": "Polaris, the polar star",
     "long_descr": "Polaris, the polar star, who commands the whole Universe, stands before you!\n",
-    "description": "He is the Master of the Universe, (NOT He-Man!), the most powerful!  \nEven the King and the Queen obey him.  As you look at him you notice he is \nactually a STAR, with dazzling bright light ... maybe you shouldn't have come\nhere at all?\n",
+    "description": "He is the Master of the Universe, (NOT He-Man!), the most powerful!  \n
+                   |Even the King and the Queen obey him.  As you look at him you notice he is \n
+                   |actually a STAR, with dazzling bright light ... maybe you shouldn't have come\n
+                   |here at all?\n",
     "race": "human",
     "alignment": 1000,
     "level": 30,

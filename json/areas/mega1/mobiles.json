@@ -5,7 +5,9 @@
     "name": "juve",
     "short_descr": "a juve",
     "long_descr": "A juve is standing here plotting mischief.\n",
-    "description": "He is a tall, thin boy.  He is looking for his gang mates.  He and his\nmates have cost city authorities many millions of creds a week in\nvandalism repairs.\n",
+    "description": "He is a tall, thin boy.  He is looking for his gang mates.  He and his\n
+                   |mates have cost city authorities many millions of creds a week in\n
+                   |vandalism repairs.\n",
     "race": "human",
     "alignment": -400,
     "level": 5,
@@ -32,7 +34,8 @@
     "name": "punk",
     "short_descr": "a punk",
     "long_descr": "A punk is here plotting a crime wave.\n",
-    "description": "This punk is from one of the rowdiest, scruffiest, and definitely most\nfashionable of all gangs -- the Grunge Mongers.\n",
+    "description": "This punk is from one of the rowdiest, scruffiest, and definitely most\n
+                   |fashionable of all gangs -- the Grunge Mongers.\n",
     "race": "human",
     "alignment": -500,
     "level": 10,
@@ -59,7 +62,9 @@
     "name": "Futsie",
     "short_descr": "a Futsie",
     "long_descr": "A Futsie is here reciting Monty Python sketches.\n",
-    "description": "A sad victim of Future Shock, this man is immensely dangerous and will\nnot be stopped by anyone who tries to deter him from revenge upon the\nJustice Department.\n",
+    "description": "A sad victim of Future Shock, this man is immensely dangerous and will\n
+                   |not be stopped by anyone who tries to deter him from revenge upon the\n
+                   |Justice Department.\n",
     "race": "human",
     "alignment": 0,
     "level": 17,
@@ -87,7 +92,8 @@
     "name": "Citi-Def Militiaman",
     "short_descr": "a Citi-Def Militiaman",
     "long_descr": "A Citi-Def Militiaman is here contemplating a Block War.\n",
-    "description": "A member of a local Block's Citi-Def militia, this man is well-armed\nand undersupervised.\n",
+    "description": "A member of a local Block's Citi-Def militia, this man is well-armed\n
+                   |and undersupervised.\n",
     "race": "human",
     "alignment": 0,
     "level": 16,
@@ -145,7 +151,8 @@
     "name": "tap",
     "short_descr": "a tap",
     "long_descr": "A tap is here eyeing your belongings.\n",
-    "description": "A practitioner in Mega-City One's largest growth industry, mugging, is\nlooking you over for a possible business transaction.\n",
+    "description": "A practitioner in Mega-City One's largest growth industry, mugging, is\n
+                   |looking you over for a possible business transaction.\n",
     "race": "human",
     "alignment": -400,
     "level": 14,
@@ -172,7 +179,9 @@
     "name": "rookie judge",
     "short_descr": "a rookie judge",
     "long_descr": "A Rookie judge is on his first beat here.\n",
-    "description": "A member of Mega-City One's Justice Department is here considering what\ncrimes you have committed.  Being a rookie he will probably be easier on\nyou though.\n",
+    "description": "A member of Mega-City One's Justice Department is here considering what\n
+                   |crimes you have committed.  Being a rookie he will probably be easier on\n
+                   |you though.\n",
     "race": "human",
     "alignment": 300,
     "level": 20,
@@ -201,7 +210,8 @@
     "name": "Wallaby Gleep",
     "short_descr": "Wallaby Gleep",
     "long_descr": "Mr. Gleep is here wanting to know what you want.\n",
-    "description": "Wallaby Gleep is a heavy-set man who gives you the impression that he is\nunintelligent and unimaginative, but looks can be deceiving.\n",
+    "description": "Wallaby Gleep is a heavy-set man who gives you the impression that he is\n
+                   |unintelligent and unimaginative, but looks can be deceiving.\n",
     "race": "human",
     "alignment": -600,
     "level": 22,
@@ -229,7 +239,9 @@
     "name": "Pinkerton Throt",
     "short_descr": "Pinkerton Throt",
     "long_descr": "Pinky Throt is here Wringing his hands.\n",
-    "description": "He is a thin angular crook, pretty close to everyone's idea of Ebeneezer\nScrooge.  Indeed, the only thing guaranteed to bring a spark to his dead\neyes is the mention of money.\n",
+    "description": "He is a thin angular crook, pretty close to everyone's idea of Ebeneezer\n
+                   |Scrooge.  Indeed, the only thing guaranteed to bring a spark to his dead\n
+                   |eyes is the mention of money.\n",
     "race": "human",
     "alignment": -900,
     "level": 25,
@@ -257,7 +269,9 @@
     "name": "Ernie Ramirez",
     "short_descr": "Ernie Ramirez",
     "long_descr": "Ernie Ramirez is here collecting for the mob.\n",
-    "description": "Ramirez is a dour man who knows that he's never going to get a better\ndeal out of life.  He is content to run the bite fights for Throt and\nGleep.\n",
+    "description": "Ramirez is a dour man who knows that he's never going to get a better\n
+                   |deal out of life.  He is content to run the bite fights for Throt and\n
+                   |Gleep.\n",
     "race": "human",
     "alignment": -400,
     "level": 19,
@@ -284,7 +298,8 @@
     "name": "Judge Eckersely",
     "short_descr": "Judge Eckersely",
     "long_descr": "Judge Eckersely is here shaking down a Perp.\n",
-    "description": "He is a dedicated, if somewhat pessimistic Judge.  He is the Senior Judge\nof the Downtown Quadrant.\n",
+    "description": "He is a dedicated, if somewhat pessimistic Judge.  He is the Senior Judge\n
+                   |of the Downtown Quadrant.\n",
     "race": "human",
     "alignment": 300,
     "level": 30,
@@ -313,7 +328,9 @@
     "name": "Judge Beddows",
     "short_descr": "Judge Beddows",
     "long_descr": "Judge Beddows is here calling Resyk.\n",
-    "description": "Beddows is a clone from the same stock as the ex-Chief Judge McGruder.\nShe is fanatically dedicated to her job and has no ambitions other than\nto enforce the LAW.\n",
+    "description": "Beddows is a clone from the same stock as the ex-Chief Judge McGruder.\n
+                   |She is fanatically dedicated to her job and has no ambitions other than\n
+                   |to enforce the LAW.\n",
     "race": "human",
     "alignment": 500,
     "level": 25,

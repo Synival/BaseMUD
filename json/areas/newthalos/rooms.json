@@ -3,7 +3,10 @@
     "area": "newthalos",
     "anum": 0,
     "name": "The Entrance to the Dancing Daemon Inn",
-    "description": "You find yourself in an entrance foyer to the Dancing Daemon Inn. Chrome\nplated stairs spiral up to the reception area. To the south you hear the\nsounds of merriment and drinking and from the west you hear the bustling\nactivity of New Thalos.\n",
+    "description": "You find yourself in an entrance foyer to the Dancing Daemon Inn. Chrome\n
+                   |plated stairs spiral up to the reception area. To the south you hear the\n
+                   |sounds of merriment and drinking and from the west you hear the bustling\n
+                   |activity of New Thalos.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -28,7 +31,11 @@
     "area": "newthalos",
     "anum": 1,
     "name": "The Reception Area",
-    "description": "You are now standing in the reception of New Thalos. A huge mahogany\ndesk is here along with two sofas and a coffee table covered in magazines.\nThe plush carpeting under your feet is a nice change from the rugged paths\nyou are used to travelling. A chrome stairway spirals downstairs to the\ntavern of the Dancing Daemon Inn, and your future adventures in New Thalos.\n",
+    "description": "You are now standing in the reception of New Thalos. A huge mahogany\n
+                   |desk is here along with two sofas and a coffee table covered in magazines.\n
+                   |The plush carpeting under your feet is a nice change from the rugged paths\n
+                   |you are used to travelling. A chrome stairway spirals downstairs to the\n
+                   |tavern of the Dancing Daemon Inn, and your future adventures in New Thalos.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -39,19 +46,24 @@
     "extra_description": [
       {
         "keyword": "4.picture",
-        "description": "You see a picture of Loki... at least you think it's Loki.\nHe seems to be hiding from the camera.\n"
+        "description": "You see a picture of Loki... at least you think it's Loki.\n
+                       |He seems to be hiding from the camera.\n"
       },
       {
         "keyword": "3.picture",
-        "description": "You see a picture of Hammor on the front porch of the Danjerhaus,\ndrinking a guinness stout and petting Big Guy the Cat.\n"
+        "description": "You see a picture of Hammor on the front porch of the Danjerhaus,\n
+                       |drinking a guinness stout and petting Big Guy the Cat.\n"
       },
       {
         "keyword": "2.picture",
-        "description": "You see a picture of Shark standing behind his desk screaming at a newbie.\nThrough a window in the back you see a large aquarium. The newbie seems to\nbe cowering in fear.\n"
+        "description": "You see a picture of Shark standing behind his desk screaming at a newbie.\n
+                       |Through a window in the back you see a large aquarium. The newbie seems to\n
+                       |be cowering in fear.\n"
       },
       {
         "keyword": "1.1picture",
-        "description": "You see a picture of Felix here, standing before the arena.\nHe seems to be doing a body count.\n"
+        "description": "You see a picture of Felix here, standing before the arena.\n
+                       |He seems to be doing a body count.\n"
       }
     ],
     "resets": [
@@ -102,7 +114,13 @@
     "area": "newthalos",
     "anum": 2,
     "name": "The Dancing Daemon Inn",
-    "description": "A huge circling wet-bar takes up most of the east end of the Daemon. An\nold mage reclines against the mirror behind the bar absentmindedly pouring\nseveral drinks at once with his refined telekinesis. The Lokettes, a local\nband, are playing their usual gig on the stage. The large booths along the\nwall are filled with people drinking and having a grand time. You feel like\npartying here.\nThe only obvious exit is to the north.\n",
+    "description": "A huge circling wet-bar takes up most of the east end of the Daemon. An\n
+                   |old mage reclines against the mirror behind the bar absentmindedly pouring\n
+                   |several drinks at once with his refined telekinesis. The Lokettes, a local\n
+                   |band, are playing their usual gig on the stage. The large booths along the\n
+                   |wall are filled with people drinking and having a grand time. You feel like\n
+                   |partying here.\n
+                   |The only obvious exit is to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -112,7 +130,8 @@
     }],
     "extra_description": [{
       "keyword": "bar",
-      "description": "The bar looks slightly out of place and you can only assume the powerful\nmagic of the bartender allows it to revolve.\n"
+      "description": "The bar looks slightly out of place and you can only assume the powerful\n
+                     |magic of the bartender allows it to revolve.\n"
     }],
     "resets": [
       {
@@ -169,7 +188,9 @@
     "area": "newthalos",
     "anum": 3,
     "name": "The Medina",
-    "description": "You stand on the Medina, on the larger open areas in New Thalos. People\nwalk to and fro carrying on their day to day business. The Common Square\nof the people opens up to the south and the Medina continues north.\n",
+    "description": "You stand on the Medina, on the larger open areas in New Thalos. People\n
+                   |walk to and fro carrying on their day to day business. The Common Square\n
+                   |of the people opens up to the south and the Medina continues north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -196,7 +217,10 @@
     "area": "newthalos",
     "anum": 4,
     "name": "The Medina",
-    "description": "You are walking along a wide open expanse of road connecting the market\nsquare to the common square. Panhandlers, beggars, and other such riff-\nraff wander about hoping to catch those few who with open hearts.\nThe medina continues to the south and the market spreads out to the north.\n",
+    "description": "You are walking along a wide open expanse of road connecting the market\n
+                   |square to the common square. Panhandlers, beggars, and other such riff-\n
+                   |raff wander about hoping to catch those few who with open hearts.\n
+                   |The medina continues to the south and the market spreads out to the north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -223,7 +247,10 @@
     "area": "newthalos",
     "anum": 5,
     "name": "The Southern Market Square",
-    "description": "The large square of markets fills your vision. Strange sights and sounds,\nthose known only to the New Thalos market, barrage your senses. The only\nhope of making any sense of what's going on here is to wander around. The\nMarket continues north, west, and east, with the Medina trailing off south.\n",
+    "description": "The large square of markets fills your vision. Strange sights and sounds,\n
+                   |those known only to the New Thalos market, barrage your senses. The only\n
+                   |hope of making any sense of what's going on here is to wander around. The\n
+                   |Market continues north, west, and east, with the Medina trailing off south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -274,7 +301,9 @@
     "area": "newthalos",
     "anum": 6,
     "name": "The Center of Market Square",
-    "description": "You are standing on the Center of Market Square, the famous square of\nNew Thalos. A large, peculiar looking statue is standing in the middle\nof the square. The square extends in every direction.\n",
+    "description": "You are standing on the Center of Market Square, the famous square of\n
+                   |New Thalos. A large, peculiar looking statue is standing in the middle\n
+                   |of the square. The square extends in every direction.\n",
     "sector_type": "inside",
     "doors": [
       {
@@ -296,7 +325,9 @@
     ],
     "extra_description": [{
       "keyword": "statue",
-      "description": "Before you is a statue of the Mighty Beholder!\nA great beast with multiple eyes and wicked... wicked... um.... eyes...\nThe Mighty Beholder is in Excellent condition.\n"
+      "description": "Before you is a statue of the Mighty Beholder!\n
+                     |A great beast with multiple eyes and wicked... wicked... um.... eyes...\n
+                     |The Mighty Beholder is in Excellent condition.\n"
     }],
     "resets": [
       {
@@ -336,7 +367,10 @@
     "area": "newthalos",
     "anum": 7,
     "name": "The Southeastern Market Square",
-    "description": "In this corner of the market some of the largest warriors in the land\ntower over you. It's easy to understand why they hangout here once you\nnotice the weapon shop and the armory close by. Perhaps you might stop\nin and take a look at the wares these shops have to offer.\n",
+    "description": "In this corner of the market some of the largest warriors in the land\n
+                   |tower over you. It's easy to understand why they hangout here once you\n
+                   |notice the weapon shop and the armory close by. Perhaps you might stop\n
+                   |in and take a look at the wares these shops have to offer.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -369,7 +403,10 @@
     "area": "newthalos",
     "anum": 8,
     "name": "The Southwestern Market Square",
-    "description": "This area of the market seems relatively quiet, save the high-pitched\nbanter of the shopkeeps attempting to lure you into their stores.  South\nyou see the bread stand and west is the entrance to the general store.\nThe market's sprawl continues east and north of here.\n",
+    "description": "This area of the market seems relatively quiet, save the high-pitched\n
+                   |banter of the shopkeeps attempting to lure you into their stores.  South\n
+                   |you see the bread stand and west is the entrance to the general store.\n
+                   |The market's sprawl continues east and north of here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -404,7 +441,11 @@
     "area": "newthalos",
     "anum": 9,
     "name": "The Western Market Square",
-    "description": "This area of the square seems a bit more subdued than the rest. You\nnotice that most of the outland adventurers mill around the southern\nend of the market, while the townfolk seem to keep their business in\nthe northern end.  West Main Street begins here and heads for the\ngate. The market's expanse fills the other directions.\n",
+    "description": "This area of the square seems a bit more subdued than the rest. You\n
+                   |notice that most of the outland adventurers mill around the southern\n
+                   |end of the market, while the townfolk seem to keep their business in\n
+                   |the northern end.  West Main Street begins here and heads for the\n
+                   |gate. The market's expanse fills the other directions.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -455,7 +496,11 @@
     "area": "newthalos",
     "anum": 10,
     "name": "The Common Square",
-    "description": "People pass by talking to each other, or rest their weary bones on this\ngrassy field. You can hear faint sounds of the river to the south of you\nas it passes through the city. Ishtar drive heads east and west from here\nand the medina is to the north. South lies the Ishtar River bridge and the\nsouthern gate.\n",
+    "description": "People pass by talking to each other, or rest their weary bones on this\n
+                   |grassy field. You can hear faint sounds of the river to the south of you\n
+                   |as it passes through the city. Ishtar drive heads east and west from here\n
+                   |and the medina is to the north. South lies the Ishtar River bridge and the\n
+                   |southern gate.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -500,7 +545,8 @@
     "area": "newthalos",
     "anum": 11,
     "name": "Outside the Southern Gate of New Thalos",
-    "description": "You see before you the expanse of the Sands of Sorrow.  The shifting sands \nstretch on endlessly to the south, hiding treasure and adventure.\n",
+    "description": "You see before you the expanse of the Sands of Sorrow.  The shifting sands \n
+                   |stretch on endlessly to the south, hiding treasure and adventure.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -546,7 +592,9 @@
     "area": "newthalos",
     "anum": 12,
     "name": "The Southern Bridge",
-    "description": "Walking over the bridge you see the rushing waters of the Ishtar River.\nTo the south you see the Southern Gate of New Thalos and the Common\nSquare stretches out to the north.\n",
+    "description": "Walking over the bridge you see the rushing waters of the Ishtar River.\n
+                   |To the south you see the Southern Gate of New Thalos and the Common\n
+                   |Square stretches out to the north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -601,7 +649,11 @@
     "area": "newthalos",
     "anum": 13,
     "name": "Inside the South Gate of New Thalos",
-    "description": "Two large stone towers rise up to greet you with the massive iron gate\nswinging on ornately crafted hinges and emblazoned with the crest of\nNew Thalos. The makers of the city spared no expense in rebuilding the\ndefenses or their home. The Ishtar River bridge lies to the north and\nwilderness to the south.\n",
+    "description": "Two large stone towers rise up to greet you with the massive iron gate\n
+                   |swinging on ornately crafted hinges and emblazoned with the crest of\n
+                   |New Thalos. The makers of the city spared no expense in rebuilding the\n
+                   |defenses or their home. The Ishtar River bridge lies to the north and\n
+                   |wilderness to the south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -687,7 +739,10 @@
     "area": "newthalos",
     "anum": 14,
     "name": "The Northwestern Market Square",
-    "description": "This corner of the market contains some of the most civilized folk in\nNew Thalos. To the north lies the humble store of the merchant Ahkeem, his\nweavings known to be the best in the city. West of here is the entrance\nto Nabil's Exotic Animals.\n",
+    "description": "This corner of the market contains some of the most civilized folk in\n
+                   |New Thalos. To the north lies the humble store of the merchant Ahkeem, his\n
+                   |weavings known to be the best in the city. West of here is the entrance\n
+                   |to Nabil's Exotic Animals.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -720,7 +775,9 @@
     "area": "newthalos",
     "anum": 15,
     "name": "The Northern Market Square",
-    "description": "You stand in one of the most heavily used parts of town. To the north lies\nthe Palace of New Thalos and the Casbah; east west and south of here the\nbusy market thrives with life.\n",
+    "description": "You stand in one of the most heavily used parts of town. To the north lies\n
+                   |the Palace of New Thalos and the Casbah; east west and south of here the\n
+                   |busy market thrives with life.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -763,7 +820,11 @@
     "area": "newthalos",
     "anum": 16,
     "name": "The Northeastern Market Square",
-    "description": "Pandemonium. Chaos. Madness. A few other choice words come to mind as you\ngaze into this corner of the market. The vegetable stand seems quiet enough\nso you have to assume the noise comes from the Butchery. You have to\nthink for a while before you muster the will to enter this shop.\nThe market continues to the south and west.\n",
+    "description": "Pandemonium. Chaos. Madness. A few other choice words come to mind as you\n
+                   |gaze into this corner of the market. The vegetable stand seems quiet enough\n
+                   |so you have to assume the noise comes from the Butchery. You have to\n
+                   |think for a while before you muster the will to enter this shop.\n
+                   |The market continues to the south and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -796,7 +857,10 @@
     "area": "newthalos",
     "anum": 17,
     "name": "The Eastern Market Square",
-    "description": "You stand in the market of New Thalos, the gem of the desert. The\nmarket is the hub of the city; all trade and commerce of any significance is\ncarried on here. The market spreads out in all directions save east; here\nMain Street heads for the eastern gate.\n",
+    "description": "You stand in the market of New Thalos, the gem of the desert. The\n
+                   |market is the hub of the city; all trade and commerce of any significance is\n
+                   |carried on here. The market spreads out in all directions save east; here\n
+                   |Main Street heads for the eastern gate.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -847,7 +911,9 @@
     "area": "newthalos",
     "anum": 18,
     "name": "Sultan's Walk",
-    "description": "This cobblestone road aides your journey through town. Traveling north will\ntake you by the palace and the Dancing Daemon Inn, and south will put you on\nthe market square.\n",
+    "description": "This cobblestone road aides your journey through town. Traveling north will\n
+                   |take you by the palace and the Dancing Daemon Inn, and south will put you on\n
+                   |the market square.\n",
     "sector_type": "inside",
     "doors": [
       {
@@ -890,7 +956,11 @@
     "area": "newthalos",
     "anum": 19,
     "name": "Sultan's Walk",
-    "description": "This part of the road travels between one of the sturdy walls of the\nPalace and the Dancing Daemon. To the east you peer through a small\nwindow into the Daemon, seeing many people dancing and drinking. After\nyou tend to your other chores you plan on visiting the Daemon.\nThe walk continues north and south from here.\n",
+    "description": "This part of the road travels between one of the sturdy walls of the\n
+                   |Palace and the Dancing Daemon. To the east you peer through a small\n
+                   |window into the Daemon, seeing many people dancing and drinking. After\n
+                   |you tend to your other chores you plan on visiting the Daemon.\n
+                   |The walk continues north and south from here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -941,7 +1011,11 @@
     "area": "newthalos",
     "anum": 20,
     "name": "Sultan's Walk",
-    "description": "The road here between the palace and the Dancing Daemon Inn seems well\nworn by the travel of horses, carts, and leather boots. From the west you\nhear the faint sound of trumpets announcing the arrival of some duke or\nduchess to the palace. Safe haven awaits you to the east in the halls\nof the Daemon, and Sultan's Walk continues north and south.\n",
+    "description": "The road here between the palace and the Dancing Daemon Inn seems well\n
+                   |worn by the travel of horses, carts, and leather boots. From the west you\n
+                   |hear the faint sound of trumpets announcing the arrival of some duke or\n
+                   |duchess to the palace. Safe haven awaits you to the east in the halls\n
+                   |of the Daemon, and Sultan's Walk continues north and south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1000,7 +1074,9 @@
     "area": "newthalos",
     "anum": 21,
     "name": "Sultan's Walk",
-    "description": "The main road north from the square continues here, surrounded by the walls\nof the palace and the Daemon. To the north you see the heavily guarded gate\nand can make out faint sounds of trade to the south.\n",
+    "description": "The main road north from the square continues here, surrounded by the walls\n
+                   |of the palace and the Daemon. To the north you see the heavily guarded gate\n
+                   |and can make out faint sounds of trade to the south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1017,7 +1093,11 @@
     "area": "newthalos",
     "anum": 22,
     "name": "Inside the Northern Gate of New Thalos",
-    "description": "Two large stone towers rise up to greet you with a massive iron gate\nswinging between on ornately crafted hinges and emblazend with the crest of\nNew Thalos. The makers of this city spared no costs in rebuilding the\ndefenses of their home. Sultan's Walk runs to the south and the Casbah\nstretches out east and west. To the north lay wilderness of the desert.\n",
+    "description": "Two large stone towers rise up to greet you with a massive iron gate\n
+                   |swinging between on ornately crafted hinges and emblazend with the crest of\n
+                   |New Thalos. The makers of this city spared no costs in rebuilding the\n
+                   |defenses of their home. Sultan's Walk runs to the south and the Casbah\n
+                   |stretches out east and west. To the north lay wilderness of the desert.\n",
     "sector_type": "inside",
     "doors": [
       {
@@ -1111,7 +1191,12 @@
     "area": "newthalos",
     "anum": 23,
     "name": "Inside the West Gate of New Thalos",
-    "description": "Two large stone towers embedded in the wall loom over you. The massive\niron gate, emblazoned with the crest of New Thalos, swings easily on\nfour ornately crafted hinges. It is obvious the makers of this city\nspared no expense to protect their home.  Main street heads towards\nthe market eastward and the eastern road passes through the Sands of\nSorrow to your west. To the south lies the entrance of the warrior's guild.\n",
+    "description": "Two large stone towers embedded in the wall loom over you. The massive\n
+                   |iron gate, emblazoned with the crest of New Thalos, swings easily on\n
+                   |four ornately crafted hinges. It is obvious the makers of this city\n
+                   |spared no expense to protect their home.  Main street heads towards\n
+                   |the market eastward and the eastern road passes through the Sands of\n
+                   |Sorrow to your west. To the south lies the entrance of the warrior's guild.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1201,7 +1286,9 @@
     "area": "newthalos",
     "anum": 24,
     "name": "West Main Street",
-    "description": "This is the main road traveling though the city. To the south you hear\nthe hammering of the repair shop and to the north is the grassy field\nknown as the temple square. Main street continues east and west.\n",
+    "description": "This is the main road traveling though the city. To the south you hear\n
+                   |the hammering of the repair shop and to the north is the grassy field\n
+                   |known as the temple square. Main street continues east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1234,7 +1321,10 @@
     "area": "newthalos",
     "anum": 25,
     "name": "West Main Street",
-    "description": "A foreman stands stand here watching over two construction workers\nfixing a pothole. The road here branches off north and south into\ntwo alleys behind the stores of the market. The main street continues\neast and west from here.\n",
+    "description": "A foreman stands stand here watching over two construction workers\n
+                   |fixing a pothole. The road here branches off north and south into\n
+                   |two alleys behind the stores of the market. The main street continues\n
+                   |east and west from here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1309,7 +1399,10 @@
     "area": "newthalos",
     "anum": 26,
     "name": "West Main Street",
-    "description": "You are strolling on the street between Nabil's Exotic Animals and the general\nstore. To the west you hear a roadcrew at work and to the East, the sounds of\ncommerce taking place.  The air is filled with the smell of gold and riches.\nOn the wall of the store is a poster.\n",
+    "description": "You are strolling on the street between Nabil's Exotic Animals and the general\n
+                   |store. To the west you hear a roadcrew at work and to the East, the sounds of\n
+                   |commerce taking place.  The air is filled with the smell of gold and riches.\n
+                   |On the wall of the store is a poster.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1323,14 +1416,19 @@
     ],
     "extra_description": [{
       "keyword": "poster",
-      "description": "A wealthy man in red robes is smiling at you.  The caption reads:\n\nTHE SULTAN REMINDS YOU TO PAY YOUR TAXES!\n\n"
+      "description": "A wealthy man in red robes is smiling at you.  The caption reads:\n
+                     |\n
+                     |THE SULTAN REMINDS YOU TO PAY YOUR TAXES!\n
+                     |\n"
     }]
   }},
   {"room": {
     "area": "newthalos",
     "anum": 27,
     "name": "East Main Street",
-    "description": "Here on East Main, you smell the odor of freshly slaughtered meat and\nhear the pounding of new metal from the armory.  The Square is to\nthe west and a junction is to the East.\n",
+    "description": "Here on East Main, you smell the odor of freshly slaughtered meat and\n
+                   |hear the pounding of new metal from the armory.  The Square is to\n
+                   |the west and a junction is to the East.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1355,7 +1453,10 @@
     "area": "newthalos",
     "anum": 28,
     "name": "East Main Street",
-    "description": "You are on East Main Street.  To the North is the beginning of\nGuildsman's Row.  To the South is a dark alley.  The road also\ncontinues to the East. There is a small sign on a wire hanging\nacross the junction.\n",
+    "description": "You are on East Main Street.  To the North is the beginning of\n
+                   |Guildsman's Row.  To the South is a dark alley.  The road also\n
+                   |continues to the East. There is a small sign on a wire hanging\n
+                   |across the junction.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1377,7 +1478,9 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "NO LOITERING!\n\n(by order of the Sultan of New Thalos)\n"
+      "description": "NO LOITERING!\n
+                     |\n
+                     |(by order of the Sultan of New Thalos)\n"
     }],
     "resets": [{
       "command": "mobile",
@@ -1392,7 +1495,13 @@
     "area": "newthalos",
     "anum": 29,
     "name": "East Main Street",
-    "description": "As you walk by the mercenary guild a cold chill causes you to shiver\nuncontrollably. You see some shady looking characters lurking about the\nentrance to this house of 'helpful' people. Perhaps curiosity gets the\nbest of you, but you wonder what could be going on inside. To the north\nyou see the open doors of the apothecary shop where one may buy many\nmagical livations.\nMain Street continues east and west from here.\n",
+    "description": "As you walk by the mercenary guild a cold chill causes you to shiver\n
+                   |uncontrollably. You see some shady looking characters lurking about the\n
+                   |entrance to this house of 'helpful' people. Perhaps curiosity gets the\n
+                   |best of you, but you wonder what could be going on inside. To the north\n
+                   |you see the open doors of the apothecary shop where one may buy many\n
+                   |magical livations.\n
+                   |Main Street continues east and west from here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1425,7 +1534,9 @@
     "area": "newthalos",
     "anum": 30,
     "name": "East Main Street",
-    "description": "The Main street through eastern New Thalos begins here and heads westward\ntowards the marketplace. One of the main gates can be seen to the east, and\nBraheem's Magic Shop awaits your business to the north.\n",
+    "description": "The Main street through eastern New Thalos begins here and heads westward\n
+                   |towards the marketplace. One of the main gates can be seen to the east, and\n
+                   |Braheem's Magic Shop awaits your business to the north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1454,7 +1565,12 @@
     "area": "newthalos",
     "anum": 31,
     "name": "Inside the Eastern Gate of New Thalos",
-    "description": "Two large stone towers imbedded in the wall loom over you. The massive\niron gate, emblazened with the crest of New Thalos, swings easily on\nfour ornately crafted hinges. It is obvious the makers of this city spared no\nexpense in protecting their home.  Main street heads towards the market\nwestward and the wilderness beckons from the east. To the north lies the\nentrance to the mages' guild.\n",
+    "description": "Two large stone towers imbedded in the wall loom over you. The massive\n
+                   |iron gate, emblazened with the crest of New Thalos, swings easily on\n
+                   |four ornately crafted hinges. It is obvious the makers of this city spared no\n
+                   |expense in protecting their home.  Main street heads towards the market\n
+                   |westward and the wilderness beckons from the east. To the north lies the\n
+                   |entrance to the mages' guild.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1528,7 +1644,9 @@
     "area": "newthalos",
     "anum": 32,
     "name": "Cassandra's Catch of the Day",
-    "description": "Nothing in your life has prepared you for the odor which fills your lungs.\nNot wanting to offend the beautiful shopkeeper you hold your tongue and\nquietly look over her selection.\n",
+    "description": "Nothing in your life has prepared you for the odor which fills your lungs.\n
+                   |Not wanting to offend the beautiful shopkeeper you hold your tongue and\n
+                   |quietly look over her selection.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3",
     "doors": [{
@@ -1564,7 +1682,10 @@
     "area": "newthalos",
     "anum": 33,
     "name": "West Ishtar Drive",
-    "description": "This is the warehouse district of New Thalos. Strong men walk back and\nforth from the docks to the warehouse carrying large crates loading\nand unloading the boats as they sail down the river. To the north is\none of the entrances of the warehouse and West Ishtar leads east.\n",
+    "description": "This is the warehouse district of New Thalos. Strong men walk back and\n
+                   |forth from the docks to the warehouse carrying large crates loading\n
+                   |and unloading the boats as they sail down the river. To the north is\n
+                   |one of the entrances of the warehouse and West Ishtar leads east.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1607,7 +1728,10 @@
     "area": "newthalos",
     "anum": 34,
     "name": "West Ishtar Drive",
-    "description": "A few men walk by almost pushing you out of the way as they go about\ntheir business of loading and unloading the boats. An entrance to the\nhuge warehouses of New Thalos is to the north and the Ishtar River\nquietly flows by to the south. Ishtar Drive continues east and west.\n",
+    "description": "A few men walk by almost pushing you out of the way as they go about\n
+                   |their business of loading and unloading the boats. An entrance to the\n
+                   |huge warehouses of New Thalos is to the north and the Ishtar River\n
+                   |quietly flows by to the south. Ishtar Drive continues east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1646,7 +1770,10 @@
     "area": "newthalos",
     "anum": 35,
     "name": "West Ishtar Drive",
-    "description": "The cobblestone road is moist here, the trail of water heading down to\nthe boat ramp. Catching your balance as you start to slide on the slick\npavement you grab on to the handrail someone has conveniently placed here.\nTo the north is the Shipwright and Ishtar Drive continues east and west.\n",
+    "description": "The cobblestone road is moist here, the trail of water heading down to\n
+                   |the boat ramp. Catching your balance as you start to slide on the slick\n
+                   |pavement you grab on to the handrail someone has conveniently placed here.\n
+                   |To the north is the Shipwright and Ishtar Drive continues east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1679,7 +1806,10 @@
     "area": "newthalos",
     "anum": 36,
     "name": "West Ishtar Drive",
-    "description": "A cool breeze blows up off the river chilling the sweat otherwise present\non you skin. Orders and sometimes curses can be heard from the west\nin the direction of the warehouses. The common square opens up to the east\nand Ishtar Drive continues west.\n",
+    "description": "A cool breeze blows up off the river chilling the sweat otherwise present\n
+                   |on you skin. Orders and sometimes curses can be heard from the west\n
+                   |in the direction of the warehouses. The common square opens up to the east\n
+                   |and Ishtar Drive continues west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1696,7 +1826,11 @@
     "area": "newthalos",
     "anum": 37,
     "name": "East Ishtar Drive",
-    "description": "Loud hammering and the sound of red hot iron cooling in water reaches\nyour ears as you stand in front of the blacksmith. A small boy runs up\nto you with big eyes and as you return his gaze runs off down the road.\nThe common square can be seen to the west and Ishtar Drive continues\nto the east.\n",
+    "description": "Loud hammering and the sound of red hot iron cooling in water reaches\n
+                   |your ears as you stand in front of the blacksmith. A small boy runs up\n
+                   |to you with big eyes and as you return his gaze runs off down the road.\n
+                   |The common square can be seen to the west and Ishtar Drive continues\n
+                   |to the east.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1717,7 +1851,9 @@
     "area": "newthalos",
     "anum": 38,
     "name": "East Ishtar Drive",
-    "description": "The wide road bordering the south of town continues to the east and\nwest here, bordered only by the hay-loft to the north and the Ishtar\nRiver to the south.\n",
+    "description": "The wide road bordering the south of town continues to the east and\n
+                   |west here, bordered only by the hay-loft to the north and the Ishtar\n
+                   |River to the south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1734,7 +1870,10 @@
     "area": "newthalos",
     "anum": 39,
     "name": "East Ishtar Drive",
-    "description": "Small clumps of hay strewn about the ground alerts you to the fact that\nyou have reached the stables. Arabian stallions as well as many other\nfine breeds of horses can be purchased for a price. Ishtar road continues\neast and west.\n",
+    "description": "Small clumps of hay strewn about the ground alerts you to the fact that\n
+                   |you have reached the stables. Arabian stallions as well as many other\n
+                   |fine breeds of horses can be purchased for a price. Ishtar road continues\n
+                   |east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1755,7 +1894,10 @@
     "area": "newthalos",
     "anum": 40,
     "name": "East Ishtar Drive",
-    "description": "Even in broad daylight, you can hardly see into the back alley that begins\nhere and heads north. Sounds of loud drunken folk and the occasional\nscreaming cat emenate from the direction. Luckily you have the choice of\ngoing east or west down the drive as well.\n",
+    "description": "Even in broad daylight, you can hardly see into the back alley that begins\n
+                   |here and heads north. Sounds of loud drunken folk and the occasional\n
+                   |screaming cat emenate from the direction. Luckily you have the choice of\n
+                   |going east or west down the drive as well.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1777,7 +1919,11 @@
     "area": "newthalos",
     "anum": 41,
     "name": "East Ishtar Drive",
-    "description": "Your highly acute sense of smell reports you have reached the entrance\nto the fish market. Although renowned for it fresh catches and\nwide selection of aquarian delicacies you wonder how much longer you\ncan endure the smell! The Ishtar River flows alongside to the south\nwith the drive running alongside it east to west.\n",
+    "description": "Your highly acute sense of smell reports you have reached the entrance\n
+                   |to the fish market. Although renowned for it fresh catches and\n
+                   |wide selection of aquarian delicacies you wonder how much longer you\n
+                   |can endure the smell! The Ishtar River flows alongside to the south\n
+                   |with the drive running alongside it east to west.\n",
     "sector_type": "inside",
     "doors": [
       {
@@ -1798,7 +1944,10 @@
     "area": "newthalos",
     "anum": 42,
     "name": "East Ishtar Drive",
-    "description": "The sound of squawking gulls and the smell of rotting fish gives you a hint\nof your location. The Ishtar River flows south of you, but looks crystal\nclear, so it cannot be the source of this putrid smell. Looking north you\nnotice a small sign hanging over the dump.\n",
+    "description": "The sound of squawking gulls and the smell of rotting fish gives you a hint\n
+                   |of your location. The Ishtar River flows south of you, but looks crystal\n
+                   |clear, so it cannot be the source of this putrid smell. Looking north you\n
+                   |notice a small sign hanging over the dump.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1812,14 +1961,26 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "==========================================================================\n                       THE DUMP OF NEW THALOS\n\n\n                              -----\n\n  Enter at your own risk.\n       -the management\n\n=========================================================================\n"
+      "description": "==========================================================================\n
+                     |                       THE DUMP OF NEW THALOS\n
+                     |\n
+                     |\n
+                     |                              -----\n
+                     |\n
+                     |  Enter at your own risk.\n
+                     |       -the management\n
+                     |\n
+                     |=========================================================================\n"
     }]
   }},
   {"room": {
     "area": "newthalos",
     "anum": 43,
     "name": "Boat Ramp",
-    "description": "This sloped slab of stone allows easy passage to and from the Ishtar.\nBoats are moored to the docks here awaiting their masters to return from\nthe warehouses and the pubs. The waters of the Ishtar lap at your feet\nto the south and Ishtar Drive is to the north.\n",
+    "description": "This sloped slab of stone allows easy passage to and from the Ishtar.\n
+                   |Boats are moored to the docks here awaiting their masters to return from\n
+                   |the warehouses and the pubs. The waters of the Ishtar lap at your feet\n
+                   |to the south and Ishtar Drive is to the north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1844,7 +2005,10 @@
     "area": "newthalos",
     "anum": 44,
     "name": "West Casbah",
-    "description": "The air takes on a somber note as you stand before the entrance to the\njailhouse of New Thalos. Hopefully you won't ever see this structure from\nthe inside. The northwest tower stands here with a spiral staircase\nleading up. The avenue ends here, only exiting to the east.\n",
+    "description": "The air takes on a somber note as you stand before the entrance to the\n
+                   |jailhouse of New Thalos. Hopefully you won't ever see this structure from\n
+                   |the inside. The northwest tower stands here with a spiral staircase\n
+                   |leading up. The avenue ends here, only exiting to the east.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1883,7 +2047,11 @@
     "area": "newthalos",
     "anum": 45,
     "name": "West Casbah",
-    "description": "You have almost reached the end of the avenue in this direction, the\nnumber of guards in this part of town is nearly doubled. To the north\nthe familiar city wall protects you from the wilderness. Looking south\nmarble stairs rise towards the entrance of city hall surrounded by\nmassive white pillars. The avenue continues west and south from here.\n",
+    "description": "You have almost reached the end of the avenue in this direction, the\n
+                   |number of guards in this part of town is nearly doubled. To the north\n
+                   |the familiar city wall protects you from the wilderness. Looking south\n
+                   |marble stairs rise towards the entrance of city hall surrounded by\n
+                   |massive white pillars. The avenue continues west and south from here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1922,7 +2090,10 @@
     "area": "newthalos",
     "anum": 46,
     "name": "The Casbah",
-    "description": "The wall of the palace curves south from here, a darkened alley runs along\nit in that direction. West of here you see the steps of the city hall\nand notice the increase in the number of guards. To the east the avenue\ncontinues.\n",
+    "description": "The wall of the palace curves south from here, a darkened alley runs along\n
+                   |it in that direction. West of here you see the steps of the city hall\n
+                   |and notice the increase in the number of guards. To the east the avenue\n
+                   |continues.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1951,7 +2122,9 @@
     "area": "newthalos",
     "anum": 47,
     "name": "The Casbah",
-    "description": "As you travel down the road towards towards the city hall you look up\nat the guards walking along the wall keeping watch. South of you stands\nthe great walls of the palace and the avenue goes east and west.\n",
+    "description": "As you travel down the road towards towards the city hall you look up\n
+                   |at the guards walking along the wall keeping watch. South of you stands\n
+                   |the great walls of the palace and the avenue goes east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1976,7 +2149,8 @@
     "area": "newthalos",
     "anum": 48,
     "name": "The Casbah",
-    "description": "The cobblestone pavement runs along the north wall here. South of you\nstand the great walls of the palace and the avenue goes east and west.\n",
+    "description": "The cobblestone pavement runs along the north wall here. South of you\n
+                   |stand the great walls of the palace and the avenue goes east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1993,7 +2167,10 @@
     "area": "newthalos",
     "anum": 49,
     "name": "The Casbah",
-    "description": "The activity here is only slightly less than chaotic. Young boys run to\nand fro with stern intent, and older gentleman swagger down the street\ntowards the library. To the west you can see the tall towers of the\nnorthern gate, and the avenue continues east.\n",
+    "description": "The activity here is only slightly less than chaotic. Young boys run to\n
+                   |and fro with stern intent, and older gentleman swagger down the street\n
+                   |towards the library. To the west you can see the tall towers of the\n
+                   |northern gate, and the avenue continues east.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2010,7 +2187,11 @@
     "area": "newthalos",
     "anum": 50,
     "name": "The Casbah",
-    "description": "Walking along the cobblestone path you feel secure with the walls of the\ncity towering over you. You hear the scraping sounds of metal on stone\nand look up to see a large, strong guard looking out to the north. To the\neast lies the intersection on Guildsman's Row and the northern gate is\na short walk to the west.\n",
+    "description": "Walking along the cobblestone path you feel secure with the walls of the\n
+                   |city towering over you. You hear the scraping sounds of metal on stone\n
+                   |and look up to see a large, strong guard looking out to the north. To the\n
+                   |east lies the intersection on Guildsman's Row and the northern gate is\n
+                   |a short walk to the west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2035,7 +2216,10 @@
     "area": "newthalos",
     "anum": 51,
     "name": "The Casbah",
-    "description": "The din of the guilds assaults your senses as you reach this intersection;\nthe sound of hammering, the smell of tanned leather, and the smoke rising\nfrom the smithy all rush up to greet you. The avenue continues east and\nwest form here and the row leads south.\n",
+    "description": "The din of the guilds assaults your senses as you reach this intersection;\n
+                   |the sound of hammering, the smell of tanned leather, and the smoke rising\n
+                   |from the smithy all rush up to greet you. The avenue continues east and\n
+                   |west form here and the row leads south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2056,7 +2240,9 @@
     "area": "newthalos",
     "anum": 52,
     "name": "The Casbah",
-    "description": "You walk between the solid stone wall of the city and that of the Mason's\nguild. Young children and their nannys walk around enjoying the safety\nof the city. The avenue runs east and west from here.\n",
+    "description": "You walk between the solid stone wall of the city and that of the Mason's\n
+                   |guild. Young children and their nannys walk around enjoying the safety\n
+                   |of the city. The avenue runs east and west from here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2081,7 +2267,12 @@
     "area": "newthalos",
     "anum": 53,
     "name": "The Casbah",
-    "description": "You have almost reached the end of the avenue in this direction. Walking\ntowards the north-east corner of the city you notice the population density\nhere is much less then the rest of the town. A few old men hobbling on\ncanes and young men intent on studies are the only travelers of the path\nto the library on a regular basis. The avenue continues east and west from\nhere\n",
+    "description": "You have almost reached the end of the avenue in this direction. Walking\n
+                   |towards the north-east corner of the city you notice the population density\n
+                   |here is much less then the rest of the town. A few old men hobbling on\n
+                   |canes and young men intent on studies are the only travelers of the path\n
+                   |to the library on a regular basis. The avenue continues east and west from\n
+                   |here\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2106,7 +2297,9 @@
     "area": "newthalos",
     "anum": 54,
     "name": "The Casbah",
-    "description": "The avenue ends here, turning south to become Kali Row. Traveling in that\ndirection will take you to the library and the grand dance hall of the city.\nThe Northeast Tower of the wall is accessible here up a spiral staircase.\n",
+    "description": "The avenue ends here, turning south to become Kali Row. Traveling in that\n
+                   |direction will take you to the library and the grand dance hall of the city.\n
+                   |The Northeast Tower of the wall is accessible here up a spiral staircase.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2127,7 +2320,10 @@
     "area": "newthalos",
     "anum": 55,
     "name": "Kali Row",
-    "description": "This is a small, newly added section of the town. The city's library\ncan be entered through the door to the west and The Casbah\nbegins it's journey a little ways north of here. The row and the\nentrance to the dance hall is to the south.\n",
+    "description": "This is a small, newly added section of the town. The city's library\n
+                   |can be entered through the door to the west and The Casbah\n
+                   |begins it's journey a little ways north of here. The row and the\n
+                   |entrance to the dance hall is to the south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2182,7 +2378,9 @@
     "area": "newthalos",
     "anum": 56,
     "name": "Kali Row",
-    "description": "The short row ends abruptly here at the entrance to the dance hall of\nNew Thalos. The entrance to the hall is to the west and the row continues\nnorthward.\n",
+    "description": "The short row ends abruptly here at the entrance to the dance hall of\n
+                   |New Thalos. The entrance to the hall is to the west and the row continues\n
+                   |northward.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2217,7 +2415,8 @@
     "area": "newthalos",
     "anum": 58,
     "name": "Alley",
-    "description": "This is a dark alley running between the palace and city hall. Not a lot\nhere, unless you're partial to spiders and rats.\n",
+    "description": "This is a dark alley running between the palace and city hall. Not a lot\n
+                   |here, unless you're partial to spiders and rats.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2255,7 +2454,12 @@
     "area": "newthalos",
     "anum": 60,
     "name": "Guildsman's Row",
-    "description": "This row is a hive of activity second only to the actual market\nsquare itself. Along this row stands all the guilds of the working\nclass citizens of New Thalos;  here all the items sold in the square\nare made. Along this particular stretch of the row lie the Bowyer/\nFletcher to the west and the Mason's to the east. The row leads\noff to the south and East Casbah is to the north.\n",
+    "description": "This row is a hive of activity second only to the actual market\n
+                   |square itself. Along this row stands all the guilds of the working\n
+                   |class citizens of New Thalos;  here all the items sold in the square\n
+                   |are made. Along this particular stretch of the row lie the Bowyer/\n
+                   |Fletcher to the west and the Mason's to the east. The row leads\n
+                   |off to the south and East Casbah is to the north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2280,7 +2484,9 @@
     "area": "newthalos",
     "anum": 61,
     "name": "Guildsman's Row",
-    "description": "The guilds continue here, to the west is the Weaver's guild, and to the\neast stands the Craftsman's Guild. The row of guilds continues north\nand south from here.\n",
+    "description": "The guilds continue here, to the west is the Weaver's guild, and to the\n
+                   |east stands the Craftsman's Guild. The row of guilds continues north\n
+                   |and south from here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2305,7 +2511,10 @@
     "area": "newthalos",
     "anum": 62,
     "name": "Guildsman's Row",
-    "description": "Only one guild offers its door to this stretch of the row; the Tanner's\nGuild, to the west. To the east is a beautifully sculpted marble door\nallowing entrance to the Museum of the Greater Gods. The row of\nGuilds leads north and south.\n",
+    "description": "Only one guild offers its door to this stretch of the row; the Tanner's\n
+                   |Guild, to the west. To the east is a beautifully sculpted marble door\n
+                   |allowing entrance to the Museum of the Greater Gods. The row of\n
+                   |Guilds leads north and south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2330,7 +2539,10 @@
     "area": "newthalos",
     "anum": 63,
     "name": "Guildsman's Row",
-    "description": "After the guilds were built the people of the city used some of the extra\nspace to erect a shrine to their patron saints. The result of this labor\nbecame the Museum of the greater gods. You may enter the sacred hall to\nthe east.\n",
+    "description": "After the guilds were built the people of the city used some of the extra\n
+                   |space to erect a shrine to their patron saints. The result of this labor\n
+                   |became the Museum of the greater gods. You may enter the sacred hall to\n
+                   |the east.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2359,7 +2571,9 @@
     "area": "newthalos",
     "anum": 64,
     "name": "Guildsman's Row",
-    "description": "This small cramped road is worn with travel as apprentices to the guilds\nrun merchandise from the guildhouses to the shops on market square. The\nguildhouses lie to the north and Main street is to the south.\n",
+    "description": "This small cramped road is worn with travel as apprentices to the guilds\n
+                   |run merchandise from the guildhouses to the shops on market square. The\n
+                   |guildhouses lie to the north and Main street is to the south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2376,7 +2590,8 @@
     "area": "newthalos",
     "anum": 65,
     "name": "Alley",
-    "description": "Even with your light you cannot seem to penetrate the magical cloak of\ndarkness covering this alley.\n",
+    "description": "Even with your light you cannot seem to penetrate the magical cloak of\n
+                   |darkness covering this alley.\n",
     "sector_type": "city",
     "room_flags": "dark",
     "doors": [
@@ -2402,7 +2617,8 @@
     "area": "newthalos",
     "anum": 66,
     "name": "Alley",
-    "description": "Even with your light you cannot seem to penetrate the magical cloak of\ndarkness covering this alley.\n",
+    "description": "Even with your light you cannot seem to penetrate the magical cloak of\n
+                   |darkness covering this alley.\n",
     "sector_type": "city",
     "room_flags": "dark",
     "doors": [
@@ -2458,7 +2674,8 @@
     "area": "newthalos",
     "anum": 67,
     "name": "Alley",
-    "description": "Even with your light you cannot seem to penetrate the magical cloak of\ndarkness covering this alley.\n",
+    "description": "Even with your light you cannot seem to penetrate the magical cloak of\n
+                   |darkness covering this alley.\n",
     "sector_type": "city",
     "room_flags": "dark",
     "doors": [
@@ -2488,7 +2705,8 @@
     "area": "newthalos",
     "anum": 68,
     "name": "Alley",
-    "description": "Even with your light you cannot seem to penetrate the magical cloak of\ndarkness covering this alley.\n",
+    "description": "Even with your light you cannot seem to penetrate the magical cloak of\n
+                   |darkness covering this alley.\n",
     "sector_type": "city",
     "room_flags": "dark",
     "doors": [
@@ -2532,7 +2750,8 @@
     "area": "newthalos",
     "anum": 69,
     "name": "Alley",
-    "description": "This is a tiny corner in the alley.  The temple walls are North and West.\nYou notice a fair amount of footprints to the east.\n",
+    "description": "This is a tiny corner in the alley.  The temple walls are North and West.\n
+                   |You notice a fair amount of footprints to the east.\n",
     "sector_type": "city",
     "room_flags": "dark",
     "doors": [
@@ -2562,7 +2781,8 @@
     "area": "newthalos",
     "anum": 70,
     "name": "Alley",
-    "description": "This is a dead end to the tiny alley.  There is an unusual amount of wear\nappearent on the ground.\n",
+    "description": "This is a dead end to the tiny alley.  There is an unusual amount of wear\n
+                   |appearent on the ground.\n",
     "sector_type": "city",
     "room_flags": "dark",
     "doors": [
@@ -2583,7 +2803,9 @@
     "area": "newthalos",
     "anum": 71,
     "name": "Alley",
-    "description": "You are in a tiny ally between the temple and Nabil's Exotic Animals. You hear\nsome shouting and general roadwork to the south.  The ground is rough and\nin need of repair.  In the road is a small pothole.\n",
+    "description": "You are in a tiny ally between the temple and Nabil's Exotic Animals. You hear\n
+                   |some shouting and general roadwork to the south.  The ground is rough and\n
+                   |in need of repair.  In the road is a small pothole.\n",
     "sector_type": "city",
     "room_flags": "dark",
     "doors": [
@@ -2598,14 +2820,16 @@
     ],
     "extra_description": [{
       "keyword": "pothole",
-      "description": "Why are you looking in a pothole??????\nYou poor or something?\n"
+      "description": "Why are you looking in a pothole??????\n
+                     |You poor or something?\n"
     }]
   }},
   {"room": {
     "area": "newthalos",
     "anum": 72,
     "name": "Alley",
-    "description": "You are on a small alley between the repair shop and the general store.\nNothing much here but small rodents and dust.\n",
+    "description": "You are on a small alley between the repair shop and the general store.\n
+                   |Nothing much here but small rodents and dust.\n",
     "sector_type": "city",
     "room_flags": "dark",
     "doors": [
@@ -2623,7 +2847,8 @@
     "area": "newthalos",
     "anum": 73,
     "name": "Alley",
-    "description": "This is a small corner in the alley behind the warehouses and the guild\nof warrior's. You notice  some small scrapings to the west.\n",
+    "description": "This is a small corner in the alley behind the warehouses and the guild\n
+                   |of warrior's. You notice  some small scrapings to the west.\n",
     "sector_type": "city",
     "room_flags": "dark",
     "doors": [
@@ -2670,7 +2895,8 @@
     "area": "newthalos",
     "anum": 75,
     "name": "Underground",
-    "description": "You are in a small underground passage beneath the city. You see a small\nglint of light from above and the passage continues south.\n",
+    "description": "You are in a small underground passage beneath the city. You see a small\n
+                   |glint of light from above and the passage continues south.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -2730,7 +2956,8 @@
     "area": "newthalos",
     "anum": 78,
     "name": "Underground",
-    "description": "The alley turns again here and heads south and west. You notice a small\nglint of light from above.\n",
+    "description": "The alley turns again here and heads south and west. You notice a small\n
+                   |glint of light from above.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -2754,7 +2981,9 @@
     "area": "newthalos",
     "anum": 79,
     "name": "Underground",
-    "description": "The passage ends here and you hear some low chanting from the west.\nYou also notice the clearing of dust on the ground but can't seem to\nfind any door in that direction.\n",
+    "description": "The passage ends here and you hear some low chanting from the west.\n
+                   |You also notice the clearing of dust on the ground but can't seem to\n
+                   |find any door in that direction.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -2784,7 +3013,8 @@
     "area": "newthalos",
     "anum": 81,
     "name": "Underground",
-    "description": "The small passage heads north and east from here. You here the sounds\nof the city above you.\n",
+    "description": "The small passage heads north and east from here. You here the sounds\n
+                   |of the city above you.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -2808,7 +3038,8 @@
     "area": "newthalos",
     "anum": 82,
     "name": "Underground",
-    "description": "The tunnel continues you west and east. Hopefully you have a good sense\nof direction.\n",
+    "description": "The tunnel continues you west and east. Hopefully you have a good sense\n
+                   |of direction.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -2826,7 +3057,10 @@
     "area": "newthalos",
     "anum": 83,
     "name": "Ishtar River",
-    "description": "High above you on the top of the city wall guards look down to see if you\nwish to exit the city via water. To do so they must open the iron grating\nin front of you from above. The horrid smell of the dump wafts down from\nthe shore.\n",
+    "description": "High above you on the top of the city wall guards look down to see if you\n
+                   |wish to exit the city via water. To do so they must open the iron grating\n
+                   |in front of you from above. The horrid smell of the dump wafts down from\n
+                   |the shore.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -2843,7 +3077,10 @@
     "area": "newthalos",
     "anum": 84,
     "name": "Ishtar River",
-    "description": "The gentle flow of the river carries you eastward;  looking up you see\ncouples strolling along the road. To the west you see the southern\nbridge and to the east you see the iron grating protecting the city from\nunwanted guests.\n",
+    "description": "The gentle flow of the river carries you eastward;  looking up you see\n
+                   |couples strolling along the road. To the west you see the southern\n
+                   |bridge and to the east you see the iron grating protecting the city from\n
+                   |unwanted guests.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -2860,7 +3097,10 @@
     "area": "newthalos",
     "anum": 85,
     "name": "Ishtar River",
-    "description": "You hear your voice echo as you float under the bridge above. The city\nconstruction crews have just recently finished the small ladder giving\ncommon-folk easy access to the river.  From here, the river flows east and\nwest.\n",
+    "description": "You hear your voice echo as you float under the bridge above. The city\n
+                   |construction crews have just recently finished the small ladder giving\n
+                   |common-folk easy access to the river.  From here, the river flows east and\n
+                   |west.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -2881,7 +3121,10 @@
     "area": "newthalos",
     "anum": 86,
     "name": "Ishtar River",
-    "description": "This part of the river seems alive with activity. Boats moored to the\ndocks near the ramp north of here make navigation a bit more trying.\nAs the river flows eastward you can see the southern bridge in that\ndirection.\n",
+    "description": "This part of the river seems alive with activity. Boats moored to the\n
+                   |docks near the ramp north of here make navigation a bit more trying.\n
+                   |As the river flows eastward you can see the southern bridge in that\n
+                   |direction.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -2902,7 +3145,9 @@
     "area": "newthalos",
     "anum": 87,
     "name": "Ishtar River",
-    "description": "The river flows through a huge iron grating from the wilderness through\nthe city. Strong guards above await word to open the portal\nshould any citizen require exit or entry.\n",
+    "description": "The river flows through a huge iron grating from the wilderness through\n
+                   |the city. Strong guards above await word to open the portal\n
+                   |should any citizen require exit or entry.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -2919,7 +3164,9 @@
     "area": "newthalos",
     "anum": 88,
     "name": "Dark Passage",
-    "description": "You seem to have stumbled into a small hand made passage. The wall to\nthe west  doesn't look quite right but searching it reveals no secret\ndoors. The only exit it seems is east.\n",
+    "description": "You seem to have stumbled into a small hand made passage. The wall to\n
+                   |the west  doesn't look quite right but searching it reveals no secret\n
+                   |doors. The only exit it seems is east.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -2931,7 +3178,9 @@
     "area": "newthalos",
     "anum": 89,
     "name": "Dark Passage",
-    "description": "The small passage continues east and west from here. Again you notice\nsomething peculiar about the wall, this time to the north, but you\nfail to find any secret doors. Voices can be faintly heard from the north.\n",
+    "description": "The small passage continues east and west from here. Again you notice\n
+                   |something peculiar about the wall, this time to the north, but you\n
+                   |fail to find any secret doors. Voices can be faintly heard from the north.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -2964,14 +3213,17 @@
     ],
     "extra_description": [{
       "keyword": "boulder",
-      "description": "A huge boulder stands here. In its center someone has carved out a\nperfect round hole.\n"
+      "description": "A huge boulder stands here. In its center someone has carved out a\n
+                     |perfect round hole.\n"
     }]
   }},
   {"room": {
     "area": "newthalos",
     "anum": 91,
     "name": "Dark Passage",
-    "description": "The small passage ends here for no apparent reason. Looking around you\nfind a small ladder half buried in the dirt. setting it up you find a\ntrap door in the ceiling. The passage continues west from here.\n",
+    "description": "The small passage ends here for no apparent reason. Looking around you\n
+                   |find a small ladder half buried in the dirt. setting it up you find a\n
+                   |trap door in the ceiling. The passage continues west from here.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -2988,7 +3240,10 @@
     ],
     "extra_description": [{
       "keyword": "fire",
-      "description": "Moving closer you see this fire is actually FROZEN in place. The\nflames still radiate heat, but are not actually burning. Looking\naround you notice a small hole about the size of a piece of charcoal\nat the base of the flames.\n"
+      "description": "Moving closer you see this fire is actually FROZEN in place. The\n
+                     |flames still radiate heat, but are not actually burning. Looking\n
+                     |around you notice a small hole about the size of a piece of charcoal\n
+                     |at the base of the flames.\n"
     }]
   }},
   {"room": {
@@ -3010,7 +3265,8 @@
     ],
     "extra_description": [{
       "keyword": "cloud",
-      "description": "Peering into the misty cloud the form a huge conch shell seems to fade\nin and out. Perhaps this is somehow the entrance to the next challenge\n"
+      "description": "Peering into the misty cloud the form a huge conch shell seems to fade\n
+                     |in and out. Perhaps this is somehow the entrance to the next challenge\n"
     }]
   }},
   {"room": {
@@ -3035,7 +3291,10 @@
     "area": "newthalos",
     "anum": 94,
     "name": "Common Room of the Clan MacCleod",
-    "description": "You have entered a large hall with passages leading off in all directions.\nA large table dominates the center of this hall with many chairs were\nthe clan gathers for feasting, merriment, and meetings. On the walls\nhang large tapestries paying homage to their leader Conner MacCleod.\n",
+    "description": "You have entered a large hall with passages leading off in all directions.\n
+                   |A large table dominates the center of this hall with many chairs were\n
+                   |the clan gathers for feasting, merriment, and meetings. On the walls\n
+                   |hang large tapestries paying homage to their leader Conner MacCleod.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_3",
     "doors": [
@@ -3085,7 +3344,11 @@
     "area": "newthalos",
     "anum": 95,
     "name": "Zippoii's Room",
-    "description": "Climbing up the staircase you enter the hovel of a curious mage. A small\nuncomfortable looking bed rests in the corner, surrounded by ancient\ntomes. On the worn desk next to the window candles burn low, casting\nstrange shadows on the walls. The only noticeable decor is the mounted\nhead of the Demi-Lich.\n",
+    "description": "Climbing up the staircase you enter the hovel of a curious mage. A small\n
+                   |uncomfortable looking bed rests in the corner, surrounded by ancient\n
+                   |tomes. On the worn desk next to the window candles burn low, casting\n
+                   |strange shadows on the walls. The only noticeable decor is the mounted\n
+                   |head of the Demi-Lich.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -3099,7 +3362,12 @@
     "area": "newthalos",
     "anum": 96,
     "name": "Ice's Room",
-    "description": "Brrrrrr, it's COLD in here. Must be 30 below. It would seem the cleric\nIce lives up to his name. Healing herbs and other such things line\nthe walls in racks, holy symbols and pictures cover the walls, and\nthe smiley face button stuck on his bedpost tells you he'll probably\nhelp you out all he can. As you turn to leave the room the mounted head\nof Kalas stares past you into emptiness.\n",
+    "description": "Brrrrrr, it's COLD in here. Must be 30 below. It would seem the cleric\n
+                   |Ice lives up to his name. Healing herbs and other such things line\n
+                   |the walls in racks, holy symbols and pictures cover the walls, and\n
+                   |the smiley face button stuck on his bedpost tells you he'll probably\n
+                   |help you out all he can. As you turn to leave the room the mounted head\n
+                   |of Kalas stares past you into emptiness.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -3113,7 +3381,16 @@
     "area": "newthalos",
     "anum": 97,
     "name": "Naazgul's Room",
-    "description": "Three Rings for the Elven-kings under the sky,\n  Seven for the Dwarf-lords in their halls of stone,\nNine for Mortal Men doomed to die,\n  One for the Dark Lord on his Dark Throne\nIn the Land of Mordor where Shadows lie.\n  One ring to rule them all, One ring to find them,\n  One ring to bring them all and in the darkness bind them\nIn the Land of Mordor where the Shadows lie.\n\nIf I have to explain, you wouldn't understand.\n",
+    "description": "Three Rings for the Elven-kings under the sky,\n
+                   |  Seven for the Dwarf-lords in their halls of stone,\n
+                   |Nine for Mortal Men doomed to die,\n
+                   |  One for the Dark Lord on his Dark Throne\n
+                   |In the Land of Mordor where Shadows lie.\n
+                   |  One ring to rule them all, One ring to find them,\n
+                   |  One ring to bring them all and in the darkness bind them\n
+                   |In the Land of Mordor where the Shadows lie.\n
+                   |\n
+                   |If I have to explain, you wouldn't understand.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [
@@ -3133,7 +3410,12 @@
     "area": "newthalos",
     "anum": 98,
     "name": "Tank's Room",
-    "description": "Now here's a room that is easy to understand. A bed, a dresser, and a\nrack for weapons and armor are all that occupy it. Some posters adorn\nthe walls, to add color, proclaiming things such as Live fast, Die Young,\nand a homemade one in the corner with a picture of Ice and under it the\ninscription, \"I LOVE the resurrection spell\". The only thing out of\nplace in this happy-go-lucky room is mounted head of Crimson Death.\n",
+    "description": "Now here's a room that is easy to understand. A bed, a dresser, and a\n
+                   |rack for weapons and armor are all that occupy it. Some posters adorn\n
+                   |the walls, to add color, proclaiming things such as Live fast, Die Young,\n
+                   |and a homemade one in the corner with a picture of Ice and under it the\n
+                   |inscription, \"I LOVE the resurrection spell\". The only thing out of\n
+                   |place in this happy-go-lucky room is mounted head of Crimson Death.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -3147,7 +3429,9 @@
     "area": "newthalos",
     "anum": 99,
     "name": "Inside the Castle of Clan MacCleod",
-    "description": "You have entered the grand hall of the castle. A huge throne dominates a\nraised area in the northern part of then room. In front of this stands a\ndrafting table.\n",
+    "description": "You have entered the grand hall of the castle. A huge throne dominates a\n
+                   |raised area in the northern part of then room. In front of this stands a\n
+                   |drafting table.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -3223,7 +3507,10 @@
     "area": "newthalos",
     "anum": 103,
     "name": "Cleric's Sanctum",
-    "description": "You walk down the staircase into the silent inner sanctum. Here sits\nyour guildmaster ready to assist you when the time is right. The room\nis completely silent. The only obvious exit is back up the staircase\ninto the the Nectar.\n",
+    "description": "You walk down the staircase into the silent inner sanctum. Here sits\n
+                   |your guildmaster ready to assist you when the time is right. The room\n
+                   |is completely silent. The only obvious exit is back up the staircase\n
+                   |into the the Nectar.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [
@@ -3231,7 +3518,8 @@
         "dir": "east",
         "to": 79,
         "keyword": "secret door",
-        "description": "You notice the floor at the base of the eastern wall has some faint\nscratches in it.\n",
+        "description": "You notice the floor at the base of the eastern wall has some faint\n
+                       |scratches in it.\n",
         "exit_flags": "door closed"
       },
       {
@@ -3252,7 +3540,11 @@
     "area": "newthalos",
     "anum": 104,
     "name": "Chamber of the High Priest",
-    "description": "You have entered the chamber of the most holy man in New Thalos. The\nHigh Priest advises the Sultan on all matters in the world of the sacred.\nFrom what you have heard however, this holy man has a bit of a temper,\nand he doesn't look very happy that you've disturbed his prayers.\nThe only obvious exit is south.\n",
+    "description": "You have entered the chamber of the most holy man in New Thalos. The\n
+                   |High Priest advises the Sultan on all matters in the world of the sacred.\n
+                   |From what you have heard however, this holy man has a bit of a temper,\n
+                   |and he doesn't look very happy that you've disturbed his prayers.\n
+                   |The only obvious exit is south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -3272,7 +3564,10 @@
     "area": "newthalos",
     "anum": 105,
     "name": "By the Altar",
-    "description": "You are by the temple altar in the northern end of Temple of New\nThalos. A huge altar made of highly polished black onyx is standing\nin front of you. Behind this altar sits a twelve foot tall statue of\nLoki, the highest god in all the lands.\n",
+    "description": "You are by the temple altar in the northern end of Temple of New\n
+                   |Thalos. A huge altar made of highly polished black onyx is standing\n
+                   |in front of you. Behind this altar sits a twelve foot tall statue of\n
+                   |Loki, the highest god in all the lands.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors unused_room_4",
     "doors": [{
@@ -3281,14 +3576,18 @@
     }],
     "extra_description": [{
       "keyword": "statue",
-      "description": "Looking up the huge statue you see Loki calmly gazing out across his\nlands.  He seems pleased.\n"
+      "description": "Looking up the huge statue you see Loki calmly gazing out across his\n
+                     |lands.  He seems pleased.\n"
     }]
   }},
   {"room": {
     "area": "newthalos",
     "anum": 106,
     "name": "The Weaver's Guild",
-    "description": "Rows and rows of uncut cloth lie about waiting to be hemmed up into\ntailored clothes. Cotton is brought in from the countryside and\nspun up into cloth and dyed different colors. A young boy walks\nin, grabs a pile of clothing and leaves.\n",
+    "description": "Rows and rows of uncut cloth lie about waiting to be hemmed up into\n
+                   |tailored clothes. Cotton is brought in from the countryside and\n
+                   |spun up into cloth and dyed different colors. A young boy walks\n
+                   |in, grabs a pile of clothing and leaves.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -3300,7 +3599,9 @@
     "area": "newthalos",
     "anum": 107,
     "name": "The Craftsman's Guild",
-    "description": "You have entered a busy workshop filled with people running amok\nwith various tools and materials.  The air is tense with the rush to\ncomplete various projects and creations.\n",
+    "description": "You have entered a busy workshop filled with people running amok\n
+                   |with various tools and materials.  The air is tense with the rush to\n
+                   |complete various projects and creations.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -3320,7 +3621,10 @@
     "area": "newthalos",
     "anum": 108,
     "name": "Inside the Temple",
-    "description": "The temple continues here, but not on such a grand scale. The place\nstill looks immaculate. To the north you see the chamber of the High\nPriest and a sign on the door in BIG letters thats says DO NOT DISTURB.\nTo the south is the entrance to the Cleric's Guild.\n",
+    "description": "The temple continues here, but not on such a grand scale. The place\n
+                   |still looks immaculate. To the north you see the chamber of the High\n
+                   |Priest and a sign on the door in BIG letters thats says DO NOT DISTURB.\n
+                   |To the south is the entrance to the Cleric's Guild.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3350,7 +3654,12 @@
     "area": "newthalos",
     "anum": 109,
     "name": "Inside the Temple",
-    "description": "Huge marble pillars rise on either side of you and grab hold of the ceiling.\nBetween each of these, fine softstone frescoes have been carved depicting\nscenes from the religous history of New Thalos. Rows of pews face forward\ngiving their full attention to the pulpit rising high  above the ground. The\ndeep red carpeting underfoot shows not a speck of wear or dirt. It's obvious\nthat New Thalonians take religion seriously.\n",
+    "description": "Huge marble pillars rise on either side of you and grab hold of the ceiling.\n
+                   |Between each of these, fine softstone frescoes have been carved depicting\n
+                   |scenes from the religous history of New Thalos. Rows of pews face forward\n
+                   |giving their full attention to the pulpit rising high  above the ground. The\n
+                   |deep red carpeting underfoot shows not a speck of wear or dirt. It's obvious\n
+                   |that New Thalonians take religion seriously.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [
@@ -3384,7 +3693,11 @@
     "area": "newthalos",
     "anum": 110,
     "name": "Donation Room",
-    "description": "This room is new to the temple.  It was created during the hard times\nthat have struck the city in recent decades.  Luckily for them the sultan\nhad been hoarding some of the basic necessities for just such an occasion.\nThese days the donation room depends on the generosity of wealthy\nadventureres, and a curse on any that walk in to get all.\n",
+    "description": "This room is new to the temple.  It was created during the hard times\n
+                   |that have struck the city in recent decades.  Luckily for them the sultan\n
+                   |had been hoarding some of the basic necessities for just such an occasion.\n
+                   |These days the donation room depends on the generosity of wealthy\n
+                   |adventureres, and a curse on any that walk in to get all.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -3396,7 +3709,9 @@
     "area": "newthalos",
     "anum": 111,
     "name": "The Museum of the Greater Gods",
-    "description": "Four large stone statues reside in the museum. They were constructed by\nthe people of New Thalos to pay homage to the saints they believe to\nhave saved all their lives.\n",
+    "description": "Four large stone statues reside in the museum. They were constructed by\n
+                   |the people of New Thalos to pay homage to the saints they believe to\n
+                   |have saved all their lives.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3456,7 +3771,10 @@
     "area": "newthalos",
     "anum": 112,
     "name": "Entrance to the Guild of Clerics",
-    "description": "This hall pales in comparison to that of the main hall, but is beautiful\nin its own right. Shaven heads and brown robes can be seen milling about\nquitely talking to each other. North is back inside the temple proper,\nand south is the entrance to the cleric's bar.\n",
+    "description": "This hall pales in comparison to that of the main hall, but is beautiful\n
+                   |in its own right. Shaven heads and brown robes can be seen milling about\n
+                   |quitely talking to each other. North is back inside the temple proper,\n
+                   |and south is the entrance to the cleric's bar.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3492,7 +3810,10 @@
     "area": "newthalos",
     "anum": 113,
     "name": "The Temple Gates",
-    "description": "You stand before the entrance way to the Temple of New Thalos. Two large\nwrought iron gates lie open before you. Although they might not ever be\nused, the priests in the temple are ready to defend themselves, should\ntheir city ever come under siege again.\n",
+    "description": "You stand before the entrance way to the Temple of New Thalos. Two large\n
+                   |wrought iron gates lie open before you. Although they might not ever be\n
+                   |used, the priests in the temple are ready to defend themselves, should\n
+                   |their city ever come under siege again.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -3539,7 +3860,9 @@
     "area": "newthalos",
     "anum": 114,
     "name": "Ahkeem's Stuff",
-    "description": "You step into a shop swirling with smoke.  Ahkeem seems to have a liking for\nthings not of this world...very strange stuff indeed.  There is a large sign on\nthe wall.\n",
+    "description": "You step into a shop swirling with smoke.  Ahkeem seems to have a liking for\n
+                   |things not of this world...very strange stuff indeed.  There is a large sign on\n
+                   |the wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -3548,7 +3871,12 @@
     }],
     "extra_description": [{
       "keyword": "note sign",
-      "description": "LIST : gives you a list of items for sale.\nVALUE : tells you how much an item is worth to Ahkeem\nSELL : sells an item to Akheem for a generous sum\nBUY : Akheem's FAVORITE command lets you have an item for his low low price.\n\n                                       "
+      "description": "LIST : gives you a list of items for sale.\n
+                     |VALUE : tells you how much an item is worth to Ahkeem\n
+                     |SELL : sells an item to Akheem for a generous sum\n
+                     |BUY : Akheem's FAVORITE command lets you have an item for his low low price.\n
+                     |\n
+                     |                                       "
     }],
     "resets": [
       {
@@ -3659,7 +3987,11 @@
     "area": "newthalos",
     "anum": 115,
     "name": "Vera's Veggies",
-    "description": "This is a busy place.  Customers shuffle around, bartering for lower prices\non the wide selection of vegetables.  You can still hear your mother telling\nyou 'Eat your Veggies'.  That's probably why you're mudding right now and\nnot hanging out with mom.  But wait...Vera looks just like your mother!\nThere is a large poster, behind the counter, taped to the wall.\n",
+    "description": "This is a busy place.  Customers shuffle around, bartering for lower prices\n
+                   |on the wide selection of vegetables.  You can still hear your mother telling\n
+                   |you 'Eat your Veggies'.  That's probably why you're mudding right now and\n
+                   |not hanging out with mom.  But wait...Vera looks just like your mother!\n
+                   |There is a large poster, behind the counter, taped to the wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -3668,7 +4000,12 @@
     }],
     "extra_description": [{
       "keyword": "note poster",
-      "description": "LIST : gives you a list of items for sale.\nVALUE : tells you how much an item is worth to Vera\nSELL : sells an item to Vera for a generous sum\nBUY : Vera's FAVORITE command lets you have an item for her low low price.\n\n                                        NEWBEE INTRUCTOR COMITEE\n"
+      "description": "LIST : gives you a list of items for sale.\n
+                     |VALUE : tells you how much an item is worth to Vera\n
+                     |SELL : sells an item to Vera for a generous sum\n
+                     |BUY : Vera's FAVORITE command lets you have an item for her low low price.\n
+                     |\n
+                     |                                        NEWBEE INTRUCTOR COMITEE\n"
     }],
     "resets": [
       {
@@ -3728,7 +4065,8 @@
     "area": "newthalos",
     "anum": 116,
     "name": "The Museum of the Greater Gods",
-    "description": "This room is identical to the one north of it, but contains four differnt\nstatues.\n",
+    "description": "This room is identical to the one north of it, but contains four differnt\n
+                   |statues.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3780,7 +4118,10 @@
     "area": "newthalos",
     "anum": 117,
     "name": "Base of the Tower",
-    "description": "You walk into a cold room whose only feature is an old wooden staircase\nspirling up along the wall to a higher level. Up these stairs, you are\ntold, lies the old mage who may be able to help you advance in your\nstudies.\n",
+    "description": "You walk into a cold room whose only feature is an old wooden staircase\n
+                   |spirling up along the wall to a higher level. Up these stairs, you are\n
+                   |told, lies the old mage who may be able to help you advance in your\n
+                   |studies.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3805,7 +4146,10 @@
     "area": "newthalos",
     "anum": 118,
     "name": "The Mage's Courtyard",
-    "description": "You enter a small tiled courtyard with a small fountain in the middle.\nAround the sides are four wrought iron benches with cushions where the\nmages of the land sit and exchange ideas. To the west stands a two-story\ntower where the leader of the mage's guild performs his experiments.\n",
+    "description": "You enter a small tiled courtyard with a small fountain in the middle.\n
+                   |Around the sides are four wrought iron benches with cushions where the\n
+                   |mages of the land sit and exchange ideas. To the west stands a two-story\n
+                   |tower where the leader of the mage's guild performs his experiments.\n",
     "sector_type": "inside",
     "doors": [
       {
@@ -3822,7 +4166,12 @@
     "area": "newthalos",
     "anum": 119,
     "name": "Nectar of the Gods",
-    "description": "You are startled by the lavishness of this place. From what you know of\nclerics they are supposed to be humble people, giving all their\nmaterial goods to their cause. Perhaps because only clerics are\nallowed to enter this bar they have condoned making it as comfortable\nas possible. In the corner stands a staircase leading down to the\nmeditaion chambers.\n",
+    "description": "You are startled by the lavishness of this place. From what you know of\n
+                   |clerics they are supposed to be humble people, giving all their\n
+                   |material goods to their cause. Perhaps because only clerics are\n
+                   |allowed to enter this bar they have condoned making it as comfortable\n
+                   |as possible. In the corner stands a staircase leading down to the\n
+                   |meditaion chambers.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3840,7 +4189,10 @@
     "area": "newthalos",
     "anum": 120,
     "name": "The Temple Square",
-    "description": "You are standing on the meeting grounds of those with holy intentions.\nMonks, bards, paladins and clerics mill around either preaching or\nlistening to their fellows preach. Huge marble steps lead up to the\ngates of the temple and Main Street lies to the south.\n",
+    "description": "You are standing on the meeting grounds of those with holy intentions.\n
+                   |Monks, bards, paladins and clerics mill around either preaching or\n
+                   |listening to their fellows preach. Huge marble steps lead up to the\n
+                   |gates of the temple and Main Street lies to the south.\n",
     "sector_type": "city",
     "room_flags": "unused_room_3",
     "doors": [
@@ -3862,7 +4214,12 @@
     "area": "newthalos",
     "anum": 121,
     "name": "Nabil's Exotic Animals",
-    "description": "You stand in a large building decorated with black marble and red satin.\nA lavishly flourished sign details several exotics creatures and Nabil's\nsmiling face.  Cages crowd the room, some large, some small, and filled with\nanimals from the four corners of the world.  Various feeding and grooming\nsupplies fill the back half of the room, along with an assortment of \nleashes for everything from giant rats to minotaur lizards.\n",
+    "description": "You stand in a large building decorated with black marble and red satin.\n
+                   |A lavishly flourished sign details several exotics creatures and Nabil's\n
+                   |smiling face.  Cages crowd the room, some large, some small, and filled with\n
+                   |animals from the four corners of the world.  Various feeding and grooming\n
+                   |supplies fill the back half of the room, along with an assortment of \n
+                   |leashes for everything from giant rats to minotaur lizards.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4 pet_shop",
     "doors": [{
@@ -3882,7 +4239,11 @@
     "area": "newthalos",
     "anum": 122,
     "name": "The Butchary",
-    "description": "This shop has the aroma of freshly slaughterd beasts.  You feel right at home.\nYou see a fairly simple set up.  The corpses..er...selections hang on hooks,\nstill bleeding into catch pans that drain into a single underground vat.\nYou wonder where that leads....  Taped to the counter, almost obscured by\nblood, there is a barely readable sign.\n",
+    "description": "This shop has the aroma of freshly slaughterd beasts.  You feel right at home.\n
+                   |You see a fairly simple set up.  The corpses..er...selections hang on hooks,\n
+                   |still bleeding into catch pans that drain into a single underground vat.\n
+                   |You wonder where that leads....  Taped to the counter, almost obscured by\n
+                   |blood, there is a barely readable sign.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -3896,7 +4257,12 @@
       },
       {
         "keyword": "note sign",
-        "description": "LIST : gives you a list of items for sale.\nVALUE : tells you how much an item is worth\nSELL : sells an item to Butch for a generous sum\nBUY : Butch's FAVORITE command lets you have an item for his low low price.\n\n                                        NEWBEE INTRUCTOR COMMITEE\n"
+        "description": "LIST : gives you a list of items for sale.\n
+                       |VALUE : tells you how much an item is worth\n
+                       |SELL : sells an item to Butch for a generous sum\n
+                       |BUY : Butch's FAVORITE command lets you have an item for his low low price.\n
+                       |\n
+                       |                                        NEWBEE INTRUCTOR COMMITEE\n"
       }
     ],
     "resets": [
@@ -3951,7 +4317,11 @@
     "area": "newthalos",
     "anum": 123,
     "name": "The Witch's Brew",
-    "description": "The first thing you notice as you walk into this spacious shop is the\nhundreds of candles that line the shelves. The swirling mist that surrounds\nyour feet makes it seem that you have stepped into a gateway to another\nplane. A tall brunette stands behind her cluttered table unaware of\nyour entrance.  An ornately lettered sign floats above your head.\n",
+    "description": "The first thing you notice as you walk into this spacious shop is the\n
+                   |hundreds of candles that line the shelves. The swirling mist that surrounds\n
+                   |your feet makes it seem that you have stepped into a gateway to another\n
+                   |plane. A tall brunette stands behind her cluttered table unaware of\n
+                   |your entrance.  An ornately lettered sign floats above your head.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -3960,7 +4330,12 @@
     }],
     "extra_description": [{
       "keyword": "note sign",
-      "description": "LIST : gives you a list of items for sale.\nVALUE : tells you how much an item is worth to Elvira\nSELL : sells an item to Elvira for a generous sum\nBUY : Elvira's FAVORITE command lets you have an item for her low low price.\n\n\n"
+      "description": "LIST : gives you a list of items for sale.\n
+                     |VALUE : tells you how much an item is worth to Elvira\n
+                     |SELL : sells an item to Elvira for a generous sum\n
+                     |BUY : Elvira's FAVORITE command lets you have an item for her low low price.\n
+                     |\n
+                     |\n"
     }],
     "resets": [
       {
@@ -4020,7 +4395,9 @@
     "area": "newthalos",
     "anum": 124,
     "name": "Braheem's Magic Shop",
-    "description": "You enter a shop crowded with bookshelves and clutterd with scrolls. The\nowner seems to be hard at work on his latest magical creation. You see a\nsmall sign on the wall.\n",
+    "description": "You enter a shop crowded with bookshelves and clutterd with scrolls. The\n
+                   |owner seems to be hard at work on his latest magical creation. You see a\n
+                   |small sign on the wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -4029,7 +4406,11 @@
     }],
     "extra_description": [{
       "keyword": "sign",
-      "description": "Welcome to Braheem's.\nLIST -Shows you all of my wonderful creations.\nVAL  -Shows what an item might be worth to me.\nSELL -Allows you to rid yourself of excessive magic items.\nBUY  -Allows you to rid youself of excessive cash.\n"
+      "description": "Welcome to Braheem's.\n
+                     |LIST -Shows you all of my wonderful creations.\n
+                     |VAL  -Shows what an item might be worth to me.\n
+                     |SELL -Allows you to rid yourself of excessive magic items.\n
+                     |BUY  -Allows you to rid youself of excessive cash.\n"
     }],
     "resets": [
       {
@@ -4090,7 +4471,9 @@
     "area": "newthalos",
     "anum": 125,
     "name": "Entrance to the Mage's Tower",
-    "description": "The entrance hall is a small poorly lit room. It would seem its only\npurpose is to house the powerful sorcerer standing here guarding\nthe entrance.\n",
+    "description": "The entrance hall is a small poorly lit room. It would seem its only\n
+                   |purpose is to house the powerful sorcerer standing here guarding\n
+                   |the entrance.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -4152,7 +4535,10 @@
     "area": "newthalos",
     "anum": 127,
     "name": "The Repair Shop",
-    "description": "One of the most popular shops in New Thalos, this shop is always a hive\nof activity. It is almost inhuman the way one man can fix all the area's\narmor singlehandedly. If you have an item in need of repair simply give\nit to the man behind the counter.\n",
+    "description": "One of the most popular shops in New Thalos, this shop is always a hive\n
+                   |of activity. It is almost inhuman the way one man can fix all the area's\n
+                   |armor singlehandedly. If you have an item in need of repair simply give\n
+                   |it to the man behind the counter.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -4164,7 +4550,8 @@
     "area": "newthalos",
     "anum": 128,
     "name": "The General Store",
-    "description": "The new found wealth of this beautiful city is apearant in the exotic items\nfor sale here.  You wonder what would happen if you typed....LIST...\n",
+    "description": "The new found wealth of this beautiful city is apearant in the exotic items\n
+                   |for sale here.  You wonder what would happen if you typed....LIST...\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -4228,7 +4615,13 @@
     "area": "newthalos",
     "anum": 129,
     "name": "Abdul's Armor",
-    "description": "The sound of hammering metal grows louder as you enter the armory.  Young\nboys run to and fro carrying buckets of water and coal.  A few dwarves work\non sections of armor in the back of the shop, their hammers working too fast\nto follow.  The walls are adorned with all of Abdul's prize creations.  Here\nyou can purchase suits of armor meant to keep monsters from hacking you into\nlittle pieces.\nA note on the wall beckons newbies.\n",
+    "description": "The sound of hammering metal grows louder as you enter the armory.  Young\n
+                   |boys run to and fro carrying buckets of water and coal.  A few dwarves work\n
+                   |on sections of armor in the back of the shop, their hammers working too fast\n
+                   |to follow.  The walls are adorned with all of Abdul's prize creations.  Here\n
+                   |you can purchase suits of armor meant to keep monsters from hacking you into\n
+                   |little pieces.\n
+                   |A note on the wall beckons newbies.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -4237,7 +4630,12 @@
     }],
     "extra_description": [{
       "keyword": "note",
-      "description": "LIST : gives you a list of items for sale.\nVALUE : tells you how much an item is worth to Abdul\nSELL : sells an item to Abdul for a generous sum\nBUY : Abdul's FAVORITE command lets you have an item for his low low price.\n\n\n"
+      "description": "LIST : gives you a list of items for sale.\n
+                     |VALUE : tells you how much an item is worth to Abdul\n
+                     |SELL : sells an item to Abdul for a generous sum\n
+                     |BUY : Abdul's FAVORITE command lets you have an item for his low low price.\n
+                     |\n
+                     |\n"
     }],
     "resets": [
       {
@@ -4303,7 +4701,10 @@
     "area": "newthalos",
     "anum": 130,
     "name": "The Mercenary's Guild",
-    "description": "This guild is frowned upon by most of the population of New Thalos, but\nthe laws of supply and demand are irresistable. People come here when\nthey feel unable or are unwilling to fight their own battles. For a\nsmall fee you may hire henchman.\n",
+    "description": "This guild is frowned upon by most of the population of New Thalos, but\n
+                   |the laws of supply and demand are irresistable. People come here when\n
+                   |they feel unable or are unwilling to fight their own battles. For a\n
+                   |small fee you may hire henchman.\n",
     "sector_type": "inside",
     "doors": [
       {
@@ -4339,7 +4740,9 @@
     "area": "newthalos",
     "anum": 132,
     "name": "Entrance to the Thieves' Guild",
-    "description": "This small, dark room has a single torch mounted in the wall for light.\nThere is a small wooden bench and a book lying on it. The assassin\nguarding the entrance from 'outsiders' stands as you walk in.\n",
+    "description": "This small, dark room has a single torch mounted in the wall for light.\n
+                   |There is a small wooden bench and a book lying on it. The assassin\n
+                   |guarding the entrance from 'outsiders' stands as you walk in.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -4377,7 +4780,11 @@
     "area": "newthalos",
     "anum": 133,
     "name": "The Whet Stone",
-    "description": "Very large men with very large swords drink beer from very large mugs. Every-\nthing in this room is BIG. The large round tables are scuffed and nicked from\nthe numerous bar brawls that have sprung up. It might be a good idea to hold\nyour tounge for a while as you soak up the atmosphere. There is an exit to\nthe east where the master swordsman awaits pupils to train with.\n",
+    "description": "Very large men with very large swords drink beer from very large mugs. Every-\n
+                   |thing in this room is BIG. The large round tables are scuffed and nicked from\n
+                   |the numerous bar brawls that have sprung up. It might be a good idea to hold\n
+                   |your tounge for a while as you soak up the atmosphere. There is an exit to\n
+                   |the east where the master swordsman awaits pupils to train with.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -4395,7 +4802,9 @@
     "area": "newthalos",
     "anum": 134,
     "name": "Tournament and Practice Yard",
-    "description": "This is a wide expanse of grass filled with dummies, punching bags and\nswordpupils. To the north you see a man dressed in black robes, unlike\nhis iron clad comrades, who you assume to be your master.\n",
+    "description": "This is a wide expanse of grass filled with dummies, punching bags and\n
+                   |swordpupils. To the north you see a man dressed in black robes, unlike\n
+                   |his iron clad comrades, who you assume to be your master.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [
@@ -4424,7 +4833,8 @@
     "area": "newthalos",
     "anum": 135,
     "name": "The Bread Stand",
-    "description": "A small stand has been set up here, showing the shopkeep's humble\nselection. You notice he has added a few things to his list.\n",
+    "description": "A small stand has been set up here, showing the shopkeep's humble\n
+                   |selection. You notice he has added a few things to his list.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -4481,7 +4891,11 @@
     "area": "newthalos",
     "anum": 136,
     "name": "Igor's Implements of Destruction",
-    "description": "You can't help but shiver as you look at the selection of vicious weapons.\nHuge swords and wicked looking axes hang on pegs around the room.  A dwarf\nsits at a bench in the back hammering away on his latest creation.  It is\nhere you can buy rare and exotic items not found in other parts of the world.\nA note catches your eye.\n",
+    "description": "You can't help but shiver as you look at the selection of vicious weapons.\n
+                   |Huge swords and wicked looking axes hang on pegs around the room.  A dwarf\n
+                   |sits at a bench in the back hammering away on his latest creation.  It is\n
+                   |here you can buy rare and exotic items not found in other parts of the world.\n
+                   |A note catches your eye.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_3 unused_room_4",
     "doors": [
@@ -4499,7 +4913,12 @@
     ],
     "extra_description": [{
       "keyword": "note",
-      "description": "LIST : gives you a list of items for sale.\nVALUE : tells you how much an item is worth to Igor\nSELL : sells an item to Igor for a generous sum\nBUY : Igor's FAVORITE command lets you have an item for his low low price.\n\n                                        NEWBEE INTRUCTOR COMITEE\n"
+      "description": "LIST : gives you a list of items for sale.\n
+                     |VALUE : tells you how much an item is worth to Igor\n
+                     |SELL : sells an item to Igor for a generous sum\n
+                     |BUY : Igor's FAVORITE command lets you have an item for his low low price.\n
+                     |\n
+                     |                                        NEWBEE INTRUCTOR COMITEE\n"
     }],
     "resets": [
       {
@@ -4616,7 +5035,9 @@
     "area": "newthalos",
     "anum": 137,
     "name": "Ye Old Leather Shoppe",
-    "description": "You are standing on a thick oriental rug surrounded on all sides by racks\nof numerous leather goods. A few women sit on leather cushions sewing in\nsome detail work on custom ordered jackets.  There is a note on the counter.\n",
+    "description": "You are standing on a thick oriental rug surrounded on all sides by racks\n
+                   |of numerous leather goods. A few women sit on leather cushions sewing in\n
+                   |some detail work on custom ordered jackets.  There is a note on the counter.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -4625,7 +5046,12 @@
     }],
     "extra_description": [{
       "keyword": "note",
-      "description": "LIST : gives you a list of items for sale.\nVALUE : tells you how much an item is worth\nSELL : sells an item for a generous sum\nBUY :  buy an item for an outrageous price.\n\n\n"
+      "description": "LIST : gives you a list of items for sale.\n
+                     |VALUE : tells you how much an item is worth\n
+                     |SELL : sells an item for a generous sum\n
+                     |BUY :  buy an item for an outrageous price.\n
+                     |\n
+                     |\n"
     }],
     "resets": [
       {
@@ -4726,7 +5152,11 @@
     "area": "newthalos",
     "anum": 138,
     "name": "Smuggler's Inn",
-    "description": "You are inside a filthy inn, that seemingly hasn't  been cleaned in decades.\nPoker tables line the walls and everyone stares at you as you walk in.\nYou don't feel very welcome. The bar has numerous knife holes in it\nand the bartender leans over waiting for your order.  A large sign, pinned\nto the wall by a knife, awaits your inspection.\n",
+    "description": "You are inside a filthy inn, that seemingly hasn't  been cleaned in decades.\n
+                   |Poker tables line the walls and everyone stares at you as you walk in.\n
+                   |You don't feel very welcome. The bar has numerous knife holes in it\n
+                   |and the bartender leans over waiting for your order.  A large sign, pinned\n
+                   |to the wall by a knife, awaits your inspection.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -4735,7 +5165,10 @@
     }],
     "extra_description": [{
       "keyword": "sign",
-      "description": "LIST : gives you a list of items for sale.\nBUY :  buy something drinkable.\n\n\n"
+      "description": "LIST : gives you a list of items for sale.\n
+                     |BUY :  buy something drinkable.\n
+                     |\n
+                     |\n"
     }],
     "resets": [
       {
@@ -4784,7 +5217,11 @@
     "area": "newthalos",
     "anum": 139,
     "name": "The Filthy Unicorn",
-    "description": "A draft chills your bones as you enter, though you see no open window or\ndoor. Hooded figures lurk around in the shadows and speak in low voices.\nA flash of steel lets you know that weapons are in great abundance\nin this crowd. As you quickly check your beltpouch you notice\na small staircase leading down.\n",
+    "description": "A draft chills your bones as you enter, though you see no open window or\n
+                   |door. Hooded figures lurk around in the shadows and speak in low voices.\n
+                   |A flash of steel lets you know that weapons are in great abundance\n
+                   |in this crowd. As you quickly check your beltpouch you notice\n
+                   |a small staircase leading down.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -4802,7 +5239,9 @@
     "area": "newthalos",
     "anum": 140,
     "name": "Warehouse",
-    "description": "You are standing in a large room used to store merchandise made in the\ncity before it is shipped off. All the items here are made in New Thalos\nand shipped to other parts of the land.\n",
+    "description": "You are standing in a large room used to store merchandise made in the\n
+                   |city before it is shipped off. All the items here are made in New Thalos\n
+                   |and shipped to other parts of the land.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -4820,7 +5259,10 @@
     "area": "newthalos",
     "anum": 141,
     "name": "Warehouse",
-    "description": "Men walk to and fro counting crates and writing down their findings. This\narea of the warehouse is used for storing the raw materials brought in\nfrom areas outside the city. These goods are then delivered to the various\nguilds. The export area of the warehouses is to the south.\n",
+    "description": "Men walk to and fro counting crates and writing down their findings. This\n
+                   |area of the warehouse is used for storing the raw materials brought in\n
+                   |from areas outside the city. These goods are then delivered to the various\n
+                   |guilds. The export area of the warehouses is to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -4838,7 +5280,10 @@
     "area": "newthalos",
     "anum": 142,
     "name": "Shipwright",
-    "description": "The wood under you feet creaks from years of being soaked in saltwater. An\nold man with a curly, grey beard stand behind a small counter waiting to\ntake your order. Behind him are mounted various model sailboats and large\nfish.  There is a large poster stapled to the counter.\n",
+    "description": "The wood under you feet creaks from years of being soaked in saltwater. An\n
+                   |old man with a curly, grey beard stand behind a small counter waiting to\n
+                   |take your order. Behind him are mounted various model sailboats and large\n
+                   |fish.  There is a large poster stapled to the counter.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [
@@ -4853,7 +5298,13 @@
     ],
     "extra_description": [{
       "keyword": "note poster",
-      "description": "LIST : gives you a list of items for sale.\nVALUE : tells you how much an item is worth to the shipwright\nSELL : sells an item to the shipwright for a generous sum\nBUY : The shipwright's FAVORITE command lets you have an item for his low low pr\nice.\n\n\n"
+      "description": "LIST : gives you a list of items for sale.\n
+                     |VALUE : tells you how much an item is worth to the shipwright\n
+                     |SELL : sells an item to the shipwright for a generous sum\n
+                     |BUY : The shipwright's FAVORITE command lets you have an item for his low low pr\n
+                     |ice.\n
+                     |\n
+                     |\n"
     }],
     "resets": [
       {
@@ -4890,7 +5341,9 @@
     "area": "newthalos",
     "anum": 143,
     "name": "Drafting Room",
-    "description": "The walls are covered with paper sketchings of hull designs. This room is\nused by the shipwright to build his creations on paper before making\na single cut in wood.\n",
+    "description": "The walls are covered with paper sketchings of hull designs. This room is\n
+                   |used by the shipwright to build his creations on paper before making\n
+                   |a single cut in wood.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -4902,7 +5355,11 @@
     "area": "newthalos",
     "anum": 144,
     "name": "The Forge",
-    "description": "Very much like the weaponsmith this man deals in the molding of metal. It\nseems that most of his creations deal with horses. On the walls you see\nseveral horseshoes made of iron. The room is hot, hotter than the desert\njust south of here, and one wonders how the smithy can stand it.  Some\nletters have been burned into the wooden wall.\n",
+    "description": "Very much like the weaponsmith this man deals in the molding of metal. It\n
+                   |seems that most of his creations deal with horses. On the walls you see\n
+                   |several horseshoes made of iron. The room is hot, hotter than the desert\n
+                   |just south of here, and one wonders how the smithy can stand it.  Some\n
+                   |letters have been burned into the wooden wall.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -4911,7 +5368,12 @@
     }],
     "extra_description": [{
       "keyword": "letters wall",
-      "description": "LIST : gives you a list of items for sale.\nVALUE : tells you how much the blacksmith will give you for his merchandise\nSELL : sells an item to the blacksmith\nBUY : buy an item from the blacksmith for a fair price\n\n\n"
+      "description": "LIST : gives you a list of items for sale.\n
+                     |VALUE : tells you how much the blacksmith will give you for his merchandise\n
+                     |SELL : sells an item to the blacksmith\n
+                     |BUY : buy an item from the blacksmith for a fair price\n
+                     |\n
+                     |\n"
     }],
     "resets": [
       {
@@ -4949,7 +5411,10 @@
     "area": "newthalos",
     "anum": 145,
     "name": "The Royal Stables",
-    "description": "Nothing you wouldn't expect is here. Several stalls hold the Sultan's\nchoice Arabian Stallions, and each has its own trough for drinking.\nA small boy wanders in sometimes with a shovel to remove the offensive\nby-product of such beasts.\n",
+    "description": "Nothing you wouldn't expect is here. Several stalls hold the Sultan's\n
+                   |choice Arabian Stallions, and each has its own trough for drinking.\n
+                   |A small boy wanders in sometimes with a shovel to remove the offensive\n
+                   |by-product of such beasts.\n",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -5017,7 +5482,9 @@
     "area": "newthalos",
     "anum": 146,
     "name": "The Secret Yard",
-    "description": "This is a hidden yard known to only a few people in New Thalos. Here you\nmay train in the arts of stealing, picking locks, and becoming almost\ninvisible. A small staircase leads back up to the unicorn.\n",
+    "description": "This is a hidden yard known to only a few people in New Thalos. Here you\n
+                   |may train in the arts of stealing, picking locks, and becoming almost\n
+                   |invisible. A small staircase leads back up to the unicorn.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5046,7 +5513,9 @@
     "area": "newthalos",
     "anum": 147,
     "name": "The Dump",
-    "description": "This is the place where the people of the city dump their trash. Due to\nthe constant winds blowing down the moutains the smell is usually blown\noutside the walls and over the desert.\n",
+    "description": "This is the place where the people of the city dump their trash. Due to\n
+                   |the constant winds blowing down the moutains the smell is usually blown\n
+                   |outside the walls and over the desert.\n",
     "sector_type": "inside",
     "doors": [{
       "dir": "south",
@@ -5057,7 +5526,10 @@
     "area": "newthalos",
     "anum": 148,
     "name": "The Mage's Laboratory",
-    "description": "You stand in the top of an old stone tower. Along the walls hundreds of\npotions, scroll, and wands lie in disarray. The man you see before you\nsits hunched over a small wooden table with two beakers of bubbling\nliquid in front of him. He looks up as you enter and smiles broadly.\n",
+    "description": "You stand in the top of an old stone tower. Along the walls hundreds of\n
+                   |potions, scroll, and wands lie in disarray. The man you see before you\n
+                   |sits hunched over a small wooden table with two beakers of bubbling\n
+                   |liquid in front of him. He looks up as you enter and smiles broadly.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5077,7 +5549,10 @@
     "area": "newthalos",
     "anum": 149,
     "name": "The Hay Loft",
-    "description": "Not as big as the ones you see on farms in the country, this hay loft\nserves as a storage area for the horses in the stables. The young boy\nyou saw with the shovel seems to have taken up residence on the second\nstory.\n",
+    "description": "Not as big as the ones you see on farms in the country, this hay loft\n
+                   |serves as a storage area for the horses in the stables. The young boy\n
+                   |you saw with the shovel seems to have taken up residence on the second\n
+                   |story.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5097,7 +5572,12 @@
     "area": "newthalos",
     "anum": 150,
     "name": "The Grand Entrance",
-    "description": "Nowhere have you seen such an obscene display of wealth than in this\ncorridor. The shag carpeting under your feet makes it seem as if you are\nwalking on a cloud. Platinum candelabras hang delicately from the ceiling\ncasting light on the ancient tapestries adorning the walls. The crick\nin your neck tells you it's time to stop staring. To the west the\nnumerous halls of the palace begin and the gate lies to the east.\n",
+    "description": "Nowhere have you seen such an obscene display of wealth than in this\n
+                   |corridor. The shag carpeting under your feet makes it seem as if you are\n
+                   |walking on a cloud. Platinum candelabras hang delicately from the ceiling\n
+                   |casting light on the ancient tapestries adorning the walls. The crick\n
+                   |in your neck tells you it's time to stop staring. To the west the\n
+                   |numerous halls of the palace begin and the gate lies to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5126,7 +5606,11 @@
     "area": "newthalos",
     "anum": 151,
     "name": "The Library",
-    "description": "This building holds the vast collection of books and documents that\nhave been brought here by the committee appointed to recover the\nlost knowledge of Thalos.  Rows of shelves, filled with book in every\ncondition, lines the walls.  The air has the aroma of old parchment and\nglue.\n",
+    "description": "This building holds the vast collection of books and documents that\n
+                   |have been brought here by the committee appointed to recover the\n
+                   |lost knowledge of Thalos.  Rows of shelves, filled with book in every\n
+                   |condition, lines the walls.  The air has the aroma of old parchment and\n
+                   |glue.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5138,7 +5622,10 @@
     "area": "newthalos",
     "anum": 152,
     "name": "The Dance Hall",
-    "description": "You seem to have missed a huge party.  The janitors are here cleaning up\nthe confetti and cigarette butts.  Hundreds of empty beer mugs on the\ntables surrounding the dance floor suggest that the citizens love their\ndrink.  There is still a banner on the wall.\n",
+    "description": "You seem to have missed a huge party.  The janitors are here cleaning up\n
+                   |the confetti and cigarette butts.  Hundreds of empty beer mugs on the\n
+                   |tables surrounding the dance floor suggest that the citizens love their\n
+                   |drink.  There is still a banner on the wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5147,14 +5634,19 @@
     }],
     "extra_description": [{
       "keyword": "banner",
-      "description": "========================================================================\n\n\t\tH A P P Y   B I R T H D A Y   T O   U S\n\n========================================================================\n"
+      "description": "========================================================================\n
+                     |\n
+                     |\t\tH A P P Y   B I R T H D A Y   T O   U S\n
+                     |\n
+                     |========================================================================\n"
     }]
   }},
   {"room": {
     "area": "newthalos",
     "anum": 153,
     "name": "Jail",
-    "description": "You are in jail. For some reason the god's feel you've screwed up\npretty bad and should be put away safely for a while.\n",
+    "description": "You are in jail. For some reason the god's feel you've screwed up\n
+                   |pretty bad and should be put away safely for a while.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2 unused_room_3 unused_room_4",
     "doors": [{
@@ -5169,7 +5661,9 @@
     "area": "newthalos",
     "anum": 154,
     "name": "City Hall",
-    "description": "You stand inside the administrative head of the city. Here the decisions\nregarding city policy are made. Although the Sultan's word is law, he\nusually spends his time on affairs outside the city wall.\n",
+    "description": "You stand inside the administrative head of the city. Here the decisions\n
+                   |regarding city policy are made. Although the Sultan's word is law, he\n
+                   |usually spends his time on affairs outside the city wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5198,7 +5692,12 @@
     "area": "newthalos",
     "anum": 155,
     "name": "The Boyer/Fletcher's",
-    "description": "The walls in this room are covered with pegs that hold various types of\nbows.  There are few people working here, lending to the fact that\nthe skills are rare to come by in the general populous.  A few boys are\nbusy in the corner preparing feathers for the fine shafts used in making\narrows.  Some Elven craftsmen are carefuly inspecting each bow as it is\nfinished.\n",
+    "description": "The walls in this room are covered with pegs that hold various types of\n
+                   |bows.  There are few people working here, lending to the fact that\n
+                   |the skills are rare to come by in the general populous.  A few boys are\n
+                   |busy in the corner preparing feathers for the fine shafts used in making\n
+                   |arrows.  Some Elven craftsmen are carefuly inspecting each bow as it is\n
+                   |finished.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5218,7 +5717,11 @@
     "area": "newthalos",
     "anum": 156,
     "name": "The Mason's",
-    "description": "There is no doubt that the Dwarves here know what they're doing.  They\nhave been invaluable in the building of this beautiful city.  Here they\nare hard at work doing what they do best.  The hammers fly in a blur as\nthese talented craftsmen work the stone into ornate bricks, pillars, trim,\nand many other forms.\n",
+    "description": "There is no doubt that the Dwarves here know what they're doing.  They\n
+                   |have been invaluable in the building of this beautiful city.  Here they\n
+                   |are hard at work doing what they do best.  The hammers fly in a blur as\n
+                   |these talented craftsmen work the stone into ornate bricks, pillars, trim,\n
+                   |and many other forms.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5230,7 +5733,9 @@
     "area": "newthalos",
     "anum": 157,
     "name": "Guard House",
-    "description": "You stand inside the southern of the two main guard houses. The stone\ninterior has a spartan look to it, only the bare neccesities. A few\nweapons are mounted on the walls in case they might be needed.\n",
+    "description": "You stand inside the southern of the two main guard houses. The stone\n
+                   |interior has a spartan look to it, only the bare neccesities. A few\n
+                   |weapons are mounted on the walls in case they might be needed.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5242,7 +5747,11 @@
     "area": "newthalos",
     "anum": 158,
     "name": "The Palace Gate",
-    "description": "You stand before a magnificantly crafted gate wrought in solid gold. You\ngape in awe at the splendor of the spiraling towers beyond the portal. The\nruler of all the eastern lands resides in this fine palace, and he is not\na poor man. The grand entrance lies byond the gate, and Sultan's walk is\nto the east.\n",
+    "description": "You stand before a magnificantly crafted gate wrought in solid gold. You\n
+                   |gape in awe at the splendor of the spiraling towers beyond the portal. The\n
+                   |ruler of all the eastern lands resides in this fine palace, and he is not\n
+                   |a poor man. The grand entrance lies byond the gate, and Sultan's walk is\n
+                   |to the east.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -5262,7 +5771,11 @@
     "area": "newthalos",
     "anum": 159,
     "name": "North-West Tower",
-    "description": "You stand on one of the four towers guarding the city. The view from here\nis great! To the west you see the tall mountains that make up the divide\nbetween here an Midgaard. The Ishtar river slowly flows from that direction.\nSouth you can see the entire city of New Thalos and the Sands of Sorrow \nto the south.\n",
+    "description": "You stand on one of the four towers guarding the city. The view from here\n
+                   |is great! To the west you see the tall mountains that make up the divide\n
+                   |between here an Midgaard. The Ishtar river slowly flows from that direction.\n
+                   |South you can see the entire city of New Thalos and the Sands of Sorrow \n
+                   |to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5274,7 +5787,10 @@
     "area": "newthalos",
     "anum": 160,
     "name": "Guard House",
-    "description": "You stand inside the northern of the two main guard houses. Strong\nguards are seated here, playing cards. The stone interior is clean\nbut bare walled save the weapons and armor mounted in the walls.\nThe only exit is south.\n",
+    "description": "You stand inside the northern of the two main guard houses. Strong\n
+                   |guards are seated here, playing cards. The stone interior is clean\n
+                   |but bare walled save the weapons and armor mounted in the walls.\n
+                   |The only exit is south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5286,7 +5802,12 @@
     "area": "newthalos",
     "anum": 161,
     "name": "Kitchen",
-    "description": "Your footsteps echo off the stone tiles of the kitchen. On the south wall\nyou see the large fireplace and a huge copper pot bubbling merrily. The\nchef is busy chopping up greens and other vegetables at the wooden table\nfor tonight's meal. Servants scurry about grabbing utensils and preparing\nfresh hares. A small door leads out into the hall northward and the door\nto the dining hall is west.\n",
+    "description": "Your footsteps echo off the stone tiles of the kitchen. On the south wall\n
+                   |you see the large fireplace and a huge copper pot bubbling merrily. The\n
+                   |chef is busy chopping up greens and other vegetables at the wooden table\n
+                   |for tonight's meal. Servants scurry about grabbing utensils and preparing\n
+                   |fresh hares. A small door leads out into the hall northward and the door\n
+                   |to the dining hall is west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5332,7 +5853,9 @@
     "area": "newthalos",
     "anum": 162,
     "name": "North-East Tower",
-    "description": "You stand on one of the four towers guarding the city. To the north you\nsee the wide plains and then the forest. South of here you see the city\nand the great eastern desert beyond.\n",
+    "description": "You stand on one of the four towers guarding the city. To the north you\n
+                   |see the wide plains and then the forest. South of here you see the city\n
+                   |and the great eastern desert beyond.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5344,7 +5867,8 @@
     "area": "newthalos",
     "anum": 163,
     "name": "Hall",
-    "description": "You are at the eastern end of the southern hallway. A small servants'\nentrance give access to the kitchen and the hall continues west.\n",
+    "description": "You are at the eastern end of the southern hallway. A small servants'\n
+                   |entrance give access to the kitchen and the hall continues west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5364,7 +5888,11 @@
     "area": "newthalos",
     "anum": 164,
     "name": "The Tanner's Guild",
-    "description": "You first notice the pungent smell of freshly tanned leather goods as\nyou enter this strange place.  The next thing that grabs your attention\nis the many colors that these people have transformed the beautiful\nskins into.  The people are stretching the leather and cutting it into\nthe shapes they need.  You notice a small message on a wall.\n",
+    "description": "You first notice the pungent smell of freshly tanned leather goods as\n
+                   |you enter this strange place.  The next thing that grabs your attention\n
+                   |is the many colors that these people have transformed the beautiful\n
+                   |skins into.  The people are stretching the leather and cutting it into\n
+                   |the shapes they need.  You notice a small message on a wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5380,7 +5908,9 @@
     "area": "newthalos",
     "anum": 165,
     "name": "Hall",
-    "description": "You have come to the eastern end of the northern hallway. The only exit\nis west except for the simple wooden door to the north. There is a\ngolden plaque above the door.\n",
+    "description": "You have come to the eastern end of the northern hallway. The only exit\n
+                   |is west except for the simple wooden door to the north. There is a\n
+                   |golden plaque above the door.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5397,14 +5927,20 @@
     ],
     "extra_description": [{
       "keyword": "plaque",
-      "description": "The Holy Shrine of Allah\n\n\n                           (remember Allah is a god, I wouldn't attack him)\n"
+      "description": "The Holy Shrine of Allah\n
+                     |\n
+                     |\n
+                     |                           (remember Allah is a god, I wouldn't attack him)\n"
     }]
   }},
   {"room": {
     "area": "newthalos",
     "anum": 166,
     "name": "Shrine of Allah",
-    "description": "As you step into this room you seem to leave the material plane. The\nwalls here are decorated with beautiful, multi-colored tiles. There\nis a strange stillness about the air. You sense the presence of an\nalmighty being.\n",
+    "description": "As you step into this room you seem to leave the material plane. The\n
+                   |walls here are decorated with beautiful, multi-colored tiles. There\n
+                   |is a strange stillness about the air. You sense the presence of an\n
+                   |almighty being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5426,7 +5962,9 @@
     "area": "newthalos",
     "anum": 167,
     "name": "Outside the Northern Gate of New Thalos",
-    "description": "You stand outside the gate of New Thalos. The city lies to the south, and\nwilderness to the north.  The Sands of Sorrow continues to the east\nand west.\n",
+    "description": "You stand outside the gate of New Thalos. The city lies to the south, and\n
+                   |wilderness to the north.  The Sands of Sorrow continues to the east\n
+                   |and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -5461,7 +5999,8 @@
     "area": "newthalos",
     "anum": 168,
     "name": "Outside the Eastern Gate of New Thalos",
-    "description": "You stand outside the protective walls of the city. The massive iron gate\nsits to the west and the unknown awaits you eastward.\n",
+    "description": "You stand outside the protective walls of the city. The massive iron gate\n
+                   |sits to the west and the unknown awaits you eastward.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -5503,7 +6042,8 @@
     "area": "newthalos",
     "anum": 169,
     "name": "Outside the West Gate of New Thalos",
-    "description": "You stand outside the city walls, the iron gate to the east. The city lies\nin that direction and the road to Midgaard lies west.\n",
+    "description": "You stand outside the city walls, the iron gate to the east. The city lies\n
+                   |in that direction and the road to Midgaard lies west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -5531,7 +6071,9 @@
     "area": "newthalos",
     "anum": 170,
     "name": "Outside the wall",
-    "description": "You are in a small clearing outside the east wall of the city. The\nground seems well trodden but you can see no apparent exit save that\nnorth.\n",
+    "description": "You are in a small clearing outside the east wall of the city. The\n
+                   |ground seems well trodden but you can see no apparent exit save that\n
+                   |north.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "north",
@@ -5542,7 +6084,11 @@
     "area": "newthalos",
     "anum": 171,
     "name": "Grand Dining Hall",
-    "description": "A long oaken table, coverd with silverware, plates, and a tablecloth\nwith gold trim, dominates the room. Although no diners occupy the room\nas of yet, servants sprint about setting the table and placing condiments.\nThe kitchen entrance is to the east, and two huge double doors open into\nthe hallway north.\n",
+    "description": "A long oaken table, coverd with silverware, plates, and a tablecloth\n
+                   |with gold trim, dominates the room. Although no diners occupy the room\n
+                   |as of yet, servants sprint about setting the table and placing condiments.\n
+                   |The kitchen entrance is to the east, and two huge double doors open into\n
+                   |the hallway north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5560,7 +6106,8 @@
     "area": "newthalos",
     "anum": 172,
     "name": "Hall",
-    "description": "You stand at a T-crossing in the long hallways. There are two\nlarge double doors to the south.\n",
+    "description": "You stand at a T-crossing in the long hallways. There are two\n
+                   |large double doors to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5606,7 +6153,8 @@
     "area": "newthalos",
     "anum": 173,
     "name": "Hall",
-    "description": "You stand at an intersection of the hallways. Wooden corridors lead off in\nall directions except west; the garden of the palace can be entered there.\n",
+    "description": "You stand at an intersection of the hallways. Wooden corridors lead off in\n
+                   |all directions except west; the garden of the palace can be entered there.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5632,7 +6180,8 @@
     "area": "newthalos",
     "anum": 174,
     "name": "Hall",
-    "description": "You have come to a T-crossing on the hallways. The wooden corridors\ncontinue east, west and south. There is a large iron door to the north.\n",
+    "description": "You have come to a T-crossing on the hallways. The wooden corridors\n
+                   |continue east, west and south. There is a large iron door to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5660,7 +6209,10 @@
     "area": "newthalos",
     "anum": 175,
     "name": "Entrance to the Dungeon",
-    "description": "You enter a cold damp room with bare, roughly hewn stone walls. This\nroom seems very out of place compared to the splender of the rest of the\npalace. A large steel grating leads down into darkness, and an iron door\nreturns you to the hallway.\n",
+    "description": "You enter a cold damp room with bare, roughly hewn stone walls. This\n
+                   |room seems very out of place compared to the splender of the rest of the\n
+                   |palace. A large steel grating leads down into darkness, and an iron door\n
+                   |returns you to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5682,7 +6234,11 @@
     "area": "newthalos",
     "anum": 176,
     "name": "Guest Room",
-    "description": "This is a simple room used for visiting noblemen. A small dresser stands\non the east wall with a mirror hung right above it. A queen sized bed made\nup in satin sheets stands in the middle of the room against the south\nwall under a window. The only obvious exit is north back out into the\nhallway.\n",
+    "description": "This is a simple room used for visiting noblemen. A small dresser stands\n
+                   |on the east wall with a mirror hung right above it. A queen sized bed made\n
+                   |up in satin sheets stands in the middle of the room against the south\n
+                   |wall under a window. The only obvious exit is north back out into the\n
+                   |hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5692,7 +6248,8 @@
     "extra_description": [
       {
         "keyword": "window",
-        "description": "Looking out this window you can see the grounds of the palace that\nseperate the walls of the palace from the building itself.\n"
+        "description": "Looking out this window you can see the grounds of the palace that\n
+                       |seperate the walls of the palace from the building itself.\n"
       },
       {
         "keyword": "mirror",
@@ -5704,7 +6261,9 @@
     "area": "newthalos",
     "anum": 177,
     "name": "Hall",
-    "description": "The long hall continues here with a wooden door in the south wall. On the\nnorth wall hangs the picture of some forgotten nobleman who once ruled\nthe land.\n",
+    "description": "The long hall continues here with a wooden door in the south wall. On the\n
+                   |north wall hangs the picture of some forgotten nobleman who once ruled\n
+                   |the land.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5728,7 +6287,12 @@
     "area": "newthalos",
     "anum": 178,
     "name": "Garden",
-    "description": "You have entered the Sultan's private gardens. A light sweat breaks out\non your skin from the humidity here. All around you are thousands of\nexotic plants and flowers. The sweet smell of jasmine and honeysuckle\nreminds you of happier days at home. Off to the north, through the palm\ntrees, you see a delicate white gazebo. To your right stands a gold sign.\nA path leads out into the hallway and west towards the gazebo.\n",
+    "description": "You have entered the Sultan's private gardens. A light sweat breaks out\n
+                   |on your skin from the humidity here. All around you are thousands of\n
+                   |exotic plants and flowers. The sweet smell of jasmine and honeysuckle\n
+                   |reminds you of happier days at home. Off to the north, through the palm\n
+                   |trees, you see a delicate white gazebo. To your right stands a gold sign.\n
+                   |A path leads out into the hallway and west towards the gazebo.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -5742,7 +6306,24 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "=========================================================================\n=========================================================================\n||                                                                     ||\n||                                                                     ||\n||                                                                     ||\n||                                                                     ||\n||        Welcome to my humble garden. I have created this             ||\n||        tiny bit of paradise for the pleasure of my people.          ||\n||        Take only pictures... Leave only footprints...               ||\n||                                                                     ||\n||                                                                     ||\n||                                                                     ||\n||                                 The Sultan                          ||\n||                                                                     ||\n||                                                                     ||\n||                                                                     ||\n=========================================================================\n=========================================================================\n"
+      "description": "=========================================================================\n
+                     |=========================================================================\n
+                     |||                                                                     ||\n
+                     |||                                                                     ||\n
+                     |||                                                                     ||\n
+                     |||                                                                     ||\n
+                     |||        Welcome to my humble garden. I have created this             ||\n
+                     |||        tiny bit of paradise for the pleasure of my people.          ||\n
+                     |||        Take only pictures... Leave only footprints...               ||\n
+                     |||                                                                     ||\n
+                     |||                                                                     ||\n
+                     |||                                                                     ||\n
+                     |||                                 The Sultan                          ||\n
+                     |||                                                                     ||\n
+                     |||                                                                     ||\n
+                     |||                                                                     ||\n
+                     |=========================================================================\n
+                     |=========================================================================\n"
     }],
     "resets": [{
       "command": "mobile",
@@ -5757,7 +6338,10 @@
     "area": "newthalos",
     "anum": 179,
     "name": "Hall",
-    "description": "The long stretch of hallway continues east and west from here. The small\nred carpet covering the centerline is always underfoot and an occasional\nbench or potted plant lines the wall. There is a door here to the north\nwith a plaque mounted over it.\n",
+    "description": "The long stretch of hallway continues east and west from here. The small\n
+                   |red carpet covering the centerline is always underfoot and an occasional\n
+                   |bench or potted plant lines the wall. There is a door here to the north\n
+                   |with a plaque mounted over it.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5778,14 +6362,24 @@
     ],
     "extra_description": [{
       "keyword": "plaque",
-      "description": "ART EXHIBIT\n                                of\n                            NEW THALOS\n\n\n                               -management is not responsible for lost items.\n"
+      "description": "ART EXHIBIT\n
+                     |                                of\n
+                     |                            NEW THALOS\n
+                     |\n
+                     |\n
+                     |                               -management is not responsible for lost items.\n"
     }]
   }},
   {"room": {
     "area": "newthalos",
     "anum": 180,
     "name": "Art Exhibit",
-    "description": "You are standing in the Sultan's tribute to the finer virtues. Large\npaintings hang from the walls displaying nature scenes, nudes, and\nglorious victories in battle. Strange scupltures rest on pedestals\nat each corner of the room and mirrors are placed in strategic\nlocations so the viewer may see an entire sculpture at a glance. Your\neyes, however, are pulled towards a painting that dominates the far wall.\n",
+    "description": "You are standing in the Sultan's tribute to the finer virtues. Large\n
+                   |paintings hang from the walls displaying nature scenes, nudes, and\n
+                   |glorious victories in battle. Strange scupltures rest on pedestals\n
+                   |at each corner of the room and mirrors are placed in strategic\n
+                   |locations so the viewer may see an entire sculpture at a glance. Your\n
+                   |eyes, however, are pulled towards a painting that dominates the far wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5807,7 +6401,9 @@
     "area": "newthalos",
     "anum": 181,
     "name": "Guest Room",
-    "description": "This is another room made up for visiting nobles. There is a dresser up\nagainst the eastern wall with a mirror above it and a queen sized bed,\nmade up in satin sheets, against the south wall.\n",
+    "description": "This is another room made up for visiting nobles. There is a dresser up\n
+                   |against the eastern wall with a mirror above it and a queen sized bed,\n
+                   |made up in satin sheets, against the south wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5827,7 +6423,8 @@
     "area": "newthalos",
     "anum": 182,
     "name": "Hall",
-    "description": "You have reached the western end of the southern hallway. The only exit\nis east except for the doors in the southern and western walls.\n",
+    "description": "You have reached the western end of the southern hallway. The only exit\n
+                   |is east except for the doors in the southern and western walls.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5862,7 +6459,9 @@
     "area": "newthalos",
     "anum": 183,
     "name": "Garden Gazebo",
-    "description": "Walking through the gardens you come across a small white wooden structure.\nThe sounds of birds, the smell of flowers, ahhh paradise. You believe\nyou have never been in a more peaceful setting.\n",
+    "description": "Walking through the gardens you come across a small white wooden structure.\n
+                   |The sounds of birds, the smell of flowers, ahhh paradise. You believe\n
+                   |you have never been in a more peaceful setting.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5892,7 +6491,8 @@
     "area": "newthalos",
     "anum": 184,
     "name": "Hall",
-    "description": "This is the western end of the northern hallway. Two doors are set in the\nwalls here, one to the north, another to the west.\n",
+    "description": "This is the western end of the northern hallway. Two doors are set in the\n
+                   |walls here, one to the north, another to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -5918,7 +6518,9 @@
     "area": "newthalos",
     "anum": 185,
     "name": "Guard Room",
-    "description": "You stand in a barren chamber lined with nothing but cots and footlockers.\nThe guards come here when off duty to sleep, for they may only leave the\npalace grounds with special permission. The only exit is to the south.\n",
+    "description": "You stand in a barren chamber lined with nothing but cots and footlockers.\n
+                   |The guards come here when off duty to sleep, for they may only leave the\n
+                   |palace grounds with special permission. The only exit is to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5932,7 +6534,10 @@
     "area": "newthalos",
     "anum": 186,
     "name": "Guard Room",
-    "description": "This is living quarters for the guards of the palace. Barren compared to\nthe rest of the palace, you see only cots and footlockers here. On the\nwalls you see pictures of well known knights who have given a proud name\nto the Sultan's Guard.\n",
+    "description": "This is living quarters for the guards of the palace. Barren compared to\n
+                   |the rest of the palace, you see only cots and footlockers here. On the\n
+                   |walls you see pictures of well known knights who have given a proud name\n
+                   |to the Sultan's Guard.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -5944,7 +6549,11 @@
     "area": "newthalos",
     "anum": 187,
     "name": "Harem",
-    "description": "This is the room where the Sultan keeps the beautiful women of his palace.\nThere are ten girls here lying about the room dressed in silks you can\nalmost see through. In the western end of the room stands a large mound\nof pillows and a beautiful young maiden sits perched atop. It is\nunfortunate for you that only the Sultan is allowed in here.\n",
+    "description": "This is the room where the Sultan keeps the beautiful women of his palace.\n
+                   |There are ten girls here lying about the room dressed in silks you can\n
+                   |almost see through. In the western end of the room stands a large mound\n
+                   |of pillows and a beautiful young maiden sits perched atop. It is\n
+                   |unfortunate for you that only the Sultan is allowed in here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -6074,7 +6683,8 @@
     "area": "newthalos",
     "anum": 188,
     "name": "Small room",
-    "description": "This is secret chamber allowing the Sultan direct access to his harem\nat any time he chooses.\n",
+    "description": "This is secret chamber allowing the Sultan direct access to his harem\n
+                   |at any time he chooses.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -6100,7 +6710,10 @@
     "area": "newthalos",
     "anum": 189,
     "name": "Throne Room",
-    "description": "You stand in the throne room of the mighty Sultan of New Thalos. Guards\nstand at attention near his side ready to make the ultimate sacrifice for\ntheir beloved leader. The gold inlaid throne studded with jewels stands\nupon a mable dias. The Sultan is not a man to be trifled with.\n",
+    "description": "You stand in the throne room of the mighty Sultan of New Thalos. Guards\n
+                   |stand at attention near his side ready to make the ultimate sacrifice for\n
+                   |their beloved leader. The gold inlaid throne studded with jewels stands\n
+                   |upon a mable dias. The Sultan is not a man to be trifled with.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -6137,7 +6750,10 @@
     "area": "newthalos",
     "anum": 190,
     "name": "Treasure Room",
-    "description": "You have somhow managed to gain access to the treaure vault of the Sultan.\nThe alarm sounding in the background tells you that you must have\ntripped off some kind of alarm system. It might be adviseable to grab\nas much stuff as you possibly can and run for the door.\n",
+    "description": "You have somhow managed to gain access to the treaure vault of the Sultan.\n
+                   |The alarm sounding in the background tells you that you must have\n
+                   |tripped off some kind of alarm system. It might be adviseable to grab\n
+                   |as much stuff as you possibly can and run for the door.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -6155,7 +6771,10 @@
     "area": "newthalos",
     "anum": 191,
     "name": "Jailer's Room",
-    "description": "Climbing down the old wooden ladder you enter a small cave-like\nroom. There is a small bench with some old magazines and a low\nburning candle sitting off to one side. A door is set into the\nstone on the east wall, and the steel grating opens up above.\n",
+    "description": "Climbing down the old wooden ladder you enter a small cave-like\n
+                   |room. There is a small bench with some old magazines and a low\n
+                   |burning candle sitting off to one side. A door is set into the\n
+                   |stone on the east wall, and the steel grating opens up above.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -6194,7 +6813,8 @@
     "area": "newthalos",
     "anum": 192,
     "name": "Tunnel in the Dungeon",
-    "description": "You stand in a roughly hewn stone tunnel with cells to the north and\nsouth. The tunnel continues east.\n",
+    "description": "You stand in a roughly hewn stone tunnel with cells to the north and\n
+                   |south. The tunnel continues east.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -6228,7 +6848,8 @@
     "area": "newthalos",
     "anum": 193,
     "name": "Tunnel in the Dungeon",
-    "description": "You stand in a roughly hewn stone tunnel with cells to the north and\nsouth. The tunnel continues east and west.\n",
+    "description": "You stand in a roughly hewn stone tunnel with cells to the north and\n
+                   |south. The tunnel continues east and west.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -6260,7 +6881,8 @@
     "area": "newthalos",
     "anum": 194,
     "name": "Tunnel in the Dungeon",
-    "description": "You stand in a roughly hewn stone tunnel with cells to the north and\nsouth. The tunnel continues east and west.\n",
+    "description": "You stand in a roughly hewn stone tunnel with cells to the north and\n
+                   |south. The tunnel continues east and west.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -6292,7 +6914,9 @@
     "area": "newthalos",
     "anum": 195,
     "name": "Tunnel in the Dungeon",
-    "description": "You stand in a roughly hewn stone tunnel with cells to the north and\nsouth. The tunnel continues west and you notice a small crack in the\nstone to the east.\n",
+    "description": "You stand in a roughly hewn stone tunnel with cells to the north and\n
+                   |south. The tunnel continues west and you notice a small crack in the\n
+                   |stone to the east.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -6327,7 +6951,10 @@
     "area": "newthalos",
     "anum": 196,
     "name": "Secret Cell",
-    "description": "This room seems more like a lair than a cell. Small bits of hay lie\nstrewn about the floor covering bones of unkown origin. Spatterd blood\nand tufts of grey hair lie matted in one corner. As you turn to leave\nyou notice a pair of small red eyes peering at you from the darkness.\n",
+    "description": "This room seems more like a lair than a cell. Small bits of hay lie\n
+                   |strewn about the floor covering bones of unkown origin. Spatterd blood\n
+                   |and tufts of grey hair lie matted in one corner. As you turn to leave\n
+                   |you notice a pair of small red eyes peering at you from the darkness.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -6538,7 +7165,8 @@
     "doors": [{
       "dir": "north",
       "to": 194,
-      "keyword": "cell\ncell",
+      "keyword": "cell\n
+                 |cell",
       "exit_flags": "door closed locked pickproof",
       "key": 93
     }],
@@ -6561,7 +7189,8 @@
     "doors": [{
       "dir": "north",
       "to": 195,
-      "keyword": "cell\ncell",
+      "keyword": "cell\n
+                 |cell",
       "exit_flags": "door closed locked pickproof",
       "key": 93
     }],
@@ -6578,7 +7207,9 @@
     "area": "newthalos",
     "anum": 205,
     "name": "Hall",
-    "description": "You stand in a large cedar wood hall leading east and west. On the floor\nlies a thin and narrow purple rug. The hall leads west inside the palace\nand east to the Grand Entrance.\n",
+    "description": "You stand in a large cedar wood hall leading east and west. On the floor\n
+                   |lies a thin and narrow purple rug. The hall leads west inside the palace\n
+                   |and east to the Grand Entrance.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -6639,7 +7270,20 @@
     "area": "newthalos",
     "anum": 210,
     "name": "Saska's Library",
-    "description": "Fine, golden dust swirls and then settles as you enter Saska's\nlibrary. Leatherbound volumes of Shakespeare rest next to paperbacks by\nTom Robbins, and Toni Morrison's _Sula_ is open on the striking table: an\nantique birdbath of polished blond wood, with glass set over the waterwell\nto give the appearance of a perfectly still pool.  Trinkets, lightly\nlifted from the mantles of the wealthy whose chimneys she cleaned, line\nthe windowsills and create space between the different sections of books.\nA crystal oil lamp seems to float on the table; a piece of paper on the\nwall, written in Saska's own lingering script, reads: \"For what is your friend\nthat you would seek him with hours to kill?  Seek him always with hours to\nlive.  --Kahlil Gibran.\"\n    A cat purrs somewhere, though you cannot see the source, and you feel\nyourself tugged into the softened space. Have a seat in one of the enormous\npapasan chairs, and choose a title that strikes you.\n",
+    "description": "Fine, golden dust swirls and then settles as you enter Saska's\n
+                   |library. Leatherbound volumes of Shakespeare rest next to paperbacks by\n
+                   |Tom Robbins, and Toni Morrison's _Sula_ is open on the striking table: an\n
+                   |antique birdbath of polished blond wood, with glass set over the waterwell\n
+                   |to give the appearance of a perfectly still pool.  Trinkets, lightly\n
+                   |lifted from the mantles of the wealthy whose chimneys she cleaned, line\n
+                   |the windowsills and create space between the different sections of books.\n
+                   |A crystal oil lamp seems to float on the table; a piece of paper on the\n
+                   |wall, written in Saska's own lingering script, reads: \"For what is your friend\n
+                   |that you would seek him with hours to kill?  Seek him always with hours to\n
+                   |live.  --Kahlil Gibran.\"\n
+                   |    A cat purrs somewhere, though you cannot see the source, and you feel\n
+                   |yourself tugged into the softened space. Have a seat in one of the enormous\n
+                   |papasan chairs, and choose a title that strikes you.\n",
     "sector_type": "inside",
     "owner": "Saska",
     "room_flags": "no_mob indoors",
@@ -6663,7 +7307,9 @@
     "area": "newthalos",
     "anum": 220,
     "name": "Ishtar River",
-    "description": "The river calms a bit after being thrashed in the interior of\nthe mountain. Although still deep within the rocks you can see\nfaint traces of green to the east.\n",
+    "description": "The river calms a bit after being thrashed in the interior of\n
+                   |the mountain. Although still deep within the rocks you can see\n
+                   |faint traces of green to the east.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6680,7 +7326,8 @@
     "area": "newthalos",
     "anum": 221,
     "name": "Ishtar River",
-    "description": "The river flows east and west through the hills. To the north you can\nsee a large volcano.\n",
+    "description": "The river flows east and west through the hills. To the north you can\n
+                   |see a large volcano.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6697,7 +7344,8 @@
     "area": "newthalos",
     "anum": 222,
     "name": "Ishtar River",
-    "description": "The river begins its decent out of the mountains now and continues\nits flow to the east.\n",
+    "description": "The river begins its decent out of the mountains now and continues\n
+                   |its flow to the east.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6714,7 +7362,8 @@
     "area": "newthalos",
     "anum": 223,
     "name": "Ishtar River",
-    "description": "The river flows under the wall of the city to the east and stretches\noff towards high snow capped mountains far far to the west.\n",
+    "description": "The river flows under the wall of the city to the east and stretches\n
+                   |off towards high snow capped mountains far far to the west.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6731,7 +7380,11 @@
     "area": "newthalos",
     "anum": 224,
     "name": "Ishtar River",
-    "description": "The river flows out from the city down a long winding gully towards\nthe Sea of Dragons. To the south of you lies the great eastern desert\nand north a wide open expanse of grass. You can just barely make out\na road that seems to be traveling alongside the river but the banks are\ntoo steep for you to see very far.\n",
+    "description": "The river flows out from the city down a long winding gully towards\n
+                   |the Sea of Dragons. To the south of you lies the great eastern desert\n
+                   |and north a wide open expanse of grass. You can just barely make out\n
+                   |a road that seems to be traveling alongside the river but the banks are\n
+                   |too steep for you to see very far.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6748,7 +7401,9 @@
     "area": "newthalos",
     "anum": 225,
     "name": "Ishtar River",
-    "description": "The river continues its descent down the lowlands flowing\never so gently south. It's hard to believe this is the same river that\ncame cascading down the mountainside.\n",
+    "description": "The river continues its descent down the lowlands flowing\n
+                   |ever so gently south. It's hard to believe this is the same river that\n
+                   |came cascading down the mountainside.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6765,7 +7420,9 @@
     "area": "newthalos",
     "anum": 226,
     "name": "Ishtar River",
-    "description": "Small animals and herd animals can be heard in the distance, though\nyou don't actually see any near the river. Perhaps the steep slopes\npervent them from using the river.\n",
+    "description": "Small animals and herd animals can be heard in the distance, though\n
+                   |you don't actually see any near the river. Perhaps the steep slopes\n
+                   |pervent them from using the river.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6782,7 +7439,8 @@
     "area": "newthalos",
     "anum": 234,
     "name": "The River of Lost Souls",
-    "description": "The river flows south through a valley in the mountains. You can see a\nsmall village to the west.\n",
+    "description": "The river flows south through a valley in the mountains. You can see a\n
+                   |small village to the west.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6799,7 +7457,8 @@
     "area": "newthalos",
     "anum": 235,
     "name": "The River of Lost Souls",
-    "description": "The river flows south in the southern end of this wide valley. The walls\nof the valley close in to the south.\n",
+    "description": "The river flows south in the southern end of this wide valley. The walls\n
+                   |of the valley close in to the south.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6816,7 +7475,8 @@
     "area": "newthalos",
     "anum": 236,
     "name": "The River of Lost Souls",
-    "description": "The river begins to speed up as it cascades down this mountain\ncrevase. High above you a small rope bridge sways in the wind.\n",
+    "description": "The river begins to speed up as it cascades down this mountain\n
+                   |crevase. High above you a small rope bridge sways in the wind.\n",
     "sector_type": "noswim",
     "doors": [{
       "dir": "south",
@@ -6827,7 +7487,8 @@
     "area": "newthalos",
     "anum": 237,
     "name": "The River of Lost Souls",
-    "description": "The river rapidly flows down this crack in the side of the mountain\nto the south. Hopefully you will hear any aproaching rapids.\n",
+    "description": "The river rapidly flows down this crack in the side of the mountain\n
+                   |to the south. Hopefully you will hear any aproaching rapids.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6844,7 +7505,9 @@
     "area": "newthalos",
     "anum": 238,
     "name": "The River of Lost Souls",
-    "description": "The river seems to calm a bit as the crevase widens lessens its\nstranglehold on the waters. The river continues to the north\nthrough a crack and flows to the south.\n",
+    "description": "The river seems to calm a bit as the crevase widens lessens its\n
+                   |stranglehold on the waters. The river continues to the north\n
+                   |through a crack and flows to the south.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6861,7 +7524,11 @@
     "area": "newthalos",
     "anum": 239,
     "name": "A Split in the River",
-    "description": "The waters of the river crash down upon a rock and split into\ntwo bodies of water. The river you are on continues its southern\ncourse and the new river heads off to the east. To the west you notice\na flat area in the sheer rock where it would be possible to shore your\ncraft. The River of lost souls also continues to the north.\n",
+    "description": "The waters of the river crash down upon a rock and split into\n
+                   |two bodies of water. The river you are on continues its southern\n
+                   |course and the new river heads off to the east. To the west you notice\n
+                   |a flat area in the sheer rock where it would be possible to shore your\n
+                   |craft. The River of lost souls also continues to the north.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6882,7 +7549,8 @@
     "area": "newthalos",
     "anum": 240,
     "name": "The River of Lost Souls",
-    "description": "The river continues north and south from here through a water\neroded valley.\n",
+    "description": "The river continues north and south from here through a water\n
+                   |eroded valley.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6899,7 +7567,8 @@
     "area": "newthalos",
     "anum": 241,
     "name": "The River of Lost Souls",
-    "description": "The river continues north and south from here through a water\neroded valley.\n",
+    "description": "The river continues north and south from here through a water\n
+                   |eroded valley.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6916,7 +7585,8 @@
     "area": "newthalos",
     "anum": 242,
     "name": "The River of Lost Souls",
-    "description": "The river continues north and south from here through a water\neroded valley.\n",
+    "description": "The river continues north and south from here through a water\n
+                   |eroded valley.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6933,7 +7603,8 @@
     "area": "newthalos",
     "anum": 243,
     "name": "The River of Lost Souls",
-    "description": "The river makes a sharp bend here and heads east towards a large\nmountain and north through a valley.\n",
+    "description": "The river makes a sharp bend here and heads east towards a large\n
+                   |mountain and north through a valley.\n",
     "sector_type": "noswim",
     "doors": [{
       "dir": "north",
@@ -6944,7 +7615,8 @@
     "area": "newthalos",
     "anum": 244,
     "name": "Ishtar River",
-    "description": "The river widens here, no longer bounded by rock, and flows east\ntowards a plain.\n",
+    "description": "The river widens here, no longer bounded by rock, and flows east\n
+                   |towards a plain.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6961,7 +7633,8 @@
     "area": "newthalos",
     "anum": 245,
     "name": "Ishtar River",
-    "description": "The river continues here east to west.  There is a landing area to the\nnorth where you can gain access to the shore.\n",
+    "description": "The river continues here east to west.  There is a landing area to the\n
+                   |north where you can gain access to the shore.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6978,7 +7651,9 @@
     "area": "newthalos",
     "anum": 246,
     "name": "Ishtar River",
-    "description": "The river meanders through the foothills of the eastern mountains.\nThe air is dryer on this side of the continental divide and it seems\na bit warmer.\n",
+    "description": "The river meanders through the foothills of the eastern mountains.\n
+                   |The air is dryer on this side of the continental divide and it seems\n
+                   |a bit warmer.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -6995,7 +7670,9 @@
     "area": "newthalos",
     "anum": 247,
     "name": "Ishtar River",
-    "description": "The river continues its journey eastward flowing through the\nplains. To the west you see the peaks of large snow capped\nmountains and to the east you see the outline of a large city.\n",
+    "description": "The river continues its journey eastward flowing through the\n
+                   |plains. To the west you see the peaks of large snow capped\n
+                   |mountains and to the east you see the outline of a large city.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -7029,7 +7706,8 @@
     "area": "newthalos",
     "anum": 249,
     "name": "Ishtar River",
-    "description": "The river slows as it widens and meanders through the lowlands. A\nsmall dock give access to the north shore.\n",
+    "description": "The river slows as it widens and meanders through the lowlands. A\n
+                   |small dock give access to the north shore.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -7069,7 +7747,8 @@
     "area": "newthalos",
     "anum": 272,
     "name": "On the Dark River",
-    "description": "The river flows to the east under the walls of Midgaard and west\nsnaking through a dark forest.\n",
+    "description": "The river flows to the east under the walls of Midgaard and west\n
+                   |snaking through a dark forest.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -7104,7 +7783,8 @@
     "area": "newthalos",
     "anum": 274,
     "name": "On the Dark River",
-    "description": "The river continues east and west meandering through the woods. You\nhear the sounds of chopping wood far off in the distance.\n",
+    "description": "The river continues east and west meandering through the woods. You\n
+                   |hear the sounds of chopping wood far off in the distance.\n",
     "sector_type": "noswim",
     "room_flags": "dark",
     "doors": [
@@ -7138,7 +7818,8 @@
     "area": "newthalos",
     "anum": 278,
     "name": "Freefall",
-    "description": "As your fingers slowly slip from the handguides you feel a sudden\neuphoria as you freefall the 200 + feet to your death.\n",
+    "description": "As your fingers slowly slip from the handguides you feel a sudden\n
+                   |euphoria as you freefall the 200 + feet to your death.\n",
     "sector_type": "mountain",
     "room_flags": "unused_room_1 no_mob"
   }},
@@ -7146,7 +7827,10 @@
     "area": "newthalos",
     "anum": 281,
     "name": "On the Plains",
-    "description": "You stand on an open expanse of grass extending in all directions. To\nthe south of you stand the might northern gates of New Thalos. East\nand west of you the grassy fields continue and north, in the distance,\nyou see a line of trees.\n",
+    "description": "You stand on an open expanse of grass extending in all directions. To\n
+                   |the south of you stand the might northern gates of New Thalos. East\n
+                   |and west of you the grassy fields continue and north, in the distance,\n
+                   |you see a line of trees.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -7171,7 +7855,9 @@
     "area": "newthalos",
     "anum": 282,
     "name": "On the Plains",
-    "description": "You stand on an open field of grass. The forest to the north is\ncloser but still a good distance away. To the south a small dirt\npath has been trodden into the ground heading towards New Thalos.\n",
+    "description": "You stand on an open field of grass. The forest to the north is\n
+                   |closer but still a good distance away. To the south a small dirt\n
+                   |path has been trodden into the ground heading towards New Thalos.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -7196,7 +7882,9 @@
     "area": "newthalos",
     "anum": 283,
     "name": "Edge of the forest",
-    "description": "You stand at the edge of a huge forest. The line of trees\ncontinues as far as the eye can see to the east and west. A large\nexpanse of grass spreads out to the south.\n",
+    "description": "You stand at the edge of a huge forest. The line of trees\n
+                   |continues as far as the eye can see to the east and west. A large\n
+                   |expanse of grass spreads out to the south.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -7217,7 +7905,10 @@
     "area": "newthalos",
     "anum": 284,
     "name": "Ishtar River",
-    "description": "The river broadens even more here and the waters become murky. The\nsmell of saltwater has reached you from the east. The Dragon Sea\ncannot be far away. To the east you can see the faint outline\nof a city and to the north you see a large expanse of grass.\n",
+    "description": "The river broadens even more here and the waters become murky. The\n
+                   |smell of saltwater has reached you from the east. The Dragon Sea\n
+                   |cannot be far away. To the east you can see the faint outline\n
+                   |of a city and to the north you see a large expanse of grass.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -7234,7 +7925,12 @@
     "area": "newthalos",
     "anum": 285,
     "name": "The river delta",
-    "description": "This is where the river empties out into the Dragon Sea. The backrush\nof water has kicked up a lot of sand and the blue sea is stained where\nthe river empties. Looking east, all you can see is water....all the way\nto the horizon. North of here is a small dock you think you should be\nable to reach with out too much trouble. The river stretches off to\nthe west back towards New Thalos.\n",
+    "description": "This is where the river empties out into the Dragon Sea. The backrush\n
+                   |of water has kicked up a lot of sand and the blue sea is stained where\n
+                   |the river empties. Looking east, all you can see is water....all the way\n
+                   |to the horizon. North of here is a small dock you think you should be\n
+                   |able to reach with out too much trouble. The river stretches off to\n
+                   |the west back towards New Thalos.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -7251,7 +7947,10 @@
     "area": "newthalos",
     "anum": 286,
     "name": "The Dragon Sea",
-    "description": "You are on the clear blue seas of the Dragon Sea.\n Water extends in all directions as far as the eye\n can see. Off in the distance you think you might\n see a small dock to the north.\n",
+    "description": "You are on the clear blue seas of the Dragon Sea.\n
+                   | Water extends in all directions as far as the eye\n
+                   | can see. Off in the distance you think you might\n
+                   | see a small dock to the north.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -7268,7 +7967,9 @@
     "area": "newthalos",
     "anum": 287,
     "name": "The Dragon Sea",
-    "description": "The Dragon Sea comes up along the shore here, the deep blue waters\nrolling in and crashing against the beach. To the north you see a\nsmall dock jutting out into the surf.\n",
+    "description": "The Dragon Sea comes up along the shore here, the deep blue waters\n
+                   |rolling in and crashing against the beach. To the north you see a\n
+                   |small dock jutting out into the surf.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -7289,7 +7990,10 @@
     "area": "newthalos",
     "anum": 288,
     "name": "The Dragon Sea",
-    "description": "You are on the clear blue seas of the Dragon Sea.\n Water extends in all directions as far as the eye\n can see. Off in the distance you think you might\n see a small dock to the south.\n",
+    "description": "You are on the clear blue seas of the Dragon Sea.\n
+                   | Water extends in all directions as far as the eye\n
+                   | can see. Off in the distance you think you might\n
+                   | see a small dock to the south.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -7306,7 +8010,10 @@
     "area": "newthalos",
     "anum": 289,
     "name": "The Dragon Sea",
-    "description": "You are on the clear blue seas of the Dragon Sea.\n Water extends in all directions as far as the eye\n can see. Off in the distance you think you might\n see a small dock to the west.\n",
+    "description": "You are on the clear blue seas of the Dragon Sea.\n
+                   | Water extends in all directions as far as the eye\n
+                   | can see. Off in the distance you think you might\n
+                   | see a small dock to the west.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -7327,7 +8034,11 @@
     "area": "newthalos",
     "anum": 290,
     "name": "On a road",
-    "description": "The people of New Thalos take great pride in the services their\ncity may provide. One of these services is the construction crews\nthat go to great lengths to keep all the roads in order. Although\nthe taxes in New Thalos are higher than other cities in the realm\nmost of the money is used for the good of the people.\n",
+    "description": "The people of New Thalos take great pride in the services their\n
+                   |city may provide. One of these services is the construction crews\n
+                   |that go to great lengths to keep all the roads in order. Although\n
+                   |the taxes in New Thalos are higher than other cities in the realm\n
+                   |most of the money is used for the good of the people.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -7344,7 +8055,11 @@
     "area": "newthalos",
     "anum": 291,
     "name": "On a road",
-    "description": "You walk along a well used road with beautiful scenery. To the north\ntall pine trees form a wall that goes on for miles. Between the road\nand the trees lies a great expanse of grassy plains. South of here,\nbeyond the river, lie the Sands of Sorrow. The road continues\neast and west.\n",
+    "description": "You walk along a well used road with beautiful scenery. To the north\n
+                   |tall pine trees form a wall that goes on for miles. Between the road\n
+                   |and the trees lies a great expanse of grassy plains. South of here,\n
+                   |beyond the river, lie the Sands of Sorrow. The road continues\n
+                   |east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -7361,7 +8076,9 @@
     "area": "newthalos",
     "anum": 292,
     "name": "On a road",
-    "description": "The Dragon Sea can be seen to the east now spreading out to unkown\nlands. The road continues east and west. To the south you hear the\nsounds of boats traveling the Ishtar delivering goods.\n",
+    "description": "The Dragon Sea can be seen to the east now spreading out to unkown\n
+                   |lands. The road continues east and west. To the south you hear the\n
+                   |sounds of boats traveling the Ishtar delivering goods.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -7378,7 +8095,10 @@
     "area": "newthalos",
     "anum": 293,
     "name": "On a road",
-    "description": "This is the main land route through the land. Merchants can bring their goods\nto the coastline and have them ferried onto ships for export. Travel\nby foot west will take you through New Thalos up and over the Eastern\nMountains and down into Midgaard.\n",
+    "description": "This is the main land route through the land. Merchants can bring their goods\n
+                   |to the coastline and have them ferried onto ships for export. Travel\n
+                   |by foot west will take you through New Thalos up and over the Eastern\n
+                   |Mountains and down into Midgaard.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -7395,7 +8115,10 @@
     "area": "newthalos",
     "anum": 294,
     "name": "Near the shore",
-    "description": "The road ends here turning into a small dirt path leading down the\nbeach and onto a dock. To the north and south you see the coastline\nstretching out before you. West of here the lowlands roll up into\nhuge snow capped mountains.\n",
+    "description": "The road ends here turning into a small dirt path leading down the\n
+                   |beach and onto a dock. To the north and south you see the coastline\n
+                   |stretching out before you. West of here the lowlands roll up into\n
+                   |huge snow capped mountains.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -7412,7 +8135,10 @@
     "area": "newthalos",
     "anum": 295,
     "name": "On a dock",
-    "description": "You stand on a simple wooden dock that acts as an extension of the road\nto the west. The dock seems to have been here for quite a long time\nbut is still sturdy. A small ladder has been built on the eastern end\nto allow easy access to and from ships.\n",
+    "description": "You stand on a simple wooden dock that acts as an extension of the road\n
+                   |to the west. The dock seems to have been here for quite a long time\n
+                   |but is still sturdy. A small ladder has been built on the eastern end\n
+                   |to allow easy access to and from ships.\n",
     "sector_type": "inside",
     "doors": [
       {
@@ -7437,7 +8163,10 @@
     "area": "newthalos",
     "anum": 296,
     "name": "The Dragon Sea",
-    "description": "You are on the clear blue seas of the Dragon Sea.\n Water extends in all directions as far as the eye\n can see. Off in the distance you think you might\n see a small dock to the west.\n",
+    "description": "You are on the clear blue seas of the Dragon Sea.\n
+                   | Water extends in all directions as far as the eye\n
+                   | can see. Off in the distance you think you might\n
+                   | see a small dock to the west.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -7454,7 +8183,8 @@
     "area": "newthalos",
     "anum": 297,
     "name": "The Dragon Sea",
-    "description": "The ocean spreads out in all directions rolling gently. In the distance\nyou can see an island on the horizon. To the west you see the mainland.\n",
+    "description": "The ocean spreads out in all directions rolling gently. In the distance\n
+                   |you can see an island on the horizon. To the west you see the mainland.\n",
     "sector_type": "noswim",
     "doors": [
       {
@@ -7471,7 +8201,10 @@
     "area": "newthalos",
     "anum": 298,
     "name": "Under the dock",
-    "description": "You are swimming underneath the dock. You can see the four wooden\npylons that support the structure. The murky water clouds your vision\nas you gaze westward, but you think you can make out an iron grating in\nthat direction.\n",
+    "description": "You are swimming underneath the dock. You can see the four wooden\n
+                   |pylons that support the structure. The murky water clouds your vision\n
+                   |as you gaze westward, but you think you can make out an iron grating in\n
+                   |that direction.\n",
     "sector_type": "noswim",
     "room_flags": "dark",
     "doors": [
@@ -7495,7 +8228,9 @@
     "area": "newthalos",
     "anum": 299,
     "name": "Lair of the Ixitxachitl",
-    "description": "Blood swirls around in the water as the Ixitxachitl devours the\nlast of its meal. Swirling around quickly as you intrude upon\nits meal the large sting ray attacks!\n",
+    "description": "Blood swirls around in the water as the Ixitxachitl devours the\n
+                   |last of its meal. Swirling around quickly as you intrude upon\n
+                   |its meal the large sting ray attacks!\n",
     "sector_type": "noswim",
     "room_flags": "dark",
     "doors": [{

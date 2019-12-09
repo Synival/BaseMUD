@@ -732,7 +732,8 @@
     "name": "centaur chief",
     "short_descr": "the centaur chief",
     "long_descr": "The chief of the centaur villagers reclines here.\n",
-    "description": "He has been the leader of this tribe for many years, and has acquired much\nwisdom.\n",
+    "description": "He has been the leader of this tribe for many years, and has acquired much\n
+                   |wisdom.\n",
     "race": "human",
     "alignment": 200,
     "level": 12,

@@ -55,7 +55,11 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "powder",
-      "description": "*        *         *\n      *      *       *\n****   AAAHHHH-TSHOU!   ****\n      *      *       *\n    *        *         *\n"
+      "description": "*        *         *\n
+                     |      *      *       *\n
+                     |****   AAAHHHH-TSHOU!   ****\n
+                     |      *      *       *\n
+                     |    *        *         *\n"
     }]
   }},
   {"object": {
@@ -92,7 +96,37 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "paper wad",
-      "description": "It looks old and worn, but You can still make out a faint lettering on it, \nwritten in a strange, alien hand:\n\no    WARNING! WARNING! WARNING! WARNING! WARNING! WARNING! WARNING!   o\no                                                                     o\no    MSGS: MATRIX CONTROL      TO   SUBSYSTEMS/<ALL>                  o\no    ACT : REQUIRED            T:   NOW                               o\no                                                                     o\no    RECENT DATAQUAKE EVALUATED... EVALUATION FOLLOWS...              o\no    MASSIVE SEGMENTATION HAS OCCURRED... ALL SUBSIDIARY SECTORS      o\no    SHUTDOWN... CENTRAL SHUTDOWN: AUTOMATICS ENGAGED...              o\no                                                                     o\no    DATALEAK DETECTED... DIRECTION:FOREIGN VIRTUAL REALITY, CODENAME o\no    ASSIGNED: 'Midgaard'...                                          o\no    SPECIFIC LOCATION: UNCERTAIN, BEING WITHIN 'Midgaard' SUBSECTOR  o\no    CODENAME ASSIGNED: 'Holy Grove'...                               o\no    BEWARE INTRUSIONS POSSIBLE. ADVISE EXTREME CAUTION...            o\no    .                                                                o\no    .                                                                o\no    .                                                                o\no                                                                     o\no    MSGS: MATRIX CONTROL      TO   SUBSYSTEMS/<Sark>                 o\no                                              <101110101101>         o\no                                              <1101111010101101>     o\no    ACT : URGENT              T:   IMMEDIATE                         o\no                                                                     o\no    INTRUDERS DETECTED IN MAIN MATRIX... DIRECTIVE SEARCH AND        o\no    ELIMINATE...                                                     o\no    .                                                                o\no    .                                                                o\no                                                                     o\n"
+      "description": "It looks old and worn, but You can still make out a faint lettering on it, \n
+                     |written in a strange, alien hand:\n
+                     |\n
+                     |o    WARNING! WARNING! WARNING! WARNING! WARNING! WARNING! WARNING!   o\n
+                     |o                                                                     o\n
+                     |o    MSGS: MATRIX CONTROL      TO   SUBSYSTEMS/<ALL>                  o\n
+                     |o    ACT : REQUIRED            T:   NOW                               o\n
+                     |o                                                                     o\n
+                     |o    RECENT DATAQUAKE EVALUATED... EVALUATION FOLLOWS...              o\n
+                     |o    MASSIVE SEGMENTATION HAS OCCURRED... ALL SUBSIDIARY SECTORS      o\n
+                     |o    SHUTDOWN... CENTRAL SHUTDOWN: AUTOMATICS ENGAGED...              o\n
+                     |o                                                                     o\n
+                     |o    DATALEAK DETECTED... DIRECTION:FOREIGN VIRTUAL REALITY, CODENAME o\n
+                     |o    ASSIGNED: 'Midgaard'...                                          o\n
+                     |o    SPECIFIC LOCATION: UNCERTAIN, BEING WITHIN 'Midgaard' SUBSECTOR  o\n
+                     |o    CODENAME ASSIGNED: 'Holy Grove'...                               o\n
+                     |o    BEWARE INTRUSIONS POSSIBLE. ADVISE EXTREME CAUTION...            o\n
+                     |o    .                                                                o\n
+                     |o    .                                                                o\n
+                     |o    .                                                                o\n
+                     |o                                                                     o\n
+                     |o    MSGS: MATRIX CONTROL      TO   SUBSYSTEMS/<Sark>                 o\n
+                     |o                                              <101110101101>         o\n
+                     |o                                              <1101111010101101>     o\n
+                     |o    ACT : URGENT              T:   IMMEDIATE                         o\n
+                     |o                                                                     o\n
+                     |o    INTRUDERS DETECTED IN MAIN MATRIX... DIRECTIVE SEARCH AND        o\n
+                     |o    ELIMINATE...                                                     o\n
+                     |o    .                                                                o\n
+                     |o    .                                                                o\n
+                     |o                                                                     o\n"
     }]
   }},
   {"object": {

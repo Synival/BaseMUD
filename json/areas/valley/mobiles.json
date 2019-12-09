@@ -5,7 +5,9 @@
     "name": "dog cooshee",
     "short_descr": "a cooshee",
     "long_descr": "A rather large dog is here, wandering the valley.\n",
-    "description": "A beast is the size of the largest common dog.  It has a greenish coat with\nbrown spots.  Its shape, along with its colors, make this cooshee almost\nundetectable as it moves.\n",
+    "description": "A beast is the size of the largest common dog.  It has a greenish coat with\n
+                   |brown spots.  Its shape, along with its colors, make this cooshee almost\n
+                   |undetectable as it moves.\n",
     "race": "dog",
     "alignment": 0,
     "level": 5,
@@ -33,7 +35,10 @@
     "name": "elf valley",
     "short_descr": "a valley elf",
     "long_descr": "A valley elf wanders here, cautious of your intrusion.\n",
-    "description": "This elf is almost as tall as you are, but much slimmer and agile.  You see\nhatred in his eyes, and you try to avoid his stare.  His tense body looks ready\nto spring upon you, like a mountain lion stalking its prey.  He sees you\nnoticing him, and quietly disappears.\n",
+    "description": "This elf is almost as tall as you are, but much slimmer and agile.  You see\n
+                   |hatred in his eyes, and you try to avoid his stare.  His tense body looks ready\n
+                   |to spring upon you, like a mountain lion stalking its prey.  He sees you\n
+                   |noticing him, and quietly disappears.\n",
     "race": "elf",
     "alignment": 0,
     "level": 8,
@@ -61,7 +66,8 @@
     "name": "elf valley",
     "short_descr": "a valley elf",
     "long_descr": "A female valley elf wanders here, skirting between the tall grasses.\n",
-    "description": "This elf is almost as tall as you are, but much slimmer and more agile.\nShe glares at you, then quickly disappears before you see more of her.\n",
+    "description": "This elf is almost as tall as you are, but much slimmer and more agile.\n
+                   |She glares at you, then quickly disappears before you see more of her.\n",
     "race": "elf",
     "alignment": 0,
     "level": 8,
@@ -89,7 +95,8 @@
     "name": "elf sentry valley",
     "short_descr": "a valley elf sentry",
     "long_descr": "A valley elf sentry stands here, then noticing you, attacks quickly!\n",
-    "description": "This elf is almost as tall as you are, but much slimmer and more agile.\nHe glares at your intrusion and attacks with menace.\n",
+    "description": "This elf is almost as tall as you are, but much slimmer and more agile.\n
+                   |He glares at your intrusion and attacks with menace.\n",
     "race": "elf",
     "alignment": 0,
     "level": 7,
@@ -117,7 +124,8 @@
     "name": "elf sentry valley",
     "short_descr": "a valley elf sentry",
     "long_descr": "A valley elf sentry stands here, then noticing you, attacks quickly!\n",
-    "description": "This elf is almost as tall as you are, but much slimmer and more agile.\nShe glares at your intrusion and attacks with menace.\n",
+    "description": "This elf is almost as tall as you are, but much slimmer and more agile.\n
+                   |She glares at your intrusion and attacks with menace.\n",
     "race": "elf",
     "alignment": 0,
     "level": 7,
@@ -173,7 +181,8 @@
     "name": "elf valley",
     "short_descr": "a valley elf",
     "long_descr": "A valley elf is here, doing her duties.\n",
-    "description": "She is currently doing some menial chores, and ignores your intrusion except\nwhen you are in her way.\n",
+    "description": "She is currently doing some menial chores, and ignores your intrusion except\n
+                   |when you are in her way.\n",
     "race": "elf",
     "alignment": 0,
     "level": 6,
@@ -200,8 +209,10 @@
     "anum": 7,
     "name": "elf elder valley",
     "short_descr": "a valley elf elder",
-    "long_descr": "A valley elf elder is here, studying.  He notices you.\nA valley elf elder shouts 'You have intruded wrongly.  Be prepared to die!'\n",
-    "description": "This elf looks quite old, probably twenty or more times your age.  He looks\nquite potent, though.\n",
+    "long_descr": "A valley elf elder is here, studying.  He notices you.\n
+                  |A valley elf elder shouts 'You have intruded wrongly.  Be prepared to die!'\n",
+    "description": "This elf looks quite old, probably twenty or more times your age.  He looks\n
+                   |quite potent, though.\n",
     "race": "elf",
     "alignment": 0,
     "level": 15,
@@ -229,8 +240,10 @@
     "anum": 8,
     "name": "elf elder valley",
     "short_descr": "a valley elf elder",
-    "long_descr": "A valley elf elder is here, studying.  She notices you.\nA valley elf elder says 'Your arrogance will be your end, human.'\n",
-    "description": "This elf looks quite old, probably twenty or more times your age.  She looks\nquite potent, though.\n",
+    "long_descr": "A valley elf elder is here, studying.  She notices you.\n
+                  |A valley elf elder says 'Your arrogance will be your end, human.'\n",
+    "description": "This elf looks quite old, probably twenty or more times your age.  She looks\n
+                   |quite potent, though.\n",
     "race": "elf",
     "alignment": 0,
     "level": 15,
@@ -259,7 +272,8 @@
     "name": "pyrohydra pyro hydra",
     "short_descr": "the pyrohydra",
     "long_descr": "A big beast with many heads, each breathing fire, stares at you with malice.\n",
-    "description": "This big beast looks like a small red dragon, but has many more heads than a\nregular dragon, too.  It doesn't look happy.\n",
+    "description": "This big beast looks like a small red dragon, but has many more heads than a\n
+                   |regular dragon, too.  It doesn't look happy.\n",
     "race": "human",
     "alignment": 0,
     "level": 20,
@@ -342,7 +356,8 @@
     "name": "guardian daemon",
     "short_descr": "the guardian daemon",
     "long_descr": "A huge guardian daemon is here, watching the treasure.\n",
-    "description": "This daemon is unhappy with its summoned job, and is willing to take out it's\nanger at you!\n",
+    "description": "This daemon is unhappy with its summoned job, and is willing to take out it's\n
+                   |anger at you!\n",
     "race": "human",
     "alignment": -500,
     "level": 25,
@@ -396,7 +411,8 @@
     "name": "antelope",
     "short_descr": "an antelope",
     "long_descr": "An antelope is here, peacefully munching on grass.\n",
-    "description": "With horns and spots over coarse, brown hair, this beast is the spit and\nimage of ... an antelope.\n",
+    "description": "With horns and spots over coarse, brown hair, this beast is the spit and\n
+                   |image of ... an antelope.\n",
     "race": "human",
     "alignment": 0,
     "level": 6,

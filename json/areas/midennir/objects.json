@@ -154,7 +154,9 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "knife dagger",
-      "description": "It's very sharp, you suspect this knife is more effective than many swords.\nIt appears to be of elvish origins, and is made of finely crafted mithril,\nwith a stylized ivory hilt.\n"
+      "description": "It's very sharp, you suspect this knife is more effective than many swords.\n
+                     |It appears to be of elvish origins, and is made of finely crafted mithril,\n
+                     |with a stylized ivory hilt.\n"
     }],
     "affects": [{
       "apply": "hit roll",

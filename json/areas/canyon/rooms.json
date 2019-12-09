@@ -3,7 +3,9 @@
     "area": "canyon",
     "anum": 1,
     "name": "A Mountain Path",
-    "description": "You are on a mountain path which ascends a steep mountainside.  The trail\ncurves around the mountain so that you cannot really see what lies ahead.\nYou do sense great power though coming from the area behind the mountain.\n",
+    "description": "You are on a mountain path which ascends a steep mountainside.  The trail\n
+                   |curves around the mountain so that you cannot really see what lies ahead.\n
+                   |You do sense great power though coming from the area behind the mountain.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -28,7 +30,8 @@
     "area": "canyon",
     "anum": 2,
     "name": "A Mountain Path",
-    "description": "You are on a rocky mountain path leading up and around a steep mountainside.\nYou sense a glow from the area beyond the mountain, which you cannot see yet.\n",
+    "description": "You are on a rocky mountain path leading up and around a steep mountainside.\n
+                   |You sense a glow from the area beyond the mountain, which you cannot see yet.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -70,7 +73,10 @@
     "area": "canyon",
     "anum": 3,
     "name": "Mountainside Tombs",
-    "description": "There are a few stone heaps here and there, the tombs of those who did not\nlast the arduous journey up the mountain.  Curiously you notice a few\nuncovered bodies which don't seem to have died of exhaustion.  The path curves\neast around the mountain.\n",
+    "description": "There are a few stone heaps here and there, the tombs of those who did not\n
+                   |last the arduous journey up the mountain.  Curiously you notice a few\n
+                   |uncovered bodies which don't seem to have died of exhaustion.  The path curves\n
+                   |east around the mountain.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -89,7 +95,9 @@
       },
       {
         "keyword": "heaps stones tombs",
-        "description": "You are sure glad that YOU aren't under one of those piles!\nMany of the tombstones have the same name on them, 'Raff'.  He must come\nhere a lot.\n"
+        "description": "You are sure glad that YOU aren't under one of those piles!\n
+                       |Many of the tombstones have the same name on them, 'Raff'.  He must come\n
+                       |here a lot.\n"
       }
     ],
     "resets": [
@@ -122,7 +130,9 @@
     "area": "canyon",
     "anum": 4,
     "name": "A Blind Curve on the Mountain Path.",
-    "description": "This looks like a normal mountain path, but it is NOT!  This section of the\npath is habitated by a huge (and of course, man-eating) Cyclops.  The path\nmakes its final ascent to an overlook.\n",
+    "description": "This looks like a normal mountain path, but it is NOT!  This section of the\n
+                   |path is habitated by a huge (and of course, man-eating) Cyclops.  The path\n
+                   |makes its final ascent to an overlook.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -165,7 +175,16 @@
     "area": "canyon",
     "anum": 5,
     "name": "Vista",
-    "description": "This is a stunning vista overlooking a canyon.  There is a sign here that says:\n\n\tBEHOLD -- ELEMENTAL CANYON\n\nFire leaps up from firepits in the western part of the canyon.  The sky looks\nfunny, and the air seems hazy to the northwest.  Electricity sparks\nintermittently in the northeast.  To the east you see a strong, magic-looking\nriver flowing through the canyon.  Also to the east you spy a cave entrance\nleading into the canyon wall.  The path descends to the north to another\noverlook.\n",
+    "description": "This is a stunning vista overlooking a canyon.  There is a sign here that says:\n
+                   |\n
+                   |\tBEHOLD -- ELEMENTAL CANYON\n
+                   |\n
+                   |Fire leaps up from firepits in the western part of the canyon.  The sky looks\n
+                   |funny, and the air seems hazy to the northwest.  Electricity sparks\n
+                   |intermittently in the northeast.  To the east you see a strong, magic-looking\n
+                   |river flowing through the canyon.  Also to the east you spy a cave entrance\n
+                   |leading into the canyon wall.  The path descends to the north to another\n
+                   |overlook.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -182,7 +201,9 @@
     "area": "canyon",
     "anum": 6,
     "name": "The Overlook",
-    "description": "You see various elemental servants wandering around the canyon.  The noise of\nhumming coming from the canyon gets louder.  The path makes a steep descent\ninto the canyon here.\n",
+    "description": "You see various elemental servants wandering around the canyon.  The noise of\n
+                   |humming coming from the canyon gets louder.  The path makes a steep descent\n
+                   |into the canyon here.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -199,7 +220,10 @@
     "area": "canyon",
     "anum": 7,
     "name": "Entrance to Elemental Canyon",
-    "description": "You are awed by the sounds and sights of great powers at works here.\nElemental servants bustle back and forth doing the biddings of the elemental\nrulers.  You see a sort of cross roads to the north, and you can climb up to\nthe overlook here.\n",
+    "description": "You are awed by the sounds and sights of great powers at works here.\n
+                   |Elemental servants bustle back and forth doing the biddings of the elemental\n
+                   |rulers.  You see a sort of cross roads to the north, and you can climb up to\n
+                   |the overlook here.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -234,7 +258,10 @@
     "area": "canyon",
     "anum": 8,
     "name": "The Floor of the Canyon",
-    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at all.\nIn general, it is calm, yet there is always a incessant buzz of things\ngoing on about.  The canyon continues north and east.\n",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\n
+                   |going about their business, while others seem to have no business at all.\n
+                   |In general, it is calm, yet there is always a incessant buzz of things\n
+                   |going on about.  The canyon continues north and east.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -269,7 +296,13 @@
     "area": "canyon",
     "anum": 9,
     "name": "Elemental Gateway",
-    "description": "To the west a path dips and winds among some flowing firepits.  To the\nnortheast a path goes toward the river.  Beyond toward the northeast and\nnorthwest are outcrops which rise up from the canyon floor. To the east there\nis a cave mouth which leads into the canyon wall.  And to the south the path\nleads up, away, and out of the canyon.  Various pure and cross-breeds of\nelemental forms wander the canyon floor, which extends in a wide swath\nnorthwards.\n",
+    "description": "To the west a path dips and winds among some flowing firepits.  To the\n
+                   |northeast a path goes toward the river.  Beyond toward the northeast and\n
+                   |northwest are outcrops which rise up from the canyon floor. To the east there\n
+                   |is a cave mouth which leads into the canyon wall.  And to the south the path\n
+                   |leads up, away, and out of the canyon.  Various pure and cross-breeds of\n
+                   |elemental forms wander the canyon floor, which extends in a wide swath\n
+                   |northwards.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -352,7 +385,11 @@
     "area": "canyon",
     "anum": 10,
     "name": "The Floor of the Canyon",
-    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always a incessant buzz of\nthings going on about.  The canyon floor extends north and west.  There is a\ncave mouth set into the canyon wall to the east.\n",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\n
+                   |going about their business, while others seem to have no business at\n
+                   |all.  In general, it is calm, yet there is always a incessant buzz of\n
+                   |things going on about.  The canyon floor extends north and west.  There is a\n
+                   |cave mouth set into the canyon wall to the east.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -391,7 +428,11 @@
     "area": "canyon",
     "anum": 11,
     "name": "The Floor of the Canyon",
-    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The canyon floor extends off to the north, east,\nand south.\n",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\n
+                   |going about their business, while others seem to have no business at\n
+                   |all.  In general, it is calm, yet there is always an incessant buzz of\n
+                   |things going on about.  The canyon floor extends off to the north, east,\n
+                   |and south.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -430,7 +471,10 @@
     "area": "canyon",
     "anum": 12,
     "name": "The Floor of the Canyon",
-    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The canyon floor extends in all directions.\n",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\n
+                   |going about their business, while others seem to have no business at\n
+                   |all.  In general, it is calm, yet there is always an incessant buzz of\n
+                   |things going on about.  The canyon floor extends in all directions.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -481,7 +525,11 @@
     "area": "canyon",
     "anum": 13,
     "name": "The Floor of the Canyon",
-    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The canyon floor extends north, south, and west.\nA path follows a stream to the east.\n",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\n
+                   |going about their business, while others seem to have no business at\n
+                   |all.  In general, it is calm, yet there is always an incessant buzz of\n
+                   |things going on about.  The canyon floor extends north, south, and west.\n
+                   |A path follows a stream to the east.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -514,7 +562,11 @@
     "area": "canyon",
     "anum": 14,
     "name": "The Floor of the Canyon",
-    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about. The canyon floor extends north, east, and south.\nTo the west a garden is on fire.\n",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\n
+                   |going about their business, while others seem to have no business at\n
+                   |all.  In general, it is calm, yet there is always an incessant buzz of\n
+                   |things going on about. The canyon floor extends north, east, and south.\n
+                   |To the west a garden is on fire.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -539,7 +591,10 @@
     "area": "canyon",
     "anum": 15,
     "name": "The Floor of the Canyon",
-    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The canyon floor extends in all directions.\n",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\n
+                   |going about their business, while others seem to have no business at\n
+                   |all.  In general, it is calm, yet there is always an incessant buzz of\n
+                   |things going on about.  The canyon floor extends in all directions.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -582,7 +637,10 @@
     "area": "canyon",
     "anum": 16,
     "name": "The Floor of the Canyon",
-    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The Canyon floor extends north, south and west.\n",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\n
+                   |going about their business, while others seem to have no business at\n
+                   |all.  In general, it is calm, yet there is always an incessant buzz of\n
+                   |things going on about.  The Canyon floor extends north, south and west.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -621,7 +679,11 @@
     "area": "canyon",
     "anum": 17,
     "name": "The Floor of the Canyon",
-    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about. The canyon floor extends east and south.  You can\nclimb a rise in the canyon floor to the north.\n",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\n
+                   |going about their business, while others seem to have no business at\n
+                   |all.  In general, it is calm, yet there is always an incessant buzz of\n
+                   |things going on about. The canyon floor extends east and south.  You can\n
+                   |climb a rise in the canyon floor to the north.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -650,7 +712,10 @@
     "area": "canyon",
     "anum": 18,
     "name": "The Floor of the Canyon",
-    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The canyon floor extends east, south, and west.\n",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\n
+                   |going about their business, while others seem to have no business at\n
+                   |all.  In general, it is calm, yet there is always an incessant buzz of\n
+                   |things going on about.  The canyon floor extends east, south, and west.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -721,7 +786,11 @@
     "area": "canyon",
     "anum": 19,
     "name": "The Floor of the Canyon",
-    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\ngoing about their business, while others seem to have no business at\nall.  In general, it is calm, yet there is always an incessant buzz of\nthings going on about.  The canyon floor extends south and west.  You can\nclimb a rise in the canyon floor to the north.\n",
+    "description": "Various elemental forms wander the floor of the canyon.  Some seem to be\n
+                   |going about their business, while others seem to have no business at\n
+                   |all.  In general, it is calm, yet there is always an incessant buzz of\n
+                   |things going on about.  The canyon floor extends south and west.  You can\n
+                   |climb a rise in the canyon floor to the north.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -760,7 +829,8 @@
     "area": "canyon",
     "anum": 20,
     "name": "Dark Cave",
-    "description": "You notice a path winding east among some huge boulders.  You feel a powerful\nsource of energy from that direction.\n",
+    "description": "You notice a path winding east among some huge boulders.  You feel a powerful\n
+                   |source of energy from that direction.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -804,7 +874,10 @@
     "area": "canyon",
     "anum": 21,
     "name": "Darker Caves",
-    "description": "You can barely see your way even with a light source.  The rocks of the cave\nare even darker than the darkness.  You hear a powerful humming all around\nyou.  Cave paths go south and east roughly, its hard to tell exactly when you\ncan't see where you are going.\n",
+    "description": "You can barely see your way even with a light source.  The rocks of the cave\n
+                   |are even darker than the darkness.  You hear a powerful humming all around\n
+                   |you.  Cave paths go south and east roughly, its hard to tell exactly when you\n
+                   |can't see where you are going.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -852,7 +925,10 @@
     "area": "canyon",
     "anum": 22,
     "name": "Darker Caves",
-    "description": "You can barely see your way even with a light source.  The rocks of the cave\nare even darker than the darkness.  You hear a powerful humming all around\nyou.  Cave paths go south and west roughly; it's hard to tell exactly when you\ncan't see where you are going.\n",
+    "description": "You can barely see your way even with a light source.  The rocks of the cave\n
+                   |are even darker than the darkness.  You hear a powerful humming all around\n
+                   |you.  Cave paths go south and west roughly; it's hard to tell exactly when you\n
+                   |can't see where you are going.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -928,7 +1004,10 @@
     "area": "canyon",
     "anum": 23,
     "name": "Darker Caves",
-    "description": "You can barely see your way even with a light source.  The rocks of the cave\nare even darker than the darkness.  You hear a powerful humming all around you.\nCave paths go north, south and east roughly; it's hard to tell exactly when\nyou can't see where you are going.\n",
+    "description": "You can barely see your way even with a light source.  The rocks of the cave\n
+                   |are even darker than the darkness.  You hear a powerful humming all around you.\n
+                   |Cave paths go north, south and east roughly; it's hard to tell exactly when\n
+                   |you can't see where you are going.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -968,7 +1047,10 @@
     "area": "canyon",
     "anum": 24,
     "name": "Darker Caves",
-    "description": "You can barely see your way even with a light source.  The rocks of the cave\nare even darker than the darkness.  You hear a powerful humming all around you.\nCave paths go north, south and west roughly, it's hard to tell exactly when you\ncan't see where you are going.\n",
+    "description": "You can barely see your way even with a light source.  The rocks of the cave\n
+                   |are even darker than the darkness.  You hear a powerful humming all around you.\n
+                   |Cave paths go north, south and west roughly, it's hard to tell exactly when you\n
+                   |can't see where you are going.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -998,7 +1080,10 @@
     "area": "canyon",
     "anum": 25,
     "name": "Darkest Caves",
-    "description": "Your light doesn't even seem to work here.  Even magical light sources seem\nonly to illuminate about a foot ahead of you.  You suddenly realize that the\npath has descended quite a bit but you didn't notice before because of the\ndarkness.  You sense a great presence off to the east aways.\n",
+    "description": "Your light doesn't even seem to work here.  Even magical light sources seem\n
+                   |only to illuminate about a foot ahead of you.  You suddenly realize that the\n
+                   |path has descended quite a bit but you didn't notice before because of the\n
+                   |darkness.  You sense a great presence off to the east aways.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -1050,7 +1135,10 @@
     "area": "canyon",
     "anum": 26,
     "name": "Darkest Caves",
-    "description": "Your light doesn't even seem to work here.  Even magical light sources seem\nonly to illuminate about a foot ahead of you.  You suddenly realize that the\npath has descended quite a bit but you didn't notice before because of the\ndarkness.  You sense a great presence directly to the east.\n",
+    "description": "Your light doesn't even seem to work here.  Even magical light sources seem\n
+                   |only to illuminate about a foot ahead of you.  You suddenly realize that the\n
+                   |path has descended quite a bit but you didn't notice before because of the\n
+                   |darkness.  You sense a great presence directly to the east.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -1080,7 +1168,9 @@
     "area": "canyon",
     "anum": 27,
     "name": "Earth Chamber",
-    "description": "This is the abode of the Earth Ruler.  He decides about earthquakes,\nlandslides, and avalanches.  The Earth Ruler sits upon a huge marble throne\ncarved into the wall.\n",
+    "description": "This is the abode of the Earth Ruler.  He decides about earthquakes,\n
+                   |landslides, and avalanches.  The Earth Ruler sits upon a huge marble throne\n
+                   |carved into the wall.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [{
@@ -1089,7 +1179,8 @@
     }],
     "extra_description": [{
       "keyword": "marble throne",
-      "description": "The ruler notices your stare, and doesn't like it one bit!  The whole\nearth seems to shake with his emotion.\n"
+      "description": "The ruler notices your stare, and doesn't like it one bit!  The whole\n
+                     |earth seems to shake with his emotion.\n"
     }],
     "resets": [
       {
@@ -1146,7 +1237,9 @@
     "area": "canyon",
     "anum": 28,
     "name": "By the River",
-    "description": "The water in the river seems to bubble and froth with magic.  Though it\nsplashes playfully on you, it does not seem wet.  The path leads north closer\nto the water. To the west you see a T-intersection.\n",
+    "description": "The water in the river seems to bubble and froth with magic.  Though it\n
+                   |splashes playfully on you, it does not seem wet.  The path leads north closer\n
+                   |to the water. To the west you see a T-intersection.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -1181,7 +1274,9 @@
     "area": "canyon",
     "anum": 29,
     "name": "In the River",
-    "description": "To continue you had to walk right in the river.  Though you walk along in\nwater up to your knees, you do not seem to get wet.  A bay stretches out to\nthe north and the river goes south.\n",
+    "description": "To continue you had to walk right in the river.  Though you walk along in\n
+                   |water up to your knees, you do not seem to get wet.  A bay stretches out to\n
+                   |the north and the river goes south.\n",
     "sector_type": "swim",
     "doors": [
       {
@@ -1206,7 +1301,9 @@
     "area": "canyon",
     "anum": 30,
     "name": "Elemental Bay",
-    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\nbelow you.  Then you realize you are walking on the water itself.  Truly\nmagical water indeed.  Though you splash through the bay you do not get wet.\n",
+    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\n
+                   |below you.  Then you realize you are walking on the water itself.  Truly\n
+                   |magical water indeed.  Though you splash through the bay you do not get wet.\n",
     "sector_type": "swim",
     "doors": [
       {
@@ -1253,7 +1350,9 @@
     "area": "canyon",
     "anum": 31,
     "name": "Elemental Bay",
-    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\nbelow you.  Then you realize you are walking on the water itself.  Truly\nmagical water indeed.  Though you splash through the bay you do not get wet.\n",
+    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\n
+                   |below you.  Then you realize you are walking on the water itself.  Truly\n
+                   |magical water indeed.  Though you splash through the bay you do not get wet.\n",
     "sector_type": "swim",
     "doors": [
       {
@@ -1300,7 +1399,9 @@
     "area": "canyon",
     "anum": 32,
     "name": "Elemental Bay",
-    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\nbelow you.  Then you realize you are walking on the water itself.  Truly\nmagical water indeed.  Though you splash through the bay you do not get wet.\n",
+    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\n
+                   |below you.  Then you realize you are walking on the water itself.  Truly\n
+                   |magical water indeed.  Though you splash through the bay you do not get wet.\n",
     "sector_type": "swim",
     "doors": [
       {
@@ -1351,7 +1452,9 @@
     "area": "canyon",
     "anum": 33,
     "name": "Elemental Bay",
-    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\nbelow you.  Then you realize you are walking on the water itself.  Truly\nmagical water indeed.  Though you splash through the bay you do not get wet.\n",
+    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\n
+                   |below you.  Then you realize you are walking on the water itself.  Truly\n
+                   |magical water indeed.  Though you splash through the bay you do not get wet.\n",
     "sector_type": "swim",
     "doors": [
       {
@@ -1386,7 +1489,9 @@
     "area": "canyon",
     "anum": 34,
     "name": "Elemental Bay",
-    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\nbelow you.  Then you realize you are walking on the water itself.  Truly\nmagical water indeed.  Though you splash through the bay you do not get wet.\n",
+    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\n
+                   |below you.  Then you realize you are walking on the water itself.  Truly\n
+                   |magical water indeed.  Though you splash through the bay you do not get wet.\n",
     "sector_type": "swim",
     "doors": [
       {
@@ -1425,7 +1530,9 @@
     "area": "canyon",
     "anum": 35,
     "name": "Elemental Bay",
-    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\nbelow you.  Then you realize you are walking on the water itself.  Truly\nmagical water indeed.  Though you splash through the bay you do not get wet.\n",
+    "description": "The water is crystal clear here and you can see the bottom of the bay 30 feet\n
+                   |below you.  Then you realize you are walking on the water itself.  Truly\n
+                   |magical water indeed.  Though you splash through the bay you do not get wet.\n",
     "sector_type": "swim",
     "doors": [
       {
@@ -1464,7 +1571,10 @@
     "area": "canyon",
     "anum": 36,
     "name": "Water Chamber",
-    "description": "This chamber was magically created here on the floor of the bay.  It looks\nlike it's been here for a long, long time.  Though you are 'under water' there\nis no difficulty breathing normally, and oddly you do not feel the pressure of\nthe water above you.\n",
+    "description": "This chamber was magically created here on the floor of the bay.  It looks\n
+                   |like it's been here for a long, long time.  Though you are 'under water' there\n
+                   |is no difficulty breathing normally, and oddly you do not feel the pressure of\n
+                   |the water above you.\n",
     "sector_type": "swim",
     "room_flags": "indoors",
     "doors": [{
@@ -1518,7 +1628,9 @@
     "area": "canyon",
     "anum": 37,
     "name": "A Fiery Pathway",
-    "description": "You tread carefully along a path which dips and turns among geysers of fire.\nMiniature volcanoes spew lava in rivers.  The fire is hot but not altogether\ndangerous.  The path extends east and south.\n",
+    "description": "You tread carefully along a path which dips and turns among geysers of fire.\n
+                   |Miniature volcanoes spew lava in rivers.  The fire is hot but not altogether\n
+                   |dangerous.  The path extends east and south.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1543,7 +1655,8 @@
     "area": "canyon",
     "anum": 38,
     "name": "A Fiery Pathway",
-    "description": "You tread carefully along a path which dips and turns among pits of fire and\nbeds of coals.  A garden to the west glows with an everlasting fire.\n",
+    "description": "You tread carefully along a path which dips and turns among pits of fire and\n
+                   |beds of coals.  A garden to the west glows with an everlasting fire.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1626,7 +1739,9 @@
     "area": "canyon",
     "anum": 42,
     "name": "The Burning Gardens",
-    "description": "Everywhere around you the landscape is afire; the rocks, the shrubs and even\nthe air seems to be aflame.  Curiously, the magical fire does not seem to\nconsume its hosts.  A path leads east among some fire pits.\n",
+    "description": "Everywhere around you the landscape is afire; the rocks, the shrubs and even\n
+                   |the air seems to be aflame.  Curiously, the magical fire does not seem to\n
+                   |consume its hosts.  A path leads east among some fire pits.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1741,7 +1856,8 @@
     "area": "canyon",
     "anum": 45,
     "name": "The Fire Chamber",
-    "description": "The fire ruler sits upon a throne made of blue flame.  Little flickers of\nflame dance to and fro for the entertainment of the ruler.\n",
+    "description": "The fire ruler sits upon a throne made of blue flame.  Little flickers of\n
+                   |flame dance to and fro for the entertainment of the ruler.\n",
     "sector_type": "forest",
     "doors": [{
       "dir": "east",
@@ -1810,7 +1926,9 @@
     "area": "canyon",
     "anum": 46,
     "name": "Electric Pathway",
-    "description": "The pathway glows and hums because of the electricity pulsing through it.\nIt seems almost soothing to your weary feet.  To the north there is a\nsunken-in area.  A path leads east also.\n",
+    "description": "The pathway glows and hums because of the electricity pulsing through it.\n
+                   |It seems almost soothing to your weary feet.  To the north there is a\n
+                   |sunken-in area.  A path leads east also.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -1861,7 +1979,9 @@
     "area": "canyon",
     "anum": 47,
     "name": "The Electric Playground",
-    "description": "Though there is a seemingly carefree atmosphere here, you sense that\nsomething much more important takes place near by.  The electric playground\nextends north and east.\n",
+    "description": "Though there is a seemingly carefree atmosphere here, you sense that\n
+                   |something much more important takes place near by.  The electric playground\n
+                   |extends north and east.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -1886,7 +2006,9 @@
     "area": "canyon",
     "anum": 48,
     "name": "The Electric Playground",
-    "description": "Though there is a seemingly carefree atmosphere here, you sense that\nsomething much more important takes place near by.  There is an electric\npath heading away south.  The playground extends north and west.\n",
+    "description": "Though there is a seemingly carefree atmosphere here, you sense that\n
+                   |something much more important takes place near by.  There is an electric\n
+                   |path heading away south.  The playground extends north and west.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -1925,7 +2047,9 @@
     "area": "canyon",
     "anum": 49,
     "name": "The Electric Playground",
-    "description": "Though there is a seemingly carefree atmosphere here, you sense that\nsomething much more important takes place near by.  The playground continues\nsouth and east.\n",
+    "description": "Though there is a seemingly carefree atmosphere here, you sense that\n
+                   |something much more important takes place near by.  The playground continues\n
+                   |south and east.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -1960,7 +2084,9 @@
     "area": "canyon",
     "anum": 50,
     "name": "The Electric Playground",
-    "description": "Though there is a seemingly carefree atmosphere here, you sense that\nsomething much more important takes place near by.  The playground is\nsouth and west.  Something more important catches your eye to the east.\n",
+    "description": "Though there is a seemingly carefree atmosphere here, you sense that\n
+                   |something much more important takes place near by.  The playground is\n
+                   |south and west.  Something more important catches your eye to the east.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -2007,7 +2133,9 @@
     "area": "canyon",
     "anum": 51,
     "name": "Lightning Causeway",
-    "description": "Up a set of stairs carved into the hill you see intermittent flashes of\nlightning.  A continuous hum also comes form that direction.  To the west\nis the electric playground.\n",
+    "description": "Up a set of stairs carved into the hill you see intermittent flashes of\n
+                   |lightning.  A continuous hum also comes form that direction.  To the west\n
+                   |is the electric playground.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -2032,7 +2160,9 @@
     "area": "canyon",
     "anum": 52,
     "name": "Lightning Chamber",
-    "description": "There is some sort of control panel here. Apparently the Lightning Ruler\nobserves and controls electric forces from here.  A set of steps carved into\nthe hill lead down to a causeway.\n",
+    "description": "There is some sort of control panel here. Apparently the Lightning Ruler\n
+                   |observes and controls electric forces from here.  A set of steps carved into\n
+                   |the hill lead down to a causeway.\n",
     "sector_type": "swim",
     "room_flags": "indoors",
     "doors": [{
@@ -2094,7 +2224,8 @@
     "area": "canyon",
     "anum": 53,
     "name": "Mesa West",
-    "description": "An electric path starts to the west.  The mesa continues to the east.\nOr you can climb down to the canyon floor to the south.\n",
+    "description": "An electric path starts to the west.  The mesa continues to the east.\n
+                   |Or you can climb down to the canyon floor to the south.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -2133,7 +2264,8 @@
     "area": "canyon",
     "anum": 54,
     "name": "Mesa East",
-    "description": "A path starts to the north.  The mesa continues to the west.\nOr you can climb down to the canyon floor to the south.\n",
+    "description": "A path starts to the north.  The mesa continues to the west.\n
+                   |Or you can climb down to the canyon floor to the south.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -2172,7 +2304,11 @@
     "area": "canyon",
     "anum": 55,
     "name": "Floating in Air",
-    "description": "Last you knew, you were walking on the mesa.  Abruptly the path dropped\nfrom beneath your feet much to quick for you to recover.  Instead of\nplunging to your death, you seemingly miss the ground and begin walking\non air.  The space to the north and east seems just thin air, but you can\nwalk there.  The pathway you came from is to the south.\n",
+    "description": "Last you knew, you were walking on the mesa.  Abruptly the path dropped\n
+                   |from beneath your feet much to quick for you to recover.  Instead of\n
+                   |plunging to your death, you seemingly miss the ground and begin walking\n
+                   |on air.  The space to the north and east seems just thin air, but you can\n
+                   |walk there.  The pathway you came from is to the south.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -2251,7 +2387,9 @@
     "area": "canyon",
     "anum": 56,
     "name": "Floating in Air",
-    "description": "You look down and see the ground 100 feet below you.  The wind whispering\nin your ear seems to reassure you that this is fine.  To the north aways\nyou spy a portal of sorts.  To the west is more thin air.\n",
+    "description": "You look down and see the ground 100 feet below you.  The wind whispering\n
+                   |in your ear seems to reassure you that this is fine.  To the north aways\n
+                   |you spy a portal of sorts.  To the west is more thin air.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -2276,7 +2414,9 @@
     "area": "canyon",
     "anum": 57,
     "name": "Floating in Air",
-    "description": "You look down and see the ground 100 feet below you.  The wind whispering\nin your ear seems to reassure you that this is fine.  To the east aways\nyou spy a portal of sorts.  To the south is more thin air.\n",
+    "description": "You look down and see the ground 100 feet below you.  The wind whispering\n
+                   |in your ear seems to reassure you that this is fine.  To the east aways\n
+                   |you spy a portal of sorts.  To the south is more thin air.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -2327,7 +2467,10 @@
     "area": "canyon",
     "anum": 58,
     "name": "Floating in Air",
-    "description": "You look down and see the ground 100 feet below you.  The wind whispering\nin your ear seems to reassure you that this is fine. There is a portal\nhanging in midair here. It is to the east.  You can float south or west\nif you'd like.\n",
+    "description": "You look down and see the ground 100 feet below you.  The wind whispering\n
+                   |in your ear seems to reassure you that this is fine. There is a portal\n
+                   |hanging in midair here. It is to the east.  You can float south or west\n
+                   |if you'd like.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -2360,7 +2503,8 @@
     "area": "canyon",
     "anum": 59,
     "name": "Windy Tunnel",
-    "description": "A tunnel leads east.  To the west you can enter a portal. The wind in\nthis tunnel is quite fierce, it seems as if it's forced.  \n",
+    "description": "A tunnel leads east.  To the west you can enter a portal. The wind in\n
+                   |this tunnel is quite fierce, it seems as if it's forced.  \n",
     "sector_type": "hills",
     "doors": [
       {
@@ -2399,7 +2543,9 @@
     "area": "canyon",
     "anum": 60,
     "name": "Air Chamber",
-    "description": "Tiny tornadoes come and go and dance along the ground here.  At the back\nof the chamber you notice a huge throne made of swirling clouds.\nA tunnel leads west.\n",
+    "description": "Tiny tornadoes come and go and dance along the ground here.  At the back\n
+                   |of the chamber you notice a huge throne made of swirling clouds.\n
+                   |A tunnel leads west.\n",
     "sector_type": "swim",
     "room_flags": "indoors",
     "doors": [{
@@ -2408,7 +2554,8 @@
     }],
     "extra_description": [{
       "keyword": "throne clouds",
-      "description": "Although the cloud throne appears solid enough to sit on, I wouldn't try\nit if I were you!\n"
+      "description": "Although the cloud throne appears solid enough to sit on, I wouldn't try\n
+                     |it if I were you!\n"
     }],
     "resets": [
       {

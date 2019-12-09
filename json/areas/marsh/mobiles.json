@@ -5,7 +5,8 @@
     "name": "troll",
     "short_descr": "a swamp troll",
     "long_descr": "A swamp troll charges towards you.\n",
-    "description": "This huge behemoth towers to a height of 15 feet.  He sneers at you \nas he approaches and raises two black taloned claws to strike you.\n",
+    "description": "This huge behemoth towers to a height of 15 feet.  He sneers at you \n
+                   |as he approaches and raises two black taloned claws to strike you.\n",
     "race": "troll",
     "alignment": -600,
     "level": 16,
@@ -33,7 +34,9 @@
     "name": "troll",
     "short_descr": "a green troll",
     "long_descr": "A green troll attempts to get a hold on you.\n",
-    "description": "This big troll towers several feet over you.  He has a large spear\nwhich he seems to ply with utmost prowess.  He jabs his spear at you\nand cackles with glee.\n",
+    "description": "This big troll towers several feet over you.  He has a large spear\n
+                   |which he seems to ply with utmost prowess.  He jabs his spear at you\n
+                   |and cackles with glee.\n",
     "race": "troll",
     "alignment": -400,
     "level": 14,
@@ -143,7 +146,8 @@
     "name": "beast",
     "short_descr": "a huge hairy beast",
     "long_descr": "A huge hairy beast shambles towards you with death in his eyes.\n",
-    "description": "This huge beast stands about 20 feet in height and has huge green clawed\nappendages. \n",
+    "description": "This huge beast stands about 20 feet in height and has huge green clawed\n
+                   |appendages. \n",
     "race": "human",
     "alignment": -450,
     "level": 21,
@@ -171,7 +175,8 @@
     "name": "beast",
     "short_descr": "a rather small beast",
     "long_descr": "A rather small beast cringes in terror as it notices you.\n",
-    "description": "This rather small beast looks like you could take it out with a single\nsword blow.\n",
+    "description": "This rather small beast looks like you could take it out with a single\n
+                   |sword blow.\n",
     "race": "human",
     "alignment": 0,
     "level": 3,
@@ -199,7 +204,9 @@
     "name": "will will-o-wisp",
     "short_descr": "the Will-O-Wisp",
     "long_descr": "A Will-O-Wisp darts hear and there, making fun of you.\n",
-    "description": "This strange little creature seems very hard to keep your eyes on.\nYou stare as hard as you can at the glowing ball of floating light and\nare just able to notice a small pair of glowing eyes.\n",
+    "description": "This strange little creature seems very hard to keep your eyes on.\n
+                   |You stare as hard as you can at the glowing ball of floating light and\n
+                   |are just able to notice a small pair of glowing eyes.\n",
     "race": "human",
     "alignment": 0,
     "level": 10,
@@ -285,7 +292,8 @@
     "name": "hag",
     "short_descr": "the Marsh Hag",
     "long_descr": "A Marsh Hag is here.\n",
-    "description": "Yech!  She manages to make even Smurfette look attractive.  That's ok,\nbecause she thinks you stink too, and she's about to do something about it.\n",
+    "description": "Yech!  She manages to make even Smurfette look attractive.  That's ok,\n
+                   |because she thinks you stink too, and she's about to do something about it.\n",
     "race": "human",
     "alignment": -200,
     "level": 9,
@@ -314,7 +322,8 @@
     "name": "slaad",
     "short_descr": "a Death Slaad",
     "long_descr": "A Death Slaad is standing here distraught.  He seems lost.\n",
-    "description": "This dark apparition stands a meager 13 feet in height.  Even in the dim\nswamp light, the blade of his scythe gleams.\n",
+    "description": "This dark apparition stands a meager 13 feet in height.  Even in the dim\n
+                   |swamp light, the blade of his scythe gleams.\n",
     "race": "human",
     "alignment": -200,
     "level": 20,
@@ -343,7 +352,8 @@
     "name": "wolf",
     "short_descr": "a marsh wolf",
     "long_descr": "A marsh wolf sniffs the ground has followed your scent.\n",
-    "description": "This wolf looks plump.  She probably ate a friend or two of yours who came\ninto the marsh.\n",
+    "description": "This wolf looks plump.  She probably ate a friend or two of yours who came\n
+                   |into the marsh.\n",
     "race": "wolf",
     "alignment": -200,
     "level": 8,
@@ -398,7 +408,8 @@
     "name": "shaman orc",
     "short_descr": "the orc shaman",
     "long_descr": "An orc shaman stands before you holding a staff and wearing robes.\n",
-    "description": "This old orc has an array of bones stuck in his hair and strange symbols\npainted on his face and hands.\n",
+    "description": "This old orc has an array of bones stuck in his hair and strange symbols\n
+                   |painted on his face and hands.\n",
     "race": "human",
     "alignment": -100,
     "level": 12,

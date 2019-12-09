@@ -5,7 +5,8 @@
     "name": "druid Aruncus",
     "short_descr": "Aruncus the Druid",
     "long_descr": "Aruncus the Druid is walking around here, searching for herbs.\n",
-    "description": "Aruncus is a tall, skinny druid with a face marked by nature.\nHe seems to be in peace with himself and his surroundings.\n",
+    "description": "Aruncus is a tall, skinny druid with a face marked by nature.\n
+                   |He seems to be in peace with himself and his surroundings.\n",
     "race": "human",
     "alignment": -500,
     "level": 13,
@@ -33,7 +34,9 @@
     "name": "hermit sorbus",
     "short_descr": "Sorbus the Hermit",
     "long_descr": "Sorbus the Hermit is sitting here, roasting a rabbit.\n",
-    "description": "Sorbus bares the marks of a long, hard life in solitude.\nHe is dressed in simple clothing and looks like he has little\nor nothing to say.\n",
+    "description": "Sorbus bares the marks of a long, hard life in solitude.\n
+                   |He is dressed in simple clothing and looks like he has little\n
+                   |or nothing to say.\n",
     "race": "human",
     "alignment": 0,
     "level": 4,
@@ -62,7 +65,8 @@
     "name": "citizen",
     "short_descr": "the citizen",
     "long_descr": "There is a citizen of Ofcol here glaring at you ... stranger!\n",
-    "description": "He seems like a nice person with no interest in harming you or others.\nHe wears normal, light clothing and has an anonymous face.\n",
+    "description": "He seems like a nice person with no interest in harming you or others.\n
+                   |He wears normal, light clothing and has an anonymous face.\n",
     "race": "human",
     "alignment": 0,
     "level": 6,
@@ -89,7 +93,8 @@
     "name": "citizen",
     "short_descr": "the citizen",
     "long_descr": "There is a citizen of Ofcol here glaring at you ... stranger!\n",
-    "description": "She seems like a nice person with no interest in harming you or others.\nShe wears a minimum of clothing and has big ... eyes.\n",
+    "description": "She seems like a nice person with no interest in harming you or others.\n
+                   |She wears a minimum of clothing and has big ... eyes.\n",
     "race": "human",
     "alignment": 0,
     "level": 5,
@@ -116,7 +121,9 @@
     "name": "worm Shudde-M'ell",
     "short_descr": "Shudde-M'ell",
     "long_descr": "Shudde-M'ell the Giant worm of G'harne is guarding his treasure.\n",
-    "description": "Shudde-M'ell is about 15 ft long and is surrounded by an evil stench,\nThe worm is the protector of the treasure of G'harne and has been so\nfor as long anyone can remember.\n",
+    "description": "Shudde-M'ell is about 15 ft long and is surrounded by an evil stench,\n
+                   |The worm is the protector of the treasure of G'harne and has been so\n
+                   |for as long anyone can remember.\n",
     "race": "human",
     "alignment": -1000,
     "level": 24,
@@ -144,7 +151,10 @@
     "name": "luxan shopkeeper",
     "short_descr": "Luxan",
     "long_descr": "Luxan the Shopkeeper is here, eager to sell you anything.\n",
-    "description": "Luxan is dressed in a strange jacket.\nHe looks like a mean trader from the outskirts of Midgaard.\nHis life is seems to be totally occupied with trading.\nHe looks very fit and capable of protecting his goods.\n",
+    "description": "Luxan is dressed in a strange jacket.\n
+                   |He looks like a mean trader from the outskirts of Midgaard.\n
+                   |His life is seems to be totally occupied with trading.\n
+                   |He looks very fit and capable of protecting his goods.\n",
     "race": "human",
     "alignment": 400,
     "level": 23,
@@ -180,7 +190,8 @@
     "name": "keeper innkeeper",
     "short_descr": "the Innkeeper",
     "long_descr": "An Innkeeper is here waiting for your order.\n",
-    "description": "The Innkeeper looks skilled in brewing different beers and mixing the\nwierdest drinks known. He also looks very big.\n",
+    "description": "The Innkeeper looks skilled in brewing different beers and mixing the\n
+                   |wierdest drinks known. He also looks very big.\n",
     "race": "human",
     "alignment": -100,
     "level": 23,
@@ -241,7 +252,9 @@
     "name": "dragon pet",
     "short_descr": "the pet dragon",
     "long_descr": "Ravan's pet dragon is bouncing around here flapping her cute wings.\n",
-    "description": "Ravan's pet dragon is about 3 ft. tall with small pointy teeth.\nThe small wings are eagerly trying to lift her from the ground,\nbut so far they haven't succeeded.\n",
+    "description": "Ravan's pet dragon is about 3 ft. tall with small pointy teeth.\n
+                   |The small wings are eagerly trying to lift her from the ground,\n
+                   |but so far they haven't succeeded.\n",
     "race": "dragon",
     "alignment": 1000,
     "level": 10,

@@ -34,7 +34,9 @@
     "name": "blob",
     "short_descr": "the blob",
     "long_descr": "The blob is here, waiting to eat you up.\n",
-    "description": "He is big, he is bad.  You don't want to fight him when he isn't chained up.\nPerhaps now would be a good time to flee from him!!!  If you don't flee, you\nwould really suffer the consequences.\n",
+    "description": "He is big, he is bad.  You don't want to fight him when he isn't chained up.\n
+                   |Perhaps now would be a good time to flee from him!!!  If you don't flee, you\n
+                   |would really suffer the consequences.\n",
     "race": "unique",
     "alignment": 0,
     "level": 5,
@@ -65,7 +67,8 @@
     "name": "monster",
     "short_descr": "the monster",
     "long_descr": "There is a monster leashed here.\n",
-    "description": "He looks mean, but you feel comfortable that you can kill him, especially since\nhe is leashed up, and you are not.\n",
+    "description": "He looks mean, but you feel comfortable that you can kill him, especially since\n
+                   |he is leashed up, and you are not.\n",
     "race": "school monster",
     "alignment": 0,
     "level": 1,
@@ -91,7 +94,8 @@
     "name": "monster wimpy",
     "short_descr": "the wimpy monster",
     "long_descr": "There is a wimpy monster leashed here.\n",
-    "description": "He looks wimpy.  You feel comfortable that you can kill him, especially since\nhe is leashed up, and you are not.\n",
+    "description": "He looks wimpy.  You feel comfortable that you can kill him, especially since\n
+                   |he is leashed up, and you are not.\n",
     "race": "school monster",
     "alignment": 0,
     "level": 1,
@@ -118,7 +122,8 @@
     "name": "monster aggressive",
     "short_descr": "the aggressive monster",
     "long_descr": "There is an aggressive monster leashed here.\n",
-    "description": "He looks mean, but you feel comfortable that you can kill him, especially since\nhe is leashed up, and you are not.\n",
+    "description": "He looks mean, but you feel comfortable that you can kill him, especially since\n
+                   |he is leashed up, and you are not.\n",
     "race": "school monster",
     "alignment": 0,
     "level": 1,
@@ -145,7 +150,8 @@
     "name": "monster wimpy aggressive",
     "short_descr": "the wimpy aggressive monster",
     "long_descr": "There is a wimpy aggressive monster leashed here.\n",
-    "description": "He looks mean, but you feel comfortable that you can kill him, especially since\nhe is leashed up, and you are not.\n",
+    "description": "He looks mean, but you feel comfortable that you can kill him, especially since\n
+                   |he is leashed up, and you are not.\n",
     "race": "school monster",
     "alignment": 0,
     "level": 1,
@@ -172,7 +178,8 @@
     "name": "big creature",
     "short_descr": "the big creature",
     "long_descr": "There is a big creature hulking over your form.\n",
-    "description": "He looks mean, and you just might have a small problem killing him, but he\nlooks like a great prize!!!\n",
+    "description": "He looks mean, and you just might have a small problem killing him, but he\n
+                   |looks like a great prize!!!\n",
     "race": "school monster",
     "alignment": 0,
     "level": 2,
@@ -569,7 +576,8 @@
     "name": "diploma beast",
     "short_descr": "the diploma beast",
     "long_descr": "The hideous diploma beast is here, holding your graduation present!\n",
-    "description": "This horrible creature is your final test for mud school.  Kill him, and the\ndiploma is yours.\n",
+    "description": "This horrible creature is your final test for mud school.  Kill him, and the\n
+                   |diploma is yours.\n",
     "race": "school monster",
     "alignment": 0,
     "level": 3,

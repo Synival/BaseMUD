@@ -3,7 +3,11 @@
     "area": "plains",
     "anum": 0,
     "name": "Path in the plains",
-    "description": "You are walking on a path situated in the rough plains.\nYou feel the strong winds blow through your hair as you study\nthe beautiful landscaping here. The path continues east, north\nand west leads to plains and you see the path towards the north\ngate of midgaard to the south.\n",
+    "description": "You are walking on a path situated in the rough plains.\n
+                   |You feel the strong winds blow through your hair as you study\n
+                   |the beautiful landscaping here. The path continues east, north\n
+                   |and west leads to plains and you see the path towards the north\n
+                   |gate of midgaard to the south.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -32,7 +36,9 @@
     "area": "plains",
     "anum": 1,
     "name": "Path in the plains",
-    "description": "You are walking on a path situated in the rough plains.\nYou feel the strong winds blow through your hair as you study\nthe beautiful landscaping here. The path continues east and west.\n",
+    "description": "You are walking on a path situated in the rough plains.\n
+                   |You feel the strong winds blow through your hair as you study\n
+                   |the beautiful landscaping here. The path continues east and west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -51,7 +57,9 @@
     "area": "plains",
     "anum": 2,
     "name": "Path in the plains",
-    "description": "You are walking on a path situated in the rough plains.\nYou feel the strong winds blow through your hair as you study\nthe beautiful landscaping here. The path continues north and west.\n",
+    "description": "You are walking on a path situated in the rough plains.\n
+                   |You feel the strong winds blow through your hair as you study\n
+                   |the beautiful landscaping here. The path continues north and west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -70,7 +78,10 @@
     "area": "plains",
     "anum": 3,
     "name": "Path in the plains",
-    "description": "You are walking on a path situated in the rough plains.\nYou feel the strong winds blow through your hair as you study\nthe beautiful landscaping here. The path leads north and south.\nTo the east and the west you have the grassy plains.\n",
+    "description": "You are walking on a path situated in the rough plains.\n
+                   |You feel the strong winds blow through your hair as you study\n
+                   |the beautiful landscaping here. The path leads north and south.\n
+                   |To the east and the west you have the grassy plains.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -99,7 +110,9 @@
     "area": "plains",
     "anum": 4,
     "name": "Path in the plains",
-    "description": "You are walking on a path situated in the rough plains.\nYou feel the strong winds blow through your hair as you study\nthe beautiful landscaping here. The Path leads north and south.\n",
+    "description": "You are walking on a path situated in the rough plains.\n
+                   |You feel the strong winds blow through your hair as you study\n
+                   |the beautiful landscaping here. The Path leads north and south.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -118,7 +131,10 @@
     "area": "plains",
     "anum": 5,
     "name": "Path in the plains",
-    "description": "You are walking on a path situated in the rough plains.\nYou feel the strong winds blow through your hair as you watch the\nbeautiful landscaping here. To the east and west you see the grassy plains.\nThe path extends into small foothills to the north and also continues south.\n",
+    "description": "You are walking on a path situated in the rough plains.\n
+                   |You feel the strong winds blow through your hair as you watch the\n
+                   |beautiful landscaping here. To the east and west you see the grassy plains.\n
+                   |The path extends into small foothills to the north and also continues south.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -147,7 +163,10 @@
     "area": "plains",
     "anum": 6,
     "name": "Path in the foothills",
-    "description": "You are on the path leading through the small foothills.\nThe wind blow through your hair as you study the beautiful\nlandscaping here. From the north you sense a certain freshness.\nThe path continues east and south. You smell freshness from north.\n",
+    "description": "You are on the path leading through the small foothills.\n
+                   |The wind blow through your hair as you study the beautiful\n
+                   |landscaping here. From the north you sense a certain freshness.\n
+                   |The path continues east and south. You smell freshness from north.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -171,7 +190,9 @@
     "area": "plains",
     "anum": 7,
     "name": "Path in the foothills",
-    "description": "You are walking on a path situated in the small foothills.\nThe winds are more than average here but it feels nice. You can follow\nthe path east or west.\n",
+    "description": "You are walking on a path situated in the small foothills.\n
+                   |The winds are more than average here but it feels nice. You can follow\n
+                   |the path east or west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -190,7 +211,9 @@
     "area": "plains",
     "anum": 8,
     "name": "Path in the foothills",
-    "description": "You are walking on a narrow path in the foothills.\nYou feel the strong winds blow through your hair as you study\nthe beautiful landscaping here. The path goes north and west.\n",
+    "description": "You are walking on a narrow path in the foothills.\n
+                   |You feel the strong winds blow through your hair as you study\n
+                   |the beautiful landscaping here. The path goes north and west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -209,7 +232,9 @@
     "area": "plains",
     "anum": 9,
     "name": "Path in the foothills",
-    "description": "You are walking on a path situated in foothills.\nTo the west you sense a certain freshness and the path continues\nsouth and east.\n",
+    "description": "You are walking on a path situated in foothills.\n
+                   |To the west you sense a certain freshness and the path continues\n
+                   |south and east.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -233,7 +258,9 @@
     "area": "plains",
     "anum": 10,
     "name": "Path in the foothills",
-    "description": "You are walking on a long path in the east-west direction.\nThe surroundings are green, vegetated foothills.\nYou are able to force your way through some dense plants to the north.\n",
+    "description": "You are walking on a long path in the east-west direction.\n
+                   |The surroundings are green, vegetated foothills.\n
+                   |You are able to force your way through some dense plants to the north.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -257,7 +284,9 @@
     "area": "plains",
     "anum": 11,
     "name": "Path in the foothills",
-    "description": "You are walking on the long, narrow path through the foothills.\nTo your east you see a T-intersection and to the west the path\ncontinues far.\n",
+    "description": "You are walking on the long, narrow path through the foothills.\n
+                   |To your east you see a T-intersection and to the west the path\n
+                   |continues far.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -276,7 +305,10 @@
     "area": "plains",
     "anum": 12,
     "name": "The path intersection",
-    "description": "You are standing on an intersection between 3 paths.\nTo the west you can follow a long, narrow path through the foothills.\nTo the north a wide path leads to the Village of Ofcol and an\nancient path leads towards the south.\n",
+    "description": "You are standing on an intersection between 3 paths.\n
+                   |To the west you can follow a long, narrow path through the foothills.\n
+                   |To the north a wide path leads to the Village of Ofcol and an\n
+                   |ancient path leads towards the south.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -300,7 +332,10 @@
     "area": "plains",
     "anum": 13,
     "name": "Road to Ofcol",
-    "description": "You are walking on a wide road with trail marks on it.  To the north\nyou see the village of Ofcol and to the south there is the T intersection.\nYou can enter the foothills west.  The foothills to your east are too\nsteep to climb.\n",
+    "description": "You are walking on a wide road with trail marks on it.  To the north\n
+                   |you see the village of Ofcol and to the south there is the T intersection.\n
+                   |You can enter the foothills west.  The foothills to your east are too\n
+                   |steep to climb.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -324,12 +359,16 @@
     "area": "plains",
     "anum": 14,
     "name": "Outside Ofcol",
-    "description": "You are standing outside the village of Ofcol.\nThe village looks very small, but still a nice and safe place to stay.\nYou may enter the city to the north or journey towards the\nT-intersection in the southern direction.\n",
+    "description": "You are standing outside the village of Ofcol.\n
+                   |The village looks very small, but still a nice and safe place to stay.\n
+                   |You may enter the city to the north or journey towards the\n
+                   |T-intersection in the southern direction.\n",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
-        "description": "You notice a sign saying : Stranger we welcome you to the\n                           peaceful city of Ofcol.\n",
+        "description": "You notice a sign saying : Stranger we welcome you to the\n
+                       |                           peaceful city of Ofcol.\n",
         "portal": "plains-north-1"
       },
       {
@@ -343,7 +382,9 @@
     "area": "plains",
     "anum": 15,
     "name": "Gallow hill",
-    "description": "You walk in the grassy plains. On this little hill you can see\ntwo gallows, with rotting human tissue hanging from the ropes.\nThere is a sign here.\n",
+    "description": "You walk in the grassy plains. On this little hill you can see\n
+                   |two gallows, with rotting human tissue hanging from the ropes.\n
+                   |There is a sign here.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -369,14 +410,23 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "The sign says:\n\n  Loyal citizens of Midgaard.  These are the earthly remains of the\n  two heretics 'Dim' and 'Gamma' of this world. Having forged them-\n  selves to immortality, they called upon themselves the anger of the\n  implementators.  Let this be a lesson too all .....\n\n                                    -- the Powers that Be.\n"
+      "description": "The sign says:\n
+                     |\n
+                     |  Loyal citizens of Midgaard.  These are the earthly remains of the\n
+                     |  two heretics 'Dim' and 'Gamma' of this world. Having forged them-\n
+                     |  selves to immortality, they called upon themselves the anger of the\n
+                     |  implementators.  Let this be a lesson too all .....\n
+                     |\n
+                     |                                    -- the Powers that Be.\n"
     }]
   }},
   {"room": {
     "area": "plains",
     "anum": 16,
     "name": "Grassy plains",
-    "description": "You walk in the grassy plains among the herbs which grow here. The wind is\nstrong and rough. Far to the north you can see the foothills and further on\nmountain peaks are visible.\n",
+    "description": "You walk in the grassy plains among the herbs which grow here. The wind is\n
+                   |strong and rough. Far to the north you can see the foothills and further on\n
+                   |mountain peaks are visible.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -403,7 +453,10 @@
     "area": "plains",
     "anum": 17,
     "name": "Grassy plains",
-    "description": "You walk in the grassy plains among the herbs which grow here. The wind is\nstrong and rough. Far to the north you can see the foothills and further on\nmountain peaks are visible. City of Midgaard is to the south but so are some\nVERY steep slopes.\n",
+    "description": "You walk in the grassy plains among the herbs which grow here. The wind is\n
+                   |strong and rough. Far to the north you can see the foothills and further on\n
+                   |mountain peaks are visible. City of Midgaard is to the south but so are some\n
+                   |VERY steep slopes.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -427,7 +480,9 @@
     "area": "plains",
     "anum": 18,
     "name": "Grassy plains",
-    "description": "You walk in the beautiful grassy plains. The wind is strong and rough.\nFar to the north you can see the foothills and further on mountain peaks\nare visible.\n",
+    "description": "You walk in the beautiful grassy plains. The wind is strong and rough.\n
+                   |Far to the north you can see the foothills and further on mountain peaks\n
+                   |are visible.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -459,13 +514,16 @@
     "area": "plains",
     "anum": 19,
     "name": "Grassy plains",
-    "description": "You walk in the grassy plains among the herbs which grow here. The wind is\nstrong and rough. To the north you can see the foothills and just behind\nmountain peaks are visible.\n",
+    "description": "You walk in the grassy plains among the herbs which grow here. The wind is\n
+                   |strong and rough. To the north you can see the foothills and just behind\n
+                   |mountain peaks are visible.\n",
     "sector_type": "hills",
     "doors": [
       {
         "dir": "north",
         "to": 30,
-        "description": "To the north, the plains extend into small foothills, behind a small hill\nyou notice something ...\n"
+        "description": "To the north, the plains extend into small foothills, behind a small hill\n
+                       |you notice something ...\n"
       },
       {
         "dir": "east",
@@ -491,7 +549,8 @@
     "area": "plains",
     "anum": 20,
     "name": "Grassy plains",
-    "description": "You walk in some grassy plains. The wind is strong and rough. To the\nnorth you can see the foothills and further on mountain peaks are visible.\n",
+    "description": "You walk in some grassy plains. The wind is strong and rough. To the\n
+                   |north you can see the foothills and further on mountain peaks are visible.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -539,7 +598,9 @@
     "area": "plains",
     "anum": 22,
     "name": "Grassy foothills",
-    "description": "You walk in the grassy foothills north of the plains. The wind is rough.\nTo the north you can see foothills and just behind them mountain peaks\nare visible.\n",
+    "description": "You walk in the grassy foothills north of the plains. The wind is rough.\n
+                   |To the north you can see foothills and just behind them mountain peaks\n
+                   |are visible.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -563,7 +624,8 @@
     "area": "plains",
     "anum": 23,
     "name": "The steep foothills",
-    "description": "You walk in the steep foothills. It is rather hard to move here.\nTo the north you can see a grassy valley with wildflowers.\n",
+    "description": "You walk in the steep foothills. It is rather hard to move here.\n
+                   |To the north you can see a grassy valley with wildflowers.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -635,7 +697,9 @@
     "area": "plains",
     "anum": 24,
     "name": "The steep foothills",
-    "description": "You are walking in the steep foothills. It is rather hard to move here.\nTo the north you can see the mountains towering over you.  Pine trees\ngrow here.\n",
+    "description": "You are walking in the steep foothills. It is rather hard to move here.\n
+                   |To the north you can see the mountains towering over you.  Pine trees\n
+                   |grow here.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -651,7 +715,8 @@
       {
         "dir": "south",
         "to": 22,
-        "description": "The foothills extend downwards to the south. In the horizon you can\nsee the City Of Midgaard.\n"
+        "description": "The foothills extend downwards to the south. In the horizon you can\n
+                       |see the City Of Midgaard.\n"
       },
       {
         "dir": "west",
@@ -666,7 +731,8 @@
       },
       {
         "keyword": "mountains",
-        "description": "The mountains seems dark and all most alive, as they contrast against\nthe sky.\n"
+        "description": "The mountains seems dark and all most alive, as they contrast against\n
+                       |the sky.\n"
       }
     ],
     "resets": [{
@@ -682,7 +748,9 @@
     "area": "plains",
     "anum": 25,
     "name": "The steep foothills",
-    "description": "You are walking in the steep foothills. It is rather hard to move here.\nFurther to the north you can see the mountains towering over you.\nSeveral pinetrees grow here.\n",
+    "description": "You are walking in the steep foothills. It is rather hard to move here.\n
+                   |Further to the north you can see the mountains towering over you.\n
+                   |Several pinetrees grow here.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -701,7 +769,9 @@
     "area": "plains",
     "anum": 26,
     "name": "The pool in the foothills",
-    "description": "You are standing by a pool in the small foothills. It is clear and cold.\nA steep slope rises up into the foothills to the north. Behind them ...\nthe mountains.\n",
+    "description": "You are standing by a pool in the small foothills. It is clear and cold.\n
+                   |A steep slope rises up into the foothills to the north. Behind them ...\n
+                   |the mountains.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -722,14 +792,17 @@
     ],
     "extra_description": [{
       "keyword": "pool",
-      "description": "The pool is crystal clear, but as you look into it you notice that\nyou can't see the bottom of it ... it must be pretty deep.\n"
+      "description": "The pool is crystal clear, but as you look into it you notice that\n
+                     |you can't see the bottom of it ... it must be pretty deep.\n"
     }]
   }},
   {"room": {
     "area": "plains",
     "anum": 27,
     "name": "The foothills",
-    "description": "You are walking in some foothills. It is rather hard to move here.\nFurther to the north you can see the mountains towering over you.\nSeveral pinetrees grow here.\n",
+    "description": "You are walking in some foothills. It is rather hard to move here.\n
+                   |Further to the north you can see the mountains towering over you.\n
+                   |Several pinetrees grow here.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -756,7 +829,9 @@
     "area": "plains",
     "anum": 30,
     "name": "In front of hut in foothills",
-    "description": "You are standing in the foothills. To the west, well hidden among the small\nfoothills and pines, you see a small hut. To the north you can see\nthe foothills, and some pineforrest. Further on mountain peaks are visible.\n",
+    "description": "You are standing in the foothills. To the west, well hidden among the small\n
+                   |foothills and pines, you see a small hut. To the north you can see\n
+                   |the foothills, and some pineforrest. Further on mountain peaks are visible.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -787,7 +862,9 @@
     "area": "plains",
     "anum": 31,
     "name": "Hermit's hut",
-    "description": "You are inside the hermit's hut. It is rather old, but serves it purpose.\nIt keeps its habitant from the rough winds and dangerous beasts of the\nplains and foothills. There is a small fireplace here.\n",
+    "description": "You are inside the hermit's hut. It is rather old, but serves it purpose.\n
+                   |It keeps its habitant from the rough winds and dangerous beasts of the\n
+                   |plains and foothills. There is a small fireplace here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -831,7 +908,9 @@
     "area": "plains",
     "anum": 32,
     "name": "The ancient path",
-    "description": "You are moving on an ancient path. The path is slightly covered with\nleaves and twitches.\nTo the north you can see the T-crossing and the path continues south.\n",
+    "description": "You are moving on an ancient path. The path is slightly covered with\n
+                   |leaves and twitches.\n
+                   |To the north you can see the T-crossing and the path continues south.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -850,7 +929,8 @@
     "area": "plains",
     "anum": 33,
     "name": "The ancient path",
-    "description": "You are standing on the ancient path which runs north and south.\nThe path is hardly visible here.\n",
+    "description": "You are standing on the ancient path which runs north and south.\n
+                   |The path is hardly visible here.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -869,7 +949,8 @@
     "area": "plains",
     "anum": 34,
     "name": "The ancient path",
-    "description": "You are standing on the ancient path which runs north and south.\nThe path is hardly visible here.\n",
+    "description": "You are standing on the ancient path which runs north and south.\n
+                   |The path is hardly visible here.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -896,7 +977,8 @@
     "area": "plains",
     "anum": 35,
     "name": "The ancient path",
-    "description": "The path runs north and east from here.  You notice some markers placed\nalong the side of the path.\n",
+    "description": "The path runs north and east from here.  You notice some markers placed\n
+                   |along the side of the path.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -912,14 +994,16 @@
     ],
     "extra_description": [{
       "keyword": "markers",
-      "description": "The markers seems like normal stones, but the way they are\narranged makes you think there is something special about them.\n"
+      "description": "The markers seems like normal stones, but the way they are\n
+                     |arranged makes you think there is something special about them.\n"
     }]
   }},
   {"room": {
     "area": "plains",
     "anum": 36,
     "name": "The wooden bridge",
-    "description": "You have stepped upon a wooden bridge. It looks old but safe to cross.\nIt is made of a wood you haven't seen before.\n",
+    "description": "You have stepped upon a wooden bridge. It looks old but safe to cross.\n
+                   |It is made of a wood you haven't seen before.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -935,14 +1019,19 @@
     ],
     "extra_description": [{
       "keyword": "rock formation formations",
-      "description": "The rock formations are made of 7 huge, monolith like stones, placed\nin a symbolic circle.\nYou notice it's possible to enter the ring.\n"
+      "description": "The rock formations are made of 7 huge, monolith like stones, placed\n
+                     |in a symbolic circle.\n
+                     |You notice it's possible to enter the ring.\n"
     }]
   }},
   {"room": {
     "area": "plains",
     "anum": 37,
     "name": "The ancient path",
-    "description": "You find yourself located between the bridge and the rock formations.\nAs you approach the formations you begin to realize the true size of\nthem, about 15 feet tall and almost perfect rectangular shape.\nYou feel impressed with the awesome sight.\n",
+    "description": "You find yourself located between the bridge and the rock formations.\n
+                   |As you approach the formations you begin to realize the true size of\n
+                   |them, about 15 feet tall and almost perfect rectangular shape.\n
+                   |You feel impressed with the awesome sight.\n",
     "sector_type": "forest",
     "doors": [
       {
@@ -958,14 +1047,17 @@
     ],
     "extra_description": [{
       "keyword": "rock formation formations",
-      "description": "The rock formations are made of seven huge monolith placed in a circle.\nYou notice it's possible to enter the ring.\n"
+      "description": "The rock formations are made of seven huge monolith placed in a circle.\n
+                     |You notice it's possible to enter the ring.\n"
     }]
   }},
   {"room": {
     "area": "plains",
     "anum": 38,
     "name": "Grassy plains",
-    "description": "You walk in the grassy plains among the herbs which grow here. The wind is\nstrong and rough. Far to the north you can see the foothills and further on\nmountain peaks are visible.\n",
+    "description": "You walk in the grassy plains among the herbs which grow here. The wind is\n
+                   |strong and rough. Far to the north you can see the foothills and further on\n
+                   |mountain peaks are visible.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -992,7 +1084,10 @@
     "area": "plains",
     "anum": 39,
     "name": "The Stones of G'harne",
-    "description": "You are in the center of 7, 15 ft tall monolith like black stones.\nIn the center of the ring formed by the monolith you can't help\nnoticing a big sacrifice altar. The ground is covered with dirt, but the\naltar shows no sign of such. West of here is the ancient path.\n",
+    "description": "You are in the center of 7, 15 ft tall monolith like black stones.\n
+                   |In the center of the ring formed by the monolith you can't help\n
+                   |noticing a big sacrifice altar. The ground is covered with dirt, but the\n
+                   |altar shows no sign of such. West of here is the ancient path.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1009,15 +1104,21 @@
     "extra_description": [
       {
         "keyword": "death rituals worms engraving picture",
-        "description": "The pictures are depicting evil rituals.\nYou see druids pouring blood over herbs on an altar like this one.\nThere are people calling giant worms into existence with dark spells.\n"
+        "description": "The pictures are depicting evil rituals.\n
+                       |You see druids pouring blood over herbs on an altar like this one.\n
+                       |There are people calling giant worms into existence with dark spells.\n"
       },
       {
         "keyword": "altar sacrifice",
-        "description": "You move closer to examine the sacrifice altar of G'harne.\nThe altar is about 3 feet high, 10 feet long and 4 feet wide.\nIt has engraved pictures of death rituals and horrifying worms.\n"
+        "description": "You move closer to examine the sacrifice altar of G'harne.\n
+                       |The altar is about 3 feet high, 10 feet long and 4 feet wide.\n
+                       |It has engraved pictures of death rituals and horrifying worms.\n"
       },
       {
         "keyword": "stones g'harne monolith",
-        "description": "The stones of G'harne tower fifteen feet over you.\nThe giant stones are made of a material you haven't seen before.\nIt resembles black marble, but somehow feels different.\n"
+        "description": "The stones of G'harne tower fifteen feet over you.\n
+                       |The giant stones are made of a material you haven't seen before.\n
+                       |It resembles black marble, but somehow feels different.\n"
       }
     ]
   }},
@@ -1025,7 +1126,10 @@
     "area": "plains",
     "anum": 40,
     "name": "Dark smelly tunnels",
-    "description": "You are standing in a gloomy tunnel leading south and west, right under\nthe altar of G'harne.  The walls are covered with a smelly slime and small\nrotting pieces of a meat like substance, fills the air with an unbearable\nstench.  You might be able to force your way up into fresh air from here.\n",
+    "description": "You are standing in a gloomy tunnel leading south and west, right under\n
+                   |the altar of G'harne.  The walls are covered with a smelly slime and small\n
+                   |rotting pieces of a meat like substance, fills the air with an unbearable\n
+                   |stench.  You might be able to force your way up into fresh air from here.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors unused_room_6",
     "doors": [
@@ -1045,14 +1149,17 @@
     ],
     "extra_description": [{
       "keyword": "meat rotting slime substance",
-      "description": "You try to examine the substance closer, but must refrain from this\nas all you really want to do is puke.\nYou puke.\n"
+      "description": "You try to examine the substance closer, but must refrain from this\n
+                     |as all you really want to do is puke.\n
+                     |You puke.\n"
     }]
   }},
   {"room": {
     "area": "plains",
     "anum": 41,
     "name": "Dead end of tunnel",
-    "description": "The tunnel comes to an abrupt end here. It simply looks like it\nhasn't been excavated further.  North of here the tunnel makes a turn east.\n",
+    "description": "The tunnel comes to an abrupt end here. It simply looks like it\n
+                   |hasn't been excavated further.  North of here the tunnel makes a turn east.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors unused_room_6",
     "doors": [{
@@ -1064,7 +1171,9 @@
     "area": "plains",
     "anum": 42,
     "name": "Dark smelly tunnels",
-    "description": "You are standing in a gloomy tunnel leading east and west.\nThe walls are covered with a smelly slime and small rotting pieces of a\nmeat like substance, fills the air with an unbearable stench.\n",
+    "description": "You are standing in a gloomy tunnel leading east and west.\n
+                   |The walls are covered with a smelly slime and small rotting pieces of a\n
+                   |meat like substance, fills the air with an unbearable stench.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors unused_room_6",
     "doors": [
@@ -1081,14 +1190,18 @@
     ],
     "extra_description": [{
       "keyword": "meat rotting slime substance",
-      "description": "You try to examine the substance closer, but must refrain from this\nas all you really want to do is puke.\nYou puke.\n"
+      "description": "You try to examine the substance closer, but must refrain from this\n
+                     |as all you really want to do is puke.\n
+                     |You puke.\n"
     }]
   }},
   {"room": {
     "area": "plains",
     "anum": 43,
     "name": "Dark smelly tunnels",
-    "description": "You are standing in a small smelly tunnel under the plains.\nThe smell is growing stronger to the west, so is the density of the\nslime and other undeterminable substances ...\n",
+    "description": "You are standing in a small smelly tunnel under the plains.\n
+                   |The smell is growing stronger to the west, so is the density of the\n
+                   |slime and other undeterminable substances ...\n",
     "sector_type": "inside",
     "room_flags": "unused_room_6",
     "doors": [
@@ -1112,7 +1225,9 @@
     "area": "plains",
     "anum": 44,
     "name": "The Hall of G'harne",
-    "description": "You stand in the hall of G'harne. The walls are dressed with strange\ncarving, symbolizing human sacrifice and people worshipping giant worms.\nDisgusting slime and gore are also very dominant in your view of this room.\n",
+    "description": "You stand in the hall of G'harne. The walls are dressed with strange\n
+                   |carving, symbolizing human sacrifice and people worshipping giant worms.\n
+                   |Disgusting slime and gore are also very dominant in your view of this room.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors unused_room_6",
     "doors": [{
@@ -1153,7 +1268,14 @@
     "area": "plains",
     "anum": 45,
     "name": "Steep slope",
-    "description": "You try to climb down the slope.\n>\nYou slip!\nYou fall and tumble.\nYou hit your head HARD.\nYou die.\n\nYou've fallen, and you can't get up!\n",
+    "description": "You try to climb down the slope.\n
+                   |>\n
+                   |You slip!\n
+                   |You fall and tumble.\n
+                   |You hit your head HARD.\n
+                   |You die.\n
+                   |\n
+                   |You've fallen, and you can't get up!\n",
     "sector_type": "field",
     "room_flags": "no_mob"
   }}

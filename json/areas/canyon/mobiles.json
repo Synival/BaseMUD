@@ -201,7 +201,9 @@
     "name": "earth elemental ruler",
     "short_descr": "the Earth Ruler",
     "long_descr": "The Ruler of the earth elementals.\n",
-    "description": "He looks as old as the earth itself.  He seems to know all the \nsecrets and knowledge of the Earth.  You can't really tell where \nhe begins and the rock wall ends.\n",
+    "description": "He looks as old as the earth itself.  He seems to know all the \n
+                   |secrets and knowledge of the Earth.  You can't really tell where \n
+                   |he begins and the rock wall ends.\n",
     "race": "human",
     "alignment": 0,
     "level": 30,
@@ -288,7 +290,8 @@
     "name": "lightning elemental ruler",
     "short_descr": "The Lightning Ruler",
     "long_descr": "The Ruler of the lightning elementals.\n",
-    "description": "As you examine him there is a blinding flash of light and a deafening boom!\nYou rub your eyes and look and the ruler is there grinning at you.\n",
+    "description": "As you examine him there is a blinding flash of light and a deafening boom!\n
+                   |You rub your eyes and look and the ruler is there grinning at you.\n",
     "race": "human",
     "alignment": 0,
     "level": 30,
@@ -317,7 +320,8 @@
     "name": "water elemental ruler",
     "short_descr": "The Water Ruler",
     "long_descr": "The Ruler of the water elementals.\n",
-    "description": "As you look at him he changes to mist, which swirls around you.  Just\nas you get scared, it reforms in elemental form.\n",
+    "description": "As you look at him he changes to mist, which swirls around you.  Just\n
+                   |as you get scared, it reforms in elemental form.\n",
     "race": "water fowl",
     "alignment": 0,
     "level": 30,
@@ -676,7 +680,8 @@
     "name": "blue flame",
     "short_descr": "the Blue Flame",
     "long_descr": "The Blue Flame burns mysteriously here.\n",
-    "description": "As you look you see what seems to be a face and almost a \nhumanoid figure somehow trapped in the fire.\n",
+    "description": "As you look you see what seems to be a face and almost a \n
+                   |humanoid figure somehow trapped in the fire.\n",
     "race": "human",
     "alignment": -100,
     "level": 26,
@@ -817,7 +822,8 @@
     "name": "magician",
     "short_descr": "an elemental magician",
     "long_descr": "An elemental magician seeks magical stones for a spell.\n",
-    "description": "The elemental magician has come here in search of the fabled\nStone of Surrender which can be used to render opponents senseless.\n",
+    "description": "The elemental magician has come here in search of the fabled\n
+                   |Stone of Surrender which can be used to render opponents senseless.\n",
     "race": "human",
     "alignment": -50,
     "level": 17,
@@ -846,7 +852,8 @@
     "name": "rainbow warrior",
     "short_descr": "a rainbow warrior",
     "long_descr": "A warrior of the Rainbow Cult swears his loyalty.\n",
-    "description": "The Rainbow Cult has received special powers for their service to \nthe elemental forces.\n",
+    "description": "The Rainbow Cult has received special powers for their service to \n
+                   |the elemental forces.\n",
     "race": "human",
     "alignment": 150,
     "level": 18,
@@ -874,7 +881,9 @@
     "name": "illusionist",
     "short_descr": "an illusionist",
     "long_descr": "The illusionist seeks the aid of the elemental forces.\n",
-    "description": "He seeks their aid for a powerful new spell of deception.\n\n<wielded>            The Sword of Illusions\n",
+    "description": "He seeks their aid for a powerful new spell of deception.\n
+                   |\n
+                   |<wielded>            The Sword of Illusions\n",
     "race": "human",
     "alignment": -50,
     "level": 12,

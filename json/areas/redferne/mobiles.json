@@ -4,7 +4,9 @@
   "name": "grand knight paladin",
   "short_descr": "the Grand Knight of paladins",
   "long_descr": "The Grand Knight is standing here, waiting for someone to help.\n",
-  "description": "The Knight is standing here, smiling at you. He is dressed all in\nwhite, blue and silver. He looks VERY strong, as he stands here, ready to\nhelp the innocent.\n",
+  "description": "The Knight is standing here, smiling at you. He is dressed all in\n
+                 |white, blue and silver. He looks VERY strong, as he stands here, ready to\n
+                 |help the innocent.\n",
   "race": "human",
   "alignment": 1000,
   "level": 29,

@@ -5,7 +5,8 @@
     "name": "asp snake",
     "short_descr": "A horrible asp",
     "long_descr": "A small, poisonous asp slithers over your feet.\n",
-    "description": "The asp is a small, smooth-scaled snake the color of worn pottery.\nThe poison bite of this snake has felled many a mighty pharoah.\n",
+    "description": "The asp is a small, smooth-scaled snake the color of worn pottery.\n
+                   |The poison bite of this snake has felled many a mighty pharoah.\n",
     "race": "human",
     "alignment": 0,
     "level": 5,
@@ -33,7 +34,8 @@
     "name": "cobra snake",
     "short_descr": "A hooded cobra snake",
     "long_descr": "A cobra snake rears up and opens its fearsome hood.\n",
-    "description": "The cobra snake waves back and forth before you, its hood displaying brilliant\ncolors designed to serve notice to its prey that it is about to strike.\n",
+    "description": "The cobra snake waves back and forth before you, its hood displaying brilliant\n
+                   |colors designed to serve notice to its prey that it is about to strike.\n",
     "race": "human",
     "alignment": 0,
     "level": 7,
@@ -61,7 +63,8 @@
     "name": "mongoose",
     "short_descr": "A wily little mongoose",
     "long_descr": "A small mongoose slinks along the ground, hunting snakes.\n",
-    "description": "The mongoose is a wily rodent, a quick hunter of nasty poisonous snakes.\nShe sniffs you and appears to be looking for food in your hand.\n",
+    "description": "The mongoose is a wily rodent, a quick hunter of nasty poisonous snakes.\n
+                   |She sniffs you and appears to be looking for food in your hand.\n",
     "race": "human",
     "alignment": 10,
     "level": 11,
@@ -89,7 +92,9 @@
     "name": "pyramid watcher",
     "short_descr": "A pyramid watcher",
     "long_descr": "The pyramid watcher protects the tombs from intruders.\n",
-    "description": "The pyramid watcher has made a pledge to destroy any would-be looters of\nthe tombs of the pharoahs.  He is clad from head to foot in utilitarian\nsand-colored clothing.\n",
+    "description": "The pyramid watcher has made a pledge to destroy any would-be looters of\n
+                   |the tombs of the pharoahs.  He is clad from head to foot in utilitarian\n
+                   |sand-colored clothing.\n",
     "race": "human",
     "alignment": 250,
     "level": 8,
@@ -145,7 +150,10 @@
     "name": "ali baba thief",
     "short_descr": "Ali Baba",
     "long_descr": "Ali Baba is here, hunting for the pharoah's tomb.\n",
-    "description": "You see a tall, full-bearded man with a mischevious glint in his eye.  Ali Baba\nhas made his life from stealing things from others, including many items stolen\nrecently from under the nose of the hapless guardians of this pyramid.  Someday\nhe might get caught, but not today...\n",
+    "description": "You see a tall, full-bearded man with a mischevious glint in his eye.  Ali Baba\n
+                   |has made his life from stealing things from others, including many items stolen\n
+                   |recently from under the nose of the hapless guardians of this pyramid.  Someday\n
+                   |he might get caught, but not today...\n",
     "race": "human",
     "alignment": -300,
     "level": 18,
@@ -174,7 +182,9 @@
     "name": "magic carpet",
     "short_descr": "The magic carpet",
     "long_descr": "A small woven carpet lies under your feet.\n",
-    "description": "The carpet is simply beautiful, made from intricately woven silken material.  \nIt seems to rise up at the touch of your feet.  Wait, it is rising, a few feet\nabove the ground!  In fact, it seems to be ALIVE!\n",
+    "description": "The carpet is simply beautiful, made from intricately woven silken material.  \n
+                   |It seems to rise up at the touch of your feet.  Wait, it is rising, a few feet\n
+                   |above the ground!  In fact, it seems to be ALIVE!\n",
     "race": "human",
     "alignment": 500,
     "level": 9,
@@ -202,7 +212,8 @@
     "name": "mummy corpse",
     "short_descr": "A mummy",
     "long_descr": "A mummy reaches for you, disturbed by your presence.\n",
-    "description": "You only see the disfigured, rotting features of decaying human flesh,\nanimated by the distempered spirit of a long-deceased person.\n",
+    "description": "You only see the disfigured, rotting features of decaying human flesh,\n
+                   |animated by the distempered spirit of a long-deceased person.\n",
     "race": "human",
     "alignment": -600,
     "level": 12,
@@ -230,7 +241,9 @@
     "name": "sand man sandman",
     "short_descr": "A sandman",
     "long_descr": "A sandman rises up from the desert floor.\n",
-    "description": "The sandman is exactly that -- some sort of strange being formed from the sands\nof the desert floor.  It seems quite large and strong and at home in the heat\nand sandy winds.\n",
+    "description": "The sandman is exactly that -- some sort of strange being formed from the sands\n
+                   |of the desert floor.  It seems quite large and strong and at home in the heat\n
+                   |and sandy winds.\n",
     "race": "human",
     "alignment": 0,
     "level": 14,
@@ -258,7 +271,8 @@
     "name": "efreeti efreet",
     "short_descr": "The efreeti",
     "long_descr": "The efreeti stands here, sheathed in a column of fire.\n",
-    "description": "The efreeti is a mighty being formed from living fire.  He gazes down at you \nwith disdain and scorn, arms folded across his mighty chest.\n",
+    "description": "The efreeti is a mighty being formed from living fire.  He gazes down at you \n
+                   |with disdain and scorn, arms folded across his mighty chest.\n",
     "race": "human",
     "alignment": -600,
     "level": 20,
@@ -287,7 +301,9 @@
     "name": "caryatid column",
     "short_descr": "A caryatid",
     "long_descr": "A sandstone column stands here, carved into a feminine figure.\n",
-    "description": "The column has been carved into a set of four shapely women, each facing\noutward into the room.  The sandstone of the caryatid is smooth with age,\nbut you can still make out a deadly stone sword in the hands of each figure.\n",
+    "description": "The column has been carved into a set of four shapely women, each facing\n
+                   |outward into the room.  The sandstone of the caryatid is smooth with age,\n
+                   |but you can still make out a deadly stone sword in the hands of each figure.\n",
     "race": "human",
     "alignment": 0,
     "level": 24,
@@ -315,7 +331,10 @@
     "name": "djinn genie",
     "short_descr": "The djinn",
     "long_descr": "The djinn issues forth from the confines of a small lamp.\n",
-    "description": "The djinn is a mighty being formed from the air itself and frequently\nimprisoned in a small lamp, used to do the bidding of those who find him.\nHe smiles down at you congenially, arms folded across his blue-tinged \nskin, and strokes his goatee.\n",
+    "description": "The djinn is a mighty being formed from the air itself and frequently\n
+                   |imprisoned in a small lamp, used to do the bidding of those who find him.\n
+                   |He smiles down at you congenially, arms folded across his blue-tinged \n
+                   |skin, and strokes his goatee.\n",
     "race": "human",
     "alignment": 600,
     "level": 28,
@@ -344,7 +363,10 @@
     "name": "hieracosphinx sphinx",
     "short_descr": "A hieracosphinx",
     "long_descr": "A hieracosphinx looks at you cunningly.\n",
-    "description": "The hieracosphinx are cunning, small, but nasty creatures, having the heads\nof birds, mighty wingspans, and a full set of four paws to rend their victims\nto pieces.  They tend to be quite jealous of the sharper wits of their older\ncousins.\n",
+    "description": "The hieracosphinx are cunning, small, but nasty creatures, having the heads\n
+                   |of birds, mighty wingspans, and a full set of four paws to rend their victims\n
+                   |to pieces.  They tend to be quite jealous of the sharper wits of their older\n
+                   |cousins.\n",
     "race": "human",
     "alignment": -200,
     "level": 15,
@@ -372,7 +394,10 @@
     "name": "gynosphinx sphinx",
     "short_descr": "A gynosphinx",
     "long_descr": "A gynosphinx sits here, befuddled by a riddle.\n",
-    "description": "The gynosphinx is a crafty but gentle creature, having the body of a\nbeautiful dark-skinned woman from the waist up, a feathery set of wings\nand the hind legs of a mighty cat.  Right now she is confused, having \njust heard a puzzling riddle from a cousin criosphinx.\n",
+    "description": "The gynosphinx is a crafty but gentle creature, having the body of a\n
+                   |beautiful dark-skinned woman from the waist up, a feathery set of wings\n
+                   |and the hind legs of a mighty cat.  Right now she is confused, having \n
+                   |just heard a puzzling riddle from a cousin criosphinx.\n",
     "race": "human",
     "alignment": 100,
     "level": 19,
@@ -401,7 +426,9 @@
     "name": "criosphinx sphinx",
     "short_descr": "A criosphinx",
     "long_descr": "A criosphinx calmly watches you.\n",
-    "description": "The criosphinx is a calm and friendly creature, having the head of a ram atop\nthe body of a well-furred feline with eagle-like wings.  He delights in riddles,\nand in poking occasional fun at his easily confused lesser cousins.\n",
+    "description": "The criosphinx is a calm and friendly creature, having the head of a ram atop\n
+                   |the body of a well-furred feline with eagle-like wings.  He delights in riddles,\n
+                   |and in poking occasional fun at his easily confused lesser cousins.\n",
     "race": "human",
     "alignment": 300,
     "level": 23,
@@ -430,7 +457,10 @@
     "name": "androsphinx sphinx",
     "short_descr": "An androsphinx",
     "long_descr": "A mighty androsphinx tosses its lion-like mane.\n",
-    "description": "The mighty androsphinx is a huge creature, with the body of a lion whose\nface  is quite man-like, perhaps even handsome, and a massive pair of feathered\nwings.  Tales are told of pharoahs that were rendered permanently deaf by the \nmighty roar of this sphinx.\n",
+    "description": "The mighty androsphinx is a huge creature, with the body of a lion whose\n
+                   |face  is quite man-like, perhaps even handsome, and a massive pair of feathered\n
+                   |wings.  Tales are told of pharoahs that were rendered permanently deaf by the \n
+                   |mighty roar of this sphinx.\n",
     "race": "human",
     "alignment": 400,
     "level": 27,
@@ -458,8 +488,12 @@
     "anum": 16,
     "name": "great sphinx",
     "short_descr": "The great sphinx",
-    "long_descr": "A mighty sphinx rests here in the sand, dormant now for centuries.\nThe great sphinx appears to be indestructible!\n",
-    "description": "The great sphinx towers tens of feet above you, resting here in a state of \ndormancy.  It has become almost indistinguishable from the sand that surrounds\nit, although you can still make out the features of the handsome face that once\nadvised many rulers.\n",
+    "long_descr": "A mighty sphinx rests here in the sand, dormant now for centuries.\n
+                  |The great sphinx appears to be indestructible!\n",
+    "description": "The great sphinx towers tens of feet above you, resting here in a state of \n
+                   |dormancy.  It has become almost indistinguishable from the sand that surrounds\n
+                   |it, although you can still make out the features of the handsome face that once\n
+                   |advised many rulers.\n",
     "race": "human",
     "alignment": 500,
     "level": 41,
@@ -488,7 +522,11 @@
     "name": "ramses mummy",
     "short_descr": "Ramses the Damned",
     "long_descr": "You have awakened the mighty servant to the pharoahs, Ramses.\n",
-    "description": "As your light spills over his face and body, you can see his features begin\nto fill out, swell, and harden, until an apparently healthy man stands before\nyou, clad only in the raiments he was left in when he last slept.  His hair is\na soft black, his skin a deep chocolate, and his tall frame is totally still, \nhis chest not even moving to breathe.\n",
+    "description": "As your light spills over his face and body, you can see his features begin\n
+                   |to fill out, swell, and harden, until an apparently healthy man stands before\n
+                   |you, clad only in the raiments he was left in when he last slept.  His hair is\n
+                   |a soft black, his skin a deep chocolate, and his tall frame is totally still, \n
+                   |his chest not even moving to breathe.\n",
     "race": "human",
     "alignment": 150,
     "level": 38,

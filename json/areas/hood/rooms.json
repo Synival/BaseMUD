@@ -3,7 +3,13 @@
     "area": "hood",
     "anum": 1,
     "name": "A Dark Alleyway",
-    "description": "The walls of the alleyway have been spray-painted over many times\nover the years.  One section of graffiti actually looks legible,\nit says:    This section has been designed for levels 5 through 10\n            If you are above level 15 please don't expect much fun.\n            If you are below level 5 enter at your own risk.\nAnother section of graffiti says \"Raff Rules!\"\nThere is a boulevard to the east and Emerald Avenue is visible to the west.\n",
+    "description": "The walls of the alleyway have been spray-painted over many times\n
+                   |over the years.  One section of graffiti actually looks legible,\n
+                   |it says:    This section has been designed for levels 5 through 10\n
+                   |            If you are above level 15 please don't expect much fun.\n
+                   |            If you are below level 5 enter at your own risk.\n
+                   |Another section of graffiti says \"Raff Rules!\"\n
+                   |There is a boulevard to the east and Emerald Avenue is visible to the west.\n",
     "sector_type": "city",
     "room_flags": "dark no_mob",
     "doors": [
@@ -22,7 +28,12 @@
     "area": "hood",
     "anum": 2,
     "name": "Beginning of White Dragon Boulevard",
-    "description": "This section of town has been overrun by the Troll gang.  Even the\npolice stay out of here for fear of being brutalized.  This was once\na nice lower-middleclass neighborhood, but know the gangs run the\nstreets.  All the shops and homes have been boarded up and abandoned.\nAn alleyway is to the west and the street continues east.  An over-\ngrown lot is to the south.\n",
+    "description": "This section of town has been overrun by the Troll gang.  Even the\n
+                   |police stay out of here for fear of being brutalized.  This was once\n
+                   |a nice lower-middleclass neighborhood, but know the gangs run the\n
+                   |streets.  All the shops and homes have been boarded up and abandoned.\n
+                   |An alleyway is to the west and the street continues east.  An over-\n
+                   |grown lot is to the south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -85,7 +96,10 @@
     "area": "hood",
     "anum": 3,
     "name": "Along White Dragon Boulevard",
-    "description": "Everywhere you look you see signs of recent violence.  Patches of blood\nlie everywhere and broken sticks and abandoned knifes are strewn here\nand there.  An over-grown lot is to the south.  White Dragon Boulevard leads\neast and west.\n",
+    "description": "Everywhere you look you see signs of recent violence.  Patches of blood\n
+                   |lie everywhere and broken sticks and abandoned knifes are strewn here\n
+                   |and there.  An over-grown lot is to the south.  White Dragon Boulevard leads\n
+                   |east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -124,7 +138,9 @@
     "area": "hood",
     "anum": 4,
     "name": "White Dragon Boulevard at Armory",
-    "description": "Only gang members dare wander the streets here.\nWhat used to be the armory lies to the south.  White Dragon Boulevard\nleads east and west.\n",
+    "description": "Only gang members dare wander the streets here.\n
+                   |What used to be the armory lies to the south.  White Dragon Boulevard\n
+                   |leads east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -163,7 +179,9 @@
     "area": "hood",
     "anum": 5,
     "name": "White Dragon Blvd.",
-    "description": "Black Dragon Avenue used to run south from here but the way has been\nblocked by the toppling of a building into the street.  White Dragon\nboulevard continues east and west.\n",
+    "description": "Black Dragon Avenue used to run south from here but the way has been\n
+                   |blocked by the toppling of a building into the street.  White Dragon\n
+                   |boulevard continues east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -198,7 +216,9 @@
     "area": "hood",
     "anum": 6,
     "name": "Corner of Ice and White Dragon",
-    "description": "Ice Dragon Way leads south from here.  It used to run the whole length\nof the neighborhood and way lined with beautiful crystal sculptures.\nWhite Dragon boulevard leads east and west from here.\n",
+    "description": "Ice Dragon Way leads south from here.  It used to run the whole length\n
+                   |of the neighborhood and way lined with beautiful crystal sculptures.\n
+                   |White Dragon boulevard leads east and west from here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -237,7 +257,9 @@
     "area": "hood",
     "anum": 7,
     "name": "White Dragon Boulevard",
-    "description": "A once majestic inn with a white marble facade lies to the south.\nUnfortunately, it has fallen into disrepair and decay.  You can continue\neast or west.\n",
+    "description": "A once majestic inn with a white marble facade lies to the south.\n
+                   |Unfortunately, it has fallen into disrepair and decay.  You can continue\n
+                   |east or west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -272,7 +294,8 @@
     "area": "hood",
     "anum": 8,
     "name": "Corner of Bronze and White Dragon",
-    "description": "This is the north-east corner of the neighborhood. White Dragon\nboulevard heads west and Bronze Dragon street heads south.\n",
+    "description": "This is the north-east corner of the neighborhood. White Dragon\n
+                   |boulevard heads west and Bronze Dragon street heads south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -339,7 +362,9 @@
     "area": "hood",
     "anum": 9,
     "name": "An over-grown lot",
-    "description": "A huge building was going to be built here, but they gave the\nproject up when violence took over the town.  Now it is just a\nweed-strewn plot of land.  The lot continues east and there is a road north.\n",
+    "description": "A huge building was going to be built here, but they gave the\n
+                   |project up when violence took over the town.  Now it is just a\n
+                   |weed-strewn plot of land.  The lot continues east and there is a road north.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -374,7 +399,10 @@
     "area": "hood",
     "anum": 10,
     "name": "East end of an over-grown plot of land",
-    "description": "This was planned to be a park, but the developer was scared out\nof town by the gang.  Now it is just a dusty square of land. The\npark was started to the south.  The lot continues west and there\nis a street to the north.\n",
+    "description": "This was planned to be a park, but the developer was scared out\n
+                   |of town by the gang.  Now it is just a dusty square of land. The\n
+                   |park was started to the south.  The lot continues west and there\n
+                   |is a street to the north.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -413,7 +441,10 @@
     "area": "hood",
     "anum": 11,
     "name": "Armory",
-    "description": "Well actually, this is what USED to be the armory.  The equipment has\nall been stolen or broken beyond repair. The back wall of the\nbuilding has been bashed down, allowing you to go south.  White\nDragon Boulevard is north.\n",
+    "description": "Well actually, this is what USED to be the armory.  The equipment has\n
+                   |all been stolen or broken beyond repair. The back wall of the\n
+                   |building has been bashed down, allowing you to go south.  White\n
+                   |Dragon Boulevard is north.\n",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -449,7 +480,8 @@
     "area": "hood",
     "anum": 12,
     "name": "A Bend in the Way",
-    "description": "Ice Dragon Way bends east and south from here.  You notice a lot of\nblood dried into the dirt here.\n",
+    "description": "Ice Dragon Way bends east and south from here.  You notice a lot of\n
+                   |blood dried into the dirt here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -484,7 +516,9 @@
     "area": "hood",
     "anum": 13,
     "name": "Ice Dragon Bend",
-    "description": "Ice Dragon Way bends to the north and west here.  There are footprints\nhere.  They seem to indicate a large struggle took place here\nrecently.  What used to be the town Magic shop is to the east.\n",
+    "description": "Ice Dragon Way bends to the north and west here.  There are footprints\n
+                   |here.  They seem to indicate a large struggle took place here\n
+                   |recently.  What used to be the town Magic shop is to the east.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -523,7 +557,10 @@
     "area": "hood",
     "anum": 14,
     "name": "The remains of the magic shop",
-    "description": "The wizard was tough but he couldn't take on 50 of them at once.  So he\ndied and they took all his stuff and used it on their fellowmen.\nThe front door leads west back out to the street.  There is a back\ndoor leading to another street to the east.\n",
+    "description": "The wizard was tough but he couldn't take on 50 of them at once.  So he\n
+                   |died and they took all his stuff and used it on their fellowmen.\n
+                   |The front door leads west back out to the street.  There is a back\n
+                   |door leading to another street to the east.\n",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -615,7 +652,8 @@
     "area": "hood",
     "anum": 15,
     "name": "Bronze Dragon Street at wizard's back door",
-    "description": "Bronze Dragon street goes north and south.  The back door to what\nremains of the magic shop is west.\n",
+    "description": "Bronze Dragon street goes north and south.  The back door to what\n
+                   |remains of the magic shop is west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -654,7 +692,11 @@
     "area": "hood",
     "anum": 16,
     "name": "Dracolich Plaza",
-    "description": "They began construction of a pleasant plaza here, though you wouldn't\nhave known it if I hadn't told you.  It has been renamed in honor\nof the Dragon gang's idol, the Dracolich.  It has become sort of a\ntraining ground.  There is a short cut to the east and an overgrown\nlot of land to the north.\n",
+    "description": "They began construction of a pleasant plaza here, though you wouldn't\n
+                   |have known it if I hadn't told you.  It has been renamed in honor\n
+                   |of the Dragon gang's idol, the Dracolich.  It has become sort of a\n
+                   |training ground.  There is a short cut to the east and an overgrown\n
+                   |lot of land to the north.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -721,7 +763,8 @@
     "area": "hood",
     "anum": 17,
     "name": "Shortcut",
-    "description": "This is a shortcut between Dracolich Plaza and the center of town.\nDracolich Plaza is to the west and the shortcut continues south.\n",
+    "description": "This is a shortcut between Dracolich Plaza and the center of town.\n
+                   |Dracolich Plaza is to the west and the shortcut continues south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -760,7 +803,9 @@
     "area": "hood",
     "anum": 18,
     "name": "Ice Dragon Way",
-    "description": "Several smashed crystal statues line the Way here.  You begin to wonder\nwho smashed them, and with what.  The Way bends out of sight to the north\nand continues south.  To the east is a courtyard.\n",
+    "description": "Several smashed crystal statues line the Way here.  You begin to wonder\n
+                   |who smashed them, and with what.  The Way bends out of sight to the north\n
+                   |and continues south.  To the east is a courtyard.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -799,7 +844,10 @@
     "area": "hood",
     "anum": 19,
     "name": "Courtyard North",
-    "description": "Once it was the courtyard of a beautiful building complex.  But alas,\nsomeone forgot to water the plants and they all died.  Then again,\nyou wonder how many people have died here too.  The courtyard extends\nto the south and there is a road to the west.\n",
+    "description": "Once it was the courtyard of a beautiful building complex.  But alas,\n
+                   |someone forgot to water the plants and they all died.  Then again,\n
+                   |you wonder how many people have died here too.  The courtyard extends\n
+                   |to the south and there is a road to the west.\n",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -835,7 +883,8 @@
     "area": "hood",
     "anum": 20,
     "name": "Bronze Dragon Street",
-    "description": "There used to be a gate out to the east here which led to the rest of Midgaard.\nThe gate has rusted permanently shut.  The street goes north and south.\n",
+    "description": "There used to be a gate out to the east here which led to the rest of Midgaard.\n
+                   |The gate has rusted permanently shut.  The street goes north and south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -905,7 +954,9 @@
     "area": "hood",
     "anum": 22,
     "name": "Ice Dragon Way",
-    "description": "The Way continues north and intersects with Yellow Dragon Avenue\nto the south.  For some reason, you somehow realize that there is a\nshortcut to the west that leads to Dracolich Plaza.\n",
+    "description": "The Way continues north and intersects with Yellow Dragon Avenue\n
+                   |to the south.  For some reason, you somehow realize that there is a\n
+                   |shortcut to the west that leads to Dracolich Plaza.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -944,7 +995,10 @@
     "area": "hood",
     "anum": 23,
     "name": "Courtyard South",
-    "description": "Once full of lush green plants, it is now barren of growth.  A set of\nstairs used to extend up to a suite of rooms but the set is missing\nstairs 3-15.  The courtyard extends north and there is a street to\nthe south.\n",
+    "description": "Once full of lush green plants, it is now barren of growth.  A set of\n
+                   |stairs used to extend up to a suite of rooms but the set is missing\n
+                   |stairs 3-15.  The courtyard extends north and there is a street to\n
+                   |the south.\n",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -1012,7 +1066,10 @@
     "area": "hood",
     "anum": 24,
     "name": "Old Abandoned Warehouse",
-    "description": "Once the center of a lucrative storage business, it has fallen to\ndisrepair like everything else.  It is now the hideout of the\nDragon gang.  The gang leader runs his reign of terror from here.\nThere is a wooden door barely on the hinges to the east.\n",
+    "description": "Once the center of a lucrative storage business, it has fallen to\n
+                   |disrepair like everything else.  It is now the hideout of the\n
+                   |Dragon gang.  The gang leader runs his reign of terror from here.\n
+                   |There is a wooden door barely on the hinges to the east.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -1092,7 +1149,8 @@
     "area": "hood",
     "anum": 25,
     "name": "Bronze Dragon Street at Warehouse",
-    "description": "The street runs north and south.  There is an old wooden door leading\nto a warehouse to the west.  The warehouse LOOKS abandoned. . .\n",
+    "description": "The street runs north and south.  There is an old wooden door leading\n
+                   |to a warehouse to the west.  The warehouse LOOKS abandoned. . .\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1141,7 +1199,8 @@
     "area": "hood",
     "anum": 26,
     "name": "Yellow Dragon Road",
-    "description": "Yellow Dragon Road is the southern boundary of Troll Territory.  The\nroad extends east.  You enter \"no-man's land\" to the south.\n",
+    "description": "Yellow Dragon Road is the southern boundary of Troll Territory.  The\n
+                   |road extends east.  You enter \"no-man's land\" to the south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1179,7 +1238,8 @@
     "area": "hood",
     "anum": 28,
     "name": "Yellow Dragon Road",
-    "description": "The roads continues east and west.  There is a courtyard to the north.\nYou enter \"no man's land\" to the south.\n",
+    "description": "The roads continues east and west.  There is a courtyard to the north.\n
+                   |You enter \"no man's land\" to the south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1254,7 +1314,9 @@
     "area": "hood",
     "anum": 29,
     "name": "Yellow Dragon Road",
-    "description": "There is a barred window to the north.  There appears to be a light\ncoming from the cracks around it.  The road extends east and west\nfrom here.  Or you can enter \"no man's land\" south from here.\n",
+    "description": "There is a barred window to the north.  There appears to be a light\n
+                   |coming from the cracks around it.  The road extends east and west\n
+                   |from here.  Or you can enter \"no man's land\" south from here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1272,14 +1334,16 @@
     ],
     "extra_description": [{
       "keyword": "window",
-      "description": "Looking through the window, you see a gang leader plotting the demise of\nthe ogres.\n"
+      "description": "Looking through the window, you see a gang leader plotting the demise of\n
+                     |the ogres.\n"
     }]
   }},
   {"room": {
     "area": "hood",
     "anum": 30,
     "name": "Yellow Dragon Road",
-    "description": "Bronze Dragon Street intersects here and runs north.  Yellow Dragon ends\nhere but continues to the west.\n",
+    "description": "Bronze Dragon Street intersects here and runs north.  Yellow Dragon ends\n
+                   |here but continues to the west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1314,7 +1378,9 @@
     "area": "hood",
     "anum": 31,
     "name": "NO MAN'S LAND",
-    "description": "This is the section of town between the two gang's territories.  This\nis usually where the violence starts.  No Man's land continues south\nand east; or there is a street to the north.\n",
+    "description": "This is the section of town between the two gang's territories.  This\n
+                   |is usually where the violence starts.  No Man's land continues south\n
+                   |and east; or there is a street to the north.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1377,7 +1443,9 @@
     "area": "hood",
     "anum": 32,
     "name": "NO MAN'S LAND",
-    "description": "This is the section of town between the two gang's territories.  This\nis usually where the violence starts.  No Man's land continues south\neast and west.\n",
+    "description": "This is the section of town between the two gang's territories.  This\n
+                   |is usually where the violence starts.  No Man's land continues south\n
+                   |east and west.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1432,7 +1500,9 @@
     "area": "hood",
     "anum": 33,
     "name": "NO MAN'S LAND",
-    "description": "This is the section of town between the two gang's territories.  This\nis usually where the violence starts.  No Man's land continues south,\neast and west; or there is a street to the north.\n",
+    "description": "This is the section of town between the two gang's territories.  This\n
+                   |is usually where the violence starts.  No Man's land continues south,\n
+                   |east and west; or there is a street to the north.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1483,7 +1553,9 @@
     "area": "hood",
     "anum": 34,
     "name": "NO MAN'S LAND",
-    "description": "This is the section of town between the two gang's territories.  This\nis usually where the violence starts.  No Man's land continues south,\neast, and west; or there is a street to the north.\n",
+    "description": "This is the section of town between the two gang's territories.  This\n
+                   |is usually where the violence starts.  No Man's land continues south,\n
+                   |east, and west; or there is a street to the north.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1542,7 +1614,9 @@
     "area": "hood",
     "anum": 35,
     "name": "NO MAN'S LAND",
-    "description": "This is the section of town between the two gang's territories.  This\nis usually where the violence starts.  No Man's land continues south\nand west.\n",
+    "description": "This is the section of town between the two gang's territories.  This\n
+                   |is usually where the violence starts.  No Man's land continues south\n
+                   |and west.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1609,7 +1683,9 @@
     "area": "hood",
     "anum": 36,
     "name": "NO MAN'S LAND",
-    "description": "This is the section of town between the two gang's territories.  This\nis usually where the violence starts.  No Man's land continues north\nand east; or there is a street to the south.\n",
+    "description": "This is the section of town between the two gang's territories.  This\n
+                   |is usually where the violence starts.  No Man's land continues north\n
+                   |and east; or there is a street to the south.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1656,7 +1732,9 @@
     "area": "hood",
     "anum": 37,
     "name": "NO MAN'S LAND",
-    "description": "This is the section of town between the two gang's territories.  This\nis usually where the violence starts.  No Man's land continues north,\neast and west.\n",
+    "description": "This is the section of town between the two gang's territories.  This\n
+                   |is usually where the violence starts.  No Man's land continues north,\n
+                   |east and west.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1711,7 +1789,9 @@
     "area": "hood",
     "anum": 38,
     "name": "NO MAN'S LAND",
-    "description": "This is the section of town between the two gang's territories.  This\nis usually where the violence starts.  No Man's land continues north,\neast, and west; or there is a street to the south.\n",
+    "description": "This is the section of town between the two gang's territories.  This\n
+                   |is usually where the violence starts.  No Man's land continues north,\n
+                   |east, and west; or there is a street to the south.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1794,7 +1874,9 @@
     "area": "hood",
     "anum": 39,
     "name": "NO MAN'S LAND",
-    "description": "This is the section of town between the two gang's territories.  This\nis usually where the violence starts.  No Man's land continues north,\neast, and west.\n",
+    "description": "This is the section of town between the two gang's territories.  This\n
+                   |is usually where the violence starts.  No Man's land continues north,\n
+                   |east, and west.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1841,7 +1923,9 @@
     "area": "hood",
     "anum": 40,
     "name": "NO MAN'S LAND",
-    "description": "This is the section of town between the two gang's territories.  This\nis usually where the violence starts.  No Man's land continues south\nand west; or there is a street to the south.\n",
+    "description": "This is the section of town between the two gang's territories.  This\n
+                   |is usually where the violence starts.  No Man's land continues south\n
+                   |and west; or there is a street to the south.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1888,7 +1972,8 @@
     "area": "hood",
     "anum": 41,
     "name": "Bend in Hector Street",
-    "description": "Hector street bends to the east and the south here.  \"No Man's Land\"\nentrance is to the north.\n",
+    "description": "Hector street bends to the east and the south here.  \"No Man's Land\"\n
+                   |entrance is to the north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1909,7 +1994,9 @@
     "area": "hood",
     "anum": 42,
     "name": "Hector Street at Bakery",
-    "description": "Hector street runs east and west.  The Bakery used to be to the south\nbut the entrance is sealed off.  Probably just a bunch of stale pies in\nthere anyways.\n",
+    "description": "Hector street runs east and west.  The Bakery used to be to the south\n
+                   |but the entrance is sealed off.  Probably just a bunch of stale pies in\n
+                   |there anyways.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1944,7 +2031,10 @@
     "area": "hood",
     "anum": 43,
     "name": "Another corner of Hector and Achilles streets",
-    "description": "Achilles street heads to the south and Hector runs east and west.\nThere is an entrance to \"No Man's Land\" to the north.  On the\nsouthwest corner of this intersection, it looks like a building\nwas recently burned down.\n",
+    "description": "Achilles street heads to the south and Hector runs east and west.\n
+                   |There is an entrance to \"No Man's Land\" to the north.  On the\n
+                   |southwest corner of this intersection, it looks like a building\n
+                   |was recently burned down.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1995,7 +2085,9 @@
     "area": "hood",
     "anum": 44,
     "name": "Hector Street at Jeweler",
-    "description": "Once a bright spot in the town, it now looks like one of the\nhardest hit by the violence.  The building could collapse at any\nmoment.  The street continues east and west.\n",
+    "description": "Once a bright spot in the town, it now looks like one of the\n
+                   |hardest hit by the violence.  The building could collapse at any\n
+                   |moment.  The street continues east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2012,7 +2104,9 @@
     "area": "hood",
     "anum": 45,
     "name": "Corner of Ajax and Hector",
-    "description": "There is a grand fountain to the east but the water doesn't\nlook good to drink.  Ajax street heads south and Hector\ngoes back west.  \"No Man's Land\" is to the north.\n",
+    "description": "There is a grand fountain to the east but the water doesn't\n
+                   |look good to drink.  Ajax street heads south and Hector\n
+                   |goes back west.  \"No Man's Land\" is to the north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2051,7 +2145,9 @@
     "area": "hood",
     "anum": 46,
     "name": "Hector Street",
-    "description": "The street is full of garbage here.  An odd building lies to the west,\nbut you don't seem to be able to find a way into it.  The street\nruns north and south here.\n",
+    "description": "The street is full of garbage here.  An odd building lies to the west,\n
+                   |but you don't seem to be able to find a way into it.  The street\n
+                   |runs north and south here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2086,7 +2182,9 @@
     "area": "hood",
     "anum": 47,
     "name": "Achilles Avenue",
-    "description": "The town bards sang of the victory parades that used to pass along this\nroute.  It was once a major way through the center of town.  The street\ngoes south to a bend and north to an intersection.\n",
+    "description": "The town bards sang of the victory parades that used to pass along this\n
+                   |route.  It was once a major way through the center of town.  The street\n
+                   |goes south to a bend and north to an intersection.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2137,7 +2235,10 @@
     "area": "hood",
     "anum": 48,
     "name": "A small ruined chapel",
-    "description": "This was a small temple built to honor the minor gods and goddesses.\nIt is now desecrated by graffiti and vandalism.  Perhaps its worst\ndefilement is that it is the hangout of the Ogre gang.  There is a street to\nthe east through a rusty metal door.\n",
+    "description": "This was a small temple built to honor the minor gods and goddesses.\n
+                   |It is now desecrated by graffiti and vandalism.  Perhaps its worst\n
+                   |defilement is that it is the hangout of the Ogre gang.  There is a street to\n
+                   |the east through a rusty metal door.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -2217,7 +2318,9 @@
     "area": "hood",
     "anum": 49,
     "name": "Ajax Avenue at chapel",
-    "description": "The temple to honor the minor gods is through a rusty metal door\nto the west.  The street continues north and south.  You hear the\nmuffled sounds of screams coming from the chapel.\n",
+    "description": "The temple to honor the minor gods is through a rusty metal door\n
+                   |to the west.  The street continues north and south.  You hear the\n
+                   |muffled sounds of screams coming from the chapel.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2266,7 +2369,10 @@
     "area": "hood",
     "anum": 50,
     "name": "First intersection of Hector and Achilles",
-    "description": "There is a large statue here depicting a battle between two\ngreat warriors.  You think it's odd that it has not been defiled,\nbut then you sense a aura protecting it.  Achilles runs east\nand south, while Hector heads out to the north.\n",
+    "description": "There is a large statue here depicting a battle between two\n
+                   |great warriors.  You think it's odd that it has not been defiled,\n
+                   |but then you sense a aura protecting it.  Achilles runs east\n
+                   |and south, while Hector heads out to the north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2305,7 +2411,10 @@
     "area": "hood",
     "anum": 51,
     "name": "Achilles Avenue",
-    "description": "A large open space, possibly a cemetery, lies to the south.\nThere is a large wrought-iron fence with spikes on top\nwhich prevents you from entering the area.  The street\ncontinues east and west.\n",
+    "description": "A large open space, possibly a cemetery, lies to the south.\n
+                   |There is a large wrought-iron fence with spikes on top\n
+                   |which prevents you from entering the area.  The street\n
+                   |continues east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2340,7 +2449,8 @@
     "area": "hood",
     "anum": 52,
     "name": "A bend in the road",
-    "description": "Achilles Avenue bends to the north and west here.  There\nis also a narrow alley to the south.\n",
+    "description": "Achilles Avenue bends to the north and west here.  There\n
+                   |is also a narrow alley to the south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2395,7 +2505,11 @@
     "area": "hood",
     "anum": 53,
     "name": "What is left of the weaponshop",
-    "description": "It doesn't even look like those punks gave the weaponsmith a\nproper burial.  But what a going away present he seems to have\nreceived!  Blood is splattered and dried all over the walls here.\nIt looks like a great deal of carnage happened here.  The way\nout to the east leads out onto a street.\n",
+    "description": "It doesn't even look like those punks gave the weaponsmith a\n
+                   |proper burial.  But what a going away present he seems to have\n
+                   |received!  Blood is splattered and dried all over the walls here.\n
+                   |It looks like a great deal of carnage happened here.  The way\n
+                   |out to the east leads out onto a street.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -2457,7 +2571,8 @@
     "area": "hood",
     "anum": 54,
     "name": "Ajax street at Weaponshop (or whats left of it)",
-    "description": "The street goes north and south.  The stables used to be to the\neast, but I bet all the horses are dead or gone.\n",
+    "description": "The street goes north and south.  The stables used to be to the\n
+                   |east, but I bet all the horses are dead or gone.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2496,7 +2611,11 @@
     "area": "hood",
     "anum": 55,
     "name": "Khan Park",
-    "description": "Not really a \"park\" as you and i would think of it but\nit seems queerly peaceful here in comparison to the rest of\nthe area.  There seems to be some kind of memorial to the\ngreat Mongol warrior Khan being crudely constructed here.\nThere is a street to the east and another to the south.\n",
+    "description": "Not really a \"park\" as you and i would think of it but\n
+                   |it seems queerly peaceful here in comparison to the rest of\n
+                   |the area.  There seems to be some kind of memorial to the\n
+                   |great Mongol warrior Khan being crudely constructed here.\n
+                   |There is a street to the east and another to the south.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2563,7 +2682,8 @@
     "area": "hood",
     "anum": 56,
     "name": "Achilles avenue at entrance to park",
-    "description": "A ... park?! lies to the west.  The street runs south to an\nintersection and curves to the north.\n",
+    "description": "A ... park?! lies to the west.  The street runs south to an\n
+                   |intersection and curves to the north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2602,7 +2722,9 @@
     "area": "hood",
     "anum": 57,
     "name": "A bend in Ajax",
-    "description": "The roads bends south and east here.  You barely notice\na small alley leading north.  Some kind of tunnel entrance\nis to the west but it has been crushed under its own weight.\n",
+    "description": "The roads bends south and east here.  You barely notice\n
+                   |a small alley leading north.  Some kind of tunnel entrance\n
+                   |is to the west but it has been crushed under its own weight.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2641,7 +2763,10 @@
     "area": "hood",
     "anum": 58,
     "name": "Ajax street",
-    "description": "A once prideful guildhouse was on the northeast corner of\nthis intersection.  Most of the walls and ceiling have long since\nbeen demolished.  An inn/pub is to the south.  The street bends\nto the east or west.\n",
+    "description": "A once prideful guildhouse was on the northeast corner of\n
+                   |this intersection.  Most of the walls and ceiling have long since\n
+                   |been demolished.  An inn/pub is to the south.  The street bends\n
+                   |to the east or west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2680,7 +2805,8 @@
     "area": "hood",
     "anum": 59,
     "name": "Curve in the road",
-    "description": "The street goes north or west from here.  A narrow street once\nheaded southeast from here.\n",
+    "description": "The street goes north or west from here.  A narrow street once\n
+                   |headed southeast from here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2715,7 +2841,13 @@
     "area": "hood",
     "anum": 60,
     "name": "A wide alleyway",
-    "description": "The sides of the alleyway have been vandalized many times.\nOne patch of graffiti actually looks readable:\n            This section has been designed for levels 5 through 10\n            If you are above level 10 please don't expect much.\n            If you are below level 5 enter at your own risk.\nIn another spot it says \"now entering Ogre territory...\"\nA street lies to the west and a major road to the east.\n",
+    "description": "The sides of the alleyway have been vandalized many times.\n
+                   |One patch of graffiti actually looks readable:\n
+                   |            This section has been designed for levels 5 through 10\n
+                   |            If you are above level 10 please don't expect much.\n
+                   |            If you are below level 5 enter at your own risk.\n
+                   |In another spot it says \"now entering Ogre territory...\"\n
+                   |A street lies to the west and a major road to the east.\n",
     "sector_type": "city",
     "room_flags": "dark no_mob",
     "doors": [
@@ -2752,7 +2884,11 @@
     "area": "hood",
     "anum": 61,
     "name": "Alexander Road",
-    "description": "You see many gang members walking around looking for\nfights to pick and things to break.  It seems as if all of the\nother citizens have been run out of town.  All the former\nhomes are boarded up and uninhabitable.  The road continues\neast and west.\n",
+    "description": "You see many gang members walking around looking for\n
+                   |fights to pick and things to break.  It seems as if all of the\n
+                   |other citizens have been run out of town.  All the former\n
+                   |homes are boarded up and uninhabitable.  The road continues\n
+                   |east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2811,7 +2947,8 @@
     "area": "hood",
     "anum": 62,
     "name": "Alexander Street at park entrance",
-    "description": "A park-looking area lies to the north and a passage between\ntwo buildings leads to another street to the south.\n",
+    "description": "A park-looking area lies to the north and a passage between\n
+                   |two buildings leads to another street to the south.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2850,7 +2987,8 @@
     "area": "hood",
     "anum": 63,
     "name": "Achilles Avenue",
-    "description": "The Avenue Runs north and south.  You sense you are deep within\nOgre gang territory, and a chill goes up your spine.\n",
+    "description": "The Avenue Runs north and south.  You sense you are deep within\n
+                   |Ogre gang territory, and a chill goes up your spine.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2885,7 +3023,8 @@
     "area": "hood",
     "anum": 64,
     "name": "Ajax Street",
-    "description": "You can see a sinister black wrought-iron fence to the west.\nYou wonder if it's keeping you out, or the ghouls in?\n",
+    "description": "You can see a sinister black wrought-iron fence to the west.\n
+                   |You wonder if it's keeping you out, or the ghouls in?\n",
     "sector_type": "city",
     "doors": [
       {
@@ -2920,7 +3059,11 @@
     "area": "hood",
     "anum": 65,
     "name": "The inn/pub",
-    "description": "The inn actually looks fairly functional despite its lack\nof repair.  The boys come here to hoot it up and drink them selves\ninto oblivion sometimes.  It looks as if the beer is still on tap!!!\nA hallway leads south and you spy a street through the doorway\nto the north.\n",
+    "description": "The inn actually looks fairly functional despite its lack\n
+                   |of repair.  The boys come here to hoot it up and drink them selves\n
+                   |into oblivion sometimes.  It looks as if the beer is still on tap!!!\n
+                   |A hallway leads south and you spy a street through the doorway\n
+                   |to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2988,7 +3131,9 @@
     "area": "hood",
     "anum": 66,
     "name": "Solomon Street",
-    "description": "This street forms the southern boundary of Ogre territory.  The\nstreet extends far to the east.  There is also a pathway between\nbuildings which leads to another street to the north.\n",
+    "description": "This street forms the southern boundary of Ogre territory.  The\n
+                   |street extends far to the east.  There is also a pathway between\n
+                   |buildings which leads to another street to the north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -3023,7 +3168,8 @@
     "area": "hood",
     "anum": 67,
     "name": "Intersection of Achilles and Solomon",
-    "description": "Solomon street is to the east and west.  The other part of the\nT is Achilles Avenue, starting here and winding to the north.\n",
+    "description": "Solomon street is to the east and west.  The other part of the\n
+                   |T is Achilles Avenue, starting here and winding to the north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -3062,7 +3208,10 @@
     "area": "hood",
     "anum": 68,
     "name": "Solomon Street",
-    "description": "A wrought-iron fence blocks off what used to be an entrance to the\ncemetery here to the north.  The evil just seems too strong to\nto consider entering.  You feel you should stick with the \"lesser\"\nevils along the road to the east and west.\n",
+    "description": "A wrought-iron fence blocks off what used to be an entrance to the\n
+                   |cemetery here to the north.  The evil just seems too strong to\n
+                   |to consider entering.  You feel you should stick with the \"lesser\"\n
+                   |evils along the road to the east and west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -3079,7 +3228,9 @@
     "area": "hood",
     "anum": 69,
     "name": "Intersection of Ajax and Solomon",
-    "description": "The two roads meet at a corner here.  Ajax runs north and\nSolomon heads west.  An inn/pub is through a back doorway\nto the east.\n",
+    "description": "The two roads meet at a corner here.  Ajax runs north and\n
+                   |Solomon heads west.  An inn/pub is through a back doorway\n
+                   |to the east.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -3118,7 +3269,10 @@
     "area": "hood",
     "anum": 70,
     "name": "Hallway",
-    "description": "The hallway heads back north to the main part of the inn/pub.\nThe stairs leading up to the guest rooms here do not seem\nadvisable to climb.  A doorway empties out into Solomon\nstreet to the west.\n",
+    "description": "The hallway heads back north to the main part of the inn/pub.\n
+                   |The stairs leading up to the guest rooms here do not seem\n
+                   |advisable to climb.  A doorway empties out into Solomon\n
+                   |street to the west.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [

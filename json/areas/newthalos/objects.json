@@ -1733,7 +1733,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "pearl",
-      "description": "It's a nicely-formed pearl, should be worth a fair amount at the jewellers.\nYou look around to see if there are any others nearby.\n"
+      "description": "It's a nicely-formed pearl, should be worth a fair amount at the jewellers.\n
+                     |You look around to see if there are any others nearby.\n"
     }]
   }}
 ]

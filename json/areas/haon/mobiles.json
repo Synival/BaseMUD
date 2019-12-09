@@ -5,7 +5,9 @@
     "name": "john lumberjack",
     "short_descr": "John the Lumberjack",
     "long_descr": "John the Lumberjack is here, looking for some trees to chop down.\n",
-    "description": "He is six feet tall and looks quite strong, muscles bulging under his heavy,\nchequered shirt.  His features are worn with hard work and his expression is\none of a peaceful man leading a simple life.\n",
+    "description": "He is six feet tall and looks quite strong, muscles bulging under his heavy,\n
+                   |chequered shirt.  His features are worn with hard work and his expression is\n
+                   |one of a peaceful man leading a simple life.\n",
     "race": "human",
     "alignment": 350,
     "level": 6,
@@ -32,7 +34,8 @@
     "name": "bear",
     "short_descr": "the brown bear",
     "long_descr": "A big, brown, angry-looking bear is here.\n",
-    "description": "The bear is a big, brown, furry animal with very large claws and very sharp\nteeth.  It doesn't resemble those cute little thingies from toy shops at all.\n",
+    "description": "The bear is a big, brown, furry animal with very large claws and very sharp\n
+                   |teeth.  It doesn't resemble those cute little thingies from toy shops at all.\n",
     "race": "bear",
     "alignment": -50,
     "level": 8,
@@ -60,7 +63,9 @@
     "name": "rabbit",
     "short_descr": "the ferocious rabbit",
     "long_descr": "A ferocious rabbit is here, glaring hungrily at you.\n",
-    "description": "This small, furry creature with long ears and big feet has been attacked by\nthe dreaded rabbit rabies, a horrible disease that turns helpless and innocent\nrabbits into ferocious and bloodthirsty monsters.\n",
+    "description": "This small, furry creature with long ears and big feet has been attacked by\n
+                   |the dreaded rabbit rabies, a horrible disease that turns helpless and innocent\n
+                   |rabbits into ferocious and bloodthirsty monsters.\n",
     "race": "rabbit",
     "alignment": -150,
     "level": 3,
@@ -88,7 +93,8 @@
     "name": "deer",
     "short_descr": "the fallow deer",
     "long_descr": "A fallow deer is grazing peacefully here.\n",
-    "description": "She is a graceful creature on long, slender legs, and with large, brown eyes\nlooking back at you with an air of watchful interest.\n",
+    "description": "She is a graceful creature on long, slender legs, and with large, brown eyes\n
+                   |looking back at you with an air of watchful interest.\n",
     "race": "human",
     "alignment": 350,
     "level": 2,
@@ -143,7 +149,8 @@
     "name": "warg vicious",
     "short_descr": "the vicious warg",
     "long_descr": "A vicious warg is here, snarling angrily at you.\n",
-    "description": "It is an exceptionally large wolf with thick, black fur.  Saliva is dripping\nquickly from its long, white fangs.  It looks quite dangerous and very angry.\n",
+    "description": "It is an exceptionally large wolf with thick, black fur.  Saliva is dripping\n
+                   |quickly from its long, white fangs.  It looks quite dangerous and very angry.\n",
     "race": "human",
     "alignment": -350,
     "level": 5,
@@ -170,7 +177,8 @@
     "name": "warg ferocious",
     "short_descr": "the ferocious warg",
     "long_descr": "A ferocious warg is here, snarling angrily at you.\n",
-    "description": "It is an exceptionally large wolf with thick, black fur.  Saliva is dripping\nquickly from its long, white fangs.  It looks quite dangerous and very angry.\n",
+    "description": "It is an exceptionally large wolf with thick, black fur.  Saliva is dripping\n
+                   |quickly from its long, white fangs.  It looks quite dangerous and very angry.\n",
     "race": "human",
     "alignment": -350,
     "level": 5,
@@ -251,7 +259,10 @@
     "name": "dragon green",
     "short_descr": "the huge, green dragon",
     "long_descr": "A huge green dragon is here, its narrow yellow eyes glowing with rage.\n",
-    "description": "This enormous winged serpent has dark green scales covering most of its\ncolossal body.  Numerous holes in its heavy wings tell of many fights as does\nthe nicks in the horns on its head.  It smells as disgusting as only dragons\ndo.\n",
+    "description": "This enormous winged serpent has dark green scales covering most of its\n
+                   |colossal body.  Numerous holes in its heavy wings tell of many fights as does\n
+                   |the nicks in the horns on its head.  It smells as disgusting as only dragons\n
+                   |do.\n",
     "race": "dragon",
     "alignment": -1000,
     "level": 25,
@@ -280,7 +291,9 @@
     "name": "shargugh brownie",
     "short_descr": "Shargugh",
     "long_descr": "Shargugh the Forest Brownie is here, grinning broadly at you.\n",
-    "description": "This little fellow is only three foot tall with wild matted brown hair and long\ntangled brown beard.  He wears ragged brown and green clothing and looks as if\nhe is having great fun.\n",
+    "description": "This little fellow is only three foot tall with wild matted brown hair and long\n
+                   |tangled brown beard.  He wears ragged brown and green clothing and looks as if\n
+                   |he is having great fun.\n",
     "race": "human",
     "alignment": 1000,
     "level": 10,
@@ -308,7 +321,8 @@
     "name": "elder druid",
     "short_descr": "the elder druid",
     "long_descr": "The elder druid is here ... he looks very upset at your presence in his home.\n",
-    "description": "The druid looks quite old.  You would think him venerable, but you know\nhe would be a tough foe.\n",
+    "description": "The druid looks quite old.  You would think him venerable, but you know\n
+                   |he would be a tough foe.\n",
     "race": "human",
     "alignment": 0,
     "level": 17,

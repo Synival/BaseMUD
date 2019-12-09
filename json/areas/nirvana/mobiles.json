@@ -155,7 +155,8 @@
     "name": "octon",
     "short_descr": "the octon",
     "long_descr": "An octon is here governing his ward of responsilbility.\n",
-    "description": "The octon has a collar at shoulder level with 8 tentacled arms growing out of\nit.\n",
+    "description": "The octon has a collar at shoulder level with 8 tentacled arms growing out of\n
+                   |it.\n",
     "race": "modron",
     "alignment": 300,
     "level": 22,
@@ -187,7 +188,8 @@
     "name": "septon",
     "short_descr": "the septon",
     "long_descr": "A septon is here preserving order.\n",
-    "description": "The septon appears as a human with a large bald head. It has a shoulder collar\nwith 7 tentacles coming from it.\n",
+    "description": "The septon appears as a human with a large bald head. It has a shoulder collar\n
+                   |with 7 tentacles coming from it.\n",
     "race": "modron",
     "alignment": 300,
     "level": 24,
@@ -218,7 +220,8 @@
     "name": "hexton",
     "short_descr": "the hexton",
     "long_descr": "A hexton is here watching over his armies.\n",
-    "description": "A hexton appears as a humanoid with 6 arms: 2 large human arms with 6 fingers,\nand 4 tentacles below tipped with sharp claws.\n",
+    "description": "A hexton appears as a humanoid with 6 arms: 2 large human arms with 6 fingers,\n
+                   |and 4 tentacles below tipped with sharp claws.\n",
     "race": "modron",
     "alignment": 300,
     "level": 26,
@@ -250,7 +253,9 @@
     "name": "quinton",
     "short_descr": "the quinton",
     "long_descr": "A quinton is here keeping records.\n",
-    "description": "Quintons look like tall, stocky humanoids with 4 flexible arms jutting from the\nshoulders.  A prehensile tail serves as the creature's 5th arm, and they have\nfan-like wings attached to their shoulders.\n",
+    "description": "Quintons look like tall, stocky humanoids with 4 flexible arms jutting from the\n
+                   |shoulders.  A prehensile tail serves as the creature's 5th arm, and they have\n
+                   |fan-like wings attached to their shoulders.\n",
     "race": "modron",
     "alignment": 300,
     "level": 28,
@@ -281,7 +286,9 @@
     "name": "tertian",
     "short_descr": "the tertian",
     "long_descr": "A tertian is here administering the law.\n",
-    "description": "Tertians look very human, save for their 12 foot size, the horns jutting from\nthe sides of their bald heads, and the long prehensile tail ending in a mace-\nlike ball.\n",
+    "description": "Tertians look very human, save for their 12 foot size, the horns jutting from\n
+                   |the sides of their bald heads, and the long prehensile tail ending in a mace-\n
+                   |like ball.\n",
     "race": "modron",
     "alignment": 300,
     "level": 33,
@@ -313,7 +320,8 @@
     "name": "secundus",
     "short_descr": "secundus",
     "long_descr": "A Secundus, one of the Viceroys of Nirvana, is here.\n",
-    "description": "The secundi is an incredibly thin, tall humanoids with long, narrow faces\nand deepset eyes. It radiates intense power.\n",
+    "description": "The secundi is an incredibly thin, tall humanoids with long, narrow faces\n
+                   |and deepset eyes. It radiates intense power.\n",
     "race": "modron",
     "alignment": 0,
     "level": 36,
@@ -345,7 +353,9 @@
     "name": "Primus",
     "short_descr": "Primus",
     "long_descr": "Primus, ruler of the Plane of Nirvana, forms out of an energy pool.\n",
-    "description": "Primus is a huge being who rises out of the energy pool and glares at you with\nviolet eyes. His right hand is wreathed in darkness, his left in light, and\nhe looks very displeased to see you.\n",
+    "description": "Primus is a huge being who rises out of the energy pool and glares at you with\n
+                   |violet eyes. His right hand is wreathed in darkness, his left in light, and\n
+                   |he looks very displeased to see you.\n",
     "race": "modron",
     "alignment": 0,
     "level": 40,

@@ -3,7 +3,11 @@
     "area": "galaxy",
     "anum": 1,
     "name": "Inside a Tavern",
-    "description": "You are inside a dimly-lit room.  The atmosphere makes you feel uncomfortable.\nIn front of you stands a mysterious gypsy.  She whispers 'Your fate and\ndestiny lie beyond this world.'  You are still wondering what she means when\nyou suddenly notice the crystal ball ... it glows fiercely and displays the\nUniverse!\n",
+    "description": "You are inside a dimly-lit room.  The atmosphere makes you feel uncomfortable.\n
+                   |In front of you stands a mysterious gypsy.  She whispers 'Your fate and\n
+                   |destiny lie beyond this world.'  You are still wondering what she means when\n
+                   |you suddenly notice the crystal ball ... it glows fiercely and displays the\n
+                   |Universe!\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -22,7 +26,9 @@
     "area": "galaxy",
     "anum": 2,
     "name": "Inside the Crystal Ball",
-    "description": "You have touched the crystal ball and find that you have gone inside it:\na world of stars and wonders!  As you look back you figure out there is no\nchoice but to go forward.\n",
+    "description": "You have touched the crystal ball and find that you have gone inside it:\n
+                   |a world of stars and wonders!  As you look back you figure out there is no\n
+                   |choice but to go forward.\n",
     "sector_type": "field",
     "doors": [{
       "dir": "north",
@@ -33,7 +39,10 @@
     "area": "galaxy",
     "anum": 3,
     "name": "Inside the Galaxy",
-    "description": "You are now inside the galaxy, around you you see stars and nebulae smiling\nat your presence, and comets and meteors wandering around you.  You realize\nthat this world may not be the true galaxy after all, but just another\nfantasy zone.  Exits lie virtually in all directions.\n",
+    "description": "You are now inside the galaxy, around you you see stars and nebulae smiling\n
+                   |at your presence, and comets and meteors wandering around you.  You realize\n
+                   |that this world may not be the true galaxy after all, but just another\n
+                   |fantasy zone.  Exits lie virtually in all directions.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -58,7 +67,8 @@
     "area": "galaxy",
     "anum": 4,
     "name": "On an InterGalactic Walkway",
-    "description": "You are on a well-paved path which seems that it was made deliberately for\nvisitors like you.  The walkway continues north and a small exit lies west.\n",
+    "description": "You are on a well-paved path which seems that it was made deliberately for\n
+                   |visitors like you.  The walkway continues north and a small exit lies west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -97,7 +107,9 @@
     "area": "galaxy",
     "anum": 5,
     "name": "End of the InterGalactic Walkway",
-    "description": "You notice the walkway has come to an abrupt end and you wonder why. You see\nthat there is still a small path which leads north and one to the west.\nTo the east lies a bridge.\n",
+    "description": "You notice the walkway has come to an abrupt end and you wonder why. You see\n
+                   |that there is still a small path which leads north and one to the west.\n
+                   |To the east lies a bridge.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -122,7 +134,8 @@
     "area": "galaxy",
     "anum": 6,
     "name": "At the Undeveloped Part of the Galaxy",
-    "description": "This place looks deserted, covered with space debris.  Not a sign of life\nis around.\n",
+    "description": "This place looks deserted, covered with space debris.  Not a sign of life\n
+                   |is around.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -147,7 +160,10 @@
     "area": "galaxy",
     "anum": 8,
     "name": "On the Bridge of Stars",
-    "description": "This bridge has been made by the stars to honour their ancestors.  The\nbridge itself shines brightly and makes you feel that you are walking on\na path of light.  An entrance to an ancient building lies north and to\nthe east lies the Milky Way.\n",
+    "description": "This bridge has been made by the stars to honour their ancestors.  The\n
+                   |bridge itself shines brightly and makes you feel that you are walking on\n
+                   |a path of light.  An entrance to an ancient building lies north and to\n
+                   |the east lies the Milky Way.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -186,7 +202,9 @@
     "area": "galaxy",
     "anum": 9,
     "name": "On the Bridge of Nebulae",
-    "description": "This bridge, like the other, was made as a memorial.  The nebulae had to\nmake one just to show that they are as capable as the stars.  North lies\na throne room.\n",
+    "description": "This bridge, like the other, was made as a memorial.  The nebulae had to\n
+                   |make one just to show that they are as capable as the stars.  North lies\n
+                   |a throne room.\n",
     "sector_type": "city",
     "room_flags": "dark",
     "doors": [
@@ -216,7 +234,9 @@
     "area": "galaxy",
     "anum": 10,
     "name": "The Throne Room of the Nebula King",
-    "description": "You can only faintly make out that it is a throne room as it is too\ndark in here.  In the middle is an empty throne.  You wonder where\nthe King has gone, maybe he is hiding from you?\n",
+    "description": "You can only faintly make out that it is a throne room as it is too\n
+                   |dark in here.  In the middle is an empty throne.  You wonder where\n
+                   |the King has gone, maybe he is hiding from you?\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -262,7 +282,9 @@
     "area": "galaxy",
     "anum": 12,
     "name": "At the Start of the Milky Way",
-    "description": "It is here that the famous old Milky Way starts flowing.  You are surrounded\nby streams of mist the moment you tread on it.  You can't see well in\nhere ... luckily you haven't fallen yet!\n",
+    "description": "It is here that the famous old Milky Way starts flowing.  You are surrounded\n
+                   |by streams of mist the moment you tread on it.  You can't see well in\n
+                   |here ... luckily you haven't fallen yet!\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -287,7 +309,8 @@
     "area": "galaxy",
     "anum": 13,
     "name": "Along the Milky Way",
-    "description": "You are still travelling inside this path of mist.  You notice a small\nopening to the east.\n",
+    "description": "You are still travelling inside this path of mist.  You notice a small\n
+                   |opening to the east.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -326,7 +349,8 @@
     "area": "galaxy",
     "anum": 14,
     "name": "At the End of the Milky Way",
-    "description": "Just as you started enjoying this journey inside the mist, you have come to\nthe end of it.  West leads to a bridge and east leads to somewhere else.\n",
+    "description": "Just as you started enjoying this journey inside the mist, you have come to\n
+                   |the end of it.  West leads to a bridge and east leads to somewhere else.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -355,7 +379,8 @@
     "area": "galaxy",
     "anum": 17,
     "name": "A Small Clearing",
-    "description": "You are inside a small clearing.  You can see that there are signs of a\nliving creature nearby.\n",
+    "description": "You are inside a small clearing.  You can see that there are signs of a\n
+                   |living creature nearby.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -414,7 +439,8 @@
     "area": "galaxy",
     "anum": 18,
     "name": "An Edge of the Galaxy",
-    "description": "You are on the very edge of the galaxy.  Nothing is here except that there\nis a path which leads down.\n",
+    "description": "You are on the very edge of the galaxy.  Nothing is here except that there\n
+                   |is a path which leads down.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -443,7 +469,9 @@
     "area": "galaxy",
     "anum": 19,
     "name": "Very Near to a Gigantic Star",
-    "description": "You are very near to a gigantic red star.  While you are still fascinated\nby its beauty, the star keeps on growing ... suddenly you realize that you'd\nbetter leave.\n",
+    "description": "You are very near to a gigantic red star.  While you are still fascinated\n
+                   |by its beauty, the star keeps on growing ... suddenly you realize that you'd\n
+                   |better leave.\n",
     "sector_type": "city",
     "room_flags": "no_mob",
     "doors": [
@@ -469,7 +497,11 @@
     "area": "galaxy",
     "anum": 20,
     "name": "Too Bright to Tell",
-    "description": "Indeed it is too bright to tell.  Because what you are witnessing is the\nrare event of a Supernova, how a star explodes itself into galactic dust.\nYou may find yourself lucky to witness this rare event but even luckier,\nyou have finally got out of this galaxy as your body turns into dust.\nThat really HURTS!  \n",
+    "description": "Indeed it is too bright to tell.  Because what you are witnessing is the\n
+                   |rare event of a Supernova, how a star explodes itself into galactic dust.\n
+                   |You may find yourself lucky to witness this rare event but even luckier,\n
+                   |you have finally got out of this galaxy as your body turns into dust.\n
+                   |That really HURTS!  \n",
     "sector_type": "inside",
     "room_flags": "unused_room_1 no_mob"
   }},
@@ -477,7 +509,8 @@
     "area": "galaxy",
     "anum": 21,
     "name": "The Star Cluster",
-    "description": "You are inside the home of the stars.  All you can see around you are stars\nand nothing else.  You eyes become pretty hurt as you look at them.\n",
+    "description": "You are inside the home of the stars.  All you can see around you are stars\n
+                   |and nothing else.  You eyes become pretty hurt as you look at them.\n",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -608,7 +641,8 @@
     "area": "galaxy",
     "anum": 23,
     "name": "Corner of the Galaxy",
-    "description": "You wonder why the galaxy is limited.  All you have done in Astronomy\ncourses now prove worthless.  Well who told you to take one at the start?  \n",
+    "description": "You wonder why the galaxy is limited.  All you have done in Astronomy\n
+                   |courses now prove worthless.  Well who told you to take one at the start?  \n",
     "sector_type": "city",
     "doors": [
       {
@@ -637,7 +671,8 @@
     "area": "galaxy",
     "anum": 24,
     "name": "Lost in Space",
-    "description": "You are now lost in space.  Compasses don't work here, sorry.  What's more\nyou can sense darkness engulfing you.  You'd better get out quick.\n",
+    "description": "You are now lost in space.  Compasses don't work here, sorry.  What's more\n
+                   |you can sense darkness engulfing you.  You'd better get out quick.\n",
     "sector_type": "field",
     "room_flags": "dark",
     "doors": [
@@ -659,7 +694,9 @@
     "area": "galaxy",
     "anum": 25,
     "name": "Black Hole",
-    "description": "Well you have chosen the wrong path, sorry.  Nothing can escape from this\nmonster, not even light.\nPANIC!  You can't escape!\n",
+    "description": "Well you have chosen the wrong path, sorry.  Nothing can escape from this\n
+                   |monster, not even light.\n
+                   |PANIC!  You can't escape!\n",
     "sector_type": "inside",
     "room_flags": "dark unused_room_1 no_mob"
   }},
@@ -742,7 +779,8 @@
     "area": "galaxy",
     "anum": 27,
     "name": "Western Side of the Temple",
-    "description": "You are still wandering around this temple.  You notice exits lie in all\ndirections except west.\n",
+    "description": "You are still wandering around this temple.  You notice exits lie in all\n
+                   |directions except west.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -763,7 +801,8 @@
     "area": "galaxy",
     "anum": 28,
     "name": "Orion's Hunting Lodge",
-    "description": "This is dedicated to the Great Hunter of all time -- Orion.\nScattered on the floor is the famous hunting equipment used by him.\n",
+    "description": "This is dedicated to the Great Hunter of all time -- Orion.\n
+                   |Scattered on the floor is the famous hunting equipment used by him.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -798,7 +837,8 @@
     "area": "galaxy",
     "anum": 29,
     "name": "Northern Side of the Temple",
-    "description": "You are still wandering around this temple.  You notice exits lie in all\ndirections except north.\n",
+    "description": "You are still wandering around this temple.  You notice exits lie in all\n
+                   |directions except north.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -819,7 +859,10 @@
     "area": "galaxy",
     "anum": 30,
     "name": "The Offering Chamber",
-    "description": "This is the sacred offering chamber in which sacrifices are made.  You see a\nyoung girl here, chained to the wall, as if she is waiting for execution.\nYou look up and realize the chains are sent down directly from above.\nBelow you recognize the temple of Thalos.\n",
+    "description": "This is the sacred offering chamber in which sacrifices are made.  You see a\n
+                   |young girl here, chained to the wall, as if she is waiting for execution.\n
+                   |You look up and realize the chains are sent down directly from above.\n
+                   |Below you recognize the temple of Thalos.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -870,7 +913,9 @@
     "area": "galaxy",
     "anum": 31,
     "name": "The Entrance of the Ancient Temple",
-    "description": "You have entered into this old temple, which was built originally for the gods\nin Mount Olympia, but it is now deserted as someone took over this part of the\nUniverse.\n",
+    "description": "You have entered into this old temple, which was built originally for the gods\n
+                   |in Mount Olympia, but it is now deserted as someone took over this part of the\n
+                   |Universe.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -895,7 +940,8 @@
     "area": "galaxy",
     "anum": 32,
     "name": "Hercules' Mighty Throne",
-    "description": "You stand before the throne of a long-forgotten hero.  It is full of bounty\nthat he got from the Ten Labours. \n",
+    "description": "You stand before the throne of a long-forgotten hero.  It is full of bounty\n
+                   |that he got from the Ten Labours. \n",
     "sector_type": "city",
     "doors": [
       {
@@ -930,7 +976,8 @@
     "area": "galaxy",
     "anum": 33,
     "name": "Eastern Side of the Temple",
-    "description": "You are still wandering around this temple.  You notice exits lie in all\ndirections except east.\n",
+    "description": "You are still wandering around this temple.  You notice exits lie in all\n
+                   |directions except east.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -959,7 +1006,8 @@
     "area": "galaxy",
     "anum": 34,
     "name": "Perseus' Chamber",
-    "description": "It is the chamber of the prince, Perseus.  However, he seems not to be here.\nMaybe he has gone to get Pegasus to save Andromeda?\n",
+    "description": "It is the chamber of the prince, Perseus.  However, he seems not to be here.\n
+                   |Maybe he has gone to get Pegasus to save Andromeda?\n",
     "sector_type": "city",
     "doors": [
       {
@@ -976,7 +1024,9 @@
     "area": "galaxy",
     "anum": 39,
     "name": "On the Mystic Chains",
-    "description": "You are dangling on the chains.  You notice exits lie in all directions.\nUp above you see the chains continue upwards.  But a forcefield prevents\nyou from going further upwards.\n",
+    "description": "You are dangling on the chains.  You notice exits lie in all directions.\n
+                   |Up above you see the chains continue upwards.  But a forcefield prevents\n
+                   |you from going further upwards.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1013,7 +1063,8 @@
     "area": "galaxy",
     "anum": 42,
     "name": "On a Hill",
-    "description": "Suddenly you find yourself on a hillside.  As you look around, you notice\nthat Spring has descended upon you.\n",
+    "description": "Suddenly you find yourself on a hillside.  As you look around, you notice\n
+                   |that Spring has descended upon you.\n",
     "sector_type": "hills",
     "doors": [
       {
@@ -1059,7 +1110,8 @@
     "area": "galaxy",
     "anum": 43,
     "name": "Inside a Spanish Bull-Ring",
-    "description": "You are inside what used to be a ground for bull fighting.  But you notice\nthere are no Matadors around.  Maybe they are all dead?\n",
+    "description": "You are inside what used to be a ground for bull fighting.  But you notice\n
+                   |there are no Matadors around.  Maybe they are all dead?\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1094,7 +1146,9 @@
     "area": "galaxy",
     "anum": 44,
     "name": "Inside a study",
-    "description": "This is a strange study. Besides the desks and chairs you also see a large\nmirror in the middle.  So, you wonder, is this how you make a Gemini into\ntwo Gemini?\n",
+    "description": "This is a strange study. Besides the desks and chairs you also see a large\n
+                   |mirror in the middle.  So, you wonder, is this how you make a Gemini into\n
+                   |two Gemini?\n",
     "sector_type": "inside",
     "doors": [{
       "dir": "east",
@@ -1131,7 +1185,8 @@
     "area": "galaxy",
     "anum": 45,
     "name": "Along the seashore",
-    "description": "You start to feel the heat of Summer.  Amongst the rocky beach you notice\nhidden forms which could be camouflaged crabs. \n",
+    "description": "You start to feel the heat of Summer.  Amongst the rocky beach you notice\n
+                   |hidden forms which could be camouflaged crabs. \n",
     "sector_type": "field",
     "doors": [
       {
@@ -1173,7 +1228,8 @@
     "area": "galaxy",
     "anum": 46,
     "name": "Within the Deep Jungle",
-    "description": "Nearby you can hear the roar of an animal.  Peering through the dense\novergrowth you think you glimpse a pair of menacing eyes.\n",
+    "description": "Nearby you can hear the roar of an animal.  Peering through the dense\n
+                   |overgrowth you think you glimpse a pair of menacing eyes.\n",
     "sector_type": "forest",
     "doors": [{
       "dir": "east",
@@ -1202,7 +1258,8 @@
     "area": "galaxy",
     "anum": 47,
     "name": "Inside a Luxurious Bedroom",
-    "description": "A peaceful feeling overtakes you.  You see a magnificent four-poster bed.\nIt's a double bed and there is only room for one more!  Well, what now ... ?\n",
+    "description": "A peaceful feeling overtakes you.  You see a magnificent four-poster bed.\n
+                   |It's a double bed and there is only room for one more!  Well, what now ... ?\n",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [{
@@ -1232,7 +1289,9 @@
     "area": "galaxy",
     "anum": 48,
     "name": "The Supreme Court",
-    "description": "You are standing inside the dock of a court.  You feel an overwhelming\nsense of guilt and you want to protest your innocence!  You fear retribution\nand feel yourself exposed, just like the trees in Autumn.\n",
+    "description": "You are standing inside the dock of a court.  You feel an overwhelming\n
+                   |sense of guilt and you want to protest your innocence!  You fear retribution\n
+                   |and feel yourself exposed, just like the trees in Autumn.\n",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -1286,7 +1345,8 @@
     "area": "galaxy",
     "anum": 49,
     "name": "In the Dry Desert",
-    "description": "You are confused by the shifting sands around you.  Through the shimmering\nheat you see the hazy outline of a giant scorpion ... is this a mirage?\n",
+    "description": "You are confused by the shifting sands around you.  Through the shimmering\n
+                   |heat you see the hazy outline of a giant scorpion ... is this a mirage?\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1321,7 +1381,8 @@
     "area": "galaxy",
     "anum": 50,
     "name": "In the Woods",
-    "description": "You find yourself in the center of a Centaurion hunting party.  You'd better\nhide yourself before you become the 'center attraction'!\n",
+    "description": "You find yourself in the center of a Centaurion hunting party.  You'd better\n
+                   |hide yourself before you become the 'center attraction'!\n",
     "sector_type": "forest",
     "doors": [{
       "dir": "east",
@@ -1358,7 +1419,8 @@
     "area": "galaxy",
     "anum": 51,
     "name": "On a Mountain Peak",
-    "description": "You are on the highest peak of the Universe.  You look around and notice\nclouds below you.  One of the clouds resembles a goat-like form.\n",
+    "description": "You are on the highest peak of the Universe.  You look around and notice\n
+                   |clouds below you.  One of the clouds resembles a goat-like form.\n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1400,7 +1462,8 @@
     "area": "galaxy",
     "anum": 52,
     "name": "Inside a Waterfall",
-    "description": "The noise is deafening.  You are about to take a drink when you realize\nthat the water is being poured out of a vessel of mind-boggling proportions!\n",
+    "description": "The noise is deafening.  You are about to take a drink when you realize\n
+                   |that the water is being poured out of a vessel of mind-boggling proportions!\n",
     "sector_type": "mountain",
     "doors": [{
       "dir": "west",
@@ -1429,7 +1492,8 @@
     "area": "galaxy",
     "anum": 53,
     "name": "Inside a Gigantic Clam",
-    "description": "You feel uneasy here as if some evil magic is being cast on you.\nYou suspect something fishy is going on in here.\n",
+    "description": "You feel uneasy here as if some evil magic is being cast on you.\n
+                   |You suspect something fishy is going on in here.\n",
     "sector_type": "mountain",
     "doors": [{
       "dir": "west",
@@ -1466,7 +1530,9 @@
     "area": "galaxy",
     "anum": 54,
     "name": "End of the Mystic Chains",
-    "description": "You have reached the end of the mystic chains.  Looking up, you notice a\nsmall landing on which you can climb.  However, there seems to be another\nforcefield blocking your way.  \n",
+    "description": "You have reached the end of the mystic chains.  Looking up, you notice a\n
+                   |small landing on which you can climb.  However, there seems to be another\n
+                   |forcefield blocking your way.  \n",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1490,7 +1556,8 @@
     "area": "galaxy",
     "anum": 55,
     "name": "On the Draco",
-    "description": "You realize you are standing on scaly ground.  As you wonder what the ground\nis made of, you feel the ground move.\n",
+    "description": "You realize you are standing on scaly ground.  As you wonder what the ground\n
+                   |is made of, you feel the ground move.\n",
     "sector_type": "hills",
     "room_flags": "dark",
     "doors": [
@@ -1518,7 +1585,9 @@
     "area": "galaxy",
     "anum": 56,
     "name": "Tail of the Draco",
-    "description": "At last you realize that you are on a giant snake-like dragon called the\nDraco, the guardian of the inner galaxy.  You realize that the Draco is\nactually flying now! \n",
+    "description": "At last you realize that you are on a giant snake-like dragon called the\n
+                   |Draco, the guardian of the inner galaxy.  You realize that the Draco is\n
+                   |actually flying now! \n",
     "sector_type": "hills",
     "room_flags": "dark",
     "doors": [
@@ -1536,7 +1605,8 @@
     "area": "galaxy",
     "anum": 57,
     "name": "Path of the Draco",
-    "description": "As you struggle along this scaly creature you realize that the only way\nyou can reach to the inner galaxy is by going all the way to the head.\n",
+    "description": "As you struggle along this scaly creature you realize that the only way\n
+                   |you can reach to the inner galaxy is by going all the way to the head.\n",
     "sector_type": "hills",
     "room_flags": "dark",
     "doors": [
@@ -1554,7 +1624,9 @@
     "area": "galaxy",
     "anum": 58,
     "name": "Near the Legs of Draco",
-    "description": "You are approaching the leg part of this creature.  You look around and see\nthat the surrounding is all dark except for some faint lights from the\ndistant stars.\n",
+    "description": "You are approaching the leg part of this creature.  You look around and see\n
+                   |that the surrounding is all dark except for some faint lights from the\n
+                   |distant stars.\n",
     "sector_type": "hills",
     "room_flags": "dark",
     "doors": [
@@ -1580,7 +1652,8 @@
     "area": "galaxy",
     "anum": 59,
     "name": "On the Back of Draco",
-    "description": "At last you are half way through this long, weary journey. You can see\nthe wings are to the east but it seems that another forcefield is in the way.\n",
+    "description": "At last you are half way through this long, weary journey. You can see\n
+                   |the wings are to the east but it seems that another forcefield is in the way.\n",
     "sector_type": "hills",
     "room_flags": "dark",
     "doors": [
@@ -1602,7 +1675,8 @@
     "area": "galaxy",
     "anum": 60,
     "name": "Between the Wings of Draco",
-    "description": "You hear some giant flapping sounds nearby.  You desperately try to get hold\nof something as the forceful gusts sweep you away.\n",
+    "description": "You hear some giant flapping sounds nearby.  You desperately try to get hold\n
+                   |of something as the forceful gusts sweep you away.\n",
     "sector_type": "hills",
     "room_flags": "dark",
     "doors": [
@@ -1630,7 +1704,8 @@
     "area": "galaxy",
     "anum": 61,
     "name": "Near the Arms of Draco",
-    "description": "From above you can faintly make out the gigantic arms which extend far\nbeyond into the darkness.\n",
+    "description": "From above you can faintly make out the gigantic arms which extend far\n
+                   |beyond into the darkness.\n",
     "sector_type": "hills",
     "room_flags": "dark",
     "doors": [
@@ -1648,7 +1723,8 @@
     "area": "galaxy",
     "anum": 62,
     "name": "On the Neck of Draco",
-    "description": "Your journey is now approaching the end.  However, this neck seems to be\nendless.\n",
+    "description": "Your journey is now approaching the end.  However, this neck seems to be\n
+                   |endless.\n",
     "sector_type": "hills",
     "room_flags": "dark",
     "doors": [
@@ -1666,7 +1742,9 @@
     "area": "galaxy",
     "anum": 63,
     "name": "Approaching the Head of Draco",
-    "description": "You have come to the end of Draco, but you can't find the head!\nYou see a forcefield to the south, some distance away, beyond reach.\nIf only the head were here ...\n",
+    "description": "You have come to the end of Draco, but you can't find the head!\n
+                   |You see a forcefield to the south, some distance away, beyond reach.\n
+                   |If only the head were here ...\n",
     "sector_type": "hills",
     "room_flags": "dark",
     "doors": [
@@ -1705,7 +1783,9 @@
     "area": "galaxy",
     "anum": 64,
     "name": "At the Entrance of the Great Dipper",
-    "description": "Now you are in the innermost part of the galaxy.  What you are walking on now\nis the path of the Great Dipper or the Plough.  You notice that there are\nseven rooms in this zone, representing the seven stars of the Dipper.\n",
+    "description": "Now you are in the innermost part of the galaxy.  What you are walking on now\n
+                   |is the path of the Great Dipper or the Plough.  You notice that there are\n
+                   |seven rooms in this zone, representing the seven stars of the Dipper.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -1730,7 +1810,8 @@
     "area": "galaxy",
     "anum": 65,
     "name": "Cassiopeia's Throne",
-    "description": "This is the Throne room of the Queen of the Universe.  From here you can see\nevery star and constellation in the Universe. \n",
+    "description": "This is the Throne room of the Queen of the Universe.  From here you can see\n
+                   |every star and constellation in the Universe. \n",
     "sector_type": "city",
     "doors": [
       {
@@ -1782,7 +1863,8 @@
     "area": "galaxy",
     "anum": 67,
     "name": "Cepheus' Throne",
-    "description": "This is the Throne room of the King of the Universe.  From here you can see\nevery star and constellation in the Universe. \n",
+    "description": "This is the Throne room of the King of the Universe.  From here you can see\n
+                   |every star and constellation in the Universe. \n",
     "sector_type": "city",
     "doors": [
       {
@@ -1855,7 +1937,9 @@
     "area": "galaxy",
     "anum": 70,
     "name": "End of the Dipper",
-    "description": "You have finished the path of the Dipper.  Here, the most prominent feature\nis a set of claw-marks.  You also notice a room to the south; it looks as\nif Polaris could lie here. \n",
+    "description": "You have finished the path of the Dipper.  Here, the most prominent feature\n
+                   |is a set of claw-marks.  You also notice a room to the south; it looks as\n
+                   |if Polaris could lie here. \n",
     "sector_type": "city",
     "doors": [
       {
@@ -1880,7 +1964,10 @@
     "area": "galaxy",
     "anum": 71,
     "name": "The Polar Star",
-    "description": "You have entered the private chamber of Polaris.  This is a room of great\nsignificance.  You can see a powerful telescope pointing down towards the\nUniverse (SNOOPING!).  It is from here that Polaris commands the Universe.\nYou feel you have come to end of your search in this galaxy ...\n",
+    "description": "You have entered the private chamber of Polaris.  This is a room of great\n
+                   |significance.  You can see a powerful telescope pointing down towards the\n
+                   |Universe (SNOOPING!).  It is from here that Polaris commands the Universe.\n
+                   |You feel you have come to end of your search in this galaxy ...\n",
     "sector_type": "city",
     "doors": [{
       "dir": "north",

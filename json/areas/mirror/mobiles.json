@@ -5,7 +5,9 @@
     "name": "baby beholder",
     "short_descr": "the baby beholder",
     "long_descr": "You meet a baby beholder's cute gaze!\n",
-    "description": "It has a large central eye that blinks like a guppy and eyestalks atop the \nround body which can charm you with its cuteness.  Baby beholders are known for\ntheir playful personality.  Hmmm....  It looks like the baby is teething!\n",
+    "description": "It has a large central eye that blinks like a guppy and eyestalks atop the \n
+                   |round body which can charm you with its cuteness.  Baby beholders are known for\n
+                   |their playful personality.  Hmmm....  It looks like the baby is teething!\n",
     "race": "human",
     "alignment": 500,
     "level": 5,
@@ -34,7 +36,8 @@
     "name": "lamia pet",
     "short_descr": "the pet lamia",
     "long_descr": "A pet lamia stands here waiting for her next command.\n",
-    "description": "This is a creature with the upper torso of a beautiful woman, but the lower\nbody of a four-legged beast.\n",
+    "description": "This is a creature with the upper torso of a beautiful woman, but the lower\n
+                   |body of a four-legged beast.\n",
     "race": "human",
     "alignment": 500,
     "level": 4,
@@ -61,7 +64,8 @@
     "name": "citizen man",
     "short_descr": "a citizen of Thalos",
     "long_descr": "A citizen of Thalos is here, conversing with everyone.\n",
-    "description": "He smiles at you, almost as if he knows you.  He is so friendly, you have no\nchoice but to reciprocate.\n",
+    "description": "He smiles at you, almost as if he knows you.  He is so friendly, you have no\n
+                   |choice but to reciprocate.\n",
     "race": "human",
     "alignment": 500,
     "level": 5,
@@ -88,7 +92,8 @@
     "name": "guard imperial cityguard",
     "short_descr": "an imperial cityguard",
     "long_descr": "An imperial cityguard is here, keeping the peace of Thalos.\n",
-    "description": "He is dressed in plate, and he looks quite formidable.  At the moment, though,\nhe is just giggling with a kid running about.\n",
+    "description": "He is dressed in plate, and he looks quite formidable.  At the moment, though,\n
+                   |he is just giggling with a kid running about.\n",
     "race": "human",
     "alignment": 1000,
     "level": 17,
@@ -117,7 +122,9 @@
     "name": "citizen woman female",
     "short_descr": "a female citizen of Thalos",
     "long_descr": "A female citizen of Thalos is here, showing off her new dress.\n",
-    "description": "She is beautiful, dressed in a sundress that sparkles with gems sown in.  She\nsmiles at you, and your heart flutters at the thought that you have her\nattention, if only for a moment.\n",
+    "description": "She is beautiful, dressed in a sundress that sparkles with gems sown in.  She\n
+                   |smiles at you, and your heart flutters at the thought that you have her\n
+                   |attention, if only for a moment.\n",
     "race": "human",
     "alignment": 500,
     "level": 5,
@@ -143,8 +150,11 @@
     "anum": 5,
     "name": "gordon defender",
     "short_descr": "Gordon the Brave",
-    "long_descr": "Gordon the Brave, the Defender of Thalos, is here, looking at no\none but you, the only stranger in town.\n",
-    "description": "Gordon is dressed in full mithril plate, and he looks indestructible.  He eyes\nyou suspiciously not only because you are a stranger, but because you are an\nARMED stranger.  Better not do any funny stuff in his presence.\n",
+    "long_descr": "Gordon the Brave, the Defender of Thalos, is here, looking at no\n
+                  |one but you, the only stranger in town.\n",
+    "description": "Gordon is dressed in full mithril plate, and he looks indestructible.  He eyes\n
+                   |you suspiciously not only because you are a stranger, but because you are an\n
+                   |ARMED stranger.  Better not do any funny stuff in his presence.\n",
     "race": "human",
     "alignment": 1000,
     "level": 35,
@@ -173,7 +183,10 @@
     "name": "priest",
     "short_descr": "the fanatic priest",
     "long_descr": "A fanatic priest is here, foretelling the destruction of Thalos.\n",
-    "description": "The priest must have lost his mind.  He keeps saying that one day, evil will\nprevail and take over Thalos and bring the whole city down.  Obviously, no one\nlistens to this fool.  The priest's right fist is covered in golden silk,\nand he clenches it at you.  Other than that, he is dressed all in black.\n",
+    "description": "The priest must have lost his mind.  He keeps saying that one day, evil will\n
+                   |prevail and take over Thalos and bring the whole city down.  Obviously, no one\n
+                   |listens to this fool.  The priest's right fist is covered in golden silk,\n
+                   |and he clenches it at you.  Other than that, he is dressed all in black.\n",
     "race": "human",
     "alignment": -500,
     "level": 10,
@@ -201,7 +214,8 @@
     "name": "priest",
     "short_descr": "the priest of Thalos",
     "long_descr": "The priest of Thalos tells you of the glories of this city.\n",
-    "description": "He stands here gloriously telling of Thalos's history, how it is now referred by\nthe world as 'The City of Peace'.  He is very happy to be the high priest here.\n",
+    "description": "He stands here gloriously telling of Thalos's history, how it is now referred by\n
+                   |the world as 'The City of Peace'.  He is very happy to be the high priest here.\n",
     "race": "human",
     "alignment": 1000,
     "level": 20,
@@ -230,7 +244,8 @@
     "name": "golem stone",
     "short_descr": "the stone golem",
     "long_descr": "In the corner you see a large, stone golem faithfully standing watch.\n",
-    "description": "It is a big chunk of rock that has been magically formed into a giant\nstone creature.  It stands here guarding the city.\n",
+    "description": "It is a big chunk of rock that has been magically formed into a giant\n
+                   |stone creature.  It stands here guarding the city.\n",
     "race": "human",
     "alignment": 1000,
     "level": 30,
@@ -258,7 +273,8 @@
     "name": "mayor",
     "short_descr": "the mayor of Thalos",
     "long_descr": "The mayor of Thalos is sitting here, doing his paperwork.\n",
-    "description": "He looks very busy, but he takes the time to say, 'Hi!  Welcome to Thalos!'\nHe looks very proud of his work.\n",
+    "description": "He looks very busy, but he takes the time to say, 'Hi!  Welcome to Thalos!'\n
+                   |He looks very proud of his work.\n",
     "race": "human",
     "alignment": 800,
     "level": 20,
@@ -319,7 +335,8 @@
     "name": "george butcher",
     "short_descr": "George the Butcher",
     "long_descr": "George the Butcher is here whacking away at a side of beef.\n",
-    "description": "Looking down at you with blood splattered all over his face and apron,\nhe asks, 'How much you want?'\n",
+    "description": "Looking down at you with blood splattered all over his face and apron,\n
+                   |he asks, 'How much you want?'\n",
     "race": "human",
     "alignment": 600,
     "level": 30,
@@ -389,7 +406,8 @@
     "name": "thaellor dwarf",
     "short_descr": "Thaellor the dwarf",
     "long_descr": "Thaellor is here selling his metal wares.\n",
-    "description": "Thaellor sweats rivers and complains about the heat as he pounds the\nmetal into items of defense and destruction.\n",
+    "description": "Thaellor sweats rivers and complains about the heat as he pounds the\n
+                   |metal into items of defense and destruction.\n",
     "race": "human",
     "alignment": 550,
     "level": 30,
@@ -553,7 +571,9 @@
     "name": "masseuse woman",
     "short_descr": "a beautiful masseuse",
     "long_descr": "A beautiful woman is here offering you a massage.\n",
-    "description": "She is beautiful, dressed in a sundress that sparkles with gems sown in.  She\nsmiles at you, and your heart flutters at the thought that you have her\nattention, and you jump to her offer for a massage.\n",
+    "description": "She is beautiful, dressed in a sundress that sparkles with gems sown in.  She\n
+                   |smiles at you, and your heart flutters at the thought that you have her\n
+                   |attention, and you jump to her offer for a massage.\n",
     "race": "human",
     "alignment": 700,
     "level": 4,
@@ -580,7 +600,8 @@
     "name": "bather man",
     "short_descr": "a man",
     "long_descr": "A man is here bathing.\n",
-    "description": "He smiles at you, almost as if he knows you.  He is so friendly, you have no\nchoice but to reciprocate and join him and the others in the soothing pool.\n",
+    "description": "He smiles at you, almost as if he knows you.  He is so friendly, you have no\n
+                   |choice but to reciprocate and join him and the others in the soothing pool.\n",
     "race": "human",
     "alignment": 650,
     "level": 5,
@@ -607,7 +628,9 @@
     "name": "guard imperial cityguard",
     "short_descr": "An imperial cityguard",
     "long_descr": "An imperial cityguard overseeing patrols in the city.\n",
-    "description": "He is dressed in plate, and he looks quite formidable.  At the moment,\nhe is looking at a map of Thalos aside his fellow co-workers keeping\ntrack of each city patrol.\n",
+    "description": "He is dressed in plate, and he looks quite formidable.  At the moment,\n
+                   |he is looking at a map of Thalos aside his fellow co-workers keeping\n
+                   |track of each city patrol.\n",
     "race": "human",
     "alignment": 1000,
     "level": 17,
@@ -636,7 +659,8 @@
     "name": "guard cityguard",
     "short_descr": "an imperial cityguard",
     "long_descr": "An imperial cityguard guards the Grand Gate.\n",
-    "description": "He is dressed in plate, and he looks quite formidable.  At the moment,\nhe is watching the children play with amusement.\n",
+    "description": "He is dressed in plate, and he looks quite formidable.  At the moment,\n
+                   |he is watching the children play with amusement.\n",
     "race": "human",
     "alignment": 1000,
     "level": 17,
@@ -665,7 +689,8 @@
     "name": "doe",
     "short_descr": "a doe",
     "long_descr": "A doe munches on grass.\n",
-    "description": "This peaceful creature looks at you with big dark eyes.  Her nose twitches as\nshe sniffs at you, but she goes back to chewing some grass.\n",
+    "description": "This peaceful creature looks at you with big dark eyes.  Her nose twitches as\n
+                   |she sniffs at you, but she goes back to chewing some grass.\n",
     "race": "human",
     "alignment": 0,
     "level": 5,
@@ -692,7 +717,8 @@
     "name": "deer",
     "short_descr": "a deer",
     "long_descr": "A deer stares back at you.\n",
-    "description": "The deer looks angered at your intrusion.  He butts his head against you, \nalbeit ineffectively.\n",
+    "description": "The deer looks angered at your intrusion.  He butts his head against you, \n
+                   |albeit ineffectively.\n",
     "race": "human",
     "alignment": 0,
     "level": 6,
@@ -968,7 +994,8 @@
     "name": "fido dog",
     "short_descr": "the beastly fido",
     "long_descr": "Beastly Fido is here.\n",
-    "description": "Fido is a small dog that has a foul smell and pieces of rotted meat hanging\naround his teeth.\n",
+    "description": "Fido is a small dog that has a foul smell and pieces of rotted meat hanging\n
+                   |around his teeth.\n",
     "race": "fido",
     "alignment": -200,
     "level": 0,

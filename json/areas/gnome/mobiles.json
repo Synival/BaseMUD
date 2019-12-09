@@ -5,7 +5,8 @@
     "name": "child gnome",
     "short_descr": "a gnome child",
     "long_descr": "A gnome child is playing around here.\n",
-    "description": "The little tyke looks so innocent playing with his boomerang that you \njust want to pick him up and hug him.\n",
+    "description": "The little tyke looks so innocent playing with his boomerang that you \n
+                   |just want to pick him up and hug him.\n",
     "race": "human",
     "alignment": 600,
     "level": 3,
@@ -32,7 +33,8 @@
     "name": "woman gnome",
     "short_descr": "a gnome woman",
     "long_descr": "A gnome woman is standing here, trying to look beautiful.\n",
-    "description": "The woman is short and gnarled, but acts like a woman several times her beauty.\nShe's starting to look pretty attractive to you ...\n",
+    "description": "The woman is short and gnarled, but acts like a woman several times her beauty.\n
+                   |She's starting to look pretty attractive to you ...\n",
     "race": "human",
     "alignment": 600,
     "level": 5,
@@ -59,7 +61,8 @@
     "name": "man gnome",
     "short_descr": "a gnome man",
     "long_descr": "A gnome man is walking here, on his way to work.\n",
-    "description": "This is a prime example of a gnome.  He looks short and weak, but at the\nsame time an intelligent creature who could outsmart you.\n",
+    "description": "This is a prime example of a gnome.  He looks short and weak, but at the\n
+                   |same time an intelligent creature who could outsmart you.\n",
     "race": "human",
     "alignment": 500,
     "level": 6,
@@ -86,7 +89,8 @@
     "name": "scientist gnome",
     "short_descr": "a gnome scientist",
     "long_descr": "A scientist wanders around deep in thought.\n",
-    "description": "You see a gnome who is lost deep into some invention that he is about\nto make.  His hair is white, but he looks fairly strong.\n",
+    "description": "You see a gnome who is lost deep into some invention that he is about\n
+                   |to make.  His hair is white, but he looks fairly strong.\n",
     "race": "human",
     "alignment": 500,
     "level": 7,
@@ -114,7 +118,8 @@
     "name": "guard gnome",
     "short_descr": "a gnome guard",
     "long_descr": "A gnome guard stands here guarding something.\n",
-    "description": "This is a well trained gnome.  He might not have a lot of strength but\nhe makes up for it with his weapons skill.\n",
+    "description": "This is a well trained gnome.  He might not have a lot of strength but\n
+                   |he makes up for it with his weapons skill.\n",
     "race": "human",
     "alignment": 400,
     "level": 8,
@@ -141,7 +146,8 @@
     "name": "chief gnome",
     "short_descr": "the chief gnome",
     "long_descr": "A powerful looking gnome stands here wearing ornate clothes.\n",
-    "description": "The Chief looks like he could whap you hard.  He looks not only powerful\nbut wise and resourceful.  You better not mess with him.\n",
+    "description": "The Chief looks like he could whap you hard.  He looks not only powerful\n
+                   |but wise and resourceful.  You better not mess with him.\n",
     "race": "human",
     "alignment": 550,
     "level": 15,
@@ -169,7 +175,8 @@
     "name": "troll small",
     "short_descr": "a small troll",
     "long_descr": "A small troll grunts as he takes a swing at you.\n",
-    "description": "The small troll is a short and stocky beast with a human-like face\nbut with the eyes and fangs of a wild beast.\n",
+    "description": "The small troll is a short and stocky beast with a human-like face\n
+                   |but with the eyes and fangs of a wild beast.\n",
     "race": "troll",
     "alignment": -900,
     "level": 8,
@@ -307,7 +314,8 @@
     "name": "troll",
     "short_descr": "the troll",
     "long_descr": "A giant troll lumbers around.\n",
-    "description": "You see before you a huge mass of living flesh.  You cringe in fear as\nhe lifts his powerful arm to bludgeon you.\n",
+    "description": "You see before you a huge mass of living flesh.  You cringe in fear as\n
+                   |he lifts his powerful arm to bludgeon you.\n",
     "race": "troll",
     "alignment": -800,
     "level": 14,
@@ -361,7 +369,8 @@
     "name": "zombie gnome",
     "short_descr": "the zombie gnome",
     "long_descr": "A zombie gnome shuffles his way towards you.\n",
-    "description": "This is a creature which has passed away long ago.  His body has been\npulled out of its resting place by some evil force.\n",
+    "description": "This is a creature which has passed away long ago.  His body has been\n
+                   |pulled out of its resting place by some evil force.\n",
     "race": "human",
     "alignment": -700,
     "level": 7,
@@ -388,7 +397,8 @@
     "name": "bat fire",
     "short_descr": "the fire bat",
     "long_descr": "The fire bat flames brightly and prepares to attack.\n",
-    "description": "You see a huge flame which resembles the shape of a bat.  The creature\nhangs from the ceiling and bites at you.\n",
+    "description": "You see a huge flame which resembles the shape of a bat.  The creature\n
+                   |hangs from the ceiling and bites at you.\n",
     "race": "bat",
     "alignment": -900,
     "level": 12,
@@ -417,7 +427,8 @@
     "name": "guard hobgoblin",
     "short_descr": "the hobgoblin guard",
     "long_descr": "The hobgoblin guard attacks first, thinks later.\n",
-    "description": "This is an extra large, extra ugly goblin like creature.  He grins evilly\nas he attempts to brain you.\n",
+    "description": "This is an extra large, extra ugly goblin like creature.  He grins evilly\n
+                   |as he attempts to brain you.\n",
     "race": "human",
     "alignment": -700,
     "level": 6,
@@ -444,7 +455,8 @@
     "name": "soldier hobgoblin",
     "short_descr": "the hobgoblin soldier",
     "long_descr": "A hobgoblin soldier stands here.\n",
-    "description": "This is just a low life hobgoblin, who couldn't make it to the ranks\nof the elite guards.  He looks pissed.\n",
+    "description": "This is just a low life hobgoblin, who couldn't make it to the ranks\n
+                   |of the elite guards.  He looks pissed.\n",
     "race": "human",
     "alignment": -600,
     "level": 3,
@@ -471,7 +483,8 @@
     "name": "bodyguard hobgoblin",
     "short_descr": "the hobgoblin bodyguard",
     "long_descr": "A hobgoblin bodyguard guards the king with his life.\n",
-    "description": "This is one of the elite hobgoblin guards.  He stands tall for his short\nstature.  He grins a toothy grin as he prepares to attack.\n",
+    "description": "This is one of the elite hobgoblin guards.  He stands tall for his short\n
+                   |stature.  He grins a toothy grin as he prepares to attack.\n",
     "race": "human",
     "alignment": -500,
     "level": 7,
@@ -498,7 +511,8 @@
     "name": "king hobgoblin",
     "short_descr": "the king of the hobgoblins",
     "long_descr": "There is a great king here, sitting in his throne.\n",
-    "description": "The king is a silly looking hobgoblin whose muscles bulge out of his robes,\ndestroying the sophisticated effect he was trying to create.\n",
+    "description": "The king is a silly looking hobgoblin whose muscles bulge out of his robes,\n
+                   |destroying the sophisticated effect he was trying to create.\n",
     "race": "human",
     "alignment": -500,
     "level": 12,
@@ -554,7 +568,8 @@
     "name": "treasurer hobgoblin",
     "short_descr": "the treasurer",
     "long_descr": "A treasurer is here counting out money.\n",
-    "description": "The hobgoblin treasurer is an old goblin with glasses.  It appears that he\ncan only see a couple feet in front of him.\n",
+    "description": "The hobgoblin treasurer is an old goblin with glasses.  It appears that he\n
+                   |can only see a couple feet in front of him.\n",
     "race": "human",
     "alignment": -200,
     "level": 10,
@@ -637,7 +652,8 @@
     "name": "hermit crab",
     "short_descr": "a hermit",
     "long_descr": "A hermit crab crawls towards you.\n",
-    "description": "The hermit crab is about 5 feet high and looks mad that you had the nerve\nto wake it up.\n",
+    "description": "The hermit crab is about 5 feet high and looks mad that you had the nerve\n
+                   |to wake it up.\n",
     "race": "human",
     "alignment": -10,
     "level": 5,
@@ -664,7 +680,8 @@
     "name": "cook hobgoblin",
     "short_descr": "the cook",
     "long_descr": "A hobgoblin cook stands here cooking something.\n",
-    "description": "The cook is a dirty and fat hobgoblin.  He burps as he stirs up something\nin a pot.\n",
+    "description": "The cook is a dirty and fat hobgoblin.  He burps as he stirs up something\n
+                   |in a pot.\n",
     "race": "human",
     "alignment": -300,
     "level": 7,

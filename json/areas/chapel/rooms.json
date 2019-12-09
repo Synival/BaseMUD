@@ -3,7 +3,8 @@
     "area": "chapel",
     "anum": 5,
     "name": "Inside the Chapel",
-    "description": "You are in a small, dark chapel.  The dark brown glass in the tiny windows\ndo not let much light through.  A few rows of worn wooden benches stand here.\n",
+    "description": "You are in a small, dark chapel.  The dark brown glass in the tiny windows\n
+                   |do not let much light through.  A few rows of worn wooden benches stand here.\n",
     "sector_type": "city",
     "doors": [
       {
@@ -82,12 +83,19 @@
     "area": "chapel",
     "anum": 9,
     "name": "The Acolyte's Bedroom",
-    "description": "This is why you were not welcomed at the entrance by the tomb's faithful\nservants ... blood and gore is ankle deep in here.\nOh NO! the door shut behind you!  It's a trap!\nA bloodied corpse of an acolyte is lying here ...\nA bloodied corpse of an acolyte is lying here ...\nA bloodied corpse of an acolyte is lying here ...\n",
+    "description": "This is why you were not welcomed at the entrance by the tomb's faithful\n
+                   |servants ... blood and gore is ankle deep in here.\n
+                   |Oh NO! the door shut behind you!  It's a trap!\n
+                   |A bloodied corpse of an acolyte is lying here ...\n
+                   |A bloodied corpse of an acolyte is lying here ...\n
+                   |A bloodied corpse of an acolyte is lying here ...\n",
     "sector_type": "inside",
     "room_flags": "dark no_mob indoors",
     "extra_description": [{
       "keyword": "corpse corpses",
-      "description": "Mauled and torn apart ... throats were ripped out and guts spilled on the\nfloor ... you slip and land, planting yourself firmly in the slick wetness\nand splattering yourself with offal.\n"
+      "description": "Mauled and torn apart ... throats were ripped out and guts spilled on the\n
+                     |floor ... you slip and land, planting yourself firmly in the slick wetness\n
+                     |and splattering yourself with offal.\n"
     }],
     "resets": [
       {
@@ -202,7 +210,9 @@
     "area": "chapel",
     "anum": 12,
     "name": "The Grand Hall of Kings",
-    "description": "You are at the west end of the Grand Hall of Kings.  There is a doorway to the\nsouth with something strange written above it.  Also on the floor are dried\nblood stains, but their color seems a little wrong.\n",
+    "description": "You are at the west end of the Grand Hall of Kings.  There is a doorway to the\n
+                   |south with something strange written above it.  Also on the floor are dried\n
+                   |blood stains, but their color seems a little wrong.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -221,7 +231,8 @@
     "extra_description": [
       {
         "keyword": "door writing",
-        "description": "Above the door is some strange writing!  It is worn with age, but it refers\nto an ancient ruler named 'Shohan'.\n"
+        "description": "Above the door is some strange writing!  It is worn with age, but it refers\n
+                       |to an ancient ruler named 'Shohan'.\n"
       },
       {
         "keyword": "stain stains",
@@ -233,7 +244,11 @@
     "area": "chapel",
     "anum": 13,
     "name": "The Shrine of Shohan",
-    "description": "BLOOD EVERYWHERE!\nThe walls are coated with blood, bits of bloody flesh lie at your feet,\nand torn clothing is scattered about.  It wouldn't disturb you in the least\nexcept that it is all FRESH!  What ever used to pass as an altar here,\nlies overturned and smashed.  Doors lead to the south and to the north.\n",
+    "description": "BLOOD EVERYWHERE!\n
+                   |The walls are coated with blood, bits of bloody flesh lie at your feet,\n
+                   |and torn clothing is scattered about.  It wouldn't disturb you in the least\n
+                   |except that it is all FRESH!  What ever used to pass as an altar here,\n
+                   |lies overturned and smashed.  Doors lead to the south and to the north.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -255,7 +270,11 @@
     "area": "chapel",
     "anum": 14,
     "name": "The Tomb of Shohan",
-    "description": "Once beautiful, this place has been turned into a slaughterhouse by the hands\nof evil beings ... even more blood and dead, rotting flesh.  This place looks\nlike the feeding grounds of beasts and monsters.  The overturned sarcophagus\nof the once powerful King Shohan lies here.  A door leads to the north and a\ndoorway has been hewn to the east.\n",
+    "description": "Once beautiful, this place has been turned into a slaughterhouse by the hands\n
+                   |of evil beings ... even more blood and dead, rotting flesh.  This place looks\n
+                   |like the feeding grounds of beasts and monsters.  The overturned sarcophagus\n
+                   |of the once powerful King Shohan lies here.  A door leads to the north and a\n
+                   |doorway has been hewn to the east.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -273,7 +292,9 @@
     ],
     "extra_description": [{
       "keyword": "coffin sarcophagus",
-      "description": "Now destroyed ... there is writing on it: 'All hail the new king; we serve\nthe Roch'tar, the Undying One!  Those who decline his worship shall be\nslaughtered!'\n"
+      "description": "Now destroyed ... there is writing on it: 'All hail the new king; we serve\n
+                     |the Roch'tar, the Undying One!  Those who decline his worship shall be\n
+                     |slaughtered!'\n"
     }],
     "resets": [
       {
@@ -336,7 +357,9 @@
     "area": "chapel",
     "anum": 16,
     "name": "Entrance to the Lower Chambers",
-    "description": "You can tell that this area wasn't a part of the original construction.\nThe walls have been hewn by a mighty force look as though they were CLAWED.\nThe passage slopes upward here and also continues to the north.\n",
+    "description": "You can tell that this area wasn't a part of the original construction.\n
+                   |The walls have been hewn by a mighty force look as though they were CLAWED.\n
+                   |The passage slopes upward here and also continues to the north.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -353,14 +376,16 @@
     ],
     "extra_description": [{
       "keyword": "walls",
-      "description": "Something BIG must have done this job!  There are traces of BLOOD in the\nclaw marks.\n"
+      "description": "Something BIG must have done this job!  There are traces of BLOOD in the\n
+                     |claw marks.\n"
     }]
   }},
   {"room": {
     "area": "chapel",
     "anum": 17,
     "name": "The Grand Hall of Kings",
-    "description": "This is the western wing of the Grand Hall of Kings.  Your only exits are to\nthe east and west in this gloomy hallway.\n",
+    "description": "This is the western wing of the Grand Hall of Kings.  Your only exits are to\n
+                   |the east and west in this gloomy hallway.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -395,7 +420,10 @@
     "area": "chapel",
     "anum": 18,
     "name": "The Shrine of Cristis",
-    "description": "Different than the rest, this place has not been desecrated.  An altar still\nstands here and the walls show scenes from the life of Cristis the Kind,\na ruler of the outlying regions west of Midgaard.  There is a stone staircase\nleading down.  The Ghost of Cristis the Kind stands here.\n",
+    "description": "Different than the rest, this place has not been desecrated.  An altar still\n
+                   |stands here and the walls show scenes from the life of Cristis the Kind,\n
+                   |a ruler of the outlying regions west of Midgaard.  There is a stone staircase\n
+                   |leading down.  The Ghost of Cristis the Kind stands here.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -413,11 +441,25 @@
     "extra_description": [
       {
         "keyword": "ghost cristis",
-        "description": "His rest has been disturbed by evil creatures who have invaded his domain\nand grave.  He holds up a parchment for you to read:\n\n     Hello stranger and last hope for Midgaard and this tomb!\n   This is a plea for aid by a man long since dead from this Earth.\n     The forces of evil have taken control of this tomb and the\n   Kings of old need your aid to free us and deliver us to peace\n   once again.  I think that I alone have been able to appear and\n   communicate with the mortal world.\n     Roch'tar, the reincarnate Vampire, now rules these tombs.\n   You must find and defeat him and his minions!\n     May God bless you on your Quest!\n"
+        "description": "His rest has been disturbed by evil creatures who have invaded his domain\n
+                       |and grave.  He holds up a parchment for you to read:\n
+                       |\n
+                       |     Hello stranger and last hope for Midgaard and this tomb!\n
+                       |   This is a plea for aid by a man long since dead from this Earth.\n
+                       |     The forces of evil have taken control of this tomb and the\n
+                       |   Kings of old need your aid to free us and deliver us to peace\n
+                       |   once again.  I think that I alone have been able to appear and\n
+                       |   communicate with the mortal world.\n
+                       |     Roch'tar, the reincarnate Vampire, now rules these tombs.\n
+                       |   You must find and defeat him and his minions!\n
+                       |     May God bless you on your Quest!\n"
       },
       {
         "keyword": "altar",
-        "description": "It stands 2 feet high with the remnants of candle-wax on top.  There is\nan inscription on the side:  'Praise the almighty Cristis the bringer of\ngood and justice to the world.  He who fought the evilest finally is at\npeace.  May the Gods remember him forever ...'\n"
+        "description": "It stands 2 feet high with the remnants of candle-wax on top.  There is\n
+                       |an inscription on the side:  'Praise the almighty Cristis the bringer of\n
+                       |good and justice to the world.  He who fought the evilest finally is at\n
+                       |peace.  May the Gods remember him forever ...'\n"
       }
     ],
     "resets": [
@@ -496,7 +538,12 @@
     "area": "chapel",
     "anum": 21,
     "name": "Entrance Chamber to the Grand Hall of Kings",
-    "description": "Whoever built this place must have been very rich indeed!  Though you did\nenter through a rather small door this place has enough room to hold several\nscore of people.  The floor has a beautifully woven carpet, and the walls are\ncovered in finely crafted tapestries. You can tell that these things must have\nbeen worth much but they have not lasted well throughout the ages.  Massive\ndoors lead off to the south and a large stone staircase leads up.\n",
+    "description": "Whoever built this place must have been very rich indeed!  Though you did\n
+                   |enter through a rather small door this place has enough room to hold several\n
+                   |score of people.  The floor has a beautifully woven carpet, and the walls are\n
+                   |covered in finely crafted tapestries. You can tell that these things must have\n
+                   |been worth much but they have not lasted well throughout the ages.  Massive\n
+                   |doors lead off to the south and a large stone staircase leads up.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -511,7 +558,8 @@
         "dir": "up",
         "to": 5,
         "keyword": "stone trapdoor door",
-        "description": "You see a large set of stone stairs leading upwards to a small stone door at\nthe top. \n",
+        "description": "You see a large set of stone stairs leading upwards to a small stone door at\n
+                       |the top. \n",
         "exit_flags": "door closed locked pickproof",
         "key": 10
       }
@@ -519,11 +567,18 @@
     "extra_description": [
       {
         "keyword": "letters graffiti",
-        "description": "'Beware here all of man, because past here lies only death.'\n\n    Insho'rkthon brsskra-lehsn Roch'tar\n\nBeneath, there are two criss-crossing scratchmarks in an X formation that\nlook like someone (or something) raked their claws across the wood.\n"
+        "description": "'Beware here all of man, because past here lies only death.'\n
+                       |\n
+                       |    Insho'rkthon brsskra-lehsn Roch'tar\n
+                       |\n
+                       |Beneath, there are two criss-crossing scratchmarks in an X formation that\n
+                       |look like someone (or something) raked their claws across the wood.\n"
       },
       {
         "keyword": "oak",
-        "description": "They're HUGE!  They are at least 12 feet tall and about 10 feet wide.\nIf not for one thing they would be perfectly preserved.  There appears\nto be some letters crudely scratched into the wood.\n"
+        "description": "They're HUGE!  They are at least 12 feet tall and about 10 feet wide.\n
+                       |If not for one thing they would be perfectly preserved.  There appears\n
+                       |to be some letters crudely scratched into the wood.\n"
       },
       {
         "keyword": "staircase stairs",
@@ -531,11 +586,16 @@
       },
       {
         "keyword": "tapestry tapestries",
-        "description": "The tapestries were woven into beautiful and exciting scenes of battles\nlong ago.  One on the left your shows the historic battle between Jubal the\nBenevolent and Hroth Kragen's forces that eventually Jubal's army won (of\ncourse).\n"
+        "description": "The tapestries were woven into beautiful and exciting scenes of battles\n
+                       |long ago.  One on the left your shows the historic battle between Jubal the\n
+                       |Benevolent and Hroth Kragen's forces that eventually Jubal's army won (of\n
+                       |course).\n"
       },
       {
         "keyword": "stone door trapdoor",
-        "description": "It's rather small and looks quite heavy but maybe with some kind of leverage\nyou could move it.  It has a queerly shaped hole that looks big enough\nfor an equally queerly shaped pole to fit inside.  If only you had it!\n"
+        "description": "It's rather small and looks quite heavy but maybe with some kind of leverage\n
+                       |you could move it.  It has a queerly shaped hole that looks big enough\n
+                       |for an equally queerly shaped pole to fit inside.  If only you had it!\n"
       }
     ]
   }},
@@ -543,7 +603,10 @@
     "area": "chapel",
     "anum": 22,
     "name": "The Grand Hall of Kings",
-    "description": "A long hallway stretches east and west.  On the southern side of the hall\nthere are many doors, each with the name of a king who has died and is\nentombed here.  The hallway is beautiful yet chilling.  Even though the area\nhas been kept well by acolytes, there remains a stench of the undead.\n",
+    "description": "A long hallway stretches east and west.  On the southern side of the hall\n
+                   |there are many doors, each with the name of a king who has died and is\n
+                   |entombed here.  The hallway is beautiful yet chilling.  Even though the area\n
+                   |has been kept well by acolytes, there remains a stench of the undead.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -561,7 +624,8 @@
         "dir": "south",
         "to": 23,
         "keyword": "door",
-        "description": "The door has written above it: 'May all the lands thank Crotus the Victor.\nWithout his guidance this kingdom would not have stood.'\n",
+        "description": "The door has written above it: 'May all the lands thank Crotus the Victor.\n
+                       |Without his guidance this kingdom would not have stood.'\n",
         "exit_flags": "door closed"
       },
       {
@@ -574,7 +638,11 @@
     "area": "chapel",
     "anum": 23,
     "name": "The Shrine of Crotus",
-    "description": "Mostly rubble, this place used to be the shrine of the famous king Crotus,\nwho saved the northern regions from being overrun by the goblin hordes of\n100 years ago.  If not for him, Midgaard of course would have eventually been\nconquered as well.  Though Crotus was a goodly king, it was rumored that he\nturned to the dark ways in his dying years ... and died an evil man.\n",
+    "description": "Mostly rubble, this place used to be the shrine of the famous king Crotus,\n
+                   |who saved the northern regions from being overrun by the goblin hordes of\n
+                   |100 years ago.  If not for him, Midgaard of course would have eventually been\n
+                   |conquered as well.  Though Crotus was a goodly king, it was rumored that he\n
+                   |turned to the dark ways in his dying years ... and died an evil man.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -594,7 +662,8 @@
     "area": "chapel",
     "anum": 24,
     "name": "The Tomb of Crotus",
-    "description": "A sarcophagus lies in the middle of the room and seems undisturbed.\nA hole has been knocked into the east wall.\n",
+    "description": "A sarcophagus lies in the middle of the room and seems undisturbed.\n
+                   |A hole has been knocked into the east wall.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -718,7 +787,8 @@
     "area": "chapel",
     "anum": 27,
     "name": "The Grand Hall of Kings",
-    "description": "You are in the western part of the Grand Hall of Kings.  To the south is a\ndoor and to the east and west the hall continues.\n",
+    "description": "You are in the western part of the Grand Hall of Kings.  To the south is a\n
+                   |door and to the east and west the hall continues.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -742,7 +812,10 @@
     "area": "chapel",
     "anum": 28,
     "name": "The Shrine of Mitnar",
-    "description": "Mitnar was a gruesome beast of a man ... he loved battle ... and nothing\nelse.  Warriors did love Mitnar, and all fighting men honored him.\nOn the wall is depicted battle after battle after battle.\nA small opening has been shaped carefully to the east.\n",
+    "description": "Mitnar was a gruesome beast of a man ... he loved battle ... and nothing\n
+                   |else.  Warriors did love Mitnar, and all fighting men honored him.\n
+                   |On the wall is depicted battle after battle after battle.\n
+                   |A small opening has been shaped carefully to the east.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -766,7 +839,10 @@
     "area": "chapel",
     "anum": 29,
     "name": "The Tomb of Mitnar",
-    "description": "The wall paintings show men and women warriors alike bowing down to Mitnar,\nprisoners of war being put to the sword by Mitnar, and great heaps of gold\nand weapons under the feet of Mitnar.  Where his coffin was, there is now\nonly a rectangular blemish on the floor of the dusty room.\n",
+    "description": "The wall paintings show men and women warriors alike bowing down to Mitnar,\n
+                   |prisoners of war being put to the sword by Mitnar, and great heaps of gold\n
+                   |and weapons under the feet of Mitnar.  Where his coffin was, there is now\n
+                   |only a rectangular blemish on the floor of the dusty room.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -877,7 +953,9 @@
     "area": "chapel",
     "anum": 33,
     "name": "The Shrine of Frath",
-    "description": "Little chunks of dried meat are spattered throughout this room.  The walls\nare covered in gore.  Almost as if they were painted ... ICK!  You can\nalmost make out the design!\n",
+    "description": "Little chunks of dried meat are spattered throughout this room.  The walls\n
+                   |are covered in gore.  Almost as if they were painted ... ICK!  You can\n
+                   |almost make out the design!\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -895,7 +973,8 @@
     "area": "chapel",
     "anum": 34,
     "name": "The Tomb of Frath",
-    "description": "UGH!  The sarcophagus is opened up and the mummified body lies out in the\nopen, ripped to pieces.  Gnawed pieces of flesh and bone are strewn here.\n",
+    "description": "UGH!  The sarcophagus is opened up and the mummified body lies out in the\n
+                   |open, ripped to pieces.  Gnawed pieces of flesh and bone are strewn here.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -985,7 +1064,8 @@
     "area": "chapel",
     "anum": 37,
     "name": "The Grand Hall of Kings",
-    "description": "You are at the western end of the Grand Hall of Kings.  There is a\ndoor leading north and the hallway continues west.\n",
+    "description": "You are at the western end of the Grand Hall of Kings.  There is a\n
+                   |door leading north and the hallway continues west.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1013,7 +1093,9 @@
     "area": "chapel",
     "anum": 38,
     "name": "The Shrine of Jubal",
-    "description": "This was once beautiful.  Now the huge tapestries have been torn down and the\ncarpeting pulled up ... the paintings on the ceiling are unreadable and the\naltar is crumbled.\n",
+    "description": "This was once beautiful.  Now the huge tapestries have been torn down and the\n
+                   |carpeting pulled up ... the paintings on the ceiling are unreadable and the\n
+                   |altar is crumbled.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1031,7 +1113,9 @@
     "area": "chapel",
     "anum": 39,
     "name": "The Tomb of Jubal",
-    "description": "The smell coming off of the opened sarcophagus is nauseating.  The floor is\nslightly crumpled and walls are raked ... but the worst part is the mummy ...\nJubal the Benevolent is missing his head!\n",
+    "description": "The smell coming off of the opened sarcophagus is nauseating.  The floor is\n
+                   |slightly crumpled and walls are raked ... but the worst part is the mummy ...\n
+                   |Jubal the Benevolent is missing his head!\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1276,7 +1360,10 @@
     "area": "chapel",
     "anum": 48,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "This room has been totally hollowed out and smoothed, and a pit has been\ndrilled in the center of the floor.  There are extensive gruesome paintings\nof beasts and monsters terrorizing the countryside; vampires sucking the\nblood of beasts and humans alike.\n",
+    "description": "This room has been totally hollowed out and smoothed, and a pit has been\n
+                   |drilled in the center of the floor.  There are extensive gruesome paintings\n
+                   |of beasts and monsters terrorizing the countryside; vampires sucking the\n
+                   |blood of beasts and humans alike.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [{
@@ -1285,7 +1372,8 @@
     }],
     "extra_description": [{
       "keyword": "painting paintings mural",
-      "description": "There is a tiny painting of a vault in this mural ... and it seems to be a\nreflected picture of the vault ... the word in tiny print is 'rathcor'.\n"
+      "description": "There is a tiny painting of a vault in this mural ... and it seems to be a\n
+                     |reflected picture of the vault ... the word in tiny print is 'rathcor'.\n"
     }],
     "resets": [
       {
@@ -1374,7 +1462,9 @@
     "area": "chapel",
     "anum": 50,
     "name": "Entrance to the Forbidden Catacombs",
-    "description": "You have entered the forbidden catacombs.  This cave system must have been\nbuilt long ago.  The air is dank and smells of something dead ...  or maybe\nundead.  Enter here at your own risk ... something evil abides.\n",
+    "description": "You have entered the forbidden catacombs.  This cave system must have been\n
+                   |built long ago.  The air is dank and smells of something dead ...  or maybe\n
+                   |undead.  Enter here at your own risk ... something evil abides.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1675,7 +1765,9 @@
     "area": "chapel",
     "anum": 60,
     "name": "Den of the Vampire",
-    "description": "Your mind whirls in the hideous madness of this place.  The stench\nis horrendous and dead bodies, sucked of life, lay all over.  One coffin\nlies in the center of the room ... waiting for YOU!\n",
+    "description": "Your mind whirls in the hideous madness of this place.  The stench\n
+                   |is horrendous and dead bodies, sucked of life, lay all over.  One coffin\n
+                   |lies in the center of the room ... waiting for YOU!\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "portal": "chapel-room-1",
@@ -1853,7 +1945,11 @@
     "area": "chapel",
     "anum": 65,
     "name": "The Gilded Hallway",
-    "description": "Wow!  Although this hallway is quite filthy and dusty, it is noticeably\ndifferent than the rest of the catacombs ... but you don't feel safe yet.\nThe walls faintly show ancient detailed etchings in gold and silver of\nancient rituals ... not all of which seem pleasant.  The hallway continues\nnorth into the catacombs and further south as long as you can see.\n",
+    "description": "Wow!  Although this hallway is quite filthy and dusty, it is noticeably\n
+                   |different than the rest of the catacombs ... but you don't feel safe yet.\n
+                   |The walls faintly show ancient detailed etchings in gold and silver of\n
+                   |ancient rituals ... not all of which seem pleasant.  The hallway continues\n
+                   |north into the catacombs and further south as long as you can see.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1911,7 +2007,9 @@
     "area": "chapel",
     "anum": 66,
     "name": "The Gilded Hallway",
-    "description": "Ancient etchings and writing in intricate gold and silver designs fill these\nwalls.  You are tempted to linger and examine them closely.  Your light source\nflickers off the walls showing you exits north and south.\n",
+    "description": "Ancient etchings and writing in intricate gold and silver designs fill these\n
+                   |walls.  You are tempted to linger and examine them closely.  Your light source\n
+                   |flickers off the walls showing you exits north and south.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1953,7 +2051,9 @@
     "area": "chapel",
     "anum": 67,
     "name": "The Gilded Hallway",
-    "description": "Ancient etchings and writing in intricate gold and silver designs fill these\nwalls.  You are tempted to linger and examine them closely.  Your light source\nflickers off the walls showing you exits north and south.\n",
+    "description": "Ancient etchings and writing in intricate gold and silver designs fill these\n
+                   |walls.  You are tempted to linger and examine them closely.  Your light source\n
+                   |flickers off the walls showing you exits north and south.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1977,7 +2077,9 @@
     "area": "chapel",
     "anum": 68,
     "name": "The Gilded Hallway",
-    "description": "Ancient etchings and writing in intricate gold and silver designs fill these\nwalls.  You are tempted to linger and examine them closely.  Your light source\nflickers off the walls showing you exits north and south.\n",
+    "description": "Ancient etchings and writing in intricate gold and silver designs fill these\n
+                   |walls.  You are tempted to linger and examine them closely.  Your light source\n
+                   |flickers off the walls showing you exits north and south.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -2027,7 +2129,9 @@
     "area": "chapel",
     "anum": 69,
     "name": "The Gilded Hallway",
-    "description": "Ancient etchings and writing in intricate gold and silver designs fill these\nwalls.  You are tempted to linger and examine them closely.  Your light source\nflickers off the walls showing you exits north.\n",
+    "description": "Ancient etchings and writing in intricate gold and silver designs fill these\n
+                   |walls.  You are tempted to linger and examine them closely.  Your light source\n
+                   |flickers off the walls showing you exits north.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -2099,7 +2203,23 @@
     "area": "chapel",
     "anum": 72,
     "name": "The Short Way to Hell ...",
-    "description": "You fall ...\n            hmm .... it's getting really HOT!\nYou fall ...\n                        you fall ...\n     Slowly you are cooking as you fall further ... your skin is burning and\nyour hair evaporates ...\n\n                                           you fall ...\n\n                 and fall ...\n\n                                     and STOP...!!\n\nWelcome to HELL!\n\nBut even in Hell we give you another chance.\n\n",
+    "description": "You fall ...\n
+                   |            hmm .... it's getting really HOT!\n
+                   |You fall ...\n
+                   |                        you fall ...\n
+                   |     Slowly you are cooking as you fall further ... your skin is burning and\n
+                   |your hair evaporates ...\n
+                   |\n
+                   |                                           you fall ...\n
+                   |\n
+                   |                 and fall ...\n
+                   |\n
+                   |                                     and STOP...!!\n
+                   |\n
+                   |Welcome to HELL!\n
+                   |\n
+                   |But even in Hell we give you another chance.\n
+                   |\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
     "doors": [{
@@ -2112,7 +2232,8 @@
     "area": "chapel",
     "anum": 75,
     "name": "Inside the coffin",
-    "description": "You are inside a coffin.  It seems rather cramped in here.  You can climb\nup out of the coffin, or you can wait for here the real occupant to join you.\n",
+    "description": "You are inside a coffin.  It seems rather cramped in here.  You can climb\n
+                   |up out of the coffin, or you can wait for here the real occupant to join you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{

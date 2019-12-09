@@ -63,7 +63,15 @@
     "cost": 0,
     "extra_description": [{
       "keyword": "sign",
-      "description": "Welcome to the Shire.  As you enter the Shire from Haon-Dor you come under\nthe jurisdiction of the Thain, the peacekeeper of the Shire.  Consequently,\nby entering these lands you agree to obey our laws.  If you break these laws,\nyou will be severely punished.  We do not like riff raff in our peaceful\ntown.\n\n\t\t\t\t\tThe Thain\n\t\t\t\t\tPeacekeeper of the Shire\n\n"
+      "description": "Welcome to the Shire.  As you enter the Shire from Haon-Dor you come under\n
+                     |the jurisdiction of the Thain, the peacekeeper of the Shire.  Consequently,\n
+                     |by entering these lands you agree to obey our laws.  If you break these laws,\n
+                     |you will be severely punished.  We do not like riff raff in our peaceful\n
+                     |town.\n
+                     |\n
+                     |\t\t\t\t\tThe Thain\n
+                     |\t\t\t\t\tPeacekeeper of the Shire\n
+                     |\n"
     }]
   }},
   {"object": {

@@ -3,7 +3,9 @@
     "area": "valley",
     "anum": 0,
     "name": "A Path from the Plains",
-    "description": "You are on a path away from the Plains of Ofcol.  The path doesn't look well\ntread, but it is relatively well kept.  To the south are the Plains of Ofcol,\nwhile this path leads north.\n",
+    "description": "You are on a path away from the Plains of Ofcol.  The path doesn't look well\n
+                   |tread, but it is relatively well kept.  To the south are the Plains of Ofcol,\n
+                   |while this path leads north.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -22,7 +24,9 @@
     "area": "valley",
     "anum": 1,
     "name": "Along the Path",
-    "description": "You are on the path away from the Plains of Ofcol.  The main path leads north\nto an overlook and south back toward the Plains of Ofcol.  Western and eastern\nside paths can be seen, probably deer trails by the width of them.\n",
+    "description": "You are on the path away from the Plains of Ofcol.  The main path leads north\n
+                   |to an overlook and south back toward the Plains of Ofcol.  Western and eastern\n
+                   |side paths can be seen, probably deer trails by the width of them.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -89,7 +93,9 @@
     "area": "valley",
     "anum": 4,
     "name": "The Overlook",
-    "description": "You are above a large valley.  Below you, you see humanoid forms wandering\naround the valley.  Rich green grass covers the valley, with some small trees\ndotting the landscape.  To the south is the trail back toward Ofcol.\n",
+    "description": "You are above a large valley.  Below you, you see humanoid forms wandering\n
+                   |around the valley.  Rich green grass covers the valley, with some small trees\n
+                   |dotting the landscape.  To the south is the trail back toward Ofcol.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -108,7 +114,9 @@
     "area": "valley",
     "anum": 5,
     "name": "The Entrance to the Valley of the Elves",
-    "description": "You are at the entrance to the Valley of the Elves.  Elves stare at your\nintrusion, but most are too busy to bother with you.  The valley spreads to\nthe north, while enlarging toward the east and west.\n",
+    "description": "You are at the entrance to the Valley of the Elves.  Elves stare at your\n
+                   |intrusion, but most are too busy to bother with you.  The valley spreads to\n
+                   |the north, while enlarging toward the east and west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -155,7 +163,8 @@
     "area": "valley",
     "anum": 6,
     "name": "The Edge of the Valley",
-    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\ntrail circling the entire valley.  The valley continues north and east.\n",
+    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\n
+                   |trail circling the entire valley.  The valley continues north and east.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -182,7 +191,8 @@
     "area": "valley",
     "anum": 7,
     "name": "The Edge of the Valley",
-    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\ntrail circling the entire valley.  The valley continues north and west.\n",
+    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\n
+                   |trail circling the entire valley.  The valley continues north and west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -209,7 +219,8 @@
     "area": "valley",
     "anum": 8,
     "name": "The Edge of the Valley",
-    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\ntrail circling the entire valley.  The valley continues north and east.\n",
+    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\n
+                   |trail circling the entire valley.  The valley continues north and east.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -257,7 +268,8 @@
     "area": "valley",
     "anum": 10,
     "name": "The Valley of the Elves",
-    "description": "You are in the Valley of the Elves.  The valley continues in all directions.\nThe entrance to the valley is towards the south.\n",
+    "description": "You are in the Valley of the Elves.  The valley continues in all directions.\n
+                   |The entrance to the valley is towards the south.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -333,7 +345,8 @@
     "area": "valley",
     "anum": 12,
     "name": "The Edge of the Valley",
-    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\ntrail circling the entire valley.  The valley continues north and west.\n",
+    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\n
+                   |trail circling the entire valley.  The valley continues north and west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -352,7 +365,9 @@
     "area": "valley",
     "anum": 13,
     "name": "The Edge of the Valley",
-    "description": "You are at the edge of the Valley of the Elves.  A steep trail leads up toward\nthe deer trail circling the valley.  The valley continues north, south, and\neast.\n",
+    "description": "You are at the edge of the Valley of the Elves.  A steep trail leads up toward\n
+                   |the deer trail circling the valley.  The valley continues north, south, and\n
+                   |east.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -494,7 +509,9 @@
     "area": "valley",
     "anum": 17,
     "name": "The Edge of the Valley",
-    "description": "You are at the edge of the Valley of the Elves.  A steep trail leads up toward\nthe deer trail circling the valley.  The valley continues north, south, and\nwest.\n",
+    "description": "You are at the edge of the Valley of the Elves.  A steep trail leads up toward\n
+                   |the deer trail circling the valley.  The valley continues north, south, and\n
+                   |west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -523,7 +540,8 @@
     "area": "valley",
     "anum": 18,
     "name": "The Edge of the Valley",
-    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a\nsmall trail circling the entire valley.  The valley continues south and east.\n",
+    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a\n
+                   |small trail circling the entire valley.  The valley continues south and east.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -689,7 +707,8 @@
     "area": "valley",
     "anum": 22,
     "name": "The Edge of the Valley",
-    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\ntrail circling the entire valley.  The valley continues south and west.\n",
+    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\n
+                   |trail circling the entire valley.  The valley continues south and west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -708,7 +727,8 @@
     "area": "valley",
     "anum": 23,
     "name": "The Edge of the Valley",
-    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\ntrail circling the entire valley.  The valley continues south and east.\n",
+    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\n
+                   |trail circling the entire valley.  The valley continues south and east.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -735,7 +755,8 @@
     "area": "valley",
     "anum": 24,
     "name": "The Edge of the Valley",
-    "description": "You are in the Valley of the Elves.  The valley continues in all directions.\nTo the north, a small, narrow trail leads away from the valley.\n",
+    "description": "You are in the Valley of the Elves.  The valley continues in all directions.\n
+                   |To the north, a small, narrow trail leads away from the valley.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -764,7 +785,8 @@
     "area": "valley",
     "anum": 25,
     "name": "The Edge of the Valley",
-    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\ntrail circling the entire valley.  The valley continues south and west.\n",
+    "description": "You are at the edge of the Valley of the Elves.  High above you, you see a small\n
+                   |trail circling the entire valley.  The valley continues south and west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -791,7 +813,8 @@
     "area": "valley",
     "anum": 26,
     "name": "A Trail Leading from the Valley",
-    "description": "You are on a narrow trail leading away from the Valley of the Elves.  This\ntrail leads north and south.  A rope ladder leads up to a rope bridge.\n",
+    "description": "You are on a narrow trail leading away from the Valley of the Elves.  This\n
+                   |trail leads north and south.  A rope ladder leads up to a rope bridge.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -815,7 +838,8 @@
     "area": "valley",
     "anum": 27,
     "name": "Along the Trail",
-    "description": "You are on the trail away from the Valley of the Elves.  The hills around you\nkeep this trail narrow.  The trail continues east, south, and west.\n",
+    "description": "You are on the trail away from the Valley of the Elves.  The hills around you\n
+                   |keep this trail narrow.  The trail continues east, south, and west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -873,7 +897,8 @@
     "area": "valley",
     "anum": 28,
     "name": "A Bend in the Trail",
-    "description": "You are on the trail away from the Valley of the Elves.  The hills around you\nkeep this trail narrow.  The trail continues north and back west.\n",
+    "description": "You are on the trail away from the Valley of the Elves.  The hills around you\n
+                   |keep this trail narrow.  The trail continues north and back west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -892,7 +917,9 @@
     "area": "valley",
     "anum": 29,
     "name": "A Smaller Valley",
-    "description": "You are in another valley within these hills. To the north, you can see a\nbuilding, and to the south you see the trail away from this valley.  The\nwest and east paths surround this building.\n",
+    "description": "You are in another valley within these hills. To the north, you can see a\n
+                   |building, and to the south you see the trail away from this valley.  The\n
+                   |west and east paths surround this building.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -923,7 +950,8 @@
     "area": "valley",
     "anum": 30,
     "name": "A Trail in the Valley",
-    "description": "You are on the trail in the Valley of the Elves.  This trail leads north and\neast.  To the north-east is a building.\n",
+    "description": "You are on the trail in the Valley of the Elves.  This trail leads north and\n
+                   |east.  To the north-east is a building.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -950,7 +978,8 @@
     "area": "valley",
     "anum": 31,
     "name": "A Trail in the Valley",
-    "description": "You are on the trail in the Valley of the Elves.  This trail leads west and\neast.  To the north is a building.\n",
+    "description": "You are on the trail in the Valley of the Elves.  This trail leads west and\n
+                   |east.  To the north is a building.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -969,7 +998,8 @@
     "area": "valley",
     "anum": 32,
     "name": "A Trail in the Valley",
-    "description": "You are on the trail in the Valley of the Elves.  This trail leads north and\nsouth.  To the east is a building.\n",
+    "description": "You are on the trail in the Valley of the Elves.  This trail leads north and\n
+                   |south.  To the east is a building.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -988,7 +1018,8 @@
     "area": "valley",
     "anum": 33,
     "name": "A Trail in the Valley",
-    "description": "You are on the trail in the Valley of the Elves.  This trail leads north and\nwest.  To the north-west is a building.\n",
+    "description": "You are on the trail in the Valley of the Elves.  This trail leads north and\n
+                   |west.  To the north-west is a building.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1015,7 +1046,8 @@
     "area": "valley",
     "anum": 34,
     "name": "The Elf Home",
-    "description": "You are in the home of the valley elves.  The building continues to the north\nand the east, and the exit is to the south.\n",
+    "description": "You are in the home of the valley elves.  The building continues to the north\n
+                   |and the east, and the exit is to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1042,7 +1074,10 @@
     "area": "valley",
     "anum": 35,
     "name": "The Kitchen",
-    "description": "You are in a community kitchen for this valley elven home.  Pots and pans line\nthe walls, along with shelves filled with many foodstuffs.  A big oven is to one\nside, and you can smell elfcakes being baked.\nThere is a doorway to the north and one to the west.\n",
+    "description": "You are in a community kitchen for this valley elven home.  Pots and pans line\n
+                   |the walls, along with shelves filled with many foodstuffs.  A big oven is to one\n
+                   |side, and you can smell elfcakes being baked.\n
+                   |There is a doorway to the north and one to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1070,7 +1105,8 @@
     "area": "valley",
     "anum": 36,
     "name": "A Trail in the Valley",
-    "description": "You are on the trail in the Valley of the Elves.  This trail leads north and\nsouth.  To the west is a building.\n",
+    "description": "You are on the trail in the Valley of the Elves.  This trail leads north and\n
+                   |south.  To the west is a building.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1089,7 +1125,8 @@
     "area": "valley",
     "anum": 37,
     "name": "A Trail in the Valley",
-    "description": "You are on the trail in the Valley of the Elves.  This trail leads north and\nsouth.  To the east is a building.\n",
+    "description": "You are on the trail in the Valley of the Elves.  This trail leads north and\n
+                   |south.  To the east is a building.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1116,7 +1153,9 @@
     "area": "valley",
     "anum": 38,
     "name": "The Living Room",
-    "description": "You are in the living room of the elven home.  Mats cover the floor, and a\non a table is a bowl full of fruits.  Through the window you can see the\nvalley, with its wild flowers and tall, green grasses.\n",
+    "description": "You are in the living room of the elven home.  Mats cover the floor, and a\n
+                   |on a table is a bowl full of fruits.  Through the window you can see the\n
+                   |valley, with its wild flowers and tall, green grasses.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1144,7 +1183,9 @@
     "area": "valley",
     "anum": 39,
     "name": "The Storage Room",
-    "description": "You are in the storage room of the elven home.  Sacks of flour cover one side,\nand cleaning accessories cover the other side.  You find nothing of use here.\nA staircase leads up.\n",
+    "description": "You are in the storage room of the elven home.  Sacks of flour cover one side,\n
+                   |and cleaning accessories cover the other side.  You find nothing of use here.\n
+                   |A staircase leads up.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1177,7 +1218,8 @@
     "area": "valley",
     "anum": 40,
     "name": "A Trail in the Valley",
-    "description": "You are on the trail in the Valley of the Elves.  This trail leads north and\nsouth.  To the west is a building.\n",
+    "description": "You are on the trail in the Valley of the Elves.  This trail leads north and\n
+                   |south.  To the west is a building.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1196,7 +1238,8 @@
     "area": "valley",
     "anum": 41,
     "name": "A Trail in the Valley",
-    "description": "You are on the trail in the Valley of the Elves.  This trail leads south and\neast.  To the south-east is a building.\n",
+    "description": "You are on the trail in the Valley of the Elves.  This trail leads south and\n
+                   |east.  To the south-east is a building.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1215,7 +1258,8 @@
     "area": "valley",
     "anum": 42,
     "name": "A Trail in the Valley",
-    "description": "You are on the trail in the Valley of the Elves.  This trail leads west and\neast.  To the south is a building.\n",
+    "description": "You are on the trail in the Valley of the Elves.  This trail leads west and\n
+                   |east.  To the south is a building.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1284,7 +1328,8 @@
     "area": "valley",
     "anum": 43,
     "name": "A Trail in the Valley",
-    "description": "You are on the trail in the Valley of the Elves.  This trail leads east and\nwest.  To the south is a building.\n",
+    "description": "You are on the trail in the Valley of the Elves.  This trail leads east and\n
+                   |west.  To the south is a building.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1303,7 +1348,8 @@
     "area": "valley",
     "anum": 44,
     "name": "A Trail in the Valley",
-    "description": "You are on the trail in the Valley of the Elves.  This trail leads south and\nwest.  To the south-west is a building.\n",
+    "description": "You are on the trail in the Valley of the Elves.  This trail leads south and\n
+                   |west.  To the south-west is a building.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1340,7 +1386,9 @@
     "area": "valley",
     "anum": 45,
     "name": "The Elders' Room",
-    "description": "You are in the room of the valley elf elders.  Books written in strange\nlanguages line the numerous shelves, and scrolls cover a table.  There is a\nsmooth spheric object in the center of the room.\n",
+    "description": "You are in the room of the valley elf elders.  Books written in strange\n
+                   |languages line the numerous shelves, and scrolls cover a table.  There is a\n
+                   |smooth spheric object in the center of the room.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1506,7 +1554,9 @@
     "area": "valley",
     "anum": 47,
     "name": "The Sleeping Quarters",
-    "description": "You are in the sleeping quarters of the valley elves.  Cots line the floor,\nwith two windows showing a view of the valley.  Books in strange languages\nline the shelves, but nothing of interest is here.\n",
+    "description": "You are in the sleeping quarters of the valley elves.  Cots line the floor,\n
+                   |with two windows showing a view of the valley.  Books in strange languages\n
+                   |line the shelves, but nothing of interest is here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1548,7 +1598,10 @@
     "area": "valley",
     "anum": 48,
     "name": "Study",
-    "description": "You are in the study room of the valley elves.  Comfortable mats are on the\nfloor, and musical instruments are neatly stacked on shelves.  Books in\nstrange languages line some other elves.  A stairway leads down to the\nfirst floor.\n",
+    "description": "You are in the study room of the valley elves.  Comfortable mats are on the\n
+                   |floor, and musical instruments are neatly stacked on shelves.  Books in\n
+                   |strange languages line some other elves.  A stairway leads down to the\n
+                   |first floor.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1660,7 +1713,8 @@
     "area": "valley",
     "anum": 49,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1682,7 +1736,8 @@
     "area": "valley",
     "anum": 50,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1746,7 +1801,8 @@
     "area": "valley",
     "anum": 51,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1768,7 +1824,8 @@
     "area": "valley",
     "anum": 52,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1832,7 +1889,9 @@
     "area": "valley",
     "anum": 53,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\nA safe trail leads down into the valley.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n
+                   |A safe trail leads down into the valley.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1896,7 +1955,8 @@
     "area": "valley",
     "anum": 54,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1936,7 +1996,8 @@
     "area": "valley",
     "anum": 55,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -1958,7 +2019,8 @@
     "area": "valley",
     "anum": 56,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2022,7 +2084,8 @@
     "area": "valley",
     "anum": 57,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2045,7 +2108,11 @@
     "area": "valley",
     "anum": 58,
     "name": "On the Rope Bridge",
-    "description": "You are on the rope bridge.  From here, you can see the whole Valley of the\nElves.  To the south, you see the main valley.  To the north-east, you see a\nsmaller valley with a building in the center of it.  To the north-west, you\ncan see a very small valley with a shack in it's center.  A rope ladder\nleads down into a trail.\n",
+    "description": "You are on the rope bridge.  From here, you can see the whole Valley of the\n
+                   |Elves.  To the south, you see the main valley.  To the north-east, you see a\n
+                   |smaller valley with a building in the center of it.  To the north-west, you\n
+                   |can see a very small valley with a shack in it's center.  A rope ladder\n
+                   |leads down into a trail.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2067,7 +2134,8 @@
     "area": "valley",
     "anum": 59,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2090,7 +2158,8 @@
     "area": "valley",
     "anum": 60,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2162,7 +2231,8 @@
     "area": "valley",
     "anum": 61,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2184,7 +2254,8 @@
     "area": "valley",
     "anum": 62,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2240,7 +2311,9 @@
     "area": "valley",
     "anum": 63,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\nA safe trail leads down into the valley.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n
+                   |A safe trail leads down into the valley.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2304,7 +2377,8 @@
     "area": "valley",
     "anum": 64,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2326,7 +2400,8 @@
     "area": "valley",
     "anum": 65,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2366,7 +2441,8 @@
     "area": "valley",
     "anum": 66,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2430,7 +2506,8 @@
     "area": "valley",
     "anum": 67,
     "name": "Along a Windy Trail on the Rim of the Valley",
-    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\nyou can see the valley, filled with wild flowers and tall, green grasses.\n",
+    "description": "You are on a narrow trail on the rim of the Valley of the Elves.  Below you,\n
+                   |you can see the valley, filled with wild flowers and tall, green grasses.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2452,7 +2529,8 @@
     "area": "valley",
     "anum": 68,
     "name": "A Bend in the Trail",
-    "description": "You are on a bend in the trail leading from the main valley.  The hills around\nyou make this trail quite narrow.\n",
+    "description": "You are on a bend in the trail leading from the main valley.  The hills around\n
+                   |you make this trail quite narrow.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2489,7 +2567,9 @@
     "area": "valley",
     "anum": 69,
     "name": "A Bend in the Trail",
-    "description": "You are on a bend in the trail leading from the main valley.  The hills around\nyou make this trail quite narrow.  To the west, you can see an even smaller\nvalley, with looks like a small shack in the center of it.\n",
+    "description": "You are on a bend in the trail leading from the main valley.  The hills around\n
+                   |you make this trail quite narrow.  To the west, you can see an even smaller\n
+                   |valley, with looks like a small shack in the center of it.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2508,7 +2588,9 @@
     "area": "valley",
     "anum": 70,
     "name": "The Small Valley",
-    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\nmagic was used to help them grow.  The exit from this valley is to the east, and\nthe entrance to the shack is to the west.\n",
+    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\n
+                   |magic was used to help them grow.  The exit from this valley is to the east, and\n
+                   |the entrance to the shack is to the west.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2539,7 +2621,8 @@
     "area": "valley",
     "anum": 71,
     "name": "The Small Valley",
-    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\nmagic was used to help them grow.  To the south-west is a small shack.\n",
+    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\n
+                   |magic was used to help them grow.  To the south-west is a small shack.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2558,7 +2641,8 @@
     "area": "valley",
     "anum": 72,
     "name": "The Small Valley",
-    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\nmagic was used to help them grow.  To the north-west is a small shack.\n",
+    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\n
+                   |magic was used to help them grow.  To the north-west is a small shack.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2577,7 +2661,8 @@
     "area": "valley",
     "anum": 73,
     "name": "The Small Valley",
-    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\nmagic was used to help them grow.  To the south is a small shack.\n",
+    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\n
+                   |magic was used to help them grow.  To the south is a small shack.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2604,7 +2689,8 @@
     "area": "valley",
     "anum": 74,
     "name": "The Small Valley",
-    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\nmagic was used to help them grow.  To the south-east is a small shack.\n",
+    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\n
+                   |magic was used to help them grow.  To the south-east is a small shack.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2623,7 +2709,8 @@
     "area": "valley",
     "anum": 75,
     "name": "The Small Valley",
-    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\nmagic was used to help them grow.  To the east is a small shack.\n",
+    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\n
+                   |magic was used to help them grow.  To the east is a small shack.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2642,7 +2729,8 @@
     "area": "valley",
     "anum": 76,
     "name": "The Small Valley",
-    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\nmagic was used to help them grow.  To the north-east is a small shack.\n",
+    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\n
+                   |magic was used to help them grow.  To the north-east is a small shack.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2695,7 +2783,8 @@
     "area": "valley",
     "anum": 77,
     "name": "The Small Valley",
-    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\nmagic was used to help them grow.  To the north is a small shack.\n",
+    "description": "You are in the small valley.  Strangely, tall trees grow here, almost as if some\n
+                   |magic was used to help them grow.  To the north is a small shack.\n",
     "sector_type": "field",
     "doors": [
       {
@@ -2732,7 +2821,8 @@
     "area": "valley",
     "anum": 78,
     "name": "Inside the Small Shack",
-    "description": "You are inside the small shack.  A small stove is on the side, with soup\ncooking over it.  You see nothing valuable.\n",
+    "description": "You are inside the small shack.  A small stove is on the side, with soup\n
+                   |cooking over it.  You see nothing valuable.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2764,7 +2854,8 @@
     "area": "valley",
     "anum": 79,
     "name": "Beneath the Small Shack",
-    "description": "You are beneath the small shack, in a tunnel that leads south.  It feels\nquite warm down here.\n",
+    "description": "You are beneath the small shack, in a tunnel that leads south.  It feels\n
+                   |quite warm down here.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -2786,7 +2877,8 @@
     "area": "valley",
     "anum": 80,
     "name": "The Den of the Pyrohydra",
-    "description": "You are in the den of the pyrohydra.  All the walls are charred, and this\nroom is filled with a smell close to that of burning tar.\n",
+    "description": "You are in the den of the pyrohydra.  All the walls are charred, and this\n
+                   |room is filled with a smell close to that of burning tar.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -2834,7 +2926,10 @@
     "area": "valley",
     "anum": 81,
     "name": "The Workroom",
-    "description": "This room looks like it is used for magical studies.  Potions bubble over\nburners, and the whole room spells of herbs and dead animal flesh.  A furnace\nto the side casts a bright light in this room.  The whole room radiates with\na magical aura.\n",
+    "description": "This room looks like it is used for magical studies.  Potions bubble over\n
+                   |burners, and the whole room spells of herbs and dead animal flesh.  A furnace\n
+                   |to the side casts a bright light in this room.  The whole room radiates with\n
+                   |a magical aura.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -2883,7 +2978,8 @@
     "area": "valley",
     "anum": 82,
     "name": "The Storage Room",
-    "description": "This room is used to store scrolls, potions, and other magical items.  The\nwhole room radiates with a magical aura.\n",
+    "description": "This room is used to store scrolls, potions, and other magical items.  The\n
+                   |whole room radiates with a magical aura.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -3004,7 +3100,11 @@
     "area": "valley",
     "anum": 83,
     "name": "WAY Far Down into the Valley",
-    "description": "You have fallen trying to go down this steep hill.  Maybe that wasn't that\ngood an idea, huh?\n\n\nYou've fallen, and you can't get up!\n",
+    "description": "You have fallen trying to go down this steep hill.  Maybe that wasn't that\n
+                   |good an idea, huh?\n
+                   |\n
+                   |\n
+                   |You've fallen, and you can't get up!\n",
     "sector_type": "inside",
     "room_flags": "no_mob"
   }}

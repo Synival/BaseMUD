@@ -42,7 +42,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "chest",
-      "description": "It is a robust chest made from short, heavy planks that have been fastened\ntogether with tenons.  It is equipped with a simple brass lock.\n"
+      "description": "It is a robust chest made from short, heavy planks that have been fastened\n
+                     |together with tenons.  It is equipped with a simple brass lock.\n"
     }]
   }},
   {"object": {

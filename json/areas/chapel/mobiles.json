@@ -5,7 +5,8 @@
     "name": "skeleton bony",
     "short_descr": "the bony skeleton",
     "long_descr": "A bony skeleton is here.\n",
-    "description": "Brown bones with tufts of clothing still hanging from them.  This\nskeleton looks very mindless but still dangerous ...\n",
+    "description": "Brown bones with tufts of clothing still hanging from them.  This\n
+                   |skeleton looks very mindless but still dangerous ...\n",
     "race": "human",
     "alignment": 0,
     "level": 1,
@@ -33,7 +34,9 @@
     "name": "undead zombie",
     "short_descr": "the undead zombie",
     "long_descr": "An undead zombie sits here munching on something ...\n",
-    "description": "His body is totally white and slowly rotting away.  Each Zombie looks\nquite different from the next because they were, of course, once alive and\nhuman.\n",
+    "description": "His body is totally white and slowly rotting away.  Each Zombie looks\n
+                   |quite different from the next because they were, of course, once alive and\n
+                   |human.\n",
     "race": "human",
     "alignment": -100,
     "level": 4,
@@ -62,7 +65,8 @@
     "name": "undead ghoul",
     "short_descr": "The ghoul",
     "long_descr": "A ghoul is here staring at you hungrily.\n",
-    "description": "The ghoul no longer resembles the adventurer he once was.  Nonetheless\nhe looks like he hasn't forgot his fighting skills.\n",
+    "description": "The ghoul no longer resembles the adventurer he once was.  Nonetheless\n
+                   |he looks like he hasn't forgot his fighting skills.\n",
     "race": "human",
     "alignment": -500,
     "level": 6,
@@ -91,7 +95,9 @@
     "name": "undead wraith",
     "short_descr": "The wraith",
     "long_descr": "You spot a wraith advancing towards you from the shadows.\n",
-    "description": "The wraith no longer has a material form.  He is wearing a tattered\nblack robe which hides all but the darkness of his face and the glimmer\nin his eyes.\n",
+    "description": "The wraith no longer has a material form.  He is wearing a tattered\n
+                   |black robe which hides all but the darkness of his face and the glimmer\n
+                   |in his eyes.\n",
     "race": "human",
     "alignment": -750,
     "level": 12,
@@ -120,7 +126,8 @@
     "name": "undead guardian vampire",
     "short_descr": "The guardian vampire",
     "long_descr": "A vampire is here hiding his face from your light source.\n",
-    "description": "The guardian vampire looks quite EVIL.  Just by looking at him the hair on your\narms raises. He looks mighty tough to be just a minor minion.\n",
+    "description": "The guardian vampire looks quite EVIL.  Just by looking at him the hair on your\n
+                   |arms raises. He looks mighty tough to be just a minor minion.\n",
     "race": "human",
     "alignment": -1000,
     "level": 28,
@@ -149,7 +156,9 @@
     "name": "priest",
     "short_descr": "the priest",
     "long_descr": "A priest of God stands here solemnly speaking words of praise.\n",
-    "description": "Obviously a goodly man, you feel closer to God just by gazing upon this man.\nDressed in white, fine white hair, and a soft slightly wrinkled face ...\nthis man has a sacred beauty.  You see a halo around his head.\n",
+    "description": "Obviously a goodly man, you feel closer to God just by gazing upon this man.\n
+                   |Dressed in white, fine white hair, and a soft slightly wrinkled face ...\n
+                   |this man has a sacred beauty.  You see a halo around his head.\n",
     "race": "human",
     "alignment": 1000,
     "level": 15,
@@ -178,7 +187,11 @@
     "name": "Mi-Go Fungi",
     "short_descr": "the Mi-Go",
     "long_descr": "A Mi-Go is crawling here.\n",
-    "description": "Mi-Go, the Fungi from Yuggoth ... it is a pinkish being about five feet long;\nwith a crustaceous body bearing a vast pair of membranous wings and several\nsets of articulate limbs, body a sort of convoluted ellipsoid, covered with\nmultitudes of very small antennae, where a head would ordinarily be.  These\nbeings sometimes walk on all their legs and sometimes on the hind pair only.\n",
+    "description": "Mi-Go, the Fungi from Yuggoth ... it is a pinkish being about five feet long;\n
+                   |with a crustaceous body bearing a vast pair of membranous wings and several\n
+                   |sets of articulate limbs, body a sort of convoluted ellipsoid, covered with\n
+                   |multitudes of very small antennae, where a head would ordinarily be.  These\n
+                   |beings sometimes walk on all their legs and sometimes on the hind pair only.\n",
     "race": "human",
     "alignment": -500,
     "level": 12,
@@ -205,7 +218,11 @@
     "name": "nightgaunt",
     "short_descr": "The nightgaunt",
     "long_descr": "A nightgaunt is standing here\n",
-    "description": "... shocking and uncouth black thing with smooth, oily, skin, unpleasant horns\nthat curve inward toward each other, bat wings whose beating make no sound,\nugly prehensile paws, and a barbed tail that lashes disquietingly.  And worst\nof all, it makes absolutely no sound or speech and smiles not at all because\nit has no face, only a suggestive blackness where a face ought to be ...\n",
+    "description": "... shocking and uncouth black thing with smooth, oily, skin, unpleasant horns\n
+                   |that curve inward toward each other, bat wings whose beating make no sound,\n
+                   |ugly prehensile paws, and a barbed tail that lashes disquietingly.  And worst\n
+                   |of all, it makes absolutely no sound or speech and smiles not at all because\n
+                   |it has no face, only a suggestive blackness where a face ought to be ...\n",
     "race": "human",
     "alignment": -1000,
     "level": 10,
@@ -234,7 +251,11 @@
     "name": "hunting horror",
     "short_descr": "The hunting horror",
     "long_descr": "The hunting horror is here in wait of an unwary traveler.\n",
-    "description": "Serving Nyarlathotep and Roch'tar, these beings are hunting for victims.\nThey resemble enormous ropy black serpents or worms possessing bat-like or\numbrella-like wings.  Their forms continually shift and change, twitching\nand writhing, so it is hard to look at them.  They speak in great harsh\nvoices.  A hunting horror is HUGE, normally around 40 feet long.\n",
+    "description": "Serving Nyarlathotep and Roch'tar, these beings are hunting for victims.\n
+                   |They resemble enormous ropy black serpents or worms possessing bat-like or\n
+                   |umbrella-like wings.  Their forms continually shift and change, twitching\n
+                   |and writhing, so it is hard to look at them.  They speak in great harsh\n
+                   |voices.  A hunting horror is HUGE, normally around 40 feet long.\n",
     "race": "human",
     "alignment": -1000,
     "level": 20,
@@ -291,7 +312,9 @@
     "name": "snapper joe",
     "short_descr": "Snapper Joe",
     "long_descr": "Snapper Joe is standing here leering at you chillingly.\n",
-    "description": "What an ugly fiend! He is about 6'6'' and has mostly greenish skin with\nbright red hair. Half his face is burnt off and he has a perpetual smile.\nHe is called up from his service in hell in order to aid the Undying One.\n",
+    "description": "What an ugly fiend! He is about 6'6'' and has mostly greenish skin with\n
+                   |bright red hair. Half his face is burnt off and he has a perpetual smile.\n
+                   |He is called up from his service in hell in order to aid the Undying One.\n",
     "race": "human",
     "alignment": -750,
     "level": 20,
@@ -320,7 +343,11 @@
     "name": "X-ist eater",
     "short_descr": "The X-ist flesh eater",
     "long_descr": "An X-ist flesh eater is sitting here munching on some coffin remains\n",
-    "description": "A large hairy monstrous beast, the only LIVE thing you have seen down here.\nIt stands approximately 8 feet tall and hunches over to fit in this\nsmall room.  It has a pair of tremendous claws that it uses to rip and tear.\nIt has dog-like face except ... different.  Bright glowing eyes and a grimace\nlead you to believe that he knew that you were coming.\n",
+    "description": "A large hairy monstrous beast, the only LIVE thing you have seen down here.\n
+                   |It stands approximately 8 feet tall and hunches over to fit in this\n
+                   |small room.  It has a pair of tremendous claws that it uses to rip and tear.\n
+                   |It has dog-like face except ... different.  Bright glowing eyes and a grimace\n
+                   |lead you to believe that he knew that you were coming.\n",
     "race": "human",
     "alignment": -1000,
     "level": 17,
@@ -349,7 +376,13 @@
     "name": "spirit ghost king crotus",
     "short_descr": "the spirit of King Crotus",
     "long_descr": "The spirit of King Crotus is floating lazily above the floor.\n",
-    "description": "Floating above the ground here and looking a bit dead, he whispers\nsoftly into the air:\n\n    The forces of evil have unlocked my spirit as\n    well as one other.  Free me from this misery,\n    anyone that can hear. The peace of the grave\n    calls me but I am blocked from its quiet.\n",
+    "description": "Floating above the ground here and looking a bit dead, he whispers\n
+                   |softly into the air:\n
+                   |\n
+                   |    The forces of evil have unlocked my spirit as\n
+                   |    well as one other.  Free me from this misery,\n
+                   |    anyone that can hear. The peace of the grave\n
+                   |    calls me but I am blocked from its quiet.\n",
     "race": "human",
     "alignment": 350,
     "level": 20,
@@ -405,7 +438,17 @@
     "name": "etcher",
     "short_descr": "The mad etcher",
     "long_descr": "The mad etcher is sitting here babbling to himself and working on the wall.\n",
-    "description": "Quite insane, the mad etcher has been here for two decades.  His hair is\nwhite; he babbles nonsense to himself; a layer of dust covers his out-of-date\nclothing; and he seems to be working on the same portion of the wall near\nthe base ... oh and he seems quite blind.\n\nHe leers insanely at you and says 'heh heh what can I do for you children?\nPlease don't mind my wife, she is always like that ... hello dear can you\nmake some tea for our company?  Oh good!  Now sit right down will you?\nWould you like hot or cold tea?  Yes the weather is ...'\n\nAnd on he babbles ...\n",
+    "description": "Quite insane, the mad etcher has been here for two decades.  His hair is\n
+                   |white; he babbles nonsense to himself; a layer of dust covers his out-of-date\n
+                   |clothing; and he seems to be working on the same portion of the wall near\n
+                   |the base ... oh and he seems quite blind.\n
+                   |\n
+                   |He leers insanely at you and says 'heh heh what can I do for you children?\n
+                   |Please don't mind my wife, she is always like that ... hello dear can you\n
+                   |make some tea for our company?  Oh good!  Now sit right down will you?\n
+                   |Would you like hot or cold tea?  Yes the weather is ...'\n
+                   |\n
+                   |And on he babbles ...\n",
     "race": "human",
     "alignment": 1000,
     "level": 5,
@@ -436,7 +479,11 @@
     "name": "wife ghost specter",
     "short_descr": "The spectral etcher's wife",
     "long_descr": "The spectral wife of the etcher is very faintly floating here.\n",
-    "description": "You can barely make her out ... though it almost makes you vomit.\nShe is missing half her head.  The remaining half is smashed in horribly like\nshe took a nasty fall.  Her one damaged eye hangs on its own.  She smiles\ninsanely at you thru a broken jaw and missing teeth.  One hand of hers is\nresting on the shoulder of the etcher ... her husband.\n",
+    "description": "You can barely make her out ... though it almost makes you vomit.\n
+                   |She is missing half her head.  The remaining half is smashed in horribly like\n
+                   |she took a nasty fall.  Her one damaged eye hangs on its own.  She smiles\n
+                   |insanely at you thru a broken jaw and missing teeth.  One hand of hers is\n
+                   |resting on the shoulder of the etcher ... her husband.\n",
     "race": "human",
     "alignment": 1000,
     "level": 7,

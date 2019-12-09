@@ -625,7 +625,49 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map olympus secret",
-      "description": ".\n                              The Secret Map Of\n                               *****OLYMPUS*****\n \n                                   (Hermes)\n                                   Bedroom    The Portal\n                                      |           |\n                                   Northern  Hall of Gods\n                                     Hall    /\n                        Western       |    /    Eastern\n              Bedroom----Hall----Second Floor----Hall----Bedroom\n              (Hera)            /     |                 (Poseidon)\n                         Stairway  Southern\n          (Prometheus)       |       Hall                    North\n              Cell    /Throne Room    |                        |  /Up\n                |   /     (Zeus)   Bedroom                     |/\n       Cell-Dungeon-Cell     |                          West---+---East\n  (Chimera)(Jailor)(Chimera) |                                /|\n                             |                          Down/  |\n                  Kitchen    |     Stable                    South\n        (Odin)       |       |       |       (Ra)\n        Guest     Western  Castle  Eastern   Guest      ()Mob Location\n       Quarters----Wing----Entry----Wing----Quarters\n                     |       |       |\n                  Storage   Z|   Storage Room\n                   Room     e|\n                            u|  Believer\n                            s|     |    (Hephaestus)\n                             |  Planning---Smithy\n                            S|  Room(Ares)   |\n                            t|               |  (Clive)\n                 (Alchemist) +--Ares Street--+--Weapon\n                    Mystery  |               |   Shop\n                    Shop-----+               |\n                             |            Armoury\n                   Residence-+-Residence  (Samuel)\n                   (Apollo)  |  (Athena)\n                             |\n             (Julius)Bakery--+\n                             |\n                       **Entrance**\n                            /\n                      Mountain\n"
+      "description": ".\n
+                     |                              The Secret Map Of\n
+                     |                               *****OLYMPUS*****\n
+                     | \n
+                     |                                   (Hermes)\n
+                     |                                   Bedroom    The Portal\n
+                     |                                      |           |\n
+                     |                                   Northern  Hall of Gods\n
+                     |                                     Hall    /\n
+                     |                        Western       |    /    Eastern\n
+                     |              Bedroom----Hall----Second Floor----Hall----Bedroom\n
+                     |              (Hera)            /     |                 (Poseidon)\n
+                     |                         Stairway  Southern\n
+                     |          (Prometheus)       |       Hall                    North\n
+                     |              Cell    /Throne Room    |                        |  /Up\n
+                     |                |   /     (Zeus)   Bedroom                     |/\n
+                     |       Cell-Dungeon-Cell     |                          West---+---East\n
+                     |  (Chimera)(Jailor)(Chimera) |                                /|\n
+                     |                             |                          Down/  |\n
+                     |                  Kitchen    |     Stable                    South\n
+                     |        (Odin)       |       |       |       (Ra)\n
+                     |        Guest     Western  Castle  Eastern   Guest      ()Mob Location\n
+                     |       Quarters----Wing----Entry----Wing----Quarters\n
+                     |                     |       |       |\n
+                     |                  Storage   Z|   Storage Room\n
+                     |                   Room     e|\n
+                     |                            u|  Believer\n
+                     |                            s|     |    (Hephaestus)\n
+                     |                             |  Planning---Smithy\n
+                     |                            S|  Room(Ares)   |\n
+                     |                            t|               |  (Clive)\n
+                     |                 (Alchemist) +--Ares Street--+--Weapon\n
+                     |                    Mystery  |               |   Shop\n
+                     |                    Shop-----+               |\n
+                     |                             |            Armoury\n
+                     |                   Residence-+-Residence  (Samuel)\n
+                     |                   (Apollo)  |  (Athena)\n
+                     |                             |\n
+                     |             (Julius)Bakery--+\n
+                     |                             |\n
+                     |                       **Entrance**\n
+                     |                            /\n
+                     |                      Mountain\n"
     }]
   }}
 ]

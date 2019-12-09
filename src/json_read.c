@@ -357,6 +357,25 @@ char *json_read_string_content (const char **pos, char *buf, size_t size) {
             fprintf (stderr, "json_read_string(): Premature EOF found.\n");
             return NULL;
         }
+        if (**pos == '\r') {
+            (*pos)++;
+            continue;
+        }
+
+        /* we're going to allow a special case: if we find a newline, read
+         * spaces until we find '|' or anything else.  if we found '[ ]*|',
+         * we start reading after the pipe. if not, go back to our original
+         * position and read like normal. */
+        if (**pos == '\n') {
+            const char *pos_ahead;
+            (*pos)++;
+            for (pos_ahead = *pos; *pos_ahead != '\0'; pos_ahead++)
+                if (*pos_ahead != ' ' && *pos_ahead != '\r')
+                    break;
+            if (*pos_ahead == '|')
+                *pos = pos_ahead + 1;
+            continue;
+        }
 
         /* parse special characters. */
         if (**pos == '\\') {
