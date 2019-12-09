@@ -56,7 +56,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "description": "Raff Way continues west.\n",
         "portal": "ofcol2-west-1"
       }

@@ -17,7 +17,6 @@
     "level": 39,
     "weight": 400,
     "cost": 8800,
-    "condition": 100,
     "extra_flags": "glow magic antigood antievil",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -53,7 +52,6 @@
     "level": 0,
     "weight": 0,
     "cost": 500,
-    "condition": 100,
     "extra_flags": "glow nolocate",
     "wear_flags": "take hold",
     "extra_description": [{

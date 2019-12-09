@@ -96,7 +96,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "If you want to know what is up there, you shall have to go look...\n",
         "portal": "immort-up-1"
       }
@@ -382,7 +381,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "The altar of Midgaard is below you.\n",
         "portal": "immort-down-1"
       }
@@ -481,7 +479,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "If you want to know what is up there you shall have to go up and see...\n",
         "portal": "immort-up-2"
       }
@@ -502,19 +499,16 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "Melancholys' room is north of here.\n",
         "portal": "immort-north-1"
       },
       {
         "dir": "east",
-        "to": null,
         "description": "Kates' room is east of here.\n",
         "portal": "immort-east-1"
       },
       {
         "dir": "south",
-        "to": null,
         "description": "The Temple of Stupid is south of here.\n",
         "portal": "immort-south-1"
       },

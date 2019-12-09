@@ -16,7 +16,6 @@
     "level": 45,
     "weight": 70,
     "cost": 3100,
-    "condition": 100,
     "extra_flags": "glow evil magic antigood",
     "wear_flags": "take wield",
     "affects": [
@@ -59,7 +58,6 @@
     "level": 35,
     "weight": 70,
     "cost": 2100,
-    "condition": 100,
     "extra_flags": "hum evil antigood",
     "wear_flags": "take wield",
     "affects": [{
@@ -86,7 +84,6 @@
     "level": 37,
     "weight": 70,
     "cost": 6300,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
@@ -129,7 +126,6 @@
     "level": 50,
     "weight": 70,
     "cost": 15300,
-    "condition": 100,
     "extra_flags": "hum invis magic nodrop noremove",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -176,7 +172,6 @@
     "level": 45,
     "weight": 40,
     "cost": 6900,
-    "condition": 100,
     "wear_flags": "take head"
   }},
   {"object": {
@@ -194,7 +189,6 @@
     "level": 25,
     "weight": 30,
     "cost": 3900,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -214,7 +208,6 @@
     "level": 33,
     "weight": 60,
     "cost": 4800,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
       "apply": "damage roll",
@@ -240,7 +233,6 @@
     "level": 46,
     "weight": 40,
     "cost": 9400,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
@@ -275,7 +267,6 @@
     "level": 35,
     "weight": 40,
     "cost": 10000,
-    "condition": 100,
     "wear_flags": "take body",
     "affects": [
       {
@@ -316,7 +307,6 @@
     "level": 36,
     "weight": 10,
     "cost": 7600,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
       "apply": "hit roll",
@@ -341,7 +331,6 @@
     "level": 35,
     "weight": 50,
     "cost": 3300,
-    "condition": 100,
     "wear_flags": "take arms"
   }},
   {"object": {
@@ -360,7 +349,6 @@
     "level": 17,
     "weight": 70,
     "cost": 74600,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -379,7 +367,6 @@
     "level": 43,
     "weight": 70,
     "cost": 7300,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take wield",
     "affects": [
@@ -415,7 +402,6 @@
     "level": 9,
     "weight": 20,
     "cost": 5000,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take hold"
   }},
@@ -436,7 +422,6 @@
     "level": 46,
     "weight": 60,
     "cost": 5400,
-    "condition": 100,
     "extra_flags": "evil magic",
     "wear_flags": "take wield",
     "affects": [{
@@ -463,7 +448,6 @@
     "level": 11,
     "weight": 10,
     "cost": 1170,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -483,7 +467,6 @@
     "level": 43,
     "weight": 20,
     "cost": 7500,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
       "apply": "dexterity",
@@ -508,7 +491,6 @@
     "level": 8,
     "weight": 10,
     "cost": 970,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -528,7 +510,6 @@
     "level": 48,
     "weight": 50,
     "cost": 1330,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -548,7 +529,6 @@
     "level": 47,
     "weight": 30,
     "cost": 2400,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
       "apply": "damage roll",
@@ -572,7 +552,6 @@
     "level": 0,
     "weight": 20,
     "cost": 20,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -589,7 +568,6 @@
     "level": 0,
     "weight": 10,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -608,7 +586,6 @@
     "level": 44,
     "weight": 10,
     "cost": 3400,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
@@ -638,7 +615,6 @@
     "level": 17,
     "weight": 10,
     "cost": 5500,
-    "condition": 100,
     "wear_flags": "take head",
     "affects": [
       {
@@ -673,7 +649,6 @@
     "level": 12,
     "weight": 20,
     "cost": 5300,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -692,7 +667,6 @@
     "level": 47,
     "weight": 40,
     "cost": 18300,
-    "condition": 100,
     "extra_flags": "evil antigood",
     "wear_flags": "take about",
     "affects": [{
@@ -719,7 +693,6 @@
     "level": 50,
     "weight": 20,
     "cost": 11800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "affects": [
@@ -750,7 +723,6 @@
     "level": 31,
     "weight": 10,
     "cost": 2900,
-    "condition": 100,
     "wear_flags": "take finger",
     "affects": [
       {
@@ -780,7 +752,6 @@
     "level": 33,
     "weight": 10,
     "cost": 2700,
-    "condition": 100,
     "wear_flags": "take finger",
     "affects": [
       {
@@ -815,7 +786,6 @@
     "level": 11,
     "weight": 10,
     "cost": 2400,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -834,7 +804,6 @@
     "level": 49,
     "weight": 30,
     "cost": 6500,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
@@ -864,7 +833,6 @@
     "level": 45,
     "weight": 30,
     "cost": 11800,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold",
     "affects": [{
@@ -891,7 +859,6 @@
     "level": 19,
     "weight": 30,
     "cost": 16600,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold"
   }},
@@ -911,7 +878,6 @@
     "level": 19,
     "weight": 30,
     "cost": 18900,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold"
   }},
@@ -931,7 +897,6 @@
     "level": 10,
     "weight": 30,
     "cost": 3900,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold"
   }},
@@ -951,7 +916,6 @@
     "level": 18,
     "weight": 30,
     "cost": 11000,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold"
   }},
@@ -971,7 +935,6 @@
     "level": 23,
     "weight": 30,
     "cost": 17600,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold"
   }},
@@ -991,7 +954,6 @@
     "level": 31,
     "weight": 30,
     "cost": 37800,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold"
   }},
@@ -1011,7 +973,6 @@
     "level": 4,
     "weight": 30,
     "cost": 1840,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold"
   }},
@@ -1031,7 +992,6 @@
     "level": 16,
     "weight": 20,
     "cost": 8500,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take hold",
     "affects": [{
@@ -1058,7 +1018,6 @@
     "level": 45,
     "weight": 70,
     "cost": 6700,
-    "condition": 100,
     "extra_flags": "glow hum",
     "wear_flags": "take wield",
     "affects": [
@@ -1101,7 +1060,6 @@
     "level": 45,
     "weight": 40,
     "cost": 13700,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take body",
     "affects": [{
@@ -1127,7 +1085,6 @@
     "level": 14,
     "weight": 10,
     "cost": 1520,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1146,7 +1103,6 @@
     "level": 32,
     "weight": 40,
     "cost": 2900,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
       "apply": "damage roll",
@@ -1172,7 +1128,6 @@
     "level": 47,
     "weight": 70,
     "cost": 6400,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
@@ -1206,7 +1161,6 @@
     "level": 43,
     "weight": 20,
     "cost": 6100,
-    "condition": 100,
     "wear_flags": "take head",
     "affects": [
       {
@@ -1241,7 +1195,6 @@
     "level": 45,
     "weight": 30,
     "cost": 13700,
-    "condition": 100,
     "wear_flags": "take body",
     "affects": [
       {
@@ -1276,7 +1229,6 @@
     "level": 45,
     "weight": 60,
     "cost": 6400,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
@@ -1306,7 +1258,6 @@
     "level": 0,
     "weight": 10,
     "cost": 5000,
-    "condition": 100,
     "extra_flags": "nolocate",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -1325,7 +1276,6 @@
     "level": 0,
     "weight": 10,
     "cost": 10000,
-    "condition": 100,
     "extra_flags": "evil nolocate",
     "wear_flags": "take hold",
     "extra_description": [{

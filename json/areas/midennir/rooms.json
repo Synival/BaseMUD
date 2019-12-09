@@ -8,7 +8,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "portal": "midennir-north-2"
       },
       {
@@ -53,7 +52,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "A once mighty road leads through the dwarf forest towards ruined Thalos.\n",
         "portal": "midennir-south-2"
       },
@@ -78,7 +76,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "portal": "midennir-west-1"
       }
     ]
@@ -92,7 +89,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "To the north, you see the southern gates of Midgaard.\n",
         "portal": "midennir-north-3"
       },
@@ -558,7 +554,6 @@
       },
       {
         "dir": "east",
-        "to": null,
         "description": "The trees are nearly trunk-to-trunk this way.\n",
         "portal": "midennir-east-1"
       },
@@ -593,7 +588,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "description": "The trees are nearly trunk-to-trunk this way.\n",
         "portal": "midennir-west-2"
       }
@@ -716,7 +710,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "You see a faint trail, covered with tiny footprints. The singing grows louder.\n",
         "portal": "midennir-north-4"
       },
@@ -741,7 +734,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "You see a beautiful, shady grove -- it looks like a peaceful place to relax.\n",
         "portal": "midennir-north-1"
       },
@@ -752,7 +744,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "A dirt path leads to the gnome village.\n",
         "portal": "midennir-south-1"
       },
@@ -867,7 +858,6 @@
     "doors": [
       {
         "dir": "east",
-        "to": null,
         "description": "You see the west gate of New Thalos.\n",
         "portal": "midennir-east-2"
       },

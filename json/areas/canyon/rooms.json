@@ -8,7 +8,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "portal": "canyon-north-1"
       },
       {

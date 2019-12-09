@@ -15,7 +15,6 @@
     "level": 1,
     "weight": 20,
     "cost": 230,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -34,7 +33,6 @@
     "level": 10,
     "weight": 110,
     "cost": 570,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "affects": [{
@@ -61,7 +59,6 @@
     "level": 8,
     "weight": 20,
     "cost": 700,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wield",
     "affects": [{
@@ -88,7 +85,6 @@
     "level": 11,
     "weight": 120,
     "cost": 910,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wield",
     "affects": [
@@ -125,7 +121,6 @@
     "level": 15,
     "weight": 120,
     "cost": 1510,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wield",
     "affects": [
@@ -161,7 +156,6 @@
     "level": 14,
     "weight": 130,
     "cost": 1550,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take wield",
     "affects": [
@@ -197,7 +191,6 @@
     "level": 13,
     "weight": 60,
     "cost": 1530,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take shield",
     "affects": [{
@@ -224,7 +217,6 @@
     "level": 20,
     "weight": 40,
     "cost": 2300,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take head",
     "extra_description": [{
@@ -255,7 +247,6 @@
     "level": 12,
     "weight": 20,
     "cost": 1540,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take wrist",
     "affects": [{
@@ -277,7 +268,6 @@
     "level": 0,
     "weight": 20,
     "cost": 100,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take neck",
     "affects": [{
@@ -303,7 +293,6 @@
     "level": 5,
     "weight": 10,
     "cost": 320,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold"
   }},
@@ -323,7 +312,6 @@
     "level": 0,
     "weight": 100,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -341,7 +329,6 @@
     "level": 0,
     "weight": 80,
     "cost": 10,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -355,7 +342,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -369,7 +355,6 @@
     "level": 12,
     "weight": 10,
     "cost": 750,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -399,7 +384,6 @@
     "level": 5,
     "weight": 50,
     "cost": 730,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "short bow",
@@ -422,7 +406,6 @@
     "level": 12,
     "weight": 70,
     "cost": 220,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wield",
     "affects": [{
@@ -449,7 +432,6 @@
     "level": 19,
     "weight": 100,
     "cost": 2500,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take wield",
     "affects": [
@@ -484,7 +466,6 @@
     "level": 0,
     "weight": 10,
     "cost": 168,
-    "condition": 100,
     "wear_flags": "take head"
   }},
   {"object": {
@@ -502,7 +483,6 @@
     "level": 12,
     "weight": 20,
     "cost": 880,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take feet",
     "affects": [{
@@ -524,7 +504,6 @@
     "level": 5,
     "weight": 10,
     "cost": 55,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [{

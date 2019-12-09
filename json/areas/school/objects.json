@@ -16,7 +16,6 @@
     "level": 1,
     "weight": 60,
     "cost": 250,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -48,7 +47,6 @@
     "level": 0,
     "weight": 10,
     "cost": 210,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -80,7 +78,6 @@
     "level": 1,
     "weight": 30,
     "cost": 360,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -111,7 +108,6 @@
     "level": 0,
     "weight": 50,
     "cost": 144,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take body",
     "extra_description": [{
@@ -135,7 +131,6 @@
     "level": 0,
     "weight": 30,
     "cost": 108,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take shield",
     "extra_description": [{
@@ -160,7 +155,6 @@
     "level": 0,
     "weight": 40,
     "cost": 72,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take neck",
     "extra_description": [{
@@ -184,7 +178,6 @@
     "level": 0,
     "weight": 30,
     "cost": 72,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take head",
     "extra_description": [{
@@ -208,7 +201,6 @@
     "level": 0,
     "weight": 30,
     "cost": 72,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take legs",
     "extra_description": [{
@@ -232,7 +224,6 @@
     "level": 0,
     "weight": 30,
     "cost": 72,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take feet",
     "extra_description": [{
@@ -256,7 +247,6 @@
     "level": 0,
     "weight": 10,
     "cost": 72,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take hands",
     "extra_description": [{
@@ -280,7 +270,6 @@
     "level": 0,
     "weight": 20,
     "cost": 72,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take arms",
     "extra_description": [{
@@ -304,7 +293,6 @@
     "level": 0,
     "weight": 20,
     "cost": 72,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take about",
     "extra_description": [{
@@ -328,7 +316,6 @@
     "level": 0,
     "weight": 10,
     "cost": 72,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take waist",
     "extra_description": [{
@@ -351,7 +338,6 @@
     "level": 0,
     "weight": 10,
     "cost": 48,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take wrist",
     "extra_description": [{
@@ -371,7 +357,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "rotdeath",
     "wear_flags": "take"
   }},
@@ -387,7 +372,6 @@
     "level": 0,
     "weight": 10,
     "cost": 1140,
-    "condition": 100,
     "extra_flags": "magic meltdrop",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -423,7 +407,6 @@
     "level": 0,
     "weight": 20,
     "cost": 380,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take",
     "extra_description": [{
@@ -464,7 +447,6 @@
     "level": 1,
     "weight": 50,
     "cost": 111,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -497,7 +479,6 @@
     "level": 1,
     "weight": 40,
     "cost": 290,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -538,7 +519,6 @@
     "level": 1,
     "weight": 50,
     "cost": 350,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -570,7 +550,6 @@
     "level": 1,
     "weight": 50,
     "cost": 310,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -602,7 +581,6 @@
     "level": 1,
     "weight": 20,
     "cost": 330,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -635,7 +613,6 @@
     "level": 1,
     "weight": 80,
     "cost": 183,
-    "condition": 100,
     "extra_flags": "meltdrop",
     "wear_flags": "take wield",
     "extra_description": [{

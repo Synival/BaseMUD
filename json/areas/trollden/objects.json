@@ -14,7 +14,6 @@
     "level": 0,
     "weight": 500,
     "cost": 1,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -31,8 +30,7 @@
     },
     "level": 0,
     "weight": 0,
-    "cost": 0,
-    "condition": 100
+    "cost": 0
   }},
   {"object": {
     "area": "trollden",
@@ -49,7 +47,6 @@
     "level": 12,
     "weight": 200,
     "cost": 1380,
-    "condition": 100,
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "troll skin",
@@ -74,7 +71,6 @@
     "level": 20,
     "weight": 10,
     "cost": 1150,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "extra_description": [{
@@ -104,7 +100,6 @@
     "level": 15,
     "weight": 50,
     "cost": 1050,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take waist",
     "extra_description": [{
@@ -128,7 +123,6 @@
     "level": 6,
     "weight": 30,
     "cost": 350,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "bone",

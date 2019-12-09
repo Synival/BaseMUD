@@ -21,7 +21,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "You see the Temple of Midgaard.\n",
         "portal": "school-down-1"
       }
@@ -1785,7 +1784,6 @@
     "room_flags": "no_mob indoors",
     "doors": [{
       "dir": "up",
-      "to": null,
       "description": "You see the Temple of Midgaard.\n",
       "portal": "school-up-1"
     }]

@@ -9,7 +9,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "The way back to solid footing, it seems.\n",
         "portal": "dylan-north-1"
       },
@@ -1057,7 +1056,6 @@
     "doors": [
       {
         "dir": "east",
-        "to": null,
         "keyword": "picture",
         "exit_flags": "door closed",
         "portal": "dylan-east-1"

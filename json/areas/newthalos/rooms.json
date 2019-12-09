@@ -512,7 +512,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "portal": "newthalos-south-1"
       }
     ],
@@ -3054,7 +3053,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "keyword": "drawbridge draw bridge door",
         "exit_flags": "door closed locked pickproof",
         "key": {
@@ -5437,7 +5435,6 @@
       },
       {
         "dir": "east",
-        "to": null,
         "portal": "newthalos-east-2"
       },
       {
@@ -5448,7 +5445,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "portal": "newthalos-west-2"
       }
     ],
@@ -5519,7 +5515,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "portal": "newthalos-west-1"
       }
     ],
@@ -7079,7 +7074,6 @@
     "doors": [
       {
         "dir": "east",
-        "to": null,
         "portal": "newthalos-east-1"
       },
       {
@@ -7116,7 +7110,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "portal": "newthalos-north-1"
       },
       {

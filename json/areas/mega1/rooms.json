@@ -8,7 +8,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "You see the glowing sand of the badlands.\n",
         "portal": "mega1-north-1"
       },

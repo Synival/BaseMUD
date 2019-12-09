@@ -21,7 +21,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "portal": "mobfact-west-1"
       }
     ]

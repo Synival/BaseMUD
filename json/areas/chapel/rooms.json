@@ -8,7 +8,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "keyword": "door",
         "description": "The chapel door is made of dark wood.\n",
         "exit_flags": "door closed locked",
@@ -2105,7 +2104,6 @@
     "room_flags": "no_mob indoors",
     "doors": [{
       "dir": "north",
-      "to": null,
       "description": "The fires of hell grow hotter to the north...\n",
       "portal": "chapel-north-2"
     }]

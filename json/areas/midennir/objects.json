@@ -150,7 +150,6 @@
     "level": 5,
     "weight": 10,
     "cost": 420,
-    "condition": 100,
     "extra_flags": "magic antievil",
     "wear_flags": "take wield",
     "extra_description": [{

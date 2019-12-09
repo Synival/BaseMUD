@@ -8,7 +8,6 @@
     "description": "You see what appears to be a 3 sided pyramid with spidery arms and legs.\n",
     "race": "modron",
     "alignment": 300,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "3d20+80",
@@ -24,11 +23,9 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area",
     "offense": "trip",
-    "parts": "fingers",
-    "spec_fun": null
+    "parts": "fingers"
   }},
   {"mobile": {
     "area": "nirvana",
@@ -39,7 +36,6 @@
     "description": "A cubic creature, with spiny arms and legs.\n",
     "race": "modron",
     "alignment": 300,
-    "group": 0,
     "level": 11,
     "hitroll": 3,
     "hit_dice": "14d10+70",
@@ -55,12 +51,10 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area warrior",
     "affected_by": "detect_invis",
     "offense": "bash disarm parry",
-    "parts": "fingers",
-    "spec_fun": null
+    "parts": "fingers"
   }},
   {"mobile": {
     "area": "nirvana",
@@ -71,7 +65,6 @@
     "description": "A five-armed creature which resembles a starfish on thin stilt-like legs.\n",
     "race": "modron",
     "alignment": 300,
-    "group": 0,
     "level": 14,
     "hitroll": 3,
     "hit_dice": "15d12+110",
@@ -87,13 +80,11 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive stay_area warrior",
     "affected_by": "detect_invis",
     "offense": "bash disarm dodge rescue trip",
     "immune": "drowning",
-    "parts": "tentacles",
-    "spec_fun": null
+    "parts": "tentacles"
   }},
   {"mobile": {
     "area": "nirvana",
@@ -104,7 +95,6 @@
     "description": "The decaton is a large, ten-tentacled sphere on stumpy legs.\n",
     "race": "modron",
     "alignment": 300,
-    "group": 0,
     "level": 17,
     "hitroll": 4,
     "hit_dice": "25d10+70",
@@ -120,14 +110,12 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive stay_area cleric warrior",
     "affected_by": "detect_invis",
     "offense": "area_attack bash disarm parry trip",
     "immune": "drowning",
     "form": "biped",
-    "parts": "tentacles",
-    "spec_fun": null
+    "parts": "tentacles"
   }},
   {"mobile": {
     "area": "nirvana",
@@ -138,7 +126,6 @@
     "description": "A cylidrical modron with 9 tentacles and stubby legs.\n",
     "race": "modron",
     "alignment": 300,
-    "group": 0,
     "level": 20,
     "hitroll": 5,
     "hit_dice": "11d8+250",
@@ -154,15 +141,13 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "large",
-    "shop": null,
     "mob_flags": "sentinel aggressive stay_area cleric warrior",
     "affected_by": "detect_invis sanctuary",
     "offense": "area_attack disarm dodge trip",
     "immune": "drowning",
     "vulnerable": "slash",
     "form": "biped",
-    "parts": "tentacles",
-    "spec_fun": null
+    "parts": "tentacles"
   }},
   {"mobile": {
     "area": "nirvana",
@@ -173,7 +158,6 @@
     "description": "The octon has a collar at shoulder level with 8 tentacled arms growing out of\nit.\n",
     "race": "modron",
     "alignment": 300,
-    "group": 0,
     "level": 22,
     "hitroll": 5,
     "hit_dice": "25d10+300",
@@ -189,15 +173,13 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "large",
-    "shop": null,
     "mob_flags": "sentinel aggressive stay_area cleric",
     "affected_by": "detect_invis",
     "offense": "area_attack bash disarm fast parry",
     "immune": "drowning",
     "vulnerable": "slash",
     "form": "biped",
-    "parts": "tentacles",
-    "spec_fun": null
+    "parts": "tentacles"
   }},
   {"mobile": {
     "area": "nirvana",
@@ -208,7 +190,6 @@
     "description": "The septon appears as a human with a large bald head. It has a shoulder collar\nwith 7 tentacles coming from it.\n",
     "race": "modron",
     "alignment": 300,
-    "group": 0,
     "level": 24,
     "hitroll": 5,
     "hit_dice": "30d10+350",
@@ -224,14 +205,12 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive stay_area cleric mage",
     "affected_by": "detect_invis",
     "offense": "area_attack dodge parry crush",
     "immune": "drowning",
     "form": "biped",
-    "parts": "fingers tentacles",
-    "spec_fun": null
+    "parts": "fingers tentacles"
   }},
   {"mobile": {
     "area": "nirvana",
@@ -242,7 +221,6 @@
     "description": "A hexton appears as a humanoid with 6 arms: 2 large human arms with 6 fingers,\nand 4 tentacles below tipped with sharp claws.\n",
     "race": "modron",
     "alignment": 300,
-    "group": 0,
     "level": 26,
     "hitroll": 7,
     "hit_dice": "35d20+300",
@@ -258,15 +236,13 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "large",
-    "shop": null,
     "mob_flags": "sentinel aggressive stay_area cleric warrior",
     "affected_by": "detect_invis detect_hidden sanctuary",
     "offense": "area_attack bash disarm dodge fast kick parry rescue trip",
     "immune": "summon drowning",
     "resist": "magic",
     "form": "biped",
-    "parts": "fingers tentacles wings",
-    "spec_fun": null
+    "parts": "fingers tentacles wings"
   }},
   {"mobile": {
     "area": "nirvana",
@@ -277,7 +253,6 @@
     "description": "Quintons look like tall, stocky humanoids with 4 flexible arms jutting from the\nshoulders.  A prehensile tail serves as the creature's 5th arm, and they have\nfan-like wings attached to their shoulders.\n",
     "race": "modron",
     "alignment": 300,
-    "group": 0,
     "level": 28,
     "hitroll": 6,
     "hit_dice": "10d100+150",
@@ -293,14 +268,12 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "large",
-    "shop": null,
     "mob_flags": "sentinel aggressive stay_area cleric",
     "affected_by": "detect_invis",
     "offense": "area_attack parry tail crush",
     "immune": "summon drowning",
     "form": "biped",
-    "parts": "fingers tentacles wings tail",
-    "spec_fun": null
+    "parts": "fingers tentacles wings tail"
   }},
   {"mobile": {
     "area": "nirvana",
@@ -311,7 +284,6 @@
     "description": "Tertians look very human, save for their 12 foot size, the horns jutting from\nthe sides of their bald heads, and the long prehensile tail ending in a mace-\nlike ball.\n",
     "race": "modron",
     "alignment": 300,
-    "group": 0,
     "level": 33,
     "hitroll": 12,
     "hit_dice": "1d1+999",
@@ -327,15 +299,13 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "huge",
-    "shop": null,
     "mob_flags": "sentinel aggressive stay_area cleric mage warrior",
     "affected_by": "detect_invis",
     "offense": "bash disarm dodge",
     "immune": "summon drowning",
     "resist": "magic",
     "form": "biped",
-    "parts": "fingers horns",
-    "spec_fun": null
+    "parts": "fingers horns"
   }},
   {"mobile": {
     "area": "nirvana",
@@ -346,7 +316,6 @@
     "description": "The secundi is an incredibly thin, tall humanoids with long, narrow faces\nand deepset eyes. It radiates intense power.\n",
     "race": "modron",
     "alignment": 0,
-    "group": 0,
     "level": 36,
     "hitroll": 15,
     "hit_dice": "1d1+1599",
@@ -362,15 +331,13 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "huge",
-    "shop": null,
     "mob_flags": "sentinel aggressive stay_area cleric mage warrior",
     "affected_by": "detect_invis detect_hidden sanctuary",
     "offense": "disarm dodge fast kick parry trip",
     "immune": "summon fire cold acid drowning",
     "resist": "magic",
     "form": "biped",
-    "parts": "fingers",
-    "spec_fun": null
+    "parts": "fingers"
   }},
   {"mobile": {
     "area": "nirvana",
@@ -381,7 +348,6 @@
     "description": "Primus is a huge being who rises out of the energy pool and glares at you with\nviolet eyes. His right hand is wreathed in darkness, his left in light, and\nhe looks very displeased to see you.\n",
     "race": "modron",
     "alignment": 0,
-    "group": 0,
     "level": 40,
     "hitroll": 20,
     "hit_dice": "1d1+3999",
@@ -397,14 +363,12 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "giant",
-    "shop": null,
     "mob_flags": "sentinel aggressive stay_area cleric mage warrior",
     "affected_by": "detect_invis detect_hidden sanctuary",
     "offense": "area_attack fast",
     "immune": "summon fire cold acid drowning light",
     "resist": "magic",
     "form": "biped",
-    "parts": "fingers",
-    "spec_fun": null
+    "parts": "fingers"
   }}
 ]

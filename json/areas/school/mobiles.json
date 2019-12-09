@@ -8,7 +8,6 @@
     "description": "He's big and bad.  Don't mess with him.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 10,
     "hit_dice": "1d1+999",
@@ -24,12 +23,10 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel stay_area cleric warrior nopurge",
     "affected_by": "detect_evil sanctuary",
     "offense": "area_attack bash disarm dodge fast kick parry trip",
-    "immune": "summon charm magic weapon",
-    "spec_fun": null
+    "immune": "summon charm magic weapon"
   }},
   {"mobile": {
     "area": "school",
@@ -40,7 +37,6 @@
     "description": "He is big, he is bad.  You don't want to fight him when he isn't chained up.\nPerhaps now would be a good time to flee from him!!!  If you don't flee, you\nwould really suffer the consequences.\n",
     "race": "unique",
     "alignment": 0,
-    "group": 0,
     "level": 5,
     "hitroll": -5,
     "hit_dice": "1d1+49",
@@ -56,14 +52,12 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "large",
-    "shop": null,
     "mob_flags": "sentinel stay_area",
     "affected_by": "detect_evil",
     "offense": "area_attack trip",
     "immune": "summon charm",
     "resist": "magic weapon",
-    "form": "poison blob cold_blood",
-    "spec_fun": null
+    "form": "poison blob cold_blood"
   }},
   {"mobile": {
     "area": "school",
@@ -74,7 +68,6 @@
     "description": "He looks mean, but you feel comfortable that you can kill him, especially since\nhe is leashed up, and you are not.\n",
     "race": "school monster",
     "alignment": 0,
-    "group": 0,
     "level": 1,
     "hitroll": 0,
     "hit_dice": "1d1+7",
@@ -90,9 +83,7 @@
     "sex": "neutral",
     "wealth": 10,
     "size": "medium",
-    "shop": null,
-    "mob_flags": "sentinel",
-    "spec_fun": null
+    "mob_flags": "sentinel"
   }},
   {"mobile": {
     "area": "school",
@@ -103,7 +94,6 @@
     "description": "He looks wimpy.  You feel comfortable that you can kill him, especially since\nhe is leashed up, and you are not.\n",
     "race": "school monster",
     "alignment": 0,
-    "group": 0,
     "level": 1,
     "hitroll": 0,
     "hit_dice": "1d1+7",
@@ -119,10 +109,8 @@
     "sex": "neutral",
     "wealth": 10,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel wimpy",
-    "offense": "crush",
-    "spec_fun": null
+    "offense": "crush"
   }},
   {"mobile": {
     "area": "school",
@@ -133,7 +121,6 @@
     "description": "He looks mean, but you feel comfortable that you can kill him, especially since\nhe is leashed up, and you are not.\n",
     "race": "school monster",
     "alignment": 0,
-    "group": 0,
     "level": 1,
     "hitroll": 0,
     "hit_dice": "1d1+7",
@@ -149,10 +136,8 @@
     "sex": "neutral",
     "wealth": 10,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
-    "offense": "disarm parry",
-    "spec_fun": null
+    "offense": "disarm parry"
   }},
   {"mobile": {
     "area": "school",
@@ -163,7 +148,6 @@
     "description": "He looks mean, but you feel comfortable that you can kill him, especially since\nhe is leashed up, and you are not.\n",
     "race": "school monster",
     "alignment": 0,
-    "group": 0,
     "level": 1,
     "hitroll": 0,
     "hit_dice": "1d1+7",
@@ -179,10 +163,8 @@
     "sex": "neutral",
     "wealth": 10,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive wimpy",
-    "offense": "dirt_kick",
-    "spec_fun": null
+    "offense": "dirt_kick"
   }},
   {"mobile": {
     "area": "school",
@@ -193,7 +175,6 @@
     "description": "He looks mean, and you just might have a small problem killing him, but he\nlooks like a great prize!!!\n",
     "race": "school monster",
     "alignment": 0,
-    "group": 0,
     "level": 2,
     "hitroll": 1,
     "hit_dice": "2d2+20",
@@ -209,11 +190,9 @@
     "sex": "neutral",
     "wealth": 25,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "infrared dark_vision",
-    "offense": "dodge trip",
-    "spec_fun": null
+    "offense": "dodge trip"
   }},
   {"mobile": {
     "area": "school",
@@ -224,7 +203,6 @@
     "description": "She is big and bad.  Don't mess with her.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 10,
     "hit_dice": "1d1+999",
@@ -240,7 +218,6 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel stay_area cleric warrior nopurge",
     "affected_by": "detect_evil sanctuary",
     "offense": "area_attack bash disarm dodge fast kick parry trip",
@@ -256,7 +233,6 @@
     "description": "He is big and bad.  Don't mess with him.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 10,
     "hit_dice": "1d1+999",
@@ -272,7 +248,6 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel stay_area cleric warrior nopurge",
     "affected_by": "detect_evil sanctuary",
     "offense": "area_attack bash disarm dodge fast kick parry trip",
@@ -288,7 +263,6 @@
     "description": "The rabbit smiles at you, completely harmless!\n",
     "race": "rabbit",
     "alignment": 100,
-    "group": 0,
     "level": 1,
     "hitroll": 0,
     "hit_dice": "1d1+10",
@@ -303,9 +277,7 @@
     },
     "wealth": 0,
     "size": "tiny",
-    "shop": null,
-    "mob_flags": "stay_area wimpy noalign",
-    "spec_fun": null
+    "mob_flags": "stay_area wimpy noalign"
   }},
   {"mobile": {
     "area": "school",
@@ -316,7 +288,6 @@
     "description": "It smiles at you, and tries to eat your leg.\n",
     "race": "lizard",
     "alignment": -100,
-    "group": 0,
     "level": 2,
     "hitroll": 0,
     "hit_dice": "2d2+20",
@@ -331,10 +302,8 @@
     },
     "wealth": 0,
     "size": "small",
-    "shop": null,
     "mob_flags": "stay_area noalign",
-    "offense": "assist_race",
-    "spec_fun": null
+    "offense": "assist_race"
   }},
   {"mobile": {
     "area": "school",
@@ -345,7 +314,6 @@
     "description": "It grunts at you.\n",
     "race": "pig",
     "alignment": 0,
-    "group": 0,
     "level": 3,
     "hitroll": 1,
     "hit_dice": "3d3+30",
@@ -360,10 +328,8 @@
     },
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area noalign",
-    "offense": "bash berserk dodge assist_race",
-    "spec_fun": null
+    "offense": "bash berserk dodge assist_race"
   }},
   {"mobile": {
     "area": "school",
@@ -374,7 +340,6 @@
     "description": "It's fur might be worth money.\n",
     "race": "fox",
     "alignment": 100,
-    "group": 0,
     "level": 1,
     "hitroll": 1,
     "hit_dice": "1d1+12",
@@ -389,10 +354,8 @@
     },
     "wealth": 0,
     "size": "small",
-    "shop": null,
     "mob_flags": "stay_area wimpy noalign",
-    "offense": "trip assist_race",
-    "spec_fun": null
+    "offense": "trip assist_race"
   }},
   {"mobile": {
     "area": "school",
@@ -403,7 +366,6 @@
     "description": "You don't see much but slime about it.\n",
     "race": "unique",
     "alignment": 0,
-    "group": 0,
     "level": 0,
     "hitroll": 0,
     "hit_dice": "1d1+0",
@@ -419,11 +381,9 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "tiny",
-    "shop": null,
     "mob_flags": "stay_area noalign",
     "form": "edible animal crustacean cold_blood",
-    "parts": "head guts feet eyestalks",
-    "spec_fun": null
+    "parts": "head guts feet eyestalks"
   }},
   {"mobile": {
     "area": "school",
@@ -434,7 +394,6 @@
     "description": "It looks mean.  You'd better run.\n",
     "race": "school monster",
     "alignment": 0,
-    "group": 0,
     "level": 5,
     "hitroll": 1,
     "hit_dice": "5d5+55",
@@ -450,7 +409,6 @@
     "sex": "neutral",
     "wealth": 50,
     "size": "large",
-    "shop": null,
     "mob_flags": "aggressive warrior",
     "affected_by": "dark_vision",
     "offense": "disarm parry tail",
@@ -466,7 +424,6 @@
     "description": "The bear must be bigger than you!  It wants to rip your head off.\n",
     "race": "bear",
     "alignment": 0,
-    "group": 0,
     "level": 4,
     "hitroll": 1,
     "hit_dice": "4d4+44",
@@ -481,10 +438,8 @@
     },
     "wealth": 0,
     "size": "large",
-    "shop": null,
     "mob_flags": "stay_area noalign",
-    "offense": "bash assist_race",
-    "spec_fun": null
+    "offense": "bash assist_race"
   }},
   {"mobile": {
     "area": "school",
@@ -495,7 +450,6 @@
     "description": "The wolf doesn't want to be bothered.\n",
     "race": "wolf",
     "alignment": 0,
-    "group": 0,
     "level": 4,
     "hitroll": 0,
     "hit_dice": "4d4+44",
@@ -510,10 +464,8 @@
     },
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area noalign",
-    "offense": "trip assist_race",
-    "spec_fun": null
+    "offense": "trip assist_race"
   }},
   {"mobile": {
     "area": "school",
@@ -524,7 +476,6 @@
     "description": "He is big and bad.  Don't mess with him.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 10,
     "hit_dice": "1d1+999",
@@ -552,8 +503,7 @@
     "mob_flags": "sentinel scavenger cleric warrior nopurge",
     "affected_by": "detect_evil sanctuary",
     "offense": "area_attack bash disarm dodge fast kick parry trip",
-    "immune": "summon charm magic weapon",
-    "spec_fun": null
+    "immune": "summon charm magic weapon"
   }},
   {"mobile": {
     "area": "school",
@@ -564,7 +514,6 @@
     "description": "He is big and bad.  Don't mess with him.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 10,
     "hit_dice": "1d1+999",
@@ -580,12 +529,10 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger train cleric warrior nopurge",
     "affected_by": "detect_evil sanctuary",
     "offense": "area_attack bash disarm dodge fast kick parry trip",
-    "immune": "summon charm magic weapon",
-    "spec_fun": null
+    "immune": "summon charm magic weapon"
   }},
   {"mobile": {
     "area": "school",
@@ -596,7 +543,6 @@
     "description": "He is big and bad.  Don't mess with him.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 10,
     "hit_dice": "1d1+999",
@@ -612,12 +558,10 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger practice cleric warrior nopurge",
     "affected_by": "detect_evil sanctuary",
     "offense": "area_attack bash disarm dodge fast kick parry trip",
-    "immune": "summon charm magic weapon",
-    "spec_fun": null
+    "immune": "summon charm magic weapon"
   }},
   {"mobile": {
     "area": "school",
@@ -628,7 +572,6 @@
     "description": "This horrible creature is your final test for mud school.  Kill him, and the\ndiploma is yours.\n",
     "race": "school monster",
     "alignment": 0,
-    "group": 0,
     "level": 3,
     "hitroll": 1,
     "hit_dice": "2d4+30",
@@ -644,10 +587,8 @@
     "sex": "neutral",
     "wealth": 30,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "infrared",
-    "offense": "disarm dodge trip",
-    "spec_fun": null
+    "offense": "disarm dodge trip"
   }}
 ]

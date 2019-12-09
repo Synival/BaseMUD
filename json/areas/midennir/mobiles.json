@@ -8,7 +8,6 @@
     "description": "This huge winged creature looks really menacing.  You are happy it doesn't\nAPPEAR to be very hungry ... yet.\n",
     "race": "wyvern",
     "alignment": -200,
-    "group": 0,
     "level": 8,
     "hitroll": 2,
     "hit_dice": "8d8+80",
@@ -23,7 +22,6 @@
     },
     "wealth": 0,
     "size": "huge",
-    "shop": null,
     "mob_flags": "stay_area",
     "offense": "berserk trip assist_race",
     "spec_fun": "spec_poison"
@@ -37,7 +35,6 @@
     "description": "You see before you a small and twisted creature with knotted muscles.\n",
     "race": "goblin",
     "alignment": -500,
-    "group": 0,
     "level": 6,
     "hitroll": 1,
     "hit_dice": "4d4+65",
@@ -53,10 +50,8 @@
     "sex": "male",
     "wealth": 25,
     "size": "small",
-    "shop": null,
     "mob_flags": "aggressive stay_area warrior",
-    "offense": "parry assist_race",
-    "spec_fun": null
+    "offense": "parry assist_race"
   }},
   {"mobile": {
     "area": "midennir",
@@ -67,7 +62,6 @@
     "description": "The poor boy has numerous cuts and scratches, but appears to be all right.\nHe is apparently the only survivor of the ambush.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 4,
     "hitroll": 0,
     "hit_dice": "1d12+47",
@@ -85,11 +79,9 @@
     "sex": "male",
     "wealth": 0,
     "size": "small",
-    "shop": null,
     "mob_flags": "sentinel wimpy",
     "offense": "kick",
-    "vulnerable": "magic",
-    "spec_fun": null
+    "vulnerable": "magic"
   }},
   {"mobile": {
     "area": "midennir",
@@ -100,7 +92,6 @@
     "description": "The Innkeeper now spends most of his days waiting for customers, while the\nnights are spent watching out for goblins.  His inn is no longer the happy\nplace that is used to be in days past.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 10,
     "hitroll": 1,
     "hit_dice": "1d12+200",
@@ -116,12 +107,10 @@
     "sex": "male",
     "wealth": 350,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel warrior",
     "offense": "backstab dodge parry assist_align",
     "immune": "summon charm",
-    "resist": "magic weapon",
-    "spec_fun": null
+    "resist": "magic weapon"
   }},
   {"mobile": {
     "area": "midennir",
@@ -132,7 +121,6 @@
     "description": "You can smell the alcohol on his breath from across the room.  This poor bard\nhas been sitting here quite a while, drinking himself into oblivion.\n",
     "race": "human",
     "alignment": 600,
-    "group": 0,
     "level": 8,
     "hitroll": 3,
     "hit_dice": "1d12+110",
@@ -150,11 +138,9 @@
     "sex": "male",
     "wealth": 260,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel thief warrior",
     "affected_by": "detect_invis",
-    "offense": "dodge kick dirt_kick parry trip assist_align",
-    "spec_fun": null
+    "offense": "dodge kick dirt_kick parry trip assist_align"
   }},
   {"mobile": {
     "area": "midennir",
@@ -165,7 +151,6 @@
     "description": "The man is obviously an outlaw, and has no qualms about slashing you into\nlittle bits.\n",
     "race": "human",
     "alignment": -900,
-    "group": 0,
     "level": 8,
     "hitroll": 2,
     "hit_dice": "1d12+110",
@@ -181,11 +166,9 @@
     "sex": "male",
     "wealth": 400,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy thief",
     "affected_by": "sneak",
-    "offense": "backstab dodge dirt_kick parry assist_align",
-    "spec_fun": null
+    "offense": "backstab dodge dirt_kick parry assist_align"
   }},
   {"mobile": {
     "area": "midennir",
@@ -196,7 +179,6 @@
     "description": "The goblin lieutenant is rather angry, and looking for one of his men to\nbeat up upon, but maybe you will do just fine ...\n",
     "race": "goblin",
     "alignment": -600,
-    "group": 0,
     "level": 7,
     "hitroll": 1,
     "hit_dice": "1d12+100",
@@ -212,10 +194,8 @@
     "sex": "male",
     "wealth": 55,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area warrior",
-    "offense": "berserk parry trip assist_race",
-    "spec_fun": null
+    "offense": "berserk parry trip assist_race"
   }},
   {"mobile": {
     "area": "midennir",
@@ -226,7 +206,6 @@
     "description": "The leader doesn't look too happy that you have found him here.  He grabs\nfor his shortsword and lunges for your neck.\n",
     "race": "goblin",
     "alignment": -900,
-    "group": 0,
     "level": 9,
     "hitroll": 2,
     "hit_dice": "1d12+120",
@@ -242,9 +221,7 @@
     "sex": "male",
     "wealth": 500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area warrior",
-    "offense": "berserk dirt_kick parry trip assist_race",
-    "spec_fun": null
+    "offense": "berserk dirt_kick parry trip assist_race"
   }}
 ]

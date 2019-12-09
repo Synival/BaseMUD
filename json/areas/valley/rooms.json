@@ -13,7 +13,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "You see the Plains of Ofcol.\n",
         "portal": "valley-south-1"
       }

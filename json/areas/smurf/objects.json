@@ -13,7 +13,6 @@
     "level": 0,
     "weight": 20,
     "cost": 180,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -27,7 +26,6 @@
     "level": 3,
     "weight": 20,
     "cost": 270,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take head",
     "affects": [
@@ -62,7 +60,6 @@
     "level": 3,
     "weight": 20,
     "cost": 310,
-    "condition": 100,
     "wear_flags": "take head"
   }},
   {"object": {
@@ -81,7 +78,6 @@
     "level": 3,
     "weight": 20,
     "cost": 370,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -95,7 +91,6 @@
     "level": 5,
     "weight": 20,
     "cost": 550,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take neck",
     "affects": [{
@@ -121,7 +116,6 @@
     "level": 0,
     "weight": 20,
     "cost": 160,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -140,7 +134,6 @@
     "level": 3,
     "weight": 20,
     "cost": 540,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -154,7 +147,6 @@
     "level": 0,
     "weight": 20,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -171,8 +163,7 @@
     },
     "level": 0,
     "weight": 0,
-    "cost": 0,
-    "condition": 100
+    "cost": 0
   }},
   {"object": {
     "area": "smurf",
@@ -185,7 +176,6 @@
     "level": 0,
     "weight": 20,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }}
 ]

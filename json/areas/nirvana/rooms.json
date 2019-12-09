@@ -18,7 +18,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "Downwards, you see the portal leading back to home.\n",
         "portal": "nirvana-down-1"
       }

@@ -8,7 +8,6 @@
     "description": "You see a mutant beastly fido, glaring at you with green eyes!  You wonder if\nthis factory meets ASPCA guidlines....\n",
     "race": "fido",
     "alignment": -700,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -24,11 +23,9 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area wimpy",
     "affected_by": "detect_invis",
-    "offense": "disarm trip",
-    "spec_fun": null
+    "offense": "disarm trip"
   }},
   {"mobile": {
     "area": "mobfact",
@@ -39,7 +36,6 @@
     "description": "You see Foreman Floyd of the Mob factory -- a sterling example of what comes\nof dedicated Mudding!  Rewarded for his years of dedication as a monster\nslayer, Floyd now creates the beasts for other adventurers to fight.\n",
     "race": "human",
     "alignment": 2,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -56,11 +52,9 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel stay_area",
     "affected_by": "detect_invis detect_hidden sanctuary",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mobfact",
@@ -71,7 +65,6 @@
     "description": "You see a cityguard head floating around without a care in the world.\nObviously, this one got past quality control!  Careful, those teeth look\nsharp...\n",
     "race": "unique",
     "alignment": 0,
-    "group": 0,
     "level": 9,
     "hitroll": 0,
     "hit_dice": "2d6+110",
@@ -87,13 +80,11 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
     "affected_by": "flying",
     "offense": "disarm dodge trip assist_vnum",
     "form": "edible sentient mammal",
-    "parts": "head brains ear eye",
-    "spec_fun": null
+    "parts": "head brains ear eye"
   }},
   {"mobile": {
     "area": "mobfact",
@@ -104,7 +95,6 @@
     "description": "You see and smell a drunk who looks much like other drunks...but he is spinning\nin place!  Someone should tell him that he is a REVOLTING drunk.\n",
     "race": "human",
     "alignment": 1,
-    "group": 0,
     "level": 2,
     "hitroll": 0,
     "hit_dice": "2d7+21",
@@ -120,10 +110,8 @@
     "sex": "male",
     "wealth": 2,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mobfact",
@@ -134,7 +122,6 @@
     "description": "Yick.  Looks like someone had digestion problems!  Either that, or the \nhydraulic fluid is leaking again.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 4,
     "hitroll": 0,
     "hit_dice": "2d7+46",
@@ -152,10 +139,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mobfact",
@@ -166,7 +151,6 @@
     "description": "The worker wears a bright orange pair of overalls, with the words \"Mob\nFactory\" written in a bright purple starburst.  Fashion plate, he's not.\n",
     "race": "human",
     "alignment": 100,
-    "group": 0,
     "level": 3,
     "hitroll": 0,
     "hit_dice": "2d6+35",
@@ -182,10 +166,8 @@
     "sex": "male",
     "wealth": 2,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mobfact",
@@ -196,7 +178,6 @@
     "description": "If Floyd walks in, you can bet there'll be trouble.  Guess she shouldn't have\nworked the late shift!\n",
     "race": "human",
     "alignment": 150,
-    "group": 0,
     "level": 3,
     "hitroll": 0,
     "hit_dice": "2d6+35",
@@ -214,9 +195,7 @@
     "sex": "female",
     "wealth": 3,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }}
 ]

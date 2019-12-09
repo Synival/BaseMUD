@@ -8,7 +8,6 @@
     "description": "This huge behemoth towers to a height of 15 feet.  He sneers at you \nas he approaches and raises two black taloned claws to strike you.\n",
     "race": "troll",
     "alignment": -600,
-    "group": 0,
     "level": 16,
     "hitroll": 0,
     "hit_dice": "3d9+233",
@@ -25,10 +24,8 @@
     "sex": "male",
     "wealth": 500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive stay_area",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "marsh",
@@ -39,7 +36,6 @@
     "description": "This big troll towers several feet over you.  He has a large spear\nwhich he seems to ply with utmost prowess.  He jabs his spear at you\nand cackles with glee.\n",
     "race": "troll",
     "alignment": -400,
-    "group": 0,
     "level": 14,
     "hitroll": 0,
     "hit_dice": "2d10+190",
@@ -55,10 +51,8 @@
     "sex": "male",
     "wealth": 400,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "marsh",
@@ -69,7 +63,6 @@
     "description": "This mean bastard looks like he could tear you limb from limb.\n",
     "race": "human",
     "alignment": -500,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -85,10 +78,8 @@
     "sex": "male",
     "wealth": 500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "marsh",
@@ -99,7 +90,6 @@
     "description": "The Swamp Thing has huge fists, which look like they could pound you flat.\n",
     "race": "human",
     "alignment": -700,
-    "group": 0,
     "level": 24,
     "hitroll": 0,
     "hit_dice": "5d10+500",
@@ -116,10 +106,8 @@
     "sex": "neutral",
     "wealth": 1250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "marsh",
@@ -130,7 +118,6 @@
     "description": "The Gnoll seems annoyed at your presence.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -146,11 +133,9 @@
     "sex": "male",
     "wealth": 1250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area",
     "affected_by": "detect_invis detect_hidden",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "marsh",
@@ -161,7 +146,6 @@
     "description": "This huge beast stands about 20 feet in height and has huge green clawed\nappendages. \n",
     "race": "human",
     "alignment": -450,
-    "group": 0,
     "level": 21,
     "hitroll": 0,
     "hit_dice": "4d10+360",
@@ -177,11 +161,9 @@
     "sex": "male",
     "wealth": 500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area",
     "affected_by": "detect_invis detect_hidden",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "marsh",
@@ -192,7 +174,6 @@
     "description": "This rather small beast looks like you could take it out with a single\nsword blow.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 3,
     "hitroll": 0,
     "hit_dice": "2d6+35",
@@ -208,11 +189,9 @@
     "sex": "male",
     "wealth": 25,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area wimpy",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "marsh",
@@ -223,7 +202,6 @@
     "description": "This strange little creature seems very hard to keep your eyes on.\nYou stare as hard as you can at the glowing ball of floating light and\nare just able to notice a small pair of glowing eyes.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -239,11 +217,9 @@
     "sex": "neutral",
     "wealth": 150,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area wimpy",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "marsh",
@@ -254,7 +230,6 @@
     "description": "This 10 meter anaconda looks rather hungry.\n",
     "race": "snake",
     "alignment": -100,
-    "group": 0,
     "level": 16,
     "hitroll": 0,
     "hit_dice": "3d9+233",
@@ -270,7 +245,6 @@
     "sex": "male",
     "wealth": 500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area wimpy",
     "affected_by": "sneak hide",
     "offense": "disarm dodge trip assist_race",
@@ -285,7 +259,6 @@
     "description": "It's the largest Amazon python you have ever seen.\n",
     "race": "snake",
     "alignment": -100,
-    "group": 0,
     "level": 11,
     "hitroll": 0,
     "hit_dice": "2d8+134",
@@ -301,7 +274,6 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area wimpy",
     "affected_by": "sneak hide",
     "offense": "disarm dodge trip assist_race",
@@ -316,7 +288,6 @@
     "description": "Yech!  She manages to make even Smurfette look attractive.  That's ok,\nbecause she thinks you stink too, and she's about to do something about it.\n",
     "race": "human",
     "alignment": -200,
-    "group": 0,
     "level": 9,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -332,7 +303,6 @@
     "sex": "female",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area thief",
     "affected_by": "detect_invis detect_hidden",
     "offense": "backstab disarm dodge dirt_kick trip assist_vnum",
@@ -347,7 +317,6 @@
     "description": "This dark apparition stands a meager 13 feet in height.  Even in the dim\nswamp light, the blade of his scythe gleams.\n",
     "race": "human",
     "alignment": -200,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -363,7 +332,6 @@
     "sex": "male",
     "wealth": 700,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area",
     "affected_by": "detect_invis detect_hidden",
     "offense": "disarm dodge trip assist_vnum",
@@ -378,7 +346,6 @@
     "description": "This wolf looks plump.  She probably ate a friend or two of yours who came\ninto the marsh.\n",
     "race": "wolf",
     "alignment": -200,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -394,10 +361,8 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area",
-    "offense": "disarm trip assist_race",
-    "spec_fun": null
+    "offense": "disarm trip assist_race"
   }},
   {"mobile": {
     "area": "marsh",
@@ -408,7 +373,6 @@
     "description": "This grotesque pile of plant matter fills you with utmost horror.\n",
     "race": "human",
     "alignment": -100,
-    "group": 0,
     "level": 13,
     "hitroll": 0,
     "hit_dice": "2d10+170",
@@ -424,11 +388,9 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area",
     "affected_by": "hide",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "marsh",
@@ -439,7 +401,6 @@
     "description": "This old orc has an array of bones stuck in his hair and strange symbols\npainted on his face and hands.\n",
     "race": "human",
     "alignment": -100,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -455,7 +416,6 @@
     "sex": "male",
     "wealth": 17,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger unused_act_1 aggressive stay_area cleric",
     "affected_by": "detect_invis detect_hidden",
     "offense": "disarm kick parry assist_vnum",
@@ -470,7 +430,6 @@
     "description": "This huge monster of a man has green gnarly teeth and a BIG stick.\n",
     "race": "giant",
     "alignment": -100,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "3d9+208",
@@ -486,11 +445,9 @@
     "sex": "male",
     "wealth": 600,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger unused_act_1 aggressive stay_area",
     "affected_by": "detect_invis detect_hidden",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "marsh",
@@ -501,7 +458,6 @@
     "description": "This creepy fellow looks like he could use you as a meal.\n",
     "race": "human",
     "alignment": -100,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -517,10 +473,8 @@
     "sex": "neutral",
     "wealth": 100,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger unused_act_1 aggressive stay_area",
     "affected_by": "detect_invis detect_hidden",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }}
 ]

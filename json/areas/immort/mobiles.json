@@ -7,7 +7,6 @@
   "description": "Standing over 7 feet tall and muscled as only a god can be, Heimdall keeps\nhis unsleeping gaze over the Rainbow bridge.  His trusty Gjallor-horn never\nleaves his side, and shall remain unwinded until the dread ship Naglfar sails\ntowards Valhalla on the dawn of Ragnarok.\n",
   "race": "human",
   "alignment": 1000,
-  "group": 0,
   "level": 57,
   "hitroll": 30,
   "hit_dice": "1d1+19999",
@@ -23,11 +22,9 @@
   "sex": "male",
   "wealth": 0,
   "size": "large",
-  "shop": null,
   "mob_flags": "sentinel warrior nopurge",
   "affected_by": "detect_evil detect_invis detect_hidden infrared dark_vision",
   "offense": "area_attack bash berserk disarm dodge fast kick parry rescue trip crush assist_guard",
   "immune": "summon charm mental",
-  "resist": "magic weapon",
-  "spec_fun": null
+  "resist": "magic weapon"
 }}]

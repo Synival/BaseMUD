@@ -15,7 +15,6 @@
     "level": 0,
     "weight": 160,
     "cost": 75,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -34,7 +33,6 @@
     "level": 0,
     "weight": 10,
     "cost": 5,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -53,7 +51,6 @@
     "level": 0,
     "weight": 20,
     "cost": 6,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -72,7 +69,6 @@
     "level": 0,
     "weight": 10,
     "cost": 25,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -91,7 +87,6 @@
     "level": 0,
     "weight": 10,
     "cost": 11,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -112,7 +107,6 @@
     "level": 42,
     "weight": 450,
     "cost": 5600,
-    "condition": 100,
     "extra_flags": "hum bless",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -135,7 +129,6 @@
     "level": 0,
     "weight": 20,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -153,7 +146,6 @@
     "level": 0,
     "weight": 20,
     "cost": 22,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -171,7 +163,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "nopurge",
     "extra_description": [{
       "keyword": "pit",
@@ -193,7 +184,6 @@
     "level": 0,
     "weight": 10,
     "cost": 9,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -211,7 +201,6 @@
     "level": 0,
     "weight": 10,
     "cost": 16,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -229,7 +218,6 @@
     "level": 0,
     "weight": 10,
     "cost": 11,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -247,7 +235,6 @@
     "level": 0,
     "weight": 10,
     "cost": 5,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -507,7 +494,6 @@
     "level": 0,
     "weight": 40,
     "cost": 75,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [
       {
@@ -573,7 +559,6 @@
     "level": 9,
     "weight": 10,
     "cost": 1190,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -596,7 +581,6 @@
     "level": 7,
     "weight": 10,
     "cost": 890,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -619,7 +603,6 @@
     "level": 0,
     "weight": 10,
     "cost": 220,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -642,7 +625,6 @@
     "level": 17,
     "weight": 20,
     "cost": 2900,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -662,7 +644,6 @@
     "level": 8,
     "weight": 10,
     "cost": 640,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "extra_description": [{
@@ -703,7 +684,6 @@
     "level": 2,
     "weight": 10,
     "cost": 320,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -1116,7 +1096,6 @@
     "level": 5,
     "weight": 140,
     "cost": 850,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -1136,7 +1115,6 @@
     "level": 5,
     "weight": 40,
     "cost": 420,
-    "condition": 100,
     "wear_flags": "take head"
   }},
   {"object": {
@@ -1156,7 +1134,6 @@
     "level": 5,
     "weight": 80,
     "cost": 420,
-    "condition": 100,
     "wear_flags": "take legs"
   }},
   {"object": {
@@ -1176,7 +1153,6 @@
     "level": 5,
     "weight": 40,
     "cost": 420,
-    "condition": 100,
     "wear_flags": "take feet"
   }},
   {"object": {
@@ -1196,7 +1172,6 @@
     "level": 5,
     "weight": 20,
     "cost": 420,
-    "condition": 100,
     "wear_flags": "take hands"
   }},
   {"object": {
@@ -1216,7 +1191,6 @@
     "level": 5,
     "weight": 60,
     "cost": 420,
-    "condition": 100,
     "wear_flags": "take arms"
   }},
   {"object": {
@@ -1234,7 +1208,6 @@
     "level": 11,
     "weight": 10,
     "cost": 800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1253,7 +1226,6 @@
     "level": 11,
     "weight": 10,
     "cost": 800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1274,7 +1246,6 @@
     "level": 16,
     "weight": 10,
     "cost": 1800,
-    "condition": 100,
     "extra_flags": "glow hum magic bless",
     "wear_flags": "take hold"
   }},
@@ -1293,7 +1264,6 @@
     "level": 0,
     "weight": 10,
     "cost": 150,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1312,7 +1282,6 @@
     "level": 1,
     "weight": 10,
     "cost": 220,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1331,7 +1300,6 @@
     "level": 5,
     "weight": 10,
     "cost": 390,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1352,7 +1320,6 @@
     "level": 8,
     "weight": 10,
     "cost": 550,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1371,7 +1338,6 @@
     "level": 0,
     "weight": 10,
     "cost": 230,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1392,7 +1358,6 @@
     "level": 10,
     "weight": 10,
     "cost": 720,
-    "condition": 100,
     "extra_flags": "glow magic bless",
     "wear_flags": "take hold"
   }},
@@ -1411,7 +1376,6 @@
     "level": 0,
     "weight": 10,
     "cost": 200,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1430,7 +1394,6 @@
     "level": 9,
     "weight": 10,
     "cost": 830,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take hold"
   }},
@@ -1449,7 +1412,6 @@
     "level": 3,
     "weight": 10,
     "cost": 250,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1470,7 +1432,6 @@
     "level": 4,
     "weight": 10,
     "cost": 290,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1492,7 +1453,6 @@
     "level": 5,
     "weight": 30,
     "cost": 750,
-    "condition": 100,
     "wear_flags": "take shield"
   }},
   {"object": {
@@ -1511,7 +1471,6 @@
     "level": 0,
     "weight": 10,
     "cost": 8,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "cup",
@@ -1534,7 +1493,6 @@
     "level": 0,
     "weight": 10,
     "cost": 6,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "cup",
@@ -1557,7 +1515,6 @@
     "level": 0,
     "weight": 10,
     "cost": 1,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "cup",
@@ -1621,7 +1578,6 @@
     "level": 10,
     "weight": 180,
     "cost": 1320,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -1641,7 +1597,6 @@
     "level": 10,
     "weight": 50,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take head"
   }},
   {"object": {
@@ -1661,7 +1616,6 @@
     "level": 10,
     "weight": 100,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take legs"
   }},
   {"object": {
@@ -1681,7 +1635,6 @@
     "level": 10,
     "weight": 60,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take feet"
   }},
   {"object": {
@@ -1701,7 +1654,6 @@
     "level": 10,
     "weight": 40,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take hands"
   }},
   {"object": {
@@ -1721,7 +1673,6 @@
     "level": 10,
     "weight": 80,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take arms"
   }},
   {"object": {
@@ -1742,7 +1693,6 @@
     "level": 10,
     "weight": 100,
     "cost": 1190,
-    "condition": 100,
     "wear_flags": "take shield"
   }},
   {"object": {
@@ -1763,7 +1713,6 @@
     "level": 3,
     "weight": 20,
     "cost": 510,
-    "condition": 100,
     "wear_flags": "take shield"
   }},
   {"object": {
@@ -1860,7 +1809,6 @@
     "level": 26,
     "weight": 50,
     "cost": 2000,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword long",
@@ -1948,7 +1896,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "silver",
@@ -2026,7 +1973,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -2082,7 +2028,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "letter resignation",
       "description": "The letter is written in a bold and feminine Carolinian hand.\n\n    To whom it may concern,\n\n        Merc Industries has installed a new no-rent save and quit\n        system.  Apparently one can now save and quit at any time\n        from anywhere inside a town or out.  My services here are\n        no longer required.\n\n    Diana the Receptionist\n"
@@ -2103,7 +2048,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "notice liquidation bank",
       "description": "The letter is written in a reserved and dignified Spencer hand.\n\n    To whom it may concern,\n\n        Merc Industries has charmed your money.  Apparently one's\n        gold will remain close, even beyond death. We are closing\n        down our offices and ATM machines.  Our services here are\n        no longer required.\n\n    Midgaard City Bank\n"
@@ -2125,7 +2069,6 @@
     "level": 0,
     "weight": 10,
     "cost": 12,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "coffee",
@@ -2147,7 +2090,6 @@
     "level": 0,
     "weight": 20,
     "cost": 10,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "soup",
@@ -2169,7 +2111,6 @@
     "level": 0,
     "weight": 30,
     "cost": 14,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "stew bowl",
@@ -2191,7 +2132,6 @@
     "level": 0,
     "weight": 10,
     "cost": 5,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "biscuit",
@@ -2214,7 +2154,6 @@
     "level": 0,
     "weight": 20,
     "cost": 20,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "beer bottle",
@@ -2271,7 +2210,6 @@
     "level": 0,
     "weight": 10,
     "cost": 500,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map midgaard",
@@ -2290,7 +2228,6 @@
     "level": 0,
     "weight": 10,
     "cost": 1500,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map thera",
@@ -2309,7 +2246,6 @@
     "level": 0,
     "weight": 10,
     "cost": 1000,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map southern midgaard",
@@ -2328,7 +2264,6 @@
     "level": 0,
     "weight": 10,
     "cost": 750,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map dwarven kingdom dwarf",
@@ -2347,7 +2282,6 @@
     "level": 0,
     "weight": 10,
     "cost": 1500,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map moria first",
@@ -2366,7 +2300,6 @@
     "level": 0,
     "weight": 10,
     "cost": 2500,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map new thalos",
@@ -2385,7 +2318,6 @@
     "level": 0,
     "weight": 10,
     "cost": 2000,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map olympus",
@@ -2403,8 +2335,7 @@
     "values": {},
     "level": 0,
     "weight": 0,
-    "cost": 0,
-    "condition": 100
+    "cost": 0
   }},
   {"object": {
     "area": "midgaard",
@@ -2421,7 +2352,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "nopurge"
   }},
   {"object": {
@@ -2458,7 +2388,6 @@
     "level": 7,
     "weight": 10,
     "cost": 890,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -2481,7 +2410,6 @@
     "level": 0,
     "weight": 10,
     "cost": 220,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -2504,7 +2432,6 @@
     "level": 17,
     "weight": 20,
     "cost": 2900,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -2527,7 +2454,6 @@
     "level": 11,
     "weight": 10,
     "cost": 800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2546,7 +2472,6 @@
     "level": 11,
     "weight": 10,
     "cost": 800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2567,7 +2492,6 @@
     "level": 16,
     "weight": 10,
     "cost": 1800,
-    "condition": 100,
     "extra_flags": "glow hum magic bless",
     "wear_flags": "take hold"
   }},
@@ -2586,7 +2510,6 @@
     "level": 0,
     "weight": 10,
     "cost": 150,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2605,7 +2528,6 @@
     "level": 1,
     "weight": 10,
     "cost": 220,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2624,7 +2546,6 @@
     "level": 5,
     "weight": 10,
     "cost": 390,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2645,7 +2566,6 @@
     "level": 8,
     "weight": 10,
     "cost": 550,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2664,7 +2584,6 @@
     "level": 0,
     "weight": 10,
     "cost": 230,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2685,7 +2604,6 @@
     "level": 10,
     "weight": 10,
     "cost": 720,
-    "condition": 100,
     "extra_flags": "glow magic bless",
     "wear_flags": "take hold"
   }},
@@ -2704,7 +2622,6 @@
     "level": 0,
     "weight": 10,
     "cost": 200,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2723,7 +2640,6 @@
     "level": 9,
     "weight": 10,
     "cost": 830,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take hold"
   }},
@@ -2742,7 +2658,6 @@
     "level": 3,
     "weight": 10,
     "cost": 250,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2763,7 +2678,6 @@
     "level": 4,
     "weight": 10,
     "cost": 290,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2824,7 +2738,6 @@
     "level": 16,
     "weight": 50,
     "cost": 1280,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -2865,7 +2778,6 @@
     "level": 8,
     "weight": 20,
     "cost": 590,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -2906,7 +2818,6 @@
     "level": 7,
     "weight": 100,
     "cost": 620,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -2948,7 +2859,6 @@
     "level": 5,
     "weight": 50,
     "cost": 900,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "vest",
@@ -2973,7 +2883,6 @@
     "level": 5,
     "weight": 30,
     "cost": 810,
-    "condition": 100,
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "shield",
@@ -2998,7 +2907,6 @@
     "level": 5,
     "weight": 40,
     "cost": 510,
-    "condition": 100,
     "wear_flags": "take neck",
     "extra_description": [{
       "keyword": "cloak",
@@ -3023,7 +2931,6 @@
     "level": 5,
     "weight": 30,
     "cost": 450,
-    "condition": 100,
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "helmet",
@@ -3048,7 +2955,6 @@
     "level": 5,
     "weight": 30,
     "cost": 450,
-    "condition": 100,
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "leggings",
@@ -3073,7 +2979,6 @@
     "level": 5,
     "weight": 30,
     "cost": 450,
-    "condition": 100,
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "boots",
@@ -3098,7 +3003,6 @@
     "level": 5,
     "weight": 30,
     "cost": 450,
-    "condition": 100,
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "gloves",
@@ -3123,7 +3027,6 @@
     "level": 5,
     "weight": 20,
     "cost": 450,
-    "condition": 100,
     "wear_flags": "take arms",
     "extra_description": [{
       "keyword": "sleeves",
@@ -3148,7 +3051,6 @@
     "level": 3,
     "weight": 20,
     "cost": 380,
-    "condition": 100,
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "cape",
@@ -3173,7 +3075,6 @@
     "level": 5,
     "weight": 20,
     "cost": 450,
-    "condition": 100,
     "wear_flags": "take waist",
     "extra_description": [{
       "keyword": "belt standard merc",
@@ -3197,7 +3098,6 @@
     "level": 3,
     "weight": 10,
     "cost": 390,
-    "condition": 100,
     "wear_flags": "take wrist",
     "extra_description": [{
       "keyword": "bracer",
@@ -3216,7 +3116,6 @@
     "level": 16,
     "weight": 10,
     "cost": 1280,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [
@@ -3248,7 +3147,6 @@
     "level": 8,
     "weight": 10,
     "cost": 640,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take",
     "extra_description": [{
@@ -3284,7 +3182,6 @@
     "level": 20,
     "weight": 10,
     "cost": 860,
-    "condition": 100,
     "extra_flags": "bless",
     "wear_flags": "take finger",
     "extra_description": [{
@@ -3311,7 +3208,6 @@
     "level": 20,
     "weight": 10,
     "cost": 860,
-    "condition": 100,
     "extra_flags": "bless",
     "wear_flags": "take finger",
     "extra_description": [{
@@ -3338,7 +3234,6 @@
     "level": 0,
     "weight": 1,
     "cost": 1000,
-    "condition": 100,
     "extra_flags": "sellextract",
     "wear_flags": "take hold"
   }},
@@ -3354,7 +3249,6 @@
     "level": 0,
     "weight": 1,
     "cost": 500,
-    "condition": 100,
     "extra_flags": "sellextract",
     "wear_flags": "take hold"
   }},
@@ -3370,7 +3264,6 @@
     "level": 0,
     "weight": 1,
     "cost": 5000,
-    "condition": 100,
     "extra_flags": "sellextract",
     "wear_flags": "take hold"
   }},
@@ -3386,7 +3279,6 @@
     "level": 0,
     "weight": 1,
     "cost": 6000,
-    "condition": 100,
     "extra_flags": "sellextract",
     "wear_flags": "take hold"
   }},
@@ -3402,7 +3294,6 @@
     "level": 0,
     "weight": 1,
     "cost": 10000,
-    "condition": 100,
     "extra_flags": "sellextract",
     "wear_flags": "take hold"
   }},
@@ -3418,7 +3309,6 @@
     "level": 0,
     "weight": 1,
     "cost": 2000,
-    "condition": 100,
     "extra_flags": "sellextract",
     "wear_flags": "take hold"
   }}

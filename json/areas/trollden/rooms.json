@@ -9,7 +9,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "You reach civilization again.\n",
         "portal": "trollden-north-1"
       },

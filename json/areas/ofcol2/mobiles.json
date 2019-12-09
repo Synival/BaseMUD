@@ -8,7 +8,6 @@
     "description": "This guard is surely a trained and skilled fighter.  He is fully armed and\narmored, and he uses his equipment with a practiced precision.  Luckily for \nyou, this guard will only use his deadly skills for the good of the citizens of\nOfcol.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 19,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -24,7 +23,6 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger warrior",
     "affected_by": "protect_evil",
     "offense": "bash berserk disarm kick parry rescue assist_vnum",
@@ -39,7 +37,6 @@
     "description": "Diana is a beautiful, powerfully built woman.  She wears platinum armor for\nthree reasons.  The first is to show she is strong enough to withstand the\nweight.  The second is to show her rank of office.  The third is that platinum\nis the hardest metal she can find.  She is willing to defend Ofcol to her \ndeath.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 33,
     "hitroll": 0,
     "hit_dice": "10d10+1100",
@@ -55,7 +52,6 @@
     "sex": "female",
     "wealth": 250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel cleric",
     "affected_by": "detect_invis sanctuary protect_evil",
     "offense": "disarm kick parry assist_vnum",
@@ -70,7 +66,6 @@
     "description": "Derrick is a very big man.  He has acquired this station, not by brains or\ncharm, but by brute strength.  He had fought in three orc wars and is a\ndescendent of a surviving cityguard of old Thalos.  He believes that everything\nhas to be hard won to be kept, and that laxity is for the weak.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 27,
     "hitroll": 0,
     "hit_dice": "5d10+650",
@@ -86,7 +81,6 @@
     "sex": "male",
     "wealth": 250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area cleric",
     "affected_by": "detect_invis sanctuary protect_evil",
     "offense": "disarm kick parry assist_vnum",
@@ -101,7 +95,6 @@
     "description": "Jacklyn is pale and wiry, but then, so are most other witches.  The fact that\nJacklyn is a mage and a warrior makes her the perfect captain of the citadel\nguards.  Jacklyn is very beautiful, but whether it is due to her pale softness\nor her magic, no one has ever found out.  She isn't very strong physically, but\nshe need not be.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 27,
     "hitroll": 0,
     "hit_dice": "5d10+600",
@@ -117,7 +110,6 @@
     "sex": "female",
     "wealth": 250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel mage",
     "affected_by": "detect_invis protect_evil",
     "offense": "dodge assist_vnum",
@@ -132,7 +124,6 @@
     "description": "Jim is big and brawny, just like what you'd expect of a blacksmith.  He is\nsmiling a very big smile, as he looks at your coins.  You wonder if he likes\nthe metals or the value of the coins.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -159,8 +150,7 @@
     },
     "mob_flags": "sentinel",
     "affected_by": "protect_evil",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -171,7 +161,6 @@
     "description": "Sam is a middle-aged workman.  He looks tired, but never too tired to get that\nlast sale from you.  He grins at you slightly.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -196,8 +185,7 @@
     },
     "mob_flags": "sentinel",
     "affected_by": "protect_evil",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -208,7 +196,6 @@
     "description": "Madam Tracy is a bit old, but not to the point of senility.  Besides, she knows\nthe hard ways of this world and is ready for it.  She spends her time at the\nshop, trading little things (for a wee bit of profit).\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -235,8 +222,7 @@
     },
     "mob_flags": "sentinel",
     "affected_by": "protect_evil",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -247,7 +233,6 @@
     "description": "Marty is a big man.  He used to hunt the animals he sells, but now he lets his\nson, Jim, raise and slaughter the animals for him.  Marty still knows how to\nkill, though.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -272,8 +257,7 @@
     },
     "mob_flags": "sentinel",
     "affected_by": "protect_evil",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -284,7 +268,6 @@
     "description": "Elizabeth is a very happy woman.  She can't believe the nice weather here in\nOfcol, and the great vegetables this land produces is unbelievable to her too.\nFarmer Elizabeth smiles at you nicely, but you bet she is doing that just to\nget a good price off of you!\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -311,8 +294,7 @@
     },
     "mob_flags": "sentinel",
     "affected_by": "protect_evil",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -323,7 +305,6 @@
     "description": "Granny Jenkins is a feeble woman, but she knows her brew.  She might be very\nold, but she is still in charge of the still.  She cackles lightly at herself\nevery time she tastes her whiskey, which is quite often!\nGranny Jenkins cackles again.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -339,11 +320,9 @@
     "sex": "female",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "protect_evil",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -354,7 +333,6 @@
     "description": "Jack is the son of Marty, and you can see the family resemblance (especially in\ntheir shared affinity for slaughtering animals.)  Jack leers at you as you\nenter.  \"Came by to watch, eh?\", he asks.\n",
     "race": "human",
     "alignment": 200,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -370,10 +348,8 @@
     "sex": "male",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -384,7 +360,6 @@
     "description": "Farmer Sara is all covered with bits of straw and grime, but underneath all\nthat, she doesn't look that bad.  She smiles at you demurely, and goes back to\nher work.\n",
     "race": "human",
     "alignment": 800,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -400,10 +375,8 @@
     "sex": "female",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -414,7 +387,6 @@
     "description": "The hen has yellow feathers and small wings.  It looks like a chicken, if\nyou've ever seen one.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 1,
     "hitroll": 0,
     "hit_dice": "2d6+10",
@@ -430,10 +402,8 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "wimpy pet",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -444,7 +414,6 @@
     "description": "The cow is here happily grazing.  It moos at you and goes back to grazing.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -460,10 +429,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "pet",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -474,7 +441,6 @@
     "description": "The cow is just standing here.  She moos at you and otherwise ignores you.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -490,10 +456,8 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel pet",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -504,7 +468,6 @@
     "description": "The horse whinnies at you, then runs around you a few times, then just goes\nback to grazing.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -520,10 +483,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive wimpy pet",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -534,7 +495,6 @@
     "description": "The pig looks dirty.  It snorts and sniffs at you, then goes back to its slop.\n",
     "race": "pig",
     "alignment": 0,
-    "group": 0,
     "level": 4,
     "hitroll": 0,
     "hit_dice": "2d7+46",
@@ -550,10 +510,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel pet",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -564,7 +522,6 @@
     "description": "The citizen smiles at you.  He is having a great day, and he wishes the same\nfor you.  He looks at you strangely, though, wondering why you are so armed and\narmored.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -580,10 +537,8 @@
     "sex": "male",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -594,7 +549,6 @@
     "description": "The citizen smiles at you.  She is having a great day, and she wishes the same\nfor you.  She looks at you strangely, though, wondering why you are so armed\nand armored.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -610,10 +564,8 @@
     "sex": "female",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -624,7 +576,6 @@
     "description": "The little boy looks up at you and says, 'Hi.  Can I have a piece of candy?'\nHe then smiles and runs away, remembering his game.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 3,
     "hitroll": 0,
     "hit_dice": "2d6+35",
@@ -640,10 +591,8 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -654,7 +603,6 @@
     "description": "The little girl looks up at you and says, 'Hi.  Can I have a pretty little\ncoin?'  She then smiles and runs away, remembering her game.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 3,
     "hitroll": 0,
     "hit_dice": "2d6+35",
@@ -670,10 +618,8 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -684,7 +630,6 @@
     "description": "The maid startles at your presence.  'You are ruining my floors!  Wait till\nMaster and Mistress come back.  You will get me in trouble!  Shoo!', she says.\nShe hits you with her broom.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -700,7 +645,6 @@
     "sex": "female",
     "wealth": 2,
     "size": "medium",
-    "shop": null,
     "mob_flags": "wimpy",
     "offense": "disarm dodge trip assist_vnum",
     "spec_fun": "spec_janitor"
@@ -714,7 +658,6 @@
     "description": "Nyles is a hefty guy, who looks like he's waiting for the next bar fight to\njoin in.  He keeps an eye on you and his glasses, making sure you don't steal\nany.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -738,8 +681,7 @@
       "close_hour": 23
     },
     "mob_flags": "sentinel",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -750,7 +692,6 @@
     "description": "This guard is surely a trained and skilled fighter.  He is fully armed and\narmored, and he uses his equipment with a practiced precision.  Luckily for \nyou, this guard will only use his deadly skills for the good of the citizens of\nOfcol.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 19,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -766,7 +707,6 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel warrior",
     "affected_by": "protect_evil",
     "offense": "bash berserk disarm kick parry rescue assist_vnum",
@@ -781,7 +721,6 @@
     "description": "After years of traveling around the world, this bard has decided to stay in the\npeaceful city of Ofcol, and to sing of its unmatched glories.  He smiles at\nyou, hinting toward a tip from you in ever a subtle way.\n",
     "race": "human",
     "alignment": 800,
-    "group": 0,
     "level": 13,
     "hitroll": 0,
     "hit_dice": "2d10+170",
@@ -797,11 +736,9 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "protect_evil",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -812,7 +749,6 @@
     "description": "The servant smiles good-naturedly at you, then goes on his duties.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -828,11 +764,9 @@
     "sex": "male",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
     "affected_by": "protect_evil",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -843,7 +777,6 @@
     "description": "This young man smiles at you, but is too busy to chat.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 7,
     "hitroll": 0,
     "hit_dice": "2d6+85",
@@ -859,11 +792,9 @@
     "sex": "male",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
     "affected_by": "protect_evil",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -874,7 +805,6 @@
     "description": "The page smiles for you, asking if he can do you a favor too.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -890,11 +820,9 @@
     "sex": "male",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
     "affected_by": "protect_evil",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "ofcol2",
@@ -905,7 +833,6 @@
     "description": "The Priestess of Ofcol is an old woman, perfectly at peace with herself and \nwith the world.  She devotes all her time to help teach you the ways of her\ngod, Bahamut.  The dragon symbol around her neck looks almost alive.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -921,7 +848,6 @@
     "sex": "female",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "invisible sanctuary protect_evil",
     "offense": "disarm dodge trip assist_vnum",
@@ -936,7 +862,6 @@
     "description": "He smiles at you, with the enthusiasm of a little kid.  \"What're you doing just\nSTANDING here, young man?  Go help that other squire there!\", he yells.  He\nturns to you and with a consipatory tone, whispers, \"Kids!\"\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "4d10+360",
@@ -952,7 +877,6 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area warrior",
     "affected_by": "invisible sanctuary protect_evil",
     "offense": "bash berserk disarm kick parry rescue assist_vnum",
@@ -967,7 +891,6 @@
     "description": "This person looks almost like a dragon itself.  His golden scales gleam with\npower.  He smiles at you with a vicious grin.  You're happy that he doesn't\nlook upset at your presence. \n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 29,
     "hitroll": 0,
     "hit_dice": "6d12+778",
@@ -983,7 +906,6 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "invisible sanctuary protect_evil",
     "offense": "disarm dodge trip assist_vnum",
@@ -998,7 +920,6 @@
     "description": "This dragon's head is taller than you.  He is annoyed at your disturbance, but\nrealizing that you're no danger to him, he ignores you.  He waves to one of\nhis attendants to escort you away.\n",
     "race": "dragon",
     "alignment": 1000,
-    "group": 0,
     "level": 42,
     "hitroll": 0,
     "hit_dice": "25d10+2250",
@@ -1014,7 +935,6 @@
     "sex": "male",
     "wealth": 5000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger",
     "affected_by": "invisible sanctuary protect_evil",
     "offense": "disarm dodge trip assist_race",
@@ -1029,7 +949,6 @@
     "description": "This elder servant to the Gold Dragon is very loyal to him, willing to risk\nhis life for his liege.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 21,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -1045,7 +964,6 @@
     "sex": "male",
     "wealth": 250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel mage",
     "affected_by": "invisible protect_evil",
     "offense": "dodge assist_vnum",
@@ -1060,7 +978,6 @@
     "description": "This person looks like a dragon itself.  His golden scales gleam with power.\nHe smiles at you, showing very sharp teeth.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 21,
     "hitroll": 0,
     "hit_dice": "4d10+360",
@@ -1076,7 +993,6 @@
     "sex": "male",
     "wealth": 250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
     "affected_by": "invisible protect_evil",
     "offense": "disarm dodge trip assist_vnum",
@@ -1091,7 +1007,6 @@
     "description": "This guard is surely a trained and skilled fighter.  He is fully armed and\narmored, and he uses his equipment with a practiced precision.  Luckily for \nyou, this guard will only use his deadly skills for the good of the citizens of\nOfcol.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 19,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -1107,7 +1022,6 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel warrior",
     "affected_by": "protect_evil",
     "offense": "bash berserk disarm kick parry rescue assist_vnum",

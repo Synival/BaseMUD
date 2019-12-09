@@ -10,7 +10,6 @@
     "level": 0,
     "weight": 50,
     "cost": 50,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "candlestick",
@@ -33,7 +32,6 @@
     "level": 7,
     "weight": 80,
     "cost": 540,
-    "condition": 100,
     "extra_flags": "nodrop",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -73,7 +71,6 @@
     "level": 10,
     "weight": 100,
     "cost": 1800,
-    "condition": 100,
     "extra_flags": "antigood antineutral",
     "wear_flags": "take body",
     "extra_description": [{
@@ -92,7 +89,6 @@
     "level": 0,
     "weight": 50,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "rod key",
@@ -110,7 +106,6 @@
     "level": 0,
     "weight": 30,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "large black dirty key",
@@ -134,7 +129,6 @@
     "level": 0,
     "weight": 200,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "antievil",
     "wear_flags": "take",
     "extra_description": [{
@@ -153,7 +147,6 @@
     "level": 3,
     "weight": 20,
     "cost": 26,
-    "condition": 100,
     "extra_flags": "magic antievil",
     "wear_flags": "take finger",
     "extra_description": [{
@@ -193,7 +186,6 @@
     "level": 16,
     "weight": 40,
     "cost": 3500,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -234,7 +226,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "sarcophagus coffin",
       "description": "A well crafted, if dusty and ancient, home for the afterworld, it seems\nto be able to be opened but needs a key.\n"
@@ -251,7 +242,6 @@
     "level": 0,
     "weight": 40,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key iron heavy",
@@ -273,7 +263,6 @@
     "level": 0,
     "weight": 10,
     "cost": 400,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "wineflask flask",
@@ -294,7 +283,6 @@
     "level": 0,
     "weight": 500,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -308,7 +296,6 @@
     "level": 0,
     "weight": 30,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key",
@@ -331,7 +318,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "dark",
     "extra_description": [{
       "keyword": "rathcor",
@@ -354,7 +340,6 @@
     "level": 3,
     "weight": 60,
     "cost": 370,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "rusty sword scimitar",
@@ -375,7 +360,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "slime piece",
@@ -393,7 +377,6 @@
     "level": 0,
     "weight": 70,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "smock",
@@ -416,7 +399,6 @@
     "level": 8,
     "weight": 50,
     "cost": 1070,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -440,7 +422,6 @@
     "level": 15,
     "weight": 100,
     "cost": 4700,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -459,7 +440,6 @@
     "level": 0,
     "weight": 30,
     "cost": 1000,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "bar gold",
@@ -481,7 +461,6 @@
     "level": 0,
     "weight": 100,
     "cost": 100,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take about",
     "extra_description": [{
@@ -522,7 +501,6 @@
     "level": 28,
     "weight": 200,
     "cost": 2200,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -552,7 +530,6 @@
     "level": 15,
     "weight": 500,
     "cost": 2100,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "breast dented plate worn",
@@ -570,7 +547,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key silver",

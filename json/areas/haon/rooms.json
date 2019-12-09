@@ -9,13 +9,11 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "You see a dimly lit path.\n",
         "portal": "haon-north-2"
       },
       {
         "dir": "east",
-        "to": null,
         "description": "You see the West Gate of the City of Midgaard.\n",
         "portal": "haon-east-1"
       },
@@ -1893,7 +1891,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "You see a dark river.\n",
         "portal": "haon-south-1"
       },
@@ -1928,7 +1925,6 @@
     "doors": [
       {
         "dir": "south",
-        "to": null,
         "description": "It stinks in there.\n",
         "portal": "haon-south-2"
       },
@@ -1973,7 +1969,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "You smell marsh gas.\n",
         "portal": "haon-south-3"
       }
@@ -2224,7 +2219,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "The web continues to the north.\n",
         "portal": "haon-north-1"
       },
@@ -2413,7 +2407,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "You see a dark grove north.\n",
         "portal": "haon-north-3"
       },

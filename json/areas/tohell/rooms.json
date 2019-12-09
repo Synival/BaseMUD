@@ -9,7 +9,6 @@
     "doors": [
       {
         "dir": "south",
-        "to": null,
         "description": "The air seems cleaner to the south.\n",
         "portal": "tohell-south-1"
       },

@@ -13,7 +13,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "description": "You can see Emerald Avenue, a much nicer place to be.\n",
         "portal": "hood-west-1"
       }
@@ -2726,7 +2725,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "description": "You see the end of Elm street. Looks much safer.\n",
         "portal": "hood-west-2"
       }

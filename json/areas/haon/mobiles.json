@@ -8,7 +8,6 @@
     "description": "He is six feet tall and looks quite strong, muscles bulging under his heavy,\nchequered shirt.  His features are worn with hard work and his expression is\none of a peaceful man leading a simple life.\n",
     "race": "human",
     "alignment": 350,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -24,10 +23,8 @@
     "sex": "male",
     "wealth": 2,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "haon",
@@ -38,7 +35,6 @@
     "description": "The bear is a big, brown, furry animal with very large claws and very sharp\nteeth.  It doesn't resemble those cute little thingies from toy shops at all.\n",
     "race": "bear",
     "alignment": -50,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -55,10 +51,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area",
-    "offense": "dodge trip assist_race",
-    "spec_fun": null
+    "offense": "dodge trip assist_race"
   }},
   {"mobile": {
     "area": "haon",
@@ -69,7 +63,6 @@
     "description": "This small, furry creature with long ears and big feet has been attacked by\nthe dreaded rabbit rabies, a horrible disease that turns helpless and innocent\nrabbits into ferocious and bloodthirsty monsters.\n",
     "race": "rabbit",
     "alignment": -150,
-    "group": 0,
     "level": 3,
     "hitroll": 0,
     "hit_dice": "2d6+35",
@@ -86,10 +79,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area",
-    "offense": "disarm trip assist_race",
-    "spec_fun": null
+    "offense": "disarm trip assist_race"
   }},
   {"mobile": {
     "area": "haon",
@@ -100,7 +91,6 @@
     "description": "She is a graceful creature on long, slender legs, and with large, brown eyes\nlooking back at you with an air of watchful interest.\n",
     "race": "human",
     "alignment": 350,
-    "group": 0,
     "level": 2,
     "hitroll": 0,
     "hit_dice": "2d7+21",
@@ -116,11 +106,9 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel unused_act_2 stay_area pet",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "haon",
@@ -131,7 +119,6 @@
     "description": "It is a large fox with beautiful, red-brown fur and a long, thick brush.\n",
     "race": "fox",
     "alignment": -50,
-    "group": 0,
     "level": 2,
     "hitroll": 0,
     "hit_dice": "2d7+21",
@@ -147,10 +134,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
-    "offense": "disarm trip assist_race",
-    "spec_fun": null
+    "offense": "disarm trip assist_race"
   }},
   {"mobile": {
     "area": "haon",
@@ -161,7 +146,6 @@
     "description": "It is an exceptionally large wolf with thick, black fur.  Saliva is dripping\nquickly from its long, white fangs.  It looks quite dangerous and very angry.\n",
     "race": "human",
     "alignment": -350,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -177,10 +161,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "haon",
@@ -191,7 +173,6 @@
     "description": "It is an exceptionally large wolf with thick, black fur.  Saliva is dripping\nquickly from its long, white fangs.  It looks quite dangerous and very angry.\n",
     "race": "human",
     "alignment": -350,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -207,10 +188,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "haon",
@@ -221,7 +200,6 @@
     "description": "The large, grey wolf eyes you with interest while licking its lips.\n",
     "race": "wolf",
     "alignment": -150,
-    "group": 0,
     "level": 3,
     "hitroll": 0,
     "hit_dice": "2d6+35",
@@ -237,10 +215,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area",
-    "offense": "disarm trip assist_race",
-    "spec_fun": null
+    "offense": "disarm trip assist_race"
   }},
   {"mobile": {
     "area": "haon",
@@ -251,7 +227,6 @@
     "description": "The large, black wolf eyes you with interest while licking its lips.\n",
     "race": "wolf",
     "alignment": -150,
-    "group": 0,
     "level": 3,
     "hitroll": 0,
     "hit_dice": "2d6+35",
@@ -267,10 +242,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area",
-    "offense": "disarm trip assist_race",
-    "spec_fun": null
+    "offense": "disarm trip assist_race"
   }},
   {"mobile": {
     "area": "haon",
@@ -281,7 +254,6 @@
     "description": "This enormous winged serpent has dark green scales covering most of its\ncolossal body.  Numerous holes in its heavy wings tell of many fights as does\nthe nicks in the horns on its head.  It smells as disgusting as only dragons\ndo.\n",
     "race": "dragon",
     "alignment": -1000,
-    "group": 0,
     "level": 25,
     "hitroll": 0,
     "hit_dice": "5d10+550",
@@ -297,7 +269,6 @@
     "sex": "neutral",
     "wealth": 2500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive stay_area",
     "affected_by": "detect_invis",
     "offense": "disarm dodge trip assist_race",
@@ -312,7 +283,6 @@
     "description": "This little fellow is only three foot tall with wild matted brown hair and long\ntangled brown beard.  He wears ragged brown and green clothing and looks as if\nhe is having great fun.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -328,11 +298,9 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger unused_act_2 wimpy",
     "affected_by": "invisible detect_invis sneak",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "haon",
@@ -343,7 +311,6 @@
     "description": "The druid looks quite old.  You would think him venerable, but you know\nhe would be a tough foe.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 17,
     "hitroll": 0,
     "hit_dice": "3d9+258",
@@ -359,7 +326,6 @@
     "sex": "male",
     "wealth": 250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive cleric",
     "affected_by": "detect_invis",
     "offense": "disarm kick parry assist_vnum",

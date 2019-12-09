@@ -1176,7 +1176,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "portal": "wyvern-west-1"
       }
     ]

@@ -675,7 +675,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "Up through the garbage you can just make out what looks like the Dump in\nMidgaard.\n",
         "portal": "sewer-up-1"
       }
@@ -1727,7 +1726,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "Down there nothing at all can be spotted. The darkness that engulfs this\ndescent seems utterly impossible in a mortal world. It's so thick that a \ntorch down there would be utterly useless.  You'd better not go down any\nfurther.\n",
         "portal": "sewer-down-1"
       }
@@ -2152,7 +2150,6 @@
     "doors": [
       {
         "dir": "east",
-        "to": null,
         "keyword": "crack wall rock",
         "portal": "sewer-east-1"
       },
@@ -3638,14 +3635,12 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "Through the portcullis, you can see a faintly lighted hallway leading east.\n",
         "exit_flags": "door",
         "portal": "sewer-north-1"
       },
       {
         "dir": "up",
-        "to": null,
         "portal": "sewer-up-2"
       }
     ],
@@ -4677,7 +4672,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "A sign is blocking the way: 'This has not been implemented\nyet'.\n",
         "portal": "sewer-down-2"
       }

@@ -8,7 +8,6 @@
     "description": "A beast is the size of the largest common dog.  It has a greenish coat with\nbrown spots.  Its shape, along with its colors, make this cooshee almost\nundetectable as it moves.\n",
     "race": "dog",
     "alignment": 0,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -24,11 +23,9 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "valley",
@@ -39,7 +36,6 @@
     "description": "This elf is almost as tall as you are, but much slimmer and agile.  You see\nhatred in his eyes, and you try to avoid his stare.  His tense body looks ready\nto spring upon you, like a mountain lion stalking its prey.  He sees you\nnoticing him, and quietly disappears.\n",
     "race": "elf",
     "alignment": 0,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -55,11 +51,9 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area wimpy",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "valley",
@@ -70,7 +64,6 @@
     "description": "This elf is almost as tall as you are, but much slimmer and more agile.\nShe glares at you, then quickly disappears before you see more of her.\n",
     "race": "elf",
     "alignment": 0,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -86,11 +79,9 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area wimpy",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "valley",
@@ -101,7 +92,6 @@
     "description": "This elf is almost as tall as you are, but much slimmer and more agile.\nHe glares at your intrusion and attacks with menace.\n",
     "race": "elf",
     "alignment": 0,
-    "group": 0,
     "level": 7,
     "hitroll": 0,
     "hit_dice": "2d6+85",
@@ -117,11 +107,9 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "valley",
@@ -132,7 +120,6 @@
     "description": "This elf is almost as tall as you are, but much slimmer and more agile.\nShe glares at your intrusion and attacks with menace.\n",
     "race": "elf",
     "alignment": 0,
-    "group": 0,
     "level": 7,
     "hitroll": 0,
     "hit_dice": "2d6+85",
@@ -148,11 +135,9 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "valley",
@@ -163,7 +148,6 @@
     "description": "The elf notices your intrusion and attacks with determination.\n",
     "race": "elf",
     "alignment": 0,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -179,11 +163,9 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "valley",
@@ -194,7 +176,6 @@
     "description": "She is currently doing some menial chores, and ignores your intrusion except\nwhen you are in her way.\n",
     "race": "elf",
     "alignment": 0,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -210,11 +191,9 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "valley",
@@ -225,7 +204,6 @@
     "description": "This elf looks quite old, probably twenty or more times your age.  He looks\nquite potent, though.\n",
     "race": "elf",
     "alignment": 0,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "3d9+208",
@@ -241,7 +219,6 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive cleric",
     "affected_by": "sanctuary protect_evil",
     "offense": "disarm kick parry assist_race",
@@ -256,7 +233,6 @@
     "description": "This elf looks quite old, probably twenty or more times your age.  She looks\nquite potent, though.\n",
     "race": "elf",
     "alignment": 0,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "2d10+190",
@@ -272,7 +248,6 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive mage",
     "affected_by": "protect_evil",
     "offense": "dodge assist_race",
@@ -287,7 +262,6 @@
     "description": "This big beast looks like a small red dragon, but has many more heads than a\nregular dragon, too.  It doesn't look happy.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -303,7 +277,6 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "offense": "disarm dodge trip assist_vnum",
     "spec_fun": "spec_breath_fire"
@@ -317,7 +290,6 @@
     "description": "He looks old and feeble.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 3,
     "hitroll": 0,
     "hit_dice": "2d6+35",
@@ -333,10 +305,8 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "valley",
@@ -347,7 +317,6 @@
     "description": "Talemon looks harmless, but the fireballs he throws at you don't.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 25,
     "hitroll": 0,
     "hit_dice": "5d10+500",
@@ -363,7 +332,6 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive mage",
     "offense": "dodge assist_vnum",
     "spec_fun": "spec_cast_mage"
@@ -377,7 +345,6 @@
     "description": "This daemon is unhappy with its summoned job, and is willing to take out it's\nanger at you!\n",
     "race": "human",
     "alignment": -500,
-    "group": 0,
     "level": 25,
     "hitroll": 0,
     "hit_dice": "5d10+550",
@@ -393,10 +360,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "valley",
@@ -407,7 +372,6 @@
     "description": "The wolf is covered with brown hair.  It looks at you with fright.\n",
     "race": "wolf",
     "alignment": 0,
-    "group": 0,
     "level": 4,
     "hitroll": 0,
     "hit_dice": "2d7+46",
@@ -423,10 +387,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive wimpy",
-    "offense": "disarm trip assist_race",
-    "spec_fun": null
+    "offense": "disarm trip assist_race"
   }},
   {"mobile": {
     "area": "valley",
@@ -437,7 +399,6 @@
     "description": "With horns and spots over coarse, brown hair, this beast is the spit and\nimage of ... an antelope.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -453,9 +414,7 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }}
 ]

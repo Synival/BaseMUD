@@ -16,7 +16,6 @@
     "level": 11,
     "weight": 100,
     "cost": 1330,
-    "condition": 100,
     "extra_flags": "antigood",
     "wear_flags": "take wield",
     "affects": [
@@ -52,7 +51,6 @@
     "level": 10,
     "weight": 50,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "antigood",
     "wear_flags": "take head",
     "extra_description": [{
@@ -91,7 +89,6 @@
     "level": 20,
     "weight": 200,
     "cost": 2700,
-    "condition": 100,
     "extra_flags": "antigood",
     "wear_flags": "take body"
   }},
@@ -112,7 +109,6 @@
     "level": 19,
     "weight": 160,
     "cost": 1770,
-    "condition": 100,
     "extra_flags": "nodrop antigood",
     "wear_flags": "take wield",
     "affects": [
@@ -146,7 +142,6 @@
     "level": 5,
     "weight": 10,
     "cost": 690,
-    "condition": 100,
     "extra_flags": "glow hum",
     "wear_flags": "take",
     "extra_description": [{
@@ -172,7 +167,6 @@
     "level": 28,
     "weight": 100,
     "cost": 3000,
-    "condition": 100,
     "wear_flags": "take wield"
   }}
 ]

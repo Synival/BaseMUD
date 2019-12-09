@@ -18,7 +18,6 @@
     "portal": "limbo-room-2",
     "doors": [{
       "dir": "up",
-      "to": null,
       "portal": "limbo-up-1"
     }]
   }}

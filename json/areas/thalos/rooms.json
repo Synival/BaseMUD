@@ -1875,7 +1875,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "You see the trail continue north.\n",
         "portal": "thalos-north-1"
       },
@@ -1999,12 +1998,10 @@
       },
       {
         "dir": "east",
-        "to": null,
         "portal": "thalos-east-1"
       },
       {
         "dir": "south",
-        "to": null,
         "description": "You see a large mountain on the far side of a canyon.\n",
         "portal": "thalos-south-1"
       },
@@ -2116,7 +2113,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "keyword": "secret",
         "description": "You see nothing on the floor except skeletons.\n",
         "exit_flags": "door closed",
@@ -2385,7 +2381,6 @@
     "doors": [
       {
         "dir": "south",
-        "to": null,
         "description": "You see the dark path.\n",
         "portal": "thalos-south-2"
       },

@@ -515,7 +515,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "More of the same\n",
         "portal": "air-down-1"
       }
@@ -1101,7 +1100,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "The rainbow leads onward and upward into the sky.\nIt looks safe to travel on.\n",
         "portal": "air-up-1"
       },

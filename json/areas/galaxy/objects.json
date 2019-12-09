@@ -15,7 +15,6 @@
     "level": 10,
     "weight": 90,
     "cost": 390,
-    "condition": 100,
     "extra_flags": "glow hum",
     "wear_flags": "take wield"
   }},
@@ -34,7 +33,6 @@
     "level": 22,
     "weight": 100,
     "cost": 3100,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take arms",
     "extra_description": [{
@@ -73,7 +71,6 @@
     "level": 17,
     "weight": 70,
     "cost": 3800,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take waist",
     "extra_description": [{
@@ -104,7 +101,6 @@
     "level": 14,
     "weight": 200,
     "cost": 4300,
-    "condition": 100,
     "extra_flags": "hum magic nodrop",
     "wear_flags": "take hold"
   }},
@@ -123,7 +119,6 @@
     "level": 20,
     "weight": 90,
     "cost": 2000,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take neck",
     "extra_description": [{
@@ -153,7 +148,6 @@
     "level": 20,
     "weight": 100,
     "cost": 1280,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take feet",
     "extra_description": [{
@@ -192,7 +186,6 @@
     "level": 16,
     "weight": 70,
     "cost": 3600,
-    "condition": 100,
     "extra_flags": "glow magic nodrop antievil",
     "wear_flags": "take head",
     "extra_description": [{
@@ -232,7 +225,6 @@
     "level": 20,
     "weight": 150,
     "cost": 3800,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take body",
     "extra_description": [{
@@ -263,7 +255,6 @@
     "level": 20,
     "weight": 150,
     "cost": 1740,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take about",
     "extra_description": [{
@@ -282,7 +273,6 @@
     "level": 15,
     "weight": 10,
     "cost": 2600,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take wrist",
     "extra_description": [{
@@ -312,7 +302,6 @@
     "level": 25,
     "weight": 150,
     "cost": 3900,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take shield",
     "extra_description": [{
@@ -351,7 +340,6 @@
     "level": 0,
     "weight": 150,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "hum magic nodrop",
     "wear_flags": "take shield",
     "extra_description": [{
@@ -390,7 +378,6 @@
     "level": 19,
     "weight": 70,
     "cost": 2700,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -430,7 +417,6 @@
     "level": 11,
     "weight": 70,
     "cost": 3400,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -453,7 +439,6 @@
     "level": 20,
     "weight": 200,
     "cost": 2800,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -492,7 +477,6 @@
     "level": 22,
     "weight": 60,
     "cost": 3000,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take hands",
     "extra_description": [{
@@ -532,7 +516,6 @@
     "level": 12,
     "weight": 120,
     "cost": 5900,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -555,7 +538,6 @@
     "level": 21,
     "weight": 100,
     "cost": 950,
-    "condition": 100,
     "extra_flags": "glow magic antievil",
     "wear_flags": "take legs",
     "extra_description": [{
@@ -590,7 +572,6 @@
     "level": 26,
     "weight": 30,
     "cost": 4200,
-    "condition": 100,
     "extra_flags": "glow hum invis magic antievil",
     "wear_flags": "take finger",
     "extra_description": [{
@@ -625,7 +606,6 @@
     "level": 22,
     "weight": 40,
     "cost": 2400,
-    "condition": 100,
     "extra_flags": "glow hum invis magic antievil",
     "wear_flags": "take neck body head feet hands arms shield about waist wrist wield",
     "extra_description": [{
@@ -660,7 +640,6 @@
     "level": 30,
     "weight": 30,
     "cost": 1690,
-    "condition": 100,
     "extra_flags": "glow hum invis magic bless",
     "wear_flags": "take finger",
     "extra_description": [{
@@ -699,7 +678,6 @@
     "level": 29,
     "weight": 200,
     "cost": 4200,
-    "condition": 100,
     "extra_flags": "glow hum invis magic bless",
     "wear_flags": "take wield",
     "affects": [
@@ -730,7 +708,6 @@
     "level": 0,
     "weight": 20,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "glow hum",
     "wear_flags": "take"
   }},
@@ -745,7 +722,6 @@
     "level": 0,
     "weight": 20,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "glow hum",
     "wear_flags": "take"
   }},
@@ -760,7 +736,6 @@
     "level": 0,
     "weight": 20,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "glow hum",
     "wear_flags": "take"
   }},
@@ -775,7 +750,6 @@
     "level": 0,
     "weight": 20,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "glow hum",
     "wear_flags": "take"
   }},
@@ -790,7 +764,6 @@
     "level": 0,
     "weight": 500,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "glow invis",
     "wear_flags": "take",
     "extra_description": [{

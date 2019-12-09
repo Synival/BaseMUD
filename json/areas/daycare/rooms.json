@@ -9,7 +9,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "portal": "daycare-north-1"
       },
       {

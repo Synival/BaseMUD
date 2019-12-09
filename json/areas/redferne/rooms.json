@@ -16,7 +16,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "You see some pretty clouds!\n",
         "portal": "redferne-south-1"
       },
@@ -244,7 +243,6 @@
     "room_flags": "no_mob indoors private",
     "doors": [{
       "dir": "west",
-      "to": null,
       "description": "You see only the back of a safe's steel door.\n",
       "portal": "redferne-west-1"
     }],
@@ -405,7 +403,6 @@
     "doors": [
       {
         "dir": "east",
-        "to": null,
         "keyword": "safe steel",
         "portal": "redferne-east-1"
       },
@@ -490,7 +487,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "You see the ground on which this castle is set. Funnily it seems to you that\nit's no more than clouds.\n",
         "portal": "redferne-down-2"
       }
@@ -526,7 +522,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "Down below you see the huge chain anchored to the ground in the Road Crossing.\n",
         "portal": "redferne-down-1"
       }

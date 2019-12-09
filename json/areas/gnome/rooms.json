@@ -9,7 +9,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "A dusty path heads towards the eastern road.\n",
         "portal": "gnome-north-1"
       },

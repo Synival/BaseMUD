@@ -20,7 +20,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "You see the entrance to Mud School.\n",
         "portal": "midgaard-up-4"
       }
@@ -63,7 +62,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "You can't see what is down there, it is too dark.  Looks like it would be\nimpossible to climb back up.\n",
         "portal": "midgaard-down-1"
       }
@@ -1029,7 +1027,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "You can't see what is down there, it is too dark.  Looks like it would be\nimpossible to climb back up.\n",
         "portal": "midgaard-down-2"
       }
@@ -1351,7 +1348,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "You can't see what is down there, it is too dark.  Looks like it would be\nimpossible to climb back up.\n",
         "portal": "midgaard-down-3"
       }
@@ -1698,7 +1694,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "You can't see what is down there, it is too dark.  Looks like it would be\nimpossible to climb back up.\n",
         "portal": "midgaard-down-4"
       }
@@ -1732,7 +1727,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "You see the sewers.\n",
         "portal": "midgaard-down-5"
       }
@@ -2587,7 +2581,6 @@
       },
       {
         "dir": "east",
-        "to": null,
         "description": "You see the purple-and-orange Mob Factory.  Someone has no taste.\n",
         "portal": "midgaard-east-5"
       },
@@ -2722,7 +2715,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "You see machine dreams and taste violet phosphor.\n",
         "portal": "midgaard-up-2"
       }
@@ -2780,7 +2772,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "The trail continues around the City of Midgaard.\n",
         "portal": "midgaard-north-1"
       },
@@ -2794,7 +2785,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "description": "The forest edge is to the west.\n",
         "portal": "midgaard-west-1"
       }
@@ -2828,13 +2818,11 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "The trail continues around the City of Midgaard.\n",
         "portal": "midgaard-north-2"
       },
       {
         "dir": "east",
-        "to": null,
         "description": "You see the plains.",
         "portal": "midgaard-east-4"
       },
@@ -2883,7 +2871,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "Bifrost, the Rainbow Bridge, hangs in the sky above you.\n",
         "portal": "midgaard-up-3"
       }
@@ -3041,7 +3028,6 @@
     "doors": [
       {
         "dir": "up",
-        "to": null,
         "description": "More of the same.\n",
         "portal": "midgaard-up-1"
       },
@@ -3814,7 +3800,6 @@
       },
       {
         "dir": "east",
-        "to": null,
         "description": "You see some dangerous looking slums...just the right place for a gang.\n",
         "portal": "midgaard-east-2"
       },
@@ -3850,7 +3835,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "The chain disappears in the clouds.",
         "portal": "midgaard-up-5"
       }
@@ -3994,7 +3978,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "keyword": "grate",
         "description": "Through the solid iron bars you see the graveyard.\n",
         "exit_flags": "door closed locked",
@@ -4765,7 +4748,6 @@
     "doors": [
       {
         "dir": "east",
-        "to": null,
         "description": "You see a run-down slum neighborood.\n",
         "portal": "midgaard-east-3"
       },
@@ -4797,7 +4779,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "You see the far-off halls of Valhalla.\n",
         "portal": "midgaard-up-6"
       }
@@ -4996,7 +4977,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "portal": "midgaard-up-7"
       }
     ],
@@ -5021,7 +5001,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "portal": "midgaard-up-8"
       }
     ],
@@ -5044,7 +5023,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "description": "You see the river flowing west into the Forest of Haon-Dor.",
         "portal": "midgaard-west-2"
       }
@@ -5145,7 +5123,6 @@
     "doors": [
       {
         "dir": "east",
-        "to": null,
         "description": "The iron bars are broken, allowing passage through the hole in the wall.\nBeyond the bars you see a dark tunnel.\nbars",
         "portal": "midgaard-east-1"
       },
@@ -5406,7 +5383,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "The green forests of the Miden'nir are south, hiding countless goblin warriors.\n",
         "portal": "midgaard-south-2"
       }
@@ -5709,7 +5685,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "You see a dusty trail leading around the city.\n",
         "portal": "midgaard-north-3"
       },

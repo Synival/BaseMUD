@@ -13,7 +13,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "The dusty trail leads to outside the west gate of Midgaard.\n",
         "portal": "moria-south-2"
       }
@@ -85,7 +84,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "A small path extends into the plains.\n",
         "portal": "moria-north-1"
       },
@@ -96,7 +94,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "You see the south gate of Midgaard.\n",
         "portal": "moria-south-4"
       },
@@ -178,7 +175,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "The dusty trail leads to outside the east gate of Midgaard.\n",
         "portal": "moria-south-3"
       }
@@ -198,13 +194,11 @@
       },
       {
         "dir": "east",
-        "to": null,
         "description": "You see the mountains of the dwarven kingdom. \n",
         "portal": "moria-east-1"
       },
       {
         "dir": "south",
-        "to": null,
         "portal": "moria-south-1"
       }
     ]
@@ -1127,7 +1121,6 @@
       },
       {
         "dir": "east",
-        "to": null,
         "description": "It doesn't look safe this way.\n",
         "portal": "moria-east-2"
       },

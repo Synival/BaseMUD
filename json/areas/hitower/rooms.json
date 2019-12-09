@@ -14,7 +14,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "portal": "hitower-south-1"
       }
     ]
@@ -156,7 +155,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "description": "Dark gates loom in the mist.\n",
         "portal": "hitower-west-1"
       }
@@ -225,7 +223,6 @@
       },
       {
         "dir": "east",
-        "to": null,
         "description": "You see a shadowy tavern.\n",
         "portal": "hitower-east-1"
       },
@@ -2861,27 +2858,22 @@
     "doors": [
       {
         "dir": "east",
-        "to": null,
         "portal": "hitower-east-2"
       },
       {
         "dir": "south",
-        "to": null,
         "portal": "hitower-south-2"
       },
       {
         "dir": "west",
-        "to": null,
         "portal": "hitower-west-2"
       },
       {
         "dir": "up",
-        "to": null,
         "portal": "hitower-up-1"
       },
       {
         "dir": "down",
-        "to": null,
         "portal": "hitower-down-1"
       }
     ],
@@ -3646,7 +3638,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "portal": "hitower-north-1"
       },
       {
@@ -3655,12 +3646,10 @@
       },
       {
         "dir": "south",
-        "to": null,
         "portal": "hitower-south-3"
       },
       {
         "dir": "west",
-        "to": null,
         "portal": "hitower-west-3"
       }
     ]
@@ -5411,7 +5400,6 @@
     "room_flags": "indoors",
     "doors": [{
       "dir": "up",
-      "to": null,
       "portal": "hitower-up-2"
     }]
   }},
@@ -5424,7 +5412,6 @@
     "room_flags": "no_mob indoors private",
     "doors": [{
       "dir": "down",
-      "to": null,
       "description": "You can see mortals pitifully begging for help below.\n",
       "portal": "hitower-down-2"
     }],

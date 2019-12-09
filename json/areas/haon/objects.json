@@ -16,7 +16,6 @@
     "level": 8,
     "weight": 100,
     "cost": 820,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "axe lumber",
@@ -38,7 +37,6 @@
     "level": 3,
     "weight": 20,
     "cost": 610,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "shirt",
@@ -60,7 +58,6 @@
     "level": 3,
     "weight": 40,
     "cost": 310,
-    "condition": 100,
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "boots",
@@ -82,7 +79,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "fireplace",
       "description": "It is fashioned from stones of various sizes that have been stacked on top of\neach other and fastened with mortar.  Its chimney is constructed likewise and\nleads the smoke out through the low cabin ceiling.\n"
@@ -105,7 +101,6 @@
     "level": 0,
     "weight": 400,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "chest",
@@ -123,7 +118,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key",
@@ -144,7 +138,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "coins",
@@ -165,7 +158,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "blackberries",
@@ -186,7 +178,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "mushroom",
@@ -208,7 +199,6 @@
     "level": 0,
     "weight": 200,
     "cost": 20,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -226,7 +216,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [
       {
         "keyword": "opening",
@@ -249,7 +238,6 @@
     "level": 0,
     "weight": 200,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -268,7 +256,6 @@
     "level": 6,
     "weight": 300,
     "cost": 290,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
       "apply": "hit roll",
@@ -289,7 +276,6 @@
     "level": 0,
     "weight": 400,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -306,7 +292,6 @@
     "level": 0,
     "weight": 50,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "toadstool",
@@ -328,7 +313,6 @@
     "level": 0,
     "weight": 50,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "toadstool",
@@ -349,7 +333,6 @@
     "level": 4,
     "weight": 20,
     "cost": 350,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take",
     "extra_description": [{
@@ -373,7 +356,6 @@
     "level": 15,
     "weight": 150,
     "cost": 1760,
-    "condition": 100,
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "shield large",
@@ -395,7 +377,6 @@
     "level": 15,
     "weight": 100,
     "cost": 1050,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take head",
     "extra_description": [{
@@ -414,7 +395,6 @@
     "level": 0,
     "weight": 10,
     "cost": 50,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "extra_description": [{
@@ -438,7 +418,6 @@
     "level": 15,
     "weight": 100,
     "cost": 750,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield"
   }}

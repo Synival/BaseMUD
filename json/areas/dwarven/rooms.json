@@ -13,7 +13,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "You hear the patter of little feet.\n",
         "portal": "dwarven-south-1"
       },
@@ -884,7 +883,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "keyword": "floorboards boards",
         "exit_flags": "door closed",
         "portal": "dwarven-down-1"
@@ -994,7 +992,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "keyword": "floorboards boards",
         "exit_flags": "door closed",
         "portal": "dwarven-down-2"
@@ -1779,7 +1776,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "description": "You see the foothills of this mighty mountain range.\n",
         "portal": "dwarven-west-1"
       }

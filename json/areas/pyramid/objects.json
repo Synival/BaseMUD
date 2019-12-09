@@ -15,7 +15,6 @@
     "level": 6,
     "weight": 100,
     "cost": 370,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "egyptian mace",
@@ -37,7 +36,6 @@
     "level": 5,
     "weight": 50,
     "cost": 480,
-    "condition": 100,
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "sand robes",
@@ -60,7 +58,6 @@
     "level": 15,
     "weight": 10,
     "cost": 910,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -90,7 +87,6 @@
     "level": 13,
     "weight": 100,
     "cost": 1470,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take head",
     "extra_description": [{
@@ -129,7 +125,6 @@
     "level": 10,
     "weight": 150,
     "cost": 1450,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "cloth wrappings",
@@ -150,7 +145,6 @@
     "level": 3,
     "weight": 50,
     "cost": 270,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "bottle fluid",
@@ -171,7 +165,6 @@
     "level": 0,
     "weight": 60,
     "cost": 200,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "jar formaldehyde",
@@ -189,7 +182,6 @@
     "level": 20,
     "weight": 100,
     "cost": 720,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -229,7 +221,6 @@
     "level": 20,
     "weight": 180,
     "cost": 1820,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -264,7 +255,6 @@
     "level": 0,
     "weight": 150,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "stone key",
@@ -288,7 +278,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "stone sarcophagus",
       "description": "The sarcophagus is engraved on the sides with the images of pharoahs,\ngreat wars fought long ago, mighty pyramids being constructed...\n\nA raised image atop the sarcophagus is formed in the visage of one of\nthe mighty pharoahs, painted in gold and studded with precious gems.\n\nYou see a small keyhole in the side of the sarcophagus.\n"
@@ -305,7 +294,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "dust",
@@ -323,7 +311,6 @@
     "level": 0,
     "weight": 50,
     "cost": 3000,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "scarab",
@@ -346,7 +333,6 @@
     "level": 20,
     "weight": 100,
     "cost": 4700,
-    "condition": 100,
     "extra_flags": "glow hum magic antievil",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -381,7 +367,6 @@
     "level": 14,
     "weight": 90,
     "cost": 2100,
-    "condition": 100,
     "extra_flags": "bless antievil",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -428,7 +413,6 @@
     "level": 10,
     "weight": 150,
     "cost": 1540,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "book riddles",
@@ -450,7 +434,6 @@
     "level": 26,
     "weight": 200,
     "cost": 4400,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -492,7 +475,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "answer hieroglyphics",
@@ -513,7 +495,6 @@
     "level": 0,
     "weight": 200,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "treasure",
@@ -531,7 +512,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "pile sand",
@@ -549,7 +529,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "evil magic nodrop noremove",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -610,7 +589,6 @@
     "level": 16,
     "weight": 20,
     "cost": 1820,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take",
     "extra_description": [{
@@ -634,7 +612,6 @@
     "level": 33,
     "weight": 100,
     "cost": 5500,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take head",
     "extra_description": [{
@@ -683,7 +660,6 @@
     "level": 0,
     "weight": 50,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "diamond",
@@ -706,7 +682,6 @@
     "level": 24,
     "weight": 100,
     "cost": 29800,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -732,7 +707,6 @@
     "level": 20,
     "weight": 50,
     "cost": 1300,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take finger",
     "extra_description": [{
@@ -767,7 +741,6 @@
     "level": 5,
     "weight": 50,
     "cost": 550,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -798,7 +771,6 @@
     "level": 32,
     "weight": 200,
     "cost": 7800,
-    "condition": 100,
     "extra_flags": "magic antievil",
     "wear_flags": "take legs",
     "extra_description": [{

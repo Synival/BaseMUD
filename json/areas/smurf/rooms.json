@@ -13,7 +13,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "The path heads back toward the eastern road.\n",
         "portal": "smurf-south-1"
       }

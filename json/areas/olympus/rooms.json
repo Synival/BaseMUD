@@ -8,7 +8,6 @@
     "doors": [
       {
         "dir": "south",
-        "to": null,
         "portal": "olympus-south-1"
       },
       {

@@ -203,7 +203,6 @@
     "level": 8,
     "weight": 10,
     "cost": 1910,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold"
   }},
@@ -281,7 +280,6 @@
     "level": 10,
     "weight": 10,
     "cost": 1090,
-    "condition": 100,
     "wear_flags": "take finger",
     "affects": [
       {
@@ -397,7 +395,6 @@
     "level": 10,
     "weight": 30,
     "cost": 1470,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {

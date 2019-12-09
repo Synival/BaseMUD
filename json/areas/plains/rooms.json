@@ -18,7 +18,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "Towards the south you notice the north gate of Midgaard.\n",
         "portal": "plains-south-1"
       },
@@ -330,7 +329,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "You notice a sign saying : Stranger we welcome you to the\n                           peaceful city of Ofcol.\n",
         "portal": "plains-north-1"
       },
@@ -570,7 +568,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "You see a path toward the valley.\n",
         "portal": "plains-north-3"
       },
@@ -643,7 +640,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "The path continues up the mountain.\n",
         "portal": "plains-north-2"
       },

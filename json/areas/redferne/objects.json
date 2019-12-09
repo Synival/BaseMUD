@@ -10,7 +10,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [
       {
@@ -40,7 +39,6 @@
     "level": 0,
     "weight": 4000,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "chest",
@@ -58,7 +56,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key",

@@ -17,7 +17,6 @@
       },
       {
         "dir": "east",
-        "to": null,
         "description": "The shadows cloud your vision.\n",
         "portal": "draconia-east-1"
       }

@@ -13,7 +13,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "You can see the Temple of Midgaard below you.\n",
         "portal": "astral-down-1"
       }
@@ -2144,7 +2143,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "The nexial link has been blocked by the gods for your protection.\n",
         "portal": "astral-south-1"
       },
@@ -2196,7 +2194,6 @@
       },
       {
         "dir": "east",
-        "to": null,
         "description": "The nexial link has been blocked by the gods for your protection.\n",
         "portal": "astral-east-1"
       },
@@ -2268,7 +2265,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "The nexial link has been blocked by the gods for your protection.\n",
         "portal": "astral-up-1"
       },
@@ -2320,7 +2316,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "description": "The nexial link has been blocked by the gods for your protection.\n",
         "portal": "astral-west-1"
       },
@@ -2365,13 +2360,11 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "The nexial link has been blocked by the gods for your protection.\n",
         "portal": "astral-up-2"
       },
       {
         "dir": "down",
-        "to": null,
         "description": "The nexial link has been blocked by the gods for your protection.\n",
         "portal": "astral-down-2"
       }
@@ -3245,7 +3238,6 @@
       },
       {
         "dir": "east",
-        "to": null,
         "description": "The flames blind you and obscure your vision.\n",
         "portal": "astral-east-2"
       },

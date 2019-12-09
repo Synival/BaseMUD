@@ -8,7 +8,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "keyword": "grate",
         "description": "Through the solid iron bars you see Elm Street. \n",
         "exit_flags": "door closed locked",
@@ -111,7 +110,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "keyword": "door",
         "description": "The chapel door is made of dark wood.\n",
         "exit_flags": "door closed locked",

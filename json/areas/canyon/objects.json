@@ -13,7 +13,6 @@
     "level": 7,
     "weight": 50,
     "cost": 1140,
-    "condition": 100,
     "extra_flags": "bless",
     "wear_flags": "take finger",
     "affects": [
@@ -49,7 +48,6 @@
     "level": 31,
     "weight": 700,
     "cost": 5500,
-    "condition": 100,
     "wear_flags": "take body",
     "affects": [
       {
@@ -85,7 +83,6 @@
     "level": 29,
     "weight": 20,
     "cost": 2800,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take wield",
     "affects": [{
@@ -112,7 +109,6 @@
     "level": 30,
     "weight": 30,
     "cost": 3100,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take neck",
     "affects": [{
@@ -139,7 +135,6 @@
     "level": 26,
     "weight": 10,
     "cost": 5200,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take feet",
     "affects": [{
@@ -166,7 +161,6 @@
     "level": 31,
     "weight": 40,
     "cost": 3800,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take head",
     "affects": [{
@@ -194,7 +188,6 @@
     "level": 25,
     "weight": 100,
     "cost": 2200,
-    "condition": 100,
     "extra_flags": "glow hum",
     "wear_flags": "take wield",
     "affects": [
@@ -230,7 +223,6 @@
     "level": 28,
     "weight": 80,
     "cost": 4500,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take shield",
     "affects": [
@@ -266,7 +258,6 @@
     "level": 31,
     "weight": 100,
     "cost": 1540,
-    "condition": 100,
     "wear_flags": "take waist",
     "affects": [{
       "apply": "constitution",
@@ -292,7 +283,6 @@
     "level": 30,
     "weight": 60,
     "cost": 3000,
-    "condition": 100,
     "wear_flags": "take about",
     "affects": [
       {
@@ -322,7 +312,6 @@
     "level": 20,
     "weight": 10,
     "cost": 860,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take neck",
     "affects": [{
@@ -344,7 +333,6 @@
     "level": 20,
     "weight": 40,
     "cost": 580,
-    "condition": 100,
     "wear_flags": "take wrist",
     "affects": [{
       "apply": "hp",
@@ -371,7 +359,6 @@
     "level": 26,
     "weight": 40,
     "cost": 1700,
-    "condition": 100,
     "wear_flags": "take wrist",
     "affects": [
       {
@@ -406,7 +393,6 @@
     "level": 26,
     "weight": 40,
     "cost": 1700,
-    "condition": 100,
     "wear_flags": "take legs",
     "affects": [
       {
@@ -441,7 +427,6 @@
     "level": 16,
     "weight": 70,
     "cost": 3900,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take hold"
   }},
@@ -461,7 +446,6 @@
     "level": 25,
     "weight": 70,
     "cost": 13700,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take hold"
   }},
@@ -481,7 +465,6 @@
     "level": 7,
     "weight": 70,
     "cost": 1000,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take hold"
   }},
@@ -501,7 +484,6 @@
     "level": 27,
     "weight": 70,
     "cost": 12600,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take hold"
   }},
@@ -521,7 +503,6 @@
     "level": 7,
     "weight": 70,
     "cost": 1420,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take hold"
   }},
@@ -542,7 +523,6 @@
     "level": 13,
     "weight": 160,
     "cost": 730,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
@@ -577,7 +557,6 @@
     "level": 13,
     "weight": 20,
     "cost": 2800,
-    "condition": 100,
     "wear_flags": "take hold",
     "affects": [{
       "apply": "strength",
@@ -598,7 +577,6 @@
     "level": 0,
     "weight": 40,
     "cost": 250,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take"
   }},
@@ -617,7 +595,6 @@
     "level": 5,
     "weight": 10,
     "cost": 860,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take"
   }},
@@ -636,7 +613,6 @@
     "level": 0,
     "weight": 20,
     "cost": 200,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -653,7 +629,6 @@
     "level": 0,
     "weight": 10,
     "cost": 300,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -673,7 +648,6 @@
     "level": 29,
     "weight": 140,
     "cost": 220,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take wield",
     "affects": [
@@ -710,7 +684,6 @@
     "level": 28,
     "weight": 10,
     "cost": 1630,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take wield",
     "affects": [
@@ -745,7 +718,6 @@
     "level": 24,
     "weight": 160,
     "cost": 3000,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
       "apply": "hit roll",
@@ -771,7 +743,6 @@
     "level": 23,
     "weight": 110,
     "cost": 3300,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take wield",
     "affects": [
@@ -807,7 +778,6 @@
     "level": 20,
     "weight": 100,
     "cost": 64,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take wield",
     "affects": [
@@ -841,7 +811,6 @@
     "level": 0,
     "weight": 10,
     "cost": 250,
-    "condition": 100,
     "wear_flags": "take hold"
   }}
 ]

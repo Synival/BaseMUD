@@ -8,7 +8,6 @@
     "description": "The defenseless goblin begs for mercy.\n",
     "race": "goblin",
     "alignment": -450,
-    "group": 0,
     "level": 1,
     "hitroll": 0,
     "hit_dice": "2d6+10",
@@ -26,10 +25,8 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel wimpy",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "drow",
@@ -40,7 +37,6 @@
     "description": "I doubt he is the type to give directions.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -56,11 +52,9 @@
     "sex": "male",
     "wealth": 15,
     "size": "medium",
-    "shop": null,
     "mob_flags": "unused_act_1 aggressive stay_area",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "drow",
@@ -71,7 +65,6 @@
     "description": "He looks pissed off!\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 14,
     "hitroll": 0,
     "hit_dice": "2d10+190",
@@ -87,11 +80,9 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "drow",
@@ -102,7 +93,6 @@
     "description": "The mage prepares to cast a spell ... at you!!\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "2d10+190",
@@ -118,7 +108,6 @@
     "sex": "male",
     "wealth": 100,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive mage",
     "affected_by": "detect_invis",
     "offense": "dodge assist_vnum",
@@ -133,7 +122,6 @@
     "description": "I wouldn't want go get on her bad side!\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 17,
     "hitroll": 0,
     "hit_dice": "3d9+258",
@@ -149,7 +137,6 @@
     "sex": "female",
     "wealth": 200,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive cleric",
     "affected_by": "detect_invis",
     "offense": "disarm kick parry assist_vnum",
@@ -164,7 +151,6 @@
     "description": "The drow master is ALWAYS ready for a fight.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 21,
     "hitroll": 0,
     "hit_dice": "4d10+360",
@@ -180,11 +166,9 @@
     "sex": "male",
     "wealth": 500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "drow",
@@ -195,7 +179,6 @@
     "description": "He definitely knows his way around in combat.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 23,
     "hitroll": 0,
     "hit_dice": "5d10+450",
@@ -211,11 +194,9 @@
     "sex": "male",
     "wealth": 750,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "drow",
@@ -226,7 +207,6 @@
     "description": "She looks really pissed off!\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 24,
     "hitroll": 0,
     "hit_dice": "5d10+500",
@@ -242,11 +222,9 @@
     "sex": "female",
     "wealth": 1500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "drow",
@@ -257,7 +235,6 @@
     "description": "She looks like she is about to rip your head off and eat it.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 26,
     "hitroll": 0,
     "hit_dice": "5d10+600",
@@ -273,7 +250,6 @@
     "sex": "female",
     "wealth": 1500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive cleric",
     "affected_by": "detect_invis sanctuary",
     "offense": "disarm kick parry assist_vnum",
@@ -288,7 +264,6 @@
     "description": "The yochlol is not in a good mood.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 35,
     "hitroll": 0,
     "hit_dice": "10d10+1300",
@@ -304,7 +279,6 @@
     "sex": "female",
     "wealth": 1500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_invis sanctuary",
     "offense": "disarm dodge trip assist_vnum",
@@ -319,7 +293,6 @@
     "description": "The drow guard blends so well with his environment, you barely see his form.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -335,11 +308,9 @@
     "sex": "male",
     "wealth": 250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "infrared hide",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "drow",
@@ -350,7 +321,6 @@
     "description": "The drow scout blends so well with her environment, you barely see her form.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 11,
     "hitroll": 0,
     "hit_dice": "2d8+134",
@@ -366,10 +336,8 @@
     "sex": "female",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive wimpy",
     "affected_by": "sneak hide",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }}
 ]

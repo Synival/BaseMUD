@@ -10,7 +10,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -29,7 +28,6 @@
     "level": 17,
     "weight": 30,
     "cost": 880,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -47,7 +45,6 @@
     "level": 20,
     "weight": 40,
     "cost": 2900,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -66,7 +63,6 @@
     "level": 11,
     "weight": 10,
     "cost": 4800,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -80,7 +76,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -99,7 +94,6 @@
     "level": 10,
     "weight": 10,
     "cost": 510,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -119,7 +113,6 @@
     "level": 17,
     "weight": 50,
     "cost": 4100,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
@@ -153,7 +146,6 @@
     "level": 20,
     "weight": 40,
     "cost": 1450,
-    "condition": 100,
     "wear_flags": "take head"
   }},
   {"object": {
@@ -167,7 +159,6 @@
     "level": 7,
     "weight": 10,
     "cost": 460,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [
@@ -202,7 +193,6 @@
     "level": 13,
     "weight": 20,
     "cost": 2000,
-    "condition": 100,
     "wear_flags": "take hands",
     "affects": [
       {
@@ -235,7 +225,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "note letter letters",
@@ -253,7 +242,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -267,7 +255,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -281,7 +268,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "nolocate",
     "wear_flags": "take hold"
   }},
@@ -301,7 +287,6 @@
     "level": 3,
     "weight": 10,
     "cost": 240,
-    "condition": 100,
     "extra_flags": "bless",
     "wear_flags": "take wield"
   }},
@@ -319,7 +304,6 @@
     "level": 0,
     "weight": 10,
     "cost": 300,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "birth control pills pill",
@@ -337,7 +321,6 @@
     "level": 0,
     "weight": 10,
     "cost": 500,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map castle strangelove",

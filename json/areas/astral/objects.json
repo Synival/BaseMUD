@@ -15,7 +15,6 @@
     "level": 38,
     "weight": 550,
     "cost": 5200,
-    "condition": 100,
     "extra_flags": "antigood antievil",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -62,7 +61,6 @@
     "level": 11,
     "weight": 10,
     "cost": 1510,
-    "condition": 100,
     "extra_flags": "bless",
     "wear_flags": "take",
     "extra_description": [{
@@ -85,7 +83,6 @@
     "level": 12,
     "weight": 50,
     "cost": 2100,
-    "condition": 100,
     "extra_flags": "evil",
     "wear_flags": "take",
     "extra_description": [{
@@ -108,7 +105,6 @@
     "level": 7,
     "weight": 10,
     "cost": 1240,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "scroll githyanki",
@@ -131,7 +127,6 @@
     "level": 11,
     "weight": 50,
     "cost": 2600,
-    "condition": 100,
     "extra_flags": "evil nodrop",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -171,7 +166,6 @@
     "level": 14,
     "weight": 50,
     "cost": 5300,
-    "condition": 100,
     "extra_flags": "evil nodrop",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -202,7 +196,6 @@
     "level": 6,
     "weight": 30,
     "cost": 480,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "knife silvery",
@@ -241,7 +234,6 @@
     "level": 13,
     "weight": 30,
     "cost": 980,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dagger silvery",
@@ -280,7 +272,6 @@
     "level": 16,
     "weight": 30,
     "cost": 2300,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword thin",
@@ -327,7 +318,6 @@
     "level": 24,
     "weight": 160,
     "cost": 2600,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword thin two two-handed",
@@ -367,7 +357,6 @@
     "level": 19,
     "weight": 130,
     "cost": 4600,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -407,7 +396,6 @@
     "level": 29,
     "weight": 140,
     "cost": 2800,
-    "condition": 100,
     "extra_flags": "hum evil",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -439,7 +427,6 @@
     "level": 31,
     "weight": 250,
     "cost": 5100,
-    "condition": 100,
     "extra_flags": "evil nodrop noremove",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -488,7 +475,6 @@
     "level": 20,
     "weight": 10,
     "cost": 1440,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "stone flame",
@@ -522,7 +508,6 @@
     "level": 0,
     "weight": 10,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "powder astral",
@@ -544,7 +529,6 @@
     "level": 15,
     "weight": 450,
     "cost": 2100,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "vest splint",
@@ -566,7 +550,6 @@
     "level": 20,
     "weight": 200,
     "cost": 1450,
-    "condition": 100,
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "skirt splint",
@@ -588,7 +571,6 @@
     "level": 20,
     "weight": 150,
     "cost": 1450,
-    "condition": 100,
     "wear_flags": "take arms",
     "extra_description": [{
       "keyword": "sleeves splint",
@@ -610,7 +592,6 @@
     "level": 20,
     "weight": 50,
     "cost": 2700,
-    "condition": 100,
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "gauntlets ornate",
@@ -656,7 +637,6 @@
     "level": 31,
     "weight": 50,
     "cost": 8500,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "vest cracked leather",
@@ -695,7 +675,6 @@
     "level": 2,
     "weight": 20,
     "cost": 320,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion violet",
@@ -717,7 +696,6 @@
     "level": 10,
     "weight": 10,
     "cost": 760,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion vial murky",
@@ -740,7 +718,6 @@
     "level": 1,
     "weight": 20,
     "cost": 320,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion silvery",
@@ -762,7 +739,6 @@
     "level": 11,
     "weight": 0,
     "cost": 990,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "mint chocolate",
@@ -780,7 +756,6 @@
     "level": 0,
     "weight": 100,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "invis",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -799,7 +774,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "pouch rotting",

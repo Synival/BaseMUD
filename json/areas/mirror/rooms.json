@@ -3800,7 +3800,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "You see a fuzzy portal of some sort and a little green.\n",
         "portal": "mirror-south-1"
       },

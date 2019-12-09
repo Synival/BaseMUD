@@ -8,7 +8,6 @@
     "description": "Your typical smelly, blind flying mammal.\n",
     "race": "bat",
     "alignment": 0,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -24,11 +23,9 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_hidden",
-    "offense": "disarm trip assist_race",
-    "spec_fun": null
+    "offense": "disarm trip assist_race"
   }},
   {"mobile": {
     "area": "catacomb",
@@ -39,7 +36,6 @@
     "description": "He has lost his family and everything of his former life.\n",
     "race": "human",
     "alignment": 200,
-    "group": 0,
     "level": 7,
     "hitroll": 0,
     "hit_dice": "2d6+85",
@@ -55,10 +51,8 @@
     "sex": "male",
     "wealth": 30,
     "size": "medium",
-    "shop": null,
     "mob_flags": "wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "catacomb",
@@ -69,7 +63,6 @@
     "description": "He recently discovered these catacombs and wants to see where they lead.\nHe just hopes he doesn't get killed in the process.  He carries only\nessential exploration gear; if there IS anything down here, he\nprobably won't last long.\n",
     "race": "human",
     "alignment": 100,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -85,11 +78,9 @@
     "sex": "male",
     "wealth": 40,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger wimpy",
     "affected_by": "detect_hidden",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "catacomb",
@@ -100,7 +91,6 @@
     "description": "Working for an evil necromancer isn't the greatest thing in the world.\nThey seem like little more than zombie servants themselves.\n",
     "race": "human",
     "alignment": -500,
-    "group": 0,
     "level": 9,
     "hitroll": 0,
     "hit_dice": "2d6+110",
@@ -116,10 +106,8 @@
     "sex": "male",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "catacomb",
@@ -130,7 +118,6 @@
     "description": "In fact it IS alive in a magical sort of sense.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -146,10 +133,8 @@
     "sex": "neutral",
     "wealth": 10,
     "size": "medium",
-    "shop": null,
     "affected_by": "sanctuary sneak pass_door",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "catacomb",
@@ -160,7 +145,6 @@
     "description": null,
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -176,10 +160,8 @@
     "sex": "neutral",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "catacomb",
@@ -190,7 +172,6 @@
     "description": "Even though he has died in the physical sense of the word, the battle\ncontinues for him in his charmed state.\n",
     "race": "human",
     "alignment": -290,
-    "group": 0,
     "level": 11,
     "hitroll": 0,
     "hit_dice": "2d8+134",
@@ -206,7 +187,6 @@
     "sex": "male",
     "wealth": 55,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive",
     "offense": "disarm dodge trip assist_vnum",
     "spec_fun": "spec_cast_undead"
@@ -220,7 +200,6 @@
     "description": "As you peer closely he peers back at you\n\nA templar peers closely at you.\nA templar tells you, \"You are an evil force trying to spread your ways!\".\nA templar tells you, \"You must die for your sin!\".\n",
     "race": "human",
     "alignment": 600,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -236,10 +215,8 @@
     "sex": "male",
     "wealth": 25,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "catacomb",
@@ -250,7 +227,6 @@
     "description": "Hard to tell much about the mysterious form even upon further inspection.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -266,7 +242,6 @@
     "sex": "male",
     "wealth": 30,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive",
     "affected_by": "detect_hidden pass_door",
     "offense": "disarm dodge trip assist_vnum",
@@ -281,7 +256,6 @@
     "description": "A templar officer tells you \"Better move along evil one!\"\n",
     "race": "human",
     "alignment": 700,
-    "group": 0,
     "level": 13,
     "hitroll": 0,
     "hit_dice": "2d10+170",
@@ -297,11 +271,9 @@
     "sex": "male",
     "wealth": 30,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "catacomb",
@@ -312,7 +284,6 @@
     "description": "He seems to lack real interest in what he is doing.\n",
     "race": "human",
     "alignment": -100,
-    "group": 0,
     "level": 13,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -328,7 +299,6 @@
     "sex": "male",
     "wealth": 27,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive mage",
     "offense": "dodge assist_vnum",
     "spec_fun": "spec_cast_mage"
@@ -342,7 +312,6 @@
     "description": "Looks vaguely you-shaped.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 14,
     "hitroll": 0,
     "hit_dice": "2d10+190",
@@ -358,10 +327,8 @@
     "sex": "neutral",
     "wealth": 40,
     "size": "medium",
-    "shop": null,
     "affected_by": "detect_hidden sneak pass_door",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "catacomb",
@@ -372,7 +339,6 @@
     "description": "A rather LARGE \"bat\" ...\n",
     "race": "bat",
     "alignment": -100,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "3d9+208",
@@ -388,7 +354,6 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_hidden",
     "offense": "disarm trip assist_race",
@@ -403,7 +368,6 @@
     "description": "Though he seems absorbed in his work, you'd bet he'd take the time out\nto kill you to get a fresh corpse!\n",
     "race": "human",
     "alignment": -888,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "3d9+208",
@@ -419,7 +383,6 @@
     "sex": "male",
     "wealth": 55,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "offense": "disarm dodge trip assist_vnum",
     "spec_fun": "spec_cast_undead"
@@ -433,7 +396,6 @@
     "description": "A slight, tolerant smile comes briefly across his face.  In the blink\nof an eye he seems stern again.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 16,
     "hitroll": 0,
     "hit_dice": "3d9+233",
@@ -449,11 +411,9 @@
     "sex": "male",
     "wealth": 75,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "detect_invis detect_hidden sanctuary",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "catacomb",
@@ -464,7 +424,6 @@
     "description": "The spray of colored light bouncing off his scales is almost blinding.\n",
     "race": "human",
     "alignment": -303,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -480,7 +439,6 @@
     "sex": "male",
     "wealth": 1500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_invis detect_hidden",
     "offense": "disarm dodge trip assist_vnum",
@@ -495,7 +453,6 @@
     "description": "You see nothing more than the sense of darkness and evil.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 24,
     "hitroll": 0,
     "hit_dice": "5d10+500",
@@ -511,7 +468,6 @@
     "sex": "neutral",
     "wealth": 1000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "offense": "disarm dodge trip assist_vnum",
     "spec_fun": "spec_poison"

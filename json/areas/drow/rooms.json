@@ -15,7 +15,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "keyword": "door",
         "description": "A small hole in the ceiling leads up into darkness.",
         "exit_flags": "door closed",

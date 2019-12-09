@@ -157,7 +157,6 @@
     "level": 0,
     "weight": 20,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {

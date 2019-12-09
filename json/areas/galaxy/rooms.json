@@ -9,7 +9,6 @@
     "doors": [
       {
         "dir": "west",
-        "to": null,
         "description": "The shadows cloud your vision.\n",
         "portal": "galaxy-west-1"
       },
@@ -845,7 +844,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "portal": "galaxy-down-1"
       }
     ],

@@ -14,7 +14,6 @@
     "level": 3,
     "weight": 50,
     "cost": 310,
-    "condition": 100,
     "wear_flags": "take legs",
     "extra_description": [
       {
@@ -42,7 +41,6 @@
     "level": 3,
     "weight": 50,
     "cost": 310,
-    "condition": 100,
     "wear_flags": "take wrist",
     "extra_description": [{
       "keyword": "handkerchief hankie kerchief",
@@ -64,7 +62,6 @@
     "level": 3,
     "weight": 50,
     "cost": 310,
-    "condition": 100,
     "wear_flags": "take waist",
     "extra_description": [{
       "keyword": "sash",
@@ -87,7 +84,6 @@
     "level": 6,
     "weight": 50,
     "cost": 1460,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "stick staff",

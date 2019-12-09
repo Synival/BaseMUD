@@ -130,7 +130,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "keyword": "door",
         "description": "The front door leads to Park Road.",
         "exit_flags": "door pickproof",

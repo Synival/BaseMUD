@@ -13,7 +13,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "The dimly lit path leads south through the light forest.\n",
         "portal": "shire-south-1"
       }
@@ -2146,7 +2145,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "You hear the din of adventurers.\n",
         "portal": "shire-up-1"
       }

@@ -8,7 +8,6 @@
     "description": "It sure looks like something out of a horror movie. It strongly resembles\na huge figure made up from mud alone, and it sure looks like it had human \nflesh for breakfast and is strongly intent on having the same for dinner.\n",
     "race": "human",
     "alignment": -250,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -26,11 +25,9 @@
     "sex": "neutral",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -41,7 +38,6 @@
     "description": "You have never in your entire life seen such a mean looking small creature,\nthough it looks rather peaceful, hanging there. The thought of arousing this\ncruel creature doesn't seem appealing.\n",
     "race": "bat",
     "alignment": -500,
-    "group": 0,
     "level": 1,
     "hitroll": 0,
     "hit_dice": "2d6+10",
@@ -59,11 +55,9 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area",
     "affected_by": "sneak",
-    "offense": "disarm trip assist_race",
-    "spec_fun": null
+    "offense": "disarm trip assist_race"
   }},
   {"mobile": {
     "area": "sewer",
@@ -74,7 +68,6 @@
     "description": null,
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -90,11 +83,9 @@
     "sex": "male",
     "wealth": 2,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive",
     "affected_by": "infrared",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -105,7 +96,6 @@
     "description": null,
     "race": "human",
     "alignment": -700,
-    "group": 0,
     "level": 1,
     "hitroll": 0,
     "hit_dice": "2d6+10",
@@ -121,11 +111,9 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -136,7 +124,6 @@
     "description": null,
     "race": "human",
     "alignment": -300,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -152,10 +139,8 @@
     "sex": "male",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "affected_by": "infrared",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -166,7 +151,6 @@
     "description": null,
     "race": "human",
     "alignment": 300,
-    "group": 0,
     "level": 3,
     "hitroll": 0,
     "hit_dice": "2d6+35",
@@ -182,10 +166,8 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "affected_by": "infrared",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -196,7 +178,6 @@
     "description": null,
     "race": "snake",
     "alignment": -500,
-    "group": 0,
     "level": 4,
     "hitroll": 0,
     "hit_dice": "2d7+46",
@@ -212,7 +193,6 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive",
     "affected_by": "infrared",
     "offense": "disarm dodge trip assist_race",
@@ -227,7 +207,6 @@
     "description": "The evil wanderer is very thin.  He is dressed in a grey cloak.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -243,11 +222,9 @@
     "sex": "male",
     "wealth": 15,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger wimpy",
     "affected_by": "infrared",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -258,7 +235,6 @@
     "description": "The Homonculus appears in a man-like form, about 18'' tall, it has a\ngreenish, reptilian skin, leathery wings, and a bat-like mouth, with\nteeth gleaming yellow.\n",
     "race": "human",
     "alignment": -780,
-    "group": 0,
     "level": 11,
     "hitroll": 0,
     "hit_dice": "2d8+134",
@@ -274,10 +250,8 @@
     "sex": "neutral",
     "wealth": 25,
     "size": "medium",
-    "shop": null,
     "affected_by": "detect_invis infrared",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -288,7 +262,6 @@
     "description": "The head and torso of a chreffn is copper-covered, with yellow,\nglowing eyes. The lower body is in an orange shading.\n",
     "race": "human",
     "alignment": -830,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -304,11 +277,9 @@
     "sex": "neutral",
     "wealth": 75,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger wimpy",
     "affected_by": "detect_invis sneak",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -319,7 +290,6 @@
     "description": "It's a five feet tall, shadow monster. The shape of this creature lies\nsomewhere between a human and a rat. It breaths very heavily, while staring\nat you with such a glint in the eyes that reminds you of immense hunger.\n",
     "race": "human",
     "alignment": -900,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -335,11 +305,9 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive wimpy",
     "affected_by": "infrared",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -350,7 +318,6 @@
     "description": "It sure looks like something out of a horror movie. It strongly resembles\na huge figure made up from mud alone, and it sure looks like it had human \nflesh for breakfast and is strongly intent on having the same for dinner.\n",
     "race": "human",
     "alignment": -250,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -368,11 +335,9 @@
     "sex": "neutral",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -383,7 +348,6 @@
     "description": "The red dragon stares at you, angrily, as it wakes when you\narrives.  It says 'Oh, human YOU woke me up ... Hsss', while\nit moves closer.  'Can one NEVER sleep in peace ... Hsss'.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 32,
     "hitroll": 0,
     "hit_dice": "10d10+1000",
@@ -399,7 +363,6 @@
     "sex": "neutral",
     "wealth": 5000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_invis infrared",
     "offense": "disarm dodge trip assist_vnum",
@@ -414,7 +377,6 @@
     "description": "The sea hag is so ghastly looking that you feel the deepest fear.\nBig yellow eyes and sharp teeth.  Its ears are very big,\nand it has small sharp horns.  It hates beauty.\n",
     "race": "human",
     "alignment": -800,
-    "group": 0,
     "level": 14,
     "hitroll": 0,
     "hit_dice": "2d10+190",
@@ -430,7 +392,6 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive",
     "affected_by": "infrared",
     "offense": "disarm dodge trip assist_vnum",
@@ -445,7 +406,6 @@
     "description": "The naga are a snake-liked creature. She is covered in green-gold\nscale with silvery triangles along her back. Her eyes are golden.\nShe notice that you look at her, and she says: 'Watch out. This way\nleads to some evil creatures'.\n",
     "race": "human",
     "alignment": 700,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -461,7 +421,6 @@
     "sex": "female",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel cleric",
     "affected_by": "infrared",
     "offense": "disarm kick parry assist_vnum",
@@ -476,7 +435,6 @@
     "description": "The basilisk is a reptilian monster. It has eight legs, and a strong\ntoothy jaws. It is dull brown with yellowish underbelly. It's eyes are\nglowing pale green.\n",
     "race": "human",
     "alignment": -250,
-    "group": 0,
     "level": 13,
     "hitroll": 0,
     "hit_dice": "2d10+170",
@@ -492,7 +450,6 @@
     "sex": "male",
     "wealth": 17,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive",
     "affected_by": "detect_invis infrared",
     "offense": "disarm dodge trip assist_vnum",
@@ -507,7 +464,6 @@
     "description": "This looks like a vaguely human blob. Big black yellow eyes, and a\nmouth going a little bit out from the face. The lemure does not look\ninterested in you at all, but anyway it attacks. It looks like it's\nmind has been burned out.\n",
     "race": "human",
     "alignment": -500,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -523,11 +479,9 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -538,7 +492,6 @@
     "description": "At the first sight you thought Jones was an orc, but when it came\ncloser you saw his second head. He wears an animal skin dress,\nfilthy and moth eaten. Jones really stinks...\n",
     "race": "human",
     "alignment": -480,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -556,11 +509,9 @@
     "sex": "male",
     "wealth": 3,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive",
     "affected_by": "infrared",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -571,7 +522,6 @@
     "description": "When you look at Herald, you feel pity. His dress are really poor,\nand the one of his heads hangs down. At the rope around his stomach\nhangs dead mouses and rats. He does not smell good.\n",
     "race": "human",
     "alignment": 200,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -589,11 +539,9 @@
     "sex": "male",
     "wealth": 2,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger",
     "affected_by": "infrared",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "sewer",
@@ -604,7 +552,6 @@
     "description": "It's a seven foot tall humanoid dressed in a purple cloak, and swinging a\nblack and purple rod above its head as if it was going to attack you any\nmoment now. In the middle of its head are four tentacles with sharp points.\n",
     "race": "human",
     "alignment": -800,
-    "group": 0,
     "level": 14,
     "hitroll": 0,
     "hit_dice": "2d10+170",
@@ -620,7 +567,6 @@
     "sex": "neutral",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive mage",
     "affected_by": "detect_invis infrared",
     "offense": "dodge assist_vnum",
@@ -635,7 +581,6 @@
     "description": "This is a horrifying monster indeed, 6'6\" high. Dressed in purple and black,\nand carrying a large mace in its hand. In the center of its head are four large\ntentacles with very sharp points.\n",
     "race": "human",
     "alignment": -600,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d6+85",
@@ -651,7 +596,6 @@
     "sex": "neutral",
     "wealth": 20,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive mage",
     "affected_by": "detect_invis infrared",
     "offense": "dodge assist_vnum",
@@ -666,7 +610,6 @@
     "description": "This mindflayer is six foot high. It has a small mace in its belt, and is\ndressed in purple and black cloth. It has four small tentacles in the \ncenter of its head.\n",
     "race": "human",
     "alignment": -350,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -682,7 +625,6 @@
     "sex": "neutral",
     "wealth": 10,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive mage",
     "affected_by": "detect_invis infrared",
     "offense": "dodge assist_vnum",
@@ -697,7 +639,6 @@
     "description": "The wererat is about four foot tall. It looks very much like rat, except\nthat it is standing.\n",
     "race": "human",
     "alignment": -700,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -713,7 +654,6 @@
     "sex": "neutral",
     "wealth": 2,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area",
     "affected_by": "infrared",
     "offense": "disarm dodge trip assist_vnum",
@@ -728,7 +668,6 @@
     "description": "The gigantic rat is about ten foot long from head to tail and has claws\nthe size of your head looking very nasty.\n",
     "race": "human",
     "alignment": -800,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -745,7 +684,6 @@
     "sex": "male",
     "wealth": 125,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "infrared",
     "offense": "disarm dodge trip assist_vnum",

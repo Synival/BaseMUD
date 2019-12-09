@@ -10,7 +10,6 @@
     "level": 5,
     "weight": 80,
     "cost": 550,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take",
     "affects": [{
@@ -38,7 +37,6 @@
     "level": 17,
     "weight": 10,
     "cost": 3500,
-    "condition": 100,
     "extra_flags": "glow hum antievil",
     "wear_flags": "take wield",
     "affects": [{
@@ -63,7 +61,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "sign",
       "description": "Welcome to the Shire.  As you enter the Shire from Haon-Dor you come under\nthe jurisdiction of the Thain, the peacekeeper of the Shire.  Consequently,\nby entering these lands you agree to obey our laws.  If you break these laws,\nyou will be severely punished.  We do not like riff raff in our peaceful\ntown.\n\n\t\t\t\t\tThe Thain\n\t\t\t\t\tPeacekeeper of the Shire\n\n"
@@ -83,7 +80,6 @@
     "level": 0,
     "weight": 10,
     "cost": 15,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -102,7 +98,6 @@
     "level": 15,
     "weight": 30,
     "cost": 1320,
-    "condition": 100,
     "extra_flags": "magic antievil",
     "wear_flags": "take about",
     "affects": [{
@@ -124,7 +119,6 @@
     "level": 20,
     "weight": 30,
     "cost": 1660,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [
@@ -161,7 +155,6 @@
     "level": 16,
     "weight": 50,
     "cost": 500,
-    "condition": 100,
     "extra_flags": "hum magic antievil",
     "wear_flags": "take wield",
     "affects": [{
@@ -189,7 +182,6 @@
     "level": 17,
     "weight": 120,
     "cost": 1440,
-    "condition": 100,
     "extra_flags": "glow dark noremove nopurge",
     "wear_flags": "take wield",
     "affects": [{
@@ -215,7 +207,6 @@
     "level": 17,
     "weight": 40,
     "cost": 3600,
-    "condition": 100,
     "wear_flags": "take waist",
     "affects": [{
       "apply": "wisdom",
@@ -241,7 +232,6 @@
     "level": 1,
     "weight": 30,
     "cost": 230,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -258,7 +248,6 @@
     "level": 0,
     "weight": 10,
     "cost": 2,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -276,7 +265,6 @@
     "level": 0,
     "weight": 10,
     "cost": 11,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -290,7 +278,6 @@
     "level": 0,
     "weight": 40,
     "cost": 60,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -311,7 +298,6 @@
     "level": 21,
     "weight": 100,
     "cost": 1810,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
       "apply": "hit roll",
@@ -338,7 +324,6 @@
     "level": 5,
     "weight": 80,
     "cost": 390,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -359,7 +344,6 @@
     "level": 3,
     "weight": 100,
     "cost": 980,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
       "apply": "hit roll",
@@ -386,7 +370,6 @@
     "level": 6,
     "weight": 10,
     "cost": 480,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
@@ -422,7 +405,6 @@
     "level": 12,
     "weight": 30,
     "cost": 620,
-    "condition": 100,
     "wear_flags": "take wield"
   }}
 ]

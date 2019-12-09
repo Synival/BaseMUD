@@ -8,7 +8,6 @@
     "description": "He is a tall, thin boy.  He is looking for his gang mates.  He and his\nmates have cost city authorities many millions of creds a week in\nvandalism repairs.\n",
     "race": "human",
     "alignment": -400,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -24,10 +23,8 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mega1",
@@ -38,7 +35,6 @@
     "description": "This punk is from one of the rowdiest, scruffiest, and definitely most\nfashionable of all gangs -- the Grunge Mongers.\n",
     "race": "human",
     "alignment": -500,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -54,10 +50,8 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mega1",
@@ -68,7 +62,6 @@
     "description": "A sad victim of Future Shock, this man is immensely dangerous and will\nnot be stopped by anyone who tries to deter him from revenge upon the\nJustice Department.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 17,
     "hitroll": 0,
     "hit_dice": "3d9+258",
@@ -84,11 +77,9 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mega1",
@@ -99,7 +90,6 @@
     "description": "A member of a local Block's Citi-Def militia, this man is well-armed\nand undersupervised.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 16,
     "hitroll": 0,
     "hit_dice": "3d9+233",
@@ -115,7 +105,6 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area",
     "affected_by": "infrared",
     "offense": "disarm dodge trip assist_vnum",
@@ -130,7 +119,6 @@
     "description": "He blends into the crowd as his hand travels into another citizen's pocket.\n",
     "race": "human",
     "alignment": -150,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d6+110",
@@ -146,7 +134,6 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area wimpy thief",
     "affected_by": "detect_invis detect_hidden",
     "offense": "backstab disarm dodge dirt_kick trip assist_vnum",
@@ -161,7 +148,6 @@
     "description": "A practitioner in Mega-City One's largest growth industry, mugging, is\nlooking you over for a possible business transaction.\n",
     "race": "human",
     "alignment": -400,
-    "group": 0,
     "level": 14,
     "hitroll": 0,
     "hit_dice": "2d10+190",
@@ -177,10 +163,8 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mega1",
@@ -191,7 +175,6 @@
     "description": "A member of Mega-City One's Justice Department is here considering what\ncrimes you have committed.  Being a rookie he will probably be easier on\nyou though.\n",
     "race": "human",
     "alignment": 300,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -207,7 +190,6 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
     "affected_by": "detect_invis detect_hidden",
     "offense": "disarm dodge trip assist_vnum",
@@ -222,7 +204,6 @@
     "description": "Wallaby Gleep is a heavy-set man who gives you the impression that he is\nunintelligent and unimaginative, but looks can be deceiving.\n",
     "race": "human",
     "alignment": -600,
-    "group": 0,
     "level": 22,
     "hitroll": 0,
     "hit_dice": "5d10+400",
@@ -238,11 +219,9 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger",
     "affected_by": "detect_invis detect_hidden infrared",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mega1",
@@ -253,7 +232,6 @@
     "description": "He is a thin angular crook, pretty close to everyone's idea of Ebeneezer\nScrooge.  Indeed, the only thing guaranteed to bring a spark to his dead\neyes is the mention of money.\n",
     "race": "human",
     "alignment": -900,
-    "group": 0,
     "level": 25,
     "hitroll": 0,
     "hit_dice": "5d10+550",
@@ -269,11 +247,9 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive",
     "affected_by": "detect_invis detect_hidden",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mega1",
@@ -284,7 +260,6 @@
     "description": "Ramirez is a dour man who knows that he's never going to get a better\ndeal out of life.  He is content to run the bite fights for Throt and\nGleep.\n",
     "race": "human",
     "alignment": -400,
-    "group": 0,
     "level": 19,
     "hitroll": 0,
     "hit_dice": "3d9+308",
@@ -300,10 +275,8 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mega1",
@@ -314,7 +287,6 @@
     "description": "He is a dedicated, if somewhat pessimistic Judge.  He is the Senior Judge\nof the Downtown Quadrant.\n",
     "race": "human",
     "alignment": 300,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -330,7 +302,6 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
     "affected_by": "detect_invis detect_hidden sanctuary",
     "offense": "disarm dodge trip assist_vnum",
@@ -345,7 +316,6 @@
     "description": "Beddows is a clone from the same stock as the ex-Chief Judge McGruder.\nShe is fanatically dedicated to her job and has no ambitions other than\nto enforce the LAW.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 25,
     "hitroll": 0,
     "hit_dice": "5d10+550",
@@ -361,7 +331,6 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
     "affected_by": "detect_invis detect_hidden",
     "offense": "disarm dodge trip assist_vnum",
@@ -376,7 +345,6 @@
     "description": "A bite fighter is here with sharpened teeth and a bad attitude.\n",
     "race": "human",
     "alignment": -400,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -392,9 +360,7 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }}
 ]

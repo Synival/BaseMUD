@@ -8,7 +8,6 @@
     "description": "Dressed in loose fitting rags, this man looks like he could use\nsome rest.\n",
     "race": "human",
     "alignment": 900,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -24,11 +23,9 @@
     "sex": "male",
     "wealth": 3,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area wimpy",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "eastern",
@@ -39,7 +36,6 @@
     "description": "Dressed in loose fitting rags, this man looks like he could use\nLOTS of rest.\n",
     "race": "human",
     "alignment": 650,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -55,11 +51,9 @@
     "sex": "male",
     "wealth": 7,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "eastern",
@@ -70,7 +64,6 @@
     "description": "This relatively harmless snake has bright alternating bands of red, yellow\nand black.\n",
     "race": "snake",
     "alignment": -10,
-    "group": 0,
     "level": 4,
     "hitroll": 0,
     "hit_dice": "2d7+46",
@@ -86,10 +79,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "eastern",
@@ -100,7 +91,6 @@
     "description": "The little tail is mighty dangerous for such a small creature.\n",
     "race": "human",
     "alignment": -50,
-    "group": 0,
     "level": 3,
     "hitroll": 0,
     "hit_dice": "2d6+35",
@@ -116,10 +106,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "eastern",
@@ -130,7 +118,6 @@
     "description": "He's big, mean, and purple. Watch out!\n",
     "race": "human",
     "alignment": -100,
-    "group": 0,
     "level": 18,
     "hitroll": 0,
     "hit_dice": "3d9+283",
@@ -146,10 +133,8 @@
     "sex": "neutral",
     "wealth": 127,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "eastern",
@@ -160,7 +145,6 @@
     "description": null,
     "race": "dragon",
     "alignment": 450,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -176,7 +160,6 @@
     "sex": "female",
     "wealth": 275,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive",
     "affected_by": "detect_invis sanctuary",
     "offense": "disarm dodge trip assist_race",
@@ -191,7 +174,6 @@
     "description": "He is clad in silk robes lined with gold thread. At his side\nis a large, engraved cutlass. He has an especially haughty air\nabout him.\n",
     "race": "human",
     "alignment": 950,
-    "group": 0,
     "level": 14,
     "hitroll": 0,
     "hit_dice": "2d10+190",
@@ -209,10 +191,8 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy unused_act_3",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "eastern",
@@ -223,7 +203,6 @@
     "description": "This is the nomad leader's second in command. His clothes are richly\nwoven of silk and gold thread. A nasty cutlass hangs at his side.\n",
     "race": "human",
     "alignment": 900,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -239,10 +218,8 @@
     "sex": "male",
     "wealth": 30,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel unused_act_3",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "eastern",
@@ -253,7 +230,6 @@
     "description": null,
     "race": "human",
     "alignment": 700,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -269,10 +245,8 @@
     "sex": "male",
     "wealth": 15,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "eastern",
@@ -283,7 +257,6 @@
     "description": null,
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 3,
     "hitroll": 0,
     "hit_dice": "2d6+35",
@@ -301,10 +274,8 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "eastern",
@@ -315,7 +286,6 @@
     "description": "The dracolich is now only bone with pieces of flesh hanging from it.\nObviously it no longer fears death.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -331,7 +301,6 @@
     "sex": "neutral",
     "wealth": 3750,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive unused_act_3",
     "affected_by": "detect_invis sanctuary",
     "offense": "disarm dodge trip assist_vnum",
@@ -346,7 +315,6 @@
     "description": "This half-spider, half-drow creature is a formidable opponent.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -362,11 +330,9 @@
     "sex": "female",
     "wealth": 10,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "eastern",
@@ -377,7 +343,6 @@
     "description": "The duergar could crush your head as easily as it does those rocks.\n",
     "race": "human",
     "alignment": -850,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -393,11 +358,9 @@
     "sex": "male",
     "wealth": 8,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "eastern",
@@ -408,7 +371,6 @@
     "description": "The myconoid looks something like a giant mushroom (and probably\nhas the same effect).\n",
     "race": "human",
     "alignment": 850,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -424,11 +386,9 @@
     "sex": "male",
     "wealth": 2,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "eastern",
@@ -439,7 +399,6 @@
     "description": "The shaman shoots spores into the air.\n",
     "race": "human",
     "alignment": 850,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -455,7 +414,6 @@
     "sex": "male",
     "wealth": 75,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel wimpy cleric",
     "affected_by": "detect_invis sanctuary",
     "offense": "disarm kick parry assist_vnum",
@@ -470,7 +428,6 @@
     "description": null,
     "race": "human",
     "alignment": -200,
-    "group": 0,
     "level": 7,
     "hitroll": 0,
     "hit_dice": "2d6+85",
@@ -486,10 +443,8 @@
     "sex": "neutral",
     "wealth": 22,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "eastern",
@@ -500,7 +455,6 @@
     "description": "Don't mess with this animal.\n",
     "race": "human",
     "alignment": -351,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -516,9 +470,7 @@
     "sex": "neutral",
     "wealth": 13,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }}
 ]

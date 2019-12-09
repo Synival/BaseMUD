@@ -8,7 +8,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "The path looks drier here.\n",
         "portal": "marsh-north-1"
       },
@@ -862,7 +861,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "exit_flags": "door",
         "portal": "marsh-south-1"
       }

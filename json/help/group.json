@@ -5,403 +5,402 @@
   "pages": [
     {
       "keyword": "'RACE HELP' 'RACE' 'RACES'",
-      "level": -1,
-      "text": "ROM has the following races for player characters:\n  Human  the standard race\n  Dwarf  good warriors and priests, cost 8 creation points\n  Elf    good thieves and mages, cost 5 creation points\n  Giant  huge, tough warriors, cost 6 creation points\n\nDifferent races have different starting statistics, and also different\nstat maximums for magic items and training.\n\nCreation points increase the amount of experience it takes to gain a level.\nFor more information, see the help files for each race (i.e. 'help dwarf')\n"
+      "text": "ROM has the following races for player characters:\n  Human  the standard race\n  Dwarf  good warriors and priests, cost 8 creation points\n  Elf    good thieves and mages, cost 5 creation points\n  Giant  huge, tough warriors, cost 6 creation points\n\nDifferent races have different starting statistics, and also different\nstat maximums for magic items and training.\n\nCreation points increase the amount of experience it takes to gain a level.\nFor more information, see the help files for each race (i.e. 'help dwarf')\n",
+      "hide_keywords": true
     },
     {
       "keyword": "DWARF DWARVES",
-      "level": -1,
-      "text": "Dwarves are short, stocky demi-humans, known for foul temper and great\nstamina.  Dwarves have high strength and constitution, but poor dexterity.\nThey are not as smart as humans, but are usually wiser due to their long \nlifespans.  Dwarves make excellent fighters and priests, but are very poor\nmages or thieves.  \n\nDwarves are very resistant to poison and disease, but cannot swim, and so\nare very vulnerable to drowning.  They recieve the berserk skill for free\n(if warriors), and can see in the dark with infravision.\n"
+      "text": "Dwarves are short, stocky demi-humans, known for foul temper and great\nstamina.  Dwarves have high strength and constitution, but poor dexterity.\nThey are not as smart as humans, but are usually wiser due to their long \nlifespans.  Dwarves make excellent fighters and priests, but are very poor\nmages or thieves.  \n\nDwarves are very resistant to poison and disease, but cannot swim, and so\nare very vulnerable to drowning.  They recieve the berserk skill for free\n(if warriors), and can see in the dark with infravision.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "ELF ELVES",
-      "level": -1,
-      "text": "Elves are slightly taller than humans, but have a much lighter build.  They\nlack the strength and stamina of the other races, but are for more agile,\nboth in body and mind.  Elves are superb mages and thieves, but have at\nbest fair talent as warriors or priests.\n\nElves resist charm spells most effectively, due to their magical nature.\nHowever, they are burned by the touch of iron, and so are barred from the\nuse of iron or steel in their adventuring careers.  Elves are notoriously \nhard to spot, and so elven warriors and thieves recieve the sneak and hiding\nautomatically. They may see in the dark with infravision.\n"
+      "text": "Elves are slightly taller than humans, but have a much lighter build.  They\nlack the strength and stamina of the other races, but are for more agile,\nboth in body and mind.  Elves are superb mages and thieves, but have at\nbest fair talent as warriors or priests.\n\nElves resist charm spells most effectively, due to their magical nature.\nHowever, they are burned by the touch of iron, and so are barred from the\nuse of iron or steel in their adventuring careers.  Elves are notoriously \nhard to spot, and so elven warriors and thieves recieve the sneak and hiding\nautomatically. They may see in the dark with infravision.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "HUMAN HUMANS MAN",
-      "level": -1,
-      "text": "Humans are the most common race in the world, and make up the majority of\nadventurers. Although they have no special talents like the other races,\nthey are more versitile, being skilled in all four classes. Humans may\nalso train their primary stat higher than any other race, and are able to\ngain more benefit from magical devices.\n"
+      "text": "Humans are the most common race in the world, and make up the majority of\nadventurers. Although they have no special talents like the other races,\nthey are more versitile, being skilled in all four classes. Humans may\nalso train their primary stat higher than any other race, and are able to\ngain more benefit from magical devices.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "GIANT GIANTS",
-      "level": -1,
-      "text": "Giants are the largest of the races, ranging from 9-12 feet in height.  They\nare stronger than any other race, and almost as durable as the dwarves.  \nThey aren't too bright, however, and their huge size makes them more clumsy\nthan the other races.  Giants make the best warriors of any race, but are\nill-suited for any other profession.\n\nGiants resist heat and cold with nary a mark, due to their huge mass.  However,\ntheir slow minds make them extremely vulnerable to mental attacks.  Giants,\ndue to their size and stamina, receive the fast healing and bash skills for\nfree. (Only giant warriors recive bash).\n"
+      "text": "Giants are the largest of the races, ranging from 9-12 feet in height.  They\nare stronger than any other race, and almost as durable as the dwarves.  \nThey aren't too bright, however, and their huge size makes them more clumsy\nthan the other races.  Giants make the best warriors of any race, but are\nill-suited for any other profession.\n\nGiants resist heat and cold with nary a mark, due to their huge mass.  However,\ntheir slow minds make them extremely vulnerable to mental attacks.  Giants,\ndue to their size and stamina, receive the fast healing and bash skills for\nfree. (Only giant warriors recive bash).\n",
+      "hide_keywords": true
     },
     {
       "keyword": "WANDS STAVES SCROLLS",
-      "level": -1,
-      "text": "Magical items require training to use properly.  If your character lacks the\nnecessary skill to use an item, he will fail, possibly destroying it.  The\nitem skills are as follows:\n\nscrolls\t\tThe reading of magical scrolls and books (see 'help recite')\nstaves\t\tThe use of staves and similar devices (see 'help brandish')\nwands\t\tThe use of wands and similar items (see 'help zap') \n"
+      "text": "Magical items require training to use properly.  If your character lacks the\nnecessary skill to use an item, he will fail, possibly destroying it.  The\nitem skills are as follows:\n\nscrolls\t\tThe reading of magical scrolls and books (see 'help recite')\nstaves\t\tThe use of staves and similar devices (see 'help brandish')\nwands\t\tThe use of wands and similar items (see 'help zap') \n",
+      "hide_keywords": true
     },
     {
       "keyword": "'GROUP HEADER'",
-      "level": -1,
-      "text": "The following skills and groups are available to your chacter:\n(this list may be seen again by typing 'list')\n"
+      "text": "The following skills and groups are available to your chacter:\n(this list may be seen again by typing 'list')\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'GROUP HELP'",
-      "level": -1,
-      "text": "The following commands are available:\nlist         display all groups and skills not yet bought\nlearned      show all groups and skills bought \npremise      brief explanation of creation points and skill groups\nadd <name>   buy a skill or group\ndrop <name>  discard a skill or group\ninfo <name>  list the skills or spells contained within a group\nhelp <name>  help on skills and groups, or other help topics\ndone\t     exit the character generation process\n"
+      "text": "The following commands are available:\nlist         display all groups and skills not yet bought\nlearned      show all groups and skills bought \npremise      brief explanation of creation points and skill groups\nadd <name>   buy a skill or group\ndrop <name>  discard a skill or group\ninfo <name>  list the skills or spells contained within a group\nhelp <name>  help on skills and groups, or other help topics\ndone\t     exit the character generation process\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'MENU CHOICE'",
-      "level": -1,
-      "text": "Command? (list, learned, premise, add, drop, info, help, done)\n> "
+      "text": "Command? (list, learned, premise, add, drop, info, help, done)\n> ",
+      "hide_keywords": true
     },
     {
       "keyword": "'GROUPS' 'INFO' 'PREMISE'",
-      "level": -1,
-      "text": "The ROM skill system allows you to fully customize your new character, making\nhim or her skilled in the skills you choose.  But beware, the skills you pick\nat character creation are the only skills you will ever learn.  Skills are \npaid for with creation points, and the more creation points you have, the\nharder it is to gain a level.  Furthermore, higher-cost skills are harder to\npractice.\n\nSkill groups are like package deals for characters -- sets of skills or spells\nthat are closely related, and hence can be learned as a unit.  There is a \ndefault skill group for each class, which can be selected for a balanced \nselection of skills at a somewhat reduced cost.\n\nThe experience breakdown is as follows: \npoints   exp/level     points   exp/level\n40        1000         90        6000\n50        1500         100       8000\n60\t  2000         110      12000\n70        3000         120      16000 \n80        4000         130      24000\nThe table continues in a similar manner for higher point totals.\n"
+      "text": "The ROM skill system allows you to fully customize your new character, making\nhim or her skilled in the skills you choose.  But beware, the skills you pick\nat character creation are the only skills you will ever learn.  Skills are \npaid for with creation points, and the more creation points you have, the\nharder it is to gain a level.  Furthermore, higher-cost skills are harder to\npractice.\n\nSkill groups are like package deals for characters -- sets of skills or spells\nthat are closely related, and hence can be learned as a unit.  There is a \ndefault skill group for each class, which can be selected for a balanced \nselection of skills at a somewhat reduced cost.\n\nThe experience breakdown is as follows: \npoints   exp/level     points   exp/level\n40        1000         90        6000\n50        1500         100       8000\n60\t  2000         110      12000\n70        3000         120      16000 \n80        4000         130      24000\nThe table continues in a similar manner for higher point totals.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "BASICS 'ROM BASICS'",
-      "level": -1,
-      "text": "The basic skills:\n\nEvery character starts with two skill groups, one for their class and a default\nset that all characters receive.  The default skills are:\n\nrecall  \tessential escape skill (see help recall)\nscrolls\t\treading of scrolls and other magical volumes\nstaves\t\tuse of magical staves\nwands\t\tuse of magical wands\n\nfor class defaults, check the classes themselves.\n"
+      "text": "The basic skills:\n\nEvery character starts with two skill groups, one for their class and a default\nset that all characters receive.  The default skills are:\n\nrecall  \tessential escape skill (see help recall)\nscrolls\t\treading of scrolls and other magical volumes\nstaves\t\tuse of magical staves\nwands\t\tuse of magical wands\n\nfor class defaults, check the classes themselves.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "MAGE 'MAGIC-USER' 'MAGE BASICS' 'MAGE DEFAULT'",
-      "level": -1,
-      "text": "Mages specialize in the casting of spells, offensive ones in particular.\nMages have the highest-powered magic of any class, and are the only classes\nable to use the draconian and enchanting spell groups.  They are also very\nskilled at the use of magical items, though their combat skills are the \nweakest of any class.\n\nAll mages begin with skill in the dagger. Any other weapon skills must be\npurchased, at a very high rate.  The default skill selection for mages is\nas follows:\n\nskills:\nlore\t\tthe lore of magical items\n\nspell groups:\nbeguiling\tspells that control the mind\ncombat\t\toffensive magics, such as fireball and chill touch\ndetection\tinformational magics, such as detect magic and identify\nenhancement\tspells that maximize physical potential, such as haste\nillusion\tmagics for concealing and deceiving\nmaladictions\ta selection of curses fit for any witch\nprotective\tdefensive magics, ranging from armor to stone skin\ntransporation\tspells for getting from here to there\nweather\t\tspells for conjuring and mastering the elements\n"
+      "text": "Mages specialize in the casting of spells, offensive ones in particular.\nMages have the highest-powered magic of any class, and are the only classes\nable to use the draconian and enchanting spell groups.  They are also very\nskilled at the use of magical items, though their combat skills are the \nweakest of any class.\n\nAll mages begin with skill in the dagger. Any other weapon skills must be\npurchased, at a very high rate.  The default skill selection for mages is\nas follows:\n\nskills:\nlore\t\tthe lore of magical items\n\nspell groups:\nbeguiling\tspells that control the mind\ncombat\t\toffensive magics, such as fireball and chill touch\ndetection\tinformational magics, such as detect magic and identify\nenhancement\tspells that maximize physical potential, such as haste\nillusion\tmagics for concealing and deceiving\nmaladictions\ta selection of curses fit for any witch\nprotective\tdefensive magics, ranging from armor to stone skin\ntransporation\tspells for getting from here to there\nweather\t\tspells for conjuring and mastering the elements\n",
+      "hide_keywords": true
     },
     {
       "keyword": "CLERIC 'CLERIC BASICS' 'CLERIC DEFAULT'",
-      "level": -1,
-      "text": "Clerics are the most defensively orientated of all the classes.  Most of their\nspells focus on healing or defending the faithful, with their few combat spells\nbeing far less powerful than those of mages. However, clerics are the best \nclass by far at healing magics, and they posess an impressive area of\nprotective magics, as well as fair combat prowess.\n\nAll clerics begin with skill in the mace.  Other weapon or shield skills must\nbe purchased, many at a very dear cost.  The default skill selection for \nclerics is as follows:\n\nskills:\nflail\t\tthe proper use of flails\n\nspell groups:\nattack\t\ta selection of offensive magics\ncreation\tthe making of physical objects, such as food and water\ncurative\tspells that cure the sick and feeble of their ailments\nbenedictions\tpowerful magics that grant the blessings of the gods\ndetection\tinformational magics, such as detect magic and identify\nhealing\t\tspells for treating wounds, from scratches to death blows\nmaladictions\tan assortment of curses\nprotective\tdefensive magics, including the powerful sanctuary spell\ntransportation\tspells for getting from here to there\nweather         spells for conjuring and mastering the elements\n"
+      "text": "Clerics are the most defensively orientated of all the classes.  Most of their\nspells focus on healing or defending the faithful, with their few combat spells\nbeing far less powerful than those of mages. However, clerics are the best \nclass by far at healing magics, and they posess an impressive area of\nprotective magics, as well as fair combat prowess.\n\nAll clerics begin with skill in the mace.  Other weapon or shield skills must\nbe purchased, many at a very dear cost.  The default skill selection for \nclerics is as follows:\n\nskills:\nflail\t\tthe proper use of flails\n\nspell groups:\nattack\t\ta selection of offensive magics\ncreation\tthe making of physical objects, such as food and water\ncurative\tspells that cure the sick and feeble of their ailments\nbenedictions\tpowerful magics that grant the blessings of the gods\ndetection\tinformational magics, such as detect magic and identify\nhealing\t\tspells for treating wounds, from scratches to death blows\nmaladictions\tan assortment of curses\nprotective\tdefensive magics, including the powerful sanctuary spell\ntransportation\tspells for getting from here to there\nweather         spells for conjuring and mastering the elements\n",
+      "hide_keywords": true
     },
     {
       "keyword": "THIEF 'THIEF BASICS' 'THIEF DEFAULT'",
-      "level": -1,
-      "text": "Thieves are a marginal class. They do few things better than any other class,\nbut have the widest range of skills available.  Thieves are specialists at\nthievery and covert actions, being capable of entering areas undetected where\nmore powerful adventurers would fear to tread.  They are better fighters than\nclerics, but lack the wide weapon selection of warriors.\n\nAll thieves begin with the dagger combat skill, and are learned in steal as \nwell.  Any other weapon skills must be purchased, unless the default selection\nis chosen.  This default skill package includes:\n\nskills:\nmace\t\tthe use of maces and other blunt weapons\nsword\t\tswordplay and fencing\nbackstab\tthe art of hitting your opponent by surprise\ndisarm\t\tused to deprive your opponent of his weapon\ndodge\t\tthe best way to take a punch is not to be there\nsecond attack\twith training, the skilled thief can hit twice as fast\ntrip\t\ta good way to introduce an opponent to the floor\nhide\t\tthe art of remaining undetected in a room\npeek\t\tused to look into a person's belongings\npick lock\ta useful skill for breaking and entering\nsneak\t\twith this skill, a thief can walk into a room undetected\n"
+      "text": "Thieves are a marginal class. They do few things better than any other class,\nbut have the widest range of skills available.  Thieves are specialists at\nthievery and covert actions, being capable of entering areas undetected where\nmore powerful adventurers would fear to tread.  They are better fighters than\nclerics, but lack the wide weapon selection of warriors.\n\nAll thieves begin with the dagger combat skill, and are learned in steal as \nwell.  Any other weapon skills must be purchased, unless the default selection\nis chosen.  This default skill package includes:\n\nskills:\nmace\t\tthe use of maces and other blunt weapons\nsword\t\tswordplay and fencing\nbackstab\tthe art of hitting your opponent by surprise\ndisarm\t\tused to deprive your opponent of his weapon\ndodge\t\tthe best way to take a punch is not to be there\nsecond attack\twith training, the skilled thief can hit twice as fast\ntrip\t\ta good way to introduce an opponent to the floor\nhide\t\tthe art of remaining undetected in a room\npeek\t\tused to look into a person's belongings\npick lock\ta useful skill for breaking and entering\nsneak\t\twith this skill, a thief can walk into a room undetected\n",
+      "hide_keywords": true
     },
     {
       "keyword": "WARRIOR 'WARRIOR BASICS' 'WARRIOR DEFAULT'",
-      "level": -1,
-      "text": "Warriors live for combat and the thrill of battle. They are the best fighters\nof all the classes, but lack the subtle skills of thieves and the magical\ntalents of mages and priests.  Warriors are best for those who don't mind\ntaking the direct approach, even when another method might be called for.\n\nWarriors begin with skill in the sword, and gain a second attack in combat.\nOther weapon skills may be purchased cheaply, or gained in the default skill\npackage, which includes the following:\n\nskills:\nweaponsmaster\tthis group provides knowledge of all weapon types\nshield block\tthe art of parrying with a shield\nbash\t\ta forceful rush with the body, designed to flatten your foes\nenhanced damage\tthis skill multiplies your damage in battle\nparry\t\tthe art of parrying with weapons\nrescue\t\tallows you to take the blows aimed for a companion\nthird attack\tallows the skilled warrior to land three blows in one round\n"
+      "text": "Warriors live for combat and the thrill of battle. They are the best fighters\nof all the classes, but lack the subtle skills of thieves and the magical\ntalents of mages and priests.  Warriors are best for those who don't mind\ntaking the direct approach, even when another method might be called for.\n\nWarriors begin with skill in the sword, and gain a second attack in combat.\nOther weapon skills may be purchased cheaply, or gained in the default skill\npackage, which includes the following:\n\nskills:\nweaponsmaster\tthis group provides knowledge of all weapon types\nshield block\tthe art of parrying with a shield\nbash\t\ta forceful rush with the body, designed to flatten your foes\nenhanced damage\tthis skill multiplies your damage in battle\nparry\t\tthe art of parrying with weapons\nrescue\t\tallows you to take the blows aimed for a companion\nthird attack\tallows the skilled warrior to land three blows in one round\n",
+      "hide_keywords": true
     },
     {
       "keyword": "EXOTIC WEAPONS WEAPON WEAPONSMASTER AXE DAGGER FLAIL MACE POLEARM SPEAR SWORD WHIP",
-      "level": -1,
-      "text": "Each weapon skill applies to a specific group of armaments, and determines how\nwell a character fights with a particular weapon.  The weaponsmaster group\nprovides talent in all weapons (save exotics), from chair legs to halberds.\nIf the character has the parry skill as well, he can parry incoming attacks.\nThe chance of parrying is best if the character in question is skilled at \nboth his weapon and his opponent's.\n\nThe weapon skills consist of the following:\n\nweaponsmaster\tskill group of all weapons listed below (save exotic weaponry)\naxe\t\tthe use of axes, ranging from hand to great (but not halberds)\ndagger\t\tthe use of knives and daggers, and other stabbing weapons\nflail\t\tskill in ball-and-chain type weapons\nmace\t\tthis skill includes clubs and hammers as well as maces\npolearm\t\tthe use of pole weapons (except spears), including halberds\nspear\t\tthis skill covers both spears and staves, but not polearms\nsword\t\tthe warrior's standby, from rapier to claymore\nwhip\t\tthe use of whips, chains, and bullwhips\nexotic\t\tthe use of strange magical weapons\n\nThe exotic skill cannot be purchased, and is dependent solely upon level.\n"
+      "text": "Each weapon skill applies to a specific group of armaments, and determines how\nwell a character fights with a particular weapon.  The weaponsmaster group\nprovides talent in all weapons (save exotics), from chair legs to halberds.\nIf the character has the parry skill as well, he can parry incoming attacks.\nThe chance of parrying is best if the character in question is skilled at \nboth his weapon and his opponent's.\n\nThe weapon skills consist of the following:\n\nweaponsmaster\tskill group of all weapons listed below (save exotic weaponry)\naxe\t\tthe use of axes, ranging from hand to great (but not halberds)\ndagger\t\tthe use of knives and daggers, and other stabbing weapons\nflail\t\tskill in ball-and-chain type weapons\nmace\t\tthis skill includes clubs and hammers as well as maces\npolearm\t\tthe use of pole weapons (except spears), including halberds\nspear\t\tthis skill covers both spears and staves, but not polearms\nsword\t\tthe warrior's standby, from rapier to claymore\nwhip\t\tthe use of whips, chains, and bullwhips\nexotic\t\tthe use of strange magical weapons\n\nThe exotic skill cannot be purchased, and is dependent solely upon level.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'SHIELD BLOCK'",
-      "level": -1,
-      "text": "Shield block is a rather fancy name for the art of parrying with a shield.\nCharacters with no shield block skill will not be able to defend themselves\nwell with a shield.  All classes may learn shield block, but only warriors and\nclerics are good at it.  Beware, flails ignore shield blocking attempts, and\nwhips have an easier time getting around them.  Axes may split shields in two.\n"
+      "text": "Shield block is a rather fancy name for the art of parrying with a shield.\nCharacters with no shield block skill will not be able to defend themselves\nwell with a shield.  All classes may learn shield block, but only warriors and\nclerics are good at it.  Beware, flails ignore shield blocking attempts, and\nwhips have an easier time getting around them.  Axes may split shields in two.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "ATTACK",
-      "level": -1,
-      "text": "The attack spells are essentially powerful curses, fueled by divine energy\nrather than magical power (like the combat spells are). They are less powerful\nthan the combat spells, but can still deal out a stinging blow.  Mages and \nthieves cannot use this group.  The attack spell group consists of the \nfollowing spells:\n\ndemonfire\ta powerful, but very evil, spell\ndispel evil\ttorments evil foes\ndispel good\tcalls down unholy power on good creatures\nearthquake\tbrings the power of earth to bear against your foes\nflamestrike\tsends a column of flame from the heavens\nheat metal\theats metal equipment to searing tempatures\nray of truth\tsends forth a blinding ray of holy energy\n"
+      "text": "The attack spells are essentially powerful curses, fueled by divine energy\nrather than magical power (like the combat spells are). They are less powerful\nthan the combat spells, but can still deal out a stinging blow.  Mages and \nthieves cannot use this group.  The attack spell group consists of the \nfollowing spells:\n\ndemonfire\ta powerful, but very evil, spell\ndispel evil\ttorments evil foes\ndispel good\tcalls down unholy power on good creatures\nearthquake\tbrings the power of earth to bear against your foes\nflamestrike\tsends a column of flame from the heavens\nheat metal\theats metal equipment to searing tempatures\nray of truth\tsends forth a blinding ray of holy energy\n",
+      "hide_keywords": true
     },
     {
       "keyword": "BEGUILING",
-      "level": -1,
-      "text": "This insideous spell group is used to invade the minds of others.  It consists\nof various charming magics, well suited for turning your foes to your cause.\nOnly mages and thieves have access to the beguiling magics, which consist of\nthe following:\n\ncalm            if successful, stops all fighting in the room\ncharm person\tturns an enemy into a trusted friend\nsleep\t\tputs a foe into enchanted slumber\n"
+      "text": "This insideous spell group is used to invade the minds of others.  It consists\nof various charming magics, well suited for turning your foes to your cause.\nOnly mages and thieves have access to the beguiling magics, which consist of\nthe following:\n\ncalm            if successful, stops all fighting in the room\ncharm person\tturns an enemy into a trusted friend\nsleep\t\tputs a foe into enchanted slumber\n",
+      "hide_keywords": true
     },
     {
       "keyword": "BENEDICTIONS",
-      "level": -1,
-      "text": "Benedictions are priestly spells, used to bestow divine favor upon your allies.\nThey are often restricted to those of like alignment.  Only clerics and \nwarriors may use these spells.  The benedictions spell group consists of the\nfollowing:\n\nbless\t\tbestows divine favor upon the target\ncalm\t\tif successful, stops all fighting in the room\nfrenzy\t\tputs the recipient into beserker rage\nholy word\taids your allies while calling divine wrath upon your foes\nremove curse\tremoves malevolent magic from players and items\n"
+      "text": "Benedictions are priestly spells, used to bestow divine favor upon your allies.\nThey are often restricted to those of like alignment.  Only clerics and \nwarriors may use these spells.  The benedictions spell group consists of the\nfollowing:\n\nbless\t\tbestows divine favor upon the target\ncalm\t\tif successful, stops all fighting in the room\nfrenzy\t\tputs the recipient into beserker rage\nholy word\taids your allies while calling divine wrath upon your foes\nremove curse\tremoves malevolent magic from players and items\n",
+      "hide_keywords": true
     },
     {
       "keyword": "COMBAT",
-      "level": -1,
-      "text": "These sorcerous spells are, in the words of one famous mage, just 'more ways to\ntoss energy around'.  They are the most powerful of the damaging spells, and\nconsidered an essential part of most wizards' collections. Clerics and thieves\ndo not have access to these spells.  In order of power, the combat spell group\ncontains the following magics:\n\nmagic missile\tsend a weak energy bolt into a foe\nchill touch\tweakens your enemy with a frigid grasp\nburning hands\tsends a blast of fire into your foe\nshocking grasp\tsends a powerful jolt into a foe\nlightning bolt\tsends forth a single bolt of lightning into an enemy\ncolour spray\tblasts your opponent with a rainbow spray, which may blind him\nfireball\ta powerful spell, great for burning your enemy to ashes\nacid blast\tsends forth a stream of acid to eradicate your foes\nchain lightning\tsends lightning bolts arcing through foes \n"
+      "text": "These sorcerous spells are, in the words of one famous mage, just 'more ways to\ntoss energy around'.  They are the most powerful of the damaging spells, and\nconsidered an essential part of most wizards' collections. Clerics and thieves\ndo not have access to these spells.  In order of power, the combat spell group\ncontains the following magics:\n\nmagic missile\tsend a weak energy bolt into a foe\nchill touch\tweakens your enemy with a frigid grasp\nburning hands\tsends a blast of fire into your foe\nshocking grasp\tsends a powerful jolt into a foe\nlightning bolt\tsends forth a single bolt of lightning into an enemy\ncolour spray\tblasts your opponent with a rainbow spray, which may blind him\nfireball\ta powerful spell, great for burning your enemy to ashes\nacid blast\tsends forth a stream of acid to eradicate your foes\nchain lightning\tsends lightning bolts arcing through foes \n",
+      "hide_keywords": true
     },
     {
       "keyword": "CREATION",
-      "level": -1,
-      "text": "The creation spell group is used to create objects, of temporary or permanent\nduration.  Skill creators can travel without food or drink, and use their \npowers to create nourishment as required.  All classes may become learned in\nthis group, which contains these spells:\n\ncontinual light\tcreates an eternal light source\ncreate food\tproduces a nourishing mushroom\ncreate rose\tcreates a beautiful red rose\ncreate spring\tcalls forth a small but pure spring from the ground\ncreate water\tfills any available container with water\nfloating disc\tcreates a floating disc of force perfect for hauling treasure\n"
+      "text": "The creation spell group is used to create objects, of temporary or permanent\nduration.  Skill creators can travel without food or drink, and use their \npowers to create nourishment as required.  All classes may become learned in\nthis group, which contains these spells:\n\ncontinual light\tcreates an eternal light source\ncreate food\tproduces a nourishing mushroom\ncreate rose\tcreates a beautiful red rose\ncreate spring\tcalls forth a small but pure spring from the ground\ncreate water\tfills any available container with water\nfloating disc\tcreates a floating disc of force perfect for hauling treasure\n",
+      "hide_keywords": true
     },
     {
       "keyword": "CURATIVE",
-      "level": -1,
-      "text": "The curative spells are used to heal various unpleasant conditions that can\nbefall an adventurer.   For healing of damage, see the healing spell group.\nCurative spells cannot be used by mages or thieves.\n\ncure blindness\trestored sight to the blind\ncure disease\theals the plague\ncure poison\tremoves the harmful effects of poison\n"
+      "text": "The curative spells are used to heal various unpleasant conditions that can\nbefall an adventurer.   For healing of damage, see the healing spell group.\nCurative spells cannot be used by mages or thieves.\n\ncure blindness\trestored sight to the blind\ncure disease\theals the plague\ncure poison\tremoves the harmful effects of poison\n",
+      "hide_keywords": true
     },
     {
       "keyword": "DETECTION",
-      "level": -1,
-      "text": "The detection spells have may uses, all related to gathering information. They\ncan be used to see hidden objects, give information about treasure, or even\nscry out the true nature of your foe.  All classes except warriors can use \ndetection spells.\n\ndetect evil\treveals the aura of evil monsters\ndetect good\tsimilar to above, only for good monsters\ndetect hidden\tshows the whereabouts of hidden foes\ndetect invis\tallows the caster to see the unseeable\ndetect magic\treveals magical auras to the caster\ndetect poison\tdetermines if food is safe to eat\nfarsight\tsearches for living beings near the caster\nidentify\tgives information about the nature of an object\nknow alignment\tdetermines the moral character of a monster or person\nlocate object\tfinds a specific item\n"
+      "text": "The detection spells have may uses, all related to gathering information. They\ncan be used to see hidden objects, give information about treasure, or even\nscry out the true nature of your foe.  All classes except warriors can use \ndetection spells.\n\ndetect evil\treveals the aura of evil monsters\ndetect good\tsimilar to above, only for good monsters\ndetect hidden\tshows the whereabouts of hidden foes\ndetect invis\tallows the caster to see the unseeable\ndetect magic\treveals magical auras to the caster\ndetect poison\tdetermines if food is safe to eat\nfarsight\tsearches for living beings near the caster\nidentify\tgives information about the nature of an object\nknow alignment\tdetermines the moral character of a monster or person\nlocate object\tfinds a specific item\n",
+      "hide_keywords": true
     },
     {
       "keyword": "DRACONIAN",
-      "level": -1,
-      "text": "The Draconian spell group deals with the magic of dragons -- in this case, \nbringing forth the devastating power of their breath weapons upon your foes.\nOnly mages have the mental training necessary to cast these spells, and few\nof them ever reach the level of mastery required to use them.\n\nacid breath\t uses the black dragon's attack upon an enemy\nfire breath\t calls forth the flames of a red dragon\nfrost breath\t drains the life from a foe with the power a white dragon\ngas breath\t suffocates your enemies with poison gas\nlightning breath summons the electrical fury of a blue dragon \n"
+      "text": "The Draconian spell group deals with the magic of dragons -- in this case, \nbringing forth the devastating power of their breath weapons upon your foes.\nOnly mages have the mental training necessary to cast these spells, and few\nof them ever reach the level of mastery required to use them.\n\nacid breath\t uses the black dragon's attack upon an enemy\nfire breath\t calls forth the flames of a red dragon\nfrost breath\t drains the life from a foe with the power a white dragon\ngas breath\t suffocates your enemies with poison gas\nlightning breath summons the electrical fury of a blue dragon \n",
+      "hide_keywords": true
     },
     {
       "keyword": "ENCHANTMENT",
-      "level": -1,
-      "text": "The enchantment spell group is used to imbue items with magical properties.\nCurrently, this spell group consists of enchant weapon and enchant armor, \nalthough more will be added in the future.  Only mages may enchant.\n\nenchant weapon\tincreases the hit and damage bonuses of a weapon\nenchant armor\tincreases the protective value of armor\nfireproof       shields items from the harmful effects of fire and acid\nrecharge\trestores power to a depleted wand or staff\n"
+      "text": "The enchantment spell group is used to imbue items with magical properties.\nCurrently, this spell group consists of enchant weapon and enchant armor, \nalthough more will be added in the future.  Only mages may enchant.\n\nenchant weapon\tincreases the hit and damage bonuses of a weapon\nenchant armor\tincreases the protective value of armor\nfireproof       shields items from the harmful effects of fire and acid\nrecharge\trestores power to a depleted wand or staff\n",
+      "hide_keywords": true
     },
     {
       "keyword": "ENHANCEMENT",
-      "level": -1,
-      "text": "The enhancement spells improve upon the body's pontential, allowing feats of\nsuperhuman strength and speed.  However, these spells may often have harmful\neffects upon the recipient.\n\ngiant strength\tgrants increased strength\nhaste\t\tdoubles the speed of the target, but slows down healing\ninfravision\tallows monsters to be seen in the dark\nrefresh\t\trestores energy to tired adventurers\n"
+      "text": "The enhancement spells improve upon the body's pontential, allowing feats of\nsuperhuman strength and speed.  However, these spells may often have harmful\neffects upon the recipient.\n\ngiant strength\tgrants increased strength\nhaste\t\tdoubles the speed of the target, but slows down healing\ninfravision\tallows monsters to be seen in the dark\nrefresh\t\trestores energy to tired adventurers\n",
+      "hide_keywords": true
     },
     {
       "keyword": "HARMFUL",
-      "level": -1,
-      "text": "This spell group is the opposite of healing.  The harmful spells are designed\nto tear flesh from bone, rupture arteries, and generally turn the body against\nitself.  Only priests and warriors may use this spell group.\nIn order of power, the harmful spells are:\n\ncause light\tinflicts minor wounds on an enemy\ncause serious\tinflicts wounds on a foe\ncause critical  causes major damage to the target\nharm\t\tthe most deadly harmful spell\n"
+      "text": "This spell group is the opposite of healing.  The harmful spells are designed\nto tear flesh from bone, rupture arteries, and generally turn the body against\nitself.  Only priests and warriors may use this spell group.\nIn order of power, the harmful spells are:\n\ncause light\tinflicts minor wounds on an enemy\ncause serious\tinflicts wounds on a foe\ncause critical  causes major damage to the target\nharm\t\tthe most deadly harmful spell\n",
+      "hide_keywords": true
     },
     {
       "keyword": "HEALING",
-      "level": -1,
-      "text": "The healing spells are used to cure the wounds that adventurers inevitably\nsuffer in battle.  For curing other conditions, such as poison, see the\ncurative spell group.  Only warriors and priests have access to this group.\nIn order of power, the healing spells are:\n\ncure light\theals minor wounds\nrefresh\t\trestores vigor to a tired adventurer\ncure serious\theals wounds\ncure critical\tcloses all but the worst wounds\nheal\t\tthe most powerful healing spell\nmass healing\tcasts a heal spell on each player in the room\n"
+      "text": "The healing spells are used to cure the wounds that adventurers inevitably\nsuffer in battle.  For curing other conditions, such as poison, see the\ncurative spell group.  Only warriors and priests have access to this group.\nIn order of power, the healing spells are:\n\ncure light\theals minor wounds\nrefresh\t\trestores vigor to a tired adventurer\ncure serious\theals wounds\ncure critical\tcloses all but the worst wounds\nheal\t\tthe most powerful healing spell\nmass healing\tcasts a heal spell on each player in the room\n",
+      "hide_keywords": true
     },
     {
       "keyword": "ILLUSION",
-      "level": -1,
-      "text": "The illusions spells are dedicated to deception and trickery.  They can be\nused to mask appearances, or create distractions for the party.  Currently,\nthe illusion group is very small, but it will be expanded in the future.\nOnly thieves and mages can cast illusion spells, which consist of the \nfollowing:\n\ninvis\t\tturns the target invisible\nmass invis\tturns the caster's group invisible\nventriloquate\tallows the caster to put words in someone's mouth\n"
+      "text": "The illusions spells are dedicated to deception and trickery.  They can be\nused to mask appearances, or create distractions for the party.  Currently,\nthe illusion group is very small, but it will be expanded in the future.\nOnly thieves and mages can cast illusion spells, which consist of the \nfollowing:\n\ninvis\t\tturns the target invisible\nmass invis\tturns the caster's group invisible\nventriloquate\tallows the caster to put words in someone's mouth\n",
+      "hide_keywords": true
     },
     {
       "keyword": "MALADICTIONS",
-      "level": -1,
-      "text": "Maladictions are a group of curses and other baneful spells, designed to\ncripple, inconvenience, or torture, rather than kill outright.  These spells\nmay be cast by any class.\n\nblindess\tstrikes the target blind\ncurse\t\tprevents recalling and weakens the target in combat\nenergy drain\tdrains experience and mana, while strengthening the caster\nplague\t\tcauses the target to suffer a slow, painful death from plague\npoison\t\tweaker than plague, but often fatal\nslow\t\tslows your enemies down, reducing their rate of attack\t\nweaken\t\tdrains the strength of the target\n"
+      "text": "Maladictions are a group of curses and other baneful spells, designed to\ncripple, inconvenience, or torture, rather than kill outright.  These spells\nmay be cast by any class.\n\nblindess\tstrikes the target blind\ncurse\t\tprevents recalling and weakens the target in combat\nenergy drain\tdrains experience and mana, while strengthening the caster\nplague\t\tcauses the target to suffer a slow, painful death from plague\npoison\t\tweaker than plague, but often fatal\nslow\t\tslows your enemies down, reducing their rate of attack\t\nweaken\t\tdrains the strength of the target\n",
+      "hide_keywords": true
     },
     {
       "keyword": "PROTECTIVE",
-      "level": -1,
-      "text": "The protective spells are used to shield against harm, whether from spells or\nphysical attack.  They range from the weak armor spell to the sought-after\nsanctuary charm.  Also included in this group are several spells for dispeling\nhostile magics. Any class may use this group, which consists of the following \nspells:\n\narmor\t\tprovides the target with an extra layer of defense\ncancellation\ta powerful dispel, used for removing spells from friends\ndispel magic\tremoves spells from enemies, not as effective as cancel\nfireproof\tshields items from the harmful effects of fire and acid\nprotection evil\tprovides defense from the attacks of evil creatures\nprotection good protects from the attacks of good beings\nsanctuary\treduces all damage taken by the recipient by half\nshield\t\tputs a shimmering shield between you and your enemies\nstoneskin\tturns skin hard as stone, providing a huge armor boost\n"
+      "text": "The protective spells are used to shield against harm, whether from spells or\nphysical attack.  They range from the weak armor spell to the sought-after\nsanctuary charm.  Also included in this group are several spells for dispeling\nhostile magics. Any class may use this group, which consists of the following \nspells:\n\narmor\t\tprovides the target with an extra layer of defense\ncancellation\ta powerful dispel, used for removing spells from friends\ndispel magic\tremoves spells from enemies, not as effective as cancel\nfireproof\tshields items from the harmful effects of fire and acid\nprotection evil\tprovides defense from the attacks of evil creatures\nprotection good protects from the attacks of good beings\nsanctuary\treduces all damage taken by the recipient by half\nshield\t\tputs a shimmering shield between you and your enemies\nstoneskin\tturns skin hard as stone, providing a huge armor boost\n",
+      "hide_keywords": true
     },
     {
       "keyword": "TRANSPORTATION",
-      "level": -1,
-      "text": "The transportation group is used for travel, whether by flight, magical\nteleportation, or walking through walls.  All classes may learn these spells,\nwhich are among the most useful in the game.\n\nfly\t\tallows the target to fly over nearly all obstacles\ngate\t\ttransports the caster to the target\nnexus\t\tforms a two-way portal to a far off destination\npass door\tallows the caster to walk through walls\nportal\t\tcreates a one-way portal to a destination\nsummon\t\ttransports the target to the caster\nteleport\tsends the target to a random location\nword of recall\ttransports the caster to safety in Midgaard\n"
+      "text": "The transportation group is used for travel, whether by flight, magical\nteleportation, or walking through walls.  All classes may learn these spells,\nwhich are among the most useful in the game.\n\nfly\t\tallows the target to fly over nearly all obstacles\ngate\t\ttransports the caster to the target\nnexus\t\tforms a two-way portal to a far off destination\npass door\tallows the caster to walk through walls\nportal\t\tcreates a one-way portal to a destination\nsummon\t\ttransports the target to the caster\nteleport\tsends the target to a random location\nword of recall\ttransports the caster to safety in Midgaard\n",
+      "hide_keywords": true
     },
     {
       "keyword": "WEATHER",
-      "level": -1,
-      "text": "These spells allow the caster to manipulate local weather conditions, as well\nas summon fog clouds, lightning, or even electrical glows.  This group is\nusable by all classes.\n\ncall lightning\tsummons a huge bolt from the heavens, if the weather is right\ncontrol weather\tchanges the weather in the manner desired by the caster\nfaerie fire\tsurrounds the target in a glowing aura\nfaerie fog\treveals all hidden creatures in the room\nlightning bolt\tsends a bolt of electricity into the target\n\n(the weather command, unrelated to this group, shows local weather conditions)\n"
+      "text": "These spells allow the caster to manipulate local weather conditions, as well\nas summon fog clouds, lightning, or even electrical glows.  This group is\nusable by all classes.\n\ncall lightning\tsummons a huge bolt from the heavens, if the weather is right\ncontrol weather\tchanges the weather in the manner desired by the caster\nfaerie fire\tsurrounds the target in a glowing aura\nfaerie fog\treveals all hidden creatures in the room\nlightning bolt\tsends a bolt of electricity into the target\n\n(the weather command, unrelated to this group, shows local weather conditions)\n",
+      "hide_keywords": true
     },
     {
       "keyword": "BACKSTAB",
-      "level": -1,
-      "text": "Backstab is the favored attack of  thieves, murderers, and other rogues.  It \ncan be used with any weapon type, but is most effective with piercing weapons.\nThe damage inflicted by a backstab is determined by the attacker's level, his\nweapon skill, his backstab skill, and the power of his opponent.\nOnly thieves may learn the backstab.\n"
+      "text": "Backstab is the favored attack of  thieves, murderers, and other rogues.  It \ncan be used with any weapon type, but is most effective with piercing weapons.\nThe damage inflicted by a backstab is determined by the attacker's level, his\nweapon skill, his backstab skill, and the power of his opponent.\nOnly thieves may learn the backstab.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "BASH",
-      "level": -1,
-      "text": "The bash skill is a warrior talent, a brute-force attack designed to knock\nyour foe to his knees.  Its success depends on many factors, including the\nbash rating, your weight, and the size of your opponent.  Bashing a dragon\nis not generally a wise idea.\n"
+      "text": "The bash skill is a warrior talent, a brute-force attack designed to knock\nyour foe to his knees.  Its success depends on many factors, including the\nbash rating, your weight, and the size of your opponent.  Bashing a dragon\nis not generally a wise idea.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "BERSERK",
-      "level": -1,
-      "text": "Only powerful warriors can master berserking, the ability to enter insane rage\nin combat.  Its effects are not altogether unlike the frenzy spell -- a huge\nsurge of combat prowess, coupled with a disregard for personal safety.  \nBerserking warriors are more resistant to the effects of magic.\n"
+      "text": "Only powerful warriors can master berserking, the ability to enter insane rage\nin combat.  Its effects are not altogether unlike the frenzy spell -- a huge\nsurge of combat prowess, coupled with a disregard for personal safety.  \nBerserking warriors are more resistant to the effects of magic.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "DIRT 'DIRT KICKING'",
-      "level": -1,
-      "text": "Consider by some to be a cowardly skill, dirt kicking gives the clever \ncombatant a chance to blind his opponent by casting dirt into his eyes.  The\nblindness does not last long, but can provide an edge in combat.  Dexterity\nhelps in hitting or avoiding a dirt kick.  Only warriors and thieves may\nlearn this skill.\n"
+      "text": "Consider by some to be a cowardly skill, dirt kicking gives the clever \ncombatant a chance to blind his opponent by casting dirt into his eyes.  The\nblindness does not last long, but can provide an edge in combat.  Dexterity\nhelps in hitting or avoiding a dirt kick.  Only warriors and thieves may\nlearn this skill.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "DISARM",
-      "level": -1,
-      "text": "Disarm is a somewhat showy and unreliable skill, designed to relieve your\nopponent of his weapon.  The best possible chance of disarming occurs when you\nare skilled both your own and your opponent's weapon. Only talented thieves\nand warriors may learn this skill.\n"
+      "text": "Disarm is a somewhat showy and unreliable skill, designed to relieve your\nopponent of his weapon.  The best possible chance of disarming occurs when you\nare skilled both your own and your opponent's weapon. Only talented thieves\nand warriors may learn this skill.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "DODGE",
-      "level": -1,
-      "text": "In the words of one wise warrior, 'the best way to block a blow is to not\nbe where it lands'.  The dodge skill honors this tradition, by improving the\ncharacter's natural agility to the point where many blows will miss the \ntarget. The chance of dodging is also affected by the dexterity of the\nattacker and the target.  Any class may learn dodging.\n"
+      "text": "In the words of one wise warrior, 'the best way to block a blow is to not\nbe where it lands'.  The dodge skill honors this tradition, by improving the\ncharacter's natural agility to the point where many blows will miss the \ntarget. The chance of dodging is also affected by the dexterity of the\nattacker and the target.  Any class may learn dodging.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'ENHANCED DAMAGE'",
-      "level": -1,
-      "text": "Warriors and skilled thieves can become skilled enough in combat that they are\nable to inflict more damage than other classes.  Enhanced damage is checked\nfor with each hit, although with a low skill, the chance of receiving a bonus\nis very low indeed.\n"
+      "text": "Warriors and skilled thieves can become skilled enough in combat that they are\nable to inflict more damage than other classes.  Enhanced damage is checked\nfor with each hit, although with a low skill, the chance of receiving a bonus\nis very low indeed.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "ENVENOM",
-      "level": -1,
-      "text": "The envenom skill is a cowardly skill practiced only by thieves, designed to\nwin a battle through alchemy and treachery rather than skill or strength.\nOr, put another way, it's a skill used by the smart to kill the foolish.\nFood, drink, and weapons may be envenomed, with varying effects. Poisoned\nfood or drink puts a mild poison spell on the consumer, and is unlikely to\nbe more than a minor inconvience (after all, the typical adventurer could\ndrink sewer water with only a trace of the runs).  A poisoned weapon, on\nthe other hand, can inflict serious damage on an opponent as the poison \nburns through his bloodstream.  But be careful, blade venom evaporates \nquickly and is rendered almost powerless by repeated blows in combat.\n"
+      "text": "The envenom skill is a cowardly skill practiced only by thieves, designed to\nwin a battle through alchemy and treachery rather than skill or strength.\nOr, put another way, it's a skill used by the smart to kill the foolish.\nFood, drink, and weapons may be envenomed, with varying effects. Poisoned\nfood or drink puts a mild poison spell on the consumer, and is unlikely to\nbe more than a minor inconvience (after all, the typical adventurer could\ndrink sewer water with only a trace of the runs).  A poisoned weapon, on\nthe other hand, can inflict serious damage on an opponent as the poison \nburns through his bloodstream.  But be careful, blade venom evaporates \nquickly and is rendered almost powerless by repeated blows in combat.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'HAND TO HAND'",
-      "level": -1,
-      "text": "Hand to hand combat is a rare skill in the lands of Midgaard.  Learning this\nstyle of fighting gives the player a weapon even when disarmed -- bare hands.\nTrained hand to hand experts are far more effective than many swordsmen.\nClerics and warriors are the best at this skill, although thieves and mages\nmay also learn it.\n"
+      "text": "Hand to hand combat is a rare skill in the lands of Midgaard.  Learning this\nstyle of fighting gives the player a weapon even when disarmed -- bare hands.\nTrained hand to hand experts are far more effective than many swordsmen.\nClerics and warriors are the best at this skill, although thieves and mages\nmay also learn it.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "KICK",
-      "level": -1,
-      "text": "Kicking allows the adventurer to receive an extra attack in combat, a powerful\nkick. However, a failed kick may throw an unwary fighter off balance.  Fighters\nand clerics are the most skilled at kicking, although thieves may also learn\nit.\n"
+      "text": "Kicking allows the adventurer to receive an extra attack in combat, a powerful\nkick. However, a failed kick may throw an unwary fighter off balance.  Fighters\nand clerics are the most skilled at kicking, although thieves may also learn\nit.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "PARRY",
-      "level": -1,
-      "text": "If at first you fail to dodge, block it.  Parry is useful for deflecting \nattacks, and is succesful more often than dodge.  Parry requires a weapon for\nfull success, the hand-to-hand skill may also be used, but results in reduced\ndamage instead of no damage.  The best chance of parrying occurs when the\ndefender is skilled in both his and his opponent's weapon type.\n"
+      "text": "If at first you fail to dodge, block it.  Parry is useful for deflecting \nattacks, and is succesful more often than dodge.  Parry requires a weapon for\nfull success, the hand-to-hand skill may also be used, but results in reduced\ndamage instead of no damage.  The best chance of parrying occurs when the\ndefender is skilled in both his and his opponent's weapon type.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "RESCUE",
-      "level": -1,
-      "text": "A friend in need is a friend indeed.  And when in combat, a warrior with\nthe rescue skill is just the friend you need.  Rescue allows you to intercede\nin combat, protecting weaker characters from bodily harm. Hopefully the\nfavor will be returned.  Success in rescuing depends on the skill rating, as\nwell as a comparision of level, dexterity, and speed between the character and\nthe target. (note: you rescue a friend, not the monster)\n"
+      "text": "A friend in need is a friend indeed.  And when in combat, a warrior with\nthe rescue skill is just the friend you need.  Rescue allows you to intercede\nin combat, protecting weaker characters from bodily harm. Hopefully the\nfavor will be returned.  Success in rescuing depends on the skill rating, as\nwell as a comparision of level, dexterity, and speed between the character and\nthe target. (note: you rescue a friend, not the monster)\n",
+      "hide_keywords": true
     },
     {
       "keyword": "TRIP",
-      "level": -1,
-      "text": "Back by popular demand.  Trip is a somewhat dastardly attack, and involves\nusing any one of a number of methods to bring your opponent down to the ground.\nTripping large monsters is generally not a good idea, and agile ones will\nfind the attack easy to avoid.  Thieves and warriors may learn trip.\n"
+      "text": "Back by popular demand.  Trip is a somewhat dastardly attack, and involves\nusing any one of a number of methods to bring your opponent down to the ground.\nTripping large monsters is generally not a good idea, and agile ones will\nfind the attack easy to avoid.  Thieves and warriors may learn trip.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'SECOND ATTACK'",
-      "level": -1,
-      "text": "Training in second attack allows the character a chance at additional strikes\nin combat -- allow a 100% second attack does NOT guarantee 2 attacks every\nround.  Any class may learn this skill, although clerics and mages have a \nvery hard time with it.\n"
+      "text": "Training in second attack allows the character a chance at additional strikes\nin combat -- allow a 100% second attack does NOT guarantee 2 attacks every\nround.  Any class may learn this skill, although clerics and mages have a \nvery hard time with it.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'THIRD ATTACK'",
-      "level": -1,
-      "text": "Training in third attack allows the character a chance at an additional strike\nin a combat, and increases the chance of a second attack as well.  Perfect\nthird attack does NOT assure three attacks per round.  Only warriors and highly\nskilled thieves may learn this skill.\n"
+      "text": "Training in third attack allows the character a chance at an additional strike\nin a combat, and increases the chance of a second attack as well.  Perfect\nthird attack does NOT assure three attacks per round.  Only warriors and highly\nskilled thieves may learn this skill.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "HIDE SNEAK",
-      "level": -1,
-      "text": "Hide and sneak are similar skills, both related to remaining undetected.\nHide has a very high chance of success, but only works for as long as the\ncharacter remains stationary.  Sneak may be used when moving (including to\nsneak by monsters), but has a lower chance of success.  Only warriors and\nthieves may learn these skills.\n"
+      "text": "Hide and sneak are similar skills, both related to remaining undetected.\nHide has a very high chance of success, but only works for as long as the\ncharacter remains stationary.  Sneak may be used when moving (including to\nsneak by monsters), but has a lower chance of success.  Only warriors and\nthieves may learn these skills.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'FAST HEALING'",
-      "level": -1,
-      "text": "The fast healing skill improves wound healing rates, whether walking, resting,\nor sleeping. It represents knowledge of healing herbs or just general \ntoughness and stamina.  Fast healing is checked every tick, and it is \npossible for it to fail.  All class may learn this skill, but mages find it\nvery difficult to master, due to their bookish lifestyle.\n"
+      "text": "The fast healing skill improves wound healing rates, whether walking, resting,\nor sleeping. It represents knowledge of healing herbs or just general \ntoughness and stamina.  Fast healing is checked every tick, and it is \npossible for it to fail.  All class may learn this skill, but mages find it\nvery difficult to master, due to their bookish lifestyle.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "LORE",
-      "level": -1,
-      "text": "Lore is a general skill, consisting of knowledge of myths and legends. Use\nof the lore skill gives a chance of obtaining information on an object,\nconcerning its power and uses.  It also may occasionally increase the value\nof an object, because more will be known about its worth.  All classes may\nlearn lore, although thieves are best at it, and warriors find it very hard\nto use.\n"
+      "text": "Lore is a general skill, consisting of knowledge of myths and legends. Use\nof the lore skill gives a chance of obtaining information on an object,\nconcerning its power and uses.  It also may occasionally increase the value\nof an object, because more will be known about its worth.  All classes may\nlearn lore, although thieves are best at it, and warriors find it very hard\nto use.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "HAGGLE HAGGLING",
-      "level": -1,
-      "text": "Haggling is an indispensable skill to the trader.  It allows a character to\nmatch wits with a merchant, seeking to get a better price for merchandise,\nor to buy at the lowest possible cost.  Unfortunately, most merchants are \nalready very skilled at haggling, so the untrainined adventurer had best \nguard his treasure closely.  Thieves are natural masters at haggling, \nalthough other classes may learn it as well.\n"
+      "text": "Haggling is an indispensable skill to the trader.  It allows a character to\nmatch wits with a merchant, seeking to get a better price for merchandise,\nor to buy at the lowest possible cost.  Unfortunately, most merchants are \nalready very skilled at haggling, so the untrainined adventurer had best \nguard his treasure closely.  Thieves are natural masters at haggling, \nalthough other classes may learn it as well.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "PEEK",
-      "level": -1,
-      "text": "The peek skill is useful for seeing what a player or monster is carrying,\nthe better to use the steal command with.  More intelligent characters are\nharder to peek at.  All characters may learn peek, but thieves are the most\ncommon practicioners.\n"
+      "text": "The peek skill is useful for seeing what a player or monster is carrying,\nthe better to use the steal command with.  More intelligent characters are\nharder to peek at.  All characters may learn peek, but thieves are the most\ncommon practicioners.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "PICK 'PICK LOCK'",
-      "level": -1,
-      "text": "Lock picking is one of the prime skills of thieves, allowing them to gain\naccess to many secured areas.  Lock picking chances are improved by  \nintelligence, and hindered by the difficulty of the lock. Other classes may\nlearn to pick locks, but they will never find it easy.\n"
+      "text": "Lock picking is one of the prime skills of thieves, allowing them to gain\naccess to many secured areas.  Lock picking chances are improved by  \nintelligence, and hindered by the difficulty of the lock. Other classes may\nlearn to pick locks, but they will never find it easy.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "MEDITATION",
-      "level": -1,
-      "text": "This skill is similar to fast healing, but relies on the concentration and\nmantras to increase mana recovery when the character is sleeping or resting.\nThieves and warriors, with their troubled minds and violent attitudes, have\nmuch trouble learning to meditate.\n"
+      "text": "This skill is similar to fast healing, but relies on the concentration and\nmantras to increase mana recovery when the character is sleeping or resting.\nThieves and warriors, with their troubled minds and violent attitudes, have\nmuch trouble learning to meditate.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "STEAL",
-      "level": -1,
-      "text": "Theft is the defining skill of the thief, and is only available to that class.\nIt allows items to be stolen from the inventory of monsters and characters,\nand even from shops!  But beware, shop keepers gaurd their merchandise \ncarefully, and attempting to steal from a character earns you a THIEF flag\nif you are caught (making you free game for killing).\n"
+      "text": "Theft is the defining skill of the thief, and is only available to that class.\nIt allows items to be stolen from the inventory of monsters and characters,\nand even from shops!  But beware, shop keepers gaurd their merchandise \ncarefully, and attempting to steal from a character earns you a THIEF flag\nif you are caught (making you free game for killing).\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'DETECT GOOD'",
-      "level": -1,
-      "text": "Syntax: cast 'detect good'\n \nThis spell enables the caster to detect good characters, which will\nreveal a characteristic golden aura.\n"
+      "text": "Syntax: cast 'detect good'\n \nThis spell enables the caster to detect good characters, which will\nreveal a characteristic golden aura.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'DISPEL GOOD'",
-      "level": -1,
-      "text": "Syntax: cast 'dispel good' <victim>\n \nDispel good brings forth evil energies that inflict horrific torment on \nthe pure of heart.  Good-aligned characters use this dark magic at their\nperil.\n"
+      "text": "Syntax: cast 'dispel good' <victim>\n \nDispel good brings forth evil energies that inflict horrific torment on \nthe pure of heart.  Good-aligned characters use this dark magic at their\nperil.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'RECHARGE'",
-      "level": -1,
-      "text": "Syntax: cast 'recharge' <item>\n\nThe recharge spell is used to restore energy to depleted wands and staves.\nFully exhausted items cannot be recharged, and the difficulty of the spell\nis proportional to the number of charges used.  Magic items can only be\nrecharged one time successfully.\n"
+      "text": "Syntax: cast 'recharge' <item>\n\nThe recharge spell is used to restore energy to depleted wands and staves.\nFully exhausted items cannot be recharged, and the difficulty of the spell\nis proportional to the number of charges used.  Magic items can only be\nrecharged one time successfully.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'DEMONFIRE'",
-      "level": -1,
-      "text": "Syntax: cast 'demonfire' <target>\n\nDemonfire is a spell of blackest evil, and as such can only be used by those\nwho follow the paths of darkness.  It conjures forth demonic spirits to \ninflict terrible wounds on the enemies of the caster.\n"
+      "text": "Syntax: cast 'demonfire' <target>\n\nDemonfire is a spell of blackest evil, and as such can only be used by those\nwho follow the paths of darkness.  It conjures forth demonic spirits to \ninflict terrible wounds on the enemies of the caster.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'RAY OF TRUTH'",
-      "level": -1,
-      "text": "Syntax: cast 'ray of truth' <target>\n\nRay of truth opens a portal to the planes of positive energy, bringing forth\na beam of light of sufficient purity to harm or or annihilate the servants\nof evil.  It cannot harm the pure of heart, and will turn and strike \ncasters who are tainted by evil.\n"
+      "text": "Syntax: cast 'ray of truth' <target>\n\nRay of truth opens a portal to the planes of positive energy, bringing forth\na beam of light of sufficient purity to harm or or annihilate the servants\nof evil.  It cannot harm the pure of heart, and will turn and strike \ncasters who are tainted by evil.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'PORTAL'",
-      "level": -1,
-      "text": "Syntax: cast 'portal' <target>\n\nThe portal spell is similar to gate, but creates a lasting one-way portal\nto the target creature, instead of transporting the caster.  Portals are\nentered using 'enter' or 'go' command, as in 'go portal'.  Portals cannot\nbe made to certain destinations, nor used to escape from gate-proof rooms.\nPortal requires a special source of power to be used, unfortunately the\nsecret of this material component has been lost...\n"
+      "text": "Syntax: cast 'portal' <target>\n\nThe portal spell is similar to gate, but creates a lasting one-way portal\nto the target creature, instead of transporting the caster.  Portals are\nentered using 'enter' or 'go' command, as in 'go portal'.  Portals cannot\nbe made to certain destinations, nor used to escape from gate-proof rooms.\nPortal requires a special source of power to be used, unfortunately the\nsecret of this material component has been lost...\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'NEXUS'",
-      "level": -1,
-      "text": "Syntax: cast 'nexus' <target>\n\nThis spell is virtually identical to portal (see 'help portal'), with the\nonly difference being that while portal creates a one-way gate, a nexus \nspell makes a two-sided gate.  It also lasts longer than the lower-powered\nportal spell.  Both spells require an additional power source, the secret\nof which has been lost...\n"
+      "text": "Syntax: cast 'nexus' <target>\n\nThis spell is virtually identical to portal (see 'help portal'), with the\nonly difference being that while portal creates a one-way gate, a nexus \nspell makes a two-sided gate.  It also lasts longer than the lower-powered\nportal spell.  Both spells require an additional power source, the secret\nof which has been lost...\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'HEAT METAL'",
-      "level": -1,
-      "text": "Syntax: cast 'heat metal' <target>\n\nHeat metal is a powerful clerical attack spell, with effects that vary \naccording to the armor of the victim.  It heats up the metal equipment\n(assumed to be all weapons and armor at this point in time) on the target,\ncausing him or her to drop them if possible, taking serious burns in the\nprocess (possibly fatal if the equipment is too heavy to remove easily).\nThis spell does no damage to creatures who are immune to fire.\n"
+      "text": "Syntax: cast 'heat metal' <target>\n\nHeat metal is a powerful clerical attack spell, with effects that vary \naccording to the armor of the victim.  It heats up the metal equipment\n(assumed to be all weapons and armor at this point in time) on the target,\ncausing him or her to drop them if possible, taking serious burns in the\nprocess (possibly fatal if the equipment is too heavy to remove easily).\nThis spell does no damage to creatures who are immune to fire.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'HOLY WORD'",
-      "level": -1,
-      "text": "Syntax: cast 'holy word'\n\nHoly word involves the invocation of the full power of a cleric's god, with\ndisasterous effects upon the enemies of the priest coupled with powerful\nblessings on the priest's allies.  All creatures of like alignment in the\nroom are blessed and filled with righteous divine wrath, while those of\nopposite morals (or both good and evil in the case of neutral priests)\nare struck down by holy (or unholy might) and cursed.  The cleric suffers\ngreatly from the strain of this spell, being left unable to move and \ndrained of vitality.  Experience loss is no longer associated with the spell.\n"
+      "text": "Syntax: cast 'holy word'\n\nHoly word involves the invocation of the full power of a cleric's god, with\ndisasterous effects upon the enemies of the priest coupled with powerful\nblessings on the priest's allies.  All creatures of like alignment in the\nroom are blessed and filled with righteous divine wrath, while those of\nopposite morals (or both good and evil in the case of neutral priests)\nare struck down by holy (or unholy might) and cursed.  The cleric suffers\ngreatly from the strain of this spell, being left unable to move and \ndrained of vitality.  Experience loss is no longer associated with the spell.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "FRENZY",
-      "level": -1,
-      "text": "Syntax: cast 'frenzy' <target>\n\nThe frenzy spell fills the target with righteous fury, greatly increasing\nhis or her attack skill and damaging capacity.  Unfortunately, this divine\nwrath is coupled with a tendency to ignore threats to personal safety, \nmaking the character easier to hit.  Frenzy provides immunity to the calm\nspell (see 'help calm'), and may only be used on those of the caster's \nalignment.\n"
+      "text": "Syntax: cast 'frenzy' <target>\n\nThe frenzy spell fills the target with righteous fury, greatly increasing\nhis or her attack skill and damaging capacity.  Unfortunately, this divine\nwrath is coupled with a tendency to ignore threats to personal safety, \nmaking the character easier to hit.  Frenzy provides immunity to the calm\nspell (see 'help calm'), and may only be used on those of the caster's \nalignment.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "CALM",
-      "level": -1,
-      "text": "Syntax: cast 'calm' \n\nOne of the most useful and often overlooked abilities of the master cleric is\nthe calm spell, which can put an end to all violence in a room.  Calmed\ncreatures will not attack of their own volition, and are at a disadvantage\nin combat as long as the spell soothes their minds.  The more violence \nactivity there is in a room, the harder the spell, and it is all or nothing --\neither all combat in the room is ended (with the exception of those who\nare immune to magic) or none is.\n"
+      "text": "Syntax: cast 'calm' \n\nOne of the most useful and often overlooked abilities of the master cleric is\nthe calm spell, which can put an end to all violence in a room.  Calmed\ncreatures will not attack of their own volition, and are at a disadvantage\nin combat as long as the spell soothes their minds.  The more violence \nactivity there is in a room, the harder the spell, and it is all or nothing --\neither all combat in the room is ended (with the exception of those who\nare immune to magic) or none is.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "HASTE",
-      "level": -1,
-      "text": "Syntax: cast 'haste' <target>\n\nThe haste spell increases the speed and agility of the recipient, allowing\nan extra attack (or even a backstab) in combat, and improving evasive\nabilities in combat.  However, it produces a great strain on the system,\nsuch that recuperative abilities are halved.  Haste is capable of negating\nthe slow spell. (see 'help slow').\n"
+      "text": "Syntax: cast 'haste' <target>\n\nThe haste spell increases the speed and agility of the recipient, allowing\nan extra attack (or even a backstab) in combat, and improving evasive\nabilities in combat.  However, it produces a great strain on the system,\nsuch that recuperative abilities are halved.  Haste is capable of negating\nthe slow spell. (see 'help slow').\n",
+      "hide_keywords": true
     },
     {
       "keyword": "SLOW",
-      "level": -1,
-      "text": "Syntax: cast 'slow' <target>\n\nDespite popular mythology, slow is not the opposite of haste, but is a spell\nwith it's own unique set of effects.  When cast on an unfortunate victim,\nit slows its movements, making it easier to hit and reducing its rate\nof attack.  The effect of slow also double movement costs and halve healing\nrates, due to reduced metabolism.\n"
+      "text": "Syntax: cast 'slow' <target>\n\nDespite popular mythology, slow is not the opposite of haste, but is a spell\nwith it's own unique set of effects.  When cast on an unfortunate victim,\nit slows its movements, making it easier to hit and reducing its rate\nof attack.  The effect of slow also double movement costs and halve healing\nrates, due to reduced metabolism.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "PLAGUE",
-      "level": -1,
-      "text": "Syntax: cast 'plague' <target>\n\nThe plague spell infests the target with a magical disease of great virulence,\nsapping its strength and causing horrific suffering, possibly leading to\ndeath.  It is a risky spell to use, as the contagion can spread like\nwildfire if the victim makes it to a populated area.\n"
+      "text": "Syntax: cast 'plague' <target>\n\nThe plague spell infests the target with a magical disease of great virulence,\nsapping its strength and causing horrific suffering, possibly leading to\ndeath.  It is a risky spell to use, as the contagion can spread like\nwildfire if the victim makes it to a populated area.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'CREATE ROSE'",
-      "level": -1,
-      "text": "Syntax: cast 'create rose'\n\nA romantic spell that creates a fragrant red rose, with utterly no game\nuse whatsoever.\n"
+      "text": "Syntax: cast 'create rose'\n\nA romantic spell that creates a fragrant red rose, with utterly no game\nuse whatsoever.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'PROTECTION GOOD' 'PROTECTION EVIL'",
-      "level": -1,
-      "text": "Syntax: cast 'protection evil' <target>\n\tcast 'protection good' <target>\n\nThe protection spells reduce damage taken from attackers of the appropriate\nethos, and improve saving throws against all forms of magic. They may not\nbe cast on others, and one person cannot carry both defenses at the same\ntime.\n"
+      "text": "Syntax: cast 'protection evil' <target>\n\tcast 'protection good' <target>\n\nThe protection spells reduce damage taken from attackers of the appropriate\nethos, and improve saving throws against all forms of magic. They may not\nbe cast on others, and one person cannot carry both defenses at the same\ntime.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'GIANT STRENGTH'",
-      "level": 0,
       "text": "Syntax: cast 'giant strength' <character>\n \nThis spell increases the strength of the target character.\n"
     },
     {
       "keyword": "'CHAIN LIGHTNING'",
-      "level": -1,
-      "text": "Syntax : cast 'chain lightning' <target>\n\nChain lightning is a deadly spell, producing a powerful bolt of lightning\nthat arcs from target to target in the room, until its force is fully\nexpended.  Allies of the caster may be hit by this spell if they are members \nof a clan, while the caster himself will not be struck unless no other\nviable target remains.  Chain lightning is most effective when used on\ngroups of creatures.\n"
+      "text": "Syntax : cast 'chain lightning' <target>\n\nChain lightning is a deadly spell, producing a powerful bolt of lightning\nthat arcs from target to target in the room, until its force is fully\nexpended.  Allies of the caster may be hit by this spell if they are members \nof a clan, while the caster himself will not be struck unless no other\nviable target remains.  Chain lightning is most effective when used on\ngroups of creatures.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "FARSIGHT",
-      "level": -1,
-      "text": "Syntax: cast 'farsight'\n\tcast 'farsight' <direction>\n\nThe farsight spell expands the caster's consciousness, allowing him or her\nto see far away beings like they were in the same room.  It takes intense\nconcentration, often leaving the caster helpless for several minutes.\nThe spell may be used for a general scan that reaches a short distance in\nall directions, or with a directional component to see creatures much\nfarther away.\n"
+      "text": "Syntax: cast 'farsight'\n\tcast 'farsight' <direction>\n\nThe farsight spell expands the caster's consciousness, allowing him or her\nto see far away beings like they were in the same room.  It takes intense\nconcentration, often leaving the caster helpless for several minutes.\nThe spell may be used for a general scan that reaches a short distance in\nall directions, or with a directional component to see creatures much\nfarther away.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "MASS HEALING",
-      "level": -1,
-      "text": "Syntax: cast 'mass healing' \n\nThe mass healing spell, as its name might suggest, performs a healing spell\non all players in the room.  It also throws in a refresh spell for good\nmeasure.\n"
+      "text": "Syntax: cast 'mass healing' \n\nThe mass healing spell, as its name might suggest, performs a healing spell\non all players in the room.  It also throws in a refresh spell for good\nmeasure.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "'FLOATING DISC'",
-      "level": -1,
-      "text": "Syntax: cast 'floating disc'\n\nThis useful spell creates a floating field of force which follows the caser\naround, allowing him or her to pile treasure high with no fear of weight\npenalties.  It lasts no more than twice the casters level in hours, and\nusually less.  It can hold 10 pounds per level of the caster, with a \nmaximum of five pounds per item.  The spell requires an open float location\non the character, and the only way to remove the disc is to die or allow it\nto run out of energy.\n"
+      "text": "Syntax: cast 'floating disc'\n\nThis useful spell creates a floating field of force which follows the caser\naround, allowing him or her to pile treasure high with no fear of weight\npenalties.  It lasts no more than twice the casters level in hours, and\nusually less.  It can hold 10 pounds per level of the caster, with a \nmaximum of five pounds per item.  The spell requires an open float location\non the character, and the only way to remove the disc is to die or allow it\nto run out of energy.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "FIREPROOF",
-      "level": -1,
-      "text": "Syntax: cast 'fireproof' <object>\n\nThe fireproof spell creates a short-lived protective aura around an object,\nto protect it from the harmful effects of acid and flame.  Items protected\nby this spell are not harmed by acid, fire, or the heat metal spell.\nAlthough inexpensive to use, the spell's short duration makes it impractical\nfor protecting large numbers of objects.\n"
+      "text": "Syntax: cast 'fireproof' <object>\n\nThe fireproof spell creates a short-lived protective aura around an object,\nto protect it from the harmful effects of acid and flame.  Items protected\nby this spell are not harmed by acid, fire, or the heat metal spell.\nAlthough inexpensive to use, the spell's short duration makes it impractical\nfor protecting large numbers of objects.\n",
+      "hide_keywords": true
     },
     {
       "keyword": "ALIAS UNALIAS",
-      "level": -1,
-      "text": "Syntax: alias\n\talias <word>\n\talias <word> <substitution>\n\tunalias <word>\n\nThe alias command allows limited shortening of command names.  At this time,\naliases cannot call other aliases, and cannot generate more than one command.\nAlias by itself lists your current aliases, Alias <word> lists the alias with \nthat name (if such exist), and alias with both a word and and argument \nproduces a new alias.  You cannot alias either alias or unalias to a new\ncommand.  Examples of use:\n\nalias gc get all corpse --> typing 'gc' will equal typing 'get all corpse'\nalias ff cast 'fireball' --> 'ff orc' will equal \"cast 'fireball' orc\"\n\nOnly the first word on the line will be subsituted at this time.\n"
+      "text": "Syntax: alias\n\talias <word>\n\talias <word> <substitution>\n\tunalias <word>\n\nThe alias command allows limited shortening of command names.  At this time,\naliases cannot call other aliases, and cannot generate more than one command.\nAlias by itself lists your current aliases, Alias <word> lists the alias with \nthat name (if such exist), and alias with both a word and and argument \nproduces a new alias.  You cannot alias either alias or unalias to a new\ncommand.  Examples of use:\n\nalias gc get all corpse --> typing 'gc' will equal typing 'get all corpse'\nalias ff cast 'fireball' --> 'ff orc' will equal \"cast 'fireball' orc\"\n\nOnly the first word on the line will be subsituted at this time.\n",
+      "hide_keywords": true
     }
   ]
 }}]

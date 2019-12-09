@@ -13,7 +13,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "keyword": "floorboard board",
         "exit_flags": "door closed",
         "portal": "catacomb-up-1"
@@ -2241,7 +2240,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "keyword": "floorboard board",
         "exit_flags": "door closed",
         "portal": "catacomb-up-2"

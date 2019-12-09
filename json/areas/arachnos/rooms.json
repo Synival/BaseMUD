@@ -13,7 +13,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "portal": "arachnos-south-1"
       }
     ],
@@ -31,7 +30,6 @@
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "north",
-      "to": null,
       "portal": "arachnos-north-1"
     }],
     "extra_description": [{
@@ -48,7 +46,6 @@
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "east",
-      "to": null,
       "portal": "arachnos-east-1"
     }],
     "extra_description": [{

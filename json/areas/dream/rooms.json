@@ -210,7 +210,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "description": "You see an abandoned warehouse.\n",
         "portal": "dream-down-1"
       }

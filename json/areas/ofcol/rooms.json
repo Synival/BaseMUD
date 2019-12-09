@@ -13,7 +13,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "The wide road leads south here towards the T-crossing.\n",
         "portal": "ofcol-south-1"
       }
@@ -111,7 +110,6 @@
     "doors": [
       {
         "dir": "east",
-        "to": null,
         "description": "You see a big intersection.\n",
         "portal": "ofcol-east-1"
       },

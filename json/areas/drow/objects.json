@@ -15,7 +15,6 @@
     "level": 11,
     "weight": 20,
     "cost": 910,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
@@ -50,7 +49,6 @@
     "level": 15,
     "weight": 10,
     "cost": 1510,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
@@ -86,7 +84,6 @@
     "level": 11,
     "weight": 10,
     "cost": 920,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wield",
     "affects": [
@@ -122,7 +119,6 @@
     "level": 15,
     "weight": 10,
     "cost": 1020,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wield",
     "affects": [
@@ -158,7 +154,6 @@
     "level": 24,
     "weight": 10,
     "cost": 1530,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wield",
     "affects": [
@@ -195,7 +190,6 @@
     "level": 21,
     "weight": 0,
     "cost": 2100,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wield",
     "affects": [
@@ -231,7 +225,6 @@
     "level": 14,
     "weight": 0,
     "cost": 10,
-    "condition": 100,
     "extra_flags": "glow magic antigood",
     "wear_flags": "take wield",
     "affects": [
@@ -267,7 +260,6 @@
     "level": 13,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "glow magic antigood",
     "wear_flags": "take wield",
     "affects": [
@@ -303,7 +295,6 @@
     "level": 15,
     "weight": 30,
     "cost": 1150,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wrist"
   }},
@@ -322,7 +313,6 @@
     "level": 17,
     "weight": 20,
     "cost": 3600,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take hands",
     "affects": [{
@@ -349,7 +339,6 @@
     "level": 9,
     "weight": 10,
     "cost": 1550,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -368,7 +357,6 @@
     "level": 16,
     "weight": 50,
     "cost": 3300,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take head",
     "affects": [{
@@ -390,7 +378,6 @@
     "level": 25,
     "weight": 10,
     "cost": 980,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [{
@@ -417,7 +404,6 @@
     "level": 30,
     "weight": 20,
     "cost": 3300,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take wield",
     "affects": [
@@ -452,7 +438,6 @@
     "level": 12,
     "weight": 10,
     "cost": 1180,
-    "condition": 100,
     "extra_flags": "nodrop",
     "wear_flags": "take head",
     "affects": [{

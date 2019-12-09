@@ -10,7 +10,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "glow hum magic",
     "wear_flags": "take"
   }},
@@ -30,7 +29,6 @@
     "level": 23,
     "weight": 550,
     "cost": 3600,
-    "condition": 100,
     "extra_flags": "hum antigood",
     "wear_flags": "take body",
     "affects": [{
@@ -52,7 +50,6 @@
     "level": 7,
     "weight": 10,
     "cost": 800,
-    "condition": 100,
     "extra_flags": "antigood",
     "wear_flags": "take finger",
     "affects": [
@@ -88,7 +85,6 @@
     "level": 16,
     "weight": 90,
     "cost": 1280,
-    "condition": 100,
     "extra_flags": "hum antigood antievil",
     "wear_flags": "take wield",
     "affects": [
@@ -124,7 +120,6 @@
     "level": 24,
     "weight": 150,
     "cost": 3400,
-    "condition": 100,
     "extra_flags": "glow magic antievil antineutral",
     "wear_flags": "take wield",
     "affects": [
@@ -155,7 +150,6 @@
     "level": 24,
     "weight": 100,
     "cost": 1850,
-    "condition": 100,
     "extra_flags": "bless",
     "wear_flags": "take head",
     "affects": [{
@@ -183,7 +177,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "glow"
   }},
   {"object": {
@@ -201,7 +194,6 @@
     "level": 11,
     "weight": 20,
     "cost": 880,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take hold"
   }},
@@ -220,7 +212,6 @@
     "level": 10,
     "weight": 200,
     "cost": 1450,
-    "condition": 100,
     "extra_flags": "bless",
     "wear_flags": "take body"
   }},
@@ -239,7 +230,6 @@
     "level": 12,
     "weight": 30,
     "cost": 1000,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take neck",
     "affects": [{
@@ -266,7 +256,6 @@
     "level": 13,
     "weight": 150,
     "cost": 1920,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take shield",
     "affects": [
@@ -323,7 +312,6 @@
     "level": 22,
     "weight": 180,
     "cost": 3500,
-    "condition": 100,
     "wear_flags": "take shield",
     "affects": [{
       "apply": "saves",
@@ -349,7 +337,6 @@
     "level": 12,
     "weight": 40,
     "cost": 2200,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold"
   }},
@@ -369,7 +356,6 @@
     "level": 14,
     "weight": 10,
     "cost": 210,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take about",
     "affects": [{
@@ -395,7 +381,6 @@
     "level": 12,
     "weight": 10,
     "cost": 920,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -414,7 +399,6 @@
     "level": 10,
     "weight": 60,
     "cost": 830,
-    "condition": 100,
     "extra_flags": "bless",
     "wear_flags": "take wield",
     "affects": [{

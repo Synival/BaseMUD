@@ -8,7 +8,6 @@
     "description": "It has a large central eye that blinks like a guppy and eyestalks atop the \nround body which can charm you with its cuteness.  Baby beholders are known for\ntheir playful personality.  Hmmm....  It looks like the baby is teething!\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d7+46",
@@ -24,7 +23,6 @@
     "sex": "neutral",
     "wealth": 11,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger wimpy mage",
     "affected_by": "detect_invis",
     "offense": "dodge assist_vnum",
@@ -39,7 +37,6 @@
     "description": "This is a creature with the upper torso of a beautiful woman, but the lower\nbody of a four-legged beast.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 4,
     "hitroll": 0,
     "hit_dice": "2d7+46",
@@ -55,10 +52,8 @@
     "sex": "female",
     "wealth": 2,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -69,7 +64,6 @@
     "description": "He smiles at you, almost as if he knows you.  He is so friendly, you have no\nchoice but to reciprocate.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -85,10 +79,8 @@
     "sex": "male",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -99,7 +91,6 @@
     "description": "He is dressed in plate, and he looks quite formidable.  At the moment, though,\nhe is just giggling with a kid running about.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 17,
     "hitroll": 0,
     "hit_dice": "3d9+283",
@@ -115,7 +106,6 @@
     "sex": "male",
     "wealth": 75,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area warrior",
     "affected_by": "sanctuary",
     "offense": "bash berserk disarm kick parry rescue assist_vnum",
@@ -130,7 +120,6 @@
     "description": "She is beautiful, dressed in a sundress that sparkles with gems sown in.  She\nsmiles at you, and your heart flutters at the thought that you have her\nattention, if only for a moment.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -146,10 +135,8 @@
     "sex": "female",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -160,7 +147,6 @@
     "description": "Gordon is dressed in full mithril plate, and he looks indestructible.  He eyes\nyou suspiciously not only because you are a stranger, but because you are an\nARMED stranger.  Better not do any funny stuff in his presence.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 35,
     "hitroll": 0,
     "hit_dice": "10d10+1400",
@@ -176,7 +162,6 @@
     "sex": "male",
     "wealth": 500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "warrior",
     "affected_by": "sanctuary",
     "offense": "bash berserk disarm kick parry rescue assist_vnum",
@@ -191,7 +176,6 @@
     "description": "The priest must have lost his mind.  He keeps saying that one day, evil will\nprevail and take over Thalos and bring the whole city down.  Obviously, no one\nlistens to this fool.  The priest's right fist is covered in golden silk,\nand he clenches it at you.  Other than that, he is dressed all in black.\n",
     "race": "human",
     "alignment": -500,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -207,7 +191,6 @@
     "sex": "male",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel wimpy cleric",
     "offense": "disarm kick parry assist_vnum",
     "spec_fun": "spec_cast_cleric"
@@ -221,7 +204,6 @@
     "description": "He stands here gloriously telling of Thalos's history, how it is now referred by\nthe world as 'The City of Peace'.  He is very happy to be the high priest here.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -237,7 +219,6 @@
     "sex": "male",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel cleric",
     "affected_by": "sanctuary",
     "offense": "disarm kick parry assist_vnum",
@@ -252,7 +233,6 @@
     "description": "It is a big chunk of rock that has been magically formed into a giant\nstone creature.  It stands here guarding the city.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -268,11 +248,9 @@
     "sex": "neutral",
     "wealth": 212,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "protect_evil",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -283,7 +261,6 @@
     "description": "He looks very busy, but he takes the time to say, 'Hi!  Welcome to Thalos!'\nHe looks very proud of his work.\n",
     "race": "human",
     "alignment": 800,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -299,10 +276,8 @@
     "sex": "female",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -313,7 +288,6 @@
     "description": "He looks at you, and says, 'What's your poison, stranger?'\n",
     "race": "human",
     "alignment": 600,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -337,8 +311,7 @@
       "close_hour": 23
     },
     "mob_flags": "sentinel",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -349,7 +322,6 @@
     "description": "Looking down at you with blood splattered all over his face and apron,\nhe asks, 'How much you want?'\n",
     "race": "human",
     "alignment": 600,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -375,8 +347,7 @@
       "close_hour": 20
     },
     "mob_flags": "sentinel",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -387,7 +358,6 @@
     "description": "She smiles at you meekly.\n",
     "race": "human",
     "alignment": 650,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -411,8 +381,7 @@
       "close_hour": 19
     },
     "mob_flags": "sentinel",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -423,7 +392,6 @@
     "description": "Thaellor sweats rivers and complains about the heat as he pounds the\nmetal into items of defense and destruction.\n",
     "race": "human",
     "alignment": 550,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -449,8 +417,7 @@
       "close_hour": 21
     },
     "mob_flags": "sentinel",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -461,7 +428,6 @@
     "description": "Ben tries to pawn his various wares to you.\n",
     "race": "human",
     "alignment": 600,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -487,8 +453,7 @@
       "close_hour": 18
     },
     "mob_flags": "sentinel",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -499,7 +464,6 @@
     "description": "The librarian looks busy and whispers, 'Shhh!'\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -515,10 +479,8 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -529,7 +491,6 @@
     "description": "This young scholar is studying to be a priest.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -545,10 +506,8 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -559,7 +518,6 @@
     "description": "This old wizard almost looks like he is about to fall over and sleep.\n",
     "race": "human",
     "alignment": 550,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+778",
@@ -598,7 +556,6 @@
     "description": "She is beautiful, dressed in a sundress that sparkles with gems sown in.  She\nsmiles at you, and your heart flutters at the thought that you have her\nattention, and you jump to her offer for a massage.\n",
     "race": "human",
     "alignment": 700,
-    "group": 0,
     "level": 4,
     "hitroll": 0,
     "hit_dice": "2d7+46",
@@ -614,10 +571,8 @@
     "sex": "female",
     "wealth": 2,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -628,7 +583,6 @@
     "description": "He smiles at you, almost as if he knows you.  He is so friendly, you have no\nchoice but to reciprocate and join him and the others in the soothing pool.\n",
     "race": "human",
     "alignment": 650,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -644,10 +598,8 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -658,7 +610,6 @@
     "description": "He is dressed in plate, and he looks quite formidable.  At the moment,\nhe is looking at a map of Thalos aside his fellow co-workers keeping\ntrack of each city patrol.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 17,
     "hitroll": 0,
     "hit_dice": "3d9+283",
@@ -674,7 +625,6 @@
     "sex": "male",
     "wealth": 75,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger stay_area warrior",
     "affected_by": "sanctuary",
     "offense": "bash berserk disarm kick parry rescue assist_vnum",
@@ -689,7 +639,6 @@
     "description": "He is dressed in plate, and he looks quite formidable.  At the moment,\nhe is watching the children play with amusement.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 17,
     "hitroll": 0,
     "hit_dice": "3d9+283",
@@ -705,7 +654,6 @@
     "sex": "male",
     "wealth": 75,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger stay_area warrior",
     "affected_by": "sanctuary",
     "offense": "bash berserk disarm kick parry rescue assist_vnum",
@@ -720,7 +668,6 @@
     "description": "This peaceful creature looks at you with big dark eyes.  Her nose twitches as\nshe sniffs at you, but she goes back to chewing some grass.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -736,10 +683,8 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -750,7 +695,6 @@
     "description": "The deer looks angered at your intrusion.  He butts his head against you, \nalbeit ineffectively.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -766,10 +710,8 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -780,7 +722,6 @@
     "description": "He eyes you with contained anger.  You'd better leave him alone!\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -796,10 +737,8 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -810,7 +749,6 @@
     "description": "This bunny looks so adorable, you wished you had one just like this!\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 2,
     "hitroll": 0,
     "hit_dice": "2d7+21",
@@ -826,10 +764,8 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -840,7 +776,6 @@
     "description": "Upon careful inspection, you are sure it is NOT a cobra!\n",
     "race": "snake",
     "alignment": 0,
-    "group": 0,
     "level": 4,
     "hitroll": 0,
     "hit_dice": "2d7+46",
@@ -856,11 +791,9 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area wimpy",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "mirror",
@@ -871,7 +804,6 @@
     "description": "He doesn't like you bothering him, but is too polite to ask you to leave.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -887,7 +819,6 @@
     "sex": "male",
     "wealth": 2,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy cleric",
     "affected_by": "detect_invis protect_evil",
     "offense": "disarm kick parry assist_vnum",
@@ -902,7 +833,6 @@
     "description": "She wonders why you are staring at her, and how you got in here.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -918,7 +848,6 @@
     "sex": "female",
     "wealth": 2,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy cleric",
     "affected_by": "detect_invis protect_evil",
     "offense": "disarm kick parry assist_vnum",
@@ -933,7 +862,6 @@
     "description": "This musical fellow plays a happy song with his fellow comrades.\n",
     "race": "human",
     "alignment": 450,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -949,10 +877,8 @@
     "sex": "male",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -963,7 +889,6 @@
     "description": "This musical fellow wanders the world singing of the glory of Thalos.\n",
     "race": "human",
     "alignment": 550,
-    "group": 0,
     "level": 9,
     "hitroll": 0,
     "hit_dice": "2d6+110",
@@ -979,10 +904,8 @@
     "sex": "male",
     "wealth": 7,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mirror",
@@ -993,7 +916,6 @@
     "description": "A big, strong, helpful, trustworthy guard.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "3d9+233",
@@ -1009,7 +931,6 @@
     "sex": "male",
     "wealth": 25,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area warrior",
     "offense": "bash berserk disarm kick parry rescue assist_vnum",
     "spec_fun": "spec_guard"
@@ -1023,7 +944,6 @@
     "description": null,
     "race": "human",
     "alignment": 900,
-    "group": 0,
     "level": 1,
     "hitroll": 0,
     "hit_dice": "2d6+10",
@@ -1039,7 +959,6 @@
     "sex": "male",
     "wealth": 1,
     "size": "medium",
-    "shop": null,
     "offense": "disarm dodge trip assist_vnum",
     "spec_fun": "spec_janitor"
   }},
@@ -1052,7 +971,6 @@
     "description": "Fido is a small dog that has a foul smell and pieces of rotted meat hanging\naround his teeth.\n",
     "race": "fido",
     "alignment": -200,
-    "group": 0,
     "level": 0,
     "hitroll": 0,
     "hit_dice": "2d4+2",
@@ -1068,7 +986,6 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive wimpy",
     "offense": "disarm trip",
     "spec_fun": "spec_fido"
@@ -1082,7 +999,6 @@
     "description": "A big, strong, helpful, trustworthy guard.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "3d9+233",
@@ -1098,7 +1014,6 @@
     "sex": "male",
     "wealth": 25,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel stay_area warrior",
     "offense": "bash berserk disarm kick parry rescue assist_vnum",
     "spec_fun": "spec_guard"

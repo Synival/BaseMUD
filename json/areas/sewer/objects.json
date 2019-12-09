@@ -10,7 +10,6 @@
     "level": 7,
     "weight": 10,
     "cost": 468,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [
@@ -46,7 +45,6 @@
     "level": 15,
     "weight": 60,
     "cost": 2300,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -86,7 +84,6 @@
     "level": 8,
     "weight": 100,
     "cost": 610,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -117,7 +114,6 @@
     "level": 8,
     "weight": 60,
     "cost": 480,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -147,7 +143,6 @@
     "level": 15,
     "weight": 200,
     "cost": 1250,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take neck",
     "affects": [{
@@ -174,7 +169,6 @@
     "level": 17,
     "weight": 40,
     "cost": 1490,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -189,7 +183,6 @@
     "level": 0,
     "weight": 20,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -207,7 +200,6 @@
     "level": 0,
     "weight": 300,
     "cost": 10,
-    "condition": 100,
     "extra_flags": "magic nodrop",
     "wear_flags": "take head",
     "extra_description": [
@@ -239,7 +231,6 @@
     "level": 0,
     "weight": 10,
     "cost": 5,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [
       {
@@ -267,7 +258,6 @@
     "level": 7,
     "weight": 200,
     "cost": 900,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take feet",
     "extra_description": [{
@@ -296,7 +286,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "treasure",
@@ -319,7 +308,6 @@
     "level": 5,
     "weight": 40,
     "cost": 540,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
       "apply": "hit roll",
@@ -344,7 +332,6 @@
     "level": 31,
     "weight": 190,
     "cost": 5800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -384,7 +371,6 @@
     "level": 32,
     "weight": 400,
     "cost": 12400,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take body",
     "extra_description": [{
@@ -415,7 +401,6 @@
     "level": 32,
     "weight": 200,
     "cost": 10100,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take legs",
     "extra_description": [{
@@ -446,7 +431,6 @@
     "level": 27,
     "weight": 140,
     "cost": 3700,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take hands",
     "extra_description": [{
@@ -486,7 +470,6 @@
     "level": 32,
     "weight": 350,
     "cost": 10600,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take head",
     "extra_description": [{
@@ -517,7 +500,6 @@
     "level": 30,
     "weight": 600,
     "cost": 5800,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take shield",
     "extra_description": [{
@@ -548,7 +530,6 @@
     "level": 32,
     "weight": 400,
     "cost": 10100,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take feet",
     "extra_description": [{
@@ -579,7 +560,6 @@
     "level": 32,
     "weight": 400,
     "cost": 10100,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take arms",
     "extra_description": [{
@@ -610,7 +590,6 @@
     "level": 31,
     "weight": 200,
     "cost": 3700,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take about",
     "extra_description": [{
@@ -639,7 +618,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "treasure",
@@ -662,7 +640,6 @@
     "level": 7,
     "weight": 40,
     "cost": 610,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "short sword",
@@ -685,7 +662,6 @@
     "level": 0,
     "weight": 20,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take about"
   }},
   {"object": {
@@ -704,7 +680,6 @@
     "level": 0,
     "weight": 10,
     "cost": 20,
-    "condition": 100,
     "wear_flags": "take waist"
   }},
   {"object": {
@@ -723,7 +698,6 @@
     "level": 21,
     "weight": 50,
     "cost": 18600,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take hold",
     "affects": [
@@ -759,7 +733,6 @@
     "level": 29,
     "weight": 300,
     "cost": 6400,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take body",
     "affects": [
@@ -795,7 +768,6 @@
     "level": 29,
     "weight": 170,
     "cost": 3700,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take legs",
     "affects": [
@@ -830,7 +802,6 @@
     "level": 20,
     "weight": 40,
     "cost": 1150,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take hands",
     "affects": [{
@@ -857,7 +828,6 @@
     "level": 29,
     "weight": 150,
     "cost": 7000,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take head",
     "affects": [
@@ -900,7 +870,6 @@
     "level": 35,
     "weight": 100,
     "cost": 6900,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take shield",
     "affects": [{
@@ -927,7 +896,6 @@
     "level": 29,
     "weight": 400,
     "cost": 3700,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take feet",
     "affects": [
@@ -963,7 +931,6 @@
     "level": 29,
     "weight": 400,
     "cost": 3700,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take arms",
     "affects": [

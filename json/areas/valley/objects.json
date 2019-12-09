@@ -15,7 +15,6 @@
     "level": 5,
     "weight": 30,
     "cost": 1080,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -33,7 +32,6 @@
     "level": 7,
     "weight": 30,
     "cost": 390,
-    "condition": 100,
     "wear_flags": "take feet",
     "affects": [{
       "apply": "moves",
@@ -59,7 +57,6 @@
     "level": 7,
     "weight": 30,
     "cost": 670,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "affects": [{
@@ -85,7 +82,6 @@
     "level": 7,
     "weight": 30,
     "cost": 900,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take neck",
     "affects": [{
@@ -107,7 +103,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -121,7 +116,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -135,7 +129,6 @@
     "level": 5,
     "weight": 10,
     "cost": 110,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [{
@@ -163,7 +156,6 @@
     "level": 21,
     "weight": 50,
     "cost": 670,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "affects": [{
@@ -189,7 +181,6 @@
     "level": 0,
     "weight": 10,
     "cost": 200,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -207,7 +198,6 @@
     "level": 8,
     "weight": 10,
     "cost": 580,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -226,7 +216,6 @@
     "level": 4,
     "weight": 10,
     "cost": 290,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -246,7 +235,6 @@
     "level": 6,
     "weight": 10,
     "cost": 1380,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -265,7 +253,6 @@
     "level": 2,
     "weight": 10,
     "cost": 240,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -283,7 +270,6 @@
     "level": 1,
     "weight": 10,
     "cost": 250,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -301,7 +287,6 @@
     "level": 1,
     "weight": 10,
     "cost": 220,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -319,7 +304,6 @@
     "level": 5,
     "weight": 10,
     "cost": 330,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -337,7 +321,6 @@
     "level": 6,
     "weight": 10,
     "cost": 420,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -355,7 +338,6 @@
     "level": 5,
     "weight": 10,
     "cost": 660,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -373,7 +355,6 @@
     "level": 8,
     "weight": 10,
     "cost": 1090,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -391,7 +372,6 @@
     "level": 0,
     "weight": 10,
     "cost": 400,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -409,7 +389,6 @@
     "level": 0,
     "weight": 10,
     "cost": 400,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -427,7 +406,6 @@
     "level": 0,
     "weight": 10,
     "cost": 400,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -445,7 +423,6 @@
     "level": 0,
     "weight": 10,
     "cost": 400,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -463,7 +440,6 @@
     "level": 11,
     "weight": 10,
     "cost": 1360,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -478,7 +454,6 @@
     "level": 20,
     "weight": 10,
     "cost": 1150,
-    "condition": 100,
     "extra_flags": "magic antigood antievil",
     "wear_flags": "take",
     "affects": [{
@@ -506,7 +481,6 @@
     "level": 14,
     "weight": 50,
     "cost": 310,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "affects": [{

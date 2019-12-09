@@ -295,9 +295,9 @@ EXIT_T *json_import_obj_exit (const JSON_T *json, ROOM_INDEX_T *room,
     if (dir_out)
         *dir_out = -1;
     json_import_expect ("exit", json,
-        "dir", "to",
+        "dir",
 
-        "*keyword", "*description", "*exit_flags", "*key", "*portal",
+        "*keyword", "*description", "*exit_flags", "*key", "*portal", "*to",
 
         NULL
     );
@@ -520,16 +520,16 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
     json_import_expect ("mobile", json,
         "area",       "anum",        "name",        "short_descr",
         "long_descr", "description", "race",
-        "alignment",  "group",       "level",       "hitroll",
+        "alignment",  "level",       "hitroll",
         "hit_dice",   "mana_dice",   "damage_dice", "dam_type",
-        "ac",         "wealth",      "size",        "shop",
-        "spec_fun",
+        "ac",         "wealth",      "size",
 
         "*start_pos", "*default_pos",     "*sex",         "*material",
         "*mob_flags", "*mob_flags_minus", "*affected_by", "*affected_by_minus",
         "*offense",   "*offense_minus",   "*immune",      "*immune_minus",
         "*resist",    "*resist_minus",    "*vulnerable",  "*vulnerable_minus",
         "*form",      "*form_minus",      "*parts",       "*parts_minus",
+        "*shop",      "*spec_fun",        "*group",
 
         NULL
     );
@@ -652,10 +652,10 @@ OBJ_INDEX_T *json_import_obj_object (const JSON_T *json) {
     json_import_expect ("object", json,
         "area",        "anum",      "name",      "short_descr",
         "description", "item_type", "values",    "level",
-        "weight",      "cost",      "condition",
+        "weight",      "cost",
 
         "*material", "*extra_flags", "*wear_flags", "*extra_description",
-        "*affects",
+        "*affects",  "*condition",
 
         NULL
     );
@@ -663,6 +663,7 @@ OBJ_INDEX_T *json_import_obj_object (const JSON_T *json) {
     /* TODO: check for duplicates! */
     obj = obj_index_new();
     obj->new_format = TRUE;
+    obj->condition = 100;
 
     READ_PROP_STRP (obj->area_str,     "area");
     READ_PROP_INT  (obj->anum,         "anum");
@@ -689,7 +690,8 @@ OBJ_INDEX_T *json_import_obj_object (const JSON_T *json) {
     READ_PROP_INT (obj->level,     "level");
     READ_PROP_INT (obj->weight,    "weight");
     READ_PROP_INT (obj->cost,      "cost");
-    READ_PROP_INT (obj->condition, "condition");
+    if (json_get (json, "condition"))
+        READ_PROP_INT (obj->condition, "condition");
 
     array = json_get (json, "extra_description");
     if (array != NULL) {
@@ -906,9 +908,10 @@ HELP_AREA_T *json_import_obj_help_area (const JSON_T *json) {
 HELP_T *json_import_obj_help (const JSON_T *json) {
     HELP_T *help;
     char buf[MAX_STRING_LENGTH];
+    bool hide_keywords;
 
     json_import_expect ("help", json,
-        "level", "keyword", "text", NULL
+        "keyword", "text", "*level", "*hide_keywords", NULL
     );
 
     /* TODO: check for duplicates! */
@@ -916,6 +919,12 @@ HELP_T *json_import_obj_help (const JSON_T *json) {
     READ_PROP_INT  (help->level,   "level");
     READ_PROP_STRP (help->keyword, "keyword");
     READ_PROP_STRP (help->text,    "text");
+    READ_PROP_BOOL (hide_keywords, "hide_keywords");
+
+    if (hide_keywords != 0 && help->level >= 0)
+        help->level = -1 - help->level;
+    else if (hide_keywords == 0 && help->level < 0)
+        help->level = -1 - help->level;
 
     LISTB_BACK (help, next, help_first, help_last);
     return help;

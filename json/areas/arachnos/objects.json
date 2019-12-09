@@ -15,7 +15,6 @@
     "level": 18,
     "weight": 50,
     "cost": 4600,
-    "condition": 100,
     "extra_flags": "invis magic",
     "wear_flags": "take head",
     "affects": [
@@ -51,7 +50,6 @@
     "level": 17,
     "weight": 50,
     "cost": 4600,
-    "condition": 100,
     "extra_flags": "invis magic",
     "wear_flags": "take head",
     "affects": [
@@ -85,7 +83,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -104,7 +101,6 @@
     "level": 10,
     "weight": 20,
     "cost": 700,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take",
     "extra_description": [{

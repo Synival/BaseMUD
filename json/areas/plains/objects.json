@@ -13,7 +13,6 @@
     "level": 0,
     "weight": 10,
     "cost": 10,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "herbs herb timian",
@@ -34,7 +33,6 @@
     "level": 0,
     "weight": 10,
     "cost": 10,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "herbs herb gyvel",
@@ -56,7 +54,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "plant ivy",
@@ -78,7 +75,6 @@
     "level": 0,
     "weight": 20,
     "cost": 20,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "blood jar",
@@ -96,7 +92,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "antievil",
     "wear_flags": "take head hold",
     "extra_description": [{
@@ -115,7 +110,6 @@
     "level": 0,
     "weight": 10,
     "cost": 1,
-    "condition": 100,
     "extra_flags": "magic nodrop",
     "wear_flags": "take neck",
     "extra_description": [{
@@ -141,7 +135,6 @@
     "level": 0,
     "weight": 40,
     "cost": 10,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "staff stick",
@@ -162,7 +155,6 @@
     "level": 0,
     "weight": 50,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "roast rabbit wabbit",
@@ -185,7 +177,6 @@
     "level": 13,
     "weight": 10,
     "cost": 1870,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -209,7 +200,6 @@
     "level": 0,
     "weight": 20,
     "cost": 300,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take",
     "extra_description": [
@@ -237,7 +227,6 @@
     "level": 2,
     "weight": 10,
     "cost": 640,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [
       {

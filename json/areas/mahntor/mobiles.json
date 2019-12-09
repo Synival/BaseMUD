@@ -8,7 +8,6 @@
     "description": "The ethereal knight is clad in shadowy black armor. It appears as though he\nwas involved in the carnage that occurred here. His soul is trapped here, as\nhe waits for release.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 25,
     "hitroll": 0,
     "hit_dice": "5d10+550",
@@ -24,7 +23,6 @@
     "sex": "male",
     "wealth": 1250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "detect_invis sanctuary",
     "offense": "disarm dodge trip assist_vnum",
@@ -39,7 +37,6 @@
     "description": "The old tree looks as though the wind has battered and torn at it for years.\nVery few leaves remain. Its limbs are crooked and gnarled. It moans as the \nwind pushes it back and forth.\n",
     "race": "human",
     "alignment": 250,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -55,10 +52,8 @@
     "sex": "neutral",
     "wealth": 250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -69,7 +64,6 @@
     "description": "The cave dweller looks like a mixture of several disgusting monsters. It has\na bird's beak, huge white eyes, a furry body, and long clawed hands and feet.\nIt sees you and snarls.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "3d9+208",
@@ -85,7 +79,6 @@
     "sex": "neutral",
     "wealth": 125,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_evil detect_magic sneak",
     "offense": "disarm dodge trip assist_vnum",
@@ -100,7 +93,6 @@
     "description": "A grey toad. Its about the size of a cow. Small horns grow all over its body.\n",
     "race": "human",
     "alignment": -250,
-    "group": 0,
     "level": 14,
     "hitroll": 0,
     "hit_dice": "2d10+190",
@@ -118,10 +110,8 @@
     "sex": "neutral",
     "wealth": 127,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -132,7 +122,6 @@
     "description": "The weeping willow has long thins branches. These branches seem to droop in\nanguish and dismay. You hear a faint sound of crying.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 25,
     "hitroll": 0,
     "hit_dice": "5d10+550",
@@ -148,11 +137,9 @@
     "sex": "female",
     "wealth": 1000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "detect_invis sanctuary",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -163,7 +150,6 @@
     "description": "It looks like a thin wisp of mist that has gained substance and size.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "3d9+208",
@@ -179,11 +165,9 @@
     "sex": "neutral",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "hide",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -194,7 +178,6 @@
     "description": "The swamp wraith is made of mist and is in the image of a great warrior. He\nappears to emerge from the mist. You feel the cold radiating from his form as\nhe nears you.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -210,7 +193,6 @@
     "sex": "male",
     "wealth": 1250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive",
     "offense": "disarm dodge trip assist_vnum",
     "spec_fun": "spec_poison"
@@ -224,7 +206,6 @@
     "description": "You see a pitifully overworked ogre. It is dressed in rags and shuffles along\nwith its head hung low. It sees you and cringes in mortal terror.\n",
     "race": "human",
     "alignment": -200,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -240,10 +221,8 @@
     "sex": "neutral",
     "wealth": 10,
     "size": "medium",
-    "shop": null,
     "mob_flags": "stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -254,7 +233,6 @@
     "description": "The ogre warrior is dressed in thick fur armor. He looks quite large and\nformidable.\n",
     "race": "human",
     "alignment": -350,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "3d9+208",
@@ -270,10 +248,8 @@
     "sex": "male",
     "wealth": 250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -284,7 +260,6 @@
     "description": "The ogre guard stands here manning his post. It appears as though he would\nfight to the death before abandoning his post.\n",
     "race": "human",
     "alignment": -500,
-    "group": 0,
     "level": 19,
     "hitroll": 0,
     "hit_dice": "3d9+308",
@@ -300,10 +275,8 @@
     "sex": "male",
     "wealth": 500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -314,7 +287,6 @@
     "description": "The ogre shaman is draped in thick fur cloaks and pelts. He has all types of\ncharms and holy symbols draped about him. He looks at you and snarls.\n",
     "race": "human",
     "alignment": -750,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -330,7 +302,6 @@
     "sex": "male",
     "wealth": 2500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive stay_area wimpy cleric",
     "affected_by": "detect_invis sanctuary",
     "offense": "disarm kick parry assist_vnum",
@@ -345,7 +316,6 @@
     "description": "This is the biggest ogre you have ever seen. He is heavily equipped and looks\nquite formidable. He towers high above you and growls menacingly.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 25,
     "hitroll": 0,
     "hit_dice": "5d10+550",
@@ -361,11 +331,9 @@
     "sex": "male",
     "wealth": 2500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive stay_area wimpy",
     "affected_by": "detect_invis sanctuary",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -376,7 +344,6 @@
     "description": "The plains barbarian is clad in heavy furs. He seems used to the chilling cold\nand icy wastes.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -392,10 +359,8 @@
     "sex": "male",
     "wealth": 250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -406,7 +371,6 @@
     "description": "The white yeti looks like a huge white snow ape. Its long arms end in long\ncurved talons and its mouth is full of sharp teeth.\n",
     "race": "human",
     "alignment": -350,
-    "group": 0,
     "level": 16,
     "hitroll": 0,
     "hit_dice": "3d9+233",
@@ -422,7 +386,6 @@
     "sex": "neutral",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive stay_area wimpy",
     "offense": "disarm dodge trip assist_vnum",
     "spec_fun": "spec_breath_frost"
@@ -436,7 +399,6 @@
     "description": "The huge worm is almost 50 feet long. Its huge gaping mouth spews ice and snow\nas it charges directly at you.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -452,7 +414,6 @@
     "sex": "neutral",
     "wealth": 175,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive stay_area",
     "offense": "disarm dodge trip assist_vnum",
     "spec_fun": "spec_breath_acid"
@@ -466,7 +427,6 @@
     "description": "You see a rather ragged and cold minotaur. It appears to be looking for a warm\nplace to seek refuge from the cold.\n",
     "race": "human",
     "alignment": 100,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "3d9+208",
@@ -482,10 +442,8 @@
     "sex": "neutral",
     "wealth": 500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -496,7 +454,6 @@
     "description": "The minotaur is clad in heavy furs. Beneath these furs, you see the gleam of\nhis armor.\n",
     "race": "human",
     "alignment": -330,
-    "group": 0,
     "level": 22,
     "hitroll": 0,
     "hit_dice": "5d10+400",
@@ -512,10 +469,8 @@
     "sex": "male",
     "wealth": 1250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -526,7 +481,6 @@
     "description": "You see a huge minotaur that is dressed in thick furs and armor. He has black\nfur and red eyes. He looks quite capable of protecting the city.\n",
     "race": "human",
     "alignment": -330,
-    "group": 0,
     "level": 21,
     "hitroll": 0,
     "hit_dice": "4d10+360",
@@ -542,10 +496,8 @@
     "sex": "male",
     "wealth": 1250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger aggressive stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -556,7 +508,6 @@
     "description": "The minotaur stands rigidly before the gates of the keep. It looks quite\nmiserable standing in the driven snow and ice.\n",
     "race": "human",
     "alignment": -330,
-    "group": 0,
     "level": 25,
     "hitroll": 0,
     "hit_dice": "5d10+550",
@@ -572,11 +523,9 @@
     "sex": "neutral",
     "wealth": 1250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger stay_area",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -587,7 +536,6 @@
     "description": "The high guard is dressed in blue plate armour. He looks quite dangerous and\nskilled.\n",
     "race": "human",
     "alignment": -330,
-    "group": 0,
     "level": 25,
     "hitroll": 0,
     "hit_dice": "5d10+550",
@@ -603,11 +551,9 @@
     "sex": "male",
     "wealth": 2250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive stay_area",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -618,7 +564,6 @@
     "description": "The royal guard is quite huge. He is dressed in heavy red armor and wields a\nhuge glaive. He looks quite capable of protecting the keep.\n",
     "race": "human",
     "alignment": -330,
-    "group": 0,
     "level": 26,
     "hitroll": 0,
     "hit_dice": "5d10+600",
@@ -634,11 +579,9 @@
     "sex": "male",
     "wealth": 2500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive stay_area",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -649,7 +592,6 @@
     "description": "This minotaur wields a huge morningstar and is clad in heavy crimson plate and\nfurs.\n",
     "race": "human",
     "alignment": -250,
-    "group": 0,
     "level": 28,
     "hitroll": 0,
     "hit_dice": "6d12+703",
@@ -665,11 +607,9 @@
     "sex": "male",
     "wealth": 3750,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive stay_area",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -680,7 +620,6 @@
     "description": "She looks quite attractive. Her low cut gown reveals why she was chosen to be\nin the harem.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 2,
     "hitroll": 0,
     "hit_dice": "2d7+21",
@@ -696,10 +635,8 @@
     "sex": "male",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -710,7 +647,6 @@
     "description": "He looks quite regal and refined to be a minotaur.\n",
     "race": "human",
     "alignment": 250,
-    "group": 0,
     "level": 20,
     "hitroll": 0,
     "hit_dice": "3d9+333",
@@ -726,10 +662,8 @@
     "sex": "male",
     "wealth": 250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger stay_area wimpy",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -740,7 +674,6 @@
     "description": "The ring-keeper is a huge minotaur. You notice a huge ring of multicolored\nkeys hanging from his belt. He wears huge, spiked brass knuckles.\n",
     "race": "human",
     "alignment": -300,
-    "group": 0,
     "level": 29,
     "hitroll": 0,
     "hit_dice": "6d12+703",
@@ -756,7 +689,6 @@
     "sex": "male",
     "wealth": 2500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger stay_area mage",
     "affected_by": "detect_invis sanctuary",
     "offense": "dodge assist_vnum",
@@ -771,7 +703,6 @@
     "description": "Gorak is HUGE. His bulging muscles are confined beneath heavy armor. He is the\nmaster of the warrior guild of Mahn-Tor.\n",
     "race": "human",
     "alignment": -300,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -787,11 +718,9 @@
     "sex": "male",
     "wealth": 5000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_invis sanctuary",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -802,7 +731,6 @@
     "description": "Darkoth is a living incarnation of evil. He radiates a dark aura, and a cold\nchill runs down your spine. He is the master of the Mahn-Tor anti-paladins.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -818,7 +746,6 @@
     "sex": "male",
     "wealth": 5000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_invis sanctuary",
     "offense": "disarm dodge trip assist_vnum",
@@ -833,7 +760,6 @@
     "description": "Tyrgoth is the minotaur incarnation of good. You feel safe and at ease in his\npresence. He is the leader of the Mahn-Tor paladins.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -849,11 +775,9 @@
     "sex": "male",
     "wealth": 5000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "detect_invis sanctuary",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -864,7 +788,6 @@
     "description": "Amyrok is a small minotaur. He is clad in loose robes and emits an aura of\npower. He appears quite dangerous, despite his size. He is the leader of the\nmages of Mahn-Tor.\n",
     "race": "human",
     "alignment": 300,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+778",
@@ -880,7 +803,6 @@
     "sex": "male",
     "wealth": 5000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive mage",
     "affected_by": "detect_invis sanctuary",
     "offense": "dodge assist_vnum",
@@ -895,7 +817,6 @@
     "description": "Sumaron is clad in white glowing robes. He is goodness incarnate. He is the\nmaster of all the clerics of Mahn-Tor.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -911,7 +832,6 @@
     "sex": "male",
     "wealth": 5000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive cleric",
     "affected_by": "detect_invis sanctuary",
     "offense": "disarm kick parry assist_vnum",
@@ -926,7 +846,6 @@
     "description": "Nasturn is quite a natural looking minotaur. He is dressed in leather and\nwears no metal of any type. He looks at you and smiles.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -942,7 +861,6 @@
     "sex": "male",
     "wealth": 5000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel cleric",
     "affected_by": "detect_invis sanctuary",
     "offense": "disarm kick parry assist_vnum",
@@ -957,7 +875,6 @@
     "description": "Belrak is clad in green and brown leather. He looks quite agile and thin, when\ncompared to the normal minotaur. He looks at you with a slight smirk.\n",
     "race": "human",
     "alignment": 500,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -973,11 +890,9 @@
     "sex": "male",
     "wealth": 5000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "detect_invis sanctuary",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -988,7 +903,6 @@
     "description": "Dorgar is clad all in black. He is tall and slender, unlike most minotaurs. He\nappears to be quite a skilled thief.\n",
     "race": "human",
     "alignment": -500,
-    "group": 0,
     "level": 30,
     "hitroll": 0,
     "hit_dice": "6d12+853",
@@ -1004,11 +918,9 @@
     "sex": "male",
     "wealth": 5000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger aggressive",
     "affected_by": "hide",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "mahntor",
@@ -1019,7 +931,6 @@
     "description": "Mahn-Tor towers above you. He is simply huge. Mahn-Tor is clad in the best of\narmor and robes. He wields the largest axe you have ever seen. You can see why\nMahn-Tor is the leader of the minotaurs. He is awe-inspiring.\n",
     "race": "human",
     "alignment": -500,
-    "group": 0,
     "level": 33,
     "hitroll": 0,
     "hit_dice": "10d10+1000",
@@ -1035,7 +946,6 @@
     "sex": "male",
     "wealth": 5000,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger mage",
     "affected_by": "invisible detect_invis sanctuary flying pass_door",
     "offense": "dodge assist_vnum",

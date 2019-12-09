@@ -701,7 +701,7 @@ DEFINE_DO_FUN (do_help) {
     BUFFER_T *output;
     bool found = FALSE;
     char argall[MAX_INPUT_LENGTH], argone[MAX_INPUT_LENGTH];
-    int level;
+    int level, trust;
 
     output = buf_new ();
     if (argument[0] == '\0')
@@ -716,9 +716,10 @@ DEFINE_DO_FUN (do_help) {
         strcat (argall, argone);
     }
 
+    trust = char_get_trust (ch);
     for (help = help_first; help != NULL; help = help->next) {
         level = (help->level < 0) ? -1 * help->level - 1 : help->level;
-        if (level > char_get_trust (ch))
+        if (level > trust)
             continue;
 
         if (is_name (argall, help->keyword)) {

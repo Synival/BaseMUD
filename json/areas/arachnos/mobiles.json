@@ -8,7 +8,6 @@
     "description": "He looks freshly hatched and sprightly.  His young fangs are just\ngrowing in as of late.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -24,11 +23,9 @@
     "sex": "female",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -39,7 +36,6 @@
     "description": "Old, scaly, but still with a lot of bite in him left.\n",
     "race": "dragon",
     "alignment": -1000,
-    "group": 0,
     "level": 24,
     "hitroll": 0,
     "hit_dice": "5d10+500",
@@ -55,7 +51,6 @@
     "sex": "male",
     "wealth": 500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger stay_area",
     "affected_by": "detect_invis",
     "offense": "disarm dodge trip assist_race",
@@ -70,7 +65,6 @@
     "description": "The Wolf Spider is hairy, very hairy.\n",
     "race": "human",
     "alignment": -300,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -86,10 +80,8 @@
     "sex": "female",
     "wealth": 62,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -100,7 +92,6 @@
     "description": "You notice an evil look in his eyes.\n",
     "race": "orc",
     "alignment": -400,
-    "group": 0,
     "level": 5,
     "hitroll": 0,
     "hit_dice": "2d6+60",
@@ -116,10 +107,8 @@
     "sex": "male",
     "wealth": 5,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
-    "offense": "disarm dodge trip assist_race",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_race"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -130,7 +119,6 @@
     "description": "You notice a glazed look in her eyes.\n",
     "race": "human",
     "alignment": -800,
-    "group": 0,
     "level": 12,
     "hitroll": 0,
     "hit_dice": "2d10+150",
@@ -146,10 +134,8 @@
     "sex": "female",
     "wealth": 75,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -160,7 +146,6 @@
     "description": "An ordinary drone spider.\n",
     "race": "human",
     "alignment": -300,
-    "group": 0,
     "level": 6,
     "hitroll": 0,
     "hit_dice": "2d7+71",
@@ -176,10 +161,8 @@
     "sex": "male",
     "wealth": 10,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -190,7 +173,6 @@
     "description": "She winks in and out.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -206,10 +188,8 @@
     "sex": "female",
     "wealth": 62,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -220,7 +200,6 @@
     "description": "The slave does not mind you, but will fight like a warrior if attacked.\n",
     "race": "human",
     "alignment": 0,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -236,10 +215,8 @@
     "sex": "male",
     "wealth": 25,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger stay_area",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -250,7 +227,6 @@
     "description": "Demoniac in nature, but more mischievous.  He twiddles his thumbs\nand creates a magical treasure!\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -266,11 +242,9 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "scavenger unused_act_2 wimpy",
     "affected_by": "invisible detect_invis sneak",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -281,7 +255,6 @@
     "description": "The Bird Spider has very powerful jaws.\n",
     "race": "human",
     "alignment": -800,
-    "group": 0,
     "level": 14,
     "hitroll": 0,
     "hit_dice": "2d10+190",
@@ -297,10 +270,8 @@
     "sex": "female",
     "wealth": 87,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -311,7 +282,6 @@
     "description": "A dishevelled veteran warrior in disguise is what he is, but he\nmeans well.\n",
     "race": "human",
     "alignment": -400,
-    "group": 0,
     "level": 7,
     "hitroll": 0,
     "hit_dice": "2d6+85",
@@ -327,11 +297,9 @@
     "sex": "male",
     "wealth": 37,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -342,7 +310,6 @@
     "description": "He delves deeper into you as you stare at him.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 25,
     "hitroll": 0,
     "hit_dice": "5d10+550",
@@ -358,11 +325,9 @@
     "sex": "male",
     "wealth": 300,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -373,7 +338,6 @@
     "description": "He looks like a lazy bum who sleeps half the time.\n",
     "race": "human",
     "alignment": 250,
-    "group": 0,
     "level": 17,
     "hitroll": 0,
     "hit_dice": "3d9+258",
@@ -391,11 +355,9 @@
     "sex": "male",
     "wealth": 80,
     "size": "medium",
-    "shop": null,
     "mob_flags": "aggressive stay_area",
     "affected_by": "sneak",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -406,7 +368,6 @@
     "description": "She is a very attractive spider with an ornate gown.  She tempts you\ninto being one of her many slaves.  She does not possess the venomous\nfangs of normal spiders, but then, as you realize, she does not need\nthem.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 26,
     "hitroll": 0,
     "hit_dice": "5d10+600",
@@ -422,7 +383,6 @@
     "sex": "female",
     "wealth": 500,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel aggressive",
     "affected_by": "invisible detect_invis",
     "offense": "disarm dodge trip assist_vnum",
@@ -437,7 +397,6 @@
     "description": "She is the last bastion of good in this realm.  Her mission is to\nsomeday free the slaves of the Empress.\n",
     "race": "human",
     "alignment": 1000,
-    "group": 0,
     "level": 26,
     "hitroll": 0,
     "hit_dice": "5d10+600",
@@ -453,11 +412,9 @@
     "sex": "female",
     "wealth": 750,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel scavenger",
     "affected_by": "detect_invis",
-    "offense": "disarm dodge trip assist_vnum",
-    "spec_fun": null
+    "offense": "disarm dodge trip assist_vnum"
   }},
   {"mobile": {
     "area": "arachnos",
@@ -468,7 +425,6 @@
     "description": "Rather small, you almost feel sad in killing it.\n",
     "race": "dragon",
     "alignment": 1000,
-    "group": 0,
     "level": 10,
     "hitroll": 0,
     "hit_dice": "2d7+121",
@@ -484,7 +440,6 @@
     "sex": "male",
     "wealth": 50,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "detect_invis",
     "offense": "disarm dodge trip assist_race",
@@ -499,7 +454,6 @@
     "description": "A medium-sized dragon--seems it hasn't killed anything yet by itself.\n",
     "race": "dragon",
     "alignment": 100,
-    "group": 0,
     "level": 13,
     "hitroll": 0,
     "hit_dice": "2d10+170",
@@ -515,7 +469,6 @@
     "sex": "male",
     "wealth": 250,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel",
     "affected_by": "detect_invis",
     "offense": "disarm dodge trip assist_race",
@@ -530,7 +483,6 @@
     "description": "This disgusting creature is at the size of a human crawling on all four.  It\nhas eight hairy legs that gives it a tremendous speed on almost any surface and\nsharp poisonous fangs to paralyze or kill its prey.\n",
     "race": "human",
     "alignment": -350,
-    "group": 0,
     "level": 8,
     "hitroll": 0,
     "hit_dice": "2d7+96",
@@ -546,7 +498,6 @@
     "sex": "neutral",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel stay_area",
     "offense": "disarm dodge trip assist_vnum",
     "spec_fun": "spec_poison"
@@ -560,7 +511,6 @@
     "description": "This disgusting creature is at the size of a small elephant.  It has eight\nhuge, hairy legs that would give it a tremendous speed on almost any surface\nif it wasn't so immensely fat.  Its large, bulbous eyes stare back at you.\n",
     "race": "human",
     "alignment": -1000,
-    "group": 0,
     "level": 15,
     "hitroll": 0,
     "hit_dice": "3d9+208",
@@ -576,7 +526,6 @@
     "sex": "female",
     "wealth": 0,
     "size": "medium",
-    "shop": null,
     "mob_flags": "sentinel stay_area",
     "affected_by": "detect_invis",
     "offense": "disarm dodge trip assist_vnum",

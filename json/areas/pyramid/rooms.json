@@ -23,7 +23,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "description": "Across the hot burning sands you see a small oasis and some tents.\n",
         "portal": "pyramid-west-1"
       }

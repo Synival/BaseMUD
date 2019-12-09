@@ -15,7 +15,6 @@
     "level": 35,
     "weight": 500,
     "cost": 8400,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take body",
     "affects": [{
@@ -43,7 +42,6 @@
     "level": 50,
     "weight": 240,
     "cost": 5400,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take wield",
     "affects": [
@@ -79,7 +77,6 @@
     "level": 35,
     "weight": 50,
     "cost": 7300,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take head",
     "affects": [{
@@ -106,7 +103,6 @@
     "level": 48,
     "weight": 180,
     "cost": 2000,
-    "condition": 100,
     "extra_flags": "invis magic antigood",
     "wear_flags": "take wield",
     "affects": [
@@ -142,7 +138,6 @@
     "level": 25,
     "weight": 50,
     "cost": 2200,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take feet",
     "affects": [{
@@ -169,7 +164,6 @@
     "level": 15,
     "weight": 80,
     "cost": 5800,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take hold"
   }},
@@ -190,7 +184,6 @@
     "level": 47,
     "weight": 160,
     "cost": 5700,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take wield",
     "affects": [{
@@ -217,7 +210,6 @@
     "level": 47,
     "weight": 150,
     "cost": 10300,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take wield",
     "affects": [
@@ -253,7 +245,6 @@
     "level": 27,
     "weight": 60,
     "cost": 2900,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take hands",
     "affects": [{
@@ -279,7 +270,6 @@
     "level": 11,
     "weight": 10,
     "cost": 1130,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take"
   }},
@@ -294,7 +284,6 @@
     "level": 25,
     "weight": 20,
     "cost": 980,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take neck",
     "affects": [{
@@ -316,7 +305,6 @@
     "level": 35,
     "weight": 10,
     "cost": 6900,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take finger",
     "affects": [
@@ -352,7 +340,6 @@
     "level": 30,
     "weight": 100,
     "cost": 5300,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take shield",
     "affects": [{
@@ -379,7 +366,6 @@
     "level": 35,
     "weight": 120,
     "cost": 3600,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take wield"
   }},
@@ -397,7 +383,6 @@
     "level": 0,
     "weight": 10,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -411,7 +396,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -425,7 +409,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -439,7 +422,6 @@
     "level": 0,
     "weight": 50,
     "cost": 5000,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -456,7 +438,6 @@
     "level": 0,
     "weight": 10,
     "cost": 340,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -473,7 +454,6 @@
     "level": 6,
     "weight": 10,
     "cost": 530,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -490,7 +470,6 @@
     "level": 0,
     "weight": 10,
     "cost": 340,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -507,7 +486,6 @@
     "level": 6,
     "weight": 10,
     "cost": 530,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -521,7 +499,6 @@
     "level": 40,
     "weight": 10,
     "cost": 4900,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take neck",
     "affects": [{
@@ -548,7 +525,6 @@
     "level": 50,
     "weight": 200,
     "cost": 6800,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take wield",
     "affects": [{
@@ -575,7 +551,6 @@
     "level": 17,
     "weight": 100,
     "cost": 1960,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take about",
     "affects": [{
@@ -602,7 +577,6 @@
     "level": 5,
     "weight": 50,
     "cost": 580,
-    "condition": 100,
     "extra_flags": "invis magic antievil",
     "wear_flags": "take head"
   }},
@@ -622,7 +596,6 @@
     "level": 12,
     "weight": 10,
     "cost": 810,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -636,7 +609,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -650,7 +622,6 @@
     "level": 0,
     "weight": 10,
     "cost": 500,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map olympus secret",

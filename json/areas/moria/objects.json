@@ -37,7 +37,6 @@
     "level": 0,
     "weight": 1000,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "rotdeath",
     "wear_flags": "take",
     "extra_description": [{
@@ -60,7 +59,6 @@
     "level": 0,
     "weight": 5000,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -318,7 +316,6 @@
     "level": 12,
     "weight": 70,
     "cost": 930,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -502,7 +499,6 @@
     "level": 11,
     "weight": 80,
     "cost": 940,
-    "condition": 100,
     "extra_flags": "magic antigood antineutral",
     "wear_flags": "take wield",
     "extra_description": [{
@@ -728,7 +724,6 @@
     "level": 7,
     "weight": 20,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dagger light silver",

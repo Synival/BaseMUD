@@ -10,7 +10,6 @@
     "level": 0,
     "weight": 50,
     "cost": 10,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "candlestick",
@@ -32,7 +31,6 @@
     "level": 0,
     "weight": 20,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "brandy bottle",
@@ -53,7 +51,6 @@
     "level": 0,
     "weight": 20,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "brandy bottle",
@@ -71,7 +68,6 @@
     "level": 0,
     "weight": 1000,
     "cost": 50,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "wheelbarrow",
@@ -94,7 +90,6 @@
     "level": 0,
     "weight": 80,
     "cost": 169,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "shovel",
@@ -117,7 +112,6 @@
     "level": 0,
     "weight": 80,
     "cost": 140,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "rake",
@@ -138,7 +132,6 @@
     "level": 0,
     "weight": 150,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "skeleton",
@@ -156,7 +149,6 @@
     "level": 0,
     "weight": 10,
     "cost": 2500,
-    "condition": 100,
     "extra_flags": "nolocate",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -175,7 +167,6 @@
     "level": 7,
     "weight": 10,
     "cost": 800,
-    "condition": 100,
     "wear_flags": "take neck",
     "extra_description": [{
       "keyword": "pendant silver",
@@ -214,7 +205,6 @@
     "level": 6,
     "weight": 10,
     "cost": 430,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dagger silver",

@@ -124,7 +124,6 @@
     "doors": [
       {
         "dir": "north",
-        "to": null,
         "description": "A small, narrow path winds north, and is quickly lost in the bushes. It\nlooks quite a wilderness there!\n",
         "portal": "grove-north-1"
       },
@@ -253,7 +252,6 @@
       },
       {
         "dir": "up",
-        "to": null,
         "description": "The shimmering grows in intensity as you look at it, beckoning you to reach\nupwards...\n",
         "portal": "grove-up-1"
       }
@@ -820,7 +818,6 @@
       },
       {
         "dir": "south",
-        "to": null,
         "description": "A wide road lies to the south.\n",
         "portal": "grove-south-1"
       }

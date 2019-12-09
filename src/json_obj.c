@@ -132,7 +132,7 @@ JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_T *from, int dir,
 
     json_prop_string  (new, "dir", door_get_name (dir));
     if (ex->to_room == NULL || ex->to_room->area != from->area || ex->portal)
-        json_prop_null (new, "to");
+        ; // json_prop_null (new, "to");
     else
         json_prop_integer (new, "to", ex->to_room->anum);
 
@@ -158,22 +158,11 @@ JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_T *from, int dir,
 JSON_PROP_FUN (obj_shop, const SHOP_T *);
 JSON_T *json_new_obj_shop (const char *name, const SHOP_T *shop) {
     JSON_T *new, *sub;
-#if 0
-    MOB_INDEX_T *mob;
-#endif
     int i;
 
     if (shop == NULL)
         return json_new_null (name);
     new = json_new_object (name, JSON_OBJ_SHOP);
-
-#if 0
-    mob = get_mob_index (shop->keeper);
-    if (mob == NULL)
-        json_prop_string (new, "keeper", "unknown");
-    else
-        json_prop_obj_anum (new, "keeper", shop->area, mob->vnum);
-#endif
 
     sub = json_prop_array (new, "trades");
     for (i = 0; i < MAX_TRADE; i++) {
@@ -219,7 +208,8 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob) {
         json_prop_string  (new, "material", JSTR (material_get_name (mob->material)));
 
     json_prop_integer (new, "alignment",   mob->alignment);
-    json_prop_integer (new, "group",       mob->group);
+    if (mob->group != 0)
+        json_prop_integer (new, "group", mob->group);
     json_prop_integer (new, "level",       mob->level);
     json_prop_integer (new, "hitroll",     mob->hitroll);
     json_prop_dice    (new, "hit_dice",    &(mob->hit));
@@ -243,7 +233,8 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob) {
 
     json_prop_integer  (new, "wealth", mob->wealth);
     json_prop_string   (new, "size",   JSTR (size_get_name (mob->size)));
-    json_prop_obj_shop (new, "shop",   mob->shop);
+    if (mob->shop)
+        json_prop_obj_shop (new, "shop", mob->shop);
 
     if (mob->mob_plus != 0)
         json_prop_string (new, "mob_flags",   JBITSF (mob_flags, mob->mob_plus & ~MOB_IS_NPC));
@@ -283,7 +274,8 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob) {
         printf ("*** Ignoring '%s' (#%d) mprogs ***\n", mob->short_descr, mob->vnum);
 
     spec_fun = spec_function_name (mob->spec_fun);
-    json_prop_string (new, "spec_fun", JSTR (spec_fun));
+    if (spec_fun != NULL && spec_fun[0] != '\0')
+        json_prop_string (new, "spec_fun", JSTR (spec_fun));
 
     return new;
 }
@@ -376,10 +368,11 @@ JSON_T *json_new_obj_object (const char *name, const OBJ_INDEX_T *obj) {
         }
     }
 
-    json_prop_integer (new, "level",     obj->level);
-    json_prop_integer (new, "weight",    obj->weight);
-    json_prop_integer (new, "cost",      obj->cost);
-    json_prop_integer (new, "condition", obj->condition);
+    json_prop_integer (new, "level",  obj->level);
+    json_prop_integer (new, "weight", obj->weight);
+    json_prop_integer (new, "cost",   obj->cost);
+    if (obj->condition != 100)
+        json_prop_integer (new, "condition", obj->condition);
 
     if (obj->extra_flags != 0)
         json_prop_string  (new, "extra_flags", JBITS (extra_bit_name (obj->extra_flags)));
@@ -701,8 +694,16 @@ JSON_T *json_new_obj_help (const char *name, const HELP_T *help) {
     new = json_new_object (name, JSON_OBJ_HELP);
 
     json_prop_string  (new, "keyword", JSTR (help->keyword));
-    json_prop_integer (new, "level",   help->level);
     json_prop_string  (new, "text",    JSTR (help->text));
+    if (help->level >= 0) {
+        if (help->level != 0)
+            json_prop_integer (new, "level", help->level);
+    }
+    else {
+        if (help->level != -1)
+            json_prop_integer (new, "level", -1 - help->level);
+        json_prop_boolean (new, "hide_keywords", TRUE);
+    }
 
     return new;
 }

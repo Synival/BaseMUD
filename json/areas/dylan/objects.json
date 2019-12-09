@@ -14,7 +14,6 @@
     "level": 13,
     "weight": 100,
     "cost": 2800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take feet",
     "affects": [
@@ -57,7 +56,6 @@
     "level": 10,
     "weight": 200,
     "cost": 820,
-    "condition": 100,
     "wear_flags": "take wrist"
   }},
   {"object": {
@@ -71,7 +69,6 @@
     "level": 7,
     "weight": 100,
     "cost": 1140,
-    "condition": 100,
     "extra_flags": "invis",
     "wear_flags": "take neck",
     "affects": [
@@ -107,7 +104,6 @@
     "level": 3,
     "weight": 20,
     "cost": 320,
-    "condition": 100,
     "extra_flags": "antigood",
     "wear_flags": "take hold"
   }},
@@ -127,7 +123,6 @@
     "level": 12,
     "weight": 50,
     "cost": 1330,
-    "condition": 100,
     "extra_flags": "glow nodrop",
     "wear_flags": "take hold"
   }}
