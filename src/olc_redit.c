@@ -710,8 +710,7 @@ REDIT (redit_ed) {
 REDIT (redit_create) {
     AREA_T *area;
     ROOM_INDEX_T *room;
-    int value;
-    int iHash;
+    int value, hash;
 
     EDIT_ROOM (ch, room);
 
@@ -743,8 +742,8 @@ REDIT (redit_create) {
     if (value > top_vnum_room)
         top_vnum_room = value;
 
-    iHash = value % MAX_KEY_HASH;
-    LIST_FRONT (room, next, room_index_hash[iHash]);
+    hash = value % MAX_KEY_HASH;
+    LIST_FRONT (room, next, room_index_hash[hash]);
     ch->desc->olc_edit = (void *) room;
 
     send_to_char ("Room created.\n\r", ch);

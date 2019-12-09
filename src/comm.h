@@ -114,7 +114,6 @@ extern const char go_ahead_str[];
     #if !defined(isascii)
         #define isascii(c) ( (c) < 0200 )
     #endif
-    static long theKeys[4];
 
     int gettimeofday (struct timeval *tp, void *tzp) {
         tp->tv_sec = time (NULL);

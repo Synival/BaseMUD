@@ -1182,18 +1182,18 @@ void fix_exits (void) {
     EXIT_T *pexit_rev;
     RESET_T *reset;
     RESET_VALUE_T *v;
-    ROOM_INDEX_T *iLastRoom, *iLastObj;
+    ROOM_INDEX_T *last_room, *last_obj_room;
     OBJ_INDEX_T *key;
-    int iHash;
-    int door, oldBootDb;
+    int hash;
+    int door, old_boot_db;
 
-    for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-        for (room_index = room_index_hash[iHash];
+    for (hash = 0; hash < MAX_KEY_HASH; hash++) {
+        for (room_index = room_index_hash[hash];
              room_index != NULL; room_index = room_index->next)
         {
             bool fexit;
-
-            iLastRoom = iLastObj = NULL;
+            last_room = NULL;
+            last_obj_room = NULL;
 
             /* OLC : new check of resets */
             for (reset = room_index->reset_first; reset;
@@ -1203,35 +1203,35 @@ void fix_exits (void) {
                 switch (reset->command) {
                     case 'M':
                         get_mob_index (v->mob.mob_vnum);
-                        iLastRoom = get_room_index (v->mob.room_vnum);
+                        last_room = get_room_index (v->mob.room_vnum);
                         break;
 
                     case 'O':
                         get_obj_index (v->obj.obj_vnum);
-                        iLastObj = get_room_index (v->obj.room_vnum);
+                        last_obj_room = get_room_index (v->obj.room_vnum);
                         break;
 
                     case 'P':
                         get_obj_index (v->obj.obj_vnum);
-                        EXIT_IF_BUG (iLastObj == NULL,
-                            "fix_exits: reset 'P' in room %d with iLastObj NULL",
+                        EXIT_IF_BUG (last_obj_room == NULL,
+                            "fix_exits: reset 'P' in room %d with last_obj_room NULL",
                             room_index->vnum);
                         break;
 
                     case 'G':
                         get_obj_index (v->give.obj_vnum);
-                        EXIT_IF_BUG (iLastRoom == NULL,
-                            "fix_exits: reset 'G' in room %d with iLastRoom NULL",
+                        EXIT_IF_BUG (last_room == NULL,
+                            "fix_exits: reset 'G' in room %d with last_room NULL",
                             room_index->vnum);
-                        iLastObj = iLastRoom;
+                        last_obj_room = last_room;
                         break;
 
                     case 'E':
                         get_obj_index (v->equip.obj_vnum);
-                        EXIT_IF_BUG (iLastRoom == NULL,
-                            "fix_exits: reset 'E' in room %d with iLastRoom NULL",
+                        EXIT_IF_BUG (last_room == NULL,
+                            "fix_exits: reset 'E' in room %d with last_room NULL",
                             room_index->vnum);
-                        iLastObj = iLastRoom;
+                        last_obj_room = last_room;
                         break;
 
                     case 'D':
@@ -1271,7 +1271,7 @@ void fix_exits (void) {
                     pexit->room_anum = pexit->to_room->anum;
                 }
 
-                oldBootDb = in_boot_db;
+                old_boot_db = in_boot_db;
                 in_boot_db = FALSE;
                 if (pexit->key >= KEY_VALID &&
                     !(key = get_obj_index (pexit->key)))
@@ -1279,15 +1279,15 @@ void fix_exits (void) {
                     bugf ("Warning: Cannot find key %d for room %d exit %d",
                         pexit->key, room_index->vnum, door);
                 }
-                in_boot_db = oldBootDb;
+                in_boot_db = old_boot_db;
             }
             if (!fexit)
                 SET_BIT (room_index->room_flags, ROOM_NO_MOB);
         }
     }
 
-    for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-        for (room_index = room_index_hash[iHash];
+    for (hash = 0; hash < MAX_KEY_HASH; hash++) {
+        for (room_index = room_index_hash[hash];
              room_index != NULL; room_index = room_index->next)
         {
             for (door = 0; door < DIR_MAX; door++) {
@@ -1359,10 +1359,10 @@ void fix_mobprogs (void) {
     MOB_INDEX_T *mob_index;
     MPROG_LIST_T *list;
     MPROG_CODE_T *prog;
-    int iHash;
+    int hash;
 
-    for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-        for (mob_index = mob_index_hash[iHash];
+    for (hash = 0; hash < MAX_KEY_HASH; hash++) {
+        for (mob_index = mob_index_hash[hash];
              mob_index != NULL; mob_index = mob_index->next)
         {
             for (list = mob_index->mprogs; list != NULL; list = list->next) {

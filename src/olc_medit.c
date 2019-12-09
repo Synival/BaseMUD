@@ -145,8 +145,7 @@ MEDIT (medit_show) {
 MEDIT (medit_create) {
     MOB_INDEX_T *mob;
     AREA_T *area;
-    int value;
-    int iHash;
+    int value, hash;
 
     value = atoi (argument);
     RETURN_IF (argument[0] == '\0' || value == 0,
@@ -169,8 +168,8 @@ MEDIT (medit_create) {
         top_vnum_mob = value;
 
     mob->mob_plus = MOB_IS_NPC;
-    iHash = value % MAX_KEY_HASH;
-    LIST_FRONT (mob, next, mob_index_hash[iHash]);
+    hash = value % MAX_KEY_HASH;
+    LIST_FRONT (mob, next, mob_index_hash[hash]);
     ch->desc->olc_edit = (void *) mob;
 
     db_finalize_mob (mob);

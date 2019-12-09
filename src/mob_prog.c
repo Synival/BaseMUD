@@ -172,8 +172,8 @@ CHAR_T *get_random_char (CHAR_T *mob) {
     return victim;
 }
 
-bool count_people_room_check (CHAR_T *mob, CHAR_T *vch, int iFlag) {
-    switch (iFlag) {
+bool count_people_room_check (CHAR_T *mob, CHAR_T *vch, int flag) {
+    switch (flag) {
         case CHK_PEOPLE:
             return TRUE;
         case CHK_PLAYERS:
@@ -192,7 +192,7 @@ bool count_people_room_check (CHAR_T *mob, CHAR_T *vch, int iFlag) {
 }
 
 /* How many other players / mobs are there in the room */
-int count_people_room (CHAR_T *mob, int iFlag) {
+int count_people_room (CHAR_T *mob, int flag) {
     CHAR_T *vch;
     int count = 0;
     for (vch = mob->in_room->people; vch; vch = vch->next_in_room) {
@@ -200,7 +200,7 @@ int count_people_room (CHAR_T *mob, int iFlag) {
             continue;
         if (!char_can_see_in_room (mob, vch))
             continue;
-        if (!count_people_room_check (mob, vch, iFlag))
+        if (!count_people_room_check (mob, vch, flag))
             continue;
         count++;
     }

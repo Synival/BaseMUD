@@ -51,8 +51,7 @@ DEFINE_DO_FUN (do_advance) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     CHAR_T *victim;
-    int level;
-    int iLevel;
+    int i, level;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -96,7 +95,7 @@ DEFINE_DO_FUN (do_advance) {
         send_to_char ("Raising a player's level!\n\r", ch);
         send_to_char ("**** OOOOHHHHHHHHHH  YYYYEEEESSS ****\n\r", victim);
     }
-    for (iLevel = victim->level; iLevel < level; iLevel++) {
+    for (i = victim->level; i < level; i++) {
         victim->level += 1;
         advance_level (victim, TRUE);
     }

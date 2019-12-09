@@ -128,10 +128,10 @@ bool new_player_name_is_valid (char *name) {
     {
         extern MOB_INDEX_T *mob_index_hash[MAX_KEY_HASH];
         MOB_INDEX_T *mob_index;
-        int iHash;
+        int hash;
 
-        for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-            for (mob_index = mob_index_hash[iHash];
+        for (hash = 0; hash < MAX_KEY_HASH; hash++) {
+            for (mob_index = mob_index_hash[hash];
                  mob_index != NULL; mob_index = mob_index->next)
             {
                 if (is_name (name, mob_index->name))

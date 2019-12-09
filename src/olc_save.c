@@ -16,7 +16,7 @@
  * Notes:
  * -If a good syntax checker is used for setting vnum ranges of areas
  *  then it would become possible to just cycle through vnums instead
- *  of using the iHash stuff and checking that the room or reset or
+ *  of using the hash stuff and checking that the room or reset or
  *  mob etc is part of that area.
  */
 
@@ -476,12 +476,12 @@ void save_rooms (FILE *fp, AREA_T *area) {
  Called by:  save_area(olc_save.c).
  ****************************************************************************/
 void save_specials (FILE *fp, AREA_T *area) {
-    int iHash;
+    int hash;
     MOB_INDEX_T *mob_index;
 
     fprintf (fp, "#SPECIALS\n");
-    for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-        for (mob_index = mob_index_hash[iHash]; mob_index;
+    for (hash = 0; hash < MAX_KEY_HASH; hash++) {
+        for (mob_index = mob_index_hash[hash]; mob_index;
              mob_index = mob_index->next)
         {
             if (mob_index == NULL)
@@ -509,13 +509,13 @@ void save_specials (FILE *fp, AREA_T *area) {
  *
  * I don't think it's obsolete in ROM -- Hugin. */
 void save_door_resets (FILE *fp, AREA_T *area) {
-    int iHash;
+    int hash;
     ROOM_INDEX_T *room;
     EXIT_T *ex;
     int door;
 
-    for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-        for (room = room_index_hash[iHash]; room; room = room->next) {
+    for (hash = 0; hash < MAX_KEY_HASH; hash++) {
+        for (room = room_index_hash[hash]; room; room = room->next) {
             if (room->area != area)
                 continue;
             for (door = 0; door < DIR_MAX; door++) {
@@ -556,12 +556,12 @@ void save_resets (FILE *fp, AREA_T *area) {
     MOB_INDEX_T *last_mob = NULL;
     OBJ_INDEX_T *last_obj;
     ROOM_INDEX_T *room;
-    int iHash;
+    int hash;
 
     fprintf (fp, "#RESETS\n");
     save_door_resets (fp, area);
-    for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-        for (room = room_index_hash[iHash]; room; room = room->next) {
+    for (hash = 0; hash < MAX_KEY_HASH; hash++) {
+        for (room = room_index_hash[hash]; room; room = room->next) {
             if (room->area != area)
                 continue;
 
@@ -648,11 +648,11 @@ void save_shops (FILE *fp, AREA_T *area) {
     SHOP_T *shop_index;
     MOB_INDEX_T *mob_index;
     int iTrade;
-    int iHash;
+    int hash;
 
     fprintf (fp, "#SHOPS\n");
-    for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-        for (mob_index = mob_index_hash[iHash]; mob_index;
+    for (hash = 0; hash < MAX_KEY_HASH; hash++) {
+        for (mob_index = mob_index_hash[hash]; mob_index;
              mob_index = mob_index->next)
         {
             if (mob_index && mob_index->area == area && mob_index->shop) {

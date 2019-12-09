@@ -368,24 +368,24 @@ char *format_string (char *oldstring /*, bool space */ ) {
  Called by:    string_add(string.c)
  ****************************************************************************/
 char *first_arg (char *argument, char *arg_first, bool mod_case) {
-    char cEnd;
+    char end;
 
     while (*argument == ' ')
         argument++;
 
-    cEnd = ' ';
+    end = ' ';
     if (*argument == '\'' || *argument == '"'
         || *argument == '%' || *argument == '(')
     {
         if (*argument == '(') {
-            cEnd = ')';
+            end = ')';
             argument++;
         }
         else
-            cEnd = *argument++;
+            end = *argument++;
     }
     while (*argument != '\0') {
-        if (*argument == cEnd) {
+        if (*argument == end) {
             argument++;
             break;
         }

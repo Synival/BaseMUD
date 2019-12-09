@@ -839,8 +839,7 @@ OEDIT (oedit_cost) {
 OEDIT (oedit_create) {
     OBJ_INDEX_T *obj;
     AREA_T *area;
-    int value;
-    int iHash;
+    int value, hash;
 
     value = atoi (argument);
     if (argument[0] == '\0' || value == 0) {
@@ -870,8 +869,8 @@ OEDIT (oedit_create) {
     if (value > top_vnum_obj)
         top_vnum_obj = value;
 
-    iHash = value % MAX_KEY_HASH;
-    LIST_FRONT (obj, next, obj_index_hash[iHash]);
+    hash = value % MAX_KEY_HASH;
+    LIST_FRONT (obj, next, obj_index_hash[hash]);
     ch->desc->olc_edit = (void *) obj;
 
     send_to_char ("Object created.\n\r", ch);

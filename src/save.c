@@ -71,7 +71,7 @@ char *print_flags (flag_t flags) {
 
 /* Array of containers read for proper re-nesting of objects. */
 #define MAX_NEST    100
-static OBJ_T *rgObjNest[MAX_NEST];
+static OBJ_T *obj_nest[MAX_NEST];
 
 /* Save a character and inventory.
  * Would be cool to save NPC's too for quest purposes,
@@ -361,14 +361,14 @@ void fwrite_pet (CHAR_T *pet, FILE *fp) {
 }
 
 /* Write an object and its contents. */
-void fwrite_obj (CHAR_T *ch, OBJ_T *obj, FILE *fp, int iNest) {
+void fwrite_obj (CHAR_T *ch, OBJ_T *obj, FILE *fp, int nest) {
     EXTRA_DESCR_T *ed;
     AFFECT_T *paf;
 
     /* Slick recursion to write lists backwards,
      * so loading them will load in forwards order. */
     if (obj->next_content != NULL)
-        fwrite_obj (ch, obj->next_content, fp, iNest);
+        fwrite_obj (ch, obj->next_content, fp, nest);
 
     /* Castrate storage characters. */
     if (ch->level < obj->level - 2 && obj->item_type != ITEM_CONTAINER)
@@ -386,7 +386,7 @@ void fwrite_obj (CHAR_T *ch, OBJ_T *obj, FILE *fp, int iNest) {
         fprintf (fp, "Oldstyle\n");
     if (obj->enchanted)
         fprintf (fp, "Enchanted\n");
-    fprintf (fp, "Nest %d\n", iNest);
+    fprintf (fp, "Nest %d\n", nest);
 
     /* These data are only used if they do not match the defaults */
     if (obj->name != obj->index_data->name)
@@ -483,7 +483,7 @@ void fwrite_obj (CHAR_T *ch, OBJ_T *obj, FILE *fp, int iNest) {
     fprintf (fp, "End\n\n");
 
     if (obj->contains != NULL)
-        fwrite_obj (ch, obj->contains, fp, iNest + 1);
+        fwrite_obj (ch, obj->contains, fp, nest + 1);
 }
 
 /* Load a char and inventory into a new ch structure. */
@@ -538,9 +538,9 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
 
     sprintf (strsave, "%s%s", PLAYER_DIR, capitalize (name));
     if ((fp = fopen (strsave, "r")) != NULL) {
-        int iNest;
-        for (iNest = 0; iNest < MAX_NEST; iNest++)
-            rgObjNest[iNest] = NULL;
+        int nest;
+        for (nest = 0; nest < MAX_NEST; nest++)
+            obj_nest[nest] = NULL;
 
         found = TRUE;
         while (1) {
@@ -1269,7 +1269,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'D':
-                KEY ("Dam", pet->damroll, fread_number (fp));
+                KEY ("Dam",  pet->damroll, fread_number (fp));
                 KEY ("Desc", pet->description, fread_string (fp));
                 break;
 
@@ -1304,11 +1304,11 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
             case 'H':
                 KEY ("Hit", pet->hitroll, fread_number (fp));
                 if (!str_cmp (word, "HMV")) {
-                    pet->hit = fread_number (fp);
-                    pet->max_hit = fread_number (fp);
-                    pet->mana = fread_number (fp);
+                    pet->hit      = fread_number (fp);
+                    pet->max_hit  = fread_number (fp);
+                    pet->mana     = fread_number (fp);
                     pet->max_mana = fread_number (fp);
-                    pet->move = fread_number (fp);
+                    pet->move     = fread_number (fp);
                     pet->max_move = fread_number (fp);
                     match = TRUE;
                     break;
@@ -1317,7 +1317,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
 
             case 'L':
                 KEY ("Levl", pet->level, fread_number (fp));
-                KEY ("LnD", pet->long_descr, fread_string (fp));
+                KEY ("LnD",  pet->long_descr, fread_string (fp));
                 KEY ("LogO", lastlogoff, fread_number (fp));
                 break;
 
@@ -1356,9 +1356,9 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
 void fread_obj (CHAR_T *ch, FILE *fp) {
     OBJ_T *obj;
     char *word;
-    int iNest;
+    int nest;
     bool match;
-    bool nest;
+    bool nested;
     bool vnum;
     bool first;
     bool new_format; /* to prevent errors */
@@ -1391,9 +1391,9 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
         obj->description = str_dup ("");
     }
 
-    nest = FALSE;
+    nested = FALSE;
     vnum = TRUE;
-    iNest = 0;
+    nest = 0;
 
     while (1) {
         if (first)
@@ -1484,7 +1484,7 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                 }
 
                 if (!str_cmp (word, "End")) {
-                    if (!nest || (vnum && obj->index_data == NULL)) {
+                    if (!nested || (vnum && obj->index_data == NULL)) {
                         bug ("fread_obj: incomplete object.", 0);
                         obj_free (obj);
                         return;
@@ -1515,10 +1515,10 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                             obj = obj_create (obj->index_data, 0);
                             obj->wear_loc = wear;
                         }
-                        if (iNest == 0 || rgObjNest[iNest] == NULL)
+                        if (nest == 0 || obj_nest[nest] == NULL)
                             obj_give_to_char (obj, ch);
                         else
-                            obj_give_to_obj (obj, rgObjNest[iNest - 1]);
+                            obj_give_to_obj (obj, obj_nest[nest - 1]);
                         return;
                     }
                 }
@@ -1538,12 +1538,12 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                 KEY ("Name", obj->name, fread_string (fp));
 
                 if (!str_cmp (word, "Nest")) {
-                    iNest = fread_number (fp);
-                    if (iNest < 0 || iNest >= MAX_NEST)
-                        bug ("fread_obj: bad nest %d.", iNest);
+                    nest = fread_number (fp);
+                    if (nest < 0 || nest >= MAX_NEST)
+                        bug ("fread_obj: bad nest %d.", nest);
                     else {
-                        rgObjNest[iNest] = obj;
-                        nest = TRUE;
+                        obj_nest[nest] = obj;
+                        nested = TRUE;
                     }
                     match = TRUE;
                 }
@@ -1563,17 +1563,16 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                 KEY ("ShD", obj->short_descr, fread_string (fp));
 
                 if (!str_cmp (word, "Spell")) {
-                    int iValue;
-                    int sn;
-
-                    iValue = fread_number (fp);
+                    int value, sn;
+                    value = fread_number (fp);
                     sn = skill_lookup (fread_word (fp));
-                    if (iValue < 0 || iValue >= OBJ_VALUE_MAX)
-                        bug ("fread_obj: bad iValue %d.", iValue);
+
+                    if (value < 0 || value >= OBJ_VALUE_MAX)
+                        bug ("fread_obj: bad value %d.", value);
                     else if (sn < 0)
                         bug ("fread_obj: unknown skill.", 0);
                     else
-                        obj->v.value[iValue] = sn;
+                        obj->v.value[value] = sn;
                     match = TRUE;
                 }
                 break;

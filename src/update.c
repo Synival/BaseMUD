@@ -198,19 +198,19 @@ int move_gain (CHAR_T *ch, bool apply_learning) {
     return gain;
 }
 
-void gain_condition (CHAR_T *ch, int iCond, int value) {
+void gain_condition (CHAR_T *ch, int cond, int value) {
     int condition;
 
     if (value == 0 || IS_NPC (ch) || ch->level >= LEVEL_IMMORTAL)
         return;
 
-    condition = ch->pcdata->condition[iCond];
+    condition = ch->pcdata->condition[cond];
     if (condition == -1)
         return;
-    ch->pcdata->condition[iCond] = URANGE (0, condition + value, 48);
+    ch->pcdata->condition[cond] = URANGE (0, condition + value, 48);
 
-    if (ch->pcdata->condition[iCond] == 0) {
-        switch (iCond) {
+    if (ch->pcdata->condition[cond] == 0) {
+        switch (cond) {
             case COND_HUNGER:
                 send_to_char ("You are hungry.\n\r", ch);
                 break;
