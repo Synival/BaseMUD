@@ -595,12 +595,12 @@ void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool is_short,
 {
     char buf[MAX_STRING_LENGTH];
     BUFFER_T *output;
-    char **prgpstrShow;
-    int *prgnShow;
-    char *pstrShow;
+    char **show_strings;
+    int *show_string_counts;
+    char *obj_show_string;
     OBJ_T *obj;
-    int nShow;
-    int iShow;
+    int show_string_num;
+    int i;
     int count;
     bool combine;
 
@@ -613,9 +613,9 @@ void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool is_short,
     count = 0;
     for (obj = list; obj != NULL; obj = obj->next_content)
         count++;
-    prgpstrShow = mem_alloc (count * sizeof (char *));
-    prgnShow = mem_alloc (count * sizeof (int));
-    nShow = 0;
+    show_strings = mem_alloc (count * sizeof (char *));
+    show_string_counts = mem_alloc (count * sizeof (int));
+    show_string_num = 0;
 
     /* Format the list of objects.  */
     for (obj = list; obj != NULL; obj = obj->next_content) {
@@ -624,15 +624,15 @@ void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool is_short,
         if (!char_can_see_obj (ch, obj))
             continue;
 
-        pstrShow = obj_format_to_char (obj, ch, is_short);
+        obj_show_string= obj_format_to_char (obj, ch, is_short);
         combine = FALSE;
 
         if (IS_NPC (ch) || IS_SET (ch->comm, COMM_COMBINE)) {
             /* Look for duplicates, case sensitive.
              * Matches tend to be near end so run loop backwords. */
-            for (iShow = nShow - 1; iShow >= 0; iShow--) {
-                if (!strcmp (prgpstrShow[iShow], pstrShow)) {
-                    prgnShow[iShow]++;
+            for (i = show_string_num - 1; i >= 0; i--) {
+                if (!strcmp (show_strings[i], obj_show_string)) {
+                    show_string_counts[i]++;
                     combine = TRUE;
                     break;
                 }
@@ -641,33 +641,33 @@ void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool is_short,
 
         /* Couldn't combine, or didn't want to. */
         if (!combine) {
-            prgpstrShow[nShow] = str_dup (pstrShow);
-            prgnShow[nShow] = 1;
-            nShow++;
+            show_strings[show_string_num] = str_dup (obj_show_string);
+            show_string_counts[show_string_num] = 1;
+            show_string_num++;
         }
     }
 
     /* Output the formatted list. */
-    for (iShow = 0; iShow < nShow; iShow++) {
-        if (prgpstrShow[iShow][0] == '\0') {
-            str_free (&(prgpstrShow[iShow]));
+    for (i = 0; i < show_string_num; i++) {
+        if (show_strings[i][0] == '\0') {
+            str_free (&(show_strings[i]));
             continue;
         }
 
         if (IS_NPC (ch) || IS_SET (ch->comm, COMM_COMBINE)) {
-            if (prgnShow[iShow] != 1) {
-                sprintf (buf, "(%2d) ", prgnShow[iShow]);
+            if (show_string_counts[i] != 1) {
+                sprintf (buf, "(%2d) ", show_string_counts[i]);
                 add_buf (output, buf);
             }
             else
                 add_buf (output, "     ");
         }
-        add_buf (output, prgpstrShow[iShow]);
+        add_buf (output, show_strings[i]);
         add_buf (output, "\n\r");
-        str_free (&(prgpstrShow[iShow]));
+        str_free (&(show_strings[i]));
     }
 
-    if (show_nothing && nShow == 0) {
+    if (show_nothing && show_string_num == 0) {
         if (IS_NPC (ch) || IS_SET (ch->comm, COMM_COMBINE))
             send_to_char ("     ", ch);
         send_to_char ("Nothing.\n\r", ch);
@@ -676,8 +676,8 @@ void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool is_short,
 
     /* Clean up. */
     buf_free (output);
-    mem_free (prgpstrShow, count * sizeof (char *));
-    mem_free (prgnShow, count * sizeof (int));
+    mem_free (show_strings, count * sizeof (char *));
+    mem_free (show_string_counts, count * sizeof (int));
 }
 
 int obj_furn_preposition_type (OBJ_T *obj, int position) {

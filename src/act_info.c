@@ -1175,21 +1175,19 @@ DEFINE_DO_FUN (do_commands) {
 
 DEFINE_DO_FUN (do_areas) {
     char buf[MAX_STRING_LENGTH];
-    AREA_T *area1;
-    AREA_T *area2;
-    int iArea;
-    int iAreaHalf;
+    AREA_T *area1, *area2;
+    int i, areas_half;
 
     BAIL_IF (argument[0] != '\0',
         "No argument is used with this command.\n\r", ch);
 
-    iAreaHalf = (TOP(RECYCLE_AREA_T) + 1) / 2;
+    areas_half = (TOP(RECYCLE_AREA_T) + 1) / 2;
     area1 = area_first;
     area2 = area_first;
-    for (iArea = 0; iArea < iAreaHalf; iArea++)
+    for (i = 0; i < areas_half; i++)
         area2 = area2->next;
 
-    for (iArea = 0; iArea < iAreaHalf; iArea++) {
+    for (i = 0; i < areas_half; i++) {
         sprintf (buf, "%-39s%-39s\n\r",
                  area1->credits, (area2 != NULL) ? area2->credits : "");
         send_to_char_bw (buf, ch);

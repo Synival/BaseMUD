@@ -675,17 +675,17 @@ int mult_argument (const char *arg_in, char *arg_out) {
 /* Pick off one argument from a string and return the rest.
  * Understands quotes. */
 char *one_argument (const char *argument, char *arg_first) {
-    char cEnd;
+    char end_ch;
 
     while (isspace (*argument))
         argument++;
 
-    cEnd = ' ';
+    end_ch = ' ';
     if (*argument == '\'' || *argument == '"')
-        cEnd = *argument++;
+        end_ch = *argument++;
 
     while (*argument != '\0') {
-        if (*argument == cEnd) {
+        if (*argument == end_ch) {
             argument++;
             break;
         }

@@ -100,7 +100,7 @@ MEDIT (medit_show) {
 
     if (mob->shop) {
         SHOP_T *shop;
-        int iTrade;
+        int trade;
 
         shop = mob->shop;
         printf_to_char (ch, "Shop data for [%5d]:\n\r"
@@ -111,15 +111,15 @@ MEDIT (medit_show) {
         printf_to_char (ch, "  Hours: %d to %d.\n\r",
             shop->open_hour, shop->close_hour);
 
-        for (iTrade = 0; iTrade < MAX_TRADE; iTrade++) {
-            if (shop->buy_type[iTrade] == 0)
+        for (trade = 0; trade < MAX_TRADE; trade++) {
+            if (shop->buy_type[trade] == 0)
                 continue;
-            if (iTrade == 0) {
+            if (trade == 0) {
                 send_to_char ("  Number Trades Type\n\r", ch);
                 send_to_char ("  ------ -----------\n\r", ch);
             }
-            printf_to_char (ch, "  [%4d] %s\n\r", iTrade,
-                item_get_name (shop->buy_type[iTrade]));
+            printf_to_char (ch, "  [%4d] %s\n\r", trade,
+                item_get_name (shop->buy_type[trade]));
         }
     }
 

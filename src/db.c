@@ -757,7 +757,7 @@ void db_finalize_obj (OBJ_INDEX_T *obj) {
 void load_resets (FILE *fp) {
     RESET_T *reset;
     RESET_VALUE_T *v;
-    int rVnum = -1;
+    int vnum = -1;
 
     EXIT_IF_BUG (!area_last,
         "load_resets: no #AREA seen yet.", 0);
@@ -785,7 +785,7 @@ void load_resets (FILE *fp) {
                 v->mob.room_vnum    = fread_number (fp);
                 v->mob.room_limit   = fread_number (fp);
                 fread_to_eol (fp);
-                rVnum = v->mob.room_vnum;
+                vnum = v->mob.room_vnum;
                 break;
 
             case 'O':
@@ -795,7 +795,7 @@ void load_resets (FILE *fp) {
                 v->obj.room_vnum    = fread_number (fp);
                 v->obj._value5      = 0;
                 fread_to_eol (fp);
-                rVnum = v->obj.room_vnum;
+                vnum = v->obj.room_vnum;
                 break;
 
             case 'P':
@@ -832,7 +832,7 @@ void load_resets (FILE *fp) {
                 v->door.locks     = fread_number (fp);
                 v->door._value5   = 0;
                 fread_to_eol (fp);
-                rVnum = v->door.room_vnum;
+                vnum = v->door.room_vnum;
                 break;
 
             case 'R':
@@ -842,13 +842,13 @@ void load_resets (FILE *fp) {
                 v->randomize._value4   = 0;
                 v->randomize._value5   = 0;
                 fread_to_eol (fp);
-                rVnum = v->randomize.room_vnum;
+                vnum = v->randomize.room_vnum;
                 break;
         }
 
-        EXIT_IF_BUG (rVnum == -1,
-            "load_resets: rVnum == -1", 0);
-        reset->room_vnum = rVnum;
+        EXIT_IF_BUG (vnum == -1,
+            "load_resets: vnum == -1", 0);
+        reset->room_vnum = vnum;
     }
 }
 
@@ -1061,7 +1061,7 @@ void load_shops (FILE *fp) {
 
     while (1) {
         MOB_INDEX_T *mob_index;
-        int iTrade;
+        int trade;
 
         /* ROM mem leak fix, check the keeper before allocating the memory
          * to the SHOP_T variable.  -Rhien */
@@ -1073,8 +1073,8 @@ void load_shops (FILE *fp) {
         shop = shop_new ();
         shop->keeper = keeper;
 
-        for (iTrade = 0; iTrade < MAX_TRADE; iTrade++)
-            shop->buy_type[iTrade] = fread_number(fp);
+        for (trade = 0; trade < MAX_TRADE; trade++)
+            shop->buy_type[trade] = fread_number(fp);
 
         shop->profit_buy  = fread_number(fp);
         shop->profit_sell = fread_number(fp);
@@ -1708,7 +1708,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
 
 void reset_room (ROOM_INDEX_T *room) {
     RESET_T *reset;
-    int iExit;
+    int exit_n;
 
     if (!room)
         return;
@@ -1718,9 +1718,9 @@ void reset_room (ROOM_INDEX_T *room) {
     reset_last_created = FALSE;
 
     /* Reset exits. */
-    for (iExit = 0; iExit < DIR_MAX; iExit++) {
+    for (exit_n = 0; exit_n < DIR_MAX; exit_n++) {
         EXIT_T *exit_obj, *exit_rev;
-        if ((exit_obj = room->exit[iExit]) == NULL)
+        if ((exit_obj = room->exit[exit_n]) == NULL)
             continue;
      /* if (IS_SET (exit_obj->exit_flags, EX_BASHED))
             continue; */
@@ -1728,7 +1728,7 @@ void reset_room (ROOM_INDEX_T *room) {
 
         if (exit_obj->to_room == NULL)
             continue;
-        if ((exit_rev = exit_obj->to_room->exit[door_table[iExit].reverse])
+        if ((exit_rev = exit_obj->to_room->exit[door_table[exit_n].reverse])
                 == NULL)
             continue;
         exit_rev->exit_flags = exit_rev->rs_flags;
@@ -2051,21 +2051,21 @@ void fread_to_eol (FILE *fp) {
 char *fread_word (FILE *fp) {
     static char word[MAX_INPUT_LENGTH];
     char *pword;
-    char cEnd;
+    char end_ch;
 
-    cEnd = fread_letter (fp);
-    if (cEnd == '\'' || cEnd == '"')
+    end_ch = fread_letter (fp);
+    if (end_ch == '\'' || end_ch == '"')
         pword = word;
     else {
-        word[0] = cEnd;
+        word[0] = end_ch;
         pword = word + 1;
-        cEnd = ' ';
+        end_ch = ' ';
     }
 
     for (; pword < word + MAX_INPUT_LENGTH; pword++) {
         *pword = getc (fp);
-        if (cEnd == ' ' ? isspace (*pword) : *pword == cEnd) {
-            if (cEnd == ' ')
+        if (end_ch == ' ' ? isspace (*pword) : *pword == end_ch) {
+            if (end_ch == ' ')
                 ungetc (*pword, fp);
             *pword = '\0';
             return word;

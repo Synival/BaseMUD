@@ -251,15 +251,15 @@ void close_socket (DESCRIPTOR_T *dclose) {
 }
 
 bool read_from_descriptor (DESCRIPTOR_T *d) {
-    int iStart;
+    int start;
 
     /* Hold horses if pending command already. */
     if (d->incomm[0] != '\0')
         return TRUE;
 
     /* Check for overflow. */
-    iStart = strlen (d->inbuf);
-    if (iStart >= sizeof (d->inbuf) - 10) {
+    start = strlen (d->inbuf);
+    if (start >= sizeof (d->inbuf) - 10) {
         log_f ("%s input overflow!", d->host);
         write_to_descriptor (d->descriptor,
             "\n\r*** PUT A LID ON IT!!! ***\n\r", 0);
@@ -276,23 +276,23 @@ bool read_from_descriptor (DESCRIPTOR_T *d) {
         putc (c, stdout);
         if (c == '\r')
             putc ('\n', stdout);
-        d->inbuf[iStart++] = c;
-        if (iStart > sizeof (d->inbuf) - 10)
+        d->inbuf[start++] = c;
+        if (start > sizeof (d->inbuf) - 10)
             break;
     }
     #endif
 
 #if defined(MSDOS) || defined(unix)
     while (1) {
-        int nRead;
-        nRead = read (d->descriptor, d->inbuf + iStart,
-                      sizeof (d->inbuf) - 10 - iStart);
-        if (nRead > 0) {
-            iStart += nRead;
-            if (d->inbuf[iStart - 1] == '\n' || d->inbuf[iStart - 1] == '\r')
+        int bytes_read;
+        bytes_read = read (d->descriptor, d->inbuf + start,
+                      sizeof (d->inbuf) - 10 - start);
+        if (bytes_read > 0) {
+            start += bytes_read;
+            if (d->inbuf[start - 1] == '\n' || d->inbuf[start - 1] == '\r')
                 break;
         }
-        else if (nRead == 0) {
+        else if (bytes_read == 0) {
             log_string ("EOF encountered on read.");
             return FALSE;
         }
@@ -305,7 +305,7 @@ bool read_from_descriptor (DESCRIPTOR_T *d) {
     }
 #endif
 
-    d->inbuf[iStart] = '\0';
+    d->inbuf[start] = '\0';
     return TRUE;
 }
 
@@ -503,9 +503,9 @@ void write_to_buffer (DESCRIPTOR_T *d, const char *txt, int length) {
  * If this gives errors on very long blocks (like 'ofind all'),
  *   try lowering the max block size. */
 bool write_to_descriptor (int desc, char *txt, int length) {
-    int iStart;
-    int nWrite;
-    int nBlock;
+    int start;
+    int bytes_written;
+    int block_size;
 
 #if defined(macintosh) || defined(MSDOS)
     if (desc == 0)
@@ -515,9 +515,9 @@ bool write_to_descriptor (int desc, char *txt, int length) {
     if (length <= 0)
         length = strlen (txt);
 
-    for (iStart = 0; iStart < length; iStart += nWrite) {
-        nBlock = UMIN (length - iStart, 4096);
-        if ((nWrite = write (desc, txt + iStart, nBlock)) < 0) {
+    for (start = 0; start < length; start += bytes_written) {
+        block_size = UMIN (length - start, 4096);
+        if ((bytes_written = write (desc, txt + start, block_size)) < 0) {
             perror ("Write_to_descriptor");
             return FALSE;
         }

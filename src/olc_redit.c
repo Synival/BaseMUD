@@ -40,7 +40,7 @@
  ****************************************************************************/
 void redit_add_reset (ROOM_INDEX_T *room, RESET_T *reset, int index) {
     RESET_T *prev;
-    int iReset = 0;
+    int reset_n = 0;
 
     /* No resets or first slot (1) selected. */
     index--;
@@ -52,7 +52,7 @@ void redit_add_reset (ROOM_INDEX_T *room, RESET_T *reset, int index) {
 
     /* If negative slot( <= 0 selected) then this will find the last. */
     for (prev = room->reset_first; prev->next; prev = prev->next)
-        if (++iReset == index)
+        if (++reset_n == index)
             break;
 
     LISTB_INSERT_AFTER (reset, prev, next,

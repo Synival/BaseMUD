@@ -945,13 +945,13 @@ void char_move (CHAR_T *ch, int door, bool follow) {
 
     /* Special conditions for players. */
     if (!IS_NPC (ch)) {
-        int iClass, iGuild;
+        int class_n, guild;
         int move, in_sect, to_sect, flying;
 
-        for (iClass = 0; iClass < CLASS_MAX; iClass++) {
-            for (iGuild = 0; iGuild < MAX_GUILD; iGuild++) {
-                BAIL_IF (iClass != ch->class &&
-                         to_room->vnum == class_table[iClass].guild[iGuild],
+        for (class_n = 0; class_n < CLASS_MAX; class_n++) {
+            for (guild = 0; guild < MAX_GUILD; guild++) {
+                BAIL_IF (class_n != ch->class &&
+                         to_room->vnum == class_table[class_n].guild[guild],
                     "You aren't allowed in there.\n\r", ch);
             }
         }

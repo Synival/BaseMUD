@@ -151,7 +151,7 @@ DEFINE_DO_FUN (do_password) {
     char *arg;
     char *pwdnew;
     char *p;
-    char cEnd;
+    char end_ch;
 
     if (IS_NPC (ch))
         return;
@@ -162,12 +162,12 @@ DEFINE_DO_FUN (do_password) {
     while (isspace (*argument))
         argument++;
 
-    cEnd = ' ';
+    end_ch = ' ';
     if (*argument == '\'' || *argument == '"')
-        cEnd = *argument++;
+        end_ch = *argument++;
 
     while (*argument != '\0') {
-        if (*argument == cEnd) {
+        if (*argument == end_ch) {
             argument++;
             break;
         }
@@ -179,12 +179,12 @@ DEFINE_DO_FUN (do_password) {
     while (isspace (*argument))
         argument++;
 
-    cEnd = ' ';
+    end_ch = ' ';
     if (*argument == '\'' || *argument == '"')
-        cEnd = *argument++;
+        end_ch = *argument++;
 
     while (*argument != '\0') {
-        if (*argument == cEnd) {
+        if (*argument == end_ch) {
             argument++;
             break;
         }

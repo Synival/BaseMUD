@@ -42,7 +42,7 @@ void do_resets_display (CHAR_T *ch) {
     MOB_INDEX_T *mob = NULL;
     char buf[MAX_STRING_LENGTH];
     char final[MAX_STRING_LENGTH * 2];
-    int iReset = 0;
+    int reset_n = 0;
 
     EDIT_ROOM (ch, room);
     final[0] = '\0';
@@ -61,7 +61,7 @@ void do_resets_display (CHAR_T *ch) {
         ROOM_INDEX_T *room_index;
 
         final[0] = '\0';
-        sprintf (final, "[%2d] ", ++iReset);
+        sprintf (final, "[%2d] ", ++reset_n);
 
         v = &(reset->v);
         switch (reset->command) {
@@ -541,10 +541,10 @@ DEFINE_DO_FUN (do_resets) {
                     room->reset_last = NULL;
             }
             else {
-                int iReset = 0;
+                int reset_n = 0;
                 RESET_T *prev;
 
-                LIST_FIND_WITH_PREV (++iReset == insert_loc, next,
+                LIST_FIND_WITH_PREV (++reset_n == insert_loc, next,
                     room->reset_first, reset, prev);
                 BAIL_IF (!reset,
                     "Reset not found.\n\r", ch);

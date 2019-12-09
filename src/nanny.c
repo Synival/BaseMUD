@@ -504,7 +504,7 @@ void nanny_get_new_race (DESCRIPTOR_T *d, char *argument) {
 void nanny_get_new_sex (DESCRIPTOR_T *d, char *argument) {
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
-    int iClass;
+    int class_n;
 
     switch (UPPER(argument[0])) {
         case 'M':
@@ -521,10 +521,10 @@ void nanny_get_new_sex (DESCRIPTOR_T *d, char *argument) {
     }
 
     strcpy (buf, "Select a class [");
-    for (iClass = 0; iClass < CLASS_MAX; iClass++) {
-        if (iClass > 0)
+    for (class_n = 0; class_n < CLASS_MAX; class_n++) {
+        if (class_n > 0)
             strcat (buf, " ");
-        strcat (buf, class_table[iClass].name);
+        strcat (buf, class_table[class_n].name);
     }
     strcat (buf, "]: ");
     write_to_buffer (d, buf, 0);
@@ -533,15 +533,15 @@ void nanny_get_new_sex (DESCRIPTOR_T *d, char *argument) {
 
 void nanny_get_new_class (DESCRIPTOR_T *d, char *argument) {
     CHAR_T *ch = d->character;
-    int iClass;
+    int class_n;
 
-    iClass = class_lookup (argument);
-    if (iClass < 0) {
+    class_n = class_lookup (argument);
+    if (class_n < 0) {
         send_to_desc ("That's not a class.\n\rWhat IS your class? ", d);
         return;
     }
 
-    ch->class = iClass;
+    ch->class = class_n;
 
     sprintf (log_buf, "%s@%s new player.", ch->name, d->host);
     log_string (log_buf);

@@ -234,22 +234,22 @@ int number_fuzzy (int number) {
    define OLD_RAND to use the old system -- Alander */
 
 #if defined (OLD_RAND)
-    static int rgiState[2 + 55];
+    static int mm_state[2 + 55];
 #endif
 
 void init_mm (void) {
 #if defined (OLD_RAND)
-    int *piState;
-    int iState;
+    int *state_ptr;
+    int state;
 
-    piState = &rgiState[2];
-    piState[-2] = 55 - 55;
-    piState[-1] = 55 - 24;
+    state_ptr = &mm_state[2];
+    state_ptr[-2] = 55 - 55;
+    state_ptr[-1] = 55 - 24;
 
-    piState[0] = ((int) current_time) & ((1 << 30) - 1);
-    piState[1] = 1;
-    for (iState = 2; iState < 55; iState++) {
-        piState[iState] = (piState[iState - 1] + piState[iState - 2])
+    state_ptr[0] = ((int) current_time) & ((1 << 30) - 1);
+    state_ptr[1] = 1;
+    for (state = 2; state < 55; state++) {
+        state_ptr[state] = (state_ptr[state - 1] + state_ptr[state - 2])
             & ((1 << 30) - 1);
     }
 #else
@@ -259,23 +259,23 @@ void init_mm (void) {
 
 long number_mm (void) {
 #if defined (OLD_RAND)
-    int *piState;
-    int iState1;
-    int iState2;
-    int iRand;
+    int *state_ptr;
+    int state1;
+    int state2;
+    int rand_int;
 
-    piState = &rgiState[2];
-    iState1 = piState[-2];
-    iState2 = piState[-1];
-    iRand = (piState[iState1] + piState[iState2]) & ((1 << 30) - 1);
-    piState[iState1] = iRand;
-    if (++iState1 == 55)
-        iState1 = 0;
-    if (++iState2 == 55)
-        iState2 = 0;
-    piState[-2] = iState1;
-    piState[-1] = iState2;
-    return iRand >> 6;
+    state_ptr = &mm_state[2];
+    state1 = state_ptr[-2];
+    state2 = state_ptr[-1];
+    rand_int = (state_ptr[state1] + state_ptr[state2]) & ((1 << 30) - 1);
+    state_ptr[state1] = rand_int;
+    if (++state1 == 55)
+        state1 = 0;
+    if (++state2 == 55)
+        state2 = 0;
+    state_ptr[-2] = state1;
+    state_ptr[-1] = state2;
+    return rand_int >> 6;
 #else
     return random () >> 6;
 #endif

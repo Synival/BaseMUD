@@ -647,8 +647,7 @@ void save_resets (FILE *fp, AREA_T *area) {
 void save_shops (FILE *fp, AREA_T *area) {
     SHOP_T *shop_index;
     MOB_INDEX_T *mob_index;
-    int iTrade;
-    int hash;
+    int trade, hash;
 
     fprintf (fp, "#SHOPS\n");
     for (hash = 0; hash < MAX_KEY_HASH; hash++) {
@@ -659,9 +658,9 @@ void save_shops (FILE *fp, AREA_T *area) {
                 shop_index = mob_index->shop;
 
                 fprintf (fp, "%5d ", shop_index->keeper);
-                for (iTrade = 0; iTrade < MAX_TRADE; iTrade++) {
-                    if (shop_index->buy_type[iTrade] != 0)
-                        fprintf (fp, "%2d ", shop_index->buy_type[iTrade]);
+                for (trade = 0; trade < MAX_TRADE; trade++) {
+                    if (shop_index->buy_type[trade] != 0)
+                        fprintf (fp, "%2d ", shop_index->buy_type[trade]);
                     else
                         fprintf (fp, " 0 ");
                 }
