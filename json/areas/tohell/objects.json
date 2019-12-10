@@ -130,16 +130,16 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword",
-      "description": "The blade of the sword is a full meter long and straight as an arrow, with\n
-                     |lightly-fluted sides.  Both edges are keened down to perfect lines, invisibly\n
-                     |sharp.  Perfection like this could have only been forged by a god.  The black\n
-                     |hilt is contrasted only by the faint symbol of a white arrow.\n
-                     |Upon the blade is engraved a poem:\n
-                     |\n
-                     |                      Farslayer howls across the world\n
-                     |                      For thy heart, for thy heart, who hast wronged me!\n
-                     |                      Vengeance is his who casts the blade\n
-                     |                      Yet he will in the end no triumph see.\n
+      "description": "The blade of the sword is a full meter long and straight as an arrow, with
+                     |lightly-fluted sides.  Both edges are keened down to perfect lines, invisibly
+                     |sharp.  Perfection like this could have only been forged by a god.  The black
+                     |hilt is contrasted only by the faint symbol of a white arrow.
+                     |Upon the blade is engraved a poem:
+                     |
+                     |                      Farslayer howls across the world
+                     |                      For thy heart, for thy heart, who hast wronged me!
+                     |                      Vengeance is his who casts the blade
+                     |                      Yet he will in the end no triumph see.
                      |\n"
     }],
     "affects": [
@@ -1272,8 +1272,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "fire opal gem",
-      "description": "The fire opal is a nicely-polished round gem, with orange, gold, and red\n
-                     |mixed together like the heart of flame.  You can almost feel the hellfire\n
+      "description": "The fire opal is a nicely-polished round gem, with orange, gold, and red
+                     |mixed together like the heart of flame.  You can almost feel the hellfire
                      |from whence it came.\n"
     }]
   }},
@@ -1292,8 +1292,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "hellstone hell stone",
-      "description": "The hellstones are mined from the deepest pits of Hell at the cost of the\n
-                     |blood, sweat, and pain of hundreds of damned souls.  You feel vaguely ill\n
+      "description": "The hellstones are mined from the deepest pits of Hell at the cost of the
+                     |blood, sweat, and pain of hundreds of damned souls.  You feel vaguely ill
                      |as you gaze into its lustrous black heart.\n"
     }]
   }}

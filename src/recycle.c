@@ -437,9 +437,12 @@ void room_index_dispose (void *obj) {
     str_free (&(room->owner));
     str_free (&(room->area_str));
 
-    for (door = 0; door < DIR_MAX; door++)
-        if (room->exit[door])
-            exit_free (room->exit[door]);
+    for (door = 0; door < DIR_MAX; door++) {
+        if (room->exit_orig[door])
+            exit_free (room->exit_orig[door]);
+        room->exit[door] = NULL;
+        room->exit_orig[door] = NULL;
+    }
 
     for (extra = room->extra_descr; extra; extra = extra_next) {
         extra_next = extra->next;

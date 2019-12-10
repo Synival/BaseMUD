@@ -3,9 +3,9 @@
     "area": "ofcol",
     "anum": 50,
     "name": "Village street",
-    "description": "You stand at the small village street in Ofcol.\n
-                   |From here you see small houses and only few people.\n
-                   |North of here the village street continues up to the small\n
+    "description": "You stand at the small village street in Ofcol.
+                   |From here you see small houses and only few people.
+                   |North of here the village street continues up to the small
                    |square where some people are gathered as always.\n",
     "sector_type": "city",
     "doors": [
@@ -36,8 +36,8 @@
     "area": "ofcol",
     "anum": 51,
     "name": "Village street",
-    "description": "You are standing on the village street of Ofcol.\n
-                   |East from here is a small alley and north you enter the village\n
+    "description": "You are standing on the village street of Ofcol.
+                   |East from here is a small alley and north you enter the village
                    |square. Towards the south you can leave Ofcol.\n",
     "sector_type": "city",
     "doors": [
@@ -62,9 +62,9 @@
     "area": "ofcol",
     "anum": 52,
     "name": "Village square",
-    "description": "The village square is a place where inhabitants of Ofcol gather\n
-                   |to talk, trade and sell items and just have a good time.\n
-                   |You see a small shop to the west and the local inn to the north.\n
+    "description": "The village square is a place where inhabitants of Ofcol gather
+                   |to talk, trade and sell items and just have a good time.
+                   |You see a small shop to the west and the local inn to the north.
                    |If you leave south you go to village street.\n",
     "sector_type": "city",
     "doors": [
@@ -113,7 +113,7 @@
     "area": "ofcol",
     "anum": 53,
     "name": "The small alley",
-    "description": "You are in a small, quiet alley.  From here you see the village street\n
+    "description": "You are in a small, quiet alley.  From here you see the village street
                    |to the west and a small room lies to the south.\n",
     "sector_type": "city",
     "doors": [
@@ -149,7 +149,7 @@
     "area": "ofcol",
     "anum": 54,
     "name": "The future training room",
-    "description": "This is the future site of a training room.  The only exit is north\n
+    "description": "This is the future site of a training room.  The only exit is north
                    |leading to the small alley.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -163,8 +163,8 @@
     "area": "ofcol",
     "anum": 55,
     "name": "Luxan's mixed shop",
-    "description": "You are standing in a small shop, filled with all kinds of goods.\n
-                   |Here you might be able to find just the thing you're looking for.\n
+    "description": "You are standing in a small shop, filled with all kinds of goods.
+                   |Here you might be able to find just the thing you're looking for.
                    |The only exit is east to village square.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -211,10 +211,10 @@
     "area": "ofcol",
     "anum": 56,
     "name": "The Local Inn",
-    "description": "You are in the local inn, where the peaceful citizens of Ofcol\n
-                   |gather to have a drink or 5 if they have dry throats.\n
-                   |You can't help thinking that Ofcol is a dry city, when you see the\n
-                   |many people here.\n
+    "description": "You are in the local inn, where the peaceful citizens of Ofcol
+                   |gather to have a drink or 5 if they have dry throats.
+                   |You can't help thinking that Ofcol is a dry city, when you see the
+                   |many people here.
                    |The only exit is south to the village square.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -272,28 +272,28 @@
     "area": "ofcol",
     "anum": 77,
     "name": "Ravan's hideout",
-    "description": "This place is a small, cosy place where no one disturbs you all\n
-                   |the time. The room has little decoration except for some pictures\n
-                   |on the wall.\n
+    "description": "This place is a small, cosy place where no one disturbs you all
+                   |the time. The room has little decoration except for some pictures
+                   |on the wall.
                    |You notice that there are no exits from this room.\n",
     "sector_type": "inside",
     "room_flags": "no_mob",
     "extra_description": [
       {
         "keyword": "friend friends",
-        "description": "The list include such prominent names as : God, Lottie, Kurgan,\n
+        "description": "The list include such prominent names as : God, Lottie, Kurgan,
                        |Ezzard, Mike, Sprocket and Stormbringer.\n"
       },
       {
         "keyword": "foe foes enemies",
-        "description": "There is only one picture yet... Dim.\n
-                       |It pictures him hanging from a gallow, north of the town.\n
+        "description": "There is only one picture yet... Dim.
+                       |It pictures him hanging from a gallow, north of the town.
                        |It has the letters R.I.P. inscripted underneath.\n"
       },
       {
         "keyword": "pictures picture decoration",
-        "description": "These pictures show the friend's and foe's of Ravan.\n
-                       |They are easy to separate, as most of the foe's have the letters\n
+        "description": "These pictures show the friend's and foe's of Ravan.
+                       |They are easy to separate, as most of the foe's have the letters
                        |R.I.P. inscripted underneath them.\n"
       }
     ],

@@ -3,10 +3,10 @@
     "area": "school",
     "anum": 0,
     "name": "Entrance to Mud School",
-    "description": "This is the entrance to the Merc Mud School.  Go north to go through mud\n
-                   |school.  If you have been here before and want to go directly to the arena,\n
-                   |go south.\n
-                   |\n
+    "description": "This is the entrance to the Merc Mud School.  Go north to go through mud
+                   |school.  If you have been here before and want to go directly to the arena,
+                   |go south.
+                   |
                    |A sign warns 'You may not pass these doors once you have passed level 5.'\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
@@ -34,9 +34,9 @@
     "area": "school",
     "anum": 1,
     "name": "A Room in Mud School",
-    "description": "You are in a square white room.  The walls are all blank, with no windows.\n
-                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a\n
-                   |sign on the wall.  The exits are west and south.  A small plaque is on the\n
+    "description": "You are in a square white room.  The walls are all blank, with no windows.
+                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a
+                   |sign on the wall.  The exits are west and south.  A small plaque is on the
                    |wall.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors newbies_only",
@@ -55,23 +55,23 @@
     "extra_description": [
       {
         "keyword": "sign",
-        "description": "Equipment check time!  Type 'EQUIPMENT' to see your current equipment.  Right\n
-                       |now, you have just a vest, a shield, and a weapon.  As you go through Mud\n
-                       |School you will acquire a complete set of equipment.\n
-                       |\n
-                       |To pick up items on the ground as you see them, type 'GET item'.\n
-                       |To wear a piece of armor, type 'WEAR item'.\n
-                       |To hold a light source, type 'HOLD item'.\n
-                       |To wield a weapon, type 'WIELD weapon'.\n
-                       |To wear, hold, and wield everything you have, type 'WEAR ALL'.\n
-                       |To stop using a piece of equipment, type 'REMOVE item'.\n
-                       |Finally, to see the items in your inventory, type 'INVENTORY'.\n
-                       |\n
+        "description": "Equipment check time!  Type 'EQUIPMENT' to see your current equipment.  Right
+                       |now, you have just a vest, a shield, and a weapon.  As you go through Mud
+                       |School you will acquire a complete set of equipment.
+                       |
+                       |To pick up items on the ground as you see them, type 'GET item'.
+                       |To wear a piece of armor, type 'WEAR item'.
+                       |To hold a light source, type 'HOLD item'.
+                       |To wield a weapon, type 'WIELD weapon'.
+                       |To wear, hold, and wield everything you have, type 'WEAR ALL'.
+                       |To stop using a piece of equipment, type 'REMOVE item'.
+                       |Finally, to see the items in your inventory, type 'INVENTORY'.
+                       |
                        |When you are ready to continue, go west.\n"
       },
       {
         "keyword": "plaque",
-        "description": "This zone (Mud School) is created by Hatchet for any Merc Mud.\n
+        "description": "This zone (Mud School) is created by Hatchet for any Merc Mud.
                        |Copyright 1992, 1993.\n"
       }
     ],
@@ -88,8 +88,8 @@
     "area": "school",
     "anum": 2,
     "name": "The Center Room",
-    "description": "You are in a square white room.  The walls are all blank, with no windows.\n
-                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a\n
+    "description": "You are in a square white room.  The walls are all blank, with no windows.
+                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a
                    |sign on the wall.  Exits lead in ALL directions.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors newbies_only",
@@ -127,16 +127,16 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "This is the direction practicing room.  The directions you can go in any\n
-                     |room are: north, south, east, west, up, or down.  Of course, not all rooms\n
-                     |have all exits available.\n
-                     |\n
-                     |To see the obvious exits in a room, type 'EXITS'.\n
-                     |\n
-                     |Sometimes doors are closed, or locked, or secret.  Then you have to notice\n
-                     |clues in the room description, or try going into that direction and seeing\n
-                     |if you bump into a door.\n
-                     |\n
+      "description": "This is the direction practicing room.  The directions you can go in any
+                     |room are: north, south, east, west, up, or down.  Of course, not all rooms
+                     |have all exits available.
+                     |
+                     |To see the obvious exits in a room, type 'EXITS'.
+                     |
+                     |Sometimes doors are closed, or locked, or secret.  Then you have to notice
+                     |clues in the room description, or try going into that direction and seeing
+                     |if you bump into a door.
+                     |
                      |Try going into each direction from here.  When you are done, go NORTH.\n"
     }]
   }},
@@ -144,8 +144,8 @@
     "area": "school",
     "anum": 3,
     "name": "A Room in Mud School",
-    "description": "You are in a square white room.  The walls are all blank, with no windows.\n
-                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a\n
+    "description": "You are in a square white room.  The walls are all blank, with no windows.
+                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a
                    |sign on the wall.  Exits lead north and south.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors newbies_only",
@@ -163,8 +163,8 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "Since you are here, let us have another lesson.  You can see the statistics on\n
-                     |yourself by typing 'SCORE'.  Do that right now.  At higher levels, 'SCORE'\n
+      "description": "Since you are here, let us have another lesson.  You can see the statistics on
+                     |yourself by typing 'SCORE'.  Do that right now.  At higher levels, 'SCORE'
                      |gives you more information.\n"
     }]
   }},
@@ -172,8 +172,8 @@
     "area": "school",
     "anum": 4,
     "name": "A Room in Mud School",
-    "description": "You are in a square white room.  The walls are all blank, with no windows.\n
-                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a\n
+    "description": "You are in a square white room.  The walls are all blank, with no windows.
+                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a
                    |sign on the wall.  The only exit is east.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors newbies_only",
@@ -191,8 +191,8 @@
     "area": "school",
     "anum": 5,
     "name": "A Room in Mud School",
-    "description": "You are in a square white room.  The walls are all blank, with no windows.\n
-                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a\n
+    "description": "You are in a square white room.  The walls are all blank, with no windows.
+                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a
                    |sign on the wall.  The only exit is north.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors newbies_only",
@@ -210,8 +210,8 @@
     "area": "school",
     "anum": 7,
     "name": "A Room in Mud School",
-    "description": "You are in a square white room.  The walls are all blank, with no windows.\n
-                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a\n
+    "description": "You are in a square white room.  The walls are all blank, with no windows.
+                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a
                    |sign on the wall.  The only exit is up.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors newbies_only",
@@ -229,8 +229,8 @@
     "area": "school",
     "anum": 8,
     "name": "A Room in Mud School",
-    "description": "You are in a square white room.  The walls are all blank, with no windows.\n
-                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a\n
+    "description": "You are in a square white room.  The walls are all blank, with no windows.
+                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a
                    |sign on the wall.  The only exit is down.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors newbies_only",
@@ -248,8 +248,8 @@
     "area": "school",
     "anum": 9,
     "name": "A Room in Mud School",
-    "description": "You are in a square white room.  The walls are all blank, with no windows.\n
-                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a\n
+    "description": "You are in a square white room.  The walls are all blank, with no windows.
+                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a
                    |sign on the wall.  Exits reach west and down.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors newbies_only",
@@ -267,21 +267,21 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "Welcome to combat training.\n
-                     |\n
-                     |The first lesson is knowing whom to fight.  Use the command 'CONSIDER' to\n
-                     |consider killing a monster.  Avoid fighting monsters that will kill you\n
-                     |easily.\n
-                     |\n
-                     |The second lesson is running away.  There is a monster in the room down.\n
-                     |He is too strong for you to kill, but he won't kill you.  So go 'DOWN' from\n
-                     |here, then 'CONSIDER' him, then 'KILL' him.  After a while, type 'FLEE' to\n
-                     |escape from him.\n
-                     |\n
-                     |You can also set your character to flee automatically with the 'WIMPY' command.\n
-                     |Type 'HELP WIMPY' to find out more about 'WIMPY'.\n
-                     |\n
-                     |After you flee, you will be back in this room.  When you are ready to go on\n
+      "description": "Welcome to combat training.
+                     |
+                     |The first lesson is knowing whom to fight.  Use the command 'CONSIDER' to
+                     |consider killing a monster.  Avoid fighting monsters that will kill you
+                     |easily.
+                     |
+                     |The second lesson is running away.  There is a monster in the room down.
+                     |He is too strong for you to kill, but he won't kill you.  So go 'DOWN' from
+                     |here, then 'CONSIDER' him, then 'KILL' him.  After a while, type 'FLEE' to
+                     |escape from him.
+                     |
+                     |You can also set your character to flee automatically with the 'WIMPY' command.
+                     |Type 'HELP WIMPY' to find out more about 'WIMPY'.
+                     |
+                     |After you flee, you will be back in this room.  When you are ready to go on
                      |to the next station, go 'WEST'.\n"
     }]
   }},
@@ -289,7 +289,7 @@
     "area": "school",
     "anum": 10,
     "name": "The Blob Cage",
-    "description": "You are in a smelly cage.  Strangely, the walls are still clean!\n
+    "description": "You are in a smelly cage.  Strangely, the walls are still clean!
                    |You see a sign here.  The only exit is up.\n",
     "sector_type": "inside",
     "room_flags": "indoors newbies_only",
@@ -300,7 +300,7 @@
     }],
     "extra_description": [{
       "keyword": "sign",
-      "description": "Remember, don't fight the blob to the finish!  Just type 'KILL BLOB', then\n
+      "description": "Remember, don't fight the blob to the finish!  Just type 'KILL BLOB', then
                      |when you are fighting, type 'FLEE', until you flee and are out of here.\n"
     }],
     "resets": [{
@@ -316,8 +316,8 @@
     "area": "school",
     "anum": 11,
     "name": "A Room in Mud School",
-    "description": "You are in a square white room.  The walls are all blank, with no windows.\n
-                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a\n
+    "description": "You are in a square white room.  The walls are all blank, with no windows.
+                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a
                    |sign on the wall.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors newbies_only",
@@ -335,8 +335,8 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "Welcome to the next station.  Here, you will actually fight real monsters,\n
-                     |without fleeing!  Kill every mob, since they hold some equipment you need.\n
+      "description": "Welcome to the next station.  Here, you will actually fight real monsters,
+                     |without fleeing!  Kill every mob, since they hold some equipment you need.
                      |To start, go down.\n"
     }]
   }},
@@ -344,8 +344,8 @@
     "area": "school",
     "anum": 12,
     "name": "The Cage Room",
-    "description": "You are in the cage room.  All around are 4 cages.  Light fluoresces off the\n
-                   |ceiling in soft white tones.  Of course, there is a big sign on the wall.\n
+    "description": "You are in the cage room.  All around are 4 cages.  Light fluoresces off the
+                   |ceiling in soft white tones.  Of course, there is a big sign on the wall.
                    |Exits lead into the cardinal directions plus down.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors newbies_only",
@@ -378,20 +378,20 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "Welcome to the cage room.  The adepts of mud school have captured some\n
-                     |monsters for you to kill.  In the four cages are four monsters of various\n
-                     |types.  Kill them all!\n
-                     |\n
-                     |After you kill each monster, get all of the equipment from their corpses\n
-                     |with the command 'GET ALL CORPSE'.  You can then use the command 'WEAR ALL'\n
-                     |to wear your newly won equipment.\n
-                     |\n
-                     |When you are done with the corpse, 'SACRIFICE CORPSE' to give it to your God.\n
-                     |God will reward you for this.\n
-                     |\n
-                     |Between combat, you may need to rest or sleep to regenerate hit points.\n
-                     |You can 'REST' to regenerate hit points, or you can 'SLEEP'.  'SLEEP' will\n
-                     |refresh you faster than 'REST', but you will be less aware of your\n
+      "description": "Welcome to the cage room.  The adepts of mud school have captured some
+                     |monsters for you to kill.  In the four cages are four monsters of various
+                     |types.  Kill them all!
+                     |
+                     |After you kill each monster, get all of the equipment from their corpses
+                     |with the command 'GET ALL CORPSE'.  You can then use the command 'WEAR ALL'
+                     |to wear your newly won equipment.
+                     |
+                     |When you are done with the corpse, 'SACRIFICE CORPSE' to give it to your God.
+                     |God will reward you for this.
+                     |
+                     |Between combat, you may need to rest or sleep to regenerate hit points.
+                     |You can 'REST' to regenerate hit points, or you can 'SLEEP'.  'SLEEP' will
+                     |refresh you faster than 'REST', but you will be less aware of your
                      |surroundings.\n"
     }],
     "resets": [{
@@ -407,7 +407,7 @@
     "area": "school",
     "anum": 13,
     "name": "A Cage",
-    "description": "You are in a cage.  Blood and gore are everywhere.  The keepers must be lax\n
+    "description": "You are in a cage.  Blood and gore are everywhere.  The keepers must be lax
                    |in the upkeep here!  There is a sign on the wall.  The only exit is south.\n",
     "sector_type": "inside",
     "room_flags": "indoors newbies_only",
@@ -418,7 +418,7 @@
     }],
     "extra_description": [{
       "keyword": "sign",
-      "description": "There is an aggressive monster in this room.  Kill him and get out of here\n
+      "description": "There is an aggressive monster in this room.  Kill him and get out of here
                      |fast!  Remember to loot and sacrifice the corpse.\n"
     }],
     "resets": [
@@ -452,7 +452,7 @@
     "area": "school",
     "anum": 14,
     "name": "A Cage",
-    "description": "You are in a cage.  Blood and gore are everywhere.  The keepers must be lax\n
+    "description": "You are in a cage.  Blood and gore are everywhere.  The keepers must be lax
                    |in the upkeep here!  There is a sign on the wall.  The only exit is east.\n",
     "sector_type": "inside",
     "room_flags": "indoors newbies_only",
@@ -463,7 +463,7 @@
     }],
     "extra_description": [{
       "keyword": "sign",
-      "description": "There is a wimpy, aggressive monster in this room.  Kill him and get out of\n
+      "description": "There is a wimpy, aggressive monster in this room.  Kill him and get out of
                      |here fast!  Remember to loot and sacrifice the corpse.\n"
     }],
     "resets": [
@@ -497,7 +497,7 @@
     "area": "school",
     "anum": 15,
     "name": "A Cage",
-    "description": "You are in a cage.  Blood and gore are everywhere.  The keepers must be lax\n
+    "description": "You are in a cage.  Blood and gore are everywhere.  The keepers must be lax
                    |in the upkeep here!  There is a sign on the wall.  The only exit is north.\n",
     "sector_type": "inside",
     "room_flags": "indoors newbies_only",
@@ -508,7 +508,7 @@
     }],
     "extra_description": [{
       "keyword": "sign",
-      "description": "There is a wimpy monster in this room.  Kill him and get out of here fast!\n
+      "description": "There is a wimpy monster in this room.  Kill him and get out of here fast!
                      |Remember to loot and sacrifice the corpse.\n"
     }],
     "resets": [
@@ -542,7 +542,7 @@
     "area": "school",
     "anum": 16,
     "name": "A Cage",
-    "description": "You are in a cage.  Blood and gore are everywhere.  The keepers must be lax\n
+    "description": "You are in a cage.  Blood and gore are everywhere.  The keepers must be lax
                    |in the upkeep here!  There is a sign on the wall.  The only exit is west.\n",
     "sector_type": "inside",
     "room_flags": "indoors newbies_only",
@@ -553,7 +553,7 @@
     }],
     "extra_description": [{
       "keyword": "sign",
-      "description": "There is a monster in this room.  Kill him and get out of here fast!\n
+      "description": "There is a monster in this room.  Kill him and get out of here fast!
                      |Remember to loot and sacrifice the corpse.\n"
     }],
     "resets": [
@@ -587,8 +587,8 @@
     "area": "school",
     "anum": 17,
     "name": "A Room in Mud School",
-    "description": "You are in a square white room.  The walls are all blank, with no windows.\n
-                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a\n
+    "description": "You are in a square white room.  The walls are all blank, with no windows.
+                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a
                    |sign on the wall.  Find your own exit here.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors newbies_only",
@@ -613,14 +613,14 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "By now, you must be hungry and thirsty.  Time to buy groceries!\n
-                     |To the south is a store.  Inside the store, you can use these commands:\n
-                     |\n
-                     |    BUY    Buy an item\n
-                     |    LIST   List what is for sale\n
-                     |\n
-                     |After buying some food and drink, you can 'EAT' and 'DRINK' it.\n
-                     |\n
+      "description": "By now, you must be hungry and thirsty.  Time to buy groceries!
+                     |To the south is a store.  Inside the store, you can use these commands:
+                     |
+                     |    BUY    Buy an item
+                     |    LIST   List what is for sale
+                     |
+                     |After buying some food and drink, you can 'EAT' and 'DRINK' it.
+                     |
                      |After that, find the next exit yourself.\n"
     }]
   }},
@@ -628,8 +628,8 @@
     "area": "school",
     "anum": 18,
     "name": "The Store in Mud School",
-    "description": "You are in a cramped room.  Stacked neatly on shelves everywhere are items\n
-                   |and packages.  Light fluoresces off the ceiling in soft white tones.  Of\n
+    "description": "You are in a cramped room.  Stacked neatly on shelves everywhere are items
+                   |and packages.  Light fluoresces off the ceiling in soft white tones.  Of
                    |course, there is a sign on the wall.  The only exit is north.\n",
     "sector_type": "inside",
     "room_flags": "indoors newbies_only",
@@ -640,12 +640,12 @@
     }],
     "extra_description": [{
       "keyword": "sign",
-      "description": "The sign reads:\n
-                     |\n
-                     |   Buy   - Buy something from the storekeeper.\n
-                     |   List  - The storekeeper will tell you what's for sale.\n
-                     |   Value - The storekeeper will tell you how much he will give to you for\n
-                     |           that item.\n
+      "description": "The sign reads:
+                     |
+                     |   Buy   - Buy something from the storekeeper.
+                     |   List  - The storekeeper will tell you what's for sale.
+                     |   Value - The storekeeper will tell you how much he will give to you for
+                     |           that item.
                      |   Sell  - Sell that item to the storekeeper.\n"
     }],
     "resets": [
@@ -683,8 +683,8 @@
     "area": "school",
     "anum": 19,
     "name": "A Room in Mud School",
-    "description": "You are in a square white room.  The walls are all blank, with no windows.\n
-                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a\n
+    "description": "You are in a square white room.  The walls are all blank, with no windows.
+                   |Light fluoresces off the ceiling in soft white tones.  Of course, there is a
                    |sign on the wall.  The exits are north and west, with a door to the east.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors newbies_only",
@@ -712,11 +712,11 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "North of you is a dark room.  I hope you still have the lantern!  If not,\n
-                     |you have to back to the store and buy one.\n
-                     |\n
-                     |In the room is a monster with a key that you need.  After killing the\n
-                     |monster and getting the key, come back here, UNLOCK EAST, OPEN EAST,\n
+      "description": "North of you is a dark room.  I hope you still have the lantern!  If not,
+                     |you have to back to the store and buy one.
+                     |
+                     |In the room is a monster with a key that you need.  After killing the
+                     |monster and getting the key, come back here, UNLOCK EAST, OPEN EAST,
                      |and continue east.\n"
     }]
   }},
@@ -724,8 +724,8 @@
     "area": "school",
     "anum": 20,
     "name": "The Darkened Room",
-    "description": "This room was purposefully darkened so that you would need to hold on to a\n
-                   |light source to go through.  The walls are, of course, blank, and white.\n
+    "description": "This room was purposefully darkened so that you would need to hold on to a
+                   |light source to go through.  The walls are, of course, blank, and white.
                    |The only exit is south.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors newbies_only",
@@ -781,9 +781,9 @@
     "area": "school",
     "anum": 21,
     "name": "The End of Mud School!",
-    "description": "This is a very bright room, with a marble pedestal in the center.  Behind\n
-                   |the pedestal stands a person cloaked in Silver.  Tapestries flow from every\n
-                   |wall, and you feel very happy to be here right now.  There is a big sign here.\n
+    "description": "This is a very bright room, with a marble pedestal in the center.  Behind
+                   |the pedestal stands a person cloaked in Silver.  Tapestries flow from every
+                   |wall, and you feel very happy to be here right now.  There is a big sign here.
                    |The only exit is on the other side of the gate north of you.\n",
     "sector_type": "inside",
     "room_flags": "indoors newbies_only",
@@ -796,18 +796,18 @@
     }],
     "extra_description": [{
       "keyword": "sign",
-      "description": "You have graduated from Mud School!  Take your diploma...if you can.\n
-                     |Go 'NORTH' from here to visit our arena.  There are plenty of low-level\n
-                     |monsters, but DON'T attack other players.\n
-                     |\n
-                     |If you want to go directly back to the temple at any time, type 'RECALL'.\n
-                     |\n
-                     |Don't forget to type save to protect your character.  You won't be saved after\n
-                     |quitting until you reach level 2, so also type save before you type quit.\n
-                     |\n
-                     |If you need more help during the game, type 'HELP'.  If you see something\n
-                     |wrong or have comments, use 'BUG', 'IDEA', or 'TYPO' to report them.\n
-                     |\n
+      "description": "You have graduated from Mud School!  Take your diploma...if you can.
+                     |Go 'NORTH' from here to visit our arena.  There are plenty of low-level
+                     |monsters, but DON'T attack other players.
+                     |
+                     |If you want to go directly back to the temple at any time, type 'RECALL'.
+                     |
+                     |Don't forget to type save to protect your character.  You won't be saved after
+                     |quitting until you reach level 2, so also type save before you type quit.
+                     |
+                     |If you need more help during the game, type 'HELP'.  If you see something
+                     |wrong or have comments, use 'BUG', 'IDEA', or 'TYPO' to report them.
+                     |
                      |May your visit here be ... mercenary.\n"
     }],
     "resets": [
@@ -841,8 +841,8 @@
     "area": "school",
     "anum": 22,
     "name": "South Wall of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -870,8 +870,8 @@
     "area": "school",
     "anum": 23,
     "name": "South Wall of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -899,8 +899,8 @@
     "area": "school",
     "anum": 24,
     "name": "South West Corner of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -932,8 +932,8 @@
     "area": "school",
     "anum": 25,
     "name": "South Wall of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -961,8 +961,8 @@
     "area": "school",
     "anum": 26,
     "name": "South East Corner of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -994,8 +994,8 @@
     "area": "school",
     "anum": 27,
     "name": "West Wall of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1023,8 +1023,8 @@
     "area": "school",
     "anum": 28,
     "name": "Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1056,8 +1056,8 @@
     "area": "school",
     "anum": 29,
     "name": "Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1089,8 +1089,8 @@
     "area": "school",
     "anum": 30,
     "name": "Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1122,8 +1122,8 @@
     "area": "school",
     "anum": 31,
     "name": "East Wall of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1151,8 +1151,8 @@
     "area": "school",
     "anum": 32,
     "name": "West Wall of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1180,8 +1180,8 @@
     "area": "school",
     "anum": 33,
     "name": "Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1213,8 +1213,8 @@
     "area": "school",
     "anum": 34,
     "name": "Center of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.  There is a BIG SIGN here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1250,8 +1250,8 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "Those with high bravery or low senses of cautiousness might wish to go below\n
-                     |to the Dungeon.  However, know that there are aggressive monsters down there,\n
+      "description": "Those with high bravery or low senses of cautiousness might wish to go below
+                     |to the Dungeon.  However, know that there are aggressive monsters down there,
                      |and there is no quick escape back out of here when you are in the dungeon.\n"
     }],
     "resets": [{
@@ -1267,8 +1267,8 @@
     "area": "school",
     "anum": 35,
     "name": "Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1300,8 +1300,8 @@
     "area": "school",
     "anum": 36,
     "name": "East Wall of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1329,8 +1329,8 @@
     "area": "school",
     "anum": 37,
     "name": "West Wall of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1358,8 +1358,8 @@
     "area": "school",
     "anum": 38,
     "name": "Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1391,8 +1391,8 @@
     "area": "school",
     "anum": 39,
     "name": "Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1424,8 +1424,8 @@
     "area": "school",
     "anum": 40,
     "name": "Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1457,8 +1457,8 @@
     "area": "school",
     "anum": 41,
     "name": "East Wall of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1486,8 +1486,8 @@
     "area": "school",
     "anum": 42,
     "name": "North West Corner of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1519,8 +1519,8 @@
     "area": "school",
     "anum": 43,
     "name": "North Wall of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  You can barely see the ceiling.  You feel as if you are being watched\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  You can barely see the ceiling.  You feel as if you are being watched
                    |by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1548,8 +1548,8 @@
     "area": "school",
     "anum": 44,
     "name": "North Wall of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1577,8 +1577,8 @@
     "area": "school",
     "anum": 45,
     "name": "North Wall of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1606,8 +1606,8 @@
     "area": "school",
     "anum": 46,
     "name": "North East Corner of Arena",
-    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just\n
-                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are\n
+    "description": "You are in the Arena.  Remember, if you wish to get out of this Arena, just
+                   |go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
                    |being watched by some divine being.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1639,9 +1639,9 @@
     "area": "school",
     "anum": 48,
     "name": "The Center of the Dungeon",
-    "description": "You are in the center of a large room.  A faint light from above shows that\n
-                   |the floors are all covered with slime.  A feeling of dread comes over you as\n
-                   |you notice that this is NOT a great place to go.  Exits go in all directions.\n
+    "description": "You are in the center of a large room.  A faint light from above shows that
+                   |the floors are all covered with slime.  A feeling of dread comes over you as
+                   |you notice that this is NOT a great place to go.  Exits go in all directions.
                    |Of special note is the one that brings you back up!!!\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1679,7 +1679,7 @@
     "area": "school",
     "anum": 49,
     "name": "The North West Corner of the Dungeon",
-    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\n
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of
                    |any windows in the area explains the smell around you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1708,7 +1708,7 @@
     "area": "school",
     "anum": 50,
     "name": "The North Wall of the Dungeon",
-    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\n
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of
                    |any windows in the area explains the smell around you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1734,7 +1734,7 @@
     "area": "school",
     "anum": 51,
     "name": "The North East Corner of the Dungeon",
-    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\n
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of
                    |any windows in the area explains the smell around you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1763,7 +1763,7 @@
     "area": "school",
     "anum": 52,
     "name": "The West Wall of the Dungeon",
-    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\n
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of
                    |any windows in the area explains the smell around you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1789,7 +1789,7 @@
     "area": "school",
     "anum": 53,
     "name": "The East Wall of the Dungeon",
-    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\n
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of
                    |any windows in the area explains the smell around you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1815,7 +1815,7 @@
     "area": "school",
     "anum": 54,
     "name": "The South West Corner of the Dungeon",
-    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\n
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of
                    |any windows in the area explains the smell around you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1844,7 +1844,7 @@
     "area": "school",
     "anum": 55,
     "name": "The South Wall of the Dungeon",
-    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\n
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of
                    |any windows in the area explains the smell around you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1870,7 +1870,7 @@
     "area": "school",
     "anum": 56,
     "name": "The South East Corner of the Dungeon",
-    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of\n
+    "description": "You are against a wall in the dungeon.  It is quite dark here.  The lack of
                    |any windows in the area explains the smell around you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1891,9 +1891,9 @@
     "area": "school",
     "anum": 57,
     "name": "A Room in Mud School",
-    "description": "You are in a room in Mud School.  Paintings of the heroic graduates of mud\n
-                   |school adorn the walls. To the west is Furey's Training Room, and to the east\n
-                   |is Zump's Guild Room.  North of you is the next Station of Mud School.\n
+    "description": "You are in a room in Mud School.  Paintings of the heroic graduates of mud
+                   |school adorn the walls. To the west is Furey's Training Room, and to the east
+                   |is Zump's Guild Room.  North of you is the next Station of Mud School.
                    |There is a sign on the wall (type 'LOOK SIGN' to read it).\n",
     "sector_type": "city",
     "room_flags": "no_mob indoors newbies_only",
@@ -1921,12 +1921,12 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "To find out your attributes, type 'score'.  You can improve your attributes\n
-                     |in Furey's Training Room to the west.  You can practice your skills and spells\n
-                     |in Zump's Guild Room to the east.  You can continue through mud school by\n
-                     |going north.\n
-                     |\n
-                     |If you are a new character, you should go 'WEST' from here, train your\n
+      "description": "To find out your attributes, type 'score'.  You can improve your attributes
+                     |in Furey's Training Room to the west.  You can practice your skills and spells
+                     |in Zump's Guild Room to the east.  You can continue through mud school by
+                     |going north.
+                     |
+                     |If you are a new character, you should go 'WEST' from here, train your
                      |abilities, and then come back here and go 'NORTH'.\n"
     }]
   }},
@@ -1934,8 +1934,8 @@
     "area": "school",
     "anum": 58,
     "name": "Furey's Training Room",
-    "description": "You are in Furey's Training Room.  Around you are all sorts of physical\n
-                   |and mental training tools.  The whole room is filled with magic, holiness, \n
+    "description": "You are in Furey's Training Room.  Around you are all sorts of physical
+                   |and mental training tools.  The whole room is filled with magic, holiness, 
                    |and sweat.  There is a sign on the wall.\n",
     "sector_type": "city",
     "room_flags": "no_mob indoors newbies_only",
@@ -1946,10 +1946,10 @@
     }],
     "extra_description": [{
       "keyword": "sign",
-      "description": "Welcome to Furey's Training Room.  Here you can train your attributes.  To \n
-                     |train an attribute, you need enough practices.  To find out how many practice\n
-                     |sessions you have, type 'train' while you are in this room.  To train for a \n
-                     |specific attribute, type 'train <attr>' where attr is the first 3 letters of\n
+      "description": "Welcome to Furey's Training Room.  Here you can train your attributes.  To 
+                     |train an attribute, you need enough practices.  To find out how many practice
+                     |sessions you have, type 'train' while you are in this room.  To train for a 
+                     |specific attribute, type 'train <attr>' where attr is the first 3 letters of
                      |the attribute you want increased.  Type 'help train' for more information.\n"
     }],
     "resets": [{
@@ -1965,8 +1965,8 @@
     "area": "school",
     "anum": 59,
     "name": "Zump's Guild Room",
-    "description": "You are in a room filled with weapons, books, and many combat dummies, some\n
-                   |cut and stabbed many times, others burnt to a crisp.  The room is filled with\n
+    "description": "You are in a room filled with weapons, books, and many combat dummies, some
+                   |cut and stabbed many times, others burnt to a crisp.  The room is filled with
                    |sweat and an aura of magic.  There is a sign on the wall.\n",
     "sector_type": "city",
     "room_flags": "no_mob indoors newbies_only",
@@ -1977,11 +1977,11 @@
     }],
     "extra_description": [{
       "keyword": "sign",
-      "description": "Welcome to Zump's Guild Room.  Here you will learn your skills and spells.\n
-                     |To find out what skills and spells you can practice and how many practice\n
-                     |sessions you have, type 'practice'.  To practice the specific skill, type\n
-                     |'practice <skill>', where 'skill' is the skill or spell you wish to practice.\n
-                     |Practicing increases the amount you know of that skill or spell, up to a\n
+      "description": "Welcome to Zump's Guild Room.  Here you will learn your skills and spells.
+                     |To find out what skills and spells you can practice and how many practice
+                     |sessions you have, type 'practice'.  To practice the specific skill, type
+                     |'practice <skill>', where 'skill' is the skill or spell you wish to practice.
+                     |Practicing increases the amount you know of that skill or spell, up to a
                      |certain maximum.  When you have practiced all you wish to practice, go west.\n"
     }],
     "resets": [{
@@ -1997,7 +1997,7 @@
     "area": "school",
     "anum": 60,
     "name": "A Safe Room",
-    "description": "You are in a safe room, away from all the mean rabbits and snails of the Arena.\n
+    "description": "You are in a safe room, away from all the mean rabbits and snails of the Arena.
                    |You can rest here, and go up to go back to the Temple of Midgaard.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",

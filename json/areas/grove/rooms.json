@@ -3,9 +3,9 @@
     "area": "grove",
     "anum": 1,
     "name": "The holy grove",
-    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You\n
-                   |can feel a strange sensation of contentedness and relief seeping through You,\n
-                   |as if great burdens have been lifted from Your shoulders. From here, friendly-\n
+    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You
+                   |can feel a strange sensation of contentedness and relief seeping through You,
+                   |as if great burdens have been lifted from Your shoulders. From here, friendly-
                    |looking paths lead east and south.\n",
     "sector_type": "forest",
     "doors": [
@@ -65,8 +65,8 @@
     "area": "grove",
     "anum": 2,
     "name": "The holy grove",
-    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You\n
-                   |feel unusually happy here, as if great burdens have been lifted from Your\n
+    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You
+                   |feel unusually happy here, as if great burdens have been lifted from Your
                    |shoulders. From here, pleasant-looking paths lead east, west and south.\n",
     "sector_type": "forest",
     "doors": [
@@ -78,7 +78,7 @@
       {
         "dir": "south",
         "to": 5,
-        "description": "The path wind its way through the tall trees, towards an open area barely\n
+        "description": "The path wind its way through the tall trees, towards an open area barely
                        |visible in the distance.\n"
       },
       {
@@ -124,23 +124,23 @@
     "area": "grove",
     "anum": 3,
     "name": "A clearing in the woods",
-    "description": "You are standing in a clearing in the light woods. Somehow, this place\n
-                   |seems powerfully DIFFERENT from the rest of the forest, as if something is\n
-                   |severely strained in the fabric of reality here.  There is a small tablet \n
+    "description": "You are standing in a clearing in the light woods. Somehow, this place
+                   |seems powerfully DIFFERENT from the rest of the forest, as if something is
+                   |severely strained in the fabric of reality here.  There is a small tablet 
                    |on one of the trees.\n",
     "sector_type": "forest",
     "room_flags": "no_mob",
     "doors": [
       {
         "dir": "north",
-        "description": "A small, narrow path winds north, and is quickly lost in the bushes. It\n
+        "description": "A small, narrow path winds north, and is quickly lost in the bushes. It
                        |looks quite a wilderness there!\n",
         "portal": "grove-north-1"
       },
       {
         "dir": "south",
         "to": 6,
-        "description": "There is a path winding its way south through the tall poplars, disappearing\n
+        "description": "There is a path winding its way south through the tall poplars, disappearing
                        |out of sight some 100 yds. away.\n"
       },
       {
@@ -176,10 +176,10 @@
     "area": "grove",
     "anum": 4,
     "name": "The holy grove",
-    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You\n
-                   |feel calm and relaxed here, as if great burdens have been lifted from Your\n
-                   |shoulders. From here, pleasant-looking paths lead east, north and south. To\n
-                   |the west, through the trees, You can see a faint trail leading towards the\n
+    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You
+                   |feel calm and relaxed here, as if great burdens have been lifted from Your
+                   |shoulders. From here, pleasant-looking paths lead east, north and south. To
+                   |the west, through the trees, You can see a faint trail leading towards the
                    |eastern road.\n",
     "sector_type": "forest",
     "room_flags": "no_mob",
@@ -242,13 +242,13 @@
     "area": "grove",
     "anum": 5,
     "name": "The sacred glade",
-    "description": "You are standing in the middle of the sacred glades, where the citizens of\n
-                   |Midgaard come to celebrate the spring, where farmers give thanks for bountiful\n
-                   |harvest in the fall, and where lovers stroll in summer. You feel seasons of\n
-                   |remembered happiness and joy taking Your sorrows and worries away from You,\n
-                   |leaving You calm and invigorated, ready for the world. Paths lead into the\n
-                   |holy grove to the east, north and west, while to the south a wide, sunny field\n
-                   |slopes down to a sparkling lake.  Above you is a strange shimmering, almost\n
+    "description": "You are standing in the middle of the sacred glades, where the citizens of
+                   |Midgaard come to celebrate the spring, where farmers give thanks for bountiful
+                   |harvest in the fall, and where lovers stroll in summer. You feel seasons of
+                   |remembered happiness and joy taking Your sorrows and worries away from You,
+                   |leaving You calm and invigorated, ready for the world. Paths lead into the
+                   |holy grove to the east, north and west, while to the south a wide, sunny field
+                   |slopes down to a sparkling lake.  Above you is a strange shimmering, almost
                    |like something from another world....\n",
     "sector_type": "forest",
     "doors": [
@@ -265,7 +265,7 @@
       {
         "dir": "south",
         "to": 8,
-        "description": "To the south, a wide, sunny field stretch out, sloping down towards a brightly\n
+        "description": "To the south, a wide, sunny field stretch out, sloping down towards a brightly
                        |glittering lake.\n"
       },
       {
@@ -275,7 +275,7 @@
       },
       {
         "dir": "up",
-        "description": "The shimmering grows in intensity as you look at it, beckoning you to reach\n
+        "description": "The shimmering grows in intensity as you look at it, beckoning you to reach
                        |upwards...\n",
         "portal": "grove-up-1"
       }
@@ -341,9 +341,9 @@
     "area": "grove",
     "anum": 6,
     "name": "The holy grove",
-    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You\n
-                   |can feel a strange sensation of joy and calm seeping through You, as if great\n
-                   |burdens have been lifted from Your shoulders. To the south, You glimpse an open\n
+    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You
+                   |can feel a strange sensation of joy and calm seeping through You, as if great
+                   |burdens have been lifted from Your shoulders. To the south, You glimpse an open
                    |area through the trees, while paths lead away north and west.\n",
     "sector_type": "forest",
     "doors": [
@@ -355,7 +355,7 @@
       {
         "dir": "south",
         "to": 9,
-        "description": "To the south, just beyond the trees, you can see a wide green lawn, and past\n
+        "description": "To the south, just beyond the trees, you can see a wide green lawn, and past
                        |the lawn, a softly shimmering, rainbow-colored mansion.\n"
       },
       {
@@ -366,9 +366,9 @@
     ],
     "extra_description": [{
       "keyword": "mansion",
-      "description": "The mansion is a sprawling, two-story affair with three wings, where the top\n
-                     |of one wing serves as balcony. The walls look as marble would do, if marble\n
-                     |changed color slowly, continuously, through the entire spectrum. There are\n
+      "description": "The mansion is a sprawling, two-story affair with three wings, where the top
+                     |of one wing serves as balcony. The walls look as marble would do, if marble
+                     |changed color slowly, continuously, through the entire spectrum. There are
                      |large windows all over the house.\n"
     }],
     "resets": [
@@ -394,32 +394,32 @@
     "area": "grove",
     "anum": 7,
     "name": "The holy grove",
-    "description": "You are standing amidst the tall, majestic trees in the southern end of the\n
-                   |holy grove. Paths lead north and east. To the east, You can see a wide, open\n
-                   |field, sloping gently down towards a bright, glittering lake. Somehow, here\n
-                   |you feel an inexplicable happiness, as if the world's troubles no longer\n
+    "description": "You are standing amidst the tall, majestic trees in the southern end of the
+                   |holy grove. Paths lead north and east. To the east, You can see a wide, open
+                   |field, sloping gently down towards a bright, glittering lake. Somehow, here
+                   |you feel an inexplicable happiness, as if the world's troubles no longer
                    |really matter to you.\n",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 4,
-        "description": "The path leading north is soon lost out of sight amongst the ancient oaks and\n
+        "description": "The path leading north is soon lost out of sight amongst the ancient oaks and
                        |poplars.\n"
       },
       {
         "dir": "east",
         "to": 8,
-        "description": "To the east, the path leads out into a wide, sunny summer's field, sloping\n
-                       |south towards a beautiful lake. Past the field You can see a stately mansion,\n
+        "description": "To the east, the path leads out into a wide, sunny summer's field, sloping
+                       |south towards a beautiful lake. Past the field You can see a stately mansion,
                        |shimmering gently in all the rainbow's colours.\n"
       }
     ],
     "extra_description": [{
       "keyword": "mansion",
-      "description": "The mansion is a sprawling, two-story affair with three wings, where the top\n
-                     |of one wing serves as balcony. The walls look as marble would do, if marble\n
-                     |changed color slowly, continuously, through the entire spectrum. There are\n
+      "description": "The mansion is a sprawling, two-story affair with three wings, where the top
+                     |of one wing serves as balcony. The walls look as marble would do, if marble
+                     |changed color slowly, continuously, through the entire spectrum. There are
                      |large windows all over the house.\n"
     }]
   }},
@@ -427,12 +427,12 @@
     "area": "grove",
     "anum": 8,
     "name": "The sunny field",
-    "description": "You are standing in the middle of a wide, summery, sunlit field. There is a\n
-                   |fragrance of spring in the air, a sound of summer and a feeling of eternal\n
-                   |Saturday afternoon. To the south is a clear, sparkling lake, and to the north\n
-                   |and west is the holy grove. In the wood's edge, to the east, is a stately man-\n
-                   |sion, shimmering softly through the colors of the rainbow. You feel as if You\n
-                   |could spend the rest of your life here, lying on your back and looking at the\n
+    "description": "You are standing in the middle of a wide, summery, sunlit field. There is a
+                   |fragrance of spring in the air, a sound of summer and a feeling of eternal
+                   |Saturday afternoon. To the south is a clear, sparkling lake, and to the north
+                   |and west is the holy grove. In the wood's edge, to the east, is a stately man-
+                   |sion, shimmering softly through the colors of the rainbow. You feel as if You
+                   |could spend the rest of your life here, lying on your back and looking at the
                    |patterns of the clouds as they gently drift across the sky.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -445,7 +445,7 @@
       {
         "dir": "east",
         "to": 19,
-        "description": "To the east, You can see the rainbow-colored mansion, shimmering like some-\n
+        "description": "To the east, You can see the rainbow-colored mansion, shimmering like some-
                        |thing out of this world.\n"
       },
       {
@@ -456,10 +456,10 @@
     ],
     "extra_description": [{
       "keyword": "mansion",
-      "description": "The mansion is a sprawling, two-story affair with three wings, where the top\n
-                     |of one wing serves as balcony. The walls look as marble would do, if marble\n
-                     |changed color slowly, continuously, through the entire spectrum. There are\n
-                     |large windows all over the house. There is a terrace in front of the house,\n
+      "description": "The mansion is a sprawling, two-story affair with three wings, where the top
+                     |of one wing serves as balcony. The walls look as marble would do, if marble
+                     |changed color slowly, continuously, through the entire spectrum. There are
+                     |large windows all over the house. There is a terrace in front of the house,
                      |next to the low wing, which is almost completely windows.\n"
     }]
   }},
@@ -467,10 +467,10 @@
     "area": "grove",
     "anum": 9,
     "name": "The croquet lawn",
-    "description": "You are standing on a immaculately manicured green lawn, the kind you only\n
-                   |get after 200 years of meticulous work. There is a winding stone path leading\n
-                   |from the wood's edge to the north, to the softly shimmering, rainbow-colored\n
-                   |mansion to the south. This place enjoys a perpetual cool, sunny summers after-\n
+    "description": "You are standing on a immaculately manicured green lawn, the kind you only
+                   |get after 200 years of meticulous work. There is a winding stone path leading
+                   |from the wood's edge to the north, to the softly shimmering, rainbow-colored
+                   |mansion to the south. This place enjoys a perpetual cool, sunny summers after-
                    |noon.\n",
     "sector_type": "field",
     "room_flags": "no_mob",
@@ -490,9 +490,9 @@
     ],
     "extra_description": [{
       "keyword": "mansion",
-      "description": "The mansion is a sprawling, two-story affair with three wings, where the top\n
-                     |of one wing serves as balcony. The walls look as marble would do, if marble\n
-                     |changed color slowly, continuously, through the entire spectrum. There are\n
+      "description": "The mansion is a sprawling, two-story affair with three wings, where the top
+                     |of one wing serves as balcony. The walls look as marble would do, if marble
+                     |changed color slowly, continuously, through the entire spectrum. There are
                      |large windows all over the house.\n"
     }]
   }},
@@ -500,9 +500,9 @@
     "area": "grove",
     "anum": 10,
     "name": "The foyer",
-    "description": "You are standing in the foyer of Dragon's mansion. The wide double door to\n
-                   |the croquet lawn is to the north, flanked by large windows. The walls are\n
-                   |panelled in oak and hung with strange paintings.  There is door in the south\n
+    "description": "You are standing in the foyer of Dragon's mansion. The wide double door to
+                   |the croquet lawn is to the north, flanked by large windows. The walls are
+                   |panelled in oak and hung with strange paintings.  There is door in the south
                    |wall.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
@@ -511,7 +511,7 @@
         "dir": "north",
         "to": 9,
         "keyword": "door",
-        "description": "Through the windows next to the door you can see the croquet lawn, bathed in\n
+        "description": "Through the windows next to the door you can see the croquet lawn, bathed in
                        |afternoon sunlight.\n",
         "exit_flags": "door closed"
       },
@@ -524,10 +524,10 @@
     ],
     "extra_description": [{
       "keyword": "painting paintings",
-      "description": "They are strange indeed, works of breathtaking precision depicting obviously\n
-                     |impossible motifs, like a sky filled with headless men, all dressed in some\n
-                     |black costume (including hats), or a lady standing, blue from the waist up, or\n
-                     |some pieces of plankwood that seems to be melting away like snow, or a night\n
+      "description": "They are strange indeed, works of breathtaking precision depicting obviously
+                     |impossible motifs, like a sky filled with headless men, all dressed in some
+                     |black costume (including hats), or a lady standing, blue from the waist up, or
+                     |some pieces of plankwood that seems to be melting away like snow, or a night
                      |sky with a dove-shaped hole of bright day sky in the middle.\n"
     }]
   }},
@@ -535,8 +535,8 @@
     "area": "grove",
     "anum": 11,
     "name": "The hallway",
-    "description": "You are in the north end of a connecting hallway, tastefully decorated with\n
-                   |oak paneling and the coat-of-arms of various famous nobles hung on the walls.\n
+    "description": "You are in the north end of a connecting hallway, tastefully decorated with
+                   |oak paneling and the coat-of-arms of various famous nobles hung on the walls.
                    |The hallway leads south, and there is a door in the eastern wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -580,10 +580,10 @@
     "area": "grove",
     "anum": 12,
     "name": "The blue room",
-    "description": "You are in the blue room, one of the guest rooms in Dragon's mansion. The\n
-                   |walls are (surprise!) blue, and the rest of the room is decorated in similar\n
-                   |shades, producing a very nice, cool effect. There is a large bed and a\n
-                   |matching set of sofas, easy-chairs and a coffee table. Through the venetian\n
+    "description": "You are in the blue room, one of the guest rooms in Dragon's mansion. The
+                   |walls are (surprise!) blue, and the rest of the room is decorated in similar
+                   |shades, producing a very nice, cool effect. There is a large bed and a
+                   |matching set of sofas, easy-chairs and a coffee table. Through the venetian
                    |blinds in front of the large east window you can see the edge of the grove.\n",
     "sector_type": "inside",
     "room_flags": "indoors private",
@@ -606,8 +606,8 @@
     "area": "grove",
     "anum": 13,
     "name": "The hallway",
-    "description": "You are standing in the south end of the hallway. There are doors in the\n
-                   |elegant oak-panelled walls to the south, east and west. Many different\n
+    "description": "You are standing in the south end of the hallway. There are doors in the
+                   |elegant oak-panelled walls to the south, east and west. Many different
                    |coat-of-arms adorn the walls here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -640,10 +640,10 @@
     "area": "grove",
     "anum": 14,
     "name": "The red room",
-    "description": "You are in the red room, one of the guest rooms in Dragon's mansion. The\n
-                   |walls are wallpapered a deep warm red, and dark mahogany panelling nicely com-\n
-                   |plements them. There is a large, warm waterbed and a sofa group in dark wood\n
-                   |with leather upholstery, including a coffee table. Heavy brown curtains are\n
+    "description": "You are in the red room, one of the guest rooms in Dragon's mansion. The
+                   |walls are wallpapered a deep warm red, and dark mahogany panelling nicely com-
+                   |plements them. There is a large, warm waterbed and a sofa group in dark wood
+                   |with leather upholstery, including a coffee table. Heavy brown curtains are
                    |pulled away from the wide windows, to reveal a nice view towards the grove.\n",
     "sector_type": "inside",
     "room_flags": "indoors private",
@@ -683,12 +683,12 @@
     "area": "grove",
     "anum": 15,
     "name": "The kitchen",
-    "description": "You are standing in the middle of Dragon's kitchen. Contrary to popular\n
-                   |belief, He *doesn't* eat virgins, which is amply demonstrated by the large\n
-                   |variety of foodstuffs found here on the shelves. There are numerous cans of\n
-                   |tomatoes, peas, corn etc., vines of garlic, a *Huge* array of small spice jars\n
-                   |along several shelves and a large combo refrigerator/freezer. A big oven and\n
-                   |stove is lurking in a corner. There is some proof here that Dragon is a less\n
+    "description": "You are standing in the middle of Dragon's kitchen. Contrary to popular
+                   |belief, He *doesn't* eat virgins, which is amply demonstrated by the large
+                   |variety of foodstuffs found here on the shelves. There are numerous cans of
+                   |tomatoes, peas, corn etc., vines of garlic, a *Huge* array of small spice jars
+                   |along several shelves and a large combo refrigerator/freezer. A big oven and
+                   |stove is lurking in a corner. There is some proof here that Dragon is a less
                    |than meticulous housekeeper... There are doors to the north and west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -755,10 +755,10 @@
     "area": "grove",
     "anum": 16,
     "name": "The ballroom",
-    "description": "You are standing in the middle of a vast palisander floor. This is where\n
-                   |Dragon entertains large number of guests, but the cloth-covered chairs\n
-                   |standing forlornly in a corner suggests that this does not happen often.\n
-                   |There are doors in the south and east walls, while to the west there is a\n
+    "description": "You are standing in the middle of a vast palisander floor. This is where
+                   |Dragon entertains large number of guests, but the cloth-covered chairs
+                   |standing forlornly in a corner suggests that this does not happen often.
+                   |There are doors in the south and east walls, while to the west there is a
                    |short corridor to the greenhouse.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -785,12 +785,12 @@
     "area": "grove",
     "anum": 17,
     "name": "The greenhouse",
-    "description": "This is Dragons' greenhouse. Green light filters in slantwise through the\n
-                   |plants, giving the room a subtropical ambience. It is not really hot in here,\n
-                   |though, rather a pleasantly warm temperature. The walls are all windows, except \n
-                   |the eastern one joining the greenhouse to the main building, but it is hard to \n
-                   |see out for all the greenery here. There is a set of easy-chairs and a glass\n
-                   |coffee table. To the south, there is a wide double door out to a sunlit \n
+    "description": "This is Dragons' greenhouse. Green light filters in slantwise through the
+                   |plants, giving the room a subtropical ambience. It is not really hot in here,
+                   |though, rather a pleasantly warm temperature. The walls are all windows, except 
+                   |the eastern one joining the greenhouse to the main building, but it is hard to 
+                   |see out for all the greenery here. There is a set of easy-chairs and a glass
+                   |coffee table. To the south, there is a wide double door out to a sunlit 
                    |terrace.\n",
     "sector_type": "inside",
     "room_flags": "indoors private",
@@ -828,9 +828,9 @@
     "area": "grove",
     "anum": 18,
     "name": "The dining hall",
-    "description": "This is Dragons' dining hall. There is a large long solid oak table,\n
-                   |seating at least 24, with heavy, wooden chairs to match. The oak panel walls\n
-                   |are filled with paintings. There are doors to the north and east, and to the\n
+    "description": "This is Dragons' dining hall. There is a large long solid oak table,
+                   |seating at least 24, with heavy, wooden chairs to match. The oak panel walls
+                   |are filled with paintings. There are doors to the north and east, and to the
                    |west there is a wide double door opening out onto the sunlit terrace.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -856,16 +856,16 @@
     ],
     "extra_description": [{
       "keyword": "painting paintings",
-      "description": "There are many, many beautiful paintings of famous dragons of history and\n
-                     |literature. There is a big one of Smaug, a group picture of Cuspidorian Toxic\n
-                     |Dragons, a rather fearsome picture of Norse Chaos incarnate, a grainy black-\n
-                     |and-white photograph of Vorgulremik the Steel Dragon, a romantic picture of \n
-                     |Dalvenjah the Mindijaran and Allan the man become dragon. There are three\n
-                     |empty frames labeled 'The Chimerical', 'The Mythical' and 'The Hypothetical',\n
-                     |A panoramic picture of Strabo flying between the worlds dominate one wall, \n
-                     |while a dragons-eye view of Pern (with dragons in the foreground, of course) \n
-                     |fills another. There even are a few rare medieval renditions of the great \n
-                     |beast of the Revelation. Over the head of the table hangs a rather modest \n
+      "description": "There are many, many beautiful paintings of famous dragons of history and
+                     |literature. There is a big one of Smaug, a group picture of Cuspidorian Toxic
+                     |Dragons, a rather fearsome picture of Norse Chaos incarnate, a grainy black-
+                     |and-white photograph of Vorgulremik the Steel Dragon, a romantic picture of 
+                     |Dalvenjah the Mindijaran and Allan the man become dragon. There are three
+                     |empty frames labeled 'The Chimerical', 'The Mythical' and 'The Hypothetical',
+                     |A panoramic picture of Strabo flying between the worlds dominate one wall, 
+                     |while a dragons-eye view of Pern (with dragons in the foreground, of course) 
+                     |fills another. There even are a few rare medieval renditions of the great 
+                     |beast of the Revelation. Over the head of the table hangs a rather modest 
                      |portrait of a silver Dragon, sparkling with blue lightening, looking amused.\n"
     }],
     "resets": [
@@ -890,11 +890,11 @@
     "area": "grove",
     "anum": 19,
     "name": "The terrace",
-    "description": "You are standing on a sunlit terrace in front of Dragon's mansion. To the\n
-                   |west, there is a splendid view over the field down over the lake. To the north\n
-                   |is the greenhouse, its large windowpanes shimmering with weird and wonderful\n
-                   |colors, while a double door leads into the house proper to the east. It is\n
-                   |warm and calm here. There is a white-painted table with a parasol here,\n
+    "description": "You are standing on a sunlit terrace in front of Dragon's mansion. To the
+                   |west, there is a splendid view over the field down over the lake. To the north
+                   |is the greenhouse, its large windowpanes shimmering with weird and wonderful
+                   |colors, while a double door leads into the house proper to the east. It is
+                   |warm and calm here. There is a white-painted table with a parasol here,
                    |together with a matched set of chairs.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
@@ -921,9 +921,9 @@
     "area": "grove",
     "anum": 50,
     "name": "At the edge of the grove",
-    "description": "You are standing at the entrace of a beautiful grove of trees, and your\n
-                   |heart is filled with pure, peaceful thoughts.  This looks like a safe place\n
-                   |to recover from the wounds of adventuring.  A faint path through the grove\n
+    "description": "You are standing at the entrace of a beautiful grove of trees, and your
+                   |heart is filled with pure, peaceful thoughts.  This looks like a safe place
+                   |to recover from the wounds of adventuring.  A faint path through the grove
                    |lies to the north, and you can see the eastern road to the south.\n",
     "sector_type": "forest",
     "doors": [
@@ -943,10 +943,10 @@
     "area": "grove",
     "anum": 51,
     "name": "Inside the grove",
-    "description": "As you walk among the stately oaks of this grove, you feel at peace and \n
-                   |in harmony with this beautiful forest.  If only the rest of the lands were\n
-                   |so tranquil.  The trail turns towards the east, leading into the secluded\n
-                   |trees of the druids' holy grove, and a path back to the eastern road lies\n
+    "description": "As you walk among the stately oaks of this grove, you feel at peace and 
+                   |in harmony with this beautiful forest.  If only the rest of the lands were
+                   |so tranquil.  The trail turns towards the east, leading into the secluded
+                   |trees of the druids' holy grove, and a path back to the eastern road lies
                    |south.\n",
     "sector_type": "forest",
     "doors": [
@@ -966,10 +966,10 @@
     "area": "grove",
     "anum": 99,
     "name": "The fog",
-    "description": "You are in a grey fog, falling, screaming in pain as you realize\n
-                   |that you are being torn to nothing, atom by atom, falling and falling \n
-                   |and falling ...\n
-                   |...\n
+    "description": "You are in a grey fog, falling, screaming in pain as you realize
+                   |that you are being torn to nothing, atom by atom, falling and falling 
+                   |and falling ...
+                   |...
                    |.\n",
     "sector_type": "inside",
     "room_flags": "no_mob"

@@ -63,9 +63,9 @@
     "name": "edgar",
     "short_descr": "Edgar",
     "long_descr": "Edgar the Human Swordpupil\n",
-    "description": "Edgar says 'pardon me, can you tell me where to buy cups?'\n
-                   |\n
-                   |You see before you, one of Midgaard's finest fighting elite, the mighty\n
+    "description": "Edgar says 'pardon me, can you tell me where to buy cups?'
+                   |
+                   |You see before you, one of Midgaard's finest fighting elite, the mighty
                    |bunny slayer himself, Edgar the Horrible!\n",
     "race": "human",
     "alignment": 1000,
@@ -121,7 +121,7 @@
     "name": "mage young",
     "short_descr": "a mage",
     "long_descr": "A young mage wanders about, oblivious to all.\n",
-    "description": "He seems to be contemplating life, love and the mysteries of the universe.\n
+    "description": "He seems to be contemplating life, love and the mysteries of the universe.
                    |Then again, he may just have a headache.\n",
     "race": "human",
     "alignment": 450,
@@ -284,11 +284,11 @@
     "name": "prisoner",
     "short_descr": "The prisoner",
     "long_descr": "A prisoner is chained to the wall here.\n",
-    "description": "Though his clothes are all in rags, you can see that at one time they must\n
-                   |have been fine garments. A metal muzzle has been fitted over the poor\n
-                   |wretch's mouth, whether to keep him from screaming, or to silence his spell\n
-                   |casting you cannot tell.\n
-                   |\n
+    "description": "Though his clothes are all in rags, you can see that at one time they must
+                   |have been fine garments. A metal muzzle has been fitted over the poor
+                   |wretch's mouth, whether to keep him from screaming, or to silence his spell
+                   |casting you cannot tell.
+                   |
                    |He looks quite mad, no doubt he's been mistreated horribly.\n",
     "race": "human",
     "alignment": 100,
@@ -581,7 +581,7 @@
     "name": "kitten",
     "short_descr": "a small kitten",
     "long_descr": "A small kitten is here meowing in terror.\n",
-    "description": "The little ball of fur looks very unhappy.  Singed fur and a few minor burns\n
+    "description": "The little ball of fur looks very unhappy.  Singed fur and a few minor burns
                    |mark its mottled coat.\n",
     "race": "human",
     "alignment": 500,
@@ -815,7 +815,7 @@
     "name": "mistress battle",
     "short_descr": "the battle mistress",
     "long_descr": "The battle mistress is here teaching the fine uses of a dagger.\n",
-    "description": "She looks quite rugged. In fact, she more resembles a warrior than a magic\n
+    "description": "She looks quite rugged. In fact, she more resembles a warrior than a magic
                    |user.\n",
     "race": "human",
     "alignment": 200,
@@ -936,7 +936,7 @@
     "name": "scribe mage",
     "short_descr": "a scribe",
     "long_descr": "A scribe is here working diligently on some translations.\n",
-    "description": "She's quite cute.  Too bad her only interest seems to be the words of\n
+    "description": "She's quite cute.  Too bad her only interest seems to be the words of
                    |lore she is translating.\n",
     "race": "human",
     "alignment": 500,
@@ -966,7 +966,7 @@
     "name": "master scribe",
     "short_descr": "the master scribe",
     "long_descr": "The master scribe is here looking a little upset\n",
-    "description": "He seems to be so old, his skin has become nothing but a giant wrinkle.\n
+    "description": "He seems to be so old, his skin has become nothing but a giant wrinkle.
                    |The master scribe screams 'How dare you interrupt my important work???'\n",
     "race": "human",
     "alignment": 100,
@@ -1081,9 +1081,9 @@
     "name": "alchemist",
     "short_descr": "the Mad Alchemist",
     "long_descr": "The Mad Alchemist babbles something incomprehensible and attacks.\n",
-    "description": "He looks like he's been quaffing too many potions. His eyes dart around\n
-                   |wildly, and he starts to drool.\n
-                   |\n
+    "description": "He looks like he's been quaffing too many potions. His eyes dart around
+                   |wildly, and he starts to drool.
+                   |
                    |The Mad Alchemist throws back his head and cackles with insane glee!\n",
     "race": "human",
     "alignment": 150,
@@ -1311,7 +1311,7 @@
     "name": "golem flesh",
     "short_descr": "a flesh golem",
     "long_descr": "A flesh golem stands guard here\n",
-    "description": "It looks to be made of a potpourri of different body parts; some don't even\n
+    "description": "It looks to be made of a potpourri of different body parts; some don't even
                    |resemble anything human.\n",
     "race": "human",
     "alignment": 200,
@@ -1366,7 +1366,7 @@
     "name": "golem adamantite",
     "short_descr": "an adamantite golem",
     "long_descr": "An adamantite golem stands here looking very dangerous.\n",
-    "description": "It seems to be forged of dark metal.  It looks strong and durable,\n
+    "description": "It seems to be forged of dark metal.  It looks strong and durable,
                    |but somewhat un-intelligent.\n",
     "race": "human",
     "alignment": 350,
@@ -1422,7 +1422,7 @@
     "name": "master illusionist mage",
     "short_descr": "the master of illusions",
     "long_descr": "An enormous multi-colored three-headed dragon growls at you.\n",
-    "description": "The image of an ugly dragon flickers slightly, and where the dragon was\n
+    "description": "The image of an ugly dragon flickers slightly, and where the dragon was
                    |now stands a small harmless looking old man.\n",
     "race": "human",
     "alignment": 150,
@@ -1452,9 +1452,9 @@
     "name": "necromancer master",
     "short_descr": "the Necromancer",
     "long_descr": "The Necromancer is here raising undead servants\n",
-    "description": "Attired all in black, the Necromancer is tall and gangly, but still quite\n
-                   |an imposing figure.  A dark cowl shrouds most of his face, but two blazing\n
-                   |embers which serve as eyes can be seen through the shadow.\n
+    "description": "Attired all in black, the Necromancer is tall and gangly, but still quite
+                   |an imposing figure.  A dark cowl shrouds most of his face, but two blazing
+                   |embers which serve as eyes can be seen through the shadow.
                    |The Necromancer shrieks some obscenities and orders his minions to attack.\n",
     "race": "human",
     "alignment": -950,
@@ -1542,8 +1542,8 @@
     "name": "witch hag",
     "short_descr": "an ugly witch",
     "long_descr": "An ugly witch is here scrying out secrets.\n",
-    "description": "She has no face at all, just blank skin, rather disturbing.  From about where\n
-                   |her mouth should be, comes a disgusting giggling sound that makes your skin\n
+    "description": "She has no face at all, just blank skin, rather disturbing.  From about where
+                   |her mouth should be, comes a disgusting giggling sound that makes your skin
                    |crawl with revulsion.\n",
     "race": "human",
     "alignment": -450,
@@ -1604,9 +1604,9 @@
     "name": "apprentice",
     "short_descr": "the master's apprentice",
     "long_descr": "The master's apprentice leaps to halt your passage.\n",
-    "description": "A powerful wizard in his own right, the apprentice of the master of balance\n
-                   |has given up his station in the mage guild hierarchy in order to serve the\n
-                   |great master in hopes of gleaning secrets one could never hope to uncover\n
+    "description": "A powerful wizard in his own right, the apprentice of the master of balance
+                   |has given up his station in the mage guild hierarchy in order to serve the
+                   |great master in hopes of gleaning secrets one could never hope to uncover
                    |alone.\n",
     "race": "human",
     "alignment": 0,
@@ -1636,7 +1636,7 @@
     "name": "cat grey familiar",
     "short_descr": "a grey cat",
     "long_descr": "A grey cat is lounging lazily here.\n",
-    "description": "The grey cat cocks an ear towards you, sensing your scrutiny, then purrs\n
+    "description": "The grey cat cocks an ear towards you, sensing your scrutiny, then purrs
                    |contentedly.  It looks rather harmless, until you notice its very large claws.\n",
     "race": "cat",
     "alignment": 0,
@@ -1695,8 +1695,8 @@
     "name": "apprentice black",
     "short_descr": "a black robed apprentice",
     "long_descr": "A black robed apprentice jumps from the shadows and attacks.\n",
-    "description": "She bears a wicked looking scar down the side of her face, though once she\n
-                   |must have been beautiful, now the scar combined with what seems to be a\n
+    "description": "She bears a wicked looking scar down the side of her face, though once she
+                   |must have been beautiful, now the scar combined with what seems to be a
                    |permanent scowl make her looks quite fearsome.\n",
     "race": "human",
     "alignment": -750,
@@ -1726,7 +1726,7 @@
     "name": "cat black familiar",
     "short_descr": "a black cat",
     "long_descr": "A black cat with its fur up hisses at you.\n",
-    "description": "It looks both mean and dangerous.  Petting seems to be completely out of\n
+    "description": "It looks both mean and dangerous.  Petting seems to be completely out of
                    |the question.\n",
     "race": "cat",
     "alignment": -800,
@@ -1785,7 +1785,7 @@
     "name": "apprentice white",
     "short_descr": "a white robed apprentice",
     "long_descr": "A white robed apprentice screams at your desecration of goodness.\n",
-    "description": "He looks like a fanatic.\n
+    "description": "He looks like a fanatic.
                    |The apprentice screams 'Thou art unworthy of this honor!'\n",
     "race": "human",
     "alignment": 750,
@@ -1873,7 +1873,7 @@
     "name": "cat calico familiar",
     "short_descr": "A calico cat",
     "long_descr": "A large calico cat is here\n",
-    "description": "It looks incredibly large for a cat, no doubt a giant of its species.\n
+    "description": "It looks incredibly large for a cat, no doubt a giant of its species.
                    |A beautiful jewel encrusted collar about its neck is its only adornment.\n",
     "race": "cat",
     "alignment": 800,
@@ -1903,9 +1903,9 @@
     "name": "guildmaster grand mistress",
     "short_descr": "The Grand Mistress",
     "long_descr": "The Grand Mistress of Magic is sitting here.\n",
-    "description": "She looks quite comfortable on her emerald throne. Amazingly young and\n
-                   |pretty for one of such stature in the guild, no doubt she has kept her\n
-                   |youthful appearance through the use of strong magics.\n
+    "description": "She looks quite comfortable on her emerald throne. Amazingly young and
+                   |pretty for one of such stature in the guild, no doubt she has kept her
+                   |youthful appearance through the use of strong magics.
                    |The Grand Master pets her familiar and smiles at you in confidence.\n",
     "race": "human",
     "alignment": 0,

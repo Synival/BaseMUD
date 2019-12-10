@@ -3,7 +3,7 @@
     "area": "drow",
     "anum": 0,
     "name": "City Entrance",
-    "description": "You are at the entrance to a small underground city. A great adamantite\n
+    "description": "You are at the entrance to a small underground city. A great adamantite
                    |gate lies open to the west allowing entrance into the city.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -37,7 +37,7 @@
     "area": "drow",
     "anum": 1,
     "name": "City street",
-    "description": "You walk along a highly ornate street going north-south. A large gate\n
+    "description": "You walk along a highly ornate street going north-south. A large gate
                    |lies to the east while a building lies to the west.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -100,7 +100,7 @@
     "area": "drow",
     "anum": 3,
     "name": "City street",
-    "description": "You walk along a highly ornate city street going east-west. A large house\n
+    "description": "You walk along a highly ornate city street going east-west. A large house
                    |stands to the south.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -123,8 +123,8 @@
     "area": "drow",
     "anum": 4,
     "name": "3rd House",
-    "description": "You stand inside the 3rd house of the city; it is fairly well decorated\n
-                   |by drow standards having a few statues, murals and such. A door leads to the\n
+    "description": "You stand inside the 3rd house of the city; it is fairly well decorated
+                   |by drow standards having a few statues, murals and such. A door leads to the
                    |south.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -194,7 +194,7 @@
     "area": "drow",
     "anum": 5,
     "name": "Throne Room",
-    "description": "The throne room of the 3rd house is about as decorated as the inner\n
+    "description": "The throne room of the 3rd house is about as decorated as the inner
                    |courtyard except with a blood covered altar in the center of the room.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -234,7 +234,7 @@
     "area": "drow",
     "anum": 6,
     "name": "City street",
-    "description": "You walk along a highly ornate city street going east-west. To the north\n
+    "description": "You walk along a highly ornate city street going east-west. To the north
                    |is a large building.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -257,7 +257,7 @@
     "area": "drow",
     "anum": 7,
     "name": "City street",
-    "description": "You walk along a highly ornate city street leading north and east. To the\n
+    "description": "You walk along a highly ornate city street leading north and east. To the
                    |south is an extremely large house.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -280,7 +280,7 @@
     "area": "drow",
     "anum": 8,
     "name": "2nd House",
-    "description": "You stand inside the 2nd house of the city. The room is highly decorated\n
+    "description": "You stand inside the 2nd house of the city. The room is highly decorated
                    |with statues of spiders and murals everywhere.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -350,7 +350,7 @@
     "area": "drow",
     "anum": 9,
     "name": "Throne Room",
-    "description": "The throne room of the 2nd house is just a little more decorative than\n
+    "description": "The throne room of the 2nd house is just a little more decorative than
                    |the inner courtyard having an altar in the center of the room.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -390,7 +390,7 @@
     "area": "drow",
     "anum": 10,
     "name": "Main Gate",
-    "description": "You are at the entrance to the 1st house of the city. A large gate, almost\n
+    "description": "You are at the entrance to the 1st house of the city. A large gate, almost
                    |as big and elegant as the one at the entrance to the city, stands here.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -416,8 +416,8 @@
     "area": "drow",
     "anum": 11,
     "name": "1st House",
-    "description": "You stand in the inner courtyard of the 1st and largest house in the city.\n
-                   |The room is extremely large and decorative. Mural and paintings hang on the\n
+    "description": "You stand in the inner courtyard of the 1st and largest house in the city.
+                   |The room is extremely large and decorative. Mural and paintings hang on the
                    |walls depicting some battles and a spider queen.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -487,7 +487,7 @@
     "area": "drow",
     "anum": 12,
     "name": "Throne Room",
-    "description": "The throne room of the 1st house is in one word...awesome. It is so\n
+    "description": "The throne room of the 1st house is in one word...awesome. It is so
                    |horrifying it is almost beautiful.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -507,7 +507,7 @@
     "area": "drow",
     "anum": 13,
     "name": "Main Chamber",
-    "description": "This is the council chamber for the Matron Mother herself. A huge table\n
+    "description": "This is the council chamber for the Matron Mother herself. A huge table
                    |and chairs surrounding it sits in the center of the room.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -570,7 +570,7 @@
     "area": "drow",
     "anum": 15,
     "name": "City street",
-    "description": "You walk along a highly ornate city street leading south. A building is\n
+    "description": "You walk along a highly ornate city street leading south. A building is
                    |to the west.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -629,7 +629,7 @@
     "area": "drow",
     "anum": 17,
     "name": "City street",
-    "description": "You walk along a highly ornate city street going east-west. To the north\n
+    "description": "You walk along a highly ornate city street going east-west. To the north
                    |is a giant temple.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -708,8 +708,8 @@
     "area": "drow",
     "anum": 19,
     "name": "Entrance to the Temple of Lloth",
-    "description": "The temple is the largest building in the city. Even it's doors are beyond\n
-                   |imagination. Inside of the temple entrance, the walls are made of gold and\n
+    "description": "The temple is the largest building in the city. Even it's doors are beyond
+                   |imagination. Inside of the temple entrance, the walls are made of gold and
                    |adamantite.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -729,7 +729,7 @@
     "area": "drow",
     "anum": 20,
     "name": "Mage's Academy",
-    "description": "The mages academy is fairly well decorated see that the drow prefer magic\n
+    "description": "The mages academy is fairly well decorated see that the drow prefer magic
                    |over physical power greatly.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -769,7 +769,7 @@
     "area": "drow",
     "anum": 21,
     "name": "City street",
-    "description": "You walk along a highly ornate city street going eastward. To the north is\n
+    "description": "You walk along a highly ornate city street going eastward. To the north is
                    |a building.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -797,7 +797,7 @@
     "area": "drow",
     "anum": 22,
     "name": "Slave Chamber",
-    "description": "The room is in shambles. Straw is strewn all about the room as beds for the\n
+    "description": "The room is in shambles. Straw is strewn all about the room as beds for the
                    |unfortunate creatures who have fallen prey to drow imperialism.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -824,7 +824,7 @@
     "area": "drow",
     "anum": 23,
     "name": "City street",
-    "description": "You walk along a highly ornate city street leading west and south. To the\n
+    "description": "You walk along a highly ornate city street leading west and south. To the
                    |north is a relatively small house.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -848,7 +848,7 @@
     "area": "drow",
     "anum": 24,
     "name": "4th house",
-    "description": "You stand inside the 4th house of the city. Its inner courtyard is rather\n
+    "description": "You stand inside the 4th house of the city. Its inner courtyard is rather
                    |dull by drow standards and rather small as well.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -918,7 +918,7 @@
     "area": "drow",
     "anum": 25,
     "name": "Throne Room",
-    "description": "The throne room is basically similar to the inner courtyard in regards\n
+    "description": "The throne room is basically similar to the inner courtyard in regards
                    |to decor. there is a small throne behind the altar but that is about it.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -956,8 +956,8 @@
     "area": "drow",
     "anum": 26,
     "name": "Entrance Way",
-    "description": "You stand in the entrance way to the temple which opens up to the north\n
-                   |into a large hallway going east and west. Small statues of spiders line the\n
+    "description": "You stand in the entrance way to the temple which opens up to the north
+                   |into a large hallway going east and west. Small statues of spiders line the
                    |entrance way's walls.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -976,9 +976,9 @@
     "area": "drow",
     "anum": 27,
     "name": "Hallway",
-    "description": "You are in a long hallway lined with adamantite. The walls are engraved\n
-                   |with pictures of elves and spiders. The hallway continues east and west. As you\n
-                   |look down the hallway you can make out one or two figures moving away from you.\n
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved
+                   |with pictures of elves and spiders. The hallway continues east and west. As you
+                   |look down the hallway you can make out one or two figures moving away from you.
                    |To the north is a obsidian stairway.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1005,8 +1005,8 @@
     "area": "drow",
     "anum": 28,
     "name": "Long Hallway",
-    "description": "You are in a long hallway lined with adamantite. The walls are engraved\n
-                   |with pictures of elves and spiders. The hallway continues east and west. As you\n
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved
+                   |with pictures of elves and spiders. The hallway continues east and west. As you
                    |look down the hallway you can make out one or two figures moving away from you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1025,9 +1025,9 @@
     "area": "drow",
     "anum": 29,
     "name": "Long Hallway",
-    "description": "You are in a long hallway lined with adamantite. The walls are engraved\n
-                   |with pictures of elves and spiders. The hallway continues east and west. As you\n
-                   |look down the hallway you can make out one or two figures moving away from you.\n
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved
+                   |with pictures of elves and spiders. The hallway continues east and west. As you
+                   |look down the hallway you can make out one or two figures moving away from you.
                    |To the north is a door.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1051,8 +1051,8 @@
     "area": "drow",
     "anum": 30,
     "name": "Long Hallway",
-    "description": "You are in a long hallway lined with adamantite. The walls are engraved\n
-                   |with pictures of elves and spiders. The hallway continues east and west. As you\n
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved
+                   |with pictures of elves and spiders. The hallway continues east and west. As you
                    |look down the hallway you can make out one or two figures moving away from you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1071,8 +1071,8 @@
     "area": "drow",
     "anum": 31,
     "name": "Long Hallway",
-    "description": "You are in a long hallway lined with adamantite. The walls are engraved\n
-                   |with pictures of elves and spiders. The hallway continues east and west. As you\n
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved
+                   |with pictures of elves and spiders. The hallway continues east and west. As you
                    |look down the hallway you can make out one or two figures moving away from you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1091,9 +1091,9 @@
     "area": "drow",
     "anum": 32,
     "name": "Long Hallway",
-    "description": "You are in a long hallway lined with adamantite. The walls are engraved\n
-                   |with pictures of elves and spiders. The hallway continues east and west. As you\n
-                   |look down the hallway you can make out one or two figures moving away from you.\n
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved
+                   |with pictures of elves and spiders. The hallway continues east and west. As you
+                   |look down the hallway you can make out one or two figures moving away from you.
                    |To the south is a door.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1117,8 +1117,8 @@
     "area": "drow",
     "anum": 33,
     "name": "Warrior's Barracks",
-    "description": "The room is a complete mess. None of the beds are made, clothes and other\n
-                   |items have been left all about the room. Well drow warriors never were known\n
+    "description": "The room is a complete mess. None of the beds are made, clothes and other
+                   |items have been left all about the room. Well drow warriors never were known
                    |for neatness.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1150,8 +1150,8 @@
     "area": "drow",
     "anum": 34,
     "name": "Long Hallway",
-    "description": "You are in a long hallway lined with adamantite. The walls are engraved\n
-                   |with pictures of elves and spiders. The hallway continues east and west. As you\n
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved
+                   |with pictures of elves and spiders. The hallway continues east and west. As you
                    |look down the hallway you can make out one or two figures moving away from you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1170,7 +1170,7 @@
     "area": "drow",
     "anum": 35,
     "name": "Grand Stairway",
-    "description": "You are standing at the bottom of a giant obsidian and adamantite\n
+    "description": "You are standing at the bottom of a giant obsidian and adamantite
                    |stairway. The edges are trimmed with gold.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1189,7 +1189,7 @@
     "area": "drow",
     "anum": 36,
     "name": "Grand Hallway",
-    "description": "You are standing in the middle of a grand hallway. The walls are\n
+    "description": "You are standing in the middle of a grand hallway. The walls are
                    |of the purest adamantite with gold trim. Mosaics line the walls.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1213,8 +1213,8 @@
     "area": "drow",
     "anum": 37,
     "name": "Mage's Barracks",
-    "description": "The mage's living quarters is rather clean with the exception of a few\n
-                   |used component containers. It is rather well decorated as well. Cots line the\n
+    "description": "The mage's living quarters is rather clean with the exception of a few
+                   |used component containers. It is rather well decorated as well. Cots line the
                    |floor for the mages to sleep on. the only door is to the west.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1228,8 +1228,8 @@
     "area": "drow",
     "anum": 38,
     "name": "Grand Hallway",
-    "description": "You are walking down a grand hallway, heavily decorated with adamantite\n
-                   |and gold. To the north the hall goes down a flight of stairs while a door is\n
+    "description": "You are walking down a grand hallway, heavily decorated with adamantite
+                   |and gold. To the north the hall goes down a flight of stairs while a door is
                    |too the west.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1253,8 +1253,8 @@
     "area": "drow",
     "anum": 39,
     "name": "Cleric's Barracks",
-    "description": "The bed chamber is brightly decorated with spider shaped statues, murals\n
-                   |and the like. Large beds line the floor making this a comfortable room to live\n
+    "description": "The bed chamber is brightly decorated with spider shaped statues, murals
+                   |and the like. Large beds line the floor making this a comfortable room to live
                    |in.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1268,7 +1268,7 @@
     "area": "drow",
     "anum": 40,
     "name": "Grand Stairway",
-    "description": "You are climbing a set of obsidian stairs surrounded by adamantite walls.\n
+    "description": "You are climbing a set of obsidian stairs surrounded by adamantite walls.
                    |To the north are a set of large golden doors.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1288,8 +1288,8 @@
     "area": "drow",
     "anum": 41,
     "name": "Main Chamber",
-    "description": "This is the south side of a large auditorium used for services by the\n
-                   |drow priestesses. In the center is a large sacrificial pit and beyond that is\n
+    "description": "This is the south side of a large auditorium used for services by the
+                   |drow priestesses. In the center is a large sacrificial pit and beyond that is
                    |an altar.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1313,7 +1313,7 @@
     "area": "drow",
     "anum": 42,
     "name": "Eastern side of Chamber",
-    "description": "You are on the eastern side of the chamber overlooking the pit. To the east\n
+    "description": "You are on the eastern side of the chamber overlooking the pit. To the east
                    |is a door while to the north is an altar.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1337,11 +1337,11 @@
     "area": "drow",
     "anum": 43,
     "name": "Sacrificial Pit",
-    "description": "A you climb down into the pit thousands of spiders cover you tearing your\n
-                   |body to shreds.\n
-                   |\n
-                   |Lloth thanks you for your sacrifice.\n
-                   |\n
+    "description": "A you climb down into the pit thousands of spiders cover you tearing your
+                   |body to shreds.
+                   |
+                   |Lloth thanks you for your sacrifice.
+                   |
                    |You've fallen, and you can't get up!!!\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors"
@@ -1350,7 +1350,7 @@
     "area": "drow",
     "anum": 44,
     "name": "Western side of Chamber",
-    "description": "You are on the western side of the main chamber overlooking a sacrificial\n
+    "description": "You are on the western side of the main chamber overlooking a sacrificial
                    |pit. To the north is an altar.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1369,8 +1369,8 @@
     "area": "drow",
     "anum": 45,
     "name": "The Altar",
-    "description": "You are standing in front of a highly and freshly bloodstained altar.\n
-                   |Engraved on the top of the altar is a giant spider with a human head. Looking\n
+    "description": "You are standing in front of a highly and freshly bloodstained altar.
+                   |Engraved on the top of the altar is a giant spider with a human head. Looking
                    |down from the altar you see a large sacrificial pit.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1397,7 +1397,7 @@
     "area": "drow",
     "anum": 46,
     "name": "Slave Cells",
-    "description": "This is the main room to the cell chambers for the slaves to be\n
+    "description": "This is the main room to the cell chambers for the slaves to be
                    |sacrificed. You notice there are no guards around.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1417,8 +1417,8 @@
     "area": "drow",
     "anum": 47,
     "name": "Slave Pen",
-    "description": "Rotten meat and breads lie about the floor while shackles hang from the\n
-                   |walls. The room wreaks of death. You almost become nauseous and decide to leave\n
+    "description": "Rotten meat and breads lie about the floor while shackles hang from the
+                   |walls. The room wreaks of death. You almost become nauseous and decide to leave
                    |the room since you were obviously too late to save the slave.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1432,8 +1432,8 @@
     "area": "drow",
     "anum": 48,
     "name": "Dais",
-    "description": "You stand upon a dais behind the altar. Above you is a enormous illusion\n
-                   |of a female drow turning into a giant spider and back again. There is a door\n
+    "description": "You stand upon a dais behind the altar. Above you is a enormous illusion
+                   |of a female drow turning into a giant spider and back again. There is a door
                    |to the west.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1471,7 +1471,7 @@
     "area": "drow",
     "anum": 49,
     "name": "The Treasury",
-    "description": "This is obviously only a temporary storage place for the collected\n
+    "description": "This is obviously only a temporary storage place for the collected
                    |treasure being rather bare.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1485,7 +1485,7 @@
     "area": "drow",
     "anum": 50,
     "name": "Weaponsmaster's Chamber",
-    "description": "This one person bedchamber is very elegant. The owner must be held in high\n
+    "description": "This one person bedchamber is very elegant. The owner must be held in high
                    |to get this kind of treatment.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",

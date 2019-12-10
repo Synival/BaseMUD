@@ -63,7 +63,7 @@
     "name": "gang leader troll",
     "short_descr": "the Troll gang leader",
     "long_descr": "The gang leader is not pleased you found his hideout!\n",
-    "description": "He's risen to be leader through brute force and cunning leadership, you'd\n
+    "description": "He's risen to be leader through brute force and cunning leadership, you'd
                    |guess mostly brute force from the size of his muscles.\n",
     "race": "human",
     "alignment": 0,
@@ -210,7 +210,7 @@
     "name": "dog pit bull pitbull",
     "short_descr": "a pitbull",
     "long_descr": "A vicious pitbull is foaming at the mouth in rabid anticipation.\n",
-    "description": "You get a nice close look at him while he's tearing at your throat.\n
+    "description": "You get a nice close look at him while he's tearing at your throat.
                    |His fangs are blood-stained from hearty meals of ... steak?!\n",
     "race": "dog",
     "alignment": -100,
@@ -299,7 +299,7 @@
     "name": "thug",
     "short_descr": "a thug",
     "long_descr": "An ugly, scarred thug is here, looking for dogs to kick.\n",
-    "description": "The thug isn't quite as big as the Troll's bruisers, but you can tell he loves\n
+    "description": "The thug isn't quite as big as the Troll's bruisers, but you can tell he loves
                    |breaking heads for the Ogres.\n",
     "race": "human",
     "alignment": -333,

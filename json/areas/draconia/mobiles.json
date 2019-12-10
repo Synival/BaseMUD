@@ -5,7 +5,7 @@
     "name": "hatchling dragon baby",
     "short_descr": "the dragon hatchling",
     "long_descr": "A dragon hatchling is here, chewing on a bone.\n",
-    "description": "This small dragon hisses at you as you enter the room.  Although it is only a\n
+    "description": "This small dragon hisses at you as you enter the room.  Although it is only a
                    |few feet long, its sharp teeth make you think twice about petting it.\n",
     "race": "dragon",
     "alignment": -900,
@@ -36,8 +36,8 @@
     "name": "draconian",
     "short_descr": "the Draconian",
     "long_descr": "The Draconian is standing here.\n",
-    "description": "This horrible creature is a bizarre cross between a man and a dragon.  He \n
-                   |has black scales and a seven foot wingspan.  He scowls at you and hefts his \n
+    "description": "This horrible creature is a bizarre cross between a man and a dragon.  He 
+                   |has black scales and a seven foot wingspan.  He scowls at you and hefts his 
                    |spear as you enter the room.\n",
     "race": "human",
     "alignment": -900,
@@ -94,8 +94,8 @@
     "name": "man mage wizard",
     "short_descr": "a powerful mage",
     "long_descr": "A man is here, studying some books.\n",
-    "description": "A powerful looking mage is standing in this room studying his spells.  You are\n
-                   |surprised at the fact that he is human, and realize that he must be very\n
+    "description": "A powerful looking mage is standing in this room studying his spells.  You are
+                   |surprised at the fact that he is human, and realize that he must be very
                    |powerful to have been accepted by the creatures which live here.\n",
     "race": "human",
     "alignment": -900,
@@ -125,7 +125,7 @@
     "name": "cleric draconian",
     "short_descr": "the holy Draconian",
     "long_descr": "A Draconian is here, deep in thought.          \n",
-    "description": "A Draconian stands here, dressed in simple robes.  Around his neck you \n
+    "description": "A Draconian stands here, dressed in simple robes.  Around his neck you 
                    |notice a golden medallion in the shape of a five headed dragon.  \n",
     "race": "human",
     "alignment": -900,
@@ -155,8 +155,8 @@
     "name": "king draconian",
     "short_descr": "the Draconian King",
     "long_descr": "A Draconian wearing fine clothes is here, pondering his greatness.          \n",
-    "description": "The king of the draconians sits here on a golden throne.  He looks as \n
-                   |though he could crush your head with a single blow.  Yet you sense that he \n
+    "description": "The king of the draconians sits here on a golden throne.  He looks as 
+                   |though he could crush your head with a single blow.  Yet you sense that he 
                    |is controlled by a greater power. \n",
     "race": "human",
     "alignment": -900,
@@ -186,8 +186,8 @@
     "name": "concubine draconian",
     "short_descr": "a concubine",
     "long_descr": "A concubine is resting here. \n",
-    "description": "This is a concubine of the king.  She is lounging here, wearing nothing at \n
-                   |all.  You find yourself strangely repulsed as she draws a knife and \n
+    "description": "This is a concubine of the king.  She is lounging here, wearing nothing at 
+                   |all.  You find yourself strangely repulsed as she draws a knife and 
                    |prepares to defend herself. \n",
     "race": "human",
     "alignment": -500,
@@ -215,7 +215,7 @@
     "name": "bodyguard draconian",
     "short_descr": "A bodyguard",
     "long_descr": "A bodyguard is here, staring at you menacingly. \n",
-    "description": "This creature has devoted its life to defending the king.  Your intrusion has\n
+    "description": "This creature has devoted its life to defending the king.  Your intrusion has
                    |not pleased it.\n",
     "race": "human",
     "alignment": -800,
@@ -244,7 +244,7 @@
     "name": "tiamat dragon",
     "short_descr": "Tiamat",
     "long_descr": "A five headed dragon hisses at you as you enter this room.\n",
-    "description": "You see before you the master of this Tower, Tiamat.  She frowns at you as she\n
+    "description": "You see before you the master of this Tower, Tiamat.  She frowns at you as she
                    |prepares to make you pay for your insolence ... with your lives!\n",
     "race": "human",
     "alignment": -1000,
@@ -276,7 +276,7 @@
     "name": "dragon red",
     "short_descr": "the Great Red Dragon",
     "long_descr": "A red dragon is here, contemplating your existence. \n",
-    "description": "This huge red dragon dominates the chamber.  As you turn to flee, he grins at\n
+    "description": "This huge red dragon dominates the chamber.  As you turn to flee, he grins at
                    |you and invites you to stay ... forever! \n",
     "race": "dragon",
     "alignment": -1000,
@@ -308,7 +308,7 @@
     "name": "dragon black",
     "short_descr": "the Great Black Dragon",
     "long_descr": "A black dragon is here, laughing at your insolence. \n",
-    "description": "This huge black wyrm laughs at your puny weapons.  You realize that he is not\n
+    "description": "This huge black wyrm laughs at your puny weapons.  You realize that he is not
                    |going to roll over and die for you.\n",
     "race": "dragon",
     "alignment": -900,
@@ -342,8 +342,8 @@
     "name": "dragon white",
     "short_descr": "the Great White Dragon",
     "long_descr": "A white dragon is here, waiting for you. \n",
-    "description": "This dragon towers over you.  Recalling your previous experiences with white\n
-                   |dragons, you are not afraid.  She smiles at you and says 'I think you will find\n
+    "description": "This dragon towers over you.  Recalling your previous experiences with white
+                   |dragons, you are not afraid.  She smiles at you and says 'I think you will find
                    |me a greater challenge than my offspring.'\n",
     "race": "dragon",
     "alignment": -1000,
@@ -377,8 +377,8 @@
     "name": "dragon green",
     "short_descr": "the Ancient Green Dragon",
     "long_descr": "A green dragon is here, looking distraught. \n",
-    "description": "This huge beast appears to be the most directly related to the draconians. \n
-                   |She looks at you with sorrow in her eyes and says 'You have slaughtered my \n
+    "description": "This huge beast appears to be the most directly related to the draconians. 
+                   |She looks at you with sorrow in her eyes and says 'You have slaughtered my 
                    |children.  Prepare to die.'\n",
     "race": "dragon",
     "alignment": -1000,
@@ -412,7 +412,7 @@
     "name": "hydra",
     "short_descr": "a large hydra",
     "long_descr": "A hydra is here, blocking the doorway. \n",
-    "description": "A hydra is here, guarding the entrance to a sealed vault.  You have the feeling\n
+    "description": "A hydra is here, guarding the entrance to a sealed vault.  You have the feeling
                    |it isn't happy to see you.\n",
     "race": "human",
     "alignment": -800,
@@ -442,7 +442,7 @@
     "name": "slave human",
     "short_descr": "A human slave",
     "long_descr": "A Human slave is here, hard at work.          \n",
-    "description": "He looks like he's under a lot of stress.  He would probably like it if you\n
+    "description": "He looks like he's under a lot of stress.  He would probably like it if you
                    |left him alone.\n",
     "race": "human",
     "alignment": 0,
@@ -472,7 +472,7 @@
     "name": "zombie draconian",
     "short_descr": "a Draconian zombie",
     "long_descr": "A Draconian zombie is here, staring at nothing in particular.\n",
-    "description": "This used to be one of the warriors of this tribe.  He was denied his final\n
+    "description": "This used to be one of the warriors of this tribe.  He was denied his final
                    |rest, however, and now guards this corridor tirelessly as a zombie.\n",
     "race": "human",
     "alignment": -400,
@@ -531,7 +531,7 @@
     "name": "fool draconian",
     "short_descr": "the draconian fool",
     "long_descr": "A Fool is here, making fun of you.          \n",
-    "description": "This dragon man looks VERY foolish, dressed in a green and blue striped \n
+    "description": "This dragon man looks VERY foolish, dressed in a green and blue striped 
                    |suit.  As you enter the room, he points at you and laughs. \n",
     "race": "human",
     "alignment": 0,
@@ -561,7 +561,7 @@
     "name": "queen draconian",
     "short_descr": "the Draconian Queen",
     "long_descr": "A Female Draconian sits, here, looking very important.          \n",
-    "description": "This draconian looks VERY busy as she orders her slaves around.  You think \n
+    "description": "This draconian looks VERY busy as she orders her slaves around.  You think 
                    |it might be a good idea to leave her alone. \n",
     "race": "human",
     "alignment": -600,

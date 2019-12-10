@@ -3,10 +3,10 @@
     "area": "nirvana",
     "anum": 0,
     "name": "Entrance to the Plane of Nirvana",
-    "description": "You stand before the entrance to a plane of absolute balance and order.  It is\n
-                   |equally hot and cold, equally light and dark, and made of equal parts of solid\n
-                   |and liquid.\n
-                   | \n
+    "description": "You stand before the entrance to a plane of absolute balance and order.  It is
+                   |equally hot and cold, equally light and dark, and made of equal parts of solid
+                   |and liquid.
+                   | 
                    |The plane extends to the west and east, while an exit lies downward.\n",
     "sector_type": "field",
     "doors": [
@@ -31,7 +31,7 @@
     "area": "nirvana",
     "anum": 1,
     "name": "The Plane of Nirvana",
-    "description": "You are traveling the Plane of Nirvana.  It has endless boundaries to the east\n
+    "description": "You are traveling the Plane of Nirvana.  It has endless boundaries to the east
                    |and west\n",
     "sector_type": "field",
     "doors": [
@@ -59,7 +59,7 @@
     "area": "nirvana",
     "anum": 2,
     "name": "The Plane of Nirvana",
-    "description": "You are on a western strech of the plane.  Boundaries to the east and west seem \n
+    "description": "You are on a western strech of the plane.  Boundaries to the east and west seem 
                    |nonexistent.\n",
     "sector_type": "field",
     "doors": [
@@ -87,7 +87,7 @@
     "area": "nirvana",
     "anum": 3,
     "name": "A Change in Direction",
-    "description": "Here, the plane seems to direct you to the north.  Also, the plane continues \n
+    "description": "Here, the plane seems to direct you to the north.  Also, the plane continues 
                    |to the west.\n",
     "sector_type": "field",
     "doors": [
@@ -172,7 +172,7 @@
     "area": "nirvana",
     "anum": 7,
     "name": "In the Tower of Nirvana",
-    "description": "Entering the tower, there seems to be enough light to see by, but no source is \n
+    "description": "Entering the tower, there seems to be enough light to see by, but no source is 
                    |visible.  The hall continues to the east, while a door lies to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -195,7 +195,7 @@
     "area": "nirvana",
     "anum": 8,
     "name": "A hallway in the Tower of Nirvana",
-    "description": "You are in a east-west hallway in the tower.  to the west, the hall continues \n
+    "description": "You are in a east-west hallway in the tower.  to the west, the hall continues 
                    |and a door lies to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -258,7 +258,7 @@
     "area": "nirvana",
     "anum": 11,
     "name": "An intersection in the Tower of Nirvana",
-    "description": "You are at an intersection where the east-west passage continues, but a large \n
+    "description": "You are at an intersection where the east-west passage continues, but a large 
                    |passage leads to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -292,8 +292,8 @@
     "area": "nirvana",
     "anum": 12,
     "name": "At the door to the Tower of Nirvana",
-    "description": "You stand on the plane where a mighty door lies to the west.\n
-                   |The plane also continues north and southward.  There is a large sign on the \n
+    "description": "You stand on the plane where a mighty door lies to the west.
+                   |The plane also continues north and southward.  There is a large sign on the 
                    |door.\n",
     "sector_type": "field",
     "doors": [
@@ -317,9 +317,9 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "The sign reads:\n
-                     |                     WARNING\n
-                     |Only those brave of heart and high of level should\n
+      "description": "The sign reads:
+                     |                     WARNING
+                     |Only those brave of heart and high of level should
                      |enter the Tower of Nirvana.\n"
     }],
     "resets": [{
@@ -335,7 +335,7 @@
     "area": "nirvana",
     "anum": 13,
     "name": "At the door to the Tower of Nirvana",
-    "description": "The plane continue to the north and south, while a mighty door lies to the \n
+    "description": "The plane continue to the north and south, while a mighty door lies to the 
                    |east.  There is a sign on the door.\n",
     "sector_type": "field",
     "doors": [
@@ -360,9 +360,9 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "The sign reads:\n
-                     |                  WARNING!\n
-                     |Only those brave of heart and high of level\n
+      "description": "The sign reads:
+                     |                  WARNING!
+                     |Only those brave of heart and high of level
                      |should attempt to enter the Tower of Nirvana.\n"
     }],
     "resets": [{
@@ -458,7 +458,7 @@
     "area": "nirvana",
     "anum": 18,
     "name": "A Tertain's lair",
-    "description": "You quite possibly have made a terrible mistake coming in here.\n
+    "description": "You quite possibly have made a terrible mistake coming in here.
                    |Exits lead east and west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -487,7 +487,7 @@
     "area": "nirvana",
     "anum": 19,
     "name": "A Tertian's lair",
-    "description": "You might have made a terrible mistake coming into here.\n
+    "description": "You might have made a terrible mistake coming into here.
                    |Exits lead east and west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -516,8 +516,8 @@
     "area": "nirvana",
     "anum": 20,
     "name": "The Lair of Primus",
-    "description": "You are in a large hall, with a massive pool of what appears to be pure energy \n
-                   |in the center of the room.  Exits lead in all the cardinal directions.  From \n
+    "description": "You are in a large hall, with a massive pool of what appears to be pure energy 
+                   |in the center of the room.  Exits lead in all the cardinal directions.  From 
                    |the pool rises the master of the Plane of Nirvana....\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -566,7 +566,7 @@
     "area": "nirvana",
     "anum": 21,
     "name": "A Tertian's lair",
-    "description": "Maybe coming here wasn't such a hot idea.  You feel very unwelcome here.  \n
+    "description": "Maybe coming here wasn't such a hot idea.  You feel very unwelcome here.  
                    |Exits lead north and south\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -595,9 +595,9 @@
     "area": "nirvana",
     "anum": 22,
     "name": "The office of a Quinton",
-    "description": "You have stumbled upon the office of a page to Primus.\n
-                   |Scrolls lie about the room along with many strange objects...you can't imagine \n
-                   |what kind of creature would use them.  Exits lead in all the cardinal \n
+    "description": "You have stumbled upon the office of a page to Primus.
+                   |Scrolls lie about the room along with many strange objects...you can't imagine 
+                   |what kind of creature would use them.  Exits lead in all the cardinal 
                    |directions.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -712,7 +712,7 @@
     "area": "nirvana",
     "anum": 26,
     "name": "An intersection of passages",
-    "description": "You stand at an intersection.  Exits lead off to the east and south. \n
+    "description": "You stand at an intersection.  Exits lead off to the east and south. 
                    |A door lies to the north\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -978,8 +978,8 @@
     "area": "nirvana",
     "anum": 36,
     "name": "Lair of a Hexton",
-    "description": "You are in a room that is in complete disrepair.  Items are thrown throughout \n
-                   |the room making them worthless piles of junk.\n
+    "description": "You are in a room that is in complete disrepair.  Items are thrown throughout 
+                   |the room making them worthless piles of junk.
                    |The only exit is back south\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1022,8 +1022,8 @@
     "area": "nirvana",
     "anum": 38,
     "name": "Office of a Secundus",
-    "description": "You are standing in a office of one of the Viceroys of the Plane of Nirvana.  \n
-                   |The occupant doesn't look real thrilled with your presence.  The only exits is \n
+    "description": "You are standing in a office of one of the Viceroys of the Plane of Nirvana.  
+                   |The occupant doesn't look real thrilled with your presence.  The only exits is 
                    |west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1085,7 +1085,7 @@
     "area": "nirvana",
     "anum": 40,
     "name": "Office of an Octon",
-    "description": "You see a messy room with papers scattered everywhere.\n
+    "description": "You see a messy room with papers scattered everywhere.
                    |The only exit leads back to the south\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1107,7 +1107,7 @@
     "area": "nirvana",
     "anum": 41,
     "name": "Office of a Septon",
-    "description": "A neat and tidy room, it appear to be inhabited my a neatenss freak.  The only \n
+    "description": "A neat and tidy room, it appear to be inhabited my a neatenss freak.  The only 
                    |exit lies to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1159,8 +1159,8 @@
     "area": "nirvana",
     "anum": 43,
     "name": "The Barracks",
-    "description": "A dusty room, with a almost untolerable odor, the barracks are being inspected \n
-                   |by a Hexton and his personal enterage.\n
+    "description": "A dusty room, with a almost untolerable odor, the barracks are being inspected 
+                   |by a Hexton and his personal enterage.
                    |The only exit lies to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1182,8 +1182,8 @@
     "area": "nirvana",
     "anum": 44,
     "name": "The Commander's Post",
-    "description": "You have stumbled on to the office of the Commander of the forces in the Plane \n
-                   |Of Nirvana.  The room is well furnished and a sense of courage and bravery \n
+    "description": "You have stumbled on to the office of the Commander of the forces in the Plane 
+                   |Of Nirvana.  The room is well furnished and a sense of courage and bravery 
                    |overtakes you as you enter the room.  The only exit lies to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1205,7 +1205,7 @@
     "area": "nirvana",
     "anum": 45,
     "name": "The chamber of the second Secundus",
-    "description": "This huge room is furnished with the finest, and a personal legion guards the \n
+    "description": "This huge room is furnished with the finest, and a personal legion guards the 
                    |Secundus. the only exit is to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1237,7 +1237,7 @@
     "area": "nirvana",
     "anum": 46,
     "name": "A Passageway",
-    "description": "You are in a well lit passage.  A sense of forboding danger envelopes you.  \n
+    "description": "You are in a well lit passage.  A sense of forboding danger envelopes you.  
                    |Exits lead in all cardinal directions.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1268,7 +1268,7 @@
     "area": "nirvana",
     "anum": 47,
     "name": "Chamber of the Octon",
-    "description": "A small room, sparsely furnished, it leaves you with a sense of fear.  The \n
+    "description": "A small room, sparsely furnished, it leaves you with a sense of fear.  The 
                    |only exit is to the south\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1290,7 +1290,7 @@
     "area": "nirvana",
     "anum": 48,
     "name": "Chamber of the Nonaton",
-    "description": "You have entered the chamber of the principal law and order overseers.  The \n
+    "description": "You have entered the chamber of the principal law and order overseers.  The 
                    |only exit lies to the north\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1321,7 +1321,7 @@
     "area": "nirvana",
     "anum": 49,
     "name": "End of the passageway",
-    "description": "You have reached the end of a long east-west passage.  The passage contiues to \n
+    "description": "You have reached the end of a long east-west passage.  The passage contiues to 
                    |the west, and rooms lie to the north, south, and east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1352,7 +1352,7 @@
     "area": "nirvana",
     "anum": 50,
     "name": "Chamber of a Hexton",
-    "description": "You have entered the chamber of a Hexton.  Trophies adorn the walls, some of \n
+    "description": "You have entered the chamber of a Hexton.  Trophies adorn the walls, some of 
                    |which are human. the only exit is to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1374,7 +1374,7 @@
     "area": "nirvana",
     "anum": 51,
     "name": "Chamber of a Hexton",
-    "description": "You have entered a room where you are not very popular. The only exit lies \n
+    "description": "You have entered a room where you are not very popular. The only exit lies 
                    |northbound.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1396,7 +1396,7 @@
     "area": "nirvana",
     "anum": 52,
     "name": "Chamber of the Secudus",
-    "description": "A large canvernous room, this chamber serves as the sleeping quarters for the \n
+    "description": "A large canvernous room, this chamber serves as the sleeping quarters for the 
                    |third Secudus, Viceroy to Primus. The only exit lies to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1500,7 +1500,7 @@
     "area": "nirvana",
     "anum": 56,
     "name": "A large room",
-    "description": "You have entered a room where you are not wanted.  The only exit lies to the \n
+    "description": "You have entered a room where you are not wanted.  The only exit lies to the 
                    |south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1522,7 +1522,7 @@
     "area": "nirvana",
     "anum": 57,
     "name": "A room",
-    "description": "You have entered a room where there was obviously a hurried move going on.  \n
+    "description": "You have entered a room where there was obviously a hurried move going on.  
                    |The only exit lies to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1544,8 +1544,8 @@
     "area": "nirvana",
     "anum": 58,
     "name": "Chamber of The First Secundus",
-    "description": "You have disturbed the rest of the First Viceroy to Primus the Prime, The \n
-                   |Secundus.  He does not look like a happy camper. The only exit lies to the \n
+    "description": "You have disturbed the rest of the First Viceroy to Primus the Prime, The 
+                   |Secundus.  He does not look like a happy camper. The only exit lies to the 
                    |east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",

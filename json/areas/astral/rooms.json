@@ -3,8 +3,8 @@
     "area": "astral",
     "anum": 0,
     "name": "The Bottom of the Rainbow",
-    "description": "You are standing before a shimmering rainbow arching high up into the\n
-                   |sky.  You feel somehow separated from the natural world, even though the\n
+    "description": "You are standing before a shimmering rainbow arching high up into the
+                   |sky.  You feel somehow separated from the natural world, even though the
                    |temple spire is only a few meters below you.\n",
     "sector_type": "city",
     "doors": [
@@ -21,7 +21,7 @@
     ],
     "extra_description": [{
       "keyword": "rainbow",
-      "description": "The rainbow softly glows with beams of light, in colours that defie \n
+      "description": "The rainbow softly glows with beams of light, in colours that defie 
                      |description.\n"
     }]
   }},
@@ -29,8 +29,8 @@
     "area": "astral",
     "anum": 1,
     "name": "On the Rainbow",
-    "description": "You are standing on the rainbow, surrounded by many beams of multicoloured\n
-                   |light.  Through the bottom of the rainbow you can barely make out the Temple\n
+    "description": "You are standing on the rainbow, surrounded by many beams of multicoloured
+                   |light.  Through the bottom of the rainbow you can barely make out the Temple
                    |of Midgaard, which is now quite far away.\n",
     "sector_type": "mountain",
     "doors": [
@@ -47,7 +47,7 @@
     ],
     "extra_description": [{
       "keyword": "rainbow",
-      "description": "The rainbow softly glows with beams of light, in colours that defie \n
+      "description": "The rainbow softly glows with beams of light, in colours that defie 
                      |description.\n"
     }]
   }},
@@ -55,8 +55,8 @@
     "area": "astral",
     "anum": 2,
     "name": "On the Rainbow",
-    "description": "You are standing on the rainbow, surrounded by many beams of multicoloured\n
-                   |light.  Through the bottom of the rainbow you see the City of Midgaard and the \n
+    "description": "You are standing on the rainbow, surrounded by many beams of multicoloured
+                   |light.  Through the bottom of the rainbow you see the City of Midgaard and the 
                    |land surrounding it.  It seems to be miles below you.\n",
     "sector_type": "mountain",
     "doors": [
@@ -73,7 +73,7 @@
     ],
     "extra_description": [{
       "keyword": "rainbow",
-      "description": "The rainbow softly glows with beams of light, in colours that\n
+      "description": "The rainbow softly glows with beams of light, in colours that
                      |defie description.\n"
     }]
   }},
@@ -81,14 +81,14 @@
     "area": "astral",
     "anum": 3,
     "name": "On the Rainbow",
-    "description": "You are standing on the rainbow, surrounded by many beams of multicoloured\n
+    "description": "You are standing on the rainbow, surrounded by many beams of multicoloured
                    |light.  The rainbow extends above and below you as far as you can see.\n",
     "sector_type": "mountain",
     "doors": [
       {
         "dir": "up",
         "to": 4,
-        "description": "The rainbow extends far above you.  You see a glowing white light at the \n
+        "description": "The rainbow extends far above you.  You see a glowing white light at the 
                        |rainbow's end.\n"
       },
       {
@@ -99,7 +99,7 @@
     ],
     "extra_description": [{
       "keyword": "rainbow",
-      "description": "The rainbow brightly glows with beams of light, in colours that defie any\n
+      "description": "The rainbow brightly glows with beams of light, in colours that defie any
                      |description.\n"
     }]
   }},
@@ -107,15 +107,15 @@
     "area": "astral",
     "anum": 4,
     "name": "On the Rainbow",
-    "description": "You are nearing the end of the rainbow.  The beams of multicoloured\n
-                   |light have begun to merge and solidify.  All around you you see glowing\n
+    "description": "You are nearing the end of the rainbow.  The beams of multicoloured
+                   |light have begun to merge and solidify.  All around you you see glowing
                    |starlike motes of dust.  Ahead of you is a bridge.\n",
     "sector_type": "mountain",
     "doors": [
       {
         "dir": "up",
         "to": 5,
-        "description": "The rainbow extends above you, merging into a brilliant glowing\n
+        "description": "The rainbow extends above you, merging into a brilliant glowing
                        |bridge.\n"
       },
       {
@@ -127,17 +127,17 @@
     "extra_description": [
       {
         "keyword": "bridge",
-        "description": "The colors of the rainbow seem to converge into a glowing bridge that leads\n
+        "description": "The colors of the rainbow seem to converge into a glowing bridge that leads
                        |to a massive white gate.\n"
       },
       {
         "keyword": "motes star stars dust",
-        "description": "The star-like motes dance before your eyes.  They are incredibly beautiful yet\n
+        "description": "The star-like motes dance before your eyes.  They are incredibly beautiful yet
                        |intangible -- your hand passes right through them.\n"
       },
       {
         "keyword": "rainbow",
-        "description": "The rainbow brilliantly glows with beams of blinding light, in colours that \n
+        "description": "The rainbow brilliantly glows with beams of blinding light, in colours that 
                        |sweep together and merge before your eyes.\n"
       }
     ]
@@ -146,29 +146,29 @@
     "area": "astral",
     "anum": 5,
     "name": "The Glowing Bridge at the Rainbow's End",
-    "description": "After a long climb you have reached the end of the rainbow.  The brilliant\n
-                   |colours have twisted and merged into a beautiful glowing bridge that leads\n
-                   |toward a massive white gate to the north.  All around you is a soft, peaceful \n
+    "description": "After a long climb you have reached the end of the rainbow.  The brilliant
+                   |colours have twisted and merged into a beautiful glowing bridge that leads
+                   |toward a massive white gate to the north.  All around you is a soft, peaceful 
                    |glow interrupted only by the passing of starlike dust motes before your eyes.\n",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 6,
-        "description": "The bridge leads on to a massive white gate.  You see a large grey figure\n
+        "description": "The bridge leads on to a massive white gate.  You see a large grey figure
                        |standing there.\n"
       },
       {
         "dir": "down",
         "to": 4,
-        "description": "The bridge disassociates into a beautiful spectrum of colours that\n
+        "description": "The bridge disassociates into a beautiful spectrum of colours that
                        |drop out of sight below you.\n"
       }
     ],
     "extra_description": [
       {
         "keyword": "gate",
-        "description": "The gate towers tens of feet above your heads.  Beyond it is a field of utter\n
+        "description": "The gate towers tens of feet above your heads.  Beyond it is a field of utter
                        |blackness, from which the motes of light seem to issue forth.\n"
       },
       {
@@ -177,12 +177,12 @@
       },
       {
         "keyword": "motes star stars dust",
-        "description": "The star-like motes dance before your eyes.  They are incredibly beautiful yet\n
+        "description": "The star-like motes dance before your eyes.  They are incredibly beautiful yet
                        |intangible -- your hand passes right through them.\n"
       },
       {
         "keyword": "rainbow",
-        "description": "The rainbow seems to be forming directly from the light of the bridge.  It\n
+        "description": "The rainbow seems to be forming directly from the light of the bridge.  It
                        |drops out of sight below you.\n"
       }
     ]
@@ -191,8 +191,8 @@
     "area": "astral",
     "anum": 6,
     "name": "The Astral Gate",
-    "description": "Here the bridge ends before a massive, pearly-coloured gate beyond which\n
-                   |you can see a field of blackness filled with silvery snake-like tendrils,\n
+    "description": "Here the bridge ends before a massive, pearly-coloured gate beyond which
+                   |you can see a field of blackness filled with silvery snake-like tendrils,
                    |stars, and occasional flashes of of light.\n",
     "sector_type": "city",
     "doors": [
@@ -200,32 +200,32 @@
         "dir": "north",
         "to": 7,
         "keyword": "gate",
-        "description": "Through the gate you see a massive field of blackness that extends as far\n
+        "description": "Through the gate you see a massive field of blackness that extends as far
                        |as you can see.\n",
         "exit_flags": "door closed"
       },
       {
         "dir": "south",
         "to": 5,
-        "description": "The bridge extends towards the rainbow, which drops out of sight\n
+        "description": "The bridge extends towards the rainbow, which drops out of sight
                        |below you.\n"
       }
     ],
     "extra_description": [
       {
         "keyword": "plaque",
-        "description": "The plaque reads: \n
-                       |\n
-                       |Let this gate stand to protect mortal man for all time against the perils of \n
-                       |the outer planes of existence and the creatures fair and foul that dwell within.\n
-                       |\n
+        "description": "The plaque reads: 
+                       |
+                       |Let this gate stand to protect mortal man for all time against the perils of 
+                       |the outer planes of existence and the creatures fair and foul that dwell within.
+                       |
                        |(The Astral Plane and Githyanki Keep were written by Andersen.) \n"
       },
       {
         "keyword": "gate",
-        "description": "You see a huge, glowing gate wrought from an incredibly hard translucent \n
-                       |material.  Each of the intricately carved bars of this mighty gate are about \n
-                       |as thick as a man's wrist, rising from the floor to a height of forty feet.  \n
+        "description": "You see a huge, glowing gate wrought from an incredibly hard translucent 
+                       |material.  Each of the intricately carved bars of this mighty gate are about 
+                       |as thick as a man's wrist, rising from the floor to a height of forty feet.  
                        |A plaque is inset into the wall next to one side of the gate.\n"
       }
     ],
@@ -252,11 +252,11 @@
     "area": "astral",
     "anum": 7,
     "name": "Into the Astral Plane",
-    "description": "You step through the gate, and into another reality...\n
-                   |\n
-                   |   You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is very disorienting, although it is not too late to return\n
+    "description": "You step through the gate, and into another reality...
+                   |
+                   |   You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is very disorienting, although it is not too late to return
                    |through the gate to the south.\n",
     "sector_type": "field",
     "room_flags": "no_mob",
@@ -296,8 +296,8 @@
     ],
     "extra_description": [{
       "keyword": "gate",
-      "description": ">From here the pearly-coloured gate seems very small and insubstantial.  Through\n
-                     |its bars you can see the Astral Guardian, protecting your world from the perils\n
+      "description": ">From here the pearly-coloured gate seems very small and insubstantial.  Through
+                     |its bars you can see the Astral Guardian, protecting your world from the perils
                      |of this plane of existence.\n"
     }]
   }},
@@ -305,9 +305,9 @@
     "area": "astral",
     "anum": 8,
     "name": "Exploring the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is very disorienting, and it is difficult to maintain your \n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is very disorienting, and it is difficult to maintain your 
                    |bearings and sense of direction.\n",
     "sector_type": "field",
     "doors": [
@@ -346,9 +346,9 @@
     "area": "astral",
     "anum": 9,
     "name": "Exploring the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is very disorienting, and it is difficult to maintain your \n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is very disorienting, and it is difficult to maintain your 
                    |bearings and sense of direction.\n",
     "sector_type": "field",
     "doors": [
@@ -387,9 +387,9 @@
     "area": "astral",
     "anum": 10,
     "name": "Exploring the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is very disorienting, and it is difficult to maintain your \n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is very disorienting, and it is difficult to maintain your 
                    |bearings and sense of direction.\n",
     "sector_type": "field",
     "doors": [
@@ -428,9 +428,9 @@
     "area": "astral",
     "anum": 11,
     "name": "Exploring the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is very disorienting, and it is difficult to maintain your \n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is very disorienting, and it is difficult to maintain your 
                    |bearings and sense of direction.\n",
     "sector_type": "field",
     "doors": [
@@ -469,9 +469,9 @@
     "area": "astral",
     "anum": 12,
     "name": "Exploring the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is very disorienting, and it is difficult to maintain your \n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is very disorienting, and it is difficult to maintain your 
                    |bearings and sense of direction.\n",
     "sector_type": "field",
     "doors": [
@@ -510,9 +510,9 @@
     "area": "astral",
     "anum": 13,
     "name": "Roaming the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is somewhat disorienting.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is somewhat disorienting.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -577,9 +577,9 @@
     "area": "astral",
     "anum": 14,
     "name": "Roaming the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is somewhat disorienting.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is somewhat disorienting.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -644,10 +644,10 @@
     "area": "astral",
     "anum": 15,
     "name": "Roaming the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is somewhat disorienting, though your instincts say you are \n
-                   |close to home.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is somewhat disorienting, though your instincts say you are 
+                   |close to home.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -712,10 +712,10 @@
     "area": "astral",
     "anum": 16,
     "name": "Roaming the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is somewhat disorienting, though your instincts say you are \n
-                   |close to home.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is somewhat disorienting, though your instincts say you are 
+                   |close to home.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -780,10 +780,10 @@
     "area": "astral",
     "anum": 17,
     "name": "Roaming the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is somewhat disorienting, though your instincts say you are \n
-                   |close to home.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is somewhat disorienting, though your instincts say you are 
+                   |close to home.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -848,10 +848,10 @@
     "area": "astral",
     "anum": 18,
     "name": "Wandering the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is highly disorienting.  Nearby you see a large silvery\n
-                   |strand of light.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is highly disorienting.  Nearby you see a large silvery
+                   |strand of light.
                    |   Most exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -932,10 +932,10 @@
     "area": "astral",
     "anum": 19,
     "name": "Wandering the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is highly disorienting.  Nearby you see a large silvery\n
-                   |strand of light.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is highly disorienting.  Nearby you see a large silvery
+                   |strand of light.
                    |   Most exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1000,10 +1000,10 @@
     "area": "astral",
     "anum": 20,
     "name": "Wandering the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is highly disorienting.  Nearby you see a large silvery\n
-                   |strand of light.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is highly disorienting.  Nearby you see a large silvery
+                   |strand of light.
                    |   Most exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1099,10 +1099,10 @@
     "area": "astral",
     "anum": 21,
     "name": "Wandering the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is highly disorienting.  Nearby you see a large silvery\n
-                   |strand of light.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is highly disorienting.  Nearby you see a large silvery
+                   |strand of light.
                    |   Most exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1167,10 +1167,10 @@
     "area": "astral",
     "anum": 22,
     "name": "Wandering the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is highly disorienting.  Nearby you see a large silvery\n
-                   |strand of light.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is highly disorienting.  Nearby you see a large silvery
+                   |strand of light.
                    |   Most exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1246,10 +1246,10 @@
     "area": "astral",
     "anum": 23,
     "name": "Travelling the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is extremely disorienting.  Nearby you see a large silvery\n
-                   |strand of light.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is extremely disorienting.  Nearby you see a large silvery
+                   |strand of light.
                    |   Most exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1319,10 +1319,10 @@
     "area": "astral",
     "anum": 24,
     "name": "Travelling the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is extremely disorienting.  Nearby you see a large silvery\n
-                   |strand of light.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is extremely disorienting.  Nearby you see a large silvery
+                   |strand of light.
                    |   Most exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1399,10 +1399,10 @@
     "area": "astral",
     "anum": 25,
     "name": "Travelling the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is extremely disorienting.  Nearby you see a large silvery\n
-                   |strand of light.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is extremely disorienting.  Nearby you see a large silvery
+                   |strand of light.
                    |   Most exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1446,10 +1446,10 @@
     "area": "astral",
     "anum": 26,
     "name": "Travelling the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is extremely disorienting.  Nearby you see a large silvery\n
-                   |strand of light.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is extremely disorienting.  Nearby you see a large silvery
+                   |strand of light.
                    |   Most exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1510,10 +1510,10 @@
     "area": "astral",
     "anum": 27,
     "name": "Travelling the Astral Plane",
-    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is extremely disorienting.  Nearby you see a large silvery\n
-                   |strand of light.\n
+    "description": "You find yourself floating in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is extremely disorienting.  Nearby you see a large silvery
+                   |strand of light.
                    |   Most exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1583,10 +1583,10 @@
     "area": "astral",
     "anum": 28,
     "name": "Traversing the Astral Plane",
-    "description": "You find yourself deep within in a dark field filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is extremely disorienting, and you are having trouble \n
-                   |keeping your sense of direction.\n
+    "description": "You find yourself deep within in a dark field filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is extremely disorienting, and you are having trouble 
+                   |keeping your sense of direction.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1630,10 +1630,10 @@
     "area": "astral",
     "anum": 29,
     "name": "Traversing the Astral Plane",
-    "description": "You find yourself deep within in a dark field filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is extremely disorienting, and you are having trouble \n
-                   |keeping your sense of direction.\n
+    "description": "You find yourself deep within in a dark field filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is extremely disorienting, and you are having trouble 
+                   |keeping your sense of direction.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1695,10 +1695,10 @@
     "area": "astral",
     "anum": 30,
     "name": "Traversing the Astral Plane",
-    "description": "You find yourself deep within in a dark field filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is extremely disorienting, and you are having trouble \n
-                   |keeping your sense of direction.\n
+    "description": "You find yourself deep within in a dark field filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is extremely disorienting, and you are having trouble 
+                   |keeping your sense of direction.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1799,10 +1799,10 @@
     "area": "astral",
     "anum": 31,
     "name": "Traversing the Astral Plane",
-    "description": "You find yourself deep within in a dark field filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is extremely disorienting, and you are having trouble \n
-                   |keeping your sense of direction.\n
+    "description": "You find yourself deep within in a dark field filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is extremely disorienting, and you are having trouble 
+                   |keeping your sense of direction.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1864,10 +1864,10 @@
     "area": "astral",
     "anum": 32,
     "name": "Traversing the Astral Plane",
-    "description": "You find yourself deep within in a dark field filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is extremely disorienting, and you are having trouble \n
-                   |keeping your sense of direction.\n
+    "description": "You find yourself deep within in a dark field filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is extremely disorienting, and you are having trouble 
+                   |keeping your sense of direction.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1911,10 +1911,10 @@
     "area": "astral",
     "anum": 33,
     "name": "Lost in the Astral Plane",
-    "description": "You find yourself in in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is incredibly disorienting, and you are having trouble \n
-                   |keeping your senses straight.\n
+    "description": "You find yourself in in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is incredibly disorienting, and you are having trouble 
+                   |keeping your senses straight.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -1970,10 +1970,10 @@
     "area": "astral",
     "anum": 34,
     "name": "Lost in the Astral Plane",
-    "description": "You find yourself in in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is incredibly disorienting, and you are having trouble \n
-                   |keeping your senses straight.\n
+    "description": "You find yourself in in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is incredibly disorienting, and you are having trouble 
+                   |keeping your senses straight.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -2029,10 +2029,10 @@
     "area": "astral",
     "anum": 35,
     "name": "Lost in the Astral Plane",
-    "description": "You find yourself in in a field of blackness, filled with tiny tendrils\n
-                   |of silvery light and insubstantial shining motes of dust.  The weightlessness\n
-                   |of this environment is incredibly disorienting, and you are having trouble \n
-                   |keeping your senses straight.\n
+    "description": "You find yourself in in a field of blackness, filled with tiny tendrils
+                   |of silvery light and insubstantial shining motes of dust.  The weightlessness
+                   |of this environment is incredibly disorienting, and you are having trouble 
+                   |keeping your senses straight.
                    |   All exits lead off into the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -2071,7 +2071,7 @@
     "area": "astral",
     "anum": 36,
     "name": "Walking the Silvery Strand",
-    "description": "You are standing atop a silvery strand of light that twists and turns\n
+    "description": "You are standing atop a silvery strand of light that twists and turns
                    |through the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -2095,7 +2095,7 @@
     "area": "astral",
     "anum": 37,
     "name": "Walking the Silvery Strand",
-    "description": "You are standing atop a silvery strand of light that twists and turns\n
+    "description": "You are standing atop a silvery strand of light that twists and turns
                    |through the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -2119,7 +2119,7 @@
     "area": "astral",
     "anum": 38,
     "name": "Walking the Silvery Strand",
-    "description": "You are standing atop a silvery strand of light that twists and turns\n
+    "description": "You are standing atop a silvery strand of light that twists and turns
                    |through the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -2143,7 +2143,7 @@
     "area": "astral",
     "anum": 39,
     "name": "Walking the Silvery Strand",
-    "description": "You are standing atop a silvery strand of light that twists and turns\n
+    "description": "You are standing atop a silvery strand of light that twists and turns
                    |through the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -2167,7 +2167,7 @@
     "area": "astral",
     "anum": 40,
     "name": "Walking the Silvery Strand",
-    "description": "You are standing atop a silvery strand of light that twists and turns\n
+    "description": "You are standing atop a silvery strand of light that twists and turns
                    |through the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -2191,7 +2191,7 @@
     "area": "astral",
     "anum": 41,
     "name": "Walking the Silvery Strand",
-    "description": "You are standing atop a silvery strand of light that twists and turns\n
+    "description": "You are standing atop a silvery strand of light that twists and turns
                    |through the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -2215,7 +2215,7 @@
     "area": "astral",
     "anum": 42,
     "name": "Walking the Silvery Strand",
-    "description": "You are standing atop a silvery strand of light that twists and turns\n
+    "description": "You are standing atop a silvery strand of light that twists and turns
                    |through the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -2239,7 +2239,7 @@
     "area": "astral",
     "anum": 43,
     "name": "Walking the Silvery Strand",
-    "description": "You are standing atop a silvery strand of light that twists and turns\n
+    "description": "You are standing atop a silvery strand of light that twists and turns
                    |through the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -2263,7 +2263,7 @@
     "area": "astral",
     "anum": 44,
     "name": "Walking the Silvery Strand",
-    "description": "You are standing atop a silvery strand of light that twists and turns\n
+    "description": "You are standing atop a silvery strand of light that twists and turns
                    |through the astral field.\n",
     "sector_type": "field",
     "doors": [
@@ -2287,10 +2287,10 @@
     "area": "astral",
     "anum": 45,
     "name": "Deep Within the Astral Plane",
-    "description": "You have travelled deep inside the astral field.  Here the fabric of the\n
-                   |field has become twisted and warped due to the proximity of another plane of\n
-                   |existence.  Some of the tendrils of light that line the astral field have been\n
-                   |warped and twisted into portals to other worlds.\n
+    "description": "You have travelled deep inside the astral field.  Here the fabric of the
+                   |field has become twisted and warped due to the proximity of another plane of
+                   |existence.  Some of the tendrils of light that line the astral field have been
+                   |warped and twisted into portals to other worlds.
                    |   Take care before you step through one -- you might never return.\n",
     "sector_type": "field",
     "doors": [
@@ -2347,10 +2347,10 @@
     "area": "astral",
     "anum": 46,
     "name": "Deep Within the Astral Plane",
-    "description": "You have travelled deep inside the astral field.  Here the fabric of the\n
-                   |field has become twisted and warped due to the proximity of another plane of\n
-                   |existence.  Some of the tendrils of light that line the astral field have been\n
-                   |warped and twisted into portals to other worlds.\n
+    "description": "You have travelled deep inside the astral field.  Here the fabric of the
+                   |field has become twisted and warped due to the proximity of another plane of
+                   |existence.  Some of the tendrils of light that line the astral field have been
+                   |warped and twisted into portals to other worlds.
                    |   Take care before you step through one -- you might never return.\n",
     "sector_type": "field",
     "doors": [
@@ -2407,10 +2407,10 @@
     "area": "astral",
     "anum": 47,
     "name": "Deep Within the Astral Plane",
-    "description": "You have travelled deep inside the astral field.  Here the fabric of the\n
-                   |field has become twisted and warped due to the proximity of another plane of\n
-                   |existence.  Some of the tendrils of light that line the astral field have been\n
-                   |warped and twisted into portals to other worlds.\n
+    "description": "You have travelled deep inside the astral field.  Here the fabric of the
+                   |field has become twisted and warped due to the proximity of another plane of
+                   |existence.  Some of the tendrils of light that line the astral field have been
+                   |warped and twisted into portals to other worlds.
                    |   Take care before you step through one -- you might never return.\n",
     "sector_type": "field",
     "doors": [
@@ -2467,10 +2467,10 @@
     "area": "astral",
     "anum": 48,
     "name": "Deep Within the Astral Plane",
-    "description": "You have travelled deep inside the astral field.  Here the fabric of the\n
-                   |field has become twisted and warped due to the proximity of another plane of\n
-                   |existence.  Some of the tendrils of light that line the astral field have been\n
-                   |warped and twisted into portals to other worlds.\n
+    "description": "You have travelled deep inside the astral field.  Here the fabric of the
+                   |field has become twisted and warped due to the proximity of another plane of
+                   |existence.  Some of the tendrils of light that line the astral field have been
+                   |warped and twisted into portals to other worlds.
                    |   Take care before you step through one -- you might never return.\n",
     "sector_type": "field",
     "doors": [
@@ -2510,10 +2510,10 @@
     "area": "astral",
     "anum": 49,
     "name": "Deep Within the Astral Plane",
-    "description": "You have travelled deep inside the astral field.  Here the fabric of the\n
-                   |field has become twisted and warped due to the proximity of another plane of\n
-                   |existence.  Some of the tendrils of light that line the astral field have been\n
-                   |warped and twisted into portals to other worlds.\n
+    "description": "You have travelled deep inside the astral field.  Here the fabric of the
+                   |field has become twisted and warped due to the proximity of another plane of
+                   |existence.  Some of the tendrils of light that line the astral field have been
+                   |warped and twisted into portals to other worlds.
                    |   Take care before you step through one -- you might never return.\n",
     "sector_type": "field",
     "doors": [
@@ -2570,9 +2570,9 @@
     "area": "astral",
     "anum": 50,
     "name": "Inside the Githyanki Keep",
-    "description": "You are standing just inside a nexial portal that leads out onto the\n
-                   |Astral Plane.  It seems that you have found the lair of the Githyanki,\n
-                   |the once-human followers of Lord Gith.  Ahead of you stands a steel door\n
+    "description": "You are standing just inside a nexial portal that leads out onto the
+                   |Astral Plane.  It seems that you have found the lair of the Githyanki,
+                   |the once-human followers of Lord Gith.  Ahead of you stands a steel door
                    |leading into the keep hewn from stone.\n",
     "sector_type": "inside",
     "room_flags": "no_mob",
@@ -2599,9 +2599,9 @@
     "area": "astral",
     "anum": 51,
     "name": "A guard station",
-    "description": "This is a small building just inside the keep.  Doors lead out to the east\n
-                   |and west.  Some small weapons hang on hooks on the walls, for use in defense\n
-                   |of the keep.\n
+    "description": "This is a small building just inside the keep.  Doors lead out to the east
+                   |and west.  Some small weapons hang on hooks on the walls, for use in defense
+                   |of the keep.
                    |   Doors stand in all directions save north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2693,9 +2693,9 @@
     "area": "astral",
     "anum": 52,
     "name": "A grey road",
-    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red\n
-                   |sun hangs in an orange sky above your head; you hear none of the sounds you\n
-                   |would commonly associate with a normal city.\n
+    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red
+                   |sun hangs in an orange sky above your head; you hear none of the sounds you
+                   |would commonly associate with a normal city.
                    |   The cobblestone road turns to the north, ending to the east at an iron door.\n",
     "sector_type": "city",
     "doors": [
@@ -2708,7 +2708,7 @@
         "dir": "east",
         "to": 51,
         "keyword": "door iron",
-        "description": "You see an iron door which leads into a small stone building set into the wall\n
+        "description": "You see an iron door which leads into a small stone building set into the wall
                        |of the keep.\n",
         "exit_flags": "door closed"
       }
@@ -2722,10 +2722,10 @@
     "area": "astral",
     "anum": 53,
     "name": "A grey road",
-    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red\n
-                   |sun hangs in an orange sky above your head; you hear none of the sounds you\n
-                   |would commonly associate with a normal city.\n
-                   |   The cobblestone road continues to the north and south.  Doors to the east\n
+    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red
+                   |sun hangs in an orange sky above your head; you hear none of the sounds you
+                   |would commonly associate with a normal city.
+                   |   The cobblestone road continues to the north and south.  Doors to the east
                    |and west lead into stone buildings.\n",
     "sector_type": "city",
     "doors": [
@@ -2787,9 +2787,9 @@
     "area": "astral",
     "anum": 54,
     "name": "A grey road",
-    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red\n
-                   |sun hangs in an orange sky above your head; you hear none of the sounds you\n
-                   |would commonly associate with a normal city.\n
+    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red
+                   |sun hangs in an orange sky above your head; you hear none of the sounds you
+                   |would commonly associate with a normal city.
                    |  The cobblestone road turns to the south and continues on to the east.\n",
     "sector_type": "city",
     "doors": [
@@ -2809,10 +2809,10 @@
     "area": "astral",
     "anum": 55,
     "name": "A grey road",
-    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red\n
-                   |sun hangs in an orange sky above your head; you hear none of the sounds you\n
-                   |would commonly associate with a normal city.\n
-                   |  The cobblestone road continues to the east and west.  To the north you see a \n
+    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red
+                   |sun hangs in an orange sky above your head; you hear none of the sounds you
+                   |would commonly associate with a normal city.
+                   |  The cobblestone road continues to the east and west.  To the north you see a 
                    |massive building and a pair of large doors.\n",
     "sector_type": "city",
     "doors": [
@@ -2836,8 +2836,8 @@
     ],
     "extra_description": [{
       "keyword": "doors metal",
-      "description": "The doors are formed from a silvery substance that feels very hard yet almost\n
-                     |slippery to the touch.  They are covered in images in bas-relief, depicting\n
+      "description": "The doors are formed from a silvery substance that feels very hard yet almost
+                     |slippery to the touch.  They are covered in images in bas-relief, depicting
                      |scenes of combat between humans and strange tentacle-mouthed humanoids.\n"
     }],
     "resets": [
@@ -2887,10 +2887,10 @@
     "area": "astral",
     "anum": 56,
     "name": "A grey road",
-    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red\n
-                   |sun hangs in an orange sky above your head; you hear none of the sounds you\n
-                   |would commonly associate with a normal city.\n
-                   |  The cobblestone road continues to the east and west.  A door to the south\n
+    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red
+                   |sun hangs in an orange sky above your head; you hear none of the sounds you
+                   |would commonly associate with a normal city.
+                   |  The cobblestone road continues to the east and west.  A door to the south
                    |leads into a tall stone building.\n",
     "sector_type": "city",
     "doors": [
@@ -2921,10 +2921,10 @@
     "area": "astral",
     "anum": 57,
     "name": "A grey road",
-    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red\n
-                   |sun hangs in an orange sky above your head; you hear none of the sounds you\n
-                   |would commonly associate with a normal city.\n
-                   |   The cobblestone road turns to the west and continues to the south.  A door\n
+    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red
+                   |sun hangs in an orange sky above your head; you hear none of the sounds you
+                   |would commonly associate with a normal city.
+                   |   The cobblestone road turns to the west and continues to the south.  A door
                    |to the north leads into a tall stone building.\n",
     "sector_type": "city",
     "doors": [
@@ -2955,10 +2955,10 @@
     "area": "astral",
     "anum": 58,
     "name": "A grey road",
-    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red\n
-                   |sun hangs in an orange sky above your head; you hear none of the sounds you\n
-                   |would commonly associate with a normal city.\n
-                   |   The cobblestone road continues to the north and south.  To the east is a\n
+    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red
+                   |sun hangs in an orange sky above your head; you hear none of the sounds you
+                   |would commonly associate with a normal city.
+                   |   The cobblestone road continues to the north and south.  To the east is a
                    |door in a large stone building.\n",
     "sector_type": "city",
     "doors": [
@@ -2989,9 +2989,9 @@
     "area": "astral",
     "anum": 59,
     "name": "A grey road",
-    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red\n
-                   |sun hangs in an orange sky above your head; you hear none of the sounds you\n
-                   |would commonly associate with a normal city.\n
+    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red
+                   |sun hangs in an orange sky above your head; you hear none of the sounds you
+                   |would commonly associate with a normal city.
                    |   The cobblestone road continues to the north and south.\n",
     "sector_type": "city",
     "doors": [
@@ -3029,10 +3029,10 @@
     "area": "astral",
     "anum": 60,
     "name": "A grey road",
-    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red\n
-                   |sun hangs in an orange sky above your head; you hear none of the sounds you\n
-                   |would commonly associate with a normal city.\n
-                   |   The cobblestone road turns to the north and continues on to the west.  To\n
+    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red
+                   |sun hangs in an orange sky above your head; you hear none of the sounds you
+                   |would commonly associate with a normal city.
+                   |   The cobblestone road turns to the north and continues on to the west.  To
                    |the east is a door in a large stone building.\n",
     "sector_type": "city",
     "doors": [
@@ -3063,10 +3063,10 @@
     "area": "astral",
     "anum": 61,
     "name": "A grey road",
-    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red\n
-                   |sun hangs in an orange sky above your head; you hear none of the sounds you\n
-                   |would commonly associate with a normal city.\n
-                   |   The cobblestone road goes on to the east, ending to the west at an iron door.\n
+    "description": "The ground beneath your feet is a uniformly grey cobblestone.  A dull red
+                   |sun hangs in an orange sky above your head; you hear none of the sounds you
+                   |would commonly associate with a normal city.
+                   |   The cobblestone road goes on to the east, ending to the west at an iron door.
                    |A door to the north leads into a small stone building.\n",
     "sector_type": "city",
     "doors": [
@@ -3086,7 +3086,7 @@
         "dir": "west",
         "to": 51,
         "keyword": "door iron",
-        "description": "You see an iron door which leads into a small stone building set into the wall\n
+        "description": "You see an iron door which leads into a small stone building set into the wall
                        |of the keep.\n",
         "exit_flags": "door closed"
       }
@@ -3106,9 +3106,9 @@
     "area": "astral",
     "anum": 62,
     "name": "A small building",
-    "description": "You have stepped inside a dimly lit building, which apparently serves as\n
-                   |living quarters for several githyanki gish.  The walls are heavy stone blocks, \n
-                   |covered with panels of strangely knotted and twisted wood.  A couple of candles\n
+    "description": "You have stepped inside a dimly lit building, which apparently serves as
+                   |living quarters for several githyanki gish.  The walls are heavy stone blocks, 
+                   |covered with panels of strangely knotted and twisted wood.  A couple of candles
                    |burn dimly in sconces here and there.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3169,9 +3169,9 @@
     "area": "astral",
     "anum": 63,
     "name": "A small building",
-    "description": "You have stepped inside a dimly lit building, which apparently serves as\n
-                   |living quarters for several githyanki gish.  The walls are heavy stone blocks, \n
-                   |covered with panels of strangely knotted and twisted wood.  A couple of candles\n
+    "description": "You have stepped inside a dimly lit building, which apparently serves as
+                   |living quarters for several githyanki gish.  The walls are heavy stone blocks, 
+                   |covered with panels of strangely knotted and twisted wood.  A couple of candles
                    |burn dimly in sconces here and there.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3232,9 +3232,9 @@
     "area": "astral",
     "anum": 64,
     "name": "A large dwelling",
-    "description": "You have stepped inside a dimly lit building with vaulted ceilings and high\n
-                   |windows.  The walls are heavy stone blocks that rise tens of feet above your\n
-                   |head, covered with panels of strangely knotted and twisted wood.  On the floor\n
+    "description": "You have stepped inside a dimly lit building with vaulted ceilings and high
+                   |windows.  The walls are heavy stone blocks that rise tens of feet above your
+                   |head, covered with panels of strangely knotted and twisted wood.  On the floor
                    |are charcoal stencils of pentagrams and various other ominous sigils.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3279,10 +3279,10 @@
     "area": "astral",
     "anum": 65,
     "name": "The Githyanki Weaponry",
-    "description": "A large chamber, full of weapons in various states of completion.  Strange\n
-                   |glowing blocks of silvery metal are being pounded and rolled out into deadly \n
-                   |razor-sharp knives, daggers, and swords.\n
-                   |   Sounds of hammering and blasts of heat and strange smells come from the open\n
+    "description": "A large chamber, full of weapons in various states of completion.  Strange
+                   |glowing blocks of silvery metal are being pounded and rolled out into deadly 
+                   |razor-sharp knives, daggers, and swords.
+                   |   Sounds of hammering and blasts of heat and strange smells come from the open
                    |doorway to the north.  An iron door stands to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3359,10 +3359,10 @@
     "area": "astral",
     "anum": 66,
     "name": "The Forge",
-    "description": "In the center of the room is a massive furnace which emits great gouts of\n
-                   |heat and a strange smell which comes from the melting of the silvery metal used\n
-                   |by the githyanki.  A large trough of icy water stands to the west, used for \n
-                   |quenching hot metal.\n
+    "description": "In the center of the room is a massive furnace which emits great gouts of
+                   |heat and a strange smell which comes from the melting of the silvery metal used
+                   |by the githyanki.  A large trough of icy water stands to the west, used for 
+                   |quenching hot metal.
                    |   Doorways stand to the north and south.  The furnace door lies to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3387,7 +3387,7 @@
     ],
     "extra_description": [{
       "keyword": "door furnace",
-      "description": "The entire furnace is glowing white-hot to the touch.\n
+      "description": "The entire furnace is glowing white-hot to the touch.
                      |The furnace door looks too hot to even attempt to open.\n"
     }]
   }},
@@ -3395,10 +3395,10 @@
     "area": "astral",
     "anum": 67,
     "name": "The Githyanki Armoury",
-    "description": "A large chamber, full of suits of armor in various states of completion.  In\n
-                   |this chamber the hard steels of the githyanki are shaped into ornately fashioned\n
-                   |suits of mail.\n
-                   |   Sounds of hammering and blasts of heat and strange smells come from the open\n
+    "description": "A large chamber, full of suits of armor in various states of completion.  In
+                   |this chamber the hard steels of the githyanki are shaped into ornately fashioned
+                   |suits of mail.
+                   |   Sounds of hammering and blasts of heat and strange smells come from the open
                    |doorway to the south.  An iron door stands to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3475,10 +3475,10 @@
     "area": "astral",
     "anum": 68,
     "name": "Inside the furnace",
-    "description": "You gasp for breath and choke on toxic sulphur and brimstone.  The sweat\n
-                   |on your forehead is instantly vaporized by the flames that surround you.  You\n
-                   |begin to feel faint and dizzy from the heat...\n
-                   |\n
+    "description": "You gasp for breath and choke on toxic sulphur and brimstone.  The sweat
+                   |on your forehead is instantly vaporized by the flames that surround you.  You
+                   |begin to feel faint and dizzy from the heat...
+                   |
                    |... you'd better leave before you pass out and burn to a cinder!\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3577,9 +3577,9 @@
     "area": "astral",
     "anum": 69,
     "name": "A guard station",
-    "description": "You are standing in a small, fairly empty building that serves as the prison\n
-                   |for the keep.  The building is small because the githyanki do not make a habit \n
-                   |of taking prisoners, and those that they do capture do not last long.\n
+    "description": "You are standing in a small, fairly empty building that serves as the prison
+                   |for the keep.  The building is small because the githyanki do not make a habit 
+                   |of taking prisoners, and those that they do capture do not last long.
                    |   The cellblock lies to the west and the grey stone road is to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3656,9 +3656,9 @@
     "area": "astral",
     "anum": 70,
     "name": "The cellblock",
-    "description": "A torch flickers in the western wall, providing some illumination for this\n
-                   |dim corridor.  Some whips, manacles, and chains hang on the walls -- they seem\n
-                   |to have been used recently.\n
+    "description": "A torch flickers in the western wall, providing some illumination for this
+                   |dim corridor.  Some whips, manacles, and chains hang on the walls -- they seem
+                   |to have been used recently.
                    |   Cell doors stand to the north and south.  The guard station is to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3685,7 +3685,7 @@
     ],
     "extra_description": [{
       "keyword": "door cell",
-      "description": "The cell door is wooden and about 4' high, with a slot in the bottom to pass\n
+      "description": "The cell door is wooden and about 4' high, with a slot in the bottom to pass
                      |food underneath to the prisoner.\n"
     }]
   }},
@@ -3693,7 +3693,7 @@
     "area": "astral",
     "anum": 71,
     "name": "A cramped cell",
-    "description": "You are in a tiny, cold, dank cell.\n
+    "description": "You are in a tiny, cold, dank cell.
                    |  The only exit is back through the door to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3706,7 +3706,7 @@
     }],
     "extra_description": [{
       "keyword": "door cell",
-      "description": "The cell door is wooden and about 4' high, with a slot in the bottom to pass\n
+      "description": "The cell door is wooden and about 4' high, with a slot in the bottom to pass
                      |food underneath to the prisoner.\n"
     }],
     "resets": [{
@@ -3722,7 +3722,7 @@
     "area": "astral",
     "anum": 72,
     "name": "A tiny cell",
-    "description": "You are in a cold, dank, cramped cell.\n
+    "description": "You are in a cold, dank, cramped cell.
                    |   The only exit is back through the door to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3735,7 +3735,7 @@
     }],
     "extra_description": [{
       "keyword": "door cell",
-      "description": "The cell door is wooden and about 4' high, with a slot in the bottom to pass\n
+      "description": "The cell door is wooden and about 4' high, with a slot in the bottom to pass
                      |food underneath to the prisoner.\n"
     }],
     "resets": [{
@@ -3751,9 +3751,9 @@
     "area": "astral",
     "anum": 73,
     "name": "A large dwelling",
-    "description": "You have stepped inside a dimly lit building with vaulted ceilings and high\n
-                   |windows.  The walls are heavy stone blocks that rise tens of feet above your\n
-                   |head, covered with panels of strangely knotted and twisted wood.  On the floor\n
+    "description": "You have stepped inside a dimly lit building with vaulted ceilings and high
+                   |windows.  The walls are heavy stone blocks that rise tens of feet above your
+                   |head, covered with panels of strangely knotted and twisted wood.  On the floor
                    |are charcoal stencils of pentagrams and various other ominous sigils.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3798,10 +3798,10 @@
     "area": "astral",
     "anum": 74,
     "name": "South End of the Hall",
-    "description": "This is a massive stone hall, lit by flaming blue stones set into the walls.\n
-                   |Massive suits of armor line the walls, holding weapons fashioned from a strange\n
-                   |silvery metal.\n
-                   |   The great hall continues to the north and ends in a pair of huge metal doors\n
+    "description": "This is a massive stone hall, lit by flaming blue stones set into the walls.
+                   |Massive suits of armor line the walls, holding weapons fashioned from a strange
+                   |silvery metal.
+                   |   The great hall continues to the north and ends in a pair of huge metal doors
                    |to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3822,8 +3822,8 @@
     "extra_description": [
       {
         "keyword": "doors metal",
-        "description": "The doors are formed from a silvery substance that feels very hard yet almost\n
-                       |slippery to the touch.  They are covered in images in bas-relief, depicting\n
+        "description": "The doors are formed from a silvery substance that feels very hard yet almost
+                       |slippery to the touch.  They are covered in images in bas-relief, depicting
                        |scenes of combat between humans and strange tentacle-mouthed humanoids.\n"
       },
       {
@@ -3888,10 +3888,10 @@
     "area": "astral",
     "anum": 75,
     "name": "North End of the Hall",
-    "description": "This is a massive stone hall, lit by flaming blue stones set into the walls.\n
-                   |Massive suits of armor line the walls, holding weapons fashioned from a strange\n
-                   |silvery metal.\n
-                   |   The great hall continues to the south.  An archway leads into a dimly lit\n
+    "description": "This is a massive stone hall, lit by flaming blue stones set into the walls.
+                   |Massive suits of armor line the walls, holding weapons fashioned from a strange
+                   |silvery metal.
+                   |   The great hall continues to the south.  An archway leads into a dimly lit
                    |room to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3928,8 +3928,8 @@
     "area": "astral",
     "anum": 76,
     "name": "The Altar Chamber",
-    "description": "Your eyes have trouble adjusting to the dim lighting.  All around you are\n
-                   |columnar statues of githyanki turned towards the altar standing at the top\n
+    "description": "Your eyes have trouble adjusting to the dim lighting.  All around you are
+                   |columnar statues of githyanki turned towards the altar standing at the top
                    |of a series of steps.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -4054,9 +4054,9 @@
     "area": "astral",
     "anum": 77,
     "name": "Before the Altar",
-    "description": "You have climbed the mighty steps of the altar chamber and stand before a\n
-                   |huge altar use to pay tribute to Lord Gish, long-dead ruler of the githyanki.\n
-                   |The altar is covered in blood and radiates unspeakable power that is absorbed\n
+    "description": "You have climbed the mighty steps of the altar chamber and stand before a
+                   |huge altar use to pay tribute to Lord Gish, long-dead ruler of the githyanki.
+                   |The altar is covered in blood and radiates unspeakable power that is absorbed
                    |by the horrible presence which stands before you.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -4126,8 +4126,8 @@
     "area": "astral",
     "anum": 78,
     "name": "A Gateway to the Underworld",
-    "description": "You step through the tiny hole in the altar, and stand before a swirling\n
-                   |field of blackness.  Through the field you can hear the howls of lost souls\n
+    "description": "You step through the tiny hole in the altar, and stand before a swirling
+                   |field of blackness.  Through the field you can hear the howls of lost souls
                    |and long-dead beings.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
@@ -4143,7 +4143,7 @@
         "dir": "down",
         "to": 79,
         "keyword": "gateway",
-        "description": "You look down into the field of blackness, and feel a tangible wave of evil wash\n
+        "description": "You look down into the field of blackness, and feel a tangible wave of evil wash
                        |over you.  Stepping into the field would be a bad idea.\n",
         "exit_flags": "door closed locked pickproof",
         "key": 24
@@ -4152,8 +4152,8 @@
     "extra_description": [
       {
         "keyword": "field gateway",
-        "description": "The field pulses and feeds on the blood dripping from above.\n
-                       |\n
+        "description": "The field pulses and feeds on the blood dripping from above.
+                       |
                        |A tangible wave of hatred washes over you, striking fear into your very soul.\n"
       },
       {
@@ -4166,9 +4166,9 @@
     "area": "astral",
     "anum": 79,
     "name": "Utter darkness and despair",
-    "description": "It is pitch black...\n
-                   |\n
-                   |  You are overwhelmed by the sensation of death and horrible pain as a shape\n
+    "description": "It is pitch black...
+                   |
+                   |  You are overwhelmed by the sensation of death and horrible pain as a shape
                    |begins to coalesce before you.\n",
     "sector_type": "air",
     "room_flags": "dark no_mob",

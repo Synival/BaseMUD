@@ -237,6 +237,7 @@ ROOM_INDEX_T *json_import_obj_room (const JSON_T *json) {
                 continue;
             }
             room->exit[dir] = exit;
+            room->exit_orig[dir] = exit;
         }
     }
 

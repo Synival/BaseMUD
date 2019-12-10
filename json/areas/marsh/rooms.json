@@ -3,8 +3,8 @@
     "area": "marsh",
     "anum": 1,
     "name": "Muddy Path",
-    "description": "This section of the path is slowly being drowned by the nearby swamp to the\n
-                   |south, which is creeping slowly inland.  Several caved-in buildings sprawl\n
+    "description": "This section of the path is slowly being drowned by the nearby swamp to the
+                   |south, which is creeping slowly inland.  Several caved-in buildings sprawl
                    |here, torn apart both by battle and the elements.\n",
     "sector_type": "field",
     "doors": [
@@ -21,7 +21,7 @@
     ],
     "extra_description": [{
       "keyword": "swamp",
-      "description": "The swamp to the south even reaches as far as this point ... it makes the\n
+      "description": "The swamp to the south even reaches as far as this point ... it makes the
                      |ground and air about you moist and fetid.\n"
     }]
   }},
@@ -29,9 +29,9 @@
     "area": "marsh",
     "anum": 2,
     "name": "Swamp's Edge",
-    "description": "Briars and marsh plants stick to your boots and clothes, and clouds cover the\n
-                   |skies above the murky marsh, leaving the path before you dark and sinister.\n
-                   |You see some disturbances in the marsh, but after a few strangled screams,\n
+    "description": "Briars and marsh plants stick to your boots and clothes, and clouds cover the
+                   |skies above the murky marsh, leaving the path before you dark and sinister.
+                   |You see some disturbances in the marsh, but after a few strangled screams,
                    |the sounds stop.\n",
     "sector_type": "mountain",
     "doors": [
@@ -55,9 +55,9 @@
     "area": "marsh",
     "anum": 3,
     "name": "Marshy Forest",
-    "description": "This area is by no means a forest, but for those who dwell in these sparse\n
-                   |trees it is one.  Occasionally you see a whole humanoid form floating face down\n
-                   |in the water, but mostly you only find pieces.  You hear a loud bellow in the\n
+    "description": "This area is by no means a forest, but for those who dwell in these sparse
+                   |trees it is one.  Occasionally you see a whole humanoid form floating face down
+                   |in the water, but mostly you only find pieces.  You hear a loud bellow in the
                    |distance.  And feel fear creep into your heart.\n",
     "sector_type": "mountain",
     "room_flags": "dark",
@@ -70,7 +70,7 @@
       {
         "dir": "west",
         "to": 2,
-        "description": "Westward lies the remanents of a broken and shattered roadway being swallowed\n
+        "description": "Westward lies the remanents of a broken and shattered roadway being swallowed
                        |by the marsh.\n"
       }
     ],
@@ -81,7 +81,7 @@
       },
       {
         "keyword": "humanoid corpse",
-        "description": "He looks mangled and shredded.  You see one large gash mark that looks\n
+        "description": "He looks mangled and shredded.  You see one large gash mark that looks
                        |like it came from the claw of some huge beast.\n"
       }
     ],
@@ -123,7 +123,7 @@
     "area": "marsh",
     "anum": 4,
     "name": "On a hill.",
-    "description": "You stand atop a hill on the northwestern side of the evil swamp. Dark\n
+    "description": "You stand atop a hill on the northwestern side of the evil swamp. Dark
                    |clouds whip around you and the wind raises its voice and assails you.\n",
     "sector_type": "hills",
     "room_flags": "dark",
@@ -190,10 +190,10 @@
     "area": "marsh",
     "anum": 5,
     "name": "An Oozing Bog",
-    "description": "You stand in an oozing quagmire.  A creaking beat fills the air, \n
-                   |accompanied by groans and soughing of the air.  Several large winged\n
-                   |beasts flap over you and send chilling glares your way.  You feel out\n
-                   |of place, and feel that the occupants of this realm will soon \n
+    "description": "You stand in an oozing quagmire.  A creaking beat fills the air, 
+                   |accompanied by groans and soughing of the air.  Several large winged
+                   |beasts flap over you and send chilling glares your way.  You feel out
+                   |of place, and feel that the occupants of this realm will soon 
                    |have you for a feast.\n",
     "sector_type": "mountain",
     "room_flags": "dark",
@@ -252,7 +252,7 @@
     "area": "marsh",
     "anum": 6,
     "name": "An Oozing Bog",
-    "description": "The ground here is soft and oozing.  You feel slimy water seeping into your\n
+    "description": "The ground here is soft and oozing.  You feel slimy water seeping into your
                    |boots.  Better stop and check for leeches when you get out of here.\n",
     "sector_type": "mountain",
     "room_flags": "dark",
@@ -314,7 +314,7 @@
     "area": "marsh",
     "anum": 7,
     "name": "Swamp Thing's Lair",
-    "description": "A horrible swamp thing resides here.  Mutilated corpses suffuse the air with\n
+    "description": "A horrible swamp thing resides here.  Mutilated corpses suffuse the air with
                    |the overwhelming stench of putrid flesh.\n",
     "sector_type": "swim",
     "room_flags": "dark",
@@ -325,7 +325,7 @@
     }],
     "extra_description": [{
       "keyword": "corpses",
-      "description": "You notice a note on one of the corpses reading:  'Best ye forget the temple,\n
+      "description": "You notice a note on one of the corpses reading:  'Best ye forget the temple,
                      |it is not for the likes of you...'\n"
     }],
     "resets": [
@@ -374,8 +374,8 @@
     "area": "marsh",
     "anum": 8,
     "name": "Pool of Quick Sand",
-    "description": "You stand by a large oozing pool of quick sand.  Luckily only a complete\n
-                   |klutz could not avoid it.  Dancing lights fly about you and one seems to\n
+    "description": "You stand by a large oozing pool of quick sand.  Luckily only a complete
+                   |klutz could not avoid it.  Dancing lights fly about you and one seems to
                    |be taunting you towards the pool.\n",
     "sector_type": "swim",
     "room_flags": "dark",
@@ -437,8 +437,8 @@
     "area": "marsh",
     "anum": 9,
     "name": "A Dark Pool.",
-    "description": "You stand beside a large dark pond.  The water boils not with heat, but with\n
-                   |motion, as if it is alive.  A creaking beat pulses through the air, leaving\n
+    "description": "You stand beside a large dark pond.  The water boils not with heat, but with
+                   |motion, as if it is alive.  A creaking beat pulses through the air, leaving
                    |you with a cold sweat and fear in your heart.\n",
     "sector_type": "swim",
     "room_flags": "dark",
@@ -501,9 +501,9 @@
     "area": "marsh",
     "anum": 10,
     "name": "Gloomy Path Through the Marsh.",
-    "description": "To the north lies a hill, shrouded in dark clouds, and to the south lies\n
-                   |a huge patch of vegetation.  You sense an evil presence and notice \n
-                   |a beast flying overhead to the south east, towards what looks to be a \n
+    "description": "To the north lies a hill, shrouded in dark clouds, and to the south lies
+                   |a huge patch of vegetation.  You sense an evil presence and notice 
+                   |a beast flying overhead to the south east, towards what looks to be a 
                    |huge fortress, half buried in the marsh.\n",
     "sector_type": "swim",
     "room_flags": "dark",
@@ -526,7 +526,7 @@
       },
       {
         "keyword": "fortress",
-        "description": "It is surrounded by walls nearly 20 meters high.  In a tall tower on the\n
+        "description": "It is surrounded by walls nearly 20 meters high.  In a tall tower on the
                        |northeast side, a window glows blue with magical energy.\n"
       },
       {
@@ -585,7 +585,7 @@
     "area": "marsh",
     "anum": 11,
     "name": "Cloud of Darkness.",
-    "description": "As you travel through this cloud of darkness, a fear such as you have never\n
+    "description": "As you travel through this cloud of darkness, a fear such as you have never
                    |known before assails you.\n",
     "sector_type": "swim",
     "room_flags": "dark",
@@ -631,7 +631,7 @@
     "area": "marsh",
     "anum": 12,
     "name": "Near Vegetation from Hell.",
-    "description": "You stand near some of the strangest plant life you have ever seen, a mixture\n
+    "description": "You stand near some of the strangest plant life you have ever seen, a mixture
                    |of tumescent vegetables, evil-smelling fruit trees, and malignant ferns.\n",
     "sector_type": "swim",
     "room_flags": "dark",
@@ -688,8 +688,8 @@
     "area": "marsh",
     "anum": 13,
     "name": "By the Monolith.",
-    "description": "You are standing near a monolith which protrudes some 20 feet from the\n
-                   |marsh into the air.  Its black obsidian surface shines darkly in the \n
+    "description": "You are standing near a monolith which protrudes some 20 feet from the
+                   |marsh into the air.  Its black obsidian surface shines darkly in the 
                    |strange, almost unearthly light that enters through the clouds above.\n",
     "sector_type": "mountain",
     "room_flags": "dark",
@@ -712,7 +712,7 @@
     ],
     "extra_description": [{
       "keyword": "monolith",
-      "description": "This huge monolith resembles nothing you have ever seen before.\n
+      "description": "This huge monolith resembles nothing you have ever seen before.
                      |You have a strong feeling not to go within.\n"
     }],
     "resets": [
@@ -760,8 +760,8 @@
     "area": "marsh",
     "anum": 14,
     "name": "Murky Bog.",
-    "description": "A murky bog surrounds you.  To the east a black monolith juts forth from the\n
-                   |ground.  Far to the north lies a huge pool of quicksand.  Snarls can be heard\n
+    "description": "A murky bog surrounds you.  To the east a black monolith juts forth from the
+                   |ground.  Far to the north lies a huge pool of quicksand.  Snarls can be heard
                    |echoing as if from a great distance.\n",
     "sector_type": "mountain",
     "room_flags": "dark",
@@ -791,9 +791,9 @@
     "area": "marsh",
     "anum": 15,
     "name": "Northern Lake Side.",
-    "description": "Floating on this boiling lake is not what you would consider an enjoyable \n
-                   |experience.  Many a creature bumps the bottom of your boat, and glares \n
-                   |at you through unblinking eyes from the waters below.  The southern \n
+    "description": "Floating on this boiling lake is not what you would consider an enjoyable 
+                   |experience.  Many a creature bumps the bottom of your boat, and glares 
+                   |at you through unblinking eyes from the waters below.  The southern 
                    |portion of the lake looks calm and serene compared to this wild place.\n",
     "sector_type": "noswim",
     "room_flags": "dark",
@@ -839,8 +839,8 @@
     "area": "marsh",
     "anum": 16,
     "name": "Southern Lake Side.",
-    "description": "You are floating on a calm section of blue crystal water.  You feel much more\n
-                   |at ease then you were before in this area.  Then a wave of fear passes over\n
+    "description": "You are floating on a calm section of blue crystal water.  You feel much more
+                   |at ease then you were before in this area.  Then a wave of fear passes over
                    |you.  You are not alone.\n",
     "sector_type": "noswim",
     "room_flags": "dark",
@@ -858,7 +858,7 @@
     ],
     "extra_description": [{
       "keyword": "north",
-      "description": "The way to the north seems to be impassable, due to the rough water and\n
+      "description": "The way to the north seems to be impassable, due to the rough water and
                      |strange wild life.\n"
     }]
   }},
@@ -866,7 +866,7 @@
     "area": "marsh",
     "anum": 17,
     "name": "Beach",
-    "description": "You are on a sandy shore.  Marsh life creeps across the surface.  To the west\n
+    "description": "You are on a sandy shore.  Marsh life creeps across the surface.  To the west
                    |lies an evil fortress.  You see figures walking along the battlements.\n",
     "sector_type": "mountain",
     "room_flags": "dark",
@@ -891,8 +891,8 @@
     "area": "marsh",
     "anum": 18,
     "name": "Before the Great Gates.",
-    "description": "You stand before the gates of a huge fortress.  The drawbridge is up, the\n
-                   |gates closed, and the portcullis down.  This place looks very dangerous,\n
+    "description": "You stand before the gates of a huge fortress.  The drawbridge is up, the
+                   |gates closed, and the portcullis down.  This place looks very dangerous,
                    |and you decide not to continue onward.\n",
     "sector_type": "forest",
     "room_flags": "dark",

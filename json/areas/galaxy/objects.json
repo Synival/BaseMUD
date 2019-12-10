@@ -75,7 +75,7 @@
     "wear_flags": "take waist",
     "extra_description": [{
       "keyword": "belt",
-      "description": "You can immediately see that it belongs to Orion, from the three stars\n
+      "description": "You can immediately see that it belongs to Orion, from the three stars
                      |engraved on it.\n"
     }],
     "affects": [{
@@ -191,7 +191,7 @@
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "mask",
-      "description": "You notice the mask has got two faces, one smiling and the other crying.\n
+      "description": "You notice the mask has got two faces, one smiling and the other crying.
                      |You don't know which way you should wear it.\n"
     }],
     "affects": [
@@ -231,7 +231,7 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "shell",
-      "description": "A shell which is dented in the middle, resulting from the Hercules' mighty\n
+      "description": "A shell which is dented in the middle, resulting from the Hercules' mighty
                      |pound when the Crab was still an enemy of Hercules in ancient times.\n"
     }],
     "affects": [{
@@ -484,7 +484,7 @@
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "horn",
-      "description": "These strange horns are the work of gods, shaped to fit on hands.\n
+      "description": "These strange horns are the work of gods, shaped to fit on hands.
                      |They look powerful indeed.\n"
     }],
     "affects": [
@@ -524,7 +524,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "vessel",
-      "description": "This vessel has been carried by the Water Bearer ever since she came to the\n
+      "description": "This vessel has been carried by the Water Bearer ever since she came to the
                      |Zodiac.\n"
     }]
   }},
@@ -547,7 +547,7 @@
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "tail",
-      "description": "This tail can actually be worn by mortals somehow as leggings ... another\n
+      "description": "This tail can actually be worn by mortals somehow as leggings ... another
                      |work of the gods.\n"
     }],
     "affects": [
@@ -582,7 +582,7 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring",
-      "description": "This ring belongs to Cassiopeia, queen of the Universe.\n
+      "description": "This ring belongs to Cassiopeia, queen of the Universe.
                      |Mortals, do not touch!\n"
     }],
     "affects": [

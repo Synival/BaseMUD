@@ -5,8 +5,8 @@
     "name": "wizard",
     "short_descr": "the wizard",
     "long_descr": "A wizard walks around behind the counter, talking to himself.\n",
-    "description": "The wizard looks old and senile, and yet he looks like a very powerful\n
-                   |wizard. He is equipped with fine clothing, and is wearing many fine\n
+    "description": "The wizard looks old and senile, and yet he looks like a very powerful
+                   |wizard. He is equipped with fine clothing, and is wearing many fine
                    |rings and bracelets.\n",
     "race": "human",
     "alignment": 900,
@@ -46,7 +46,7 @@
     "name": "baker",
     "short_descr": "the baker",
     "long_descr": "The baker looks at you calmly, wiping flour from his face with one hand.\n",
-    "description": "A fat, nice looking baker. But you can see that he has many scars on his\n
+    "description": "A fat, nice looking baker. But you can see that he has many scars on his
                    |body.\n",
     "race": "human",
     "alignment": 900,
@@ -156,7 +156,7 @@
     "name": "armourer armorer",
     "short_descr": "the armourer",
     "long_descr": "An armourer stands here.\n",
-    "description": "An old but very strong armourer, he has made more armours in his\n
+    "description": "An old but very strong armourer, he has made more armours in his
                    |lifetime than you have ever seen.\n",
     "race": "human",
     "alignment": 900,
@@ -354,7 +354,7 @@
     "name": "leather worker",
     "short_descr": "the leather worker",
     "long_descr": "The leather worker is sitting by the table, sewing a leather cap.\n",
-    "description": "She looks as an honest, hard-working artisan who only just earns enough to\n
+    "description": "She looks as an honest, hard-working artisan who only just earns enough to
                    |keep herself going.\n",
     "race": "human",
     "alignment": 900,
@@ -390,11 +390,11 @@
     "name": "Hassan",
     "short_descr": "Hassan",
     "long_descr": "Hassan is here, waiting to dispense some justice.\n",
-    "description": "Big. Very big.\n
-                   |Stupid. Very stupid.\n
-                   |\n
-                   |Hassan, the guardian of  the Temple of Mota, towers over you.  He's over 12 \n
-                   |feet tall, every inch of it muscle. It would be a Bad Thing to commit a crime\n
+    "description": "Big. Very big.
+                   |Stupid. Very stupid.
+                   |
+                   |Hassan, the guardian of  the Temple of Mota, towers over you.  He's over 12 
+                   |feet tall, every inch of it muscle. It would be a Bad Thing to commit a crime
                    |in his presence.\n",
     "race": "giant",
     "alignment": 1000,
@@ -427,7 +427,7 @@
     "name": "healer",
     "short_descr": "the healer",
     "long_descr": "A healer is here, selling spells.\n",
-    "description": "Although retired from adventuring, the healer still lends a hand.\n
+    "description": "Although retired from adventuring, the healer still lends a hand.
                    |Type 'heal' to see a listing of spells.\n",
     "race": "human",
     "alignment": 1000,
@@ -458,8 +458,8 @@
     "name": "guildmaster master",
     "short_descr": "the guildmaster",
     "long_descr": "Your guildmaster is standing here.\n",
-    "description": "Even though your guildmaster looks old and tired, you can clearly see the\n
-                   |vast amount of knowledge she possesses. She is wearing fine magic clothing,\n
+    "description": "Even though your guildmaster looks old and tired, you can clearly see the
+                   |vast amount of knowledge she possesses. She is wearing fine magic clothing,
                    |and you notice that she is surrounded by a blue shimmering aura.\n",
     "race": "elf",
     "alignment": 1000,
@@ -490,7 +490,7 @@
     "name": "guildmaster master",
     "short_descr": "the guildmaster",
     "long_descr": "Your guildmaster is standing here.\n",
-    "description": "You are in no doubt that this guildmaster is truly close to your god; he has\n
+    "description": "You are in no doubt that this guildmaster is truly close to your god; he has
                    |a peaceful, loving look. You notice that he is surrounded by a white aura.\n",
     "race": "human",
     "alignment": 1000,
@@ -521,9 +521,9 @@
     "name": "guildmaster master",
     "short_descr": "the guildmaster",
     "long_descr": "Your guildmaster is standing here.\n",
-    "description": "You realize that whenever your guildmaster moves, you fail to notice it:\n
-                   |the way of the true thief.  She is dressed in poor clothing, having\n
-                   |the appearance of a beggar.\n
+    "description": "You realize that whenever your guildmaster moves, you fail to notice it:
+                   |the way of the true thief.  She is dressed in poor clothing, having
+                   |the appearance of a beggar.
                    |human",
     "race": "unique",
     "alignment": 1000,
@@ -553,8 +553,8 @@
     "name": "guildmaster master",
     "short_descr": "the guildmaster",
     "long_descr": "Your guildmaster is standing here.\n",
-    "description": "This is your master. A short, strong dwarf with bulging muscles.  Several scars\n
-                   |across his body prove that he was using arms before you were born.  He\n
+    "description": "This is your master. A short, strong dwarf with bulging muscles.  Several scars
+                   |across his body prove that he was using arms before you were born.  He
                    |has a calm look on his face.\n",
     "race": "dwarf",
     "alignment": 1000,
@@ -584,8 +584,8 @@
     "name": "sorcerer",
     "short_descr": "the sorcerer",
     "long_descr": "A sorcerer is guarding the entrance.\n",
-    "description": "He is an experienced mage who has specialized in the field of Combat Magic.\n
-                   |He is here to guard the Mage's Guild and his superior knowledge of offensive\n
+    "description": "He is an experienced mage who has specialized in the field of Combat Magic.
+                   |He is here to guard the Mage's Guild and his superior knowledge of offensive
                    |as well as defensive spells make him a deadly opponent.\n",
     "race": "elf",
     "alignment": 800,
@@ -617,9 +617,9 @@
     "name": "templar",
     "short_descr": "the knight templar",
     "long_descr": "A knight templar is guarding the entrance.\n",
-    "description": "He is a specially trained warrior belonging to the military order of the Faith.\n
-                   |His duty is to protect the faithful from persecution and infidel attacks and\n
-                   |his religious devotion combined with his superior skill makes him a deadly\n
+    "description": "He is a specially trained warrior belonging to the military order of the Faith.
+                   |His duty is to protect the faithful from persecution and infidel attacks and
+                   |his religious devotion combined with his superior skill makes him a deadly
                    |opponent.\n",
     "race": "human",
     "alignment": 800,
@@ -650,8 +650,8 @@
     "name": "assassin",
     "short_descr": "the assassin",
     "long_descr": "An assassin is guarding the entrance.\n",
-    "description": "He is a thief who has specialized in killing others as effectively as possible,\n
-                   |using all sorts of weapons.  His superior knowledge of how and where to use\n
+    "description": "He is a thief who has specialized in killing others as effectively as possible,
+                   |using all sorts of weapons.  His superior knowledge of how and where to use
                    |them combined with his extraordinary stealth makes him a deadly opponent.\n",
     "race": "human",
     "alignment": 800,
@@ -682,9 +682,9 @@
     "name": "knight",
     "short_descr": "the knight",
     "long_descr": "A knight is guarding the entrance.\n",
-    "description": "He is an expert warrior who has attained knighthood through countless\n
-                   |chivalrous deeds.  His duty is to protect the Guild of Swordsmen and his\n
-                   |extreme skill combined with his experience in warfare makes him a deadly\n
+    "description": "He is an expert warrior who has attained knighthood through countless
+                   |chivalrous deeds.  His duty is to protect the Guild of Swordsmen and his
+                   |extreme skill combined with his experience in warfare makes him a deadly
                    |opponent.\n",
     "race": "human",
     "alignment": 800,
@@ -779,7 +779,7 @@
     "anum": 42,
     "name": "waiter",
     "short_descr": "the waiter",
-    "long_descr": "A man who in his young days was a famous sorcerer but now leads a quiet,\n
+    "long_descr": "A man who in his young days was a famous sorcerer but now leads a quiet,
                   |peaceful life as a waiter.\n",
     "description": null,
     "race": "human",
@@ -928,7 +928,7 @@
     "name": "filthy",
     "short_descr": "Filthy",
     "long_descr": "Filthy is standing here, eager to serve you a special drink.\n",
-    "description": "Filthy looks real, ehm, dirty. He likes to keep his costumers happy,\n
+    "description": "Filthy looks real, ehm, dirty. He likes to keep his costumers happy,
                    |but do not mess with him or else he'll get upset.\n",
     "race": "human",
     "alignment": 600,
@@ -1022,7 +1022,7 @@
     "name": "fido dog",
     "short_descr": "the beastly fido",
     "long_descr": "A beastly fido is here.\n",
-    "description": "Fido is a small dog that has a foul smell and pieces of rotted meat hanging\n
+    "description": "Fido is a small dog that has a foul smell and pieces of rotted meat hanging
                    |around its teeth.\n",
     "race": "fido",
     "alignment": -200,
@@ -1247,7 +1247,7 @@
     "anum": 70,
     "name": "shopkeeper old man",
     "short_descr": "the ancient potion-brewer",
-    "long_descr": "An old man eyes you greedily.\n
+    "long_descr": "An old man eyes you greedily.
                   |The old man says, 'Would you like to buy a nice love potion?'\n",
     "description": "He looks very dangerous.  I wouldn't try to rob him.\n",
     "race": "human",
@@ -1566,7 +1566,7 @@
     "name": "maid",
     "short_descr": "the maid",
     "long_descr": "The maid is waiting for your order.\n",
-    "description": "She is very beautiful with golden hair, and deep blue eyes. A good reason\n
+    "description": "She is very beautiful with golden hair, and deep blue eyes. A good reason
                    |for coming here more often.\n",
     "race": "human",
     "alignment": 1000,
@@ -1800,8 +1800,8 @@
     "name": "secretary",
     "short_descr": "the secretary",
     "long_descr": "A secretary is sitting at the desk.\n",
-    "description": "She looks very busy.\n
-                   |The Secretary says 'Sorry, but the Mayor is extremely busy today'.\n
+    "description": "She looks very busy.
+                   |The Secretary says 'Sorry, but the Mayor is extremely busy today'.
                    |The Secretary says 'Please sit down and have a seat in the meantime'.\n",
     "race": "human",
     "alignment": 900,
@@ -1892,7 +1892,7 @@
     "name": "esme waitress",
     "short_descr": "Esme",
     "long_descr": "Esme the waitress hums to herself and wonders what you'd like to order.\n",
-    "description": "Esme brushes a lock of dark hair away from her wire-rimmed glasess and\n
+    "description": "Esme brushes a lock of dark hair away from her wire-rimmed glasess and
                    |smiles warmly at you.\n",
     "race": "human",
     "alignment": 900,
@@ -1928,9 +1928,9 @@
     "name": "Melancholy",
     "short_descr": "Melancholy",
     "long_descr": "Melancholy is here, digging through a pile of scrolls, papers, and maps.\n",
-    "description": "Ragged brown hair frames a ghostly, pale face.  Puffy eyelids surround two\n
-                   |sky blue, haunting eyes.  An old, brown robe is wrapped around her frail \n
-                   |frame.  She looks up from her pile of papers and maps and looks inquiringly\n
+    "description": "Ragged brown hair frames a ghostly, pale face.  Puffy eyelids surround two
+                   |sky blue, haunting eyes.  An old, brown robe is wrapped around her frail 
+                   |frame.  She looks up from her pile of papers and maps and looks inquiringly
                    |at you, smiling faintly.\n",
     "race": "human",
     "alignment": 900,
@@ -1966,8 +1966,8 @@
     "name": "lister green tree snake",
     "short_descr": "Lister",
     "long_descr": "A green tree snake is sitting here on a pile of books.\n",
-    "description": "This is Melancholy's pet tree snake, Lister.  Something seems odd about his \n
-                   |jaw, almost as if he were smiling at you.  He's quite friendly, but don't\n
+    "description": "This is Melancholy's pet tree snake, Lister.  Something seems odd about his 
+                   |jaw, almost as if he were smiling at you.  He's quite friendly, but don't
                    |get him drunk.\n",
     "race": "snake",
     "alignment": 200,
@@ -1997,8 +1997,8 @@
     "name": "otho money changer moneychanger",
     "short_descr": "Otho the Changer",
     "long_descr": "Otho the Money Changer sits behind his desk, waiting for your coins.\n",
-    "description": "Otho is grotesquely fat man dressed in rich clothes.  Apparently the money\n
-                   |changing business pays quite well in this busy city, or possibly the rumors\n
+    "description": "Otho is grotesquely fat man dressed in rich clothes.  Apparently the money
+                   |changing business pays quite well in this busy city, or possibly the rumors
                    |of his fencing services are true...\n",
     "race": "human",
     "alignment": 900,

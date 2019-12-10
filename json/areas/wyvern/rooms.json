@@ -3,7 +3,7 @@
     "area": "wyvern",
     "anum": 1,
     "name": "Rough East-West Path",
-    "description": "You are on a very rough and overgrown path heading east-west over rugged\n
+    "description": "You are on a very rough and overgrown path heading east-west over rugged
                    |terrain.  To the east the path passes between low hills.\n",
     "sector_type": "hills",
     "doors": [
@@ -23,8 +23,8 @@
     "area": "wyvern",
     "anum": 2,
     "name": "Rough Path Between the Hills",
-    "description": "Here the path passes between low hills. The going is very rough, but\n
-                   |to the east the ground is smoother. In that direction a pair of tower\n
+    "description": "Here the path passes between low hills. The going is very rough, but
+                   |to the east the ground is smoother. In that direction a pair of tower
                    |looms above the hills.\n",
     "sector_type": "hills",
     "doors": [
@@ -44,8 +44,8 @@
     "area": "wyvern",
     "anum": 3,
     "name": "Path through an Open Area",
-    "description": "You are on a path through an open area. East of here loom two tall towers,\n
-                   |joined by a barbican and surrounded by a murky moat. West the path passes\n
+    "description": "You are on a path through an open area. East of here loom two tall towers,
+                   |joined by a barbican and surrounded by a murky moat. West the path passes
                    |between low hills.\n",
     "sector_type": "field",
     "doors": [
@@ -65,9 +65,9 @@
     "area": "wyvern",
     "anum": 4,
     "name": "West Side of Moat",
-    "description": "You stand on the west side of a moat that encircles two towers, each\n
-                   |over 50 feet high. You will need a boat to go east across the moat. A\n
-                   |rugged path heads west, and another one heads north to a cluster of low \n
+    "description": "You stand on the west side of a moat that encircles two towers, each
+                   |over 50 feet high. You will need a boat to go east across the moat. A
+                   |rugged path heads west, and another one heads north to a cluster of low 
                    |buildings.\n",
     "sector_type": "field",
     "doors": [
@@ -92,7 +92,7 @@
     "area": "wyvern",
     "anum": 5,
     "name": "Path North of Moat",
-    "description": "You walk on a faint path heading south toward the west side of the moat,\n
+    "description": "You walk on a faint path heading south toward the west side of the moat,
                    |and north to three small buildings.\n",
     "sector_type": "field",
     "doors": [
@@ -112,8 +112,8 @@
     "area": "wyvern",
     "anum": 6,
     "name": "Cluster of Buildings",
-    "description": "You are in the middle of a cluster of small buildings. There is a building\n
-                   |to the north, east, and west.  A sign over the eastern building says\n
+    "description": "You are in the middle of a cluster of small buildings. There is a building
+                   |to the north, east, and west.  A sign over the eastern building says
                    |'House of Pancakes'.\n",
     "sector_type": "city",
     "doors": [
@@ -143,7 +143,7 @@
     "area": "wyvern",
     "anum": 7,
     "name": "House of Pancakes",
-    "description": "The moment you enter this room, the ceiling descends and crushes you\n
+    "description": "The moment you enter this room, the ceiling descends and crushes you
                    |into a pancake.  Don't you hate it when that happens?\n",
     "sector_type": "inside",
     "room_flags": "unused_room_1 no_mob"
@@ -152,7 +152,7 @@
     "area": "wyvern",
     "anum": 8,
     "name": "Old Store Room",
-    "description": "You have entered what appears to be an old storeroom. Most of the items\n
+    "description": "You have entered what appears to be an old storeroom. Most of the items
                    |that were in here appear to have been ruined long ago.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -173,7 +173,7 @@
     "area": "wyvern",
     "anum": 9,
     "name": "Empty Room",
-    "description": "This room appears to be completely empty. The only exit seems to be the\n
+    "description": "This room appears to be completely empty. The only exit seems to be the
                    |way you came.  There are some scratches around the floor.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -193,7 +193,7 @@
     "area": "wyvern",
     "anum": 10,
     "name": "Minotaur's Room",
-    "description": "You have entered a secret chamber under the empty room. In this room is\n
+    "description": "You have entered a secret chamber under the empty room. In this room is
                    |the worn but cared-for gear and trappings of some large humanoid.\n",
     "sector_type": "inside",
     "room_flags": "dark no_mob indoors",
@@ -232,8 +232,8 @@
     "area": "wyvern",
     "anum": 20,
     "name": "Western Moat",
-    "description": "You are in the middle of the moat, on the west side of the tower.  There is a\n
-                   |landing on both sides of the moat.  Deep throated 'ribbids' come from the\n
+    "description": "You are in the middle of the moat, on the west side of the tower.  There is a
+                   |landing on both sides of the moat.  Deep throated 'ribbids' come from the
                    |water all around you.\n",
     "sector_type": "noswim",
     "doors": [
@@ -277,8 +277,8 @@
     "area": "wyvern",
     "anum": 21,
     "name": "Northern Moat",
-    "description": "You are in the middle of the moat, on the north side of the tower.  There is\n
-                   |no place to land here.  Deep throated 'ribbids' come from the water all\n
+    "description": "You are in the middle of the moat, on the north side of the tower.  There is
+                   |no place to land here.  Deep throated 'ribbids' come from the water all
                    |around you.\n",
     "sector_type": "noswim",
     "doors": [{
@@ -298,8 +298,8 @@
     "area": "wyvern",
     "anum": 22,
     "name": "Southern Moat",
-    "description": "You are in the middle of the moat, on the south side of the tower.  There is\n
-                   |no place to land here.  Deep throated 'ribbids' come from the water all\n
+    "description": "You are in the middle of the moat, on the south side of the tower.  There is
+                   |no place to land here.  Deep throated 'ribbids' come from the water all
                    |around you.\n",
     "sector_type": "noswim",
     "doors": [{
@@ -319,8 +319,8 @@
     "area": "wyvern",
     "anum": 23,
     "name": "Tower Foyer",
-    "description": "You are on a foyer on the west side of the structure. The moat is west of \n
-                   |here. There is also a large door eastward into the structure.  You notice that\n
+    "description": "You are on a foyer on the west side of the structure. The moat is west of 
+                   |here. There is also a large door eastward into the structure.  You notice that
                    |the walls are ornately decorated with very life-like stone gargoyles.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -357,10 +357,10 @@
     "area": "wyvern",
     "anum": 24,
     "name": "The Grand Lobby",
-    "description": "You have entered a vast lobby. This lobby appears to have once been very\n
-                   |ornately furnished, but now everything is decayed and moldering.  A highly\n
-                   |ornate balcony surrounds the lobby. To the east, below the balcony, is an\n
-                   |opening. The door leading out is west.  You notice that the balcony is\n
+    "description": "You have entered a vast lobby. This lobby appears to have once been very
+                   |ornately furnished, but now everything is decayed and moldering.  A highly
+                   |ornate balcony surrounds the lobby. To the east, below the balcony, is an
+                   |opening. The door leading out is west.  You notice that the balcony is
                    |covered in highly ornate and life-like stone gargoyles.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -397,8 +397,8 @@
     "area": "wyvern",
     "anum": 25,
     "name": "Base of the Western Tower",
-    "description": "You stand in the center of the Western tower's base. Torch brackets occupy\n
-                   |the four corners of this huge room. Above each torch is a lifelike ornate\n
+    "description": "You stand in the center of the Western tower's base. Torch brackets occupy
+                   |the four corners of this huge room. Above each torch is a lifelike ornate
                    |stone gargoyle.  There are doors north and south, and passages east and west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -433,7 +433,7 @@
     "area": "wyvern",
     "anum": 26,
     "name": "The Musty Corridor",
-    "description": "You are walking along a musty east-west corridor joining the two towers.\n
+    "description": "You are walking along a musty east-west corridor joining the two towers.
                    |There are room on each side of the corridor, and openings at each end.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -460,8 +460,8 @@
     "area": "wyvern",
     "anum": 27,
     "name": "Kitchen",
-    "description": "You have entered what must once have been a kitchen. The rusting remains of\n
-                   |various utensils lie on countertops. There is also an old wash basin and a\n
+    "description": "You have entered what must once have been a kitchen. The rusting remains of
+                   |various utensils lie on countertops. There is also an old wash basin and a
                    |pot-belly stove.  There is a door south, and a serving hatch east.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -482,7 +482,7 @@
     "area": "wyvern",
     "anum": 28,
     "name": "Conservatory",
-    "description": "You are in the tower's private conservatory. However, through years of neglect,\n
+    "description": "You are in the tower's private conservatory. However, through years of neglect,
                    |the plants have grown into a hideous jungle.  The only exit is north.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -503,9 +503,9 @@
     "area": "wyvern",
     "anum": 29,
     "name": "The Dining Hall",
-    "description": "You have entered a fabulous dining hall.  The wrecked remains of a long table\n
-                   |dominate the room. A horrible odor pervades the room, like some foul-smelling\n
-                   |beast has been eating and shitting in here.  There is a serving hatch west and\n
+    "description": "You have entered a fabulous dining hall.  The wrecked remains of a long table
+                   |dominate the room. A horrible odor pervades the room, like some foul-smelling
+                   |beast has been eating and shitting in here.  There is a serving hatch west and
                    |a door south.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -526,7 +526,7 @@
     "area": "wyvern",
     "anum": 30,
     "name": "Art Gallery",
-    "description": "You are in the ruined remains of an art gallery. Everything appears to\n
+    "description": "You are in the ruined remains of an art gallery. Everything appears to
                    |have been stolen long ago, however.  The only exit is north.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
@@ -547,10 +547,10 @@
     "area": "wyvern",
     "anum": 31,
     "name": "Base of the Eastern Tower",
-    "description": "You stand in the center of the Eastern tower's base. Torch brackets occupy the\n
-                   |four corners of this huge room.  Above each torch is a lifelike ornate stone\n
-                   |gargoyle.  There are are open doors to the north and south, and passages east\n
-                   |and west.  In addition, a spiral staircase leads up to the next level of this\n
+    "description": "You stand in the center of the Eastern tower's base. Torch brackets occupy the
+                   |four corners of this huge room.  Above each torch is a lifelike ornate stone
+                   |gargoyle.  There are are open doors to the north and south, and passages east
+                   |and west.  In addition, a spiral staircase leads up to the next level of this
                    |tower.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -586,8 +586,8 @@
     "area": "wyvern",
     "anum": 32,
     "name": "The Common Room",
-    "description": "You are in what must once have been a common room for all residents of the\n
-                   |tower. There is a huge fire pit with a chimney in the center, and the smashed\n
+    "description": "You are in what must once have been a common room for all residents of the
+                   |tower. There is a huge fire pit with a chimney in the center, and the smashed
                    |remains of a great many table and chairs.  The exit is south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -616,8 +616,8 @@
     "area": "wyvern",
     "anum": 33,
     "name": "Servant's Quarters",
-    "description": "You are in what once was the servant's quarters, as evidenced by the shabby\n
-                   |belongings and decor. What little remains is rotting and of little value\n
+    "description": "You are in what once was the servant's quarters, as evidenced by the shabby
+                   |belongings and decor. What little remains is rotting and of little value
                    |anyway.  The only exit is north.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -630,8 +630,8 @@
     "area": "wyvern",
     "anum": 34,
     "name": "A Large Murky Cellar",
-    "description": "You are in a large, murky cellar. An almost tangible air of horror pervades\n
-                   |the room.  A thin layer of nitre covers the walls and ceiling.  Rotting\n
+    "description": "You are in a large, murky cellar. An almost tangible air of horror pervades
+                   |the room.  A thin layer of nitre covers the walls and ceiling.  Rotting
                    |furniture looms obliquely about the room.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
@@ -663,7 +663,7 @@
     "area": "wyvern",
     "anum": 35,
     "name": "On the First Staircase",
-    "description": "You are on a Spiral staircase connecting the first and second levels of\n
+    "description": "You are on a Spiral staircase connecting the first and second levels of
                    |the eastern tower. You can go up or down.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -682,8 +682,8 @@
     "area": "wyvern",
     "anum": 36,
     "name": "Second Level of the Eastern Tower",
-    "description": "You are in the center of the second level of the Eastern tower. This large\n
-                   |room appears quite empty, except for the candle abras firmly fixed to the\n
+    "description": "You are in the center of the second level of the Eastern tower. This large
+                   |room appears quite empty, except for the candle abras firmly fixed to the
                    |walls.  An opening leads westward, and a spiral staircase leads down.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
@@ -736,9 +736,9 @@
     "area": "wyvern",
     "anum": 37,
     "name": "The Elegant Hall",
-    "description": "You are in what was once a elegant hall, although everything is moldering now.\n
-                   |The rotted remains of a plush carpet covers the floor, while several moldy\n
-                   |tapestries adorn the each side of the hall.  There are door north and south,\n
+    "description": "You are in what was once a elegant hall, although everything is moldering now.
+                   |The rotted remains of a plush carpet covers the floor, while several moldy
+                   |tapestries adorn the each side of the hall.  There are door north and south,
                    |and openings east and west.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -773,9 +773,9 @@
     "area": "wyvern",
     "anum": 38,
     "name": "The Shaman's Room",
-    "description": "You have entered an elegantly furnished room that looks to be still in use!\n
-                   |Costly paintings and pieces of furniture are tastefully situated.  On the\n
-                   |north wall is an altar to Knar, the ghastly patron of Gargoyles.  The only\n
+    "description": "You have entered an elegantly furnished room that looks to be still in use!
+                   |Costly paintings and pieces of furniture are tastefully situated.  On the
+                   |north wall is an altar to Knar, the ghastly patron of Gargoyles.  The only
                    |exit is south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -814,7 +814,7 @@
     "area": "wyvern",
     "anum": 39,
     "name": "The Library",
-    "description": "This room appears to have been a library.  Empty book shelves line each wall.\n
+    "description": "This room appears to have been a library.  Empty book shelves line each wall.
                    |The only exit is north.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -845,9 +845,9 @@
     "area": "wyvern",
     "anum": 40,
     "name": "Second Level of the Western Tower",
-    "description": "You are in the center of the western tower's second floor.  A large spiral \n
-                   |staircase of 29 steps connects this level with the third.  There are doors\n
-                   |to the east and west.  Except for a torch bracket in each corner, the \n
+    "description": "You are in the center of the western tower's second floor.  A large spiral 
+                   |staircase of 29 steps connects this level with the third.  There are doors
+                   |to the east and west.  Except for a torch bracket in each corner, the 
                    |room is barren.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -871,7 +871,7 @@
     "area": "wyvern",
     "anum": 41,
     "name": "On the Balcony",
-    "description": "You are on the balcony overlooking the Grand lobby.  You have a fabulous\n
+    "description": "You are on the balcony overlooking the Grand lobby.  You have a fabulous
                    |view of the entire room.  The only exit is the way you came in.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -884,7 +884,7 @@
     "area": "wyvern",
     "anum": 42,
     "name": "The Spiral Stairs",
-    "description": "You are on a large spiral staircase of 29 steps, leading between the \n
+    "description": "You are on a large spiral staircase of 29 steps, leading between the 
                    |second and third floors.  You can go up or down.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -903,8 +903,8 @@
     "area": "wyvern",
     "anum": 43,
     "name": "Third Level of Western Tower",
-    "description": "You stand in the center of the western tower's third floor.  This large room\n
-                   |glows mysteriously with a strange light all its own.  From a door to the east\n
+    "description": "You stand in the center of the western tower's third floor.  This large room
+                   |glows mysteriously with a strange light all its own.  From a door to the east
                    |comes a strange inky blackness.  A spiral staircase leads down.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -976,8 +976,8 @@
     "area": "wyvern",
     "anum": 45,
     "name": "The Armory",
-    "description": "In this room, which has somehow evaded the ravages of time, are neatly stored\n
-                   |racks of common weapons.  They appear to be quite ordinary; however, a chest\n
+    "description": "In this room, which has somehow evaded the ravages of time, are neatly stored
+                   |racks of common weapons.  They appear to be quite ordinary; however, a chest
                    |in one corner catches your eye.  The only exit is the way you came in.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1026,10 +1026,10 @@
     "area": "wyvern",
     "anum": 46,
     "name": "The Officer's Quarters",
-    "description": "You have entered a lavish but functional room decked out in a military style.\n
-                   |Murals on the wall show battle scenes in gargoyles, minotaurs, and huge,\n
-                   |flying snake-like reptiles with poisonous tails fight humans and dwarves.\n
-                   |Various objects in the room give evidence that it is occupied by individuals\n
+    "description": "You have entered a lavish but functional room decked out in a military style.
+                   |Murals on the wall show battle scenes in gargoyles, minotaurs, and huge,
+                   |flying snake-like reptiles with poisonous tails fight humans and dwarves.
+                   |Various objects in the room give evidence that it is occupied by individuals
                    |of authority.  The only door is north.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1069,9 +1069,9 @@
     "area": "wyvern",
     "anum": 47,
     "name": "Third Level of Eastern Tower",
-    "description": "You are in the center of the Eastern Tower's third floor.  The room you are in\n
-                   |glows with a mysterious light that has no source.  In the center of the room a\n
-                   |ladder climbs up to a hatchway in the ceiling.  The hatchway is a strange\n
+    "description": "You are in the center of the Eastern Tower's third floor.  The room you are in
+                   |glows with a mysterious light that has no source.  In the center of the room a
+                   |ladder climbs up to a hatchway in the ceiling.  The hatchway is a strange
                    |looking keyhole.  There is also a door to the west.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1111,9 +1111,9 @@
     "area": "wyvern",
     "anum": 48,
     "name": "Turret of the Eastern Tower",
-    "description": "You stand in the turret of the eastern tower.  A huge hole has been\n
-                   |made in the roof by some enormous beast, letting the daylight (or moonlight)\n
-                   |in.  There is a hatchway in the floor, and an opening to the west leading out\n
+    "description": "You stand in the turret of the eastern tower.  A huge hole has been
+                   |made in the roof by some enormous beast, letting the daylight (or moonlight)
+                   |in.  There is a hatchway in the floor, and an opening to the west leading out
                    |onto a catwalk.\n",
     "sector_type": "city",
     "doors": [
@@ -1158,11 +1158,11 @@
     "area": "wyvern",
     "anum": 49,
     "name": "On the Catwalk",
-    "description": "You are outdoors on a catwalk between the turrets of the eastern and \n
-                   |western towers.  There is a 40 foot drop to the north and south.  You have\n
-                   |a fabulous view of the surrounding countryside, which consists of a bleak\n
-                   |wilderness.  At the east end of the catwalk is a small opening leading\n
-                   |inside the eastern turret.  At the western end, a strange mirror-like portal\n
+    "description": "You are outdoors on a catwalk between the turrets of the eastern and 
+                   |western towers.  There is a 40 foot drop to the north and south.  You have
+                   |a fabulous view of the surrounding countryside, which consists of a bleak
+                   |wilderness.  At the east end of the catwalk is a small opening leading
+                   |inside the eastern turret.  At the western end, a strange mirror-like portal
                    |leads into the western turret.\n",
     "sector_type": "forest",
     "doors": [
@@ -1181,9 +1181,9 @@
     "area": "wyvern",
     "anum": 50,
     "name": "Turret of the Western Tower",
-    "description": "You are in the turret of the western tower.  You feel very strange here.\n
-                   |Scattered about this room are a great many coins and valuable articles.\n
-                   |Yet you can't get rid of a feeling of dread!  A mirror-like portal is in the\n
+    "description": "You are in the turret of the western tower.  You feel very strange here.
+                   |Scattered about this room are a great many coins and valuable articles.
+                   |Yet you can't get rid of a feeling of dread!  A mirror-like portal is in the
                    |western wall.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1221,10 +1221,10 @@
     "area": "wyvern",
     "anum": 51,
     "name": "On the Other Side",
-    "description": "You are outdoors on a catwalk between the turrets of the Eastern and Western\n
-                   |towers.  There is no opening into the western tower of any kind.  You have a\n
-                   |fabulous view of your surroundings, a murky city partially obscured by strange\n
-                   |smoke that creeps along the ground instead of rising. The city stretches as far\n
+    "description": "You are outdoors on a catwalk between the turrets of the Eastern and Western
+                   |towers.  There is no opening into the western tower of any kind.  You have a
+                   |fabulous view of your surroundings, a murky city partially obscured by strange
+                   |smoke that creeps along the ground instead of rising. The city stretches as far
                    |as the eye can see under the conditions.\n",
     "sector_type": "forest",
     "doors": [
@@ -1242,7 +1242,7 @@
     "area": "wyvern",
     "anum": 52,
     "name": "The Chamber",
-    "description": "You are in a small carpeted chamber. The chamber is empty except for a single\n
+    "description": "You are in a small carpeted chamber. The chamber is empty except for a single
                    |chair facing a mirror on the wall.\n",
     "sector_type": "inside",
     "doors": [{
@@ -1254,8 +1254,8 @@
     "area": "wyvern",
     "anum": 101,
     "name": "Main Eastern Road",
-    "description": "You are on the old Eastern Road.  The crossroads to the east joins ANOTHER\n
-                   |northern route to this road, which continues east.  South of the crossroads is\n
+    "description": "You are on the old Eastern Road.  The crossroads to the east joins ANOTHER
+                   |northern route to this road, which continues east.  South of the crossroads is
                    |an old building.  The area around here is lightly timbered.\n",
     "sector_type": "forest",
     "room_flags": "no_mob",
@@ -1275,10 +1275,10 @@
     "area": "wyvern",
     "anum": 102,
     "name": "Crossroads to the Wilderness",
-    "description": "You are at a crossroads to the wilderness areas east and north of here,\n
-                   |and the more civilized areas to the west. The main road is west, an\n
-                   |older road continues east, and a simple trail heads north.  To the south,\n
-                   |an old ram-shackle building is being used as a trading post for the\n
+    "description": "You are at a crossroads to the wilderness areas east and north of here,
+                   |and the more civilized areas to the west. The main road is west, an
+                   |older road continues east, and a simple trail heads north.  To the south,
+                   |an old ram-shackle building is being used as a trading post for the
                    |surrounding wilderness. \n",
     "sector_type": "forest",
     "doors": [
@@ -1307,8 +1307,8 @@
     "area": "wyvern",
     "anum": 103,
     "name": "Trading Post",
-    "description": "You are in a trading post just south of the crossroads, where rangers,\n
-                   |trappers and hunters from the surrounding area come to buy, sell, and\n
+    "description": "You are in a trading post just south of the crossroads, where rangers,
+                   |trappers and hunters from the surrounding area come to buy, sell, and
                    |barter goods.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1403,8 +1403,8 @@
     "area": "wyvern",
     "anum": 104,
     "name": "Trail north of crossroads",
-    "description": "You are on a primitive north-south trail. South of here is a major cross-\n
-                   |roads and an old building. To the north the trail continues toward a\n
+    "description": "You are on a primitive north-south trail. South of here is a major cross-
+                   |roads and an old building. To the north the trail continues toward a
                    |deep, dark forest.\n",
     "sector_type": "forest",
     "doors": [
@@ -1442,7 +1442,7 @@
     "area": "wyvern",
     "anum": 105,
     "name": "Trail south of forest",
-    "description": "You are on a primitive north-south trail.  Just north of here looms the\n
+    "description": "You are on a primitive north-south trail.  Just north of here looms the
                    |entrance to a deep, dark forest. To the south the trail continues.\n",
     "sector_type": "forest",
     "doors": [
@@ -1462,8 +1462,8 @@
     "area": "wyvern",
     "anum": 106,
     "name": "Entrance to the forest",
-    "description": "You are at the entrance to dark forest comprised mostly of huge black oak\n
-                   |and towering firs.  A trail from the south continues north on into the\n
+    "description": "You are at the entrance to dark forest comprised mostly of huge black oak
+                   |and towering firs.  A trail from the south continues north on into the
                    |woods at this point.\n",
     "sector_type": "forest",
     "doors": [
@@ -1491,9 +1491,9 @@
     "area": "wyvern",
     "anum": 107,
     "name": "Trail in Dark Oak Forest",
-    "description": "The trail here passes through groves of closely knit Black Oak. Some of\n
-                   |these trees are of enormous size.  Rustling and other low noises come\n
-                   |from the forest on either side of the trail.  The trail continues on north\n
+    "description": "The trail here passes through groves of closely knit Black Oak. Some of
+                   |these trees are of enormous size.  Rustling and other low noises come
+                   |from the forest on either side of the trail.  The trail continues on north
                    |and south.\n",
     "sector_type": "hills",
     "doors": [
@@ -1513,7 +1513,7 @@
     "area": "wyvern",
     "anum": 108,
     "name": "Junction in Dark Forest",
-    "description": "You are in the midst of a deep dark forest of huge oak trees.  There is a\n
+    "description": "You are in the midst of a deep dark forest of huge oak trees.  There is a
                    |junction of trails here, with paths leading south, west and east.\n",
     "sector_type": "hills",
     "doors": [
@@ -1556,8 +1556,8 @@
     "area": "wyvern",
     "anum": 109,
     "name": "Path to Centaur Village",
-    "description": "You are on an east-west path in the forest.  Here the forest is mostly\n
-                   |towering firs, not quite as dense as the oak groves that can be seen eastward.\n
+    "description": "You are on an east-west path in the forest.  Here the forest is mostly
+                   |towering firs, not quite as dense as the oak groves that can be seen eastward.
                    |Westward, the trail heads toward a small clearing.\n",
     "sector_type": "forest",
     "doors": [
@@ -1585,9 +1585,9 @@
     "area": "wyvern",
     "anum": 110,
     "name": "The East side of the Centaur Clearing",
-    "description": "You are on the east side of a clearing.  Small primitive huts are scattered\n
-                   |about the edges of this clearing.  Beyond these on all sides are towering\n
-                   |fir trees.  A path leads east out of the clearing. The clearing continues to\n
+    "description": "You are on the east side of a clearing.  Small primitive huts are scattered
+                   |about the edges of this clearing.  Beyond these on all sides are towering
+                   |fir trees.  A path leads east out of the clearing. The clearing continues to
                    |the west.\n",
     "sector_type": "field",
     "doors": [
@@ -1635,8 +1635,8 @@
     "area": "wyvern",
     "anum": 111,
     "name": "West side of the Centaur Clearing",
-    "description": "You are on the west side of the clearing in the center of the Centaur village.\n
-                   |Huts surround the clearing on all sides, and beyond are towering firs.  The\n
+    "description": "You are on the west side of the clearing in the center of the Centaur village.
+                   |Huts surround the clearing on all sides, and beyond are towering firs.  The
                    |clearing continues to the east.  To the west is a very large hut.\n",
     "sector_type": "field",
     "doors": [
@@ -1674,7 +1674,7 @@
     "area": "wyvern",
     "anum": 112,
     "name": "A Centaur's Hut",
-    "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut\n
+    "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut
                    |is sparsely furnished, mostly the trappings of survival.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1696,7 +1696,7 @@
     "area": "wyvern",
     "anum": 113,
     "name": "A Centaur's Hut",
-    "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut\n
+    "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut
                    |is sparsely furnished, mostly the trappings of survival.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1718,7 +1718,7 @@
     "area": "wyvern",
     "anum": 114,
     "name": "A Centaur's Hut",
-    "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut\n
+    "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut
                    |is sparsely furnished, mostly the trappings of survival.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1740,7 +1740,7 @@
     "area": "wyvern",
     "anum": 115,
     "name": "A Centaur's Hut",
-    "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut\n
+    "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut
                    |is sparsely furnished, mostly the trappings of survival.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1762,8 +1762,8 @@
     "area": "wyvern",
     "anum": 116,
     "name": "Entrance to a Large Hut",
-    "description": "You are in the entry foyer of a large hut.  A curtain separates this section\n
-                   |of the hut from the next section to the west.  To the east is an opening out\n
+    "description": "You are in the entry foyer of a large hut.  A curtain separates this section
+                   |of the hut from the next section to the west.  To the east is an opening out
                    |onto the clearing.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1818,8 +1818,8 @@
     "area": "wyvern",
     "anum": 117,
     "name": "Back of a Large Hut",
-    "description": "You are in the back of a large hut.  A curtain separates this section from\n
-                   |the front of the hut to the east.  This room is finely decorated, if\n
+    "description": "You are in the back of a large hut.  A curtain separates this section from
+                   |the front of the hut to the east.  This room is finely decorated, if
                    |somewhat primitive.  The decor suggests someone of authority lives here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1851,8 +1851,8 @@
     "area": "wyvern",
     "anum": 120,
     "name": "Eastern Path in Dark Forest",
-    "description": "You are on an east-west path through extremely old growths of oak.  The path\n
-                   |is fairly faint here.  Undergrowth closes in so closely that little can\n
+    "description": "You are on an east-west path through extremely old growths of oak.  The path
+                   |is fairly faint here.  Undergrowth closes in so closely that little can
                    |be seen in any direction.\n",
     "sector_type": "hills",
     "doors": [{

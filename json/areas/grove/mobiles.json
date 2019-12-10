@@ -5,8 +5,8 @@
     "name": "hierophant",
     "short_descr": "The Hierophant",
     "long_descr": "The old Hierophant of the holy grove is here, gathering hollies.\n",
-    "description": "He is a very old man, dressed in an old robe; but from the glint in his\n
-                   |clear blue eyes you can see that He is aware of the world, and wise to its\n
+    "description": "He is a very old man, dressed in an old robe; but from the glint in his
+                   |clear blue eyes you can see that He is aware of the world, and wise to its
                    |traps and pitfalls.\n",
     "race": "human",
     "alignment": 1000,
@@ -36,8 +36,8 @@
     "name": "hierophant",
     "short_descr": "The Hierophant",
     "long_descr": "The old Hierophant of the holy grove is here, gathering ivy.\n",
-    "description": "She is a very old woman, dressed in an old gown; but from the glint in her\n
-                   |clear blue eyes you can see that She is aware of the world, and wise to its\n
+    "description": "She is a very old woman, dressed in an old gown; but from the glint in her
+                   |clear blue eyes you can see that She is aware of the world, and wise to its
                    |traps and pitfalls.\n",
     "race": "human",
     "alignment": 1000,
@@ -67,7 +67,7 @@
     "name": "elder druid",
     "short_descr": "an elder druid",
     "long_descr": "An elder druid stands here, watching the local flora and wildlife.\n",
-    "description": "He looks ageless, as do all druids.  His grey beard contrasts strongly with\n
+    "description": "He looks ageless, as do all druids.  His grey beard contrasts strongly with
                    |his lack of wrinkles.\n",
     "race": "human",
     "alignment": 1000,
@@ -126,7 +126,7 @@
     "name": "doe",
     "short_descr": "a doe",
     "long_descr": "A doe is here, munching on grass.\n",
-    "description": "This peaceful creature looks at you with big dark eyes.  Her nose twitches as\n
+    "description": "This peaceful creature looks at you with big dark eyes.  Her nose twitches as
                    |she sniffs at you, but she goes back to chewing some grass.\n",
     "race": "human",
     "alignment": 0,
@@ -154,7 +154,7 @@
     "name": "deer",
     "short_descr": "a deer",
     "long_descr": "A deer is here, staring back at you.\n",
-    "description": "The deer looks angered at your intrusion.  He butts his head against you, \n
+    "description": "The deer looks angered at your intrusion.  He butts his head against you, 
                    |albeit ineffectively.\n",
     "race": "human",
     "alignment": 0,

@@ -39,8 +39,8 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "sand robes",
-      "description": "The robes are colored a sandy off-white, and are in fact caked and covered\n
-                     |with sand as well.  You don't seem to be able to remove all of the sand, no\n
+      "description": "The robes are colored a sandy off-white, and are in fact caked and covered
+                     |with sand as well.  You don't seem to be able to remove all of the sand, no
                      |matter how much you try.\n"
     }]
   }},
@@ -93,7 +93,7 @@
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "cloth turban",
-      "description": "The turban used to be white cloth, now it is covered with oil and dirt from\n
+      "description": "The turban used to be white cloth, now it is covered with oil and dirt from
                      |the head and hair of its previous owner, who must not have bathed much.\n"
     }],
     "affects": [
@@ -228,7 +228,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "stone scimitar",
-      "description": "The scimitar is formed from solid stone, chipped and carved to perfection,\n
+      "description": "The scimitar is formed from solid stone, chipped and carved to perfection,
                      |with a sharp, cold blade that is marred only by a few nicks here and there.\n"
     }],
     "affects": [
@@ -284,12 +284,12 @@
     "cost": 0,
     "extra_description": [{
       "keyword": "stone sarcophagus",
-      "description": "The sarcophagus is engraved on the sides with the images of pharoahs,\n
-                     |great wars fought long ago, mighty pyramids being constructed...\n
-                     |\n
-                     |A raised image atop the sarcophagus is formed in the visage of one of\n
-                     |the mighty pharoahs, painted in gold and studded with precious gems.\n
-                     |\n
+      "description": "The sarcophagus is engraved on the sides with the images of pharoahs,
+                     |great wars fought long ago, mighty pyramids being constructed...
+                     |
+                     |A raised image atop the sarcophagus is formed in the visage of one of
+                     |the mighty pharoahs, painted in gold and studded with precious gems.
+                     |
                      |You see a small keyhole in the side of the sarcophagus.\n"
     }]
   }},
@@ -307,7 +307,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "dust",
-      "description": "The dust is old.  As you sift it through your hands you find tiny chips\n
+      "description": "The dust is old.  As you sift it through your hands you find tiny chips
                      |of aged bone inside -- it must be the ancient remains of something.\n"
     }]
   }},
@@ -325,7 +325,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "scarab",
-      "description": "The scarab is intricately detailed, down to the tiny hairs on its\n
+      "description": "The scarab is intricately detailed, down to the tiny hairs on its
                      |insectile legs and the faceting of the emeralds in its eyes.\n"
     }]
   }},
@@ -349,7 +349,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "lamp",
-      "description": "The lamp is quite old and tarnished.  You rub at it to get some of the\n
+      "description": "The lamp is quite old and tarnished.  You rub at it to get some of the
                      |grime off, but it doesn't seem like anybody is home.\n"
     }],
     "affects": [
@@ -384,7 +384,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "ankh",
-      "description": "The ankh is a small brass symbol of an ancient religion.\n
+      "description": "The ankh is a small brass symbol of an ancient religion.
                      |It glows with a soft bright light that is soothing to you.\n"
     }],
     "affects": [
@@ -430,8 +430,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "book riddles",
-      "description": "The book has well-worn pages, containing many befuddling riddles\n
-                     |to surprise, confuse, and amuse you.  You find yourself bewildered\n
+      "description": "The book has well-worn pages, containing many befuddling riddles
+                     |to surprise, confuse, and amuse you.  You find yourself bewildered
                      |by its contents and put it down to sort your head out.\n"
     }]
   }},
@@ -454,8 +454,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "lion paw",
-      "description": "The massive paw has straps on it formed of bronze, so that it will\n
-                     |fit snugly over your hand.  As you put it on, it melds with your hand,\n
+      "description": "The massive paw has straps on it formed of bronze, so that it will
+                     |fit snugly over your hand.  As you put it on, it melds with your hand,
                      |becoming an extension of your arm.\n"
     }],
     "affects": [
@@ -496,7 +496,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "answer hieroglyphics",
-      "description": "You cannot decipher the strange hieroglyphics that cover the\n
+      "description": "You cannot decipher the strange hieroglyphics that cover the
                      |sheet of parchment.\n"
     }]
   }},
@@ -517,7 +517,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "treasure",
-      "description": "The treasure is incredibly large, filled with gold coins and valuables, more \n
+      "description": "The treasure is incredibly large, filled with gold coins and valuables, more 
                      |wealth than you could ever possibly imagine accumulated in one place.\n"
     }]
   }},
@@ -553,8 +553,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "curse mummy",
-      "description": "Rumor has it that whomever disturbs the grave of the mummy shall be \n
-                     |cursed for all eternity, and that the descendents of that person shall\n
+      "description": "Rumor has it that whomever disturbs the grave of the mummy shall be 
+                     |cursed for all eternity, and that the descendents of that person shall
                      |likewise be cursed for ten generations to follow.\n"
     }],
     "affects": [
@@ -615,8 +615,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "small elixir",
-      "description": "The elixir is deceptively small.  Something tells you that its\n
-                     |contents are truly quite potent.  Perhaps too potent for ordinary\n
+      "description": "The elixir is deceptively small.  Something tells you that its
+                     |contents are truly quite potent.  Perhaps too potent for ordinary
                      |mortals to attempt to consume.\n"
     }]
   }},
@@ -640,9 +640,9 @@
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "golden mask",
-      "description": "This beautiful mask was shaped from solid gold and magically enchanted\n
-                     |to perfectly fit the face of any who choose to wear it, its golden features\n
-                     |and turquoise highlights even moving to match the expressions of the face\n
+      "description": "This beautiful mask was shaped from solid gold and magically enchanted
+                     |to perfectly fit the face of any who choose to wear it, its golden features
+                     |and turquoise highlights even moving to match the expressions of the face
                      |of the wearer.\n"
     }],
     "affects": [
@@ -690,9 +690,9 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "diamond",
-      "description": "Aha!\n
-                     |\n
-                     |You see a multifaceted gemstone, which strangely reflects no\n
+      "description": "Aha!
+                     |
+                     |You see a multifaceted gemstone, which strangely reflects no
                      |light, making it very hard to see when it lies on the ground.\n"
     }]
   }},
@@ -716,8 +716,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "sun wand",
-      "description": "This small brass shaft is a holy weapon used by the ancient people of \n
-                     |this land to defend against the deadliest of foes.  It shines with the \n
+      "description": "This small brass shaft is a holy weapon used by the ancient people of 
+                     |this land to defend against the deadliest of foes.  It shines with the 
                      |brilliant blazing light of the sun.\n"
     }],
     "affects": [{
@@ -743,7 +743,7 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "sandy ring",
-      "description": "The ring is small, smooth, sandy-colored and unremarkable, save that\n
+      "description": "The ring is small, smooth, sandy-colored and unremarkable, save that
                      |it gives off a continuous low humming noise that tickles your fingertips.\n"
     }],
     "affects": [
@@ -778,8 +778,8 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "golden sphinx",
-      "description": "The golden sphinx is incredibly detailed and very small, fitting easily\n
-                     |into the palm of your hand.  You can even make out the expression\n
+      "description": "The golden sphinx is incredibly detailed and very small, fitting easily
+                     |into the palm of your hand.  You can even make out the expression
                      |of wisdom and peace on its face.\n"
     }],
     "affects": [{
@@ -810,8 +810,8 @@
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "sphinxian leggings",
-      "description": "These magically fashioned leggings impart the strength and stamina\n
-                     |of the mightiest of the ancient sphinxes.  You feel ancient power \n
+      "description": "These magically fashioned leggings impart the strength and stamina
+                     |of the mightiest of the ancient sphinxes.  You feel ancient power 
                      |emanating from them; they seem to be almost alive.\n"
     }],
     "affects": [

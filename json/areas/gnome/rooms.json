@@ -3,7 +3,7 @@
     "area": "gnome",
     "anum": 1,
     "name": "Entrance to Gnome Village",
-    "description": "You stand on a dusty path that leads north and east.  To the east you hear\n
+    "description": "You stand on a dusty path that leads north and east.  To the east you hear
                    |the sounds of a small village.\n",
     "sector_type": "field",
     "room_flags": "no_mob",
@@ -24,7 +24,7 @@
     "area": "gnome",
     "anum": 2,
     "name": "A Dusty Path",
-    "description": "This is a path leading into the village.  It continues east and west and\n
+    "description": "This is a path leading into the village.  It continues east and west and
                    |there is a small house to the north.\n",
     "sector_type": "city",
     "doors": [
@@ -49,7 +49,7 @@
     "area": "gnome",
     "anum": 3,
     "name": "A Road in the Village",
-    "description": "This road runs north and south through the center of the village.  There\n
+    "description": "This road runs north and south through the center of the village.  There
                    |are a few people moving around, but not many.\n",
     "sector_type": "city",
     "doors": [
@@ -97,7 +97,7 @@
     "area": "gnome",
     "anum": 4,
     "name": "A Dusty Path",
-    "description": "You are on a dusty path on the far side of the village.  Houses are to the\n
+    "description": "You are on a dusty path on the far side of the village.  Houses are to the
                    |north and south, while the path continues east.  There is a sign here.\n",
     "sector_type": "city",
     "doors": [
@@ -124,7 +124,7 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "Warning:  The area to the east was written mostly by Vougon\n
+      "description": "Warning:  The area to the east was written mostly by Vougon
                      |                    (giggle)    - Sandman\n"
     }]
   }},
@@ -132,7 +132,7 @@
     "area": "gnome",
     "anum": 5,
     "name": "A Road in the Village",
-    "description": "This road runs north and south through the center of the village.  There\n
+    "description": "This road runs north and south through the center of the village.  There
                    |are a few people moving around, but not many.\n",
     "sector_type": "city",
     "doors": [
@@ -180,7 +180,7 @@
     "area": "gnome",
     "anum": 6,
     "name": "A Road in the Village",
-    "description": "This road runs north and south through the center of the village.  There\n
+    "description": "This road runs north and south through the center of the village.  There
                    |are a few people moving around, but not many.\n",
     "sector_type": "city",
     "doors": [
@@ -218,7 +218,7 @@
     "area": "gnome",
     "anum": 7,
     "name": "A Road in the Village",
-    "description": "This road runs north and south through the center of the village.  There\n
+    "description": "This road runs north and south through the center of the village.  There
                    |are a few people moving around, but not many.\n",
     "sector_type": "city",
     "doors": [
@@ -243,7 +243,7 @@
     "area": "gnome",
     "anum": 8,
     "name": "A Road in the Village",
-    "description": "This road runs north and south through the center of the village.  There\n
+    "description": "This road runs north and south through the center of the village.  There
                    |are a few people moving around, but not many.\n",
     "sector_type": "city",
     "doors": [
@@ -273,7 +273,7 @@
     "area": "gnome",
     "anum": 9,
     "name": "A Small Gnome House",
-    "description": "This is a small suburban house made from quality wood.  You can see the\n
+    "description": "This is a small suburban house made from quality wood.  You can see the
                    |expert workmanship that went into making it, but it lacks creativity.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -312,7 +312,7 @@
     "area": "gnome",
     "anum": 10,
     "name": "A Small Gnome House",
-    "description": "This is a small suburban house made from quality wood.  You can see the\n
+    "description": "This is a small suburban house made from quality wood.  You can see the
                    |expert workmanship that went into making it, but it lacks creativity.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -351,7 +351,7 @@
     "area": "gnome",
     "anum": 11,
     "name": "A Small Gnome House",
-    "description": "This is a small suburban house made from quality wood.  You can see the\n
+    "description": "This is a small suburban house made from quality wood.  You can see the
                    |expert workmanship that went into making it, but it lacks creativity.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -390,7 +390,7 @@
     "area": "gnome",
     "anum": 12,
     "name": "A Small Gnome House",
-    "description": "This is a small suburban house made from quality wood.  You can see the\n
+    "description": "This is a small suburban house made from quality wood.  You can see the
                    |expert workmanship that went into making it, but it lacks creativity.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -404,7 +404,7 @@
     "area": "gnome",
     "anum": 13,
     "name": "A Small Gnome House",
-    "description": "This is a small suburban house made from quality wood.  You can see the\n
+    "description": "This is a small suburban house made from quality wood.  You can see the
                    |expert workmanship that went into making it, but it lacks creativity.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -444,7 +444,7 @@
     "area": "gnome",
     "anum": 14,
     "name": "A Gnome Shop",
-    "description": "You are in one of the several shops of this fine town.  The wares look fine,\n
+    "description": "You are in one of the several shops of this fine town.  The wares look fine,
                    |but unfortunately the gnomes don't do business with outsiders.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -484,7 +484,7 @@
     "area": "gnome",
     "anum": 15,
     "name": "A Gnome Shop",
-    "description": "You are in one of the several shops of this fine town.  The wares look fine,\n
+    "description": "You are in one of the several shops of this fine town.  The wares look fine,
                    |but unfortunately the gnomes don't do business with outsiders.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -516,7 +516,7 @@
     "area": "gnome",
     "anum": 16,
     "name": "A Gnome Shop",
-    "description": "You are in one of the several shops of this fine town.  The wares look fine,\n
+    "description": "You are in one of the several shops of this fine town.  The wares look fine,
                    |but unfortunately the gnomes don't do business with outsiders.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -530,7 +530,7 @@
     "area": "gnome",
     "anum": 17,
     "name": "Path by a Stream",
-    "description": "You are on a small path leading north and west, that is surrounded on the\n
+    "description": "You are on a small path leading north and west, that is surrounded on the
                    |other two sides by a small stream.  The water looks mighty cold.\n",
     "sector_type": "field",
     "room_flags": "no_mob",
@@ -560,8 +560,8 @@
     "area": "gnome",
     "anum": 18,
     "name": "Path by a Stream",
-    "description": "You are on a small east-west path.  The path shows new grass, as if it\n
-                   |has stopped being used sometime in the recent past.  A river is to the south,\n
+    "description": "You are on a small east-west path.  The path shows new grass, as if it
+                   |has stopped being used sometime in the recent past.  A river is to the south,
                    |and a small hut is to the west.\n",
     "sector_type": "field",
     "doors": [
@@ -596,8 +596,8 @@
     "area": "gnome",
     "anum": 19,
     "name": "A Small Hut",
-    "description": "The hut is a mess!  Blood has stained the grass walls into a dark rich\n
-                   |crimson color.  Torn clothes and trash lie all around, and you think you\n
+    "description": "The hut is a mess!  Blood has stained the grass walls into a dark rich
+                   |crimson color.  Torn clothes and trash lie all around, and you think you
                    |see a skeleton in the corner.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -608,8 +608,8 @@
     }],
     "extra_description": [{
       "keyword": "skeleton",
-      "description": "The skeleton still has a little flesh clinging to it and it is definitely\n
-                     |humanoid.  The skull has been cracked open, but it is otherwise undamaged,\n
+      "description": "The skeleton still has a little flesh clinging to it and it is definitely
+                     |humanoid.  The skull has been cracked open, but it is otherwise undamaged,
                      |except by time.\n"
     }],
     "resets": [
@@ -649,7 +649,7 @@
     "area": "gnome",
     "anum": 20,
     "name": "On the Stream",
-    "description": "The stream is cold and frigid, yet it supports plenty of life beneath its\n
+    "description": "The stream is cold and frigid, yet it supports plenty of life beneath its
                    |surface.  The current trickles west and there is a field to the south.\n",
     "sector_type": "noswim",
     "doors": [
@@ -674,7 +674,7 @@
     "area": "gnome",
     "anum": 21,
     "name": "On the Stream",
-    "description": "The current here flows from the east, but a logjam blocks you from \n
+    "description": "The current here flows from the east, but a logjam blocks you from 
                    |continuing onward.\n",
     "sector_type": "noswim",
     "doors": [
@@ -694,7 +694,7 @@
     "area": "gnome",
     "anum": 22,
     "name": "The Field of Mice's Dreams",
-    "description": "This is a large green field of waist high grass.  You feel something\n
+    "description": "This is a large green field of waist high grass.  You feel something
                    |scurry over your feet.  There is a cave to the east.\n",
     "sector_type": "field",
     "doors": [
@@ -732,7 +732,7 @@
     "area": "gnome",
     "anum": 23,
     "name": "The Dark Cave",
-    "description": "The cave gleams as your light reflects off of it.  As you squint your eyes\n
+    "description": "The cave gleams as your light reflects off of it.  As you squint your eyes
                    |and try to look ahead, you think you see something move.\n",
     "sector_type": "forest",
     "room_flags": "dark",
@@ -752,7 +752,7 @@
     "area": "gnome",
     "anum": 24,
     "name": "Darker Cave",
-    "description": "The cave gets even darker as your terror grows stronger.  You fear for your\n
+    "description": "The cave gets even darker as your terror grows stronger.  You fear for your
                    |life as something emerges out of the shadows.\n",
     "sector_type": "forest",
     "room_flags": "dark",
@@ -773,7 +773,7 @@
     "area": "gnome",
     "anum": 26,
     "name": "A Dusty Path",
-    "description": "You are on a well traveled path that leads in many directions.  To the north\n
+    "description": "You are on a well traveled path that leads in many directions.  To the north
                    |is a large house, and to the west is a fortress.\n",
     "sector_type": "city",
     "room_flags": "no_mob",
@@ -803,7 +803,7 @@
     "area": "gnome",
     "anum": 27,
     "name": "The Iron Gateway",
-    "description": "You stand at the entrance to the gnome fortress.  The place seems to be\n
+    "description": "You stand at the entrance to the gnome fortress.  The place seems to be
                    |well fortified.\n",
     "sector_type": "city",
     "doors": [
@@ -841,9 +841,9 @@
     "area": "gnome",
     "anum": 28,
     "name": "A Long Hallway",
-    "description": "You are now inside of the fortress; you must be lucky that the guards \n
-                   |haven't killed you.  As you glance around, you notice that the walls and\n
-                   |floors are spotlessly cleaned.  The barracks are to the north and a\n
+    "description": "You are now inside of the fortress; you must be lucky that the guards 
+                   |haven't killed you.  As you glance around, you notice that the walls and
+                   |floors are spotlessly cleaned.  The barracks are to the north and a
                    |storage room is to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -874,8 +874,8 @@
     "area": "gnome",
     "anum": 29,
     "name": "A Long Hallway",
-    "description": "You are now inside of the fortress; you must be lucky that the guards \n
-                   |haven't killed you.  As you glance around, you notice that the walls and\n
+    "description": "You are now inside of the fortress; you must be lucky that the guards 
+                   |haven't killed you.  As you glance around, you notice that the walls and
                    |floors are spotlessly cleaned.  A mess hall is to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -901,8 +901,8 @@
     "area": "gnome",
     "anum": 30,
     "name": "The Barracks",
-    "description": "You now stand in the sleeping quarters of the gnome guards.  Every bed is\n
-                   |made perfectly, and not single article of clothing is on the floor.  There\n
+    "description": "You now stand in the sleeping quarters of the gnome guards.  Every bed is
+                   |made perfectly, and not single article of clothing is on the floor.  There
                    |is a small storage room to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -957,7 +957,7 @@
     "area": "gnome",
     "anum": 31,
     "name": "A Small Storage Room",
-    "description": "This is where the gnomes store all their spare clothing and armor.\n
+    "description": "This is where the gnomes store all their spare clothing and armor.
                    |There is not much here, but you might come up with something.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -971,7 +971,7 @@
     "area": "gnome",
     "anum": 32,
     "name": "A Small Storage Room",
-    "description": "This is where the gnomes store all their spare weapons.  A door leads off\n
+    "description": "This is where the gnomes store all their spare weapons.  A door leads off
                    |to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -992,7 +992,7 @@
     "area": "gnome",
     "anum": 33,
     "name": "A Small Storage Room",
-    "description": "This is yet another room for storing gnome stuff.  Maps and battle plans\n
+    "description": "This is yet another room for storing gnome stuff.  Maps and battle plans
                    |are stored in neat stacks on the shelves.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1006,8 +1006,8 @@
     "area": "gnome",
     "anum": 34,
     "name": "The Mess Hall",
-    "description": "You are in the room where the guards come to get their grub.  The benches \n
-                   |and tables are neatly cleaned and straightened, while shiny plates line\n
+    "description": "You are in the room where the guards come to get their grub.  The benches 
+                   |and tables are neatly cleaned and straightened, while shiny plates line
                    |the walls.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1059,8 +1059,8 @@
     "area": "gnome",
     "anum": 36,
     "name": "A Small Unused Room",
-    "description": "You stand in a small room in an unused section of the fortress.  The whole\n
-                   |room is coated with dust and cobwebs.  The ladder leads back up, and\n
+    "description": "You stand in a small room in an unused section of the fortress.  The whole
+                   |room is coated with dust and cobwebs.  The ladder leads back up, and
                    |a rusty door is to the east.\n",
     "sector_type": "city",
     "room_flags": "dark indoors",
@@ -1084,8 +1084,8 @@
     "area": "gnome",
     "anum": 37,
     "name": "Dark Hallway",
-    "description": "You find yourself in a very old section of the fortress.  You must be the\n
-                   |first person to pass through here in years.  The hallway continues south\n
+    "description": "You find yourself in a very old section of the fortress.  You must be the
+                   |first person to pass through here in years.  The hallway continues south
                    |and a door leads off to the east.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1112,7 +1112,7 @@
     "area": "gnome",
     "anum": 38,
     "name": "Torture Chamber",
-    "description": "This is a room that was once used to extract lies out of helpless victims.\n
+    "description": "This is a room that was once used to extract lies out of helpless victims.
                    |The machines look unused, but could still work.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1122,7 +1122,7 @@
     }],
     "extra_description": [{
       "keyword": "machine",
-      "description": "The machine consists of a large rack with winches on each end.  You can \n
+      "description": "The machine consists of a large rack with winches on each end.  You can 
                      |almost feel them pulling your arms out of their sockets.\n"
     }]
   }},
@@ -1130,7 +1130,7 @@
     "area": "gnome",
     "anum": 39,
     "name": "Dark Hallway",
-    "description": "The hall continues in a north-south direction.  The floor is coated with\n
+    "description": "The hall continues in a north-south direction.  The floor is coated with
                    |some kind of molded slime.  Doors lead east and west.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1157,7 +1157,7 @@
     "area": "gnome",
     "anum": 40,
     "name": "Dark Hallway",
-    "description": "The hall continues in a north-south direction.  The floor is coated with\n
+    "description": "The hall continues in a north-south direction.  The floor is coated with
                    |some kind of molded slime.  Doors lead east and west.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1184,7 +1184,7 @@
     "area": "gnome",
     "anum": 41,
     "name": "Prison Cell",
-    "description": "You are in a dark and nasty prison cell.  Bodies lying on the floor give off\n
+    "description": "You are in a dark and nasty prison cell.  Bodies lying on the floor give off
                    |an unbearable stench.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1215,7 +1215,7 @@
     "area": "gnome",
     "anum": 42,
     "name": "Prison Cell",
-    "description": "You are in a dark and nasty prison cell.  Bodies lying on the floor give off\n
+    "description": "You are in a dark and nasty prison cell.  Bodies lying on the floor give off
                    |an unbearable stench.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1246,7 +1246,7 @@
     "area": "gnome",
     "anum": 43,
     "name": "Prison Cell",
-    "description": "You are in a dark and nasty prison cell.  Bodies lying on the floor give off\n
+    "description": "You are in a dark and nasty prison cell.  Bodies lying on the floor give off
                    |an unbearable stench.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1267,7 +1267,7 @@
     "area": "gnome",
     "anum": 44,
     "name": "Prison Cell",
-    "description": "You are in a dark and nasty prison cell.  Bodies lying on the floor give off\n
+    "description": "You are in a dark and nasty prison cell.  Bodies lying on the floor give off
                    |an unbearable stench.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1280,7 +1280,7 @@
     "area": "gnome",
     "anum": 45,
     "name": "End of the Dark Hallway",
-    "description": "You have reached the end of the dark hallway and maybe the end of your puny\n
+    "description": "You have reached the end of the dark hallway and maybe the end of your puny
                    |life.  Something lumbers its way out of the shadows.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1342,7 +1342,7 @@
     "area": "gnome",
     "anum": 47,
     "name": "Lair",
-    "description": "You have entered a new lair in the fortress.  Anything could be lurking\n
+    "description": "You have entered a new lair in the fortress.  Anything could be lurking
                    |around the corner.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1361,7 +1361,7 @@
     "area": "gnome",
     "anum": 48,
     "name": "A Damp Hallway",
-    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature\n
+    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature
                    |seems to be greater here, as well as your fear.\n",
     "sector_type": "field",
     "room_flags": "dark indoors no_recall",
@@ -1406,7 +1406,7 @@
     "area": "gnome",
     "anum": 49,
     "name": "A Damp Hallway",
-    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature\n
+    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature
                    |seems to be greater here, as well as your fear.\n",
     "sector_type": "field",
     "room_flags": "dark indoors no_recall",
@@ -1429,7 +1429,7 @@
     "area": "gnome",
     "anum": 50,
     "name": "A Damp Hallway",
-    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature\n
+    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature
                    |seems to be greater here, as well as your fear.\n",
     "sector_type": "field",
     "room_flags": "dark indoors no_recall",
@@ -1470,7 +1470,7 @@
     "area": "gnome",
     "anum": 51,
     "name": "A Damp Hallway",
-    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature\n
+    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature
                    |seems to be greater here, as well as your fear.\n",
     "sector_type": "field",
     "room_flags": "dark indoors no_recall",
@@ -1511,7 +1511,7 @@
     "area": "gnome",
     "anum": 52,
     "name": "A Damp Hallway",
-    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature\n
+    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature
                    |seems to be greater here, as well as your fear.\n",
     "sector_type": "field",
     "room_flags": "dark indoors no_recall",
@@ -1534,7 +1534,7 @@
     "area": "gnome",
     "anum": 53,
     "name": "A Damp Hallway",
-    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature\n
+    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature
                    |seems to be greater here, as well as your fear.\n",
     "sector_type": "field",
     "room_flags": "dark indoors no_recall",
@@ -1575,7 +1575,7 @@
     "area": "gnome",
     "anum": 54,
     "name": "A Damp Hallway",
-    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature\n
+    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature
                    |seems to be greater here, as well as your fear.\n",
     "sector_type": "field",
     "room_flags": "dark indoors no_recall",
@@ -1602,7 +1602,7 @@
     "area": "gnome",
     "anum": 55,
     "name": "A Damp Hallway",
-    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature\n
+    "description": "You are wandering in a dark, damp, twisting hallway.  The temperature
                    |seems to be greater here, as well as your fear.\n",
     "sector_type": "field",
     "room_flags": "dark indoors no_recall",
@@ -1643,7 +1643,7 @@
     "area": "gnome",
     "anum": 56,
     "name": "The End of the Hallway",
-    "description": "You make your way out of the hallway, just to find yourself in greater\n
+    "description": "You make your way out of the hallway, just to find yourself in greater
                    |danger.  Before you looms the source of the great heat.\n",
     "sector_type": "field",
     "room_flags": "dark indoors no_recall",
@@ -1693,7 +1693,7 @@
     "area": "gnome",
     "anum": 57,
     "name": "The Altar",
-    "description": "You finally reach the end of the maze.  There is a great altar here in the\n
+    "description": "You finally reach the end of the maze.  There is a great altar here in the
                    |shape of a bat.  A passageway leads off to the west.\n",
     "sector_type": "field",
     "room_flags": "dark indoors no_recall",
@@ -1714,8 +1714,8 @@
     "area": "gnome",
     "anum": 58,
     "name": "The Chief's House",
-    "description": "You enter into a large and luxurious house.  The floor is coated with carpets\n
-                   |and the walls are covered in paintings.  You feel privileged just for stepping\n
+    "description": "You enter into a large and luxurious house.  The floor is coated with carpets
+                   |and the walls are covered in paintings.  You feel privileged just for stepping
                    |inside.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1763,7 +1763,7 @@
     "area": "gnome",
     "anum": 59,
     "name": "The Unused Path",
-    "description": "You are now on a fairly unused path that leads east out of the village.  \n
+    "description": "You are now on a fairly unused path that leads east out of the village.  
                    |You wonder what could be out this way.\n",
     "sector_type": "city",
     "room_flags": "no_mob",
@@ -1784,7 +1784,7 @@
     "area": "gnome",
     "anum": 60,
     "name": "The Overgrown Path",
-    "description": "As the path continues on, the grass grows higher.  You can't imagine\n
+    "description": "As the path continues on, the grass grows higher.  You can't imagine
                    |what could possibly be out this way.\n",
     "sector_type": "field",
     "doors": [
@@ -1804,7 +1804,7 @@
     "area": "gnome",
     "anum": 61,
     "name": "The Clearing",
-    "description": "Your progress is suddenly stopped by mountains on all sides.  The path leads\n
+    "description": "Your progress is suddenly stopped by mountains on all sides.  The path leads
                    |back to the west, and there appears to be an old mine shaft to the north.\n",
     "sector_type": "field",
     "doors": [
@@ -1824,7 +1824,7 @@
     "area": "gnome",
     "anum": 62,
     "name": "Entrance to the Mine Shaft",
-    "description": "As you enter the mine shaft, you get a sudden fear of the walls closing\n
+    "description": "As you enter the mine shaft, you get a sudden fear of the walls closing
                    |in on you.  You are surprised to notice that you don't need a light.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -1845,7 +1845,7 @@
     "area": "gnome",
     "anum": 63,
     "name": "Mine Shaft",
-    "description": "This mine shaft looks stable, at least in this area.  The wooden supports are\n
+    "description": "This mine shaft looks stable, at least in this area.  The wooden supports are
                    |thick and strong.  Torches line the walls.  Exits lead in all directions.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -1884,7 +1884,7 @@
     "area": "gnome",
     "anum": 64,
     "name": "Mine Shaft",
-    "description": "This mine shaft looks stable, at least in this area.  The wooden supports are\n
+    "description": "This mine shaft looks stable, at least in this area.  The wooden supports are
                    |thick and strong.  Torches line the walls.  Exits lead in all directions.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -1915,8 +1915,8 @@
     "area": "gnome",
     "anum": 65,
     "name": "Mine Shaft",
-    "description": "This mine shaft looks stable, at least in this area.  The wooden supports are\n
-                   |thick and strong.  Torches line the walls.  Exits lead in all directions\n
+    "description": "This mine shaft looks stable, at least in this area.  The wooden supports are
+                   |thick and strong.  Torches line the walls.  Exits lead in all directions
                    |except north.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -1950,8 +1950,8 @@
     "area": "gnome",
     "anum": 66,
     "name": "Walkway",
-    "description": "You are on a well built path in the middle of a mountain.  You sense something\n
-                   |great up ahead, considering the hard work that must have gone into creating\n
+    "description": "You are on a well built path in the middle of a mountain.  You sense something
+                   |great up ahead, considering the hard work that must have gone into creating
                    |this passage.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1972,8 +1972,8 @@
     "area": "gnome",
     "anum": 67,
     "name": "Walkway",
-    "description": "You are on a well built path in the middle of a mountain.  You sense something\n
-                   |great up ahead, considering the hard work that must have gone into creating\n
+    "description": "You are on a well built path in the middle of a mountain.  You sense something
+                   |great up ahead, considering the hard work that must have gone into creating
                    |this passage.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1994,8 +1994,8 @@
     "area": "gnome",
     "anum": 68,
     "name": "The Grand Hall",
-    "description": "You have stepped into the Grand Hall of the hobgoblin kingdom; your luck\n
-                   |must be running low by now.  Golden pillars span the hallway, and you\n
+    "description": "You have stepped into the Grand Hall of the hobgoblin kingdom; your luck
+                   |must be running low by now.  Golden pillars span the hallway, and you
                    |notice a red carpet beneath your feet.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2016,7 +2016,7 @@
     "area": "gnome",
     "anum": 69,
     "name": "The Throne Room",
-    "description": "This is large bright room filled with Hobgoblins.  To the south there is\n
+    "description": "This is large bright room filled with Hobgoblins.  To the south there is
                    |a large golden throne against the wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2128,7 +2128,7 @@
     "area": "gnome",
     "anum": 70,
     "name": "The Treasury",
-    "description": "You are inside the hobgoblin's treasury.  Your eyes are almost blinded by the\n
+    "description": "You are inside the hobgoblin's treasury.  Your eyes are almost blinded by the
                    |gold, silver and copper coins.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2168,7 +2168,7 @@
     "area": "gnome",
     "anum": 71,
     "name": "Guarded Room",
-    "description": "You are inside a well guarded room.  The place is slightly better built than\n
+    "description": "You are inside a well guarded room.  The place is slightly better built than
                    |the mine shafts, and is lit by lanterns.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -2255,7 +2255,7 @@
     "area": "gnome",
     "anum": 72,
     "name": "Guarded Room",
-    "description": "You are inside a well guarded room.  The place is slightly better built than\n
+    "description": "You are inside a well guarded room.  The place is slightly better built than
                    |the mine shafts, and is lit by lanterns.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -2342,7 +2342,7 @@
     "area": "gnome",
     "anum": 73,
     "name": "Hobgoblin Armory",
-    "description": "The guards store their spare weapons and armor here.  There are rusty swords\n
+    "description": "The guards store their spare weapons and armor here.  There are rusty swords
                    |on rotting shelves, and armor hanging from hooks or laying on the floor.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -2364,8 +2364,8 @@
     "area": "gnome",
     "anum": 74,
     "name": "Mine Shaft",
-    "description": "You enter a part of the mine shaft where the torches have grown dim\n
-                   |and are almost ready to go out.  From what you can see, there are plenty\n
+    "description": "You enter a part of the mine shaft where the torches have grown dim
+                   |and are almost ready to go out.  From what you can see, there are plenty
                    |of cobwebs on the walls and rats at your feet.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2386,8 +2386,8 @@
     "area": "gnome",
     "anum": 75,
     "name": "Entrance to a Dungeon",
-    "description": "The floor dips slightly as you walk into this dark and nasty place.  Your\n
-                   |skin crawls as you look at the filth on the walls and see it move.  Most\n
+    "description": "The floor dips slightly as you walk into this dark and nasty place.  Your
+                   |skin crawls as you look at the filth on the walls and see it move.  Most
                    |of the exits lead into jail cells.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2418,8 +2418,8 @@
     "area": "gnome",
     "anum": 76,
     "name": "A Dungeon",
-    "description": "You are in the deepest and darkest part of the mine shafts.  The light from\n
-                   |the torches barely reaches to where you are.  Most directions from here\n
+    "description": "You are in the deepest and darkest part of the mine shafts.  The light from
+                   |the torches barely reaches to where you are.  Most directions from here
                    |lead to jail cells.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2450,7 +2450,7 @@
     "area": "gnome",
     "anum": 77,
     "name": "A Jail Cell",
-    "description": "You are in a musty, dark jail cell.  Wet and dirty straw covers the floor.\n
+    "description": "You are in a musty, dark jail cell.  Wet and dirty straw covers the floor.
                    |The walls glisten with slime.  You see something stir in the straw.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2472,7 +2472,7 @@
     "area": "gnome",
     "anum": 78,
     "name": "The Jail Cell",
-    "description": "You are in a musty, dark jail cell.  Wet and dirty straw covers the floor.\n
+    "description": "You are in a musty, dark jail cell.  Wet and dirty straw covers the floor.
                    |The walls glisten with slime.  You see something stir in the straw.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2494,7 +2494,7 @@
     "area": "gnome",
     "anum": 79,
     "name": "The Jail Cell",
-    "description": "You are in a musty, dark jail cell.  Wet and dirty straw covers the floor.\n
+    "description": "You are in a musty, dark jail cell.  Wet and dirty straw covers the floor.
                    |The walls glisten with slime.  You see something stir in the straw.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2516,7 +2516,7 @@
     "area": "gnome",
     "anum": 80,
     "name": "The Jail Cell",
-    "description": "You are in a musty, dark jail cell.  Wet and dirty straw covers the floor.\n
+    "description": "You are in a musty, dark jail cell.  Wet and dirty straw covers the floor.
                    |The walls glisten with slime.  You see something stir in the straw.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2538,7 +2538,7 @@
     "area": "gnome",
     "anum": 81,
     "name": "The Jail Cell",
-    "description": "You are in a musty, dark jail cell.  Wet and dirty straw covers the floor.\n
+    "description": "You are in a musty, dark jail cell.  Wet and dirty straw covers the floor.
                    |The walls glisten with slime.  You see something stir in the straw.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2560,7 +2560,7 @@
     "area": "gnome",
     "anum": 82,
     "name": "Small Mine Shaft",
-    "description": "You are in a small extension of the mine shaft.  The dust on the floor is\n
+    "description": "You are in a small extension of the mine shaft.  The dust on the floor is
                    |undisturbed by footprints.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2581,8 +2581,8 @@
     "area": "gnome",
     "anum": 83,
     "name": "Hobgoblin Barracks",
-    "description": "You are suddenly surrounded by a small army of hobgoblin guards.  The room\n
-                   |itself is a mess with clothes and armor everywhere.  The beds are unmade and\n
+    "description": "You are suddenly surrounded by a small army of hobgoblin guards.  The room
+                   |itself is a mess with clothes and armor everywhere.  The beds are unmade and
                    |stained.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2626,7 +2626,7 @@
     "area": "gnome",
     "anum": 84,
     "name": "Hobgoblin Barracks",
-    "description": "Yech!  As you continue forward, the smell just keeps getting worse.\n
+    "description": "Yech!  As you continue forward, the smell just keeps getting worse.
                    |What are you DOING here?\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2658,8 +2658,8 @@
     "area": "gnome",
     "anum": 85,
     "name": "Mess Hall",
-    "description": "You stand in the hobgoblin eating area.  There are a few rotting tables\n
-                   |and many broken dishes scattered around the room.  You almost slip on a\n
+    "description": "You stand in the hobgoblin eating area.  There are a few rotting tables
+                   |and many broken dishes scattered around the room.  You almost slip on a
                    |rotten piece of meat, but catch yourself just in time.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2698,8 +2698,8 @@
     "area": "gnome",
     "anum": 87,
     "name": "The Kitchen",
-    "description": "This kitchen hasn't been cleaned since the creation of humans.  The trash and\n
-                   |spoiled food laying on the floor reach up to your knees.  Off to the side a\n
+    "description": "This kitchen hasn't been cleaned since the creation of humans.  The trash and
+                   |spoiled food laying on the floor reach up to your knees.  Off to the side a
                    |pot is boiling over.  A human hand floats in it.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2721,7 +2721,7 @@
     "area": "gnome",
     "anum": 88,
     "name": "A Small Mine Shaft",
-    "description": "You come to a place in the mine shaft where a tunnel leads down.  The\n
+    "description": "You come to a place in the mine shaft where a tunnel leads down.  The
                    |small passage continues north and south.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -2747,8 +2747,8 @@
     "area": "gnome",
     "anum": 89,
     "name": "Hermit's Lair",
-    "description": "You are in a small section where the mine wall has collapsed to reveal a\n
-                   |tiny one-room cave.  The area is barely lit, but you can make out something\n
+    "description": "You are in a small section where the mine wall has collapsed to reveal a
+                   |tiny one-room cave.  The area is barely lit, but you can make out something
                    |moving towards you.\n",
     "sector_type": "field",
     "room_flags": "indoors",

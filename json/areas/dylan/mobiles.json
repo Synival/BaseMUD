@@ -5,8 +5,8 @@
     "name": "harpy",
     "short_descr": "the screaming, filthy harpy",
     "long_descr": "The screaming, filthy harpy claws madly at your face!\n",
-    "description": "The harpy looks at you with blood in her eyes.  Her entire body is\n
-                   |caked in filth and grime and she stinks to high heaven.  Her razor-\n
+    "description": "The harpy looks at you with blood in her eyes.  Her entire body is
+                   |caked in filth and grime and she stinks to high heaven.  Her razor-
                    |sharp talons flex as she considers you for her dinner.\n",
     "race": "human",
     "alignment": -500,
@@ -35,9 +35,9 @@
     "name": "harpy leader",
     "short_descr": "the screaming harpy leader",
     "long_descr": "The screaming harpy leader tries to scratch your eyes out!\n",
-    "description": "The harpy leader looks at you and grins menacingly.  She stretches\n
-                   |her wings and you see insects crawling around them.  Her hair is\n
-                   |matted and greasy and you are sickened by the stench that pervades\n
+    "description": "The harpy leader looks at you and grins menacingly.  She stretches
+                   |her wings and you see insects crawling around them.  Her hair is
+                   |matted and greasy and you are sickened by the stench that pervades
                    |her presence.\n",
     "race": "human",
     "alignment": -750,
@@ -66,7 +66,7 @@
     "name": "air elemental",
     "short_descr": "the ghostly air elemental",
     "long_descr": "The ghostly air elemental.\n",
-    "description": "The air elemental is hard to see.  You know that it is there\n
+    "description": "The air elemental is hard to see.  You know that it is there
                    |because objects behind it seem to waver and are slightly blurred.\n",
     "race": "human",
     "alignment": 0,
@@ -95,7 +95,7 @@
     "name": "mysterious efreeti",
     "short_descr": "the mysterious efreeti",
     "long_descr": "The mysterious efreeti grins in delight at its new prey.\n",
-    "description": "The efreeti towers menacingly over you.  It is dressed in the\n
+    "description": "The efreeti towers menacingly over you.  It is dressed in the
                    |finest ghostly silks and a headdress with an elaborate brooch.\n",
     "race": "human",
     "alignment": -100,
@@ -124,7 +124,7 @@
     "name": "roc",
     "short_descr": "the gigantic roc",
     "long_descr": "The gigantic roc.\n",
-    "description": "This bird has a wingspan that stretches several spear-lengths.  It\n
+    "description": "This bird has a wingspan that stretches several spear-lengths.  It
                    |moves surprisingly fast for something of its size.",
     "race": "human",
     "alignment": 50,
@@ -152,7 +152,7 @@
     "name": "roc",
     "short_descr": "the gigantic roc",
     "long_descr": "The gigantic roc stares menacingly at you.\n",
-    "description": "This bird has a wingspan that stretches several spear-lengths.  It\n
+    "description": "This bird has a wingspan that stretches several spear-lengths.  It
                    |moves surprisingly fast for something of its size.\n",
     "race": "human",
     "alignment": 50,
@@ -180,8 +180,8 @@
     "name": "wicked witch",
     "short_descr": "the ugly, wicked witch",
     "long_descr": "The ugly, wicked witch cackles maniacally.\n",
-    "description": "The witch has jet black hair and sickly green skin.  She is covered\n
-                   |with warts and boils.  Her nails are long and sharp and look like\n
+    "description": "The witch has jet black hair and sickly green skin.  She is covered
+                   |with warts and boils.  Her nails are long and sharp and look like
                    |they would be quite painful.  Her eyes pierce your very soul.\n",
     "race": "human",
     "alignment": -600,

@@ -12,9 +12,9 @@
     "area": "limbo",
     "anum": 2,
     "name": "Limbo",
-    "description": "You are floating in a formless void, detached from all sensation of physical\n
-                   |matter, surrounded by swirling glowing light, which fades into the relative\n
-                   |darkness around you without any trace of edges or shadow.\n
+    "description": "You are floating in a formless void, detached from all sensation of physical
+                   |matter, surrounded by swirling glowing light, which fades into the relative
+                   |darkness around you without any trace of edges or shadow.
                    |   There is a \"No Tipping\" notice pinned to the darkness.\n",
     "sector_type": "city",
     "room_flags": "indoors",

@@ -3,8 +3,8 @@
     "area": "haon",
     "anum": 0,
     "name": "The edge of the forest",
-    "description": "You are standing at the eastern edge of a big forest.  To the east is the West\n
-                   |Gate of Midgaard and to the west is a narrow trail, leading in through the\n
+    "description": "You are standing at the eastern edge of a big forest.  To the east is the West
+                   |Gate of Midgaard and to the west is a narrow trail, leading in through the
                    |forest.  A dimly lit path leads north.\n",
     "sector_type": "field",
     "room_flags": "no_mob",
@@ -28,8 +28,8 @@
     "extra_description": [
       {
         "keyword": "tree trees",
-        "description": "The trees are quite tall considering most of them appear to be quite young.\n
-                       |On one of the trees, crude letters forming the word \"Haon-Dor\" have been\n
+        "description": "The trees are quite tall considering most of them appear to be quite young.
+                       |On one of the trees, crude letters forming the word \"Haon-Dor\" have been
                        |carved into the bark.\n"
       },
       {
@@ -42,7 +42,7 @@
     "area": "haon",
     "anum": 1,
     "name": "A trail through the light forest",
-    "description": "You are on a trail leading through the forest.  To the east is the forest edge\n
+    "description": "You are on a trail leading through the forest.  To the east is the forest edge
                    |and to the west, the trail leads further into the forest.\n",
     "sector_type": "forest",
     "doors": [
@@ -64,7 +64,7 @@
       },
       {
         "keyword": "tree trees",
-        "description": "The trees here are quite young and fresh.  They seem to accommodate many kinds\n
+        "description": "The trees here are quite young and fresh.  They seem to accommodate many kinds
                        |of birds, insects and other small animals.\n"
       },
       {
@@ -77,8 +77,8 @@
     "area": "haon",
     "anum": 2,
     "name": "A trail through the light forest",
-    "description": "You are on a narrow trail leading east and west through the forest.  To the\n
-                   |west, the forest gradually becomes more dense.  A small forest path leads\n
+    "description": "You are on a narrow trail leading east and west through the forest.  To the
+                   |west, the forest gradually becomes more dense.  A small forest path leads
                    |south.\n",
     "sector_type": "forest",
     "doors": [
@@ -101,7 +101,7 @@
     "extra_description": [
       {
         "keyword": "tree trees",
-        "description": "The young, slender trees look beautiful, their fresh, green leaves moving\n
+        "description": "The young, slender trees look beautiful, their fresh, green leaves moving
                        |lightly in the wind.\n"
       },
       {
@@ -118,7 +118,7 @@
     "area": "haon",
     "anum": 3,
     "name": "A trail through the dense forest",
-    "description": "You are on a trail leading east and west through the dense forest.  To the\n
+    "description": "You are on a trail leading east and west through the dense forest.  To the
                    |east, the forest gradually seems to become lighter.\n",
     "sector_type": "forest",
     "doors": [
@@ -136,7 +136,7 @@
     "extra_description": [
       {
         "keyword": "tree trees",
-        "description": "The dense crowns of the mature trees leave only a fraction of the sky to be\n
+        "description": "The dense crowns of the mature trees leave only a fraction of the sky to be
                        |seen through the leaves.\n"
       },
       {
@@ -149,8 +149,8 @@
     "area": "haon",
     "anum": 4,
     "name": "A trail through the dense forest",
-    "description": "You are on a trail leading east and west through the dense forest.  To the\n
-                   |west, the trees are so huge and their crowns so dense that forest remains in\n
+    "description": "You are on a trail leading east and west through the dense forest.  To the
+                   |west, the trees are so huge and their crowns so dense that forest remains in
                    |total darkness.  A small path leads south through the trees.\n",
     "sector_type": "forest",
     "doors": [
@@ -189,8 +189,8 @@
     "area": "haon",
     "anum": 5,
     "name": "A small path in the dense forest",
-    "description": "You are on a small path leading through the dense forest.  The crowns of the\n
-                   |old trees leave the forest in an unreal twilight illumination.  The path\n
+    "description": "You are on a small path leading through the dense forest.  The crowns of the
+                   |old trees leave the forest in an unreal twilight illumination.  The path
                    |continues north and south.\n",
     "sector_type": "forest",
     "doors": [
@@ -220,8 +220,8 @@
     "area": "haon",
     "anum": 6,
     "name": "A small path in the dense forest",
-    "description": "You are on a small path leading through the dense forest.  The crowns of the\n
-                   |old trees leave the forest in an unreal twilight illumination.  The path\n
+    "description": "You are on a small path leading through the dense forest.  The crowns of the
+                   |old trees leave the forest in an unreal twilight illumination.  The path
                    |continues north and east.\n",
     "sector_type": "forest",
     "doors": [
@@ -259,8 +259,8 @@
     "area": "haon",
     "anum": 7,
     "name": "An intersection in the dense forest",
-    "description": "You are on a small path leading through the dense forest.  The crowns of the\n
-                   |old trees leave the forest in an unreal twilight illumination.  The forest\n
+    "description": "You are on a small path leading through the dense forest.  The crowns of the
+                   |old trees leave the forest in an unreal twilight illumination.  The forest
                    |gradually lightens to the east.  Paths lead east, west and south.\n",
     "sector_type": "forest",
     "doors": [
@@ -295,8 +295,8 @@
     "area": "haon",
     "anum": 8,
     "name": "The forest clearing",
-    "description": "You are in a clearing in the forest.  Lots of fresh stumps of varying sizes\n
-                   |protrude from the ground and heavy logs are stacked neatly in a big pile\n
+    "description": "You are in a clearing in the forest.  Lots of fresh stumps of varying sizes
+                   |protrude from the ground and heavy logs are stacked neatly in a big pile
                    |supported by stakes set into the ground.  Paths lead north, east and west.\n",
     "sector_type": "forest",
     "doors": [
@@ -323,7 +323,7 @@
       },
       {
         "keyword": "stump stumps",
-        "description": "There are more stumps than logs and some of the stumps are partly covered in\n
+        "description": "There are more stumps than logs and some of the stumps are partly covered in
                        |moss.\n"
       },
       {
@@ -336,7 +336,7 @@
       },
       {
         "keyword": "log logs",
-        "description": "Even though the logs have been chopped to shorter pieces, they are quite heavy\n
+        "description": "Even though the logs have been chopped to shorter pieces, they are quite heavy
                        |as they are fresh and still filled with sap.\n"
       }
     ]
@@ -345,7 +345,7 @@
     "area": "haon",
     "anum": 9,
     "name": "Outside a small cabin in the forest",
-    "description": "You are outside a small cabin built entirely from heavy logs.  There is a\n
+    "description": "You are outside a small cabin built entirely from heavy logs.  There is a
                    |wooden door to the north and small paths lead west and south through the trees.\n",
     "sector_type": "forest",
     "doors": [
@@ -378,7 +378,7 @@
       },
       {
         "keyword": "cabin logs",
-        "description": "It looks simple but comfortable and the slender trees make the whole place seem\n
+        "description": "It looks simple but comfortable and the slender trees make the whole place seem
                        |pretty idyllic.  It's a cabin built from logs.  Wooden logs, not system logs.\n"
       }
     ],
@@ -421,8 +421,8 @@
     "area": "haon",
     "anum": 10,
     "name": "Inside the cabin",
-    "description": "You are inside a small one-room cabin made entirely from heavy logs.  It is\n
-                   |very sparsely furnished, containing only most basic housekeeping equipment,\n
+    "description": "You are inside a small one-room cabin made entirely from heavy logs.  It is
+                   |very sparsely furnished, containing only most basic housekeeping equipment,
                    |such as a bed, a chair and a table.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -496,7 +496,7 @@
     "area": "haon",
     "anum": 11,
     "name": "A small path through the light forest",
-    "description": "You are on a small path leading through the forest.  The trees are tall and\n
+    "description": "You are on a small path leading through the forest.  The trees are tall and
                    |slender.  Paths lead north and south.\n",
     "sector_type": "forest",
     "doors": [
@@ -526,8 +526,8 @@
     "area": "haon",
     "anum": 12,
     "name": "An intersection in the dense forest",
-    "description": "You are on a small path leading through the dense forest.  The crowns of the\n
-                   |old trees leave the forest floor in an unreal twilight illumination.  Paths\n
+    "description": "You are on a small path leading through the dense forest.  The crowns of the
+                   |old trees leave the forest floor in an unreal twilight illumination.  Paths
                    |lead north, east and south.\n",
     "sector_type": "forest",
     "doors": [
@@ -573,8 +573,8 @@
     "area": "haon",
     "anum": 13,
     "name": "A small path in the dense forest",
-    "description": "You are on a small path leading through the dense forest.  The crowns of the\n
-                   |old trees leave the forest in an unreal twilight illumination.  The path\n
+    "description": "You are on a small path leading through the dense forest.  The crowns of the
+                   |old trees leave the forest in an unreal twilight illumination.  The path
                    |continues east and west.\n",
     "sector_type": "forest",
     "doors": [
@@ -612,7 +612,7 @@
     "area": "haon",
     "anum": 14,
     "name": "An intersection in the dense forest",
-    "description": "You are on a small path leading through the dense forest.  The forest gradually\n
+    "description": "You are on a small path leading through the dense forest.  The forest gradually
                    |lightens to the north.  Paths lead north, east and west.\n",
     "sector_type": "forest",
     "doors": [
@@ -635,7 +635,7 @@
     "extra_description": [
       {
         "keyword": "tree trees",
-        "description": "The crowns of the old trees leave the forest in an unreal twilight\n
+        "description": "The crowns of the old trees leave the forest in an unreal twilight
                        |illumination.\n"
       },
       {
@@ -656,8 +656,8 @@
     "area": "haon",
     "anum": 15,
     "name": "A small path in the dense forest",
-    "description": "You are on a small path leading through the dense forest.  The crowns of the\n
-                   |old trees leave the forest in an unreal twilight illumination.  The path\n
+    "description": "You are on a small path leading through the dense forest.  The crowns of the
+                   |old trees leave the forest in an unreal twilight illumination.  The path
                    |continues south and west.\n",
     "sector_type": "forest",
     "doors": [
@@ -698,8 +698,8 @@
     "area": "haon",
     "anum": 16,
     "name": "A small path in the dense forest",
-    "description": "You are on a small path leading through the dense forest.  The crowns of the\n
-                   |old trees leave the forest in an unreal twilight illumination.  The path\n
+    "description": "You are on a small path leading through the dense forest.  The crowns of the
+                   |old trees leave the forest in an unreal twilight illumination.  The path
                    |continues north and south.\n",
     "sector_type": "forest",
     "doors": [
@@ -737,7 +737,7 @@
     "area": "haon",
     "anum": 17,
     "name": "A small path in the dense forest",
-    "description": "You are on a small path leading through the dense forest.  The forest seems to\n
+    "description": "You are on a small path leading through the dense forest.  The forest seems to
                    |become lighter to the west.  The path continues north and west.\n",
     "sector_type": "forest",
     "doors": [
@@ -755,7 +755,7 @@
     "extra_description": [
       {
         "keyword": "tree trees",
-        "description": "The crowns of the old trees leave the forest in an unreal twilight\n
+        "description": "The crowns of the old trees leave the forest in an unreal twilight
                        |illumination.\n"
       },
       {
@@ -779,7 +779,7 @@
     "area": "haon",
     "anum": 18,
     "name": "An intersection in the light forest",
-    "description": "You are on a small path leading through the forest.  A path leads north to a\n
+    "description": "You are on a small path leading through the forest.  A path leads north to a
                    |small field and other paths lead east and west into the dense forest.\n",
     "sector_type": "forest",
     "doors": [
@@ -814,7 +814,7 @@
     "area": "haon",
     "anum": 19,
     "name": "A small path in the dense forest",
-    "description": "You are on a small path leading through the dense forest.  The forest seems to\n
+    "description": "You are on a small path leading through the dense forest.  The forest seems to
                    |become lighter to the east.  The path continues north and east.\n",
     "sector_type": "forest",
     "doors": [
@@ -832,7 +832,7 @@
     "extra_description": [
       {
         "keyword": "tree trees",
-        "description": "The crowns of the old trees leave the forest in an unreal twilight\n
+        "description": "The crowns of the old trees leave the forest in an unreal twilight
                        |illumination.\n"
       },
       {
@@ -856,8 +856,8 @@
     "area": "haon",
     "anum": 20,
     "name": "A small path in the dense forest",
-    "description": "You are on a small path leading through the dense forest.  The crowns of the\n
-                   |old trees leave the forest in an unreal twilight illumination.  The path\n
+    "description": "You are on a small path leading through the dense forest.  The crowns of the
+                   |old trees leave the forest in an unreal twilight illumination.  The path
                    |continues south and west.\n",
     "sector_type": "forest",
     "doors": [
@@ -887,7 +887,7 @@
     "area": "haon",
     "anum": 21,
     "name": "A small path in the dense forest",
-    "description": "You are on a small path leading through the dense forest.  To the west there is\n
+    "description": "You are on a small path leading through the dense forest.  To the west there is
                    |a cave entrance.  The path continues north and east.\n",
     "sector_type": "forest",
     "doors": [
@@ -910,12 +910,12 @@
     "extra_description": [
       {
         "keyword": "cave entrance",
-        "description": "The irregular opening is eight feet wide and six feet tall.  An acrid smell\n
+        "description": "The irregular opening is eight feet wide and six feet tall.  An acrid smell
                        |emanates from within.\n"
       },
       {
         "keyword": "tree trees",
-        "description": "The crowns of the old trees leave the forest in an unreal twilight\n
+        "description": "The crowns of the old trees leave the forest in an unreal twilight
                        |illumination.\n"
       },
       {
@@ -928,8 +928,8 @@
     "area": "haon",
     "anum": 22,
     "name": "Inside the cave",
-    "description": "You are in a natural cave.  Various sorts of debris cover the stone floor,\n
-                   |emitting a rather unpleasant smell that makes the air thick and hard to\n
+    "description": "You are in a natural cave.  Various sorts of debris cover the stone floor,
+                   |emitting a rather unpleasant smell that makes the air thick and hard to
                    |breathe.  The only obvious exit is east.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -965,9 +965,9 @@
     "area": "haon",
     "anum": 23,
     "name": "On a small, grassy field",
-    "description": "You are in a small, grassy field somewhere in the forest.  The tall grass\n
-                   |nearly reaches your waist, and the surrounding oaks and beeches form an almost\n
-                   |wall-like thicket on all sides of the field.  A small path leads south through\n
+    "description": "You are in a small, grassy field somewhere in the forest.  The tall grass
+                   |nearly reaches your waist, and the surrounding oaks and beeches form an almost
+                   |wall-like thicket on all sides of the field.  A small path leads south through
                    |the trees.\n",
     "sector_type": "field",
     "doors": [{
@@ -1012,8 +1012,8 @@
     "area": "haon",
     "anum": 100,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a narrow trail winding its way between the enormous, grey trunks.\n
-                   |The crowns of the trees must be very dense, as they leave the forest floor in\n
+    "description": "You are on a narrow trail winding its way between the enormous, grey trunks.
+                   |The crowns of the trees must be very dense, as they leave the forest floor in
                    |utter darkness.  The trail leads east and west.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1033,12 +1033,12 @@
     "extra_description": [
       {
         "keyword": "tree trees trunk trunks",
-        "description": "These ancient trees must have been here for many, many years.  It is impossible\n
+        "description": "These ancient trees must have been here for many, many years.  It is impossible
                        |to catch even a glimpse of anything above the lowest branches.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ],
@@ -1065,8 +1065,8 @@
     "area": "haon",
     "anum": 101,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a dusty trail winding its way east-west between huge, ancient trees\n
-                   |whose grey trunks remind you of ancient pillars in a enormous, deserted hall.\n
+    "description": "You are on a dusty trail winding its way east-west between huge, ancient trees
+                   |whose grey trunks remind you of ancient pillars in a enormous, deserted hall.
                    |To the south, a frail path leads away from the trail.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1090,17 +1090,17 @@
     "extra_description": [
       {
         "keyword": "tree trees trunk trunks",
-        "description": "These ancient trees must have been here for many, many years.  It is impossible\n
+        "description": "These ancient trees must have been here for many, many years.  It is impossible
                        |to catch even a glimpse of anything above the lowest branches.\n"
       },
       {
         "keyword": "path",
-        "description": "The path seems fragile and unsafe compared to the enormous trunks that loom\n
+        "description": "The path seems fragile and unsafe compared to the enormous trunks that loom
                        |around it.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ]
@@ -1109,8 +1109,8 @@
     "area": "haon",
     "anum": 102,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a dusty trail winding its way east-west between huge, ancient trees\n
-                   |that stand close on all sides.  Not a sound is to be heard - everything is\n
+    "description": "You are on a dusty trail winding its way east-west between huge, ancient trees
+                   |that stand close on all sides.  Not a sound is to be heard - everything is
                    |ominously quiet.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1129,17 +1129,17 @@
     "extra_description": [
       {
         "keyword": "tree trees trunk trunks",
-        "description": "These ancient trees must have been here for many, many years.  It is impossible\n
+        "description": "These ancient trees must have been here for many, many years.  It is impossible
                        |to catch even a glimpse of anything above the lowest branches.\n"
       },
       {
         "keyword": "path",
-        "description": "The path seems fragile and unsafe compared to the enormous trunks that loom\n
+        "description": "The path seems fragile and unsafe compared to the enormous trunks that loom
                        |around it.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ]
@@ -1148,8 +1148,8 @@
     "area": "haon",
     "anum": 103,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are where the dusty trail bends, as to avoid conflict with a colossal\n
-                   |trunk to the west.  Not a sound is to be heard - everything is ominously quiet.\n
+    "description": "You are where the dusty trail bends, as to avoid conflict with a colossal
+                   |trunk to the west.  Not a sound is to be heard - everything is ominously quiet.
                    |The trail leads east and south.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1173,12 +1173,12 @@
     "extra_description": [
       {
         "keyword": "trees trunks",
-        "description": "These ancient trees must have been here for many, many years.  It is impossible\n
+        "description": "These ancient trees must have been here for many, many years.  It is impossible
                        |to catch even a glimpse of anything above the lowest branches.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ],
@@ -1195,8 +1195,8 @@
     "area": "haon",
     "anum": 104,
     "name": "A small path in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  You feel as if\n
-                   |the ancient trees observe you in watchful silence.  The path continues north\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  You feel as if
+                   |the ancient trees observe you in watchful silence.  The path continues north
                    |and south.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1215,7 +1215,7 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -1254,7 +1254,7 @@
     "area": "haon",
     "anum": 105,
     "name": "A small path in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  Ancient grey\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  Ancient grey
                    |trees loom all around you.  The path continues north and west.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1273,7 +1273,7 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -1294,7 +1294,7 @@
     "area": "haon",
     "anum": 106,
     "name": "A junction in the deep, dark forest",
-    "description": "You are by a junction where three paths meet.  Ancient grey trees tower above\n
+    "description": "You are by a junction where three paths meet.  Ancient grey trees tower above
                    |you on all sides.  Paths lead east, south and west.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1318,7 +1318,7 @@
     "extra_description": [
       {
         "keyword": "path paths",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -1331,7 +1331,7 @@
     "area": "haon",
     "anum": 107,
     "name": "A small path in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  Ancient grey\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  Ancient grey
                    |trees loom all around you.  The path continues north and east.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1350,7 +1350,7 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -1363,8 +1363,8 @@
     "area": "haon",
     "anum": 108,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a dusty trail winding its way between huge, ancient trees\n
-                   |standing close on all sides.  The trail leads north and west and to the south,\n
+    "description": "You are on a dusty trail winding its way between huge, ancient trees
+                   |standing close on all sides.  The trail leads north and west and to the south,
                    |a frail path leads away from the trail.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1388,17 +1388,17 @@
     "extra_description": [
       {
         "keyword": "tree trees trunk trunks",
-        "description": "These ancient trees must have been here for many, many years.  It is impossible\n
+        "description": "These ancient trees must have been here for many, many years.  It is impossible
                        |to catch even a glimpse of anything above the lowest branches.\n"
       },
       {
         "keyword": "path",
-        "description": "The path seems fragile and unsafe compared to the enormous trunks that loom\n
+        "description": "The path seems fragile and unsafe compared to the enormous trunks that loom
                        |around it.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ],
@@ -1425,8 +1425,8 @@
     "area": "haon",
     "anum": 109,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a dusty trail winding its way east-west between huge, ancient trees\n
-                   |that stand close on all sides.  Not a sound is to be heard - everything is\n
+    "description": "You are on a dusty trail winding its way east-west between huge, ancient trees
+                   |that stand close on all sides.  Not a sound is to be heard - everything is
                    |ominously quiet.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1445,12 +1445,12 @@
     "extra_description": [
       {
         "keyword": "tree trees trunk trunks",
-        "description": "These ancient trees must have been here for many, many years.  It is impossible\n
+        "description": "These ancient trees must have been here for many, many years.  It is impossible
                        |to catch even a glimpse of anything above the lowest branches.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ]
@@ -1459,8 +1459,8 @@
     "area": "haon",
     "anum": 110,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a dusty trail winding its way between huge, ancient trees that stand\n
-                   |close on all sides.  The trail leads east and south.  To the north, a narrow\n
+    "description": "You are on a dusty trail winding its way between huge, ancient trees that stand
+                   |close on all sides.  The trail leads east and south.  To the north, a narrow
                    |path leads away from the trail.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1484,17 +1484,17 @@
     "extra_description": [
       {
         "keyword": "tree trees trunk trunks",
-        "description": "Some of the trunks to the west are covered in a thin, almost transparent\n
+        "description": "Some of the trunks to the west are covered in a thin, almost transparent
                        |substance.  It looks like small threads woven carefully together.\n"
       },
       {
         "keyword": "path",
-        "description": "The path seems fragile and unsafe compared to the enormous trunks that loom\n
+        "description": "The path seems fragile and unsafe compared to the enormous trunks that loom
                        |around it.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ]
@@ -1503,7 +1503,7 @@
     "area": "haon",
     "anum": 111,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a dusty trail winding its way north-south between huge, ancient\n
+    "description": "You are on a dusty trail winding its way north-south between huge, ancient
                    |trees that loom ominously above you.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1522,12 +1522,12 @@
     "extra_description": [
       {
         "keyword": "tree trees trunk trunks",
-        "description": "These ancient trees must have been here for many, many years.  It is impossible\n
+        "description": "These ancient trees must have been here for many, many years.  It is impossible
                        |to catch even a glimpse of anything above the lowest branches.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ],
@@ -1544,8 +1544,8 @@
     "area": "haon",
     "anum": 112,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a dusty trail winding its way between huge, ancient trees\n
-                   |standing close on all sides.  The trail leads north and west and to the east,\n
+    "description": "You are on a dusty trail winding its way between huge, ancient trees
+                   |standing close on all sides.  The trail leads north and west and to the east,
                    |a frail path leads away from the trail.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1569,17 +1569,17 @@
     "extra_description": [
       {
         "keyword": "tree trees trunk trunks",
-        "description": "These ancient trees must have been here for many, many years.  It is impossible\n
+        "description": "These ancient trees must have been here for many, many years.  It is impossible
                        |to catch even a glimpse of anything above the lowest branches.\n"
       },
       {
         "keyword": "path",
-        "description": "The path seems fragile and unsafe compared to the enormous trunks that loom\n
+        "description": "The path seems fragile and unsafe compared to the enormous trunks that loom
                        |around it.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ],
@@ -1606,7 +1606,7 @@
     "area": "haon",
     "anum": 113,
     "name": "A small path in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  Ancient grey\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  Ancient grey
                    |trees loom in all directions.  The path continues south and west.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1625,7 +1625,7 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -1646,7 +1646,7 @@
     "area": "haon",
     "anum": 114,
     "name": "A junction in the deep, dark forest",
-    "description": "You are by a junction where three paths meet.  Ancient grey trees tower above\n
+    "description": "You are by a junction where three paths meet.  Ancient grey trees tower above
                    |you on all sides.  Paths lead north, east and west.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1670,7 +1670,7 @@
     "extra_description": [
       {
         "keyword": "path paths",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -1683,8 +1683,8 @@
     "area": "haon",
     "anum": 115,
     "name": "A small path in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  You feel as\n
-                   |if the ancient trees observe you in watchful silence.  The path continues north\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  You feel as
+                   |if the ancient trees observe you in watchful silence.  The path continues north
                    |and west.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1703,7 +1703,7 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -1716,7 +1716,7 @@
     "area": "haon",
     "anum": 116,
     "name": "A small path in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  Giant, grey\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  Giant, grey
                    |trees loom ominously on all sides.  The path continues east and south.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1735,7 +1735,7 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -1766,7 +1766,7 @@
     "area": "haon",
     "anum": 117,
     "name": "A junction in the deep, dark forest",
-    "description": "You are by a junction where three paths meet.  Ancient, grey trees seem to\n
+    "description": "You are by a junction where three paths meet.  Ancient, grey trees seem to
                    |observe you silently you from all sides.  Paths lead north, east and west.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1790,7 +1790,7 @@
     "extra_description": [
       {
         "keyword": "path paths",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -1803,7 +1803,7 @@
     "area": "haon",
     "anum": 118,
     "name": "A small path in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  Ancient,\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  Ancient,
                    |grey trees loom everywhere.  The path continues south and west.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1822,7 +1822,7 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -1853,7 +1853,7 @@
     "area": "haon",
     "anum": 119,
     "name": "A small path in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  Huge, ancient\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  Huge, ancient
                    |trees are on all sides.  The path continues north and south.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1872,7 +1872,7 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -1893,8 +1893,8 @@
     "area": "haon",
     "anum": 120,
     "name": "On the river bank in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  To the south a\n
-                   |fast river is flowing westwards through the forest.  Ancient grey trees loom on\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  To the south a
+                   |fast river is flowing westwards through the forest.  Ancient grey trees loom on
                    |both banks.  The path continues north and west.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1913,12 +1913,12 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
         "keyword": "bank banks tree trees trunk trunks",
-        "description": "The ancient crowns of trees on both banks reach together forming a dense roof\n
+        "description": "The ancient crowns of trees on both banks reach together forming a dense roof
                        |above the dark river.\n"
       },
       {
@@ -1931,8 +1931,8 @@
     "area": "haon",
     "anum": 121,
     "name": "A dead end path on the river bank in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  The ancient\n
-                   |trees stand so close that the path disappears between the dusty roots.  To the\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  The ancient
+                   |trees stand so close that the path disappears between the dusty roots.  To the
                    |south a dark river flows from east to west.  The only exit appears to be east.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1944,12 +1944,12 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
         "keyword": "bank banks tree trees trunk trunks",
-        "description": "The ancient crowns of trees on both banks reach together forming a dense roof\n
+        "description": "The ancient crowns of trees on both banks reach together forming a dense roof
                        |above the dark river.\n"
       },
       {
@@ -1962,7 +1962,7 @@
     "area": "haon",
     "anum": 122,
     "name": "A small path in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  Giant, grey\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  Giant, grey
                    |trees loom ominously all around.  The path continues east and south.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -1981,7 +1981,7 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -2002,8 +2002,8 @@
     "area": "haon",
     "anum": 123,
     "name": "A junction on the river bank in the deep, dark forest",
-    "description": "You are by a junction where three paths meet.  Ancient, grey trees seem to\n
-                   |observe you silently you from all around.  To the south a dark river flows from\n
+    "description": "You are by a junction where three paths meet.  Ancient, grey trees seem to
+                   |observe you silently you from all around.  To the south a dark river flows from
                    |east to west through the forest.  Paths lead north, east and west. \n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2032,12 +2032,12 @@
     "extra_description": [
       {
         "keyword": "path paths",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
         "keyword": "bank banks tree trees trunk trunks",
-        "description": "The ancient crowns of trees on both banks reach together forming a dense roof\n
+        "description": "The ancient crowns of trees on both banks reach together forming a dense roof
                        |above the dark river.\n"
       },
       {
@@ -2050,8 +2050,8 @@
     "area": "haon",
     "anum": 124,
     "name": "A dead end path in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  The ancient\n
-                   |trees stand so close that the path disappears between the dusty roots.  To the\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  The ancient
+                   |trees stand so close that the path disappears between the dusty roots.  To the
                    |south a dark river flows from east to west.  The only exit appears to be west.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2070,12 +2070,12 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
         "keyword": "bank banks tree trees trunk trunks",
-        "description": "The ancient crowns of trees on both banks reach together forming a dense roof\n
+        "description": "The ancient crowns of trees on both banks reach together forming a dense roof
                        |above the dark river.\n"
       },
       {
@@ -2088,8 +2088,8 @@
     "area": "haon",
     "anum": 125,
     "name": "A small path on the river bank in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  Ancient grey\n
-                   |trees loom everywhere.  To the south you smell marsh gas.  The path continues\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  Ancient grey
+                   |trees loom everywhere.  To the south you smell marsh gas.  The path continues
                    |north and east.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2113,12 +2113,12 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
         "keyword": "bank banks tree trees trunk trunks",
-        "description": "The ancient crowns of trees on both banks reach together forming a dense roof\n
+        "description": "The ancient crowns of trees on both banks reach together forming a dense roof
                        |above the dark river.\n"
       },
       {
@@ -2139,8 +2139,8 @@
     "area": "haon",
     "anum": 126,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a dusty trail winding its way between huge, ancient trees standing\n
-                   |close on all sides.  The trail leads north and west, and to the south a frail\n
+    "description": "You are on a dusty trail winding its way between huge, ancient trees standing
+                   |close on all sides.  The trail leads north and west, and to the south a frail
                    |path leads away from the trail.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2164,17 +2164,17 @@
     "extra_description": [
       {
         "keyword": "tree trees trunk trunks",
-        "description": "These ancient trees must have been here for many, many years.  It is impossible\n
+        "description": "These ancient trees must have been here for many, many years.  It is impossible
                        |to catch even a glimpse of anything above the lowest branches.\n"
       },
       {
         "keyword": "path",
-        "description": "The path seems fragile and unsafe compared to the enormous trunks that loom\n
+        "description": "The path seems fragile and unsafe compared to the enormous trunks that loom
                        |around it.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ]
@@ -2183,7 +2183,7 @@
     "area": "haon",
     "anum": 127,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a dusty trail winding its way between huge, ancient trees\n
+    "description": "You are on a dusty trail winding its way between huge, ancient trees
                    |standing close on all sides.  The trail leads east and south.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2202,12 +2202,12 @@
     "extra_description": [
       {
         "keyword": "tree trees trunk trunks",
-        "description": "These ancient trees must have been here for many, many years.  It is impossible\n
+        "description": "These ancient trees must have been here for many, many years.  It is impossible
                        |to catch even a glimpse of anything above the lowest branches.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ],
@@ -2234,8 +2234,8 @@
     "area": "haon",
     "anum": 128,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a dusty trail winding its way east-west between huge, ancient trees\n
-                   |that stand close on all sides.  Not a sound is to be heard - everything is\n
+    "description": "You are on a dusty trail winding its way east-west between huge, ancient trees
+                   |that stand close on all sides.  Not a sound is to be heard - everything is
                    |ominously quiet.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2254,12 +2254,12 @@
     "extra_description": [
       {
         "keyword": "tree trees trunk trunks",
-        "description": "These ancient trees must have been here for many, many years.  It is impossible\n
+        "description": "These ancient trees must have been here for many, many years.  It is impossible
                        |to catch even a glimpse of anything above the lowest branches.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ]
@@ -2268,8 +2268,8 @@
     "area": "haon",
     "anum": 129,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a dusty trail winding its way east-west between huge, ancient trees\n
-                   |that stand close on all sides.  Not a sound is to be heard - everything is\n
+    "description": "You are on a dusty trail winding its way east-west between huge, ancient trees
+                   |that stand close on all sides.  Not a sound is to be heard - everything is
                    |ominously quiet.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2288,12 +2288,12 @@
     "extra_description": [
       {
         "keyword": "tree trees trunk trunks",
-        "description": "These ancient trees must have been here for many, many years.  It is impossible\n
+        "description": "These ancient trees must have been here for many, many years.  It is impossible
                        |to catch even a glimpse of anything above the lowest branches.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ]
@@ -2302,9 +2302,9 @@
     "area": "haon",
     "anum": 130,
     "name": "A narrow trail through the deep, dark forest",
-    "description": "You are on a dusty trail winding its way westwards just below huge sticky\n
-                   |wires suspended like ropes between the trees.  To the west the path seems to\n
-                   |be completely covered in a giant web made from huge threads covered with glue.\n
+    "description": "You are on a dusty trail winding its way westwards just below huge sticky
+                   |wires suspended like ropes between the trees.  To the west the path seems to
+                   |be completely covered in a giant web made from huge threads covered with glue.
                    |This place gives you the creeps.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2317,7 +2317,7 @@
       {
         "dir": "west",
         "to": 131,
-        "description": "The structure to the west looks most of all like an immense spider web.\n
+        "description": "The structure to the west looks most of all like an immense spider web.
                        |It does not look as if you can go further without getting caught in it.\n"
       },
       {
@@ -2328,13 +2328,13 @@
     "extra_description": [
       {
         "keyword": "substance wire wires rope ropes tree trees trunk trunks",
-        "description": "The sticky substance is hanging like ropes between the ancient trees, crossing\n
-                       |the path just out of reach.  It might be possible to climb one of the sticky\n
+        "description": "The sticky substance is hanging like ropes between the ancient trees, crossing
+                       |the path just out of reach.  It might be possible to climb one of the sticky
                        |trunks.\n"
       },
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       }
     ]
@@ -2343,20 +2343,20 @@
     "area": "haon",
     "anum": 131,
     "name": "The spider web",
-    "description": "You are walking along the narrow path, ducking under the sticky ropes as you\n
-                   |advance...\n
-                   |\n
-                   |>\n
-                   |A huge, poisonous spider drops from above!\n
-                   |A huge, poisonous spider drops from above!\n
-                   |A huge, poisonous spider drops from above!\n
-                   |\n
-                   |>\n
-                   |The huge, poisonous spider stings you!  You resist the poison!\n
-                   |The huge, poisonous spider stings you!  You are poisoned!\n
-                   |The huge, poisonous spider stings you!  You are poisoned!\n
-                   |\n
-                   |>\n
+    "description": "You are walking along the narrow path, ducking under the sticky ropes as you
+                   |advance...
+                   |
+                   |>
+                   |A huge, poisonous spider drops from above!
+                   |A huge, poisonous spider drops from above!
+                   |A huge, poisonous spider drops from above!
+                   |
+                   |>
+                   |The huge, poisonous spider stings you!  You resist the poison!
+                   |The huge, poisonous spider stings you!  You are poisoned!
+                   |The huge, poisonous spider stings you!  You are poisoned!
+                   |
+                   |>
                    |You've fallen, and you can't get up!!!!!\n",
     "sector_type": "forest",
     "room_flags": "no_mob indoors"
@@ -2365,8 +2365,8 @@
     "area": "haon",
     "anum": 132,
     "name": "Up in the tree",
-    "description": "You are hanging on the outside of a huge tree trunk covered in a sticky\n
-                   |substance.  Directly to the west is an immense spider web suspended between\n
+    "description": "You are hanging on the outside of a huge tree trunk covered in a sticky
+                   |substance.  Directly to the west is an immense spider web suspended between
                    |numerous of the giant trees including the one you are hanging on.\n",
     "sector_type": "swim",
     "room_flags": "dark no_mob indoors",
@@ -2384,7 +2384,7 @@
     ],
     "extra_description": [{
       "keyword": "web",
-      "description": "The spider web stretches out to the west.  It looks as if it is possible to\n
+      "description": "The spider web stretches out to the west.  It looks as if it is possible to
                      |walk on it.\n"
     }]
   }},
@@ -2392,8 +2392,8 @@
     "area": "haon",
     "anum": 133,
     "name": "On the spider web",
-    "description": "You are balancing carefully on the giant sticky threads that holds the giant\n
-                   |web in place.  To the east is a giant tree trunk and to the west is an entrance\n
+    "description": "You are balancing carefully on the giant sticky threads that holds the giant
+                   |web in place.  To the east is a giant tree trunk and to the west is an entrance
                    |to a cave-like structure made from many layers of spider web.\n",
     "sector_type": "swim",
     "room_flags": "dark indoors",
@@ -2417,7 +2417,7 @@
     "extra_description": [
       {
         "keyword": "cave structure",
-        "description": "It covers a ground area corresponding to an irregular circle with a diameter of\n
+        "description": "It covers a ground area corresponding to an irregular circle with a diameter of
                        |about 20 feet and is nearly 10 feet tall.  It looks very old.\n"
       },
       {
@@ -2430,9 +2430,9 @@
     "area": "haon",
     "anum": 134,
     "name": "The Den of the Queen Spider",
-    "description": "You are inside a cave-like structure that seems to be made entirely from\n
-                   |countless layers of spider web.  Temperature and humidity is very high making\n
-                   |it hard to breathe the foul air that lingers here.  The walls are covered with\n
+    "description": "You are inside a cave-like structure that seems to be made entirely from
+                   |countless layers of spider web.  Temperature and humidity is very high making
+                   |it hard to breathe the foul air that lingers here.  The walls are covered with
                    |open cocoons.\n",
     "sector_type": "swim",
     "room_flags": "dark indoors",
@@ -2445,7 +2445,7 @@
     "extra_description": [
       {
         "keyword": "cocoon cocoons",
-        "description": "The cocoons are burst open as if something inside really wanted to get out.\n
+        "description": "The cocoons are burst open as if something inside really wanted to get out.
                        |They are at the size of a human head.\n"
       },
       {
@@ -2524,7 +2524,7 @@
     "area": "haon",
     "anum": 135,
     "name": "A dusty trail in the deep, dark forest",
-    "description": "You are on a dusty trail leading through the deep, dark forest.  Ancient grey\n
+    "description": "You are on a dusty trail leading through the deep, dark forest.  Ancient grey
                    |trees loom all around you.  The trail continues north and east.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2549,8 +2549,8 @@
     "area": "haon",
     "anum": 136,
     "name": "A dusty trail in the deep, dark forest",
-    "description": "You are on a dusty trail leading through the deep, dark forest.  Ancient,\n
-                   |grey trees loom everywhere.  The trail continues south and west.  A broad\n
+    "description": "You are on a dusty trail leading through the deep, dark forest.  Ancient,
+                   |grey trees loom everywhere.  The trail continues south and west.  A broad
                    |irregular path leads eastwards away from the trail.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2574,7 +2574,7 @@
     "extra_description": [
       {
         "keyword": "trail",
-        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in\n
+        "description": "The dark and dusty trail seems fragile compared to the massive trunks, and in
                        |some places, giant grey roots have broken up through its surface.\n"
       },
       {
@@ -2583,7 +2583,7 @@
       },
       {
         "keyword": "tree trees trunk trunks",
-        "description": "To the east the ancient grey giants have many marks as if something with huge\n
+        "description": "To the east the ancient grey giants have many marks as if something with huge
                        |claws has been tearing at them in rage.\n"
       }
     ]
@@ -2592,8 +2592,8 @@
     "area": "haon",
     "anum": 137,
     "name": "At the end of the trail through the deep, dark forest",
-    "description": "You are on a dusty trail leading through the deep, dark forest.  Ancient grey\n
-                   |trees loom all around you.  You see a dark grove north of you.\n
+    "description": "You are on a dusty trail leading through the deep, dark forest.  Ancient grey
+                   |trees loom all around you.  You see a dark grove north of you.
                    |The only other exit is east.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2618,8 +2618,8 @@
     "area": "haon",
     "anum": 142,
     "name": "Outside a cave in the deep, dark forest",
-    "description": "You are at the end of a broad, irregular path.  To the north is a very large\n
-                   |ominous-looking cave opening.  The trees here have many marks as if something\n
+    "description": "You are at the end of a broad, irregular path.  To the north is a very large
+                   |ominous-looking cave opening.  The trees here have many marks as if something
                    |with huge claws has been tearing at them in rage.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2642,7 +2642,7 @@
       },
       {
         "keyword": "tree trees",
-        "description": "The ancient grey giants have many marks as if something with huge claws has\n
+        "description": "The ancient grey giants have many marks as if something with huge claws has
                        |been tearing at them in rage.\n"
       }
     ]
@@ -2651,8 +2651,8 @@
     "area": "haon",
     "anum": 143,
     "name": "The cave of the Green Dragon",
-    "description": "You are in a big natural cave.  The floor is littered with bones of all sorts\n
-                   |and the stench is so massive that you could cut it with a knife.  The only exit\n
+    "description": "You are in a big natural cave.  The floor is littered with bones of all sorts
+                   |and the stench is so massive that you could cut it with a knife.  The only exit
                    |is to the south.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2701,8 +2701,8 @@
     "area": "haon",
     "anum": 144,
     "name": "A small path in the deep, dark forest",
-    "description": "You are on a narrow path leading through the deep, dark forest.  Ancient,\n
-                   |grey trees loom everywhere.  The tree trunks here seem to be covered in some\n
+    "description": "You are on a narrow path leading through the deep, dark forest.  Ancient,
+                   |grey trees loom everywhere.  The tree trunks here seem to be covered in some
                    |sticky substance.  The path continues south and west.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2721,7 +2721,7 @@
     "extra_description": [
       {
         "keyword": "path",
-        "description": "The path seems all too frail.  One of the giant roots could probably crush it\n
+        "description": "The path seems all too frail.  One of the giant roots could probably crush it
                        |in a single blow.\n"
       },
       {
@@ -2730,7 +2730,7 @@
       },
       {
         "keyword": "substance rope ropes thread threads",
-        "description": "The substance reminds you of giant threads covered with glue.  If it had not\n
+        "description": "The substance reminds you of giant threads covered with glue.  If it had not
                        |been for the size you could have sworn it was part of a spider web.\n"
       }
     ]
@@ -2739,8 +2739,8 @@
     "area": "haon",
     "anum": 150,
     "name": "The narrow trail.",
-    "description": "This trail looks much spookier than any other thats you have seen.  The usual\n
-                   |animal claw marks and bites on the trees are getting far and few between. The\n
+    "description": "This trail looks much spookier than any other thats you have seen.  The usual
+                   |animal claw marks and bites on the trees are getting far and few between. The
                    |trail continues north.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2761,8 +2761,8 @@
     "area": "haon",
     "anum": 151,
     "name": "The narrow trail.",
-    "description": "This area of the trail is also very peculiar.  You can see no signs of animal\n
-                   |life what so ever.  The structure of the surrounding trees forces the path to\n
+    "description": "This area of the trail is also very peculiar.  You can see no signs of animal
+                   |life what so ever.  The structure of the surrounding trees forces the path to
                    |make a sharp turn to the east.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2783,8 +2783,8 @@
     "area": "haon",
     "anum": 152,
     "name": "The circle of trees.",
-    "description": "The trees here seem to form a circle around a HUGE tree that is in the center\n
-                   |of them.  You notice a wooden door carved into the huge tree to the east.  The\n
+    "description": "The trees here seem to form a circle around a HUGE tree that is in the center
+                   |of them.  You notice a wooden door carved into the huge tree to the east.  The
                    |trail that you followed to get here seems to end at the base of the tree.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2808,7 +2808,7 @@
     "area": "haon",
     "anum": 153,
     "name": "Inside the great tree.",
-    "description": "You have stepped inside of this hollowed tree.  From here steps lead down into\n
+    "description": "You have stepped inside of this hollowed tree.  From here steps lead down into
                    |darkness or you can exit the tree by going west.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2831,7 +2831,7 @@
     "area": "haon",
     "anum": 154,
     "name": "The underground hallway.",
-    "description": "This hallway is apparently one of the roots of the tree hollowed out.  The hall\n
+    "description": "This hallway is apparently one of the roots of the tree hollowed out.  The hall
                    |leads south to a room where you hear strange noises or you can go up the steps.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",
@@ -2854,9 +2854,9 @@
     "area": "haon",
     "anum": 155,
     "name": "The cultist temple.",
-    "description": "This temple is built to some god that you don't worship.  It is a nice place\n
-                   |to visit but you feel very uncomfortable about spending much time here.\n
-                   |The wooden altar seems almost to glow as you enter the room.  The only exit is\n
+    "description": "This temple is built to some god that you don't worship.  It is a nice place
+                   |to visit but you feel very uncomfortable about spending much time here.
+                   |The wooden altar seems almost to glow as you enter the room.  The only exit is
                    |the way you came in.\n",
     "sector_type": "forest",
     "room_flags": "dark indoors",

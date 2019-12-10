@@ -5,8 +5,8 @@
     "name": "knight ethereal dark",
     "short_descr": "the Dark Ethereal Knight",
     "long_descr": "A dark ethereal knight hovers over the bloody clearing.\n",
-    "description": "The ethereal knight is clad in shadowy black armor. It appears as though he\n
-                   |was involved in the carnage that occurred here. His soul is trapped here, as\n
+    "description": "The ethereal knight is clad in shadowy black armor. It appears as though he
+                   |was involved in the carnage that occurred here. His soul is trapped here, as
                    |he waits for release.\n",
     "race": "human",
     "alignment": -1000,
@@ -36,8 +36,8 @@
     "name": "treant tree",
     "short_descr": "the Old Treant",
     "long_descr": "A huge, gnarled tree stands here, battered by age and nature.\n",
-    "description": "The old tree looks as though the wind has battered and torn at it for years.\n
-                   |Very few leaves remain. Its limbs are crooked and gnarled. It moans as the \n
+    "description": "The old tree looks as though the wind has battered and torn at it for years.
+                   |Very few leaves remain. Its limbs are crooked and gnarled. It moans as the 
                    |wind pushes it back and forth.\n",
     "race": "human",
     "alignment": 250,
@@ -65,8 +65,8 @@
     "name": "dweller cave creature",
     "short_descr": "the Cave Dweller",
     "long_descr": "A slimy, gross creature is here munching on a corpse.\n",
-    "description": "The cave dweller looks like a mixture of several disgusting monsters. It has\n
-                   |a bird's beak, huge white eyes, a furry body, and long clawed hands and feet.\n
+    "description": "The cave dweller looks like a mixture of several disgusting monsters. It has
+                   |a bird's beak, huge white eyes, a furry body, and long clawed hands and feet.
                    |It sees you and snarls.\n",
     "race": "human",
     "alignment": 0,
@@ -125,7 +125,7 @@
     "name": "weeping willow tree",
     "short_descr": "the Weeping Willow",
     "long_descr": "A large willow tree stands here, weeping.\n",
-    "description": "The weeping willow has long thins branches. These branches seem to droop in\n
+    "description": "The weeping willow has long thins branches. These branches seem to droop in
                    |anguish and dismay. You hear a faint sound of crying.\n",
     "race": "human",
     "alignment": 1000,
@@ -182,8 +182,8 @@
     "name": "swamp wraith",
     "short_descr": "the Swamp Wraith",
     "long_descr": "A swamp wraith emerges from the mist here.\n",
-    "description": "The swamp wraith is made of mist and is in the image of a great warrior. He\n
-                   |appears to emerge from the mist. You feel the cold radiating from his form as\n
+    "description": "The swamp wraith is made of mist and is in the image of a great warrior. He
+                   |appears to emerge from the mist. You feel the cold radiating from his form as
                    |he nears you.\n",
     "race": "human",
     "alignment": -1000,
@@ -212,7 +212,7 @@
     "name": "ogre villager",
     "short_descr": "the Ogre Villager",
     "long_descr": "The ogre villager is here, going about its chores.\n",
-    "description": "You see a pitifully overworked ogre. It is dressed in rags and shuffles along\n
+    "description": "You see a pitifully overworked ogre. It is dressed in rags and shuffles along
                    |with its head hung low. It sees you and cringes in mortal terror.\n",
     "race": "human",
     "alignment": -200,
@@ -240,7 +240,7 @@
     "name": "warrior ogre",
     "short_descr": "the Ogre Warrior",
     "long_descr": "The ogre warrior stands here, growling fiercely.\n",
-    "description": "The ogre warrior is dressed in thick fur armor. He looks quite large and\n
+    "description": "The ogre warrior is dressed in thick fur armor. He looks quite large and
                    |formidable.\n",
     "race": "human",
     "alignment": -350,
@@ -268,7 +268,7 @@
     "name": "guard ogre",
     "short_descr": "the Ogre Guard",
     "long_descr": "The ogre guard is here manning his post faithfully.\n",
-    "description": "The ogre guard stands here manning his post. It appears as though he would\n
+    "description": "The ogre guard stands here manning his post. It appears as though he would
                    |fight to the death before abandoning his post.\n",
     "race": "human",
     "alignment": -500,
@@ -296,7 +296,7 @@
     "name": "shaman ogre",
     "short_descr": "The Ogre Shaman",
     "long_descr": "The ogre shaman is here chanting arcane words and waving his arms.\n",
-    "description": "The ogre shaman is draped in thick fur cloaks and pelts. He has all types of\n
+    "description": "The ogre shaman is draped in thick fur cloaks and pelts. He has all types of
                    |charms and holy symbols draped about him. He looks at you and snarls.\n",
     "race": "human",
     "alignment": -750,
@@ -326,7 +326,7 @@
     "name": "chief chieftain ogre",
     "short_descr": "the Ogre Chieftain",
     "long_descr": "The ogre chieftain is here, observing his subjects.\n",
-    "description": "This is the biggest ogre you have ever seen. He is heavily equipped and looks\n
+    "description": "This is the biggest ogre you have ever seen. He is heavily equipped and looks
                    |quite formidable. He towers high above you and growls menacingly.\n",
     "race": "human",
     "alignment": -1000,
@@ -355,7 +355,7 @@
     "name": "barbarian",
     "short_descr": "the Plains Barbarian",
     "long_descr": "A plains barbarian is here, clad in heavy furs.\n",
-    "description": "The plains barbarian is clad in heavy furs. He seems used to the chilling cold\n
+    "description": "The plains barbarian is clad in heavy furs. He seems used to the chilling cold
                    |and icy wastes.\n",
     "race": "human",
     "alignment": 0,
@@ -383,7 +383,7 @@
     "name": "yeti white",
     "short_descr": "the White Yeti",
     "long_descr": "The white yeti crouches here snarling.\n",
-    "description": "The white yeti looks like a huge white snow ape. Its long arms end in long\n
+    "description": "The white yeti looks like a huge white snow ape. Its long arms end in long
                    |curved talons and its mouth is full of sharp teeth.\n",
     "race": "human",
     "alignment": -350,
@@ -411,9 +411,9 @@
     "anum": 14,
     "name": "worm ice iceworm",
     "short_descr": "the Ice Worm",
-    "long_descr": "A huge ice worm burrows through the ice and snow here. It rears up and\n
+    "long_descr": "A huge ice worm burrows through the ice and snow here. It rears up and
                   |attacks!\n",
-    "description": "The huge worm is almost 50 feet long. Its huge gaping mouth spews ice and snow\n
+    "description": "The huge worm is almost 50 feet long. Its huge gaping mouth spews ice and snow
                    |as it charges directly at you.\n",
     "race": "human",
     "alignment": 0,
@@ -442,7 +442,7 @@
     "name": "citizen minotaur",
     "short_descr": "the Minotaur Citizen",
     "long_descr": "A minotaur citizen is here, hurrying through the icy streets.\n",
-    "description": "You see a rather ragged and cold minotaur. It appears to be looking for a warm\n
+    "description": "You see a rather ragged and cold minotaur. It appears to be looking for a warm
                    |place to seek refuge from the cold.\n",
     "race": "human",
     "alignment": 100,
@@ -470,7 +470,7 @@
     "name": "guard minotaur",
     "short_descr": "the Minotaur Guard",
     "long_descr": "A minotaur guard catches you trespassing and attacks!\n",
-    "description": "The minotaur is clad in heavy furs. Beneath these furs, you see the gleam of\n
+    "description": "The minotaur is clad in heavy furs. Beneath these furs, you see the gleam of
                    |his armor.\n",
     "race": "human",
     "alignment": -330,
@@ -498,7 +498,7 @@
     "name": "warrior minotaur",
     "short_descr": "the Minotaur Warrior",
     "long_descr": "A minotaur warrior is here looking for intruders.\n",
-    "description": "You see a huge minotaur that is dressed in thick furs and armor. He has black\n
+    "description": "You see a huge minotaur that is dressed in thick furs and armor. He has black
                    |fur and red eyes. He looks quite capable of protecting the city.\n",
     "race": "human",
     "alignment": -330,
@@ -526,7 +526,7 @@
     "name": "minotaur gatekeeper",
     "short_descr": "the Minotaur Gatekeeper",
     "long_descr": "A minotaur is here guarding the Keep of Mahn-Tor.\n",
-    "description": "The minotaur stands rigidly before the gates of the keep. It looks quite\n
+    "description": "The minotaur stands rigidly before the gates of the keep. It looks quite
                    |miserable standing in the driven snow and ice.\n",
     "race": "human",
     "alignment": -330,
@@ -555,7 +555,7 @@
     "name": "minotaur high guard",
     "short_descr": "the High Minotaur Guard",
     "long_descr": "The minotaur high guard is here guarding the Keep.\n",
-    "description": "The high guard is dressed in blue plate armour. He looks quite dangerous and\n
+    "description": "The high guard is dressed in blue plate armour. He looks quite dangerous and
                    |skilled.\n",
     "race": "human",
     "alignment": -330,
@@ -584,7 +584,7 @@
     "name": "minotaur royal guard",
     "short_descr": "the Royal Minotaur Guard",
     "long_descr": "The royal minotaur guard considers you an intruder and attacks!\n",
-    "description": "The royal guard is quite huge. He is dressed in heavy red armor and wields a\n
+    "description": "The royal guard is quite huge. He is dressed in heavy red armor and wields a
                    |huge glaive. He looks quite capable of protecting the keep.\n",
     "race": "human",
     "alignment": -330,
@@ -613,7 +613,7 @@
     "name": "guard minotaur elite",
     "short_descr": "the Elite Minotaur Guard",
     "long_descr": "The elite minotaur guard sees you and attacks!\n",
-    "description": "This minotaur wields a huge morningstar and is clad in heavy crimson plate and\n
+    "description": "This minotaur wields a huge morningstar and is clad in heavy crimson plate and
                    |furs.\n",
     "race": "human",
     "alignment": -250,
@@ -642,7 +642,7 @@
     "name": "girl haremgirl harem slave",
     "short_descr": "the Harem Girl",
     "long_descr": "A harem girl cowers here in fear.\n",
-    "description": "She looks quite attractive. Her low cut gown reveals why she was chosen to be\n
+    "description": "She looks quite attractive. Her low cut gown reveals why she was chosen to be
                    |in the harem.\n",
     "race": "human",
     "alignment": 1000,
@@ -697,7 +697,7 @@
     "name": "keeper minotaur ring-keeper",
     "short_descr": "the Minotaur Ring-Keeper",
     "long_descr": "The minotaur ring-keeper stands guarding his post.\n",
-    "description": "The ring-keeper is a huge minotaur. You notice a huge ring of multicolored\n
+    "description": "The ring-keeper is a huge minotaur. You notice a huge ring of multicolored
                    |keys hanging from his belt. He wears huge, spiked brass knuckles.\n",
     "race": "human",
     "alignment": -300,
@@ -727,7 +727,7 @@
     "name": "gorak minotaur warrior master",
     "short_descr": "Gorak",
     "long_descr": "Gorak, the Minotaur Master Warrior, is here practicing his skills.\n",
-    "description": "Gorak is HUGE. His bulging muscles are confined beneath heavy armor. He is the\n
+    "description": "Gorak is HUGE. His bulging muscles are confined beneath heavy armor. He is the
                    |master of the warrior guild of Mahn-Tor.\n",
     "race": "human",
     "alignment": -300,
@@ -756,7 +756,7 @@
     "name": "darkoth minotaur anti-paladin master",
     "short_descr": "Darkoth",
     "long_descr": "Darkoth, the minotaur anti-paladin, stands here grinning wickedly.\n",
-    "description": "Darkoth is a living incarnation of evil. He radiates a dark aura, and a cold\n
+    "description": "Darkoth is a living incarnation of evil. He radiates a dark aura, and a cold
                    |chill runs down your spine. He is the master of the Mahn-Tor anti-paladins.\n",
     "race": "human",
     "alignment": -1000,
@@ -786,7 +786,7 @@
     "name": "tyrgoth minotaur paladin master",
     "short_descr": "Tyrgoth",
     "long_descr": "Tyrgoth, the minotaur paladin, is here worshipping silently.\n",
-    "description": "Tyrgoth is the minotaur incarnation of good. You feel safe and at ease in his\n
+    "description": "Tyrgoth is the minotaur incarnation of good. You feel safe and at ease in his
                    |presence. He is the leader of the Mahn-Tor paladins.\n",
     "race": "human",
     "alignment": 1000,
@@ -815,8 +815,8 @@
     "name": "amyrok minotaur mage master",
     "short_descr": "Amyrok",
     "long_descr": "Amyrok, the minotaur archmage, is here chanting arcane spells.\n",
-    "description": "Amyrok is a small minotaur. He is clad in loose robes and emits an aura of\n
-                   |power. He appears quite dangerous, despite his size. He is the leader of the\n
+    "description": "Amyrok is a small minotaur. He is clad in loose robes and emits an aura of
+                   |power. He appears quite dangerous, despite his size. He is the leader of the
                    |mages of Mahn-Tor.\n",
     "race": "human",
     "alignment": 300,
@@ -846,7 +846,7 @@
     "name": "sumaron minotaur cleric master",
     "short_descr": "Sumaron",
     "long_descr": "Sumaron, master cleric of Mahn-Tor, is here looking holy.\n",
-    "description": "Sumaron is clad in white glowing robes. He is goodness incarnate. He is the\n
+    "description": "Sumaron is clad in white glowing robes. He is goodness incarnate. He is the
                    |master of all the clerics of Mahn-Tor.\n",
     "race": "human",
     "alignment": 1000,
@@ -876,7 +876,7 @@
     "name": "nasturn minotaur druid master",
     "short_descr": "Nasturn",
     "long_descr": "Nasturn, the minotaur druid, is here studying the arts of nature.\n",
-    "description": "Nasturn is quite a natural looking minotaur. He is dressed in leather and\n
+    "description": "Nasturn is quite a natural looking minotaur. He is dressed in leather and
                    |wears no metal of any type. He looks at you and smiles.\n",
     "race": "human",
     "alignment": 500,
@@ -906,7 +906,7 @@
     "name": "belrak minotaur ranger master",
     "short_descr": "Belrak",
     "long_descr": "Belrak, the minotaur ranger, looks unhappy about having visitors.\n",
-    "description": "Belrak is clad in green and brown leather. He looks quite agile and thin, when\n
+    "description": "Belrak is clad in green and brown leather. He looks quite agile and thin, when
                    |compared to the normal minotaur. He looks at you with a slight smirk.\n",
     "race": "human",
     "alignment": 500,
@@ -935,7 +935,7 @@
     "name": "dorgar minotaur thief master",
     "short_descr": "Dorgar",
     "long_descr": "Dorgar, the minotaur thief, is here hiding in the shadows.\n",
-    "description": "Dorgar is clad all in black. He is tall and slender, unlike most minotaurs. He\n
+    "description": "Dorgar is clad all in black. He is tall and slender, unlike most minotaurs. He
                    |appears to be quite a skilled thief.\n",
     "race": "human",
     "alignment": -500,
@@ -964,8 +964,8 @@
     "name": "mahn-tor minotaur grand master",
     "short_descr": "Mahn-Tor",
     "long_descr": "Mahn-Tor, the minotaur grand master, is here looking down at you.\n",
-    "description": "Mahn-Tor towers above you. He is simply huge. Mahn-Tor is clad in the best of\n
-                   |armor and robes. He wields the largest axe you have ever seen. You can see why\n
+    "description": "Mahn-Tor towers above you. He is simply huge. Mahn-Tor is clad in the best of
+                   |armor and robes. He wields the largest axe you have ever seen. You can see why
                    |Mahn-Tor is the leader of the minotaurs. He is awe-inspiring.\n",
     "race": "human",
     "alignment": -500,

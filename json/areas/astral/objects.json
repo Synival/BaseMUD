@@ -87,7 +87,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "tablet scroll black",
-      "description": "The tablet is an unreflective black rectangular piece of stone, with strange\n
+      "description": "The tablet is an unreflective black rectangular piece of stone, with strange
                      |writings etched deep into its surface.\n"
     }]
   }},
@@ -132,11 +132,11 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "amulet demon",
-      "description": "The amulet is a small circular object made from some bizarre metallic alloy.\n
-                     |It is inscribed with various symbols and raised images of snakes, tortured\n
-                     |victims, and other things too horrible to describe.\n
-                     |\n
-                     |Stenciled in the center is an unpronounceable name which it would behoove you\n
+      "description": "The amulet is a small circular object made from some bizarre metallic alloy.
+                     |It is inscribed with various symbols and raised images of snakes, tortured
+                     |victims, and other things too horrible to describe.
+                     |
+                     |Stenciled in the center is an unpronounceable name which it would behoove you
                      |not to utter aloud.\n"
     }],
     "affects": [
@@ -176,10 +176,10 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "talisman devilish",
-      "description": "The talisman is a red circular stone object hanging from a metallic chain.  It\n
-                     |seems to pulse with a life of its own, and you feel uncomfortable being anywhere\n
-                     |near it.\n
-                     |\n
+      "description": "The talisman is a red circular stone object hanging from a metallic chain.  It
+                     |seems to pulse with a life of its own, and you feel uncomfortable being anywhere
+                     |near it.
+                     |
                      |Engraved in the center is one word.  Merely reading the word induces fright.\n"
     }],
     "affects": [{
@@ -209,8 +209,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "knife silvery",
-      "description": "The knife is forged from a strange silvery metal the likes of which you have\n
-                     |never seen in your own world.  It is incredibly sharp and hard, yet feels almost\n
+      "description": "The knife is forged from a strange silvery metal the likes of which you have
+                     |never seen in your own world.  It is incredibly sharp and hard, yet feels almost
                      |fluid to the touch.\n"
     }],
     "affects": [
@@ -249,8 +249,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dagger silvery",
-      "description": "The dagger is forged from a strange silvery metal the likes of which you have\n
-                     |never seen in your own world.  It is incredibly sharp and hard, yet feels almost\n
+      "description": "The dagger is forged from a strange silvery metal the likes of which you have
+                     |never seen in your own world.  It is incredibly sharp and hard, yet feels almost
                      |fluid to the touch.\n"
     }],
     "affects": [
@@ -289,8 +289,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword thin",
-      "description": "The sword is forged from a strange silvery metal.  It barely measures an inch\n
-                     |across at its widest point, yet it is totally inflexible and razor-sharp.  It\n
+      "description": "The sword is forged from a strange silvery metal.  It barely measures an inch
+                     |across at its widest point, yet it is totally inflexible and razor-sharp.  It
                      |could probably cut through stone.\n"
     }],
     "affects": [
@@ -337,8 +337,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword thin two two-handed",
-      "description": "The sword is forged from a strange silvery metal.  It barely measures two inches\n
-                     |across at its widest point, yet it is totally inflexible and razor sharp.  It\n
+      "description": "The sword is forged from a strange silvery metal.  It barely measures two inches
+                     |across at its widest point, yet it is totally inflexible and razor sharp.  It
                      |could probably cut through stone.\n"
     }],
     "affects": [
@@ -379,8 +379,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword silvery",
-      "description": "The sword is forged from a strange silvery metal the likes of which you have\n
-                     |never seen in your own world.  It is incredibly sharp and hard, yet feels almost\n
+      "description": "The sword is forged from a strange silvery metal the likes of which you have
+                     |never seen in your own world.  It is incredibly sharp and hard, yet feels almost
                      |fluid to the touch.\n"
     }],
     "affects": [
@@ -420,8 +420,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "flail barbed iron",
-      "description": "This hideous weapon has claimed many lives.  You can tell from the bloodstains\n
-                     |dried into the iron and from the residue of flesh that hangs from the many\n
+      "description": "This hideous weapon has claimed many lives.  You can tell from the bloodstains
+                     |dried into the iron and from the residue of flesh that hangs from the many
                      |barbs on it.\n"
     }],
     "affects": [{
@@ -453,9 +453,9 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword gith",
-      "description": "The blade of this sword is a featureless gray.  As you touch it you feel an\n
-                     |evil presence reaching out to consume your soul.\n
-                     |\n
+      "description": "The blade of this sword is a featureless gray.  As you touch it you feel an
+                     |evil presence reaching out to consume your soul.
+                     |
                      |Maybe picking it up wasn't such a good idea.\n"
     }],
     "affects": [
@@ -503,7 +503,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "stone flame",
-      "description": "This stone burns with an flame that emits great heat, yet it can be held with\n
+      "description": "This stone burns with an flame that emits great heat, yet it can be held with
                      |ease.  The flame creates a light that allows you to see for miles.\n"
     }],
     "affects": [
@@ -558,7 +558,7 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "vest splint",
-      "description": "This splint mail has been expertly and ornately fashioned from the highest\n
+      "description": "This splint mail has been expertly and ornately fashioned from the highest
                      |quality of steels.\n"
     }]
   }},
@@ -580,7 +580,7 @@
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "skirt splint",
-      "description": "This splint mail has been expertly and ornately fashioned from the highest\n
+      "description": "This splint mail has been expertly and ornately fashioned from the highest
                      |quality of steels.\n"
     }]
   }},
@@ -602,7 +602,7 @@
     "wear_flags": "take arms",
     "extra_description": [{
       "keyword": "sleeves splint",
-      "description": "This splint mail has been expertly and ornately fashioned from the highest\n
+      "description": "This splint mail has been expertly and ornately fashioned from the highest
                      |quality of steels.\n"
     }]
   }},
@@ -624,7 +624,7 @@
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "gauntlets ornate",
-      "description": "These gauntlets have been expertly and ornately fashioned from the highest\n
+      "description": "These gauntlets have been expertly and ornately fashioned from the highest
                      |quality of steels.\n"
     }],
     "affects": [
@@ -670,7 +670,7 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "vest cracked leather",
-      "description": "The ancient vest is barely intact.  All of the leather has cracked and dried\n
+      "description": "The ancient vest is barely intact.  All of the leather has cracked and dried
                      |to a husk.  It is covered with stains, burns, scorch marks, and blood.\n"
     }],
     "affects": [
@@ -773,7 +773,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "mint chocolate",
-      "description": "This mint is made from the finest of chocolates, surrounding a cool peppermint\n
+      "description": "This mint is made from the finest of chocolates, surrounding a cool peppermint
                      |interior that must be savored, not swallowed.\n"
     }]
   }},
@@ -792,7 +792,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "pentagram",
-      "description": "The pentagram is a small circular hoop that surrounds a five-pointed star.\n
+      "description": "The pentagram is a small circular hoop that surrounds a five-pointed star.
                      |Inscribed on its exterior loop are markings in an alien tongue.\n"
     }]
   }},

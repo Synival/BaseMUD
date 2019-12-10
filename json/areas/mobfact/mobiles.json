@@ -5,7 +5,7 @@
     "name": "fido mutant dog",
     "short_descr": "the mutant beastly fido",
     "long_descr": "The mutant beastly fido is here, his eyes glowing green!\n",
-    "description": "You see a mutant beastly fido, glaring at you with green eyes!  You wonder if\n
+    "description": "You see a mutant beastly fido, glaring at you with green eyes!  You wonder if
                    |this factory meets ASPCA guidlines....\n",
     "race": "fido",
     "alignment": -700,
@@ -34,8 +34,8 @@
     "name": "foreman floyd",
     "short_descr": "Foreman Floyd",
     "long_descr": "Foreman Floyd is here, making plans for the factory's future.\n",
-    "description": "You see Foreman Floyd of the Mob factory -- a sterling example of what comes\n
-                   |of dedicated Mudding!  Rewarded for his years of dedication as a monster\n
+    "description": "You see Foreman Floyd of the Mob factory -- a sterling example of what comes
+                   |of dedicated Mudding!  Rewarded for his years of dedication as a monster
                    |slayer, Floyd now creates the beasts for other adventurers to fight.\n",
     "race": "human",
     "alignment": 2,
@@ -65,8 +65,8 @@
     "name": "cityguard guard head",
     "short_descr": "the cityguard head",
     "long_descr": "The cityguard head floats around aimlessly.\n",
-    "description": "You see a cityguard head floating around without a care in the world.\n
-                   |Obviously, this one got past quality control!  Careful, those teeth look\n
+    "description": "You see a cityguard head floating around without a care in the world.
+                   |Obviously, this one got past quality control!  Careful, those teeth look
                    |sharp...\n",
     "race": "unique",
     "alignment": 0,
@@ -97,7 +97,7 @@
     "name": "revolving drunk",
     "short_descr": "the revolving drunk",
     "long_descr": "The revolving drunk is here, spinning in place.\n",
-    "description": "You see and smell a drunk who looks much like other drunks...but he is spinning\n
+    "description": "You see and smell a drunk who looks much like other drunks...but he is spinning
                    |in place!  Someone should tell him that he is a REVOLTING drunk.\n",
     "race": "human",
     "alignment": 1,
@@ -125,7 +125,7 @@
     "name": "toxic slime",
     "short_descr": "the toxic slime",
     "long_descr": "A pool of toxic slime lies on the floor.\n",
-    "description": "Yick.  Looks like someone had digestion problems!  Either that, or the \n
+    "description": "Yick.  Looks like someone had digestion problems!  Either that, or the 
                    |hydraulic fluid is leaking again.\n",
     "race": "human",
     "alignment": 0,
@@ -155,7 +155,7 @@
     "name": "worker",
     "short_descr": "the factory worker",
     "long_descr": "A Mob Factory worker is standing here, looking bored.\n",
-    "description": "The worker wears a bright orange pair of overalls, with the words \"Mob\n
+    "description": "The worker wears a bright orange pair of overalls, with the words \"Mob
                    |Factory\" written in a bright purple starburst.  Fashion plate, he's not.\n",
     "race": "human",
     "alignment": 100,
@@ -183,7 +183,7 @@
     "name": "worker",
     "short_descr": "the factory worker",
     "long_descr": "A Mob Factory worker is here, asleep in a chair.\n",
-    "description": "If Floyd walks in, you can bet there'll be trouble.  Guess she shouldn't have\n
+    "description": "If Floyd walks in, you can bet there'll be trouble.  Guess she shouldn't have
                    |worked the late shift!\n",
     "race": "human",
     "alignment": 150,

@@ -5,8 +5,8 @@
     "name": "zeus god",
     "short_descr": "Zeus",
     "long_descr": "Zeus sits here on a throne.\n",
-    "description": "You see before you the greatest of the Olympians.  It seems as if he could\n
-                   |destroy you with a thought.  Every glance penetrates deep into your soul.\n
+    "description": "You see before you the greatest of the Olympians.  It seems as if he could
+                   |destroy you with a thought.  Every glance penetrates deep into your soul.
                    |You now know what true fear is.\n",
     "race": "human",
     "alignment": 1000,
@@ -36,7 +36,7 @@
     "name": "prometheus",
     "short_descr": "Prometheus",
     "long_descr": "Prometheus is here, playing with a match.\n",
-    "description": "This mortal risked the wrath of Zeus to give the gift of fire to humans.  He\n
+    "description": "This mortal risked the wrath of Zeus to give the gift of fire to humans.  He
                    |looks up at you and smiles.\n",
     "race": "human",
     "alignment": 1000,
@@ -66,8 +66,8 @@
     "name": "hermes",
     "short_descr": "Hermes",
     "long_descr": "Hermes is busy, delivering a message.\n",
-    "description": "This is the messenger of the Gods.  He wears a winged helm and boots, and\n
-                   |darts from place to place.  He looks very busy, and it seems as if he doesn't\n
+    "description": "This is the messenger of the Gods.  He wears a winged helm and boots, and
+                   |darts from place to place.  He looks very busy, and it seems as if he doesn't
                    |even notice your presence.\n",
     "race": "human",
     "alignment": 1000,
@@ -97,8 +97,8 @@
     "name": "poseidon",
     "short_descr": "Poseidon",
     "long_descr": "Poseidon is dining here.\n",
-    "description": "He is the brother of Zeus himself, chosen to rule the seas.  He must be\n
-                   |visiting Mount Olympus.  He nods at you and motions for you to enter and\n
+    "description": "He is the brother of Zeus himself, chosen to rule the seas.  He must be
+                   |visiting Mount Olympus.  He nods at you and motions for you to enter and
                    |have a seat.\n",
     "race": "human",
     "alignment": 1000,
@@ -129,8 +129,8 @@
     "name": "apollo",
     "short_descr": "Apollo",
     "long_descr": "Apollo is here, playing a tune.\n",
-    "description": "This jovial God is strumming on a lyre.  He smiles at you and asks you to\n
-                   |join him.  You notice a dangerous looking bow by his side, however, and think\n
+    "description": "This jovial God is strumming on a lyre.  He smiles at you and asks you to
+                   |join him.  You notice a dangerous looking bow by his side, however, and think
                    |that he knows more than music.\n",
     "race": "human",
     "alignment": 1000,
@@ -160,7 +160,7 @@
     "name": "ares",
     "short_descr": "Ares",
     "long_descr": "Ares is here, kicking your ass.\n",
-    "description": "The God of War is here, studying some maps.  He scowls at you as you enter\n
+    "description": "The God of War is here, studying some maps.  He scowls at you as you enter
                    |and says 'I am very busy.  What do you want?'\n",
     "race": "human",
     "alignment": -1000,
@@ -189,7 +189,7 @@
     "name": "athena",
     "short_descr": "Athena",
     "long_descr": "Athena is relaxing here.\n",
-    "description": "Zeus' favorite daughter is sitting on a couch eating grapes.  She smiles at\n
+    "description": "Zeus' favorite daughter is sitting on a couch eating grapes.  She smiles at
                    |you and invites you to join her.\n",
     "race": "human",
     "alignment": 1000,
@@ -219,8 +219,8 @@
     "name": "hephaestus smith",
     "short_descr": "Hephaestus",
     "long_descr": "Hephaestus the Smith is here, crafting a fine weapon.\n",
-    "description": "This God is the only one who is not physically perfect.  He is lame and very\n
-                   |ugly.  You get the impression that he is kind, however, and would go out of his\n
+    "description": "This God is the only one who is not physically perfect.  He is lame and very
+                   |ugly.  You get the impression that he is kind, however, and would go out of his
                    |way to help you.  He is attended by three golden maidens.\n",
     "race": "human",
     "alignment": 1000,
@@ -250,7 +250,7 @@
     "name": "handmaid golden",
     "short_descr": "A Golden Maiden",
     "long_descr": "A Handmaid of gold is here, assisting the smith.\n",
-    "description": "As you gaze upon this creation, you realize that she is made from solid\n
+    "description": "As you gaze upon this creation, you realize that she is made from solid
                    |gold.  She seems to be very lifelike as she assists the smith in his work.\n",
     "race": "human",
     "alignment": 0,
@@ -280,7 +280,7 @@
     "name": "soldier",
     "short_descr": "A Soldier",
     "long_descr": "A soldier is here, assisting Ares.\n",
-    "description": "This man is waiting on Ares.  Although he does not look very strong, you\n
+    "description": "This man is waiting on Ares.  Although he does not look very strong, you
                    |realize that Ares would not have any weaklings working for him.\n",
     "race": "human",
     "alignment": 0,
@@ -309,7 +309,7 @@
     "name": "musician apprentice",
     "short_descr": "an apprentice musician",
     "long_descr": "A musician is here, learning from Apollo.\n",
-    "description": "This man has mastered his first profession, and is now studying music from the\n
+    "description": "This man has mastered his first profession, and is now studying music from the
                    |immortal Apollo.\n",
     "race": "human",
     "alignment": 1000,
@@ -366,7 +366,7 @@
     "name": "hound dog war",
     "short_descr": "A hound of war",
     "long_descr": "A large hound snarls at you.\n",
-    "description": "This great beast can barely be called a dog.  It has been bred to cause fear\n
+    "description": "This great beast can barely be called a dog.  It has been bred to cause fear
                    |on the battle field, and you have no doubt that it does its job well.\n",
     "race": "human",
     "alignment": -600,
@@ -395,8 +395,8 @@
     "name": "Odin",
     "short_descr": "Odin",
     "long_descr": "Odin is resting here.\n",
-    "description": "As you gaze at Odin, you realize how insignificant you truly are.  He towers\n
-                   |over you, and is so intent on his activities that he barely recognizes your\n
+    "description": "As you gaze at Odin, you realize how insignificant you truly are.  He towers
+                   |over you, and is so intent on his activities that he barely recognizes your
                    |presence.\n",
     "race": "human",
     "alignment": 1000,
@@ -426,9 +426,9 @@
     "name": "grocer greengrocer julius",
     "short_descr": "Julius the Green Grocer",
     "long_descr": "Julius the Green Grocer stands here.\n",
-    "description": "This jovial man has devoted his life to selling fruit and other foods to the\n
-                   |inhabitants of this city.  Although he may seem like a wimp, it would be wise\n
-                   |not to underestimate him.  He smiles warmly at you and shows you his selection\n
+    "description": "This jovial man has devoted his life to selling fruit and other foods to the
+                   |inhabitants of this city.  Although he may seem like a wimp, it would be wise
+                   |not to underestimate him.  He smiles warmly at you and shows you his selection
                    |of delicious looking foods.\n",
     "race": "human",
     "alignment": 1000,
@@ -466,8 +466,8 @@
     "name": "alchemist",
     "short_descr": "the Alchemist",
     "long_descr": "The ancient, wizened Alchemist stands here.\n",
-    "description": "Skilled in all manner of magic, as well as the ancient art of alchemy, he\n
-                   |stands ready to supply the citizens here (but not you) with all manner of\n
+    "description": "Skilled in all manner of magic, as well as the ancient art of alchemy, he
+                   |stands ready to supply the citizens here (but not you) with all manner of
                    |arcane supplies.\n",
     "race": "human",
     "alignment": 1000,
@@ -496,7 +496,7 @@
     "name": "clive",
     "short_descr": "Clive the Weapons Master",
     "long_descr": "Clive the Weapons Master is practicing with his bow and axe.\n",
-    "description": "Clive looks VERY big and VERY tough.  All those years in the army must have\n
+    "description": "Clive looks VERY big and VERY tough.  All those years in the army must have
                    |paid off.\n",
     "race": "human",
     "alignment": 1000,
@@ -525,7 +525,7 @@
     "name": "armourer samuel",
     "short_descr": "Samuel the Armourer",
     "long_descr": "Samuel the Armourer glares at you.\n",
-    "description": "Samuel looks just like Clive the Weapons Master: VERY big and VERY tough.\n
+    "description": "Samuel looks just like Clive the Weapons Master: VERY big and VERY tough.
                    |He doesn't like what you've been doing in his city.\n",
     "race": "human",
     "alignment": 1000,
@@ -554,8 +554,8 @@
     "name": "ra sun god",
     "short_descr": "Ra the Sun God",
     "long_descr": "Ra the Egyptian Sun God is resting here.\n",
-    "description": "Ra is very bright!  It hurts your eyes to look at him, so you can tell little\n
-                   |about his appearance.  What you can tell, however, suggests that he is no one\n
+    "description": "Ra is very bright!  It hurts your eyes to look at him, so you can tell little
+                   |about his appearance.  What you can tell, however, suggests that he is no one
                    |to be trifled with.\n",
     "race": "rabbit",
     "alignment": 1000,
@@ -585,7 +585,7 @@
     "name": "chimera",
     "short_descr": "a chimera",
     "long_descr": "A chimera prowls the cell.\n",
-    "description": "This bizarre creature has three heads - one of a goat, one of a lion, and one\n
+    "description": "This bizarre creature has three heads - one of a goat, one of a lion, and one
                    |of a dragon.  It growls at you as you enter the cell, then suddenly attacks!\n",
     "race": "human",
     "alignment": -1000,
@@ -615,7 +615,7 @@
     "name": "hera",
     "short_descr": "Hera",
     "long_descr": "Hera is here.\n",
-    "description": "Hera, the wife of Zeus is here.  She smiles at you as you enter and invites you\n
+    "description": "Hera, the wife of Zeus is here.  She smiles at you as you enter and invites you
                    |to rest and sit for a while.\n",
     "race": "human",
     "alignment": 1000,
@@ -645,7 +645,7 @@
     "name": "roc",
     "short_descr": "a roc",
     "long_descr": "A roc is here.\n",
-    "description": "This is a giant bird.  It looks at you quizzically, then makes a noise and\n
+    "description": "This is a giant bird.  It looks at you quizzically, then makes a noise and
                    |looks away.\n",
     "race": "human",
     "alignment": 0,
@@ -704,7 +704,7 @@
     "name": "pegasus horse",
     "short_descr": "a pegasus",
     "long_descr": "A large horse with wings is here.\n",
-    "description": "This horse is snow white with large wings.  Although it doesn't look very\n
+    "description": "This horse is snow white with large wings.  Although it doesn't look very
                    |threatening, it seems as though it would be dangerous if provoked.\n",
     "race": "human",
     "alignment": 0,
@@ -761,7 +761,7 @@
     "name": "jailer",
     "short_descr": "The Jailer",
     "long_descr": "The jailer is here, watching for intruders.\n",
-    "description": "He looks as though he has spent a lot of time underground, guarding the\n
+    "description": "He looks as though he has spent a lot of time underground, guarding the
                    |prisoners.\n",
     "race": "human",
     "alignment": 0,

@@ -3,10 +3,10 @@
     "area": "hitower",
     "anum": 0,
     "name": "Entrance to the Shadow Grove",
-    "description": "Before you, the grove of shadows lies. Giant grey trees are all that\n
-                   |can be seen through the thick shadows. A great sense of both power and\n
-                   |menace permeates the surrounding area. You have a strange urge to turn\n
-                   |back and go back the way you've come.\n
+    "description": "Before you, the grove of shadows lies. Giant grey trees are all that
+                   |can be seen through the thick shadows. A great sense of both power and
+                   |menace permeates the surrounding area. You have a strange urge to turn
+                   |back and go back the way you've come.
                    |  A small path leads north into the shadows and back south to the road.\n",
     "sector_type": "forest",
     "room_flags": "no_mob",
@@ -26,9 +26,9 @@
     "area": "hitower",
     "anum": 1,
     "name": "The Shadow Grove",
-    "description": "You are inside the shadow grove. Giant trees seem to glare at you\n
-                   |from all sides. The shadowy mist obscures most of your vision. Strange\n
-                   |sounds of moaning and growling come from all directions.\n
+    "description": "You are inside the shadow grove. Giant trees seem to glare at you
+                   |from all sides. The shadowy mist obscures most of your vision. Strange
+                   |sounds of moaning and growling come from all directions.
                    |  All exits lead into shadows, you are very confused.\n",
     "sector_type": "forest",
     "room_flags": "dark no_recall",
@@ -63,9 +63,9 @@
     "area": "hitower",
     "anum": 2,
     "name": "The Shadow Grove",
-    "description": "You are inside the shadow grove. Giant trees seem to glare at you\n
-                   |from all sides. The shadowy mist obscures most of your vision. Strange\n
-                   |sounds moaning and growling come from all directions.\n
+    "description": "You are inside the shadow grove. Giant trees seem to glare at you
+                   |from all sides. The shadowy mist obscures most of your vision. Strange
+                   |sounds moaning and growling come from all directions.
                    |  All exits lead into shadows, you are very confused.\n",
     "sector_type": "forest",
     "room_flags": "dark no_recall",
@@ -110,9 +110,9 @@
     "area": "hitower",
     "anum": 3,
     "name": "The Shadow Grove",
-    "description": "You are inside the shadow grove. Giant trees seem the glare at you\n
-                   |from all sides. The shadowy mist obscures most of your vision. Strange\n
-                   |sounds of moaning and growling come from all directions.\n
+    "description": "You are inside the shadow grove. Giant trees seem the glare at you
+                   |from all sides. The shadowy mist obscures most of your vision. Strange
+                   |sounds of moaning and growling come from all directions.
                    |  All exits lead into shadows, you are very confused.\n",
     "sector_type": "forest",
     "room_flags": "dark no_recall",
@@ -147,9 +147,9 @@
     "area": "hitower",
     "anum": 4,
     "name": "The Shadow Grove",
-    "description": "You are inside the shadow grove. Giant trees seem to glare at you\n
-                   |from all sides. The shadowy mist obscures most of your vision. Strange\n
-                   |sounds of moaning and growling come from all directions.\n
+    "description": "You are inside the shadow grove. Giant trees seem to glare at you
+                   |from all sides. The shadowy mist obscures most of your vision. Strange
+                   |sounds of moaning and growling come from all directions.
                    |  All exits lead into shadows, you are very confused.\n",
     "sector_type": "forest",
     "room_flags": "dark no_recall",
@@ -194,9 +194,9 @@
     "area": "hitower",
     "anum": 5,
     "name": "The Shadow Grove",
-    "description": "You are inside the shadow grove. Giant trees seem to glare at you\n
-                   |from all sides. The shadowy mist obscures most of your vision. Strange\n
-                   |sounds of moaning and growling come from all directions.\n
+    "description": "You are inside the shadow grove. Giant trees seem to glare at you
+                   |from all sides. The shadowy mist obscures most of your vision. Strange
+                   |sounds of moaning and growling come from all directions.
                    |  All exits lead into shadows, you are very confused.\n",
     "sector_type": "forest",
     "room_flags": "dark no_recall",
@@ -231,9 +231,9 @@
     "area": "hitower",
     "anum": 6,
     "name": "The Shadow Grove",
-    "description": "You are inside the shadow grove. Giant trees seem to glare at you\n
-                   |from all sides. The shadowy mist obscures most of your vision. Strange\n
-                   |sounds of moaning and growling come from all directions.\n
+    "description": "You are inside the shadow grove. Giant trees seem to glare at you
+                   |from all sides. The shadowy mist obscures most of your vision. Strange
+                   |sounds of moaning and growling come from all directions.
                    |  All exits lead into shadows, you are very confused.\n",
     "sector_type": "forest",
     "room_flags": "dark no_recall",
@@ -278,9 +278,9 @@
     "area": "hitower",
     "anum": 7,
     "name": "The Shadow Grove",
-    "description": "You are inside the shadow grove. Giant trees seem to glare at you\n
-                   |from all sides. The shadowy mist obscures most of your vision. Strange\n
-                   |sounds of moaning and growling come from all directions.\n
+    "description": "You are inside the shadow grove. Giant trees seem to glare at you
+                   |from all sides. The shadowy mist obscures most of your vision. Strange
+                   |sounds of moaning and growling come from all directions.
                    |  All exits lead into shadows, you are very confused.\n",
     "sector_type": "forest",
     "room_flags": "dark no_recall",
@@ -325,9 +325,9 @@
     "area": "hitower",
     "anum": 8,
     "name": "The Shadow Grove",
-    "description": "You are inside the shadow grove. Giant trees seem to glare at you\n
-                   |from all sides. The shadowy mist obscures most of your vision. Strange\n
-                   |sounds of moaning and growling come from all directions.\n
+    "description": "You are inside the shadow grove. Giant trees seem to glare at you
+                   |from all sides. The shadowy mist obscures most of your vision. Strange
+                   |sounds of moaning and growling come from all directions.
                    |  All exits lead into shadows, you are very confused.\n",
     "sector_type": "forest",
     "room_flags": "dark no_recall",
@@ -372,9 +372,9 @@
     "area": "hitower",
     "anum": 9,
     "name": "The Shadow Grove",
-    "description": "You are inside the shadow grove. Giant trees seem to glare at you\n
-                   |from all sides. The shadowy mist obscures most of your vision. Strange\n
-                   |sounds of moaning and growling come from all directions.\n
+    "description": "You are inside the shadow grove. Giant trees seem to glare at you
+                   |from all sides. The shadowy mist obscures most of your vision. Strange
+                   |sounds of moaning and growling come from all directions.
                    |  All directions lead into shadows, you are very confused.\n",
     "sector_type": "forest",
     "room_flags": "dark no_recall",
@@ -409,11 +409,11 @@
     "area": "hitower",
     "anum": 11,
     "name": "A small clearing",
-    "description": "You are in a small clearing in the shadow grove. There is charred grass\n
-                   |underfoot, and the signs of fire here and there. It is almost as if the\n
-                   |plant life shuns this spot. The shadowy mist hovers all around, obscuring\n
-                   |your view into the grove.\n
-                   |  A small path leads north to some shadowy structure. All other exits are\n
+    "description": "You are in a small clearing in the shadow grove. There is charred grass
+                   |underfoot, and the signs of fire here and there. It is almost as if the
+                   |plant life shuns this spot. The shadowy mist hovers all around, obscuring
+                   |your view into the grove.
+                   |  A small path leads north to some shadowy structure. All other exits are
                    |shrouded in shadowy mist.\n",
     "sector_type": "forest",
     "room_flags": "dark",
@@ -452,10 +452,10 @@
     "area": "hitower",
     "anum": 12,
     "name": "Entrance to the High Tower",
-    "description": "You have reached the entrance to the high tower of sorcery. The\n
-                   |tower looms above you at an incredible height. It seems to disappear\n
-                   |into the storm clouds above.\n
-                   |  A diamond gate is to the north, guarded by a huge golem. The trail\n
+    "description": "You have reached the entrance to the high tower of sorcery. The
+                   |tower looms above you at an incredible height. It seems to disappear
+                   |into the storm clouds above.
+                   |  A diamond gate is to the north, guarded by a huge golem. The trail
                    |back south has disappeared behind you.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -478,11 +478,11 @@
     "area": "hitower",
     "anum": 13,
     "name": "Inside the High Tower of Sorcerery",
-    "description": "You are inside the high tower of sorcery. The sight is truly amazing.\n
-                   |From here, it is obvious that somehow, the tower is much larger on the\n
-                   |inside than it is on the outside. Young mages walk about, completely\n
-                   |oblivious to your presence.\n
-                   |  Exits lead north to the common room, west to the dinning room, east to\n
+    "description": "You are inside the high tower of sorcery. The sight is truly amazing.
+                   |From here, it is obvious that somehow, the tower is much larger on the
+                   |inside than it is on the outside. Young mages walk about, completely
+                   |oblivious to your presence.
+                   |  Exits lead north to the common room, west to the dinning room, east to
                    |a plain hallway and back south through the gate.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -519,11 +519,11 @@
     "area": "hitower",
     "anum": 14,
     "name": "Common Room",
-    "description": "You are in the common room. There are many apprentice warlocks here\n
-                   |talking and resting, playing games, comparing notes. Obviously they\n
-                   |are taking a break from their rigorous studies. There are benches,\n
-                   |tables and a small water fountain here, otherwise the room is quite\n
-                   |unremarkable.\n
+    "description": "You are in the common room. There are many apprentice warlocks here
+                   |talking and resting, playing games, comparing notes. Obviously they
+                   |are taking a break from their rigorous studies. There are benches,
+                   |tables and a small water fountain here, otherwise the room is quite
+                   |unremarkable.
                    |  Exits lead off in all directions.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -569,7 +569,7 @@
     "area": "hitower",
     "anum": 15,
     "name": "The Hallway",
-    "description": "You are in a long hallway, it seems rather unremarkable.\n
+    "description": "You are in a long hallway, it seems rather unremarkable.
                    |  The hallway continues east and back west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -596,9 +596,9 @@
     "area": "hitower",
     "anum": 16,
     "name": "Dining Room",
-    "description": "You are in the dining area of the student mages. From the number of\n
-                   |tables and chairs here, you can see that this room could easily seat\n
-                   |several hundred people. It is oddly deserted here, obviously not meal time.\n
+    "description": "You are in the dining area of the student mages. From the number of
+                   |tables and chairs here, you can see that this room could easily seat
+                   |several hundred people. It is oddly deserted here, obviously not meal time.
                    |  Exits lead west to the kitchen, and back east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -627,9 +627,9 @@
     "area": "hitower",
     "anum": 17,
     "name": "Dark Hallway",
-    "description": "You are in a dark hallway. It is apparent that this area is seldom\n
-                   |used by the regular occupants of the tower. Dust covers the floors\n
-                   |here.\n
+    "description": "You are in a dark hallway. It is apparent that this area is seldom
+                   |used by the regular occupants of the tower. Dust covers the floors
+                   |here.
                    |  The faint outline of a trapdoor can be seen in the dust.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -650,10 +650,10 @@
     "area": "hitower",
     "anum": 18,
     "name": "Mages Tavern",
-    "description": "You are in mages tavern. The air is smokey and filled with the smells\n
-                   |of foreign food and drink. The other patrons pay you little heed, as\n
-                   |they obviously have more interesting things to contemplate. Strick the\n
-                   |bartender is here waiting to take your order.\n
+    "description": "You are in mages tavern. The air is smokey and filled with the smells
+                   |of foreign food and drink. The other patrons pay you little heed, as
+                   |they obviously have more interesting things to contemplate. Strick the
+                   |bartender is here waiting to take your order.
                    |  The only exit leads back west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -698,9 +698,9 @@
     "area": "hitower",
     "anum": 19,
     "name": "The Magic Shop",
-    "description": "You are in the High Tower's store of magic. Tatorious stands behind\n
-                   |the counter, selling all sorts of herbs, parchment and other reagents\n
-                   |used in magical studies.\n
+    "description": "You are in the High Tower's store of magic. Tatorious stands behind
+                   |the counter, selling all sorts of herbs, parchment and other reagents
+                   |used in magical studies.
                    |  The only exit leads back east to the common room.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -731,11 +731,11 @@
     "area": "hitower",
     "anum": 20,
     "name": "the kitchen",
-    "description": "You are in a small kitchen. All the usual kitchen type utensils and\n
-                   |equipment is here, including some not so usual ones. Among the later,\n
-                   |a huge black oven against one wall, it must be at least 12 feet high.\n
-                   |Opposite the oven is an equally enormous meat locker, large enough to\n
-                   |comfortably store several hapless adventurers no doubt. In the middle of\n
+    "description": "You are in a small kitchen. All the usual kitchen type utensils and
+                   |equipment is here, including some not so usual ones. Among the later,
+                   |a huge black oven against one wall, it must be at least 12 feet high.
+                   |Opposite the oven is an equally enormous meat locker, large enough to
+                   |comfortably store several hapless adventurers no doubt. In the middle of
                    |the room, hanging in mid-air is a spice rack.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -819,9 +819,9 @@
     "area": "hitower",
     "anum": 21,
     "name": "Below the trapdoor",
-    "description": "You are below the trapdoor. It is very dark and dusty here, very little\n
-                   |light filters through from above. A faint sound of dripping water can be\n
-                   |heard in the distance below.\n
+    "description": "You are below the trapdoor. It is very dark and dusty here, very little
+                   |light filters through from above. A faint sound of dripping water can be
+                   |heard in the distance below.
                    |  A rope ladder leads down.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -842,9 +842,9 @@
     "area": "hitower",
     "anum": 22,
     "name": "A damp intersection",
-    "description": "You are in a damp intersection of what seems to be the basement of the\n
-                   |tower. The sound of running water can be heard coming from the south,\n
-                   |other than that, an almost tangible stillness fills the air.\n
+    "description": "You are in a damp intersection of what seems to be the basement of the
+                   |tower. The sound of running water can be heard coming from the south,
+                   |other than that, an almost tangible stillness fills the air.
                    |  Passages lead off in all directions, and a ladder leads up.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -876,8 +876,8 @@
     "area": "hitower",
     "anum": 23,
     "name": "A dark passage",
-    "description": "You are at the end of a dark passage which ends in a stout wooden door.\n
-                   |Other then through the door, the only apparent exit is back the way you\n
+    "description": "You are at the end of a dark passage which ends in a stout wooden door.
+                   |Other then through the door, the only apparent exit is back the way you
                    |came.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -899,9 +899,9 @@
     "area": "hitower",
     "anum": 24,
     "name": "A dark passage",
-    "description": "You are at the end of a dark passage. A half opened door is to the east,\n
-                   |shedding soft light around the edges. Faint snoring sounds can be heard\n
-                   |behind the door.\n
+    "description": "You are at the end of a dark passage. A half opened door is to the east,
+                   |shedding soft light around the edges. Faint snoring sounds can be heard
+                   |behind the door.
                    |  Exits lead east through the door, or back west.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -922,11 +922,11 @@
     "area": "hitower",
     "anum": 25,
     "name": "The stagnant pool",
-    "description": "You are at the edge of a stagnant pool of water. The smell here is quite\n
-                   |nauseating. This is apparently where the denizens of the tower dispose of\n
-                   |their garbage. Faint gurgling can be heard from beneath the surface of the\n
-                   |pool.\n
-                   |  Exits lead back north, or perhaps for the very adventurous, down into the\n
+    "description": "You are at the edge of a stagnant pool of water. The smell here is quite
+                   |nauseating. This is apparently where the denizens of the tower dispose of
+                   |their garbage. Faint gurgling can be heard from beneath the surface of the
+                   |pool.
+                   |  Exits lead back north, or perhaps for the very adventurous, down into the
                    |pool.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -946,9 +946,9 @@
     "area": "hitower",
     "anum": 26,
     "name": "A dark passage",
-    "description": "You are in a dark passage, which comes to an abrupt stop at what appears\n
-                   |to be a cave-in to the west. It is certainly unpassable, and perhaps quite\n
-                   |dangerous just being this close.\n
+    "description": "You are in a dark passage, which comes to an abrupt stop at what appears
+                   |to be a cave-in to the west. It is certainly unpassable, and perhaps quite
+                   |dangerous just being this close.
                    |  The only exit leads back east.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -961,8 +961,8 @@
     "area": "hitower",
     "anum": 27,
     "name": "A dark cell",
-    "description": "You are in a dark cell. Straw and dirt cover the floors here, it is\n
-                   |very dark. Someone, or something seems to be chained to the far wall.\n
+    "description": "You are in a dark cell. Straw and dirt cover the floors here, it is
+                   |very dark. Someone, or something seems to be chained to the far wall.
                    |  The only exit is back south.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -995,9 +995,9 @@
     "area": "hitower",
     "anum": 28,
     "name": "The Jailor's office",
-    "description": "You are in the Jailor's office. It is rather messy here. Judging by the\n
-                   |sleeping form of the Jailor on duty, you can surmise that very few, if any\n
-                   |prisoners survive long enough to spend much time in these dank dungeons.\n
+    "description": "You are in the Jailor's office. It is rather messy here. Judging by the
+                   |sleeping form of the Jailor on duty, you can surmise that very few, if any
+                   |prisoners survive long enough to spend much time in these dank dungeons.
                    |  The only exit leads back west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1030,9 +1030,9 @@
     "area": "hitower",
     "anum": 29,
     "name": "Below the stagnant pool",
-    "description": "As you dive beneath the putrid waters, you feel a strong tug and a whirlpool\n
-                   |drags you under.  You are sucked into blackness.  You feel your lungs burst\n
-                   |from lack of oxygen.  Just as you feel your life fading, you notice a change in\n
+    "description": "As you dive beneath the putrid waters, you feel a strong tug and a whirlpool
+                   |drags you under.  You are sucked into blackness.  You feel your lungs burst
+                   |from lack of oxygen.  Just as you feel your life fading, you notice a change in
                    |direction ... and are sucked under by a rip tide.\n",
     "sector_type": "inside",
     "room_flags": "dark no_mob indoors"
@@ -1041,7 +1041,7 @@
     "area": "hitower",
     "anum": 30,
     "name": "The hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1072,7 +1072,7 @@
     "area": "hitower",
     "anum": 31,
     "name": "A bend in the hallway",
-    "description": "You are at a bend in the hallway. The walls emit a faint magical glow\n
+    "description": "You are at a bend in the hallway. The walls emit a faint magical glow
                    |which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1105,8 +1105,8 @@
     "area": "hitower",
     "anum": 32,
     "name": "A store room",
-    "description": "You are in a small store room. Assorted junk is piled on shelves or\n
-                   |leaning against walls.\n
+    "description": "You are in a small store room. Assorted junk is piled on shelves or
+                   |leaning against walls.
                    |  The only apparent exit it back south.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1121,8 +1121,8 @@
     "area": "hitower",
     "anum": 33,
     "name": "A broom closet",
-    "description": "You are in a dark broom closet. Many straw brooms and other cleaning\n
-                   |instruments have been left here, apparently unused (perhaps the maid quit?).\n
+    "description": "You are in a dark broom closet. Many straw brooms and other cleaning
+                   |instruments have been left here, apparently unused (perhaps the maid quit?).
                    |  The only exit leads back north to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1171,7 +1171,7 @@
     "area": "hitower",
     "anum": 34,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a\n
+    "description": "You are in a long hallway leading north and south. The walls emit a
                    |faint magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1202,8 +1202,8 @@
     "area": "hitower",
     "anum": 35,
     "name": "Guardians chamber",
-    "description": "You are in the chamber of the tower guardians. It is rather sparsely\n
-                   |furnished, but then again the odd occupants don't look to need furniture.\n
+    "description": "You are in the chamber of the tower guardians. It is rather sparsely
+                   |furnished, but then again the odd occupants don't look to need furniture.
                    |Here and there a disembodied pair of hands or eyes flits about.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1260,9 +1260,9 @@
     "area": "hitower",
     "anum": 36,
     "name": "A guest bedroom",
-    "description": "You are in a small guest bedroom. A small cot is in one corner, and a\n
-                   |dusty mirror on one wall, other than that the room looks quite bare, and\n
-                   |unused.\n
+    "description": "You are in a small guest bedroom. A small cot is in one corner, and a
+                   |dusty mirror on one wall, other than that the room looks quite bare, and
+                   |unused.
                    |  The only apparent exit leads back west to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1281,9 +1281,9 @@
     "area": "hitower",
     "anum": 37,
     "name": "A guest bedroom",
-    "description": "You are in a comfortable looking bedroom. A small globe of magical energy\n
-                   |floats overhead, providing light. A small cot is in one corner looking\n
-                   |ever so comfortable, so comfortable in fact ...someone is sleeping in it.\n
+    "description": "You are in a comfortable looking bedroom. A small globe of magical energy
+                   |floats overhead, providing light. A small cot is in one corner looking
+                   |ever so comfortable, so comfortable in fact ...someone is sleeping in it.
                    |  The only apparent exit leads back west to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1306,8 +1306,8 @@
     "area": "hitower",
     "anum": 38,
     "name": "A hallway",
-    "description": "You are in a long hallway leading from the south. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading from the south. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  Stairs lead up to the next level and the hallway leads back south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1332,9 +1332,9 @@
     "area": "hitower",
     "anum": 39,
     "name": "The burnt room",
-    "description": "You are in what looks to have once been a guest bed room. The walls are\n
-                   |blackened and burnt by what you could only imagine to be magical fire.\n
-                   |There is no sign of the previous occupant, undoubtedly he left in a hurry.\n
+    "description": "You are in what looks to have once been a guest bed room. The walls are
+                   |blackened and burnt by what you could only imagine to be magical fire.
+                   |There is no sign of the previous occupant, undoubtedly he left in a hurry.
                    |  The only exit leads back west to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1349,9 +1349,9 @@
     "area": "hitower",
     "anum": 40,
     "name": "A hallway",
-    "description": "You are in a long hallway leading west from here. The walls emit a faint\n
-                   |magical glow which provides enough light to see by. Some faint moonlight\n
-                   |can be seen in the culdesac to the east.\n
+    "description": "You are in a long hallway leading west from here. The walls emit a faint
+                   |magical glow which provides enough light to see by. Some faint moonlight
+                   |can be seen in the culdesac to the east.
                    |  The hallway continues west and stairs lead down to the level below.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1389,8 +1389,8 @@
     "area": "hitower",
     "anum": 41,
     "name": "A culdesac",
-    "description": "You are in a small culdesac. A window to the east is letting in moonlight\n
-                   |and a pleasant breeze. Through it, the surrounding country side can be seen.\n
+    "description": "You are in a small culdesac. A window to the east is letting in moonlight
+                   |and a pleasant breeze. Through it, the surrounding country side can be seen.
                    |  The only apparent exit leads back west to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1400,8 +1400,8 @@
     }],
     "extra_description": [{
       "keyword": "window east",
-      "description": "Stretching out as far as the eye can see is a canopy of dark tree tops\n
-                     |which can only be the Haon-Dor-Dark Forest. A faint light in the distance\n
+      "description": "Stretching out as far as the eye can see is a canopy of dark tree tops
+                     |which can only be the Haon-Dor-Dark Forest. A faint light in the distance
                      |to the northeast marks what is probably the city of midgaard.\n"
     }]
   }},
@@ -1409,8 +1409,8 @@
     "area": "hitower",
     "anum": 42,
     "name": "The Apprentice's Barracks",
-    "description": "You are in the barracks of the apprentice magic users. Here and there, a\n
-                   |young apprentice sits engrossed in magical study, or practicing a feeble\n
+    "description": "You are in the barracks of the apprentice magic users. Here and there, a
+                   |young apprentice sits engrossed in magical study, or practicing a feeble
                    |cantrip. Cots line the walls, and the room continues west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1457,8 +1457,8 @@
     "area": "hitower",
     "anum": 43,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  There is a door to the north, and the hallway continues west or back east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1483,8 +1483,8 @@
     "area": "hitower",
     "anum": 44,
     "name": "The Apprentice's barracks",
-    "description": "You are in the barracks of the apprentice magic users. Here and there, a\n
-                   |young apprentice sits engrossed in magical study, or practicing a feeble\n
+    "description": "You are in the barracks of the apprentice magic users. Here and there, a
+                   |young apprentice sits engrossed in magical study, or practicing a feeble
                    |cantrip. Cots line the walls, and the room continues east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1531,8 +1531,8 @@
     "area": "hitower",
     "anum": 45,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
-                   |magical glow which provides enough light to see by. Flashes of light can\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
+                   |magical glow which provides enough light to see by. Flashes of light can
                    |be seen under the doorway to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1592,9 +1592,9 @@
     "area": "hitower",
     "anum": 46,
     "name": "The apprentice's workshop",
-    "description": "You are in a small workshop. Writing implements and parchment are strewn\n
-                   |about on a few worktables. In the far corner several young mages have a\n
-                   |small kitten cornered and seem to be testing spells upon it.\n
+    "description": "You are in a small workshop. Writing implements and parchment are strewn
+                   |about on a few worktables. In the far corner several young mages have a
+                   |small kitten cornered and seem to be testing spells upon it.
                    |  The only apparent exit leads back south to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1609,8 +1609,8 @@
     "area": "hitower",
     "anum": 47,
     "name": "A bend in the hallway",
-    "description": "You are at a bend in the hallway. The walls emit a faint magical glow\n
-                   |which provides enough light to see by.\n
+    "description": "You are at a bend in the hallway. The walls emit a faint magical glow
+                   |which provides enough light to see by.
                    |  The hallway continues south and back east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1629,8 +1629,8 @@
     "area": "hitower",
     "anum": 48,
     "name": "The hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  There is a closed metal door to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1655,9 +1655,9 @@
     "area": "hitower",
     "anum": 49,
     "name": "A classroom",
-    "description": "You are in a large classroom filled with bored looking students of the\n
-                   |art. The instructor stops in his lecture on the fine uses of magic missile\n
-                   |at your entry and lunges to attack you.\n
+    "description": "You are in a large classroom filled with bored looking students of the
+                   |art. The instructor stops in his lecture on the fine uses of magic missile
+                   |at your entry and lunges to attack you.
                    |  The only apparent exit is back east to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1714,7 +1714,7 @@
     "area": "hitower",
     "anum": 50,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1739,7 +1739,7 @@
     "area": "hitower",
     "anum": 51,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1764,9 +1764,9 @@
     "area": "hitower",
     "anum": 52,
     "name": "An empty classroom",
-    "description": "You are in an empty classroom. Some strange sigils are written on a\n
-                   |blackboard which is floating in the air here. Other than a few desks,\n
-                   |it is bare of furnishings.\n
+    "description": "You are in an empty classroom. Some strange sigils are written on a
+                   |blackboard which is floating in the air here. Other than a few desks,
+                   |it is bare of furnishings.
                    |  The only apparent exit leads back east to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1781,8 +1781,8 @@
     "area": "hitower",
     "anum": 53,
     "name": "A bend in the hallway",
-    "description": "You are at a bend in the hallway. The walls emit a faint magical glow\n
-                   |which provides enough light to see by.\n
+    "description": "You are at a bend in the hallway. The walls emit a faint magical glow
+                   |which provides enough light to see by.
                    |  The hallway continues east and north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1801,8 +1801,8 @@
     "area": "hitower",
     "anum": 54,
     "name": "An empty classroom",
-    "description": "You are in an apparently empty classroom. A strange feeling of being\n
-                   |watched comes over you, and you hear the faint rustle of robes.\n
+    "description": "You are in an apparently empty classroom. A strange feeling of being
+                   |watched comes over you, and you hear the faint rustle of robes.
                    |  The only apparent exit is back east to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1859,8 +1859,8 @@
     "area": "hitower",
     "anum": 55,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  A sturdy iron door can be seen to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1885,8 +1885,8 @@
     "area": "hitower",
     "anum": 56,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  There is a large oaken door to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1911,8 +1911,8 @@
     "area": "hitower",
     "anum": 57,
     "name": "The Amphitheater",
-    "description": "You are in a small amphitheater. Rows of comfortable looking chairs circle\n
-                   |a large podium. The echos of your footsteps seem very loud here.\n
+    "description": "You are in a small amphitheater. Rows of comfortable looking chairs circle
+                   |a large podium. The echos of your footsteps seem very loud here.
                    |  The only apparent exit leads north to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1961,8 +1961,8 @@
     "area": "hitower",
     "anum": 58,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
-                   |magical glow providing enough light to see by.\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
+                   |magical glow providing enough light to see by.
                    |  A small door can be seen to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1987,7 +1987,7 @@
     "area": "hitower",
     "anum": 59,
     "name": "The training room",
-    "description": "You are in a large training room. It is filled with battle scared manikins\n
+    "description": "You are in a large training room. It is filled with battle scared manikins
                    |, and many other devices used in the practice of fighting.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2077,8 +2077,8 @@
     "area": "hitower",
     "anum": 60,
     "name": "A bend in the hallway",
-    "description": "You are at a bend in the hallway. The walls emit a faint magical glow\n
-                   |which provides enough light to see by.\n
+    "description": "You are at a bend in the hallway. The walls emit a faint magical glow
+                   |which provides enough light to see by.
                    |  The hallway continues north and west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2097,9 +2097,9 @@
     "area": "hitower",
     "anum": 61,
     "name": "A dueling room",
-    "description": "You are in a large room used for duals arcane. The walls, ceiling and\n
-                   |floor all bare the scars of many fiery spells, but still look quite strong\n
-                   |and hold fast.\n
+    "description": "You are in a large room used for duals arcane. The walls, ceiling and
+                   |floor all bare the scars of many fiery spells, but still look quite strong
+                   |and hold fast.
                    |  The only exit leads north to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2114,8 +2114,8 @@
     "area": "hitower",
     "anum": 62,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  A doorway can be seen to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2140,8 +2140,8 @@
     "area": "hitower",
     "anum": 63,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  A wooden door can been seen to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2166,9 +2166,9 @@
     "area": "hitower",
     "anum": 64,
     "name": "The spellmaster's lounge",
-    "description": "You are in a large comfortable looking lounge. Off duty spell teachers\n
-                   |are here relaxing in their idle time. A large coffee machine is against\n
-                   |the far wall.\n
+    "description": "You are in a large comfortable looking lounge. Off duty spell teachers
+                   |are here relaxing in their idle time. A large coffee machine is against
+                   |the far wall.
                    |  The only apparent exit leads back west to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2191,10 +2191,10 @@
     "area": "hitower",
     "anum": 65,
     "name": "A bedroom",
-    "description": "You are in a large, plush bedroom. The owner is obviously someone of high\n
-                   |standing in the magical community here. An ice mirror is on one wall, and\n
-                   |a scrying globe sit on a stand in the middle of the room. An enormous bed\n
-                   |can be seen floating about a meter above the floor.\n
+    "description": "You are in a large, plush bedroom. The owner is obviously someone of high
+                   |standing in the magical community here. An ice mirror is on one wall, and
+                   |a scrying globe sit on a stand in the middle of the room. An enormous bed
+                   |can be seen floating about a meter above the floor.
                    |  The only exit leads back west to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2217,8 +2217,8 @@
     "area": "hitower",
     "anum": 66,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
-                   |magical glow providing enough light to see by.\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
+                   |magical glow providing enough light to see by.
                    |  A glass door can be seen to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2243,10 +2243,10 @@
     "area": "hitower",
     "anum": 67,
     "name": "The study",
-    "description": "You are in a small, well kept study. Ancient tomes are on shelves on the\n
-                   |walls, A huge table sits in the middle of the room, with maps weighted\n
-                   |down upon it. The only light source here comes from an interestingly non-\n
-                   |magical oil lamp.\n
+    "description": "You are in a small, well kept study. Ancient tomes are on shelves on the
+                   |walls, A huge table sits in the middle of the room, with maps weighted
+                   |down upon it. The only light source here comes from an interestingly non-
+                   |magical oil lamp.
                    |  The only apparent exit leads back west to the hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2269,9 +2269,9 @@
     "area": "hitower",
     "anum": 68,
     "name": "Below the stairs",
-    "description": "You are at the end of a long hallway. The walls emit a faint magical glow\n
-                   |which provides enough light to see by. A lesser guardian is here keeping\n
-                   |silent watch on the entrance to the levels above.\n
+    "description": "You are at the end of a long hallway. The walls emit a faint magical glow
+                   |which provides enough light to see by. A lesser guardian is here keeping
+                   |silent watch on the entrance to the levels above.
                    |  Stairs lead up and the hallway continues back south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2308,10 +2308,10 @@
     "area": "hitower",
     "anum": 69,
     "name": "Atop the stairway",
-    "description": "You are atop a stairway. The halls here look quite a bit less used than\n
-                   |those below. Obviously access to these magic filled corridors is limited\n
-                   |to those of the upper echelon of mages. The walls here emit a faint blue\n
-                   |magical aura which provides some light.\n
+    "description": "You are atop a stairway. The halls here look quite a bit less used than
+                   |those below. Obviously access to these magic filled corridors is limited
+                   |to those of the upper echelon of mages. The walls here emit a faint blue
+                   |magical aura which provides some light.
                    |  The hallway leads west from here and the stairs go down.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2330,8 +2330,8 @@
     "area": "hitower",
     "anum": 70,
     "name": "A hallway",
-    "description": "You are in a long hallway stretching east and west. The walls here emit\n
-                   |a faint magical energy providing enough light to see by.\n
+    "description": "You are in a long hallway stretching east and west. The walls here emit
+                   |a faint magical energy providing enough light to see by.
                    |  There is a thick looking wooden door to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2356,9 +2356,9 @@
     "area": "hitower",
     "anum": 71,
     "name": "A small office",
-    "description": "You are in a small office. It looks like a calligrapher's study, there\n
-                   |are quills, inkpots and parchments all about on desks and worktables.\n
-                   |A section to the west seems to be curtained off, but the flicker of a\n
+    "description": "You are in a small office. It looks like a calligrapher's study, there
+                   |are quills, inkpots and parchments all about on desks and worktables.
+                   |A section to the west seems to be curtained off, but the flicker of a
                    |candle can be seen through the curtain.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2399,7 +2399,7 @@
     "area": "hitower",
     "anum": 72,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2418,9 +2418,9 @@
     "area": "hitower",
     "anum": 73,
     "name": "The master scribe's workshop",
-    "description": "You are in the workshop of the tower's master scribe. Many half finished\n
-                   |scrolls lay on the writing table in the center of the room. A giant candle\n
-                   |flickering with soft blue flames provides the only light here.\n
+    "description": "You are in the workshop of the tower's master scribe. Many half finished
+                   |scrolls lay on the writing table in the center of the room. A giant candle
+                   |flickering with soft blue flames provides the only light here.
                    |  The only apparent exit is the way you came in.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2481,8 +2481,8 @@
     "area": "hitower",
     "anum": 74,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  A half closed door can be seen to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2508,7 +2508,7 @@
     "area": "hitower",
     "anum": 75,
     "name": "A store room",
-    "description": "You are in a small dark store room. A few common items are stacked upon\n
+    "description": "You are in a small dark store room. A few common items are stacked upon
                    |the shelves here, but very little looks interesting.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -2531,8 +2531,8 @@
     "area": "hitower",
     "anum": 76,
     "name": "A bend in the hallway",
-    "description": "You are at a bend in the long hallway. The walls emit a faint magical\n
-                   |glow which provides enough light to see by.\n
+    "description": "You are at a bend in the long hallway. The walls emit a faint magical
+                   |glow which provides enough light to see by.
                    |  The hallway continues south and east from here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2551,8 +2551,8 @@
     "area": "hitower",
     "anum": 77,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  An iron bound door can be seen to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2577,8 +2577,8 @@
     "area": "hitower",
     "anum": 78,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  The sharp sound of metal on metal can be heard to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2603,9 +2603,9 @@
     "area": "hitower",
     "anum": 79,
     "name": "A store room",
-    "description": "You are in a large store room. Bins of ores, minerals and other rare\n
-                   |materials are here along with many neatly stacked piles of precious metals.\n
-                   |A large cabinet with sigils of warding is bolted to one wall.\n
+    "description": "You are in a large store room. Bins of ores, minerals and other rare
+                   |materials are here along with many neatly stacked piles of precious metals.
+                   |A large cabinet with sigils of warding is bolted to one wall.
                    |  The ring of metal on metal can be heard to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2660,7 +2660,7 @@
     "area": "hitower",
     "anum": 80,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2679,10 +2679,10 @@
     "area": "hitower",
     "anum": 81,
     "name": "A very hot room",
-    "description": "You are in a very hot room. Against one wall is a large forge, magical\n
-                   |fires crackle within and heavy blue smoke pours into a vent in the ceiling.\n
-                   |A rune-encrusted mithril anvil is in the center of the room, looking well\n
-                   |used. Other tools of metallurgy hang on a rack which floats about three\n
+    "description": "You are in a very hot room. Against one wall is a large forge, magical
+                   |fires crackle within and heavy blue smoke pours into a vent in the ceiling.
+                   |A rune-encrusted mithril anvil is in the center of the room, looking well
+                   |used. Other tools of metallurgy hang on a rack which floats about three
                    |meters in the air of its own force.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2724,9 +2724,9 @@
     "area": "hitower",
     "anum": 82,
     "name": "The master Enchanter's chamber",
-    "description": "You have entered the master enchanter's chamber. Upon all the walls here\n
-                   |are racks of finely crafted weapons. A huge chest with a glowing lock is\n
-                   |set to one side. Several unfinished looking blades rest atop a small work\n
+    "description": "You have entered the master enchanter's chamber. Upon all the walls here
+                   |are racks of finely crafted weapons. A huge chest with a glowing lock is
+                   |set to one side. Several unfinished looking blades rest atop a small work
                    |table.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2809,8 +2809,8 @@
     "area": "hitower",
     "anum": 83,
     "name": "A bend in the hallway",
-    "description": "You are at a bend in a long hallway. The walls emit a faint magical glow\n
-                   |which provides enough light to see by.\n
+    "description": "You are at a bend in a long hallway. The walls emit a faint magical glow
+                   |which provides enough light to see by.
                    |  The hallway continues north and east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2829,8 +2829,8 @@
     "area": "hitower",
     "anum": 84,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  A steel door can be seen to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2855,7 +2855,7 @@
     "area": "hitower",
     "anum": 85,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2874,9 +2874,9 @@
     "area": "hitower",
     "anum": 86,
     "name": "A laboratory",
-    "description": "You are in a small laboratory. Many strange instruments, vials, bottles\n
-                   |and some scrawled notes are piled about a workbench. This room is very\n
-                   |untidy, looking almost abandoned, or used by a madman.\n
+    "description": "You are in a small laboratory. Many strange instruments, vials, bottles
+                   |and some scrawled notes are piled about a workbench. This room is very
+                   |untidy, looking almost abandoned, or used by a madman.
                    |  The only apparent exits are east and north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2897,8 +2897,8 @@
     "area": "hitower",
     "anum": 87,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  You can see a steel door to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2923,9 +2923,9 @@
     "area": "hitower",
     "anum": 88,
     "name": "The Mad Alchemist's workroom",
-    "description": "You are in the workroom of The Mad Alchemist. Bubbling braziers, long\n
-                   |glass tubes and scores of oddly shaped vials and bottles are everywhere.\n
-                   |It is incredibly messy here, crushed glass and other trash litter the floor.\n
+    "description": "You are in the workroom of The Mad Alchemist. Bubbling braziers, long
+                   |glass tubes and scores of oddly shaped vials and bottles are everywhere.
+                   |It is incredibly messy here, crushed glass and other trash litter the floor.
                    |  The only apparent exit is the one you entered by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3001,8 +3001,8 @@
     "area": "hitower",
     "anum": 89,
     "name": "A bend in the hallway",
-    "description": "You are at a bend in a long hallway. The walls emit a faint magical glow\n
-                   |which provides enough light to see by.\n
+    "description": "You are at a bend in a long hallway. The walls emit a faint magical glow
+                   |which provides enough light to see by.
                    |  The hallway continues north and west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3021,7 +3021,7 @@
     "area": "hitower",
     "anum": 90,
     "name": "The pentagram chamber",
-    "description": "You are in a large room with a five pointed star etched into the floor.\n
+    "description": "You are in a large room with a five pointed star etched into the floor.
                    |A crackling energy field can be seen to the south, it looks quite dangerous.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3061,8 +3061,8 @@
     "area": "hitower",
     "anum": 91,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  A bronze door can be seen to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3087,8 +3087,8 @@
     "area": "hitower",
     "anum": 92,
     "name": "Inside the Energy Field",
-    "description": "You feel a stomach twisting sensation as you enter the energy field.\n
-                   |Nice going!  You might as well wait here until the wizard who built this\n
+    "description": "You feel a stomach twisting sensation as you enter the energy field.
+                   |Nice going!  You might as well wait here until the wizard who built this
                    |trap comes back to imprison your soul as well as your body.\n",
     "sector_type": "inside",
     "room_flags": "indoors no_recall",
@@ -3123,8 +3123,8 @@
     "area": "hitower",
     "anum": 93,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  A bronze door can be seen to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3149,7 +3149,7 @@
     "area": "hitower",
     "anum": 94,
     "name": "An empty room",
-    "description": "You are in an empty room. It is both quiet and comfortable here, it looks\n
+    "description": "You are in an empty room. It is both quiet and comfortable here, it looks
                    |like a safe place to rest.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
@@ -3164,9 +3164,9 @@
     "area": "hitower",
     "anum": 95,
     "name": "The charm master's chamber",
-    "description": "You are in the chambers of the tower's master of charm. Some straw and\n
-                   |dirt litters the floor here, it looks to have been recently used by wild\n
-                   |animals.\n
+    "description": "You are in the chambers of the tower's master of charm. Some straw and
+                   |dirt litters the floor here, it looks to have been recently used by wild
+                   |animals.
                    |  Strange sounds can be heard through the bars to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3214,7 +3214,7 @@
     "area": "hitower",
     "anum": 96,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3233,8 +3233,8 @@
     "area": "hitower",
     "anum": 97,
     "name": "The animal pens",
-    "description": "You are in the animal pens. Many caged animals are here looking unhappy.\n
-                   |Obviously they are destined to be enslaved, or used in some cruel magical\n
+    "description": "You are in the animal pens. Many caged animals are here looking unhappy.
+                   |Obviously they are destined to be enslaved, or used in some cruel magical
                    |experimentation.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3249,8 +3249,8 @@
     "area": "hitower",
     "anum": 98,
     "name": "The end of the hallway",
-    "description": "You are at the end of a long north-south hallway. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are at the end of a long north-south hallway. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  Stairs here lead up to the next level, and the hallway continues south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3287,8 +3287,8 @@
     "area": "hitower",
     "anum": 99,
     "name": "Atop the stairway",
-    "description": "You are atop the stairway to the upper levels of the high tower. The walls\n
-                   |emit a faint magical glow which provides enough light to see by.\n
+    "description": "You are atop the stairway to the upper levels of the high tower. The walls
+                   |emit a faint magical glow which provides enough light to see by.
                    |  A hallway leads west from here, and the stairs lead down.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3307,8 +3307,8 @@
     "area": "hitower",
     "anum": 100,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  A silver door can be seen to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3341,9 +3341,9 @@
     "area": "hitower",
     "anum": 101,
     "name": "A store room",
-    "description": "You are in a large store room. Raw materials are neatly bundled and piled\n
-                   |here and here. Many freshly cut staves rods and wands of different sizes\n
-                   |are here.\n
+    "description": "You are in a large store room. Raw materials are neatly bundled and piled
+                   |here and here. Many freshly cut staves rods and wands of different sizes
+                   |are here.
                    |  You can see a silver door to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3374,9 +3374,9 @@
     "area": "hitower",
     "anum": 102,
     "name": "The master spellbinder's chamber",
-    "description": "You are in the chambers of the master spell binder. Unlike other work\n
-                   |shops of similar nature, this one is without furnishings or tools. The\n
-                   |spell binder obviously needs none for the working of his art.\n
+    "description": "You are in the chambers of the master spell binder. Unlike other work
+                   |shops of similar nature, this one is without furnishings or tools. The
+                   |spell binder obviously needs none for the working of his art.
                    |  A silver door can be seen to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3434,8 +3434,8 @@
     "area": "hitower",
     "anum": 103,
     "name": "The spellbinder's cache",
-    "description": "You have discovered the cache of the master spell binder. There are two\n
-                   |very large silver chased cabinets here, other than that, the room is bare.\n
+    "description": "You have discovered the cache of the master spell binder. There are two
+                   |very large silver chased cabinets here, other than that, the room is bare.
                    |  A silver door can be seen to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3521,7 +3521,7 @@
     "area": "hitower",
     "anum": 104,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3540,8 +3540,8 @@
     "area": "hitower",
     "anum": 105,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  A silver door can be seen to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3566,8 +3566,8 @@
     "area": "hitower",
     "anum": 106,
     "name": "A bend in the hallway",
-    "description": "You are at a bend in the long hallway. The walls emit a faint magical\n
-                   |glow which provides enough light to see by.\n
+    "description": "You are at a bend in the long hallway. The walls emit a faint magical
+                   |glow which provides enough light to see by.
                    |  The hallway continues east and south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3586,7 +3586,7 @@
     "area": "hitower",
     "anum": 107,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3605,8 +3605,8 @@
     "area": "hitower",
     "anum": 108,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  A rusty old door can be seen to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3631,8 +3631,8 @@
     "area": "hitower",
     "anum": 109,
     "name": "The golem master's workshop",
-    "description": "You are in the golem master's workshop. A few unfinished looking humanoid\n
-                   |forms of different make are here, some moving, some not. The animated forms\n
+    "description": "You are in the golem master's workshop. A few unfinished looking humanoid
+                   |forms of different make are here, some moving, some not. The animated forms
                    |lunge to attack you.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3697,7 +3697,7 @@
     "area": "hitower",
     "anum": 110,
     "name": "A store room",
-    "description": "You are in a small store room. Large chunks of clay, stone, wood and many\n
+    "description": "You are in a small store room. Large chunks of clay, stone, wood and many
                    |other raw materials are here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3710,8 +3710,8 @@
     "area": "hitower",
     "anum": 111,
     "name": "The golem chamber",
-    "description": "You are in the golem chamber. Golems made of every imaginable material\n
-                   |are here, ranging in size from a hand-span to nearly the ceiling. They all\n
+    "description": "You are in the golem chamber. Golems made of every imaginable material
+                   |are here, ranging in size from a hand-span to nearly the ceiling. They all
                    |seem to be sleeping.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3780,7 +3780,7 @@
     "area": "hitower",
     "anum": 113,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3799,8 +3799,8 @@
     "area": "hitower",
     "anum": 114,
     "name": "A bend in the hallway",
-    "description": "You are at a bend in the long hallway. The walls emit a faint magical\n
-                   |glow which provides enough light to see by.\n
+    "description": "You are at a bend in the long hallway. The walls emit a faint magical
+                   |glow which provides enough light to see by.
                    |  The hallway continues north and east from here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3819,7 +3819,7 @@
     "area": "hitower",
     "anum": 115,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3838,8 +3838,8 @@
     "area": "hitower",
     "anum": 116,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  An emerald door can be seen to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3864,9 +3864,9 @@
     "area": "hitower",
     "anum": 117,
     "name": "The master of illusion's chamber",
-    "description": "You are in the chamber of the master of illusions. The walls here are\n
-                   |ever-changing in color and texture, as if they were reforming before your\n
-                   |very eyes. Many splendorous treasures lie all around in heaps and piles, or\n
+    "description": "You are in the chamber of the master of illusions. The walls here are
+                   |ever-changing in color and texture, as if they were reforming before your
+                   |very eyes. Many splendorous treasures lie all around in heaps and piles, or
                    |at least they seem to be treasures...\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3914,9 +3914,9 @@
     "area": "hitower",
     "anum": 118,
     "name": "A bedroom",
-    "description": "You are in the bedroom of the master of illusions. Strange looking items\n
-                   |and artifacts float here and there in the air. The ripples of strong magic\n
-                   |can be felt everywhere.\n
+    "description": "You are in the bedroom of the master of illusions. Strange looking items
+                   |and artifacts float here and there in the air. The ripples of strong magic
+                   |can be felt everywhere.
                    |  The room seems much larger than it looks...\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3943,8 +3943,8 @@
     "area": "hitower",
     "anum": 119,
     "name": "A hallway",
-    "description": "You are in a long hallway leading east and west. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading east and west. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  A glass door can be seen to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -3969,8 +3969,8 @@
     "area": "hitower",
     "anum": 120,
     "name": "The meditation chamber",
-    "description": "You are in a meditation chamber. It is very silent here, in fact you\n
-                   |can not even hear your own footsteps.\n
+    "description": "You are in a meditation chamber. It is very silent here, in fact you
+                   |can not even hear your own footsteps.
                    |  You feel very peaceful.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors private",
@@ -3985,8 +3985,8 @@
     "area": "hitower",
     "anum": 121,
     "name": "A bend in the hallway",
-    "description": "You are at a bend in the long hallway. The walls emit a faint magical\n
-                   |glow which provides enough light to see by.\n
+    "description": "You are at a bend in the long hallway. The walls emit a faint magical
+                   |glow which provides enough light to see by.
                    |  The hallway continues north and west from here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4005,8 +4005,8 @@
     "area": "hitower",
     "anum": 122,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
-                   |magical glow which provides enough light to see by.\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
+                   |magical glow which provides enough light to see by.
                    |  A blackened door can be seen to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4031,8 +4031,8 @@
     "area": "hitower",
     "anum": 123,
     "name": "A dark room",
-    "description": "You are in a large dark room. The air here seems quite stale, and a sense\n
-                   |of extreme dread comes over you. The stench of rotten flesh seems to be\n
+    "description": "You are in a large dark room. The air here seems quite stale, and a sense
+                   |of extreme dread comes over you. The stench of rotten flesh seems to be
                    |wafting in from the open doorway to the north.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -4053,10 +4053,10 @@
     "area": "hitower",
     "anum": 124,
     "name": "A dark room",
-    "description": "You are in a large dark room. The stench here makes you gag and wretch.\n
-                   |There are body parts and half rotted corpses strewn about with complete\n
-                   |abandon. Several operating tables with still forms that resemble nothing\n
-                   |you've ever seen alive are here.\n
+    "description": "You are in a large dark room. The stench here makes you gag and wretch.
+                   |There are body parts and half rotted corpses strewn about with complete
+                   |abandon. Several operating tables with still forms that resemble nothing
+                   |you've ever seen alive are here.
                    |  Tortured screams can be heard from the north.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -4076,9 +4076,9 @@
     "area": "hitower",
     "anum": 125,
     "name": "The Necromancer's Lair",
-    "description": "You are in the lair of the evil Necromancer. Undead minions of all types,\n
-                   |human and otherwise stand here waiting to do their master's bidding. Some\n
-                   |glowing arcane sigils have been etched into walls and floor, no doubt to\n
+    "description": "You are in the lair of the evil Necromancer. Undead minions of all types,
+                   |human and otherwise stand here waiting to do their master's bidding. Some
+                   |glowing arcane sigils have been etched into walls and floor, no doubt to
                    |protect the evil master from his own ungodly creations.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -4149,7 +4149,7 @@
     "area": "hitower",
     "anum": 126,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4168,7 +4168,7 @@
     "area": "hitower",
     "anum": 127,
     "name": "A hallway",
-    "description": "You are in a long hallway leading north and south. The walls emit a faint\n
+    "description": "You are in a long hallway leading north and south. The walls emit a faint
                    |magical glow which provides enough light to see by.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4187,8 +4187,8 @@
     "area": "hitower",
     "anum": 128,
     "name": "The end of the hallway",
-    "description": "You are at the end of a long hallway. The walls here glow with a faint\n
-                   |magical energy which provides plenty of light.\n
+    "description": "You are at the end of a long hallway. The walls here glow with a faint
+                   |magical energy which provides plenty of light.
                    |  Stairs lead up to the next level here and the hallway continues south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4225,9 +4225,9 @@
     "area": "hitower",
     "anum": 129,
     "name": "A corridor",
-    "description": "You are at the east end of a long corridor. Obsidian walls engraved with\n
-                   |ancient runes of power stretch out before you. Magical energies seem to\n
-                   |crackle with power all around and whisper in tongues long forgotten, almost\n
+    "description": "You are at the east end of a long corridor. Obsidian walls engraved with
+                   |ancient runes of power stretch out before you. Magical energies seem to
+                   |crackle with power all around and whisper in tongues long forgotten, almost
                    |as if the corridor it self were alive.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4246,9 +4246,9 @@
     "area": "hitower",
     "anum": 130,
     "name": "A corridor",
-    "description": "You are in a long corridor. Obsidian walls engraved with ancient runes\n
-                   |of power stretch out before you. Magical energies seem to crackle with\n
-                   |power all around and whisper in tongues long forgotten, almost as if the\n
+    "description": "You are in a long corridor. Obsidian walls engraved with ancient runes
+                   |of power stretch out before you. Magical energies seem to crackle with
+                   |power all around and whisper in tongues long forgotten, almost as if the
                    |corridor itself were alive.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4275,9 +4275,9 @@
     "area": "hitower",
     "anum": 131,
     "name": "A bend in the corridor",
-    "description": "You are at a bend in the long corridor. Obsidian walls engraved with\n
-                   |ancient runes of power stretch out before you. Magical energies seem to\n
-                   |crackle with power all around and whisper in tongues long forgotten, almost\n
+    "description": "You are at a bend in the long corridor. Obsidian walls engraved with
+                   |ancient runes of power stretch out before you. Magical energies seem to
+                   |crackle with power all around and whisper in tongues long forgotten, almost
                    |as if the corridor itself were alive.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4296,9 +4296,9 @@
     "area": "hitower",
     "anum": 132,
     "name": "A corridor",
-    "description": "You are in a long corridor leading north and south. Obsidian walls\n
-                   |engraved with ancient runes of power stretch out before you. Magical\n
-                   |energies seem to crackle with power all around and whisper in tongues\n
+    "description": "You are in a long corridor leading north and south. Obsidian walls
+                   |engraved with ancient runes of power stretch out before you. Magical
+                   |energies seem to crackle with power all around and whisper in tongues
                    |long forgotten, almost as if the corridor itself were alive.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4317,8 +4317,8 @@
     "area": "hitower",
     "anum": 133,
     "name": "An intersection",
-    "description": "You are at an intersection in the corridor. The obsidian walled halls\n
-                   |lead off in every direction from here, pulsing with the power of their\n
+    "description": "You are at an intersection in the corridor. The obsidian walled halls
+                   |lead off in every direction from here, pulsing with the power of their
                    |ancient runes.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4353,9 +4353,9 @@
     "area": "hitower",
     "anum": 134,
     "name": "A corridor",
-    "description": "You are at the end of a long corridor. Obsidian walls engraved with\n
-                   |ancient runes of power stretch out before you. A darkened door is to the\n
-                   |east. Tendrils of mist cling to the floor here, they seem to be seeping\n
+    "description": "You are at the end of a long corridor. Obsidian walls engraved with
+                   |ancient runes of power stretch out before you. A darkened door is to the
+                   |east. Tendrils of mist cling to the floor here, they seem to be seeping
                    |from under the door.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4376,12 +4376,12 @@
     "area": "hitower",
     "anum": 135,
     "name": "The scrying chamber",
-    "description": "You are in the scrying chamber of the high tower of sorcerery. It is here\n
-                   |that arcane rituals are performed to enable those of the art to look in\n
-                   |upon denizens throughout the world and spy out their darkest secrets.\n
-                   |  A huge black cauldron is in the center of the room, bubbling and gurgling,\n
-                   |it pours forth a constant stream of smokey fog into the air about you. Here\n
-                   |and there on stands of different sizes are crystal balls and oddly shaped\n
+    "description": "You are in the scrying chamber of the high tower of sorcerery. It is here
+                   |that arcane rituals are performed to enable those of the art to look in
+                   |upon denizens throughout the world and spy out their darkest secrets.
+                   |  A huge black cauldron is in the center of the room, bubbling and gurgling,
+                   |it pours forth a constant stream of smokey fog into the air about you. Here
+                   |and there on stands of different sizes are crystal balls and oddly shaped
                    |mirrors.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -4448,8 +4448,8 @@
     "area": "hitower",
     "anum": 136,
     "name": "A corridor",
-    "description": "You have reached an end in the long corridor. Obsidian walls engraved\n
-                   |with ancient runes of power stretch out before you. The sound of snoring\n
+    "description": "You have reached an end in the long corridor. Obsidian walls engraved
+                   |with ancient runes of power stretch out before you. The sound of snoring
                    |can barely be heard through the door to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4470,9 +4470,9 @@
     "area": "hitower",
     "anum": 137,
     "name": "The entrance to the library",
-    "description": "You are in the entrance to the great library of magic. A giant desk is\n
-                   |here, covered with books parchments and scrolls. Long shelves loaded with\n
-                   |row upon row of books stretch out in every direction as far as the eye can\n
+    "description": "You are in the entrance to the great library of magic. A giant desk is
+                   |here, covered with books parchments and scrolls. Long shelves loaded with
+                   |row upon row of books stretch out in every direction as far as the eye can
                    |see.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4509,10 +4509,10 @@
     "area": "hitower",
     "anum": 138,
     "name": "In the library",
-    "description": "You are in the great library of magic. A strong musty smell permeates the\n
-                   |entire area. Upon shelves which float just out of reach are hundreds of\n
-                   |books, tomes and scrolls of every possible shape size and color. The elusive\n
-                   |books seem to wink in and out of existence before your untrained eyes.\n
+    "description": "You are in the great library of magic. A strong musty smell permeates the
+                   |entire area. Upon shelves which float just out of reach are hundreds of
+                   |books, tomes and scrolls of every possible shape size and color. The elusive
+                   |books seem to wink in and out of existence before your untrained eyes.
                    |  It is very quiet here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4539,10 +4539,10 @@
     "area": "hitower",
     "anum": 139,
     "name": "In the library",
-    "description": "You are in the great library of magic. A strong musty smell permeates the\n
-                   |entire area. Upon shelves which float just out of reach are hundreds of\n
-                   |books, tomes and scrolls of every possible shape size and color. The elusive\n
-                   |books seem to wink in and out of existence before your untrained eyes.\n
+    "description": "You are in the great library of magic. A strong musty smell permeates the
+                   |entire area. Upon shelves which float just out of reach are hundreds of
+                   |books, tomes and scrolls of every possible shape size and color. The elusive
+                   |books seem to wink in and out of existence before your untrained eyes.
                    |  It is very quiet here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4569,10 +4569,10 @@
     "area": "hitower",
     "anum": 140,
     "name": "In the library",
-    "description": "You are in the great library of magic. A strong musty smell permeates the\n
-                   |entire area. Upon shelves which float just out of reach are hundreds of\n
-                   |books, tomes and scrolls of every possible shape size and color. The elusive\n
-                   |books seem to wink in and out of existence before your untrained eyes.\n
+    "description": "You are in the great library of magic. A strong musty smell permeates the
+                   |entire area. Upon shelves which float just out of reach are hundreds of
+                   |books, tomes and scrolls of every possible shape size and color. The elusive
+                   |books seem to wink in and out of existence before your untrained eyes.
                    |  It is very quiet here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4599,10 +4599,10 @@
     "area": "hitower",
     "anum": 141,
     "name": "In the library",
-    "description": "You are in the great library of magic. A strong musty smell permeates the\n
-                   |entire area. Upon shelves which float just out of reach are hundreds of\n
-                   |books, tomes and scrolls of every possible shape size and color. The elusive\n
-                   |books seem to wink in and out of existence before your untrained eyes.\n
+    "description": "You are in the great library of magic. A strong musty smell permeates the
+                   |entire area. Upon shelves which float just out of reach are hundreds of
+                   |books, tomes and scrolls of every possible shape size and color. The elusive
+                   |books seem to wink in and out of existence before your untrained eyes.
                    |  It is very quiet here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4629,10 +4629,10 @@
     "area": "hitower",
     "anum": 142,
     "name": "In the library",
-    "description": "You are in the great library of magic. A strong musty smell permeates the\n
-                   |entire area. Upon shelves which float just out of reach are hundreds of\n
-                   |books, tomes and scrolls of every possible shape size and color. The elusive\n
-                   |books seem to wink in and out of existence before your untrained eyes.\n
+    "description": "You are in the great library of magic. A strong musty smell permeates the
+                   |entire area. Upon shelves which float just out of reach are hundreds of
+                   |books, tomes and scrolls of every possible shape size and color. The elusive
+                   |books seem to wink in and out of existence before your untrained eyes.
                    |  It is very quiet here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4659,10 +4659,10 @@
     "area": "hitower",
     "anum": 143,
     "name": "In the library",
-    "description": "You are in the great library of magic. A strong musty smell permeates the\n
-                   |entire area. Upon shelves which float just out of reach are hundreds of\n
-                   |books, tomes and scrolls of every possible shape size and color. The elusive\n
-                   |books seem to wink in and out of existence before your untrained eyes.\n
+    "description": "You are in the great library of magic. A strong musty smell permeates the
+                   |entire area. Upon shelves which float just out of reach are hundreds of
+                   |books, tomes and scrolls of every possible shape size and color. The elusive
+                   |books seem to wink in and out of existence before your untrained eyes.
                    |  It is very quiet here.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4681,9 +4681,9 @@
     "area": "hitower",
     "anum": 144,
     "name": "Between the shelves",
-    "description": "You are in the great library of magic. The shelves seem uncomfortably\n
-                   |close here, you can barely maneuver between them. The musty smell is still\n
-                   |strong, and the elusive books still hover just out of reach.\n
+    "description": "You are in the great library of magic. The shelves seem uncomfortably
+                   |close here, you can barely maneuver between them. The musty smell is still
+                   |strong, and the elusive books still hover just out of reach.
                    |  A faint flicker of light can barely be made out to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4702,11 +4702,11 @@
     "area": "hitower",
     "anum": 145,
     "name": "The reading room",
-    "description": "You are in a small room completely devoid of furnishings. The only thing\n
-                   |here is an enormous tome, lying face open on the floor. The great book looks\n
-                   |both heavy and ancient. Its jewel encrusted bindings are well worn as the\n
-                   |bark of a tree. Spidery writings seem to crawls across the pages, totally\n
-                   |incomprehensible to your mortal eye. Something seems to be wedged between\n
+    "description": "You are in a small room completely devoid of furnishings. The only thing
+                   |here is an enormous tome, lying face open on the floor. The great book looks
+                   |both heavy and ancient. Its jewel encrusted bindings are well worn as the
+                   |bark of a tree. Spidery writings seem to crawls across the pages, totally
+                   |incomprehensible to your mortal eye. Something seems to be wedged between
                    |the pages.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4738,9 +4738,9 @@
     "area": "hitower",
     "anum": 146,
     "name": "A corridor",
-    "description": "You are in a long corridor leading north and south. Obsidian walls\n
-                   |engraved with ancient runes of power stretch out before you. Magical\n
-                   |energies seem to crackle with power all around and whisper in tongues\n
+    "description": "You are in a long corridor leading north and south. Obsidian walls
+                   |engraved with ancient runes of power stretch out before you. Magical
+                   |energies seem to crackle with power all around and whisper in tongues
                    |long forgotten, almost as if the corridor itself were alive.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4759,9 +4759,9 @@
     "area": "hitower",
     "anum": 147,
     "name": "The end of the corridor",
-    "description": "You are at the end of a long corridor. The obsidian walls come to an\n
-                   |abrupt halt at the edge of a golden archway here. The hum of power is so\n
-                   |strong it nearly numbs your body.\n
+    "description": "You are at the end of a long corridor. The obsidian walls come to an
+                   |abrupt halt at the edge of a golden archway here. The hum of power is so
+                   |strong it nearly numbs your body.
                    |  The archway lies before you, glowing and pulsing with energy.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4780,9 +4780,9 @@
     "area": "hitower",
     "anum": 148,
     "name": "The arched entrance",
-    "description": "You feel a slight tingle as you pass through the archway, as if the living\n
-                   |magical energies here had infused your body, found it wanting and left. The\n
-                   |intense glow from the arch above you is almost blinding. Through the light\n
+    "description": "You feel a slight tingle as you pass through the archway, as if the living
+                   |magical energies here had infused your body, found it wanting and left. The
+                   |intense glow from the arch above you is almost blinding. Through the light
                    |you can barely make out a stairway leading up.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4801,8 +4801,8 @@
     "area": "hitower",
     "anum": 149,
     "name": "The landing",
-    "description": "You are on a small landing in the middle of a long stairway leading up.\n
-                   |Your senses seem dulled here, no sound or smell can be detected at all, and\n
+    "description": "You are on a small landing in the middle of a long stairway leading up.
+                   |Your senses seem dulled here, no sound or smell can be detected at all, and
                    |the only thing you can see in any direction is endless stairway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4829,12 +4829,12 @@
     "area": "hitower",
     "anum": 150,
     "name": "An intersection",
-    "description": "You are at an intersection of several hallways. You feel as if strange\n
-                   |mystical forces are pushing and pulling at each other from all around you.\n
-                   |The sensation of being trapped, in the middle is almost tangible in the air\n
-                   |here.\n
-                   |  A grey tiled hallway leads south, black tiled east, white tiled west, and\n
-                   |a multi-colored hallway swirling with patterns that remain just barely\n
+    "description": "You are at an intersection of several hallways. You feel as if strange
+                   |mystical forces are pushing and pulling at each other from all around you.
+                   |The sensation of being trapped, in the middle is almost tangible in the air
+                   |here.
+                   |  A grey tiled hallway leads south, black tiled east, white tiled west, and
+                   |a multi-colored hallway swirling with patterns that remain just barely
                    |unrecognizable is to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4865,8 +4865,8 @@
     "area": "hitower",
     "anum": 151,
     "name": "A grey tiled hallway",
-    "description": "You are in a grey tiled hallway leading north and south. Dim balls of\n
-                   |energy float here and there shedding a warm light, and showing the way.\n
+    "description": "You are in a grey tiled hallway leading north and south. Dim balls of
+                   |energy float here and there shedding a warm light, and showing the way.
                    |A feeling of peace and balance comes over you.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4885,9 +4885,9 @@
     "area": "hitower",
     "anum": 152,
     "name": "A grey tiled hallway",
-    "description": "You are in a grey tiled hallway leading north and south. Dim balls of\n
-                   |energy float here and there shedding a warm light, and showing the way.\n
-                   |A feeling of peace and balance comes over you.\n
+    "description": "You are in a grey tiled hallway leading north and south. Dim balls of
+                   |energy float here and there shedding a warm light, and showing the way.
+                   |A feeling of peace and balance comes over you.
                    |  Large grey metal double doors can be seen to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4908,10 +4908,10 @@
     "area": "hitower",
     "anum": 153,
     "name": "The antechamber",
-    "description": "You are in the antechamber of the master magician of the grey light. A\n
-                   |feeling of strong magic floats in the air about you, almost as if you could\n
-                   |taste the power held within these walls.\n
-                   |  Once your eyes adjust to the semi-light, you can make out a larger room\n
+    "description": "You are in the antechamber of the master magician of the grey light. A
+                   |feeling of strong magic floats in the air about you, almost as if you could
+                   |taste the power held within these walls.
+                   |  Once your eyes adjust to the semi-light, you can make out a larger room
                    |to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -4958,9 +4958,9 @@
     "area": "hitower",
     "anum": 154,
     "name": "The main chamber",
-    "description": "A feeling of tranquility comes over you as you enter the main chamber of\n
-                   |neutrality. Some artifacts are hung on the walls here, or set on stands.\n
-                   |The room in general looks both comfortable and official. Probably where the\n
+    "description": "A feeling of tranquility comes over you as you enter the main chamber of
+                   |neutrality. Some artifacts are hung on the walls here, or set on stands.
+                   |The room in general looks both comfortable and official. Probably where the
                    |master of neutrality holds audience.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5029,10 +5029,10 @@
     "area": "hitower",
     "anum": 155,
     "name": "The study",
-    "description": "You are in a large study. Shelves filled with many books or arcane\n
-                   |knowledge are on every wall. A large oaken desk is in the center, with\n
-                   |many parchments and scrolls on it. The most notable thing in the room is\n
-                   |a small set of scales, which floats about eye level. In perfect balance,\n
+    "description": "You are in a large study. Shelves filled with many books or arcane
+                   |knowledge are on every wall. A large oaken desk is in the center, with
+                   |many parchments and scrolls on it. The most notable thing in the room is
+                   |a small set of scales, which floats about eye level. In perfect balance,
                    |the scales are no doubt a sign of the master's neutrality.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5045,7 +5045,7 @@
     "area": "hitower",
     "anum": 156,
     "name": "A closet",
-    "description": "You are in a small closet. It is filled with many cloaks, and some other\n
+    "description": "You are in a small closet. It is filled with many cloaks, and some other
                    |apparel.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -5058,8 +5058,8 @@
     "area": "hitower",
     "anum": 157,
     "name": "A bedroom",
-    "description": "You are in the bedroom of the master magician of neutrality. Curtained\n
-                   |windows can be seen on the south wall. A large comfortable looking bed\n
+    "description": "You are in the bedroom of the master magician of neutrality. Curtained
+                   |windows can be seen on the south wall. A large comfortable looking bed
                    |takes up most of the room.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5072,8 +5072,8 @@
     "area": "hitower",
     "anum": 158,
     "name": "A dark hallway",
-    "description": "You are in a long dark hallway leading east and west. Not much can be\n
-                   |seen in the unnatural darkness here, but you get a deep sense of dread\n
+    "description": "You are in a long dark hallway leading east and west. Not much can be
+                   |seen in the unnatural darkness here, but you get a deep sense of dread
                    |the further you go.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -5092,8 +5092,8 @@
     "area": "hitower",
     "anum": 159,
     "name": "A dark hallway",
-    "description": "You are in a long dark hallway leading east and west. Not much can be\n
-                   |seen in the unnatural darkness here, but you get a deep sense of dread\n
+    "description": "You are in a long dark hallway leading east and west. Not much can be
+                   |seen in the unnatural darkness here, but you get a deep sense of dread
                    |the further you go.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -5112,9 +5112,9 @@
     "area": "hitower",
     "anum": 160,
     "name": "The end of the hallway",
-    "description": "You are at the end of a long dark hallway. The darkness here is almost\n
-                   |tangible in its thickness. A deep sense of fear and loathing comes over\n
-                   |you.\n
+    "description": "You are at the end of a long dark hallway. The darkness here is almost
+                   |tangible in its thickness. A deep sense of fear and loathing comes over
+                   |you.
                    |  A pair of obsidian doors can be seen to the east.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -5135,9 +5135,9 @@
     "area": "hitower",
     "anum": 161,
     "name": "The chamber of darkness",
-    "description": "You are in a vast chamber. The walls fade into darkness, leaving you\n
-                   |with a very vague idea of the actual size of the room. Swirling here and\n
-                   |there in the dark, are patches of pure black which seem to suck in your\n
+    "description": "You are in a vast chamber. The walls fade into darkness, leaving you
+                   |with a very vague idea of the actual size of the room. Swirling here and
+                   |there in the dark, are patches of pure black which seem to suck in your
                    |light and leave it that much darker here.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -5204,9 +5204,9 @@
     "area": "hitower",
     "anum": 163,
     "name": "Torture chamber",
-    "description": "You are in an ill lit chamber. Instruments of torture hang from a rack\n
-                   |on the wall, they seem to quiver with anticipation of a victim as if they\n
-                   |had a mind of their own. An operating table is here, though it is bare.\n
+    "description": "You are in an ill lit chamber. Instruments of torture hang from a rack
+                   |on the wall, they seem to quiver with anticipation of a victim as if they
+                   |had a mind of their own. An operating table is here, though it is bare.
                    |  An extreme feeling of evil permeates the entire area.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -5219,9 +5219,9 @@
     "area": "hitower",
     "anum": 164,
     "name": "The inner chamber",
-    "description": "You are in a small dark chamber. Upon the walls are glowing sigils of\n
-                   |dark power, scrawled and traced in an evil language no longer known to most\n
-                   |of this plane of existence. There is an obsidian altar here which seems to\n
+    "description": "You are in a small dark chamber. Upon the walls are glowing sigils of
+                   |dark power, scrawled and traced in an evil language no longer known to most
+                   |of this plane of existence. There is an obsidian altar here which seems to
                    |glow, but does not shed any light, in fact it seems to be taking light in.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -5276,9 +5276,9 @@
     "area": "hitower",
     "anum": 165,
     "name": "A bright hallway",
-    "description": "You are in a long well lit hallway leading east and west. The walls here\n
-                   |are a milky white color, and glow with a warm luminescence, as does the\n
-                   |floor. A feeling of goodness permeates the area, and you feel unworthy to\n
+    "description": "You are in a long well lit hallway leading east and west. The walls here
+                   |are a milky white color, and glow with a warm luminescence, as does the
+                   |floor. A feeling of goodness permeates the area, and you feel unworthy to
                    |tread upon these sacred floors.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5297,10 +5297,10 @@
     "area": "hitower",
     "anum": 166,
     "name": "A bright hallway",
-    "description": "You are in a long well lit hallway leading east and west. The walls here\n
-                   |are a milky white color, and glow with a warm luminescence, as does the\n
-                   |floor. A feeling of goodness permeates the area, and you feel unworthy to\n
-                   |tread upon these sacred floors.\n
+    "description": "You are in a long well lit hallway leading east and west. The walls here
+                   |are a milky white color, and glow with a warm luminescence, as does the
+                   |floor. A feeling of goodness permeates the area, and you feel unworthy to
+                   |tread upon these sacred floors.
                    |  A huge set of double doors in finely worked ivory can be seen to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5321,9 +5321,9 @@
     "area": "hitower",
     "anum": 167,
     "name": "An antechamber",
-    "description": "You are in a small antechamber. It is well lit here, though the source\n
-                   |of light cannot be seen. It is almost as if the room itself exudes a warm\n
-                   |glow of goodness. A larger chamber can be seen to the west, but you do not\n
+    "description": "You are in a small antechamber. It is well lit here, though the source
+                   |of light cannot be seen. It is almost as if the room itself exudes a warm
+                   |glow of goodness. A larger chamber can be seen to the west, but you do not
                    |feel worthy to pass into it.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5370,10 +5370,10 @@
     "area": "hitower",
     "anum": 169,
     "name": "The chamber of the white light",
-    "description": "You are in a vast chamber, its walls floor and ceiling are of an unknown\n
-                   |metallic material, the brightest white, almost blindingly stark. A flickering\n
-                   |flame is in the center of the room, seeming to feed off of darkness and\n
-                   |cleansing the room of any evil. You feel a slight tug at your being as the\n
+    "description": "You are in a vast chamber, its walls floor and ceiling are of an unknown
+                   |metallic material, the brightest white, almost blindingly stark. A flickering
+                   |flame is in the center of the room, seeming to feed off of darkness and
+                   |cleansing the room of any evil. You feel a slight tug at your being as the
                    |flame flickers towards you.\n",
     "sector_type": "inside",
     "doors": [
@@ -5441,8 +5441,8 @@
     "area": "hitower",
     "anum": 170,
     "name": "The meditation chamber",
-    "description": "You are in a small meditation chamber. White silk cushions are everywhere,\n
-                   |looking very comfortable. You get an easy peaceful feeling of relaxation\n
+    "description": "You are in a small meditation chamber. White silk cushions are everywhere,
+                   |looking very comfortable. You get an easy peaceful feeling of relaxation
                    |here, almost making you want to lie down and fall asleep.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5455,8 +5455,8 @@
     "area": "hitower",
     "anum": 171,
     "name": "A study",
-    "description": "You are in a spacious study. It is extremely tidy here, to an almost\n
-                   |antiseptic nature. One would wonder how anyone could study without a\n
+    "description": "You are in a spacious study. It is extremely tidy here, to an almost
+                   |antiseptic nature. One would wonder how anyone could study without a
                    |mess all around them, the master of this chamber obviously can.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5469,7 +5469,7 @@
     "area": "hitower",
     "anum": 172,
     "name": "A closet",
-    "description": "You are in a small closet. Cloaks and vests hang from hooks in the wall,\n
+    "description": "You are in a small closet. Cloaks and vests hang from hooks in the wall,
                    |and a few old boots are all that can be seen here. Rather featureless.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -5482,9 +5482,9 @@
     "area": "hitower",
     "anum": 173,
     "name": "A wide hallway",
-    "description": "You are in a large hallway, wide enough to accommodate several people\n
-                   |standing abreast. The floor here is a swirl of multicolored patterns, in\n
-                   |constant motion.\n
+    "description": "You are in a large hallway, wide enough to accommodate several people
+                   |standing abreast. The floor here is a swirl of multicolored patterns, in
+                   |constant motion.
                    |  A huge grey metal door blocks the way north, it looks quite sturdy.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5506,9 +5506,9 @@
     "area": "hitower",
     "anum": 174,
     "name": "A wide hallway",
-    "description": "You are in a large hallway, wide enough to accommodate several people\n
-                   |standing abreast. The floor here is a swirl of multicolored patterns, in\n
-                   |constant motion.\n
+    "description": "You are in a large hallway, wide enough to accommodate several people
+                   |standing abreast. The floor here is a swirl of multicolored patterns, in
+                   |constant motion.
                    |  A huge black obsidian door blocks the way north, it looks quite sturdy.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5533,9 +5533,9 @@
     "area": "hitower",
     "anum": 175,
     "name": "A wide hallway",
-    "description": "You are in a large hallway, wide enough to accommodate several people\n
-                   |standing abreast. The floor here is a swirl of multicolored patterns, in\n
-                   |constant motion.\n
+    "description": "You are in a large hallway, wide enough to accommodate several people
+                   |standing abreast. The floor here is a swirl of multicolored patterns, in
+                   |constant motion.
                    |  A huge white ivory door blocks the way north, it looks quite sturdy.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5560,9 +5560,9 @@
     "area": "hitower",
     "anum": 176,
     "name": "The entranceway",
-    "description": "You are at the entrance to the audience chamber of the grand master of\n
-                   |magic. Beautiful tapestries displaying the ancient masters of lore are on\n
-                   |the walls, and the floor is covered with a plush multicolored carpet, which\n
+    "description": "You are at the entrance to the audience chamber of the grand master of
+                   |magic. Beautiful tapestries displaying the ancient masters of lore are on
+                   |the walls, and the floor is covered with a plush multicolored carpet, which
                    |seems to rustle and move at the touch of your boots.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5584,11 +5584,11 @@
     "area": "hitower",
     "anum": 177,
     "name": "The audience chamber",
-    "description": "You are in a large chamber. Small bolts of energy leap from wall to wall,\n
-                   |crackling with power. The floor is a swirl of indeterminable colors and\n
-                   |patterns ever changing. Bright bursts of color seem to explode into the air\n
-                   |and fade again at random times. All this splendor plays about and draws\n
-                   |attention to a large throne in the center of the room, it seems to be cut\n
+    "description": "You are in a large chamber. Small bolts of energy leap from wall to wall,
+                   |crackling with power. The floor is a swirl of indeterminable colors and
+                   |patterns ever changing. Bright bursts of color seem to explode into the air
+                   |and fade again at random times. All this splendor plays about and draws
+                   |attention to a large throne in the center of the room, it seems to be cut
                    |from a single enormous emerald.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5692,9 +5692,9 @@
     "area": "hitower",
     "anum": 178,
     "name": "A dressing room",
-    "description": "You are in a plush dressing room. Fine garments of many styles and some\n
-                   |outlandish colors hang from a rack suspended in mid air at eye level. The\n
-                   |only other interesting feature in the room is a large silver mirror on a\n
+    "description": "You are in a plush dressing room. Fine garments of many styles and some
+                   |outlandish colors hang from a rack suspended in mid air at eye level. The
+                   |only other interesting feature in the room is a large silver mirror on a
                    |finely crafted gold stand.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5707,9 +5707,9 @@
     "area": "hitower",
     "anum": 179,
     "name": "The library",
-    "description": "You are in a small cozy looking library. A few well made books sit atop\n
-                   |shelves which span every wall. A large oaken writing table is in the center\n
-                   |of the room with odd papers and parchments on it. The illumination here,\n
+    "description": "You are in a small cozy looking library. A few well made books sit atop
+                   |shelves which span every wall. A large oaken writing table is in the center
+                   |of the room with odd papers and parchments on it. The illumination here,
                    |to your surprise is a quite un-magical oil lamp.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5722,9 +5722,9 @@
     "area": "hitower",
     "anum": 180,
     "name": "The altar",
-    "description": "You are in a small chapel designed around a beautifully crafted golden\n
-                   |altar. Many icons to lesser deities line the room, but it is obvious by one\n
-                   |glance at the symbols on the altar, that this room was designed for the\n
+    "description": "You are in a small chapel designed around a beautifully crafted golden
+                   |altar. Many icons to lesser deities line the room, but it is obvious by one
+                   |glance at the symbols on the altar, that this room was designed for the
                    |worship of Mystra, the goddess of magic.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5770,7 +5770,7 @@
     "area": "hitower",
     "anum": 181,
     "name": "The treasury",
-    "description": "You are in a small chamber, the stale air here is testament to the fact\n
+    "description": "You are in a small chamber, the stale air here is testament to the fact
                    |that it has gone undisturbed for many years.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5804,10 +5804,10 @@
     "area": "hitower",
     "anum": 182,
     "name": "A passage",
-    "description": "You are in a small dark passage, which would be unremarkable if not for\n
-                   |the fact that it ends in a blinding blue light to the west. On hooks set\n
-                   |into the wall here there hang several travel worthy cloaks, and a small\n
-                   |leather backpack.  It looks as if someone has prepared this room to be used\n
+    "description": "You are in a small dark passage, which would be unremarkable if not for
+                   |the fact that it ends in a blinding blue light to the west. On hooks set
+                   |into the wall here there hang several travel worthy cloaks, and a small
+                   |leather backpack.  It looks as if someone has prepared this room to be used
                    |in the event speedy of a evacuation.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -5863,10 +5863,10 @@
     "area": "hitower",
     "anum": 183,
     "name": "In the light",
-    "description": "You seem to be floating in a magical energy field, though you cannot see\n
-                   |the source of the energy, you can feel its power pushing at you from all\n
-                   |sides, completely negating the effects of gravity.\n
-                   |  An imperfection in the uniform blue can be seen overhead, it might be an\n
+    "description": "You seem to be floating in a magical energy field, though you cannot see
+                   |the source of the energy, you can feel its power pushing at you from all
+                   |sides, completely negating the effects of gravity.
+                   |  An imperfection in the uniform blue can be seen overhead, it might be an
                    |exit.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -5879,9 +5879,9 @@
     "area": "hitower",
     "anum": 199,
     "name": "Skylar's Hideout",
-    "description": "You are in a small, very messy room. An unmade bed is against one wall, and\n
-                   |books and papers cover every available flat surface. Empty beer cans lie here\n
-                   |and there, discarded with total abandon. A few over full ashtrays can be seen\n
+    "description": "You are in a small, very messy room. An unmade bed is against one wall, and
+                   |books and papers cover every available flat surface. Empty beer cans lie here
+                   |and there, discarded with total abandon. A few over full ashtrays can be seen
                    |on a desk.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors private",

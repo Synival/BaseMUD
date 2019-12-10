@@ -13,7 +13,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "candlestick",
-      "description": "It is a rather old-looking three-armed candlestick made from pewter.  Its\n
+      "description": "It is a rather old-looking three-armed candlestick made from pewter.  Its
                      |candles are a yellowish white colour.\n"
     }]
   }},
@@ -37,7 +37,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "tickler",
-      "description": "A horrid black mass of gooey tentacles obviously ripped from the corpse\n
+      "description": "A horrid black mass of gooey tentacles obviously ripped from the corpse
                      |of a nightgaunt ... disgusting.\n"
     }],
     "affects": [
@@ -94,7 +94,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "rod key",
-      "description": "This rod looks sort of octagonal, and sort of like a key and crowbar.  You\n
+      "description": "This rod looks sort of octagonal, and sort of like a key and crowbar.  You
                      |recognize that it will probably fit the lock at the entrance of the tombs.\n"
     }]
   }},
@@ -112,7 +112,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "large black dirty key",
-      "description": "One of those traditional old lock type keys ... except huge, black and\n
+      "description": "One of those traditional old lock type keys ... except huge, black and
                      |filthy ... hmm ... like it has been buried for some time ...\n"
     }]
   }},
@@ -137,7 +137,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "head jubal mummy",
-      "description": "ACK! It's half eaten away ... yet it is whole ... in fact I think it can be\n
+      "description": "ACK! It's half eaten away ... yet it is whole ... in fact I think it can be
                      |opened and closed ... is there something in its teeth!?!?!? ACK you do it!\n"
     }]
   }},
@@ -156,7 +156,7 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "black marble ring",
-      "description": "It is pitch black and has beautiful swirls characteristic of marble all\n
+      "description": "It is pitch black and has beautiful swirls characteristic of marble all
                      |through it.\n"
     }],
     "affects": [
@@ -234,7 +234,7 @@
     "cost": 0,
     "extra_description": [{
       "keyword": "sarcophagus coffin",
-      "description": "A well crafted, if dusty and ancient, home for the afterworld, it seems\n
+      "description": "A well crafted, if dusty and ancient, home for the afterworld, it seems
                      |to be able to be opened but needs a key.\n"
     }]
   }},
@@ -273,7 +273,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "wineflask flask",
-      "description": "A nice leather wineflask that has somehow survived the ages in a coffin.\n
+      "description": "A nice leather wineflask that has somehow survived the ages in a coffin.
                      |The wine should be nicely aged.\n"
     }]
   }},
@@ -307,7 +307,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key",
-      "description": "Neat you have the key to the coffin...is is a soft orange color\n
+      "description": "Neat you have the key to the coffin...is is a soft orange color
                      |and burns in your hand a bit.\n"
     }]
   }},
@@ -352,7 +352,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "rusty sword scimitar",
-      "description": "Very rusty and old...it has a wide blade and chunks missing from\n
+      "description": "Very rusty and old...it has a wide blade and chunks missing from
                      |its cutting edge.\n"
     }]
   }},
@@ -373,7 +373,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "slime piece",
-      "description": "ICK! This is a piece of slug-like brownish green slime...\n
+      "description": "ICK! This is a piece of slug-like brownish green slime...
                      |Blech!\n"
     }]
   }},
@@ -391,7 +391,7 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "smock",
-      "description": "It has paint and little shavings of different materials all over it.\n
+      "description": "It has paint and little shavings of different materials all over it.
                      |It is very old an smells of paint, mildew, and rot.\n"
     }]
   }},
@@ -415,14 +415,14 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "scroll tightly rolled",
-      "description": "It is tightly wound. The writing on the inside when opened up is very\n
-                     |unreadable but the scroll has a seal on it with a grey :\n
-                     |\n
-                     |    88\n
-                     |    88\n
-                     |8888  8888\n
-                     |    88\n
-                     |    88\n
+      "description": "It is tightly wound. The writing on the inside when opened up is very
+                     |unreadable but the scroll has a seal on it with a grey :
+                     |
+                     |    88
+                     |    88
+                     |8888  8888
+                     |    88
+                     |    88
                      |\n"
     }]
   }},
@@ -446,7 +446,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "auburn orb",
-      "description": "You gaze into the orb and are almost lost in the swirling mists of color\n
+      "description": "You gaze into the orb and are almost lost in the swirling mists of color
                      |inside of this rare and beautiful object.\n"
     }]
   }},
@@ -464,7 +464,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "bar gold",
-      "description": "A nice little brick of gold...very dusty and old... it has some emblem\n
+      "description": "A nice little brick of gold...very dusty and old... it has some emblem
                      |on it...The emblem is a large 'J'\n"
     }]
   }},
@@ -487,7 +487,7 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "dark black cape",
-      "description": "The cape is gently flows and pulls in the light so evenly and perfectly\n
+      "description": "The cape is gently flows and pulls in the light so evenly and perfectly
                      |that the cape seems to be simply a void of blackness. It is quite beautiful\n"
     }],
     "affects": [
@@ -528,8 +528,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "flaming sword long longsword",
-      "description": "This sword is amazing! It almost wields itself! As you test it out, the\n
-                     |flames seems to roar brighter as you go thru basic swordsman routines.\n
+      "description": "This sword is amazing! It almost wields itself! As you test it out, the
+                     |flames seems to roar brighter as you go thru basic swordsman routines.
                      |it is obviously a great find!\n"
     }],
     "affects": [{

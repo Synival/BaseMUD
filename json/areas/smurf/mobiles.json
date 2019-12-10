@@ -5,7 +5,7 @@
     "name": "smurf",
     "short_descr": "a smurf",
     "long_descr": "A smurf is singing and walking along.\n",
-    "description": "A cute little blue smurf with a white hat and white boots.  You have a sudden\n
+    "description": "A cute little blue smurf with a white hat and white boots.  You have a sudden
                    |urge to crush him.\n",
     "race": "human",
     "alignment": 100,
@@ -64,7 +64,7 @@
     "name": "brainy smurf",
     "short_descr": "Brainy Smurf",
     "long_descr": "Brainy Smurf is here, mumbling something to himself.\n",
-    "description": "Brainy Smurf has on his usual glasses.  Brainy Smurf isn't liked much by the\n
+    "description": "Brainy Smurf has on his usual glasses.  Brainy Smurf isn't liked much by the
                    |other smurfs.  They fear his knowledge.  Knowledge is power!\n",
     "race": "human",
     "alignment": 100,
@@ -94,7 +94,7 @@
     "name": "handy smurf",
     "short_descr": "Handy Smurf",
     "long_descr": "Handy Smurf is building something here.\n",
-    "description": "Handy is always building something.  He never takes a break.  Why don't you\n
+    "description": "Handy is always building something.  He never takes a break.  Why don't you
                    |give him a break, like all of his bones.\n",
     "race": "human",
     "alignment": 100,
@@ -124,7 +124,7 @@
     "name": "sleepy smurf",
     "short_descr": "Sleepy Smurf",
     "long_descr": "Sleepy Smurf is sleep walking here.\n",
-    "description": "Sleepy never gets enough sleep.  You would think he goes to college.  I wonder\n
+    "description": "Sleepy never gets enough sleep.  You would think he goes to college.  I wonder
                    |if he has ever stayed up a whole night without sleeping.\n",
     "race": "human",
     "alignment": 100,
@@ -154,7 +154,7 @@
     "name": "hefty smurf",
     "short_descr": "Hefty Smurf",
     "long_descr": "Hefty Smurf is lifting weights here.\n",
-    "description": "Hefty is a total health nut.  He lifts weights, eats right, and exercises all\n
+    "description": "Hefty is a total health nut.  He lifts weights, eats right, and exercises all
                    |the time.  Won't do him much good when he's DEAD.\n",
     "race": "human",
     "alignment": 100,
@@ -213,7 +213,7 @@
     "name": "jokey smurf",
     "short_descr": "Jokey Smurf",
     "long_descr": "Jokey Smurf is here, holding a present.\n",
-    "description": "Jokey loves to give people presents.  Too bad the present explodes when opened.\n
+    "description": "Jokey loves to give people presents.  Too bad the present explodes when opened.
                    |Oh well, to each his own.\n",
     "race": "human",
     "alignment": 100,
@@ -243,7 +243,7 @@
     "name": "smurfette",
     "short_descr": "Smurfette",
     "long_descr": "Smurfette is here, looking beautiful.\n",
-    "description": "Smurfette is the cutest little smurf you've ever seen.  If only she were your\n
+    "description": "Smurfette is the cutest little smurf you've ever seen.  If only she were your
                    |size.  I wonder how much she charges the other smurfs.\n",
     "race": "human",
     "alignment": 100,
@@ -273,8 +273,8 @@
     "name": "papa smurf",
     "short_descr": "Papa Smurf",
     "long_descr": "Papa Smurf is practicing magic here.\n",
-    "description": "Yep, its Papa Smurf all right.  Red hat and boots and the funny little white\n
-                   |beard.  Papa Smurf treats his fellow smurfs with dignity and respect.  That\n
+    "description": "Yep, its Papa Smurf all right.  Red hat and boots and the funny little white
+                   |beard.  Papa Smurf treats his fellow smurfs with dignity and respect.  That
                    |is why Papa Smurf is so popular among the ladies.\n",
     "race": "human",
     "alignment": 100,
@@ -303,7 +303,7 @@
     "name": "gargamel",
     "short_descr": "Gargamel",
     "long_descr": "Gargamel is here, cursing out the smurfs.\n",
-    "description": "Gargamel has never done anything right in his life.  He has caught smurfs\n
+    "description": "Gargamel has never done anything right in his life.  He has caught smurfs
                    |before but always lets them escape.  He brings true meaning to the word moron.\n",
     "race": "human",
     "alignment": -100,
@@ -332,7 +332,7 @@
     "name": "azreal cat",
     "short_descr": "Azreal",
     "long_descr": "Azreal is here, licking himself.\n",
-    "description": "Gargamel's worthless cat.  He is just about as dumb as Gargamel.  He should\n
+    "description": "Gargamel's worthless cat.  He is just about as dumb as Gargamel.  He should
                    |just grab a smurf in his teeth and chew away.\n",
     "race": "human",
     "alignment": -100,

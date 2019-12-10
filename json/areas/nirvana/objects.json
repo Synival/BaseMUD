@@ -21,7 +21,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword long the",
-      "description": "This is an extremely long and heavy sword, with many magical runes inscribed\n
+      "description": "This is an extremely long and heavy sword, with many magical runes inscribed
                      |on it.  It glows with the power of Primus, Lord of the Plane of Nirvana.\n"
     }],
     "affects": [
@@ -57,7 +57,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "moonstone moon stone white",
-      "description": "Looking into the smooth surface of this moonstone, you feel strangely at \n
+      "description": "Looking into the smooth surface of this moonstone, you feel strangely at 
                      |peace and balance with the world around you.\n"
     }]
   }}

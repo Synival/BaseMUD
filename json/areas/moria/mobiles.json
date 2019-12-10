@@ -197,7 +197,7 @@
     "name": "warrior",
     "short_descr": "the warrior",
     "long_descr": "This veteran warrior is old enough to be your father.\n",
-    "description": "He seems to know his way with weapons.  And he wants\n
+    "description": "He seems to know his way with weapons.  And he wants
                    |to show you what he can do!\n",
     "race": "human",
     "alignment": -400,
@@ -226,8 +226,8 @@
     "name": "hobgoblin",
     "short_descr": "the hobgoblin",
     "long_descr": "A small beat-up hobgoblin cringes in the corner.\n",
-    "description": "Looking into the eyes of this poor soul makes you feel\n
-                   |sad as you see the terror and fear in its eyes.  Why\n
+    "description": "Looking into the eyes of this poor soul makes you feel
+                   |sad as you see the terror and fear in its eyes.  Why
                    |don't you put it out of its misery?\n",
     "race": "hobgoblin",
     "alignment": -300,
@@ -311,7 +311,7 @@
     "name": "hobgoblin",
     "short_descr": "the large hobgoblin",
     "long_descr": "A large hobgoblin is here wondering if he should tear you apart.\n",
-    "description": "Red, bloodshot eyes and drool dripping from its mouth makes you\n
+    "description": "Red, bloodshot eyes and drool dripping from its mouth makes you
                    |wonder just how far away you should be.\n",
     "race": "hobgoblin",
     "alignment": -500,
@@ -340,7 +340,7 @@
     "name": "orc",
     "short_descr": "the orc",
     "long_descr": "An orc is here, looking for something (or perhaps someone) to eat.\n",
-    "description": "As you already know, orcs have quite a ravenous appetite.  \n
+    "description": "As you already know, orcs have quite a ravenous appetite.  
                    |Care to be dinner?\n",
     "race": "orc",
     "alignment": -800,
@@ -367,7 +367,7 @@
     "name": "lion mountain",
     "short_descr": "the mountain lion",
     "long_descr": "A mountain lion bears its teeth at the sight of more food.\n",
-    "description": "Huge claws and big teeth make quite a fearsome opponent for\n
+    "description": "Huge claws and big teeth make quite a fearsome opponent for
                    |the weary.  Are you next?\n",
     "race": "cat",
     "alignment": -100,
@@ -395,8 +395,8 @@
     "name": "giant hill",
     "short_descr": "the hill giant",
     "long_descr": "A hill giant is here tossing rocks around.  Marbles perhaps?\n",
-    "description": "The hill giant looks like he's about 9 feet tall. By his actions you\n
-                   |come to the conclusion that he's not very intelligent.  A perfect\n
+    "description": "The hill giant looks like he's about 9 feet tall. By his actions you
+                   |come to the conclusion that he's not very intelligent.  A perfect
                    |playmate for you.\n",
     "race": "giant",
     "alignment": 0,
@@ -424,7 +424,7 @@
     "anum": 200,
     "name": "mage",
     "short_descr": "the Mage",
-    "long_descr": "A small intelligent looking mage is standing here. It looks like he\n
+    "long_descr": "A small intelligent looking mage is standing here. It looks like he
                   |knows his way with magic. \n",
     "description": "This guy can ace the SAT with his frontal lobe tied behind his back.\n",
     "race": "human",
@@ -456,7 +456,7 @@
     "name": "troll",
     "short_descr": "the troll",
     "long_descr": "This large mean-looking troll wants to take a closer look at you.\n",
-    "description": "Whilst you look at this troll, you realize he is trying to\n
+    "description": "Whilst you look at this troll, you realize he is trying to
                    |figure just how tender you are.\n",
     "race": "troll",
     "alignment": -800,
@@ -484,7 +484,7 @@
     "name": "guardian snake",
     "short_descr": "the guardian snake",
     "long_descr": "A large green snake is guardian for something.\n",
-    "description": "You take a closer look at this large snake while it tries to\n
+    "description": "You take a closer look at this large snake while it tries to
                    |bite your head off!\n",
     "race": "snake",
     "alignment": -700,
@@ -568,7 +568,7 @@
     "name": "centipede",
     "short_descr": "a centipede",
     "long_descr": "A small harmless centipede is here looking for some vegetation to eat.\n",
-    "description": "It doesn't seem to pay any attention towards you.  You are probably\n
+    "description": "It doesn't seem to pay any attention towards you.  You are probably
                    |not important.\n",
     "race": "centipede",
     "alignment": 300,
@@ -850,7 +850,7 @@
     "name": "mage",
     "short_descr": "the Mage",
     "long_descr": "A small man is here researching magical incantations.\n",
-    "description": "His little head is buried into his magic books.  He'd be very\n
+    "description": "His little head is buried into his magic books.  He'd be very
                    |angry should you bother his studies.\n",
     "race": "human",
     "alignment": -200,
@@ -880,7 +880,7 @@
     "name": "snake",
     "short_descr": "the snake",
     "long_descr": "A brown snake hisses at you.\n",
-    "description": "Sickly brown as it is, you know what it really wants is you\n
+    "description": "Sickly brown as it is, you know what it really wants is you
                    |for dinner.\n",
     "race": "snake",
     "alignment": 200,

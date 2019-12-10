@@ -3,7 +3,7 @@
     "area": "trollden",
     "anum": 1,
     "name": "Wastedump",
-    "description": "This room is filled with bone shards and fragments.  Something (or things)\n
+    "description": "This room is filled with bone shards and fragments.  Something (or things)
                    |very big lives here.  A small plaque is on the wall.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -21,7 +21,7 @@
     ],
     "extra_description": [{
       "keyword": "plaque",
-      "description": "This zone (trollden) is created by MERC for any MERC Mud.\n
+      "description": "This zone (trollden) is created by MERC for any MERC Mud.
                      |copyright 1992\n"
     }],
     "resets": [
@@ -47,16 +47,16 @@
     "area": "trollden",
     "anum": 2,
     "name": "Troll's Larder",
-    "description": "This room has blood and grime all over the walls.  You see maggots and other\n
-                   |insects crawling up them.  The resident is definitely uncivilized.  Half-eaten\n
-                   |and rotting body parts scatter the floor, each having its own colony of flies,\n
+    "description": "This room has blood and grime all over the walls.  You see maggots and other
+                   |insects crawling up them.  The resident is definitely uncivilized.  Half-eaten
+                   |and rotting body parts scatter the floor, each having its own colony of flies,
                    |worms, and maggots.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "east",
       "to": 3,
-      "description": "You welcome the fresh breeze coming from the east, but wrinkle your nose when\n
+      "description": "You welcome the fresh breeze coming from the east, but wrinkle your nose when
                      |the stench bears down on you once more.\n"
     }],
     "extra_description": [{
@@ -110,7 +110,7 @@
     "area": "trollden",
     "anum": 3,
     "name": "Troll's Living Room",
-    "description": "This small cave opens to the north, south, east, and west.  You are\n
+    "description": "This small cave opens to the north, south, east, and west.  You are
                    |overcome by the stench and consider turning around.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -123,19 +123,19 @@
       {
         "dir": "east",
         "to": 4,
-        "description": "Good God!  You spy corpses all over the floor in there.  It looks like a\n
+        "description": "Good God!  You spy corpses all over the floor in there.  It looks like a
                        |virtual graveyard in there.\n"
       },
       {
         "dir": "south",
         "to": 5,
-        "description": "Whoa!  You reel back from the stench.  You believe you have found the source\n
+        "description": "Whoa!  You reel back from the stench.  You believe you have found the source
                        |of this bad smell.\n"
       },
       {
         "dir": "west",
         "to": 2,
-        "description": "You puke as you watch worms crawl between this room and the room west of here\n
+        "description": "You puke as you watch worms crawl between this room and the room west of here
                        |as they bore new holes into a corpse laying on the far wall of the west room.\n"
       }
     ],
@@ -186,20 +186,20 @@
     "area": "trollden",
     "anum": 4,
     "name": "The Playpen",
-    "description": "The walls are covered with blood (and body parts!?!?).  Plastered on the far\n
-                   |wall you see what looks like a human arm.  A half-eaten body lies here with\n
+    "description": "The walls are covered with blood (and body parts!?!?).  Plastered on the far
+                   |wall you see what looks like a human arm.  A half-eaten body lies here with
                    |its chest ripped out.  The predator seems disinterested in it.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "west",
       "to": 3,
-      "description": "You welcome the fresh breeze coming from the west, but wrinkle your nose when\n
+      "description": "You welcome the fresh breeze coming from the west, but wrinkle your nose when
                      |the stench bears down on you once more.\n"
     }],
     "extra_description": [{
       "keyword": "arm rotting",
-      "description": "This reminds you of what a baby would do to its formula during dinnertime,\n
+      "description": "This reminds you of what a baby would do to its formula during dinnertime,
                      |plastering it on the wall.\n"
     }],
     "resets": [
@@ -266,17 +266,17 @@
     "area": "trollden",
     "anum": 5,
     "name": "Troll's Bedroom",
-    "description": "Obviously something REALLY big lives here.  The stench is quite unbearable.\n
-                   |There are piles and piles of rotten and half-eaten body parts of animals,\n
-                   |orcs, (and humans?) strewn across the floor.  There is a larger, more\n
-                   |prominent pile of rotten parts over in a corner.  It seems to have been\n
+    "description": "Obviously something REALLY big lives here.  The stench is quite unbearable.
+                   |There are piles and piles of rotten and half-eaten body parts of animals,
+                   |orcs, (and humans?) strewn across the floor.  There is a larger, more
+                   |prominent pile of rotten parts over in a corner.  It seems to have been
                    |flattened by something.\n",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [{
       "dir": "north",
       "to": 3,
-      "description": "You welcome the fresh breeze coming from the north, but wrinkle your nose when\n
+      "description": "You welcome the fresh breeze coming from the north, but wrinkle your nose when
                      |the stench bears down on you once more.\n"
     }],
     "resets": [

@@ -5,7 +5,7 @@
     "name": "fairy dragon",
     "short_descr": "A fairy dragon",
     "long_descr": "A fairy dragon is fluttering around here looking for something to do...\n",
-    "description": "It's a cute little multi-colored dragon...about 2 foot long.\n
+    "description": "It's a cute little multi-colored dragon...about 2 foot long.
                    |It gracefully dances around your head.\n",
     "race": "human",
     "alignment": 500,
@@ -35,7 +35,7 @@
     "name": "griffin",
     "short_descr": "A griffin",
     "long_descr": "A large black winged griffin swoops into an attack.\n",
-    "description": "Golden maned and black all over.  It's quite a beautiful creature if not\n
+    "description": "Golden maned and black all over.  It's quite a beautiful creature if not
                    |for the fact it is hungry and is attacking you!\n",
     "race": "human",
     "alignment": 300,

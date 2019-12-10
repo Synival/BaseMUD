@@ -5,362 +5,362 @@
   "pages": [
     {
       "keyword": "OLC EDIT",
-      "text": "Syntax: EDIT AREA [create/reset] [vnum]     - Area Creation and Repoping.\n
-              |Syntax: EDIT ROOM ( [create] [vnum] )       - Room Creation and Editing.\n
-              |Syntax: EDIT OBJ  [create] <vnum>           - Object Creation and Editing.\n
-              |Syntax: EDIT MOB  [create] <vnum>           - Mobile Creation and Editing.\n
-              |Syntax: EDIT MP   [create] <vnum>           - MobProg Creation/Editing.\n
-              |\n
-              |Syntax: ASAVE  <world/area/changed/list>    - Save Editing to Disk.\n
-              |Syntax: ALIST                               - Listing of Areas.\n
-              |Syntax: RESET  See Help Resets.             - Set Game Resets.\n
-              |\n
-              |Definition: [optional]  <required>  (combined arguments)\n
-              |\n
-              |     The above commands are used to expand the game world.  The original\n
-              |code is based on was written by Surreality and installed in The Isles by Locke.\n
-              |It was then converted to work with Envy by Jason Dinkel, and ported to ROM\n
-              |2.3 by Hans Birkeland (Hugin). Port to Rom 2.4 by Ivan Toledo (ver 1.7).\n
-              |\n
-              |     Inside an editor, typing COMMANDS lists working commands and ? gives\n
-              |help. AEDIT and REDIT default to the current area or room. EDIT ROOM RESET\n
-              |resets the current room.  Most commands with no arguments display syntax.\n
+      "text": "Syntax: EDIT AREA [create/reset] [vnum]     - Area Creation and Repoping.
+              |Syntax: EDIT ROOM ( [create] [vnum] )       - Room Creation and Editing.
+              |Syntax: EDIT OBJ  [create] <vnum>           - Object Creation and Editing.
+              |Syntax: EDIT MOB  [create] <vnum>           - Mobile Creation and Editing.
+              |Syntax: EDIT MP   [create] <vnum>           - MobProg Creation/Editing.
+              |
+              |Syntax: ASAVE  <world/area/changed/list>    - Save Editing to Disk.
+              |Syntax: ALIST                               - Listing of Areas.
+              |Syntax: RESET  See Help Resets.             - Set Game Resets.
+              |
+              |Definition: [optional]  <required>  (combined arguments)
+              |
+              |     The above commands are used to expand the game world.  The original
+              |code is based on was written by Surreality and installed in The Isles by Locke.
+              |It was then converted to work with Envy by Jason Dinkel, and ported to ROM
+              |2.3 by Hans Birkeland (Hugin). Port to Rom 2.4 by Ivan Toledo (ver 1.7).
+              |
+              |     Inside an editor, typing COMMANDS lists working commands and ? gives
+              |help. AEDIT and REDIT default to the current area or room. EDIT ROOM RESET
+              |resets the current room.  Most commands with no arguments display syntax.
               |See also help: AEDIT REDIT MEDIT OEDIT\n",
       "hide_keywords": true
     },
     {
       "keyword": "ALIST",
-      "text": "Syntax: ALIST\n
-              |\n
-              |This command gives you a listing of all the areas along with their\n
+      "text": "Syntax: ALIST
+              |
+              |This command gives you a listing of all the areas along with their
               |vnum assignments and the builder(s) assigned to editing them.\n"
     },
     {
       "keyword": "AEDIT",
-      "text": "Syntax: edit area\t -Enters the editor for the current area.\n
-              |Syntax: edit area <vnum> -Enters the editor for the selected area.\n
-              |\n
-              |The follow commands are available from within the AEDITOR:\n
-              |\n
-              |age <number>        - set the age of the area\n
-              |builder <player>    - toggle that builder's access\n
-              |commands            - prints a list of possible commands\n
-              |create              - create a brand new area and switch to it\n
-              |done                - exits the area editor and returns to normal play\n
-              |filename <filename> - change the file name for the area (be careful)\n
-              |name <name>         - change the 'AREAS' name of this area\n
-              |reset               - resets the current area\n
-              |security <rating>   - set the security rating for this area\n
-              |show                - hitting return, or 'show' shows the area stats\n
-              |vnum <lower> <upper>- set the lower and upper vnum's\n
-              |lvnum <lower>       - set the lower vnum\n
-              |uvnum <upper>       - set the upper vnum\n
+      "text": "Syntax: edit area\t -Enters the editor for the current area.
+              |Syntax: edit area <vnum> -Enters the editor for the selected area.
+              |
+              |The follow commands are available from within the AEDITOR:
+              |
+              |age <number>        - set the age of the area
+              |builder <player>    - toggle that builder's access
+              |commands            - prints a list of possible commands
+              |create              - create a brand new area and switch to it
+              |done                - exits the area editor and returns to normal play
+              |filename <filename> - change the file name for the area (be careful)
+              |name <name>         - change the 'AREAS' name of this area
+              |reset               - resets the current area
+              |security <rating>   - set the security rating for this area
+              |show                - hitting return, or 'show' shows the area stats
+              |vnum <lower> <upper>- set the lower and upper vnum's
+              |lvnum <lower>       - set the lower vnum
+              |uvnum <upper>       - set the upper vnum
               |<flags>             - area flags, type ? AREA for a list\n"
     },
     {
       "keyword": "REDIT",
-      "text": "Syntax: edit room\t\t-Enters the editor for the current room.\n
-              |\n
-              |The following commands are available from within the REDITOR:\n
-              |\n
-              |commands            - prints a list of possible commands\n
-              |create <vnum>       - creates a room with a certain vnum\n
-              |desc                - edit description of room\n
-              |done                - exists the room editor and returns to normal play\n
-              |ed                  - type this command for additonal extra-description help\n
-              |format              - format(wordwrap) the room description\n
-              |name <room title>   - changes the room title\n
-              |show                - hitting return, or 'show' shows the room stats\n
-              |oshow <vnum>        - shows an object with given vnum\n
-              |olist               - lists objects in this area.\n
-              |mshow <vnum>        - shows a mobile with given vnum\n
-              |mlist               - lists mobiles in this area.\n
-              |room <flags>        - room attributes, type ? ROOM for a list\n
-              |sector <type>       - terrain of room, type ? SECTOR for a list\n
+      "text": "Syntax: edit room\t\t-Enters the editor for the current room.
+              |
+              |The following commands are available from within the REDITOR:
+              |
+              |commands            - prints a list of possible commands
+              |create <vnum>       - creates a room with a certain vnum
+              |desc                - edit description of room
+              |done                - exists the room editor and returns to normal play
+              |ed                  - type this command for additonal extra-description help
+              |format              - format(wordwrap) the room description
+              |name <room title>   - changes the room title
+              |show                - hitting return, or 'show' shows the room stats
+              |oshow <vnum>        - shows an object with given vnum
+              |olist               - lists objects in this area.
+              |mshow <vnum>        - shows a mobile with given vnum
+              |mlist               - lists mobiles in this area.
+              |room <flags>        - room attributes, type ? ROOM for a list
+              |sector <type>       - terrain of room, type ? SECTOR for a list
               |<direction>         - see help EXIT, or type <dir> ?\n"
     },
     {
       "keyword": "EXIT",
-      "text": "For exits, type the direction (north/s/e/w) followed by:\n
-              |\n
-              |dig <vnum>         - creates the room and makes a two way link\n
-              |link <room vnum>   - make a two way link\n
-              |room <room vnum>   - make a one way link (use with caution)\n
-              |key <object vnum>  - makes specified object the vnum of the key required\n
-              |name <door name>   - makes the door's name/keywords = to the given name\n
-              |desc               - edit the description of the exit\n
-              |delete             - delete this exit\n
-              |<exit-flags>       - type ? EXIT for a list(make exit door, locked etc.)\n
-              |\n
-              |The exit flags are presented in the following manner.  The capitalized\n
-              |flags are ones not included in the reset info.  i.e. closed is due to\n
-              |a player closing the door and not due to the door being set to be closed.\n
-              |\n
+      "text": "For exits, type the direction (north/s/e/w) followed by:
+              |
+              |dig <vnum>         - creates the room and makes a two way link
+              |link <room vnum>   - make a two way link
+              |room <room vnum>   - make a one way link (use with caution)
+              |key <object vnum>  - makes specified object the vnum of the key required
+              |name <door name>   - makes the door's name/keywords = to the given name
+              |desc               - edit the description of the exit
+              |delete             - delete this exit
+              |<exit-flags>       - type ? EXIT for a list(make exit door, locked etc.)
+              |
+              |The exit flags are presented in the following manner.  The capitalized
+              |flags are ones not included in the reset info.  i.e. closed is due to
+              |a player closing the door and not due to the door being set to be closed.
+              |
               |-South to [ 3744] Key: [   -1] Exit flags: [door CLOSED bashed pickproof]\n"
     },
     {
       "keyword": "OEDIT",
-      "text": "Syntax: edit object <vnum>\t-Enters the editor for the selected object.\n
-              |\n
-              |The following commands are available from within the OEDITOR:\n
-              |\n
-              |addaffect           - applies an affect to an object, no args for help\n
-              |delaffect           - removes an affect to an object, no args for help\n
-              |commands            - prints a list of possible commands\n
-              |cost <gold>         - sets the gold value of the object\n
-              |create <vnum>       - creates object with specified vnum\n
-              |done                - exits the object editor and returns to normal play\n
-              |ed                  - type this for info on adding/editing extended descripts\n
-              |long                - edit long description (the one in the room)\n
-              |name <keywords>     - sets the keywords on an object\n
-              |short <desc>        - sets the 'name' of an object (a sword, a fish etc)\n
-              |show                - hitting return, or 'show' shows the object stats\n
-              |v0 <num>            - sets the value '0' on the object\n
-              |v1 <num>            - sets the value '1' on the object\n
-              |v2 <num>            - sets the value '2' on the object\n
-              |v3 <num>            - sets the value '3' on the object\n
-              |v4 <num>            - sets the value '4' on the objcet\n
-              |weight <num>        - sets the weight of the object\n
-              |type         \t    - type of object, type ? TYPE for a list\n
-              |extra\t\t    - attributes of object, type ? EXTRA for a list\n
-              |wear                - where object is worn, type ? WEAR for a list\n
+      "text": "Syntax: edit object <vnum>\t-Enters the editor for the selected object.
+              |
+              |The following commands are available from within the OEDITOR:
+              |
+              |addaffect           - applies an affect to an object, no args for help
+              |delaffect           - removes an affect to an object, no args for help
+              |commands            - prints a list of possible commands
+              |cost <gold>         - sets the gold value of the object
+              |create <vnum>       - creates object with specified vnum
+              |done                - exits the object editor and returns to normal play
+              |ed                  - type this for info on adding/editing extended descripts
+              |long                - edit long description (the one in the room)
+              |name <keywords>     - sets the keywords on an object
+              |short <desc>        - sets the 'name' of an object (a sword, a fish etc)
+              |show                - hitting return, or 'show' shows the object stats
+              |v0 <num>            - sets the value '0' on the object
+              |v1 <num>            - sets the value '1' on the object
+              |v2 <num>            - sets the value '2' on the object
+              |v3 <num>            - sets the value '3' on the object
+              |v4 <num>            - sets the value '4' on the objcet
+              |weight <num>        - sets the weight of the object
+              |type         \t    - type of object, type ? TYPE for a list
+              |extra\t\t    - attributes of object, type ? EXTRA for a list
+              |wear                - where object is worn, type ? WEAR for a list
               |material            - material the object is made from\n"
     },
     {
       "keyword": "MEDIT",
-      "text": "Syntax: medit <vnum>\t\t-Enters the editor for the selected mobile.\n
-              |\n
-              |The following commands are available from within the MEDITOR:\n
-              |\n
-              |alignment <value>   - set the mobile's alignment\n
-              |commands            - prints a list of possible commands\n
-              |create <vnum>       - creates mobile with specified vnum\n
-              |desc                - edit the mobile's description (when looked at)\n
-              |done                - exits the mobile editor and returns to normal play\n
-              |level <level>       - set the mobile's level\n
-              |long                - edit long description (the one in the room)\n
-              |name <keywords>     - sets the keywords on an mobile\n
-              |shop                - type this command for further information\n
-              |short <desc>        - sets the 'name' of an mobile (a sword, a fish etc)\n
-              |show                - hitting return, or 'show' shows the mobile stats\n
-              |spec                - sets a mobiles spec proc, type ? SPEC for a list\n
-              |sex                 - set the mobile's sex, type ? SEX for a list\n
-              |act                 - mobiles actions, type ? ACT for a list\n
-              |affect              - mobile affects, type ? AFFECT for a list\n
-              |ac\t\t    - set the mobile's ac, type ? AC for a list\n
-              |form\t\t    - mobiles body-form, type ? FORM for a list\n
-              |part\t\t    - mobiles bodyparts, type ? PART for a list\n
-              |imm\t\t    - mobile is immune to, type ? IMM for a list\n
-              |res\t\t    - mobile is resistant to, type ? RES for a list\n
-              |vuln\t\t    - mobile is vulnerable to, type ? VULN for a list\n
-              |material\t    - material mobile is made from, type ? MATERIAL for a list\n
-              |off\t\t    - offensive behaviour, type ? OFF for a list\n
-              |size\t\t    - size, type ? SIZE for a list\n
-              |hitdice\t\t    - dice to toss to get mobile's hitpoints\n
-              |manadice\t    - dice to toss to get mobile's mana\n
-              |damdice\t\t    - dice to toss to get mobile's hand to hand damage\n
-              |\n
-              |type 'help HITDICE', 'help MANADICE', 'help DAMDICE' for lists of reasonable dice \n
+      "text": "Syntax: medit <vnum>\t\t-Enters the editor for the selected mobile.
+              |
+              |The following commands are available from within the MEDITOR:
+              |
+              |alignment <value>   - set the mobile's alignment
+              |commands            - prints a list of possible commands
+              |create <vnum>       - creates mobile with specified vnum
+              |desc                - edit the mobile's description (when looked at)
+              |done                - exits the mobile editor and returns to normal play
+              |level <level>       - set the mobile's level
+              |long                - edit long description (the one in the room)
+              |name <keywords>     - sets the keywords on an mobile
+              |shop                - type this command for further information
+              |short <desc>        - sets the 'name' of an mobile (a sword, a fish etc)
+              |show                - hitting return, or 'show' shows the mobile stats
+              |spec                - sets a mobiles spec proc, type ? SPEC for a list
+              |sex                 - set the mobile's sex, type ? SEX for a list
+              |act                 - mobiles actions, type ? ACT for a list
+              |affect              - mobile affects, type ? AFFECT for a list
+              |ac\t\t    - set the mobile's ac, type ? AC for a list
+              |form\t\t    - mobiles body-form, type ? FORM for a list
+              |part\t\t    - mobiles bodyparts, type ? PART for a list
+              |imm\t\t    - mobile is immune to, type ? IMM for a list
+              |res\t\t    - mobile is resistant to, type ? RES for a list
+              |vuln\t\t    - mobile is vulnerable to, type ? VULN for a list
+              |material\t    - material mobile is made from, type ? MATERIAL for a list
+              |off\t\t    - offensive behaviour, type ? OFF for a list
+              |size\t\t    - size, type ? SIZE for a list
+              |hitdice\t\t    - dice to toss to get mobile's hitpoints
+              |manadice\t    - dice to toss to get mobile's mana
+              |damdice\t\t    - dice to toss to get mobile's hand to hand damage
+              |
+              |type 'help HITDICE', 'help MANADICE', 'help DAMDICE' for lists of reasonable dice 
               |combinations on different levels.\n"
     },
     {
       "keyword": "HITDICE",
-      "text": "A high number of dice makes for less variance in mobiles hitpoints.\n
-              |Suggested values are:\n
-              |\n
-              |       level:     dice         min         max        mean\n
-              |         1:       1d2+6       7(  7)     8(   8)     8(   8)\n
-              |\t 2:       1d3+15     16( 15)    18(  18)    17(  17)\n
-              |\t 3:       1d6+24     25( 24)    30(  30)    27(  27)\n
-              |\t 5:      1d17+42     43( 42)    59(  59)    51(  51)\n
-              |\t10:      3d22+96     99( 95)   162( 162)   131( 129)\n
-              |\t15:      5d30+161   166(159)   311( 311)   239( 235)\n
-              |\t30:     10d61+416   426(419)  1026(1026)   726( 723)\n
-              |\t50:    10d169+920   930(923)  2610(2610)  1770(1767)\n
-              |\n
-              |Diff = max - min.  Mean is the arithmetic mean.\n
+      "text": "A high number of dice makes for less variance in mobiles hitpoints.
+              |Suggested values are:
+              |
+              |       level:     dice         min         max        mean
+              |         1:       1d2+6       7(  7)     8(   8)     8(   8)
+              |\t 2:       1d3+15     16( 15)    18(  18)    17(  17)
+              |\t 3:       1d6+24     25( 24)    30(  30)    27(  27)
+              |\t 5:      1d17+42     43( 42)    59(  59)    51(  51)
+              |\t10:      3d22+96     99( 95)   162( 162)   131( 129)
+              |\t15:      5d30+161   166(159)   311( 311)   239( 235)
+              |\t30:     10d61+416   426(419)  1026(1026)   726( 723)
+              |\t50:    10d169+920   930(923)  2610(2610)  1770(1767)
+              |
+              |Diff = max - min.  Mean is the arithmetic mean.
               |The values in parenthesis are the the standard merc values.\n"
     },
     {
       "keyword": "MANADICE",
-      "text": "A high number of dice makes for less variance in mobiles mana.\n
-              |The values the server generates for merc-type mobs is\n
-              |\n
-              |  <level> d 10 + 100\n
-              |\n
+      "text": "A high number of dice makes for less variance in mobiles mana.
+              |The values the server generates for merc-type mobs is
+              |
+              |  <level> d 10 + 100
+              |
               |where level is the level of the mobile.\n"
     },
     {
       "keyword": "DAMDICE",
-      "text": "A high number of dice makes for less variance in mobiles hitpoints.\n
-              |Suggested values are:\n
-              |\n
-              |       Level      dice       min      min    mean\n
-              |        1         1d2+0       1        2       2\n
-              |        2         1d2+1       2        3       3\n
-              |        3         1d3+2       3        5       4\n
-              |        5         2d3+2       4        8       6\n
-              |       10         2d5+5       7       15      11\n
-              |       15         3d5+8      11       23      17\n
-              |       20         4d5+10     14       30      22\n
-              |       30         5d6+15     20       45      33\n
-              |       50         5d10+25    30       75      53\n
-              |\n
-              |Mean is the arithmetic mean.  The values in parenthesis are the the\n
-              |standard merc values.  (Will be put in when there's time to calculate\n
+      "text": "A high number of dice makes for less variance in mobiles hitpoints.
+              |Suggested values are:
+              |
+              |       Level      dice       min      min    mean
+              |        1         1d2+0       1        2       2
+              |        2         1d2+1       2        3       3
+              |        3         1d3+2       3        5       4
+              |        5         2d3+2       4        8       6
+              |       10         2d5+5       7       15      11
+              |       15         3d5+8      11       23      17
+              |       20         4d5+10     14       30      22
+              |       30         5d6+15     20       45      33
+              |       50         5d10+25    30       75      53
+              |
+              |Mean is the arithmetic mean.  The values in parenthesis are the the
+              |standard merc values.  (Will be put in when there's time to calculate
               |them...)\n"
     },
     {
       "keyword": "RESETS",
-      "text": "Syntax: RESET <number> OBJ <vnum> <location on body>    - equips last mobile\n
-              |        RESET <number> OBJ <vnum> inside <obj vnum>     - store in container\n
-              |        RESET <number> OBJ <vnum> room                  - store in room\n
-              |        RESET <number> MOB <vnum> [<max #>]             - load a mobile\n
-              |        RESET <number> DELETE                           - delete a reset\n
-              |\n
-              |RESET alone will display the resets in the current room.  The <number> will\n
-              |be displayed with this list.  Typing ? WEAR-LOC will list possible locations\n
-              |that an object can be loaded to.  The [<max #>] is the maximum number of\n
-              |mobiles allowed in this room and will default to 1 if no number is entered.\n
-              |\n
-              |For resets to be successful make sure that you add them in a logical order.\n
-              |For example if you are equiping a mobile don't load a container in the room\n
-              |and fill it with some objects and then continue equiping the mobile.  It is\n
-              |likely that resets will backfire if they are not carefully entered.\n
-              |\n
+      "text": "Syntax: RESET <number> OBJ <vnum> <location on body>    - equips last mobile
+              |        RESET <number> OBJ <vnum> inside <obj vnum>     - store in container
+              |        RESET <number> OBJ <vnum> room                  - store in room
+              |        RESET <number> MOB <vnum> [<max #>]             - load a mobile
+              |        RESET <number> DELETE                           - delete a reset
+              |
+              |RESET alone will display the resets in the current room.  The <number> will
+              |be displayed with this list.  Typing ? WEAR-LOC will list possible locations
+              |that an object can be loaded to.  The [<max #>] is the maximum number of
+              |mobiles allowed in this room and will default to 1 if no number is entered.
+              |
+              |For resets to be successful make sure that you add them in a logical order.
+              |For example if you are equiping a mobile don't load a container in the room
+              |and fill it with some objects and then continue equiping the mobile.  It is
+              |likely that resets will backfire if they are not carefully entered.
+              |
               |If you wish to reset the room then use EDIT ROOM RESET.  \n"
     },
     {
       "keyword": "MOB_AC",
-      "text": "The values ROM generates for a merc format mob is:\n
-              |\n
-              |   level      pierce    bash    slash   exotic\n
-              |     1          95       95       95      95\n
-              |     5          70       70       70      85\n
-              |    10          40       40       40      70\n
-              |    15           5        5        5      55\n
-              |    20         -25      -25      -25      40\n
-              |    25         -55      -55      -55      20\n
-              |    30         -90      -90      -90       5\n
-              |    35        -120     -120     -120     -10\n
-              |    40        -150     -150     -150     -25\n
-              |    45        -180     -180     -180     -40\n
-              |    50        -215     -215     -215     -55\n
-              |    55        -245     -245     -245     -70\n
-              |    60        -275     -275     -275     -90\n
-              |    65        -305     -305     -305    -105\n
-              |    70        -340     -340     -340    -120\n
-              |    80        -400     -400     -400    -150\n
-              |\n
-              |These values are 10 times what you would put in an area file. This\n
+      "text": "The values ROM generates for a merc format mob is:
+              |
+              |   level      pierce    bash    slash   exotic
+              |     1          95       95       95      95
+              |     5          70       70       70      85
+              |    10          40       40       40      70
+              |    15           5        5        5      55
+              |    20         -25      -25      -25      40
+              |    25         -55      -55      -55      20
+              |    30         -90      -90      -90       5
+              |    35        -120     -120     -120     -10
+              |    40        -150     -150     -150     -25
+              |    45        -180     -180     -180     -40
+              |    50        -215     -215     -215     -55
+              |    55        -245     -245     -245     -70
+              |    60        -275     -275     -275     -90
+              |    65        -305     -305     -305    -105
+              |    70        -340     -340     -340    -120
+              |    80        -400     -400     -400    -150
+              |
+              |These values are 10 times what you would put in an area file. This
               |is because the server multiplies what it reads from file with 10.\n"
     },
     {
       "keyword": "ITEM_LIGHT",
-      "text": ".   value 0    unused\n
-              |   value 1    unused\n
-              |   value 2    hours of light available, 0 is dead, -1 or 999 is infinite            \n
-              |   value 3    unused\n
+      "text": ".   value 0    unused
+              |   value 1    unused
+              |   value 2    hours of light available, 0 is dead, -1 or 999 is infinite            
+              |   value 3    unused
               |   value 4    unused\n"
     },
     {
       "keyword": "ITEM_STAFF_WAND",
-      "text": ".   value 0    level\n
-              |   value 1    max charges\n
-              |   value 2    current charges\n
-              |   value 3    spell name\n
-              |   value 4    unused\n
-              |\n
-              |\n
-              |An up-to-date list of spells can be obtained by typing:\n
+      "text": ".   value 0    level
+              |   value 1    max charges
+              |   value 2    current charges
+              |   value 3    spell name
+              |   value 4    unused
+              |
+              |
+              |An up-to-date list of spells can be obtained by typing:
               |? SPELLS [ignore/attack/defend/self/object/all]\n"
     },
     {
       "keyword": "ITEM_SCROLL_POTION_PILL",
-      "text": ".   value 0    level\n
-              |   value 1    spell name 1\n
-              |   value 2    spell name 2\n
-              |   value 3    spell name 3\n
-              |   value 4    unused\n
-              |\n
-              |An up-to-date list of spells can be obtained by typing:\n
+      "text": ".   value 0    level
+              |   value 1    spell name 1
+              |   value 2    spell name 2
+              |   value 3    spell name 3
+              |   value 4    unused
+              |
+              |An up-to-date list of spells can be obtained by typing:
               |? SPELLS [ignore/attack/defend/self/object/all]\n"
     },
     {
       "keyword": "ITEM_ARMOR",
-      "text": ".   value 0    ac pierce\n
-              |   value 1    ac bash\n
-              |   value 2    ac slash\n
-              |   value 3    ac exotic (magic)\n
+      "text": ".   value 0    ac pierce
+              |   value 1    ac bash
+              |   value 2    ac slash
+              |   value 3    ac exotic (magic)
               |   value 4    unused\n"
     },
     {
       "keyword": "ITEM_WEAPON",
-      "text": ".   value 0    weapon class.\n
-              |   value 1    number of dice to roll.\n
-              |   value 2    type of dice to roll.\n
-              |   value 3    weapon type.\n
-              |   value 4    special weapon type.\n
-              |\n
-              |An up-to-date list of values can be obtained by typing\n
-              |? WCLASS\n
-              |help WEAPON_DICE\n
-              |? WEAPON\n
+      "text": ".   value 0    weapon class.
+              |   value 1    number of dice to roll.
+              |   value 2    type of dice to roll.
+              |   value 3    weapon type.
+              |   value 4    special weapon type.
+              |
+              |An up-to-date list of values can be obtained by typing
+              |? WCLASS
+              |help WEAPON_DICE
+              |? WEAPON
               |? WTYPE\n"
     },
     {
       "keyword": "WEAPON_DICE",
-      "text": "These are the values the server generates automatically when\n
-              |converting a merc-format mobile to ROM format.  A higher\n
-              |number of dice gives less variance in damage.  There is no\n
-              |dice-bonus on weapon dice.\n
-              |\n
-              |      level:   dice \n
-              |        1:     1d8\n
-              |        2:     2d5\n
-              |        3:     2d5\n
-              |        5:     2d6\n
-              |       10:     4d5\n
-              |       20:     5d5\n
-              |       30:     5d7\n
+      "text": "These are the values the server generates automatically when
+              |converting a merc-format mobile to ROM format.  A higher
+              |number of dice gives less variance in damage.  There is no
+              |dice-bonus on weapon dice.
+              |
+              |      level:   dice 
+              |        1:     1d8
+              |        2:     2d5
+              |        3:     2d5
+              |        5:     2d6
+              |       10:     4d5
+              |       20:     5d5
+              |       30:     5d7
               |       50:     5d11\n"
     },
     {
       "keyword": "ITEM_CONTAINER",
-      "text": ".   value 0    weight capacity\n
-              |   value 1    flags: closeable, pickproof, closed, locked            \n
-              |   value 2    key vnum\n
-              |   value 3    unused\n
-              |   value 4    unused\n
-              |\n
-              |An up-to-date list of flags can be obtained by typing\n
+      "text": ".   value 0    weight capacity
+              |   value 1    flags: closeable, pickproof, closed, locked            
+              |   value 2    key vnum
+              |   value 3    unused
+              |   value 4    unused
+              |
+              |An up-to-date list of flags can be obtained by typing
               |? CONTAINTER\n"
     },
     {
       "keyword": "ITEM_DRINK",
-      "text": ".   value0    capacity\n
-              |   value 1    current quantity\n
-              |   value 2    liquid type\n
-              |   value 3    poisoned?\n
-              |   value 4    unused\n
-              |\n
-              |An up-to-date list of liquid types can be obtained by typing\n
+      "text": ".   value0    capacity
+              |   value 1    current quantity
+              |   value 2    liquid type
+              |   value 3    poisoned?
+              |   value 4    unused
+              |
+              |An up-to-date list of liquid types can be obtained by typing
               |? LIQUID\n"
     },
     {
       "keyword": "ITEM_FOOD",
-      "text": ".   value 0    hours of food value\n
-              |   value 1    unused\n
-              |   value 2    unused\n
-              |   value 3    poisoned?\n
+      "text": ".   value 0    hours of food value
+              |   value 1    unused
+              |   value 2    unused
+              |   value 3    poisoned?
               |   value 4    unused\n"
     },
     {
       "keyword": "ITEM_MONEY",
-      "text": ".   value 0    value in gold pieces\n
-              |   value 1    unused\n
-              |   value 2    unused\n
-              |   value 3    unused\n
+      "text": ".   value 0    value in gold pieces
+              |   value 1    unused
+              |   value 2    unused
+              |   value 3    unused
               |   value 4    unused\n"
     }
   ]

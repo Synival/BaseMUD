@@ -3,7 +3,7 @@
     "area": "draconia",
     "anum": 1,
     "name": "The Tower Gates",
-    "description": "You are at the entrance to a tall tower.  Lightning flashes periodically and\n
+    "description": "You are at the entrance to a tall tower.  Lightning flashes periodically and
                    |it is raining.  You think it might be a good idea to turn back into the grove.\n",
     "sector_type": "city",
     "room_flags": "dark",
@@ -48,8 +48,8 @@
     "area": "draconia",
     "anum": 2,
     "name": "The Foyer",
-    "description": "This is the entrance to the Tower.  The hallway continues to the north,\n
-                   |leading towards a staircase.  You notice a grim painting on the wall,  and \n
+    "description": "This is the entrance to the Tower.  The hallway continues to the north,
+                   |leading towards a staircase.  You notice a grim painting on the wall,  and 
                    |quickly look away.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
@@ -67,7 +67,7 @@
     ],
     "extra_description": [{
       "keyword": "painting",
-      "description": "This painting depicts the grisly death of a foolish human.  You hope you do \n
+      "description": "This painting depicts the grisly death of a foolish human.  You hope you do 
                      |not share his fate.\n"
     }],
     "resets": [{
@@ -83,7 +83,7 @@
     "area": "draconia",
     "anum": 3,
     "name": "Hallway",
-    "description": "This hallway seems to stretch on forever.  You notice a stairway in  \n
+    "description": "This hallway seems to stretch on forever.  You notice a stairway in  
                    |the distance. \n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -232,7 +232,7 @@
     "area": "draconia",
     "anum": 5,
     "name": "Nursery",
-    "description": "It looks like a tornado has been through here.  Toys are scattered everywhere,\n
+    "description": "It looks like a tornado has been through here.  Toys are scattered everywhere,
                    |and a small group of dragon hatchlings are fighting over a bone. \n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -326,7 +326,7 @@
     "area": "draconia",
     "anum": 7,
     "name": "End of the Hallway",
-    "description": "You have finally reached the end of the hallway.  A huge staircase leads up.\n
+    "description": "You have finally reached the end of the hallway.  A huge staircase leads up.
                    |You see a sign at the base of the staircase. \n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -344,9 +344,9 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "The sign reads:\n
-                     |    This area is kind of tough.  You probably shouldn't go up these stairs \n
-                     |    alone if you are under 18th level, or at all if you under 14th level.  \n
+      "description": "The sign reads:
+                     |    This area is kind of tough.  You probably shouldn't go up these stairs 
+                     |    alone if you are under 18th level, or at all if you under 14th level.  
                      |    Have fun! -- Wench\n"
     }],
     "resets": [
@@ -372,7 +372,7 @@
     "area": "draconia",
     "anum": 8,
     "name": "Guardian's Room",
-    "description": "You climb down the rickety stairs and find yourself face to face with a \n
+    "description": "You climb down the rickety stairs and find yourself face to face with a 
                    |gargantuan hydra.  How fast can you climb UP stairs? \n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -437,8 +437,8 @@
     "area": "draconia",
     "anum": 9,
     "name": "The Treasure Room",
-    "description": "You have made it past the hydra into the vault.  You are astounded by \n
-                   |the treasure here.  Not only are you now rich, you can probably rest here\n
+    "description": "You have made it past the hydra into the vault.  You are astounded by 
+                   |the treasure here.  Not only are you now rich, you can probably rest here
                    |safely.  The west wall seems to have a large door made entirely of ruby.\n",
     "sector_type": "city",
     "room_flags": "no_mob indoors",
@@ -465,7 +465,7 @@
     "area": "draconia",
     "anum": 10,
     "name": "The Second Floor",
-    "description": "You have made it up to the second floor.  You hear hissing and see several\n
+    "description": "You have made it up to the second floor.  You hear hissing and see several
                    |dragon men rushing you.  You wonder how long you will be staying here.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -520,7 +520,7 @@
     "area": "draconia",
     "anum": 11,
     "name": "The Court",
-    "description": "You have entered what seems to be a large court.  The people guarding it\n
+    "description": "You have entered what seems to be a large court.  The people guarding it
                    |don't seem happy to see you ...\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -582,7 +582,7 @@
     "area": "draconia",
     "anum": 12,
     "name": "Hall O' Pleasure",
-    "description": "You stop dead in your tracks as you enter this ornately decorated room - it\n
+    "description": "You stop dead in your tracks as you enter this ornately decorated room - it
                    |is populated with the king's harem.  \n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -711,7 +711,7 @@
     "area": "draconia",
     "anum": 14,
     "name": "The Library",
-    "description": "You have entered a huge room, filled with books.  A peaceful man is\n
+    "description": "You have entered a huge room, filled with books.  A peaceful man is
                    |sitting at a table, studying.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -823,7 +823,7 @@
     "area": "draconia",
     "anum": 15,
     "name": "The Sanctum",
-    "description": "This small room is modestly decorated with small dragon icons.  Its sole\n
+    "description": "This small room is modestly decorated with small dragon icons.  Its sole
                    |occupant is deep in thought.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -840,8 +840,8 @@
     "area": "draconia",
     "anum": 16,
     "name": "The Court Ends",
-    "description": "You have reached the end of the court.  A huge Draconian is sitting in a\n
-                   |chair here.  As you enter, he motions with his hand and you are rushed by three\n
+    "description": "You have reached the end of the court.  A huge Draconian is sitting in a
+                   |chair here.  As you enter, he motions with his hand and you are rushed by three
                    |of his bodyguards.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1022,7 +1022,7 @@
     "area": "draconia",
     "anum": 18,
     "name": "Entrance to the Crypt",
-    "description": "You have entered a large room which smells heavily of reptile.  You wonder\n
+    "description": "You have entered a large room which smells heavily of reptile.  You wonder
                    |what awaits you here.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1064,8 +1064,8 @@
     "area": "draconia",
     "anum": 19,
     "name": "Crypt",
-    "description": "You are in a large room which continues to the west.  You notice many\n
-                   |coffins here.  Open coffins reveal remains of something other than man.  \n
+    "description": "You are in a large room which continues to the west.  You notice many
+                   |coffins here.  Open coffins reveal remains of something other than man.  
                    |The smell of reptile is very strong here.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1104,7 +1104,7 @@
     "area": "draconia",
     "anum": 20,
     "name": "The Lair",
-    "description": "You have entered a large room dominated by a great white dragon.  It growls\n
+    "description": "You have entered a large room dominated by a great white dragon.  It growls
                    |at you before it attacks.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1136,7 +1136,7 @@
     "area": "draconia",
     "anum": 21,
     "name": "A Lair",
-    "description": "You have entered a large room dominated by a great black dragon.  It looks\n
+    "description": "You have entered a large room dominated by a great black dragon.  It looks
                    |as though it is amused by your presence.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1168,7 +1168,7 @@
     "area": "draconia",
     "anum": 22,
     "name": "The Crypt Ends",
-    "description": "You have come to the end of the Crypt.  It seems deserted.  There is a \n
+    "description": "You have come to the end of the Crypt.  It seems deserted.  There is a 
                    |strange coffin lying against the wall.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1229,8 +1229,8 @@
     "area": "draconia",
     "anum": 23,
     "name": "Entrance to the Great Hall",
-    "description": "You have entered a huge hall.  It has been carefully decorated with\n
-                   |beautiful tapestries depicting a great battle between dragons and men.  The\n
+    "description": "You have entered a huge hall.  It has been carefully decorated with
+                   |beautiful tapestries depicting a great battle between dragons and men.  The
                    |dragons appear to be the victors.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1254,7 +1254,7 @@
     "area": "draconia",
     "anum": 24,
     "name": "The Great Hall",
-    "description": "You are working your way down the Hall.  To the north, you notice a smaller\n
+    "description": "You are working your way down the Hall.  To the north, you notice a smaller
                    |passageway, while the main hall continues to the east.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1295,8 +1295,8 @@
     "area": "draconia",
     "anum": 26,
     "name": "Lair",
-    "description": "You have entered a large lair with bones strewn about the ground.  You\n
-                   |notice the source of these as you come face to face with a rather large red\n
+    "description": "You have entered a large lair with bones strewn about the ground.  You
+                   |notice the source of these as you come face to face with a rather large red
                    |dragon.  You notice a trap door in the floor.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1352,7 +1352,7 @@
     "area": "draconia",
     "anum": 27,
     "name": "Underground Tunnel",
-    "description": "You have entered an underground tunnel.  It is dark and dirty, and you find\n
+    "description": "You have entered an underground tunnel.  It is dark and dirty, and you find
                    |yourself wishing you were back in Midgaard.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1388,8 +1388,8 @@
     "area": "draconia",
     "anum": 29,
     "name": "The Great Hall Ends.",
-    "description": "You have come to the end of the great hall.  You see before you a huge\n
-                   |golden door, it must be at least twenty feet tall!  It has beautiful etchings\n
+    "description": "You have come to the end of the great hall.  You see before you a huge
+                   |golden door, it must be at least twenty feet tall!  It has beautiful etchings
                    |of dragons.  You see a sign on the door.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1410,7 +1410,7 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "Congratulations on making it this far!  Watch out, it gets a little\n
+      "description": "Congratulations on making it this far!  Watch out, it gets a little
                      |    nasty here... :) - Wench\n"
     }]
   }},
@@ -1466,7 +1466,7 @@
     "area": "draconia",
     "anum": 31,
     "name": "The End...",
-    "description": "You have reached the final lair.  It is dominated by a huge five headed\n
+    "description": "You have reached the final lair.  It is dominated by a huge five headed
                    |dragon.  You suddenly realize that you have SERIOUS problems...\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -1490,7 +1490,7 @@
     "area": "draconia",
     "anum": 32,
     "name": "Stairwell",
-    "description": "This is an old decrepit stairwell that leads to the wine cellar.  It looks\n
+    "description": "This is an old decrepit stairwell that leads to the wine cellar.  It looks
                    |like it hasn't been used for decades.  Well, at least not by anything living.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -1519,8 +1519,8 @@
     "area": "draconia",
     "anum": 33,
     "name": "Wine cellar",
-    "description": "This is the old wine cellar of the Dragon Tower.  The shelves are empty.\n
-                   |Nothing living has been in here for a long time.  You see a tunnel leading\n
+    "description": "This is the old wine cellar of the Dragon Tower.  The shelves are empty.
+                   |Nothing living has been in here for a long time.  You see a tunnel leading
                    |off to the east and boy does it smell bad.  Kinda of like rotting flesh.\n",
     "sector_type": "field",
     "room_flags": "dark",
@@ -1549,9 +1549,9 @@
     "area": "draconia",
     "anum": 34,
     "name": "Tunnel",
-    "description": "This tunnel seems to stretch for miles.  You try to distinguish the end but\n
-                   |your eyes soon tire from the strain.  The smell here has increased two fold.\n
-                   |The tunnel continues to go to the east.  The wine cellar lies back to the \n
+    "description": "This tunnel seems to stretch for miles.  You try to distinguish the end but
+                   |your eyes soon tire from the strain.  The smell here has increased two fold.
+                   |The tunnel continues to go to the east.  The wine cellar lies back to the 
                    |west.\n",
     "sector_type": "field",
     "room_flags": "dark unused_room_6",
@@ -1585,9 +1585,9 @@
     "area": "draconia",
     "anum": 35,
     "name": "A cave opening",
-    "description": "You stand at the opening of a giant cave.  There are many bones strewn across\n
-                   |the room.  Some human, some indistinguishable.  It smells very bad in here.\n
-                   |You can hear movement in the cave to the north.  The tunnel goes back to the\n
+    "description": "You stand at the opening of a giant cave.  There are many bones strewn across
+                   |the room.  Some human, some indistinguishable.  It smells very bad in here.
+                   |You can hear movement in the cave to the north.  The tunnel goes back to the
                    |south.\n",
     "sector_type": "field",
     "room_flags": "dark unused_room_6",
@@ -1608,8 +1608,8 @@
     "area": "draconia",
     "anum": 36,
     "name": "The End of the tunnel",
-    "description": "You have finally come to the end of the tunnel.  Back to the west lies\n
-                   |the miles of tunnels you have walked through.  You see the faint outline of\n
+    "description": "You have finally come to the end of the tunnel.  Back to the west lies
+                   |the miles of tunnels you have walked through.  You see the faint outline of
                    |a trapdoor above you.  A bridge over an underground river lies to the south.\n",
     "sector_type": "field",
     "room_flags": "dark unused_room_6",
@@ -1643,8 +1643,8 @@
     "area": "draconia",
     "anum": 37,
     "name": "The Bridge",
-    "description": "You are walking along an old wooden bridge.  Its not that secure.  You \n
-                   |might want to hurry along.  To the south, on the other side of the bridge,\n
+    "description": "You are walking along an old wooden bridge.  Its not that secure.  You 
+                   |might want to hurry along.  To the south, on the other side of the bridge,
                    |lies a small opening.\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1665,8 +1665,8 @@
     "area": "draconia",
     "anum": 38,
     "name": "A small opening",
-    "description": "You are standing in a small opening.  To the north lies the old wooden\n
-                   |bridge.  To your south the you can see a clearing.  You can see sunlight\n
+    "description": "You are standing in a small opening.  To the north lies the old wooden
+                   |bridge.  To your south the you can see a clearing.  You can see sunlight
                    |again.  What a welcome relief!\n",
     "sector_type": "field",
     "room_flags": "dark indoors",
@@ -1687,8 +1687,8 @@
     "area": "draconia",
     "anum": 39,
     "name": "Clearing",
-    "description": "You stand out in a clearing.  Mountains are all around you.  There is a \n
-                   |well in the middle of the clearing.  Lying against the well is a sign.  A\n
+    "description": "You stand out in a clearing.  Mountains are all around you.  There is a 
+                   |well in the middle of the clearing.  Lying against the well is a sign.  A
                    |path leads up the mountain.  The small opening is back to the north.\n",
     "sector_type": "field",
     "doors": [
@@ -1711,15 +1711,15 @@
     "extra_description": [
       {
         "keyword": "sign",
-        "description": "The sign reads:\n
-                       |         This is a bottomless pit cleverly disguised as a well.  People have\n
-                       |fallen in and never been heard from again.  Trust me, you don't want to go \n
-                       |down there.\n
+        "description": "The sign reads:
+                       |         This is a bottomless pit cleverly disguised as a well.  People have
+                       |fallen in and never been heard from again.  Trust me, you don't want to go 
+                       |down there.
                        |                        The All Powerful Well Keeper\n"
       },
       {
         "keyword": "well",
-        "description": "You peer over the side of the well.  It looks VERY, VERY deep.  It appears\n
+        "description": "You peer over the side of the well.  It looks VERY, VERY deep.  It appears
                        |to be ENDLESS.\n"
       }
     ],
@@ -1736,7 +1736,7 @@
     "area": "draconia",
     "anum": 40,
     "name": "A path",
-    "description": "This path leads up the side of the mountain.  A clearing lies below you.\n
+    "description": "This path leads up the side of the mountain.  A clearing lies below you.
                    |There is a cave opening to the west.  The path continues up the mountain.\n",
     "sector_type": "field",
     "doors": [
@@ -1761,8 +1761,8 @@
     "area": "draconia",
     "anum": 41,
     "name": "A cave opening",
-    "description": "You stand before a huge cave opening.  You hearing heavy breathing from\n
-                   |within the cave.  There are a few skeletons lying about.  The cave lies to \n
+    "description": "You stand before a huge cave opening.  You hearing heavy breathing from
+                   |within the cave.  There are a few skeletons lying about.  The cave lies to 
                    |the south.  The path is back to the east.\n",
     "sector_type": "field",
     "doors": [
@@ -1790,7 +1790,7 @@
     "area": "draconia",
     "anum": 42,
     "name": "The path continues",
-    "description": "The path continues up the mountain to the top.  The path also goes down.\n
+    "description": "The path continues up the mountain to the top.  The path also goes down.
                    |Thats it, nothing more to see.\n",
     "sector_type": "field",
     "doors": [
@@ -1810,12 +1810,12 @@
     "area": "draconia",
     "anum": 43,
     "name": "The top of the mountain",
-    "description": "You are standing at the top of the mountain.  It feels more like the top of\n
-                   |the world.  To your north lies a huge platinum door.  You hear very pronounced\n
-                   |grumbling from behind the doors.  It sounds like something huge and hungry.\n
-                   |But if you don't have the key you don't have to worry because you can't get in.\n
-                   |If you do have the key I would suggest not going in.  Some believe the Five\n
-                   |Headed dragon Tiamat was imprisoned here by the gods.  But who believes in \n
+    "description": "You are standing at the top of the mountain.  It feels more like the top of
+                   |the world.  To your north lies a huge platinum door.  You hear very pronounced
+                   |grumbling from behind the doors.  It sounds like something huge and hungry.
+                   |But if you don't have the key you don't have to worry because you can't get in.
+                   |If you do have the key I would suggest not going in.  Some believe the Five
+                   |Headed dragon Tiamat was imprisoned here by the gods.  But who believes in 
                    |fairy tales.  Well, if you're scared, you can always go down the mountain.\n",
     "sector_type": "field",
     "doors": [
@@ -1842,16 +1842,16 @@
     "area": "draconia",
     "anum": 44,
     "name": "Well",
-    "description": "O\n
-                   | h\n
-                   |   !\n
-                   |\n
-                   |     N\n
-                   |      o\n
-                   |       !\n
-                   |\n
-                   |   I warned you!  You have fallen into the bottomless pit.  You life flashes\n
-                   |right before your eyes.  Pretty pathetic isn't it?  Next time you'll know\n
+    "description": "O
+                   | h
+                   |   !
+                   |
+                   |     N
+                   |      o
+                   |       !
+                   |
+                   |   I warned you!  You have fallen into the bottomless pit.  You life flashes
+                   |right before your eyes.  Pretty pathetic isn't it?  Next time you'll know
                    |to listen to the God of Laughs.\n",
     "sector_type": "inside",
     "room_flags": "unused_room_1 no_mob"

@@ -3,7 +3,7 @@
     "area": "shire",
     "anum": 0,
     "name": "A dimly lit path",
-    "description": "You tread through the deep, dark forest on a dimly lit path.  Up ahead you\n
+    "description": "You tread through the deep, dark forest on a dimly lit path.  Up ahead you
                    |can hear the faint sounds of a village.\n",
     "sector_type": "forest",
     "doors": [
@@ -23,7 +23,7 @@
     "area": "shire",
     "anum": 1,
     "name": "A dimly lit path",
-    "description": "You tread through the deep, dark forest on a dimly lit path.  Up ahead you\n
+    "description": "You tread through the deep, dark forest on a dimly lit path.  Up ahead you
                    |can hear the faint sounds of a village.\n",
     "sector_type": "forest",
     "doors": [
@@ -43,8 +43,8 @@
     "area": "shire",
     "anum": 2,
     "name": "A dimly lit path",
-    "description": "You tread through the deep, dark forest on a dimly lit path.  The forest\n
-                   |here seems less dense than to the south.  Northward you see the faint outline\n
+    "description": "You tread through the deep, dark forest on a dimly lit path.  The forest
+                   |here seems less dense than to the south.  Northward you see the faint outline
                    |of a village.\n",
     "sector_type": "forest",
     "doors": [
@@ -64,7 +64,7 @@
     "area": "shire",
     "anum": 3,
     "name": "Entrance to the Shire",
-    "description": "You stand at the entrance to the Shire.  You see halflings, no more than\n
+    "description": "You stand at the entrance to the Shire.  You see halflings, no more than
                    |wee tall, every which way you look. Bywater Road leads east and west.\n",
     "sector_type": "city",
     "doors": [
@@ -97,7 +97,7 @@
     "area": "shire",
     "anum": 4,
     "name": "Bywater Road",
-    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road\n
+    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road
                    |continues to the east and west while to the north lies the general store.\n",
     "sector_type": "city",
     "doors": [
@@ -122,8 +122,8 @@
     "area": "shire",
     "anum": 5,
     "name": "The General Store",
-    "description": "You are inside the general store.  All sorts of goodies are stacked on the\n
-                   |many shelves.  Your local friendly shopkeeper is smiling patiently, waiting to \n
+    "description": "You are inside the general store.  All sorts of goodies are stacked on the
+                   |many shelves.  Your local friendly shopkeeper is smiling patiently, waiting to 
                    |serve you to the best of his abilities.  The only exit is to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -161,8 +161,8 @@
     "area": "shire",
     "anum": 6,
     "name": "Bywater Road",
-    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road\n
-                   |continues to the east and west.  To the north, steps lead to a friendly looking\n
+    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+                   |continues to the east and west.  To the north, steps lead to a friendly looking
                    |weaponry/armory while a nursery lies to the south.\n",
     "sector_type": "city",
     "doors": [
@@ -192,8 +192,8 @@
     "area": "shire",
     "anum": 7,
     "name": "The House of Arms",
-    "description": "You are inside the finest weapons and armour shop in all of Shiredom.  The\n
-                   |shopkeeper proudly displays his fine wares and humbly offers the best daggers\n
+    "description": "You are inside the finest weapons and armour shop in all of Shiredom.  The
+                   |shopkeeper proudly displays his fine wares and humbly offers the best daggers
                    |that you have ever laid eyes on.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -215,8 +215,8 @@
     "area": "shire",
     "anum": 8,
     "name": "Kid'n Keep",
-    "description": "You are inside Kid'n Keep, the convenient one-stop nursery that maintains\n
-                   |the youth of the Shire.  Toddlers run every which way while their nursemaids\n
+    "description": "You are inside Kid'n Keep, the convenient one-stop nursery that maintains
+                   |the youth of the Shire.  Toddlers run every which way while their nursemaids
                    |sigh in exasperation.  The only exit lies to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -296,7 +296,7 @@
     "area": "shire",
     "anum": 9,
     "name": "A bend in the road",
-    "description": "Bywater Road continues west and south.  A large, imposing building lies\n
+    "description": "Bywater Road continues west and south.  A large, imposing building lies
                    |to the east.  Farther to the south, you can see an Inn of some sort.\n",
     "sector_type": "city",
     "doors": [
@@ -321,9 +321,9 @@
     "area": "shire",
     "anum": 10,
     "name": "Shiriff Post of the Eastern Shire",
-    "description": "You are in the Shiriff Post which acts as the nucleus for the three shiriffs\n
-                   |of the Eastern Shire.  As you examine the shiriffs on duty, you come to realize\n
-                   |that the halflings of the Shire are not to be reckoned with.  You cower with \n
+    "description": "You are in the Shiriff Post which acts as the nucleus for the three shiriffs
+                   |of the Eastern Shire.  As you examine the shiriffs on duty, you come to realize
+                   |that the halflings of the Shire are not to be reckoned with.  You cower with 
                    |awe.  A door offers passage to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -414,9 +414,9 @@
     "area": "shire",
     "anum": 11,
     "name": "Thain's Office",
-    "description": "You stand inside the office of the Thain, the police protectorate of the\n
-                   |great Shire.  The Thain has sworn to protect the Shire from all thieves and\n
-                   |murderers with his life, and so eyes you suspiciously.  A door to the west\n
+    "description": "You stand inside the office of the Thain, the police protectorate of the
+                   |great Shire.  The Thain has sworn to protect the Shire from all thieves and
+                   |murderers with his life, and so eyes you suspiciously.  A door to the west
                    |leads to the Shiriff Post.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -470,8 +470,8 @@
     "area": "shire",
     "anum": 12,
     "name": "Bywater Road",
-    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road\n
-                   |continues to the north and south.  To the east you spy the training grounds for\n
+    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+                   |continues to the north and south.  To the east you spy the training grounds for
                    |shiriffs in training.\n",
     "sector_type": "city",
     "doors": [
@@ -496,9 +496,9 @@
     "area": "shire",
     "anum": 13,
     "name": "Bywater Road",
-    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road\n
-                   |continues to the north.  The private residences of Shire inhabitants are to\n
-                   |the east and west while to the south lies the Ivy Bush, second only to the\n
+    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+                   |continues to the north.  The private residences of Shire inhabitants are to
+                   |the east and west while to the south lies the Ivy Bush, second only to the
                    |Green Dragon for its hospitality and service.\n",
     "sector_type": "city",
     "doors": [
@@ -515,7 +515,7 @@
       {
         "dir": "south",
         "to": 16,
-        "description": "To the south you see the Ivy Bush, a favorite haunt of Shire urbanites and\n
+        "description": "To the south you see the Ivy Bush, a favorite haunt of Shire urbanites and
                        |seasoned travelers.\n"
       },
       {
@@ -529,9 +529,9 @@
     "area": "shire",
     "anum": 14,
     "name": "A smial",
-    "description": "You are inside a smial, a hole in the ground which serves as the proper\n
-                   |dwelling place for halflings.  As you look around this private abode, you feel\n
-                   |as if you were intruding and so quickly cover your eyes.  The only exit lies\n
+    "description": "You are inside a smial, a hole in the ground which serves as the proper
+                   |dwelling place for halflings.  As you look around this private abode, you feel
+                   |as if you were intruding and so quickly cover your eyes.  The only exit lies
                    |to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -562,9 +562,9 @@
     "area": "shire",
     "anum": 15,
     "name": "A smial",
-    "description": "You are inside a smial, a hole in the ground which serves as the proper\n
-                   |dwelling place for halflings.  As you look around this private abode, you feel\n
-                   |as if you were intruding and so quickly cover your eyes.  The only exit lies\n
+    "description": "You are inside a smial, a hole in the ground which serves as the proper
+                   |dwelling place for halflings.  As you look around this private abode, you feel
+                   |as if you were intruding and so quickly cover your eyes.  The only exit lies
                    |to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -595,9 +595,9 @@
     "area": "shire",
     "anum": 16,
     "name": "The Ivy Bush",
-    "description": "You are in the Ivy Bush, one of the most famous inns in all of Shiredom.\n
-                   |Chique Shire urbanites and seasoned travelers fill the confines of the room\n
-                   |with gay and lively talk.  A jovial innkeeper stops all that he is doing to\n
+    "description": "You are in the Ivy Bush, one of the most famous inns in all of Shiredom.
+                   |Chique Shire urbanites and seasoned travelers fill the confines of the room
+                   |with gay and lively talk.  A jovial innkeeper stops all that he is doing to
                    |await your command.  The only exit lies to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -725,9 +725,9 @@
     "area": "shire",
     "anum": 17,
     "name": "Shiriff Training Grounds",
-    "description": "The sounds of mock battle and feigned death cries fill your ears.  Every\n
-                   |which way you turn you see halfling trainees at the prime of their youth.  A\n
-                   |wizened old battle instructor meets your gaze and asks if he may be of \n
+    "description": "The sounds of mock battle and feigned death cries fill your ears.  Every
+                   |which way you turn you see halfling trainees at the prime of their youth.  A
+                   |wizened old battle instructor meets your gaze and asks if he may be of 
                    |service.  The only exit lies to the west.\n",
     "sector_type": "inside",
     "doors": [{
@@ -806,8 +806,8 @@
     "area": "shire",
     "anum": 18,
     "name": "Bywater Road",
-    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road\n
-                   |continues to the east and west.  A large, imposing building lies to the south.\n
+    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+                   |continues to the east and west.  A large, imposing building lies to the south.
                    |You catch a glimpse of the Brandywine River to the north.\n",
     "sector_type": "city",
     "doors": [
@@ -832,9 +832,9 @@
     "area": "shire",
     "anum": 19,
     "name": "Shiriff Post of the Bridge",
-    "description": "You are in the Shiriff Post which acts as the nucleus for the three shiriffs\n
-                   |of the Bridge.  As you examine the shiriffs on duty, you come to realize that\n
-                   |the halflings of the Shire are not to be reckoned with.  You cower with awe.\n
+    "description": "You are in the Shiriff Post which acts as the nucleus for the three shiriffs
+                   |of the Bridge.  As you examine the shiriffs on duty, you come to realize that
+                   |the halflings of the Shire are not to be reckoned with.  You cower with awe.
                    |The only exit is to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -915,9 +915,9 @@
     "area": "shire",
     "anum": 20,
     "name": "Bywater Road",
-    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road\n
-                   |continues to the east and west.  To the south you spy the Grocer's Delight,\n
-                   |the premium grocer's shop in all the realm while to the north lies Brandywine\n
+    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+                   |continues to the east and west.  To the south you spy the Grocer's Delight,
+                   |the premium grocer's shop in all the realm while to the north lies Brandywine
                    |Bridge.\n",
     "sector_type": "city",
     "doors": [
@@ -947,10 +947,10 @@
     "area": "shire",
     "anum": 21,
     "name": "The Grocer's Delight",
-    "description": "You tremble with ecstasy as the tempting odors of freshly made pipeweed\n
-                   |bread fill your lungs.  Rumor has it that the pipeweed bread sold here can\n
-                   |restore vitality.  You look around but find no one to take your order.  \n
-                   |You then peep over the counter and discover a friendly grocer who is too \n
+    "description": "You tremble with ecstasy as the tempting odors of freshly made pipeweed
+                   |bread fill your lungs.  Rumor has it that the pipeweed bread sold here can
+                   |restore vitality.  You look around but find no one to take your order.  
+                   |You then peep over the counter and discover a friendly grocer who is too 
                    |short to be seen over the counter.  The only exit is to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -981,9 +981,9 @@
     "area": "shire",
     "anum": 22,
     "name": "Bywater Road",
-    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road\n
-                   |continues to the east.  A small hill lies to the west while you can see a\n
-                   |watermill to the far south.  You catch a glimpse of the Brandywine River to\n
+    "description": "You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+                   |continues to the east.  A small hill lies to the west while you can see a
+                   |watermill to the far south.  You catch a glimpse of the Brandywine River to
                    |the north.\n",
     "sector_type": "city",
     "doors": [
@@ -1008,8 +1008,8 @@
     "area": "shire",
     "anum": 23,
     "name": "Entrance to Watermill",
-    "description": "You stand at the entrance to a watermill.  You hear the bustle of busy\n
-                   |workers and the sound of a creaking mill.  Bywater Road is to the north while\n
+    "description": "You stand at the entrance to a watermill.  You hear the bustle of busy
+                   |workers and the sound of a creaking mill.  Bywater Road is to the north while
                    |the watermill continues to the south.\n",
     "sector_type": "inside",
     "doors": [
@@ -1047,9 +1047,9 @@
     "area": "shire",
     "anum": 24,
     "name": "The Watermill",
-    "description": "Halfling workers are scattered everywhere, busy at work.  You see the river\n
-                   |to the west and get a compelling urge to grab the nearest worker and to toss\n
-                   |him into the river.  The entrance stands to the north while a door offers\n
+    "description": "Halfling workers are scattered everywhere, busy at work.  You see the river
+                   |to the west and get a compelling urge to grab the nearest worker and to toss
+                   |him into the river.  The entrance stands to the north while a door offers
                    |passage to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1107,8 +1107,8 @@
     "area": "shire",
     "anum": 25,
     "name": "Rear of watermill",
-    "description": "You stand in a damp, dimly lit room.  Mildew clings to the walls and it\n
-                   |appears as if you were the first person to enter the room in ages.  A barely\n
+    "description": "You stand in a damp, dimly lit room.  Mildew clings to the walls and it
+                   |appears as if you were the first person to enter the room in ages.  A barely
                    |visible portal in the ground catches your eye.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1137,11 +1137,11 @@
     "area": "shire",
     "anum": 26,
     "name": "Took Hill",
-    "description": "You stand on top of Took Hill, named after the legendary Bandobras Took.\n
-                   |You feel honored to be standing on a hill named after your hero.  From this\n
-                   |vantage point you can see all of shiredom.  You get the feeling that with\n
-                   |one stomp you could eliminate their great city.  You can see the outline of\n
-                   |Midgaard to the far east.  Sounds of joyful celebration are heard from the\n
+    "description": "You stand on top of Took Hill, named after the legendary Bandobras Took.
+                   |You feel honored to be standing on a hill named after your hero.  From this
+                   |vantage point you can see all of shiredom.  You get the feeling that with
+                   |one stomp you could eliminate their great city.  You can see the outline of
+                   |Midgaard to the far east.  Sounds of joyful celebration are heard from the
                    |fields west of here.  The Brandywine flows by lazily nearby.\n",
     "sector_type": "hills",
     "doors": [
@@ -1161,7 +1161,7 @@
     "area": "shire",
     "anum": 27,
     "name": "Northern end of grassy field",
-    "description": "You stand in a grassy field--nothing to get too excited about.  The field\n
+    "description": "You stand in a grassy field--nothing to get too excited about.  The field
                    |extends toward the south and the west.  To the east you see Took Hill.\n",
     "sector_type": "field",
     "doors": [{
@@ -1200,9 +1200,9 @@
     "area": "shire",
     "anum": 28,
     "name": "A grassy field",
-    "description": "You stand in the center of a grassy field.  A great birthday party appears\n
-                   |to be taking place.  Great tables of food are spread out and a young halfling\n
-                   |beauty offers you welcome.  You are enticed by her generosity and suggestive\n
+    "description": "You stand in the center of a grassy field.  A great birthday party appears
+                   |to be taking place.  Great tables of food are spread out and a young halfling
+                   |beauty offers you welcome.  You are enticed by her generosity and suggestive
                    |winks.\n",
     "sector_type": "field",
     "doors": [
@@ -1266,7 +1266,7 @@
     "area": "shire",
     "anum": 29,
     "name": "Southern end of grassy field",
-    "description": "You stand in a grassy field--nothing to get too excited about.  The field\n
+    "description": "You stand in a grassy field--nothing to get too excited about.  The field
                    |extends toward the north and the west.  To the east you see Took Hill.\n",
     "sector_type": "field",
     "doors": [{
@@ -1305,7 +1305,7 @@
     "area": "shire",
     "anum": 30,
     "name": "Western end of grassy field",
-    "description": "You stand in a grassy field--nothing to get too excited about.  The field\n
+    "description": "You stand in a grassy field--nothing to get too excited about.  The field
                    |extends every which way but west.\n",
     "sector_type": "field",
     "doors": [{
@@ -1344,10 +1344,10 @@
     "area": "shire",
     "anum": 31,
     "name": "Brandywine Bridge",
-    "description": "You stand on a solidly built bridge.  As you look down you spy gaily\n
-                   |colored fish swimming with the current of Brandywine River.  The cool water\n
-                   |looks invitingly refreshing and you get a sudden urge to strip and bathe in\n
-                   |the river, but you hear the laughter of women nearby and so resist the urge.\n
+    "description": "You stand on a solidly built bridge.  As you look down you spy gaily
+                   |colored fish swimming with the current of Brandywine River.  The cool water
+                   |looks invitingly refreshing and you get a sudden urge to strip and bathe in
+                   |the river, but you hear the laughter of women nearby and so resist the urge.
                    |Delving Lane extends to the north while Bywater Road can be seen to the south.\n",
     "sector_type": "city",
     "doors": [
@@ -1367,9 +1367,9 @@
     "area": "shire",
     "anum": 32,
     "name": "Delving Lane",
-    "description": "Delving Lane runs north and south in this small borough of the Shire.  To \n
-                   |the south stands Brandywine Bridge.  The Green Dragon, the undisputed leader\n
-                   |in the art of innkeeping, offers rest and comfort to the east.  You hear the\n
+    "description": "Delving Lane runs north and south in this small borough of the Shire.  To 
+                   |the south stands Brandywine Bridge.  The Green Dragon, the undisputed leader
+                   |in the art of innkeeping, offers rest and comfort to the east.  You hear the
                    |bray of horses from the west.\n",
     "sector_type": "city",
     "doors": [
@@ -1394,8 +1394,8 @@
     "area": "shire",
     "anum": 33,
     "name": "Delving Lane",
-    "description": "Delving Lane runs north and south in this small borough of the Shire.  A \n
-                   |large, imposing building lies to the east.  You hear the bray of horses from\n
+    "description": "Delving Lane runs north and south in this small borough of the Shire.  A 
+                   |large, imposing building lies to the east.  You hear the bray of horses from
                    |the west.\n",
     "sector_type": "city",
     "doors": [
@@ -1425,15 +1425,15 @@
     "area": "shire",
     "anum": 34,
     "name": "Delving Lane",
-    "description": "Delving Lane runs north and south in this small borough of the Shire. There\n
-                   |is a small house to the west, nothing to the east, and up ahead you see a round\n
+    "description": "Delving Lane runs north and south in this small borough of the Shire. There
+                   |is a small house to the west, nothing to the east, and up ahead you see a round
                    |door which leads to a rather impressive abode.\n",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 35,
-        "description": "A large, magnificent house meets your steady gaze.  Above the round door a\n
+        "description": "A large, magnificent house meets your steady gaze.  Above the round door a
                        |sign reads 'Bag End'.\n",
         "exit_flags": "door"
       },
@@ -1448,9 +1448,9 @@
     "area": "shire",
     "anum": 35,
     "name": "Bag End",
-    "description": "You stand in a comfortably well-equipped house, a palace by humble halfling\n
-                   |standards.  On the wall you see a banner which reads \"Home Sweet Home\".\n
-                   |A solid oak door to the east leads to a pantry while you see a cozy bedroom\n
+    "description": "You stand in a comfortably well-equipped house, a palace by humble halfling
+                   |standards.  On the wall you see a banner which reads \"Home Sweet Home\".
+                   |A solid oak door to the east leads to a pantry while you see a cozy bedroom
                    |to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1478,10 +1478,10 @@
     "area": "shire",
     "anum": 36,
     "name": "Bedroom",
-    "description": "You stand in the private bedroom of Bag End.  There are two beds to the\n
-                   |side, neither of which are made.  Portraits of halflings hang on the wall,\n
-                   |and as you gaze upon them you come to the conclusion that the owner of\n
-                   |Bag End comes from a long line of distinguished halflings.  A cozy fire\n
+    "description": "You stand in the private bedroom of Bag End.  There are two beds to the
+                   |side, neither of which are made.  Portraits of halflings hang on the wall,
+                   |and as you gaze upon them you come to the conclusion that the owner of
+                   |Bag End comes from a long line of distinguished halflings.  A cozy fire
                    |in the fireplace keeps the room warm and comfortable.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1551,9 +1551,9 @@
     "area": "shire",
     "anum": 37,
     "name": "Pantry",
-    "description": "You are inside the pantry.  Shelves filled with food and drink surround\n
-                   |you on all sides.  You wonder why a halfling would need so much to eat.\n
-                   |The presence of something unseen chills you to your bones.  On the floor\n
+    "description": "You are inside the pantry.  Shelves filled with food and drink surround
+                   |you on all sides.  You wonder why a halfling would need so much to eat.
+                   |The presence of something unseen chills you to your bones.  On the floor
                    |you spy a trapdoor.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1613,8 +1613,8 @@
     "area": "shire",
     "anum": 38,
     "name": "A grassy field",
-    "description": "You stand upon a grassy field.  A bull stands grazing not far away and\n
-                   |out of the corner of your eye you can see him considering you.  The sound\n
+    "description": "You stand upon a grassy field.  A bull stands grazing not far away and
+                   |out of the corner of your eye you can see him considering you.  The sound
                    |of animals fill the air from the north.  To the south you see a pig pen.\n",
     "sector_type": "field",
     "doors": [
@@ -1647,8 +1647,8 @@
     "area": "shire",
     "anum": 39,
     "name": "Pig pen",
-    "description": "You feel your boots sinking into the mud.  Numerous pigs roam about,\n
-                   |oblivious to your company.  A grassy field is to the north while you see\n
+    "description": "You feel your boots sinking into the mud.  Numerous pigs roam about,
+                   |oblivious to your company.  A grassy field is to the north while you see
                    |a small path winding to the west.\n",
     "sector_type": "city",
     "doors": [
@@ -1710,7 +1710,7 @@
     "area": "shire",
     "anum": 40,
     "name": "A stony path",
-    "description": "You walk on a stony path which leads to a small residence to the north.\n
+    "description": "You walk on a stony path which leads to a small residence to the north.
                    |From the east you hear the noisy din of pigs.\n",
     "sector_type": "city",
     "doors": [
@@ -1730,10 +1730,10 @@
     "area": "shire",
     "anum": 41,
     "name": "Gamgee Residence",
-    "description": "You stand inside a modest home.  You deduce that this is indeed the home\n
-                   |of whomever owns the surrounding lands.  The air is somewhat musty and \n
-                   |the smell reminds you of a stable.  As you look around disdainfully, you\n
-                   |think to yourself that this is more of a shack than a proper residence and\n
+    "description": "You stand inside a modest home.  You deduce that this is indeed the home
+                   |of whomever owns the surrounding lands.  The air is somewhat musty and 
+                   |the smell reminds you of a stable.  As you look around disdainfully, you
+                   |think to yourself that this is more of a shack than a proper residence and
                    |you long for the urban riches of the Shire proper.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1755,11 +1755,11 @@
     "area": "shire",
     "anum": 42,
     "name": "A barn",
-    "description": "Animals of every sort fill the small barn.  You feel the hot breath of\n
-                   |horses and cows on your neck and you feel the sudden need for fresh air.\n
-                   |Other than that, you feel cozy and protected and don't mind staying for a\n
-                   |bit longer.  All the warmth and good vibes remind you of the days when your\n
-                   |mother would hold you in her arms and sing you to sleep.  You find yourself\n
+    "description": "Animals of every sort fill the small barn.  You feel the hot breath of
+                   |horses and cows on your neck and you feel the sudden need for fresh air.
+                   |Other than that, you feel cozy and protected and don't mind staying for a
+                   |bit longer.  All the warmth and good vibes remind you of the days when your
+                   |mother would hold you in her arms and sing you to sleep.  You find yourself
                    |wanting to cradle all the animals.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1838,7 +1838,7 @@
     "area": "shire",
     "anum": 43,
     "name": "A chicken coop",
-    "description": "You stand inside a rather crowded chicken coop.  The cackle of hens fill\n
+    "description": "You stand inside a rather crowded chicken coop.  The cackle of hens fill
                    |the air.  The only exit is to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1944,13 +1944,13 @@
     "area": "shire",
     "anum": 44,
     "name": "The Green Dragon",
-    "description": "Welcome to the Green Dragon, the undisputed leader in the art of\n
-                   |innkeeping.  A rather charming and friendly hostess stands to the side,\n
-                   |ready to offer you food and drink.  While most of the patrons are halfling\n
-                   |locals, you spy an occasional human or two.  As you listen more closely\n
-                   |to the conversations that fill the inn, you hear the tales of great and\n
-                   |seasoned adventurers as well as the usual gossip.  You feel as if you've\n
-                   |found your second home in the Green Dragon.  You see a stairway leading\n
+    "description": "Welcome to the Green Dragon, the undisputed leader in the art of
+                   |innkeeping.  A rather charming and friendly hostess stands to the side,
+                   |ready to offer you food and drink.  While most of the patrons are halfling
+                   |locals, you spy an occasional human or two.  As you listen more closely
+                   |to the conversations that fill the inn, you hear the tales of great and
+                   |seasoned adventurers as well as the usual gossip.  You feel as if you've
+                   |found your second home in the Green Dragon.  You see a stairway leading
                    |upwards.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2085,9 +2085,9 @@
     "area": "shire",
     "anum": 45,
     "name": "Shiriff Post of Delving Lane",
-    "description": "You are in the Shiriff Post which acts as the nucleus for the three shiriffs\n
-                   |of Delving Lane.  As you examine the shiriffs on duty, you come to realize\n
-                   |that the halflings of the Shire are not to be reckoned with.  You cower with\n
+    "description": "You are in the Shiriff Post which acts as the nucleus for the three shiriffs
+                   |of Delving Lane.  As you examine the shiriffs on duty, you come to realize
+                   |that the halflings of the Shire are not to be reckoned with.  You cower with
                    |awe.  The only exit is to the west.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2168,8 +2168,8 @@
     "area": "shire",
     "anum": 46,
     "name": "A dark tunnel",
-    "description": "You stand inside a small underground tunnel.  The ceiling is so low that\n
-                   |you must crouch to avoid hitting your head.  You see light from a small\n
+    "description": "You stand inside a small underground tunnel.  The ceiling is so low that
+                   |you must crouch to avoid hitting your head.  You see light from a small
                    |hole in the ceiling while to the east you see nothing but darkness.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -2190,8 +2190,8 @@
     "area": "shire",
     "anum": 47,
     "name": "A dark tunnel",
-    "description": "You stand inside a small underground tunnel.  The ceiling is so low that\n
-                   |you must crouch to avoid hitting your head.  The tunnel continues east and\n
+    "description": "You stand inside a small underground tunnel.  The ceiling is so low that
+                   |you must crouch to avoid hitting your head.  The tunnel continues east and
                    |west.  All you can see is darkness.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -2212,8 +2212,8 @@
     "area": "shire",
     "anum": 48,
     "name": "A dark tunnel",
-    "description": "You stand inside a small underground tunnel.  The ceiling is so low that\n
-                   |you must crouch to avoid hitting your head.  The tunnel continues east and\n
+    "description": "You stand inside a small underground tunnel.  The ceiling is so low that
+                   |you must crouch to avoid hitting your head.  The tunnel continues east and
                    |west.  All you can see is darkness.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -2234,7 +2234,7 @@
     "area": "shire",
     "anum": 49,
     "name": "A three way intersection",
-    "description": "You stand at an intersection.  The tunnel continues east and west while\n
+    "description": "You stand at an intersection.  The tunnel continues east and west while
                    |to the north you can barely make out a smaller trail.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -2260,8 +2260,8 @@
     "area": "shire",
     "anum": 50,
     "name": "End of a dark tunnel",
-    "description": "You stand at the end of a dark tunnel.  The underground tunnel continues\n
-                   |to the west.  From a trapdoor in the ceiling you can hear the din of\n
+    "description": "You stand at the end of a dark tunnel.  The underground tunnel continues
+                   |to the west.  From a trapdoor in the ceiling you can hear the din of
                    |adventurers.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -2282,9 +2282,9 @@
     "area": "shire",
     "anum": 51,
     "name": "A dark tunnel",
-    "description": "You stand inside a small underground tunnel.  The ceiling is so low that\n
-                   |you must crouch to avoid hitting your head.  The tunnel continues north and\n
-                   |south.  To the west you see a Shirriff Post while to the east lies a small\n
+    "description": "You stand inside a small underground tunnel.  The ceiling is so low that
+                   |you must crouch to avoid hitting your head.  The tunnel continues north and
+                   |south.  To the west you see a Shirriff Post while to the east lies a small
                    |home.  All you can see is darkness.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -2315,8 +2315,8 @@
     "area": "shire",
     "anum": 52,
     "name": "A dark tunnel",
-    "description": "You stand inside a small underground tunnel.  The ceiling is so low that \n
-                   |you must crouch to avoid hitting your head.  The tunnel continues north and\n
+    "description": "You stand inside a small underground tunnel.  The ceiling is so low that 
+                   |you must crouch to avoid hitting your head.  The tunnel continues north and
                    |south.  To the west lies a small home.  All you can see is darkness.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -2342,9 +2342,9 @@
     "area": "shire",
     "anum": 53,
     "name": "Shiriff Post of the Lower Shire",
-    "description": "You are in the shiriff Post which acts as the nucleus for the three shiriffs \n
-                   |of the Lower Shire.  As you examine the shiriffs on duty, you come to realize\n
-                   |that the halflings of the Shire are not to be reckoned with.  You cower with\n
+    "description": "You are in the shiriff Post which acts as the nucleus for the three shiriffs 
+                   |of the Lower Shire.  As you examine the shiriffs on duty, you come to realize
+                   |that the halflings of the Shire are not to be reckoned with.  You cower with
                    |awe.  The only exit is to the east.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -2425,8 +2425,8 @@
     "area": "shire",
     "anum": 54,
     "name": "A halfling hole",
-    "description": "You stand inside a rather crudely built halfling hole.  The many passageways\n
-                   |and winding paths remind you of a rodent's lair.  The air is musty and damp\n
+    "description": "You stand inside a rather crudely built halfling hole.  The many passageways
+                   |and winding paths remind you of a rodent's lair.  The air is musty and damp
                    |and you feel the need for fresh air.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -2448,8 +2448,8 @@
     "area": "shire",
     "anum": 55,
     "name": "A halfling hole",
-    "description": "You stand inside a rather crudely built halfling hole.  The many passageways\n
-                   |and winding paths remind you of a rodent's lair.  The air is musty and damp\n
+    "description": "You stand inside a rather crudely built halfling hole.  The many passageways
+                   |and winding paths remind you of a rodent's lair.  The air is musty and damp
                    |and you feel the need for fresh air.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -2471,7 +2471,7 @@
     "area": "shire",
     "anum": 56,
     "name": "End of a dark tunnel",
-    "description": "You are at one end of a dark tunnel.  The tunnel continues to the south\n
+    "description": "You are at one end of a dark tunnel.  The tunnel continues to the south
                    |while on the ceiling you can make out a trapdoor.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -2492,8 +2492,8 @@
     "area": "shire",
     "anum": 57,
     "name": "The Inn of the Green Dragon",
-    "description": "You are standing in the Inn of the Green dragon.  Large paintings of \n
-                   |halflings at work, and halflings at play adorn the walls.  Comfortable \n
+    "description": "You are standing in the Inn of the Green dragon.  Large paintings of 
+                   |halflings at work, and halflings at play adorn the walls.  Comfortable 
                    |benches and seats line the walls.  A stairway leads down.\n",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_2",

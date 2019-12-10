@@ -5,9 +5,9 @@
     "name": "Guardian guard",
     "short_descr": "the Guardian of Hell",
     "long_descr": "A Guardian of Hell stands here, keeping you the Hell out.\n",
-    "description": "The guardian is a stone devil, a hideous creation from the dark laboratories\n
-                   |of Hell.  Its black eyes stare into your soul with a hunger that makes you\n
-                   |shiver.  The guardian stands motionless before you.  Its rough grey skin\n
+    "description": "The guardian is a stone devil, a hideous creation from the dark laboratories
+                   |of Hell.  Its black eyes stare into your soul with a hunger that makes you
+                   |shiver.  The guardian stands motionless before you.  Its rough grey skin
                    |looks impervious to normal weapons.\n",
     "race": "human",
     "alignment": -900,
@@ -66,7 +66,7 @@
     "name": "male dee demon",
     "short_descr": "the male Dee",
     "long_descr": "The male demon Dee lies on the bed, waiting to please you.\n",
-    "description": "This is the most handsome male you have ever seen.  The well-defined\n
+    "description": "This is the most handsome male you have ever seen.  The well-defined
                    |muscles on his naked body make your mouth water.\n",
     "race": "human",
     "alignment": -1000,
@@ -96,7 +96,7 @@
     "name": "female dee demon",
     "short_descr": "the female Dee",
     "long_descr": "The female demon Dee lies on the bed, waiting to please you.\n",
-    "description": "This is the most beautiful female you have ever seen. The curves of her\n
+    "description": "This is the most beautiful female you have ever seen. The curves of her
                    |naked body make you sweat and babble uncontrollably.\n",
     "race": "human",
     "alignment": -1000,
@@ -241,7 +241,7 @@
     "name": "damned soul",
     "short_descr": "a damned soul",
     "long_descr": "A damned soul wanders aimlessly here.\n",
-    "description": "You see the faint silhouette of a person. Looking closely at it, you can barely \n
+    "description": "You see the faint silhouette of a person. Looking closely at it, you can barely 
                    |make out features that would identify it as the person it was in life.\n",
     "race": "human",
     "alignment": -700,
@@ -271,7 +271,7 @@
     "name": "tortured soul",
     "short_descr": "a tortured soul",
     "long_descr": "A tortured soul screams out in pain.\n",
-    "description": "You see a unrecognizable person going through unheard-of and\n
+    "description": "You see a unrecognizable person going through unheard-of and
                    |indescribable torture. It screams out at you in pain and terror.\n",
     "race": "human",
     "alignment": -800,
@@ -301,8 +301,8 @@
     "name": "half-eaten person",
     "short_descr": "the half-eaten person",
     "long_descr": "A half-eaten person lies here, writhing in agony.\n",
-    "description": "This poor soul looks as if he has been chewed on and spit out.  He writhes\n
-                   |He is in agony and terror as he gasps frantically for Death to answer his\n
+    "description": "This poor soul looks as if he has been chewed on and spit out.  He writhes
+                   |He is in agony and terror as he gasps frantically for Death to answer his
                    |desperate plea...\n",
     "race": "human",
     "alignment": -757,
@@ -332,8 +332,8 @@
     "name": "living wall",
     "short_descr": "the living wall",
     "long_descr": "A wall stands here. Its surface seems to move and come to life...\n",
-    "description": "The wall consists of greying and sinewy flesh - faces, hands,\n
-                   |broken bones, feet, and toes jutting from the surface. You hear low moans\n
+    "description": "The wall consists of greying and sinewy flesh - faces, hands,
+                   |broken bones, feet, and toes jutting from the surface. You hear low moans
                    |of horror, pain, and sorrow issuing from within.\n",
     "race": "human",
     "alignment": -1000,
@@ -363,8 +363,8 @@
     "name": "skeletal warrior",
     "short_descr": "skeletal warrior",
     "long_descr": "A skeletal warrior wanders the planes of Hell.\n",
-    "description": "Rotting flesh and gore drop from the bones of this creature.\n
-                   |Its decaying eyes stare at you intently as it sees only your\n
+    "description": "Rotting flesh and gore drop from the bones of this creature.
+                   |Its decaying eyes stare at you intently as it sees only your
                    |delicious and juicy brain.\n",
     "race": "human",
     "alignment": -743,
@@ -393,7 +393,7 @@
     "name": "bloody severed arm",
     "short_descr": "bloody severed arm",
     "long_descr": "A bloody severed arm lies here.\n",
-    "description": "The bloody arm of some poor, luckless individual.  The stench of the\n
+    "description": "The bloody arm of some poor, luckless individual.  The stench of the
                    |gore-covered limb makes you want to retch.\n",
     "race": "human",
     "alignment": -884,
@@ -450,7 +450,7 @@
     "name": "bloody severed nose",
     "short_descr": "bloody severed nose",
     "long_descr": "A bloody severed nose lies here.\n",
-    "description": "I wonder how the person that lost this smells...Hopefully not as bad as\n
+    "description": "I wonder how the person that lost this smells...Hopefully not as bad as
                    |this nose does...\n",
     "race": "human",
     "alignment": -800,
@@ -508,7 +508,7 @@
     "name": "Lost soul",
     "short_descr": "the lost soul",
     "long_descr": "A lost soul stands here looking lost.\n",
-    "description": "This soul is definitely clueless to as where he is. He holds a ticket\n
+    "description": "This soul is definitely clueless to as where he is. He holds a ticket
                    |that reads #14349023402342039840293481234900049.\n",
     "race": "human",
     "alignment": -500,
@@ -538,8 +538,8 @@
     "name": "crispy critter",
     "short_descr": "the crispy critter",
     "long_descr": "A crispy critter is here, being burned to death.\n",
-    "description": "This was once a person.  Now it is only a charred and smoking hulk that\n
-                   |is being burned for eternity.  It screams out as the flames lick at its\n
+    "description": "This was once a person.  Now it is only a charred and smoking hulk that
+                   |is being burned for eternity.  It screams out as the flames lick at its
                    |body and devour its flesh...\n",
     "race": "human",
     "alignment": -800,
@@ -569,7 +569,7 @@
     "name": "pile bones skeleton",
     "short_descr": "pile of bones",
     "long_descr": "A decaying pile of bones lies on the ground.\n",
-    "description": "Stringy bits of flesh blow gently in the breeze. The bones rattle as you walk\n
+    "description": "Stringy bits of flesh blow gently in the breeze. The bones rattle as you walk
                    |by them.\n",
     "race": "human",
     "alignment": -700,
@@ -598,10 +598,10 @@
     "name": "manes sub-demon",
     "short_descr": "the manes",
     "long_descr": "A manes wanders the planes of Hell, looking for something to kill.\n",
-    "description": "A gruesome sub-demon who used to be mortal, this is a semi-intelligent\n
-                   |creature who attacks, with nails and teeth, anyone it encounters.  It is\n
-                   |often fed upon by demon lords and princes.  Its green-and-red blotched\n
-                   |skin gives it a diseased and decaying look.  It somewhat resembles a\n
+    "description": "A gruesome sub-demon who used to be mortal, this is a semi-intelligent
+                   |creature who attacks, with nails and teeth, anyone it encounters.  It is
+                   |often fed upon by demon lords and princes.  Its green-and-red blotched
+                   |skin gives it a diseased and decaying look.  It somewhat resembles a
                    |shadow or a ghost.\n",
     "race": "human",
     "alignment": -900,
@@ -631,8 +631,8 @@
     "name": "prisoner raiden",
     "short_descr": "the prisoner Raiden",
     "long_descr": "The prisoner of Hell, Raiden sits here for eternity.\n",
-    "description": "This is a sad individual. He smells strongly of the rotten food that has been\n
-                   |thrown at him. He sits here chained to the wall, banished to Hell forever by\n
+    "description": "This is a sad individual. He smells strongly of the rotten food that has been
+                   |thrown at him. He sits here chained to the wall, banished to Hell forever by
                    |the gods.\n",
     "race": "human",
     "alignment": -1000,
@@ -662,8 +662,8 @@
     "name": "prisoner hell",
     "short_descr": "a prisoner in Hell",
     "long_descr": "A sad looking individual sits here, awaiting torture.\n",
-    "description": "She is sad-looking, indeed:  cuts and scrapes all over her.  Many scars\n
-                   |and burns cover her face and arms.  The appalling condition of her once-lovely\n
+    "description": "She is sad-looking, indeed:  cuts and scrapes all over her.  Many scars
+                   |and burns cover her face and arms.  The appalling condition of her once-lovely
                    |breasts makes you avert your eyes.\n",
     "race": "human",
     "alignment": -800,
@@ -692,8 +692,8 @@
     "name": "prisoner hell",
     "short_descr": "a prisoner in Hell",
     "long_descr": "A sad looking individual sits here ,awaiting torture.\n",
-    "description": "He is sad-looking, indeed:  cuts and scrapes all over him.  Many scars\n
-                   |and burns cover his face and arms.  One of his arms is broken at the\n
+    "description": "He is sad-looking, indeed:  cuts and scrapes all over him.  Many scars
+                   |and burns cover his face and arms.  One of his arms is broken at the
                    |elbow and hangs limply by his side.\n",
     "race": "human",
     "alignment": -800,
@@ -722,7 +722,7 @@
     "name": "demonguard demon guard",
     "short_descr": "demonguard",
     "long_descr": "A demonguard patrols the planes of Hell.\n",
-    "description": "This very large demon stands before you, licking his daggerlike teeth.\n
+    "description": "This very large demon stands before you, licking his daggerlike teeth.
                    |Yellow spittle runs down the scales of his blackened skin.\n",
     "race": "human",
     "alignment": -800,
@@ -752,7 +752,7 @@
     "name": "burning fool",
     "short_descr": "the burning fool",
     "long_descr": "A burning fool is here, crisping away.\n",
-    "description": "You can barely make out anything on it. All you can make out are the flames \n
+    "description": "You can barely make out anything on it. All you can make out are the flames 
                    |of Hell consuming it, and the smell of burning flesh.\n",
     "race": "human",
     "alignment": -900,
@@ -782,8 +782,8 @@
     "name": "construction worker male",
     "short_descr": "male construction worker",
     "long_descr": "A construction worker is here, welding pipework.\n",
-    "description": "He is the typical construction worker:  T-shirt, jeans, yellow hard hat.\n
-                   |As you look closer at the hard hat, you notice that it says:\n
+    "description": "He is the typical construction worker:  T-shirt, jeans, yellow hard hat.
+                   |As you look closer at the hard hat, you notice that it says:
                    |             '4th DEMONsion Construction Co.'\n",
     "race": "human",
     "alignment": -666,
@@ -812,8 +812,8 @@
     "name": "construction worker female",
     "short_descr": "the female construction worker",
     "long_descr": "A construction worker, is here working riviting framework.\n",
-    "description": "She is the typical construction worker:  T-shirt, jeans, yellow hard hat.\n
-                   |As you look closer at the hard hat, you notice that it says:\n
+    "description": "She is the typical construction worker:  T-shirt, jeans, yellow hard hat.
+                   |As you look closer at the hard hat, you notice that it says:
                    |             '4th DEMONsion Construction Co.'\n",
     "race": "human",
     "alignment": -666,
@@ -842,9 +842,9 @@
     "name": "fire devil",
     "short_descr": "the fire devil",
     "long_descr": "A fire devil stands here with a box of matches, lighting up poor souls.\n",
-    "description": "It is an indescribably grotesque creature.  Its pale, green-yellow skin\n
-                   |erupts with blisters and puss.  As you look at it, it smiles at you with\n
-                   |sharp, blood-covered teeth.  This is definitely a face only a mother could\n
+    "description": "It is an indescribably grotesque creature.  Its pale, green-yellow skin
+                   |erupts with blisters and puss.  As you look at it, it smiles at you with
+                   |sharp, blood-covered teeth.  This is definitely a face only a mother could
                    |love.\n",
     "race": "human",
     "alignment": -1000,
@@ -874,8 +874,8 @@
     "name": "wall fire",
     "short_descr": "the wall of fire",
     "long_descr": "A wall of fire is here, creeping slowly across the room.\n",
-    "description": "It is simply a large, door-sized wall of fire.  It slowly inches across the\n
-                   |room, burning everything in its path, including the poor souls that are chained\n
+    "description": "It is simply a large, door-sized wall of fire.  It slowly inches across the
+                   |room, burning everything in its path, including the poor souls that are chained
                    |to the various posts around the room.\n",
     "race": "human",
     "alignment": -600,
@@ -904,8 +904,8 @@
     "name": "hell hound",
     "short_descr": "the hell hound",
     "long_descr": "A hell hound runs freely through the halls of hell.\n",
-    "description": "This freak of a canine is rusty red to red-brown in color. Its eyes glow a\n
-                   |ghastly red. Its sooty black teeth and tongue are covered with green spittle\n
+    "description": "This freak of a canine is rusty red to red-brown in color. Its eyes glow a
+                   |ghastly red. Its sooty black teeth and tongue are covered with green spittle
                    |that runs down its dung covered coat.\n",
     "race": "human",
     "alignment": -900,
@@ -935,8 +935,8 @@
     "name": "frozen body",
     "short_descr": "the frozen body",
     "long_descr": "A frozen body lies on the ground.\n",
-    "description": "As you look at the corpse, you recoil when you see that its eyes still\n
-                   |move.  They stare intently from its bluish face, as if pleading for your\n
+    "description": "As you look at the corpse, you recoil when you see that its eyes still
+                   |move.  They stare intently from its bluish face, as if pleading for your
                    |help.\n",
     "race": "human",
     "alignment": -900,
@@ -966,10 +966,10 @@
     "name": "ice devil",
     "short_descr": "the ice devil",
     "long_descr": "A Greater Ice Devil stands here, cheerfully freezing souls.\n",
-    "description": "This devil is a mix of bug, bird, humanoid, and who knows what else.\n
-                   |Its multi-faceted eyes stare everywhere. It goes about its business of \n
-                   |slowly and painfully freezing the damned souls, quickly thawing them\n
-                   |and then starting over. Every couple of minutes, it takes time out to \n
+    "description": "This devil is a mix of bug, bird, humanoid, and who knows what else.
+                   |Its multi-faceted eyes stare everywhere. It goes about its business of 
+                   |slowly and painfully freezing the damned souls, quickly thawing them
+                   |and then starting over. Every couple of minutes, it takes time out to 
                    |break an appendage off a nearby soul and beat the soul with it.\n",
     "race": "human",
     "alignment": -1000,
@@ -999,9 +999,9 @@
     "name": "trapped soul ice",
     "short_descr": "the trapped soul",
     "long_descr": "A soul trapped under the ice gasps desperately for air.\n",
-    "description": "This poor soul has been incased in ice, almost as though it were caught\n
-                   |under an iceflow.  It will desperately gasp for air for a few minutes,\n
-                   |then will seem to die briefly.  Always, it is restored and begins thrashing\n
+    "description": "This poor soul has been incased in ice, almost as though it were caught
+                   |under an iceflow.  It will desperately gasp for air for a few minutes,
+                   |then will seem to die briefly.  Always, it is restored and begins thrashing
                    |about again.\n",
     "race": "human",
     "alignment": -789,
@@ -1030,8 +1030,8 @@
     "name": "half frozen body",
     "short_descr": "the half frozen body",
     "long_descr": "A half frozen body hangs on a meat hook.\n",
-    "description": "A large meat hook is imbedded deep within the back of the corpse. You\n
-                   |see small white maggots eating away at the body. The flesh seems to\n
+    "description": "A large meat hook is imbedded deep within the back of the corpse. You
+                   |see small white maggots eating away at the body. The flesh seems to
                    |move and wriggle with a life of its own...\n",
     "race": "human",
     "alignment": -876,
@@ -1060,7 +1060,7 @@
     "name": "killer penguin",
     "short_descr": "the killer penguin",
     "long_descr": "A small penguin waddles around on the ice.\n",
-    "description": "What a cute little penguin! Wait, why is it looking at you that way?\n
+    "description": "What a cute little penguin! Wait, why is it looking at you that way?
                    |HEY! Penguins don't have teeth!\n",
     "race": "human",
     "alignment": -876,
@@ -1090,10 +1090,10 @@
     "name": "I-scream worker",
     "short_descr": "the I-scream worker",
     "long_descr": "An I-scream worker runs from machine to machine.\n",
-    "description": "It moves about so frantically that you can't really get a chance to look at it.\n
-                   |It runs about screaming, 'I SCREAM, YOU SCREAM!\n
-                   |\n
-                   |WE ALL SCREAM FOR I SCREAM!!!'\n
+    "description": "It moves about so frantically that you can't really get a chance to look at it.
+                   |It runs about screaming, 'I SCREAM, YOU SCREAM!
+                   |
+                   |WE ALL SCREAM FOR I SCREAM!!!'
                    |\n",
     "race": "human",
     "alignment": -706,
@@ -1123,10 +1123,10 @@
     "name": "Ice Screamer",
     "short_descr": "the Ice Screamer",
     "long_descr": "An Ice Screamer is yelling into empty cartons.\n",
-    "description": "He is dressed in a white jumpsuit with the words,\n
-                   |\n
-                   |'Eye Spleen I Screamery'\n
-                   |\n
+    "description": "He is dressed in a white jumpsuit with the words,
+                   |
+                   |'Eye Spleen I Screamery'
+                   |
                    |written on it in large, yellow letters.\n",
     "race": "human",
     "alignment": -706,
@@ -1156,11 +1156,11 @@
     "name": "Construction Foreman Demonic",
     "short_descr": "the Demonic Foreman",
     "long_descr": "A Demonic Foreman sits here, looking at blueprints.\n",
-    "description": "This huge demon has somehow managed to fit himself into\n
-                   |a oversized, orange jumpsuit. The words,\n
-                   |\n
-                   |'4th DEMONsion Construction Co.' are written on the \n
-                   |back in large, black letters.\n
+    "description": "This huge demon has somehow managed to fit himself into
+                   |a oversized, orange jumpsuit. The words,
+                   |
+                   |'4th DEMONsion Construction Co.' are written on the 
+                   |back in large, black letters.
                    |He seems none too happy to see you.\n",
     "race": "human",
     "alignment": -1000,
@@ -1189,8 +1189,8 @@
     "name": "Secretary of Hell",
     "short_descr": "Secretary of Hell",
     "long_descr": "The Secretary of Hell sits here, watching the phones ring.\n",
-    "description": "This very sexy secretary seems to be just sitting here amusing herself\n
-                   |by watching the little lights on the telephone blink. She is oblivious\n
+    "description": "This very sexy secretary seems to be just sitting here amusing herself
+                   |by watching the little lights on the telephone blink. She is oblivious
                    |to your presence and seems fascinated by the phones.\n",
     "race": "human",
     "alignment": -700,
@@ -1219,7 +1219,7 @@
     "name": "office worker hell",
     "short_descr": "office worker from Hell",
     "long_descr": "An office worker from Hell is looking for a boss to piss off.\n",
-    "description": "Just looking at him makes your blood boil. \n
+    "description": "Just looking at him makes your blood boil. 
                    |AAAAAAAAAAaaaaaaaaaaaarrrrrrrrgggggghhhhh!!!!!!!!!!!\n",
     "race": "human",
     "alignment": -1000,
@@ -1249,7 +1249,7 @@
     "name": "records worker",
     "short_descr": "records worker",
     "long_descr": "A records worker is here, filing bad reports.\n",
-    "description": "You see a rather plain-looking office personel here, filing paperwork on\n
+    "description": "You see a rather plain-looking office personel here, filing paperwork on
                    |someone.\n",
     "race": "human",
     "alignment": -1000,
@@ -1278,7 +1278,7 @@
     "name": "santa claus",
     "short_descr": "Santa Claus",
     "long_descr": "Santa Claus is here, checking on who has been naughty...\n",
-    "description": "It's a jolly old man, with red cheeks and a roly-poly belly and a laugh\n
+    "description": "It's a jolly old man, with red cheeks and a roly-poly belly and a laugh
                    |as jolly as you can get. Must be Santa Claus!\n",
     "race": "human",
     "alignment": -1000,
@@ -1307,7 +1307,7 @@
     "name": "high priest ell",
     "short_descr": "High Priest of Hell",
     "long_descr": "The High Priest of Hell is here, eating 'I Scream'.\n",
-    "description": "The dark, black robes hide most of his features, but you can nearly make\n
+    "description": "The dark, black robes hide most of his features, but you can nearly make
                    |out his emaciated face beneath the hood.\n",
     "race": "human",
     "alignment": -1000,
@@ -1393,7 +1393,7 @@
     "name": "Judge Whopper",
     "short_descr": "Judge Whopper",
     "long_descr": "Judge Whopper sits here, trying to think of a painful sentence.\n",
-    "description": "This is the High Judge of Hell. He has never found anyone innocent\n
+    "description": "This is the High Judge of Hell. He has never found anyone innocent
                    |and is notorious for his painful and harsh punishments.\n",
     "race": "human",
     "alignment": -1000,
@@ -1451,8 +1451,8 @@
     "name": "complaints officer",
     "short_descr": "Complaints Officer",
     "long_descr": "The Complaints Officer is here, watching her favorite soap opera.\n",
-    "description": "She seems not to notice you, but is absorbed in her favorite soap,\n
-                   |'As The Hell Burns'\n
+    "description": "She seems not to notice you, but is absorbed in her favorite soap,
+                   |'As The Hell Burns'
                    |\n",
     "race": "human",
     "alignment": -1000,
@@ -1481,9 +1481,9 @@
     "name": "bastard hiramoto",
     "short_descr": "bastard hiramoto",
     "long_descr": "The Bastard Hiramoto stands here, trying to learn Kung Fu from a book.\n",
-    "description": "He looks at you and says, 'I think my Kung Fu is no good'\n
-                   |and then goes back to practicing.\n
-                   |\n
+    "description": "He looks at you and says, 'I think my Kung Fu is no good'
+                   |and then goes back to practicing.
+                   |
                    |He is known to buy anything, and to sell anything sold to him.\n",
     "race": "human",
     "alignment": -1000,
@@ -1575,8 +1575,8 @@
     "name": "stanley",
     "short_descr": "Stanley",
     "long_descr": "Stanley stands here, waiting to sell you one of his wonderful figurines. \n",
-    "description": "He is a crafty old fart who looks about 1000 years old, but his figurines\n
-                   |are pretty well-known.  He was rumored to have disappeared around Solace 100\n
+    "description": "He is a crafty old fart who looks about 1000 years old, but his figurines
+                   |are pretty well-known.  He was rumored to have disappeared around Solace 100
                    |years ago.\n",
     "race": "human",
     "alignment": -1000,
@@ -1614,7 +1614,7 @@
     "name": "half eaten horse carcass",
     "short_descr": "horse carcass",
     "long_descr": "A half-eaten horse carcass is here being digested. \n",
-    "description": "This is what used to be a horse.  Hmm, maybe - it's hard to tell.  Half\n
+    "description": "This is what used to be a horse.  Hmm, maybe - it's hard to tell.  Half
                    |of it has been digested already.\n",
     "race": "human",
     "alignment": -800,
@@ -1643,7 +1643,7 @@
     "name": "stomach dragon",
     "short_descr": "stomach dragon",
     "long_descr": "A stomach dragon is here, digesting Big Mouth's food.\n",
-    "description": "A large, brown-and-green, slime-covered reptile, its function seems to be\n
+    "description": "A large, brown-and-green, slime-covered reptile, its function seems to be
                    |to move to each food item and barf acid all over it.\n",
     "race": "human",
     "alignment": -800,
@@ -1673,7 +1673,7 @@
     "name": "rancid turkey leg",
     "short_descr": "rancid turkey leg",
     "long_descr": "A rancid turkey leg sits in a pool of slime.\n",
-    "description": "It's one of those really nasty pieces of food in the refrigerator that\n
+    "description": "It's one of those really nasty pieces of food in the refrigerator that
                    |disappears, and you wonder if it just walked away....\n",
     "race": "human",
     "alignment": -800,
@@ -1702,7 +1702,7 @@
     "name": "reactor specialist",
     "short_descr": "reactor specialist",
     "long_descr": "A reactor specialist sits here, checking on the reactor core.\n",
-    "description": "He is dressed in a black jumpsuit with a large nuclear-warning symbol on\n
+    "description": "He is dressed in a black jumpsuit with a large nuclear-warning symbol on
                    |the back.\n",
     "race": "human",
     "alignment": -800,
@@ -1731,7 +1731,7 @@
     "name": "reactor worker",
     "short_descr": "reactor worker",
     "long_descr": "A reactor worker sits here, monitoring various screens.\n",
-    "description": "He is dressed in a black jumpsuit with a large lighting bolt symbol on\n
+    "description": "He is dressed in a black jumpsuit with a large lighting bolt symbol on
                    |the back.\n",
     "race": "human",
     "alignment": -800,
@@ -1760,11 +1760,11 @@
     "name": "homer simpson",
     "short_descr": "Homer Simpson",
     "long_descr": "Homer Simpson sits here, eating donuts.\n",
-    "description": "A balding fat man with jelly stains on his uniform.\n
-                   |\n
-                   |He suddenly spills his coffee and shouts out, 'DOH!'\n
-                   |Warning lights blink rapidly as the coffee shorts out the control panel.\n
-                   |Homer calmly stands up, unplugs the control panel, and sits down\n
+    "description": "A balding fat man with jelly stains on his uniform.
+                   |
+                   |He suddenly spills his coffee and shouts out, 'DOH!'
+                   |Warning lights blink rapidly as the coffee shorts out the control panel.
+                   |Homer calmly stands up, unplugs the control panel, and sits down
                    |for a nap.\n",
     "race": "human",
     "alignment": -800,
@@ -1961,9 +1961,9 @@
     "name": "chief engineer hell",
     "short_descr": "the Chief Engineer of Hell",
     "long_descr": "The Chief Engineer of Hell is here, playing with the panic button.\n",
-    "description": "He kinda reminds you of an old Bart Simpson.  He seems to be enjoying\n
-                   |the panic button at the moment, chuckling happily as workers on the\n
-                   |reactor floor below frantically check dials and gauges, while lights\n
+    "description": "He kinda reminds you of an old Bart Simpson.  He seems to be enjoying
+                   |the panic button at the moment, chuckling happily as workers on the
+                   |reactor floor below frantically check dials and gauges, while lights
                    |are flashing and sirens are screaming in the background.\n",
     "race": "human",
     "alignment": -800,
@@ -1992,10 +1992,10 @@
     "name": "Greater Fire Demon",
     "short_descr": "the Greater Fire Demon",
     "long_descr": "A Greater Fire Demon stands here, laughing at each scream he hears..\n",
-    "description": "This large, black-scaled demon laughs merrily as he watches poor souls\n
-                   |scream out in pain. He pokes and picks at the flesh of the damned who\n
-                   |were unlucky enough to be tortured close to him.  His black-taloned\n
-                   |nails rip slowly through their flesh as he cackles with glee at the\n
+    "description": "This large, black-scaled demon laughs merrily as he watches poor souls
+                   |scream out in pain. He pokes and picks at the flesh of the damned who
+                   |were unlucky enough to be tortured close to him.  His black-taloned
+                   |nails rip slowly through their flesh as he cackles with glee at the
                    |sounds of their unending pain...\n",
     "race": "human",
     "alignment": -800,
@@ -2025,7 +2025,7 @@
     "name": "frozen side beef",
     "short_descr": "side of frozen beef",
     "long_descr": "A frozen side of beef hangs on a hook.\n",
-    "description": "This enormous carcass looks as if it came from a small dragon or a very\n
+    "description": "This enormous carcass looks as if it came from a small dragon or a very
                    |large cow.\n",
     "race": "human",
     "alignment": -675,

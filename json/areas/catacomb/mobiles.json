@@ -60,9 +60,9 @@
     "name": "spelunker explorer",
     "short_descr": "a spelunker",
     "long_descr": "A spelunker knows his way around these tunnels.\n",
-    "description": "He recently discovered these catacombs and wants to see where they lead.\n
-                   |He just hopes he doesn't get killed in the process.  He carries only\n
-                   |essential exploration gear; if there IS anything down here, he\n
+    "description": "He recently discovered these catacombs and wants to see where they lead.
+                   |He just hopes he doesn't get killed in the process.  He carries only
+                   |essential exploration gear; if there IS anything down here, he
                    |probably won't last long.\n",
     "race": "human",
     "alignment": 100,
@@ -91,7 +91,7 @@
     "name": "gravedigger digger robber graverobber",
     "short_descr": "a graverobber",
     "long_descr": "A graverobber uncovers dead bodies.\n",
-    "description": "Working for an evil necromancer isn't the greatest thing in the world.\n
+    "description": "Working for an evil necromancer isn't the greatest thing in the world.
                    |They seem like little more than zombie servants themselves.\n",
     "race": "human",
     "alignment": -500,
@@ -173,7 +173,7 @@
     "name": "skeleton skeletal soldier",
     "short_descr": "a skeleton",
     "long_descr": "A skeletal soldier fights in the battle of the underworld.\n",
-    "description": "Even though he has died in the physical sense of the word, the battle\n
+    "description": "Even though he has died in the physical sense of the word, the battle
                    |continues for him in his charmed state.\n",
     "race": "human",
     "alignment": -290,
@@ -202,10 +202,10 @@
     "name": "templar",
     "short_descr": "a templar",
     "long_descr": "A templar shouts \"AKK! SLAY THE INFIDEL!\"\n",
-    "description": "As you peer closely he peers back at you\n
-                   |\n
-                   |A templar peers closely at you.\n
-                   |A templar tells you, \"You are an evil force trying to spread your ways!\".\n
+    "description": "As you peer closely he peers back at you
+                   |
+                   |A templar peers closely at you.
+                   |A templar tells you, \"You are an evil force trying to spread your ways!\".
                    |A templar tells you, \"You must die for your sin!\".\n",
     "race": "human",
     "alignment": 600,
@@ -374,7 +374,7 @@
     "name": "necromancer necro cleric",
     "short_descr": "the evil necromancer",
     "long_descr": "The evil necromancer makes undead soldiers from corpses.\n",
-    "description": "Though he seems absorbed in his work, you'd bet he'd take the time out\n
+    "description": "Though he seems absorbed in his work, you'd bet he'd take the time out
                    |to kill you to get a fresh corpse!\n",
     "race": "human",
     "alignment": -888,
@@ -403,7 +403,7 @@
     "name": "grand templar leader",
     "short_descr": "the grand templar",
     "long_descr": "The grand templar stands here quietly observing your actions\n",
-    "description": "A slight, tolerant smile comes briefly across his face.  In the blink\n
+    "description": "A slight, tolerant smile comes briefly across his face.  In the blink
                    |of an eye he seems stern again.\n",
     "race": "human",
     "alignment": 1000,

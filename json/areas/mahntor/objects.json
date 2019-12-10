@@ -17,7 +17,7 @@
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "gloves combat",
-      "description": "These gloves are plated with metal plates that provide strength and \n
+      "description": "These gloves are plated with metal plates that provide strength and 
                      |protection.\n"
     }],
     "affects": [
@@ -1569,7 +1569,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword kopesh",
-      "description": "The sword looks like it would be grasped so that the blade extended along the\n
+      "description": "The sword looks like it would be grasped so that the blade extended along the
                      |forearm of the wielder.\n"
     }]
   }},

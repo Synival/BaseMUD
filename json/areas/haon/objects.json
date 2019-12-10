@@ -61,7 +61,7 @@
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "boots",
-      "description": "They are fashioned from rough leather that has been oiled frequently to make\n
+      "description": "They are fashioned from rough leather that has been oiled frequently to make
                      |it stay waterproof.  They look worn but quite functional.\n"
     }]
   }},
@@ -82,8 +82,8 @@
     "cost": 0,
     "extra_description": [{
       "keyword": "fireplace",
-      "description": "It is fashioned from stones of various sizes that have been stacked on top of\n
-                     |each other and fastened with mortar.  Its chimney is constructed likewise and\n
+      "description": "It is fashioned from stones of various sizes that have been stacked on top of
+                     |each other and fastened with mortar.  Its chimney is constructed likewise and
                      |leads the smoke out through the low cabin ceiling.\n"
     }]
   }},
@@ -107,7 +107,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "chest",
-      "description": "It is a robust chest made from short, heavy planks that have been fastened\n
+      "description": "It is a robust chest made from short, heavy planks that have been fastened
                      |together with tenons.  It is equipped with a simple brass lock.\n"
     }]
   }},
@@ -223,13 +223,13 @@
     "extra_description": [
       {
         "keyword": "opening",
-        "description": "The opening is far too narrow for you to squeeze through but it looks as if the\n
+        "description": "The opening is far too narrow for you to squeeze through but it looks as if the
                        |tree is hollow.\n"
       },
       {
         "keyword": "tree",
-        "description": "This enormous tree must be a thousand years old.  Its rough bark looks grey\n
-                       |and pale and is decorated with scratches and claw marks.  On its west side is a\n
+        "description": "This enormous tree must be a thousand years old.  Its rough bark looks grey
+                       |and pale and is decorated with scratches and claw marks.  On its west side is a
                        |small opening just above ground level.\n"
       }
     ]
@@ -302,8 +302,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "toadstool",
-      "description": "It is a large, brown boletus that must weigh nearly five pounds.  The top\n
-                     |surface is covered in a thin layer of transparent slime that emits a weak,\n
+      "description": "It is a large, brown boletus that must weigh nearly five pounds.  The top
+                     |surface is covered in a thin layer of transparent slime that emits a weak,
                      |musty smell.  Not the most delicious thing you have seen.\n"
     }]
   }},
@@ -325,8 +325,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "toadstool",
-      "description": "It is a large, brown boletus that must weigh nearly five pounds.  It has small\n
-                     |white spots and the top surface is covered in a thin layer of transparent slime\n
+      "description": "It is a large, brown boletus that must weigh nearly five pounds.  It has small
+                     |white spots and the top surface is covered in a thin layer of transparent slime
                      |that emits a weak, musty smell.  Not the most delicious thing you have seen.\n"
     }]
   }},
@@ -410,7 +410,7 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring iron",
-      "description": "It is a quite heavy human-sized ring made from solid iron.  It lacks\n
+      "description": "It is a quite heavy human-sized ring made from solid iron.  It lacks
                      |decorations of any kind.\n"
     }]
   }},

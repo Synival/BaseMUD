@@ -5,7 +5,7 @@
     "name": "spider young",
     "short_descr": "the young spider",
     "long_descr": "The young spider is ballooning by you.\n",
-    "description": "He looks freshly hatched and sprightly.  His young fangs are just\n
+    "description": "He looks freshly hatched and sprightly.  His young fangs are just
                    |growing in as of late.\n",
     "race": "human",
     "alignment": 0,
@@ -116,7 +116,7 @@
     "anum": 105,
     "name": "wasp queen",
     "short_descr": "the Queen Wasp",
-    "long_descr": "The Queen Wasp is here, thinking that you would make a tasty offering\n
+    "long_descr": "The Queen Wasp is here, thinking that you would make a tasty offering
                   |to her master.\n",
     "description": "You notice a glazed look in her eyes.\n",
     "race": "human",
@@ -226,7 +226,7 @@
     "name": "quasit",
     "short_descr": "the quasit",
     "long_descr": "The quasit blinks in and out, grinning at you.\n",
-    "description": "Demoniac in nature, but more mischievous.  He twiddles his thumbs\n
+    "description": "Demoniac in nature, but more mischievous.  He twiddles his thumbs
                    |and creates a magical treasure!\n",
     "race": "human",
     "alignment": 1000,
@@ -282,7 +282,7 @@
     "name": "hermit",
     "short_descr": "the Hermit",
     "long_descr": "The Hermit sits here and warns, \"Go back before it's too late!\"\n",
-    "description": "A dishevelled veteran warrior in disguise is what he is, but he\n
+    "description": "A dishevelled veteran warrior in disguise is what he is, but he
                    |means well.\n",
     "race": "human",
     "alignment": -400,
@@ -369,9 +369,9 @@
     "name": "spider empress arachnos",
     "short_descr": "Arachnos",
     "long_descr": "Arachnos the Empress of Spiders welcomes you with an evil smile.\n",
-    "description": "She is a very attractive spider with an ornate gown.  She tempts you\n
-                   |into being one of her many slaves.  She does not possess the venomous\n
-                   |fangs of normal spiders, but then, as you realize, she does not need\n
+    "description": "She is a very attractive spider with an ornate gown.  She tempts you
+                   |into being one of her many slaves.  She does not possess the venomous
+                   |fangs of normal spiders, but then, as you realize, she does not need
                    |them.\n",
     "race": "human",
     "alignment": -1000,
@@ -401,7 +401,7 @@
     "name": "ki-rin",
     "short_descr": "the Ki-Rin",
     "long_descr": "The Ki-Rin smiles good-naturedly to you.\n",
-    "description": "She is the last bastion of good in this realm.  Her mission is to\n
+    "description": "She is the last bastion of good in this realm.  Her mission is to
                    |someday free the slaves of the Empress.\n",
     "race": "human",
     "alignment": 1000,
@@ -488,8 +488,8 @@
     "name": "spider poisonous",
     "short_descr": "the huge, poisonous spider",
     "long_descr": "A huge, poisonous spider is here.\n",
-    "description": "This disgusting creature is at the size of a human crawling on all four.  It\n
-                   |has eight hairy legs that gives it a tremendous speed on almost any surface and\n
+    "description": "This disgusting creature is at the size of a human crawling on all four.  It
+                   |has eight hairy legs that gives it a tremendous speed on almost any surface and
                    |sharp poisonous fangs to paralyze or kill its prey.\n",
     "race": "human",
     "alignment": -350,
@@ -518,8 +518,8 @@
     "name": "queen spider",
     "short_descr": "the Queen Spider",
     "long_descr": "The huge, bulky Queen Spider is here.\n",
-    "description": "This disgusting creature is at the size of a small elephant.  It has eight\n
-                   |huge, hairy legs that would give it a tremendous speed on almost any surface\n
+    "description": "This disgusting creature is at the size of a small elephant.  It has eight
+                   |huge, hairy legs that would give it a tremendous speed on almost any surface
                    |if it wasn't so immensely fat.  Its large, bulbous eyes stare back at you.\n",
     "race": "human",
     "alignment": -1000,

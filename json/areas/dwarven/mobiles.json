@@ -156,7 +156,7 @@
     "name": "lizard",
     "short_descr": "the giant lizard",
     "long_descr": "A giant lizard is here.\n",
-    "description": "This scaly creature looks like it is well adapted to it's underground\n
+    "description": "This scaly creature looks like it is well adapted to it's underground
                    |habitat.  He looks very powerful.\n",
     "race": "lizard",
     "alignment": 100,

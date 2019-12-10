@@ -228,7 +228,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "note letter letters",
-      "description": "It seems to be a hot love letter from the Queen.  Unfortunately,\n
+      "description": "It seems to be a hot love letter from the Queen.  Unfortunately,
                      |it's not suitable for transmission across a public data network.\n"
     }]
   }},
@@ -308,8 +308,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "birth control pills pill",
-      "description": "They are in a circular container, and there are numbers corresponding\n
-                     |to the day that they are to be taken.  You can tell they haven't been\n
+      "description": "They are in a circular container, and there are numbers corresponding
+                     |to the day that they are to be taken.  You can tell they haven't been
                      |used for a while.\n"
     }]
   }},
@@ -327,43 +327,43 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map castle strangelove",
-      "description": ".\n
-                     |* * * Castle Strangelove * * *       __________\n
-                     | = = ==================== = =        \\ Queen's \\\n
-                     |      \t\t\t              \\ Bedroom \\\n
-                     |                                       \\_________\\\n
-                     |                                                *\n
-                     |                               __________    ____\\_____\n
-                     |     North  Up                 \\  Top of \\    \\ Waiting \\\n
-                     |        \\   |                   \\ Stairs  \\----\\  Room   \\\n
-                     |          \\ |                    \\_________\\    \\_________\\\n
-                     |  West ---- + ---- East             |\n
-                     |            | \\                _____|____\n
-                     |            |   \\              \\         \\\n
-                     |          Down  South           \\ Stairs  \\    [] - You need the Castle Key\n
-                     |                                 \\_________\\        to get beyond this point.\n
-                     |                                    |               The Castle Key can be\n
-                     |                               _____|____           found on the Grinning\n
-                     |                               \\         \\          Dwarves in the Barracks.\n
-                     |                                \\ Stairs  \\\n
-                     |                                 \\_________\\    * - You need the Deep Green\n
-                     |                                    |               Key to get beyond this\n
-                     |                __________     _____|____           point.  This key can be\n
-                     |                \\ Door to \\    \\ Inside  \\          found on the Wraith in\n
-                     |                 \\ Castle  \\-[]-\\ Castle  \\         the wine cellar or on one\n
-                     |                  \\_________\\    \\_________\\        of the Dwarven Guards on\n
-                     |                           \\                        the Dark path.\n
-                     |                         ____\\_____\n
-                     |                         \\ Path to \\\n
-                     |                          \\ Castle  \\\n
-                     |                           \\_________\\\n
-                     |                                    \\\n
-                     |                   __________     ____\\_____\n
-                     |                   \\ Door to \\    \\ Path to \\\n
-                     |                    \\ Kingdom \\----\\ Castle  \\\n
-                     |                     \\_________\\    \\_________\\\n
-                     |                              \\\n
-                     |                           To Dwarven\n
+      "description": ".
+                     |* * * Castle Strangelove * * *       __________
+                     | = = ==================== = =        \\ Queen's \\
+                     |      \t\t\t              \\ Bedroom \\
+                     |                                       \\_________\\
+                     |                                                *
+                     |                               __________    ____\\_____
+                     |     North  Up                 \\  Top of \\    \\ Waiting \\
+                     |        \\   |                   \\ Stairs  \\----\\  Room   \\
+                     |          \\ |                    \\_________\\    \\_________\\
+                     |  West ---- + ---- East             |
+                     |            | \\                _____|____
+                     |            |   \\              \\         \\
+                     |          Down  South           \\ Stairs  \\    [] - You need the Castle Key
+                     |                                 \\_________\\        to get beyond this point.
+                     |                                    |               The Castle Key can be
+                     |                               _____|____           found on the Grinning
+                     |                               \\         \\          Dwarves in the Barracks.
+                     |                                \\ Stairs  \\
+                     |                                 \\_________\\    * - You need the Deep Green
+                     |                                    |               Key to get beyond this
+                     |                __________     _____|____           point.  This key can be
+                     |                \\ Door to \\    \\ Inside  \\          found on the Wraith in
+                     |                 \\ Castle  \\-[]-\\ Castle  \\         the wine cellar or on one
+                     |                  \\_________\\    \\_________\\        of the Dwarven Guards on
+                     |                           \\                        the Dark path.
+                     |                         ____\\_____
+                     |                         \\ Path to \\
+                     |                          \\ Castle  \\
+                     |                           \\_________\\
+                     |                                    \\
+                     |                   __________     ____\\_____
+                     |                   \\ Door to \\    \\ Path to \\
+                     |                    \\ Kingdom \\----\\ Castle  \\
+                     |                     \\_________\\    \\_________\\
+                     |                              \\
+                     |                           To Dwarven
                      |                             Kingdom\n"
     }]
   }}

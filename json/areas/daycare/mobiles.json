@@ -120,7 +120,7 @@
     "name": "bear ugly",
     "short_descr": "the ugly bear",
     "long_descr": "An ugly stuffed bear stands here.\n",
-    "description": "This is obviously a reject from the factory.\n
+    "description": "This is obviously a reject from the factory.
                    |He snarls and growls at you.\n",
     "race": "doll",
     "material": "cloth",
@@ -178,7 +178,7 @@
     "name": "nanny",
     "short_descr": "the nanny",
     "long_descr": "An old wrinkled nanny stands here, looking over the little ones.\n",
-    "description": "You see an old dwarven lady who has been hunched over with age.  However, it\n
+    "description": "You see an old dwarven lady who has been hunched over with age.  However, it
                    |appears that there is still some fight left in her.\n",
     "race": "dwarf",
     "alignment": 10,
@@ -207,7 +207,7 @@
     "name": "guard",
     "short_descr": "the armed guard",
     "long_descr": "An armed guard stands here looking lost.\n",
-    "description": "This is a big mean bully who is tired of being lost in this maze.\n
+    "description": "This is a big mean bully who is tired of being lost in this maze.
                    |You suddenly think that you had better flee.\n",
     "race": "dwarf",
     "alignment": -800,
@@ -236,7 +236,7 @@
     "name": "brat spoiled",
     "short_descr": "the spoiled brat",
     "long_descr": "A spoiled brat is crying here.\n",
-    "description": "You see a little tyke who has always gotten what he wanted.  You have the\n
+    "description": "You see a little tyke who has always gotten what he wanted.  You have the
                    |biggest urge to put him out of his misery.\n",
     "race": "dwarf",
     "alignment": -400,

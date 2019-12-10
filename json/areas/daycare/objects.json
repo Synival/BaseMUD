@@ -40,7 +40,7 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring pink ice",
-      "description": "How strange...it's made of ice, but it doesn't melt. It feels pleasantly \n
+      "description": "How strange...it's made of ice, but it doesn't melt. It feels pleasantly 
                      |cool to the touch.\n"
     }],
     "affects": [
@@ -199,7 +199,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion",
-      "description": "It's a tight-stoppered glass bottle with a thick amber liquid inside. It\n
+      "description": "It's a tight-stoppered glass bottle with a thick amber liquid inside. It
                      |tastes kind of like whiskey.\n"
     }]
   }},
@@ -225,7 +225,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "gun toy",
-      "description": "It's just a toy...but the point looks kind of sharp.\n
+      "description": "It's just a toy...but the point looks kind of sharp.
                      |You'll put your eye out, kid!\n"
     }],
     "affects": [{

@@ -41,7 +41,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "corpse",
-      "description": "Ew.  This must have been the mapper that was lost in Moria.  His rotted hand\n
+      "description": "Ew.  This must have been the mapper that was lost in Moria.  His rotted hand
                      |still clutches a partially digested map...\n"
     }]
   }},
@@ -142,7 +142,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "club tree",
-      "description": "This is the biggest club you have ever seen!  The giant didn't even bother to\n
+      "description": "This is the biggest club you have ever seen!  The giant didn't even bother to
                      |trim the roots off the end.\n"
     }],
     "affects": [{
@@ -175,7 +175,7 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "furs",
-      "description": "They're heavy and smelly and would probably slow you down...but they do look\n
+      "description": "They're heavy and smelly and would probably slow you down...but they do look
                      |like good armor.\n"
     }],
     "affects": [{
@@ -283,8 +283,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dirk",
-      "description": "It's a medium sized, beautifully crafted dirk made from grey alloy.\n
-                     |Its blade is double-edged and very thin ... this looks like a good\n
+      "description": "It's a medium sized, beautifully crafted dirk made from grey alloy.
+                     |Its blade is double-edged and very thin ... this looks like a good
                      |thieves weapon.\n"
     }],
     "affects": [
@@ -380,7 +380,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "flail",
-      "description": "It's a stout wooden rod with two spiked balls attached, each weighing over 2\n
+      "description": "It's a stout wooden rod with two spiked balls attached, each weighing over 2
                      |pounds.  It's a little worn for wear, but looks most painful.\n"
     }],
     "affects": [
@@ -452,7 +452,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "falchion",
-      "description": "It's curved like a scimitar, only with no recurved blade and a tip designed\n
+      "description": "It's curved like a scimitar, only with no recurved blade and a tip designed
                      |for piercing as well as slashing.\n"
     }]
   }},
@@ -478,7 +478,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "voulge",
-      "description": "It looks a lot like a staff with a pruning knife tied to the end, but it's\n
+      "description": "It looks a lot like a staff with a pruning knife tied to the end, but it's
                      |quite effective.\n"
     }],
     "affects": [{
@@ -775,7 +775,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "star morning",
-      "description": "It's a huge length of wood studded with iron spikes and bands. You wouldn't\n
+      "description": "It's a huge length of wood studded with iron spikes and bands. You wouldn't
                      |want to meet this in a dark alley...\n"
     }],
     "affects": [
@@ -811,22 +811,22 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map moria second",
-      "description": ".\n
-                     |    * * * MORIA - Map 2 * * *\n
-                     |     = = =============== = =\n
-                     |\n
-                     |Maze--Maze\n
-                     | |     |    (Map 1)\n
-                     | |    Maze--Tunnel*\n
-                     | |\n
-                     |Maze--Maze--Maze--Maze\n
-                     |              |\n
-                     |     Large--Large\n
-                     |     Cave   Cave\n
-                     |      |       |\n
-                     |     Large--Large--Tunnel--End of\n
-                     |     Cave    Cave    |     Tunnel\n
-                     |                   *Hole\n
+      "description": ".
+                     |    * * * MORIA - Map 2 * * *
+                     |     = = =============== = =
+                     |
+                     |Maze--Maze
+                     | |     |    (Map 1)
+                     | |    Maze--Tunnel*
+                     | |
+                     |Maze--Maze--Maze--Maze
+                     |              |
+                     |     Large--Large
+                     |     Cave   Cave
+                     |      |       |
+                     |     Large--Large--Tunnel--End of
+                     |     Cave    Cave    |     Tunnel
+                     |                   *Hole
                      |                  (Map 3)\n"
     }]
   }},
@@ -846,38 +846,38 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map moria third",
-      "description": ".\n
-                     |                                                   (Map 1*)\n
-                     |                             Long                     |\n
-                     |        Tunnel----Tunnel----Tunnel--Tunnel--Tunnel--Tunnel\n
-                     |          |                   |\n
-                     |          |                  Gold--Gold\n
-                     |          |                  Cave  Cave\n
-                     |          |                   |      |\n
-                     |          |                  Gold--Gold---Passage\n
-                     |          |                  Cave  Cave      |\n
-                     |          |                   |           Passage--Tunnel--Tunnel--Tunnel\n
-                     |          |          Dark*---Gold            |\n
-                     |          |         Passage  Cave            |     Secret\n
-                     |          |                               Passage  Chamber\n
-                     |          |                      Hole        |       |\n
-                     |          |                        |      Passage  Secret\n
-                     |        Large   Large   Large    Small       |     Chamber--Cave--Cave\n
-                     |        Tunnel--Tunnel--Tunnel--Passage      |                |      |\n
-                     |          |                        |      Passage-----------Cave--Cave\n
-                     |          |                       Long\n
-                     |          |                      Tunnel\n
-                     |         Wet    Small  Small       |\n
-                     |        Tunnel--Maze---Maze   Inscription\n
-                     |          |       |      |         |\n
-                     |         Wet    Small--Small-----Small\n
-                     |        Tunnel  Maze   Maze      Maze\n
-                     |          |       |                |\n
-                     |          |      Wet    Wet      End of\n
-                     |        Water    Maze---Maze-----Tunnel\n
-                     |          |       |      |\n
-                     |        Water---Water  End of\n
-                     |                       Maze*\n
+      "description": ".
+                     |                                                   (Map 1*)
+                     |                             Long                     |
+                     |        Tunnel----Tunnel----Tunnel--Tunnel--Tunnel--Tunnel
+                     |          |                   |
+                     |          |                  Gold--Gold
+                     |          |                  Cave  Cave
+                     |          |                   |      |
+                     |          |                  Gold--Gold---Passage
+                     |          |                  Cave  Cave      |
+                     |          |                   |           Passage--Tunnel--Tunnel--Tunnel
+                     |          |          Dark*---Gold            |
+                     |          |         Passage  Cave            |     Secret
+                     |          |                               Passage  Chamber
+                     |          |                      Hole        |       |
+                     |          |                        |      Passage  Secret
+                     |        Large   Large   Large    Small       |     Chamber--Cave--Cave
+                     |        Tunnel--Tunnel--Tunnel--Passage      |                |      |
+                     |          |                        |      Passage-----------Cave--Cave
+                     |          |                       Long
+                     |          |                      Tunnel
+                     |         Wet    Small  Small       |
+                     |        Tunnel--Maze---Maze   Inscription
+                     |          |       |      |         |
+                     |         Wet    Small--Small-----Small
+                     |        Tunnel  Maze   Maze      Maze
+                     |          |       |                |
+                     |          |      Wet    Wet      End of
+                     |        Water    Maze---Maze-----Tunnel
+                     |          |       |      |
+                     |        Water---Water  End of
+                     |                       Maze*
                      |                      (Map 2)\n"
     }]
   }}

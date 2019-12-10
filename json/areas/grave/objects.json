@@ -13,7 +13,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "candlestick",
-      "description": "It is a rather old-looking three-armed candlestick made from pewter.  Its\n
+      "description": "It is a rather old-looking three-armed candlestick made from pewter.  Its
                      |candles are a yellowish white colour.\n"
     }]
   }},
@@ -35,8 +35,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "brandy bottle",
-      "description": "The bottle is a special 'Dragon Blood' brandy bottle.  Its neck is shaped\n
-                     |like a small dragon's head.  Bottles like these are often worth a small\n
+      "description": "The bottle is a special 'Dragon Blood' brandy bottle.  Its neck is shaped
+                     |like a small dragon's head.  Bottles like these are often worth a small
                      |amount money, even when empty.\n"
     }]
   }},
@@ -57,8 +57,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "brandy bottle",
-      "description": "The bottle is a special 'Dragon Blood' brandy bottle.  Its neck is shaped\n
-                     |like a small dragon's head.  Bottles like these are often worth some money,\n
+      "description": "The bottle is a special 'Dragon Blood' brandy bottle.  Its neck is shaped
+                     |like a small dragon's head.  Bottles like these are often worth some money,
                      |even when empty.\n"
     }]
   }},
@@ -76,7 +76,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "wheelbarrow",
-      "description": "It is a heavy wheelbarrow made from solid oaken planks that have been painted\n
+      "description": "It is a heavy wheelbarrow made from solid oaken planks that have been painted
                      |a dark, green colour.\n"
     }]
   }},
@@ -141,8 +141,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "skeleton",
-      "description": "The dusty bones are almost brown.  It must have been buried for a very long\n
-                     |time.\n
+      "description": "The dusty bones are almost brown.  It must have been buried for a very long
+                     |time.
                      |A dusty skeleton is in an excellent condition.\n"
     }]
   }},
@@ -216,7 +216,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dagger silver",
-      "description": "It has a long, sharp blade that is made entirely from silver.  A small rune\n
+      "description": "It has a long, sharp blade that is made entirely from silver.  A small rune
                      |has been engraved on the blade next to the hilt.\n"
     }],
     "affects": [{

@@ -3,7 +3,7 @@
     "area": "pyramid",
     "anum": 0,
     "name": "The Great Eastern Desert",
-    "description": "A vast desert stretches for miles, the sands constantly shifting around you.\n
+    "description": "A vast desert stretches for miles, the sands constantly shifting around you.
                    |Rising out of the sand to the east you see a mighty pyramid.\n",
     "sector_type": "desert",
     "doors": [
@@ -37,9 +37,9 @@
     "area": "pyramid",
     "anum": 1,
     "name": "At the Base of the Pyramid",
-    "description": "The mighty pyramid towers above you out of the hot desert sands, made from\n
-                   |huge blocks of stone that have been coated over with a rough sandy plaster-like\n
-                   |substance.  The face of the pyramid is steep, but you think you might be able\n
+    "description": "The mighty pyramid towers above you out of the hot desert sands, made from
+                   |huge blocks of stone that have been coated over with a rough sandy plaster-like
+                   |substance.  The face of the pyramid is steep, but you think you might be able
                    |to climb it.\n",
     "sector_type": "desert",
     "doors": [
@@ -63,8 +63,8 @@
     "area": "pyramid",
     "anum": 2,
     "name": "Climbing the Great Pyramid",
-    "description": "Hot air rises off the sides of the pyramid, and the wind chokes you with a\n
-                   |flurry of sand and dust.  So far you have made it halfway up the side.  The\n
+    "description": "Hot air rises off the sides of the pyramid, and the wind chokes you with a
+                   |flurry of sand and dust.  So far you have made it halfway up the side.  The
                    |walls of the pyramid are quite steep.\n",
     "sector_type": "desert",
     "doors": [
@@ -106,8 +106,8 @@
     "area": "pyramid",
     "anum": 3,
     "name": "Climbing the Great Pyramid",
-    "description": "Hot air rises off the sides of the pyramid, and the wind chokes you with a\n
-                   |flurry of sand and dust.  The walls of the pyramid are quite steep, and you\n
+    "description": "Hot air rises off the sides of the pyramid, and the wind chokes you with a
+                   |flurry of sand and dust.  The walls of the pyramid are quite steep, and you
                    |are having trouble keeping from sliding down into the sands below.\n",
     "sector_type": "desert",
     "doors": [
@@ -149,8 +149,8 @@
     "area": "pyramid",
     "anum": 4,
     "name": "Climbing the Great Pyramid",
-    "description": "Hot air rises off the sides of the pyramid, and the wind chokes you with a\n
-                   |flurry of sand and dust.  The walls of the pyramid are quite steep, and you\n
+    "description": "Hot air rises off the sides of the pyramid, and the wind chokes you with a
+                   |flurry of sand and dust.  The walls of the pyramid are quite steep, and you
                    |are having trouble keeping from sliding down into the sands below.\n",
     "sector_type": "desert",
     "doors": [
@@ -184,9 +184,9 @@
     "area": "pyramid",
     "anum": 5,
     "name": "Climbing the Great Pyramid",
-    "description": "Here on the eastern side of the pyramid there is a little more shelter\n
-                   |from the heat and wind.  The stone side is not nearly so slippery smooth\n
-                   |from the ravages of time, and you think you may be able to even reach the\n
+    "description": "Here on the eastern side of the pyramid there is a little more shelter
+                   |from the heat and wind.  The stone side is not nearly so slippery smooth
+                   |from the ravages of time, and you think you may be able to even reach the
                    |top from here.\n",
     "sector_type": "desert",
     "doors": [
@@ -228,16 +228,16 @@
     "area": "pyramid",
     "anum": 6,
     "name": "The Apex of the Great Pyramid",
-    "description": "Bathed in sweat, you have managed to reach the summit of the great pyramid.\n
-                   |The four sides of the pyramid slope sharply down into the hot sands in all four\n
-                   |cardinal directions.\n
+    "description": "Bathed in sweat, you have managed to reach the summit of the great pyramid.
+                   |The four sides of the pyramid slope sharply down into the hot sands in all four
+                   |cardinal directions.
                    |   A plaque has been set into the sandy stones beneath your feet.\n",
     "sector_type": "desert",
     "doors": [
       {
         "dir": "north",
         "to": 7,
-        "description": "The north side of the pyramid slopes down into the sands.\n
+        "description": "The north side of the pyramid slopes down into the sands.
                        |It looks really dangerous.  I wouldn't go that way.\n"
       },
       {
@@ -248,13 +248,13 @@
       {
         "dir": "south",
         "to": 7,
-        "description": "The south side of the pyramid slopes down into the sands.\n
+        "description": "The south side of the pyramid slopes down into the sands.
                        |It looks really dangerous.  I wouldn't go that way.\n"
       },
       {
         "dir": "west",
         "to": 7,
-        "description": "The west side of the pyramid slopes down into the sands.\n
+        "description": "The west side of the pyramid slopes down into the sands.
                        |It looks really dangerous.  I wouldn't go that way.\n"
       },
       {
@@ -268,13 +268,13 @@
     "extra_description": [
       {
         "keyword": "plaque",
-        "description": "The plaque reads:\n
+        "description": "The plaque reads:
                        |This area (Great Pyramid) written by Andersen.\n"
       },
       {
         "keyword": "stones",
-        "description": "As you look closer you can make out a crack in the center of the stones\n
-                       |beneath your feet.  With some effort you might be able to lift that \n
+        "description": "As you look closer you can make out a crack in the center of the stones
+                       |beneath your feet.  With some effort you might be able to lift that 
                        |section up and get inside!\n"
       }
     ],
@@ -291,12 +291,12 @@
     "area": "pyramid",
     "anum": 7,
     "name": "Climbing the Great Pyramid",
-    "description": "Here the elements have carved away at the sides of the pyramid quite a \n
-                   |bit.  You aren't so sure of your footing anymore...\n
-                   |\n
-                   |Suddenly the wind picks up, and you lose your balance!\n
-                   |You tumble down the side of the pyramid, and fall to your death!\n
-                   |\n
+    "description": "Here the elements have carved away at the sides of the pyramid quite a 
+                   |bit.  You aren't so sure of your footing anymore...
+                   |
+                   |Suddenly the wind picks up, and you lose your balance!
+                   |You tumble down the side of the pyramid, and fall to your death!
+                   |
                    |SPLAT.\n",
     "sector_type": "desert",
     "room_flags": "no_mob"
@@ -305,9 +305,9 @@
     "area": "pyramid",
     "anum": 8,
     "name": "A Ladder",
-    "description": "You are climbing an ancient ladder that leads down into the depths of\n
-                   |the pyramid.  The air around is thick with layers of dust and a strange\n
-                   |musty smell.  Above you you see tiny beams of light coming through the\n
+    "description": "You are climbing an ancient ladder that leads down into the depths of
+                   |the pyramid.  The air around is thick with layers of dust and a strange
+                   |musty smell.  Above you you see tiny beams of light coming through the
                    |stones of the ceiling.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
@@ -327,8 +327,8 @@
     ],
     "extra_description": [{
       "keyword": "stones",
-      "description": "As you look closer you can make out a crack in the center of the stones\n
-                     |above your head.  With some effort you might be able to lift that \n
+      "description": "As you look closer you can make out a crack in the center of the stones
+                     |above your head.  With some effort you might be able to lift that 
                      |section up and get outside!\n"
     }]
   }},
@@ -336,10 +336,10 @@
     "area": "pyramid",
     "anum": 9,
     "name": "A Musty Chamber",
-    "description": "You are standing in a dank, musty chamber just inside the pyramid. \n
-                   |Footprints and other strange marks are set into the dusty floor here.\n
-                   |It would seem that some of the tenants of this monument are still alive.\n
-                   |   Exits lead in all directions.   The door to the west is covered with\n
+    "description": "You are standing in a dank, musty chamber just inside the pyramid. 
+                   |Footprints and other strange marks are set into the dusty floor here.
+                   |It would seem that some of the tenants of this monument are still alive.
+                   |   Exits lead in all directions.   The door to the west is covered with
                    |inscriptions.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -375,14 +375,14 @@
     "extra_description": [
       {
         "keyword": "sigils hieroglyphs inscriptions writing",
-        "description": "You cannot understand the strange glyphs that cover the door, but most of\n
-                       |them seem to depict scenes of fire and massive creatures of apparently\n
-                       |tremendous strength.  You have a feeling that the glyphs are serving as a\n
+        "description": "You cannot understand the strange glyphs that cover the door, but most of
+                       |them seem to depict scenes of fire and massive creatures of apparently
+                       |tremendous strength.  You have a feeling that the glyphs are serving as a
                        |warning.\n"
       },
       {
         "keyword": "door stone",
-        "description": "The stone door is covered in strange inscriptions and hieroglyphs that warn\n
+        "description": "The stone door is covered in strange inscriptions and hieroglyphs that warn
                        |you not to proceed any further.\n"
       }
     ],
@@ -425,9 +425,9 @@
     "area": "pyramid",
     "anum": 10,
     "name": "The Fire Pool",
-    "description": "This room is dominated by a massive raised pool that is filled with\n
-                   |not water but flames of intense heat.  The multicoloured flames lick out\n
-                   |at you, searching for things to burn.\n
+    "description": "This room is dominated by a massive raised pool that is filled with
+                   |not water but flames of intense heat.  The multicoloured flames lick out
+                   |at you, searching for things to burn.
                    |   The pool proceeds to the west into a small chamber.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
@@ -450,8 +450,8 @@
     "area": "pyramid",
     "anum": 11,
     "name": "The Chamber of the Efreet",
-    "description": "You make your way across the fire pool, and into a small stone chamber.\n
-                   |Here the flames are nearly as high as your head, singeing your face and \n
+    "description": "You make your way across the fire pool, and into a small stone chamber.
+                   |Here the flames are nearly as high as your head, singeing your face and 
                    |evaporating your sweat instantaneously.\n",
     "sector_type": "noswim",
     "room_flags": "indoors",
@@ -483,8 +483,8 @@
     "area": "pyramid",
     "anum": 12,
     "name": "A Tiny Crawlway",
-    "description": "You have to go down onto your hands and knees to fit inside this tiny\n
-                   |space.  The crawlway is thick with sand and dust, and markings of the\n
+    "description": "You have to go down onto your hands and knees to fit inside this tiny
+                   |space.  The crawlway is thick with sand and dust, and markings of the
                    |passage of other creatures.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -510,8 +510,8 @@
     "area": "pyramid",
     "anum": 13,
     "name": "A Tiny Crawlway",
-    "description": "You are on your hands and knees, inside a small crawlway that winds\n
-                   |through the inside of the pyramid.  The crawlway is thick with sand, dust, \n
+    "description": "You are on your hands and knees, inside a small crawlway that winds
+                   |through the inside of the pyramid.  The crawlway is thick with sand, dust, 
                    |and markings of the passage of other creatures.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -540,8 +540,8 @@
     "area": "pyramid",
     "anum": 14,
     "name": "A Tiny Crawlway",
-    "description": "You are on your hands and knees, inside a small crawlway that winds\n
-                   |through the inside of the pyramid.  The crawlway is thick with sand, dust, \n
+    "description": "You are on your hands and knees, inside a small crawlway that winds
+                   |through the inside of the pyramid.  The crawlway is thick with sand, dust, 
                    |and markings of the passage of other creatures.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -562,9 +562,9 @@
     "area": "pyramid",
     "anum": 15,
     "name": "A Tightening in the Crawlway",
-    "description": "Here you are forced to slide on your belly through a particularly tight\n
-                   |section of the crawlway, as the stones of the pyramid close together\n
-                   |about you.  Below you is a small, slippery-looking hole that plummets into\n
+    "description": "Here you are forced to slide on your belly through a particularly tight
+                   |section of the crawlway, as the stones of the pyramid close together
+                   |about you.  Below you is a small, slippery-looking hole that plummets into
                    |blackness.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -590,9 +590,9 @@
     "area": "pyramid",
     "anum": 16,
     "name": "The Crawlway's End",
-    "description": "The crawlway shrinks away to nothing as the sandy stones of the pyramid\n
-                   |close together into a space through which only a snake could fit.   There is\n
-                   |barely enough space to turn around and make your way back through the tiny\n
+    "description": "The crawlway shrinks away to nothing as the sandy stones of the pyramid
+                   |close together into a space through which only a snake could fit.   There is
+                   |barely enough space to turn around and make your way back through the tiny
                    |crawlway to the north.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -614,14 +614,14 @@
     "area": "pyramid",
     "anum": 17,
     "name": "A Slippery Hole",
-    "description": "The sides of this hole are slippery-smooth.  You lower yourself in, and \n
-                   |proceed to move downward... when suddenly you lose your purchase!\n
-                   |\n
-                   |You fall for what seems like an eternity, and smash into the stones below...\n
-                   |\n
-                   |Under the Hole\n
-                   |   You are in a small chamber underneath the slippery hole, far below\n
-                   |the pyramid now.   The floor is strewn with bones.  To the south is a\n
+    "description": "The sides of this hole are slippery-smooth.  You lower yourself in, and 
+                   |proceed to move downward... when suddenly you lose your purchase!
+                   |
+                   |You fall for what seems like an eternity, and smash into the stones below...
+                   |
+                   |Under the Hole
+                   |   You are in a small chamber underneath the slippery hole, far below
+                   |the pyramid now.   The floor is strewn with bones.  To the south is a
                    |small rocky crevasse.\n",
     "sector_type": "inside",
     "room_flags": "dark no_mob indoors",
@@ -633,7 +633,7 @@
     "extra_description": [
       {
         "keyword": "bones",
-        "description": "The bones have whitened and cracked in the dry air, apparently the remains \n
+        "description": "The bones have whitened and cracked in the dry air, apparently the remains 
                        |of adventurers, thieves, and creatures that did not survive the fall.\n"
       },
       {
@@ -646,8 +646,8 @@
     "area": "pyramid",
     "anum": 18,
     "name": "Under the Hole",
-    "description": "You are in a small chamber underneath the slippery hole, far below\n
-                   |the pyramid now.   The floor is strewn with bones.  To the south is a\n
+    "description": "You are in a small chamber underneath the slippery hole, far below
+                   |the pyramid now.   The floor is strewn with bones.  To the south is a
                    |small rocky crevasse.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -659,7 +659,7 @@
     "extra_description": [
       {
         "keyword": "bones",
-        "description": "The bones have whitened and cracked in the dry air, apparently the remains \n
+        "description": "The bones have whitened and cracked in the dry air, apparently the remains 
                        |of adventurers, thieves, and creatures that did not survive the fall.\n"
       },
       {
@@ -672,8 +672,8 @@
     "area": "pyramid",
     "anum": 19,
     "name": "A Rough Crevasse",
-    "description": "You are now exploring deep within a strange rocky crevasse that plunges\n
-                   |down into the rock on which the pyramid was constructed.  To the south you\n
+    "description": "You are now exploring deep within a strange rocky crevasse that plunges
+                   |down into the rock on which the pyramid was constructed.  To the south you
                    |see the flickering light of a fire, and the crevasse proceeds downward.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -711,9 +711,9 @@
     "area": "pyramid",
     "anum": 20,
     "name": "A Small Fire",
-    "description": "Here a small fire burns in a nook in the rocks, providing some warmth and\n
-                   |comforting light in the cold, dark, dry air.\n
-                   |\n
+    "description": "Here a small fire burns in a nook in the rocks, providing some warmth and
+                   |comforting light in the cold, dark, dry air.
+                   |
                    |Standing here is a strange-looking old man, who stares at you balefully.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -724,12 +724,12 @@
     }],
     "extra_description": [{
       "keyword": "man old",
-      "description": "The old man looks like he has been trapped down here far too long, and\n
-                     |has begun to lose his mind.  He moves about slowly, cackling to himself.\n
-                     |\n
-                     |He turns to you and shouts, 'nope measse!  nope measse!', then turns \n
-                     |back and stares into the fire.\n
-                     |\n
+      "description": "The old man looks like he has been trapped down here far too long, and
+                     |has begun to lose his mind.  He moves about slowly, cackling to himself.
+                     |
+                     |He turns to you and shouts, 'nope measse!  nope measse!', then turns 
+                     |back and stares into the fire.
+                     |
                      |'What a strange person,' you think to yourself.\n"
     }]
   }},
@@ -737,8 +737,8 @@
     "area": "pyramid",
     "anum": 21,
     "name": "Down the Crevasse",
-    "description": "The crevasse proceeds downward into the dark depths of the earth.\n
-                   |The air about you is now cold and quite dry, and your light source\n
+    "description": "The crevasse proceeds downward into the dark depths of the earth.
+                   |The air about you is now cold and quite dry, and your light source
                    |gutters in a cool breeze that wafts up from below.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -759,8 +759,8 @@
     "area": "pyramid",
     "anum": 22,
     "name": "At the Crevasse's End",
-    "description": "Here the crevasse comes to an abrupt end.  A chilling wind howls\n
-                   |at your face from a black shape to the south, but the light from your\n
+    "description": "Here the crevasse comes to an abrupt end.  A chilling wind howls
+                   |at your face from a black shape to the south, but the light from your
                    |source is too dim to see exactly what it is.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -782,19 +782,19 @@
     "extra_description": [
       {
         "keyword": "tiger head animal sesame",
-        "description": "You are now certain that the wind is the cold breath of some unearthly\n
-                       |giant animal, whose voice rumbles lowly on the breeze, and whose\n
-                       |massive jaws could easily swallow you whole.\n
-                       |\n
-                       |You move closer for a better look, when suddenly a pair of eyes flashes.\n
-                       |A cold voice echoes: 'SEEK YE THE DIAMOND... IN THE ROUGH...'\n
-                       |\n
+        "description": "You are now certain that the wind is the cold breath of some unearthly
+                       |giant animal, whose voice rumbles lowly on the breeze, and whose
+                       |massive jaws could easily swallow you whole.
+                       |
+                       |You move closer for a better look, when suddenly a pair of eyes flashes.
+                       |A cold voice echoes: 'SEEK YE THE DIAMOND... IN THE ROUGH...'
+                       |
                        |... Then all is silent.\n"
       },
       {
         "keyword": "black shape",
-        "description": "Wind howls about your ears like the roar of a tiger.  As your eyes\n
-                       |adjust to the light the shape to the south almost seems to take the\n
+        "description": "Wind howls about your ears like the roar of a tiger.  As your eyes
+                       |adjust to the light the shape to the south almost seems to take the
                        |form of a massive animal head.\n"
       }
     ]
@@ -803,11 +803,11 @@
     "area": "pyramid",
     "anum": 23,
     "name": "The Vault of the Lamp",
-    "description": "The jaws of the massive stone tiger part wide to reveal a great vault.\n
-                   |An arched ceiling lies far above your head... and all about you is a low\n
-                   |guttural rumbling noise and a chill wind.\n
-                   |\n
-                   |Giant heaps of ancient treasure, gold coins, and valuables surround you\n
+    "description": "The jaws of the massive stone tiger part wide to reveal a great vault.
+                   |An arched ceiling lies far above your head... and all about you is a low
+                   |guttural rumbling noise and a chill wind.
+                   |
+                   |Giant heaps of ancient treasure, gold coins, and valuables surround you
                    |on all sides.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -820,11 +820,11 @@
     }],
     "extra_description": [{
       "keyword": "treasure gold coins valuables",
-      "description": "You reach for some of the tasty goodies, when you hear a loud rumbling\n
-                     |sound and see a bright flash of light...\n
-                     |\n
-                     |Then the words: 'TAKE ONLY THE LAMP... TOUCH NOTHING ELSE.'\n
-                     |\n
+      "description": "You reach for some of the tasty goodies, when you hear a loud rumbling
+                     |sound and see a bright flash of light...
+                     |
+                     |Then the words: 'TAKE ONLY THE LAMP... TOUCH NOTHING ELSE.'
+                     |
                      |... All is silent once again.\n"
     }],
     "resets": [
@@ -858,8 +858,8 @@
     "area": "pyramid",
     "anum": 24,
     "name": "A Crack in the Wall",
-    "description": "You exhale, and squeeze yourself into the narrow crack in the wall.\n
-                   |Dust fills your eyes as you disturb it, and chunks of mortar and stone\n
+    "description": "You exhale, and squeeze yourself into the narrow crack in the wall.
+                   |Dust fills your eyes as you disturb it, and chunks of mortar and stone
                    |mixed with a touch of sand fall on you as you scrape your way through.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -880,8 +880,8 @@
     "area": "pyramid",
     "anum": 25,
     "name": "A Looted Tomb",
-    "description": "The floor of this small tomb is littered with the lids of \n
-                   |smashed sarcophagi, bits of treasure dropped by thieves and\n
+    "description": "The floor of this small tomb is littered with the lids of 
+                   |smashed sarcophagi, bits of treasure dropped by thieves and
                    |looters, and corpses pulled from their resting places.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -974,8 +974,8 @@
     "area": "pyramid",
     "anum": 26,
     "name": "A Demolished Tomb",
-    "description": "This tomb has been utterly destroyed by thieves and looters in search of\n
-                   |the treasures of the pharoahs.  Nothing of interest remains in this room,\n
+    "description": "This tomb has been utterly destroyed by thieves and looters in search of
+                   |the treasures of the pharoahs.  Nothing of interest remains in this room,
                    |except a large stone coffin that leans against the western wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -997,19 +997,19 @@
     "extra_description": [
       {
         "keyword": "man garments pharoah",
-        "description": "As you look closer at the figure sculpted into the stone coffin you notice a\n
-                       |small marking carved into its chest.  It looks like a scarab or small beetle\n
-                       |would fit into the small space, if properly sized.\n
-                       |\n
+        "description": "As you look closer at the figure sculpted into the stone coffin you notice a
+                       |small marking carved into its chest.  It looks like a scarab or small beetle
+                       |would fit into the small space, if properly sized.
+                       |
                        |Hmm.\n"
       },
       {
         "keyword": "coffin lid",
-        "description": "The coffin is sculpted into the form of a man, standing several heads above\n
-                       |you, and clad in the garments of pharoahs.  It has apparently been untouched\n
-                       |by the ravages of time and the activities of looters.  Several markings on the \n
-                       |side indicate spots where unsuccessful attempts were made to open the coffin.\n
-                       |\n
+        "description": "The coffin is sculpted into the form of a man, standing several heads above
+                       |you, and clad in the garments of pharoahs.  It has apparently been untouched
+                       |by the ravages of time and the activities of looters.  Several markings on the 
+                       |side indicate spots where unsuccessful attempts were made to open the coffin.
+                       |
                        |You can't see any way to open it.\n"
       }
     ],
@@ -1047,8 +1047,8 @@
     "area": "pyramid",
     "anum": 27,
     "name": "A Stairway",
-    "description": "You stand now at the head of a stairway that goes down into darkness.\n
-                   |The steps and walls are smooth sandy stone, covered with a thick layer\n
+    "description": "You stand now at the head of a stairway that goes down into darkness.
+                   |The steps and walls are smooth sandy stone, covered with a thick layer
                    |of dust.  Some inscriptions are carved into the wall here.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1073,7 +1073,7 @@
       },
       {
         "keyword": "inscriptions",
-        "description": "You blow dust away from the inscriptions to read:\n
+        "description": "You blow dust away from the inscriptions to read:
                        |'Beware the curse of the mummy.'\n"
       }
     ]
@@ -1082,8 +1082,8 @@
     "area": "pyramid",
     "anum": 28,
     "name": "A Stairway",
-    "description": "You are on a stairway that disappears into darkness in both directions.\n
-                   |The smooth, uneven steps of the stairway have not been travelled in what\n
+    "description": "You are on a stairway that disappears into darkness in both directions.
+                   |The smooth, uneven steps of the stairway have not been travelled in what
                    |appears to be centuries.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1104,7 +1104,7 @@
     "area": "pyramid",
     "anum": 29,
     "name": "A Stairway",
-    "description": "You stand now at the base of the uneven stairway.  The walls, floor,\n
+    "description": "You stand now at the base of the uneven stairway.  The walls, floor,
                    |and ceiling of this small landing are covered with strange hieroglyphics.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1124,7 +1124,7 @@
     ],
     "extra_description": [{
       "keyword": "walls floor ceiling hieroglyphics",
-      "description": "The hieroglyphics are covered with a thick layer of dust.  You clear the\n
+      "description": "The hieroglyphics are covered with a thick layer of dust.  You clear the
                      |dust away with your hand, and find that you cannot comprehend them.\n"
     }]
   }},
@@ -1132,10 +1132,10 @@
     "area": "pyramid",
     "anum": 30,
     "name": "The Ancient Hall",
-    "description": "Here the air is deathly still, motes of dust thickly obscuring your\n
-                   |vision.  Several stone statues line the walls of the hall, depicting the \n
-                   |gods of an ancient society.  Strange glyphs and sigils cover the walls, a \n
-                   |peculiar pictorial form of written language that you don't understand.\n
+    "description": "Here the air is deathly still, motes of dust thickly obscuring your
+                   |vision.  Several stone statues line the walls of the hall, depicting the 
+                   |gods of an ancient society.  Strange glyphs and sigils cover the walls, a 
+                   |peculiar pictorial form of written language that you don't understand.
                    |   Some steps lead to a raised dais to the south.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1162,8 +1162,8 @@
     "area": "pyramid",
     "anum": 31,
     "name": "A Raised Dais",
-    "description": "You are at the southern end of the ancient hall, the dust and darkness\n
-                   |absorbing your light so that you cannot see past the steps of the dais.\n
+    "description": "You are at the southern end of the ancient hall, the dust and darkness
+                   |absorbing your light so that you cannot see past the steps of the dais.
                    |A low pedestal rests here.  You see something written into the face of it.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1183,9 +1183,9 @@
     ],
     "extra_description": [{
       "keyword": "pedestal writings",
-      "description": "The writings are covered in sand and worn nearly away by the passage\n
-                     |of time: 'I am Ramses the Damned, once counselor and aide to the mightiest\n
-                     |of pharoahs and queens of this land.  Much time has passed since I last\n
+      "description": "The writings are covered in sand and worn nearly away by the passage
+                     |of time: 'I am Ramses the Damned, once counselor and aide to the mightiest
+                     |of pharoahs and queens of this land.  Much time has passed since I last
                      |walked the earth.  Disturb my rest at your peril.'\n"
     }]
   }},
@@ -1254,7 +1254,7 @@
     "area": "pyramid",
     "anum": 33,
     "name": "A Ransacked Tomb",
-    "description": "This tomb has been completely ransacked and destroyed by the actions\n
+    "description": "This tomb has been completely ransacked and destroyed by the actions
                    |of pyramid thieves and looters.  The floor is littered with junk.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1337,7 +1337,7 @@
     "area": "pyramid",
     "anum": 35,
     "name": "A Fork in the Tunnel",
-    "description": "Here the tunnel forks off through a gaping hole down in the\n
+    "description": "Here the tunnel forks off through a gaping hole down in the
                    |southern wall, continuing onward to the east and west as well.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1388,7 +1388,7 @@
     "area": "pyramid",
     "anum": 36,
     "name": "A Tunnel",
-    "description": "The low-ceilinged tunnel makes a turn to the west and ends\n
+    "description": "The low-ceilinged tunnel makes a turn to the west and ends
                    |to the north as it spills out into a dusty hallway.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1409,8 +1409,8 @@
     "area": "pyramid",
     "anum": 37,
     "name": "A Dank Chamber",
-    "description": "This chamber has a dank, dusty, musty smell to it.  Small footprints\n
-                   |in the dust betray the recent passage of some sort of creatures.  A hole \n
+    "description": "This chamber has a dank, dusty, musty smell to it.  Small footprints
+                   |in the dust betray the recent passage of some sort of creatures.  A hole 
                    |in the floor lies to the west and a stairway is to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1481,7 +1481,7 @@
     "area": "pyramid",
     "anum": 38,
     "name": "A Spiral Stairway",
-    "description": "Some dusty, broken stone stairs here spiral slowly in a constricted\n
+    "description": "Some dusty, broken stone stairs here spiral slowly in a constricted
                    |space down towards a dusty hallway.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1502,8 +1502,8 @@
     "area": "pyramid",
     "anum": 39,
     "name": "A Dust-Covered Hallway",
-    "description": "This hallway is covered with dust that has accumulated over the\n
-                   |centuries that the pyramid has stood.  Small markings and footprints\n
+    "description": "This hallway is covered with dust that has accumulated over the
+                   |centuries that the pyramid has stood.  Small markings and footprints
                    |in the dust betray the recent passage of others -- perhaps thieves?\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1524,8 +1524,8 @@
     "area": "pyramid",
     "anum": 40,
     "name": "A Smelly Chamber",
-    "description": "This small chamber has a sickly putrescent smell to it, the\n
-                   |smell of formaldehyde and other ointments used to preserve the\n
+    "description": "This small chamber has a sickly putrescent smell to it, the
+                   |smell of formaldehyde and other ointments used to preserve the
                    |corpses of those who died ages ago.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1588,8 +1588,8 @@
     "area": "pyramid",
     "anum": 41,
     "name": "A Dust-Covered Hallway",
-    "description": "This hallway is covered with a thick, choking dust that rises\n
-                   |up to obscure your light source and sting your eyes.  Small marks\n
+    "description": "This hallway is covered with a thick, choking dust that rises
+                   |up to obscure your light source and sting your eyes.  Small marks
                    |and footprints in the dust betray the recent passage of others.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1641,9 +1641,9 @@
     "area": "pyramid",
     "anum": 42,
     "name": "A Turn in the Hallway",
-    "description": "You are standing in an elbow turn in a dust-covered stone hallway,\n
-                   |that dead ends to the north and continues on to the west.  To the south\n
-                   |the stones of the pyramid have been torn asunder by thieves, making\n
+    "description": "You are standing in an elbow turn in a dust-covered stone hallway,
+                   |that dead ends to the north and continues on to the west.  To the south
+                   |the stones of the pyramid have been torn asunder by thieves, making
                    |a low-ceilinged tunnel.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1690,8 +1690,8 @@
     "area": "pyramid",
     "anum": 43,
     "name": "A Dead End",
-    "description": "The dust-covered hallway has come to an abrupt end at a stony,\n
-                   |featureless wall.  Here and there are signs of the recent passage\n
+    "description": "The dust-covered hallway has come to an abrupt end at a stony,
+                   |featureless wall.  Here and there are signs of the recent passage
                    |of others in the dust.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1711,7 +1711,7 @@
     ],
     "extra_description": [{
       "keyword": "cracks",
-      "description": "The cracks look like you might be able to pull away some pieces of\n
+      "description": "The cracks look like you might be able to pull away some pieces of
                      |the floor, perhaps even fit your body through the space you make.\n"
     }],
     "resets": [
@@ -1745,9 +1745,9 @@
     "area": "pyramid",
     "anum": 44,
     "name": "The Tomb Entrance",
-    "description": "You are in a small, dark chamber that has stood undisturbed for\n
-                   |many years.  To the north stands a massive stone tomb, which is\n
-                   |covered in hieroglyphics and gold-lined carvings that mark it as the\n
+    "description": "You are in a small, dark chamber that has stood undisturbed for
+                   |many years.  To the north stands a massive stone tomb, which is
+                   |covered in hieroglyphics and gold-lined carvings that mark it as the
                    |final resting place of the mighty pharoahs of this land.\n",
     "sector_type": "inside",
     "room_flags": "dark no_mob indoors",
@@ -1770,12 +1770,12 @@
     "extra_description": [
       {
         "keyword": "hieroglyphics carvings",
-        "description": "The markings indicate that this tomb is indeed the tomb of the greatest\n
+        "description": "The markings indicate that this tomb is indeed the tomb of the greatest
                        |pharoahs of the ancient civilization that built this massive pyramid.\n"
       },
       {
         "keyword": "tomb",
-        "description": "The tomb looks like it has stood for many years, much like the pyramid\n
+        "description": "The tomb looks like it has stood for many years, much like the pyramid
                        |which encloses it.  It is covered in small hieroglyphics.\n"
       }
     ]
@@ -1784,9 +1784,9 @@
     "area": "pyramid",
     "anum": 45,
     "name": "The Tomb of the Pharoahs",
-    "description": "Great golden sarcophogai line the walls of this massive tomb.  It has\n
-                   |withstood the passage of time intact, untouched by the hands of thieves\n
-                   |and looters.  The treasures taken by the pharoahs to their graves still\n
+    "description": "Great golden sarcophogai line the walls of this massive tomb.  It has
+                   |withstood the passage of time intact, untouched by the hands of thieves
+                   |and looters.  The treasures taken by the pharoahs to their graves still
                    |lie before your feet.\n",
     "sector_type": "inside",
     "room_flags": "dark indoors",
@@ -1799,7 +1799,7 @@
     }],
     "extra_description": [{
       "keyword": "treasures",
-      "description": "The treasures are dusty and fragile, but still seem quite valuable.\n
+      "description": "The treasures are dusty and fragile, but still seem quite valuable.
                      |You decide not to take them out of respect for the ancient dead.\n"
     }],
     "resets": [
@@ -1874,10 +1874,10 @@
     "area": "pyramid",
     "anum": 46,
     "name": "A Rubble-Strewn Hallway",
-    "description": "This hallway formerly had a beautiful arch to the ceiling, now\n
-                   |collapsed under the weight of the slowly settling stones of the\n
-                   |pyramid.  Now, a massive pile of rubble leads up into a hole high \n
-                   |in the northern portion of the hallway.  To the south, through the \n
+    "description": "This hallway formerly had a beautiful arch to the ceiling, now
+                   |collapsed under the weight of the slowly settling stones of the
+                   |pyramid.  Now, a massive pile of rubble leads up into a hole high 
+                   |in the northern portion of the hallway.  To the south, through the 
                    |rubble and fallen stones you see a sandstone crypt.\n",
     "sector_type": "inside",
     "room_flags": "dark no_mob indoors",
@@ -1898,9 +1898,9 @@
     "area": "pyramid",
     "anum": 47,
     "name": "A Sandstone Crypt",
-    "description": "This small crypt is lit by a hole in the wall to the south, through\n
-                   |which sand pours from the desert outside.  A hot wind blows in from the\n
-                   |desert, drying your skin instantly.  To the east and north the arched\n
+    "description": "This small crypt is lit by a hole in the wall to the south, through
+                   |which sand pours from the desert outside.  A hot wind blows in from the
+                   |desert, drying your skin instantly.  To the east and north the arched
                    |hallway continues.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1943,10 +1943,10 @@
     "area": "pyramid",
     "anum": 48,
     "name": "An Arched Hall",
-    "description": "This hallway has a beautiful arch to it, formed painstakingly and\n
-                   |exquisitely out of the sandy stones of the pyramid.  The dust that\n
-                   |covers most of the rest of the pyramid interior is not present here,\n
-                   |scoured away by the blowing of the desert winds that howl about\n
+    "description": "This hallway has a beautiful arch to it, formed painstakingly and
+                   |exquisitely out of the sandy stones of the pyramid.  The dust that
+                   |covers most of the rest of the pyramid interior is not present here,
+                   |scoured away by the blowing of the desert winds that howl about
                    |your ears.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -1975,9 +1975,9 @@
     "area": "pyramid",
     "anum": 49,
     "name": "An Arched Hall",
-    "description": "This hallway has a beautiful arch to it, formed painstakingly and\n
-                   |exquisitely out of the sandy stones of the pyramid.  To the east is\n
-                   |a small, golden-coloured crypt, and the hall proceeds to the south\n
+    "description": "This hallway has a beautiful arch to it, formed painstakingly and
+                   |exquisitely out of the sandy stones of the pyramid.  To the east is
+                   |a small, golden-coloured crypt, and the hall proceeds to the south
                    |and north.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2011,9 +2011,9 @@
     "area": "pyramid",
     "anum": 50,
     "name": "A Golden Crypt",
-    "description": "You stand inside a small crypt with walls and ceiling made of\n
-                   |golden bricks that obscure the large sandy stones of the pyramid.\n
-                   |Small rugs and tapestries are scattered about the floor here, and\n
+    "description": "You stand inside a small crypt with walls and ceiling made of
+                   |golden bricks that obscure the large sandy stones of the pyramid.
+                   |Small rugs and tapestries are scattered about the floor here, and
                    |they appear to have been used recently.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2029,7 +2029,7 @@
       },
       {
         "keyword": "rug rugs tapestry tapestries",
-        "description": "The rugs and tapestries are very fine and worn with age, their colors\n
+        "description": "The rugs and tapestries are very fine and worn with age, their colors
                        |now faded.  They depict scenes of life in an ancient desert city.\n"
       }
     ],
@@ -2063,8 +2063,8 @@
     "area": "pyramid",
     "anum": 51,
     "name": "An Arched Hall",
-    "description": "This hallway has a beautiful arch to it, formed painstakingly and\n
-                   |exquisitely out of the sandy stones of the pyramid.  The arched\n
+    "description": "This hallway has a beautiful arch to it, formed painstakingly and
+                   |exquisitely out of the sandy stones of the pyramid.  The arched
                    |hall proceeds to the north and ends to the south in a small vault.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2093,9 +2093,9 @@
     "area": "pyramid",
     "anum": 52,
     "name": "A Shining Vault",
-    "description": "The stones of the pyramid here take on a strange, twinkling quality,\n
-                   |almost seeming to shine with an internal light.  As you look closer you\n
-                   |see tiny glass-like glittery particles within the stones, that reflect\n
+    "description": "The stones of the pyramid here take on a strange, twinkling quality,
+                   |almost seeming to shine with an internal light.  As you look closer you
+                   |see tiny glass-like glittery particles within the stones, that reflect
                    |the light from your light source so perfectly that they seem to shine.\n",
     "sector_type": "inside",
     "room_flags": "indoors",
@@ -2106,7 +2106,7 @@
     }],
     "extra_description": [{
       "keyword": "particles glass",
-      "description": "The glassy particles reflect and refract your light source in a myriad\n
+      "description": "The glassy particles reflect and refract your light source in a myriad
                      |of dazzling colours that dance across your eyes and make you giggle.\n"
     }],
     "resets": [
@@ -2139,10 +2139,10 @@
     "area": "pyramid",
     "anum": 53,
     "name": "A Massive Sand Dune",
-    "description": "You stand now on a massive sand dune on the southern side of\n
-                   |the pyramid.  At the foot of the sand dune to the north you see a\n
-                   |small hole where the stones of the pyramid have collapsed.  Not\n
-                   |far to the south is a massive roiling sandstorm; the wind from the\n
+    "description": "You stand now on a massive sand dune on the southern side of
+                   |the pyramid.  At the foot of the sand dune to the north you see a
+                   |small hole where the stones of the pyramid have collapsed.  Not
+                   |far to the south is a massive roiling sandstorm; the wind from the
                    |storm howls and bites at your face even here.\n",
     "sector_type": "desert",
     "room_flags": "no_mob",
@@ -2167,8 +2167,8 @@
     "area": "pyramid",
     "anum": 54,
     "name": "A Swirling Sandstorm",
-    "description": "You are caught in the midst of a massive sandstorm.  Howling winds\n
-                   |buffet you from all sides, and the sand tears at your skin, blinding\n
+    "description": "You are caught in the midst of a massive sandstorm.  Howling winds
+                   |buffet you from all sides, and the sand tears at your skin, blinding
                    |you and choking you.  You have lost all sense of direction.\n",
     "sector_type": "desert",
     "doors": [
@@ -2195,7 +2195,7 @@
     ],
     "extra_description": [{
       "keyword": "sand",
-      "description": "Sand is about all you CAN see right now.  Unfortunately, it isn't very\n
+      "description": "Sand is about all you CAN see right now.  Unfortunately, it isn't very
                      |interesting sand, only white, dry, and blowing all over the place.\n"
     }],
     "resets": [
@@ -2217,8 +2217,8 @@
     "area": "pyramid",
     "anum": 55,
     "name": "A Swirling Sandstorm",
-    "description": "You are caught in the midst of a massive sandstorm.  Howling winds\n
-                   |buffet you from all sides, and the sand tears at your skin, blinding\n
+    "description": "You are caught in the midst of a massive sandstorm.  Howling winds
+                   |buffet you from all sides, and the sand tears at your skin, blinding
                    |you and choking you.  You have lost all sense of direction.\n",
     "sector_type": "desert",
     "doors": [
@@ -2245,7 +2245,7 @@
     ],
     "extra_description": [{
       "keyword": "sand",
-      "description": "Sand is about all you CAN see right now.  Unfortunately, it isn't very\n
+      "description": "Sand is about all you CAN see right now.  Unfortunately, it isn't very
                      |interesting sand, only white, dry, and blowing all over the place.\n"
     }],
     "resets": [
@@ -2267,8 +2267,8 @@
     "area": "pyramid",
     "anum": 56,
     "name": "A Swirling Sandstorm",
-    "description": "You are caught in the midst of a massive sandstorm.  Howling winds\n
-                   |buffet you from all sides, and the sand tears at your skin, blinding\n
+    "description": "You are caught in the midst of a massive sandstorm.  Howling winds
+                   |buffet you from all sides, and the sand tears at your skin, blinding
                    |you and choking you.  You have lost all sense of direction.\n",
     "sector_type": "desert",
     "doors": [
@@ -2295,7 +2295,7 @@
     ],
     "extra_description": [{
       "keyword": "sand",
-      "description": "Sand is about all you CAN see right now.  Unfortunately, it isn't very\n
+      "description": "Sand is about all you CAN see right now.  Unfortunately, it isn't very
                      |interesting sand, only white, dry, and blowing all over the place.\n"
     }],
     "resets": [
@@ -2317,8 +2317,8 @@
     "area": "pyramid",
     "anum": 57,
     "name": "A Swirling Sandstorm",
-    "description": "You are caught in the midst of a massive sandstorm.  Howling winds\n
-                   |buffet you from all sides, and the sand tears at your skin, blinding\n
+    "description": "You are caught in the midst of a massive sandstorm.  Howling winds
+                   |buffet you from all sides, and the sand tears at your skin, blinding
                    |you and choking you.  You have lost all sense of direction.\n",
     "sector_type": "desert",
     "doors": [
@@ -2345,7 +2345,7 @@
     ],
     "extra_description": [{
       "keyword": "sand",
-      "description": "Sand is about all you CAN see right now.  Unfortunately, it isn't very\n
+      "description": "Sand is about all you CAN see right now.  Unfortunately, it isn't very
                      |interesting sand, only white, dry, and blowing all over the place.\n"
     }],
     "resets": [
@@ -2367,10 +2367,10 @@
     "area": "pyramid",
     "anum": 58,
     "name": "A Massive Sand Dune",
-    "description": "Somehow you managed to make your way through the howling winds\n
-                   |of the sandstorm, and clamber up on this sand dune.  You can see the\n
-                   |storm to the north of you, and presumably the pyramid is somewhere\n
-                   |beyond it.  Nothing but flat, featureless, open dunes of sand lie in\n
+    "description": "Somehow you managed to make your way through the howling winds
+                   |of the sandstorm, and clamber up on this sand dune.  You can see the
+                   |storm to the north of you, and presumably the pyramid is somewhere
+                   |beyond it.  Nothing but flat, featureless, open dunes of sand lie in
                    |every other direction.\n",
     "sector_type": "desert",
     "doors": [
@@ -2383,7 +2383,7 @@
         "dir": "south",
         "to": 59,
         "keyword": "riddle",
-        "description": "On the southern side of the sand dune is a small hole in the sand.\n
+        "description": "On the southern side of the sand dune is a small hole in the sand.
                        |For some reason you seem unable to get to it.\n",
         "exit_flags": "door closed locked pickproof",
         "key": 17
@@ -2392,8 +2392,8 @@
     "extra_description": [
       {
         "keyword": "hieroglyphics symbols",
-        "description": "Like most of the ancient hieroglyphics of this land, the symbols are\n
-                       |totally incomprehensible to you.  Perhaps the Sphinx has the answer\n
+        "description": "Like most of the ancient hieroglyphics of this land, the symbols are
+                       |totally incomprehensible to you.  Perhaps the Sphinx has the answer
                        |to this ancient riddle.\n"
       },
       {
@@ -2428,8 +2428,8 @@
     "area": "pyramid",
     "anum": 59,
     "name": "Through the Hole in the Sand",
-    "description": "You squeeze through the small hole in the sand and land in a small\n
-                   |white chamber.  Above you is a small hole, reachable by climbing up\n
+    "description": "You squeeze through the small hole in the sand and land in a small
+                   |white chamber.  Above you is a small hole, reachable by climbing up
                    |the small sandy slope down which you slid.\n",
     "sector_type": "inside",
     "room_flags": "dark no_mob indoors",

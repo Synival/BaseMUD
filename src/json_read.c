@@ -372,8 +372,11 @@ char *json_read_string_content (const char **pos, char *buf, size_t size) {
             for (pos_ahead = *pos; *pos_ahead != '\0'; pos_ahead++)
                 if (*pos_ahead != ' ' && *pos_ahead != '\r')
                     break;
-            if (*pos_ahead == '|')
+            if (*pos_ahead == '|') {
                 *pos = pos_ahead + 1;
+                if (buf_pos < size - 1)
+                    buf[buf_pos++] = '\n';
+            }
             continue;
         }
 

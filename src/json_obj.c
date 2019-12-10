@@ -77,13 +77,13 @@ JSON_T *json_new_obj_room (const char *name, const ROOM_INDEX_T *room) {
         json_prop_string (new, "portal", room->portal->name);
 
     for (i = 0; i < DIR_MAX; i++)
-        if (room->exit[i] != NULL)
+        if (room->exit_orig[i] != NULL)
             break;
     if (i < DIR_MAX) {
         sub = json_prop_array (new, "doors");
         for (i = 0; i < DIR_MAX; i++)
-            if (room->exit[i] != NULL)
-                json_prop_obj_exit (sub, NULL, room, i, room->exit[i]);
+            if (room->exit_orig[i] != NULL)
+                json_prop_obj_exit (sub, NULL, room, i, room->exit_orig[i]);
     }
 
     if (room->extra_descr) {

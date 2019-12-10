@@ -3,10 +3,10 @@
     "area": "mirror",
     "anum": 0,
     "name": "The Grand Gate of Thalos",
-    "description": "You stand in the archway of a gigantic stone archway. The two\n
-                   |steel gates look indestructible, yet they are elaborate in engravings.  You can\n
-                   |hear laughter and good cheer from the other side of these gates.  Obviously, \n
-                   |the city is teeming with activity!  There is a small gold plaque on mounted\n
+    "description": "You stand in the archway of a gigantic stone archway. The two
+                   |steel gates look indestructible, yet they are elaborate in engravings.  You can
+                   |hear laughter and good cheer from the other side of these gates.  Obviously, 
+                   |the city is teeming with activity!  There is a small gold plaque on mounted
                    |on the archway.\n",
     "sector_type": "city",
     "doors": [
@@ -18,14 +18,14 @@
       {
         "dir": "west",
         "to": 1,
-        "description": "You see happiness everywhere. Houses cover your vision. You see strange cute\n
+        "description": "You see happiness everywhere. Houses cover your vision. You see strange cute
                        |beasts walking hand in hand with people.\n"
       }
     ],
     "extra_description": [{
       "keyword": "plaque sign",
-      "description": "This zone has been heavily modified by Kahn and Hatchet of MERC Industries\n
-                     |and integrated by Kahn of MERC Industries.\n
+      "description": "This zone has been heavily modified by Kahn and Hatchet of MERC Industries
+                     |and integrated by Kahn of MERC Industries.
                      |copyright 1993\n"
     }],
     "resets": [
@@ -251,9 +251,9 @@
     "area": "mirror",
     "anum": 1,
     "name": "Main Street",
-    "description": "This is a magnificent street, immaculate all over. The streets are filled\n
-                   |with people rushing from building to building and a balmy zephyr blows by\n
-                   |you.  The whole city is teeming with activity.  A cobbled alley leads north\n
+    "description": "This is a magnificent street, immaculate all over. The streets are filled
+                   |with people rushing from building to building and a balmy zephyr blows by
+                   |you.  The whole city is teeming with activity.  A cobbled alley leads north
                    |and south.  Children run pass you as they play tag.\n",
     "sector_type": "city",
     "doors": [
@@ -283,11 +283,11 @@
     "area": "mirror",
     "anum": 2,
     "name": "Main Street",
-    "description": "This is a magnificent street, immaculate all over.  The streets are filled\n
-                   |with people rushing from building to building and a balmy zephyr blows by you.\n
-                   |The whole city is teeming with activity.  On one side is a beautiful house \n
-                   |while on the other is the entrance to a large mansion.  Sounds of people hard\n
-                   |at work echo within the mansion.  Near the center of town you see a large \n
+    "description": "This is a magnificent street, immaculate all over.  The streets are filled
+                   |with people rushing from building to building and a balmy zephyr blows by you.
+                   |The whole city is teeming with activity.  On one side is a beautiful house 
+                   |while on the other is the entrance to a large mansion.  Sounds of people hard
+                   |at work echo within the mansion.  Near the center of town you see a large 
                    |domed building, magnificent and immense.\n",
     "sector_type": "city",
     "doors": [
@@ -325,9 +325,9 @@
     "area": "mirror",
     "anum": 3,
     "name": "A Garden Path",
-    "description": "A circular path surrounds a magnificent domed temple in the center\n
-                   |of the city. Flowers grow on the sides of the path and the lush trees are \n
-                   |laden with fruit.  Vines and ivy snake up the sides of the temple, making this\n
+    "description": "A circular path surrounds a magnificent domed temple in the center
+                   |of the city. Flowers grow on the sides of the path and the lush trees are 
+                   |laden with fruit.  Vines and ivy snake up the sides of the temple, making this
                    |temple truly a blend of nature and man's work of art.\n",
     "sector_type": "city",
     "doors": [
@@ -357,9 +357,9 @@
     "area": "mirror",
     "anum": 4,
     "name": "A Garden Path",
-    "description": "A circular path surrounds a magnificent domed temple in the center\n
-                   |of the city. Flowers grow on the sides of the path and the lush trees are\n
-                   |laden with fruit.  Vines and ivy snake up the sides of the temple, making this\n
+    "description": "A circular path surrounds a magnificent domed temple in the center
+                   |of the city. Flowers grow on the sides of the path and the lush trees are
+                   |laden with fruit.  Vines and ivy snake up the sides of the temple, making this
                    |temple truly a blend of nature and man's work of art.\n",
     "sector_type": "city",
     "doors": [
@@ -450,9 +450,9 @@
     "area": "mirror",
     "anum": 5,
     "name": "A garden path",
-    "description": "A circular path surrounds a magnificent domed temple in the center\n
-                   |of the city. Flowers grow on the sides of the path and the lush trees are\n
-                   |laden with fruit.  Vines and ivy snake up the sides of the temple, making this\n
+    "description": "A circular path surrounds a magnificent domed temple in the center
+                   |of the city. Flowers grow on the sides of the path and the lush trees are
+                   |laden with fruit.  Vines and ivy snake up the sides of the temple, making this
                    |temple truly a blend of nature and man's work of art.\n",
     "sector_type": "city",
     "doors": [
@@ -472,9 +472,9 @@
     "area": "mirror",
     "anum": 6,
     "name": "A Garden Path",
-    "description": "A circular path surrounds a magnificent domed temple in the center\n
-                   |of the city. Flowers grow on the sides of the path and the lush trees are\n
-                   |laden with fruit.  Vines and ivy snake up the sides of the temple, making this\n
+    "description": "A circular path surrounds a magnificent domed temple in the center
+                   |of the city. Flowers grow on the sides of the path and the lush trees are
+                   |laden with fruit.  Vines and ivy snake up the sides of the temple, making this
                    |temple truly a blend of nature and man's work of art.\n",
     "sector_type": "city",
     "doors": [
@@ -512,8 +512,8 @@
     "area": "mirror",
     "anum": 7,
     "name": "The market place",
-    "description": "You stand in the middle of a large square lined on each side with\n
-                   |baskets, carts, and stands of all shapes and sizes.  The little shops are \n
+    "description": "You stand in the middle of a large square lined on each side with
+                   |baskets, carts, and stands of all shapes and sizes.  The little shops are 
                    |filled with goods sold to the demanding public.\n",
     "sector_type": "city",
     "doors": [
@@ -596,15 +596,15 @@
     "area": "mirror",
     "anum": 8,
     "name": "The market place",
-    "description": "You stand in the middle of a large square lined on each side with\n
-                   |baskets, carts, and stands of all shapes and sizes.  The little shops are\n
+    "description": "You stand in the middle of a large square lined on each side with
+                   |baskets, carts, and stands of all shapes and sizes.  The little shops are
                    |filled with goods sold to the demanding public.\n",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 22,
-        "description": "Beautiful carpets and enormous bales of silk are being stared with awe by\n
+        "description": "Beautiful carpets and enormous bales of silk are being stared with awe by
                        |the citizens.\n"
       },
       {
@@ -631,8 +631,8 @@
     "area": "mirror",
     "anum": 9,
     "name": "A Side Street",
-    "description": "This small side street leads east and west into back alleys while\n
-                   |to the south you see a beautifully designed temple. Shrieks of little\n
+    "description": "This small side street leads east and west into back alleys while
+                   |to the south you see a beautifully designed temple. Shrieks of little
                    |children playing games in the distance catch your attention.\n",
     "sector_type": "city",
     "doors": [
@@ -654,9 +654,9 @@
     "area": "mirror",
     "anum": 10,
     "name": "A Side Street",
-    "description": "You are in the common section of the city. More buildings made of\n
-                   |clay and stone be dazzles you. Most of these homes are designed so\n
-                   |beautifully you just cant keep your eyes off them.  The street\n
+    "description": "You are in the common section of the city. More buildings made of
+                   |clay and stone be dazzles you. Most of these homes are designed so
+                   |beautifully you just cant keep your eyes off them.  The street
                    |continues north and south and buildings line the street.\n",
     "sector_type": "city",
     "doors": [
@@ -703,8 +703,8 @@
     "area": "mirror",
     "anum": 11,
     "name": "A Side Street",
-    "description": "This small side street leads away from the garden path to the south.\n
-                   |Around you stand large numbers of commoners' houses.  Many citizens\n
+    "description": "This small side street leads away from the garden path to the south.
+                   |Around you stand large numbers of commoners' houses.  Many citizens
                    |pass by you with a friendly hello.  You almost feel like home here.\n",
     "sector_type": "city",
     "doors": [
@@ -733,10 +733,10 @@
     "area": "mirror",
     "anum": 12,
     "name": "A side street",
-    "description": "This small side street leads south away from the temple into the\n
-                   |business section of town. To the east is the famous City Hall of Thalos.  \n
-                   |Well disciplined guards stand at attention, watching over the city hall, but\n
-                   |you don't see any source of threats in THIS city.  North is a garden path,\n
+    "description": "This small side street leads south away from the temple into the
+                   |business section of town. To the east is the famous City Hall of Thalos.  
+                   |Well disciplined guards stand at attention, watching over the city hall, but
+                   |you don't see any source of threats in THIS city.  North is a garden path,
                    |west is a smithy, and this side street continues south.\n",
     "sector_type": "city",
     "doors": [
@@ -748,7 +748,7 @@
       {
         "dir": "east",
         "to": 32,
-        "description": "You see what is most definitely city hall.  This building is the most\n
+        "description": "You see what is most definitely city hall.  This building is the most
                        |elaborate of all the building here in Thalos.\n",
         "exit_flags": "door"
       },
@@ -759,7 +759,7 @@
       {
         "dir": "west",
         "to": 21,
-        "description": "Inside the building you see long pieces of metal, an oven, and some\n
+        "description": "Inside the building you see long pieces of metal, an oven, and some
                        |anvils.  Obviously a smithy.\n"
       }
     ],
@@ -776,9 +776,9 @@
     "area": "mirror",
     "anum": 13,
     "name": "A side street",
-    "description": "This small side street is lined with great beautifully designed\n
-                   |buildings. To the north is the magnificent temple while to the\n
-                   |east lies the entrance to a small friendly tavern. The street continues\n
+    "description": "This small side street is lined with great beautifully designed
+                   |buildings. To the north is the magnificent temple while to the
+                   |east lies the entrance to a small friendly tavern. The street continues
                    |north and south.\n",
     "sector_type": "city",
     "doors": [
@@ -789,8 +789,8 @@
       {
         "dir": "east",
         "to": 30,
-        "description": "From the looks of it, this is a very impressive two story abode.\n
-                       |The entire first floor is covered with a huge marble bar with merry men\n
+        "description": "From the looks of it, this is a very impressive two story abode.
+                       |The entire first floor is covered with a huge marble bar with merry men
                        |telling tall tales and drinking their fill.\n"
       },
       {
@@ -800,7 +800,7 @@
       {
         "dir": "west",
         "to": 19,
-        "description": "This seems to be the only guild house in the entire city. You feel uneasy\n
+        "description": "This seems to be the only guild house in the entire city. You feel uneasy
                        |about this building.  For some reason it seems not to belong.\n"
       }
     ],
@@ -859,7 +859,7 @@
     "area": "mirror",
     "anum": 14,
     "name": "A side street",
-    "description": "You are at the end of a long street leading to the center of the city.\n
+    "description": "You are at the end of a long street leading to the center of the city.
                    |A long alley runs east and west.\n",
     "sector_type": "city",
     "doors": [
@@ -903,8 +903,8 @@
     "area": "mirror",
     "anum": 15,
     "name": "Under another grand watchtower",
-    "description": "You stand at the base of a tall ivy covered watchtower built to\n
-                   |protect the city from invaders.  You get the feeling of safety here in\n
+    "description": "You stand at the base of a tall ivy covered watchtower built to
+                   |protect the city from invaders.  You get the feeling of safety here in
                    |Thalos.\n",
     "sector_type": "city",
     "doors": [
@@ -976,8 +976,8 @@
     "area": "mirror",
     "anum": 16,
     "name": "A back alley",
-    "description": "This alley leads to the rear of meat stand. The aroma of fresh and\n
-                   |char-broiled meat catches your sense of smell.  You wipe the drool\n
+    "description": "This alley leads to the rear of meat stand. The aroma of fresh and
+                   |char-broiled meat catches your sense of smell.  You wipe the drool
                    |off your chin the instant you know it is there.\n",
     "sector_type": "city",
     "doors": [
@@ -1023,10 +1023,10 @@
     "area": "mirror",
     "anum": 17,
     "name": "The meat stand",
-    "description": "A large stand has been set up here with metal hooks and wooden racks\n
-                   |in the background.  Hanging on the hooks are huge slabs of meat\n
-                   |and other game.  This stand is packed with produce, and a sudden burst\n
-                   |of laughter catches you by surprise as little children play around\n
+    "description": "A large stand has been set up here with metal hooks and wooden racks
+                   |in the background.  Hanging on the hooks are huge slabs of meat
+                   |and other game.  This stand is packed with produce, and a sudden burst
+                   |of laughter catches you by surprise as little children play around
                    |your ankles.\n",
     "sector_type": "city",
     "doors": [
@@ -1038,7 +1038,7 @@
       {
         "dir": "east",
         "to": 20,
-        "description": "This is a cart full of fresh vegetables and fruits.  You are almost\n
+        "description": "This is a cart full of fresh vegetables and fruits.  You are almost
                        |tempted to take some.\n"
       },
       {
@@ -1122,7 +1122,7 @@
     "area": "mirror",
     "anum": 18,
     "name": "A back alley",
-    "description": "A narrow alley leads east to a wider street and west to one of\n
+    "description": "A narrow alley leads east to a wider street and west to one of
                    |the city watchtowers.\n",
     "sector_type": "city",
     "doors": [
@@ -1142,9 +1142,9 @@
     "area": "mirror",
     "anum": 19,
     "name": "The guild house",
-    "description": "You are standing in this city's ONLY guild house.  Tables and chairs\n
-                   |are set about for the occupants' comfort.  Weapons are stacked neatly on the\n
-                   |weapons rack.  Each weapon looks polished, sharpened, and oiled.\n
+    "description": "You are standing in this city's ONLY guild house.  Tables and chairs
+                   |are set about for the occupants' comfort.  Weapons are stacked neatly on the
+                   |weapons rack.  Each weapon looks polished, sharpened, and oiled.
                    |Draped along the back wall is the proud banner of Thalos in all its glory.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1212,8 +1212,8 @@
     "area": "mirror",
     "anum": 20,
     "name": "The produce stand",
-    "description": "A large cart sits here carrying fresh fruit and vegetables.\n
-                   |Hungry children swarm all about the tasty treats the merchants are\n
+    "description": "A large cart sits here carrying fresh fruit and vegetables.
+                   |Hungry children swarm all about the tasty treats the merchants are
                    |giving out for free.\n",
     "sector_type": "city",
     "doors": [
@@ -1309,7 +1309,7 @@
     "area": "mirror",
     "anum": 21,
     "name": "The smithy",
-    "description": "In here you find tools and anvils used to make various weapons\n
+    "description": "In here you find tools and anvils used to make various weapons
                    |and items. The walls are fully stocked with pieces of armor and weaponry.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1353,8 +1353,8 @@
     "area": "mirror",
     "anum": 22,
     "name": "The tapestry stand",
-    "description": "Beautiful tapestries and rugs hang all over the walls.  Fancy\n
-                   |robes and various articles of clothing hang about for sale. You stare with\n
+    "description": "Beautiful tapestries and rugs hang all over the walls.  Fancy
+                   |robes and various articles of clothing hang about for sale. You stare with
                    |awe at how much work must have been put into these cloths.\n",
     "sector_type": "city",
     "doors": [
@@ -1396,7 +1396,7 @@
     "area": "mirror",
     "anum": 23,
     "name": "A back alley",
-    "description": "A narrow alley leads north to one of the city watchtowers while\n
+    "description": "A narrow alley leads north to one of the city watchtowers while
                    |to the south there lies a market stand full of expensive clothes and rugs.\n",
     "sector_type": "city",
     "doors": [
@@ -1415,7 +1415,7 @@
     "area": "mirror",
     "anum": 24,
     "name": "Under the watchtower",
-    "description": "You stand under one of the city watchtowers built to protect\n
+    "description": "You stand under one of the city watchtowers built to protect
                    |the city from invaders.  You know that you are safe from any danger.\n",
     "sector_type": "city",
     "doors": [
@@ -1480,14 +1480,14 @@
     "area": "mirror",
     "anum": 25,
     "name": "The jewelery stand",
-    "description": "A table stands covered with fine jewelery and gems.  The jeweler\n
+    "description": "A table stands covered with fine jewelery and gems.  The jeweler
                    |stands proudly over his collection as he polishes and cleans each one.\n",
     "sector_type": "city",
     "doors": [
       {
         "dir": "south",
         "to": 7,
-        "description": "The market place is packed with people scurrying about doing their\n
+        "description": "The market place is packed with people scurrying about doing their
                        |business.\n"
       },
       {
@@ -1501,8 +1501,8 @@
     "area": "mirror",
     "anum": 26,
     "name": "A simple clay dwelling",
-    "description": "This is a very plain house with a few chairs and a bed.\n
-                   |A warmed and lit fireplace suggests that the dwelling is currently\n
+    "description": "This is a very plain house with a few chairs and a bed.
+                   |A warmed and lit fireplace suggests that the dwelling is currently
                    |occupied.  You should leave before the owner finds you here.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1542,8 +1542,8 @@
     "area": "mirror",
     "anum": 27,
     "name": "A stone dwelling",
-    "description": "This small house is the dwelling of a humble citizen of Thalos.\n
-                   |A few rafters stand with thatched straw blowing with the wind gusts\n
+    "description": "This small house is the dwelling of a humble citizen of Thalos.
+                   |A few rafters stand with thatched straw blowing with the wind gusts
                    |blowing through the city.\n",
     "sector_type": "city",
     "doors": [{
@@ -1564,7 +1564,7 @@
     "area": "mirror",
     "anum": 28,
     "name": "A back alley",
-    "description": "A narrow alley leads east to one of the city watchtowers and west to\n
+    "description": "A narrow alley leads east to one of the city watchtowers and west to
                    |a small side street.\n",
     "sector_type": "city",
     "doors": [
@@ -1600,9 +1600,9 @@
     "area": "mirror",
     "anum": 29,
     "name": "A busy shop",
-    "description": "From the outside this place looks like an ordinary building,\n
-                   |but inside these cramped quarters you discover a shop filled with\n
-                   |armor, weapons, and various other goods. A small sign posted on the wall\n
+    "description": "From the outside this place looks like an ordinary building,
+                   |but inside these cramped quarters you discover a shop filled with
+                   |armor, weapons, and various other goods. A small sign posted on the wall
                    |flutters in the wind.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1624,10 +1624,10 @@
     "area": "mirror",
     "anum": 30,
     "name": "The Tavern of the Sun",
-    "description": "A glorious place, this tavern is second home for many citizens of\n
-                   |Thalos.  Tables and chairs are set in rows, bottles and glasses filled, and\n
-                   |a small performance stage teaming with dazzling entertainment. Musical\n
-                   |instruments and personal belongings lie in piles belonging to each member\n
+    "description": "A glorious place, this tavern is second home for many citizens of
+                   |Thalos.  Tables and chairs are set in rows, bottles and glasses filled, and
+                   |a small performance stage teaming with dazzling entertainment. Musical
+                   |instruments and personal belongings lie in piles belonging to each member
                    |of this room.\n",
     "sector_type": "city",
     "doors": [{
@@ -1728,10 +1728,10 @@
     "area": "mirror",
     "anum": 31,
     "name": "South wing of the city hall",
-    "description": "You stand in a large room attached to this end of the hallway which\n
-                   |leads back north to the reception area. Pedestals and columns stand\n
-                   |faithfully.  Valuable items hang from the walls each to be admired\n
-                   |by onlookers.  Chairs lie around, and a large curved desk. To the east\n
+    "description": "You stand in a large room attached to this end of the hallway which
+                   |leads back north to the reception area. Pedestals and columns stand
+                   |faithfully.  Valuable items hang from the walls each to be admired
+                   |by onlookers.  Chairs lie around, and a large curved desk. To the east
                    |is a vine-covered archway leading out into a private courtyard.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1858,9 +1858,9 @@
     "area": "mirror",
     "anum": 32,
     "name": "The city hall",
-    "description": "This is the main reception area of Thalos' city hall. The walls have\n
-                   |been painted in pure white and thick lush carpet line the floor wall to wall.\n
-                   |A side door on the west wall allows you to go out to one of the city's side \n
+    "description": "This is the main reception area of Thalos' city hall. The walls have
+                   |been painted in pure white and thick lush carpet line the floor wall to wall.
+                   |A side door on the west wall allows you to go out to one of the city's side 
                    |streets.  Hallways lead south and east.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1917,10 +1917,10 @@
     "area": "mirror",
     "anum": 33,
     "name": "East wing of the city hall",
-    "description": "Here lies fancy office, possibly the mayor's. A few green plants\n
-                   |and pieces of furniture make this place breathtaking.  There is a large\n
-                   |glass cabinet along the wall. A long hallway leads west back to the\n
-                   |reception area and an ivy-covered archway leads south into a private\n
+    "description": "Here lies fancy office, possibly the mayor's. A few green plants
+                   |and pieces of furniture make this place breathtaking.  There is a large
+                   |glass cabinet along the wall. A long hallway leads west back to the
+                   |reception area and an ivy-covered archway leads south into a private
                    |courtyard.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -1985,10 +1985,10 @@
     "area": "mirror",
     "anum": 34,
     "name": "The private gardens and courtyard of Thalos",
-    "description": "You stare in awe as the beauty of this place takes you by\n
-                   |surprise.  Exotic flowers and trees are planted in neat rows and lawn\n
-                   |benches line the walk ways.  A large marble fountain in the center of the\n
-                   |courtyard stands. Above stands one of the four watchtowers. Archways\n
+    "description": "You stare in awe as the beauty of this place takes you by
+                   |surprise.  Exotic flowers and trees are planted in neat rows and lawn
+                   |benches line the walk ways.  A large marble fountain in the center of the
+                   |courtyard stands. Above stands one of the four watchtowers. Archways
                    |north and west lead back into the city hall.\n",
     "sector_type": "city",
     "doors": [
@@ -2080,8 +2080,8 @@
     "area": "mirror",
     "anum": 35,
     "name": "A small guard house",
-    "description": "This is the barracks for Thalos' cityguards.  Guards populate this\n
-                   |shack ready, willing, and able to ward off any trouble.  This small\n
+    "description": "This is the barracks for Thalos' cityguards.  Guards populate this
+                   |shack ready, willing, and able to ward off any trouble.  This small
                    |shack stands guarding both to the entrance to the city and to the city hall.\n",
     "sector_type": "city",
     "doors": [{
@@ -2264,8 +2264,8 @@
     "area": "mirror",
     "anum": 36,
     "name": "An impressive house",
-    "description": "This house houses the Defender of Thalos.  He represents all that\n
-                   |is good and right in this city.  As the most skilled fighting machine,\n
+    "description": "This house houses the Defender of Thalos.  He represents all that
+                   |is good and right in this city.  As the most skilled fighting machine,
                    |he is the commander of the guard.\n",
     "sector_type": "city",
     "doors": [{
@@ -2381,7 +2381,7 @@
     "area": "mirror",
     "anum": 37,
     "name": "A Public Library",
-    "description": "This seems to be the tallest structure in the city.  Rows and rows of books\n
+    "description": "This seems to be the tallest structure in the city.  Rows and rows of books
                    |line the 20 foot tall bookcases, and a quiet serenity can be felt by all here.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -2415,8 +2415,8 @@
     "area": "mirror",
     "anum": 38,
     "name": "The Library Addition",
-    "description": "There are more shelves and tables here.  Vials of strange potions line a\n
-                   |section of the wall, and books and other items of power line another.  The exit\n
+    "description": "There are more shelves and tables here.  Vials of strange potions line a
+                   |section of the wall, and books and other items of power line another.  The exit
                    |is to the west.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -2464,7 +2464,7 @@
     "area": "mirror",
     "anum": 39,
     "name": "A back alley",
-    "description": "A narrow back alley goes south to main street and north towards\n
+    "description": "A narrow back alley goes south to main street and north towards
                    |a watchtower.  People quietly pass you by.\n",
     "sector_type": "city",
     "doors": [
@@ -2484,8 +2484,8 @@
     "area": "mirror",
     "anum": 40,
     "name": "A back alley",
-    "description": "A narrow back alley leads north to one of the city watchtowers\n
-                   |and south towards main street.  The shade cast by the watchtower is very\n
+    "description": "A narrow back alley leads north to one of the city watchtowers
+                   |and south towards main street.  The shade cast by the watchtower is very
                    |refreshing.\n",
     "sector_type": "city",
     "doors": [
@@ -2531,7 +2531,7 @@
     "area": "mirror",
     "anum": 41,
     "name": "Under a watchtower",
-    "description": "You stand under a tall watchtower. Narrow back alleys lead west and\n
+    "description": "You stand under a tall watchtower. Narrow back alleys lead west and
                    |south and a sturdy ladder leads up into the tower.\n",
     "sector_type": "city",
     "doors": [
@@ -2596,9 +2596,9 @@
     "area": "mirror",
     "anum": 42,
     "name": "A bath house",
-    "description": "This is the bath house for the commoners of the city. Hot steamy water \n
-                   |wells up from a hole in the floor. Obviously there is a hot spring located \n
-                   |under the city (making the decision to put a city here seem much more \n
+    "description": "This is the bath house for the commoners of the city. Hot steamy water 
+                   |wells up from a hole in the floor. Obviously there is a hot spring located 
+                   |under the city (making the decision to put a city here seem much more 
                    |reasonable). To the west is another room.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -2627,8 +2627,8 @@
     "area": "mirror",
     "anum": 43,
     "name": "A back alley",
-    "description": "A narrow back alley leads west to a small side street and east to one\n
-                   |of the city watchtowers. Great amounts of steam issue forth from the\n
+    "description": "A narrow back alley leads west to a small side street and east to one
+                   |of the city watchtowers. Great amounts of steam issue forth from the
                    |building to the south.  It looks very inviting.\n",
     "sector_type": "city",
     "doors": [
@@ -2653,9 +2653,9 @@
     "area": "mirror",
     "anum": 44,
     "name": "A Resting Room",
-    "description": "You are in a resting room.  Soft mats line the floor, and you see many\n
-                   |people just relaxing on them.  The comfort of this place is so inviting, you \n
-                   |want to join them.  Great amounts of steam issue forth from the hole in the \n
+    "description": "You are in a resting room.  Soft mats line the floor, and you see many
+                   |people just relaxing on them.  The comfort of this place is so inviting, you 
+                   |want to join them.  Great amounts of steam issue forth from the hole in the 
                    |east wall.\n",
     "sector_type": "city",
     "room_flags": "indoors",
@@ -2717,7 +2717,7 @@
     "area": "mirror",
     "anum": 45,
     "name": "On the second floor of the library",
-    "description": "You see more books here.  Through windows, you have a glorious view of\n
+    "description": "You see more books here.  Through windows, you have a glorious view of
                    |a nearby bay.  Birds fly by your window.\n",
     "sector_type": "city",
     "doors": [{
@@ -2737,8 +2737,8 @@
     "area": "mirror",
     "anum": 46,
     "name": "The north-west watchtower",
-    "description": "You stand atop one of the city watchtowers. The view is magnificent\n
-                   |from here and you can see all the way to the western mountains.  You are \n
+    "description": "You stand atop one of the city watchtowers. The view is magnificent
+                   |from here and you can see all the way to the western mountains.  You are 
                    |confident nothing can touch this tower.\n",
     "sector_type": "city",
     "doors": [{
@@ -2799,9 +2799,9 @@
     "area": "mirror",
     "anum": 47,
     "name": "The south-west watchtower",
-    "description": "You stand atop one of the city watchtowers. The view is magnificent\n
-                   |from here and you can see all the way to the western mountains. To the\n
-                   |south bay stretches to the horizon.  You are confident nothing can touch this\n
+    "description": "You stand atop one of the city watchtowers. The view is magnificent
+                   |from here and you can see all the way to the western mountains. To the
+                   |south bay stretches to the horizon.  You are confident nothing can touch this
                    |tower.\n",
     "sector_type": "city",
     "doors": [{
@@ -2846,8 +2846,8 @@
     "area": "mirror",
     "anum": 48,
     "name": "The north-east watchtower",
-    "description": "You stand atop one of the city watchtowers. The view is magnificent\n
-                   |from here.  Green fields stretch to the horizon.  You are confident nothing\n
+    "description": "You stand atop one of the city watchtowers. The view is magnificent
+                   |from here.  Green fields stretch to the horizon.  You are confident nothing
                    |can touch this tower.\n",
     "sector_type": "city",
     "doors": [{
@@ -2908,11 +2908,11 @@
     "area": "mirror",
     "anum": 50,
     "name": "The Temple of Thalos",
-    "description": "You stand within one of the most holy places in the realm. This stunning \n
-                   |domed temple houses the city's worshipers en masse. Long benches line the \n
-                   |aisles and the altar glistens with the gold and platinum inlay.The walls and \n
-                   |roof are all made of ceramic, making this place reflect the sun well.  \n
-                   |    The greenery around the temple itself makes this place a great blend of\n
+    "description": "You stand within one of the most holy places in the realm. This stunning 
+                   |domed temple houses the city's worshipers en masse. Long benches line the 
+                   |aisles and the altar glistens with the gold and platinum inlay.The walls and 
+                   |roof are all made of ceramic, making this place reflect the sun well.  
+                   |    The greenery around the temple itself makes this place a great blend of
                    |nature and man's works of art.\n",
     "sector_type": "city",
     "room_flags": "indoors unused_room_5",
@@ -3045,7 +3045,7 @@
     "area": "mirror",
     "anum": 51,
     "name": "A back alley",
-    "description": "A narrow alley leads east to a wider street and west to one of\n
+    "description": "A narrow alley leads east to a wider street and west to one of
                    |the city watchtowers.  Little kids play tag around you.\n",
     "sector_type": "city",
     "doors": [
@@ -3065,7 +3065,7 @@
     "area": "mirror",
     "anum": 52,
     "name": "Under a watchtower",
-    "description": "You stand at the base of a tall watchtower built to protect the city\n
+    "description": "You stand at the base of a tall watchtower built to protect the city
                    |from invaders.  From the looks of things, its doing a great job.\n",
     "sector_type": "city",
     "doors": [
@@ -3172,8 +3172,8 @@
     "area": "mirror",
     "anum": 54,
     "name": "The south-east watchtower",
-    "description": "You stand atop one of the city watchtowers. The view is magnificent\n
-                   |from here and you can see all the way to the western mountains. To the\n
+    "description": "You stand atop one of the city watchtowers. The view is magnificent
+                   |from here and you can see all the way to the western mountains. To the
                    |south the you see the bay.  You're confident nothing can touch this tower.\n",
     "sector_type": "city",
     "doors": [{
@@ -3234,7 +3234,7 @@
     "area": "mirror",
     "anum": 55,
     "name": "A back alley",
-    "description": "A narrow alley leads north to the main street, and south toward a tall\n
+    "description": "A narrow alley leads north to the main street, and south toward a tall
                    |watchtower.  A building is to the west.\n",
     "sector_type": "city",
     "doors": [
@@ -3258,8 +3258,8 @@
     "area": "mirror",
     "anum": 56,
     "name": "A trail at the end of the dwarf forest",
-    "description": "The trail ends here, with tall, leafy, green trees all around you.\n
-                   |To the west, you can see a huge beautiful and radiant city.  Something\n
+    "description": "The trail ends here, with tall, leafy, green trees all around you.
+                   |To the west, you can see a huge beautiful and radiant city.  Something
                    |about it gives you a relaxed feeling.  To the east is your way back home.\n",
     "sector_type": "field",
     "doors": [
@@ -3287,7 +3287,7 @@
     "area": "mirror",
     "anum": 57,
     "name": "A trail at the end of the dwarf forest",
-    "description": "A side trail here leads from the dwarf forest.  It is definitely milder\n
+    "description": "A side trail here leads from the dwarf forest.  It is definitely milder
                    |here.  The trail continues to the east from here.\n",
     "sector_type": "field",
     "doors": [
@@ -3307,7 +3307,7 @@
     "area": "mirror",
     "anum": 58,
     "name": "The dwarf forest",
-    "description": "You see tall, healthy green trees here.  The trail bends north to\n
+    "description": "You see tall, healthy green trees here.  The trail bends north to
                    |west from here.\n",
     "sector_type": "forest",
     "doors": [
@@ -3335,7 +3335,7 @@
     "area": "mirror",
     "anum": 59,
     "name": "The dwarf forest",
-    "description": "You see more big green trees here.  It looks almost as if this place was\n
+    "description": "You see more big green trees here.  It looks almost as if this place was
                    |blessed by a god to be green and mild.  The trail leads north and south.\n",
     "sector_type": "forest",
     "doors": [
@@ -3355,7 +3355,7 @@
     "area": "mirror",
     "anum": 60,
     "name": "The dwarf forest",
-    "description": "You see more big green trees here.  It looks almost as if this place was\n
+    "description": "You see more big green trees here.  It looks almost as if this place was
                    |blessed by a god to be green and mild.  The trail leads north and south.\n",
     "sector_type": "forest",
     "doors": [
@@ -3375,7 +3375,7 @@
     "area": "mirror",
     "anum": 61,
     "name": "The dwarf forest",
-    "description": "You see many big green trees here.  You see many leaves on these huge\n
+    "description": "You see many big green trees here.  You see many leaves on these huge
                    |trees.  Grass layer the ground with 2 inches of padding.\n",
     "sector_type": "forest",
     "doors": [
@@ -3403,8 +3403,8 @@
     "area": "mirror",
     "anum": 62,
     "name": "The Cross Roads",
-    "description": "The roads cross here.  Midgaard is to the west.  To the east, you see the\n
-                   |stately oaks and poplars of the holy grove.  A wide path leads south through\n
+    "description": "The roads cross here.  Midgaard is to the west.  To the east, you see the
+                   |stately oaks and poplars of the holy grove.  A wide path leads south through
                    |the dwarven forest.  To the north is a very desolate trail.\n",
     "sector_type": "city",
     "doors": [
@@ -3430,8 +3430,8 @@
     "area": "mirror",
     "anum": 63,
     "name": "The Lane",
-    "description": "You are strolling along a pleasant, shady lane. The road is lined on both\n
-                   |sides by tall, stately trees which lend the scene with a sense of quiet\n
+    "description": "You are strolling along a pleasant, shady lane. The road is lined on both
+                   |sides by tall, stately trees which lend the scene with a sense of quiet
                    |serenity. You can follow the road north or south.\n",
     "sector_type": "city",
     "doors": [
@@ -3449,9 +3449,9 @@
     "area": "mirror",
     "anum": 64,
     "name": "City Entrance",
-    "description": "You stand on the outskirts of a construction site - Midgaard; the capital\n
-                   |of this land. The road leads east into the peace and quiet - and dangers -\n
-                   |of the forest; and to the west it becomes the main street of the town;\n
+    "description": "You stand on the outskirts of a construction site - Midgaard; the capital
+                   |of this land. The road leads east into the peace and quiet - and dangers -
+                   |of the forest; and to the west it becomes the main street of the town;
                    |surrounded by building foundations of unfinished shops, houses, and temple. \n",
     "sector_type": "city",
     "room_flags": "no_mob",
@@ -3470,12 +3470,12 @@
     "area": "mirror",
     "anum": 65,
     "name": "The Plains",
-    "description": "You are standing on the plains. This is a vast desolate place where the\n
-                   |wind can howl undisturbed since nothing but you bars its way. However you\n
-                   |are not the first to wander here. Before you somebody has left footprints.\n
-                   |The footprints make a path that looks rather bewildered and is not the kind\n
-                   |of path to lead to anywhere significant or important but it seems to have\n
-                   |made up its mind to enter the hills far away north.  A little distance\n
+    "description": "You are standing on the plains. This is a vast desolate place where the
+                   |wind can howl undisturbed since nothing but you bars its way. However you
+                   |are not the first to wander here. Before you somebody has left footprints.
+                   |The footprints make a path that looks rather bewildered and is not the kind
+                   |of path to lead to anywhere significant or important but it seems to have
+                   |made up its mind to enter the hills far away north.  A little distance
                    |further, you lose the trail and decide not to get lost.\n",
     "sector_type": "city",
     "doors": [{
@@ -3487,9 +3487,9 @@
     "area": "mirror",
     "anum": 66,
     "name": "The holy grove",
-    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You\n
-                   |can feel a strange sensation of contentedness and relief seeping through You,\n
-                   |as if great burdens have been lifted from Your shoulders. From here, friendly-\n
+    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You
+                   |can feel a strange sensation of contentedness and relief seeping through You,
+                   |as if great burdens have been lifted from Your shoulders. From here, friendly-
                    |looking paths lead east and south.\n",
     "sector_type": "forest",
     "doors": [
@@ -3509,8 +3509,8 @@
     "area": "mirror",
     "anum": 67,
     "name": "The holy grove",
-    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You\n
-                   |feel unusually happy here, as if great burdens have been lifted from Your\n
+    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You
+                   |feel unusually happy here, as if great burdens have been lifted from Your
                    |shoulders. From here, pleasant-looking paths lead east, west and south.\n",
     "sector_type": "forest",
     "doors": [
@@ -3522,7 +3522,7 @@
       {
         "dir": "south",
         "to": 70,
-        "description": "The path wind its way through the tall trees, towards an open area barely\n
+        "description": "The path wind its way through the tall trees, towards an open area barely
                        |visible in the distance.\n"
       },
       {
@@ -3554,8 +3554,8 @@
     "area": "mirror",
     "anum": 68,
     "name": "A clearing in the woods",
-    "description": "You are standing in a clearing in the light woods. Somehow, this place\n
-                   |seems powerfully DIFFERENT from the rest of the forest, as if something is\n
+    "description": "You are standing in a clearing in the light woods. Somehow, this place
+                   |seems powerfully DIFFERENT from the rest of the forest, as if something is
                    |severely strained in the fabric of reality here.\n",
     "sector_type": "forest",
     "room_flags": "no_mob",
@@ -3563,13 +3563,13 @@
       {
         "dir": "north",
         "to": 75,
-        "description": "A small, narrow path winds north, and is quickly lost in the bushes. It\n
+        "description": "A small, narrow path winds north, and is quickly lost in the bushes. It
                        |looks quite a wilderness there!\n"
       },
       {
         "dir": "south",
         "to": 71,
-        "description": "There is a path winding its way south through the tall poplars, disappearing\n
+        "description": "There is a path winding its way south through the tall poplars, disappearing
                        |out of sight some 100 yds. away.\n"
       },
       {
@@ -3600,10 +3600,10 @@
     "area": "mirror",
     "anum": 69,
     "name": "The holy grove",
-    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You\n
-                   |feel calm and relaxed here, as if great burdens have been lifted from Your\n
-                   |shoulders. From here, pleasant-looking paths lead east, north and south. To\n
-                   |the west, through the trees, You can see the road to Midgaard's construction\n
+    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You
+                   |feel calm and relaxed here, as if great burdens have been lifted from Your
+                   |shoulders. From here, pleasant-looking paths lead east, north and south. To
+                   |the west, through the trees, You can see the road to Midgaard's construction
                    |site.\n",
     "sector_type": "forest",
     "room_flags": "no_mob",
@@ -3626,7 +3626,7 @@
       {
         "dir": "west",
         "to": 62,
-        "description": "Through the trees, you can see the Midgaard road. Far to the west, You can\n
+        "description": "Through the trees, you can see the Midgaard road. Far to the west, You can
                        |barely glimpse the construction of the city itself.\n"
       }
     ],
@@ -3643,12 +3643,12 @@
     "area": "mirror",
     "anum": 70,
     "name": "The sacred glade",
-    "description": "You are standing in the middle of the sacred glades, where the citizens of\n
-                   |Thalos come to celebrate the spring, where farmers give thanks for bountiful\n
-                   |harvest in the fall, and where lovers stroll in summer. You feel seasons of\n
-                   |remembered happiness and joy taking Your sorrows and worries away from You,\n
-                   |leaving You calm and invigorate, ready for the world. Paths lead into the\n
-                   |holy grove to the east, north and west, while to the south a wide, sunny field\n
+    "description": "You are standing in the middle of the sacred glades, where the citizens of
+                   |Thalos come to celebrate the spring, where farmers give thanks for bountiful
+                   |harvest in the fall, and where lovers stroll in summer. You feel seasons of
+                   |remembered happiness and joy taking Your sorrows and worries away from You,
+                   |leaving You calm and invigorate, ready for the world. Paths lead into the
+                   |holy grove to the east, north and west, while to the south a wide, sunny field
                    |slopes down to a sparkling lake.\n",
     "sector_type": "forest",
     "doors": [
@@ -3665,7 +3665,7 @@
       {
         "dir": "south",
         "to": 73,
-        "description": "To the south, a wide, sunny field stretch out, sloping down towards a brightly\n
+        "description": "To the south, a wide, sunny field stretch out, sloping down towards a brightly
                        |glittering lake.\n"
       },
       {
@@ -3687,9 +3687,9 @@
     "area": "mirror",
     "anum": 71,
     "name": "The holy grove",
-    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You\n
-                   |can feel a strange sensation of joy and calm seeping through You, as if great\n
-                   |burdens have been lifted from Your shoulders. To the south, You glimpse an open\n
+    "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You
+                   |can feel a strange sensation of joy and calm seeping through You, as if great
+                   |burdens have been lifted from Your shoulders. To the south, You glimpse an open
                    |area through the trees, while paths lead away north and west.\n",
     "sector_type": "forest",
     "doors": [
@@ -3701,8 +3701,8 @@
       {
         "dir": "south",
         "to": 74,
-        "description": "To the south, just beyond the trees, you can see a wide green lawn, and past\n
-                       |the lawn, a softly shimmering, rainbow-colored dome covering the foundation\n
+        "description": "To the south, just beyond the trees, you can see a wide green lawn, and past
+                       |the lawn, a softly shimmering, rainbow-colored dome covering the foundation
                        |for a structure.\n"
       },
       {
@@ -3713,10 +3713,10 @@
     ],
     "extra_description": [{
       "keyword": "foundation",
-      "description": "The foundation looks like it is for a sprawling, two-story affair with three\n
-                     |wings.  On the ground is some building material, marble would do, if marble\n
-                     |changed color slowly, continuously, through the entire spectrum.  There are\n
-                     |also large panes of glass stacked over near one of the corners of the\n
+      "description": "The foundation looks like it is for a sprawling, two-story affair with three
+                     |wings.  On the ground is some building material, marble would do, if marble
+                     |changed color slowly, continuously, through the entire spectrum.  There are
+                     |also large panes of glass stacked over near one of the corners of the
                      |foundation.\n"
     }],
     "resets": [
@@ -3741,34 +3741,34 @@
     "area": "mirror",
     "anum": 72,
     "name": "The holy grove",
-    "description": "You are standing amidst the tall, majestic trees in the southern end of the\n
-                   |holy grove. Paths lead north and east. To the east, You can see a wide, open\n
-                   |field, sloping gently down towards a bright, glittering lake. Somehow, here\n
-                   |you feel an inexplicable happiness, as if the world's troubles no longer\n
+    "description": "You are standing amidst the tall, majestic trees in the southern end of the
+                   |holy grove. Paths lead north and east. To the east, You can see a wide, open
+                   |field, sloping gently down towards a bright, glittering lake. Somehow, here
+                   |you feel an inexplicable happiness, as if the world's troubles no longer
                    |really matter to you.\n",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 69,
-        "description": "The path leading north is soon lost out of sight amongst the ancient oaks and\n
+        "description": "The path leading north is soon lost out of sight amongst the ancient oaks and
                        |poplars.\n"
       },
       {
         "dir": "east",
         "to": 73,
-        "description": "To the east, the path leads out into a wide, sunny summer's field, sloping\n
-                       |south towards a beautiful lake. Past the field You can see the construction\n
-                       |of a large foundation for a structure shimmering gently in all the rainbow's\n
+        "description": "To the east, the path leads out into a wide, sunny summer's field, sloping
+                       |south towards a beautiful lake. Past the field You can see the construction
+                       |of a large foundation for a structure shimmering gently in all the rainbow's
                        |colours.\n"
       }
     ],
     "extra_description": [{
       "keyword": "foundation construction",
-      "description": "The foundation looks like it is for a sprawling, two-story affair with three\n
-                     |wings.  On the ground is some building material, marble would do, if marble\n
-                     |changed color slowly, continuously, through the entire spectrum.  There are\n
-                     |also large panes of glass stacked over near one of the corners of the\n
+      "description": "The foundation looks like it is for a sprawling, two-story affair with three
+                     |wings.  On the ground is some building material, marble would do, if marble
+                     |changed color slowly, continuously, through the entire spectrum.  There are
+                     |also large panes of glass stacked over near one of the corners of the
                      |foundation.\n"
     }],
     "resets": [
@@ -3801,12 +3801,12 @@
     "area": "mirror",
     "anum": 73,
     "name": "The sunny field",
-    "description": "You are standing in the middle of a wide, summery, sunlit field. There is a\n
-                   |fragrance of spring in the air, a sound of summer and a feeling of eternal\n
-                   |Saturday afternoon. To the south is a clear, sparkling lake, and to the north\n
-                   |and west is the holy grove. In the wood's edge, to the east, is construction,\n
-                   |shimmering softly through the colors of the rainbow. You feel as if You\n
-                   |could spend the rest of your life here, lying on your back and looking at the\n
+    "description": "You are standing in the middle of a wide, summery, sunlit field. There is a
+                   |fragrance of spring in the air, a sound of summer and a feeling of eternal
+                   |Saturday afternoon. To the south is a clear, sparkling lake, and to the north
+                   |and west is the holy grove. In the wood's edge, to the east, is construction,
+                   |shimmering softly through the colors of the rainbow. You feel as if You
+                   |could spend the rest of your life here, lying on your back and looking at the
                    |patterns of the clouds as they gently drift across the sky.\n",
     "sector_type": "field",
     "room_flags": "indoors",
@@ -3824,10 +3824,10 @@
     ],
     "extra_description": [{
       "keyword": "dome construction structure east e",
-      "description": "The foundation looks like it is for a sprawling, two-story affair with three\n
-                     |wings.  On the ground is some building material, marble would do, if marble\n
-                     |changed color slowly, continuously, through the entire spectrum.  There are\n
-                     |also large panes of glass stacked over near one of the corners of the\n
+      "description": "The foundation looks like it is for a sprawling, two-story affair with three
+                     |wings.  On the ground is some building material, marble would do, if marble
+                     |changed color slowly, continuously, through the entire spectrum.  There are
+                     |also large panes of glass stacked over near one of the corners of the
                      |foundation.\n"
     }],
     "resets": [{
@@ -3843,10 +3843,10 @@
     "area": "mirror",
     "anum": 74,
     "name": "The croquet lawn",
-    "description": "You are standing on a immaculately manicured green lawn, the kind you only\n
-                   |get after 200 years of meticulous work. There is a winding stone path leading\n
-                   |from the wood's edge to the north, to the softly shimmering, rainbow-colored\n
-                   |dome covering construction to the south. This place enjoys a perpetual cool,\n
+    "description": "You are standing on a immaculately manicured green lawn, the kind you only
+                   |get after 200 years of meticulous work. There is a winding stone path leading
+                   |from the wood's edge to the north, to the softly shimmering, rainbow-colored
+                   |dome covering construction to the south. This place enjoys a perpetual cool,
                    |sunny summers after-noon.\n",
     "sector_type": "field",
     "room_flags": "no_mob",
@@ -3857,10 +3857,10 @@
     }],
     "extra_description": [{
       "keyword": "dome construction south s",
-      "description": "The foundation looks like it is for a sprawling, two-story affair with three\n
-                     |wings.  On the ground is some building material, marble would do, if marble\n
-                     |changed color slowly, continuously, through the entire spectrum.  There are\n
-                     |also large panes of glass stacked over near one of the corners of the\n
+      "description": "The foundation looks like it is for a sprawling, two-story affair with three
+                     |wings.  On the ground is some building material, marble would do, if marble
+                     |changed color slowly, continuously, through the entire spectrum.  There are
+                     |also large panes of glass stacked over near one of the corners of the
                      |foundation.\n"
     }],
     "resets": [
@@ -3885,11 +3885,11 @@
     "area": "mirror",
     "anum": 75,
     "name": "The Void",
-    "description": "You are standing in the middle of something you cannot explain.  You see\n
-                   |stars yet you cannot see what you are standing on.  You are not standing\n
-                   |on any sort of physical 'ground' as you can see yet you are not floating\n
-                   |either.  Occasionally, the starry 'sky' fades into a fuzzy, yet bright,\n
-                   |rainbow then back to its normal state.  In the middle of this room is\n
+    "description": "You are standing in the middle of something you cannot explain.  You see
+                   |stars yet you cannot see what you are standing on.  You are not standing
+                   |on any sort of physical 'ground' as you can see yet you are not floating
+                   |either.  Occasionally, the starry 'sky' fades into a fuzzy, yet bright,
+                   |rainbow then back to its normal state.  In the middle of this room is
                    |a ladder standing vertical.\n",
     "sector_type": "forest",
     "doors": [
@@ -3928,10 +3928,10 @@
     "area": "mirror",
     "anum": 76,
     "name": "The Void",
-    "description": "You are standing in the middle of something you cannot explain.  You see\n
-                   |stars yet you cannot see what you are standing on.  You are not standing\n
-                   |on any sort of physical 'ground' as you can see yet you are not floating\n
-                   |either.  Occasionally, the starry 'sky' fades into a fuzzy, yet bright,\n
+    "description": "You are standing in the middle of something you cannot explain.  You see
+                   |stars yet you cannot see what you are standing on.  You are not standing
+                   |on any sort of physical 'ground' as you can see yet you are not floating
+                   |either.  Occasionally, the starry 'sky' fades into a fuzzy, yet bright,
                    |rainbow then back to its normal state.\n",
     "sector_type": "forest",
     "doors": [
@@ -3975,10 +3975,10 @@
     "area": "mirror",
     "anum": 77,
     "name": "The Void",
-    "description": "You are standing in the middle of something you cannot explain.  You see\n
-                   |stars yet you cannot see what you are standing on.  You are not standing\n
-                   |on any sort of physical 'ground' as you can see yet you are not floating\n
-                   |either.  Occasionally, the starry 'sky' fades into a fuzzy, yet bright,\n
+    "description": "You are standing in the middle of something you cannot explain.  You see
+                   |stars yet you cannot see what you are standing on.  You are not standing
+                   |on any sort of physical 'ground' as you can see yet you are not floating
+                   |either.  Occasionally, the starry 'sky' fades into a fuzzy, yet bright,
                    |rainbow then back to its normal state.\n",
     "sector_type": "forest",
     "doors": [
@@ -4022,11 +4022,11 @@
     "area": "mirror",
     "anum": 78,
     "name": "The Void",
-    "description": "You are standing in the middle of something you cannot explain.  You see\n
-                   |stars yet you cannot see what you are standing on.  You are not standing\n
-                   |on any sort of physical 'ground' as you can see yet you are not floating\n
-                   |either.  Occasionally, the starry 'sky' fades into a fuzzy, yet bright,\n
-                   |rainbow then back to its normal state.  In the middle of this room is\n
+    "description": "You are standing in the middle of something you cannot explain.  You see
+                   |stars yet you cannot see what you are standing on.  You are not standing
+                   |on any sort of physical 'ground' as you can see yet you are not floating
+                   |either.  Occasionally, the starry 'sky' fades into a fuzzy, yet bright,
+                   |rainbow then back to its normal state.  In the middle of this room is
                    |a ladder standing vertical.\n",
     "sector_type": "forest",
     "doors": [
@@ -4065,12 +4065,12 @@
     "area": "mirror",
     "anum": 79,
     "name": "The Temple Of Midgaard",
-    "description": "You are in the southern end of the temple hall in the Temple of Midgaard.\n
-                   |The temple has been constructed from giant marble blocks, eternal in\n
-                   |appearance, and most of the walls are covered by ancient wall paintings\n
-                   |picturing Gods, Giants and peasants.\n
-                   |   Large steps lead down through the grand temple gate, descending the huge\n
-                   |mound upon which the temple is built and ends on the temple square below.\n
+    "description": "You are in the southern end of the temple hall in the Temple of Midgaard.
+                   |The temple has been constructed from giant marble blocks, eternal in
+                   |appearance, and most of the walls are covered by ancient wall paintings
+                   |picturing Gods, Giants and peasants.
+                   |   Large steps lead down through the grand temple gate, descending the huge
+                   |mound upon which the temple is built and ends on the temple square below.
                    |   You notice that this building is quite new.  A small plaque is on this wall.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors safe",
@@ -4088,8 +4088,8 @@
     ],
     "extra_description": [{
       "keyword": "plaque",
-      "description": "This entire world has been integrated, modified, debugged, and enhanced by\n
-                     |Hatchet, Kahn, and Furey of MERC Industries to be run by any MERC Mud.\n
+      "description": "This entire world has been integrated, modified, debugged, and enhanced by
+                     |Hatchet, Kahn, and Furey of MERC Industries to be run by any MERC Mud.
                      |1992 December 17\n"
     }]
   }},
@@ -4097,9 +4097,9 @@
     "area": "mirror",
     "anum": 80,
     "name": "The Temple Square",
-    "description": "You are standing on the temple square.  Huge marble steps lead up to the\n
-                   |temple gate.  The ground is just dirt but there are plans to make the road\n
-                   |cobble stone.  Just south of here you see a blooming market square, the\n
+    "description": "You are standing on the temple square.  Huge marble steps lead up to the
+                   |temple gate.  The ground is just dirt but there are plans to make the road
+                   |cobble stone.  Just south of here you see a blooming market square, the
                    |center of Midgaard.\n",
     "sector_type": "city",
     "doors": [
@@ -4127,9 +4127,9 @@
     "area": "mirror",
     "anum": 81,
     "name": "Market Square",
-    "description": "You are standing on the market square, the Square of Midgaard.  It seems\n
-                   |that a large, peculiar looking statue is being built here in the middle of\n
-                   |the square.  Roads lead to the north and east, north to the temple square,\n
+    "description": "You are standing on the market square, the Square of Midgaard.  It seems
+                   |that a large, peculiar looking statue is being built here in the middle of
+                   |the square.  Roads lead to the north and east, north to the temple square,
                    |east is the main street.\n",
     "sector_type": "city",
     "doors": [
@@ -4146,7 +4146,7 @@
     ],
     "extra_description": [{
       "keyword": "statue",
-      "description": "What you see is an uncompleted statue of what you think is the Midgaard\n
+      "description": "What you see is an uncompleted statue of what you think is the Midgaard
                      |mascot.\n"
     }],
     "resets": [
@@ -4219,7 +4219,7 @@
     "area": "mirror",
     "anum": 82,
     "name": "The Main Street",
-    "description": "You are on Main Street crossing through this booming town.  The main\n
+    "description": "You are on Main Street crossing through this booming town.  The main
                    |street continues east.  To the west you see and hear a small market place.\n",
     "sector_type": "city",
     "doors": [
@@ -4247,7 +4247,7 @@
     "area": "mirror",
     "anum": 83,
     "name": "The Main Street",
-    "description": "The main street, to the east you leave town and to the west the street\n
+    "description": "The main street, to the east you leave town and to the west the street
                    |leads to the market square.\n",
     "sector_type": "city",
     "doors": [
@@ -4267,8 +4267,8 @@
     "area": "mirror",
     "anum": 84,
     "name": "Inside the East Gate of Midgaard",
-    "description": "You are by two small newly built towers that have been built into the\n
-                   |city wall and connected with a footbridge across the heavy wooden gate.\n
+    "description": "You are by two small newly built towers that have been built into the
+                   |city wall and connected with a footbridge across the heavy wooden gate.
                    |Main Street leads west from here.\n",
     "sector_type": "city",
     "doors": [
@@ -4292,23 +4292,23 @@
     "extra_description": [
       {
         "keyword": "wall",
-        "description": "It is built from large grey rocks that have been fastened to each other with\n
+        "description": "It is built from large grey rocks that have been fastened to each other with
                        |some kind of mortar.  It is far too high to climb.\n"
       },
       {
         "keyword": "tower towers",
-        "description": "Both of the towers are built from large grey rocks that have been fastened to\n
+        "description": "Both of the towers are built from large grey rocks that have been fastened to
                        |each other with some kind of mortar, just like the city wall.\n"
       },
       {
         "keyword": "gate",
-        "description": "It is a set of very big double doors made from hard wood.  They have been\n
-                       |reinforced with large iron bands to make them even more sturdy.  One of the\n
+        "description": "It is a set of very big double doors made from hard wood.  They have been
+                       |reinforced with large iron bands to make them even more sturdy.  One of the
                        |doors is equipped with a very big lock.\n"
       },
       {
         "keyword": "bridge footbridge",
-        "description": "It is too high up to reach but it looks as if one easily could walk across it\n
+        "description": "It is too high up to reach but it looks as if one easily could walk across it
                        |from one tower to the other.\n"
       }
     ],
@@ -4382,8 +4382,8 @@
     "area": "mirror",
     "anum": 85,
     "name": "Outside the East Gate of Midgaard",
-    "description": "You are by two small towers that have been built into the city wall and\n
-                   |connected with a footbridge across the heavy wooden gate.  To the east the\n
+    "description": "You are by two small towers that have been built into the city wall and
+                   |connected with a footbridge across the heavy wooden gate.  To the east the
                    |plains stretch out in the distance.\n",
     "sector_type": "city",
     "doors": [
@@ -4407,23 +4407,23 @@
     "extra_description": [
       {
         "keyword": "wall",
-        "description": "It is built from large grey rocks that have been fastened to each other with\n
+        "description": "It is built from large grey rocks that have been fastened to each other with
                        |some kind of mortar.  It is far too high to climb.\n"
       },
       {
         "keyword": "tower towers",
-        "description": "Both of the towers are built from large grey rocks that have been fastened to\n
+        "description": "Both of the towers are built from large grey rocks that have been fastened to
                        |each other with some kind of mortar, just like the city wall.\n"
       },
       {
         "keyword": "gate",
-        "description": "It is a set of very big double doors made from hard wood.  They have been\n
-                       |reinforced with large iron bands to make them even more sturdy.  One of the\n
+        "description": "It is a set of very big double doors made from hard wood.  They have been
+                       |reinforced with large iron bands to make them even more sturdy.  One of the
                        |doors is equipped with a very big lock.\n"
       },
       {
         "keyword": "bridge footbridge",
-        "description": "It is too high up to reach but it looks as if one easily could walk across it\n
+        "description": "It is too high up to reach but it looks as if one easily could walk across it
                        |from one tower to the other.\n"
       }
     ]
@@ -4432,8 +4432,8 @@
     "area": "mirror",
     "anum": 86,
     "name": "By the Temple Altar",
-    "description": "You are by the temple altar in the northern end of the Temple of Midgaard.\n
-                   |A huge altar made from white polished marble is standing in front of you and\n
+    "description": "You are by the temple altar in the northern end of the Temple of Midgaard.
+                   |A huge altar made from white polished marble is standing in front of you and
                    |behind it is a ten foot tall sitting statue of Odin, the King of the Gods.\n",
     "sector_type": "inside",
     "room_flags": "indoors safe",
@@ -4445,14 +4445,14 @@
     "extra_description": [
       {
         "keyword": "statue odin king god",
-        "description": "The statue represents the one-eyed Odin sitting on a his throne.  He has\n
-                       |long, grey hair and beard and a strict look on his face.  On top of the\n
-                       |throne, just above his shoulders, his two ravens Hugin and Munin are sitting\n
+        "description": "The statue represents the one-eyed Odin sitting on a his throne.  He has
+                       |long, grey hair and beard and a strict look on his face.  On top of the
+                       |throne, just above his shoulders, his two ravens Hugin and Munin are sitting
                        |and at his feet are his wolves Gere and Freke.\n"
       },
       {
         "keyword": "altar",
-        "description": "Even though the altar is more than ten feet long it appears to be made from a\n
+        "description": "Even though the altar is more than ten feet long it appears to be made from a
                        |single block of white virgin marble.\n"
       }
     ]

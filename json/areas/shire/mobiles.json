@@ -5,10 +5,10 @@
     "name": "elven wizard",
     "short_descr": "the Elven Wizard",
     "long_descr": "An Elven Wizard is here, creating fireworks for the festivities.\n",
-    "description": "The Elven Wizard looks at you in a solemn sort of way.  His gaze seems to\n
-                   |penetrate through your innermost being.  He is wearing a silvery cloak\n
-                   |and holding a multi-colored staff.  Although he appears to be older\n
-                   |than the oldest man, he seems to have an inner strength which most mortals\n
+    "description": "The Elven Wizard looks at you in a solemn sort of way.  His gaze seems to
+                   |penetrate through your innermost being.  He is wearing a silvery cloak
+                   |and holding a multi-colored staff.  Although he appears to be older
+                   |than the oldest man, he seems to have an inner strength which most mortals
                    |cannot overcome.\n",
     "race": "human",
     "alignment": 500,
@@ -38,10 +38,10 @@
     "name": "ring keeper",
     "short_descr": "the Keeper of the Ring",
     "long_descr": "The Keeper of the Ring is here, guarding his treasure jealously.\n",
-    "description": "The Ring Keeper is a rather big but short halfling.  His short stature and\n
-                   |bulbous nose belie his true nature.  An elven sword that glows with a blue\n
-                   |light hangs from his belt, and on his finger you see the One Ring.  Although\n
-                   |usually a halfling of peace, he will fight you to the death if you attempt\n
+    "description": "The Ring Keeper is a rather big but short halfling.  His short stature and
+                   |bulbous nose belie his true nature.  An elven sword that glows with a blue
+                   |light hangs from his belt, and on his finger you see the One Ring.  Although
+                   |usually a halfling of peace, he will fight you to the death if you attempt
                    |to take away that which belongs to him.\n",
     "race": "human",
     "alignment": 0,
@@ -71,8 +71,8 @@
     "name": "farmer gamgee",
     "short_descr": "Farmer Gamgee",
     "long_descr": "Farmer Gamgee sniffs the air, wondering if harvest time is near.\n",
-    "description": "Farmer Gamgee is a short, stout halfling of thirty years.  His skin has\n
-                   |been tanned from working the fields night and day.  He's quite a jolly\n
+    "description": "Farmer Gamgee is a short, stout halfling of thirty years.  His skin has
+                   |been tanned from working the fields night and day.  He's quite a jolly
                    |chap, always ready to befriend an injured bunny rabbit.\n",
     "race": "human",
     "alignment": 350,
@@ -102,7 +102,7 @@
     "name": "toddler",
     "short_descr": "a toddler",
     "long_descr": "A toddler crawls about, looking for something to chew on.\n",
-    "description": "The toddler is dressed in nothing but his birthday suit.  He crawls about\n
+    "description": "The toddler is dressed in nothing but his birthday suit.  He crawls about
                    |for he hasn't learned to walk yet.  He peers up at you and asks \"da da?\"\n",
     "race": "human",
     "alignment": 100,
@@ -132,8 +132,8 @@
     "name": "nursemaid",
     "short_descr": "a nursemaid",
     "long_descr": "A nursemaid wanders about, trying to keep track of all the toddlers.\n",
-    "description": "The nursemaid looks rather tired and worn out.  Taking care of so many\n
-                   |toddlers for too long has evidently taken its toll.  She looks to you and\n
+    "description": "The nursemaid looks rather tired and worn out.  Taking care of so many
+                   |toddlers for too long has evidently taken its toll.  She looks to you and
                    |in her eyes you can see her longing for a better life.\n",
     "race": "human",
     "alignment": 100,
@@ -161,8 +161,8 @@
     "name": "cow",
     "short_descr": "a cow",
     "long_descr": "A cow is here, chewing her cud.\n",
-    "description": "The cow looks like it hasn't been milked in quite some time.  Although she\n
-                   |is past her prime, you see that she still has a lot of years left, and that\n
+    "description": "The cow looks like it hasn't been milked in quite some time.  Although she
+                   |is past her prime, you see that she still has a lot of years left, and that
                    |if provoked, her rear kick can be quite deadly.\n",
     "race": "human",
     "alignment": 0,
@@ -192,8 +192,8 @@
     "name": "pig",
     "short_descr": "a pig",
     "long_descr": "A pig wallows in the mud and oinks in contentment.\n",
-    "description": "The pig appears quite happy to be a pig.  He is oblivious to your presence\n
-                   |and cares only for the care-free life that he leads.  It is enormously fat\n
+    "description": "The pig appears quite happy to be a pig.  He is oblivious to your presence
+                   |and cares only for the care-free life that he leads.  It is enormously fat
                    |and consequently cannot move around very quickly.\n",
     "race": "pig",
     "alignment": 0,
@@ -252,8 +252,8 @@
     "name": "bull",
     "short_descr": "a bull",
     "long_descr": "A bull scratches at the ground and lowers his head.\n",
-    "description": "The bull is in top condition.  He looks like quite a fighter, nothing to be\n
-                   |reckoned with.  With his horns and his hooves he can attack just about\n
+    "description": "The bull is in top condition.  He looks like quite a fighter, nothing to be
+                   |reckoned with.  With his horns and his hooves he can attack just about
                    |anything.\n",
     "race": "human",
     "alignment": 0,
@@ -308,9 +308,9 @@
     "name": "shiriff",
     "short_descr": "a shiriff",
     "long_descr": "A shiriff of the Shire looks for signs of trouble.\n",
-    "description": "The shiriff is over waist high, quite tall for a halfling.  His eyes are\n
-                   |ever roaming, looking for signs of trouble from riff-raff like you.  In\n
-                   |his belt is a thin dagger, and on his body he wears a suit of leather armor.\n
+    "description": "The shiriff is over waist high, quite tall for a halfling.  His eyes are
+                   |ever roaming, looking for signs of trouble from riff-raff like you.  In
+                   |his belt is a thin dagger, and on his body he wears a suit of leather armor.
                    |This is one halfling you don't want to mess with.\n",
     "race": "human",
     "alignment": 150,
@@ -341,9 +341,9 @@
     "name": "shiriff",
     "short_descr": "a shiriff",
     "long_descr": "A shiriff of the Shire looks for signs of trouble.\n",
-    "description": "The shiriff is over waist high, quite tall for a halfling.  His eyes are\n
-                   |ever roaming, looking for signs of trouble from riff raff like you.  In\n
-                   |his belt is a thin dagger, and on his body he wears a suit of leather armor.\n
+    "description": "The shiriff is over waist high, quite tall for a halfling.  His eyes are
+                   |ever roaming, looking for signs of trouble from riff raff like you.  In
+                   |his belt is a thin dagger, and on his body he wears a suit of leather armor.
                    |This is one halfling you don't want to mess with.\n",
     "race": "human",
     "alignment": 150,
@@ -374,9 +374,9 @@
     "name": "thain",
     "short_descr": "the Thain",
     "long_descr": "The Thain commands respect from all Shire folk.\n",
-    "description": "A personable yet serious halfling, the Thain looks at you and yells a\n
-                   |deep 'Hullo'.  He walks about comfortably, secure in the knowledge that\n
-                   |as long as he's in office, the Shire will always remain a safe haven for\n
+    "description": "A personable yet serious halfling, the Thain looks at you and yells a
+                   |deep 'Hullo'.  He walks about comfortably, secure in the knowledge that
+                   |as long as he's in office, the Shire will always remain a safe haven for
                    |Shire folk.\n",
     "race": "human",
     "alignment": 400,
@@ -407,7 +407,7 @@
     "name": "innkeeper",
     "short_descr": "the Innkeeper",
     "long_descr": "The Innkeeper stands here awaiting your order.\n",
-    "description": "The Innkeeper is a jolly old halfling who spends his days eavesdropping on\n
+    "description": "The Innkeeper is a jolly old halfling who spends his days eavesdropping on
                    |local gossip.  In his younger days, he was quite a seasoned traveller.\n",
     "race": "human",
     "alignment": 200,
@@ -442,8 +442,8 @@
     "name": "miller",
     "short_descr": "the Miller",
     "long_descr": "The Miller is here, overseeing his busy mill workers.\n",
-    "description": "The Miller is an impatient young halfling, always trying to command more\n
-                   |respect from his workers than he can get.  He looks like the type of person\n
+    "description": "The Miller is an impatient young halfling, always trying to command more
+                   |respect from his workers than he can get.  He looks like the type of person
                    |who deserves a spanking but never got one.\n",
     "race": "human",
     "alignment": 50,
@@ -471,8 +471,8 @@
     "name": "mill worker",
     "short_descr": "the mill worker",
     "long_descr": "The mill worker runs to and fro.\n",
-    "description": "The mill worker is in fine shape from the hard labor that he does at the\n
-                   |mill.  He doesn't notice your presence, but he looks like he could break you\n
+    "description": "The mill worker is in fine shape from the hard labor that he does at the
+                   |mill.  He doesn't notice your presence, but he looks like he could break you
                    |in two without thinking about it.\n",
     "race": "human",
     "alignment": 0,
@@ -500,8 +500,8 @@
     "name": "elven warrior",
     "short_descr": "the elven warrior",
     "long_descr": "The elven warrior watches you solemnly.\n",
-    "description": "The tall elven warrior is light and fair-skinned.  The expression that he wears\n
-                   |on his countenance is solemn and tragic.  He cares not for this world any\n
+    "description": "The tall elven warrior is light and fair-skinned.  The expression that he wears
+                   |on his countenance is solemn and tragic.  He cares not for this world any
                    |longer and wearies of it.\n",
     "race": "human",
     "alignment": 600,
@@ -532,8 +532,8 @@
     "name": "dwarven prince",
     "short_descr": "the dwarven prince",
     "long_descr": "The dwarven prince sits here patiently for the return of his king.\n",
-    "description": "Grim and cold, the dwarven prince is quite strong and bulky, even for the\n
-                   |dwarves of his land.  His glowing eyes peer out of his bushy face and stare\n
+    "description": "Grim and cold, the dwarven prince is quite strong and bulky, even for the
+                   |dwarves of his land.  His glowing eyes peer out of his bushy face and stare
                    |beyond your gaze.\n",
     "race": "human",
     "alignment": 200,
@@ -564,7 +564,7 @@
     "name": "shopkeeper",
     "short_descr": "the shopkeeper",
     "long_descr": "The shopkeeper smiles and patiently waits for you to buy something.\n",
-    "description": "The shopkeeper will fight like a madman to protect his store from riff-raff\n
+    "description": "The shopkeeper will fight like a madman to protect his store from riff-raff
                    |like you.\n",
     "race": "human",
     "alignment": 600,
@@ -601,8 +601,8 @@
     "name": "grocer",
     "short_descr": "the grocer",
     "long_descr": "The grocer offers you the finest breads in all the land.\n",
-    "description": "The grocer is a large, jovial halfling who knows how to enjoy his pipeweed.\n
-                   |However, he also knows that it's worth protecting and so will do everything\n
+    "description": "The grocer is a large, jovial halfling who knows how to enjoy his pipeweed.
+                   |However, he also knows that it's worth protecting and so will do everything
                    |in his power to prevent riff-raff like you from stealing it.\n",
     "race": "human",
     "alignment": 600,
@@ -639,7 +639,7 @@
     "name": "blacksmith",
     "short_descr": "the blacksmith",
     "long_descr": "The blacksmith bids you welcome to his humble store.\n",
-    "description": "The blacksmith is a lean and mean fighting machine.  His knowledge of weapons\n
+    "description": "The blacksmith is a lean and mean fighting machine.  His knowledge of weapons
                    |and armour would certainly help him in any fight against riff-raff like you.\n",
     "race": "human",
     "alignment": 600,
@@ -704,7 +704,7 @@
     "name": "halfling youth",
     "short_descr": "a halfling youth",
     "long_descr": "A halfling youth stands here, waiting for nothing in particular.\n",
-    "description": "The halfling youth is not yet quite in the prime of his youth.  He's knee\n
+    "description": "The halfling youth is not yet quite in the prime of his youth.  He's knee
                    |high and you get the sudden urge to step on him.\n",
     "race": "human",
     "alignment": 0,
@@ -734,8 +734,8 @@
     "name": "seasoned adventurer",
     "short_descr": "a seasoned adventurer",
     "long_descr": "A seasoned adventurer sits here, telling tales of fame and fortune.\n",
-    "description": "The seasoned adventurer has seen his share of glory days.  Although he is\n
-                   |past his prime, he still looks like he could put up more than his share of\n
+    "description": "The seasoned adventurer has seen his share of glory days.  Although he is
+                   |past his prime, he still looks like he could put up more than his share of
                    |a good fight.\n",
     "race": "human",
     "alignment": 100,
@@ -765,7 +765,7 @@
     "name": "local gossip",
     "short_descr": "a local gossip",
     "long_descr": "A local gossip asks you, \"Have you heard the latest?\"\n",
-    "description": "The gossip is all talk and no action.  You're transfixed by her ability to\n
+    "description": "The gossip is all talk and no action.  You're transfixed by her ability to
                    |talk so much so quickly.\n",
     "race": "human",
     "alignment": 0,
@@ -795,9 +795,9 @@
     "name": "halfling beauty",
     "short_descr": "a halfling beauty",
     "long_descr": "A halfling beauty stares dreamily into your eyes.\n",
-    "description": "She is the most beautiful creature you've seen in quite some time.  As you\n
-                   |stare at her, thoughts of all else vanish.  You get the sudden urge to grovel\n
-                   |at her feet, hoping she'll take you in like a lost puppy.  You wouldn't dare\n
+    "description": "She is the most beautiful creature you've seen in quite some time.  As you
+                   |stare at her, thoughts of all else vanish.  You get the sudden urge to grovel
+                   |at her feet, hoping she'll take you in like a lost puppy.  You wouldn't dare
                    |harm a hair on her precious little head.\n",
     "race": "human",
     "alignment": 1000,
@@ -825,8 +825,8 @@
     "name": "trainee",
     "short_descr": "a trainee",
     "long_descr": "A trainee screams a death cry as he delivers the fatal blow to a dummy.\n",
-    "description": "The trainee smiles smugly, aware of your interest in him.  He's a little\n
-                   |fresh, but his enthusiasm and desire to please more than make up for what\n
+    "description": "The trainee smiles smugly, aware of your interest in him.  He's a little
+                   |fresh, but his enthusiasm and desire to please more than make up for what
                    |he lacks in skill.\n",
     "race": "human",
     "alignment": 0,
@@ -854,8 +854,8 @@
     "name": "chic urbanite",
     "short_descr": "a chic urbanite",
     "long_descr": "A chic urbanite sits here, enjoying his class status.\n",
-    "description": "The urbanite seems very much at home in his surroundings.  His clothes are\n
-                   |all of the latest fashions and his manners impeccable.  He offers you some\n
+    "description": "The urbanite seems very much at home in his surroundings.  His clothes are
+                   |all of the latest fashions and his manners impeccable.  He offers you some
                    |coins if you'd be so good as to order a drink for him.\n",
     "race": "human",
     "alignment": 0,
@@ -914,7 +914,7 @@
     "name": "innkeeper",
     "short_descr": "the Innkeeper",
     "long_descr": "The Innkeeper stands here awaiting your order.\n",
-    "description": "The Innkeeper is a jolly old halfling who spends his days eavesdropping on\n
+    "description": "The Innkeeper is a jolly old halfling who spends his days eavesdropping on
                    |local gossip.  In his younger days, he was quite a seasoned traveller.\n",
     "race": "human",
     "alignment": 200,
@@ -976,8 +976,8 @@
     "name": "shiriff",
     "short_descr": "a shiriff",
     "long_descr": "A shiriff of the Shire looks for the lost halfling youth.\n",
-    "description": "The shiriff is over waist high, quite tall for a halfling.\n
-                   |He looks at you, smiles and asks you if you have seen a halfling youth\n
+    "description": "The shiriff is over waist high, quite tall for a halfling.
+                   |He looks at you, smiles and asks you if you have seen a halfling youth
                    |somewhere outside the shire.\n",
     "race": "human",
     "alignment": 150,

@@ -3,13 +3,13 @@
     "area": "midgaard",
     "anum": 1,
     "name": "The Temple Of Mota",
-    "description": "You are in the southern end of the temple hall in the Temple of Mota.\n
-                   |The temple has been constructed from giant marble blocks, eternal in\n
-                   |appearance, and most of the walls are covered by ancient wall paintings\n
-                   |picturing gods, giants and peasants.\n
-                   |   Large steps lead down through the grand temple gate, descending the huge\n
-                   |mound upon which the temple is built and ends on the temple square below.\n
-                   |   Equally large steps lead UP through a small door into the ENTRANCE to MUD \n
+    "description": "You are in the southern end of the temple hall in the Temple of Mota.
+                   |The temple has been constructed from giant marble blocks, eternal in
+                   |appearance, and most of the walls are covered by ancient wall paintings
+                   |picturing gods, giants and peasants.
+                   |   Large steps lead down through the grand temple gate, descending the huge
+                   |mound upon which the temple is built and ends on the temple square below.
+                   |   Equally large steps lead UP through a small door into the ENTRANCE to MUD 
                    |SCHOOL.  (type 'up' to go to MUD SCHOOL.)  A small plaque is on this wall.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors law",
@@ -33,9 +33,9 @@
     ],
     "extra_description": [{
       "keyword": "plaque",
-      "description": "This entire world has been integrated, modified, debugged, and enhanced by\n
-                     |Hatchet, Kahn, and Furey of MERC Industries to be run by any MERC Mud.\n
-                     |1992 December 17\n
+      "description": "This entire world has been integrated, modified, debugged, and enhanced by
+                     |Hatchet, Kahn, and Furey of MERC Industries to be run by any MERC Mud.
+                     |1992 December 17
                      |ROM enhancements by Alander.\n"
     }],
     "resets": [
@@ -61,9 +61,9 @@
     "area": "midgaard",
     "anum": 2,
     "name": "Cleric's Inner Sanctum",
-    "description": "This is the inner sanctum.  A picture of the mighty Mota is hanging on\n
-                   |the wall, just above the altar which is set against the western wall.  A well\n
-                   |in the middle of the floor leads down into darkness.  Vile smells waft from\n
+    "description": "This is the inner sanctum.  A picture of the mighty Mota is hanging on
+                   |the wall, just above the altar which is set against the western wall.  A well
+                   |in the middle of the floor leads down into darkness.  Vile smells waft from
                    |the depths.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors law",
@@ -75,7 +75,7 @@
       },
       {
         "dir": "down",
-        "description": "You can't see what is down there, it is too dark.  Looks like it would be\n
+        "description": "You can't see what is down there, it is too dark.  Looks like it would be
                        |impossible to climb back up.\n",
         "portal": "midgaard-down-1"
       }
@@ -93,7 +93,7 @@
     "area": "midgaard",
     "anum": 3,
     "name": "Cleric's Bar",
-    "description": "The bar is one of the finest in the land, lucky it is members only.  Fine\n
+    "description": "The bar is one of the finest in the land, lucky it is members only.  Fine
                    |furniture is set all around the room.  A small sign is hanging on the wall.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors law",
@@ -111,11 +111,11 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "The sign reads:\n
-                     |Free instructions provided by the waiter:\n
-                     |\n
-                     |   Buy  - Buy something (drinkable) from the waiter.\n
-                     |   List - The waiter will show you all the different drinks and\n
+      "description": "The sign reads:
+                     |Free instructions provided by the waiter:
+                     |
+                     |   Buy  - Buy something (drinkable) from the waiter.
+                     |   List - The waiter will show you all the different drinks and
                      |          specialties, and tell the price of each.\n"
     }],
     "resets": [
@@ -163,8 +163,8 @@
     "area": "midgaard",
     "anum": 4,
     "name": "Entrance to Cleric's Guild",
-    "description": "The entrance hall is a small modest room, reflecting the true nature of\n
-                   |the Clerics.  The exit leads east to the temple square.  A small entrance to\n
+    "description": "The entrance hall is a small modest room, reflecting the true nature of
+                   |the Clerics.  The exit leads east to the temple square.  A small entrance to
                    |the bar is in the northern wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -243,9 +243,9 @@
     "area": "midgaard",
     "anum": 5,
     "name": "The Temple Square",
-    "description": "You are standing on the temple square.  Huge marble steps lead up to the\n
-                   |temple gate.  The entrance to the Clerics Guild is to the west, and the old\n
-                   |Grunting Boar Inn, is to the east.  Just south of here you see the market\n
+    "description": "You are standing on the temple square.  Huge marble steps lead up to the
+                   |temple gate.  The entrance to the Clerics Guild is to the west, and the old
+                   |Grunting Boar Inn, is to the east.  Just south of here you see the market
                    |square, the center of Midgaard.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -289,8 +289,8 @@
     "area": "midgaard",
     "anum": 6,
     "name": "Entrance to the Grunting Boar Inn",
-    "description": "You are standing in the entrance hall of the Grunting Boar Inn.  The hall\n
-                   |has been wisely decorated with simple but functional furniture.  A small\n
+    "description": "You are standing in the entrance hall of the Grunting Boar Inn.  The hall
+                   |has been wisely decorated with simple but functional furniture.  A small
                    |staircase leads up to the bedroom area and the bar is to the east.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -324,10 +324,10 @@
     "area": "midgaard",
     "anum": 7,
     "name": "The Grunting Boar",
-    "description": "You are standing in the bar.  The bar is set against the northern wall, old\n
-                   |archaic writing, carvings and symbols cover its top.  A fireplace is built into\n
-                   |the western wall, and through the southeastern windows you can see the temple\n
-                   |square.  This place makes you feel like home.\n
+    "description": "You are standing in the bar.  The bar is set against the northern wall, old
+                   |archaic writing, carvings and symbols cover its top.  A fireplace is built into
+                   |the western wall, and through the southeastern windows you can see the temple
+                   |square.  This place makes you feel like home.
                    |A small sign with big letters is fastened to the bar.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -339,16 +339,16 @@
     "extra_description": [
       {
         "keyword": "writing carving carvings symbols symbol",
-        "description": "Although it is very hard to understand, you think it looks a lot like beer,\n
+        "description": "Although it is very hard to understand, you think it looks a lot like beer,
                        |poems about beer, and small beer-mugs.\n"
       },
       {
         "keyword": "sign",
-        "description": "The sign reads:\n
-                       |Free instructions provided by the Grunting Boar Inn.\n
-                       |\n
-                       |   Buy  - Buy something (drinkable) from the bartender.\n
-                       |   List - The bartender will show you all the different drinks and\n
+        "description": "The sign reads:
+                       |Free instructions provided by the Grunting Boar Inn.
+                       |
+                       |   Buy  - Buy something (drinkable) from the bartender.
+                       |   List - The bartender will show you all the different drinks and
                        |          specialties, and tell the price of each.\n"
       }
     ],
@@ -405,7 +405,7 @@
     "area": "midgaard",
     "anum": 8,
     "name": "The Bedroom Area",
-    "description": "Need some rest? Sleep in one of our many beds! The staircase leads down to\n
+    "description": "Need some rest? Sleep in one of our many beds! The staircase leads down to
                    |the entrance hall.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -445,9 +445,9 @@
     "area": "midgaard",
     "anum": 9,
     "name": "The Bakery",
-    "description": "You are standing inside the small bakery.  A sweet scent of Danish and\n
-                   |fine bread fills the room.  The bread and Danish are arranged in fine order\n
-                   |on the shelves, and seem to be of the finest quality.\n
+    "description": "You are standing inside the small bakery.  A sweet scent of Danish and
+                   |fine bread fills the room.  The bread and Danish are arranged in fine order
+                   |on the shelves, and seem to be of the finest quality.
                    |A small sign is on the counter.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -459,20 +459,20 @@
     "extra_description": [
       {
         "keyword": "sign",
-        "description": "Free instructions provided by the store:\n
-                       |\n
-                       |   Buy  - Will buy you some bread or pastry.\n
-                       |   List - The baker will kindly tell you the price and sort of the bread in\n
+        "description": "Free instructions provided by the store:
+                       |
+                       |   Buy  - Will buy you some bread or pastry.
+                       |   List - The baker will kindly tell you the price and sort of the bread in
                        |          his bakery.\n"
       },
       {
         "keyword": "danish pastry",
-        "description": "You see that this is truly delicious pastry.  Must be made by a Dane from\n
-                       |Denmark (which surely is not the capital of Sweden!).  Former ruler of\n
-                       |Scandinavia, England, Northern Germany, Northern France, Russia, Greenland,\n
-                       |Iceland, Estonia etc. etc.\n
-                       |   The sight of those large, wholesome chokoladeboller makes your mouth water\n
-                       |and your soul sing.\n
+        "description": "You see that this is truly delicious pastry.  Must be made by a Dane from
+                       |Denmark (which surely is not the capital of Sweden!).  Former ruler of
+                       |Scandinavia, England, Northern Germany, Northern France, Russia, Greenland,
+                       |Iceland, Estonia etc. etc.
+                       |   The sight of those large, wholesome chokoladeboller makes your mouth water
+                       |and your soul sing.
                        |\n"
       }
     ],
@@ -534,8 +534,8 @@
     "area": "midgaard",
     "anum": 10,
     "name": "The General Store",
-    "description": "You are inside the general store.  All sorts of items are stacked on shelves\n
-                   |behind the counter, safely out of your reach.\n
+    "description": "You are inside the general store.  All sorts of items are stacked on shelves
+                   |behind the counter, safely out of your reach.
                    |A small note hangs on the wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -546,12 +546,12 @@
     }],
     "extra_description": [{
       "keyword": "note",
-      "description": "The note reads:\n
-                     |\n
-                     |  List  - Show which various items are in the store.\n
-                     |  Buy   - Buy an item.\n
-                     |  Value - The shopkeeper will (free of charge) tell how much he will\n
-                     |          pay for your item.\n
+      "description": "The note reads:
+                     |
+                     |  List  - Show which various items are in the store.
+                     |  Buy   - Buy an item.
+                     |  Value - The shopkeeper will (free of charge) tell how much he will
+                     |          pay for your item.
                      |  Sell  - Sell an item.\n"
     }],
     "resets": [
@@ -622,12 +622,12 @@
     }],
     "extra_description": [{
       "keyword": "note",
-      "description": "The note reads:\n
-                     |\n
-                     |  List  - Show which various items are in the store.\n
-                     |  Buy   - Buy an item.\n
-                     |  Value - The shopkeeper will (free of charge) tell how much he will\n
-                     |          pay for your item.\n
+      "description": "The note reads:
+                     |
+                     |  List  - Show which various items are in the store.
+                     |  Buy   - Buy an item.
+                     |  Value - The shopkeeper will (free of charge) tell how much he will
+                     |          pay for your item.
                      |  Sell  - Sell an item.\n"
     }],
     "resets": [
@@ -723,9 +723,9 @@
     "area": "midgaard",
     "anum": 12,
     "name": "Main Street",
-    "description": "You are at the end of the main street of Midgaard.  South of here is the\n
-                   |entrance to the Guild of Magic Users.  The street continues east towards the\n
-                   |market square.  The magic shop is to the north and to the west is the city\n
+    "description": "You are at the end of the main street of Midgaard.  South of here is the
+                   |entrance to the Guild of Magic Users.  The street continues east towards the
+                   |market square.  The magic shop is to the north and to the west is the city
                    |gate.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -764,8 +764,8 @@
     "area": "midgaard",
     "anum": 13,
     "name": "Main Street",
-    "description": "You are on the main street passing through the City of Midgaard.  South of\n
-                   |here is the entrance to the Armoury, and the bakery is to the north.  East of\n
+    "description": "You are on the main street passing through the City of Midgaard.  South of
+                   |here is the entrance to the Armoury, and the bakery is to the north.  East of
                    |here is the market square.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -796,9 +796,9 @@
     "area": "midgaard",
     "anum": 14,
     "name": "Market Square",
-    "description": "You are standing on the market square, the famous Square of Midgaard.\n
-                   |A large, peculiar looking statue is standing in the middle of the square.\n
-                   |Roads lead in every direction, north to the temple square, south to the\n
+    "description": "You are standing on the market square, the famous Square of Midgaard.
+                   |A large, peculiar looking statue is standing in the middle of the square.
+                   |Roads lead in every direction, north to the temple square, south to the
                    |common square, east and westbound is the main street.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -883,8 +883,8 @@
     "area": "midgaard",
     "anum": 15,
     "name": "The Main Street",
-    "description": "You are on Main Street crossing through town.  To the north is the general\n
-                   |store, and the main street continues east.  To the west you see and hear the\n
+    "description": "You are on Main Street crossing through town.  To the north is the general
+                   |store, and the main street continues east.  To the west you see and hear the
                    |market place and to the south is the Jeweller's Shop.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -915,8 +915,8 @@
     "area": "midgaard",
     "anum": 16,
     "name": "The Main Street",
-    "description": "The main street, to the north is the weapon shop and to the south is the\n
-                   |Guild of Swordsmen.  To the east you leave town and to the west the street\n
+    "description": "The main street, to the north is the weapon shop and to the south is the
+                   |Guild of Swordsmen.  To the east you leave town and to the west the street
                    |leads to the market square.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -1033,7 +1033,7 @@
     "area": "midgaard",
     "anum": 18,
     "name": "Mage's Bar",
-    "description": "The bar is one of the wierdest in the land.  Mystical images float around\n
+    "description": "The bar is one of the wierdest in the land.  Mystical images float around
                    |the air.  Illusions of fine furniture appear all around the room.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors law",
@@ -1094,12 +1094,12 @@
     "area": "midgaard",
     "anum": 19,
     "name": "Mage's Laboratory",
-    "description": "This is the Magical Experiments Laboratory.  Dark smoke-stained stones\n
-                   |arch over numerous huge oaken tables, most of these cluttered with strange-\n
-                   |looking pipes and flasks.  The floor is covered with half-erased pentagrams\n
-                   |and even weirder symbols, and a blackboard in a dark corner has only been\n
-                   |partially cleaned, some painful-looking letters faintly visible.  A well in\n
-                   |the middle of the floor leads down into darkness.  Vile smells waft from the\n
+    "description": "This is the Magical Experiments Laboratory.  Dark smoke-stained stones
+                   |arch over numerous huge oaken tables, most of these cluttered with strange-
+                   |looking pipes and flasks.  The floor is covered with half-erased pentagrams
+                   |and even weirder symbols, and a blackboard in a dark corner has only been
+                   |partially cleaned, some painful-looking letters faintly visible.  A well in
+                   |the middle of the floor leads down into darkness.  Vile smells waft from the
                    |depths.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors law",
@@ -1111,7 +1111,7 @@
       },
       {
         "dir": "down",
-        "description": "You can't see what is down there, it is too dark.  Looks like it would be\n
+        "description": "You can't see what is down there, it is too dark.  Looks like it would be
                        |impossible to climb back up.\n",
         "portal": "midgaard-down-2"
       }
@@ -1129,8 +1129,8 @@
     "area": "midgaard",
     "anum": 20,
     "name": "The Armoury",
-    "description": "The armoury with all kinds of armours on the walls and in the window.  You\n
-                   |see helmets, shields and chain mails.  To the north is the main street.\n
+    "description": "The armoury with all kinds of armours on the walls and in the window.  You
+                   |see helmets, shields and chain mails.  To the north is the main street.
                    |On the wall is a small note.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -1141,14 +1141,14 @@
     }],
     "extra_description": [{
       "keyword": "note",
-      "description": "You can use these commands for trading:\n
-                     |\n
-                     |  value <item>     To get the price of an item in your possession.\n
-                     |  sell <item>      To sell something.\n
-                     |  buy <item>       To buy something (provided that the shop has it in store).\n
-                     |  list             Gives you a listing of the shop's inventory.\n
-                     |\n
-                     |        WE DON'T GIVE CREDIT; WE DON'T EXPECT TO RECEIVE CREDIT!\n
+      "description": "You can use these commands for trading:
+                     |
+                     |  value <item>     To get the price of an item in your possession.
+                     |  sell <item>      To sell something.
+                     |  buy <item>       To buy something (provided that the shop has it in store).
+                     |  list             Gives you a listing of the shop's inventory.
+                     |
+                     |        WE DON'T GIVE CREDIT; WE DON'T EXPECT TO RECEIVE CREDIT!
                      |                             NO HAGGLING\n"
     }],
     "resets": [
@@ -1279,8 +1279,8 @@
     "area": "midgaard",
     "anum": 21,
     "name": "Entrance Hall to the Guild of Swordsmen",
-    "description": "The entrance hall to the Guild of Swordsmen.  A place where one has to be\n
-                   |careful not to say something wrong (or right).  To the east is the bar and to\n
+    "description": "The entrance hall to the Guild of Swordsmen.  A place where one has to be
+                   |careful not to say something wrong (or right).  To the east is the bar and to
                    |the north is the main street.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -1367,8 +1367,8 @@
     "area": "midgaard",
     "anum": 22,
     "name": "The Bar of Swordsmen",
-    "description": "The bar of swordsmen, once upon a time beautifully furnished.  But now the\n
-                   |furniture is all around you in small pieces.  To the south is the yard, and\n
+    "description": "The bar of swordsmen, once upon a time beautifully furnished.  But now the
+                   |furniture is all around you in small pieces.  To the south is the yard, and
                    |to the west is the entrance hall.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors law",
@@ -1436,7 +1436,7 @@
     "area": "midgaard",
     "anum": 23,
     "name": "The Tournament and Practice Yard",
-    "description": "The practice yard of the fighters.  To the north is the bar.  A well leads\n
+    "description": "The practice yard of the fighters.  To the north is the bar.  A well leads
                    |down into darkness.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors law",
@@ -1448,7 +1448,7 @@
       },
       {
         "dir": "down",
-        "description": "You can't see what is down there, it is too dark.  Looks like it would be\n
+        "description": "You can't see what is down there, it is too dark.  Looks like it would be
                        |impossible to climb back up.\n",
         "portal": "midgaard-down-3"
       }
@@ -1466,8 +1466,8 @@
     "area": "midgaard",
     "anum": 24,
     "name": "Eastern End of Poor Alley",
-    "description": "You are at the poor alley. South of here is the Grubby Inn and to the\n
-                   |east you see common square. Melancholy's map shop is north. The alley continues \n
+    "description": "You are at the poor alley. South of here is the Grubby Inn and to the
+                   |east you see common square. Melancholy's map shop is north. The alley continues 
                    |further west.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -1506,8 +1506,8 @@
     "area": "midgaard",
     "anum": 25,
     "name": "The Common Square",
-    "description": "The common square, people pass you, talking to each other.  To the west is\n
-                   |the poor alley and to the east is the dark alley.  To the north, this square\n
+    "description": "The common square, people pass you, talking to each other.  To the west is
+                   |the poor alley and to the east is the dark alley.  To the north, this square
                    |is connected to the market square.  From the south you notice a nasty smell.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -1546,8 +1546,8 @@
     "area": "midgaard",
     "anum": 26,
     "name": "The Dark Alley",
-    "description": "The dark alley, to the west is the common square and to the south is the\n
-                   |Guild of Thieves.  Grebe's Tavern, the famous sailor's dive, is north.\n
+    "description": "The dark alley, to the west is the common square and to the south is the
+                   |Guild of Thieves.  Grebe's Tavern, the famous sailor's dive, is north.
                    |The alley continues east.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -1624,8 +1624,8 @@
     "area": "midgaard",
     "anum": 27,
     "name": "Entrance Hall to the Guild of Thieves",
-    "description": "The entrance hall to the thieves' and assassins' guild.  A place where you\n
-                   |can lose both your life and your money, if you are not careful.  To the north\n
+    "description": "The entrance hall to the thieves' and assassins' guild.  A place where you
+                   |can lose both your life and your money, if you are not careful.  To the north
                    |is the dark alley and to the east is the thieves' bar.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -1728,9 +1728,9 @@
     "area": "midgaard",
     "anum": 28,
     "name": "The Thieves Bar",
-    "description": "The bar of the thieves.  Once upon a time this place was beautifully\n
-                   |furnished, but now it seems almost empty.  To the south is the yard, and to\n
-                   |the west is the entrance hall.\n
+    "description": "The bar of the thieves.  Once upon a time this place was beautifully
+                   |furnished, but now it seems almost empty.  To the south is the yard, and to
+                   |the west is the entrance hall.
                    |   (Maybe the furniture has been stolen?!)\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors law",
@@ -1795,7 +1795,7 @@
     "area": "midgaard",
     "anum": 29,
     "name": "The Secret Yard",
-    "description": "The secret practice yard of thieves and assassins.  To the north is the\n
+    "description": "The secret practice yard of thieves and assassins.  To the north is the
                    |bar.  A well leads down into darkness.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors law",
@@ -1807,7 +1807,7 @@
       },
       {
         "dir": "down",
-        "description": "You can't see what is down there, it is too dark.  Looks like it would be\n
+        "description": "You can't see what is down there, it is too dark.  Looks like it would be
                        |impossible to climb back up.\n",
         "portal": "midgaard-down-4"
       }
@@ -1825,9 +1825,9 @@
     "area": "midgaard",
     "anum": 30,
     "name": "The Dump",
-    "description": "The dump, where the people from the city drop their garbage.  Through the\n
-                   |garbage you can see a large junction of pipes, looks like the entrance to the\n
-                   |sewer system.  South of here you see the river and to the north is the common\n
+    "description": "The dump, where the people from the city drop their garbage.  Through the
+                   |garbage you can see a large junction of pipes, looks like the entrance to the
+                   |sewer system.  South of here you see the river and to the north is the common
                    |square.  A rickety old bridge leads south to the promenade.\n",
     "sector_type": "field",
     "room_flags": "no_mob law",
@@ -1840,7 +1840,7 @@
       {
         "dir": "south",
         "to": 254,
-        "description": "You see a river between northern and southern Midgaard.  A small bridge\n
+        "description": "You see a river between northern and southern Midgaard.  A small bridge
                        |spans the flow.\n"
       },
       {
@@ -1854,7 +1854,7 @@
     "area": "midgaard",
     "anum": 31,
     "name": "The Pet Shop",
-    "description": "The Pet Shop is a small crowded store, full of cages and animals of\n
+    "description": "The Pet Shop is a small crowded store, full of cages and animals of
                    |various sorts and sizes.  There is a sign on the wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors pet_shop law",
@@ -1865,17 +1865,17 @@
     }],
     "extra_description": [{
       "keyword": "sign",
-      "description": "The sign reads:\n
-                     |\n
-                     |  Use 'List' to see the available pets.\n
-                     |  Use 'Buy <pet> <name>' to buy yourself a pet and name it.\n
-                     |\n
-                     |  You can use 'order <pet> <instructions>' to order your pets around.\n
-                     |  If you abuse your pet, it will no longer regard you as its master.\n
-                     |  If you have several pets you may use 'order all <instructions>'\n
-                     |\n
-                     | Regards,\n
-                     |\n
+      "description": "The sign reads:
+                     |
+                     |  Use 'List' to see the available pets.
+                     |  Use 'Buy <pet> <name>' to buy yourself a pet and name it.
+                     |
+                     |  You can use 'order <pet> <instructions>' to order your pets around.
+                     |  If you abuse your pet, it will no longer regard you as its master.
+                     |  If you have several pets you may use 'order all <instructions>'
+                     |
+                     | Regards,
+                     |
                      |   The Shopkeeper\n"
     }],
     "resets": [{
@@ -1891,7 +1891,7 @@
     "area": "midgaard",
     "anum": 32,
     "name": "Pet Shop Store",
-    "description": "This is the small dark room in which the Pet Shop Boy keeps his pets.\n
+    "description": "This is the small dark room in which the Pet Shop Boy keeps his pets.
                    |It is vital that this room be immediately after the pet shop.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors law",
@@ -1942,9 +1942,9 @@
     "area": "midgaard",
     "anum": 33,
     "name": "The Magic Shop",
-    "description": "You are in a small room that smells of rare chemicals and spices.\n
-                   |Dividing the room in two is a large desk, and on the wall behind it are\n
-                   |numerous shelves crammed with jars, bottles, books and scrolls of all\n
+    "description": "You are in a small room that smells of rare chemicals and spices.
+                   |Dividing the room in two is a large desk, and on the wall behind it are
+                   |numerous shelves crammed with jars, bottles, books and scrolls of all
                    |sorts and sizes.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -1964,7 +1964,7 @@
       },
       {
         "keyword": "jars bottles",
-        "description": "Some of them are transparent enabling you to see that some contain colored\n
+        "description": "Some of them are transparent enabling you to see that some contain colored
                        |powders while others contain body parts of various animals.\n"
       }
     ],
@@ -2025,9 +2025,9 @@
     "area": "midgaard",
     "anum": 34,
     "name": "The Jeweller's Shop",
-    "description": "You are in a small, beautifully furnished room.  The warm light emanating\n
-                   |from the small oil lamps on the walls is reflected in the hard, polished\n
-                   |surface of the big mahogany desk that stands in the centre of the room.\n
+    "description": "You are in a small, beautifully furnished room.  The warm light emanating
+                   |from the small oil lamps on the walls is reflected in the hard, polished
+                   |surface of the big mahogany desk that stands in the centre of the room.
                    |A small sign with golden letters stands on the desk.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -2039,11 +2039,11 @@
     "extra_description": [
       {
         "keyword": "sign",
-        "description": "The golden letters say :-\n
-                       |\n
-                       |    Use 'list' to see what is in store,\n
-                       |        'buy <item>' to buy an item,\n
-                       |        'sell <item>' to sell an item and\n
+        "description": "The golden letters say :-
+                       |
+                       |    Use 'list' to see what is in store,
+                       |        'buy <item>' to buy an item,
+                       |        'sell <item>' to sell an item and
                        |        'value <item>' to make the jeweller evaluate an item.\n"
       },
       {
@@ -2052,7 +2052,7 @@
       },
       {
         "keyword": "oil lamps",
-        "description": "They are made from polished gold and looks as if they are securely fastened\n
+        "description": "They are made from polished gold and looks as if they are securely fastened
                        |to the smooth stone walls.\n"
       }
     ],
@@ -2113,10 +2113,10 @@
     "area": "midgaard",
     "anum": 35,
     "name": "The Leather Shop",
-    "description": "An acrid smell fills this large room.  Along the walls are numerous\n
-                   |shelves containing all sorts of animal hide and in the crackling fireplace\n
-                   |hangs a big iron pot with boiling water.  In the middle of the room is a\n
-                   |large oak table.\n
+    "description": "An acrid smell fills this large room.  Along the walls are numerous
+                   |shelves containing all sorts of animal hide and in the crackling fireplace
+                   |hangs a big iron pot with boiling water.  In the middle of the room is a
+                   |large oak table.
                    |A wooden sign is hanging above the fireplace.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -2128,11 +2128,11 @@
     "extra_description": [
       {
         "keyword": "sign",
-        "description": "The wooden sign says :-\n
-                       |\n
-                       |    Use 'list' to see what is in store,\n
-                       |        'buy <item>' to buy an item,\n
-                       |        'sell <item>' to sell an item and\n
+        "description": "The wooden sign says :-
+                       |
+                       |    Use 'list' to see what is in store,
+                       |        'buy <item>' to buy an item,
+                       |        'sell <item>' to sell an item and
                        |        'value <item>' to make the leather worker evaluate an item.\n"
       },
       {
@@ -2141,8 +2141,8 @@
       },
       {
         "keyword": "table",
-        "description": "It is made from solid oak but appears to be very used.  Its surface is\n
-                       |covered in marks and scratches.  A large burning candle stands directly on\n
+        "description": "It is made from solid oak but appears to be very used.  Its surface is
+                       |covered in marks and scratches.  A large burning candle stands directly on
                        |the table surface, tallow flowing down its sides.\n"
       },
       {
@@ -2270,8 +2270,8 @@
     "area": "midgaard",
     "anum": 40,
     "name": "Inside the West Gate of Midgaard",
-    "description": "You are by two small towers that have been built into the city wall and\n
-                   |connected with a footbridge across the heavy wooden gate.  Main Street leads\n
+    "description": "You are by two small towers that have been built into the city wall and
+                   |connected with a footbridge across the heavy wooden gate.  Main Street leads
                    |east and Wall Road leads both north and south from here.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -2289,7 +2289,7 @@
       {
         "dir": "south",
         "to": 42,
-        "description": "You see the road running along the inner side of the city wall.  You notice\n
+        "description": "You see the road running along the inner side of the city wall.  You notice
                        |that it is called Wall Road.\n"
       },
       {
@@ -2304,23 +2304,23 @@
     "extra_description": [
       {
         "keyword": "wall",
-        "description": "It is built from large grey rocks that have been fastened to each other with\n
+        "description": "It is built from large grey rocks that have been fastened to each other with
                        |some kind of mortar.  It is far too high to climb.\n"
       },
       {
         "keyword": "tower towers",
-        "description": "Both of the towers are built from large grey rocks that have been fastened to\n
+        "description": "Both of the towers are built from large grey rocks that have been fastened to
                        |each other with some kind of mortar, just like the city wall.\n"
       },
       {
         "keyword": "gate",
-        "description": "It is a set of very big double doors made from hard wood.  They have been\n
-                       |reinforced with large iron bands to make them even more sturdy.  One of the\n
+        "description": "It is a set of very big double doors made from hard wood.  They have been
+                       |reinforced with large iron bands to make them even more sturdy.  One of the
                        |doors is equipped with a very big lock.\n"
       },
       {
         "keyword": "bridge footbridge",
-        "description": "It is too high up to reach but it looks as if one easily could walk across it\n
+        "description": "It is too high up to reach but it looks as if one easily could walk across it
                        |from one tower to the other.\n"
       }
     ],
@@ -2427,9 +2427,9 @@
     "area": "midgaard",
     "anum": 41,
     "name": "Inside the East Gate of Midgaard",
-    "description": "You are by two small towers that have been built into the city wall and\n
-                   |connected with a footbridge across the heavy wooden gate.  Main Street leads\n
-                   |west from here.  Wall road crosses the street, heading north and south along\n
+    "description": "You are by two small towers that have been built into the city wall and
+                   |connected with a footbridge across the heavy wooden gate.  Main Street leads
+                   |west from here.  Wall road crosses the street, heading north and south along
                    |the city wall.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -2461,23 +2461,23 @@
     "extra_description": [
       {
         "keyword": "wall",
-        "description": "It is built from large grey rocks that have been fastened to each other with\n
+        "description": "It is built from large grey rocks that have been fastened to each other with
                        |some kind of mortar.  It is far too high to climb.\n"
       },
       {
         "keyword": "tower towers",
-        "description": "Both of the towers are built from large grey rocks that have been fastened to\n
+        "description": "Both of the towers are built from large grey rocks that have been fastened to
                        |each other with some kind of mortar, just like the city wall.\n"
       },
       {
         "keyword": "gate",
-        "description": "It is a set of very big double doors made from hard wood.  They have been\n
-                       |reinforced with large iron bands to make them even more sturdy.  One of the\n
+        "description": "It is a set of very big double doors made from hard wood.  They have been
+                       |reinforced with large iron bands to make them even more sturdy.  One of the
                        |doors is equipped with a very big lock.\n"
       },
       {
         "keyword": "bridge footbridge",
-        "description": "It is too high up to reach but it looks as if one easily could walk across it\n
+        "description": "It is too high up to reach but it looks as if one easily could walk across it
                        |from one tower to the other.\n"
       }
     ],
@@ -2584,7 +2584,7 @@
     "area": "midgaard",
     "anum": 42,
     "name": "Wall Road",
-    "description": "You are walking next to the western city wall.  The road continues further\n
+    "description": "You are walking next to the western city wall.  The road continues further
                    |south and the city gate is just north of here.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -2602,7 +2602,7 @@
     ],
     "extra_description": [{
       "keyword": "wall",
-      "description": "It is built from large grey rocks that have been fastened to each other with\n
+      "description": "It is built from large grey rocks that have been fastened to each other with
                      |some kind of mortar.  It is far too high to climb.\n"
     }]
   }},
@@ -2610,8 +2610,8 @@
     "area": "midgaard",
     "anum": 43,
     "name": "Wall Road",
-    "description": "You are walking next to the western city wall.  Wall Road continues further\n
-                   |north and south.  A small, poor alley leads east.\n
+    "description": "You are walking next to the western city wall.  Wall Road continues further
+                   |north and south.  A small, poor alley leads east.
                    |Some letters have been written on the wall here.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -2635,7 +2635,7 @@
     "extra_description": [
       {
         "keyword": "wall",
-        "description": "It is built from large grey rocks that have been fastened to each other with\n
+        "description": "It is built from large grey rocks that have been fastened to each other with
                        |some kind of mortar.  It is far too high to climb.\n"
       },
       {
@@ -2648,7 +2648,7 @@
     "area": "midgaard",
     "anum": 44,
     "name": "Poor Alley",
-    "description": "You are in narrow and dirty alley leading east and west.  The leather shop\n
+    "description": "You are in narrow and dirty alley leading east and west.  The leather shop
                    |is to the north.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -2687,7 +2687,7 @@
     "area": "midgaard",
     "anum": 45,
     "name": "Alley at Levee",
-    "description": "You are standing in the alley which continues east and west.  South of\n
+    "description": "You are standing in the alley which continues east and west.  South of
                    |here you see the levee.  North is the Pet Shop.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -2718,9 +2718,9 @@
     "area": "midgaard",
     "anum": 46,
     "name": "Eastern end of Alley",
-    "description": "You are standing at the eastern end of the alley,  near the city walls.  \n
-                   |Wall road loops around the city to your east, and you can see an old \n
-                   |three-story warehouse to the south.  The Fountain of Youth Apothecary is \n
+    "description": "You are standing at the eastern end of the alley,  near the city walls.  
+                   |Wall road loops around the city to your east, and you can see an old 
+                   |three-story warehouse to the south.  The Fountain of Youth Apothecary is 
                    |north.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -2751,9 +2751,9 @@
     "area": "midgaard",
     "anum": 47,
     "name": "Wall Road",
-    "description": "You are standing on the road next to the western city wall which\n
-                   |continues north.  South of here is a bridge across the river.  To the east,\n
-                   |you see an odd looking building painted bright orange with purple trim...\n
+    "description": "You are standing on the road next to the western city wall which
+                   |continues north.  South of here is a bridge across the river.  To the east,
+                   |you see an odd looking building painted bright orange with purple trim...
                    |it must be the Mob Factory!\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -2776,7 +2776,7 @@
     ],
     "extra_description": [{
       "keyword": "wall",
-      "description": "It is built from large grey rocks that have been fastened to each other with\n
+      "description": "It is built from large grey rocks that have been fastened to each other with
                      |some kind of mortar.  It is far too high to climb.\n"
     }]
   }},
@@ -2784,7 +2784,7 @@
     "area": "midgaard",
     "anum": 48,
     "name": "Grubby Inn",
-    "description": "You are inside the old Grubby Inn.  This place has not been cleaned for\n
+    "description": "You are inside the old Grubby Inn.  This place has not been cleaned for
                    |several decades, vile smells make you dizzy.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -2846,8 +2846,8 @@
     "area": "midgaard",
     "anum": 49,
     "name": "Levee",
-    "description": "You are at the levee.  South of here you see the river gently flowing west.\n
-                   |The river bank is very low making it possible to enter the river.  Directly\n
+    "description": "You are at the levee.  South of here you see the river gently flowing west.
+                   |The river bank is very low making it possible to enter the river.  Directly
                    |across the river you can see a small boat landing built off of Kate's Diner.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -2892,8 +2892,8 @@
     "area": "midgaard",
     "anum": 50,
     "name": "Abandoned Warehouse",
-    "description": "You are inside the only room in the old warehouse.  The place is very dusty\n
-                   |and appears to have been unused for many years.  The skylight spills\n
+    "description": "You are inside the only room in the old warehouse.  The place is very dusty
+                   |and appears to have been unused for many years.  The skylight spills
                    |violet-tinged light.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -2922,8 +2922,8 @@
     "area": "midgaard",
     "anum": 51,
     "name": "On the Bridge",
-    "description": "You are standing on the stone bridge crosses the river.  The bridge is\n
-                   |built out from the western city wall and the river flows west through an\n
+    "description": "You are standing on the stone bridge crosses the river.  The bridge is
+                   |built out from the western city wall and the river flows west through an
                    |opening in the wall ten feet below the bridge.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -2942,7 +2942,7 @@
     "extra_description": [
       {
         "keyword": "wall",
-        "description": "It is built from large grey rocks that have been fastened to each other with\n
+        "description": "It is built from large grey rocks that have been fastened to each other with
                        |some kind of mortar.  It is far too high to climb.\n"
       },
       {
@@ -2951,7 +2951,7 @@
       },
       {
         "keyword": "bridge",
-        "description": "It is built from large grey rocks that have been fastened to each other with\n
+        "description": "It is built from large grey rocks that have been fastened to each other with
                        |some kind of mortar, just like the wall.\n"
       }
     ]
@@ -2960,9 +2960,9 @@
     "area": "midgaard",
     "anum": 52,
     "name": "Outside the West Gate of Midgaard",
-    "description": "You are by two small towers that have been built into the city wall and\n
-                   |connected with a footbridge across the heavy wooden gate.  To the west you\n
-                   |can see the edge of a big forest. A small dusty trail leads north along the\n
+    "description": "You are by two small towers that have been built into the city wall and
+                   |connected with a footbridge across the heavy wooden gate.  To the west you
+                   |can see the edge of a big forest. A small dusty trail leads north along the
                    |wall.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -2989,23 +2989,23 @@
     "extra_description": [
       {
         "keyword": "wall",
-        "description": "It is built from large grey rocks that have been fastened to each other with\n
+        "description": "It is built from large grey rocks that have been fastened to each other with
                        |some kind of mortar.  It is far too high to climb.\n"
       },
       {
         "keyword": "tower towers",
-        "description": "Both of the towers are built from large grey rocks that have been fastened to\n
+        "description": "Both of the towers are built from large grey rocks that have been fastened to
                        |each other with some kind of mortar, just like the city wall.\n"
       },
       {
         "keyword": "gate",
-        "description": "It is a set of very big double doors made from hard wood.  They have been\n
-                       |reinforced with large iron bands to make them even more sturdy.  One of the\n
+        "description": "It is a set of very big double doors made from hard wood.  They have been
+                       |reinforced with large iron bands to make them even more sturdy.  One of the
                        |doors is equipped with a very big lock.\n"
       },
       {
         "keyword": "bridge footbridge",
-        "description": "It is too high up to reach but it looks as if one easily could walk across it\n
+        "description": "It is too high up to reach but it looks as if one easily could walk across it
                        |from one tower to the other.\n"
       }
     ]
@@ -3014,9 +3014,9 @@
     "area": "midgaard",
     "anum": 53,
     "name": "Outside the East Gate of Midgaard",
-    "description": "You are by two small towers that have been built into the city wall and\n
-                   |connected with a footbridge across the heavy wooden gate.  To the east the\n
-                   |plains stretch out in the distance. To the north a small dusty trail follow\n
+    "description": "You are by two small towers that have been built into the city wall and
+                   |connected with a footbridge across the heavy wooden gate.  To the east the
+                   |plains stretch out in the distance. To the north a small dusty trail follow
                    |the city wall.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -3043,23 +3043,23 @@
     "extra_description": [
       {
         "keyword": "wall",
-        "description": "It is built from large grey rocks that have been fastened to each other with\n
+        "description": "It is built from large grey rocks that have been fastened to each other with
                        |some kind of mortar.  It is far too high to climb.\n"
       },
       {
         "keyword": "tower towers",
-        "description": "Both of the towers are built from large grey rocks that have been fastened to\n
+        "description": "Both of the towers are built from large grey rocks that have been fastened to
                        |each other with some kind of mortar, just like the city wall.\n"
       },
       {
         "keyword": "gate",
-        "description": "It is a set of very big double doors made from hard wood.  They have been\n
-                       |reinforced with large iron bands to make them even more sturdy.  One of the\n
+        "description": "It is a set of very big double doors made from hard wood.  They have been
+                       |reinforced with large iron bands to make them even more sturdy.  One of the
                        |doors is equipped with a very big lock.\n"
       },
       {
         "keyword": "bridge footbridge",
-        "description": "It is too high up to reach but it looks as if one easily could walk across it\n
+        "description": "It is too high up to reach but it looks as if one easily could walk across it
                        |from one tower to the other.\n"
       }
     ]
@@ -3068,10 +3068,10 @@
     "area": "midgaard",
     "anum": 54,
     "name": "By the Temple Altar",
-    "description": "You are by the temple altar in the northern end of the Temple of Mota.\n
-                   |A huge altar made from white polished marble is standing in front of you and\n
-                   |behind it is a ten foot tall sitting statue of Odin, the King of the Gods.\n
-                   |The back of the altar opens into a a beautiful atrium, above which can be\n
+    "description": "You are by the temple altar in the northern end of the Temple of Mota.
+                   |A huge altar made from white polished marble is standing in front of you and
+                   |behind it is a ten foot tall sitting statue of Odin, the King of the Gods.
+                   |The back of the altar opens into a a beautiful atrium, above which can be
                    |seen a rainbow.\n",
     "sector_type": "inside",
     "room_flags": "indoors safe law",
@@ -3092,13 +3092,13 @@
     "extra_description": [
       {
         "keyword": "statue Mota king god",
-        "description": "The statue represents the Great God Mota, holding a staff.  He has long, grey\n
-                       |hair and beard and a kindly look on his face.  His staff is topped by a painted\n
+        "description": "The statue represents the Great God Mota, holding a staff.  He has long, grey
+                       |hair and beard and a kindly look on his face.  His staff is topped by a painted
                        |cube, the 6 faces of which represent the 6 aspects of his power.\n"
       },
       {
         "keyword": "altar",
-        "description": "Even though the altar is more than ten feet long it appears to be made from a\n
+        "description": "Even though the altar is more than ten feet long it appears to be made from a
                        |single block of white virgin marble.\n"
       }
     ],
@@ -3125,8 +3125,8 @@
     "area": "midgaard",
     "anum": 56,
     "name": "The Fountain of Youth Apothecary",
-    "description": "An old man putters around behind the counter, making strange love potions\n
-                   |and curative philtres.  He turns as you enter, and looks on with avarice.\n
+    "description": "An old man putters around behind the counter, making strange love potions
+                   |and curative philtres.  He turns as you enter, and looks on with avarice.
                    |Judging from the furnishings, he's been made very wealthy by his trade.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -3261,8 +3261,8 @@
     "area": "midgaard",
     "anum": 100,
     "name": "Northwest end of Concourse",
-    "description": "You are at the concourse, the city wall is just west.  A small promenade\n
-                   |goes east, and the bridge is just north of here.  The concourse continues\n
+    "description": "You are at the concourse, the city wall is just west.  A small promenade
+                   |goes east, and the bridge is just north of here.  The concourse continues
                    |south along the city wall.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -3288,8 +3288,8 @@
     "area": "midgaard",
     "anum": 101,
     "name": "Promenade",
-    "description": "The river gently flows west just north of here.  The promenade continues\n
-                   |further east and to the west you see the city wall.  Park Road leads south\n
+    "description": "The river gently flows west just north of here.  The promenade continues
+                   |further east and to the west you see the city wall.  Park Road leads south
                    |from here.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -3323,11 +3323,11 @@
     "area": "midgaard",
     "anum": 102,
     "name": "Promenade",
-    "description": "The river gently flows west just north of here.  The promenade continues\n
-                   |both east and west.  A rickety bridge crosses the river to the north, towards\n
-                   |the city dump (fortunately, the wind is blowing towards the dump today). \n
-                   |South of here you see the entrance to the park, and a small building seems\n
-                   |to be just west of the entrance.  Austral Square, home of Kate's Diner, lies\n
+    "description": "The river gently flows west just north of here.  The promenade continues
+                   |both east and west.  A rickety bridge crosses the river to the north, towards
+                   |the city dump (fortunately, the wind is blowing towards the dump today). 
+                   |South of here you see the entrance to the park, and a small building seems
+                   |to be just west of the entrance.  Austral Square, home of Kate's Diner, lies
                    |to your east.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -3366,11 +3366,11 @@
     "area": "midgaard",
     "anum": 103,
     "name": "Austral Square",
-    "description": "The Promenade opens here onto Austral Square, on the south bank of the\n
-                   |Midgaard River.  All around you is the bustle of Southern Midgaard--\n
-                   |shopkeepers on break, a town gossip or two prattling away.  You hear the\n
-                   |river lapping at the pilings of the dock by Kate's Diner, which is to your\n
-                   |north.  Emerald Avenue begins to the south, the Promenade continues west,\n
+    "description": "The Promenade opens here onto Austral Square, on the south bank of the
+                   |Midgaard River.  All around you is the bustle of Southern Midgaard--
+                   |shopkeepers on break, a town gossip or two prattling away.  You hear the
+                   |river lapping at the pilings of the dock by Kate's Diner, which is to your
+                   |north.  Emerald Avenue begins to the south, the Promenade continues west,
                    |and the concourse ends to your east.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -3409,9 +3409,9 @@
     "area": "midgaard",
     "anum": 104,
     "name": "Northeast end of Concourse",
-    "description": "You are at the Concourse.  The city wall is just east and Austral Square,\n
-                   |home of Kate's Diner, is west.  Looking across the river you see an old  \n
-                   |warehouse.  A strong stone bridge crosses the river to the north, where the\n
+    "description": "You are at the Concourse.  The city wall is just east and Austral Square,
+                   |home of Kate's Diner, is west.  Looking across the river you see an old  
+                   |warehouse.  A strong stone bridge crosses the river to the north, where the
                    |concourse becomes wall road.  The Concourse continues south along the wall.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -3434,7 +3434,7 @@
     ],
     "extra_description": [{
       "keyword": "wall",
-      "description": "It is built from large grey rocks that have been fastened to each other with\n
+      "description": "It is built from large grey rocks that have been fastened to each other with
                      |some kind of mortar.  It is far too high to climb.\n"
     }]
   }},
@@ -3442,8 +3442,8 @@
     "area": "midgaard",
     "anum": 105,
     "name": "Park Entrance",
-    "description": "You are standing just inside the small park of Midgaard.  To the north is\n
-                   |the promenade and a small path leads south into the park.  To your east is\n
+    "description": "You are standing just inside the small park of Midgaard.  To the north is
+                   |the promenade and a small path leads south into the park.  To your east is
                    |the famous Park Cafe.\n",
     "sector_type": "city",
     "room_flags": "no_mob law",
@@ -3469,9 +3469,9 @@
     "area": "midgaard",
     "anum": 106,
     "name": "Park Cafe",
-    "description": "You are inside Park Cafe, a very well lighted, cosy place. The cafe\n
-                   |is built from large logs. Through the windows in the northern wall you\n
-                   |see the river, and through the southern window you see many vigorous\n
+    "description": "You are inside Park Cafe, a very well lighted, cosy place. The cafe
+                   |is built from large logs. Through the windows in the northern wall you
+                   |see the river, and through the southern window you see many vigorous
                    |colorful plants.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -3539,7 +3539,7 @@
     "area": "midgaard",
     "anum": 107,
     "name": "Small path through the park",
-    "description": "You are walking along a small path through the park.  The path continues\n
+    "description": "You are walking along a small path through the park.  The path continues
                    |south and east.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -3558,8 +3558,8 @@
     "area": "midgaard",
     "anum": 108,
     "name": "Small path in the park",
-    "description": "You are standing on a small path inside the park.  The park entrance is\n
-                   |just north of here, and Park Cafe is just east of the entrance.  The path\n
+    "description": "You are standing on a small path inside the park.  The park entrance is
+                   |just north of here, and Park Cafe is just east of the entrance.  The path
                    |leads further east and west.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -3583,7 +3583,7 @@
     "area": "midgaard",
     "anum": 109,
     "name": "Small path in the park",
-    "description": "You are on a small path running through the park.  It continues west and\n
+    "description": "You are on a small path running through the park.  It continues west and
                    |south and just north of here you see the southern wall of Park Cafe.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -3660,7 +3660,7 @@
     "area": "midgaard",
     "anum": 110,
     "name": "Cityguard Head Quarters",
-    "description": "You are inside a tidy office.  A big desk made from dark wood is standing\n
+    "description": "You are inside a tidy office.  A big desk made from dark wood is standing
                    |in the centre of the room.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -3686,7 +3686,7 @@
     "area": "midgaard",
     "anum": 111,
     "name": "Park Road",
-    "description": "The road continues north and south.  A building is just west of here, you\n
+    "description": "The road continues north and south.  A building is just west of here, you
                    |notice a sign on the door.  The park entrance is to the east.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -3714,8 +3714,8 @@
     ],
     "extra_description": [{
       "keyword": "building door sign",
-      "description": "The sign on the door says:-\n
-                     |\n
+      "description": "The sign on the door says:-
+                     |
                      |                 Cityguard Head Quarters\n"
     }],
     "resets": [
@@ -3820,7 +3820,7 @@
     "area": "midgaard",
     "anum": 112,
     "name": "Western Park Entrance",
-    "description": "You are standing at the western end of the park.  A small path leads east\n
+    "description": "You are standing at the western end of the park.  A small path leads east
                    |into the park and going west through the entrance you will reach Park Road.\n",
     "sector_type": "city",
     "room_flags": "no_mob law",
@@ -3839,7 +3839,7 @@
     "area": "midgaard",
     "anum": 113,
     "name": "A path in the park",
-    "description": "You are in the park.  The paths lead north and west.  Westwards is the\n
+    "description": "You are in the park.  The paths lead north and west.  Westwards is the
                    |park entrance and to the east you see a small pond.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -3872,7 +3872,7 @@
     "area": "midgaard",
     "anum": 114,
     "name": "The Pond",
-    "description": "You are swimming around in the pond, feeling rather stupid.  You can get\n
+    "description": "You are swimming around in the pond, feeling rather stupid.  You can get
                    |back on the path from the eastern and western end of the pond.\n",
     "sector_type": "swim",
     "room_flags": "law",
@@ -3909,7 +3909,7 @@
     "area": "midgaard",
     "anum": 115,
     "name": "A path in the park",
-    "description": "You are in the park.  The paths lead north and east.  Eastwards is the\n
+    "description": "You are in the park.  The paths lead north and east.  Eastwards is the
                    |park entrance and to the west you see a small pond.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -3940,8 +3940,8 @@
     "area": "midgaard",
     "anum": 116,
     "name": "Eastern Park Entrance",
-    "description": "You are standing at the eastern end of the park.  A small path leads west\n
-                   |into the park.  Going east through the entrance you will reach Emerald\n
+    "description": "You are standing at the eastern end of the park.  A small path leads west
+                   |into the park.  Going east through the entrance you will reach Emerald
                    |Avenue.\n",
     "sector_type": "city",
     "room_flags": "no_mob law",
@@ -3960,7 +3960,7 @@
     "area": "midgaard",
     "anum": 117,
     "name": "Emerald Avenue",
-    "description": "You are at Emerald Avenue which continues north and south.  To the west is\n
+    "description": "You are at Emerald Avenue which continues north and south.  To the west is
                    |the park entrance and to the east is the not very big Town Hall of Midgaard.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4047,8 +4047,8 @@
     "area": "midgaard",
     "anum": 119,
     "name": "Emerald Avenue",
-    "description": "You are standing at a bend on Emerald Avenue.  The road leads north and west.\n
-                   |To the east, you see some run-down slums...it looks like the bad part of\n
+    "description": "You are standing at a bend on Emerald Avenue.  The road leads north and west.
+                   |To the east, you see some run-down slums...it looks like the bad part of
                    |town.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4072,10 +4072,10 @@
     "area": "midgaard",
     "anum": 120,
     "name": "Road Crossing",
-    "description": "You are in the middle of the road cross.  Roads lead in all directions.\n
-                   |A huge black iron chain as thick as a tree trunk is fastened into the ground\n
-                   |at the centre of the road cross.  Its other end leads directly upwards towards\n
-                   |the sky.\n
+    "description": "You are in the middle of the road cross.  Roads lead in all directions.
+                   |A huge black iron chain as thick as a tree trunk is fastened into the ground
+                   |at the centre of the road cross.  Its other end leads directly upwards towards
+                   |the sky.
                    |A road sign is here.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4105,20 +4105,20 @@
     "extra_description": [
       {
         "keyword": "chain",
-        "description": "The the chain reaches the clouds high above you.  It must take some really\n
+        "description": "The the chain reaches the clouds high above you.  It must take some really
                        |powerful magic to hold such a chain in place.\n"
       },
       {
         "keyword": "sign",
-        "description": "The sign points in all directions:\n
-                       |\n
-                       |   North - Emerald Avenue.\n
-                       |   East  - Park Road.\n
-                       |   South - Emerald Avenue.\n
-                       |   West  - Park Road.\n
-                       |\n
-                       |Someone has added the following with red paint:\n
-                       |\n
+        "description": "The sign points in all directions:
+                       |
+                       |   North - Emerald Avenue.
+                       |   East  - Park Road.
+                       |   South - Emerald Avenue.
+                       |   West  - Park Road.
+                       |
+                       |Someone has added the following with red paint:
+                       |
                        |   Up    - Redferne's Flying Citadel.\n"
       }
     ],
@@ -4177,7 +4177,7 @@
     "area": "midgaard",
     "anum": 121,
     "name": "Emerald Avenue",
-    "description": "You are standing at a bend on Emerald Avenue.  The road leads south and\n
+    "description": "You are standing at a bend on Emerald Avenue.  The road leads south and
                    |east.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4196,7 +4196,7 @@
     "area": "midgaard",
     "anum": 122,
     "name": "Park Road",
-    "description": "You are on Park Road which leads south and north.  Elm Street is east of\n
+    "description": "You are on Park Road which leads south and north.  Elm Street is east of
                    |here.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4219,7 +4219,7 @@
     "area": "midgaard",
     "anum": 123,
     "name": "Elm Street",
-    "description": "You are on Elm street.  Park Road is to the west and Elm Street continues\n
+    "description": "You are on Elm street.  Park Road is to the west and Elm Street continues
                    |in eastward direction.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4238,9 +4238,9 @@
     "area": "midgaard",
     "anum": 124,
     "name": "Elm Street",
-    "description": "You near the end of Elm Street.  An old elm tree grows here.  A heavy\n
-                   |iron grating is south, surrounding the city's graveyard.  You can see a sign\n
-                   |hanging on the grate.  The concourse joins Elm Street to the east, and the\n
+    "description": "You near the end of Elm Street.  An old elm tree grows here.  A heavy
+                   |iron grating is south, surrounding the city's graveyard.  You can see a sign
+                   |hanging on the grate.  The concourse joins Elm Street to the east, and the
                    |street ends to the north near a run-down neighborhood.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4275,11 +4275,11 @@
       },
       {
         "keyword": "sign",
-        "description": "The sign says :-\n
-                       | \n
-                       |                          Graveyard of Midgaard\n
-                       | \n
-                       |    Many brave adventurers have found their final resting place here.\n
+        "description": "The sign says :-
+                       | 
+                       |                          Graveyard of Midgaard
+                       | 
+                       |    Many brave adventurers have found their final resting place here.
                        |          Please show respect and do not desecrate their tombs.\n"
       },
       {
@@ -4292,7 +4292,7 @@
     "area": "midgaard",
     "anum": 125,
     "name": "Emerald Avenue",
-    "description": "You are on Emerald Avenue which continues north.\n
+    "description": "You are on Emerald Avenue which continues north.
                    |The Concourse is south of here.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4372,7 +4372,7 @@
     "area": "midgaard",
     "anum": 127,
     "name": "On the Concourse",
-    "description": "You are at the southwest corner of the city wall.  The Concourse leads\n
+    "description": "You are at the southwest corner of the city wall.  The Concourse leads
                    |both north and east.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4391,9 +4391,9 @@
     "area": "midgaard",
     "anum": 128,
     "name": "On the Concourse",
-    "description": "You are walking around the scenic concourse as it continues its path around\n
-                   |the city of Midgaard.  The south gate of the city lies to your east, and the \n
-                   |southwestern corner of the city wall is west.  Emerald Avenue stretches out\n
+    "description": "You are walking around the scenic concourse as it continues its path around
+                   |the city of Midgaard.  The south gate of the city lies to your east, and the 
+                   |southwestern corner of the city wall is west.  Emerald Avenue stretches out
                    |to the north.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4436,8 +4436,8 @@
     "area": "midgaard",
     "anum": 129,
     "name": "On the Concourse",
-    "description": "The concourse continues its path around the city.  The southern gates of the\n
-                   |city are west of here, and park road lies north.  The northeastern corner of\n
+    "description": "The concourse continues its path around the city.  The southern gates of the
+                   |city are west of here, and park road lies north.  The northeastern corner of
                    |the city wall is east.\n",
     "sector_type": "city",
     "room_flags": "dark law",
@@ -4461,7 +4461,7 @@
     "area": "midgaard",
     "anum": 130,
     "name": "On the Concourse",
-    "description": "You are at the southeast corner of the city wall.  The Concourse leads\n
+    "description": "You are at the southeast corner of the city wall.  The Concourse leads
                    |both north and west.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4498,7 +4498,7 @@
     "area": "midgaard",
     "anum": 132,
     "name": "Emerald Avenue",
-    "description": "You are standing on the north end of Emerald Avenue.  To the north is \n
+    "description": "You are standing on the north end of Emerald Avenue.  To the north is 
                    |Austral Square and Kate's Diner, to the east is the small street Penny Lane.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4521,7 +4521,7 @@
     "area": "midgaard",
     "anum": 133,
     "name": "Emerald Avenue",
-    "description": "You are standing at a bend on Emerald Avenue.  To the east the road goes on\n
+    "description": "You are standing at a bend on Emerald Avenue.  To the east the road goes on
                    |and to the south is the Road Crossing.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4540,7 +4540,7 @@
     "area": "midgaard",
     "anum": 134,
     "name": "Emerald Avenue",
-    "description": "You are standing at a bend on Emerald Avenue.  To the west the road goes on\n
+    "description": "You are standing at a bend on Emerald Avenue.  To the west the road goes on
                    |and to the north is the Road Crossing.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4559,8 +4559,8 @@
     "area": "midgaard",
     "anum": 135,
     "name": "Park Road",
-    "description": "You are at a bend on Park Road.  To the north the road goes on and to the\n
-                   |east is the Road Crossing.  To the south, the ancient cliffs rise from deep\n
+    "description": "You are at a bend on Park Road.  To the north the road goes on and to the
+                   |east is the Road Crossing.  To the south, the ancient cliffs rise from deep
                    |under the ground, forming a wall.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4579,7 +4579,7 @@
     "area": "midgaard",
     "anum": 136,
     "name": "Park Road",
-    "description": "You are at a bend on Park Road.  To the south the road goes on and to the\n
+    "description": "You are at a bend on Park Road.  To the south the road goes on and to the
                    |west is the Road Crossing.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4598,7 +4598,7 @@
     "area": "midgaard",
     "anum": 137,
     "name": "The Waiting Room",
-    "description": "You are standing in the waiting room at the town hall.  Wooden chairs stand\n
+    "description": "You are standing in the waiting room at the town hall.  Wooden chairs stand
                    |along the walls and a long desk is placed in the middle of the room.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -4627,9 +4627,9 @@
     "area": "midgaard",
     "anum": 138,
     "name": "The Mayor's Office",
-    "description": "You are in the not very big office of the Mayor of Midgaard.  A large and\n
-                   |polished but completely empty desk is standing in front of an armchair that\n
-                   |looks so comfortable that it most of all resembles a bed with the head end\n
+    "description": "You are in the not very big office of the Mayor of Midgaard.  A large and
+                   |polished but completely empty desk is standing in front of an armchair that
+                   |looks so comfortable that it most of all resembles a bed with the head end
                    |raised slightly.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -4640,7 +4640,7 @@
     }],
     "extra_description": [{
       "keyword": "chair armchair",
-      "description": "This chair is really a masterpiece.  A chair where one can sit as comfortably\n
+      "description": "This chair is really a masterpiece.  A chair where one can sit as comfortably
                      |as in a bed.  All lecture halls should be equipped with these things.\n"
     }],
     "resets": [
@@ -4794,7 +4794,7 @@
     "area": "midgaard",
     "anum": 139,
     "name": "Penny Lane",
-    "description": "You are on Penny Lane.  Emerald Avenue is to the west and Penny Lane\n
+    "description": "You are on Penny Lane.  Emerald Avenue is to the west and Penny Lane
                    |continues in eastward direction.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4813,7 +4813,7 @@
     "area": "midgaard",
     "anum": 140,
     "name": "Penny Lane",
-    "description": "You are on Penny Lane.  The narrow road continues north and west, and\n
+    "description": "You are on Penny Lane.  The narrow road continues north and west, and
                    |the concourse intersects this street to the east.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -4867,7 +4867,7 @@
     "area": "midgaard",
     "anum": 142,
     "name": "Captain's Office",
-    "description": "You are in the Office of the Captain of the Guard.  The Midgaard Coat of\n
+    "description": "You are in the Office of the Captain of the Guard.  The Midgaard Coat of
                    |Arms is hanging on the north wall and a heavy steel door is to the south.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -5028,7 +5028,7 @@
     "area": "midgaard",
     "anum": 143,
     "name": "The Jail",
-    "description": "You are in a dark and humid jail.  The dark stone walls are hard and cold\n
+    "description": "You are in a dark and humid jail.  The dark stone walls are hard and cold
                    |to the touch.  A heavy steel door is to the north.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -5042,7 +5042,7 @@
     }],
     "extra_description": [{
       "keyword": "wall walls",
-      "description": "The walls are marked with lots of scratches.  Some of them spell sentences\n
+      "description": "The walls are marked with lots of scratches.  Some of them spell sentences
                      |like \"JAIL IS BETTER THAN SQL\" and \"BIGFOOTDAMOOSE IS ALIVE\".\n"
     }]
   }},
@@ -5050,8 +5050,8 @@
     "area": "midgaard",
     "anum": 144,
     "name": "The end of Elm Street",
-    "description": "Elm street ends here, next to a dangerous-looking run down neighborhood.\n
-                   |You can enter the slums to the east, or head towards the graveyard to the\n
+    "description": "Elm street ends here, next to a dangerous-looking run down neighborhood.
+                   |You can enter the slums to the east, or head towards the graveyard to the
                    |south.  It occurs to you that this isn't the happiest section of town.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5072,18 +5072,18 @@
     "area": "midgaard",
     "anum": 150,
     "name": "Kate's Diner",
-    "description": "The smells of baking bread and simmering stew lead you dancing through\n
-                   |the doorway of the diner.  No greasy spoons to be seen here-- the\n
-                   |booth walls are covered in casual paisleys; the chairs are carved wood,\n
-                   |rescued from garage sales.  Most tables have chess or backgammon boards\n
-                   |carved and painted on their fingertip-smooth tops.  The refrain of some\n
-                   |musical or other from the 1930's blends with the dusty golden light and the\n
-                   |wonderful smells to put you completely at ease.  A huge picture window\n
-                   |looks out over the Midgaard River, and a doorway leads north onto the dock\n
-                   |and the South Bank river landing, while the main entrance to the south\n
-                   |returns you to Austral Square.\n
-                   |On most days you will find Kate here, testing a batch of stew or brewing\n
-                   |a special pot of cinnamon coffee, eerily just in time for your arrival\n
+    "description": "The smells of baking bread and simmering stew lead you dancing through
+                   |the doorway of the diner.  No greasy spoons to be seen here-- the
+                   |booth walls are covered in casual paisleys; the chairs are carved wood,
+                   |rescued from garage sales.  Most tables have chess or backgammon boards
+                   |carved and painted on their fingertip-smooth tops.  The refrain of some
+                   |musical or other from the 1930's blends with the dusty golden light and the
+                   |wonderful smells to put you completely at ease.  A huge picture window
+                   |looks out over the Midgaard River, and a doorway leads north onto the dock
+                   |and the South Bank river landing, while the main entrance to the south
+                   |returns you to Austral Square.
+                   |On most days you will find Kate here, testing a batch of stew or brewing
+                   |a special pot of cinnamon coffee, eerily just in time for your arrival
                    |Pull up a chair, perhaps play a game, and take time out to talk.\n",
     "sector_type": "inside",
     "room_flags": "indoors safe law",
@@ -5107,10 +5107,10 @@
     ],
     "extra_description": [{
       "keyword": "window landing",
-      "description": "You can see a rickety bridge to your northwest, leading back into\n
-                     |Central Midgaard.  A rustic dock connects the Diner with the Midgaard\n
-                     |River, and a boat or two floats lazily past.  Across the river you can see\n
-                     |the Levee and the Guild of Thieves, but they seem very far away from all\n
+      "description": "You can see a rickety bridge to your northwest, leading back into
+                     |Central Midgaard.  A rustic dock connects the Diner with the Midgaard
+                     |River, and a boat or two floats lazily past.  Across the river you can see
+                     |the Levee and the Guild of Thieves, but they seem very far away from all
                      |of this...\n"
     }],
     "resets": [
@@ -5188,13 +5188,13 @@
     "area": "midgaard",
     "anum": 160,
     "name": "Melancholy's Maps",
-    "description": "As you walk in, a sudden gust of wind enters the shop and sends several\n
-                   |scraps of paper fly around the room.  You blink as the dust you've stirred \n
-                   |up stings your eyes, and take a look around the shop.  This shop is cluttered \n
-                   |with old pieces of parchment, stacks of books, and odd scraps.  A desk with \n
-                   |slightly less clutter than the rest of the shop is in front of you.  A scroll \n
-                   |case full of scrolls is behind the desk.  A bookcase is to the right of you, \n
-                   |and to the left is a window overlooking the Common Square.  A small door, \n
+    "description": "As you walk in, a sudden gust of wind enters the shop and sends several
+                   |scraps of paper fly around the room.  You blink as the dust you've stirred 
+                   |up stings your eyes, and take a look around the shop.  This shop is cluttered 
+                   |with old pieces of parchment, stacks of books, and odd scraps.  A desk with 
+                   |slightly less clutter than the rest of the shop is in front of you.  A scroll 
+                   |case full of scrolls is behind the desk.  A bookcase is to the right of you, 
+                   |and to the left is a window overlooking the Common Square.  A small door, 
                    |half hidden by a stack of books, leads to a room in the back of the shop.\n",
     "sector_type": "inside",
     "room_flags": "unused_room_1 no_mob law",
@@ -5220,7 +5220,7 @@
       },
       {
         "keyword": "bookcase",
-        "description": "You see many cartographer journals and topographical studies.  You also see\n
+        "description": "You see many cartographer journals and topographical studies.  You also see
                        |quite a few tomes written by someone named \"Anson MacDonald\".\n"
       }
     ],
@@ -5296,11 +5296,11 @@
     "area": "midgaard",
     "anum": 161,
     "name": "Melancholy's Room",
-    "description": "A faint smell of incense teases your nose as you enter this room.  You \n
-                   |step onto a soft bearskin rug and look around.  A simple bed lies against\n
-                   |the far wall.  At the foot of it is a sturdy, ironbound chest, most likely\n
-                   |full of Melancholy's trappings from her adventuring days.  On a small table\n
-                   |under a window to the east is a vase with a single white rose.  Other than\n
+    "description": "A faint smell of incense teases your nose as you enter this room.  You 
+                   |step onto a soft bearskin rug and look around.  A simple bed lies against
+                   |the far wall.  At the foot of it is a sturdy, ironbound chest, most likely
+                   |full of Melancholy's trappings from her adventuring days.  On a small table
+                   |under a window to the east is a vase with a single white rose.  Other than
                    |that, the room is quite bare.  \n",
     "sector_type": "inside",
     "room_flags": "unused_room_1 no_mob private law",
@@ -5321,7 +5321,7 @@
     ],
     "extra_description": [{
       "keyword": "chest",
-      "description": "This chest is firmly locked, and the device by which it opens is beyond your\n
+      "description": "This chest is firmly locked, and the device by which it opens is beyond your
                      |reckoning.\n"
     }]
   }},
@@ -5329,11 +5329,11 @@
     "area": "midgaard",
     "anum": 170,
     "name": "Temple Of Stupid",
-    "description": "As you enter the abandoned warehouse your eyes blink violently to\n
-                   |adjust to the almost total darkness.  You wonder where the windows are\n
-                   |as you step into a mud puddle in the middle of the floor.  As your eyes\n
-                   |adjust, you realize that there are mud puddles all around the room, and\n
-                   |this is some weird version of windows.  In a flash of revelation, you\n
+    "description": "As you enter the abandoned warehouse your eyes blink violently to
+                   |adjust to the almost total darkness.  You wonder where the windows are
+                   |as you step into a mud puddle in the middle of the floor.  As your eyes
+                   |adjust, you realize that there are mud puddles all around the room, and
+                   |this is some weird version of windows.  In a flash of revelation, you
                    |realize that you've entered the Temple of Stupid.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -5358,8 +5358,8 @@
     "area": "midgaard",
     "anum": 200,
     "name": "Under the Bridge",
-    "description": "The arch under the bridge is covered by seaweed for one foot above the\n
-                   |surface of the river.  The water gently flows through an opening in the lower\n
+    "description": "The arch under the bridge is covered by seaweed for one foot above the
+                   |surface of the river.  The water gently flows through an opening in the lower
                    |part of the city wall.\n",
     "sector_type": "noswim",
     "room_flags": "law",
@@ -5376,7 +5376,7 @@
     ],
     "extra_description": [{
       "keyword": "wall",
-      "description": "It is built from large grey rocks that have been fastened to each other with\n
+      "description": "It is built from large grey rocks that have been fastened to each other with
                      |some kind of mortar.  Looks pretty solid.\n"
     }]
   }},
@@ -5384,7 +5384,7 @@
     "area": "midgaard",
     "anum": 201,
     "name": "On the River",
-    "description": "North of here you see the miserable buildings of the poor alley.  The\n
+    "description": "North of here you see the miserable buildings of the poor alley.  The
                    |river flows west towards the bridge.  The riverbanks are too steep to climb.\n",
     "sector_type": "noswim",
     "room_flags": "law",
@@ -5403,8 +5403,8 @@
     "area": "midgaard",
     "anum": 202,
     "name": "On the River",
-    "description": "North of here you see the dump.  The river flows from east to west.  The\n
-                   |riverbanks are too steep to climb.  A bridge passes overhead, connecting the\n
+    "description": "North of here you see the dump.  The river flows from east to west.  The
+                   |riverbanks are too steep to climb.  A bridge passes overhead, connecting the
                    |dump to the promenade.\n",
     "sector_type": "noswim",
     "room_flags": "law",
@@ -5423,7 +5423,7 @@
     "area": "midgaard",
     "anum": 203,
     "name": "On the River",
-    "description": "The levee is directly north of here, and a small boat landing for Kate's\n
+    "description": "The levee is directly north of here, and a small boat landing for Kate's
                    |Diner is to the south.  The river flows in an east west direction.\n",
     "sector_type": "noswim",
     "room_flags": "no_mob law",
@@ -5451,8 +5451,8 @@
     "area": "midgaard",
     "anum": 204,
     "name": "On the River",
-    "description": "You see the warehouse on the northern riverbank.  East of here the river\n
-                   |passes under the eastern bridge and through the city wall. The banks of the \n
+    "description": "You see the warehouse on the northern riverbank.  East of here the river
+                   |passes under the eastern bridge and through the city wall. The banks of the 
                    |levee are west, in the direction of the current.\n",
     "sector_type": "noswim",
     "room_flags": "law",
@@ -5471,16 +5471,16 @@
     "area": "midgaard",
     "anum": 205,
     "name": "On the River",
-    "description": "The river enters from a hole in the eastern city wall.  The hole has been\n
-                   |blocked by several vertically positioned iron bars set into the wall. Overhead\n
+    "description": "The river enters from a hole in the eastern city wall.  The hole has been
+                   |blocked by several vertically positioned iron bars set into the wall. Overhead
                    |you can see the stone buttresses of the eastern bridge.\n",
     "sector_type": "noswim",
     "room_flags": "law",
     "doors": [
       {
         "dir": "east",
-        "description": "The iron bars are broken, allowing passage through the hole in the wall.\n
-                       |Beyond the bars you see a dark tunnel.\n
+        "description": "The iron bars are broken, allowing passage through the hole in the wall.
+                       |Beyond the bars you see a dark tunnel.
                        |bars",
         "portal": "midgaard-east-1"
       },
@@ -5494,8 +5494,8 @@
     "area": "midgaard",
     "anum": 250,
     "name": "Wall Road",
-    "description": "Wall road extends north and south along the eastern walls of the city.\n
-                   |The east gate is north of you, south is an intersection with a dark alley. You\n
+    "description": "Wall road extends north and south along the eastern walls of the city.
+                   |The east gate is north of you, south is an intersection with a dark alley. You
                    |check to make sure you still have your wallet.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5516,9 +5516,9 @@
     "area": "midgaard",
     "anum": 251,
     "name": "Wall Road",
-    "description": "You are walking along the eastern wall of the city, on a road extending \n
-                   |between the east gate and a bridge to the south.  A dark, dirty alley lies west \n
-                   |of here.  You step carefully around a pool of liquid...who knows what it could \n
+    "description": "You are walking along the eastern wall of the city, on a road extending 
+                   |between the east gate and a bridge to the south.  A dark, dirty alley lies west 
+                   |of here.  You step carefully around a pool of liquid...who knows what it could 
                    |be in a place this foul...\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5536,7 +5536,7 @@
       {
         "dir": "west",
         "to": 46,
-        "description": "A dirty, unlight alley lies to the west...it looks like a perfect spot for a\n
+        "description": "A dirty, unlight alley lies to the west...it looks like a perfect spot for a
                        |mugging.\n"
       }
     ]
@@ -5545,9 +5545,9 @@
     "area": "midgaard",
     "anum": 252,
     "name": "Wall Road",
-    "description": "The walls of Midgaard tower above you to the east, keeping the city safe\n
-                   |from its enemies...you hope.  An intersection with a dark alley lies north,\n
-                   |and a bridge over the Midgaard river is south.  Beyond the bridge wall road \n
+    "description": "The walls of Midgaard tower above you to the east, keeping the city safe
+                   |from its enemies...you hope.  An intersection with a dark alley lies north,
+                   |and a bridge over the Midgaard river is south.  Beyond the bridge wall road 
                    |turns in the concourse.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5568,9 +5568,9 @@
     "area": "midgaard",
     "anum": 253,
     "name": "On the Bridge",
-    "description": "You are crossing a strong stone bridge, which spans the Midgaard river.\n
-                   |Below you, the river flows into an opening in the city wall, sealed with\n
-                   |strong metal bars.  North of you is wall road, south of here the concourse\n
+    "description": "You are crossing a strong stone bridge, which spans the Midgaard river.
+                   |Below you, the river flows into an opening in the city wall, sealed with
+                   |strong metal bars.  North of you is wall road, south of here the concourse
                    |loops around the inside of the city walls.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5588,8 +5588,8 @@
     ],
     "extra_description": [{
       "keyword": "opening bars river",
-      "description": "Hmm...some of the bars have been ripped out of the wall.  Enough to pass a\n
-                     |good sized raft or canoe, or perhaps even a barge.  You wonder what sort of\n
+      "description": "Hmm...some of the bars have been ripped out of the wall.  Enough to pass a
+                     |good sized raft or canoe, or perhaps even a barge.  You wonder what sort of
                      |beast had the strength to do this.\n"
     }]
   }},
@@ -5597,10 +5597,10 @@
     "area": "midgaard",
     "anum": 254,
     "name": "The South Bridge",
-    "description": "You are standing on a small, rickety bridge leading from the Midgaard\n
-                   |City Dump to the much more attractive promenade of the southern parts of \n
-                   |Midgaard.  You can smell the stench of the dump to the north, the fresher\n
-                   |air of the promenade seems preferable.  Below you are the swift-moving \n
+    "description": "You are standing on a small, rickety bridge leading from the Midgaard
+                   |City Dump to the much more attractive promenade of the southern parts of 
+                   |Midgaard.  You can smell the stench of the dump to the north, the fresher
+                   |air of the promenade seems preferable.  Below you are the swift-moving 
                    |currents of the Midgaard river.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5621,9 +5621,9 @@
     "area": "midgaard",
     "anum": 255,
     "name": "Inside the South Gate of Midgaard",
-    "description": "Two strong stone towers surround a heavy wooden gate set into the city wall,\n
-                   |to guard against the goblins that lurk in the southern forests.  You can exit\n
-                   |the city to the south, if you dare, or walk down the concourse to the east\n
+    "description": "Two strong stone towers surround a heavy wooden gate set into the city wall,
+                   |to guard against the goblins that lurk in the southern forests.  You can exit
+                   |the city to the south, if you dare, or walk down the concourse to the east
                    |or west.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5749,10 +5749,10 @@
     "area": "midgaard",
     "anum": 256,
     "name": "Outside the South Gate of Midgaard",
-    "description": "You are standing outside the strong wooden gate on the southern walls of\n
-                   |Midgaard.  Guards eye you suspiciously from the two towers on either side of\n
-                   |the gate, as they stand watch to protect the city from the goblins of this\n
-                   |forest.  The trees and goblins of the Miden'nir are south, the gate back to \n
+    "description": "You are standing outside the strong wooden gate on the southern walls of
+                   |Midgaard.  Guards eye you suspiciously from the two towers on either side of
+                   |the gate, as they stand watch to protect the city from the goblins of this
+                   |forest.  The trees and goblins of the Miden'nir are south, the gate back to 
                    |Migaard lies north.\n",
     "sector_type": "forest",
     "room_flags": "law",
@@ -5775,8 +5775,8 @@
     "area": "midgaard",
     "anum": 257,
     "name": "Wall Road",
-    "description": "You are walking along wall road, just north of the west gate of Midgaard.  \n
-                   |The road continues along the western wall to the north, towards an intersection\n
+    "description": "You are walking along wall road, just north of the west gate of Midgaard.  
+                   |The road continues along the western wall to the north, towards an intersection
                    |with a busy Clan street.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5797,8 +5797,8 @@
     "area": "midgaard",
     "anum": 258,
     "name": "Wall Road",
-    "description": "Wall road intersects with a crowded Clan Road here, filled with shops and\n
-                   |artisans.  The street stretches off to the east, towards the far wall of the\n
+    "description": "Wall road intersects with a crowded Clan Road here, filled with shops and
+                   |artisans.  The street stretches off to the east, towards the far wall of the
                    |city.  Wall road continues to the north and south.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5824,9 +5824,9 @@
     "area": "midgaard",
     "anum": 259,
     "name": "Wall Road",
-    "description": "You are walking along wall road, which extends along the inside of the western\n
-                   |wall of Midgaard.  To the south, you can see an intersection with a crowded\n
-                   |Clan street.  The northwestern corner of the city wall lies ahead to the\n
+    "description": "You are walking along wall road, which extends along the inside of the western
+                   |wall of Midgaard.  To the south, you can see an intersection with a crowded
+                   |Clan street.  The northwestern corner of the city wall lies ahead to the
                    |north.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5847,8 +5847,8 @@
     "area": "midgaard",
     "anum": 260,
     "name": "The Northwest Corner",
-    "description": "You are standing beneath the northwestern corner of the city wall, on a turn\n
-                   |in wall road.  You can head south, towards the west gate, or east, to the \n
+    "description": "You are standing beneath the northwestern corner of the city wall, on a turn
+                   |in wall road.  You can head south, towards the west gate, or east, to the 
                    |north gate.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5869,7 +5869,7 @@
     "area": "midgaard",
     "anum": 261,
     "name": "Wall Road",
-    "description": "The city walls tower over you as walk down wall road, between the northwestern\n
+    "description": "The city walls tower over you as walk down wall road, between the northwestern
                    |corner of the wall to the west, and the northern gate of Midgaard to the east.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5890,11 +5890,11 @@
     "area": "midgaard",
     "anum": 262,
     "name": "Inside the North Gate of Midgaard",
-    "description": "Two small towers surround a strong wooden gate, connected by a small stone\n
-                   |bridge set with murder holes.  This gate is not as heavily guarded as the \n
-                   |others, as the plains outside are safe to travel.  You can leave midgaard to\n
-                   |the north, or continues along wall road to the west and east.  A teeming clan\n
-                   |street is visible to the south, and beyond that the graceful spires of the\n
+    "description": "Two small towers surround a strong wooden gate, connected by a small stone
+                   |bridge set with murder holes.  This gate is not as heavily guarded as the 
+                   |others, as the plains outside are safe to travel.  You can leave midgaard to
+                   |the north, or continues along wall road to the west and east.  A teeming clan
+                   |street is visible to the south, and beyond that the graceful spires of the
                    |Temple of Mota, but there is no way to reach them from here.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5972,8 +5972,8 @@
     "area": "midgaard",
     "anum": 263,
     "name": "Wall Road",
-    "description": "You are walking along wall road, between the northern gate of the city and the\n
-                   |northeastern corner of the city walls.  You can see bloodstains on the road...\n
+    "description": "You are walking along wall road, between the northern gate of the city and the
+                   |northeastern corner of the city walls.  You can see bloodstains on the road...
                    |better be on guard for thieves.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -5994,8 +5994,8 @@
     "area": "midgaard",
     "anum": 264,
     "name": "The Northeast Corner",
-    "description": "Wall road turns the corner here, as you pass by the northeastern edge of the\n
-                   |city wall.  The north gate lies to your west, and the road south leads to the\n
+    "description": "Wall road turns the corner here, as you pass by the northeastern edge of the
+                   |city wall.  The north gate lies to your west, and the road south leads to the
                    |eastern gate of Midgaard.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6016,8 +6016,8 @@
     "area": "midgaard",
     "anum": 265,
     "name": "Wall Road",
-    "description": "Just south of you is an intersection with a crowded clan street.  The \n
-                   |eastern wall of Midgaard is beside you, and to the north you can see the \n
+    "description": "Just south of you is an intersection with a crowded clan street.  The 
+                   |eastern wall of Midgaard is beside you, and to the north you can see the 
                    |northeast corner of the city wall.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6038,9 +6038,9 @@
     "area": "midgaard",
     "anum": 266,
     "name": "Wall Road",
-    "description": "Here, wall road meets up with a busy clan street heading off towards the \n
-                   |west, and the far wall of the city.  You can smell spices, perfume, freshly\n
-                   |cured hide, and other strange scents, all mingle together in one heady aroma.\n
+    "description": "Here, wall road meets up with a busy clan street heading off towards the 
+                   |west, and the far wall of the city.  You can smell spices, perfume, freshly
+                   |cured hide, and other strange scents, all mingle together in one heady aroma.
                    |Wall road continues to the north and south.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6066,8 +6066,8 @@
     "area": "midgaard",
     "anum": 267,
     "name": "Wall Road",
-    "description": "You are near the center of wall road, just north of the east gate of the city.\n
-                   |To the north, you can see an intersection with a crowded clan street.\n
+    "description": "You are near the center of wall road, just north of the east gate of the city.
+                   |To the north, you can see an intersection with a crowded clan street.
                    |The guards at the gate eye you suspiciously from afar.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6088,9 +6088,9 @@
     "area": "midgaard",
     "anum": 268,
     "name": "Outside the North Gate of Midgaard",
-    "description": "You stand outside the north gate of the walled city of Midgaard.  A dusty \n
-                   |trail is visibile to the north, it stretches around the walls of the city.  \n
-                   |Further north are the wide expanses of the northern plains, leading to the \n
+    "description": "You stand outside the north gate of the walled city of Midgaard.  A dusty 
+                   |trail is visibile to the north, it stretches around the walls of the city.  
+                   |Further north are the wide expanses of the northern plains, leading to the 
                    |village of Ofcol.  You can return to Midgaard to the south.\n",
     "sector_type": "field",
     "room_flags": "law",
@@ -6113,8 +6113,8 @@
     "area": "midgaard",
     "anum": 270,
     "name": "On the Concourse",
-    "description": "The strong stone walls of Midgaard rise up to the west, keeping evil at bay.\n
-                   |The concourse heads towards a bridge to the north, and continues south \n
+    "description": "The strong stone walls of Midgaard rise up to the west, keeping evil at bay.
+                   |The concourse heads towards a bridge to the north, and continues south 
                    |alongside a beautiful park.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6135,8 +6135,8 @@
     "area": "midgaard",
     "anum": 271,
     "name": "On the Concourse near the park",
-    "description": "You are walking down the Concoruse, along the western wall of Midgaard.  To\n
-                   |the north, the road passes by a beautiful park, to the south, you can see\n
+    "description": "You are walking down the Concoruse, along the western wall of Midgaard.  To
+                   |the north, the road passes by a beautiful park, to the south, you can see
                    |the southwest corner of the city wall.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6157,9 +6157,9 @@
     "area": "midgaard",
     "anum": 272,
     "name": "On the Concourse at Penny Lane",
-    "description": "You are on a road leading around the inner walls of Midgaard.  To the north,\n
-                   |the concourse heads towards a bridge into northern Midgaard.  To the south, \n
-                   |you can see an intersection with Elm Street.  The quaint paved streets of\n
+    "description": "You are on a road leading around the inner walls of Midgaard.  To the north,
+                   |the concourse heads towards a bridge into northern Midgaard.  To the south, 
+                   |you can see an intersection with Elm Street.  The quaint paved streets of
                    |Penny Lane lie west.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6185,8 +6185,8 @@
     "area": "midgaard",
     "anum": 273,
     "name": "On the Concourse at Elm Street",
-    "description": "The air grows chill as you pass near the Elm Street graveyard.  The walls of\n
-                   |Midgaard are to the east, and the concourse continues to the north and south.\n
+    "description": "The air grows chill as you pass near the Elm Street graveyard.  The walls of
+                   |Midgaard are to the east, and the concourse continues to the north and south.
                    |To your west, you see Elm Street at the graveyard entrance.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6212,8 +6212,8 @@
     "area": "midgaard",
     "anum": 301,
     "name": "Clan Road",
-    "description": "You are standing on the western end of Clan Road.  The traffic here  \n
-                   |is light.  This is a quieter section of Midgaard.  You can hear the sound of\n
+    "description": "You are standing on the western end of Clan Road.  The traffic here  
+                   |is light.  This is a quieter section of Midgaard.  You can hear the sound of
                    |haggling coming from the east.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6234,7 +6234,7 @@
     "area": "midgaard",
     "anum": 302,
     "name": "Clan Road",
-    "description": "You are walking along Clan Road.  To the south of you is the money changer.  \n
+    "description": "You are walking along Clan Road.  To the south of you is the money changer.  
                    |Clan Road continues on to the east and the west.  \n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6260,7 +6260,7 @@
     "area": "midgaard",
     "anum": 303,
     "name": "Clan Road",
-    "description": "The shops on this stretch of Clan road are long-closed and boarded up.\n
+    "description": "The shops on this stretch of Clan road are long-closed and boarded up.
                    |Not much traffic passes through this part, as there is nothing to buy.  \n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6281,7 +6281,7 @@
     "area": "midgaard",
     "anum": 314,
     "name": "Clan Road",
-    "description": "Noise and light abound on this part of Clan Road.  Clan road continues off\n
+    "description": "Noise and light abound on this part of Clan Road.  Clan road continues off
                    |to the east and west.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6302,9 +6302,9 @@
     "area": "midgaard",
     "anum": 315,
     "name": "Clan Road",
-    "description": "Clan Road seems to widen here slightly, allowing more traffic to \n
-                   |travel through the area.  To the south is another entrance to the busy\n
-                   |pub.  This door is also open wide and spilling forth the sounds of\n
+    "description": "Clan Road seems to widen here slightly, allowing more traffic to 
+                   |travel through the area.  To the south is another entrance to the busy
+                   |pub.  This door is also open wide and spilling forth the sounds of
                    |happy patrons.  Clan Road continues to the east and west.\n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6330,8 +6330,8 @@
     "area": "midgaard",
     "anum": 316,
     "name": "Clan Road",
-    "description": "You are at the eastern end of Clan Road.  To the east of you, the  \n
-                   |tall wall around the city looms up before you and casts its shadow on\n
+    "description": "You are at the eastern end of Clan Road.  To the east of you, the  
+                   |tall wall around the city looms up before you and casts its shadow on
                    |you.  Clan Road continues to the west.  \n",
     "sector_type": "city",
     "room_flags": "law",
@@ -6352,11 +6352,11 @@
     "area": "midgaard",
     "anum": 334,
     "name": "A Money Changer's Room",
-    "description": "A few strategically placed lanterns keep this place well-lit in the \n
-                   |absence of any windows.  The room is surprisingly well appointed with  \n
-                   |tapestries hanging on the walls.  You'd wager your life the moneylender's\n
-                   |guards are behind them, as there are none here.  The moneylender himself\n
-                   |works from behind a large desk, no doubt holding a fortune in gold and silver.\n
+    "description": "A few strategically placed lanterns keep this place well-lit in the 
+                   |absence of any windows.  The room is surprisingly well appointed with  
+                   |tapestries hanging on the walls.  You'd wager your life the moneylender's
+                   |guards are behind them, as there are none here.  The moneylender himself
+                   |works from behind a large desk, no doubt holding a fortune in gold and silver.
                    |A smallish sign hangs on the wall, lettered in common.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -6372,7 +6372,7 @@
       },
       {
         "keyword": "sign",
-        "description": "Give me your coins, and I shall change them for you, taking but 1 in 20 for\n
+        "description": "Give me your coins, and I shall change them for you, taking but 1 in 20 for
                        |my fee.  --- Otho the Changer\n"
       }
     ],
@@ -6389,11 +6389,11 @@
     "area": "midgaard",
     "anum": 352,
     "name": "Grebe's Tavern",
-    "description": "Dive.  That's all you can say about this place; its a\n
-                   |dive.  You step carefully over the dead and/or drunk sailors\n
-                   |on the floor toward the center of the room.  There's no\n
-                   |decorations on the wall; they've all been ripped down in anger\n
-                   |or for use as weapons at one time or another.  Looking around,\n
+    "description": "Dive.  That's all you can say about this place; its a
+                   |dive.  You step carefully over the dead and/or drunk sailors
+                   |on the floor toward the center of the room.  There's no
+                   |decorations on the wall; they've all been ripped down in anger
+                   |or for use as weapons at one time or another.  Looking around,
                    |you search vainly for a clean table to sit at, and then give up.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -6425,11 +6425,11 @@
     "area": "midgaard",
     "anum": 355,
     "name": "Andy's Pub",
-    "description": "The busy pub is filled with patrons.  People are laughing and singing.\n
-                   |A minstrel plays his lute in another part of the pub, and a few people\n
-                   |are even dancing.  Andy, the pubs owner, wanders around and checks to see\n
-                   |that the needs of his customers are met.  The bar is to your south.  East\n
-                   |of you is another section of the pub.  You know that there are rooms to\n
+    "description": "The busy pub is filled with patrons.  People are laughing and singing.
+                   |A minstrel plays his lute in another part of the pub, and a few people
+                   |are even dancing.  Andy, the pubs owner, wanders around and checks to see
+                   |that the needs of his customers are met.  The bar is to your south.  East
+                   |of you is another section of the pub.  You know that there are rooms to
                    |be had somewhere around here...\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -6458,13 +6458,13 @@
     "area": "midgaard",
     "anum": 356,
     "name": "A Room in the Pub",
-    "description": "This part of the pub is filled with dancing and singing.  A wandering\n
-                   |minstrel is on a chair in a corner with his lute.  A busty red headed\n
-                   |woman is standing near him and singing a tale of comedic heroism. Drunk\n
-                   |men sit laughing at their tables and busy bar maids weave through the\n
-                   |crowd with full mugs and horns of ale and mead.  Another part of the pub\n
-                   |is located to your west. The bar is to the south.  A set of steps occupy\n
-                   |in a corner of the room.  They lead up to the inn section of this\n
+    "description": "This part of the pub is filled with dancing and singing.  A wandering
+                   |minstrel is on a chair in a corner with his lute.  A busty red headed
+                   |woman is standing near him and singing a tale of comedic heroism. Drunk
+                   |men sit laughing at their tables and busy bar maids weave through the
+                   |crowd with full mugs and horns of ale and mead.  Another part of the pub
+                   |is located to your west. The bar is to the south.  A set of steps occupy
+                   |in a corner of the room.  They lead up to the inn section of this
                    |prosperous establishment.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -6503,12 +6503,12 @@
     "area": "midgaard",
     "anum": 357,
     "name": "The Bar",
-    "description": "A long mahogany bar is set in the back of the pub.  Mugs line a shelf\n
-                   |behind the bar.  Bottles of strong, nasty looking liquids decorate one\n
-                   |of the lower shelves.  A large cask rests on a table behind the bar.  A\n
-                   |strong but friendly-looking bartender stands next to the cask polishing\n
-                   |glasses.  A couple of the bar maids stand in a corner and throw the most\n
-                   |inviting glances your way.\n
+    "description": "A long mahogany bar is set in the back of the pub.  Mugs line a shelf
+                   |behind the bar.  Bottles of strong, nasty looking liquids decorate one
+                   |of the lower shelves.  A large cask rests on a table behind the bar.  A
+                   |strong but friendly-looking bartender stands next to the cask polishing
+                   |glasses.  A couple of the bar maids stand in a corner and throw the most
+                   |inviting glances your way.
                    |A sign is on the wall.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -6526,11 +6526,11 @@
     "area": "midgaard",
     "anum": 358,
     "name": "The Bar",
-    "description": "A long mahogany bar is set in the back of the pub.  Mugs line a shelf\n
-                   |behind the bar.  Bottles of strong, nasty looking liquids decorate one\n
-                   |of the lower shelves.  A large cask rests on a table behind the bar.  A\n
-                   |strong but friendly looking bartender stands next to the cask polishing\n
-                   |glasses.  A couple of the bar maids stand in a corner and throw the most\n
+    "description": "A long mahogany bar is set in the back of the pub.  Mugs line a shelf
+                   |behind the bar.  Bottles of strong, nasty looking liquids decorate one
+                   |of the lower shelves.  A large cask rests on a table behind the bar.  A
+                   |strong but friendly looking bartender stands next to the cask polishing
+                   |glasses.  A couple of the bar maids stand in a corner and throw the most
                    |inviting glances your way.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",
@@ -6548,12 +6548,12 @@
     "area": "midgaard",
     "anum": 359,
     "name": "The Inn",
-    "description": "You are standing upstairs from Andy's Pub at Andy's Inn.  A few chairs\n
-                   |and a couple of end tables give the room a `homey' atmosphere.  A large\n
-                   |stone fireplace burns brightly against one wall and warms the room.  A\n
-                   |large oak desk is nestled in one corner of the room.  A small man with\n
-                   |wire-framed glasses sits behind the desk working dilligently on his books.\n
-                   |He looks up as you enter the room.  He looks at you quizzically.  He is\n
+    "description": "You are standing upstairs from Andy's Pub at Andy's Inn.  A few chairs
+                   |and a couple of end tables give the room a `homey' atmosphere.  A large
+                   |stone fireplace burns brightly against one wall and warms the room.  A
+                   |large oak desk is nestled in one corner of the room.  A small man with
+                   |wire-framed glasses sits behind the desk working dilligently on his books.
+                   |He looks up as you enter the room.  He looks at you quizzically.  He is
                    |probably waiting for you to ask him for a room.\n",
     "sector_type": "inside",
     "room_flags": "indoors law",

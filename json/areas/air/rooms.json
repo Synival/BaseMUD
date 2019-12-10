@@ -3,8 +3,8 @@
     "area": "air",
     "anum": 1,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above the ground north of the city.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above the ground north of the city.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -29,8 +29,8 @@
     "area": "air",
     "anum": 2,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 20 meters above the inside wall of West Midgaard.\n
+    "description": "You are flying!
+                   |Currently you are about 20 meters above the inside wall of West Midgaard.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -60,8 +60,8 @@
     "area": "air",
     "anum": 3,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 20 meters above the west gate of Midgaard.\n
+    "description": "You are flying!
+                   |Currently you are about 20 meters above the west gate of Midgaard.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -91,8 +91,8 @@
     "area": "air",
     "anum": 4,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above Wall Road.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above Wall Road.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -122,8 +122,8 @@
     "area": "air",
     "anum": 5,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above Wall Road.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above Wall Road.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -156,8 +156,8 @@
     "area": "air",
     "anum": 6,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above the ground north of Midgaard.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above the ground north of Midgaard.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -187,8 +187,8 @@
     "area": "air",
     "anum": 7,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 20 meters above the magic shop.\n
+    "description": "You are flying!
+                   |Currently you are about 20 meters above the magic shop.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -223,8 +223,8 @@
     "area": "air",
     "anum": 8,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above Main Street.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above Main Street.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -259,8 +259,8 @@
     "area": "air",
     "anum": 9,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 20 meters above the Mage Guild Hall.\n
+    "description": "You are flying!
+                   |Currently you are about 20 meters above the Mage Guild Hall.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -295,8 +295,8 @@
     "area": "air",
     "anum": 10,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above Poor Alley.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above Poor Alley.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -326,8 +326,8 @@
     "area": "air",
     "anum": 11,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above the ground north of Midgaard.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above the ground north of Midgaard.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -357,8 +357,8 @@
     "area": "air",
     "anum": 12,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 20 meters above the bakery.\n
+    "description": "You are flying!
+                   |Currently you are about 20 meters above the bakery.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -393,8 +393,8 @@
     "area": "air",
     "anum": 13,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above Main Street.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above Main Street.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -429,8 +429,8 @@
     "area": "air",
     "anum": 14,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 20 meters above Armoury.\n
+    "description": "You are flying!
+                   |Currently you are about 20 meters above Armoury.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -465,8 +465,8 @@
     "area": "air",
     "anum": 15,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above Poor Alley.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above Poor Alley.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -496,8 +496,8 @@
     "area": "air",
     "anum": 16,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 10 meters above the temple spire of Midgaard\n
+    "description": "You are flying!
+                   |Currently you are about 10 meters above the temple spire of Midgaard
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -522,8 +522,8 @@
     "area": "air",
     "anum": 17,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above the Temple Square.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above the Temple Square.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -558,8 +558,8 @@
     "area": "air",
     "anum": 18,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above Market Square.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above Market Square.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -589,8 +589,8 @@
     "area": "air",
     "anum": 19,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above Market and Commons.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above Market and Commons.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -628,8 +628,8 @@
     "area": "air",
     "anum": 20,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above ground, overlooking the Common Square.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above ground, overlooking the Common Square.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -654,8 +654,8 @@
     "area": "air",
     "anum": 21,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above the ground just north of Midgaard.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above the ground just north of Midgaard.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -680,8 +680,8 @@
     "area": "air",
     "anum": 22,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above the west gate of Midgaard.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above the west gate of Midgaard.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -719,8 +719,8 @@
     "area": "air",
     "anum": 23,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above west gate of Midgaard.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above west gate of Midgaard.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -750,8 +750,8 @@
     "area": "air",
     "anum": 24,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above wall road.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above wall road.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -781,8 +781,8 @@
     "area": "air",
     "anum": 25,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above wall road.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above wall road.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -807,8 +807,8 @@
     "area": "air",
     "anum": 26,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above the ground north of Midgaard.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above the ground north of Midgaard.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -838,8 +838,8 @@
     "area": "air",
     "anum": 27,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above the magic shop.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above the magic shop.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -874,8 +874,8 @@
     "area": "air",
     "anum": 28,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above main street.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above main street.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -910,8 +910,8 @@
     "area": "air",
     "anum": 29,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above the mage guild.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above the mage guild.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -946,8 +946,8 @@
     "area": "air",
     "anum": 30,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above poor alley.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above poor alley.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -977,8 +977,8 @@
     "area": "air",
     "anum": 31,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above the ground north of Midgaard.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above the ground north of Midgaard.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -1008,8 +1008,8 @@
     "area": "air",
     "anum": 32,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above bakery and cleric guild.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above bakery and cleric guild.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -1044,8 +1044,8 @@
     "area": "air",
     "anum": 33,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above main street.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above main street.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -1080,8 +1080,8 @@
     "area": "air",
     "anum": 34,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 40 meters above the armoury.\n
+    "description": "You are flying!
+                   |Currently you are about 40 meters above the armoury.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -1124,8 +1124,8 @@
     "area": "air",
     "anum": 35,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above poor alley.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above poor alley.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -1155,8 +1155,8 @@
     "area": "air",
     "anum": 36,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 30 meters above the temple spire.\n
+    "description": "You are flying!
+                   |Currently you are about 30 meters above the temple spire.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -1172,7 +1172,7 @@
       },
       {
         "dir": "up",
-        "description": "The rainbow leads onward and upward into the sky.\n
+        "description": "The rainbow leads onward and upward into the sky.
                        |It looks safe to travel on.\n",
         "portal": "air-up-1"
       },
@@ -1187,8 +1187,8 @@
     "area": "air",
     "anum": 37,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above the temple square.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above the temple square.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -1218,8 +1218,8 @@
     "area": "air",
     "anum": 38,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above market square.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above market square.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -1249,8 +1249,8 @@
     "area": "air",
     "anum": 39,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above market square and commons square.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above market square and commons square.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
@@ -1280,8 +1280,8 @@
     "area": "air",
     "anum": 40,
     "name": "In the air ...",
-    "description": "You are flying!\n
-                   |Currently you are about 60 meters above commoners square and the dump.\n
+    "description": "You are flying!
+                   |Currently you are about 60 meters above commoners square and the dump.
                    |It seems like you can see forever!\n",
     "sector_type": "air",
     "doors": [
