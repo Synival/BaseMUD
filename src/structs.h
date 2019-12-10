@@ -908,7 +908,6 @@ struct room_index_data {
     char *area_str;
     AREA_T *area;
     EXIT_T *exit[DIR_MAX];
-    EXIT_T *exit_orig[DIR_MAX];
     RESET_T *reset_first; /* OLC */
     RESET_T *reset_last;  /* OLC */
     char *name;

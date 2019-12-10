@@ -77,13 +77,17 @@ JSON_T *json_new_obj_room (const char *name, const ROOM_INDEX_T *room) {
         json_prop_string (new, "portal", room->portal->name);
 
     for (i = 0; i < DIR_MAX; i++)
-        if (room->exit_orig[i] != NULL)
+        if (room->exit[i] != NULL)
             break;
     if (i < DIR_MAX) {
+        int j;
         sub = json_prop_array (new, "doors");
-        for (i = 0; i < DIR_MAX; i++)
-            if (room->exit_orig[i] != NULL)
-                json_prop_obj_exit (sub, NULL, room, i, room->exit_orig[i]);
+        for (i = 0; i < DIR_MAX; i++) {
+            for (j = 0; j < DIR_MAX; j++) {
+                if (room->exit[j] && room->exit[j]->orig_door == i)
+                    json_prop_obj_exit (sub, NULL, room, room->exit[j]);
+            }
+        }
     }
 
     if (room->extra_descr) {
@@ -115,14 +119,14 @@ JSON_T *json_new_obj_extra_descr (const char *name, const EXTRA_DESCR_T *ed) {
 }
 
 JSON_T *json_prop_obj_exit (JSON_T *parent, const char *name,
-    const ROOM_INDEX_T *from, int dir, const EXIT_T *ex)
+    const ROOM_INDEX_T *from, const EXIT_T *ex)
 {
-    JSON_T *new = json_new_obj_exit (name, from, dir, ex);
+    JSON_T *new = json_new_obj_exit (name, from, ex);
     json_attach_under (new, parent);
     return new;
 }
 
-JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_T *from, int dir,
+JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_T *from,
     const EXIT_T *ex)
 {
     JSON_T *new;
@@ -130,7 +134,7 @@ JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_T *from, int dir,
         return json_new_null (name);
     new = json_new_object (name, JSON_OBJ_EXIT);
 
-    json_prop_string  (new, "dir", door_get_name (dir));
+    json_prop_string (new, "dir", door_get_name (ex->orig_door));
     if (ex->to_room == NULL || ex->to_room->area != from->area || ex->portal)
         ; // json_prop_null (new, "to");
     else

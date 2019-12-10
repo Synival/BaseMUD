@@ -43,7 +43,8 @@ const char *json_not_blank (const char *value);
 /* node creation. */
 JSON_T *json_new_obj_room (const char *name, const ROOM_INDEX_T *room);
 JSON_T *json_new_obj_extra_descr (const char *name, const EXTRA_DESCR_T *ed);
-JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_T *from, int dir, const EXIT_T *ex);
+JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_T *from,
+    const EXIT_T *ex);
 JSON_T *json_new_obj_shop (const char *name, const SHOP_T *shop);
 JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob);
 JSON_T *json_new_obj_object (const char *name, const OBJ_INDEX_T *obj);
@@ -62,7 +63,7 @@ JSON_T *json_new_obj_help (const char *name, const HELP_T *help);
 /* shorthand-functions for node creation as properties. */
 JSON_T *json_prop_obj_room (JSON_T *parent, const char *name, const ROOM_INDEX_T *room);
 JSON_T *json_prop_obj_extra_descr (JSON_T *parent, const char *name, const EXTRA_DESCR_T *ed);
-JSON_T *json_prop_obj_exit (JSON_T *parent, const char *name, const ROOM_INDEX_T *from, int dir, const EXIT_T *ex);
+JSON_T *json_prop_obj_exit (JSON_T *parent, const char *name, const ROOM_INDEX_T *from, const EXIT_T *ex);
 JSON_T *json_prop_obj_shop (JSON_T *parent, const char *name, const SHOP_T *shop);
 JSON_T *json_prop_obj_mobile (JSON_T *parent, const char *name, const MOB_INDEX_T *mob);
 JSON_T *json_prop_obj_object (JSON_T *parent, const char *name, const OBJ_INDEX_T *obj);

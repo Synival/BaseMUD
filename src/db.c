@@ -1032,7 +1032,6 @@ void load_rooms (FILE *fp) {
                 }
                 pexit->rs_flags = pexit->exit_flags;
                 room_index->exit[door] = pexit;
-                room_index->exit_orig[door] = pexit;
             }
             else if (letter == 'E') {
                 EXTRA_DESCR_T *ed = extra_descr_new ();
@@ -2655,23 +2654,6 @@ void db_dump_world (const char *filename) {
             fprintf (file, "exit[%d]:    %s\n", i, room->exit[i] ? "yes" : "no");
             if (room->exit[i]) {
                 EXIT_T *exit = room->exit[i];
-                fprintf (file, "   to_room:     %s\n",  exit->to_room ? "yes" : "no");
-                fprintf (file, "   vnum:        %d\n",  exit->vnum);
-                fprintf (file, "   area_vnum:   %d\n",  exit->area_vnum);
-                fprintf (file, "   room_anum:   %d\n",  exit->room_anum);
-                fprintf (file, "   exit_flags:  %ld\n", exit->exit_flags);
-                fprintf (file, "   key:         %d\n",  exit->key);
-                fprintf (file, "   keyword:     %s\n",  exit->keyword);
-                fprintf (file, "   description: %s\n",  exit->description);
-                fprintf (file, "   rs_flags:    %ld\n", exit->rs_flags);
-                fprintf (file, "   orig_door:   %d\n",  exit->orig_door);
-                fprintf (file, "   portal:      %s\n",  exit->portal ? "yes" : "no");
-            }
-        }
-        for (i = 0; i < DIR_MAX; i++) {
-            fprintf (file, "exit_orig[%d]: %s\n", i, room->exit_orig[i] ? "yes" : "no");
-            if (room->exit_orig[i]) {
-                EXIT_T *exit = room->exit_orig[i];
                 fprintf (file, "   to_room:     %s\n",  exit->to_room ? "yes" : "no");
                 fprintf (file, "   vnum:        %d\n",  exit->vnum);
                 fprintf (file, "   area_vnum:   %d\n",  exit->area_vnum);
