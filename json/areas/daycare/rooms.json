@@ -4,7 +4,7 @@
     "anum": 1,
     "name": "The Dwarven Drop Off",
     "description": "This is where the dwarven mommies and daddies come to drop off their
-                   |annoying little brats.  You have the urge to leave.  There is a sign here.\n",
+                   |annoying little brats.  You have the urge to leave.  There is a sign here.",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
     "doors": [
@@ -15,13 +15,13 @@
       {
         "dir": "south",
         "to": 2,
-        "description": "You see a large room full of noisy brats.\n",
+        "description": "You see a large room full of noisy brats.",
         "exit_flags": "door"
       }
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "This is an area for newbies, so have fun.  -- Sandman\n"
+      "description": "This is an area for newbies, so have fun.  -- Sandman"
     }]
   }},
   {"room": {
@@ -29,29 +29,29 @@
     "anum": 2,
     "name": "Day Care Center",
     "description": "You are in the north-east corner of the main part of the center.  Toys and
-                   |toddlers are all over the room.  There is a kitchen to the east.\n",
+                   |toddlers are all over the room.  There is a kitchen to the east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 1,
-        "description": "You see the drop off.\n"
+        "description": "You see the drop off."
       },
       {
         "dir": "east",
         "to": 26,
-        "description": "You see an extremely messy kitchen.\n"
+        "description": "You see an extremely messy kitchen."
       },
       {
         "dir": "south",
         "to": 4,
-        "description": "You see a large room full of noisy brats.\n"
+        "description": "You see a large room full of noisy brats."
       },
       {
         "dir": "west",
         "to": 3,
-        "description": "You see a large room full of noisy brats.\n"
+        "description": "You see a large room full of noisy brats."
       }
     ],
     "resets": [
@@ -116,24 +116,24 @@
     "anum": 3,
     "name": "Day Care Center",
     "description": "You are in the north-west corner of the main part of the center.  Toys and
-                   |toddlers are all over the room.  There is a bathroom to the west.\n",
+                   |toddlers are all over the room.  There is a bathroom to the west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "east",
         "to": 2,
-        "description": "You see a large room full of noisy brats.\n"
+        "description": "You see a large room full of noisy brats."
       },
       {
         "dir": "south",
         "to": 5,
-        "description": "You see a large room full of noisy brats.\n"
+        "description": "You see a large room full of noisy brats."
       },
       {
         "dir": "west",
         "to": 6,
-        "description": "You see a messy bathroom.\n"
+        "description": "You see a messy bathroom."
       }
     ],
     "resets": [
@@ -160,24 +160,24 @@
     "anum": 4,
     "name": "Day Care Center",
     "description": "You are in the south-east corner of the main part of the center.  Toys and
-                   |toddlers are all over the room.  There is a playground to the east.\n",
+                   |toddlers are all over the room.  There is a playground to the east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 2,
-        "description": "You see a large room full of noisy brats.\n"
+        "description": "You see a large room full of noisy brats."
       },
       {
         "dir": "east",
         "to": 10,
-        "description": "You see the playground.\n"
+        "description": "You see the playground."
       },
       {
         "dir": "west",
         "to": 5,
-        "description": "You see a large room full of noisy brats.\n"
+        "description": "You see a large room full of noisy brats."
       }
     ],
     "resets": [
@@ -235,24 +235,24 @@
     "anum": 5,
     "name": "Day Care Center",
     "description": "You are in the south-west corner of the main part of the center.  Toys and
-                   |toddlers are all over the room.  There is a staircase to the west.\n",
+                   |toddlers are all over the room.  There is a staircase to the west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 3,
-        "description": "You see a large room full of noisy brats.\n"
+        "description": "You see a large room full of noisy brats."
       },
       {
         "dir": "east",
         "to": 4,
-        "description": "You see a large room full of noisy brats.\n"
+        "description": "You see a large room full of noisy brats."
       },
       {
         "dir": "west",
         "to": 7,
-        "description": "You see a staircase leading down.\n"
+        "description": "You see a staircase leading down."
       }
     ],
     "resets": [
@@ -310,13 +310,13 @@
     "anum": 6,
     "name": "The Messy Bathroom",
     "description": "You hold your nose as you realize you have made the worst mistake of your
-                   |life.  The air is rancid and the walls are stained.\n",
+                   |life.  The air is rancid and the walls are stained.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 3,
-      "description": "You see a large room full of noisy brats.\n"
+      "description": "You see a large room full of noisy brats."
     }],
     "resets": [
       {
@@ -342,19 +342,19 @@
     "anum": 7,
     "name": "The Staircase",
     "description": "You stand on top of a staircase leading down, and wonder what mystery could
-                   |lie down under.  Beware!\n",
+                   |lie down under.  Beware!",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "east",
         "to": 5,
-        "description": "You see a large room full of noisy brats.\n"
+        "description": "You see a large room full of noisy brats."
       },
       {
         "dir": "down",
         "to": 12,
-        "description": "You see the entrance to something.\n"
+        "description": "You see the entrance to something."
       }
     ]
   }},
@@ -362,18 +362,18 @@
     "area": "daycare",
     "anum": 8,
     "name": "The Playground",
-    "description": "You are in the north-west corner of the playground.\n",
+    "description": "You are in the north-west corner of the playground.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "east",
         "to": 9,
-        "description": "You see the playground.\n"
+        "description": "You see the playground."
       },
       {
         "dir": "south",
         "to": 10,
-        "description": "You see the playground.\n"
+        "description": "You see the playground."
       }
     ],
     "resets": [
@@ -415,18 +415,18 @@
     "area": "daycare",
     "anum": 9,
     "name": "The Playground",
-    "description": "You are in the north-east corner of the playground.\n",
+    "description": "You are in the north-east corner of the playground.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "south",
         "to": 11,
-        "description": "You see the playground.\n"
+        "description": "You see the playground."
       },
       {
         "dir": "west",
         "to": 8,
-        "description": "You see the playground.\n"
+        "description": "You see the playground."
       }
     ],
     "resets": [
@@ -492,23 +492,23 @@
     "area": "daycare",
     "anum": 10,
     "name": "The Playground",
-    "description": "You are in the south-west corner of the playground.\n",
+    "description": "You are in the south-west corner of the playground.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 8,
-        "description": "You see the playground.\n"
+        "description": "You see the playground."
       },
       {
         "dir": "east",
         "to": 11,
-        "description": "You see the playground.\n"
+        "description": "You see the playground."
       },
       {
         "dir": "west",
         "to": 4,
-        "description": "You see a large room full of noisy brats.\n"
+        "description": "You see a large room full of noisy brats."
       }
     ],
     "resets": [
@@ -558,18 +558,18 @@
     "area": "daycare",
     "anum": 11,
     "name": "The Playground",
-    "description": "You are in the south-east corner of the playground.\n",
+    "description": "You are in the south-east corner of the playground.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 9,
-        "description": "You see the playground.\n"
+        "description": "You see the playground."
       },
       {
         "dir": "west",
         "to": 10,
-        "description": "You see the playground.\n"
+        "description": "You see the playground."
       }
     ],
     "resets": [
@@ -604,7 +604,7 @@
     "anum": 12,
     "name": "Entrance to the Mini-Maze",
     "description": "You stand in the entrance to a small, but confusing maze.  You really hope
-                   |that you don't get lost.\n",
+                   |that you don't get lost.",
     "sector_type": "field",
     "room_flags": "dark no_mob indoors",
     "doors": [
@@ -615,7 +615,7 @@
       {
         "dir": "up",
         "to": 7,
-        "description": "You see some stairs.\n"
+        "description": "You see some stairs."
       }
     ]
   }},
@@ -623,7 +623,7 @@
     "area": "daycare",
     "anum": 13,
     "name": "Mini-Maze",
-    "description": "You are in a small passage that looks just like every other one.\n",
+    "description": "You are in a small passage that looks just like every other one.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
@@ -649,7 +649,7 @@
     "area": "daycare",
     "anum": 14,
     "name": "Mini-Maze",
-    "description": "You are in a small passage that looks just like every other one.\n",
+    "description": "You are in a small passage that looks just like every other one.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
@@ -671,7 +671,7 @@
     "area": "daycare",
     "anum": 15,
     "name": "Mini-Maze",
-    "description": "You are in a small passage that looks just like every other one.\n",
+    "description": "You are in a small passage that looks just like every other one.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
@@ -693,7 +693,7 @@
     "area": "daycare",
     "anum": 16,
     "name": "Mini-Maze",
-    "description": "You are in a small passage that looks just like every other one.\n",
+    "description": "You are in a small passage that looks just like every other one.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
@@ -720,7 +720,7 @@
     "anum": 24,
     "name": "End of the Mini-Maze",
     "description": "You stand at the end of your journey.  There is a big sign here and you had
-                   |better read it!\n",
+                   |better read it!",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
@@ -736,7 +736,7 @@
     "extra_description": [{
       "keyword": "sign",
       "description": "If you are not level 6 or above, then don't go south!!!!  It is a dangerous
-                     |area, but congrats for getting this far - Sandman\n"
+                     |area, but congrats for getting this far - Sandman"
     }],
     "resets": [
       {
@@ -765,13 +765,13 @@
     "anum": 26,
     "name": "Messy Kitchen",
     "description": "You stand in the kitchen and eating area of the day care center.  Pots and
-                   |pans are everywhere, while the toddlers continue to create chaos.\n",
+                   |pans are everywhere, while the toddlers continue to create chaos.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "west",
       "to": 2,
-      "description": "You see a large room full of noisy brats.\n"
+      "description": "You see a large room full of noisy brats."
     }]
   }},
   {"room": {
@@ -779,7 +779,7 @@
     "anum": 31,
     "name": "The End?",
     "description": "You have reached the final lair.  It is dominated by a huge five headed
-                   |dragon (actually an overgrown brat with a Halloween mask).\n",
+                   |dragon (actually an overgrown brat with a Halloween mask).",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [{

@@ -146,19 +146,23 @@ An old mirror hangs on the wall.
 ~
 0 DJ 0
 D0
-The study is to the north.~
+The study is to the north.
+~
 ~
 0 -1 6901
 D1
-The laboratory is to the east.~
+The laboratory is to the east.
+~
 ~
 0 -1 6902
 D2
-The kitchen is to the south.~
+The kitchen is to the south.
+~
 ~
 0 -1 6905
 D3
-The front door leads to Park Road.~
+The front door leads to Park Road.
+~
 door~
 2 3301 3126
 E
@@ -172,7 +176,8 @@ You are in an old-fashioned kitchen.
 ~
 0 DJ 0
 D0
-The hall is to the north.~
+The hall is to the north.
+~
 ~
 0 -1 6904
 S

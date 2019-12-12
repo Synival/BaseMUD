@@ -19,7 +19,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "hammer sledge grey",
-      "description": "This massive hammer is incredibly hard, heavy, and utterly grey and featureless.\n"
+      "description": "This massive hammer is incredibly hard, heavy, and utterly grey and featureless."
     }],
     "affects": [
       {
@@ -65,7 +65,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "scroll violet",
-      "description": "The scroll is written on soft violet parchment that has a pleasing smell to it.\n"
+      "description": "The scroll is written on soft violet parchment that has a pleasing smell to it."
     }]
   }},
   {"object": {
@@ -88,7 +88,7 @@
     "extra_description": [{
       "keyword": "tablet scroll black",
       "description": "The tablet is an unreflective black rectangular piece of stone, with strange
-                     |writings etched deep into its surface.\n"
+                     |writings etched deep into its surface."
     }]
   }},
   {"object": {
@@ -109,7 +109,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "scroll githyanki",
-      "description": "The scroll has writings on it that you cannot comprehend.\n"
+      "description": "The scroll has writings on it that you cannot comprehend."
     }]
   }},
   {"object": {
@@ -137,7 +137,7 @@
                      |victims, and other things too horrible to describe.
                      |
                      |Stenciled in the center is an unpronounceable name which it would behoove you
-                     |not to utter aloud.\n"
+                     |not to utter aloud."
     }],
     "affects": [
       {
@@ -180,7 +180,7 @@
                      |seems to pulse with a life of its own, and you feel uncomfortable being anywhere
                      |near it.
                      |
-                     |Engraved in the center is one word.  Merely reading the word induces fright.\n"
+                     |Engraved in the center is one word.  Merely reading the word induces fright."
     }],
     "affects": [{
       "apply": "hp",
@@ -211,7 +211,7 @@
       "keyword": "knife silvery",
       "description": "The knife is forged from a strange silvery metal the likes of which you have
                      |never seen in your own world.  It is incredibly sharp and hard, yet feels almost
-                     |fluid to the touch.\n"
+                     |fluid to the touch."
     }],
     "affects": [
       {
@@ -251,7 +251,7 @@
       "keyword": "dagger silvery",
       "description": "The dagger is forged from a strange silvery metal the likes of which you have
                      |never seen in your own world.  It is incredibly sharp and hard, yet feels almost
-                     |fluid to the touch.\n"
+                     |fluid to the touch."
     }],
     "affects": [
       {
@@ -291,7 +291,7 @@
       "keyword": "sword thin",
       "description": "The sword is forged from a strange silvery metal.  It barely measures an inch
                      |across at its widest point, yet it is totally inflexible and razor-sharp.  It
-                     |could probably cut through stone.\n"
+                     |could probably cut through stone."
     }],
     "affects": [
       {
@@ -339,7 +339,7 @@
       "keyword": "sword thin two two-handed",
       "description": "The sword is forged from a strange silvery metal.  It barely measures two inches
                      |across at its widest point, yet it is totally inflexible and razor sharp.  It
-                     |could probably cut through stone.\n"
+                     |could probably cut through stone."
     }],
     "affects": [
       {
@@ -381,7 +381,7 @@
       "keyword": "sword silvery",
       "description": "The sword is forged from a strange silvery metal the likes of which you have
                      |never seen in your own world.  It is incredibly sharp and hard, yet feels almost
-                     |fluid to the touch.\n"
+                     |fluid to the touch."
     }],
     "affects": [
       {
@@ -422,7 +422,7 @@
       "keyword": "flail barbed iron",
       "description": "This hideous weapon has claimed many lives.  You can tell from the bloodstains
                      |dried into the iron and from the residue of flesh that hangs from the many
-                     |barbs on it.\n"
+                     |barbs on it."
     }],
     "affects": [{
       "apply": "hit roll",
@@ -456,7 +456,7 @@
       "description": "The blade of this sword is a featureless gray.  As you touch it you feel an
                      |evil presence reaching out to consume your soul.
                      |
-                     |Maybe picking it up wasn't such a good idea.\n"
+                     |Maybe picking it up wasn't such a good idea."
     }],
     "affects": [
       {
@@ -504,7 +504,7 @@
     "extra_description": [{
       "keyword": "stone flame",
       "description": "This stone burns with an flame that emits great heat, yet it can be held with
-                     |ease.  The flame creates a light that allows you to see for miles.\n"
+                     |ease.  The flame creates a light that allows you to see for miles."
     }],
     "affects": [
       {
@@ -537,7 +537,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "powder astral",
-      "description": "You see the residue of the astral plane.\n"
+      "description": "You see the residue of the astral plane."
     }]
   }},
   {"object": {
@@ -559,7 +559,7 @@
     "extra_description": [{
       "keyword": "vest splint",
       "description": "This splint mail has been expertly and ornately fashioned from the highest
-                     |quality of steels.\n"
+                     |quality of steels."
     }]
   }},
   {"object": {
@@ -581,7 +581,7 @@
     "extra_description": [{
       "keyword": "skirt splint",
       "description": "This splint mail has been expertly and ornately fashioned from the highest
-                     |quality of steels.\n"
+                     |quality of steels."
     }]
   }},
   {"object": {
@@ -603,7 +603,7 @@
     "extra_description": [{
       "keyword": "sleeves splint",
       "description": "This splint mail has been expertly and ornately fashioned from the highest
-                     |quality of steels.\n"
+                     |quality of steels."
     }]
   }},
   {"object": {
@@ -625,7 +625,7 @@
     "extra_description": [{
       "keyword": "gauntlets ornate",
       "description": "These gauntlets have been expertly and ornately fashioned from the highest
-                     |quality of steels.\n"
+                     |quality of steels."
     }],
     "affects": [
       {
@@ -671,7 +671,7 @@
     "extra_description": [{
       "keyword": "vest cracked leather",
       "description": "The ancient vest is barely intact.  All of the leather has cracked and dried
-                     |to a husk.  It is covered with stains, burns, scorch marks, and blood.\n"
+                     |to a husk.  It is covered with stains, burns, scorch marks, and blood."
     }],
     "affects": [
       {
@@ -709,7 +709,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion violet",
-      "description": "The violet fluid inside shifts and swirls.\n"
+      "description": "The violet fluid inside shifts and swirls."
     }]
   }},
   {"object": {
@@ -730,7 +730,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion vial murky",
-      "description": "The murky liquid inside this vial looks a lot like sewer water.\n"
+      "description": "The murky liquid inside this vial looks a lot like sewer water."
     }]
   }},
   {"object": {
@@ -752,7 +752,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion silvery",
-      "description": "The octagonal vial contains a silvery-colored liquid that shimmers in the light.\n"
+      "description": "The octagonal vial contains a silvery-colored liquid that shimmers in the light."
     }]
   }},
   {"object": {
@@ -774,7 +774,7 @@
     "extra_description": [{
       "keyword": "mint chocolate",
       "description": "This mint is made from the finest of chocolates, surrounding a cool peppermint
-                     |interior that must be savored, not swallowed.\n"
+                     |interior that must be savored, not swallowed."
     }]
   }},
   {"object": {
@@ -793,7 +793,7 @@
     "extra_description": [{
       "keyword": "pentagram",
       "description": "The pentagram is a small circular hoop that surrounds a five-pointed star.
-                     |Inscribed on its exterior loop are markings in an alien tongue.\n"
+                     |Inscribed on its exterior loop are markings in an alien tongue."
     }]
   }},
   {"object": {
@@ -810,7 +810,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "pouch rotting",
-      "description": "You think you see glints of metal through the holes...\n"
+      "description": "You think you see glints of metal through the holes..."
     }]
   }}
 ]

@@ -6,20 +6,20 @@
     "description": "You stand in the archway of a gigantic stone archway. The two
                    |steel gates have been forced open and have rusted in place. A hollow
                    |gust of wind blows by you into the deserted, and seemingly destroyed,
-                   |city.\n",
+                   |city.",
     "sector_type": "city",
     "room_flags": "no_mob",
     "doors": [
       {
         "dir": "east",
         "to": 56,
-        "description": "You see a trail out of this blasted place.\n"
+        "description": "You see a trail out of this blasted place."
       },
       {
         "dir": "west",
         "to": 1,
         "description": "You see devastation everywhere. Houses lie in ruin and skeletons litter
-                       |the streets. You see strange beasts stalking the shadows.\n"
+                       |the streets. You see strange beasts stalking the shadows."
       }
     ]
   }},
@@ -29,28 +29,28 @@
     "name": "Main Street",
     "description": "This was once a magnificent street, but now is in total ruin. The
                    |streets are barren and windswept and the silence is unending.  A dark alley
-                   |leads north and south.  Howls and screams echo through the deserted city.\n",
+                   |leads north and south.  Howls and screams echo through the deserted city.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 39,
-        "description": "It's a dark alley.\n"
+        "description": "It's a dark alley."
       },
       {
         "dir": "east",
         "to": 0,
-        "description": "The entrance to the city lies this way.\n"
+        "description": "The entrance to the city lies this way."
       },
       {
         "dir": "south",
         "to": 55,
-        "description": "It's a dark alley.\n"
+        "description": "It's a dark alley."
       },
       {
         "dir": "west",
         "to": 2,
-        "description": "Main Street lies this way.\n"
+        "description": "Main Street lies this way."
       }
     ]
   }},
@@ -62,13 +62,13 @@
                    |streets are barren and windswept and the silence is unending. On one
                    |side is a collapsed house while on the other is the entrance to a large
                    |ruined mansion. Eerie sounds echo within the mansion. Near the center of
-                   |town you see a large domed building, relatively intact.\n",
+                   |town you see a large domed building, relatively intact.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 36,
-        "description": "The remnants of a store lie this way.\n"
+        "description": "The remnants of a store lie this way."
       },
       {
         "dir": "east",
@@ -77,12 +77,12 @@
       {
         "dir": "south",
         "to": 32,
-        "description": "It looks like what used to be the main building in the city.\n"
+        "description": "It looks like what used to be the main building in the city."
       },
       {
         "dir": "west",
         "to": 3,
-        "description": "A withered garden path lies this way.\n"
+        "description": "A withered garden path lies this way."
       }
     ]
   }},
@@ -93,29 +93,29 @@
     "description": "A circular path surrounds a magnificent domed temple in the center of
                    |the city. Flowers have withered away and the once lush trees are bare.
                    |Vines and ivy snake up the sides of the temple and entangle themselves
-                   |around your feet. A sudden volley of howls pierces the air.\n",
+                   |around your feet. A sudden volley of howls pierces the air.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 4,
-        "description": "The garden path continues around the building.\n"
+        "description": "The garden path continues around the building."
       },
       {
         "dir": "east",
         "to": 2,
-        "description": "This is the main street leading to the city's entrance\n"
+        "description": "This is the main street leading to the city's entrance"
       },
       {
         "dir": "south",
         "to": 6,
-        "description": "The garden path continues around the building.\n"
+        "description": "The garden path continues around the building."
       },
       {
         "dir": "west",
         "to": 50,
         "description": "Inside the temple, small patches of light shoot through each doorway as
-                       |well as a few holes in the ceiling.\n"
+                       |well as a few holes in the ceiling."
       }
     ]
   }},
@@ -126,23 +126,23 @@
     "description": "A circular path surrounds a magnificent domed temple in the center of
                    |the city. Flowers have withered away and the once lush trees are bare.
                    |Vines and ivy snake up the sides of the temple and entangle themselves
-                   |around your feet. A sudden volley of howls pierces the air.\n",
+                   |around your feet. A sudden volley of howls pierces the air.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 11,
-        "description": "A side street leads off to the northern half of the city.\n"
+        "description": "A side street leads off to the northern half of the city."
       },
       {
         "dir": "south",
         "to": 3,
-        "description": "The garden path continues around the building.\n"
+        "description": "The garden path continues around the building."
       },
       {
         "dir": "west",
         "to": 5,
-        "description": "The garden path continues around the building.\n"
+        "description": "The garden path continues around the building."
       }
     ],
     "resets": [
@@ -179,19 +179,19 @@
     "description": "A circular path surrounds a magnificent domed temple in the center of
                    |the city. Flowers have withered away and the once lush trees are bare.
                    |Vines and ivy snake up the sides of the temple and entangle themselves
-                   |around your feet. A sudden volley of howls pierces the air.\n",
+                   |around your feet. A sudden volley of howls pierces the air.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "east",
         "to": 4,
-        "description": "The garden path continues around the building.\n"
+        "description": "The garden path continues around the building."
       },
       {
         "dir": "south",
         "to": 50,
         "description": "Inside the temple, small patches of light shoot through each doorway as
-                       |well as a few holes in the ceiling.\n"
+                       |well as a few holes in the ceiling."
       }
     ],
     "resets": [
@@ -228,18 +228,18 @@
     "description": "A circular path surrounds a magnificent domed temple in the center of
                    |the city. Flowers have withered away and the once lush trees are bare.
                    |Vines and ivy snake up the sides of the temple and entangle themselves
-                   |around your feet. A sudden volley of howls pierces the air.\n",
+                   |around your feet. A sudden volley of howls pierces the air.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 3,
-        "description": "The garden path continues around the building.\n"
+        "description": "The garden path continues around the building."
       },
       {
         "dir": "south",
         "to": 12,
-        "description": "A small side street leads to the southern half of the city.\n"
+        "description": "A small side street leads to the southern half of the city."
       }
     ]
   }},
@@ -250,24 +250,24 @@
     "description": "You stand in the middle of a large square lined on each side with
                    |baskets, carts, and stands of all shapes and sizes. Abandoned, these
                    |little shops still contain some of their goods once sold to a demanding
-                   |public.\n",
+                   |public.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 25,
         "description": "A small table has been toppled over, spilling fine jewelery and gems
-                       |onto the ground.\n"
+                       |onto the ground."
       },
       {
         "dir": "south",
         "to": 20,
-        "description": "Rotted remains of fruits and vegetables lie strewn about.\n"
+        "description": "Rotted remains of fruits and vegetables lie strewn about."
       },
       {
         "dir": "west",
         "to": 8,
-        "description": "The market place continues.\n"
+        "description": "The market place continues."
       }
     ]
   }},
@@ -276,24 +276,24 @@
     "anum": 8,
     "name": "The market place",
     "description": "You stand at the end of the market square. Stands and carts line
-                   |each side, filled with remnants of fine foods and exquisite goods.\n",
+                   |each side, filled with remnants of fine foods and exquisite goods.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 22,
-        "description": "Tattered carpets and ruined bales of silk sit idly by a run down stand.\n"
+        "description": "Tattered carpets and ruined bales of silk sit idly by a run down stand."
       },
       {
         "dir": "east",
         "to": 7,
-        "description": "The center of the market lies this way.\n"
+        "description": "The center of the market lies this way."
       },
       {
         "dir": "south",
         "to": 17,
         "description": "From the massive stench, this must have been a meat and poultry stand.
-                       |It lies totally bare.\n"
+                       |It lies totally bare."
       }
     ]
   }},
@@ -302,7 +302,7 @@
     "anum": 9,
     "name": "A Side Street",
     "description": "This small side street leads east and west into back alleys while
-                   |to the south you see the temple. The incessant howling tears at your mind.\n",
+                   |to the south you see the temple. The incessant howling tears at your mind.",
     "sector_type": "city",
     "doors": [
       {
@@ -326,7 +326,7 @@
     "description": "You are in the common section of the city. Ruined buildings made of
                    |clay and stone is all the view has to offer. Most of these homes are
                    |nothing but piles of rubble, but some look almost safe enough to venture
-                   |into. The street continues north and south and buildings line the street.\n",
+                   |into. The street continues north and south and buildings line the street.",
     "sector_type": "city",
     "doors": [
       {
@@ -336,7 +336,7 @@
       {
         "dir": "east",
         "to": 44,
-        "description": "A small doorway leads into a partially collapsed house.\n",
+        "description": "A small doorway leads into a partially collapsed house.",
         "exit_flags": "door"
       },
       {
@@ -346,7 +346,7 @@
       {
         "dir": "west",
         "to": 26,
-        "description": "A small clay dwelling sits here.\n"
+        "description": "A small clay dwelling sits here."
       }
     ]
   }},
@@ -356,7 +356,7 @@
     "name": "A Side Street",
     "description": "This small side street leads away from the garden path to the south.
                    |Around you stand large piles or rubble where the houses of commoners
-                   |used to be. A lone howl makes you worry greatly about your safety here.\n",
+                   |used to be. A lone howl makes you worry greatly about your safety here.",
     "sector_type": "city",
     "doors": [
       {
@@ -366,17 +366,17 @@
       {
         "dir": "east",
         "to": 37,
-        "description": "An unusually tall dwelling stands looming over you.\n"
+        "description": "An unusually tall dwelling stands looming over you."
       },
       {
         "dir": "south",
         "to": 4,
-        "description": "A garden path circles around the temple.\n"
+        "description": "A garden path circles around the temple."
       },
       {
         "dir": "west",
         "to": 27,
-        "description": "Here lies a small stone house with a thatched roof.\n"
+        "description": "Here lies a small stone house with a thatched roof."
       }
     ]
   }},
@@ -388,18 +388,18 @@
                    |business section of town. The destruction that leveled this city was not
                    |biased; these important looking buildings have been almost totally
                    |destroyed. There is a hole in the wall of a very large structure to the
-                   |east.\n",
+                   |east.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 6,
-        "description": "A small garden path encircles the temple.\n"
+        "description": "A small garden path encircles the temple."
       },
       {
         "dir": "east",
         "to": 32,
-        "description": "This possibly could be the city hall.\n"
+        "description": "This possibly could be the city hall."
       },
       {
         "dir": "south",
@@ -409,7 +409,7 @@
         "dir": "west",
         "to": 21,
         "description": "Inside the building you see long pieces of metal, an oven, and some
-                       |anvils.\n"
+                       |anvils."
       }
     ]
   }},
@@ -420,7 +420,7 @@
     "description": "This small side street is lined with the remains of once great
                    |buildings. To the north is a dark, foreboding structure while to the
                    |east lies the entrance to a small tavern. The street continues north
-                   |and south.\n",
+                   |and south.",
     "sector_type": "city",
     "doors": [
       {
@@ -432,7 +432,7 @@
         "to": 30,
         "description": "From the looks of it, this was once a two story abode. The entire second
                        |floor has collapsed leaving a very little part of the bar still free
-                       |from debris.\n"
+                       |from debris."
       },
       {
         "dir": "south",
@@ -442,7 +442,7 @@
         "dir": "west",
         "to": 19,
         "description": "This seems to be the only guild house in the entire city. Its dark nature
-                       |makes you wonder about its origins.\n"
+                       |makes you wonder about its origins."
       }
     ]
   }},
@@ -451,7 +451,7 @@
     "anum": 14,
     "name": "A side street",
     "description": "You are at the end of a long street leading to the center of the city.
-                   |A long dark alley runs east and west.\n",
+                   |A long dark alley runs east and west.",
     "sector_type": "city",
     "doors": [
       {
@@ -477,7 +477,7 @@
     "anum": 15,
     "name": "Under a ruined watchtower",
     "description": "You stand at the base of a tall watchtower built to protect the city
-                   |from invaders. From the looks of things, it did not do a good job.\n",
+                   |from invaders. From the looks of things, it did not do a good job.",
     "sector_type": "city",
     "doors": [
       {
@@ -499,18 +499,18 @@
     "anum": 16,
     "name": "A back alley",
     "description": "This alley leads to the rear of what used to be a meat stand. You wince
-                   |at the stench. South is one of the city watchtowers.\n",
+                   |at the stench. South is one of the city watchtowers.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 17,
-        "description": "You see the back-side of the market place meat stand.\n"
+        "description": "You see the back-side of the market place meat stand."
       },
       {
         "dir": "south",
         "to": 15,
-        "description": "A tall watchtower stands a silent vigil over the city.\n"
+        "description": "A tall watchtower stands a silent vigil over the city."
       }
     ],
     "resets": [
@@ -547,18 +547,18 @@
     "description": "A large stand has been set up here with metal hooks and wooden racks
                    |in the background. Hanging on the hooks are very small scraps of meat
                    |and other game. This stand is relatively empty, and a sudden burst of
-                   |howling and screaming makes you realize why this is so.\n",
+                   |howling and screaming makes you realize why this is so.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 8,
-        "description": "The market place lies this way.\n"
+        "description": "The market place lies this way."
       },
       {
         "dir": "east",
         "to": 20,
-        "description": "This is a cart full of rotted vegetables and fruits.\n"
+        "description": "This is a cart full of rotted vegetables and fruits."
       },
       {
         "dir": "south",
@@ -589,18 +589,18 @@
     "anum": 18,
     "name": "A back alley",
     "description": "A narrow alley leads east to a wider street and west to one of
-                   |the city watchtowers.\n",
+                   |the city watchtowers.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "east",
         "to": 14,
-        "description": "A small side street greets you.\n"
+        "description": "A small side street greets you."
       },
       {
         "dir": "west",
         "to": 15,
-        "description": "A tall watchtower stands a silent vigil over the city.\n"
+        "description": "A tall watchtower stands a silent vigil over the city."
       }
     ],
     "resets": [
@@ -638,13 +638,13 @@
                    |Tables and chairs have been smashed and broken weapons lie strewn about
                    |the floor as if some massive battle had taken place here. Draped along
                    |the back wall is a tattered, jet-black banner with the symbol of the
-                   |Darkside set upon it.\n",
+                   |Darkside set upon it.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 13,
-      "description": "A small side street runs past the building.\n"
+      "description": "A small side street runs past the building."
     }],
     "resets": [
       {
@@ -701,18 +701,18 @@
     "name": "The produce stand",
     "description": "A large cart sits here carrying rotted fruit and vegetables. Flys
                    |swarm all about what seems to be the last remaining bits of food left
-                   |in the city.\n",
+                   |in the city.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 7,
-        "description": "The market place is deserted.\n"
+        "description": "The market place is deserted."
       },
       {
         "dir": "west",
         "to": 17,
-        "description": "A strong stench emanates from the meat stand next to you.\n"
+        "description": "A strong stench emanates from the meat stand next to you."
       }
     ],
     "resets": [
@@ -740,13 +740,13 @@
     "name": "The smithy",
     "description": "In here you find tools and anvils used to make various weapons
                    |and items. The walls have been stripped clean and only a few incomplete
-                   |pieces of armor and weaponry are left.\n",
+                   |pieces of armor and weaponry are left.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 12,
-      "description": "A small side street runs past the building.\n"
+      "description": "A small side street runs past the building."
     }]
   }},
   {"room": {
@@ -756,7 +756,7 @@
     "description": "Tattered and torn tapestries and rugs lie heaped in piles. Fancy
                    |robes and various articles of clothing are now just rags. You stare at
                    |the strange piles for a long time until a piercing howl makes you
-                   |think these might be beds.\n",
+                   |think these might be beds.",
     "sector_type": "city",
     "doors": [
       {
@@ -766,12 +766,12 @@
       {
         "dir": "east",
         "to": 25,
-        "description": "A fine jewelry stand lies in ruin next to you.\n"
+        "description": "A fine jewelry stand lies in ruin next to you."
       },
       {
         "dir": "south",
         "to": 8,
-        "description": "The market place is deserted.\n"
+        "description": "The market place is deserted."
       }
     ]
   }},
@@ -780,13 +780,13 @@
     "anum": 23,
     "name": "A back alley",
     "description": "A narrow alley leads north to one of the city watchtowers while
-                   |to the south there lies a market stand full of torn clothes and rugs.\n",
+                   |to the south there lies a market stand full of torn clothes and rugs.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 24,
-        "description": "A tall watchtower stands a silent vigil over the city.\n"
+        "description": "A tall watchtower stands a silent vigil over the city."
       },
       {
         "dir": "south",
@@ -799,7 +799,7 @@
     "anum": 24,
     "name": "Under the watchtower",
     "description": "You stand under one of the city watchtowers built to protect
-                   |the city from invaders. Obviously, it failed.\n",
+                   |the city from invaders. Obviously, it failed.",
     "sector_type": "city",
     "doors": [
       {
@@ -813,7 +813,7 @@
       {
         "dir": "up",
         "to": 46,
-        "description": "Above you looms a tall watchtower.\n"
+        "description": "Above you looms a tall watchtower."
       }
     ],
     "resets": [
@@ -849,18 +849,18 @@
     "name": "The jewelery stand",
     "description": "A table has been tipped over, spilling fine jewelery and gems
                    |across the market place. Most of these trinkets are battered and
-                   |tarnished and few would have any value anymore.\n",
+                   |tarnished and few would have any value anymore.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "south",
         "to": 7,
-        "description": "The market place is deserted.\n"
+        "description": "The market place is deserted."
       },
       {
         "dir": "west",
         "to": 22,
-        "description": "Next to you is a stand full of ruined clothes and rugs.\n"
+        "description": "Next to you is a stand full of ruined clothes and rugs."
       }
     ]
   }},
@@ -870,13 +870,13 @@
     "name": "A ruined clay dwelling",
     "description": "This was once a very plain house with nothing more than a few chairs
                    |and a bed. A cold fireplace suggests that the city has been abandoned
-                   |for quite a while. Almost nothing remains of this humble abode.\n",
+                   |for quite a while. Almost nothing remains of this humble abode.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 10,
-      "description": "Outside is a small side street.\n"
+      "description": "Outside is a small side street."
     }],
     "resets": [
       {
@@ -933,12 +933,12 @@
     "name": "A collapsed stone dwelling",
     "description": "This small house has completely collapsed upon itself leaving piles
                    |of debris here and there. A few rafters still stand with thatched straw
-                   |hanging down and a hot wind gusts through the hollow dwelling.\n",
+                   |hanging down and a hot wind gusts through the hollow dwelling.",
     "sector_type": "city",
     "doors": [{
       "dir": "east",
       "to": 11,
-      "description": "A small side street runs past the house.\n"
+      "description": "A small side street runs past the house."
     }],
     "resets": [{
       "command": "mobile",
@@ -954,7 +954,7 @@
     "anum": 28,
     "name": "A back alley",
     "description": "A narrow alley leads east to one of the city watchtowers and west to
-                   |a small side street.\n",
+                   |a small side street.",
     "sector_type": "city",
     "doors": [
       {
@@ -974,13 +974,13 @@
     "description": "From the outside this place looks like an ordinary pile of rubble,
                    |but inside these cramped quarters you discover what used to be a shop
                    |filled with armor, weapons, and various other goods. A small sign flutters
-                   |in the wind.\n",
+                   |in the wind.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 14,
-      "description": "A small side street runs past the shop.\n"
+      "description": "A small side street runs past the shop."
     }],
     "resets": [
       {
@@ -1025,12 +1025,12 @@
                    |a small performance stage crushed. Musical instruments and personal
                    |belongings lie under the rubble, but the people they once belonged to are
                    |not with them. Looking up you see that the entire second floor and roof
-                   |has fallen in, leaving a gaping hole above.\n",
+                   |has fallen in, leaving a gaping hole above.",
     "sector_type": "city",
     "doors": [{
       "dir": "west",
       "to": 13,
-      "description": "A small side street runs past the tavern.\n"
+      "description": "A small side street runs past the tavern."
     }]
   }},
   {"room": {
@@ -1041,14 +1041,14 @@
                    |leads back north to the reception area.  Pedestals and columns have fallen
                    |and most of the valuable items have been taken, leaving worthless debris.
                    |A few chairs have survived, as well as a large curved desk. To the east
-                   |is a vine-covered archway leading out into a private courtyard.\n",
+                   |is a vine-covered archway leading out into a private courtyard.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 32,
-        "description": "The long hallway leads back to the main reception area of the city hall.\n"
+        "description": "The long hallway leads back to the main reception area of the city hall."
       },
       {
         "dir": "east",
@@ -1092,24 +1092,24 @@
                    |been charred and scored massively and debris is spread from wall to wall.
                    |A large gaping hole in the west wall allows you to see out to one of
                    |the city's side streets. Obviously no one will be seeing you through today.
-                   |Hallways lead south and east.\n",
+                   |Hallways lead south and east.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 2,
-        "description": "Main street runs past the city hall.\n"
+        "description": "Main street runs past the city hall."
       },
       {
         "dir": "east",
         "to": 33,
-        "description": "A hallway leads to the east wing of the city hall.\n"
+        "description": "A hallway leads to the east wing of the city hall."
       },
       {
         "dir": "south",
         "to": 31,
-        "description": "A hallway leads to the south wing of the city hall.\n"
+        "description": "A hallway leads to the south wing of the city hall."
       },
       {
         "dir": "west",
@@ -1159,7 +1159,7 @@
                    |withered plants and broken pieces of furniture make this place anything
                    |but fancy, though. The only thing remaining intact here is a large
                    |glass cabinet. A long hallway leads west back to the reception area and
-                   |an ivy-covered archway leads south into a private courtyard.\n",
+                   |an ivy-covered archway leads south into a private courtyard.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -1205,7 +1205,7 @@
                    |thrown through walls. A large marble fountain in the center of the
                    |courtyard still stands, though, defying any attempts to destroy its
                    |beauty. Above stands the remnants of one of the watchtowers. Archways
-                   |north and west lead back into the city hall.\n",
+                   |north and west lead back into the city hall.",
     "sector_type": "city",
     "doors": [
       {
@@ -1258,12 +1258,12 @@
     "name": "A small guard house",
     "description": "This was once the barracks for Thalos' cityguards. Now just an empty
                    |shell, this small shack still stands guarding the entrance both to the
-                   |city and to the city hall.\n",
+                   |city and to the city hall.",
     "sector_type": "city",
     "doors": [{
       "dir": "east",
       "to": 55,
-      "description": "The alley runs by this building.\n"
+      "description": "The alley runs by this building."
     }]
   }},
   {"room": {
@@ -1272,12 +1272,12 @@
     "name": "A collapsed home",
     "description": "All that's left of this house is a few scattered piles of rubble
                    |and a very large blast crater. Obviously someone or something important
-                   |was once housed here. A shrieking howl chills your blood.\n",
+                   |was once housed here. A shrieking howl chills your blood.",
     "sector_type": "city",
     "doors": [{
       "dir": "south",
       "to": 2,
-      "description": "Main street runs past this ruined home.\n"
+      "description": "Main street runs past this ruined home."
     }],
     "resets": [
       {
@@ -1331,7 +1331,7 @@
                    |a mess. The back wall as been completely knocked down revealing an
                    |entrance into another building through yet another collapsed wall.
                    |Between the two buildings are a few blast craters and boulders. An old
-                   |set of wooden steps leads up to a creaking second floor.\n",
+                   |set of wooden steps leads up to a creaking second floor.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -1342,13 +1342,13 @@
       {
         "dir": "west",
         "to": 11,
-        "description": "A small side street winds past the dwelling.\n"
+        "description": "A small side street winds past the dwelling."
       },
       {
         "dir": "up",
         "to": 45,
         "description": "The stairs and even the entire second floor itself looks very unsafe
-                       |for travel. Gusts of wind make them creak and shudder.\n"
+                       |for travel. Gusts of wind make them creak and shudder."
       }
     ]
   }},
@@ -1360,7 +1360,7 @@
                    |with the back wall missing, it could hold many more. Looking around you
                    |find broken shelves and workbenches with various vials and pouches spilling
                    |contents all across the floor. This was possibly the magic shop of the
-                   |city. The doorway to the east is blocked, making the only exit back west.\n",
+                   |city. The doorway to the east is blocked, making the only exit back west.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [{
@@ -1391,7 +1391,7 @@
     "anum": 39,
     "name": "A back alley",
     "description": "A narrow back alley goes south to main street and north towards
-                   |a watchtower. A mass of howls catches you off guard.\n",
+                   |a watchtower. A mass of howls catches you off guard.",
     "sector_type": "city",
     "doors": [
       {
@@ -1401,7 +1401,7 @@
       {
         "dir": "south",
         "to": 1,
-        "description": "Main street runs past here.\n"
+        "description": "Main street runs past here."
       }
     ]
   }},
@@ -1411,13 +1411,13 @@
     "name": "A back alley",
     "description": "A narrow back alley leads north to one of the city watchtowers
                    |and south towards main street. To the west is a doorway to a small
-                   |house blocked by debris.\n",
+                   |house blocked by debris.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 41,
-        "description": "A tall watchtower stands a silent vigil over the city.\n"
+        "description": "A tall watchtower stands a silent vigil over the city."
       },
       {
         "dir": "south",
@@ -1456,7 +1456,7 @@
     "anum": 41,
     "name": "Under a watchtower",
     "description": "You stand under a tall watchtower. Narrow back alleys lead west and
-                   |south and a very weak looking ladder leads up into the tower.\n",
+                   |south and a very weak looking ladder leads up into the tower.",
     "sector_type": "city",
     "doors": [
       {
@@ -1470,7 +1470,7 @@
       {
         "dir": "up",
         "to": 48,
-        "description": "Winds howl high above your head in the tower above.\n"
+        "description": "Winds howl high above your head in the tower above."
       }
     ]
   }},
@@ -1484,7 +1484,7 @@
                    |a city here seem much more reasonable). Closer inspection of the water
                    |yields a dead body floating around in it, skin melted away from months
                    |of floating in there. The west wall has collapsed revealing another
-                   |collapsed house.\n",
+                   |collapsed house.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -1496,7 +1496,7 @@
         "dir": "west",
         "to": 44,
         "description": "The wall has collapsed on the adjoining house, creating a new opening
-                       |in it.\n"
+                       |in it."
       }
     ],
     "resets": [{
@@ -1514,13 +1514,13 @@
     "name": "A back alley",
     "description": "A narrow back alley leads west to a small side street and east to one
                    |of the city watchtowers. Great amounts of steam issue forth from the
-                   |building to the south.\n",
+                   |building to the south.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "east",
         "to": 41,
-        "description": "A watchtower stands a silent vigil over the city.\n"
+        "description": "A watchtower stands a silent vigil over the city."
       },
       {
         "dir": "south",
@@ -1529,7 +1529,7 @@
       {
         "dir": "west",
         "to": 9,
-        "description": "A side street runs by here.\n"
+        "description": "A side street runs by here."
       }
     ]
   }},
@@ -1540,7 +1540,7 @@
     "description": "This home is practically the only one around that is still standing.
                    |Except for the massive hole in the east wall, everything else looks
                    |intact, including the windows. Great amounts of steam issue forth from
-                   |the hole in the east wall.\n",
+                   |the hole in the east wall.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -1551,7 +1551,7 @@
       {
         "dir": "west",
         "to": 10,
-        "description": "A small side street runs past the house.\n"
+        "description": "A small side street runs past the house."
       }
     ],
     "resets": [{
@@ -1571,7 +1571,7 @@
                    |The old rotted floorboards suddenly give way and you fall down, impaling
                    |yourself on jagged boards below.
                    |
-                   |You've fallen, and you can't get up!!!\n",
+                   |You've fallen, and you can't get up!!!",
     "sector_type": "city",
     "room_flags": "no_mob"
   }},
@@ -1581,12 +1581,12 @@
     "name": "The north-west watchtower",
     "description": "You stand atop one of the city watchtowers. The view is magnificent
                    |from here and you can see all the way to the western mountains. No wonder
-                   |this place stood for so long.\n",
+                   |this place stood for so long.",
     "sector_type": "city",
     "doors": [{
       "dir": "down",
       "to": 24,
-      "description": "The city lies below.\n"
+      "description": "The city lies below."
     }],
     "resets": [
       {
@@ -1630,12 +1630,12 @@
     "description": "You stand atop one of the city watchtowers. The view is magnificent
                    |from here and you can see all the way to the western mountains. To the
                    |south the desert stretches to the horizon. No wonder this place stood
-                   |for so long.\n",
+                   |for so long.",
     "sector_type": "city",
     "doors": [{
       "dir": "down",
       "to": 15,
-      "description": "The city lies below.\n"
+      "description": "The city lies below."
     }],
     "resets": [
       {
@@ -1687,12 +1687,12 @@
     "description": "You stand atop one of the city watchtowers. The view is magnificent
                    |from here and you can see a great floating pyramid to the north-east.
                    |Desert sand stretches to the horizon. No wonder this place stood for so
-                   |long.\n",
+                   |long.",
     "sector_type": "city",
     "doors": [{
       "dir": "down",
       "to": 41,
-      "description": "The city lies below.\n"
+      "description": "The city lies below."
     }],
     "resets": [
       {
@@ -1741,7 +1741,7 @@
                    |you. A few books lie about, conveying to you a holy message in a
                    |strange tongue.
                    |     Wind gusts through the four archways and howls and screams can be
-                   |heard from all parts of the city.\n",
+                   |heard from all parts of the city.",
     "sector_type": "city",
     "room_flags": "indoors unused_room_5",
     "portal": "thalos-room-1",
@@ -1749,12 +1749,12 @@
       {
         "dir": "north",
         "to": 5,
-        "description": "A side street leads to the northern half of the city.\n"
+        "description": "A side street leads to the northern half of the city."
       },
       {
         "dir": "east",
         "to": 3,
-        "description": "Main street leads out to the main gate of the city.\n"
+        "description": "Main street leads out to the main gate of the city."
       }
     ],
     "resets": [
@@ -1789,18 +1789,18 @@
     "anum": 51,
     "name": "A back alley",
     "description": "A narrow alley leads east to a wider street and west to one of
-                   |the city watchtowers.\n",
+                   |the city watchtowers.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "east",
         "to": 52,
-        "description": "A tall watchtower stands a silent vigil over the city.\n"
+        "description": "A tall watchtower stands a silent vigil over the city."
       },
       {
         "dir": "west",
         "to": 14,
-        "description": "A small side street greets you.\n"
+        "description": "A small side street greets you."
       }
     ]
   }},
@@ -1809,7 +1809,7 @@
     "anum": 52,
     "name": "Under a ruined watchtower",
     "description": "You stand at the base of a tall watchtower built to protect the city
-                   |from invaders. From the looks of things, it did not do a good job.\n",
+                   |from invaders. From the looks of things, it did not do a good job.",
     "sector_type": "city",
     "doors": [
       {
@@ -1830,18 +1830,18 @@
     "area": "thalos",
     "anum": 53,
     "name": "A back alley",
-    "description": "A narrow alley leads south to one of the city watchtowers.\n",
+    "description": "A narrow alley leads south to one of the city watchtowers.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 55,
-        "description": "The alley continues to the north.\n"
+        "description": "The alley continues to the north."
       },
       {
         "dir": "south",
         "to": 52,
-        "description": "A tall watchtower stands a silent vigil over the city.\n"
+        "description": "A tall watchtower stands a silent vigil over the city."
       }
     ]
   }},
@@ -1852,18 +1852,18 @@
     "description": "You stand atop one of the city watchtowers. The view is magnificent
                    |from here and you can see all the way to the western mountains. To the
                    |south the desert stretches to the horizon. No wonder this place stood
-                   |for so long.  There is a small plaque on the stones.\n",
+                   |for so long.  There is a small plaque on the stones.",
     "sector_type": "city",
     "doors": [{
       "dir": "down",
       "to": 52,
-      "description": "The city lies below.\n"
+      "description": "The city lies below."
     }],
     "extra_description": [{
       "keyword": "sign plaque",
       "description": "This extension to Thalos, along with the dwarf forest, is made by Hatchet for
                      |any Merc Mud.
-                     |copyright 1992\n"
+                     |copyright 1992"
     }],
     "resets": [
       {
@@ -1905,13 +1905,13 @@
     "anum": 55,
     "name": "A back alley",
     "description": "A narrow alley leads north to the main street, and south toward a tall
-                   |watchtower.  A ruined building is to the west.\n",
+                   |watchtower.  A ruined building is to the west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 1,
-        "description": "You see main street.\n"
+        "description": "You see main street."
       },
       {
         "dir": "south",
@@ -1920,7 +1920,7 @@
       {
         "dir": "west",
         "to": 35,
-        "description": "It looks in bad shape inside, but structurally intact.\n"
+        "description": "It looks in bad shape inside, but structurally intact."
       }
     ]
   }},
@@ -1930,18 +1930,18 @@
     "name": "A trail at the end of the dwarf forest",
     "description": "The trail ends here, with short, dry stumps of trees all around you.
                    |To the west, you can see the ruins of a huge city.  Something about it gives
-                   |you an uneasy feeling.  To the east is your way back to home and safety.\n",
+                   |you an uneasy feeling.  To the east is your way back to home and safety.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "east",
         "to": 57,
-        "description": "You see the trail.\n"
+        "description": "You see the trail."
       },
       {
         "dir": "west",
         "to": 0,
-        "description": "You see Thalos!\n"
+        "description": "You see Thalos!"
       }
     ]
   }},
@@ -1951,18 +1951,18 @@
     "name": "A trail at the end of the dwarf forest",
     "description": "A side trail here leads from the dwarf forest.  It is definitely drier
                    |and hotter here.  The trail continues to the west, and to the east, you see
-                   |the T-intersection.\n",
+                   |the T-intersection.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "east",
         "to": 58,
-        "description": "You see the intersection.\n"
+        "description": "You see the intersection."
       },
       {
         "dir": "west",
         "to": 56,
-        "description": "You see the trail continue on.\n"
+        "description": "You see the trail continue on."
       }
     ]
   }},
@@ -1971,23 +1971,23 @@
     "anum": 58,
     "name": "The dwarf forest",
     "description": "You see more stunted trees here.  A side trail leads west from here.
-                   |To the east, you THINK you see a trail, but you can never be sure.\n",
+                   |To the east, you THINK you see a trail, but you can never be sure.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 59,
-        "description": "You see the trail lead back north.\n"
+        "description": "You see the trail lead back north."
       },
       {
         "dir": "east",
         "to": 62,
-        "description": "You can't see into the gloom of this forest.\n"
+        "description": "You can't see into the gloom of this forest."
       },
       {
         "dir": "west",
         "to": 57,
-        "description": "You see the trail branch off.\n"
+        "description": "You see the trail branch off."
       }
     ]
   }},
@@ -1996,18 +1996,18 @@
     "anum": 59,
     "name": "The dwarf forest",
     "description": "You see more stunted trees here.  It looks almost as if this place was
-                   |cursed by a god to be short and dry.  The trail leads north and south.\n",
+                   |cursed by a god to be short and dry.  The trail leads north and south.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 60,
-        "description": "You see the trail continue north.\n"
+        "description": "You see the trail continue north."
       },
       {
         "dir": "south",
         "to": 58,
-        "description": "You see the trail continue south.\n"
+        "description": "You see the trail continue south."
       }
     ]
   }},
@@ -2016,18 +2016,18 @@
     "anum": 60,
     "name": "The dwarf forest",
     "description": "You see more stunted trees here.  It looks almost as if this place was
-                   |cursed by a god to be short and dry.  The trail leads north and south.\n",
+                   |cursed by a god to be short and dry.  The trail leads north and south.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 61,
-        "description": "You see the trail continue north.\n"
+        "description": "You see the trail continue north."
       },
       {
         "dir": "south",
         "to": 59,
-        "description": "You see the trail continue south.\n"
+        "description": "You see the trail continue south."
       }
     ]
   }},
@@ -2036,18 +2036,18 @@
     "anum": 61,
     "name": "The dwarf forest",
     "description": "You see many stunted trees here.  You don't see any leaves on these barren
-                   |trees.  No grass grows on the ground.\n",
+                   |trees.  No grass grows on the ground.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
-        "description": "You see the trail continue north.\n",
+        "description": "You see the trail continue north.",
         "portal": "thalos-north-1"
       },
       {
         "dir": "south",
         "to": 60,
-        "description": "You see the trail continue south.\n"
+        "description": "You see the trail continue south."
       }
     ]
   }},
@@ -2057,18 +2057,18 @@
     "name": "The dwarf forest",
     "description": "You see more stunted trees here.  It looks almost as if this place was
                    |cursed by a god to be short and dry.  The trail leads east and west.  It looks
-                   |dark toward the east.\n",
+                   |dark toward the east.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "east",
         "to": 63,
-        "description": "You see a darker part of the forest.\n"
+        "description": "You see a darker part of the forest."
       },
       {
         "dir": "west",
         "to": 58,
-        "description": "You see the lighter forest and the T-intersection west.\n"
+        "description": "You see the lighter forest and the T-intersection west."
       }
     ]
   }},
@@ -2078,19 +2078,19 @@
     "name": "The darker dwarf forest",
     "description": "You see a more dense foliage in these stunted trees.  The gloom caused
                    |by them is enhanced by a draft coming from all around.  The trail turns south
-                   |from the west.\n",
+                   |from the west.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
       {
         "dir": "south",
         "to": 64,
-        "description": "You see nothing in the gloom south of you.\n"
+        "description": "You see nothing in the gloom south of you."
       },
       {
         "dir": "west",
         "to": 62,
-        "description": "You see the dwarf forest.\n"
+        "description": "You see the dwarf forest."
       }
     ]
   }},
@@ -2100,19 +2100,19 @@
     "name": "The darker dwarf forest",
     "description": "You see a more dense foliage in these stunted trees.  The gloom caused
                    |by them is enhanced by a draft coming from all around.  The trail turns east
-                   |from the north.\n",
+                   |from the north.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
       {
         "dir": "north",
         "to": 63,
-        "description": "You see nothing in the gloom north of you.\n"
+        "description": "You see nothing in the gloom north of you."
       },
       {
         "dir": "east",
         "to": 65,
-        "description": "You see nothing in the gloom east of you.\n"
+        "description": "You see nothing in the gloom east of you."
       }
     ]
   }},
@@ -2122,19 +2122,19 @@
     "name": "The darker dwarf forest",
     "description": "You see a more dense foliage in these stunted trees.  The gloom caused
                    |by them is enhanced by a draft coming from all around.  The trail leads
-                   |east and west.\n",
+                   |east and west.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
       {
         "dir": "east",
         "to": 66,
-        "description": "You see nothing in the gloom east of you.\n"
+        "description": "You see nothing in the gloom east of you."
       },
       {
         "dir": "west",
         "to": 64,
-        "description": "You see nothing in the gloom west of you.\n"
+        "description": "You see nothing in the gloom west of you."
       }
     ]
   }},
@@ -2144,19 +2144,19 @@
     "name": "The darker dwarf forest",
     "description": "You see a more dense foliage in these stunted trees.  The gloom caused
                    |by them is enhanced by a draft coming from all around.  The trail leads
-                   |down into a valley and west.\n",
+                   |down into a valley and west.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
       {
         "dir": "west",
         "to": 65,
-        "description": "You see nothing in the gloom west of you.\n"
+        "description": "You see nothing in the gloom west of you."
       },
       {
         "dir": "down",
         "to": 67,
-        "description": "You see the trail lead down into gloom.\n"
+        "description": "You see the trail lead down into gloom."
       }
     ]
   }},
@@ -2165,7 +2165,7 @@
     "anum": 67,
     "name": "A valley in the dark dwarf forest",
     "description": "You are in a valley in the dark dwarf forest.  Short black grass grows
-                   |around you.  Trails lead in all directions.\n",
+                   |around you.  Trails lead in all directions.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
@@ -2179,14 +2179,14 @@
       },
       {
         "dir": "south",
-        "description": "You see a large mountain on the far side of a canyon.\n",
+        "description": "You see a large mountain on the far side of a canyon.",
         "portal": "thalos-south-1"
       },
       {
         "dir": "west",
         "to": 68,
         "keyword": "hole fox",
-        "description": "You see a dark fox hole.\n",
+        "description": "You see a dark fox hole.",
         "exit_flags": "door closed"
       },
       {
@@ -2225,7 +2225,7 @@
     "name": "A small ugly cave",
     "description": "You see a small cave.  Skeletons of many types of creatures litter the area.
                    |Obviously, no fox lives here!  The oppression makes you want to leave and
-                   |vomit.\n",
+                   |vomit.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
@@ -2233,19 +2233,19 @@
         "dir": "east",
         "to": 67,
         "keyword": "fox hole",
-        "description": "You see the exit from here!\n",
+        "description": "You see the exit from here!",
         "exit_flags": "door closed"
       },
       {
         "dir": "south",
         "to": 69,
-        "description": "You see more of the cave.\n"
+        "description": "You see more of the cave."
       }
     ],
     "extra_description": [{
       "keyword": "skeleton skeletons",
       "description": "Something is strange about these skeletons.  Upon further investigation, these
-                     |skeletons appear illusionary.\n"
+                     |skeletons appear illusionary."
     }]
   }},
   {"room": {
@@ -2254,32 +2254,32 @@
     "name": "A small ugly cave",
     "description": "You are in a small ugly cave.  More skeletons lie around.  It is obvious
                    |that the owner doesn't want you here.  The exit north is still visible.
-                   |Some writings are on this wall.\n",
+                   |Some writings are on this wall.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
       {
         "dir": "north",
         "to": 68,
-        "description": "You see more of the cave.\n"
+        "description": "You see more of the cave."
       },
       {
         "dir": "down",
         "to": 70,
-        "description": "You see a path leading down into the dark gloom.\n"
+        "description": "You see a path leading down into the dark gloom."
       }
     ],
     "extra_description": [
       {
         "keyword": "skeleton skeletons",
         "description": "Something is strange about these skeletons.  Upon further investigation, these
-                       |skeletons appear illusionary.\n"
+                       |skeletons appear illusionary."
       },
       {
         "keyword": "writings writing words",
         "description": "This cave along with the valley and dwarf forest is made by Hatchet for any
                        |Merc Mud.
-                       |copyright 1992\n"
+                       |copyright 1992"
       }
     ]
   }},
@@ -2288,19 +2288,19 @@
     "anum": 70,
     "name": "Down the path into a dead end",
     "description": "You are down the path.  There is no obvious exit in this place, exit the
-                   |one back up north.  All around you, you see skeletons.\n",
+                   |one back up north.  All around you, you see skeletons.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
       {
         "dir": "up",
         "to": 69,
-        "description": "You see your only way back up.\n"
+        "description": "You see your only way back up."
       },
       {
         "dir": "down",
         "keyword": "secret",
-        "description": "You see nothing on the floor except skeletons.\n",
+        "description": "You see nothing on the floor except skeletons.",
         "exit_flags": "door closed",
         "portal": "thalos-down-1"
       }
@@ -2309,7 +2309,7 @@
       "keyword": "skeleton skeletons",
       "description": "Something is strange about these skeletons.  Upon further investigation, these
                      |skeletons appear illusionary.  In fact, through the skeletons, you see a
-                     |secret door!!\n"
+                     |secret door!!"
     }],
     "resets": [
       {
@@ -2363,19 +2363,19 @@
     "anum": 71,
     "name": "The Valley in the dark dwarf forest",
     "description": "You are in a valley in the forest.  To the north is a trail out of this
-                   |dark valley.  South is more of this valley.\n",
+                   |dark valley.  South is more of this valley.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
       {
         "dir": "north",
         "to": 72,
-        "description": "You see a trail away from this gloomy valley.\n"
+        "description": "You see a trail away from this gloomy valley."
       },
       {
         "dir": "south",
         "to": 67,
-        "description": "You see more of this gloomy valley.\n"
+        "description": "You see more of this gloomy valley."
       }
     ]
   }},
@@ -2385,19 +2385,19 @@
     "name": "A dim trail in the dwarf forest",
     "description": "You are in a dim trail in the dwarf forest.  Not much light passes through
                    |here.  To the south is a gloomy valley, while to the north the light grows
-                   |brighter.\n",
+                   |brighter.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
       {
         "dir": "north",
         "to": 73,
-        "description": "You can actually see the trail north of you!\n"
+        "description": "You can actually see the trail north of you!"
       },
       {
         "dir": "south",
         "to": 71,
-        "description": "You can barely see the gloomy valley south of you.\n"
+        "description": "You can barely see the gloomy valley south of you."
       }
     ],
     "resets": [
@@ -2431,23 +2431,23 @@
     "name": "A dim trail in the dwarf forest",
     "description": "You are in a dim trail in the dwarf forest.  Not much light passes through
                    |here.  The trail runs north and south, and the light seems to come from the
-                   |north.  To the east, you see a small path into darkness.\n",
+                   |north.  To the east, you see a small path into darkness.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 74,
-        "description": "You see the dim trail lead north.\n"
+        "description": "You see the dim trail lead north."
       },
       {
         "dir": "east",
         "to": 80,
-        "description": "You see the small path.\n"
+        "description": "You see the small path."
       },
       {
         "dir": "south",
         "to": 72,
-        "description": "You see the dim trail lead south.\n"
+        "description": "You see the dim trail lead south."
       }
     ]
   }},
@@ -2457,18 +2457,18 @@
     "name": "A dim trail in the dwarf forest",
     "description": "You are in a dim trail in the dwarf forest.  Not much light passes through
                    |here.  The trail runs north and south, and the light seems to come from the
-                   |north.\n",
+                   |north.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 75,
-        "description": "You see the dim trail lead north.\n"
+        "description": "You see the dim trail lead north."
       },
       {
         "dir": "south",
         "to": 73,
-        "description": "You see the dim trail lead south.\n"
+        "description": "You see the dim trail lead south."
       }
     ]
   }},
@@ -2478,18 +2478,18 @@
     "name": "A bend in the dim trail in the dwarf forest",
     "description": "You are in a dim trail in the dwarf forest.  Not much light passes through
                    |here.  The trail runs south and west.  The trail west looks much friendlier
-                   |than the one leading south.\n",
+                   |than the one leading south.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "south",
         "to": 74,
-        "description": "You see the dim trail lead south.\n"
+        "description": "You see the dim trail lead south."
       },
       {
         "dir": "west",
         "to": 76,
-        "description": "You see the trail lead west.\n"
+        "description": "You see the trail lead west."
       }
     ]
   }},
@@ -2499,18 +2499,18 @@
     "name": "A trail in the dwarf forest",
     "description": "You are in a trail in the dwarf forest.  The trees are stunted and it
                    |looks dry around here.  The trail leads east and west.  It looks dimmer to
-                   |the east.\n",
+                   |the east.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "east",
         "to": 75,
-        "description": "The trail continues east to the dimmer parts of the forest.\n"
+        "description": "The trail continues east to the dimmer parts of the forest."
       },
       {
         "dir": "west",
         "to": 77,
-        "description": "The trail continues west.\n"
+        "description": "The trail continues west."
       }
     ]
   }},
@@ -2519,18 +2519,18 @@
     "anum": 77,
     "name": "A trail in the dwarf forest",
     "description": "You are in a trail in the dwarf forest.  The trees are stunted and it
-                   |looks dry around here.  The trail leads east and west.\n",
+                   |looks dry around here.  The trail leads east and west.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "east",
         "to": 76,
-        "description": "The trail continues east.\n"
+        "description": "The trail continues east."
       },
       {
         "dir": "west",
         "to": 78,
-        "description": "The trail continues west.\n"
+        "description": "The trail continues west."
       }
     ]
   }},
@@ -2539,18 +2539,18 @@
     "anum": 78,
     "name": "A trail in the dwarf forest",
     "description": "You are in a trail in the dwarf forest.  The trees are stunted and it
-                   |looks dry around here.  The trail leads east and west.\n",
+                   |looks dry around here.  The trail leads east and west.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "east",
         "to": 77,
-        "description": "The trail continues east.\n"
+        "description": "The trail continues east."
       },
       {
         "dir": "west",
         "to": 79,
-        "description": "The trail continues west.\n"
+        "description": "The trail continues west."
       }
     ]
   }},
@@ -2560,18 +2560,18 @@
     "name": "The bend in the trail in the dwarf forest",
     "description": "You are in a bend in the trail in the forest.  The trees are stunted, but
                    |not so dry around here.  The trail leads east, and to the south, you see a
-                   |waterfall.\n",
+                   |waterfall.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "east",
         "to": 78,
-        "description": "The trail continues east.\n"
+        "description": "The trail continues east."
       },
       {
         "dir": "south",
         "to": 81,
-        "description": "You see a beautiful waterfall.\n"
+        "description": "You see a beautiful waterfall."
       }
     ]
   }},
@@ -2581,18 +2581,18 @@
     "name": "A dark bend in the forest",
     "description": "You are in a dark bend in the forest.  To the west, you see the trail
                    |leading back to the dwarven forest, and to the south, you see a dark and
-                   |dismal path.\n",
+                   |dismal path.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "south",
-        "description": "You see the dark path.\n",
+        "description": "You see the dark path.",
         "portal": "thalos-south-2"
       },
       {
         "dir": "west",
         "to": 73,
-        "description": "You see the trail back to the Dwarven Forest.\n"
+        "description": "You see the trail back to the Dwarven Forest."
       }
     ]
   }},
@@ -2603,12 +2603,12 @@
     "description": "You see a VERY beautiful waterfall here.  It looks almost as if diamonds are
                    |falling down the mountain.  (You reach out and grab and no, it IS only water.)
                    |It looks so nice here, you feel like taking a nap.
-                   |The trail leads north and south.\n",
+                   |The trail leads north and south.",
     "sector_type": "hills",
     "doors": [{
       "dir": "north",
       "to": 79,
-      "description": "You see the trail leading north.\n"
+      "description": "You see the trail leading north."
     }]
   }}
 ]

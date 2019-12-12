@@ -16,7 +16,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "herbs herb timian",
-      "description": "This herb smells rather spicy; maybe you should try it?\n"
+      "description": "This herb smells rather spicy; maybe you should try it?"
     }]
   }},
   {"object": {
@@ -37,7 +37,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "herbs herb gyvel",
-      "description": "This herb smells rather special, but is it poisonous?\n"
+      "description": "This herb smells rather special, but is it poisonous?"
     }]
   }},
   {"object": {
@@ -81,7 +81,7 @@
     "extra_description": [{
       "keyword": "blood jar",
       "description": "The jar is made of dry clay, covered with markings suggesting its
-                     |occult origin.\n"
+                     |occult origin."
     }]
   }},
   {"object": {
@@ -120,7 +120,7 @@
       "keyword": "amulet",
       "description": "Judging from the signs inscripted in the amulet, you gather it must
                      |have belonged to a druid.  It is weird looking with symbols from nature
-                     |dominating it.\n"
+                     |dominating it."
     }],
     "affects": [{
       "apply": "saves",
@@ -145,7 +145,7 @@
     "extra_description": [{
       "keyword": "staff stick",
       "description": "Then staff is about 5 ft long, engraved with mythical signs and figures.
-                     |Otherwise the staff seems of no real interest.\n"
+                     |Otherwise the staff seems of no real interest."
     }]
   }},
   {"object": {
@@ -167,7 +167,7 @@
       "keyword": "roast rabbit wabbit",
       "description": "Well the rabbit looks rather dead.
                      |You guess that this once was a ferocious rabbit who's life now has
-                     |changed to that of a tasty wabbit woast.\n"
+                     |changed to that of a tasty wabbit woast."
     }]
   }},
   {"object": {
@@ -194,7 +194,7 @@
                      |centuries old.
                      |Inscripted upon is the words 'Ep ep fi'hur G'harne
                      |                             G'harne fhtagn Shudde-M'ell hyas Negg'h'
-                     |And beneath the inscription you see horrifying death scenes depicted.\n"
+                     |And beneath the inscription you see horrifying death scenes depicted."
     }]
   }},
   {"object": {
@@ -225,7 +225,7 @@
         "keyword": "potion clear",
         "description": "As you examine the potion more, you notice the oddities of this
                        |potion. When you look through it you notice strange things...
-                       |The clear potion is certainly not of this world.\n"
+                       |The clear potion is certainly not of this world."
       }
     ]
   }},
@@ -249,13 +249,13 @@
         "keyword": "ritual men drawings",
         "description": "The drawing pictures people gathered round giant stone formations,
                        |worshipping a giant worm like creature.
-                       |It seems they are sacrificing some of their own species.\n"
+                       |It seems they are sacrificing some of their own species."
       },
       {
         "keyword": "scroll jhyfrdow",
         "description": "The scroll is titled 'jhyfrdow' and looks very old.
                        |As you examine it closer you notice primitive drawings of
-                       |men doing some kind of a ritual.\n"
+                       |men doing some kind of a ritual."
       }
     ]
   }}

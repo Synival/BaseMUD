@@ -20,7 +20,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "axe toy",
-      "description": "A small label says 'made in Taiwan'.\n"
+      "description": "A small label says 'made in Taiwan'."
     }]
   }},
   {"object": {
@@ -41,7 +41,7 @@
     "extra_description": [{
       "keyword": "ring pink ice",
       "description": "How strange...it's made of ice, but it doesn't melt. It feels pleasantly 
-                     |cool to the touch.\n"
+                     |cool to the touch."
     }],
     "affects": [
       {
@@ -83,7 +83,7 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "robe linen",
-      "description": "It radiates an aura of peace and wisdom.  The perfect garb for a teacher.\n"
+      "description": "It radiates an aura of peace and wisdom.  The perfect garb for a teacher."
     }],
     "affects": [
       {
@@ -124,7 +124,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "broom",
-      "description": "It's worn and tired, probably from swatting too many children.\n"
+      "description": "It's worn and tired, probably from swatting too many children."
     }],
     "affects": [
       {
@@ -200,7 +200,7 @@
     "extra_description": [{
       "keyword": "potion",
       "description": "It's a tight-stoppered glass bottle with a thick amber liquid inside. It
-                     |tastes kind of like whiskey.\n"
+                     |tastes kind of like whiskey."
     }]
   }},
   {"object": {
@@ -226,7 +226,7 @@
     "extra_description": [{
       "keyword": "gun toy",
       "description": "It's just a toy...but the point looks kind of sharp.
-                     |You'll put your eye out, kid!\n"
+                     |You'll put your eye out, kid!"
     }],
     "affects": [{
       "apply": "armor class",

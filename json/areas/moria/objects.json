@@ -15,7 +15,7 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring",
-      "description": "It feels heavy.\n"
+      "description": "It feels heavy."
     }],
     "affects": [{
       "apply": "strength",
@@ -42,7 +42,7 @@
     "extra_description": [{
       "keyword": "corpse",
       "description": "Ew.  This must have been the mapper that was lost in Moria.  His rotted hand
-                     |still clutches a partially digested map...\n"
+                     |still clutches a partially digested map..."
     }]
   }},
   {"object": {
@@ -83,7 +83,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dagger",
-      "description": "It's old and rusted, but it still has a good edge.\n"
+      "description": "It's old and rusted, but it still has a good edge."
     }],
     "affects": [{
       "apply": "hit roll",
@@ -143,7 +143,7 @@
     "extra_description": [{
       "keyword": "club tree",
       "description": "This is the biggest club you have ever seen!  The giant didn't even bother to
-                     |trim the roots off the end.\n"
+                     |trim the roots off the end."
     }],
     "affects": [{
       "apply": "hit roll",
@@ -176,7 +176,7 @@
     "extra_description": [{
       "keyword": "furs",
       "description": "They're heavy and smelly and would probably slow you down...but they do look
-                     |like good armor.\n"
+                     |like good armor."
     }],
     "affects": [{
       "apply": "dexterity",
@@ -206,7 +206,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "potion purple",
-      "description": "It looks rather strange!\n"
+      "description": "It looks rather strange!"
     }]
   }},
   {"object": {
@@ -258,7 +258,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "mushroom",
-      "description": "Let's put it this way - I wouldn't eat it !\n"
+      "description": "Let's put it this way - I wouldn't eat it !"
     }]
   }},
   {"object": {
@@ -285,7 +285,7 @@
       "keyword": "dirk",
       "description": "It's a medium sized, beautifully crafted dirk made from grey alloy.
                      |Its blade is double-edged and very thin ... this looks like a good
-                     |thieves weapon.\n"
+                     |thieves weapon."
     }],
     "affects": [
       {
@@ -325,7 +325,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "axe",
-      "description": "It has an edge sharp enough to cut a passing thought. A good find, this.\n"
+      "description": "It has an edge sharp enough to cut a passing thought. A good find, this."
     }],
     "affects": [{
       "apply": "damage roll",
@@ -356,7 +356,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword",
-      "description": "It's much heavier than a long sword, but not as well balanced.\n"
+      "description": "It's much heavier than a long sword, but not as well balanced."
     }]
   }},
   {"object": {
@@ -381,7 +381,7 @@
     "extra_description": [{
       "keyword": "flail",
       "description": "It's a stout wooden rod with two spiked balls attached, each weighing over 2
-                     |pounds.  It's a little worn for wear, but looks most painful.\n"
+                     |pounds.  It's a little worn for wear, but looks most painful."
     }],
     "affects": [
       {
@@ -421,7 +421,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "mace",
-      "description": "A metal shaft mounted with an iron head, shaped into armor-shattering form.\n"
+      "description": "A metal shaft mounted with an iron head, shaped into armor-shattering form."
     }],
     "affects": [{
       "apply": "damage roll",
@@ -453,7 +453,7 @@
     "extra_description": [{
       "keyword": "falchion",
       "description": "It's curved like a scimitar, only with no recurved blade and a tip designed
-                     |for piercing as well as slashing.\n"
+                     |for piercing as well as slashing."
     }]
   }},
   {"object": {
@@ -479,7 +479,7 @@
     "extra_description": [{
       "keyword": "voulge",
       "description": "It looks a lot like a staff with a pruning knife tied to the end, but it's
-                     |quite effective.\n"
+                     |quite effective."
     }],
     "affects": [{
       "apply": "armor class",
@@ -511,7 +511,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "blade",
-      "description": "You'll become as evil as the weapon, if you use it!\n"
+      "description": "You'll become as evil as the weapon, if you use it!"
     }]
   }},
   {"object": {
@@ -572,7 +572,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "scroll",
-      "description": "It looks informative.\n"
+      "description": "It looks informative."
     }]
   }},
   {"object": {
@@ -595,7 +595,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "slime mold",
-      "description": "It wasn't meant to be food, - Certainly not for humans.\n"
+      "description": "It wasn't meant to be food, - Certainly not for humans."
     }]
   }},
   {"object": {
@@ -619,7 +619,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "slime mold",
-      "description": "It wasn't meant to be food, - Certainly not for humans.\n"
+      "description": "It wasn't meant to be food, - Certainly not for humans."
     }]
   }},
   {"object": {
@@ -644,7 +644,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "staff",
-      "description": "It's a superb weapon for warrior or mage.\n"
+      "description": "It's a superb weapon for warrior or mage."
     }],
     "affects": [{
       "apply": "armor class",
@@ -674,7 +674,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "potion black",
-      "description": "It looks healthy.\n"
+      "description": "It looks healthy."
     }]
   }},
   {"object": {
@@ -700,11 +700,11 @@
     "extra_description": [
       {
         "keyword": "runes",
-        "description": "The runes says : Funthark.\n"
+        "description": "The runes says : Funthark."
       },
       {
         "keyword": "staff oak",
-        "description": "You see it has some sort of runes on it.\n"
+        "description": "You see it has some sort of runes on it."
       }
     ],
     "affects": [{
@@ -735,7 +735,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dagger light silver",
-      "description": "It looks like an excellent weapon for thieves.\n"
+      "description": "It looks like an excellent weapon for thieves."
     }],
     "affects": [
       {
@@ -776,7 +776,7 @@
     "extra_description": [{
       "keyword": "star morning",
       "description": "It's a huge length of wood studded with iron spikes and bands. You wouldn't
-                     |want to meet this in a dark alley...\n"
+                     |want to meet this in a dark alley..."
     }],
     "affects": [
       {
@@ -827,7 +827,7 @@
                      |     Large--Large--Tunnel--End of
                      |     Cave    Cave    |     Tunnel
                      |                   *Hole
-                     |                  (Map 3)\n"
+                     |                  (Map 3)"
     }]
   }},
   {"object": {
@@ -878,7 +878,7 @@
                      |          |       |      |
                      |        Water---Water  End of
                      |                       Maze*
-                     |                      (Map 2)\n"
+                     |                      (Map 2)"
     }]
   }}
 ]

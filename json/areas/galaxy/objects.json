@@ -37,7 +37,7 @@
     "wear_flags": "take arms",
     "extra_description": [{
       "keyword": "arm",
-      "description": "These mighty armors have been worn by this immortal, since the ancient time.\n"
+      "description": "These mighty armors have been worn by this immortal, since the ancient time."
     }],
     "affects": [
       {
@@ -76,7 +76,7 @@
     "extra_description": [{
       "keyword": "belt",
       "description": "You can immediately see that it belongs to Orion, from the three stars
-                     |engraved on it.\n"
+                     |engraved on it."
     }],
     "affects": [{
       "apply": "constitution",
@@ -124,7 +124,7 @@
     "wear_flags": "take neck",
     "extra_description": [{
       "keyword": "fleece",
-      "description": "From a look it resembles the Golden Fleece that exists in the Greek myths.\n"
+      "description": "From a look it resembles the Golden Fleece that exists in the Greek myths."
     }],
     "affects": [{
       "apply": "armor class",
@@ -153,7 +153,7 @@
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "hoof",
-      "description": "It is with these hooves that Taurus can stand against Orion's attacks.\n"
+      "description": "It is with these hooves that Taurus can stand against Orion's attacks."
     }],
     "affects": [
       {
@@ -192,7 +192,7 @@
     "extra_description": [{
       "keyword": "mask",
       "description": "You notice the mask has got two faces, one smiling and the other crying.
-                     |You don't know which way you should wear it.\n"
+                     |You don't know which way you should wear it."
     }],
     "affects": [
       {
@@ -232,7 +232,7 @@
     "extra_description": [{
       "keyword": "shell",
       "description": "A shell which is dented in the middle, resulting from the Hercules' mighty
-                     |pound when the Crab was still an enemy of Hercules in ancient times.\n"
+                     |pound when the Crab was still an enemy of Hercules in ancient times."
     }],
     "affects": [{
       "apply": "armor class",
@@ -262,7 +262,7 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "skin",
-      "description": "A skin made of metal, which was worn by Hercules during his Ten Labours.\n"
+      "description": "A skin made of metal, which was worn by Hercules during his Ten Labours."
     }]
   }},
   {"object": {
@@ -280,7 +280,7 @@
     "wear_flags": "take wrist",
     "extra_description": [{
       "keyword": "bracelet",
-      "description": "A bracelet of purity and youth, only worn by selected virgins.\n"
+      "description": "A bracelet of purity and youth, only worn by selected virgins."
     }],
     "affects": [{
       "apply": "wisdom",
@@ -309,7 +309,7 @@
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "scale",
-      "description": "It is a shield of justice, used in the ancient battle against injustice.\n"
+      "description": "It is a shield of justice, used in the ancient battle against injustice."
     }],
     "affects": [
       {
@@ -347,7 +347,7 @@
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "scale",
-      "description": "It is a shield of injustice, it picks on the innocent.\n"
+      "description": "It is a shield of injustice, it picks on the innocent."
     }],
     "affects": [
       {
@@ -385,7 +385,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sting",
-      "description": "This dreadful weapon put a lot of mortals to death before Scorpio was banished.\n"
+      "description": "This dreadful weapon put a lot of mortals to death before Scorpio was banished."
     }],
     "affects": [
       {
@@ -424,7 +424,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "arrow",
-      "description": "It's an arrow of lightning; it will never miss any target.\n"
+      "description": "It's an arrow of lightning; it will never miss any target."
     }]
   }},
   {"object": {
@@ -446,7 +446,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "bow",
-      "description": "The gigantic bow used by the Archer; it is a very powerful weapon.\n"
+      "description": "The gigantic bow used by the Archer; it is a very powerful weapon."
     }],
     "affects": [
       {
@@ -485,7 +485,7 @@
     "extra_description": [{
       "keyword": "horn",
       "description": "These strange horns are the work of gods, shaped to fit on hands.
-                     |They look powerful indeed.\n"
+                     |They look powerful indeed."
     }],
     "affects": [
       {
@@ -525,7 +525,7 @@
     "extra_description": [{
       "keyword": "vessel",
       "description": "This vessel has been carried by the Water Bearer ever since she came to the
-                     |Zodiac.\n"
+                     |Zodiac."
     }]
   }},
   {"object": {
@@ -548,7 +548,7 @@
     "extra_description": [{
       "keyword": "tail",
       "description": "This tail can actually be worn by mortals somehow as leggings ... another
-                     |work of the gods.\n"
+                     |work of the gods."
     }],
     "affects": [
       {
@@ -583,7 +583,7 @@
     "extra_description": [{
       "keyword": "ring",
       "description": "This ring belongs to Cassiopeia, queen of the Universe.
-                     |Mortals, do not touch!\n"
+                     |Mortals, do not touch!"
     }],
     "affects": [
       {
@@ -617,7 +617,7 @@
     "wear_flags": "take neck body head feet hands arms shield about waist wrist wield",
     "extra_description": [{
       "keyword": "sceptre",
-      "description": "You'd better give it back, or the king of the Universe will punish you.\n"
+      "description": "You'd better give it back, or the king of the Universe will punish you."
     }],
     "affects": [
       {
@@ -651,7 +651,7 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring",
-      "description": "It conceals the power of the universe.\n"
+      "description": "It conceals the power of the universe."
     }],
     "affects": [
       {
@@ -775,7 +775,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "chains",
-      "description": "They certainly look important!\n"
+      "description": "They certainly look important!"
     }]
   }}
 ]

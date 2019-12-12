@@ -6,14 +6,14 @@
     "description": "You are in Granny Jenkins' still room.  The smell of whiskey is heady, and
                    |the bottles of it on the floor make your mouth water and your mind swirl.  You
                    |also see a very large still.  So THIS is why there are so many grain fields!
-                   |The exit is to the east.\n",
+                   |The exit is to the east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 16,
       "keyword": "door",
-      "description": "You see the storage shed.\n",
+      "description": "You see the storage shed.",
       "exit_flags": "door closed"
     }],
     "resets": [
@@ -41,27 +41,27 @@
     "name": "The Big Intersection",
     "description": "You are in the big intersection between Raff Way and Impy Way.  Crowds 
                    |of people walk past you as they go on their daily tasks.  Raff Way continues
-                   |east and west, and Impy Way runs north and south.\n",
+                   |east and west, and Impy Way runs north and south.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 25,
-        "description": "Impy Way continues north.\n"
+        "description": "Impy Way continues north."
       },
       {
         "dir": "east",
         "to": 66,
-        "description": "Raff Way continues east.\n"
+        "description": "Raff Way continues east."
       },
       {
         "dir": "south",
         "to": 2,
-        "description": "Impy Way continues south.\n"
+        "description": "Impy Way continues south."
       },
       {
         "dir": "west",
-        "description": "Raff Way continues west.\n",
+        "description": "Raff Way continues west.",
         "portal": "ofcol2-west-1"
       }
     ],
@@ -209,28 +209,28 @@
     "anum": 2,
     "name": "Impy Way",
     "description": "You are on Impy Way.  You can see a leather shop east and a blacksmith
-                   |west.  To the north you see a big intersection, and Impy Way continues south.\n",
+                   |west.  To the north you see a big intersection, and Impy Way continues south.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 1,
-        "description": "You see the big intersection.\n"
+        "description": "You see the big intersection."
       },
       {
         "dir": "east",
         "to": 4,
-        "description": "You see the leather shop.\n"
+        "description": "You see the leather shop."
       },
       {
         "dir": "south",
         "to": 5,
-        "description": "Impy Way continues south.\n"
+        "description": "Impy Way continues south."
       },
       {
         "dir": "west",
         "to": 3,
-        "description": "You see the blacksmith.\n"
+        "description": "You see the blacksmith."
       }
     ]
   }},
@@ -240,13 +240,13 @@
     "name": "The Blacksmith",
     "description": "You are in a black and smelly room.  Pieces of metal are strewn all over
                    |the floor, and a wave of heat from a big furnace hits you.  An anvil sits on 
-                   |one side of the room, and on the other side is a workbench.  The exit is east.\n",
+                   |one side of the room, and on the other side is a workbench.  The exit is east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 2,
-      "description": "You see Impy Way.\n"
+      "description": "You see Impy Way."
     }],
     "resets": [
       {
@@ -294,13 +294,13 @@
     "description": "You are in a brown and smelly room.  Pieces of leather are strewn all over
                    |the floor.  The smell of burnt hide assaults your nose.  You can tell by the
                    |looks that the tanning is done VERY CLOSE to here!   A table is near the
-                   |entrance.  The exit is west.\n",
+                   |entrance.  The exit is west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "west",
       "to": 2,
-      "description": "You see Impy Way.\n"
+      "description": "You see Impy Way."
     }],
     "resets": [
       {
@@ -387,28 +387,28 @@
     "name": "Impy Way",
     "description": "You are on Impy Way.  To the east is a meat store, and to the west is a
                    |pawn shop.  Impy Way continues north and south.  People are rushing around you
-                   |to go to these stores.\n",
+                   |to go to these stores.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 2,
-        "description": "Impy Way continues North.\n"
+        "description": "Impy Way continues North."
       },
       {
         "dir": "east",
         "to": 7,
-        "description": "You see the Meat Store.\n"
+        "description": "You see the Meat Store."
       },
       {
         "dir": "south",
         "to": 8,
-        "description": "Impy Way continues south.\n"
+        "description": "Impy Way continues south."
       },
       {
         "dir": "west",
         "to": 6,
-        "description": "You see the Pawn Shop.\n"
+        "description": "You see the Pawn Shop."
       }
     ]
   }},
@@ -418,13 +418,13 @@
     "name": "The Pawn Shop.",
     "description": "You are in a little shop filled with a lot of knick knacks and semi-
                    |valuable goods.  There is a display case full of little treasures that you are
-                   |sure that you or any other little kid would like to touch!  The exit is east.\n",
+                   |sure that you or any other little kid would like to touch!  The exit is east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 5,
-      "description": "You see Impy Way.\n"
+      "description": "You see Impy Way."
     }],
     "resets": [
       {
@@ -464,13 +464,13 @@
     "name": "The Meat Store",
     "description": "You are in a meat store.  Hanging on hooks are meats of many kinds of
                    |animals.  In the background, you can hear the sound of blade against flesh.
-                   |It smells like meat here (which is not a good smell).  The exit is west.\n",
+                   |It smells like meat here (which is not a good smell).  The exit is west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "west",
       "to": 5,
-      "description": "You see Impy Way.\n"
+      "description": "You see Impy Way."
     }],
     "resets": [
       {
@@ -517,28 +517,28 @@
     "name": "Impy Way",
     "description": "You are on Impy Way.  To the east is Farmer's Market, and to the west is
                    |Nyles' House of Ale.  Impy Way runs north and ends south of here.  You can hear
-                   |the sound of housewives gossiping at the market.\n",
+                   |the sound of housewives gossiping at the market.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 5,
-        "description": "Impy Way continues north.\n"
+        "description": "Impy Way continues north."
       },
       {
         "dir": "east",
         "to": 10,
-        "description": "You see the Farmer's Market.\n"
+        "description": "You see the Farmer's Market."
       },
       {
         "dir": "south",
         "to": 11,
-        "description": "You see the end of Impy Way.\n"
+        "description": "You see the end of Impy Way."
       },
       {
         "dir": "west",
         "to": 9,
-        "description": "You see Nyles' House of Ale.\n"
+        "description": "You see Nyles' House of Ale."
       }
     ],
     "resets": [
@@ -590,13 +590,13 @@
     "name": "Nyles' House of Ale",
     "description": "This is a very busy bar, with everyone holding homemade bottles of
                    |ale.  You see even the more gentile persons here, laughing along with
-                   |Nyles, who offers you a quart of ale too.\n",
+                   |Nyles, who offers you a quart of ale too.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 8,
-      "description": "You see Impy Way.\n"
+      "description": "You see Impy Way."
     }],
     "resets": [
       {
@@ -644,13 +644,13 @@
     "name": "Farmer's Market",
     "description": "You see many carts filled with fruits and vegetables.  Many farmers are
                    |all trying to sell you their produce, each saying their's is better.  The exit
-                   |is west.\n",
+                   |is west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "west",
       "to": 8,
-      "description": "You see Impy Way.\n"
+      "description": "You see Impy Way."
     }],
     "resets": [
       {
@@ -704,23 +704,23 @@
     "name": "The End of Impy Way",
     "description": "You are at the end of Impy and of the city part of Ofcol.  To the east is
                    |a dirt road leading toward the farm animals.  West from here are fields.  Impy
-                   |Way continues north.\n",
+                   |Way continues north.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 8,
-        "description": "Impy Way continues north.\n"
+        "description": "Impy Way continues north."
       },
       {
         "dir": "east",
         "to": 68,
-        "description": "You see the dirt road.\n"
+        "description": "You see the dirt road."
       },
       {
         "dir": "west",
         "to": 12,
-        "description": "You see the fields.\n"
+        "description": "You see the fields."
       }
     ],
     "resets": [{
@@ -739,28 +739,28 @@
     "description": "You are in a corn field.  You can't see far, since the corn stalks are
                    |taller than you are.  You remember that the end of Impy Way is east of here, 
                    |and you think you see a building to the north.  The field continues south and 
-                   |west.\n",
+                   |west.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 16,
-        "description": "You think you see a building north of here.\n"
+        "description": "You think you see a building north of here."
       },
       {
         "dir": "east",
         "to": 11,
-        "description": "You remember that the end of Impy Way is east.\n"
+        "description": "You remember that the end of Impy Way is east."
       },
       {
         "dir": "south",
         "to": 13,
-        "description": "You can make a path to the fields south.\n"
+        "description": "You can make a path to the fields south."
       },
       {
         "dir": "west",
         "to": 15,
-        "description": "You can make a path to the fields west.\n"
+        "description": "You can make a path to the fields west."
       }
     ]
   }},
@@ -770,18 +770,18 @@
     "name": "Fields",
     "description": "You are among fruit trees in a field.  You see many apple and orange 
                    |trees.  You can make out the corn fields north and some vegetable patches west.
-                   |The sight of the fruit makes your mouth water.\n",
+                   |The sight of the fruit makes your mouth water.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 12,
-        "description": "You see the corn fields.\n"
+        "description": "You see the corn fields."
       },
       {
         "dir": "west",
         "to": 14,
-        "description": "You see the vegetable fields.\n"
+        "description": "You see the vegetable fields."
       }
     ]
   }},
@@ -791,18 +791,18 @@
     "name": "Fields",
     "description": "You are among the vegetable fields.  You see many cabbage and lettuce
                    |patches, along with tomato bushes and potato plants.  To the east are some
-                   |fruit trees, and north are some wheat fields.\n",
+                   |fruit trees, and north are some wheat fields.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 15,
-        "description": "You see the wheat fields.\n"
+        "description": "You see the wheat fields."
       },
       {
         "dir": "east",
         "to": 13,
-        "description": "You see the fruit trees.\n"
+        "description": "You see the fruit trees."
       }
     ]
   }},
@@ -813,18 +813,18 @@
     "description": "You are among the wheat fields.  The gentle caress of the wheat and the
                    |cool shadow from the tall stalks and scarecrow lulls you to sleep and dream
                    |of a little girl and little dog from a faraway place.  To the east are the corn
-                   |stalks, and south of you are the vegetable patches.\n",
+                   |stalks, and south of you are the vegetable patches.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "east",
         "to": 12,
-        "description": "You see the corn fields.\n"
+        "description": "You see the corn fields."
       },
       {
         "dir": "south",
         "to": 14,
-        "description": "You see the vegetable patches.\n"
+        "description": "You see the vegetable patches."
       }
     ]
   }},
@@ -834,20 +834,20 @@
     "name": "The Shed",
     "description": "You are in the storage shed.  Bales of wheat, corn and hay are piled
                    |against the wall, and some vegetables are in carts.  You see a small door
-                   |to the west.  The main exit is south.\n",
+                   |to the west.  The main exit is south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "south",
         "to": 12,
-        "description": "You see the corn fields.\n"
+        "description": "You see the corn fields."
       },
       {
         "dir": "west",
         "to": 0,
         "keyword": "door",
-        "description": "You see the door.\n",
+        "description": "You see the door.",
         "exit_flags": "door closed"
       }
     ]
@@ -858,13 +858,13 @@
     "name": "Slaughterhouse",
     "description": "You are in the slaughterhouse, where all the animals are slaughtered so
                    |that they can be sold or their skins be tanned.  The scream of dying animals
-                   |makes your stomach churn.  The exit is to the west.\n",
+                   |makes your stomach churn.  The exit is to the west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "west",
       "to": 68,
-      "description": "You see the dirt road.\n"
+      "description": "You see the dirt road."
     }],
     "resets": [
       {
@@ -890,30 +890,30 @@
     "anum": 18,
     "name": "Dirt Road",
     "description": "You are on a dirt road.  To the east is a barn, and you see a big chicken
-                   |coop south of you.  The dirt road continues north and west.\n",
+                   |coop south of you.  The dirt road continues north and west.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 68,
-        "description": "You see the dirt road.\n"
+        "description": "You see the dirt road."
       },
       {
         "dir": "east",
         "to": 20,
-        "description": "You see the barn.\n"
+        "description": "You see the barn."
       },
       {
         "dir": "south",
         "to": 19,
         "keyword": "coop",
-        "description": "You see the chicken coop.\n",
+        "description": "You see the chicken coop.",
         "exit_flags": "door closed"
       },
       {
         "dir": "west",
         "to": 21,
-        "description": "You see the dirt road.\n"
+        "description": "You see the dirt road."
       }
     ]
   }},
@@ -922,13 +922,13 @@
     "anum": 19,
     "name": "Chicken Coop",
     "description": "You are in the chicken coop.  The smell of chickens and chicken droppings
-                   |makes you gasp.  The exit is north.\n",
+                   |makes you gasp.  The exit is north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 18,
-      "description": "You can sense the fresh air.\n",
+      "description": "You can sense the fresh air.",
       "exit_flags": "door closed"
     }],
     "resets": [
@@ -971,13 +971,13 @@
     "anum": 20,
     "name": "Barn",
     "description": "You are in a barn.  There are some cows here, munching on mounds of hay.
-                   |Milk is milked and bottled here.  You see the exit west.\n",
+                   |Milk is milked and bottled here.  You see the exit west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "west",
       "to": 18,
-      "description": "You see the dirt road.\n"
+      "description": "You see the dirt road."
     }],
     "resets": [
       {
@@ -1035,28 +1035,28 @@
     "anum": 21,
     "name": "Dirt Road",
     "description": "You are on a dirt road.  To the north and south, you see some grass 
-                   |fields.  There is a pigsty west, and the dirt road continues east.\n",
+                   |fields.  There is a pigsty west, and the dirt road continues east.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 22,
-        "description": "You see some grass fields.\n"
+        "description": "You see some grass fields."
       },
       {
         "dir": "east",
         "to": 18,
-        "description": "You see the dirt road.\n"
+        "description": "You see the dirt road."
       },
       {
         "dir": "south",
         "to": 23,
-        "description": "You see some grass fields.\n"
+        "description": "You see some grass fields."
       },
       {
         "dir": "west",
         "to": 24,
-        "description": "You see the pigsty.\n"
+        "description": "You see the pigsty."
       }
     ]
   }},
@@ -1065,12 +1065,12 @@
     "anum": 22,
     "name": "Grass Field",
     "description": "You are in a grass field.  Fences block the way north, east, and west.
-                   |The dirt road is to the south.\n",
+                   |The dirt road is to the south.",
     "sector_type": "field",
     "doors": [{
       "dir": "south",
       "to": 21,
-      "description": "You see the dirt road.\n"
+      "description": "You see the dirt road."
     }],
     "resets": [
       {
@@ -1112,12 +1112,12 @@
     "anum": 23,
     "name": "Grass Field",
     "description": "You are in a grass field.  Fences block the way south, east, and west.
-                   |The dirt road is to the north.\n",
+                   |The dirt road is to the north.",
     "sector_type": "field",
     "doors": [{
       "dir": "north",
       "to": 21,
-      "description": "You see the dirt road.\n"
+      "description": "You see the dirt road."
     }],
     "resets": [
       {
@@ -1151,12 +1151,12 @@
     "anum": 24,
     "name": "Pig Sty",
     "description": "For some reason, you are in a pig sty.  You wonder why you are standing in
-                   |muck.  To realize your senses and notice the dirt road is to the east.\n",
+                   |muck.  To realize your senses and notice the dirt road is to the east.",
     "sector_type": "field",
     "doors": [{
       "dir": "east",
       "to": 21,
-      "description": "You see the dry dirt road.\n"
+      "description": "You see the dry dirt road."
     }],
     "resets": [
       {
@@ -1199,32 +1199,32 @@
     "name": "Impy Way",
     "description": "You are on Impy Way.  East and west of you are big houses.  Impy Way
                    |continues north and reaches a big intersection south.  Children are running to
-                   |from home to home.\n",
+                   |from home to home.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 32,
-        "description": "Impy Way continues north.\n"
+        "description": "Impy Way continues north."
       },
       {
         "dir": "east",
         "to": 26,
         "keyword": "door",
-        "description": "You see a big house.\n",
+        "description": "You see a big house.",
         "exit_flags": "door closed locked",
         "key": 65
       },
       {
         "dir": "south",
         "to": 1,
-        "description": "You see a big intersection.\n"
+        "description": "You see a big intersection."
       },
       {
         "dir": "west",
         "to": 29,
         "keyword": "door",
-        "description": "You see a big house.\n",
+        "description": "You see a big house.",
         "exit_flags": "door closed locked",
         "key": 65
       }
@@ -1237,27 +1237,27 @@
     "description": "You are in a big house.  Evidently, the owners of this house are richer
                    |than the average citizen, since there is more than one room to this house.  A
                    |door leads to the kitchen east, and a bedroom is upstairs.  The exit is to the
-                   |west.\n",
+                   |west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "east",
         "to": 28,
-        "description": "You see the kitchen.\n"
+        "description": "You see the kitchen."
       },
       {
         "dir": "west",
         "to": 25,
         "keyword": "door",
-        "description": "You see Impy Way.\n",
+        "description": "You see Impy Way.",
         "exit_flags": "door closed locked",
         "key": 65
       },
       {
         "dir": "up",
         "to": 27,
-        "description": "You see the bedroom.\n"
+        "description": "You see the bedroom."
       }
     ]
   }},
@@ -1266,13 +1266,13 @@
     "anum": 27,
     "name": "Bedroom",
     "description": "You are in the bedroom.  There isn't much of interest except for a bed and
-                   |a closet.  The stairs lead back down.\n",
+                   |a closet.  The stairs lead back down.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "down",
       "to": 26,
-      "description": "You see the main room of the house.\n"
+      "description": "You see the main room of the house."
     }],
     "resets": [
       {
@@ -1305,13 +1305,13 @@
     "anum": 28,
     "name": "Kitchen",
     "description": "You are in a kitchen.  There isn't much of interest here.  The main room
-                   |is west of here.\n",
+                   |is west of here.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "west",
       "to": 26,
-      "description": "You see the main room of the house.\n"
+      "description": "You see the main room of the house."
     }]
   }},
   {"room": {
@@ -1321,7 +1321,7 @@
     "description": "You are in a big house.  Evidently, the owners of this house are richer
                    |than the average citizen, since there is more than one room to this house.  A
                    |door leads to the kitchen west, and a bedroom is upstairs.  The exit is to the
-                   |east.\n",
+                   |east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1329,19 +1329,19 @@
         "dir": "east",
         "to": 25,
         "keyword": "door",
-        "description": "You see Impy Way.\n",
+        "description": "You see Impy Way.",
         "exit_flags": "door closed locked",
         "key": 65
       },
       {
         "dir": "west",
         "to": 31,
-        "description": "You see the kitchen.\n"
+        "description": "You see the kitchen."
       },
       {
         "dir": "up",
         "to": 30,
-        "description": "You see the bedroom.\n"
+        "description": "You see the bedroom."
       }
     ],
     "resets": [
@@ -1375,13 +1375,13 @@
     "anum": 30,
     "name": "Bedroom",
     "description": "You are in the bedroom.  There isn't much of interest except for a bed and
-                   |a closet.  The stairs lead back down.\n",
+                   |a closet.  The stairs lead back down.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "down",
       "to": 29,
-      "description": "You see the main room of the house.\n"
+      "description": "You see the main room of the house."
     }]
   }},
   {"room": {
@@ -1389,13 +1389,13 @@
     "anum": 31,
     "name": "Kitchen",
     "description": "You are in a kitchen.  There isn't much of interest here.  The main room
-                   |is east of here.\n",
+                   |is east of here.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 29,
-      "description": "You see the main room of the house.\n"
+      "description": "You see the main room of the house."
     }]
   }},
   {"room": {
@@ -1403,31 +1403,31 @@
     "anum": 32,
     "name": "Impy Way",
     "description": "You are on Impy Way.  Houses are to the east and west of here.  Impy Way
-                   |continues north and south.  There are many people walking along the streets.\n",
+                   |continues north and south.  There are many people walking along the streets.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 37,
-        "description": "Impy Way continues north.\n"
+        "description": "Impy Way continues north."
       },
       {
         "dir": "east",
         "to": 33,
         "keyword": "door",
-        "description": "You see a house.\n",
+        "description": "You see a house.",
         "exit_flags": "door closed"
       },
       {
         "dir": "south",
         "to": 25,
-        "description": "Impy Way continues south.\n"
+        "description": "Impy Way continues south."
       },
       {
         "dir": "west",
         "to": 35,
         "keyword": "door",
-        "description": "You see a house.\n",
+        "description": "You see a house.",
         "exit_flags": "door closed"
       }
     ]
@@ -1437,20 +1437,20 @@
     "anum": 33,
     "name": "House",
     "description": "You are in a house.  The living room and kitchen are all bundled into
-                   |this room.  There is a bedroom south of here.  The exit is west.\n",
+                   |this room.  There is a bedroom south of here.  The exit is west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "south",
         "to": 34,
-        "description": "You see the bedroom.\n"
+        "description": "You see the bedroom."
       },
       {
         "dir": "west",
         "to": 32,
         "keyword": "door",
-        "description": "You see Impy Way.\n",
+        "description": "You see Impy Way.",
         "exit_flags": "door closed"
       }
     ]
@@ -1460,13 +1460,13 @@
     "anum": 34,
     "name": "Bedroom",
     "description": "You are in a bedroom.  There isn't much of interest here except for a bed
-                   |and a dresser.  The main room of the house is north of here.\n",
+                   |and a dresser.  The main room of the house is north of here.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 33,
-      "description": "You see the main room of the house.\n"
+      "description": "You see the main room of the house."
     }]
   }},
   {"room": {
@@ -1474,7 +1474,7 @@
     "anum": 35,
     "name": "House",
     "description": "You are in a house.  The living room and kitchen are all bundled into
-                   |this room.  There is a bedroom south of here.  The exit is east.\n",
+                   |this room.  There is a bedroom south of here.  The exit is east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1482,13 +1482,13 @@
         "dir": "east",
         "to": 32,
         "keyword": "door",
-        "description": "You see Impy Way.\n",
+        "description": "You see Impy Way.",
         "exit_flags": "door closed"
       },
       {
         "dir": "south",
         "to": 36,
-        "description": "You see the bedroom.\n"
+        "description": "You see the bedroom."
       }
     ],
     "resets": [{
@@ -1505,13 +1505,13 @@
     "anum": 36,
     "name": "Bedroom",
     "description": "You are in a bedroom.  There isn't much of interest here except for a bed
-                   |and a dresser.  The main room of the house is north of here.\n",
+                   |and a dresser.  The main room of the house is north of here.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 35,
-      "description": "You see the main room of the house.\n"
+      "description": "You see the main room of the house."
     }]
   }},
   {"room": {
@@ -1520,31 +1520,31 @@
     "name": "Impy Way",
     "description": "You are on Impy Way.  Houses are to the east and west of here.  Impy Way
                    |continues south.  To the north is a big intersection.  There are many people
-                   |walking along the streets.\n",
+                   |walking along the streets.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 42,
-        "description": "You see a big intersection.\n"
+        "description": "You see a big intersection."
       },
       {
         "dir": "east",
         "to": 38,
         "keyword": "door",
-        "description": "You see a house.\n",
+        "description": "You see a house.",
         "exit_flags": "door closed"
       },
       {
         "dir": "south",
         "to": 32,
-        "description": "Impy Way continues south.\n"
+        "description": "Impy Way continues south."
       },
       {
         "dir": "west",
         "to": 40,
         "keyword": "door",
-        "description": "You see a house.\n",
+        "description": "You see a house.",
         "exit_flags": "door closed"
       }
     ],
@@ -1604,20 +1604,20 @@
     "anum": 38,
     "name": "House",
     "description": "You are in a house.  The living room and kitchen are all bundled into
-                   |this room.  There is a bedroom south of here.  The exit is west.\n",
+                   |this room.  There is a bedroom south of here.  The exit is west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "south",
         "to": 39,
-        "description": "You see the bedroom.\n"
+        "description": "You see the bedroom."
       },
       {
         "dir": "west",
         "to": 37,
         "keyword": "door",
-        "description": "You see Impy Way.\n",
+        "description": "You see Impy Way.",
         "exit_flags": "door closed"
       }
     ]
@@ -1627,13 +1627,13 @@
     "anum": 39,
     "name": "Bedroom",
     "description": "You are in a bedroom.  There isn't much of interest here except for a bed
-                   |and a dresser.  The main room of the house is north of here.\n",
+                   |and a dresser.  The main room of the house is north of here.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 38,
-      "description": "You see the main room of the house.\n"
+      "description": "You see the main room of the house."
     }]
   }},
   {"room": {
@@ -1641,7 +1641,7 @@
     "anum": 40,
     "name": "House",
     "description": "You are in a house.  The living room and kitchen are all bundled into
-                   |this room.  There is a bedroom south of here.  The exit is east.\n",
+                   |this room.  There is a bedroom south of here.  The exit is east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1649,13 +1649,13 @@
         "dir": "east",
         "to": 37,
         "keyword": "door",
-        "description": "You see Impy Way.\n",
+        "description": "You see Impy Way.",
         "exit_flags": "door closed"
       },
       {
         "dir": "south",
         "to": 41,
-        "description": "You see the bedroom.\n"
+        "description": "You see the bedroom."
       }
     ]
   }},
@@ -1664,13 +1664,13 @@
     "anum": 41,
     "name": "Bedroom",
     "description": "You are in a bedroom.  There isn't much of interest here except for a bed
-                   |and a dresser.  The main room of the house is north of here.\n",
+                   |and a dresser.  The main room of the house is north of here.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 40,
-      "description": "You see the main room of the house.\n"
+      "description": "You see the main room of the house."
     }]
   }},
   {"room": {
@@ -1679,31 +1679,31 @@
     "name": "The Big Intersection",
     "description": "You are on the intersection of Impy Way and Swiftest Way.  To the north of
                    |you is a big house.  Swiftest Way runs east and west, and Impy way continues
-                   |south.  There are quite a few people on this intersection.\n",
+                   |south.  There are quite a few people on this intersection.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 43,
         "keyword": "door",
-        "description": "You see the big house.\n",
+        "description": "You see the big house.",
         "exit_flags": "door closed locked",
         "key": 65
       },
       {
         "dir": "east",
         "to": 46,
-        "description": "Swiftest Way continues east.\n"
+        "description": "Swiftest Way continues east."
       },
       {
         "dir": "south",
         "to": 37,
-        "description": "Impy Way continues south.\n"
+        "description": "Impy Way continues south."
       },
       {
         "dir": "west",
         "to": 49,
-        "description": "Swiftest Way continues west.\n"
+        "description": "Swiftest Way continues west."
       }
     ],
     "resets": [
@@ -1756,27 +1756,27 @@
     "description": "You are in a big house.  Evidently, the owners of this house are richer
                    |than the average citizen, since there is more than one room to this house.  A
                    |door leads to the kitchen north, and a bedroom is upstairs.  The exit is to 
-                   |the south.\n",
+                   |the south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 45,
-        "description": "You see the kitchen.\n"
+        "description": "You see the kitchen."
       },
       {
         "dir": "south",
         "to": 42,
         "keyword": "door",
-        "description": "You see Impy Way.\n",
+        "description": "You see Impy Way.",
         "exit_flags": "door closed locked",
         "key": 65
       },
       {
         "dir": "up",
         "to": 44,
-        "description": "You see the bedroom.\n"
+        "description": "You see the bedroom."
       }
     ],
     "resets": [
@@ -1810,13 +1810,13 @@
     "anum": 44,
     "name": "Bedroom",
     "description": "You are in the bedroom.  There isn't much of interest except for a bed 
-                   |and a closet.  The stairs lead back down.\n",
+                   |and a closet.  The stairs lead back down.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "down",
       "to": 43,
-      "description": "You see the main room of the house.\n"
+      "description": "You see the main room of the house."
     }]
   }},
   {"room": {
@@ -1824,13 +1824,13 @@
     "anum": 45,
     "name": "Kitchen",
     "description": "You are in a kitchen.  There isn't much of interest here.  The main room
-                   |is east of here.\n",
+                   |is east of here.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "south",
       "to": 43,
-      "description": "You see the main room of the house.\n"
+      "description": "You see the main room of the house."
     }]
   }},
   {"room": {
@@ -1839,28 +1839,28 @@
     "name": "Swiftest Way",
     "description": "You are on Swiftest Way, the commoner's residential area.  Small houses
                    |are north and south of you.  Swiftest Way continues east, and west is a big
-                   |intersection.\n",
+                   |intersection.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 52,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "east",
         "to": 47,
-        "description": "Swiftest Way continues east.\n"
+        "description": "Swiftest Way continues east."
       },
       {
         "dir": "south",
         "to": 53,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "west",
         "to": 42,
-        "description": "You see a big intersection.\n"
+        "description": "You see a big intersection."
       }
     ]
   }},
@@ -1869,28 +1869,28 @@
     "anum": 47,
     "name": "Swiftest Way",
     "description": "You are on Swiftest Way, the commoner's residential area.  Small houses
-                   |are north and south of you.  Swiftest Way continues east and west.\n",
+                   |are north and south of you.  Swiftest Way continues east and west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 54,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "east",
         "to": 48,
-        "description": "You see the end of Swiftest Way.\n"
+        "description": "You see the end of Swiftest Way."
       },
       {
         "dir": "south",
         "to": 55,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "west",
         "to": 46,
-        "description": "Swiftest Way continues west.\n"
+        "description": "Swiftest Way continues west."
       }
     ],
     "resets": [
@@ -1941,28 +1941,28 @@
     "anum": 48,
     "name": "End of Swiftest Way",
     "description": "You are on Swiftest Way, the commoner's residential area.  Small houses
-                   |are north, south, and east of you.  Swiftest Way continues west.\n",
+                   |are north, south, and east of you.  Swiftest Way continues west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 56,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "east",
         "to": 57,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "south",
         "to": 58,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "west",
         "to": 47,
-        "description": "Swiftest Way continues west.\n"
+        "description": "Swiftest Way continues west."
       }
     ],
     "resets": [{
@@ -1980,28 +1980,28 @@
     "name": "Swiftest Way",
     "description": "You are on Swiftest Way, the commoner's residential area.  Small houses
                    |are north and south of you.  Swiftest Way continues west, and to the east you
-                   |see a big intersection.\n",
+                   |see a big intersection.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 59,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "east",
         "to": 42,
-        "description": "You see the big intersection.\n"
+        "description": "You see the big intersection."
       },
       {
         "dir": "south",
         "to": 60,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "west",
         "to": 50,
-        "description": "Swiftest Way continues west.\n"
+        "description": "Swiftest Way continues west."
       }
     ]
   }},
@@ -2010,28 +2010,28 @@
     "anum": 50,
     "name": "Swiftest Way",
     "description": "You are on Swiftest Way, the commoner's residential area.  Small houses
-                   |are north and south of you.  Swiftest Way continues east and west.\n",
+                   |are north and south of you.  Swiftest Way continues east and west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 61,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "east",
         "to": 49,
-        "description": "Swiftest Way continues east.\n"
+        "description": "Swiftest Way continues east."
       },
       {
         "dir": "south",
         "to": 62,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "west",
         "to": 51,
-        "description": "You see the end of Swiftest Way.\n"
+        "description": "You see the end of Swiftest Way."
       }
     ],
     "resets": [
@@ -2090,28 +2090,28 @@
     "anum": 51,
     "name": "The end of Swiftest Way",
     "description": "You are on Swiftest Way, the commoner's residential area.  Small houses
-                   |are north, south, and west of you.  Swiftest Way continues east.\n",
+                   |are north, south, and west of you.  Swiftest Way continues east.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 63,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "east",
         "to": 50,
-        "description": "Swiftest Way continues east.\n"
+        "description": "Swiftest Way continues east."
       },
       {
         "dir": "south",
         "to": 64,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       },
       {
         "dir": "west",
         "to": 65,
-        "description": "You see a small house.\n"
+        "description": "You see a small house."
       }
     ]
   }},
@@ -2121,13 +2121,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the south.\n",
+                   |of stuff here.  The exit is to the south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "south",
       "to": 46,
-      "description": "You see Swiftest Way.\n"
+      "description": "You see Swiftest Way."
     }],
     "resets": [{
       "command": "mobile",
@@ -2144,13 +2144,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the north.\n",
+                   |of stuff here.  The exit is to the north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 46,
-      "description": "You see Swiftest Way.\n"
+      "description": "You see Swiftest Way."
     }]
   }},
   {"room": {
@@ -2159,13 +2159,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the south.\n",
+                   |of stuff here.  The exit is to the south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "south",
       "to": 47,
-      "description": "You see Swiftest Way.\n"
+      "description": "You see Swiftest Way."
     }]
   }},
   {"room": {
@@ -2174,13 +2174,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the north.\n",
+                   |of stuff here.  The exit is to the north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 47,
-      "description": "You see Swiftest Way.\n"
+      "description": "You see Swiftest Way."
     }],
     "resets": [{
       "command": "mobile",
@@ -2197,13 +2197,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the south.\n",
+                   |of stuff here.  The exit is to the south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "south",
       "to": 48,
-      "description": "You see the end of Swiftest Way.\n"
+      "description": "You see the end of Swiftest Way."
     }]
   }},
   {"room": {
@@ -2212,13 +2212,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the west.\n",
+                   |of stuff here.  The exit is to the west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "west",
       "to": 48,
-      "description": "You see the end of Swiftest Way.\n"
+      "description": "You see the end of Swiftest Way."
     }]
   }},
   {"room": {
@@ -2227,13 +2227,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the north.\n",
+                   |of stuff here.  The exit is to the north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 48,
-      "description": "You see the end of Swiftest Way.\n"
+      "description": "You see the end of Swiftest Way."
     }]
   }},
   {"room": {
@@ -2242,13 +2242,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the south.\n",
+                   |of stuff here.  The exit is to the south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "south",
       "to": 49,
-      "description": "You see Swiftest Way.\n"
+      "description": "You see Swiftest Way."
     }]
   }},
   {"room": {
@@ -2257,13 +2257,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the north.\n",
+                   |of stuff here.  The exit is to the north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 49,
-      "description": "You see Swiftest Way.\n"
+      "description": "You see Swiftest Way."
     }]
   }},
   {"room": {
@@ -2272,13 +2272,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the south.\n",
+                   |of stuff here.  The exit is to the south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "south",
       "to": 50,
-      "description": "You see Swiftest Way.\n"
+      "description": "You see Swiftest Way."
     }],
     "resets": [{
       "command": "mobile",
@@ -2295,13 +2295,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the north.\n",
+                   |of stuff here.  The exit is to the north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 50,
-      "description": "You see Swiftest Way.\n"
+      "description": "You see Swiftest Way."
     }]
   }},
   {"room": {
@@ -2310,13 +2310,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the south.\n",
+                   |of stuff here.  The exit is to the south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "south",
       "to": 51,
-      "description": "You see the end of Swiftest Way.\n"
+      "description": "You see the end of Swiftest Way."
     }]
   }},
   {"room": {
@@ -2325,13 +2325,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the north.\n",
+                   |of stuff here.  The exit is to the north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 51,
-      "description": "You see the end of Swiftest Way.\n"
+      "description": "You see the end of Swiftest Way."
     }]
   }},
   {"room": {
@@ -2340,13 +2340,13 @@
     "name": "Small House",
     "description": "You are in a small house, owned by a commoner of Ofcol.  There isn't much
                    |of value here to you, but you'd bet that the owner really cherishes the pile
-                   |of stuff here.  The exit is to the east.\n",
+                   |of stuff here.  The exit is to the east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 51,
-      "description": "You see the end of Swiftest Way.\n"
+      "description": "You see the end of Swiftest Way."
     }]
   }},
   {"room": {
@@ -2356,18 +2356,18 @@
     "description": "You are on Raff Way.  To the west, you can see a big intersection.  To 
                    |the east, you see Raff Way continue toward the Golden Citadel.  There are 
                    |beautiful flowers growing along the road here, making this more of a garden
-                   |than a road.\n",
+                   |than a road.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "east",
         "to": 67,
-        "description": "Raff Way continues east.\n"
+        "description": "Raff Way continues east."
       },
       {
         "dir": "west",
         "to": 1,
-        "description": "You see the big intersection.\n"
+        "description": "You see the big intersection."
       }
     ],
     "resets": [{
@@ -2386,18 +2386,18 @@
     "description": "You are on Raff Way.  Raff Way continues west to the city of Ofcol.  To 
                    |the east, you see Raff Way continue toward the Golden Citadel.  There are 
                    |beautiful flowers growing along the road here, making this more of a garden
-                   |than a road.\n",
+                   |than a road.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "east",
         "to": 99,
-        "description": "You see the entrance of the Golden Citadel.\n"
+        "description": "You see the entrance of the Golden Citadel."
       },
       {
         "dir": "west",
         "to": 66,
-        "description": "Raff Way continues west.\n"
+        "description": "Raff Way continues west."
       }
     ],
     "resets": [
@@ -2449,23 +2449,23 @@
     "name": "Dirt Road",
     "description": "You are on a dirt road.  To the east is a large building with a bad smell
                    |emanating from it.  To the west is the end of Impy Way, and this road continues
-                   |south.\n",
+                   |south.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "east",
         "to": 17,
-        "description": "You see the large building with the bad smell.\n"
+        "description": "You see the large building with the bad smell."
       },
       {
         "dir": "south",
         "to": 18,
-        "description": "The dirt road continues south.\n"
+        "description": "The dirt road continues south."
       },
       {
         "dir": "west",
         "to": 11,
-        "description": "You see the end of Impy Way.\n"
+        "description": "You see the end of Impy Way."
       }
     ]
   }},
@@ -2476,7 +2476,7 @@
     "description": "You are in the Temple of Ofcol.  Golden tiles cover the floor, and solid
                    |gold columns reach the twelve foot ceiling of this vast chamber.  Servants in
                    |golden livery wander this place, making even the raggiest messenger boy look
-                   |richer than you are.  Exits lead to the anterooms in the cardinal directions.\n",
+                   |richer than you are.  Exits lead to the anterooms in the cardinal directions.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2626,7 +2626,7 @@
     "name": "The Anteroom to the Temple of Ofcol",
     "description": "You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the
                    |floor, and servants in golden livery pass you by peaceably.  The temple is to
-                   |the south, and to the north is a hallway.  A stairways leads up.\n",
+                   |the south, and to the north is a hallway.  A stairways leads up.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2650,7 +2650,7 @@
     "name": "The Anteroom to the Temple of Ofcol",
     "description": "You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the
                    |floor, and servants in golden livery pass you by peaceably.  The temple is to
-                   |the east, and to the west is a hallway.  A stairways leads up.\n",
+                   |the east, and to the west is a hallway.  A stairways leads up.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2674,7 +2674,7 @@
     "name": "The Anteroom to the Temple of Ofcol",
     "description": "You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the
                    |floor, and servants in golden livery pass you by peaceably.  The temple is to
-                   |the west, and to the east is a hallway.  A stairways leads up.\n",
+                   |the west, and to the east is a hallway.  A stairways leads up.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2698,7 +2698,7 @@
     "name": "The Anteroom to the Temple of Ofcol",
     "description": "You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the
                    |floor, and servants in golden livery pass you by peaceably.  The temple is to
-                   |the north, and to the south is a hallway.  A stairways leads up.\n",
+                   |the north, and to the south is a hallway.  A stairways leads up.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2730,7 +2730,7 @@
     "name": "A Hallway of the Golden Citadel",
     "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
                    |and rich golden tapestries drape the walls.  Servants in golden livery pass you
-                   |by peaceably.  Exits lead east and south.\n",
+                   |by peaceably.  Exits lead east and south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2758,7 +2758,7 @@
     "name": "A Hallway of the Golden Citadel",
     "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
                    |and rich golden tapestries drape the walls.  Servants in golden livery pass you
-                   |by peaceably.  Exits lead east, west, and south.\n",
+                   |by peaceably.  Exits lead east, west, and south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2782,7 +2782,7 @@
     "name": "A Hallway of the Golden Citadel",
     "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
                    |and rich golden tapestries drape the walls.  Servants in golden livery pass you
-                   |by peaceably.  Exits lead west and south.\n",
+                   |by peaceably.  Exits lead west and south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2844,7 +2844,7 @@
     "name": "A Hallway of the Golden Citadel",
     "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
                    |and rich golden tapestries drape the walls.  Servants in golden livery pass you
-                   |by peaceably.  Exits lead north and south.\n",
+                   |by peaceably.  Exits lead north and south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2864,7 +2864,7 @@
     "name": "A Hallway of the Golden Citadel",
     "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
                    |and rich golden tapestries drape the walls.  Servants in golden livery pass you
-                   |by peaceably.  Exits lead north and south.\n",
+                   |by peaceably.  Exits lead north and south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2893,7 +2893,7 @@
     "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
                    |and rich golden tapestries drape the walls.  Servants in golden livery pass you
                    |by peaceably.  Exits lead to the cardinal directions, with the east leading
-                   |toward the Temple of Ofcol, and west leading toward the City of Ofcol.\n",
+                   |toward the Temple of Ofcol, and west leading toward the City of Ofcol.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2921,7 +2921,7 @@
     "name": "A Hallway of the Golden Citadel",
     "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
                    |and rich golden tapestries drape the walls.  Servants in golden livery pass you
-                   |by peaceably.  Exits lead west, north and south.\n",
+                   |by peaceably.  Exits lead west, north and south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -2945,7 +2945,7 @@
     "name": "A Hallway of the Golden Citadel",
     "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
                    |and rich golden tapestries drape the walls.  Servants in golden livery pass you
-                   |by peaceably.  Exits lead north and south.\n",
+                   |by peaceably.  Exits lead north and south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3007,7 +3007,7 @@
     "name": "A Hallway of the Golden Citadel",
     "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
                    |and rich golden tapestries drape the walls.  Servants in golden livery pass you
-                   |by peaceably.  Exits lead north and south.\n",
+                   |by peaceably.  Exits lead north and south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3035,7 +3035,7 @@
     "name": "A Hallway of the Golden Citadel",
     "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
                    |and rich golden tapestries drape the walls.  Servants in golden livery pass you
-                   |by peaceably.  Exits lead north and east.\n",
+                   |by peaceably.  Exits lead north and east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3063,7 +3063,7 @@
     "name": "A Hallway of the Golden Citadel",
     "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
                    |and rich golden tapestries drape the walls.  Servants in golden livery pass you
-                   |by peaceably.  Exits lead east, west, and north.\n",
+                   |by peaceably.  Exits lead east, west, and north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3087,7 +3087,7 @@
     "name": "A Hallway of the Golden Citadel",
     "description": "You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
                    |and rich golden tapestries drape the walls.  Servants in golden livery pass you
-                   |by peaceably.  Exits lead west and north.\n",
+                   |by peaceably.  Exits lead west and north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3109,7 +3109,7 @@
                    |tions of this place surpass even those of the first floor.  Gold tiles etched
                    |with platinum cover the floor, walls and the ceiling.  The lights from numerous
                    |torches reflect from these shimmering planes, giving the illusion that you are
-                   |standing in a gem.  Stairways lead up and down, and the hall leads south. \n",
+                   |standing in a gem.  Stairways lead up and down, and the hall leads south. ",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3135,7 +3135,7 @@
                    |tions of this place surpass even those of the first floor.  Gold tiles etched
                    |with platinum cover the floor, walls and the ceiling.  The lights from numerous
                    |torches reflect from these shimmering planes, giving the illusion that you are
-                   |standing in a gem.  Stairways lead up and down, and the hall leads east. \n",
+                   |standing in a gem.  Stairways lead up and down, and the hall leads east. ",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3161,7 +3161,7 @@
                    |Golden tiles etched with platinum cover the floors, and weapons of all types
                    |are mounted on the walls of this meeting hall.  Surrounding a solid gold table
                    |are four sons of the Keeper of the Golden Citadel.  They smile at you and ask 
-                   |you to join them in lunch.  Exits lead to the cardinal directions. \n",
+                   |you to join them in lunch.  Exits lead to the cardinal directions. ",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3377,7 +3377,7 @@
                    |tions of this place surpass even those of the first floor.  Gold tiles etched
                    |with platinum cover the floor, walls and the ceiling.  The lights from numerous
                    |torches reflect from these shimmering planes, giving the illusion that you are
-                   |standing in a gem.  Stairways lead up and down, and the hall leads west. \n",
+                   |standing in a gem.  Stairways lead up and down, and the hall leads west. ",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3403,7 +3403,7 @@
                    |tions of this place surpass even those of the first floor.  Gold tiles etched
                    |with platinum cover the floor, walls and the ceiling.  The lights from numerous
                    |torches reflect from these shimmering planes, giving the illusion that you are
-                   |standing in a gem.  Stairways lead up and down, and the hall leads north. \n",
+                   |standing in a gem.  Stairways lead up and down, and the hall leads north. ",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3471,7 +3471,7 @@
                    |of this room looks like a dragon's hoard.  The whole room is carved out of pure
                    |gold, and gems of all types glitter from the walls, ceiling, even the floor.
                    |It is obvious that this room was not meant for you to intrude upon.  A stair-
-                   |case leads back down, and a doorway leads south.\n",
+                   |case leads back down, and a doorway leads south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3493,7 +3493,7 @@
                    |of this room looks like a dragon's hoard.  The whole room is carved out of pure
                    |gold, and gems of all types glitter from the walls, ceiling, even the floor.
                    |It is obvious that this room was not meant for you to intrude upon.  A stair-
-                   |case leads back down, and a doorway leads east.\n",
+                   |case leads back down, and a doorway leads east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3516,7 +3516,7 @@
                    |painful.  A vast open sky-light lets fresh air come in from the top.  In the
                    |center of this chamber, you see a great wealth of coins, and on top of that
                    |pile of coins, you see a golden dragon squinting at you.  Exits lead to the
-                   |cardinal directions to the anterooms.\n",
+                   |cardinal directions to the anterooms.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3632,7 +3632,7 @@
                    |of this room looks like a dragon's hoard.  The whole room is carved out of pure
                    |gold, and gems of all types glitter from the walls, ceiling, even the floor.
                    |It is obvious that this room was not meant for you to intrude upon.  A stair-
-                   |case leads back down, and a doorway leads west.\n",
+                   |case leads back down, and a doorway leads west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3654,7 +3654,7 @@
                    |of this room looks like a dragon's hoard.  The whole room is carved out of pure
                    |gold, and gems of all types glitter from the walls, ceiling, even the floor.
                    |It is obvious that this room was not meant for you to intrude upon.  A stair-
-                   |case leads back down, and a doorway leads north.\n",
+                   |case leads back down, and a doorway leads north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3674,7 +3674,7 @@
     "name": "Above the Dragon Chamber",
     "description": "You are above the Dragon Chamber.  You curiously note that this shaft that
                    |connects the chamber to the sky is wide enough that even a dragon can fit
-                   |through.  This shaft leads up and down.\n",
+                   |through.  This shaft leads up and down.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3694,7 +3694,7 @@
     "name": "In the Shaft from the Dragon Chamber",
     "description": "You are in the shaft leading from the Dragon Chamber.  Below you lies the
                    |Dragon Chamber of the Golden Citadel.  Above you, you see the sky, but 
-                   |currently, the way out is sealed by a layer of diamond that looks impenetrable.\n",
+                   |currently, the way out is sealed by a layer of diamond that looks impenetrable.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -3708,7 +3708,7 @@
     "name": "Inside the Entrance to the Golden Citadel",
     "description": "You are inside the entrance to the Golden Citadel.  Rich golden tapestries
                    |line the walls, and golden tiles cover the floors.  The exit to this citadel is
-                   |to the west, while the citadel itself is to the east.\n",
+                   |to the west, while the citadel itself is to the east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3874,7 +3874,7 @@
     "name": "Outside the Entrance to the Golden Citadel",
     "description": "You are outside the entrance to the Golden Citadel.  A great gate is to
                    |to the east, marking the entranceway into the citadel.  The road also leads
-                   |back west to Raff Way.\n",
+                   |back west to Raff Way.",
     "sector_type": "field",
     "doors": [
       {

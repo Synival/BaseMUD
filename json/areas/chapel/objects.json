@@ -14,7 +14,7 @@
     "extra_description": [{
       "keyword": "candlestick",
       "description": "It is a rather old-looking three-armed candlestick made from pewter.  Its
-                     |candles are a yellowish white colour.\n"
+                     |candles are a yellowish white colour."
     }]
   }},
   {"object": {
@@ -38,7 +38,7 @@
     "extra_description": [{
       "keyword": "tickler",
       "description": "A horrid black mass of gooey tentacles obviously ripped from the corpse
-                     |of a nightgaunt ... disgusting.\n"
+                     |of a nightgaunt ... disgusting."
     }],
     "affects": [
       {
@@ -77,7 +77,7 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "plasma webbing",
-      "description": "Yuck, mossy and wet.  It looks like some sort of webbing.\n"
+      "description": "Yuck, mossy and wet.  It looks like some sort of webbing."
     }]
   }},
   {"object": {
@@ -95,7 +95,7 @@
     "extra_description": [{
       "keyword": "rod key",
       "description": "This rod looks sort of octagonal, and sort of like a key and crowbar.  You
-                     |recognize that it will probably fit the lock at the entrance of the tombs.\n"
+                     |recognize that it will probably fit the lock at the entrance of the tombs."
     }]
   }},
   {"object": {
@@ -113,7 +113,7 @@
     "extra_description": [{
       "keyword": "large black dirty key",
       "description": "One of those traditional old lock type keys ... except huge, black and
-                     |filthy ... hmm ... like it has been buried for some time ...\n"
+                     |filthy ... hmm ... like it has been buried for some time ..."
     }]
   }},
   {"object": {
@@ -138,7 +138,7 @@
     "extra_description": [{
       "keyword": "head jubal mummy",
       "description": "ACK! It's half eaten away ... yet it is whole ... in fact I think it can be
-                     |opened and closed ... is there something in its teeth!?!?!? ACK you do it!\n"
+                     |opened and closed ... is there something in its teeth!?!?!? ACK you do it!"
     }]
   }},
   {"object": {
@@ -157,7 +157,7 @@
     "extra_description": [{
       "keyword": "black marble ring",
       "description": "It is pitch black and has beautiful swirls characteristic of marble all
-                     |through it.\n"
+                     |through it."
     }],
     "affects": [
       {
@@ -196,7 +196,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "thin rapier",
-      "description": "It seems so thin that it would be useless but at the same time it looks deadly.\n"
+      "description": "It seems so thin that it would be useless but at the same time it looks deadly."
     }],
     "affects": [
       {
@@ -235,7 +235,7 @@
     "extra_description": [{
       "keyword": "sarcophagus coffin",
       "description": "A well crafted, if dusty and ancient, home for the afterworld, it seems
-                     |to be able to be opened but needs a key.\n"
+                     |to be able to be opened but needs a key."
     }]
   }},
   {"object": {
@@ -252,7 +252,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key iron heavy",
-      "description": "It looks to be a very heavy old iron key.\n"
+      "description": "It looks to be a very heavy old iron key."
     }]
   }},
   {"object": {
@@ -274,7 +274,7 @@
     "extra_description": [{
       "keyword": "wineflask flask",
       "description": "A nice leather wineflask that has somehow survived the ages in a coffin.
-                     |The wine should be nicely aged.\n"
+                     |The wine should be nicely aged."
     }]
   }},
   {"object": {
@@ -308,7 +308,7 @@
     "extra_description": [{
       "keyword": "key",
       "description": "Neat you have the key to the coffin...is is a soft orange color
-                     |and burns in your hand a bit.\n"
+                     |and burns in your hand a bit."
     }]
   }},
   {"object": {
@@ -330,7 +330,7 @@
     "extra_flags": "dark",
     "extra_description": [{
       "keyword": "rathcor",
-      "description": "Ah HA!  A hidden compartment!\n"
+      "description": "Ah HA!  A hidden compartment!"
     }]
   }},
   {"object": {
@@ -353,7 +353,7 @@
     "extra_description": [{
       "keyword": "rusty sword scimitar",
       "description": "Very rusty and old...it has a wide blade and chunks missing from
-                     |its cutting edge.\n"
+                     |its cutting edge."
     }]
   }},
   {"object": {
@@ -374,7 +374,7 @@
     "extra_description": [{
       "keyword": "slime piece",
       "description": "ICK! This is a piece of slug-like brownish green slime...
-                     |Blech!\n"
+                     |Blech!"
     }]
   }},
   {"object": {
@@ -392,7 +392,7 @@
     "extra_description": [{
       "keyword": "smock",
       "description": "It has paint and little shavings of different materials all over it.
-                     |It is very old an smells of paint, mildew, and rot.\n"
+                     |It is very old an smells of paint, mildew, and rot."
     }]
   }},
   {"object": {
@@ -422,8 +422,7 @@
                      |    88
                      |8888  8888
                      |    88
-                     |    88
-                     |\n"
+                     |    88\n"
     }]
   }},
   {"object": {
@@ -447,7 +446,7 @@
     "extra_description": [{
       "keyword": "auburn orb",
       "description": "You gaze into the orb and are almost lost in the swirling mists of color
-                     |inside of this rare and beautiful object.\n"
+                     |inside of this rare and beautiful object."
     }]
   }},
   {"object": {
@@ -465,7 +464,7 @@
     "extra_description": [{
       "keyword": "bar gold",
       "description": "A nice little brick of gold...very dusty and old... it has some emblem
-                     |on it...The emblem is a large 'J'\n"
+                     |on it...The emblem is a large 'J'"
     }]
   }},
   {"object": {
@@ -488,7 +487,7 @@
     "extra_description": [{
       "keyword": "dark black cape",
       "description": "The cape is gently flows and pulls in the light so evenly and perfectly
-                     |that the cape seems to be simply a void of blackness. It is quite beautiful\n"
+                     |that the cape seems to be simply a void of blackness. It is quite beautiful"
     }],
     "affects": [
       {
@@ -530,7 +529,7 @@
       "keyword": "flaming sword long longsword",
       "description": "This sword is amazing! It almost wields itself! As you test it out, the
                      |flames seems to roar brighter as you go thru basic swordsman routines.
-                     |it is obviously a great find!\n"
+                     |it is obviously a great find!"
     }],
     "affects": [{
       "apply": "hit roll",
@@ -558,7 +557,7 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "breast dented plate worn",
-      "description": "Though this piece of armour is worn and dented it looks very usable.\n"
+      "description": "Though this piece of armour is worn and dented it looks very usable."
     }]
   }},
   {"object": {
@@ -575,7 +574,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key silver",
-      "description": "for the altar...\n"
+      "description": "for the altar..."
     }]
   }}
 ]

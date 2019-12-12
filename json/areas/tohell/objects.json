@@ -139,8 +139,7 @@
                      |                      Farslayer howls across the world
                      |                      For thy heart, for thy heart, who hast wronged me!
                      |                      Vengeance is his who casts the blade
-                     |                      Yet he will in the end no triumph see.
-                     |\n"
+                     |                      Yet he will in the end no triumph see.\n"
     }],
     "affects": [
       {
@@ -1274,7 +1273,7 @@
       "keyword": "fire opal gem",
       "description": "The fire opal is a nicely-polished round gem, with orange, gold, and red
                      |mixed together like the heart of flame.  You can almost feel the hellfire
-                     |from whence it came.\n"
+                     |from whence it came."
     }]
   }},
   {"object": {
@@ -1294,7 +1293,7 @@
       "keyword": "hellstone hell stone",
       "description": "The hellstones are mined from the deepest pits of Hell at the cost of the
                      |blood, sweat, and pain of hundreds of damned souls.  You feel vaguely ill
-                     |as you gaze into its lustrous black heart.\n"
+                     |as you gaze into its lustrous black heart."
     }]
   }}
 ]

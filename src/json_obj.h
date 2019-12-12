@@ -39,6 +39,8 @@
 /* useful function prototypes. */
 const char *json_not_none (const char *value);
 const char *json_not_blank (const char *value);
+char *json_string_without_last_newline (const char *name, const char *prop,
+    const char *value);
 
 /* node creation. */
 JSON_T *json_new_obj_room (const char *name, const ROOM_INDEX_T *room);

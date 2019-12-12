@@ -4,18 +4,18 @@
     "anum": 1,
     "name": "The muddy sewer",
     "description": "You are standing in mud to your knees. This is not the kind of place
-                   |for a picnic. The muddy sewer stretches further into the south.\n",
+                   |for a picnic. The muddy sewer stretches further into the south.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "south",
       "to": 2,
-      "description": "You see the muddy sewer continuing into the darkness to the south.\n"
+      "description": "You see the muddy sewer continuing into the darkness to the south."
     }],
     "extra_description": [{
       "keyword": "mud",
       "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                     |the smell is absolutely OVERWHELMING.\n"
+                     |the smell is absolutely OVERWHELMING."
     }]
   }},
   {"room": {
@@ -24,30 +24,30 @@
     "name": "The muddy sewer junction",
     "description": "The muddy sewer stretches into the dark to the south. It looks as if 
                    |no person has ever sat his foot here before. It's too muddy for that
-                   |anyway. The sewer leads north, south and east from here.\n",
+                   |anyway. The sewer leads north, south and east from here.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 1,
-        "description": "The muddy sewer stretches into the dark to the north.\n"
+        "description": "The muddy sewer stretches into the dark to the north."
       },
       {
         "dir": "east",
         "to": 7,
-        "description": "East. The muddy sewer leads into a bend that goes south.\n"
+        "description": "East. The muddy sewer leads into a bend that goes south."
       },
       {
         "dir": "south",
         "to": 3,
-        "description": "South. The muddy sewer ends in a mudhole that way.\n"
+        "description": "South. The muddy sewer ends in a mudhole that way."
       }
     ],
     "extra_description": [{
       "keyword": "mud",
       "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                     |the smell is absolutely OVERWHELMING.\n"
+                     |the smell is absolutely OVERWHELMING."
     }]
   }},
   {"room": {
@@ -57,25 +57,25 @@
     "description": "You stand in mud all the way up to your thighs and it's not too 
                    |comfortable since you are used to a somewhat different environment.
                    |The sewer leads to the north of here. In the middle you can just make
-                   |out an enormous drainpipe leading down.\n",
+                   |out an enormous drainpipe leading down.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "north",
         "to": 2,
-        "description": "North. The muddy junction lies in that direction.\n"
+        "description": "North. The muddy junction lies in that direction."
       },
       {
         "dir": "down",
         "to": 101,
-        "description": "The muddy drainpipe leads down through the mud, otherwise it is utterly dark.\n"
+        "description": "The muddy drainpipe leads down through the mud, otherwise it is utterly dark."
       }
     ],
     "extra_description": [{
       "keyword": "mud",
       "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                     |the smell is absolutely OVERWHELMING.\n"
+                     |the smell is absolutely OVERWHELMING."
     }]
   }},
   {"room": {
@@ -84,20 +84,20 @@
     "name": "The Dark Pit",
     "description": "You are standing by the edge of a dark pit that leads down into even
                    |deeper darkness. >BWWAAADDRR< - The smell from down there is unbearable.
-                   |The sewer stretches into the darkness to the east.\n",
+                   |The sewer stretches into the darkness to the east.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 9,
-        "description": "East. The sewer leads into the sewer junction.\n"
+        "description": "East. The sewer leads into the sewer junction."
       },
       {
         "dir": "down",
         "to": 102,
         "description": "The Dark Pit leads down and down and down ... well you can't see the 
-                       |bottom anyway. There are bars that function as a ladder on the side.\n"
+                       |bottom anyway. There are bars that function as a ladder on the side."
       }
     ],
     "resets": [
@@ -125,26 +125,26 @@
     "name": "The muddy sewer",
     "description": "You are standing in the middle of a bend of the sewer pipe. It is very
                    |dark around here and the mud is sticking to your legs, not very pleasant.
-                   |The pipe leads east and south from here.\n",
+                   |The pipe leads east and south from here.",
     "sector_type": "hills",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 11,
-        "description": "East. The mud stretches on into the darkness.\n"
+        "description": "East. The mud stretches on into the darkness."
       },
       {
         "dir": "south",
         "to": 6,
         "description": "South. There is even more mud in that direction than where you are now. 
-                       |Incredible.\n"
+                       |Incredible."
       }
     ],
     "extra_description": [{
       "keyword": "mud",
       "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                     |the smell is absolutely OVERWHELMING.\n"
+                     |the smell is absolutely OVERWHELMING."
     }]
   }},
   {"room": {
@@ -153,26 +153,26 @@
     "name": "The muddy sewer",
     "description": "You are standing in something that reminds you very much of porridge, this
                    |has the advantage that it's not hot, it's rather cold actually. The pipe 
-                   |bends to the north and east.\n",
+                   |bends to the north and east.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 5,
-        "description": "The muddy sewer pipe leads into a bend that goes east.\n"
+        "description": "The muddy sewer pipe leads into a bend that goes east."
       },
       {
         "dir": "east",
         "to": 12,
         "description": "The pipe leads into a bend that goes south. Interesting, there's mud on the
-                       |floor there.\n"
+                       |floor there."
       }
     ],
     "extra_description": [{
       "keyword": "mud",
       "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                     |the smell is absolutely OVERWHELMING.\n"
+                     |the smell is absolutely OVERWHELMING."
     }]
   }},
   {"room": {
@@ -181,7 +181,7 @@
     "name": "The muddy sewer bend",
     "description": "This isn't your idea of a place to stay too long. You're in up to your
                    |knees in something that resembles mud, but you're not quite sure. The
-                   |bend in which you stand leads west and south.\n",
+                   |bend in which you stand leads west and south.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -189,19 +189,19 @@
         "dir": "south",
         "to": 8,
         "description": "The pipe leads into a intersection that goes south and east. The floor here 
-                       |is still covered in mud.\n"
+                       |is still covered in mud."
       },
       {
         "dir": "west",
         "to": 2,
         "description": "The pipe (still filled with mud) leads into a intersection that goes north 
-                       |and south. Interesting.\n"
+                       |and south. Interesting."
       }
     ],
     "extra_description": [{
       "keyword": "mud",
       "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                     |the smell is absolutely OVERWHELMING.\n"
+                     |the smell is absolutely OVERWHELMING."
     }]
   }},
   {"room": {
@@ -211,7 +211,7 @@
     "description": "You have both your feet safely stuck in mud. It isn't the mud that's wrong
                    |it's the smell, the sounds, the total darkness that surrounds you. Everything
                    |here is so depressing. The pipe leads on with a trail of thick mud to the
-                   |north, east and south.\n",
+                   |north, east and south.",
     "sector_type": "hills",
     "room_flags": "dark indoors",
     "doors": [
@@ -219,27 +219,27 @@
         "dir": "north",
         "to": 7,
         "description": "North. The pipe goes into a bend with a load of mud all the way up the walls.
-                       |The bend leads west.\n"
+                       |The bend leads west."
       },
       {
         "dir": "east",
         "to": 14,
         "description": "East. This way like a place for the annual mud festival, although the stench
                        |wouldn't allow any happiness at all. The pipe leads into a bend that leads 
-                       |north.\n"
+                       |north."
       },
       {
         "dir": "south",
         "to": 9,
         "description": "South. There's less mud in that direction. *smile*. Your light doesn't 
                        |cover enough space for you to see much more than that it leads into some
-                       |sort of junction.\n"
+                       |sort of junction."
       }
     ],
     "extra_description": [{
       "keyword": "mud",
       "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                     |the smell is absolutely OVERWHELMING.\n"
+                     |the smell is absolutely OVERWHELMING."
     }]
   }},
   {"room": {
@@ -248,37 +248,37 @@
     "name": "The Sewer Junction",
     "description": "You stand in the middle of a huge junction of sewer pipes right under
                    |what you'd think was an air shaft. The sewer pipes lead to the north,
-                   |south, east and west. It look quite impossible to force your way up.\n",
+                   |south, east and west. It look quite impossible to force your way up.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 8,
-        "description": "North. Mud is the floor basis in that direction. Yummy.\n"
+        "description": "North. Mud is the floor basis in that direction. Yummy."
       },
       {
         "dir": "east",
         "to": 17,
-        "description": "YYEEUUCH! BOOH! THAT looks like a nice place for creepy crawlies.\n"
+        "description": "YYEEUUCH! BOOH! THAT looks like a nice place for creepy crawlies."
       },
       {
         "dir": "south",
         "to": 10,
         "description": "North. This direction looks quite nice actually. The pipe leads into 
-                       |a bend that goes east.\n"
+                       |a bend that goes east."
       },
       {
         "dir": "west",
         "to": 4,
         "description": "A few yards ahead - away from this junction - there is a pit leading down,
-                       |but the smell from there...>PHEWW<.\n"
+                       |but the smell from there...>PHEWW<."
       }
     ],
     "extra_description": [{
       "keyword": "mud",
       "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                     |the smell is absolutely OVERWHELMING.\n"
+                     |the smell is absolutely OVERWHELMING."
     }]
   }},
   {"room": {
@@ -286,19 +286,19 @@
     "anum": 10,
     "name": "A bend in sewer pipe",
     "description": "You are in a bend in the sewer pipe. A strong smell seeps in from the north.
-                   |The sewer goes north and east.\n",
+                   |The sewer goes north and east.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 9,
-        "description": "North. You are staring into a huge junction with exits in all directions.\n"
+        "description": "North. You are staring into a huge junction with exits in all directions."
       },
       {
         "dir": "east",
         "to": 18,
-        "description": "East. The Pipe leads into utter darkness that way.\n"
+        "description": "East. The Pipe leads into utter darkness that way."
       }
     ]
   }},
@@ -307,31 +307,31 @@
     "anum": 11,
     "name": "The muddy sewer pipe",
     "description": "You have entered a kind of tube intersection that leads south, west and east.
-                   |Your legs are covered in mud up to the knees. REAL yucky! \n",
+                   |Your legs are covered in mud up to the knees. REAL yucky! ",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 24,
-        "description": "East. There's less mud in that direction, or that's your impression.\n"
+        "description": "East. There's less mud in that direction, or that's your impression."
       },
       {
         "dir": "south",
         "to": 21,
         "description": "That way is lost in darkness, though you sense less mud in that direction,
-                       |perhaps even a complete end to this sludge that surrounds you.\n"
+                       |perhaps even a complete end to this sludge that surrounds you."
       },
       {
         "dir": "west",
         "to": 5,
-        "description": "West. The mud reaches that way too, all the way up the walls.\n"
+        "description": "West. The mud reaches that way too, all the way up the walls."
       }
     ],
     "extra_description": [{
       "keyword": "mud",
       "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                     |the smell is absolutely OVERWHELMING.\n"
+                     |the smell is absolutely OVERWHELMING."
     }]
   }},
   {"room": {
@@ -340,7 +340,7 @@
     "name": "The bend in the Muddy sewer",
     "description": "This is not your idea of a holiday. You stand in mud up to your knees.
                    |It's absolutely inconceivable how all this mud could have been placed
-                   |here. The pipe leads to the west and south.\n",
+                   |here. The pipe leads to the west and south.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -348,19 +348,19 @@
         "dir": "south",
         "to": 13,
         "description": "South. There's even more mud that way, incredible! Although it looks
-                       |like an intersection in the sewer system that leads east and south.\n"
+                       |like an intersection in the sewer system that leads east and south."
       },
       {
         "dir": "west",
         "to": 6,
         "description": "West. All you can see, is that the pipe leads into a bend that goes
-                       |north. But there's less mud in that direction, however odd that sounds.\n"
+                       |north. But there's less mud in that direction, however odd that sounds."
       }
     ],
     "extra_description": [{
       "keyword": "mud",
       "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                     |the smell is absolutely OVERWHELMING.\n"
+                     |the smell is absolutely OVERWHELMING."
     }]
   }},
   {"room": {
@@ -370,7 +370,7 @@
     "description": "You wouldn't want to know the true feeling of standing in this mud up to 
                    |your hips. >BWAADR<. All that fills your mind right now is the dream of 
                    |a hot bath. This is NOT very clean mud you know, remember you're in the
-                   |sewer! The pipes leads north, south and east.\n",
+                   |sewer! The pipes leads north, south and east.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -378,20 +378,20 @@
         "dir": "north",
         "to": 12,
         "description": "North. Sludge and sediment fills this corridor of the sewer that leads
-                       |into a bend going west.\n"
+                       |into a bend going west."
       },
       {
         "dir": "east",
         "to": 26,
         "description": "East. You can see absolutely nothing of interest in that direction (Maybe
                        |that's why it's so damn interesting.??) There's no mud in that direction
-                       |either, GREAT!\n"
+                       |either, GREAT!"
       },
       {
         "dir": "south",
         "to": 14,
         "description": "South. All you can see is more mud! Although the pipe goes into a bend
-                       |leading west.\n"
+                       |leading west."
       }
     ],
     "extra_description": [
@@ -399,12 +399,12 @@
         "keyword": "sediment",
         "description": "It's NOT the kind of matter that would concern you too much, normally, but
                        |as you are in the middle of it, it just might become your main concern.
-                       |REAL YUCKY!\n"
+                       |REAL YUCKY!"
       },
       {
         "keyword": "mud",
         "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                       |the smell is absolutely OVERWHELMING.\n"
+                       |the smell is absolutely OVERWHELMING."
       }
     ]
   }},
@@ -416,7 +416,7 @@
                    |thighs. Contemplating a higher level of existence here would be utterly
                    |inappropriate, as the smell would keep any intelligent creature from even
                    |thinking of anything but getting away from this foul end of the WORLD.
-                   |The bend goes from north to west.\n",
+                   |The bend goes from north to west.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -424,19 +424,19 @@
         "dir": "north",
         "to": 13,
         "description": "North. Filled with mud, that place looks like an impassable intersection
-                       |with pipes leading north and east.\n"
+                       |with pipes leading north and east."
       },
       {
         "dir": "west",
         "to": 8,
         "description": "West. There's less mud that way, maybe you're on your way out of this foul
-                       |place.\n"
+                       |place."
       }
     ],
     "extra_description": [{
       "keyword": "mud",
       "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                     |the smell is absolutely OVERWHELMING.\n"
+                     |the smell is absolutely OVERWHELMING."
     }]
   }},
   {"room": {
@@ -445,7 +445,7 @@
     "name": "The old well",
     "description": "You are standing by an old and worn well from before this century. The sewer
                    |leads to the east from here and the well leads down into darkness. Metal
-                   |bars implanted in the side of the well lead down as a ladder.\n",
+                   |bars implanted in the side of the well lead down as a ladder.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -453,19 +453,19 @@
         "dir": "east",
         "to": 28,
         "description": "East. You see, because of the utter darkness that surround you, absolutely
-                       |nothing. Your light isn't of much use for that kind of distance.\n"
+                       |nothing. Your light isn't of much use for that kind of distance."
       },
       {
         "dir": "down",
         "to": 105,
         "description": "Down the well there's even less light than up here, so ... sorry, you can't
-                       |see a thing. There are metal bars in the side leading down into the darkness.\n"
+                       |see a thing. There are metal bars in the side leading down into the darkness."
       }
     ],
     "extra_description": [{
       "keyword": "bars",
       "description": "These look like they're pretty slippery, and not very safe, but perhaps safe
-                     |enough for you to climb down, WITH both hands on them.\n"
+                     |enough for you to climb down, WITH both hands on them."
     }]
   }},
   {"room": {
@@ -473,7 +473,7 @@
     "anum": 16,
     "name": "The ordinary bend",
     "description": "You are in the middle of a bend in the pipe system of the sewer system, 
-                   |WHAT a place!!! The pipe leads to the south and the east.\n",
+                   |WHAT a place!!! The pipe leads to the south and the east.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -481,12 +481,12 @@
         "dir": "east",
         "to": 21,
         "description": "East. What a quiet place you've found there. It's an intersection that have
-                       |pipeways going north and east.\n"
+                       |pipeways going north and east."
       },
       {
         "dir": "south",
         "to": 17,
-        "description": "South. You see nothing at all in that direction it's too dark anyway.\n"
+        "description": "South. You see nothing at all in that direction it's too dark anyway."
       }
     ]
   }},
@@ -494,7 +494,7 @@
     "area": "sewer",
     "anum": 17,
     "name": "The sewer junction",
-    "description": "You are in a junction that leads north, west and south.\n",
+    "description": "You are in a junction that leads north, west and south.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "portal": "sewer-room-3",
@@ -502,18 +502,18 @@
       {
         "dir": "north",
         "to": 16,
-        "description": "North. You see a bend.\n"
+        "description": "North. You see a bend."
       },
       {
         "dir": "south",
         "to": 18,
         "description": "South. It looks like a pipe junction just like this one. Only that one
-                       |leads east and west.\n"
+                       |leads east and west."
       },
       {
         "dir": "west",
         "to": 9,
-        "description": "West. There's a junction with four pipelines in that direction.\n"
+        "description": "West. There's a junction with four pipelines in that direction."
       }
     ]
   }},
@@ -522,25 +522,25 @@
     "anum": 18,
     "name": "The ordinary junction",
     "description": "This looks like an ordinary junction, actually it seems very quiet
-                   |here. The pipelines lead west, east and north.\n",
+                   |here. The pipelines lead west, east and north.",
     "sector_type": "city",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "north",
         "to": 17,
-        "description": "To the north you can see a junction like this one, leading north and west.\n"
+        "description": "To the north you can see a junction like this one, leading north and west."
       },
       {
         "dir": "east",
         "to": 31,
         "description": "To the east there's nothing of particular interest, though there's a 
-                       |junction with pipelines leading north and east.\n"
+                       |junction with pipelines leading north and east."
       },
       {
         "dir": "west",
         "to": 10,
-        "description": "There's a bend to the west leading north.\n"
+        "description": "There's a bend to the west leading north."
       }
     ]
   }},
@@ -549,25 +549,25 @@
     "anum": 21,
     "name": "A quiet pipe junction",
     "description": "This is the kind of place to rest, though the smell could be a LOT better
-                   |than this. The sewer goes east, north and west from here.\n",
+                   |than this. The sewer goes east, north and west from here.",
     "sector_type": "city",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "north",
         "to": 11,
-        "description": "In that direction, you can't see anything. It's just too dark.\n"
+        "description": "In that direction, you can't see anything. It's just too dark."
       },
       {
         "dir": "east",
         "to": 29,
-        "description": "There's an ordinary junction in the pipe system to the east\n"
+        "description": "There's an ordinary junction in the pipe system to the east"
       },
       {
         "dir": "west",
         "to": 16,
         "description": "West. There's an ordinary bend leading south into the sewer system in
-                       |that direction.\n"
+                       |that direction."
       }
     ]
   }},
@@ -582,7 +582,7 @@
                    |.
                    |.
                    | ... And come to an abrupt end. THIS is strange indeed. There's an arched
-                   |entryway leading down.\n",
+                   |entryway leading down.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [{
@@ -590,7 +590,7 @@
       "to": 112,
       "keyword": "entryway",
       "description": "Down. It's utterly dark that way, though you can make out an intersection
-                     |of sewer pipes leading west, north and east.\n"
+                     |of sewer pipes leading west, north and east."
     }]
   }},
   {"room": {
@@ -598,25 +598,25 @@
     "anum": 24,
     "name": "The sewer",
     "description": "You are standing in mud up to your ankles. This is an intersection with 
-                   |sewer pipes leading east, south and west.\n",
+                   |sewer pipes leading east, south and west.",
     "sector_type": "city",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "east",
         "to": 37,
-        "description": "To the east there's a peculiar looking round room.\n"
+        "description": "To the east there's a peculiar looking round room."
       },
       {
         "dir": "south",
         "to": 25,
-        "description": "To the south there's another intersection with pipes going south and east.\n"
+        "description": "To the south there's another intersection with pipes going south and east."
       },
       {
         "dir": "west",
         "to": 11,
         "description": "To the west there's another intersection like this one, with sewer pipes
-                       |leading south and west.\n"
+                       |leading south and west."
       }
     ]
   }},
@@ -625,7 +625,7 @@
     "anum": 25,
     "name": "Another intersection",
     "description": "You have never seen anything so BORING...This is an intersection with pipes
-                   |leading north, south and east.\n",
+                   |leading north, south and east.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -633,18 +633,18 @@
         "dir": "north",
         "to": 24,
         "description": "To the north there's an intersection, where the pipes are leading west and
-                       |east. You notice that the floor to the west is covered in mud.\n"
+                       |east. You notice that the floor to the west is covered in mud."
       },
       {
         "dir": "east",
         "to": 38,
         "description": "East. You see nothing of interest in that direction, just another 
-                       |intersection. This one leads east and south.\n"
+                       |intersection. This one leads east and south."
       },
       {
         "dir": "south",
         "to": 26,
-        "description": "Another intersection lies to the south. It leads west and south.\n"
+        "description": "Another intersection lies to the south. It leads west and south."
       }
     ],
     "resets": [{
@@ -663,7 +663,7 @@
     "description": "This one seems interesting, a big difference from all the other junctions.
                    |It seems cleaner than the rest of them. Weird. Something that looks like 
                    |an air shaft leads upwards, but it looks far too slippery to climb.
-                   |The pipes lead to the south, west and north.\n",
+                   |The pipes lead to the south, west and north.",
     "sector_type": "inside",
     "room_flags": "dark no_mob indoors",
     "portal": "sewer-room-2",
@@ -671,31 +671,31 @@
       {
         "dir": "north",
         "to": 25,
-        "description": "North. You see an intersection there, leading north and east.\n"
+        "description": "North. You see an intersection there, leading north and east."
       },
       {
         "dir": "south",
         "to": 28,
-        "description": "To the south there's ANOTHER junction leading west and east.\n"
+        "description": "To the south there's ANOTHER junction leading west and east."
       },
       {
         "dir": "west",
         "to": 13,
         "description": "To the west you see a load of mud and sediment in the sewer. That should
-                       |be an intersection there but you're not quite sure.\n"
+                       |be an intersection there but you're not quite sure."
       }
     ],
     "extra_description": [{
       "keyword": "mud",
       "description": "It's dark as tar and looks like something out of a toilet, on top of THAT
-                     |the smell is absolutely OVERWHELMING.\n"
+                     |the smell is absolutely OVERWHELMING."
     }]
   }},
   {"room": {
     "area": "sewer",
     "anum": 28,
     "name": "The sewer junction",
-    "description": "You stand in a junction of sewer pipes leading north, east and west.\n",
+    "description": "You stand in a junction of sewer pipes leading north, east and west.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -706,12 +706,12 @@
       {
         "dir": "east",
         "to": 34,
-        "description": "To the east you can see a bend in the pipe going south.\n"
+        "description": "To the east you can see a bend in the pipe going south."
       },
       {
         "dir": "west",
         "to": 15,
-        "description": "To the west you can just make out an old well.\n"
+        "description": "To the west you can just make out an old well."
       }
     ]
   }},
@@ -720,26 +720,26 @@
     "anum": 29,
     "name": "The Triple Junction",
     "description": "You stand in the middle of a huge junction of concrete sewer pipes. The 
-                   |pipes lead into three different directions : east, south and west.\n",
+                   |pipes lead into three different directions : east, south and west.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 35,
-        "description": "East. You can see a bend in the sewer pipe leading north.\n"
+        "description": "East. You can see a bend in the sewer pipe leading north."
       },
       {
         "dir": "south",
         "to": 30,
         "description": "To the south there's a ENORMOUS quadruple sewer junction, all lit up by
-                       |an odd light.\n"
+                       |an odd light."
       },
       {
         "dir": "west",
         "to": 21,
         "description": "To the west you can just make out another junction similar to the one 
-                       |you are standing in.\n"
+                       |you are standing in."
       }
     ]
   }},
@@ -750,7 +750,7 @@
     "description": "You are standing in something that reminds you of an entry to an ant hive.
                    |There are enormous concrete pipes leading north, south, east and west. 
                    |There's also a metal ladder built into the concrete wall leading up through
-                   |a layer of garbage. \n",
+                   |a layer of garbage. ",
     "sector_type": "city",
     "room_flags": "dark no_mob indoors",
     "doors": [
@@ -758,27 +758,27 @@
         "dir": "north",
         "to": 29,
         "description": "To the north you can see a huge triple junction with sewer pipes leading
-                       |west and east.\n"
+                       |west and east."
       },
       {
         "dir": "east",
         "to": 36,
-        "description": "East. You can see a pit in the floor.\n"
+        "description": "East. You can see a pit in the floor."
       },
       {
         "dir": "south",
         "to": 31,
-        "description": "To the south there's a huge junction with pipes leading east and west.\n"
+        "description": "To the south there's a huge junction with pipes leading east and west."
       },
       {
         "dir": "west",
         "to": 22,
-        "description": "To the west there's an odd looking room with totally smooth walls.\n"
+        "description": "To the west there's an odd looking room with totally smooth walls."
       },
       {
         "dir": "up",
         "description": "Up through the garbage you can just make out what looks like the Dump in
-                       |Midgaard.\n",
+                       |Midgaard.",
         "portal": "sewer-up-1"
       }
     ],
@@ -786,14 +786,14 @@
       "keyword": "ladder",
       "description": "It looks as if it's made of stainless steel, and it would very well function
                      |as a club of considerable power, but alas ... You can't take at all since
-                     |it's firmly set into the concrete wall.\n"
+                     |it's firmly set into the concrete wall."
     }]
   }},
   {"room": {
     "area": "sewer",
     "anum": 31,
     "name": "A triple junction",
-    "description": "You stand in a junction with pipes leading west, north and east.\n",
+    "description": "You stand in a junction with pipes leading west, north and east.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -801,17 +801,17 @@
         "dir": "north",
         "to": 30,
         "description": "To the north there's a ENORMOUS quadruple sewer junction, all lit up by
-                       |an odd light.\n"
+                       |an odd light."
       },
       {
         "dir": "east",
         "to": 44,
-        "description": "East. You can just make out a triple junction leading north and east.\n"
+        "description": "East. You can just make out a triple junction leading north and east."
       },
       {
         "dir": "west",
         "to": 18,
-        "description": "West. You can just make out a triple junction leading north and west.\n"
+        "description": "West. You can just make out a triple junction leading north and west."
       }
     ],
     "resets": [{
@@ -827,19 +827,19 @@
     "area": "sewer",
     "anum": 34,
     "name": "A bend in the sewer pipe",
-    "description": "You can look in two directions where the pipe leads : south and west.\n",
+    "description": "You can look in two directions where the pipe leads : south and west.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "south",
         "to": 35,
-        "description": "To the south you can see another bend leading west.\n"
+        "description": "To the south you can see another bend leading west."
       },
       {
         "dir": "west",
         "to": 28,
-        "description": "West. You can just make out a triple junction leading north and west.\n"
+        "description": "West. You can just make out a triple junction leading north and west."
       }
     ]
   }},
@@ -848,20 +848,20 @@
     "anum": 35,
     "name": "The sewer pipe bend",
     "description": "You can look in two different directions where the pipe goes : west and 
-                   |north.\n",
+                   |north.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 34,
-        "description": "North. You see another bend leading west.\n"
+        "description": "North. You see another bend leading west."
       },
       {
         "dir": "west",
         "to": 29,
         "description": "You can see another junction although this one is a triple one with pipes
-                       |going south and west.\n"
+                       |going south and west."
       }
     ]
   }},
@@ -871,19 +871,19 @@
     "name": "The pit",
     "description": "You stand in a section of a pipe that leads to a dead end. In the floor
                    |there's a pit leading down. There are bars set in the side of the pit wall
-                   |functioning as a ladder.\n",
+                   |functioning as a ladder.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "west",
         "to": 30,
-        "description": "West. You can see a dimly lit quadruple junction with an exit up.\n"
+        "description": "West. You can see a dimly lit quadruple junction with an exit up."
       },
       {
         "dir": "down",
         "to": 122,
-        "description": "Down the pit it's utterly dark you can't see a thing.\n"
+        "description": "Down the pit it's utterly dark you can't see a thing."
       }
     ]
   }},
@@ -894,13 +894,13 @@
     "description": "As you enter the room it starts rotating - at first slowly, later faster
                    |and faster - You get totally confused as to where up and down are, but you are
                    |certain that the doorway is in the opposite direction of what it was when
-                   |you entered. It now leads east. There was only this one exit.\n",
+                   |you entered. It now leads east. There was only this one exit.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "east",
       "to": 50,
-      "description": "You can just make out a smaller room with a chair.\n"
+      "description": "You can just make out a smaller room with a chair."
     }],
     "resets": [
       {
@@ -925,24 +925,24 @@
     "area": "sewer",
     "anum": 38,
     "name": "The three way junction",
-    "description": "You are standing in a junction of pipes that lead west, east and south.\n",
+    "description": "You are standing in a junction of pipes that lead west, east and south.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 45,
-        "description": "East. You can make out a dimly lit Guard Room.\n"
+        "description": "East. You can make out a dimly lit Guard Room."
       },
       {
         "dir": "south",
         "to": 39,
-        "description": "To the south you can see what looks like a store room.\n"
+        "description": "To the south you can see what looks like a store room."
       },
       {
         "dir": "west",
         "to": 25,
-        "description": "West. You see another junction similar to this one leading north and south.\n"
+        "description": "West. You see another junction similar to this one leading north and south."
       }
     ]
   }},
@@ -951,13 +951,13 @@
     "anum": 39,
     "name": "The Sewer Store Room",
     "description": "You stand in a small room lit by a single torch set in the wall. The only 
-                   |way out of here is to the north.\n",
+                   |way out of here is to the north.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 38,
-      "description": "To the north you see a pipe junction.\n"
+      "description": "To the north you see a pipe junction."
     }],
     "resets": [
       {
@@ -992,26 +992,26 @@
     "name": "The Shaft",
     "description": "You are standing by the edge of a deep, dark shaft leading down. A single
                    |ladder is your tool to work your way down if you so wish. The sewer pipe
-                   |leads south from here.\n",
+                   |leads south from here.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "south",
         "to": 43,
-        "description": "To the south you can see the pipe leading further south into darkness.\n"
+        "description": "To the south you can see the pipe leading further south into darkness."
       },
       {
         "dir": "down",
         "to": 123,
         "description": "Down and utter darkness. There's absolutely nothing to be seen in that 
-                       |direction.\n"
+                       |direction."
       }
     ],
     "extra_description": [{
       "keyword": "ladder",
       "description": "Firmly set into the wall of the shaft it's impossible to even rock, is your
-                     |estimate.\n"
+                     |estimate."
     }],
     "resets": [{
       "command": "mobile",
@@ -1028,7 +1028,7 @@
     "name": "The Sewer Entrance",
     "description": "You stand in the middle of a pipe that leads from north to south. Above you
                    |an air shaft leads up into sunlight. It seems totally impossible to go up
-                   |that way.\n",
+                   |that way.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "portal": "sewer-room-5",
@@ -1036,12 +1036,12 @@
       {
         "dir": "north",
         "to": 41,
-        "description": "To the north you can just make out a huge shaft leading down.\n"
+        "description": "To the north you can just make out a huge shaft leading down."
       },
       {
         "dir": "south",
         "to": 44,
-        "description": "To the south you can see a triple junction leading west and east.\n"
+        "description": "To the south you can see a triple junction leading west and east."
       }
     ]
   }},
@@ -1050,14 +1050,14 @@
     "anum": 44,
     "name": "The junction going three ways",
     "description": "You are in a passageway in the pipes of the sewer system leading north, east
-                   |and west.\n",
+                   |and west.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 43,
-        "description": "You see a sewer pipe leading north.\n"
+        "description": "You see a sewer pipe leading north."
       },
       {
         "dir": "east",
@@ -1067,7 +1067,7 @@
         "dir": "west",
         "to": 31,
         "description": "West. You see another junction very similar to this one that leads north
-                       |and west.\n"
+                       |and west."
       }
     ]
   }},
@@ -1078,19 +1078,19 @@
     "description": "You are standing in a large room with chairs set in the walls. You have the
                    |feeling of being watched. To the south there's an entry to a larger room.
                    |The room is lit by five torches, also set in the walls. To the west there
-                   |is a doorway leading out to the sewers.\n",
+                   |is a doorway leading out to the sewers.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "south",
         "to": 46,
-        "description": "You can see an even larger room than this one, filled with light.\n"
+        "description": "You can see an even larger room than this one, filled with light."
       },
       {
         "dir": "west",
         "to": 38,
-        "description": "To the west you can see the sewers.\n"
+        "description": "To the west you can see the sewers."
       }
     ]
   }},
@@ -1101,19 +1101,19 @@
     "description": "This is a Room with walls that glitters like gold though not quite like it.
                    |This is strange as it looks as if the glitter lights the whole room. It
                    |looks very bright. To the south the floor is covered with yucky water. The
-                   |North leads to sort of a Guard Room.\n",
+                   |North leads to sort of a Guard Room.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 45,
-        "description": "To the north you can see the guard room.\n"
+        "description": "To the north you can see the guard room."
       },
       {
         "dir": "south",
         "to": 47,
-        "description": "To the south there is nothing but water and an exit leads east from there.\n"
+        "description": "To the south there is nothing but water and an exit leads east from there."
       }
     ]
   }},
@@ -1122,19 +1122,19 @@
     "anum": 47,
     "name": "The Pool in the Sewer",
     "description": "You stand in water to your waist.  To the north is the entrance to this room.
-                   |A single door leads east.\n",
+                   |A single door leads east.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 46,
-        "description": "To the north you see the entrance to this room.\n"
+        "description": "To the north you see the entrance to this room."
       },
       {
         "dir": "east",
         "to": 53,
-        "description": "You can see an enormous hall through the doorway.\n"
+        "description": "You can see an enormous hall through the doorway."
       }
     ]
   }},
@@ -1144,7 +1144,7 @@
     "name": "The Sewers",
     "description": "You stand in a dead end of the sewer. The only way out is south.
                    |You can see a shaft leading up but it looks too difficult to go up
-                   |that way.\n",
+                   |that way.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "portal": "sewer-room-4",
@@ -1157,7 +1157,7 @@
     "area": "sewer",
     "anum": 49,
     "name": "The junction",
-    "description": "You stand in a junction leading north, west and east.\n",
+    "description": "You stand in a junction leading north, west and east.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -1169,13 +1169,13 @@
         "dir": "east",
         "to": 60,
         "description": "Darkness has closed in on that part of the sewer system, you can't see
-                       |a thing in that direction.\n"
+                       |a thing in that direction."
       },
       {
         "dir": "west",
         "to": 44,
         "description": "West. You see another junction very similar to this one that leads north
-                       |and west.\n"
+                       |and west."
       }
     ],
     "resets": [{
@@ -1192,25 +1192,25 @@
     "anum": 50,
     "name": "The small room",
     "description": "The only thing in this room of interest is a chair, and that's tight to the 
-                   |rock floor. A doorway leads south and another leads east into darkness.\n",
+                   |rock floor. A doorway leads south and another leads east into darkness.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 55,
-        "description": "Utter darkness...!\n"
+        "description": "Utter darkness...!"
       },
       {
         "dir": "south",
         "to": 51,
-        "description": "You can see a room with a lot of light in it. You can't make out any details.\n"
+        "description": "You can see a room with a lot of light in it. You can't make out any details."
       }
     ],
     "extra_description": [{
       "keyword": "chair",
       "description": "This chair is made of marble, but the fact that it is worn and attached to the
-                     |floor makes you think twice about taking it along with you.\n"
+                     |floor makes you think twice about taking it along with you."
     }],
     "resets": [{
       "command": "mobile",
@@ -1226,7 +1226,7 @@
     "anum": 51,
     "name": "The Sewer pipe",
     "description": "You are in what reminds you of a foul sewer, as if you liked being here! 
-                   |You can see two exits leading either north or south.\n",
+                   |You can see two exits leading either north or south.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -1237,7 +1237,7 @@
       {
         "dir": "south",
         "to": 52,
-        "description": "To the south you can see a strange light flowing from there.\n"
+        "description": "To the south you can see a strange light flowing from there."
       }
     ]
   }},
@@ -1246,24 +1246,24 @@
     "anum": 52,
     "name": "The Grand Sewer",
     "description": "You are in a Grand Sewer Pipe. This stretches toward the south. It's large 
-                   |indeed! A doorway leads to the east from here.\n",
+                   |indeed! A doorway leads to the east from here.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 51,
-        "description": "To the north you can see a doorway.\n"
+        "description": "To the north you can see a doorway."
       },
       {
         "dir": "east",
         "to": 56,
-        "description": "You can't see anything in that darkness.\n"
+        "description": "You can't see anything in that darkness."
       },
       {
         "dir": "south",
         "to": 53,
-        "description": "In the south end of the pipe the \"floor\" is completely covered with water.\n"
+        "description": "In the south end of the pipe the \"floor\" is completely covered with water."
       }
     ]
   }},
@@ -1272,14 +1272,14 @@
     "anum": 53,
     "name": "The South end of the Grand Pipe",
     "description": "You stand in water to your knees. A doorway leads west from here. The Pipe
-                   |stretches north.\n",
+                   |stretches north.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 52,
-        "description": "You see a lot of pictures decorating the walls.\n"
+        "description": "You see a lot of pictures decorating the walls."
       },
       {
         "dir": "west",
@@ -1292,7 +1292,7 @@
     "anum": 55,
     "name": "The Edge of The Water Sewer",
     "description": "You stand in a room where half of the floor is covered in water. The water
-                   |leads east and a doorway leads west.\n",
+                   |leads east and a doorway leads west.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -1300,7 +1300,7 @@
         "dir": "east",
         "to": 61,
         "description": "You can hardly make out much more than that the next place is in a pipe 
-                       |with more water.\n"
+                       |with more water."
       },
       {
         "dir": "west",
@@ -1309,7 +1309,7 @@
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "It looks dark and murky, and emanates a foul stench.\n"
+      "description": "It looks dark and murky, and emanates a foul stench."
     }]
   }},
   {"room": {
@@ -1317,19 +1317,19 @@
     "anum": 56,
     "name": "The Dark hallway",
     "description": "You can't see much of this, even with a light. The hallway goes into a
-                   |passageway to the south. A doorway leads west.\n",
+                   |passageway to the south. A doorway leads west.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "south",
         "to": 57,
-        "description": "You can see nothing at all, because it's completely dark in that direction.\n"
+        "description": "You can see nothing at all, because it's completely dark in that direction."
       },
       {
         "dir": "west",
         "to": 52,
-        "description": "You see a lot of light, bright as daylight, but nothing of interest.\n"
+        "description": "You see a lot of light, bright as daylight, but nothing of interest."
       }
     ]
   }},
@@ -1338,7 +1338,7 @@
     "anum": 57,
     "name": "The dark passageway",
     "description": "You can't see anything but the ground where you put your feet. The 
-                   |passageway seems to continue south and north.\n",
+                   |passageway seems to continue south and north.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -1346,13 +1346,13 @@
         "dir": "north",
         "to": 56,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "south",
         "to": 58,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       }
     ]
   }},
@@ -1361,7 +1361,7 @@
     "anum": 58,
     "name": "The dark passageway",
     "description": "You can't see anything but the ground where you put your feet. The
-                   |passageway seems to continue south and north.\n",
+                   |passageway seems to continue south and north.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -1369,13 +1369,13 @@
         "dir": "north",
         "to": 57,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "south",
         "to": 59,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       }
     ]
   }},
@@ -1384,7 +1384,7 @@
     "anum": 59,
     "name": "The dark passageway",
     "description": "You can't see anything but the ground where you put your feet. The
-                   |passageway seems to continue south and north.\n",
+                   |passageway seems to continue south and north.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -1392,13 +1392,13 @@
         "dir": "north",
         "to": 58,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "south",
         "to": 60,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       }
     ]
   }},
@@ -1409,7 +1409,7 @@
     "description": "You can't see anything but the ground where you put your feet. The
                    |passageway seems to continue west and north. To the east there's water
                    |covering the floor and that leads through an arched entry to a watery
-                   |sewer.\n",
+                   |sewer.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -1417,23 +1417,23 @@
         "dir": "north",
         "to": 59,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "east",
         "to": 68,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "west",
         "to": 49,
-        "description": "You can just make out a triple junction leading north and west.\n"
+        "description": "You can just make out a triple junction leading north and west."
       }
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "It looks dark and murky, and emanates a foul stench.\n"
+      "description": "It looks dark and murky, and emanates a foul stench."
     }]
   }},
   {"room": {
@@ -1441,7 +1441,7 @@
     "anum": 61,
     "name": "The Watery Sewer Bend",
     "description": "You can't see anything but the water you're in up to your hips. The sewer
-                   |seems to bend and lead south and west.\n",
+                   |seems to bend and lead south and west.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1449,18 +1449,18 @@
         "dir": "south",
         "to": 62,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "west",
         "to": 55,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       }
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "It looks dark and murky, and emanates a foul stench.\n"
+      "description": "It looks dark and murky, and emanates a foul stench."
     }]
   }},
   {"room": {
@@ -1468,7 +1468,7 @@
     "anum": 62,
     "name": "The Watery sewer",
     "description": "You can't see anything but the water you're in up to your hips. The sewer
-                   |seems to lead south and north.\n",
+                   |seems to lead south and north.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1476,18 +1476,18 @@
         "dir": "north",
         "to": 61,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "south",
         "to": 63,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       }
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "It looks dark and murky, and emanates a foul stench.\n"
+      "description": "It looks dark and murky, and emanates a foul stench."
     }]
   }},
   {"room": {
@@ -1495,7 +1495,7 @@
     "anum": 63,
     "name": "The Watery sewer",
     "description": "You can't see anything but the water you're in up to your hips. The sewer
-                   |seems to lead south and north.\n",
+                   |seems to lead south and north.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1503,18 +1503,18 @@
         "dir": "north",
         "to": 62,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "south",
         "to": 64,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       }
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "It looks dark and murky, and emanates a foul stench.\n"
+      "description": "It looks dark and murky, and emanates a foul stench."
     }]
   }},
   {"room": {
@@ -1522,7 +1522,7 @@
     "anum": 64,
     "name": "The Watery Sewer Junction",
     "description": "You can't see anything but the water you're in up to your hips. The sewer
-                   |seems to lead into a junction going south, north and east.\n",
+                   |seems to lead into a junction going south, north and east.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1530,24 +1530,24 @@
         "dir": "north",
         "to": 63,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "east",
         "to": 69,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "south",
         "to": 65,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       }
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "It looks dark and murky, and emanates a foul stench.\n"
+      "description": "It looks dark and murky, and emanates a foul stench."
     }]
   }},
   {"room": {
@@ -1555,7 +1555,7 @@
     "anum": 65,
     "name": "The Watery sewer",
     "description": "You can't see anything but the water you're in up to your hips. The sewer
-                   |seems to lead south and north.\n",
+                   |seems to lead south and north.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1563,18 +1563,18 @@
         "dir": "north",
         "to": 64,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "south",
         "to": 66,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       }
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "It looks dark and murky, and emanates a foul stench.\n"
+      "description": "It looks dark and murky, and emanates a foul stench."
     }]
   }},
   {"room": {
@@ -1582,7 +1582,7 @@
     "anum": 66,
     "name": "The Watery sewer junction",
     "description": "You can't see anything but the water you're in up to your hips. The sewer
-                   |seems to lead into a junction that goes north, south and east.\n",
+                   |seems to lead into a junction that goes north, south and east.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1590,24 +1590,24 @@
         "dir": "north",
         "to": 65,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "east",
         "to": 70,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "south",
         "to": 67,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       }
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "It looks dark and murky, and emanates a foul stench.\n"
+      "description": "It looks dark and murky, and emanates a foul stench."
     }]
   }},
   {"room": {
@@ -1615,7 +1615,7 @@
     "anum": 67,
     "name": "The Watery sewer",
     "description": "You can't see anything but the water you're in up to your hips. The sewer
-                   |seems to lead south and north.\n",
+                   |seems to lead south and north.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1623,18 +1623,18 @@
         "dir": "north",
         "to": 66,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "south",
         "to": 68,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       }
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "It looks dark and murky, and emanates a foul stench.\n"
+      "description": "It looks dark and murky, and emanates a foul stench."
     }]
   }},
   {"room": {
@@ -1642,7 +1642,7 @@
     "anum": 68,
     "name": "The Watery sewer bend",
     "description": "You can't see anything but the water you're in up to your hips. The sewer
-                   |seems to bend and lead west and north.\n",
+                   |seems to bend and lead west and north.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1650,18 +1650,18 @@
         "dir": "north",
         "to": 67,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       },
       {
         "dir": "west",
         "to": 60,
         "description": "You can't see anything in that direction and your light isn't enough to light
-                       |that far.\n"
+                       |that far."
       }
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "It looks dark and murky, and emanates a foul stench.\n"
+      "description": "It looks dark and murky, and emanates a foul stench."
     }]
   }},
   {"room": {
@@ -1672,24 +1672,24 @@
                    |down. You can just make out a huge dark pool out there in the darkness, 
                    |mostly because of the trickling of water. The water from the sewer actually
                    |washes over this ledge and makes it quite slippery. From here it drops, 
-                   |like a waterfall, into the pool far down.\n",
+                   |like a waterfall, into the pool far down.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "south",
         "to": 70,
-        "description": "You can't see a thing. It's too dark.\n"
+        "description": "You can't see a thing. It's too dark."
       },
       {
         "dir": "west",
         "to": 64,
-        "description": "You can't see a thing. It's too dark.\n"
+        "description": "You can't see a thing. It's too dark."
       }
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "It looks dark and murky, and emanates a foul stench.\n"
+      "description": "It looks dark and murky, and emanates a foul stench."
     }]
   }},
   {"room": {
@@ -1701,19 +1701,19 @@
                    |mostly because of the trickling of water. The water from the sewer actually
                    |washes over this ledge and makes it quite slippery. From here it drops,
                    |like a waterfall, into the pool far down. Under you there is a small fissure
-                   |in the rock. It seems big enough to contain a few people.\n",
+                   |in the rock. It seems big enough to contain a few people.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 69,
-        "description": "You can't see a thing. It's too dark.\n"
+        "description": "You can't see a thing. It's too dark."
       },
       {
         "dir": "west",
         "to": 66,
-        "description": "You can't see a thing. It's too dark.\n"
+        "description": "You can't see a thing. It's too dark."
       },
       {
         "dir": "down",
@@ -1722,7 +1722,7 @@
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "It looks dark and murky, and emanates a foul stench.\n"
+      "description": "It looks dark and murky, and emanates a foul stench."
     }]
   }},
   {"room": {
@@ -1731,7 +1731,7 @@
     "name": "The fissure under the ledge",
     "description": "This is a small fissure in the solid rock. Under you lies the deep dark pool.
                    |The water trickles quietly down from the ledge above you. The water smells 
-                   |like the water in a sewer.\n",
+                   |like the water in a sewer.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
@@ -1742,7 +1742,7 @@
       {
         "dir": "down",
         "to": 199,
-        "description": "The water edge.\n"
+        "description": "The water edge."
       }
     ]
   }},
@@ -1754,17 +1754,17 @@
                    |opening there's mud dripping down in large lumps. >YUCK<. You can smell the 
                    |foul stench of the slimy sediment as you try not to get covered by the 
                    |falling sludge. To the east there is an entryway leading out from here and 
-                   |it seems absolutely impossible to force the muddy descent.\n",
+                   |it seems absolutely impossible to force the muddy descent.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [{
       "dir": "east",
       "to": 103,
-      "description": "East. You see nothing of interest.\n"
+      "description": "East. You see nothing of interest."
     }],
     "extra_description": [{
       "keyword": "mud",
-      "description": "You never saw such disgusting matter before, it nearly makes you puke.\n"
+      "description": "You never saw such disgusting matter before, it nearly makes you puke."
     }],
     "resets": [{
       "command": "mobile",
@@ -1781,7 +1781,7 @@
     "name": "Under the Dark Pit",
     "description": "Nice place you found yourself. You stand in the middle of a room with only
                    |two exits, Up and East. A tall ladder is left here so that you can climb
-                   |up through the Pit without the use of a rope.\n",
+                   |up through the Pit without the use of a rope.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -1792,7 +1792,7 @@
       {
         "dir": "up",
         "to": 4,
-        "description": "Up. You can't see a thing up there, it's way too dark.\n"
+        "description": "Up. You can't see a thing up there, it's way too dark."
       },
       {
         "dir": "down",
@@ -1805,7 +1805,7 @@
       "keyword": "ladder",
       "description": "This is funny enough a wooden ladder and, after closer inspection, you
                      |discover it is magically held towards the wall! You can't, even with your
-                     |greatest effort, rock it at ALL!\n"
+                     |greatest effort, rock it at ALL!"
     }],
     "resets": [
       {
@@ -1832,7 +1832,7 @@
     "name": "A muddy bend in the sewer system",
     "description": "You are standing in what looks like a bend in the pipe system of the
                    |sewer. The 'floor' is covered completely by mud! This includes covering
-                   |your legs up to your knees as well. The pipe leads west and south.\n",
+                   |your legs up to your knees as well. The pipe leads west and south.",
     "sector_type": "hills",
     "room_flags": "dark indoors",
     "doors": [
@@ -1840,19 +1840,19 @@
         "dir": "south",
         "to": 104,
         "description": "To the south there's less mud than here! It actually seems to end there!
-                       |You have a feeling it would be nice to have your feet free from mud again.\n"
+                       |You have a feeling it would be nice to have your feet free from mud again."
       },
       {
         "dir": "west",
         "to": 101,
         "description": "You can see a room in which mud drips from the roof onto the floor in 
                        |great cakes of sludge. There doesn't seem to be any exits from that room
-                       |apart from in you direction.\n"
+                       |apart from in you direction."
       }
     ],
     "extra_description": [{
       "keyword": "mud",
-      "description": "You never saw such disgusting matter before, it nearly makes you puke.\n"
+      "description": "You never saw such disgusting matter before, it nearly makes you puke."
     }],
     "resets": [
       {
@@ -1878,24 +1878,24 @@
     "anum": 104,
     "name": "A junction in the sewer pipes",
     "description": "You stand in the middle of what looks like a triple junction of pipes
-                   |going east, west and north.\n",
+                   |going east, west and north.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 103,
-        "description": "You can see a mud area starting in that direction.\n"
+        "description": "You can see a mud area starting in that direction."
       },
       {
         "dir": "east",
         "to": 112,
-        "description": "East. You can't even make out what it might look like, it's just too dark.\n"
+        "description": "East. You can't even make out what it might look like, it's just too dark."
       },
       {
         "dir": "west",
         "to": 102,
-        "description": "West. There's a room with a ladder leading up.\n"
+        "description": "West. There's a room with a ladder leading up."
       }
     ],
     "resets": [
@@ -1924,7 +1924,7 @@
     "description": "You are dangling on the slippery sides of the old well leading down and up.
                    |The only secure point here is the metal bars that are cemented into the 
                    |sides, the ones that you cling frantically to so that you don't fall. Who
-                   |knows how deep this well is?\n",
+                   |knows how deep this well is?",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1932,21 +1932,21 @@
         "dir": "up",
         "to": 15,
         "description": "There's a slight, dim light from above, or maybe it's your imagination.
-                       |Anyway it SEEMS darker down here than up there, if that is possible.\n"
+                       |Anyway it SEEMS darker down here than up there, if that is possible."
       },
       {
         "dir": "down",
         "description": "Down there nothing at all can be spotted. The darkness that engulfs this
                        |descent seems utterly impossible in a mortal world. It's so thick that a 
                        |torch down there would be utterly useless.  You'd better not go down any
-                       |further.\n",
+                       |further.",
         "portal": "sewer-down-1"
       }
     ],
     "extra_description": [{
       "keyword": "bars",
       "description": "These look like they're pretty slippery, and not very safe.  You'd better
-                     |not go down any further.\n"
+                     |not go down any further."
     }]
   }},
   {"room": {
@@ -1956,19 +1956,19 @@
     "description": "You stand, swaying out from the ledge, with only a couple of inches of safe, 
                    |solid ledge under your feet. The ledge continues to the east but not back
                    |south. It seems that the ledge is too narrow to turn on so you'll have to
-                   |continue forward.\n",
+                   |continue forward.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "east",
         "to": 113,
-        "description": "The ledge continues east.\n"
+        "description": "The ledge continues east."
       },
       {
         "dir": "south",
         "to": 107,
-        "description": "The ledge continues south.\n"
+        "description": "The ledge continues south."
       }
     ]
   }},
@@ -1979,25 +1979,25 @@
     "description": "You are in the progress of walking all the way around the ledge since there's
                    |no way of turning around on this all too narrow path. There IS another exit
                    |from here but that leads right into mid-air and with high probability of a
-                   |free fall session afterwards.\n",
+                   |free fall session afterwards.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "north",
         "to": 106,
-        "description": "North. The ledge leads into a corner and turns eastward.\n"
+        "description": "North. The ledge leads into a corner and turns eastward."
       },
       {
         "dir": "east",
         "to": 190,
         "description": "You stare into mid-air, and right under there's absolutely nothing but 
-                       |darkness. You shiver by the thought of falling an utterly unknown distance.\n"
+                       |darkness. You shiver by the thought of falling an utterly unknown distance."
       },
       {
         "dir": "south",
         "to": 108,
-        "description": "South. The ledge leads further south into utter darkness.\n"
+        "description": "South. The ledge leads further south into utter darkness."
       }
     ]
   }},
@@ -2008,25 +2008,25 @@
     "description": "You are in the progress of walking all the way around the ledge since there's
                    |no way of turning around on this all too narrow path. There IS another exit
                    |from here but that leads right into mid-air and with high probability of a
-                   |free fall session afterwards.\n",
+                   |free fall session afterwards.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "north",
         "to": 107,
-        "description": "North. The ledge leads further north.\n"
+        "description": "North. The ledge leads further north."
       },
       {
         "dir": "east",
         "to": 190,
         "description": "You stare into mid-air, and right under there's absolutely nothing but
-                       |darkness. You shiver by the thought of falling that distance.\n"
+                       |darkness. You shiver by the thought of falling that distance."
       },
       {
         "dir": "south",
         "to": 109,
-        "description": "The ledge continues further south into darkness.\n"
+        "description": "The ledge continues further south into darkness."
       }
     ]
   }},
@@ -2037,25 +2037,25 @@
     "description": "You are in the progress of walking all the way around the ledge since there's
                    |no way of turning around on this all too narrow path. There IS another exit
                    |from here but that leads right into mid-air and with high probability of a
-                   |free fall session afterwards.\n",
+                   |free fall session afterwards.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "north",
         "to": 108,
-        "description": "North. The ledge leads further north.\n"
+        "description": "North. The ledge leads further north."
       },
       {
         "dir": "east",
         "to": 190,
         "description": "You stare into mid-air, and right under there's absolutely nothing but
-                       |darkness. You shiver by the thought of falling that distance.\n"
+                       |darkness. You shiver by the thought of falling that distance."
       },
       {
         "dir": "south",
         "to": 110,
-        "description": "The ledge continues south into darkness.\n"
+        "description": "The ledge continues south into darkness."
       }
     ]
   }},
@@ -2066,25 +2066,25 @@
     "description": "You are in the progress of walking all the way around the ledge since there's
                    |no way of turning around on this all too narrow path. There IS another exit
                    |from here but that leads right into mid-air and with high probability of a
-                   |free fall session afterwards.\n",
+                   |free fall session afterwards.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "north",
         "to": 109,
-        "description": "North. The ledge leads further north.\n"
+        "description": "North. The ledge leads further north."
       },
       {
         "dir": "east",
         "to": 190,
         "description": "You stare into mid-air, and right under there's absolutely nothing but
-                       |darkness. You shiver by the thought of falling that distance.\n"
+                       |darkness. You shiver by the thought of falling that distance."
       },
       {
         "dir": "south",
         "to": 111,
-        "description": "South. You can just make out the south-western corner of this ledge.\n"
+        "description": "South. You can just make out the south-western corner of this ledge."
       }
     ]
   }},
@@ -2094,47 +2094,47 @@
     "name": "The southwestern corner of the ledge",
     "description": "This seems like a ledge that is a little broader than the one just to the 
                    |north of here. The ledge seems to lead around some sort of Abyss of total 
-                   |darkness. The ledge seems to have an odd-looking edge here.\n",
+                   |darkness. The ledge seems to have an odd-looking edge here.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "north",
         "to": 110,
-        "description": "North. The ledge leads further north.\n"
+        "description": "North. The ledge leads further north."
       },
       {
         "dir": "east",
         "to": 115,
-        "description": "You see a broad ledge leading eastward.\n"
+        "description": "You see a broad ledge leading eastward."
       },
       {
         "dir": "south",
         "to": 112,
-        "description": "South of here is the exit from the ledge.\n"
+        "description": "South of here is the exit from the ledge."
       },
       {
         "dir": "down",
         "to": 279,
-        "description": "The Abyss lies down there. Who knows what might lurk down there?\n"
+        "description": "The Abyss lies down there. Who knows what might lurk down there?"
       }
     ],
     "extra_description": [
       {
         "keyword": "rock",
         "description": "It looks as if it can be opened in a door-like fashion. Maybe this will lead
-                       |the way down.\n"
+                       |the way down."
       },
       {
         "keyword": "step",
         "description": "A small rock sticks out right under it, otherwise the way is DOWN, DOWN, and
-                       |SPLAT!!!\n"
+                       |SPLAT!!!"
       },
       {
         "keyword": "edge odd-looking",
         "description": "This is truly a weird piece of craftsmanship in your eyes. The edge seems to
                        |form a step leading down, but WHAT a STEP DOWN. The Abyss opens down there 
-                       |leading to seemingly total destruction.\n"
+                       |leading to seemingly total destruction."
       }
     ]
   }},
@@ -2145,14 +2145,14 @@
     "description": "You stand in a rather odd intersection of pipes. The pipes actually don't
                    |resemble pipes anymore. They look more like a real stone tunnel, or a
                    |passageway hewn directly into the rock. The ways from here lead north, east
-                   |and west.\n",
+                   |and west.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 111,
-        "description": "North. You see a ledge to something that looks like an abyss.\n"
+        "description": "North. You see a ledge to something that looks like an abyss."
       },
       {
         "dir": "east",
@@ -2189,25 +2189,25 @@
     "description": "You are in the process of walking all the way around the ledge since there's
                    |no way of turning around on this all too narrow path. There IS another exit
                    |from here but that leads right into mid-air and with high probability of a
-                   |free fall session afterwards.\n",
+                   |free fall session afterwards.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "east",
         "to": 116,
-        "description": "The ledge leads further east.\n"
+        "description": "The ledge leads further east."
       },
       {
         "dir": "south",
         "to": 190,
         "description": "You stare into mid-air, and right under there's absolutely nothing but
-                       |darkness. You shiver by the thought of falling that distance.\n"
+                       |darkness. You shiver by the thought of falling that distance."
       },
       {
         "dir": "west",
         "to": 106,
-        "description": "The ledge leads further west.\n"
+        "description": "The ledge leads further west."
       }
     ]
   }},
@@ -2221,7 +2221,7 @@
                    |are now descending the Abyss. What awaits you at the bottom will continue to
                    |be a mystery. Bye Cruel World.
                    |
-                   |You've fallen, and you can't get up!!!\n",
+                   |You've fallen, and you can't get up!!!",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
     "portal": "sewer-room-6"
@@ -2233,7 +2233,7 @@
     "description": "You are standing on a ledge that seems quite a lot larger than the rest 
                    |of the ledges. This one leads to the west and the east, plus it has an exit
                    |going to the south. Though you could jump into mid-air, but it probably 
-                   |wouldn't be such a good idea. The way south is in utter darkness.\n",
+                   |wouldn't be such a good idea. The way south is in utter darkness.",
     "sector_type": "hills",
     "room_flags": "dark no_mob indoors",
     "doors": [
@@ -2261,7 +2261,7 @@
     "name": "The northeastern corner of the ledge",
     "description": "You stand, swaying out from the ledge, with only a couple of inches of safe,
                    |solid ledge under your feet. The ledge continues to the west and leads south
-                   |from here into darkness.\n",
+                   |from here into darkness.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
@@ -2272,7 +2272,7 @@
       {
         "dir": "west",
         "to": 113,
-        "description": "The ledge continues west.\n"
+        "description": "The ledge continues west."
       },
       {
         "dir": "down",
@@ -2286,13 +2286,13 @@
         "keyword": "soil soft earth",
         "description": "You can just make out the outline of a trapdoor here in the soil. The earth
                        |is probably there to conceal a secret entrance. This looks as if it leads down
-                       |into the seemingly solid rock face of the ledge.\n"
+                       |into the seemingly solid rock face of the ledge."
       },
       {
         "keyword": "ground ledge rock",
         "description": "The ground here seems a little different from all the other ledges along the
                        |Abyss. There's a kind of soft soil on this ledge, maybe you should look 
-                       |carefully at this. It seems to be of some interest.\n"
+                       |carefully at this. It seems to be of some interest."
       }
     ]
   }},
@@ -2303,20 +2303,20 @@
     "description": "You are in the progress of walking all the way around the ledge since there's
                    |no way of turning around on this all too narrow path. There IS another exit
                    |from here but that leads right into mid-air and with high probability of a
-                   |free fall session afterwards. And THAT is west of here so watch your step.\n",
+                   |free fall session afterwards. And THAT is west of here so watch your step.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "south",
         "to": 118,
-        "description": "The ledge leads further south.\n"
+        "description": "The ledge leads further south."
       },
       {
         "dir": "west",
         "to": 114,
         "description": "You stare into mid-air, and right under there's absolutely nothing but
-                       |darkness. You shiver by the thought of falling that distance.\n"
+                       |darkness. You shiver by the thought of falling that distance."
       }
     ]
   }},
@@ -2327,20 +2327,20 @@
     "description": "You are in the progress of walking all the way around the ledge since there's
                    |no way of turning around on this all too narrow path. There IS another exit
                    |from here but that leads right into mid-air and with high probability of a
-                   |free fall session afterwards. And THAT is west of here so watch your step.\n",
+                   |free fall session afterwards. And THAT is west of here so watch your step.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "south",
         "to": 119,
-        "description": "The ledge leads further south.\n"
+        "description": "The ledge leads further south."
       },
       {
         "dir": "west",
         "to": 114,
         "description": "You stare into mid-air, and right under there's absolutely nothing but
-                       |darkness. You shiver by the thought of falling that distance.\n"
+                       |darkness. You shiver by the thought of falling that distance."
       }
     ]
   }},
@@ -2351,20 +2351,20 @@
     "description": "You are in the progress of walking all the way around the ledge since there's
                    |no way of turning around on this all too narrow path. There IS another exit
                    |from here but that leads right into mid-air and with high probability of a
-                   |free fall session afterwards. And THAT is west of here so watch your step.\n",
+                   |free fall session afterwards. And THAT is west of here so watch your step.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "south",
         "to": 120,
-        "description": "The ledge leads further south.\n"
+        "description": "The ledge leads further south."
       },
       {
         "dir": "west",
         "to": 114,
         "description": "You stare into mid-air, and right under there's absolutely nothing but
-                       |darkness. You shiver by the thought of falling that distance.\n"
+                       |darkness. You shiver by the thought of falling that distance."
       }
     ]
   }},
@@ -2376,25 +2376,25 @@
                    |no way of turning around on this all too narrow path. There IS another exit
                    |from here but that leads right into mid-air and with high probability of a
                    |free fall session afterwards. And THAT is west of here so watch your step.
-                   |You also see a small opening to the east.\n",
+                   |You also see a small opening to the east.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "east",
         "to": 123,
-        "description": "East. You stare into darkness.\n"
+        "description": "East. You stare into darkness."
       },
       {
         "dir": "south",
         "to": 121,
-        "description": "The ledge leads further south.\n"
+        "description": "The ledge leads further south."
       },
       {
         "dir": "west",
         "to": 114,
         "description": "You stare into mid-air, and right under there's absolutely nothing but
-                       |darkness. You shiver by the thought of falling that distance.\n"
+                       |darkness. You shiver by the thought of falling that distance."
       }
     ]
   }},
@@ -2404,19 +2404,19 @@
     "name": "The southeastern corner of the ledge",
     "description": "This seems like a ledge that is a little broader than the one just to the
                    |north of here. The ledge seems to lead around some sort of abyss of total
-                   |darkness.\n",
+                   |darkness.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "north",
         "to": 120,
-        "description": "North of here you can see a ledge.\n"
+        "description": "North of here you can see a ledge."
       },
       {
         "dir": "west",
         "to": 115,
-        "description": "The ledge leads further west.\n"
+        "description": "The ledge leads further west."
       }
     ]
   }},
@@ -2424,7 +2424,7 @@
     "area": "sewer",
     "anum": 122,
     "name": "Under the pit",
-    "description": "You stand in a completely dark cavern leading west. The wall looks weird here.\n",
+    "description": "You stand in a completely dark cavern leading west. The wall looks weird here.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -2440,7 +2440,7 @@
     ],
     "extra_description": [{
       "keyword": "wall",
-      "description": "There is a crack here that looks like it has been made recently.\n"
+      "description": "There is a crack here that looks like it has been made recently."
     }],
     "resets": [{
       "command": "mobile",
@@ -2456,19 +2456,19 @@
     "anum": 123,
     "name": "Under The Shaft",
     "description": "A ladder leads up from here to the Shaft.
-                   |A small opening leads west from here.\n",
+                   |A small opening leads west from here.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "west",
         "to": 120,
-        "description": "You can see a narrow ledge going north and south.\n"
+        "description": "You can see a narrow ledge going north and south."
       },
       {
         "dir": "up",
         "to": 41,
-        "description": "It's too dark up there.\n"
+        "description": "It's too dark up there."
       }
     ]
   }},
@@ -2477,19 +2477,19 @@
     "anum": 129,
     "name": "The sewer line.",
     "description": "You are in a narrow part of the sewer. Down the sewer continues and to the
-                   |north is the ledge.\n",
+                   |north is the ledge.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 115,
-        "description": "You can see the southern part of the ledge.\n"
+        "description": "You can see the southern part of the ledge."
       },
       {
         "dir": "down",
         "to": 221,
-        "description": "You look deeper down into the drain.\n"
+        "description": "You look deeper down into the drain."
       }
     ]
   }},
@@ -2499,7 +2499,7 @@
     "name": "The sewer pipe.",
     "description": "You are in an odd sewer pipe You see some odd scratches on the pipe wall, as
                    |from a gigantic rat. You can see some slimy water gently running down into
-                   |a sewer drain, and north the drain continues.\n",
+                   |a sewer drain, and north the drain continues.",
     "sector_type": "forest",
     "room_flags": "dark no_mob indoors"
   }},
@@ -2513,7 +2513,7 @@
                    |are now descending the Abyss. What awaits you at the bottom will continue to
                    |be a mystery. Bye Cruel World.
                    |
-                   |You've fallen, and you can't get up!!!\n",
+                   |You've fallen, and you can't get up!!!",
     "sector_type": "inside",
     "room_flags": "no_mob indoors"
   }},
@@ -2524,7 +2524,7 @@
     "description": "The pool side is dimly lit up by your light. You can see absolutely nothing
                    |else nearby. The darkness here seems enormously oppressive. The air is
                    |damp and the rock on which you stand is slippery. The pool seems too dark 
-                   |to make anything clear. The rock can be climbed upwards from here.\n",
+                   |to make anything clear. The rock can be climbed upwards from here.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [{
@@ -2538,25 +2538,25 @@
     "name": "The Treasury",
     "description": "You are in a small but well equipped treasury.  You can see some writing on
                    |the wall.  The ceiling has a funny glow, which enables you to see.  You can
-                   |get back into the inner lair through the stone door which is east.\n",
+                   |get back into the inner lair through the stone door which is east.",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
     "doors": [{
       "dir": "east",
       "to": 201,
       "keyword": "door stone",
-      "description": "You look back through the opening into the inner lair.\n",
+      "description": "You look back through the opening into the inner lair.",
       "exit_flags": "door closed locked",
       "key": 205
     }],
     "extra_description": [
       {
         "keyword": "writing",
-        "description": "You read the number '666'.\n"
+        "description": "You read the number '666'."
       },
       {
         "keyword": "door stone",
-        "description": "This is a heavy black stone door it looks very solid.\n"
+        "description": "This is a heavy black stone door it looks very solid."
       }
     ],
     "resets": [{
@@ -2573,7 +2573,7 @@
     "anum": 201,
     "name": "The inner Lair",
     "description": "You are in a octagonal room with smooth purple stone walls.  The floor is 
-                   |made from black stone.  In the western wall you see a large black stone door.\n",
+                   |made from black stone.  In the western wall you see a large black stone door.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -2581,14 +2581,14 @@
         "dir": "south",
         "to": 202,
         "keyword": "door wooden",
-        "description": "You look back through the door into the lair.\n",
+        "description": "You look back through the door into the lair.",
         "exit_flags": "door closed"
       },
       {
         "dir": "west",
         "to": 200,
         "keyword": "door stone",
-        "description": "You see the treasury.\n",
+        "description": "You see the treasury.",
         "exit_flags": "door closed locked",
         "key": 205
       }
@@ -2633,7 +2633,7 @@
     "name": "The Lair",
     "description": "On the floor you see a lot of human decay, like bones and skulls. You also
                    |see a lot of slime. On the wall is a torch sitting in its sconce. To the north 
-                   |are a wooden door.\n",
+                   |are a wooden door.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -2641,33 +2641,33 @@
         "dir": "north",
         "to": 201,
         "keyword": "door wooden",
-        "description": "You can see the inner lair.\n",
+        "description": "You can see the inner lair.",
         "exit_flags": "door closed"
       },
       {
         "dir": "east",
         "to": 205,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       },
       {
         "dir": "south",
         "to": 203,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       }
     ],
     "extra_description": [
       {
         "keyword": "torch sconce",
-        "description": "The torch is bolted to the sconce and the sconce to the wall.\n"
+        "description": "The torch is bolted to the sconce and the sconce to the wall."
       },
       {
         "keyword": "slime",
-        "description": "The slime is slimy and uninteresting.\n"
+        "description": "The slime is slimy and uninteresting."
       },
       {
         "keyword": "skull skulls bones decay",
         "description": "On all the skulls you notice that there is a three inch hole in the 
-                       |forehead. All the bones are broken and old.\n"
+                       |forehead. All the bones are broken and old."
       }
     ]
   }},
@@ -2676,39 +2676,39 @@
     "anum": 203,
     "name": "The Lair",
     "description": "On the floor you see a lot of human decay, like bones and skulls. You also
-                   |see a lot of slime. On the wall is a torch sitting in its sconce.\n",
+                   |see a lot of slime. On the wall is a torch sitting in its sconce.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 202,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       },
       {
         "dir": "east",
         "to": 206,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       },
       {
         "dir": "south",
         "to": 204,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       }
     ],
     "extra_description": [
       {
         "keyword": "torch sconce",
-        "description": "The torch is bolted to the sconce and the sconce to the wall.\n"
+        "description": "The torch is bolted to the sconce and the sconce to the wall."
       },
       {
         "keyword": "slime",
-        "description": "The slime is slimy and uninteresting.\n"
+        "description": "The slime is slimy and uninteresting."
       },
       {
         "keyword": "skull skulls bones decay",
         "description": "On all the skulls you notice that there is a three inch hole in the 
-                       |forehead. All the bones are broken and old.\n"
+                       |forehead. All the bones are broken and old."
       }
     ],
     "resets": [
@@ -2735,41 +2735,41 @@
     "anum": 204,
     "name": "The Lair",
     "description": "On the floor you see a lot of human decay, like bones and skulls. You also
-                   |see a lot of slime. On the wall is a torch sitting in its sconce.\n",
+                   |see a lot of slime. On the wall is a torch sitting in its sconce.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 203,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       },
       {
         "dir": "east",
         "to": 207,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       },
       {
         "dir": "south",
         "to": 208,
         "keyword": "door wooden",
-        "description": "You see the lair entrance.\n",
+        "description": "You see the lair entrance.",
         "exit_flags": "door closed"
       }
     ],
     "extra_description": [
       {
         "keyword": "torch sconce",
-        "description": "The torch is bolted to the sconce and the sconce to the wall.\n"
+        "description": "The torch is bolted to the sconce and the sconce to the wall."
       },
       {
         "keyword": "slime",
-        "description": "The slime is slimy and uninteresting.\n"
+        "description": "The slime is slimy and uninteresting."
       },
       {
         "keyword": "skull skulls bones decay",
         "description": "On all the skulls you notice that there is a three inch hole in the 
-                       |forehead. All the bones are broken and old.\n"
+                       |forehead. All the bones are broken and old."
       }
     ]
   }},
@@ -2778,34 +2778,34 @@
     "anum": 205,
     "name": "The Lair",
     "description": "On the floor you see a lot of human decay, like bones and skulls. You also
-                   |see a lot of slime. On the wall is a torch sitting in its sconce.\n",
+                   |see a lot of slime. On the wall is a torch sitting in its sconce.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "south",
         "to": 206,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       },
       {
         "dir": "west",
         "to": 202,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       }
     ],
     "extra_description": [
       {
         "keyword": "torch sconce",
-        "description": "The torch is bolted to the sconce and the sconce to the wall.\n"
+        "description": "The torch is bolted to the sconce and the sconce to the wall."
       },
       {
         "keyword": "slime",
-        "description": "The slime is slimy and uninteresting.\n"
+        "description": "The slime is slimy and uninteresting."
       },
       {
         "keyword": "skull skulls bones decay",
         "description": "On all the skulls you notice that there is a three inch hole in the 
-                       |forehead. All the bones are broken and old.\n"
+                       |forehead. All the bones are broken and old."
       }
     ],
     "resets": [
@@ -2832,38 +2832,38 @@
     "anum": 206,
     "name": "The lair.",
     "description": "On the floor you see a lot of human decay, like bones and skulls. You also
-                   |see a lot of slime. On the wall is a torch sitting in its sconce.\n",
+                   |see a lot of slime. On the wall is a torch sitting in its sconce.",
     "sector_type": "city",
     "room_flags": "no_mob indoors",
     "doors": [
       {
         "dir": "north",
         "to": 205,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       },
       {
         "dir": "south",
         "to": 207,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       },
       {
         "dir": "west",
         "to": 203,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       }
     ],
     "extra_description": [
       {
         "keyword": "torch sconce",
-        "description": "The torch is bolted to the sconce and the sconce to the wall.\n"
+        "description": "The torch is bolted to the sconce and the sconce to the wall."
       },
       {
         "keyword": "slime",
-        "description": "The slime is slimy and uninteresting.\n"
+        "description": "The slime is slimy and uninteresting."
       },
       {
         "keyword": "bones decay",
-        "description": "All the bones are broken and old.\n"
+        "description": "All the bones are broken and old."
       }
     ],
     "resets": [{
@@ -2880,35 +2880,35 @@
     "anum": 207,
     "name": "The lair.",
     "description": "On the floor you see a lot of human decay, like bones and skulls. You also
-                   |see a lot of slime. On the wall is a torch sitting in its sconce.\n",
+                   |see a lot of slime. On the wall is a torch sitting in its sconce.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 206,
-        "description": "You see another part of the lair.\n"
+        "description": "You see another part of the lair."
       },
       {
         "dir": "west",
         "to": 204,
-        "description": "You see another part of the lair.\n",
+        "description": "You see another part of the lair.",
         "exit_flags": "door"
       }
     ],
     "extra_description": [
       {
         "keyword": "torch sconce",
-        "description": "The torch is bolted to the sconce and the sconce to the wall.\n"
+        "description": "The torch is bolted to the sconce and the sconce to the wall."
       },
       {
         "keyword": "slime",
-        "description": "The slime is slimy and uninteresting.\n"
+        "description": "The slime is slimy and uninteresting."
       },
       {
         "keyword": "skull skulls bones decay",
         "description": "On all the skulls you notice that there is a three inch hole in the 
-                       |forehead. All the bones are broken and old.\n"
+                       |forehead. All the bones are broken and old."
       }
     ],
     "resets": [
@@ -2936,7 +2936,7 @@
     "name": "The lair entrance.",
     "description": "You are in a dry part of the sewer. To the north is a wooden door, you 
                    |can see some slime at the lower part of the door. You also see some skulls
-                   |and some broken bones.\n",
+                   |and some broken bones.",
     "sector_type": "field",
     "room_flags": "dark no_mob indoors",
     "doors": [
@@ -2944,37 +2944,37 @@
         "dir": "north",
         "to": 204,
         "keyword": "door wooden",
-        "description": "You can see the lair.\n",
+        "description": "You can see the lair.",
         "exit_flags": "door closed"
       },
       {
         "dir": "east",
         "to": 209,
-        "description": "You see a crawlway.\n"
+        "description": "You see a crawlway."
       }
     ],
     "extra_description": [{
       "keyword": "slime",
-      "description": "The slime is slimy and uninteresting.\n"
+      "description": "The slime is slimy and uninteresting."
     }]
   }},
   {"room": {
     "area": "sewer",
     "anum": 209,
     "name": "The crawlway.",
-    "description": "You are in a narrow crawlway.  You don't notice anything interesting here.\n",
+    "description": "You are in a narrow crawlway.  You don't notice anything interesting here.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 210,
-        "description": "You see a four-way junction.\n"
+        "description": "You see a four-way junction."
       },
       {
         "dir": "west",
         "to": 208,
-        "description": "You see the entrance to a lair.\n"
+        "description": "You see the entrance to a lair."
       }
     ]
   }},
@@ -2983,29 +2983,29 @@
     "anum": 210,
     "name": "The four-way junction.",
     "description": "You are in a sewer junction. To the north is a small hole, to the west is a
-                   |narrow crawlway and to the east and south the sewer continues.\n",
+                   |narrow crawlway and to the east and south the sewer continues.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 211,
-        "description": "You can see a small cave-like room.\n"
+        "description": "You can see a small cave-like room."
       },
       {
         "dir": "east",
         "to": 212,
-        "description": "You can see a sewer drain.\n"
+        "description": "You can see a sewer drain."
       },
       {
         "dir": "south",
         "to": 215,
-        "description": "You can see a sewer drain.\n"
+        "description": "You can see a sewer drain."
       },
       {
         "dir": "west",
         "to": 209,
-        "description": "You can see a narrow crawlway.\n"
+        "description": "You can see a narrow crawlway."
       }
     ]
   }},
@@ -3013,32 +3013,32 @@
     "area": "sewer",
     "anum": 211,
     "name": "The small cave.",
-    "description": "You are in a collapsed sewer drain, which now is more like a small cave.\n",
+    "description": "You are in a collapsed sewer drain, which now is more like a small cave.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "south",
       "to": 210,
-      "description": "You look back into the four-way junction.\n"
+      "description": "You look back into the four-way junction."
     }]
   }},
   {"room": {
     "area": "sewer",
     "anum": 212,
     "name": "The sewer drain.",
-    "description": "You are in a dry sewer drain which bends to the north.\n",
+    "description": "You are in a dry sewer drain which bends to the north.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 213,
-        "description": "You can see the drain continuing north.\n"
+        "description": "You can see the drain continuing north."
       },
       {
         "dir": "west",
         "to": 210,
-        "description": "You can see the four-way junction.\n"
+        "description": "You can see the four-way junction."
       }
     ]
   }},
@@ -3046,19 +3046,19 @@
     "area": "sewer",
     "anum": 213,
     "name": "The sewer drain.",
-    "description": "You are in a dry sewer drain which bends to the east.\n",
+    "description": "You are in a dry sewer drain which bends to the east.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 214,
-        "description": "You can see the drain continuing east.\n"
+        "description": "You can see the drain continuing east."
       },
       {
         "dir": "south",
         "to": 212,
-        "description": "You can see the drain continuing south.\n"
+        "description": "You can see the drain continuing south."
       }
     ],
     "resets": [
@@ -3085,13 +3085,13 @@
     "anum": 214,
     "name": "The drain end.",
     "description": "You are at the end of the drain around you the sewer has collapsed, the only
-                   |exit is west.\n",
+                   |exit is west.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "west",
       "to": 213,
-      "description": "You see the sewer drain.\n"
+      "description": "You see the sewer drain."
     }],
     "resets": [
       {
@@ -3117,24 +3117,24 @@
     "anum": 215,
     "name": "The half-wet drain.",
     "description": "You are in a sewer drain where the floor is covered with water. To the north
-                   |it looks more dry, south however the drain runs down into some water.\n",
+                   |it looks more dry, south however the drain runs down into some water.",
     "sector_type": "hills",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 210,
-        "description": "To the north lies a dry four-way junction.\n"
+        "description": "To the north lies a dry four-way junction."
       },
       {
         "dir": "south",
         "to": 216,
-        "description": "To the south you see a sewer drain filled with water.\n"
+        "description": "To the south you see a sewer drain filled with water."
       }
     ],
     "extra_description": [{
       "keyword": "water",
-      "description": "The water is dirty but it looks like you would be able to swim in it.\n"
+      "description": "The water is dirty but it looks like you would be able to swim in it."
     }],
     "resets": [
       {
@@ -3161,19 +3161,19 @@
     "name": "Under water in the sewer.",
     "description": "You swim in some dirty water and is holding you breath. You'll better 
                    |continue before you drown. It is a good thing that you can hold your light
-                   |above water-level.\n",
+                   |above water-level.",
     "sector_type": "swim",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 215,
-        "description": "It is hard to see, but it looks like the drain runs slightly upwards.\n"
+        "description": "It is hard to see, but it looks like the drain runs slightly upwards."
       },
       {
         "dir": "south",
         "to": 217,
-        "description": "It is hard to see, but it looks like the drain runs a little bit upwards.\n"
+        "description": "It is hard to see, but it looks like the drain runs a little bit upwards."
       }
     ]
   }},
@@ -3183,34 +3183,34 @@
     "name": "The half-dry drain.",
     "description": "You are in a half-dry sewer drain. To the north the drain runs a little bit
                    |downwards into some water to the east you can see a small hole. To the west
-                   |you see another drain.\n",
+                   |you see another drain.",
     "sector_type": "hills",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 216,
-        "description": "You see the drain running down into some water.\n"
+        "description": "You see the drain running down into some water."
       },
       {
         "dir": "east",
         "to": 218,
-        "description": "Through the hole you can just make out a very small room.\n"
+        "description": "Through the hole you can just make out a very small room."
       },
       {
         "dir": "west",
         "to": 219,
-        "description": "You see a drain running to the west.\n"
+        "description": "You see a drain running to the west."
       }
     ],
     "extra_description": [
       {
         "keyword": "hole",
-        "description": "Through the hole you can just make out a very small room.\n"
+        "description": "Through the hole you can just make out a very small room."
       },
       {
         "keyword": "water",
-        "description": "The water is dirty but it looks like you would be able to swim in it.\n"
+        "description": "The water is dirty but it looks like you would be able to swim in it."
       }
     ],
     "resets": [
@@ -3243,32 +3243,32 @@
     "area": "sewer",
     "anum": 218,
     "name": "The very small room.",
-    "description": "You are in a very small room, it is pretty uninteresting.\n",
+    "description": "You are in a very small room, it is pretty uninteresting.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "west",
       "to": 217,
-      "description": "Through the little hole you can see a half-dry drain.\n"
+      "description": "Through the little hole you can see a half-dry drain."
     }]
   }},
   {"room": {
     "area": "sewer",
     "anum": 219,
     "name": "A dry sewer drain.",
-    "description": "You are in a dry but dirty sewer drain. The drain continues east and south.\n",
+    "description": "You are in a dry but dirty sewer drain. The drain continues east and south.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 217,
-        "description": "You see a half-dry drain.\n"
+        "description": "You see a half-dry drain."
       },
       {
         "dir": "south",
         "to": 220,
-        "description": "You see another boring sewer drain.\n"
+        "description": "You see another boring sewer drain."
       }
     ],
     "resets": [
@@ -3302,19 +3302,19 @@
     "area": "sewer",
     "anum": 220,
     "name": "A boring drain.",
-    "description": "You are in yet another sewer drain.\n",
+    "description": "You are in yet another sewer drain.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 219,
-        "description": "You see a sewer drain continuing to the north.\n"
+        "description": "You see a sewer drain continuing to the north."
       },
       {
         "dir": "east",
         "to": 221,
-        "description": "You can see another drain to the east.\n"
+        "description": "You can see another drain to the east."
       }
     ]
   }},
@@ -3323,24 +3323,24 @@
     "anum": 221,
     "name": "The sewer drain.",
     "description": "You are in a sewer drain, there is nothing special in here, except for a 
-                   |loud echo.\n",
+                   |loud echo.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 222,
-        "description": "You can see another sewer drain.\n"
+        "description": "You can see another sewer drain."
       },
       {
         "dir": "west",
         "to": 220,
-        "description": "You can make out a sewer drain to the west.\n"
+        "description": "You can make out a sewer drain to the west."
       },
       {
         "dir": "up",
         "to": 129,
-        "description": "You can see a sewer line.\n"
+        "description": "You can see a sewer line."
       }
     ],
     "resets": [
@@ -3373,43 +3373,43 @@
     "area": "sewer",
     "anum": 222,
     "name": "The sewer drain.",
-    "description": "You are in a drain, with some slimy water on the floor.\n",
+    "description": "You are in a drain, with some slimy water on the floor.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 223,
-        "description": "You see a sewer bend.\n"
+        "description": "You see a sewer bend."
       },
       {
         "dir": "west",
         "to": 221,
-        "description": "You see a sewer drain.\n"
+        "description": "You see a sewer drain."
       }
     ],
     "extra_description": [{
       "keyword": "slimy water",
-      "description": "The water floats to the east from here.\n"
+      "description": "The water floats to the east from here."
     }]
   }},
   {"room": {
     "area": "sewer",
     "anum": 223,
     "name": "The sewer bend.",
-    "description": "You find yourself in an ordinary sewer bend, which bend from west to north.\n",
+    "description": "You find yourself in an ordinary sewer bend, which bend from west to north.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 224,
-        "description": "You see a sewer drain.\n"
+        "description": "You see a sewer drain."
       },
       {
         "dir": "west",
         "to": 222,
-        "description": "You see a sewer drain.\n"
+        "description": "You see a sewer drain."
       }
     ],
     "resets": [
@@ -3445,24 +3445,24 @@
     "name": "The sewer junction",
     "description": "You stand in a junction of three sewer drains. You see some odd scratches on
                    |the pipe wall, as from a gigantic rat.North and south the sewer continues 
-                   |as usual, but west it looks a little strange.\n",
+                   |as usual, but west it looks a little strange.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 225,
-        "description": "You see nothing but a sewer drain.\n"
+        "description": "You see nothing but a sewer drain."
       },
       {
         "dir": "south",
         "to": 223,
-        "description": "You see nothing but a sewer drain.\n"
+        "description": "You see nothing but a sewer drain."
       },
       {
         "dir": "west",
         "to": 229,
-        "description": "You see a strange sewer pipe.\n"
+        "description": "You see a strange sewer pipe."
       }
     ]
   }},
@@ -3472,13 +3472,13 @@
     "name": "The sewer",
     "description": "You are in a sewer, where the slimy water runs down through a tiny hole.
                    |You see some odd scratches on the pipe wall, as from a gigantic rat. There 
-                   |is a sewer drain south.\n",
+                   |is a sewer drain south.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "south",
       "to": 224,
-      "description": "You see a sewer drain.\n"
+      "description": "You see a sewer drain."
     }],
     "resets": [
       {
@@ -3505,19 +3505,19 @@
     "name": "The strange sewer",
     "description": "You are in a very strange sewer indeed, there are some odd scratches on the
                    |pipe wall, as from a gigantic rat. And you can see a lot of organic decay
-                   |like bones from animals AND humans. West the drain runs slightly upwards.\n",
+                   |like bones from animals AND humans. West the drain runs slightly upwards.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 224,
-        "description": "You see a sewer junction.\n"
+        "description": "You see a sewer junction."
       },
       {
         "dir": "west",
         "to": 230,
-        "description": "You see a slimy sewer drain.\n"
+        "description": "You see a slimy sewer drain."
       }
     ]
   }},
@@ -3527,19 +3527,19 @@
     "name": "The damp sewer",
     "description": "You are in a sewer drain with a funny damp substance on the floor, in the 
                    |substance you see a lot of decay. You see some odd scratches on the wall, as
-                   |from a gigantic rat. Both to the east and west the pipe seems to run down.\n",
+                   |from a gigantic rat. Both to the east and west the pipe seems to run down.",
     "sector_type": "forest",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "east",
         "to": 229,
-        "description": "You see a sewer.\n"
+        "description": "You see a sewer."
       },
       {
         "dir": "west",
         "to": 231,
-        "description": "You see a sewer.\n"
+        "description": "You see a sewer."
       }
     ]
   }},
@@ -3548,24 +3548,24 @@
     "anum": 231,
     "name": "The strange sewer",
     "description": "You are in an ordinary sewer except for a lot of scratches on the sewer wall,
-                   |ad a lot of debris on the floor.\n",
+                   |ad a lot of debris on the floor.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 230,
-        "description": "You see a sewer.\n"
+        "description": "You see a sewer."
       },
       {
         "dir": "west",
         "to": 232,
-        "description": "You see another sewer.\n"
+        "description": "You see another sewer."
       }
     ],
     "extra_description": [{
       "keyword": "debris",
-      "description": "You see a lot of organic decay on the floor.\n"
+      "description": "You see a lot of organic decay on the floor."
     }]
   }},
   {"room": {
@@ -3573,19 +3573,19 @@
     "anum": 232,
     "name": "The sewer",
     "description": "You are in a sewer with more scratches on the walls. And of course a whole lot
-                   |of decay. The drain runs east and north.\n",
+                   |of decay. The drain runs east and north.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 233,
-        "description": "You see yet another sewer line.\n"
+        "description": "You see yet another sewer line."
       },
       {
         "dir": "east",
         "to": 231,
-        "description": "You see a sewer pipe.\n"
+        "description": "You see a sewer pipe."
       }
     ]
   }},
@@ -3595,19 +3595,19 @@
     "name": "The sewer drain",
     "description": "You stand in in a sewer drain, you are able to see some kind of cave-like
                    |room. You see some odd scratches on the drain wall, as from a gigantic rat. 
-                   |The sewer leads south.\n",
+                   |The sewer leads south.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 234,
-        "description": "You see a cave-like room.\n"
+        "description": "You see a cave-like room."
       },
       {
         "dir": "south",
         "to": 232,
-        "description": "You see a sewer.\n"
+        "description": "You see a sewer."
       }
     ],
     "resets": [
@@ -3665,13 +3665,13 @@
     "anum": 234,
     "name": "The rat's lair",
     "description": "You are in a little cave. You are able to see quite a lot of debris on the 
-                   |floor. There is a sewer drain west of here.\n",
+                   |floor. There is a sewer drain west of here.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "west",
       "to": 233,
-      "description": "You see the sewer system that way.\n"
+      "description": "You see the sewer system that way."
     }],
     "resets": [{
       "command": "mobile",
@@ -3687,7 +3687,7 @@
     "anum": 279,
     "name": "The Wall of the Abyss",
     "description": "You hang onto some steps leading down into utter darkness. There's an exit 
-                   |leading up as well, though you'll have to open the tiny rock again to do so.\n",
+                   |leading up as well, though you'll have to open the tiny rock again to do so.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -3708,7 +3708,7 @@
     "description": "You are in a very dark room. You notice that some faces are
                    |staring at you from inside the walls. In the middle of the room
                    |there is a small altar. To the north there is a small round
-                   |door.\n",
+                   |door.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -3716,7 +3716,7 @@
         "dir": "north",
         "to": 281,
         "keyword": "small round door",
-        "description": "A beam of red light seeps through a hole in the door.\n",
+        "description": "A beam of red light seeps through a hole in the door.",
         "exit_flags": "door"
       },
       {
@@ -3730,12 +3730,12 @@
       {
         "keyword": "triangle",
         "description": "The triangle is filled with small symbols in a language you have
-                       |never seen before.\n"
+                       |never seen before."
       },
       {
         "keyword": "altar",
         "description": "This altar are very special. Faces are smiling from it. There
-                       |is a triangle in top of it.\n"
+                       |is a triangle in top of it."
       }
     ],
     "resets": [{
@@ -3752,7 +3752,7 @@
     "anum": 281,
     "name": "The corridor.",
     "description": "The corridor is glowing oppressively in a red hue. You can hear wailing
-                   |through an open black hole to the east. To the south there is a round door.\n",
+                   |through an open black hole to the east. To the south there is a round door.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -3760,7 +3760,7 @@
         "dir": "east",
         "to": 282,
         "description": "The hole seems more black than the night. It is appears to be \"eating\" the
-                       |red light around it.\n"
+                       |red light around it."
       },
       {
         "dir": "south",
@@ -3772,15 +3772,15 @@
     "extra_description": [
       {
         "keyword": "walls",
-        "description": "The walls look alive.\n"
+        "description": "The walls look alive."
       },
       {
         "keyword": "red light",
-        "description": "The red light glows from the walls.\n"
+        "description": "The red light glows from the walls."
       },
       {
         "keyword": "small round door",
-        "description": "The door is completely round without a keyhole.\n"
+        "description": "The door is completely round without a keyhole."
       }
     ],
     "resets": [
@@ -3809,24 +3809,24 @@
     "description": "You are standing in nothing. All around you there are stars.
                    |Sometimes a shadow flies closely by you, wailing very loudly. 
                    |To the north there is a small bright hole. To the west there is 
-                   |a small red hole.\n",
+                   |a small red hole.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 283,
-        "description": "You look into a very bright hole.\n"
+        "description": "You look into a very bright hole."
       },
       {
         "dir": "west",
         "to": 281,
-        "description": "You look into a red hole.\n"
+        "description": "You look into a red hole."
       }
     ],
     "extra_description": [{
       "keyword": "shadow",
-      "description": "The shadow looks like a man in great pain.\n"
+      "description": "The shadow looks like a man in great pain."
     }]
   }},
   {"room": {
@@ -3835,31 +3835,31 @@
     "name": "The T-crossing",
     "description": "You are in a small hallway. There are doors to the east and to
                    |the west. To the south there are a black hole. There is writing
-                   |in the wall. Wails can be heard from the south.\n",
+                   |in the wall. Wails can be heard from the south.",
     "sector_type": "city",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "east",
         "to": 286,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "south",
         "to": 282,
-        "description": "A black hole in the wall.\n"
+        "description": "A black hole in the wall."
       },
       {
         "dir": "west",
         "to": 284,
         "description": "You can see a big fire to the west. It looks like a unhealthy
-                       |place to enter!\n"
+                       |place to enter!"
       }
     ],
     "extra_description": [{
       "keyword": "writing",
       "description": "The writing says 'The one to the east, belongs to the beast.
-                     |To the west you will surely END your quest!'.\n"
+                     |To the west you will surely END your quest!'."
     }]
   }},
   {"room": {
@@ -3867,19 +3867,19 @@
     "anum": 284,
     "name": "The firedeath",
     "description": "This room is very hot. There are flames surrounding you.  You can
-                   |see no exits at all!  Skeletons are lying all over the floor.\n",
+                   |see no exits at all!  Skeletons are lying all over the floor.",
     "sector_type": "city",
     "room_flags": "no_mob indoors",
     "extra_description": [
       {
         "keyword": "writing wall",
         "description": "The writing says 'A pray to the GODS will not be heard, though
-                       |the only exit is death..... Mother, I love you'.\n"
+                       |the only exit is death..... Mother, I love you'."
       },
       {
         "keyword": "skeletons",
         "description": "The skeletons looks like they had suffered the death of hunger.
-                       |One of them looks like he has written something at the wall.\n"
+                       |One of them looks like he has written something at the wall."
       }
     ]
   }},
@@ -3889,27 +3889,27 @@
     "name": "The tortureroom.",
     "description": "You are standing in a middle of a square room. Along the walls skeletons 
                    |are hanging in rusty chains. In the middle of the room there is a big metal 
-                   |box, covered with dust. To the south you can just make out a small exit.\n",
+                   |box, covered with dust. To the south you can just make out a small exit.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [{
       "dir": "south",
       "to": 286,
       "keyword": "door iron",
-      "description": "To dark to tell.\n",
+      "description": "To dark to tell.",
       "exit_flags": "door"
     }],
     "extra_description": [
       {
         "keyword": "big metal box",
         "description": "The metal box is covered with dust. You notice that is once has been
-                       |filled with coal, as you see some of them.\n"
+                       |filled with coal, as you see some of them."
       },
       {
         "keyword": "skeletons",
         "description": "When you look at the skeletons, you can see that they once had been in great 
                        |pain. They are hanging in their arms, and some of them has been killed
-                       |with a sharp instrument.\n"
+                       |with a sharp instrument."
       }
     ],
     "resets": [
@@ -3946,7 +3946,7 @@
     "description": "You are standing in a lot of mud. A disgusting smell surrounds
                    |the place, and makes you feel sick. Small flames sometimes shoot
                    |up from the hot mud. To the west there is a small door. To the 
-                   |north you can see an iron door.\n",
+                   |north you can see an iron door.",
     "sector_type": "mountain",
     "room_flags": "no_mob indoors",
     "doors": [
@@ -3954,13 +3954,13 @@
         "dir": "north",
         "to": 285,
         "keyword": "door iron",
-        "description": "To dark to tell.\n",
+        "description": "To dark to tell.",
         "exit_flags": "door"
       },
       {
         "dir": "west",
         "to": 283,
-        "description": "To dark to tell.\n"
+        "description": "To dark to tell."
       }
     ],
     "resets": [
@@ -3991,13 +3991,13 @@
                    |layer on the floor and on the furniture. On the wall hangs a bleak and 
                    |worn tapestry. A winding stone staircase leads up into darkness. On the 
                    |wall to the west you can see a huge torch stuck into the solid rock.
-                   |A large portcullis blocks your way to the north.\n",
+                   |A large portcullis blocks your way to the north.",
     "sector_type": "field",
     "room_flags": "no_mob indoors",
     "doors": [
       {
         "dir": "north",
-        "description": "Through the portcullis, you can see a faintly lighted hallway leading east.\n",
+        "description": "Through the portcullis, you can see a faintly lighted hallway leading east.",
         "exit_flags": "door",
         "portal": "sewer-north-1"
       },
@@ -4011,16 +4011,16 @@
         "keyword": "stairs staircase",
         "description": "This looks as if it has been standing here for at least 12 centuries. It's 
                        |Very worn and cracks in the surface mingle with the cores of mineral that
-                       |penetrates the rock from which these steps are chiselled.\n"
+                       |penetrates the rock from which these steps are chiselled."
       },
       {
         "keyword": "torch light",
         "description": "This VERY old torch looks as if it has burned for ages, yet no traces of 
-                       |the searing flame can be seen on it!\n"
+                       |the searing flame can be seen on it!"
       },
       {
         "keyword": "portcullis gate",
-        "description": "This seems like an exceptionally heavy gate, made of thick iron.\n"
+        "description": "This seems like an exceptionally heavy gate, made of thick iron."
       }
     ]
   }},
@@ -4035,7 +4035,7 @@
                    |                                           Greetings and Good Health :)
                    |
                    |                                                     Redferne The Gentle
-                   |This stops your journey down, the only exit is up.\n",
+                   |This stops your journey down, the only exit is up.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [{
@@ -4049,24 +4049,24 @@
     "name": "Cave entrance",
     "description": "You are standing in the cave entrance. It is very dark
                    |down here. There is writing at the wall. There is an exit
-                   |to the north. A stairway leads up.\n",
+                   |to the north. A stairway leads up.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 401,
-        "description": "To the north you can see a small tunnel.\n"
+        "description": "To the north you can see a small tunnel."
       },
       {
         "dir": "up",
         "to": 102,
-        "description": "You can see the stairs going up into darkness.\n"
+        "description": "You can see the stairs going up into darkness."
       }
     ],
     "extra_description": [{
       "keyword": "writing wall",
-      "description": "The writing says 'BEWARE adventurer!'\n"
+      "description": "The writing says 'BEWARE adventurer!'"
     }]
   }},
   {"room": {
@@ -4074,19 +4074,19 @@
     "anum": 401,
     "name": "Cave tunnel",
     "description": "You are walking in a tunnel. It is very cold. You
-                   |can feel the presence of a living thing ... SOMEWHERE.\n",
+                   |can feel the presence of a living thing ... SOMEWHERE.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 402,
-        "description": "To the north you can see the tunnel continuing.\n"
+        "description": "To the north you can see the tunnel continuing."
       },
       {
         "dir": "south",
         "to": 400,
-        "description": "To the south tunnel continuing.\n"
+        "description": "To the south tunnel continuing."
       }
     ],
     "resets": [{
@@ -4103,19 +4103,19 @@
     "anum": 402,
     "name": "Cave room",
     "description": "You are standing in a room. It's much cooler now.
-                   |The walls are glowing.\n",
+                   |The walls are glowing.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "east",
         "to": 403,
-        "description": "To the east you see the tunnel going downwards.\n"
+        "description": "To the east you see the tunnel going downwards."
       },
       {
         "dir": "south",
         "to": 401,
-        "description": "To the south you see a dark cave tunnel.\n"
+        "description": "To the south you see a dark cave tunnel."
       },
       {
         "dir": "west",
@@ -4128,14 +4128,14 @@
     "anum": 403,
     "name": "Cave T-cross",
     "description": "You are standing in a mud-like substance. The smell here is
-                   |awful, it is rotten. To the west you can see some light.\n",
+                   |awful, it is rotten. To the west you can see some light.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 404,
-        "description": "To the east the tunnel still goes downwards.\n"
+        "description": "To the east the tunnel still goes downwards."
       },
       {
         "dir": "south",
@@ -4144,18 +4144,18 @@
       {
         "dir": "west",
         "to": 402,
-        "description": "You can see some light to the west.\n"
+        "description": "You can see some light to the west."
       }
     ],
     "extra_description": [
       {
         "keyword": "worms",
-        "description": "The worms are purple. They do not look edible.\n"
+        "description": "The worms are purple. They do not look edible."
       },
       {
         "keyword": "mud",
         "description": "When you examine the mud, you notice small worms crawling
-                       |around.\n"
+                       |around."
       }
     ],
     "resets": [{
@@ -4174,7 +4174,7 @@
     "description": "The mud are getting deeper. You are wondering, 'Would
                    |it be an idea to leave, before I disappear?'. To the
                    |south you notice a flat round stone are blocking the
-                   |way. To the west you can see mud.\n",
+                   |way. To the west you can see mud.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
@@ -4182,7 +4182,7 @@
         "dir": "south",
         "to": 405,
         "keyword": "flat round stone",
-        "description": "You can see an opening behind the stone.\n",
+        "description": "You can see an opening behind the stone.",
         "exit_flags": "door closed"
       },
       {
@@ -4194,7 +4194,7 @@
       "keyword": "flat round stone",
       "description": "The stone looks very uninteresting. BUT as you are
                      |about to turn away, you see a lightstribe coming
-                     |through a small hole. Conclusion: The stone is movable.\n"
+                     |through a small hole. Conclusion: The stone is movable."
     }]
   }},
   {"room": {
@@ -4205,7 +4205,7 @@
                    |has been here for ages. In the middle of the room you see
                    |a socket with a crystal globe. The globe glows with a
                    |pulsing light. To the north you see a stone door. To the
-                   |south you see a grey block.\n",
+                   |south you see a grey block.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -4213,14 +4213,14 @@
         "dir": "north",
         "to": 404,
         "keyword": "round stone door",
-        "description": "You see a round stone door.\n",
+        "description": "You see a round stone door.",
         "exit_flags": "door closed"
       },
       {
         "dir": "south",
         "to": 406,
         "keyword": "grey block",
-        "description": "You see a grey block.\n",
+        "description": "You see a grey block.",
         "exit_flags": "door closed"
       }
     ],
@@ -4228,11 +4228,11 @@
       {
         "keyword": "crystal globe",
         "description": "The crystal globe is glowing with a pulsing light. It
-                       |looks like there is smoke inside it.\n"
+                       |looks like there is smoke inside it."
       },
       {
         "keyword": "socket",
-        "description": "The socket looks like the work of a dwarf. It is VERY beautiful.\n"
+        "description": "The socket looks like the work of a dwarf. It is VERY beautiful."
       }
     ]
   }},
@@ -4242,7 +4242,7 @@
     "name": "The mudhole",
     "description": "You are standing in a lot of mud. The mud goes to your
                    |chest. You feel the presence of something IN the mud.
-                   |The only obvious exit is to the west.\n",
+                   |The only obvious exit is to the west.",
     "sector_type": "swim",
     "room_flags": "dark indoors",
     "doors": [
@@ -4250,7 +4250,7 @@
         "dir": "north",
         "to": 405,
         "keyword": "grey block",
-        "description": "You can see nothing at all.\n",
+        "description": "You can see nothing at all.",
         "exit_flags": "door closed"
       },
       {
@@ -4272,7 +4272,7 @@
     "anum": 407,
     "name": "Tunnel",
     "description": "The mud goes to your knees. Otherwise the tunnel looks
-                   |very normal.\n",
+                   |very normal.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -4283,7 +4283,7 @@
       {
         "dir": "east",
         "to": 406,
-        "description": "You can see a mudhole.\n"
+        "description": "You can see a mudhole."
       },
       {
         "dir": "south",
@@ -4297,19 +4297,19 @@
     "name": "The long tunnel",
     "description": "Here There is almost no mud, as you stand at the top
                    |of a small rock. Just beside you there are a sign which
-                   |says 'WARNING! The worms are dangerous!'.\n",
+                   |says 'WARNING! The worms are dangerous!'.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 403,
-        "description": "You can see a lot of mud..Yarck!\n"
+        "description": "You can see a lot of mud..Yarck!"
       },
       {
         "dir": "south",
         "to": 407,
-        "description": "The tunnel goes a little downwards.\n"
+        "description": "The tunnel goes a little downwards."
       }
     ]
   }},
@@ -4319,19 +4319,19 @@
     "name": "The hot room",
     "description": "You are very surprised, as this room for a change are
                    |hot instead of cold. To the north it goes downwards into
-                   |some mud. There are also an exit to the west.\n",
+                   |some mud. There are also an exit to the west.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 407,
-        "description": "You see a lot of mud.\n"
+        "description": "You see a lot of mud."
       },
       {
         "dir": "west",
         "to": 410,
-        "description": "You see a entrance to a small room.\n"
+        "description": "You see a entrance to a small room."
       }
     ]
   }},
@@ -4340,25 +4340,25 @@
     "anum": 410,
     "name": "The small room",
     "description": "As you look around you notice a small statue. There are
-                   |exits to the west and to the east.\n",
+                   |exits to the west and to the east.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 409,
-        "description": "It is pitch dark out there.\n"
+        "description": "It is pitch dark out there."
       },
       {
         "dir": "west",
         "to": 411,
-        "description": "You see a VERY long hallway.\n"
+        "description": "You see a VERY long hallway."
       }
     ],
     "extra_description": [{
       "keyword": "small statue",
       "description": "This is a statue of a imp, pointing to the west. The imp
-                     |looks like a man with horns and a tail.\n"
+                     |looks like a man with horns and a tail."
     }]
   }},
   {"room": {
@@ -4366,7 +4366,7 @@
     "anum": 411,
     "name": "The stalagmite cave",
     "description": "You are standing in a stalagmite cave. Water is dripping
-                   |from the walls. It is very cold in here.\n",
+                   |from the walls. It is very cold in here.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
@@ -4377,7 +4377,7 @@
       {
         "dir": "east",
         "to": 410,
-        "description": "You see a long hallway, and some mud.\n"
+        "description": "You see a long hallway, and some mud."
       },
       {
         "dir": "south",
@@ -4386,7 +4386,7 @@
     ],
     "extra_description": [{
       "keyword": "stalagmite",
-      "description": "The stalagmites are very tall, and looks very beautiful.\n"
+      "description": "The stalagmites are very tall, and looks very beautiful."
     }]
   }},
   {"room": {
@@ -4394,14 +4394,14 @@
     "anum": 412,
     "name": "The stalagmite tunnel",
     "description": "You have entered a small tunnel. Here it is quite dry.
-                   |Maybe it would be an idea to rest here.\n",
+                   |Maybe it would be an idea to rest here.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 411,
-        "description": "You can see a small cave to the north.\n"
+        "description": "You can see a small cave to the north."
       },
       {
         "dir": "west",
@@ -4422,7 +4422,7 @@
     "anum": 413,
     "name": "The spongy room",
     "description": "You definitely NOT like this area. It is very dank, and most
-                   |of the places it is wet.\n",
+                   |of the places it is wet.",
     "sector_type": "forest",
     "room_flags": "no_mob indoors",
     "doors": [
@@ -4441,14 +4441,14 @@
     "anum": 414,
     "name": "The stalagmite T-cross",
     "description": "You are standing in a cross. To the north you can see
-                   |some light. Otherwise it is dark.\n",
+                   |some light. Otherwise it is dark.",
     "sector_type": "city",
     "room_flags": "no_mob indoors",
     "doors": [
       {
         "dir": "north",
         "to": 417,
-        "description": "You see some light ahead.\n"
+        "description": "You see some light ahead."
       },
       {
         "dir": "east",
@@ -4465,7 +4465,7 @@
     "anum": 415,
     "name": "The blind end room",
     "description": "This room is obviously a blind end. To the north you see
-                   |a primitive picture.\n",
+                   |a primitive picture.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -4473,7 +4473,7 @@
         "dir": "north",
         "to": 416,
         "keyword": "sun",
-        "description": "You see a primitive picture\n",
+        "description": "You see a primitive picture",
         "exit_flags": "door closed"
       },
       {
@@ -4485,7 +4485,7 @@
       "keyword": "primitive picture",
       "description": "You see some persons dancing around a huge sun. The
                      |sun is about 7 feet in diameter, which shows the size
-                     |of the picture.\n"
+                     |of the picture."
     }]
   }},
   {"room": {
@@ -4495,7 +4495,7 @@
     "description": "This room is rich ornamented. The walls has carves showing
                    |persons dancing around a sun which is drawn at the floor. It
                    |looks very old, and it is very dusty. To the south you see a
-                   |secret door.\n",
+                   |secret door.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -4503,7 +4503,7 @@
       "to": 415,
       "keyword": "door picture sun moon",
       "description": "you can see a picture with some persons crawling around a
-                     |huge moon.\n",
+                     |huge moon.",
       "exit_flags": "door closed"
     }]
   }},
@@ -4512,14 +4512,14 @@
     "anum": 417,
     "name": "The square lair",
     "description": "You are standing in the south-east part of the lair. You can
-                   |see a skeleton lying at the wall.\n",
+                   |see a skeleton lying at the wall.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 418,
-        "description": "Another part of the lair\n"
+        "description": "Another part of the lair"
       },
       {
         "dir": "south",
@@ -4528,13 +4528,13 @@
       {
         "dir": "west",
         "to": 420,
-        "description": "Another part of the lair\n"
+        "description": "Another part of the lair"
       }
     ],
     "extra_description": [{
       "keyword": "skeleton",
       "description": "It looks like a adventurer who wasn't lucky. You better
-                     |watch out-\n"
+                     |watch out-"
     }]
   }},
   {"room": {
@@ -4542,7 +4542,7 @@
     "anum": 418,
     "name": "The square lair",
     "description": "You are standing in the north-east part of the lair. You see
-                   |a sign at the wall\n",
+                   |a sign at the wall",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -4550,25 +4550,25 @@
         "dir": "east",
         "to": 421,
         "keyword": "wooden door",
-        "description": "You see a wooden door\n",
+        "description": "You see a wooden door",
         "exit_flags": "door closed"
       },
       {
         "dir": "south",
         "to": 417,
-        "description": "another part of the lair.\n"
+        "description": "another part of the lair."
       },
       {
         "dir": "west",
         "to": 419,
-        "description": "another part of the lair.\n"
+        "description": "another part of the lair."
       }
     ],
     "extra_description": [{
       "keyword": "sign wall",
       "description": "The sign says 'Gods of War I call you, my sword is by my side,
                      |               I seek a light free from all false pride'
-                     |                       Reyemle Grug.....\n"
+                     |                       Reyemle Grug....."
     }]
   }},
   {"room": {
@@ -4576,31 +4576,31 @@
     "anum": 419,
     "name": "The square lair",
     "description": "You are standing in the north-west part of the lair. Here's
-                   |another sign. There are a exit from the lair to the north.\n",
+                   |another sign. There are a exit from the lair to the north.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 422,
-        "description": "You see a small tunnel leading north.\n"
+        "description": "You see a small tunnel leading north."
       },
       {
         "dir": "east",
         "to": 418,
-        "description": "another part of the lair.\n"
+        "description": "another part of the lair."
       },
       {
         "dir": "south",
         "to": 420,
-        "description": "another part of the lair.\n"
+        "description": "another part of the lair."
       }
     ],
     "extra_description": [{
       "keyword": "sign",
       "description": "The sign says 'I'm wandering around in a everlasting tale,
                      |               seeking the light to regain my pride
-                     |                           Corama...\n"
+                     |                           Corama..."
     }],
     "resets": [{
       "command": "mobile",
@@ -4617,19 +4617,19 @@
     "name": "The lair end",
     "description": "You can see a table in front of you. It's very dusty.
                    |Around the table five skeletons are siting. Exits are
-                   |north and east.\n",
+                   |north and east.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 419,
-        "description": "the northern part of the lair.\n"
+        "description": "the northern part of the lair."
       },
       {
         "dir": "east",
         "to": 417,
-        "description": "the eastern part of the lair.\n"
+        "description": "the eastern part of the lair."
       }
     ],
     "extra_description": [
@@ -4638,17 +4638,17 @@
         "description": "it looks like a silver dragon. It is nailed onto the table.
                        |The dragon sits on a red dragon that looks dead. But the
                        |eyes of the red dragon is glowing pulsating red. You feel
-                       |drained.\n"
+                       |drained."
       },
       {
         "keyword": "skeleton skeletons",
         "description": "You can see that they have been killed in some sort of way. Not
-                       |by sword or club.\n"
+                       |by sword or club."
       },
       {
         "keyword": "table",
         "description": "On the table there is dust, in the center there is a small statue of a
-                       |Dragon sleeping.\n"
+                       |Dragon sleeping."
       }
     ]
   }},
@@ -4657,20 +4657,20 @@
     "anum": 421,
     "name": "East tunnel",
     "description": "You are standing in dark tunnel, the exits are east
-                   |and west. To the west you see a wooden door.\n",
+                   |and west. To the west you see a wooden door.",
     "sector_type": "city",
     "room_flags": "no_mob indoors",
     "doors": [
       {
         "dir": "east",
         "to": 402,
-        "description": "You can see a muddy tunnel.\n"
+        "description": "You can see a muddy tunnel."
       },
       {
         "dir": "west",
         "to": 418,
         "keyword": "wooden door",
-        "description": "You can see a wooden door.\n",
+        "description": "You can see a wooden door.",
         "exit_flags": "door closed"
       }
     ]
@@ -4679,24 +4679,24 @@
     "area": "sewer",
     "anum": 422,
     "name": "North tunnel",
-    "description": "You are standing in a dark tunnel, it leads upwards.\n",
+    "description": "You are standing in a dark tunnel, it leads upwards.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 423,
-        "description": "The dark tunnel continues.\n"
+        "description": "The dark tunnel continues."
       },
       {
         "dir": "south",
         "to": 419,
-        "description": "You can see the lair.\n"
+        "description": "You can see the lair."
       },
       {
         "dir": "west",
         "to": 436,
-        "description": "You can see a cave entrance.\n"
+        "description": "You can see a cave entrance."
       }
     ],
     "resets": [{
@@ -4713,7 +4713,7 @@
     "anum": 423,
     "name": "The L-shaped room.",
     "description": "You are standing in deep darkness. To the south there is a small exit.
-                   |To the east you can see a gaping hole.\n",
+                   |To the east you can see a gaping hole.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -4740,7 +4740,7 @@
     "anum": 424,
     "name": "The Circular hall.",
     "description": "You are standing in round hall. To the north, east and south you
-                   |can see a stone head hanging on the walls.\n",
+                   |can see a stone head hanging on the walls.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -4748,34 +4748,34 @@
         "dir": "east",
         "to": 425,
         "keyword": "green head dragon sculpture face",
-        "description": "you see nothing special.\n",
+        "description": "you see nothing special.",
         "exit_flags": "door closed"
       },
       {
         "dir": "west",
         "to": 423,
-        "description": "you see a room far away.\n"
+        "description": "you see a room far away."
       }
     ],
     "extra_description": [
       {
         "keyword": "blue",
-        "description": "This looks like a good dragon\n"
+        "description": "This looks like a good dragon"
       },
       {
         "keyword": "red",
-        "description": "This looks like a neutral dragon\n"
+        "description": "This looks like a neutral dragon"
       },
       {
         "keyword": "green",
-        "description": "This looks like a evil dragon\n"
+        "description": "This looks like a evil dragon"
       },
       {
         "keyword": "head heads",
         "description": "When you study the faces of the heads you see that it
                        |is faces of dragons. The face to the north is red, the
                        |face to the east is green and the face to the south is
-                       |blue.\n"
+                       |blue."
       }
     ],
     "resets": [{
@@ -4794,7 +4794,7 @@
     "description": "You are standing in dust. This place has not been
                    |touched for a long time. Otherwise it is quite boring
                    |here, looks like a place to rest! To the west you see
-                   |the outline of a door. A tunnel leads to the east.\n",
+                   |the outline of a door. A tunnel leads to the east.",
     "sector_type": "city",
     "room_flags": "no_mob indoors",
     "doors": [
@@ -4802,14 +4802,14 @@
         "dir": "east",
         "to": 426,
         "description": "You see a tunnel which leads downwards. It is quite
-                       |dark.\n"
+                       |dark."
       },
       {
         "dir": "west",
         "to": 424,
         "keyword": "door",
         "description": "You can see the outline of a door. Just like in the
-                       |description!\n",
+                       |description!",
         "exit_flags": "door closed"
       }
     ]
@@ -4820,7 +4820,7 @@
     "name": "The crossing",
     "description": "You are standing in a crossing of hallways. You can leave this place
                    |in every direction, except up and down. In the dust you notice strange
-                   |footprints.\n",
+                   |footprints.",
     "sector_type": "unknown",
     "room_flags": "dark indoors",
     "doors": [
@@ -4843,7 +4843,7 @@
     ],
     "extra_description": [{
       "keyword": "footprints foot",
-      "description": "You have never seen this kind of footprints before!\n"
+      "description": "You have never seen this kind of footprints before!"
     }]
   }},
   {"room": {
@@ -4851,7 +4851,7 @@
     "anum": 427,
     "name": "The L-shaped room",
     "description": "You are standing in a L-shaped room. You can hear noises from the long
-                   |tunnel to the east. You can feel fear! A sign is hanging on the wall.\n",
+                   |tunnel to the east. You can feel fear! A sign is hanging on the wall.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
@@ -4862,12 +4862,12 @@
       {
         "dir": "east",
         "to": 428,
-        "description": "a long dark tunnel.\n"
+        "description": "a long dark tunnel."
       }
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "The sign says 'DANGER!!'.\n"
+      "description": "The sign says 'DANGER!!'."
     }]
   }},
   {"room": {
@@ -4877,7 +4877,7 @@
     "description": "You can see burned walls, the floorstones are fiery red.  All kinds of bones
                    |are scattered all over the floor.  On the walls you can see some burned
                    |shapes.  You smell burned flesh.  Two creatures are melted into the floor.
-                   |You're next.\n",
+                   |You're next.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "portal": "sewer-room-1",
@@ -4885,12 +4885,12 @@
       {
         "dir": "north",
         "to": 429,
-        "description": "You can see a long tunnel.\n"
+        "description": "You can see a long tunnel."
       },
       {
         "dir": "west",
         "to": 427,
-        "description": "You can see nothing but darkness.\n"
+        "description": "You can see nothing but darkness."
       }
     ],
     "resets": [
@@ -4981,14 +4981,14 @@
     "anum": 429,
     "name": "The burned room",
     "description": "You are in a room, which once had been quite burned.
-                   |There is writing on the wall.\n",
+                   |There is writing on the wall.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "south",
         "to": 428,
-        "description": "You can see a red glow\n"
+        "description": "You can see a red glow"
       },
       {
         "dir": "west",
@@ -4997,7 +4997,7 @@
     ],
     "extra_description": [{
       "keyword": "writing",
-      "description": "The writing says 'DANGER!!!'\n"
+      "description": "The writing says 'DANGER!!!'"
     }],
     "resets": [{
       "command": "mobile",
@@ -5013,14 +5013,14 @@
     "anum": 430,
     "name": "The wind tunnel",
     "description": "You are standing in a tunnel. Above you, you can feel
-                   |a breeze.\n",
+                   |a breeze.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 429,
-        "description": "To dark to tell\n"
+        "description": "To dark to tell"
       },
       {
         "dir": "west",
@@ -5030,7 +5030,7 @@
     "extra_description": [{
       "keyword": "breeze",
       "description": "The breeze comes from a hole above you. NO way to get up
-                     |there.\n"
+                     |there."
     }]
   }},
   {"room": {
@@ -5038,7 +5038,7 @@
     "anum": 431,
     "name": "The glittering room",
     "description": "This room are all bright. In the walls you can see some
-                   |silver. Exits are: West, east and south.\n",
+                   |silver. Exits are: West, east and south.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -5057,7 +5057,7 @@
     ],
     "extra_description": [{
       "keyword": "glitter walls silver",
-      "description": "The glittering silver looks like it is INSIDE the walls.\n"
+      "description": "The glittering silver looks like it is INSIDE the walls."
     }]
   }},
   {"room": {
@@ -5065,17 +5065,17 @@
     "anum": 432,
     "name": "The secret passageroom",
     "description": "You have entered a tiny room. There WAS an exit down, and an
-                   |exit to the west.\n",
+                   |exit to the west.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "west",
       "to": 431,
-      "description": "You can see a light to the west\n"
+      "description": "You can see a light to the west"
     }],
     "extra_description": [{
       "keyword": "down",
-      "description": "A sign is blocking the way. It says 'we have closed an entrance to DEATH'\n"
+      "description": "A sign is blocking the way. It says 'we have closed an entrance to DEATH'"
     }]
   }},
   {"room": {
@@ -5084,24 +5084,24 @@
     "name": "End of long tunnel",
     "description": "You are at a end of a long tunnel. Right in front of you,
                    |you can see a grey mass. To the east you can see a tremendous
-                   |long tunnel, but you know that, you has just been there.\n",
+                   |long tunnel, but you know that, you has just been there.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 431,
-        "description": "Long tunnel. JUST like in the description!\n"
+        "description": "Long tunnel. JUST like in the description!"
       },
       {
         "dir": "west",
         "to": 434,
-        "description": "A grey mass is blocking the way.\n"
+        "description": "A grey mass is blocking the way."
       }
     ],
     "extra_description": [{
       "keyword": "grey mass",
-      "description": "The mass is nothing but a mass, but it is quite suspicious!\n"
+      "description": "The mass is nothing but a mass, but it is quite suspicious!"
     }]
   }},
   {"room": {
@@ -5111,19 +5111,19 @@
     "description": "You are standing in a small room. Drawings of faces in pain
                    |are on the walls. You can feel that darkness is ruling this place.
                    |there are two exits: south and down. You have a feeling the downward exit
-                   |isn't finished yet...\n",
+                   |isn't finished yet...",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "south",
         "to": 435,
-        "description": "nothing but darkness\n"
+        "description": "nothing but darkness"
       },
       {
         "dir": "down",
         "description": "A sign is blocking the way: 'This has not been implemented
-                       |yet'.\n",
+                       |yet'.",
         "portal": "sewer-down-2"
       }
     ]
@@ -5133,7 +5133,7 @@
     "anum": 435,
     "name": "Dark tunnel",
     "description": "You are standing in a dark tunnel. It continues to the north
-                   |and to the south. Bones are spread on the floor\n",
+                   |and to the south. Bones are spread on the floor",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -5148,7 +5148,7 @@
     ],
     "extra_description": [{
       "keyword": "bones bone",
-      "description": "it looks like bones of a human.\n"
+      "description": "it looks like bones of a human."
     }],
     "resets": [{
       "command": "mobile",
@@ -5164,7 +5164,7 @@
     "anum": 436,
     "name": "Entrance to lair",
     "description": "The smell here is awful.  To the south you can see some smoke.
-                   |A tunnel leads north, and east.\n",
+                   |A tunnel leads north, and east.",
     "sector_type": "field",
     "room_flags": "dark no_mob indoors",
     "doors": [
@@ -5175,12 +5175,12 @@
       {
         "dir": "east",
         "to": 422,
-        "description": "A small cave is to the east.\n"
+        "description": "A small cave is to the east."
       },
       {
         "dir": "south",
         "to": 437,
-        "description": "the only thing you can see are smoke.\n"
+        "description": "the only thing you can see are smoke."
       }
     ]
   }},
@@ -5190,7 +5190,7 @@
     "name": "North-eastern part of Basilisks cave",
     "description": "It is hard to see here because of the smoke. To the north you
                    |can see barely see a small tunnel. Other exits are to the south
-                   |and to the west.\n",
+                   |and to the west.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
@@ -5214,24 +5214,24 @@
     "name": "South-eastern part of basilisks cave",
     "description": "There are a very small hole in wall, from where the smoke
                    |are coming from. Otherwise it is pitch dark. Exits are north
-                   |and west.\n",
+                   |and west.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 437,
-        "description": "You can see nothing but smoke\n"
+        "description": "You can see nothing but smoke"
       },
       {
         "dir": "west",
         "to": 440,
-        "description": "You can see nothing but smoke\n"
+        "description": "You can see nothing but smoke"
       }
     ],
     "extra_description": [{
       "keyword": "hole small",
-      "description": "It's a small hole. About 1 feet in diameter.\n"
+      "description": "It's a small hole. About 1 feet in diameter."
     }]
   }},
   {"room": {
@@ -5240,7 +5240,7 @@
     "name": "North-western part of basilisks cave",
     "description": "You can see some hay spread on the floor. The smell is awful here,
                    |and it makes you feel sick.  The basilisk sleeps here.
-                   |Watch out ... Maybe it is not far away.\n",
+                   |Watch out ... Maybe it is not far away.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
@@ -5255,7 +5255,7 @@
     ],
     "extra_description": [{
       "keyword": "hay",
-      "description": "The hay is very dirty. The smell of it makes you feel sick.\n"
+      "description": "The hay is very dirty. The smell of it makes you feel sick."
     }],
     "resets": [
       {
@@ -5280,7 +5280,7 @@
     "area": "sewer",
     "anum": 440,
     "name": "South-western part of basilisks cave",
-    "description": "You can see nothing but smoke. \n",
+    "description": "You can see nothing but smoke. ",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -5303,19 +5303,19 @@
     "anum": 441,
     "name": "The small cave",
     "description": "You are standing in small cave. You can see
-                   |some light in the end. Exits are north and south.\n",
+                   |some light in the end. Exits are north and south.",
     "sector_type": "field",
     "room_flags": "dark no_mob indoors",
     "doors": [
       {
         "dir": "north",
         "to": 440,
-        "description": "You can see only smoke.\n"
+        "description": "You can see only smoke."
       },
       {
         "dir": "south",
         "to": 442,
-        "description": "You can see a blue glow. And you feel a fresh breeze.\n"
+        "description": "You can see a blue glow. And you feel a fresh breeze."
       }
     ]
   }},
@@ -5324,24 +5324,24 @@
     "anum": 442,
     "name": "The northern end of the pool",
     "description": "You have wet feet, you are standing in water. The water looks calm. You can
-                   |see that it's a big lake. Light seeps from the water.\n",
+                   |see that it's a big lake. Light seeps from the water.",
     "sector_type": "hills",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 441,
-        "description": "You can see a small cave.\n"
+        "description": "You can see a small cave."
       },
       {
         "dir": "east",
         "to": 443,
-        "description": "You can see more water.\n"
+        "description": "You can see more water."
       },
       {
         "dir": "south",
         "to": 444,
-        "description": "You can see water.\n"
+        "description": "You can see water."
       }
     ]
   }},
@@ -5349,19 +5349,19 @@
     "area": "sewer",
     "anum": 443,
     "name": "The pool",
-    "description": "You are swimming in water. It is getting deep here. It is dark in this end.\n",
+    "description": "You are swimming in water. It is getting deep here. It is dark in this end.",
     "sector_type": "swim",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "south",
         "to": 445,
-        "description": "You can see some bubbles in the water.\n"
+        "description": "You can see some bubbles in the water."
       },
       {
         "dir": "west",
         "to": 442,
-        "description": "You see calm water.\n"
+        "description": "You see calm water."
       }
     ]
   }},
@@ -5369,19 +5369,19 @@
     "area": "sewer",
     "anum": 444,
     "name": "The south end of the pool",
-    "description": "You standing in water up to you neck. You can only see water.\n",
+    "description": "You standing in water up to you neck. You can only see water.",
     "sector_type": "mountain",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 442,
-        "description": "You can see calm water.\n"
+        "description": "You can see calm water."
       },
       {
         "dir": "east",
         "to": 445,
-        "description": "To dark to tell, but you can feel something nearby.\n"
+        "description": "To dark to tell, but you can feel something nearby."
       }
     ],
     "resets": [{
@@ -5398,19 +5398,19 @@
     "anum": 445,
     "name": "The pool",
     "description": "You are swimming in DARKNESS. You feel something
-                   |touching your right leg.\n",
+                   |touching your right leg.",
     "sector_type": "swim",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 443,
-        "description": "To dark to tell.\n"
+        "description": "To dark to tell."
       },
       {
         "dir": "east",
         "to": 413,
-        "description": "You can feel a warm breeze.\n"
+        "description": "You can feel a warm breeze."
       },
       {
         "dir": "west",

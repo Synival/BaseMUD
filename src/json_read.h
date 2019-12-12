@@ -30,6 +30,13 @@
 
 #include "merc.h"
 
+/* Data structures. */
+struct json_read_t {
+    char *filename;
+    char *data, *pos;
+    int line, col;
+};
+
 /* Read functions. */
 JSON_T *json_read_directory_recursive (const char *path,
     int (*load_func) (JSON_T *), int *load_result);

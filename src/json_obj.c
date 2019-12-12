@@ -46,21 +46,50 @@ const char *json_not_blank (const char *value) {
         ? NULL : value;
 }
 
+char *json_string_without_last_newline (const char *name, const char *prop,
+    const char *value)
+{
+    static char buf[MAX_STRING_LENGTH];
+    int len;
+
+    if (value == NULL)
+        return NULL;
+
+    len = strlen (value);
+    while (len > 0 && value[len - 1] == '\r')
+        len--;
+    if (len < 1 || value[len - 1] != '\n') {
+        bugf ("json_string_without_last_newline(): %s, %s\n"
+            "    String should end with \\n, but doesn't:\n"
+            "    \"%s\"", name, prop, value);
+    }
+    else
+        len--;
+
+    strncpy (buf, value, len);
+    buf[len] = '\0';
+    return buf;
+}
+
 JSON_PROP_FUN (obj_room, const ROOM_INDEX_T *);
 JSON_T *json_new_obj_room (const char *name, const ROOM_INDEX_T *room) {
     JSON_T *new, *sub;
     EXTRA_DESCR_T *ed;
     RESET_T *r;
+    char obj_name[256];
     int i;
 
     if (room == NULL)
         return json_new_null (name);
+    snprintf (obj_name, sizeof (obj_name), "room #%d", room->vnum);
     new = json_new_object (name, JSON_OBJ_ROOM);
 
     json_prop_string  (new, "area",        room->area->name);
     json_prop_integer (new, "anum",        room->anum);
     json_prop_string  (new, "name",        JSTR (room->name));
-    json_prop_string  (new, "description", JSTR (room->description));
+    json_prop_string  (new, "description",
+        json_string_without_last_newline (obj_name, "description",
+            JSTR (room->description)));
     json_prop_string  (new, "sector_type", sector_get_name(room->sector_type));
 
     if (json_not_blank (room->owner))
@@ -108,12 +137,17 @@ JSON_T *json_new_obj_room (const char *name, const ROOM_INDEX_T *room) {
 JSON_PROP_FUN (obj_extra_descr, const EXTRA_DESCR_T *);
 JSON_T *json_new_obj_extra_descr (const char *name, const EXTRA_DESCR_T *ed) {
     JSON_T *new;
+    char obj_name[256];
+
     if (ed == NULL)
         return json_new_null (name);
+    snprintf (obj_name, sizeof (obj_name), "extra_descr");
     new = json_new_object (name, JSON_OBJ_EXTRA_DESCR);
 
-    json_prop_string (new, "keyword",     ed->keyword);
-    json_prop_string (new, "description", ed->description);
+    json_prop_string (new, "keyword",     JSTR (ed->keyword));
+    json_prop_string (new, "description",
+        json_string_without_last_newline (obj_name, "description",
+            JSTR (ed->description)));
 
     return new;
 }
@@ -130,20 +164,24 @@ JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_T *from,
     const EXIT_T *ex)
 {
     JSON_T *new;
+    char obj_name[256];
+
     if (ex == NULL)
         return json_new_null (name);
+    snprintf (obj_name, sizeof (obj_name), "room #%d, exit #%d",
+        from->vnum, ex->orig_door);
     new = json_new_object (name, JSON_OBJ_EXIT);
 
     json_prop_string (new, "dir", door_get_name (ex->orig_door));
-    if (ex->to_room == NULL || ex->to_room->area != from->area || ex->portal)
-        ; // json_prop_null (new, "to");
-    else
+    if (ex->to_room != NULL && ex->to_room->area == from->area && !ex->portal)
         json_prop_integer (new, "to", ex->to_room->anum);
 
     if (json_not_blank (ex->keyword))
-        json_prop_string (new, "keyword",     JSTR (ex->keyword));
+        json_prop_string (new, "keyword", JSTR (ex->keyword));
     if (json_not_blank (ex->description))
-        json_prop_string (new, "description", JSTR (ex->description));
+        json_prop_string (new, "description",
+            json_string_without_last_newline (obj_name, "description",
+                JSTR (ex->description)));
 
     if (ex->rs_flags != 0)
         json_prop_string (new, "exit_flags", JBITSF (exit_flags, ex->rs_flags));
@@ -175,7 +213,7 @@ JSON_T *json_new_obj_shop (const char *name, const SHOP_T *shop) {
         if (name == NULL)
             continue;
         if (strcmp (name, "unknown") == 0) {
-            fprintf (stderr, "json_new_obj_stop(): Unknown item type '%d'.\n",
+            bugf ("json_new_obj_stop(): Unknown item type '%d'.",
                 shop->buy_type[i]);
             continue;
         }
@@ -194,18 +232,24 @@ JSON_PROP_FUN (obj_mobile, const MOB_INDEX_T *);
 JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob) {
     JSON_T *new, *sub;
     const char *spec_fun;
+    char obj_name[256];
     int i;
 
     if (mob == NULL)
         return json_new_null (name);
+    snprintf (obj_name, sizeof (obj_name), "mob #%d", mob->vnum);
     new = json_new_object (name, JSON_OBJ_MOBILE);
 
     json_prop_string  (new, "area",        mob->area->name);
     json_prop_integer (new, "anum",        mob->anum);
     json_prop_string  (new, "name",        JSTR (mob->name));
     json_prop_string  (new, "short_descr", JSTR (mob->short_descr));
-    json_prop_string  (new, "long_descr",  JSTR (mob->long_descr));
-    json_prop_string  (new, "description", JSTR (mob->description));
+    json_prop_string  (new, "long_descr",
+        json_string_without_last_newline (obj_name, "long_descr",
+            JSTR (mob->long_descr)));
+    json_prop_string  (new, "description",
+        json_string_without_last_newline (obj_name, "description",
+            JSTR (mob->description)));
     json_prop_string  (new, "race",        JSTR (race_get_name (mob->race)));
 
     if (mob->material != MATERIAL_GENERIC)
@@ -444,8 +488,7 @@ JSON_T *json_new_obj_anum (const char *name, AREA_T *area_from, int vnum) {
         JSON_T *new;
 
         if ((area = area_get_by_inner_vnum (vnum)) == NULL) {
-            fprintf (stderr, "json_new_obj_anum(): No area for "
-                "vnum '%d'\n", vnum);
+            bugf ("json_new_obj_anum(): No area for vnum '%d'", vnum);
             return json_new_null (name);
         }
 

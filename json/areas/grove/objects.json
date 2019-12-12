@@ -17,7 +17,7 @@
     "cost": 0,
     "extra_description": [{
       "keyword": "closet",
-      "description": "It is large, yet gracefully made, obviously of Scandinavian design.\n"
+      "description": "It is large, yet gracefully made, obviously of Scandinavian design."
     }]
   }},
   {"object": {
@@ -59,7 +59,7 @@
                      |      *      *       *
                      |****   AAAHHHH-TSHOU!   ****
                      |      *      *       *
-                     |    *        *         *\n"
+                     |    *        *         *"
     }]
   }},
   {"object": {
@@ -79,7 +79,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "kernel kernels",
-      "description": "Look fairly dull...\n"
+      "description": "Look fairly dull..."
     }]
   }},
   {"object": {
@@ -126,7 +126,7 @@
                      |o    ELIMINATE...                                                     o
                      |o    .                                                                o
                      |o    .                                                                o
-                     |o                                                                     o\n"
+                     |o                                                                     o"
     }]
   }},
   {"object": {
@@ -149,7 +149,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "staff wooden",
-      "description": "This oaken staff is very hefty but balanced.\n"
+      "description": "This oaken staff is very hefty but balanced."
     }]
   }},
   {"object": {
@@ -171,7 +171,7 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "robe brown cloth",
-      "description": "This robe is rough, but appears quite durable.\n"
+      "description": "This robe is rough, but appears quite durable."
     }],
     "affects": [{
       "apply": "mana",

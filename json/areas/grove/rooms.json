@@ -6,18 +6,18 @@
     "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You
                    |can feel a strange sensation of contentedness and relief seeping through You,
                    |as if great burdens have been lifted from Your shoulders. From here, friendly-
-                   |looking paths lead east and south.\n",
+                   |looking paths lead east and south.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "east",
         "to": 2,
-        "description": "The path wind its way through the tall trees, disappearing out of sight.\n"
+        "description": "The path wind its way through the tall trees, disappearing out of sight."
       },
       {
         "dir": "south",
         "to": 4,
-        "description": "The path wind its way through the tall trees, disappearing out of sight.\n"
+        "description": "The path wind its way through the tall trees, disappearing out of sight."
       }
     ],
     "resets": [
@@ -67,24 +67,24 @@
     "name": "The holy grove",
     "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You
                    |feel unusually happy here, as if great burdens have been lifted from Your
-                   |shoulders. From here, pleasant-looking paths lead east, west and south.\n",
+                   |shoulders. From here, pleasant-looking paths lead east, west and south.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "east",
         "to": 3,
-        "description": "The path wind its way through the tall trees, towards a clearing faintly seen.\n"
+        "description": "The path wind its way through the tall trees, towards a clearing faintly seen."
       },
       {
         "dir": "south",
         "to": 5,
         "description": "The path wind its way through the tall trees, towards an open area barely
-                       |visible in the distance.\n"
+                       |visible in the distance."
       },
       {
         "dir": "west",
         "to": 1,
-        "description": "The path wind its way through the tall trees, disappearing out of sight.\n"
+        "description": "The path wind its way through the tall trees, disappearing out of sight."
       }
     ],
     "resets": [
@@ -127,31 +127,31 @@
     "description": "You are standing in a clearing in the light woods. Somehow, this place
                    |seems powerfully DIFFERENT from the rest of the forest, as if something is
                    |severely strained in the fabric of reality here.  There is a small tablet 
-                   |on one of the trees.\n",
+                   |on one of the trees.",
     "sector_type": "forest",
     "room_flags": "no_mob",
     "doors": [
       {
         "dir": "north",
         "description": "A small, narrow path winds north, and is quickly lost in the bushes. It
-                       |looks quite a wilderness there!\n",
+                       |looks quite a wilderness there!",
         "portal": "grove-north-1"
       },
       {
         "dir": "south",
         "to": 6,
         "description": "There is a path winding its way south through the tall poplars, disappearing
-                       |out of sight some 100 yds. away.\n"
+                       |out of sight some 100 yds. away."
       },
       {
         "dir": "west",
         "to": 2,
-        "description": "There is a friendly-looking path leading west through the tall trees.\n"
+        "description": "There is a friendly-looking path leading west through the tall trees."
       }
     ],
     "extra_description": [{
       "keyword": "tablet",
-      "description": "This zone has been populated by Merc.  1993\n"
+      "description": "This zone has been populated by Merc.  1993"
     }],
     "resets": [
       {
@@ -180,29 +180,29 @@
                    |feel calm and relaxed here, as if great burdens have been lifted from Your
                    |shoulders. From here, pleasant-looking paths lead east, north and south. To
                    |the west, through the trees, You can see a faint trail leading towards the
-                   |eastern road.\n",
+                   |eastern road.",
     "sector_type": "forest",
     "room_flags": "no_mob",
     "doors": [
       {
         "dir": "north",
         "to": 1,
-        "description": "The path wind its way through the tall trees, disappearing out of sight.\n"
+        "description": "The path wind its way through the tall trees, disappearing out of sight."
       },
       {
         "dir": "east",
         "to": 5,
-        "description": "The path wind its way through the tall trees, towards a clearing faintly seen.\n"
+        "description": "The path wind its way through the tall trees, towards a clearing faintly seen."
       },
       {
         "dir": "south",
         "to": 7,
-        "description": "The path wind its way through the tall trees, into the grove.\n"
+        "description": "The path wind its way through the tall trees, into the grove."
       },
       {
         "dir": "west",
         "to": 51,
-        "description": "You can barely see a path leading back towards the eastern road.\n"
+        "description": "You can barely see a path leading back towards the eastern road."
       }
     ],
     "resets": [
@@ -249,34 +249,34 @@
                    |leaving You calm and invigorated, ready for the world. Paths lead into the
                    |holy grove to the east, north and west, while to the south a wide, sunny field
                    |slopes down to a sparkling lake.  Above you is a strange shimmering, almost
-                   |like something from another world....\n",
+                   |like something from another world....",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 2,
-        "description": "The path wind its way north, disappearing through the tall trees.\n"
+        "description": "The path wind its way north, disappearing through the tall trees."
       },
       {
         "dir": "east",
         "to": 6,
-        "description": "The path wind its way through the tall trees, disappearing out of sight.\n"
+        "description": "The path wind its way through the tall trees, disappearing out of sight."
       },
       {
         "dir": "south",
         "to": 8,
         "description": "To the south, a wide, sunny field stretch out, sloping down towards a brightly
-                       |glittering lake.\n"
+                       |glittering lake."
       },
       {
         "dir": "west",
         "to": 4,
-        "description": "The path wind its way west between stately poplars and oaks.\n"
+        "description": "The path wind its way west between stately poplars and oaks."
       },
       {
         "dir": "up",
         "description": "The shimmering grows in intensity as you look at it, beckoning you to reach
-                       |upwards...\n",
+                       |upwards...",
         "portal": "grove-up-1"
       }
     ],
@@ -344,24 +344,24 @@
     "description": "You are standing amidst the ancient oaks and poplars in the holy grove. You
                    |can feel a strange sensation of joy and calm seeping through You, as if great
                    |burdens have been lifted from Your shoulders. To the south, You glimpse an open
-                   |area through the trees, while paths lead away north and west.\n",
+                   |area through the trees, while paths lead away north and west.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 3,
-        "description": "The path wind its way through the tall trees, disappearing out of sight.\n"
+        "description": "The path wind its way through the tall trees, disappearing out of sight."
       },
       {
         "dir": "south",
         "to": 9,
         "description": "To the south, just beyond the trees, you can see a wide green lawn, and past
-                       |the lawn, a softly shimmering, rainbow-colored mansion.\n"
+                       |the lawn, a softly shimmering, rainbow-colored mansion."
       },
       {
         "dir": "west",
         "to": 5,
-        "description": "The path wind its way through the tall trees, disappearing out of sight.\n"
+        "description": "The path wind its way through the tall trees, disappearing out of sight."
       }
     ],
     "extra_description": [{
@@ -369,7 +369,7 @@
       "description": "The mansion is a sprawling, two-story affair with three wings, where the top
                      |of one wing serves as balcony. The walls look as marble would do, if marble
                      |changed color slowly, continuously, through the entire spectrum. There are
-                     |large windows all over the house.\n"
+                     |large windows all over the house."
     }],
     "resets": [
       {
@@ -398,21 +398,21 @@
                    |holy grove. Paths lead north and east. To the east, You can see a wide, open
                    |field, sloping gently down towards a bright, glittering lake. Somehow, here
                    |you feel an inexplicable happiness, as if the world's troubles no longer
-                   |really matter to you.\n",
+                   |really matter to you.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 4,
         "description": "The path leading north is soon lost out of sight amongst the ancient oaks and
-                       |poplars.\n"
+                       |poplars."
       },
       {
         "dir": "east",
         "to": 8,
         "description": "To the east, the path leads out into a wide, sunny summer's field, sloping
                        |south towards a beautiful lake. Past the field You can see a stately mansion,
-                       |shimmering gently in all the rainbow's colours.\n"
+                       |shimmering gently in all the rainbow's colours."
       }
     ],
     "extra_description": [{
@@ -420,7 +420,7 @@
       "description": "The mansion is a sprawling, two-story affair with three wings, where the top
                      |of one wing serves as balcony. The walls look as marble would do, if marble
                      |changed color slowly, continuously, through the entire spectrum. There are
-                     |large windows all over the house.\n"
+                     |large windows all over the house."
     }]
   }},
   {"room": {
@@ -433,25 +433,25 @@
                    |and west is the holy grove. In the wood's edge, to the east, is a stately man-
                    |sion, shimmering softly through the colors of the rainbow. You feel as if You
                    |could spend the rest of your life here, lying on your back and looking at the
-                   |patterns of the clouds as they gently drift across the sky.\n",
+                   |patterns of the clouds as they gently drift across the sky.",
     "sector_type": "field",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 5,
-        "description": "There is a path leading north towards the sacred glade.\n"
+        "description": "There is a path leading north towards the sacred glade."
       },
       {
         "dir": "east",
         "to": 19,
         "description": "To the east, You can see the rainbow-colored mansion, shimmering like some-
-                       |thing out of this world.\n"
+                       |thing out of this world."
       },
       {
         "dir": "west",
         "to": 7,
-        "description": "There is a small path leading into the woods to the west.\n"
+        "description": "There is a small path leading into the woods to the west."
       }
     ],
     "extra_description": [{
@@ -460,7 +460,7 @@
                      |of one wing serves as balcony. The walls look as marble would do, if marble
                      |changed color slowly, continuously, through the entire spectrum. There are
                      |large windows all over the house. There is a terrace in front of the house,
-                     |next to the low wing, which is almost completely windows.\n"
+                     |next to the low wing, which is almost completely windows."
     }]
   }},
   {"room": {
@@ -471,20 +471,20 @@
                    |get after 200 years of meticulous work. There is a winding stone path leading
                    |from the wood's edge to the north, to the softly shimmering, rainbow-colored
                    |mansion to the south. This place enjoys a perpetual cool, sunny summers after-
-                   |noon.\n",
+                   |noon.",
     "sector_type": "field",
     "room_flags": "no_mob",
     "doors": [
       {
         "dir": "north",
         "to": 6,
-        "description": "To the north, the winding stone path leads into the holy grove.\n"
+        "description": "To the north, the winding stone path leads into the holy grove."
       },
       {
         "dir": "south",
         "to": 10,
         "keyword": "door",
-        "description": "To the south, the path leads straight up to the front door of the mansion.\n",
+        "description": "To the south, the path leads straight up to the front door of the mansion.",
         "exit_flags": "door closed"
       }
     ],
@@ -493,7 +493,7 @@
       "description": "The mansion is a sprawling, two-story affair with three wings, where the top
                      |of one wing serves as balcony. The walls look as marble would do, if marble
                      |changed color slowly, continuously, through the entire spectrum. There are
-                     |large windows all over the house.\n"
+                     |large windows all over the house."
     }]
   }},
   {"room": {
@@ -503,7 +503,7 @@
     "description": "You are standing in the foyer of Dragon's mansion. The wide double door to
                    |the croquet lawn is to the north, flanked by large windows. The walls are
                    |panelled in oak and hung with strange paintings.  There is door in the south
-                   |wall.\n",
+                   |wall.",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
     "doors": [
@@ -512,7 +512,7 @@
         "to": 9,
         "keyword": "door",
         "description": "Through the windows next to the door you can see the croquet lawn, bathed in
-                       |afternoon sunlight.\n",
+                       |afternoon sunlight.",
         "exit_flags": "door closed"
       },
       {
@@ -528,7 +528,7 @@
                      |impossible motifs, like a sky filled with headless men, all dressed in some
                      |black costume (including hats), or a lady standing, blue from the waist up, or
                      |some pieces of plankwood that seems to be melting away like snow, or a night
-                     |sky with a dove-shaped hole of bright day sky in the middle.\n"
+                     |sky with a dove-shaped hole of bright day sky in the middle."
     }]
   }},
   {"room": {
@@ -537,7 +537,7 @@
     "name": "The hallway",
     "description": "You are in the north end of a connecting hallway, tastefully decorated with
                    |oak paneling and the coat-of-arms of various famous nobles hung on the walls.
-                   |The hallway leads south, and there is a door in the eastern wall.\n",
+                   |The hallway leads south, and there is a door in the eastern wall.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -584,7 +584,7 @@
                    |walls are (surprise!) blue, and the rest of the room is decorated in similar
                    |shades, producing a very nice, cool effect. There is a large bed and a
                    |matching set of sofas, easy-chairs and a coffee table. Through the venetian
-                   |blinds in front of the large east window you can see the edge of the grove.\n",
+                   |blinds in front of the large east window you can see the edge of the grove.",
     "sector_type": "inside",
     "room_flags": "indoors private",
     "doors": [{
@@ -608,7 +608,7 @@
     "name": "The hallway",
     "description": "You are standing in the south end of the hallway. There are doors in the
                    |elegant oak-panelled walls to the south, east and west. Many different
-                   |coat-of-arms adorn the walls here.\n",
+                   |coat-of-arms adorn the walls here.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -644,7 +644,7 @@
                    |walls are wallpapered a deep warm red, and dark mahogany panelling nicely com-
                    |plements them. There is a large, warm waterbed and a sofa group in dark wood
                    |with leather upholstery, including a coffee table. Heavy brown curtains are
-                   |pulled away from the wide windows, to reveal a nice view towards the grove.\n",
+                   |pulled away from the wide windows, to reveal a nice view towards the grove.",
     "sector_type": "inside",
     "room_flags": "indoors private",
     "doors": [{
@@ -689,7 +689,7 @@
                    |tomatoes, peas, corn etc., vines of garlic, a *Huge* array of small spice jars
                    |along several shelves and a large combo refrigerator/freezer. A big oven and
                    |stove is lurking in a corner. There is some proof here that Dragon is a less
-                   |than meticulous housekeeper... There are doors to the north and west.\n",
+                   |than meticulous housekeeper... There are doors to the north and west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -759,7 +759,7 @@
                    |Dragon entertains large number of guests, but the cloth-covered chairs
                    |standing forlornly in a corner suggests that this does not happen often.
                    |There are doors in the south and east walls, while to the west there is a
-                   |short corridor to the greenhouse.\n",
+                   |short corridor to the greenhouse.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -791,7 +791,7 @@
                    |the eastern one joining the greenhouse to the main building, but it is hard to 
                    |see out for all the greenery here. There is a set of easy-chairs and a glass
                    |coffee table. To the south, there is a wide double door out to a sunlit 
-                   |terrace.\n",
+                   |terrace.",
     "sector_type": "inside",
     "room_flags": "indoors private",
     "doors": [
@@ -831,7 +831,7 @@
     "description": "This is Dragons' dining hall. There is a large long solid oak table,
                    |seating at least 24, with heavy, wooden chairs to match. The oak panel walls
                    |are filled with paintings. There are doors to the north and east, and to the
-                   |west there is a wide double door opening out onto the sunlit terrace.\n",
+                   |west there is a wide double door opening out onto the sunlit terrace.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -866,7 +866,7 @@
                      |while a dragons-eye view of Pern (with dragons in the foreground, of course) 
                      |fills another. There even are a few rare medieval renditions of the great 
                      |beast of the Revelation. Over the head of the table hangs a rather modest 
-                     |portrait of a silver Dragon, sparkling with blue lightening, looking amused.\n"
+                     |portrait of a silver Dragon, sparkling with blue lightening, looking amused."
     }],
     "resets": [
       {
@@ -895,7 +895,7 @@
                    |is the greenhouse, its large windowpanes shimmering with weird and wonderful
                    |colors, while a double door leads into the house proper to the east. It is
                    |warm and calm here. There is a white-painted table with a parasol here,
-                   |together with a matched set of chairs.\n",
+                   |together with a matched set of chairs.",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
     "doors": [
@@ -924,17 +924,17 @@
     "description": "You are standing at the entrace of a beautiful grove of trees, and your
                    |heart is filled with pure, peaceful thoughts.  This looks like a safe place
                    |to recover from the wounds of adventuring.  A faint path through the grove
-                   |lies to the north, and you can see the eastern road to the south.\n",
+                   |lies to the north, and you can see the eastern road to the south.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 51,
-        "description": "A faint trail leads deeper into the grove.\n"
+        "description": "A faint trail leads deeper into the grove."
       },
       {
         "dir": "south",
-        "description": "A wide road lies to the south.\n",
+        "description": "A wide road lies to the south.",
         "portal": "grove-south-1"
       }
     ]
@@ -947,18 +947,18 @@
                    |in harmony with this beautiful forest.  If only the rest of the lands were
                    |so tranquil.  The trail turns towards the east, leading into the secluded
                    |trees of the druids' holy grove, and a path back to the eastern road lies
-                   |south.\n",
+                   |south.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "east",
         "to": 4,
-        "description": "You see the stately oaks and poplars of the holy grove.\n"
+        "description": "You see the stately oaks and poplars of the holy grove."
       },
       {
         "dir": "south",
         "to": 50,
-        "description": "A faint trail heads towards the eastern road.\n"
+        "description": "A faint trail heads towards the eastern road."
       }
     ]
   }},
@@ -970,7 +970,7 @@
                    |that you are being torn to nothing, atom by atom, falling and falling 
                    |and falling ...
                    |...
-                   |.\n",
+                   |.",
     "sector_type": "inside",
     "room_flags": "no_mob"
   }}

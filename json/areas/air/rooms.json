@@ -5,23 +5,23 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above the ground north of the city.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "east",
         "to": 6,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 2,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 21,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -31,28 +31,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 20 meters above the inside wall of West Midgaard.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 1,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 7,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 3,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 22,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -62,28 +62,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 20 meters above the west gate of Midgaard.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 2,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 8,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 4,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 23,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -93,28 +93,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above Wall Road.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 3,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 9,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 5,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 24,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -124,23 +124,23 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above Wall Road.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 4,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 10,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 25,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ],
     "resets": [{
@@ -158,28 +158,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above the ground north of Midgaard.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "east",
         "to": 11,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 7,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 1,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 26,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -189,33 +189,33 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 20 meters above the magic shop.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 6,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 12,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 8,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 2,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 27,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -225,33 +225,33 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above Main Street.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 7,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 13,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 9,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 3,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 28,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -261,33 +261,33 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 20 meters above the Mage Guild Hall.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 8,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 14,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 10,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 4,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 29,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -297,28 +297,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above Poor Alley.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 9,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 15,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 5,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 30,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -328,28 +328,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above the ground north of Midgaard.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "east",
         "to": 16,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 12,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 6,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 31,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -359,33 +359,33 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 20 meters above the bakery.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 11,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 17,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 13,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 7,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 32,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -395,33 +395,33 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above Main Street.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 12,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 18,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 14,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 8,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 33,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -431,33 +431,33 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 20 meters above Armoury.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 13,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 19,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 15,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 9,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 34,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -467,28 +467,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above Poor Alley.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 14,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 20,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 10,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 35,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -498,23 +498,23 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 10 meters above the temple spire of Midgaard
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "south",
         "to": 17,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 11,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 36,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -524,32 +524,32 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above the Temple Square.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 16,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 18,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 12,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 37,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
-        "description": "More of the same\n",
+        "description": "More of the same",
         "portal": "air-down-1"
       }
     ]
@@ -560,28 +560,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above Market Square.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 17,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 19,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 13,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 38,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -591,28 +591,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above Market and Commons.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 18,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 20,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 14,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 39,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ],
     "resets": [{
@@ -630,23 +630,23 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above ground, overlooking the Common Square.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 19,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 15,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "to": 40,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -656,23 +656,23 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above the ground just north of Midgaard.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "east",
         "to": 26,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 22,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 1,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -682,28 +682,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above the west gate of Midgaard.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 21,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 27,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 23,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 2,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ],
     "resets": [{
@@ -721,28 +721,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above west gate of Midgaard.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 22,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 28,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 24,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 3,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -752,28 +752,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above wall road.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 23,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 29,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 25,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 4,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -783,23 +783,23 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above wall road.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 24,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 30,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 5,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -809,28 +809,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above the ground north of Midgaard.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "east",
         "to": 31,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 27,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 21,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 6,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -840,33 +840,33 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above the magic shop.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 26,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 32,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 28,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 22,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 7,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -876,33 +876,33 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above main street.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 27,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 33,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 29,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 23,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 8,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -912,33 +912,33 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above the mage guild.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 28,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 34,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 30,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 24,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 9,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -948,28 +948,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above poor alley.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 29,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 35,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 25,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 10,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -979,28 +979,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above the ground north of Midgaard.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "east",
         "to": 36,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 32,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 26,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 11,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -1010,33 +1010,33 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above bakery and cleric guild.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 31,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 37,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 33,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 27,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 12,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -1046,33 +1046,33 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above main street.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 32,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 38,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 34,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 28,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 13,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -1082,33 +1082,33 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 40 meters above the armoury.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 33,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 39,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 35,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 29,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 14,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ],
     "resets": [{
@@ -1126,28 +1126,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above poor alley.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 34,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "east",
         "to": 40,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 30,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 15,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -1157,29 +1157,29 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 30 meters above the temple spire.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "south",
         "to": 37,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 31,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "up",
         "description": "The rainbow leads onward and upward into the sky.
-                       |It looks safe to travel on.\n",
+                       |It looks safe to travel on.",
         "portal": "air-up-1"
       },
       {
         "dir": "down",
         "to": 16,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -1189,28 +1189,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above the temple square.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 36,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 38,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 32,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 17,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -1220,28 +1220,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above market square.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 37,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 39,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 33,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 18,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -1251,28 +1251,28 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above market square and commons square.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 38,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "south",
         "to": 40,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 34,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 19,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }},
@@ -1282,23 +1282,23 @@
     "name": "In the air ...",
     "description": "You are flying!
                    |Currently you are about 60 meters above commoners square and the dump.
-                   |It seems like you can see forever!\n",
+                   |It seems like you can see forever!",
     "sector_type": "air",
     "doors": [
       {
         "dir": "north",
         "to": 39,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "west",
         "to": 35,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       },
       {
         "dir": "down",
         "to": 20,
-        "description": "More of the same.\n"
+        "description": "More of the same."
       }
     ]
   }}

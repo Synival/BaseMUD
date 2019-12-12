@@ -4,18 +4,18 @@
     "anum": 1,
     "name": "Rough East-West Path",
     "description": "You are on a very rough and overgrown path heading east-west over rugged
-                   |terrain.  To the east the path passes between low hills.\n",
+                   |terrain.  To the east the path passes between low hills.",
     "sector_type": "hills",
     "doors": [
       {
         "dir": "east",
         "to": 2,
-        "description": "The road heads into low hills this way.\n"
+        "description": "The road heads into low hills this way."
       },
       {
         "dir": "west",
         "to": 102,
-        "description": "The cross-roads and a trading post lie in this direction.\n"
+        "description": "The cross-roads and a trading post lie in this direction."
       }
     ]
   }},
@@ -25,18 +25,18 @@
     "name": "Rough Path Between the Hills",
     "description": "Here the path passes between low hills. The going is very rough, but
                    |to the east the ground is smoother. In that direction a pair of tower
-                   |looms above the hills.\n",
+                   |looms above the hills.",
     "sector_type": "hills",
     "doors": [
       {
         "dir": "east",
         "to": 3,
-        "description": "You see a pair of tall towers in the distance.\n"
+        "description": "You see a pair of tall towers in the distance."
       },
       {
         "dir": "west",
         "to": 1,
-        "description": "The road continues.\n"
+        "description": "The road continues."
       }
     ]
   }},
@@ -46,18 +46,18 @@
     "name": "Path through an Open Area",
     "description": "You are on a path through an open area. East of here loom two tall towers,
                    |joined by a barbican and surrounded by a murky moat. West the path passes
-                   |between low hills.\n",
+                   |between low hills.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "east",
         "to": 4,
-        "description": "Two fantastic towers surrounded by a moat rise before you.\n"
+        "description": "Two fantastic towers surrounded by a moat rise before you."
       },
       {
         "dir": "west",
         "to": 2,
-        "description": "The road continues.\n"
+        "description": "The road continues."
       }
     ]
   }},
@@ -68,23 +68,23 @@
     "description": "You stand on the west side of a moat that encircles two towers, each
                    |over 50 feet high. You will need a boat to go east across the moat. A
                    |rugged path heads west, and another one heads north to a cluster of low 
-                   |buildings.\n",
+                   |buildings.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 5,
-        "description": "A worn path leads to a cluster of low buildings.\n"
+        "description": "A worn path leads to a cluster of low buildings."
       },
       {
         "dir": "east",
         "to": 20,
-        "description": "The Towers loom directly over you, just beyond the moat.\n"
+        "description": "The Towers loom directly over you, just beyond the moat."
       },
       {
         "dir": "west",
         "to": 3,
-        "description": "An old ill-kept roads leads away to the west.\n"
+        "description": "An old ill-kept roads leads away to the west."
       }
     ]
   }},
@@ -93,18 +93,18 @@
     "anum": 5,
     "name": "Path North of Moat",
     "description": "You walk on a faint path heading south toward the west side of the moat,
-                   |and north to three small buildings.\n",
+                   |and north to three small buildings.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 6,
-        "description": "Several low buildings lie this way.\n"
+        "description": "Several low buildings lie this way."
       },
       {
         "dir": "south",
         "to": 4,
-        "description": "The path ends west of the moat.\n"
+        "description": "The path ends west of the moat."
       }
     ]
   }},
@@ -114,28 +114,28 @@
     "name": "Cluster of Buildings",
     "description": "You are in the middle of a cluster of small buildings. There is a building
                    |to the north, east, and west.  A sign over the eastern building says
-                   |'House of Pancakes'.\n",
+                   |'House of Pancakes'.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 9,
-        "description": "There is an entrance to a building.\n"
+        "description": "There is an entrance to a building."
       },
       {
         "dir": "east",
         "to": 7,
-        "description": "A sign over the door reads 'House of Pancakes'.\n"
+        "description": "A sign over the door reads 'House of Pancakes'."
       },
       {
         "dir": "south",
         "to": 5,
-        "description": "A path heads south toward the west side of the towers.\n"
+        "description": "A path heads south toward the west side of the towers."
       },
       {
         "dir": "west",
         "to": 8,
-        "description": "There is an entrance to a building here.\n"
+        "description": "There is an entrance to a building here."
       }
     ]
   }},
@@ -144,7 +144,7 @@
     "anum": 7,
     "name": "House of Pancakes",
     "description": "The moment you enter this room, the ceiling descends and crushes you
-                   |into a pancake.  Don't you hate it when that happens?\n",
+                   |into a pancake.  Don't you hate it when that happens?",
     "sector_type": "inside",
     "room_flags": "unused_room_1 no_mob"
   }},
@@ -153,7 +153,7 @@
     "anum": 8,
     "name": "Old Store Room",
     "description": "You have entered what appears to be an old storeroom. Most of the items
-                   |that were in here appear to have been ruined long ago.\n",
+                   |that were in here appear to have been ruined long ago.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -174,7 +174,7 @@
     "anum": 9,
     "name": "Empty Room",
     "description": "This room appears to be completely empty. The only exit seems to be the
-                   |way you came.  There are some scratches around the floor.\n",
+                   |way you came.  There are some scratches around the floor.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -185,7 +185,7 @@
       {
         "dir": "down",
         "to": 10,
-        "description": "You see a concealed opening leading down.\n"
+        "description": "You see a concealed opening leading down."
       }
     ]
   }},
@@ -194,7 +194,7 @@
     "anum": 10,
     "name": "Minotaur's Room",
     "description": "You have entered a secret chamber under the empty room. In this room is
-                   |the worn but cared-for gear and trappings of some large humanoid.\n",
+                   |the worn but cared-for gear and trappings of some large humanoid.",
     "sector_type": "inside",
     "room_flags": "dark no_mob indoors",
     "doors": [{
@@ -234,7 +234,7 @@
     "name": "Western Moat",
     "description": "You are in the middle of the moat, on the west side of the tower.  There is a
                    |landing on both sides of the moat.  Deep throated 'ribbids' come from the
-                   |water all around you.\n",
+                   |water all around you.",
     "sector_type": "noswim",
     "doors": [
       {
@@ -279,7 +279,7 @@
     "name": "Northern Moat",
     "description": "You are in the middle of the moat, on the north side of the tower.  There is
                    |no place to land here.  Deep throated 'ribbids' come from the water all
-                   |around you.\n",
+                   |around you.",
     "sector_type": "noswim",
     "doors": [{
       "dir": "south",
@@ -300,7 +300,7 @@
     "name": "Southern Moat",
     "description": "You are in the middle of the moat, on the south side of the tower.  There is
                    |no place to land here.  Deep throated 'ribbids' come from the water all
-                   |around you.\n",
+                   |around you.",
     "sector_type": "noswim",
     "doors": [{
       "dir": "north",
@@ -321,7 +321,7 @@
     "name": "Tower Foyer",
     "description": "You are on a foyer on the west side of the structure. The moat is west of 
                    |here. There is also a large door eastward into the structure.  You notice that
-                   |the walls are ornately decorated with very life-like stone gargoyles.\n",
+                   |the walls are ornately decorated with very life-like stone gargoyles.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -361,7 +361,7 @@
                    |ornately furnished, but now everything is decayed and moldering.  A highly
                    |ornate balcony surrounds the lobby. To the east, below the balcony, is an
                    |opening. The door leading out is west.  You notice that the balcony is
-                   |covered in highly ornate and life-like stone gargoyles.\n",
+                   |covered in highly ornate and life-like stone gargoyles.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -399,7 +399,7 @@
     "name": "Base of the Western Tower",
     "description": "You stand in the center of the Western tower's base. Torch brackets occupy
                    |the four corners of this huge room. Above each torch is a lifelike ornate
-                   |stone gargoyle.  There are doors north and south, and passages east and west.\n",
+                   |stone gargoyle.  There are doors north and south, and passages east and west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -434,7 +434,7 @@
     "anum": 26,
     "name": "The Musty Corridor",
     "description": "You are walking along a musty east-west corridor joining the two towers.
-                   |There are room on each side of the corridor, and openings at each end.\n",
+                   |There are room on each side of the corridor, and openings at each end.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -462,7 +462,7 @@
     "name": "Kitchen",
     "description": "You have entered what must once have been a kitchen. The rusting remains of
                    |various utensils lie on countertops. There is also an old wash basin and a
-                   |pot-belly stove.  There is a door south, and a serving hatch east.\n",
+                   |pot-belly stove.  There is a door south, and a serving hatch east.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -483,7 +483,7 @@
     "anum": 28,
     "name": "Conservatory",
     "description": "You are in the tower's private conservatory. However, through years of neglect,
-                   |the plants have grown into a hideous jungle.  The only exit is north.\n",
+                   |the plants have grown into a hideous jungle.  The only exit is north.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -506,7 +506,7 @@
     "description": "You have entered a fabulous dining hall.  The wrecked remains of a long table
                    |dominate the room. A horrible odor pervades the room, like some foul-smelling
                    |beast has been eating and shitting in here.  There is a serving hatch west and
-                   |a door south.\n",
+                   |a door south.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -527,7 +527,7 @@
     "anum": 30,
     "name": "Art Gallery",
     "description": "You are in the ruined remains of an art gallery. Everything appears to
-                   |have been stolen long ago, however.  The only exit is north.\n",
+                   |have been stolen long ago, however.  The only exit is north.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -551,7 +551,7 @@
                    |four corners of this huge room.  Above each torch is a lifelike ornate stone
                    |gargoyle.  There are are open doors to the north and south, and passages east
                    |and west.  In addition, a spiral staircase leads up to the next level of this
-                   |tower.\n",
+                   |tower.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -570,7 +570,7 @@
       {
         "dir": "up",
         "to": 35,
-        "description": "You see a spiral staircase leading up.\n"
+        "description": "You see a spiral staircase leading up."
       }
     ],
     "resets": [{
@@ -588,7 +588,7 @@
     "name": "The Common Room",
     "description": "You are in what must once have been a common room for all residents of the
                    |tower. There is a huge fire pit with a chimney in the center, and the smashed
-                   |remains of a great many table and chairs.  The exit is south.\n",
+                   |remains of a great many table and chairs.  The exit is south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -599,7 +599,7 @@
       {
         "dir": "down",
         "to": 34,
-        "description": "You notice a grate in the bottom of the fire pit.  Maybe it's an opening ...\n",
+        "description": "You notice a grate in the bottom of the fire pit.  Maybe it's an opening ...",
         "exit_flags": "door"
       }
     ],
@@ -618,7 +618,7 @@
     "name": "Servant's Quarters",
     "description": "You are in what once was the servant's quarters, as evidenced by the shabby
                    |belongings and decor. What little remains is rotting and of little value
-                   |anyway.  The only exit is north.\n",
+                   |anyway.  The only exit is north.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -632,7 +632,7 @@
     "name": "A Large Murky Cellar",
     "description": "You are in a large, murky cellar. An almost tangible air of horror pervades
                    |the room.  A thin layer of nitre covers the walls and ceiling.  Rotting
-                   |furniture looms obliquely about the room.\n",
+                   |furniture looms obliquely about the room.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [{
@@ -664,7 +664,7 @@
     "anum": 35,
     "name": "On the First Staircase",
     "description": "You are on a Spiral staircase connecting the first and second levels of
-                   |the eastern tower. You can go up or down.\n",
+                   |the eastern tower. You can go up or down.",
     "sector_type": "field",
     "room_flags": "dark indoors",
     "doors": [
@@ -684,7 +684,7 @@
     "name": "Second Level of the Eastern Tower",
     "description": "You are in the center of the second level of the Eastern tower. This large
                    |room appears quite empty, except for the candle abras firmly fixed to the
-                   |walls.  An opening leads westward, and a spiral staircase leads down.\n",
+                   |walls.  An opening leads westward, and a spiral staircase leads down.",
     "sector_type": "city",
     "room_flags": "dark indoors",
     "doors": [
@@ -739,7 +739,7 @@
     "description": "You are in what was once a elegant hall, although everything is moldering now.
                    |The rotted remains of a plush carpet covers the floor, while several moldy
                    |tapestries adorn the each side of the hall.  There are door north and south,
-                   |and openings east and west.\n",
+                   |and openings east and west.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -776,7 +776,7 @@
     "description": "You have entered an elegantly furnished room that looks to be still in use!
                    |Costly paintings and pieces of furniture are tastefully situated.  On the
                    |north wall is an altar to Knar, the ghastly patron of Gargoyles.  The only
-                   |exit is south.\n",
+                   |exit is south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -815,7 +815,7 @@
     "anum": 39,
     "name": "The Library",
     "description": "This room appears to have been a library.  Empty book shelves line each wall.
-                   |The only exit is north.\n",
+                   |The only exit is north.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -848,7 +848,7 @@
     "description": "You are in the center of the western tower's second floor.  A large spiral 
                    |staircase of 29 steps connects this level with the third.  There are doors
                    |to the east and west.  Except for a torch bracket in each corner, the 
-                   |room is barren.\n",
+                   |room is barren.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -863,7 +863,7 @@
       {
         "dir": "up",
         "to": 42,
-        "description": "You see the spiral staircase leading up.\n"
+        "description": "You see the spiral staircase leading up."
       }
     ]
   }},
@@ -872,7 +872,7 @@
     "anum": 41,
     "name": "On the Balcony",
     "description": "You are on the balcony overlooking the Grand lobby.  You have a fabulous
-                   |view of the entire room.  The only exit is the way you came in.\n",
+                   |view of the entire room.  The only exit is the way you came in.",
     "sector_type": "field",
     "room_flags": "indoors",
     "doors": [{
@@ -885,7 +885,7 @@
     "anum": 42,
     "name": "The Spiral Stairs",
     "description": "You are on a large spiral staircase of 29 steps, leading between the 
-                   |second and third floors.  You can go up or down.\n",
+                   |second and third floors.  You can go up or down.",
     "sector_type": "field",
     "room_flags": "indoors",
     "doors": [
@@ -905,7 +905,7 @@
     "name": "Third Level of Western Tower",
     "description": "You stand in the center of the western tower's third floor.  This large room
                    |glows mysteriously with a strange light all its own.  From a door to the east
-                   |comes a strange inky blackness.  A spiral staircase leads down.\n",
+                   |comes a strange inky blackness.  A spiral staircase leads down.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -978,7 +978,7 @@
     "name": "The Armory",
     "description": "In this room, which has somehow evaded the ravages of time, are neatly stored
                    |racks of common weapons.  They appear to be quite ordinary; however, a chest
-                   |in one corner catches your eye.  The only exit is the way you came in.\n",
+                   |in one corner catches your eye.  The only exit is the way you came in.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -1030,7 +1030,7 @@
                    |Murals on the wall show battle scenes in gargoyles, minotaurs, and huge,
                    |flying snake-like reptiles with poisonous tails fight humans and dwarves.
                    |Various objects in the room give evidence that it is occupied by individuals
-                   |of authority.  The only door is north.\n",
+                   |of authority.  The only door is north.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -1072,7 +1072,7 @@
     "description": "You are in the center of the Eastern Tower's third floor.  The room you are in
                    |glows with a mysterious light that has no source.  In the center of the room a
                    |ladder climbs up to a hatchway in the ceiling.  The hatchway is a strange
-                   |looking keyhole.  There is also a door to the west.\n",
+                   |looking keyhole.  There is also a door to the west.",
     "sector_type": "city",
     "room_flags": "indoors",
     "doors": [
@@ -1084,7 +1084,7 @@
       {
         "dir": "up",
         "to": 48,
-        "description": "The hatchway appears securely fastened.  In it is a strange keyhole.\n",
+        "description": "The hatchway appears securely fastened.  In it is a strange keyhole.",
         "exit_flags": "door"
       }
     ],
@@ -1114,13 +1114,13 @@
     "description": "You stand in the turret of the eastern tower.  A huge hole has been
                    |made in the roof by some enormous beast, letting the daylight (or moonlight)
                    |in.  There is a hatchway in the floor, and an opening to the west leading out
-                   |onto a catwalk.\n",
+                   |onto a catwalk.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "west",
         "to": 49,
-        "description": "There is a small opening this way.\n"
+        "description": "There is a small opening this way."
       },
       {
         "dir": "down",
@@ -1163,7 +1163,7 @@
                    |a fabulous view of the surrounding countryside, which consists of a bleak
                    |wilderness.  At the east end of the catwalk is a small opening leading
                    |inside the eastern turret.  At the western end, a strange mirror-like portal
-                   |leads into the western turret.\n",
+                   |leads into the western turret.",
     "sector_type": "forest",
     "doors": [
       {
@@ -1173,7 +1173,7 @@
       {
         "dir": "west",
         "to": 50,
-        "description": "A mirror-like portal glimmers, allowing entry into the western turret.\n"
+        "description": "A mirror-like portal glimmers, allowing entry into the western turret."
       }
     ]
   }},
@@ -1184,7 +1184,7 @@
     "description": "You are in the turret of the western tower.  You feel very strange here.
                    |Scattered about this room are a great many coins and valuable articles.
                    |Yet you can't get rid of a feeling of dread!  A mirror-like portal is in the
-                   |western wall.\n",
+                   |western wall.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1195,7 +1195,7 @@
       {
         "dir": "west",
         "to": 51,
-        "description": "A mirror-like portal glimmers in this wall.\n"
+        "description": "A mirror-like portal glimmers in this wall."
       }
     ],
     "resets": [
@@ -1225,7 +1225,7 @@
                    |towers.  There is no opening into the western tower of any kind.  You have a
                    |fabulous view of your surroundings, a murky city partially obscured by strange
                    |smoke that creeps along the ground instead of rising. The city stretches as far
-                   |as the eye can see under the conditions.\n",
+                   |as the eye can see under the conditions.",
     "sector_type": "forest",
     "doors": [
       {
@@ -1243,7 +1243,7 @@
     "anum": 52,
     "name": "The Chamber",
     "description": "You are in a small carpeted chamber. The chamber is empty except for a single
-                   |chair facing a mirror on the wall.\n",
+                   |chair facing a mirror on the wall.",
     "sector_type": "inside",
     "doors": [{
       "dir": "east",
@@ -1256,14 +1256,14 @@
     "name": "Main Eastern Road",
     "description": "You are on the old Eastern Road.  The crossroads to the east joins ANOTHER
                    |northern route to this road, which continues east.  South of the crossroads is
-                   |an old building.  The area around here is lightly timbered.\n",
+                   |an old building.  The area around here is lightly timbered.",
     "sector_type": "forest",
     "room_flags": "no_mob",
     "doors": [
       {
         "dir": "east",
         "to": 102,
-        "description": "You see a cross roads and an old building.\n"
+        "description": "You see a cross roads and an old building."
       },
       {
         "dir": "west",
@@ -1279,23 +1279,23 @@
                    |and the more civilized areas to the west. The main road is west, an
                    |older road continues east, and a simple trail heads north.  To the south,
                    |an old ram-shackle building is being used as a trading post for the
-                   |surrounding wilderness. \n",
+                   |surrounding wilderness. ",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 104,
-        "description": "You see a trail leading north.\n"
+        "description": "You see a trail leading north."
       },
       {
         "dir": "east",
         "to": 1,
-        "description": "The old Eastern road continues this way.\n"
+        "description": "The old Eastern road continues this way."
       },
       {
         "dir": "south",
         "to": 103,
-        "description": "An old, ram-shackle building serves as a trading post here.\n"
+        "description": "An old, ram-shackle building serves as a trading post here."
       },
       {
         "dir": "west",
@@ -1309,13 +1309,13 @@
     "name": "Trading Post",
     "description": "You are in a trading post just south of the crossroads, where rangers,
                    |trappers and hunters from the surrounding area come to buy, sell, and
-                   |barter goods.\n",
+                   |barter goods.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 102,
-      "description": "The door opens out on the crossroads.\n"
+      "description": "The door opens out on the crossroads."
     }],
     "resets": [
       {
@@ -1405,18 +1405,18 @@
     "name": "Trail north of crossroads",
     "description": "You are on a primitive north-south trail. South of here is a major cross-
                    |roads and an old building. To the north the trail continues toward a
-                   |deep, dark forest.\n",
+                   |deep, dark forest.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 105,
-        "description": "The trail continues toward a deep, dark, forest.\n"
+        "description": "The trail continues toward a deep, dark, forest."
       },
       {
         "dir": "south",
         "to": 102,
-        "description": "A major crossroads and a building lie in this direction.\n"
+        "description": "A major crossroads and a building lie in this direction."
       }
     ],
     "resets": [
@@ -1443,18 +1443,18 @@
     "anum": 105,
     "name": "Trail south of forest",
     "description": "You are on a primitive north-south trail.  Just north of here looms the
-                   |entrance to a deep, dark forest. To the south the trail continues.\n",
+                   |entrance to a deep, dark forest. To the south the trail continues.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 106,
-        "description": "The trail enters a dark forest of thick oaks this way.\n"
+        "description": "The trail enters a dark forest of thick oaks this way."
       },
       {
         "dir": "south",
         "to": 104,
-        "description": "The trail continues.\n"
+        "description": "The trail continues."
       }
     ]
   }},
@@ -1464,18 +1464,18 @@
     "name": "Entrance to the forest",
     "description": "You are at the entrance to dark forest comprised mostly of huge black oak
                    |and towering firs.  A trail from the south continues north on into the
-                   |woods at this point.\n",
+                   |woods at this point.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "north",
         "to": 107,
-        "description": "You see the trail continuing into the forest.\n"
+        "description": "You see the trail continuing into the forest."
       },
       {
         "dir": "south",
         "to": 105,
-        "description": "You see the trail head back on south.\n"
+        "description": "You see the trail head back on south."
       }
     ],
     "resets": [{
@@ -1494,18 +1494,18 @@
     "description": "The trail here passes through groves of closely knit Black Oak. Some of
                    |these trees are of enormous size.  Rustling and other low noises come
                    |from the forest on either side of the trail.  The trail continues on north
-                   |and south.\n",
+                   |and south.",
     "sector_type": "hills",
     "doors": [
       {
         "dir": "north",
         "to": 108,
-        "description": "You see the trail continue into thick, dark forest.\n"
+        "description": "You see the trail continue into thick, dark forest."
       },
       {
         "dir": "south",
         "to": 106,
-        "description": "The edge of the forest is visible in this direction.\n"
+        "description": "The edge of the forest is visible in this direction."
       }
     ]
   }},
@@ -1514,23 +1514,23 @@
     "anum": 108,
     "name": "Junction in Dark Forest",
     "description": "You are in the midst of a deep dark forest of huge oak trees.  There is a
-                   |junction of trails here, with paths leading south, west and east.\n",
+                   |junction of trails here, with paths leading south, west and east.",
     "sector_type": "hills",
     "doors": [
       {
         "dir": "east",
         "to": 120,
-        "description": "A path disappears into thick forest.\n"
+        "description": "A path disappears into thick forest."
       },
       {
         "dir": "south",
         "to": 107,
-        "description": "A path disappears into thick forest.\n"
+        "description": "A path disappears into thick forest."
       },
       {
         "dir": "west",
         "to": 109,
-        "description": "You see the path to the Centaur village.\n"
+        "description": "You see the path to the Centaur village."
       }
     ],
     "resets": [
@@ -1558,18 +1558,18 @@
     "name": "Path to Centaur Village",
     "description": "You are on an east-west path in the forest.  Here the forest is mostly
                    |towering firs, not quite as dense as the oak groves that can be seen eastward.
-                   |Westward, the trail heads toward a small clearing.\n",
+                   |Westward, the trail heads toward a small clearing.",
     "sector_type": "forest",
     "doors": [
       {
         "dir": "east",
         "to": 108,
-        "description": "A path disappears into thick forest.\n"
+        "description": "A path disappears into thick forest."
       },
       {
         "dir": "west",
         "to": 110,
-        "description": "There is a small clearing in this direction.\n"
+        "description": "There is a small clearing in this direction."
       }
     ],
     "resets": [{
@@ -1588,28 +1588,28 @@
     "description": "You are on the east side of a clearing.  Small primitive huts are scattered
                    |about the edges of this clearing.  Beyond these on all sides are towering
                    |fir trees.  A path leads east out of the clearing. The clearing continues to
-                   |the west.\n",
+                   |the west.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 112,
-        "description": "There is a hut here.\n"
+        "description": "There is a hut here."
       },
       {
         "dir": "east",
         "to": 109,
-        "description": "A path leads away through the forest.\n"
+        "description": "A path leads away through the forest."
       },
       {
         "dir": "south",
         "to": 113,
-        "description": "There is a hut here.\n"
+        "description": "There is a hut here."
       },
       {
         "dir": "west",
         "to": 111,
-        "description": "You see the west side of the clearing.\n"
+        "description": "You see the west side of the clearing."
       }
     ],
     "resets": [
@@ -1637,28 +1637,28 @@
     "name": "West side of the Centaur Clearing",
     "description": "You are on the west side of the clearing in the center of the Centaur village.
                    |Huts surround the clearing on all sides, and beyond are towering firs.  The
-                   |clearing continues to the east.  To the west is a very large hut.\n",
+                   |clearing continues to the east.  To the west is a very large hut.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 114,
-        "description": "There is a hut here.\n"
+        "description": "There is a hut here."
       },
       {
         "dir": "east",
         "to": 110,
-        "description": "You see the east side of the clearing.\n"
+        "description": "You see the east side of the clearing."
       },
       {
         "dir": "south",
         "to": 115,
-        "description": "There is a hut here.\n"
+        "description": "There is a hut here."
       },
       {
         "dir": "west",
         "to": 116,
-        "description": "There is a hut here.\n"
+        "description": "There is a hut here."
       }
     ],
     "resets": [{
@@ -1675,13 +1675,13 @@
     "anum": 112,
     "name": "A Centaur's Hut",
     "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut
-                   |is sparsely furnished, mostly the trappings of survival.\n",
+                   |is sparsely furnished, mostly the trappings of survival.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "south",
       "to": 110,
-      "description": "The opening leads out onto the clearing.\n"
+      "description": "The opening leads out onto the clearing."
     }],
     "resets": [{
       "command": "mobile",
@@ -1697,13 +1697,13 @@
     "anum": 113,
     "name": "A Centaur's Hut",
     "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut
-                   |is sparsely furnished, mostly the trappings of survival.\n",
+                   |is sparsely furnished, mostly the trappings of survival.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 110,
-      "description": "The opening leads out onto the clearing.\n"
+      "description": "The opening leads out onto the clearing."
     }],
     "resets": [{
       "command": "mobile",
@@ -1719,13 +1719,13 @@
     "anum": 114,
     "name": "A Centaur's Hut",
     "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut
-                   |is sparsely furnished, mostly the trappings of survival.\n",
+                   |is sparsely furnished, mostly the trappings of survival.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "south",
       "to": 111,
-      "description": "The opening leads out onto the clearing.\n"
+      "description": "The opening leads out onto the clearing."
     }],
     "resets": [{
       "command": "mobile",
@@ -1741,13 +1741,13 @@
     "anum": 115,
     "name": "A Centaur's Hut",
     "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut
-                   |is sparsely furnished, mostly the trappings of survival.\n",
+                   |is sparsely furnished, mostly the trappings of survival.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "north",
       "to": 111,
-      "description": "The opening leads out onto the clearing.\n"
+      "description": "The opening leads out onto the clearing."
     }],
     "resets": [{
       "command": "mobile",
@@ -1764,19 +1764,19 @@
     "name": "Entrance to a Large Hut",
     "description": "You are in the entry foyer of a large hut.  A curtain separates this section
                    |of the hut from the next section to the west.  To the east is an opening out
-                   |onto the clearing.\n",
+                   |onto the clearing.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "east",
         "to": 111,
-        "description": "The opening leads out onto the clearing.\n"
+        "description": "The opening leads out onto the clearing."
       },
       {
         "dir": "west",
         "to": 117,
-        "description": "There is a curtain here separating this section from the next.\n"
+        "description": "There is a curtain here separating this section from the next."
       }
     ],
     "resets": [
@@ -1820,13 +1820,13 @@
     "name": "Back of a Large Hut",
     "description": "You are in the back of a large hut.  A curtain separates this section from
                    |the front of the hut to the east.  This room is finely decorated, if
-                   |somewhat primitive.  The decor suggests someone of authority lives here.\n",
+                   |somewhat primitive.  The decor suggests someone of authority lives here.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 116,
-      "description": "There is a curtain here separating this room from the front of the hut.\n"
+      "description": "There is a curtain here separating this room from the front of the hut."
     }],
     "resets": [
       {
@@ -1853,12 +1853,12 @@
     "name": "Eastern Path in Dark Forest",
     "description": "You are on an east-west path through extremely old growths of oak.  The path
                    |is fairly faint here.  Undergrowth closes in so closely that little can
-                   |be seen in any direction.\n",
+                   |be seen in any direction.",
     "sector_type": "hills",
     "doors": [{
       "dir": "west",
       "to": 108,
-      "description": "The path continues west through thick forest.\n"
+      "description": "The path continues west through thick forest."
     }]
   }}
 ]

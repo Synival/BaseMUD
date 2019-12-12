@@ -19,7 +19,7 @@
     "extra_description": [{
       "keyword": "handaxe hand axe",
       "description": "You see a finely made axe.  Iron, with a nice wooden shaft, this axe can
-                     |withstand years of use.\n"
+                     |withstand years of use."
     }]
   }},
   {"object": {
@@ -41,7 +41,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "meat cleaver",
-      "description": "This meat cleaver is made of good steel.\n"
+      "description": "This meat cleaver is made of good steel."
     }],
     "affects": [{
       "apply": "damage roll",

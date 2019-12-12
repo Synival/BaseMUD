@@ -71,7 +71,7 @@ void json_read_directory_real (JSON_T *obj, const char *path, bool recurse,
     count = scandir (path, &files, json_read_file_or_dir_filter, alphasort);
     if (count < 0) {
         perror ("scandir");
-        exit (1);
+        return;
     }
 
     for (i = 0; i < count; i++) {
@@ -127,6 +127,7 @@ JSON_T *json_read_file (const char *filename) {
     char *data;
     const char *pos;
     size_t file_len;
+    int line, col;
 
     if ((file = fopen (filename, "r")) == NULL)
         return NULL;
@@ -149,8 +150,11 @@ JSON_T *json_read_file (const char *filename) {
     }
     fclose (file);
 
+
     /* we should read a JSON object. */
-    pos = data;
+    pos  = data;
+    line = 1;
+    col  = 1;
     json_read_skip_whitespace (&pos);
 
     /* can we start with an object... */
@@ -161,8 +165,8 @@ JSON_T *json_read_file (const char *filename) {
         obj = json_read_array (&pos, filename);
     /* nothing else! */
     else {
-        fprintf (stderr, "json_read_file(): Expected '{' or '[', "
-                         "found '%c'.\n", *pos);
+        bugf ("%s, line %d, col %d: json_read_file(): Expected "
+            "'{' or '[', found '%c'.", filename, line, col, *pos);
         obj = NULL;
     }
     free (data);
@@ -178,8 +182,7 @@ JSON_T *json_read_object (const char **pos, const char *name) {
     /* objects must always start with a brace. */
     json_read_skip_whitespace (pos);
     if (**pos != '{') {
-        fprintf (stderr, "json_read_object(): Expected '{', found '%c'.\n",
-            **pos);
+        bugf ("json_read_object(): Expected '{', found '%c'.", **pos);
         return NULL;
     }
 
@@ -192,8 +195,7 @@ JSON_T *json_read_object (const char **pos, const char *name) {
     /* we can read JSON types until EOF or a closing bracket. */
     while (**pos != '}') {
         if (**pos == '\0') {
-            fprintf (stderr, "json_read_object(): Expected '}' or string, "
-                             "found EOF.\n");
+            bugf ("json_read_object(): Expected '}' or string, found EOF.");
             json_free (obj);
             return NULL;
         }
@@ -207,13 +209,12 @@ JSON_T *json_read_object (const char **pos, const char *name) {
         /* we need a column after our member name. */
         json_read_skip_whitespace (pos);
         if (**pos == '\0') {
-            fprintf (stderr, "json_read_object(): Expected ':', found EOF.");
+            bugf ("json_read_object(): Expected ':', found EOF.");
             json_free (obj);
             return NULL;
         }
         else if (**pos != ':') {
-            fprintf (stderr, "json_read_object(): Expected ':', found '%c'.",
-                **pos);
+            bugf ("json_read_object(): Expected ':', found '%c'.", **pos);
             json_free (obj);
             return NULL;
         }
@@ -233,8 +234,8 @@ JSON_T *json_read_object (const char **pos, const char *name) {
             json_read_skip_whitespace (pos);
         }
         else if (**pos != '}' && **pos != '\0') {
-            fprintf (stderr, "json_read_object(): Expected '}' or ',', "
-                             "found '%c'.\n", **pos);
+            bugf ("json_read_object(): Expected '}' or ',', found '%c'.",
+                **pos);
             json_free (obj);
             return NULL;
         }
@@ -252,8 +253,7 @@ JSON_T *json_read_array (const char **pos, const char *name) {
     /* objects must always start with a bracket. */
     json_read_skip_whitespace (pos);
     if (**pos != '[') {
-        fprintf (stderr, "json_read_array(): Expected '[', found '%c'.\n",
-            **pos);
+        bugf ("json_read_array(): Expected '[', found '%c'.", **pos);
         return NULL;
     }
 
@@ -266,8 +266,7 @@ JSON_T *json_read_array (const char **pos, const char *name) {
     /* we can read JSON types until EOF or a closing bracket. */
     while (**pos != ']') {
         if (**pos == '\0') {
-            fprintf (stderr, "json_read_array(): Expected ']' or ',', "
-                             "found EOF.\n");
+            bugf ("json_read_array(): Expected ']' or ',', found EOF.");
             json_free (array);
             return NULL;
         }
@@ -285,8 +284,7 @@ JSON_T *json_read_array (const char **pos, const char *name) {
             json_read_skip_whitespace (pos);
         }
         else if (**pos != ']' && **pos != '\0') {
-            fprintf (stderr, "json_read_array(): Expected ']' or ',', "
-                             "found '%c'.\n", **pos);
+            bugf ("json_read_array(): Expected ']' or ',', found '%c'.", **pos);
             json_free (array);
             return NULL;
         }
@@ -305,7 +303,7 @@ JSON_T *json_read_any_type (const char **pos, const char *name) {
     /* the next character should indicate the type of this object. */
     json_read_skip_whitespace (pos);
     if (**pos == '\0') {
-        fprintf (stderr, "json_read_any_type(): Expected a type, found EOF.\n");
+        bugf ("json_read_any_type(): Expected a type, found EOF.");
         return NULL;
     }
 
@@ -344,8 +342,7 @@ char *json_read_string_content (const char **pos, char *buf, size_t size) {
     /* strings must always start with a double quote. */
     json_read_skip_whitespace (pos);
     if (**pos != '\"') {
-        fprintf (stderr, "json_read_string_content(): Expected '\"', "
-                         "found '%c'.\n", **pos);
+        bugf ("json_read_string_content(): Expected '\"', found '%c'.", **pos);
         return NULL;
     }
     (*pos)++;
@@ -354,7 +351,7 @@ char *json_read_string_content (const char **pos, char *buf, size_t size) {
     buf_pos = 0;
     while (**pos != '"') {
         if (**pos == '\0') {
-            fprintf (stderr, "json_read_string(): Premature EOF found.\n");
+            bugf ("json_read_string(): Premature EOF found.");
             return NULL;
         }
         if (**pos == '\r') {
@@ -403,13 +400,13 @@ char *json_read_string_content (const char **pos, char *buf, size_t size) {
                     break;
 
                 case '\0':
-                    fprintf (stderr, "json_read_string(): Excepted escape "
-                        "sequence character, found EOF.\n");
+                    bugf ("json_read_string(): Excepted escape "
+                        "sequence character, found EOF.");
                     return NULL;
 
                 default:
-                    fprintf (stderr, "json_read_string(): Invalid escape "
-                        "sequence character '%c'.\n", **pos);
+                    bugf ("json_read_string(): Invalid escape "
+                        "sequence character '%c'.", **pos);
                     return NULL;
             }
 
@@ -490,8 +487,8 @@ JSON_T *json_read_special (const char **pos, const char *name)
     else if (strcmp (buf, "null") == 0)
         return json_new_null (name);
     else {
-        fprintf (stderr, "json_read_special(): Excepted 'true', 'false' or "
-            "'null', found '%s'.\n", buf);
+        bugf ("json_read_special(): Excepted 'true', 'false' or 'null', "
+            "found '%s'.", buf);
         return NULL;
     }
 }

@@ -1277,7 +1277,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "wand",
-      "description": "You see a small engraved storm cloud at the base of this wand.\n"
+      "description": "You see a small engraved storm cloud at the base of this wand."
     }]
   }},
   {"object": {
@@ -1300,7 +1300,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "wand",
-      "description": "You see a shape slowly fading into exsistance at the base of this wand.\n"
+      "description": "You see a shape slowly fading into exsistance at the base of this wand."
     }]
   }},
   {"object": {
@@ -1398,7 +1398,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "fountain pen",
-      "description": "Well, then pen IS mightier than the sword...\n"
+      "description": "Well, then pen IS mightier than the sword..."
     }]
   }},
   {"object": {
@@ -1734,7 +1734,7 @@
     "extra_description": [{
       "keyword": "pearl",
       "description": "It's a nicely-formed pearl, should be worth a fair amount at the jewellers.
-                     |You look around to see if there are any others nearby.\n"
+                     |You look around to see if there are any others nearby."
     }]
   }}
 ]

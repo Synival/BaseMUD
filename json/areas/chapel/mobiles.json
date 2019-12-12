@@ -4,9 +4,9 @@
     "anum": 0,
     "name": "skeleton bony",
     "short_descr": "the bony skeleton",
-    "long_descr": "A bony skeleton is here.\n",
+    "long_descr": "A bony skeleton is here.",
     "description": "Brown bones with tufts of clothing still hanging from them.  This
-                   |skeleton looks very mindless but still dangerous ...\n",
+                   |skeleton looks very mindless but still dangerous ...",
     "race": "human",
     "alignment": 0,
     "level": 1,
@@ -33,10 +33,10 @@
     "anum": 1,
     "name": "undead zombie",
     "short_descr": "the undead zombie",
-    "long_descr": "An undead zombie sits here munching on something ...\n",
+    "long_descr": "An undead zombie sits here munching on something ...",
     "description": "His body is totally white and slowly rotting away.  Each Zombie looks
                    |quite different from the next because they were, of course, once alive and
-                   |human.\n",
+                   |human.",
     "race": "human",
     "alignment": -100,
     "level": 4,
@@ -64,9 +64,9 @@
     "anum": 2,
     "name": "undead ghoul",
     "short_descr": "The ghoul",
-    "long_descr": "A ghoul is here staring at you hungrily.\n",
+    "long_descr": "A ghoul is here staring at you hungrily.",
     "description": "The ghoul no longer resembles the adventurer he once was.  Nonetheless
-                   |he looks like he hasn't forgot his fighting skills.\n",
+                   |he looks like he hasn't forgot his fighting skills.",
     "race": "human",
     "alignment": -500,
     "level": 6,
@@ -94,10 +94,10 @@
     "anum": 3,
     "name": "undead wraith",
     "short_descr": "The wraith",
-    "long_descr": "You spot a wraith advancing towards you from the shadows.\n",
+    "long_descr": "You spot a wraith advancing towards you from the shadows.",
     "description": "The wraith no longer has a material form.  He is wearing a tattered
                    |black robe which hides all but the darkness of his face and the glimmer
-                   |in his eyes.\n",
+                   |in his eyes.",
     "race": "human",
     "alignment": -750,
     "level": 12,
@@ -125,9 +125,9 @@
     "anum": 4,
     "name": "undead guardian vampire",
     "short_descr": "The guardian vampire",
-    "long_descr": "A vampire is here hiding his face from your light source.\n",
+    "long_descr": "A vampire is here hiding his face from your light source.",
     "description": "The guardian vampire looks quite EVIL.  Just by looking at him the hair on your
-                   |arms raises. He looks mighty tough to be just a minor minion.\n",
+                   |arms raises. He looks mighty tough to be just a minor minion.",
     "race": "human",
     "alignment": -1000,
     "level": 28,
@@ -155,10 +155,10 @@
     "anum": 5,
     "name": "priest",
     "short_descr": "the priest",
-    "long_descr": "A priest of God stands here solemnly speaking words of praise.\n",
+    "long_descr": "A priest of God stands here solemnly speaking words of praise.",
     "description": "Obviously a goodly man, you feel closer to God just by gazing upon this man.
                    |Dressed in white, fine white hair, and a soft slightly wrinkled face ...
-                   |this man has a sacred beauty.  You see a halo around his head.\n",
+                   |this man has a sacred beauty.  You see a halo around his head.",
     "race": "human",
     "alignment": 1000,
     "level": 15,
@@ -186,12 +186,12 @@
     "anum": 6,
     "name": "Mi-Go Fungi",
     "short_descr": "the Mi-Go",
-    "long_descr": "A Mi-Go is crawling here.\n",
+    "long_descr": "A Mi-Go is crawling here.",
     "description": "Mi-Go, the Fungi from Yuggoth ... it is a pinkish being about five feet long;
                    |with a crustaceous body bearing a vast pair of membranous wings and several
                    |sets of articulate limbs, body a sort of convoluted ellipsoid, covered with
                    |multitudes of very small antennae, where a head would ordinarily be.  These
-                   |beings sometimes walk on all their legs and sometimes on the hind pair only.\n",
+                   |beings sometimes walk on all their legs and sometimes on the hind pair only.",
     "race": "human",
     "alignment": -500,
     "level": 12,
@@ -217,12 +217,12 @@
     "anum": 7,
     "name": "nightgaunt",
     "short_descr": "The nightgaunt",
-    "long_descr": "A nightgaunt is standing here\n",
+    "long_descr": "A nightgaunt is standing here",
     "description": "... shocking and uncouth black thing with smooth, oily, skin, unpleasant horns
                    |that curve inward toward each other, bat wings whose beating make no sound,
                    |ugly prehensile paws, and a barbed tail that lashes disquietingly.  And worst
                    |of all, it makes absolutely no sound or speech and smiles not at all because
-                   |it has no face, only a suggestive blackness where a face ought to be ...\n",
+                   |it has no face, only a suggestive blackness where a face ought to be ...",
     "race": "human",
     "alignment": -1000,
     "level": 10,
@@ -250,12 +250,12 @@
     "anum": 8,
     "name": "hunting horror",
     "short_descr": "The hunting horror",
-    "long_descr": "The hunting horror is here in wait of an unwary traveler.\n",
+    "long_descr": "The hunting horror is here in wait of an unwary traveler.",
     "description": "Serving Nyarlathotep and Roch'tar, these beings are hunting for victims.
                    |They resemble enormous ropy black serpents or worms possessing bat-like or
                    |umbrella-like wings.  Their forms continually shift and change, twitching
                    |and writhing, so it is hard to look at them.  They speak in great harsh
-                   |voices.  A hunting horror is HUGE, normally around 40 feet long.\n",
+                   |voices.  A hunting horror is HUGE, normally around 40 feet long.",
     "race": "human",
     "alignment": -1000,
     "level": 20,
@@ -283,8 +283,8 @@
     "anum": 9,
     "name": "weeds",
     "short_descr": "some cave weeds",
-    "long_descr": "Some weeds are creeping across the floor.\n",
-    "description": "Just some unpleasant looking vine-like growths ...\n",
+    "long_descr": "Some weeds are creeping across the floor.",
+    "description": "Just some unpleasant looking vine-like growths ...",
     "race": "human",
     "alignment": 0,
     "level": 6,
@@ -311,10 +311,10 @@
     "anum": 10,
     "name": "snapper joe",
     "short_descr": "Snapper Joe",
-    "long_descr": "Snapper Joe is standing here leering at you chillingly.\n",
+    "long_descr": "Snapper Joe is standing here leering at you chillingly.",
     "description": "What an ugly fiend! He is about 6'6'' and has mostly greenish skin with
                    |bright red hair. Half his face is burnt off and he has a perpetual smile.
-                   |He is called up from his service in hell in order to aid the Undying One.\n",
+                   |He is called up from his service in hell in order to aid the Undying One.",
     "race": "human",
     "alignment": -750,
     "level": 20,
@@ -342,12 +342,12 @@
     "anum": 11,
     "name": "X-ist eater",
     "short_descr": "The X-ist flesh eater",
-    "long_descr": "An X-ist flesh eater is sitting here munching on some coffin remains\n",
+    "long_descr": "An X-ist flesh eater is sitting here munching on some coffin remains",
     "description": "A large hairy monstrous beast, the only LIVE thing you have seen down here.
                    |It stands approximately 8 feet tall and hunches over to fit in this
                    |small room.  It has a pair of tremendous claws that it uses to rip and tear.
                    |It has dog-like face except ... different.  Bright glowing eyes and a grimace
-                   |lead you to believe that he knew that you were coming.\n",
+                   |lead you to believe that he knew that you were coming.",
     "race": "human",
     "alignment": -1000,
     "level": 17,
@@ -375,14 +375,14 @@
     "anum": 12,
     "name": "spirit ghost king crotus",
     "short_descr": "the spirit of King Crotus",
-    "long_descr": "The spirit of King Crotus is floating lazily above the floor.\n",
+    "long_descr": "The spirit of King Crotus is floating lazily above the floor.",
     "description": "Floating above the ground here and looking a bit dead, he whispers
                    |softly into the air:
                    |
                    |    The forces of evil have unlocked my spirit as
                    |    well as one other.  Free me from this misery,
                    |    anyone that can hear. The peace of the grave
-                   |    calls me but I am blocked from its quiet.\n",
+                   |    calls me but I am blocked from its quiet.",
     "race": "human",
     "alignment": 350,
     "level": 20,
@@ -410,8 +410,8 @@
     "anum": 13,
     "name": "rock slug",
     "short_descr": "the rock slug",
-    "long_descr": "A rock slug is slowly creeping along, leaving a slime trail behind it.\n",
-    "description": "It is a large brownish slug.  Got any salt?  Didn't think so ...\n",
+    "long_descr": "A rock slug is slowly creeping along, leaving a slime trail behind it.",
+    "description": "It is a large brownish slug.  Got any salt?  Didn't think so ...",
     "race": "human",
     "alignment": 0,
     "level": 3,
@@ -437,7 +437,7 @@
     "anum": 14,
     "name": "etcher",
     "short_descr": "The mad etcher",
-    "long_descr": "The mad etcher is sitting here babbling to himself and working on the wall.\n",
+    "long_descr": "The mad etcher is sitting here babbling to himself and working on the wall.",
     "description": "Quite insane, the mad etcher has been here for two decades.  His hair is
                    |white; he babbles nonsense to himself; a layer of dust covers his out-of-date
                    |clothing; and he seems to be working on the same portion of the wall near
@@ -448,7 +448,7 @@
                    |make some tea for our company?  Oh good!  Now sit right down will you?
                    |Would you like hot or cold tea?  Yes the weather is ...'
                    |
-                   |And on he babbles ...\n",
+                   |And on he babbles ...",
     "race": "human",
     "alignment": 1000,
     "level": 5,
@@ -478,12 +478,12 @@
     "anum": 15,
     "name": "wife ghost specter",
     "short_descr": "The spectral etcher's wife",
-    "long_descr": "The spectral wife of the etcher is very faintly floating here.\n",
+    "long_descr": "The spectral wife of the etcher is very faintly floating here.",
     "description": "You can barely make her out ... though it almost makes you vomit.
                    |She is missing half her head.  The remaining half is smashed in horribly like
                    |she took a nasty fall.  Her one damaged eye hangs on its own.  She smiles
                    |insanely at you thru a broken jaw and missing teeth.  One hand of hers is
-                   |resting on the shoulder of the etcher ... her husband.\n",
+                   |resting on the shoulder of the etcher ... her husband.",
     "race": "human",
     "alignment": 1000,
     "level": 7,
@@ -511,8 +511,8 @@
     "anum": 16,
     "name": "body",
     "short_descr": "The half-decomposed body",
-    "long_descr": "A half-decomposed body is lying in the corner here.\n",
-    "description": "YUK! It's ugly, disgusting ... it smells ... it also moves a bit!\n",
+    "long_descr": "A half-decomposed body is lying in the corner here.",
+    "description": "YUK! It's ugly, disgusting ... it smells ... it also moves a bit!",
     "race": "human",
     "alignment": -350,
     "level": 6,

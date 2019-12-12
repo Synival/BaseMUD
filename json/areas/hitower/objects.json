@@ -35,7 +35,7 @@
     "cost": 0,
     "extra_description": [{
       "keyword": "locker",
-      "description": "You just had the horrid thought that a cadaver might be in there.\n"
+      "description": "You just had the horrid thought that a cadaver might be in there."
     }]
   }},
   {"object": {
@@ -55,7 +55,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "pizza slice",
-      "description": "Ahh!  Round Table pizza!  How appropriate.  Any root beer?\n"
+      "description": "Ahh!  Round Table pizza!  How appropriate.  Any root beer?"
     }]
   }},
   {"object": {
@@ -92,7 +92,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "sandwich finger",
-      "description": "It would look quite tasty if someone had first removed the fingernails!\n"
+      "description": "It would look quite tasty if someone had first removed the fingernails!"
     }]
   }},
   {"object": {
@@ -109,7 +109,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "broom straw",
-      "description": "A magical flying broomstick?  Nah!  Not here.\n"
+      "description": "A magical flying broomstick?  Nah!  Not here."
     }]
   }},
   {"object": {
@@ -1170,7 +1170,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion effervescent",
-      "description": "Ahh!  Schwepes Sparkling Soda a refreshing drink.\n"
+      "description": "Ahh!  Schwepes Sparkling Soda a refreshing drink."
     }]
   }},
   {"object": {
@@ -1996,7 +1996,7 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "green scale shirt",
-      "description": "Green dragon scale shirt was made from a poor unfortunate green dragon.\n"
+      "description": "Green dragon scale shirt was made from a poor unfortunate green dragon."
     }],
     "affects": [
       {

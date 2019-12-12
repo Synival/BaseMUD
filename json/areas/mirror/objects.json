@@ -114,7 +114,7 @@
       "keyword": "fountain",
       "description": "You see the most beautiful fountain in the world.  The white marble glistens
                      |as sunlight hits its wet surfaces.  Fish swim around in the inner fountain, and
-                     |an exterior fountain is reserved just for drinking.\n"
+                     |an exterior fountain is reserved just for drinking."
     }]
   }},
   {"object": {
@@ -137,7 +137,7 @@
     "extra_description": [{
       "keyword": "desk",
       "description": "The sea shell desk here is just gorgeous.  The creamy white of the table
-                     |surface makes you dream of being in a pool swimming among mermaids.\n"
+                     |surface makes you dream of being in a pool swimming among mermaids."
     }]
   }},
   {"object": {
@@ -161,7 +161,7 @@
       "keyword": "cabinet",
       "description": "A cabinet made of oak and mahogany, this piece of woodmanship is just splendid 
                      |to view.  The wood is varnished with a very strong stain that looks as if it
-                     |would last longer than the cabinet itself.\n"
+                     |would last longer than the cabinet itself."
     }]
   }},
   {"object": {
@@ -337,7 +337,7 @@
     "extra_description": [{
       "keyword": "sword",
       "description": "You see a sword of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }],
     "affects": [
       {
@@ -377,7 +377,7 @@
     "extra_description": [{
       "keyword": "mace",
       "description": "You see a mace of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }],
     "affects": [
       {
@@ -415,7 +415,7 @@
     "extra_description": [{
       "keyword": "chest plate",
       "description": "You see a chest plate of great craftsmanship.  Stamped on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -438,7 +438,7 @@
     "extra_description": [{
       "keyword": "shield",
       "description": "You see a shield of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -460,7 +460,7 @@
     "extra_description": [{
       "keyword": "cloak",
       "description": "You see a cloak of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -482,7 +482,7 @@
     "extra_description": [{
       "keyword": "helm",
       "description": "You see a helm of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -504,7 +504,7 @@
     "extra_description": [{
       "keyword": "plate leggings",
       "description": "You see plate leggings of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -526,7 +526,7 @@
     "extra_description": [{
       "keyword": "plate boots",
       "description": "You see plate boots of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -548,7 +548,7 @@
     "extra_description": [{
       "keyword": "plate gloves",
       "description": "You see plate gloves of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -570,7 +570,7 @@
     "extra_description": [{
       "keyword": "plate sleeves",
       "description": "You see plate sleeves of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -592,7 +592,7 @@
     "extra_description": [{
       "keyword": "cape",
       "description": "You see a cape of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -614,7 +614,7 @@
     "extra_description": [{
       "keyword": "belt",
       "description": "You see a belt of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -636,7 +636,7 @@
     "extra_description": [{
       "keyword": "metal bracer",
       "description": "You see a metal bracer of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -684,7 +684,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "banner",
-      "description": "This is the official Merc war banner to see you through the darkest realm!\n"
+      "description": "This is the official Merc war banner to see you through the darkest realm!"
     }],
     "affects": [
       {

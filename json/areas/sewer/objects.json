@@ -50,7 +50,7 @@
     "extra_description": [{
       "keyword": "devil rod",
       "description": "This is indeed a mysterious rod.  It is dark black at the base but has four
-                     |very sharp purple tentacles at the end.\n"
+                     |very sharp purple tentacles at the end."
     }],
     "affects": [
       {
@@ -90,7 +90,7 @@
     "extra_description": [{
       "keyword": "large mace",
       "description": "The mace is pretty large with a weight of 10 lbs.  The head is actually four
-                     |purple tentacles tied together.\n"
+                     |purple tentacles tied together."
     }],
     "affects": [{
       "apply": "damage roll",
@@ -121,7 +121,7 @@
     "extra_description": [{
       "keyword": "small mace",
       "description": "This weapon doesn't look like it does a lot of damage, but then you never know.
-                     |It consists of a black handle and a purple head.\n"
+                     |It consists of a black handle and a purple head."
     }],
     "affects": [{
       "apply": "damage roll",
@@ -208,12 +208,12 @@
     "extra_description": [
       {
         "keyword": "writing text",
-        "description": "You read the number '666'.\n"
+        "description": "You read the number '666'."
       },
       {
         "keyword": "white skull",
         "description": "The skull has two small horns in the forehead. You notice some writing on
-                       |the inside.\n"
+                       |the inside."
       }
     ],
     "affects": [{
@@ -239,12 +239,12 @@
     "extra_description": [
       {
         "keyword": "letters letter",
-        "description": "It reads 'Hold me'.\n"
+        "description": "It reads 'Hold me'."
       },
       {
         "keyword": "small stick",
         "description": "The small stick does not look interesting at all.  But just as you are going
-                       |to throw it away you notice some small letters.\n"
+                       |to throw it away you notice some small letters."
       }
     ]
   }},
@@ -267,7 +267,7 @@
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "The boots are muddy and they look well worn, but also very comfortable.",
-      "description": ""
+      "description": null
     }],
     "affects": [{
       "apply": "dexterity",
@@ -294,7 +294,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "treasure",
-      "description": "This looks like a whole lot of coins.\n"
+      "description": "This looks like a whole lot of coins."
     }]
   }},
   {"object": {
@@ -341,7 +341,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "claw red redclaw",
-      "description": "This big claw looks like a part of a dragon.\n"
+      "description": "This big claw looks like a part of a dragon."
     }],
     "affects": [
       {
@@ -381,7 +381,7 @@
     "extra_description": [{
       "keyword": "plate breast silvery",
       "description": "On the breast plate you notice a relief of large rose. The metal seems to be 
-                     |some kind of silver or platinum.\n"
+                     |some kind of silver or platinum."
     }],
     "affects": [{
       "apply": "strength",
@@ -411,7 +411,7 @@
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "leg plates silvery",
-      "description": "They seem to be made from silver or platinum.  You see the outline of a rose.\n"
+      "description": "They seem to be made from silver or platinum.  You see the outline of a rose."
     }],
     "affects": [{
       "apply": "intelligence",
@@ -441,7 +441,7 @@
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "gloves silvery",
-      "description": "The gloves are made of silver threads.\n"
+      "description": "The gloves are made of silver threads."
     }],
     "affects": [
       {
@@ -481,7 +481,7 @@
     "extra_description": [{
       "keyword": "helmet silvery",
       "description": "The helmet is made from platinum or silver and has a white fur brush attached
-                     |on the top.\n"
+                     |on the top."
     }],
     "affects": [{
       "apply": "wisdom",
@@ -512,7 +512,7 @@
     "extra_description": [{
       "keyword": "shield",
       "description": "On the shield you see a clear and perfect painting of a dark red rose on a white
-                     |background. You also notice the inscription :'Pax Est Sanctuum'.\n"
+                     |background. You also notice the inscription :'Pax Est Sanctuum'."
     }],
     "affects": [{
       "apply": "armor class",
@@ -542,7 +542,7 @@
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "boots silvery",
-      "description": "The boots are made from a silvery metal.\n"
+      "description": "The boots are made from a silvery metal."
     }],
     "affects": [{
       "apply": "dexterity",
@@ -572,7 +572,7 @@
     "wear_flags": "take arms",
     "extra_description": [{
       "keyword": "plates arm silvery",
-      "description": "They seem to be made from silver or platinum. You see the outline of a rose.\n"
+      "description": "They seem to be made from silver or platinum. You see the outline of a rose."
     }],
     "affects": [{
       "apply": "constitution",
@@ -603,7 +603,7 @@
     "extra_description": [{
       "keyword": "cloak white",
       "description": "This is a very fine made cloak from an unknown material, in a bright white
-                     |color.\n"
+                     |color."
     }],
     "affects": [{
       "apply": "saves",
@@ -630,7 +630,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "treasure",
-      "description": "Looks like a LOT of coins.\n"
+      "description": "Looks like a LOT of coins."
     }]
   }},
   {"object": {
@@ -652,7 +652,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "short sword",
-      "description": "This is a very nice little weapon.\n"
+      "description": "This is a very nice little weapon."
     }]
   }},
   {"object": {

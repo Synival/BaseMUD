@@ -31,6 +31,9 @@
 #include <string.h>
 #include <stdarg.h>
 
+#include "utils.h"
+#include "memory.h"
+
 #include "json.h"
 
 static JSON_T *json_top = NULL;
@@ -80,6 +83,14 @@ JSON_T *json_new (const char *name, int type, void *value, size_t value_size) {
         new->value_size = value_size;
     }
     return new;
+}
+
+void json_attach_file (JSON_T *json, const char *filename, int line, int col) {
+    if (json->filename)
+        free (json->filename);
+    json->filename = strdup (filename);
+    json->line = line;
+    json->col  = col;
 }
 
 void json_attach_after (JSON_T *json, JSON_T *after, JSON_T *parent) {
@@ -133,10 +144,11 @@ void json_free (JSON_T *json) {
     while (json->first_child)
         json_free (json->first_child);
     json_detach (json);
-    if (json->name)
-        free (json->name);
-    if (json->value)
-        free (json->value);
+
+    if (json->name)     free (json->name);
+    if (json->value)    free (json->value);
+    if (json->filename) free (json->filename);
+
     free (json);
 }
 
@@ -270,7 +282,7 @@ char *json_value_as_string (const JSON_T *json, char *buf, size_t size) {
         case JSON_NULL:
             return NULL;
         default:
-            fprintf (stderr, "json_value_as_string(): Unhandled type '%d'.\n",
+            json_logf (json, "json_value_as_string(): Unhandled type '%d'.\n",
                 json->type);
             return NULL;
     }
@@ -300,7 +312,7 @@ json_int json_value_as_int (const JSON_T *json) {
             return 0;
 
         default:
-            fprintf (stderr, "json_value_as_int(): Unhandled type '%d'.\n",
+            json_logf (json, "json_value_as_int(): Unhandled type '%d'.\n",
                 json->type);
             return 0;
     }
@@ -330,7 +342,7 @@ bool json_value_as_bool (const JSON_T *json) {
             return FALSE;
 
         default:
-            fprintf (stderr, "json_value_as_bool(): Unhandled type '%d'.\n",
+            json_logf (json, "json_value_as_bool(): Unhandled type '%d'.\n",
                 json->type);
             return 0;
     }
@@ -372,12 +384,6 @@ DICE_T json_value_as_dice (const JSON_T *json) {
             if (num)   rval.number = atoi (num);
             if (size)  rval.size   = atoi (size);
             if (bonus) rval.bonus  = atoi (bonus) * bonus_sign;
-
-            if (bonus_sign != 1)
-            printf ("[%8d] [%8d] (%c) [%8d]\n",
-                rval.number, rval.size, bonus_sign == 1 ? '+' : '-',
-                rval.bonus / bonus_sign);
-
             return rval;
         }
 
@@ -397,8 +403,18 @@ DICE_T json_value_as_dice (const JSON_T *json) {
             return rval;
 
         default:
-            fprintf (stderr, "json_value_as_dice(): Unhandled type '%d'.\n",
+            json_logf (json, "json_value_as_dice(): Unhandled type '%d'.\n",
                 json->type);
             return rval;
     }
+}
+
+void json_logf (const JSON_T *json, const char *format, ...) {
+    char buf[2 * MSL];
+    va_list args;
+    va_start (args, format);
+    vsnprintf (buf, sizeof(buf), format, args);
+    va_end (args);
+    log_f ("%s, line %d, col %d: %s", json->filename,
+        json->line, json->col,buf);
 }

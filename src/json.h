@@ -101,6 +101,8 @@ struct json_t {
     size_t value_size;
     struct json_t *parent, *prev, *next, *first_child, *last_child;
     int child_count;
+    char *filename;
+    int line, col;
 };
 
 /* function declarations */
@@ -114,6 +116,7 @@ void    json_attach_under (JSON_T *json, JSON_T *ref);
 void    json_detach (JSON_T *json);
 void    json_free (JSON_T *json);
 JSON_T *json_wrap_obj (JSON_T *json, char *inner_name);
+void    json_logf (const JSON_T *json, const char *format, ...);
 
 /* node creation. */
 JSON_T *json_new_string (const char *name, const char *value);

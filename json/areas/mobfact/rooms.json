@@ -8,7 +8,7 @@
                    |machinery can be heard in the background; the grinding gears drive you
                    |crazy! To the north you see the storage area, to the south the
                    |foreman's office, to the east the entrance hallway, and to the west the
-                   |familiar paving of wall road.\n",
+                   |familiar paving of wall road.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -38,7 +38,7 @@
                    |stored. You see sacks of sawdust, cans of pink paint, a large box
                    |containing wigs and a bottle mysteriously labelled \"solution x\". Exits
                    |are more of storage to the east and north, and entrance to the mob
-                   |factory to the south.\n",
+                   |factory to the south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -71,7 +71,7 @@
     "description": "This is where the raw materials from which mobs are manufactured are
                    |stored. You see sacks of sawdust, cans of pink paint, a large box
                    |containing wigs and a bottle mysteriously labelled \"solution X\". Exits
-                   |are more of storage to the east and south.\n",
+                   |are more of storage to the east and south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -101,7 +101,7 @@
                    |furnished with a metal desk, a couple of chairs, a shelf with helmets
                    |of various sizes and a Sports Illustrated Swimsuit calendar on the west
                    |wall. Exits lead north to the mob factory entrance and south to the
-                   |foreman's bathroom.\n",
+                   |foreman's bathroom.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -131,7 +131,7 @@
                    |here is very strong and reminds you of bovine excrement! There is a
                    |shower to the back, and a urinal to the left. On the floor you can
                    |see stains of a very suspicious nature. The only exit leads north to
-                   |the foreman's office.\n",
+                   |the foreman's office.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -155,7 +155,7 @@
                    |stored. You see sacks of sawdust, cans of pink paint, a large box
                    |containing wigs and a bottle mysteriously labelled \"solution X\". Exits
                    |are more of storage to the west and south, and an inspection room to
-                   |the east.\n",
+                   |the east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -181,7 +181,7 @@
                    |stored. You see sacks of sawdust, cans of pink paint, a large box
                    |containing wigs and a bottle mysteriously labelled \"solution X\". Exits
                    |are more of storage to the west and north, an inspection room to the
-                   |east and the entrance hallway to the south.\n",
+                   |east and the entrance hallway to the south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -220,7 +220,7 @@
                    |distance. Every once in a while you get creepy feeling that a pair of
                    |eyes is observing you...... Exits are north to the storage area, east
                    |to the entrance hallway, south to the cafeteria and west to the mob
-                   |factory entrance.\n",
+                   |factory entrance.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -251,7 +251,7 @@
                    |The food doesn't look too appetising, but the factory workers don't
                    |seem to care. There are many places where food and drink have been
                    |spilled on the ground. Exits are north to the entrance hallway and
-                   |south to the mob factory cafeteria.\n",
+                   |south to the mob factory cafeteria.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -292,7 +292,7 @@
                    |The food doesn't look too appetising, but the factory workers don't
                    |seem to care. There are many places where food and drink have been
                    |spilled on the ground. The only exit is north to the mob factory
-                   |cafeteria.\n",
+                   |cafeteria.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -317,7 +317,7 @@
                    |whole team of inspectors from the Midgaard Inspections Bureau is
                    |standing around, trying to look busy. Exits are south to the mob
                    |factory inspection room, east to the primary assembly line and west to
-                   |the storage area.\n",
+                   |the storage area.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -370,7 +370,7 @@
                    |whole team of inspectors from the Midgaard Inspections Bureau is
                    |standing around, trying to look busy. Exits are south to the mob
                    |factory inspection room, east to the primary assembly line and west to
-                   |the storage area.\n",
+                   |the storage area.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -419,7 +419,7 @@
                    |distance. Every once in a while you get creepy feeling that a pair of
                    |eyes is observing you...... Exits are north to the inspection room,
                    |east to the primary assembly line, south to the reject room and west
-                   |to the entrance hallway.\n",
+                   |to the entrance hallway.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -449,7 +449,7 @@
                    |incorrectly or have some defect are placed here before subsequent
                    |destruction. You shudder at the many deformed and grotesque shapes
                    |present before you. Exits are south to the reject room and north to
-                   |the entrance hallway.\n",
+                   |the entrance hallway.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -478,7 +478,7 @@
     "description": "This is the factory reject room. All the mobs that are manufactured
                    |incorrectly or have some defect are placed here before subsequent
                    |destruction. You shudder at the many deformed and grotesque shapes
-                   |present before you. The only exit is north to the reject room.\n",
+                   |present before you. The only exit is north to the reject room.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -503,7 +503,7 @@
                    |raw materials. There is a big conveyor belt present which makes a lot
                    |of noise! It seems that the workers are making drunks today. Exits are
                    |east to the secondary assembly line, south to the primary assembly
-                   |line and west to the inspection room.\n",
+                   |line and west to the inspection room.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -548,7 +548,7 @@
                    |raw materials. There is a big conveyor belt present which makes a lot
                    |of noise! It seems that the workers are making drunks today. Exits are
                    |east to the secondary assembly line, north and south to the primary
-                   |assembly line and west to the inspection room.\n",
+                   |assembly line and west to the inspection room.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -587,7 +587,7 @@
                    |raw materials. There is a big conveyor belt present which makes a lot
                    |of noise! It seems that the workers are making drunks today. Exits are
                    |east to the secondary assembly line, north and south to the primary
-                   |assembly line and west to the entrance hallway.\n",
+                   |assembly line and west to the entrance hallway.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -626,7 +626,7 @@
                    |raw materials. There is a big conveyor belt present which makes a lot
                    |of noise! It seems that the workers are making drunks today. Exits are
                    |east to the secondary assembly line, north and south to the primary
-                   |assembly line.\n",
+                   |assembly line.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -671,7 +671,7 @@
                    |raw materials. There is a big conveyor belt present which makes a lot
                    |of noise! It seems that the workers are making drunks today. Exits are
                    |east to the secondary assembly line and north to the primary
-                   |assembly line.\n",
+                   |assembly line.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -701,7 +701,7 @@
                    |surprised to see cityguard heads come floating on the conveyor belt!
                    |The very sight is sickening, but the workers seem to be quite
                    |cheerful about their work. Exits are south to the secondary assembly
-                   |line and west to the primary assembly line.\n",
+                   |line and west to the primary assembly line.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -741,7 +741,7 @@
                    |surprised to see cityguard heads come floating on the conveyor belt!
                    |The very sight is sickening, but the workers seem to be quite
                    |cheerful about their work. Exits are north and south to the secondary
-                   |assembly line and west to the primary assembly line.\n",
+                   |assembly line and west to the primary assembly line.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -785,7 +785,7 @@
                    |surprised to see cityguard heads come floating on the conveyor belt!
                    |The very sight is sickening, but the workers seem to be quite
                    |cheerful about their work. Exits are north and south to the secondary
-                   |assembly line and west to the primary assembly line.\n",
+                   |assembly line and west to the primary assembly line.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -829,7 +829,7 @@
                    |surprised to see cityguard heads come floating on the conveyor belt!
                    |The very sight is sickening, but the workers seem to be quite
                    |cheerful about their work. Exits are north and south to the secondary
-                   |assembly line and west to the primary assembly line.\n",
+                   |assembly line and west to the primary assembly line.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -873,7 +873,7 @@
                    |surprised to see cityguard heads come floating on the conveyor belt!
                    |The very sight is sickening, but the workers seem to be quite
                    |cheerful about their work. Exits are north to the secondary
-                   |assembly line and west to the primary assembly line.\n",
+                   |assembly line and west to the primary assembly line.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [

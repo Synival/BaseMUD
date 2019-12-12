@@ -20,7 +20,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword",
-      "description": "It looks heavier than your average short sword, but it could use some oiling.\n"
+      "description": "It looks heavier than your average short sword, but it could use some oiling."
     }],
     "affects": [{
       "apply": "hit roll",
@@ -52,7 +52,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "spear",
-      "description": "This used to be a boar spear, but it has been used for more dangerous game.\n"
+      "description": "This used to be a boar spear, but it has been used for more dangerous game."
     }],
     "affects": [{
       "apply": "armor class",
@@ -123,7 +123,7 @@
     "wear_flags": "take wrist",
     "extra_description": [{
       "keyword": "bracer",
-      "description": "This bracer is covered with runes of protection and luck in combat.\n"
+      "description": "This bracer is covered with runes of protection and luck in combat."
     }],
     "affects": [{
       "apply": "hit roll",
@@ -156,7 +156,7 @@
       "keyword": "knife dagger",
       "description": "It's very sharp, you suspect this knife is more effective than many swords.
                      |It appears to be of elvish origins, and is made of finely crafted mithril,
-                     |with a stylized ivory hilt.\n"
+                     |with a stylized ivory hilt."
     }],
     "affects": [{
       "apply": "hit roll",

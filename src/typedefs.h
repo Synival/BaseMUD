@@ -117,6 +117,7 @@ typedef struct song_type        SONG_T;
 
 /* JSON typedefs. */
 typedef struct json_t JSON_T;
+typedef struct json_read_t JSON_READ_T;
 typedef double json_num;
 typedef long int json_int;
 

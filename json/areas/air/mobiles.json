@@ -4,9 +4,9 @@
     "anum": 0,
     "name": "fairy dragon",
     "short_descr": "A fairy dragon",
-    "long_descr": "A fairy dragon is fluttering around here looking for something to do...\n",
+    "long_descr": "A fairy dragon is fluttering around here looking for something to do...",
     "description": "It's a cute little multi-colored dragon...about 2 foot long.
-                   |It gracefully dances around your head.\n",
+                   |It gracefully dances around your head.",
     "race": "human",
     "alignment": 500,
     "level": 5,
@@ -34,9 +34,9 @@
     "anum": 1,
     "name": "griffin",
     "short_descr": "A griffin",
-    "long_descr": "A large black winged griffin swoops into an attack.\n",
+    "long_descr": "A large black winged griffin swoops into an attack.",
     "description": "Golden maned and black all over.  It's quite a beautiful creature if not
-                   |for the fact it is hungry and is attacking you!\n",
+                   |for the fact it is hungry and is attacking you!",
     "race": "human",
     "alignment": 300,
     "level": 8,

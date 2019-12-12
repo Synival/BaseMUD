@@ -19,7 +19,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "axe lumber",
-      "description": "It is a heavy axe of the kind lumberjacks use to chop down trees.\n"
+      "description": "It is a heavy axe of the kind lumberjacks use to chop down trees."
     }]
   }},
   {"object": {
@@ -40,7 +40,7 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "shirt",
-      "description": "It is an extra large, chequered shirt made from heavy cloth.\n"
+      "description": "It is an extra large, chequered shirt made from heavy cloth."
     }]
   }},
   {"object": {
@@ -62,7 +62,7 @@
     "extra_description": [{
       "keyword": "boots",
       "description": "They are fashioned from rough leather that has been oiled frequently to make
-                     |it stay waterproof.  They look worn but quite functional.\n"
+                     |it stay waterproof.  They look worn but quite functional."
     }]
   }},
   {"object": {
@@ -84,7 +84,7 @@
       "keyword": "fireplace",
       "description": "It is fashioned from stones of various sizes that have been stacked on top of
                      |each other and fastened with mortar.  Its chimney is constructed likewise and
-                     |leads the smoke out through the low cabin ceiling.\n"
+                     |leads the smoke out through the low cabin ceiling."
     }]
   }},
   {"object": {
@@ -108,7 +108,7 @@
     "extra_description": [{
       "keyword": "chest",
       "description": "It is a robust chest made from short, heavy planks that have been fastened
-                     |together with tenons.  It is equipped with a simple brass lock.\n"
+                     |together with tenons.  It is equipped with a simple brass lock."
     }]
   }},
   {"object": {
@@ -125,7 +125,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key",
-      "description": "It is a small, simple brass key with no inscriptions or marks of any kind.\n"
+      "description": "It is a small, simple brass key with no inscriptions or marks of any kind."
     }]
   }},
   {"object": {
@@ -145,7 +145,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "coins",
-      "description": "The coins seem to be gold.  They are obviously valuable.\n"
+      "description": "The coins seem to be gold.  They are obviously valuable."
     }]
   }},
   {"object": {
@@ -165,7 +165,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "blackberries",
-      "description": "They look very tasty indeed.\n"
+      "description": "They look very tasty indeed."
     }]
   }},
   {"object": {
@@ -185,7 +185,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "mushroom",
-      "description": "It is a tasty little thing.\n"
+      "description": "It is a tasty little thing."
     }]
   }},
   {"object": {
@@ -224,13 +224,13 @@
       {
         "keyword": "opening",
         "description": "The opening is far too narrow for you to squeeze through but it looks as if the
-                       |tree is hollow.\n"
+                       |tree is hollow."
       },
       {
         "keyword": "tree",
         "description": "This enormous tree must be a thousand years old.  Its rough bark looks grey
                        |and pale and is decorated with scratches and claw marks.  On its west side is a
-                       |small opening just above ground level.\n"
+                       |small opening just above ground level."
       }
     ]
   }},
@@ -304,7 +304,7 @@
       "keyword": "toadstool",
       "description": "It is a large, brown boletus that must weigh nearly five pounds.  The top
                      |surface is covered in a thin layer of transparent slime that emits a weak,
-                     |musty smell.  Not the most delicious thing you have seen.\n"
+                     |musty smell.  Not the most delicious thing you have seen."
     }]
   }},
   {"object": {
@@ -327,7 +327,7 @@
       "keyword": "toadstool",
       "description": "It is a large, brown boletus that must weigh nearly five pounds.  It has small
                      |white spots and the top surface is covered in a thin layer of transparent slime
-                     |that emits a weak, musty smell.  Not the most delicious thing you have seen.\n"
+                     |that emits a weak, musty smell.  Not the most delicious thing you have seen."
     }]
   }},
   {"object": {
@@ -348,7 +348,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion yellow",
-      "description": "It has a deep yellow colour and and a strong spicy smell.\n"
+      "description": "It has a deep yellow colour and and a strong spicy smell."
     }]
   }},
   {"object": {
@@ -370,7 +370,7 @@
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "shield large",
-      "description": "It is made from hard wood that has been reinforced with heavy iron bands.\n"
+      "description": "It is made from hard wood that has been reinforced with heavy iron bands."
     }]
   }},
   {"object": {
@@ -392,7 +392,7 @@
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "crown iron",
-      "description": "It is a heavy human-sized crown made from solid iron.\n"
+      "description": "It is a heavy human-sized crown made from solid iron."
     }]
   }},
   {"object": {
@@ -411,7 +411,7 @@
     "extra_description": [{
       "keyword": "ring iron",
       "description": "It is a quite heavy human-sized ring made from solid iron.  It lacks
-                     |decorations of any kind.\n"
+                     |decorations of any kind."
     }]
   }},
   {"object": {

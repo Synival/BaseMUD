@@ -51,7 +51,7 @@
     "extra_description": [{
       "keyword": "troll skin",
       "description": "This is the skin from a huge (and dead) beast.  It looks bad, smells bad,
-                     |and feels bad.\n"
+                     |and feels bad."
     }],
     "affects": [{
       "apply": "strength",
@@ -76,7 +76,7 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring opal",
-      "description": "It is a full circle of opal, smooth and simple.\n"
+      "description": "It is a full circle of opal, smooth and simple."
     }],
     "affects": [{
       "apply": "damage roll",
@@ -105,7 +105,7 @@
     "wear_flags": "take waist",
     "extra_description": [{
       "keyword": "leather belt",
-      "description": "This old, smelly belt looks like it is barely better than rotting cloth.\n"
+      "description": "This old, smelly belt looks like it is barely better than rotting cloth."
     }]
   }},
   {"object": {
@@ -128,7 +128,7 @@
     "extra_description": [{
       "keyword": "bone",
       "description": "This piece of bone looks sturdy enough to be used as a weapon, but you
-                     |wouldn't want to entrust your life to it.\n"
+                     |wouldn't want to entrust your life to it."
     }],
     "affects": [
       {

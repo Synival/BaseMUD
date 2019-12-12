@@ -3,10 +3,10 @@
   "anum": 0,
   "name": "grand knight paladin",
   "short_descr": "the Grand Knight of paladins",
-  "long_descr": "The Grand Knight is standing here, waiting for someone to help.\n",
+  "long_descr": "The Grand Knight is standing here, waiting for someone to help.",
   "description": "The Knight is standing here, smiling at you. He is dressed all in
                  |white, blue and silver. He looks VERY strong, as he stands here, ready to
-                 |help the innocent.\n",
+                 |help the innocent.",
   "race": "human",
   "alignment": 1000,
   "level": 29,

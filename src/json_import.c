@@ -77,7 +77,7 @@ int json_import_objects (JSON_T *json) {
             return 1 + help_area_count_pages (had);
         }
 
-        fprintf (stderr, "json_import_objects(): Unknown object type '%s'.\n",
+        json_logf (json, "json_import_objects(): Unknown object type '%s'.\n",
             json->name);
         return 0;
     }
@@ -134,7 +134,7 @@ void json_import_expect (const char *type, const JSON_T *json, ...) {
             if (strcmp (jprop->name, eprop->name) == 0)
                 break;
         if (jprop == NULL && eprop->required)
-            fprintf (stderr, "json_import_expect(): Didn't find required "
+            json_logf (json, "json_import_expect(): Didn't find required "
                 "property '%s' in object '%s'.\n", eprop->name, type);
     }
 
@@ -143,7 +143,7 @@ void json_import_expect (const char *type, const JSON_T *json, ...) {
             if (strcmp (jprop->name, eprop->name) == 0)
                 break;
         if (eprop == NULL)
-            fprintf (stderr, "json_import_expect(): Found unexpected property "
+            json_logf (json, "json_import_expect(): Found unexpected property "
                 "'%s' in object '%s'.\n", jprop->name, type);
     }
 
@@ -360,7 +360,7 @@ RESET_T *json_import_obj_reset (const JSON_T *json, ROOM_INDEX_T *room)
     else if (strcmp (buf, "put")       == 0) command = 'P';
     else if (strcmp (buf, "randomize") == 0) command = 'R';
     else {
-        fprintf (stderr, "json_import_obj_reset(): Unknown command '%s'.\n",
+        json_logf (json, "json_import_obj_reset(): Unknown command '%s'.\n",
             buf);
         command = buf[0];
     }
@@ -495,7 +495,7 @@ SHOP_T *json_import_obj_shop (const JSON_T *json, const char *backup_area) {
             json_value_as_string (sub, buf, sizeof (buf));
             int type = flag_lookup_exact (buf, item_types);
             if (type < 0 || type >= ITEM_MAX || type == NO_FLAG) {
-                fprintf (stderr, "json_import_obj_shop(): Invalid item type "
+                json_logf (json, "json_import_obj_shop(): Invalid item type "
                     "'%s'.\n", buf);
                 continue;
             }
@@ -572,7 +572,7 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
     for (sub = array->first_child; sub != NULL; sub = sub->next) {
         int type = flag_lookup_exact (sub->name, ac_types);
         if (type < 0 || type >= AC_MAX || type == NO_FLAG) {
-            fprintf (stderr, "json_import_obj_mobile(): Invalid ac type "
+            json_logf (json, "json_import_obj_mobile(): Invalid ac type "
                 "'%s'.\n", sub->name);
             continue;
         }
@@ -626,7 +626,7 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
     if (buf[0] != '\0') {
         mob->spec_fun = spec_lookup_function (buf);
         if (mob->spec_fun == NULL)
-            fprintf (stderr, "json_import_obj_mobile(): Unknown special "
+            json_logf (json, "json_import_obj_mobile(): Unknown special "
                 "function '%s'", buf);
     }
 
@@ -733,7 +733,7 @@ void json_import_obj_object_values (const JSON_T *json, OBJ_INDEX_T *obj) {
     map = obj_map_get (obj->item_type);
 
     if (map == NULL) {
-        fprintf (stderr, "json_import_obj_object(): No map for object "
+        json_logf (json, "json_import_obj_object(): No map for object "
             "'%s' (%d).", item_get_name (obj->item_type), obj->item_type);
         return;
     }
@@ -780,8 +780,8 @@ void json_import_obj_object_values (const JSON_T *json, OBJ_INDEX_T *obj) {
             }
 
             default:
-                bugf ("json_new_obj_object: Cannot convert map type '%d' "
-                      "to JSON value", value->type);
+                json_logf (json, "json_new_obj_object(): Cannot convert map "
+                    "type '%d' to JSON value", value->type);
                 continue;
         }
     }
@@ -890,7 +890,7 @@ HELP_AREA_T *json_import_obj_help_area (const JSON_T *json) {
 
     pages = json_get (json, "pages");
     if (pages == NULL || pages->type != JSON_ARRAY) {
-        fprintf (stderr, "json_import_obj_help_area(): No array 'pages'.\n");
+        json_logf (json, "json_import_obj_help_area(): No array 'pages'.\n");
         had_free (area);
         return NULL;
     }
@@ -946,7 +946,7 @@ AFFECT_T *json_import_obj_affect (JSON_T *json) {
 
     READ_PROP_STR (buf, "bit_type");
     if ((bits = affect_bit_get_by_name (buf)) == NULL) {
-        fprintf (stderr, "json_import_obj_affect(): Invalid bit_type '%s'.\n",
+        json_logf (json, "json_import_obj_affect(): Invalid bit_type '%s'.\n",
             buf);
     }
     else {

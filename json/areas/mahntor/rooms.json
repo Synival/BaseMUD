@@ -8,7 +8,7 @@
                    |The lack of sounds and other signs of life make your skin crawl and you feel
                    |very much like turning back and heading for safer areas. The path leads north
                    |into more open lands while it also leads south into the darkness of the forest.
-                   |A small sign is posted here.\n",
+                   |A small sign is posted here.",
     "sector_type": "forest",
     "room_flags": "no_mob",
     "doors": [
@@ -29,7 +29,7 @@
                      |     |  advised to stay  | <------->  |
                      |     |   in groups for   |  Skurge    |
                      |     |      safety.      | Ragnarok   |
-                     |    []================================[]\n"
+                     |    []================================[]"
     }]
   }},
   {"room": {
@@ -40,7 +40,7 @@
                    |line the edges of the path and tower above you. Errant rays of light spear
                    |down through the gaps in the canopy above and provide small spots of light
                    |that seem to attract what little foliage can grow on the dark forest floor.
-                   |The path winds north and south into darkness.\n",
+                   |The path winds north and south into darkness.",
     "sector_type": "forest",
     "room_flags": "dark no_mob",
     "doors": [
@@ -62,7 +62,7 @@
                    |north, and south. The trees above leave a gap which allows light to fill the
                    |intersection. It is almost as though you are in a circle of light that
                    |provides sanctuary in this land of darkness.
-                   |Something has been scrawled in the dirt in blood here.\n",
+                   |Something has been scrawled in the dirt in blood here.",
     "sector_type": "forest",
     "doors": [
       {
@@ -80,7 +80,7 @@
     ],
     "extra_description": [{
       "keyword": "blood dirt scrawl",
-      "description": "BeWAre tHe SwAmP oGreS......\n"
+      "description": "BeWAre tHe SwAmP oGreS......"
     }]
   }},
   {"room": {
@@ -90,7 +90,7 @@
     "description": "You stand at the edge of a dark forest. A path leads north into the forest and
                    |its deadly darkness and silence. Looking west, you see a path that leads up
                    |into a foothills region. Standing here on the boundary between light and
-                   |darkness, you feel very vulnerable and alone.\n",
+                   |darkness, you feel very vulnerable and alone.",
     "sector_type": "hills",
     "doors": [
       {
@@ -110,7 +110,7 @@
     "description": "You walk along a small path leading through a dark forest. No sounds can be
                    |heard and little light penetrates the canopy of trees above you. The air here
                    |smells musty and you long for a fresh breath. You see an intersection of paths
-                   |to the west. The path you are on leads south into the darkening woods.\n",
+                   |to the west. The path you are on leads south into the darkening woods.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
@@ -131,7 +131,7 @@
     "description": "You continue on through darkness and gloom. The path below you has become a
                    |wet quagmire. It is difficult to walk, and you make squishing sounds as you
                    |move on. Looking east, you see a swampy path. The main path leads north and
-                   |south into darkness.\n",
+                   |south into darkness.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
@@ -156,7 +156,7 @@
     "description": "The forest path turns here towards the north and west. To the north, you see
                    |that the ground has become dank and swampy, while the western path appears
                    |to be entering a hilly area. You hear sounds of swamp creatures to the north
-                   |east.\n",
+                   |east.",
     "sector_type": "forest",
     "room_flags": "dark",
     "doors": [
@@ -179,7 +179,7 @@
                    |great battle here. Blood is everywhere and the ground is all torn up. Pieces
                    |of beaten armour and broken blades lie all around. Examining the tracks here
                    |lead you to believe that the dead and wounded were dragged off in two 
-                   |directions, south and east.\n",
+                   |directions, south and east.",
     "sector_type": "hills",
     "room_flags": "dark",
     "doors": [
@@ -237,7 +237,7 @@
     "name": "The rocky path",
     "description": "The path here winds among the low rocky hills. The long trek up and down the
                    |hills begins to tire you greatly. Looking east, you see a small clearing. More
-                   |hills are to the north of here.\n",
+                   |hills are to the north of here.",
     "sector_type": "hills",
     "doors": [
       {
@@ -257,7 +257,7 @@
     "description": "The path here is very rocky and treacherous. The travelling is rough and you
                    |slip and fall often. Looking south, you see that the path continues into the
                    |hills. Smoother ground is to the east, but the path seems to lead into a dark
-                   |forest in that direction.\n",
+                   |forest in that direction.",
     "sector_type": "hills",
     "doors": [
       {
@@ -277,7 +277,7 @@
     "description": "You are climbing on a rocky hillside. As you scramble about, loose rocks and
                    |small boulders bounce and fall down below you. Looking to the east and west,
                    |you see more stable ground. The hillside itself goes on higher to the south
-                   |and it drops away to the north.\n",
+                   |and it drops away to the north.",
     "sector_type": "mountain",
     "room_flags": "no_mob",
     "doors": [
@@ -306,7 +306,7 @@
     "description": "You are in foothills that are sparsely covered by scraggly bushes and weather
                    |beaten trees. There are little signs of life here. Only bare rock and dry dirt
                    |can be seen. Looking east, you see a small pass that will allow you to leave
-                   |the foothills. The foothills themselves extend to the south.\n",
+                   |the foothills. The foothills themselves extend to the south.",
     "sector_type": "hills",
     "doors": [
       {
@@ -335,7 +335,7 @@
                    |see what appears to be a marshy, dark forest. It reeks of death and decay.
                    |Even here, you catch its scent on the winds. From here, you can travel south
                    |deeper into the foothills or to the west where a small pass will allow you to
-                   |climb down.\n",
+                   |climb down.",
     "sector_type": "hills",
     "doors": [
       {
@@ -362,7 +362,7 @@
     "name": "In the foothills",
     "description": "You are in a barren set of foothills. Looking around, all you see are dead
                    |plants and boulders. From the south, you get a whiff of salty air. Barren paths
-                   |lead east, north, and south into more barren hills.\n",
+                   |lead east, north, and south into more barren hills.",
     "sector_type": "hills",
     "doors": [
       {
@@ -395,7 +395,7 @@
                    |cluster of plants have sprung up. In the center of this group of trees and
                    |bushes is a huge gnarled tree. It appears to have been twisted and torn by
                    |the forces of nature. It sways and moans as a strong wind from the south tears
-                   |through its old feeble branches. The hills themselves lead in all directions.\n",
+                   |through its old feeble branches. The hills themselves lead in all directions.",
     "sector_type": "hills",
     "doors": [
       {
@@ -432,7 +432,7 @@
                    |cave are covered with blood stains and all types of broken and shattered bones
                    |lie around. An unbearable stench comes from within the cave itself. The dark
                    |cave entrance looms to the east. The hills themselves lead towards the
-                   |north, south, and west.\n",
+                   |north, south, and west.",
     "sector_type": "hills",
     "doors": [
       {
@@ -462,7 +462,7 @@
                    |cave as a home. Skeletal remains lie all over. Several half-eaten corpses are
                    |rotting away slowly in the gloomy darkness. In the back of the cave, you see a
                    |large pile of rotting cloth, fur, and plant matter. Light and safety is
-                   |towards the west.\n",
+                   |towards the west.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -471,7 +471,7 @@
     }],
     "extra_description": [{
       "keyword": "pile",
-      "description": "It appears to be some sort of nest......\n"
+      "description": "It appears to be some sort of nest......"
     }],
     "resets": [{
       "command": "mobile",
@@ -491,7 +491,7 @@
                    |made their nests here in the rocks and you are heartened by the presence of
                    |life here. It is possible to climb down to the shore here. The hills
                    |themselves are to the north. The edge of the hills leads to the east along the
-                   |shoreline.\n",
+                   |shoreline.",
     "sector_type": "hills",
     "doors": [
       {
@@ -517,7 +517,7 @@
                    |a bit to keep your balance. The salty sea air fills your nostrils and you
                    |notice signs of life in the rocky crags here. You can climb down towards the
                    |shore or head north into the hills themselves. The rocky summit you are
-                   |standing leads east and west along the shoreline.\n",
+                   |standing leads east and west along the shoreline.",
     "sector_type": "hills",
     "doors": [
       {
@@ -546,7 +546,7 @@
                    |blows hard across the rocks here and they have been worn smooth with time.
                    |Looking around, you notice that you can safely climb down towards the shore.
                    |The hills themselves stretch towards the north. The rough summit you stand
-                   |upon leads west along the shoreline.\n",
+                   |upon leads west along the shoreline.",
     "sector_type": "hills",
     "doors": [
       {
@@ -577,7 +577,7 @@
     "name": "The rocky shore",
     "description": "You are at the base of the rocky hills. Stretching to the south and east, you
                    |see a rocky shore. To the southeast, you see a small altar of some sorts that
-                   |glows with an eerie blue light. It is possible to climb up into the hills here.\n",
+                   |glows with an eerie blue light. It is possible to climb up into the hills here.",
     "sector_type": "field",
     "doors": [
       {
@@ -601,7 +601,7 @@
     "description": "You are on a rocky shore that borders a vast sea. A stiff wind blows here and
                    |whistles among the rocks. You see an altar of some sort built on the shore to
                    |the south. The shore itself leads east and west. Looking up, you see foothills
-                   |and rocky crags.\n",
+                   |and rocky crags.",
     "sector_type": "field",
     "doors": [
       {
@@ -629,7 +629,7 @@
     "description": "You stand at the base of some rocky hills, where they meet a rocky shore. A
                    |vast sea is to your south. Looking to the southwest, you see a small altar
                    |that glows with a eerie blue light. The shore stretches out to the south and
-                   |west. It is possible to climb up into the hills here.\n",
+                   |west. It is possible to climb up into the hills here.",
     "sector_type": "field",
     "doors": [
       {
@@ -652,7 +652,7 @@
     "name": "The edge of the sea",
     "description": "You walk along the water's edge. The vastness of the ocean is staggering as
                    |you look out across it. You notice a small altar that glows with blue light
-                   |to the east. The shore itself extends north away from the water's edge.\n",
+                   |to the east. The shore itself extends north away from the water's edge.",
     "sector_type": "field",
     "doors": [
       {
@@ -674,7 +674,7 @@
                    |that you see a far away island. Dominating the altar is a small blue portal of
                    |light. It is possible to walk south into the portal. The shore itself extends
                    |to the north, east, and west.
-                   |There are small inscriptions on the rock at the base of the portal.\n",
+                   |There are small inscriptions on the rock at the base of the portal.",
     "sector_type": "field",
     "doors": [
       {
@@ -698,11 +698,11 @@
       {
         "keyword": "portal blue",
         "description": "You see a swirling blue portal of light. You think you can see glimpses of
-                       |something moving on the \"other side\".\n"
+                       |something moving on the \"other side\"."
       },
       {
         "keyword": "small inscriptions inscription",
-        "description": "\"Enter all ye who wish to join the Brotherhood!\"\n"
+        "description": "\"Enter all ye who wish to join the Brotherhood!\""
       }
     ]
   }},
@@ -713,7 +713,7 @@
     "description": "You walk along the water's edge. The tide appears to have risen. Very little
                    |debris is washed up on shore. You slip and slide as you tread across the
                    |slippery rocks that make up the shore. To the west you see a small altar that
-                   |radiates blue light. The shore extends north away from the water's edge.\n",
+                   |radiates blue light. The shore extends north away from the water's edge.",
     "sector_type": "field",
     "doors": [
       {
@@ -733,7 +733,7 @@
     "description": "You seem to be floating in blue weightlessness. You tumble head over heels and
                    |finally right yourself. Gaining your bearings, you notice that there are two
                    |\"windows\" in the sea of blue here. One to the south shows an image of a snowy
-                   |plain. Another window the the north shows an image of a rocky shore.\n",
+                   |plain. Another window the the north shows an image of a rocky shore.",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
     "doors": [
@@ -754,7 +754,7 @@
     "description": "This damp path seems to lead into a deep, dark swamp. The trees above block
                    |out all light and stifle the wind. You smell swamp gas and hear damp squashing
                    |sounds all around you. The path leads east deeper into the swamp. You also see
-                   |a dark forest to the west.\n",
+                   |a dark forest to the west.",
     "sector_type": "forest",
     "room_flags": "dark no_mob indoors",
     "doors": [
@@ -775,7 +775,7 @@
     "description": "You tread lightly in a wet, swampy path. All around you, you see pools of
                    |quicksand and rotting vegetation. Unlike the forest to the west, the swamp is
                    |teeming with life. Some of it is harmless, some is not. The path leads east
-                   |and west into more swamp.\n",
+                   |and west into more swamp.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -797,7 +797,7 @@
                    |a damp mist covers the ground, making it impossible to travel safely, without
                    |carefully picking your way around obstacles. Large, gnarled trees rise above
                    |you. Their moss covered branches block out all traces of the sun. The path
-                   |here leads east and west.\n",
+                   |here leads east and west.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -817,7 +817,7 @@
     "name": "The turn in the swampy path",
     "description": "You come upon a bend in the swampy path. The ground here is fairly sturdy,
                    |as this place is elevated above the rest of the swamp. Looking around, you see
-                   |a dark, mist filled swamp. Small paths lead south and west into the mist.\n",
+                   |a dark, mist filled swamp. Small paths lead south and west into the mist.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -854,7 +854,7 @@
     "name": "The swampy path",
     "description": "You tread lightly through the mirky water and sludge that makes up the path
                    |you follow. To the east, there is a thick wall of mist. You can see nothing
-                   |within it. Harder ground rises to the north.\n",
+                   |within it. Harder ground rises to the north.",
     "sector_type": "forest",
     "room_flags": "dark indoors",
     "doors": [
@@ -874,7 +874,7 @@
     "name": "Lost in the Mist",
     "description": "You wander, hopelessly lost. Swirling mist obscures your vision and clouds
                    |your mind. You lose all concept of direction. Small, silent giggles can be
-                   |heard all around. You can wander in any direction.\n",
+                   |heard all around. You can wander in any direction.",
     "sector_type": "hills",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -911,7 +911,7 @@
     "description": "You are in a thick misty area. The mist swirls around you, seeming to taunt
                    |you and dare you to escape. You feel a slight electric charge in the mist. It
                    |almost caresses your body as it floats about you. You can wander in any
-                   |direction.......\n",
+                   |direction.......",
     "sector_type": "forest",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -947,7 +947,7 @@
     "name": "Lost in the Mist",
     "description": "You try to peer through the mist......You see nothing. It swirls about you,
                    |covering you in a damp sheen. There is no sound, all light is eagerly devoured
-                   |by the mist. You feel totally and hopelessly lost.\n",
+                   |by the mist. You feel totally and hopelessly lost.",
     "sector_type": "hills",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -975,7 +975,7 @@
     "name": "Lost in the Mist",
     "description": "You stumble through the marsh here. The swamp seems to have swallowed you up
                    |and denied you exit. This mist is your jailor. You cannot tell where you are.
-                   |You hear quiet laughter all about you.\n",
+                   |You hear quiet laughter all about you.",
     "sector_type": "hills",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1003,7 +1003,7 @@
     "name": "Lost in the Mist",
     "description": "You wander, lost, for what seems an eternity. Then....From nowhere....You see
                    |what appears to be trees and hills to the east. The mist itself thickens to
-                   |the west, while it grows thin to the east.\n",
+                   |the west, while it grows thin to the east.",
     "sector_type": "hills",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1049,7 +1049,7 @@
     "description": "You wander through the thick mist. It swirls all about you and makes it hard
                    |to breathe. The ground below you makes a soft squishing sound as you trudge
                    |on, but this noise is absorbed by the mist and does not travel. You can wander
-                   |in any direction.\n",
+                   |in any direction.",
     "sector_type": "hills",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1085,7 +1085,7 @@
     "name": "Lost in the Mist",
     "description": "You wander, lost hopelessly. The mist swirls all about you. You can discern no
                    |direction. You stumble blindly through the mist, oblivious to your
-                   |surroundings.\n",
+                   |surroundings.",
     "sector_type": "forest",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1113,7 +1113,7 @@
     "name": "The solid path",
     "description": "A solid path rises out of the misty swamp. It leads north, into what appears
                    |to be a forested area. The trees, above, allow light and air to penetrate and
-                   |you can see the sky above. A thick bank of mist is to your west.\n",
+                   |you can see the sky above. A thick bank of mist is to your west.",
     "sector_type": "hills",
     "doors": [
       {
@@ -1133,7 +1133,7 @@
     "description": "The path here leads north through a thick forest. High bushes and forest
                    |undergrowth line both sides of the trail. Looking north, you see a thin line
                    |of smoke rising up above the tree line. You also notice a crude wooden gate
-                   |farther north on the trail. The trail itself leads south into murky territory.\n",
+                   |farther north on the trail. The trail itself leads south into murky territory.",
     "sector_type": "forest",
     "room_flags": "no_mob",
     "doors": [
@@ -1154,7 +1154,7 @@
     "description": "You stand before a huge pair of crude, wooden gates. They are thrown open.
                    |Looking inside the gates, you see a crude village. Large humanoid creatures
                    |are milling to and fro.......Ogres! You can head north through the gate or
-                   |south into the forest.\n",
+                   |south into the forest.",
     "sector_type": "forest",
     "doors": [
       {
@@ -1207,7 +1207,7 @@
     "name": "Among the crude huts",
     "description": "You walk among the huts of the ogre village. The village appears to be cut
                    |from the heart of the forest itself. The swamp, nearby, provides the ogres
-                   |with a prime hunting ground. Small paths lead north and east.\n",
+                   |with a prime hunting ground. Small paths lead north and east.",
     "sector_type": "city",
     "doors": [
       {
@@ -1261,7 +1261,7 @@
     "description": "You stand just north of the gates to the village. Looking around, you see many
                    |crude huts and cooking fires. To the north, you see a huge fire pit. Behind 
                    |it, there appears to be a hut of sorts. Small paths lead east and west among 
-                   |the crude huts. The gates to the south provide an exit from the village.\n",
+                   |the crude huts. The gates to the south provide an exit from the village.",
     "sector_type": "city",
     "doors": [
       {
@@ -1307,7 +1307,7 @@
     "description": "You walk through the crude village. Small huts made of wood and thatch
                    |surround you. Every so often, you can hear grunts and snarls inside the huts.
                    |The smell here is unbearable. You wonder what type of creature could possibly
-                   |live in such squalor. Small paths lead west and north here.\n",
+                   |live in such squalor. Small paths lead west and north here.",
     "sector_type": "city",
     "doors": [
       {
@@ -1336,7 +1336,7 @@
                    |and has a raised mound in the center that contains a crude throne. The ground
                    |in front of the throne is quite worn, as if it is sat on quite often. You get
                    |the impression that this place is a crude sort of auditorium. Small paths lead
-                   |east and south.\n",
+                   |east and south.",
     "sector_type": "city",
     "doors": [
       {
@@ -1365,7 +1365,7 @@
                    |makes you sweat as you stand here. Large spits above the pit are empty but
                    |they appear to be quite large enough to hold hapless adventurers. A large
                    |lodge is towards the north, while paths lead east, west, and south into the
-                   |village itself.\n",
+                   |village itself.",
     "sector_type": "city",
     "doors": [
       {
@@ -1429,7 +1429,7 @@
     "description": "The smell here overpowers you. All around you are the rotting remains of the
                    |village's refuse. Partially eaten corpses, rotting food, and other truly
                    |disgusting things have been discarded here. Paths lead south and west towards
-                   |fresher air.\n",
+                   |fresher air.",
     "sector_type": "city",
     "doors": [
       {
@@ -1467,7 +1467,7 @@
     "description": "You are at the entry hall to a large lodge. Animal pelts and other trophies
                    |line the walls here. Large chests on either side of the door appear to be
                    |locked. The lodge stretches north, while the doors to the south provide an
-                   |exit into the village.\n",
+                   |exit into the village.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1533,7 +1533,7 @@
                    |with humanoid skulls sits against the west wall. A crude, blood stained altar
                    |is against the east wall. A doorway is directly to the north, long strands of
                    |beads blocking the view of the other side. Crude torches light the hall and 
-                   |smoke clings to the ceiling.\n",
+                   |smoke clings to the ceiling.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1581,7 +1581,7 @@
                    |is in the far corner. Large chests fill the room. All of them have heavy pad
                    |locks. The room is filled with trophies of dead enemies. It is quite lavishly
                    |decorated for such a crude inhabitant as an ogre. A beaded doorway is to the
-                   |south.\n",
+                   |south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -1621,7 +1621,7 @@
     "name": "The frigid wastelands",
     "description": "You wander through the frigid wastelands. Your breath is a cloud before you.
                    |The cold cuts to the bone. Swirling snow and wind make impossible for you to
-                   |discern any directions.\n",
+                   |discern any directions.",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1682,7 +1682,7 @@
     "name": "The frigid wastelands",
     "description": "You wander through the frigid wastelands. Your breath is a cloud before you.
                    |The cold cuts to the bone. Swirling snow and wind make it impossible to
-                   |discern any directions.\n",
+                   |discern any directions.",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1718,7 +1718,7 @@
     "description": "You are in a small temple. It appears to be built entirely from ice. The ice
                    |walls are frosted and are opaque. There is a small blue portal here. You can
                    |go north, to enter the portal. Looking south, you see a world of white outside
-                   |the open doorway. Swirling snow and bright light obscure your view.\n",
+                   |the open doorway. Swirling snow and bright light obscure your view.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1738,7 +1738,7 @@
     "name": "The frigid wastelands",
     "description": "You wander through the frigid wastelands. Your breath is a cloud before you.
                    |The cold cuts to the bone. Swirling snow and wind make it impossible for you
-                   |to discern any directions.\n",
+                   |to discern any directions.",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1807,7 +1807,7 @@
     "name": "The frigid wastelands",
     "description": "You wander through the frigid wastelands. Your breath is a cloud before you.
                    |The cold cuts to the bone. Swirling snow and wind make it impossible for you
-                   |to discern any directions.\n",
+                   |to discern any directions.",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1852,7 +1852,7 @@
     "name": "The frigid wastelands",
     "description": "You wander through the frigid wastelands. Your breath is a cloud before you.
                    |The cold cuts to the bone. Swirling snow and wind make it impossible for you
-                   |to discern any directions.\n",
+                   |to discern any directions.",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1887,7 +1887,7 @@
     "name": "The frigid wastelands",
     "description": "You wander through the frigid wastelands. Your breath is a cloud before you.
                    |The cold cuts to the bone. Swirling snow and wind make it impossible for you
-                   |to discern any directions.\n",
+                   |to discern any directions.",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1932,7 +1932,7 @@
     "name": "The frigid wastelands",
     "description": "You wander through the frigid wastelands. Your breath is a cloud before you.
                    |The cold cuts to the bone. Swirling snow and wind make it impossible for you
-                   |to discern any direction.\n",
+                   |to discern any direction.",
     "sector_type": "mountain",
     "doors": [
       {
@@ -1959,7 +1959,7 @@
     "name": "The frigid wastelands",
     "description": "You wander through the frigid wastelands. Your breath is a cloud before you.
                    |The cold cuts to the bone. Swirling snow and wind make it impossible for you
-                   |to discern any directions.\n",
+                   |to discern any directions.",
     "sector_type": "mountain",
     "doors": [
       {
@@ -2037,7 +2037,7 @@
     "description": "You stand at the base of a steep rocky cliff. To the north, a vast arctic
                    |wasteland stretches out. The snow falls lightly here and the wind is not
                    |very fierce. You can climb up the rocky cliff or head north into the arctic
-                   |wastes.\n",
+                   |wastes.",
     "sector_type": "mountain",
     "room_flags": "no_mob",
     "doors": [
@@ -2058,7 +2058,7 @@
     "description": "You cling to the side of the cliff. Looking down, you are terrified by the
                    |sheer distance to the ground below. You can climb up higher into the cliffs,
                    |but the area above is obscured by clouds and you cannot tell what lies waiting
-                   |above.\n",
+                   |above.",
     "sector_type": "mountain",
     "room_flags": "no_mob",
     "doors": [
@@ -2080,7 +2080,7 @@
                    |cliff's edge, you see a huge pair of gates. These gates appear to be carved
                    |almost completely out of ice. A huge city and keep appear to be on the other
                    |side of these gates. There is also a possibility of climbing down the cliff 
-                   |face.\n",
+                   |face.",
     "sector_type": "mountain",
     "doors": [
       {
@@ -2098,7 +2098,7 @@
       "keyword": "gate gates ice huge",
       "description": "The gates to the city are made almost completely of ice. Looking closely, you
                      |can see intricate carvings in the gates. They appear to be of creatures that
-                     |are half man and half bull.\n"
+                     |are half man and half bull."
     }],
     "resets": [
       {
@@ -2142,7 +2142,7 @@
     "description": "You walk among the ice and snow covered shops and homes. Most of the doors are
                    |closed and only the light from the windows betrays the presence of inhabitants.
                    |A cold wind blows through here, scattering fine clouds of snow all about. Small
-                   |streets lead south and east.\n",
+                   |streets lead south and east.",
     "sector_type": "city",
     "doors": [
       {
@@ -2181,7 +2181,7 @@
                    |spreads out in front of you. The buildings are sturdy, as they appear to be
                    |made from the very rock of this mountain. Snow falls all around and a fine
                    |sheet of ice can be seen covering all but the most used walk ways. Small city
-                   |streets lead east and west, while a main road appears to lead south.\n",
+                   |streets lead east and west, while a main road appears to lead south.",
     "sector_type": "city",
     "doors": [
       {
@@ -2229,7 +2229,7 @@
     "description": "You trudge among the icy streets of Mahn-Tor. The streets themselves are made
                    |of cobblestone and are quite treacherous. Small homes and businesses along
                    |the street are closed tight and light from their windows throws eerie shadows
-                   |across the dark street. Small streets lead west and south here.\n",
+                   |across the dark street. Small streets lead west and south here.",
     "sector_type": "city",
     "doors": [
       {
@@ -2268,7 +2268,7 @@
                    |cobblestones and the footing is quite treacherous. To the south, you see what
                    |appears to be a small tavern. Bright lights shine through the windows. Small
                    |streets also lead north and east.
-                   |A small sign hangs outside the tavern.\n",
+                   |A small sign hangs outside the tavern.",
     "sector_type": "city",
     "doors": [
       {
@@ -2291,7 +2291,7 @@
                      | |    of the   |
                      | |    Broken   |
                      | |     Horn    |
-                     |[]=============[]\n"
+                     |[]=============[]"
     }],
     "resets": [
       {
@@ -2337,7 +2337,7 @@
                    |sculpture. The water has frozen in arcs through the air. Snow and ice covers
                    |the square and small streets lead east and west. To the north, you see
                    |the gates to the city. You also notice a small store to the south.
-                   |A small sign hangs outside the store.\n",
+                   |A small sign hangs outside the store.",
     "sector_type": "city",
     "doors": [
       {
@@ -2362,7 +2362,7 @@
       "description": "[]=========[]
                      | |  Equip  |
                      | |   Shop  |
-                     |[]=========[]\n"
+                     |[]=========[]"
     }],
     "resets": [
       {
@@ -2423,7 +2423,7 @@
                    |are covered with ice and snow. Small snow drifts have formed at the edges of
                    |the streets. The wind blows fiercely. Small streets lead in all directions.
                    |There appears to be a large building to the east, but the snow obscures your
-                   |view.\n",
+                   |view.",
     "sector_type": "city",
     "doors": [
       {
@@ -2486,7 +2486,7 @@
                    |end of the room. Small tables and a large bar furnish the room. The
                    |inhabitants of the inn are all minotaurs of varying size and disposition. Most
                    |seem to regard you with suspicion. Few approach you. A large door leads
-                   |north, out of the bar and back out into the cold.\n",
+                   |north, out of the bar and back out into the cold.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -2501,7 +2501,7 @@
     "description": "You are in a crude equipment shop. The store is filled with racks of various
                    |items that adventurers could use. Large fireplaces light and heat the room.
                    |A large desk occupies the back of the room. The door to the shop lies to the
-                   |north.\n",
+                   |north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -2534,7 +2534,7 @@
     "description": "You enter a small store that is dark and cold. Old empty shelves line the
                    |walls and snow blows across the dirty stone floor. It is evident that this
                    |store was once used, but it is no more. A small doorway leads north out into
-                   |the chilling snow and wind.\n",
+                   |the chilling snow and wind.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -2549,7 +2549,7 @@
     "description": "This room is full of all sorts of weapons and armours. Pieces of old targets
                    |and practice dummies lie all around. The walls are chipped and scored from
                    |weapon blows. This is obviously the room of an avid warrior. A red door leads
-                   |east.\n",
+                   |east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -2561,7 +2561,7 @@
     }],
     "extra_description": [{
       "keyword": "red",
-      "description": "It looks like it leads back to the hall.\n"
+      "description": "It looks like it leads back to the hall."
     }],
     "resets": [
       {
@@ -2620,7 +2620,7 @@
     "name": "Darkoth's Dark Study",
     "description": "This room is dark. It reeks of death and evil. Arcane symbols and a small
                    |altar fill the room. Blood runs from the altar. It is evident that this room
-                   |is used for unholy purposes. A black door leads east.\n",
+                   |is used for unholy purposes. A black door leads east.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -2632,7 +2632,7 @@
     }],
     "extra_description": [{
       "keyword": "black",
-      "description": "It looks like it leads back to the hall.\n"
+      "description": "It looks like it leads back to the hall."
     }],
     "resets": [
       {
@@ -2691,7 +2691,7 @@
     "name": "Tyrgoth's Inner Sanctum",
     "description": "Idols to the gods of good fill the room. White furniture and decorations give
                    |the room a holy appearance. It is evident that some being of supreme goodness
-                   |lives here. A white door leads east.\n",
+                   |lives here. A white door leads east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -2703,7 +2703,7 @@
     }],
     "extra_description": [{
       "keyword": "white",
-      "description": "It looks like it leads out to the hall.\n"
+      "description": "It looks like it leads out to the hall."
     }],
     "resets": [
       {
@@ -2763,7 +2763,7 @@
     "description": "You walk up a steep rocky road. It leads up a steep grade to the east. At the
                    |end of this steep road, you see a huge keep. Snow swirls all about you and you
                    |feel your breath freeze as it leaves your lungs. Blurry lights to the east and
-                   |west are all you can see from here.\n",
+                   |west are all you can see from here.",
     "sector_type": "mountain",
     "room_flags": "no_mob",
     "doors": [
@@ -2785,7 +2785,7 @@
                    |Looking around, you see that the room is fairly well furnished. Thick rugs
                    |and curtains help insulate the room and the beds themselves look quite warm.
                    |A table in the center of the room has the remnants of a card game strewn
-                   |across it. A small door leads south.\n",
+                   |across it. A small door leads south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -2835,7 +2835,7 @@
                    |mountain. Huge wooden gates before you provide entrance to the keep. It
                    |appears as though the cold here has convinced the guards to seek warmth
                    |inside. You see the lights of the city to the west. You also notice small
-                   |guard houses to the north and south.\n",
+                   |guard houses to the north and south.",
     "sector_type": "city",
     "doors": [
       {
@@ -2882,7 +2882,7 @@
     "name": "A small guard house",
     "description": "You enter a small, but warm, guard house. Deep rugs and thick curtains
                    |insulate the room. A huge fireplace lights and warms the room. Outside, you
-                   |hear the roar of the freezing wind. A small door leads north out into the cold.\n",
+                   |hear the roar of the freezing wind. A small door leads north out into the cold.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -2932,7 +2932,7 @@
                    |from solid stone. Huge stone pillars rise up from the floor to meet the
                    |ceiling far above. The architecture appears to be dwarven. A huge pair of
                    |gates stand to the west, protecting the keep from the harsh cold outside. A
-                   |large hall leads east, deeper into the keep.\n",
+                   |large hall leads east, deeper into the keep.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3006,7 +3006,7 @@
     "description": "You are in a huge hall. Large tapestries line the walls and huge statues of
                    |various make and appearance are spread about. The ceiling above supports huge
                    |candelabras, which light the room. To the east, you see a bright light and
-                   |hear sounds of inhabitation. Looking west, you see the entry gates to the keep.\n",
+                   |hear sounds of inhabitation. Looking west, you see the entry gates to the keep.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3078,7 +3078,7 @@
                    |floor of the hall is an expanse of marble. It shimmers in the light thrown
                    |off by the torches that line the walls. To the east, you see what appears to
                    |be a huge golden throne. The hall itself stretches south and a smaller hall
-                   |leads to the west.\n",
+                   |leads to the west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3103,7 +3103,7 @@
     "description": "You stand in the great hall of the keep. Huge pillars rise up to the vaulted
                    |ceiling and torch light glimmers off the marble floor here. You are amazed at
                    |the sheer size of the hall. The hall itself leads north and east. You notice a
-                   |smaller hall leading south, deeper into the keep.\n",
+                   |smaller hall leading south, deeper into the keep.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3179,7 +3179,7 @@
                    |takes up almost the entire wall, stretching far above the floor. Sitting upon
                    |it, you feel small and feeble. It is evident that this throne is more of a
                    |decoration than anything else. Only the largest of kings could sit upon it.
-                   |The hall leads south and west into other parts of the keep.\n",
+                   |The hall leads south and west into other parts of the keep.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3201,7 +3201,7 @@
     ],
     "extra_description": [{
       "keyword": "throne huge gold golden",
-      "description": "The golden throne is huge. It takes up the whole wall.........\n"
+      "description": "The golden throne is huge. It takes up the whole wall........."
     }],
     "resets": [
       {
@@ -3261,7 +3261,7 @@
     "description": "You are in a great hall. Huge torches light the room and their light shimmers
                    |off the marble floor below you. To the north, you see a huge golden throne.
                    |Looking up, you grow dizzy at the height to which the vaulted ceiling rises.
-                   |The hall itself leads north and west.\n",
+                   |The hall itself leads north and west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3280,7 +3280,7 @@
     "anum": 85,
     "name": "The secret hallway",
     "description": "You are in a small, torch lit hall. It leads from east to west. A large gold
-                   |door is to the west. To the east, you see a heavy stone door.\n",
+                   |door is to the west. To the east, you see a heavy stone door.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3302,11 +3302,11 @@
     "extra_description": [
       {
         "keyword": "huge stone",
-        "description": "A very formidable looking door.\n"
+        "description": "A very formidable looking door."
       },
       {
         "keyword": "gold",
-        "description": "Looks like the back of a secret door of sorts.\n"
+        "description": "Looks like the back of a secret door of sorts."
       }
     ],
     "resets": [
@@ -3422,7 +3422,7 @@
     "description": "You are at the entrance to the royal chambers of the keep. A plush shag rug
                    |covers the stone floor. Large candelabras hang from the ceiling, lighting the
                    |room. A huge fireplace warms the room. Beaded doorways lead south and east. A
-                   |huge stone door stands in the west wall.\n",
+                   |huge stone door stands in the west wall.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3444,7 +3444,7 @@
     ],
     "extra_description": [{
       "keyword": "door huge stone",
-      "description": "A huge stone door.......\n"
+      "description": "A huge stone door......."
     }]
   }},
   {"room": {
@@ -3454,7 +3454,7 @@
     "description": "The hall here has been built into a guard post of sorts. It appears as though
                    |it would be quite easy to defend in times of emergency. Obviously, something
                    |important lies beyond. A small hall leads south, while the main hall can be
-                   |seen to the north.\n",
+                   |seen to the north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3580,7 +3580,7 @@
     "description": "You walk down a torch lit hallway. It has been carved out of pure stone. It is
                    |very quiet in this hall. You notice rows of colored doors on each wall. To
                    |your east, you see a yellow door. To your west, you see a red door. The hall
-                   |itself leads south and north.\n",
+                   |itself leads south and north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3610,11 +3610,11 @@
     "extra_description": [
       {
         "keyword": "yellow",
-        "description": "You see a yellow door. It has the name \"Sumaron\" written on it.\n"
+        "description": "You see a yellow door. It has the name \"Sumaron\" written on it."
       },
       {
         "keyword": "red",
-        "description": "You see a red door. It has the name \"Gorak\" written on it.\n"
+        "description": "You see a red door. It has the name \"Gorak\" written on it."
       }
     ]
   }},
@@ -3624,7 +3624,7 @@
     "name": "The guarded hall",
     "description": "You walk down a small, quiet, torch lit hallway. Doors of different colors are
                    |in each wall. To your east, you see a maroon door. To your west, you see a
-                   |black door. The hall itself leads north and south.\n",
+                   |black door. The hall itself leads north and south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3654,11 +3654,11 @@
     "extra_description": [
       {
         "keyword": "maroon",
-        "description": "You see a maroon door here. It has the name \"Amyrok\" written on it.\n"
+        "description": "You see a maroon door here. It has the name \"Amyrok\" written on it."
       },
       {
         "keyword": "black",
-        "description": "You see a black door. It has the name \"Darkoth\" inscribed on it.\n"
+        "description": "You see a black door. It has the name \"Darkoth\" inscribed on it."
       }
     ]
   }},
@@ -3668,7 +3668,7 @@
     "name": "Sumaron's Sanctum",
     "description": "You enter a temple of sorts. A small altar is here and relics of many
                    |religions lie around. It is evident that this is the room of a studying cleric.
-                   |A yellow door leads west.\n",
+                   |A yellow door leads west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -3680,7 +3680,7 @@
     }],
     "extra_description": [{
       "keyword": "yellow",
-      "description": "It looks like it leads back to the hall.\n"
+      "description": "It looks like it leads back to the hall."
     }],
     "resets": [
       {
@@ -3740,7 +3740,7 @@
     "description": "This room is full of shelves which hold various spell components. The center
                    |of the room is occupied by a huge pentagram. The entire room smells of smoke
                    |and incense. The room is obviously used extensively by a practicing mage. A
-                   |maroon door leads west.\n",
+                   |maroon door leads west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -3752,7 +3752,7 @@
     }],
     "extra_description": [{
       "keyword": "maroon",
-      "description": "It looks like it leads back to the hall.\n"
+      "description": "It looks like it leads back to the hall."
     }],
     "resets": [
       {
@@ -3812,7 +3812,7 @@
     "description": "You walk down a quiet hall. The stone walls here are wet with moisture.
                    |Colored doors can be seen in the walls here. To your east, you see a green
                    |door. To your west, you see a white door. The hall itself leads north and
-                   |south.\n",
+                   |south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3842,11 +3842,11 @@
     "extra_description": [
       {
         "keyword": "green",
-        "description": "You see a green door here. It has the name \"Nasturn\" written on it.\n"
+        "description": "You see a green door here. It has the name \"Nasturn\" written on it."
       },
       {
         "keyword": "white",
-        "description": "You see a white door here. It has the name \"Tyrgoth\" inscribed on it.\n"
+        "description": "You see a white door here. It has the name \"Tyrgoth\" inscribed on it."
       }
     ]
   }},
@@ -3856,7 +3856,7 @@
     "name": "The Harem Room",
     "description": "This appears to be the harem room of the Keep. Huge piles of furs and beds
                    |fill the room. The lighting is dim, but the room is very warm. You can hear
-                   |music playing quietly from somewhere. Beaded doorways lead north and east.\n",
+                   |music playing quietly from somewhere. Beaded doorways lead north and east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -3918,7 +3918,7 @@
     "name": "Nasturn's Humble Abode",
     "description": "This room is filled with all types of natural items. Trees and plants have
                    |been lovingly cultivated and grown by hand, in large pots. The room is like an
-                   |indoor garden. A green door leads west.\n",
+                   |indoor garden. A green door leads west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -3930,7 +3930,7 @@
     }],
     "extra_description": [{
       "keyword": "green",
-      "description": "It looks like it leads back to the hall.\n"
+      "description": "It looks like it leads back to the hall."
     }],
     "resets": [
       {
@@ -3989,7 +3989,7 @@
     "name": "The main living room",
     "description": "This room is decorated with sturdy stone furniture that is carved and gilded.
                    |Large candles light the room. A thick rug covers the floor. Thick furs and
-                   |tapestries decorate the walls. Beaded doorways lead south and west.\n",
+                   |tapestries decorate the walls. Beaded doorways lead south and west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -4018,7 +4018,7 @@
     "description": "This appears to be the master bedroom. A huge bed fills the rooms. Piles of
                    |furs and other rich furnishings adorn the room. Candles are everywhere and
                    |they help a huge fireplace light the room. The lavishness of the room
-                   |overwhelms you. Beaded doorways lead north and west.\n",
+                   |overwhelms you. Beaded doorways lead north and west.",
     "sector_type": "inside",
     "room_flags": "indoors unused_room_5",
     "doors": [
@@ -4096,7 +4096,7 @@
     "name": "The end of the guarded hall",
     "description": "You are at the end of the hall. Colored doors line the walls to the north. To
                    |your west, you see a brown door. To your east, you see a grey door. The hall
-                   |itself leads north back along the rows of doors.\n",
+                   |itself leads north back along the rows of doors.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -4122,11 +4122,11 @@
     "extra_description": [
       {
         "keyword": "grey",
-        "description": "You see a grey door here. It has the name \"Dorgar\" written on it.\n"
+        "description": "You see a grey door here. It has the name \"Dorgar\" written on it."
       },
       {
         "keyword": "brown",
-        "description": "You see a brown door here. It has the name \"Belrak\" written on it.\n"
+        "description": "You see a brown door here. It has the name \"Belrak\" written on it."
       }
     ]
   }},
@@ -4136,7 +4136,7 @@
     "name": "Dorgar's Dismal Domicile",
     "description": "This room is dirty and unkempt. Odds and ends of different items lie all over.
                    |It is apparent that some type of pack-rat lives here. It appears as though
-                   |nothing has ever entered this room and ever left again. A grey door leads west.\n",
+                   |nothing has ever entered this room and ever left again. A grey door leads west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -4148,7 +4148,7 @@
     }],
     "extra_description": [{
       "keyword": "grey",
-      "description": "It looks like it leads back to the hall.\n"
+      "description": "It looks like it leads back to the hall."
     }],
     "resets": [
       {
@@ -4207,7 +4207,7 @@
     "name": "Belrak's Green Room",
     "description": "This room is full of green. The furniture and all other items show the color
                    |of nature. The room smells of pine and forest odors. From the items here, it
-                   |appears as though a woodsman of some sorts lives here. A brown door leads east.\n",
+                   |appears as though a woodsman of some sorts lives here. A brown door leads east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -4219,7 +4219,7 @@
     }],
     "extra_description": [{
       "keyword": "brown",
-      "description": "It looks like it leads to the hall.\n"
+      "description": "It looks like it leads to the hall."
     }],
     "resets": [
       {

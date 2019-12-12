@@ -18,7 +18,7 @@
     "extra_description": [{
       "keyword": "gloves combat",
       "description": "These gloves are plated with metal plates that provide strength and 
-                     |protection.\n"
+                     |protection."
     }],
     "affects": [
       {
@@ -148,7 +148,7 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "cloak pitch black",
-      "description": "It appears to have pockets inside it.\n"
+      "description": "It appears to have pockets inside it."
     }],
     "affects": [{
       "apply": "saves",
@@ -201,7 +201,7 @@
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "spiked gauntlets",
-      "description": "They look pretty damaging.\n"
+      "description": "They look pretty damaging."
     }],
     "affects": [{
       "apply": "damage roll",
@@ -231,7 +231,7 @@
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "shield shadow",
-      "description": "You look into the depths of the shield and shiver at the evil it contains.\n"
+      "description": "You look into the depths of the shield and shiver at the evil it contains."
     }],
     "affects": [
       {
@@ -270,7 +270,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "nightbringer short sword shortsword",
-      "description": "The runes \"NiGHtBrINgeR\" are scrawled along the blade.\n"
+      "description": "The runes \"NiGHtBrINgeR\" are scrawled along the blade."
     }],
     "affects": [
       {
@@ -389,7 +389,7 @@
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "shield huge tower",
-      "description": "A pure white shield with a gold cross emblazoned across it.\n"
+      "description": "A pure white shield with a gold cross emblazoned across it."
     }]
   }},
   {"object": {
@@ -413,7 +413,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dawnbringer mace huge",
-      "description": "The runes \"DAwNbRIngER\" are scrawled along the handle.\n"
+      "description": "The runes \"DAwNbRIngER\" are scrawled along the handle."
     }],
     "affects": [
       {
@@ -447,7 +447,7 @@
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "spectacles wire rimmed",
-      "description": "They'll make you look smart.\n"
+      "description": "They'll make you look smart."
     }],
     "affects": [{
       "apply": "intelligence",
@@ -472,7 +472,7 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring banded",
-      "description": "The ring has entwined bands of gold and silver.\n"
+      "description": "The ring has entwined bands of gold and silver."
     }],
     "affects": [{
       "apply": "mana",
@@ -502,7 +502,7 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "globe minor",
-      "description": "Shimmering colors move inside the globe.\n"
+      "description": "Shimmering colors move inside the globe."
     }],
     "affects": [{
       "apply": "saves",
@@ -533,7 +533,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "staff gnarled magius",
-      "description": "It appears to be simply a gnarled old limb. It feels powerful though.\n"
+      "description": "It appears to be simply a gnarled old limb. It feels powerful though."
     }],
     "affects": [
       {
@@ -578,7 +578,7 @@
     "wear_flags": "take waist",
     "extra_description": [{
       "keyword": "girdle pouches many",
-      "description": "It appears to be full of tiny pockets.\n"
+      "description": "It appears to be full of tiny pockets."
     }]
   }},
   {"object": {
@@ -639,7 +639,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "manual arts healing book",
-      "description": "It appears to be a book of anatomy and medicine.\n"
+      "description": "It appears to be a book of anatomy and medicine."
     }]
   }},
   {"object": {
@@ -759,7 +759,7 @@
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "boots striding",
-      "description": "They look comfortable to walk in.\n"
+      "description": "They look comfortable to walk in."
     }],
     "affects": [{
       "apply": "moves",
@@ -789,7 +789,7 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "cloak icy white",
-      "description": "Smoke rises from it almost like it's made of dry ice.\n"
+      "description": "Smoke rises from it almost like it's made of dry ice."
     }]
   }},
   {"object": {
@@ -813,7 +813,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "staff ice",
-      "description": "The runes \"FrIgID\" are inscribed in the icy staff.\n"
+      "description": "The runes \"FrIgID\" are inscribed in the icy staff."
     }],
     "affects": [
       {
@@ -882,7 +882,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "horn life",
-      "description": "The horn is capped at both ends with gold. Unreadable runes are scrawled on it.\n"
+      "description": "The horn is capped at both ends with gold. Unreadable runes are scrawled on it."
     }]
   }},
   {"object": {
@@ -921,7 +921,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "stone blood red",
-      "description": "The stone pulses with your own heart beat.\n"
+      "description": "The stone pulses with your own heart beat."
     }],
     "affects": [{
       "apply": "hp",
@@ -985,7 +985,7 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "pack leather small",
-      "description": "It looks pretty big on the inside.\n"
+      "description": "It looks pretty big on the inside."
     }]
   }},
   {"object": {
@@ -1042,7 +1042,7 @@
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "pants black leather",
-      "description": "They look sneaky.\n"
+      "description": "They look sneaky."
     }]
   }},
   {"object": {
@@ -1065,7 +1065,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword wicked short shortsword",
-      "description": "It looks just perfect for backstabbing.\n"
+      "description": "It looks just perfect for backstabbing."
     }],
     "affects": [
       {
@@ -1104,7 +1104,7 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "globe major",
-      "description": "Shimmering colors move inside the globe.\n"
+      "description": "Shimmering colors move inside the globe."
     }],
     "affects": [{
       "apply": "saves",
@@ -1242,7 +1242,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "axe great",
-      "description": "The runes \"DeAtH\" are scrawled along the blade.\n"
+      "description": "The runes \"DeAtH\" are scrawled along the blade."
     }],
     "affects": [
       {
@@ -1281,7 +1281,7 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "plate ethereal suit",
-      "description": "You can almost see through it.\n"
+      "description": "You can almost see through it."
     }],
     "affects": [{
       "apply": "saves",
@@ -1311,7 +1311,7 @@
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "helm ethereal",
-      "description": "You can almost see through it.\n"
+      "description": "You can almost see through it."
     }]
   }},
   {"object": {
@@ -1333,7 +1333,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "blade ethereal",
-      "description": "You can almost see through it.\n"
+      "description": "You can almost see through it."
     }],
     "affects": [
       {
@@ -1502,7 +1502,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key runed",
-      "description": "The key looks like it was made for royalty.\n"
+      "description": "The key looks like it was made for royalty."
     }]
   }},
   {"object": {
@@ -1570,7 +1570,7 @@
     "extra_description": [{
       "keyword": "sword kopesh",
       "description": "The sword looks like it would be grasped so that the blade extended along the
-                     |forearm of the wielder.\n"
+                     |forearm of the wielder."
     }]
   }},
   {"object": {
@@ -1940,7 +1940,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "star morning morningstar",
-      "description": "It looks damaging.\n"
+      "description": "It looks damaging."
     }],
     "affects": [
       {
@@ -1977,7 +1977,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "spiked brass knuckles",
-      "description": "A band held in the hand that has spikes on the front side.\n"
+      "description": "A band held in the hand that has spikes on the front side."
     }]
   }},
   {"object": {
@@ -1998,7 +1998,7 @@
     "wear_flags": "take neck",
     "extra_description": [{
       "keyword": "ring key multi colored multi-colored",
-      "description": "It has several keys of different colors on it.\n"
+      "description": "It has several keys of different colors on it."
     }]
   }},
   {"object": {
@@ -2140,7 +2140,7 @@
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "gauntlets ogre power",
-      "description": "They look very \"handy\".\n"
+      "description": "They look very \"handy\"."
     }],
     "affects": [
       {

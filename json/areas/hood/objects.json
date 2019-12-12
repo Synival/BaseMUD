@@ -432,7 +432,7 @@
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "pants black leather",
-      "description": "They're worn, but they look suprisingly tough.\n"
+      "description": "They're worn, but they look suprisingly tough."
     }]
   }},
   {"object": {
@@ -483,7 +483,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "bottle broken",
-      "description": "It appears to be a broken wine bottle, but what do you know about brewing?\n"
+      "description": "It appears to be a broken wine bottle, but what do you know about brewing?"
     }],
     "affects": [{
       "apply": "hit roll",

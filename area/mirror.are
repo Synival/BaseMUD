@@ -2662,7 +2662,8 @@ You see the city gate.
 gate~
 1 3133 5385
 D3
-You see Main Street.~
+You see Main Street.
+~
 ~
 0 -1 5383
 E
@@ -2695,7 +2696,8 @@ plains stretch out in the distance.
 ~
 0 0 1
 D1
-You see the plains.~
+You see the plains.
+~
 ~
 0 -1 5364
 D3

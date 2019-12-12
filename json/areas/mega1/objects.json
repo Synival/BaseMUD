@@ -19,7 +19,7 @@
     "extra_description": [{
       "keyword": "spit gun",
       "description": "A standard weapon in Mega-City One.  It uses general
-                     |purpose ammunition.\n"
+                     |purpose ammunition."
     }]
   }},
   {"object": {
@@ -41,7 +41,7 @@
     "extra_description": [{
       "keyword": "knee pads",
       "description": "It is a set of Grak Brothers knee pads.  They are currently
-                     |popular with the juve and punk gangs.\n"
+                     |popular with the juve and punk gangs."
     }]
   }},
   {"object": {
@@ -62,7 +62,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "stooky gland",
-      "description": "Stooky glands are known for the restorative properties.\n"
+      "description": "Stooky glands are known for the restorative properties."
     }]
   }},
   {"object": {
@@ -85,7 +85,7 @@
     "extra_description": [{
       "keyword": "lawgiver gun",
       "description": "The standard weapon for the city's Judges.  It uses general
-                     |high explosive ammunition.\n"
+                     |high explosive ammunition."
     }]
   }},
   {"object": {
@@ -109,7 +109,7 @@
     "extra_description": [{
       "keyword": "safe",
       "description": "This safe looks like not even a Sov-Cit Nuke could open it.
-                     |You better find the code box.\n"
+                     |You better find the code box."
     }]
   }},
   {"object": {
@@ -127,7 +127,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "code box",
-      "description": "The box looks like some kind of access device.\n"
+      "description": "The box looks like some kind of access device."
     }]
   }},
   {"object": {
@@ -151,7 +151,7 @@
     "extra_description": [{
       "keyword": "bashball bat",
       "description": "This is the same type of bat used by the little spuggers
-                     |to play bashball.\n"
+                     |to play bashball."
     }],
     "affects": [{
       "apply": "damage roll",
@@ -182,7 +182,7 @@
     "extra_description": [{
       "keyword": "vibroblade",
       "description": "Obviously of alien manufacture, this blade enhances fighting
-                     |and survival skills.\n"
+                     |and survival skills."
     }],
     "affects": [
       {
@@ -236,7 +236,7 @@
     "extra_description": [{
       "keyword": "vacuum cleaner",
       "description": "This vacuum looks well built and will last you many years of
-                     |cleaning pleasure.\n"
+                     |cleaning pleasure."
     }]
   }},
   {"object": {
@@ -258,7 +258,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "knife",
-      "description": "It is a knife. 'Nuff said. (Marvel joke).\n"
+      "description": "It is a knife. 'Nuff said. (Marvel joke)."
     }]
   }},
   {"object": {
@@ -280,7 +280,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "noodle",
-      "description": "It looks like a noodle freshly made at the Olive Garden.\n"
+      "description": "It looks like a noodle freshly made at the Olive Garden."
     }],
     "affects": [{
       "apply": "intelligence",
@@ -310,7 +310,7 @@
     "extra_description": [{
       "keyword": "judge club",
       "description": "It is a standard Justice Hall issue club.  Many a Perp's
-                     |head has been bashed with this baby.\n"
+                     |head has been bashed with this baby."
     }],
     "affects": [{
       "apply": "damage roll",
@@ -335,7 +335,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "vault key",
-      "description": "The key looks like it could be useful.\n"
+      "description": "The key looks like it could be useful."
     }]
   }},
   {"object": {
@@ -352,7 +352,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "key card",
-      "description": "It looks like it fits a slot somewhere.\n"
+      "description": "It looks like it fits a slot somewhere."
     }]
   }},
   {"object": {
@@ -375,7 +375,7 @@
     "extra_description": [{
       "keyword": "judge club",
       "description": "It is a head judge Justice Hall issue club.  Many a Perp's
-                     |head has been bashed with this baby.\n"
+                     |head has been bashed with this baby."
     }],
     "affects": [{
       "apply": "damage roll",

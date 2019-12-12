@@ -18,7 +18,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "egyptian mace",
-      "description": "The mace is formed from solid brass, and engraved in strange hieroglyphs.\n"
+      "description": "The mace is formed from solid brass, and engraved in strange hieroglyphs."
     }]
   }},
   {"object": {
@@ -41,7 +41,7 @@
       "keyword": "sand robes",
       "description": "The robes are colored a sandy off-white, and are in fact caked and covered
                      |with sand as well.  You don't seem to be able to remove all of the sand, no
-                     |matter how much you try.\n"
+                     |matter how much you try."
     }]
   }},
   {"object": {
@@ -64,7 +64,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "obsidian dirk",
-      "description": "The blade of the dirk is black, glassy obsidian, chipped razor sharp.\n"
+      "description": "The blade of the dirk is black, glassy obsidian, chipped razor sharp."
     }],
     "affects": [{
       "apply": "hit roll",
@@ -94,7 +94,7 @@
     "extra_description": [{
       "keyword": "cloth turban",
       "description": "The turban used to be white cloth, now it is covered with oil and dirt from
-                     |the head and hair of its previous owner, who must not have bathed much.\n"
+                     |the head and hair of its previous owner, who must not have bathed much."
     }],
     "affects": [
       {
@@ -131,7 +131,7 @@
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "cloth wrappings",
-      "description": "The cloth wrappings are old, wrinkled, and stink of embalming fluid.\n"
+      "description": "The cloth wrappings are old, wrinkled, and stink of embalming fluid."
     }]
   }},
   {"object": {
@@ -151,7 +151,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "bottle fluid",
-      "description": "The bottle is dusty and the fluid has a strange sickly-sweet smell to it.\n"
+      "description": "The bottle is dusty and the fluid has a strange sickly-sweet smell to it."
     }]
   }},
   {"object": {
@@ -171,7 +171,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "jar formaldehyde",
-      "description": "The jar is sticky and smells really bad.\n"
+      "description": "The jar is sticky and smells really bad."
     }]
   }},
   {"object": {
@@ -189,7 +189,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "ball fire",
-      "description": "The ball of fire is hot to the touch and very very bright.\n"
+      "description": "The ball of fire is hot to the touch and very very bright."
     }],
     "affects": [
       {
@@ -229,7 +229,7 @@
     "extra_description": [{
       "keyword": "stone scimitar",
       "description": "The scimitar is formed from solid stone, chipped and carved to perfection,
-                     |with a sharp, cold blade that is marred only by a few nicks here and there.\n"
+                     |with a sharp, cold blade that is marred only by a few nicks here and there."
     }],
     "affects": [
       {
@@ -262,7 +262,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "stone key",
-      "description": "The key is made from stone, but is otherwise unremarkable.\n"
+      "description": "The key is made from stone, but is otherwise unremarkable."
     }]
   }},
   {"object": {
@@ -290,7 +290,7 @@
                      |A raised image atop the sarcophagus is formed in the visage of one of
                      |the mighty pharoahs, painted in gold and studded with precious gems.
                      |
-                     |You see a small keyhole in the side of the sarcophagus.\n"
+                     |You see a small keyhole in the side of the sarcophagus."
     }]
   }},
   {"object": {
@@ -308,7 +308,7 @@
     "extra_description": [{
       "keyword": "dust",
       "description": "The dust is old.  As you sift it through your hands you find tiny chips
-                     |of aged bone inside -- it must be the ancient remains of something.\n"
+                     |of aged bone inside -- it must be the ancient remains of something."
     }]
   }},
   {"object": {
@@ -326,7 +326,7 @@
     "extra_description": [{
       "keyword": "scarab",
       "description": "The scarab is intricately detailed, down to the tiny hairs on its
-                     |insectile legs and the faceting of the emeralds in its eyes.\n"
+                     |insectile legs and the faceting of the emeralds in its eyes."
     }]
   }},
   {"object": {
@@ -350,7 +350,7 @@
     "extra_description": [{
       "keyword": "lamp",
       "description": "The lamp is quite old and tarnished.  You rub at it to get some of the
-                     |grime off, but it doesn't seem like anybody is home.\n"
+                     |grime off, but it doesn't seem like anybody is home."
     }],
     "affects": [
       {
@@ -385,7 +385,7 @@
     "extra_description": [{
       "keyword": "ankh",
       "description": "The ankh is a small brass symbol of an ancient religion.
-                     |It glows with a soft bright light that is soothing to you.\n"
+                     |It glows with a soft bright light that is soothing to you."
     }],
     "affects": [
       {
@@ -432,7 +432,7 @@
       "keyword": "book riddles",
       "description": "The book has well-worn pages, containing many befuddling riddles
                      |to surprise, confuse, and amuse you.  You find yourself bewildered
-                     |by its contents and put it down to sort your head out.\n"
+                     |by its contents and put it down to sort your head out."
     }]
   }},
   {"object": {
@@ -456,7 +456,7 @@
       "keyword": "lion paw",
       "description": "The massive paw has straps on it formed of bronze, so that it will
                      |fit snugly over your hand.  As you put it on, it melds with your hand,
-                     |becoming an extension of your arm.\n"
+                     |becoming an extension of your arm."
     }],
     "affects": [
       {
@@ -497,7 +497,7 @@
     "extra_description": [{
       "keyword": "answer hieroglyphics",
       "description": "You cannot decipher the strange hieroglyphics that cover the
-                     |sheet of parchment.\n"
+                     |sheet of parchment."
     }]
   }},
   {"object": {
@@ -518,7 +518,7 @@
     "extra_description": [{
       "keyword": "treasure",
       "description": "The treasure is incredibly large, filled with gold coins and valuables, more 
-                     |wealth than you could ever possibly imagine accumulated in one place.\n"
+                     |wealth than you could ever possibly imagine accumulated in one place."
     }]
   }},
   {"object": {
@@ -535,7 +535,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "pile sand",
-      "description": "You think you see some coins and valuables glinting amongst the grains of sand.\n"
+      "description": "You think you see some coins and valuables glinting amongst the grains of sand."
     }]
   }},
   {"object": {
@@ -555,7 +555,7 @@
       "keyword": "curse mummy",
       "description": "Rumor has it that whomever disturbs the grave of the mummy shall be 
                      |cursed for all eternity, and that the descendents of that person shall
-                     |likewise be cursed for ten generations to follow.\n"
+                     |likewise be cursed for ten generations to follow."
     }],
     "affects": [
       {
@@ -617,7 +617,7 @@
       "keyword": "small elixir",
       "description": "The elixir is deceptively small.  Something tells you that its
                      |contents are truly quite potent.  Perhaps too potent for ordinary
-                     |mortals to attempt to consume.\n"
+                     |mortals to attempt to consume."
     }]
   }},
   {"object": {
@@ -643,7 +643,7 @@
       "description": "This beautiful mask was shaped from solid gold and magically enchanted
                      |to perfectly fit the face of any who choose to wear it, its golden features
                      |and turquoise highlights even moving to match the expressions of the face
-                     |of the wearer.\n"
+                     |of the wearer."
     }],
     "affects": [
       {
@@ -693,7 +693,7 @@
       "description": "Aha!
                      |
                      |You see a multifaceted gemstone, which strangely reflects no
-                     |light, making it very hard to see when it lies on the ground.\n"
+                     |light, making it very hard to see when it lies on the ground."
     }]
   }},
   {"object": {
@@ -718,7 +718,7 @@
       "keyword": "sun wand",
       "description": "This small brass shaft is a holy weapon used by the ancient people of 
                      |this land to defend against the deadliest of foes.  It shines with the 
-                     |brilliant blazing light of the sun.\n"
+                     |brilliant blazing light of the sun."
     }],
     "affects": [{
       "apply": "saves",
@@ -744,7 +744,7 @@
     "extra_description": [{
       "keyword": "sandy ring",
       "description": "The ring is small, smooth, sandy-colored and unremarkable, save that
-                     |it gives off a continuous low humming noise that tickles your fingertips.\n"
+                     |it gives off a continuous low humming noise that tickles your fingertips."
     }],
     "affects": [
       {
@@ -780,7 +780,7 @@
       "keyword": "golden sphinx",
       "description": "The golden sphinx is incredibly detailed and very small, fitting easily
                      |into the palm of your hand.  You can even make out the expression
-                     |of wisdom and peace on its face.\n"
+                     |of wisdom and peace on its face."
     }],
     "affects": [{
       "apply": "wisdom",
@@ -812,7 +812,7 @@
       "keyword": "sphinxian leggings",
       "description": "These magically fashioned leggings impart the strength and stamina
                      |of the mightiest of the ancient sphinxes.  You feel ancient power 
-                     |emanating from them; they seem to be almost alive.\n"
+                     |emanating from them; they seem to be almost alive."
     }],
     "affects": [
       {

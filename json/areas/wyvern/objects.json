@@ -387,7 +387,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "short bow",
-      "description": "It looks like the bows used by rustin hunters.\n"
+      "description": "It looks like the bows used by rustin hunters."
     }]
   }},
   {"object": {

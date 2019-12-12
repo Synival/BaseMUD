@@ -113,7 +113,7 @@
       "keyword": "scimitar blade",
       "description": "It is quite heavy.  The blade is made of some metal that you can't even
                      |spell.  The edge of the blade looks as if it could cut through anything
-                     |or anyone.\n"
+                     |or anyone."
     }]
   }},
   {"object": {
@@ -169,7 +169,7 @@
     "extra_description": [{
       "keyword": "pit",
       "description": "This is where you put money and items to help Doz expand this shrine and
-                     |convert more people to the belief of Mota, lord of the gods.\n"
+                     |convert more people to the belief of Mota, lord of the gods."
     }]
   }},
   {"object": {
@@ -501,13 +501,13 @@
     "extra_description": [
       {
         "keyword": "letters",
-        "description": "They say, \"Use 'hold lantern' to activate.\"\n"
+        "description": "They say, \"Use 'hold lantern' to activate.\""
       },
       {
         "keyword": "lantern",
         "description": "It is a large and robust but somewhat battered oil lantern made from brass,
                        |equipped with a handle to make it handy and a hood to protect its flame.
-                       |Some letters have been scratched on its bottom.\n"
+                       |Some letters have been scratched on its bottom."
       }
     ]
   }},
@@ -568,7 +568,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "scroll",
-      "description": "Use this scroll to remove magical curses.\n"
+      "description": "Use this scroll to remove magical curses."
     }]
   }},
   {"object": {
@@ -596,7 +596,7 @@
                      |       ?
                      |      ?
                      |      ?
-                     |      *\n"
+                     |      *"
     }]
   }},
   {"object": {
@@ -618,7 +618,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "potion yellow",
-      "description": "The potion has a small label 'Detect The Invisible'.\n"
+      "description": "The potion has a small label 'Detect The Invisible'."
     }]
   }},
   {"object": {
@@ -640,7 +640,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "scroll",
-      "description": "The scroll has written a formula of 'Word of Recall' upon it.\n"
+      "description": "The scroll has written a formula of 'Word of Recall' upon it."
     }]
   }},
   {"object": {
@@ -659,7 +659,7 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring",
-      "description": "It's a silver ring set with a gleaming moonstone.\n"
+      "description": "It's a silver ring set with a gleaming moonstone."
     }],
     "affects": [
       {
@@ -699,7 +699,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "wand",
-      "description": "It has a little note that says 'point this end at target'.\n"
+      "description": "It has a little note that says 'point this end at target'."
     }]
   }},
   {"object": {
@@ -778,7 +778,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "raft",
-      "description": "The raft looks very primitive.\n"
+      "description": "The raft looks very primitive."
     }]
   }},
   {"object": {
@@ -797,7 +797,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "canoe",
-      "description": "The canoe is fairly light.\n"
+      "description": "The canoe is fairly light."
     }]
   }},
   {"object": {
@@ -1485,7 +1485,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "cup",
-      "description": "It is a small simple cup.\n"
+      "description": "It is a small simple cup."
     }]
   }},
   {"object": {
@@ -1507,7 +1507,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "cup",
-      "description": "It is a small simple cup.\n"
+      "description": "It is a small simple cup."
     }]
   }},
   {"object": {
@@ -1529,7 +1529,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "cup",
-      "description": "It is a large simple cup.\n"
+      "description": "It is a large simple cup."
     }]
   }},
   {"object": {
@@ -1742,7 +1742,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key iron",
-      "description": "The iron key is not special.\n"
+      "description": "The iron key is not special."
     }]
   }},
   {"object": {
@@ -1761,7 +1761,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key rusty",
-      "description": "The key is a fairly large rusty key.  You notice some fresh dirt on it.\n"
+      "description": "The key is a fairly large rusty key.  You notice some fresh dirt on it."
     }]
   }},
   {"object": {
@@ -1780,7 +1780,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key wooden",
-      "description": "The wooden key is not special.\n"
+      "description": "The wooden key is not special."
     }]
   }},
   {"object": {
@@ -1799,7 +1799,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key brass",
-      "description": "The brass key is small and looks like it fits a very complicated lock.\n"
+      "description": "The brass key is small and looks like it fits a very complicated lock."
     }]
   }},
   {"object": {
@@ -1827,7 +1827,7 @@
                      |A
                      |13 20
                      |A
-                     |12 20\n"
+                     |12 20"
     }]
   }},
   {"object": {
@@ -1867,11 +1867,11 @@
     "extra_description": [
       {
         "keyword": "drawer",
-        "description": "You notice a keyhole in the drawer.\n"
+        "description": "You notice a keyhole in the drawer."
       },
       {
         "keyword": "desk",
-        "description": "The desk looks very sparse, there is a drawer on the left side.\n"
+        "description": "The desk looks very sparse, there is a drawer on the left side."
       }
     ]
   }},
@@ -1896,7 +1896,7 @@
     "condition": 90,
     "extra_description": [{
       "keyword": "safe",
-      "description": "The safe is very heavy.\n"
+      "description": "The safe is very heavy."
     }]
   }},
   {"object": {
@@ -1914,7 +1914,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "silver",
-      "description": "Looks like at least a thousand coins.\n"
+      "description": "Looks like at least a thousand coins."
     }]
   }},
   {"object": {
@@ -1935,7 +1935,7 @@
       "keyword": "city key",
       "description": "It is probably the biggest key you have seen in your life. It is made from
                      |polished gold and has various patterns on it along with the Midgaard Coat of
-                     |Arms.\n"
+                     |Arms."
     }]
   }},
   {"object": {
@@ -1960,7 +1960,7 @@
       "keyword": "bench",
       "description": "It is a quite heavy but very comfortable bench.  It is placed with its front
                      |towards the river so you can sit and watch the river and the houses on the
-                     |other side.\n"
+                     |other side."
     }]
   }},
   {"object": {
@@ -1977,7 +1977,7 @@
     "condition": 90,
     "extra_description": [{
       "keyword": "fountain",
-      "description": "It is very nice.  Made from fine white marble.\n"
+      "description": "It is very nice.  Made from fine white marble."
     }]
   }},
   {"object": {
@@ -2010,7 +2010,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key steel",
-      "description": "A key of this size must fit a very strong lock.\n"
+      "description": "A key of this size must fit a very strong lock."
     }]
   }},
   {"object": {
@@ -2058,7 +2058,7 @@
                      |        from anywhere inside a town or out.  My services here are
                      |        no longer required.
                      |
-                     |    Diana the Receptionist\n"
+                     |    Diana the Receptionist"
     }]
   }},
   {"object": {
@@ -2087,7 +2087,7 @@
                      |        down our offices and ATM machines.  Our services here are
                      |        no longer required.
                      |
-                     |    Midgaard City Bank\n"
+                     |    Midgaard City Bank"
     }]
   }},
   {"object": {
@@ -2109,7 +2109,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "coffee",
-      "description": "It's a nice flavorful blend, just right for late-night mudding sessions.\n"
+      "description": "It's a nice flavorful blend, just right for late-night mudding sessions."
     }]
   }},
   {"object": {
@@ -2130,7 +2130,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "soup",
-      "description": "This looks like just the thing for a cold!\n"
+      "description": "This looks like just the thing for a cold!"
     }]
   }},
   {"object": {
@@ -2152,7 +2152,7 @@
     "extra_description": [{
       "keyword": "stew bowl",
       "description": "This is Kate's special stew, guaranteed to keep hunger pangs away for many
-                     |hours.  Care for a bite?\n"
+                     |hours.  Care for a bite?"
     }]
   }},
   {"object": {
@@ -2173,7 +2173,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "biscuit",
-      "description": "A nice, soft biscuit with just enough butter.  Better buy two.\n"
+      "description": "A nice, soft biscuit with just enough butter.  Better buy two."
     }]
   }},
   {"object": {
@@ -2196,7 +2196,7 @@
     "extra_description": [{
       "keyword": "beer bottle",
       "description": "It's a fine beer for serious drinkers, complete with the famous horse head
-                     |logo.  Worth every penny.\n"
+                     |logo.  Worth every penny."
     }]
   }},
   {"object": {
@@ -2220,7 +2220,7 @@
     "extra_description": [{
       "keyword": "bed",
       "description": "This is a standard bed you'll find in most inns. Sleeping in or resting on
-                     |it may yield positive results for your health!\n"
+                     |it may yield positive results for your health!"
     }]
   }},
   {"object": {
@@ -2293,7 +2293,7 @@
                      |         Bridge                Bridge         River---------> Bridge <--> Sands
                      |           |                     |                              |           of
                      |        Southern              Southern                       Southern     Sorrow
-                     |        Midgaard              Midgaard                       Midgaard\n"
+                     |        Midgaard              Midgaard                       Midgaard"
     }]
   }},
   {"object": {
@@ -2343,7 +2343,7 @@
                      |This map shows just about all the major areas on ROM.  This map is NOT drawn
                      |to scale, some of the directions were changed to make everything fit.  This
                      |map shows the GENERAL location of an area with respect to the other areas.
-                     |Type \"areas\" for a complete list with suggested levels and the authors.\n"
+                     |Type \"areas\" for a complete list with suggested levels and the authors."
     }]
   }},
   {"object": {
@@ -2400,8 +2400,7 @@
                      |                                 South Gate
                      |                                     |
                      |                                 Miden'Nir
-                     |                                 (Goblins)
-                     |\n"
+                     |                                 (Goblins)\n"
     }]
   }},
   {"object": {
@@ -2455,7 +2454,7 @@
                      |                            Roads          Drop-off
                      |                                          (Day-Care)
                      | 
-                     |*key required\n"
+                     |*key required"
     }]
   }},
   {"object": {
@@ -2503,7 +2502,7 @@
                      |                                      Midgaard <--Cross--> Eastern Road
                      |                                                  Roads
                      |                                                    |
-                     |                                               Dwarf Forest\n"
+                     |                                               Dwarf Forest"
     }]
   }},
   {"object": {
@@ -2573,7 +2572,7 @@
                      |===================Ishtar River====Bridge======================> To Dragon Sea
                      |                                     |
                      |                                   South
-                     |                                   Gate\n"
+                     |                                   Gate"
     }]
   }},
   {"object": {
@@ -2625,7 +2624,7 @@
                      |                             |
                      |                       **Entrance**
                      |                            /
-                     |                      Mountain\n"
+                     |                      Mountain"
     }]
   }},
   {"object": {
@@ -2702,7 +2701,7 @@
                      |       ?
                      |      ?
                      |      ?
-                     |      *\n"
+                     |      *"
     }]
   }},
   {"object": {
@@ -2724,7 +2723,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "potion yellow",
-      "description": "The potion has a small label 'Detect The Invisible'.\n"
+      "description": "The potion has a small label 'Detect The Invisible'."
     }]
   }},
   {"object": {
@@ -2746,7 +2745,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "scroll",
-      "description": "The scroll has written a formula of 'Word of Recall' upon it.\n"
+      "description": "The scroll has written a formula of 'Word of Recall' upon it."
     }]
   }},
   {"object": {
@@ -3012,7 +3011,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "long sword",
-      "description": "It looks exceptionally sharp and well-balanced. Maybe you should keep it.\n"
+      "description": "It looks exceptionally sharp and well-balanced. Maybe you should keep it."
     }],
     "affects": [
       {
@@ -3053,7 +3052,7 @@
     "extra_description": [{
       "keyword": "sword",
       "description": "You see a sword of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }],
     "affects": [
       {
@@ -3094,7 +3093,7 @@
     "extra_description": [{
       "keyword": "dagger",
       "description": "You see a dagger of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }],
     "affects": [
       {
@@ -3135,7 +3134,7 @@
     "extra_description": [{
       "keyword": "mace",
       "description": "You see a mace of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }],
     "affects": [
       {
@@ -3176,7 +3175,7 @@
     "extra_description": [{
       "keyword": "vest",
       "description": "You see a vest of great craftsmanship.  Stamped on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3201,7 +3200,7 @@
     "extra_description": [{
       "keyword": "shield",
       "description": "You see a shield of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3226,7 +3225,7 @@
     "extra_description": [{
       "keyword": "cloak",
       "description": "You see a cloak of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3251,7 +3250,7 @@
     "extra_description": [{
       "keyword": "helmet",
       "description": "You see a helmet of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3276,7 +3275,7 @@
     "extra_description": [{
       "keyword": "leggings",
       "description": "You see leggings of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3301,7 +3300,7 @@
     "extra_description": [{
       "keyword": "boots",
       "description": "You see boots of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3326,7 +3325,7 @@
     "extra_description": [{
       "keyword": "gloves",
       "description": "You see gloves of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3351,7 +3350,7 @@
     "extra_description": [{
       "keyword": "sleeves",
       "description": "You see sleeves of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3376,7 +3375,7 @@
     "extra_description": [{
       "keyword": "cape",
       "description": "You see a cape of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3401,7 +3400,7 @@
     "extra_description": [{
       "keyword": "belt standard merc",
       "description": "You see a bronze belt of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3425,7 +3424,7 @@
     "extra_description": [{
       "keyword": "bracer",
       "description": "You see a bracer of great craftsmanship.  Imprinted on the side is:
-                     |Merc Industries\n"
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3475,7 +3474,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "banner",
-      "description": "This is the official Merc war banner to see you through the darkest realm!\n"
+      "description": "This is the official Merc war banner to see you through the darkest realm!"
     }],
     "affects": [
       {
@@ -3511,7 +3510,7 @@
     "extra_description": [{
       "keyword": "ring diamond wedding",
       "description": "A slender gold band set with a marquise-cut four carat blue-white solitaire.
-                     |Inscribed on the inside of the band is: 'Your loving husband, House'.\n"
+                     |Inscribed on the inside of the band is: 'Your loving husband, House'."
     }],
     "affects": [{
       "apply": "saves",
@@ -3537,7 +3536,7 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "band gold wedding",
-      "description": "A wide, plain circle of gold inscribed: 'Your loving wife, Vanya'.\n"
+      "description": "A wide, plain circle of gold inscribed: 'Your loving wife, Vanya'."
     }],
     "affects": [{
       "apply": "saves",

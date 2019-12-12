@@ -177,7 +177,7 @@ void json_print_real (JSON_T *json, FILE *fp, int new_line) {
         }
 
         default:
-            bugf ("json_print: Unhandled type %d", json->type);
+            bugf ("json_print(): Unhandled type %d", json->type);
             fprintf (fp, "BAD-TYPE");
             break;
     }
@@ -207,7 +207,7 @@ void json_print (JSON_T *json, FILE *fp) {
 void json_write_to_file (JSON_T *json, const char *filename) {
     FILE *fp = fopen (filename, "w");
     BAIL_IF_BUGF (fp == NULL,
-        "json_write_to_file: Couldn't open '%s' for writing", filename);
+        "json_write_to_file(): Couldn't open '%s' for writing", filename);
     json_print (json, fp);
     fclose (fp);
 }

@@ -4,13 +4,13 @@
     "anum": 5,
     "name": "Inside the Chapel",
     "description": "You are in a small, dark chapel.  The dark brown glass in the tiny windows
-                   |do not let much light through.  A few rows of worn wooden benches stand here.\n",
+                   |do not let much light through.  A few rows of worn wooden benches stand here.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "keyword": "door",
-        "description": "The chapel door is made of dark wood.\n",
+        "description": "The chapel door is made of dark wood.",
         "exit_flags": "door closed locked",
         "portal": "chapel-north-1"
       },
@@ -25,11 +25,11 @@
     "extra_description": [
       {
         "keyword": "benches rows",
-        "description": "The benches are not of the comfortable kind.\n"
+        "description": "The benches are not of the comfortable kind."
       },
       {
         "keyword": "glass windows",
-        "description": "The windows must be meant to be dark.  At least they are completely clean.\n"
+        "description": "The windows must be meant to be dark.  At least they are completely clean."
       }
     ],
     "resets": [
@@ -62,7 +62,7 @@
     "area": "chapel",
     "anum": 8,
     "name": "Stairwell into Darkness",
-    "description": "You sense even more danger coming from below but are urged onward ...\n",
+    "description": "You sense even more danger coming from below but are urged onward ...",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -88,14 +88,14 @@
                    |Oh NO! the door shut behind you!  It's a trap!
                    |A bloodied corpse of an acolyte is lying here ...
                    |A bloodied corpse of an acolyte is lying here ...
-                   |A bloodied corpse of an acolyte is lying here ...\n",
+                   |A bloodied corpse of an acolyte is lying here ...",
     "sector_type": "inside",
     "room_flags": "dark no_mob indoors",
     "extra_description": [{
       "keyword": "corpse corpses",
       "description": "Mauled and torn apart ... throats were ripped out and guts spilled on the
                      |floor ... you slip and land, planting yourself firmly in the slick wetness
-                     |and splattering yourself with offal.\n"
+                     |and splattering yourself with offal."
     }],
     "resets": [
       {
@@ -136,7 +136,7 @@
     "area": "chapel",
     "anum": 10,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -172,7 +172,7 @@
     "area": "chapel",
     "anum": 11,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [{
@@ -212,7 +212,7 @@
     "name": "The Grand Hall of Kings",
     "description": "You are at the west end of the Grand Hall of Kings.  There is a doorway to the
                    |south with something strange written above it.  Also on the floor are dried
-                   |blood stains, but their color seems a little wrong.\n",
+                   |blood stains, but their color seems a little wrong.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -224,7 +224,7 @@
         "dir": "south",
         "to": 13,
         "keyword": "door",
-        "description": "A door to the south\n",
+        "description": "A door to the south",
         "exit_flags": "door closed"
       }
     ],
@@ -232,11 +232,11 @@
       {
         "keyword": "door writing",
         "description": "Above the door is some strange writing!  It is worn with age, but it refers
-                       |to an ancient ruler named 'Shohan'.\n"
+                       |to an ancient ruler named 'Shohan'."
       },
       {
         "keyword": "stain stains",
-        "description": "That's odd ... they seem a little GREEN.\n"
+        "description": "That's odd ... they seem a little GREEN."
       }
     ]
   }},
@@ -248,7 +248,7 @@
                    |The walls are coated with blood, bits of bloody flesh lie at your feet,
                    |and torn clothing is scattered about.  It wouldn't disturb you in the least
                    |except that it is all FRESH!  What ever used to pass as an altar here,
-                   |lies overturned and smashed.  Doors lead to the south and to the north.\n",
+                   |lies overturned and smashed.  Doors lead to the south and to the north.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -274,7 +274,7 @@
                    |of evil beings ... even more blood and dead, rotting flesh.  This place looks
                    |like the feeding grounds of beasts and monsters.  The overturned sarcophagus
                    |of the once powerful King Shohan lies here.  A door leads to the north and a
-                   |doorway has been hewn to the east.\n",
+                   |doorway has been hewn to the east.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -294,7 +294,7 @@
       "keyword": "coffin sarcophagus",
       "description": "Now destroyed ... there is writing on it: 'All hail the new king; we serve
                      |the Roch'tar, the Undying One!  Those who decline his worship shall be
-                     |slaughtered!'\n"
+                     |slaughtered!'"
     }],
     "resets": [
       {
@@ -335,7 +335,7 @@
     "area": "chapel",
     "anum": 15,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -359,7 +359,7 @@
     "name": "Entrance to the Lower Chambers",
     "description": "You can tell that this area wasn't a part of the original construction.
                    |The walls have been hewn by a mighty force look as though they were CLAWED.
-                   |The passage slopes upward here and also continues to the north.\n",
+                   |The passage slopes upward here and also continues to the north.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -377,7 +377,7 @@
     "extra_description": [{
       "keyword": "walls",
       "description": "Something BIG must have done this job!  There are traces of BLOOD in the
-                     |claw marks.\n"
+                     |claw marks."
     }]
   }},
   {"room": {
@@ -385,7 +385,7 @@
     "anum": 17,
     "name": "The Grand Hall of Kings",
     "description": "This is the western wing of the Grand Hall of Kings.  Your only exits are to
-                   |the east and west in this gloomy hallway.\n",
+                   |the east and west in this gloomy hallway.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -423,7 +423,7 @@
     "description": "Different than the rest, this place has not been desecrated.  An altar still
                    |stands here and the walls show scenes from the life of Cristis the Kind,
                    |a ruler of the outlying regions west of Midgaard.  There is a stone staircase
-                   |leading down.  The Ghost of Cristis the Kind stands here.\n",
+                   |leading down.  The Ghost of Cristis the Kind stands here.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -452,14 +452,14 @@
                        |   communicate with the mortal world.
                        |     Roch'tar, the reincarnate Vampire, now rules these tombs.
                        |   You must find and defeat him and his minions!
-                       |     May God bless you on your Quest!\n"
+                       |     May God bless you on your Quest!"
       },
       {
         "keyword": "altar",
         "description": "It stands 2 feet high with the remnants of candle-wax on top.  There is
                        |an inscription on the side:  'Praise the almighty Cristis the bringer of
                        |good and justice to the world.  He who fought the evilest finally is at
-                       |peace.  May the Gods remember him forever ...'\n"
+                       |peace.  May the Gods remember him forever ...'"
       }
     ],
     "resets": [
@@ -484,7 +484,7 @@
     "area": "chapel",
     "anum": 19,
     "name": "The Tomb of Cristis",
-    "description": "Everything here has simply been destroyed.   Exits lead north and west.\n",
+    "description": "Everything here has simply been destroyed.   Exits lead north and west.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -520,7 +520,7 @@
     "area": "chapel",
     "anum": 20,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -543,7 +543,7 @@
                    |score of people.  The floor has a beautifully woven carpet, and the walls are
                    |covered in finely crafted tapestries. You can tell that these things must have
                    |been worth much but they have not lasted well throughout the ages.  Massive
-                   |doors lead off to the south and a large stone staircase leads up.\n",
+                   |doors lead off to the south and a large stone staircase leads up.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -551,7 +551,7 @@
         "dir": "south",
         "to": 22,
         "keyword": "oak",
-        "description": "Finely polished oak doors stand to the south.\n",
+        "description": "Finely polished oak doors stand to the south.",
         "exit_flags": "door closed"
       },
       {
@@ -559,7 +559,7 @@
         "to": 5,
         "keyword": "stone trapdoor door",
         "description": "You see a large set of stone stairs leading upwards to a small stone door at
-                       |the top. \n",
+                       |the top. ",
         "exit_flags": "door closed locked pickproof",
         "key": 10
       }
@@ -572,30 +572,30 @@
                        |    Insho'rkthon brsskra-lehsn Roch'tar
                        |
                        |Beneath, there are two criss-crossing scratchmarks in an X formation that
-                       |look like someone (or something) raked their claws across the wood.\n"
+                       |look like someone (or something) raked their claws across the wood."
       },
       {
         "keyword": "oak",
         "description": "They're HUGE!  They are at least 12 feet tall and about 10 feet wide.
                        |If not for one thing they would be perfectly preserved.  There appears
-                       |to be some letters crudely scratched into the wood.\n"
+                       |to be some letters crudely scratched into the wood."
       },
       {
         "keyword": "staircase stairs",
-        "description": "Though quite cracked they do look very stable.\n"
+        "description": "Though quite cracked they do look very stable."
       },
       {
         "keyword": "tapestry tapestries",
         "description": "The tapestries were woven into beautiful and exciting scenes of battles
                        |long ago.  One on the left your shows the historic battle between Jubal the
                        |Benevolent and Hroth Kragen's forces that eventually Jubal's army won (of
-                       |course).\n"
+                       |course)."
       },
       {
         "keyword": "stone door trapdoor",
         "description": "It's rather small and looks quite heavy but maybe with some kind of leverage
                        |you could move it.  It has a queerly shaped hole that looks big enough
-                       |for an equally queerly shaped pole to fit inside.  If only you had it!\n"
+                       |for an equally queerly shaped pole to fit inside.  If only you had it!"
       }
     ]
   }},
@@ -606,7 +606,7 @@
     "description": "A long hallway stretches east and west.  On the southern side of the hall
                    |there are many doors, each with the name of a king who has died and is
                    |entombed here.  The hallway is beautiful yet chilling.  Even though the area
-                   |has been kept well by acolytes, there remains a stench of the undead.\n",
+                   |has been kept well by acolytes, there remains a stench of the undead.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -625,7 +625,7 @@
         "to": 23,
         "keyword": "door",
         "description": "The door has written above it: 'May all the lands thank Crotus the Victor.
-                       |Without his guidance this kingdom would not have stood.'\n",
+                       |Without his guidance this kingdom would not have stood.'",
         "exit_flags": "door closed"
       },
       {
@@ -642,7 +642,7 @@
                    |who saved the northern regions from being overrun by the goblin hordes of
                    |100 years ago.  If not for him, Midgaard of course would have eventually been
                    |conquered as well.  Though Crotus was a goodly king, it was rumored that he
-                   |turned to the dark ways in his dying years ... and died an evil man.\n",
+                   |turned to the dark ways in his dying years ... and died an evil man.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -663,7 +663,7 @@
     "anum": 24,
     "name": "The Tomb of Crotus",
     "description": "A sarcophagus lies in the middle of the room and seems undisturbed.
-                   |A hole has been knocked into the east wall.\n",
+                   |A hole has been knocked into the east wall.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -725,7 +725,7 @@
     "area": "chapel",
     "anum": 25,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -743,7 +743,7 @@
     "area": "chapel",
     "anum": 26,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -788,7 +788,7 @@
     "anum": 27,
     "name": "The Grand Hall of Kings",
     "description": "You are in the western part of the Grand Hall of Kings.  To the south is a
-                   |door and to the east and west the hall continues.\n",
+                   |door and to the east and west the hall continues.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -815,7 +815,7 @@
     "description": "Mitnar was a gruesome beast of a man ... he loved battle ... and nothing
                    |else.  Warriors did love Mitnar, and all fighting men honored him.
                    |On the wall is depicted battle after battle after battle.
-                   |A small opening has been shaped carefully to the east.\n",
+                   |A small opening has been shaped carefully to the east.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -842,7 +842,7 @@
     "description": "The wall paintings show men and women warriors alike bowing down to Mitnar,
                    |prisoners of war being put to the sword by Mitnar, and great heaps of gold
                    |and weapons under the feet of Mitnar.  Where his coffin was, there is now
-                   |only a rectangular blemish on the floor of the dusty room.\n",
+                   |only a rectangular blemish on the floor of the dusty room.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -860,7 +860,7 @@
     "area": "chapel",
     "anum": 30,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -900,7 +900,7 @@
     "area": "chapel",
     "anum": 31,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -918,7 +918,7 @@
     "area": "chapel",
     "anum": 32,
     "name": "The Grand Hall of Kings",
-    "description": "You are still walking through the gloomy hallway.\n",
+    "description": "You are still walking through the gloomy hallway.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -955,7 +955,7 @@
     "name": "The Shrine of Frath",
     "description": "Little chunks of dried meat are spattered throughout this room.  The walls
                    |are covered in gore.  Almost as if they were painted ... ICK!  You can
-                   |almost make out the design!\n",
+                   |almost make out the design!",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -974,7 +974,7 @@
     "anum": 34,
     "name": "The Tomb of Frath",
     "description": "UGH!  The sarcophagus is opened up and the mummified body lies out in the
-                   |open, ripped to pieces.  Gnawed pieces of flesh and bone are strewn here.\n",
+                   |open, ripped to pieces.  Gnawed pieces of flesh and bone are strewn here.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -1020,7 +1020,7 @@
     "area": "chapel",
     "anum": 35,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1042,7 +1042,7 @@
     "area": "chapel",
     "anum": 36,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1065,7 +1065,7 @@
     "anum": 37,
     "name": "The Grand Hall of Kings",
     "description": "You are at the western end of the Grand Hall of Kings.  There is a
-                   |door leading north and the hallway continues west.\n",
+                   |door leading north and the hallway continues west.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1095,7 +1095,7 @@
     "name": "The Shrine of Jubal",
     "description": "This was once beautiful.  Now the huge tapestries have been torn down and the
                    |carpeting pulled up ... the paintings on the ceiling are unreadable and the
-                   |altar is crumbled.\n",
+                   |altar is crumbled.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1115,7 +1115,7 @@
     "name": "The Tomb of Jubal",
     "description": "The smell coming off of the opened sarcophagus is nauseating.  The floor is
                    |slightly crumpled and walls are raked ... but the worst part is the mummy ...
-                   |Jubal the Benevolent is missing his head!\n",
+                   |Jubal the Benevolent is missing his head!",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1133,7 +1133,7 @@
     "area": "chapel",
     "anum": 40,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1155,7 +1155,7 @@
     "area": "chapel",
     "anum": 41,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1210,7 +1210,7 @@
     "area": "chapel",
     "anum": 42,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1236,7 +1236,7 @@
     "area": "chapel",
     "anum": 43,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1254,7 +1254,7 @@
     "area": "chapel",
     "anum": 44,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1290,7 +1290,7 @@
     "area": "chapel",
     "anum": 45,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1308,7 +1308,7 @@
     "area": "chapel",
     "anum": 46,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1330,7 +1330,7 @@
     "area": "chapel",
     "anum": 47,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1363,7 +1363,7 @@
     "description": "This room has been totally hollowed out and smoothed, and a pit has been
                    |drilled in the center of the floor.  There are extensive gruesome paintings
                    |of beasts and monsters terrorizing the countryside; vampires sucking the
-                   |blood of beasts and humans alike.\n",
+                   |blood of beasts and humans alike.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [{
@@ -1373,7 +1373,7 @@
     "extra_description": [{
       "keyword": "painting paintings mural",
       "description": "There is a tiny painting of a vault in this mural ... and it seems to be a
-                     |reflected picture of the vault ... the word in tiny print is 'rathcor'.\n"
+                     |reflected picture of the vault ... the word in tiny print is 'rathcor'."
     }],
     "resets": [
       {
@@ -1407,7 +1407,7 @@
     "area": "chapel",
     "anum": 49,
     "name": "The Lower Chambers and Tombs of the Undead",
-    "description": "The stench of death is heavy in these caverns.\n",
+    "description": "The stench of death is heavy in these caverns.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1464,29 +1464,29 @@
     "name": "Entrance to the Forbidden Catacombs",
     "description": "You have entered the forbidden catacombs.  This cave system must have been
                    |built long ago.  The air is dank and smells of something dead ...  or maybe
-                   |undead.  Enter here at your own risk ... something evil abides.\n",
+                   |undead.  Enter here at your own risk ... something evil abides.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 51,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "east",
         "to": 52,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "south",
         "to": 53,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "west",
         "to": 54,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "up",
@@ -1515,19 +1515,19 @@
     "area": "chapel",
     "anum": 51,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
       {
         "dir": "east",
         "to": 55,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "south",
         "to": 50,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       }
     ]
   }},
@@ -1535,19 +1535,19 @@
     "area": "chapel",
     "anum": 52,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
       {
         "dir": "north",
         "to": 61,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "west",
         "to": 50,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       }
     ],
     "resets": [
@@ -1573,13 +1573,13 @@
     "area": "chapel",
     "anum": 53,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [{
       "dir": "north",
       "to": 50,
-      "description": "Too dark to tell.\n"
+      "description": "Too dark to tell."
     }],
     "resets": [
       {
@@ -1604,13 +1604,13 @@
     "area": "chapel",
     "anum": 54,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [{
       "dir": "east",
       "to": 50,
-      "description": "Too dark to tell.\n"
+      "description": "Too dark to tell."
     }],
     "resets": [{
       "command": "mobile",
@@ -1625,19 +1625,19 @@
     "area": "chapel",
     "anum": 55,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
       {
         "dir": "south",
         "to": 56,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "west",
         "to": 51,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       }
     ],
     "resets": [
@@ -1663,19 +1663,19 @@
     "area": "chapel",
     "anum": 56,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
       {
         "dir": "north",
         "to": 55,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "east",
         "to": 57,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       }
     ]
   }},
@@ -1683,19 +1683,19 @@
     "area": "chapel",
     "anum": 57,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
       {
         "dir": "south",
         "to": 58,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "west",
         "to": 56,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       }
     ],
     "resets": [
@@ -1721,7 +1721,7 @@
     "area": "chapel",
     "anum": 58,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1732,12 +1732,12 @@
       {
         "dir": "south",
         "to": 72,
-        "description": "You see unfathomable blackness to the south ...\n"
+        "description": "You see unfathomable blackness to the south ..."
       },
       {
         "dir": "west",
         "to": 59,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       }
     ]
   }},
@@ -1745,19 +1745,19 @@
     "area": "chapel",
     "anum": 59,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
       {
         "dir": "east",
         "to": 58,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "west",
         "to": 60,
-        "description": "You see something's den.\n"
+        "description": "You see something's den."
       }
     ]
   }},
@@ -1767,7 +1767,7 @@
     "name": "Den of the Vampire",
     "description": "Your mind whirls in the hideous madness of this place.  The stench
                    |is horrendous and dead bodies, sucked of life, lay all over.  One coffin
-                   |lies in the center of the room ... waiting for YOU!\n",
+                   |lies in the center of the room ... waiting for YOU!",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "portal": "chapel-room-1",
@@ -1775,13 +1775,13 @@
       {
         "dir": "east",
         "to": 59,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "down",
         "to": 75,
         "keyword": "coffin",
-        "description": "A jet black coffin ... who knows what lurks beneath.\n",
+        "description": "A jet black coffin ... who knows what lurks beneath.",
         "exit_flags": "door closed locked pickproof",
         "key": 19
       }
@@ -1832,19 +1832,19 @@
     "area": "chapel",
     "anum": 61,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
       {
         "dir": "east",
         "to": 62,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "south",
         "to": 52,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       }
     ]
   }},
@@ -1852,19 +1852,19 @@
     "area": "chapel",
     "anum": 62,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
       {
         "dir": "south",
         "to": 63,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "west",
         "to": 61,
-        "description": "Too dark too tell.\n"
+        "description": "Too dark too tell."
       }
     ],
     "resets": [{
@@ -1880,19 +1880,19 @@
     "area": "chapel",
     "anum": 63,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
       {
         "dir": "north",
         "to": 62,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "east",
         "to": 64,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       }
     ],
     "resets": [
@@ -1918,7 +1918,7 @@
     "area": "chapel",
     "anum": 64,
     "name": "The Catacombs",
-    "description": "Stone walls, musty air ... the earth seems to moan softly.\n",
+    "description": "Stone walls, musty air ... the earth seems to moan softly.",
     "sector_type": "inside",
     "room_flags": "dark indoors no_recall",
     "doors": [
@@ -1932,12 +1932,12 @@
       {
         "dir": "south",
         "to": 65,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       },
       {
         "dir": "west",
         "to": 63,
-        "description": "Too dark to tell.\n"
+        "description": "Too dark to tell."
       }
     ]
   }},
@@ -1949,24 +1949,24 @@
                    |different than the rest of the catacombs ... but you don't feel safe yet.
                    |The walls faintly show ancient detailed etchings in gold and silver of
                    |ancient rituals ... not all of which seem pleasant.  The hallway continues
-                   |north into the catacombs and further south as long as you can see.\n",
+                   |north into the catacombs and further south as long as you can see.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 64,
-        "description": "The glow of your light reflects off the walls and you see the catacombs.\n"
+        "description": "The glow of your light reflects off the walls and you see the catacombs."
       },
       {
         "dir": "south",
         "to": 66,
-        "description": "The glow of your light reflects off the walls ... the gilded hallway.\n"
+        "description": "The glow of your light reflects off the walls ... the gilded hallway."
       }
     ],
     "extra_description": [{
       "keyword": "etchings",
-      "description": "Beautiful yet disturbing, they urge you to move onward.\n"
+      "description": "Beautiful yet disturbing, they urge you to move onward."
     }],
     "resets": [
       {
@@ -2009,24 +2009,24 @@
     "name": "The Gilded Hallway",
     "description": "Ancient etchings and writing in intricate gold and silver designs fill these
                    |walls.  You are tempted to linger and examine them closely.  Your light source
-                   |flickers off the walls showing you exits north and south.\n",
+                   |flickers off the walls showing you exits north and south.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 65,
-        "description": "Your light reveals more of the hallway.\n"
+        "description": "Your light reveals more of the hallway."
       },
       {
         "dir": "south",
         "to": 67,
-        "description": "Your light reveals more of the hallway.\n"
+        "description": "Your light reveals more of the hallway."
       }
     ],
     "extra_description": [{
       "keyword": "etchings",
-      "description": "Beautiful yet disturbing, they urge you to move onward.\n"
+      "description": "Beautiful yet disturbing, they urge you to move onward."
     }],
     "resets": [
       {
@@ -2053,24 +2053,24 @@
     "name": "The Gilded Hallway",
     "description": "Ancient etchings and writing in intricate gold and silver designs fill these
                    |walls.  You are tempted to linger and examine them closely.  Your light source
-                   |flickers off the walls showing you exits north and south.\n",
+                   |flickers off the walls showing you exits north and south.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 66,
-        "description": "Your light reveals more of the hallway.\n"
+        "description": "Your light reveals more of the hallway."
       },
       {
         "dir": "south",
         "to": 68,
-        "description": "Your light reveals more of the hallway.\n"
+        "description": "Your light reveals more of the hallway."
       }
     ],
     "extra_description": [{
       "keyword": "etchings",
-      "description": "Beautiful yet disturbing, they urge you to move onward.\n"
+      "description": "Beautiful yet disturbing, they urge you to move onward."
     }]
   }},
   {"room": {
@@ -2079,24 +2079,24 @@
     "name": "The Gilded Hallway",
     "description": "Ancient etchings and writing in intricate gold and silver designs fill these
                    |walls.  You are tempted to linger and examine them closely.  Your light source
-                   |flickers off the walls showing you exits north and south.\n",
+                   |flickers off the walls showing you exits north and south.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "north",
         "to": 67,
-        "description": "Your light reveals more of the hallway.\n"
+        "description": "Your light reveals more of the hallway."
       },
       {
         "dir": "south",
         "to": 69,
-        "description": "Your light reveals more of the hallway.\n"
+        "description": "Your light reveals more of the hallway."
       }
     ],
     "extra_description": [{
       "keyword": "etchings",
-      "description": "Beautiful yet disturbing, they urge you to move onward.\n"
+      "description": "Beautiful yet disturbing, they urge you to move onward."
     }],
     "resets": [
       {
@@ -2131,47 +2131,47 @@
     "name": "The Gilded Hallway",
     "description": "Ancient etchings and writing in intricate gold and silver designs fill these
                    |walls.  You are tempted to linger and examine them closely.  Your light source
-                   |flickers off the walls showing you exits north.\n",
+                   |flickers off the walls showing you exits north.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "north",
       "to": 68,
-      "description": "Your light reveals more of the hallway.\n"
+      "description": "Your light reveals more of the hallway."
     }],
     "extra_description": [{
       "keyword": "etchings",
-      "description": "Beautiful yet disturbing, they urge you to move onward.\n"
+      "description": "Beautiful yet disturbing, they urge you to move onward."
     }]
   }},
   {"room": {
     "area": "chapel",
     "anum": 70,
     "name": "A Secret Passageway",
-    "description": "A secret passage!  You wonder where it may lead!\n",
+    "description": "A secret passage!  You wonder where it may lead!",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "south",
       "to": 71,
-      "description": "Too dark to tell.\n"
+      "description": "Too dark to tell."
     }],
     "extra_description": [{
       "keyword": "east secret door",
-      "description": "The door closed on you so softly that you didn't even notice!\n"
+      "description": "The door closed on you so softly that you didn't even notice!"
     }]
   }},
   {"room": {
     "area": "chapel",
     "anum": 71,
     "name": "A Secret Passageway",
-    "description": "A secret passage!  You wonder where it may lead!\n",
+    "description": "A secret passage!  You wonder where it may lead!",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
       "dir": "north",
       "to": 70,
-      "description": "Too dark to tell.\n"
+      "description": "Too dark to tell."
     }],
     "resets": [
       {
@@ -2218,13 +2218,12 @@
                    |
                    |Welcome to HELL!
                    |
-                   |But even in Hell we give you another chance.
-                   |\n",
+                   |But even in Hell we give you another chance.\n",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
     "doors": [{
       "dir": "north",
-      "description": "The fires of hell grow hotter to the north...\n",
+      "description": "The fires of hell grow hotter to the north...",
       "portal": "chapel-north-2"
     }]
   }},
@@ -2233,7 +2232,7 @@
     "anum": 75,
     "name": "Inside the coffin",
     "description": "You are inside a coffin.  It seems rather cramped in here.  You can climb
-                   |up out of the coffin, or you can wait for here the real occupant to join you.\n",
+                   |up out of the coffin, or you can wait for here the real occupant to join you.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{

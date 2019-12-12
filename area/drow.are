@@ -350,11 +350,13 @@ gate lies open to the west allowing entrance into the city.
 ~
 0 AD 0
 D3
-A huge gate opens to the west allowing entrance into the city.~
+A huge gate opens to the west allowing entrance into the city.
+~
 gate~
 0 0 5101
 D4
-A small hole in the ceiling leads up into darkness.~
+A small hole in the ceiling leads up into darkness.
+~
 door~
 1 -1 5270
 E
@@ -528,7 +530,8 @@ D2
 ~
 0 0 5107
 D3
-A large gate lies to the west.~
+A large gate lies to the west.
+~
 gate~
 1 -1 5111
 S
@@ -624,7 +627,8 @@ is a giant temple.
 ~
 0 AD 0
 D0
-The entrance to the temple of Lloth.~
+The entrance to the temple of Lloth.
+~
 ~
 1 -1 5119
 D1
