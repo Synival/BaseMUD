@@ -12,7 +12,8 @@
               |'skills' to see your skills, and 'commands' for a list of commands. Help is
               |available on most commands and abilities.
               |
-              |Please type 'help rules' to see the Rules of ROM.\n",
+              |Please type 'help rules' to see the Rules of ROM.
+              |",
       "hide_keywords": true
     },
     {
@@ -37,7 +38,8 @@
               |Oh lag-free day, callooh callay, he chortled in his joy
               |Twas dial-up, and the failing mudders did toil and struggle in the fray
               |All checksummed were the compressed files
-              |And the man pages, outdate.\n",
+              |And the man pages, outdate.
+              |",
       "hide_keywords": true
     },
     {
@@ -91,7 +93,8 @@
               |         \\ /. /                                              \\ /. /
               |          \\ //                                                \\ //
               |           \\/                                                  \\/
-              |-By Liralen\n",
+              |-By Liralen
+              |",
       "hide_keywords": true
     },
     {
@@ -158,7 +161,8 @@
               |to Merc 2.1 source code, were done by Alander over many a late night of
               |hair-pulling. Hope you enjoy it.
               |
-              |(my apologies if anyone was forgotten in this list)\n",
+              |(my apologies if anyone was forgotten in this list)
+              |",
       "hide_keywords": true
     },
     {
@@ -182,7 +186,8 @@
               |
               |The duties of immortals, and even the very reasons for their existence,
               |are topics of continual and heated debate in various MUD forums, and are
-              |fraught with misconceptions, poor examples, and outrageous hypocrisies. :)\n",
+              |fraught with misconceptions, poor examples, and outrageous hypocrisies. :)
+              |",
       "hide_keywords": true
     },
     {
@@ -224,7 +229,8 @@
               |yae          lightbulb   voodoo       ogg           confused    beam
               |bite         discodance  scuff        whap          lag         chortle
               |zerbert      twitch
-              | \n",
+              | 
+              |",
       "hide_keywords": true
     },
     {
@@ -250,12 +256,14 @@
               |      of Mud, Ruhr Mud, and Mystic Realms for bug reports, ideas, new code,
               |      and hours of enjoyment.
               |
-              |Also see \"help ROM\" for information about the Rivers of Mud code base.\n",
+              |Also see \"help ROM\" for information about the Rivers of Mud code base.
+              |",
       "hide_keywords": true
     },
     {
       "keyword": "MAP MAPS",
-      "text": "Thanks to Ezra for drawing the originals of several maps on ROM.\n",
+      "text": "Thanks to Ezra for drawing the originals of several maps on ROM.
+              |",
       "hide_keywords": true
     },
     {
@@ -327,7 +335,8 @@
               |purge, freeze, and ban (but be careful with these commands!)  Gods are expected
               |to help make the mud run more smoothly, power trips are strictly verbotten.
               |
-              |Not fufilling the roles of your office can result in demotion or deletion.\n",
+              |Not fufilling the roles of your office can result in demotion or deletion.
+              |",
       "level": 52
     },
     {
@@ -336,7 +345,8 @@
               |(including loners), provided the victim is is within 8 levels of the
               |character and is also in a clan.  This will flag you as a \"killer\" or
               |\"thief\", allowing any character to attack, and also provoking action
-              |from the city guard.\n",
+              |from the city guard.
+              |",
       "hide_keywords": true
     },
     {
@@ -379,7 +389,8 @@
               | 
               |10) Trusted mortals:  Do not use your god powers to help your mortal
               |    character.  If you do, your trust will be taken away.
-              |\n",
+              |
+              |",
       "level": 52
     },
     {
@@ -406,7 +417,8 @@
               |
               |* Changes to these rules are at the discretion of the immortals, and may be
               |done without warning, notice, or even evidence of sanity. Walk softly,
-              |and carry a black stick.\n",
+              |and carry a black stick.
+              |",
       "hide_keywords": true
     },
     {
@@ -415,14 +427,16 @@
               |available for use.  This command must be typed twice to delete a character,
               |and you cannot be forced to delete.  Typing delete with an argument will
               |return your character to 'safe' status if you change your mind after the
-              |first delete.\n"
+              |first delete.
+              |"
     },
     {
       "keyword": "HEALER",
       "text": "The healer decided to grab a quick buck, and now charges for his heals.  Some
               |services are still free to players of level 10 or below, however.  To see
               |a full listing of the healer's services, type 'heal' at his residence. To
-              |receive healing, bring plenty of money, and type 'heal <spell>'.\n"
+              |receive healing, bring plenty of money, and type 'heal <spell>'.
+              |"
     },
     {
       "keyword": "GAIN",
@@ -436,7 +450,8 @@
               |
               |Gain uses training sessions, not practices. (see 'help train')
               |Gained skills and groups do NOT increase your experience per level or total
-              |number of creation points. \n",
+              |number of creation points. 
+              |",
       "hide_keywords": true
     },
     {
@@ -451,7 +466,8 @@
               |the same room as you, or in your posession.  Strung and set information is
               |preserved by clone, as well as any spell effects and container contents or
               |mobile inventory, except for items which are too high for you to clone.  
-              |Strung extended descriptions on objects are not kept, however.\n",
+              |Strung extended descriptions on objects are not kept, however.
+              |",
       "level": 52
     },
     {
@@ -459,13 +475,15 @@
       "text": "The skills and spells commands are used to display your character's list
               |of available skills (or spells, as the case may be).  They are listed in
               |order of level, with mana cost (for spells) or percentage (for skills)
-              |listed where applicable.\n"
+              |listed where applicable.
+              |"
     },
     {
       "keyword": "OUTFIT",
       "text": "The outfit command, usable by levels 5 and below, equips your character with
               |a new set of sub issue gear (banner, weapon, helmet, shield, and vest), 
-              |courtesy of the Mayor's warehouses.  Only empty equipment slots are affected.\n"
+              |courtesy of the Mayor's warehouses.  Only empty equipment slots are affected.
+              |"
     },
     {
       "keyword": "AUTO AUTOLIST AUTOLOOT AUTOGOLD AUTOSAC AUTOEXIT AUTOASSIST AUTOSPLIT AUTOALL",
@@ -482,7 +500,8 @@
               |autoall   : turns all autos on or off at once
               |
               |Typing a command sets the action , typing it again removes it. Use
-              |autoall on|off to save yourself some keystrokes.\n"
+              |autoall on|off to save yourself some keystrokes.
+              |"
     },
     {
       "keyword": "CLAN",
@@ -500,7 +519,8 @@
               |   Existing  Clans may buy  special rooms and  mobiles by acquiring 
               |diamonds as payment.   To see room prices, type \"help prices\".  New
               |Clans  may be formed by  petitioning the immortals.   Please  remember that 
-              |their word is final on all matters not covered by this help.\n",
+              |their word is final on all matters not covered by this help.
+              |",
       "hide_keywords": true
     },
     {
@@ -508,14 +528,16 @@
       "text": "New Clan Hall Rooms cost 50 diamonds.
               |Boosting the mana or healing gains for a room costs 250 diamonds.
               |Both in the same room costs double.
-              |Making the Healer or Store prices lower costs 1,000 diamonds.\n",
+              |Making the Healer or Store prices lower costs 1,000 diamonds.
+              |",
       "hide_keywords": true
     },
     {
       "keyword": "COUNT",
       "text": "The count command displays the number of people (that you can see) logged
               |into the mud.  It also displays the highest number observed that day, if
-              |it is higher.\n",
+              |it is higher.
+              |",
       "hide_keywords": true
     },
     {
@@ -528,7 +550,8 @@
               |all.  God rooms, private rooms, and no recall rooms cannot be gated to, and
               |no recall rooms cannot be gated out of.  Finally, any god or hero is also 
               |immune to gate, as well as in player who has no summon set.  Clan members 
-              |may not be gated to except by their fellow Clan members.\n",
+              |may not be gated to except by their fellow Clan members.
+              |",
       "hide_keywords": true
     },
     {
@@ -536,7 +559,8 @@
       "text": "This command is used to show all the spells affecting your character. At
               |low levels, only the spell name will be displayed, at higher levels the
               |effects and duration of the spell will also be shown.  Spell effects
-              |are no longer shown on score (this can be changed by using 'show' command).\n",
+              |are no longer shown on score (this can be changed by using 'show' command).
+              |",
       "hide_keywords": true
     }
   ]

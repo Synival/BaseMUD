@@ -1418,7 +1418,8 @@
       "keyword": "poster",
       "description": "A wealthy man in red robes is smiling at you.  The caption reads:
                      |
-                     |THE SULTAN REMINDS YOU TO PAY YOUR TAXES!\n"
+                     |THE SULTAN REMINDS YOU TO PAY YOUR TAXES!
+                     |"
     }]
   }},
   {"room": {
@@ -4331,7 +4332,8 @@
                      |VALUE : tells you how much an item is worth to Elvira
                      |SELL : sells an item to Elvira for a generous sum
                      |BUY : Elvira's FAVORITE command lets you have an item for her low low price.
-                     |\n"
+                     |
+                     |"
     }],
     "resets": [
       {
@@ -4630,7 +4632,8 @@
                      |VALUE : tells you how much an item is worth to Abdul
                      |SELL : sells an item to Abdul for a generous sum
                      |BUY : Abdul's FAVORITE command lets you have an item for his low low price.
-                     |\n"
+                     |
+                     |"
     }],
     "resets": [
       {
@@ -5045,7 +5048,8 @@
                      |VALUE : tells you how much an item is worth
                      |SELL : sells an item for a generous sum
                      |BUY :  buy an item for an outrageous price.
-                     |\n"
+                     |
+                     |"
     }],
     "resets": [
       {
@@ -5161,7 +5165,8 @@
       "keyword": "sign",
       "description": "LIST : gives you a list of items for sale.
                      |BUY :  buy something drinkable.
-                     |\n"
+                     |
+                     |"
     }],
     "resets": [
       {
@@ -5296,7 +5301,8 @@
                      |SELL : sells an item to the shipwright for a generous sum
                      |BUY : The shipwright's FAVORITE command lets you have an item for his low low pr
                      |ice.
-                     |\n"
+                     |
+                     |"
     }],
     "resets": [
       {
@@ -5364,7 +5370,8 @@
                      |VALUE : tells you how much the blacksmith will give you for his merchandise
                      |SELL : sells an item to the blacksmith
                      |BUY : buy an item from the blacksmith for a fair price
-                     |\n"
+                     |
+                     |"
     }],
     "resets": [
       {

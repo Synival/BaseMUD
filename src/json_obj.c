@@ -736,12 +736,14 @@ JSON_T *json_new_obj_help_area (const char *name, const HELP_AREA_T *had) {
 JSON_PROP_FUN (obj_help, const HELP_T *);
 JSON_T *json_new_obj_help (const char *name, const HELP_T *help) {
     JSON_T *new;
+
     if (help == NULL)
         return json_new_null (name);
     new = json_new_object (name, JSON_OBJ_HELP);
 
     json_prop_string  (new, "keyword", JSTR (help->keyword));
     json_prop_string  (new, "text",    JSTR (help->text));
+
     if (help->level >= 0) {
         if (help->level != 0)
             json_prop_integer (new, "level", help->level);

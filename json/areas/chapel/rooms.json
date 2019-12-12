@@ -2218,7 +2218,8 @@
                    |
                    |Welcome to HELL!
                    |
-                   |But even in Hell we give you another chance.\n",
+                   |But even in Hell we give you another chance.
+                   |",
     "sector_type": "inside",
     "room_flags": "no_mob indoors",
     "doors": [{

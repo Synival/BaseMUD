@@ -86,12 +86,7 @@ const char *json_escaped_string (const char *value, int newline_pos) {
                 const char *next_ch = value + 1;
                 while (*next_ch == '\r' && *next_ch != '\0')
                     next_ch++;
-                if (*next_ch == '\0') {
-                    strcat (pos, "\\n");
-                    pos += 2;
-                }
-                else
-                    pos += sprintf (pos, "\n%*c", newline_pos + 1, '|');
+                pos += sprintf (pos, "\n%*c", newline_pos + 1, '|');
                 break;
             }
 

@@ -15,7 +15,8 @@
               |stat maximums for magic items and training.
               |
               |Creation points increase the amount of experience it takes to gain a level.
-              |For more information, see the help files for each race (i.e. 'help dwarf')\n",
+              |For more information, see the help files for each race (i.e. 'help dwarf')
+              |",
       "hide_keywords": true
     },
     {
@@ -28,7 +29,8 @@
               |
               |Dwarves are very resistant to poison and disease, but cannot swim, and so
               |are very vulnerable to drowning.  They recieve the berserk skill for free
-              |(if warriors), and can see in the dark with infravision.\n",
+              |(if warriors), and can see in the dark with infravision.
+              |",
       "hide_keywords": true
     },
     {
@@ -42,7 +44,8 @@
               |However, they are burned by the touch of iron, and so are barred from the
               |use of iron or steel in their adventuring careers.  Elves are notoriously 
               |hard to spot, and so elven warriors and thieves recieve the sneak and hiding
-              |automatically. They may see in the dark with infravision.\n",
+              |automatically. They may see in the dark with infravision.
+              |",
       "hide_keywords": true
     },
     {
@@ -51,7 +54,8 @@
               |adventurers. Although they have no special talents like the other races,
               |they are more versitile, being skilled in all four classes. Humans may
               |also train their primary stat higher than any other race, and are able to
-              |gain more benefit from magical devices.\n",
+              |gain more benefit from magical devices.
+              |",
       "hide_keywords": true
     },
     {
@@ -65,7 +69,8 @@
               |Giants resist heat and cold with nary a mark, due to their huge mass.  However,
               |their slow minds make them extremely vulnerable to mental attacks.  Giants,
               |due to their size and stamina, receive the fast healing and bash skills for
-              |free. (Only giant warriors recive bash).\n",
+              |free. (Only giant warriors recive bash).
+              |",
       "hide_keywords": true
     },
     {
@@ -76,13 +81,15 @@
               |
               |scrolls         The reading of magical scrolls and books (see 'help recite')
               |staves          The use of staves and similar devices (see 'help brandish')
-              |wands           The use of wands and similar items (see 'help zap') \n",
+              |wands           The use of wands and similar items (see 'help zap') 
+              |",
       "hide_keywords": true
     },
     {
       "keyword": "'GROUP HEADER'",
       "text": "The following skills and groups are available to your chacter:
-              |(this list may be seen again by typing 'list')\n",
+              |(this list may be seen again by typing 'list')
+              |",
       "hide_keywords": true
     },
     {
@@ -95,7 +102,8 @@
               |drop <name>  discard a skill or group
               |info <name>  list the skills or spells contained within a group
               |help <name>  help on skills and groups, or other help topics
-              |done         exit the character generation process\n",
+              |done         exit the character generation process
+              |",
       "hide_keywords": true
     },
     {
@@ -125,7 +133,8 @@
               |60       2000          110      12000
               |70       3000          120      16000 
               |80       4000          130      24000
-              |The table continues in a similar manner for higher point totals.\n",
+              |The table continues in a similar manner for higher point totals.
+              |",
       "hide_keywords": true
     },
     {
@@ -140,7 +149,8 @@
               |staves   use of magical staves
               |wands    use of magical wands
               |
-              |for class defaults, check the classes themselves.\n",
+              |for class defaults, check the classes themselves.
+              |",
       "hide_keywords": true
     },
     {
@@ -167,7 +177,8 @@
               |maladictions    a selection of curses fit for any witch
               |protective      defensive magics, ranging from armor to stone skin
               |transporation   spells for getting from here to there
-              |weather         spells for conjuring and mastering the elements\n",
+              |weather         spells for conjuring and mastering the elements
+              |",
       "hide_keywords": true
     },
     {
@@ -195,7 +206,8 @@
               |maladictions    an assortment of curses
               |protective      defensive magics, including the powerful sanctuary spell
               |transportation  spells for getting from here to there
-              |weather         spells for conjuring and mastering the elements\n",
+              |weather         spells for conjuring and mastering the elements
+              |",
       "hide_keywords": true
     },
     {
@@ -221,7 +233,8 @@
               |hide            the art of remaining undetected in a room
               |peek            used to look into a person's belongings
               |pick lock       a useful skill for breaking and entering
-              |sneak           with this skill, a thief can walk into a room undetected\n",
+              |sneak           with this skill, a thief can walk into a room undetected
+              |",
       "hide_keywords": true
     },
     {
@@ -242,7 +255,8 @@
               |enhanced damage this skill multiplies your damage in battle
               |parry           the art of parrying with weapons
               |rescue          allows you to take the blows aimed for a companion
-              |third attack    allows the skilled warrior to land three blows in one round\n",
+              |third attack    allows the skilled warrior to land three blows in one round
+              |",
       "hide_keywords": true
     },
     {
@@ -267,7 +281,8 @@
               |whip            the use of whips, chains, and bullwhips
               |exotic          the use of strange magical weapons
               |
-              |The exotic skill cannot be purchased, and is dependent solely upon level.\n",
+              |The exotic skill cannot be purchased, and is dependent solely upon level.
+              |",
       "hide_keywords": true
     },
     {
@@ -276,7 +291,8 @@
               |Characters with no shield block skill will not be able to defend themselves
               |well with a shield.  All classes may learn shield block, but only warriors and
               |clerics are good at it.  Beware, flails ignore shield blocking attempts, and
-              |whips have an easier time getting around them.  Axes may split shields in two.\n",
+              |whips have an easier time getting around them.  Axes may split shields in two.
+              |",
       "hide_keywords": true
     },
     {
@@ -293,7 +309,8 @@
               |earthquake      brings the power of earth to bear against your foes
               |flamestrike     sends a column of flame from the heavens
               |heat metal      heats metal equipment to searing tempatures
-              |ray of truth    sends forth a blinding ray of holy energy\n",
+              |ray of truth    sends forth a blinding ray of holy energy
+              |",
       "hide_keywords": true
     },
     {
@@ -305,7 +322,8 @@
               |
               |calm            if successful, stops all fighting in the room
               |charm person    turns an enemy into a trusted friend
-              |sleep           puts a foe into enchanted slumber\n",
+              |sleep           puts a foe into enchanted slumber
+              |",
       "hide_keywords": true
     },
     {
@@ -319,7 +337,8 @@
               |calm            if successful, stops all fighting in the room
               |frenzy          puts the recipient into beserker rage
               |holy word       aids your allies while calling divine wrath upon your foes
-              |remove curse    removes malevolent magic from players and items\n",
+              |remove curse    removes malevolent magic from players and items
+              |",
       "hide_keywords": true
     },
     {
@@ -338,7 +357,8 @@
               |colour spray    blasts your opponent with a rainbow spray, which may blind him
               |fireball        a powerful spell, great for burning your enemy to ashes
               |acid blast      sends forth a stream of acid to eradicate your foes
-              |chain lightning sends lightning bolts arcing through foes \n",
+              |chain lightning sends lightning bolts arcing through foes 
+              |",
       "hide_keywords": true
     },
     {
@@ -353,7 +373,8 @@
               |create rose     creates a beautiful red rose
               |create spring   calls forth a small but pure spring from the ground
               |create water    fills any available container with water
-              |floating disc   creates a floating disc of force perfect for hauling treasure\n",
+              |floating disc   creates a floating disc of force perfect for hauling treasure
+              |",
       "hide_keywords": true
     },
     {
@@ -364,7 +385,8 @@
               |
               |cure blindness  restored sight to the blind
               |cure disease    heals the plague
-              |cure poison     removes the harmful effects of poison\n",
+              |cure poison     removes the harmful effects of poison
+              |",
       "hide_keywords": true
     },
     {
@@ -383,7 +405,8 @@
               |farsight        searches for living beings near the caster
               |identify        gives information about the nature of an object
               |know alignment  determines the moral character of a monster or person
-              |locate object   finds a specific item\n",
+              |locate object   finds a specific item
+              |",
       "hide_keywords": true
     },
     {
@@ -397,7 +420,8 @@
               |fire breath      calls forth the flames of a red dragon
               |frost breath     drains the life from a foe with the power a white dragon
               |gas breath       suffocates your enemies with poison gas
-              |lightning breath summons the electrical fury of a blue dragon \n",
+              |lightning breath summons the electrical fury of a blue dragon 
+              |",
       "hide_keywords": true
     },
     {
@@ -409,7 +433,8 @@
               |enchant weapon  increases the hit and damage bonuses of a weapon
               |enchant armor   increases the protective value of armor
               |fireproof       shields items from the harmful effects of fire and acid
-              |recharge        restores power to a depleted wand or staff\n",
+              |recharge        restores power to a depleted wand or staff
+              |",
       "hide_keywords": true
     },
     {
@@ -421,7 +446,8 @@
               |giant strength  grants increased strength
               |haste           doubles the speed of the target, but slows down healing
               |infravision     allows monsters to be seen in the dark
-              |refresh         restores energy to tired adventurers\n",
+              |refresh         restores energy to tired adventurers
+              |",
       "hide_keywords": true
     },
     {
@@ -434,7 +460,8 @@
               |cause light     inflicts minor wounds on an enemy
               |cause serious   inflicts wounds on a foe
               |cause critical  causes major damage to the target
-              |harm            the most deadly harmful spell\n",
+              |harm            the most deadly harmful spell
+              |",
       "hide_keywords": true
     },
     {
@@ -449,7 +476,8 @@
               |cure serious    heals wounds
               |cure critical   closes all but the worst wounds
               |heal            the most powerful healing spell
-              |mass healing    casts a heal spell on each player in the room\n",
+              |mass healing    casts a heal spell on each player in the room
+              |",
       "hide_keywords": true
     },
     {
@@ -462,7 +490,8 @@
               |
               |invis           turns the target invisible
               |mass invis      turns the caster's group invisible
-              |ventriloquate   allows the caster to put words in someone's mouth\n",
+              |ventriloquate   allows the caster to put words in someone's mouth
+              |",
       "hide_keywords": true
     },
     {
@@ -477,7 +506,8 @@
               |plague          causes the target to suffer a slow, painful death from plague
               |poison          weaker than plague, but often fatal
               |slow            slows your enemies down, reducing their rate of attack
-              |weaken          drains the strength of the target\n",
+              |weaken          drains the strength of the target
+              |",
       "hide_keywords": true
     },
     {
@@ -496,7 +526,8 @@
               |protection good protects from the attacks of good beings
               |sanctuary       reduces all damage taken by the recipient by half
               |shield          puts a shimmering shield between you and your enemies
-              |stoneskin       turns skin hard as stone, providing a huge armor boost\n",
+              |stoneskin       turns skin hard as stone, providing a huge armor boost
+              |",
       "hide_keywords": true
     },
     {
@@ -512,7 +543,8 @@
               |portal          creates a one-way portal to a destination
               |summon          transports the target to the caster
               |teleport        sends the target to a random location
-              |word of recall  transports the caster to safety in Midgaard\n",
+              |word of recall  transports the caster to safety in Midgaard
+              |",
       "hide_keywords": true
     },
     {
@@ -527,7 +559,8 @@
               |faerie fog      reveals all hidden creatures in the room
               |lightning bolt  sends a bolt of electricity into the target
               |
-              |(the weather command, unrelated to this group, shows local weather conditions)\n",
+              |(the weather command, unrelated to this group, shows local weather conditions)
+              |",
       "hide_keywords": true
     },
     {
@@ -536,7 +569,8 @@
               |can be used with any weapon type, but is most effective with piercing weapons.
               |The damage inflicted by a backstab is determined by the attacker's level, his
               |weapon skill, his backstab skill, and the power of his opponent.
-              |Only thieves may learn the backstab.\n",
+              |Only thieves may learn the backstab.
+              |",
       "hide_keywords": true
     },
     {
@@ -544,7 +578,8 @@
       "text": "The bash skill is a warrior talent, a brute-force attack designed to knock
               |your foe to his knees.  Its success depends on many factors, including the
               |bash rating, your weight, and the size of your opponent.  Bashing a dragon
-              |is not generally a wise idea.\n",
+              |is not generally a wise idea.
+              |",
       "hide_keywords": true
     },
     {
@@ -552,7 +587,8 @@
       "text": "Only powerful warriors can master berserking, the ability to enter insane rage
               |in combat.  Its effects are not altogether unlike the frenzy spell -- a huge
               |surge of combat prowess, coupled with a disregard for personal safety.  
-              |Berserking warriors are more resistant to the effects of magic.\n",
+              |Berserking warriors are more resistant to the effects of magic.
+              |",
       "hide_keywords": true
     },
     {
@@ -561,7 +597,8 @@
               |combatant a chance to blind his opponent by casting dirt into his eyes.  The
               |blindness does not last long, but can provide an edge in combat.  Dexterity
               |helps in hitting or avoiding a dirt kick.  Only warriors and thieves may
-              |learn this skill.\n",
+              |learn this skill.
+              |",
       "hide_keywords": true
     },
     {
@@ -569,7 +606,8 @@
       "text": "Disarm is a somewhat showy and unreliable skill, designed to relieve your
               |opponent of his weapon.  The best possible chance of disarming occurs when you
               |are skilled both your own and your opponent's weapon. Only talented thieves
-              |and warriors may learn this skill.\n",
+              |and warriors may learn this skill.
+              |",
       "hide_keywords": true
     },
     {
@@ -578,7 +616,8 @@
               |be where it lands'.  The dodge skill honors this tradition, by improving the
               |character's natural agility to the point where many blows will miss the 
               |target. The chance of dodging is also affected by the dexterity of the
-              |attacker and the target.  Any class may learn dodging.\n",
+              |attacker and the target.  Any class may learn dodging.
+              |",
       "hide_keywords": true
     },
     {
@@ -586,7 +625,8 @@
       "text": "Warriors and skilled thieves can become skilled enough in combat that they are
               |able to inflict more damage than other classes.  Enhanced damage is checked
               |for with each hit, although with a low skill, the chance of receiving a bonus
-              |is very low indeed.\n",
+              |is very low indeed.
+              |",
       "hide_keywords": true
     },
     {
@@ -600,7 +640,8 @@
               |drink sewer water with only a trace of the runs).  A poisoned weapon, on
               |the other hand, can inflict serious damage on an opponent as the poison 
               |burns through his bloodstream.  But be careful, blade venom evaporates 
-              |quickly and is rendered almost powerless by repeated blows in combat.\n",
+              |quickly and is rendered almost powerless by repeated blows in combat.
+              |",
       "hide_keywords": true
     },
     {
@@ -609,7 +650,8 @@
               |style of fighting gives the player a weapon even when disarmed -- bare hands.
               |Trained hand to hand experts are far more effective than many swordsmen.
               |Clerics and warriors are the best at this skill, although thieves and mages
-              |may also learn it.\n",
+              |may also learn it.
+              |",
       "hide_keywords": true
     },
     {
@@ -617,7 +659,8 @@
       "text": "Kicking allows the adventurer to receive an extra attack in combat, a powerful
               |kick. However, a failed kick may throw an unwary fighter off balance.  Fighters
               |and clerics are the most skilled at kicking, although thieves may also learn
-              |it.\n",
+              |it.
+              |",
       "hide_keywords": true
     },
     {
@@ -626,7 +669,8 @@
               |attacks, and is succesful more often than dodge.  Parry requires a weapon for
               |full success, the hand-to-hand skill may also be used, but results in reduced
               |damage instead of no damage.  The best chance of parrying occurs when the
-              |defender is skilled in both his and his opponent's weapon type.\n",
+              |defender is skilled in both his and his opponent's weapon type.
+              |",
       "hide_keywords": true
     },
     {
@@ -636,7 +680,8 @@
               |in combat, protecting weaker characters from bodily harm. Hopefully the
               |favor will be returned.  Success in rescuing depends on the skill rating, as
               |well as a comparision of level, dexterity, and speed between the character and
-              |the target. (note: you rescue a friend, not the monster)\n",
+              |the target. (note: you rescue a friend, not the monster)
+              |",
       "hide_keywords": true
     },
     {
@@ -644,7 +689,8 @@
       "text": "Back by popular demand.  Trip is a somewhat dastardly attack, and involves
               |using any one of a number of methods to bring your opponent down to the ground.
               |Tripping large monsters is generally not a good idea, and agile ones will
-              |find the attack easy to avoid.  Thieves and warriors may learn trip.\n",
+              |find the attack easy to avoid.  Thieves and warriors may learn trip.
+              |",
       "hide_keywords": true
     },
     {
@@ -652,7 +698,8 @@
       "text": "Training in second attack allows the character a chance at additional strikes
               |in combat -- allow a 100% second attack does NOT guarantee 2 attacks every
               |round.  Any class may learn this skill, although clerics and mages have a 
-              |very hard time with it.\n",
+              |very hard time with it.
+              |",
       "hide_keywords": true
     },
     {
@@ -660,7 +707,8 @@
       "text": "Training in third attack allows the character a chance at an additional strike
               |in a combat, and increases the chance of a second attack as well.  Perfect
               |third attack does NOT assure three attacks per round.  Only warriors and highly
-              |skilled thieves may learn this skill.\n",
+              |skilled thieves may learn this skill.
+              |",
       "hide_keywords": true
     },
     {
@@ -669,7 +717,8 @@
               |Hide has a very high chance of success, but only works for as long as the
               |character remains stationary.  Sneak may be used when moving (including to
               |sneak by monsters), but has a lower chance of success.  Only warriors and
-              |thieves may learn these skills.\n",
+              |thieves may learn these skills.
+              |",
       "hide_keywords": true
     },
     {
@@ -678,7 +727,8 @@
               |or sleeping. It represents knowledge of healing herbs or just general 
               |toughness and stamina.  Fast healing is checked every tick, and it is 
               |possible for it to fail.  All class may learn this skill, but mages find it
-              |very difficult to master, due to their bookish lifestyle.\n",
+              |very difficult to master, due to their bookish lifestyle.
+              |",
       "hide_keywords": true
     },
     {
@@ -688,7 +738,8 @@
               |concerning its power and uses.  It also may occasionally increase the value
               |of an object, because more will be known about its worth.  All classes may
               |learn lore, although thieves are best at it, and warriors find it very hard
-              |to use.\n",
+              |to use.
+              |",
       "hide_keywords": true
     },
     {
@@ -698,7 +749,8 @@
               |or to buy at the lowest possible cost.  Unfortunately, most merchants are 
               |already very skilled at haggling, so the untrainined adventurer had best 
               |guard his treasure closely.  Thieves are natural masters at haggling, 
-              |although other classes may learn it as well.\n",
+              |although other classes may learn it as well.
+              |",
       "hide_keywords": true
     },
     {
@@ -706,7 +758,8 @@
       "text": "The peek skill is useful for seeing what a player or monster is carrying,
               |the better to use the steal command with.  More intelligent characters are
               |harder to peek at.  All characters may learn peek, but thieves are the most
-              |common practicioners.\n",
+              |common practicioners.
+              |",
       "hide_keywords": true
     },
     {
@@ -714,7 +767,8 @@
       "text": "Lock picking is one of the prime skills of thieves, allowing them to gain
               |access to many secured areas.  Lock picking chances are improved by  
               |intelligence, and hindered by the difficulty of the lock. Other classes may
-              |learn to pick locks, but they will never find it easy.\n",
+              |learn to pick locks, but they will never find it easy.
+              |",
       "hide_keywords": true
     },
     {
@@ -722,7 +776,8 @@
       "text": "This skill is similar to fast healing, but relies on the concentration and
               |mantras to increase mana recovery when the character is sleeping or resting.
               |Thieves and warriors, with their troubled minds and violent attitudes, have
-              |much trouble learning to meditate.\n",
+              |much trouble learning to meditate.
+              |",
       "hide_keywords": true
     },
     {
@@ -731,7 +786,8 @@
               |It allows items to be stolen from the inventory of monsters and characters,
               |and even from shops!  But beware, shop keepers gaurd their merchandise 
               |carefully, and attempting to steal from a character earns you a THIEF flag
-              |if you are caught (making you free game for killing).\n",
+              |if you are caught (making you free game for killing).
+              |",
       "hide_keywords": true
     },
     {
@@ -739,7 +795,8 @@
       "text": "Syntax: cast 'detect good'
               | 
               |This spell enables the caster to detect good characters, which will
-              |reveal a characteristic golden aura.\n",
+              |reveal a characteristic golden aura.
+              |",
       "hide_keywords": true
     },
     {
@@ -748,7 +805,8 @@
               | 
               |Dispel good brings forth evil energies that inflict horrific torment on 
               |the pure of heart.  Good-aligned characters use this dark magic at their
-              |peril.\n",
+              |peril.
+              |",
       "hide_keywords": true
     },
     {
@@ -758,7 +816,8 @@
               |The recharge spell is used to restore energy to depleted wands and staves.
               |Fully exhausted items cannot be recharged, and the difficulty of the spell
               |is proportional to the number of charges used.  Magic items can only be
-              |recharged one time successfully.\n",
+              |recharged one time successfully.
+              |",
       "hide_keywords": true
     },
     {
@@ -767,7 +826,8 @@
               |
               |Demonfire is a spell of blackest evil, and as such can only be used by those
               |who follow the paths of darkness.  It conjures forth demonic spirits to 
-              |inflict terrible wounds on the enemies of the caster.\n",
+              |inflict terrible wounds on the enemies of the caster.
+              |",
       "hide_keywords": true
     },
     {
@@ -777,7 +837,8 @@
               |Ray of truth opens a portal to the planes of positive energy, bringing forth
               |a beam of light of sufficient purity to harm or or annihilate the servants
               |of evil.  It cannot harm the pure of heart, and will turn and strike 
-              |casters who are tainted by evil.\n",
+              |casters who are tainted by evil.
+              |",
       "hide_keywords": true
     },
     {
@@ -789,7 +850,8 @@
               |entered using 'enter' or 'go' command, as in 'go portal'.  Portals cannot
               |be made to certain destinations, nor used to escape from gate-proof rooms.
               |Portal requires a special source of power to be used, unfortunately the
-              |secret of this material component has been lost...\n",
+              |secret of this material component has been lost...
+              |",
       "hide_keywords": true
     },
     {
@@ -800,7 +862,8 @@
               |only difference being that while portal creates a one-way gate, a nexus 
               |spell makes a two-sided gate.  It also lasts longer than the lower-powered
               |portal spell.  Both spells require an additional power source, the secret
-              |of which has been lost...\n",
+              |of which has been lost...
+              |",
       "hide_keywords": true
     },
     {
@@ -812,7 +875,8 @@
               |(assumed to be all weapons and armor at this point in time) on the target,
               |causing him or her to drop them if possible, taking serious burns in the
               |process (possibly fatal if the equipment is too heavy to remove easily).
-              |This spell does no damage to creatures who are immune to fire.\n",
+              |This spell does no damage to creatures who are immune to fire.
+              |",
       "hide_keywords": true
     },
     {
@@ -826,7 +890,8 @@
               |opposite morals (or both good and evil in the case of neutral priests)
               |are struck down by holy (or unholy might) and cursed.  The cleric suffers
               |greatly from the strain of this spell, being left unable to move and 
-              |drained of vitality.  Experience loss is no longer associated with the spell.\n",
+              |drained of vitality.  Experience loss is no longer associated with the spell.
+              |",
       "hide_keywords": true
     },
     {
@@ -838,7 +903,8 @@
               |wrath is coupled with a tendency to ignore threats to personal safety, 
               |making the character easier to hit.  Frenzy provides immunity to the calm
               |spell (see 'help calm'), and may only be used on those of the caster's 
-              |alignment.\n",
+              |alignment.
+              |",
       "hide_keywords": true
     },
     {
@@ -851,7 +917,8 @@
               |in combat as long as the spell soothes their minds.  The more violence 
               |activity there is in a room, the harder the spell, and it is all or nothing --
               |either all combat in the room is ended (with the exception of those who
-              |are immune to magic) or none is.\n",
+              |are immune to magic) or none is.
+              |",
       "hide_keywords": true
     },
     {
@@ -862,7 +929,8 @@
               |an extra attack (or even a backstab) in combat, and improving evasive
               |abilities in combat.  However, it produces a great strain on the system,
               |such that recuperative abilities are halved.  Haste is capable of negating
-              |the slow spell. (see 'help slow').\n",
+              |the slow spell. (see 'help slow').
+              |",
       "hide_keywords": true
     },
     {
@@ -873,7 +941,8 @@
               |with it's own unique set of effects.  When cast on an unfortunate victim,
               |it slows its movements, making it easier to hit and reducing its rate
               |of attack.  The effect of slow also double movement costs and halve healing
-              |rates, due to reduced metabolism.\n",
+              |rates, due to reduced metabolism.
+              |",
       "hide_keywords": true
     },
     {
@@ -883,7 +952,8 @@
               |The plague spell infests the target with a magical disease of great virulence,
               |sapping its strength and causing horrific suffering, possibly leading to
               |death.  It is a risky spell to use, as the contagion can spread like
-              |wildfire if the victim makes it to a populated area.\n",
+              |wildfire if the victim makes it to a populated area.
+              |",
       "hide_keywords": true
     },
     {
@@ -891,7 +961,8 @@
       "text": "Syntax: cast 'create rose'
               |
               |A romantic spell that creates a fragrant red rose, with utterly no game
-              |use whatsoever.\n",
+              |use whatsoever.
+              |",
       "hide_keywords": true
     },
     {
@@ -902,14 +973,16 @@
               |The protection spells reduce damage taken from attackers of the appropriate
               |ethos, and improve saving throws against all forms of magic. They may not
               |be cast on others, and one person cannot carry both defenses at the same
-              |time.\n",
+              |time.
+              |",
       "hide_keywords": true
     },
     {
       "keyword": "'GIANT STRENGTH'",
       "text": "Syntax: cast 'giant strength' <character>
               | 
-              |This spell increases the strength of the target character.\n"
+              |This spell increases the strength of the target character.
+              |"
     },
     {
       "keyword": "'CHAIN LIGHTNING'",
@@ -920,7 +993,8 @@
               |expended.  Allies of the caster may be hit by this spell if they are members 
               |of a clan, while the caster himself will not be struck unless no other
               |viable target remains.  Chain lightning is most effective when used on
-              |groups of creatures.\n",
+              |groups of creatures.
+              |",
       "hide_keywords": true
     },
     {
@@ -933,7 +1007,8 @@
               |concentration, often leaving the caster helpless for several minutes.
               |The spell may be used for a general scan that reaches a short distance in
               |all directions, or with a directional component to see creatures much
-              |farther away.\n",
+              |farther away.
+              |",
       "hide_keywords": true
     },
     {
@@ -942,7 +1017,8 @@
               |
               |The mass healing spell, as its name might suggest, performs a healing spell
               |on all players in the room.  It also throws in a refresh spell for good
-              |measure.\n",
+              |measure.
+              |",
       "hide_keywords": true
     },
     {
@@ -955,7 +1031,8 @@
               |usually less.  It can hold 10 pounds per level of the caster, with a 
               |maximum of five pounds per item.  The spell requires an open float location
               |on the character, and the only way to remove the disc is to die or allow it
-              |to run out of energy.\n",
+              |to run out of energy.
+              |",
       "hide_keywords": true
     },
     {
@@ -966,7 +1043,8 @@
               |to protect it from the harmful effects of acid and flame.  Items protected
               |by this spell are not harmed by acid, fire, or the heat metal spell.
               |Although inexpensive to use, the spell's short duration makes it impractical
-              |for protecting large numbers of objects.\n",
+              |for protecting large numbers of objects.
+              |",
       "hide_keywords": true
     },
     {
@@ -986,7 +1064,8 @@
               |alias gc get all corpse --> typing 'gc' will equal typing 'get all corpse'
               |alias ff cast 'fireball' --> 'ff orc' will equal \"cast 'fireball' orc\"
               |
-              |Only the first word on the line will be subsituted at this time.\n",
+              |Only the first word on the line will be subsituted at this time.
+              |",
       "hide_keywords": true
     }
   ]

@@ -13,7 +13,8 @@
               |        ansicolor  - do new logins have color on by default?
               |        ansiprompt - do new logins see a \"color?\" prompt?
               |        show       - show current settings of qmconfig variables
-              |        telnetga   - do new logins have telnetga enabled?\n"
+              |        telnetga   - do new logins have telnetga enabled?
+              |"
     },
     {
       "keyword": "COLOUR COLOR ANSI",
@@ -36,7 +37,8 @@
               |        looks better than:
               |                {mLope gossips '{ghello,{r world'{x
               |
-              |        ColoUr is written by Lope (ant@solace.mh.se)\n"
+              |        ColoUr is written by Lope (ant@solace.mh.se)
+              |"
     },
     {
       "keyword": "COLOUR2 COLOR2 ANSI2",
@@ -62,7 +64,8 @@
               |   {ccyan         {wwhite{x
               |
               |eg. to make the gossip channel red type 'colour gossip red'
-              |    to make your hits in fights magenta type 'colour fight_yhit magenta'\n"
+              |    to make your hits in fights magenta type 'colour fight_yhit magenta'
+              |"
     },
     {
       "keyword": "DIKU",
@@ -78,7 +81,8 @@
               |Developed at: DIKU -- The Department of Computer Science
               |                      at the University of Copenhagen.
               |
-              |\n",
+              |
+              |",
       "hide_keywords": true
     },
     {
@@ -89,7 +93,8 @@
               |opposed to 100 to the pound for silver). Gems can be bought to alleviate weight problems
               |from the Midgaard jeweller, he charges a mere 10% more than they are worth.
               |10 gems weigh one pound, and they can be worth more than 100 gold pieces for
-              |the highest quality stones.\n",
+              |the highest quality stones.
+              |",
       "hide_keywords": true
     },
     {
@@ -97,7 +102,8 @@
       "text": "Brief and compact help set your display options for the game. Typing brief
               |toggles on and off the showing of room descriptions when you move around
               |(considerably reducing the text to be processed), and typing compact 
-              |removes the extra blank line before your prompt.\n"
+              |removes the extra blank line before your prompt.
+              |"
     },
     {
       "keyword": "DEAF",
@@ -106,7 +112,8 @@
               |reply to people who were telling you before you went deaf, although you
               |cannot reply to a deaf person unless you or they are a diety (it's mostly 
               |useful for sending a quick \"I'm being spammed so I went deaf\" message to
-              |a person).\n",
+              |a person).
+              |",
       "hide_keywords": true
     },
     {
@@ -119,7 +126,8 @@
               |
               |Tells to link-dead players are stored in a similar fashion, and can also be
               |seen by typing replay (unless, of course, the character logs off before
-              |reading them).\n",
+              |reading them).
+              |",
       "hide_keywords": true
     },
     {
@@ -156,7 +164,8 @@
               | 
               |Example:  PROMPT <%hhp %mm %vmv>
               |        Will set your prompt to \"<10hp 100m 100mv>\"
-              | \n",
+              | 
+              |",
       "hide_keywords": true
     },
     {
@@ -181,7 +190,8 @@
               |
               |
               |For more help, type 'help <topic>' for any command, skill, or spell.
-              |Also help on: DAMAGE DEATH EXPERIENCE NEWS STORY TICK WIZLIST\n",
+              |Also help on: DAMAGE DEATH EXPERIENCE NEWS STORY TICK WIZLIST
+              |",
       "hide_keywords": true
     },
     {
@@ -201,7 +211,8 @@
               |Player corpses last *roughly* 30 hours of game time (15 minutes of real time).
               |Only the player who died, or someone in the same group, can retrieve objects
               |from a player's corpse.
-              |\n"
+              |
+              |"
     },
     {
       "keyword": "EXPERIENCE LEVEL XP",
@@ -222,14 +233,16 @@
               |The experience you get from a kill depends on several things: how many players
               |are in your group; your level versus the level of the monster; your alignment
               |versus the monster's alignment; how many of this monster have been killed
-              |lately; and some random variation.\n"
+              |lately; and some random variation.
+              |"
     },
     {
       "keyword": "PET PETS",
       "text": "You can buy pets in the pet shop.  You may own only one pet at a time, after 
               |the old one dies you may purchase a replacement.
               |
-              |New pets are planned for a shop in New Thalos.\n"
+              |New pets are planned for a shop in New Thalos.
+              |"
     },
     {
       "keyword": "TICK",
@@ -243,13 +256,15 @@
               |
               |Area resetting happens roughly every 3 minutes if no one is in the area; less
               |often (15 minutes) if some one is.  Also note that objects lying on the ground
-              |will not be regenerated if anyone is in the area when it resets.\n"
+              |will not be regenerated if anyone is in the area when it resets.
+              |"
     },
     {
       "keyword": "!",
       "text": "Syntax: !
               |
-              |! repeats the last command you typed.\n"
+              |! repeats the last command you typed.
+              |"
     },
     {
       "keyword": "NORTH SOUTH EAST WEST UP DOWN",
@@ -260,7 +275,8 @@
               |Syntax: up
               |Syntax: down
               |
-              |Use these commands to walk in a particular direction.\n"
+              |Use these commands to walk in a particular direction.
+              |"
     },
     {
       "keyword": "CAST",
@@ -281,7 +297,8 @@
               |The effect of the spell is reduced or eliminated if the victim makes the
               |saving throw successfully.
               |
-              |See also the help sections for individual spells.\n"
+              |See also the help sections for individual spells.
+              |"
     },
     {
       "keyword": "EXITS",
@@ -289,7 +306,8 @@
               |
               |Tells you the visible exits of the room you are in.  Not all exits are visible.
               |You can use the 'bump' technique to find hidden exits.  (Try to walk in a
-              |certain direction and see what you bump into).\n"
+              |certain direction and see what you bump into).
+              |"
     },
     {
       "keyword": "DROP GET GIVE PUT TAKE",
@@ -311,7 +329,8 @@
               |PUT puts an object into a container.
               |
               |DROP, GET and PUT understand the object names 'ALL' for all objects and
-              |'ALL.object' for all objects with the same name.\n"
+              |'ALL.object' for all objects with the same name.
+              |"
     },
     {
       "keyword": "EQUIPMENT INVENTORY",
@@ -319,7 +338,8 @@
               |Syntax: inventory
               |
               |EQUIPMENT lists your equipment (armor, weapons, and held items).
-              |INVENTORY lists your inventory.\n"
+              |INVENTORY lists your inventory.
+              |"
     },
     {
       "keyword": "COMPARE",
@@ -333,7 +353,8 @@
               |COMPARE with one argument compares an object in your inventory to the object
               |you are currently wearing or wielding of the same type.
               | 
-              |COMPARE doesn't consider any special modifiers of the objects.\n"
+              |COMPARE doesn't consider any special modifiers of the objects.
+              |"
     },
     {
       "keyword": "FLEE",
@@ -347,7 +368,8 @@
               |
               |If you lose your link during a fight, then your character will keep
               |fighting, and will attempt to RECALL from time to time.  Your chances
-              |of making the recall are reduced, and you will lose much more experience.\n"
+              |of making the recall are reduced, and you will lose much more experience.
+              |"
     },
     {
       "keyword": "EXAMINE LOOK",
@@ -363,7 +385,8 @@
               |
               |LOOK looks at something and sees what you can see.
               |
-              |EXAMINE is short for 'LOOK container' followed by 'LOOK IN container'.\n"
+              |EXAMINE is short for 'LOOK container' followed by 'LOOK IN container'.
+              |"
     },
     {
       "keyword": "ORDER",
@@ -377,7 +400,8 @@
               |
               |Most charmed creatures lose their aggresive nature (while charmed).
               |
-              |If your charmed creature engages in combat, that will break the charm.\n"
+              |If your charmed creature engages in combat, that will break the charm.
+              |"
     },
     {
       "keyword": "REST SLEEP STAND WAKE",
@@ -392,7 +416,8 @@
               |you won't hear many things happen.
               |
               |Use STAND or WAKE to come back to a standing position.  You can
-              |also WAKE other sleeping characters.\n"
+              |also WAKE other sleeping characters.
+              |"
     },
     {
       "keyword": "GTELL ; REPLY SAY TELL",
@@ -411,7 +436,8 @@
               |
               |REPLY sends a message to the last player who sent you a TELL.  REPLY will work
               |even if you can't see the player, and without revealing their identity.  This
-              |is handy for talking to invisible or switched immortal players.\n"
+              |is handy for talking to invisible or switched immortal players.
+              |"
     },
     {
       "keyword": "NOTE 'NOTE WRITE' 'NOTE READ' BOARD 'NOTE SYSTEM' BOARDS",
@@ -455,7 +481,8 @@
               |
               |This board system was created by Erwin S. Andreasen, erwin@pip.dknet.dk, aka
               |Phunk/Drylock and is freely available. The general outlook was based on
-              |Mystic Adventure's note system (mud.gel.ulaval.ca 4000).\n"
+              |Mystic Adventure's note system (mud.gel.ulaval.ca 4000).
+              |"
     },
     {
       "keyword": "GOSSIP CGOSSIP . SHOUT YELL",
@@ -472,7 +499,8 @@
               |
               |YELL sends a message to all awake players within your area.
               |
-              |Type a channel name by itself to turn it off.\n"
+              |Type a channel name by itself to turn it off.
+              |"
     },
     {
       "keyword": "EMOTE PMOTE POSE SOCIAL",
@@ -487,14 +515,16 @@
               |name (i.e. pmote bonks Alander will be read as bonks you by Alander, and
               |as bonks Alander by everyone else).
               |
-              |POSE produces a random message depending on your class and level.\n"
+              |POSE produces a random message depending on your class and level.
+              |"
     },
     {
       "keyword": "SMOTE",
       "text": "Syntax: smote <action>
               |
               |Smote works exactly like pmote, except you must place your name somewhere in
-              |the string, and it will show that string to everyone in the room.\n",
+              |the string, and it will show that string to everyone in the room.
+              |",
       "level": 52
     },
     {
@@ -517,7 +547,8 @@
               |to use it properly.
               |
               |REMOVE will take any object from your equipment and put it back into your
-              |inventory.\n"
+              |inventory.
+              |"
     },
     {
       "keyword": "BUG TYPO",
@@ -526,13 +557,15 @@
               |Syntax: typo <message>
               |
               |These commands will take your message and record it into a file as feedback
-              |to the mud implementors.\n"
+              |to the mud implementors.
+              |"
     },
     {
       "keyword": "CREDITS",
       "text": "Syntax: credits
               |
-              |This command shows the list of the original Diku Mud implementors.\n"
+              |This command shows the list of the original Diku Mud implementors.
+              |"
     },
     {
       "keyword": "AREAS COMMANDS REPORT SCORE TIME",
@@ -556,7 +589,8 @@
               |TIME shows the game time, as well as the time the mud was last started,
               |and the current local time for the host computer.
               |
-              |WEATHER shows the current game weather.\n"
+              |WEATHER shows the current game weather.
+              |"
     },
     {
       "keyword": "WHO",
@@ -582,14 +616,16 @@
               |who elf cleric  lists all elven clerics
               |who demise e m  lists all elven mages in Demise (hi Alander!)
               |
-              |Classes and races may be abbreviated.\n",
+              |Classes and races may be abbreviated.
+              |",
       "hide_keywords": true
     },
     {
       "keyword": "WHOIS",
       "text": "Syntax: whois <name>
               |The whois command identifies any user who matches the name given. For
-              |example, 'whois a' shows all characters whose name begins with A.\n",
+              |example, 'whois a' shows all characters whose name begins with A.
+              |",
       "hide_keywords": true
     },
     {
@@ -601,7 +637,8 @@
               |area as you are.
               |
               |WHERE with an argument tells you the location of one character with that name
-              |within your area, including monsters.\n"
+              |within your area, including monsters.
+              |"
     },
     {
       "keyword": "HELP",
@@ -611,7 +648,8 @@
               |HELP without any arguments shows a one-page command summary.
               |
               |HELP <keyword> shows a page of help on that keyword.  The keywords include
-              |all the commands, spells, and skills listed in the game.\n"
+              |all the commands, spells, and skills listed in the game.
+              |"
     },
     {
       "keyword": "DESCRIPTION DESC",
@@ -622,7 +660,8 @@
               |Sets your long description to the given string.  If the description string
               |starts with a '+', the part after the '+' is appended to your current
               |description, so that you can make multi-line descriptions. You can delete
-              |lines by uses description -.\n"
+              |lines by uses description -.
+              |"
     },
     {
       "keyword": "PASSWORD",
@@ -631,7 +670,8 @@
               |PASSWORD changes your character's password.  The first argument must be
               |your old password.  The second argument is your new password.
               |
-              |The PASSWORD command is protected against being snooped or logged.\n"
+              |The PASSWORD command is protected against being snooped or logged.
+              |"
     },
     {
       "keyword": "TITLE",
@@ -640,7 +680,8 @@
               |Sets your title to a given string.
               |
               |The game supplies a title when your character is created and when you
-              |advance a level.  You can use TITLE to set your title to something else.\n"
+              |advance a level.  You can use TITLE to set your title to something else.
+              |"
     },
     {
       "keyword": "WIMPY",
@@ -655,7 +696,8 @@
               |
               |WIMPY with no argument sets your wimpy value to 20% of your maximum hit points.
               |
-              |Some monsters are wimpy.\n"
+              |Some monsters are wimpy.
+              |"
     },
     {
       "keyword": "OPEN CLOSE LOCK UNLOCK PICK",
@@ -671,7 +713,8 @@
               |the requisite key to LOCK or UNLOCK.
               |
               |PICK can open a lock without having the key.  In order to PICK successfully,
-              |you must practice the appropriate skill.\n"
+              |you must practice the appropriate skill.
+              |"
     },
     {
       "keyword": "DRINK EAT FILL POUR",
@@ -689,7 +732,8 @@
               |FILL fills a drink container with water.
               |
               |POUR transfers a liquid to a container, or empties one.
-              |You can also pour from an object into something a character is holding.\n"
+              |You can also pour from an object into something a character is holding.
+              |"
     },
     {
       "keyword": "BUY LIST SELL VALUE",
@@ -710,14 +754,16 @@
               |
               |SELL sells an object to a shop keeper.
               |
-              |VALUE asks the shop keeper how much he, she, or it will buy the item for.\n"
+              |VALUE asks the shop keeper how much he, she, or it will buy the item for.
+              |"
     },
     {
       "keyword": "SACRIFICE",
       "text": "Syntax: sacrifice <object>
               |
               |SACRIFICE offers an object to Mota, who may reward you.
-              |The nature of the reward depends upon the type of object.\n"
+              |The nature of the reward depends upon the type of object.
+              |"
     },
     {
       "keyword": "SCROLL",
@@ -726,7 +772,8 @@
               |
               |This command changes the number of lines the mud sends you in a page (the 
               |default is 24 lines).  Change this to a higher number for larger screen
-              |sizes, or to 0 to disabling paging.\n"
+              |sizes, or to 0 to disabling paging.
+              |"
     },
     {
       "keyword": "BRANDISH QUAFF RECITE ZAP",
@@ -749,14 +796,16 @@
               |more charges, it will be consumed.
               |
               |These commands may require an item skill to be succesful, see the help entries
-              |on the skills scrolls, staves, and wands for more information.\n"
+              |on the skills scrolls, staves, and wands for more information.
+              |"
     },
     {
       "keyword": "CONSIDER",
       "text": "Syntax: consider <character>
               |
               |CONSIDER tells you what your chances are of killing a character.
-              |Of course, it's only a rough estimate.\n"
+              |Of course, it's only a rough estimate.
+              |"
     },
     {
       "keyword": "FOLLOW GROUP",
@@ -779,12 +828,14 @@
               |GROUP with no argument shows statistics for each character in your group.
               |
               |You may FOLLOW and GROUP only with characters who are within five levels of
-              |your own.\n"
+              |your own.
+              |"
     },
     {
       "keyword": "VISIBLE",
       "text": "VISIBLE cancels your hiding and sneaking, as well as any invisibility,
-              |making you visible again.\n"
+              |making you visible again.
+              |"
     },
     {
       "keyword": "QUIT RENT SAVE",
@@ -807,7 +858,8 @@
               |the habit of using QUIT without SAVE, and then you play some other mud that
               |doesn't save before quitting, you're going to regret it.
               |
-              |There is no RENT in this mud.  Just SAVE and QUIT whenever you want to leave.\n"
+              |There is no RENT in this mud.  Just SAVE and QUIT whenever you want to leave.
+              |"
     },
     {
       "keyword": "RECALL /",
@@ -824,7 +876,8 @@
               |RECALL costs half of your movement points.
               |
               |RECALL doesn't work in certain god-forsaken rooms.  Characters afflicted by a
-              |curse may not recall at all.\n"
+              |curse may not recall at all.
+              |"
     },
     {
       "keyword": "SPLIT",
@@ -837,7 +890,8 @@
               |Examples:
               |split 30    --> split 30 silver
               |split 20 50 --> split 20 silver, 50 gold
-              |split  0 10 --> split 10 gold\n",
+              |split  0 10 --> split 10 gold
+              |",
       "hide_keywords": true
     },
     {
@@ -849,7 +903,8 @@
               |
               |There are penalties for using STEAL on other players.
               |
-              |In order to STEAL successfully, you must practice the appropriate skill.\n"
+              |In order to STEAL successfully, you must practice the appropriate skill.
+              |"
     },
     {
       "keyword": "PRACTICE",
@@ -866,7 +921,8 @@
               |The higher your intelligence, the more you will learn at each practice
               |session.  The higher your wisdom, the more practice sessions you will
               |have each time you gain a level.  Unused sessions are saved until you
-              |do use them.\n"
+              |do use them.
+              |"
     },
     {
       "keyword": "TRAIN",
@@ -883,7 +939,8 @@
               |The best attributes to train first are WIS and CON.  WIS gives you more
               |practice when you gain a level.  CON gives you more hit points.
               |In the long run, your character will be most powerful if you train
-              |WIS and CON both to 18 before practising or training anything else.\n"
+              |WIS and CON both to 18 before practising or training anything else.
+              |"
     },
     {
       "keyword": "ADVANCE",
@@ -891,7 +948,8 @@
               |
               |ADVANCE sets a character's level to the specified value.  It is the
               |only way to create new immortal characters within the game.  ADVANCE
-              |may also be used to demote characters.\n",
+              |may also be used to demote characters.
+              |",
       "level": 60
     },
     {
@@ -905,7 +963,8 @@
               |the character.  You can also restrict a player's trust to less than their
               |natural level.
               |
-              |A trust of 0 means to use the character's natural level again.\n",
+              |A trust of 0 means to use the character's natural level again.
+              |",
       "level": 60
     },
     {
@@ -922,7 +981,8 @@
               |by editing the player file) banned, by changing the argument after the site.
               |*s may be used to ban either by suffix (*.edu), prefix (labmac*), or 
               |content (*andrews*), but be careful not to accidently lock out too many
-              |sites with a wildcard.  Bans do not save unless the permban command is used.\n",
+              |sites with a wildcard.  Bans do not save unless the permban command is used.
+              |",
       "level": 58
     },
     {
@@ -935,7 +995,8 @@
               |old connections to die), followed by a reboot.
               |
               |Shutdown shuts down the server and prevents the normal 'startup' script
-              |from restarting it.\n",
+              |from restarting it.
+              |",
       "level": 59
     },
     {
@@ -949,7 +1010,8 @@
               |used for preventing a spammer from returning.  Wizlocking should be avoided,
               |and newlocking should be accompanied by mail or a note to the imps.
               |
-              |A god must be at least Supreme level to wizlock the game.\n",
+              |A god must be at least Supreme level to wizlock the game.
+              |",
       "level": 56
     },
     {
@@ -958,7 +1020,8 @@
               |
               |Deny locks a character out of a game permanently, rendering their character
               |name unusable.  It may only be removed by editing the file, for this reason
-              |freeze is usually preferred.\n",
+              |freeze is usually preferred.
+              |",
       "level": 59
     },
     {
@@ -967,7 +1030,8 @@
               |
               |Disconnect breaks a player's link to the game, dumping them back to the telnet
               |prompt.  This is a non-lethal way of getting rid of spammers and annoying
-              |players.\n",
+              |players.
+              |",
       "level": 57
     },
     {
@@ -976,7 +1040,8 @@
               |
               |FREEZE <character> is a toggle which prevents a character from issuing any
               |commands at all. It can be removed from within the game, so freezing a 
-              |troublemaker is usually a better option than they deny command.\n",
+              |troublemaker is usually a better option than they deny command.
+              |",
       "level": 57
     },
     {
@@ -990,7 +1055,8 @@
               |unavailable.  You also cannot 'force orc murder hugo', for example. 
               |
               |FORCE 'all' forces all player characters to execute a command.
-              |This is typically used for 'force all save'.\n",
+              |This is typically used for 'force all save'.
+              |",
       "level": 53
     },
     {
@@ -1005,7 +1071,8 @@
               |
               |The optional name argument shows the site of a player, or optional can be used
               |to identify switched gods (i.e. socket orc shows the name of anyone switched
-              |into an orc).\n",
+              |into an orc).
+              |",
       "level": 56
     },
     {
@@ -1021,7 +1088,8 @@
               |put in the room.  Mobiles are always put into the same room as the god. Old
               |format objects must be given a level argument to determine their power, new
               |format objects have a preset level that cannot be changed without set.
-              |(see also clone, vnum, stat)\n",
+              |(see also clone, vnum, stat)
+              |",
       "level": 56
     },
     {
@@ -1036,7 +1104,8 @@
               |structures. Type set <class> without an argument to see a listing of options.
               |Set skill all (pc's only) will set all the character's skills to the value
               |given.  Use string to change the strings on an object or mobile.
-              |(see also string, stat)\n",
+              |(see also string, stat)
+              |",
       "level": 58
     },
     {
@@ -1046,7 +1115,8 @@
               |
               |The string command changes the various strings associated with an object or
               |mobile.  A full list of fields can be viewed by typing string obj or string
-              |mob.  Sorry, multi-line strings are not yet supported.\n",
+              |mob.  Sorry, multi-line strings are not yet supported.
+              |",
       "level": 55
     },
     {
@@ -1063,7 +1133,8 @@
               |
               |The nochannel command is similar, but more drastic. It prevents the victim
               |from using any of the channels (gossip, cgossip, Q/A, music) on the game.
-              |Nochannels usually result from swearing or spamming on public channels.\n",
+              |Nochannels usually result from swearing or spamming on public channels.
+              |",
       "level": 55
     },
     {
@@ -1073,7 +1144,8 @@
               |
               |Pardon pardons a player for their crimes.  Don't pardon a player unless you
               |are sure they deserve it.  Being killed by Hassan acts as an automatic
-              |pardon.\n",
+              |pardon.
+              |",
       "level": 57
     },
     {
@@ -1087,7 +1159,8 @@
               |
               |Purge will not get rid of PC's, or objects or mobiles with a NOPURGE flag
               |set (i.e. the pit, the fountain, shopkeepers, Hassan).  Mobiles may be
-              |purged if they are called directly by name.\n",
+              |purged if they are called directly by name.
+              |",
       "level": 56
     },
     {
@@ -1102,7 +1175,8 @@
               |Restore room (or restore with no argument) performs a restore on every player
               |in the room, restore all does the same for all connected players. Restore all
               |is only usable by creators and implementors.  Restore should be used sparingly
-              |or not at all.\n",
+              |or not at all.
+              |",
       "level": 56
     },
     {
@@ -1110,7 +1184,8 @@
       "text": "Syntax: slay <character>
               |
               |Slay kills a character in cold blood, no saving throw.  Best not to use this
-              |command on players if you enjoy being a god.\n",
+              |command on players if you enjoy being a god.
+              |",
       "level": 57
     },
     {
@@ -1123,7 +1198,8 @@
               |Transfer transfers the target character, or ALL player characters,
               |to your current location (default) or to a specified location. Trans all 
               |should almost never be used, as 100 players popping into one room can have
-              |horrible effects on slow links. Teleport is a synonym for transfer. \n",
+              |horrible effects on slow links. Teleport is a synonym for transfer. 
+              |",
       "level": 55
     },
     {
@@ -1136,7 +1212,8 @@
               |
               |At works by temporarily moving you to that location, executing the
               |command, and then moving you back (if the command didn't change your
-              |location).\n",
+              |location).
+              |",
       "level": 54
     },
     {
@@ -1150,7 +1227,8 @@
               |it.  Gecho does the same for all players connected to the game, and pecho
               |sends the message to the player specified as the target.  Any higher-level
               |god will see a prompt in front of your message, informing him or her that it
-              |is an echo.\n",
+              |is an echo.
+              |",
       "level": 54
     },
     {
@@ -1165,7 +1243,8 @@
               |already present. Some other rooms are barred to players below a certain
               |god level.
               |
-              |Implementors can use the violate command to get into private rooms.\n",
+              |Implementors can use the violate command to get into private rooms.
+              |",
       "level": 52
     },
     {
@@ -1180,7 +1259,8 @@
               |Wizinvis takes a level argument, and will mke you invisible to all players of
               |a lower level than your invisibility level.  It defaults to the maximum
               |(your level) if no argument is given.  Wizi 60 characters are totally 
-              |invisible.\n",
+              |invisible.
+              |",
       "level": 52
     },
     {
@@ -1188,7 +1268,8 @@
       "text": "Toggling your incognito status will hide your presence from people outside the
               |room you are in, but leave you visible to those who are with you.  It takes
               |a level argument similar to wizinvis, people at that level or higher can see
-              |you regarless of location.\n",
+              |you regarless of location.
+              |",
       "level": 52
     },
     {
@@ -1204,7 +1285,8 @@
               |a maximum limit, which is also shown.
               |
               |The 'Perms' line shows permanently allocated memory blocks.  There is no limit
-              |on the number and size of these blocks.\n",
+              |on the number and size of these blocks.
+              |",
       "level": 52
     },
     {
@@ -1217,7 +1299,8 @@
               |the results.  Use vnum obj or vnum mob to limit the search.  This vnum is
               |very useful for loading. Vnum skill returns the skill number (for set) and
               |the slot number (for making new zones) of a skill name.
-              |(see also load)\n",
+              |(see also load)
+              |",
       "level": 56
     },
     {
@@ -1232,14 +1315,16 @@
               |(if found), a mobile (if no object exists, but a mobile does), or a room 
               |(if a number is  given).  Stat room with no argument stats the room you are
               |standing in.  Stat can be used to find room vnums for goto.
-              |(see also goto, transfer)\n",
+              |(see also goto, transfer)
+              |",
       "level": 53
     },
     {
       "keyword": "MWHERE",
       "text": "Syntax: mwhere <name>
               |
-              |Mwhere shows you the locations of all mobiles with a particular name.\n",
+              |Mwhere shows you the locations of all mobiles with a particular name.
+              |",
       "level": 53
     },
     {
@@ -1247,7 +1332,8 @@
       "text": "Syntax: peace
               |
               |Peace causes all characters in a room to stop fighting. It also strips the
-              |AGGRESSIVE bit from mobiles.\n",
+              |AGGRESSIVE bit from mobiles.
+              |",
       "level": 55
     },
     {
@@ -1261,7 +1347,8 @@
               |must include your name somewhere in the string.
               |
               |Poofin and poofout only show to characters who can see you.
-              |(see also goto)\n",
+              |(see also goto)
+              |",
       "level": 52
     },
     {
@@ -1269,7 +1356,8 @@
       "text": "Syntax: protect <character>
               |
               |Protect is used to protect a character from unwanted snooping.  Removing 
-              |protected status from a character WILL be seen by that character.\n",
+              |protected status from a character WILL be seen by that character.
+              |",
       "level": 59
     },
     {
@@ -1293,7 +1381,8 @@
               |The character must have an open channel.  You may snoop more than one
               |character at a time. Try to respect privacy.
               |
-              |Snoop yourself to cancel all outstanding snoops.\n",
+              |Snoop yourself to cancel all outstanding snoops.
+              |",
       "level": 55
     },
     {
@@ -1305,7 +1394,8 @@
               |already have a descriptor, e.g. you can't switch into a PC). You also cannot
               |switch into link-dead PCs.
               |
-              |Return returns you to your original body.\n",
+              |Return returns you to your original body.
+              |",
       "level": 54
     },
     {
@@ -1315,7 +1405,8 @@
               |
               |Immtalk sends a message to all immortals.  : is a synonym for immtalk.
               |Using this command with no argument turns off the immortal channel (or
-              |turns it back on).\n",
+              |turns it back on).
+              |",
       "level": 51
     },
     {
@@ -1330,14 +1421,16 @@
               |wiznet show lists all settable flags (they are not detailed here), 
               |wiznet status shows your current wiznet settings, and wiznet <field> toggles
               |a field on and off.  The events should be self-explanatory, if they are not,
-              |fiddle with them a while.  More events are available at higher levels.\n",
+              |fiddle with them a while.  More events are available at higher levels.
+              |",
       "level": 52
     },
     {
       "keyword": "WIZHELP",
       "text": "Syntax: wizhelp
               |
-              |Wizhelp provides a list of all the immortal commands.\n",
+              |Wizhelp provides a list of all the immortal commands.
+              |",
       "level": 51
     },
     {
@@ -1345,7 +1438,8 @@
       "text": "Syntax: cast armor <character>
               |
               |This spell decreases (improves) the armor class of the target character
-              |by 20 points.\n"
+              |by 20 points.
+              |"
     },
     {
       "keyword": "BLESS",
@@ -1355,13 +1449,15 @@
               |This spell improves the to-hit roll and saving throw versus spell of the
               |target character by 1 for every 8 levels of the caster. It may also be
               |cast on an object to temporarily bless it (blessed weapons, for example,
-              |are more effective against demonic beings).\n"
+              |are more effective against demonic beings).
+              |"
     },
     {
       "keyword": "BLINDNESS",
       "text": "Syntax: cast blindness <victim>
               |
-              |This spell renders the target character blind.\n"
+              |This spell renders the target character blind.
+              |"
     },
     {
       "keyword": "'ACID BLAST' 'BURNING HANDS' 'COLOUR SPRAY' FIREBALL 'LIGHTNING BOLT'
@@ -1375,14 +1471,16 @@
               |Syntax: cast 'shocking grasp' <victim>
               |
               |These spells inflict damage on the victim.  The higher-level spells do
-              |more damage.\n"
+              |more damage.
+              |"
     },
     {
       "keyword": "'CALL LIGHTNING'",
       "text": "Syntax: cast 'call lightning'
               |
               |This spell works only out of doors, and only when the weather is bad.
-              |It calls down lightning bolts from Mota.\n"
+              |It calls down lightning bolts from Mota.
+              |"
     },
     {
       "keyword": "'CAUSE LIGHT' 'CAUSE SERIOUS' 'CAUSE CRITICAL' HARM",
@@ -1392,13 +1490,15 @@
               |Syntax: cast harm             <victim>
               |
               |These spells inflict damage on the victim.  The higher-level spells do
-              |more damage.\n"
+              |more damage.
+              |"
     },
     {
       "keyword": "'CHANGE SEX'",
       "text": "Syntax: cast 'change sex' <victim>
               |
-              |This spell changes the sex of the victim (temporarily).\n",
+              |This spell changes the sex of the victim (temporarily).
+              |",
       "level": 53
     },
     {
@@ -1409,14 +1509,16 @@
               |from you.  Use ORDER to order your charmed followers.
               |
               |You are responsible for the actions of your followers.  Conversely, other
-              |people who attack your followers will be penalized as if they attacked you.\n"
+              |people who attack your followers will be penalized as if they attacked you.
+              |"
     },
     {
       "keyword": "'CHILL TOUCH'",
       "text": "Syntax: cast 'chill touch' <victim>
               |
               |This spell inflicts damage on the victim and also reduces the victim's
-              |strength by one.\n"
+              |strength by one.
+              |"
     },
     {
       "keyword": "'CONTINUAL LIGHT'",
@@ -1425,45 +1527,52 @@
               |
               |This spell creates a ball of light, which you can hold as a light source.
               |The ball of light will last indefinitely. It may also be used on an object
-              |to give it an enchanted glow.\n"
+              |to give it an enchanted glow.
+              |"
     },
     {
       "keyword": "'CONTROL WEATHER'",
       "text": "Syntax: cast 'control weather' better
               |Syntax: cast 'control weather' worse
               |
-              |This spell makes the weather either better or worse.\n"
+              |This spell makes the weather either better or worse.
+              |"
     },
     {
       "keyword": "'CREATE FOOD'",
       "text": "Syntax: cast 'create food'
               |
-              |This spell creates a Magic Mushroom, which you or anyone else can eat.\n"
+              |This spell creates a Magic Mushroom, which you or anyone else can eat.
+              |"
     },
     {
       "keyword": "'CREATE SPRING'",
       "text": "Syntax: cast 'create spring'
               |
               |This spell brings forth a magical spring from the ground, which has the
-              |same properties as a fountain.\n"
+              |same properties as a fountain.
+              |"
     },
     {
       "keyword": "'CREATE WATER'",
       "text": "Syntax: cast 'create water' <drink-container>
               |
-              |This spell replenishes a drink container with water.\n"
+              |This spell replenishes a drink container with water.
+              |"
     },
     {
       "keyword": "'CURE BLINDNESS'",
       "text": "Syntax: cast 'cure blindness' <character>
               |
-              |This spell cures blindness in one so unfortunate.\n"
+              |This spell cures blindness in one so unfortunate.
+              |"
     },
     {
       "keyword": "'CURE POISON'",
       "text": "Syntax: cast 'cure poison' <character>
               |
-              |This spell cures poison in one so unfortunate.\n"
+              |This spell cures poison in one so unfortunate.
+              |"
     },
     {
       "keyword": "'CURE LIGHT' 'CURE SERIOUS' 'CURE CRITICAL' HEAL",
@@ -1475,7 +1584,8 @@
               |These spells cure damage on the target character.  The higher-level spells
               |heal more damage.
               |
-              |(see 'help healer' for details on the heal command)\n"
+              |(see 'help healer' for details on the heal command)
+              |"
     },
     {
       "keyword": "CURSE",
@@ -1485,45 +1595,52 @@
               |It also renders the character unclean in the eyes of Mota and
               |unable to RECALL. Curse may be used to fill equipment with evil power,
               |allowing (for example) weapons to do more damage to particularly holy
-              |opponents.\n"
+              |opponents.
+              |"
     },
     {
       "keyword": "'DETECT EVIL'",
       "text": "Syntax: cast 'detect evil'
               |
               |This spell enables the caster to detect evil characters, which will
-              |reveal a characteristic red aura.\n"
+              |reveal a characteristic red aura.
+              |"
     },
     {
       "keyword": "'DETECT HIDDEN'",
       "text": "Syntax: cast 'detect hidden'
               |
-              |This spell enables the caster to detect hidden creatures.\n"
+              |This spell enables the caster to detect hidden creatures.
+              |"
     },
     {
       "keyword": "'DETECT INVIS'",
       "text": "Syntax: cast 'detect invis'
               |
-              |This spell enables the caster to detect invisible objects and characters.\n"
+              |This spell enables the caster to detect invisible objects and characters.
+              |"
     },
     {
       "keyword": "'DETECT MAGIC'",
       "text": "Syntax: cast 'detect magic'
               |
-              |This spell enables the caster to detect magical objects.\n"
+              |This spell enables the caster to detect magical objects.
+              |"
     },
     {
       "keyword": "'DETECT POISON'",
       "text": "Syntax: cast 'detect poison' <object>
               |
-              |This spell detects the presence of poison in food or drink.\n"
+              |This spell detects the presence of poison in food or drink.
+              |"
     },
     {
       "keyword": "'DISPEL EVIL'",
       "text": "Syntax: cast 'dispel evil' <victim>
               |
               |This spell invokes the wrath of Mota on an evil victim. It can be very
-              |dangerous for casters who are not pure of heart.\n"
+              |dangerous for casters who are not pure of heart.
+              |"
     },
     {
       "keyword": "'DISPEL MAGIC' CANCELLATION",
@@ -1538,7 +1655,8 @@
               | 
               |The chance of dispelling is based on the level of the spell. Permanent spells
               |(such as mobile sanctuary) are much harder to remove.  Not all spells may
-              |be dispelled, notable examples are poison and plague.\n"
+              |be dispelled, notable examples are poison and plague.
+              |"
     },
     {
       "keyword": "EARTHQUAKE",
@@ -1546,7 +1664,8 @@
               |
               |This spell inflicts damage on every enemy character in the room.
               |Beware that other characters who are not yet fighting may attack
-              |you as a result!\n"
+              |you as a result!
+              |"
     },
     {
       "keyword": "'ENCHANT WEAPON'",
@@ -1556,14 +1675,16 @@
               |bonuses by one or two points.  Multiple enchants may be cast, but as the
               |weapon grows more and more powerful, it is more likely to be drained or
               |destroyed by the magic.  Also, every successful enchant increases the level
-              |of the weapon by one...and there is no turning back.\n"
+              |of the weapon by one...and there is no turning back.
+              |"
     },
     {
       "keyword": "'ENCHANT ARMOR'",
       "text": "The enchant armor spell imbues armor with powerful protective magics. It is
               |not nearly as reliable as enchant weapon, being far more prone to destructive
               |effects.  Each succesful enchant increases the plus of the armor by 1 or 2
-              |points, and raises its level by one.\n",
+              |points, and raises its level by one.
+              |",
       "hide_keywords": true
     },
     {
@@ -1571,46 +1692,53 @@
       "text": "Syntax: cast 'energy drain' <victim>
               |
               |This spell saps the experience points, mana, and movement points of its
-              |target.\n"
+              |target.
+              |"
     },
     {
       "keyword": "'FAERIE FIRE'",
       "text": "Syntax: cast 'faerie fire' <victim>
               |
               |This spell increases (makes worse) the armor class of its victim.  For each
-              |level of the caster, the victim's armor class is increased by two points.\n"
+              |level of the caster, the victim's armor class is increased by two points.
+              |"
     },
     {
       "keyword": "'FAERIE FOG'",
       "text": "Syntax: cast 'faerie fog'
               |
               |This spell reveals all manner of invisible, hidden, and sneaking creatures in
-              |the same room as you.\n"
+              |the same room as you.
+              |"
     },
     {
       "keyword": "FLAMESTRIKE",
       "text": "Syntax: cast 'flamestrike' <victim>
               |
-              |This spell inflicts damage on the victim.\n"
+              |This spell inflicts damage on the victim.
+              |"
     },
     {
       "keyword": "FLY",
       "text": "Syntax: cast 'fly' <character>
               |
-              |This spell enables the target character to fly.\n"
+              |This spell enables the target character to fly.
+              |"
     },
     {
       "keyword": "IDENTIFY",
       "text": "Syntax: cast identify <object>
               |
-              |This spell reveals information about the object.\n"
+              |This spell reveals information about the object.
+              |"
     },
     {
       "keyword": "INFRAVISION",
       "text": "Syntax: cast infravision <character>
               |
               |This spell enables the target character to see warm-blooded creatures even
-              |while in the dark, and exits of a room as well.\n"
+              |while in the dark, and exits of a room as well.
+              |"
     },
     {
       "keyword": "INVIS 'MASS INVIS' INVISIBLITY",
@@ -1623,25 +1751,29 @@
               |to render the object invisible.
               |
               |The MASS INVIS spell makes all characters in the caster's group invisible,
-              |including the caster.\n"
+              |including the caster.
+              |"
     },
     {
       "keyword": "'KNOW ALIGNMENT'",
       "text": "Syntax: cast 'know alignment' <character>
               |
-              |This spell reveals the alignment of the target character.\n"
+              |This spell reveals the alignment of the target character.
+              |"
     },
     {
       "keyword": "'LOCATE OBJECT'",
       "text": "Syntax: cast 'locate object' <name>
               |
-              |This spell reveals the location of all objects with the given name.\n"
+              |This spell reveals the location of all objects with the given name.
+              |"
     },
     {
       "keyword": "'PASS DOOR'",
       "text": "Syntax: cast 'pass door'
               |
-              |This spell enables the caster to pass through closed doors.\n"
+              |This spell enables the caster to pass through closed doors.
+              |"
     },
     {
       "keyword": "POISON",
@@ -1651,21 +1783,24 @@
               |This spell reduces the strength of the victim by two, as well as reducing the
               |victim's regeneration rate. It may also be used to poison food, drink, or
               |a weapon in a fashion similar to envenom ('help envenom'), but with 
-              |drastically reduced effectiveness.\n"
+              |drastically reduced effectiveness.
+              |"
     },
     {
       "keyword": "SANCTUARY",
       "text": "Syntax: cast sanctuary  <character>
               |
               |The SANCTUARY spell reduces the damage taken by the character from any attack
-              |by one half.\n"
+              |by one half.
+              |"
     },
     {
       "keyword": "REFRESH",
       "text": "Syntax: cast refresh <character>
               |
               |This spell refreshes the movement points of a character who is out of movement
-              |points.\n"
+              |points.
+              |"
     },
     {
       "keyword": "'REMOVE CURSE'",
@@ -1674,7 +1809,8 @@
               |
               |This spell removes a curse from a character, and might possibly uncurse
               |a cursed object.  It may also be targeted on an object in the caster's
-              |inventory, in which case it's chance of success is significantly higher.\n"
+              |inventory, in which case it's chance of success is significantly higher.
+              |"
     },
     {
       "keyword": "SHIELD 'STONE SKIN'",
@@ -1683,27 +1819,31 @@
               |
               |These spells protect the caster by decreasing (improving) the caster's armor
               |class.  SHIELD provides 20 points of armor.  STONE SKIN provides 40 points of
-              |armor.\n"
+              |armor.
+              |"
     },
     {
       "keyword": "SLEEP",
       "text": "Syntax: cast sleep <victim>
               |
-              |This spell puts its victim to sleep.\n"
+              |This spell puts its victim to sleep.
+              |"
     },
     {
       "keyword": "SUMMON",
       "text": "Syntax: cast summon <character>
               |
               |This spell summons a character from anywhere else in the world into your room.
-              |Characters who are fighting may not be summoned.\n"
+              |Characters who are fighting may not be summoned.
+              |"
     },
     {
       "keyword": "TELEPORT",
       "text": "Syntax: cast <teleport>
               |
               |This spell takes you from your current location to a random location somewhere
-              |in the world.\n"
+              |in the world.
+              |"
     },
     {
       "keyword": "VENTRILOQUATE",
@@ -1713,13 +1853,15 @@
               |character in the room is saying your message.  Victims who make their saving
               |throw will know that someone is using ventriloquism, but not who.  Victims who
               |fail their saving throw will think that the object or character really did say
-              |your message.\n"
+              |your message.
+              |"
     },
     {
       "keyword": "WEAKEN",
       "text": "Syntax: cast weaken <victim>
               |
-              |This spell reduces the strength of the victim by two points.\n"
+              |This spell reduces the strength of the victim by two points.
+              |"
     },
     {
       "keyword": "'WORD OF RECALL'",
@@ -1727,7 +1869,8 @@
               |
               |This spell duplicates the built-in RECALL ability.  It is provided solely for
               |Merc-based muds which wish to eliminate the built-in ability while still
-              |providing the spell.\n"
+              |providing the spell.
+              |"
     },
     {
       "keyword": "'ACID BREATH' 'FIRE BREATH' 'FROST BREATH' 'GAS BREATH' 'LIGHTNING BREATH'",
@@ -1741,7 +1884,8 @@
               |damage one victim, whereas gas damages every PC in the room.  Fire and
               |frost can break objects, and acid can damage armor.
               |
-              |High level mages may learn and cast these spells as well.\n"
+              |High level mages may learn and cast these spells as well.
+              |"
     }
   ]
 }}]

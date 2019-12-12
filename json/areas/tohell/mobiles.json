@@ -1093,7 +1093,8 @@
     "description": "It moves about so frantically that you can't really get a chance to look at it.
                    |It runs about screaming, 'I SCREAM, YOU SCREAM!
                    |
-                   |WE ALL SCREAM FOR I SCREAM!!!'\n",
+                   |WE ALL SCREAM FOR I SCREAM!!!'
+                   |",
     "race": "human",
     "alignment": -706,
     "level": 52,
@@ -1451,7 +1452,8 @@
     "short_descr": "Complaints Officer",
     "long_descr": "The Complaints Officer is here, watching her favorite soap opera.",
     "description": "She seems not to notice you, but is absorbed in her favorite soap,
-                   |'As The Hell Burns'\n",
+                   |'As The Hell Burns'
+                   |",
     "race": "human",
     "alignment": -1000,
     "level": 51,

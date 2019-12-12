@@ -25,7 +25,8 @@
               |     Inside an editor, typing COMMANDS lists working commands and ? gives
               |help. AEDIT and REDIT default to the current area or room. EDIT ROOM RESET
               |resets the current room.  Most commands with no arguments display syntax.
-              |See also help: AEDIT REDIT MEDIT OEDIT\n",
+              |See also help: AEDIT REDIT MEDIT OEDIT
+              |",
       "hide_keywords": true
     },
     {
@@ -33,7 +34,8 @@
       "text": "Syntax: ALIST
               |
               |This command gives you a listing of all the areas along with their
-              |vnum assignments and the builder(s) assigned to editing them.\n"
+              |vnum assignments and the builder(s) assigned to editing them.
+              |"
     },
     {
       "keyword": "AEDIT",
@@ -55,7 +57,8 @@
               |vnum <lower> <upper>- set the lower and upper vnum's
               |lvnum <lower>       - set the lower vnum
               |uvnum <upper>       - set the upper vnum
-              |<flags>             - area flags, type ? AREA for a list\n"
+              |<flags>             - area flags, type ? AREA for a list
+              |"
     },
     {
       "keyword": "REDIT",
@@ -77,7 +80,8 @@
               |mlist               - lists mobiles in this area.
               |room <flags>        - room attributes, type ? ROOM for a list
               |sector <type>       - terrain of room, type ? SECTOR for a list
-              |<direction>         - see help EXIT, or type <dir> ?\n"
+              |<direction>         - see help EXIT, or type <dir> ?
+              |"
     },
     {
       "keyword": "EXIT",
@@ -96,7 +100,8 @@
               |flags are ones not included in the reset info.  i.e. closed is due to
               |a player closing the door and not due to the door being set to be closed.
               |
-              |-South to [ 3744] Key: [   -1] Exit flags: [door CLOSED bashed pickproof]\n"
+              |-South to [ 3744] Key: [   -1] Exit flags: [door CLOSED bashed pickproof]
+              |"
     },
     {
       "keyword": "OEDIT",
@@ -124,7 +129,8 @@
               |type         \t    - type of object, type ? TYPE for a list
               |extra\t\t    - attributes of object, type ? EXTRA for a list
               |wear                - where object is worn, type ? WEAR for a list
-              |material            - material the object is made from\n"
+              |material            - material the object is made from
+              |"
     },
     {
       "keyword": "MEDIT",
@@ -161,7 +167,8 @@
               |damdice\t\t    - dice to toss to get mobile's hand to hand damage
               |
               |type 'help HITDICE', 'help MANADICE', 'help DAMDICE' for lists of reasonable dice 
-              |combinations on different levels.\n"
+              |combinations on different levels.
+              |"
     },
     {
       "keyword": "HITDICE",
@@ -179,7 +186,8 @@
               |\t50:    10d169+920   930(923)  2610(2610)  1770(1767)
               |
               |Diff = max - min.  Mean is the arithmetic mean.
-              |The values in parenthesis are the the standard merc values.\n"
+              |The values in parenthesis are the the standard merc values.
+              |"
     },
     {
       "keyword": "MANADICE",
@@ -188,7 +196,8 @@
               |
               |  <level> d 10 + 100
               |
-              |where level is the level of the mobile.\n"
+              |where level is the level of the mobile.
+              |"
     },
     {
       "keyword": "DAMDICE",
@@ -208,7 +217,8 @@
               |
               |Mean is the arithmetic mean.  The values in parenthesis are the the
               |standard merc values.  (Will be put in when there's time to calculate
-              |them...)\n"
+              |them...)
+              |"
     },
     {
       "keyword": "RESETS",
@@ -228,7 +238,8 @@
               |and fill it with some objects and then continue equiping the mobile.  It is
               |likely that resets will backfire if they are not carefully entered.
               |
-              |If you wish to reset the room then use EDIT ROOM RESET.  \n"
+              |If you wish to reset the room then use EDIT ROOM RESET.  
+              |"
     },
     {
       "keyword": "MOB_AC",
@@ -253,7 +264,8 @@
               |    80        -400     -400     -400    -150
               |
               |These values are 10 times what you would put in an area file. This
-              |is because the server multiplies what it reads from file with 10.\n"
+              |is because the server multiplies what it reads from file with 10.
+              |"
     },
     {
       "keyword": "ITEM_LIGHT",
@@ -261,7 +273,8 @@
               |   value 1    unused
               |   value 2    hours of light available, 0 is dead, -1 or 999 is infinite            
               |   value 3    unused
-              |   value 4    unused\n"
+              |   value 4    unused
+              |"
     },
     {
       "keyword": "ITEM_STAFF_WAND",
@@ -273,7 +286,8 @@
               |
               |
               |An up-to-date list of spells can be obtained by typing:
-              |? SPELLS [ignore/attack/defend/self/object/all]\n"
+              |? SPELLS [ignore/attack/defend/self/object/all]
+              |"
     },
     {
       "keyword": "ITEM_SCROLL_POTION_PILL",
@@ -284,7 +298,8 @@
               |   value 4    unused
               |
               |An up-to-date list of spells can be obtained by typing:
-              |? SPELLS [ignore/attack/defend/self/object/all]\n"
+              |? SPELLS [ignore/attack/defend/self/object/all]
+              |"
     },
     {
       "keyword": "ITEM_ARMOR",
@@ -292,7 +307,8 @@
               |   value 1    ac bash
               |   value 2    ac slash
               |   value 3    ac exotic (magic)
-              |   value 4    unused\n"
+              |   value 4    unused
+              |"
     },
     {
       "keyword": "ITEM_WEAPON",
@@ -306,7 +322,8 @@
               |? WCLASS
               |help WEAPON_DICE
               |? WEAPON
-              |? WTYPE\n"
+              |? WTYPE
+              |"
     },
     {
       "keyword": "WEAPON_DICE",
@@ -323,7 +340,8 @@
               |       10:     4d5
               |       20:     5d5
               |       30:     5d7
-              |       50:     5d11\n"
+              |       50:     5d11
+              |"
     },
     {
       "keyword": "ITEM_CONTAINER",
@@ -334,7 +352,8 @@
               |   value 4    unused
               |
               |An up-to-date list of flags can be obtained by typing
-              |? CONTAINTER\n"
+              |? CONTAINTER
+              |"
     },
     {
       "keyword": "ITEM_DRINK",
@@ -345,7 +364,8 @@
               |   value 4    unused
               |
               |An up-to-date list of liquid types can be obtained by typing
-              |? LIQUID\n"
+              |? LIQUID
+              |"
     },
     {
       "keyword": "ITEM_FOOD",
@@ -353,7 +373,8 @@
               |   value 1    unused
               |   value 2    unused
               |   value 3    poisoned?
-              |   value 4    unused\n"
+              |   value 4    unused
+              |"
     },
     {
       "keyword": "ITEM_MONEY",
@@ -361,7 +382,8 @@
               |   value 1    unused
               |   value 2    unused
               |   value 3    unused
-              |   value 4    unused\n"
+              |   value 4    unused
+              |"
     }
   ]
 }}]
