@@ -383,7 +383,7 @@ void boot_db (void) {
     init_gsns ();
 
 #ifdef BASEMUD_IMPORT_JSON
- // db_import_json ();
+    db_import_json ();
 #else
     log_string ("Ignoring JSON files. "
         "Define BASEMUD_IMPORT_JSON in 'basemud.h' to enable.");
@@ -402,8 +402,6 @@ void boot_db (void) {
     /* Boot process is over(?) */
     in_boot_db = FALSE;
     convert_objects (); /* ROM OLC */
-
-    db_export_json (TRUE, NULL);
 
     area_update ();
     load_boards ();

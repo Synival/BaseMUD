@@ -157,14 +157,33 @@ void json_import_expect (const char *type, const JSON_T *json, ...) {
     }
 }
 
+char *json_string_append_newline (char *buf, size_t size) {
+    int len;
+
+    if (buf == NULL)
+        return NULL;
+    if ((len = strlen (buf)) + 1 >= size)
+        return buf;
+
+    buf[len + 0] = '\n';
+    buf[len + 1] = '\r';
+    buf[len + 2] = '\0';
+    return buf;
+}
+
 #define JGI(prop) JSON_GET_INT(json, prop)
 #define JGS(prop) JSON_GET_STR(json, prop, buf)
 #define JGB(prop) JSON_GET_BOOL(json, prop)
+
+#define JGS_NL(prop) \
+    (json_string_append_newline (JGS(prop), sizeof (buf)))
 
 #define READ_PROP_STR(obj_prop, json_prop) \
     (JSON_GET_STR(json, (json_prop), (obj_prop)))
 #define READ_PROP_STRP(obj_prop, json_prop) \
     (str_replace_dup (&(obj_prop), JGS (json_prop)))
+#define READ_PROP_STRP_NL(obj_prop, json_prop) \
+    (str_replace_dup (&(obj_prop), JGS_NL (json_prop)))
 #define READ_PROP_INT(obj_prop, json_prop) \
     ((obj_prop) = JGI (json_prop))
 #define READ_PROP_BOOL(obj_prop, json_prop) \
@@ -187,8 +206,7 @@ ROOM_INDEX_T *json_import_obj_room (const JSON_T *json) {
     int dir;
 
     json_import_expect ("room", json,
-        "area",        "anum",        "name",       "description",
-        "sector_type",
+        "area", "anum", "name", "description", "sector_type",
 
         "*owner",      "*room_flags", "*heal_rate", "*mana_rate",
         "*clan",       "*portal",     "*doors",     "*extra_description",
@@ -206,7 +224,7 @@ ROOM_INDEX_T *json_import_obj_room (const JSON_T *json) {
     READ_PROP_STRP (room->area_str,    "area");
     READ_PROP_INT  (room->anum,        "anum");
     READ_PROP_STRP (room->name,        "name");
-    READ_PROP_STRP (room->description, "description");
+    READ_PROP_STRP_NL (room->description, "description");
 
     READ_PROP_STR (buf, "sector_type");
     room->sector_type = sector_lookup (buf);
@@ -277,7 +295,7 @@ EXTRA_DESCR_T *json_import_obj_extra_descr (const JSON_T *json) {
     ed = extra_descr_new ();
 
     READ_PROP_STRP (ed->keyword,     "keyword");
-    READ_PROP_STRP (ed->description, "description");
+    READ_PROP_STRP_NL (ed->description, "description");
 
     NO_NULL_STR (ed->keyword);
     NO_NULL_STR (ed->description);
@@ -316,7 +334,7 @@ EXIT_T *json_import_obj_exit (const JSON_T *json, ROOM_INDEX_T *room,
         exit->room_anum = -1;
 
     READ_PROP_STRP  (exit->keyword,     "keyword");
-    READ_PROP_STRP  (exit->description, "description");
+    READ_PROP_STRP_NL (exit->description, "description");
     READ_PROP_FLAGS (exit->exit_flags,  "exit_flags", exit_flags);
 
     if ((sub = json_get (json, "key")) != NULL) {
@@ -543,8 +561,8 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
     READ_PROP_INT  (mob->anum,         "anum");
     READ_PROP_STRP (mob->name,         "name");
     READ_PROP_STRP (mob->short_descr,  "short_descr");
-    READ_PROP_STRP (mob->long_descr,   "long_descr");
-    READ_PROP_STRP (mob->description,  "description");
+    READ_PROP_STRP_NL (mob->long_descr,  "long_descr");
+    READ_PROP_STRP_NL (mob->description, "description");
 
     READ_PROP_STR (buf, "race");
     mob->race = lookup_backup (race_lookup_exact, buf,

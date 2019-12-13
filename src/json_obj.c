@@ -71,6 +71,13 @@ char *json_string_without_last_newline (const char *name, const char *prop,
     return buf;
 }
 
+JSON_T *json_prop_string_without_last_newline (JSON_T *json, const char *prop,
+    const char *obj_name, const char *value)
+{
+    return json_prop_string (json, prop, json_string_without_last_newline (
+        obj_name, prop, JSTR (value)));
+}
+
 JSON_PROP_FUN (obj_room, const ROOM_INDEX_T *);
 JSON_T *json_new_obj_room (const char *name, const ROOM_INDEX_T *room) {
     JSON_T *new, *sub;
@@ -87,9 +94,8 @@ JSON_T *json_new_obj_room (const char *name, const ROOM_INDEX_T *room) {
     json_prop_string  (new, "area",        room->area->name);
     json_prop_integer (new, "anum",        room->anum);
     json_prop_string  (new, "name",        JSTR (room->name));
-    json_prop_string  (new, "description",
-        json_string_without_last_newline (obj_name, "description",
-            JSTR (room->description)));
+    json_prop_string_without_last_newline (new, "description", obj_name,
+        room->description);
     json_prop_string  (new, "sector_type", sector_get_name(room->sector_type));
 
     if (json_not_blank (room->owner))
@@ -145,9 +151,8 @@ JSON_T *json_new_obj_extra_descr (const char *name, const EXTRA_DESCR_T *ed) {
     new = json_new_object (name, JSON_OBJ_EXTRA_DESCR);
 
     json_prop_string (new, "keyword",     JSTR (ed->keyword));
-    json_prop_string (new, "description",
-        json_string_without_last_newline (obj_name, "description",
-            JSTR (ed->description)));
+    json_prop_string_without_last_newline (new, "description", obj_name,
+        ed->description);
 
     return new;
 }
@@ -179,9 +184,8 @@ JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_T *from,
     if (json_not_blank (ex->keyword))
         json_prop_string (new, "keyword", JSTR (ex->keyword));
     if (json_not_blank (ex->description))
-        json_prop_string (new, "description",
-            json_string_without_last_newline (obj_name, "description",
-                JSTR (ex->description)));
+        json_prop_string_without_last_newline (new, "description", obj_name,
+            ex->description);
 
     if (ex->rs_flags != 0)
         json_prop_string (new, "exit_flags", JBITSF (exit_flags, ex->rs_flags));
@@ -244,12 +248,10 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob) {
     json_prop_integer (new, "anum",        mob->anum);
     json_prop_string  (new, "name",        JSTR (mob->name));
     json_prop_string  (new, "short_descr", JSTR (mob->short_descr));
-    json_prop_string  (new, "long_descr",
-        json_string_without_last_newline (obj_name, "long_descr",
-            JSTR (mob->long_descr)));
-    json_prop_string  (new, "description",
-        json_string_without_last_newline (obj_name, "description",
-            JSTR (mob->description)));
+    json_prop_string_without_last_newline (new, "long_descr", obj_name,
+        mob->long_descr);
+    json_prop_string_without_last_newline (new, "description", obj_name,
+        mob->description);
     json_prop_string  (new, "race",        JSTR (race_get_name (mob->race)));
 
     if (mob->material != MATERIAL_GENERIC)
