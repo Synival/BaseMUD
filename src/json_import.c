@@ -218,9 +218,6 @@ ROOM_INDEX_T *json_import_obj_room (const JSON_T *json) {
     /* TODO: check for duplicates! */
     room = room_index_new ();
 
-    room->heal_rate = 100;
-    room->mana_rate = 100;
-
     READ_PROP_STRP (room->area_str,    "area");
     READ_PROP_INT  (room->anum,        "anum");
     READ_PROP_STRP (room->name,        "name");
@@ -555,8 +552,6 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
     /* TODO: check for duplicates! */
     mob = mob_index_new ();
 
-    mob->new_format  = TRUE;
-
     READ_PROP_STRP (mob->area_str,     "area");
     READ_PROP_INT  (mob->anum,         "anum");
     READ_PROP_STRP (mob->name,         "name");
@@ -820,6 +815,7 @@ AREA_T *json_import_obj_area (const JSON_T *json) {
 
     /* TODO: check for duplicates! */
     area = area_new ();
+
     READ_PROP_STRP (area->name,       "name");
     READ_PROP_STRP (area->filename,   "filename");
     READ_PROP_STRP (area->title,      "title");
@@ -861,6 +857,7 @@ SOCIAL_T *json_import_obj_social (const JSON_T *json) {
 
     /* TODO: check for duplicates! */
     social = social_new ();
+
     READ_PROP_STR  (social->name,           "name");
     READ_PROP_STRP (social->char_no_arg,    "char_no_arg");
     READ_PROP_STRP (social->others_no_arg,  "others_no_arg");
@@ -883,6 +880,7 @@ PORTAL_T *json_import_obj_portal (const JSON_T *json) {
     );
 
     portal = portal_new ();
+
     READ_PROP_BOOL (portal->two_way,   "two-way");
     READ_PROP_STRP (portal->name_from, "from");
     READ_PROP_STRP (portal->name_to,   "to");
@@ -902,6 +900,7 @@ HELP_AREA_T *json_import_obj_help_area (const JSON_T *json) {
 
     /* TODO: check for duplicates! */
     area = had_new ();
+
     READ_PROP_STRP (area->area_str, "area");
     READ_PROP_STRP (area->name,     "name");
     READ_PROP_STRP (area->filename, "filename");
@@ -934,6 +933,7 @@ HELP_T *json_import_obj_help (const JSON_T *json) {
 
     /* TODO: check for duplicates! */
     help = help_new ();
+
     READ_PROP_INT  (help->level,   "level");
     READ_PROP_STRP (help->keyword, "keyword");
     READ_PROP_STRP (help->text,    "text");
@@ -958,6 +958,7 @@ AFFECT_T *json_import_obj_affect (JSON_T *json) {
     );
 
     affect = affect_new ();
+
     READ_PROP_FLAGS (affect->apply,    "apply", affect_apply_types);
     READ_PROP_INT   (affect->level,    "level");
     READ_PROP_INT   (affect->modifier, "modifier");
