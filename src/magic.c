@@ -234,7 +234,7 @@ bool spell_fight_back_if_possible (CHAR_T *ch, CHAR_T *victim,
         vch_next = vch->next_in_room;
         if (victim == vch && victim->fighting == NULL) {
             check_killer (victim, ch);
-            multi_hit (victim, ch, TYPE_UNDEFINED);
+            multi_hit (victim, ch, ATTACK_DEFAULT);
             return TRUE;
         }
     }

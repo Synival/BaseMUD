@@ -549,7 +549,7 @@ void damage_if_wounded (CHAR_T *ch) {
             return;
     }
 
-    damage_quiet (ch, ch, (ch->level / div) + 1, TYPE_UNDEFINED, DAM_NONE);
+    damage_quiet (ch, ch, (ch->level / div) + 1, ATTACK_DEFAULT, DAM_NONE);
 }
 
 /* Update all chars, including mobs. */
@@ -936,7 +936,7 @@ void aggr_update (void) {
             if (victim == NULL)
                 continue;
 
-            multi_hit (ch, victim, TYPE_UNDEFINED);
+            multi_hit (ch, victim, ATTACK_DEFAULT);
         }
     }
 }
@@ -955,7 +955,7 @@ void violence_update (void) {
             continue;
 
         if (IS_AWAKE (ch) && ch->in_room == victim->in_room)
-            multi_hit (ch, victim, TYPE_UNDEFINED);
+            multi_hit (ch, victim, ATTACK_DEFAULT);
         else
             stop_fighting (ch, FALSE);
 

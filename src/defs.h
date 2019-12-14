@@ -352,8 +352,15 @@
 /* Types of attacks.
  * Must be non-overlapping with spell/skill types,
  * but may be arbitrary beyond that. */
-#define TYPE_UNDEFINED   -1
-#define TYPE_HIT       1000
+#define ATTACK_DEFAULT     -1
+#define ATTACK_NONE         0
+#define ATTACK_SLASH        3  /* TODO: don't hard-code */
+#define ATTACK_POUND        7  /* TODO: don't hard-code */
+#define ATTACK_PIERCE       11 /* TODO: don't hard-code */
+#define ATTACK_PUNCH        17 /* TODO: don't hard-code */
+
+/* Internal flag used to designate non-skill attacks. */
+#define ATTACK_FIGHTING     1000
 
 /* Target types. */
 #define TAR_IGNORE          0

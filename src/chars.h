@@ -121,6 +121,7 @@ bool char_has_available_wear_flag (CHAR_T *ch, flag_t wear_flag);
 
 /* Getter functions. */
 int char_get_vnum (CHAR_T *ch);
+OBJ_T *char_get_weapon (CHAR_T *ch);
 int char_get_weapon_sn (CHAR_T *ch);
 int char_get_weapon_skill (CHAR_T *ch, int sn);
 int char_get_trust (CHAR_T *ch);

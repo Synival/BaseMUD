@@ -219,14 +219,14 @@ void check_assist (CHAR_T *ch, CHAR_T *victim) {
         /* check players or charmed NPCs */
         if (!IS_NPC (ch) || IS_AFFECTED (ch, AFF_CHARM)) {
             if (should_assist_group (rch, ch, victim))
-                multi_hit (rch, victim, TYPE_UNDEFINED);
+                multi_hit (rch, victim, ATTACK_DEFAULT);
             continue;
         }
 
         /* quick check for ASSIST_PLAYER */
         if (npc_should_assist_player (rch, ch, victim)) {
             do_function (rch, &do_emote, "screams and attacks!");
-            multi_hit (rch, victim, TYPE_UNDEFINED);
+            multi_hit (rch, victim, ATTACK_DEFAULT);
             continue;
         }
 
@@ -240,7 +240,7 @@ void check_assist (CHAR_T *ch, CHAR_T *victim) {
 
             /* attack! */
             do_function (rch, &do_emote, "screams and attacks!");
-            multi_hit (rch, target, TYPE_UNDEFINED);
+            multi_hit (rch, target, ATTACK_DEFAULT);
         }
     }
 }
@@ -400,7 +400,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
     OBJ_T *wield;
     char *damage_adj = NULL;
     int victim_ac, thac0, thac0_00, thac0_32;
-    int dam, dam_type, diceroll, missed;
+    int dam, dam_type, diceroll, missed, fight_attack;
     int sn, skill, skill_val;
     bool result;
 
@@ -415,26 +415,28 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
     if (victim->position == POS_DEAD || ch->in_room != victim->in_room)
         return;
 
-    /* Figure out the type of damage message. */
-    wield = char_get_eq_by_wear_loc (ch, WEAR_WIELD);
-    if (dt == TYPE_UNDEFINED) {
-        dt = TYPE_HIT;
-        if (wield != NULL && wield->item_type == ITEM_WEAPON)
-            dt += wield->v.weapon.attack_type;
-        else
-            dt += ch->attack_type;
-    }
+    /* Determine if there is a weapon in use. */
+    wield = char_get_weapon (ch);
+    fight_attack = (wield) ? wield->v.weapon.attack_type : ch->attack_type;
 
-    if (dt < TYPE_HIT) {
-        int attack_type = (wield)
-            ? wield->v.weapon.attack_type
-            : ch->attack_type;
-        dam_type = attack_table[attack_type].dam_type;
+    /* If the attack is 'ATTACK_DEFAULT', use a non-skill 'fight' attack with
+     * the character's weapon or, if not available, the innate attack. */
+    if (dt == ATTACK_DEFAULT) {
+        dt = ATTACK_FIGHTING + fight_attack;
+        dam_type = attack_table[fight_attack].dam_type;
     }
+    /* If the attack is an explicit type (slash, pierce, etc) and a non-skill
+     * (greater than or equal to ATTACK_FIGHTING), use the explicitly-defined
+     * damage type in the attack table. */
+    else if (dt >= ATTACK_FIGHTING)
+        dam_type = attack_table[dt - ATTACK_FIGHTING].dam_type;
+    /* If the attack is a skill, use the character's weapon/innate attack to
+     * determine the type of damage. */
     else
-        dam_type = attack_table[dt - TYPE_HIT].dam_type;
+        dam_type = attack_table[fight_attack].dam_type;
 
-    if (dam_type == -1)
+    /* Default to bashing if no damage type is available. */
+    if (dam_type < 0)
         dam_type = DAM_BASH;
 
     /* get the weapon skill */
@@ -666,7 +668,7 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
         return FALSE;
 
     /* Stop up any residual loopholes. */
-    if (dam > 1200 && dt >= TYPE_HIT) {
+    if (dam > 1200 && dt >= ATTACK_FIGHTING) {
         bug ("damage: %d: more than 1200 points!", dam);
         dam = 1200;
         if (!IS_IMMORTAL (ch)) {
@@ -733,7 +735,7 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
         dam -= dam / 4;
 
     /* Check for parry, and dodge. */
-    if (dt >= TYPE_HIT && ch != victim) {
+    if (dt >= ATTACK_FIGHTING && ch != victim) {
         if (check_parry (ch, victim))
             return FALSE;
         if (check_dodge (ch, victim))
@@ -1726,9 +1728,11 @@ void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt,
 #endif
     else { vs = "do UNSPEAKABLE things to"; vp = "does UNSPEAKABLE things to"; }
 
+    /* Use an exclamation point for big attacks! */
     punct = (dam_percent <= 45) ? '.' : '!';
 
-    if (dt == TYPE_HIT) {
+    /* Special message for non-skill damage without an specific attack. */
+    if (dt == ATTACK_FIGHTING) {
         if (damage_adj == NULL)
             strcpy (buf_hit, "hit");
         else
@@ -1745,21 +1749,28 @@ void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt,
             sprintf (buf3, "{3$n %s $N with $s %s%s%c{x", vp, str, attack, punct);
         }
     }
+    /* No more special cases - determine messages. */
     else {
+        /* If this is a skill, use the skill's noun. */
         if (dt >= 0 && dt < SKILL_MAX)
             attack = skill_table[dt].noun_damage;
-        else if (dt >= TYPE_HIT && dt < TYPE_HIT + ATTACK_MAX)
-            attack = attack_table[dt - TYPE_HIT].noun;
+        /* If this is an explicit attack type, use the attack's noun. */
+        else if (dt >= ATTACK_FIGHTING && dt < ATTACK_FIGHTING + ATTACK_MAX)
+            attack = attack_table[dt - ATTACK_FIGHTING].noun;
+        /* Unknown attack type - report it. */
         else {
             bug ("dam_message: bad dt %d.", dt);
-            dt = TYPE_HIT;
+            dt = ATTACK_FIGHTING;
             attack = attack_table[0].name;
         }
-        if (damage_adj != NULL) {
+
+        /* Was an adjective applied to the attack type? (heavy, strong, etc) */
+        if (damage_adj != NULL && damage_adj[0] != '\0') {
             sprintf (buf_hit, "%s %s", damage_adj, attack);
             attack = buf_hit;
         }
 
+        /* Special messages for immunity. */
         if (immune) {
             if (ch == victim) {
                 sprintf (buf1, "{2Luckily, you are immune to that.{x");
@@ -1767,11 +1778,11 @@ void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt,
             }
             else {
                 sprintf (buf1, "{2$N is unaffected by your %s!{x", attack);
-                sprintf (buf2, "{4$n's %s is powerless against you.{x",
-                         attack);
+                sprintf (buf2, "{4$n's %s is powerless against you.{x", attack);
                 sprintf (buf3, "{3$N is unaffected by $n's %s!{x", attack);
             }
         }
+        /* The attack was successful - show a message. */
         else {
             if (ch == victim) {
                 sprintf (buf1, "{2Your %s%s %s you%c{x", str, attack, vp, punct);
@@ -1785,15 +1796,12 @@ void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt,
         }
     }
 
-    if (ch == victim) {
-        act (buf1, ch, NULL, NULL, TO_CHAR);
-        act (buf3, ch, NULL, NULL, TO_NOTCHAR);
-    }
-    else {
-        act (buf1, ch, NULL, victim, TO_CHAR);
-        act (buf2, ch, NULL, victim, TO_VICT);
-        act (buf3, ch, NULL, victim, TO_OTHERS);
-    }
+    /* Show different messages depending on whether the attack was
+     * self-inflicted or not. */
+    if (ch == victim)
+        act2 (buf1, buf3, ch, NULL, NULL, 0, POS_RESTING);
+    else
+        act3 (buf1, buf2, buf3, ch, NULL, victim, 0, POS_RESTING);
 }
 
 /* Disarm a creature.

@@ -109,11 +109,10 @@ CHAR_T *char_create_mobile (MOB_INDEX_T *mob_index) {
         mob->attack_type = mob_index->attack_type;
 
         if (mob->attack_type == 0) {
-            /* TODO: remove these magic numbers!! */
             switch (number_range (1, 3)) {
-                case (1): mob->attack_type = 3;  break; /* slash */
-                case (2): mob->attack_type = 7;  break; /* pound */
-                case (3): mob->attack_type = 11; break; /* pierce */
+                case 1: mob->attack_type = ATTACK_SLASH;  break;
+                case 2: mob->attack_type = ATTACK_POUND;  break;
+                case 3: mob->attack_type = ATTACK_PIERCE; break;
             }
         }
         for (i = 0; i < 4; i++)
@@ -197,10 +196,9 @@ CHAR_T *char_create_mobile (MOB_INDEX_T *mob_index) {
         mob->max_mana    = 100 + dice (mob->level, 10);
         mob->mana        = mob->max_mana;
         switch (number_range (1, 3)) {
-            /* TODO: remove these magic numbers!! */
-            case (1): mob->attack_type = 3;  break; /* slash */
-            case (2): mob->attack_type = 7;  break; /* pound */
-            case (3): mob->attack_type = 11; break; /* pierce */
+            case 1: mob->attack_type = ATTACK_SLASH;  break;
+            case 2: mob->attack_type = ATTACK_POUND;  break;
+            case 3: mob->attack_type = ATTACK_PIERCE; break;
         }
         for (i = 0; i < 3; i++)
             mob->armor[i] = interpolate (mob->level, 100, -100);
@@ -310,13 +308,22 @@ bool char_in_same_clan (CHAR_T *ch, CHAR_T *victim) {
         return (ch->clan == victim->clan);
 }
 
+OBJ_T *char_get_weapon (CHAR_T *ch) {
+    OBJ_T *wield;
+
+    wield = char_get_eq_by_wear_loc (ch, WEAR_WIELD);
+    if (wield == NULL || wield->item_type != ITEM_WEAPON)
+        return NULL;
+    return wield;
+}
+
 /* for returning weapon information */
 int char_get_weapon_sn (CHAR_T *ch) {
     OBJ_T *wield;
     int sn;
 
-    wield = char_get_eq_by_wear_loc (ch, WEAR_WIELD);
-    if (wield == NULL || wield->item_type != ITEM_WEAPON)
+    wield = char_get_weapon (ch);
+    if (wield == NULL)
         sn = gsn_hand_to_hand;
     else {
         switch (wield->v.weapon.weapon_type) {

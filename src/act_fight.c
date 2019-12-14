@@ -425,7 +425,7 @@ DEFINE_DO_FUN (do_kill) {
 
     if (victim == ch) {
         send_to_char ("You hit yourself.  Ouch!\n\r", ch);
-        multi_hit (ch, ch, TYPE_UNDEFINED);
+        multi_hit (ch, ch, ATTACK_DEFAULT);
         return;
     }
     if (do_filter_can_attack (ch, victim))
@@ -439,7 +439,7 @@ DEFINE_DO_FUN (do_kill) {
 
     WAIT_STATE (ch, 1 * PULSE_VIOLENCE);
     check_killer (ch, victim);
-    multi_hit (ch, victim, TYPE_UNDEFINED);
+    multi_hit (ch, victim, ATTACK_DEFAULT);
 }
 
 DEFINE_DO_FUN (do_murde) {
@@ -477,7 +477,7 @@ DEFINE_DO_FUN (do_murder) {
 
     do_function (victim, &do_yell, buf);
     check_killer (ch, victim);
-    multi_hit (ch, victim, TYPE_UNDEFINED);
+    multi_hit (ch, victim, ATTACK_DEFAULT);
 }
 
 DEFINE_DO_FUN (do_backstab) {

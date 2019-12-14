@@ -580,8 +580,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
             ch->race = race_lookup ("human");
 
         ch->size = pc_race_table[ch->race].size;
-        /* TODO: remove this magic number!! */
-        ch->attack_type = 17; /*punch */
+        ch->attack_type = ATTACK_PUNCH;
 
         for (i = 0; i < 5; i++) {
             if (pc_race_table[ch->race].skills[i] == NULL)

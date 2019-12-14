@@ -107,7 +107,7 @@ bool spec_troll_member (CHAR_T *ch) {
 
     if (message != NULL)
         act (message, ch, NULL, victim, TO_ALL);
-    multi_hit (ch, victim, TYPE_UNDEFINED);
+    multi_hit (ch, victim, ATTACK_DEFAULT);
     return TRUE;
 }
 
@@ -168,7 +168,7 @@ bool spec_ogre_member (CHAR_T *ch) {
 
     if (message != NULL)
         act (message, ch, NULL, victim, TO_ALL);
-    multi_hit (ch, victim, TYPE_UNDEFINED);
+    multi_hit (ch, victim, ATTACK_DEFAULT);
     return TRUE;
 }
 
@@ -248,7 +248,7 @@ bool spec_patrolman (CHAR_T *ch) {
     if (message != NULL)
         act (message, ch, NULL, NULL, TO_ALL);
 
-    multi_hit (ch, victim, TYPE_UNDEFINED);
+    multi_hit (ch, victim, ATTACK_DEFAULT);
     return TRUE;
 }
 
@@ -613,7 +613,7 @@ bool spec_executioner (CHAR_T *ch) {
         victim->name, crime);
     REMOVE_BIT (ch->comm, COMM_NOSHOUT);
     do_function (ch, &do_yell, buf);
-    multi_hit (ch, victim, TYPE_UNDEFINED);
+    multi_hit (ch, victim, ATTACK_DEFAULT);
     return TRUE;
 }
 
@@ -686,13 +686,13 @@ bool spec_guard (CHAR_T *ch) {
             victim->name, crime);
         REMOVE_BIT (ch->comm, COMM_NOSHOUT);
         do_function (ch, &do_yell, buf);
-        multi_hit (ch, victim, TYPE_UNDEFINED);
+        multi_hit (ch, victim, ATTACK_DEFAULT);
         return TRUE;
     }
     if (ech != NULL) {
         act ("$n screams 'PROTECT THE INNOCENT!!  BANZAI!!",
              ch, NULL, NULL, TO_NOTCHAR);
-        multi_hit (ch, ech, TYPE_UNDEFINED);
+        multi_hit (ch, ech, ATTACK_DEFAULT);
         return TRUE;
     }
 

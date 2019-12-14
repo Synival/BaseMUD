@@ -601,10 +601,9 @@ void convert_mobile (MOB_INDEX_T *mob_index) {
     mob_index->damage.bonus  = bonus;
 
     switch (number_range (1, 3)) {
-        /* TODO: remove these magic numbers!! */
-        case (1): mob_index->attack_type = 3;  break; /* slash  */
-        case (2): mob_index->attack_type = 7;  break; /* pound  */
-        case (3): mob_index->attack_type = 11; break; /* pierce */
+        case 1: mob_index->attack_type = ATTACK_SLASH;  break;
+        case 2: mob_index->attack_type = ATTACK_POUND;  break;
+        case 3: mob_index->attack_type = ATTACK_PIERCE; break;
     }
 
     for (i = 0; i < 3; i++)

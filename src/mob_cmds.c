@@ -222,7 +222,7 @@ DEFINE_DO_FUN (do_mpkill) {
     BAIL_IF_BUG (IS_AFFECTED (ch, AFF_CHARM) && ch->master == victim,
         "MpKill - Charmed mob attacking master from vnum %d.", CH_VNUM (ch));
 
-    multi_hit (ch, victim, TYPE_UNDEFINED);
+    multi_hit (ch, victim, ATTACK_DEFAULT);
 }
 
 /* Lets the mobile assist another mob or player
@@ -240,7 +240,7 @@ DEFINE_DO_FUN (do_mpassist) {
     if (victim == ch || ch->fighting != NULL || victim->fighting == NULL)
         return;
 
-    multi_hit (ch, victim->fighting, TYPE_UNDEFINED);
+    multi_hit (ch, victim->fighting, ATTACK_DEFAULT);
 }
 
 
@@ -737,7 +737,7 @@ DEFINE_DO_FUN (do_mpdamage) {
                 damage_quiet (victim, victim,
                     kill ? number_range (low, high)
                           : UMIN (victim->hit, number_range (low, high)),
-                    TYPE_UNDEFINED, DAM_NONE);
+                    ATTACK_DEFAULT, DAM_NONE);
             }
         }
     }
@@ -745,7 +745,7 @@ DEFINE_DO_FUN (do_mpdamage) {
         damage_quiet (victim, victim,
             kill ? number_range (low, high)
                   : UMIN (victim->hit, number_range (low, high)),
-            TYPE_UNDEFINED, DAM_NONE);
+            ATTACK_DEFAULT, DAM_NONE);
     }
 }
 

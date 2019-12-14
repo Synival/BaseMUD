@@ -1,0 +1,11 @@
+{"table": {
+  "name": "pose_table",
+  "description": "Poses based on class and level",
+  "type": "table",
+  "values": [
+    {},
+    {},
+    {},
+    {}
+  ]
+}}

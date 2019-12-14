@@ -1210,7 +1210,7 @@ DEFINE_DO_FUN (do_steal) {
         if (!IS_NPC (ch)) {
             if (IS_NPC (victim)) {
                 check_improve (ch, gsn_steal, FALSE, 2);
-                multi_hit (victim, ch, TYPE_UNDEFINED);
+                multi_hit (victim, ch, ATTACK_DEFAULT);
             }
             else {
                 wiznetf (ch, NULL, WIZ_FLAGS, 0, 0,
