@@ -1,0 +1,11 @@
+{"table": {
+  "name": "sky_table",
+  "description": "Skies based on the weather.",
+  "type": "table",
+  "values": [
+    {},
+    {},
+    {},
+    {}
+  ]
+}}

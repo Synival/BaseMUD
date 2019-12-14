@@ -1,0 +1,157 @@
+{"table": {
+  "name": "affect_flags",
+  "description": "Mobile affects.",
+  "type": "flags",
+  "values": [
+    {
+      "name": "blind",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "invisible",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "detect_evil",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "detect_invis",
+      "bit": 8,
+      "settable": true
+    },
+    {
+      "name": "detect_magic",
+      "bit": 16,
+      "settable": true
+    },
+    {
+      "name": "detect_hidden",
+      "bit": 32,
+      "settable": true
+    },
+    {
+      "name": "detect_good",
+      "bit": 64,
+      "settable": true
+    },
+    {
+      "name": "sanctuary",
+      "bit": 128,
+      "settable": true
+    },
+    {
+      "name": "faerie_fire",
+      "bit": 256,
+      "settable": true
+    },
+    {
+      "name": "infrared",
+      "bit": 512,
+      "settable": true
+    },
+    {
+      "name": "curse",
+      "bit": 1024,
+      "settable": true
+    },
+    {
+      "name": "unused_aff_1",
+      "bit": 2048,
+      "settable": false
+    },
+    {
+      "name": "poison",
+      "bit": 4096,
+      "settable": true
+    },
+    {
+      "name": "protect_evil",
+      "bit": 8192,
+      "settable": true
+    },
+    {
+      "name": "protect_good",
+      "bit": 16384,
+      "settable": true
+    },
+    {
+      "name": "sneak",
+      "bit": 32768,
+      "settable": true
+    },
+    {
+      "name": "hide",
+      "bit": 65536,
+      "settable": true
+    },
+    {
+      "name": "sleep",
+      "bit": 131072,
+      "settable": true
+    },
+    {
+      "name": "charm",
+      "bit": 262144,
+      "settable": true
+    },
+    {
+      "name": "flying",
+      "bit": 524288,
+      "settable": true
+    },
+    {
+      "name": "pass_door",
+      "bit": 1048576,
+      "settable": true
+    },
+    {
+      "name": "haste",
+      "bit": 2097152,
+      "settable": true
+    },
+    {
+      "name": "calm",
+      "bit": 4194304,
+      "settable": true
+    },
+    {
+      "name": "plague",
+      "bit": 8388608,
+      "settable": true
+    },
+    {
+      "name": "weaken",
+      "bit": 16777216,
+      "settable": true
+    },
+    {
+      "name": "dark_vision",
+      "bit": 33554432,
+      "settable": true
+    },
+    {
+      "name": "berserk",
+      "bit": 67108864,
+      "settable": true
+    },
+    {
+      "name": "swim",
+      "bit": 134217728,
+      "settable": true
+    },
+    {
+      "name": "regeneration",
+      "bit": 268435456,
+      "settable": true
+    },
+    {
+      "name": "slow",
+      "bit": 536870912,
+      "settable": true
+    }
+  ]
+}}

@@ -36,6 +36,9 @@
     void fun (int sn, int level, CHAR_T *ch, void *vo, int target, \
               const char *target_name)
 
+#define DEFINE_TABLE_JSON_FUN(fun) \
+    JSON_T *fun (const void *obj)
+
 /* Short scalar types.
  * Diavolo reports AIX compiler has bugs with short types. */
 #if !defined(FALSE)

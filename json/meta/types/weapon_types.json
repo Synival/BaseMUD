@@ -1,0 +1,52 @@
+{"table": {
+  "name": "weapon_types",
+  "description": "Weapon classes.",
+  "type": "types",
+  "values": [
+    {
+      "name": "exotic",
+      "bit": 0,
+      "settable": true
+    },
+    {
+      "name": "sword",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "dagger",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "spear",
+      "bit": 3,
+      "settable": true
+    },
+    {
+      "name": "mace",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "axe",
+      "bit": 5,
+      "settable": true
+    },
+    {
+      "name": "flail",
+      "bit": 6,
+      "settable": true
+    },
+    {
+      "name": "whip",
+      "bit": 7,
+      "settable": true
+    },
+    {
+      "name": "polearm",
+      "bit": 8,
+      "settable": true
+    }
+  ]
+}}

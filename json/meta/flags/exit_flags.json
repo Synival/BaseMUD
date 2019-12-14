@@ -1,0 +1,67 @@
+{"table": {
+  "name": "exit_flags",
+  "description": "Exit types.",
+  "type": "flags",
+  "values": [
+    {
+      "name": "door",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "closed",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "locked",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "unused_exit_1",
+      "bit": 8,
+      "settable": false
+    },
+    {
+      "name": "unused_exit_2",
+      "bit": 16,
+      "settable": false
+    },
+    {
+      "name": "pickproof",
+      "bit": 32,
+      "settable": true
+    },
+    {
+      "name": "nopass",
+      "bit": 64,
+      "settable": true
+    },
+    {
+      "name": "easy",
+      "bit": 128,
+      "settable": true
+    },
+    {
+      "name": "hard",
+      "bit": 256,
+      "settable": true
+    },
+    {
+      "name": "infuriating",
+      "bit": 512,
+      "settable": true
+    },
+    {
+      "name": "noclose",
+      "bit": 1024,
+      "settable": true
+    },
+    {
+      "name": "nolock",
+      "bit": 2048,
+      "settable": true
+    }
+  ]
+}}

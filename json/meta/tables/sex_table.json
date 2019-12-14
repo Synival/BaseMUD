@@ -1,0 +1,23 @@
+{"table": {
+  "name": "sex_table",
+  "description": "Gender settings.",
+  "type": "table",
+  "values": [
+    {
+      "sex": 0,
+      "name": "neutral"
+    },
+    {
+      "sex": 1,
+      "name": "male"
+    },
+    {
+      "sex": 2,
+      "name": "female"
+    },
+    {
+      "sex": 3,
+      "name": "either"
+    }
+  ]
+}}

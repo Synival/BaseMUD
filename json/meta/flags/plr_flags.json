@@ -1,0 +1,142 @@
+{"table": {
+  "name": "plr_flags",
+  "description": "Player flags.",
+  "type": "flags",
+  "values": [
+    {
+      "name": "!npc!",
+      "bit": 1,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_1",
+      "bit": 2,
+      "settable": false
+    },
+    {
+      "name": "autoassist",
+      "bit": 4,
+      "settable": false
+    },
+    {
+      "name": "autoexit",
+      "bit": 8,
+      "settable": false
+    },
+    {
+      "name": "autoloot",
+      "bit": 16,
+      "settable": false
+    },
+    {
+      "name": "autosac",
+      "bit": 32,
+      "settable": false
+    },
+    {
+      "name": "autogold",
+      "bit": 64,
+      "settable": false
+    },
+    {
+      "name": "autosplit",
+      "bit": 128,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_2",
+      "bit": 256,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_3",
+      "bit": 512,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_4",
+      "bit": 1024,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_5",
+      "bit": 2048,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_6",
+      "bit": 4096,
+      "settable": false
+    },
+    {
+      "name": "holylight",
+      "bit": 8192,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_7",
+      "bit": 16384,
+      "settable": false
+    },
+    {
+      "name": "can_loot",
+      "bit": 32768,
+      "settable": false
+    },
+    {
+      "name": "nosummon",
+      "bit": 65536,
+      "settable": false
+    },
+    {
+      "name": "nofollow",
+      "bit": 131072,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_8",
+      "bit": 262144,
+      "settable": false
+    },
+    {
+      "name": "colour",
+      "bit": 524288,
+      "settable": false
+    },
+    {
+      "name": "permit",
+      "bit": 1048576,
+      "settable": true
+    },
+    {
+      "name": "unused_plr_9",
+      "bit": 2097152,
+      "settable": false
+    },
+    {
+      "name": "log",
+      "bit": 4194304,
+      "settable": false
+    },
+    {
+      "name": "deny",
+      "bit": 8388608,
+      "settable": false
+    },
+    {
+      "name": "freeze",
+      "bit": 16777216,
+      "settable": false
+    },
+    {
+      "name": "thief",
+      "bit": 33554432,
+      "settable": false
+    },
+    {
+      "name": "killer",
+      "bit": 67108864,
+      "settable": false
+    }
+  ]
+}}

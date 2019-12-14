@@ -1,0 +1,132 @@
+{"table": {
+  "name": "part_flags",
+  "description": "Mobile body parts.",
+  "type": "flags",
+  "values": [
+    {
+      "name": "head",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "arms",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "legs",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "heart",
+      "bit": 8,
+      "settable": true
+    },
+    {
+      "name": "brains",
+      "bit": 16,
+      "settable": true
+    },
+    {
+      "name": "guts",
+      "bit": 32,
+      "settable": true
+    },
+    {
+      "name": "hands",
+      "bit": 64,
+      "settable": true
+    },
+    {
+      "name": "feet",
+      "bit": 128,
+      "settable": true
+    },
+    {
+      "name": "fingers",
+      "bit": 256,
+      "settable": true
+    },
+    {
+      "name": "ear",
+      "bit": 512,
+      "settable": true
+    },
+    {
+      "name": "eye",
+      "bit": 1024,
+      "settable": true
+    },
+    {
+      "name": "long_tongue",
+      "bit": 2048,
+      "settable": true
+    },
+    {
+      "name": "eyestalks",
+      "bit": 4096,
+      "settable": true
+    },
+    {
+      "name": "tentacles",
+      "bit": 8192,
+      "settable": true
+    },
+    {
+      "name": "fins",
+      "bit": 16384,
+      "settable": true
+    },
+    {
+      "name": "wings",
+      "bit": 32768,
+      "settable": true
+    },
+    {
+      "name": "tail",
+      "bit": 65536,
+      "settable": true
+    },
+    {
+      "name": "unused_part_1",
+      "bit": 131072,
+      "settable": false
+    },
+    {
+      "name": "unused_part_2",
+      "bit": 262144,
+      "settable": false
+    },
+    {
+      "name": "unused_part_3",
+      "bit": 524288,
+      "settable": false
+    },
+    {
+      "name": "claws",
+      "bit": 1048576,
+      "settable": true
+    },
+    {
+      "name": "fangs",
+      "bit": 2097152,
+      "settable": true
+    },
+    {
+      "name": "horns",
+      "bit": 4194304,
+      "settable": true
+    },
+    {
+      "name": "scales",
+      "bit": 8388608,
+      "settable": true
+    },
+    {
+      "name": "tusks",
+      "bit": 16777216,
+      "settable": true
+    }
+  ]
+}}

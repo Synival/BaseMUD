@@ -1,0 +1,152 @@
+{"table": {
+  "name": "form_flags",
+  "description": "Mobile body form.",
+  "type": "flags",
+  "values": [
+    {
+      "name": "edible",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "poison",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "magical",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "instant_decay",
+      "bit": 8,
+      "settable": true
+    },
+    {
+      "name": "other",
+      "bit": 16,
+      "settable": true
+    },
+    {
+      "name": "unused_form_1",
+      "bit": 32,
+      "settable": false
+    },
+    {
+      "name": "animal",
+      "bit": 64,
+      "settable": true
+    },
+    {
+      "name": "sentient",
+      "bit": 128,
+      "settable": true
+    },
+    {
+      "name": "undead",
+      "bit": 256,
+      "settable": true
+    },
+    {
+      "name": "construct",
+      "bit": 512,
+      "settable": true
+    },
+    {
+      "name": "mist",
+      "bit": 1024,
+      "settable": true
+    },
+    {
+      "name": "intangible",
+      "bit": 2048,
+      "settable": true
+    },
+    {
+      "name": "biped",
+      "bit": 4096,
+      "settable": true
+    },
+    {
+      "name": "centaur",
+      "bit": 8192,
+      "settable": true
+    },
+    {
+      "name": "insect",
+      "bit": 16384,
+      "settable": true
+    },
+    {
+      "name": "spider",
+      "bit": 32768,
+      "settable": true
+    },
+    {
+      "name": "crustacean",
+      "bit": 65536,
+      "settable": true
+    },
+    {
+      "name": "worm",
+      "bit": 131072,
+      "settable": true
+    },
+    {
+      "name": "blob",
+      "bit": 262144,
+      "settable": true
+    },
+    {
+      "name": "unused_form_2",
+      "bit": 524288,
+      "settable": false
+    },
+    {
+      "name": "unused_form_3",
+      "bit": 1048576,
+      "settable": false
+    },
+    {
+      "name": "mammal",
+      "bit": 2097152,
+      "settable": true
+    },
+    {
+      "name": "bird",
+      "bit": 4194304,
+      "settable": true
+    },
+    {
+      "name": "reptile",
+      "bit": 8388608,
+      "settable": true
+    },
+    {
+      "name": "snake",
+      "bit": 16777216,
+      "settable": true
+    },
+    {
+      "name": "dragon",
+      "bit": 33554432,
+      "settable": true
+    },
+    {
+      "name": "amphibian",
+      "bit": 67108864,
+      "settable": true
+    },
+    {
+      "name": "fish",
+      "bit": 134217728,
+      "settable": true
+    },
+    {
+      "name": "cold_blood",
+      "bit": 268435456,
+      "settable": true
+    }
+  ]
+}}

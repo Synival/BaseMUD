@@ -1,0 +1,11 @@
+{"table": {
+  "name": "sun_table",
+  "description": "Positions of the sun.",
+  "type": "table",
+  "values": [
+    {},
+    {},
+    {},
+    {}
+  ]
+}}

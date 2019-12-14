@@ -1,0 +1,52 @@
+{"table": {
+  "name": "position_table",
+  "description": "Character positions.",
+  "type": "table",
+  "values": [
+    {
+      "position": 0,
+      "name": "dead",
+      "long_name": "dead"
+    },
+    {
+      "position": 1,
+      "name": "mort",
+      "long_name": "mortally wounded"
+    },
+    {
+      "position": 2,
+      "name": "incap",
+      "long_name": "incapacitated"
+    },
+    {
+      "position": 3,
+      "name": "stun",
+      "long_name": "stunned"
+    },
+    {
+      "position": 4,
+      "name": "sleep",
+      "long_name": "sleeping"
+    },
+    {
+      "position": 5,
+      "name": "rest",
+      "long_name": "resting"
+    },
+    {
+      "position": 6,
+      "name": "sit",
+      "long_name": "sitting"
+    },
+    {
+      "position": 7,
+      "name": "fight",
+      "long_name": "fighting"
+    },
+    {
+      "position": 8,
+      "name": "stand",
+      "long_name": "standing"
+    }
+  ]
+}}

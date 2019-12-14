@@ -1,0 +1,27 @@
+{"table": {
+  "name": "ac_types",
+  "description": "AC for different attacks.",
+  "type": "types",
+  "values": [
+    {
+      "name": "pierce",
+      "bit": 0,
+      "settable": true
+    },
+    {
+      "name": "bash",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "slash",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "magic",
+      "bit": 3,
+      "settable": true
+    }
+  ]
+}}

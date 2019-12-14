@@ -302,7 +302,7 @@ void db_export_json (bool write_indiv, const char *everything) {
     }
 
     /* Write json that doesn't need subdirectories. */
-    #define ADD_META_JSON(oname, fname, btype, vtype, func, check) \
+    #define ADD_CONFIG_JSON(oname, fname, btype, vtype, func, check) \
         jarea = json_root_area (fname); \
         if (write_indiv) \
             log_f("Exporting JSON: %s%s.json", JSON_DIR, fname); \
@@ -316,8 +316,8 @@ void db_export_json (bool write_indiv, const char *everything) {
                     continue; \
                 json = json_wrap_obj (func (NULL, obj), oname); \
                 json_attach_under (json, jarea); \
+                \
             } \
-            \
             if (jarea->first_child && write_indiv) { \
                 snprintf (buf, sizeof (buf), "%s" fname ".json", JSON_DIR); \
                 json_mkdir_to (buf); \
@@ -325,10 +325,36 @@ void db_export_json (bool write_indiv, const char *everything) {
             } \
         } while (0)
 
-    ADD_META_JSON ("social", "config/socials", social, SOCIAL_T,
+    ADD_CONFIG_JSON ("social", "config/socials", social, SOCIAL_T,
         json_new_obj_social, 1);
-    ADD_META_JSON ("portal", "config/portals", portal, PORTAL_T,
+    ADD_CONFIG_JSON ("portal", "config/portals", portal, PORTAL_T,
         json_new_obj_portal, (obj->generated == FALSE));
+
+    /* Write json that doesn't need subdirectories. */
+    #define ADD_META_JSON(oname, fname, btype, vtype, func, check) \
+        jarea = json_root_area (fname); \
+        do { \
+            const vtype *obj; \
+            \
+            for (obj = btype ## _get_first(); obj != NULL; \
+                 obj = btype ## _get_next(obj)) \
+            { \
+                if (!(check)) \
+                    continue; \
+                if (write_indiv) \
+                    log_f("Exporting JSON: %s%s/%s.json", JSON_DIR, fname, \
+                        obj->name); \
+                json = json_wrap_obj (func (NULL, obj), oname); \
+                json_attach_under (json, jarea); \
+                \
+                if (write_indiv) { \
+                    snprintf (buf, sizeof (buf), "%s" fname "/%s.json", \
+                        JSON_DIR, obj->name); \
+                    json_mkdir_to (buf); \
+                    json_write_to_file (json, buf); \
+                } \
+            } \
+        } while (0)
 
     ADD_META_JSON ("table", "meta/flags", master, TABLE_T,
         json_new_obj_table, ARE_SET (obj->flags, TABLE_FLAG_TYPE | TABLE_BITS));
@@ -402,6 +428,8 @@ void boot_db (void) {
     /* Boot process is over(?) */
     in_boot_db = FALSE;
     convert_objects (); /* ROM OLC */
+
+    db_export_json (TRUE, NULL);
 
     area_update ();
     load_boards ();

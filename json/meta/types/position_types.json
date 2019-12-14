@@ -1,0 +1,52 @@
+{"table": {
+  "name": "position_types",
+  "description": "Mobile positions.",
+  "type": "types",
+  "values": [
+    {
+      "name": "dead",
+      "bit": 0,
+      "settable": false
+    },
+    {
+      "name": "mortal",
+      "bit": 1,
+      "settable": false
+    },
+    {
+      "name": "incap",
+      "bit": 2,
+      "settable": false
+    },
+    {
+      "name": "stunned",
+      "bit": 3,
+      "settable": false
+    },
+    {
+      "name": "sleeping",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "resting",
+      "bit": 5,
+      "settable": true
+    },
+    {
+      "name": "sitting",
+      "bit": 6,
+      "settable": true
+    },
+    {
+      "name": "fighting",
+      "bit": 7,
+      "settable": false
+    },
+    {
+      "name": "standing",
+      "bit": 8,
+      "settable": true
+    }
+  ]
+}}

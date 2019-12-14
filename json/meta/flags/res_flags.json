@@ -1,0 +1,137 @@
+{"table": {
+  "name": "res_flags",
+  "description": "Mobile immunity.",
+  "type": "flags",
+  "values": [
+    {
+      "name": "summon",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "charm",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "magic",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "weapon",
+      "bit": 8,
+      "settable": true
+    },
+    {
+      "name": "bash",
+      "bit": 16,
+      "settable": true
+    },
+    {
+      "name": "pierce",
+      "bit": 32,
+      "settable": true
+    },
+    {
+      "name": "slash",
+      "bit": 64,
+      "settable": true
+    },
+    {
+      "name": "fire",
+      "bit": 128,
+      "settable": true
+    },
+    {
+      "name": "cold",
+      "bit": 256,
+      "settable": true
+    },
+    {
+      "name": "lightning",
+      "bit": 512,
+      "settable": true
+    },
+    {
+      "name": "acid",
+      "bit": 1024,
+      "settable": true
+    },
+    {
+      "name": "poison",
+      "bit": 2048,
+      "settable": true
+    },
+    {
+      "name": "negative",
+      "bit": 4096,
+      "settable": true
+    },
+    {
+      "name": "holy",
+      "bit": 8192,
+      "settable": true
+    },
+    {
+      "name": "energy",
+      "bit": 16384,
+      "settable": true
+    },
+    {
+      "name": "mental",
+      "bit": 32768,
+      "settable": true
+    },
+    {
+      "name": "disease",
+      "bit": 65536,
+      "settable": true
+    },
+    {
+      "name": "drowning",
+      "bit": 131072,
+      "settable": true
+    },
+    {
+      "name": "light",
+      "bit": 262144,
+      "settable": true
+    },
+    {
+      "name": "sound",
+      "bit": 524288,
+      "settable": true
+    },
+    {
+      "name": "unused_res_1",
+      "bit": 1048576,
+      "settable": false
+    },
+    {
+      "name": "unused_res_2",
+      "bit": 2097152,
+      "settable": false
+    },
+    {
+      "name": "unused_res_3",
+      "bit": 4194304,
+      "settable": false
+    },
+    {
+      "name": "wood",
+      "bit": 8388608,
+      "settable": true
+    },
+    {
+      "name": "silver",
+      "bit": 16777216,
+      "settable": true
+    },
+    {
+      "name": "iron",
+      "bit": 33554432,
+      "settable": true
+    }
+  ]
+}}

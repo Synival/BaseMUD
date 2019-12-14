@@ -1,0 +1,107 @@
+{"table": {
+  "name": "wear_loc_phrases",
+  "description": "Phrases for wear locations.",
+  "type": "types",
+  "values": [
+    {
+      "name": "as a light",
+      "bit": 0,
+      "settable": true
+    },
+    {
+      "name": "on the left finger",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "on the right finger",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "around the neck (1)",
+      "bit": 3,
+      "settable": true
+    },
+    {
+      "name": "around the neck (2)",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "on the body",
+      "bit": 5,
+      "settable": true
+    },
+    {
+      "name": "over the head",
+      "bit": 6,
+      "settable": true
+    },
+    {
+      "name": "on the legs",
+      "bit": 7,
+      "settable": true
+    },
+    {
+      "name": "on the feet",
+      "bit": 8,
+      "settable": true
+    },
+    {
+      "name": "on the hands",
+      "bit": 9,
+      "settable": true
+    },
+    {
+      "name": "on the arms",
+      "bit": 10,
+      "settable": true
+    },
+    {
+      "name": "as a shield",
+      "bit": 11,
+      "settable": true
+    },
+    {
+      "name": "about the shoulders",
+      "bit": 12,
+      "settable": true
+    },
+    {
+      "name": "around the waist",
+      "bit": 13,
+      "settable": true
+    },
+    {
+      "name": "on the left wrist",
+      "bit": 14,
+      "settable": true
+    },
+    {
+      "name": "on the right wrist",
+      "bit": 15,
+      "settable": true
+    },
+    {
+      "name": "wielded",
+      "bit": 16,
+      "settable": true
+    },
+    {
+      "name": "held in the hands",
+      "bit": 17,
+      "settable": true
+    },
+    {
+      "name": "floating nearby",
+      "bit": 18,
+      "settable": true
+    },
+    {
+      "name": "in the inventory",
+      "bit": -1,
+      "settable": true
+    }
+  ]
+}}

@@ -1,0 +1,11 @@
+{"table": {
+  "name": "furniture_table",
+  "description": "Furniture flags for positions.",
+  "type": "table",
+  "values": [
+    {},
+    {},
+    {},
+    {}
+  ]
+}}

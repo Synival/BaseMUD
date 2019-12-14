@@ -1,0 +1,12 @@
+{"table": {
+  "name": "map_flags_table",
+  "description": "Flags for object mappings.",
+  "type": "table",
+  "values": [
+    {},
+    {},
+    {},
+    {},
+    {}
+  ]
+}}

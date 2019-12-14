@@ -1,0 +1,87 @@
+{"table": {
+  "name": "mprog_flags",
+  "description": "MobProgram flags.",
+  "type": "flags",
+  "values": [
+    {
+      "name": "act",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "bribe",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "death",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "entry",
+      "bit": 8,
+      "settable": true
+    },
+    {
+      "name": "fight",
+      "bit": 16,
+      "settable": true
+    },
+    {
+      "name": "give",
+      "bit": 32,
+      "settable": true
+    },
+    {
+      "name": "greet",
+      "bit": 64,
+      "settable": true
+    },
+    {
+      "name": "grall",
+      "bit": 128,
+      "settable": true
+    },
+    {
+      "name": "kill",
+      "bit": 256,
+      "settable": true
+    },
+    {
+      "name": "hpcnt",
+      "bit": 512,
+      "settable": true
+    },
+    {
+      "name": "random",
+      "bit": 1024,
+      "settable": true
+    },
+    {
+      "name": "speech",
+      "bit": 2048,
+      "settable": true
+    },
+    {
+      "name": "exit",
+      "bit": 4096,
+      "settable": true
+    },
+    {
+      "name": "exall",
+      "bit": 8192,
+      "settable": true
+    },
+    {
+      "name": "delay",
+      "bit": 16384,
+      "settable": true
+    },
+    {
+      "name": "surrender",
+      "bit": 32768,
+      "settable": true
+    }
+  ]
+}}

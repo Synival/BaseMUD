@@ -1,0 +1,92 @@
+{"table": {
+  "name": "wear_flags",
+  "description": "Types of wear locations.",
+  "type": "flags",
+  "values": [
+    {
+      "name": "take",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "finger",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "neck",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "body",
+      "bit": 8,
+      "settable": true
+    },
+    {
+      "name": "head",
+      "bit": 16,
+      "settable": true
+    },
+    {
+      "name": "legs",
+      "bit": 32,
+      "settable": true
+    },
+    {
+      "name": "feet",
+      "bit": 64,
+      "settable": true
+    },
+    {
+      "name": "hands",
+      "bit": 128,
+      "settable": true
+    },
+    {
+      "name": "arms",
+      "bit": 256,
+      "settable": true
+    },
+    {
+      "name": "shield",
+      "bit": 512,
+      "settable": true
+    },
+    {
+      "name": "about",
+      "bit": 1024,
+      "settable": true
+    },
+    {
+      "name": "waist",
+      "bit": 2048,
+      "settable": true
+    },
+    {
+      "name": "wrist",
+      "bit": 4096,
+      "settable": true
+    },
+    {
+      "name": "wield",
+      "bit": 8192,
+      "settable": true
+    },
+    {
+      "name": "hold",
+      "bit": 16384,
+      "settable": true
+    },
+    {
+      "name": "nosac",
+      "bit": 32768,
+      "settable": true
+    },
+    {
+      "name": "wearfloat",
+      "bit": 65536,
+      "settable": true
+    }
+  ]
+}}

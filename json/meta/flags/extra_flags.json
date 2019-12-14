@@ -1,0 +1,142 @@
+{"table": {
+  "name": "extra_flags",
+  "description": "Object attributes.",
+  "type": "flags",
+  "values": [
+    {
+      "name": "glow",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "hum",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "dark",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "lock",
+      "bit": 8,
+      "settable": true
+    },
+    {
+      "name": "evil",
+      "bit": 16,
+      "settable": true
+    },
+    {
+      "name": "invis",
+      "bit": 32,
+      "settable": true
+    },
+    {
+      "name": "magic",
+      "bit": 64,
+      "settable": true
+    },
+    {
+      "name": "nodrop",
+      "bit": 128,
+      "settable": true
+    },
+    {
+      "name": "bless",
+      "bit": 256,
+      "settable": true
+    },
+    {
+      "name": "antigood",
+      "bit": 512,
+      "settable": true
+    },
+    {
+      "name": "antievil",
+      "bit": 1024,
+      "settable": true
+    },
+    {
+      "name": "antineutral",
+      "bit": 2048,
+      "settable": true
+    },
+    {
+      "name": "noremove",
+      "bit": 4096,
+      "settable": true
+    },
+    {
+      "name": "inventory",
+      "bit": 8192,
+      "settable": true
+    },
+    {
+      "name": "nopurge",
+      "bit": 16384,
+      "settable": true
+    },
+    {
+      "name": "rotdeath",
+      "bit": 32768,
+      "settable": true
+    },
+    {
+      "name": "visdeath",
+      "bit": 65536,
+      "settable": true
+    },
+    {
+      "name": "unused_extra_1",
+      "bit": 131072,
+      "settable": false
+    },
+    {
+      "name": "nonmetal",
+      "bit": 262144,
+      "settable": true
+    },
+    {
+      "name": "nolocate",
+      "bit": 524288,
+      "settable": true
+    },
+    {
+      "name": "meltdrop",
+      "bit": 1048576,
+      "settable": true
+    },
+    {
+      "name": "hadtimer",
+      "bit": 2097152,
+      "settable": true
+    },
+    {
+      "name": "sellextract",
+      "bit": 4194304,
+      "settable": true
+    },
+    {
+      "name": "unused_extra_2",
+      "bit": 8388608,
+      "settable": false
+    },
+    {
+      "name": "burnproof",
+      "bit": 16777216,
+      "settable": true
+    },
+    {
+      "name": "nouncurse",
+      "bit": 33554432,
+      "settable": true
+    },
+    {
+      "name": "corroded",
+      "bit": 67108864,
+      "settable": true
+    }
+  ]
+}}

@@ -1,0 +1,37 @@
+{"table": {
+  "name": "size_types",
+  "description": "Mobile sizes.",
+  "type": "types",
+  "values": [
+    {
+      "name": "tiny",
+      "bit": 0,
+      "settable": true
+    },
+    {
+      "name": "small",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "medium",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "large",
+      "bit": 3,
+      "settable": true
+    },
+    {
+      "name": "huge",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "giant",
+      "bit": 5,
+      "settable": true
+    }
+  ]
+}}

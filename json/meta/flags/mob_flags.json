@@ -1,0 +1,157 @@
+{"table": {
+  "name": "mob_flags",
+  "description": "Mobile flags.",
+  "type": "flags",
+  "values": [
+    {
+      "name": "npc",
+      "bit": 1,
+      "settable": false
+    },
+    {
+      "name": "sentinel",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "scavenger",
+      "bit": 4,
+      "settable": true
+    },
+    {
+      "name": "unused_act_1",
+      "bit": 8,
+      "settable": false
+    },
+    {
+      "name": "unused_act_2",
+      "bit": 16,
+      "settable": false
+    },
+    {
+      "name": "aggressive",
+      "bit": 32,
+      "settable": true
+    },
+    {
+      "name": "stay_area",
+      "bit": 64,
+      "settable": true
+    },
+    {
+      "name": "wimpy",
+      "bit": 128,
+      "settable": true
+    },
+    {
+      "name": "pet",
+      "bit": 256,
+      "settable": true
+    },
+    {
+      "name": "train",
+      "bit": 512,
+      "settable": true
+    },
+    {
+      "name": "practice",
+      "bit": 1024,
+      "settable": true
+    },
+    {
+      "name": "unused_act_3",
+      "bit": 2048,
+      "settable": false
+    },
+    {
+      "name": "unused_act_4",
+      "bit": 4096,
+      "settable": false
+    },
+    {
+      "name": "unused_act_5",
+      "bit": 8192,
+      "settable": false
+    },
+    {
+      "name": "undead",
+      "bit": 16384,
+      "settable": true
+    },
+    {
+      "name": "unused_act_6",
+      "bit": 32768,
+      "settable": false
+    },
+    {
+      "name": "cleric",
+      "bit": 65536,
+      "settable": true
+    },
+    {
+      "name": "mage",
+      "bit": 131072,
+      "settable": true
+    },
+    {
+      "name": "thief",
+      "bit": 262144,
+      "settable": true
+    },
+    {
+      "name": "warrior",
+      "bit": 524288,
+      "settable": true
+    },
+    {
+      "name": "noalign",
+      "bit": 1048576,
+      "settable": true
+    },
+    {
+      "name": "nopurge",
+      "bit": 2097152,
+      "settable": true
+    },
+    {
+      "name": "outdoors",
+      "bit": 4194304,
+      "settable": true
+    },
+    {
+      "name": "unused_act_7",
+      "bit": 8388608,
+      "settable": false
+    },
+    {
+      "name": "indoors",
+      "bit": 16777216,
+      "settable": true
+    },
+    {
+      "name": "unused_act_8",
+      "bit": 33554432,
+      "settable": false
+    },
+    {
+      "name": "healer",
+      "bit": 67108864,
+      "settable": true
+    },
+    {
+      "name": "gain",
+      "bit": 134217728,
+      "settable": true
+    },
+    {
+      "name": "update_always",
+      "bit": 268435456,
+      "settable": true
+    },
+    {
+      "name": "changer",
+      "bit": 536870912,
+      "settable": true
+    }
+  ]
+}}

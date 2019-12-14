@@ -1,0 +1,25 @@
+{"table": {
+  "name": "clan_table",
+  "description": "Player clans.",
+  "type": "table",
+  "values": [
+    {
+      "name": null,
+      "who_name": null,
+      "hall": 3054,
+      "independent": true
+    },
+    {
+      "name": "loner",
+      "who_name": "[ Loner ] ",
+      "hall": 3054,
+      "independent": true
+    },
+    {
+      "name": "rom",
+      "who_name": "[  ROM  ] ",
+      "hall": 3054,
+      "independent": false
+    }
+  ]
+}}

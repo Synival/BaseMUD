@@ -1,0 +1,22 @@
+{"table": {
+  "name": "area_flags",
+  "description": "Area attributes.",
+  "type": "flags",
+  "values": [
+    {
+      "name": "changed",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "added",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "loading",
+      "bit": 4,
+      "settable": false
+    }
+  ]
+}}

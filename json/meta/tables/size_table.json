@@ -1,0 +1,31 @@
+{"table": {
+  "name": "size_table",
+  "description": "Character sizes.",
+  "type": "table",
+  "values": [
+    {
+      "size": 0,
+      "name": "tiny"
+    },
+    {
+      "size": 1,
+      "name": "small"
+    },
+    {
+      "size": 2,
+      "name": "medium"
+    },
+    {
+      "size": 3,
+      "name": "large"
+    },
+    {
+      "size": 4,
+      "name": "huge"
+    },
+    {
+      "size": 5,
+      "name": "giant"
+    }
+  ]
+}}
