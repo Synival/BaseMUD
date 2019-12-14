@@ -657,7 +657,6 @@ DEFINE_DO_FUN (do_affects) {
 DEFINE_DO_FUN (do_time) {
     const DAY_T *day_obj;
     const MONTH_T *month_obj;
-    extern char str_boot_time[];
     char *suf;
     int day = time_info.day + 1;
 
@@ -677,8 +676,8 @@ DEFINE_DO_FUN (do_time) {
         time_info.hour >= 12 ? "pm" : "am",
         day_obj->name, day, suf, month_obj->name);
 
-    printf_to_char (ch, "ROM started up at %s\n\rThe system time is %s.\n\r",
-        str_boot_time, (char *) ctime (&current_time));
+    printf_to_char (ch, "ROM started up at %s.\n\rThe system time is %s.\n\r",
+        str_boot_time, (char *) ctime_fixed (&current_time));
 }
 
 DEFINE_DO_FUN (do_weather) {

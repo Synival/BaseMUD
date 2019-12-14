@@ -319,26 +319,18 @@ OBJ_T *char_get_weapon (CHAR_T *ch) {
 
 /* for returning weapon information */
 int char_get_weapon_sn (CHAR_T *ch) {
-    OBJ_T *wield;
-    int sn;
+    const WEAPON_T *weapon;
+    const OBJ_T *wield;
 
     wield = char_get_weapon (ch);
     if (wield == NULL)
-        sn = gsn_hand_to_hand;
-    else {
-        switch (wield->v.weapon.weapon_type) {
-            case WEAPON_SWORD:   sn = gsn_sword;   break;
-            case WEAPON_DAGGER:  sn = gsn_dagger;  break;
-            case WEAPON_SPEAR:   sn = gsn_spear;   break;
-            case WEAPON_MACE:    sn = gsn_mace;    break;
-            case WEAPON_AXE:     sn = gsn_axe;     break;
-            case WEAPON_FLAIL:   sn = gsn_flail;   break;
-            case WEAPON_WHIP:    sn = gsn_whip;    break;
-            case WEAPON_POLEARM: sn = gsn_polearm; break;
-            default:             sn = -1;          break;
-        }
-    }
-    return sn;
+        return gsn_hand_to_hand;
+
+    weapon = weapon_get (wield->v.weapon.weapon_type);
+    if (weapon == NULL || weapon->gsn == NULL)
+        return -1;
+
+    return *(weapon->gsn);
 }
 
 int char_get_weapon_skill (CHAR_T *ch, int sn) {

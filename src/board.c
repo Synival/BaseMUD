@@ -341,9 +341,8 @@ void make_note (const char* board_name, const char *sender, const char *to,
     note->expire  = current_time + expire_days * 60 * 60 * 24;
     note->text    = str_dup (text);
 
-    /* convert to ascii. ctime returns a string which last character is \n, so remove that */
-    strtime = ctime (&current_time);
-    strtime[strlen(strtime)-1] = '\0';
+    /* convert to ascii. */
+    strtime = ctime_fixed (&current_time);
     note->date = str_dup (strtime);
 
     finish_note (board, note);
@@ -460,8 +459,8 @@ void handle_con_note_subject (DESCRIPTOR_T *d, char *argument) {
             ch->pcdata->in_progress->expire =
                 current_time + ch->pcdata->board->purge_days * 24L * 3600L;
             printf_to_desc (d,
-                "This note will expire %s\r",
-                ctime(&ch->pcdata->in_progress->expire));
+                "This note will expire %s\n\r",
+                ctime_fixed (&ch->pcdata->in_progress->expire));
             send_to_desc ("\n\r"
                 "Enter text. Type {W~{x or {WEND{x on an empty line to end note.\n\r"
                 "=======================================================\n\r", d);
@@ -505,7 +504,6 @@ void handle_con_note_expire (DESCRIPTOR_T *d, char *argument) {
     expire = current_time + (days * 24L * 3600L); /* 24 hours, 3600 seconds */
     ch->pcdata->in_progress->expire = expire;
 
-    /* note that ctime returns XXX\n so we only need to add an \r */
     send_to_desc ("\n\r"
         "Enter text. Type {W~{x or {WEND{x on an empty line to end note.\n\r"
         "=======================================================\n\r", d);

@@ -379,7 +379,7 @@ void weather_update (void) {
 
     /* Update our sun position. */
     buf[0] = '\0';
-    sun = sun_get_by_hour (++time_info.hour);
+    sun = sun_get_by_hour (time_info.hour);
     if (weather_info.sunlight != sun->type) {
         weather_info.sunlight = sun->type;
         strcat (buf, sun->message);

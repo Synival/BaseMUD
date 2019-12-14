@@ -151,12 +151,9 @@ int get_skill (CHAR_T *ch, int sn) {
             skill = 40 + ch->level;
         else if (sn == gsn_recall)
             skill = 40 + ch->level;
-        else if (sn == gsn_sword
-                 || sn == gsn_dagger
-                 || sn == gsn_spear
-                 || sn == gsn_mace
-                 || sn == gsn_axe
-                 || sn == gsn_flail || sn == gsn_whip || sn == gsn_polearm)
+        else if (sn == gsn_sword || sn == gsn_dagger || sn == gsn_spear ||
+                 sn == gsn_mace  || sn == gsn_axe    || sn == gsn_flail ||
+                 sn == gsn_whip  || sn == gsn_polearm)
             skill = 40 + 5 * ch->level / 2;
         else
             skill = 0;

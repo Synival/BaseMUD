@@ -76,7 +76,7 @@ int main (int argc, char **argv) {
     /* Init time.  */
     gettimeofday (&now_time, NULL);
     current_time = (time_t) now_time.tv_sec;
-    strcpy (str_boot_time, ctime (&current_time));
+    strcpy (str_boot_time, ctime_fixed (&current_time));
 
     /* Macintosh console initialization. */
     #if defined(macintosh)

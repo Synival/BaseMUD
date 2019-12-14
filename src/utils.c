@@ -401,11 +401,23 @@ void bugf (const char *fmt, ...) {
     bug (buf, 0);
 }
 
+char *ctime_fixed (const time_t *timep) {
+    char *rval, *nl;
+    static char buf[256];
+
+    /* get the value from ctime() and remove and trailing newline. */
+    rval = ctime (timep);
+    snprintf (buf, sizeof (buf), "%s", rval);
+    if ((nl = strchr (buf, '\n')) != NULL)
+        *nl = '\0';
+
+    return buf;
+}
+
 /* Writes a string to the log. */
 void log_string (const char *str) {
     char *strtime;
-    strtime = ctime (&current_time);
-    strtime[strlen (strtime) - 1] = '\0';
+    strtime = ctime_fixed (&current_time);
     fprintf (stderr, "%s :: %s\n", strtime, str);
 }
 

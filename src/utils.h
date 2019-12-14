@@ -43,6 +43,7 @@ char *trim_extension (char *input);
 bool is_name (const char *str, char *namelist);
 bool is_exact_name (const char *str, char *namelist);
 bool is_full_name (const char *str, char *namelist);
+char *ctime_fixed (const time_t *timep);
 
 /* Number utilities. */
 int interpolate (int level, int value_00, int value_32);

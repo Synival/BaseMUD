@@ -110,10 +110,8 @@ DEFINE_DO_FUN (do_nwrite) {
         ch->pcdata->in_progress = note_new ();
         ch->pcdata->in_progress->sender = str_dup (ch->name);
 
-        /* convert to ascii. ctime returns a string which last character is \n, so remove that */
-        strtime = ctime (&current_time);
-        strtime[strlen(strtime)-1] = '\0';
-
+        /* convert to ascii. */
+        strtime = ctime_fixed (&current_time);
         ch->pcdata->in_progress->date = str_dup (strtime);
     }
 
@@ -155,7 +153,7 @@ DEFINE_DO_FUN (do_nwrite) {
                       "{YExpires{x: %s\n\r"
                       "{YSubject{x: %s\n\r",
                        ch->pcdata->in_progress->to_list,
-                       ctime(&ch->pcdata->in_progress->expire),
+                       ctime_fixed (&ch->pcdata->in_progress->expire),
                        ch->pcdata->in_progress->subject);
         send_to_char ("{GYour note so far:{x\n\r", ch);
         send_to_char (ch->pcdata->in_progress->text, ch);
