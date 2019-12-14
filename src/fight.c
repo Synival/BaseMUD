@@ -422,17 +422,17 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
         if (wield != NULL && wield->item_type == ITEM_WEAPON)
             dt += wield->v.weapon.attack_type;
         else
-            dt += ch->dam_type;
+            dt += ch->attack_type;
     }
 
     if (dt < TYPE_HIT) {
-        if (wield != NULL)
-            dam_type = attack_table[wield->v.weapon.attack_type].damage;
-        else
-            dam_type = attack_table[ch->dam_type].damage;
+        int attack_type = (wield)
+            ? wield->v.weapon.attack_type
+            : ch->attack_type;
+        dam_type = attack_table[attack_type].dam_type;
     }
     else
-        dam_type = attack_table[dt - TYPE_HIT].damage;
+        dam_type = attack_table[dt - TYPE_HIT].dam_type;
 
     if (dam_type == -1)
         dam_type = DAM_BASH;

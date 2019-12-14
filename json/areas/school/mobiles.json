@@ -13,7 +13,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+999",
     "damage_dice": "2d4+30",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -44,7 +44,7 @@
     "hit_dice": "1d1+49",
     "mana_dice": "1d1+99",
     "damage_dice": "1d1+0",
-    "dam_type": "digestion",
+    "attack_type": "digestion",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -76,7 +76,7 @@
     "hit_dice": "1d1+7",
     "mana_dice": "1d1+99",
     "damage_dice": "1d3+0",
-    "dam_type": "claw",
+    "attack_type": "claw",
     "ac": {
       "pierce": 100,
       "bash": 100,
@@ -103,7 +103,7 @@
     "hit_dice": "1d1+7",
     "mana_dice": "1d1+99",
     "damage_dice": "1d2+0",
-    "dam_type": "claw",
+    "attack_type": "claw",
     "ac": {
       "pierce": 100,
       "bash": 100,
@@ -131,7 +131,7 @@
     "hit_dice": "1d1+7",
     "mana_dice": "1d1+99",
     "damage_dice": "1d4+0",
-    "dam_type": "claw",
+    "attack_type": "claw",
     "ac": {
       "pierce": 100,
       "bash": 100,
@@ -159,7 +159,7 @@
     "hit_dice": "1d1+7",
     "mana_dice": "1d1+99",
     "damage_dice": "1d3+0",
-    "dam_type": "claw",
+    "attack_type": "claw",
     "ac": {
       "pierce": 100,
       "bash": 100,
@@ -187,7 +187,7 @@
     "hit_dice": "2d2+20",
     "mana_dice": "1d1+99",
     "damage_dice": "1d4+1",
-    "dam_type": "claw",
+    "attack_type": "claw",
     "ac": {
       "pierce": 80,
       "bash": 80,
@@ -215,7 +215,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+999",
     "damage_dice": "2d4+30",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -245,7 +245,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+999",
     "damage_dice": "2d4+30",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -275,7 +275,7 @@
     "hit_dice": "1d1+10",
     "mana_dice": "1d1+99",
     "damage_dice": "1d3+0",
-    "dam_type": "bite",
+    "attack_type": "bite",
     "ac": {
       "pierce": 100,
       "bash": 100,
@@ -300,7 +300,7 @@
     "hit_dice": "2d2+20",
     "mana_dice": "1d1+99",
     "damage_dice": "1d4+1",
-    "dam_type": "bite",
+    "attack_type": "bite",
     "ac": {
       "pierce": 80,
       "bash": 80,
@@ -326,7 +326,7 @@
     "hit_dice": "3d3+30",
     "mana_dice": "1d1+99",
     "damage_dice": "1d6+1",
-    "dam_type": "charge",
+    "attack_type": "charge",
     "ac": {
       "pierce": 70,
       "bash": 70,
@@ -352,7 +352,7 @@
     "hit_dice": "1d1+12",
     "mana_dice": "1d1+99",
     "damage_dice": "1d3+1",
-    "dam_type": "bite",
+    "attack_type": "bite",
     "ac": {
       "pierce": 80,
       "bash": 80,
@@ -378,7 +378,7 @@
     "hit_dice": "1d1+0",
     "mana_dice": "1d1+99",
     "damage_dice": "1d1+0",
-    "dam_type": "digestion",
+    "attack_type": "digestion",
     "ac": {
       "pierce": 100,
       "bash": 100,
@@ -406,7 +406,7 @@
     "hit_dice": "5d5+55",
     "mana_dice": "1d1+99",
     "damage_dice": "1d6+3",
-    "dam_type": "bite",
+    "attack_type": "bite",
     "ac": {
       "pierce": 50,
       "bash": 50,
@@ -436,7 +436,7 @@
     "hit_dice": "4d4+44",
     "mana_dice": "1d1+99",
     "damage_dice": "1d6+2",
-    "dam_type": "claw",
+    "attack_type": "claw",
     "ac": {
       "pierce": 60,
       "bash": 50,
@@ -462,7 +462,7 @@
     "hit_dice": "4d4+44",
     "mana_dice": "1d1+99",
     "damage_dice": "1d6+2",
-    "dam_type": "bite",
+    "attack_type": "bite",
     "ac": {
       "pierce": 70,
       "bash": 70,
@@ -488,7 +488,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+999",
     "damage_dice": "2d4+30",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -526,7 +526,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+999",
     "damage_dice": "2d4+30",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -555,7 +555,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+999",
     "damage_dice": "2d4+30",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -585,7 +585,7 @@
     "hit_dice": "2d4+30",
     "mana_dice": "1d1+99",
     "damage_dice": "1d6+1",
-    "dam_type": "claw",
+    "attack_type": "claw",
     "ac": {
       "pierce": 80,
       "bash": 80,

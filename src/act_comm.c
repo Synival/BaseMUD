@@ -531,17 +531,37 @@ DEFINE_DO_FUN (do_pmote) {
 }
 
 DEFINE_DO_FUN (do_pose) {
-    int level, pose, message;
+    const POSE_T *pose;
+    int i, top_pose, pose_num, message;
 
-    BAIL_IF (IS_NPC (ch) || ch->class < 0 || ch->class >= CLASS_MAX,
+    /* get the correct set of poses for your class. */
+    pose = NULL;
+    if (!IS_NPC (ch)) {
+        for (i = 0; pose_table[i].class_index >= 0; i++) {
+            if (pose_table[i].class_index == ch->class) {
+                pose = &(pose_table[i]);
+                break;
+            }
+        }
+    }
+    BAIL_IF (pose == NULL,
         "You have no profession to demonstrate. Sorry!\n\r", ch);
 
-    level = UMIN (ch->level, POS_MAX - 1);
-    pose  = number_range (0, level);
-    message = 2 * ch->class;
+    /* get the number of messages for this class. */
+    for (i = 0; i < MAX_LEVEL; i++)
+        if (pose->message[i * 2] == NULL)
+            break;
+    top_pose = i - 1;
+    BAIL_IF (top_pose < 0,
+        "You don't have any poses for your profession. Bummer!\n\r", ch);
 
-    act2 (pose_table[pose].message[message + 0],
-          pose_table[pose].message[message + 1],
+    /* pick a random pose, from 0 to (level-1 or highest pose). */
+    /* TODO: scale based on MAX_LEVEL and the # of poses? */
+    pose_num = number_range (0, UMIN (ch->level - 1, top_pose));
+    message = 2 * pose_num;
+
+    /* strike a pose! */
+    act2 (pose->message[message + 0], pose->message[message + 1],
           ch, NULL, NULL, 0, POS_RESTING);
 }
 

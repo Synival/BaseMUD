@@ -15,7 +15,6 @@
     "hit_dice": "2d6+60",
     "mana_dice": "2d9+100",
     "damage_dice": "1d6+1",
-    "dam_type": "none",
     "ac": {
       "pierce": 50,
       "bash": 50,
@@ -46,7 +45,6 @@
     "hit_dice": "2d7+96",
     "mana_dice": "4d9+100",
     "damage_dice": "1d7+2",
-    "dam_type": "none",
     "ac": {
       "pierce": 30,
       "bash": 30,
@@ -75,7 +73,6 @@
     "hit_dice": "2d7+96",
     "mana_dice": "4d9+100",
     "damage_dice": "1d7+2",
-    "dam_type": "none",
     "ac": {
       "pierce": 30,
       "bash": 30,
@@ -104,7 +101,6 @@
     "hit_dice": "2d6+85",
     "mana_dice": "3d9+100",
     "damage_dice": "1d8+1",
-    "dam_type": "none",
     "ac": {
       "pierce": 40,
       "bash": 40,
@@ -133,7 +129,6 @@
     "hit_dice": "2d6+85",
     "mana_dice": "3d9+100",
     "damage_dice": "1d8+1",
-    "dam_type": "none",
     "ac": {
       "pierce": 40,
       "bash": 40,
@@ -161,7 +156,6 @@
     "hit_dice": "2d7+71",
     "mana_dice": "3d9+100",
     "damage_dice": "1d7+1",
-    "dam_type": "none",
     "ac": {
       "pierce": 40,
       "bash": 40,
@@ -190,7 +184,6 @@
     "hit_dice": "2d7+71",
     "mana_dice": "3d9+100",
     "damage_dice": "1d7+1",
-    "dam_type": "none",
     "ac": {
       "pierce": 40,
       "bash": 40,
@@ -220,7 +213,6 @@
     "hit_dice": "3d9+208",
     "mana_dice": "15d9+100",
     "damage_dice": "2d5+3",
-    "dam_type": "none",
     "ac": {
       "pierce": -20,
       "bash": -20,
@@ -251,7 +243,6 @@
     "hit_dice": "2d10+190",
     "mana_dice": "15d9+100",
     "damage_dice": "1d10+3",
-    "dam_type": "none",
     "ac": {
       "pierce": -10,
       "bash": -10,
@@ -281,7 +272,6 @@
     "hit_dice": "3d9+333",
     "mana_dice": "10d9+100",
     "damage_dice": "2d8+5",
-    "dam_type": "none",
     "ac": {
       "pierce": -40,
       "bash": -40,
@@ -309,7 +299,6 @@
     "hit_dice": "2d6+35",
     "mana_dice": "1d9+100",
     "damage_dice": "1d6+0",
-    "dam_type": "none",
     "ac": {
       "pierce": 70,
       "bash": 70,
@@ -336,7 +325,6 @@
     "hit_dice": "5d10+500",
     "mana_dice": "25d9+100",
     "damage_dice": "4d4+6",
-    "dam_type": "none",
     "ac": {
       "pierce": -60,
       "bash": -60,
@@ -365,7 +353,6 @@
     "hit_dice": "5d10+550",
     "mana_dice": "12d9+100",
     "damage_dice": "2d10+7",
-    "dam_type": "none",
     "ac": {
       "pierce": -70,
       "bash": -70,
@@ -392,7 +379,6 @@
     "hit_dice": "2d7+46",
     "mana_dice": "2d9+100",
     "damage_dice": "1d5+1",
-    "dam_type": "none",
     "ac": {
       "pierce": 60,
       "bash": 60,
@@ -420,7 +406,6 @@
     "hit_dice": "2d7+71",
     "mana_dice": "3d9+100",
     "damage_dice": "1d7+1",
-    "dam_type": "none",
     "ac": {
       "pierce": 40,
       "bash": 40,

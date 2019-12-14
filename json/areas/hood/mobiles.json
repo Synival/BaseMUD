@@ -14,7 +14,7 @@
     "hit_dice": "2d6+60",
     "mana_dice": "1d1+99",
     "damage_dice": "1d6+1",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 50,
       "bash": 50,
@@ -43,7 +43,7 @@
     "hit_dice": "2d6+60",
     "mana_dice": "1d1+99",
     "damage_dice": "1d6+1",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 50,
       "bash": 50,
@@ -73,7 +73,7 @@
     "hit_dice": "2d20+170",
     "mana_dice": "1d1+99",
     "damage_dice": "2d5+5",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": -10,
       "bash": -10,
@@ -103,7 +103,7 @@
     "hit_dice": "4d8+134",
     "mana_dice": "1d1+99",
     "damage_dice": "1d10+3",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 10,
       "bash": 10,
@@ -133,7 +133,7 @@
     "hit_dice": "2d6+85",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+1",
-    "dam_type": "slap",
+    "attack_type": "slap",
     "ac": {
       "pierce": 40,
       "bash": 40,
@@ -160,7 +160,7 @@
     "hit_dice": "2d7+115",
     "mana_dice": "1d1+99",
     "damage_dice": "1d7+2",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 30,
       "bash": 30,
@@ -189,7 +189,7 @@
     "hit_dice": "2d7+121",
     "mana_dice": "1d1+99",
     "damage_dice": "2d4+2",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 10,
       "bash": 10,
@@ -219,7 +219,7 @@
     "hit_dice": "4d6+60",
     "mana_dice": "2d9+100",
     "damage_dice": "1d8+1",
-    "dam_type": "bite",
+    "attack_type": "bite",
     "ac": {
       "pierce": 50,
       "bash": 50,
@@ -248,7 +248,7 @@
     "hit_dice": "2d7+121",
     "mana_dice": "1d1+99",
     "damage_dice": "2d4+2",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 10,
       "bash": 10,
@@ -278,7 +278,7 @@
     "hit_dice": "2d10+160",
     "mana_dice": "1d1+99",
     "damage_dice": "2d5+3",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": -10,
       "bash": -10,
@@ -309,7 +309,7 @@
     "hit_dice": "2d8+134",
     "mana_dice": "1d1+99",
     "damage_dice": "1d10+2",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 10,
       "bash": 10,

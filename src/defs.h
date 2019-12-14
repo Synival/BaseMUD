@@ -195,9 +195,8 @@
 #define DAM_SOUND          19
 #define DAM_MAX            20
 
-/* Damage classes. */
-#define DAM_PHYSICAL    0
-#define DAM_MAGICAL     1
+/* Damage flags. */
+#define DAM_MAGICAL     A
 
 /* TO types for act. */
 #define TO_CHAR    (A) /* 'ch' only */
@@ -597,9 +596,6 @@
 #define LOG_NORMAL  0
 #define LOG_ALWAYS  1
 #define LOG_NEVER   2
-
-/* Pose stuff. */
-#define POSE_MAX 17
 
 /* Music stuff. */
 #define MAX_SONGS       20

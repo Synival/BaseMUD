@@ -61,15 +61,14 @@ DECLARE_TABLE_JSON_FUN (json_tblw_material);
 DECLARE_TABLE_JSON_FUN (json_tblw_colour_setting);
 DECLARE_TABLE_JSON_FUN (json_tblw_wiznet);
 DECLARE_TABLE_JSON_FUN (json_tblw_map_lookup);
-DECLARE_TABLE_JSON_FUN (json_tblw_map_flags);
 DECLARE_TABLE_JSON_FUN (json_tblw_obj_map);
 DECLARE_TABLE_JSON_FUN (json_tblw_colour);
-DECLARE_TABLE_JSON_FUN (json_tblw_recycle);
 DECLARE_TABLE_JSON_FUN (json_tblw_board);
 DECLARE_TABLE_JSON_FUN (json_tblw_affect_bit);
 DECLARE_TABLE_JSON_FUN (json_tblw_day);
 DECLARE_TABLE_JSON_FUN (json_tblw_month);
 DECLARE_TABLE_JSON_FUN (json_tblw_sky);
 DECLARE_TABLE_JSON_FUN (json_tblw_sun);
+DECLARE_TABLE_JSON_FUN (json_tblw_pose);
 
 #endif

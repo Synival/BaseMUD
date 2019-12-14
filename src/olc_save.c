@@ -168,7 +168,7 @@ void save_mobile (FILE *fp, MOB_INDEX_T *mob_index)
              mob_index->mana.size, mob_index->mana.bonus);
     fprintf (fp, "%dd%d+%d ", mob_index->damage.number,
              mob_index->damage.size, mob_index->damage.bonus);
-    fprintf (fp, "%s\n", attack_table[mob_index->dam_type].name);
+    fprintf (fp, "%s\n", attack_table[mob_index->attack_type].name);
     fprintf (fp, "%d %d %d %d\n",
              mob_index->ac[AC_PIERCE] / 10,
              mob_index->ac[AC_BASH] / 10,

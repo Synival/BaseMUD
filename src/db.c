@@ -2272,7 +2272,7 @@ void load_mobiles (FILE *fp) {
         fread_dice (fp, &(mob_index->damage));
 
         str = fread_word (fp);
-        mob_index->dam_type = lookup_backup (attack_lookup_exact,
+        mob_index->attack_type = lookup_backup (attack_lookup_exact,
             str, "Unknown damage type '%s'", 0);
 
         /* read armor class */
@@ -2768,7 +2768,7 @@ void db_dump_world (const char *filename) {
         fprintf (file, "ac[1]:              %d\n",  mob->ac[1]);
         fprintf (file, "ac[2]:              %d\n",  mob->ac[2]);
         fprintf (file, "ac[3]:              %d\n",  mob->ac[3]);
-        fprintf (file, "dam_type:           %d\n",  mob->dam_type);
+        fprintf (file, "attack_type:        %d\n",  mob->attack_type);
         fprintf (file, "start_pos:          %d\n",  mob->start_pos);
         fprintf (file, "default_pos:        %d\n",  mob->default_pos);
         fprintf (file, "sex:                %d\n",  mob->sex);

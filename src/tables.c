@@ -67,6 +67,7 @@ const TABLE_T master_table[] = {
     TFLAGS (res_flags,        "Mobile immunity."),
     TFLAGS (gate_flags,       "Portal gate flags."),
     TFLAGS (furniture_flags,  "Flags for furniture."),
+    TFLAGS (dam_flags,        "Attributes for damage types."),
 
     /* from types.h */
     TTYPES (sex_types,        "Sexes."),
@@ -111,16 +112,17 @@ const TABLE_T master_table[] = {
     TTABLE (colour_setting_table, "Configurable colours.",    json_tblw_colour_setting),
     TTABLE (wiznet_table,     "Wiznet channels.",             json_tblw_wiznet),
     TTABLE (map_lookup_table, "Types for object mappings.",   json_tblw_map_lookup),
-    TTABLE (map_flags_table,  "Flags for object mappings.",   json_tblw_map_flags),
+    TTABLE (map_flags_table,  "Flags for object mappings.",   json_tblw_map_lookup),
     TTABLE (obj_map_table,    "Obj type-values[] mappings.",  json_tblw_obj_map),
     TTABLE (colour_table,     "Colour values.",               json_tblw_colour),
-    TTABLE (recycle_table,    "Recycleable object types.",    json_tblw_recycle),
+ // TTABLE (recycle_table,    "Recycleable object types.",    json_tblw_recycle),
     TTABLE (board_table,      "Discussion boards.",           json_tblw_board),
     TTABLE (affect_bit_table, "Affect bit vector types.",     json_tblw_affect_bit),
     TTABLE (day_table,        "Days of the week.",            json_tblw_day),
     TTABLE (month_table,      "Months of the year.",          json_tblw_month),
     TTABLE (sky_table,        "Skies based on the weather.",  json_tblw_sky),
     TTABLE (sun_table,        "Positions of the sun.",        json_tblw_sun),
+    TTABLE (pose_table,     "Poses based on class and level", json_tblw_pose),
     {0}
 };
 
@@ -221,10 +223,11 @@ const WEAPON_T weapon_table[WEAPON_MAX + 1] = {
 };
 
 const DAM_T dam_table[DAM_MAX + 1] = {
-    {DAM_NONE,      "none",      -1,            empty_effect,  DAM_PHYSICAL},
-    {DAM_BASH,      "bash",      RES_BASH,      empty_effect,  DAM_PHYSICAL},
-    {DAM_PIERCE,    "pierce",    RES_PIERCE,    empty_effect,  DAM_PHYSICAL},
-    {DAM_SLASH,     "slash",     RES_SLASH,     empty_effect,  DAM_PHYSICAL},
+    /* TODO: reference effects by index, not by function directly. */
+    {DAM_NONE,      "none",      0,             empty_effect,  0},
+    {DAM_BASH,      "bash",      RES_BASH,      empty_effect,  0},
+    {DAM_PIERCE,    "pierce",    RES_PIERCE,    empty_effect,  0},
+    {DAM_SLASH,     "slash",     RES_SLASH,     empty_effect,  0},
     {DAM_FIRE,      "fire",      RES_FIRE,      fire_effect,   DAM_MAGICAL},
     {DAM_COLD,      "cold",      RES_COLD,      cold_effect,   DAM_MAGICAL},
     {DAM_LIGHTNING, "lightning", RES_LIGHTNING, shock_effect,  DAM_MAGICAL},
@@ -237,8 +240,8 @@ const DAM_T dam_table[DAM_MAX + 1] = {
     {DAM_DISEASE,   "disease",   RES_DISEASE,   empty_effect,  DAM_MAGICAL},
     {DAM_DROWNING,  "drowning",  RES_DROWNING,  empty_effect,  DAM_MAGICAL},
     {DAM_LIGHT,     "light",     RES_LIGHT,     empty_effect,  DAM_MAGICAL},
-    {DAM_OTHER,     "other",     -1,            empty_effect,  DAM_MAGICAL},
-    {DAM_HARM,      "harm",      -1,            empty_effect,  DAM_MAGICAL},
+    {DAM_OTHER,     "other",     0,             empty_effect,  DAM_MAGICAL},
+    {DAM_HARM,      "harm",      0,             empty_effect,  DAM_MAGICAL},
     {DAM_CHARM,     "charm",     RES_CHARM,     empty_effect,  DAM_MAGICAL},
     {DAM_SOUND,     "sound",     RES_SOUND,     empty_effect,  DAM_MAGICAL},
     {0}
@@ -1637,176 +1640,86 @@ const SUN_T sun_table[SUN_MAX + 1] = {
     { -1, NULL, 0 }
 };
 
-const POSE_T pose_table[POSE_MAX + 1] = {
-    /* 0 */
-    {{"You sizzle with energy.",
-      "$n sizzles with energy.",
-      "You feel very holy.",
-      "$n looks very holy.",
-      "You perform a small card trick.",
-      "$n performs a small card trick.",
-      "You show your bulging muscles.",
-      "$n shows $s bulging muscles."}},
-
-    /* 1 */
-    {{"You turn into a butterfly, then return to your normal shape.",
-      "$n turns into a butterfly, then returns to $s normal shape.",
-      "You nonchalantly turn wine into water.",
-      "$n nonchalantly turns wine into water.",
-      "You wiggle your ears alternately.",
-      "$n wiggles $s ears alternately.",
-      "You crack nuts between your fingers.",
-      "$n cracks nuts between $s fingers."}},
-
-    /* 2 */
-    {{"Blue sparks fly from your fingers.",
-      "Blue sparks fly from $n's fingers.",
-      "A halo appears over your head.",
-      "A halo appears over $n's head.",
-      "You nimbly tie yourself into a knot.",
-      "$n nimbly ties $mself into a knot.",
-      "You grizzle your teeth and look mean.",
-      "$n grizzles $s teeth and looks mean."}},
-
-    /* 3 */
-    {{"Little red lights dance in your eyes.",
-      "Little red lights dance in $n's eyes.",
-      "You recite words of wisdom.",
-      "$n recites words of wisdom.",
-      "You juggle with daggers, apples, and eyeballs.",
-      "$n juggles with daggers, apples, and eyeballs.",
-      "You hit your head, and your eyes roll.",
-      "$n hits $s head, and $s eyes roll."}},
-
-    /* 4 */
-    {{"A slimy green monster appears before you and bows.",
-      "A slimy green monster appears before $n and bows.",
-      "Deep in prayer, you levitate.",
-      "Deep in prayer, $n levitates.",
-      "You steal the underwear off every person in the room.",
-      "Your underwear is gone!  $n stole it!",
-      "Crunch, crunch -- you munch a bottle.",
-      "Crunch, crunch -- $n munches a bottle."}},
-
-    /* 5 */
-    {{"You turn everybody into a little pink elephant.",
-      "You are turned into a little pink elephant by $n.",
-      "An angel consults you.",
-      "An angel consults $n.",
-      "The dice roll ... and you win again.",
-      "The dice roll ... and $n wins again.",
-      "... 98, 99, 100 ... you do pushups.",
-      "... 98, 99, 100 ... $n does pushups."}},
-
-    /* 6 */
-    {{"A small ball of light dances on your fingertips.",
-      "A small ball of light dances on $n's fingertips.",
-      "Your body glows with an unearthly light.",
-      "$n's body glows with an unearthly light.",
-      "You count the money in everyone's pockets.",
-      "Check your money, $n is counting it.",
-      "Arnold Schwarzenegger admires your physique.",
-      "Arnold Schwarzenegger admires $n's physique."}},
-
-    /* 7 */
-    {{"Smoke and fumes leak from your nostrils.",
-      "Smoke and fumes leak from $n's nostrils.",
-      "A spot light hits you.",
-      "A spot light hits $n.",
-      "You balance a pocket knife on your tongue.",
-      "$n balances a pocket knife on your tongue.",
-      "Watch your feet, you are juggling granite boulders.",
-      "Watch your feet, $n is juggling granite boulders."}},
-
-    /* 8 */
-    {{"The light flickers as you rap in magical languages.",
-      "The light flickers as $n raps in magical languages.",
-      "Everyone levitates as you pray.",
-      "You levitate as $n prays.",
-      "You produce a coin from everyone's ear.",
-      "$n produces a coin from your ear.",
-      "Oomph!  You squeeze water out of a granite boulder.",
-      "Oomph!  $n squeezes water out of a granite boulder."}},
-
-    /* 9 */
-    {{"Your head disappears.",
-      "$n's head disappears.",
-      "A cool breeze refreshes you.",
-      "A cool breeze refreshes $n.",
-      "You step behind your shadow.",
-      "$n steps behind $s shadow.",
-      "You pick your teeth with a spear.",
-      "$n picks $s teeth with a spear."}},
-
-    /* 10 */
-    {{"A fire elemental singes your hair.",
-      "A fire elemental singes $n's hair.",
-      "The sun pierces through the clouds to illuminate you.",
-      "The sun pierces through the clouds to illuminate $n.",
-      "Your eyes dance with greed.",
-      "$n's eyes dance with greed.",
-      "Everyone is swept off their foot by your hug.",
-      "You are swept off your feet by $n's hug."}},
-
-    /* 11 */
-    {{"The sky changes colour to match your eyes.",
-      "The sky changes colour to match $n's eyes.",
-      "The ocean parts before you.",
-      "The ocean parts before $n.",
-      "You deftly steal everyone's weapon.",
-      "$n deftly steals your weapon.",
-      "Your karate chop splits a tree.",
-      "$n's karate chop splits a tree."}},
-
-    /* 12 */
-    {{"The stones dance to your command.",
-      "The stones dance to $n's command.",
-      "A thunder cloud kneels to you.",
-      "A thunder cloud kneels to $n.",
-      "The Grey Mouser buys you a beer.",
-      "The Grey Mouser buys $n a beer.",
-      "A strap of your armor breaks over your mighty thews.",
-      "A strap of $n's armor breaks over $s mighty thews."}},
-
-    /* 13 */
-    {{"The heavens and grass change colour as you smile.",
-      "The heavens and grass change colour as $n smiles.",
-      "The Burning Man speaks to you.",
-      "The Burning Man speaks to $n.",
-      "Everyone's pocket explodes with your fireworks.",
-      "Your pocket explodes with $n's fireworks.",
-      "A boulder cracks at your frown.",
-      "A boulder cracks at $n's frown."}},
-
-    /* 14 */
-    {{"Everyone's clothes are transparent, and you are laughing.",
-      "Your clothes are transparent, and $n is laughing.",
-      "An eye in a pyramid winks at you.",
-      "An eye in a pyramid winks at $n.",
-      "Everyone discovers your dagger a centimeter from their eye.",
-      "You discover $n's dagger a centimeter from your eye.",
-      "Mercenaries arrive to do your bidding.",
-      "Mercenaries arrive to do $n's bidding."}},
-
-    /* 15 */
-    {{"A black hole swallows you.",
-      "A black hole swallows $n.",
-      "Valentine Michael Smith offers you a glass of water.",
-      "Valentine Michael Smith offers $n a glass of water.",
-      "Where did you go?",
-      "Where did $n go?",
-      "Four matched Percherons bring in your chariot.",
-      "Four matched Percherons bring in $n's chariot."}},
-
-    /* 16 */
-    {{"The world shimmers in time with your whistling.",
-      "The world shimmers in time with $n's whistling.",
-      "The great god Mota gives you a staff.",
-      "The great god Mota gives $n a staff.",
-      "Click.",
-      "Click.",
-      "Atlas asks you to relieve him.",
-      "Atlas asks $n to relieve him."}},
-
-    {{0}}
+const POSE_T pose_table[] = {
+    { CLASS_MAGE, {
+        "You sizzle with energy.",                                      "$n sizzles with energy.",
+        "You turn into a butterfly, then return to your normal shape.", "$n turns into a butterfly, then returns to $s normal shape.",
+        "Blue sparks fly from your fingers.",                           "Blue sparks fly from $n's fingers.",
+        "Little red lights dance in your eyes.",                        "Little red lights dance in $n's eyes.",
+        "A slimy green monster appears before you and bows.",           "A slimy green monster appears before $n and bows.",
+        "You turn everybody into a little pink elephant.",              "You are turned into a little pink elephant by $n.",
+        "A small ball of light dances on your fingertips.",             "A small ball of light dances on $n's fingertips.",
+        "Smoke and fumes leak from your nostrils.",                     "Smoke and fumes leak from $n's nostrils.",
+        "The light flickers as you rap in magical languages.",          "The light flickers as $n raps in magical languages.",
+        "Your head disappears.",                                        "$n's head disappears.",
+        "A fire elemental singes your hair.",                           "A fire elemental singes $n's hair.",
+        "The sky changes colour to match your eyes.",                   "The sky changes colour to match $n's eyes.",
+        "The stones dance to your command.",                            "The stones dance to $n's command.",
+        "The heavens and grass change colour as you smile.",            "The heavens and grass change colour as $n smiles.",
+        "Everyone's clothes are transparent, and you are laughing.",    "Your clothes are transparent, and $n is laughing.",
+        "A black hole swallows you.",                                   "A black hole swallows $n.",
+        "The world shimmers in time with your whistling.",              "The world shimmers in time with $n's whistling.",
+        NULL
+    }},
+    { CLASS_CLERIC, {
+        "You feel very holy.",                                          "$n looks very holy.",
+        "You nonchalantly turn wine into water.",                       "$n nonchalantly turns wine into water.",
+        "A halo appears over your head.",                               "A halo appears over $n's head.",
+        "You recite words of wisdom.",                                  "$n recites words of wisdom.",
+        "Deep in prayer, you levitate.",                                "Deep in prayer, $n levitates.",
+        "An angel consults you.",                                       "An angel consults $n.",
+        "Your body glows with an unearthly light.",                     "$n's body glows with an unearthly light.",
+        "A spot light hits you.",                                       "A spot light hits $n.",
+        "Everyone levitates as you pray.",                              "You levitate as $n prays.",
+        "A cool breeze refreshes you.",                                 "A cool breeze refreshes $n.",
+        "The sun pierces through the clouds to illuminate you.",        "The sun pierces through the clouds to illuminate $n.",
+        "The ocean parts before you.",                                  "The ocean parts before $n.",
+        "A thunder cloud kneels to you.",                               "A thunder cloud kneels to $n.",
+        "The Burning Man speaks to you.",                               "The Burning Man speaks to $n.",
+        "An eye in a pyramid winks at you.",                            "An eye in a pyramid winks at $n.",
+        "Valentine Michael Smith offers you a glass of water.",         "Valentine Michael Smith offers $n a glass of water.",
+        "The great god Mota gives you a staff.",                        "The great god Mota gives $n a staff.",
+        NULL
+    }},
+    { CLASS_THIEF, {
+        "You perform a small card trick.",                              "$n performs a small card trick.",
+        "You wiggle your ears alternately.",                            "$n wiggles $s ears alternately.",
+        "You nimbly tie yourself into a knot.",                         "$n nimbly ties $mself into a knot.",
+        "You juggle with daggers, apples, and eyeballs.",               "$n juggles with daggers, apples, and eyeballs.",
+        "You steal the underwear off every person in the room.",        "Your underwear is gone!  $n stole it!",
+        "The dice roll ... and you win again.",                         "The dice roll ... and $n wins again.",
+        "You count the money in everyone's pockets.",                   "Check your money, $n is counting it.",
+        "You balance a pocket knife on your tongue.",                   "$n balances a pocket knife on your tongue.",
+        "You produce a coin from everyone's ear.",                      "$n produces a coin from your ear.",
+        "You step behind your shadow.",                                 "$n steps behind $s shadow.",
+        "Your eyes dance with greed.",                                  "$n's eyes dance with greed.",
+        "You deftly steal everyone's weapon.",                          "$n deftly steals your weapon.",
+        "The Grey Mouser buys you a beer.",                             "The Grey Mouser buys $n a beer.",
+        "Everyone's pocket explodes with your fireworks.",              "Your pocket explodes with $n's fireworks.",
+        "Everyone discovers your dagger a centimeter from their eye.",  "You discover $n's dagger a centimeter from your eye.",
+        "Where did you go?",                                            "Where did $n go?",
+        "Click.",                                                       "Click.",
+        NULL
+    }},
+    { CLASS_WARRIOR, {
+        "You show your bulging muscles.",                               "$n shows $s bulging muscles.",
+        "You crack nuts between your fingers.",                         "$n cracks nuts between $s fingers.",
+        "You grizzle your teeth and look mean.",                        "$n grizzles $s teeth and looks mean.",
+        "You hit your head, and your eyes roll.",                       "$n hits $s head, and $s eyes roll.",
+        "Crunch, crunch -- you munch a bottle.",                        "Crunch, crunch -- $n munches a bottle.",
+        "... 98, 99, 100 ... you do pushups.",                          "... 98, 99, 100 ... $n does pushups.",
+        "Arnold Schwarzenegger admires your physique.",                 "Arnold Schwarzenegger admires $n's physique.",
+        "Watch your feet, you are juggling granite boulders.",          "Watch your feet, $n is juggling granite boulders.",
+        "Oomph!  You squeeze water out of a granite boulder.",          "Oomph!  $n squeezes water out of a granite boulder.",
+        "You pick your teeth with a spear.",                            "$n picks $s teeth with a spear.",
+        "Everyone is swept off their foot by your hug.",                "You are swept off your feet by $n's hug.",
+        "Your karate chop splits a tree.",                              "$n's karate chop splits a tree.",
+        "A strap of your armor breaks over your mighty thews.",         "A strap of $n's armor breaks over $s mighty thews.",
+        "A boulder cracks at your frown.",                              "A boulder cracks at $n's frown.",
+        "Mercenaries arrive to do your bidding.",                       "Mercenaries arrive to do $n's bidding.",
+        "Four matched Percherons bring in your chariot.",               "Four matched Percherons bring in $n's chariot.",
+        "Atlas asks you to relieve him.",                               "Atlas asks $n to relieve him.",
+        NULL
+    }},
+    {-1}
 };

@@ -33,9 +33,6 @@
 
 #include "json_obj.h"
 
-#define JBITSF(array, bits) \
-    JBITS (flag_string ((array), (bits)))
-
 const char *json_not_none (const char *value) {
     return (value == NULL || !strcmp (value, "none"))
         ? NULL : value;
@@ -265,7 +262,9 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob) {
     json_prop_dice    (new, "hit_dice",    &(mob->hit));
     json_prop_dice    (new, "mana_dice",   &(mob->mana));
     json_prop_dice    (new, "damage_dice", &(mob->damage));
-    json_prop_string  (new, "dam_type",    JSTR (attack_get_name (mob->dam_type)));
+
+    if (mob->attack_type > 0)
+        json_prop_string (new, "attack_type", JSTR (attack_get_name (mob->attack_type)));
 
     sub = json_prop_object (new, "ac", JSON_OBJ_ANY);
     for (i = 0; i < AC_MAX; i++)

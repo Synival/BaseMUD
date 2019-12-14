@@ -106,13 +106,14 @@ CHAR_T *char_create_mobile (MOB_INDEX_T *mob_index) {
         mob->mana     = mob->max_mana;
         mob->damage   = mob_index->damage;
         mob->damage.bonus = 0;
-        mob->dam_type = mob_index->dam_type;
+        mob->attack_type = mob_index->attack_type;
 
-        if (mob->dam_type == 0) {
+        if (mob->attack_type == 0) {
+            /* TODO: remove these magic numbers!! */
             switch (number_range (1, 3)) {
-                case (1): mob->dam_type = 3;  break; /* slash */
-                case (2): mob->dam_type = 7;  break; /* pound */
-                case (3): mob->dam_type = 11; break; /* pierce */
+                case (1): mob->attack_type = 3;  break; /* slash */
+                case (2): mob->attack_type = 7;  break; /* pound */
+                case (3): mob->attack_type = 11; break; /* pierce */
             }
         }
         for (i = 0; i < 4; i++)
@@ -196,9 +197,10 @@ CHAR_T *char_create_mobile (MOB_INDEX_T *mob_index) {
         mob->max_mana    = 100 + dice (mob->level, 10);
         mob->mana        = mob->max_mana;
         switch (number_range (1, 3)) {
-            case (1): mob->dam_type = 3;  break; /* slash */
-            case (2): mob->dam_type = 7;  break; /* pound */
-            case (3): mob->dam_type = 11; break; /* pierce */
+            /* TODO: remove these magic numbers!! */
+            case (1): mob->attack_type = 3;  break; /* slash */
+            case (2): mob->attack_type = 7;  break; /* pound */
+            case (3): mob->attack_type = 11; break; /* pierce */
         }
         for (i = 0; i < 3; i++)
             mob->armor[i] = interpolate (mob->level, 100, -100);
@@ -278,7 +280,7 @@ void char_clone_mobile (CHAR_T *parent, CHAR_T *clone) {
     clone->size        = parent->size;
     clone->material    = parent->material;
     clone->off_flags   = parent->off_flags;
-    clone->dam_type    = parent->dam_type;
+    clone->attack_type = parent->attack_type;
     clone->start_pos   = parent->start_pos;
     clone->default_pos = parent->default_pos;
     clone->spec_fun    = parent->spec_fun;

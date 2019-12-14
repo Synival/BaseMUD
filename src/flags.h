@@ -538,5 +538,6 @@ extern const FLAG_T weapon_flags[];
 extern const FLAG_T res_flags[];
 extern const FLAG_T gate_flags[];
 extern const FLAG_T furniture_flags[];
+extern const FLAG_T dam_flags[];
 
 #endif

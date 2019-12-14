@@ -15,7 +15,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+999",
     "damage_dice": "1d8+32",
-    "dam_type": "magic",
+    "attack_type": "magic",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -55,7 +55,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+20",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -90,7 +90,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+20",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -127,7 +127,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+32",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -165,7 +165,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+32",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -200,7 +200,7 @@
     "hit_dice": "6d8+80",
     "mana_dice": "1d1+99",
     "damage_dice": "1d5+1",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 20,
       "bash": 40,
@@ -228,7 +228,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+32",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -263,7 +263,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+99",
     "damage_dice": "1d4+23",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -291,7 +291,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+20",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -325,7 +325,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+22",
-    "dam_type": "slap",
+    "attack_type": "slap",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -363,7 +363,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+20",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -404,7 +404,7 @@
     "hit_dice": "1d1+3999",
     "mana_dice": "1d1+499",
     "damage_dice": "5d4+40",
-    "dam_type": "crush",
+    "attack_type": "crush",
     "ac": {
       "pierce": -250,
       "bash": -250,
@@ -436,7 +436,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+999",
     "damage_dice": "2d4+30",
-    "dam_type": "divine",
+    "attack_type": "divine",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -468,7 +468,7 @@
     "hit_dice": "1d1+1999",
     "mana_dice": "1d1+999",
     "damage_dice": "3d8+24",
-    "dam_type": "magic",
+    "attack_type": "magic",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -499,7 +499,7 @@
     "hit_dice": "1d1+1999",
     "mana_dice": "1d1+999",
     "damage_dice": "3d8+24",
-    "dam_type": "divine",
+    "attack_type": "divine",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -531,7 +531,7 @@
     "hit_dice": "1d1+1999",
     "mana_dice": "1d1+199",
     "damage_dice": "3d8+24",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -562,7 +562,7 @@
     "hit_dice": "1d1+1999",
     "mana_dice": "1d1+199",
     "damage_dice": "3d8+24",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -200,
       "bash": -200,
@@ -593,7 +593,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+499",
     "damage_dice": "10d4+10",
-    "dam_type": "magic",
+    "attack_type": "magic",
     "ac": {
       "pierce": -100,
       "bash": -100,
@@ -627,7 +627,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+499",
     "damage_dice": "5d8+10",
-    "dam_type": "divine",
+    "attack_type": "divine",
     "ac": {
       "pierce": -100,
       "bash": -100,
@@ -659,7 +659,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+99",
     "damage_dice": "4d10+12",
-    "dam_type": "pierce",
+    "attack_type": "pierce",
     "ac": {
       "pierce": -120,
       "bash": -120,
@@ -692,7 +692,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+199",
     "damage_dice": "11d4+10",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": -100,
       "bash": -100,
@@ -722,7 +722,7 @@
     "hit_dice": "1d1+499",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+18",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -60,
       "bash": -60,
@@ -758,7 +758,7 @@
     "hit_dice": "1d1+499",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+18",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -60,
       "bash": -60,
@@ -788,7 +788,7 @@
     "hit_dice": "1d1+499",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+18",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -60,
       "bash": -60,
@@ -826,7 +826,7 @@
     "hit_dice": "1d1+499",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+18",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -60,
       "bash": -60,
@@ -863,7 +863,7 @@
     "hit_dice": "1d1+499",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+18",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -60,
       "bash": -60,
@@ -899,7 +899,7 @@
     "hit_dice": "1d1+499",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+18",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -60,
       "bash": -60,
@@ -936,7 +936,7 @@
     "hit_dice": "1d1+499",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+18",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -80,
       "bash": -80,
@@ -973,7 +973,7 @@
     "hit_dice": "15d15+160",
     "mana_dice": "1d1+149",
     "damage_dice": "2d4+4",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 0,
       "bash": 0,
@@ -1001,7 +1001,7 @@
     "hit_dice": "2d6+10",
     "mana_dice": "1d1+99",
     "damage_dice": "1d5+0",
-    "dam_type": "pound",
+    "attack_type": "pound",
     "ac": {
       "pierce": 100,
       "bash": 100,
@@ -1030,7 +1030,7 @@
     "hit_dice": "1d6+4",
     "mana_dice": "1d1+99",
     "damage_dice": "1d4+0",
-    "dam_type": "bite",
+    "attack_type": "bite",
     "ac": {
       "pierce": 100,
       "bash": 100,
@@ -1056,7 +1056,7 @@
     "hit_dice": "2d6+60",
     "mana_dice": "1d1+99",
     "damage_dice": "1d6+1",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 70,
       "bash": 50,
@@ -1084,7 +1084,7 @@
     "hit_dice": "2d6+22",
     "mana_dice": "1d1+99",
     "damage_dice": "1d6+0",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": 80,
       "bash": 80,
@@ -1112,7 +1112,7 @@
     "hit_dice": "2d6+10",
     "mana_dice": "1d1+99",
     "damage_dice": "1d5+0",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": 80,
       "bash": 80,
@@ -1140,7 +1140,7 @@
     "hit_dice": "1d6+4",
     "mana_dice": "1d1+99",
     "damage_dice": "1d4+0",
-    "dam_type": "scratch",
+    "attack_type": "scratch",
     "ac": {
       "pierce": 80,
       "bash": 80,
@@ -1168,7 +1168,7 @@
     "hit_dice": "15d15+160",
     "mana_dice": "1d1+149",
     "damage_dice": "2d4+4",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 0,
       "bash": 0,
@@ -1197,7 +1197,7 @@
     "hit_dice": "15d15+160",
     "mana_dice": "1d1+149",
     "damage_dice": "2d4+4",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 0,
       "bash": 0,
@@ -1226,7 +1226,7 @@
     "hit_dice": "20d20+200",
     "mana_dice": "1d1+199",
     "damage_dice": "2d4+7",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": -40,
       "bash": -60,
@@ -1256,7 +1256,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+999",
     "damage_dice": "10d10+10",
-    "dam_type": "magic",
+    "attack_type": "magic",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -1293,7 +1293,7 @@
     "hit_dice": "15d15+160",
     "mana_dice": "1d1+149",
     "damage_dice": "2d4+4",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 0,
       "bash": 0,
@@ -1321,7 +1321,7 @@
     "hit_dice": "15d15+160",
     "mana_dice": "1d1+149",
     "damage_dice": "2d4+4",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 0,
       "bash": 0,
@@ -1348,7 +1348,7 @@
     "hit_dice": "2d6+11",
     "mana_dice": "1d1+99",
     "damage_dice": "1d4+0",
-    "dam_type": "scratch",
+    "attack_type": "scratch",
     "ac": {
       "pierce": 80,
       "bash": 80,
@@ -1374,7 +1374,7 @@
     "hit_dice": "4d6+25",
     "mana_dice": "1d1+99",
     "damage_dice": "1d6+0",
-    "dam_type": "bite",
+    "attack_type": "bite",
     "ac": {
       "pierce": 70,
       "bash": 70,
@@ -1403,7 +1403,7 @@
     "hit_dice": "3d12+50",
     "mana_dice": "1d1+99",
     "damage_dice": "1d6+0",
-    "dam_type": "bite",
+    "attack_type": "bite",
     "ac": {
       "pierce": 50,
       "bash": 50,
@@ -1432,7 +1432,7 @@
     "hit_dice": "6d10+60",
     "mana_dice": "1d1+149",
     "damage_dice": "2d4+1",
-    "dam_type": "bite",
+    "attack_type": "bite",
     "ac": {
       "pierce": 40,
       "bash": 40,
@@ -1460,7 +1460,7 @@
     "hit_dice": "6d10+80",
     "mana_dice": "1d1+99",
     "damage_dice": "2d5+1",
-    "dam_type": "bite",
+    "attack_type": "bite",
     "ac": {
       "pierce": 40,
       "bash": 40,
@@ -1488,7 +1488,7 @@
     "hit_dice": "6d10+130",
     "mana_dice": "1d1+99",
     "damage_dice": "2d5+3",
-    "dam_type": "claw",
+    "attack_type": "claw",
     "ac": {
       "pierce": 0,
       "bash": 0,
@@ -1517,7 +1517,7 @@
     "hit_dice": "4d9+205",
     "mana_dice": "1d1+99",
     "damage_dice": "2d8+3",
-    "dam_type": "chomp",
+    "attack_type": "chomp",
     "ac": {
       "pierce": -20,
       "bash": -20,
@@ -1545,7 +1545,7 @@
     "hit_dice": "4d9+325",
     "mana_dice": "1d1+99",
     "damage_dice": "4d4+5",
-    "dam_type": "claw",
+    "attack_type": "claw",
     "ac": {
       "pierce": -40,
       "bash": -40,
@@ -1574,7 +1574,7 @@
     "hit_dice": "1d1+499",
     "mana_dice": "1d1+99",
     "damage_dice": "1d8+12",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -1611,7 +1611,7 @@
     "hit_dice": "2d6+35",
     "mana_dice": "1d1+99",
     "damage_dice": "1d7+0",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 70,
       "bash": 70,
@@ -1641,7 +1641,7 @@
     "hit_dice": "2d6+10",
     "mana_dice": "1d1+99",
     "damage_dice": "1d5+0",
-    "dam_type": "peck",
+    "attack_type": "peck",
     "ac": {
       "pierce": 80,
       "bash": 80,
@@ -1668,7 +1668,7 @@
     "hit_dice": "1d4+0",
     "mana_dice": "1d1+99",
     "damage_dice": "1d1+0",
-    "dam_type": "peckb",
+    "attack_type": "peckb",
     "ac": {
       "pierce": 100,
       "bash": 100,
@@ -1695,7 +1695,7 @@
     "hit_dice": "2d6+0",
     "mana_dice": "1d1+99",
     "damage_dice": "1d3+0",
-    "dam_type": "peck",
+    "attack_type": "peck",
     "ac": {
       "pierce": 100,
       "bash": 100,
@@ -1722,7 +1722,7 @@
     "hit_dice": "2d6+5",
     "mana_dice": "1d1+99",
     "damage_dice": "1d4+0",
-    "dam_type": "peckb",
+    "attack_type": "peckb",
     "ac": {
       "pierce": 100,
       "bash": 100,
@@ -1750,7 +1750,7 @@
     "hit_dice": "15d15+190",
     "mana_dice": "1d1+199",
     "damage_dice": "2d4+6",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": -20,
       "bash": -20,
@@ -1780,7 +1780,7 @@
     "hit_dice": "15d15+10",
     "mana_dice": "1d1+149",
     "damage_dice": "2d4+4",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": 0,
       "bash": 0,
@@ -1809,7 +1809,7 @@
     "hit_dice": "4d12+148",
     "mana_dice": "1d1+99",
     "damage_dice": "2d7+1",
-    "dam_type": "slap",
+    "attack_type": "slap",
     "ac": {
       "pierce": 0,
       "bash": 0,
@@ -1839,7 +1839,7 @@
     "hit_dice": "6d10+500",
     "mana_dice": "1d1+199",
     "damage_dice": "1d8+12",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -1871,7 +1871,7 @@
     "hit_dice": "2d6+10",
     "mana_dice": "1d1+99",
     "damage_dice": "1d5+0",
-    "dam_type": "slap",
+    "attack_type": "slap",
     "ac": {
       "pierce": 100,
       "bash": 100,
@@ -1900,7 +1900,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+199",
     "damage_dice": "1d8+10",
-    "dam_type": "slap",
+    "attack_type": "slap",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -1938,7 +1938,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+199",
     "damage_dice": "5d6+20",
-    "dam_type": "slap",
+    "attack_type": "slap",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -1975,7 +1975,7 @@
     "hit_dice": "11d10+200",
     "mana_dice": "1d1+99",
     "damage_dice": "4d6+4",
-    "dam_type": "bite",
+    "attack_type": "bite",
     "ac": {
       "pierce": -60,
       "bash": -50,
@@ -2006,7 +2006,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "1d1+199",
     "damage_dice": "5d6+20",
-    "dam_type": "slap",
+    "attack_type": "slap",
     "ac": {
       "pierce": -150,
       "bash": -150,
@@ -2035,7 +2035,7 @@
     "hit_dice": "6d8+400",
     "mana_dice": "1d1+99",
     "damage_dice": "4d5+5",
-    "dam_type": "stab",
+    "attack_type": "stab",
     "ac": {
       "pierce": 20,
       "bash": 40,

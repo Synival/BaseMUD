@@ -540,7 +540,7 @@ DEFINE_DO_FUN (do_envenom) {
         }
 
         BAIL_IF (obj->v.weapon.attack_type < 0 ||
-                 attack_table[obj->v.weapon.attack_type].damage == DAM_BASH,
+                 attack_table[obj->v.weapon.attack_type].dam_type == DAM_BASH,
             "You can only envenom edged weapons.\n\r", ch);
         BAIL_IF_ACT (IS_WEAPON_STAT (obj, WEAPON_POISON),
             "$p is already envenomed.", ch, obj, NULL);

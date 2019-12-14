@@ -14,7 +14,6 @@
   "hit_dice": "6d12+778",
   "mana_dice": "29d9+100",
   "damage_dice": "5d4+8",
-  "dam_type": "none",
   "ac": {
     "pierce": -90,
     "bash": -90,

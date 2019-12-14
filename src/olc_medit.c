@@ -52,7 +52,7 @@ MEDIT (medit_show) {
     printf_to_char (ch, "Level:       [%2d]    Align: [%4d]      "
                         "Hitroll: [%2d] Dam Type:    [%s]\n\r",
         mob->level, mob->alignment, mob->hitroll,
-        attack_table[mob->dam_type].name);
+        attack_table[mob->attack_type].name);
 
     if (mob->group)
         printf_to_char (ch, "Group:       [%5d]\n\r", mob->group);
@@ -208,7 +208,7 @@ MEDIT (medit_damtype) {
         "Syntax: damtype [damage message]\n\r"
         "For a list of damage types, type '? weapon'.\n\r", ch, FALSE);
 
-    mob->dam_type = attack_lookup (argument);
+    mob->attack_type = attack_lookup (argument);
     send_to_char ("Damage type set.\n\r", ch);
     return TRUE;
 }

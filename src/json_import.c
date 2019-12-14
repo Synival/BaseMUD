@@ -536,7 +536,7 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
         "area",       "anum",        "name",        "short_descr",
         "long_descr", "description", "race",
         "alignment",  "level",       "hitroll",
-        "hit_dice",   "mana_dice",   "damage_dice", "dam_type",
+        "hit_dice",   "mana_dice",   "damage_dice",
         "ac",         "wealth",      "size",
 
         "*start_pos", "*default_pos",     "*sex",         "*material",
@@ -544,7 +544,7 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
         "*offense",   "*offense_minus",   "*immune",      "*immune_minus",
         "*resist",    "*resist_minus",    "*vulnerable",  "*vulnerable_minus",
         "*form",      "*form_minus",      "*parts",       "*parts_minus",
-        "*shop",      "*spec_fun",        "*group",
+        "*shop",      "*spec_fun",        "*group",       "*attack_type",
 
         NULL
     );
@@ -577,9 +577,10 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
     mob->mana   = json_value_as_dice (json_get (json, "mana_dice"));
     mob->damage = json_value_as_dice (json_get (json, "damage_dice"));
 
-    READ_PROP_STR (buf, "dam_type");
-    mob->dam_type = lookup_backup (attack_lookup_exact,
-        buf, "Unknown damage type '%s'", 0);
+    READ_PROP_STR (buf, "attack_type");
+    if (buf[0] != '\0')
+        mob->attack_type = lookup_backup (attack_lookup_exact,
+            buf, "Unknown attack '%s'", 0);
 
     array = json_get (json, "ac");
     for (sub = array->first_child; sub != NULL; sub = sub->next) {

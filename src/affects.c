@@ -52,7 +52,7 @@ int check_immune (CHAR_T *ch, int dam_type) {
 
     /* determine default resistance.  if it's a physical attack (bash, pierce,
      * slash), check weapon resistance.  otherwise, check magic resistance. */
-    bit = (dam->dam_class == DAM_PHYSICAL) ? RES_WEAPON : RES_MAGIC;
+    bit = (dam->dam_flags & DAM_MAGICAL) ? RES_MAGIC : RES_WEAPON;
          if (IS_SET (ch->imm_flags,  bit)) def = IS_IMMUNE;
     else if (IS_SET (ch->res_flags,  bit)) def = IS_RESISTANT;
     else if (IS_SET (ch->vuln_flags, bit)) def = IS_VULNERABLE;

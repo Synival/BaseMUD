@@ -13,7 +13,7 @@
     "hit_dice": "3d20+80",
     "mana_dice": "1d1+99",
     "damage_dice": "2d5+3",
-    "dam_type": "pound",
+    "attack_type": "pound",
     "ac": {
       "pierce": 40,
       "bash": 30,
@@ -41,7 +41,7 @@
     "hit_dice": "14d10+70",
     "mana_dice": "1d1+99",
     "damage_dice": "3d4+2",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": 10,
       "bash": 0,
@@ -70,7 +70,7 @@
     "hit_dice": "15d12+110",
     "mana_dice": "1d1+99",
     "damage_dice": "4d4+3",
-    "dam_type": "slap",
+    "attack_type": "slap",
     "ac": {
       "pierce": -20,
       "bash": -20,
@@ -100,7 +100,7 @@
     "hit_dice": "25d10+70",
     "mana_dice": "17d8+50",
     "damage_dice": "4d5+3",
-    "dam_type": "pound",
+    "attack_type": "pound",
     "ac": {
       "pierce": -40,
       "bash": -40,
@@ -131,7 +131,7 @@
     "hit_dice": "11d8+250",
     "mana_dice": "20d8+75",
     "damage_dice": "4d6+4",
-    "dam_type": "pound",
+    "attack_type": "pound",
     "ac": {
       "pierce": -40,
       "bash": -40,
@@ -164,7 +164,7 @@
     "hit_dice": "25d10+300",
     "mana_dice": "18d10+75",
     "damage_dice": "4d6+5",
-    "dam_type": "crush",
+    "attack_type": "crush",
     "ac": {
       "pierce": -50,
       "bash": -50,
@@ -197,7 +197,7 @@
     "hit_dice": "30d10+350",
     "mana_dice": "20d10+100",
     "damage_dice": "6d4+5",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -60,
       "bash": -60,
@@ -229,7 +229,7 @@
     "hit_dice": "35d20+300",
     "mana_dice": "20d10+75",
     "damage_dice": "4d8+6",
-    "dam_type": "slash",
+    "attack_type": "slash",
     "ac": {
       "pierce": -80,
       "bash": -80,
@@ -263,7 +263,7 @@
     "hit_dice": "10d100+150",
     "mana_dice": "20d12+100",
     "damage_dice": "4d8+7",
-    "dam_type": "beating",
+    "attack_type": "beating",
     "ac": {
       "pierce": -70,
       "bash": -80,
@@ -296,7 +296,7 @@
     "hit_dice": "1d1+999",
     "mana_dice": "20d20+50",
     "damage_dice": "8d6+12",
-    "dam_type": "pound",
+    "attack_type": "pound",
     "ac": {
       "pierce": -110,
       "bash": -130,
@@ -329,7 +329,7 @@
     "hit_dice": "1d1+1599",
     "mana_dice": "40d20+50",
     "damage_dice": "7d8+15",
-    "dam_type": "punch",
+    "attack_type": "punch",
     "ac": {
       "pierce": -110,
       "bash": -140,
@@ -363,7 +363,7 @@
     "hit_dice": "1d1+3999",
     "mana_dice": "1d1+3999",
     "damage_dice": "6d10+25",
-    "dam_type": "wrath",
+    "attack_type": "wrath",
     "ac": {
       "pierce": -150,
       "bash": -150,

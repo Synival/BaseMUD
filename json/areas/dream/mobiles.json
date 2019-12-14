@@ -12,7 +12,6 @@
   "hit_dice": "2d7+96",
   "mana_dice": "4d9+100",
   "damage_dice": "1d7+2",
-  "dam_type": "none",
   "ac": {
     "pierce": 30,
     "bash": 30,

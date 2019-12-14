@@ -177,7 +177,7 @@ struct shop_data {
 struct class_type {
     int type;
     char *name;              /* the full name of the class  */
-    char who_name    [4];    /* Three-letter name for 'who' */
+    char who_name[4];        /* Three-letter name for 'who' */
     sh_int attr_prime;       /* Prime attribute             */
     sh_int weapon;           /* First weapon                */
     sh_int guild[MAX_GUILD]; /* Vnum of guild rooms         */
@@ -189,7 +189,6 @@ struct class_type {
     bool gains_mana;         /* Class gains mana on level   */
     char *base_group;        /* base skills gained          */
     char *default_group;     /* default skills gained       */
-    OBJ_RECYCLE_T rec_data;
 };
 
 struct item_type {
@@ -215,13 +214,13 @@ struct dam_type {
     char *name;
     flag_t res;
     EFFECT_FUN *effect;
-    int dam_class;
+    flag_t dam_flags;
 };
 
 struct attack_type {
-    char *name; /* name         */
-    char *noun; /* message      */
-    int damage; /* damage class */
+    char *name;   /* name          */
+    char *noun;   /* message       */
+    int dam_type; /* type of DAM_T */
 };
 
 struct race_type {
@@ -362,7 +361,7 @@ struct mob_index_data {
     DICE_T mana;
     DICE_T damage;
     sh_int ac[4];
-    sh_int dam_type;
+    sh_int attack_type;
     sh_int start_pos;
     sh_int default_pos;
     sh_int sex;
@@ -477,7 +476,7 @@ struct char_data {
     /* mobile stuff */
     flag_t off_flags;
     DICE_T damage;
-    sh_int dam_type;
+    sh_int attack_type;
     sh_int start_pos;
     sh_int default_pos;
     sh_int mprog_delay;
@@ -530,7 +529,7 @@ struct pc_data {
     bool confirm_delete;
     char *alias[MAX_ALIAS];
     char *alias_sub[MAX_ALIAS];
-    BOARD_T *board;           /* The current board        */
+    BOARD_T *board;              /* The current board        */
     time_t last_note[BOARD_MAX]; /* last note for the boards */
     NOTE_T *in_progress;
     int security;                /* OLC - Builder security */
@@ -995,21 +994,18 @@ struct social_type {
 
 /* Data about a board */
 struct board_data {
-    char *name;       /* Max 8 chars */
-    char *long_name;  /* Explanatory text, should be no more than 40 ? chars */
-
-    int read_level;   /* minimum level to see board */
-    int write_level;  /* minimum level to post notes */
-
-    char *names;      /* Default recipient */
-    int force_type;   /* Default action (DEF_XXX) */
-
+    char *name;      /* Max 8 chars */
+    char *long_name; /* Explanatory text, should be no more than 40 ? chars */
+    int read_level;  /* minimum level to see board */
+    int write_level; /* minimum level to post notes */
+    char *names;     /* Default recipient */
+    int force_type;  /* Default action (DEF_XXX) */
     int purge_days;  /* Default expiration */
 
     /* Non-constant data */
     BOARD_T *next;
     NOTE_T *note_first; /* pointer to board's first note */
-    bool changed;          /* currently unused */
+    bool changed;       /* currently unused */
 
 };
 
@@ -1130,7 +1126,8 @@ struct editor_cmd_type {
 
 /* All the posing stuff. */
 struct pose_type {
-    char *message[2 * CLASS_MAX];
+    int class_index;
+    const char *message[MAX_LEVEL * 2 + 2];
 };
 
 /* Music stuff. */

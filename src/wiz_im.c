@@ -594,7 +594,7 @@ DEFINE_DO_FUN (do_mstat) {
     if (IS_NPC (victim) && victim->index_data->new_format) {
         printf_to_char (ch, "Damage: %dd%d  Message:  %s\n\r",
             victim->damage.number, victim->damage.size,
-            attack_table[victim->dam_type].noun);
+            attack_table[victim->attack_type].noun);
     }
 
     printf_to_char (ch, "Fighting: %s\n\r",

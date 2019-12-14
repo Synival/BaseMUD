@@ -15,7 +15,7 @@
   "hit_dice": "1d1+19999",
   "mana_dice": "1d1+499",
   "damage_dice": "5d4+40",
-  "dam_type": "crush",
+  "attack_type": "crush",
   "ac": {
     "pierce": -200,
     "bash": -200,

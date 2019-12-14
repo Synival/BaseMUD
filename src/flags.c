@@ -442,3 +442,8 @@ const FLAG_T furniture_flags[] = {
     {"put_inside", PUT_INSIDE, TRUE},
     {0}
 };
+
+const FLAG_T dam_flags[] = {
+    {"magical", DAM_MAGICAL, TRUE},
+    {0}
+};
