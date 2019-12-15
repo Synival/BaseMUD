@@ -243,5 +243,7 @@ extern const FLAG_T sector_types[SECT_MAX + 1];
 extern const FLAG_T item_types[ITEM_MAX + 1];
 extern const FLAG_T stat_types[STAT_MAX + 1];
 extern const FLAG_T cond_types[COND_MAX + 1];
+extern const FLAG_T target_types[SKILL_TARGET_MAX + 1];
+extern const FLAG_T skill_target_types[SKILL_TARGET_MAX + 1];
 
 #endif

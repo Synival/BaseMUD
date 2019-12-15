@@ -53,7 +53,7 @@ int find_spell (CHAR_T *ch, const char *name) {
         {
             if (found == -1)
                 found = sn;
-            if (ch->level >= skill_table[sn].skill_level[ch->class]
+            if (ch->level >= skill_table[sn].classes[ch->class].level
                 && ch->pcdata->learned[sn] > 0)
                 return sn;
         }
@@ -226,8 +226,9 @@ bool spell_fight_back_if_possible (CHAR_T *ch, CHAR_T *victim,
 
     if (victim == ch || victim == NULL || victim->master == ch)
         return FALSE;
-    if (!( skill_table[sn].target == TAR_CHAR_OFFENSIVE ||
-          (skill_table[sn].target == TAR_OBJ_CHAR_OFF && target == TARGET_CHAR)))
+    if (!( skill_table[sn].target == SKILL_TARGET_CHAR_OFFENSIVE ||
+          (skill_table[sn].target == SKILL_TARGET_OBJ_CHAR_OFF &&
+            target == TARGET_CHAR)))
         return FALSE;
 
     for (vch = ch->in_room->people; vch; vch = vch_next) {
@@ -254,11 +255,11 @@ void obj_cast_spell (int sn, int level, CHAR_T *ch, CHAR_T *victim,
         "obj_cast_spell: bad sn %d.", sn);
 
     switch (skill_table[sn].target) {
-        case TAR_IGNORE:
+        case SKILL_TARGET_IGNORE:
             vo = NULL;
             break;
 
-        case TAR_CHAR_OFFENSIVE:
+        case SKILL_TARGET_CHAR_OFFENSIVE:
             if (victim == NULL)
                 victim = ch->fighting;
             BAIL_IF (victim == NULL,
@@ -269,22 +270,22 @@ void obj_cast_spell (int sn, int level, CHAR_T *ch, CHAR_T *victim,
             target = TARGET_CHAR;
             break;
 
-        case TAR_CHAR_DEFENSIVE:
-        case TAR_CHAR_SELF:
+        case SKILL_TARGET_CHAR_DEFENSIVE:
+        case SKILL_TARGET_CHAR_SELF:
             if (victim == NULL)
                 victim = ch;
             vo = (void *) victim;
             target = TARGET_CHAR;
             break;
 
-        case TAR_OBJ_INV:
+        case SKILL_TARGET_OBJ_INV:
             BAIL_IF (obj == NULL,
                 "You can't do that.\n\r", ch);
             vo = (void *) obj;
             target = TARGET_OBJ;
             break;
 
-        case TAR_OBJ_CHAR_OFF:
+        case SKILL_TARGET_OBJ_CHAR_OFF:
             if (victim == NULL && obj == NULL) {
                 BAIL_IF (ch->fighting == NULL,
                     "You can't do that.\n\r", ch);
@@ -303,7 +304,7 @@ void obj_cast_spell (int sn, int level, CHAR_T *ch, CHAR_T *victim,
             }
             break;
 
-        case TAR_OBJ_CHAR_DEF:
+        case SKILL_TARGET_OBJ_CHAR_DEF:
             if (victim == NULL && obj == NULL) {
                 vo = (void *) ch;
                 target = TARGET_CHAR;

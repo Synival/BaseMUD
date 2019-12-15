@@ -1441,7 +1441,7 @@ int reset_room_reset_shop_obj_level (OBJ_INDEX_T *obj_index) {
                 if (sk <= 0 || sk >= SKILL_MAX)
                     continue;
                 for (j = 0; j < CLASS_MAX; j++)
-                    olevel = UMIN (olevel, skill_table[sk].skill_level[j]);
+                    olevel = UMIN (olevel, skill_table[sk].classes[j].level);
             }
             return UMAX (0, (olevel * 3 / 4) - 2);
         }

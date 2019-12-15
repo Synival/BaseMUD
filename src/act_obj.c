@@ -1072,22 +1072,22 @@ DEFINE_DO_FUN (do_brandish) {
             for (vch = ch->in_room->people; vch; vch = vch_next) {
                 vch_next = vch->next_in_room;
                 switch (skill_table[sn].target) {
-                    case TAR_IGNORE:
+                    case SKILL_TARGET_IGNORE:
                         if (vch != ch)
                             continue;
                         break;
 
-                    case TAR_CHAR_OFFENSIVE:
+                    case SKILL_TARGET_CHAR_OFFENSIVE:
                         if (IS_NPC (ch) ? IS_NPC (vch) : !IS_NPC (vch))
                             continue;
                         break;
 
-                    case TAR_CHAR_DEFENSIVE:
+                    case SKILL_TARGET_CHAR_DEFENSIVE:
                         if (IS_NPC (ch) ? !IS_NPC (vch) : IS_NPC (vch))
                             continue;
                         break;
 
-                    case TAR_CHAR_SELF:
+                    case SKILL_TARGET_CHAR_SELF:
                         if (vch != ch)
                             continue;
                         break;

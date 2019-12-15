@@ -794,15 +794,15 @@ bool show_help (CHAR_T *ch, char *argument) {
             if (!str_prefix (spell, "all"))
                 show_skill_cmds (ch, -1);
             else if (!str_prefix (spell, "ignore"))
-                show_skill_cmds (ch, TAR_IGNORE);
+                show_skill_cmds (ch, SKILL_TARGET_IGNORE);
             else if (!str_prefix (spell, "attack"))
-                show_skill_cmds (ch, TAR_CHAR_OFFENSIVE);
+                show_skill_cmds (ch, SKILL_TARGET_CHAR_OFFENSIVE);
             else if (!str_prefix (spell, "defend"))
-                show_skill_cmds (ch, TAR_CHAR_DEFENSIVE);
+                show_skill_cmds (ch, SKILL_TARGET_CHAR_DEFENSIVE);
             else if (!str_prefix (spell, "self"))
-                show_skill_cmds (ch, TAR_CHAR_SELF);
+                show_skill_cmds (ch, SKILL_TARGET_CHAR_SELF);
             else if (!str_prefix (spell, "object"))
-                show_skill_cmds (ch, TAR_OBJ_INV);
+                show_skill_cmds (ch, SKILL_TARGET_OBJ_INV);
             else {
                 send_to_char (
                     "Syntax:  ? spell "

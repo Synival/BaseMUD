@@ -924,11 +924,15 @@ struct room_index_data {
     OBJ_RECYCLE_T rec_data;
 };
 
+struct skill_class_type {
+    sh_int level;  /* Level needed by class       */
+    sh_int effort; /* How hard it is to learn     */
+};
+
 /* Skills include spells as a particular case. */
 struct skill_type {
     char *name;                    /* Name of skill               */
-    sh_int skill_level[CLASS_MAX]; /* Level needed by class       */
-    sh_int rating[CLASS_MAX];      /* How hard it is to learn     */
+    SKILL_CLASS_T classes[CLASS_MAX]; /* Restrictions based on class */
     SPELL_FUN *spell_fun;          /* Spell pointer (for spells)  */
     sh_int target;                 /* Legal targets               */
     sh_int minimum_position;       /* Position for caster / user  */
@@ -941,9 +945,13 @@ struct skill_type {
     char *msg_obj;                 /* Wear off message for obects */
 };
 
-struct  group_type {
+struct group_class_type {
+    sh_int cost; /* How hard it is to learn */
+};
+
+struct group_type {
     char *name;
-    sh_int rating[CLASS_MAX];
+    GROUP_CLASS_T classes[CLASS_MAX];
     char *spells[MAX_IN_GROUP];
 };
 

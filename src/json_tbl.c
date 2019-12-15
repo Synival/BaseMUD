@@ -262,23 +262,41 @@ DEFINE_TABLE_JSON_FUN (json_tblw_liq) {
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_skill) {
+    JSON_T *sub, *sub2;
+    int i;
     JSON_TBLW_START (SKILL_T, skill, skill->name == NULL);
-    /* TODO: properties for SKILL_T */
-#if 0
-    char *name;                    /* Name of skill               */
-    sh_int skill_level[CLASS_MAX]; /* Level needed by class       */
-    sh_int rating[CLASS_MAX];      /* How hard it is to learn     */
-    SPELL_FUN *spell_fun;          /* Spell pointer (for spells)  */
-    sh_int target;                 /* Legal targets               */
-    sh_int minimum_position;       /* Position for caster / user  */
-    sh_int *pgsn;                  /* Pointer to associated gsn   */
-    sh_int slot;                   /* Slot for #OBJECT loading    */
-    sh_int min_mana;               /* Minimum mana used           */
-    sh_int beats;                  /* Waiting time after use      */
-    char *noun_damage;             /* Damage message              */
-    char *msg_off;                 /* Wear off message            */
-    char *msg_obj;                 /* Wear off message for obects */
-#endif
+
+    json_prop_string (new, "name", JSTR (skill->name));
+
+    sub = json_prop_object (new, "classes", JSON_OBJ_ANY);
+    for (i = 0; i < CLASS_MAX; i++) {
+        sub2 = json_prop_object (sub, class_get_name (i), JSON_OBJ_ANY);
+        json_prop_integer (sub2, "level",  skill->classes[i].level);
+        json_prop_integer (sub2, "effort", skill->classes[i].effort);
+    }
+
+    /* TODO: skill->spell_fun */
+
+    json_prop_string (new, "target", JBITSF (skill_target_types,
+        skill->target));
+    json_prop_string (new, "min_position", JBITSF (position_types,
+        skill->minimum_position));
+
+    /* TODO: pgsn?  this is internal, but should it be considered here? */
+
+    if (skill->slot != 0)
+        json_prop_integer (new, "slot", skill->slot);
+    if (skill->min_mana != 0)
+        json_prop_integer (new, "min_mana", skill->min_mana);
+    json_prop_integer (new, "usage_beats", skill->beats);
+
+    if (skill->noun_damage && skill->noun_damage[0] != '\0')
+        json_prop_string (new, "damage_noun", JSTR (skill->noun_damage));
+    if (skill->msg_off && skill->msg_off[0] != '\0')
+        json_prop_string (new, "off_msg_char", JSTR (skill->msg_off));
+    if (skill->msg_obj && skill->msg_obj[0] != '\0')
+        json_prop_string (new, "off_msg_obj", JSTR (skill->msg_obj));
+
     return new;
 }
 

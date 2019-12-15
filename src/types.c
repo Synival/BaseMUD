@@ -238,3 +238,14 @@ const FLAG_T cond_types[COND_MAX + 1] = {
     {"hunger", COND_HUNGER, TRUE},
     {0}
 };
+
+const FLAG_T skill_target_types[SKILL_TARGET_MAX + 1] = {
+    {"ignore",             SKILL_TARGET_IGNORE,         TRUE},
+    {"char_offensive",     SKILL_TARGET_CHAR_OFFENSIVE, TRUE},
+    {"char_defensive",     SKILL_TARGET_CHAR_DEFENSIVE, TRUE},
+    {"char_self",          SKILL_TARGET_CHAR_SELF,      TRUE},
+    {"obj_inventory",      SKILL_TARGET_OBJ_INV,        TRUE},
+    {"obj_char_defensive", SKILL_TARGET_OBJ_CHAR_DEF,   TRUE},
+    {"obj_char_offensive", SKILL_TARGET_OBJ_CHAR_OFF,   TRUE},
+    {0}
+};

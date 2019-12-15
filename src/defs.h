@@ -365,13 +365,14 @@
 #define ATTACK_FIGHTING     1000
 
 /* Target types. */
-#define TAR_IGNORE          0
-#define TAR_CHAR_OFFENSIVE  1
-#define TAR_CHAR_DEFENSIVE  2
-#define TAR_CHAR_SELF       3
-#define TAR_OBJ_INV         4
-#define TAR_OBJ_CHAR_DEF    5
-#define TAR_OBJ_CHAR_OFF    6
+#define SKILL_TARGET_IGNORE          0
+#define SKILL_TARGET_CHAR_OFFENSIVE  1
+#define SKILL_TARGET_CHAR_DEFENSIVE  2
+#define SKILL_TARGET_CHAR_SELF       3
+#define SKILL_TARGET_OBJ_INV         4
+#define SKILL_TARGET_OBJ_CHAR_DEF    5
+#define SKILL_TARGET_OBJ_CHAR_OFF    6
+#define SKILL_TARGET_MAX             7
 
 #define TARGET_CHAR         0
 #define TARGET_OBJ          1

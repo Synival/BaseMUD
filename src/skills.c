@@ -110,7 +110,7 @@ int get_skill (CHAR_T *ch, int sn) {
         skill = 0;
     }
     else if (!IS_NPC (ch)) {
-        if (ch->level < skill_table[sn].skill_level[ch->class])
+        if (ch->level < skill_table[sn].classes[ch->class].level)
             skill = 0;
         else
             skill = ch->pcdata->learned[sn];
@@ -187,10 +187,10 @@ void list_group_costs (CHAR_T *ch) {
 
         if (!ch->gen_data->group_chosen[gn]
             && !ch->pcdata->group_known[gn]
-            && group_table[gn].rating[ch->class] > 0)
+            && group_table[gn].classes[ch->class].cost > 0)
         {
             printf_to_char (ch, "%-18s %-5d ", group_table[gn].name,
-                group_table[gn].rating[ch->class]);
+                group_table[gn].classes[ch->class].cost);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -211,10 +211,10 @@ void list_group_costs (CHAR_T *ch) {
         if (!ch->gen_data->skill_chosen[sn]
             && ch->pcdata->learned[sn] == 0
             && skill_table[sn].spell_fun == spell_null
-            && skill_table[sn].rating[ch->class] > 0)
+            && skill_table[sn].classes[ch->class].effort > 0)
         {
             printf_to_char (ch, "%-18s %-5d ", skill_table[sn].name,
-                skill_table[sn].rating[ch->class]);
+                skill_table[sn].classes[ch->class].effort);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -243,10 +243,10 @@ void list_group_chosen (CHAR_T *ch) {
             break;
 
         if (ch->gen_data->group_chosen[gn]
-            && group_table[gn].rating[ch->class] > 0)
+            && group_table[gn].classes[ch->class].cost > 0)
         {
             printf_to_char (ch, "%-18s %-5d ", group_table[gn].name,
-                group_table[gn].rating[ch->class]);
+                group_table[gn].classes[ch->class].cost);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -264,10 +264,10 @@ void list_group_chosen (CHAR_T *ch) {
             break;
 
         if (ch->gen_data->skill_chosen[sn]
-            && skill_table[sn].rating[ch->class] > 0)
+            && skill_table[sn].classes[ch->class].effort > 0)
         {
             printf_to_char (ch, "%-18s %-5d ", skill_table[sn].name,
-                skill_table[sn].rating[ch->class]);
+                skill_table[sn].classes[ch->class].effort);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -314,14 +314,14 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
                 return TRUE;
             }
 
-            if (group_table[gn].rating[ch->class] < 1) {
+            if (group_table[gn].classes[ch->class].cost < 1) {
                 send_to_char ("That group is not available.\n\r", ch);
                 return TRUE;
             }
 
             /* Close security hole */
             if (ch->gen_data->points_chosen +
-                group_table[gn].rating[ch->class] > 300)
+                group_table[gn].classes[ch->class].cost > 300)
             {
                 send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
                 return TRUE;
@@ -329,9 +329,9 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
 
             printf_to_char (ch, "%s group added\n\r", group_table[gn].name);
             ch->gen_data->group_chosen[gn] = TRUE;
-            ch->gen_data->points_chosen += group_table[gn].rating[ch->class];
+            ch->gen_data->points_chosen += group_table[gn].classes[ch->class].cost;
             gn_add (ch, gn);
-            ch->pcdata->points += group_table[gn].rating[ch->class];
+            ch->pcdata->points += group_table[gn].classes[ch->class].cost;
             return TRUE;
         }
 
@@ -342,7 +342,7 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
                 return TRUE;
             }
 
-            if (skill_table[sn].rating[ch->class] < 1
+            if (skill_table[sn].classes[ch->class].effort < 1
                 || skill_table[sn].spell_fun != spell_null)
             {
                 send_to_char ("That skill is not available.\n\r", ch);
@@ -351,7 +351,7 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
 
             /* Close security hole */
             if (ch->gen_data->points_chosen +
-                skill_table[sn].rating[ch->class] > 300)
+                skill_table[sn].classes[ch->class].effort > 300)
             {
                 send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
                 return TRUE;
@@ -359,9 +359,9 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
 
             printf_to_char (ch, "%s skill added\n\r", skill_table[sn].name);
             ch->gen_data->skill_chosen[sn] = TRUE;
-            ch->gen_data->points_chosen += skill_table[sn].rating[ch->class];
+            ch->gen_data->points_chosen += skill_table[sn].classes[ch->class].effort;
             ch->pcdata->learned[sn] = 1;
-            ch->pcdata->points += skill_table[sn].rating[ch->class];
+            ch->pcdata->points += skill_table[sn].classes[ch->class].effort;
             return TRUE;
         }
 
@@ -379,13 +379,13 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
         if (gn != -1 && ch->gen_data->group_chosen[gn]) {
             send_to_char ("Group dropped.\n\r", ch);
             ch->gen_data->group_chosen[gn] = FALSE;
-            ch->gen_data->points_chosen -= group_table[gn].rating[ch->class];
+            ch->gen_data->points_chosen -= group_table[gn].classes[ch->class].cost;
             gn_remove (ch, gn);
             for (i = 0; i < GROUP_MAX; i++) {
                 if (ch->gen_data->group_chosen[gn])
                     gn_add (ch, gn);
             }
-            ch->pcdata->points -= group_table[gn].rating[ch->class];
+            ch->pcdata->points -= group_table[gn].classes[ch->class].cost;
             return TRUE;
         }
 
@@ -393,9 +393,9 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
         if (sn != -1 && ch->gen_data->skill_chosen[sn]) {
             send_to_char ("Skill dropped.\n\r", ch);
             ch->gen_data->skill_chosen[sn] = FALSE;
-            ch->gen_data->points_chosen -= skill_table[sn].rating[ch->class];
+            ch->gen_data->points_chosen -= skill_table[sn].classes[ch->class].effort;
             ch->pcdata->learned[sn] = 0;
-            ch->pcdata->points -= skill_table[sn].rating[ch->class];
+            ch->pcdata->points -= skill_table[sn].classes[ch->class].effort;
             return TRUE;
         }
 
@@ -435,14 +435,14 @@ void check_improve (CHAR_T *ch, int sn, bool success, int multiplier) {
         return;
 
     /* skill is not known or already mastered */
-    if (ch->level < skill_table[sn].skill_level[ch->class]
-        || skill_table[sn].rating[ch->class] == 0
+    if (ch->level < skill_table[sn].classes[ch->class].level
+        || skill_table[sn].classes[ch->class].effort == 0
         || ch->pcdata->learned[sn] == 0 || ch->pcdata->learned[sn] == 100)
         return;
 
     /* check to see if the character has a chance to learn */
     chance = 10 * char_int_learn_rate (ch);
-    chance /= (multiplier * skill_table[sn].rating[ch->class] * 4);
+    chance /= (multiplier * skill_table[sn].classes[ch->class].effort * 4);
     chance += ch->level;
 
     if (number_range (1, 1000) > chance)
@@ -457,7 +457,7 @@ void check_improve (CHAR_T *ch, int sn, bool success, int multiplier) {
             printf_to_char (ch, "{5You have become better at %s!{x\n\r",
                 skill_table[sn].name);
             ch->pcdata->learned[sn]++;
-            gain_exp (ch, 2 * skill_table[sn].rating[ch->class]);
+            gain_exp (ch, 2 * skill_table[sn].classes[ch->class].effort);
         }
     }
     else {
@@ -468,7 +468,7 @@ void check_improve (CHAR_T *ch, int sn, bool success, int multiplier) {
                 skill_table[sn].name);
             ch->pcdata->learned[sn] += number_range (1, 3);
             ch->pcdata->learned[sn] = UMIN (ch->pcdata->learned[sn], 100);
-            gain_exp (ch, 2 * skill_table[sn].rating[ch->class]);
+            gain_exp (ch, 2 * skill_table[sn].classes[ch->class].effort);
         }
     }
 }
@@ -506,7 +506,7 @@ void group_add (CHAR_T *ch, const char *name, bool deduct) {
         if (ch->pcdata->learned[sn] == 0) { /* i.e. not known */
             ch->pcdata->learned[sn] = 1;
             if (deduct)
-                ch->pcdata->points += skill_table[sn].rating[ch->class];
+                ch->pcdata->points += skill_table[sn].classes[ch->class].effort;
         }
         return;
     }
@@ -517,7 +517,7 @@ void group_add (CHAR_T *ch, const char *name, bool deduct) {
         if (ch->pcdata->group_known[gn] == FALSE) {
             ch->pcdata->group_known[gn] = TRUE;
             if (deduct)
-                ch->pcdata->points += group_table[gn].rating[ch->class];
+                ch->pcdata->points += group_table[gn].classes[ch->class].cost;
         }
         gn_add (ch, gn); /* make sure all skills in the group are known */
     }

@@ -661,26 +661,26 @@ DEFINE_DO_FUN (do_mpcast) {
     obj = find_obj_here (ch, target);
 
     switch (skill_table[sn].target) {
-        case TAR_IGNORE:
+        case SKILL_TARGET_IGNORE:
             break;
 
-        case TAR_CHAR_OFFENSIVE:
+        case SKILL_TARGET_CHAR_OFFENSIVE:
             if (vch == NULL || vch == ch)
                 return;
             victim = (void *) vch;
             break;
 
-        case TAR_CHAR_DEFENSIVE:
+        case SKILL_TARGET_CHAR_DEFENSIVE:
             victim = vch == NULL ? (void *) ch : (void *) vch;
             break;
 
-        case TAR_CHAR_SELF:
+        case SKILL_TARGET_CHAR_SELF:
             victim = (void *) ch;
             break;
 
-        case TAR_OBJ_CHAR_DEF:
-        case TAR_OBJ_CHAR_OFF:
-        case TAR_OBJ_INV:
+        case SKILL_TARGET_OBJ_CHAR_DEF:
+        case SKILL_TARGET_OBJ_CHAR_OFF:
+        case SKILL_TARGET_OBJ_INV:
             if (obj == NULL)
                 return;
             victim = (void *) obj;

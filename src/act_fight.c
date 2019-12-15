@@ -64,7 +64,7 @@ bool fight_filter_skill_target (CHAR_T *ch, const char *argument,
     FILTER (IS_NPC (ch) && npc_flag != 0 && !IS_SET (ch->off_flags, npc_flag),
         cant_msg, ch);
     FILTER (sn >= 0 && !IS_NPC (ch) &&
-            ch->level < skill_table[sn].skill_level[ch->class],
+            ch->level < skill_table[sn].classes[ch->class].level,
         cant_msg, ch);
 
     one_argument (argument, arg);
@@ -102,7 +102,7 @@ DEFINE_DO_FUN (do_berserk) {
     if ((chance = get_skill (ch, gsn_berserk)) == 0           ||
         (IS_NPC (ch) && !IS_SET (ch->off_flags, OFF_BERSERK)) ||
         (!IS_NPC (ch) && ch->level <
-            skill_table[gsn_berserk].skill_level[ch->class]))
+            skill_table[gsn_berserk].classes[ch->class].level))
     {
         send_to_char ("You turn red in the face, but nothing happens.\n\r", ch);
         return;
