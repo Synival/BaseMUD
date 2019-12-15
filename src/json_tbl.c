@@ -246,13 +246,18 @@ DEFINE_TABLE_JSON_FUN (json_tblw_con_app) {
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_liq) {
+    JSON_T *sub;
+    int i;
     JSON_TBLW_START (LIQ_T, liq, liq->name == NULL);
-    /* TODO: properties for LIQ_T */
-#if 0
-    char *name;
-    char *color;
-    sh_int affect[5];
-#endif
+
+    json_prop_string (new, "name", JSTR (liq->name));
+    json_prop_string (new, "color_name", JSTR (liq->color));
+
+    sub = json_prop_object (new, "conditions", JSON_OBJ_ANY);
+    for (i = 0; i < COND_MAX; i++)
+        json_prop_integer (sub, JBITSF (cond_types, i), liq->cond[i]);
+
+    json_prop_integer (new, "serving_size", liq->serving_size);
     return new;
 }
 

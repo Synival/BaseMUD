@@ -349,6 +349,7 @@
 #define COND_FULL     1
 #define COND_THIRST   2
 #define COND_HUNGER   3
+#define COND_MAX      4
 
 /* Types of attacks.
  * Must be non-overlapping with spell/skill types,

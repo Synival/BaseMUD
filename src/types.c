@@ -230,3 +230,11 @@ const FLAG_T stat_types[STAT_MAX + 1] = {
     {"con", STAT_CON, TRUE},
     {0}
 };
+
+const FLAG_T cond_types[COND_MAX + 1] = {
+    {"drunk",  COND_DRUNK,  TRUE},
+    {"full",   COND_FULL,   TRUE},
+    {"thirst", COND_THIRST, TRUE},
+    {"hunger", COND_HUNGER, TRUE},
+    {0}
+};

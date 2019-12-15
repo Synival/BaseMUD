@@ -242,5 +242,6 @@ extern const FLAG_T affect_apply_types[APPLY_MAX + 1];
 extern const FLAG_T sector_types[SECT_MAX + 1];
 extern const FLAG_T item_types[ITEM_MAX + 1];
 extern const FLAG_T stat_types[STAT_MAX + 1];
+extern const FLAG_T cond_types[COND_MAX + 1];
 
 #endif

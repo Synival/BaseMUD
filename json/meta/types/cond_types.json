@@ -1,0 +1,27 @@
+{"table": {
+  "name": "cond_types",
+  "description": "Conditions like thirst/hunger.",
+  "type": "types",
+  "values": [
+    {
+      "name": "drunk",
+      "bit": 0,
+      "settable": true
+    },
+    {
+      "name": "full",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "thirst",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "hunger",
+      "bit": 3,
+      "settable": true
+    }
+  ]
+}}

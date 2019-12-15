@@ -51,6 +51,7 @@
 #include "rooms.h"
 #include "find.h"
 #include "globals.h"
+#include "lookup.h"
 
 #include "act_obj.h"
 
@@ -731,11 +732,12 @@ void do_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
 }
 
 DEFINE_DO_FUN (do_drink) {
-    char arg[MAX_INPUT_LENGTH];
+    const LIQ_T *liq;
     OBJ_T *obj;
-    int amount;
-    int liquid;
-    const sh_int *affs;
+    char arg[MAX_INPUT_LENGTH];
+    const sh_int *cond;
+    flag_t *capacity, *filled;
+    int amount, liquid, poisoned;
 
     one_argument (argument, arg);
     if (arg[0] == '\0') {
@@ -757,15 +759,19 @@ DEFINE_DO_FUN (do_drink) {
 
     switch (obj->item_type) {
         case ITEM_FOUNTAIN:
-            liquid = obj->v.fountain.liquid;
-            amount = liq_table[liquid].affect[4] * 3;
+            capacity = &(obj->v.fountain.capacity);
+            filled   = &(obj->v.fountain.filled);
+            liquid   = obj->v.fountain.liquid;
+            poisoned = obj->v.fountain.poisoned;
             break;
 
         case ITEM_DRINK_CON:
             BAIL_IF (obj->v.drink_con.filled <= 0,
                 "It is already empty.\n\r", ch);
-            liquid = obj->v.drink_con.liquid;
-            amount = UMIN (liq_table[liquid].affect[4], obj->v.drink_con.filled);
+            capacity = &(obj->v.drink_con.capacity);
+            filled   = &(obj->v.drink_con.filled);
+            liquid   = obj->v.drink_con.liquid;
+            poisoned = obj->v.drink_con.poisoned;
             break;
 
         default:
@@ -773,20 +779,37 @@ DEFINE_DO_FUN (do_drink) {
             return;
     }
 
-    if (liquid < 0) {
+    if ((liq = liq_get (liquid)) == NULL) {
         bug ("do_drink: bad liquid number %d.", liquid);
         liquid = 0;
+        liq = liq_get (0);
+    }
+
+    switch (obj->item_type) {
+        case ITEM_FOUNTAIN:
+            amount = liq->serving_size * 3;
+            break;
+
+        case ITEM_DRINK_CON:
+            amount = UMIN (liq->serving_size, *filled);
+            break;
+
+        default:
+            bugf ("Unhandled drink amount when drinking item type '%d'.\n",
+                obj->item_type);
+            return;
     }
 
     act2 ("You drink $T from $p.", "$n drinks $T from $p.",
-         ch, obj, liq_table[liquid].name, 0, POS_RESTING);
+         ch, obj, liq->name, 0, POS_RESTING);
 
-    affs = liq_table[liquid].affect;
+    /* TODO: these numbers - along with serving size - are so arbitrary... */
+    cond = liq->cond;
     do_change_conditions (ch,
-        amount * affs[COND_DRUNK]  / 36, amount * affs[COND_FULL]   / 4,
-        amount * affs[COND_THIRST] / 10, amount * affs[COND_HUNGER] / 2);
+        amount * cond[COND_DRUNK]  / 36, amount * cond[COND_FULL]   / 4,
+        amount * cond[COND_THIRST] / 10, amount * cond[COND_HUNGER] / 2);
 
-    if (obj->v.drink_con.poisoned != 0) {
+    if (poisoned != 0) {
         AFFECT_T af;
 
         /* The drink was poisoned! */
@@ -798,8 +821,8 @@ DEFINE_DO_FUN (do_drink) {
         affect_join (ch, &af);
     }
 
-    if (obj->v.drink_con.capacity > 0)
-        obj->v.drink_con.filled -= amount;
+    if (capacity != NULL && filled != NULL && *capacity > 0)
+        *filled = UMAX (*filled - amount, 0);
 }
 
 DEFINE_DO_FUN (do_eat) {

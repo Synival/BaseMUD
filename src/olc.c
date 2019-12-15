@@ -622,10 +622,10 @@ void show_liqlist (CHAR_T *ch) {
                      "Name                 Color          Proof Full Thirst Food Ssize\n\r");
 
         sprintf (buf, "%-20s %-14s %5d %4d %6d %4d %5d\n\r",
-                 liq_table[liq].name, liq_table[liq].color,
-                 liq_table[liq].affect[0], liq_table[liq].affect[1],
-                 liq_table[liq].affect[2], liq_table[liq].affect[3],
-                 liq_table[liq].affect[4]);
+            liq_table[liq].name, liq_table[liq].color,
+            liq_table[liq].cond[COND_DRUNK],  liq_table[liq].cond[COND_FULL],
+            liq_table[liq].cond[COND_THIRST], liq_table[liq].cond[COND_HUNGER],
+            liq_table[liq].serving_size);
         add_buf (buffer, buf);
     }
 

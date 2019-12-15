@@ -552,7 +552,8 @@ struct gen_data {
 struct liq_type {
     char *name;
     char *color;
-    sh_int affect[5];
+    sh_int cond[COND_MAX];
+    sh_int serving_size;
 };
 
 /* Extra description data for a room or object. */
