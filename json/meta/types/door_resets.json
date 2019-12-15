@@ -1,6 +1,6 @@
 {"table": {
   "name": "door_resets",
-  "description": "Door reset types",
+  "description": "Door reset types.",
   "type": "types",
   "values": [
     {

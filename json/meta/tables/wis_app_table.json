@@ -3,31 +3,109 @@
   "description": "Wis apply table.",
   "type": "table",
   "values": [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "stat": 0,
+      "practices": 0
+    },
+    {
+      "stat": 1,
+      "practices": 0
+    },
+    {
+      "stat": 2,
+      "practices": 0
+    },
+    {
+      "stat": 3,
+      "practices": 0
+    },
+    {
+      "stat": 4,
+      "practices": 0
+    },
+    {
+      "stat": 5,
+      "practices": 1
+    },
+    {
+      "stat": 6,
+      "practices": 1
+    },
+    {
+      "stat": 7,
+      "practices": 1
+    },
+    {
+      "stat": 8,
+      "practices": 1
+    },
+    {
+      "stat": 9,
+      "practices": 1
+    },
+    {
+      "stat": 10,
+      "practices": 1
+    },
+    {
+      "stat": 11,
+      "practices": 1
+    },
+    {
+      "stat": 12,
+      "practices": 1
+    },
+    {
+      "stat": 13,
+      "practices": 1
+    },
+    {
+      "stat": 14,
+      "practices": 1
+    },
+    {
+      "stat": 15,
+      "practices": 2
+    },
+    {
+      "stat": 16,
+      "practices": 2
+    },
+    {
+      "stat": 17,
+      "practices": 2
+    },
+    {
+      "stat": 18,
+      "practices": 3
+    },
+    {
+      "stat": 19,
+      "practices": 3
+    },
+    {
+      "stat": 20,
+      "practices": 3
+    },
+    {
+      "stat": 21,
+      "practices": 3
+    },
+    {
+      "stat": 22,
+      "practices": 4
+    },
+    {
+      "stat": 23,
+      "practices": 4
+    },
+    {
+      "stat": 24,
+      "practices": 4
+    },
+    {
+      "stat": 25,
+      "practices": 5
+    }
   ]
 }}

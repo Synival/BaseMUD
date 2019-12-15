@@ -3,31 +3,135 @@
   "description": "Con apply table.",
   "type": "table",
   "values": [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "stat": 0,
+      "level_hp": -4,
+      "shock": 20
+    },
+    {
+      "stat": 1,
+      "level_hp": -3,
+      "shock": 25
+    },
+    {
+      "stat": 2,
+      "level_hp": -2,
+      "shock": 30
+    },
+    {
+      "stat": 3,
+      "level_hp": -2,
+      "shock": 35
+    },
+    {
+      "stat": 4,
+      "level_hp": -1,
+      "shock": 40
+    },
+    {
+      "stat": 5,
+      "level_hp": -1,
+      "shock": 45
+    },
+    {
+      "stat": 6,
+      "level_hp": -1,
+      "shock": 50
+    },
+    {
+      "stat": 7,
+      "level_hp": 0,
+      "shock": 55
+    },
+    {
+      "stat": 8,
+      "level_hp": 0,
+      "shock": 60
+    },
+    {
+      "stat": 9,
+      "level_hp": 0,
+      "shock": 65
+    },
+    {
+      "stat": 10,
+      "level_hp": 0,
+      "shock": 70
+    },
+    {
+      "stat": 11,
+      "level_hp": 0,
+      "shock": 75
+    },
+    {
+      "stat": 12,
+      "level_hp": 0,
+      "shock": 80
+    },
+    {
+      "stat": 13,
+      "level_hp": 0,
+      "shock": 85
+    },
+    {
+      "stat": 14,
+      "level_hp": 0,
+      "shock": 88
+    },
+    {
+      "stat": 15,
+      "level_hp": 1,
+      "shock": 90
+    },
+    {
+      "stat": 16,
+      "level_hp": 2,
+      "shock": 95
+    },
+    {
+      "stat": 17,
+      "level_hp": 2,
+      "shock": 97
+    },
+    {
+      "stat": 18,
+      "level_hp": 3,
+      "shock": 99
+    },
+    {
+      "stat": 19,
+      "level_hp": 3,
+      "shock": 99
+    },
+    {
+      "stat": 20,
+      "level_hp": 4,
+      "shock": 99
+    },
+    {
+      "stat": 21,
+      "level_hp": 4,
+      "shock": 99
+    },
+    {
+      "stat": 22,
+      "level_hp": 5,
+      "shock": 99
+    },
+    {
+      "stat": 23,
+      "level_hp": 6,
+      "shock": 99
+    },
+    {
+      "stat": 24,
+      "level_hp": 7,
+      "shock": 99
+    },
+    {
+      "stat": 25,
+      "level_hp": 8,
+      "shock": 99
+    }
   ]
 }}

@@ -3,31 +3,109 @@
   "description": "Int apply table.",
   "type": "table",
   "values": [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "stat": 0,
+      "learn_rate": 3
+    },
+    {
+      "stat": 1,
+      "learn_rate": 5
+    },
+    {
+      "stat": 2,
+      "learn_rate": 7
+    },
+    {
+      "stat": 3,
+      "learn_rate": 8
+    },
+    {
+      "stat": 4,
+      "learn_rate": 9
+    },
+    {
+      "stat": 5,
+      "learn_rate": 10
+    },
+    {
+      "stat": 6,
+      "learn_rate": 11
+    },
+    {
+      "stat": 7,
+      "learn_rate": 12
+    },
+    {
+      "stat": 8,
+      "learn_rate": 13
+    },
+    {
+      "stat": 9,
+      "learn_rate": 15
+    },
+    {
+      "stat": 10,
+      "learn_rate": 17
+    },
+    {
+      "stat": 11,
+      "learn_rate": 19
+    },
+    {
+      "stat": 12,
+      "learn_rate": 22
+    },
+    {
+      "stat": 13,
+      "learn_rate": 25
+    },
+    {
+      "stat": 14,
+      "learn_rate": 28
+    },
+    {
+      "stat": 15,
+      "learn_rate": 31
+    },
+    {
+      "stat": 16,
+      "learn_rate": 34
+    },
+    {
+      "stat": 17,
+      "learn_rate": 37
+    },
+    {
+      "stat": 18,
+      "learn_rate": 40
+    },
+    {
+      "stat": 19,
+      "learn_rate": 44
+    },
+    {
+      "stat": 20,
+      "learn_rate": 49
+    },
+    {
+      "stat": 21,
+      "learn_rate": 55
+    },
+    {
+      "stat": 22,
+      "learn_rate": 60
+    },
+    {
+      "stat": 23,
+      "learn_rate": 70
+    },
+    {
+      "stat": 24,
+      "learn_rate": 80
+    },
+    {
+      "stat": 25,
+      "learn_rate": 85
+    }
   ]
 }}

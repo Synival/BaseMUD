@@ -1,0 +1,32 @@
+{"table": {
+  "name": "stat_types",
+  "description": "Available stats for characters.",
+  "type": "types",
+  "values": [
+    {
+      "name": "str",
+      "bit": 0,
+      "settable": true
+    },
+    {
+      "name": "int",
+      "bit": 1,
+      "settable": true
+    },
+    {
+      "name": "wis",
+      "bit": 2,
+      "settable": true
+    },
+    {
+      "name": "dex",
+      "bit": 3,
+      "settable": true
+    },
+    {
+      "name": "con",
+      "bit": 4,
+      "settable": true
+    }
+  ]
+}}

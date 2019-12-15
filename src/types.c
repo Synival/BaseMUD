@@ -221,3 +221,12 @@ const FLAG_T door_resets[RESET_MAX + 1] = {
     {"closed and locked",   RESET_LOCKED, TRUE},
     {0}
 };
+
+const FLAG_T stat_types[STAT_MAX + 1] = {
+    {"str", STAT_STR, TRUE},
+    {"int", STAT_INT, TRUE},
+    {"wis", STAT_WIS, TRUE},
+    {"dex", STAT_DEX, TRUE},
+    {"con", STAT_CON, TRUE},
+    {0}
+};

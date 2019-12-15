@@ -80,7 +80,8 @@ const TABLE_T master_table[] = {
     TTYPES (position_types,   "Mobile positions."),
     TTYPES (sector_types,     "Sector types, terrain."),
     TTYPES (item_types,       "Types of objects."),
-    TTYPES (door_resets,      "Door reset types"),
+    TTYPES (door_resets,      "Door reset types."),
+    TTYPES (stat_types,       "Available stats for characters."),
 
     /* from tables.h */
     TTABLE (clan_table,       "Player clans.",                json_tblw_clan),

@@ -3,11 +3,169 @@
   "description": "Playable race data.",
   "type": "table",
   "values": [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "name": "null race",
+      "who_name": null,
+      "creation_points": 0,
+      "class_exp": {
+        "mage": 100,
+        "cleric": 100,
+        "thief": 100,
+        "warrior": 100
+      },
+      "base_stats": {
+        "str": 13,
+        "int": 13,
+        "wis": 13,
+        "dex": 13,
+        "con": 13
+      },
+      "max_stats": {
+        "str": 18,
+        "int": 18,
+        "wis": 18,
+        "dex": 18,
+        "con": 18
+      },
+      "size": "tiny"
+    },
+    {
+      "name": "human",
+      "who_name": "Human",
+      "creation_points": 0,
+      "class_exp": {
+        "mage": 100,
+        "cleric": 100,
+        "thief": 100,
+        "warrior": 100
+      },
+      "base_stats": {
+        "str": 13,
+        "int": 13,
+        "wis": 13,
+        "dex": 13,
+        "con": 13
+      },
+      "max_stats": {
+        "str": 18,
+        "int": 18,
+        "wis": 18,
+        "dex": 18,
+        "con": 18
+      },
+      "size": "medium"
+    },
+    {
+      "name": "elf",
+      "who_name": " Elf ",
+      "creation_points": 5,
+      "class_exp": {
+        "mage": 100,
+        "cleric": 125,
+        "thief": 100,
+        "warrior": 125
+      },
+      "skills": [
+        "sneak", "hide"
+      ],
+      "base_stats": {
+        "str": 12,
+        "int": 14,
+        "wis": 13,
+        "dex": 15,
+        "con": 11
+      },
+      "max_stats": {
+        "str": 16,
+        "int": 20,
+        "wis": 18,
+        "dex": 21,
+        "con": 15
+      },
+      "size": "small"
+    },
+    {
+      "name": "dwarf",
+      "who_name": "Dwarf",
+      "creation_points": 8,
+      "class_exp": {
+        "mage": 150,
+        "cleric": 100,
+        "thief": 125,
+        "warrior": 100
+      },
+      "skills": ["berserk"],
+      "base_stats": {
+        "str": 14,
+        "int": 12,
+        "wis": 14,
+        "dex": 10,
+        "con": 15
+      },
+      "max_stats": {
+        "str": 20,
+        "int": 16,
+        "wis": 19,
+        "dex": 14,
+        "con": 21
+      },
+      "size": "medium"
+    },
+    {
+      "name": "giant",
+      "who_name": "Giant",
+      "creation_points": 6,
+      "class_exp": {
+        "mage": 200,
+        "cleric": 150,
+        "thief": 150,
+        "warrior": 100
+      },
+      "skills": [
+        "bash", "fast healing"
+      ],
+      "base_stats": {
+        "str": 16,
+        "int": 11,
+        "wis": 13,
+        "dex": 11,
+        "con": 14
+      },
+      "max_stats": {
+        "str": 22,
+        "int": 15,
+        "wis": 18,
+        "dex": 15,
+        "con": 20
+      },
+      "size": "large"
+    },
+    {
+      "name": "pixie",
+      "who_name": "Pixie",
+      "creation_points": 7,
+      "class_exp": {
+        "mage": 100,
+        "cleric": 150,
+        "thief": 150,
+        "warrior": 150
+      },
+      "skills": ["dodge"],
+      "base_stats": {
+        "str": 11,
+        "int": 15,
+        "wis": 15,
+        "dex": 14,
+        "con": 10
+      },
+      "max_stats": {
+        "str": 15,
+        "int": 21,
+        "wis": 20,
+        "dex": 20,
+        "con": 14
+      },
+      "size": "tiny"
+    }
   ]
 }}

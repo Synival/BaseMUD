@@ -211,6 +211,7 @@
 /* Per-class stuff. */
 #define MAX_GUILD 2
 
+/* Stat types. */
 #define STAT_STR  0
 #define STAT_INT  1
 #define STAT_WIS  2
@@ -440,6 +441,7 @@
 #define WIZNET_MAX          20
 #define RACE_MAX            30
 #define PC_RACE_MAX         6
+#define PC_RACE_SKILL_MAX   5
 #define SOCIAL_MAX          256
 #define SKILL_MAX           150
 #define GROUP_MAX           30

@@ -487,7 +487,7 @@ void nanny_get_new_race (DESCRIPTOR_T *d, char *argument) {
     ch->parts = race_table[race].parts;
 
     /* add skills */
-    for (i = 0; i < PC_RACE_MAX; i++) {
+    for (i = 0; i < PC_RACE_SKILL_MAX; i++) {
         if (pc_race_table[race].skills[i] == NULL)
             break;
         group_add (ch, pc_race_table[race].skills[i], FALSE);

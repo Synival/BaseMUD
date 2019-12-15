@@ -2086,3 +2086,5 @@ int char_dex_defense_bonus (CHAR_T *ch)
     { return char_get_curr_dex_app (ch)->defensive; }
 int char_con_level_hp (CHAR_T *ch)
     { return char_get_curr_con_app (ch)->hitp; }
+int char_con_shock (CHAR_T *ch)
+    { return char_get_curr_con_app (ch)->shock; }

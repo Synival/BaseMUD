@@ -3,31 +3,109 @@
   "description": "Dex apply table.",
   "type": "table",
   "values": [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "stat": 0,
+      "defense_bonus": 60
+    },
+    {
+      "stat": 1,
+      "defense_bonus": 50
+    },
+    {
+      "stat": 2,
+      "defense_bonus": 50
+    },
+    {
+      "stat": 3,
+      "defense_bonus": 40
+    },
+    {
+      "stat": 4,
+      "defense_bonus": 30
+    },
+    {
+      "stat": 5,
+      "defense_bonus": 20
+    },
+    {
+      "stat": 6,
+      "defense_bonus": 10
+    },
+    {
+      "stat": 7,
+      "defense_bonus": 0
+    },
+    {
+      "stat": 8,
+      "defense_bonus": 0
+    },
+    {
+      "stat": 9,
+      "defense_bonus": 0
+    },
+    {
+      "stat": 10,
+      "defense_bonus": 0
+    },
+    {
+      "stat": 11,
+      "defense_bonus": 0
+    },
+    {
+      "stat": 12,
+      "defense_bonus": 0
+    },
+    {
+      "stat": 13,
+      "defense_bonus": 0
+    },
+    {
+      "stat": 14,
+      "defense_bonus": 0
+    },
+    {
+      "stat": 15,
+      "defense_bonus": -10
+    },
+    {
+      "stat": 16,
+      "defense_bonus": -15
+    },
+    {
+      "stat": 17,
+      "defense_bonus": -20
+    },
+    {
+      "stat": 18,
+      "defense_bonus": -30
+    },
+    {
+      "stat": 19,
+      "defense_bonus": -40
+    },
+    {
+      "stat": 20,
+      "defense_bonus": -50
+    },
+    {
+      "stat": 21,
+      "defense_bonus": -60
+    },
+    {
+      "stat": 22,
+      "defense_bonus": -75
+    },
+    {
+      "stat": 23,
+      "defense_bonus": -90
+    },
+    {
+      "stat": 24,
+      "defense_bonus": -105
+    },
+    {
+      "stat": 25,
+      "defense_bonus": -120
+    }
   ]
 }}

@@ -3,35 +3,250 @@
   "description": "Races and statistics.",
   "type": "table",
   "values": [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "name": "unique",
+      "playable": false
+    },
+    {
+      "name": "human",
+      "playable": true,
+      "form": "edible sentient biped mammal",
+      "parts": "head arms legs heart brains guts hands feet fingers ear eye"
+    },
+    {
+      "name": "elf",
+      "playable": true,
+      "affect_flags": "infrared",
+      "res_flags": "charm",
+      "vuln_flags": "iron",
+      "form": "edible sentient biped mammal",
+      "parts": "head arms legs heart brains guts hands feet fingers ear eye"
+    },
+    {
+      "name": "dwarf",
+      "playable": true,
+      "affect_flags": "infrared",
+      "res_flags": "poison disease",
+      "vuln_flags": "drowning",
+      "form": "edible sentient biped mammal",
+      "parts": "head arms legs heart brains guts hands feet fingers ear eye"
+    },
+    {
+      "name": "giant",
+      "playable": true,
+      "res_flags": "fire cold",
+      "vuln_flags": "lightning mental",
+      "form": "edible sentient biped mammal",
+      "parts": "head arms legs heart brains guts hands feet fingers ear eye"
+    },
+    {
+      "name": "pixie",
+      "playable": true,
+      "affect_flags": "detect_evil detect_magic detect_good flying",
+      "form": "edible magical sentient biped mammal",
+      "parts": "head arms legs heart brains guts hands feet fingers ear eye wings"
+    },
+    {
+      "name": "bat",
+      "playable": false,
+      "affect_flags": "flying dark_vision",
+      "offense_flags": "dodge fast",
+      "vuln_flags": "light",
+      "form": "edible animal mammal",
+      "parts": "head legs heart brains guts feet ear eye wings"
+    },
+    {
+      "name": "bear",
+      "playable": false,
+      "offense_flags": "berserk disarm crush",
+      "res_flags": "bash cold",
+      "form": "edible animal mammal",
+      "parts": "head arms legs heart brains guts feet ear eye claws fangs"
+    },
+    {
+      "name": "cat",
+      "playable": false,
+      "affect_flags": "dark_vision",
+      "offense_flags": "dodge fast",
+      "form": "edible animal mammal",
+      "parts": "head legs heart brains guts feet ear eye tail claws fangs"
+    },
+    {
+      "name": "centipede",
+      "playable": false,
+      "affect_flags": "dark_vision",
+      "res_flags": "pierce cold",
+      "vuln_flags": "bash",
+      "form": "edible poison animal insect",
+      "parts": "head legs eye"
+    },
+    {
+      "name": "dog",
+      "playable": false,
+      "offense_flags": "fast",
+      "form": "edible animal mammal",
+      "parts": "head legs heart brains guts feet ear eye claws fangs"
+    },
+    {
+      "name": "doll",
+      "playable": false,
+      "immune_flags": "cold poison negative holy mental disease drowning",
+      "res_flags": "bash light",
+      "vuln_flags": "slash fire lightning acid energy",
+      "form": "other construct biped cold_blood",
+      "parts": "head arms legs hands feet fingers eye"
+    },
+    {
+      "name": "dragon",
+      "playable": false,
+      "affect_flags": "infrared flying",
+      "res_flags": "charm bash fire",
+      "vuln_flags": "pierce cold",
+      "form": "edible sentient dragon",
+      "parts": "head legs heart brains guts feet fingers ear eye long_tongue tail claws fangs scales"
+    },
+    {
+      "name": "fido",
+      "playable": false,
+      "offense_flags": "dodge assist_race",
+      "vuln_flags": "magic",
+      "form": "edible poison animal mammal",
+      "parts": "head legs heart brains guts feet ear eye tail fangs"
+    },
+    {
+      "name": "fox",
+      "playable": false,
+      "affect_flags": "dark_vision",
+      "offense_flags": "dodge fast",
+      "form": "edible animal mammal",
+      "parts": "head legs heart brains guts feet ear eye tail fangs"
+    },
+    {
+      "name": "goblin",
+      "playable": false,
+      "affect_flags": "infrared",
+      "res_flags": "disease",
+      "vuln_flags": "magic",
+      "form": "edible sentient biped mammal",
+      "parts": "head arms legs heart brains guts hands feet fingers ear eye"
+    },
+    {
+      "name": "hobgoblin",
+      "playable": false,
+      "affect_flags": "infrared",
+      "res_flags": "poison disease",
+      "form": "edible sentient biped mammal",
+      "parts": "head arms legs heart brains guts hands feet fingers ear eye tusks"
+    },
+    {
+      "name": "kobold",
+      "playable": false,
+      "affect_flags": "infrared",
+      "res_flags": "poison",
+      "vuln_flags": "magic",
+      "form": "edible poison sentient biped mammal",
+      "parts": "head arms legs heart brains guts hands feet fingers ear eye tail"
+    },
+    {
+      "name": "lizard",
+      "playable": false,
+      "res_flags": "poison",
+      "vuln_flags": "cold",
+      "form": "edible animal reptile cold_blood",
+      "parts": "head legs heart brains guts feet ear eye long_tongue tail scales"
+    },
+    {
+      "name": "modron",
+      "playable": false,
+      "affect_flags": "infrared",
+      "offense_flags": "assist_align assist_race",
+      "immune_flags": "charm negative holy mental disease",
+      "res_flags": "fire cold acid",
+      "form": "sentient",
+      "parts": "head arms legs hands feet ear eye"
+    },
+    {
+      "name": "orc",
+      "playable": false,
+      "affect_flags": "infrared",
+      "res_flags": "disease",
+      "vuln_flags": "light",
+      "form": "edible sentient biped mammal",
+      "parts": "head arms legs heart brains guts hands feet fingers ear eye"
+    },
+    {
+      "name": "pig",
+      "playable": false,
+      "form": "edible animal mammal",
+      "parts": "head legs heart brains guts feet ear eye"
+    },
+    {
+      "name": "rabbit",
+      "playable": false,
+      "offense_flags": "dodge fast",
+      "form": "edible animal mammal",
+      "parts": "head legs heart brains guts feet ear eye"
+    },
+    {
+      "name": "school monster",
+      "playable": false,
+      "mob_flags": "noalign",
+      "immune_flags": "summon charm",
+      "vuln_flags": "magic",
+      "form": "edible biped mammal",
+      "parts": "head arms legs heart brains guts feet ear eye tail claws"
+    },
+    {
+      "name": "snake",
+      "playable": false,
+      "res_flags": "poison",
+      "vuln_flags": "cold",
+      "form": "edible animal reptile snake cold_blood",
+      "parts": "head heart brains guts eye long_tongue tail fangs scales"
+    },
+    {
+      "name": "song bird",
+      "playable": false,
+      "affect_flags": "flying",
+      "offense_flags": "dodge fast",
+      "form": "edible animal bird",
+      "parts": "head legs heart brains guts feet eye wings"
+    },
+    {
+      "name": "troll",
+      "playable": false,
+      "affect_flags": "detect_hidden infrared regeneration",
+      "offense_flags": "berserk",
+      "res_flags": "charm bash",
+      "vuln_flags": "fire acid",
+      "form": "edible poison sentient biped mammal",
+      "parts": "head arms legs heart brains guts hands feet fingers ear eye claws fangs"
+    },
+    {
+      "name": "water fowl",
+      "playable": false,
+      "affect_flags": "flying swim",
+      "res_flags": "drowning",
+      "form": "edible animal bird",
+      "parts": "head legs heart brains guts feet eye wings"
+    },
+    {
+      "name": "wolf",
+      "playable": false,
+      "affect_flags": "dark_vision",
+      "offense_flags": "dodge fast",
+      "form": "edible animal mammal",
+      "parts": "head legs heart brains guts feet ear eye tail claws fangs"
+    },
+    {
+      "name": "wyvern",
+      "playable": false,
+      "affect_flags": "detect_invis detect_hidden flying",
+      "offense_flags": "bash dodge fast",
+      "immune_flags": "poison",
+      "vuln_flags": "light",
+      "form": "edible poison animal dragon",
+      "parts": "head legs heart brains guts feet ear eye long_tongue tail fangs scales"
+    }
   ]
 }}

@@ -582,7 +582,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
         ch->size = pc_race_table[ch->race].size;
         ch->attack_type = ATTACK_PUNCH;
 
-        for (i = 0; i < 5; i++) {
+        for (i = 0; i < PC_RACE_SKILL_MAX; i++) {
             if (pc_race_table[ch->race].skills[i] == NULL)
                 break;
             group_add (ch, pc_race_table[ch->race].skills[i], FALSE);

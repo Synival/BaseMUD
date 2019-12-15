@@ -241,7 +241,7 @@ struct pc_race_type {             /* additional data for pc races    */
     char who_name[8];
     sh_int points;                /* cost in points of the race      */
     sh_int class_mult[CLASS_MAX]; /* exp multiplier for class, * 100 */
-    char *skills[5];              /* bonus skills for the race       */
+    char *skills[PC_RACE_SKILL_MAX]; /* bonus skills for the race    */
     sh_int stats[STAT_MAX];       /* starting stats                  */
     sh_int max_stats[STAT_MAX];   /* maximum stats                   */
     sh_int size;                  /* aff bits for the race           */

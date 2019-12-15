@@ -163,6 +163,7 @@ int char_int_learn_rate (CHAR_T *ch);
 int char_wis_level_practices (CHAR_T *ch);
 int char_dex_defense_bonus (CHAR_T *ch);
 int char_con_level_hp (CHAR_T *ch);
+int char_con_shock (CHAR_T *ch);
 
 /* Action functions. */
 void char_reset (CHAR_T *ch);

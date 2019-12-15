@@ -25,12 +25,7 @@
  *   ROM license, in the file Rom24/doc/rom.license                        *
  **************************************************************************/
 
-/* NOTE:
- * -----
- * This file contains helper functions for master_table[] that will output
- * any type of structure to a JSON object. This is a neat idea, but since it's
- * a new feature rather than a clean-up, it's been left unfinished.
- *    -- Synival */
+#include <string.h>
 
 #include "json_obj.h"
 #include "lookup.h"
@@ -127,111 +122,126 @@ DEFINE_TABLE_JSON_FUN (json_tblw_attack) {
 
 DEFINE_TABLE_JSON_FUN (json_tblw_race) {
     JSON_TBLW_START (RACE_T, race, race->name == NULL);
-    /* TODO: properties for RACE_T */
-#if 0
-    char *name;   /* call name of the race          */
-    bool pc_race; /* can be chosen by pcs           */
-    flag_t mob;   /* act bits for the race          */
-    flag_t aff;   /* aff bits for the race          */
-    flag_t off;   /* off bits for the race          */
-    flag_t imm;   /* imm bits for the race          */
-    flag_t res;   /* res bits for the race          */
-    flag_t vuln;  /* vuln bits for the race         */
-    flag_t form;  /* default form flag for the race */
-    flag_t parts; /* default parts for the race     */
-#endif
+    json_prop_string  (new, "name", JSTR (race->name));
+    json_prop_boolean (new, "playable", race->pc_race);
+
+    if (race->mob > 0)
+        json_prop_string (new, "mob_flags", JBITSF (mob_flags, race->mob));
+    if (race->aff > 0)
+        json_prop_string (new, "affect_flags", JBITSF (affect_flags, race->aff));
+    if (race->off > 0)
+        json_prop_string (new, "offense_flags", JBITSF (off_flags, race->off));
+    if (race->imm > 0)
+        json_prop_string (new, "immune_flags", JBITSF (res_flags, race->imm));
+    if (race->res > 0)
+        json_prop_string (new, "res_flags", JBITSF (res_flags, race->res));
+    if (race->vuln > 0)
+        json_prop_string (new, "vuln_flags", JBITSF (res_flags, race->vuln));
+    if (race->form > 0)
+        json_prop_string (new, "form", JBITSF (form_flags, race->form));
+    if (race->parts > 0)
+        json_prop_string (new, "parts", JBITSF (part_flags, race->parts));
+
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_pc_race) {
+    const CLASS_T *class;
+    JSON_T *sub;
+    int i;
+
     JSON_TBLW_START (PC_RACE_T, pc_race, pc_race->name == NULL);
-    /* TODO: properties for PC_RACE_T */
-#if 0
-    char *name;                   /* MUST be in race_type            */
-    char who_name[8];
-    sh_int points;                /* cost in points of the race      */
-    sh_int class_mult[CLASS_MAX]; /* exp multiplier for class, * 100 */
-    char *skills[5];              /* bonus skills for the race       */
-    sh_int stats[STAT_MAX];       /* starting stats                  */
-    sh_int max_stats[STAT_MAX];   /* maximum stats                   */
-    sh_int size;                  /* aff bits for the race           */
-#endif
+
+    json_prop_string  (new, "name",     JSTR (pc_race->name));
+    json_prop_string  (new, "who_name", JSTR (pc_race->who_name));
+    json_prop_integer (new, "creation_points", pc_race->points);
+
+    sub = json_prop_object (new, "class_exp", JSON_OBJ_ANY);
+    for (i = 0; i < CLASS_MAX; i++) {
+        if ((class = class_get (i)) == NULL)
+            continue;
+        json_prop_integer (sub, class->name, pc_race->class_mult[i]);
+    }
+
+    for (i = 0; i < PC_RACE_SKILL_MAX; i++)
+        if (pc_race->skills[i] != NULL && pc_race->skills[i][0] != '\0')
+            break;
+    if (i != PC_RACE_SKILL_MAX) {
+        sub = json_prop_array (new, "skills");
+        for (i = 0; i < 5; i++)
+            if (pc_race->skills[i] != NULL && pc_race->skills[i][0] != '\0')
+                json_prop_string (sub, NULL, pc_race->skills[i]);
+    }
+
+    sub = json_prop_object (new, "base_stats", JSON_OBJ_ANY);
+    for (i = 0; i < STAT_MAX; i++)
+        json_prop_integer (sub, JBITSF (stat_types, i), pc_race->stats[i]);
+
+    sub = json_prop_object (new, "max_stats", JSON_OBJ_ANY);
+    for (i = 0; i < STAT_MAX; i++)
+        json_prop_integer (sub, JBITSF (stat_types, i), pc_race->max_stats[i]);
+
+    json_prop_string (new, "size", JBITSF (size_types, pc_race->size));
+
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_class) {
     JSON_TBLW_START (CLASS_T, class, class->name == NULL);
-    /* TODO: properties for CLASS_T */
-#if 0
-    int type;
-    char *name;              /* the full name of the class  */
-    char who_name[4];        /* Three-letter name for 'who' */
-    sh_int attr_prime;       /* Prime attribute             */
-    sh_int weapon;           /* First weapon                */
-    sh_int guild[MAX_GUILD]; /* Vnum of guild rooms         */
-    sh_int skill_adept;      /* Maximum skill level         */
-    sh_int thac0_00;         /* Thac0 for level  0          */
-    sh_int thac0_32;         /* Thac0 for level 32          */
-    sh_int hp_min;           /* Min hp gained on leveling   */
-    sh_int hp_max;           /* Max hp gained on leveling   */
-    bool gains_mana;         /* Class gains mana on level   */
-    char *base_group;        /* base skills gained          */
-    char *default_group;     /* default skills gained       */
-#endif
+
+    json_prop_integer (new, "index", class->type);
+    json_prop_string  (new, "name", JSTR (class->name));
+    json_prop_string  (new, "who_name", JSTR (class->who_name));
+    json_prop_string  (new, "primary_stat",
+        JBITSF (stat_types, class->attr_prime));
+    json_prop_integer (new, "skill_adept", class->skill_adept);
+    json_prop_integer (new, "thac0_00", class->thac0_00);
+    json_prop_integer (new, "thac0_32", class->thac0_32);
+    json_prop_integer (new, "hp_gain_min", class->hp_min);
+    json_prop_integer (new, "hp_gain_max", class->hp_max);
+    json_prop_boolean (new, "gains_mana",  class->gains_mana);
+    json_prop_string  (new, "base_group", JSTR (class->base_group));
+    json_prop_string  (new, "default_group", JSTR (class->default_group));
+
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_str_app) {
     JSON_TBLW_START (STR_APP_T, str_app, str_app->stat < 0);
-    /* TODO: properties for STR_APP_T */
-#if 0
-    int stat;
-    sh_int tohit;
-    sh_int todam;
-    sh_int carry;
-    sh_int wield;
-#endif
+    json_prop_integer (new, "stat", str_app->stat);
+    json_prop_integer (new, "hitroll_bonus", str_app->tohit);
+    json_prop_integer (new, "damroll_bonus", str_app->todam);
+    json_prop_integer (new, "carry_bonus", str_app->carry);
+    json_prop_integer (new, "max_wield_weight", str_app->wield);
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_int_app) {
     JSON_TBLW_START (INT_APP_T, int_app, int_app->stat < 0);
-    /* TODO: properties for INT_APP_T */
-#if 0
-    int stat;
-    sh_int learn;
-#endif
+    json_prop_integer (new, "stat", int_app->stat);
+    json_prop_integer (new, "learn_rate", int_app->learn);
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_wis_app) {
     JSON_TBLW_START (WIS_APP_T, wis_app, wis_app->stat < 0);
-    /* TODO: properties for WIS_APP_T */
-#if 0
-    int stat;
-    sh_int practice;
-#endif
+    json_prop_integer (new, "stat", wis_app->stat);
+    json_prop_integer (new, "practices", wis_app->practice);
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_dex_app) {
     JSON_TBLW_START (DEX_APP_T, dex_app, dex_app->stat < 0);
-    /* TODO: properties for DEX_APP_T */
-#if 0
-    int stat;
-    sh_int defensive;
-#endif
+    json_prop_integer (new, "stat", dex_app->stat);
+    json_prop_integer (new, "defense_bonus", dex_app->defensive);
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_con_app) {
     JSON_TBLW_START (CON_APP_T, con_app, con_app->stat < 0);
-    /* TODO: properties for CON_APP_T */
-#if 0
-    int stat;
-    sh_int hitp;
-    sh_int shock;
-#endif
+    json_prop_integer (new, "stat", con_app->stat);
+    json_prop_integer (new, "level_hp", con_app->hitp);
+    json_prop_integer (new, "shock", con_app->shock);
     return new;
 }
 
