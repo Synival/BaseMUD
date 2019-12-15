@@ -301,13 +301,26 @@ DEFINE_TABLE_JSON_FUN (json_tblw_skill) {
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_skill_group) {
+    const CLASS_T *class;
+    JSON_T *sub, *sub2;
+    int i;
     JSON_TBLW_START (SKILL_GROUP_T, group, group->name == NULL);
-    /* TODO: properties for SKILL_GROUP_T */
-#if 0
-    char *name;
-    sh_int rating[CLASS_MAX];
-    char *spells[MAX_IN_GROUP];
-#endif
+
+    json_prop_string (new, "name", JSTR (group->name));
+
+    sub = json_prop_object (new, "classes", JSON_OBJ_ANY);
+    for (i = 0; i < CLASS_MAX; i++) {
+        if ((class = class_get (i)) == NULL)
+            break;
+        sub2 = json_prop_object (sub, class->name, JSON_OBJ_ANY);
+        json_prop_integer (sub2, "cost", group->classes[i].cost);
+    }
+
+    sub = json_prop_array (new, "skills");
+    for (i = 0; i < MAX_IN_GROUP; i++)
+        if (group->spells[i] && group->spells[i][0] != '\0')
+            json_prop_string (sub, NULL, JSTR (group->spells[i]));
+
     return new;
 }
 
