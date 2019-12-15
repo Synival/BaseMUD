@@ -1,6 +1,6 @@
 {"table": {
-  "name": "group_table",
-  "description": "Ability group table.",
+  "name": "skill_group_table",
+  "description": "Groups of skills table.",
   "type": "table",
   "values": [
     {},

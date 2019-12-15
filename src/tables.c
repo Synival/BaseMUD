@@ -104,7 +104,7 @@ const TABLE_T master_table[] = {
     TTABLE (con_app_table,    "Con apply table.",             json_tblw_con_app),
     TTABLE (liq_table,        "Liquid types.",                json_tblw_liq),
     TTABLE (skill_table,      "Master skill table.",          json_tblw_skill),
-    TTABLE (group_table,      "Ability group table.",         json_tblw_group),
+    TTABLE (skill_group_table, "Groups of skills table.",     json_tblw_skill_group),
     TTABLE (sector_table,     "Sector/terrain properties.",   json_tblw_sector),
     TTABLE (nanny_table,      "Descriptor 'Nanny' table.",    json_tblw_nanny),
     TTABLE (door_table,       "Exit names.",                  json_tblw_door),
@@ -1072,7 +1072,7 @@ const SKILL_T skill_table[SKILL_MAX + 1] = {
 #undef PR
 #undef PP
 
-const GROUP_T group_table[GROUP_MAX + 1] = {
+const SKILL_GROUP_T skill_group_table[SKILL_GROUP_MAX + 1] = {
     {"rom basics",      {{ 0}, { 0}, { 0}, { 0}}, {"scrolls", "staves", "wands", "recall"}},
     {"mage basics",     {{ 0}, {-1}, {-1}, {-1}}, {"dagger"}},
     {"cleric basics",   {{-1}, { 0}, {-1}, {-1}}, {"mace"}},

@@ -300,9 +300,9 @@ DEFINE_TABLE_JSON_FUN (json_tblw_skill) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_group) {
-    JSON_TBLW_START (GROUP_T, group, group->name == NULL);
-    /* TODO: properties for GROUP_T */
+DEFINE_TABLE_JSON_FUN (json_tblw_skill_group) {
+    JSON_TBLW_START (SKILL_GROUP_T, group, group->name == NULL);
+    /* TODO: properties for SKILL_GROUP_T */
 #if 0
     char *name;
     sh_int rating[CLASS_MAX];

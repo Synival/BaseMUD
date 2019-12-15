@@ -524,7 +524,7 @@ struct pc_data {
     int last_level;
     sh_int condition[4];
     sh_int learned[SKILL_MAX];
-    bool group_known[GROUP_MAX];
+    bool group_known[SKILL_GROUP_MAX];
     sh_int points;
     bool confirm_delete;
     char *alias[MAX_ALIAS];
@@ -544,7 +544,7 @@ struct pc_data {
 /* Data for generating characters -- only used during generation */
 struct gen_data {
     bool skill_chosen[SKILL_MAX];
-    bool group_chosen[GROUP_MAX];
+    bool group_chosen[SKILL_GROUP_MAX];
     int points_chosen;
     OBJ_RECYCLE_T rec_data;
 };
@@ -945,13 +945,13 @@ struct skill_type {
     char *msg_obj;                 /* Wear off message for obects */
 };
 
-struct group_class_type {
+struct skill_group_class_type {
     sh_int cost; /* How hard it is to learn */
 };
 
-struct group_type {
+struct skill_group_type {
     char *name;
-    GROUP_CLASS_T classes[CLASS_MAX];
+    SKILL_GROUP_CLASS_T classes[CLASS_MAX];
     char *spells[MAX_IN_GROUP];
 };
 

@@ -133,6 +133,8 @@ void save_char_obj (CHAR_T *ch) {
 
 /* Write the char. */
 void fwrite_char (CHAR_T *ch, FILE *fp) {
+    const SKILL_T *skill;
+    const SKILL_GROUP_T *group;
     AFFECT_T *paf;
     int sn, gn, pos, i;
 
@@ -262,15 +264,19 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
         fprintf (fp, "\n");
 
         for (sn = 0; sn < SKILL_MAX; sn++) {
-            if (skill_table[sn].name != NULL && ch->pcdata->learned[sn] > 0) {
-                fprintf (fp, "Sk %d '%s'\n",
-                         ch->pcdata->learned[sn], skill_table[sn].name);
-            }
+            if ((skill = skill_get (sn)) == NULL)
+                break;
+            if (skill->name != NULL && ch->pcdata->learned[sn] > 0)
+                fprintf (fp, "Sk %d '%s'\n", ch->pcdata->learned[sn],
+                    skill->name);
         }
 
-        for (gn = 0; gn < GROUP_MAX; gn++)
-            if (group_table[gn].name != NULL && ch->pcdata->group_known[gn])
-                fprintf (fp, "Gr '%s'\n", group_table[gn].name);
+        for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
+            if ((group = skill_group_get (gn)) == NULL)
+                break;
+            if (group->name != NULL && ch->pcdata->group_known[gn])
+                fprintf (fp, "Gr '%s'\n", group->name);
+        }
     }
 
     for (paf = ch->affected; paf != NULL; paf = paf->next) {
@@ -965,7 +971,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                     char *temp;
 
                     temp = fread_word (fp);
-                    gn = group_lookup (temp);
+                    gn = skill_group_lookup (temp);
                  /* gn = group_lookup (fread_word (fp)); */
                     if (gn < 0) {
                         fprintf (stderr, "%s", temp);

@@ -172,6 +172,7 @@ int get_skill (CHAR_T *ch, int sn) {
 
 /* shows skills, groups and costs (only if not bought) */
 void list_group_costs (CHAR_T *ch) {
+    const SKILL_GROUP_T *group;
     int gn, sn, col;
 
     if (IS_NPC (ch))
@@ -181,16 +182,16 @@ void list_group_costs (CHAR_T *ch) {
         "group", "cp", "group", "cp", "group", "cp");
 
     col = 0;
-    for (gn = 0; gn < GROUP_MAX; gn++) {
-        if (group_table[gn].name == NULL)
+    for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
+        if ((group = skill_group_get (gn)) == NULL)
             break;
 
         if (!ch->gen_data->group_chosen[gn]
             && !ch->pcdata->group_known[gn]
-            && group_table[gn].classes[ch->class].cost > 0)
+            && group->classes[ch->class].cost > 0)
         {
-            printf_to_char (ch, "%-18s %-5d ", group_table[gn].name,
-                group_table[gn].classes[ch->class].cost);
+            printf_to_char (ch, "%-18s %-5d ", group->name,
+                group->classes[ch->class].cost);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -229,6 +230,7 @@ void list_group_costs (CHAR_T *ch) {
 }
 
 void list_group_chosen (CHAR_T *ch) {
+    const SKILL_GROUP_T *group;
     int gn, sn, col;
 
     if (IS_NPC (ch))
@@ -238,15 +240,15 @@ void list_group_chosen (CHAR_T *ch) {
         "group", "cp", "group", "cp", "group", "cp\n\r");
 
     col = 0;
-    for (gn = 0; gn < GROUP_MAX; gn++) {
-        if (group_table[gn].name == NULL)
+    for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
+        if ((group = skill_group_get (gn)) == NULL)
             break;
 
         if (ch->gen_data->group_chosen[gn]
-            && group_table[gn].classes[ch->class].cost > 0)
+            && group->classes[ch->class].cost > 0)
         {
-            printf_to_char (ch, "%-18s %-5d ", group_table[gn].name,
-                group_table[gn].classes[ch->class].cost);
+            printf_to_char (ch, "%-18s %-5d ", group->name,
+                group->classes[ch->class].cost);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -284,6 +286,8 @@ void list_group_chosen (CHAR_T *ch) {
 
 /* this procedure handles the input parsing for the skill generator */
 bool parse_gen_groups (CHAR_T *ch, char *argument) {
+    const SKILL_T *skill;
+    const SKILL_GROUP_T *group;
     char arg[MAX_INPUT_LENGTH];
     int gn, sn, i;
 
@@ -307,61 +311,57 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
             return TRUE;
         }
 
-        gn = group_lookup (argument);
+        gn = skill_group_lookup (argument);
         if (gn != -1) {
+            group = skill_group_get (gn);
             if (ch->gen_data->group_chosen[gn] || ch->pcdata->group_known[gn]) {
                 send_to_char ("You already know that group!\n\r", ch);
                 return TRUE;
             }
 
-            if (group_table[gn].classes[ch->class].cost < 1) {
+            if (group->classes[ch->class].cost < 1) {
                 send_to_char ("That group is not available.\n\r", ch);
                 return TRUE;
             }
 
             /* Close security hole */
-            if (ch->gen_data->points_chosen +
-                group_table[gn].classes[ch->class].cost > 300)
-            {
+            if (ch->gen_data->points_chosen + group->classes[ch->class].cost > 300) {
                 send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
                 return TRUE;
             }
 
-            printf_to_char (ch, "%s group added\n\r", group_table[gn].name);
+            printf_to_char (ch, "%s group added\n\r", group->name);
             ch->gen_data->group_chosen[gn] = TRUE;
-            ch->gen_data->points_chosen += group_table[gn].classes[ch->class].cost;
+            ch->gen_data->points_chosen += group->classes[ch->class].cost;
             gn_add (ch, gn);
-            ch->pcdata->points += group_table[gn].classes[ch->class].cost;
+            ch->pcdata->points += group->classes[ch->class].cost;
             return TRUE;
         }
 
         sn = skill_lookup (argument);
         if (sn != -1) {
+            skill = skill_get (sn);
             if (ch->gen_data->skill_chosen[sn] || ch->pcdata->learned[sn] > 0) {
                 send_to_char ("You already know that skill!\n\r", ch);
                 return TRUE;
             }
 
-            if (skill_table[sn].classes[ch->class].effort < 1
-                || skill_table[sn].spell_fun != spell_null)
-            {
+            if (skill->classes[ch->class].effort < 1 || skill->spell_fun != spell_null) {
                 send_to_char ("That skill is not available.\n\r", ch);
                 return TRUE;
             }
 
             /* Close security hole */
-            if (ch->gen_data->points_chosen +
-                skill_table[sn].classes[ch->class].effort > 300)
-            {
+            if (ch->gen_data->points_chosen + skill->classes[ch->class].effort > 300) {
                 send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
                 return TRUE;
             }
 
-            printf_to_char (ch, "%s skill added\n\r", skill_table[sn].name);
+            printf_to_char (ch, "%s skill added\n\r", skill->name);
             ch->gen_data->skill_chosen[sn] = TRUE;
-            ch->gen_data->points_chosen += skill_table[sn].classes[ch->class].effort;
+            ch->gen_data->points_chosen += skill->classes[ch->class].effort;
             ch->pcdata->learned[sn] = 1;
-            ch->pcdata->points += skill_table[sn].classes[ch->class].effort;
+            ch->pcdata->points += skill->classes[ch->class].effort;
             return TRUE;
         }
 
@@ -375,27 +375,29 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
             return TRUE;
         }
 
-        gn = group_lookup (argument);
+        gn = skill_group_lookup (argument);
         if (gn != -1 && ch->gen_data->group_chosen[gn]) {
+            group = skill_group_get (gn);
             send_to_char ("Group dropped.\n\r", ch);
             ch->gen_data->group_chosen[gn] = FALSE;
-            ch->gen_data->points_chosen -= group_table[gn].classes[ch->class].cost;
+            ch->gen_data->points_chosen -= group->classes[ch->class].cost;
             gn_remove (ch, gn);
-            for (i = 0; i < GROUP_MAX; i++) {
+            for (i = 0; i < SKILL_GROUP_MAX; i++)
                 if (ch->gen_data->group_chosen[gn])
                     gn_add (ch, gn);
-            }
-            ch->pcdata->points -= group_table[gn].classes[ch->class].cost;
+
+            ch->pcdata->points -= group->classes[ch->class].cost;
             return TRUE;
         }
 
         sn = skill_lookup (argument);
         if (sn != -1 && ch->gen_data->skill_chosen[sn]) {
+            skill = skill_get (sn);
             send_to_char ("Skill dropped.\n\r", ch);
             ch->gen_data->skill_chosen[sn] = FALSE;
-            ch->gen_data->points_chosen -= skill_table[sn].classes[ch->class].effort;
+            ch->gen_data->points_chosen -= skill->classes[ch->class].effort;
             ch->pcdata->learned[sn] = 0;
-            ch->pcdata->points -= skill_table[sn].classes[ch->class].effort;
+            ch->pcdata->points -= skill->classes[ch->class].effort;
             return TRUE;
         }
 
@@ -475,49 +477,62 @@ void check_improve (CHAR_T *ch, int sn, bool success, int multiplier) {
 
 /* recursively adds a group given its number -- uses group_add */
 void gn_add (CHAR_T *ch, int gn) {
+    const SKILL_GROUP_T *group;
     int i;
+
     ch->pcdata->group_known[gn] = TRUE;
     for (i = 0; i < MAX_IN_GROUP; i++) {
-        if (group_table[gn].spells[i] == NULL)
+        if ((group = skill_group_get (i)) == NULL)
             break;
-        group_add (ch, group_table[gn].spells[i], FALSE);
+        if (group->spells[i] == NULL)
+            break;
+        group_add (ch, group->spells[i], FALSE);
     }
 }
 
 /* recusively removes a group given its number -- uses group_remove */
 void gn_remove (CHAR_T *ch, int gn) {
+    const SKILL_GROUP_T *group;
     int i;
+
     ch->pcdata->group_known[gn] = FALSE;
     for (i = 0; i < MAX_IN_GROUP; i++) {
-        if (group_table[gn].spells[i] == NULL)
+        if ((group = skill_group_get (i)) == NULL)
             break;
-        group_remove (ch, group_table[gn].spells[i]);
+        if (group->spells[i] == NULL)
+            break;
+        group_remove (ch, group->spells[i]);
     }
 }
 
 /* use for processing a skill or group for addition  */
 void group_add (CHAR_T *ch, const char *name, bool deduct) {
+    const SKILL_T *skill;
+    const SKILL_GROUP_T *group;
     int sn, gn;
+
     if (IS_NPC (ch)) /* NPCs do not have skills */
         return;
 
     sn = skill_lookup (name);
     if (sn != -1) {
+        skill = skill_get (sn);
         if (ch->pcdata->learned[sn] == 0) { /* i.e. not known */
             ch->pcdata->learned[sn] = 1;
             if (deduct)
-                ch->pcdata->points += skill_table[sn].classes[ch->class].effort;
+                ch->pcdata->points += skill->classes[ch->class].effort;
         }
         return;
     }
 
     /* now check groups */
-    gn = group_lookup (name);
+    gn = skill_group_lookup (name);
     if (gn != -1) {
+        group = skill_group_get (gn);
         if (ch->pcdata->group_known[gn] == FALSE) {
             ch->pcdata->group_known[gn] = TRUE;
             if (deduct)
-                ch->pcdata->points += group_table[gn].classes[ch->class].cost;
+                ch->pcdata->points += group->classes[ch->class].cost;
         }
         gn_add (ch, gn); /* make sure all skills in the group are known */
     }
@@ -526,15 +541,15 @@ void group_add (CHAR_T *ch, const char *name, bool deduct) {
 /* used for processing a skill or group for deletion -- no points back! */
 void group_remove (CHAR_T *ch, const char *name) {
     int sn, gn;
-    sn = skill_lookup (name);
 
+    sn = skill_lookup (name);
     if (sn != -1) {
         ch->pcdata->learned[sn] = 0;
         return;
     }
 
     /* now check groups */
-    gn = group_lookup (name);
+    gn = skill_group_lookup (name);
     if (gn != -1 && ch->pcdata->group_known[gn] == TRUE) {
         ch->pcdata->group_known[gn] = FALSE;
         gn_remove (ch, gn); /* be sure to call gn_add on all remaining groups */

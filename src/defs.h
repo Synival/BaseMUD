@@ -446,7 +446,7 @@
 #define PC_RACE_SKILL_MAX   5
 #define SOCIAL_MAX          256
 #define SKILL_MAX           150
-#define GROUP_MAX           30
+#define SKILL_GROUP_MAX     30
 #define SPEC_MAX            22
 #define ATTRIBUTE_HIGHEST   25
 #define ATTACK_MAX          40

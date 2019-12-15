@@ -62,7 +62,7 @@ extern const DEX_APP_T        dex_app_table[ATTRIBUTE_HIGHEST + 2];
 extern const CON_APP_T        con_app_table[ATTRIBUTE_HIGHEST + 2];
 extern const LIQ_T            liq_table[LIQ_MAX + 1];
 extern const SKILL_T          skill_table[SKILL_MAX + 1];
-extern const GROUP_T          group_table[GROUP_MAX + 1];
+extern const SKILL_GROUP_T    skill_group_table[SKILL_GROUP_MAX + 1];
 extern const SECTOR_T         sector_table[SECT_MAX + 1];
 extern const NANNY_HANDLER_T  nanny_table[NANNY_MAX + 1];
 extern const DOOR_T           door_table[DIR_MAX + 1];

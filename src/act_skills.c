@@ -171,9 +171,10 @@ void do_skills_or_spells (CHAR_T *ch, char *argument, int spells) {
 
 /* used to get new skills */
 DEFINE_DO_FUN (do_gain) {
+    const SKILL_GROUP_T *group;
     char arg[MAX_INPUT_LENGTH];
     CHAR_T *trainer;
-    int gn = 0, sn = 0;
+    int gn, sn = 0;
 
     if (IS_NPC (ch))
         return;
@@ -192,14 +193,16 @@ DEFINE_DO_FUN (do_gain) {
         printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s\n\r",
                  "group", "cost", "group", "cost", "group", "cost");
 
-        for (gn = 0; gn < GROUP_MAX && group_table[gn].name; gn++) {
+        for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
+            if ((group = skill_group_get (gn)) == NULL)
+                break;
             if (ch->pcdata->group_known[gn])
                 continue;
-            if (group_table[gn].classes[ch->class].cost <= 0)
+            if (group->classes[ch->class].cost <= 0)
                 continue;
 
-            printf_to_char (ch, "%-18s %-5d ", group_table[gn].name,
-                group_table[gn].classes[ch->class].cost);
+            printf_to_char (ch, "%-18s %-5d ", group->name,
+                group->classes[ch->class].cost);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -256,20 +259,20 @@ DEFINE_DO_FUN (do_gain) {
     }
 
     /* else add a group/skill */
-    gn = group_lookup (argument);
-    if (gn > 0) {
+    gn = skill_group_lookup (argument);
+    if (gn >= 0) {
+        group = skill_group_get (gn);
         BAIL_IF_ACT (ch->pcdata->group_known[gn],
             "$N tells you 'You already know that group!'", ch, NULL, trainer);
-        BAIL_IF_ACT (group_table[gn].classes[ch->class].cost <= 0,
+        BAIL_IF_ACT (group->classes[ch->class].cost <= 0,
             "$N tells you 'That group is beyond your powers.'", ch, NULL, trainer);
-        BAIL_IF_ACT (ch->train < group_table[gn].classes[ch->class].cost,
+        BAIL_IF_ACT (ch->train < group->classes[ch->class].cost,
             "$N tells you 'You are not yet ready for that group.'", ch, NULL, trainer);
 
         /* add the group */
         gn_add (ch, gn);
-        act ("$N trains you in the art of $t.",
-             ch, group_table[gn].name, trainer, TO_CHAR);
-        ch->train -= group_table[gn].classes[ch->class].cost;
+        act ("$N trains you in the art of $t.", ch, group->name, trainer, TO_CHAR);
+        ch->train -= group->classes[ch->class].cost;
         return;
     }
 
@@ -304,6 +307,7 @@ DEFINE_DO_FUN (do_abilities)
 
 /* shows all groups, or the sub-members of a group */
 DEFINE_DO_FUN (do_groups) {
+    const SKILL_GROUP_T *group;
     int gn, sn, col;
     if (IS_NPC (ch))
         return;
@@ -311,10 +315,13 @@ DEFINE_DO_FUN (do_groups) {
     /* show all groups */
     if (argument[0] == '\0') {
         col = 0;
-        for (gn = 0; gn < GROUP_MAX && group_table[gn].name != NULL; gn++) {
+        for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
+            if ((group = skill_group_get (gn)) == NULL)
+                break;
             if (!ch->pcdata->group_known[gn])
                 continue;
-            printf_to_char (ch, "%-20s ", group_table[gn].name);
+
+            printf_to_char (ch, "%-20s ", group->name);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -327,8 +334,10 @@ DEFINE_DO_FUN (do_groups) {
     /* show all groups */
     if (!str_cmp (argument, "all")) {
         col = 0;
-        for (gn = 0; gn < GROUP_MAX && group_table[gn].name != NULL; gn++) {
-            printf_to_char (ch, "%-20s ", group_table[gn].name);
+        for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
+            if ((group = skill_group_get (gn)) == NULL)
+                break;
+            printf_to_char (ch, "%-20s ", group->name);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }
@@ -338,17 +347,18 @@ DEFINE_DO_FUN (do_groups) {
     }
 
     /* show the sub-members of a group */
-    gn = group_lookup (argument);
-    if (gn == -1) {
+    gn = skill_group_lookup (argument);
+    if (gn < 0) {
         send_to_char (
             "No group of that name exist.\n\r"
             "Type 'groups all' or 'info all' for a full listing.\n\r", ch);
         return;
     }
+    group = skill_group_get (gn);
 
     col = 0;
-    for (sn = 0; sn < MAX_IN_GROUP && group_table[gn].spells[gn] != NULL; sn++) {
-        printf_to_char (ch, "%-20s ", group_table[gn].spells[sn]);
+    for (sn = 0; sn < MAX_IN_GROUP && group->spells[gn] != NULL; sn++) {
+        printf_to_char (ch, "%-20s ", group->spells[sn]);
         if (++col % 3 == 0)
             send_to_char ("\n\r", ch);
     }
