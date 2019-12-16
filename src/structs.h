@@ -324,7 +324,7 @@ struct size_type {
 struct door_type {
     int dir;
     const char *name;
-    const char *from;
+    const char *from_phrase;
     const char *to_phrase;
     int reverse;
     const char *short_name;

@@ -106,7 +106,7 @@ const TABLE_T master_table[] = {
     TTABLE (skill_table,      "Master skill table.",          json_tblw_skill),
     TTABLE (skill_group_table, "Groups of skills table.",     json_tblw_skill_group),
     TTABLE (sector_table,     "Sector/terrain properties.",   json_tblw_sector),
-    TTABLE (nanny_table,      "Descriptor 'Nanny' table.",    json_tblw_nanny),
+    TTABLE (nanny_table,      "Descriptor 'Nanny' table.",    NULL),
     TTABLE (door_table,       "Exit names.",                  json_tblw_door),
     TTABLE (spec_table,       "Specialized mobile behavior.", json_tblw_spec),
     TTABLE (furniture_table, "Furniture flags for positions.",json_tblw_furniture),
@@ -1310,12 +1310,12 @@ const OBJ_MAP_T obj_map_table[] = {
 
 /* for doors */
 const DOOR_T door_table[DIR_MAX + 1] = {
-    {DIR_NORTH, "north", "the north", "to the north", DIR_SOUTH, "N"},
-    {DIR_EAST,  "east",  "the east",  "to the east",  DIR_WEST,  "E"},
-    {DIR_SOUTH, "south", "the south", "to the south", DIR_NORTH, "S"},
-    {DIR_WEST,  "west",  "the west",  "to the west",  DIR_EAST,  "W"},
-    {DIR_UP,    "up",    "above",     "above you",    DIR_DOWN,  "U"},
-    {DIR_DOWN,  "down",  "below",     "below you",    DIR_UP,    "D"},
+    {DIR_NORTH, "north", "from the north", "to the north", DIR_SOUTH, "N"},
+    {DIR_EAST,  "east",  "from the east",  "to the east",  DIR_WEST,  "E"},
+    {DIR_SOUTH, "south", "from the south", "to the south", DIR_NORTH, "S"},
+    {DIR_WEST,  "west",  "from the west",  "to the west",  DIR_EAST,  "W"},
+    {DIR_UP,    "up",    "from above",     "above you",    DIR_DOWN,  "U"},
+    {DIR_DOWN,  "down",  "from below",     "below you",    DIR_UP,    "D"},
     {0},
 };
 

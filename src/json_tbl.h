@@ -52,7 +52,6 @@ DECLARE_TABLE_JSON_FUN (json_tblw_liq);
 DECLARE_TABLE_JSON_FUN (json_tblw_skill);
 DECLARE_TABLE_JSON_FUN (json_tblw_skill_group);
 DECLARE_TABLE_JSON_FUN (json_tblw_sector);
-DECLARE_TABLE_JSON_FUN (json_tblw_nanny);
 DECLARE_TABLE_JSON_FUN (json_tblw_door);
 DECLARE_TABLE_JSON_FUN (json_tblw_spec);
 DECLARE_TABLE_JSON_FUN (json_tblw_furniture);

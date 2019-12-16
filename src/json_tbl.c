@@ -325,39 +325,28 @@ DEFINE_TABLE_JSON_FUN (json_tblw_skill_group) {
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_sector) {
+    char color_buf[2];
     JSON_TBLW_START (SECTOR_T, sector, sector->name == NULL);
-    /* TODO: properties for SECTOR_T */
-#if 0
-    int type;
-    const char *name;
-    int move_loss;
-    char colour_char;
-#endif
-    return new;
-}
 
-DEFINE_TABLE_JSON_FUN (json_tblw_nanny) {
-    JSON_TBLW_START (NANNY_HANDLER_T, nanny, nanny->name == NULL);
-    /* TODO: properties for NANNY_HANDLER_T */
-#if 0
-    int state;
-    char *name;
-    NANNY_FUN *const action;
-#endif
+    json_prop_integer (new, "type", sector->type);
+    json_prop_string  (new, "name", JSTR (sector->name));
+    json_prop_integer (new, "move_loss", sector->move_loss);
+
+    color_buf[0] = sector->colour_char;
+    color_buf[1] = '\0';
+    json_prop_string (new, "color_char", color_buf);
+
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_door) {
     JSON_TBLW_START (DOOR_T, door, door->name == NULL);
-    /* TODO: properties for DOOR_T */
-#if 0
-    int dir;
-    const char *name;
-    const char *from;
-    const char *to_phrase;
-    int reverse;
-    const char *short_name;
-#endif
+    json_prop_integer (new, "dir",         door->dir);
+    json_prop_integer (new, "reverse",     door->reverse);
+    json_prop_string  (new, "name",        JSTR (door->name));
+    json_prop_string  (new, "short_name",  JSTR (door->short_name));
+    json_prop_string  (new, "to_phrase",   JSTR (door->to_phrase));
+    json_prop_string  (new, "from_phrase", JSTR (door->from_phrase));
     return new;
 }
 

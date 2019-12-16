@@ -1029,11 +1029,12 @@ void char_move (CHAR_T *ch, int door, bool follow) {
             act ("$n has arrived.", ch, NULL, NULL, TO_NOTCHAR);
         else {
             if (IS_SET (pexit_rev->exit_flags, EX_CLOSED))
-                act ("$n enters from $t, passing through the $d.", ch,
-                    door_table[rev_dir].from, pexit_rev->keyword, TO_NOTCHAR);
+                act ("$n enters $t, passing through the $d.", ch,
+                    door_table[rev_dir].from_phrase, pexit_rev->keyword,
+                    TO_NOTCHAR);
             else
-                act ("$n enters from $t.", ch,
-                    door_table[rev_dir].from, NULL, TO_NOTCHAR);
+                act ("$n enters $t.", ch,
+                    door_table[rev_dir].from_phrase, NULL, TO_NOTCHAR);
         }
 #else
         act ("$n has arrived.", ch, NULL, NULL, TO_NOTCHAR);
