@@ -3,9 +3,33 @@
   "description": "Furniture flags for positions.",
   "type": "table",
   "values": [
-    {},
-    {},
-    {},
-    {}
+    {
+      "name": "standing",
+      "position": "standing",
+      "bit_at": "stand_at",
+      "bit_on": "stand_on",
+      "bit_in": "stand_in"
+    },
+    {
+      "name": "sitting",
+      "position": "sitting",
+      "bit_at": "sit_at",
+      "bit_on": "sit_on",
+      "bit_in": "sit_in"
+    },
+    {
+      "name": "resting",
+      "position": "resting",
+      "bit_at": "rest_at",
+      "bit_on": "rest_on",
+      "bit_in": "rest_in"
+    },
+    {
+      "name": "sleeping",
+      "position": "sleeping",
+      "bit_at": "sleep_at",
+      "bit_on": "sleep_on",
+      "bit_in": "sleep_in"
+    }
   ]
 }}

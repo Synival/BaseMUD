@@ -967,11 +967,9 @@ DEFINE_DO_FUN (do_equipment) {
         if ((wear = wear_loc_get (wear_loc)) == NULL)
             continue;
 
-        send_to_char (wear->look_msg, ch);
-        if (char_can_see_obj (ch, obj)) {
-            send_to_char (obj_format_to_char (obj, ch, TRUE), ch);
-            send_to_char ("\n\r", ch);
-        }
+        printf_to_char (ch, "%-21s ", wear->look_msg);
+        if (char_can_see_obj (ch, obj))
+            printf_to_char (ch, "%s\n\r", obj_format_to_char (obj, ch, TRUE));
         else
             send_to_char ("something.\n\r", ch);
         found = TRUE;

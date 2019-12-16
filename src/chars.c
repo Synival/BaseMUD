@@ -1292,18 +1292,19 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
 
     found = FALSE;
     for (wear_loc = 0; wear_loc < WEAR_LOC_MAX; wear_loc++) {
-        if ((obj = char_get_eq_by_wear_loc (victim, wear_loc)) != NULL
-            && char_can_see_obj (ch, obj))
-        {
-            if (!found) {
-                send_to_char ("\n\r", ch);
-                act ("$N is using:", ch, NULL, victim, TO_CHAR);
-                found = TRUE;
-            }
-            send_to_char (wear_loc_table[wear_loc].look_msg, ch);
-            send_to_char (obj_format_to_char (obj, ch, TRUE), ch);
+        if ((obj = char_get_eq_by_wear_loc (victim, wear_loc)) == NULL)
+            continue;
+        if (!char_can_see_obj (ch, obj))
+            continue;
+
+        if (!found) {
             send_to_char ("\n\r", ch);
+            act ("$N is using:", ch, NULL, victim, TO_CHAR);
+            found = TRUE;
         }
+        printf_to_char (ch, "%-21s %s\n\r",
+            wear_loc_table[wear_loc].look_msg,
+            obj_format_to_char (obj, ch, TRUE));
     }
 
     if (victim != ch && !IS_NPC (ch)

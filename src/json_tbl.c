@@ -352,37 +352,33 @@ DEFINE_TABLE_JSON_FUN (json_tblw_door) {
 
 DEFINE_TABLE_JSON_FUN (json_tblw_spec) {
     JSON_TBLW_START (SPEC_T, spec, spec->name == NULL);
-    /* TODO: properties for SPEC_T */
-#if 0
-    char *name;         /* special function name */
-    SPEC_FUN *function; /* the function          */
-#endif
+    json_prop_string (new, "name", spec->name);
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_furniture) {
     JSON_TBLW_START (FURNITURE_BITS_T, furniture, furniture->name == NULL);
-    /* TODO: properties for FURNITURE_BITS_T */
-#if 0
-    int position;
-    char *name;
-    flag_t bit_at;
-    flag_t bit_on;
-    flag_t bit_in;
-#endif
+    json_prop_string (new, "name", JSTR (furniture->name));
+    json_prop_string (new, "position", JBITSF (position_types,
+        furniture->position));
+    json_prop_string (new, "bit_at", JBITSF (furniture_flags,
+        furniture->bit_at));
+    json_prop_string (new, "bit_on", JBITSF (furniture_flags,
+        furniture->bit_on));
+    json_prop_string (new, "bit_in", JBITSF (furniture_flags,
+        furniture->bit_in));
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_wear_loc) {
     JSON_TBLW_START (WEAR_LOC_T, wear_loc, wear_loc->name == NULL);
-    /* TODO: properties for WEAR_LOC_T */
-#if 0
-    int type;
-    const char *name;
-    const char *look_msg;
-    flag_t wear_flag;
-    const char *msg_wear_self, *msg_wear_room;
-#endif
+    json_prop_integer (new, "type", wear_loc->type);
+    json_prop_string  (new, "name", JSTR (wear_loc->name));
+    json_prop_string  (new, "wear_flag", JBITSF (wear_flags,
+        wear_loc->wear_flag));
+    json_prop_string  (new, "look_msg", JSTR (wear_loc->look_msg));
+    json_prop_string  (new, "wear_msg_self", JSTR (wear_loc->msg_wear_self));
+    json_prop_string  (new, "wear_msg_room", JSTR (wear_loc->msg_wear_room));
     return new;
 }
 
