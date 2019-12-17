@@ -1,0 +1,184 @@
+[
+  {"str_app": {
+    "stat": 0,
+    "hitroll_bonus": -5,
+    "damroll_bonus": -4,
+    "carry_bonus": 0,
+    "max_wield_weight": 0
+  }},
+  {"str_app": {
+    "stat": 1,
+    "hitroll_bonus": -4,
+    "damroll_bonus": -3,
+    "carry_bonus": 3,
+    "max_wield_weight": 1
+  }},
+  {"str_app": {
+    "stat": 2,
+    "hitroll_bonus": -3,
+    "damroll_bonus": -2,
+    "carry_bonus": 6,
+    "max_wield_weight": 2
+  }},
+  {"str_app": {
+    "stat": 3,
+    "hitroll_bonus": -3,
+    "damroll_bonus": -1,
+    "carry_bonus": 10,
+    "max_wield_weight": 3
+  }},
+  {"str_app": {
+    "stat": 4,
+    "hitroll_bonus": -2,
+    "damroll_bonus": -1,
+    "carry_bonus": 25,
+    "max_wield_weight": 4
+  }},
+  {"str_app": {
+    "stat": 5,
+    "hitroll_bonus": -2,
+    "damroll_bonus": -1,
+    "carry_bonus": 55,
+    "max_wield_weight": 5
+  }},
+  {"str_app": {
+    "stat": 6,
+    "hitroll_bonus": -1,
+    "damroll_bonus": 0,
+    "carry_bonus": 80,
+    "max_wield_weight": 6
+  }},
+  {"str_app": {
+    "stat": 7,
+    "hitroll_bonus": -1,
+    "damroll_bonus": 0,
+    "carry_bonus": 90,
+    "max_wield_weight": 7
+  }},
+  {"str_app": {
+    "stat": 8,
+    "hitroll_bonus": 0,
+    "damroll_bonus": 0,
+    "carry_bonus": 100,
+    "max_wield_weight": 8
+  }},
+  {"str_app": {
+    "stat": 9,
+    "hitroll_bonus": 0,
+    "damroll_bonus": 0,
+    "carry_bonus": 107,
+    "max_wield_weight": 9
+  }},
+  {"str_app": {
+    "stat": 10,
+    "hitroll_bonus": 0,
+    "damroll_bonus": 0,
+    "carry_bonus": 115,
+    "max_wield_weight": 10
+  }},
+  {"str_app": {
+    "stat": 11,
+    "hitroll_bonus": 0,
+    "damroll_bonus": 0,
+    "carry_bonus": 123,
+    "max_wield_weight": 11
+  }},
+  {"str_app": {
+    "stat": 12,
+    "hitroll_bonus": 0,
+    "damroll_bonus": 0,
+    "carry_bonus": 130,
+    "max_wield_weight": 12
+  }},
+  {"str_app": {
+    "stat": 13,
+    "hitroll_bonus": 0,
+    "damroll_bonus": 0,
+    "carry_bonus": 137,
+    "max_wield_weight": 13
+  }},
+  {"str_app": {
+    "stat": 14,
+    "hitroll_bonus": 0,
+    "damroll_bonus": 1,
+    "carry_bonus": 143,
+    "max_wield_weight": 14
+  }},
+  {"str_app": {
+    "stat": 15,
+    "hitroll_bonus": 1,
+    "damroll_bonus": 1,
+    "carry_bonus": 150,
+    "max_wield_weight": 15
+  }},
+  {"str_app": {
+    "stat": 16,
+    "hitroll_bonus": 1,
+    "damroll_bonus": 2,
+    "carry_bonus": 165,
+    "max_wield_weight": 16
+  }},
+  {"str_app": {
+    "stat": 17,
+    "hitroll_bonus": 2,
+    "damroll_bonus": 3,
+    "carry_bonus": 180,
+    "max_wield_weight": 22
+  }},
+  {"str_app": {
+    "stat": 18,
+    "hitroll_bonus": 2,
+    "damroll_bonus": 3,
+    "carry_bonus": 200,
+    "max_wield_weight": 25
+  }},
+  {"str_app": {
+    "stat": 19,
+    "hitroll_bonus": 3,
+    "damroll_bonus": 4,
+    "carry_bonus": 225,
+    "max_wield_weight": 30
+  }},
+  {"str_app": {
+    "stat": 20,
+    "hitroll_bonus": 3,
+    "damroll_bonus": 5,
+    "carry_bonus": 250,
+    "max_wield_weight": 35
+  }},
+  {"str_app": {
+    "stat": 21,
+    "hitroll_bonus": 4,
+    "damroll_bonus": 6,
+    "carry_bonus": 300,
+    "max_wield_weight": 40
+  }},
+  {"str_app": {
+    "stat": 22,
+    "hitroll_bonus": 4,
+    "damroll_bonus": 6,
+    "carry_bonus": 350,
+    "max_wield_weight": 45
+  }},
+  {"str_app": {
+    "stat": 23,
+    "hitroll_bonus": 5,
+    "damroll_bonus": 7,
+    "carry_bonus": 400,
+    "max_wield_weight": 50
+  }},
+  {"str_app": {
+    "stat": 24,
+    "hitroll_bonus": 5,
+    "damroll_bonus": 8,
+    "carry_bonus": 450,
+    "max_wield_weight": 55
+  }},
+  {"str_app": {
+    "stat": 25,
+    "hitroll_bonus": 6,
+    "damroll_bonus": 9,
+    "carry_bonus": 500,
+    "max_wield_weight": 60
+  }}
+]

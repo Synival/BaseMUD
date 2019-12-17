@@ -1,0 +1,106 @@
+[
+  {"int_app": {
+    "stat": 0,
+    "learn_rate": 3
+  }},
+  {"int_app": {
+    "stat": 1,
+    "learn_rate": 5
+  }},
+  {"int_app": {
+    "stat": 2,
+    "learn_rate": 7
+  }},
+  {"int_app": {
+    "stat": 3,
+    "learn_rate": 8
+  }},
+  {"int_app": {
+    "stat": 4,
+    "learn_rate": 9
+  }},
+  {"int_app": {
+    "stat": 5,
+    "learn_rate": 10
+  }},
+  {"int_app": {
+    "stat": 6,
+    "learn_rate": 11
+  }},
+  {"int_app": {
+    "stat": 7,
+    "learn_rate": 12
+  }},
+  {"int_app": {
+    "stat": 8,
+    "learn_rate": 13
+  }},
+  {"int_app": {
+    "stat": 9,
+    "learn_rate": 15
+  }},
+  {"int_app": {
+    "stat": 10,
+    "learn_rate": 17
+  }},
+  {"int_app": {
+    "stat": 11,
+    "learn_rate": 19
+  }},
+  {"int_app": {
+    "stat": 12,
+    "learn_rate": 22
+  }},
+  {"int_app": {
+    "stat": 13,
+    "learn_rate": 25
+  }},
+  {"int_app": {
+    "stat": 14,
+    "learn_rate": 28
+  }},
+  {"int_app": {
+    "stat": 15,
+    "learn_rate": 31
+  }},
+  {"int_app": {
+    "stat": 16,
+    "learn_rate": 34
+  }},
+  {"int_app": {
+    "stat": 17,
+    "learn_rate": 37
+  }},
+  {"int_app": {
+    "stat": 18,
+    "learn_rate": 40
+  }},
+  {"int_app": {
+    "stat": 19,
+    "learn_rate": 44
+  }},
+  {"int_app": {
+    "stat": 20,
+    "learn_rate": 49
+  }},
+  {"int_app": {
+    "stat": 21,
+    "learn_rate": 55
+  }},
+  {"int_app": {
+    "stat": 22,
+    "learn_rate": 60
+  }},
+  {"int_app": {
+    "stat": 23,
+    "learn_rate": 70
+  }},
+  {"int_app": {
+    "stat": 24,
+    "learn_rate": 80
+  }},
+  {"int_app": {
+    "stat": 25,
+    "learn_rate": 85
+  }}
+]

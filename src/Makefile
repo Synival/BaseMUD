@@ -161,7 +161,7 @@ json_read.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 json_read.o: json.h structs.h types.h flags.h tables.h utils.h json_read.h
 json_tbl.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 json_tbl.o: json.h structs.h types.h flags.h tables.h json_obj.h lookup.h
-json_tbl.o: json_tbl.h
+json_tbl.o: colour.h json_tbl.h
 json_write.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 json_write.o: json.h structs.h types.h flags.h tables.h utils.h json_write.h
 lookup.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h

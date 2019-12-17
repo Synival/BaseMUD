@@ -39,7 +39,7 @@
     do { \
         if (null_check) \
             return NULL; \
-        new = json_new_object (NULL, JSON_OBJ_ANY); \
+        new = json_new_object (obj_name, JSON_OBJ_ANY); \
     } while (0)
 
 DEFINE_TABLE_JSON_FUN (json_tblw_flag) {
@@ -314,6 +314,8 @@ DEFINE_TABLE_JSON_FUN (json_tblw_skill_group) {
     for (i = 0; i < CLASS_MAX; i++) {
         if ((class = class_get (i)) == NULL)
             break;
+        if (group->classes[i].cost < 0)
+            continue;
         sub2 = json_prop_object (sub, class->name, JSON_OBJ_ANY);
         json_prop_integer (sub2, "cost", group->classes[i].cost);
     }

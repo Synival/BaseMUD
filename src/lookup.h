@@ -30,25 +30,8 @@
 
 #include "merc.h"
 
-#define SIMPLE_LOOKUP_PROP(table, get, ref, empty_val, max)           \
-    int i;                                                            \
-    if ((ref) == NULL || (ref)[0] == '\0')                            \
-        return empty_val;                                             \
-    for (i = 0; (max <= 0 || i < max) && (table)[i].ref != NULL; i++) \
-        if ((table)[i].ref != NULL && LOWER (ref[0]) == LOWER ((table)[i].ref[0]) \
-            && !str_prefix (ref, (table)[i].ref))                     \
-            return (table)[i].get;                                    \
-    return empty_val
-
-#define SIMPLE_LOOKUP_PROP_EXACT(table, get, ref, empty_val, max)     \
-    int i;                                                            \
-    if ((ref) == NULL || (ref)[0] == '\0')                            \
-        return empty_val;                                             \
-    for (i = 0; (max <= 0 || i < max) && (table)[i].ref != NULL; i++) \
-        if ((table)[i].ref != NULL && !str_cmp (ref, (table)[i].ref)) \
-            return (table)[i].get;                                    \
-    return empty_val
-
+/* Looks up an element in any table by ensuring that 'table[n].ref' begins
+ * with 'ref', then returns the index. */
 #define SIMPLE_LOOKUP(table, ref, empty_val, max)                     \
     int i;                                                            \
     if ((ref) == NULL || (ref)[0] == '\0')                            \
@@ -59,15 +42,8 @@
             return i;                                                 \
     return empty_val
 
-#define SIMPLE_LOOKUP_EXACT(table, ref, empty_val, max)               \
-    int i;                                                            \
-    if ((ref) == NULL || (ref)[0] == '\0')                            \
-        return empty_val;                                             \
-    for (i = 0; (max <= 0 || i < max) && (table)[i].ref != NULL; i++) \
-        if ((table)[i].ref != NULL && !str_cmp (ref, (table)[i].ref)) \
-            return i;                                                 \
-    return empty_val
-
+/* Looks up an element in any table by ensuring that 'table[n].ref' begins
+ * with 'ref', then returns the element. */
 #define SIMPLE_GET_BY_NAME(table, ref, max)                           \
     int i;                                                            \
     if ((ref) == NULL || (ref)[0] == '\0')                            \
@@ -78,6 +54,31 @@
             return ((table) + i);                                     \
     return NULL
 
+/* Looks up an element in any table by ensuring that 'table[n].ref' begins
+ * with 'ref', then returns property 'get'. */
+#define SIMPLE_LOOKUP_PROP(table, get, ref, empty_val, max)           \
+    int i;                                                            \
+    if ((ref) == NULL || (ref)[0] == '\0')                            \
+        return empty_val;                                             \
+    for (i = 0; (max <= 0 || i < max) && (table)[i].ref != NULL; i++) \
+        if ((table)[i].ref != NULL && LOWER (ref[0]) == LOWER ((table)[i].ref[0]) \
+            && !str_prefix (ref, (table)[i].ref))                     \
+            return (table)[i].get;                                    \
+    return empty_val
+
+/* Looks up an element in any table by ensuring that 'table[n].ref' begins
+ * with 'ref', then returns the index. */
+#define SIMPLE_LOOKUP_EXACT(table, ref, empty_val, max)               \
+    int i;                                                            \
+    if ((ref) == NULL || (ref)[0] == '\0')                            \
+        return empty_val;                                             \
+    for (i = 0; (max <= 0 || i < max) && (table)[i].ref != NULL; i++) \
+        if ((table)[i].ref != NULL && !str_cmp (ref, (table)[i].ref)) \
+            return i;                                                 \
+    return empty_val
+
+/* Looks up an element in any table by ensuring that 'table[n].ref' begins
+ * with 'ref', then returns the element. */
 #define SIMPLE_GET_BY_NAME_EXACT(table, ref, max)                     \
     int i;                                                            \
     if ((ref) == NULL || (ref)[0] == '\0')                            \
@@ -87,6 +88,19 @@
             return ((table) + i);                                     \
     return NULL
 
+/* Looks up an element in any table by ensuring that 'table[n].ref' begins
+ * with 'ref', then returns property 'get'. */
+#define SIMPLE_LOOKUP_PROP_EXACT(table, get, ref, empty_val, max)     \
+    int i;                                                            \
+    if ((ref) == NULL || (ref)[0] == '\0')                            \
+        return empty_val;                                             \
+    for (i = 0; (max <= 0 || i < max) && (table)[i].ref != NULL; i++) \
+        if ((table)[i].ref != NULL && !str_cmp (ref, (table)[i].ref)) \
+            return (table)[i].get;                                    \
+    return empty_val
+
+/* Looks up an element in any table by checking that 'table[n].check_prop' is
+ * equal to 'check_val', then returns the element. */
 #define SIMPLE_GET(table, ref, check_prop, check_val, max)            \
     int i;                                                            \
     for (i = 0; (max <= 0 || i < max) && (((table)[i]).check_prop) != (check_val); i++) \
@@ -94,11 +108,14 @@
             return ((table) + i);                                     \
     return NULL
 
-#define SIMPLE_GET_NAME(vtype, val, name) \
-    const vtype *looked_up = val;         \
+/* If 'element' exists, return 'element->name', otherwise return "unknown". */
+#define SIMPLE_GET_NAME_FROM_ELEMENT(vtype, element, name) \
+    const vtype *looked_up = element; \
     return (looked_up != NULL) ? looked_up->name : "unknown"
 
-#define SIMPLE_ARRAY_BUNDLE(btype, vtype, max)                      \
+/* Defines a bundle of lookup functions for elements that start at zero,
+ * end before 'max', and whose values can be referenced by array[n]. */
+#define SIMPLE_SEQUENTIAL_BUNDLE(btype, vtype, max)                 \
     int btype ## _lookup (const char *name)                         \
         { SIMPLE_LOOKUP (btype ## _table, name, -1, max); }         \
     int btype ## _lookup_exact (const char *name)                   \
@@ -114,6 +131,8 @@
         { return (type < 0 || type >= max)                          \
             ? NULL : (btype ## _get)(type)->name; }
 
+/* Defines a bundle of lookup functions for elements that may start or end
+ * at any value and must be referenced by an internal property for lookup. */
 #define SIMPLE_HASH_BUNDLE(btype, vtype, ref)                       \
     int btype ## _lookup (const char *name)                         \
         { SIMPLE_LOOKUP_PROP (btype ## _table, ref, name, -1, 0); } \
@@ -126,8 +145,10 @@
     const vtype * btype ## _get (int ref)                           \
         { SIMPLE_GET (btype ## _table, ref, name, NULL, 0); }       \
     const char *btype ## _get_name (int ref)                        \
-        { SIMPLE_GET_NAME (vtype, btype ## _get (ref), name); }
+        { SIMPLE_GET_NAME_FROM_ELEMENT (vtype, btype ## _get (ref), name); }
 
+/* Defines a bundle of lookup functions for elements specifically for
+ * recycleable types. */
 #define SIMPLE_REC_BUNDLE(btype, vtype, rtype)                             \
     vtype * btype ## _get_by_name (const char *name) {                     \
         const OBJ_RECYCLE_T *orec = btype ## _get_rec_by_name (name);      \
@@ -146,7 +167,7 @@
         return NULL;                                                       \
     }
 
-#define DEC_SIMPLE_ARRAY_BUNDLE(btype, vtype)                \
+#define DEC_SIMPLE_SEQUENTIAL_BUNDLE(btype, vtype)           \
     int           btype ## _lookup       (const char *name); \
     int           btype ## _lookup_exact (const char *name); \
     const vtype * btype ## _get_by_name  (const char *name); \
@@ -187,21 +208,21 @@ const char *flag_string_real (const FLAG_T *flag_table, flag_t bits,
     const char *none_str);
 
 /* Lookup bundles. */
-DEC_SIMPLE_ARRAY_BUNDLE (clan,       CLAN_T);
-DEC_SIMPLE_ARRAY_BUNDLE (position,   POSITION_T);
-DEC_SIMPLE_ARRAY_BUNDLE (sex,        SEX_T);
-DEC_SIMPLE_ARRAY_BUNDLE (size,       SIZE_T);
-DEC_SIMPLE_ARRAY_BUNDLE (race,       RACE_T);
-DEC_SIMPLE_ARRAY_BUNDLE (liq,        LIQ_T);
-DEC_SIMPLE_ARRAY_BUNDLE (attack,     ATTACK_T);
-DEC_SIMPLE_ARRAY_BUNDLE (class,      CLASS_T);
-DEC_SIMPLE_ARRAY_BUNDLE (skill,      SKILL_T);
-DEC_SIMPLE_ARRAY_BUNDLE (spec,       SPEC_T);
-DEC_SIMPLE_ARRAY_BUNDLE (skill_group,SKILL_GROUP_T);
-DEC_SIMPLE_ARRAY_BUNDLE (wear_loc,   WEAR_LOC_T);
-DEC_SIMPLE_ARRAY_BUNDLE (recycle,    RECYCLE_T);
-DEC_SIMPLE_ARRAY_BUNDLE (board,      BOARD_T);
-DEC_SIMPLE_ARRAY_BUNDLE (master,     TABLE_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (clan,       CLAN_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (position,   POSITION_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (sex,        SEX_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (size,       SIZE_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (race,       RACE_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (liq,        LIQ_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (attack,     ATTACK_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (class,      CLASS_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (skill,      SKILL_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (spec,       SPEC_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (skill_group,SKILL_GROUP_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (wear_loc,   WEAR_LOC_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (recycle,    RECYCLE_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (board,      BOARD_T);
+DEC_SIMPLE_SEQUENTIAL_BUNDLE (master,     TABLE_T);
 
 DEC_SIMPLE_HASH_BUNDLE (wiznet,     WIZNET_T);
 DEC_SIMPLE_HASH_BUNDLE (weapon,     WEAPON_T);
@@ -233,6 +254,9 @@ DEC_SIMPLE_REC_BUNDLE (social,      SOCIAL_T);
 DEC_SIMPLE_REC_BUNDLE (portal_exit, PORTAL_EXIT_T);
 
 /* Special lookup functions. */
+const TABLE_T *master_table_get_exact (const char *name);
+const TABLE_T *master_table_get_by_obj_name (const char *name);
+
 SPEC_FUN* spec_lookup_function (const char *name);
 const char *spec_function_name (SPEC_FUN *function);
 

@@ -27,6 +27,7 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <stdarg.h>
 
 #include <unistd.h>
 #include <dirent.h>
@@ -116,18 +117,30 @@ static bool json_read_is_whitespace_char (char ch)
         ? TRUE : FALSE;
 }
 
-static void json_read_skip_whitespace (const char **pos) {
-    while (**pos != '\0' && json_read_is_whitespace_char (**pos))
-        (*pos)++;
+static void json_read_advance (JSON_READ_T *context) {
+    if (*(context->pos) == '\n') {
+        context->line++;
+        context->col = 1;
+    }
+    else if (*(context->pos) == '\r')
+        ;
+    else
+        context->col++;
+    context->pos++;
+}
+
+static void json_read_skip_whitespace (JSON_READ_T *context) {
+    while (*(context->pos) != '\0' &&
+           json_read_is_whitespace_char (*(context->pos)))
+        json_read_advance (context);
 }
 
 JSON_T *json_read_file (const char *filename) {
     JSON_T *obj;
-    FILE *file;
+    JSON_READ_T context;
     char *data;
-    const char *pos;
+    FILE *file;
     size_t file_len;
-    int line, col;
 
     if ((file = fopen (filename, "r")) == NULL)
         return NULL;
@@ -150,23 +163,24 @@ JSON_T *json_read_file (const char *filename) {
     }
     fclose (file);
 
-
     /* we should read a JSON object. */
-    pos  = data;
-    line = 1;
-    col  = 1;
-    json_read_skip_whitespace (&pos);
+    context.filename = filename;
+    context.data = data;
+    context.pos  = data;
+    context.line = 1;
+    context.col  = 1;
+    json_read_skip_whitespace (&context);
 
     /* can we start with an object... */
-    if (*pos == '{')
-        obj = json_read_object (&pos, filename);
+    if (*(context.pos) == '{')
+        obj = json_read_object (&context, filename);
     /* ...or an array. */
-    else if (*pos == '[')
-        obj = json_read_array (&pos, filename);
+    else if (*(context.pos) == '[')
+        obj = json_read_array (&context, filename);
     /* nothing else! */
     else {
-        bugf ("%s, line %d, col %d: json_read_file(): Expected "
-            "'{' or '[', found '%c'.", filename, line, col, *pos);
+        json_read_logf (&context, "json_read_file(): Expected '{' or '[', "
+            "found '%c'.", *(context.pos));
         obj = NULL;
     }
     free (data);
@@ -175,187 +189,225 @@ JSON_T *json_read_file (const char *filename) {
     return obj;
 }
 
-JSON_T *json_read_object (const char **pos, const char *name) {
+void json_read_logf (const JSON_READ_T *context, const char *format, ...) {
+    char buf[2 * MSL];
+    va_list args;
+    va_start (args, format);
+    vsnprintf (buf, sizeof(buf), format, args);
+    va_end (args);
+    log_f ("%s, line %d, col %d: %s", context->filename,
+        context->line, context->col, buf);
+}
+
+static void json_read_apply_to_object (const JSON_READ_T *context,
+    JSON_T *json)
+{
+    if (context->filename)
+        json->filename = strdup (context->filename);
+    json->line = context->line;
+    json->col  = context->col;
+}
+
+JSON_T *json_read_object (JSON_READ_T *context, const char *name) {
     JSON_T *obj, *sub;
     char key[1024];
 
     /* objects must always start with a brace. */
-    json_read_skip_whitespace (pos);
-    if (**pos != '{') {
-        bugf ("json_read_object(): Expected '{', found '%c'.", **pos);
+    json_read_skip_whitespace (context);
+    if (*(context->pos) != '{') {
+        json_read_logf (context, "json_read_object(): Expected '{', "
+            "found '%c'.", *(context->pos));
         return NULL;
     }
 
-    (*pos)++;
-    json_read_skip_whitespace (pos);
-
     /* start building a new object. */
     obj = json_new_object (name, JSON_OBJ_ANY);
+    json_read_apply_to_object (context, obj);
+
+    json_read_advance (context);
+    json_read_skip_whitespace (context);
 
     /* we can read JSON types until EOF or a closing bracket. */
-    while (**pos != '}') {
-        if (**pos == '\0') {
-            bugf ("json_read_object(): Expected '}' or string, found EOF.");
+    while (*(context->pos) != '}') {
+        if (*(context->pos) == '\0') {
+            json_read_logf (context, "json_read_object(): Expected '}' or "
+                "string, found EOF.");
             json_free (obj);
             return NULL;
         }
 
         /* read the member name. */
-        if (!json_read_string_content (pos, key, sizeof (key))) {
+        if (!json_read_string_content (context, key, sizeof (key))) {
             json_free (obj);
             return NULL;
         }
 
         /* we need a column after our member name. */
-        json_read_skip_whitespace (pos);
-        if (**pos == '\0') {
-            bugf ("json_read_object(): Expected ':', found EOF.");
+        json_read_skip_whitespace (context);
+        if (*(context->pos) == '\0') {
+            json_read_logf (context, "json_read_object(): Expected ':', "
+                "found EOF.");
             json_free (obj);
             return NULL;
         }
-        else if (**pos != ':') {
-            bugf ("json_read_object(): Expected ':', found '%c'.", **pos);
+        else if (*(context->pos) != ':') {
+            json_read_logf (context, "json_read_object(): Expected ':', "
+                "found '%c'.", *(context->pos));
             json_free (obj);
             return NULL;
         }
-        (*pos)++;
-        json_read_skip_whitespace (pos);
+        json_read_advance (context);
+        json_read_skip_whitespace (context);
 
         /* read the value of the member. */
-        json_read_skip_whitespace (pos);
-        if ((sub = json_read_any_type (pos, key)) == NULL)
+        json_read_skip_whitespace (context);
+        if ((sub = json_read_any_type (context, key)) == NULL)
             break;
         json_attach_under (sub, obj);
-        json_read_skip_whitespace (pos);
+        json_read_skip_whitespace (context);
 
         /* manually break out of loops. */
-        if (**pos == ',') {
-            (*pos)++;
-            json_read_skip_whitespace (pos);
+        if (*(context->pos) == ',') {
+            json_read_advance (context);
+            json_read_skip_whitespace (context);
         }
-        else if (**pos != '}' && **pos != '\0') {
-            bugf ("json_read_object(): Expected '}' or ',', found '%c'.",
-                **pos);
+        else if (*(context->pos) != '}' && *(context->pos) != '\0') {
+            json_read_logf (context, "json_read_object(): Expected '}' "
+                "or ',', found '%c'.", *(context->pos));
             json_free (obj);
             return NULL;
         }
     }
 
     /* we should be at '}' at this point; skip ahead. */
-    (*pos)++;
-    json_read_skip_whitespace (pos);
+    json_read_advance (context);
+    json_read_skip_whitespace (context);
     return obj;
 }
 
-JSON_T *json_read_array (const char **pos, const char *name) {
+JSON_T *json_read_array (JSON_READ_T *context, const char *name) {
     JSON_T *array, *sub;
 
     /* objects must always start with a bracket. */
-    json_read_skip_whitespace (pos);
-    if (**pos != '[') {
-        bugf ("json_read_array(): Expected '[', found '%c'.", **pos);
+    json_read_skip_whitespace (context);
+    if (*(context->pos) != '[') {
+        json_read_logf (context, "json_read_array(): Expected '[', "
+            "found '%c'.", *(context->pos));
         return NULL;
     }
 
-    (*pos)++;
-    json_read_skip_whitespace (pos);
-
     /* start building a new array. */
     array = json_new_array (name, NULL);
+    json_read_apply_to_object (context, array);
+
+    json_read_advance (context);
+    json_read_skip_whitespace (context);
 
     /* we can read JSON types until EOF or a closing bracket. */
-    while (**pos != ']') {
-        if (**pos == '\0') {
-            bugf ("json_read_array(): Expected ']' or ',', found EOF.");
+    while (*(context->pos) != ']') {
+        if (*(context->pos) == '\0') {
+            json_read_logf (context, "json_read_array(): Expected ']' or "
+                "',', found EOF.");
             json_free (array);
             return NULL;
         }
 
         /* read the value. */
-        json_read_skip_whitespace (pos);
-        if ((sub = json_read_any_type (pos, NULL)) == NULL)
+        json_read_skip_whitespace (context);
+        if ((sub = json_read_any_type (context, NULL)) == NULL)
             break;
         json_attach_under (sub, array);
-        json_read_skip_whitespace (pos);
+        json_read_skip_whitespace (context);
 
         /* manually break out of loops. */
-        if (**pos == ',') {
-            (*pos)++;
-            json_read_skip_whitespace (pos);
+        if (*(context->pos) == ',') {
+            json_read_advance (context);
+            json_read_skip_whitespace (context);
         }
-        else if (**pos != ']' && **pos != '\0') {
-            bugf ("json_read_array(): Expected ']' or ',', found '%c'.", **pos);
+        else if (*(context->pos) != ']' && *(context->pos) != '\0') {
+            json_read_logf (context, "json_read_array(): Expected ']' or "
+                "',', found '%c'.", *(context->pos));
             json_free (array);
             return NULL;
         }
     }
 
     /* we should be at ']' at this point; skip ahead. */
-    (*pos)++;
-    json_read_skip_whitespace (pos);
+    json_read_advance (context);
+    json_read_skip_whitespace (context);
 
     return array;
 }
 
-JSON_T *json_read_any_type (const char **pos, const char *name) {
+JSON_T *json_read_any_type (JSON_READ_T *context, const char *name) {
     JSON_T *obj;
+    char ch;
 
     /* the next character should indicate the type of this object. */
-    json_read_skip_whitespace (pos);
-    if (**pos == '\0') {
-        bugf ("json_read_any_type(): Expected a type, found EOF.");
+    json_read_skip_whitespace (context);
+    if (*(context->pos) == '\0') {
+        json_read_logf (context, "json_read_any_type(): Expected a type, "
+            "found EOF.");
         return NULL;
     }
 
     /* TODO: numbers aren't quite read properly here... */
 
     /* read strings... */
-    if (**pos == '"')
-        obj = json_read_string (pos, name);
+    ch = *(context->pos);
+    if (ch == '"')
+        obj = json_read_string (context, name);
     /* read numbers... */
-    else if ((**pos >= '0' && **pos <= '9') || **pos == '-')
-        obj = json_read_number (pos, name);
+    else if ((ch >= '0' && ch <= '9') || ch == '-')
+        obj = json_read_number (context, name);
     /* read objects... */
-    else if (**pos == '{')
-        obj = json_read_object (pos, name);
+    else if (ch == '{')
+        obj = json_read_object (context, name);
     /* read arrays... */
-    else if (**pos == '[')
-        obj = json_read_array (pos, name);
+    else if (ch == '[')
+        obj = json_read_array (context, name);
     /* read anything else (true, false, null). */
     else
-        obj = json_read_special (pos, name);
+        obj = json_read_special (context, name);
 
     return obj;
 }
 
-JSON_T *json_read_string (const char **pos, const char *name) {
+JSON_T *json_read_string (JSON_READ_T *context, const char *name) {
+    JSON_T *obj;
     char buf[8192];
-    if (!json_read_string_content (pos, buf, sizeof(buf)))
+
+    if (!json_read_string_content (context, buf, sizeof(buf)))
         return NULL;
-    return json_new_string (name, buf);
+
+    obj = json_new_string (name, buf);
+    json_read_apply_to_object (context, obj);
+    return obj;
 }
 
-char *json_read_string_content (const char **pos, char *buf, size_t size) {
+char *json_read_string_content (JSON_READ_T *context, char *buf, size_t size) {
     char ch;
     int buf_pos;
 
     /* strings must always start with a double quote. */
-    json_read_skip_whitespace (pos);
-    if (**pos != '\"') {
-        bugf ("json_read_string_content(): Expected '\"', found '%c'.", **pos);
+    json_read_skip_whitespace (context);
+    if (*(context->pos) != '\"') {
+        json_read_logf (context, "json_read_string_content(): Expected "
+            "'\"', found '%c'.", *(context->pos));
         return NULL;
     }
-    (*pos)++;
+    json_read_advance (context);
 
     /* keep reading until we find another quote. */
     buf_pos = 0;
-    while (**pos != '"') {
-        if (**pos == '\0') {
-            bugf ("json_read_string(): Premature EOF found.");
+    while (*(context->pos) != '"') {
+        if (*(context->pos) == '\0') {
+            json_read_logf (context, "json_read_string(): Premature EOF "
+                "found.");
             return NULL;
         }
-        if (**pos == '\r') {
-            (*pos)++;
+        if (*(context->pos) == '\r') {
+            json_read_advance (context);
             continue;
         }
 
@@ -363,14 +415,16 @@ char *json_read_string_content (const char **pos, char *buf, size_t size) {
          * spaces until we find '|' or anything else.  if we found '[ ]*|',
          * we start reading after the pipe. if not, go back to our original
          * position and read like normal. */
-        if (**pos == '\n') {
+        if (*(context->pos) == '\n') {
             const char *pos_ahead;
-            (*pos)++;
-            for (pos_ahead = *pos; *pos_ahead != '\0'; pos_ahead++)
+            json_read_advance (context);
+            for (pos_ahead = context->pos; *pos_ahead != '\0'; pos_ahead++)
                 if (*pos_ahead != ' ' && *pos_ahead != '\r')
                     break;
             if (*pos_ahead == '|') {
-                *pos = pos_ahead + 1;
+                while (context->pos != pos_ahead)
+                    json_read_advance (context);
+                json_read_advance (context);
                 if (buf_pos < size - 1)
                     buf[buf_pos++] = '\n';
             }
@@ -378,10 +432,10 @@ char *json_read_string_content (const char **pos, char *buf, size_t size) {
         }
 
         /* parse special characters. */
-        if (**pos == '\\') {
-            (*pos)++;
+        if (*(context->pos) == '\\') {
+            json_read_advance (context);
             ch = 0;
-            switch (**pos) {
+            switch (*(context->pos)) {
                 case '"':  ch = '"';  break;
                 case '\\': ch = '\\'; break;
                 case '/':  ch = '/';  break;
@@ -393,20 +447,20 @@ char *json_read_string_content (const char **pos, char *buf, size_t size) {
 
                 /* unicode: TODO :( */
                 case 'u':
-                    if (**pos != '\0') (*pos)++;
-                    if (**pos != '\0') (*pos)++;
-                    if (**pos != '\0') (*pos)++;
-                    if (**pos != '\0') (*pos)++;
+                    if (*(context->pos) != '\0') json_read_advance (context);
+                    if (*(context->pos) != '\0') json_read_advance (context);
+                    if (*(context->pos) != '\0') json_read_advance (context);
+                    if (*(context->pos) != '\0') json_read_advance (context);
                     break;
 
                 case '\0':
-                    bugf ("json_read_string(): Excepted escape "
-                        "sequence character, found EOF.");
+                    json_read_logf (context, "json_read_string(): Excepted "
+                        "escape sequence character, found EOF.");
                     return NULL;
 
                 default:
-                    bugf ("json_read_string(): Invalid escape "
-                        "sequence character '%c'.", **pos);
+                    json_read_logf (context, "json_read_string(): Invalid "
+                        "escape sequence character '%c'.", *(context->pos));
                     return NULL;
             }
 
@@ -414,81 +468,98 @@ char *json_read_string_content (const char **pos, char *buf, size_t size) {
             if (ch != 0) {
                 if (buf_pos < size - 1)
                     buf[buf_pos++] = ch;
-                (*pos)++;
+                json_read_advance (context);
             }
         }
         /* normal characters - append them to the string. */
         else {
             if (buf_pos < size - 1)
-                buf[buf_pos++] = **pos;
-            (*pos)++;
+                buf[buf_pos++] = *(context->pos);
+            json_read_advance (context);
         }
     }
     buf[buf_pos] = '\0';
 
     /* we should be at '"' at this point; skip ahead. */
-    (*pos)++;
-    json_read_skip_whitespace (pos);
+    json_read_advance (context);
+    json_read_skip_whitespace (context);
 
     /* return our new string. */
     return buf;
 }
 
-JSON_T *json_read_number (const char **pos, const char *name)
+JSON_T *json_read_number (JSON_READ_T *context, const char *name)
 {
-    char buf[1024];
+    JSON_T *obj;
+    char buf[1024], ch;
     int buf_pos;
     bool found_dec;
 
     /* read everything that isn't whitespace or EOF. */
     buf_pos = 0;
     found_dec = FALSE;
-    while (!json_read_is_whitespace_char (**pos) && **pos != '\0' &&
-            **pos != ',' && **pos != ']' && **pos != '}')
-    {
-        if (**pos == '.')
+    while (1) {
+        ch = *(context->pos);
+        if (json_read_is_whitespace_char (ch) || ch == '\0' || ch == ',' ||
+            ch == ']' || ch == '}')
+        {
+            break;
+        }
+
+        if (ch == '.')
             found_dec = TRUE;
         if (buf_pos < sizeof(buf) - 1)
-            buf[buf_pos++] = **pos;
-        (*pos)++;
+            buf[buf_pos++] = ch;
+        json_read_advance (context);
     }
     buf[buf_pos] = '\0';
-    json_read_skip_whitespace (pos);
+    json_read_skip_whitespace (context);
 
     /* we handle either decimals or integers here. */
     if (found_dec)
-        return json_new_number (name, atof (buf));
+        obj = json_new_number (name, atof (buf));
     else
-        return json_new_integer (name, atoi (buf));
+        obj = json_new_integer (name, atoi (buf));
+    json_read_apply_to_object (context, obj);
+    return obj;
 }
 
-JSON_T *json_read_special (const char **pos, const char *name)
+JSON_T *json_read_special (JSON_READ_T *context, const char *name)
 {
-    char buf[16];
+    JSON_T *obj;
+    char buf[16], ch;
     int buf_pos;
 
     /* read everything that isn't whitespace or EOF. */
     buf_pos = 0;
-    while (!json_read_is_whitespace_char (**pos) && **pos != '\0' &&
-            **pos != ',' && **pos != ']' && **pos != '}')
-    {
+    while (1) {
+        ch = *(context->pos);
+        if (json_read_is_whitespace_char (ch) || ch == '\0' || ch == ',' ||
+            ch == ']' || ch == '}')
+        {
+            break;
+        }
+
         if (buf_pos < sizeof(buf) - 1)
-            buf[buf_pos++] = **pos;
-        (*pos)++;
+            buf[buf_pos++] = ch;
+        json_read_advance (context);
     }
     buf[buf_pos] = '\0';
-    json_read_skip_whitespace (pos);
+    json_read_skip_whitespace (context);
 
     /* parse the three special JSON values. */
     if (strcmp (buf, "true") == 0)
-        return json_new_boolean (name, 1);
+        obj = json_new_boolean (name, 1);
     else if (strcmp (buf, "false") == 0)
-        return json_new_boolean (name, 0);
+        obj = json_new_boolean (name, 0);
     else if (strcmp (buf, "null") == 0)
-        return json_new_null (name);
+        obj = json_new_null (name);
     else {
-        bugf ("json_read_special(): Excepted 'true', 'false' or 'null', "
-            "found '%s'.", buf);
+        json_read_logf (context, "json_read_special(): Excepted 'true', "
+            "'false' or 'null', found '%s'.", buf);
         return NULL;
     }
+
+    json_read_apply_to_object (context, obj);
+    return obj;
 }

@@ -1,0 +1,398 @@
+[
+  {"liquid": {
+    "name": "water",
+    "color_name": "clear",
+    "conditions": {
+      "drunk": 0,
+      "full": 1,
+      "thirst": 10,
+      "hunger": 0
+    },
+    "serving_size": 16
+  }},
+  {"liquid": {
+    "name": "beer",
+    "color_name": "amber",
+    "conditions": {
+      "drunk": 12,
+      "full": 1,
+      "thirst": 8,
+      "hunger": 1
+    },
+    "serving_size": 12
+  }},
+  {"liquid": {
+    "name": "red wine",
+    "color_name": "burgundy",
+    "conditions": {
+      "drunk": 30,
+      "full": 1,
+      "thirst": 8,
+      "hunger": 1
+    },
+    "serving_size": 5
+  }},
+  {"liquid": {
+    "name": "ale",
+    "color_name": "brown",
+    "conditions": {
+      "drunk": 15,
+      "full": 1,
+      "thirst": 8,
+      "hunger": 1
+    },
+    "serving_size": 12
+  }},
+  {"liquid": {
+    "name": "dark ale",
+    "color_name": "dark",
+    "conditions": {
+      "drunk": 16,
+      "full": 1,
+      "thirst": 8,
+      "hunger": 1
+    },
+    "serving_size": 12
+  }},
+  {"liquid": {
+    "name": "whisky",
+    "color_name": "golden",
+    "conditions": {
+      "drunk": 120,
+      "full": 1,
+      "thirst": 5,
+      "hunger": 0
+    },
+    "serving_size": 2
+  }},
+  {"liquid": {
+    "name": "lemonade",
+    "color_name": "pink",
+    "conditions": {
+      "drunk": 0,
+      "full": 1,
+      "thirst": 9,
+      "hunger": 2
+    },
+    "serving_size": 12
+  }},
+  {"liquid": {
+    "name": "firebreather",
+    "color_name": "boiling",
+    "conditions": {
+      "drunk": 190,
+      "full": 0,
+      "thirst": 4,
+      "hunger": 0
+    },
+    "serving_size": 2
+  }},
+  {"liquid": {
+    "name": "local specialty",
+    "color_name": "clear",
+    "conditions": {
+      "drunk": 151,
+      "full": 1,
+      "thirst": 3,
+      "hunger": 0
+    },
+    "serving_size": 2
+  }},
+  {"liquid": {
+    "name": "slime mold juice",
+    "color_name": "green",
+    "conditions": {
+      "drunk": 0,
+      "full": 2,
+      "thirst": -8,
+      "hunger": 1
+    },
+    "serving_size": 2
+  }},
+  {"liquid": {
+    "name": "milk",
+    "color_name": "white",
+    "conditions": {
+      "drunk": 0,
+      "full": 2,
+      "thirst": 9,
+      "hunger": 3
+    },
+    "serving_size": 12
+  }},
+  {"liquid": {
+    "name": "tea",
+    "color_name": "tan",
+    "conditions": {
+      "drunk": 0,
+      "full": 1,
+      "thirst": 8,
+      "hunger": 0
+    },
+    "serving_size": 6
+  }},
+  {"liquid": {
+    "name": "coffee",
+    "color_name": "black",
+    "conditions": {
+      "drunk": 0,
+      "full": 1,
+      "thirst": 8,
+      "hunger": 0
+    },
+    "serving_size": 6
+  }},
+  {"liquid": {
+    "name": "blood",
+    "color_name": "red",
+    "conditions": {
+      "drunk": 0,
+      "full": 2,
+      "thirst": -1,
+      "hunger": 2
+    },
+    "serving_size": 6
+  }},
+  {"liquid": {
+    "name": "salt water",
+    "color_name": "clear",
+    "conditions": {
+      "drunk": 0,
+      "full": 1,
+      "thirst": -2,
+      "hunger": 0
+    },
+    "serving_size": 1
+  }},
+  {"liquid": {
+    "name": "coke",
+    "color_name": "brown",
+    "conditions": {
+      "drunk": 0,
+      "full": 2,
+      "thirst": 9,
+      "hunger": 2
+    },
+    "serving_size": 12
+  }},
+  {"liquid": {
+    "name": "root beer",
+    "color_name": "brown",
+    "conditions": {
+      "drunk": 0,
+      "full": 2,
+      "thirst": 9,
+      "hunger": 2
+    },
+    "serving_size": 12
+  }},
+  {"liquid": {
+    "name": "elvish wine",
+    "color_name": "green",
+    "conditions": {
+      "drunk": 35,
+      "full": 2,
+      "thirst": 8,
+      "hunger": 1
+    },
+    "serving_size": 5
+  }},
+  {"liquid": {
+    "name": "white wine",
+    "color_name": "golden",
+    "conditions": {
+      "drunk": 28,
+      "full": 1,
+      "thirst": 8,
+      "hunger": 1
+    },
+    "serving_size": 5
+  }},
+  {"liquid": {
+    "name": "champagne",
+    "color_name": "golden",
+    "conditions": {
+      "drunk": 32,
+      "full": 1,
+      "thirst": 8,
+      "hunger": 1
+    },
+    "serving_size": 5
+  }},
+  {"liquid": {
+    "name": "mead",
+    "color_name": "honey-colored",
+    "conditions": {
+      "drunk": 34,
+      "full": 2,
+      "thirst": 8,
+      "hunger": 2
+    },
+    "serving_size": 12
+  }},
+  {"liquid": {
+    "name": "rose wine",
+    "color_name": "pink",
+    "conditions": {
+      "drunk": 26,
+      "full": 1,
+      "thirst": 8,
+      "hunger": 1
+    },
+    "serving_size": 5
+  }},
+  {"liquid": {
+    "name": "benedictine wine",
+    "color_name": "burgundy",
+    "conditions": {
+      "drunk": 40,
+      "full": 1,
+      "thirst": 8,
+      "hunger": 1
+    },
+    "serving_size": 5
+  }},
+  {"liquid": {
+    "name": "vodka",
+    "color_name": "clear",
+    "conditions": {
+      "drunk": 130,
+      "full": 1,
+      "thirst": 5,
+      "hunger": 0
+    },
+    "serving_size": 2
+  }},
+  {"liquid": {
+    "name": "cranberry juice",
+    "color_name": "red",
+    "conditions": {
+      "drunk": 0,
+      "full": 1,
+      "thirst": 9,
+      "hunger": 2
+    },
+    "serving_size": 12
+  }},
+  {"liquid": {
+    "name": "orange juice",
+    "color_name": "orange",
+    "conditions": {
+      "drunk": 0,
+      "full": 2,
+      "thirst": 9,
+      "hunger": 3
+    },
+    "serving_size": 12
+  }},
+  {"liquid": {
+    "name": "absinthe",
+    "color_name": "green",
+    "conditions": {
+      "drunk": 200,
+      "full": 1,
+      "thirst": 4,
+      "hunger": 0
+    },
+    "serving_size": 2
+  }},
+  {"liquid": {
+    "name": "brandy",
+    "color_name": "golden",
+    "conditions": {
+      "drunk": 80,
+      "full": 1,
+      "thirst": 5,
+      "hunger": 0
+    },
+    "serving_size": 4
+  }},
+  {"liquid": {
+    "name": "aquavit",
+    "color_name": "clear",
+    "conditions": {
+      "drunk": 140,
+      "full": 1,
+      "thirst": 5,
+      "hunger": 0
+    },
+    "serving_size": 2
+  }},
+  {"liquid": {
+    "name": "schnapps",
+    "color_name": "clear",
+    "conditions": {
+      "drunk": 90,
+      "full": 1,
+      "thirst": 5,
+      "hunger": 0
+    },
+    "serving_size": 2
+  }},
+  {"liquid": {
+    "name": "icewine",
+    "color_name": "purple",
+    "conditions": {
+      "drunk": 50,
+      "full": 2,
+      "thirst": 6,
+      "hunger": 1
+    },
+    "serving_size": 5
+  }},
+  {"liquid": {
+    "name": "amontillado",
+    "color_name": "burgundy",
+    "conditions": {
+      "drunk": 35,
+      "full": 2,
+      "thirst": 8,
+      "hunger": 1
+    },
+    "serving_size": 5
+  }},
+  {"liquid": {
+    "name": "sherry",
+    "color_name": "red",
+    "conditions": {
+      "drunk": 38,
+      "full": 2,
+      "thirst": 7,
+      "hunger": 1
+    },
+    "serving_size": 5
+  }},
+  {"liquid": {
+    "name": "framboise",
+    "color_name": "red",
+    "conditions": {
+      "drunk": 50,
+      "full": 1,
+      "thirst": 7,
+      "hunger": 1
+    },
+    "serving_size": 5
+  }},
+  {"liquid": {
+    "name": "rum",
+    "color_name": "amber",
+    "conditions": {
+      "drunk": 151,
+      "full": 1,
+      "thirst": 4,
+      "hunger": 0
+    },
+    "serving_size": 2
+  }},
+  {"liquid": {
+    "name": "cordial",
+    "color_name": "clear",
+    "conditions": {
+      "drunk": 100,
+      "full": 1,
+      "thirst": 5,
+      "hunger": 0
+    },
+    "serving_size": 2
+  }}
+]

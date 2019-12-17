@@ -1052,6 +1052,7 @@ struct table_type {
     const char *description;
 
     size_t type_size;
+    const char *obj_name;
     TABLE_JSON_FUN *json_write_func;
     TABLE_JSON_FUN *json_read_func;
 };

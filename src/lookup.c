@@ -151,23 +151,24 @@ const FLAG_T *flag_get_by_name_exact (const char *name, const FLAG_T *flag_table
 const FLAG_T *flag_get (flag_t bit, const FLAG_T *flag_table)
     { SIMPLE_GET (flag_table, bit, name, NULL, 0); }
 const char *flag_get_name (flag_t bit, const FLAG_T *flag_table)
-    { SIMPLE_GET_NAME (FLAG_T, flag_get(bit, flag_table), name); }
+    { SIMPLE_GET_NAME_FROM_ELEMENT (FLAG_T, flag_get (bit, flag_table), name); }
 
-SIMPLE_ARRAY_BUNDLE (clan,     CLAN_T,     CLAN_MAX);
-SIMPLE_ARRAY_BUNDLE (position, POSITION_T, POS_MAX);
-SIMPLE_ARRAY_BUNDLE (sex,      SEX_T,      SEX_MAX);
-SIMPLE_ARRAY_BUNDLE (size,     SIZE_T,     SIZE_MAX_R);
-SIMPLE_ARRAY_BUNDLE (race,     RACE_T,     RACE_MAX);
-SIMPLE_ARRAY_BUNDLE (liq,      LIQ_T,      LIQ_MAX);
-SIMPLE_ARRAY_BUNDLE (attack,   ATTACK_T,   ATTACK_MAX);
-SIMPLE_ARRAY_BUNDLE (class,    CLASS_T,    CLASS_MAX);
-SIMPLE_ARRAY_BUNDLE (skill,    SKILL_T,    SKILL_MAX);
-SIMPLE_ARRAY_BUNDLE (spec,     SPEC_T,     SPEC_MAX);
-SIMPLE_ARRAY_BUNDLE (skill_group, SKILL_GROUP_T, SKILL_GROUP_MAX);
-SIMPLE_ARRAY_BUNDLE (wear_loc, WEAR_LOC_T, WEAR_LOC_MAX);
-SIMPLE_ARRAY_BUNDLE (recycle,  RECYCLE_T,  RECYCLE_MAX);
-SIMPLE_ARRAY_BUNDLE (board,    BOARD_T,    BOARD_MAX);
-SIMPLE_ARRAY_BUNDLE (master,   TABLE_T,    0);
+/* Lookup bundles. */
+SIMPLE_SEQUENTIAL_BUNDLE (clan,     CLAN_T,     CLAN_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (position, POSITION_T, POS_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (sex,      SEX_T,      SEX_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (size,     SIZE_T,     SIZE_MAX_R);
+SIMPLE_SEQUENTIAL_BUNDLE (race,     RACE_T,     RACE_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (liq,      LIQ_T,      LIQ_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (attack,   ATTACK_T,   ATTACK_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (class,    CLASS_T,    CLASS_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (skill,    SKILL_T,    SKILL_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (spec,     SPEC_T,     SPEC_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (skill_group, SKILL_GROUP_T, SKILL_GROUP_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (wear_loc, WEAR_LOC_T, WEAR_LOC_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (recycle,  RECYCLE_T,  RECYCLE_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (board,    BOARD_T,    BOARD_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (master,   TABLE_T,    0);
 
 SIMPLE_HASH_BUNDLE (wiznet,     WIZNET_T,           bit);
 SIMPLE_HASH_BUNDLE (weapon,     WEAPON_T,           type);
@@ -197,6 +198,26 @@ SIMPLE_REC_BUNDLE (help,        HELP_T,        RECYCLE_HELP_T);
 SIMPLE_REC_BUNDLE (had,         HELP_AREA_T,   RECYCLE_HELP_AREA_T);
 SIMPLE_REC_BUNDLE (social,      SOCIAL_T,      RECYCLE_SOCIAL_T);
 SIMPLE_REC_BUNDLE (portal_exit, PORTAL_EXIT_T, RECYCLE_PORTAL_EXIT_T);
+
+const TABLE_T *master_table_get_exact (const char *name) {
+    int i;
+    for (i = 0; master_table[i].name != NULL; i++)
+        if (str_cmp (master_table[i].name, name) == 0)
+            return &(master_table[i]);
+    return NULL;
+}
+
+const TABLE_T *master_table_get_by_obj_name (const char *name) {
+    int i;
+    for (i = 0; master_table[i].name != NULL; i++) {
+        if (master_table[i].obj_name != NULL &&
+            str_cmp (master_table[i].obj_name, name) == 0)
+        {
+            return &(master_table[i]);
+        }
+    }
+    return NULL;
+}
 
 SPEC_FUN *spec_lookup_function (const char *name)
     { SIMPLE_LOOKUP_PROP (spec_table, function, name, NULL, SPEC_MAX); }

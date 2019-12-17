@@ -135,7 +135,7 @@ typedef void SPELL_FUN  (int sn, int level, CHAR_T *ch, void *vo, int target,
                          const char *target_name);
 typedef void EFFECT_FUN (void *vo, int level, int dam, int target);
 typedef void NANNY_FUN  (DESCRIPTOR_T *d, char *argument);
-typedef JSON_T *TABLE_JSON_FUN (const void *obj);
+typedef JSON_T *TABLE_JSON_FUN (const void *obj, const char *obj_name);
 typedef bool OLC_FUN    (CHAR_T *ch, char *argument);
 
 typedef void RECYCLE_INIT_FUN (void *obj);

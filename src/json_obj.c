@@ -635,7 +635,6 @@ JSON_T *json_new_obj_table (const char *name, const TABLE_T *table) {
 
     if (table == NULL || table->json_write_func == NULL)
         return json_new_null (name);
-    new = json_new_object (name, JSON_OBJ_TABLE);
 
     type_str = NULL;
     if (table->flags & TABLE_FLAG_TYPE)
@@ -643,11 +642,17 @@ JSON_T *json_new_obj_table (const char *name, const TABLE_T *table) {
     else
         type_str = "table";
 
-    json_prop_string (new, "name",        table->name);
-    json_prop_string (new, "description", table->description);
-    json_prop_string (new, "type",        type_str);
-
-    sub = json_prop_array (new, "values");
+    if (table->obj_name == NULL) {
+        new = json_new_object (name, JSON_OBJ_TABLE);
+        json_prop_string (new, "name",        table->name);
+        json_prop_string (new, "description", table->description);
+        json_prop_string (new, "type",        type_str);
+        sub = json_prop_array (new, "values");
+    }
+    else {
+        new = json_new_array (name, NULL);
+        sub = NULL;
+    }
 
     {
         const void *obj = table->table;
@@ -657,8 +662,11 @@ JSON_T *json_new_obj_table (const char *name, const TABLE_T *table) {
         bool had_none = FALSE;
 
         do {
-            if ((json = table->json_write_func (obj)) == NULL)
+            if ((json = table->json_write_func (obj, table->obj_name)) == NULL)
                 break;
+            if (table->obj_name)
+                sub = json_prop_object (new, NULL, JSON_OBJ_ANY);
+
             if (table->flags & TABLE_FLAG_TYPE) {
                 flag = obj;
                 if (had_none) {

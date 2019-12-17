@@ -30,18 +30,8 @@
 
 #include "merc.h"
 
-/* Useful macros for defining rows in our master table. */
-#define TFLAGS(table, desc) \
-    { table, #table, TABLE_FLAG_TYPE | TABLE_BITS, desc, \
-      sizeof (FLAG_T), json_tblw_flag }
-#define TTYPES(table, desc) \
-    { table, #table, TABLE_FLAG_TYPE, desc, \
-      sizeof (FLAG_T), json_tblw_flag }
-#define TTABLE(table, desc, jwrite) \
-    { table, #table, 0, desc, sizeof(table[0]), jwrite }
-
 /* A table containing every table of every type. */
-extern const TABLE_T          master_table[];
+extern const TABLE_T          master_table[TABLE_MAX + 1];
 
 /* All tables. */
 extern const CLAN_T           clan_table[CLAN_MAX + 1];

@@ -40,6 +40,7 @@
 #include "json_import.h"
 
 int json_import_objects (JSON_T *json) {
+    const TABLE_T *table;
     JSON_T *sub;
     int count = 0;
 
@@ -76,8 +77,12 @@ int json_import_objects (JSON_T *json) {
                 return 0;
             return 1 + help_area_count_pages (had);
         }
+        if ((table = master_table_get_by_obj_name (json->name)) != NULL) {
+            /* TODO: actually read handled objects. */
+            return 0;
+        }
 
-        json_logf (json, "json_import_objects(): Unknown object type '%s'.\n",
+        json_logf (json, "json_import_objects(): Unknown object type '%s'.",
             json->name);
         return 0;
     }

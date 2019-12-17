@@ -416,5 +416,5 @@ void json_logf (const JSON_T *json, const char *format, ...) {
     vsnprintf (buf, sizeof(buf), format, args);
     va_end (args);
     log_f ("%s, line %d, col %d: %s", json->filename,
-        json->line, json->col,buf);
+        json->line, json->col, buf);
 }

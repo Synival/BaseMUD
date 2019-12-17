@@ -1,0 +1,120 @@
+[
+  {"damage": {
+    "type": 0,
+    "name": "none"
+  }},
+  {"damage": {
+    "type": 1,
+    "name": "bash",
+    "res_flags": "bash"
+  }},
+  {"damage": {
+    "type": 2,
+    "name": "pierce",
+    "res_flags": "pierce"
+  }},
+  {"damage": {
+    "type": 3,
+    "name": "slash",
+    "res_flags": "slash"
+  }},
+  {"damage": {
+    "type": 4,
+    "name": "fire",
+    "res_flags": "fire",
+    "dam_flags": "magical",
+    "effect": "fire"
+  }},
+  {"damage": {
+    "type": 5,
+    "name": "cold",
+    "res_flags": "cold",
+    "dam_flags": "magical",
+    "effect": "cold"
+  }},
+  {"damage": {
+    "type": 6,
+    "name": "lightning",
+    "res_flags": "lightning",
+    "dam_flags": "magical",
+    "effect": "shock"
+  }},
+  {"damage": {
+    "type": 7,
+    "name": "acid",
+    "res_flags": "acid",
+    "dam_flags": "magical",
+    "effect": "acid"
+  }},
+  {"damage": {
+    "type": 8,
+    "name": "poison",
+    "res_flags": "poison",
+    "dam_flags": "magical",
+    "effect": "poison"
+  }},
+  {"damage": {
+    "type": 9,
+    "name": "negative",
+    "res_flags": "negative",
+    "dam_flags": "magical"
+  }},
+  {"damage": {
+    "type": 10,
+    "name": "holy",
+    "res_flags": "holy",
+    "dam_flags": "magical"
+  }},
+  {"damage": {
+    "type": 11,
+    "name": "energy",
+    "res_flags": "energy",
+    "dam_flags": "magical"
+  }},
+  {"damage": {
+    "type": 12,
+    "name": "mental",
+    "res_flags": "mental",
+    "dam_flags": "magical"
+  }},
+  {"damage": {
+    "type": 13,
+    "name": "disease",
+    "res_flags": "disease",
+    "dam_flags": "magical"
+  }},
+  {"damage": {
+    "type": 14,
+    "name": "drowning",
+    "res_flags": "drowning",
+    "dam_flags": "magical"
+  }},
+  {"damage": {
+    "type": 15,
+    "name": "light",
+    "res_flags": "light",
+    "dam_flags": "magical"
+  }},
+  {"damage": {
+    "type": 16,
+    "name": "other",
+    "dam_flags": "magical"
+  }},
+  {"damage": {
+    "type": 17,
+    "name": "harm",
+    "dam_flags": "magical"
+  }},
+  {"damage": {
+    "type": 18,
+    "name": "charm",
+    "res_flags": "charm",
+    "dam_flags": "magical"
+  }},
+  {"damage": {
+    "type": 19,
+    "name": "sound",
+    "res_flags": "sound",
+    "dam_flags": "magical"
+  }}
+]

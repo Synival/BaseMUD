@@ -1,0 +1,26 @@
+[
+  {"size": {
+    "size": 0,
+    "name": "tiny"
+  }},
+  {"size": {
+    "size": 1,
+    "name": "small"
+  }},
+  {"size": {
+    "size": 2,
+    "name": "medium"
+  }},
+  {"size": {
+    "size": 3,
+    "name": "large"
+  }},
+  {"size": {
+    "size": 4,
+    "name": "huge"
+  }},
+  {"size": {
+    "size": 5,
+    "name": "giant"
+  }}
+]

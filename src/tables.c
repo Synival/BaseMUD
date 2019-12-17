@@ -47,7 +47,17 @@
 #include "spell_npc.h"
 #include "spell_off.h"
 
-const TABLE_T master_table[] = {
+/* Useful macros for defining rows in our master table. */
+#define TFLAGS(table, desc) \
+    { table, #table, TABLE_FLAG_TYPE | TABLE_BITS, desc, \
+      sizeof (FLAG_T), NULL, json_tblw_flag }
+#define TTYPES(table, desc) \
+    { table, #table, TABLE_FLAG_TYPE, desc, \
+      sizeof (FLAG_T), NULL, json_tblw_flag }
+#define TTABLE(table, name, desc, obj_name, jwrite) \
+    { table, name, 0, desc, sizeof(table[0]), obj_name, jwrite }
+
+const TABLE_T master_table[TABLE_MAX + 1] = {
     /* from flags.h */
     TFLAGS (mob_flags,        "Mobile flags."),
     TFLAGS (plr_flags,        "Player flags."),
@@ -87,47 +97,47 @@ const TABLE_T master_table[] = {
     TTYPES (board_def_types,  "Types of boards."),
 
     /* from tables.h */
-    TTABLE (clan_table,       "Player clans.",                json_tblw_clan),
-    TTABLE (position_table,   "Character positions.",         json_tblw_position),
-    TTABLE (sex_table,        "Gender settings.",             json_tblw_sex),
-    TTABLE (size_table,       "Character sizes.",             json_tblw_size),
-    TTABLE (item_table,       "Item types and properties.",   json_tblw_item),
-    TTABLE (weapon_table,     "Weapon types and properties.", json_tblw_weapon),
-    TTABLE (effect_table,     "Damage effects and breaths.",  NULL),
-    TTABLE (dam_table,        "Damage types and properties.", json_tblw_dam),
-    TTABLE (attack_table,     "Attack types and properties.", json_tblw_attack),
-    TTABLE (race_table,       "Races and statistics.",        json_tblw_race),
-    TTABLE (pc_race_table,    "Playable race data.",          json_tblw_pc_race),
-    TTABLE (class_table,      "Classes and statistics.",      json_tblw_class),
-    TTABLE (str_app_table,    "Str apply table.",             json_tblw_str_app),
-    TTABLE (int_app_table,    "Int apply table.",             json_tblw_int_app),
-    TTABLE (wis_app_table,    "Wis apply table.",             json_tblw_wis_app),
-    TTABLE (dex_app_table,    "Dex apply table.",             json_tblw_dex_app),
-    TTABLE (con_app_table,    "Con apply table.",             json_tblw_con_app),
-    TTABLE (liq_table,        "Liquid types.",                json_tblw_liq),
-    TTABLE (skill_table,      "Master skill table.",          json_tblw_skill),
-    TTABLE (skill_group_table, "Groups of skills table.",     json_tblw_skill_group),
-    TTABLE (sector_table,     "Sector/terrain properties.",   json_tblw_sector),
-    TTABLE (nanny_table,      "Descriptor 'Nanny' table.",    NULL),
-    TTABLE (door_table,       "Exit names.",                  json_tblw_door),
-    TTABLE (spec_table,       "Specialized mobile behavior.", json_tblw_spec),
-    TTABLE (furniture_table, "Furniture flags for positions.",json_tblw_furniture),
-    TTABLE (wear_loc_table,   "Wearable item table.",         json_tblw_wear_loc),
-    TTABLE (material_table,   "Material properties",          json_tblw_material),
-    TTABLE (colour_setting_table, "Configurable colours.",    json_tblw_colour_setting),
-    TTABLE (wiznet_table,     "Wiznet channels.",             NULL),
-    TTABLE (map_lookup_table, "Types for object mappings.",   NULL),
-    TTABLE (map_flags_table,  "Flags for object mappings.",   NULL),
-    TTABLE (obj_map_table,    "Obj type-values[] mappings.",  NULL),
-    TTABLE (colour_table,     "Colour values.",               json_tblw_colour),
-    TTABLE (recycle_table,    "Recycleable object types.",    NULL),
-    TTABLE (board_table,      "Discussion boards.",           json_tblw_board),
-    TTABLE (affect_bit_table, "Affect bit vector types.",     NULL),
-    TTABLE (day_table,        "Days of the week.",            json_tblw_day),
-    TTABLE (month_table,      "Months of the year.",          json_tblw_month),
-    TTABLE (sky_table,        "Skies based on the weather.",  json_tblw_sky),
-    TTABLE (sun_table,        "Positions of the sun.",        json_tblw_sun),
-    TTABLE (pose_table,     "Poses based on class and level", json_tblw_pose),
+    TTABLE (clan_table,       "clans",        "Player clans.",                "clan",          json_tblw_clan),
+    TTABLE (position_table,   "positions",    "Character positions.",         "position",      json_tblw_position),
+    TTABLE (sex_table,        "sexes",        "Gender settings.",             "sex",           json_tblw_sex),
+    TTABLE (size_table,       "sizes",        "Character sizes.",             "size",          json_tblw_size),
+    TTABLE (item_table,       "items",        "Item types and properties.",   "item",          json_tblw_item),
+    TTABLE (weapon_table,     "weapons",      "Weapon types and properties.", "weapon",        json_tblw_weapon),
+    TTABLE (effect_table,     "effects",      "Damage effects and breaths.",  NULL,            NULL),
+    TTABLE (dam_table,        "dams",         "Damage types and properties.", "damage",        json_tblw_dam),
+    TTABLE (attack_table,     "attacks",      "Attack types and properties.", "attack",        json_tblw_attack),
+    TTABLE (race_table,       "races",        "Races and statistics.",        "race",          json_tblw_race),
+    TTABLE (pc_race_table,    "pc_races",     "Playable race data.",          "player_race",   json_tblw_pc_race),
+    TTABLE (class_table,      "classes",      "Classes and statistics.",      "class",         json_tblw_class),
+    TTABLE (str_app_table,    "str_app",      "Str apply table.",             "str_app",       json_tblw_str_app),
+    TTABLE (int_app_table,    "int_app",      "Int apply table.",             "int_app",       json_tblw_int_app),
+    TTABLE (wis_app_table,    "wis_app",      "Wis apply table.",             "wis_app",       json_tblw_wis_app),
+    TTABLE (dex_app_table,    "dex_app",      "Dex apply table.",             "dex_app",       json_tblw_dex_app),
+    TTABLE (con_app_table,    "con_app",      "Con apply table.",             "con_app",       json_tblw_con_app),
+    TTABLE (liq_table,        "liquids",      "Liquid types.",                "liquid",        json_tblw_liq),
+    TTABLE (skill_table,      "skills",       "Master skill table.",          "skill",         json_tblw_skill),
+    TTABLE (skill_group_table,"skill_groups", "Groups of skills table.",      "skill_group",   json_tblw_skill_group),
+    TTABLE (sector_table,     "sectors",      "Sector/terrain properties.",   "sector",        json_tblw_sector),
+    TTABLE (nanny_table,      "nannies",      "Descriptor 'Nanny' table.",    NULL,            NULL),
+    TTABLE (door_table,       "doors",        "Exit names.",                  "door",          json_tblw_door),
+    TTABLE (spec_table,       "specs",        "Specialized mobile behavior.", "spec",          json_tblw_spec),
+    TTABLE (furniture_table, "furnitures",    "Furniture flags for positions.","furniture",    json_tblw_furniture),
+    TTABLE (wear_loc_table,   "wear_locs",    "Wearable item table.",         "wear_loc",      json_tblw_wear_loc),
+    TTABLE (material_table,   "materials",    "Material properties",          "material",      json_tblw_material),
+    TTABLE (colour_setting_table, "color_settings", "Configurable colours.",  "color_setting", json_tblw_colour_setting),
+    TTABLE (wiznet_table,     "wiznets",      "Wiznet channels.",             NULL,            NULL),
+    TTABLE (map_lookup_table, "map_lookups",  "Types for object mappings.",   NULL,            NULL),
+    TTABLE (map_flags_table,  "map_flags",    "Flags for object mappings.",   NULL,            NULL),
+    TTABLE (obj_map_table,    "obj_maps",     "Obj type-values[] mappings.",  NULL,            NULL),
+    TTABLE (colour_table,     "colors",       "Colour values.",               "color",         json_tblw_colour),
+    TTABLE (recycle_table,    "recyclables",  "Recycleable object types.",    NULL,            NULL),
+    TTABLE (board_table,      "boards",       "Discussion boards.",           "board",         json_tblw_board),
+    TTABLE (affect_bit_table, "affect_bits",  "Affect bit vector types.",     NULL,            NULL),
+    TTABLE (day_table,        "days",         "Days of the week.",            "day",           json_tblw_day),
+    TTABLE (month_table,      "months",       "Months of the year.",          "month",         json_tblw_month),
+    TTABLE (sky_table,        "skies",        "Skies based on the weather.",  "sky",           json_tblw_sky),
+    TTABLE (sun_table,        "suns",        "Positions of the sun.",        "sun",            json_tblw_sun),
+    TTABLE (pose_table,       "pose",       "Poses based on class and level", "pose",          json_tblw_pose),
     {0}
 };
 

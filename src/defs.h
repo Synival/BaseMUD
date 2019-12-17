@@ -40,7 +40,7 @@
     void fun (void *vo, int level, int dam, int target)
 
 #define DEFINE_TABLE_JSON_FUN(fun) \
-    JSON_T *fun (const void *obj)
+    JSON_T *fun (const void *obj, const char *obj_name)
 
 /* Short scalar types.
  * Diavolo reports AIX compiler has bugs with short types. */
@@ -539,6 +539,8 @@
 /* Types of tables used for our master reference table. */
 #define TABLE_FLAG_TYPE 0x01
 #define TABLE_BITS      0x02
+
+#define TABLE_MAX   75
 
 /* Types of portals. */
 #define PORTAL_TO_ROOM  0

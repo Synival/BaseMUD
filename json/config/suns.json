@@ -1,0 +1,34 @@
+[
+  {"sun": {
+    "index": 0,
+    "name": "dark",
+    "is_dark": true,
+    "hour_start": 0,
+    "hour_end": 5,
+    "message": "The night has begun."
+  }},
+  {"sun": {
+    "index": 1,
+    "name": "rise",
+    "is_dark": false,
+    "hour_start": 5,
+    "hour_end": 6,
+    "message": "The sun rises in the east."
+  }},
+  {"sun": {
+    "index": 2,
+    "name": "light",
+    "is_dark": false,
+    "hour_start": 6,
+    "hour_end": 19,
+    "message": "The day has begun."
+  }},
+  {"sun": {
+    "index": 3,
+    "name": "set",
+    "is_dark": true,
+    "hour_start": 19,
+    "hour_end": 20,
+    "message": "The sun slowly disappears in the west."
+  }}
+]

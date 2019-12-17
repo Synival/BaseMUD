@@ -1,0 +1,70 @@
+[
+  {"month": {
+    "index": 0,
+    "name": "Winter"
+  }},
+  {"month": {
+    "index": 1,
+    "name": "the Winter Wolf"
+  }},
+  {"month": {
+    "index": 2,
+    "name": "the Frost Giant"
+  }},
+  {"month": {
+    "index": 3,
+    "name": "the Old Forces"
+  }},
+  {"month": {
+    "index": 4,
+    "name": "the Grand Struggle"
+  }},
+  {"month": {
+    "index": 5,
+    "name": "the Spring"
+  }},
+  {"month": {
+    "index": 6,
+    "name": "Nature"
+  }},
+  {"month": {
+    "index": 7,
+    "name": "Futility"
+  }},
+  {"month": {
+    "index": 8,
+    "name": "the Dragon"
+  }},
+  {"month": {
+    "index": 9,
+    "name": "the Sun"
+  }},
+  {"month": {
+    "index": 10,
+    "name": "the Heat"
+  }},
+  {"month": {
+    "index": 11,
+    "name": "the Battle"
+  }},
+  {"month": {
+    "index": 12,
+    "name": "the Dark Shades"
+  }},
+  {"month": {
+    "index": 13,
+    "name": "the Shadows"
+  }},
+  {"month": {
+    "index": 14,
+    "name": "the Long Shadows"
+  }},
+  {"month": {
+    "index": 15,
+    "name": "the Ancient Darkness"
+  }},
+  {"month": {
+    "index": 16,
+    "name": "the Great Evil"
+  }}
+]

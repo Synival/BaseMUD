@@ -344,7 +344,9 @@ void db_export_json (bool write_indiv, const char *everything) {
                 if (write_indiv) \
                     log_f("Exporting JSON: %s%s/%s.json", JSON_DIR, fname, \
                         obj->name); \
-                json = json_wrap_obj (func (NULL, obj), oname); \
+                json = func (NULL, obj); \
+                if (json->type != JSON_ARRAY) \
+                    json = json_wrap_obj (json, oname); \
                 json_attach_under (json, jarea); \
                 \
                 if (write_indiv) { \
@@ -361,7 +363,7 @@ void db_export_json (bool write_indiv, const char *everything) {
     ADD_META_JSON ("table", "meta/types", master, TABLE_T,
         json_new_obj_table, IS_SET (obj->flags, TABLE_FLAG_TYPE) &&
                            !IS_SET (obj->flags, TABLE_BITS));
-    ADD_META_JSON ("table", "meta/tables", master, TABLE_T,
+    ADD_META_JSON ("table", "config", master, TABLE_T,
         json_new_obj_table, !IS_SET (obj->flags, TABLE_FLAG_TYPE) &&
                              obj->json_write_func);
 

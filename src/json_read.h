@@ -32,8 +32,7 @@
 
 /* Data structures. */
 struct json_read_t {
-    char *filename;
-    char *data, *pos;
+    const char *filename, *data, *pos;
     int line, col;
 };
 
@@ -43,14 +42,15 @@ JSON_T *json_read_directory_recursive (const char *path,
 void json_read_directory_real (JSON_T *obj, const char *path, bool recurse,
     int (*load_func) (JSON_T *), int *load_result);
 JSON_T *json_read_file (const char *filename);
-JSON_T *json_read_object (const char **pos, const char *name);
-JSON_T *json_read_array (const char **pos, const char *name);
-JSON_T *json_read_any_type (const char **pos, const char *name);
-JSON_T *json_read_string (const char **pos, const char *name);
-char *json_read_string_content (const char **pos, char *buf, size_t size);
-JSON_T *json_read_number (const char **pos, const char *name);
-JSON_T *json_read_object (const char **pos, const char *name);
-JSON_T *json_read_array (const char **pos, const char *name);
-JSON_T *json_read_special (const char **pos, const char *name);
+void json_read_logf (const JSON_READ_T *context, const char *format, ...);
+JSON_T *json_read_object (JSON_READ_T *context, const char *name);
+JSON_T *json_read_array (JSON_READ_T *context, const char *name);
+JSON_T *json_read_any_type (JSON_READ_T *context, const char *name);
+JSON_T *json_read_string (JSON_READ_T *context, const char *name);
+char *json_read_string_content (JSON_READ_T *context, char *buf, size_t size);
+JSON_T *json_read_number (JSON_READ_T *context, const char *name);
+JSON_T *json_read_object (JSON_READ_T *context, const char *name);
+JSON_T *json_read_array (JSON_READ_T *context, const char *name);
+JSON_T *json_read_special (JSON_READ_T *context, const char *name);
 
 #endif
