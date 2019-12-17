@@ -3,40 +3,215 @@
   "description": "Configurable colours.",
   "type": "table",
   "values": [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "index": 0,
+      "name": "text",
+      "color_char": "t",
+      "default_color": "white back-none nobeep"
+    },
+    {
+      "index": 1,
+      "name": "auction",
+      "color_char": "a",
+      "default_color": "hi-yellow back-none nobeep"
+    },
+    {
+      "index": 2,
+      "name": "auction_text",
+      "color_char": "A",
+      "default_color": "hi-white back-none nobeep"
+    },
+    {
+      "index": 3,
+      "name": "gossip",
+      "color_char": "d",
+      "default_color": "magenta back-none nobeep"
+    },
+    {
+      "index": 4,
+      "name": "gossip_text",
+      "color_char": "9",
+      "default_color": "hi-magenta back-none nobeep"
+    },
+    {
+      "index": 5,
+      "name": "music",
+      "color_char": "e",
+      "default_color": "red back-none nobeep"
+    },
+    {
+      "index": 6,
+      "name": "music_text",
+      "color_char": "E",
+      "default_color": "hi-red back-none nobeep"
+    },
+    {
+      "index": 7,
+      "name": "question",
+      "color_char": "q",
+      "default_color": "hi-yellow back-none nobeep"
+    },
+    {
+      "index": 8,
+      "name": "question_text",
+      "color_char": "Q",
+      "default_color": "hi-white back-none nobeep"
+    },
+    {
+      "index": 9,
+      "name": "answer",
+      "color_char": "f",
+      "default_color": "hi-yellow back-none nobeep"
+    },
+    {
+      "index": 10,
+      "name": "answer_text",
+      "color_char": "F",
+      "default_color": "hi-white back-none nobeep"
+    },
+    {
+      "index": 11,
+      "name": "quote",
+      "color_char": "h",
+      "default_color": "yellow back-none nobeep"
+    },
+    {
+      "index": 12,
+      "name": "quote_text",
+      "color_char": "H",
+      "default_color": "green back-none nobeep"
+    },
+    {
+      "index": 13,
+      "name": "immtalk_text",
+      "color_char": "i",
+      "default_color": "cyan back-none nobeep"
+    },
+    {
+      "index": 14,
+      "name": "immtalk_type",
+      "color_char": "I",
+      "default_color": "yellow back-none nobeep"
+    },
+    {
+      "index": 15,
+      "name": "info",
+      "color_char": "j",
+      "default_color": "hi-yellow back-none beep"
+    },
+    {
+      "index": 16,
+      "name": "say",
+      "color_char": "6",
+      "default_color": "green back-none nobeep"
+    },
+    {
+      "index": 17,
+      "name": "say_text",
+      "color_char": "7",
+      "default_color": "hi-green back-none nobeep"
+    },
+    {
+      "index": 18,
+      "name": "tell",
+      "color_char": "k",
+      "default_color": "green back-none nobeep"
+    },
+    {
+      "index": 19,
+      "name": "tell_text",
+      "color_char": "K",
+      "default_color": "hi-green back-none nobeep"
+    },
+    {
+      "index": 20,
+      "name": "reply",
+      "color_char": "l",
+      "default_color": "green back-none nobeep"
+    },
+    {
+      "index": 21,
+      "name": "reply_text",
+      "color_char": "L",
+      "default_color": "hi-green back-none nobeep"
+    },
+    {
+      "index": 22,
+      "name": "gtell_text",
+      "color_char": "n",
+      "default_color": "green back-none nobeep"
+    },
+    {
+      "index": 23,
+      "name": "gtell_type",
+      "color_char": "N",
+      "default_color": "red back-none nobeep"
+    },
+    {
+      "index": 24,
+      "name": "wiznet",
+      "color_char": "B",
+      "default_color": "green back-none nobeep"
+    },
+    {
+      "index": 25,
+      "name": "room_title",
+      "color_char": "s",
+      "default_color": "cyan back-none nobeep"
+    },
+    {
+      "index": 26,
+      "name": "room_text",
+      "color_char": "S",
+      "default_color": "white back-none nobeep"
+    },
+    {
+      "index": 27,
+      "name": "room_exits",
+      "color_char": "o",
+      "default_color": "green back-none nobeep"
+    },
+    {
+      "index": 28,
+      "name": "room_things",
+      "color_char": "O",
+      "default_color": "cyan back-none nobeep"
+    },
+    {
+      "index": 29,
+      "name": "prompt",
+      "color_char": "p",
+      "default_color": "cyan back-none nobeep"
+    },
+    {
+      "index": 30,
+      "name": "fight_death",
+      "color_char": "1",
+      "default_color": "hi-red back-none nobeep"
+    },
+    {
+      "index": 31,
+      "name": "fight_yhit",
+      "color_char": "2",
+      "default_color": "green back-none nobeep"
+    },
+    {
+      "index": 32,
+      "name": "fight_ohit",
+      "color_char": "3",
+      "default_color": "yellow back-none nobeep"
+    },
+    {
+      "index": 33,
+      "name": "fight_thit",
+      "color_char": "4",
+      "default_color": "red back-none nobeep"
+    },
+    {
+      "index": 34,
+      "name": "fight_skill",
+      "color_char": "5",
+      "default_color": "hi-white back-none nobeep"
+    }
   ]
 }}

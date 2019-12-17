@@ -3,33 +3,145 @@
   "description": "Colour values.",
   "type": "table",
   "values": [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "name": "none",
+      "group_mask": 527,
+      "code": 512
+    },
+    {
+      "name": "black",
+      "group_mask": 527,
+      "code": 0
+    },
+    {
+      "name": "red",
+      "group_mask": 527,
+      "code": 1
+    },
+    {
+      "name": "green",
+      "group_mask": 527,
+      "code": 2
+    },
+    {
+      "name": "yellow",
+      "group_mask": 527,
+      "code": 3
+    },
+    {
+      "name": "blue",
+      "group_mask": 527,
+      "code": 4
+    },
+    {
+      "name": "magenta",
+      "group_mask": 527,
+      "code": 5
+    },
+    {
+      "name": "cyan",
+      "group_mask": 527,
+      "code": 6
+    },
+    {
+      "name": "white",
+      "group_mask": 527,
+      "code": 7
+    },
+    {
+      "name": "grey",
+      "group_mask": 527,
+      "code": 8
+    },
+    {
+      "name": "hi-red",
+      "group_mask": 527,
+      "code": 9
+    },
+    {
+      "name": "hi-green",
+      "group_mask": 527,
+      "code": 10
+    },
+    {
+      "name": "hi-yellow",
+      "group_mask": 527,
+      "code": 11
+    },
+    {
+      "name": "hi-blue",
+      "group_mask": 527,
+      "code": 12
+    },
+    {
+      "name": "hi-magenta",
+      "group_mask": 527,
+      "code": 13
+    },
+    {
+      "name": "hi-cyan",
+      "group_mask": 527,
+      "code": 14
+    },
+    {
+      "name": "hi-white",
+      "group_mask": 527,
+      "code": 15
+    },
+    {
+      "name": "back-none",
+      "group_mask": 1264,
+      "code": 1024
+    },
+    {
+      "name": "back-black",
+      "group_mask": 1264,
+      "code": 0
+    },
+    {
+      "name": "back-red",
+      "group_mask": 1264,
+      "code": 16
+    },
+    {
+      "name": "back-green",
+      "group_mask": 1264,
+      "code": 32
+    },
+    {
+      "name": "back-yellow",
+      "group_mask": 1264,
+      "code": 48
+    },
+    {
+      "name": "back-blue",
+      "group_mask": 1264,
+      "code": 64
+    },
+    {
+      "name": "back-magenta",
+      "group_mask": 1264,
+      "code": 80
+    },
+    {
+      "name": "back-cyan",
+      "group_mask": 1264,
+      "code": 96
+    },
+    {
+      "name": "back-white",
+      "group_mask": 1264,
+      "code": 112
+    },
+    {
+      "name": "beep",
+      "group_mask": 256,
+      "code": 256
+    },
+    {
+      "name": "nobeep",
+      "group_mask": 256,
+      "code": 0
+    }
   ]
 }}

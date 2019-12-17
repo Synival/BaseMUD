@@ -209,11 +209,17 @@ struct wiznet_type {
     int level;
 };
 
+struct effect_type {
+    int type;
+    char *name;
+    EFFECT_FUN *effect_fun;
+};
+
 struct dam_type {
     int type;
     char *name;
     flag_t res;
-    EFFECT_FUN *effect;
+    int effect;
     flag_t dam_flags;
 };
 

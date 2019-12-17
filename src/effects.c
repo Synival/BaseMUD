@@ -39,7 +39,7 @@
 
 #include "effects.h"
 
-void acid_effect (void *vo, int level, int dam, int target) {
+DEFINE_EFFECT_FUN (effect_acid) {
     /* nail objects on the floor */
     if (target == TARGET_ROOM) {
         ROOM_INDEX_T *room = (ROOM_INDEX_T *) vo;
@@ -47,7 +47,7 @@ void acid_effect (void *vo, int level, int dam, int target) {
 
         for (obj = room->contents; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            acid_effect (obj, level, dam, TARGET_OBJ);
+            effect_acid (obj, level, dam, TARGET_OBJ);
         }
         return;
     }
@@ -60,7 +60,7 @@ void acid_effect (void *vo, int level, int dam, int target) {
         /* let's toast some gear */
         for (obj = victim->carrying; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            acid_effect (obj, level, dam, TARGET_OBJ);
+            effect_acid (obj, level, dam, TARGET_OBJ);
         }
         return;
     }
@@ -160,7 +160,7 @@ void acid_effect (void *vo, int level, int dam, int target) {
                     obj_extract (t_obj);
                     continue;
                 }
-                acid_effect (t_obj, level / 2, dam / 2, TARGET_OBJ);
+                effect_acid (t_obj, level / 2, dam / 2, TARGET_OBJ);
             }
         }
         obj_extract (obj);
@@ -168,7 +168,7 @@ void acid_effect (void *vo, int level, int dam, int target) {
     }
 }
 
-void cold_effect (void *vo, int level, int dam, int target) {
+DEFINE_EFFECT_FUN (effect_cold) {
     /* nail objects on the floor */
     if (target == TARGET_ROOM) {
         ROOM_INDEX_T *room = (ROOM_INDEX_T *) vo;
@@ -176,7 +176,7 @@ void cold_effect (void *vo, int level, int dam, int target) {
 
         for (obj = room->contents; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            cold_effect (obj, level, dam, TARGET_OBJ);
+            effect_cold (obj, level, dam, TARGET_OBJ);
         }
         return;
     }
@@ -204,7 +204,7 @@ void cold_effect (void *vo, int level, int dam, int target) {
         /* let's toast some gear */
         for (obj = victim->carrying; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            cold_effect (obj, level, dam, TARGET_OBJ);
+            effect_cold (obj, level, dam, TARGET_OBJ);
         }
         return;
     }
@@ -255,7 +255,7 @@ void cold_effect (void *vo, int level, int dam, int target) {
     }
 }
 
-void fire_effect (void *vo, int level, int dam, int target) {
+DEFINE_EFFECT_FUN (effect_fire) {
     /* nail objects on the floor */
     if (target == TARGET_ROOM) {
         ROOM_INDEX_T *room = (ROOM_INDEX_T *) vo;
@@ -263,7 +263,7 @@ void fire_effect (void *vo, int level, int dam, int target) {
 
         for (obj = room->contents; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            fire_effect (obj, level, dam, TARGET_OBJ);
+            effect_fire (obj, level, dam, TARGET_OBJ);
         }
         return;
     }
@@ -293,7 +293,7 @@ void fire_effect (void *vo, int level, int dam, int target) {
         /* let's toast some gear! */
         for (obj = victim->carrying; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            fire_effect (obj, level, dam, TARGET_OBJ);
+            effect_fire (obj, level, dam, TARGET_OBJ);
         }
         return;
     }
@@ -369,7 +369,7 @@ void fire_effect (void *vo, int level, int dam, int target) {
                     obj_extract (t_obj);
                     continue;
                 }
-                fire_effect (t_obj, level / 2, dam / 2, TARGET_OBJ);
+                effect_fire (t_obj, level / 2, dam / 2, TARGET_OBJ);
             }
         }
         obj_extract (obj);
@@ -377,7 +377,7 @@ void fire_effect (void *vo, int level, int dam, int target) {
     }
 }
 
-void poison_effect (void *vo, int level, int dam, int target) {
+DEFINE_EFFECT_FUN (effect_poison) {
     /* nail objects on the floor */
     if (target == TARGET_ROOM) {
         ROOM_INDEX_T *room = (ROOM_INDEX_T *) vo;
@@ -385,7 +385,7 @@ void poison_effect (void *vo, int level, int dam, int target) {
 
         for (obj = room->contents; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            poison_effect (obj, level, dam, TARGET_OBJ);
+            effect_poison (obj, level, dam, TARGET_OBJ);
         }
         return;
     }
@@ -409,7 +409,7 @@ void poison_effect (void *vo, int level, int dam, int target) {
         /* equipment */
         for (obj = victim->carrying; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            poison_effect (obj, level, dam, TARGET_OBJ);
+            effect_poison (obj, level, dam, TARGET_OBJ);
         }
         return;
     }
@@ -460,7 +460,7 @@ void poison_effect (void *vo, int level, int dam, int target) {
     }
 }
 
-void shock_effect (void *vo, int level, int dam, int target) {
+DEFINE_EFFECT_FUN (effect_shock) {
     /* nail objects on the floor */
     if (target == TARGET_ROOM) {
         ROOM_INDEX_T *room = (ROOM_INDEX_T *) vo;
@@ -468,7 +468,7 @@ void shock_effect (void *vo, int level, int dam, int target) {
 
         for (obj = room->contents; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            shock_effect (obj, level, dam, TARGET_OBJ);
+            effect_shock (obj, level, dam, TARGET_OBJ);
         }
         return;
     }
@@ -487,7 +487,7 @@ void shock_effect (void *vo, int level, int dam, int target) {
         /* toast some gear */
         for (obj = victim->carrying; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            shock_effect (obj, level, dam, TARGET_OBJ);
+            effect_shock (obj, level, dam, TARGET_OBJ);
         }
         return;
     }
@@ -537,7 +537,7 @@ void shock_effect (void *vo, int level, int dam, int target) {
     }
 }
 
-void empty_effect (void *vo, int level, int dam, int target) {
+DEFINE_EFFECT_FUN (effect_empty) {
     /* Do nothing! :D
      * This is here to avoid null function pointer crashes. */
 }

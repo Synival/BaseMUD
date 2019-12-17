@@ -619,7 +619,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
             dam = number_range (1, wield->level / 4 + 1);
             act ("$p sears your flesh.", victim, wield, NULL, TO_CHAR);
             act ("$n is burned by $p.", victim, wield, NULL, TO_NOTCHAR);
-            fire_effect ((void *) victim, wield->level / 2, dam, TARGET_CHAR);
+            effect_fire ((void *) victim, wield->level / 2, dam, TARGET_CHAR);
             damage_quiet (ch, victim, dam, 0, DAM_FIRE);
         }
 
@@ -628,7 +628,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
             act ("The cold touch of $p surrounds you with ice.",
                  victim, wield, NULL, TO_CHAR);
             act ("$p freezes $n.", victim, wield, NULL, TO_NOTCHAR);
-            cold_effect (victim, wield->level / 2, dam, TARGET_CHAR);
+            effect_cold (victim, wield->level / 2, dam, TARGET_CHAR);
             damage_quiet (ch, victim, dam, 0, DAM_COLD);
         }
 
@@ -637,7 +637,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
             act ("You are shocked by $p.", victim, wield, NULL, TO_CHAR);
             act ("$n is struck by lightning from $p.", victim, wield, NULL,
                  TO_NOTCHAR);
-            shock_effect (victim, wield->level / 2, dam, TARGET_CHAR);
+            effect_shock (victim, wield->level / 2, dam, TARGET_CHAR);
             damage_quiet (ch, victim, dam, 0, DAM_LIGHTNING);
         }
     }

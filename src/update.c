@@ -383,6 +383,7 @@ void weather_update (void) {
     if (weather_info.sunlight != sun->type) {
         weather_info.sunlight = sun->type;
         strcat (buf, sun->message);
+        strcat (buf, "\n\r");
     }
 
     /* Weather change. */

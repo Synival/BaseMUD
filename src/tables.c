@@ -84,6 +84,7 @@ const TABLE_T master_table[] = {
     TTYPES (stat_types,       "Available stats for characters."),
     TTYPES (cond_types,       "Conditions like thirst/hunger."),
     TTYPES (skill_target_types, "Targets for skills and spells."),
+    TTYPES (board_def_types,  "Types of boards."),
 
     /* from tables.h */
     TTABLE (clan_table,       "Player clans.",                json_tblw_clan),
@@ -92,6 +93,7 @@ const TABLE_T master_table[] = {
     TTABLE (size_table,       "Character sizes.",             json_tblw_size),
     TTABLE (item_table,       "Item types and properties.",   json_tblw_item),
     TTABLE (weapon_table,     "Weapon types and properties.", json_tblw_weapon),
+    TTABLE (effect_table,     "Damage effects and breaths.",  NULL),
     TTABLE (dam_table,        "Damage types and properties.", json_tblw_dam),
     TTABLE (attack_table,     "Attack types and properties.", json_tblw_attack),
     TTABLE (race_table,       "Races and statistics.",        json_tblw_race),
@@ -113,14 +115,14 @@ const TABLE_T master_table[] = {
     TTABLE (wear_loc_table,   "Wearable item table.",         json_tblw_wear_loc),
     TTABLE (material_table,   "Material properties",          json_tblw_material),
     TTABLE (colour_setting_table, "Configurable colours.",    json_tblw_colour_setting),
-    TTABLE (wiznet_table,     "Wiznet channels.",             json_tblw_wiznet),
-    TTABLE (map_lookup_table, "Types for object mappings.",   json_tblw_map_lookup),
-    TTABLE (map_flags_table,  "Flags for object mappings.",   json_tblw_map_lookup),
-    TTABLE (obj_map_table,    "Obj type-values[] mappings.",  json_tblw_obj_map),
+    TTABLE (wiznet_table,     "Wiznet channels.",             NULL),
+    TTABLE (map_lookup_table, "Types for object mappings.",   NULL),
+    TTABLE (map_flags_table,  "Flags for object mappings.",   NULL),
+    TTABLE (obj_map_table,    "Obj type-values[] mappings.",  NULL),
     TTABLE (colour_table,     "Colour values.",               json_tblw_colour),
- // TTABLE (recycle_table,    "Recycleable object types.",    json_tblw_recycle),
+    TTABLE (recycle_table,    "Recycleable object types.",    NULL),
     TTABLE (board_table,      "Discussion boards.",           json_tblw_board),
-    TTABLE (affect_bit_table, "Affect bit vector types.",     json_tblw_affect_bit),
+    TTABLE (affect_bit_table, "Affect bit vector types.",     NULL),
     TTABLE (day_table,        "Days of the week.",            json_tblw_day),
     TTABLE (month_table,      "Months of the year.",          json_tblw_month),
     TTABLE (sky_table,        "Skies based on the weather.",  json_tblw_sky),
@@ -225,28 +227,38 @@ const WEAPON_T weapon_table[WEAPON_MAX + 1] = {
     {-1, NULL, 0, NULL}
 };
 
+const EFFECT_T effect_table[EFFECT_MAX + 1] = {
+    {EFFECT_NONE,   "none",   effect_empty},
+    {EFFECT_FIRE,   "fire",   effect_fire},
+    {EFFECT_COLD,   "cold",   effect_cold},
+    {EFFECT_SHOCK,  "shock",  effect_shock},
+    {EFFECT_ACID,   "acid",   effect_acid},
+    {EFFECT_POISON, "poison", effect_poison},
+    {0}
+};
+
 const DAM_T dam_table[DAM_MAX + 1] = {
     /* TODO: reference effects by index, not by function directly. */
-    {DAM_NONE,      "none",      0,             empty_effect,  0},
-    {DAM_BASH,      "bash",      RES_BASH,      empty_effect,  0},
-    {DAM_PIERCE,    "pierce",    RES_PIERCE,    empty_effect,  0},
-    {DAM_SLASH,     "slash",     RES_SLASH,     empty_effect,  0},
-    {DAM_FIRE,      "fire",      RES_FIRE,      fire_effect,   DAM_MAGICAL},
-    {DAM_COLD,      "cold",      RES_COLD,      cold_effect,   DAM_MAGICAL},
-    {DAM_LIGHTNING, "lightning", RES_LIGHTNING, shock_effect,  DAM_MAGICAL},
-    {DAM_ACID,      "acid",      RES_ACID,      acid_effect,   DAM_MAGICAL},
-    {DAM_POISON,    "poison",    RES_POISON,    poison_effect, DAM_MAGICAL},
-    {DAM_NEGATIVE,  "negative",  RES_NEGATIVE,  empty_effect,  DAM_MAGICAL},
-    {DAM_HOLY,      "holy",      RES_HOLY,      empty_effect,  DAM_MAGICAL},
-    {DAM_ENERGY,    "energy",    RES_ENERGY,    empty_effect,  DAM_MAGICAL},
-    {DAM_MENTAL,    "mental",    RES_MENTAL,    empty_effect,  DAM_MAGICAL},
-    {DAM_DISEASE,   "disease",   RES_DISEASE,   empty_effect,  DAM_MAGICAL},
-    {DAM_DROWNING,  "drowning",  RES_DROWNING,  empty_effect,  DAM_MAGICAL},
-    {DAM_LIGHT,     "light",     RES_LIGHT,     empty_effect,  DAM_MAGICAL},
-    {DAM_OTHER,     "other",     0,             empty_effect,  DAM_MAGICAL},
-    {DAM_HARM,      "harm",      0,             empty_effect,  DAM_MAGICAL},
-    {DAM_CHARM,     "charm",     RES_CHARM,     empty_effect,  DAM_MAGICAL},
-    {DAM_SOUND,     "sound",     RES_SOUND,     empty_effect,  DAM_MAGICAL},
+    {DAM_NONE,      "none",      0,             EFFECT_NONE,   0},
+    {DAM_BASH,      "bash",      RES_BASH,      EFFECT_NONE,   0},
+    {DAM_PIERCE,    "pierce",    RES_PIERCE,    EFFECT_NONE,   0},
+    {DAM_SLASH,     "slash",     RES_SLASH,     EFFECT_NONE,   0},
+    {DAM_FIRE,      "fire",      RES_FIRE,      EFFECT_FIRE,   DAM_MAGICAL},
+    {DAM_COLD,      "cold",      RES_COLD,      EFFECT_COLD,   DAM_MAGICAL},
+    {DAM_LIGHTNING, "lightning", RES_LIGHTNING, EFFECT_SHOCK,  DAM_MAGICAL},
+    {DAM_ACID,      "acid",      RES_ACID,      EFFECT_ACID,   DAM_MAGICAL},
+    {DAM_POISON,    "poison",    RES_POISON,    EFFECT_POISON, DAM_MAGICAL},
+    {DAM_NEGATIVE,  "negative",  RES_NEGATIVE,  EFFECT_NONE,   DAM_MAGICAL},
+    {DAM_HOLY,      "holy",      RES_HOLY,      EFFECT_NONE,   DAM_MAGICAL},
+    {DAM_ENERGY,    "energy",    RES_ENERGY,    EFFECT_NONE,   DAM_MAGICAL},
+    {DAM_MENTAL,    "mental",    RES_MENTAL,    EFFECT_NONE,   DAM_MAGICAL},
+    {DAM_DISEASE,   "disease",   RES_DISEASE,   EFFECT_NONE,   DAM_MAGICAL},
+    {DAM_DROWNING,  "drowning",  RES_DROWNING,  EFFECT_NONE,   DAM_MAGICAL},
+    {DAM_LIGHT,     "light",     RES_LIGHT,     EFFECT_NONE,   DAM_MAGICAL},
+    {DAM_OTHER,     "other",     0,             EFFECT_NONE,   DAM_MAGICAL},
+    {DAM_HARM,      "harm",      0,             EFFECT_NONE,   DAM_MAGICAL},
+    {DAM_CHARM,     "charm",     RES_CHARM,     EFFECT_NONE,   DAM_MAGICAL},
+    {DAM_SOUND,     "sound",     RES_SOUND,     EFFECT_NONE,   DAM_MAGICAL},
     {0}
 };
 
@@ -1636,10 +1648,10 @@ const SKY_T sky_table[SKY_MAX + 1] = {
 };
 
 const SUN_T sun_table[SUN_MAX + 1] = {
-    { SUN_DARK,  "dark",  TRUE,   0,  5, "The night has begun.\n\r" },
-    { SUN_RISE,  "rise",  FALSE,  5,  6, "The sun rises in the east.\n\r" },
-    { SUN_LIGHT, "light", FALSE,  6, 19, "The day has begun.\n\r" },
-    { SUN_SET,   "set",   TRUE,  19, 20, "The sun slowly disappears in the west.\n\r" },
+    { SUN_DARK,  "dark",  TRUE,   0,  5, "The night has begun." },
+    { SUN_RISE,  "rise",  FALSE,  5,  6, "The sun rises in the east." },
+    { SUN_LIGHT, "light", FALSE,  6, 19, "The day has begun." },
+    { SUN_SET,   "set",   TRUE,  19, 20, "The sun slowly disappears in the west." },
     { -1, NULL, 0 }
 };
 

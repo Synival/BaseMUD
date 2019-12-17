@@ -249,3 +249,10 @@ const FLAG_T skill_target_types[SKILL_TARGET_MAX + 1] = {
     {"obj_char_offensive", SKILL_TARGET_OBJ_CHAR_OFF,   TRUE},
     {0}
 };
+
+const FLAG_T board_def_types[DEF_MAX + 1] = {
+    {"normal",  DEF_NORMAL,  TRUE},
+    {"include", DEF_INCLUDE, TRUE},
+    {"exclude", DEF_EXCLUDE, TRUE},
+    {0}
+};

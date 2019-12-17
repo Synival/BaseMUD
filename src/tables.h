@@ -50,6 +50,7 @@ extern const SEX_T            sex_table[SEX_MAX + 1];
 extern const SIZE_T           size_table[SIZE_MAX_R + 1];
 extern const ITEM_T           item_table[ITEM_MAX + 1];
 extern const WEAPON_T         weapon_table[WEAPON_MAX + 1];
+extern const EFFECT_T         effect_table[EFFECT_MAX + 1];
 extern const DAM_T            dam_table[DAM_MAX + 1];
 extern const ATTACK_T         attack_table[ATTACK_MAX + 1];
 extern const RACE_T           race_table[RACE_MAX + 1];

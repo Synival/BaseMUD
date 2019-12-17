@@ -29,11 +29,11 @@
 #define __ROM_EFFECTS_H
 
 /* Function prototypes. */
-void acid_effect (void *vo, int level, int dam, int target);
-void cold_effect (void *vo, int level, int dam, int target);
-void fire_effect (void *vo, int level, int dam, int target);
-void poison_effect (void *vo, int level, int dam, int target);
-void shock_effect (void *vo, int level, int dam, int target);
-void empty_effect (void *vo, int level, int dam, int target);
+DECLARE_EFFECT_FUN (effect_acid);
+DECLARE_EFFECT_FUN (effect_cold);
+DECLARE_EFFECT_FUN (effect_fire);
+DECLARE_EFFECT_FUN (effect_poison);
+DECLARE_EFFECT_FUN (effect_shock);
+DECLARE_EFFECT_FUN (effect_empty);
 
 #endif

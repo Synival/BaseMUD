@@ -36,6 +36,9 @@
     void fun (int sn, int level, CHAR_T *ch, void *vo, int target, \
               const char *target_name)
 
+#define DEFINE_EFFECT_FUN(fun) \
+    void fun (void *vo, int level, int dam, int target)
+
 #define DEFINE_TABLE_JSON_FUN(fun) \
     JSON_T *fun (const void *obj)
 
@@ -392,6 +395,7 @@
 #define DEF_NORMAL  0  /* No forced change, but default (any string)  */
 #define DEF_INCLUDE 1 /* 'names' MUST be included (only ONE name!)    */
 #define DEF_EXCLUDE 2 /* 'names' must NOT be included (one name only) */
+#define DEF_MAX     3
 
 #define DEFAULT_BOARD 0 /* default board is board #0 in the boards      */
                         /* It should be readable by everyone!           */
@@ -612,5 +616,14 @@
 #define MAX_SONGS       20
 #define MAX_SONG_LINES  100 /* this boils down to about 1k per song */
 #define MAX_SONG_GLOBAL 10  /* max songs the global jukebox can hold */
+
+/* Types of damage effects. */
+#define EFFECT_NONE     0
+#define EFFECT_FIRE     1
+#define EFFECT_COLD     2
+#define EFFECT_SHOCK    3
+#define EFFECT_ACID     4
+#define EFFECT_POISON   5
+#define EFFECT_MAX      6
 
 #endif

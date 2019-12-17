@@ -3,22 +3,73 @@
   "description": "Months of the year.",
   "type": "table",
   "values": [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "index": 0,
+      "name": "Winter"
+    },
+    {
+      "index": 1,
+      "name": "the Winter Wolf"
+    },
+    {
+      "index": 2,
+      "name": "the Frost Giant"
+    },
+    {
+      "index": 3,
+      "name": "the Old Forces"
+    },
+    {
+      "index": 4,
+      "name": "the Grand Struggle"
+    },
+    {
+      "index": 5,
+      "name": "the Spring"
+    },
+    {
+      "index": 6,
+      "name": "Nature"
+    },
+    {
+      "index": 7,
+      "name": "Futility"
+    },
+    {
+      "index": 8,
+      "name": "the Dragon"
+    },
+    {
+      "index": 9,
+      "name": "the Sun"
+    },
+    {
+      "index": 10,
+      "name": "the Heat"
+    },
+    {
+      "index": 11,
+      "name": "the Battle"
+    },
+    {
+      "index": 12,
+      "name": "the Dark Shades"
+    },
+    {
+      "index": 13,
+      "name": "the Shadows"
+    },
+    {
+      "index": 14,
+      "name": "the Long Shadows"
+    },
+    {
+      "index": 15,
+      "name": "the Ancient Darkness"
+    },
+    {
+      "index": 16,
+      "name": "the Great Evil"
+    }
   ]
 }}

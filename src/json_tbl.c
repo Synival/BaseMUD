@@ -29,6 +29,7 @@
 
 #include "json_obj.h"
 #include "lookup.h"
+#include "colour.h"
 
 #include "json_tbl.h"
 
@@ -92,20 +93,22 @@ DEFINE_TABLE_JSON_FUN (json_tblw_weapon) {
     json_prop_integer (new, "type", weapon->type);
     json_prop_string  (new, "name", JSTR (weapon->name));
     json_prop_integer (new, "newbie_vnum", weapon->newbie_vnum);
-    /* TODO: gsn? */
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_dam) {
     JSON_TBLW_START (DAM_T, dam, dam->name == NULL);
+
     json_prop_integer (new, "type", dam->type);
     json_prop_string  (new, "name", JSTR (dam->name));
-    json_prop_string  (new, "res_flags", JBITSF (res_flags, dam->res));
+
+    if (dam->res > 0)
+        json_prop_string  (new, "res_flags", JBITSF (res_flags, dam->res));
+    if (dam->dam_flags > 0)
     json_prop_string  (new, "dam_flags", JBITSF (dam_flags, dam->dam_flags));
-    /* TODO: dam->effect? */
-/*
-    EFFECT_FUN *effect;
-*/
+    if (dam->effect != EFFECT_NONE)
+        json_prop_string  (new, "effect", effect_get_name (dam->effect));
+
     return new;
 }
 
@@ -275,14 +278,10 @@ DEFINE_TABLE_JSON_FUN (json_tblw_skill) {
         json_prop_integer (sub2, "effort", skill->classes[i].effort);
     }
 
-    /* TODO: skill->spell_fun */
-
     json_prop_string (new, "target", JBITSF (skill_target_types,
         skill->target));
     json_prop_string (new, "min_position", JBITSF (position_types,
         skill->minimum_position));
-
-    /* TODO: pgsn?  this is internal, but should it be considered here? */
 
     if (skill->slot != 0)
         json_prop_integer (new, "slot", skill->slot);
@@ -296,6 +295,9 @@ DEFINE_TABLE_JSON_FUN (json_tblw_skill) {
         json_prop_string (new, "off_msg_char", JSTR (skill->msg_off));
     if (skill->msg_obj && skill->msg_obj[0] != '\0')
         json_prop_string (new, "off_msg_obj", JSTR (skill->msg_obj));
+
+    /* TODO: pgsn?  this is internal, but should it be considered here? */
+    /* TODO: skill->spell_fun */
 
     return new;
 }
@@ -383,150 +385,106 @@ DEFINE_TABLE_JSON_FUN (json_tblw_wear_loc) {
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_material) {
+    char color_buf[2];
     JSON_TBLW_START (MATERIAL_T, material, material->name == NULL);
-    /* TODO: properties for MATERIAL_T */
-#if 0
-    int type;
-    const char *name;
-    char color;
-#endif
+
+    json_prop_integer (new, "type", material->type);
+    json_prop_string  (new, "name", JSTR (material->name));
+
+    color_buf[0] = material->color;
+    color_buf[1] = '\0';
+    json_prop_string  (new, "color_char", color_buf);
+
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_colour_setting) {
+    char color_buf[256];
     JSON_TBLW_START (COLOUR_SETTING_T, colour_setting, colour_setting->name == NULL);
-    /* TODO: properties for COLOUR_SETTING_T */
-#if 0
-    int index;
-    char *name;
-    char act_char;
-    flag_t default_colour;
-#endif
-    return new;
-}
 
-DEFINE_TABLE_JSON_FUN (json_tblw_wiznet) {
-    JSON_TBLW_START (WIZNET_T, wiznet, wiznet->name == NULL);
-    /* TODO: properties for WIZNET_T */
-#if 0
-    flag_t bit;
-    char *name;
-    int level;
-#endif
-    return new;
-}
+    json_prop_integer (new, "index", colour_setting->index);
+    json_prop_string  (new, "name", JSTR (colour_setting->name));
 
-DEFINE_TABLE_JSON_FUN (json_tblw_map_lookup) {
-    JSON_TBLW_START (MAP_LOOKUP_TABLE_T, map_lookup, map_lookup->name == NULL);
-    /* TODO: properties for MAP_LOOKUP_TABLE_T */
-#if 0
-    int index;
-    char *name;
-    const FLAG_T *flags;
-#endif
-    return new;
-}
+    color_buf[0] = colour_setting->act_char;
+    color_buf[1] = '\0';
+    json_prop_string (new, "color_char", color_buf);
 
-DEFINE_TABLE_JSON_FUN (json_tblw_obj_map) {
-    JSON_TBLW_START (OBJ_MAP_T, obj_map, obj_map->item_type < 0);
-    /* TODO: properties for OBJ_MAP_T */
-#if 0
-    int item_type;
-    const struct obj_map_value values[OBJ_VALUE_MAX];
-#endif
+    colour_to_full_name (colour_setting->default_colour, color_buf,
+        sizeof (color_buf));
+    json_prop_string (new, "default_color", JSTR (color_buf));
+
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_colour) {
     JSON_TBLW_START (COLOUR_T, colour, colour->name == NULL);
-    /* TODO: properties for COLOUR_T */
-#if 0
-    flag_t mask;
-    flag_t code;
-    char *name;
-#endif
+    json_prop_string  (new, "name", JSTR (colour->name));
+    json_prop_integer (new, "group_mask", colour->mask);
+    json_prop_integer (new, "code",       colour->code);
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_board) {
     JSON_TBLW_START (BOARD_T, board, board->name == NULL);
-    /* TODO: properties for BOARD_T */
-#if 0
-    char *name;      /* Max 8 chars */
-    char *long_name; /* Explanatory text, should be no more than 40 ? chars */
-    int read_level;  /* minimum level to see board */
-    int write_level; /* minimum level to post notes */
-    char *names;     /* Default recipient */
-    int force_type;  /* Default action (DEF_XXX) */
-    int purge_days;  /* Default expiration */
-#endif
-    return new;
-}
-
-DEFINE_TABLE_JSON_FUN (json_tblw_affect_bit) {
-    JSON_TBLW_START (AFFECT_BIT_T, affect_bit, affect_bit->name == NULL);
-    /* TODO: properties for AFFECT_BIT_T */
-#if 0
-    char *name;
-    int type;
-    const FLAG_T *flags;
-    char *help;
-#endif
+    json_prop_string  (new, "name", JSTR (board->name));
+    json_prop_string  (new, "full_name", JSTR (board->long_name));
+    json_prop_integer (new, "read_level", board->read_level);
+    json_prop_integer (new, "write_level", board->write_level);
+    json_prop_string  (new, "recipients", JSTR (board->names));
+    json_prop_string  (new, "force_type", JBITSF (board_def_types,
+        board->force_type));
+    json_prop_integer (new, "purge_days", board->purge_days);
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_day) {
     JSON_TBLW_START (DAY_T, day, day->name == NULL);
-    /* TODO: properties for DAY_T */
-#if 0
-    int type;
-    const char *name;
-#endif
+    json_prop_integer (new, "index", day->type);
+    json_prop_string  (new, "name",  JSTR (day->name));
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_month) {
     JSON_TBLW_START (MONTH_T, month, month->name == NULL);
-    /* TODO: properties for MONTH_T */
-#if 0
-    int type;
-    const char *name;
-#endif
+    json_prop_integer (new, "index", month->type);
+    json_prop_string  (new, "name",  JSTR (month->name));
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_sky) {
     JSON_TBLW_START (SKY_T, sky, sky->name == NULL);
-    /* TODO: properties for SKY_T */
-#if 0
-    int type;
-    const char *name;
-    const char *description;
-    int mmhg_min;
-    int mmhg_max;
-#endif
+    json_prop_integer (new, "index",       sky->type);
+    json_prop_string  (new, "name",        JSTR (sky->name));
+    json_prop_string  (new, "description", JSTR (sky->description));
+    json_prop_integer (new, "mmhg_min",    sky->mmhg_min);
+    json_prop_integer (new, "mmhg_max",    sky->mmhg_max);
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_sun) {
     JSON_TBLW_START (SUN_T, sun, sun->name == NULL);
-    /* TODO: properties for SUN_T */
-#if 0
-    int type;
-    const char *name;
-    bool is_dark;
-    int hour_start;
-    int hour_end;
-    const char *message;
-#endif
+    json_prop_integer (new, "index",      sun->type);
+    json_prop_string  (new, "name",       JSTR (sun->name));
+    json_prop_boolean (new, "is_dark",    sun->is_dark);
+    json_prop_integer (new, "hour_start", sun->hour_start);
+    json_prop_integer (new, "hour_end",   sun->hour_end);
+    json_prop_string  (new, "message",    JSTR (sun->message));
     return new;
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_pose) {
+    JSON_T *sub, *sub2;
+    int i;
     JSON_TBLW_START (POSE_T, pose, pose->class_index < 0);
-#if 0
-    int class_index;
-    const char *message[MAX_LEVEL * 2 + 2];
-#endif
+
+    json_prop_string (new, "class", class_get_name (pose->class_index));
+    sub = json_prop_array (new, "poses");
+    for (i = 0; i < MAX_LEVEL; i++) {
+        if (pose->message[i * 2] == NULL)
+            continue;
+        sub2 = json_prop_object (sub, NULL, JSON_OBJ_ANY);
+        json_prop_string (sub2, "msg_self", pose->message[i * 2 + 0]);
+        json_prop_string (sub2, "msg_others", pose->message[i * 2 + 1]);
+    }
     return new;
 }

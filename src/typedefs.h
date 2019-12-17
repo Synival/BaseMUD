@@ -73,6 +73,7 @@ typedef struct skill_group_type SKILL_GROUP_T;
 typedef struct skill_group_class_type SKILL_GROUP_CLASS_T;
 typedef struct weapon_type      WEAPON_T;
 typedef struct item_type        ITEM_T;
+typedef struct effect_type      EFFECT_T;
 typedef struct dam_type         DAM_T;
 typedef struct attack_type      ATTACK_T;
 typedef struct wiznet_type      WIZNET_T;
@@ -147,14 +148,16 @@ typedef void RECYCLE_DISPOSE_FUN (void *obj);
     #define DECLARE_DO_FUN(fun)     void fun()
     #define DECLARE_SPEC_FUN(fun)   bool fun()
     #define DECLARE_SPELL_FUN(fun)  void fun()
+    #define DECLARE_EFFECT_FUN(fun) void fun()
     #define DECLARE_OLC_FUN(fun)    bool fun()
     #define DECLARE_TABLE_JSON_FUN(fun) JSON_T *fun()
 #else
     #define args(list)              list
-    #define DECLARE_DO_FUN(fun)     DO_FUN    fun
-    #define DECLARE_SPEC_FUN(fun)   SPEC_FUN  fun
-    #define DECLARE_SPELL_FUN(fun)  SPELL_FUN fun
-    #define DECLARE_OLC_FUN(fun)    OLC_FUN   fun
+    #define DECLARE_DO_FUN(fun)     DO_FUN     fun
+    #define DECLARE_SPEC_FUN(fun)   SPEC_FUN   fun
+    #define DECLARE_SPELL_FUN(fun)  SPELL_FUN  fun
+    #define DECLARE_EFFECT_FUN(fun) EFFECT_FUN fun
+    #define DECLARE_OLC_FUN(fun)    OLC_FUN    fun
     #define DECLARE_TABLE_JSON_FUN(fun) TABLE_JSON_FUN fun
 #endif
 
