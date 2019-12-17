@@ -104,7 +104,7 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
     TTABLE (item_table,       "items",        "Item types and properties.",   "item",          json_tblw_item),
     TTABLE (weapon_table,     "weapons",      "Weapon types and properties.", "weapon",        json_tblw_weapon),
     TTABLE (effect_table,     "effects",      "Damage effects and breaths.",  NULL,            NULL),
-    TTABLE (dam_table,        "dams",         "Damage types and properties.", "damage",        json_tblw_dam),
+    TTABLE (dam_table,        "dam_types",    "Damage types and properties.", "dam_type",      json_tblw_dam),
     TTABLE (attack_table,     "attacks",      "Attack types and properties.", "attack",        json_tblw_attack),
     TTABLE (race_table,       "races",        "Races and statistics.",        "race",          json_tblw_race),
     TTABLE (pc_race_table,    "pc_races",     "Playable race data.",          "player_race",   json_tblw_pc_race),
