@@ -121,7 +121,7 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
     TTABLE (nanny_table,      "nannies",      "Descriptor 'Nanny' table.",    NULL,            NULL),
     TTABLE (door_table,       "doors",        "Exit names.",                  "door",          json_tblw_door),
     TTABLE (spec_table,       "specs",        "Specialized mobile behavior.", "spec",          json_tblw_spec),
-    TTABLE (furniture_table, "furnitures",    "Furniture flags for positions.","furniture",    json_tblw_furniture),
+    TTABLE (furniture_table,  "furnitures",   "Furniture flags for positions.", NULL,          NULL),
     TTABLE (wear_loc_table,   "wear_locs",    "Wearable item table.",         "wear_loc",      json_tblw_wear_loc),
     TTABLE (material_table,   "materials",    "Material properties",          "material",      json_tblw_material),
     TTABLE (colour_setting_table, "color_settings", "Configurable colours.",  "color_setting", json_tblw_colour_setting),
