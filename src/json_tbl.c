@@ -64,6 +64,11 @@ DEFINE_TABLE_JSON_FUN (json_tblw_position) {
     json_prop_integer (new, "position",   pos->pos);
     json_prop_string  (new, "name",       JSTR (pos->name));
     json_prop_string  (new, "long_name",  JSTR (pos->long_name));
+    json_prop_string  (new, "room_msg",
+        JSTR (pos->room_msg));
+    if (pos->room_msg_furniture != NULL)
+        json_prop_string  (new, "room_msg_furniture",
+            JSTR (pos->room_msg_furniture));
     return new;
 }
 

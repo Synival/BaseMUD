@@ -1077,8 +1077,11 @@ void char_move (CHAR_T *ch, int door, bool follow) {
 }
 
 char *char_format_to_char (CHAR_T *victim, CHAR_T *ch) {
+    const POSITION_T *pos;
     static char buf[MAX_STRING_LENGTH];
-    char message[MAX_STRING_LENGTH];
+    char *buf_pos, name[256];
+    const char *msg_arg1, *msg_arg2, *msg_arg3;
+    size_t buf_len;
     buf[0] = '\0';
 
 #ifdef BASEMUD_COLOR_STATUS_EFFECTS
@@ -1171,78 +1174,55 @@ char *char_format_to_char (CHAR_T *victim, CHAR_T *ch) {
         return buf;
     }
 
-    strcat (buf, PERS_AW (victim, ch));
     if (!IS_NPC (victim) && !IS_SET (ch->comm, COMM_BRIEF)
         && victim->position == POS_STANDING && ch->on == NULL)
-        strcat (buf, victim->pcdata->title);
-
-    switch (victim->position) {
-        case POS_DEAD:    strcat (buf, " is lying here, DEAD!!"); break;
-        case POS_MORTAL:  strcat (buf, " is lying here, mortally wounded."); break;
-        case POS_INCAP:   strcat (buf, " is lying here, incapacitated."); break;
-        case POS_STUNNED: strcat (buf, " is lying here, stunned."); break;
-
-        case POS_SLEEPING:
-            if (victim->on != NULL) {
-                sprintf (message, " is sleeping %s %s.",
-                    obj_furn_preposition (victim->on, victim->position),
-                    victim->on->short_descr);
-                strcat (buf, message);
-            }
-            else
-                strcat (buf, " is sleeping here.");
-            break;
-
-        case POS_RESTING:
-            if (victim->on != NULL) {
-                sprintf (message, " is resting %s %s.",
-                    obj_furn_preposition (victim->on, victim->position),
-                    victim->on->short_descr);
-                strcat (buf, message);
-            }
-            else
-                strcat (buf, " is resting here.");
-            break;
-
-        case POS_SITTING:
-            if (victim->on != NULL) {
-                sprintf (message, " is sitting %s %s.",
-                    obj_furn_preposition (victim->on, victim->position),
-                    victim->on->short_descr);
-                strcat (buf, message);
-            }
-            else
-                strcat (buf, " is sitting here.");
-            break;
-
-        case POS_STANDING:
-            if (victim->on != NULL) {
-                sprintf (message, " is standing %s %s.",
-                    obj_furn_preposition (victim->on, victim->position),
-                    victim->on->short_descr);
-                strcat (buf, message);
-            }
-            else
-                strcat (buf, " is here.");
-            break;
-
-        case POS_FIGHTING:
-            strcat (buf, " is here, fighting ");
-            if (victim->fighting == NULL)
-                strcat (buf, "thin air??");
-            else if (victim->fighting == ch)
-                strcat (buf, "YOU!");
-            else if (victim->in_room == victim->fighting->in_room) {
-                strcat (buf, PERS_AW (victim->fighting, ch));
-                strcat (buf, ".");
-            }
-            else
-                strcat (buf, "someone who left??");
-            break;
+    {
+        snprintf (name, sizeof (name), "%s%s",
+            PERS_AW (victim, ch), victim->pcdata->title);
     }
+    else
+        snprintf (name, sizeof (name), "%s", PERS_AW (victim, ch));
+
+    pos = position_get (victim->position);
+    msg_arg1 = name;
+
+    /* Format special messages for fighting. */
+    buf_len = strlen (buf);
+    buf_pos = buf + buf_len;
+    if (victim->position == POS_FIGHTING) {
+        if (victim->fighting == NULL) {
+            msg_arg2 = "thin air";
+            msg_arg3 = "??";
+        }
+        else if (victim->fighting == ch) {
+            msg_arg2 = "YOU";
+            msg_arg3 = "!";
+        }
+        else if (victim->in_room == victim->fighting->in_room) {
+            msg_arg2 = PERS_AW (victim->fighting, ch);
+            msg_arg3 = ".";
+        }
+        else {
+            msg_arg2 = "someone who left";
+            msg_arg3 = "??";
+        }
+        str_inject_args (buf_pos, sizeof (buf) - buf_len,
+            pos->room_msg, msg_arg1, msg_arg2, msg_arg3, NULL);
+    }
+    /* Format special messages for furniture. */
+    else if (victim->on != NULL && pos->room_msg_furniture != NULL) {
+        msg_arg2 = obj_furn_preposition (victim->on, victim->position);
+        msg_arg3 = victim->on->short_descr; /* TODO: invisible chairs? */
+        str_inject_args (buf_pos, sizeof (buf) - buf_len,
+            pos->room_msg_furniture, msg_arg1, msg_arg2, msg_arg3, NULL);
+    }
+    /* Format standard messages. */
+    else
+        str_inject_args (buf_pos, sizeof (buf) - buf_len,
+            pos->room_msg, msg_arg1, NULL);
 
     strcat (buf, "\n\r");
-    buf[0] = UPPER (buf[0]);
+    buf_pos[0] = UPPER (buf_pos[0]);
     return buf;
 }
 

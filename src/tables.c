@@ -97,13 +97,13 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
     TTYPES (board_def_types,  "Types of boards."),
 
     /* from tables.h */
+    /* TODO: read all of these! */
     TTABLE (clan_table,       "clans",        "Player clans.",                "clan",          json_tblw_clan),
     TTABLE (position_table,   "positions",    "Character positions.",         "position",      json_tblw_position),
     TTABLE (sex_table,        "sexes",        "Gender settings.",             "sex",           json_tblw_sex),
     TTABLE (size_table,       "sizes",        "Character sizes.",             "size",          json_tblw_size),
     TTABLE (item_table,       "items",        "Item types and properties.",   "item",          json_tblw_item),
     TTABLE (weapon_table,     "weapons",      "Weapon types and properties.", "weapon",        json_tblw_weapon),
-    TTABLE (effect_table,     "effects",      "Damage effects and breaths.",  NULL,            NULL),
     TTABLE (dam_table,        "dam_types",    "Damage types and properties.", "dam_type",      json_tblw_dam),
     TTABLE (attack_table,     "attacks",      "Attack types and properties.", "attack",        json_tblw_attack),
     TTABLE (race_table,       "races",        "Races and statistics.",        "race",          json_tblw_race),
@@ -118,26 +118,29 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
     TTABLE (skill_table,      "skills",       "Master skill table.",          "skill",         json_tblw_skill),
     TTABLE (skill_group_table,"skill_groups", "Groups of skills table.",      "skill_group",   json_tblw_skill_group),
     TTABLE (sector_table,     "sectors",      "Sector/terrain properties.",   "sector",        json_tblw_sector),
-    TTABLE (nanny_table,      "nannies",      "Descriptor 'Nanny' table.",    NULL,            NULL),
     TTABLE (door_table,       "doors",        "Exit names.",                  "door",          json_tblw_door),
     TTABLE (spec_table,       "specs",        "Specialized mobile behavior.", "spec",          json_tblw_spec),
-    TTABLE (furniture_table,  "furnitures",   "Furniture flags for positions.", NULL,          NULL),
     TTABLE (wear_loc_table,   "wear_locs",    "Wearable item table.",         "wear_loc",      json_tblw_wear_loc),
     TTABLE (material_table,   "materials",    "Material properties",          "material",      json_tblw_material),
     TTABLE (colour_setting_table, "color_settings", "Configurable colours.",  "color_setting", json_tblw_colour_setting),
-    TTABLE (wiznet_table,     "wiznets",      "Wiznet channels.",             NULL,            NULL),
-    TTABLE (map_lookup_table, "map_lookups",  "Types for object mappings.",   NULL,            NULL),
-    TTABLE (map_flags_table,  "map_flags",    "Flags for object mappings.",   NULL,            NULL),
-    TTABLE (obj_map_table,    "obj_maps",     "Obj type-values[] mappings.",  NULL,            NULL),
     TTABLE (colour_table,     "colors",       "Colour values.",               "color",         json_tblw_colour),
-    TTABLE (recycle_table,    "recyclables",  "Recycleable object types.",    NULL,            NULL),
     TTABLE (board_table,      "boards",       "Discussion boards.",           "board",         json_tblw_board),
-    TTABLE (affect_bit_table, "affect_bits",  "Affect bit vector types.",     NULL,            NULL),
     TTABLE (day_table,        "days",         "Days of the week.",            "day",           json_tblw_day),
     TTABLE (month_table,      "months",       "Months of the year.",          "month",         json_tblw_month),
     TTABLE (sky_table,        "skies",        "Skies based on the weather.",  "sky",           json_tblw_sky),
     TTABLE (sun_table,        "suns",        "Positions of the sun.",        "sun",            json_tblw_sun),
     TTABLE (pose_table,       "pose",       "Poses based on class and level", "pose",          json_tblw_pose),
+
+    /* constant tables that are internal only. */
+    TTABLE (effect_table,     "effects",      "Damage effects and breaths.",  NULL,            NULL),
+    TTABLE (nanny_table,      "nannies",      "Descriptor 'Nanny' table.",    NULL,            NULL),
+    TTABLE (furniture_table,  "furnitures",   "Furniture flags for positions.", NULL,          NULL),
+    TTABLE (wiznet_table,     "wiznets",      "Wiznet channels.",             NULL,            NULL),
+    TTABLE (map_lookup_table, "map_lookups",  "Types for object mappings.",   NULL,            NULL),
+    TTABLE (map_flags_table,  "map_flags",    "Flags for object mappings.",   NULL,            NULL),
+    TTABLE (obj_map_table,    "obj_maps",     "Obj type-values[] mappings.",  NULL,            NULL),
+    TTABLE (recycle_table,    "recyclables",  "Recycleable object types.",    NULL,            NULL),
+    TTABLE (affect_bit_table, "affect_bits",  "Affect bit vector types.",     NULL,            NULL),
     {0}
 };
 
@@ -153,15 +156,15 @@ const CLAN_T clan_table[CLAN_MAX + 1] = {
 
 /* for position */
 const POSITION_T position_table[POS_MAX + 1] = {
-    {POS_DEAD,     "dead",             "dead"},
-    {POS_MORTAL,   "mortally wounded", "mort"},
-    {POS_INCAP,    "incapacitated",    "incap"},
-    {POS_STUNNED,  "stunned",          "stun"},
-    {POS_SLEEPING, "sleeping",         "sleep"},
-    {POS_RESTING,  "resting",          "rest"},
-    {POS_SITTING,  "sitting",          "sit"},
-    {POS_FIGHTING, "fighting",         "fight"},
-    {POS_STANDING, "standing",         "stand"},
+    {POS_DEAD,     "dead",             "dead",  "$1 is lying here, DEAD!!",            NULL},
+    {POS_MORTAL,   "mortally wounded", "mort",  "$1 is lying here, mortally wounded.", NULL},
+    {POS_INCAP,    "incapacitated",    "incap", "$1 is lying here, incapacitated.",    NULL},
+    {POS_STUNNED,  "stunned",          "stun",  "$1 is lying here, stunned.",          NULL},
+    {POS_SLEEPING, "sleeping",         "sleep", "$1 is sleeping here.",                "$1 is sleeping $2 $3."},
+    {POS_RESTING,  "resting",          "rest",  "$1 is resting here.",                 "$1 is resting $2 $3."},
+    {POS_SITTING,  "sitting",          "sit",   "$1 is sitting here.",                 "$1 is sitting $2 $3."},
+    {POS_FIGHTING, "fighting",         "fight", "$1 is here, fighting $2$3",           NULL},
+    {POS_STANDING, "standing",         "stand", "$1 is here.",                         " is standing $2 $3."},
     {0},
 };
 

@@ -414,6 +414,72 @@ char *ctime_fixed (const time_t *timep) {
     return buf;
 }
 
+size_t str_inject_args (char *buf, size_t size, const char *format, ...) {
+    va_list args;
+    int i, count, index;
+    const char *read_pos, *dollar_pos;
+    char *write_pos, next_ch;
+    const char **strings;
+    size_t written, write_size;
+
+    /* get the number of arguments provided. */
+    va_start (args, format);
+    count = 0;
+
+    while (va_arg (args, char *) != NULL) {
+        count++;
+        if (count > 9) {
+            written = snprintf (buf, size, "(TOO MANY ARGS)");
+            return written;
+        }
+    }
+    va_end (args);
+
+    /* assign the arguments. */
+    strings = malloc (sizeof (const char *) * count);
+    va_start (args, format);
+    for (i = 0; i < count; i++)
+        strings[i] = va_arg (args, char *);
+    va_end (args);
+
+    read_pos   = format;
+    write_pos  = buf;
+    write_size = size;
+    written    = 0;
+
+    while ((dollar_pos = strchr (read_pos, '$')) != NULL) {
+        next_ch = *(dollar_pos + 1);
+
+        if (dollar_pos > read_pos) {
+            snprintf (write_pos, (dollar_pos - read_pos) + 1, "%s", read_pos);
+            written += (dollar_pos - read_pos);
+            write_pos  = buf  + written;
+            write_size = size - written;
+        }
+
+        if (next_ch >= '1' && next_ch <= '9') {
+            index = next_ch - '1';
+            if (index >= 0 && index < count)
+                written += snprintf (write_pos, write_size,
+                    "%s", strings[index]);
+            else
+                written += snprintf (write_pos, write_size,
+                    "($%d: OUT OF RANGE)", index);
+        }
+        else
+            written += snprintf (write_pos, write_size, "$%c", next_ch);
+
+        read_pos   = dollar_pos + 2;
+        write_pos  = buf  + written;
+        write_size = size - written;
+    }
+    if (*read_pos != '\0')
+        written += snprintf (write_pos, write_size, "%s", read_pos);
+
+    free (strings);
+    return written;
+}
+
 /* Writes a string to the log. */
 void log_string (const char *str) {
     char *strtime;

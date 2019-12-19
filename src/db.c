@@ -251,7 +251,7 @@ void db_export_json (bool write_indiv, const char *everything) {
     char buf[256], fbuf[256];
 
     /* Write all areas. */
-    for (area = area_get_first(); area != NULL; area = area_get_next(area)) {
+    for (area = area_get_first(); area != NULL; area = area_get_next (area)) {
         snprintf (fbuf, sizeof(fbuf), "%s/", area->name);
 
         snprintf (buf, sizeof(buf), "areas/%s", area->name);
@@ -261,7 +261,7 @@ void db_export_json (bool write_indiv, const char *everything) {
         if (write_indiv)
             log_f("Exporting JSON: %sareas/%s*", JSON_DIR, fbuf);
 
-        json = json_wrap_obj(json_new_obj_area (NULL, area), "area");
+        json = json_wrap_obj (json_new_obj_area (NULL, area), "area");
         json_attach_under (json, jgrp);
 
         if (write_indiv) {

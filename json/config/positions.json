@@ -2,46 +2,59 @@
   {"position": {
     "position": 0,
     "name": "dead",
-    "long_name": "dead"
+    "long_name": "dead",
+    "room_msg": "$1 is lying here, DEAD!!"
   }},
   {"position": {
     "position": 1,
     "name": "mort",
-    "long_name": "mortally wounded"
+    "long_name": "mortally wounded",
+    "room_msg": "$1 is lying here, mortally wounded."
   }},
   {"position": {
     "position": 2,
     "name": "incap",
-    "long_name": "incapacitated"
+    "long_name": "incapacitated",
+    "room_msg": "$1 is lying here, incapacitated."
   }},
   {"position": {
     "position": 3,
     "name": "stun",
-    "long_name": "stunned"
+    "long_name": "stunned",
+    "room_msg": "$1 is lying here, stunned."
   }},
   {"position": {
     "position": 4,
     "name": "sleep",
-    "long_name": "sleeping"
+    "long_name": "sleeping",
+    "room_msg": "$1 is sleeping here.",
+    "room_msg_furniture": "$1 is sleeping $2 $3."
   }},
   {"position": {
     "position": 5,
     "name": "rest",
-    "long_name": "resting"
+    "long_name": "resting",
+    "room_msg": "$1 is resting here.",
+    "room_msg_furniture": "$1 is resting $2 $3."
   }},
   {"position": {
     "position": 6,
     "name": "sit",
-    "long_name": "sitting"
+    "long_name": "sitting",
+    "room_msg": "$1 is sitting here.",
+    "room_msg_furniture": "$1 is sitting $2 $3."
   }},
   {"position": {
     "position": 7,
     "name": "fight",
-    "long_name": "fighting"
+    "long_name": "fighting",
+    "room_msg": "$1 is here, fighting $2$3"
   }},
   {"position": {
     "position": 8,
     "name": "stand",
-    "long_name": "standing"
+    "long_name": "standing",
+    "room_msg": "$1 is here.",
+    "room_msg_furniture": " is standing $2 $3."
   }}
 ]

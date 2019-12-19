@@ -315,6 +315,8 @@ struct position_type {
     int pos;
     char *long_name;
     char *name;
+    char *room_msg;
+    char *room_msg_furniture;
 };
 
 struct sex_type {
