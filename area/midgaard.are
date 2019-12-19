@@ -888,7 +888,7 @@ ABV 0 900 0
 25 0 1d1+999 1d1+199 1d8+10 slap
 -15 -15 -15 -15
 FG ABCD 0 0
-stand stand male 1000
+stand stand female 1000
 0 0 medium 0
 #3160
 Melancholy~
@@ -905,7 +905,7 @@ ABV 0 900 0
 25 0 1d1+999 1d1+199 5d6+20 slap
 -15 -15 -15 -15
 FG ABCD 0 0
-stand stand male 1000
+stand stand female 1000
 0 0 medium 0
 #3161
 lister green tree snake~

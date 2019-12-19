@@ -164,7 +164,7 @@ const POSITION_T position_table[POS_MAX + 1] = {
     {POS_RESTING,  "resting",          "rest",  "$1 is resting here.",                 "$1 is resting $2 $3."},
     {POS_SITTING,  "sitting",          "sit",   "$1 is sitting here.",                 "$1 is sitting $2 $3."},
     {POS_FIGHTING, "fighting",         "fight", "$1 is here, fighting $2$3",           NULL},
-    {POS_STANDING, "standing",         "stand", "$1 is here.",                         " is standing $2 $3."},
+    {POS_STANDING, "standing",         "stand", "$1 is standing here.",                " is standing $2 $3."},
     {0},
 };
 

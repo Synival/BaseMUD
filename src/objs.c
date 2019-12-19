@@ -229,7 +229,7 @@ void obj_clone (OBJ_T *parent, OBJ_T *clone) {
 }
 
 /* returns number of people on an object */
-int obj_count_users (OBJ_T *obj) {
+int obj_count_users (const OBJ_T *obj) {
     CHAR_T *fch;
     int count = 0;
 
@@ -375,7 +375,7 @@ void obj_take_from_obj (OBJ_T *obj) {
 }
 
 /* Find the ac value of an obj, including position effect. */
-int obj_get_ac_type (OBJ_T *obj, int wear_loc, int type) {
+int obj_get_ac_type (const OBJ_T *obj, int wear_loc, int type) {
     flag_t ac_value;
     if (obj->item_type != ITEM_ARMOR)
         return 0;
@@ -416,8 +416,8 @@ int obj_get_ac_type (OBJ_T *obj, int wear_loc, int type) {
 }
 
 /* Count occurrences of an obj in a list. */
-int obj_index_count_in_list (OBJ_INDEX_T *obj_index, OBJ_T *list) {
-    OBJ_T *obj;
+int obj_index_count_in_list (const OBJ_INDEX_T *obj_index, const OBJ_T *list) {
+    const OBJ_T *obj;
     int matches;
 
     matches = 0;
@@ -494,7 +494,7 @@ OBJ_T *obj_create_money (int gold, int silver) {
 
 /* Return # of objects which an object counts as.
  * Thanks to Tony Chamberlain for the correct recursive code here. */
-int obj_get_carry_number (OBJ_T *obj) {
+int obj_get_carry_number (const OBJ_T *obj) {
     int number;
     switch (obj->item_type) {
         case ITEM_CONTAINER:
@@ -512,7 +512,7 @@ int obj_get_carry_number (OBJ_T *obj) {
 }
 
 /* Return weight of an object, including weight of contents. */
-int obj_get_weight (OBJ_T *obj) {
+int obj_get_weight (const OBJ_T *obj) {
     int weight, mult;
 
     weight = obj->weight;
@@ -523,7 +523,7 @@ int obj_get_weight (OBJ_T *obj) {
     return weight;
 }
 
-int obj_get_true_weight (OBJ_T *obj) {
+int obj_get_true_weight (const OBJ_T *obj) {
     int weight;
 
     weight = obj->weight;
@@ -533,7 +533,7 @@ int obj_get_true_weight (OBJ_T *obj) {
     return weight;
 }
 
-char *obj_format_to_char (OBJ_T *obj, CHAR_T *ch, bool is_short) {
+char *obj_format_to_char (const OBJ_T *obj, const CHAR_T *ch, bool is_short) {
     static char buf[MAX_STRING_LENGTH];
     buf[0] = '\0';
 
@@ -590,15 +590,15 @@ char *obj_format_to_char (OBJ_T *obj, CHAR_T *ch, bool is_short) {
 
 /* Show a list to a character.
  * Can coalesce duplicated items.  */
-void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool is_short,
+void obj_list_show_to_char (const OBJ_T *list, CHAR_T *ch, bool is_short,
     bool show_nothing)
 {
+    const OBJ_T *obj;
     char buf[MAX_STRING_LENGTH];
     BUFFER_T *output;
     char **show_strings;
     int *show_string_counts;
     char *obj_show_string;
-    OBJ_T *obj;
     int show_string_num;
     int i;
     int count;
@@ -680,7 +680,7 @@ void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool is_short,
     mem_free (show_string_counts, count * sizeof (int));
 }
 
-int obj_furn_preposition_type (OBJ_T *obj, int position) {
+int obj_furn_preposition_type (const OBJ_T *obj, int position) {
     const FURNITURE_BITS_T *bits;
     if (obj == NULL)
         return POS_PREP_NO_OBJECT;
@@ -695,7 +695,7 @@ int obj_furn_preposition_type (OBJ_T *obj, int position) {
     else                                            return POS_PREP_BY;
 }
 
-const char *obj_furn_preposition_base (OBJ_T *obj, int position,
+const char *obj_furn_preposition_base (const OBJ_T *obj, int position,
     const char *at, const char *on, const char *in, const char *by)
 {
     int pos_type;
@@ -712,17 +712,17 @@ const char *obj_furn_preposition_base (OBJ_T *obj, int position,
     }
 }
 
-const char *obj_furn_preposition (OBJ_T *obj, int position) {
+const char *obj_furn_preposition (const OBJ_T *obj, int position) {
     return obj_furn_preposition_base (obj, position, "at", "on", "in", "by");
 }
 
-bool obj_is_container (OBJ_T *obj) {
+bool obj_is_container (const OBJ_T *obj) {
     return obj->item_type == ITEM_CONTAINER ||
            obj->item_type == ITEM_CORPSE_NPC ||
            obj->item_type == ITEM_CORPSE_PC;
 }
 
-bool obj_can_fit_in (OBJ_T *obj, OBJ_T *container) {
+bool obj_can_fit_in (const OBJ_T *obj, const OBJ_T *container) {
     int weight;
     if (!obj_is_container (container))
         return FALSE;
@@ -740,7 +740,7 @@ bool obj_can_fit_in (OBJ_T *obj, OBJ_T *container) {
 
 /* Find some object with a given index data.
  * Used by area-reset 'P' command. */
-OBJ_T *obj_get_by_index (OBJ_INDEX_T *obj_index) {
+OBJ_T *obj_get_by_index (const OBJ_INDEX_T *obj_index) {
     OBJ_T *obj;
     for (obj = object_list; obj != NULL; obj = obj->next)
         if (obj->index_data == obj_index)
@@ -748,7 +748,7 @@ OBJ_T *obj_get_by_index (OBJ_INDEX_T *obj_index) {
     return NULL;
 }
 
-bool obj_is_furniture (OBJ_T *obj, flag_t bits) {
+bool obj_is_furniture (const OBJ_T *obj, flag_t bits) {
     if (obj->item_type != ITEM_FURNITURE)
         return FALSE;
     return ((obj->v.furniture.flags & bits) != 0) ? TRUE : FALSE;
@@ -814,7 +814,7 @@ bool obj_remove_exit_flag (OBJ_T *obj, flag_t exit_flag) {
 }
 
 /* Former macros. */
-bool obj_can_wear_flag (OBJ_T *obj, flag_t flag) {
+bool obj_can_wear_flag (const OBJ_T *obj, flag_t flag) {
     if (IS_SET ((obj)->wear_flags, flag))
         return TRUE;
     else if (obj->item_type == ITEM_LIGHT && flag == ITEM_WEAR_LIGHT)
@@ -822,7 +822,7 @@ bool obj_can_wear_flag (OBJ_T *obj, flag_t flag) {
     return FALSE;
 }
 
-bool obj_index_can_wear_flag (OBJ_INDEX_T *obj, flag_t flag) {
+bool obj_index_can_wear_flag (const OBJ_INDEX_T *obj, flag_t flag) {
     if (IS_SET ((obj)->wear_flags, flag))
         return TRUE;
     else if (obj->item_type == ITEM_LIGHT && flag == ITEM_WEAR_LIGHT)
@@ -830,7 +830,7 @@ bool obj_index_can_wear_flag (OBJ_INDEX_T *obj, flag_t flag) {
     return FALSE;
 }
 
-int obj_get_weight_mult (OBJ_T *obj) {
+int obj_get_weight_mult (const OBJ_T *obj) {
     return obj->item_type == ITEM_CONTAINER
         ? obj->v.container.weight_mult
         : 100;

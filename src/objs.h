@@ -44,24 +44,24 @@ void obj_clone (OBJ_T *parent, OBJ_T *clone);
 void obj_extract (OBJ_T *obj);
 
 /* "Is" / "Can" functions. */
-bool obj_is_container (OBJ_T *obj);
-bool obj_can_fit_in (OBJ_T *obj, OBJ_T *container);
-bool obj_is_furniture (OBJ_T *obj, flag_t bits);
-bool obj_can_wear_flag (OBJ_T *obj, flag_t flag);
-bool obj_index_can_wear_flag (OBJ_INDEX_T *obj, flag_t flag);
+bool obj_is_container (const OBJ_T *obj);
+bool obj_can_fit_in (const OBJ_T *obj, const OBJ_T *container);
+bool obj_is_furniture (const OBJ_T *obj, flag_t bits);
+bool obj_can_wear_flag (const OBJ_T *obj, flag_t flag);
+bool obj_index_can_wear_flag (const OBJ_INDEX_T *obj, flag_t flag);
 
 /* "Get" functions. */
-int obj_count_users (OBJ_T *obj);
-int obj_get_ac_type (OBJ_T *obj, int wear_loc, int type);
-int obj_index_count_in_list (OBJ_INDEX_T *obj_index, OBJ_T *list);
-int obj_get_carry_number (OBJ_T *obj);
-int obj_get_weight (OBJ_T *obj);
-int obj_get_true_weight (OBJ_T *obj);
-int obj_furn_preposition_type (OBJ_T *obj, int position);
-const char *obj_furn_preposition_base (OBJ_T *obj, int position,
+int obj_count_users (const OBJ_T *obj);
+int obj_get_ac_type (const OBJ_T *obj, int wear_loc, int type);
+int obj_index_count_in_list (const OBJ_INDEX_T *obj_index, const OBJ_T *list);
+int obj_get_carry_number (const OBJ_T *obj);
+int obj_get_weight (const OBJ_T *obj);
+int obj_get_true_weight (const OBJ_T *obj);
+int obj_furn_preposition_type (const OBJ_T *obj, int position);
+const char *obj_furn_preposition_base (const OBJ_T *obj, int position,
     const char *at, const char *on, const char *in, const char *by);
-const char *obj_furn_preposition (OBJ_T *obj, int position);
-int obj_get_weight_mult (OBJ_T *obj);
+const char *obj_furn_preposition (const OBJ_T *obj, int position);
+int obj_get_weight_mult (const OBJ_T *obj);
 
 /* Object transfer functions. */
 void obj_give_to_char (OBJ_T *obj, CHAR_T *ch);
@@ -74,15 +74,15 @@ void obj_take_from_room (OBJ_T *obj);
 void obj_take_from_obj (OBJ_T *obj);
 
 /* Action functions. */
-char *obj_format_to_char (OBJ_T *obj, CHAR_T *ch, bool is_short);
-void obj_list_show_to_char (OBJ_T *list, CHAR_T *ch, bool is_short,
+char *obj_format_to_char (const OBJ_T *obj, const CHAR_T *ch, bool is_short);
+void obj_list_show_to_char (const OBJ_T *list, CHAR_T *ch, bool is_short,
     bool show_nothing);
 void obj_enchant (OBJ_T *obj);
 bool obj_set_exit_flag (OBJ_T *obj, flag_t exit_flag);
 bool obj_remove_exit_flag (OBJ_T *obj, flag_t exit_flag);
 
 /* Look-up functions. */
-OBJ_T *obj_get_by_index (OBJ_INDEX_T *obj_index);
+OBJ_T *obj_get_by_index (const OBJ_INDEX_T *obj_index);
 
 /* Misc. utility functions. */
 flag_t obj_exit_flag_for_container (flag_t exit_flag);

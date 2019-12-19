@@ -99,7 +99,7 @@ sh_int gsn_recall;
 sh_int gsn_frenzy;
 
 /* for returning skill information */
-int get_skill (CHAR_T *ch, int sn) {
+int get_skill (const CHAR_T *ch, int sn) {
     int skill;
 
     /* shorthand for level based skills */

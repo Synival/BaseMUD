@@ -297,18 +297,18 @@ void char_clone_mobile (CHAR_T *parent, CHAR_T *clone) {
         affect_to_char (clone, paf);
 }
 
-bool char_has_clan (CHAR_T *ch) {
+bool char_has_clan (const CHAR_T *ch) {
     return ch->clan;
 }
 
-bool char_in_same_clan (CHAR_T *ch, CHAR_T *victim) {
+bool char_in_same_clan (const CHAR_T *ch, const CHAR_T *victim) {
     if (clan_table[ch->clan].independent)
         return FALSE;
     else
         return (ch->clan == victim->clan);
 }
 
-OBJ_T *char_get_weapon (CHAR_T *ch) {
+OBJ_T *char_get_weapon (const CHAR_T *ch) {
     OBJ_T *wield;
 
     wield = char_get_eq_by_wear_loc (ch, WEAR_WIELD);
@@ -318,7 +318,7 @@ OBJ_T *char_get_weapon (CHAR_T *ch) {
 }
 
 /* for returning weapon information */
-int char_get_weapon_sn (CHAR_T *ch) {
+int char_get_weapon_sn (const CHAR_T *ch) {
     const WEAPON_T *weapon;
     const OBJ_T *wield;
 
@@ -333,7 +333,7 @@ int char_get_weapon_sn (CHAR_T *ch) {
     return *(weapon->gsn);
 }
 
-int char_get_weapon_skill (CHAR_T *ch, int sn) {
+int char_get_weapon_skill (const CHAR_T *ch, int sn) {
     int skill;
 
     /* -1 is exotic */
@@ -460,7 +460,7 @@ void char_reset (CHAR_T *ch) {
 }
 
 /* Retrieve a character's trusted level for permission checking. */
-int char_get_trust (CHAR_T *ch) {
+int char_get_trust (const CHAR_T *ch) {
     if (ch->desc != NULL && ch->desc->original != NULL)
         ch = ch->desc->original;
     if (ch->trust)
@@ -472,7 +472,7 @@ int char_get_trust (CHAR_T *ch) {
 }
 
 /* command for retrieving stats */
-int char_get_curr_stat (CHAR_T *ch, int stat) {
+int char_get_curr_stat (const CHAR_T *ch, int stat) {
     int max;
 
     if (IS_NPC (ch) || ch->level > LEVEL_IMMORTAL)
@@ -489,7 +489,7 @@ int char_get_curr_stat (CHAR_T *ch, int stat) {
 }
 
 /* command for returning max training score */
-int char_get_max_train (CHAR_T *ch, int stat) {
+int char_get_max_train (const CHAR_T *ch, int stat) {
     int max;
 
     if (IS_NPC (ch) || ch->level > LEVEL_IMMORTAL)
@@ -505,12 +505,12 @@ int char_get_max_train (CHAR_T *ch, int stat) {
     return UMIN (max, 25);
 }
 
-long int char_get_carry_weight (CHAR_T *ch) {
+long int char_get_carry_weight (const CHAR_T *ch) {
     return ch->carry_weight + (ch->silver / 10) + (ch->gold * 2 / 5);
 }
 
 /* Retrieve a character's carry capacity. */
-int char_get_max_carry_count (CHAR_T *ch) {
+int char_get_max_carry_count (const CHAR_T *ch) {
     if (!IS_NPC (ch) && ch->level >= LEVEL_IMMORTAL)
         return 1000;
     if (IS_PET (ch))
@@ -519,7 +519,7 @@ int char_get_max_carry_count (CHAR_T *ch) {
 }
 
 /* Retrieve a character's carry capacity. */
-long int char_get_max_carry_weight (CHAR_T *ch) {
+long int char_get_max_carry_weight (const CHAR_T *ch) {
     if (!IS_NPC (ch) && ch->level >= LEVEL_IMMORTAL)
         return 10000000;
     if (IS_PET (ch))
@@ -612,7 +612,7 @@ void char_to_room (CHAR_T *ch, ROOM_INDEX_T *room_index) {
 }
 
 /* Find a piece of eq on a character. */
-OBJ_T *char_get_eq_by_wear_loc (CHAR_T *ch, flag_t wear_loc) {
+OBJ_T *char_get_eq_by_wear_loc (const CHAR_T *ch, flag_t wear_loc) {
     OBJ_T *obj;
     if (ch == NULL)
         return NULL;
@@ -789,7 +789,7 @@ void char_extract (CHAR_T *ch, bool pull) {
 }
 
 /* visibility on a room -- for entering and exits */
-bool char_can_see_room (CHAR_T *ch, ROOM_INDEX_T *room_index) {
+bool char_can_see_room (const CHAR_T *ch, const ROOM_INDEX_T *room_index) {
     int flags = room_index->room_flags;
     if (ch == NULL || room_index == NULL)
         return FALSE;
@@ -807,7 +807,7 @@ bool char_can_see_room (CHAR_T *ch, ROOM_INDEX_T *room_index) {
 }
 
 /* True if char can see victim, regardless of room. */
-bool char_can_see_anywhere (CHAR_T *ch, CHAR_T *victim) {
+bool char_can_see_anywhere (const CHAR_T *ch, const CHAR_T *victim) {
     if (ch == victim)
         return TRUE;
     if (char_get_trust (ch) < victim->invis_level)
@@ -850,7 +850,7 @@ bool char_can_see_anywhere (CHAR_T *ch, CHAR_T *victim) {
 }
 
 /* True if char can see victim in the same room. */
-bool char_can_see_in_room (CHAR_T *ch, CHAR_T *victim) {
+bool char_can_see_in_room (const CHAR_T *ch, const CHAR_T *victim) {
     if (ch == victim)
         return TRUE;
     if (char_get_trust (ch) < victim->incog_level &&
@@ -862,7 +862,7 @@ bool char_can_see_in_room (CHAR_T *ch, CHAR_T *victim) {
 }
 
 /* True if char can see obj. */
-bool char_can_see_obj (CHAR_T *ch, OBJ_T *obj) {
+bool char_can_see_obj (const CHAR_T *ch, const OBJ_T *obj) {
     if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT))
         return TRUE;
     if (IS_SET (obj->extra_flags, ITEM_VIS_DEATH))
@@ -882,7 +882,7 @@ bool char_can_see_obj (CHAR_T *ch, OBJ_T *obj) {
 }
 
 /* True if char can drop obj. */
-bool char_can_drop_obj (CHAR_T *ch, OBJ_T *obj) {
+bool char_can_drop_obj (const CHAR_T *ch, const OBJ_T *obj) {
     if (!IS_SET (obj->extra_flags, ITEM_NODROP))
         return TRUE;
     if (!IS_NPC (ch) && ch->level >= LEVEL_IMMORTAL)
@@ -1076,12 +1076,8 @@ void char_move (CHAR_T *ch, int door, bool follow) {
         mp_greet_trigger (ch);
 }
 
-char *char_format_to_char (CHAR_T *victim, CHAR_T *ch) {
-    const POSITION_T *pos;
+char *char_format_to_char (const CHAR_T *victim, const CHAR_T *ch) {
     static char buf[MAX_STRING_LENGTH];
-    char *buf_pos, name[256];
-    const char *msg_arg1, *msg_arg2, *msg_arg3;
-    size_t buf_len;
     buf[0] = '\0';
 
 #ifdef BASEMUD_COLOR_STATUS_EFFECTS
@@ -1167,29 +1163,41 @@ char *char_format_to_char (CHAR_T *victim, CHAR_T *ch) {
     if (IS_SET (ch->comm, COMM_MATERIALS))
         material_strcat (buf, material_get (victim->material));
 
-    if (victim->position == victim->start_pos
-        && victim->long_descr[0] != '\0')
-    {
+    if (victim->position == victim->start_pos && victim->long_descr[0] != '\0')
         strcat (buf, victim->long_descr);
-        return buf;
+    else {
+        size_t buf_len = strlen (buf);
+        char_format_pos_msg (buf + buf_len, sizeof (buf) - buf_len,
+            ch, victim, FALSE);
     }
 
-    if (!IS_NPC (victim) && !IS_SET (ch->comm, COMM_BRIEF)
-        && victim->position == POS_STANDING && ch->on == NULL)
+    return buf;
+}
+
+size_t char_format_pos_msg (char *buf, size_t size, const CHAR_T *ch,
+    const CHAR_T *victim, bool use_pronoun)
+{
+    const POSITION_T *pos;
+    const char *msg_arg1, *msg_arg2, *msg_arg3;
+    char *victim_name, name[256];
+    size_t written;
+
+    victim_name = (use_pronoun)
+        ? act_code_pronoun (victim, 'e')
+        : PERS_AW (victim, ch);
+    if (!use_pronoun && !IS_NPC (victim) && !IS_SET (ch->comm, COMM_BRIEF) &&
+        victim->position == POS_STANDING && ch->on == NULL)
     {
         snprintf (name, sizeof (name), "%s%s",
-            PERS_AW (victim, ch), victim->pcdata->title);
+            victim_name, victim->pcdata->title);
+        msg_arg1 = name;
     }
     else
-        snprintf (name, sizeof (name), "%s", PERS_AW (victim, ch));
-
-    pos = position_get (victim->position);
-    msg_arg1 = name;
+        msg_arg1 = victim_name;
 
     /* Format special messages for fighting. */
-    buf_len = strlen (buf);
-    buf_pos = buf + buf_len;
-    if (victim->position == POS_FIGHTING) {
+    pos = position_get (victim->position);
+    if (pos->pos == POS_FIGHTING) {
         if (victim->fighting == NULL) {
             msg_arg2 = "thin air";
             msg_arg3 = "??";
@@ -1206,28 +1214,28 @@ char *char_format_to_char (CHAR_T *victim, CHAR_T *ch) {
             msg_arg2 = "someone who left";
             msg_arg3 = "??";
         }
-        str_inject_args (buf_pos, sizeof (buf) - buf_len,
+        written = str_inject_args (buf, size,
             pos->room_msg, msg_arg1, msg_arg2, msg_arg3, NULL);
     }
     /* Format special messages for furniture. */
     else if (victim->on != NULL && pos->room_msg_furniture != NULL) {
         msg_arg2 = obj_furn_preposition (victim->on, victim->position);
         msg_arg3 = victim->on->short_descr; /* TODO: invisible chairs? */
-        str_inject_args (buf_pos, sizeof (buf) - buf_len,
+        written = str_inject_args (buf, size,
             pos->room_msg_furniture, msg_arg1, msg_arg2, msg_arg3, NULL);
     }
     /* Format standard messages. */
     else
-        str_inject_args (buf_pos, sizeof (buf) - buf_len,
+        written = str_inject_args (buf, size,
             pos->room_msg, msg_arg1, NULL);
 
-    strcat (buf, "\n\r");
-    buf_pos[0] = UPPER (buf_pos[0]);
-    return buf;
+    written += snprintf (buf + written, size - written, "\n\r");
+    buf[0] = UPPER (buf[0]);
+    return written;
 }
 
 void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
-    char buf[MAX_STRING_LENGTH], *msg;
+    char buf[MAX_STRING_LENGTH];
     OBJ_T *obj;
     flag_t wear_loc;
     int percent;
@@ -1251,19 +1259,10 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
     else
         percent = -1;
 
-    msg = NULL;
-    switch (victim->position) {
-        case POS_DEAD:     msg = "$E is... dead?!"; break;
-        case POS_MORTAL:   msg = "$E is on the ground, mortally wounded."; break;
-        case POS_INCAP:    msg = "$E is on the ground, incapacitated."; break;
-        case POS_STUNNED:  msg = "$E is on the ground, stunned."; break;
-        case POS_SLEEPING: msg = "$E is on the ground, sleeping."; break;
-        case POS_RESTING:  msg = "$E is sitting and resting."; break;
-        case POS_SITTING:  msg = "$E is sitting."; break;
-        case POS_STANDING: msg = "$E is standing."; break;
-    }
-    if (msg != NULL)
-        act (msg, ch, NULL, victim, TO_CHAR);
+    buf[0] = '\0';
+    char_format_pos_msg (buf, sizeof (buf), ch, victim, TRUE);
+    if (buf[0] != '\0')
+        send_to_char (buf, ch);
 
     sprintf (buf, "%s %s.\n\r", PERS_AW (victim, ch),
         condition_name_by_percent (percent));
@@ -1296,8 +1295,8 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
     }
 }
 
-void char_list_show_to_char (CHAR_T *list, CHAR_T *ch) {
-    CHAR_T *rch;
+void char_list_show_to_char (const CHAR_T *list, CHAR_T *ch) {
+    const CHAR_T *rch;
 
     for (rch = list; rch != NULL; rch = rch->next_in_room) {
         if (rch == ch)
@@ -1346,7 +1345,7 @@ bool char_is_friend (CHAR_T *ch, CHAR_T *victim) {
 #endif
 
 /* RT part of the corpse looting code */
-bool char_can_loot (CHAR_T *ch, OBJ_T *obj) {
+bool char_can_loot (const CHAR_T *ch, const OBJ_T *obj) {
     CHAR_T *owner, *wch;
     if (IS_IMMORTAL (ch))
         return TRUE;
@@ -1460,13 +1459,13 @@ bool char_remove_obj (CHAR_T *ch, flag_t wear_loc, bool replace, bool quiet) {
     return TRUE;
 }
 
-bool char_has_available_wear_loc (CHAR_T *ch, flag_t wear_loc) {
+bool char_has_available_wear_loc (const CHAR_T *ch, flag_t wear_loc) {
     if (ch == NULL)
         return FALSE;
     return (char_get_eq_by_wear_loc (ch, wear_loc) == NULL);
 }
 
-bool char_has_available_wear_flag (CHAR_T *ch, flag_t wear_flag) {
+bool char_has_available_wear_flag (const CHAR_T *ch, flag_t wear_flag) {
     int i;
     if (ch == NULL)
         return FALSE;
@@ -1571,7 +1570,7 @@ bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool replace) {
     return TRUE;
 }
 
-void char_get_who_string (CHAR_T *ch, CHAR_T *wch, char *buf,
+void char_get_who_string (const CHAR_T *ch, const CHAR_T *wch, char *buf,
     size_t len)
 {
     const char *class;
@@ -1612,7 +1611,7 @@ void char_set_title (CHAR_T *ch, char *title) {
     str_replace_dup (&(ch->pcdata->title), buf);
 }
 
-bool char_has_key (CHAR_T *ch, int key) {
+bool char_has_key (const CHAR_T *ch, int key) {
     OBJ_T *obj;
     for (obj = ch->carrying; obj != NULL; obj = obj->next_content)
         if (obj->index_data->vnum == key)
@@ -1665,7 +1664,7 @@ void char_reduce_money (CHAR_T *ch, int cost) {
     }
 }
 
-int char_get_obj_cost (CHAR_T *ch, OBJ_T *obj, bool buy) {
+int char_get_obj_cost (const CHAR_T *ch, const OBJ_T *obj, bool buy) {
     SHOP_T *shop;
     int cost;
 
@@ -1719,13 +1718,13 @@ int char_get_obj_cost (CHAR_T *ch, OBJ_T *obj, bool buy) {
     return cost;
 }
 
-SHOP_T *char_get_shop (CHAR_T *ch) {
+SHOP_T *char_get_shop (const CHAR_T *ch) {
     if (ch->index_data == NULL)
         return NULL;
     return ch->index_data->shop;
 }
 
-CHAR_T *char_get_keeper_room (CHAR_T *ch) {
+CHAR_T *char_get_keeper_room (const CHAR_T *ch) {
     CHAR_T *k;
     for (k = ch->in_room->people; k; k = k->next_in_room)
         if (IS_NPC (k) && char_get_shop (k))
@@ -1733,7 +1732,7 @@ CHAR_T *char_get_keeper_room (CHAR_T *ch) {
     return NULL;
 }
 
-CHAR_T *char_get_trainer_room (CHAR_T *ch) {
+CHAR_T *char_get_trainer_room (const CHAR_T *ch) {
     CHAR_T *t;
     for (t = ch->in_room->people; t; t = t->next_in_room)
         if (IS_NPC (t) && IS_SET (t->mob, MOB_TRAIN))
@@ -1741,7 +1740,7 @@ CHAR_T *char_get_trainer_room (CHAR_T *ch) {
     return NULL;
 }
 
-CHAR_T *char_get_practicer_room (CHAR_T *ch) {
+CHAR_T *char_get_practicer_room (const CHAR_T *ch) {
     CHAR_T *p;
     for (p = ch->in_room->people; p; p = p->next_in_room)
         if (IS_NPC (p) && IS_SET (p->mob, MOB_PRACTICE))
@@ -1749,7 +1748,7 @@ CHAR_T *char_get_practicer_room (CHAR_T *ch) {
     return NULL;
 }
 
-CHAR_T *char_get_gainer_room (CHAR_T *ch) {
+CHAR_T *char_get_gainer_room (const CHAR_T *ch) {
     CHAR_T *g;
     for (g = ch->in_room->people; g; g = g->next_in_room)
         if (IS_NPC (g) && IS_SET (g->mob, MOB_GAIN))
@@ -1757,7 +1756,7 @@ CHAR_T *char_get_gainer_room (CHAR_T *ch) {
     return NULL;
 }
 
-int char_exit_string (CHAR_T *ch, ROOM_INDEX_T *room, int mode,
+int char_exit_string (const CHAR_T *ch, const ROOM_INDEX_T *room, int mode,
     char *out_buf, size_t out_size)
 {
     EXIT_T *pexit;
@@ -1866,11 +1865,11 @@ void char_stop_idling (CHAR_T *ch) {
     act ("$n has returned from the void.", ch, NULL, NULL, TO_NOTCHAR);
 }
 
-const char *char_get_class_name (CHAR_T *ch)
+const char *char_get_class_name (const CHAR_T *ch)
     { return (IS_NPC (ch)) ? "mobile" : class_table[ch->class].name; }
 
-const char *char_get_position_str (CHAR_T *ch, int position,
-    OBJ_T *on, int with_punct)
+const char *char_get_position_str (const CHAR_T *ch, int position,
+    const OBJ_T *on, int with_punct)
 {
     static char buf[MAX_STRING_LENGTH];
     const char *name = position_name (position);
@@ -1889,89 +1888,89 @@ const char *char_get_position_str (CHAR_T *ch, int position,
 }
 
 /* Former character macros. */
-bool char_is_trusted (CHAR_T *ch, int level)
+bool char_is_trusted (const CHAR_T *ch, int level)
     { return char_get_trust (ch) >= level ? TRUE : FALSE; }
 
-bool char_is_npc (CHAR_T *ch)
+bool char_is_npc (const CHAR_T *ch)
     { return IS_SET((ch)->mob, MOB_IS_NPC) ? TRUE : FALSE; }
-bool char_is_immortal (CHAR_T *ch)
+bool char_is_immortal (const CHAR_T *ch)
     { return (char_is_trusted (ch, LEVEL_IMMORTAL)) ? TRUE : FALSE; }
-bool char_is_hero (CHAR_T *ch)
+bool char_is_hero (const CHAR_T *ch)
     { return (char_is_trusted (ch, LEVEL_HERO)) ? TRUE : FALSE; }
-bool char_is_affected (CHAR_T *ch, flag_t sn)
+bool char_is_affected (const CHAR_T *ch, flag_t sn)
     { return IS_SET((ch)->affected_by, sn) ? TRUE : FALSE; }
 
-bool char_is_sober (CHAR_T *ch) {
+bool char_is_sober (const CHAR_T *ch) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return TRUE;
     return (ch->pcdata->condition[COND_DRUNK] <= 0) ? TRUE : FALSE;
 }
 
-bool char_is_drunk (CHAR_T *ch) {
+bool char_is_drunk (const CHAR_T *ch) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return FALSE;
     return (ch->pcdata->condition[COND_DRUNK] > 10) ? TRUE : FALSE;
 }
 
-bool char_is_thirsty (CHAR_T *ch) {
+bool char_is_thirsty (const CHAR_T *ch) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return FALSE;
     return (ch->pcdata->condition[COND_THIRST] <= 0) ? TRUE : FALSE;
 }
 
-bool char_is_quenched (CHAR_T *ch) {
+bool char_is_quenched (const CHAR_T *ch) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return TRUE;
     return (ch->pcdata->condition[COND_THIRST] > 40) ? TRUE : FALSE;
 }
 
-bool char_is_hungry (CHAR_T *ch) {
+bool char_is_hungry (const CHAR_T *ch) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return FALSE;
     return (ch->pcdata->condition[COND_HUNGER] <= 0) ? TRUE : FALSE;
 }
 
-bool char_is_fed (CHAR_T *ch) {
+bool char_is_fed (const CHAR_T *ch) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return TRUE;
     return (ch->pcdata->condition[COND_HUNGER] > 40) ? TRUE : FALSE;
 }
 
-bool char_is_full (CHAR_T *ch) {
+bool char_is_full (const CHAR_T *ch) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return FALSE;
     return (ch->pcdata->condition[COND_FULL] > 40) ? TRUE : FALSE;
 }
 
-bool char_is_pet (CHAR_T *ch)
+bool char_is_pet (const CHAR_T *ch)
     { return (char_is_npc (ch) && IS_SET ((ch)->mob, MOB_PET)) ? TRUE : FALSE; }
 
-bool char_is_good (CHAR_T *ch)
+bool char_is_good (const CHAR_T *ch)
     { return (ch->alignment >=  350) ? TRUE : FALSE; }
-bool char_is_evil (CHAR_T *ch)
+bool char_is_evil (const CHAR_T *ch)
     { return (ch->alignment <= -350) ? TRUE : FALSE; }
-bool char_is_really_good (CHAR_T *ch)
+bool char_is_really_good (const CHAR_T *ch)
     { return (ch->alignment >=  750) ? TRUE : FALSE; }
-bool char_is_really_evil (CHAR_T *ch)
+bool char_is_really_evil (const CHAR_T *ch)
     { return (ch->alignment <= -750) ? TRUE : FALSE; }
-bool char_is_neutral (CHAR_T *ch)
+bool char_is_neutral (const CHAR_T *ch)
     { return (!IS_GOOD(ch) && !IS_EVIL(ch)) ? TRUE : FALSE; }
 
-bool char_is_outside (CHAR_T *ch) {
+bool char_is_outside (const CHAR_T *ch) {
     if (ch->in_room == NULL)
         return FALSE;
     return (!IS_SET ((ch)->in_room->room_flags, ROOM_INDOORS))
         ? TRUE : FALSE;
 }
-bool char_is_awake (CHAR_T *ch)
+bool char_is_awake (const CHAR_T *ch)
     { return (ch->position > POS_SLEEPING) ? TRUE : FALSE; }
 
-int char_get_age (CHAR_T *ch) {
+int char_get_age (const CHAR_T *ch) {
     int age = 17 + (ch->played + (int) (current_time - ch->logon)) / 72000;
     return age;
 }
 
-bool char_is_same_align (CHAR_T *ch1, CHAR_T *ch2) {
+bool char_is_same_align (const CHAR_T *ch1, const CHAR_T *ch2) {
     if (IS_SET (ch1->mob, MOB_NOALIGN || IS_SET (ch2->mob, MOB_NOALIGN)))
         return FALSE;
     if (char_is_good (ch1) && char_is_good (ch2))
@@ -1983,20 +1982,20 @@ bool char_is_same_align (CHAR_T *ch1, CHAR_T *ch2) {
     return FALSE;
 }
 
-int char_get_ac (CHAR_T *ch, int type) {
+int char_get_ac (const CHAR_T *ch, int type) {
     return ch->armor[type] + (char_is_awake (ch)
         ? char_dex_defense_bonus (ch) : 0);
 }
 
-int char_get_hitroll (CHAR_T *ch)
+int char_get_hitroll (const CHAR_T *ch)
     { return ch->hitroll + char_str_hitroll_bonus (ch); }
-int char_get_damroll (CHAR_T *ch)
+int char_get_damroll (const CHAR_T *ch)
     { return ch->damroll + char_str_damroll_bonus (ch); }
 
-bool char_is_switched (CHAR_T *ch)
+bool char_is_switched (const CHAR_T *ch)
     { return (ch->desc && ch->desc->original) ? TRUE : FALSE; }
 
-bool char_is_builder (CHAR_T *ch, AREA_T *area) {
+bool char_is_builder (const CHAR_T *ch, const AREA_T *area) {
     if (char_is_npc (ch) || char_is_switched (ch))
         return FALSE;
     if (ch->pcdata->security >= area->security)
@@ -2008,7 +2007,7 @@ bool char_is_builder (CHAR_T *ch, AREA_T *area) {
     return FALSE;
 }
 
-int char_get_vnum (CHAR_T *ch)
+int char_get_vnum (const CHAR_T *ch)
     { return IS_NPC(ch) ? (ch)->index_data->vnum : 0; }
 
 int char_set_max_wait_state (CHAR_T *ch, int npulse)
@@ -2025,48 +2024,50 @@ int char_set_max_daze_state (CHAR_T *ch, int npulse)
     return ch->daze;
 }
 
-char *char_get_short_descr (CHAR_T *ch)
+char *char_get_short_descr (const CHAR_T *ch)
     { return char_is_npc (ch) ? ch->short_descr : ch->name; }
 
-char *char_get_look_short_descr_anywhere (CHAR_T *looker, CHAR_T *ch) {
+char *char_get_look_short_descr_anywhere (const CHAR_T *looker,
+    const CHAR_T *ch)
+{
     if (!char_can_see_anywhere (looker, ch))
         return "someone";
     return char_get_short_descr (ch);
 }
 
-char *char_get_look_short_descr (CHAR_T *looker, CHAR_T *ch) {
+char *char_get_look_short_descr (const CHAR_T *looker, const CHAR_T *ch) {
     if (!char_can_see_in_room (looker, ch))
         return "someone";
     return char_get_short_descr (ch);
 }
 
 /* Stat bonuses. */
-const STR_APP_T *char_get_curr_str_app (CHAR_T *ch)
+const STR_APP_T *char_get_curr_str_app (const CHAR_T *ch)
     { return str_app_get (char_get_curr_stat (ch, STAT_STR)); }
-const INT_APP_T *char_get_curr_int_app (CHAR_T *ch)
+const INT_APP_T *char_get_curr_int_app (const CHAR_T *ch)
     { return int_app_get (char_get_curr_stat (ch, STAT_INT)); }
-const WIS_APP_T *char_get_curr_wis_app (CHAR_T *ch)
+const WIS_APP_T *char_get_curr_wis_app (const CHAR_T *ch)
     { return wis_app_get (char_get_curr_stat (ch, STAT_WIS)); }
-const DEX_APP_T *char_get_curr_dex_app (CHAR_T *ch)
+const DEX_APP_T *char_get_curr_dex_app (const CHAR_T *ch)
     { return dex_app_get (char_get_curr_stat (ch, STAT_DEX)); }
-const CON_APP_T *char_get_curr_con_app (CHAR_T *ch)
+const CON_APP_T *char_get_curr_con_app (const CHAR_T *ch)
     { return con_app_get (char_get_curr_stat (ch, STAT_CON)); }
 
-int char_str_carry_bonus (CHAR_T *ch)
+int char_str_carry_bonus (const CHAR_T *ch)
     { return char_get_curr_str_app (ch)->carry; }
-int char_str_hitroll_bonus (CHAR_T *ch)
+int char_str_hitroll_bonus (const CHAR_T *ch)
     { return char_get_curr_str_app (ch)->tohit; }
-int char_str_damroll_bonus (CHAR_T *ch)
+int char_str_damroll_bonus (const CHAR_T *ch)
     { return char_get_curr_str_app (ch)->todam; }
-int char_str_max_wield_weight (CHAR_T *ch)
+int char_str_max_wield_weight (const CHAR_T *ch)
     { return char_get_curr_str_app (ch)->wield; }
-int char_int_learn_rate (CHAR_T *ch)
+int char_int_learn_rate (const CHAR_T *ch)
     { return char_get_curr_int_app (ch)->learn; }
-int char_wis_level_practices (CHAR_T *ch)
+int char_wis_level_practices (const CHAR_T *ch)
     { return char_get_curr_wis_app (ch)->practice; }
-int char_dex_defense_bonus (CHAR_T *ch)
+int char_dex_defense_bonus (const CHAR_T *ch)
     { return char_get_curr_dex_app (ch)->defensive; }
-int char_con_level_hp (CHAR_T *ch)
+int char_con_level_hp (const CHAR_T *ch)
     { return char_get_curr_con_app (ch)->hitp; }
-int char_con_shock (CHAR_T *ch)
+int char_con_shock (const CHAR_T *ch)
     { return char_get_curr_con_app (ch)->shock; }

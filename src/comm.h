@@ -226,6 +226,7 @@ void act2 (const char *to_char, const char *to_room, CHAR_T *ch,
 void act3 (const char *to_char, const char *to_vict, const char *to_room,
     CHAR_T *ch, const void *arg1, const void *arg2, flag_t flags, int min_pos);
 bool act_is_valid_recipient (CHAR_T *to, flag_t flags, CHAR_T *ch, CHAR_T *vch);
+char *act_code_pronoun (const CHAR_T *ch, char code);
 char *act_code (char code, CHAR_T *ch, CHAR_T *vch, CHAR_T *to, OBJ_T *obj1,
     OBJ_T *obj2, const void *arg1, const void *arg2, char *out_buf,
     size_t size);

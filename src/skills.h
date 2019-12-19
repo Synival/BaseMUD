@@ -88,7 +88,7 @@ extern sh_int gsn_recall;
 extern sh_int gsn_frenzy;
 
 /* Function prototypes. */
-int get_skill (CHAR_T *ch, int sn);
+int get_skill (const CHAR_T *ch, int sn);
 void list_group_costs (CHAR_T *ch);
 void list_group_chosen (CHAR_T *ch);
 bool parse_gen_groups (CHAR_T *ch, char *argument);

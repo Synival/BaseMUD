@@ -34,7 +34,7 @@
 #include "rooms.h"
 
 /* True if room is dark. */
-bool room_is_dark (ROOM_INDEX_T *room_index) {
+bool room_is_dark (const ROOM_INDEX_T *room_index) {
     const SUN_T *sun;
     int sect;
 
@@ -53,14 +53,14 @@ bool room_is_dark (ROOM_INDEX_T *room_index) {
     return FALSE;
 }
 
-bool room_is_owner (ROOM_INDEX_T *room, CHAR_T *ch) {
+bool room_is_owner (const ROOM_INDEX_T *room, const CHAR_T *ch) {
     if (room->owner == NULL || room->owner[0] == '\0')
         return FALSE;
     return is_name (ch->name, room->owner);
 }
 
 /* True if room is private. */
-bool room_is_private (ROOM_INDEX_T *room_index) {
+bool room_is_private (const ROOM_INDEX_T *room_index) {
     CHAR_T *rch;
     int count;
 
@@ -79,7 +79,7 @@ bool room_is_private (ROOM_INDEX_T *room_index) {
     return FALSE;
 }
 
-char room_colour_char (ROOM_INDEX_T *room) {
+char room_colour_char (const ROOM_INDEX_T *room) {
 #ifdef BASEMUD_COLOR_ROOMS_BY_SECTOR
     int sect;
     const SECTOR_T *sect_data;
@@ -101,7 +101,7 @@ char room_colour_char (ROOM_INDEX_T *room) {
 #endif
 }
 
-EXIT_T *room_get_opposite_exit (ROOM_INDEX_T *from_room, int dir,
+EXIT_T *room_get_opposite_exit (const ROOM_INDEX_T *from_room, int dir,
     ROOM_INDEX_T **out_room)
 {
     ROOM_INDEX_T *to_room;

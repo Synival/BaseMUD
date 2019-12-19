@@ -1907,7 +1907,7 @@
       "slash": -150,
       "magic": -150
     },
-    "sex": "male",
+    "sex": "female",
     "wealth": 1000,
     "size": "medium",
     "shop": {
@@ -1945,7 +1945,7 @@
       "slash": -150,
       "magic": -150
     },
-    "sex": "male",
+    "sex": "female",
     "wealth": 1000,
     "size": "medium",
     "shop": {

@@ -39,7 +39,7 @@
  * (1) A ~ A
  * (2) if A ~ B then B ~ A
  * (3) if A ~ B  and B ~ C, then A ~ C */
-bool is_same_group (CHAR_T *ach, CHAR_T *bch) {
+bool is_same_group (const CHAR_T *ach, const CHAR_T *bch) {
     if (ach == NULL || bch == NULL)
         return FALSE;
 

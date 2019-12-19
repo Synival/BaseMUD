@@ -54,7 +54,7 @@
     "position": 8,
     "name": "stand",
     "long_name": "standing",
-    "room_msg": "$1 is here.",
+    "room_msg": "$1 is standing here.",
     "room_msg_furniture": " is standing $2 $3."
   }}
 ]

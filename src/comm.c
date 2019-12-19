@@ -299,14 +299,23 @@ bool act_is_valid_recipient (CHAR_T *to, flag_t flags,
     return FALSE;
 }
 
-char *act_code (char code, CHAR_T *ch, CHAR_T *vch, CHAR_T *to,
-    OBJ_T *obj1, OBJ_T *obj2, const void *arg1, const void *arg2,
-    char *out_buf, size_t size)
-{
+char *act_code_pronoun (const CHAR_T *ch, char code) {
     static char *const he_she[]  = { "it",  "he",  "she" };
     static char *const him_her[] = { "it",  "him", "her" };
     static char *const his_her[] = { "its", "his", "her" };
 
+    switch (code) {
+        case 'e': case 'E': return he_she [URANGE (0, ch->sex, 2)];
+        case 'm': case 'M': return him_her[URANGE (0, ch->sex, 2)];
+        case 's': case 'S': return his_her[URANGE (0, ch->sex, 2)];
+        default:            return "???";
+    }
+}
+
+char *act_code (char code, CHAR_T *ch, CHAR_T *vch, CHAR_T *to,
+    OBJ_T *obj1, OBJ_T *obj2, const void *arg1, const void *arg2,
+    char *out_buf, size_t size)
+{
     #define FILTER_BAD_CODE(true_cond, message) \
         do { \
             RETURN_IF_BUG (!(true_cond), \
@@ -332,22 +341,22 @@ char *act_code (char code, CHAR_T *ch, CHAR_T *vch, CHAR_T *to,
             return PERS_AW (vch, to);
         case 'e':
             FILTER_BAD_CODE (ch, "bad code $e for 'ch'");
-            return he_she[URANGE (0, ch->sex, 2)];
+            return act_code_pronoun (ch, 'e');
         case 'E':
             FILTER_BAD_CODE (vch, "bad code $E for 'vch'");
-            return he_she[URANGE (0, vch->sex, 2)];
+            return act_code_pronoun (vch, 'E');
         case 'm':
             FILTER_BAD_CODE (ch, "bad code $m for 'ch'");
-            return him_her[URANGE (0, ch->sex, 2)];
+            return act_code_pronoun (ch, 'm');
         case 'M':
             FILTER_BAD_CODE (vch, "bad code $M for 'vch'");
-            return him_her[URANGE (0, vch->sex, 2)];
+            return act_code_pronoun (vch, 'm');
         case 's':
             FILTER_BAD_CODE (ch, "bad code $s for 'ch'");
-            return his_her[URANGE (0, ch->sex, 2)];
+            return act_code_pronoun (ch, 's');
         case 'S':
             FILTER_BAD_CODE (vch, "bad code $S for 'vch'");
-            return his_her[URANGE (0, vch->sex, 2)];
+            return act_code_pronoun (vch, 's');
         case 'p':
             FILTER_BAD_CODE (to && obj1, "bad code $p for 'to' or 'obj1'");
             return char_can_see_obj (to, obj1) ? obj1->short_descr : "something";
