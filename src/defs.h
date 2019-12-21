@@ -540,7 +540,7 @@
 #define TABLE_FLAG_TYPE 0x01
 #define TABLE_BITS      0x02
 
-#define TABLE_MAX   75
+#define TABLE_MAX   76
 
 /* Types of portals. */
 #define PORTAL_TO_ROOM  0

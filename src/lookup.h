@@ -288,7 +288,6 @@ const char *align_name (int align);
 const char *position_name (int position);
 const char *sex_name (int sex);
 const char *ac_type_name (int type);
-const char *condition_name_by_percent (int percent);
 const char *wiz_class_by_level (int level);
 const STR_APP_T *str_app_get (int attr);
 const INT_APP_T *int_app_get (int attr);
@@ -297,6 +296,7 @@ const DEX_APP_T *dex_app_get (int attr);
 const CON_APP_T *con_app_get (int attr);
 PORTAL_EXIT_T *portal_exit_lookup_exact (const char *name);
 SOCIAL_T *social_lookup_exact (const char *name);
+const CONDITION_T *condition_get_for_char (const CHAR_T *ch);
 
 /* Bit functions from handler.c */
 const char *affect_apply_name (flag_t type);

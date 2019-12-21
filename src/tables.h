@@ -70,6 +70,7 @@ extern const SUN_T            sun_table[SUN_MAX + 1];
 extern const AFFECT_BIT_T     affect_bit_table[AFF_TO_MAX + 1];
 
 /* Tables with flexible sizes. */
+extern const CONDITION_T      condition_table[];
 extern const MAP_LOOKUP_TABLE_T map_lookup_table[];
 extern const MAP_LOOKUP_TABLE_T map_flags_table[];
 extern const OBJ_MAP_T        obj_map_table[];

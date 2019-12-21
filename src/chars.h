@@ -179,6 +179,10 @@ bool char_unequip_obj (CHAR_T *ch, OBJ_T *obj);
 void char_reset_colour (CHAR_T *ch);
 void char_move (CHAR_T *ch, int door, bool follow);
 char *char_format_to_char (const CHAR_T *victim, const CHAR_T *ch);
+size_t char_format_condition_or_pos_msg (char *buf, size_t size,
+    const CHAR_T *ch, const CHAR_T *victim, bool use_pronoun);
+size_t char_format_condition_msg (char *buf, size_t size, const CHAR_T *ch,
+    const CHAR_T *victim, bool use_pronoun);
 size_t char_format_pos_msg (char *buf, size_t size, const CHAR_T *ch,
     const CHAR_T *victim, bool use_pronoun);
 void char_look_at_char (CHAR_T *victim, CHAR_T *ch);

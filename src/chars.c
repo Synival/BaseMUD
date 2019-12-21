@@ -1174,6 +1174,39 @@ char *char_format_to_char (const CHAR_T *victim, const CHAR_T *ch) {
     return buf;
 }
 
+size_t char_format_condition_or_pos_msg (char *buf, size_t size,
+    const CHAR_T *ch, const CHAR_T *victim, bool use_pronoun)
+{
+    size_t written;
+    written = char_format_condition_msg (buf, size, ch, victim, use_pronoun);
+    if (written == 0)
+        char_format_pos_msg (buf, size, ch, victim, use_pronoun);
+    return written;
+}
+
+size_t char_format_condition_msg (char *buf, size_t size, const CHAR_T *ch,
+    const CHAR_T *victim, bool use_pronoun)
+{
+    const CONDITION_T *cond;
+    const char *name;
+    size_t written;
+
+    name = (use_pronoun)
+        ? act_code_pronoun (victim, 'e')
+        : PERS_AW (victim, ch);
+
+    cond = condition_get_for_char (victim);
+    if (cond == NULL || cond->message == NULL) {
+        buf[0] = '\0';
+        return 0;
+    }
+
+    written = str_inject_args (buf, size, cond->message, name, NULL);
+    written += snprintf (buf + written, size - written, "\n\r");
+    buf[0] = UPPER (buf[0]);
+    return written;
+}
+
 size_t char_format_pos_msg (char *buf, size_t size, const CHAR_T *ch,
     const CHAR_T *victim, bool use_pronoun)
 {
@@ -1238,7 +1271,6 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
     char buf[MAX_STRING_LENGTH];
     OBJ_T *obj;
     flag_t wear_loc;
-    int percent;
     bool found;
 
     if (ch == victim)
@@ -1254,20 +1286,20 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
     else
         act ("You see nothing special about $M.", ch, NULL, victim, TO_CHAR);
 
-    if (victim->max_hit > 0)
-        percent = (100 * victim->hit) / victim->max_hit;
-    else
-        percent = -1;
-
     buf[0] = '\0';
+#ifdef BASEMUD_SHOW_POSITION_IN_LOOK
     char_format_pos_msg (buf, sizeof (buf), ch, victim, TRUE);
     if (buf[0] != '\0')
         send_to_char (buf, ch);
 
-    sprintf (buf, "%s %s.\n\r", PERS_AW (victim, ch),
-        condition_name_by_percent (percent));
-    buf[0] = UPPER (buf[0]);
-    send_to_char (buf, ch);
+    buf[0] = '\0';
+    char_format_condition_msg (buf, sizeof (buf), ch, victim, FALSE);
+#else
+    char_format_condition_or_pos_msg (buf, sizeof (buf), ch, victim, FALSE);
+#endif
+
+    if (buf[0] != '\0')
+        send_to_char (buf, ch);
 
     found = FALSE;
     for (wear_loc = 0; wear_loc < WEAR_LOC_MAX; wear_loc++) {

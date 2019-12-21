@@ -78,6 +78,7 @@ typedef struct dam_type         DAM_T;
 typedef struct attack_type      ATTACK_T;
 typedef struct wiznet_type      WIZNET_T;
 typedef struct clan_type        CLAN_T;
+typedef struct condition_type   CONDITION_T;
 typedef struct position_type    POSITION_T;
 typedef struct sex_type         SEX_T;
 typedef struct size_type        SIZE_T;

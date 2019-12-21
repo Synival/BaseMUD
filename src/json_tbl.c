@@ -495,3 +495,10 @@ DEFINE_TABLE_JSON_FUN (json_tblw_pose) {
     }
     return new;
 }
+
+DEFINE_TABLE_JSON_FUN (json_tblw_condition) {
+    JSON_TBLW_START (CONDITION_T, condition, condition->hp_percent <= -999);
+    json_prop_integer (new, "hp_percent", condition->hp_percent);
+    json_prop_string  (new, "message", JSTR (condition->message));
+    return new;
+}

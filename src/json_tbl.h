@@ -65,5 +65,6 @@ DECLARE_TABLE_JSON_FUN (json_tblw_month);
 DECLARE_TABLE_JSON_FUN (json_tblw_sky);
 DECLARE_TABLE_JSON_FUN (json_tblw_sun);
 DECLARE_TABLE_JSON_FUN (json_tblw_pose);
+DECLARE_TABLE_JSON_FUN (json_tblw_condition);
 
 #endif

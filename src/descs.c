@@ -406,20 +406,13 @@ bool process_output (DESCRIPTOR_T *d, bool prompt) {
 
             /* battle prompt */
             if ((victim = ch->fighting) != NULL && char_can_see_in_room (ch, victim)) {
-                int percent;
                 char *pbuff;
                 char buf[MSL];
                 char buffer[MSL*2];
 
-                if (victim->max_hit > 0)
-                    percent = victim->hit * 100 / victim->max_hit;
-                else
-                    percent = -1;
-
-                sprintf (buf, "%s %s.\n\r", PERS_IR (victim, ch),
-                    condition_name_by_percent (percent));
-                buf[0] = UPPER (buf[0]);
                 pbuff = buffer;
+                char_format_condition_or_pos_msg (buf, sizeof (buf), ch, victim,
+                    FALSE);
                 colour_puts (CH(d), d->ansi, buf, pbuff, MAX_STRING_LENGTH);
                 write_to_buffer (d, buffer, 0);
             }

@@ -311,6 +311,11 @@ struct clan_type {
     bool independent; /* true for loners */
 };
 
+struct condition_type {
+    int hp_percent;
+    char *message;
+};
+
 struct position_type {
     int pos;
     char *long_name;

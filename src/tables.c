@@ -128,8 +128,9 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
     TTABLE (day_table,        "days",         "Days of the week.",            "day",           json_tblw_day),
     TTABLE (month_table,      "months",       "Months of the year.",          "month",         json_tblw_month),
     TTABLE (sky_table,        "skies",        "Skies based on the weather.",  "sky",           json_tblw_sky),
-    TTABLE (sun_table,        "suns",        "Positions of the sun.",        "sun",            json_tblw_sun),
-    TTABLE (pose_table,       "pose",       "Poses based on class and level", "pose",          json_tblw_pose),
+    TTABLE (sun_table,        "suns",         "Positions of the sun.",        "sun",           json_tblw_sun),
+    TTABLE (pose_table,       "pose",         "Poses based on class and level", "pose",        json_tblw_pose),
+    TTABLE (condition_table,  "conditions",   "Messages based on % of hp.",   "condition",     json_tblw_condition),
 
     /* constant tables that are internal only. */
     TTABLE (effect_table,     "effects",      "Damage effects and breaths.",  NULL,            NULL),
@@ -152,6 +153,32 @@ const CLAN_T clan_table[CLAN_MAX + 1] = {
     {"loner", "[ Loner ] ", ROOM_VNUM_ALTAR, TRUE},
     {"rom",   "[  ROM  ] ", ROOM_VNUM_ALTAR, FALSE},
     {0},
+};
+
+const CONDITION_T condition_table[] = {
+#ifdef BASEMUD_MORE_PRECISE_CONDITIONS
+    {  100, "$1 is in excellent condition." },
+    {   90, "$1 has a few scratches." },
+    {   80, "$1 has a few bruises." },
+    {   70, "$1 has some small wounds and bruises." },
+    {   60, "$1 has some large wounds." },
+    {   50, "$1 has quite a large few wounds." },
+    {   40, "$1 has some big nasty wounds and scratches." },
+    {   30, "$1 looks seriously wounded." },
+    {   20, "$1 looks pretty hurt." },
+    {   10, "$1 is in awful condition." },
+    {    1, "$1 is in critical condition." },
+#else
+    {  100, "$1 is in excellent condition." },
+    {   90, "$1 has a few scratches." },
+    {   75, "$1 has some small wounds and bruises." },
+    {   50, "$1 has quite a few wounds." },
+    {   30, "$1 has some big nasty wounds and scratches." },
+    {   15, "$1 looks pretty hurt." },
+    {    1, "$1 is in awful condition." },
+    { -100, "$1 is bleeding to death." },
+#endif
+    { -999, NULL }
 };
 
 /* for position */

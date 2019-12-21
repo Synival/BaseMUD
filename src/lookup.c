@@ -457,34 +457,6 @@ const char *align_name (int align) {
     else                   return "satanic";
 }
 
-const char *condition_name_by_percent (int percent) {
-#ifdef BASEMUD_MORE_PRECISE_CONDITIONS
-         if (percent >= 100) return "is in excellent condition";
-    else if (percent >=  90) return "has a few scratches";
-    else if (percent >=  80) return "has a few bruises";
-    else if (percent >=  70) return "has some small wounds and bruises";
-    else if (percent >=  60) return "has some large wounds";
-    else if (percent >=  50) return "has quite a large few wounds";
-    else if (percent >=  40) return "has some big nasty wounds and scratches";
-    else if (percent >=  30) return "looks seriously wounded";
-    else if (percent >=  20) return "looks pretty hurt";
-    else if (percent >=  10) return "is in awful condition";
-    else if (percent >    0) return "is in critical condition";
-    else if (percent >  -10) return "is stunned on the floor";
-    else if (percent >  -20) return "is incapacitated and bleeding to death";
-    else                     return "is mortally wounded";
-#else
-         if (percent >= 100) return "is in excellent condition";
-    else if (percent >=  90) return "has a few scratches";
-    else if (percent >=  75) return "has some small wounds and bruises";
-    else if (percent >=  50) return "has quite a few wounds";
-    else if (percent >=  30) return "has some big nasty wounds and scratches";
-    else if (percent >=  15) return "looks pretty hurt";
-    else if (percent >=   0) return "is in awful condition";
-    else                     return "is bleeding to death";
-#endif
-}
-
 const char *wiz_class_by_level (int level) {
     switch (level) {
         case IMPLEMENTOR: return "IMP";
@@ -565,5 +537,21 @@ SOCIAL_T *social_lookup_exact (const char *name) {
     for (soc = social_get_first(); soc; soc = social_get_next (soc))
         if (strcmp (soc->name, name) == 0)
             return soc;
+    return NULL;
+}
+
+const CONDITION_T *condition_get_for_char (const CHAR_T *ch) {
+    const CONDITION_T *cond;
+    int i, percent;
+
+    percent = (ch->max_hit > 0) ? ((ch->hit * 100) / ch->max_hit) : -1;
+    if (ch->hit > 0 && percent == 0)
+        percent = 1;
+
+    for (i = 0; condition_table[i].hp_percent != -999; i++) {
+        cond = &(condition_table[i]);
+        if (percent >= cond->hp_percent || cond->hp_percent <= -100)
+            return cond;
+    }
     return NULL;
 }
