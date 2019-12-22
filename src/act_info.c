@@ -518,7 +518,7 @@ DEFINE_DO_FUN (do_exits) {
     send_to_char (buf, ch);
 
     mode = auto_exits ? EXITS_AUTO : EXITS_LONG;
-    char_exit_string (ch, ch->in_room, mode, buf, sizeof (buf));
+    char_format_exit_string (ch, ch->in_room, mode, buf, sizeof (buf));
     if (auto_exits)
         printf_to_char (ch, "%s]{x\n\r", buf);
     else

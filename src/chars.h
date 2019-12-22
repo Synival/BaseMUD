@@ -150,8 +150,8 @@ char *char_get_short_descr (const CHAR_T *ch);
 char *char_get_look_short_descr_anywhere (const CHAR_T *looker,
     const CHAR_T *ch);
 char *char_get_look_short_descr (const CHAR_T *looker, const CHAR_T *ch);
-int char_exit_string (const CHAR_T *ch, const ROOM_INDEX_T *room, int mode,
-    char *out_buf, size_t out_size);
+int char_format_exit_string (const CHAR_T *ch, const ROOM_INDEX_T *room,
+    int mode, char *out_buf, size_t out_size);
 int char_get_immunity (CHAR_T *ch, int dam_type);
 
 /* Stat bonuses. */

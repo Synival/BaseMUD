@@ -1789,8 +1789,8 @@ CHAR_T *char_get_gainer_room (const CHAR_T *ch) {
     return NULL;
 }
 
-int char_exit_string (const CHAR_T *ch, const ROOM_INDEX_T *room, int mode,
-    char *out_buf, size_t out_size)
+int char_format_exit_string (const CHAR_T *ch, const ROOM_INDEX_T *room,
+    int mode, char *out_buf, size_t out_size)
 {
     EXIT_T *pexit;
     int door, isdoor, closed, count;

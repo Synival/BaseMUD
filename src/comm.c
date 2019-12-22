@@ -130,7 +130,7 @@ void bust_a_prompt (CHAR_T *ch) {
             case 'O': sprintf (buf2, "%s",  olc_ed_vnum (ch)); i = buf2; break;
 
             case 'e':
-                char_exit_string (ch, ch->in_room, EXITS_PROMPT,
+                char_format_exit_string (ch, ch->in_room, EXITS_PROMPT,
                     buf2, sizeof (buf2));
                 i = buf2;
                 break;
