@@ -30,17 +30,19 @@
 
 #include "merc.h"
 
-/* Room functions. */
+/* Is/can functions. */
 bool room_is_dark (const ROOM_INDEX_T *room_index);
 bool room_is_private (const ROOM_INDEX_T *room_index);
-char room_colour_char (const ROOM_INDEX_T *room);
-void room_add_money (ROOM_INDEX_T *room, int gold, int silver);
 bool room_is_owner (const ROOM_INDEX_T *room, const CHAR_T *ch);
+
+/* Get functions. */
+char room_colour_char (const ROOM_INDEX_T *room);
 EXIT_T *room_get_opposite_exit (const ROOM_INDEX_T *from_room, int dir,
     ROOM_INDEX_T **out_room);
-void room_take_reset (ROOM_INDEX_T *room, RESET_T *reset);
+char *room_get_door_name (const char *keyword, char *out_buf, size_t size);
 
-/* Utilities. */
-char *door_keyword_to_name (const char *keyword, char *out_buf, size_t size);
+/* Action functions. */
+void room_add_money (ROOM_INDEX_T *room, int gold, int silver);
+void room_take_reset (ROOM_INDEX_T *room, RESET_T *reset);
 
 #endif

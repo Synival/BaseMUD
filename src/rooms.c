@@ -122,7 +122,7 @@ EXIT_T *room_get_opposite_exit (const ROOM_INDEX_T *from_room, int dir,
     return pexit_rev;
 }
 
-char *door_keyword_to_name (const char *keyword, char *out_buf, size_t size) {
+char *room_get_door_name (const char *keyword, char *out_buf, size_t size) {
     if (keyword == NULL || keyword[0] == '\0')
         snprintf (out_buf, size, "door");
     else

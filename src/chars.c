@@ -1845,7 +1845,7 @@ int char_exit_string (const CHAR_T *ch, const ROOM_INDEX_T *room, int mode,
 
             if (isdoor) {
                 char dbuf[64];
-                char *dname = door_keyword_to_name (pexit->keyword,
+                char *dname = room_get_door_name (pexit->keyword,
                     dbuf, sizeof (dbuf));
                 len += snprintf (out_buf + len, out_size - len, "(%s %s) ",
                     closed ? "closed" : "open", dname);

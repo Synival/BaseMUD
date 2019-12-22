@@ -364,7 +364,7 @@ char *act_code (char code, CHAR_T *ch, CHAR_T *vch, CHAR_T *to,
             FILTER_BAD_CODE (to && obj2, "bad code $P for 'to' or 'obj2'");
             return char_can_see_obj (to, obj2) ? obj2->short_descr : "something";
         case 'd':
-            return door_keyword_to_name ((char *) arg2, out_buf, size);
+            return room_get_door_name ((char *) arg2, out_buf, size);
 
         default:
             bug ("bad code %d.", code);

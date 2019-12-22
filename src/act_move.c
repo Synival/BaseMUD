@@ -48,7 +48,7 @@
 
 #include "act_move.h"
 
-int door_filter_find (CHAR_T *ch, char *argument) {
+int do_door_filter_find (CHAR_T *ch, char *argument) {
     EXIT_T *pexit;
     int door;
 
@@ -72,7 +72,7 @@ int door_filter_find (CHAR_T *ch, char *argument) {
     return door;
 }
 
-bool door_filter_is_door (CHAR_T *ch, EXIT_T *pexit,
+bool do_door_filter_is_door (CHAR_T *ch, EXIT_T *pexit,
     OBJ_T *obj, flag_t *out_flags, bool *out_container, int *out_key)
 {
     flag_t flags;
@@ -105,7 +105,7 @@ bool door_filter_is_door (CHAR_T *ch, EXIT_T *pexit,
     }
     /* Not sure what we're evaluating. */
     else {
-        bug ("door_filter_can_open: No exit or object provided", 0);
+        bug ("do_door_filter_can_open: No exit or object provided", 0);
         return TRUE;
     }
 
@@ -121,11 +121,11 @@ bool door_filter_is_door (CHAR_T *ch, EXIT_T *pexit,
     return FALSE;
 }
 
-bool door_filter_can_open (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
+bool do_door_filter_can_open (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
 
-    if (door_filter_is_door (ch, pexit, obj, &flags, &container, NULL))
+    if (do_door_filter_is_door (ch, pexit, obj, &flags, &container, NULL))
         return TRUE;
     FILTER (!IS_SET (flags, container ? CONT_CLOSED : EX_CLOSED),
         "It's already open.\n\r", ch);
@@ -134,23 +134,23 @@ bool door_filter_can_open (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     return FALSE;
 }
 
-bool door_filter_can_close (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
+bool do_door_filter_can_close (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
 
-    if (door_filter_is_door (ch, pexit, obj, &flags, &container, NULL))
+    if (do_door_filter_is_door (ch, pexit, obj, &flags, &container, NULL))
         return TRUE;
     FILTER (IS_SET (flags, container ? CONT_CLOSED : EX_CLOSED),
         "It's already closed.\n\r", ch);
     return FALSE;
 }
 
-bool door_filter_can_lock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
+bool do_door_filter_can_lock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
     int key;
 
-    if (door_filter_is_door (ch, pexit, obj, &flags, &container, &key))
+    if (do_door_filter_is_door (ch, pexit, obj, &flags, &container, &key))
         return TRUE;
     FILTER (!IS_SET (flags, container ? CONT_CLOSED : EX_CLOSED),
         "It's not closed.\n\r", ch);
@@ -163,12 +163,12 @@ bool door_filter_can_lock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     return FALSE;
 }
 
-bool door_filter_can_unlock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
+bool do_door_filter_can_unlock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
     int key;
 
-    if (door_filter_is_door (ch, pexit, obj, &flags, &container, &key))
+    if (do_door_filter_is_door (ch, pexit, obj, &flags, &container, &key))
         return TRUE;
     FILTER (!IS_SET (flags, container ? CONT_CLOSED : EX_CLOSED),
         "It's not closed.\n\r", ch);
@@ -181,12 +181,12 @@ bool door_filter_can_unlock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     return FALSE;
 }
 
-bool door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
+bool do_door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
     int key;
 
-    if (door_filter_is_door (ch, pexit, obj, &flags, &container, &key))
+    if (do_door_filter_is_door (ch, pexit, obj, &flags, &container, &key))
         return TRUE;
     FILTER (!IS_SET (flags, container ? CONT_CLOSED : EX_CLOSED),
         "It's not closed.\n\r", ch);
@@ -221,35 +221,35 @@ bool door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
 }
 
 void do_open_object (CHAR_T *ch, OBJ_T *obj) {
-    if (door_filter_can_open (ch, NULL, obj))
+    if (do_door_filter_can_open (ch, NULL, obj))
         return;
     obj_remove_exit_flag (obj, EX_CLOSED);
     act2 ("You open $p.", "$n opens $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_close_object (CHAR_T *ch, OBJ_T *obj) {
-    if (door_filter_can_close (ch, NULL, obj))
+    if (do_door_filter_can_close (ch, NULL, obj))
         return;
     obj_set_exit_flag (obj, EX_CLOSED);
     act2 ("You close $p.", "$n closes $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_unlock_object (CHAR_T *ch, OBJ_T *obj) {
-    if (door_filter_can_unlock (ch, NULL, obj))
+    if (do_door_filter_can_unlock (ch, NULL, obj))
         return;
     obj_remove_exit_flag (obj, EX_LOCKED);
     act2 ("You unlock $p.", "$n unlocks $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_lock_object (CHAR_T *ch, OBJ_T *obj) {
-    if (door_filter_can_lock (ch, NULL, obj))
+    if (do_door_filter_can_lock (ch, NULL, obj))
         return;
     obj_set_exit_flag (obj, EX_LOCKED);
     act2 ("You lock $p.", "$n locks $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_pick_object (CHAR_T *ch, OBJ_T *obj) {
-    if (door_filter_can_pick (ch, NULL, obj))
+    if (do_door_filter_can_pick (ch, NULL, obj))
         return;
     obj_remove_exit_flag (obj, EX_LOCKED);
     act2 ("You pick the lock on $p.", "$n picks the lock on $p.",
@@ -262,7 +262,7 @@ void do_open_door (CHAR_T *ch, int door) {
     EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
-    if (door_filter_can_open (ch, pexit, NULL))
+    if (do_door_filter_can_open (ch, pexit, NULL))
         return;
 
     REMOVE_BIT (pexit->exit_flags, EX_CLOSED);
@@ -284,7 +284,7 @@ void do_close_door (CHAR_T *ch, int door) {
     EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
-    if (door_filter_can_close (ch, pexit, NULL))
+    if (do_door_filter_can_close (ch, pexit, NULL))
         return;
 
     SET_BIT (pexit->exit_flags, EX_CLOSED);
@@ -306,7 +306,7 @@ void do_unlock_door (CHAR_T *ch, int door) {
     EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
-    if (door_filter_can_unlock (ch, pexit, NULL))
+    if (do_door_filter_can_unlock (ch, pexit, NULL))
         return;
 
     REMOVE_BIT (pexit->exit_flags, EX_LOCKED);
@@ -323,7 +323,7 @@ void do_lock_door (CHAR_T *ch, int door) {
     EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
-    if (door_filter_can_lock (ch, pexit, NULL))
+    if (do_door_filter_can_lock (ch, pexit, NULL))
         return;
 
     SET_BIT (pexit->exit_flags, EX_LOCKED);
@@ -340,7 +340,7 @@ void do_pick_door (CHAR_T *ch, int door) {
     EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
-    if (door_filter_can_pick (ch, pexit, NULL))
+    if (do_door_filter_can_pick (ch, pexit, NULL))
         return;
 
     REMOVE_BIT (pexit->exit_flags, EX_LOCKED);
@@ -371,7 +371,7 @@ void do_door (CHAR_T *ch, char *argument, char *verb,
     }
 
     find_continue_counting ();
-    if ((door = door_filter_find (ch, arg)) >= 0)
+    if ((door = do_door_filter_find (ch, arg)) >= 0)
         func_door (ch, door);
 }
 

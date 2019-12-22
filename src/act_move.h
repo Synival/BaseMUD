@@ -31,14 +31,14 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-int door_filter_find (CHAR_T *ch, char *argument);
-bool door_filter_is_door (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj,
+int do_door_filter_find (CHAR_T *ch, char *argument);
+bool do_door_filter_is_door (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj,
     flag_t *out_flags, bool *out_container, int *out_key);
-bool door_filter_can_open   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
-bool door_filter_can_close  (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
-bool door_filter_can_lock   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
-bool door_filter_can_unlock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
-bool door_filter_can_pick   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool do_door_filter_can_open   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool do_door_filter_can_close  (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool do_door_filter_can_lock   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool do_door_filter_can_unlock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool do_door_filter_can_pick   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
 void do_open_object   (CHAR_T *ch, OBJ_T *obj);
 void do_close_object  (CHAR_T *ch, OBJ_T *obj);
 void do_unlock_object (CHAR_T *ch, OBJ_T *obj);
