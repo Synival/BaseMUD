@@ -376,6 +376,7 @@ void obj_take_from_obj (OBJ_T *obj) {
 
 /* Find the ac value of an obj, including position effect. */
 int obj_get_ac_type (const OBJ_T *obj, int wear_loc, int type) {
+    const WEAR_LOC_T *wear_loc_t;
     flag_t ac_value;
     if (obj->item_type != ITEM_ARMOR)
         return 0;
@@ -389,31 +390,11 @@ int obj_get_ac_type (const OBJ_T *obj, int wear_loc, int type) {
             return 0;
     }
 
-    /* TODO: this can be a table! */
-    switch (wear_loc) {
-        case WEAR_LOC_BODY:
-            return ac_value * 3;
-
-        case WEAR_LOC_HEAD:
-        case WEAR_LOC_LEGS:
-        case WEAR_LOC_ABOUT:
-            return ac_value * 2;
-
-        case WEAR_LOC_FEET:
-        case WEAR_LOC_HANDS:
-        case WEAR_LOC_ARMS:
-        case WEAR_LOC_SHIELD:
-        case WEAR_LOC_NECK_1:
-        case WEAR_LOC_NECK_2:
-        case WEAR_LOC_WAIST:
-        case WEAR_LOC_WRIST_L:
-        case WEAR_LOC_WRIST_R:
-        case WEAR_LOC_HOLD:
-            return ac_value;
-
-        default:
-            return 0;
-    }
+    if ((wear_loc_t = wear_loc_get (wear_loc)) == NULL)
+        return 0;
+    if (wear_loc_t->ac_bonus == 0)
+        return 0;
+    return (ac_value * wear_loc_t->ac_bonus) / 100;
 }
 
 /* Count occurrences of an obj in a list. */

@@ -1024,7 +1024,7 @@ REDIT (redit_oreset) {
         printf_to_char (ch,
             "%s (%d) has been loaded %s of %s (%d) and added to resets.\n\r",
             str_capitalized (obj_index->short_descr),
-            obj_index->vnum, wear_loc->display_name,
+            obj_index->vnum, wear_loc->phrase,
             to_mob->short_descr, to_mob->index_data->vnum);
     }
     /* Display Syntax */

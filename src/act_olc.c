@@ -174,7 +174,7 @@ void do_resets_display (CHAR_T *ch) {
                     sprintf (buf,
                         "O[%5d] %-13.13s %-19.19s M[%5d] (%c)   "
                         "%-15.15s\n\r", obj_vnum, obj->short_descr,
-                        (wear_loc ? wear_loc->name : "none"),
+                        (wear_loc ? wear_loc->phrase : "none"),
                         mob->vnum, reset->command, mob->short_descr);
                 }
                 strcat (final, buf);

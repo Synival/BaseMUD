@@ -1035,10 +1035,10 @@ struct board_data {
 struct wear_loc_type {
     int type;
     const char *name;
-    const char *display_name;
     const char *phrase;
     const char *look_msg;
     flag_t wear_flag;
+    int ac_bonus;
     const char *msg_wear_self, *msg_wear_room;
 };
 

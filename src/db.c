@@ -431,7 +431,7 @@ void boot_db (void) {
     in_boot_db = FALSE;
     convert_objects (); /* ROM OLC */
 
- // db_export_json (TRUE, NULL);
+    db_export_json (TRUE, NULL);
 
     area_update ();
     board_load_all ();

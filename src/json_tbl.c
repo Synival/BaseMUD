@@ -381,13 +381,13 @@ DEFINE_TABLE_JSON_FUN (json_tblw_furniture) {
 
 DEFINE_TABLE_JSON_FUN (json_tblw_wear_loc) {
     JSON_TBLW_START (WEAR_LOC_T, wear_loc, wear_loc->name == NULL);
-    json_prop_integer (new, "type", wear_loc->type);
-    json_prop_string  (new, "name", JSTR (wear_loc->name));
-    json_prop_string  (new, "display_name", JSTR (wear_loc->display_name));
-    json_prop_string  (new, "phrase", JSTR (wear_loc->phrase));
-    json_prop_string  (new, "look_msg", JSTR (wear_loc->look_msg));
-    json_prop_string  (new, "wear_flag", JBITSF (wear_flags,
+    json_prop_integer (new, "type",          wear_loc->type);
+    json_prop_string  (new, "name",          JSTR (wear_loc->name));
+    json_prop_string  (new, "phrase",        JSTR (wear_loc->phrase));
+    json_prop_string  (new, "look_msg",      JSTR (wear_loc->look_msg));
+    json_prop_string  (new, "wear_flag",     JBITSF (wear_flags,
         wear_loc->wear_flag));
+    json_prop_integer (new, "ac_bonus",      wear_loc->ac_bonus);
     json_prop_string  (new, "wear_msg_self", JSTR (wear_loc->msg_wear_self));
     json_prop_string  (new, "wear_msg_room", JSTR (wear_loc->msg_wear_room));
     return new;
