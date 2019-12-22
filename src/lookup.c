@@ -154,19 +154,17 @@ const char *flag_get_name (flag_t bit, const FLAG_T *flag_table)
     { SIMPLE_GET_NAME_FROM_ELEMENT (FLAG_T, flag_get (bit, flag_table), name); }
 
 /* Lookup bundles. */
-SIMPLE_SEQUENTIAL_BUNDLE (master,   TABLE_T,    0);
+SIMPLE_INDEX_BUNDLE (master,   TABLE_T,    0);
 
-SIMPLE_SEQUENTIAL_BUNDLE (attack,   ATTACK_T,   ATTACK_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (board,    BOARD_T,    BOARD_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (clan,     CLAN_T,     CLAN_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (class,    CLASS_T,    CLASS_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (liq,      LIQ_T,      LIQ_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (race,     RACE_T,     RACE_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (sex,      SEX_T,      SEX_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (size,     SIZE_T,     SIZE_MAX_R);
-SIMPLE_SEQUENTIAL_BUNDLE (skill,    SKILL_T,    SKILL_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (skill_group, SKILL_GROUP_T, SKILL_GROUP_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (spec,     SPEC_T,     SPEC_MAX);
+SIMPLE_INDEX_BUNDLE (attack,   ATTACK_T,   ATTACK_MAX);
+SIMPLE_INDEX_BUNDLE (board,    BOARD_T,    BOARD_MAX);
+SIMPLE_INDEX_BUNDLE (clan,     CLAN_T,     CLAN_MAX);
+SIMPLE_INDEX_BUNDLE (class,    CLASS_T,    CLASS_MAX);
+SIMPLE_INDEX_BUNDLE (liq,      LIQ_T,      LIQ_MAX);
+SIMPLE_INDEX_BUNDLE (race,     RACE_T,     RACE_MAX);
+SIMPLE_INDEX_BUNDLE (skill,    SKILL_T,    SKILL_MAX);
+SIMPLE_INDEX_BUNDLE (skill_group, SKILL_GROUP_T, SKILL_GROUP_MAX);
+SIMPLE_INDEX_BUNDLE (spec,     SPEC_T,     SPEC_MAX);
 
 SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_T,       type);
 SIMPLE_HASH_BUNDLE (colour,     COLOUR_T,           code);
@@ -185,6 +183,8 @@ SIMPLE_HASH_BUNDLE (nanny,      NANNY_HANDLER_T,    state);
 SIMPLE_HASH_BUNDLE (position,   POSITION_T,         pos);
 SIMPLE_HASH_BUNDLE (recycle,    RECYCLE_T,          type);
 SIMPLE_HASH_BUNDLE (sector,     SECTOR_T,           type);
+SIMPLE_HASH_BUNDLE (sex,        SEX_T,              sex);
+SIMPLE_HASH_BUNDLE (size,       SIZE_T,             size);
 SIMPLE_HASH_BUNDLE (sky,        SKY_T,              type);
 SIMPLE_HASH_BUNDLE (sun,        SUN_T,              type);
 SIMPLE_HASH_BUNDLE (weapon,     WEAPON_T,           type);

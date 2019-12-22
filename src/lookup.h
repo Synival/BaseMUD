@@ -115,7 +115,7 @@
 
 /* Defines a bundle of lookup functions for elements that start at zero,
  * end before 'max', and whose values can be referenced by array[n]. */
-#define SIMPLE_SEQUENTIAL_BUNDLE(btype, vtype, max)                 \
+#define SIMPLE_INDEX_BUNDLE(btype, vtype, max)                 \
     int btype ## _lookup (const char *name)                         \
         { SIMPLE_LOOKUP (btype ## _table, name, -1, max); }         \
     int btype ## _lookup_exact (const char *name)                   \
@@ -167,7 +167,7 @@
         return NULL;                                                       \
     }
 
-#define DEC_SIMPLE_SEQUENTIAL_BUNDLE(btype, vtype)           \
+#define DEC_SIMPLE_INDEX_BUNDLE(btype, vtype)           \
     int           btype ## _lookup       (const char *name); \
     int           btype ## _lookup_exact (const char *name); \
     const vtype * btype ## _get_by_name  (const char *name); \
@@ -208,19 +208,17 @@ const char *flag_string_real (const FLAG_T *flag_table, flag_t bits,
     const char *none_str);
 
 /* Lookup bundles. */
-DEC_SIMPLE_SEQUENTIAL_BUNDLE (master,   TABLE_T);
+DEC_SIMPLE_INDEX_BUNDLE (master,   TABLE_T);
 
-DEC_SIMPLE_SEQUENTIAL_BUNDLE (attack,   ATTACK_T);
-DEC_SIMPLE_SEQUENTIAL_BUNDLE (board,    BOARD_T);
-DEC_SIMPLE_SEQUENTIAL_BUNDLE (clan,     CLAN_T);
-DEC_SIMPLE_SEQUENTIAL_BUNDLE (class,    CLASS_T);
-DEC_SIMPLE_SEQUENTIAL_BUNDLE (liq,      LIQ_T);
-DEC_SIMPLE_SEQUENTIAL_BUNDLE (race,     RACE_T);
-DEC_SIMPLE_SEQUENTIAL_BUNDLE (sex,      SEX_T);
-DEC_SIMPLE_SEQUENTIAL_BUNDLE (size,     SIZE_T);
-DEC_SIMPLE_SEQUENTIAL_BUNDLE (skill,    SKILL_T);
-DEC_SIMPLE_SEQUENTIAL_BUNDLE (skill_group, SKILL_GROUP_T);
-DEC_SIMPLE_SEQUENTIAL_BUNDLE (spec,     SPEC_T);
+DEC_SIMPLE_INDEX_BUNDLE (attack,   ATTACK_T);
+DEC_SIMPLE_INDEX_BUNDLE (board,    BOARD_T);
+DEC_SIMPLE_INDEX_BUNDLE (clan,     CLAN_T);
+DEC_SIMPLE_INDEX_BUNDLE (class,    CLASS_T);
+DEC_SIMPLE_INDEX_BUNDLE (liq,      LIQ_T);
+DEC_SIMPLE_INDEX_BUNDLE (race,     RACE_T);
+DEC_SIMPLE_INDEX_BUNDLE (skill,    SKILL_T);
+DEC_SIMPLE_INDEX_BUNDLE (skill_group, SKILL_GROUP_T);
+DEC_SIMPLE_INDEX_BUNDLE (spec,     SPEC_T);
 
 DEC_SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_T);
 DEC_SIMPLE_HASH_BUNDLE (colour,     COLOUR_T);
@@ -239,6 +237,8 @@ DEC_SIMPLE_HASH_BUNDLE (nanny,      NANNY_HANDLER_T);
 DEC_SIMPLE_HASH_BUNDLE (position,   POSITION_T);
 DEC_SIMPLE_HASH_BUNDLE (recycle,    RECYCLE_T);
 DEC_SIMPLE_HASH_BUNDLE (sector,     SECTOR_T);
+DEC_SIMPLE_HASH_BUNDLE (sex,        SEX_T);
+DEC_SIMPLE_HASH_BUNDLE (size,       SIZE_T);
 DEC_SIMPLE_HASH_BUNDLE (sky,        SKY_T);
 DEC_SIMPLE_HASH_BUNDLE (sun,        SUN_T);
 DEC_SIMPLE_HASH_BUNDLE (weapon,     WEAPON_T);
