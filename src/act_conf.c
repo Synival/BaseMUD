@@ -415,7 +415,7 @@ DEFINE_DO_FUN (do_prompt) {
         if (strlen (argument) > 50)
             argument[50] = '\0';
         strcpy (buf, argument);
-        smash_tilde (buf);
+        str_smash_tilde (buf);
         if (str_suffix ("%c", buf))
             strcat (buf, " ");
     }
@@ -434,7 +434,7 @@ DEFINE_DO_FUN (do_alias) {
     char arg[MAX_INPUT_LENGTH];
     int pos;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     rch = REAL_CH (ch);
     if (IS_NPC (rch))
         return;

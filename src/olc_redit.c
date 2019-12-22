@@ -297,7 +297,7 @@ REDIT (redit_rlist) {
         if ((room_index = get_room_index (vnum))) {
             found = TRUE;
             sprintf (buf, "[%5d] %-17.16s",
-                     vnum, capitalize (room_index->name));
+                     vnum, str_capitalized (room_index->name));
             add_buf (buf1, buf);
             if (++col % 3 == 0)
                 add_buf (buf1, "\n\r");
@@ -341,11 +341,11 @@ REDIT (redit_mlist) {
 
     for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++) {
         if ((mob_index = get_mob_index (vnum)) != NULL) {
-            if (all || is_name (arg, mob_index->name)) {
+            if (all || str_in_namelist (arg, mob_index->name)) {
                 found = TRUE;
                 sprintf (buf, "[%5d] %-17.16s",
                          mob_index->vnum,
-                         capitalize (mob_index->short_descr));
+                         str_capitalized (mob_index->short_descr));
                 add_buf (buf1, buf);
                 if (++col % 3 == 0)
                     add_buf (buf1, "\n\r");
@@ -391,13 +391,13 @@ REDIT (redit_olist) {
     item_type = item_lookup (arg);
     for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++) {
         if ((obj_index = get_obj_index (vnum))) {
-            if (all || is_name (arg, obj_index->name) ||
+            if (all || str_in_namelist (arg, obj_index->name) ||
                 item_type == obj_index->item_type)
             {
                 found = TRUE;
                 sprintf (buf, "[%5d] %-17.16s",
                          obj_index->vnum,
-                         capitalize (obj_index->short_descr));
+                         str_capitalized (obj_index->short_descr));
                 add_buf (buf1, buf);
                 if (++col % 3 == 0)
                     add_buf (buf1, "\n\r");
@@ -565,7 +565,7 @@ REDIT (redit_show) {
             int i, length;
 
             sprintf (buf, "-%-5s to [%5d] Key: [%5d] ",
-                     capitalize (door_table[door].name),
+                     str_capitalized (door_table[door].name),
                      pexit->to_room ? pexit->to_room->vnum : 0, /* ROM OLC */
                      pexit->key);
             strcat (buf1, buf);
@@ -658,7 +658,7 @@ REDIT (redit_ed) {
             send_to_char ("Syntax: ed edit [keyword]\n\r", ch);
             return FALSE;
         }
-        LIST_FIND (is_name (keyword, ed->keyword), next,
+        LIST_FIND (str_in_namelist (keyword, ed->keyword), next,
             room->extra_descr, ed);
         if (!ed) {
             send_to_char ("REdit: Extra description keyword not found.\n\r", ch);
@@ -674,7 +674,7 @@ REDIT (redit_ed) {
             send_to_char ("Syntax: ed delete [keyword]\n\r", ch);
             return FALSE;
         }
-        LIST_FIND_WITH_PREV (is_name (keyword, ed->keyword),
+        LIST_FIND_WITH_PREV (str_in_namelist (keyword, ed->keyword),
             next, room->extra_descr, ed, ped);
         if (!ed) {
             send_to_char ("REdit: Extra description keyword not found.\n\r", ch);
@@ -692,7 +692,7 @@ REDIT (redit_ed) {
             send_to_char ("Syntax: ed format [keyword]\n\r", ch);
             return FALSE;
         }
-        LIST_FIND (is_name (keyword, ed->keyword), next,
+        LIST_FIND (str_in_namelist (keyword, ed->keyword), next,
             room->extra_descr, ed);
         if (!ed) {
             send_to_char ("REdit: Extra description keyword not found.\n\r", ch);
@@ -868,7 +868,7 @@ REDIT (redit_mreset) {
     printf_to_char (ch,
         "%s (%d) has been loaded and added to resets.\n\r"
         "There will be a maximum of %d loaded to this room.\n\r",
-        capitalize (mob_index->short_descr),
+        str_capitalized (mob_index->short_descr),
         mob_index->vnum, reset->v.mob.room_limit);
     act ("$n has created $N!", ch, NULL, newmob, TO_NOTCHAR);
     return TRUE;
@@ -918,7 +918,7 @@ REDIT (redit_oreset) {
         obj_give_to_room (newobj, room);
 
         printf_to_char (ch, "%s (%d) has been loaded and added to resets.\n\r",
-            capitalize (obj_index->short_descr), obj_index->vnum);
+            str_capitalized (obj_index->short_descr), obj_index->vnum);
     }
     /* Load into object's inventory. */
     else if (argument[0] == '\0' &&
@@ -938,7 +938,7 @@ REDIT (redit_oreset) {
 
         printf_to_char (ch, "%s (%d) has been loaded into "
             "%s (%d) and added to resets.\n\r",
-            capitalize (newobj->short_descr), newobj->index_data->vnum,
+            str_capitalized (newobj->short_descr), newobj->index_data->vnum,
             to_obj->short_descr, to_obj->index_data->vnum);
     }
     /* Load into mobile's inventory. */
@@ -952,7 +952,7 @@ REDIT (redit_oreset) {
         /* Disallow loading a sword (WEAR_WIELD) into WEAR_HEAD. */
         if (!IS_SET (obj_index->wear_flags, wear_get_type_by_loc (wear_loc))) {
             printf_to_char (ch, "%s (%d) has wear flags: [%s]\n\r",
-                capitalize (obj_index->short_descr), obj_index->vnum,
+                str_capitalized (obj_index->short_descr), obj_index->vnum,
                 flag_string (wear_flags, obj_index->wear_flags));
         }
 
@@ -1023,7 +1023,7 @@ REDIT (redit_oreset) {
 
         printf_to_char (ch,
             "%s (%d) has been loaded %s of %s (%d) and added to resets.\n\r",
-            capitalize (obj_index->short_descr),
+            str_capitalized (obj_index->short_descr),
             obj_index->vnum,
             flag_string (wear_loc_phrases, wear_loc),
             to_mob->short_descr, to_mob->index_data->vnum);

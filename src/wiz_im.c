@@ -189,7 +189,7 @@ DEFINE_DO_FUN (do_mwhere) {
     for (victim = char_list; victim != NULL; victim = victim->next) {
         if (victim->in_room == NULL)
             continue;
-        if (!is_name (argument, victim->name))
+        if (!str_in_namelist (argument, victim->name))
             continue;
 
         found = TRUE;
@@ -227,7 +227,7 @@ DEFINE_DO_FUN (do_owhere) {
     for (obj = object_list; obj != NULL; obj = obj->next) {
         if (!char_can_see_obj (ch, obj))
             continue;
-        if (!is_name (argument, obj->name))
+        if (!str_in_namelist (argument, obj->name))
             continue;
         if (ch->level < obj->level)
             continue;
@@ -403,7 +403,7 @@ DEFINE_DO_FUN (do_ostat) {
         "Number: %d/%d  Weight: %d/%d/%d (10th pounds)  Material: %s\n\r",
         1, obj_get_carry_number (obj), obj->weight, obj_get_weight (obj),
         obj_get_true_weight (obj),
-        if_null_str ((char *) material_get_name (obj->material), "unknown"));
+        str_if_null ((char *) material_get_name (obj->material), "unknown"));
 
     printf_to_char (ch, "Level: %d  Cost: %d  Condition: %d  Timer: %d\n\r",
         obj->level, obj->cost, obj->condition, obj->timer);
@@ -454,7 +454,7 @@ DEFINE_DO_FUN (do_ostat) {
 
         case ITEM_WEAPON:
             printf_to_char (ch, "Weapon type is %s\n\r",
-                if_null_str (weapon_get_name (obj->v.weapon.weapon_type), "unknown"));
+                str_if_null (weapon_get_name (obj->v.weapon.weapon_type), "unknown"));
 
             if (obj->index_data->new_format) {
                 printf_to_char (ch, "Damage is %ldd%ld (average %ld)\n\r",
@@ -612,7 +612,7 @@ DEFINE_DO_FUN (do_mstat) {
     printf_to_char (ch,
         "Carry number: %d  Carry weight: %ld  Material: %s\n\r",
         victim->carry_number, char_get_carry_weight (victim) / 10,
-        if_null_str ((char *) material_get_name (victim->material), "unknown"));
+        str_if_null ((char *) material_get_name (victim->material), "unknown"));
 
     if (!IS_NPC (victim)) {
         printf_to_char (ch,

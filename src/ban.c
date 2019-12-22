@@ -89,7 +89,7 @@ bool ban_check (char *site, int type) {
     BAN_T *pban;
     char host[MAX_STRING_LENGTH];
 
-    strcpy (host, capitalize (site));
+    strcpy (host, str_capitalized (site));
     host[0] = LOWER (host[0]);
 
     for (pban = ban_first; pban != NULL; pban = pban->next) {

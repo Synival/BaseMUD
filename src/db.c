@@ -560,7 +560,7 @@ void load_area (FILE *fp) {
 
     area = area_new ();
     str_replace_dup (&area->filename, fread_string (fp));
-    str_replace_dup (&area->name, trim_extension (area->filename));
+    str_replace_dup (&area->name, str_without_extension (area->filename));
 
     /* Pretty up the log a little */
     log_f ("Loading area '%s'", area->filename);
@@ -632,7 +632,7 @@ void load_area_olc (FILE *fp) {
     area->area_flags = 0;
 /*  area->recall       = ROOM_VNUM_TEMPLE;        ROM OLC */
 
-    str_replace_dup (&area->name, trim_extension (area->filename));
+    str_replace_dup (&area->name, str_without_extension (area->filename));
     log_f("Loading area %s", area->filename);
 
     while (1) {
@@ -702,7 +702,7 @@ void load_helps (FILE *fp, char *fname) {
         if (!had_last || str_cmp (fname, had_last->filename)) {
             had = had_new ();
             str_replace_dup (&had->filename, fname);
-            str_replace_dup (&had->name, trim_extension (had->filename));
+            str_replace_dup (&had->name, str_without_extension (had->filename));
             had->area = current_area;
             if (current_area)
                 current_area->helps = had;
@@ -728,8 +728,8 @@ void db_finalize_obj (OBJ_INDEX_T *obj) {
             int min_hit       = 100;
             int min_mana      = 100;
 
-            if (is_name ("tent", obj->name) ||
-                is_name ("cabin", obj->name))
+            if (str_in_namelist ("tent", obj->name) ||
+                str_in_namelist ("cabin", obj->name))
             {
                 SET_BIT (obj->v.furniture.flags, REST_IN);
                 SET_BIT (obj->v.furniture.flags, SIT_IN);
@@ -738,15 +738,15 @@ void db_finalize_obj (OBJ_INDEX_T *obj) {
                 min_occupants = 1;
                 min_hit = 250;
             }
-            if (is_name ("bed", obj->name)) {
+            if (str_in_namelist ("bed", obj->name)) {
                 SET_BIT (obj->v.furniture.flags, REST_ON);
                 SET_BIT (obj->v.furniture.flags, SIT_ON);
                 SET_BIT (obj->v.furniture.flags, SLEEP_IN);
                 min_occupants = 1;
                 min_hit = 200;
             }
-            if (is_name ("sofa", obj->name) ||
-                is_name ("couch", obj->name))
+            if (str_in_namelist ("sofa", obj->name) ||
+                str_in_namelist ("couch", obj->name))
             {
                 SET_BIT (obj->v.furniture.flags, REST_ON);
                 SET_BIT (obj->v.furniture.flags, SIT_ON);
@@ -754,15 +754,15 @@ void db_finalize_obj (OBJ_INDEX_T *obj) {
                 min_occupants = 1;
                 min_hit = 150;
             }
-            if (is_name ("bench", obj->name)) {
+            if (str_in_namelist ("bench", obj->name)) {
                 SET_BIT (obj->v.furniture.flags, REST_ON);
                 SET_BIT (obj->v.furniture.flags, SIT_ON);
                 SET_BIT (obj->v.furniture.flags, SLEEP_ON);
                 min_occupants = 1;
                 min_hit = 125;
             }
-            if (is_name ("chair", obj->name) ||
-                is_name ("stool", obj->name))
+            if (str_in_namelist ("chair", obj->name) ||
+                str_in_namelist ("stool", obj->name))
             {
                 SET_BIT (obj->v.furniture.flags, STAND_ON);
                 SET_BIT (obj->v.furniture.flags, REST_ON);
@@ -1811,7 +1811,7 @@ void clear_char (CHAR_T *ch) {
 /* Get an extra description from a list. */
 char *get_extra_descr (const char *name, EXTRA_DESCR_T *ed) {
     for (; ed != NULL; ed = ed->next)
-        if (is_name ((char *) name, ed->keyword))
+        if (str_in_namelist ((char *) name, ed->keyword))
             return ed->description;
     return NULL;
 }

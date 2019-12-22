@@ -426,7 +426,7 @@ void interpret (CHAR_T *ch, char *argument) {
     }
 
     /* Log and snoop. */
-    smash_dollar(logline);
+    str_smash_dollar (logline);
 
     if (cmd_table[cmd].log == LOG_NEVER)
         strcpy (logline, "");

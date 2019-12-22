@@ -78,7 +78,7 @@ DEFINE_DO_FUN (do_guild) {
         printf_to_char (victim, "You are now a %s.\n\r", cname);
     }
     else {
-        cname = capitalize (clan->name);
+        cname = str_capitalized (clan->name);
         printf_to_char (ch,    "They are now a member of clan %s.\n\r", cname);
         printf_to_char (victim, "You are now a member of clan %s.\n\r", cname);
     }
@@ -99,8 +99,8 @@ DEFINE_DO_FUN (do_sockets) {
     one_argument (argument, arg);
     for (d = descriptor_list; d != NULL; d = d->next) {
         if (d->character != NULL && char_can_see_anywhere (ch, d->character)
-            && (arg[0] == '\0' || is_name (arg, d->character->name)
-                || (d->original && is_name (arg, d->original->name))))
+            && (arg[0] == '\0' || str_in_namelist (arg, d->character->name)
+                || (d->original && str_in_namelist (arg, d->original->name))))
         {
             count++;
             sprintf (buf + strlen (buf), "[%3d %2d] %s@%s\n\r",
@@ -567,7 +567,7 @@ DEFINE_DO_FUN (do_mfind) {
         "Find whom?\n\r", ch);
 
     for (mob = mob_index_get_first(); mob; mob = mob_index_get_next (mob)) {
-        if (is_name (argument, mob->name)) {
+        if (str_in_namelist (argument, mob->name)) {
             printf_to_char (ch, "[%5d] %s\n\r", mob->vnum, mob->short_descr);
             matches++;
         }
@@ -588,7 +588,7 @@ DEFINE_DO_FUN (do_ofind) {
         "Find what?\n\r", ch);
 
     for (obj = obj_index_get_first(); obj; obj = obj_index_get_next (obj)) {
-        if (is_name (argument, obj->name)) {
+        if (str_in_namelist (argument, obj->name)) {
             printf_to_char (ch, "[%5d] %s\n\r", obj->vnum, obj->short_descr);
             matches++;
         }

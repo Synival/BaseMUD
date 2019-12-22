@@ -96,7 +96,7 @@ void string_add (CHAR_T *ch, char *argument) {
     char buf[MAX_STRING_LENGTH];
 
     /* Thanks to James Seng */
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     if (*argument == '.') {
         char arg1[MAX_INPUT_LENGTH];
         char arg2[MAX_INPUT_LENGTH];
@@ -213,7 +213,7 @@ void string_add (CHAR_T *ch, char *argument) {
 
     /* Ensure no tilde's inside string.
      * -------------------------------- */
-    smash_tilde (argument);
+    str_smash_tilde (argument);
 
     strcat (buf, argument);
     strcat (buf, "\n\r");

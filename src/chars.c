@@ -1841,7 +1841,7 @@ int char_exit_string (const CHAR_T *ch, const ROOM_INDEX_T *room, int mode,
         else if (mode == EXITS_LONG) {
             /* exit information */
             len += snprintf (out_buf + len, out_size - len, "%-5s ",
-                capitalize (door_get_name(door)));
+                str_capitalized (door_get_name(door)));
 
             if (isdoor) {
                 char dbuf[64];

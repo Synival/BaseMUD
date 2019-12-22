@@ -216,9 +216,9 @@ void load_old_obj (FILE *fp) {
         fread_number (fp); /* Cost per day? Unused? */
 
         if (obj_index->item_type == ITEM_WEAPON) {
-            if (is_name ("two",        obj_index->name) ||
-                is_name ("two-handed", obj_index->name) ||
-                is_name ("claymore",   obj_index->name))
+            if (str_in_namelist ("two",        obj_index->name) ||
+                str_in_namelist ("two-handed", obj_index->name) ||
+                str_in_namelist ("claymore",   obj_index->name))
             {
                 SET_BIT (obj_index->v.weapon.flags, WEAPON_TWO_HANDS);
             }

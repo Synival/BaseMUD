@@ -95,7 +95,7 @@ HEDIT (hedit_new) {
     if (!had) {
         had = had_new ();
         str_replace_dup (&had->filename, ch->in_room->area->filename);
-        str_replace_dup (&had->name, trim_extension (had->filename));
+        str_replace_dup (&had->name, str_without_extension (had->filename));
         had->area = ch->in_room->area;
         had->changed = TRUE;
         LISTB_BACK (had, next, had_first, had_last);

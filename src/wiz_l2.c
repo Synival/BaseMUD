@@ -157,7 +157,7 @@ DEFINE_DO_FUN (do_mset) {
     CHAR_T *victim;
     int value;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
     strcpy (arg3, argument);
@@ -429,7 +429,7 @@ DEFINE_DO_FUN (do_oset) {
     OBJ_T *obj;
     int value;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
     strcpy (arg3, argument);
@@ -483,7 +483,7 @@ DEFINE_DO_FUN (do_rset) {
     ROOM_INDEX_T *location;
     int value;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
     strcpy (arg3, argument);

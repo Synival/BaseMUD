@@ -40,7 +40,7 @@
 #include "utils.h"
 
 /* Returns an initial-capped string. */
-char *capitalize (const char *str) {
+char *str_capitalized (const char *str) {
     static char strcap[MAX_STRING_LENGTH];
     int i;
     for (i = 0; str[i] != '\0'; i++)
@@ -50,21 +50,21 @@ char *capitalize (const char *str) {
     return strcap;
 }
 
+void str_smash_char (char *str, char from, char to) {
+    for (; *str != '\0'; str++)
+        if (*str == from)
+            *str = to;
+}
+
 /* Removes the tildes from a string.
  * Used for player-entered strings that go into disk files. */
-void smash_tilde (char *str) {
-    for (; *str != '\0'; str++)
-        if (*str == '~')
-            *str = '-';
-}
+void str_smash_tilde (char *str)
+    { str_smash_char (str, '~', '-'); }
 
 /* Removes dollar signs to keep snerts from crashing us.
  * Posted to ROM list by Kyndig. JR -- 10/15/00 */
-void smash_dollar (char *str) {
-    for (; *str != '\0'; str++)
-        if (*str == '$')
-            *str = 'S';
-}
+void str_smash_dollar (char *str)
+    { str_smash_char (str, '$', 'S'); }
 
 /* Compare strings, case insensitive.
  * Return TRUE if different
@@ -134,11 +134,11 @@ bool str_suffix (const char *astr, const char *bstr) {
 }
 
 /* Returns 'str' if non-null, otherwise 'ifnull'. */
-const char *if_null_str (const char *str, const char *ifnull) {
+const char *str_if_null (const char *str, const char *ifnull) {
     return str ? str : ifnull;
 }
 
-char *trim_extension (char *input) {
+char *str_without_extension (char *input) {
     static char fbuf[256], *period;
     snprintf (fbuf, sizeof (fbuf), "%s", input);
     if ((period = strrchr (fbuf, '.')) != NULL)
@@ -147,9 +147,9 @@ char *trim_extension (char *input) {
 }
 
 /* See if a string is one of the names of an object. */
-bool is_name (const char *str, char *namelist) {
-    char name[MAX_INPUT_LENGTH], part[MAX_INPUT_LENGTH];
-    const char *list, *string;
+bool str_in_namelist (const char *str, const char *namelist) {
+    char str_arg[MAX_INPUT_LENGTH], list_arg[MAX_INPUT_LENGTH];
+    const char *str_pos, *list_pos;
 
     /* fix crash on NULL namelist */
     if (namelist == NULL || namelist[0] == '\0')
@@ -159,44 +159,32 @@ bool is_name (const char *str, char *namelist) {
     if (str == NULL || str[0] == '\0')
         return FALSE;
 
-    /* we need ALL parts of string to match part of namelist */
-    string = str;
+    /* we need ALL args of 'str' to match args of namelist */
+    str_pos = str;
     while (1) { /* start parsing string */
-        str = one_argument (str, part);
-        if (part[0] == '\0')
+        str_pos = one_argument (str_pos, str_arg);
+        if (str_arg[0] == '\0')
             return TRUE;
 
-        /* check to see if this is part of namelist */
-        list = namelist;
+        /* check to see if this is contained in namelist */
+        list_pos = namelist;
         while (1) { /* start parsing namelist */
-            list = one_argument (list, name);
-            if (name[0] == '\0') /* this name was not found */
+            list_pos = one_argument (list_pos, list_arg);
+            if (list_arg[0] == '\0') /* this name was not found */
                 return FALSE;
-            if (!str_prefix (string, name))
+            if (!str_prefix (str, list_arg))
                 return TRUE; /* full pattern match */
-            if (!str_prefix (part, name))
+            if (!str_prefix (str_arg, list_arg))
                 break;
         }
     }
 }
 
-bool is_exact_name (const char *str, char *namelist) {
+bool str_in_namelist_exact (const char *str, const char *namelist) {
     char name[MAX_INPUT_LENGTH];
 
-    if (namelist == NULL)
+    if (namelist == NULL || namelist[0] == '\0')
         return FALSE;
-    while (1) {
-        namelist = one_argument (namelist, name);
-        if (name[0] == '\0')
-            return FALSE;
-        if (!str_cmp (str, name))
-            return TRUE;
-    }
-}
-
-/* See if a string is one of the names of an object. */
-bool is_full_name (const char *str, char *namelist) {
-    char name[MIL];
     while (1) {
         namelist = one_argument (namelist, name);
         if (name[0] == '\0')

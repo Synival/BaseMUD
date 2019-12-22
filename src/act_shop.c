@@ -96,7 +96,7 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
     ROOM_INDEX_T *in_room;
     int cost, roll;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     if (IS_NPC (ch))
         return;
     argument = one_argument (argument, arg);
@@ -315,7 +315,7 @@ void do_list_items (CHAR_T *ch, char *argument) {
             continue;
         if ((cost = char_get_obj_cost (keeper, obj, TRUE)) <= 0)
             continue;
-        if (!(arg[0] == '\0' || is_name (arg, obj->name)))
+        if (!(arg[0] == '\0' || str_in_namelist (arg, obj->name)))
             continue;
 
         if (!found) {

@@ -63,7 +63,7 @@ bool new_player_name_is_valid (char *name) {
     int clan;
 
     /* Reserved words. */
-    if (is_exact_name (name,
+    if (str_in_namelist_exact (name,
             "all auto immortal self someone something the you loner none"))
         return FALSE;
 
@@ -75,7 +75,7 @@ bool new_player_name_is_valid (char *name) {
     }
 
     /* Restrict certain specific names. */
-    if (str_cmp (capitalize (name), "Alander") &&
+    if (str_cmp (str_capitalized (name), "Alander") &&
             (!str_prefix ("Alan", name) || !str_suffix ("Alander", name)))
         return FALSE;
 
@@ -134,7 +134,7 @@ bool new_player_name_is_valid (char *name) {
             for (mob_index = mob_index_hash[hash];
                  mob_index != NULL; mob_index = mob_index->next)
             {
-                if (is_name (name, mob_index->name))
+                if (str_in_namelist (name, mob_index->name))
                     return FALSE;
             }
         }

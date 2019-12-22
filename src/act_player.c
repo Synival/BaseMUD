@@ -63,7 +63,7 @@ DEFINE_DO_FUN (do_delete) {
         }
         else {
             wiznet ("$N turns $Mself into line noise.", ch, NULL, 0, 0, 0);
-            sprintf (strsave, "%s%s", PLAYER_DIR, capitalize (ch->name));
+            sprintf (strsave, "%s%s", PLAYER_DIR, str_capitalized (ch->name));
             stop_fighting (ch, TRUE);
             do_function (ch, &do_quit, "");
             unlink (strsave);

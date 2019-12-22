@@ -56,7 +56,7 @@ bool room_is_dark (const ROOM_INDEX_T *room_index) {
 bool room_is_owner (const ROOM_INDEX_T *room, const CHAR_T *ch) {
     if (room->owner == NULL || room->owner[0] == '\0')
         return FALSE;
-    return is_name (ch->name, room->owner);
+    return str_in_namelist (ch->name, room->owner);
 }
 
 /* True if room is private. */

@@ -186,7 +186,7 @@ void do_get_container (CHAR_T *ch, char *arg1, char *arg2) {
 
     for (obj = obj_start; obj != NULL; obj = obj_next) {
         obj_next = (type == OBJ_SINGLE) ? NULL : obj->next_content;
-        if (type == OBJ_ALL_OF && !is_name (arg1, obj->name))
+        if (type == OBJ_ALL_OF && !str_in_namelist (arg1, obj->name))
             continue;
         if (!char_can_see_obj (ch, obj))
             continue;
@@ -212,7 +212,7 @@ void do_get_room (CHAR_T *ch, char *argument) {
 
     for (obj = obj_start; obj != NULL; obj = obj_next) {
         obj_next = (type == OBJ_SINGLE) ? NULL : obj->next_content;
-        if (type == OBJ_ALL_OF && !is_name (argument, obj->name))
+        if (type == OBJ_ALL_OF && !str_in_namelist (argument, obj->name))
             continue;
         if (!char_can_see_obj (ch, obj))
             continue;
@@ -266,7 +266,7 @@ DEFINE_DO_FUN (do_put) {
 
     for (obj = obj_start; obj != NULL; obj = obj_next) {
         obj_next = (type == OBJ_SINGLE) ? NULL : obj->next_content;
-        if (type == OBJ_ALL_OF && !is_name (arg, obj->name))
+        if (type == OBJ_ALL_OF && !str_in_namelist (arg, obj->name))
             continue;
         if (do_filter_can_put_item (ch, obj, container, type == OBJ_SINGLE)) {
             failed = TRUE;
@@ -335,7 +335,7 @@ DEFINE_DO_FUN (do_drop) {
 
     for (obj = obj_start; obj != NULL; obj = obj_next) {
         obj_next = (type == OBJ_SINGLE) ? NULL : obj->next_content;
-        if (type == OBJ_ALL_OF && !is_name (arg, obj->name))
+        if (type == OBJ_ALL_OF && !str_in_namelist (arg, obj->name))
             continue;
         if (do_filter_can_drop_item (ch, obj, type == OBJ_SINGLE)) {
             failed = TRUE;
@@ -1382,7 +1382,7 @@ DEFINE_DO_FUN (do_play) {
 
         sprintf (buf, "%s has the following songs available:\n\r",
                  juke->short_descr);
-        add_buf (buffer, capitalize (buf));
+        add_buf (buffer, str_capitalized (buf));
 
         for (i = 0; i < MAX_SONGS; i++) {
             if (song_table[i].name == NULL)

@@ -51,7 +51,7 @@ void do_group_show (CHAR_T *ch) {
         printf_to_char (ch,
             "[%2d %s] %-16s %4d/%4d hp %4d/%4d mana %4d/%4d mv %5d xp\n\r",
             gch->level, IS_NPC (gch) ? "Mob" : class_table[gch->class].who_name,
-            capitalize (PERS_AW (gch, ch)), gch->hit, gch->max_hit,
+            str_capitalized (PERS_AW (gch, ch)), gch->hit, gch->max_hit,
             gch->mana, gch->max_mana, gch->move, gch->max_move, gch->exp);
     }
 }

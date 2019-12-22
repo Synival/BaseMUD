@@ -263,26 +263,26 @@ void board_load_all () {
 bool note_is_for_char (NOTE_T *note, CHAR_T *ch) {
     if (!str_cmp (ch->name, note->sender))
         return TRUE;
-    if (is_full_name ("all", note->to_list))
+    if (str_in_namelist_exact ("all", note->to_list))
         return TRUE;
 
     if (IS_IMMORTAL(ch) && (
-        is_full_name ("imm", note->to_list) ||
-        is_full_name ("imms", note->to_list) ||
-        is_full_name ("immortal", note->to_list) ||
-        is_full_name ("god", note->to_list) ||
-        is_full_name ("gods", note->to_list) ||
-        is_full_name ("immortals", note->to_list)))
+        str_in_namelist_exact ("imm", note->to_list) ||
+        str_in_namelist_exact ("imms", note->to_list) ||
+        str_in_namelist_exact ("immortal", note->to_list) ||
+        str_in_namelist_exact ("god", note->to_list) ||
+        str_in_namelist_exact ("gods", note->to_list) ||
+        str_in_namelist_exact ("immortals", note->to_list)))
         return TRUE;
 
     if ((char_get_trust(ch) == MAX_LEVEL) && (
-        is_full_name ("imp", note->to_list) ||
-        is_full_name ("imps", note->to_list) ||
-        is_full_name ("implementor", note->to_list) ||
-        is_full_name ("implementors", note->to_list)))
+        str_in_namelist_exact ("imp", note->to_list) ||
+        str_in_namelist_exact ("imps", note->to_list) ||
+        str_in_namelist_exact ("implementor", note->to_list) ||
+        str_in_namelist_exact ("implementors", note->to_list)))
         return TRUE;
 
-    if (is_full_name (ch->name, note->to_list))
+    if (str_in_namelist_exact (ch->name, note->to_list))
         return TRUE;
 
     /* Allow a note to e.g. 40 to send to characters level 40 and above */
@@ -360,7 +360,7 @@ DEFINE_NANNY_FUN (handle_con_note_to) {
     }
 
     strcpy (buf, argument);
-    smash_tilde (buf); /* change ~ to - as we save this field as a string later */
+    str_smash_tilde (buf); /* change ~ to - as we save this field as a string later */
 
     switch (ch->pcdata->board->force_type) {
         case DEF_NORMAL: /* default field */
@@ -374,7 +374,7 @@ DEFINE_NANNY_FUN (handle_con_note_to) {
             break;
 
         case DEF_INCLUDE: /* forced default */
-            if (!is_full_name (ch->pcdata->board->names, buf)) {
+            if (!str_in_namelist_exact (ch->pcdata->board->names, buf)) {
                 strcat (buf, " ");
                 strcat (buf, ch->pcdata->board->names);
                 ch->pcdata->in_progress->to_list = str_dup (buf);
@@ -393,7 +393,7 @@ DEFINE_NANNY_FUN (handle_con_note_to) {
                               "{YTo{x:      ", d);
                 return;
             }
-            if (is_full_name (ch->pcdata->board->names, buf)) {
+            if (str_in_namelist_exact (ch->pcdata->board->names, buf)) {
                 printf_to_desc (d,
                     "You are not allowed to send notes to %s on this board. Try again.\n\r"
                     "{YTo{x:      ", ch->pcdata->board->names);
@@ -421,7 +421,7 @@ DEFINE_NANNY_FUN (handle_con_note_subject) {
     }
 
     strcpy (buf, argument);
-    smash_tilde (buf); /* change ~ to - as we save this field as a string later */
+    str_smash_tilde (buf); /* change ~ to - as we save this field as a string later */
 
     /* Do not allow empty subjects */
     if (!buf[0])        {
@@ -519,7 +519,7 @@ DEFINE_NANNY_FUN (handle_con_note_text) {
         return;
     }
 
-    smash_tilde (buf); /* smash it now */
+    str_smash_tilde (buf); /* smash it now */
 
     /* Check for too long lines. Do not allow lines longer than 80 chars */
 

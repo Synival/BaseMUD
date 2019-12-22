@@ -340,7 +340,7 @@ DEFINE_SPELL_FUN (spell_locate_object) {
     for (obj = object_list; obj != NULL; obj = obj->next) {
         if (!char_can_see_obj (ch, obj))
             continue;
-        if (!is_name (target_name, obj->name))
+        if (!str_in_namelist (target_name, obj->name))
             continue;
         if (IS_OBJ_STAT (obj, ITEM_NOLOCATE))
             continue;

@@ -101,7 +101,7 @@ DEFINE_SPELL_FUN (spell_create_water) {
 
     obj->v.drink_con.liquid = LIQ_WATER;
     obj->v.drink_con.filled += water;
-    if (!is_name ("water", obj->name)) {
+    if (!str_in_namelist ("water", obj->name)) {
         char buf[MAX_STRING_LENGTH];
 
         sprintf (buf, "%s water", obj->name);

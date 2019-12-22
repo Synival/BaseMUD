@@ -332,7 +332,7 @@ void aedit (CHAR_T *ch, char *argument) {
     int value;
 
     EDIT_AREA (ch, area);
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     strcpy (arg, argument);
     argument = one_argument (argument, command);
 
@@ -382,7 +382,7 @@ void redit (CHAR_T *ch, char *argument) {
     EDIT_ROOM (ch, room);
     area = room->area;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     strcpy (arg, argument);
     argument = one_argument (argument, command);
 
@@ -424,7 +424,7 @@ void oedit (CHAR_T *ch, char *argument) {
     char command[MAX_INPUT_LENGTH];
     int cmd;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     strcpy (arg, argument);
     argument = one_argument (argument, command);
 
@@ -469,7 +469,7 @@ void medit (CHAR_T *ch, char *argument) {
     char arg[MAX_STRING_LENGTH];
     int cmd;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     strcpy (arg, argument);
     argument = one_argument (argument, command);
 
@@ -513,7 +513,7 @@ void mpedit (CHAR_T *ch, char *argument) {
     int cmd;
     AREA_T *ad;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     strcpy (arg, argument);
     argument = one_argument (argument, command);
 
@@ -560,7 +560,7 @@ void hedit (CHAR_T *ch, char *argument) {
     char command[MAX_INPUT_LENGTH];
     int cmd;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     strcpy (arg, argument);
     argument = one_argument (argument, command);
 

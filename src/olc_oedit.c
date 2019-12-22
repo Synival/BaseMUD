@@ -913,7 +913,7 @@ OEDIT (oedit_ed) {
             send_to_char ("Syntax: ed edit [keyword]\n\r", ch);
             return FALSE;
         }
-        LIST_FIND (is_name (keyword, ed->keyword), next,
+        LIST_FIND (str_in_namelist (keyword, ed->keyword), next,
             obj->extra_descr, ed);
         if (!ed) {
             send_to_char ("OEdit: Extra description keyword not found.\n\r", ch);
@@ -930,7 +930,7 @@ OEDIT (oedit_ed) {
             send_to_char ("Syntax: ed delete [keyword]\n\r", ch);
             return FALSE;
         }
-        LIST_FIND_WITH_PREV (is_name (keyword, ed->keyword),
+        LIST_FIND_WITH_PREV (str_in_namelist (keyword, ed->keyword),
             next, obj->extra_descr, ed, ped);
         if (!ed) {
             send_to_char ("OEdit: Extra description keyword not found.\n\r", ch);
@@ -948,7 +948,7 @@ OEDIT (oedit_ed) {
             send_to_char ("Syntax: ed format [keyword]\n\r", ch);
             return FALSE;
         }
-        LIST_FIND (is_name (keyword, ed->keyword), next,
+        LIST_FIND (str_in_namelist (keyword, ed->keyword), next,
             obj->extra_descr, ed);
         if (!ed) {
             send_to_char ("OEdit: Extra description keyword not found.\n\r", ch);

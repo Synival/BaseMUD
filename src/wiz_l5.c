@@ -315,7 +315,7 @@ DEFINE_DO_FUN (do_string) {
     CHAR_T *victim;
     OBJ_T *obj;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     argument = one_argument (argument, type);
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);

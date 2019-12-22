@@ -643,7 +643,7 @@ DEFINE_DO_FUN (do_cast) {
             break;
 
         case SKILL_TARGET_CHAR_SELF:
-            BAIL_IF (arg2[0] != '\0' && !is_name (target_name, ch->name),
+            BAIL_IF (arg2[0] != '\0' && !str_in_namelist (target_name, ch->name),
                 "You cannot cast this spell on another.\n\r", ch);
             vo = (void *) ch;
             target = TARGET_CHAR;

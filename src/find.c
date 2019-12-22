@@ -82,7 +82,7 @@ CHAR_T *find_char_same_room (CHAR_T *ch, const char *argument) {
     for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
         if (!char_can_see_in_room (ch, rch))
             continue;
-        if (!is_name (arg, rch->name))
+        if (!str_in_namelist (arg, rch->name))
             continue;
         if (++count == number)
             break;
@@ -113,7 +113,7 @@ CHAR_T *find_char_world (CHAR_T *ch, const char *argument) {
         /* We already checked objects here; skip them! */
         if (wch->in_room == ch->in_room)
             continue;
-        if (!is_name (arg, wch->name))
+        if (!str_in_namelist (arg, wch->name))
             continue;
         if (!char_can_see_anywhere (ch, wch))
             continue;
@@ -166,7 +166,7 @@ OBJ_T *find_obj_list (CHAR_T *ch, OBJ_T *list, const char *argument, int worn) {
             continue;
         if (!char_can_see_obj (ch, obj))
             continue;
-        if (!is_name (arg, obj->name))
+        if (!str_in_namelist (arg, obj->name))
             continue;
         if (++count == number)
             break;
@@ -215,7 +215,7 @@ OBJ_T *find_obj_world (CHAR_T *ch, const char *argument) {
 
         if (!char_can_see_obj (ch, obj))
             continue;
-        if (!is_name (arg, obj->name))
+        if (!str_in_namelist (arg, obj->name))
             continue;
         if (++count == number)
             break;
@@ -242,7 +242,7 @@ OBJ_T *find_obj_keeper (CHAR_T *ch, CHAR_T *keeper, const char *argument) {
             continue;
         if (!char_can_see_obj (ch, obj))
             continue;
-        if (!is_name (arg, obj->name))
+        if (!str_in_namelist (arg, obj->name))
             continue;
         if (++count == number)
             break;
@@ -275,7 +275,7 @@ int find_door_same_room (CHAR_T *ch, const char *argument) {
             continue;
         if (pexit->keyword == NULL)
             continue;
-        if (!is_name (arg, pexit->keyword))
+        if (!str_in_namelist (arg, pexit->keyword))
             continue;
         if (++count == number)
             break;

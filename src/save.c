@@ -98,7 +98,7 @@ void save_char_obj (CHAR_T *ch) {
     /* create god log */
     if (IS_IMMORTAL (ch) || ch->level >= LEVEL_IMMORTAL) {
         fclose (reserve_file);
-        sprintf (strsave, "%s%s", GOD_DIR, capitalize (ch->name));
+        sprintf (strsave, "%s%s", GOD_DIR, str_capitalized (ch->name));
         if ((fp = fopen (strsave, "w")) == NULL) {
             bug ("save_char_obj: fopen", 0);
             perror (strsave);
@@ -112,7 +112,7 @@ void save_char_obj (CHAR_T *ch) {
 #endif
 
     fclose (reserve_file);
-    sprintf (strsave, "%s%s", PLAYER_DIR, capitalize (ch->name));
+    sprintf (strsave, "%s%s", PLAYER_DIR, str_capitalized (ch->name));
     if ((fp = fopen (TEMP_FILE, "w")) == NULL) {
         bug ("save_char_obj: fopen", 0);
         perror (strsave);
@@ -534,7 +534,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
 
 #if defined(unix)
     /* decompress if .gz file exists */
-    sprintf (strsave, "%s%s%s", PLAYER_DIR, capitalize (name), ".gz");
+    sprintf (strsave, "%s%s%s", PLAYER_DIR, str_capitalized (name), ".gz");
     if ((fp = fopen (strsave, "r")) != NULL) {
         fclose (fp);
         sprintf (buf, "gzip -dfq %s", strsave);
@@ -542,7 +542,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
     }
 #endif
 
-    sprintf (strsave, "%s%s", PLAYER_DIR, capitalize (name));
+    sprintf (strsave, "%s%s", PLAYER_DIR, str_capitalized (name));
     if ((fp = fopen (strsave, "r")) != NULL) {
         int nest;
         for (nest = 0; nest < MAX_NEST; nest++)

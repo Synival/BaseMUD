@@ -189,7 +189,7 @@ void do_resets_display (CHAR_T *ch) {
                 room_index = get_room_index (v->door.room_vnum);
                 sprintf (buf, "R[%5d] %s door of %-19.19s reset to %s\n\r",
                     v->door.room_vnum,
-                    capitalize (door_table[v->door.dir].name),
+                    str_capitalized (door_table[v->door.dir].name),
                     room_index->name,
                     flag_string (door_resets, v->door.locks));
                 strcat (final, buf);
@@ -291,7 +291,7 @@ DEFINE_DO_FUN (do_hedit) {
             strcat (argall, argone);
         }
         for (help = help_first; help != NULL; help = help->next) {
-            if (is_name (argall, help->keyword)) {
+            if (str_in_namelist (argall, help->keyword)) {
                 ch->desc->olc_edit = (void *) help;
                 ch->desc->editor = ED_HELP;
                 found = TRUE;
@@ -688,7 +688,7 @@ DEFINE_DO_FUN (do_asave) {
     AREA_T *area;
     int value;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     strcpy (arg1, argument);
 
     if (arg1[0] == '\0') {

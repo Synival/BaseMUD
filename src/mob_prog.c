@@ -462,11 +462,11 @@ int cmd_eval (sh_int vnum, char *line, int check,
                 case 'r':
                 case 'q':
                     return (lval_char != NULL
-                            && is_name (buf, lval_char->name));
+                            && str_in_namelist (buf, lval_char->name));
                 case 'o':
                 case 'p':
                     return (lval_obj != NULL
-                            && is_name (buf, lval_obj->name));
+                            && str_in_namelist (buf, lval_obj->name));
             }
         case CHK_POS:
             return (lval_char != NULL
@@ -621,7 +621,7 @@ void expand_arg (char *buf,
                 i = someone;
                 if (ch != NULL && char_can_see_anywhere (mob, ch)) {
                     one_argument (ch->name, fname);
-                    i = capitalize (fname);
+                    i = str_capitalized (fname);
                 }
                 break;
             case 'N':
@@ -632,7 +632,7 @@ void expand_arg (char *buf,
                 i = someone;
                 if (vch != NULL && char_can_see_anywhere (mob, vch)) {
                     one_argument (vch->name, fname);
-                    i = capitalize (fname);
+                    i = str_capitalized (fname);
                 }
                 break;
             case 'T':
@@ -645,7 +645,7 @@ void expand_arg (char *buf,
                 i = someone;
                 if (rch != NULL && char_can_see_anywhere (mob, rch)) {
                     one_argument (rch->name, fname);
-                    i = capitalize (fname);
+                    i = str_capitalized (fname);
                 }
                 break;
             case 'R':
@@ -660,7 +660,7 @@ void expand_arg (char *buf,
                     char_can_see_anywhere (mob, mob->mprog_target))
                 {
                     one_argument (mob->mprog_target->name, fname);
-                    i = capitalize (fname);
+                    i = str_capitalized (fname);
                 }
                 break;
             case 'Q':
@@ -1049,7 +1049,7 @@ bool mp_give_trigger (CHAR_T *mob, CHAR_T *ch, OBJ_T *obj) {
         else {
             while (*p) {
                 p = one_argument (p, buf);
-                if (is_name (buf, obj->name) || !str_cmp ("all", buf)) {
+                if (str_in_namelist (buf, obj->name) || !str_cmp ("all", buf)) {
                     program_flow (prg->vnum, prg->code, mob, ch,
                                   (void *) obj, NULL);
                     return TRUE;

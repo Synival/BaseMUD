@@ -305,7 +305,7 @@ bool do_filter_description_append (CHAR_T *ch, char *argument) {
 }
 
 bool do_filter_description_alter (CHAR_T *ch, char *argument) {
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     if (argument[0] == '-')
         return do_filter_description_remove_line (ch);
     else
@@ -403,7 +403,8 @@ DEFINE_DO_FUN (do_look) {
 
             CHECK_LOOK (pdesc1 != NULL, pdesc1, FALSE);
             CHECK_LOOK (pdesc2 != NULL, pdesc2, FALSE);
-            CHECK_LOOK (is_name (arg3, obj->name), obj->description, TRUE);
+            CHECK_LOOK (str_in_namelist (arg3, obj->name),
+                        obj->description, TRUE);
         }
     }
 
@@ -721,7 +722,7 @@ DEFINE_DO_FUN (do_help) {
         if (level > trust)
             continue;
 
-        if (is_name (argall, help->keyword)) {
+        if (str_in_namelist (argall, help->keyword)) {
             /* add seperator if found */
             if (found)
                 add_buf (output,
@@ -1096,7 +1097,8 @@ DEFINE_DO_FUN (do_where) {
                 && victim->in_room->area == ch->in_room->area
                 && !IS_AFFECTED (victim, AFF_HIDE)
                 && !IS_AFFECTED (victim, AFF_SNEAK)
-                && char_can_see_anywhere (ch, victim) && is_name (arg, victim->name))
+                && char_can_see_anywhere (ch, victim)
+                && str_in_namelist (arg, victim->name))
             {
                 found = TRUE;
                 printf_to_char (ch, "%-28s %s\n\r",
@@ -1130,7 +1132,7 @@ DEFINE_DO_FUN (do_title) {
     BAIL_IF (argument[0] == '\0',
         "Change your title to what?\n\r", ch);
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     char_set_title (ch, argument);
     send_to_char ("Ok.\n\r", ch);
 }

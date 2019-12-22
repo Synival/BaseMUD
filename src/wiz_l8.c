@@ -90,7 +90,7 @@ DEFINE_DO_FUN (do_bamfin) {
     if (IS_NPC (ch))
         return;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     if (argument[0] == '\0') {
         printf_to_char (ch, "Your poofin is %s\n\r", ch->pcdata->bamfin);
         return;
@@ -106,7 +106,7 @@ DEFINE_DO_FUN (do_bamfout) {
     if (IS_NPC (ch))
         return;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     if (argument[0] == '\0') {
         printf_to_char (ch, "Your poofout is %s\n\r", ch->pcdata->bamfout);
         return;

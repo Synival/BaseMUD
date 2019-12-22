@@ -234,6 +234,6 @@ DEFINE_SPELL_FUN (spell_ventriloquate) {
     buf1[0] = UPPER (buf1[0]);
 
     for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room)
-        if (!is_exact_name (speaker, vch->name) && IS_AWAKE (vch))
+        if (!str_in_namelist_exact (speaker, vch->name) && IS_AWAKE (vch))
             send_to_char (saves_spell (level, vch, DAM_OTHER) ? buf2 : buf1, vch);
 }

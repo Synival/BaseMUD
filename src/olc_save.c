@@ -185,7 +185,7 @@ void save_mobile (FILE *fp, MOB_INDEX_T *mob_index)
     fprintf (fp, "%s ", fwrite_flag (mob_index->parts_plus, buf));
 
     fprintf (fp, "%s ", size_table[mob_index->size].name);
-    fprintf (fp, "%s\n", if_null_str (
+    fprintf (fp, "%s\n", str_if_null (
         (char *) material_get_name (mob_index->material), "unknown"));
 
     if (mob_index->mob_minus != 0)
@@ -246,7 +246,7 @@ void save_object (FILE *fp, OBJ_INDEX_T *obj_index) {
     fprintf (fp, "%s~\n", obj_index->name);
     fprintf (fp, "%s~\n", obj_index->short_descr);
     fprintf (fp, "%s~\n", fix_string (obj_index->description));
-    fprintf (fp, "%s~\n", if_null_str (
+    fprintf (fp, "%s~\n", str_if_null (
         (char *) material_get_name (obj_index->material), "unknown"));
     fprintf (fp, "%s ", item_get_name (obj_index->item_type));
     fprintf (fp, "%s ", fwrite_flag (obj_index->extra_flags, buf));
@@ -580,7 +580,7 @@ void save_resets (FILE *fp, AREA_T *area) {
                         fprintf (fp,
                             "O %d %5d %3d %5d    * %s loaded to %s\n",
                             r->v.value[0], r->v.value[1], r->v.value[2],
-                            r->v.value[3], capitalize (last_obj->short_descr),
+                            r->v.value[3], str_capitalized (last_obj->short_descr),
                             room->name);
                         break;
 
@@ -590,7 +590,7 @@ void save_resets (FILE *fp, AREA_T *area) {
                             "P %d %5d %3d %5d %2d %s * put inside %s\n",
                             r->v.value[0], r->v.value[1], r->v.value[2],
                             r->v.value[3], r->v.value[4],
-                            capitalize (get_obj_index (r->v.value[1])->short_descr),
+                            str_capitalized (get_obj_index (r->v.value[1])->short_descr),
                             last_obj->short_descr);
                         break;
 
@@ -598,7 +598,7 @@ void save_resets (FILE *fp, AREA_T *area) {
                         fprintf (fp,
                             "G %d %5d %3d          * %s is given to %s\n",
                             r->v.value[0], r->v.value[1], r->v.value[2],
-                            capitalize (get_obj_index (r->v.value[1])->short_descr),
+                            str_capitalized (get_obj_index (r->v.value[1])->short_descr),
                             last_mob ? last_mob->short_descr : "!NO_MOB!");
 
                         if (!last_mob)
@@ -610,7 +610,7 @@ void save_resets (FILE *fp, AREA_T *area) {
                             "E %d %5d %3d %5d    * %s is loaded %s of %s\n",
                             r->v.value[0], r->v.value[1], r->v.value[2],
                             r->v.value[3],
-                            capitalize (get_obj_index (r->v.value[1])->short_descr),
+                            str_capitalized (get_obj_index (r->v.value[1])->short_descr),
                             flag_string (wear_loc_phrases, r->v.value[3]),
                             last_mob ? last_mob->short_descr : "!NO_MOB!");
 

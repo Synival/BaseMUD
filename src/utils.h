@@ -31,19 +31,18 @@
 #include "merc.h"
 
 /* String utilities. */
-char *capitalize (const char *str);
-void smash_tilde (char *str);
-void smash_dollar (char *str);
+char *str_capitalized (const char *str);
+void str_smash_char (char *str, char from, char to);
+void str_smash_tilde (char *str);
+void str_smash_dollar (char *str);
 bool str_cmp (const char *astr, const char *bstr);
 bool str_prefix (const char *astr, const char *bstr);
 bool str_infix (const char *astr, const char *bstr);
 bool str_suffix (const char *astr, const char *bstr);
-const char *if_null_str (const char *str, const char *ifnull);
-char *trim_extension (char *input);
-bool is_name (const char *str, char *namelist);
-bool is_exact_name (const char *str, char *namelist);
-bool is_full_name (const char *str, char *namelist);
-char *ctime_fixed (const time_t *timep);
+const char *str_if_null (const char *str, const char *ifnull);
+char *str_without_extension (char *input);
+bool str_in_namelist (const char *str, const char *namelist);
+bool str_in_namelist_exact (const char *str, const char *namelist);
 size_t str_inject_args (char *buf, size_t size, const char *format, ...);
 
 /* Number utilities. */
@@ -68,5 +67,8 @@ void bugf (const char *fmt, ...);
 void log_string (const char *str);
 void log_f (const char *fmt, ...);
 void tail_chain (void);
+
+/* Misc. utilities. */
+char *ctime_fixed (const time_t *timep);
 
 #endif

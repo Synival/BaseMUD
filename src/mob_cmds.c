@@ -271,7 +271,7 @@ DEFINE_DO_FUN (do_mpjunk) {
     else {
         for (obj = ch->carrying; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            if (arg[3] == '\0' || is_name (&arg[4], obj->name)) {
+            if (arg[3] == '\0' || str_in_namelist (&arg[4], obj->name)) {
                 if (obj->wear_loc != WEAR_NONE)
                     char_unequip_obj (ch, obj);
                 obj_extract (obj);
