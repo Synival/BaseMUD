@@ -498,6 +498,8 @@ DEFINE_DO_FUN (do_backstab) {
     BAIL_IF (IS_NPC (victim) && victim->fighting != NULL &&
              !is_same_group (ch, victim->fighting),
         "Kill stealing is not permitted.\n\r", ch);
+    BAIL_IF (ch->position < POS_FIGHTING,
+        "You can't even reach their back on the ground!\n\r", ch);
     BAIL_IF ((obj = char_get_eq_by_wear_loc (ch, WEAR_WIELD)) == NULL,
         "You need to wield a weapon to backstab.\n\r", ch);
     BAIL_IF_ACT (victim->hit < victim->max_hit / 3,

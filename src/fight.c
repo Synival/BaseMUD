@@ -338,24 +338,24 @@ void mob_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
     }
 
     /* oh boy!  Fun stuff! */
-    if (ch->wait > 0 || ch->position < POS_STANDING)
+    if (ch->wait > 0 || ch->position < POS_FIGHTING)
         return;
 
     /* now for the skills */
     number = number_range (0, 8);
     switch (number) {
-        case (0):
+        case 0:
             if (IS_SET (ch->off_flags, OFF_BASH))
                 do_function (ch, &do_bash, "");
             break;
 
-        case (1):
+        case 1:
             if (IS_SET (ch->off_flags, OFF_BERSERK)
                 && !IS_AFFECTED (ch, AFF_BERSERK))
                 do_function (ch, &do_berserk, "");
             break;
 
-        case (2):
+        case 2:
             if (IS_SET (ch->off_flags, OFF_DISARM)
                 || (char_get_weapon_sn (ch) != gsn_hand_to_hand
                     && (IS_SET (ch->mob, MOB_WARRIOR) ||
@@ -363,32 +363,32 @@ void mob_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
                 do_function (ch, &do_disarm, "");
             break;
 
-        case (3):
+        case 3:
             if (IS_SET (ch->off_flags, OFF_KICK))
                 do_function (ch, &do_kick, "");
             break;
 
-        case (4):
+        case 4:
             if (IS_SET (ch->off_flags, OFF_KICK_DIRT))
                 do_function (ch, &do_dirt, "");
             break;
 
-        case (5):
+        case 5:
             if (IS_SET (ch->off_flags, OFF_TAIL))
                 ; /* do_function(ch, &do_tail, "") */
             break;
 
-        case (6):
+        case 6:
             if (IS_SET (ch->off_flags, OFF_TRIP))
                 do_function (ch, &do_trip, "");
             break;
 
-        case (7):
+        case 7:
             if (IS_SET (ch->off_flags, OFF_CRUSH))
                 ; /* do_function(ch, &do_crush, "") */
             break;
 
-        case (8):
+        case 8:
             if (IS_SET (ch->off_flags, OFF_BACKSTAB))
                 do_function (ch, &do_backstab, "");
             break;

@@ -451,10 +451,9 @@ bool desc_flush_output (DESCRIPTOR_T *d) {
         d->outtop = 0;
         return FALSE;
     }
-    else {
-        d->outtop = 0;
-        return TRUE;
-    }
+
+    d->outtop = 0;
+    return TRUE;
 }
 
 /* Append onto an output buffer. */
@@ -559,15 +558,19 @@ bool check_reconnect (DESCRIPTOR_T *d, char *name, bool conn) {
 /* Check if already playing. */
 bool check_playing (DESCRIPTOR_T *d, char *name) {
     DESCRIPTOR_T *dold;
+    const char *ch_name;
 
     for (dold = descriptor_list; dold; dold = dold->next) {
-        if (dold != d
-            && dold->character != NULL
-            && dold->connected != CON_GET_NAME
-            && dold->connected != CON_GET_OLD_PASSWORD
-            && !str_cmp (name, dold->original
-                         ? dold->original->name : dold->character->name))
-        {
+        if (dold == d)
+            continue;
+        if (dold->character == NULL)
+            continue;
+        if (dold->connected == CON_GET_NAME ||
+            dold->connected == CON_GET_OLD_PASSWORD)
+            continue;
+
+        ch_name = (CH (dold))->name;
+        if (str_cmp (name, ch_name) == 0) {
             write_to_buffer (d, "That character is already playing.\n\r", 0);
             write_to_buffer (d, "Do you wish to connect anyway (Y/N)?", 0);
             d->connected = CON_BREAK_CONNECT;
