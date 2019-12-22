@@ -62,7 +62,7 @@
   {"wear_loc": {
     "type": 5,
     "name": "body",
-    "phrase": "on the body",
+    "phrase": "on the torso",
     "look_msg": "<worn on torso>",
     "wear_flag": "body",
     "ac_bonus": 300,
