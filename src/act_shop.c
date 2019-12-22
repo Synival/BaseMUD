@@ -309,7 +309,7 @@ void do_list_items (CHAR_T *ch, char *argument) {
 
     found = FALSE;
     for (obj = keeper->carrying; obj; obj = obj->next_content) {
-        if (obj->wear_loc != WEAR_NONE)
+        if (obj->wear_loc != WEAR_LOC_NONE)
             continue;
         if (!char_can_see_obj (ch, obj))
             continue;

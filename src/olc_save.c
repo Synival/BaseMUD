@@ -605,18 +605,22 @@ void save_resets (FILE *fp, AREA_T *area) {
                             bugf ("Save_resets: !NO_MOB! in [%s]", area->filename);
                         break;
 
-                    case 'E':
+                    case 'E': {
+                        const WEAR_LOC_T *wear_loc = wear_loc_get (r->v.value[3]);
+                        const char *wear_loc_name = wear_loc
+                            ? wear_loc->display_name : "none";
                         fprintf (fp,
                             "E %d %5d %3d %5d    * %s is loaded %s of %s\n",
                             r->v.value[0], r->v.value[1], r->v.value[2],
                             r->v.value[3],
                             str_capitalized (get_obj_index (r->v.value[1])->short_descr),
-                            flag_string (wear_loc_phrases, r->v.value[3]),
+                            wear_loc_name,
                             last_mob ? last_mob->short_descr : "!NO_MOB!");
 
                         if (!last_mob)
                             bugf ("Save_resets: !NO_MOB! in [%s]", area->filename);
                         break;
+                    }
 
                     case 'D':
                         break;

@@ -500,7 +500,7 @@ DEFINE_DO_FUN (do_backstab) {
         "Kill stealing is not permitted.\n\r", ch);
     BAIL_IF (ch->position < POS_FIGHTING,
         "You can't even reach their back on the ground!\n\r", ch);
-    BAIL_IF ((obj = char_get_eq_by_wear_loc (ch, WEAR_WIELD)) == NULL,
+    BAIL_IF ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD)) == NULL,
         "You need to wield a weapon to backstab.\n\r", ch);
     BAIL_IF_ACT (victim->hit < victim->max_hit / 3,
         "$N is hurt and suspicious ... you can't sneak up.", ch, NULL, victim);
@@ -627,13 +627,13 @@ DEFINE_DO_FUN (do_disarm) {
 
     BAIL_IF ((chance = get_skill (ch, gsn_disarm)) == 0,
         "You don't know how to disarm opponents.\n\r", ch);
-    BAIL_IF (char_get_eq_by_wear_loc (ch, WEAR_WIELD) == NULL &&
+    BAIL_IF (char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD) == NULL &&
         ((hth = get_skill (ch, gsn_hand_to_hand)) == 0 ||
          (IS_NPC (ch) && !IS_SET (ch->off_flags, OFF_DISARM))),
         "You must wield a weapon to disarm.\n\r", ch);
     BAIL_IF ((victim = ch->fighting) == NULL,
         "You aren't fighting anyone.\n\r", ch);
-    BAIL_IF ((obj = char_get_eq_by_wear_loc (victim, WEAR_WIELD)) == NULL,
+    BAIL_IF ((obj = char_get_eq_by_wear_loc (victim, WEAR_LOC_WIELD)) == NULL,
         "Your opponent is not wielding a weapon.\n\r", ch);
 
     /* find weapon skills */
@@ -644,7 +644,7 @@ DEFINE_DO_FUN (do_disarm) {
     /* modifiers */
 
     /* skill */
-    if (char_get_eq_by_wear_loc (ch, WEAR_WIELD) == NULL)
+    if (char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD) == NULL)
         chance = chance * hth / 150;
     else
         chance = chance * ch_weapon / 100;

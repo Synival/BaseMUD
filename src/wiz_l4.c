@@ -355,7 +355,7 @@ DEFINE_DO_FUN (do_oload) {
         "No object has that vnum.\n\r", ch);
 
     obj = obj_create (obj_index, level);
-    if (CAN_WEAR_FLAG (obj, ITEM_TAKE))
+    if (obj_can_wear_flag (obj, ITEM_TAKE))
         obj_give_to_char (obj, ch);
     else
         obj_give_to_room (obj, ch->in_room);

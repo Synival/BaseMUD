@@ -1,7 +1,7 @@
 CC      = gcc
 PROF    = -g -O
 NOCRYPT =
-C_FLAGS =  -Wall -Werror $(PROF) $(NOCRYPT)
+C_FLAGS =  -Wall -Wno-trigraphs -Werror $(PROF) $(NOCRYPT)
 L_FLAGS =  $(PROF)
 LIBS    = -lcrypt
 EXE     = ../bin/rom

@@ -154,50 +154,51 @@ const char *flag_get_name (flag_t bit, const FLAG_T *flag_table)
     { SIMPLE_GET_NAME_FROM_ELEMENT (FLAG_T, flag_get (bit, flag_table), name); }
 
 /* Lookup bundles. */
-SIMPLE_SEQUENTIAL_BUNDLE (clan,     CLAN_T,     CLAN_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (position, POSITION_T, POS_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (sex,      SEX_T,      SEX_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (size,     SIZE_T,     SIZE_MAX_R);
-SIMPLE_SEQUENTIAL_BUNDLE (race,     RACE_T,     RACE_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (liq,      LIQ_T,      LIQ_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (attack,   ATTACK_T,   ATTACK_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (class,    CLASS_T,    CLASS_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (skill,    SKILL_T,    SKILL_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (spec,     SPEC_T,     SPEC_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (skill_group, SKILL_GROUP_T, SKILL_GROUP_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (wear_loc, WEAR_LOC_T, WEAR_LOC_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (recycle,  RECYCLE_T,  RECYCLE_MAX);
-SIMPLE_SEQUENTIAL_BUNDLE (board,    BOARD_T,    BOARD_MAX);
 SIMPLE_SEQUENTIAL_BUNDLE (master,   TABLE_T,    0);
 
-SIMPLE_HASH_BUNDLE (wiznet,     WIZNET_T,           bit);
-SIMPLE_HASH_BUNDLE (weapon,     WEAPON_T,           type);
-SIMPLE_HASH_BUNDLE (item,       ITEM_T,             type);
-SIMPLE_HASH_BUNDLE (sector,     SECTOR_T,           type);
-SIMPLE_HASH_BUNDLE (map_lookup, MAP_LOOKUP_TABLE_T, index);
-SIMPLE_HASH_BUNDLE (map_flags,  MAP_LOOKUP_TABLE_T, index);
-SIMPLE_HASH_BUNDLE (nanny,      NANNY_HANDLER_T,    state);
-SIMPLE_HASH_BUNDLE (furniture,  FURNITURE_BITS_T,   position);
-SIMPLE_HASH_BUNDLE (door,       DOOR_T,             dir);
-SIMPLE_HASH_BUNDLE (material,   MATERIAL_T,         type);
-SIMPLE_HASH_BUNDLE (effect,     EFFECT_T,           type);
-SIMPLE_HASH_BUNDLE (dam,        DAM_T,              type);
+SIMPLE_SEQUENTIAL_BUNDLE (attack,   ATTACK_T,   ATTACK_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (board,    BOARD_T,    BOARD_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (clan,     CLAN_T,     CLAN_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (class,    CLASS_T,    CLASS_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (liq,      LIQ_T,      LIQ_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (race,     RACE_T,     RACE_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (sex,      SEX_T,      SEX_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (size,     SIZE_T,     SIZE_MAX_R);
+SIMPLE_SEQUENTIAL_BUNDLE (skill,    SKILL_T,    SKILL_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (skill_group, SKILL_GROUP_T, SKILL_GROUP_MAX);
+SIMPLE_SEQUENTIAL_BUNDLE (spec,     SPEC_T,     SPEC_MAX);
+
+SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_T,       type);
 SIMPLE_HASH_BUNDLE (colour,     COLOUR_T,           code);
 SIMPLE_HASH_BUNDLE (colour_setting, COLOUR_SETTING_T, index);
-SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_T,       type);
+SIMPLE_HASH_BUNDLE (dam,        DAM_T,              type);
 SIMPLE_HASH_BUNDLE (day,        DAY_T,              type);
+SIMPLE_HASH_BUNDLE (door,       DOOR_T,             dir);
+SIMPLE_HASH_BUNDLE (effect,     EFFECT_T,           type);
+SIMPLE_HASH_BUNDLE (furniture,  FURNITURE_BITS_T,   position);
+SIMPLE_HASH_BUNDLE (item,       ITEM_T,             type);
+SIMPLE_HASH_BUNDLE (map_flags,  MAP_LOOKUP_TABLE_T, index);
+SIMPLE_HASH_BUNDLE (map_lookup, MAP_LOOKUP_TABLE_T, index);
+SIMPLE_HASH_BUNDLE (material,   MATERIAL_T,         type);
 SIMPLE_HASH_BUNDLE (month,      MONTH_T,            type);
+SIMPLE_HASH_BUNDLE (nanny,      NANNY_HANDLER_T,    state);
+SIMPLE_HASH_BUNDLE (position,   POSITION_T,         pos);
+SIMPLE_HASH_BUNDLE (recycle,    RECYCLE_T,          type);
+SIMPLE_HASH_BUNDLE (sector,     SECTOR_T,           type);
 SIMPLE_HASH_BUNDLE (sky,        SKY_T,              type);
 SIMPLE_HASH_BUNDLE (sun,        SUN_T,              type);
+SIMPLE_HASH_BUNDLE (weapon,     WEAPON_T,           type);
+SIMPLE_HASH_BUNDLE (wear_loc,   WEAR_LOC_T,         type);
+SIMPLE_HASH_BUNDLE (wiznet,     WIZNET_T,           bit);
 
-SIMPLE_REC_BUNDLE (ban,         BAN_T,         RECYCLE_BAN_T);
 SIMPLE_REC_BUNDLE (area,        AREA_T,        RECYCLE_AREA_T);
-SIMPLE_REC_BUNDLE (room_index,  ROOM_INDEX_T,  RECYCLE_ROOM_INDEX_T);
-SIMPLE_REC_BUNDLE (obj_index,   OBJ_INDEX_T,   RECYCLE_OBJ_INDEX_T);
-SIMPLE_REC_BUNDLE (help,        HELP_T,        RECYCLE_HELP_T);
+SIMPLE_REC_BUNDLE (ban,         BAN_T,         RECYCLE_BAN_T);
 SIMPLE_REC_BUNDLE (had,         HELP_AREA_T,   RECYCLE_HELP_AREA_T);
-SIMPLE_REC_BUNDLE (social,      SOCIAL_T,      RECYCLE_SOCIAL_T);
+SIMPLE_REC_BUNDLE (help,        HELP_T,        RECYCLE_HELP_T);
+SIMPLE_REC_BUNDLE (obj_index,   OBJ_INDEX_T,   RECYCLE_OBJ_INDEX_T);
 SIMPLE_REC_BUNDLE (portal_exit, PORTAL_EXIT_T, RECYCLE_PORTAL_EXIT_T);
+SIMPLE_REC_BUNDLE (room_index,  ROOM_INDEX_T,  RECYCLE_ROOM_INDEX_T);
+SIMPLE_REC_BUNDLE (social,      SOCIAL_T,      RECYCLE_SOCIAL_T);
 
 const TABLE_T *master_table_get_exact (const char *name) {
     int i;
@@ -351,20 +352,9 @@ AREA_T *area_get_by_inner_vnum (int vnum) {
     return NULL;
 }
 
-flag_t wear_get_loc_by_type (flag_t wear_flag) {
-    int i;
-    for (i = 0; wear_loc_table[i].name != NULL; i++)
-        if (wear_flag == wear_loc_table[i].wear_flag)
-            return wear_loc_table[i].type;
-    return 0;
-}
-
-flag_t wear_get_type_by_loc (flag_t wear_loc) {
-    int i;
-    for (i = 0; wear_loc_table[i].name != NULL; i++)
-        if (wear_loc == wear_loc_table[i].type)
-            return wear_loc_table[i].wear_flag;
-    return 0;
+flag_t wear_loc_get_flag (int wear_loc) {
+    const WEAR_LOC_T *loc = wear_loc_get (wear_loc);
+    return loc ? loc->wear_flag : 0;
 }
 
 HELP_AREA_T *help_area_get_by_help (HELP_T *help) {
@@ -494,8 +484,6 @@ const char *comm_bit_name (flag_t flags)
     { return flag_string (comm_flags, flags); }
 const char *res_bit_name (flag_t flags)
     { return flag_string (res_flags, flags); }
-const char *wear_loc_name (flag_t type)
-    { return flag_string (wear_loc_types, type); }
 const char *wear_flag_name (flag_t flags)
     { return flag_string (wear_flags, flags); }
 const char *form_bit_name (flag_t flags)

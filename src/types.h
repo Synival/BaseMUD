@@ -123,27 +123,27 @@
 #define SECT_MAX           11
 
 /* Equpiment wear locations. */
-#define WEAR_NONE     -1
-#define WEAR_LIGHT     0
-#define WEAR_FINGER_L  1
-#define WEAR_FINGER_R  2
-#define WEAR_NECK_1    3
-#define WEAR_NECK_2    4
-#define WEAR_BODY      5
-#define WEAR_HEAD      6
-#define WEAR_LEGS      7
-#define WEAR_FEET      8
-#define WEAR_HANDS     9
-#define WEAR_ARMS     10
-#define WEAR_SHIELD   11
-#define WEAR_ABOUT    12
-#define WEAR_WAIST    13
-#define WEAR_WRIST_L  14
-#define WEAR_WRIST_R  15
-#define WEAR_WIELD    16
-#define WEAR_HOLD     17
-#define WEAR_FLOAT    18
-#define WEAR_LOC_MAX  19
+#define WEAR_LOC_NONE     -1
+#define WEAR_LOC_LIGHT     0
+#define WEAR_LOC_FINGER_L  1
+#define WEAR_LOC_FINGER_R  2
+#define WEAR_LOC_NECK_1    3
+#define WEAR_LOC_NECK_2    4
+#define WEAR_LOC_BODY      5
+#define WEAR_LOC_HEAD      6
+#define WEAR_LOC_LEGS      7
+#define WEAR_LOC_FEET      8
+#define WEAR_LOC_HANDS     9
+#define WEAR_LOC_ARMS     10
+#define WEAR_LOC_SHIELD   11
+#define WEAR_LOC_ABOUT    12
+#define WEAR_LOC_WAIST    13
+#define WEAR_LOC_WRIST_L  14
+#define WEAR_LOC_WRIST_R  15
+#define WEAR_LOC_WIELD    16
+#define WEAR_LOC_HOLD     17
+#define WEAR_LOC_FLOAT    18
+#define WEAR_LOC_MAX      19
 
 /* AC types */
 #define AC_PIERCE    0
@@ -232,8 +232,6 @@
 
 /* Type tables. */
 extern const FLAG_T sex_types[SEX_MAX + 1];
-extern const FLAG_T wear_loc_phrases[WEAR_LOC_MAX + 2];
-extern const FLAG_T wear_loc_types[WEAR_LOC_MAX + 2];
 extern const FLAG_T ac_types[AC_MAX + 1];
 extern const FLAG_T size_types[SIZE_MAX_R + 1];
 extern const FLAG_T weapon_types[WEAPON_MAX + 1];

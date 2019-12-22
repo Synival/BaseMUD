@@ -548,8 +548,8 @@ JSON_T *json_new_obj_reset (const char *name, const RESET_T *reset) {
 
         case 'E':
             json_prop_obj_anum (sub, "obj", reset->area, v->equip.obj_vnum);
-            json_prop_string   (sub, "wear_loc", flag_string (wear_loc_types,
-                v->equip.wear_loc));
+            json_prop_string   (sub, "wear_loc",
+                wear_loc_get_name (v->equip.wear_loc));
             json_prop_integer  (sub, "global_limit", v->equip.global_limit);
             break;
 

@@ -998,7 +998,7 @@ DEFINE_DO_FUN (do_compare) {
     argument = one_argument (argument, arg2);
     if (arg2[0] == '\0') {
         for (obj2 = ch->carrying; obj2 != NULL; obj2 = obj2->next_content) {
-            if (obj2->wear_loc == WEAR_NONE)
+            if (obj2->wear_loc == WEAR_LOC_NONE)
                 continue;
             if (!char_can_see_obj (ch, obj2))
                 continue;

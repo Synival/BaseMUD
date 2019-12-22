@@ -198,9 +198,9 @@ bool spec_patrolman (CHAR_T *ch) {
             && victim->spec_fun == ch->spec_fun))
         return FALSE;
 
-    if (((obj = char_get_eq_by_wear_loc (ch, WEAR_NECK_1)) != NULL
+    if (((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_NECK_1)) != NULL
          && obj->index_data->vnum == OBJ_VNUM_WHISTLE)
-        || ((obj = char_get_eq_by_wear_loc (ch, WEAR_NECK_2)) != NULL
+        || ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_NECK_2)) != NULL
             && obj->index_data->vnum == OBJ_VNUM_WHISTLE))
     {
         act ("You blow down hard on $p.", ch, obj, NULL, TO_CHAR);

@@ -93,8 +93,6 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
     TTYPES (skill_target_types, "Targets for skills and spells."),
     TTYPES (stat_types,       "Available stats for characters."),
     TTYPES (weapon_types,     "Weapon classes."),
-    TTYPES (wear_loc_phrases, "Phrases for wear locations."),
-    TTYPES (wear_loc_types,   "Where mobile wears object."),
 
     /* from tables.h */
     /* TODO: read all of these! */
@@ -1488,27 +1486,29 @@ const COLOUR_T colour_table[] = {
     {0}
 };
 
-const WEAR_LOC_T wear_loc_table[WEAR_LOC_MAX + 1] = {
-    {WEAR_LIGHT,    "light",        "<used as light>",        ITEM_WEAR_LIGHT,  "You light $p and hold it.", "$n lights $p and holds it."},
-    {WEAR_FINGER_L, "left finger",  "<worn on L-finger>",     ITEM_WEAR_FINGER, "You wear $p on your left finger.", "$n wears $p on $s left finger."},
-    {WEAR_FINGER_R, "right finger", "<worn on R-finger>",     ITEM_WEAR_FINGER, "You wear $p on your right finger.", "$n wears $p on $s right finger."},
-    {WEAR_NECK_1,   "neck 1",       "<worn around neck 1>",   ITEM_WEAR_NECK,   "You wear $p around your neck.", "$n wears $p around $s neck."},
-    {WEAR_NECK_2,   "neck 2",       "<worn around neck 2>",   ITEM_WEAR_NECK,   "You wear $p around your neck.", "$n wears $p around $s neck."},
-    {WEAR_BODY,     "torso",        "<worn on torso>",        ITEM_WEAR_BODY,   "You wear $p on your torso.", "$n wears $p on $s torso."},
-    {WEAR_HEAD,     "head",         "<worn on head>",         ITEM_WEAR_HEAD,   "You wear $p on your head.", "$n wears $p on $s head."},
-    {WEAR_LEGS,     "legs",         "<worn on legs>",         ITEM_WEAR_LEGS,   "You wear $p on your legs.", "$n wears $p on $s legs."},
-    {WEAR_FEET,     "feet",         "<worn on feet>",         ITEM_WEAR_FEET,   "You wear $p on your feet.", "$n wears $p on $s feet."},
-    {WEAR_HANDS,    "hands",        "<worn on hands>",        ITEM_WEAR_HANDS,  "You wear $p on your hands.", "$n wears $p on $s hands."},
-    {WEAR_ARMS,     "arms",         "<worn on arms>",         ITEM_WEAR_ARMS,   "You wear $p on your arms.", "$n wears $p on $s arms."},
-    {WEAR_SHIELD,   "shield",       "<worn as shield>",       ITEM_WEAR_SHIELD, "You wear $p as a shield.", "$n wears $p as a shield."},
-    {WEAR_ABOUT,    "body",         "<worn about body>",      ITEM_WEAR_ABOUT,  "You wear $p about your torso.", "$n wears $p about $s torso."},
-    {WEAR_WAIST,    "waist",        "<worn about waist>",     ITEM_WEAR_WAIST,  "You wear $p about your waist.", "$n wears $p about $s waist."},
-    {WEAR_WRIST_L,  "left wrist",   "<worn around L-wrist>",  ITEM_WEAR_WRIST,  "You wear $p around your left wrist.", "$n wears $p around $s left wrist."},
-    {WEAR_WRIST_R,  "right wrist",  "<worn around R-wrist>",  ITEM_WEAR_WRIST,  "You wear $p around your right wrist.", "$n wears $p around $s right wrist."},
-    {WEAR_WIELD,    "wield",        "<wielded>",              ITEM_WIELD,       "You wield $p.", "$n wields $p."},
-    {WEAR_HOLD,     "hold",         "<held>",                 ITEM_HOLD,        "You hold $p in your hand.", "$n holds $p in $s hand."},
-    {WEAR_FLOAT,    "float",        "<floating nearby>",      ITEM_WEAR_FLOAT,  "You release $p and it floats next to you.", "$n releases $p to float next to $m."},
-    {0}
+/* We use WEAR_LOC_MAX+2 to account for 'none' and a blank wear location. */
+const WEAR_LOC_T wear_loc_table[WEAR_LOC_MAX + 2] = {
+    {WEAR_LOC_NONE,     "none",     "none",         "in the inventory",    "<in inventory>",         0,                "You wear $p nowhere (??).",                 "$n wears $p nowhere (??)." },
+    {WEAR_LOC_LIGHT,    "light",    "light",        "as a light",          "<used as light>",        ITEM_WEAR_LIGHT,  "You light $p and hold it.",                 "$n lights $p and holds it." },
+    {WEAR_LOC_FINGER_L, "lfinger",  "left finger",  "on the left finger",  "<worn on L-finger>",     ITEM_WEAR_FINGER, "You wear $p on your left finger.",          "$n wears $p on $s left finger." },
+    {WEAR_LOC_FINGER_R, "rfinger",  "right finger", "on the right finger", "<worn on R-finger>",     ITEM_WEAR_FINGER, "You wear $p on your right finger.",         "$n wears $p on $s right finger." },
+    {WEAR_LOC_NECK_1,   "neck1",    "neck 1",       "around the neck (1)", "<worn around neck 1>",   ITEM_WEAR_NECK,   "You wear $p around your neck.",             "$n wears $p around $s neck." },
+    {WEAR_LOC_NECK_2,   "neck2",    "neck 2",       "around the neck (2)", "<worn around neck 2>",   ITEM_WEAR_NECK,   "You wear $p around your neck.",             "$n wears $p around $s neck." },
+    {WEAR_LOC_BODY,     "body",     "torso",        "on the body",         "<worn on torso>",        ITEM_WEAR_BODY,   "You wear $p on your torso.",                "$n wears $p on $s torso." },
+    {WEAR_LOC_HEAD,     "head",     "head",         "over the head",       "<worn on head>",         ITEM_WEAR_HEAD,   "You wear $p on your head.",                 "$n wears $p on $s head." },
+    {WEAR_LOC_LEGS,     "legs",     "legs",         "on the legs",         "<worn on legs>",         ITEM_WEAR_LEGS,   "You wear $p on your legs.",                 "$n wears $p on $s legs." },
+    {WEAR_LOC_FEET,     "feet",     "feet",         "on the feet",         "<worn on feet>",         ITEM_WEAR_FEET,   "You wear $p on your feet.",                 "$n wears $p on $s feet." },
+    {WEAR_LOC_HANDS,    "hands",    "hands",        "on the hands",        "<worn on hands>",        ITEM_WEAR_HANDS,  "You wear $p on your hands.",                "$n wears $p on $s hands." },
+    {WEAR_LOC_ARMS,     "arms",     "arms",         "on the arms",         "<worn on arms>",         ITEM_WEAR_ARMS,   "You wear $p on your arms.",                 "$n wears $p on $s arms." },
+    {WEAR_LOC_SHIELD,   "shield",   "shield",       "as a shield",         "<worn as shield>",       ITEM_WEAR_SHIELD, "You wear $p as a shield.",                  "$n wears $p as a shield." },
+    {WEAR_LOC_ABOUT,    "about",    "body",         "about the shoulders", "<worn about body>",      ITEM_WEAR_ABOUT,  "You wear $p about your torso.",             "$n wears $p about $s torso." },
+    {WEAR_LOC_WAIST,    "waist",    "waist",        "around the waist",    "<worn about waist>",     ITEM_WEAR_WAIST,  "You wear $p about your waist.",             "$n wears $p about $s waist." },
+    {WEAR_LOC_WRIST_L,  "lwrist",   "left wrist",   "on the left wrist",   "<worn around L-wrist>",  ITEM_WEAR_WRIST,  "You wear $p around your left wrist.",       "$n wears $p around $s left wrist." },
+    {WEAR_LOC_WRIST_R,  "rwrist",   "right wrist",  "on the right wrist",  "<worn around R-wrist>",  ITEM_WEAR_WRIST,  "You wear $p around your right wrist.",      "$n wears $p around $s right wrist." },
+    {WEAR_LOC_WIELD,    "wielded",  "wield",        "wielded",             "<wielded>",              ITEM_WIELD,       "You wield $p.",                             "$n wields $p." },
+    {WEAR_LOC_HOLD,     "hold",     "hold",         "held in the hands",   "<held>",                 ITEM_HOLD,        "You hold $p in your hand.",                 "$n holds $p in $s hand." },
+    {WEAR_LOC_FLOAT,    "floating", "floating",     "floating nearby",     "<floating nearby>",      ITEM_WEAR_FLOAT,  "You release $p and it floats next to you.", "$n releases $p to float next to $m." },
+    {0},
 };
 
 const MATERIAL_T material_table[MATERIAL_MAX + 1] = {

@@ -272,7 +272,7 @@ DEFINE_DO_FUN (do_mpjunk) {
         for (obj = ch->carrying; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
             if (arg[3] == '\0' || str_in_namelist (&arg[4], obj->name)) {
-                if (obj->wear_loc != WEAR_NONE)
+                if (obj->wear_loc != WEAR_LOC_NONE)
                     char_unequip_obj (ch, obj);
                 obj_extract (obj);
             }
@@ -379,7 +379,7 @@ DEFINE_DO_FUN (do_mpoload) {
         "Mpoload - Bad vnum arg from vnum %d.", CH_VNUM (ch));
 
     obj = obj_create (obj_index, level);
-    if ((wear || !to_room) && CAN_WEAR_FLAG (obj, ITEM_TAKE)) {
+    if ((wear || !to_room) && obj_can_wear_flag (obj, ITEM_TAKE)) {
         obj_give_to_char (obj, ch);
         if (wear)
             char_wear_obj (ch, obj, TRUE);
@@ -872,7 +872,7 @@ DEFINE_DO_FUN (do_mpotransfer) {
     if (obj->carried_by == NULL)
         obj_take_from_room (obj);
     else {
-        if (obj->wear_loc != WEAR_NONE)
+        if (obj->wear_loc != WEAR_LOC_NONE)
             char_unequip_obj (ch, obj);
         obj_take_from_char (obj);
     }

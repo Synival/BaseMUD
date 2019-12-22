@@ -40,6 +40,7 @@ void do_resets_display (CHAR_T *ch) {
     RESET_T *reset;
     RESET_VALUE_T *v;
     MOB_INDEX_T *mob = NULL;
+    const WEAR_LOC_T *wear_loc;
     char buf[MAX_STRING_LENGTH];
     char final[MAX_STRING_LENGTH * 2];
     int reset_n = 0;
@@ -168,13 +169,12 @@ void do_resets_display (CHAR_T *ch) {
                         mob->short_descr);
                 }
                 else {
+                    wear_loc = wear_loc_get ((reset->command == 'G')
+                        ? WEAR_LOC_NONE : v->equip.wear_loc);
                     sprintf (buf,
                         "O[%5d] %-13.13s %-19.19s M[%5d] (%c)   "
-                        "%-15.15s\n\r",
-                        obj_vnum, obj->short_descr,
-                        (reset->command == 'G')
-                            ? flag_string (wear_loc_phrases, WEAR_NONE)
-                            : flag_string (wear_loc_phrases, v->equip.wear_loc),
+                        "%-15.15s\n\r", obj_vnum, obj->short_descr,
+                        (wear_loc ? wear_loc->name : "none"),
                         mob->vnum, reset->command, mob->short_descr);
                 }
                 strcat (final, buf);
@@ -602,14 +602,14 @@ DEFINE_DO_FUN (do_resets) {
                 }
                 /* Into a Mobile's inventory. */
                 else {
-                    int wear_loc;
+                    const WEAR_LOC_T *wear_loc;
 
-                    BAIL_IF ((wear_loc = flag_value (wear_loc_types, arg4)) == NO_FLAG,
+                    BAIL_IF ((wear_loc = wear_loc_get_by_name (arg4)) == NULL,
                         "Resets: '? wear-loc'\n\r", ch);
                     BAIL_IF (get_obj_index (atoi (arg3)) == NULL,
                         "Vnum doesn't exist.\n\r", ch);
 
-                    if (wear_loc == WEAR_NONE) {
+                    if (wear_loc->type WEAR_LOC_NONE) {
                         reset->command = 'G';
                         v->give.obj_vnum     = atoi (arg3);
                         v->give.global_limit = 0;
@@ -618,7 +618,7 @@ DEFINE_DO_FUN (do_resets) {
                         reset->command = 'E';
                         v->equip.obj_vnum     = atoi (arg3);
                         v->equip.global_limit = 0;
-                        v->equip.wear_loc     = wear_loc;
+                        v->equip.wear_loc     = wear_loc->type;
                     }
                 }
             }

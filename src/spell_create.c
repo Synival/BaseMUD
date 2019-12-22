@@ -114,7 +114,7 @@ DEFINE_SPELL_FUN (spell_create_water) {
 DEFINE_SPELL_FUN (spell_floating_disc) {
     OBJ_T *disc, *floating;
 
-    floating = char_get_eq_by_wear_loc (ch, WEAR_FLOAT);
+    floating = char_get_eq_by_wear_loc (ch, WEAR_LOC_FLOAT);
     BAIL_IF_ACT (floating != NULL && IS_OBJ_STAT (floating, ITEM_NOREMOVE),
         "You can't remove $p.", ch, floating, NULL);
 

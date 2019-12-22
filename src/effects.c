@@ -140,7 +140,7 @@ DEFINE_EFFECT_FUN (effect_acid) {
                 affect_init (paf, AFF_TO_AFFECTS, -1, level, -1, APPLY_AC, 1, 0);
                 LIST_FRONT (paf, next, obj->affected);
             }
-            if (obj->carried_by != NULL && obj->wear_loc != WEAR_NONE)
+            if (obj->carried_by != NULL && obj->wear_loc != WEAR_LOC_NONE)
                 for (i = 0; i < 4; i++)
                     obj->carried_by->armor[i] += 1;
             SET_BIT (obj->extra_flags, ITEM_CORRODED);

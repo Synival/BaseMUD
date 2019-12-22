@@ -234,7 +234,7 @@ bool has_item (CHAR_T *ch, sh_int vnum, sh_int item_type, bool wear) {
     for (obj = ch->carrying; obj; obj = obj->next_content)
         if ((vnum < 0 || obj->index_data->vnum == vnum)
             && (item_type < 0 || obj->index_data->item_type == item_type)
-            && (!wear || obj->wear_loc != WEAR_NONE))
+            && (!wear || obj->wear_loc != WEAR_LOC_NONE))
             return TRUE;
     return FALSE;
 }

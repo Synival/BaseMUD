@@ -58,7 +58,7 @@
 bool do_filter_can_drop_item (CHAR_T *ch, OBJ_T *obj, bool msg) {
     FILTER (!char_can_see_obj (ch, obj),
         (!msg) ? NULL : "You can't find it.\n\r", ch);
-    FILTER (obj->wear_loc != WEAR_NONE,
+    FILTER (obj->wear_loc != WEAR_LOC_NONE,
         (!msg) ? NULL : "You must remove it first.\n\r", ch);
     return FALSE;
 }
@@ -137,7 +137,7 @@ void do_put_single_item (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
         "$p: It won't fit.", ch, obj, NULL);
 
     if (container->index_data->vnum == OBJ_VNUM_PIT &&
-        !CAN_WEAR_FLAG (obj, ITEM_TAKE))
+        !obj_can_wear_flag (obj, ITEM_TAKE))
     {
         if (obj->timer)
             SET_BIT (obj->extra_flags, ITEM_HAD_TIMER);
@@ -647,7 +647,7 @@ DEFINE_DO_FUN (do_pour) {
     if ((in = find_obj_here (ch, arg2)) == NULL) {
         BAIL_IF ((vch = find_char_same_room (ch, arg2)) == NULL,
             "Pour into what?\n\r", ch);
-        BAIL_IF ((in = char_get_eq_by_wear_loc (vch, WEAR_HOLD)) == NULL,
+        BAIL_IF ((in = char_get_eq_by_wear_loc (vch, WEAR_LOC_HOLD)) == NULL,
             "They aren't holding anything.", ch);
     }
 
@@ -881,7 +881,7 @@ DEFINE_DO_FUN (do_wear) {
         success = FALSE;
         for (obj = ch->carrying; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            if (obj->wear_loc == WEAR_NONE && char_can_see_obj (ch, obj))
+            if (obj->wear_loc == WEAR_LOC_NONE && char_can_see_obj (ch, obj))
                 if (char_wear_obj (ch, obj, FALSE))
                     success = TRUE;
         }
@@ -933,8 +933,8 @@ DEFINE_DO_FUN (do_sacrifice) {
         BAIL_IF (obj->contains,
             "Mota wouldn't like that.\n\r", ch);
     }
-    BAIL_IF_ACT (!CAN_WEAR_FLAG (obj, ITEM_TAKE) ||
-                  CAN_WEAR_FLAG (obj, ITEM_NO_SAC),
+    BAIL_IF_ACT (!obj_can_wear_flag (obj, ITEM_TAKE) ||
+                  obj_can_wear_flag (obj, ITEM_NO_SAC),
         "$p is not an acceptable sacrifice.", ch, obj, NULL);
 
     if (obj->in_room != NULL)
@@ -1047,7 +1047,7 @@ DEFINE_DO_FUN (do_brandish) {
     OBJ_T *staff;
     int sn;
 
-    BAIL_IF ((staff = char_get_eq_by_wear_loc (ch, WEAR_HOLD)) == NULL,
+    BAIL_IF ((staff = char_get_eq_by_wear_loc (ch, WEAR_LOC_HOLD)) == NULL,
         "You hold nothing in your hand.\n\r", ch);
     BAIL_IF (staff->item_type != ITEM_STAFF,
         "You can brandish only with a staff.\n\r", ch);
@@ -1118,7 +1118,7 @@ DEFINE_DO_FUN (do_zap) {
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0' && ch->fighting == NULL,
         "Zap whom or what?\n\r", ch);
-    BAIL_IF ((wand = char_get_eq_by_wear_loc (ch, WEAR_HOLD)) == NULL,
+    BAIL_IF ((wand = char_get_eq_by_wear_loc (ch, WEAR_LOC_HOLD)) == NULL,
         "You hold nothing in your hand.\n\r", ch);
     BAIL_IF (wand->item_type != ITEM_WAND,
         "You can zap only with a wand.\n\r", ch);
@@ -1303,22 +1303,22 @@ DEFINE_DO_FUN (do_outfit) {
     BAIL_IF (ch->level > 5 || IS_NPC (ch),
         "Find it yourself!\n\r", ch);
 
-    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LIGHT)) == NULL) {
+    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) == NULL) {
         obj = obj_create (get_obj_index (OBJ_VNUM_SCHOOL_BANNER), 0);
         obj->cost = 0;
         obj_give_to_char (obj, ch);
-        char_equip_obj (ch, obj, WEAR_LIGHT);
+        char_equip_obj (ch, obj, WEAR_LOC_LIGHT);
     }
 
-    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_BODY)) == NULL) {
+    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_BODY)) == NULL) {
         obj = obj_create (get_obj_index (OBJ_VNUM_SCHOOL_VEST), 0);
         obj->cost = 0;
         obj_give_to_char (obj, ch);
-        char_equip_obj (ch, obj, WEAR_BODY);
+        char_equip_obj (ch, obj, WEAR_LOC_BODY);
     }
 
     /* do the weapon thing */
-    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_WIELD)) == NULL) {
+    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD)) == NULL) {
         sn = 0;
         vnum = OBJ_VNUM_SCHOOL_SWORD; /* just in case! */
 
@@ -1333,17 +1333,17 @@ DEFINE_DO_FUN (do_outfit) {
 
         obj = obj_create (get_obj_index (vnum), 0);
         obj_give_to_char (obj, ch);
-        char_equip_obj (ch, obj, WEAR_WIELD);
+        char_equip_obj (ch, obj, WEAR_LOC_WIELD);
     }
 
-    if (((obj = char_get_eq_by_wear_loc (ch, WEAR_WIELD)) == NULL
+    if (((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD)) == NULL
          || !IS_WEAPON_STAT (obj, WEAPON_TWO_HANDS))
-        && (obj = char_get_eq_by_wear_loc (ch, WEAR_SHIELD)) == NULL)
+        && (obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_SHIELD)) == NULL)
     {
         obj = obj_create (get_obj_index (OBJ_VNUM_SCHOOL_SHIELD), 0);
         obj->cost = 0;
         obj_give_to_char (obj, ch);
-        char_equip_obj (ch, obj, WEAR_SHIELD);
+        char_equip_obj (ch, obj, WEAR_LOC_SHIELD);
     }
 
     send_to_char ("You have been equipped by Mota.\n\r", ch);

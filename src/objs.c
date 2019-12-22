@@ -332,7 +332,7 @@ void obj_take_from_char (OBJ_T *obj) {
 
     BAIL_IF_BUG ((ch = obj->carried_by) == NULL,
         "obj_take_from_char: null ch.", 0);
-    if (obj->wear_loc != WEAR_NONE)
+    if (obj->wear_loc != WEAR_LOC_NONE)
         char_unequip_obj (ch, obj);
 
     LIST_REMOVE (obj, next_content, ch->carrying, OBJ_T, NO_FAIL);
@@ -389,25 +389,26 @@ int obj_get_ac_type (const OBJ_T *obj, int wear_loc, int type) {
             return 0;
     }
 
+    /* TODO: this can be a table! */
     switch (wear_loc) {
-        case WEAR_BODY:
+        case WEAR_LOC_BODY:
             return ac_value * 3;
 
-        case WEAR_HEAD:
-        case WEAR_LEGS:
-        case WEAR_ABOUT:
+        case WEAR_LOC_HEAD:
+        case WEAR_LOC_LEGS:
+        case WEAR_LOC_ABOUT:
             return ac_value * 2;
 
-        case WEAR_FEET:
-        case WEAR_HANDS:
-        case WEAR_ARMS:
-        case WEAR_SHIELD:
-        case WEAR_NECK_1:
-        case WEAR_NECK_2:
-        case WEAR_WAIST:
-        case WEAR_WRIST_L:
-        case WEAR_WRIST_R:
-        case WEAR_HOLD:
+        case WEAR_LOC_FEET:
+        case WEAR_LOC_HANDS:
+        case WEAR_LOC_ARMS:
+        case WEAR_LOC_SHIELD:
+        case WEAR_LOC_NECK_1:
+        case WEAR_LOC_NECK_2:
+        case WEAR_LOC_WAIST:
+        case WEAR_LOC_WRIST_L:
+        case WEAR_LOC_WRIST_R:
+        case WEAR_LOC_HOLD:
             return ac_value;
 
         default:
@@ -619,7 +620,7 @@ void obj_list_show_to_char (const OBJ_T *list, CHAR_T *ch, bool is_short,
 
     /* Format the list of objects.  */
     for (obj = list; obj != NULL; obj = obj->next_content) {
-        if (obj->wear_loc != WEAR_NONE)
+        if (obj->wear_loc != WEAR_LOC_NONE)
             continue;
         if (!char_can_see_obj (ch, obj))
             continue;

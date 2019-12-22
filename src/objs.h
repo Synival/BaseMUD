@@ -31,7 +31,6 @@
 #include "merc.h"
 
 /* Shorthand macros. */
-#define CAN_WEAR_FLAG(obj, flag) (obj_can_wear_flag(obj, flag))
 #define IS_OBJ_STAT(obj, stat)   (IS_SET((obj)->extra_flags, (stat)))
 #define IS_WEAPON_STAT(obj,stat) (IS_SET((obj)->v.weapon.flags, (stat)))
 

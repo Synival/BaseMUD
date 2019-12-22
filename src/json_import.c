@@ -445,7 +445,8 @@ void json_import_obj_reset_values (const JSON_T *json, RESET_VALUE_T *v,
             v->value[0] = 1;
             json_import_anum (json_get (json, "obj"),
                 ANUM_OBJ, &(v->equip.obj_vnum), backup_area);
-            READ_PROP_FLAGS(v->equip.wear_loc, "wear_loc", wear_loc_types);
+            READ_PROP_STR (buf, "wear_loc");
+            v->equip.wear_loc = wear_loc_lookup (buf);
             READ_PROP_INT (v->equip.global_limit, "global_limit");
             break;
 

@@ -65,58 +65,6 @@ const FLAG_T affect_apply_types[APPLY_MAX + 1] = {
     {0}
 };
 
-/* NOTE: This has TWO extra loc_types because of WEAR_NONE (-1)
- *       at the bottom. */
-const FLAG_T wear_loc_phrases[WEAR_LOC_MAX + 2] = {
-    {"as a light",          WEAR_LIGHT,    TRUE},
-    {"on the left finger",  WEAR_FINGER_L, TRUE},
-    {"on the right finger", WEAR_FINGER_R, TRUE},
-    {"around the neck (1)", WEAR_NECK_1,   TRUE},
-    {"around the neck (2)", WEAR_NECK_2,   TRUE},
-    {"on the body",         WEAR_BODY,     TRUE},
-    {"over the head",       WEAR_HEAD,     TRUE},
-    {"on the legs",         WEAR_LEGS,     TRUE},
-    {"on the feet",         WEAR_FEET,     TRUE},
-    {"on the hands",        WEAR_HANDS,    TRUE},
-    {"on the arms",         WEAR_ARMS,     TRUE},
-    {"as a shield",         WEAR_SHIELD,   TRUE},
-    {"about the shoulders", WEAR_ABOUT,    TRUE},
-    {"around the waist",    WEAR_WAIST,    TRUE},
-    {"on the left wrist",   WEAR_WRIST_L,  TRUE},
-    {"on the right wrist",  WEAR_WRIST_R,  TRUE},
-    {"wielded",             WEAR_WIELD,    TRUE},
-    {"held in the hands",   WEAR_HOLD,     TRUE},
-    {"floating nearby",     WEAR_FLOAT,    TRUE},
-    {"in the inventory",    WEAR_NONE,     TRUE},
-    {0}
-};
-
-/* NOTE: This has TWO extra loc_types because of WEAR_NONE (-1)
- *       at the bottom. */
-const FLAG_T wear_loc_types[WEAR_LOC_MAX + 2] = {
-    {"light",    WEAR_LIGHT,    TRUE},
-    {"lfinger",  WEAR_FINGER_L, TRUE},
-    {"rfinger",  WEAR_FINGER_R, TRUE},
-    {"neck1",    WEAR_NECK_1,   TRUE},
-    {"neck2",    WEAR_NECK_2,   TRUE},
-    {"body",     WEAR_BODY,     TRUE},
-    {"head",     WEAR_HEAD,     TRUE},
-    {"legs",     WEAR_LEGS,     TRUE},
-    {"feet",     WEAR_FEET,     TRUE},
-    {"hands",    WEAR_HANDS,    TRUE},
-    {"arms",     WEAR_ARMS,     TRUE},
-    {"shield",   WEAR_SHIELD,   TRUE},
-    {"about",    WEAR_ABOUT,    TRUE},
-    {"waist",    WEAR_WAIST,    TRUE},
-    {"lwrist",   WEAR_WRIST_L,  TRUE},
-    {"rwrist",   WEAR_WRIST_R,  TRUE},
-    {"wielded",  WEAR_WIELD,    TRUE},
-    {"hold",     WEAR_HOLD,     TRUE},
-    {"floating", WEAR_FLOAT,    TRUE},
-    {"none",     WEAR_NONE,     TRUE},
-    {0}
-};
-
 const FLAG_T ac_types[AC_MAX + 1] = {
     {"pierce", AC_PIERCE, TRUE},
     {"bash",   AC_BASH,   TRUE},

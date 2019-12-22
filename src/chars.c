@@ -312,7 +312,7 @@ bool char_in_same_clan (const CHAR_T *ch, const CHAR_T *victim) {
 OBJ_T *char_get_weapon (const CHAR_T *ch) {
     OBJ_T *wield;
 
-    wield = char_get_eq_by_wear_loc (ch, WEAR_WIELD);
+    wield = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD);
     if (wield == NULL || wield->item_type != ITEM_WEAPON)
         return NULL;
     return wield;
@@ -538,7 +538,7 @@ void char_from_room (CHAR_T *ch) {
     if (!IS_NPC (ch))
         --ch->in_room->area->nplayer;
 
-    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LIGHT)) != NULL
+    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) != NULL
         && obj->item_type == ITEM_LIGHT && obj->v.light.duration != 0
         && ch->in_room->light > 0)
     {
@@ -602,7 +602,7 @@ void char_to_room (CHAR_T *ch, ROOM_INDEX_T *room_index) {
         ++ch->in_room->area->nplayer;
     }
 
-    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LIGHT)) != NULL
+    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) != NULL
         && obj->item_type == ITEM_LIGHT && obj->v.light.duration != 0)
     {
         ++ch->in_room->light;
@@ -675,7 +675,7 @@ bool char_unequip_obj (CHAR_T *ch, OBJ_T *obj) {
     AFFECT_T *lpaf_next = NULL;
     int i;
 
-    RETURN_IF_BUG (obj->wear_loc == WEAR_NONE,
+    RETURN_IF_BUG (obj->wear_loc == WEAR_LOC_NONE,
         "char_unequip_obj: already unequipped.", 0, FALSE);
 
     for (i = 0; i < 4; i++)
@@ -1269,9 +1269,10 @@ size_t char_format_pos_msg (char *buf, size_t size, const CHAR_T *ch,
 }
 
 void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
+    const WEAR_LOC_T *wear_loc;
     char buf[MAX_STRING_LENGTH];
     OBJ_T *obj;
-    flag_t wear_loc;
+    flag_t wl;
     bool found;
 
     if (ch == victim)
@@ -1303,10 +1304,12 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
         send_to_char (buf, ch);
 
     found = FALSE;
-    for (wear_loc = 0; wear_loc < WEAR_LOC_MAX; wear_loc++) {
-        if ((obj = char_get_eq_by_wear_loc (victim, wear_loc)) == NULL)
+    for (wl = 0; wl < WEAR_LOC_MAX; wl++) {
+        if ((obj = char_get_eq_by_wear_loc (victim, wl)) == NULL)
             continue;
         if (!char_can_see_obj (ch, obj))
+            continue;
+        if ((wear_loc = wear_loc_get (wl)) == NULL)
             continue;
 
         if (!found) {
@@ -1315,8 +1318,7 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
             found = TRUE;
         }
         printf_to_char (ch, "%-21s %s\n\r",
-            wear_loc_table[wear_loc].look_msg,
-            obj_format_to_char (obj, ch, TRUE));
+            wear_loc->look_msg, obj_format_to_char (obj, ch, TRUE));
     }
 
     if (victim != ch && !IS_NPC (ch)
@@ -1404,7 +1406,7 @@ bool char_can_loot (const CHAR_T *ch, const OBJ_T *obj) {
 void char_take_obj (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
     CHAR_T *gch;
 
-    BAIL_IF_ACT (!CAN_WEAR_FLAG (obj, ITEM_TAKE),
+    BAIL_IF_ACT (!obj_can_wear_flag (obj, ITEM_TAKE),
         "$p: You can't take that.", ch, obj, NULL);
     BAIL_IF_ACT (ch->carry_number + obj_get_carry_number (obj) >
             char_get_max_carry_count (ch),
@@ -1427,7 +1429,7 @@ void char_take_obj (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
             "You are not powerful enough to use it.\n\r", ch);
 
         if (container->index_data->vnum == OBJ_VNUM_PIT
-            && !CAN_WEAR_FLAG (container, ITEM_TAKE)
+            && !obj_can_wear_flag (container, ITEM_TAKE)
             && !IS_OBJ_STAT (obj, ITEM_HAD_TIMER))
             obj->timer = 0;
         act ("You get $p from $P.", ch, obj, container, TO_CHAR);
@@ -1502,11 +1504,10 @@ bool char_has_available_wear_flag (const CHAR_T *ch, flag_t wear_flag) {
     int i;
     if (ch == NULL)
         return FALSE;
-    for (i = 0; i < WEAR_LOC_MAX; i++) {
+    for (i = 0; i < WEAR_LOC_MAX; i++)
         if (wear_loc_table[i].wear_flag == wear_flag)
             if (char_has_available_wear_loc (ch, i))
                 return TRUE;
-    }
     return FALSE;
 }
 
@@ -1530,7 +1531,7 @@ bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool replace) {
     /* Find where this item can be worn / wielded / held / etc. */
     locs = 0;
     for (i = 0; wear_loc_table[i].name != NULL; i++) {
-        if (!CAN_WEAR_FLAG (obj, wear_loc_table[i].wear_flag))
+        if (!obj_can_wear_flag (obj, wear_loc_table[i].wear_flag))
             continue;
         wear_locs[locs++] = &(wear_loc_table[i]);
     }
@@ -1561,7 +1562,7 @@ bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool replace) {
 
     /* Shields cannot be worn while wielding a two-handed weapon. */
     if (wear_loc->wear_flag == ITEM_WEAR_SHIELD) {
-        OBJ_T *weapon = char_get_eq_by_wear_loc (ch, WEAR_WIELD);
+        OBJ_T *weapon = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD);
         RETURN_IF (weapon != NULL && ch->size < SIZE_LARGE &&
                 IS_WEAPON_STAT (weapon, WEAPON_TWO_HANDS),
             "Your hands are tied up with your weapon!\n\r", ch, FALSE);
@@ -1574,7 +1575,7 @@ bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool replace) {
             "It is too heavy for you to wield.\n\r", ch, FALSE);
         RETURN_IF (!IS_NPC (ch) && ch->size < SIZE_LARGE &&
                 IS_WEAPON_STAT (obj, WEAPON_TWO_HANDS) &&
-                char_get_eq_by_wear_loc (ch, WEAR_SHIELD) != NULL,
+                char_get_eq_by_wear_loc (ch, WEAR_LOC_SHIELD) != NULL,
             "You need two hands free for that weapon.\n\r", ch, FALSE);
     }
 
@@ -1660,7 +1661,7 @@ bool char_drop_weapon_if_too_heavy (CHAR_T *ch) {
      * Guard against recursion (for weapons with affects). */
     if (IS_NPC (ch))
         return FALSE;
-    if ((wield = char_get_eq_by_wear_loc (ch, WEAR_WIELD)) == NULL)
+    if ((wield = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD)) == NULL)
         return FALSE;
     if (obj_get_weight (wield) <= char_str_max_wield_weight (ch) * 10)
         return FALSE;

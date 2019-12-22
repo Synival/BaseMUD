@@ -1629,19 +1629,19 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
 
             /* Show warnings for items in bad slots. */
             if (cmd == 'E') {
-                flag_t wear_flag = wear_get_type_by_loc (eq->wear_loc);
+                flag_t wear_flag = wear_loc_get_flag (eq->wear_loc);
                 if (!obj_index_can_wear_flag (obj_index, wear_flag)) {
                     bugf ("Warning: 'E' for object %d (%s) into unequippable "
                           "location '%s'.",
                         obj_vnum, obj_index->short_descr,
-                        wear_loc_name (eq->wear_loc));
+                        wear_loc_get_name (eq->wear_loc));
                 }
                 if (!char_has_available_wear_loc (reset_last_mob, eq->wear_loc)) {
                     bugf ("Warning: 'E' for object %d (%s) on mob %d (%s), "
                           "wear loc '%s' is already taken.",
                         obj_vnum, obj_index->short_descr,
                         reset_last_mob->index_data->vnum, reset_last_mob->short_descr,
-                        wear_loc_name (eq->wear_loc));
+                        wear_loc_get_name (eq->wear_loc));
                 }
             }
 

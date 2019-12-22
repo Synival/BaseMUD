@@ -59,7 +59,7 @@ extern const NANNY_HANDLER_T  nanny_table[NANNY_MAX + 1];
 extern const DOOR_T           door_table[DIR_MAX + 1];
 extern const SPEC_T           spec_table[SPEC_MAX + 1];
 extern const FURNITURE_BITS_T furniture_table[POS_MAX + 1];
-extern const WEAR_LOC_T       wear_loc_table[WEAR_LOC_MAX + 1];
+extern const WEAR_LOC_T       wear_loc_table[WEAR_LOC_MAX + 2];
 extern const MATERIAL_T       material_table[MATERIAL_MAX + 1];
 extern const COLOUR_SETTING_T colour_setting_table[COLOUR_MAX + 1];
 extern const WIZNET_T         wiznet_table[WIZNET_MAX + 1];

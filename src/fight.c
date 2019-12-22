@@ -524,7 +524,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
                 dam = number_range (wield->v.weapon.dice_num  * skill / 100,
                                     wield->v.weapon.dice_size * skill / 100);
 
-            if (char_get_eq_by_wear_loc (ch, WEAR_SHIELD) == NULL)    /* no shield = more */
+            if (char_get_eq_by_wear_loc (ch, WEAR_LOC_SHIELD) == NULL)    /* no shield = more */
                 dam = dam * 11 / 10;
 
             /* sharpness! */
@@ -673,7 +673,7 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
         dam = 1200;
         if (!IS_IMMORTAL (ch)) {
             OBJ_T *obj;
-            obj = char_get_eq_by_wear_loc (ch, WEAR_WIELD);
+            obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD);
             send_to_char ("You really shouldn't cheat.\n\r", ch);
             if (obj != NULL)
                 obj_extract (obj);
@@ -1080,7 +1080,7 @@ bool check_parry (CHAR_T *ch, CHAR_T *victim) {
         return FALSE;
 
     chance = get_skill (victim, gsn_parry) / 2;
-    if (char_get_eq_by_wear_loc (victim, WEAR_WIELD) == NULL) {
+    if (char_get_eq_by_wear_loc (victim, WEAR_LOC_WIELD) == NULL) {
         if (IS_NPC (victim))
             chance /= 2;
         else
@@ -1103,7 +1103,7 @@ bool check_shield_block (CHAR_T *ch, CHAR_T *victim) {
 
     if (!IS_AWAKE (victim))
         return FALSE;
-    if (char_get_eq_by_wear_loc (victim, WEAR_SHIELD) == NULL)
+    if (char_get_eq_by_wear_loc (victim, WEAR_LOC_SHIELD) == NULL)
         return FALSE;
 
     chance = get_skill (victim, gsn_shield_block) / 5 + 3;
@@ -1277,7 +1277,7 @@ void make_corpse (CHAR_T *ch) {
         bool floating = FALSE;
 
         obj_next = obj->next_content;
-        if (obj->wear_loc == WEAR_FLOAT)
+        if (obj->wear_loc == WEAR_LOC_FLOAT)
             floating = TRUE;
         obj_take_from_char (obj);
         if (obj->item_type == ITEM_POTION)
@@ -1336,7 +1336,7 @@ void death_cry (CHAR_T *ch) {
             msg = "$n hits the ground ... DEAD.";
             break;
         case 1:
-            if (char_get_eq_by_wear_loc (ch, WEAR_BODY))
+            if (char_get_eq_by_wear_loc (ch, WEAR_LOC_BODY))
                 msg = "$n splatters blood on your armor.";
             break;
         case 2:
@@ -1504,7 +1504,7 @@ void group_gain (CHAR_T *ch, CHAR_T *victim) {
 
         for (obj = ch->carrying; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
-            if (obj->wear_loc == WEAR_NONE)
+            if (obj->wear_loc == WEAR_LOC_NONE)
                 continue;
 
             if ((IS_OBJ_STAT (obj, ITEM_ANTI_EVIL)    && IS_EVIL (ch)) ||
@@ -1809,7 +1809,7 @@ void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt,
 void disarm (CHAR_T *ch, CHAR_T *victim) {
     OBJ_T *obj;
 
-    if ((obj = char_get_eq_by_wear_loc (victim, WEAR_WIELD)) == NULL)
+    if ((obj = char_get_eq_by_wear_loc (victim, WEAR_LOC_WIELD)) == NULL)
         return;
 
     if (IS_OBJ_STAT (obj, ITEM_NOREMOVE)) {

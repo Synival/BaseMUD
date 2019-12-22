@@ -315,7 +315,7 @@ void mobile_update (void) {
             max = 1;
             obj_best = 0;
             for (obj = ch->in_room->contents; obj; obj = obj->next_content) {
-                if (CAN_WEAR_FLAG (obj, ITEM_TAKE) && char_can_loot (ch, obj)
+                if (obj_can_wear_flag (obj, ITEM_TAKE) && char_can_loot (ch, obj)
                     && obj->cost > max && obj->cost > 0)
                 {
                     obj_best = obj;
@@ -595,7 +595,7 @@ void char_update (void) {
         if (!IS_NPC (ch) && ch->level < LEVEL_IMMORTAL) {
             OBJ_T *obj;
 
-            if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LIGHT)) != NULL
+            if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) != NULL
                 && obj->item_type == ITEM_LIGHT && obj->v.light.duration > 0)
             {
                 if (--obj->v.light.duration == 0 && ch->in_room != NULL) {
@@ -806,7 +806,7 @@ void obj_update (void) {
                 message = "$p fades out of existence.";
                 break;
             case ITEM_CONTAINER:
-                if (CAN_WEAR_FLAG (obj, ITEM_WEAR_FLOAT))
+                if (obj_can_wear_flag (obj, ITEM_WEAR_FLOAT))
                     if (obj->contains)
                         message =
                             "$p flickers and vanishes, spilling its contents on the floor.";
@@ -823,13 +823,13 @@ void obj_update (void) {
                 obj->carried_by->silver += obj->cost / 5;
             else {
                 act (message, obj->carried_by, obj, NULL, TO_CHAR);
-                if (obj->wear_loc == WEAR_FLOAT)
+                if (obj->wear_loc == WEAR_LOC_FLOAT)
                     act (message, obj->carried_by, obj, NULL, TO_NOTCHAR);
             }
         }
         else if (obj->in_room != NULL && (rch = obj->in_room->people) != NULL) {
             if (!(obj->in_obj && obj->in_obj->index_data->vnum == OBJ_VNUM_PIT
-                  && !CAN_WEAR_FLAG (obj->in_obj, ITEM_TAKE)))
+                  && !obj_can_wear_flag (obj->in_obj, ITEM_TAKE)))
             {
                 act (message, rch, obj, NULL, TO_CHAR);
                 act (message, rch, obj, NULL, TO_NOTCHAR);
@@ -837,7 +837,7 @@ void obj_update (void) {
         }
 
         /* save the contents */
-        if ((obj->item_type == ITEM_CORPSE_PC || obj->wear_loc == WEAR_FLOAT)
+        if ((obj->item_type == ITEM_CORPSE_PC || obj->wear_loc == WEAR_LOC_FLOAT)
             && obj->contains)
         {
             OBJ_T *t_obj, *next_obj;
@@ -850,7 +850,7 @@ void obj_update (void) {
                     obj_give_to_obj (t_obj, obj->in_obj);
                 /* carried */
                 else if (obj->carried_by) {
-                    if (obj->wear_loc == WEAR_FLOAT) {
+                    if (obj->wear_loc == WEAR_LOC_FLOAT) {
                         if (obj->carried_by->in_room == NULL)
                             obj_extract (t_obj);
                         else

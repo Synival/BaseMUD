@@ -82,7 +82,7 @@ DEFINE_SPELL_FUN (spell_bless_object) {
     affect_to_obj (obj, &af);
 
     act ("$p glows with a holy aura.", ch, obj, NULL, TO_ALL);
-    if (obj->wear_loc != WEAR_NONE)
+    if (obj->wear_loc != WEAR_LOC_NONE)
         ch->saving_throw -= 1;
 }
 
@@ -281,7 +281,7 @@ DEFINE_SPELL_FUN (spell_curse_object) {
     affect_to_obj (obj, &af);
 
     act ("$p glows with a malevolent aura.", ch, obj, NULL, TO_ALL);
-    if (obj->wear_loc != WEAR_NONE)
+    if (obj->wear_loc != WEAR_LOC_NONE)
         ch->saving_throw += 1;
 }
 

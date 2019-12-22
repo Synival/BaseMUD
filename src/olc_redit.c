@@ -943,25 +943,25 @@ REDIT (redit_oreset) {
     }
     /* Load into mobile's inventory. */
     else if ((to_mob = find_char_same_room (ch, arg2)) != NULL) {
-        int wear_loc;
+        const WEAR_LOC_T *wear_loc;
 
         /* Make sure the location on mobile is valid.  */
-        RETURN_IF ((wear_loc = flag_value (wear_loc_types, argument)) == NO_FLAG,
+        RETURN_IF ((wear_loc = wear_loc_get_by_name (argument)) == NULL,
             "REdit: Invalid wear_loc.  '? wear-loc'\n\r", ch, FALSE);
 
         /* Disallow loading a sword (WEAR_WIELD) into WEAR_HEAD. */
-        if (!IS_SET (obj_index->wear_flags, wear_get_type_by_loc (wear_loc))) {
+        if (!IS_SET (obj_index->wear_flags, wear_loc->wear_flag)) {
             printf_to_char (ch, "%s (%d) has wear flags: [%s]\n\r",
                 str_capitalized (obj_index->short_descr), obj_index->vnum,
                 flag_string (wear_flags, obj_index->wear_flags));
         }
 
         /* Can't load into same position.  */
-        RETURN_IF (char_get_eq_by_wear_loc (to_mob, wear_loc),
+        RETURN_IF (char_get_eq_by_wear_loc (to_mob, wear_loc->type),
             "REdit: Object already equipped.\n\r", ch, FALSE);
 
         reset = reset_data_new ();
-        if (wear_loc == WEAR_NONE) {
+        if (wear_loc->type == WEAR_LOC_NONE) {
             reset->command = 'G';
             reset->v.give.obj_vnum     = obj_index->vnum;
             reset->v.give.global_limit = 0;
@@ -970,7 +970,7 @@ REDIT (redit_oreset) {
             reset->command = 'E';
             reset->v.equip.obj_vnum     = obj_index->vnum;
             reset->v.equip.global_limit = 0;
-            reset->v.equip.wear_loc     = wear_loc;
+            reset->v.equip.wear_loc     = wear_loc->type;
         }
 
         redit_add_reset (room, reset, 0 /* Last slot */ );
@@ -1011,7 +1011,7 @@ REDIT (redit_oreset) {
             }
 
             newobj = obj_create (obj_index, olevel);
-            if (wear_loc == WEAR_NONE)
+            if (wear_loc->type == WEAR_LOC_NONE)
                 SET_BIT (newobj->extra_flags, ITEM_INVENTORY);
         }
         else
@@ -1024,8 +1024,7 @@ REDIT (redit_oreset) {
         printf_to_char (ch,
             "%s (%d) has been loaded %s of %s (%d) and added to resets.\n\r",
             str_capitalized (obj_index->short_descr),
-            obj_index->vnum,
-            flag_string (wear_loc_phrases, wear_loc),
+            obj_index->vnum, wear_loc->display_name,
             to_mob->short_descr, to_mob->index_data->vnum);
     }
     /* Display Syntax */

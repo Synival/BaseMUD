@@ -160,9 +160,9 @@ OBJ_T *find_obj_list (CHAR_T *ch, OBJ_T *list, const char *argument, int worn) {
     number = find_number_argument (argument, arg);
 
     for (obj = list; obj != NULL; obj = obj->next_content) {
-        if (worn == WORN_NO && obj->wear_loc != WEAR_NONE)
+        if (worn == WORN_NO && obj->wear_loc != WEAR_LOC_NONE)
             continue;
-        if (worn == WORN_YES && obj->wear_loc == WEAR_NONE)
+        if (worn == WORN_YES && obj->wear_loc == WEAR_LOC_NONE)
             continue;
         if (!char_can_see_obj (ch, obj))
             continue;
@@ -236,7 +236,7 @@ OBJ_T *find_obj_keeper (CHAR_T *ch, CHAR_T *keeper, const char *argument) {
     number = find_number_argument (argument, arg);
 
     for (obj = keeper->carrying; obj != NULL; obj = obj->next_content) {
-        if (obj->wear_loc != WEAR_NONE)
+        if (obj->wear_loc != WEAR_LOC_NONE)
             continue;
         if (!char_can_see_obj (keeper, obj))
             continue;
