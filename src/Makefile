@@ -101,7 +101,7 @@ chars.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 chars.o: json.h structs.h types.h flags.h tables.h utils.h skills.h comm.h
 chars.o: objs.h affects.h lookup.h magic.h db.h groups.h fight.h interp.h
 chars.o: recycle.h rooms.h mob_prog.h act_move.h act_info.h act_group.h
-chars.o: wiz_l6.h materials.h globals.h memory.h chars.h
+chars.o: wiz_l6.h materials.h globals.h memory.h board.h chars.h
 colour.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 colour.o: json.h structs.h types.h flags.h tables.h lookup.h chars.h colour.h
 comm.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h

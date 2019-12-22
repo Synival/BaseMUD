@@ -30,7 +30,6 @@
 
 #include "merc.h"
 
-int check_immune (CHAR_T *ch, int dam_type);
 void affect_modify_bits (CHAR_T *ch, AFFECT_T *paf, bool on);
 void affect_modify_apply (CHAR_T *ch, AFFECT_T *paf, bool on);
 void affect_modify (CHAR_T *ch, AFFECT_T *paf, bool on);

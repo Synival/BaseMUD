@@ -39,7 +39,7 @@
 
 #include "ban.h"
 
-void save_bans (void) {
+void ban_save_all (void) {
     BAN_T *pban;
     FILE *fp;
     bool found = FALSE;
@@ -62,7 +62,7 @@ void save_bans (void) {
         unlink (BAN_FILE);
 }
 
-void load_bans (void) {
+void ban_load_all (void) {
     FILE *fp;
 
     if ((fp = fopen (BAN_FILE, "r")) == NULL)
@@ -85,7 +85,7 @@ void load_bans (void) {
     }
 }
 
-bool check_ban (char *site, int type) {
+bool ban_check (char *site, int type) {
     BAN_T *pban;
     char host[MAX_STRING_LENGTH];
 
@@ -204,7 +204,7 @@ void ban_site (CHAR_T *ch, char *argument, bool perm) {
         SET_BIT (pban->ban_flags, BAN_PERMANENT);
 
     LISTB_FRONT (pban, next, ban_first, ban_last);
-    save_bans ();
+    ban_save_all ();
 
     printf_to_char (ch, "%s has been banned.\n\r", pban->name);
 }

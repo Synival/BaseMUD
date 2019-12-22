@@ -34,6 +34,7 @@
 ### 0.2.0
 
 [X] Extra features are highly customizable via `basemud.h`.
+[ ] All files in "json/config/*" are read properly.
 [ ] All "TO-DOs" from 0.1.0 are accounted for
 [ ] JSON code for database saving has been massively cleaned up...
 [ ] Tasks in GitHub organized into month-long sprints somehow

@@ -43,7 +43,7 @@
 
 #include "act_fight.h"
 
-bool fight_filter_skill_target (CHAR_T *ch, const char *argument,
+bool do_fight_filter_skill_target (CHAR_T *ch, const char *argument,
     int sn, flag_t npc_flag, const char *cant_msg, const char *self_msg,
     int *out_chance, CHAR_T **out_victim)
 {
@@ -166,7 +166,7 @@ DEFINE_DO_FUN (do_bash) {
     CHAR_T *victim;
     int chance;
 
-    if (fight_filter_skill_target (ch, argument, gsn_bash, OFF_BASH,
+    if (do_fight_filter_skill_target (ch, argument, gsn_bash, OFF_BASH,
             "Bashing? What's that?\n\r",
             "You try to bash your brains out, but fail.\n\r",
             &chance, &victim))
@@ -236,7 +236,7 @@ DEFINE_DO_FUN (do_dirt) {
     CHAR_T *victim;
     int chance;
 
-    if (fight_filter_skill_target (ch, argument, gsn_dirt, OFF_KICK_DIRT,
+    if (do_fight_filter_skill_target (ch, argument, gsn_dirt, OFF_KICK_DIRT,
             "You get your feet dirty.\n\r",
             "Very funny.\n\r",
             &chance, &victim))
@@ -316,7 +316,7 @@ DEFINE_DO_FUN (do_trip) {
     CHAR_T *victim;
     int chance;
 
-    if (fight_filter_skill_target (ch, argument, gsn_trip, OFF_TRIP,
+    if (do_fight_filter_skill_target (ch, argument, gsn_trip, OFF_TRIP,
             "Tripping? What's that?\n\r", NULL, &chance, &victim))
         return;
 
@@ -383,7 +383,7 @@ DEFINE_DO_FUN (do_kick) {
     CHAR_T *victim;
     int chance;
 
-    if (fight_filter_skill_target (ch, argument, gsn_kick, OFF_KICK,
+    if (do_fight_filter_skill_target (ch, argument, gsn_kick, OFF_KICK,
             "You better leave the martial arts to fighters.\n\r",
             "You're having trouble connecting your foot to your torso.\n\r",
             &chance, &victim))

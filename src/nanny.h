@@ -37,23 +37,23 @@
 bool new_player_name_is_valid (char *name);
 void nanny (DESCRIPTOR_T *d, char *argument);
 
-NANNY_FUN nanny_ansi;
-NANNY_FUN nanny_get_player_name;
-NANNY_FUN nanny_get_old_password;
-NANNY_FUN nanny_break_connect;
-NANNY_FUN nanny_break_connect_confirm;
-NANNY_FUN nanny_confirm_new_name;
-NANNY_FUN nanny_get_new_password;
-NANNY_FUN nanny_confirm_new_password;
-NANNY_FUN nanny_get_new_race;
-NANNY_FUN nanny_get_new_sex;
-NANNY_FUN nanny_get_new_class;
-NANNY_FUN nanny_get_alignment;
-NANNY_FUN nanny_default_choice;
-NANNY_FUN nanny_pick_weapon;
-NANNY_FUN nanny_gen_groups;
-NANNY_FUN nanny_gen_groups_done;
-NANNY_FUN nanny_read_imotd;
-NANNY_FUN nanny_read_motd;
+DECLARE_NANNY_FUN (nanny_ansi);
+DECLARE_NANNY_FUN (nanny_get_player_name);
+DECLARE_NANNY_FUN (nanny_get_old_password);
+DECLARE_NANNY_FUN (nanny_break_connect);
+DECLARE_NANNY_FUN (nanny_break_connect_confirm);
+DECLARE_NANNY_FUN (nanny_confirm_new_name);
+DECLARE_NANNY_FUN (nanny_get_new_password);
+DECLARE_NANNY_FUN (nanny_confirm_new_password);
+DECLARE_NANNY_FUN (nanny_get_new_race);
+DECLARE_NANNY_FUN (nanny_get_new_sex);
+DECLARE_NANNY_FUN (nanny_get_new_class);
+DECLARE_NANNY_FUN (nanny_get_alignment);
+DECLARE_NANNY_FUN (nanny_default_choice);
+DECLARE_NANNY_FUN (nanny_pick_weapon);
+DECLARE_NANNY_FUN (nanny_gen_groups);
+DECLARE_NANNY_FUN (nanny_gen_groups_done);
+DECLARE_NANNY_FUN (nanny_read_imotd);
+DECLARE_NANNY_FUN (nanny_read_motd);
 
 #endif

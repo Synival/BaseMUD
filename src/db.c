@@ -325,11 +325,6 @@ void db_export_json (bool write_indiv, const char *everything) {
             } \
         } while (0)
 
-    ADD_CONFIG_JSON ("social", "config/socials", social, SOCIAL_T,
-        json_new_obj_social, 1);
-    ADD_CONFIG_JSON ("portal", "config/portals", portal, PORTAL_T,
-        json_new_obj_portal, (obj->generated == FALSE));
-
     /* Write json that doesn't need subdirectories. */
     #define ADD_META_JSON(oname, fname, btype, vtype, func, check) \
         jarea = json_root_area (fname); \
@@ -358,14 +353,19 @@ void db_export_json (bool write_indiv, const char *everything) {
             } \
         } while (0)
 
+    ADD_CONFIG_JSON ("social", "config/socials", social, SOCIAL_T,
+        json_new_obj_social, 1);
+    ADD_CONFIG_JSON ("portal", "config/portals", portal, PORTAL_T,
+        json_new_obj_portal, (obj->generated == FALSE));
+    ADD_META_JSON ("table", "config/unsupported", master, TABLE_T,
+        json_new_obj_table, !IS_SET (obj->flags, TABLE_FLAG_TYPE) &&
+                             obj->json_write_func);
+
     ADD_META_JSON ("table", "meta/flags", master, TABLE_T,
         json_new_obj_table, ARE_SET (obj->flags, TABLE_FLAG_TYPE | TABLE_BITS));
     ADD_META_JSON ("table", "meta/types", master, TABLE_T,
         json_new_obj_table, IS_SET (obj->flags, TABLE_FLAG_TYPE) &&
                            !IS_SET (obj->flags, TABLE_BITS));
-    ADD_META_JSON ("table", "config", master, TABLE_T,
-        json_new_obj_table, !IS_SET (obj->flags, TABLE_FLAG_TYPE) &&
-                             obj->json_write_func);
 
     /* Add help areas. */
     do {
@@ -434,9 +434,9 @@ void boot_db (void) {
     db_export_json (TRUE, NULL);
 
     area_update ();
-    load_boards ();
-    save_notes ();
-    load_bans ();
+    board_load_all ();
+    board_save_all ();
+    ban_load_all ();
     load_songs ();
 }
 

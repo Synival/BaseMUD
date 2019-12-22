@@ -152,6 +152,7 @@ char *char_get_look_short_descr_anywhere (const CHAR_T *looker,
 char *char_get_look_short_descr (const CHAR_T *looker, const CHAR_T *ch);
 int char_exit_string (const CHAR_T *ch, const ROOM_INDEX_T *room, int mode,
     char *out_buf, size_t out_size);
+int char_get_immunity (CHAR_T *ch, int dam_type);
 
 /* Stat bonuses. */
 const STR_APP_T *char_get_curr_str_app (const CHAR_T *ch);
@@ -196,5 +197,6 @@ void char_reduce_money (CHAR_T *ch, int cost);
 void char_stop_idling (CHAR_T *ch);
 int char_set_max_wait_state (CHAR_T *ch, int npulse);
 int char_set_max_daze_state (CHAR_T *ch, int npulse);
+bool char_change_to_next_board (CHAR_T *ch);
 
 #endif

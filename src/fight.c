@@ -745,7 +745,7 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
     }
 
     immune = FALSE;
-    switch (check_immune (victim, dam_type)) {
+    switch (char_get_immunity (victim, dam_type)) {
         case (IS_IMMUNE):
             immune = TRUE;
             dam = 0;

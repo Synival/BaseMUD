@@ -74,7 +74,7 @@ static long last_note_stamp = 0; /* To generate unique timestamps on notes */
 #define BOARD_NOTFOUND -1
 
 /* append this note to the given file */
-void append_note (FILE *fp, NOTE_T *note) {
+void note_write (NOTE_T *note, FILE *fp) {
     fprintf (fp, "Sender  %s~\n", note->sender);
     fprintf (fp, "Date    %s~\n", note->date);
     fprintf (fp, "Stamp   %ld\n", note->date_stamp);
@@ -85,7 +85,7 @@ void append_note (FILE *fp, NOTE_T *note) {
 }
 
 /* Save a note in a given board */
-void finish_note (BOARD_T *board, NOTE_T *note) {
+void note_finish (NOTE_T *note, BOARD_T *board) {
     FILE *fp;
     char filename[200];
 
@@ -108,7 +108,7 @@ void finish_note (BOARD_T *board, NOTE_T *note) {
         return;
     }
 
-    append_note (fp, note);
+    note_write (note, fp);
     fclose (fp);
 }
 
@@ -122,26 +122,26 @@ int board_number (const BOARD_T *board) {
 }
 
 /* Remove list from the list. Do not free note */
-void unlink_note (BOARD_T *board, NOTE_T *note) {
+void note_unlink (NOTE_T *note, BOARD_T *board) {
     LIST_REMOVE (note, next, board->note_first, NOTE_T, NO_FAIL);
 }
 
 /* Find the nth note on a board. Return NULL if ch has no access to that note */
-NOTE_T* find_note (CHAR_T *ch, BOARD_T *board, int num) {
+NOTE_T *board_find_note (BOARD_T *board, CHAR_T *ch, int num) {
     int count = 0;
     NOTE_T *p;
 
     for (p = board->note_first; p ; p = p->next)
-            if (++count == num)
-                break;
-    if ((count == num) && is_note_to (ch, p))
+        if (++count == num)
+            break;
+    if ((count == num) && note_is_for_char (p, ch))
         return p;
     else
         return NULL;
 }
 
 /* save a single board */
-void save_board (BOARD_T *board) {
+void board_save (BOARD_T *board) {
     FILE *fp;
     char filename[200];
     NOTE_T *note;
@@ -151,12 +151,12 @@ void save_board (BOARD_T *board) {
         "Error writing to: %s", filename);
 
     for (note = board->note_first; note ; note = note->next)
-        append_note (fp, note);
+        note_write (note, fp);
     fclose (fp);
 }
 
 /* Show one not to a character */
-void show_note_to_char (CHAR_T *ch, NOTE_T *note, int num) {
+void note_show_to_char (NOTE_T *note, CHAR_T *ch, int num) {
     /* Ugly colors ? */
     printf_to_char (ch,
         "[{W%4d{x] {Y%s{x: {g%s{x\n\r"
@@ -169,15 +169,15 @@ void show_note_to_char (CHAR_T *ch, NOTE_T *note, int num) {
 }
 
 /* Save changed boards */
-void save_notes () {
+void board_save_all () {
     int i;
     for (i = 0; i < BOARD_MAX; i++)
         if (board_table[i].changed) /* only save changed boards */
-            save_board (&board_table[i]);
+            board_save (&board_table[i]);
 }
 
 /* Load a single board */
-void load_board (BOARD_T *board) {
+void board_load (BOARD_T *board) {
     FILE *fp, *fp_archive;
     NOTE_T *last_note;
     char filename[200];
@@ -238,7 +238,7 @@ void load_board (BOARD_T *board) {
             if (!fp_archive)
                 bug ("Could not open archive boards for writing", 0);
             else {
-                append_note (fp_archive, pnote);
+                note_write (pnote, fp_archive);
                 fclose (fp_archive); /* it might be more efficient to close this later */
             }
             note_free (pnote);
@@ -253,14 +253,14 @@ void load_board (BOARD_T *board) {
 }
 
 /* Initialize structures. Load all boards. */
-void load_boards () {
+void board_load_all () {
     int i;
     for (i = 0; i < BOARD_MAX; i++)
-        load_board (&board_table[i]);
+        board_load (&board_table[i]);
 }
 
 /* Returns TRUE if the specified note is address to ch */
-bool is_note_to (CHAR_T *ch, NOTE_T *note) {
+bool note_is_for_char (NOTE_T *note, CHAR_T *ch) {
     if (!str_cmp (ch->name, note->sender))
         return TRUE;
     if (is_full_name ("all", note->to_list))
@@ -286,7 +286,7 @@ bool is_note_to (CHAR_T *ch, NOTE_T *note) {
         return TRUE;
 
     /* Allow a note to e.g. 40 to send to characters level 40 and above */
-    if (is_number(note->to_list) && char_get_trust(ch) >= atoi(note->to_list))
+    if (is_number (note->to_list) && char_get_trust (ch) >= atoi (note->to_list))
         return TRUE;
 
     return FALSE;
@@ -294,7 +294,7 @@ bool is_note_to (CHAR_T *ch, NOTE_T *note) {
 
 /* Return the number of unread notes 'ch' has in 'board' */
 /* Returns BOARD_NOACCESS if ch has no access to board */
-int unread_notes (CHAR_T *ch, BOARD_T *board) {
+int board_get_unread_notes_for_char (BOARD_T *board, CHAR_T *ch) {
     NOTE_T *note;
     time_t last_read;
     int count = 0;
@@ -304,7 +304,7 @@ int unread_notes (CHAR_T *ch, BOARD_T *board) {
 
     last_read = ch->pcdata->last_note[board_number(board)];
     for (note = board->note_first; note; note = note->next)
-        if (is_note_to(ch, note) && ((long)last_read < (long)note->date_stamp))
+        if (note_is_for_char (note, ch) && ((long)last_read < (long)note->date_stamp))
             count++;
 
     return count;
@@ -313,13 +313,13 @@ int unread_notes (CHAR_T *ch, BOARD_T *board) {
 /* COMMANDS */
 
 /* Send a note to someone on the personal board */
-void personal_message (const char *sender, const char *to, const char *subject,
-    const int expire_days, const char *text)
+NOTE_T *note_create_personal (const char *sender, const char *to,
+    const char *subject, const int expire_days, const char *text)
 {
-    make_note ("Personal", sender, to, subject, expire_days, text);
+    return note_create ("Personal", sender, to, subject, expire_days, text);
 }
 
-void make_note (const char* board_name, const char *sender, const char *to,
+NOTE_T *note_create (const char* board_name, const char *sender, const char *to,
     const char *subject, const int expire_days, const char *text)
 {
     int board_index = board_lookup (board_name);
@@ -327,10 +327,10 @@ void make_note (const char* board_name, const char *sender, const char *to,
     NOTE_T *note;
     char *strtime;
 
-    BAIL_IF_BUG (board_index == BOARD_NOTFOUND,
-        "make_note: board not found", 0);
-    BAIL_IF_BUG (strlen(text) > MAX_NOTE_TEXT,
-        "make_note: text too long (%d bytes)", strlen (text));
+    RETURN_IF_BUG (board_index == BOARD_NOTFOUND,
+        "note_create: board not found", 0, NULL);
+    RETURN_IF_BUG (strlen (text) > MAX_NOTE_TEXT,
+        "note_create: text too long (%d bytes)", strlen (text), NULL);
 
     board = &board_table[board_index];
 
@@ -345,23 +345,11 @@ void make_note (const char* board_name, const char *sender, const char *to,
     strtime = ctime_fixed (&current_time);
     note->date = str_dup (strtime);
 
-    finish_note (board, note);
+    note_finish (note, board);
+    return note;
 }
 
-/* tries to change to the next accessible board */
-bool next_board (CHAR_T *ch) {
-    int i = board_number (ch->pcdata->board) + 1;
-    while ((i < BOARD_MAX) && (unread_notes(ch, &board_table[i]) == BOARD_NOACCESS))
-        i++;
-    if (i == BOARD_MAX)
-        return FALSE;
-    else {
-        ch->pcdata->board = &board_table[i];
-        return TRUE;
-    }
-}
-
-void handle_con_note_to (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (handle_con_note_to) {
     char buf [MAX_INPUT_LENGTH];
     CHAR_T *ch = d->character;
 
@@ -422,7 +410,7 @@ void handle_con_note_to (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_NOTE_SUBJECT;
 }
 
-void handle_con_note_subject (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (handle_con_note_subject) {
     char buf [MAX_INPUT_LENGTH];
     CHAR_T *ch = d->character;
 
@@ -469,7 +457,7 @@ void handle_con_note_subject (DESCRIPTOR_T *d, char *argument) {
     }
 }
 
-void handle_con_note_expire (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (handle_con_note_expire) {
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     time_t expire;
@@ -510,7 +498,7 @@ void handle_con_note_expire (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_NOTE_TEXT;
 }
 
-void handle_con_note_text (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (handle_con_note_text) {
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     char letter[4*MAX_STRING_LENGTH];
@@ -570,7 +558,7 @@ void handle_con_note_text (DESCRIPTOR_T *d, char *argument) {
     ch->pcdata->in_progress->text = str_dup (letter);
 }
 
-void handle_con_note_finish (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (handle_con_note_finish) {
     CHAR_T *ch = d->character;
 
     if (!ch->pcdata->in_progress) {
@@ -597,7 +585,7 @@ void handle_con_note_finish (DESCRIPTOR_T *d, char *argument) {
             break;
 
         case 'p': /* post note */
-            finish_note (ch->pcdata->board, ch->pcdata->in_progress);
+            note_finish (ch->pcdata->in_progress, ch->pcdata->board);
             write_to_buffer (d, "Note posted.\n\r",0);
             d->connected = CON_PLAYING;
             /* remove AFK status */

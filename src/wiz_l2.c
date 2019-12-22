@@ -62,7 +62,7 @@ DEFINE_DO_FUN (do_allow) {
         ban_free (pban);
 
         printf_to_char (ch, "Ban on %s lifted.\n\r", arg);
-        save_bans ();
+        ban_save_all ();
         return;
     }
 

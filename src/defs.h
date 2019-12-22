@@ -39,6 +39,9 @@
 #define DEFINE_EFFECT_FUN(fun) \
     void fun (void *vo, int level, int dam, int target)
 
+#define DEFINE_NANNY_FUN(fun) \
+    void fun (DESCRIPTOR_T *d, char *argument)
+
 #define DEFINE_TABLE_JSON_FUN(fun) \
     JSON_T *fun (const void *obj, const char *obj_name)
 

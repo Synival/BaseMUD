@@ -34,58 +34,6 @@
 
 #include "affects.h"
 
-/* for immunity, vulnerabiltiy, and resistant
-   the 'globals' (magic and weapons) may be overriden
-   three other cases -- wood, silver, and iron -- are checked in fight.c */
-int check_immune (CHAR_T *ch, int dam_type) {
-    const DAM_T *dam;
-    int def;
-    flag_t bit;
-
-    /* no resistance for unclassed damage. sorry, hand-to-hand fighters! */
-    if (dam_type == DAM_NONE)
-        return IS_NORMAL;
-
-    dam = dam_get (dam_type);
-    if (dam == NULL)
-        dam = &(dam_table[DAM_NONE]);
-
-    /* determine default resistance.  if it's a physical attack (bash, pierce,
-     * slash), check weapon resistance.  otherwise, check magic resistance. */
-    bit = (dam->dam_flags & DAM_MAGICAL) ? RES_MAGIC : RES_WEAPON;
-         if (IS_SET (ch->imm_flags,  bit)) def = IS_IMMUNE;
-    else if (IS_SET (ch->res_flags,  bit)) def = IS_RESISTANT;
-    else if (IS_SET (ch->vuln_flags, bit)) def = IS_VULNERABLE;
-    else                                   def = IS_NORMAL;
-
-    /* check for resistance to the attack's specific resistance bit.
-     * if there is none, we're done here. */
-    if (dam == NULL || dam->res <= 0)
-        return def;
-
-    /* if the character is immune, override default immunity. */
-    if (IS_SET (ch->imm_flags, dam->res))
-        return IS_IMMUNE;
-
-    /* if the character is resistant, upgrade to resistant (don't override
-     * complete immunity). */
-    if (IS_SET (ch->res_flags, dam->res))
-        return (def == IS_IMMUNE) ? IS_IMMUNE : IS_RESISTANT;
-
-    /* if vulnerable, downgrade default immunity by one level. */
-    if (IS_SET (ch->vuln_flags, dam->res)) {
-        if (def == IS_IMMUNE)
-            return IS_RESISTANT;
-        else if (def == IS_RESISTANT)
-            return IS_NORMAL;
-        else
-            return IS_VULNERABLE;
-    }
-
-    /* no specific immunity - use the default. */
-    return def;
-}
-
 void affect_modify_bits (CHAR_T *ch, AFFECT_T *paf, bool on) {
     if (on) {
         switch (paf->bit_type) {

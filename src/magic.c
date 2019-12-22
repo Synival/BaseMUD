@@ -149,7 +149,7 @@ bool saves_spell (int level, CHAR_T *victim, int dam_type) {
     if (IS_AFFECTED (victim, AFF_BERSERK))
         save += victim->level / 2;
 
-    switch (check_immune (victim, dam_type)) {
+    switch (char_get_immunity (victim, dam_type)) {
         case IS_IMMUNE:     return TRUE;
         case IS_RESISTANT:  save += 2; break;
         case IS_VULNERABLE: save -= 2; break;

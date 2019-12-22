@@ -31,9 +31,9 @@
 #include "merc.h"
 
 /* Function prototypes. */
-void save_bans (void);
-void load_bans (void);
-bool check_ban (char *site, int type);
+void ban_save_all (void);
+void ban_load_all (void);
+bool ban_check (char *site, int type);
 void ban_site (CHAR_T *ch, char *argument, bool perm);
 
 #endif

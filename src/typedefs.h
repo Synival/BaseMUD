@@ -150,6 +150,7 @@ typedef void RECYCLE_DISPOSE_FUN (void *obj);
     #define DECLARE_SPEC_FUN(fun)   bool fun()
     #define DECLARE_SPELL_FUN(fun)  void fun()
     #define DECLARE_EFFECT_FUN(fun) void fun()
+    #define DECLARE_NANNY_FUN(fun)  void fun()
     #define DECLARE_OLC_FUN(fun)    bool fun()
     #define DECLARE_TABLE_JSON_FUN(fun) JSON_T *fun()
 #else
@@ -158,6 +159,7 @@ typedef void RECYCLE_DISPOSE_FUN (void *obj);
     #define DECLARE_SPEC_FUN(fun)   SPEC_FUN   fun
     #define DECLARE_SPELL_FUN(fun)  SPELL_FUN  fun
     #define DECLARE_EFFECT_FUN(fun) EFFECT_FUN fun
+    #define DECLARE_NANNY_FUN(fun)  NANNY_FUN  fun
     #define DECLARE_OLC_FUN(fun)    OLC_FUN    fun
     #define DECLARE_TABLE_JSON_FUN(fun) TABLE_JSON_FUN fun
 #endif

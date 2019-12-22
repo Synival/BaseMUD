@@ -185,7 +185,7 @@ void nanny (DESCRIPTOR_T *d, char *argument) {
     handler->action (d, argument);
 }
 
-void nanny_ansi (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_ansi) {
     extern char *help_greeting;
     if (argument[0] == '\0' || UPPER (argument[0]) == 'Y') {
         d->ansi = TRUE;
@@ -207,7 +207,7 @@ void nanny_ansi (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_GET_NAME;
 }
 
-void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_player_name) {
     bool old;
     CHAR_T *ch;
 
@@ -232,7 +232,7 @@ void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
         return;
     }
 
-    if (check_ban (d->host, BAN_PERMIT) && !IS_SET (ch->plr, PLR_PERMIT)) {
+    if (ban_check (d->host, BAN_PERMIT) && !IS_SET (ch->plr, PLR_PERMIT)) {
         send_to_desc ("Your site has been banned from this mud.\n\r", d);
         close_socket (d);
         return;
@@ -263,7 +263,7 @@ void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
             return;
         }
 
-        if (check_ban (d->host, BAN_NEWBIES)) {
+        if (ban_check (d->host, BAN_NEWBIES)) {
             send_to_desc (
                 "New players are not allowed from your site.\n\r", 0);
             close_socket (d);
@@ -276,7 +276,7 @@ void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
     }
 }
 
-void nanny_get_old_password (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_old_password) {
     CHAR_T *ch = d->character;
 
 #if defined(unix)
@@ -314,7 +314,7 @@ void nanny_get_old_password (DESCRIPTOR_T *d, char *argument) {
     }
 }
 
-void nanny_break_connect (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_break_connect) {
     switch (UPPER(argument[0])) {
         case 'Y':
             nanny_break_connect_confirm (d, argument);
@@ -335,7 +335,7 @@ void nanny_break_connect (DESCRIPTOR_T *d, char *argument) {
     }
 }
 
-void nanny_break_connect_confirm (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_break_connect_confirm) {
     CHAR_T *ch = d->character;
     DESCRIPTOR_T *d_old, *d_next;
 
@@ -361,7 +361,7 @@ void nanny_break_connect_confirm (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_GET_NAME;
 }
 
-void nanny_confirm_new_name (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_confirm_new_name) {
     CHAR_T *ch = d->character;
 
     switch (UPPER(argument[0])) {
@@ -386,7 +386,7 @@ void nanny_confirm_new_name (DESCRIPTOR_T *d, char *argument) {
     }
 }
 
-void nanny_get_new_password (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_new_password) {
     CHAR_T *ch = d->character;
     char *pwdnew, *p;
 
@@ -416,7 +416,7 @@ void nanny_get_new_password (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_CONFIRM_PASSWORD;
 }
 
-void nanny_confirm_new_password (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_confirm_new_password) {
     CHAR_T *ch = d->character;
     int race;
 
@@ -443,7 +443,7 @@ void nanny_confirm_new_password (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_GET_NEW_RACE;
 }
 
-void nanny_get_new_race (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_new_race) {
     char arg[MAX_STRING_LENGTH];
     CHAR_T *ch = d->character;
     int i, race;
@@ -501,7 +501,7 @@ void nanny_get_new_race (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_GET_NEW_SEX;
 }
 
-void nanny_get_new_sex (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_new_sex) {
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     int class_n;
@@ -531,7 +531,7 @@ void nanny_get_new_sex (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_GET_NEW_CLASS;
 }
 
-void nanny_get_new_class (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_new_class) {
     CHAR_T *ch = d->character;
     int class_n;
 
@@ -554,7 +554,7 @@ void nanny_get_new_class (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_GET_ALIGNMENT;
 }
 
-void nanny_get_alignment (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_alignment) {
     CHAR_T *ch = d->character;
     switch (UPPER(argument[0])) {
         case 'G': ch->alignment =  750; break;
@@ -580,7 +580,7 @@ void nanny_get_alignment (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_DEFAULT_CHOICE;
 }
 
-void nanny_default_choice (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_default_choice) {
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     int i;
@@ -627,7 +627,7 @@ void nanny_default_choice (DESCRIPTOR_T *d, char *argument) {
     }
 }
 
-void nanny_pick_weapon (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_pick_weapon) {
     CHAR_T *ch = d->character;
     const WEAPON_T *weapon;
     char buf[MAX_STRING_LENGTH];
@@ -656,7 +656,7 @@ void nanny_pick_weapon (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_READ_MOTD;
 }
 
-void nanny_gen_groups (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_gen_groups) {
     CHAR_T *ch = d->character;
 
     if (!str_cmp (argument, "done")) {
@@ -669,7 +669,7 @@ void nanny_gen_groups (DESCRIPTOR_T *d, char *argument) {
     do_function (ch, &do_help, "menu choice");
 }
 
-void nanny_gen_groups_done (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_gen_groups_done) {
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     int i;
@@ -707,7 +707,7 @@ void nanny_gen_groups_done (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_PICK_WEAPON;
 }
 
-void nanny_read_imotd (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_read_imotd) {
     CHAR_T *ch = d->character;
 
     write_to_buffer (d, "\n\r", 2);
@@ -715,7 +715,7 @@ void nanny_read_imotd (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_READ_MOTD;
 }
 
-void nanny_read_motd (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_read_motd) {
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
 

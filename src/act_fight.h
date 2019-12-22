@@ -31,7 +31,7 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-bool fight_filter_skill_target (CHAR_T *ch, const char *argument,
+bool do_fight_filter_skill_target (CHAR_T *ch, const char *argument,
     int sn, flag_t npc_flag, const char *cant_msg, const char *self_msg,
     int *out_chance, CHAR_T **out_victim);
 

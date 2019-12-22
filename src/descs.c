@@ -183,7 +183,7 @@ void init_descriptor (int control) {
      *
      * Furey: added suffix check by request of Nickel of HiddenWorlds. */
 
-    if (check_ban (dnew->host, BAN_ALL)) {
+    if (ban_check (dnew->host, BAN_ALL)) {
         write_to_descriptor (desc, "Your site has been banned from this mud.\n\r", 0);
         close (desc);
         descriptor_free (dnew);
