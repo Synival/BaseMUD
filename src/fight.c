@@ -460,7 +460,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
         thac0_00 = class_table[ch->class].thac0_00;
         thac0_32 = class_table[ch->class].thac0_32;
     }
-    thac0 = interpolate (ch->level, thac0_00, thac0_32);
+    thac0 = int_interpolate (ch->level, thac0_00, thac0_32);
 
     if (thac0 < 0)
         thac0 = thac0 / 2;

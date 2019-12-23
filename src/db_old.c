@@ -607,8 +607,8 @@ void convert_mobile (MOB_INDEX_T *mob_index) {
     }
 
     for (i = 0; i < 3; i++)
-        mob_index->ac[i] = interpolate (level, 100, -100);
-    mob_index->ac[3] = interpolate (level, 100, 0);    /* exotic */
+        mob_index->ac[i] = int_interpolate (level, 100, -100);
+    mob_index->ac[3] = int_interpolate (level, 100, 0);    /* exotic */
 
     mob_index->wealth /= 100;
     mob_index->size = SIZE_MEDIUM;

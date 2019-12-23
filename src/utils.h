@@ -46,10 +46,10 @@ bool str_in_namelist_exact (const char *str, const char *namelist);
 size_t str_inject_args (char *buf, size_t size, const char *format, ...);
 
 /* Number utilities. */
-int interpolate (int level, int value_00, int value_32);
+int int_interpolate (int level, int value_00, int value_32);
 
 /* Random number utilities. */
-void init_mm (void);
+void number_mm_init (void);
 long number_mm (void);
 int number_fuzzy (int number);
 int number_range (int from, int to);

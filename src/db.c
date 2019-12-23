@@ -406,7 +406,7 @@ void boot_db (void) {
     in_boot_db = TRUE;
 
     string_space_init ();
-    init_mm ();
+    number_mm_init ();
     init_time_weather ();
     init_gsns ();
 

@@ -195,7 +195,7 @@ bool str_in_namelist_exact (const char *str, const char *namelist) {
 }
 
 /* Simple linear interpolation. */
-int interpolate (int level, int value_00, int value_32) {
+int int_interpolate (int level, int value_00, int value_32) {
     return value_00 + level * (value_32 - value_00) / 32;
 }
 
@@ -225,7 +225,7 @@ int number_fuzzy (int number) {
     static int mm_state[2 + 55];
 #endif
 
-void init_mm (void) {
+void number_mm_init (void) {
 #if defined (OLD_RAND)
     int *state_ptr;
     int state;

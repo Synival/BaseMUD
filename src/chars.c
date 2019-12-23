@@ -202,8 +202,8 @@ CHAR_T *char_create_mobile (MOB_INDEX_T *mob_index) {
             case 3: mob->attack_type = ATTACK_PIERCE; break;
         }
         for (i = 0; i < 3; i++)
-            mob->armor[i] = interpolate (mob->level, 100, -100);
-        mob->armor[3]    = interpolate (mob->level, 100, 0);
+            mob->armor[i] = int_interpolate (mob->level, 100, -100);
+        mob->armor[3]    = int_interpolate (mob->level, 100, 0);
         mob->race        = mob_index->race;
         mob->off_flags   = mob_index->off_flags_final;
         mob->imm_flags   = mob_index->imm_flags_final;
