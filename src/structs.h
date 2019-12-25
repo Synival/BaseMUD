@@ -297,6 +297,12 @@ struct flag_type {
     bool settable;
 };
 
+struct type_type {
+    char *name;
+    type_t type;
+    bool settable;
+};
+
 struct sector_type {
     int type;
     const char *name;
@@ -1057,7 +1063,7 @@ struct flag_stat_type {
 struct table_type {
     const void *table;
     const char *name;
-    flag_t flags;
+    int type;
     const char *description;
 
     size_t type_size;

@@ -18,11 +18,9 @@
     "extra_flags": "invis magic antievil",
     "wear_flags": "take body",
     "affects": [{
-      "apply": "strength",
       "level": 35,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "strength",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -46,18 +44,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "hit roll",
         "level": 50,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 3
       },
       {
-        "apply": "wisdom",
         "level": 50,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": -1
       }
     ]
   }},
@@ -80,11 +74,9 @@
     "extra_flags": "invis magic antievil",
     "wear_flags": "take head",
     "affects": [{
-      "apply": "dexterity",
       "level": 35,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -107,18 +99,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 48,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 48,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -141,9 +129,7 @@
     "extra_flags": "invis magic antievil",
     "wear_flags": "take feet",
     "affects": [{
-      "apply": "none",
       "level": 25,
-      "modifier": 0,
       "bit_type": "affects",
       "bits": "flying"
     }]
@@ -187,11 +173,9 @@
     "extra_flags": "invis magic antievil",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "wisdom",
       "level": 47,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "wisdom",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -214,18 +198,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 47,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 47,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -248,11 +228,9 @@
     "extra_flags": "invis magic antievil",
     "wear_flags": "take hands",
     "affects": [{
-      "apply": "hp",
       "level": 27,
-      "modifier": 25,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hp",
+      "modifier": 25
     }]
   }},
   {"object": {
@@ -287,11 +265,9 @@
     "extra_flags": "invis magic antievil",
     "wear_flags": "take neck",
     "affects": [{
-      "apply": "mana",
       "level": 25,
-      "modifier": 25,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": 25
     }]
   }},
   {"object": {
@@ -309,18 +285,14 @@
     "wear_flags": "take finger",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 35,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 3
       },
       {
-        "apply": "wisdom",
         "level": 35,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 2
       }
     ]
   }},
@@ -343,11 +315,9 @@
     "extra_flags": "invis magic antievil",
     "wear_flags": "take shield",
     "affects": [{
-      "apply": "wisdom",
       "level": 30,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "wisdom",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -502,11 +472,9 @@
     "extra_flags": "invis magic antievil",
     "wear_flags": "take neck",
     "affects": [{
-      "apply": "mana",
       "level": 40,
-      "modifier": 50,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": 50
     }]
   }},
   {"object": {
@@ -528,11 +496,9 @@
     "extra_flags": "invis magic antievil",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "damage roll",
       "level": 50,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -554,11 +520,9 @@
     "extra_flags": "invis magic antievil",
     "wear_flags": "take about",
     "affects": [{
-      "apply": "hp",
       "level": 17,
-      "modifier": 15,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hp",
+      "modifier": 15
     }]
   }},
   {"object": {

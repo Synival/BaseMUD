@@ -25,7 +25,81 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include <string.h>
+
 #include "merc.h"
+
+#include "interp.h"
+#include "lookup.h"
+#include "utils.h"
+
+#include "flags.h"
+
+flag_t flag_lookup (const FLAG_T *flag_table, const char *name)
+    { SIMPLE_LOOKUP_PROP (flag_table, bit, name, FLAG_NONE, 0); }
+flag_t flag_lookup_exact (const FLAG_T *flag_table, const char *name)
+    { SIMPLE_LOOKUP_PROP_EXACT (flag_table, bit, name, FLAG_NONE, 0); }
+const FLAG_T *flag_get_by_name (const FLAG_T *flag_table, const char *name)
+    { SIMPLE_GET_BY_NAME (flag_table, name, 0); }
+const FLAG_T *flag_get_by_name_exact (const FLAG_T *flag_table, char const *name)
+    { SIMPLE_GET_BY_NAME_EXACT (flag_table, name, 0); }
+const FLAG_T *flag_get (const FLAG_T *flag_table, flag_t bit)
+    { SIMPLE_GET (flag_table, bit, name, NULL, 0); }
+const char *flag_get_name (const FLAG_T *flag_table, flag_t bit)
+    { SIMPLE_GET_NAME_FROM_ELEMENT (FLAG_T, flag_get (flag_table, bit), name); }
+
+flag_t flags_from_string (const FLAG_T *flag_table, const char *name)
+    { return flags_from_string_real (flag_table, name, FALSE); }
+flag_t flags_from_string_exact (const FLAG_T *flag_table, const char *name)
+    { return flags_from_string_real (flag_table, name, TRUE); }
+
+flag_t flags_from_string_real (const FLAG_T *flag_table, const char *name,
+    bool exact)
+{
+    const FLAG_T *flag;
+    char word[MAX_INPUT_LENGTH];
+    flag_t marked;
+
+    /* Accept multiple flags. */
+    marked = 0;
+    while (1) {
+        name = one_argument (name, word);
+        if (word[0] == '\0')
+            break;
+        flag = exact
+            ? flag_get_by_name_exact (flag_table, word)
+            : flag_get_by_name (flag_table, word);
+        if (flag != NULL)
+            SET_BIT (marked, flag->bit);
+    }
+    return (marked != 0) ? marked : FLAG_NONE;
+}
+
+/* Increased buffers from 2 to 16! That should give us the illusion
+ * of stability. -- Synival */
+const char *flags_to_string (const FLAG_T *flag_table, flag_t bits)
+    { return flags_to_string_real (flag_table, bits, "none"); }
+
+const char *flags_to_string_real (const FLAG_T *flag_table, flag_t bits,
+    const char *none_str)
+{
+    static char buf[16][512];
+    static int cnt = 0;
+    int i;
+
+    if (++cnt >= 16)
+        cnt = 0;
+
+    buf[cnt][0] = '\0';
+    for (i = 0; flag_table[i].name != NULL; i++) {
+        if (IS_SET (bits, flag_table[i].bit)) {
+            if (buf[cnt][0] != '\0')
+                strcat (buf[cnt], " ");
+            strcat (buf[cnt], flag_table[i].name);
+        }
+    }
+    return (buf[cnt][0] == '\0') ? none_str : buf[cnt];
+}
 
 /* various flag tables */
 const FLAG_T mob_flags[] = {

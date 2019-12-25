@@ -191,7 +191,7 @@ void do_resets_display (CHAR_T *ch) {
                     v->door.room_vnum,
                     str_capitalized (door_table[v->door.dir].name),
                     room_index->name,
-                    flag_string (door_resets, v->door.locks));
+                    type_get_name (door_resets, v->door.locks));
                 strcat (final, buf);
 
                 break;

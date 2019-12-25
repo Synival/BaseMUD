@@ -69,7 +69,7 @@ AEDIT (aedit_show) {
     printf_to_char (ch, "Builders: [%s]\n\r", area->builders);
     printf_to_char (ch, "Credits : [%s]\n\r", area->credits);
     printf_to_char (ch, "Flags:    [%s]\n\r",
-        flag_string (area_flags, area->area_flags));
+        flags_to_string (area_flags, area->area_flags));
 
     return FALSE;
 }

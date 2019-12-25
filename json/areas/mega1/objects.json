@@ -154,11 +154,9 @@
                      |to play bashball."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 14,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -186,32 +184,24 @@
     }],
     "affects": [
       {
+        "level": 18,
         "apply": "dexterity",
-        "level": 18,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
+        "level": 18,
         "apply": "constitution",
-        "level": 18,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
+        "level": 18,
         "apply": "damage roll",
-        "level": 18,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 18,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -283,11 +273,9 @@
       "description": "It looks like a noodle freshly made at the Olive Garden."
     }],
     "affects": [{
-      "apply": "intelligence",
       "level": 5,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "intelligence",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -313,11 +301,9 @@
                      |head has been bashed with this baby."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 17,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -378,11 +364,9 @@
                      |head has been bashed with this baby."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 26,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {

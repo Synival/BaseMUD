@@ -5,37 +5,37 @@
   "values": [
     {
       "name": "ignore",
-      "bit": 0,
+      "type": 0,
       "settable": true
     },
     {
       "name": "char_offensive",
-      "bit": 1,
+      "type": 1,
       "settable": true
     },
     {
       "name": "char_defensive",
-      "bit": 2,
+      "type": 2,
       "settable": true
     },
     {
       "name": "char_self",
-      "bit": 3,
+      "type": 3,
       "settable": true
     },
     {
       "name": "obj_inventory",
-      "bit": 4,
+      "type": 4,
       "settable": true
     },
     {
       "name": "obj_char_defensive",
-      "bit": 5,
+      "type": 5,
       "settable": true
     },
     {
       "name": "obj_char_offensive",
-      "bit": 6,
+      "type": 6,
       "settable": true
     }
   ]

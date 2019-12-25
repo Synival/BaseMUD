@@ -35,11 +35,9 @@
     "cost": 2000,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "saves",
       "level": 22,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -61,18 +59,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 30,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "dexterity",
         "level": 30,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 1
       }
     ]
   }},
@@ -112,11 +106,9 @@
     "cost": 3900,
     "wear_flags": "take waist",
     "affects": [{
-      "apply": "constitution",
       "level": 17,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "constitution",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -137,11 +129,9 @@
     "cost": 3900,
     "wear_flags": "take waist",
     "affects": [{
-      "apply": "strength",
       "level": 17,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "strength",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -176,11 +166,9 @@
     "extra_flags": "glow",
     "wear_flags": "take neck hold",
     "affects": [{
-      "apply": "mana",
       "level": 10,
-      "modifier": 15,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": 15
     }]
   }},
   {"object": {
@@ -200,11 +188,9 @@
     "cost": 2000,
     "wear_flags": "take about",
     "affects": [{
-      "apply": "damage roll",
       "level": 21,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -258,18 +244,14 @@
     "wear_flags": "take finger",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 37,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 3
       },
       {
-        "apply": "hit roll",
         "level": 37,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 3
       }
     ]
   }},
@@ -286,11 +268,9 @@
     "cost": 2600,
     "wear_flags": "take finger",
     "affects": [{
-      "apply": "wisdom",
       "level": 15,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "wisdom",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -402,11 +382,9 @@
     "cost": 3900,
     "wear_flags": "take shield",
     "affects": [{
-      "apply": "constitution",
       "level": 25,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "constitution",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -557,18 +535,14 @@
     "wear_flags": "take hands",
     "affects": [
       {
-        "apply": "strength",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       },
       {
-        "apply": "damage roll",
         "level": 20,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       }
     ]
   }},
@@ -592,18 +566,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "wisdom",
         "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 1
       },
       {
-        "apply": "intelligence",
         "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": 1
       }
     ]
   }},
@@ -621,11 +591,9 @@
     "extra_flags": "magic",
     "wear_flags": "take neck",
     "affects": [{
-      "apply": "mana",
       "level": 25,
-      "modifier": 25,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": 25
     }]
   }},
   {"object": {
@@ -665,11 +633,9 @@
     "cost": 4000,
     "wear_flags": "take hands",
     "affects": [{
-      "apply": "dexterity",
       "level": 17,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -690,11 +656,9 @@
     "cost": 4100,
     "wear_flags": "take head",
     "affects": [{
-      "apply": "hp",
       "level": 35,
-      "modifier": 15,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hp",
+      "modifier": 15
     }]
   }},
   {"object": {
@@ -716,18 +680,14 @@
     "wear_flags": "take about",
     "affects": [
       {
-        "apply": "hp",
         "level": 16,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hp",
+        "modifier": 10
       },
       {
-        "apply": "strength",
         "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},
@@ -787,18 +747,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 24,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 24,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},

@@ -49,13 +49,13 @@
 
 /* Useful macros for defining rows in our master table. */
 #define TFLAGS(table, desc) \
-    { table, #table, TABLE_FLAG_TYPE | TABLE_BITS, desc, \
+    { table, #table, TABLE_FLAGS, desc, \
       sizeof (FLAG_T), NULL, json_tblw_flag }
 #define TTYPES(table, desc) \
-    { table, #table, TABLE_FLAG_TYPE, desc, \
-      sizeof (FLAG_T), NULL, json_tblw_flag }
+    { table, #table, TABLE_TYPES, desc, \
+      sizeof (TYPE_T), NULL, json_tblw_type }
 #define TTABLE(table, name, desc, obj_name, jwrite) \
-    { table, name, 0, desc, sizeof(table[0]), obj_name, jwrite }
+    { table, name, TABLE_UNIQUE, desc, sizeof(table[0]), obj_name, jwrite }
 
 const TABLE_T master_table[TABLE_MAX + 1] = {
     /* from flags.h */

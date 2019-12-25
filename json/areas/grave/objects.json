@@ -182,18 +182,14 @@
     }],
     "affects": [
       {
-        "apply": "strength",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       },
       {
-        "apply": "armor class",
         "level": 7,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -1
       }
     ]
   }},
@@ -220,11 +216,9 @@
                      |has been engraved on the blade next to the hilt."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 6,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }}
 ]

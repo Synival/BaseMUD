@@ -18,11 +18,9 @@
       "description": "It feels heavy."
     }],
     "affects": [{
-      "apply": "strength",
       "level": 0,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "strength",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -86,11 +84,9 @@
       "description": "It's old and rusted, but it still has a good edge."
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 0,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -113,11 +109,9 @@
     "condition": 90,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 3,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -146,11 +140,9 @@
                      |trim the roots off the end."
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 14,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -179,11 +171,9 @@
                      |like good armor."
     }],
     "affects": [{
-      "apply": "dexterity",
       "level": 8,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -231,11 +221,9 @@
     "extra_flags": "magic",
     "wear_flags": "take head",
     "affects": [{
-      "apply": "saves",
       "level": 5,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -289,18 +277,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 8,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 8,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -328,11 +312,9 @@
       "description": "It has an edge sharp enough to cut a passing thought. A good find, this."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 12,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -385,18 +367,14 @@
     }],
     "affects": [
       {
-        "apply": "armor class",
         "level": 3,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": 1
       },
       {
-        "apply": "damage roll",
         "level": 3,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       }
     ]
   }},
@@ -424,11 +402,9 @@
       "description": "A metal shaft mounted with an iron head, shaped into armor-shattering form."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 6,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -482,11 +458,9 @@
                      |quite effective."
     }],
     "affects": [{
-      "apply": "armor class",
       "level": 10,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -537,18 +511,14 @@
     "wear_flags": "take hands",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -647,11 +617,9 @@
       "description": "It's a superb weapon for warrior or mage."
     }],
     "affects": [{
-      "apply": "armor class",
       "level": 10,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -708,11 +676,9 @@
       }
     ],
     "affects": [{
-      "apply": "mana",
       "level": 13,
-      "modifier": -20,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": -20
     }]
   }},
   {"object": {
@@ -739,18 +705,14 @@
     }],
     "affects": [
       {
-        "apply": "armor class",
         "level": 7,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -1
       },
       {
-        "apply": "hit roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -780,18 +742,14 @@
     }],
     "affects": [
       {
-        "apply": "dexterity",
         "level": 9,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       },
       {
-        "apply": "damage roll",
         "level": 9,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       }
     ]
   }},

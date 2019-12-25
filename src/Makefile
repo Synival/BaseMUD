@@ -134,8 +134,8 @@ fight.o: chars.h objs.h find.h globals.h memory.h fight.h
 find.o: interp.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 find.o: structs.h types.h flags.h tables.h utils.h chars.h db.h globals.h
 find.o: find.h
-flags.o: merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
-flags.o: structs.h types.h flags.h tables.h
+flags.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
+flags.o: json.h structs.h types.h flags.h tables.h interp.h lookup.h utils.h
 globals.o: globals.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 globals.o: json.h structs.h types.h flags.h tables.h
 groups.o: utils.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
@@ -283,7 +283,7 @@ tables.o: recycle.h colour.h board.h special.h effects.h json_tbl.h magic.h
 tables.o: spell_aff.h spell_create.h spell_cure.h spell_info.h spell_misc.h
 tables.o: spell_move.h spell_npc.h spell_off.h
 types.o: merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
-types.o: structs.h types.h flags.h tables.h
+types.o: structs.h types.h flags.h tables.h lookup.h utils.h
 update.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 update.o: json.h structs.h types.h flags.h tables.h interp.h music.h comm.h
 update.o: affects.h utils.h skills.h mob_prog.h fight.h save.h magic.h db.h

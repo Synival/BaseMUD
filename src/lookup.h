@@ -187,26 +187,6 @@
     vtype *               btype ## _get_by_name     (const char *name); \
     const OBJ_RECYCLE_T *btype ## _get_rec_by_name (const char *name)
 
-/* Function prototypes for flag management. */
-int lookup_backup (int (*func) (const char *str), char *str, char *errf,
-    int backup);
-flag_t flag_lookup (const char *name, const FLAG_T *flag_table);
-flag_t flag_lookup_exact (const char *name, const FLAG_T *flag_table);
-const FLAG_T *flag_get_by_name (const char *name, const FLAG_T *flag_table);
-const FLAG_T *flag_get_by_name_exact (const char *name, const FLAG_T *flag_table);
-const FLAG_T *flag_get (flag_t bit, const FLAG_T *flag_table);
-const char *flag_get_name (flag_t bit, const FLAG_T *flag_table);
-bool is_table_flagged (const void *table, flag_t t_flags, flag_t f_flags);
-bool is_flag (const void *table);
-bool is_type (const void *table);
-bool is_special (const void *table);
-flag_t flag_value (const FLAG_T *flag_table, const char *argument);
-flag_t flag_value_real (const FLAG_T *flag_table, const char *argument,
-    flag_t no_flag, bool exact);
-const char *flag_string (const FLAG_T *flag_table, flag_t bits);
-const char *flag_string_real (const FLAG_T *flag_table, flag_t bits,
-    const char *none_str);
-
 /* Lookup bundles. */
 DEC_SIMPLE_INDEX_BUNDLE (master,   TABLE_T);
 
@@ -254,6 +234,16 @@ DEC_SIMPLE_REC_BUNDLE (portal_exit, PORTAL_EXIT_T);
 DEC_SIMPLE_REC_BUNDLE (room_index,  ROOM_INDEX_T);
 DEC_SIMPLE_REC_BUNDLE (social,      SOCIAL_T);
 
+/* General functions. */
+int lookup_func_backup (LOOKUP_FUN *func, const char *str,
+    const char *errf, int backup);
+
+/* Table functions. */
+bool table_is_of_type (const void *table, int type);
+bool table_is_flags (const void *table);
+bool table_is_types (const void *table);
+bool table_is_unique (const void *table);
+
 /* Special lookup functions. */
 const TABLE_T *master_table_get_exact (const char *name);
 const TABLE_T *master_table_get_by_obj_name (const char *name);
@@ -283,11 +273,6 @@ const SUN_T *sun_get_current ();
 const SKY_T *sky_get_by_mmhg (int mmhg);
 const SUN_T *sun_get_by_hour (int hour);
 int skill_get_index_by_slot (int slot);
-const char *ac_rating_phrase (int ac);
-const char *align_name (int align);
-const char *position_name (int position);
-const char *sex_name (int sex);
-const char *ac_type_name (int type);
 const char *wiz_class_by_level (int level);
 const STR_APP_T *str_app_get (int attr);
 const INT_APP_T *int_app_get (int attr);
@@ -298,8 +283,10 @@ PORTAL_EXIT_T *portal_exit_lookup_exact (const char *name);
 SOCIAL_T *social_lookup_exact (const char *name);
 const CONDITION_T *condition_get_for_char (const CHAR_T *ch);
 
-/* Bit functions from handler.c */
-const char *affect_apply_name (flag_t type);
+const char *ac_rating_phrase (int ac);
+const char *align_name (int align);
+const char *position_name (int position);
+
 const char *room_bit_name (flag_t flags);
 const char *affect_bit_name (flag_t flags);
 const char *extra_bit_name (flag_t flags);
@@ -313,5 +300,9 @@ const char *part_bit_name (flag_t flags);
 const char *weapon_bit_name (flag_t flags);
 const char *cont_bit_name (flag_t flags);
 const char *off_bit_name (flag_t flags);
+
+const char *affect_apply_name (type_t type);
+const char *sex_name (type_t sex);
+const char *ac_type_name (type_t type);
 
 #endif

@@ -41,18 +41,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 22,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "strength",
         "level": 22,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},
@@ -79,11 +75,9 @@
                      |engraved on it."
     }],
     "affects": [{
-      "apply": "constitution",
       "level": 17,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "constitution",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -127,11 +121,9 @@
       "description": "From a look it resembles the Golden Fleece that exists in the Greek myths."
     }],
     "affects": [{
-      "apply": "armor class",
       "level": 20,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -157,18 +149,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "moves",
         "level": 20,
-        "modifier": 20,
-        "bit_type": "object",
-        "bits": null
+        "apply": "moves",
+        "modifier": 20
       }
     ]
   }},
@@ -196,18 +184,14 @@
     }],
     "affects": [
       {
-        "apply": "dexterity",
         "level": 16,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 2
       },
       {
-        "apply": "strength",
         "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},
@@ -235,11 +219,9 @@
                      |pound when the Crab was still an enemy of Hercules in ancient times."
     }],
     "affects": [{
-      "apply": "armor class",
       "level": 20,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -283,11 +265,9 @@
       "description": "A bracelet of purity and youth, only worn by selected virgins."
     }],
     "affects": [{
-      "apply": "wisdom",
       "level": 15,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "wisdom",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -313,18 +293,14 @@
     }],
     "affects": [
       {
-        "apply": "hp",
         "level": 25,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hp",
+        "modifier": 5
       },
       {
-        "apply": "armor class",
         "level": 25,
-        "modifier": -3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -3
       }
     ]
   }},
@@ -351,18 +327,14 @@
     }],
     "affects": [
       {
-        "apply": "hp",
         "level": 0,
-        "modifier": -30,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hp",
+        "modifier": -30
       },
       {
-        "apply": "armor class",
         "level": 0,
-        "modifier": 6,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": 6
       }
     ]
   }},
@@ -389,18 +361,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 19,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 19,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 3
       }
     ]
   }},
@@ -450,18 +418,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 20,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 3
       },
       {
-        "apply": "hit roll",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -489,18 +453,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 22,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 22,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -552,18 +512,14 @@
     }],
     "affects": [
       {
-        "apply": "dexterity",
         "level": 21,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 21,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       }
     ]
   }},
@@ -587,18 +543,14 @@
     }],
     "affects": [
       {
-        "apply": "intelligence",
         "level": 26,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": 2
       },
       {
-        "apply": "mana",
         "level": 26,
-        "modifier": 25,
-        "bit_type": "object",
-        "bits": null
+        "apply": "mana",
+        "modifier": 25
       }
     ]
   }},
@@ -621,18 +573,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 22,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 22,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -655,18 +603,14 @@
     }],
     "affects": [
       {
-        "apply": "hp",
         "level": 30,
-        "modifier": 30,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hp",
+        "modifier": 30
       },
       {
-        "apply": "mana",
         "level": 30,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "mana",
+        "modifier": 10
       }
     ]
   }},
@@ -689,18 +633,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},

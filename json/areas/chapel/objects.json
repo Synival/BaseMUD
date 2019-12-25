@@ -42,18 +42,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 7,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -161,18 +157,14 @@
     }],
     "affects": [
       {
-        "apply": "saves",
         "level": 3,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": 1
       },
       {
-        "apply": "moves",
         "level": 3,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "moves",
+        "modifier": 10
       }
     ]
   }},
@@ -200,18 +192,14 @@
     }],
     "affects": [
       {
-        "apply": "hit roll",
         "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       },
       {
-        "apply": "dexterity",
         "level": 16,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 2
       }
     ]
   }},
@@ -492,18 +480,14 @@
     }],
     "affects": [
       {
-        "apply": "armor class",
         "level": 0,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": 10
       },
       {
-        "apply": "hp",
         "level": 0,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hp",
+        "modifier": 10
       }
     ]
   }},
@@ -533,11 +517,9 @@
                      |it is obviously a great find!"
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 28,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {

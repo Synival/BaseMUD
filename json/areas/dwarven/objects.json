@@ -116,18 +116,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "strength",
         "level": 17,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 17,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -163,18 +159,14 @@
     "wear_flags": "take finger",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -196,18 +188,14 @@
     "wear_flags": "take hands",
     "affects": [
       {
-        "apply": "dexterity",
         "level": 13,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 1
       },
       {
-        "apply": "strength",
         "level": 13,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},

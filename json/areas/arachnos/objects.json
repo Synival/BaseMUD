@@ -19,18 +19,14 @@
     "wear_flags": "take head",
     "affects": [
       {
-        "apply": "armor class",
         "level": 18,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       },
       {
-        "apply": "wisdom",
         "level": 18,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 2
       }
     ]
   }},
@@ -54,18 +50,14 @@
     "wear_flags": "take head",
     "affects": [
       {
-        "apply": "constitution",
         "level": 17,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "constitution",
+        "modifier": 2
       },
       {
-        "apply": "strength",
         "level": 17,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},

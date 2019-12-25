@@ -45,18 +45,14 @@
     }],
     "affects": [
       {
-        "apply": "hp",
         "level": 3,
-        "modifier": 4,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hp",
+        "modifier": 4
       },
       {
-        "apply": "strength",
         "level": 3,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},
@@ -87,18 +83,14 @@
     }],
     "affects": [
       {
-        "apply": "mana",
         "level": 7,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "mana",
+        "modifier": 5
       },
       {
-        "apply": "wisdom",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 1
       }
     ]
   }},
@@ -128,18 +120,14 @@
     }],
     "affects": [
       {
-        "apply": "hit roll",
         "level": 4,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": -1
       },
       {
-        "apply": "armor class",
         "level": 4,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -1
       }
     ]
   }},
@@ -229,11 +217,9 @@
                      |You'll put your eye out, kid!"
     }],
     "affects": [{
-      "apply": "armor class",
       "level": 4,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -1
     }]
   }}
 ]

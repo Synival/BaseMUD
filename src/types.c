@@ -27,7 +27,35 @@
 
 #include "merc.h"
 
-const FLAG_T sex_types[SEX_MAX + 1] = {
+#include "lookup.h"
+#include "utils.h"
+
+#include "types.h"
+
+type_t type_lookup (const TYPE_T *type_table, const char *name)
+    { SIMPLE_LOOKUP_PROP (type_table, type, name, TYPE_NONE, 0); }
+type_t type_lookup_exact (const TYPE_T *type_table, const char *name)
+    { SIMPLE_LOOKUP_PROP_EXACT (type_table, type, name, TYPE_NONE, 0); }
+const TYPE_T *type_get_by_name (const TYPE_T *type_table, const char *name)
+    { SIMPLE_GET_BY_NAME (type_table, name, 0); }
+const TYPE_T *type_get_by_name_exact (const TYPE_T *type_table, const char *name)
+    { SIMPLE_GET_BY_NAME_EXACT (type_table, name, 0); }
+const TYPE_T *type_get (const TYPE_T *type_table, type_t type)
+    { SIMPLE_GET (type_table, type, name, NULL, 0); }
+const char *type_get_name (const TYPE_T *type_table, type_t type)
+    { SIMPLE_GET_NAME_FROM_ELEMENT (TYPE_T, type_get (type_table, type), name); }
+
+type_t type_lookup_exact_backup (const TYPE_T *type_table, const char *str,
+    const char *errf, type_t backup)
+{
+    type_t num = type_lookup_exact (type_table, str);
+    if (num != TYPE_NONE)
+        return num;
+    bugf (errf, str);
+    return backup;
+}
+
+const TYPE_T sex_types[SEX_MAX + 1] = {
     {"neutral", SEX_NEUTRAL, TRUE},
     {"male",    SEX_MALE,    TRUE},
     {"female",  SEX_FEMALE,  TRUE},
@@ -35,7 +63,7 @@ const FLAG_T sex_types[SEX_MAX + 1] = {
     {0}
 };
 
-const FLAG_T affect_apply_types[APPLY_MAX + 1] = {
+const TYPE_T affect_apply_types[APPLY_MAX + 1] = {
     {"none",                  APPLY_NONE,          TRUE},
     {"strength",              APPLY_STR,           TRUE},
     {"dexterity",             APPLY_DEX,           TRUE},
@@ -65,7 +93,7 @@ const FLAG_T affect_apply_types[APPLY_MAX + 1] = {
     {0}
 };
 
-const FLAG_T ac_types[AC_MAX + 1] = {
+const TYPE_T ac_types[AC_MAX + 1] = {
     {"pierce", AC_PIERCE, TRUE},
     {"bash",   AC_BASH,   TRUE},
     {"slash",  AC_SLASH,  TRUE},
@@ -73,7 +101,7 @@ const FLAG_T ac_types[AC_MAX + 1] = {
     {0}
 };
 
-const FLAG_T size_types[SIZE_MAX_R + 1] = {
+const TYPE_T size_types[SIZE_MAX_R + 1] = {
     {"tiny",   SIZE_TINY,   TRUE},
     {"small",  SIZE_SMALL,  TRUE},
     {"medium", SIZE_MEDIUM, TRUE},
@@ -83,7 +111,7 @@ const FLAG_T size_types[SIZE_MAX_R + 1] = {
     {0}
 };
 
-const FLAG_T weapon_types[WEAPON_MAX + 1] = {
+const TYPE_T weapon_types[WEAPON_MAX + 1] = {
     {"exotic",  WEAPON_EXOTIC,  TRUE},
     {"sword",   WEAPON_SWORD,   TRUE},
     {"dagger",  WEAPON_DAGGER,  TRUE},
@@ -96,7 +124,7 @@ const FLAG_T weapon_types[WEAPON_MAX + 1] = {
     {0}
 };
 
-const FLAG_T position_types[POS_MAX + 1] = {
+const TYPE_T position_types[POS_MAX + 1] = {
     {"dead",     POS_DEAD,     FALSE},
     {"mortal",   POS_MORTAL,   FALSE},
     {"incap",    POS_INCAP,    FALSE},
@@ -109,7 +137,7 @@ const FLAG_T position_types[POS_MAX + 1] = {
     {0}
 };
 
-const FLAG_T sector_types[SECT_MAX + 1] = {
+const TYPE_T sector_types[SECT_MAX + 1] = {
     {"inside",   SECT_INSIDE,       TRUE},
     {"city",     SECT_CITY,         TRUE},
     {"field",    SECT_FIELD,        TRUE},
@@ -124,7 +152,7 @@ const FLAG_T sector_types[SECT_MAX + 1] = {
     {0}
 };
 
-const FLAG_T item_types[ITEM_MAX + 1] = {
+const TYPE_T item_types[ITEM_MAX + 1] = {
     {"none",       ITEM_NONE,       FALSE},
     {"light",      ITEM_LIGHT,      TRUE},
     {"scroll",     ITEM_SCROLL,     TRUE},
@@ -163,14 +191,14 @@ const FLAG_T item_types[ITEM_MAX + 1] = {
     {0}
 };
 
-const FLAG_T door_resets[RESET_MAX + 1] = {
+const TYPE_T door_resets[RESET_MAX + 1] = {
     {"open and unlocked",   RESET_OPEN,   TRUE},
     {"closed and unlocked", RESET_CLOSED, TRUE},
     {"closed and locked",   RESET_LOCKED, TRUE},
     {0}
 };
 
-const FLAG_T stat_types[STAT_MAX + 1] = {
+const TYPE_T stat_types[STAT_MAX + 1] = {
     {"str", STAT_STR, TRUE},
     {"int", STAT_INT, TRUE},
     {"wis", STAT_WIS, TRUE},
@@ -179,7 +207,7 @@ const FLAG_T stat_types[STAT_MAX + 1] = {
     {0}
 };
 
-const FLAG_T cond_types[COND_MAX + 1] = {
+const TYPE_T cond_types[COND_MAX + 1] = {
     {"drunk",  COND_DRUNK,  TRUE},
     {"full",   COND_FULL,   TRUE},
     {"thirst", COND_THIRST, TRUE},
@@ -187,7 +215,7 @@ const FLAG_T cond_types[COND_MAX + 1] = {
     {0}
 };
 
-const FLAG_T skill_target_types[SKILL_TARGET_MAX + 1] = {
+const TYPE_T skill_target_types[SKILL_TARGET_MAX + 1] = {
     {"ignore",             SKILL_TARGET_IGNORE,         TRUE},
     {"char_offensive",     SKILL_TARGET_CHAR_OFFENSIVE, TRUE},
     {"char_defensive",     SKILL_TARGET_CHAR_DEFENSIVE, TRUE},
@@ -198,7 +226,7 @@ const FLAG_T skill_target_types[SKILL_TARGET_MAX + 1] = {
     {0}
 };
 
-const FLAG_T board_def_types[DEF_MAX + 1] = {
+const TYPE_T board_def_types[DEF_MAX + 1] = {
     {"normal",  DEF_NORMAL,  TRUE},
     {"include", DEF_INCLUDE, TRUE},
     {"exclude", DEF_EXCLUDE, TRUE},

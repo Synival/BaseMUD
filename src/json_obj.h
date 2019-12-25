@@ -34,7 +34,7 @@
 #define JBITS(val) \
     json_not_none(val)
 #define JBITSF(array, bits) \
-    JBITS (flag_string ((array), (bits)))
+    JBITS (flags_to_string ((array), (bits)))
 #define JSTR(val) \
     json_not_blank(val)
 

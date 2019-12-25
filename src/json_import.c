@@ -194,7 +194,9 @@ char *json_string_append_newline (char *buf, size_t size) {
 #define READ_PROP_BOOL(obj_prop, json_prop) \
     ((obj_prop) = JGB (json_prop))
 #define READ_PROP_FLAGS(obj_prop, json_prop, table) \
-    ((obj_prop) = flag_value_real (table, (JGS (json_prop), buf), 0, TRUE))
+    ((obj_prop) = flags_from_string_exact (table, (JGS (json_prop), buf)))
+#define READ_PROP_TYPE(obj_prop, json_prop, table) \
+    ((obj_prop) = type_lookup_exact (table, (JGS (json_prop), buf)))
 
 #define NO_NULL_STR(obj_prop) \
     do { \
@@ -240,7 +242,7 @@ ROOM_INDEX_T *json_import_obj_room (const JSON_T *json) {
 
     READ_PROP_STR (buf, "clan");
     if (buf[0] != '\0')
-        room->clan = lookup_backup (clan_lookup_exact,
+        room->clan = lookup_func_backup (clan_lookup_exact,
             buf, "Unknown clan '%s'", 0);
 
     READ_PROP_STR (buf, "portal");
@@ -335,9 +337,9 @@ EXIT_T *json_import_obj_exit (const JSON_T *json, ROOM_INDEX_T *room,
     else
         exit->room_anum = -1;
 
-    READ_PROP_STRP  (exit->keyword,     "keyword");
+    READ_PROP_STRP    (exit->keyword,     "keyword");
     READ_PROP_STRP_NL (exit->description, "description");
-    READ_PROP_FLAGS (exit->exit_flags,  "exit_flags", exit_flags);
+    READ_PROP_FLAGS   (exit->exit_flags,  "exit_flags", exit_flags);
 
     if ((sub = json_get (json, "key")) != NULL) {
         if (sub->type == JSON_STRING && strcmp ((char *) sub->value, "nokey") == 0)
@@ -514,8 +516,8 @@ SHOP_T *json_import_obj_shop (const JSON_T *json, const char *backup_area) {
              sub = sub->next, i++)
         {
             json_value_as_string (sub, buf, sizeof (buf));
-            int type = flag_lookup_exact (buf, item_types);
-            if (type < 0 || type >= ITEM_MAX || type == NO_FLAG) {
+            type_t type = type_lookup_exact (item_types, buf);
+            if (type < 0 || type >= ITEM_MAX || type == TYPE_NONE) {
                 json_logf (json, "json_import_obj_shop(): Invalid item type "
                     "'%s'.\n", buf);
                 continue;
@@ -566,12 +568,12 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
     READ_PROP_STRP_NL (mob->description, "description");
 
     READ_PROP_STR (buf, "race");
-    mob->race = lookup_backup (race_lookup_exact, buf,
+    mob->race = lookup_func_backup (race_lookup_exact, buf,
         "Unknown race '%s'", 0);
 
     READ_PROP_STR (buf, "material");
     if (buf[0] != '\0')
-        mob->material = lookup_backup (material_lookup_exact, buf,
+        mob->material = lookup_func_backup (material_lookup_exact, buf,
             "Unknown material '%s'", MATERIAL_GENERIC);
 
     READ_PROP_INT  (mob->alignment,    "alignment");
@@ -585,33 +587,33 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
 
     READ_PROP_STR (buf, "attack_type");
     if (buf[0] != '\0')
-        mob->attack_type = lookup_backup (attack_lookup_exact,
+        mob->attack_type = lookup_func_backup (attack_lookup_exact,
             buf, "Unknown attack '%s'", 0);
 
     array = json_get (json, "ac");
     for (sub = array->first_child; sub != NULL; sub = sub->next) {
-        int type = flag_lookup_exact (sub->name, ac_types);
-        if (type < 0 || type >= AC_MAX || type == NO_FLAG) {
+        const TYPE_T *type = type_get_by_name (ac_types, sub->name);
+        if (type == NULL) {
             json_logf (json, "json_import_obj_mobile(): Invalid ac type "
                 "'%s'.\n", sub->name);
             continue;
         }
-        mob->ac[ac_types[type].bit] = json_value_as_int (sub);
+        mob->ac[type->type] = json_value_as_int (sub);
     }
 
     READ_PROP_STR (buf, "start_pos");
     if (buf[0] != '\0')
-        mob->start_pos = lookup_backup (position_lookup_exact,
+        mob->start_pos = lookup_func_backup (position_lookup_exact,
             buf, "Unknown start position '%s'", POS_STANDING);
 
     READ_PROP_STR (buf, "default_pos");
     if (buf[0] != '\0')
-        mob->default_pos = lookup_backup (position_lookup_exact,
+        mob->default_pos = lookup_func_backup (position_lookup_exact,
             buf, "Unknown default position '%s'", POS_STANDING);
 
     READ_PROP_STR (buf, "sex");
     if (buf[0] != '\0')
-        mob->sex = lookup_backup (sex_lookup_exact,
+        mob->sex = lookup_func_backup (sex_lookup_exact,
             buf, "Unknown sex '%s'", SEX_EITHER);
 
     READ_PROP_INT  (mob->wealth,          "wealth");
@@ -635,7 +637,7 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
     READ_PROP_FLAGS (mob->parts_minus,       "parts_minus",       part_flags);
 
     READ_PROP_STR (buf, "size");
-    mob->size = lookup_backup (size_lookup_exact, buf,
+    mob->size = lookup_func_backup (size_lookup_exact, buf,
         "Unknown size '%s'", SIZE_MEDIUM);
 
     sub = json_get (json, "shop");
@@ -693,11 +695,11 @@ OBJ_INDEX_T *json_import_obj_object (const JSON_T *json) {
 
     READ_PROP_STR (buf, "material");
     if (buf[0] != '\0')
-        obj->material = lookup_backup (material_lookup_exact,
+        obj->material = lookup_func_backup (material_lookup_exact,
             buf, "Unknown material '%s'", MATERIAL_GENERIC);
 
     READ_PROP_STR (buf, "item_type");
-    obj->item_type = lookup_backup (item_lookup_exact,
+    obj->item_type = lookup_func_backup (item_lookup_exact,
         buf, "Unknown item type '%s'", ITEM_NONE);
 
     READ_PROP_FLAGS (obj->extra_flags, "extra_flags", extra_flags);
@@ -961,23 +963,28 @@ AFFECT_T *json_import_obj_affect (JSON_T *json) {
     char buf[MAX_STRING_LENGTH];
 
     json_import_expect ("affect", json,
-        "apply", "level", "modifier", "bit_type", "bits", NULL
+        "level", "*apply", "*modifier", "*bit_type", "*bits", NULL
     );
 
     affect = affect_new ();
 
-    READ_PROP_FLAGS (affect->apply,    "apply", affect_apply_types);
-    READ_PROP_INT   (affect->level,    "level");
-    READ_PROP_INT   (affect->modifier, "modifier");
+    READ_PROP_INT  (affect->level,    "level");
 
-    READ_PROP_STR (buf, "bit_type");
-    if ((bits = affect_bit_get_by_name (buf)) == NULL) {
-        json_logf (json, "json_import_obj_affect(): Invalid bit_type '%s'.\n",
-            buf);
+    if (json_get (json, "apply") != NULL) {
+        READ_PROP_TYPE (affect->apply,    "apply", affect_apply_types);
+        READ_PROP_INT  (affect->modifier, "modifier");
     }
-    else {
-        affect->bit_type = bits->type;
-        READ_PROP_FLAGS (affect->bits, "bits", bits->flags);
+
+    if (json_get (json, "bits") != NULL) {
+        READ_PROP_STR (buf, "bit_type");
+        if ((bits = affect_bit_get_by_name (buf)) == NULL) {
+            json_logf (json, "json_import_obj_affect(): Invalid bit_type '%s'.\n",
+                buf);
+        }
+        else {
+            affect->bit_type = bits->type;
+            READ_PROP_FLAGS (affect->bits, "bits", bits->flags);
+        }
     }
 
     return affect;

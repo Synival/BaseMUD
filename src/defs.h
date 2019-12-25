@@ -389,7 +389,8 @@
  * Used in save.c to load objects that don't exist. */
 #define OBJ_VNUM_DUMMY    30
 
-#define NO_FLAG    -1
+#define FLAG_NONE   0
+#define TYPE_NONE   -999
 
 /* Includes for board system */
 /* This is version 2 of the board system, (c) 1995-96 erwin@pip.dknet.dk */
@@ -540,8 +541,9 @@
 #define MAX_PERM_BLOCKS     1024
 
 /* Types of tables used for our master reference table. */
-#define TABLE_FLAG_TYPE 0x01
-#define TABLE_BITS      0x02
+#define TABLE_FLAGS     0
+#define TABLE_TYPES     1
+#define TABLE_UNIQUE    2
 
 #define TABLE_MAX   76
 

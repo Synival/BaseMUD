@@ -70,7 +70,7 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
 
     /* Set the exit flags, needs full argument.
      * ---------------------------------------- */
-    if ((value = flag_value (exit_flags, argument)) != NO_FLAG) {
+    if ((value = flags_from_string (exit_flags, argument)) != FLAG_NONE) {
         ROOM_INDEX_T *to_room;
         sh_int rev;                /* ROM OLC */
 
@@ -495,7 +495,7 @@ REDIT (redit_show) {
     strcat (buf1, buf);
 
     sprintf (buf, "Room flags: [%s]\n\r",
-             flag_string (room_flags, room->room_flags));
+             flags_to_string (room_flags, room->room_flags));
     strcat (buf1, buf);
 
     if (room->heal_rate != 100 || room->mana_rate != 100) {
@@ -572,8 +572,8 @@ REDIT (redit_show) {
 
             /* Format up the exit info.
              * Capitalize all flags that are not part of the reset info. */
-            strcpy (reset_state, flag_string (exit_flags, pexit->rs_flags));
-            state = flag_string (exit_flags, pexit->exit_flags);
+            strcpy (reset_state, flags_to_string (exit_flags, pexit->rs_flags));
+            state = flags_to_string (exit_flags, pexit->exit_flags);
             strcat (buf1, " Exit flags: [");
             while (1) {
                 state = one_argument (state, word);
@@ -953,7 +953,7 @@ REDIT (redit_oreset) {
         if (!IS_SET (obj_index->wear_flags, wear_loc->wear_flag)) {
             printf_to_char (ch, "%s (%d) has wear flags: [%s]\n\r",
                 str_capitalized (obj_index->short_descr), obj_index->vnum,
-                flag_string (wear_flags, obj_index->wear_flags));
+                flags_to_string (wear_flags, obj_index->wear_flags));
         }
 
         /* Can't load into same position.  */
@@ -1062,7 +1062,7 @@ REDIT (redit_room) {
     int value;
 
     EDIT_ROOM (ch, room);
-    if ((value = flag_value (room_flags, argument)) == NO_FLAG) {
+    if ((value = flags_from_string (room_flags, argument)) == FLAG_NONE) {
         send_to_char ("Syntax: room [flags]\n\r", ch);
         return FALSE;
     }

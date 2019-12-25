@@ -14,18 +14,14 @@
     "wear_flags": "take finger",
     "affects": [
       {
-        "apply": "hit roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       },
       {
-        "apply": "armor class",
         "level": 7,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -1
       }
     ]
   }},
@@ -54,18 +50,14 @@
     }],
     "affects": [
       {
-        "apply": "strength",
         "level": 15,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 15,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -93,11 +85,9 @@
                      |purple tentacles tied together."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 8,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -124,11 +114,9 @@
                      |It consists of a black handle and a purple head."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 8,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -149,11 +137,9 @@
     "extra_flags": "magic",
     "wear_flags": "take neck",
     "affects": [{
-      "apply": "saves",
       "level": 15,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -217,11 +203,9 @@
       }
     ],
     "affects": [{
-      "apply": "dexterity",
       "level": 0,
-      "modifier": -4,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": -4
     }]
   }},
   {"object": {
@@ -270,11 +254,9 @@
       "description": null
     }],
     "affects": [{
-      "apply": "dexterity",
       "level": 7,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -315,11 +297,9 @@
     "cost": 540,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 5,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -345,18 +325,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 31,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 5
       },
       {
-        "apply": "armor class",
         "level": 31,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": 2
       }
     ]
   }},
@@ -384,11 +360,9 @@
                      |some kind of silver or platinum."
     }],
     "affects": [{
-      "apply": "strength",
       "level": 32,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "strength",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -414,11 +388,9 @@
       "description": "They seem to be made from silver or platinum.  You see the outline of a rose."
     }],
     "affects": [{
-      "apply": "intelligence",
       "level": 32,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "intelligence",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -445,18 +417,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 27,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 27,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -484,11 +452,9 @@
                      |on the top."
     }],
     "affects": [{
-      "apply": "wisdom",
       "level": 32,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "wisdom",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -515,11 +481,9 @@
                      |background. You also notice the inscription :'Pax Est Sanctuum'."
     }],
     "affects": [{
-      "apply": "armor class",
       "level": 30,
-      "modifier": -7,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -7
     }]
   }},
   {"object": {
@@ -545,11 +509,9 @@
       "description": "The boots are made from a silvery metal."
     }],
     "affects": [{
-      "apply": "dexterity",
       "level": 32,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -575,11 +537,9 @@
       "description": "They seem to be made from silver or platinum. You see the outline of a rose."
     }],
     "affects": [{
-      "apply": "constitution",
       "level": 32,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "constitution",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -606,11 +566,9 @@
                      |color."
     }],
     "affects": [{
-      "apply": "saves",
       "level": 31,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -711,18 +669,14 @@
     "wear_flags": "take hold",
     "affects": [
       {
-        "apply": "wisdom",
         "level": 21,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 2
       },
       {
-        "apply": "intelligence",
         "level": 21,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": 2
       }
     ]
   }},
@@ -746,18 +700,14 @@
     "wear_flags": "take body",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "dexterity",
         "level": 29,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       }
     ]
   }},
@@ -781,18 +731,14 @@
     "wear_flags": "take legs",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "dexterity",
         "level": 29,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       }
     ]
   }},
@@ -814,11 +760,9 @@
     "extra_flags": "magic antigood",
     "wear_flags": "take hands",
     "affects": [{
-      "apply": "damage roll",
       "level": 20,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -841,25 +785,19 @@
     "wear_flags": "take head",
     "affects": [
       {
+        "level": 29,
         "apply": "wisdom",
-        "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 2
       },
       {
+        "level": 29,
         "apply": "damage roll",
-        "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 2
       },
       {
-        "apply": "dexterity",
         "level": 29,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       }
     ]
   }},
@@ -882,11 +820,9 @@
     "extra_flags": "magic antigood",
     "wear_flags": "take shield",
     "affects": [{
-      "apply": "damage roll",
       "level": 35,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -909,18 +845,14 @@
     "wear_flags": "take feet",
     "affects": [
       {
-        "apply": "dexterity",
         "level": 29,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       },
       {
-        "apply": "damage roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       }
     ]
   }},
@@ -944,18 +876,14 @@
     "wear_flags": "take arms",
     "affects": [
       {
-        "apply": "dexterity",
         "level": 29,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       },
       {
-        "apply": "damage roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       }
     ]
   }}

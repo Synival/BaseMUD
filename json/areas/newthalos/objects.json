@@ -317,11 +317,9 @@
     "cost": 176,
     "wear_flags": "take body",
     "affects": [{
-      "apply": "mana",
       "level": 0,
-      "modifier": -20,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": -20
     }]
   }},
   {"object": {
@@ -341,11 +339,9 @@
     "cost": 1280,
     "wear_flags": "take body",
     "affects": [{
-      "apply": "mana",
       "level": 8,
-      "modifier": -10,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": -10
     }]
   }},
   {"object": {
@@ -1438,11 +1434,9 @@
     "extra_flags": "hum magic",
     "wear_flags": "take neck hold",
     "affects": [{
-      "apply": "hit roll",
       "level": 5,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -1607,18 +1601,14 @@
     "wear_flags": "take feet",
     "affects": [
       {
-        "apply": "dexterity",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 1
       },
       {
-        "apply": "moves",
         "level": 7,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "moves",
+        "modifier": 10
       }
     ]
   }},
@@ -1640,11 +1630,9 @@
     "extra_flags": "hum",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 14,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -1686,18 +1674,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "hit roll",
         "level": 22,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       },
       {
-        "apply": "damage roll",
         "level": 22,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       }
     ]
   }},

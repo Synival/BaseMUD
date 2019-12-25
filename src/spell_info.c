@@ -223,8 +223,8 @@ void spell_identify_perform_seeded (CHAR_T *ch, OBJ_T *obj, int power) {
 
         case ITEM_WEAPON:
             if (KNOW_CHECK()) {
-                const FLAG_T *wtype = flag_get(
-                    obj->v.weapon.weapon_type, weapon_types);
+                const TYPE_T *wtype = type_get (
+                    weapon_types, obj->v.weapon.weapon_type);
                 printf_to_char (ch, "Weapon type is %s.\n\r",
                     (wtype == NULL) ? "unknown" : wtype->name);
             }

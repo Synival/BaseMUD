@@ -231,18 +231,30 @@
 #define RESET_MAX       3
 
 /* Type tables. */
-extern const FLAG_T sex_types[SEX_MAX + 1];
-extern const FLAG_T ac_types[AC_MAX + 1];
-extern const FLAG_T size_types[SIZE_MAX_R + 1];
-extern const FLAG_T weapon_types[WEAPON_MAX + 1];
-extern const FLAG_T position_types[POS_MAX + 1];
-extern const FLAG_T affect_apply_types[APPLY_MAX + 1];
-extern const FLAG_T sector_types[SECT_MAX + 1];
-extern const FLAG_T item_types[ITEM_MAX + 1];
-extern const FLAG_T stat_types[STAT_MAX + 1];
-extern const FLAG_T cond_types[COND_MAX + 1];
-extern const FLAG_T target_types[SKILL_TARGET_MAX + 1];
-extern const FLAG_T skill_target_types[SKILL_TARGET_MAX + 1];
-extern const FLAG_T board_def_types[DEF_MAX + 1];
+extern const TYPE_T sex_types[SEX_MAX + 1];
+extern const TYPE_T ac_types[AC_MAX + 1];
+extern const TYPE_T size_types[SIZE_MAX_R + 1];
+extern const TYPE_T weapon_types[WEAPON_MAX + 1];
+extern const TYPE_T position_types[POS_MAX + 1];
+extern const TYPE_T affect_apply_types[APPLY_MAX + 1];
+extern const TYPE_T sector_types[SECT_MAX + 1];
+extern const TYPE_T item_types[ITEM_MAX + 1];
+extern const TYPE_T door_resets[RESET_MAX + 1];
+extern const TYPE_T stat_types[STAT_MAX + 1];
+extern const TYPE_T cond_types[COND_MAX + 1];
+extern const TYPE_T target_types[SKILL_TARGET_MAX + 1];
+extern const TYPE_T skill_target_types[SKILL_TARGET_MAX + 1];
+extern const TYPE_T board_def_types[DEF_MAX + 1];
+
+/* Function prototypes for type management. */
+type_t type_lookup (const TYPE_T *type_table, const char *name);
+type_t type_lookup_exact (const TYPE_T *type_table, const char *name);
+const TYPE_T *type_get_by_name (const TYPE_T *type_table, const char *name);
+const TYPE_T *type_get_by_name_exact (const TYPE_T *type_table,
+    const char *name);
+const TYPE_T *type_get (const TYPE_T *type_table, type_t type);
+const char *type_get_name (const TYPE_T *type_table, type_t type);
+type_t type_lookup_exact_backup (const TYPE_T *type_table, const char *str,
+    const char *errf, type_t backup);
 
 #endif

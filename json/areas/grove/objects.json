@@ -174,11 +174,9 @@
       "description": "This robe is rough, but appears quite durable."
     }],
     "affects": [{
-      "apply": "mana",
       "level": 16,
-      "modifier": 10,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": 10
     }]
   }},
   {"object": {

@@ -5,22 +5,22 @@
   "values": [
     {
       "name": "drunk",
-      "bit": 0,
+      "type": 0,
       "settable": true
     },
     {
       "name": "full",
-      "bit": 1,
+      "type": 1,
       "settable": true
     },
     {
       "name": "thirst",
-      "bit": 2,
+      "type": 2,
       "settable": true
     },
     {
       "name": "hunger",
-      "bit": 3,
+      "type": 3,
       "settable": true
     }
   ]

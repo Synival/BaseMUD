@@ -30,18 +30,14 @@
     "wear_flags": "take head",
     "affects": [
       {
-        "apply": "wisdom",
         "level": 3,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 1
       },
       {
-        "apply": "dexterity",
         "level": 3,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       }
     ]
   }},
@@ -94,11 +90,9 @@
     "extra_flags": "glow",
     "wear_flags": "take neck",
     "affects": [{
-      "apply": "intelligence",
       "level": 5,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "intelligence",
+      "modifier": 1
     }]
   }},
   {"object": {

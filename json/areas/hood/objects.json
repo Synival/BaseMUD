@@ -59,18 +59,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "armor class",
         "level": 12,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       },
       {
-        "apply": "hit roll",
         "level": 12,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -136,18 +132,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "hit roll",
         "level": 9,
-        "modifier": 4,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 4
       },
       {
-        "apply": "armor class",
         "level": 9,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": 2
       }
     ]
   }},
@@ -171,18 +163,14 @@
     "wear_flags": "take feet",
     "affects": [
       {
-        "apply": "dexterity",
         "level": 5,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       },
       {
-        "apply": "damage roll",
         "level": 5,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       }
     ]
   }},
@@ -225,11 +213,9 @@
     "condition": 90,
     "wear_flags": "take hands",
     "affects": [{
-      "apply": "strength",
       "level": 7,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "strength",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -253,18 +239,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "hit roll",
         "level": 9,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 3
       },
       {
-        "apply": "moves",
         "level": 9,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "moves",
+        "modifier": 5
       }
     ]
   }},
@@ -283,18 +265,14 @@
     "wear_flags": "take finger",
     "affects": [
       {
-        "apply": "armor class",
         "level": 10,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       },
       {
-        "apply": "strength",
         "level": 10,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},
@@ -317,11 +295,9 @@
     "condition": 75,
     "wear_flags": "take hands",
     "affects": [{
-      "apply": "hit roll",
       "level": 5,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -345,18 +321,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "hit roll",
         "level": 11,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": -1
       },
       {
-        "apply": "damage roll",
         "level": 11,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       }
     ]
   }},
@@ -455,11 +427,9 @@
     "condition": 90,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 9,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -486,11 +456,9 @@
       "description": "It appears to be a broken wine bottle, but what do you know about brewing?"
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 11,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": -2
     }]
   }}
 ]

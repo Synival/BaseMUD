@@ -423,16 +423,16 @@ int cmd_eval (sh_int vnum, char *line, int check,
         case CHK_AFFECTED:
             return (lval_char != NULL
                     && IS_SET (lval_char->affected_by,
-                               flag_lookup (buf, affect_flags)));
+                               flag_lookup (affect_flags, buf)));
         case CHK_ACT:
             return (lval_char != NULL
-                    && IS_SET (lval_char->mob, flag_lookup (buf, mob_flags)));
+                    && IS_SET (lval_char->mob, flag_lookup (mob_flags, buf)));
         case CHK_IMM:
             return (lval_char != NULL
-                    && IS_SET (lval_char->imm_flags, flag_lookup (buf, res_flags)));
+                    && IS_SET (lval_char->imm_flags, flag_lookup (res_flags, buf)));
         case CHK_OFF:
             return (lval_char != NULL
-                    && IS_SET (lval_char->off_flags, flag_lookup (buf, off_flags)));
+                    && IS_SET (lval_char->off_flags, flag_lookup (off_flags, buf)));
         case CHK_CARRIES:
             if (is_number (buf))
                 return (lval_char != NULL

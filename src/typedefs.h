@@ -32,6 +32,7 @@
 
 /* Simple types. */
 typedef long int flag_t;
+typedef int type_t;
 
 /* Structure types. */
 typedef struct affect_data      AFFECT_T;
@@ -89,6 +90,7 @@ typedef struct class_type       CLASS_T;
 typedef struct skill_type       SKILL_T;
 typedef struct spec_type        SPEC_T;
 typedef struct flag_type        FLAG_T;
+typedef struct type_type        TYPE_T;
 typedef struct door_type        DOOR_T;
 typedef struct str_app_type     STR_APP_T;
 typedef struct int_app_type     INT_APP_T;
@@ -138,6 +140,7 @@ typedef void EFFECT_FUN (void *vo, int level, int dam, int target);
 typedef void NANNY_FUN  (DESCRIPTOR_T *d, char *argument);
 typedef JSON_T *TABLE_JSON_FUN (const void *obj, const char *obj_name);
 typedef bool OLC_FUN    (CHAR_T *ch, char *argument);
+typedef int LOOKUP_FUN  (const char *name);
 
 typedef void RECYCLE_INIT_FUN (void *obj);
 typedef void RECYCLE_DISPOSE_FUN (void *obj);
@@ -153,6 +156,7 @@ typedef void RECYCLE_DISPOSE_FUN (void *obj);
     #define DECLARE_NANNY_FUN(fun)  void fun()
     #define DECLARE_OLC_FUN(fun)    bool fun()
     #define DECLARE_TABLE_JSON_FUN(fun) JSON_T *fun()
+    #define DECLARE_LOOKUP_FUN(fun) int fun()
 #else
     #define args(list)              list
     #define DECLARE_DO_FUN(fun)     DO_FUN     fun
@@ -162,6 +166,7 @@ typedef void RECYCLE_DISPOSE_FUN (void *obj);
     #define DECLARE_NANNY_FUN(fun)  NANNY_FUN  fun
     #define DECLARE_OLC_FUN(fun)    OLC_FUN    fun
     #define DECLARE_TABLE_JSON_FUN(fun) TABLE_JSON_FUN fun
+    #define DECLARE_LOOKUP_FUN(fun) LOOKUP_FUN fun
 #endif
 
 #endif

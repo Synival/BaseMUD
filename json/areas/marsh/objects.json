@@ -20,18 +20,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "dexterity",
         "level": 11,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 1
       },
       {
-        "apply": "damage roll",
         "level": 11,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 3
       }
     ]
   }},
@@ -59,18 +55,14 @@
     }],
     "affects": [
       {
-        "apply": "intelligence",
         "level": 10,
-        "modifier": -3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": -3
       },
       {
-        "apply": "damage roll",
         "level": 10,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       }
     ]
   }},
@@ -113,18 +105,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 19,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 3
       },
       {
-        "apply": "hit roll",
         "level": 19,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 3
       }
     ]
   }},

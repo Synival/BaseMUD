@@ -23,25 +23,19 @@
     }],
     "affects": [
       {
+        "level": 38,
         "apply": "damage roll",
-        "level": 38,
-        "modifier": 6,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 6
       },
       {
+        "level": 38,
         "apply": "hit roll",
-        "level": 38,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -2
       },
       {
-        "apply": "dexterity",
         "level": 38,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       }
     ]
   }},
@@ -141,18 +135,14 @@
     }],
     "affects": [
       {
-        "apply": "wisdom",
         "level": 11,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": -1
       },
       {
-        "apply": "intelligence",
         "level": 11,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": -1
       }
     ]
   }},
@@ -183,11 +173,9 @@
                      |Engraved in the center is one word.  Merely reading the word induces fright."
     }],
     "affects": [{
-      "apply": "hp",
       "level": 14,
-      "modifier": -10,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hp",
+      "modifier": -10
     }]
   }},
   {"object": {
@@ -215,18 +203,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 6,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 6,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -255,18 +239,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 13,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 13,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -295,25 +275,19 @@
     }],
     "affects": [
       {
+        "level": 16,
         "apply": "damage roll",
-        "level": 16,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 3
       },
       {
+        "level": 16,
         "apply": "hit roll",
-        "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
-        "apply": "dexterity",
         "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 1
       }
     ]
   }},
@@ -343,18 +317,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 24,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 24,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -385,18 +355,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 19,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "dexterity",
         "level": 19,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 2
       }
     ]
   }},
@@ -425,11 +391,9 @@
                      |barbs on it."
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 29,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -460,32 +424,24 @@
     }],
     "affects": [
       {
+        "level": 31,
         "apply": "hit roll",
-        "level": 31,
-        "modifier": 4,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 4
       },
       {
+        "level": 31,
         "apply": "wisdom",
-        "level": 31,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -1
       },
       {
+        "level": 31,
         "apply": "intelligence",
-        "level": 31,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -1
       },
       {
-        "apply": "strength",
         "level": 31,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},
@@ -508,18 +464,14 @@
     }],
     "affects": [
       {
-        "apply": "saves",
         "level": 20,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 20,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       }
     ]
   }},
@@ -629,25 +581,19 @@
     }],
     "affects": [
       {
+        "level": 20,
         "apply": "damage roll",
-        "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
+        "level": 20,
         "apply": "hit roll",
-        "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
-        "apply": "strength",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},
@@ -675,18 +621,14 @@
     }],
     "affects": [
       {
-        "apply": "saves",
         "level": 31,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 31,
-        "modifier": -6,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -6
       }
     ]
   }},

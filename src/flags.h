@@ -529,7 +529,6 @@ extern const FLAG_T comm_flags[];
 extern const FLAG_T mprog_flags[];
 extern const FLAG_T area_flags[];
 extern const FLAG_T exit_flags[];
-extern const FLAG_T door_resets[];
 extern const FLAG_T room_flags[];
 extern const FLAG_T extra_flags[];
 extern const FLAG_T wear_flags[];
@@ -539,5 +538,25 @@ extern const FLAG_T res_flags[];
 extern const FLAG_T gate_flags[];
 extern const FLAG_T furniture_flags[];
 extern const FLAG_T dam_flags[];
+
+/* Function prototypes for flag management. */
+flag_t flag_lookup (const FLAG_T *flag_table, const char *name);
+flag_t flag_lookup_exact (const FLAG_T *flag_table, const char *name);
+flag_t flag_lookup_real (const FLAG_T *flag_table, const char *name,
+    bool exact);
+const FLAG_T *flag_get_by_name (const FLAG_T *flag_table, const char *name);
+const FLAG_T *flag_get_by_name_exact (const FLAG_T *flag_table,
+    const char *name);
+const FLAG_T *flag_get (const FLAG_T *flag_table, flag_t bit);
+const char *flag_get_name (const FLAG_T *flag_table, flag_t bit);
+
+flag_t flags_from_string (const FLAG_T *flag_table, const char *name);
+flag_t flags_from_string_exact (const FLAG_T *flag_table, const char *name);
+flag_t flags_from_string_real (const FLAG_T *flag_table, const char *name,
+    bool exact);
+
+const char *flags_to_string (const FLAG_T *flag_table, flag_t bits);
+const char *flags_to_string_real (const FLAG_T *flag_table, flag_t bits,
+    const char *none_str);
 
 #endif

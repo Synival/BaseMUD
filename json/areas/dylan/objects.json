@@ -18,23 +18,17 @@
     "wear_flags": "take feet",
     "affects": [
       {
+        "level": 13,
         "apply": "saves",
-        "level": 13,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
+        "level": 13,
         "apply": "dexterity",
-        "level": 13,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 2
       },
       {
-        "apply": "none",
         "level": 13,
-        "modifier": 0,
         "bit_type": "affects",
         "bits": "flying"
       }
@@ -73,18 +67,14 @@
     "wear_flags": "take neck",
     "affects": [
       {
-        "apply": "wisdom",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 1
       },
       {
-        "apply": "intelligence",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": 1
       }
     ]
   }},

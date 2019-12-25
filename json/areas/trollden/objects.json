@@ -54,11 +54,9 @@
                      |and feels bad."
     }],
     "affects": [{
-      "apply": "strength",
       "level": 12,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "strength",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -79,11 +77,9 @@
       "description": "It is a full circle of opal, smooth and simple."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 20,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -132,18 +128,14 @@
     }],
     "affects": [
       {
-        "apply": "hit roll",
         "level": 6,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": -1
       },
       {
-        "apply": "damage roll",
         "level": 6,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": -1
       }
     ]
   }}

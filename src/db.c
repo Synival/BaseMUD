@@ -358,14 +358,12 @@ void db_export_json (bool write_indiv, const char *everything) {
     ADD_CONFIG_JSON ("portal", "config/portals", portal, PORTAL_T,
         json_new_obj_portal, (obj->generated == FALSE));
     ADD_META_JSON ("table", "config/unsupported", master, TABLE_T,
-        json_new_obj_table, !IS_SET (obj->flags, TABLE_FLAG_TYPE) &&
-                             obj->json_write_func);
+        json_new_obj_table, obj->type == TABLE_UNIQUE && obj->json_write_func);
 
     ADD_META_JSON ("table", "meta/flags", master, TABLE_T,
-        json_new_obj_table, ARE_SET (obj->flags, TABLE_FLAG_TYPE | TABLE_BITS));
+        json_new_obj_table, obj->type == TABLE_FLAGS);
     ADD_META_JSON ("table", "meta/types", master, TABLE_T,
-        json_new_obj_table, IS_SET (obj->flags, TABLE_FLAG_TYPE) &&
-                           !IS_SET (obj->flags, TABLE_BITS));
+        json_new_obj_table, obj->type == TABLE_TYPES);
 
     /* Add help areas. */
     do {
@@ -1014,7 +1012,7 @@ void load_rooms (FILE *fp) {
                 char *clan_str = fread_string (fp);
                 EXIT_IF_BUG (room_index->clan != 0,
                     "load_rooms: duplicate clan fields.", 0);
-                room_index->clan = lookup_backup (clan_lookup_exact, clan_str,
+                room_index->clan = lookup_func_backup (clan_lookup_exact, clan_str,
                     "Unknown clan '%s'", 0);
             }
             else if (letter == 'D') {
@@ -2252,7 +2250,7 @@ void load_mobiles (FILE *fp) {
         str_replace_dup (&mob_index->description, fread_string (fp));
 
         str = fread_string (fp);
-        mob_index->race = lookup_backup (race_lookup_exact,
+        mob_index->race = lookup_func_backup (race_lookup_exact,
             str, "Unknown race '%s'", 0);
 
         mob_index->long_descr[0] = UPPER (mob_index->long_descr[0]);
@@ -2274,7 +2272,7 @@ void load_mobiles (FILE *fp) {
         fread_dice (fp, &(mob_index->damage));
 
         str = fread_word (fp);
-        mob_index->attack_type = lookup_backup (attack_lookup_exact,
+        mob_index->attack_type = lookup_func_backup (attack_lookup_exact,
             str, "Unknown damage type '%s'", 0);
 
         /* read armor class */
@@ -2291,11 +2289,11 @@ void load_mobiles (FILE *fp) {
 
         /* vital statistics */
         str = fread_word (fp);
-        mob_index->start_pos = lookup_backup (position_lookup_exact,
+        mob_index->start_pos = lookup_func_backup (position_lookup_exact,
             str, "Unknown start position '%s'", POS_STANDING);
 
         str = fread_word (fp);
-        mob_index->default_pos = lookup_backup (position_lookup_exact,
+        mob_index->default_pos = lookup_func_backup (position_lookup_exact,
             str, "Unknown default position '%s'", POS_STANDING);
 
         /* read sex. 'none' has been replaced with 'neutral' to avoid confusion
@@ -2303,7 +2301,7 @@ void load_mobiles (FILE *fp) {
         str = fread_word (fp);
         if (!str_cmp (str, "none"))
             str = "neutral";
-        mob_index->sex = lookup_backup (sex_lookup_exact,
+        mob_index->sex = lookup_func_backup (sex_lookup_exact,
             str, "Unknown sex '%s'", SEX_EITHER);
 
         mob_index->wealth     = fread_number (fp);
@@ -2312,7 +2310,7 @@ void load_mobiles (FILE *fp) {
 
         /* Size. */
         str = fread_word (fp);
-        mob_index->size = lookup_backup (size_lookup_exact, str,
+        mob_index->size = lookup_func_backup (size_lookup_exact, str,
             "Unknown size '%s'", SIZE_MEDIUM);
 
         /* Material. Sometimes this is '0', in which case, just replace it
@@ -2320,7 +2318,7 @@ void load_mobiles (FILE *fp) {
         str = fread_word (fp);
         if (!str_cmp (str, "0") || str[0] == '\0')
             str = (char *) material_get_name (MATERIAL_GENERIC);
-        mob_index->material = lookup_backup (material_lookup_exact,
+        mob_index->material = lookup_func_backup (material_lookup_exact,
             str, "Unknown material '%s'", MATERIAL_GENERIC);
 
         while (1) {
@@ -2360,7 +2358,8 @@ void load_mobiles (FILE *fp) {
 
                 mprog = mprog_new ();
                 word = fread_word (fp);
-                EXIT_IF_BUG ((trigger = flag_lookup_exact (word, mprog_flags)) <= 0,
+                EXIT_IF_BUG (
+                    (trigger = flag_lookup_exact (mprog_flags, word)) == FLAG_NONE,
                     "load_mobiles: invalid mob prog trigger.", 0);
                 SET_BIT (mob_index->mprog_flags, trigger);
                 mprog->trig_type = trigger;
@@ -2462,11 +2461,11 @@ void load_objects (FILE *fp) {
         str = fread_string (fp);
         if (!str_cmp (str, "oldstyle") || str[0] == '\0')
             str_replace_dup (&str, material_get_name (MATERIAL_GENERIC));
-        obj_index->material = lookup_backup (material_lookup_exact,
+        obj_index->material = lookup_func_backup (material_lookup_exact,
             str, "Unknown material '%s'", MATERIAL_GENERIC);
 
         str = fread_word (fp);
-        obj_index->item_type = lookup_backup (item_lookup_exact,
+        obj_index->item_type = lookup_func_backup (item_lookup_exact,
             str, "Unknown item type '%s'", 0);
 
         obj_index->extra_flags = fread_flag (fp);
@@ -2492,7 +2491,7 @@ void load_objects (FILE *fp) {
             case ITEM_DRINK_CON:
                 obj_index->v.drink_con.capacity = fread_number (fp);
                 obj_index->v.drink_con.filled   = fread_number (fp);
-                obj_index->v.drink_con.liquid   = lookup_backup (liq_lookup_exact,
+                obj_index->v.drink_con.liquid   = lookup_func_backup (liq_lookup_exact,
                     fread_word (fp), "Unknown liquid type '%s'", 0);
                 obj_index->v.drink_con.poisoned = fread_number (fp);
                 obj_index->v.drink_con._value5  = fread_number (fp);
@@ -2501,7 +2500,7 @@ void load_objects (FILE *fp) {
             case ITEM_FOUNTAIN:
                 obj_index->v.fountain.capacity = fread_number (fp);
                 obj_index->v.fountain.filled   = fread_number (fp);
-                obj_index->v.fountain.liquid   = lookup_backup (liq_lookup_exact,
+                obj_index->v.fountain.liquid   = lookup_func_backup (liq_lookup_exact,
                     fread_word (fp), "Unknown liquid type '%s'", 0);
                 obj_index->v.fountain.poisoned = fread_number (fp);
                 obj_index->v.fountain._value5  = fread_number (fp);

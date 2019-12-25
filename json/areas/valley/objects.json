@@ -34,11 +34,9 @@
     "cost": 390,
     "wear_flags": "take feet",
     "affects": [{
-      "apply": "moves",
       "level": 7,
-      "modifier": 5,
-      "bit_type": "object",
-      "bits": null
+      "apply": "moves",
+      "modifier": 5
     }]
   }},
   {"object": {
@@ -60,11 +58,9 @@
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 7,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -85,11 +81,9 @@
     "extra_flags": "magic",
     "wear_flags": "take neck",
     "affects": [{
-      "apply": "dexterity",
       "level": 7,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -132,11 +126,9 @@
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [{
-      "apply": "mana",
       "level": 5,
-      "modifier": 10,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": 10
     }]
   }},
   {"object": {
@@ -159,11 +151,9 @@
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "damage roll",
       "level": 21,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -457,11 +447,9 @@
     "extra_flags": "magic antigood antievil",
     "wear_flags": "take",
     "affects": [{
-      "apply": "damage roll",
       "level": 20,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -484,11 +472,9 @@
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "damage roll",
       "level": 14,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }}
 ]

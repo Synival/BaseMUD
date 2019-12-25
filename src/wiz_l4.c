@@ -225,7 +225,7 @@ DEFINE_DO_FUN (do_flag) {
         if (word[0] == '\0')
             break;
 
-        pos = flag_lookup (word, flag_table);
+        pos = flag_lookup (flag_table, word);
         BAIL_IF (pos < 0,
             "That flag doesn't exist!\n\r", ch);
         SET_BIT (marked, pos);

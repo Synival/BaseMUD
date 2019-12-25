@@ -265,11 +265,9 @@
     "cost": 290,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 6,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": -2
     }]
   }},
   {"object": {

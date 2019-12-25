@@ -268,7 +268,7 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob) {
 
     sub = json_prop_object (new, "ac", JSON_OBJ_ANY);
     for (i = 0; i < AC_MAX; i++)
-        json_prop_integer (sub, ac_types[i].name, mob->ac[ac_types[i].bit]);
+        json_prop_integer (sub, ac_types[i].name, mob->ac[ac_types[i].type]);
 
     if (mob->start_pos != POS_STANDING)
         json_prop_string (new, "start_pos",
@@ -453,22 +453,29 @@ JSON_T *json_new_obj_affect (const char *name, const AFFECT_T *aff) {
         return json_new_null (name);
     new = json_new_object (name, JSON_OBJECT);
 
-    json_prop_string  (new, "apply",    flag_string (affect_apply_types, aff->apply));
     json_prop_integer (new, "level",    aff->level);
-    json_prop_integer (new, "modifier", aff->modifier);
-    json_prop_string  (new, "bit_type", affect_bit_get_name (aff->bit_type));
 
-    bv = NULL;
-    bits = affect_bit_get (aff->bit_type);
-    if (bits == NULL)
-        bugf ("json_new_obj_affect: Unhandled bit_type '%d'", aff->bit_type);
-    else {
-        bv = JBITSF (bits->flags, aff->bits);
-        if (bv != NULL && bv[0] == '\0')
-            bv = NULL;
+    if (aff->apply != TYPE_NONE && aff->apply != APPLY_NONE) {
+        json_prop_string  (new, "apply",    type_get_name (affect_apply_types,
+            aff->apply));
+        json_prop_integer (new, "modifier", aff->modifier);
     }
 
-    json_prop_string (new, "bits", bv);
+    if (aff->bits != FLAG_NONE) {
+        json_prop_string  (new, "bit_type", affect_bit_get_name (aff->bit_type));
+
+        bv = NULL;
+        bits = affect_bit_get (aff->bit_type);
+        if (bits == NULL)
+            bugf ("json_new_obj_affect: Unhandled bit_type '%d'", aff->bit_type);
+        else {
+            bv = JBITSF (bits->flags, aff->bits);
+            if (bv != NULL && bv[0] == '\0')
+                bv = NULL;
+        }
+        json_prop_string (new, "bits", bv);
+    }
+
     return new;
 }
 
@@ -637,10 +644,15 @@ JSON_T *json_new_obj_table (const char *name, const TABLE_T *table) {
         return json_new_null (name);
 
     type_str = NULL;
-    if (table->flags & TABLE_FLAG_TYPE)
-        type_str = (table->flags & TABLE_BITS) ? "flags" : "types";
-    else
-        type_str = "table";
+    switch (table->type) {
+        case TABLE_FLAGS:  type_str = "flags"; break;
+        case TABLE_TYPES:  type_str = "types"; break;
+        case TABLE_UNIQUE: type_str = "table"; break;
+        default:
+            bugf ("json_new_obj_table: Error: table '%s' is of unhandled "
+                "type %d", table->name, table->type);
+            return NULL;
+    }
 
     if (table->obj_name == NULL) {
         new = json_new_object (name, JSON_OBJ_TABLE);
@@ -656,10 +668,9 @@ JSON_T *json_new_obj_table (const char *name, const TABLE_T *table) {
 
     {
         const void *obj = table->table;
-        const FLAG_T *flag;
         JSON_T *json;
-        flag_t expected = (table->flags & TABLE_BITS) ? 1 : 0;
-        bool had_none = FALSE;
+        flag_t expected_flag = 0x01;
+        type_t expected_type = -999;
 
         do {
             if ((json = table->json_write_func (obj, table->obj_name)) == NULL)
@@ -667,25 +678,25 @@ JSON_T *json_new_obj_table (const char *name, const TABLE_T *table) {
             if (table->obj_name)
                 sub = json_prop_object (new, NULL, JSON_OBJ_ANY);
 
-            if (table->flags & TABLE_FLAG_TYPE) {
-                flag = obj;
-                if (had_none) {
-                    bugf ("json_new_obj_table: Warning: %s table '%s' row "
-                        "'%s' should not be after -1 bit", type_str,
-                        table->name, flag->name);
-                }
-                else if (flag->bit == -1 && !IS_SET(table->flags, TABLE_BITS))
-                    had_none = TRUE;
-                else if (flag->bit != expected) {
+            if (table->type == TABLE_FLAGS) {
+                const FLAG_T *flag = obj;
+                if (flag->bit != expected_flag) {
                     bugf ("json_new_obj_table: Warning: %s table '%s' row "
                         "'%s' should be %ld, but it's %ld", type_str,
-                        table->name, flag->name, expected, flag->bit);
+                        table->name, flag->name, expected_flag, flag->bit);
                 }
-
-                if (table->flags & TABLE_BITS)
-                    expected <<= 1;
-                else
-                    ++expected;
+                expected_flag <<= 1;
+            }
+            else if (table->type == TABLE_TYPES) {
+                const TYPE_T *type = obj;
+                if (expected_type == -999)
+                    expected_type = type->type;
+                if (type->type != expected_type) {
+                    bugf ("json_new_obj_table: Warning: %s table '%s' row "
+                        "'%s' should be %ld, but it's %ld", type_str,
+                        table->name, type->name, expected_type, type->type);
+                }
+                ++expected_type;
             }
 
             json_attach_under (json, sub);

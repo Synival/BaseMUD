@@ -24,11 +24,9 @@
                      |Merc Industries"
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 1,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -56,11 +54,9 @@
                      |Merc Industries"
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 0,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -88,11 +84,9 @@
                      |Merc Industries"
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 1,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -397,18 +391,14 @@
     }],
     "affects": [
       {
-        "apply": "wisdom",
         "level": 0,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 1
       },
       {
-        "apply": "constitution",
         "level": 0,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "constitution",
+        "modifier": 1
       }
     ]
   }},
@@ -432,18 +422,14 @@
     }],
     "affects": [
       {
-        "apply": "armor class",
         "level": 0,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -1
       },
       {
-        "apply": "saves",
         "level": 0,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -1
       }
     ]
   }},
@@ -472,11 +458,9 @@
                      |Merc Industries"
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 1,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -506,18 +490,14 @@
     }],
     "affects": [
       {
-        "apply": "hit roll",
         "level": 1,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       },
       {
-        "apply": "damage roll",
         "level": 1,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       }
     ]
   }},
@@ -546,11 +526,9 @@
                      |Merc Industries"
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 1,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -578,11 +556,9 @@
                      |Merc Industries"
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 1,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -610,11 +586,9 @@
                      |Merc Industries"
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 1,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -643,11 +617,9 @@
                      |Merc Industries"
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 1,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }}
 ]

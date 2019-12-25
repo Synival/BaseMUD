@@ -40,7 +40,7 @@ MEDIT (medit_show) {
         !mob->area ? "No Area" : mob->area->title);
 
     printf_to_char (ch, "Mob:         [%s]\n\r",
-        flag_string (mob_flags, mob->mob_final));
+        flags_to_string (mob_flags, mob->mob_final));
 
     printf_to_char (ch, "Vnum:        [%5d] Sex:   [%s]   Race: [%s]\n\r",
          mob->vnum,
@@ -68,7 +68,7 @@ MEDIT (medit_show) {
 
     /* ROM values end */
     printf_to_char (ch, "Affected by: [%s]\n\r",
-        flag_string (affect_flags, mob->affected_by_final));
+        flags_to_string (affect_flags, mob->affected_by_final));
 
     /* ROM values: */
     printf_to_char (ch, "Armor:       [pierce: %d  bash: %d  "
@@ -76,16 +76,16 @@ MEDIT (medit_show) {
         mob->ac[AC_PIERCE], mob->ac[AC_BASH], mob->ac[AC_SLASH],
         mob->ac[AC_EXOTIC]);
 
-    printf_to_char (ch, "Form:        [%s]\n\r", flag_string (form_flags, mob->form_final));
-    printf_to_char (ch, "Parts:       [%s]\n\r", flag_string (part_flags, mob->parts_final));
-    printf_to_char (ch, "Imm:         [%s]\n\r", flag_string (res_flags, mob->imm_flags_final));
-    printf_to_char (ch, "Res:         [%s]\n\r", flag_string (res_flags, mob->res_flags_final));
-    printf_to_char (ch, "Vuln:        [%s]\n\r", flag_string (res_flags, mob->vuln_flags_final));
-    printf_to_char (ch, "Off:         [%s]\n\r", flag_string (off_flags, mob->off_flags_final));
-    printf_to_char (ch, "Size:        [%s]\n\r", flag_string (size_types, mob->size));
+    printf_to_char (ch, "Form:        [%s]\n\r", flags_to_string (form_flags, mob->form_final));
+    printf_to_char (ch, "Parts:       [%s]\n\r", flags_to_string (part_flags, mob->parts_final));
+    printf_to_char (ch, "Imm:         [%s]\n\r", flags_to_string (res_flags, mob->imm_flags_final));
+    printf_to_char (ch, "Res:         [%s]\n\r", flags_to_string (res_flags, mob->res_flags_final));
+    printf_to_char (ch, "Vuln:        [%s]\n\r", flags_to_string (res_flags, mob->vuln_flags_final));
+    printf_to_char (ch, "Off:         [%s]\n\r", flags_to_string (off_flags, mob->off_flags_final));
+    printf_to_char (ch, "Size:        [%s]\n\r", type_get_name (size_types, mob->size));
     printf_to_char (ch, "Material:    [%s]\n\r", material_get_name (mob->material));
-    printf_to_char (ch, "Start pos.   [%s]\n\r", flag_string (position_types, mob->start_pos));
-    printf_to_char (ch, "Default pos  [%s]\n\r", flag_string (position_types, mob->default_pos));
+    printf_to_char (ch, "Start pos.   [%s]\n\r", type_get_name (position_types, mob->start_pos));
+    printf_to_char (ch, "Default pos  [%s]\n\r", type_get_name (position_types, mob->default_pos));
     printf_to_char (ch, "Wealth:      [%5ld]\n\r", mob->wealth);
 
     /* ROM values end */
@@ -367,11 +367,11 @@ MEDIT (medit_shop) {
 /* Moved out of medit() due to naming conflicts -- Hugin */
 MEDIT (medit_sex) {
     MOB_INDEX_T *mob;
-    int value;
+    type_t value;
 
     if (argument[0] != '\0') {
         EDIT_MOB (ch, mob);
-        if ((value = flag_value (sex_types, argument)) != NO_FLAG) {
+        if ((value = type_lookup (sex_types, argument)) != TYPE_NONE) {
             mob->sex = value;
             send_to_char ("Sex set.\n\r", ch);
             return TRUE;
@@ -389,7 +389,7 @@ MEDIT (medit_act) {
 
     if (argument[0] != '\0') {
         EDIT_MOB (ch, mob);
-        if ((value = flag_value (mob_flags, argument)) != NO_FLAG) {
+        if ((value = flags_from_string (mob_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->mob_final, value);
             SET_BIT (mob->mob_final, MOB_IS_NPC);
             mob->mob_plus  = MISSING_BITS (mob->mob_final, race_table[mob->race].mob);
@@ -411,7 +411,7 @@ MEDIT (medit_affect) {
 
     if (argument[0] != '\0') {
         EDIT_MOB (ch, mob);
-        if ((value = flag_value (affect_flags, argument)) != NO_FLAG) {
+        if ((value = flags_from_string (affect_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->affected_by_final, value);
             mob->affected_by_plus  = MISSING_BITS (mob->affected_by_final, race_table[mob->race].aff);
             mob->affected_by_minus = MISSING_BITS (race_table[mob->race].aff, mob->affected_by_final);
@@ -490,7 +490,7 @@ MEDIT (medit_form) {
 
     if (argument[0] != '\0') {
         EDIT_MOB (ch, mob);
-        if ((value = flag_value (form_flags, argument)) != NO_FLAG) {
+        if ((value = flags_from_string (form_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->form_plus, value);
             mob->form_plus  = MISSING_BITS (mob->form_final, race_table[mob->race].form);
             mob->form_minus = MISSING_BITS (race_table[mob->race].form, mob->form_final);
@@ -510,7 +510,7 @@ MEDIT (medit_part) {
 
     if (argument[0] != '\0') {
         EDIT_MOB (ch, mob);
-        if ((value = flag_value (part_flags, argument)) != NO_FLAG) {
+        if ((value = flags_from_string (part_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->parts_plus, value);
             mob->parts_plus  = MISSING_BITS (mob->parts_final, race_table[mob->race].parts);
             mob->parts_minus = MISSING_BITS (race_table[mob->race].parts, mob->parts_final);
@@ -530,7 +530,7 @@ MEDIT (medit_imm) {
 
     if (argument[0] != '\0') {
         EDIT_MOB (ch, mob);
-        if ((value = flag_value (res_flags, argument)) != NO_FLAG) {
+        if ((value = flags_from_string (res_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->imm_flags_plus, value);
             mob->imm_flags_plus  = MISSING_BITS (mob->imm_flags_final, race_table[mob->race].imm);
             mob->imm_flags_minus = MISSING_BITS (race_table[mob->race].imm, mob->imm_flags_final);
@@ -550,7 +550,7 @@ MEDIT (medit_res) {
 
     if (argument[0] != '\0') {
         EDIT_MOB (ch, mob);
-        if ((value = flag_value (res_flags, argument)) != NO_FLAG) {
+        if ((value = flags_from_string (res_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->res_flags_plus, value);
             mob->res_flags_plus  = MISSING_BITS (mob->res_flags_final, race_table[mob->race].res);
             mob->res_flags_minus = MISSING_BITS (race_table[mob->race].res, mob->res_flags_final);
@@ -570,7 +570,7 @@ MEDIT (medit_vuln) {
 
     if (argument[0] != '\0') {
         EDIT_MOB (ch, mob);
-        if ((value = flag_value (res_flags, argument)) != NO_FLAG) {
+        if ((value = flags_from_string (res_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->vuln_flags_plus, value);
             mob->vuln_flags_plus  = MISSING_BITS (mob->vuln_flags_final, race_table[mob->race].vuln);
             mob->vuln_flags_minus = MISSING_BITS (race_table[mob->race].vuln, mob->vuln_flags_final);
@@ -606,7 +606,7 @@ MEDIT (medit_off) {
 
     if (argument[0] != '\0') {
         EDIT_MOB (ch, mob);
-        if ((value = flag_value (off_flags, argument)) != NO_FLAG) {
+        if ((value = flags_from_string (off_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->off_flags_plus, value);
             mob->off_flags_plus  = MISSING_BITS (mob->off_flags_final, race_table[mob->race].off);
             mob->off_flags_minus = MISSING_BITS (race_table[mob->race].off, mob->off_flags_final);
@@ -626,7 +626,7 @@ MEDIT (medit_size) {
 
     if (argument[0] != '\0') {
         EDIT_MOB (ch, mob);
-        if ((value = flag_value (size_types, argument)) != NO_FLAG) {
+        if ((value = type_lookup (size_types, argument)) != TYPE_NONE) {
             mob->size = value;
             send_to_char ("Size set.\n\r", ch);
             return TRUE;
@@ -808,7 +808,7 @@ MEDIT (medit_position) {
         case 's':
             if (str_prefix (arg, "start"))
                 break;
-            if ((value = flag_value (position_types, argument)) == NO_FLAG)
+            if ((value = type_lookup (position_types, argument)) == TYPE_NONE)
                 break;
 
             EDIT_MOB (ch, mob);
@@ -820,7 +820,7 @@ MEDIT (medit_position) {
         case 'd':
             if (str_prefix (arg, "default"))
                 break;
-            if ((value = flag_value (position_types, argument)) == NO_FLAG)
+            if ((value = type_lookup (position_types, argument)) == TYPE_NONE)
                 break;
 
             EDIT_MOB (ch, mob);
@@ -919,7 +919,7 @@ MEDIT (medit_addmprog) {
     RETURN_IF (!area,
         "MEdit: That vnum is not assigned an area.\n\r", ch, FALSE);
 
-    if ((value = flag_value (mprog_flags, trigger)) == NO_FLAG) {
+    if ((value = flags_from_string (mprog_flags, trigger)) == FLAG_NONE) {
         send_to_char ("Valid flags are:\n\r", ch);
         show_help (ch, "mprog");
         return FALSE;

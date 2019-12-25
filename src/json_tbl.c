@@ -50,6 +50,14 @@ DEFINE_TABLE_JSON_FUN (json_tblw_flag) {
     return new;
 }
 
+DEFINE_TABLE_JSON_FUN (json_tblw_type) {
+    JSON_TBLW_START (TYPE_T, type, type->name == NULL);
+    json_prop_string  (new, "name",     type->name);
+    json_prop_integer (new, "type",     type->type);
+    json_prop_boolean (new, "settable", type->settable);
+    return new;
+}
+
 DEFINE_TABLE_JSON_FUN (json_tblw_clan) {
     JSON_TBLW_START (CLAN_T, clan, clan->name == NULL);
     json_prop_string  (new, "name",        JSTR (clan->name));
@@ -183,13 +191,13 @@ DEFINE_TABLE_JSON_FUN (json_tblw_pc_race) {
 
     sub = json_prop_object (new, "base_stats", JSON_OBJ_ANY);
     for (i = 0; i < STAT_MAX; i++)
-        json_prop_integer (sub, JBITSF (stat_types, i), pc_race->stats[i]);
+        json_prop_integer (sub, type_get_name (stat_types, i), pc_race->stats[i]);
 
     sub = json_prop_object (new, "max_stats", JSON_OBJ_ANY);
     for (i = 0; i < STAT_MAX; i++)
-        json_prop_integer (sub, JBITSF (stat_types, i), pc_race->max_stats[i]);
+        json_prop_integer (sub, type_get_name (stat_types, i), pc_race->max_stats[i]);
 
-    json_prop_string (new, "size", JBITSF (size_types, pc_race->size));
+    json_prop_string (new, "size", type_get_name (size_types, pc_race->size));
 
     return new;
 }
@@ -201,7 +209,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_class) {
     json_prop_string  (new, "name", JSTR (class->name));
     json_prop_string  (new, "who_name", JSTR (class->who_name));
     json_prop_string  (new, "primary_stat",
-        JBITSF (stat_types, class->attr_prime));
+        type_get_name (stat_types, class->attr_prime));
     json_prop_integer (new, "skill_adept", class->skill_adept);
     json_prop_integer (new, "thac0_00", class->thac0_00);
     json_prop_integer (new, "thac0_32", class->thac0_32);
@@ -263,7 +271,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_liq) {
 
     sub = json_prop_object (new, "conditions", JSON_OBJ_ANY);
     for (i = 0; i < COND_MAX; i++)
-        json_prop_integer (sub, JBITSF (cond_types, i), liq->cond[i]);
+        json_prop_integer (sub, type_get_name (cond_types, i), liq->cond[i]);
 
     json_prop_integer (new, "serving_size", liq->serving_size);
     return new;
@@ -283,9 +291,9 @@ DEFINE_TABLE_JSON_FUN (json_tblw_skill) {
         json_prop_integer (sub2, "effort", skill->classes[i].effort);
     }
 
-    json_prop_string (new, "target", JBITSF (skill_target_types,
+    json_prop_string (new, "target", type_get_name (skill_target_types,
         skill->target));
-    json_prop_string (new, "min_position", JBITSF (position_types,
+    json_prop_string (new, "min_position", type_get_name (position_types,
         skill->minimum_position));
 
     if (skill->slot != 0)
@@ -368,7 +376,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_spec) {
 DEFINE_TABLE_JSON_FUN (json_tblw_furniture) {
     JSON_TBLW_START (FURNITURE_BITS_T, furniture, furniture->name == NULL);
     json_prop_string (new, "name", JSTR (furniture->name));
-    json_prop_string (new, "position", JBITSF (position_types,
+    json_prop_string (new, "position", type_get_name (position_types,
         furniture->position));
     json_prop_string (new, "bit_at", JBITSF (furniture_flags,
         furniture->bit_at));
@@ -440,7 +448,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_board) {
     json_prop_integer (new, "read_level", board->read_level);
     json_prop_integer (new, "write_level", board->write_level);
     json_prop_string  (new, "recipients", JSTR (board->names));
-    json_prop_string  (new, "force_type", JBITSF (board_def_types,
+    json_prop_string  (new, "force_type", type_get_name (board_def_types,
         board->force_type));
     json_prop_integer (new, "purge_days", board->purge_days);
     return new;

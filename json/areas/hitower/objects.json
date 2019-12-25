@@ -218,18 +218,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "strength",
         "level": 12,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 12,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -284,18 +280,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 6,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 6,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -318,18 +310,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 10,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 10,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -351,11 +339,9 @@
     "cost": 990,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hp",
       "level": 13,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hp",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -615,18 +601,14 @@
     "wear_flags": "take head",
     "affects": [
       {
-        "apply": "wisdom",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 1
       },
       {
-        "apply": "intelligence",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": 1
       }
     ]
   }},
@@ -662,18 +644,14 @@
     "wear_flags": "take neck",
     "affects": [
       {
-        "apply": "constitution",
         "level": 13,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "constitution",
+        "modifier": -1
       },
       {
-        "apply": "wisdom",
         "level": 13,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 2
       }
     ]
   }},
@@ -710,11 +688,9 @@
     "extra_flags": "glow magic",
     "wear_flags": "take hold",
     "affects": [{
-      "apply": "saves",
       "level": 0,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -747,18 +723,14 @@
     "wear_flags": "take neck",
     "affects": [
       {
-        "apply": "saves",
         "level": 35,
-        "modifier": -3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -3
       },
       {
-        "apply": "armor class",
         "level": 35,
-        "modifier": -5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -5
       }
     ]
   }},
@@ -777,18 +749,14 @@
     "wear_flags": "take about",
     "affects": [
       {
-        "apply": "armor class",
         "level": 17,
-        "modifier": -3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -3
       },
       {
-        "apply": "dexterity",
         "level": 17,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 2
       }
     ]
   }},
@@ -806,11 +774,9 @@
     "extra_flags": "magic",
     "wear_flags": "take feet",
     "affects": [{
-      "apply": "moves",
       "level": 10,
-      "modifier": 15,
-      "bit_type": "object",
-      "bits": null
+      "apply": "moves",
+      "modifier": 15
     }]
   }},
   {"object": {
@@ -914,18 +880,14 @@
     "wear_flags": "take",
     "affects": [
       {
-        "apply": "moves",
         "level": 0,
-        "modifier": -82,
-        "bit_type": "object",
-        "bits": null
+        "apply": "moves",
+        "modifier": -82
       },
       {
-        "apply": "mana",
         "level": 0,
-        "modifier": -100,
-        "bit_type": "object",
-        "bits": null
+        "apply": "mana",
+        "modifier": -100
       }
     ]
   }},
@@ -949,11 +911,9 @@
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 15,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -993,11 +953,9 @@
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "affects": [{
-      "apply": "armor class",
       "level": 24,
-      "modifier": -6,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -6
     }]
   }},
   {"object": {
@@ -1088,11 +1046,9 @@
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "affects": [{
-      "apply": "saves",
       "level": 0,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -1227,11 +1183,9 @@
     "extra_flags": "invis magic",
     "wear_flags": "take hold",
     "affects": [{
-      "apply": "intelligence",
       "level": 1,
-      "modifier": -6,
-      "bit_type": "object",
-      "bits": null
+      "apply": "intelligence",
+      "modifier": -6
     }]
   }},
   {"object": {
@@ -1310,18 +1264,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 20,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "dexterity",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 1
       }
     ]
   }},
@@ -1375,18 +1325,14 @@
     "wear_flags": "take neck",
     "affects": [
       {
-        "apply": "saves",
         "level": 26,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 26,
-        "modifier": -6,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -6
       }
     ]
   }},
@@ -1446,18 +1392,14 @@
     "wear_flags": "take about",
     "affects": [
       {
-        "apply": "saves",
         "level": 26,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 26,
-        "modifier": -6,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -6
       }
     ]
   }},
@@ -1476,18 +1418,14 @@
     "wear_flags": "take neck",
     "affects": [
       {
-        "apply": "saves",
         "level": 29,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 29,
-        "modifier": -7,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -7
       }
     ]
   }},
@@ -1505,11 +1443,9 @@
     "extra_flags": "magic",
     "wear_flags": "take wrist",
     "affects": [{
-      "apply": "armor class",
       "level": 20,
-      "modifier": -5,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -5
     }]
   }},
   {"object": {
@@ -1532,11 +1468,9 @@
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 27,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -1553,11 +1487,9 @@
     "extra_flags": "glow magic",
     "wear_flags": "take hold",
     "affects": [{
-      "apply": "armor class",
       "level": 20,
-      "modifier": -5,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -5
     }]
   }},
   {"object": {
@@ -1579,18 +1511,14 @@
     "wear_flags": "take about",
     "affects": [
       {
-        "apply": "saves",
         "level": 22,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 22,
-        "modifier": -5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -5
       }
     ]
   }},
@@ -1608,11 +1536,9 @@
     "extra_flags": "magic",
     "wear_flags": "take wrist",
     "affects": [{
-      "apply": "damage roll",
       "level": 20,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -1630,18 +1556,14 @@
     "wear_flags": "take neck",
     "affects": [
       {
-        "apply": "saves",
         "level": 29,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 29,
-        "modifier": -7,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -7
       }
     ]
   }},
@@ -1665,11 +1587,9 @@
     "extra_flags": "antigood",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "damage roll",
       "level": 29,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -1691,18 +1611,14 @@
     "wear_flags": "take about",
     "affects": [
       {
-        "apply": "saves",
         "level": 22,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 22,
-        "modifier": -5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -5
       }
     ]
   }},
@@ -1720,11 +1636,9 @@
     "extra_flags": "magic",
     "wear_flags": "take wrist",
     "affects": [{
-      "apply": "hit roll",
       "level": 20,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -1742,18 +1656,14 @@
     "wear_flags": "take neck",
     "affects": [
       {
-        "apply": "saves",
         "level": 29,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 29,
-        "modifier": -7,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -7
       }
     ]
   }},
@@ -1777,18 +1687,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 27,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 27,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -1811,18 +1717,14 @@
     "wear_flags": "take neck",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 20,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "armor class",
         "level": 20,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       }
     ]
   }},
@@ -1845,18 +1747,14 @@
     "wear_flags": "take neck",
     "affects": [
       {
-        "apply": "saves",
         "level": 50,
-        "modifier": -4,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -4
       },
       {
-        "apply": "armor class",
         "level": 50,
-        "modifier": -12,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -12
       }
     ]
   }},
@@ -1874,11 +1772,9 @@
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [{
-      "apply": "mana",
       "level": 20,
-      "modifier": 20,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": 20
     }]
   }},
   {"object": {
@@ -1896,18 +1792,14 @@
     "wear_flags": "take wrist",
     "affects": [
       {
-        "apply": "intelligence",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": 1
       },
       {
-        "apply": "armor class",
         "level": 20,
-        "modifier": -5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -5
       }
     ]
   }},
@@ -1926,18 +1818,14 @@
     "wear_flags": "take hold",
     "affects": [
       {
-        "apply": "saves",
         "level": 40,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 40,
-        "modifier": -10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -10
       }
     ]
   }},
@@ -1961,18 +1849,14 @@
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 46,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 5
       },
       {
-        "apply": "dexterity",
         "level": 46,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 2
       }
     ]
   }},
@@ -2000,18 +1884,14 @@
     }],
     "affects": [
       {
-        "apply": "armor class",
         "level": 37,
-        "modifier": -5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -5
       },
       {
-        "apply": "dexterity",
         "level": 37,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 3
       }
     ]
   }},

@@ -67,11 +67,9 @@
       "description": "The blade of the dirk is black, glassy obsidian, chipped razor sharp."
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 15,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -98,18 +96,14 @@
     }],
     "affects": [
       {
-        "apply": "hp",
         "level": 13,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hp",
+        "modifier": 5
       },
       {
-        "apply": "dexterity",
         "level": 13,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 1
       }
     ]
   }},
@@ -193,18 +187,14 @@
     }],
     "affects": [
       {
-        "apply": "moves",
         "level": 20,
-        "modifier": 20,
-        "bit_type": "object",
-        "bits": null
+        "apply": "moves",
+        "modifier": 20
       },
       {
-        "apply": "hp",
         "level": 20,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hp",
+        "modifier": 10
       }
     ]
   }},
@@ -233,18 +223,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 20,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -354,18 +340,14 @@
     }],
     "affects": [
       {
-        "apply": "hit roll",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       },
       {
-        "apply": "armor class",
         "level": 20,
-        "modifier": -5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -5
       }
     ]
   }},
@@ -389,25 +371,19 @@
     }],
     "affects": [
       {
+        "level": 14,
         "apply": "wisdom",
-        "level": 14,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
+        "level": 14,
         "apply": "intelligence",
-        "level": 14,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
-        "apply": "armor class",
         "level": 14,
-        "modifier": -3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -3
       }
     ]
   }},
@@ -460,25 +436,19 @@
     }],
     "affects": [
       {
+        "level": 26,
         "apply": "damage roll",
-        "level": 26,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 2
       },
       {
+        "level": 26,
         "apply": "hit roll",
-        "level": 26,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 2
       },
       {
-        "apply": "constitution",
         "level": 26,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "constitution",
+        "modifier": 1
       }
     ]
   }},
@@ -559,39 +529,29 @@
     }],
     "affects": [
       {
+        "level": 0,
         "apply": "moves",
-        "level": 0,
-        "modifier": -100,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -100
       },
       {
+        "level": 0,
         "apply": "hp",
-        "level": 0,
-        "modifier": -50,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -50
       },
       {
+        "level": 0,
         "apply": "constitution",
-        "level": 0,
-        "modifier": -3,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -3
       },
       {
+        "level": 0,
         "apply": "dexterity",
-        "level": 0,
-        "modifier": -3,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -3
       },
       {
-        "apply": "strength",
         "level": 0,
-        "modifier": -3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": -3
       }
     ]
   }},
@@ -647,32 +607,24 @@
     }],
     "affects": [
       {
+        "level": 33,
         "apply": "saves",
-        "level": 33,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -1
       },
       {
+        "level": 33,
         "apply": "moves",
-        "level": 33,
-        "modifier": 30,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 30
       },
       {
+        "level": 33,
         "apply": "hp",
-        "level": 33,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 10
       },
       {
-        "apply": "mana",
         "level": 33,
-        "modifier": 25,
-        "bit_type": "object",
-        "bits": null
+        "apply": "mana",
+        "modifier": 25
       }
     ]
   }},
@@ -721,11 +673,9 @@
                      |brilliant blazing light of the sun."
     }],
     "affects": [{
-      "apply": "saves",
       "level": 24,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -748,18 +698,14 @@
     }],
     "affects": [
       {
-        "apply": "mana",
         "level": 20,
-        "modifier": 20,
-        "bit_type": "object",
-        "bits": null
+        "apply": "mana",
+        "modifier": 20
       },
       {
-        "apply": "intelligence",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": 1
       }
     ]
   }},
@@ -783,11 +729,9 @@
                      |of wisdom and peace on its face."
     }],
     "affects": [{
-      "apply": "wisdom",
       "level": 5,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "wisdom",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -816,18 +760,14 @@
     }],
     "affects": [
       {
-        "apply": "moves",
         "level": 32,
-        "modifier": 30,
-        "bit_type": "object",
-        "bits": null
+        "apply": "moves",
+        "modifier": 30
       },
       {
-        "apply": "strength",
         "level": 32,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 2
       }
     ]
   }}

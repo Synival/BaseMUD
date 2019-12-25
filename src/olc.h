@@ -79,6 +79,7 @@ bool show_version (CHAR_T *ch, char *argument);
 void show_liqlist (CHAR_T *ch);
 void show_damlist (CHAR_T *ch);
 void show_flag_cmds (CHAR_T *ch, const FLAG_T *flag_table);
+void show_type_cmds (CHAR_T *ch, const TYPE_T *type_table);
 void show_skill_cmds (CHAR_T *ch, int tar);
 void show_spec_cmds (CHAR_T *ch);
 bool show_help (CHAR_T *ch, char *argument);

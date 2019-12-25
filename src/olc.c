@@ -349,7 +349,7 @@ void aedit (CHAR_T *ch, char *argument) {
         aedit_show (ch, argument);
         return;
     }
-    if ((value = flag_value (area_flags, command)) != NO_FLAG) {
+    if ((value = flags_from_string (area_flags, command)) != FLAG_NONE) {
         TOGGLE_BIT (area->area_flags, value);
         send_to_char ("Flag toggled.\n\r", ch);
         return;
@@ -653,27 +653,46 @@ void show_damlist (CHAR_T *ch) {
 }
 
 /*****************************************************************************
- Name:        show_flag_cmds
+ Name:       show_flag_cmds
  Purpose:    Displays settable flags and stats.
- Called by:    show_help(olc_act.c).
+ Called by:  show_help(olc_act.c).
  ****************************************************************************/
 void show_flag_cmds (CHAR_T *ch, const FLAG_T *flag_table) {
     char buf[MAX_STRING_LENGTH];
     char buf1[MAX_STRING_LENGTH];
-    int flag;
-    int col;
+    int i, col;
 
     buf1[0] = '\0';
     col = 0;
-    for (flag = 0; flag_table[flag].name != NULL; flag++) {
-        if (flag_table[flag].settable) {
-            sprintf (buf, "%-19.18s", flag_table[flag].name);
+    for (i = 0; flag_table[i].name != NULL; i++) {
+        if (flag_table[i].settable) {
+            sprintf (buf, "%-19.18s", flag_table[i].name);
             strcat (buf1, buf);
             if (++col % 4 == 0)
                 strcat (buf1, "\n\r");
         }
     }
+    if (col % 4 != 0)
+        strcat (buf1, "\n\r");
 
+    send_to_char (buf1, ch);
+}
+
+void show_type_cmds (CHAR_T *ch, const TYPE_T *type_table) {
+    char buf[MAX_STRING_LENGTH];
+    char buf1[MAX_STRING_LENGTH];
+    int i, col;
+
+    buf1[0] = '\0';
+    col = 0;
+    for (i = 0; type_table[i].name != NULL; i++) {
+        if (type_table[i].settable) {
+            sprintf (buf, "%-19.18s", type_table[i].name);
+            strcat (buf1, buf);
+            if (++col % 4 == 0)
+                strcat (buf1, "\n\r");
+        }
+    }
     if (col % 4 != 0)
         strcat (buf1, "\n\r");
 
@@ -810,8 +829,12 @@ bool show_help (CHAR_T *ch, char *argument) {
             }
             return FALSE;
         }
-        else if (IS_SET (master_table[cnt].flags, TABLE_FLAG_TYPE)) {
+        else if (master_table[cnt].type == TABLE_FLAGS) {
             show_flag_cmds (ch, master_table[cnt].table);
+            return FALSE;
+        }
+        else if (master_table[cnt].type == TABLE_TYPES) {
+            show_type_cmds (ch, master_table[cnt].table);
             return FALSE;
         }
         else {

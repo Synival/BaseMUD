@@ -23,11 +23,9 @@
       "description": "It looks heavier than your average short sword, but it could use some oiling."
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 5,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -55,11 +53,9 @@
       "description": "This used to be a boar spear, but it has been used for more dangerous game."
     }],
     "affects": [{
-      "apply": "armor class",
       "level": 6,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -126,11 +122,9 @@
       "description": "This bracer is covered with runes of protection and luck in combat."
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 7,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -159,11 +153,9 @@
                      |with a stylized ivory hilt."
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 5,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }}
 ]

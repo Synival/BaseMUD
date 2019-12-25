@@ -320,11 +320,9 @@
     "condition": 90,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 3,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -347,11 +345,9 @@
     "condition": 90,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "damage roll",
       "level": 6,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -436,11 +432,9 @@
     "condition": 90,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "armor class",
       "level": 9,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -463,11 +457,9 @@
     "condition": 90,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "armor class",
       "level": 1,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -663,18 +655,14 @@
     }],
     "affects": [
       {
-        "apply": "saves",
         "level": 8,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -1
       },
       {
-        "apply": "armor class",
         "level": 8,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       }
     ]
   }},
@@ -3016,18 +3004,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -3057,18 +3041,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -3098,18 +3078,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 8,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 8,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -3139,18 +3115,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 7,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -3444,18 +3416,14 @@
     "wear_flags": "take finger",
     "affects": [
       {
-        "apply": "saves",
         "level": 16,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -1
       },
       {
-        "apply": "armor class",
         "level": 16,
-        "modifier": -4,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -4
       }
     ]
   }},
@@ -3479,18 +3447,14 @@
     }],
     "affects": [
       {
-        "apply": "armor class",
         "level": 8,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       },
       {
-        "apply": "saves",
         "level": 8,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -1
       }
     ]
   }},
@@ -3514,11 +3478,9 @@
                      |Inscribed on the inside of the band is: 'Your loving husband, House'."
     }],
     "affects": [{
-      "apply": "saves",
       "level": 20,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -3540,11 +3502,9 @@
       "description": "A wide, plain circle of gold inscribed: 'Your loving wife, Vanya'."
     }],
     "affects": [{
-      "apply": "saves",
       "level": 20,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -2
     }]
   }},
   {"object": {

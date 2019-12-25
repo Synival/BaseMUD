@@ -5,17 +5,17 @@
   "values": [
     {
       "name": "open and unlocked",
-      "bit": 0,
+      "type": 0,
       "settable": true
     },
     {
       "name": "closed and unlocked",
-      "bit": 1,
+      "type": 1,
       "settable": true
     },
     {
       "name": "closed and locked",
-      "bit": 2,
+      "type": 2,
       "settable": true
     }
   ]

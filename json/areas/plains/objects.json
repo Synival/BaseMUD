@@ -123,11 +123,9 @@
                      |dominating it."
     }],
     "affects": [{
-      "apply": "saves",
       "level": 0,
-      "modifier": 5,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": 5
     }]
   }},
   {"object": {

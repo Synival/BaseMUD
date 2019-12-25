@@ -5,17 +5,17 @@
   "values": [
     {
       "name": "normal",
-      "bit": 0,
+      "type": 0,
       "settable": true
     },
     {
       "name": "include",
-      "bit": 1,
+      "type": 1,
       "settable": true
     },
     {
       "name": "exclude",
-      "bit": 2,
+      "type": 2,
       "settable": true
     }
   ]

@@ -77,8 +77,8 @@ void oedit_show_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj) {
                 "[v2] Portal Flags:   %s\n\r"
                 "[v3] Goes to (vnum): [%ld]\n\r",
                 obj->v.portal.charges,
-                flag_string (exit_flags, obj->v.portal.exit_flags),
-                flag_string (gate_flags, obj->v.portal.gate_flags),
+                flags_to_string (exit_flags, obj->v.portal.exit_flags),
+                flags_to_string (gate_flags, obj->v.portal.gate_flags),
                 obj->v.portal.to_vnum);
             break;
 
@@ -91,7 +91,7 @@ void oedit_show_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj) {
                 "[v4] Mana bonus:      [%ld]\n\r",
                 obj->v.furniture.max_people,
                 obj->v.furniture.max_weight,
-                flag_string (furniture_flags, obj->v.furniture.flags),
+                flags_to_string (furniture_flags, obj->v.furniture.flags),
                 obj->v.furniture.heal_rate,
                 obj->v.furniture.mana_rate);
             break;
@@ -152,8 +152,8 @@ void oedit_show_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj) {
         case ITEM_WEAPON: {
             char wtype[MAX_STRING_LENGTH];
             char wflags[MAX_STRING_LENGTH];
-            strcpy (wtype,  flag_string (weapon_types, obj->v.weapon.weapon_type));
-            strcpy (wflags, flag_string (weapon_flags, obj->v.weapon.flags));
+            strcpy (wtype,  type_get_name (weapon_types, obj->v.weapon.weapon_type));
+            strcpy (wflags, flags_to_string (weapon_flags, obj->v.weapon.flags));
 
             printf_to_char (ch,
                 "[v0] Weapon Class:   %s\n\r"
@@ -178,7 +178,7 @@ void oedit_show_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj) {
                 "[v3] Capacity    [%ld]\n\r"
                 "[v4] Weight Mult [%ld]\n\r",
                 obj->v.container.capacity,
-                flag_string (container_flags, obj->v.container.flags),
+                flags_to_string (container_flags, obj->v.container.flags),
                 key ? key->short_descr : "none",
                 obj->v.container.key,
                 obj->v.container.max_weight,
@@ -337,7 +337,7 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj,
                     return FALSE;
                 case 0:
                     send_to_char ("WEAPON CLASS SET.\n\r\n\r", ch);
-                    ALT_FLAGVALUE_SET (obj->v.value[0], weapon_types,
+                    ALT_TYPEVALUE_SET (obj->v.value[0], weapon_types,
                                        argument);
                     break;
                 case 1:
@@ -423,8 +423,7 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj,
                     obj->v.value[0] = atoi (argument);
                     break;
                 case 1:
-                    if ((value = flag_value (container_flags, argument)) !=
-                        NO_FLAG)
+                    if ((value = flags_from_string (container_flags, argument)) != FLAG_NONE)
                         TOGGLE_BIT (obj->v.value[1], value);
                     else {
                         do_help (ch, "ITEM_CONTAINER");
@@ -588,9 +587,9 @@ OEDIT (oedit_show) {
     printf_to_char (ch, "Level:       [%5d]\n\r",
         obj->level);
     printf_to_char (ch, "Wear flags:  [%s]\n\r",
-        flag_string (wear_flags, obj->wear_flags));
+        flags_to_string (wear_flags, obj->wear_flags));
     printf_to_char (ch, "Extra flags: [%s]\n\r",
-        flag_string (extra_flags, obj->extra_flags));
+        flags_to_string (extra_flags, obj->extra_flags));
     printf_to_char (ch, "Material:    [%s]\n\r",    /* ROM */
         material_get_name (obj->material));
     printf_to_char (ch, "Condition:   [%5d]\n\r",    /* ROM */
@@ -618,7 +617,7 @@ OEDIT (oedit_show) {
         printf_to_char (ch, "[%4d] %-8d %8s, %8s\n\r",
             cnt, paf->modifier,
             affect_bit_get_name (paf->bit_type),
-            flag_string (affect_apply_types, paf->apply));
+            type_get_name (affect_apply_types, paf->apply));
         cnt++;
     }
 
@@ -642,7 +641,7 @@ OEDIT (oedit_addaffect) {
     RETURN_IF (loc[0] == '\0' || mod[0] == '\0' || !is_number (mod),
         "Syntax: addaffect [location] [#xmod]\n\r", ch, FALSE);
 
-    if ((value = flag_value (affect_apply_types, loc)) == NO_FLAG) { /* Hugin */
+    if ((value = type_lookup (affect_apply_types, loc)) == TYPE_NONE) { /* Hugin */
         send_to_char ("Valid affects are:\n\r", ch);
         show_help (ch, "apply");
         return FALSE;
@@ -689,7 +688,7 @@ OEDIT (oedit_addapply) {
     bit_type = bit_type_obj->type;
 
     if (app_buf[0] == '\0' ||
-        (app = flag_value (affect_apply_types, app_buf)) == NO_FLAG)
+        (app = type_lookup (affect_apply_types, app_buf)) == TYPE_NONE)
     {
         send_to_char ("Invalid apply type. Valid apply types are:\n\r", ch);
         show_help (ch, "affect_apply_types");
@@ -697,7 +696,7 @@ OEDIT (oedit_addapply) {
     }
 
     if (bit_buf[0] == '\0' ||
-        (bit = flag_value (bit_type_obj->flags, bit_buf)) == NO_FLAG)
+        (bit = flags_from_string (bit_type_obj->flags, bit_buf)) == FLAG_NONE)
     {
         send_to_char ("Invalid bit. Valid bits are: \n\r", ch);
         send_to_char ("Valid flag types are:\n\r", ch);
@@ -972,7 +971,7 @@ OEDIT (oedit_extra) {
 
     if (argument[0] != '\0') {
         EDIT_OBJ (ch, obj);
-        if ((value = flag_value (extra_flags, argument)) != NO_FLAG) {
+        if ((value = flags_from_string (extra_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (obj->extra_flags, value);
             send_to_char ("Extra flag toggled.\n\r", ch);
             return TRUE;
@@ -991,7 +990,7 @@ OEDIT (oedit_wear) {
 
     if (argument[0] != '\0') {
         EDIT_OBJ (ch, obj);
-        if ((value = flag_value (wear_flags, argument)) != NO_FLAG) {
+        if ((value = flags_from_string (wear_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (obj->wear_flags, value);
             send_to_char ("Wear flag toggled.\n\r", ch);
             return TRUE;

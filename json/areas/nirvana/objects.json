@@ -26,18 +26,14 @@
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 39,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 5
       },
       {
-        "apply": "hit roll",
         "level": 39,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 5
       }
     ]
   }},
