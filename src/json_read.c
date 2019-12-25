@@ -416,6 +416,7 @@ char *json_read_string_content (JSON_READ_T *context, char *buf, size_t size) {
          * we start reading after the pipe. if not, go back to our original
          * position and read like normal. */
         if (*(context->pos) == '\n') {
+#ifdef BASEMUD_READ_EXTENDED_JSON
             const char *pos_ahead;
             json_read_advance (context);
             for (pos_ahead = context->pos; *pos_ahead != '\0'; pos_ahead++)
@@ -429,6 +430,10 @@ char *json_read_string_content (JSON_READ_T *context, char *buf, size_t size) {
                     buf[buf_pos++] = '\n';
             }
             continue;
+#else
+            json_read_advance (context);
+            continue;
+#endif
         }
 
         /* parse special characters. */

@@ -83,10 +83,15 @@ const char *json_escaped_string (const char *value, int newline_pos) {
             case '\\': strcat (pos, "\\\\"); pos += 2; break;
 
             case '\n': {
+#ifdef BASEMUD_WRITE_EXTENDED_JSON
                 const char *next_ch = value + 1;
                 while (*next_ch == '\r' && *next_ch != '\0')
                     next_ch++;
                 pos += sprintf (pos, "\n%*c", newline_pos + 1, '|');
+#else
+                strcat (pos, "\\n");
+                pos += 2;
+#endif
                 break;
             }
 

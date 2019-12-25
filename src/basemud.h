@@ -61,5 +61,7 @@
 /* Other BaseMUD features. */
 #define BASEMUD_PIXIE_RACE
 #define BASEMUD_IMPORT_JSON
+#define BASEMUD_READ_EXTENDED_JSON
+#define BASEMUD_WRITE_EXTENDED_JSON
 
 #endif
