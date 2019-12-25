@@ -225,10 +225,10 @@
 #define MATERIAL_MAX        38
 
 /* Door resets. */
-#define RESET_OPEN      0
-#define RESET_CLOSED    1
-#define RESET_LOCKED    2
-#define RESET_MAX       3
+#define DOOR_RESET_OPEN      0
+#define DOOR_RESET_CLOSED    1
+#define DOOR_RESET_LOCKED    2
+#define DOOR_RESET_MAX       3
 
 /* Type tables. */
 extern const TYPE_T sex_types[SEX_MAX + 1];
@@ -239,7 +239,7 @@ extern const TYPE_T position_types[POS_MAX + 1];
 extern const TYPE_T affect_apply_types[APPLY_MAX + 1];
 extern const TYPE_T sector_types[SECT_MAX + 1];
 extern const TYPE_T item_types[ITEM_MAX + 1];
-extern const TYPE_T door_resets[RESET_MAX + 1];
+extern const TYPE_T door_reset_types[DOOR_RESET_MAX + 1];
 extern const TYPE_T stat_types[STAT_MAX + 1];
 extern const TYPE_T cond_types[COND_MAX + 1];
 extern const TYPE_T target_types[SKILL_TARGET_MAX + 1];

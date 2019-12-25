@@ -191,10 +191,10 @@ const TYPE_T item_types[ITEM_MAX + 1] = {
     {0}
 };
 
-const TYPE_T door_resets[RESET_MAX + 1] = {
-    {"open and unlocked",   RESET_OPEN,   TRUE},
-    {"closed and unlocked", RESET_CLOSED, TRUE},
-    {"closed and locked",   RESET_LOCKED, TRUE},
+const TYPE_T door_reset_types[DOOR_RESET_MAX + 1] = {
+    {"open and unlocked",   DOOR_RESET_OPEN,   TRUE},
+    {"closed and unlocked", DOOR_RESET_CLOSED, TRUE},
+    {"closed and locked",   DOOR_RESET_LOCKED, TRUE},
     {0}
 };
 

@@ -84,7 +84,7 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
     TTYPES (affect_apply_types, "Affect apply types."),
     TTYPES (board_def_types,  "Types of boards."),
     TTYPES (cond_types,       "Conditions like thirst/hunger."),
-    TTYPES (door_resets,      "Door reset types."),
+    TTYPES (door_reset_types, "Door reset types."),
     TTYPES (item_types,       "Types of objects."),
     TTYPES (position_types,   "Mobile positions."),
     TTYPES (sector_types,     "Sector types, terrain."),
