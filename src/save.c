@@ -156,7 +156,7 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
     if (ch->clan)
         fprintf (fp, "Clan %s~\n", clan_table[ch->clan].name);
     fprintf (fp, "Sex  %d\n", ch->sex);
-    fprintf (fp, "Cla  %d\n", ch->class);
+    fprintf (fp, "ClassName %s~\n", class_get_name (ch->class));
     fprintf (fp, "Levl %d\n", ch->level);
     if (ch->trust != 0)
         fprintf (fp, "Tru  %d\n", ch->trust);
@@ -604,8 +604,10 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
     /* RT initialize skills */
     if (found && ch->version < 2) { /* need to add the new skills */
         group_add (ch, "rom basics", FALSE);
-        group_add (ch, class_table[ch->class].base_group, FALSE);
-        group_add (ch, class_table[ch->class].default_group, TRUE);
+        if (class_table[ch->class].base_group != NULL)
+            group_add (ch, class_table[ch->class].base_group, FALSE);
+        if (class_table[ch->class].default_group != NULL)
+            group_add (ch, class_table[ch->class].default_group, TRUE);
         ch->pcdata->learned[gsn_recall] = 50;
     }
 
@@ -839,9 +841,10 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'C':
+                KEY ("ClassName", ch->class, class_lookup_exact (fread_string (fp)));
                 KEY ("Class", ch->class, fread_number (fp));
                 KEY ("Cla",   ch->class, fread_number (fp));
-                KEY ("Clan",  ch->clan, clan_lookup (fread_string (fp)));
+                KEY ("Clan",  ch->clan, clan_lookup_exact (fread_string (fp)));
                 KEY ("Comm",  ch->comm, fread_flag (fp));
 
                 if (!str_cmp (word, "Condition") || !str_cmp (word, "Cond")) {

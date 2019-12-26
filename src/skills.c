@@ -480,10 +480,13 @@ void gn_add (CHAR_T *ch, int gn) {
     const SKILL_GROUP_T *group;
     int i;
 
+    if ((group = skill_group_get (gn)) == NULL) {
+        bugf ("gn_add: Unknown group number %d", gn);
+        return;
+    }
+
     ch->pcdata->group_known[gn] = TRUE;
     for (i = 0; i < MAX_IN_GROUP; i++) {
-        if ((group = skill_group_get (i)) == NULL)
-            break;
         if (group->spells[i] == NULL)
             break;
         group_add (ch, group->spells[i], FALSE);
@@ -514,7 +517,7 @@ void group_add (CHAR_T *ch, const char *name, bool deduct) {
     if (IS_NPC (ch)) /* NPCs do not have skills */
         return;
 
-    sn = skill_lookup (name);
+    sn = skill_lookup_exact (name);
     if (sn != -1) {
         skill = skill_get (sn);
         if (ch->pcdata->learned[sn] == 0) { /* i.e. not known */
@@ -526,7 +529,7 @@ void group_add (CHAR_T *ch, const char *name, bool deduct) {
     }
 
     /* now check groups */
-    gn = skill_group_lookup (name);
+    gn = skill_group_lookup_exact (name);
     if (gn != -1) {
         group = skill_group_get (gn);
         if (ch->pcdata->group_known[gn] == FALSE) {
@@ -535,7 +538,10 @@ void group_add (CHAR_T *ch, const char *name, bool deduct) {
                 ch->pcdata->points += group->classes[ch->class].cost;
         }
         gn_add (ch, gn); /* make sure all skills in the group are known */
+        return;
     }
+
+    bugf ("group_add: Unknown group '%s'", name);
 }
 
 /* used for processing a skill or group for deletion -- no points back! */

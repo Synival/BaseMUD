@@ -175,7 +175,6 @@ struct shop_data {
 };
 
 struct class_type {
-    int type;
     char *name;              /* the full name of the class  */
     char who_name[4];        /* Three-letter name for 'who' */
     sh_int attr_prime;       /* Prime attribute             */
@@ -1157,7 +1156,7 @@ struct editor_cmd_type {
 
 /* All the posing stuff. */
 struct pose_type {
-    int class_index;
+    const char *class_name;
     const char *message[MAX_LEVEL * 2 + 2];
 };
 

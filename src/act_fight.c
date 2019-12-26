@@ -561,7 +561,7 @@ DEFINE_DO_FUN (do_flee) {
 
         if (!IS_NPC (ch)) {
             send_to_char ("You flee from combat!\n\r", ch);
-            if ((ch->class == CLASS_THIEF) &&
+            if ((ch->class == class_lookup_exact ("thief")) &&
                     (number_percent () < 3 * (ch->level / 2)))
                 send_to_char ("You snuck away safely.\n\r", ch);
             else {

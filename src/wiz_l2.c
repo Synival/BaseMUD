@@ -151,11 +151,13 @@ DEFINE_DO_FUN (do_sset) {
 }
 
 DEFINE_DO_FUN (do_mset) {
+    const CLASS_T *class;
     char arg1[MIL];
     char arg2[MIL];
     char arg3[MIL];
     CHAR_T *victim;
     int value;
+    int class_n, i;
 
     str_smash_tilde (argument);
     argument = one_argument (argument, arg1);
@@ -259,19 +261,18 @@ DEFINE_DO_FUN (do_mset) {
     }
 
     if (!str_prefix (arg2, "class")) {
-        int class;
         BAIL_IF (IS_NPC (victim),
             "Mobiles have no class.\n\r", ch);
 
-        class = class_lookup (arg3);
-        if (class == -1) {
+        class_n = class_lookup (arg3);
+        if (class < 0) {
             char buf[MAX_STRING_LENGTH];
 
             strcpy (buf, "Possible classes are: ");
-            for (class = 0; class < CLASS_MAX; class++) {
-                if (class > 0)
+            for (i = 0; (class = class_get (i)) != NULL; i++) {
+                if (i > 0)
                     strcat (buf, " ");
-                strcat (buf, class_table[class].name);
+                strcat (buf, class->name);
             }
             strcat (buf, ".\n\r");
 
@@ -279,7 +280,7 @@ DEFINE_DO_FUN (do_mset) {
             return;
         }
 
-        victim->class = class;
+        victim->class = class_n;
         return;
     }
 

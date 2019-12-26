@@ -717,7 +717,8 @@ DEFINE_DO_FUN (do_cast) {
         "You don't have enough mana.\n\r", ch);
 
     if (str_cmp (skill_table[sn].name, "ventriloquate"))
-        say_spell (ch, sn, IS_NPC (ch) ? CLASS_MAGE : ch->class);
+        say_spell (ch, sn, IS_NPC (ch)
+            ? class_lookup_exact ("mage") : ch->class);
 
     WAIT_STATE (ch, skill_table[sn].beats);
 

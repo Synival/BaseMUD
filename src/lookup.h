@@ -115,7 +115,21 @@
 
 /* Defines a bundle of lookup functions for elements that start at zero,
  * end before 'max', and whose values can be referenced by array[n]. */
-#define SIMPLE_INDEX_BUNDLE(btype, vtype, max)                 \
+#define SIMPLE_INDEX_BUNDLE(btype, vtype, max)                      \
+    static int btype ## _max_value = -1;                            \
+    static int btype ## _get_max (void) {                           \
+        if (btype ## _max_value != -1)                              \
+            return btype ## _max_value;                             \
+        else {                                                      \
+            int i;                                                  \
+            for (i = 0; i < (max); i++)                             \
+                if (btype ## _table[i].name == NULL)                \
+                    break;                                          \
+            btype ## _max_value = i;                                \
+            return i;                                               \
+        }                                                           \
+    }                                                               \
+                                                                    \
     int btype ## _lookup (const char *name)                         \
         { SIMPLE_LOOKUP (btype ## _table, name, -1, max); }         \
     int btype ## _lookup_exact (const char *name)                   \
@@ -125,10 +139,10 @@
     const vtype * btype ## _get_by_name_exact (const char *name)    \
         { SIMPLE_GET_BY_NAME_EXACT (btype ## _table, name, max); }  \
     const vtype * btype ## _get (int type)                          \
-        { return (type < 0 || type >= max)                          \
+        { return (type < 0 || type >= btype ## _get_max ())         \
             ? NULL : (btype ## _table + type); }                    \
     const char *btype ## _get_name (int type)                       \
-        { return (type < 0 || type >= max)                          \
+        { return (type < 0 || type >= btype ## _get_max ())         \
             ? NULL : (btype ## _get)(type)->name; }
 
 /* Defines a bundle of lookup functions for elements that may start or end

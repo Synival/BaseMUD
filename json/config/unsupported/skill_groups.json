@@ -202,7 +202,7 @@
       "thief": {"cost": 7}
     },
     "skills": [
-      "invis", "mass invis", "ventriloquate"
+      "invisibility", "mass invis", "ventriloquate"
     ]
   }},
   {"skill_group": {

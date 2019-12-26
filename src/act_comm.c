@@ -531,14 +531,19 @@ DEFINE_DO_FUN (do_pmote) {
 }
 
 DEFINE_DO_FUN (do_pose) {
+    const CLASS_T *ch_class, *pose_class;
     const POSE_T *pose;
     int i, top_pose, pose_num, message;
 
     /* get the correct set of poses for your class. */
     pose = NULL;
-    if (!IS_NPC (ch)) {
-        for (i = 0; pose_table[i].class_index >= 0; i++) {
-            if (pose_table[i].class_index == ch->class) {
+    ch_class = class_get (ch->class);
+    if (!IS_NPC (ch) && ch_class != NULL) {
+        for (i = 0; pose_table[i].class_name != NULL; i++) {
+            if ((pose_class = class_get_by_name_exact (
+                    pose_table[i].class_name)) == NULL)
+                continue;
+            if (pose_class == ch_class) {
                 pose = &(pose_table[i]);
                 break;
             }

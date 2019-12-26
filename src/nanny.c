@@ -502,9 +502,10 @@ DEFINE_NANNY_FUN (nanny_get_new_race) {
 }
 
 DEFINE_NANNY_FUN (nanny_get_new_sex) {
+    const CLASS_T *class;
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
-    int class_n;
+    int i;
 
     switch (UPPER(argument[0])) {
         case 'M':
@@ -521,10 +522,10 @@ DEFINE_NANNY_FUN (nanny_get_new_sex) {
     }
 
     strcpy (buf, "Select a class [");
-    for (class_n = 0; class_n < CLASS_MAX; class_n++) {
-        if (class_n > 0)
+    for (i = 0; (class = class_get (i)) != NULL; i++) {
+        if (i > 0)
             strcat (buf, " ");
-        strcat (buf, class_table[class_n].name);
+        strcat (buf, class->name);
     }
     strcat (buf, "]: ");
     write_to_buffer (d, buf, 0);
@@ -535,12 +536,10 @@ DEFINE_NANNY_FUN (nanny_get_new_class) {
     CHAR_T *ch = d->character;
     int class_n;
 
-    class_n = class_lookup (argument);
-    if (class_n < 0) {
+    if ((class_n = class_lookup (argument)) < 0) {
         send_to_desc ("That's not a class.\n\rWhat IS your class? ", d);
         return;
     }
-
     ch->class = class_n;
 
     sprintf (log_buf, "%s@%s new player.", ch->name, d->host);
@@ -570,7 +569,9 @@ DEFINE_NANNY_FUN (nanny_get_alignment) {
     write_to_buffer (d, "\n\r", 0);
 
     group_add (ch, "rom basics", FALSE);
-    group_add (ch, class_table[ch->class].base_group, FALSE);
+    if (class_table[ch->class].base_group != NULL)
+        group_add (ch, class_table[ch->class].base_group, FALSE);
+
     ch->pcdata->learned[gsn_recall] = 50;
     send_to_desc ("Do you wish to customize this character?\n\r", d);
     send_to_desc
@@ -603,14 +604,15 @@ DEFINE_NANNY_FUN (nanny_default_choice) {
             break;
 
         case 'N':
-            group_add (ch, class_table[ch->class].default_group, TRUE);
+            if (class_table[ch->class].default_group != NULL)
+                group_add (ch, class_table[ch->class].default_group, TRUE);
             write_to_buffer (d, "\n\r", 2);
             write_to_buffer (d,
                 "Please pick a weapon from the following choices:\n\r", 0);
 
             buf[0] = '\0';
             for (i = 0; weapon_table[i].name != NULL; i++) {
-                if (ch->pcdata->learned[*weapon_table[i].gsn] > 0) {
+                if (ch->pcdata->learned[*(weapon_table[i].gsn)] > 0) {
                     strcat (buf, weapon_table[i].name);
                     strcat (buf, " ");
                 }

@@ -415,24 +415,24 @@ const RACE_T race_table[RACE_MAX + 1] = {
 };
 
 const PC_RACE_T pc_race_table[PC_RACE_MAX + 1] = {
- /* {"race name", short name, points, { class multipliers }, { bonus skills }, { base stats }, { max stats }, size}, */
-    {"null race",   "", 0, {100, 100, 100, 100}, {""},                     {13, 13, 13, 13, 13}, {18, 18, 18, 18, 18}, 0},
-    {"human",  "Human", 0, {100, 100, 100, 100}, {""},                     {13, 13, 13, 13, 13}, {18, 18, 18, 18, 18}, SIZE_MEDIUM},
-    {"elf",    " Elf ", 5, {100, 125, 100, 125}, {"sneak", "hide"},        {12, 14, 13, 15, 11}, {16, 20, 18, 21, 15}, SIZE_SMALL},
-    {"dwarf",  "Dwarf", 8, {150, 100, 125, 100}, {"berserk"},              {14, 12, 14, 10, 15}, {20, 16, 19, 14, 21}, SIZE_MEDIUM},
-    {"giant",  "Giant", 6, {200, 150, 150, 100}, {"bash", "fast healing"}, {16, 11, 13, 11, 14}, {22, 15, 18, 15, 20}, SIZE_LARGE},
+ /* {"race name", short name, points, { class multipliers }, { bonus skills },   { base stats },       { max stats },        size}, */
+    {"null race",   "", 0, {100, 100, 100, 100}, {NULL},                         {13, 13, 13, 13, 13}, {18, 18, 18, 18, 18}, 0},
+    {"human",  "Human", 0, {100, 100, 100, 100}, {NULL},                         {13, 13, 13, 13, 13}, {18, 18, 18, 18, 18}, SIZE_MEDIUM},
+    {"elf",    " Elf ", 5, {100, 125, 100, 125}, {"sneak", "hide", NULL},        {12, 14, 13, 15, 11}, {16, 20, 18, 21, 15}, SIZE_SMALL},
+    {"dwarf",  "Dwarf", 8, {150, 100, 125, 100}, {"berserk", NULL},              {14, 12, 14, 10, 15}, {20, 16, 19, 14, 21}, SIZE_MEDIUM},
+    {"giant",  "Giant", 6, {200, 150, 150, 100}, {"bash", "fast healing", NULL}, {16, 11, 13, 11, 14}, {22, 15, 18, 15, 20}, SIZE_LARGE},
 #ifdef BASEMUD_PIXIE_RACE
-    {"pixie",  "Pixie", 7, {100, 150, 150, 150}, {"dodge"},                {11, 15, 15, 14, 10}, {15, 21, 20, 20, 14}, SIZE_TINY},
+    {"pixie",  "Pixie", 7, {100, 150, 150, 150}, {"dodge", NULL},                {11, 15, 15, 14, 10}, {15, 21, 20, 20, 14}, SIZE_TINY},
 #endif
     {0}
 };
 
 /* Class table.  */
 const CLASS_T class_table[CLASS_MAX + 1] = {
-    {CLASS_MAGE,    "mage",    "Mag", STAT_INT, OBJ_VNUM_SCHOOL_DAGGER, {3018, 9618}, 75, 20,   6,  6,  8, TRUE,  "mage basics",    "mage default"},
-    {CLASS_CLERIC,  "cleric",  "Cle", STAT_WIS, OBJ_VNUM_SCHOOL_MACE,   {3003, 9619}, 75, 20,   2,  7, 10, TRUE,  "cleric basics",  "cleric default"},
-    {CLASS_THIEF,   "thief",   "Thi", STAT_DEX, OBJ_VNUM_SCHOOL_DAGGER, {3028, 9639}, 75, 20,  -4,  8, 13, FALSE, "thief basics",   "thief default"},
-    {CLASS_WARRIOR, "warrior", "War", STAT_STR, OBJ_VNUM_SCHOOL_SWORD,  {3022, 9633}, 75, 20, -10, 11, 15, FALSE, "warrior basics", "warrior default"},
+    {"mage",    "Mag", STAT_INT, OBJ_VNUM_SCHOOL_DAGGER, {3018, 9618}, 75, 20,   6,  6,  8, TRUE,  "mage basics",    "mage default"},
+    {"cleric",  "Cle", STAT_WIS, OBJ_VNUM_SCHOOL_MACE,   {3003, 9619}, 75, 20,   2,  7, 10, TRUE,  "cleric basics",  "cleric default"},
+    {"thief",   "Thi", STAT_DEX, OBJ_VNUM_SCHOOL_DAGGER, {3028, 9639}, 75, 20,  -4,  8, 13, FALSE, "thief basics",   "thief default"},
+    {"warrior", "War", STAT_STR, OBJ_VNUM_SCHOOL_SWORD,  {3022, 9633}, 75, 20, -10, 11, 15, FALSE, "warrior basics", "warrior default"},
     {0}
 };
 
@@ -1145,7 +1145,7 @@ const SKILL_GROUP_T skill_group_table[SKILL_GROUP_MAX + 1] = {
     {"enhancement",     {{ 5}, {-1}, { 9}, { 9}}, {"giant strength", "haste", "infravision", "refresh"}},
     {"harmful",         {{-1}, { 3}, {-1}, { 6}}, {"cause critical", "cause light", "cause serious", "harm"}},
     {"healing",         {{-1}, { 3}, {-1}, { 6}}, {"cure critical", "cure light", "cure serious", "heal", "mass healing", "refresh"}},
-    {"illusion",        {{ 4}, {-1}, { 7}, {-1}}, {"invis", "mass invis", "ventriloquate"}},
+    {"illusion",        {{ 4}, {-1}, { 7}, {-1}}, {"invisibility", "mass invis", "ventriloquate"}},
     {"maladictions",    {{ 5}, { 5}, { 9}, { 9}}, {"blindness", "change sex", "curse", "energy drain", "plague", "poison", "slow", "weaken"}},
     {"protective",      {{ 4}, { 4}, { 7}, { 8}}, {"armor", "cancellation", "dispel magic", "fireproof", "protection evil", "protection good", "sanctuary", "shield", "stone skin"}},
     {"transportation",  {{ 4}, { 4}, { 8}, { 9}}, {"fly", "gate", "nexus", "pass door", "portal", "summon", "teleport", "word of recall"}},
@@ -1696,7 +1696,7 @@ const SUN_T sun_table[SUN_MAX + 1] = {
 };
 
 const POSE_T pose_table[] = {
-    { CLASS_MAGE, {
+    { "mage", {
         "You sizzle with energy.",                                      "$n sizzles with energy.",
         "You turn into a butterfly, then return to your normal shape.", "$n turns into a butterfly, then returns to $s normal shape.",
         "Blue sparks fly from your fingers.",                           "Blue sparks fly from $n's fingers.",
@@ -1716,7 +1716,7 @@ const POSE_T pose_table[] = {
         "The world shimmers in time with your whistling.",              "The world shimmers in time with $n's whistling.",
         NULL
     }},
-    { CLASS_CLERIC, {
+    { "cleric", {
         "You feel very holy.",                                          "$n looks very holy.",
         "You nonchalantly turn wine into water.",                       "$n nonchalantly turns wine into water.",
         "A halo appears over your head.",                               "A halo appears over $n's head.",
@@ -1736,7 +1736,7 @@ const POSE_T pose_table[] = {
         "The great god Mota gives you a staff.",                        "The great god Mota gives $n a staff.",
         NULL
     }},
-    { CLASS_THIEF, {
+    { "thief", {
         "You perform a small card trick.",                              "$n performs a small card trick.",
         "You wiggle your ears alternately.",                            "$n wiggles $s ears alternately.",
         "You nimbly tie yourself into a knot.",                         "$n nimbly ties $mself into a knot.",
@@ -1756,7 +1756,7 @@ const POSE_T pose_table[] = {
         "Click.",                                                       "Click.",
         NULL
     }},
-    { CLASS_WARRIOR, {
+    { "warrior", {
         "You show your bulging muscles.",                               "$n shows $s bulging muscles.",
         "You crack nuts between your fingers.",                         "$n cracks nuts between $s fingers.",
         "You grizzle your teeth and look mean.",                        "$n grizzles $s teeth and looks mean.",
@@ -1776,5 +1776,5 @@ const POSE_T pose_table[] = {
         "Atlas asks you to relieve him.",                               "Atlas asks $n to relieve him.",
         NULL
     }},
-    {-1}
+    {0}
 };

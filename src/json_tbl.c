@@ -173,11 +173,8 @@ DEFINE_TABLE_JSON_FUN (json_tblw_pc_race) {
     json_prop_integer (new, "creation_points", pc_race->points);
 
     sub = json_prop_object (new, "class_exp", JSON_OBJ_ANY);
-    for (i = 0; i < CLASS_MAX; i++) {
-        if ((class = class_get (i)) == NULL)
-            continue;
+    for (i = 0; (class = class_get (i)) != NULL; i++)
         json_prop_integer (sub, class->name, pc_race->class_mult[i]);
-    }
 
     for (i = 0; i < PC_RACE_SKILL_MAX; i++)
         if (pc_race->skills[i] != NULL && pc_race->skills[i][0] != '\0')
@@ -205,7 +202,6 @@ DEFINE_TABLE_JSON_FUN (json_tblw_pc_race) {
 DEFINE_TABLE_JSON_FUN (json_tblw_class) {
     JSON_TBLW_START (CLASS_T, class, class->name == NULL);
 
-    json_prop_integer (new, "index", class->type);
     json_prop_string  (new, "name", JSTR (class->name));
     json_prop_string  (new, "who_name", JSTR (class->who_name));
     json_prop_string  (new, "primary_stat",
@@ -278,6 +274,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_liq) {
 }
 
 DEFINE_TABLE_JSON_FUN (json_tblw_skill) {
+    const CLASS_T *class;
     JSON_T *sub, *sub2;
     int i;
     JSON_TBLW_START (SKILL_T, skill, skill->name == NULL);
@@ -285,8 +282,8 @@ DEFINE_TABLE_JSON_FUN (json_tblw_skill) {
     json_prop_string (new, "name", JSTR (skill->name));
 
     sub = json_prop_object (new, "classes", JSON_OBJ_ANY);
-    for (i = 0; i < CLASS_MAX; i++) {
-        sub2 = json_prop_object (sub, class_get_name (i), JSON_OBJ_ANY);
+    for (i = 0; (class = class_get (i)) != NULL; i++) {
+        sub2 = json_prop_object (sub, class->name, JSON_OBJ_ANY);
         json_prop_integer (sub2, "level",  skill->classes[i].level);
         json_prop_integer (sub2, "effort", skill->classes[i].effort);
     }
@@ -324,9 +321,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_skill_group) {
     json_prop_string (new, "name", JSTR (group->name));
 
     sub = json_prop_object (new, "classes", JSON_OBJ_ANY);
-    for (i = 0; i < CLASS_MAX; i++) {
-        if ((class = class_get (i)) == NULL)
-            break;
+    for (i = 0; (class = class_get (i)) != NULL; i++) {
         if (group->classes[i].cost < 0)
             continue;
         sub2 = json_prop_object (sub, class->name, JSON_OBJ_ANY);
@@ -492,9 +487,9 @@ DEFINE_TABLE_JSON_FUN (json_tblw_sun) {
 DEFINE_TABLE_JSON_FUN (json_tblw_pose) {
     JSON_T *sub, *sub2;
     int i;
-    JSON_TBLW_START (POSE_T, pose, pose->class_index < 0);
+    JSON_TBLW_START (POSE_T, pose, pose->class_name == NULL);
 
-    json_prop_string (new, "class", class_get_name (pose->class_index));
+    json_prop_string (new, "class", JSTR (pose->class_name));
     sub = json_prop_array (new, "poses");
     for (i = 0; i < MAX_LEVEL; i++) {
         if (pose->message[i * 2] == NULL)

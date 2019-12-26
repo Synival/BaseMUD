@@ -439,12 +439,8 @@
 #define NANNY_MAX              24
 
 /* Character classes. */
-#define CLASS_NONE     -1
-#define CLASS_MAGE      0
-#define CLASS_CLERIC    1
-#define CLASS_THIEF     2
-#define CLASS_WARRIOR   3
-#define CLASS_MAX       4
+#define CLASS_NONE  -1
+#define CLASS_MAX    16
 
 /* Limits not defined elsewhere. */
 #define CLAN_MAX            3

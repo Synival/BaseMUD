@@ -1,6 +1,5 @@
 [
   {"class": {
-    "index": 0,
     "name": "mage",
     "who_name": "Mag",
     "primary_stat": "int",
@@ -14,7 +13,6 @@
     "default_group": "mage default"
   }},
   {"class": {
-    "index": 1,
     "name": "cleric",
     "who_name": "Cle",
     "primary_stat": "wis",
@@ -28,7 +26,6 @@
     "default_group": "cleric default"
   }},
   {"class": {
-    "index": 2,
     "name": "thief",
     "who_name": "Thi",
     "primary_stat": "dex",
@@ -42,7 +39,6 @@
     "default_group": "thief default"
   }},
   {"class": {
-    "index": 3,
     "name": "warrior",
     "who_name": "War",
     "primary_stat": "str",

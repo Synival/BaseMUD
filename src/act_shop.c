@@ -547,14 +547,14 @@ DEFINE_DO_FUN (do_heal) {
     if (spell == NULL) {
         ch->mana += dice (2, 8) + mob->level / 3;
         ch->mana = UMIN (ch->mana, ch->max_mana);
-        say_spell_name (mob, "restore mana", CLASS_CLERIC);
+        say_spell_name (mob, "restore mana", class_lookup_exact ("cleric"));
         send_to_char ("A warm glow passes through you.\n\r", ch);
         return;
     }
     if (sn == -1)
         return;
     else {
-        say_spell (mob, sn, CLASS_CLERIC);
+        say_spell (mob, sn, class_lookup_exact ("cleric"));
         spell (sn, mob->level, mob, ch, TARGET_CHAR, "");
     }
 }

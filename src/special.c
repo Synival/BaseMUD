@@ -409,7 +409,7 @@ bool spec_cast_adept (CHAR_T *ch) {
 
     if ((sn = skill_lookup (spell)) < 0)
         return FALSE;
-    say_spell (ch, sn, CLASS_CLERIC);
+    say_spell (ch, sn, class_lookup_exact ("cleric"));
     (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR, "");
     return TRUE;
 }
@@ -456,7 +456,7 @@ bool spec_cast_cleric (CHAR_T *ch) {
     if ((sn = skill_lookup (spell)) < 0)
         return FALSE;
 #ifdef BASEMUD_MOBS_SAY_SPELLS
-    say_spell (ch, sn, CLASS_CLERIC);
+    say_spell (ch, sn, class_lookup_exact ("cleric"));
 #endif
     (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR, "");
     return TRUE;
@@ -528,7 +528,7 @@ bool spec_cast_mage (CHAR_T *ch) {
     if ((sn = skill_lookup (spell)) < 0)
         return FALSE;
 #ifdef BASEMUD_MOBS_SAY_SPELLS
-    say_spell (ch, sn, CLASS_MAGE);
+    say_spell (ch, sn, class_lookup_exact ("mage"));
 #endif
     (*skill_table[sn].spell_fun) (sn, ch->level, ch, victim, TARGET_CHAR, "");
     return TRUE;
