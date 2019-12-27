@@ -591,7 +591,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
         for (i = 0; i < PC_RACE_SKILL_MAX; i++) {
             if (pc_race_table[ch->race].skills[i] == NULL)
                 break;
-            group_add (ch, pc_race_table[ch->race].skills[i], FALSE);
+            char_add_skill_or_group (ch, pc_race_table[ch->race].skills[i], FALSE);
         }
         ch->affected_by = ch->affected_by | race_table[ch->race].aff;
         ch->imm_flags   = ch->imm_flags | race_table[ch->race].imm;
@@ -603,11 +603,11 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
 
     /* RT initialize skills */
     if (found && ch->version < 2) { /* need to add the new skills */
-        group_add (ch, "rom basics", FALSE);
+        char_add_skill_or_group (ch, "rom basics", FALSE);
         if (class_table[ch->class].base_group != NULL)
-            group_add (ch, class_table[ch->class].base_group, FALSE);
+            char_add_skill_or_group (ch, class_table[ch->class].base_group, FALSE);
         if (class_table[ch->class].default_group != NULL)
-            group_add (ch, class_table[ch->class].default_group, TRUE);
+            char_add_skill_or_group (ch, class_table[ch->class].default_group, TRUE);
         ch->pcdata->learned[gsn_recall] = 50;
     }
 
@@ -981,7 +981,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                         bug ("fread_char: unknown group. ", 0);
                     }
                     else
-                        gn_add (ch, gn);
+                        char_add_skill_group (ch, gn, FALSE);
                     match = TRUE;
                 }
                 break;

@@ -130,10 +130,10 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
 
     /* haggle */
     roll = number_percent ();
-    if (roll < get_skill (ch, gsn_haggle)) {
+    if (roll < char_get_skill (ch, gsn_haggle)) {
         cost -= cost / 2 * roll / 100;
         printf_to_char (ch, "You haggle the price down to %d coins.\n\r", cost);
-        check_improve (ch, gsn_haggle, TRUE, 4);
+        char_try_skill_improve (ch, gsn_haggle, TRUE, 4);
     }
 
     char_reduce_money (ch, cost);
@@ -212,11 +212,11 @@ void do_buy_item (CHAR_T *ch, char *argument) {
     /* haggle */
     roll = number_percent ();
     if (!IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT)
-        && roll < get_skill (ch, gsn_haggle))
+        && roll < char_get_skill (ch, gsn_haggle))
     {
         cost -= obj->cost / 2 * roll / 100;
         act ("You haggle with $N.", ch, NULL, keeper, TO_CHAR);
-        check_improve (ch, gsn_haggle, TRUE, 4);
+        char_try_skill_improve (ch, gsn_haggle, TRUE, 4);
     }
     if (number > 1) {
         sprintf (buf, "You buy $p[%d] for %d silver.", number, cost * number);
@@ -385,13 +385,13 @@ DEFINE_DO_FUN (do_sell) {
     /* haggle */
     roll = number_percent ();
     if (!IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT)
-        && roll < get_skill (ch, gsn_haggle))
+        && roll < char_get_skill (ch, gsn_haggle))
     {
         send_to_char ("You haggle with the shopkeeper.\n\r", ch);
         cost += obj->cost / 2 * roll / 100;
         cost = UMIN (cost, 95 * char_get_obj_cost (keeper, obj, TRUE) / 100);
         cost = UMIN (cost, (keeper->silver + 100 * keeper->gold));
-        check_improve (ch, gsn_haggle, TRUE, 4);
+        char_try_skill_improve (ch, gsn_haggle, TRUE, 4);
     }
 
     sprintf (buf, "You sell $p for %d silver and %d gold piece%s.",

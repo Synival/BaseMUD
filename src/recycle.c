@@ -25,6 +25,7 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include <stdarg.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -659,4 +660,14 @@ void clear_buf (BUFFER_T *buffer) {
 
 char *buf_string (BUFFER_T *buffer) {
     return buffer->string;
+}
+
+void printf_to_buf (BUFFER_T *buffer, const char *fmt, ...) {
+    char buf[MAX_STRING_LENGTH];
+    va_list args;
+    va_start (args, fmt);
+    vsnprintf (buf, sizeof(buf), fmt, args);
+    va_end (args);
+
+    add_buf (buffer, buf);
 }

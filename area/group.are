@@ -71,7 +71,7 @@ wands           The use of wands and similar items (see 'help zap')
 ~
  
 -1 'GROUP HEADER'~
-The following skills and groups are available to your chacter:
+The following skills and groups are available to your character:
 (this list may be seen again by typing 'list')
 ~
 
@@ -79,6 +79,7 @@ The following skills and groups are available to your chacter:
 The following commands are available:
 list         display all groups and skills not yet bought
 learned      show all groups and skills bought 
+abilities    show all skills and spells and the level they are learned
 premise      brief explanation of creation points and skill groups
 add <name>   buy a skill or group
 drop <name>  discard a skill or group
@@ -88,7 +89,7 @@ done         exit the character generation process
 ~
 
 -1 'MENU CHOICE'~
-Command? (list, learned, premise, add, drop, info, help, done)
+Command? (list, learned, abilities, premise, add, drop, info, help, done)
 > ~
 
 -1 'GROUPS' 'INFO' 'PREMISE'~

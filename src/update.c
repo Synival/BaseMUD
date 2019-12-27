@@ -79,10 +79,11 @@ int hit_gain (CHAR_T *ch, bool apply_learning) {
         gain += class_table[ch->class].hp_max - 10;
 
         if (ch->position < POS_STANDING) {
-            number = get_skill (ch, gsn_fast_healing);
+            number = char_get_skill (ch, gsn_fast_healing);
             gain += number * gain / 100;
             if (apply_learning && ch->hit < ch->max_hit && number_percent() < number)
-                check_improve (ch, gsn_fast_healing, TRUE, 8 * PULSE_DIVISOR);
+                char_try_skill_improve (ch, gsn_fast_healing, TRUE,
+                    8 * PULSE_DIVISOR);
         }
 
         gain = recovery_in_position (gain, ch->position);
@@ -136,10 +137,11 @@ int mana_gain (CHAR_T *ch, bool apply_learning) {
         if (ch->position < POS_STANDING && ch->position > POS_SLEEPING &&
             ch->fighting == NULL)
         {
-            number = get_skill (ch, gsn_meditation);
+            number = char_get_skill (ch, gsn_meditation);
             gain += (number * gain) / 100;
             if (apply_learning && ch->hit < ch->max_hit && number_percent() < number)
-                check_improve (ch, gsn_meditation, TRUE, 8 * PULSE_DIVISOR);
+                char_try_skill_improve (ch, gsn_meditation, TRUE,
+                    8 * PULSE_DIVISOR);
         }
 
         if (!class_table[ch->class].gains_mana)

@@ -614,14 +614,15 @@ void append_to_page (DESCRIPTOR_T *d, const char *txt) {
     }
     else {
         int offset = d->showstr_point - d->showstr_head;
-        char *new_buf = mem_alloc (strlen (d->showstr_head) + len + 1);
+        int head_len = strlen (d->showstr_head);
+        char *new_buf = mem_alloc (head_len + len + 1);
         strcpy (new_buf, d->showstr_head);
         strcat (new_buf, txt);
 
-        clear_page (d);
+        mem_free (d->showstr_head, head_len);
         d->showstr_head = new_buf;
         d->showstr_point = d->showstr_head + offset;
-        strcpy (d->showstr_head, txt);
+        strcpy (d->showstr_head + head_len, txt);
     }
 
     /* write what we can immediately. */

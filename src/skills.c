@@ -99,16 +99,19 @@ sh_int gsn_recall;
 sh_int gsn_frenzy;
 
 /* for returning skill information */
-int get_skill (const CHAR_T *ch, int sn) {
+int char_get_skill (const CHAR_T *ch, int sn) {
     int skill;
+
+    /* ignore invalid skills. */
+    if (sn < -1 || sn >= SKILL_MAX) {
+        bug ("Bad sn %d in char_get_skill.", sn);
+        return 0;
+    }
 
     /* shorthand for level based skills */
     if (sn == -1)
         skill = ch->level * 5 / 2;
-    else if (sn < -1 || sn > SKILL_MAX) {
-        bug ("Bad sn %d in get_skill.", sn);
-        skill = 0;
-    }
+    /* players */
     else if (!IS_NPC (ch)) {
         if (ch->level < skill_table[sn].classes[ch->class].level)
             skill = 0;
@@ -116,62 +119,69 @@ int get_skill (const CHAR_T *ch, int sn) {
             skill = ch->pcdata->learned[sn];
     }
     /* mobiles */
-    else {
-        if (skill_table[sn].spell_fun != spell_null)
-            skill = 40 + 2 * ch->level;
-        else if (sn == gsn_sneak || sn == gsn_hide)
-            skill = ch->level * 2 + 20;
-        else if ((sn == gsn_dodge && IS_SET (ch->off_flags, OFF_DODGE))
-                 || (sn == gsn_parry && IS_SET (ch->off_flags, OFF_PARRY)))
-            skill = ch->level * 2;
-        else if (sn == gsn_shield_block)
-            skill = 10 + 2 * ch->level;
-        else if (sn == gsn_second_attack && (IS_SET (ch->mob, MOB_WARRIOR)
-                                             || IS_SET (ch->mob, MOB_THIEF)))
-            skill = 10 + 3 * ch->level;
-        else if (sn == gsn_third_attack && IS_SET (ch->mob, MOB_WARRIOR))
-            skill = 4 * ch->level - 40;
-        else if (sn == gsn_hand_to_hand)
-            skill = 40 + 2 * ch->level;
-        else if (sn == gsn_trip && IS_SET (ch->off_flags, OFF_TRIP))
-            skill = 10 + 3 * ch->level;
-        else if (sn == gsn_bash && IS_SET (ch->off_flags, OFF_BASH))
-            skill = 10 + 3 * ch->level;
-        else if (sn == gsn_disarm && (IS_SET (ch->off_flags, OFF_DISARM)
-                                      || IS_SET (ch->mob, MOB_WARRIOR)
-                                      || IS_SET (ch->mob, MOB_THIEF)))
-            skill = 20 + 3 * ch->level;
-        else if (sn == gsn_berserk && IS_SET (ch->off_flags, OFF_BERSERK))
-            skill = 3 * ch->level;
-        else if (sn == gsn_kick)
-            skill = 10 + 3 * ch->level;
-        else if (sn == gsn_backstab && IS_SET (ch->mob, MOB_THIEF))
-            skill = 20 + 2 * ch->level;
-        else if (sn == gsn_rescue)
-            skill = 40 + ch->level;
-        else if (sn == gsn_recall)
-            skill = 40 + ch->level;
-        else if (sn == gsn_sword || sn == gsn_dagger || sn == gsn_spear ||
-                 sn == gsn_mace  || sn == gsn_axe    || sn == gsn_flail ||
-                 sn == gsn_whip  || sn == gsn_polearm)
-            skill = 40 + 5 * ch->level / 2;
-        else
-            skill = 0;
-    }
+    else
+        skill = char_get_mobile_skill (ch, sn);
+
+    /* dazed characters have bad skills. */
     if (ch->daze > 0) {
-        if (skill_table[sn].spell_fun != spell_null)
-            skill /= 2;
-        else
+        if (skill_table[sn].spell_fun == spell_null)
             skill = 2 * skill / 3;
+        else
+            skill /= 2;
     }
+
+    /* drunks are bad at things. */
     if (IS_DRUNK (ch))
         skill = 9 * skill / 10;
 
     return URANGE (0, skill, 100);
 }
 
-/* shows skills, groups and costs (only if not bought) */
-void list_group_costs (CHAR_T *ch) {
+int char_get_mobile_skill (const CHAR_T *ch, int sn) {
+    /* TODO: this should probably be a table of some sort... */
+    if (skill_table[sn].spell_fun != spell_null)
+        return 40 + 2 * ch->level;
+    else if (sn == gsn_sneak || sn == gsn_hide)
+        return ch->level * 2 + 20;
+    else if ((sn == gsn_dodge && IS_SET (ch->off_flags, OFF_DODGE))
+             || (sn == gsn_parry && IS_SET (ch->off_flags, OFF_PARRY)))
+        return ch->level * 2;
+    else if (sn == gsn_shield_block)
+        return 10 + 2 * ch->level;
+    else if (sn == gsn_second_attack && (IS_SET (ch->mob, MOB_WARRIOR)
+                                         || IS_SET (ch->mob, MOB_THIEF)))
+        return 10 + 3 * ch->level;
+    else if (sn == gsn_third_attack && IS_SET (ch->mob, MOB_WARRIOR))
+        return 4 * ch->level - 40;
+    else if (sn == gsn_hand_to_hand)
+        return 40 + 2 * ch->level;
+    else if (sn == gsn_trip && IS_SET (ch->off_flags, OFF_TRIP))
+        return 10 + 3 * ch->level;
+    else if (sn == gsn_bash && IS_SET (ch->off_flags, OFF_BASH))
+        return 10 + 3 * ch->level;
+    else if (sn == gsn_disarm && (IS_SET (ch->off_flags, OFF_DISARM)
+                                  || IS_SET (ch->mob, MOB_WARRIOR)
+                                  || IS_SET (ch->mob, MOB_THIEF)))
+        return 20 + 3 * ch->level;
+    else if (sn == gsn_berserk && IS_SET (ch->off_flags, OFF_BERSERK))
+        return 3 * ch->level;
+    else if (sn == gsn_kick)
+        return 10 + 3 * ch->level;
+    else if (sn == gsn_backstab && IS_SET (ch->mob, MOB_THIEF))
+        return 20 + 2 * ch->level;
+    else if (sn == gsn_rescue)
+        return 40 + ch->level;
+    else if (sn == gsn_recall)
+        return 40 + ch->level;
+    else if (sn == gsn_sword || sn == gsn_dagger || sn == gsn_spear ||
+             sn == gsn_mace  || sn == gsn_axe    || sn == gsn_flail ||
+             sn == gsn_whip  || sn == gsn_polearm)
+        return 40 + 5 * ch->level / 2;
+    else
+        return 0;
+}
+
+void char_list_skills_and_groups (CHAR_T *ch, bool chosen) {
     const SKILL_GROUP_T *group;
     int gn, sn, col;
 
@@ -185,11 +195,14 @@ void list_group_costs (CHAR_T *ch) {
     for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
         if ((group = skill_group_get (gn)) == NULL)
             break;
+        if (group->classes[ch->class].cost <= 0)
+            continue;
+        if (ch->pcdata->group_known[gn] != chosen)
+            continue;
+        if (ch->gen_data && ch->gen_data->group_chosen[gn] != chosen)
+            continue;
 
-        if (!ch->gen_data->group_chosen[gn]
-            && !ch->pcdata->group_known[gn]
-            && group->classes[ch->class].cost > 0)
-        {
+        if (!!ch->pcdata->group_known[gn] == !!chosen) {
             printf_to_char (ch, "%-18s %-5d ", group->name,
                 group->classes[ch->class].cost);
             if (++col % 3 == 0)
@@ -201,73 +214,22 @@ void list_group_costs (CHAR_T *ch) {
     send_to_char ("\n\r", ch);
 
     col = 0;
-
     printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s\n\r",
         "skill", "cp", "skill", "cp", "skill", "cp");
 
     for (sn = 0; sn < SKILL_MAX; sn++) {
         if (skill_table[sn].name == NULL)
             break;
+        if (skill_table[sn].classes[ch->class].effort <= 0)
+            continue;
+        if (skill_table[sn].spell_fun != spell_null)
+            continue;
+        if (((ch->pcdata->learned[sn] > 0) ? TRUE : FALSE) != chosen)
+            continue;
+        if (ch->gen_data->skill_chosen[sn] != chosen)
+            continue;
 
-        if (!ch->gen_data->skill_chosen[sn]
-            && ch->pcdata->learned[sn] == 0
-            && skill_table[sn].spell_fun == spell_null
-            && skill_table[sn].classes[ch->class].effort > 0)
-        {
-            printf_to_char (ch, "%-18s %-5d ", skill_table[sn].name,
-                skill_table[sn].classes[ch->class].effort);
-            if (++col % 3 == 0)
-                send_to_char ("\n\r", ch);
-        }
-    }
-    if (col % 3 != 0)
-        send_to_char ("\n\r", ch);
-    send_to_char ("\n\r", ch);
-
-    printf_to_char (ch, "Creation points: %d\n\r", ch->pcdata->points);
-    printf_to_char (ch, "Experience per level: %d\n\r",
-        exp_per_level (ch, ch->gen_data->points_chosen));
-}
-
-void list_group_chosen (CHAR_T *ch) {
-    const SKILL_GROUP_T *group;
-    int gn, sn, col;
-
-    if (IS_NPC (ch))
-        return;
-
-    printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s",
-        "group", "cp", "group", "cp", "group", "cp\n\r");
-
-    col = 0;
-    for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
-        if ((group = skill_group_get (gn)) == NULL)
-            break;
-
-        if (ch->gen_data->group_chosen[gn]
-            && group->classes[ch->class].cost > 0)
-        {
-            printf_to_char (ch, "%-18s %-5d ", group->name,
-                group->classes[ch->class].cost);
-            if (++col % 3 == 0)
-                send_to_char ("\n\r", ch);
-        }
-    }
-    if (col % 3 != 0)
-        send_to_char ("\n\r", ch);
-    send_to_char ("\n\r", ch);
-
-    col = 0;
-    printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s",
-        "skill", "cp", "skill", "cp", "skill", "cp\n\r");
-
-    for (sn = 0; sn < SKILL_MAX; sn++) {
-        if (skill_table[sn].name == NULL)
-            break;
-
-        if (ch->gen_data->skill_chosen[sn]
-            && skill_table[sn].classes[ch->class].effort > 0)
-        {
+        if (!!(ch->pcdata->learned[sn] != 0) == !!chosen) {
             printf_to_char (ch, "%-18s %-5d ", skill_table[sn].name,
                 skill_table[sn].classes[ch->class].effort);
             if (++col % 3 == 0)
@@ -281,15 +243,15 @@ void list_group_chosen (CHAR_T *ch) {
 
     printf_to_char (ch, "Creation points: %d\n\r", ch->gen_data->points_chosen);
     printf_to_char (ch, "Experience per level: %d\n\r",
-        exp_per_level (ch, ch->gen_data->points_chosen));
+        exp_per_level (ch, ch->pcdata->points));
 }
 
 /* this procedure handles the input parsing for the skill generator */
-bool parse_gen_groups (CHAR_T *ch, char *argument) {
+bool char_parse_gen_groups (CHAR_T *ch, char *argument) {
     const SKILL_T *skill;
     const SKILL_GROUP_T *group;
     char arg[MAX_INPUT_LENGTH];
-    int gn, sn, i;
+    int num;
 
     if (argument[0] == '\0')
         return FALSE;
@@ -311,14 +273,13 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
             return TRUE;
         }
 
-        gn = skill_group_lookup (argument);
-        if (gn != -1) {
-            group = skill_group_get (gn);
-            if (ch->gen_data->group_chosen[gn] || ch->pcdata->group_known[gn]) {
+        num = skill_group_lookup (argument);
+        if (num != -1) {
+            group = skill_group_get (num);
+            if (ch->gen_data->group_chosen[num] || ch->pcdata->group_known[num]) {
                 send_to_char ("You already know that group!\n\r", ch);
                 return TRUE;
             }
-
             if (group->classes[ch->class].cost < 1) {
                 send_to_char ("That group is not available.\n\r", ch);
                 return TRUE;
@@ -330,38 +291,35 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
                 return TRUE;
             }
 
-            printf_to_char (ch, "%s group added\n\r", group->name);
-            ch->gen_data->group_chosen[gn] = TRUE;
+            printf_to_char (ch, "Group '%s' added.\n\r", group->name);
+            ch->gen_data->group_chosen[num] = TRUE;
             ch->gen_data->points_chosen += group->classes[ch->class].cost;
-            gn_add (ch, gn);
-            ch->pcdata->points += group->classes[ch->class].cost;
+            char_add_skill_group (ch, num, TRUE);
             return TRUE;
         }
 
-        sn = skill_lookup (argument);
-        if (sn != -1) {
-            skill = skill_get (sn);
-            if (ch->gen_data->skill_chosen[sn] || ch->pcdata->learned[sn] > 0) {
+        num = skill_lookup (argument);
+        if (num != -1) {
+            skill = skill_get (num);
+            if (ch->gen_data->skill_chosen[num] || ch->pcdata->learned[num] != 0) {
                 send_to_char ("You already know that skill!\n\r", ch);
                 return TRUE;
             }
-
             if (skill->classes[ch->class].effort < 1 || skill->spell_fun != spell_null) {
                 send_to_char ("That skill is not available.\n\r", ch);
                 return TRUE;
             }
 
             /* Close security hole */
-            if (ch->gen_data->points_chosen + skill->classes[ch->class].effort > 300) {
+            if (ch->pcdata->points + skill->classes[ch->class].effort > 300) {
                 send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
                 return TRUE;
             }
 
-            printf_to_char (ch, "%s skill added\n\r", skill->name);
-            ch->gen_data->skill_chosen[sn] = TRUE;
+            printf_to_char (ch, "Skill '%s' added.\n\r", skill->name);
+            ch->gen_data->skill_chosen[num] = TRUE;
             ch->gen_data->points_chosen += skill->classes[ch->class].effort;
-            ch->pcdata->learned[sn] = 1;
-            ch->pcdata->points += skill->classes[ch->class].effort;
+            char_add_skill (ch, num, TRUE);
             return TRUE;
         }
 
@@ -375,29 +333,23 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
             return TRUE;
         }
 
-        gn = skill_group_lookup (argument);
-        if (gn != -1 && ch->gen_data->group_chosen[gn]) {
-            group = skill_group_get (gn);
-            send_to_char ("Group dropped.\n\r", ch);
-            ch->gen_data->group_chosen[gn] = FALSE;
+        num = skill_group_lookup (argument);
+        if (num != -1 && ch->gen_data->group_chosen[num]) {
+            group = skill_group_get (num);
+            printf_to_char (ch, "Group '%s' dropped.\n\r", group->name);
+            ch->gen_data->group_chosen[num] = FALSE;
             ch->gen_data->points_chosen -= group->classes[ch->class].cost;
-            gn_remove (ch, gn);
-            for (i = 0; i < SKILL_GROUP_MAX; i++)
-                if (ch->gen_data->group_chosen[gn])
-                    gn_add (ch, gn);
-
-            ch->pcdata->points -= group->classes[ch->class].cost;
+            char_remove_skill_group (ch, num, TRUE);
             return TRUE;
         }
 
-        sn = skill_lookup (argument);
-        if (sn != -1 && ch->gen_data->skill_chosen[sn]) {
-            skill = skill_get (sn);
-            send_to_char ("Skill dropped.\n\r", ch);
-            ch->gen_data->skill_chosen[sn] = FALSE;
+        num = skill_lookup (argument);
+        if (num != -1 && ch->gen_data->skill_chosen[num]) {
+            skill = skill_get (num);
+            printf_to_char (ch, "Skill '%s' dropped.\n\r", skill->name);
+            ch->gen_data->skill_chosen[num] = FALSE;
             ch->gen_data->points_chosen -= skill->classes[ch->class].effort;
-            ch->pcdata->learned[sn] = 0;
-            ch->pcdata->points -= skill->classes[ch->class].effort;
+            char_remove_skill (ch, num, TRUE);
             return TRUE;
         }
 
@@ -410,11 +362,11 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
         return TRUE;
     }
     if (!str_prefix (arg, "list")) {
-        list_group_costs (ch);
+        char_list_skills_and_groups (ch, FALSE);
         return TRUE;
     }
     if (!str_prefix (arg, "learned")) {
-        list_group_chosen (ch);
+        char_list_skills_and_groups (ch, TRUE);
         return TRUE;
     }
     if (!str_prefix (arg, "abilities")) {
@@ -430,16 +382,17 @@ bool parse_gen_groups (CHAR_T *ch, char *argument) {
 }
 
 /* checks for skill improvement */
-void check_improve (CHAR_T *ch, int sn, bool success, int multiplier) {
+void char_try_skill_improve (CHAR_T *ch, int sn, bool success, int multiplier) {
     int chance;
 
     if (IS_NPC (ch))
         return;
 
     /* skill is not known or already mastered */
-    if (ch->level < skill_table[sn].classes[ch->class].level
-        || skill_table[sn].classes[ch->class].effort == 0
-        || ch->pcdata->learned[sn] == 0 || ch->pcdata->learned[sn] == 100)
+    if (ch->level < skill_table[sn].classes[ch->class].level ||
+        skill_table[sn].classes[ch->class].effort == 0 ||
+        ch->pcdata->learned[sn] == 0 ||
+        ch->pcdata->learned[sn] == 100)
         return;
 
     /* check to see if the character has a chance to learn */
@@ -475,89 +428,121 @@ void check_improve (CHAR_T *ch, int sn, bool success, int multiplier) {
     }
 }
 
-/* recursively adds a group given its number -- uses group_add */
-void gn_add (CHAR_T *ch, int gn) {
+void char_add_skill (CHAR_T *ch, int sn, bool deduct) {
+    const SKILL_T *skill;
+    if ((skill = skill_get (sn)) == NULL) {
+        bugf ("char_add_skill: Unknown skill number %d", sn);
+        return;
+    }
+
+    if (ch->pcdata->learned[sn] == 0) { /* i.e. not known */
+        ch->pcdata->learned[sn] = 1;
+        if (deduct)
+            ch->pcdata->points += skill->classes[ch->class].effort;
+    }
+}
+
+void char_remove_skill (CHAR_T *ch, int sn, bool refund) {
+    const SKILL_T *skill;
+    if ((skill = skill_get (sn)) == NULL) {
+        bugf ("char_remove_skill: Unknown skill number %d", sn);
+        return;
+    }
+
+    if (ch->pcdata->learned[sn] != 0) {
+        ch->pcdata->learned[sn] = 0;
+        if (refund)
+            ch->pcdata->points -= skill->classes[ch->class].effort;
+    }
+}
+
+/* recursively adds a group given its number -- uses skill_group_add */
+void char_add_skill_group (CHAR_T *ch, int gn, bool deduct) {
     const SKILL_GROUP_T *group;
     int i;
 
     if ((group = skill_group_get (gn)) == NULL) {
-        bugf ("gn_add: Unknown group number %d", gn);
+        bugf ("char_add_skill_group: Unknown group number %d", gn);
         return;
     }
 
     ch->pcdata->group_known[gn] = TRUE;
+    if (ch->pcdata->group_known[gn] == FALSE) {
+        ch->pcdata->group_known[gn] = TRUE;
+        if (deduct)
+            ch->pcdata->points += group->classes[ch->class].cost;
+    }
+
     for (i = 0; i < MAX_IN_GROUP; i++) {
         if (group->spells[i] == NULL)
             break;
-        group_add (ch, group->spells[i], FALSE);
+        char_add_skill_or_group (ch, group->spells[i], FALSE);
     }
 }
 
-/* recusively removes a group given its number -- uses group_remove */
-void gn_remove (CHAR_T *ch, int gn) {
+/* recusively removes a group given its number -- uses skill_group_remove */
+void char_remove_skill_group (CHAR_T *ch, int gn, bool refund) {
     const SKILL_GROUP_T *group;
     int i;
 
-    ch->pcdata->group_known[gn] = FALSE;
+    if ((group = skill_group_get (gn)) == NULL) {
+        bugf ("char_remove_skill_group: Unknown group number %d", gn);
+        return;
+    }
+
+    if (ch->pcdata->group_known[gn] == TRUE) {
+        ch->pcdata->group_known[gn] = FALSE;
+        if (refund)
+            ch->pcdata->points -= group->classes[ch->class].cost;
+    }
+
     for (i = 0; i < MAX_IN_GROUP; i++) {
-        if ((group = skill_group_get (i)) == NULL)
-            break;
         if (group->spells[i] == NULL)
             break;
-        group_remove (ch, group->spells[i]);
+        char_remove_skill_or_group (ch, group->spells[i], FALSE);
     }
 }
 
 /* use for processing a skill or group for addition  */
-void group_add (CHAR_T *ch, const char *name, bool deduct) {
-    const SKILL_T *skill;
-    const SKILL_GROUP_T *group;
-    int sn, gn;
+void char_add_skill_or_group (CHAR_T *ch, const char *name, bool deduct) {
+    int num;
 
     if (IS_NPC (ch)) /* NPCs do not have skills */
         return;
 
-    sn = skill_lookup_exact (name);
-    if (sn != -1) {
-        skill = skill_get (sn);
-        if (ch->pcdata->learned[sn] == 0) { /* i.e. not known */
-            ch->pcdata->learned[sn] = 1;
-            if (deduct)
-                ch->pcdata->points += skill->classes[ch->class].effort;
-        }
+    /* first, check for skills. */
+    num = skill_lookup_exact (name);
+    if (num != -1) {
+        char_add_skill (ch, num, deduct);
         return;
     }
 
-    /* now check groups */
-    gn = skill_group_lookup_exact (name);
-    if (gn != -1) {
-        group = skill_group_get (gn);
-        if (ch->pcdata->group_known[gn] == FALSE) {
-            ch->pcdata->group_known[gn] = TRUE;
-            if (deduct)
-                ch->pcdata->points += group->classes[ch->class].cost;
-        }
-        gn_add (ch, gn); /* make sure all skills in the group are known */
+    num = skill_group_lookup_exact (name);
+    if (num != -1) {
+        char_add_skill_group (ch, num, deduct);
         return;
     }
 
-    bugf ("group_add: Unknown group '%s'", name);
+    bugf ("char_add_skill_or_group: Unknown skill or group '%s'", name);
 }
 
-/* used for processing a skill or group for deletion -- no points back! */
-void group_remove (CHAR_T *ch, const char *name) {
-    int sn, gn;
+/* used for processing a skill or group for deletion */
+void char_remove_skill_or_group (CHAR_T *ch, const char *name, bool refund) {
+    int num;
 
-    sn = skill_lookup (name);
-    if (sn != -1) {
-        ch->pcdata->learned[sn] = 0;
+    /* first, check for skills. */
+    num = skill_lookup_exact (name);
+    if (num != -1) {
+        char_remove_skill (ch, num, refund);
         return;
     }
 
     /* now check groups */
-    gn = skill_group_lookup (name);
-    if (gn != -1 && ch->pcdata->group_known[gn] == TRUE) {
-        ch->pcdata->group_known[gn] = FALSE;
-        gn_remove (ch, gn); /* be sure to call gn_add on all remaining groups */
+    num = skill_group_lookup_exact (name);
+    if (num != -1) {
+        char_remove_skill_group (ch, num, refund);
+        return;
     }
+
+    bugf ("char_remove_skill_or_group: Unknown skill or group '%s'", name);
 }

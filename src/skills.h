@@ -16,13 +16,13 @@
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #ifndef __ROM_SKILLS_H
@@ -88,14 +88,16 @@ extern sh_int gsn_recall;
 extern sh_int gsn_frenzy;
 
 /* Function prototypes. */
-int get_skill (const CHAR_T *ch, int sn);
-void list_group_costs (CHAR_T *ch);
-void list_group_chosen (CHAR_T *ch);
-bool parse_gen_groups (CHAR_T *ch, char *argument);
-void check_improve (CHAR_T *ch, int sn, bool success, int multiplier);
-void gn_add (CHAR_T *ch, int gn);
-void gn_remove (CHAR_T *ch, int gn);
-void group_add (CHAR_T *ch, const char *name, bool deduct);
-void group_remove (CHAR_T *ch, const char *name);
+int char_get_skill (const CHAR_T *ch, int sn);
+int char_get_mobile_skill (const CHAR_T *ch, int sn);
+void char_list_skills_and_groups (CHAR_T *ch, bool chosen);
+bool char_parse_gen_groups (CHAR_T *ch, char *argument);
+void char_try_skill_improve (CHAR_T *ch, int sn, bool success, int multiplier);
+void char_add_skill (CHAR_T *ch, int sn, bool deduct);
+void char_remove_skill (CHAR_T *ch, int sn, bool refund);
+void char_add_skill_group (CHAR_T *ch, int gn, bool deduct);
+void char_remove_skill_group (CHAR_T *ch, int gn, bool refund);
+void char_add_skill_or_group (CHAR_T *ch, const char *name, bool deduct);
+void char_remove_skill_or_group (CHAR_T *ch, const char *name, bool refund);
 
 #endif

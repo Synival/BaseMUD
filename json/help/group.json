@@ -87,7 +87,7 @@
     },
     {
       "keyword": "'GROUP HEADER'",
-      "text": "The following skills and groups are available to your chacter:
+      "text": "The following skills and groups are available to your character:
               |(this list may be seen again by typing 'list')
               |",
       "hide_keywords": true
@@ -97,6 +97,7 @@
       "text": "The following commands are available:
               |list         display all groups and skills not yet bought
               |learned      show all groups and skills bought 
+              |abilities    show all skills and spells and the level they are learned
               |premise      brief explanation of creation points and skill groups
               |add <name>   buy a skill or group
               |drop <name>  discard a skill or group
@@ -108,7 +109,7 @@
     },
     {
       "keyword": "'MENU CHOICE'",
-      "text": "Command? (list, learned, premise, add, drop, info, help, done)
+      "text": "Command? (list, learned, abilities, premise, add, drop, info, help, done)
               |> ",
       "hide_keywords": true
     },

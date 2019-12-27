@@ -134,6 +134,7 @@ BUFFER_T *new_buf_size  (int size);
 bool      add_buf       (BUFFER_T *buffer, char *string);
 void      clear_buf     (BUFFER_T *buffer);
 char     *buf_string    (BUFFER_T *buffer);
+void      printf_to_buf (BUFFER_T *buffer, const char *fmt, ...);
 MEM_T    *find_memory   (MEM_T *memory, long id);
 long      get_pc_id     (void);
 long      get_mob_id    (void);

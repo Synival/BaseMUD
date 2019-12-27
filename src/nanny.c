@@ -490,7 +490,7 @@ DEFINE_NANNY_FUN (nanny_get_new_race) {
     for (i = 0; i < PC_RACE_SKILL_MAX; i++) {
         if (pc_race_table[race].skills[i] == NULL)
             break;
-        group_add (ch, pc_race_table[race].skills[i], FALSE);
+        char_add_skill_or_group (ch, pc_race_table[race].skills[i], FALSE);
     }
 
     /* add cost */
@@ -568,15 +568,15 @@ DEFINE_NANNY_FUN (nanny_get_alignment) {
 
     write_to_buffer (d, "\n\r", 0);
 
-    group_add (ch, "rom basics", FALSE);
+    char_add_skill_or_group (ch, "rom basics", FALSE);
     if (class_table[ch->class].base_group != NULL)
-        group_add (ch, class_table[ch->class].base_group, FALSE);
+        char_add_skill_or_group (ch, class_table[ch->class].base_group, FALSE);
 
     ch->pcdata->learned[gsn_recall] = 50;
     send_to_desc ("Do you wish to customize this character?\n\r", d);
     send_to_desc
-        ("Customization takes time, but allows a wider range of skills and abilities.\n\r",
-         d);
+        ("Customization takes time, but allows a wider range of skills "
+         "and abilities.\n\r", d);
     send_to_desc ("Customize (Y/N)? ", d);
     d->connected = CON_DEFAULT_CHOICE;
 }
@@ -590,10 +590,9 @@ DEFINE_NANNY_FUN (nanny_default_choice) {
     switch (UPPER(argument[0])) {
         case 'Y':
             ch->gen_data = gen_data_new ();
-            ch->gen_data->points_chosen = ch->pcdata->points;
             do_function (ch, &do_help, "group header");
             write_to_buffer (d, "\n\r", 0);
-            list_group_costs (ch);
+            char_list_skills_and_groups (ch, FALSE);
 
             write_to_buffer (d,
                 "\n\rYou already have the following skills and spells:\n\r", 0);
@@ -605,7 +604,7 @@ DEFINE_NANNY_FUN (nanny_default_choice) {
 
         case 'N':
             if (class_table[ch->class].default_group != NULL)
-                group_add (ch, class_table[ch->class].default_group, TRUE);
+                char_add_skill_or_group (ch, class_table[ch->class].default_group, TRUE);
             write_to_buffer (d, "\n\r", 2);
             write_to_buffer (d,
                 "Please pick a weapon from the following choices:\n\r", 0);
@@ -666,7 +665,7 @@ DEFINE_NANNY_FUN (nanny_gen_groups) {
         return;
     }
 
-    if (parse_gen_groups (ch, argument))
+    if (char_parse_gen_groups (ch, argument))
         send_to_char ("\n\r", ch);
     do_function (ch, &do_help, "menu choice");
 }
@@ -688,7 +687,7 @@ DEFINE_NANNY_FUN (nanny_gen_groups_done) {
 
     printf_to_char (ch, "Creation points: %d\n\r", ch->pcdata->points);
     printf_to_char (ch, "Experience per level: %d\n\r",
-        exp_per_level (ch, ch->gen_data->points_chosen));
+        exp_per_level (ch, ch->pcdata->points));
 
     if (ch->pcdata->points < 40)
         ch->train = (40 - ch->pcdata->points + 1) / 2;

@@ -834,7 +834,7 @@ bool char_can_see_anywhere (const CHAR_T *ch, const CHAR_T *victim) {
         && victim->position > POS_STUNNED)
     {
         int chance;
-        chance = get_skill (victim, gsn_sneak);
+        chance = char_get_skill (victim, gsn_sneak);
         chance += char_get_curr_stat (victim, STAT_DEX) * 3 / 2;
         chance -= char_get_curr_stat (ch, STAT_INT) * 2;
         chance -= ch->level - victim->level * 3 / 2;
@@ -1322,10 +1322,10 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
     }
 
     if (victim != ch && !IS_NPC (ch)
-        && number_percent () < get_skill (ch, gsn_peek))
+        && number_percent () < char_get_skill (ch, gsn_peek))
     {
         send_to_char ("\n\rYou peek at the inventory:\n\r", ch);
-        check_improve (ch, gsn_peek, TRUE, 4);
+        char_try_skill_improve (ch, gsn_peek, TRUE, 4);
         obj_list_show_to_char (victim->carrying, ch, TRUE, TRUE);
     }
 }

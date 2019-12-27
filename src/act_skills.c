@@ -96,18 +96,19 @@ void do_skills_or_spells (CHAR_T *ch, char *argument, int spells) {
         prefix = argument;
 
     /* Show the skill/spell/abilities we're looking for. */
+    buffer = buf_new ();
     if (min_lev == 1 && max_lev == top_level)
-        printf_to_char (ch, "Showing all %s", type_str);
+        printf_to_buf (buffer, "Showing all %s", type_str);
     else if (min_lev == max_lev)
-        printf_to_char (ch, "Showing %s for level %d", type_str,
+        printf_to_buf (buffer, "Showing %s for level %d", type_str,
             min_lev);
     else {
-        printf_to_char (ch, "Showing %s between levels %d and %d",
+        printf_to_buf (buffer, "Showing %s between levels %d and %d",
             type_str, min_lev, max_lev);
     }
     if (prefix)
-        printf_to_char (ch, " that begin with '%s'", prefix);
-    send_to_char (":\n\r", ch);
+        printf_to_buf (buffer, " that begin with '%s'", prefix);
+    add_buf (buffer, ":\n\r");
 
     /* initialize data */
     for (level = min_lev; level <= max_lev; level++) {
@@ -153,18 +154,17 @@ void do_skills_or_spells (CHAR_T *ch, char *argument, int spells) {
     }
 
     /* return results */
-    if (!found) {
-        printf_to_char (ch, "No %s found.\n\r", type_str);
-        return;
-    }
-
-    buffer = buf_new ();
-    for (level = min_lev; level <= max_lev; level++) {
-        if (skill_list[level][0] != '\0') {
-            add_buf (buffer, skill_list[level]);
-            add_buf (buffer, "\n\r");
+    if (!found)
+        printf_to_buf (buffer, "No %s found.\n\r", type_str);
+    else {
+        for (level = min_lev; level <= max_lev; level++) {
+            if (skill_list[level][0] != '\0') {
+                add_buf (buffer, skill_list[level]);
+                add_buf (buffer, "\n\r");
+            }
         }
     }
+
     page_to_char (buf_string (buffer), ch);
     buf_free (buffer);
 }
@@ -270,7 +270,7 @@ DEFINE_DO_FUN (do_gain) {
             "$N tells you 'You are not yet ready for that group.'", ch, NULL, trainer);
 
         /* add the group */
-        gn_add (ch, gn);
+        char_add_skill_group (ch, gn, FALSE);
         act ("$N trains you in the art of $t.", ch, group->name, trainer, TO_CHAR);
         ch->train -= group->classes[ch->class].cost;
         return;
@@ -308,17 +308,19 @@ DEFINE_DO_FUN (do_abilities)
 /* shows all groups, or the sub-members of a group */
 DEFINE_DO_FUN (do_groups) {
     const SKILL_GROUP_T *group;
-    int gn, sn, col;
+    int num, col;
     if (IS_NPC (ch))
         return;
 
     /* show all groups */
     if (argument[0] == '\0') {
         col = 0;
-        for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
-            if ((group = skill_group_get (gn)) == NULL)
+        for (num = 0; num < SKILL_GROUP_MAX; num++) {
+            if ((group = skill_group_get (num)) == NULL)
                 break;
-            if (!ch->pcdata->group_known[gn])
+            if (group->name == NULL)
+                break;
+            if (!ch->pcdata->group_known[num])
                 continue;
 
             printf_to_char (ch, "%-20s ", group->name);
@@ -334,8 +336,10 @@ DEFINE_DO_FUN (do_groups) {
     /* show all groups */
     if (!str_cmp (argument, "all")) {
         col = 0;
-        for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
-            if ((group = skill_group_get (gn)) == NULL)
+        for (num = 0; num < SKILL_GROUP_MAX; num++) {
+            if ((group = skill_group_get (num)) == NULL)
+                break;
+            if (group->name == NULL)
                 break;
             printf_to_char (ch, "%-20s ", group->name);
             if (++col % 3 == 0)
@@ -347,18 +351,18 @@ DEFINE_DO_FUN (do_groups) {
     }
 
     /* show the sub-members of a group */
-    gn = skill_group_lookup (argument);
-    if (gn < 0) {
+    num = skill_group_lookup (argument);
+    if (num < 0) {
         send_to_char (
             "No group of that name exist.\n\r"
             "Type 'groups all' or 'info all' for a full listing.\n\r", ch);
         return;
     }
-    group = skill_group_get (gn);
+    group = skill_group_get (num);
 
     col = 0;
-    for (sn = 0; sn < MAX_IN_GROUP && group->spells[gn] != NULL; sn++) {
-        printf_to_char (ch, "%-20s ", group->spells[sn]);
+    for (num = 0; num < MAX_IN_GROUP && group->spells[num] != NULL; num++) {
+        printf_to_char (ch, "%-20s ", group->spells[num]);
         if (++col % 3 == 0)
             send_to_char ("\n\r", ch);
     }
@@ -722,9 +726,9 @@ DEFINE_DO_FUN (do_cast) {
 
     WAIT_STATE (ch, skill_table[sn].beats);
 
-    if (number_percent () > get_skill (ch, sn)) {
+    if (number_percent () > char_get_skill (ch, sn)) {
         send_to_char ("You lost your concentration.\n\r", ch);
-        check_improve (ch, sn, FALSE, 1);
+        char_try_skill_improve (ch, sn, FALSE, 1);
         ch->mana -= mana / 2;
     }
     else {
@@ -738,7 +742,7 @@ DEFINE_DO_FUN (do_cast) {
             (*skill_table[sn].spell_fun) (sn, ch->level * 3 / 4, ch, vo, target,
                 target_name);
         }
-        check_improve (ch, sn, TRUE, 1);
+        char_try_skill_improve (ch, sn, TRUE, 1);
     }
 
     spell_fight_back_if_possible (ch, victim, sn, target);
