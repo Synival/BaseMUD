@@ -42,7 +42,6 @@ void db_dump_world (const char *filename);
 /* World init functions. */
 void boot_db (void);
 void init_time_weather (void);
-void init_gsns (void);
 void db_link_areas (void);
 void db_import_json (void);
 void init_areas (void);

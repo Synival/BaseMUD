@@ -608,7 +608,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
             char_add_skill_or_group (ch, class_table[ch->class].base_group, FALSE);
         if (class_table[ch->class].default_group != NULL)
             char_add_skill_or_group (ch, class_table[ch->class].default_group, TRUE);
-        ch->pcdata->learned[gsn_recall] = 50;
+        ch->pcdata->learned[SN(RECALL)] = 50;
     }
 
     /* fix levels */

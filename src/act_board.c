@@ -271,7 +271,8 @@ DEFINE_DO_FUN (do_board) {
             }
         }
 
-        printf_to_char (ch, "\n\rYou current board is {W%s{x.\n\r", ch->pcdata->board->name);
+        printf_to_char (ch, "\n\rYou current board is {W%s{x.\n\r",
+            ch->pcdata->board->name);
 
         /* Inform of rights */
         if (ch->pcdata->board->read_level > char_get_trust(ch))

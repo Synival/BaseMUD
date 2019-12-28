@@ -103,8 +103,9 @@ DEFINE_TABLE_JSON_FUN (json_tblw_item) {
 
 DEFINE_TABLE_JSON_FUN (json_tblw_weapon) {
     JSON_TBLW_START (WEAPON_T, weapon, weapon->name == NULL);
-    json_prop_integer (new, "type", weapon->type);
-    json_prop_string  (new, "name", JSTR (weapon->name));
+    json_prop_integer (new, "type",        weapon->type);
+    json_prop_string  (new, "name",        JSTR (weapon->name));
+    json_prop_string  (new, "skill",       JSTR (weapon->skill));
     json_prop_integer (new, "newbie_vnum", weapon->newbie_vnum);
     return new;
 }

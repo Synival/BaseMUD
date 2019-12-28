@@ -47,6 +47,9 @@
 #define ARE_SET(flag, bit)     (((flag) & (bit)) == (bit))
 #define NONE_SET(flag, bit)    (((flag) & (bit)) == 0)
 
+/* Skill macros. */
+#define SN(map)      (skill_map_table[SKILL_MAP_ ## map].skill_index)
+
 /* Alias for "new" act function. */
 #define act(format, ch, arg1, arg2, flags) \
     act_new((format), (ch), (arg1), (arg2), (flags), POS_RESTING)

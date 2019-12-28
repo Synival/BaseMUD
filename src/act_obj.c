@@ -495,7 +495,7 @@ DEFINE_DO_FUN (do_envenom) {
         "Envenom what item?\n\r", ch);
     BAIL_IF ((obj = find_obj_own_char (ch, argument)) == NULL,
         "You don't have that item.\n\r", ch);
-    BAIL_IF ((skill = char_get_skill (ch, gsn_envenom)) < 1,
+    BAIL_IF ((skill = char_get_skill (ch, SN(ENVENOM))) < 1,
         "Are you crazy? You'd poison yourself!\n\r", ch);
 
     if (obj->item_type == ITEM_FOOD || obj->item_type == ITEM_DRINK_CON) {
@@ -511,8 +511,8 @@ DEFINE_DO_FUN (do_envenom) {
         if (number_percent () >= skill) {
             act ("You fail to poison $p.", ch, obj, NULL, TO_CHAR);
             if (*pflag == 0)
-                char_try_skill_improve (ch, gsn_envenom, FALSE, 4);
-            WAIT_STATE (ch, skill_table[gsn_envenom].beats);
+                char_try_skill_improve (ch, SN(ENVENOM), FALSE, 4);
+            WAIT_STATE (ch, skill_table[SN(ENVENOM)].beats);
             return;
         }
 
@@ -520,9 +520,9 @@ DEFINE_DO_FUN (do_envenom) {
         act ("$n treats $p with deadly poison.", ch, obj, NULL, TO_NOTCHAR);
         if (*pflag == 0) {
             *pflag = TRUE;
-            char_try_skill_improve (ch, gsn_envenom, TRUE, 4);
+            char_try_skill_improve (ch, SN(ENVENOM), TRUE, 4);
         }
-        WAIT_STATE (ch, skill_table[gsn_envenom].beats);
+        WAIT_STATE (ch, skill_table[SN(ENVENOM)].beats);
         return;
     }
 
@@ -549,18 +549,18 @@ DEFINE_DO_FUN (do_envenom) {
         percent = number_percent ();
         if (percent >= skill) {
             act ("You fail to envenom $p.", ch, obj, NULL, TO_CHAR);
-            char_try_skill_improve (ch, gsn_envenom, FALSE, 3);
-            WAIT_STATE (ch, skill_table[gsn_envenom].beats);
+            char_try_skill_improve (ch, SN(ENVENOM), FALSE, 3);
+            WAIT_STATE (ch, skill_table[SN(ENVENOM)].beats);
             return;
         }
 
-        affect_init (&af, AFF_TO_WEAPON, gsn_poison, ch->level * percent / 100, ch->level / 2 * percent / 100, 0, 0, WEAPON_POISON);
+        affect_init (&af, AFF_TO_WEAPON, SN(POISON), ch->level * percent / 100, ch->level / 2 * percent / 100, 0, 0, WEAPON_POISON);
         affect_to_obj (obj, &af);
 
         act ("You coat $p with venom.", ch, obj, NULL, TO_CHAR);
         act ("$n coats $p with deadly venom.", ch, obj, NULL, TO_NOTCHAR);
-        char_try_skill_improve (ch, gsn_envenom, TRUE, 3);
-        WAIT_STATE (ch, skill_table[gsn_envenom].beats);
+        char_try_skill_improve (ch, SN(ENVENOM), TRUE, 3);
+        WAIT_STATE (ch, skill_table[SN(ENVENOM)].beats);
         return;
     }
 
@@ -816,7 +816,7 @@ DEFINE_DO_FUN (do_drink) {
         send_to_char ("You choke and gag.\n\r", ch);
         act ("$n chokes and gags.", ch, NULL, NULL, TO_NOTCHAR);
 
-        affect_init (&af, AFF_TO_AFFECTS, gsn_poison, number_fuzzy (amount),
+        affect_init (&af, AFF_TO_AFFECTS, SN(POISON), number_fuzzy (amount),
             3 * amount, APPLY_NONE, 0, AFF_POISON);
         affect_join (ch, &af);
     }
@@ -851,7 +851,7 @@ DEFINE_DO_FUN (do_eat) {
                 send_to_char ("You choke and gag.\n\r", ch);
                 act ("$n chokes and gags.", ch, NULL, NULL, TO_NOTCHAR);
 
-                affect_init (&af, AFF_TO_AFFECTS, gsn_poison, number_fuzzy (
+                affect_init (&af, AFF_TO_AFFECTS, SN(POISON), number_fuzzy (
                     obj->v.food.hunger), 2 * obj->v.food.hunger, APPLY_NONE, 0,
                     AFF_POISON);
                 affect_join (ch, &af);
@@ -1027,15 +1027,15 @@ DEFINE_DO_FUN (do_recite) {
     act2 ("You recite $p.", "$n recites $p.",
         ch, scroll, NULL, 0, POS_RESTING);
 
-    if (number_percent () >= 20 + char_get_skill (ch, gsn_scrolls) * 4 / 5) {
+    if (number_percent () >= 20 + char_get_skill (ch, SN(SCROLLS)) * 4 / 5) {
         send_to_char ("You mispronounce a syllable.\n\r", ch);
-        char_try_skill_improve (ch, gsn_scrolls, FALSE, 2);
+        char_try_skill_improve (ch, SN(SCROLLS), FALSE, 2);
     }
     else {
         int i, level = scroll->v.scroll.level;
         for (i = 0; i < SCROLL_SKILL_MAX; i++)
             obj_cast_spell (scroll->v.scroll.skill[i], level, ch, victim, obj);
-        char_try_skill_improve (ch, gsn_scrolls, TRUE, 2);
+        char_try_skill_improve (ch, SN(SCROLLS), TRUE, 2);
     }
 
     obj_extract (scroll);
@@ -1062,11 +1062,11 @@ DEFINE_DO_FUN (do_brandish) {
             ch, staff, NULL, 0, POS_RESTING);
 
         if (ch->level < staff->level ||
-            number_percent () >= 20 + char_get_skill (ch, gsn_staves) * 4 / 5)
+            number_percent () >= 20 + char_get_skill (ch, SN(STAVES)) * 4 / 5)
         {
             act2 ("You fail to invoke $p.", "...and nothing happens.",
                 ch, staff, NULL, 0, POS_RESTING);
-            char_try_skill_improve (ch, gsn_staves, FALSE, 2);
+            char_try_skill_improve (ch, SN(STAVES), FALSE, 2);
         }
         else {
             for (vch = ch->in_room->people; vch; vch = vch_next) {
@@ -1098,7 +1098,7 @@ DEFINE_DO_FUN (do_brandish) {
                 }
                 obj_cast_spell (staff->v.staff.skill, staff->v.staff.level,
                     ch, vch, NULL);
-                char_try_skill_improve (ch, gsn_staves, TRUE, 2);
+                char_try_skill_improve (ch, SN(STAVES), TRUE, 2);
             }
         }
     }
@@ -1146,18 +1146,18 @@ DEFINE_DO_FUN (do_zap) {
                   "$n zaps $P with $p.", ch, wand, obj, 0, POS_RESTING);
         }
         if (ch->level < wand->level
-            || number_percent () >= 20 + char_get_skill (ch, gsn_wands) * 4 / 5)
+            || number_percent () >= 20 + char_get_skill (ch, SN(WANDS)) * 4 / 5)
         {
             act ("Your efforts with $p produce only smoke and sparks.",
                  ch, wand, NULL, TO_CHAR);
             act ("$n's efforts with $p produce only smoke and sparks.",
                  ch, wand, NULL, TO_NOTCHAR);
-            char_try_skill_improve (ch, gsn_wands, FALSE, 2);
+            char_try_skill_improve (ch, SN(WANDS), FALSE, 2);
         }
         else {
             obj_cast_spell (wand->v.wand.skill, wand->v.wand.level,
                 ch, victim, obj);
-            char_try_skill_improve (ch, gsn_wands, TRUE, 2);
+            char_try_skill_improve (ch, SN(WANDS), TRUE, 2);
         }
     }
     if (--wand->v.wand.charges <= 0) {
@@ -1189,7 +1189,7 @@ DEFINE_DO_FUN (do_steal) {
             victim->position == POS_FIGHTING),
         "You'd better not -- you might get hit.\n\r", ch);
 
-    WAIT_STATE (ch, skill_table[gsn_steal].beats);
+    WAIT_STATE (ch, skill_table[SN(STEAL)].beats);
     percent = number_percent ();
 
     if (!IS_AWAKE (victim))
@@ -1201,12 +1201,12 @@ DEFINE_DO_FUN (do_steal) {
 
     if (((ch->level + 7 < victim->level || ch->level - 7 > victim->level)
          && !IS_NPC (victim) && !IS_NPC (ch))
-        || (!IS_NPC (ch) && percent > char_get_skill (ch, gsn_steal))
+        || (!IS_NPC (ch) && percent > char_get_skill (ch, SN(STEAL)))
         || (!IS_NPC (ch) && !char_has_clan (ch)))
     {
         /* Failure. */
         send_to_char ("Oops.\n\r", ch);
-        affect_strip (ch, gsn_sneak);
+        affect_strip (ch, SN(SNEAK));
         REMOVE_BIT (ch->affected_by, AFF_SNEAK);
 
         act ("$n tried to steal from you.\n\r", ch, NULL, victim, TO_VICT);
@@ -1232,7 +1232,7 @@ DEFINE_DO_FUN (do_steal) {
             do_function (victim, &do_yell, buf);
         if (!IS_NPC (ch)) {
             if (IS_NPC (victim)) {
-                char_try_skill_improve (ch, gsn_steal, FALSE, 2);
+                char_try_skill_improve (ch, SN(STEAL), FALSE, 2);
                 multi_hit (victim, ch, ATTACK_DEFAULT);
             }
             else {
@@ -1271,7 +1271,7 @@ DEFINE_DO_FUN (do_steal) {
                      silver, gold);
 
         send_to_char (buf, ch);
-        char_try_skill_improve (ch, gsn_steal, TRUE, 2);
+        char_try_skill_improve (ch, SN(STEAL), TRUE, 2);
         return;
     }
 
@@ -1291,7 +1291,7 @@ DEFINE_DO_FUN (do_steal) {
     obj_take_from_char (obj);
     obj_give_to_char (obj, ch);
     act ("You pocket $p.", ch, obj, NULL, TO_CHAR);
-    char_try_skill_improve (ch, gsn_steal, TRUE, 2);
+    char_try_skill_improve (ch, SN(STEAL), TRUE, 2);
     send_to_char ("Got it!\n\r", ch);
 }
 
@@ -1319,14 +1319,14 @@ DEFINE_DO_FUN (do_outfit) {
 
     /* do the weapon thing */
     if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD)) == NULL) {
+        int weapon_sn;
         sn = 0;
         vnum = OBJ_VNUM_SCHOOL_SWORD; /* just in case! */
 
         for (i = 0; weapon_table[i].name != NULL; i++) {
-            if (ch->pcdata->learned[sn] <
-                ch->pcdata->learned[*weapon_table[i].gsn])
-            {
-                sn = *weapon_table[i].gsn;
+            weapon_sn = weapon_table[i].skill_index;
+            if (ch->pcdata->learned[sn] < ch->pcdata->learned[weapon_sn]) {
+                sn   = weapon_sn;
                 vnum = weapon_table[i].newbie_vnum;
             }
         }

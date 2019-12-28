@@ -112,7 +112,7 @@ db.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 db.o: structs.h types.h flags.h tables.h utils.h recycle.h affects.h lookup.h
 db.o: json_obj.h json_write.h json_read.h json_import.h music.h ban.h board.h
 db.o: olc.h portals.h chars.h rooms.h objs.h db_old.h update.h globals.h
-db.o: memory.h db.h
+db.o: memory.h skills.h db.h
 db_old.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 db_old.o: json.h structs.h types.h flags.h tables.h db.h recycle.h utils.h
 db_old.o: interp.h lookup.h olc.h affects.h globals.h memory.h db_old.h

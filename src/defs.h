@@ -629,4 +629,55 @@
 #define EFFECT_POISON   5
 #define EFFECT_MAX      6
 
+/* Internal mappings of skills. */
+#define SKILL_MAP_BACKSTAB          0
+#define SKILL_MAP_DODGE             1
+#define SKILL_MAP_ENVENOM           2
+#define SKILL_MAP_HIDE              3
+#define SKILL_MAP_PEEK              4
+#define SKILL_MAP_PICK_LOCK         5
+#define SKILL_MAP_SNEAK             6
+#define SKILL_MAP_STEAL             7
+#define SKILL_MAP_DISARM            8
+#define SKILL_MAP_ENHANCED_DAMAGE   9
+#define SKILL_MAP_KICK             10
+#define SKILL_MAP_PARRY            11
+#define SKILL_MAP_RESCUE           12
+#define SKILL_MAP_SECOND_ATTACK    13
+#define SKILL_MAP_THIRD_ATTACK     14
+#define SKILL_MAP_BLINDNESS        15
+#define SKILL_MAP_CHARM_PERSON     16
+#define SKILL_MAP_CURSE            17
+#define SKILL_MAP_INVIS            18
+#define SKILL_MAP_MASS_INVIS       19
+#define SKILL_MAP_POISON           20
+#define SKILL_MAP_PLAGUE           21
+#define SKILL_MAP_SLEEP            22
+#define SKILL_MAP_SANCTUARY        23
+#define SKILL_MAP_FLY              24
+#define SKILL_MAP_AXE              25
+#define SKILL_MAP_DAGGER           26
+#define SKILL_MAP_FLAIL            27
+#define SKILL_MAP_MACE             28
+#define SKILL_MAP_POLEARM          29
+#define SKILL_MAP_SHIELD_BLOCK     30
+#define SKILL_MAP_SPEAR            31
+#define SKILL_MAP_SWORD            32
+#define SKILL_MAP_WHIP             33
+#define SKILL_MAP_BASH             34
+#define SKILL_MAP_BERSERK          35
+#define SKILL_MAP_DIRT             36
+#define SKILL_MAP_HAND_TO_HAND     37
+#define SKILL_MAP_TRIP             38
+#define SKILL_MAP_FAST_HEALING     39
+#define SKILL_MAP_HAGGLE           40
+#define SKILL_MAP_LORE             41
+#define SKILL_MAP_MEDITATION       42
+#define SKILL_MAP_SCROLLS          43
+#define SKILL_MAP_STAVES           44
+#define SKILL_MAP_WANDS            45
+#define SKILL_MAP_RECALL           46
+#define SKILL_MAP_FRENZY           47
+#define SKILL_MAP_MAX              48
+
 #endif

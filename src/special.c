@@ -828,7 +828,7 @@ bool spec_poison (CHAR_T *ch) {
     act ("You bite $N!",  ch, NULL, victim, TO_CHAR);
     act ("$n bites $N!",  ch, NULL, victim, TO_OTHERS);
     act ("$n bites you!", ch, NULL, victim, TO_VICT);
-    spell_poison (gsn_poison, ch->level, ch, victim, TARGET_CHAR, "");
+    spell_poison (SN(POISON), ch->level, ch, victim, TARGET_CHAR, "");
     return TRUE;
 }
 

@@ -231,7 +231,7 @@ DEFINE_SPELL_FUN (spell_colour_spray) {
     if (saves_spell (level, victim, DAM_LIGHT))
         dam /= 2;
     else
-        spell_blindness_quiet (gsn_blindness, level / 2, ch,
+        spell_blindness_quiet (SN(BLINDNESS), level / 2, ch,
             (void *) victim, TARGET_CHAR, target_name);
 
     damage_visible (ch, victim, dam, sn, DAM_LIGHT, NULL);
@@ -259,7 +259,7 @@ DEFINE_SPELL_FUN (spell_demonfire) {
     if (saves_spell (level, victim, DAM_NEGATIVE))
         dam /= 2;
     damage_visible (ch, victim, dam, sn, DAM_NEGATIVE, NULL);
-    spell_curse_char_quiet (gsn_curse, 3 * level / 4, ch, (void *) victim,
+    spell_curse_char_quiet (SN(CURSE), 3 * level / 4, ch, (void *) victim,
         TARGET_CHAR, target_name);
 }
 
@@ -652,7 +652,7 @@ DEFINE_SPELL_FUN (spell_ray_of_truth) {
     dam = (dam * align * align) / 1000000;
 
     damage_visible (ch, victim, dam, sn, DAM_HOLY, NULL);
-    spell_blindness_quiet (gsn_blindness, 3 * level / 4, ch, (void *) victim,
+    spell_blindness_quiet (SN(BLINDNESS), 3 * level / 4, ch, (void *) victim,
         TARGET_CHAR, target_name);
 }
 

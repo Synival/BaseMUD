@@ -42,140 +42,96 @@
 
 #include "skills.h"
 
-/* Globals. */
-sh_int gsn_backstab;
-sh_int gsn_dodge;
-sh_int gsn_envenom;
-sh_int gsn_hide;
-sh_int gsn_peek;
-sh_int gsn_pick_lock;
-sh_int gsn_sneak;
-sh_int gsn_steal;
+void char_set_default_skills (CHAR_T *ch) {
+    sh_int *learned = ch->pcdata->learned;
 
-sh_int gsn_disarm;
-sh_int gsn_enhanced_damage;
-sh_int gsn_kick;
-sh_int gsn_parry;
-sh_int gsn_rescue;
-sh_int gsn_second_attack;
-sh_int gsn_third_attack;
-
-sh_int gsn_blindness;
-sh_int gsn_charm_person;
-sh_int gsn_curse;
-sh_int gsn_invis;
-sh_int gsn_mass_invis;
-sh_int gsn_poison;
-sh_int gsn_plague;
-sh_int gsn_sleep;
-sh_int gsn_sanctuary;
-sh_int gsn_fly;
-
-sh_int gsn_axe;
-sh_int gsn_dagger;
-sh_int gsn_flail;
-sh_int gsn_mace;
-sh_int gsn_polearm;
-sh_int gsn_shield_block;
-sh_int gsn_spear;
-sh_int gsn_sword;
-sh_int gsn_whip;
-
-sh_int gsn_bash;
-sh_int gsn_berserk;
-sh_int gsn_dirt;
-sh_int gsn_hand_to_hand;
-sh_int gsn_trip;
-
-sh_int gsn_fast_healing;
-sh_int gsn_haggle;
-sh_int gsn_lore;
-sh_int gsn_meditation;
-
-sh_int gsn_scrolls;
-sh_int gsn_staves;
-sh_int gsn_wands;
-sh_int gsn_recall;
-sh_int gsn_frenzy;
+    if (learned[SN(RECALL)] < 50)
+        learned[SN(RECALL)] = 50;
+}
 
 /* for returning skill information */
 int char_get_skill (const CHAR_T *ch, int sn) {
-    int skill;
+    const SKILL_T *skill;
+    int ch_skill;
 
+    /* shorthand for level based skills */
+    if (sn == -1) {
+        skill = NULL;
+        ch_skill = ch->level * 5 / 2;
+    }
     /* ignore invalid skills. */
-    if (sn < -1 || sn >= SKILL_MAX) {
-        bug ("Bad sn %d in char_get_skill.", sn);
+    else if (sn < -1 || sn >= SKILL_MAX || (skill = skill_get (sn)) == NULL) {
+        bug ("char_get_skill: Bad sn %d.", sn);
         return 0;
     }
 
-    /* shorthand for level based skills */
-    if (sn == -1)
-        skill = ch->level * 5 / 2;
-    /* players */
-    else if (!IS_NPC (ch)) {
-        if (ch->level < skill_table[sn].classes[ch->class].level)
-            skill = 0;
+    if (skill != NULL) {
+        /* players */
+        if (!IS_NPC (ch)) {
+            if (ch->level < skill->classes[ch->class].level)
+                ch_skill = 0;
+            else
+                ch_skill = ch->pcdata->learned[sn];
+        }
+        /* mobiles */
         else
-            skill = ch->pcdata->learned[sn];
+            ch_skill = char_get_mobile_skill (ch, sn);
     }
-    /* mobiles */
-    else
-        skill = char_get_mobile_skill (ch, sn);
 
     /* dazed characters have bad skills. */
     if (ch->daze > 0) {
-        if (skill_table[sn].spell_fun == spell_null)
-            skill = 2 * skill / 3;
+        if (skill == NULL || skill->spell_fun == spell_null)
+            ch_skill = 2 * ch_skill / 3;
         else
-            skill /= 2;
+            ch_skill /= 2;
     }
 
     /* drunks are bad at things. */
     if (IS_DRUNK (ch))
-        skill = 9 * skill / 10;
+        ch_skill = 9 * ch_skill / 10;
 
-    return URANGE (0, skill, 100);
+    return URANGE (0, ch_skill, 100);
 }
 
 int char_get_mobile_skill (const CHAR_T *ch, int sn) {
     /* TODO: this should probably be a table of some sort... */
     if (skill_table[sn].spell_fun != spell_null)
         return 40 + 2 * ch->level;
-    else if (sn == gsn_sneak || sn == gsn_hide)
+    else if (sn == SN(SNEAK) || sn == SN(HIDE))
         return ch->level * 2 + 20;
-    else if ((sn == gsn_dodge && IS_SET (ch->off_flags, OFF_DODGE))
-             || (sn == gsn_parry && IS_SET (ch->off_flags, OFF_PARRY)))
+    else if ((sn == SN(DODGE) && IS_SET (ch->off_flags, OFF_DODGE)) ||
+             (sn == SN(PARRY) && IS_SET (ch->off_flags, OFF_PARRY)))
         return ch->level * 2;
-    else if (sn == gsn_shield_block)
+    else if (sn == SN(SHIELD_BLOCK))
         return 10 + 2 * ch->level;
-    else if (sn == gsn_second_attack && (IS_SET (ch->mob, MOB_WARRIOR)
-                                         || IS_SET (ch->mob, MOB_THIEF)))
+    else if (sn == SN(SECOND_ATTACK) && (IS_SET (ch->mob, MOB_WARRIOR) ||
+                                         IS_SET (ch->mob, MOB_THIEF)))
         return 10 + 3 * ch->level;
-    else if (sn == gsn_third_attack && IS_SET (ch->mob, MOB_WARRIOR))
+    else if (sn == SN(THIRD_ATTACK) && IS_SET (ch->mob, MOB_WARRIOR))
         return 4 * ch->level - 40;
-    else if (sn == gsn_hand_to_hand)
+    else if (sn == SN(HAND_TO_HAND))
         return 40 + 2 * ch->level;
-    else if (sn == gsn_trip && IS_SET (ch->off_flags, OFF_TRIP))
+    else if (sn == SN(TRIP) && IS_SET (ch->off_flags, OFF_TRIP))
         return 10 + 3 * ch->level;
-    else if (sn == gsn_bash && IS_SET (ch->off_flags, OFF_BASH))
+    else if (sn == SN(BASH) && IS_SET (ch->off_flags, OFF_BASH))
         return 10 + 3 * ch->level;
-    else if (sn == gsn_disarm && (IS_SET (ch->off_flags, OFF_DISARM)
-                                  || IS_SET (ch->mob, MOB_WARRIOR)
-                                  || IS_SET (ch->mob, MOB_THIEF)))
+    else if (sn == SN(DISARM) && (IS_SET (ch->off_flags, OFF_DISARM) ||
+                                  IS_SET (ch->mob, MOB_WARRIOR)      ||
+                                  IS_SET (ch->mob, MOB_THIEF)))
         return 20 + 3 * ch->level;
-    else if (sn == gsn_berserk && IS_SET (ch->off_flags, OFF_BERSERK))
+    else if (sn == SN(BERSERK) && IS_SET (ch->off_flags, OFF_BERSERK))
         return 3 * ch->level;
-    else if (sn == gsn_kick)
+    else if (sn == SN(KICK))
         return 10 + 3 * ch->level;
-    else if (sn == gsn_backstab && IS_SET (ch->mob, MOB_THIEF))
+    else if (sn == SN(BACKSTAB) && IS_SET (ch->mob, MOB_THIEF))
         return 20 + 2 * ch->level;
-    else if (sn == gsn_rescue)
+    else if (sn == SN(RESCUE))
         return 40 + ch->level;
-    else if (sn == gsn_recall)
+    else if (sn == SN(RECALL))
         return 40 + ch->level;
-    else if (sn == gsn_sword || sn == gsn_dagger || sn == gsn_spear ||
-             sn == gsn_mace  || sn == gsn_axe    || sn == gsn_flail ||
-             sn == gsn_whip  || sn == gsn_polearm)
+    else if (sn == SN(SWORD) || sn == SN(DAGGER) || sn == SN(SPEAR) ||
+             sn == SN(MACE)  || sn == SN(AXE)    || sn == SN(FLAIL) ||
+             sn == SN(WHIP)  || sn == SN(POLEARM))
         return 40 + 5 * ch->level / 2;
     else
         return 0;
@@ -183,7 +139,7 @@ int char_get_mobile_skill (const CHAR_T *ch, int sn) {
 
 void char_list_skills_and_groups (CHAR_T *ch, bool chosen) {
     const SKILL_GROUP_T *group;
-    int gn, sn, col;
+    int num, col;
 
     if (IS_NPC (ch))
         return;
@@ -192,22 +148,21 @@ void char_list_skills_and_groups (CHAR_T *ch, bool chosen) {
         "group", "cp", "group", "cp", "group", "cp");
 
     col = 0;
-    for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
-        if ((group = skill_group_get (gn)) == NULL || group->name == NULL)
+    chosen = (!!chosen);
+    for (num = 0; num < SKILL_GROUP_MAX; num++) {
+        if ((group = skill_group_get (num)) == NULL || group->name == NULL)
             break;
         if (group->classes[ch->class].cost <= 0)
             continue;
-        if (ch->pcdata->group_known[gn] != chosen)
+        if (!!ch->pcdata->group_known[num] != chosen)
             continue;
-        if (ch->gen_data && ch->gen_data->group_chosen[gn] != chosen)
+        if (ch->gen_data && !!ch->gen_data->group_chosen[num] != chosen)
             continue;
 
-        if (!!ch->pcdata->group_known[gn] == !!chosen) {
-            printf_to_char (ch, "%-18s %-5d ", group->name,
-                group->classes[ch->class].cost);
-            if (++col % 3 == 0)
-                send_to_char ("\n\r", ch);
-        }
+        printf_to_char (ch, "%-18s %-5d ", group->name,
+            group->classes[ch->class].cost);
+        if (++col % 3 == 0)
+            send_to_char ("\n\r", ch);
     }
     if (col % 3 != 0)
         send_to_char ("\n\r", ch);
@@ -217,22 +172,22 @@ void char_list_skills_and_groups (CHAR_T *ch, bool chosen) {
     printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s\n\r",
         "skill", "cp", "skill", "cp", "skill", "cp");
 
-    for (sn = 0; sn < SKILL_MAX && skill_table[sn].name != NULL; sn++) {
-        if (skill_table[sn].classes[ch->class].effort <= 0)
+    for (num = 0; num < SKILL_MAX && skill_table[num].name != NULL; num++) {
+        if (skill_table[num].classes[ch->class].effort <= 0)
             continue;
-        if (skill_table[sn].spell_fun != spell_null)
+        if (skill_table[num].spell_fun != spell_null)
             continue;
-        if (((ch->pcdata->learned[sn] > 0) ? TRUE : FALSE) != chosen)
+        if (!!ch->pcdata->skill_known[num] != chosen)
             continue;
-        if (ch->gen_data && ch->gen_data->skill_chosen[sn] != chosen)
+        if (ch->gen_data && !!ch->gen_data->skill_chosen[num] != chosen)
+            continue;
+        if ((ch->pcdata->learned[num] > 0) != chosen)
             continue;
 
-        if (!!(ch->pcdata->learned[sn] != 0) == !!chosen) {
-            printf_to_char (ch, "%-18s %-5d ", skill_table[sn].name,
-                skill_table[sn].classes[ch->class].effort);
-            if (++col % 3 == 0)
-                send_to_char ("\n\r", ch);
-        }
+        printf_to_char (ch, "%-18s %-5d ", skill_table[num].name,
+            skill_table[num].classes[ch->class].effort);
+        if (++col % 3 == 0)
+            send_to_char ("\n\r", ch);
     }
 
     if (col % 3 != 0)
@@ -301,11 +256,11 @@ void char_add_skill (CHAR_T *ch, int sn, bool deduct) {
         return;
     }
 
-    if (ch->pcdata->learned[sn] == 0) { /* i.e. not known */
+    if (!ch->pcdata->skill_known[sn] && deduct)
+        ch->pcdata->creation_points += skill->classes[ch->class].effort;
+    ch->pcdata->skill_known[sn]++;
+    if (ch->pcdata->learned[sn] == 0)
         ch->pcdata->learned[sn] = 1;
-        if (deduct)
-            ch->pcdata->creation_points += skill->classes[ch->class].effort;
-    }
 }
 
 void char_remove_skill (CHAR_T *ch, int sn, bool refund) {
@@ -315,11 +270,13 @@ void char_remove_skill (CHAR_T *ch, int sn, bool refund) {
         return;
     }
 
-    if (ch->pcdata->learned[sn] != 0) {
+    if (ch->pcdata->skill_known[sn] <= 0)
+        return;
+    if (refund)
+        ch->pcdata->creation_points -= skill->classes[ch->class].effort;
+    ch->pcdata->skill_known[sn]--;
+    if (ch->pcdata->skill_known[sn] == 0)
         ch->pcdata->learned[sn] = 0;
-        if (refund)
-            ch->pcdata->creation_points -= skill->classes[ch->class].effort;
-    }
 }
 
 /* recursively adds a group given its number -- uses skill_group_add */
@@ -332,12 +289,9 @@ void char_add_skill_group (CHAR_T *ch, int gn, bool deduct) {
         return;
     }
 
-    ch->pcdata->group_known[gn] = TRUE;
-    if (ch->pcdata->group_known[gn] == FALSE) {
-        ch->pcdata->group_known[gn] = TRUE;
-        if (deduct)
-            ch->pcdata->creation_points += group->classes[ch->class].cost;
-    }
+    if (!ch->pcdata->group_known[gn] && deduct)
+        ch->pcdata->creation_points += group->classes[ch->class].cost;
+    ch->pcdata->group_known[gn]++;
 
     for (i = 0; i < MAX_IN_GROUP; i++) {
         if (group->spells[i] == NULL)
@@ -356,11 +310,11 @@ void char_remove_skill_group (CHAR_T *ch, int gn, bool refund) {
         return;
     }
 
-    if (ch->pcdata->group_known[gn] == TRUE) {
-        ch->pcdata->group_known[gn] = FALSE;
-        if (refund)
-            ch->pcdata->creation_points -= group->classes[ch->class].cost;
-    }
+    if (ch->pcdata->group_known[gn] <= 0)
+        return;
+    if (refund)
+        ch->pcdata->creation_points -= group->classes[ch->class].cost;
+    ch->pcdata->group_known[gn]--;
 
     for (i = 0; i < MAX_IN_GROUP; i++) {
         if (group->spells[i] == NULL)
@@ -411,4 +365,54 @@ void char_remove_skill_or_group (CHAR_T *ch, const char *name, bool refund) {
     }
 
     bugf ("char_remove_skill_or_group: Unknown skill or group '%s'", name);
+}
+
+void skill_clear_mapping (void) {
+    int i;
+
+    for (i = 0; i < SKILL_MAP_MAX; i++)
+        skill_map_table[i].skill_index = -1;
+    for (i = 0; i < SKILL_MAX; i++) {
+        skill_table[i].map_index    = -1;
+        skill_table[i].weapon_index = -1;
+    }
+    for (i = 0; i < WEAPON_MAX; i++)
+        weapon_table[i].skill_index = -1;
+}
+
+void skill_init_mapping (void) {
+    SKILL_MAP_T *map;
+    SKILL_T *skill;
+    WEAPON_T *weapon;
+    int i, index;
+
+    /* map skills by name to our internal mapping and vice-versa. */
+    for (i = 0; i < SKILL_MAP_MAX; i++) {
+        map = &(skill_map_table[i]);
+        if (map->name == NULL)
+            continue;
+        if ((index = skill_lookup_exact (map->name)) < 0) {
+            bugf ("skill_init_mapping: Skill '%s' not found", map->name);
+            continue;
+        }
+        skill = &(skill_table[index]);
+
+        map->skill_index = index;
+        skill->map_index = i;
+    }
+
+    /* map weapons to skills and vice-versa. */
+    for (i = 0; i < WEAPON_MAX; i++) {
+        weapon = &(weapon_table[i]);
+        if (weapon->name == NULL)
+            continue;
+        if ((index = skill_lookup_exact (weapon->skill)) < 0) {
+            bugf ("skill_init_mapping: Weapon skill '%s' not found", weapon->skill);
+            continue;
+        }
+        skill = &(skill_table[index]);
+
+        weapon->skill_index = index;
+        skill->weapon_index = i;
+    }
 }

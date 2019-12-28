@@ -443,11 +443,11 @@ DEFINE_DO_FUN (do_purge) {
 }
 
 void do_restore_single (CHAR_T *ch, CHAR_T *vch) {
-    affect_strip (vch, gsn_plague);
-    affect_strip (vch, gsn_poison);
-    affect_strip (vch, gsn_blindness);
-    affect_strip (vch, gsn_sleep);
-    affect_strip (vch, gsn_curse);
+    affect_strip (vch, SN(PLAGUE));
+    affect_strip (vch, SN(POISON));
+    affect_strip (vch, SN(BLINDNESS));
+    affect_strip (vch, SN(SLEEP));
+    affect_strip (vch, SN(CURSE));
 
     vch->hit = vch->max_hit;
     vch->mana = vch->max_mana;

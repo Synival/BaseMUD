@@ -2,41 +2,49 @@
   {"weapon": {
     "type": 1,
     "name": "sword",
+    "skill": "sword",
     "newbie_vnum": 3702
   }},
   {"weapon": {
     "type": 4,
     "name": "mace",
+    "skill": "mace",
     "newbie_vnum": 3700
   }},
   {"weapon": {
     "type": 2,
     "name": "dagger",
+    "skill": "dagger",
     "newbie_vnum": 3701
   }},
   {"weapon": {
     "type": 5,
     "name": "axe",
+    "skill": "axe",
     "newbie_vnum": 3719
   }},
   {"weapon": {
     "type": 3,
     "name": "staff",
+    "skill": "staves",
     "newbie_vnum": 3718
   }},
   {"weapon": {
     "type": 6,
     "name": "flail",
+    "skill": "flail",
     "newbie_vnum": 3720
   }},
   {"weapon": {
     "type": 7,
     "name": "whip",
+    "skill": "whip",
     "newbie_vnum": 3721
   }},
   {"weapon": {
     "type": 8,
     "name": "polearm",
+    "skill": "polearm",
     "newbie_vnum": 3722
   }}
 ]

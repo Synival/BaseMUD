@@ -39,7 +39,6 @@ extern const POSITION_T       position_table[POS_MAX + 1];
 extern const SEX_T            sex_table[SEX_MAX + 1];
 extern const SIZE_T           size_table[SIZE_MAX_R + 1];
 extern const ITEM_T           item_table[ITEM_MAX + 1];
-extern const WEAPON_T         weapon_table[WEAPON_MAX + 1];
 extern const EFFECT_T         effect_table[EFFECT_MAX + 1];
 extern const DAM_T            dam_table[DAM_MAX + 1];
 extern const ATTACK_T         attack_table[ATTACK_MAX + 1];
@@ -52,7 +51,6 @@ extern const WIS_APP_T        wis_app_table[ATTRIBUTE_HIGHEST + 2];
 extern const DEX_APP_T        dex_app_table[ATTRIBUTE_HIGHEST + 2];
 extern const CON_APP_T        con_app_table[ATTRIBUTE_HIGHEST + 2];
 extern const LIQ_T            liq_table[LIQ_MAX + 1];
-extern const SKILL_T          skill_table[SKILL_MAX + 1];
 extern const SKILL_GROUP_T    skill_group_table[SKILL_GROUP_MAX + 1];
 extern const SECTOR_T         sector_table[SECT_MAX + 1];
 extern const NANNY_HANDLER_T  nanny_table[NANNY_MAX + 1];
@@ -78,8 +76,11 @@ extern const COLOUR_T         colour_table[];
 extern const POSE_T           pose_table[];
 
 /* Non-const types. */
-extern RECYCLE_T recycle_table[RECYCLE_MAX + 1];
-extern BOARD_T   board_table[BOARD_MAX + 1];
+extern WEAPON_T    weapon_table[WEAPON_MAX + 1];
+extern SKILL_T     skill_table[SKILL_MAX + 1];
+extern SKILL_MAP_T skill_map_table[SKILL_MAP_MAX + 1];
+extern RECYCLE_T   recycle_table[RECYCLE_MAX + 1];
+extern BOARD_T     board_table[BOARD_MAX + 1];
 
 /* Other tables. */
 extern char *const title_table[CLASS_MAX][MAX_LEVEL + 1][2];

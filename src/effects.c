@@ -402,7 +402,7 @@ DEFINE_EFFECT_FUN (effect_poison) {
                           victim);
             act ("$n looks very ill.", victim, NULL, NULL, TO_NOTCHAR);
 
-            affect_init (&af, AFF_TO_AFFECTS, gsn_poison, level, level / 2, APPLY_STR, -1, AFF_POISON);
+            affect_init (&af, AFF_TO_AFFECTS, SN(POISON), level, level / 2, APPLY_STR, -1, AFF_POISON);
             affect_join (victim, &af);
         }
 

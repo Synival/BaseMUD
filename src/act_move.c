@@ -207,12 +207,12 @@ bool do_door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     }
 
     /* we're actually trying to pick something - make us wait. */
-    WAIT_STATE (ch, skill_table[gsn_pick_lock].beats);
+    WAIT_STATE (ch, skill_table[SN(PICK_LOCK)].beats);
 
     /* pick-specific checks. */
-    if (!IS_NPC (ch) && number_percent () > char_get_skill (ch, gsn_pick_lock)) {
+    if (!IS_NPC (ch) && number_percent () > char_get_skill (ch, SN(PICK_LOCK))) {
         send_to_char ("You failed.\n\r", ch);
-        char_try_skill_improve (ch, gsn_pick_lock, FALSE, 2);
+        char_try_skill_improve (ch, SN(PICK_LOCK), FALSE, 2);
         return TRUE;
     }
     FILTER (IS_SET (flags, container ? CONT_PICKPROOF : EX_PICKPROOF),
@@ -254,7 +254,7 @@ void do_pick_object (CHAR_T *ch, OBJ_T *obj) {
     obj_remove_exit_flag (obj, EX_LOCKED);
     act2 ("You pick the lock on $p.", "$n picks the lock on $p.",
         ch, obj, NULL, 0, POS_RESTING);
-    char_try_skill_improve (ch, gsn_pick_lock, TRUE, 2);
+    char_try_skill_improve (ch, SN(PICK_LOCK), TRUE, 2);
 }
 
 void do_open_door (CHAR_T *ch, int door) {
@@ -346,7 +346,7 @@ void do_pick_door (CHAR_T *ch, int door) {
     REMOVE_BIT (pexit->exit_flags, EX_LOCKED);
     act2 ("*Click*", "$n picks the lock on $d.",
         ch, NULL, pexit->keyword, 0, POS_RESTING);
-    char_try_skill_improve (ch, gsn_pick_lock, TRUE, 2);
+    char_try_skill_improve (ch, SN(PICK_LOCK), TRUE, 2);
 
     /* unlock the other side */
     if ((pexit_rev = room_get_opposite_exit (ch->in_room, door, NULL)) != NULL)
@@ -578,17 +578,17 @@ DEFINE_DO_FUN (do_sneak) {
     AFFECT_T af;
 
     send_to_char ("You attempt to move silently.\n\r", ch);
-    affect_strip (ch, gsn_sneak);
+    affect_strip (ch, SN(SNEAK));
 
     if (IS_AFFECTED (ch, AFF_SNEAK))
         return;
-    if (number_percent () < char_get_skill (ch, gsn_sneak)) {
-        char_try_skill_improve (ch, gsn_sneak, TRUE, 3);
-        affect_init (&af, AFF_TO_AFFECTS, gsn_sneak, ch->level, ch->level, APPLY_NONE, 0, AFF_SNEAK);
+    if (number_percent () < char_get_skill (ch, SN(SNEAK))) {
+        char_try_skill_improve (ch, SN(SNEAK), TRUE, 3);
+        affect_init (&af, AFF_TO_AFFECTS, SN(SNEAK), ch->level, ch->level, APPLY_NONE, 0, AFF_SNEAK);
         affect_to_char (ch, &af);
     }
     else
-        char_try_skill_improve (ch, gsn_sneak, FALSE, 3);
+        char_try_skill_improve (ch, SN(SNEAK), FALSE, 3);
 }
 
 DEFINE_DO_FUN (do_hide) {
@@ -596,19 +596,19 @@ DEFINE_DO_FUN (do_hide) {
 
     if (IS_AFFECTED (ch, AFF_HIDE))
         REMOVE_BIT (ch->affected_by, AFF_HIDE);
-    if (number_percent () < char_get_skill (ch, gsn_hide)) {
+    if (number_percent () < char_get_skill (ch, SN(HIDE))) {
         SET_BIT (ch->affected_by, AFF_HIDE);
-        char_try_skill_improve (ch, gsn_hide, TRUE, 3);
+        char_try_skill_improve (ch, SN(HIDE), TRUE, 3);
     }
     else
-        char_try_skill_improve (ch, gsn_hide, FALSE, 3);
+        char_try_skill_improve (ch, SN(HIDE), FALSE, 3);
 }
 
 /* Contributed by Alander. */
 DEFINE_DO_FUN (do_visible) {
-    affect_strip (ch, gsn_invis);
-    affect_strip (ch, gsn_mass_invis);
-    affect_strip (ch, gsn_sneak);
+    affect_strip (ch, SN(INVIS));
+    affect_strip (ch, SN(MASS_INVIS));
+    affect_strip (ch, SN(SNEAK));
     REMOVE_BIT (ch->affected_by, AFF_HIDE);
     REMOVE_BIT (ch->affected_by, AFF_INVISIBLE);
     REMOVE_BIT (ch->affected_by, AFF_SNEAK);
@@ -635,10 +635,10 @@ DEFINE_DO_FUN (do_recall) {
 
     if ((victim = ch->fighting) != NULL) {
         int lose, skill;
-        skill = char_get_skill (ch, gsn_recall);
+        skill = char_get_skill (ch, SN(RECALL));
 
         if (number_percent () < 80 * skill / 100) {
-            char_try_skill_improve (ch, gsn_recall, FALSE, 6);
+            char_try_skill_improve (ch, SN(RECALL), FALSE, 6);
             WAIT_STATE (ch, 4);
             send_to_char ("You failed!\n\r", ch);
             return;
@@ -646,7 +646,7 @@ DEFINE_DO_FUN (do_recall) {
 
         lose = (ch->desc != NULL) ? 25 : 50;
         gain_exp (ch, 0 - lose);
-        char_try_skill_improve (ch, gsn_recall, TRUE, 4);
+        char_try_skill_improve (ch, SN(RECALL), TRUE, 4);
         printf_to_char (ch, "You recall from combat!  You lose %d exps.\n\r",
             lose);
         stop_fighting (ch, TRUE);

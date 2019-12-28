@@ -79,10 +79,10 @@ int hit_gain (CHAR_T *ch, bool apply_learning) {
         gain += class_table[ch->class].hp_max - 10;
 
         if (ch->position < POS_STANDING) {
-            number = char_get_skill (ch, gsn_fast_healing);
+            number = char_get_skill (ch, SN(FAST_HEALING));
             gain += number * gain / 100;
             if (apply_learning && ch->hit < ch->max_hit && number_percent() < number)
-                char_try_skill_improve (ch, gsn_fast_healing, TRUE,
+                char_try_skill_improve (ch, SN(FAST_HEALING), TRUE,
                     8 * PULSE_DIVISOR);
         }
 
@@ -137,10 +137,10 @@ int mana_gain (CHAR_T *ch, bool apply_learning) {
         if (ch->position < POS_STANDING && ch->position > POS_SLEEPING &&
             ch->fighting == NULL)
         {
-            number = char_get_skill (ch, gsn_meditation);
+            number = char_get_skill (ch, SN(MEDITATION));
             gain += (number * gain) / 100;
             if (apply_learning && ch->hit < ch->max_hit && number_percent() < number)
-                char_try_skill_improve (ch, gsn_meditation, TRUE,
+                char_try_skill_improve (ch, SN(MEDITATION), TRUE,
                     8 * PULSE_DIVISOR);
         }
 
@@ -659,7 +659,7 @@ void char_update (void) {
         /* Careful with the damages here,
          * MUST NOT refer to ch after damage taken,
          * as it may be lethal damage (on NPC). */
-        if (is_affected (ch, gsn_plague) && ch != NULL) {
+        if (is_affected (ch, SN(PLAGUE)) && ch != NULL) {
             AFFECT_T *af, plague;
             CHAR_T *vch;
             int dam;
@@ -671,7 +671,7 @@ void char_update (void) {
             act ("$n writhes in agony as plague sores erupt from $s skin.",
                  ch, NULL, NULL, TO_NOTCHAR);
             for (af = ch->affected; af != NULL; af = af->next) {
-                if (af->type == gsn_plague)
+                if (af->type == SN(PLAGUE))
                     break;
             }
 
@@ -683,7 +683,7 @@ void char_update (void) {
             if (af->level == 1)
                 continue;
 
-            affect_init (&plague, AFF_TO_AFFECTS, gsn_plague, af->level - 1, number_range (1, 2 * plague.level), APPLY_STR, -5, AFF_PLAGUE);
+            affect_init (&plague, AFF_TO_AFFECTS, SN(PLAGUE), af->level - 1, number_range (1, 2 * plague.level), APPLY_STR, -5, AFF_PLAGUE);
 
             for (vch = ch->in_room->people; vch != NULL;
                  vch = vch->next_in_room)
@@ -702,19 +702,19 @@ void char_update (void) {
             dam = UMIN (ch->level, af->level / 5 + 1);
             ch->mana -= dam;
             ch->move -= dam;
-            damage_quiet (ch, ch, dam, gsn_plague, DAM_DISEASE);
+            damage_quiet (ch, ch, dam, SN(PLAGUE), DAM_DISEASE);
         }
         else if (IS_AFFECTED (ch, AFF_POISON) && ch != NULL
                  && !IS_AFFECTED (ch, AFF_SLOW))
         {
             AFFECT_T *poison;
 
-            poison = affect_find (ch->affected, gsn_poison);
+            poison = affect_find (ch->affected, SN(POISON));
 
             if (poison != NULL) {
                 send_to_char ("You shiver and suffer.\n\r", ch);
                 act ("$n shivers and suffers.", ch, NULL, NULL, TO_NOTCHAR);
-                damage_quiet (ch, ch, poison->level / 10 + 1, gsn_poison,
+                damage_quiet (ch, ch, poison->level / 10 + 1, SN(POISON),
                         DAM_POISON);
             }
         }

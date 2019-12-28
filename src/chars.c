@@ -325,13 +325,13 @@ int char_get_weapon_sn (const CHAR_T *ch) {
 
     wield = char_get_weapon (ch);
     if (wield == NULL)
-        return gsn_hand_to_hand;
+        return SN(HAND_TO_HAND);
 
     weapon = weapon_get (wield->v.weapon.weapon_type);
-    if (weapon == NULL || weapon->gsn == NULL)
+    if (weapon == NULL || weapon->skill_index < 0)
         return -1;
 
-    return *(weapon->gsn);
+    return weapon->skill_index;
 }
 
 int char_get_weapon_skill (const CHAR_T *ch, int sn) {
@@ -341,7 +341,7 @@ int char_get_weapon_skill (const CHAR_T *ch, int sn) {
     if (IS_NPC (ch)) {
         if (sn == -1)
             skill = 3 * ch->level;
-        else if (sn == gsn_hand_to_hand)
+        else if (sn == SN(HAND_TO_HAND))
             skill = 40 + 2 * ch->level;
         else
             skill = 40 + 5 * ch->level / 2;
@@ -555,7 +555,7 @@ void char_to_room_apply_plague (CHAR_T *ch) {
     CHAR_T *vch;
 
     for (af = ch->affected; af != NULL; af = af->next)
-        if (af->type == gsn_plague)
+        if (af->type == SN(PLAGUE))
             break;
     if (af == NULL) {
         REMOVE_BIT (ch->affected_by, AFF_PLAGUE);
@@ -564,7 +564,7 @@ void char_to_room_apply_plague (CHAR_T *ch) {
     if (af->level == 1)
         return;
 
-    affect_init (&plague, AFF_TO_AFFECTS, gsn_plague, af->level - 1, number_range (1, 2 * (af->level - 1)), APPLY_STR, -5, AFF_PLAGUE);
+    affect_init (&plague, AFF_TO_AFFECTS, SN(PLAGUE), af->level - 1, number_range (1, 2 * (af->level - 1)), APPLY_STR, -5, AFF_PLAGUE);
 
     for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room) {
         if (!saves_spell (plague.level - 2, vch, DAM_DISEASE)
@@ -834,7 +834,7 @@ bool char_can_see_anywhere (const CHAR_T *ch, const CHAR_T *victim) {
         && victim->position > POS_STUNNED)
     {
         int chance;
-        chance = char_get_skill (victim, gsn_sneak);
+        chance = char_get_skill (victim, SN(SNEAK));
         chance += char_get_curr_stat (victim, STAT_DEX) * 3 / 2;
         chance -= char_get_curr_stat (ch, STAT_INT) * 2;
         chance -= ch->level - victim->level * 3 / 2;
@@ -1322,10 +1322,10 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
     }
 
     if (victim != ch && !IS_NPC (ch)
-        && number_percent () < char_get_skill (ch, gsn_peek))
+        && number_percent () < char_get_skill (ch, SN(PEEK)))
     {
         send_to_char ("\n\rYou peek at the inventory:\n\r", ch);
-        char_try_skill_improve (ch, gsn_peek, TRUE, 4);
+        char_try_skill_improve (ch, SN(PEEK), TRUE, 4);
         obj_list_show_to_char (victim->carrying, ch, TRUE, TRUE);
     }
 }
@@ -1588,7 +1588,7 @@ bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool replace) {
     /* If wielding something, let us know how good we are at using it. */
     if (wear_loc->wear_flag == ITEM_WIELD) {
         int sn = char_get_weapon_sn (ch);
-        if (sn != gsn_hand_to_hand) {
+        if (sn != SN(HAND_TO_HAND)) {
             char *msg;
             int skill = char_get_weapon_skill (ch, sn);
                  if (skill >= 100) msg = "$p feels like a part of you!";

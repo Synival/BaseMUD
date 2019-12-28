@@ -265,27 +265,27 @@ void multi_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
 
     if (IS_AFFECTED (ch, AFF_HASTE))
         one_hit (ch, victim, dt);
-    if (ch->fighting != victim || dt == gsn_backstab)
+    if (ch->fighting != victim || dt == SN(BACKSTAB))
         return;
 
-    chance = char_get_skill (ch, gsn_second_attack) / 2;
+    chance = char_get_skill (ch, SN(SECOND_ATTACK)) / 2;
     if (IS_AFFECTED (ch, AFF_SLOW))
         chance /= 2;
 
     if (number_percent () < chance) {
         one_hit (ch, victim, dt);
-        char_try_skill_improve (ch, gsn_second_attack, TRUE, 5);
+        char_try_skill_improve (ch, SN(SECOND_ATTACK), TRUE, 5);
         if (ch->fighting != victim)
             return;
     }
 
-    chance = char_get_skill (ch, gsn_third_attack) / 4;
+    chance = char_get_skill (ch, SN(THIRD_ATTACK)) / 4;
     if (IS_AFFECTED (ch, AFF_SLOW))
         chance = 0;;
 
     if (number_percent () < chance) {
         one_hit (ch, victim, dt);
-        char_try_skill_improve (ch, gsn_third_attack, TRUE, 6);
+        char_try_skill_improve (ch, SN(THIRD_ATTACK), TRUE, 6);
         if (ch->fighting != victim)
             return;
     }
@@ -314,10 +314,10 @@ void mob_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
     {
         one_hit (ch, victim, dt);
     }
-    if (ch->fighting != victim || dt == gsn_backstab)
+    if (ch->fighting != victim || dt == SN(BACKSTAB))
         return;
 
-    chance = char_get_skill (ch, gsn_second_attack) / 2;
+    chance = char_get_skill (ch, SN(SECOND_ATTACK)) / 2;
     if (IS_AFFECTED (ch, AFF_SLOW) && !IS_SET (ch->off_flags, OFF_FAST))
         chance /= 2;
 
@@ -327,7 +327,7 @@ void mob_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
             return;
     }
 
-    chance = char_get_skill (ch, gsn_third_attack) / 4;
+    chance = char_get_skill (ch, SN(THIRD_ATTACK)) / 4;
     if (IS_AFFECTED (ch, AFF_SLOW) && !IS_SET (ch->off_flags, OFF_FAST))
         chance = 0;
 
@@ -356,10 +356,10 @@ void mob_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
             break;
 
         case 2:
-            if (IS_SET (ch->off_flags, OFF_DISARM)
-                || (char_get_weapon_sn (ch) != gsn_hand_to_hand
-                    && (IS_SET (ch->mob, MOB_WARRIOR) ||
-                        IS_SET (ch->mob, MOB_THIEF))))
+            if (IS_SET (ch->off_flags, OFF_DISARM) ||
+                (char_get_weapon_sn (ch) != SN(HAND_TO_HAND) &&
+                 (IS_SET (ch->mob, MOB_WARRIOR) ||
+                  IS_SET (ch->mob, MOB_THIEF))))
                 do_function (ch, &do_disarm, "");
             break;
 
@@ -470,8 +470,8 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
     thac0 -= GET_HITROLL (ch) * skill / 100;
     thac0 += 5 * (100 - skill) / 100;
 
-    if (dt == gsn_backstab)
-        thac0 -= 10 * (100 - char_get_skill (ch, gsn_backstab));
+    if (dt == SN(BACKSTAB))
+        thac0 -= 10 * (100 - char_get_skill (ch, SN(BACKSTAB)));
 
     switch (dam_type) {
         case (DAM_PIERCE): victim_ac = GET_AC (victim, AC_PIERCE) / 10; break;
@@ -540,12 +540,12 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
     }
 
     /* Bonuses. */
-    skill_val = char_get_skill (ch, gsn_enhanced_damage) * 2 / 3;
+    skill_val = char_get_skill (ch, SN(ENHANCED_DAMAGE)) * 2 / 3;
     if (skill_val > 0 && number_percent() < skill_val) {
 #ifdef BASEMUD_SHOW_ENHANCED_DAMAGE
         damage_adj = "heavy";
 #endif
-        char_try_skill_improve (ch, gsn_enhanced_damage, TRUE, 6);
+        char_try_skill_improve (ch, SN(ENHANCED_DAMAGE), TRUE, 6);
         dam += (dam * 3) / 4;
     }
 
@@ -554,7 +554,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
     else if (victim->position < POS_FIGHTING)
         dam = dam * 3 / 2;
 
-    if (dt == gsn_backstab && wield != NULL) {
+    if (dt == SN(BACKSTAB) && wield != NULL) {
         if (wield->v.weapon.weapon_type != WEAPON_DAGGER)
             dam *= 2 + (ch->level / 10);
         else
@@ -579,7 +579,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
             int level;
             AFFECT_T *poison, af;
 
-            if ((poison = affect_find (wield->affected, gsn_poison)) == NULL)
+            if ((poison = affect_find (wield->affected, SN(POISON))) == NULL)
                 level = wield->level;
             else
                 level = poison->level;
@@ -590,7 +590,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
                 act ("$n is poisoned by the venom on $p.",
                      victim, wield, NULL, TO_NOTCHAR);
 
-                affect_init (&af, AFF_TO_AFFECTS, gsn_poison, level * 3 / 4, level / 2, APPLY_STR, -1, AFF_POISON);
+                affect_init (&af, AFF_TO_AFFECTS, SN(POISON), level * 3 / 4, level / 2, APPLY_STR, -1, AFF_POISON);
                 affect_join (victim, &af);
             }
 
@@ -718,8 +718,8 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
 
     /* Inviso attacks ... not. */
     if (IS_AFFECTED (ch, AFF_INVISIBLE)) {
-        affect_strip (ch, gsn_invis);
-        affect_strip (ch, gsn_mass_invis);
+        affect_strip (ch, SN(INVIS));
+        affect_strip (ch, SN(MASS_INVIS));
         REMOVE_BIT (ch->affected_by, AFF_INVISIBLE);
         act ("$n fades into existence.", ch, NULL, NULL, TO_NOTCHAR);
     }
@@ -1040,7 +1040,7 @@ void check_killer (CHAR_T *ch, CHAR_T *victim) {
     if (IS_SET (ch->affected_by, AFF_CHARM)) {
         if (ch->master == NULL) {
             bugf ("Check_killer: %s bad AFF_CHARM", PERS (ch));
-            affect_strip (ch, gsn_charm_person);
+            affect_strip (ch, SN(CHARM_PERSON));
             REMOVE_BIT (ch->affected_by, AFF_CHARM);
             return;
         }
@@ -1076,7 +1076,7 @@ bool check_parry (CHAR_T *ch, CHAR_T *victim) {
     if (!IS_AWAKE (victim))
         return FALSE;
 
-    chance = char_get_skill (victim, gsn_parry) / 2;
+    chance = char_get_skill (victim, SN(PARRY)) / 2;
     if (char_get_eq_by_wear_loc (victim, WEAR_LOC_WIELD) == NULL) {
         if (IS_NPC (victim))
             chance /= 2;
@@ -1090,7 +1090,7 @@ bool check_parry (CHAR_T *ch, CHAR_T *victim) {
 
     act ("You parry $n's attack.", ch, NULL, victim, TO_VICT);
     act ("$N parries your attack.", ch, NULL, victim, TO_CHAR);
-    char_try_skill_improve (victim, gsn_parry, TRUE, 6);
+    char_try_skill_improve (victim, SN(PARRY), TRUE, 6);
     return TRUE;
 }
 
@@ -1103,13 +1103,13 @@ bool check_shield_block (CHAR_T *ch, CHAR_T *victim) {
     if (char_get_eq_by_wear_loc (victim, WEAR_LOC_SHIELD) == NULL)
         return FALSE;
 
-    chance = char_get_skill (victim, gsn_shield_block) / 5 + 3;
+    chance = char_get_skill (victim, SN(SHIELD_BLOCK)) / 5 + 3;
     if (number_percent () >= chance + victim->level - ch->level)
         return FALSE;
 
     act ("You block $n's attack with your shield.", ch, NULL, victim, TO_VICT);
     act ("$N blocks your attack with a shield.", ch, NULL, victim, TO_CHAR);
-    char_try_skill_improve (victim, gsn_shield_block, TRUE, 6);
+    char_try_skill_improve (victim, SN(SHIELD_BLOCK), TRUE, 6);
     return TRUE;
 }
 
@@ -1119,7 +1119,7 @@ bool check_dodge (CHAR_T *ch, CHAR_T *victim) {
     if (!IS_AWAKE (victim))
         return FALSE;
 
-    chance = char_get_skill (victim, gsn_dodge) / 2;
+    chance = char_get_skill (victim, SN(DODGE)) / 2;
     if (!char_can_see_in_room (victim, ch))
         chance /= 2;
     if (number_percent () >= chance + victim->level - ch->level)
@@ -1127,7 +1127,7 @@ bool check_dodge (CHAR_T *ch, CHAR_T *victim) {
 
     act ("You dodge $n's attack.", ch, NULL, victim, TO_VICT);
     act ("$N dodges your attack.", ch, NULL, victim, TO_CHAR);
-    char_try_skill_improve (victim, gsn_dodge, TRUE, 6);
+    char_try_skill_improve (victim, SN(DODGE), TRUE, 6);
     return TRUE;
 }
 
@@ -1171,7 +1171,7 @@ void set_fighting_one (CHAR_T *ch, CHAR_T *victim) {
         "set_fighting: already fighting", 0);
 
     if (IS_AFFECTED (ch, AFF_SLEEP))
-        affect_strip (ch, gsn_sleep);
+        affect_strip (ch, SN(SLEEP));
 
     if (victim->fighting == NULL && victim->daze == 0 &&
         victim->position < POS_FIGHTING)

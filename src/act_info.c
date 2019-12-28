@@ -488,7 +488,7 @@ DEFINE_DO_FUN (do_examine) {
 
 DEFINE_DO_FUN (do_lore) {
     OBJ_T *obj;
-    int skill = char_get_skill (ch, gsn_lore);
+    int skill = char_get_skill (ch, SN(LORE));
 
     BAIL_IF (skill == 0,
         "You haven't studied any lore.\n\r", ch);

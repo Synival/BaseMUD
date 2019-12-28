@@ -71,6 +71,7 @@ typedef struct liq_type         LIQ_T;
 typedef struct skill_type       SKILL_T;
 typedef struct skill_class_type SKILL_CLASS_T;
 typedef struct skill_group_type SKILL_GROUP_T;
+typedef struct skill_map_type   SKILL_MAP_T;
 typedef struct skill_group_class_type SKILL_GROUP_CLASS_T;
 typedef struct weapon_type      WEAPON_T;
 typedef struct item_type        ITEM_T;

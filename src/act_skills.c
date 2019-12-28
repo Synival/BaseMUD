@@ -169,10 +169,9 @@ void do_skills_or_spells (CHAR_T *ch, char *argument, int spells) {
 
 /* used to get new skills */
 DEFINE_DO_FUN (do_gain) {
-    const SKILL_GROUP_T *group;
     char arg[MAX_INPUT_LENGTH];
     CHAR_T *trainer;
-    int gn, sn = 0;
+    int num;
 
     if (IS_NPC (ch))
         return;
@@ -216,10 +215,10 @@ DEFINE_DO_FUN (do_gain) {
     }
 
     /* else add a group/skill */
-    gn = skill_group_lookup (argument);
-    if (gn >= 0) {
-        group = skill_group_get (gn);
-        BAIL_IF_ACT (ch->pcdata->group_known[gn],
+    num = skill_group_lookup (argument);
+    if (num >= 0) {
+        const SKILL_GROUP_T *group = skill_group_get (num);
+        BAIL_IF_ACT (ch->pcdata->group_known[num],
             "$N tells you 'You already know that group!'", ch, NULL, trainer);
         BAIL_IF_ACT (group->classes[ch->class].cost <= 0,
             "$N tells you 'That group is beyond your powers.'", ch, NULL, trainer);
@@ -227,28 +226,28 @@ DEFINE_DO_FUN (do_gain) {
             "$N tells you 'You are not yet ready for that group.'", ch, NULL, trainer);
 
         /* add the group */
-        char_add_skill_group (ch, gn, FALSE);
+        char_add_skill_group (ch, num, FALSE);
         act ("$N trains you in the art of $t.", ch, group->name, trainer, TO_CHAR);
         ch->train -= group->classes[ch->class].cost;
         return;
     }
 
-    sn = skill_lookup (argument);
-    if (sn > -1) {
-        BAIL_IF_ACT (skill_table[sn].spell_fun != spell_null,
+    num = skill_lookup (argument);
+    if (num > -1) {
+        const SKILL_T *skill = skill_get (num);
+        BAIL_IF_ACT (skill->spell_fun != spell_null,
             "$N tells you 'You must learn the full group.'", ch, NULL, trainer);
-        BAIL_IF_ACT (ch->pcdata->learned[sn],
+        BAIL_IF_ACT (ch->pcdata->learned[num],
             "$N tells you 'You already know that skill!'", ch, NULL, trainer);
-        BAIL_IF_ACT (skill_table[sn].classes[ch->class].effort <= 0,
+        BAIL_IF_ACT (skill->classes[ch->class].effort <= 0,
             "$N tells you 'That skill is beyond your powers.'", ch, NULL, trainer);
-        BAIL_IF_ACT (ch->train < skill_table[sn].classes[ch->class].effort,
+        BAIL_IF_ACT (ch->train < skill->classes[ch->class].effort,
             "$N tells you 'You are not yet ready for that skill.'", ch, NULL, trainer);
 
         /* add the skill */
-        ch->pcdata->learned[sn] = 1;
-        act ("$N trains you in the art of $t.",
-             ch, skill_table[sn].name, trainer, TO_CHAR);
-        ch->train -= skill_table[sn].classes[ch->class].effort;
+        ch->pcdata->learned[num] = 1;
+        act ("$N trains you in the art of $t.", ch, skill->name, trainer, TO_CHAR);
+        ch->train -= skill->classes[ch->class].effort;
         return;
     }
 
@@ -273,9 +272,7 @@ DEFINE_DO_FUN (do_groups) {
     if (argument[0] == '\0') {
         col = 0;
         for (num = 0; num < SKILL_GROUP_MAX; num++) {
-            if ((group = skill_group_get (num)) == NULL)
-                break;
-            if (group->name == NULL)
+            if ((group = skill_group_get (num)) == NULL || group->name == NULL)
                 break;
             if (!ch->pcdata->group_known[num])
                 continue;
@@ -295,9 +292,7 @@ DEFINE_DO_FUN (do_groups) {
     if (!str_cmp (argument, "all")) {
         col = 0;
         for (num = 0; num < SKILL_GROUP_MAX; num++) {
-            if ((group = skill_group_get (num)) == NULL)
-                break;
-            if (group->name == NULL)
+            if ((group = skill_group_get (num)) == NULL || group->name == NULL)
                 break;
             printf_to_char (ch, "%-20s ", group->name);
             if (++col % 3 == 0)

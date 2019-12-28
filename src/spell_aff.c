@@ -64,7 +64,7 @@ DEFINE_SPELL_FUN (spell_bless_object) {
         "$p is already blessed.", ch, obj, NULL);
 
     if (IS_OBJ_STAT (obj, ITEM_EVIL)) {
-        AFFECT_T *paf = affect_find (obj->affected, gsn_curse);
+        AFFECT_T *paf = affect_find (obj->affected, SN(CURSE));
         int paf_level = (paf != NULL) ? paf->level : obj->level;
 
         BAIL_IF_ACT (saves_dispel (level, paf_level, 0),
@@ -703,9 +703,9 @@ DEFINE_SPELL_FUN (spell_faerie_fog) {
         if (ich == ch || saves_spell (level, ich, DAM_OTHER))
             continue;
 
-        affect_strip (ich, gsn_invis);
-        affect_strip (ich, gsn_mass_invis);
-        affect_strip (ich, gsn_sneak);
+        affect_strip (ich, SN(INVIS));
+        affect_strip (ich, SN(MASS_INVIS));
+        affect_strip (ich, SN(SNEAK));
         REMOVE_BIT (ich->affected_by, AFF_HIDE);
         REMOVE_BIT (ich->affected_by, AFF_INVISIBLE);
         REMOVE_BIT (ich->affected_by, AFF_SNEAK);

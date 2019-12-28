@@ -52,6 +52,7 @@
 #include "update.h"
 #include "globals.h"
 #include "memory.h"
+#include "skills.h"
 
 #include "db.h"
 
@@ -406,7 +407,7 @@ void boot_db (void) {
     string_space_init ();
     number_mm_init ();
     init_time_weather ();
-    init_gsns ();
+    skill_init_mapping ();
 
 #ifdef BASEMUD_IMPORT_JSON
     db_import_json ();
@@ -467,13 +468,6 @@ void init_time_weather (void) {
     /* Set the sky type based on barometric pressure. */
     sky = sky_get_by_mmhg (weather_info.mmhg);
     weather_info.sky = sky->type;
-}
-
-void init_gsns (void) {
-    int sn;
-    for (sn = 0; sn < SKILL_MAX; sn++)
-        if (skill_table[sn].pgsn != NULL)
-            *skill_table[sn].pgsn = sn;
 }
 
 void init_areas (void) {

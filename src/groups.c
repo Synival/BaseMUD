@@ -68,7 +68,7 @@ void stop_follower (CHAR_T *ch) {
 
     if (IS_AFFECTED (ch, AFF_CHARM)) {
         REMOVE_BIT (ch->affected_by, AFF_CHARM);
-        affect_strip (ch, gsn_charm_person);
+        affect_strip (ch, SN(CHARM_PERSON));
     }
 
     if (char_can_see_in_room (ch->master, ch) && ch->in_room != NULL)

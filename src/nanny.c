@@ -573,7 +573,8 @@ DEFINE_NANNY_FUN (nanny_get_alignment) {
     if (class_table[ch->class].base_group != NULL)
         char_add_skill_or_group (ch, class_table[ch->class].base_group, FALSE);
 
-    ch->pcdata->learned[gsn_recall] = 50;
+    char_set_default_skills (ch);
+
     send_to_desc ("Do you wish to customize this character?\n\r", d);
     send_to_desc
         ("Customization takes time, but allows a wider range of skills "
@@ -612,7 +613,7 @@ DEFINE_NANNY_FUN (nanny_default_choice) {
 
             buf[0] = '\0';
             for (i = 0; weapon_table[i].name != NULL; i++) {
-                if (ch->pcdata->learned[*(weapon_table[i].gsn)] > 0) {
+                if (ch->pcdata->learned[weapon_table[i].skill_index] > 0) {
                     strcat (buf, weapon_table[i].name);
                     strcat (buf, " ");
                 }
@@ -638,11 +639,11 @@ DEFINE_NANNY_FUN (nanny_pick_weapon) {
     write_to_buffer (d, "\n\r", 2);
 
     weapon = weapon_get_by_name (argument);
-    if (weapon == NULL || ch->pcdata->learned[*(weapon->gsn)] <= 0) {
+    if (weapon == NULL || ch->pcdata->learned[weapon->skill_index] <= 0) {
         write_to_buffer (d, "That's not a valid selection. Choices are:\n\r", 0);
         buf[0] = '\0';
         for (i = 0; weapon_table[i].name != NULL; i++) {
-            if (ch->pcdata->learned[*(weapon_table[i].gsn)] > 0) {
+            if (ch->pcdata->learned[weapon_table[i].skill_index] > 0) {
                 strcat (buf, weapon_table[i].name);
                 strcat (buf, " ");
             }
@@ -652,7 +653,7 @@ DEFINE_NANNY_FUN (nanny_pick_weapon) {
         return;
     }
 
-    ch->pcdata->learned[*(weapon->gsn)] = 40;
+    ch->pcdata->learned[weapon->skill_index] = 40;
     write_to_buffer (d, "\n\r", 2);
     do_function (ch, &do_help, "motd");
     d->connected = CON_READ_MOTD;
@@ -711,23 +712,23 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
             }
 
             /* Close security hole */
-            if (ch->pcdata->creation_points +
-                group->classes[ch->class].cost > 300)
-            {
+            if (ch->pcdata->creation_points + group->classes[ch->class].cost > 300) {
                 send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
                 return TRUE;
             }
 
             printf_to_char (ch, "Group '%s' added.\n\r", group->name);
-            ch->gen_data->group_chosen[num] = TRUE;
             char_add_skill_group (ch, num, TRUE);
+            ch->gen_data->group_chosen[num] = TRUE;
             return TRUE;
         }
 
         num = skill_lookup (argument);
         if (num != -1) {
             skill = skill_get (num);
-            if (ch->gen_data->skill_chosen[num] || ch->pcdata->learned[num] != 0) {
+            if (ch->gen_data->skill_chosen[num] || ch->pcdata->skill_known[num] > 0 ||
+                ch->pcdata->learned[num] > 0)
+            {
                 send_to_char ("You already know that skill!\n\r", ch);
                 return TRUE;
             }
@@ -737,16 +738,14 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
             }
 
             /* Close security hole */
-            if (ch->pcdata->creation_points +
-                skill->classes[ch->class].effort > 300)
-            {
+            if (ch->pcdata->creation_points + skill->classes[ch->class].effort > 300) {
                 send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
                 return TRUE;
             }
 
             printf_to_char (ch, "Skill '%s' added.\n\r", skill->name);
-            ch->gen_data->skill_chosen[num] = TRUE;
             char_add_skill (ch, num, TRUE);
+            ch->gen_data->skill_chosen[num] = TRUE;
             return TRUE;
         }
 
@@ -764,8 +763,8 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
         if (num != -1 && ch->gen_data->group_chosen[num]) {
             group = skill_group_get (num);
             printf_to_char (ch, "Group '%s' dropped.\n\r", group->name);
-            ch->gen_data->group_chosen[num] = FALSE;
             char_remove_skill_group (ch, num, TRUE);
+            ch->gen_data->group_chosen[num] = FALSE;
             return TRUE;
         }
 
@@ -773,8 +772,8 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
         if (num != -1 && ch->gen_data->skill_chosen[num]) {
             skill = skill_get (num);
             printf_to_char (ch, "Skill '%s' dropped.\n\r", skill->name);
-            ch->gen_data->skill_chosen[num] = FALSE;
             char_remove_skill (ch, num, TRUE);
+            ch->gen_data->skill_chosen[num] = FALSE;
             return TRUE;
         }
 
@@ -814,7 +813,7 @@ DEFINE_NANNY_FUN (nanny_gen_groups_done) {
     if (ch->pcdata->creation_points ==
         pc_race_table[ch->race].creation_points)
     {
-        send_to_char ("You didn't pick anything.\n\r", ch);
+        send_to_char ("You didn't pick anything.\n\r\n\r", ch);
         do_function (ch, &do_help, "menu choice");
         return;
     }
@@ -823,8 +822,8 @@ DEFINE_NANNY_FUN (nanny_gen_groups_done) {
         pc_race_table[ch->race].creation_points)
     {
         printf_to_char (ch,
-             "You must take at least %d points of skills "
-             "and groups.\n\r", 40 + pc_race_table[ch->race].creation_points);
+            "You must take at least %d points of skills and groups.\n\r\n\r",
+            40 + pc_race_table[ch->race].creation_points);
         do_function (ch, &do_help, "menu choice");
         return;
     }
@@ -842,7 +841,7 @@ DEFINE_NANNY_FUN (nanny_gen_groups_done) {
     write_to_buffer (d, "Please pick a weapon from the following choices:\n\r", 0);
     buf[0] = '\0';
     for (i = 0; weapon_table[i].name != NULL; i++) {
-        if (ch->pcdata->learned[*weapon_table[i].gsn] > 0) {
+        if (ch->pcdata->learned[weapon_table[i].skill_index] > 0) {
             strcat (buf, weapon_table[i].name);
             strcat (buf, " ");
         }

@@ -198,8 +198,9 @@ struct item_type {
 struct weapon_type {
     sh_int type;
     char *name;
+    char *skill;
     sh_int newbie_vnum;
-    sh_int *gsn;
+    int skill_index; /* dynamically set */
 };
 
 struct wiznet_type {
@@ -542,7 +543,8 @@ struct pc_data {
     int last_level;
     sh_int condition[4];
     sh_int learned[SKILL_MAX];
-    bool group_known[SKILL_GROUP_MAX];
+    sh_int skill_known[SKILL_MAX];
+    sh_int group_known[SKILL_GROUP_MAX];
     sh_int creation_points;
     bool confirm_delete;
     char *alias[MAX_ALIAS];
@@ -953,13 +955,14 @@ struct skill_type {
     SPELL_FUN *spell_fun;          /* Spell pointer (for spells)  */
     sh_int target;                 /* Legal targets               */
     sh_int minimum_position;       /* Position for caster / user  */
-    sh_int *pgsn;                  /* Pointer to associated gsn   */
     sh_int slot;                   /* Slot for #OBJECT loading    */
     sh_int min_mana;               /* Minimum mana used           */
     sh_int beats;                  /* Waiting time after use      */
     char *noun_damage;             /* Damage message              */
     char *msg_off;                 /* Wear off message            */
     char *msg_obj;                 /* Wear off message for obects */
+    int map_index;                 /* Dynamically set             */
+    int weapon_index;              /* Dynamically set             */
 };
 
 struct skill_group_class_type {
@@ -970,6 +973,12 @@ struct skill_group_type {
     char *name;
     SKILL_GROUP_CLASS_T classes[CLASS_MAX];
     char *spells[MAX_IN_GROUP];
+};
+
+struct skill_map_type {
+    int map_index;
+    char *name;
+    int skill_index; /* dynamically set */
 };
 
 struct mprog_list {
