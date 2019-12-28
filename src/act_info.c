@@ -533,7 +533,7 @@ DEFINE_DO_FUN (do_worth) {
     }
     printf_to_char (ch,
         "You have %ld gold, %ld silver, and %d experience (%d exp to level).\n\r",
-        ch->gold, ch->silver, ch->exp, get_exp_to_level(ch));
+        ch->gold, ch->silver, ch->exp, exp_to_next_level(ch));
 }
 
 DEFINE_DO_FUN (do_score) {
@@ -579,7 +579,7 @@ DEFINE_DO_FUN (do_score) {
     /* RT shows exp to level */
     if (!IS_NPC (ch) && ch->level < LEVEL_HERO)
         printf_to_char (ch, "You need %d exp to level.\n\r",
-            get_exp_to_level(ch));
+            exp_to_next_level (ch));
 
     printf_to_char (ch, "Wimpy set to %d hit points.\n\r", ch->wimpy);
 

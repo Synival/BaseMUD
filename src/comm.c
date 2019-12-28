@@ -137,7 +137,7 @@ void bust_a_prompt (CHAR_T *ch) {
 
             case 'X':
                 sprintf (buf2, "%d", IS_NPC (ch) ? 0 : (ch->level + 1)
-                    * exp_per_level (ch, ch->pcdata->points) - ch->exp);
+                    * exp_per_level (ch) - ch->exp);
                 i = buf2;
                 break;
 

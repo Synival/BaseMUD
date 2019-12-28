@@ -91,7 +91,6 @@ extern sh_int gsn_frenzy;
 int char_get_skill (const CHAR_T *ch, int sn);
 int char_get_mobile_skill (const CHAR_T *ch, int sn);
 void char_list_skills_and_groups (CHAR_T *ch, bool chosen);
-bool char_parse_gen_groups (CHAR_T *ch, char *argument);
 void char_try_skill_improve (CHAR_T *ch, int sn, bool success, int multiplier);
 void char_add_skill (CHAR_T *ch, int sn, bool deduct);
 void char_remove_skill (CHAR_T *ch, int sn, bool refund);

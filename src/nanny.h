@@ -56,4 +56,7 @@ DECLARE_NANNY_FUN (nanny_gen_groups_done);
 DECLARE_NANNY_FUN (nanny_read_imotd);
 DECLARE_NANNY_FUN (nanny_read_motd);
 
+/* helper functions. */
+bool nanny_parse_gen_groups (CHAR_T *ch, char *argument);
+
 #endif

@@ -110,9 +110,9 @@ void gain_exp (CHAR_T *ch, int gain) {
     if (IS_NPC (ch) || ch->level >= LEVEL_HERO)
         return;
 
-    ch->exp = UMAX (exp_per_level (ch, ch->pcdata->points), ch->exp + gain);
+    ch->exp = UMAX (exp_per_level (ch), ch->exp + gain);
     while (ch->level < LEVEL_HERO && ch->exp >=
-           exp_per_level (ch, ch->pcdata->points) * (ch->level + 1))
+           exp_per_level (ch) * (ch->level + 1))
     {
         send_to_char ("{GYou raise a level!!  {x", ch);
         ch->level += 1;
@@ -817,11 +817,8 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
                 victim->name, PERS (ch), ch->in_room->vnum);
 
             /* Dying penalty: 2/3 way back to previous level. */
-            if (victim->exp > exp_per_level (victim, victim->pcdata->points)
-                * victim->level)
-            {
-                gain_exp (victim, (2 *
-                   (exp_per_level (victim, victim->pcdata->points) *
+            if (victim->exp > exp_per_level (victim) * victim->level) {
+                gain_exp (victim, (2 * (exp_per_level (victim) *
                     victim->level - victim->exp) / 3) + 50);
             }
         }
@@ -1836,13 +1833,16 @@ void disarm (CHAR_T *ch, CHAR_T *victim) {
     }
 }
 
-int get_exp_to_level (CHAR_T *ch) {
+int exp_to_next_level (const CHAR_T *ch) {
     if (IS_NPC (ch) || ch->level >= LEVEL_HERO)
         return 1000;
-    return (ch->level + 1) * exp_per_level (ch, ch->pcdata->points) - ch->exp;
+    return (ch->level + 1) * exp_per_level (ch) - ch->exp;
 }
 
-int exp_per_level (CHAR_T *ch, int points) {
+int exp_per_level (const CHAR_T *ch)
+    { return exp_per_level_with_points (ch, ch->pcdata->creation_points); }
+
+int exp_per_level_with_points (const CHAR_T *ch, int points) {
     int expl, inc;
 
     if (IS_NPC (ch))

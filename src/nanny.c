@@ -55,6 +55,7 @@
 #include "descs.h"
 #include "globals.h"
 #include "memory.h"
+#include "magic.h"
 
 #include "nanny.h"
 
@@ -494,7 +495,7 @@ DEFINE_NANNY_FUN (nanny_get_new_race) {
     }
 
     /* add cost */
-    ch->pcdata->points = pc_race_table[race].points;
+    ch->pcdata->creation_points = pc_race_table[race].creation_points;
     ch->size = pc_race_table[race].size;
 
     send_to_desc ("What is your sex (M/F)? ", d);
@@ -665,9 +666,144 @@ DEFINE_NANNY_FUN (nanny_gen_groups) {
         return;
     }
 
-    if (char_parse_gen_groups (ch, argument))
+    if (nanny_parse_gen_groups (ch, argument))
         send_to_char ("\n\r", ch);
     do_function (ch, &do_help, "menu choice");
+}
+
+/* this procedure handles the input parsing for the skill generator */
+bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
+    const SKILL_T *skill;
+    const SKILL_GROUP_T *group;
+    char arg[MAX_INPUT_LENGTH];
+    int num;
+
+    if (argument[0] == '\0')
+        return FALSE;
+
+    argument = one_argument (argument, arg);
+    if (!str_prefix (arg, "help")) {
+        if (argument[0] == '\0') {
+            do_function (ch, &do_help, "group help");
+            return TRUE;
+        }
+
+        do_function (ch, &do_help, argument);
+        return TRUE;
+    }
+
+    if (!str_prefix (arg, "add")) {
+        if (argument[0] == '\0') {
+            send_to_char ("You must provide a skill name.\n\r", ch);
+            return TRUE;
+        }
+
+        num = skill_group_lookup (argument);
+        if (num != -1) {
+            group = skill_group_get (num);
+            if (ch->gen_data->group_chosen[num] || ch->pcdata->group_known[num]) {
+                send_to_char ("You already know that group!\n\r", ch);
+                return TRUE;
+            }
+            if (group->classes[ch->class].cost < 1) {
+                send_to_char ("That group is not available.\n\r", ch);
+                return TRUE;
+            }
+
+            /* Close security hole */
+            if (ch->pcdata->creation_points +
+                group->classes[ch->class].cost > 300)
+            {
+                send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
+                return TRUE;
+            }
+
+            printf_to_char (ch, "Group '%s' added.\n\r", group->name);
+            ch->gen_data->group_chosen[num] = TRUE;
+            char_add_skill_group (ch, num, TRUE);
+            return TRUE;
+        }
+
+        num = skill_lookup (argument);
+        if (num != -1) {
+            skill = skill_get (num);
+            if (ch->gen_data->skill_chosen[num] || ch->pcdata->learned[num] != 0) {
+                send_to_char ("You already know that skill!\n\r", ch);
+                return TRUE;
+            }
+            if (skill->classes[ch->class].effort < 1 || skill->spell_fun != spell_null) {
+                send_to_char ("That skill is not available.\n\r", ch);
+                return TRUE;
+            }
+
+            /* Close security hole */
+            if (ch->pcdata->creation_points +
+                skill->classes[ch->class].effort > 300)
+            {
+                send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
+                return TRUE;
+            }
+
+            printf_to_char (ch, "Skill '%s' added.\n\r", skill->name);
+            ch->gen_data->skill_chosen[num] = TRUE;
+            char_add_skill (ch, num, TRUE);
+            return TRUE;
+        }
+
+        send_to_char ("No skills or groups by that name...\n\r", ch);
+        return TRUE;
+    }
+
+    if (!strcmp (arg, "drop")) {
+        if (argument[0] == '\0') {
+            send_to_char ("You must provide a skill to drop.\n\r", ch);
+            return TRUE;
+        }
+
+        num = skill_group_lookup (argument);
+        if (num != -1 && ch->gen_data->group_chosen[num]) {
+            group = skill_group_get (num);
+            printf_to_char (ch, "Group '%s' dropped.\n\r", group->name);
+            ch->gen_data->group_chosen[num] = FALSE;
+            char_remove_skill_group (ch, num, TRUE);
+            return TRUE;
+        }
+
+        num = skill_lookup (argument);
+        if (num != -1 && ch->gen_data->skill_chosen[num]) {
+            skill = skill_get (num);
+            printf_to_char (ch, "Skill '%s' dropped.\n\r", skill->name);
+            ch->gen_data->skill_chosen[num] = FALSE;
+            char_remove_skill (ch, num, TRUE);
+            return TRUE;
+        }
+
+        send_to_char ("You haven't bought any such skill or group.\n\r", ch);
+        return TRUE;
+    }
+
+    if (!str_prefix (arg, "premise")) {
+        do_function (ch, &do_help, "premise");
+        return TRUE;
+    }
+    if (!str_prefix (arg, "list")) {
+        char_list_skills_and_groups (ch, FALSE);
+        return TRUE;
+    }
+    if (!str_prefix (arg, "learned")) {
+        char_list_skills_and_groups (ch, TRUE);
+        return TRUE;
+    }
+    if (!str_prefix (arg, "abilities")) {
+        do_function (ch, &do_abilities, "all");
+        return TRUE;
+    }
+    if (!str_prefix (arg, "info")) {
+        do_function (ch, &do_groups, argument);
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
 DEFINE_NANNY_FUN (nanny_gen_groups_done) {
@@ -675,22 +811,30 @@ DEFINE_NANNY_FUN (nanny_gen_groups_done) {
     char buf[MAX_STRING_LENGTH];
     int i;
 
-    BAIL_IF (ch->pcdata->points == pc_race_table[ch->race].points,
-        "You didn't pick anything.\n\r", ch);
-
-    if (ch->pcdata->points < 40 + pc_race_table[ch->race].points) {
-        printf_to_char (ch,
-             "You must take at least %d points of skills "
-             "and groups.\n\r", 40 + pc_race_table[ch->race].points);
+    if (ch->pcdata->creation_points ==
+        pc_race_table[ch->race].creation_points)
+    {
+        send_to_char ("You didn't pick anything.\n\r", ch);
+        do_function (ch, &do_help, "menu choice");
         return;
     }
 
-    printf_to_char (ch, "Creation points: %d\n\r", ch->pcdata->points);
-    printf_to_char (ch, "Experience per level: %d\n\r",
-        exp_per_level (ch, ch->pcdata->points));
+    if (ch->pcdata->creation_points < 40 +
+        pc_race_table[ch->race].creation_points)
+    {
+        printf_to_char (ch,
+             "You must take at least %d points of skills "
+             "and groups.\n\r", 40 + pc_race_table[ch->race].creation_points);
+        do_function (ch, &do_help, "menu choice");
+        return;
+    }
 
-    if (ch->pcdata->points < 40)
-        ch->train = (40 - ch->pcdata->points + 1) / 2;
+    printf_to_char (ch, "Creation points: %d\n\r",
+        ch->pcdata->creation_points);
+    printf_to_char (ch, "Experience per level: %d\n\r", exp_per_level (ch));
+
+    if (ch->pcdata->creation_points < 40)
+        ch->train = (40 - ch->pcdata->creation_points + 1) / 2;
     gen_data_free (ch->gen_data);
     ch->gen_data = NULL;
 
@@ -746,7 +890,7 @@ DEFINE_NANNY_FUN (nanny_read_motd) {
         ch->perm_stat[class_table[ch->class].attr_prime] += 3;
 
         ch->level = 1;
-        ch->exp   = exp_per_level (ch, ch->pcdata->points);
+        ch->exp   = exp_per_level (ch);
         ch->hit   = ch->max_hit;
         ch->mana  = ch->max_mana;
         ch->move  = ch->max_move;

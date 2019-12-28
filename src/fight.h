@@ -72,7 +72,8 @@ int xp_compute (CHAR_T *gch, CHAR_T *victim, int total_levels);
 void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt, bool immune,
     int orig_dam, const char *damage_adj);
 void disarm (CHAR_T *ch, CHAR_T *victim);
-int get_exp_to_level (CHAR_T *ch);
-int exp_per_level (CHAR_T *ch, int points);
+int exp_to_next_level (const CHAR_T *ch);
+int exp_per_level (const CHAR_T *ch);
+int exp_per_level_with_points (const CHAR_T *ch, int points);
 
 #endif

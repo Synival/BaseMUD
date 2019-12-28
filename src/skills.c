@@ -193,7 +193,7 @@ void char_list_skills_and_groups (CHAR_T *ch, bool chosen) {
 
     col = 0;
     for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
-        if ((group = skill_group_get (gn)) == NULL)
+        if ((group = skill_group_get (gn)) == NULL || group->name == NULL)
             break;
         if (group->classes[ch->class].cost <= 0)
             continue;
@@ -217,16 +217,14 @@ void char_list_skills_and_groups (CHAR_T *ch, bool chosen) {
     printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s\n\r",
         "skill", "cp", "skill", "cp", "skill", "cp");
 
-    for (sn = 0; sn < SKILL_MAX; sn++) {
-        if (skill_table[sn].name == NULL)
-            break;
+    for (sn = 0; sn < SKILL_MAX && skill_table[sn].name != NULL; sn++) {
         if (skill_table[sn].classes[ch->class].effort <= 0)
             continue;
         if (skill_table[sn].spell_fun != spell_null)
             continue;
         if (((ch->pcdata->learned[sn] > 0) ? TRUE : FALSE) != chosen)
             continue;
-        if (ch->gen_data->skill_chosen[sn] != chosen)
+        if (ch->gen_data && ch->gen_data->skill_chosen[sn] != chosen)
             continue;
 
         if (!!(ch->pcdata->learned[sn] != 0) == !!chosen) {
@@ -239,146 +237,14 @@ void char_list_skills_and_groups (CHAR_T *ch, bool chosen) {
 
     if (col % 3 != 0)
         send_to_char ("\n\r", ch);
-    send_to_char ("\n\r", ch);
 
-    printf_to_char (ch, "Creation points: %d\n\r", ch->gen_data->points_chosen);
-    printf_to_char (ch, "Experience per level: %d\n\r",
-        exp_per_level (ch, ch->pcdata->points));
-}
-
-/* this procedure handles the input parsing for the skill generator */
-bool char_parse_gen_groups (CHAR_T *ch, char *argument) {
-    const SKILL_T *skill;
-    const SKILL_GROUP_T *group;
-    char arg[MAX_INPUT_LENGTH];
-    int num;
-
-    if (argument[0] == '\0')
-        return FALSE;
-
-    argument = one_argument (argument, arg);
-    if (!str_prefix (arg, "help")) {
-        if (argument[0] == '\0') {
-            do_function (ch, &do_help, "group help");
-            return TRUE;
-        }
-
-        do_function (ch, &do_help, argument);
-        return TRUE;
+    /* only show generation points during character generation. */
+    if (ch->gen_data) {
+        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "Creation points: %d\n\r",
+            ch->pcdata->creation_points);
+        printf_to_char (ch, "Experience per level: %d\n\r", exp_per_level (ch));
     }
-
-    if (!str_prefix (arg, "add")) {
-        if (argument[0] == '\0') {
-            send_to_char ("You must provide a skill name.\n\r", ch);
-            return TRUE;
-        }
-
-        num = skill_group_lookup (argument);
-        if (num != -1) {
-            group = skill_group_get (num);
-            if (ch->gen_data->group_chosen[num] || ch->pcdata->group_known[num]) {
-                send_to_char ("You already know that group!\n\r", ch);
-                return TRUE;
-            }
-            if (group->classes[ch->class].cost < 1) {
-                send_to_char ("That group is not available.\n\r", ch);
-                return TRUE;
-            }
-
-            /* Close security hole */
-            if (ch->gen_data->points_chosen + group->classes[ch->class].cost > 300) {
-                send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
-                return TRUE;
-            }
-
-            printf_to_char (ch, "Group '%s' added.\n\r", group->name);
-            ch->gen_data->group_chosen[num] = TRUE;
-            ch->gen_data->points_chosen += group->classes[ch->class].cost;
-            char_add_skill_group (ch, num, TRUE);
-            return TRUE;
-        }
-
-        num = skill_lookup (argument);
-        if (num != -1) {
-            skill = skill_get (num);
-            if (ch->gen_data->skill_chosen[num] || ch->pcdata->learned[num] != 0) {
-                send_to_char ("You already know that skill!\n\r", ch);
-                return TRUE;
-            }
-            if (skill->classes[ch->class].effort < 1 || skill->spell_fun != spell_null) {
-                send_to_char ("That skill is not available.\n\r", ch);
-                return TRUE;
-            }
-
-            /* Close security hole */
-            if (ch->pcdata->points + skill->classes[ch->class].effort > 300) {
-                send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
-                return TRUE;
-            }
-
-            printf_to_char (ch, "Skill '%s' added.\n\r", skill->name);
-            ch->gen_data->skill_chosen[num] = TRUE;
-            ch->gen_data->points_chosen += skill->classes[ch->class].effort;
-            char_add_skill (ch, num, TRUE);
-            return TRUE;
-        }
-
-        send_to_char ("No skills or groups by that name...\n\r", ch);
-        return TRUE;
-    }
-
-    if (!strcmp (arg, "drop")) {
-        if (argument[0] == '\0') {
-            send_to_char ("You must provide a skill to drop.\n\r", ch);
-            return TRUE;
-        }
-
-        num = skill_group_lookup (argument);
-        if (num != -1 && ch->gen_data->group_chosen[num]) {
-            group = skill_group_get (num);
-            printf_to_char (ch, "Group '%s' dropped.\n\r", group->name);
-            ch->gen_data->group_chosen[num] = FALSE;
-            ch->gen_data->points_chosen -= group->classes[ch->class].cost;
-            char_remove_skill_group (ch, num, TRUE);
-            return TRUE;
-        }
-
-        num = skill_lookup (argument);
-        if (num != -1 && ch->gen_data->skill_chosen[num]) {
-            skill = skill_get (num);
-            printf_to_char (ch, "Skill '%s' dropped.\n\r", skill->name);
-            ch->gen_data->skill_chosen[num] = FALSE;
-            ch->gen_data->points_chosen -= skill->classes[ch->class].effort;
-            char_remove_skill (ch, num, TRUE);
-            return TRUE;
-        }
-
-        send_to_char ("You haven't bought any such skill or group.\n\r", ch);
-        return TRUE;
-    }
-
-    if (!str_prefix (arg, "premise")) {
-        do_function (ch, &do_help, "premise");
-        return TRUE;
-    }
-    if (!str_prefix (arg, "list")) {
-        char_list_skills_and_groups (ch, FALSE);
-        return TRUE;
-    }
-    if (!str_prefix (arg, "learned")) {
-        char_list_skills_and_groups (ch, TRUE);
-        return TRUE;
-    }
-    if (!str_prefix (arg, "abilities")) {
-        do_function (ch, &do_abilities, "all");
-        return TRUE;
-    }
-    if (!str_prefix (arg, "info")) {
-        do_function (ch, &do_groups, argument);
-        return TRUE;
-    }
-
-    return FALSE;
 }
 
 /* checks for skill improvement */
@@ -438,7 +304,7 @@ void char_add_skill (CHAR_T *ch, int sn, bool deduct) {
     if (ch->pcdata->learned[sn] == 0) { /* i.e. not known */
         ch->pcdata->learned[sn] = 1;
         if (deduct)
-            ch->pcdata->points += skill->classes[ch->class].effort;
+            ch->pcdata->creation_points += skill->classes[ch->class].effort;
     }
 }
 
@@ -452,7 +318,7 @@ void char_remove_skill (CHAR_T *ch, int sn, bool refund) {
     if (ch->pcdata->learned[sn] != 0) {
         ch->pcdata->learned[sn] = 0;
         if (refund)
-            ch->pcdata->points -= skill->classes[ch->class].effort;
+            ch->pcdata->creation_points -= skill->classes[ch->class].effort;
     }
 }
 
@@ -470,7 +336,7 @@ void char_add_skill_group (CHAR_T *ch, int gn, bool deduct) {
     if (ch->pcdata->group_known[gn] == FALSE) {
         ch->pcdata->group_known[gn] = TRUE;
         if (deduct)
-            ch->pcdata->points += group->classes[ch->class].cost;
+            ch->pcdata->creation_points += group->classes[ch->class].cost;
     }
 
     for (i = 0; i < MAX_IN_GROUP; i++) {
@@ -493,7 +359,7 @@ void char_remove_skill_group (CHAR_T *ch, int gn, bool refund) {
     if (ch->pcdata->group_known[gn] == TRUE) {
         ch->pcdata->group_known[gn] = FALSE;
         if (refund)
-            ch->pcdata->points -= group->classes[ch->class].cost;
+            ch->pcdata->creation_points -= group->classes[ch->class].cost;
     }
 
     for (i = 0; i < MAX_IN_GROUP; i++) {

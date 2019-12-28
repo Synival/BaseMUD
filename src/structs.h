@@ -244,7 +244,7 @@ struct race_type {
 struct pc_race_type {             /* additional data for pc races    */
     char *name;                   /* MUST be in race_type            */
     char who_name[8];
-    sh_int points;                /* cost in points of the race      */
+    sh_int creation_points;       /* cost in points of the race      */
     sh_int class_mult[CLASS_MAX]; /* exp multiplier for class, * 100 */
     char *skills[PC_RACE_SKILL_MAX]; /* bonus skills for the race    */
     sh_int stats[STAT_MAX];       /* starting stats                  */
@@ -543,7 +543,7 @@ struct pc_data {
     sh_int condition[4];
     sh_int learned[SKILL_MAX];
     bool group_known[SKILL_GROUP_MAX];
-    sh_int points;
+    sh_int creation_points;
     bool confirm_delete;
     char *alias[MAX_ALIAS];
     char *alias_sub[MAX_ALIAS];
@@ -563,7 +563,6 @@ struct pc_data {
 struct gen_data {
     bool skill_chosen[SKILL_MAX];
     bool group_chosen[SKILL_GROUP_MAX];
-    int points_chosen;
     OBJ_RECYCLE_T rec_data;
 };
 

@@ -234,7 +234,7 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
         if (ch->pcdata->bamfout[0] != '\0')
             fprintf (fp, "Bout %s~\n", ch->pcdata->bamfout);
         fprintf (fp, "Titl %s~\n", ch->pcdata->title);
-        fprintf (fp, "Pnts %d\n", ch->pcdata->points);
+        fprintf (fp, "Pnts %d\n", ch->pcdata->creation_points);
         fprintf (fp, "TSex %d\n", ch->pcdata->true_sex);
         fprintf (fp, "LLev %d\n", ch->pcdata->last_level);
         fprintf (fp, "HMVP %d %d %d\n", ch->pcdata->perm_hit,
@@ -1049,8 +1049,8 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 KEY ("Played", ch->played, fread_number (fp));
                 KEY ("Plyd", ch->played, fread_number (fp));
                 KEY ("Plr", ch->plr, fread_flag (fp));
-                KEY ("Points", ch->pcdata->points, fread_number (fp));
-                KEY ("Pnts", ch->pcdata->points, fread_number (fp));
+                KEY ("Points", ch->pcdata->creation_points, fread_number (fp));
+                KEY ("Pnts", ch->pcdata->creation_points, fread_number (fp));
                 KEY ("Position", ch->position, fread_number (fp));
                 KEY ("Pos", ch->position, fread_number (fp));
                 KEY ("Practice", ch->practice, fread_number (fp));

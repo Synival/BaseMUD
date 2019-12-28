@@ -116,10 +116,8 @@ void do_skills_or_spells (CHAR_T *ch, char *argument, int spells) {
         skill_list[level][0] = '\0';
     }
 
-    for (sn = 0; sn < SKILL_MAX; sn++) {
+    for (sn = 0; sn < SKILL_MAX && skill_table[sn].name != NULL; sn++) {
         int is_spell;
-        if (skill_table[sn].name == NULL)
-            break;
 
         level = skill_table[sn].classes[ch->class].level;
         is_spell = skill_table[sn].spell_fun != spell_null;
@@ -188,48 +186,7 @@ DEFINE_DO_FUN (do_gain) {
         "$N tells you 'Pardon me?'", ch, NULL, trainer);
 
     if (!str_prefix (arg, "list")) {
-        int col;
-        col = 0;
-        printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s\n\r",
-                 "group", "cost", "group", "cost", "group", "cost");
-
-        for (gn = 0; gn < SKILL_GROUP_MAX; gn++) {
-            if ((group = skill_group_get (gn)) == NULL)
-                break;
-            if (ch->pcdata->group_known[gn])
-                continue;
-            if (group->classes[ch->class].cost <= 0)
-                continue;
-
-            printf_to_char (ch, "%-18s %-5d ", group->name,
-                group->classes[ch->class].cost);
-            if (++col % 3 == 0)
-                send_to_char ("\n\r", ch);
-        }
-        if (col % 3 != 0)
-            send_to_char ("\n\r", ch);
-
-        send_to_char ("\n\r", ch);
-        col = 0;
-
-        printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s\n\r",
-                 "skill", "cost", "skill", "cost", "skill", "cost");
-
-        for (sn = 0; sn < SKILL_MAX && skill_table[sn].name; sn++) {
-            if (ch->pcdata->learned[sn])
-                continue;
-            if (skill_table[sn].classes[ch->class].effort <= 0)
-                continue;
-            if (skill_table[sn].spell_fun != spell_null)
-                continue;
-
-            printf_to_char (ch, "%-18s %-5d ", skill_table[sn].name,
-                skill_table[sn].classes[ch->class].effort);
-            if (++col % 3 == 0)
-                send_to_char ("\n\r", ch);
-        }
-        if (col % 3 != 0)
-            send_to_char ("\n\r", ch);
+        char_list_skills_and_groups (ch, FALSE);
         return;
     }
 
@@ -247,14 +204,14 @@ DEFINE_DO_FUN (do_gain) {
     if (!str_prefix (arg, "points")) {
         BAIL_IF_ACT (ch->train < 2,
             "$N tells you 'You are not yet ready.'", ch, NULL, trainer);
-        BAIL_IF_ACT (ch->pcdata->points <= 40,
+        BAIL_IF_ACT (ch->pcdata->creation_points <= 40,
             "$N tells you 'There would be no point in that.'", ch, NULL, trainer);
 
         act ("$N trains you, and you feel more at ease with your skills.",
              ch, NULL, trainer, TO_CHAR);
         ch->train -= 2;
-        ch->pcdata->points -= 1;
-        ch->exp = exp_per_level (ch, ch->pcdata->points) * ch->level;
+        ch->pcdata->creation_points -= 1;
+        ch->exp = exp_per_level (ch) * ch->level;
         return;
     }
 
@@ -329,7 +286,8 @@ DEFINE_DO_FUN (do_groups) {
         }
         if (col % 3 != 0)
             send_to_char ("\n\r", ch);
-        printf_to_char (ch, "Creation points: %d\n\r", ch->pcdata->points);
+        printf_to_char (ch, "Creation points: %d\n\r",
+            ch->pcdata->creation_points);
         return;
     }
 
@@ -494,10 +452,7 @@ DEFINE_DO_FUN (do_practice) {
 
     if (argument[0] == '\0') {
         col = 0;
-        for (sn = 0; sn < SKILL_MAX; sn++) {
-            if (skill_table[sn].name == NULL)
-                break;
-
+        for (sn = 0; sn < SKILL_MAX && skill_table[sn].name != NULL; sn++) {
             level = skill_table[sn].classes[ch->class].level;
             if (level < 1 || level > top_level)
                 continue;
@@ -526,7 +481,7 @@ DEFINE_DO_FUN (do_practice) {
         "You can't do that here.\n\r", ch);
 
     sn = find_spell (ch, argument);
-    BAIL_IF (sn < 0 || sn >= SKILL_MAX,
+    BAIL_IF (sn < 0 || sn >= SKILL_MAX || skill_table[sn].name == NULL,
         "Practice what now?\n\r", ch);
 
     level = skill_table[sn].classes[ch->class].level;

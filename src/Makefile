@@ -190,7 +190,7 @@ nanny.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 nanny.o: json.h structs.h types.h flags.h tables.h interp.h recycle.h
 nanny.o: lookup.h skills.h utils.h comm.h db.h save.h ban.h fight.h
 nanny.o: act_info.h act_skills.h act_board.h act_obj.h chars.h objs.h descs.h
-nanny.o: globals.h memory.h nanny.h
+nanny.o: globals.h memory.h magic.h nanny.h
 objs.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 objs.o: json.h structs.h types.h flags.h tables.h affects.h utils.h chars.h
 objs.o: db.h recycle.h comm.h lookup.h materials.h globals.h memory.h objs.h

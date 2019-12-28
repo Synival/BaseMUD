@@ -170,7 +170,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_pc_race) {
 
     json_prop_string  (new, "name",     JSTR (pc_race->name));
     json_prop_string  (new, "who_name", JSTR (pc_race->who_name));
-    json_prop_integer (new, "creation_points", pc_race->points);
+    json_prop_integer (new, "creation_points", pc_race->creation_points);
 
     sub = json_prop_object (new, "class_exp", JSON_OBJ_ANY);
     for (i = 0; (class = class_get (i)) != NULL; i++)
