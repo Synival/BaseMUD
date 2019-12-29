@@ -139,16 +139,22 @@ int char_get_mobile_skill (const CHAR_T *ch, int sn) {
 
 void char_list_skills_and_groups (CHAR_T *ch, bool chosen) {
     const SKILL_GROUP_T *group;
+    const SKILL_T *skill;
     int num, col;
+
+    chosen = (!!chosen);
 
     if (IS_NPC (ch))
         return;
 
-    printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s\n\r",
-        "group", "cp", "group", "cp", "group", "cp");
+#ifdef BASEMUD_DOTTED_LINES_IN_SKILLS
+    #define LINE_CHAR '.'
+#else
+    #define LINE_CHAR ' '
+#endif
 
     col = 0;
-    chosen = (!!chosen);
+    printf_to_char (ch, "Groups:\n\r");
     for (num = 0; num < SKILL_GROUP_MAX; num++) {
         if ((group = skill_group_get (num)) == NULL || group->name == NULL)
             break;
@@ -159,23 +165,29 @@ void char_list_skills_and_groups (CHAR_T *ch, bool chosen) {
         if (ch->gen_data && !!ch->gen_data->group_chosen[num] != chosen)
             continue;
 
-        printf_to_char (ch, "%-18s %-5d ", group->name,
+        if (col % 3 == 0)
+            send_to_char ("   ", ch);
+        printf_to_char (ch, "%s%s%d  ", group->name,
+            str_line (LINE_CHAR, 19 - strlen (group->name) +
+                (3 - int_str_len (group->classes[ch->class].cost))),
             group->classes[ch->class].cost);
         if (++col % 3 == 0)
             send_to_char ("\n\r", ch);
     }
+    if (col == 0)
+        send_to_char ("   None.\n\r", ch);
     if (col % 3 != 0)
         send_to_char ("\n\r", ch);
     send_to_char ("\n\r", ch);
 
     col = 0;
-    printf_to_char (ch, "%-18s %-5s %-18s %-5s %-18s %-5s\n\r",
-        "skill", "cp", "skill", "cp", "skill", "cp");
-
-    for (num = 0; num < SKILL_MAX && skill_table[num].name != NULL; num++) {
-        if (skill_table[num].classes[ch->class].effort <= 0)
+    printf_to_char (ch, "Skills:\n\r");
+    for (num = 0; num < SKILL_MAX; num++) {
+        if ((skill = skill_get (num)) == NULL || skill->name == NULL)
+            break;
+        if (skill->classes[ch->class].effort <= 0)
             continue;
-        if (skill_table[num].spell_fun != spell_null)
+        if (skill->spell_fun != spell_null)
             continue;
         if (!!ch->pcdata->skill_known[num] != chosen)
             continue;
@@ -184,12 +196,18 @@ void char_list_skills_and_groups (CHAR_T *ch, bool chosen) {
         if ((ch->pcdata->learned[num] > 0) != chosen)
             continue;
 
-        printf_to_char (ch, "%-18s %-5d ", skill_table[num].name,
-            skill_table[num].classes[ch->class].effort);
+        if (col % 3 == 0)
+            send_to_char ("   ", ch);
+
+        printf_to_char (ch, "%s%s%d  ", skill->name,
+            str_line (LINE_CHAR, 19 - strlen (skill->name) +
+                (3 - int_str_len (skill->classes[ch->class].effort))),
+            skill->classes[ch->class].effort);
         if (++col % 3 == 0)
             send_to_char ("\n\r", ch);
     }
-
+    if (col == 0)
+        send_to_char ("   None.\n\r", ch);
     if (col % 3 != 0)
         send_to_char ("\n\r", ch);
 

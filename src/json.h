@@ -31,6 +31,9 @@
 #include "merc.h"
 
 #define JSON_DIR        "json/"
+#define JSON_CONFIG_DIR (JSON_DIR "config/")
+#define JSON_HELP_DIR   (JSON_DIR "help/")
+#define JSON_AREAS_DIR  (JSON_DIR "areas/")
 
 /* all valid types of json_t */
 #define JSON_STRING     0

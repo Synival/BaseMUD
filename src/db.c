@@ -220,8 +220,16 @@ void db_import_json (void) {
 
     /* read all files instead simple JSON objects. */
     imported = 0;
-    log_f ("Loading JSON objects from '%s'...", JSON_DIR);
-    json = json_read_directory_recursive (JSON_DIR,
+    log_f ("Loading configuration from '%s'...", JSON_CONFIG_DIR);
+    json = json_read_directory_recursive (JSON_CONFIG_DIR,
+        json_import_objects, &imported);
+
+    log_f ("Loading help from '%s'...", JSON_HELP_DIR);
+    json = json_read_directory_recursive (JSON_HELP_DIR,
+        json_import_objects, &imported);
+
+    log_f ("Loading areas from '%s'...", JSON_AREAS_DIR);
+    json = json_read_directory_recursive (JSON_AREAS_DIR,
         json_import_objects, &imported);
 
     /* reconstruct the world based on the JSON read. */
@@ -260,13 +268,13 @@ void db_export_json (bool write_indiv, const char *everything) {
         jgrp = json_prop_array (jarea, NULL);
 
         if (write_indiv)
-            log_f("Exporting JSON: %sareas/%s*", JSON_DIR, fbuf);
+            log_f("Exporting JSON: %s%s*", JSON_AREAS_DIR, fbuf);
 
         json = json_wrap_obj (json_new_obj_area (NULL, area), "area");
         json_attach_under (json, jgrp);
 
         if (write_indiv) {
-            snprintf (buf, sizeof(buf), "%sareas/%sarea.json", JSON_DIR, fbuf);
+            snprintf (buf, sizeof(buf), "%s%sarea.json", JSON_AREAS_DIR, fbuf);
             json_mkdir_to (buf);
             json_write_to_file (jgrp, buf);
         }
@@ -291,7 +299,7 @@ void db_export_json (bool write_indiv, const char *everything) {
                     json_attach_under (json, jgrp); \
                 } \
                 if (jgrp->first_child && write_indiv) { \
-                    snprintf (buf, sizeof (buf), "%sareas/%s" fname, JSON_DIR, fbuf); \
+                    snprintf (buf, sizeof (buf), "%s%s" fname, JSON_AREAS_DIR, fbuf); \
                     json_mkdir_to (buf); \
                     json_write_to_file (jgrp, buf); \
                 } \
@@ -358,7 +366,7 @@ void db_export_json (bool write_indiv, const char *everything) {
         json_new_obj_social, 1);
     ADD_CONFIG_JSON ("portal", "config/portals", portal, PORTAL_T,
         json_new_obj_portal, (obj->generated == FALSE));
-    ADD_META_JSON ("table", "config/unsupported", master, TABLE_T,
+    ADD_META_JSON ("table", "unsupported", master, TABLE_T,
         json_new_obj_table, obj->type == TABLE_UNIQUE && obj->json_write_func);
 
     ADD_META_JSON ("table", "meta/flags", master, TABLE_T,

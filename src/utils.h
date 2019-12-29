@@ -44,9 +44,11 @@ char *str_without_extension (char *input);
 bool str_in_namelist (const char *str, const char *namelist);
 bool str_in_namelist_exact (const char *str, const char *namelist);
 size_t str_inject_args (char *buf, size_t size, const char *format, ...);
+char *str_line (char ch, int chars);
 
 /* Number utilities. */
 int int_interpolate (int level, int value_00, int value_32);
+int int_str_len (int num);
 
 /* Random number utilities. */
 void number_mm_init (void);

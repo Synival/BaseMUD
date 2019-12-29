@@ -43,6 +43,12 @@
 
 #include "act_skills.h"
 
+#ifdef BASEMUD_DOTTED_LINES_IN_SKILLS
+    #define LINE_CHAR '.'
+#else
+    #define LINE_CHAR ' '
+#endif
+
 void do_skills_or_spells (CHAR_T *ch, char *argument, int spells) {
     BUFFER_T *buffer;
     char arg[MAX_INPUT_LENGTH];
@@ -134,19 +140,26 @@ void do_skills_or_spells (CHAR_T *ch, char *argument, int spells) {
             sprintf (skill_list[level], "Level %2d: ", level);
         else if (++skill_columns[level] % 2 == 0)
             strcat (skill_list[level], "\n\r          ");
+        else
+            strcat (skill_list[level], " ");
 
         found = TRUE;
         if (ch->level < level)
-            sprintf (buf, "%-18s n/a        ", skill_table[sn].name);
+            sprintf (buf, "%s%sn/a            ", skill_table[sn].name,
+                str_line (LINE_CHAR, 19 - strlen (skill_table[sn].name)));
         else if (!is_spell) {
-            sprintf (buf, "%-18s %3d%%       ", skill_table[sn].name,
-                     ch->pcdata->learned[sn]);
+            sprintf (buf, "%s%s%d%%           ", skill_table[sn].name,
+                str_line (LINE_CHAR, 19 - strlen (skill_table[sn].name) +
+                    (3 - int_str_len (ch->pcdata->learned[sn]))),
+                ch->pcdata->learned[sn]);
         }
         else if (is_spell) {
             int mana = UMAX (skill_table[sn].min_mana,
                          100 / (2 + ch->level - level));
-            sprintf (buf, "%-18s %3d mana   ", skill_table[sn].name,
-                     mana);
+            sprintf (buf, "%s%s%d%% (%3d mana)", skill_table[sn].name,
+                str_line (LINE_CHAR, 19 - strlen (skill_table[sn].name) +
+                    (3 - int_str_len (ch->pcdata->learned[sn]))),
+                ch->pcdata->learned[sn], mana);
         }
         strcat (skill_list[level], buf);
     }
@@ -456,8 +469,10 @@ DEFINE_DO_FUN (do_practice) {
             if (!IS_IMMORTAL(ch) && ch->pcdata->learned[sn] < 1)
                 continue;
 
-            printf_to_char (ch, "%-18s %3d%%  ",
-                skill_table[sn].name, ch->pcdata->learned[sn]);
+            printf_to_char (ch, "%s%s%d%%  ", skill_table[sn].name,
+                str_line (LINE_CHAR, 19 - strlen (skill_table[sn].name) +
+                    (3 - int_str_len (ch->pcdata->learned[sn]))),
+                ch->pcdata->learned[sn]);
             if (++col % 3 == 0)
                 send_to_char ("\n\r", ch);
         }

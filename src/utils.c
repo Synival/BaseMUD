@@ -468,6 +468,32 @@ size_t str_inject_args (char *buf, size_t size, const char *format, ...) {
     return written;
 }
 
+char *str_line (char ch, int chars) {
+    static char buf[256];
+    int i;
+    buf[0] = '\0';
+
+    if (chars <= 0)
+        return buf;
+    for (i = 0; i < sizeof (buf) - 1 && i < chars; i++)
+        buf[i] = ch;
+    buf[i] = '\0';
+    return buf;
+}
+
+int int_str_len (int num) {
+    int size = 1;
+    if (num < 0) {
+        size++;
+        num = -num;
+    }
+    while (num >= 10) {
+        size++;
+        num /= 10;
+    }
+    return size;
+}
+
 /* Writes a string to the log. */
 void log_string (const char *str) {
     char *strtime;
