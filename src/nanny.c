@@ -418,8 +418,9 @@ DEFINE_NANNY_FUN (nanny_get_new_password) {
 }
 
 DEFINE_NANNY_FUN (nanny_confirm_new_password) {
+    const PC_RACE_T *pc_race;
     CHAR_T *ch = d->character;
-    int race;
+    int i;
 
 #if defined(unix)
     write_to_buffer (d, "\n\r", 2);
@@ -433,10 +434,10 @@ DEFINE_NANNY_FUN (nanny_confirm_new_password) {
 
     write_to_buffer (d, echo_on_str, 0);
     send_to_desc ("The following races are available:\n\r  ", d);
-    for (race = 1; race_table[race].name != NULL; race++) {
-        if (!race_table[race].pc_race)
+    for (i = 0; i < PC_RACE_MAX; i++) {
+        if ((pc_race = pc_race_get (i)) == NULL)
             break;
-        write_to_buffer (d, race_table[race].name, 0);
+        write_to_buffer (d, pc_race->name, 0);
         write_to_buffer (d, " ", 1);
     }
     write_to_buffer (d, "\n\r", 0);
@@ -445,6 +446,7 @@ DEFINE_NANNY_FUN (nanny_confirm_new_password) {
 }
 
 DEFINE_NANNY_FUN (nanny_get_new_race) {
+    const PC_RACE_T *pc_race;
     char arg[MAX_STRING_LENGTH];
     CHAR_T *ch = d->character;
     int i, race;
@@ -460,14 +462,15 @@ DEFINE_NANNY_FUN (nanny_get_new_race) {
         return;
     }
 
-    race = race_lookup (argument);
-    if (race < 0 || !race_table[race].pc_race) {
+    pc_race = pc_race_get_by_name (argument);
+    race = (pc_race == NULL) ? TYPE_NONE : race_lookup_exact (pc_race->name);
+    if (race < 0) {
         send_to_desc ("That is not a valid race.\n\r", d);
         send_to_desc ("The following races are available:\n\r  ", d);
-        for (race = 1; race_table[race].name != NULL; race++) {
-            if (!race_table[race].pc_race)
+        for (i = 0; i < PC_RACE_MAX; i++) {
+            if ((pc_race = pc_race_get (i)) == NULL)
                 break;
-            write_to_buffer (d, race_table[race].name, 0);
+            write_to_buffer (d, pc_race->name, 0);
             write_to_buffer (d, " ", 1);
         }
         write_to_buffer (d, "\n\r", 0);
@@ -478,8 +481,9 @@ DEFINE_NANNY_FUN (nanny_get_new_race) {
     ch->race = race;
 
     /* initialize stats */
+    pc_race = pc_race_get_by_race (ch->race);
     for (i = 0; i < STAT_MAX; i++)
-        ch->perm_stat[i] = pc_race_table[race].stats[i];
+        ch->perm_stat[i] = pc_race->stats[i];
     ch->affected_by = ch->affected_by | race_table[race].aff;
     ch->imm_flags = ch->imm_flags | race_table[race].imm;
     ch->res_flags = ch->res_flags | race_table[race].res;
@@ -489,14 +493,14 @@ DEFINE_NANNY_FUN (nanny_get_new_race) {
 
     /* add skills */
     for (i = 0; i < PC_RACE_SKILL_MAX; i++) {
-        if (pc_race_table[race].skills[i] == NULL)
+        if (pc_race->skills[i] == NULL)
             break;
-        char_add_skill_or_group (ch, pc_race_table[race].skills[i], FALSE);
+        char_add_skill_or_group (ch, pc_race->skills[i], FALSE);
     }
 
     /* add cost */
-    ch->pcdata->creation_points = pc_race_table[race].creation_points;
-    ch->size = pc_race_table[race].size;
+    ch->pcdata->creation_points = pc_race->creation_points;
+    ch->size = pc_race->size;
 
     send_to_desc ("What is your sex (M/F)? ", d);
     d->connected = CON_GET_NEW_SEX;
@@ -806,24 +810,22 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
 }
 
 DEFINE_NANNY_FUN (nanny_gen_groups_done) {
+    const PC_RACE_T *pc_race;
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     int i;
 
-    if (ch->pcdata->creation_points ==
-        pc_race_table[ch->race].creation_points)
-    {
+    pc_race = pc_race_get_by_race (ch->race);
+    if (ch->pcdata->creation_points == pc_race->creation_points) {
         send_to_char ("You didn't pick anything.\n\r\n\r", ch);
         do_function (ch, &do_help, "menu choice");
         return;
     }
 
-    if (ch->pcdata->creation_points < 40 +
-        pc_race_table[ch->race].creation_points)
-    {
+    if (ch->pcdata->creation_points < 40 + pc_race->creation_points) {
         printf_to_char (ch,
             "You must take at least %d points of skills and groups.\n\r\n\r",
-            40 + pc_race_table[ch->race].creation_points);
+            40 + pc_race->creation_points);
         do_function (ch, &do_help, "menu choice");
         return;
     }

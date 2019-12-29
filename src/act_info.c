@@ -548,8 +548,7 @@ DEFINE_DO_FUN (do_score) {
             char_get_trust (ch));
 
     printf_to_char (ch, "Race: %s  Sex: %s  Class: %s\n\r",
-        race_table[ch->race].name, sex_name(ch->sex),
-        char_get_class_name (ch));
+        race_get_name (ch->race), sex_name (ch->sex), char_get_class_name (ch));
 
     printf_to_char (ch, "You have %d/%d hit, %d/%d mana, %d/%d movement.\n\r",
         ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move, ch->max_move);
@@ -814,7 +813,7 @@ DEFINE_DO_FUN (do_who) {
     bool restrict_race = FALSE;
     bool only_immortal = FALSE;
     bool show_class[CLASS_MAX];
-    bool show_race[PC_RACE_MAX];
+    bool show_race[RACE_MAX];
     bool show_clan[CLAN_MAX];
 
     /* Set default arguments. */
@@ -822,7 +821,7 @@ DEFINE_DO_FUN (do_who) {
     level_upper = MAX_LEVEL;
     for (i = 0; i < CLASS_MAX; i++)
         show_class[i] = FALSE;
-    for (i = 0; i < PC_RACE_MAX; i++)
+    for (i = 0; i < RACE_MAX; i++)
         show_race[i] = FALSE;
     for (i = 0; i < CLAN_MAX; i++)
         show_clan[i] = FALSE;
@@ -861,11 +860,14 @@ DEFINE_DO_FUN (do_who) {
         }
 
         /* Check for explicit races. */
-        i = race_lookup (arg);
-        if (i > 0 && i < PC_RACE_MAX) {
-            restrict_race = TRUE;
-            show_race[i] = TRUE;
-            continue;
+        i = pc_race_lookup (arg);
+        if (i >= 1) {
+            const PC_RACE_T *pc_race = pc_race_get (i);
+            if ((i = race_lookup_exact (pc_race->name)) >= 1) {
+                restrict_race = TRUE;
+                show_race[i] = TRUE;
+                continue;
+            }
         }
 
         /* Check for anyone with a clan. */

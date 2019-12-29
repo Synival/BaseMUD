@@ -44,6 +44,7 @@ SIMPLE_INDEX_BUNDLE (board,    BOARD_T,    BOARD_MAX);
 SIMPLE_INDEX_BUNDLE (clan,     CLAN_T,     CLAN_MAX);
 SIMPLE_INDEX_BUNDLE (class,    CLASS_T,    CLASS_MAX);
 SIMPLE_INDEX_BUNDLE (liq,      LIQ_T,      LIQ_MAX);
+SIMPLE_INDEX_BUNDLE (pc_race,  PC_RACE_T,  PC_RACE_MAX);
 SIMPLE_INDEX_BUNDLE (race,     RACE_T,     RACE_MAX);
 SIMPLE_INDEX_BUNDLE (skill,    SKILL_T,    SKILL_MAX);
 SIMPLE_INDEX_BUNDLE (skill_group, SKILL_GROUP_T, SKILL_GROUP_MAX);
@@ -451,4 +452,11 @@ const CONDITION_T *condition_get_for_char (const CHAR_T *ch) {
             return cond;
     }
     return NULL;
+}
+
+const PC_RACE_T *pc_race_get_by_race (type_t race) {
+    const RACE_T *race_obj;
+    if ((race_obj = race_get (race)) == NULL)
+        return NULL;
+    return pc_race_get_by_name (race_obj->name);
 }

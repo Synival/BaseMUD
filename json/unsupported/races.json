@@ -1,50 +1,7 @@
 [
-  {"race": {
-    "name": "unique",
-    "playable": false
-  }},
-  {"race": {
-    "name": "human",
-    "playable": true,
-    "form": "edible sentient biped mammal",
-    "parts": "head arms legs heart brains guts hands feet fingers ear eye"
-  }},
-  {"race": {
-    "name": "elf",
-    "playable": true,
-    "affect_flags": "infrared",
-    "res_flags": "charm",
-    "vuln_flags": "iron",
-    "form": "edible sentient biped mammal",
-    "parts": "head arms legs heart brains guts hands feet fingers ear eye"
-  }},
-  {"race": {
-    "name": "dwarf",
-    "playable": true,
-    "affect_flags": "infrared",
-    "res_flags": "poison disease",
-    "vuln_flags": "drowning",
-    "form": "edible sentient biped mammal",
-    "parts": "head arms legs heart brains guts hands feet fingers ear eye"
-  }},
-  {"race": {
-    "name": "giant",
-    "playable": true,
-    "res_flags": "fire cold",
-    "vuln_flags": "lightning mental",
-    "form": "edible sentient biped mammal",
-    "parts": "head arms legs heart brains guts hands feet fingers ear eye"
-  }},
-  {"race": {
-    "name": "pixie",
-    "playable": true,
-    "affect_flags": "detect_evil detect_magic detect_good flying",
-    "form": "edible magical sentient biped mammal",
-    "parts": "head arms legs heart brains guts hands feet fingers ear eye wings"
-  }},
+  {"race": {"name": "unique"}},
   {"race": {
     "name": "bat",
-    "playable": false,
     "affect_flags": "flying dark_vision",
     "offense_flags": "dodge fast",
     "vuln_flags": "light",
@@ -53,7 +10,6 @@
   }},
   {"race": {
     "name": "bear",
-    "playable": false,
     "offense_flags": "berserk disarm crush",
     "res_flags": "bash cold",
     "form": "edible animal mammal",
@@ -61,7 +17,6 @@
   }},
   {"race": {
     "name": "cat",
-    "playable": false,
     "affect_flags": "dark_vision",
     "offense_flags": "dodge fast",
     "form": "edible animal mammal",
@@ -69,7 +24,6 @@
   }},
   {"race": {
     "name": "centipede",
-    "playable": false,
     "affect_flags": "dark_vision",
     "res_flags": "pierce cold",
     "vuln_flags": "bash",
@@ -78,14 +32,12 @@
   }},
   {"race": {
     "name": "dog",
-    "playable": false,
     "offense_flags": "fast",
     "form": "edible animal mammal",
     "parts": "head legs heart brains guts feet ear eye claws fangs"
   }},
   {"race": {
     "name": "doll",
-    "playable": false,
     "immune_flags": "cold poison negative holy mental disease drowning",
     "res_flags": "bash light",
     "vuln_flags": "slash fire lightning acid energy",
@@ -94,7 +46,6 @@
   }},
   {"race": {
     "name": "dragon",
-    "playable": false,
     "affect_flags": "infrared flying",
     "res_flags": "charm bash fire",
     "vuln_flags": "pierce cold",
@@ -102,8 +53,23 @@
     "parts": "head legs heart brains guts feet fingers ear eye long_tongue tail claws fangs scales"
   }},
   {"race": {
+    "name": "dwarf",
+    "affect_flags": "infrared",
+    "res_flags": "poison disease",
+    "vuln_flags": "drowning",
+    "form": "edible sentient biped mammal",
+    "parts": "head arms legs heart brains guts hands feet fingers ear eye"
+  }},
+  {"race": {
+    "name": "elf",
+    "affect_flags": "infrared",
+    "res_flags": "charm",
+    "vuln_flags": "iron",
+    "form": "edible sentient biped mammal",
+    "parts": "head arms legs heart brains guts hands feet fingers ear eye"
+  }},
+  {"race": {
     "name": "fido",
-    "playable": false,
     "offense_flags": "dodge assist_race",
     "vuln_flags": "magic",
     "form": "edible poison animal mammal",
@@ -111,15 +77,20 @@
   }},
   {"race": {
     "name": "fox",
-    "playable": false,
     "affect_flags": "dark_vision",
     "offense_flags": "dodge fast",
     "form": "edible animal mammal",
     "parts": "head legs heart brains guts feet ear eye tail fangs"
   }},
   {"race": {
+    "name": "giant",
+    "res_flags": "fire cold",
+    "vuln_flags": "lightning mental",
+    "form": "edible sentient biped mammal",
+    "parts": "head arms legs heart brains guts hands feet fingers ear eye"
+  }},
+  {"race": {
     "name": "goblin",
-    "playable": false,
     "affect_flags": "infrared",
     "res_flags": "disease",
     "vuln_flags": "magic",
@@ -128,15 +99,18 @@
   }},
   {"race": {
     "name": "hobgoblin",
-    "playable": false,
     "affect_flags": "infrared",
     "res_flags": "poison disease",
     "form": "edible sentient biped mammal",
     "parts": "head arms legs heart brains guts hands feet fingers ear eye tusks"
   }},
   {"race": {
+    "name": "human",
+    "form": "edible sentient biped mammal",
+    "parts": "head arms legs heart brains guts hands feet fingers ear eye"
+  }},
+  {"race": {
     "name": "kobold",
-    "playable": false,
     "affect_flags": "infrared",
     "res_flags": "poison",
     "vuln_flags": "magic",
@@ -145,7 +119,6 @@
   }},
   {"race": {
     "name": "lizard",
-    "playable": false,
     "res_flags": "poison",
     "vuln_flags": "cold",
     "form": "edible animal reptile cold_blood",
@@ -153,7 +126,6 @@
   }},
   {"race": {
     "name": "modron",
-    "playable": false,
     "affect_flags": "infrared",
     "offense_flags": "assist_align assist_race",
     "immune_flags": "charm negative holy mental disease",
@@ -163,7 +135,6 @@
   }},
   {"race": {
     "name": "orc",
-    "playable": false,
     "affect_flags": "infrared",
     "res_flags": "disease",
     "vuln_flags": "light",
@@ -172,20 +143,23 @@
   }},
   {"race": {
     "name": "pig",
-    "playable": false,
     "form": "edible animal mammal",
     "parts": "head legs heart brains guts feet ear eye"
   }},
   {"race": {
+    "name": "pixie",
+    "affect_flags": "detect_evil detect_magic detect_good flying",
+    "form": "edible magical sentient biped mammal",
+    "parts": "head arms legs heart brains guts hands feet fingers ear eye wings"
+  }},
+  {"race": {
     "name": "rabbit",
-    "playable": false,
     "offense_flags": "dodge fast",
     "form": "edible animal mammal",
     "parts": "head legs heart brains guts feet ear eye"
   }},
   {"race": {
     "name": "school monster",
-    "playable": false,
     "mob_flags": "noalign",
     "immune_flags": "summon charm",
     "vuln_flags": "magic",
@@ -194,7 +168,6 @@
   }},
   {"race": {
     "name": "snake",
-    "playable": false,
     "res_flags": "poison",
     "vuln_flags": "cold",
     "form": "edible animal reptile snake cold_blood",
@@ -202,7 +175,6 @@
   }},
   {"race": {
     "name": "song bird",
-    "playable": false,
     "affect_flags": "flying",
     "offense_flags": "dodge fast",
     "form": "edible animal bird",
@@ -210,7 +182,6 @@
   }},
   {"race": {
     "name": "troll",
-    "playable": false,
     "affect_flags": "detect_hidden infrared regeneration",
     "offense_flags": "berserk",
     "res_flags": "charm bash",
@@ -220,7 +191,6 @@
   }},
   {"race": {
     "name": "water fowl",
-    "playable": false,
     "affect_flags": "flying swim",
     "res_flags": "drowning",
     "form": "edible animal bird",
@@ -228,7 +198,6 @@
   }},
   {"race": {
     "name": "wolf",
-    "playable": false,
     "affect_flags": "dark_vision",
     "offense_flags": "dodge fast",
     "form": "edible animal mammal",
@@ -236,7 +205,6 @@
   }},
   {"race": {
     "name": "wyvern",
-    "playable": false,
     "affect_flags": "detect_invis detect_hidden flying",
     "offense_flags": "bash dodge fast",
     "immune_flags": "poison",

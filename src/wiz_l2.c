@@ -389,9 +389,10 @@ DEFINE_DO_FUN (do_mset) {
 
     if (!str_prefix (arg2, "race")) {
         int race = race_lookup (arg3);
+
         BAIL_IF (race <= 0,
             "That is not a valid race.\n\r", ch);
-        BAIL_IF (!IS_NPC (victim) && !race_table[race].pc_race,
+        BAIL_IF (!IS_NPC (victim) && !pc_race_get_by_race (race),
             "That is not a valid player race.\n\r", ch);
         victim->race = race;
         return;

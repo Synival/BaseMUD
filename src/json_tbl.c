@@ -140,7 +140,6 @@ DEFINE_TABLE_JSON_FUN (json_tblw_attack) {
 DEFINE_TABLE_JSON_FUN (json_tblw_race) {
     JSON_TBLW_START (RACE_T, race, race->name == NULL);
     json_prop_string  (new, "name", JSTR (race->name));
-    json_prop_boolean (new, "playable", race->pc_race);
 
     if (race->mob > 0)
         json_prop_string (new, "mob_flags", JBITSF (mob_flags, race->mob));
@@ -194,6 +193,9 @@ DEFINE_TABLE_JSON_FUN (json_tblw_pc_race) {
     sub = json_prop_object (new, "max_stats", JSON_OBJ_ANY);
     for (i = 0; i < STAT_MAX; i++)
         json_prop_integer (sub, type_get_name (stat_types, i), pc_race->max_stats[i]);
+
+    if (pc_race->bonus_max != 0)
+        json_prop_integer (new, "bonus_max_stat", pc_race->bonus_max);
 
     json_prop_string (new, "size", type_get_name (size_types, pc_race->size));
 

@@ -474,16 +474,17 @@ int char_get_trust (const CHAR_T *ch) {
 
 /* command for retrieving stats */
 int char_get_curr_stat (const CHAR_T *ch, int stat) {
+    const PC_RACE_T *pc_race;
     int max;
 
     if (IS_NPC (ch) || ch->level > LEVEL_IMMORTAL)
         max = 25;
     else {
-        max = pc_race_table[ch->race].max_stats[stat] + 4;
+        pc_race = pc_race_get_by_race (ch->race);
+        max = pc_race->max_stats[stat] + 4 + pc_race->bonus_max;
+
         if (class_table[ch->class].attr_prime == stat)
             max += 2;
-        if (ch->race == race_lookup ("human"))
-            max += 1;
         max = UMIN (max, 25);
     }
     return URANGE (3, ch->perm_stat[stat] + ch->mod_stat[stat], max);
@@ -491,18 +492,16 @@ int char_get_curr_stat (const CHAR_T *ch, int stat) {
 
 /* command for returning max training score */
 int char_get_max_train (const CHAR_T *ch, int stat) {
+    const PC_RACE_T *pc_race;
     int max;
 
     if (IS_NPC (ch) || ch->level > LEVEL_IMMORTAL)
         return 25;
 
-    max = pc_race_table[ch->race].max_stats[stat];
-    if (class_table[ch->class].attr_prime == stat) {
-        if (ch->race == race_lookup ("human"))
-            max += 3;
-        else
-            max += 2;
-    }
+    pc_race = pc_race_get_by_race (ch->race);
+    max = pc_race->max_stats[stat];
+    if (class_table[ch->class].attr_prime == stat)
+        max += 2 + pc_race->bonus_max;
     return UMIN (max, 25);
 }
 
@@ -1607,21 +1606,27 @@ bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool replace) {
 void char_get_who_string (const CHAR_T *ch, const CHAR_T *wch, char *buf,
     size_t len)
 {
-    const char *class;
+    const PC_RACE_T *pc_race;
+    const CLAN_T *clan;
+    const char *class_name;
 
     /* Figure out what to print for class. */
-    class = wiz_class_by_level (wch->level);
-    if (class == NULL)
-        class = class_table[wch->class].who_name;
+    class_name = wiz_class_by_level (wch->level);
+    if (class_name == NULL)
+        class_name = class_get (wch->class)->who_name;
+
+    /* get information we need. */
+    clan    = clan_get (ch->clan);
+    pc_race = pc_race_get_by_race (ch->race);
 
     /* Format it up. */
     snprintf (buf, len, "[%2d %6s %s] %s%s%s%s%s%s%s%s\n\r",
         wch->level,
-        (wch->race < PC_RACE_MAX) ? pc_race_table[wch->race].who_name : "     ",
-        class,
+        (pc_race) ? pc_race->who_name : "     ",
+        class_name,
         (wch->incog_level >= LEVEL_HERO) ? "(Incog) " : "",
         (wch->invis_level >= LEVEL_HERO) ? "(Wizi) " : "",
-        clan_table[wch->clan].who_name,
+        (clan) ? clan->who_name : "",
         IS_SET (wch->comm, COMM_AFK) ? "[AFK] " : "",
         IS_SET (wch->plr, PLR_KILLER) ? "(KILLER) " : "",
         IS_SET (wch->plr, PLR_THIEF) ? "(THIEF) " : "",

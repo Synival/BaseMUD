@@ -55,10 +55,7 @@
 /* Advancement stuff. */
 void advance_level (CHAR_T *ch, bool hide) {
     char buf[MAX_STRING_LENGTH];
-    int add_hp;
-    int add_mana;
-    int add_move;
-    int add_prac;
+    int add_hp, add_mana, add_move, add_prac;
 
     if (IS_NPC (ch))
         return;
@@ -473,6 +470,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
     if (dt == SN(BACKSTAB))
         thac0 -= 10 * (100 - char_get_skill (ch, SN(BACKSTAB)));
 
+    /* TODO: damage type specify what kind of AC should be used. */
     switch (dam_type) {
         case (DAM_PIERCE): victim_ac = GET_AC (victim, AC_PIERCE) / 10; break;
         case (DAM_BASH):   victim_ac = GET_AC (victim, AC_BASH)   / 10; break;
@@ -485,6 +483,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
     if (!char_can_see_in_room (ch, victim))
         victim_ac -= 4;
 
+    /* TODO: position can determine how much AC is added. */
     switch (victim->position) {
         case POS_FIGHTING: victim_ac += 0; break;
         case POS_STANDING: victim_ac += 1; break;
@@ -605,40 +604,46 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
             }
         }
 
-        if (ch->fighting == victim && IS_WEAPON_STAT (wield, WEAPON_VAMPIRIC)) {
-            dam = number_range (1, wield->level / 5 + 1);
-            act ("You feel $p drawing your life away.",
-                 victim, wield, NULL, TO_CHAR);
-            act ("$p draws life from $n.", victim, wield, NULL, TO_NOTCHAR);
-            damage_quiet (ch, victim, dam, 0, DAM_NEGATIVE);
-            ch->alignment = UMAX (-1000, ch->alignment - 1);
-            ch->hit += dam / 2;
-        }
+        /* TODO: use act2 */
+        if (ch->fighting == victim) {
+            if (IS_WEAPON_STAT (wield, WEAPON_VAMPIRIC)) {
+                dam = number_range (1, wield->level / 5 + 1);
+                act ("You feel $p drawing your life away.",
+                     victim, wield, NULL, TO_CHAR);
+                act ("$p draws life from $n.", victim, wield, NULL, TO_NOTCHAR);
+                damage_quiet (ch, victim, dam, 0, DAM_NEGATIVE);
+                ch->alignment = UMAX (-1000, ch->alignment - 1);
+                ch->hit += dam / 2;
+            }
 
-        if (ch->fighting == victim && IS_WEAPON_STAT (wield, WEAPON_FLAMING)) {
-            dam = number_range (1, wield->level / 4 + 1);
-            act ("$p sears your flesh.", victim, wield, NULL, TO_CHAR);
-            act ("$n is burned by $p.", victim, wield, NULL, TO_NOTCHAR);
-            effect_fire ((void *) victim, wield->level / 2, dam, TARGET_CHAR);
-            damage_quiet (ch, victim, dam, 0, DAM_FIRE);
-        }
+            /* TODO: use act2 */
+            if (IS_WEAPON_STAT (wield, WEAPON_FLAMING)) {
+                dam = number_range (1, wield->level / 4 + 1);
+                act ("$p sears your flesh.", victim, wield, NULL, TO_CHAR);
+                act ("$n is burned by $p.", victim, wield, NULL, TO_NOTCHAR);
+                effect_fire ((void *) victim, wield->level / 2, dam, TARGET_CHAR);
+                damage_quiet (ch, victim, dam, 0, DAM_FIRE);
+            }
 
-        if (ch->fighting == victim && IS_WEAPON_STAT (wield, WEAPON_FROST)) {
-            dam = number_range (1, wield->level / 6 + 2);
-            act ("The cold touch of $p surrounds you with ice.",
-                 victim, wield, NULL, TO_CHAR);
-            act ("$p freezes $n.", victim, wield, NULL, TO_NOTCHAR);
-            effect_cold (victim, wield->level / 2, dam, TARGET_CHAR);
-            damage_quiet (ch, victim, dam, 0, DAM_COLD);
-        }
+            /* TODO: use act2 */
+            if (IS_WEAPON_STAT (wield, WEAPON_FROST)) {
+                dam = number_range (1, wield->level / 6 + 2);
+                act ("The cold touch of $p surrounds you with ice.",
+                     victim, wield, NULL, TO_CHAR);
+                act ("$p freezes $n.", victim, wield, NULL, TO_NOTCHAR);
+                effect_cold (victim, wield->level / 2, dam, TARGET_CHAR);
+                damage_quiet (ch, victim, dam, 0, DAM_COLD);
+            }
 
-        if (ch->fighting == victim && IS_WEAPON_STAT (wield, WEAPON_SHOCKING)) {
-            dam = number_range (1, wield->level / 5 + 2);
-            act ("You are shocked by $p.", victim, wield, NULL, TO_CHAR);
-            act ("$n is struck by lightning from $p.", victim, wield, NULL,
-                 TO_NOTCHAR);
-            effect_shock (victim, wield->level / 2, dam, TARGET_CHAR);
-            damage_quiet (ch, victim, dam, 0, DAM_LIGHTNING);
+            /* TODO: use act2 */
+            if (IS_WEAPON_STAT (wield, WEAPON_SHOCKING)) {
+                dam = number_range (1, wield->level / 5 + 2);
+                act ("You are shocked by $p.", victim, wield, NULL, TO_CHAR);
+                act ("$n is struck by lightning from $p.", victim, wield, NULL,
+                     TO_NOTCHAR);
+                effect_shock (victim, wield->level / 2, dam, TARGET_CHAR);
+                damage_quiet (ch, victim, dam, 0, DAM_LIGHTNING);
+            }
         }
     }
 
@@ -1088,6 +1093,7 @@ bool check_parry (CHAR_T *ch, CHAR_T *victim) {
     if (number_percent () >= chance + victim->level - ch->level)
         return FALSE;
 
+    /* TODO: act2 */
     act ("You parry $n's attack.", ch, NULL, victim, TO_VICT);
     act ("$N parries your attack.", ch, NULL, victim, TO_CHAR);
     char_try_skill_improve (victim, SN(PARRY), TRUE, 6);
@@ -1107,6 +1113,7 @@ bool check_shield_block (CHAR_T *ch, CHAR_T *victim) {
     if (number_percent () >= chance + victim->level - ch->level)
         return FALSE;
 
+    /* TODO: act2 */
     act ("You block $n's attack with your shield.", ch, NULL, victim, TO_VICT);
     act ("$N blocks your attack with a shield.", ch, NULL, victim, TO_CHAR);
     char_try_skill_improve (victim, SN(SHIELD_BLOCK), TRUE, 6);
@@ -1125,6 +1132,7 @@ bool check_dodge (CHAR_T *ch, CHAR_T *victim) {
     if (number_percent () >= chance + victim->level - ch->level)
         return FALSE;
 
+    /* TODO: act2 */
     act ("You dodge $n's attack.", ch, NULL, victim, TO_VICT);
     act ("$N dodges your attack.", ch, NULL, victim, TO_CHAR);
     char_try_skill_improve (victim, SN(DODGE), TRUE, 6);
@@ -1672,6 +1680,7 @@ void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt,
         return;
 
     /* Determine strength from overall damage. */
+    /* TODO: into a table! */
 #ifdef BASEMUD_SHOW_ABSOLUTE_HIT_DAMAGE
          if (orig_dam ==   0) str = "";
     else if (orig_dam ==   1) str = "pathetic ";
@@ -1691,6 +1700,7 @@ void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt,
 #endif
 
     /* Determine strength from damage percent. */
+    /* TODO: into a table! */
 #ifdef BASEMUD_MORE_PRECISE_RELATIVE_DAMAGE
          if (dam         == 0)  { vs = "miss";               vp = "misses"; }
     else if (dam_percent <= 1)  { vs = "annoy";              vp = "annoys"; }
@@ -1810,6 +1820,7 @@ void disarm (CHAR_T *ch, CHAR_T *victim) {
         return;
 
     if (IS_OBJ_STAT (obj, ITEM_NOREMOVE)) {
+        /* TODO: act3 */
         act ("{5$S weapon won't budge!{x", ch, NULL, victim, TO_CHAR);
         act ("{5$n tries to disarm you, but your weapon won't budge!{x",
              ch, NULL, victim, TO_VICT);
@@ -1818,6 +1829,7 @@ void disarm (CHAR_T *ch, CHAR_T *victim) {
         return;
     }
 
+    /* TODO: act3 */
     act ("{5$n DISARMS you and sends your weapon flying!{x",
          ch, NULL, victim, TO_VICT);
     act ("{5You disarm $N!{x", ch, NULL, victim, TO_CHAR);
@@ -1843,7 +1855,8 @@ int exp_per_level (const CHAR_T *ch)
     { return exp_per_level_with_points (ch, ch->pcdata->creation_points); }
 
 int exp_per_level_with_points (const CHAR_T *ch, int points) {
-    int expl, inc;
+    const PC_RACE_T *race;
+    int expl, inc, mult;
 
     if (IS_NPC (ch))
         return 1000;
@@ -1851,14 +1864,14 @@ int exp_per_level_with_points (const CHAR_T *ch, int points) {
     expl = 1000;
     inc = 500;
 
+    race = pc_race_get_by_race (ch->race);
+    mult = race->class_mult[ch->class];
+
     if (points < 40)
-        return 1000 * (pc_race_table[ch->race].class_mult[ch->class] ?
-                       pc_race_table[ch->race].class_mult[ch->class] /
-                       100 : 1);
+        return 1000 * (mult ? mult / 100 : 1);
 
     /* processing */
     points -= 40;
-
     while (points > 9) {
         expl += inc;
         points -= 10;
@@ -1870,5 +1883,5 @@ int exp_per_level_with_points (const CHAR_T *ch, int points) {
     }
 
     expl += points * inc / 10;
-    return expl * pc_race_table[ch->race].class_mult[ch->class] / 100;
+    return expl * mult / 100;
 }

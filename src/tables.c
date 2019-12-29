@@ -377,53 +377,51 @@ const ATTACK_T attack_table[ATTACK_MAX + 1] = {
 /* race table */
 const RACE_T race_table[RACE_MAX + 1] = {
 
- /* {name, pc_race?, act bits, aff_by bits, off bits, imm, res, vuln, form, parts} */
-    {"unique",         FALSE, 0, 0, 0, 0, 0, 0, 0, 0},
-    {"human",          TRUE,  0, 0, 0, 0, 0, 0, FORMS_HUMANOID, PARTS_HUMANOID},
-    {"elf",            TRUE,  0, AFF_INFRARED, 0, 0, RES_CHARM, RES_IRON, FORMS_HUMANOID, PARTS_HUMANOID},
-    {"dwarf",          TRUE,  0, AFF_INFRARED, 0, 0, RES_POISON | RES_DISEASE, RES_DROWNING, FORMS_HUMANOID, PARTS_HUMANOID},
-    {"giant",          TRUE,  0, 0, 0, 0, RES_FIRE | RES_COLD, RES_MENTAL | RES_LIGHTNING, FORMS_HUMANOID, PARTS_HUMANOID},
-#ifdef BASEMUD_PIXIE_RACE
-    {"pixie",          TRUE,  0, AFF_FLYING | AFF_DETECT_GOOD | AFF_DETECT_EVIL | AFF_DETECT_MAGIC, 0, 0, 0, 0, FORMS_HUMANOID | FORM_MAGICAL, PARTS_HUMANOID | PART_WINGS},
-#else
-    {"pixie",          FALSE, 0, AFF_FLYING | AFF_DETECT_GOOD | AFF_DETECT_EVIL | AFF_DETECT_MAGIC, 0, 0, 0, 0, FORMS_HUMANOID | FORM_MAGICAL, PARTS_HUMANOID | PART_WINGS},
-#endif
-    {"bat",            FALSE, 0, AFF_FLYING | AFF_DARK_VISION, OFF_DODGE | OFF_FAST, 0, 0, RES_LIGHT, FORMS_MAMMAL, PARTS_QUADRUPED | PART_WINGS},
-    {"bear",           FALSE, 0, 0, OFF_CRUSH | OFF_DISARM | OFF_BERSERK, 0, RES_BASH | RES_COLD, 0, FORMS_MAMMAL, PARTS_BIPED | PART_CLAWS | PART_FANGS},
-    {"cat",            FALSE, 0, AFF_DARK_VISION, OFF_FAST | OFF_DODGE, 0, 0, 0, FORMS_MAMMAL, PARTS_FELINE},
-    {"centipede",      FALSE, 0, AFF_DARK_VISION, 0, 0, RES_PIERCE | RES_COLD, RES_BASH, FORMS_BUG | FORM_POISON, PART_HEAD | PART_LEGS | PART_EYE},
-    {"dog",            FALSE, 0, 0, OFF_FAST, 0, 0, 0, FORMS_MAMMAL, PARTS_CANINE | PART_CLAWS},
-    {"doll",           FALSE, 0, 0, 0, RES_COLD | RES_POISON | RES_HOLY | RES_NEGATIVE | RES_MENTAL | RES_DISEASE | RES_DROWNING, RES_BASH | RES_LIGHT, RES_SLASH | RES_FIRE | RES_ACID | RES_LIGHTNING | RES_ENERGY, E|J|M|cc, PARTS_HUMANOID & ~(PARTS_ALIVE | PART_EAR)},
-    {"dragon",         FALSE, 0, AFF_INFRARED | AFF_FLYING, 0, 0, RES_FIRE | RES_BASH | RES_CHARM, RES_PIERCE | RES_COLD, A|H|Z, PARTS_LIZARD | PART_FINGERS | PART_CLAWS | PART_FANGS},
-    {"fido",           FALSE, 0, 0, OFF_DODGE | ASSIST_RACE, 0, 0, RES_MAGIC, FORMS_MAMMAL | FORM_POISON, PARTS_CANINE | PART_TAIL},
-    {"fox",            FALSE, 0, AFF_DARK_VISION, OFF_FAST | OFF_DODGE, 0, 0, 0, FORMS_MAMMAL, PARTS_CANINE | PART_TAIL},
-    {"goblin",         FALSE, 0, AFF_INFRARED, 0, 0, RES_DISEASE, RES_MAGIC, FORMS_HUMANOID, PARTS_HUMANOID},
-    {"hobgoblin",      FALSE, 0, AFF_INFRARED, 0, 0, RES_DISEASE | RES_POISON, 0, FORMS_HUMANOID, PARTS_HUMANOID | PART_TUSKS},
-    {"kobold",         FALSE, 0, AFF_INFRARED, 0, 0, RES_POISON, RES_MAGIC, FORMS_HUMANOID | FORM_POISON, PARTS_HUMANOID | PART_TAIL},
-    {"lizard",         FALSE, 0, 0, 0, 0, RES_POISON, RES_COLD, A|G|X|cc, PARTS_LIZARD},
-    {"modron",         FALSE, 0, AFF_INFRARED, ASSIST_RACE | ASSIST_ALIGN, RES_CHARM | RES_DISEASE | RES_MENTAL | RES_HOLY | RES_NEGATIVE, RES_FIRE | RES_COLD | RES_ACID, 0, FORM_SENTIENT, PARTS_HUMANOID & ~(PARTS_ALIVE | PART_FINGERS)},
-    {"orc",            FALSE, 0, AFF_INFRARED, 0, 0, RES_DISEASE, RES_LIGHT, FORMS_HUMANOID, PARTS_HUMANOID},
-    {"pig",            FALSE, 0, 0, 0, 0, 0, 0, FORMS_MAMMAL, PARTS_QUADRUPED},
-    {"rabbit",         FALSE, 0, 0, OFF_DODGE | OFF_FAST, 0, 0, 0, FORMS_MAMMAL, PARTS_QUADRUPED},
-    {"school monster", FALSE, MOB_NOALIGN, 0, 0, RES_CHARM | RES_SUMMON, 0, RES_MAGIC, A|M|V, PARTS_BIPED | PART_TAIL | PART_CLAWS},
-    {"snake",          FALSE, 0, 0, 0, 0, RES_POISON, RES_COLD, A|G|X|Y|cc, PARTS_REPTILE | PART_FANGS},
-    {"song bird",      FALSE, 0, AFF_FLYING, OFF_FAST | OFF_DODGE, 0, 0, 0, FORMS_BIRD, PARTS_BIRD},
-    {"troll",          FALSE, 0, AFF_REGENERATION | AFF_INFRARED | AFF_DETECT_HIDDEN, OFF_BERSERK, 0, RES_CHARM | RES_BASH, RES_FIRE | RES_ACID, FORMS_HUMANOID | FORM_POISON, PARTS_HUMANOID | PART_CLAWS | PART_FANGS},
-    {"water fowl",     FALSE, 0, AFF_SWIM | AFF_FLYING, 0, 0, RES_DROWNING, 0, FORMS_BIRD, PARTS_BIRD},
-    {"wolf",           FALSE, 0, AFF_DARK_VISION, OFF_FAST | OFF_DODGE, 0, 0, 0, FORMS_MAMMAL, PARTS_CANINE | PART_CLAWS | PART_TAIL},
-    {"wyvern",         FALSE, 0, AFF_FLYING | AFF_DETECT_INVIS | AFF_DETECT_HIDDEN, OFF_BASH | OFF_FAST | OFF_DODGE, RES_POISON, 0, RES_LIGHT, A|B|G|Z, PARTS_LIZARD | PART_FANGS},
+ /* {name,             act bits,    aff_by bits,                                         off bits,                        imm,                                                    res,                              vuln,                                             form,                          parts} */
+    {"unique",         0,           0,                                                   0,                               0,                                                      0,                                0,                                                0,                             0},
+    {"bat",            0,           AFF_FLYING | AFF_DARK_VISION,                        OFF_DODGE | OFF_FAST,            0,                                                      0,                                RES_LIGHT,                                        FORMS_MAMMAL,                  PARTS_QUADRUPED | PART_WINGS},
+    {"bear",           0,           0,                                              OFF_CRUSH | OFF_DISARM | OFF_BERSERK, 0,                                                      RES_BASH | RES_COLD,              0,                                                FORMS_MAMMAL,                  PARTS_BIPED | PART_CLAWS | PART_FANGS},
+    {"cat",            0,           AFF_DARK_VISION,                                     OFF_FAST | OFF_DODGE,            0,                                                      0,                                0,                                                FORMS_MAMMAL,                  PARTS_FELINE},
+    {"centipede",      0,           AFF_DARK_VISION,                                     0,                               0,                                                      RES_PIERCE | RES_COLD,            RES_BASH,                                         FORMS_BUG | FORM_POISON,       PART_HEAD | PART_LEGS | PART_EYE},
+    {"dog",            0,           0,                                                   OFF_FAST,                        0,                                                      0,                                0,                                                FORMS_MAMMAL,                  PARTS_CANINE | PART_CLAWS},
+    {"doll",           0,           0,                                              0, RES_COLD | RES_POISON | RES_HOLY | RES_NEGATIVE | RES_MENTAL | RES_DISEASE | RES_DROWNING, RES_BASH | RES_LIGHT, RES_SLASH | RES_FIRE | RES_ACID | RES_LIGHTNING | RES_ENERGY, E|J|M|cc,                      PARTS_HUMANOID & ~(PARTS_ALIVE | PART_EAR)},
+    {"dragon",         0,           AFF_INFRARED | AFF_FLYING,                           0,                               0,                                                      RES_FIRE | RES_BASH | RES_CHARM,  RES_PIERCE | RES_COLD,                            A|H|Z,                         PARTS_LIZARD | PART_FINGERS | PART_CLAWS | PART_FANGS},
+    {"dwarf",          0,           AFF_INFRARED,                                        0,                               0,                                                      RES_POISON | RES_DISEASE,         RES_DROWNING,                                     FORMS_HUMANOID,                PARTS_HUMANOID},
+    {"elf",            0,           AFF_INFRARED,                                        0,                               0,                                                      RES_CHARM,                        RES_IRON,                                         FORMS_HUMANOID,                PARTS_HUMANOID},
+    {"fido",           0,           0,                                                   OFF_DODGE | ASSIST_RACE,         0,                                                      0,                                RES_MAGIC,                                        FORMS_MAMMAL | FORM_POISON,    PARTS_CANINE | PART_TAIL},
+    {"fox",            0,           AFF_DARK_VISION,                                     OFF_FAST | OFF_DODGE,            0,                                                      0,                                0,                                                FORMS_MAMMAL,                  PARTS_CANINE | PART_TAIL},
+    {"giant",          0,           0,                                                   0,                               0,                                                      RES_FIRE | RES_COLD,              RES_MENTAL | RES_LIGHTNING,                       FORMS_HUMANOID,                PARTS_HUMANOID},
+    {"goblin",         0,           AFF_INFRARED,                                        0,                               0,                                                      RES_DISEASE,                      RES_MAGIC,                                        FORMS_HUMANOID,                PARTS_HUMANOID},
+    {"hobgoblin",      0,           AFF_INFRARED,                                        0,                               0,                                                      RES_DISEASE | RES_POISON,         0,                                                FORMS_HUMANOID,                PARTS_HUMANOID | PART_TUSKS},
+    {"human",          0,           0,                                                   0,                               0,                                                      0,                                0,                                                FORMS_HUMANOID,                PARTS_HUMANOID},
+    {"kobold",         0,           AFF_INFRARED,                                        0,                               0,                                                      RES_POISON,                       RES_MAGIC,                                        FORMS_HUMANOID | FORM_POISON,  PARTS_HUMANOID | PART_TAIL},
+    {"lizard",         0,           0,                                                   0,                               0,                                                      RES_POISON,                       RES_COLD,                                         A|G|X|cc,                      PARTS_LIZARD},
+    {"modron",         0,           AFF_INFRARED,                                     ASSIST_RACE | ASSIST_ALIGN, RES_CHARM | RES_DISEASE | RES_MENTAL | RES_HOLY | RES_NEGATIVE, RES_FIRE | RES_COLD | RES_ACID,   0,                                                FORM_SENTIENT,                 PARTS_HUMANOID & ~(PARTS_ALIVE | PART_FINGERS)},
+    {"orc",            0,           AFF_INFRARED,                                        0,                               0,                                                      RES_DISEASE,                      RES_LIGHT,                                        FORMS_HUMANOID,                PARTS_HUMANOID},
+    {"pig",            0,           0,                                                   0,                               0,                                                      0,                                0,                                                FORMS_MAMMAL,                  PARTS_QUADRUPED},
+    {"pixie",          0, AFF_FLYING | AFF_DETECT_GOOD | AFF_DETECT_EVIL | AFF_DETECT_MAGIC, 0,                           0,                                                      0,                                0,                                                FORMS_HUMANOID | FORM_MAGICAL, PARTS_HUMANOID | PART_WINGS},
+    {"rabbit",         0,           0,                                                   OFF_DODGE | OFF_FAST,            0,                                                      0,                                0,                                                FORMS_MAMMAL,                  PARTS_QUADRUPED},
+    {"school monster", MOB_NOALIGN, 0,                                                   0,                               RES_CHARM | RES_SUMMON,                                 0,                                RES_MAGIC,                                        A|M|V,                         PARTS_BIPED | PART_TAIL | PART_CLAWS},
+    {"snake",          0,           0,                                                   0,                               0,                                                      RES_POISON,                       RES_COLD,                                         A|G|X|Y|cc,                    PARTS_REPTILE | PART_FANGS},
+    {"song bird",      0,           AFF_FLYING,                                          OFF_FAST | OFF_DODGE,            0,                                                      0,                                0,                                                FORMS_BIRD,                    PARTS_BIRD},
+    {"troll",          0,           AFF_REGENERATION | AFF_INFRARED | AFF_DETECT_HIDDEN, OFF_BERSERK,                     0,                                                      RES_CHARM | RES_BASH,             RES_FIRE | RES_ACID,                              FORMS_HUMANOID | FORM_POISON,  PARTS_HUMANOID | PART_CLAWS | PART_FANGS},
+    {"water fowl",     0,           AFF_SWIM | AFF_FLYING,                               0,                               0,                                                      RES_DROWNING,                     0,                                                FORMS_BIRD,                    PARTS_BIRD},
+    {"wolf",           0,           AFF_DARK_VISION,                                     OFF_FAST | OFF_DODGE,            0,                                                      0,                                0,                                                FORMS_MAMMAL,                  PARTS_CANINE | PART_CLAWS | PART_TAIL},
+    {"wyvern",         0,           AFF_FLYING | AFF_DETECT_INVIS | AFF_DETECT_HIDDEN,   OFF_BASH | OFF_FAST | OFF_DODGE, RES_POISON,                                             0,                                RES_LIGHT,                                        A|B|G|Z,                       PARTS_LIZARD | PART_FANGS},
     {0}
 };
 
 const PC_RACE_T pc_race_table[PC_RACE_MAX + 1] = {
- /* {"race name", short name, points, { class multipliers }, { bonus skills },   { base stats },       { max stats },        size}, */
-    {"null race",   "", 0, {100, 100, 100, 100}, {NULL},                         {13, 13, 13, 13, 13}, {18, 18, 18, 18, 18}, 0},
-    {"human",  "Human", 0, {100, 100, 100, 100}, {NULL},                         {13, 13, 13, 13, 13}, {18, 18, 18, 18, 18}, SIZE_MEDIUM},
-    {"elf",    " Elf ", 5, {100, 125, 100, 125}, {"sneak", "hide", NULL},        {12, 14, 13, 15, 11}, {16, 20, 18, 21, 15}, SIZE_SMALL},
-    {"dwarf",  "Dwarf", 8, {150, 100, 125, 100}, {"berserk", NULL},              {14, 12, 14, 10, 15}, {20, 16, 19, 14, 21}, SIZE_MEDIUM},
-    {"giant",  "Giant", 6, {200, 150, 150, 100}, {"bash", "fast healing", NULL}, {16, 11, 13, 11, 14}, {22, 15, 18, 15, 20}, SIZE_LARGE},
-#ifdef BASEMUD_PIXIE_RACE
-    {"pixie",  "Pixie", 7, {100, 150, 150, 150}, {"dodge", NULL},                {11, 15, 15, 14, 10}, {15, 21, 20, 20, 14}, SIZE_TINY},
+ /* {"race name", short name, points, { class multipliers }, { bonus skills },  { base stats (str,int,wis,dex,con) }, {max}, size}, */
+    {"human",  "Human", 0, {100, 100, 100, 100}, {NULL},                         {13, 13, 13, 13, 13}, {18, 18, 18, 18, 18}, SIZE_MEDIUM, 1},
+    {"elf",    " Elf ", 5, {100, 125, 100, 125}, {"sneak", "hide", NULL},        {12, 14, 13, 15, 11}, {16, 20, 18, 21, 15}, SIZE_SMALL,  0},
+    {"dwarf",  "Dwarf", 8, {150, 100, 125, 100}, {"berserk", NULL},              {14, 12, 14, 10, 15}, {20, 16, 19, 14, 21}, SIZE_MEDIUM, 0},
+    {"giant",  "Giant", 6, {200, 150, 150, 100}, {"bash", "fast healing", NULL}, {16, 11, 13, 11, 14}, {22, 15, 18, 15, 20}, SIZE_LARGE,  0},
+#ifdef BASEMUD_RACE_ORC
+    {"orc",    " Orc ", 0, {100, 100, 100, 100}, {NULL},                         {13, 13, 13, 13, 13}, {19, 17, 17, 18, 19}, SIZE_MEDIUM, 0},
+#endif
+#ifdef BASEMUD_RACE_PIXIE
+    {"pixie",  "Pixie", 7, {100, 150, 150, 150}, {"dodge", NULL},                {11, 15, 15, 14, 10}, {15, 21, 20, 20, 14}, SIZE_TINY,   0},
 #endif
     {0}
 };

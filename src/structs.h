@@ -231,7 +231,6 @@ struct attack_type {
 
 struct race_type {
     char *name;   /* call name of the race          */
-    bool pc_race; /* can be chosen by pcs           */
     flag_t mob;   /* act bits for the race          */
     flag_t aff;   /* aff bits for the race          */
     flag_t off;   /* off bits for the race          */
@@ -251,6 +250,7 @@ struct pc_race_type {             /* additional data for pc races    */
     sh_int stats[STAT_MAX];       /* starting stats                  */
     sh_int max_stats[STAT_MAX];   /* maximum stats                   */
     sh_int size;                  /* aff bits for the race           */
+    sh_int bonus_max;             /* bonus to maximum stats          */
 };
 
 struct spec_type {

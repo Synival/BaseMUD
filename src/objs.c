@@ -309,8 +309,7 @@ void obj_give_to_keeper (OBJ_T *obj, CHAR_T *ch) {
 }
 
 /* Take the object from whoever or whatever is holding it. */
-void obj_take (OBJ_T *obj)
-{
+void obj_take (OBJ_T *obj) {
     if (obj->carried_by) {
         obj_take_from_char (obj);
         return;
@@ -382,10 +381,10 @@ int obj_get_ac_type (const OBJ_T *obj, int wear_loc, int type) {
         return 0;
 
     switch (type) {
-        case 0: ac_value = obj->v.armor.vs_pierce; break;
-        case 1: ac_value = obj->v.armor.vs_bash;   break;
-        case 2: ac_value = obj->v.armor.vs_slash;  break;
-        case 3: ac_value = obj->v.armor.vs_magic;  break;
+        case AC_PIERCE: ac_value = obj->v.armor.vs_pierce; break;
+        case AC_BASH:   ac_value = obj->v.armor.vs_bash;   break;
+        case AC_SLASH:  ac_value = obj->v.armor.vs_slash;  break;
+        case AC_EXOTIC: ac_value = obj->v.armor.vs_magic;  break;
         default:
             return 0;
     }

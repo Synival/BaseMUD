@@ -1,31 +1,5 @@
 [
   {"player_race": {
-    "name": "null race",
-    "who_name": null,
-    "creation_points": 0,
-    "class_exp": {
-      "mage": 100,
-      "cleric": 100,
-      "thief": 100,
-      "warrior": 100
-    },
-    "base_stats": {
-      "str": 13,
-      "int": 13,
-      "wis": 13,
-      "dex": 13,
-      "con": 13
-    },
-    "max_stats": {
-      "str": 18,
-      "int": 18,
-      "wis": 18,
-      "dex": 18,
-      "con": 18
-    },
-    "size": "tiny"
-  }},
-  {"player_race": {
     "name": "human",
     "who_name": "Human",
     "creation_points": 0,
@@ -49,6 +23,7 @@
       "dex": 18,
       "con": 18
     },
+    "bonus_max_stat": 1,
     "size": "medium"
   }},
   {"player_race": {
@@ -135,6 +110,32 @@
       "con": 20
     },
     "size": "large"
+  }},
+  {"player_race": {
+    "name": "orc",
+    "who_name": " Orc ",
+    "creation_points": 0,
+    "class_exp": {
+      "mage": 100,
+      "cleric": 100,
+      "thief": 100,
+      "warrior": 100
+    },
+    "base_stats": {
+      "str": 13,
+      "int": 13,
+      "wis": 13,
+      "dex": 13,
+      "con": 13
+    },
+    "max_stats": {
+      "str": 19,
+      "int": 17,
+      "wis": 17,
+      "dex": 18,
+      "con": 19
+    },
+    "size": "medium"
   }},
   {"player_race": {
     "name": "pixie",

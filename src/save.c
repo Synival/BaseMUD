@@ -133,10 +133,13 @@ void save_char_obj (CHAR_T *ch) {
 
 /* Write the char. */
 void fwrite_char (CHAR_T *ch, FILE *fp) {
+    const PC_RACE_T *pc_race;
     const SKILL_T *skill;
     const SKILL_GROUP_T *group;
     AFFECT_T *paf;
     int sn, gn, pos, i;
+
+    pc_race = pc_race_get_by_race (ch->race);
 
     fprintf (fp, "#%s\n", IS_NPC (ch) ? "MOB" : "PLAYER");
     fprintf (fp, "Name %s~\n", ch->name);
@@ -152,7 +155,7 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
     if (ch->prompt != NULL || !str_cmp (ch->prompt, "<%hhp %mm %vmv> ")
         || !str_cmp (ch->prompt, "{c<%hhp %mm %vmv>{x "))
         fprintf (fp, "Prom %s~\n", ch->prompt);
-    fprintf (fp, "Race %s~\n", pc_race_table[ch->race].name);
+    fprintf (fp, "Race %s~\n", pc_race->name);
     if (ch->clan)
         fprintf (fp, "Clan %s~\n", clan_table[ch->clan].name);
     fprintf (fp, "Sex  %d\n", ch->sex);
@@ -508,7 +511,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
     ch->desc = d;
     ch->name = str_dup (name);
     ch->id = get_pc_id ();
-    ch->race = race_lookup ("human");
+    ch->race = race_lookup_exact ("human");
     ch->plr = PLR_NOSUMMON;
     ch->comm = COMM_COMBINE | COMM_PROMPT;
     ch->prompt = str_dup ("<%hhp %mm %vmv> ");
@@ -581,17 +584,19 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
 
     /* initialize race */
     if (found) {
+        const PC_RACE_T *pc_race;
         int i;
         if (ch->race == 0)
-            ch->race = race_lookup ("human");
+            ch->race = race_lookup_exact ("human");
 
-        ch->size = pc_race_table[ch->race].size;
+        pc_race = pc_race_get_by_race (ch->race);
+        ch->size = pc_race->size;
         ch->attack_type = ATTACK_PUNCH;
 
         for (i = 0; i < PC_RACE_SKILL_MAX; i++) {
-            if (pc_race_table[ch->race].skills[i] == NULL)
+            if (pc_race->skills[i] == NULL)
                 break;
-            char_add_skill_or_group (ch, pc_race_table[ch->race].skills[i], FALSE);
+            char_add_skill_or_group (ch, pc_race->skills[i], FALSE);
         }
         ch->affected_by = ch->affected_by | race_table[ch->race].aff;
         ch->imm_flags   = ch->imm_flags | race_table[ch->race].imm;
