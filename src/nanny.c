@@ -447,9 +447,10 @@ DEFINE_NANNY_FUN (nanny_confirm_new_password) {
 
 DEFINE_NANNY_FUN (nanny_get_new_race) {
     const PC_RACE_T *pc_race;
+    const RACE_T *race;
     char arg[MAX_STRING_LENGTH];
     CHAR_T *ch = d->character;
-    int i, race;
+    int i, race_num;
 
     one_argument (argument, arg);
     if (!strcmp (arg, "help")) {
@@ -463,8 +464,9 @@ DEFINE_NANNY_FUN (nanny_get_new_race) {
     }
 
     pc_race = pc_race_get_by_name (argument);
-    race = (pc_race == NULL) ? TYPE_NONE : race_lookup_exact (pc_race->name);
-    if (race < 0) {
+    race_num = (pc_race == NULL)
+        ? TYPE_NONE : race_lookup_exact (pc_race->name);
+    if (race_num < 0) {
         send_to_desc ("That is not a valid race.\n\r", d);
         send_to_desc ("The following races are available:\n\r  ", d);
         for (i = 0; i < PC_RACE_MAX; i++) {
@@ -478,18 +480,20 @@ DEFINE_NANNY_FUN (nanny_get_new_race) {
         return;
     }
 
-    ch->race = race;
+    ch->race = race_num;
+    pc_race = pc_race_get_by_race (race_num);
+    race = race_get (race_num);
 
     /* initialize stats */
-    pc_race = pc_race_get_by_race (ch->race);
     for (i = 0; i < STAT_MAX; i++)
         ch->perm_stat[i] = pc_race->stats[i];
-    ch->affected_by = ch->affected_by | race_table[race].aff;
-    ch->imm_flags = ch->imm_flags | race_table[race].imm;
-    ch->res_flags = ch->res_flags | race_table[race].res;
-    ch->vuln_flags = ch->vuln_flags | race_table[race].vuln;
-    ch->form = race_table[race].form;
-    ch->parts = race_table[race].parts;
+
+    ch->affected_by = ch->affected_by | race->aff;
+    ch->imm_flags   = ch->imm_flags   | race->imm;
+    ch->res_flags   = ch->res_flags   | race->res;
+    ch->vuln_flags  = ch->vuln_flags  | race->vuln;
+    ch->form        = race->form;
+    ch->parts       = race->parts;
 
     /* add skills */
     for (i = 0; i < PC_RACE_SKILL_MAX; i++) {

@@ -246,7 +246,7 @@ DEFINE_DO_FUN (do_gain) {
     }
 
     num = skill_lookup (argument);
-    if (num > -1) {
+    if (num >= 1) {
         const SKILL_T *skill = skill_get (num);
         BAIL_IF_ACT (skill->spell_fun != spell_null,
             "$N tells you 'You must learn the full group.'", ch, NULL, trainer);

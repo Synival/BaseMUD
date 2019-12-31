@@ -47,7 +47,7 @@ MEDIT (medit_show) {
          mob->sex == SEX_MALE   ? "male   " :
          mob->sex == SEX_FEMALE ? "female " :
          mob->sex == 3          ? "random " : "neutral",
-         race_table[mob->race].name);
+         race_get_name (mob->race));
 
     printf_to_char (ch, "Level:       [%2d]    Align: [%4d]      "
                         "Hitroll: [%2d] Dam Type:    [%s]\n\r",
@@ -382,6 +382,19 @@ MEDIT (medit_sex) {
     return FALSE;
 }
 
+void medit_update_flags (flag_t final, flag_t race_flags, flag_t *plus,
+    flag_t *minus)
+{
+    *plus  = MISSING_BITS (final, race_flags);
+    *minus = MISSING_BITS (race_flags, final);
+}
+
+#define UPDATE_FLAGS(m, f, rf) \
+    medit_update_flags ((m)->f ## _final, \
+        race_get ((m)->race)->rf, \
+        &((m)->f ## _plus), \
+        &((m)->f ## _minus))
+
 /* Moved out of medit() due to naming conflicts -- Hugin */
 MEDIT (medit_act) {
     MOB_INDEX_T *mob;
@@ -392,8 +405,7 @@ MEDIT (medit_act) {
         if ((value = flags_from_string (mob_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->mob_final, value);
             SET_BIT (mob->mob_final, MOB_IS_NPC);
-            mob->mob_plus  = MISSING_BITS (mob->mob_final, race_table[mob->race].mob);
-            mob->mob_minus = MISSING_BITS (race_table[mob->race].mob, mob->mob_final);
+            UPDATE_FLAGS (mob, mob, mob);
 
             send_to_char ("Mob flag toggled.\n\r", ch);
             return TRUE;
@@ -413,8 +425,7 @@ MEDIT (medit_affect) {
         EDIT_MOB (ch, mob);
         if ((value = flags_from_string (affect_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->affected_by_final, value);
-            mob->affected_by_plus  = MISSING_BITS (mob->affected_by_final, race_table[mob->race].aff);
-            mob->affected_by_minus = MISSING_BITS (race_table[mob->race].aff, mob->affected_by_final);
+            UPDATE_FLAGS (mob, affected_by, aff);
 
             send_to_char ("Affect flag toggled.\n\r", ch);
             return TRUE;
@@ -492,8 +503,7 @@ MEDIT (medit_form) {
         EDIT_MOB (ch, mob);
         if ((value = flags_from_string (form_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->form_plus, value);
-            mob->form_plus  = MISSING_BITS (mob->form_final, race_table[mob->race].form);
-            mob->form_minus = MISSING_BITS (race_table[mob->race].form, mob->form_final);
+            UPDATE_FLAGS (mob, form, form);
 
             send_to_char ("Form toggled.\n\r", ch);
             return TRUE;
@@ -512,8 +522,7 @@ MEDIT (medit_part) {
         EDIT_MOB (ch, mob);
         if ((value = flags_from_string (part_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->parts_plus, value);
-            mob->parts_plus  = MISSING_BITS (mob->parts_final, race_table[mob->race].parts);
-            mob->parts_minus = MISSING_BITS (race_table[mob->race].parts, mob->parts_final);
+            UPDATE_FLAGS (mob, parts, parts);
 
             send_to_char ("Parts toggled.\n\r", ch);
             return TRUE;
@@ -532,8 +541,7 @@ MEDIT (medit_imm) {
         EDIT_MOB (ch, mob);
         if ((value = flags_from_string (res_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->imm_flags_plus, value);
-            mob->imm_flags_plus  = MISSING_BITS (mob->imm_flags_final, race_table[mob->race].imm);
-            mob->imm_flags_minus = MISSING_BITS (race_table[mob->race].imm, mob->imm_flags_final);
+            UPDATE_FLAGS (mob, imm_flags, imm);
 
             send_to_char ("Immunity toggled.\n\r", ch);
             return TRUE;
@@ -552,8 +560,7 @@ MEDIT (medit_res) {
         EDIT_MOB (ch, mob);
         if ((value = flags_from_string (res_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->res_flags_plus, value);
-            mob->res_flags_plus  = MISSING_BITS (mob->res_flags_final, race_table[mob->race].res);
-            mob->res_flags_minus = MISSING_BITS (race_table[mob->race].res, mob->res_flags_final);
+            UPDATE_FLAGS (mob, res_flags, res);
 
             send_to_char ("Resistance toggled.\n\r", ch);
             return TRUE;
@@ -572,8 +579,7 @@ MEDIT (medit_vuln) {
         EDIT_MOB (ch, mob);
         if ((value = flags_from_string (res_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->vuln_flags_plus, value);
-            mob->vuln_flags_plus  = MISSING_BITS (mob->vuln_flags_final, race_table[mob->race].vuln);
-            mob->vuln_flags_minus = MISSING_BITS (race_table[mob->race].vuln, mob->vuln_flags_final);
+            UPDATE_FLAGS (mob, vuln_flags, vuln);
 
             send_to_char ("Vulnerability toggled.\n\r", ch);
             return TRUE;
@@ -608,8 +614,7 @@ MEDIT (medit_off) {
         EDIT_MOB (ch, mob);
         if ((value = flags_from_string (off_flags, argument)) != FLAG_NONE) {
             TOGGLE_BIT (mob->off_flags_plus, value);
-            mob->off_flags_plus  = MISSING_BITS (mob->off_flags_final, race_table[mob->race].off);
-            mob->off_flags_minus = MISSING_BITS (race_table[mob->race].off, mob->off_flags_final);
+            UPDATE_FLAGS (mob, off_flags, off);
 
             send_to_char ("Offensive behaviour toggled.\n\r", ch);
             return TRUE;
@@ -765,12 +770,13 @@ MEDIT (medit_damdice) {
 }
 
 MEDIT (medit_race) {
+    const RACE_T *race;
     MOB_INDEX_T *mob;
-    int race;
+    int i;
 
-    if (argument[0] != '\0' && (race = race_lookup (argument)) >= 0) {
+    if (argument[0] != '\0' && (i = race_lookup (argument)) >= 0) {
         EDIT_MOB (ch, mob);
-        mob->race = race;
+        mob->race = i;
         db_finalize_mob (mob);
 
         send_to_char ("Race set.\n\r", ch);
@@ -780,10 +786,12 @@ MEDIT (medit_race) {
     if (argument[0] == '?') {
         send_to_char ("Available races are:", ch);
 
-        for (race = 0; race_table[race].name != NULL; race++) {
-            if ((race % 3) == 0)
+        for (i = 0; i < RACE_MAX; i++) {
+            if ((race = race_get (i)) == NULL)
+                break;
+            if ((i % 3) == 0)
                 send_to_char ("\n\r", ch);
-            printf_to_char (ch, " %-15s", race_table[race].name);
+            printf_to_char (ch, " %-15s", race->name);
         }
 
         send_to_char ("\n\r", ch);

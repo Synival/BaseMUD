@@ -2389,7 +2389,7 @@ void load_mobiles (FILE *fp) {
 void db_finalize_mob (MOB_INDEX_T *mob) {
     if (mob->race >= 0 || mob->race < RACE_MAX) {
         const RACE_T *race;
-        race = &(race_table[mob->race]);
+        race = race_get(mob->race);
 
         mob->mob_final         = mob->mob_plus | MOB_IS_NPC | race->mob;
         mob->affected_by_final = mob->affected_by_plus | race->aff;

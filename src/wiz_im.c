@@ -553,7 +553,7 @@ DEFINE_DO_FUN (do_mstat) {
         "Vnum: %d  Format: %s  Race: %s  Group: %d  Sex: %s  Room: %d\n\r",
         IS_NPC (victim) ? victim->index_data->vnum : 0,
         IS_NPC (victim) ? victim->index_data->new_format ? "new" : "old" : "pc",
-        race_table[victim->race].name,
+        race_get_name (victim->race),
         IS_NPC (victim) ? victim->group : 0, sex_table[victim->sex].name,
         victim->in_room == NULL ? 0 : victim->in_room->vnum);
 

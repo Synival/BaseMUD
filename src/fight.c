@@ -1427,6 +1427,7 @@ void death_cry (CHAR_T *ch) {
 }
 
 void raw_kill (CHAR_T *victim) {
+    const RACE_T *race;
     int i;
 
     stop_fighting (victim, TRUE);
@@ -1443,11 +1444,14 @@ void raw_kill (CHAR_T *victim) {
     char_extract (victim, FALSE);
     while (victim->affected)
         affect_remove (victim, victim->affected);
-    victim->affected_by = race_table[victim->race].aff;
+
+    race = race_get (victim->race);
+    victim->affected_by = race->aff;
     for (i = 0; i < 4; i++)
         victim->armor[i] = 100;
+
     victim->position = POS_RESTING;
-    victim->hit = UMAX (1, victim->hit);
+    victim->hit  = UMAX (1, victim->hit);
     victim->mana = UMAX (1, victim->mana);
     victim->move = UMAX (1, victim->move);
 

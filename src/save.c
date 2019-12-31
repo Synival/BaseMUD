@@ -299,7 +299,10 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
 
 /* write a pet */
 void fwrite_pet (CHAR_T *pet, FILE *fp) {
+    const RACE_T *race;
     AFFECT_T *paf;
+
+    race = race_get (pet->race);
 
     fprintf (fp, "#PET\n");
 
@@ -314,7 +317,7 @@ void fwrite_pet (CHAR_T *pet, FILE *fp) {
     if (pet->description != pet->index_data->description)
         fprintf (fp, "Desc %s~\n", pet->description);
     if (pet->race != pet->index_data->race)
-        fprintf (fp, "Race %s~\n", race_table[pet->race].name);
+        fprintf (fp, "Race %s~\n", race->name);
     if (pet->clan)
         fprintf (fp, "Clan %s~\n", clan_table[pet->clan].name);
     fprintf (fp, "Sex  %d\n", pet->sex);
@@ -585,6 +588,8 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
     /* initialize race */
     if (found) {
         const PC_RACE_T *pc_race;
+        const RACE_T *race;
+
         int i;
         if (ch->race == 0)
             ch->race = race_lookup_exact ("human");
@@ -598,12 +603,14 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
                 break;
             char_add_skill_or_group (ch, pc_race->skills[i], FALSE);
         }
-        ch->affected_by = ch->affected_by | race_table[ch->race].aff;
-        ch->imm_flags   = ch->imm_flags | race_table[ch->race].imm;
-        ch->res_flags   = ch->res_flags | race_table[ch->race].res;
-        ch->vuln_flags  = ch->vuln_flags | race_table[ch->race].vuln;
-        ch->form        = race_table[ch->race].form;
-        ch->parts       = race_table[ch->race].parts;
+
+        race = race_get (ch->race);
+        ch->affected_by = ch->affected_by | race->aff;
+        ch->imm_flags   = ch->imm_flags   | race->imm;
+        ch->res_flags   = ch->res_flags   | race->res;
+        ch->vuln_flags  = ch->vuln_flags  | race->vuln;
+        ch->form        = race->form;
+        ch->parts       = race->parts;
     }
 
     /* RT initialize skills */

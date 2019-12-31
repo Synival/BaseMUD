@@ -150,7 +150,7 @@ void save_mobile (FILE *fp, MOB_INDEX_T *mob_index)
     const RACE_T *race;
     char buf[MAX_STRING_LENGTH];
 
-    race = &(race_table[mob_index->race]);
+    race = race_get (mob_index->race);
     fprintf (fp, "#%d\n", mob_index->vnum);
     fprintf (fp, "%s~\n", mob_index->name);
     fprintf (fp, "%s~\n", mob_index->short_descr);

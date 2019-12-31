@@ -42,9 +42,10 @@
 
 /* Snarf a mob section.  old style */
 void load_old_mob (FILE *fp) {
+    const RACE_T *race;
     MOB_INDEX_T *mob_index;
     /* for race updating */
-    int race;
+    int race_num;
     char name[MAX_STRING_LENGTH];
 
     EXIT_IF_BUG (!area_last, /* OLC */
@@ -123,7 +124,7 @@ void load_old_mob (FILE *fp) {
 
         /* compute the race BS */
         one_argument (mob_index->name, name);
-        if (name[0] == '\0' || (race = race_lookup_exact (name)) < 0) {
+        if (name[0] == '\0' || (race_num = race_lookup_exact (name)) < 0) {
             if (name[0] != '\0')
                 bugf ("Unknown race '%s'", name);
 
@@ -141,15 +142,17 @@ void load_old_mob (FILE *fp) {
                 PART_GUTS;
         }
         else {
-            mob_index->race = race;
+            mob_index->race = race_num;
+            race = race_get (race_num);
+
             mob_index->off_flags_plus =
                 OFF_DODGE | OFF_DISARM | OFF_TRIP | ASSIST_RACE |
-                race_table[race].off;
-            mob_index->imm_flags_plus  = race_table[race].imm;
-            mob_index->res_flags_plus  = race_table[race].res;
-            mob_index->vuln_flags_plus = race_table[race].vuln;
-            mob_index->form_plus       = race_table[race].form;
-            mob_index->parts_plus      = race_table[race].parts;
+                race->off;
+            mob_index->imm_flags_plus  = race->imm;
+            mob_index->res_flags_plus  = race->res;
+            mob_index->vuln_flags_plus = race->vuln;
+            mob_index->form_plus       = race->form;
+            mob_index->parts_plus      = race->parts;
         }
 
         EXIT_IF_BUG (letter != 'S',
