@@ -50,7 +50,740 @@
 
 #include "items.h"
 
--- HERE --
+bool item_is_closed (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_CONTAINER:
+            return IS_SET (obj->v.container.flags, CONT_CLOSED)
+                ? TRUE : FALSE;
+
+        case ITEM_PORTAL:
+            return IS_SET (obj->v.portal.exit_flags, EX_CLOSED)
+                ? TRUE : FALSE;
+
+        default:
+            return FALSE;
+    }
+}
+
+bool item_is_edible (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_FOOD:
+        case ITEM_PILL:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_is_drinkable (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_DRINK_CON:
+        case ITEM_FOUNTAIN:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_is_comparable (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_ARMOR:
+        case ITEM_WEAPON:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_is_container (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_CONTAINER:
+        case ITEM_CORPSE_NPC:
+        case ITEM_CORPSE_PC:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_is_lit (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_LIGHT:
+            return (obj->v.light.duration != 0) ? TRUE : FALSE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_is_boat (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_BOAT:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_is_visible_when_blind (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_POTION:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_is_armor (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_ARMOR:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_is_weapon (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_WEAPON:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_is_warp_stone (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_WARP_STONE:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_is_playing (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_JUKEBOX:
+            return (obj->v.jukebox.song >= 0) ? TRUE : FALSE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_has_liquid (OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_DRINK_CON:
+            return (obj->v.drink_con.capacity > 0 &&
+                    obj->v.drink_con.filled <= 0)
+                ? FALSE : TRUE;
+
+        case ITEM_FOUNTAIN:
+            return TRUE;
+
+        default:
+            return FALSE;
+    }
+}
+
+bool item_has_worth_as_room_reset (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_TREASURE:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_has_charges (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_STAFF:
+            return (obj->v.staff.charges > 0) ? TRUE : FALSE;
+        case ITEM_WAND:
+            return (obj->v.wand.charges > 0) ? TRUE : FALSE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_put_objs (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_CONTAINER:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_sacrifice (OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_CORPSE_PC:
+            return (obj->contains) ? FALSE : TRUE;
+        default:
+            return TRUE;
+    }
+}
+
+bool item_can_quaff (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_POTION:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_recite (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_SCROLL:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_brandish (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_STAFF:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_zap (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_WAND:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_sell (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_TRASH:
+            return FALSE;
+        default:
+            return TRUE;
+    }
+}
+
+bool item_can_wield (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_WEAPON:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_fill (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_DRINK_CON:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_play (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_JUKEBOX:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_position_at (const OBJ_T *obj, int pos) {
+    switch (obj->item_type) {
+        case ITEM_FURNITURE: {
+            const FURNITURE_BITS_T *furn;
+            flag_t bits;
+            if ((furn = furniture_get (POS_STANDING)) == NULL)
+                return FALSE;
+            bits = furn->bit_at | furn->bit_on | furn->bit_in;
+            return ((obj->v.furniture.flags & bits) != 0) ? TRUE : FALSE;
+        }
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_fit_obj_in (const OBJ_T *container, const OBJ_T *obj) {
+    switch (container->item_type) {
+        case ITEM_CORPSE_NPC:
+        case ITEM_CORPSE_PC:
+            return TRUE;
+
+        case ITEM_CONTAINER: {
+            int weight = obj_get_weight (obj);
+            if (weight + obj_get_true_weight (container) >
+                    (container->v.container.capacity * 10))
+                return FALSE;
+            if (weight > (container->v.container.max_weight * 10))
+                return FALSE;
+            return TRUE;
+        }
+
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_wear_flag (const OBJ_T *obj, flag_t wear_flag) {
+    switch (obj->item_type) {
+        case ITEM_LIGHT:
+            return (wear_flag == ITEM_WEAR_LIGHT) ? TRUE : FALSE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_enter_as (const OBJ_T *obj, const CHAR_T *ch) {
+    switch (obj->item_type) {
+        case ITEM_PORTAL:
+            if (IS_TRUSTED (ch, ANGEL))
+                return TRUE;
+            if (IS_SET (obj->v.portal.exit_flags, EX_CLOSED))
+                return FALSE;
+            return TRUE;
+
+        default:
+            return FALSE;
+    }
+}
+
+bool item_can_loot_as (const OBJ_T *obj, const CHAR_T *ch) {
+    switch (obj->item_type) {
+        case ITEM_CONTAINER:
+        case ITEM_CORPSE_NPC:
+            return TRUE;
+        case ITEM_CORPSE_PC:
+            return char_can_loot (ch, obj) ? TRUE : FALSE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_should_save_for_level (const OBJ_T *obj, int ch_level) {
+    switch (obj->item_type) {
+        case ITEM_CONTAINER:
+            return TRUE;
+        case ITEM_KEY:
+            return FALSE;
+        case ITEM_MAP:
+            return (obj->v.map.persist) ? TRUE : FALSE;
+        default:
+            return (ch_level >= obj->level - 2) ? TRUE : FALSE;
+    }
+}
+
+bool item_should_spill_contents_when_poofed (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_CORPSE_PC:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+int item_get_compare_value (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_ARMOR:
+            return obj->v.armor.vs_pierce +
+                   obj->v.armor.vs_bash +
+                   obj->v.armor.vs_slash;
+
+        case ITEM_WEAPON:
+            if (obj->index_data->new_format)
+                return (obj->v.weapon.dice_size + 1) * obj->v.weapon.dice_num;
+            else
+                return (obj->v.weapon.dice_size + 0) * obj->v.weapon.dice_num;
+
+        default:
+            return 0;
+    }
+}
+
+int item_get_door_flags (const OBJ_T *obj, flag_t *flags, int *key) {
+    switch (obj->item_type) {
+        case ITEM_PORTAL:
+            if (flags) *flags = obj->v.portal.exit_flags;
+            if (key)   *key   = obj->v.portal.key;
+            return ITEM_DOOR_EXIT;
+
+        case ITEM_CONTAINER:
+            if (flags) *flags = obj->v.container.flags;
+            if (key)   *key   = obj->v.container.key;
+            return ITEM_DOOR_CONTAINER;
+
+        default:
+            return ITEM_DOOR_NONE;
+    }
+}
+
+const char **item_get_put_messages (const OBJ_T *obj) {
+    const static char *on_messages[2] =
+        { "You put $p on $P.", "$n puts $p on $P." };
+    const static char *in_messages[2] =
+        { "You put $p in $P.", "$n puts $p in $P." };
+
+    if (obj->item_type == ITEM_CONTAINER &&
+            IS_SET (obj->v.container.flags, CONT_PUT_ON))
+        return on_messages;
+    else
+        return in_messages;
+}
+
+bool item_get_drink_values (OBJ_T *obj, flag_t **capacity, flag_t **filled,
+    flag_t **liquid, flag_t **poisoned, int *drink_amount)
+{
+    const LIQ_T *liq;
+
+    switch (obj->item_type) {
+        case ITEM_FOUNTAIN:
+            *capacity = &(obj->v.fountain.capacity);
+            *filled   = &(obj->v.fountain.filled);
+            *liquid   = &(obj->v.fountain.liquid);
+            *poisoned = &(obj->v.fountain.poisoned);
+            break;
+
+        case ITEM_DRINK_CON:
+            *capacity = &(obj->v.drink_con.capacity);
+            *filled   = &(obj->v.drink_con.filled);
+            *liquid   = &(obj->v.drink_con.liquid);
+            *poisoned = &(obj->v.drink_con.poisoned);
+            break;
+
+        default:
+            return FALSE;
+    }
+
+    if ((liq = liq_get (**liquid)) == NULL) {
+        bug ("item_get_drink_values: bad liquid number %d.", **liquid);
+        **liquid = 0;
+        liq = liq_get (0);
+    }
+
+    if (*capacity == NULL || **capacity <= 0)
+        *drink_amount = liq->serving_size * 3;
+    else
+        *drink_amount = UMIN (liq->serving_size, **filled);
+
+    return TRUE;
+}
+
+const LIQ_T *item_get_liquid (const OBJ_T *obj) {
+    const LIQ_T *liq;
+
+    switch (obj->item_type) {
+        case ITEM_DRINK_CON:
+            if ((liq = liq_get (obj->v.drink_con.liquid)) == NULL)
+                liq = liq_get (0);
+            return liq;
+
+        case ITEM_FOUNTAIN:
+            if ((liq = liq_get (obj->v.fountain.liquid)) == NULL)
+                liq = liq_get (0);
+            return liq;
+
+        default:
+            return NULL;
+    }
+}
+
+int item_get_sacrifice_silver (const OBJ_T *obj) {
+    int silver = UMAX (1, obj->level * 3);
+    switch (obj->item_type) {
+        case ITEM_CORPSE_NPC:
+        case ITEM_CORPSE_PC:
+            return silver;
+        default:
+            return UMIN (silver, obj->cost);
+    }
+}
+
+int item_get_modified_cost (const OBJ_T *obj, int cost) {
+    switch (obj->item_type) {
+        case ITEM_STAFF:
+            return (obj->v.staff.recharge == 0)
+                ? (cost / 4)
+                : (cost * obj->v.staff.charges / obj->v.staff.recharge);
+
+        case ITEM_WAND:
+            return (obj->v.wand.recharge == 0)
+                ? (cost / 4)
+                : (cost * obj->v.wand.charges / obj->v.wand.recharge);
+
+        default:
+            return cost;
+    }
+}
+
+const char *item_get_corrode_message (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_CONTAINER:
+        case ITEM_CORPSE_PC:
+        case ITEM_CORPSE_NPC:
+            return "$p fumes and dissolves.";
+        case ITEM_ARMOR:
+            return "$p is pitted and etched.";
+        case ITEM_CLOTHING:
+            return "$p is corroded into scrap.";
+        case ITEM_STAFF:
+        case ITEM_WAND:
+            return "$p corrodes and breaks.";
+        case ITEM_SCROLL:
+            return "$p is burned into waste.";
+        default:
+            return NULL;
+    }
+}
+
+int item_get_corrode_chance_modifier (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_STAFF:
+        case ITEM_WAND:
+            return -10;
+        case ITEM_SCROLL:
+            return 10;
+        default:
+            return 0;
+    }
+}
+
+const char *item_get_freeze_message (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_POTION:
+        case ITEM_DRINK_CON:
+            return "$p freezes and shatters!";
+        default:
+            return NULL;
+    }
+}
+
+int item_get_freeze_chance_modifier (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_POTION:
+            return 25;
+        case ITEM_DRINK_CON:
+            return 5;
+        default:
+            return 0;
+    }
+}
+
+const char *item_get_burn_message (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_CONTAINER:
+            return "$p ignites and burns!";
+        case ITEM_POTION:
+            return "$p bubbles and boils!";
+        case ITEM_SCROLL:
+            return "$p crackles and burns!";
+        case ITEM_STAFF:
+            return "$p smokes and chars!";
+        case ITEM_WAND:
+            return "$p sparks and sputters!";
+        case ITEM_FOOD:
+            return "$p blackens and crisps!";
+        case ITEM_PILL:
+            return "$p melts and drips!";
+        default:
+            return NULL;
+    }
+}
+
+int item_get_burn_chance_modifier (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_POTION:
+            return 25;
+        case ITEM_SCROLL:
+            return 50;
+        case ITEM_STAFF:
+            return 10;
+        default:
+            return 0;
+    }
+}
+
+const char *item_get_poison_message (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_FOOD:
+            return "";
+        case ITEM_DRINK_CON:
+            if (obj->v.drink_con.capacity == obj->v.drink_con.filled)
+                return NULL;
+            return "";
+        default:
+            return NULL;
+    }
+}
+
+int item_get_poison_chance_modifier (const OBJ_T *obj) {
+    return 0;
+}
+
+const char *item_get_shock_message (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_WAND:
+        case ITEM_STAFF:
+            return "$p overloads and explodes!";
+        case ITEM_JEWELRY:
+            return "$p is fused into a worthless lump.";
+        default:
+            return NULL;
+    }
+}
+
+int item_get_shock_chance_modifier (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_WAND:
+        case ITEM_STAFF:
+            return 10;
+        case ITEM_JEWELRY:
+            return -10;
+        default:
+            return 0;
+    }
+}
+
+bool item_get_corpse_timer_range (const OBJ_T *obj, int *timer_min,
+    int *timer_max)
+{
+    switch (obj->item_type) {
+        case ITEM_POTION:
+            *timer_min = 500;
+            *timer_max = 1000;
+            return TRUE;
+
+        case ITEM_SCROLL:
+            *timer_min = 1000;
+            *timer_max = 2500;
+            return TRUE;
+
+        default:
+            return FALSE;
+    }
+}
+
+int item_get_ac (const OBJ_T *obj, int ac_type) {
+    switch (obj->item_type) {
+        case ITEM_ARMOR:
+            switch (ac_type) {
+                case AC_PIERCE: return obj->v.armor.vs_pierce; break;
+                case AC_BASH:   return obj->v.armor.vs_bash;   break;
+                case AC_SLASH:  return obj->v.armor.vs_slash;  break;
+                case AC_EXOTIC: return obj->v.armor.vs_magic;  break;
+                default:        return 0;
+            }
+
+        default:
+            return 0;
+    }
+}
+
+int item_get_carry_number (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_CONTAINER:
+        case ITEM_MONEY:
+        case ITEM_GEM:
+        case ITEM_JEWELRY:
+            return 0;
+        default:
+            return 1;
+    }
+}
+
+int item_get_furn_preposition_type (const OBJ_T *obj, int position) {
+    const FURNITURE_BITS_T *bits;
+    if (obj == NULL)
+        return POS_PREP_NO_OBJECT;
+    if (obj->item_type != ITEM_FURNITURE)
+        return POS_PREP_NOT_FURNITURE;
+    if ((bits = furniture_get (position)) == NULL)
+        return POS_PREP_BAD_POSITION;
+
+         if (obj->v.furniture.flags & bits->bit_at) return POS_PREP_AT;
+    else if (obj->v.furniture.flags & bits->bit_on) return POS_PREP_ON;
+    else if (obj->v.furniture.flags & bits->bit_in) return POS_PREP_IN;
+    else                                            return POS_PREP_BY;
+}
+
+int item_get_weight_mult (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_CONTAINER:
+            return obj->v.container.weight_mult;
+        default:
+            return 100;
+    }
+}
+
+const char *item_get_poof_message (const OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_FOUNTAIN:
+            return "$p dries up.";
+
+        case ITEM_CORPSE_NPC:
+        case ITEM_CORPSE_PC:
+            return "$p decays into dust.";
+
+        case ITEM_FOOD:
+            return "$p decomposes.";
+
+        case ITEM_POTION:
+            return "$p has evaporated from disuse.";
+
+        case ITEM_PORTAL:
+            return "$p fades out of existence.";
+
+        case ITEM_CONTAINER:
+            if (obj_can_wear_flag (obj, ITEM_WEAR_FLOAT)) {
+                if (obj->contains)
+                    return "$p flickers and vanishes, spilling its contents on the floor.";
+                else
+                    return "$p flickers and vanishes.";
+            }
+            return "$p crumbles into dust.";
+
+        default:
+            return "$p crumbles into dust.";
+    }
+}
+
+flag_t *item_get_poison_flag (OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_FOUNTAIN:
+            return &(obj->v.fountain.poisoned);
+        case ITEM_DRINK_CON:
+            return &(obj->v.drink_con.poisoned);
+        case ITEM_FOOD:
+            return &(obj->v.food.poisoned);
+        default:
+            return NULL;
+    }
+}
+
+bool item_get_recharge_values (OBJ_T *obj, flag_t *level,
+    flag_t **recharge_ptr, flag_t **charges_ptr)
+{
+    switch (obj->item_type) {
+        case ITEM_WAND:
+            *level        = obj->v.wand.level;
+            *recharge_ptr = &(obj->v.wand.recharge);
+            *charges_ptr  = &(obj->v.wand.charges);
+            return TRUE;
+
+        case ITEM_STAFF:
+            *level        = obj->v.staff.level;
+            *recharge_ptr = &(obj->v.staff.recharge);
+            *charges_ptr  = &(obj->v.staff.charges);
+            return TRUE;
+
+        default:
+            return FALSE;
+    }
+}
 
 bool item_init (OBJ_T *obj, const OBJ_INDEX_T *obj_index, int level) {
     switch (obj->item_type) {
@@ -244,200 +977,6 @@ bool item_examine (const OBJ_T *obj, CHAR_T *ch) {
     }
 }
 
-bool item_is_comparable (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_ARMOR:
-        case ITEM_WEAPON:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-int item_get_compare_value (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_ARMOR:
-            return obj->v.armor.vs_pierce +
-                   obj->v.armor.vs_bash +
-                   obj->v.armor.vs_slash;
-
-        case ITEM_WEAPON:
-            if (obj->index_data->new_format)
-                return (obj->v.weapon.dice_size + 1) * obj->v.weapon.dice_num;
-            else
-                return (obj->v.weapon.dice_size + 0) * obj->v.weapon.dice_num;
-
-        default:
-            return 0;
-    }
-}
-
-bool item_is_container (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_CONTAINER:
-        case ITEM_CORPSE_NPC:
-        case ITEM_CORPSE_PC:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_index_is_container (const OBJ_INDEX_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_CONTAINER:
-        case ITEM_CORPSE_NPC:
-        case ITEM_CORPSE_PC:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_is_closed (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_CONTAINER:
-            return IS_SET (obj->v.container.flags, CONT_CLOSED)
-                ? TRUE : FALSE;
-
-        case ITEM_PORTAL:
-            return IS_SET (obj->v.portal.exit_flags, EX_CLOSED)
-                ? TRUE : FALSE;
-
-        default:
-            return FALSE;
-    }
-}
-
-bool item_is_drinkable (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_DRINK_CON:
-        case ITEM_FOUNTAIN:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-int item_get_door_flags (const OBJ_T *obj, flag_t *flags, int *key) {
-    switch (obj->item_type) {
-        case ITEM_PORTAL:
-            if (flags) *flags = obj->v.portal.exit_flags;
-            if (key)   *key   = obj->v.portal.key;
-            return ITEM_DOOR_EXIT;
-
-        case ITEM_CONTAINER:
-            if (flags) *flags = obj->v.container.flags;
-            if (key)   *key   = obj->v.container.key;
-            return ITEM_DOOR_CONTAINER;
-
-        default:
-            return ITEM_DOOR_NONE;
-    }
-}
-
-const char **item_get_put_messages (const OBJ_T *obj) {
-    const static char *on_messages[2] =
-        { "You put $p on $P.", "$n puts $p on $P." };
-    const static char *in_messages[2] =
-        { "You put $p in $P.", "$n puts $p in $P." };
-
-    if (obj->item_type == ITEM_CONTAINER &&
-            IS_SET (obj->v.container.flags, CONT_PUT_ON))
-        return on_messages;
-    else
-        return in_messages;
-}
-
-bool item_can_put_objs (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_CONTAINER:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-flag_t *item_get_poison_flag (OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_FOUNTAIN:
-            return &(obj->v.fountain.poisoned);
-        case ITEM_DRINK_CON:
-            return &(obj->v.drink_con.poisoned);
-        case ITEM_FOOD:
-            return &(obj->v.food.poisoned);
-        default:
-            return NULL;
-    }
-}
-
-bool item_get_drink_values (OBJ_T *obj, flag_t **capacity, flag_t **filled,
-    flag_t **liquid, flag_t **poisoned, int *drink_amount)
-{
-    const LIQ_T *liq;
-
-    switch (obj->item_type) {
-        case ITEM_FOUNTAIN:
-            *capacity = &(obj->v.fountain.capacity);
-            *filled   = &(obj->v.fountain.filled);
-            *liquid   = &(obj->v.fountain.liquid);
-            *poisoned = &(obj->v.fountain.poisoned);
-            break;
-
-        case ITEM_DRINK_CON:
-            *capacity = &(obj->v.drink_con.capacity);
-            *filled   = &(obj->v.drink_con.filled);
-            *liquid   = &(obj->v.drink_con.liquid);
-            *poisoned = &(obj->v.drink_con.poisoned);
-            break;
-
-        default:
-            return FALSE;
-    }
-
-    if ((liq = liq_get (**liquid)) == NULL) {
-        bug ("item_get_drink_values: bad liquid number %d.", **liquid);
-        **liquid = 0;
-        liq = liq_get (0);
-    }
-
-    if (*capacity == NULL || **capacity <= 0)
-        *drink_amount = liq->serving_size * 3;
-    else
-        *drink_amount = UMIN (liq->serving_size, **filled);
-
-    return TRUE;
-}
-
-const LIQ_T *item_get_liquid (const OBJ_T *obj) {
-    const LIQ_T *liq;
-
-    switch (obj->item_type) {
-        case ITEM_DRINK_CON:
-            if ((liq = liq_get (obj->v.drink_con.liquid)) == NULL)
-                liq = liq_get (0);
-            return liq;
-
-        case ITEM_FOUNTAIN:
-            if ((liq = liq_get (obj->v.fountain.liquid)) == NULL)
-                liq = liq_get (0);
-            return liq;
-
-        default:
-            return NULL;
-    }
-}
-
-bool item_is_edible (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_FOOD:
-        case ITEM_PILL:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
 bool item_eat_effect (OBJ_T *obj, CHAR_T *ch) {
     switch (obj->item_type) {
         case ITEM_FOOD:
@@ -469,21 +1008,6 @@ bool item_eat_effect (OBJ_T *obj, CHAR_T *ch) {
         default:
             obj_extract (obj);
             return TRUE;
-    }
-}
-
-bool item_has_liquid (OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_DRINK_CON:
-            return (obj->v.drink_con.capacity > 0 &&
-                    obj->v.drink_con.filled <= 0)
-                ? FALSE : TRUE;
-
-        case ITEM_FOUNTAIN:
-            return TRUE;
-
-        default:
-            return FALSE;
     }
 }
 
@@ -521,35 +1045,6 @@ bool item_drink_effect (OBJ_T *obj, CHAR_T *ch) {
     return TRUE;
 }
 
-bool item_can_sacrifice (OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_CORPSE_PC:
-            return (obj->contains) ? FALSE : TRUE;
-        default:
-            return TRUE;
-    }
-}
-
-int item_get_sacrifice_silver (const OBJ_T *obj) {
-    int silver = UMAX (1, obj->level * 3);
-    switch (obj->item_type) {
-        case ITEM_CORPSE_NPC:
-        case ITEM_CORPSE_PC:
-            return silver;
-        default:
-            return UMIN (silver, obj->cost);
-    }
-}
-
-bool item_can_quaff (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_POTION:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
 bool item_quaff_effect (OBJ_T *obj, CHAR_T *ch) {
     switch (obj->item_type) {
         case ITEM_POTION: {
@@ -566,15 +1061,6 @@ bool item_quaff_effect (OBJ_T *obj, CHAR_T *ch) {
     }
 }
 
-bool item_can_recite (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_SCROLL:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
 bool item_recite_effect (OBJ_T *obj, CHAR_T *ch, CHAR_T *victim,
     OBJ_T *obj_target)
 {
@@ -587,51 +1073,6 @@ bool item_recite_effect (OBJ_T *obj, CHAR_T *ch, CHAR_T *victim,
             obj_extract (obj);
             return TRUE;
         }
-
-        default:
-            return FALSE;
-    }
-}
-
-bool item_can_brandish (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_STAFF:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_has_charges (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_STAFF:
-            return (obj->v.staff.charges > 0) ? TRUE : FALSE;
-        case ITEM_WAND:
-            return (obj->v.wand.charges > 0) ? TRUE : FALSE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_consume_charge_as (OBJ_T *obj, CHAR_T *ch) {
-    switch (obj->item_type) {
-        case ITEM_STAFF:
-            if (--obj->v.staff.charges <= 0) {
-                act2 ("Your $p blazes bright and is gone.",
-                      "$n's $p blazes bright and is gone.",
-                      ch, obj, NULL, 0, POS_RESTING);
-                obj_extract (obj);
-            }
-            return TRUE;
-
-        case ITEM_WAND:
-            if (--obj->v.wand.charges <= 0) {
-                act2 ("Your $p explodes into fragments.",
-                      "$n's $p explodes into fragments.",
-                      ch, obj, NULL, 0, POS_RESTING);
-                obj_extract (obj);
-            }
-            return TRUE;
 
         default:
             return FALSE;
@@ -688,15 +1129,6 @@ bool item_brandish_effect (OBJ_T *obj, CHAR_T *ch, bool try_improve) {
     }
 }
 
-bool item_can_zap (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_WAND:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
 bool item_zap_effect (OBJ_T *obj, CHAR_T *ch, CHAR_T *victim,
     OBJ_T *obj_target)
 {
@@ -707,468 +1139,6 @@ bool item_zap_effect (OBJ_T *obj, CHAR_T *ch, CHAR_T *victim,
             return TRUE;
         default:
             return FALSE;
-    }
-}
-
-bool item_can_sell (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_TRASH:
-            return FALSE;
-        default:
-            return TRUE;
-    }
-}
-
-bool item_can_wield (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_WEAPON:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_is_lit (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_LIGHT:
-            return (obj->v.light.duration != 0) ? TRUE : FALSE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_is_boat (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_BOAT:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_is_visible_when_blind (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_POTION:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-int item_get_modified_cost (const OBJ_T *obj, int cost) {
-    switch (obj->item_type) {
-        case ITEM_STAFF:
-            return (obj->v.staff.recharge == 0)
-                ? (cost / 4)
-                : (cost * obj->v.staff.charges / obj->v.staff.recharge);
-
-        case ITEM_WAND:
-            return (obj->v.wand.recharge == 0)
-                ? (cost / 4)
-                : (cost * obj->v.wand.charges / obj->v.wand.recharge);
-
-        default:
-            return cost;
-    }
-}
-
-bool item_index_fix_old (OBJ_INDEX_T *obj_index) {
-    switch (obj_index->item_type) {
-        case ITEM_WEAPON:
-            if (str_in_namelist ("two",        obj_index->name) ||
-                str_in_namelist ("two-handed", obj_index->name) ||
-                str_in_namelist ("claymore",   obj_index->name))
-            {
-                SET_BIT (obj_index->v.weapon.flags, WEAPON_TWO_HANDS);
-            }
-            return TRUE;
-
-        /* fix armors */
-        case ITEM_ARMOR:
-            obj_index->v.armor.vs_pierce = obj_index->v.value[0];
-            obj_index->v.armor.vs_bash   = obj_index->v.value[0];
-            obj_index->v.armor.vs_slash  = obj_index->v.value[0];
-            return TRUE;
-
-        /* Translate spell "slot numbers" to internal "skill numbers." */
-        case ITEM_PILL: {
-            int i;
-            for (i = 0; i < PILL_SKILL_MAX; i++)
-                obj_index->v.pill.skill[i] = skill_get_index_by_slot (
-                    obj_index->v.value[i + 1]);
-            return TRUE;
-        }
-
-        case ITEM_POTION: {
-            int i;
-            for (i = 0; i < POTION_SKILL_MAX; i++)
-                obj_index->v.potion.skill[i] = skill_get_index_by_slot (
-                    obj_index->v.value[i + 1]);
-            return TRUE;
-        }
-
-        case ITEM_SCROLL: {
-            int i;
-            for (i = 0; i < SCROLL_SKILL_MAX; i++)
-                obj_index->v.scroll.skill[i] = skill_get_index_by_slot (
-                    obj_index->v.scroll.skill[i + 1]);
-            return TRUE;
-        }
-
-        case ITEM_STAFF:
-            obj_index->v.staff.skill = skill_get_index_by_slot (
-                obj_index->v.value[3]);
-            return TRUE;
-
-        case ITEM_WAND:
-            obj_index->v.wand.skill = skill_get_index_by_slot (
-                obj_index->v.value[3]);
-            return TRUE;
-
-        default:
-            return FALSE;
-    }
-}
-
-int item_index_get_old_convert_shop_level (const OBJ_INDEX_T *obj_index) {
-    switch (obj_index->item_type) {
-        case ITEM_PILL:
-        case ITEM_POTION:
-            return UMAX (5, obj_index->level);
-
-        case ITEM_SCROLL:
-        case ITEM_ARMOR:
-        case ITEM_WEAPON:
-            return UMAX (10, obj_index->level);
-
-        case ITEM_WAND:
-        case ITEM_TREASURE:
-            return UMAX (15, obj_index->level);
-
-        case ITEM_STAFF:
-            return UMAX (20, obj_index->level);
-
-        default:
-            return UMAX (0, obj_index->level);
-    }
-}
-
-int item_index_get_old_reset_shop_level (const OBJ_INDEX_T *obj_index) {
-    switch (obj_index->item_type) {
-        case ITEM_PILL:
-        case ITEM_POTION:
-        case ITEM_SCROLL: {
-            const flag_t *skills = NULL;
-            int olevel = 53, skill_max, i, j;
-
-            switch (obj_index->item_type) {
-                case ITEM_PILL:
-                    skills = obj_index->v.pill.skill;
-                    skill_max = PILL_SKILL_MAX;
-                    break;
-                case ITEM_POTION:
-                    skills = obj_index->v.potion.skill;
-                    skill_max = POTION_SKILL_MAX;
-                    break;
-                case ITEM_SCROLL:
-                    skills = obj_index->v.scroll.skill;
-                    skill_max = SCROLL_SKILL_MAX;
-                    break;
-                default:
-                    return 0;
-            }
-
-            for (i = 0; i < skill_max; i++) {
-                int sk = skills[i];
-                if (sk <= 0 || sk >= SKILL_MAX)
-                    continue;
-                for (j = 0; class_get (j) != NULL; j++)
-                    olevel = UMIN (olevel, skill_table[sk].classes[j].level);
-            }
-            return UMAX (0, (olevel * 3 / 4) - 2);
-        }
-
-        case ITEM_WAND:     return number_range (10, 20);
-        case ITEM_STAFF:    return number_range (15, 25);
-        case ITEM_ARMOR:    return number_range (5, 15);
-
-        /* ROM patch weapon, treasure */
-        case ITEM_WEAPON:   return number_range (5, 15);
-        case ITEM_TREASURE: return number_range (10, 20);
-
-#if 0 /* envy version */
-        case ITEM_WEAPON:
-            if (reset->command == 'G')
-                olevel = number_range (5, 15);
-            else
-                olevel = number_fuzzy (level);
-#endif /* envy version */
-
-        default:
-            return 0;
-    }
-}
-
-bool item_index_finalize (OBJ_INDEX_T *obj) {
-    switch (obj->item_type) {
-#ifdef BASEMUD_FIX_FURNITURE
-        case ITEM_FURNITURE: {
-            int min_occupants = 0;
-            int min_hit       = 100;
-            int min_mana      = 100;
-
-            if (str_in_namelist ("tent", obj->name) ||
-                str_in_namelist ("cabin", obj->name))
-            {
-                SET_BIT (obj->v.furniture.flags, REST_IN);
-                SET_BIT (obj->v.furniture.flags, SIT_IN);
-                SET_BIT (obj->v.furniture.flags, SLEEP_IN);
-                SET_BIT (obj->v.furniture.flags, STAND_IN);
-                min_occupants = 1;
-                min_hit = 250;
-            }
-            if (str_in_namelist ("bed", obj->name)) {
-                SET_BIT (obj->v.furniture.flags, REST_ON);
-                SET_BIT (obj->v.furniture.flags, SIT_ON);
-                SET_BIT (obj->v.furniture.flags, SLEEP_IN);
-                min_occupants = 1;
-                min_hit = 200;
-            }
-            if (str_in_namelist ("sofa", obj->name) ||
-                str_in_namelist ("couch", obj->name))
-            {
-                SET_BIT (obj->v.furniture.flags, REST_ON);
-                SET_BIT (obj->v.furniture.flags, SIT_ON);
-                SET_BIT (obj->v.furniture.flags, SLEEP_ON);
-                min_occupants = 1;
-                min_hit = 150;
-            }
-            if (str_in_namelist ("bench", obj->name)) {
-                SET_BIT (obj->v.furniture.flags, REST_ON);
-                SET_BIT (obj->v.furniture.flags, SIT_ON);
-                SET_BIT (obj->v.furniture.flags, SLEEP_ON);
-                min_occupants = 1;
-                min_hit = 125;
-            }
-            if (str_in_namelist ("chair", obj->name) ||
-                str_in_namelist ("stool", obj->name))
-            {
-                SET_BIT (obj->v.furniture.flags, STAND_ON);
-                SET_BIT (obj->v.furniture.flags, REST_ON);
-                SET_BIT (obj->v.furniture.flags, SIT_ON);
-                SET_BIT (obj->v.furniture.flags, SLEEP_ON);
-                min_occupants = 1;
-                min_hit = 125;
-            }
-
-            if (obj->v.furniture.max_people < min_occupants)
-                obj->v.furniture.max_people = min_occupants;
-            if (obj->v.furniture.heal_rate < min_hit)
-                obj->v.furniture.heal_rate = min_hit;
-            if (obj->v.furniture.mana_rate < min_mana)
-                obj->v.furniture.mana_rate = min_mana;
-            return TRUE;
-        }
-#endif
-
-        default:
-            return FALSE;
-    }
-}
-
-bool item_has_worth_as_room_reset (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_TREASURE:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_index_read_values_from_file (OBJ_INDEX_T *obj_index, FILE *fp) {
-    switch (obj_index->item_type) {
-        case ITEM_WEAPON:
-            obj_index->v.weapon.weapon_type = weapon_lookup_exact (fread_word (fp));
-            obj_index->v.weapon.dice_num    = fread_number (fp);
-            obj_index->v.weapon.dice_size   = fread_number (fp);
-            obj_index->v.weapon.attack_type = attack_lookup_exact (fread_word (fp));
-            obj_index->v.weapon.flags       = fread_flag (fp);
-            return TRUE;
-
-        case ITEM_CONTAINER:
-            obj_index->v.container.capacity    = fread_number (fp);
-            obj_index->v.container.flags       = fread_flag (fp);
-            obj_index->v.container.key         = fread_number (fp);
-            obj_index->v.container.max_weight  = fread_number (fp);
-            obj_index->v.container.weight_mult = fread_number (fp);
-            return TRUE;
-
-        case ITEM_DRINK_CON:
-            obj_index->v.drink_con.capacity = fread_number (fp);
-            obj_index->v.drink_con.filled   = fread_number (fp);
-            obj_index->v.drink_con.liquid   = lookup_func_backup (liq_lookup_exact,
-                fread_word (fp), "Unknown liquid type '%s'", 0);
-            obj_index->v.drink_con.poisoned = fread_number (fp);
-            obj_index->v.drink_con._value5  = fread_number (fp);
-            return TRUE;
-
-        case ITEM_FOUNTAIN:
-            obj_index->v.fountain.capacity = fread_number (fp);
-            obj_index->v.fountain.filled   = fread_number (fp);
-            obj_index->v.fountain.liquid   = lookup_func_backup (liq_lookup_exact,
-                fread_word (fp), "Unknown liquid type '%s'", 0);
-            obj_index->v.fountain.poisoned = fread_number (fp);
-            obj_index->v.fountain._value5  = fread_number (fp);
-            return TRUE;
-
-        case ITEM_WAND:
-            obj_index->v.wand.level    = fread_number (fp);
-            obj_index->v.wand.recharge = fread_number (fp);
-            obj_index->v.wand.charges  = fread_number (fp);
-            obj_index->v.wand.skill    = skill_lookup_exact (fread_word (fp));
-            obj_index->v.wand._value5  = fread_number (fp);
-            return TRUE;
-
-        case ITEM_STAFF:
-            obj_index->v.staff.level    = fread_number (fp);
-            obj_index->v.staff.recharge = fread_number (fp);
-            obj_index->v.staff.charges  = fread_number (fp);
-            obj_index->v.staff.skill    = skill_lookup_exact (fread_word (fp));
-            obj_index->v.staff._value5  = fread_number (fp);
-            return TRUE;
-
-        case ITEM_POTION:
-            obj_index->v.potion.level  = fread_number (fp);
-            obj_index->v.potion.skill[0] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.potion.skill[1] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.potion.skill[2] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.potion.skill[3] = skill_lookup_exact (fread_word (fp));
-            return TRUE;
-
-        case ITEM_PILL:
-            obj_index->v.pill.level  = fread_number (fp);
-            obj_index->v.pill.skill[0] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.pill.skill[1] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.pill.skill[2] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.pill.skill[3] = skill_lookup_exact (fread_word (fp));
-            return TRUE;
-
-        case ITEM_SCROLL:
-            obj_index->v.scroll.level  = fread_number (fp);
-            obj_index->v.scroll.skill[0] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.scroll.skill[1] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.scroll.skill[2] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.scroll.skill[3] = skill_lookup_exact (fread_word (fp));
-            return TRUE;
-
-        default:
-            obj_index->v.value[0] = fread_flag (fp);
-            obj_index->v.value[1] = fread_flag (fp);
-            obj_index->v.value[2] = fread_flag (fp);
-            obj_index->v.value[3] = fread_flag (fp);
-            obj_index->v.value[4] = fread_flag (fp);
-            return TRUE;
-    }
-}
-
-/* TODO: use type-based values, not v.value[] */
-bool item_index_write_values_to_file (OBJ_INDEX_T *obj_index, FILE *fp) {
-    char buf[MAX_STRING_LENGTH];
-
-    /* Using fwrite_flag to write most values gives a strange
-     * looking area file, consider making a case for each
-     * item type later. */
-    switch (obj_index->item_type) {
-        case ITEM_DRINK_CON:
-        case ITEM_FOUNTAIN:
-            fprintf (fp, "%ld %ld '%s' %ld %ld\n",
-                     obj_index->v.value[0],
-                     obj_index->v.value[1],
-                     liq_table[obj_index->v.value[2]].name,
-                     obj_index->v.value[3],
-                     obj_index->v.value[4]);
-            return TRUE;
-
-        case ITEM_CONTAINER:
-            fprintf (fp, "%ld %s %ld %ld %ld\n",
-                     obj_index->v.value[0],
-                     fwrite_flag (obj_index->v.value[1], buf),
-                     obj_index->v.value[2],
-                     obj_index->v.value[3],
-                     obj_index->v.value[4]);
-            return TRUE;
-
-        case ITEM_WEAPON:
-            fprintf (fp, "%s %ld %ld %s %s\n",
-                     weapon_get_name (obj_index->v.value[0]),
-                     obj_index->v.value[1],
-                     obj_index->v.value[2],
-                     attack_table[obj_index->v.value[3]].name,
-                     fwrite_flag (obj_index->v.value[4], buf));
-            return TRUE;
-
-        case ITEM_PILL:
-        case ITEM_POTION:
-        case ITEM_SCROLL:
-            /* no negative numbers */
-            fprintf (fp, "%ld '%s' '%s' '%s' '%s'\n",
-                     obj_index->v.value[0]  >  0 ? obj_index->v.value[0] : 0,
-                     obj_index->v.value[1] != -1 ? skill_table[obj_index->v.value[1]].name : "",
-                     obj_index->v.value[2] != -1 ? skill_table[obj_index->v.value[2]].name : "",
-                     obj_index->v.value[3] != -1 ? skill_table[obj_index->v.value[3]].name : "",
-                     obj_index->v.value[4] != -1 ? skill_table[obj_index->v.value[4]].name : "");
-            return TRUE;
-
-        case ITEM_STAFF:
-        case ITEM_WAND:
-            fprintf (fp, "%ld %ld %ld '%s' %ld\n",
-                     obj_index->v.value[0],
-                     obj_index->v.value[1],
-                     obj_index->v.value[2],
-                     obj_index->v.value[3] != -1
-                        ? skill_table[obj_index->v.value[3]].name : "",
-                     obj_index->v.value[4]);
-            return TRUE;
-
-        default:
-            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[0], buf));
-            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[1], buf));
-            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[2], buf));
-            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[3], buf));
-            fprintf (fp, "%s\n", fwrite_flag (obj_index->v.value[4], buf));
-            return TRUE;
-    }
-}
-
-const char *item_get_corrode_message (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_CONTAINER:
-        case ITEM_CORPSE_PC:
-        case ITEM_CORPSE_NPC:
-            return "$p fumes and dissolves.";
-        case ITEM_ARMOR:
-            return "$p is pitted and etched.";
-        case ITEM_CLOTHING:
-            return "$p is corroded into scrap.";
-        case ITEM_STAFF:
-        case ITEM_WAND:
-            return "$p corrodes and breaks.";
-        case ITEM_SCROLL:
-            return "$p is burned into waste.";
-        default:
-            return NULL;
-    }
-}
-
-int item_get_corrode_chance_modifier (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_STAFF:
-        case ITEM_WAND:
-            return -10;
-        case ITEM_SCROLL:
-            return 10;
-        default:
-            return 0;
     }
 }
 
@@ -1209,88 +1179,16 @@ bool item_corrode_effect (OBJ_T *obj, int level) {
     }
 }
 
-const char *item_get_freeze_message (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_POTION:
-        case ITEM_DRINK_CON:
-            return "$p freezes and shatters!";
-        default:
-            return NULL;
-    }
-}
-
-int item_get_freeze_chance_modifier (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_POTION:
-            return 25;
-        case ITEM_DRINK_CON:
-            return 5;
-        default:
-            return 0;
-    }
-}
-
 bool item_freeze_effect (OBJ_T *obj, int level) {
     /* NOTE: If you want items to do something when they freeze,
      *       add the behavior here! (see item_corrode_effect) */
     return FALSE;
 }
 
-const char *item_get_burn_message (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_CONTAINER:
-            return "$p ignites and burns!";
-        case ITEM_POTION:
-            return "$p bubbles and boils!";
-        case ITEM_SCROLL:
-            return "$p crackles and burns!";
-        case ITEM_STAFF:
-            return "$p smokes and chars!";
-        case ITEM_WAND:
-            return "$p sparks and sputters!";
-        case ITEM_FOOD:
-            return "$p blackens and crisps!";
-        case ITEM_PILL:
-            return "$p melts and drips!";
-        default:
-            return NULL;
-    }
-}
-
-int item_get_burn_chance_modifier (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_POTION:
-            return 25;
-        case ITEM_SCROLL:
-            return 50;
-        case ITEM_STAFF:
-            return 10;
-        default:
-            return 0;
-    }
-}
-
 bool item_burn_effect (OBJ_T *obj, int level) {
     /* NOTE: If you want items to do something when they burn,
      *       add the behavior here! (see item_corrode_effect) */
     return FALSE;
-}
-
-const char *item_get_poison_message (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_FOOD:
-            return "";
-        case ITEM_DRINK_CON:
-            if (obj->v.drink_con.capacity == obj->v.drink_con.filled)
-                return NULL;
-            return "";
-        default:
-            return NULL;
-    }
-}
-
-int item_get_poison_chance_modifier (const OBJ_T *obj) {
-    return 0;
 }
 
 bool item_poison_effect (OBJ_T *obj, int level) {
@@ -1308,142 +1206,10 @@ bool item_poison_effect (OBJ_T *obj, int level) {
     }
 }
 
-const char *item_get_shock_message (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_WAND:
-        case ITEM_STAFF:
-            return "$p overloads and explodes!";
-        case ITEM_JEWELRY:
-            return "$p is fused into a worthless lump.";
-        default:
-            return NULL;
-    }
-}
-
-int item_get_shock_chance_modifier (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_WAND:
-        case ITEM_STAFF:
-            return 10;
-        case ITEM_JEWELRY:
-            return -10;
-        default:
-            return 0;
-    }
-}
-
 bool item_shock_effect (OBJ_T *obj, int level) {
     /* NOTE: If you want items to do something when they're shocked,
      *       add the behavior here! (see item_corrode_effect) */
     return FALSE;
-}
-
-bool item_get_corpse_timer_range (const OBJ_T *obj, int *timer_min,
-    int *timer_max)
-{
-    switch (obj->item_type) {
-        case ITEM_POTION:
-            *timer_min = 500;
-            *timer_max = 1000;
-            return TRUE;
-
-        case ITEM_SCROLL:
-            *timer_min = 1000;
-            *timer_max = 2500;
-            return TRUE;
-
-        default:
-            return FALSE;
-    }
-}
-
-int item_get_ac (const OBJ_T *obj, int ac_type) {
-    switch (obj->item_type) {
-        case ITEM_ARMOR:
-            switch (ac_type) {
-                case AC_PIERCE: return obj->v.armor.vs_pierce; break;
-                case AC_BASH:   return obj->v.armor.vs_bash;   break;
-                case AC_SLASH:  return obj->v.armor.vs_slash;  break;
-                case AC_EXOTIC: return obj->v.armor.vs_magic;  break;
-                default:        return 0;
-            }
-
-        default:
-            return 0;
-    }
-}
-
-int item_get_carry_number (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_CONTAINER:
-        case ITEM_MONEY:
-        case ITEM_GEM:
-        case ITEM_JEWELRY:
-            return 0;
-        default:
-            return 1;
-    }
-}
-
-int item_get_furn_preposition_type (const OBJ_T *obj, int position) {
-    const FURNITURE_BITS_T *bits;
-    if (obj == NULL)
-        return POS_PREP_NO_OBJECT;
-    if (obj->item_type != ITEM_FURNITURE)
-        return POS_PREP_NOT_FURNITURE;
-    if ((bits = furniture_get (position)) == NULL)
-        return POS_PREP_BAD_POSITION;
-
-         if (obj->v.furniture.flags & bits->bit_at) return POS_PREP_AT;
-    else if (obj->v.furniture.flags & bits->bit_on) return POS_PREP_ON;
-    else if (obj->v.furniture.flags & bits->bit_in) return POS_PREP_IN;
-    else                                            return POS_PREP_BY;
-}
-
-bool item_can_fit_obj_in (const OBJ_T *container, const OBJ_T *obj) {
-    switch (container->item_type) {
-        case ITEM_CORPSE_NPC:
-        case ITEM_CORPSE_PC:
-            return TRUE;
-
-        case ITEM_CONTAINER: {
-            int weight = obj_get_weight (obj);
-            if (weight + obj_get_true_weight (container) >
-                    (container->v.container.capacity * 10))
-                return FALSE;
-            if (weight > (container->v.container.max_weight * 10))
-                return FALSE;
-            return TRUE;
-        }
-
-        default:
-            return FALSE;
-    }
-}
-
-bool item_can_position_at (const OBJ_T *obj, int pos) {
-    switch (obj->item_type) {
-        case ITEM_FURNITURE: {
-            const FURNITURE_BITS_T *furn;
-            flag_t bits;
-            if ((furn = furniture_get (POS_STANDING)) == NULL)
-                return FALSE;
-            bits = furn->bit_at | furn->bit_on | furn->bit_in;
-            return ((obj->v.furniture.flags & bits) != 0) ? TRUE : FALSE;
-        }
-        default:
-            return FALSE;
-    }
-}
-
-flag_t item_exit_flag_to_cont (flag_t exit_flag) {
-    switch (exit_flag) {
-        case EX_ISDOOR:    return CONT_CLOSEABLE;
-        case EX_CLOSED:    return CONT_CLOSED;
-        case EX_LOCKED:    return CONT_LOCKED;
-        case EX_PICKPROOF: return CONT_PICKPROOF;
-        default:           return 0;
-    }
 }
 
 bool item_set_exit_flag (OBJ_T *obj, flag_t exit_flag) {
@@ -1481,46 +1247,6 @@ bool item_remove_exit_flag (OBJ_T *obj, flag_t exit_flag) {
 
         default:
             return FALSE;
-    }
-}
-
-bool item_can_wear_flag (const OBJ_T *obj, flag_t wear_flag) {
-    switch (obj->item_type) {
-        case ITEM_LIGHT:
-            return (wear_flag == ITEM_WEAR_LIGHT) ? TRUE : FALSE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_index_can_wear_flag (const OBJ_INDEX_T *obj, flag_t wear_flag) {
-    switch (obj->item_type) {
-        case ITEM_LIGHT:
-            return (wear_flag == ITEM_WEAR_LIGHT) ? TRUE : FALSE;
-        default:
-            return FALSE;
-    }
-}
-
-int item_get_weight_mult (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_CONTAINER:
-            return obj->v.container.weight_mult;
-        default:
-            return 100;
-    }
-}
-
-bool item_should_save_for_level (const OBJ_T *obj, int ch_level) {
-    switch (obj->item_type) {
-        case ITEM_CONTAINER:
-            return TRUE;
-        case ITEM_KEY:
-            return FALSE;
-        case ITEM_MAP:
-            return (obj->v.map.persist) ? TRUE : FALSE;
-        default:
-            return (ch_level >= obj->level - 2) ? TRUE : FALSE;
     }
 }
 
@@ -1569,24 +1295,6 @@ bool item_write_save_data (const OBJ_T *obj, FILE *fp) {
                 fprintf (fp, "Spell 3 '%s'\n", skill_table[obj->v.wand.skill].name);
             return TRUE;
 
-        default:
-            return FALSE;
-    }
-}
-
-bool item_is_armor (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_ARMOR:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_is_weapon (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_WEAPON:
-            return TRUE;
         default:
             return FALSE;
     }
@@ -1727,52 +1435,6 @@ bool item_light_fade (OBJ_T *obj) {
     }
 }
 
-const char *item_get_poof_message (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_FOUNTAIN:
-            return "$p dries up.";
-
-        case ITEM_CORPSE_NPC:
-        case ITEM_CORPSE_PC:
-            return "$p decays into dust.";
-
-        case ITEM_FOOD:
-            return "$p decomposes.";
-
-        case ITEM_POTION:
-            return "$p has evaporated from disuse.";
-
-        case ITEM_PORTAL:
-            return "$p fades out of existence.";
-
-        case ITEM_CONTAINER:
-            if (obj_can_wear_flag (obj, ITEM_WEAR_FLOAT)) {
-                if (obj->contains)
-                    return "$p flickers and vanishes, spilling its contents on the floor.";
-                else
-                    return "$p flickers and vanishes.";
-            }
-            return "$p crumbles into dust.";
-
-        default:
-            return "$p crumbles into dust.";
-    }
-}
-
-bool item_can_enter_as (const OBJ_T *obj, const CHAR_T *ch) {
-    switch (obj->item_type) {
-        case ITEM_PORTAL:
-            if (IS_TRUSTED (ch, ANGEL))
-                return TRUE;
-            if (IS_SET (obj->v.portal.exit_flags, EX_CLOSED))
-                return FALSE;
-            return TRUE;
-
-        default:
-            return FALSE;
-    }
-}
-
 bool item_enter_effect (OBJ_T *obj, CHAR_T *ch) {
     switch (obj->item_type) {
         case ITEM_PORTAL: {
@@ -1899,27 +1561,6 @@ bool item_enter_effect (OBJ_T *obj, CHAR_T *ch) {
     }
 }
 
-bool item_can_loot_as (const OBJ_T *obj, const CHAR_T *ch) {
-    switch (obj->item_type) {
-        case ITEM_CONTAINER:
-        case ITEM_CORPSE_NPC:
-            return TRUE;
-        case ITEM_CORPSE_PC:
-            return char_can_loot (ch, obj) ? TRUE : FALSE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_can_fill (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_DRINK_CON:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
 bool item_take_effect (OBJ_T *obj, CHAR_T *ch) {
     switch (obj->item_type) {
         case ITEM_MONEY:
@@ -1956,6 +1597,170 @@ bool item_take_effect (OBJ_T *obj, CHAR_T *ch) {
     }
 }
 
+bool item_consume_charge_as (OBJ_T *obj, CHAR_T *ch) {
+    switch (obj->item_type) {
+        case ITEM_STAFF:
+            if (--obj->v.staff.charges <= 0) {
+                act2 ("Your $p blazes bright and is gone.",
+                      "$n's $p blazes bright and is gone.",
+                      ch, obj, NULL, 0, POS_RESTING);
+                obj_extract (obj);
+            }
+            return TRUE;
+
+        case ITEM_WAND:
+            if (--obj->v.wand.charges <= 0) {
+                act2 ("Your $p explodes into fragments.",
+                      "$n's $p explodes into fragments.",
+                      ch, obj, NULL, 0, POS_RESTING);
+                obj_extract (obj);
+            }
+            return TRUE;
+
+        default:
+            return FALSE;
+    }
+}
+
+bool item_play_effect (OBJ_T *obj, CHAR_T *ch, char *argument) {
+    switch (obj->item_type) {
+        case ITEM_JUKEBOX: {
+            char *str, arg[MAX_INPUT_LENGTH];
+            int song;
+            bool global = FALSE;
+
+            str = one_argument (argument, arg);
+            if (!str_cmp (arg, "list")) {
+                music_list_jukebox_songs (obj, ch, argument);
+                return TRUE;
+            }
+
+            if (!str_cmp (arg, "loud")) {
+                argument = str;
+                global = TRUE;
+            }
+
+            RETURN_IF (argument[0] == '\0',
+                "Play what?\n\r", ch, TRUE);
+            RETURN_IF ((global && music_queue[MAX_SONG_GLOBAL - 1] > -1) ||
+                      (!global && obj->v.jukebox.queue[JUKEBOX_QUEUE_MAX -1 ] > -1),
+                "The jukebox is full up right now.\n\r", ch, TRUE);
+
+            song = song_lookup (argument);
+            RETURN_IF (song < 0 || song >= MAX_SONGS || song_table[song].name == NULL,
+                "That song isn't available.\n\r", ch, TRUE);
+
+            send_to_char ("Coming right up.\n\r", ch);
+            if (global) {
+                music_queue_values (
+                    &music_line, &music_song, music_queue,
+                    MAX_SONG_GLOBAL, song
+                );
+            }
+            else {
+                music_queue_values (
+                    &(obj->v.jukebox.line), &(obj->v.jukebox.song),
+                      obj->v.jukebox.queue, MAX_SONG_GLOBAL, song
+                );
+            }
+            return TRUE;
+        }
+
+        default:
+            return FALSE;
+    }
+}
+
+bool item_play_continue (OBJ_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_JUKEBOX:
+            music_update_object (obj);
+            return TRUE;
+
+        default:
+            return FALSE;
+    }
+}
+
+bool item_index_is_container (const OBJ_INDEX_T *obj) {
+    switch (obj->item_type) {
+        case ITEM_CONTAINER:
+        case ITEM_CORPSE_NPC:
+        case ITEM_CORPSE_PC:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_index_can_wear_flag (const OBJ_INDEX_T *obj, flag_t wear_flag) {
+    switch (obj->item_type) {
+        case ITEM_LIGHT:
+            return (wear_flag == ITEM_WEAR_LIGHT) ? TRUE : FALSE;
+        default:
+            return FALSE;
+    }
+}
+
+bool item_index_fix_old (OBJ_INDEX_T *obj_index) {
+    switch (obj_index->item_type) {
+        case ITEM_WEAPON:
+            if (str_in_namelist ("two",        obj_index->name) ||
+                str_in_namelist ("two-handed", obj_index->name) ||
+                str_in_namelist ("claymore",   obj_index->name))
+            {
+                SET_BIT (obj_index->v.weapon.flags, WEAPON_TWO_HANDS);
+            }
+            return TRUE;
+
+        /* fix armors */
+        case ITEM_ARMOR:
+            obj_index->v.armor.vs_pierce = obj_index->v.value[0];
+            obj_index->v.armor.vs_bash   = obj_index->v.value[0];
+            obj_index->v.armor.vs_slash  = obj_index->v.value[0];
+            return TRUE;
+
+        /* Translate spell "slot numbers" to internal "skill numbers." */
+        case ITEM_PILL: {
+            int i;
+            for (i = 0; i < PILL_SKILL_MAX; i++)
+                obj_index->v.pill.skill[i] = skill_get_index_by_slot (
+                    obj_index->v.value[i + 1]);
+            return TRUE;
+        }
+
+        case ITEM_POTION: {
+            int i;
+            for (i = 0; i < POTION_SKILL_MAX; i++)
+                obj_index->v.potion.skill[i] = skill_get_index_by_slot (
+                    obj_index->v.value[i + 1]);
+            return TRUE;
+        }
+
+        case ITEM_SCROLL: {
+            int i;
+            for (i = 0; i < SCROLL_SKILL_MAX; i++)
+                obj_index->v.scroll.skill[i] = skill_get_index_by_slot (
+                    obj_index->v.scroll.skill[i + 1]);
+            return TRUE;
+        }
+
+        case ITEM_STAFF:
+            obj_index->v.staff.skill = skill_get_index_by_slot (
+                obj_index->v.value[3]);
+            return TRUE;
+
+        case ITEM_WAND:
+            obj_index->v.wand.skill = skill_get_index_by_slot (
+                obj_index->v.value[3]);
+            return TRUE;
+
+        default:
+            return FALSE;
+    }
+}
+
+/* (from OLC) */
 /*****************************************************************************
  (Original comments)
  Name:       convert_object
@@ -2056,7 +1861,305 @@ bool item_index_convert_old (OBJ_INDEX_T *obj_index) {
     }
 }
 
-/* (from OLC) */
+bool item_index_finalize (OBJ_INDEX_T *obj) {
+    switch (obj->item_type) {
+#ifdef BASEMUD_FIX_FURNITURE
+        case ITEM_FURNITURE: {
+            int min_occupants = 0;
+            int min_hit       = 100;
+            int min_mana      = 100;
+
+            if (str_in_namelist ("tent", obj->name) ||
+                str_in_namelist ("cabin", obj->name))
+            {
+                SET_BIT (obj->v.furniture.flags, REST_IN);
+                SET_BIT (obj->v.furniture.flags, SIT_IN);
+                SET_BIT (obj->v.furniture.flags, SLEEP_IN);
+                SET_BIT (obj->v.furniture.flags, STAND_IN);
+                min_occupants = 1;
+                min_hit = 250;
+            }
+            if (str_in_namelist ("bed", obj->name)) {
+                SET_BIT (obj->v.furniture.flags, REST_ON);
+                SET_BIT (obj->v.furniture.flags, SIT_ON);
+                SET_BIT (obj->v.furniture.flags, SLEEP_IN);
+                min_occupants = 1;
+                min_hit = 200;
+            }
+            if (str_in_namelist ("sofa", obj->name) ||
+                str_in_namelist ("couch", obj->name))
+            {
+                SET_BIT (obj->v.furniture.flags, REST_ON);
+                SET_BIT (obj->v.furniture.flags, SIT_ON);
+                SET_BIT (obj->v.furniture.flags, SLEEP_ON);
+                min_occupants = 1;
+                min_hit = 150;
+            }
+            if (str_in_namelist ("bench", obj->name)) {
+                SET_BIT (obj->v.furniture.flags, REST_ON);
+                SET_BIT (obj->v.furniture.flags, SIT_ON);
+                SET_BIT (obj->v.furniture.flags, SLEEP_ON);
+                min_occupants = 1;
+                min_hit = 125;
+            }
+            if (str_in_namelist ("chair", obj->name) ||
+                str_in_namelist ("stool", obj->name))
+            {
+                SET_BIT (obj->v.furniture.flags, STAND_ON);
+                SET_BIT (obj->v.furniture.flags, REST_ON);
+                SET_BIT (obj->v.furniture.flags, SIT_ON);
+                SET_BIT (obj->v.furniture.flags, SLEEP_ON);
+                min_occupants = 1;
+                min_hit = 125;
+            }
+
+            if (obj->v.furniture.max_people < min_occupants)
+                obj->v.furniture.max_people = min_occupants;
+            if (obj->v.furniture.heal_rate < min_hit)
+                obj->v.furniture.heal_rate = min_hit;
+            if (obj->v.furniture.mana_rate < min_mana)
+                obj->v.furniture.mana_rate = min_mana;
+            return TRUE;
+        }
+#endif
+
+        default:
+            return FALSE;
+    }
+}
+
+int item_index_get_old_convert_shop_level (const OBJ_INDEX_T *obj_index) {
+    switch (obj_index->item_type) {
+        case ITEM_PILL:
+        case ITEM_POTION:
+            return UMAX (5, obj_index->level);
+
+        case ITEM_SCROLL:
+        case ITEM_ARMOR:
+        case ITEM_WEAPON:
+            return UMAX (10, obj_index->level);
+
+        case ITEM_WAND:
+        case ITEM_TREASURE:
+            return UMAX (15, obj_index->level);
+
+        case ITEM_STAFF:
+            return UMAX (20, obj_index->level);
+
+        default:
+            return UMAX (0, obj_index->level);
+    }
+}
+
+int item_index_get_old_reset_shop_level (const OBJ_INDEX_T *obj_index) {
+    switch (obj_index->item_type) {
+        case ITEM_PILL:
+        case ITEM_POTION:
+        case ITEM_SCROLL: {
+            const flag_t *skills = NULL;
+            int olevel = 53, skill_max, i, j;
+
+            switch (obj_index->item_type) {
+                case ITEM_PILL:
+                    skills = obj_index->v.pill.skill;
+                    skill_max = PILL_SKILL_MAX;
+                    break;
+                case ITEM_POTION:
+                    skills = obj_index->v.potion.skill;
+                    skill_max = POTION_SKILL_MAX;
+                    break;
+                case ITEM_SCROLL:
+                    skills = obj_index->v.scroll.skill;
+                    skill_max = SCROLL_SKILL_MAX;
+                    break;
+                default:
+                    return 0;
+            }
+
+            for (i = 0; i < skill_max; i++) {
+                int sk = skills[i];
+                if (sk <= 0 || sk >= SKILL_MAX)
+                    continue;
+                for (j = 0; class_get (j) != NULL; j++)
+                    olevel = UMIN (olevel, skill_table[sk].classes[j].level);
+            }
+            return UMAX (0, (olevel * 3 / 4) - 2);
+        }
+
+        case ITEM_WAND:     return number_range (10, 20);
+        case ITEM_STAFF:    return number_range (15, 25);
+        case ITEM_ARMOR:    return number_range (5, 15);
+
+        /* ROM patch weapon, treasure */
+        case ITEM_WEAPON:   return number_range (5, 15);
+        case ITEM_TREASURE: return number_range (10, 20);
+
+#if 0 /* envy version */
+        case ITEM_WEAPON:
+            if (reset->command == 'G')
+                olevel = number_range (5, 15);
+            else
+                olevel = number_fuzzy (level);
+#endif /* envy version */
+
+        default:
+            return 0;
+    }
+}
+
+bool item_index_read_values_from_file (OBJ_INDEX_T *obj_index, FILE *fp) {
+    switch (obj_index->item_type) {
+        case ITEM_WEAPON:
+            obj_index->v.weapon.weapon_type = weapon_lookup_exact (fread_word (fp));
+            obj_index->v.weapon.dice_num    = fread_number (fp);
+            obj_index->v.weapon.dice_size   = fread_number (fp);
+            obj_index->v.weapon.attack_type = attack_lookup_exact (fread_word (fp));
+            obj_index->v.weapon.flags       = fread_flag (fp);
+            return TRUE;
+
+        case ITEM_CONTAINER:
+            obj_index->v.container.capacity    = fread_number (fp);
+            obj_index->v.container.flags       = fread_flag (fp);
+            obj_index->v.container.key         = fread_number (fp);
+            obj_index->v.container.max_weight  = fread_number (fp);
+            obj_index->v.container.weight_mult = fread_number (fp);
+            return TRUE;
+
+        case ITEM_DRINK_CON:
+            obj_index->v.drink_con.capacity = fread_number (fp);
+            obj_index->v.drink_con.filled   = fread_number (fp);
+            obj_index->v.drink_con.liquid   = lookup_func_backup (liq_lookup_exact,
+                fread_word (fp), "Unknown liquid type '%s'", 0);
+            obj_index->v.drink_con.poisoned = fread_number (fp);
+            obj_index->v.drink_con._value5  = fread_number (fp);
+            return TRUE;
+
+        case ITEM_FOUNTAIN:
+            obj_index->v.fountain.capacity = fread_number (fp);
+            obj_index->v.fountain.filled   = fread_number (fp);
+            obj_index->v.fountain.liquid   = lookup_func_backup (liq_lookup_exact,
+                fread_word (fp), "Unknown liquid type '%s'", 0);
+            obj_index->v.fountain.poisoned = fread_number (fp);
+            obj_index->v.fountain._value5  = fread_number (fp);
+            return TRUE;
+
+        case ITEM_WAND:
+            obj_index->v.wand.level    = fread_number (fp);
+            obj_index->v.wand.recharge = fread_number (fp);
+            obj_index->v.wand.charges  = fread_number (fp);
+            obj_index->v.wand.skill    = skill_lookup_exact (fread_word (fp));
+            obj_index->v.wand._value5  = fread_number (fp);
+            return TRUE;
+
+        case ITEM_STAFF:
+            obj_index->v.staff.level    = fread_number (fp);
+            obj_index->v.staff.recharge = fread_number (fp);
+            obj_index->v.staff.charges  = fread_number (fp);
+            obj_index->v.staff.skill    = skill_lookup_exact (fread_word (fp));
+            obj_index->v.staff._value5  = fread_number (fp);
+            return TRUE;
+
+        case ITEM_POTION:
+            obj_index->v.potion.level  = fread_number (fp);
+            obj_index->v.potion.skill[0] = skill_lookup_exact (fread_word (fp));
+            obj_index->v.potion.skill[1] = skill_lookup_exact (fread_word (fp));
+            obj_index->v.potion.skill[2] = skill_lookup_exact (fread_word (fp));
+            obj_index->v.potion.skill[3] = skill_lookup_exact (fread_word (fp));
+            return TRUE;
+
+        case ITEM_PILL:
+            obj_index->v.pill.level  = fread_number (fp);
+            obj_index->v.pill.skill[0] = skill_lookup_exact (fread_word (fp));
+            obj_index->v.pill.skill[1] = skill_lookup_exact (fread_word (fp));
+            obj_index->v.pill.skill[2] = skill_lookup_exact (fread_word (fp));
+            obj_index->v.pill.skill[3] = skill_lookup_exact (fread_word (fp));
+            return TRUE;
+
+        case ITEM_SCROLL:
+            obj_index->v.scroll.level  = fread_number (fp);
+            obj_index->v.scroll.skill[0] = skill_lookup_exact (fread_word (fp));
+            obj_index->v.scroll.skill[1] = skill_lookup_exact (fread_word (fp));
+            obj_index->v.scroll.skill[2] = skill_lookup_exact (fread_word (fp));
+            obj_index->v.scroll.skill[3] = skill_lookup_exact (fread_word (fp));
+            return TRUE;
+
+        default:
+            obj_index->v.value[0] = fread_flag (fp);
+            obj_index->v.value[1] = fread_flag (fp);
+            obj_index->v.value[2] = fread_flag (fp);
+            obj_index->v.value[3] = fread_flag (fp);
+            obj_index->v.value[4] = fread_flag (fp);
+            return TRUE;
+    }
+}
+/* TODO: use type-based values, not v.value[] */
+bool item_index_write_values_to_file (OBJ_INDEX_T *obj_index, FILE *fp) {
+    char buf[MAX_STRING_LENGTH];
+
+    /* Using fwrite_flag to write most values gives a strange
+     * looking area file, consider making a case for each
+     * item type later. */
+    switch (obj_index->item_type) {
+        case ITEM_DRINK_CON:
+        case ITEM_FOUNTAIN:
+            fprintf (fp, "%ld %ld '%s' %ld %ld\n",
+                     obj_index->v.value[0],
+                     obj_index->v.value[1],
+                     liq_table[obj_index->v.value[2]].name,
+                     obj_index->v.value[3],
+                     obj_index->v.value[4]);
+            return TRUE;
+
+        case ITEM_CONTAINER:
+            fprintf (fp, "%ld %s %ld %ld %ld\n",
+                     obj_index->v.value[0],
+                     fwrite_flag (obj_index->v.value[1], buf),
+                     obj_index->v.value[2],
+                     obj_index->v.value[3],
+                     obj_index->v.value[4]);
+            return TRUE;
+
+        case ITEM_WEAPON:
+            fprintf (fp, "%s %ld %ld %s %s\n",
+                     weapon_get_name (obj_index->v.value[0]),
+                     obj_index->v.value[1],
+                     obj_index->v.value[2],
+                     attack_table[obj_index->v.value[3]].name,
+                     fwrite_flag (obj_index->v.value[4], buf));
+            return TRUE;
+
+        case ITEM_PILL:
+        case ITEM_POTION:
+        case ITEM_SCROLL:
+            /* no negative numbers */
+            fprintf (fp, "%ld '%s' '%s' '%s' '%s'\n",
+                     obj_index->v.value[0]  >  0 ? obj_index->v.value[0] : 0,
+                     obj_index->v.value[1] != -1 ? skill_table[obj_index->v.value[1]].name : "",
+                     obj_index->v.value[2] != -1 ? skill_table[obj_index->v.value[2]].name : "",
+                     obj_index->v.value[3] != -1 ? skill_table[obj_index->v.value[3]].name : "",
+                     obj_index->v.value[4] != -1 ? skill_table[obj_index->v.value[4]].name : "");
+            return TRUE;
+
+        case ITEM_STAFF:
+        case ITEM_WAND:
+            fprintf (fp, "%ld %ld %ld '%s' %ld\n",
+                     obj_index->v.value[0],
+                     obj_index->v.value[1],
+                     obj_index->v.value[2],
+                     obj_index->v.value[3] != -1
+                        ? skill_table[obj_index->v.value[3]].name : "",
+                     obj_index->v.value[4]);
+            return TRUE;
+
+        default:
+            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[0], buf));
+            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[1], buf));
+            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[2], buf));
+            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[3], buf));
+            fprintf (fp, "%s\n", fwrite_flag (obj_index->v.value[4], buf));
+            return TRUE;
+    }
+}
 /* Object Editor Functions. */
 bool item_index_show_values (const OBJ_INDEX_T *obj, CHAR_T *ch) {
     switch (obj->item_type) {
@@ -2260,119 +2363,12 @@ bool item_index_show_values (const OBJ_INDEX_T *obj, CHAR_T *ch) {
     }
 }
 
-bool item_should_spill_contents_when_poofed (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_CORPSE_PC:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_get_recharge_values (OBJ_T *obj, flag_t *level,
-    flag_t **recharge_ptr, flag_t **charges_ptr)
-{
-    switch (obj->item_type) {
-        case ITEM_WAND:
-            *level        = obj->v.wand.level;
-            *recharge_ptr = &(obj->v.wand.recharge);
-            *charges_ptr  = &(obj->v.wand.charges);
-            return TRUE;
-
-        case ITEM_STAFF:
-            *level        = obj->v.staff.level;
-            *recharge_ptr = &(obj->v.staff.recharge);
-            *charges_ptr  = &(obj->v.staff.charges);
-            return TRUE;
-
-        default:
-            return FALSE;
-    }
-}
-
-bool item_is_warp_stone (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_WARP_STONE:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_can_play (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_JUKEBOX:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_is_playing (const OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_JUKEBOX:
-            return (obj->v.jukebox.song >= 0) ? TRUE : FALSE;
-        default:
-            return FALSE;
-    }
-}
-
-bool item_play_effect (OBJ_T *obj, CHAR_T *ch, char *argument) {
-    switch (obj->item_type) {
-        case ITEM_JUKEBOX: {
-            char *str, arg[MAX_INPUT_LENGTH];
-            int song;
-            bool global = FALSE;
-
-            str = one_argument (argument, arg);
-            if (!str_cmp (arg, "list")) {
-                music_list_jukebox_songs (obj, ch, argument);
-                return TRUE;
-            }
-
-            if (!str_cmp (arg, "loud")) {
-                argument = str;
-                global = TRUE;
-            }
-
-            RETURN_IF (argument[0] == '\0',
-                "Play what?\n\r", ch, TRUE);
-            RETURN_IF ((global && music_queue[MAX_SONG_GLOBAL - 1] > -1) ||
-                      (!global && obj->v.jukebox.queue[JUKEBOX_QUEUE_MAX -1 ] > -1),
-                "The jukebox is full up right now.\n\r", ch, TRUE);
-
-            song = song_lookup (argument);
-            RETURN_IF (song < 0 || song >= MAX_SONGS || song_table[song].name == NULL,
-                "That song isn't available.\n\r", ch, TRUE);
-
-            send_to_char ("Coming right up.\n\r", ch);
-            if (global) {
-                music_queue_values (
-                    &music_line, &music_song, music_queue,
-                    MAX_SONG_GLOBAL, song
-                );
-            }
-            else {
-                music_queue_values (
-                    &(obj->v.jukebox.line), &(obj->v.jukebox.song),
-                      obj->v.jukebox.queue, MAX_SONG_GLOBAL, song
-                );
-            }
-            return TRUE;
-        }
-
-        default:
-            return FALSE;
-    }
-}
-
-bool item_play_continue (OBJ_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_JUKEBOX:
-            music_update_object (obj);
-            return TRUE;
-
-        default:
-            return FALSE;
+flag_t item_exit_flag_to_cont (flag_t exit_flag) {
+    switch (exit_flag) {
+        case EX_ISDOOR:    return CONT_CLOSEABLE;
+        case EX_CLOSED:    return CONT_CLOSED;
+        case EX_LOCKED:    return CONT_LOCKED;
+        case EX_PICKPROOF: return CONT_PICKPROOF;
+        default:           return 0;
     }
 }

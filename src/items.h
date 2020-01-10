@@ -82,7 +82,7 @@ bool item_should_spill_contents_when_poofed (const OBJ_T *obj);
 int item_get_compare_value (const OBJ_T *obj);
 int item_get_door_flags (const OBJ_T *obj, flag_t *flags, int *key);
 const char **item_get_put_messages (const OBJ_T *obj);
-bool item_get_drink_info (OBJ_T *obj, flag_t **capacity, flag_t **filled,
+bool item_get_drink_values (OBJ_T *obj, flag_t **capacity, flag_t **filled,
     flag_t **liquid, flag_t **poisoned, int *drink_amount);
 const LIQ_T *item_get_liquid (const OBJ_T *obj);
 int item_get_sacrifice_silver (const OBJ_T *obj);
