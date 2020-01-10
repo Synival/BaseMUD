@@ -305,6 +305,7 @@
 #define PILL_SKILL_MAX      4
 #define SCROLL_SKILL_MAX    4
 #define POTION_SKILL_MAX    4
+#define JUKEBOX_QUEUE_MAX   3
 
 /* Values for object mapping.
  * Used in #OBJECTS. */

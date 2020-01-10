@@ -40,8 +40,8 @@ extern MPROG_CODE_T *mprog_list;
 extern OBJ_T        *object_list;
 extern CHAR_T       *char_list;
 
-extern int newmobs;
-extern int newobjs;
+extern int newmob_count;
+extern int newobj_count;
 extern int mobile_count;
 
 extern char *help_greeting;
@@ -87,8 +87,9 @@ extern int top_vnum_room;
 extern int top_vnum_mob;
 extern int top_vnum_obj;
 
-extern int channel_songs[MAX_SONG_GLOBAL + 1];
-extern SONG_T song_table[MAX_SONGS];
+extern flag_t music_line;
+extern flag_t music_song;
+extern flag_t music_queue[MAX_SONG_GLOBAL];
 
 extern char str_empty[1];
 

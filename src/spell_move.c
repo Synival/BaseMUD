@@ -34,6 +34,7 @@
 #include "db.h"
 #include "fight.h"
 #include "objs.h"
+#include "items.h"
 
 #include "spell_move.h"
 
@@ -89,16 +90,21 @@ bool spell_filter_can_go_to (CHAR_T *ch, CHAR_T *victim,
 }
 
 bool spell_filter_use_warp_stone (CHAR_T *ch) {
-    OBJ_T *stone = char_get_eq_by_wear_loc (ch, WEAR_LOC_HOLD);
-    FILTER (!IS_IMMORTAL (ch) && (
-            stone == NULL || stone->item_type != ITEM_WARP_STONE),
-        "You lack the proper component for this spell.\n\r", ch);
+    OBJ_T *stone;
 
-    if (stone != NULL && stone->item_type == ITEM_WARP_STONE) {
+    if (IS_IMMORTAL (ch))
+        stone = NULL;
+    else {
+        stone = char_get_eq_by_wear_loc (ch, WEAR_LOC_HOLD);
+        FILTER (stone == NULL || !item_is_warp_stone (stone),
+            "You lack the proper component for this spell.\n\r", ch);
+    }
+    if (stone != NULL) {
         act ("You draw upon the power of $p.",   ch, stone, NULL, TO_CHAR);
         act ("It flares brightly and vanishes!", ch, stone, NULL, TO_CHAR);
         obj_extract (stone);
     }
+
     return FALSE;
 }
 

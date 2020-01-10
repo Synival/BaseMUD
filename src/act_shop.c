@@ -41,6 +41,7 @@
 #include "materials.h"
 #include "globals.h"
 #include "memory.h"
+#include "items.h"
 
 #include "act_shop.h"
 
@@ -407,7 +408,7 @@ DEFINE_DO_FUN (do_sell) {
     if (keeper->silver < 0)
         keeper->silver = 0;
 
-    if (obj->item_type == ITEM_TRASH || IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT))
+    if (!item_can_sell (obj) || IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT))
         obj_extract (obj);
     else {
         obj_take_from_char (obj);

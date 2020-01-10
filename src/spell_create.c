@@ -34,6 +34,7 @@
 #include "chars.h"
 #include "globals.h"
 #include "memory.h"
+#include "items.h"
 
 #include "spell_create.h"
 
@@ -88,7 +89,7 @@ DEFINE_SPELL_FUN (spell_create_water) {
     OBJ_T *obj = (OBJ_T *) vo;
     int water;
 
-    BAIL_IF (obj->item_type != ITEM_DRINK_CON,
+    BAIL_IF (!item_can_fill (obj),
         "It is unable to hold water.\n\r", ch);
     BAIL_IF (obj->v.drink_con.liquid != LIQ_WATER && obj->v.drink_con.filled != 0,
         "It contains some other liquid.\n\r", ch);

@@ -40,18 +40,17 @@
 #include "mob_prog.h"
 #include "save.h"
 #include "magic.h"
-#include "update.h"
 #include "act_group.h"
 #include "act_comm.h"
 #include "act_move.h"
 #include "recycle.h"
-#include "music.h"
 #include "chars.h"
 #include "objs.h"
 #include "rooms.h"
 #include "find.h"
 #include "globals.h"
 #include "lookup.h"
+#include "items.h"
 
 #include "act_obj.h"
 
@@ -81,9 +80,9 @@ bool do_filter_put_or_get_valid_container (CHAR_T *ch, char *arg,
         "You can't do that.\n\r", ch);
     FILTER_ACT ((container = find_obj_here (ch, arg)) == NULL,
         "You see no $T here.", ch, NULL, arg);
-    FILTER (!obj_is_container (container),
+    FILTER (!item_is_container (container),
         "That's not a container.\n\r", ch);
-    FILTER_ACT (IS_SET (container->v.container.flags, CONT_CLOSED),
+    FILTER_ACT (item_is_closed (container),
         "The $p is closed.", ch, container, NULL);
     if (out_container)
         *out_container = container;
@@ -129,11 +128,13 @@ void do_drop_single_item (CHAR_T *ch, OBJ_T *obj) {
 }
 
 void do_put_single_item (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
+    const char **put_msgs;
+
     BAIL_IF_ACT (!char_can_drop_obj (ch, obj),
         "$p: You can't let go of it.", ch, obj, NULL);
-    BAIL_IF_ACT (WEIGHT_MULT (obj) != 100,
+    BAIL_IF_ACT (item_get_weight_mult (obj) != 100,
         "$p: You have a feeling that would be a bad idea.", ch, obj, NULL);
-    BAIL_IF_ACT (!obj_can_fit_in (obj, container),
+    BAIL_IF_ACT (!item_can_fit_obj_in (container, obj),
         "$p: It won't fit.", ch, obj, NULL);
 
     if (container->index_data->vnum == OBJ_VNUM_PIT &&
@@ -148,13 +149,8 @@ void do_put_single_item (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
     obj_take_from_char (obj);
     obj_give_to_obj (obj, container);
 
-    if (container->item_type == ITEM_CONTAINER &&
-            IS_SET (container->v.container.flags, CONT_PUT_ON))
-        act2 ("You put $p on $P.",
-              "$n puts $p on $P.", ch, obj, container, 0, POS_RESTING);
-    else
-        act2 ("You put $p in $P.",
-              "$n puts $p in $P.", ch, obj, container, 0, POS_RESTING);
+    put_msgs = item_get_put_messages (container);
+    act2 (put_msgs[0], put_msgs[1], ch, obj, container, 0, POS_RESTING);
 }
 
 void do_get_container (CHAR_T *ch, char *arg1, char *arg2) {
@@ -170,13 +166,10 @@ void do_get_container (CHAR_T *ch, char *arg1, char *arg2) {
         return;
     arg1 = do_obj_parse_arg (arg1, &type);
 
-    /* special checks for getting only. */
-    BAIL_IF (container->item_type == ITEM_CORPSE_PC &&
-            !char_can_loot (ch, container),
-        "You can't do that.\n\r", ch);
-    BAIL_IF_ACT (container->item_type == ITEM_CONTAINER &&
-                 IS_SET (container->v.container.flags, CONT_CLOSED),
+    BAIL_IF_ACT (item_is_closed (container),
         "The $p is closed.", ch, container, NULL);
+    BAIL_IF (!item_can_loot_as (container, ch),
+        "You can't do that.\n\r", ch);
     BAIL_IF (type != OBJ_SINGLE && !IS_IMMORTAL (ch) &&
              container->index_data->vnum == OBJ_VNUM_PIT,
         "Don't be so greedy!\n\r", ch);
@@ -258,7 +251,7 @@ DEFINE_DO_FUN (do_put) {
     arg = do_obj_parse_arg (arg1, &type);
 
     /* putting cannot be done into corpses - only containers. */
-    BAIL_IF (container->item_type != ITEM_CONTAINER,
+    BAIL_IF (!item_can_put_objs (container),
         "That's not a container.\n\r", ch);
 
     obj_start = (type != OBJ_SINGLE) ? ch->carrying
@@ -487,8 +480,7 @@ DEFINE_DO_FUN (do_give) {
 /* for poisoning weapons and food/drink */
 DEFINE_DO_FUN (do_envenom) {
     OBJ_T *obj;
-    AFFECT_T af;
-    int percent, skill;
+    int skill;
 
     /* find out what */
     BAIL_IF (argument[0] == '\0',
@@ -498,73 +490,10 @@ DEFINE_DO_FUN (do_envenom) {
     BAIL_IF ((skill = char_get_skill (ch, SN(ENVENOM))) < 1,
         "Are you crazy? You'd poison yourself!\n\r", ch);
 
-    if (obj->item_type == ITEM_FOOD || obj->item_type == ITEM_DRINK_CON) {
-        flag_t *pflag = NULL;
-        switch (obj->item_type) {
-            case ITEM_FOOD:      pflag = &(obj->v.food.poisoned);      break;
-            case ITEM_DRINK_CON: pflag = &(obj->v.drink_con.poisoned); break;
-        }
+    if (!item_envenom_effect (obj, ch, skill, SN(ENVENOM), FALSE))
+        act ("You can't poison $p.", ch, obj, NULL, TO_CHAR);
 
-        BAIL_IF_ACT (IS_OBJ_STAT (obj, ITEM_BLESS) ||
-                     IS_OBJ_STAT (obj, ITEM_BURN_PROOF),
-            "You fail to poison $p.", ch, obj, NULL);
-        if (number_percent () >= skill) {
-            act ("You fail to poison $p.", ch, obj, NULL, TO_CHAR);
-            if (*pflag == 0)
-                char_try_skill_improve (ch, SN(ENVENOM), FALSE, 4);
-            WAIT_STATE (ch, skill_table[SN(ENVENOM)].beats);
-            return;
-        }
-
-        act ("You treat $p with deadly poison.", ch, obj, NULL, TO_CHAR);
-        act ("$n treats $p with deadly poison.", ch, obj, NULL, TO_NOTCHAR);
-        if (*pflag == 0) {
-            *pflag = TRUE;
-            char_try_skill_improve (ch, SN(ENVENOM), TRUE, 4);
-        }
-        WAIT_STATE (ch, skill_table[SN(ENVENOM)].beats);
-        return;
-    }
-
-    if (obj->item_type == ITEM_WEAPON) {
-        if (IS_WEAPON_STAT (obj, WEAPON_FLAMING)
-            || IS_WEAPON_STAT (obj, WEAPON_FROST)
-            || IS_WEAPON_STAT (obj, WEAPON_VAMPIRIC)
-            || IS_WEAPON_STAT (obj, WEAPON_SHARP)
-            || IS_WEAPON_STAT (obj, WEAPON_VORPAL)
-            || IS_WEAPON_STAT (obj, WEAPON_SHOCKING)
-            || IS_OBJ_STAT (obj, ITEM_BLESS)
-            || IS_OBJ_STAT (obj, ITEM_BURN_PROOF))
-        {
-            act ("You can't seem to envenom $p.", ch, obj, NULL, TO_CHAR);
-            return;
-        }
-
-        BAIL_IF (obj->v.weapon.attack_type < 0 ||
-                 attack_table[obj->v.weapon.attack_type].dam_type == DAM_BASH,
-            "You can only envenom edged weapons.\n\r", ch);
-        BAIL_IF_ACT (IS_WEAPON_STAT (obj, WEAPON_POISON),
-            "$p is already envenomed.", ch, obj, NULL);
-
-        percent = number_percent ();
-        if (percent >= skill) {
-            act ("You fail to envenom $p.", ch, obj, NULL, TO_CHAR);
-            char_try_skill_improve (ch, SN(ENVENOM), FALSE, 3);
-            WAIT_STATE (ch, skill_table[SN(ENVENOM)].beats);
-            return;
-        }
-
-        affect_init (&af, AFF_TO_WEAPON, SN(POISON), ch->level * percent / 100, ch->level / 2 * percent / 100, 0, 0, WEAPON_POISON);
-        affect_to_obj (obj, &af);
-
-        act ("You coat $p with venom.", ch, obj, NULL, TO_CHAR);
-        act ("$n coats $p with deadly venom.", ch, obj, NULL, TO_NOTCHAR);
-        char_try_skill_improve (ch, SN(ENVENOM), TRUE, 3);
-        WAIT_STATE (ch, skill_table[SN(ENVENOM)].beats);
-        return;
-    }
-
-    act ("You can't poison $p.", ch, obj, NULL, TO_CHAR);
+    WAIT_STATE (ch, skill_table[SN(ENVENOM)].beats);
 }
 
 DEFINE_DO_FUN (do_fill) {
@@ -573,23 +502,16 @@ DEFINE_DO_FUN (do_fill) {
     char buf2[MAX_STRING_LENGTH];
     OBJ_T *obj;
     OBJ_T *fountain;
-    char *liq;
+    const char *liq;
 
     /* Find a valid container. */
     DO_REQUIRE_ARG (arg, "Fill what?\n\r");
     BAIL_IF ((obj = find_obj_own_inventory (ch, arg)) == NULL,
         "You do not have that item.\n\r", ch);
-    BAIL_IF (obj->item_type != ITEM_DRINK_CON,
+    BAIL_IF (!item_can_fill (obj),
         "You can't fill that.\n\r", ch);
-
-    /* Find the first fountain in the room. */
-    for (fountain = ch->in_room->contents; fountain != NULL;
-         fountain = fountain->next_content)
-    {
-        if (fountain->item_type == ITEM_FOUNTAIN)
-            break;
-    }
-    BAIL_IF (fountain == NULL,
+    BAIL_IF ((fountain = room_get_obj_of_type (ch->in_room, ch,
+            ITEM_FOUNTAIN)) == NULL,
         "There is no fountain here!\n\r", ch);
 
     /* Can we fill our container with this fountain? */
@@ -603,7 +525,7 @@ DEFINE_DO_FUN (do_fill) {
     obj->v.drink_con.poisoned = fountain->v.fountain.poisoned;
     obj->v.drink_con.filled   = obj->v.drink_con.capacity;
 
-    liq = liq_table[fountain->v.fountain.liquid].name;
+    liq = liq_get_name (fountain->v.fountain.liquid);
     snprintf (buf1, sizeof(buf1), "You fill $p with %s from $P.", liq);
     snprintf (buf2, sizeof(buf2), "$n fills $p with %s from $P.", liq);
     act2 (buf1, buf2, ch, obj, fountain, 0, POS_RESTING);
@@ -615,7 +537,7 @@ DEFINE_DO_FUN (do_pour) {
     char buf1[MAX_STRING_LENGTH];
     char buf2[MAX_STRING_LENGTH];
     char buf3[MAX_STRING_LENGTH];
-    char *liq;
+    const char *liq;
     OBJ_T *out, *in;
     CHAR_T *vch = NULL;
     int amount;
@@ -625,9 +547,9 @@ DEFINE_DO_FUN (do_pour) {
 
     BAIL_IF ((out = find_obj_own_inventory (ch, arg1)) == NULL,
         "You don't have that item.\n\r", ch);
-    BAIL_IF (out->item_type != ITEM_DRINK_CON,
+    BAIL_IF (!item_can_fill (out),
         "That's not a drink container.\n\r", ch);
-    liq = liq_table[out->v.drink_con.liquid].name;
+    liq = liq_get_name (out->v.drink_con.liquid);
 
     if (!str_cmp (arg2, "out")) {
         BAIL_IF (out->v.drink_con.filled == 0,
@@ -651,7 +573,7 @@ DEFINE_DO_FUN (do_pour) {
             "They aren't holding anything.", ch);
     }
 
-    BAIL_IF (in->item_type != ITEM_DRINK_CON,
+    BAIL_IF (!item_can_fill (in),
         "You can only pour into other drink containers.\n\r", ch);
     BAIL_IF (in == out,
         "You cannot change the laws of physics!\n\r", ch);
@@ -683,68 +605,15 @@ DEFINE_DO_FUN (do_pour) {
     }
 }
 
-void do_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
-    int hunger)
-{
-    if (IS_NPC (ch))
-        return;
-
-    if (drunk != 0) {
-        int was_sober = IS_SOBER (ch);
-        int was_drunk = IS_DRUNK (ch);
-        gain_condition (ch, COND_DRUNK, drunk);
-
-        if (!was_drunk && IS_DRUNK (ch))
-            send_to_char ("You feel drunk.\n\r", ch);
-        else if (was_sober && !IS_SOBER (ch))
-            send_to_char ("You feel a little tispy...\n\r", ch);
-    }
-
-    if (thirst != 0) {
-        int was_thirsty  = IS_THIRSTY (ch);
-        int was_quenched = IS_QUENCHED (ch);
-        gain_condition (ch, COND_THIRST, thirst);
-
-        if (!was_quenched && IS_QUENCHED (ch))
-            send_to_char ("Your thirst is quenched.\n\r", ch);
-        else if (was_thirsty && !IS_THIRSTY (ch))
-            send_to_char ("You are no longer thirsty.\n\r", ch);
-    }
-
-    if (hunger != 0) {
-        int was_hungry = IS_HUNGRY (ch);
-        int was_fed    = IS_FED (ch);
-        gain_condition (ch, COND_HUNGER, hunger);
-
-        if (!was_fed && IS_FED (ch))
-            send_to_char ("You feel well-fed.\n\r", ch);
-        else if (was_hungry && !IS_HUNGRY (ch))
-            send_to_char ("You are no longer hungry.\n\r", ch);
-    }
-
-    if (full != 0) {
-        int was_full = IS_FULL (ch);
-        gain_condition (ch, COND_FULL, full);
-
-        if (!was_full && IS_FULL (ch))
-            send_to_char ("You are full.\n\r", ch);
-    }
-}
-
 DEFINE_DO_FUN (do_drink) {
     const LIQ_T *liq;
     OBJ_T *obj;
     char arg[MAX_INPUT_LENGTH];
-    const sh_int *cond;
-    flag_t *capacity, *filled;
-    int amount, liquid, poisoned;
 
     one_argument (argument, arg);
     if (arg[0] == '\0') {
-        for (obj = ch->in_room->contents; obj; obj = obj->next_content)
-            if (obj->item_type == ITEM_FOUNTAIN)
-                break;
-        BAIL_IF (obj == NULL,
+        BAIL_IF ((obj = room_get_obj_of_type (ch->in_room, ch,
+                ITEM_FOUNTAIN)) == NULL,
             "Drink what?\n\r", ch);
     }
     else {
@@ -756,73 +625,18 @@ DEFINE_DO_FUN (do_drink) {
         "You fail to reach your mouth. *Hic*\n\r", ch);
     BAIL_IF (IS_FULL (ch) && !IS_IMMORTAL (ch),
         "You're too full to drink more.\n\r", ch);
-
-    switch (obj->item_type) {
-        case ITEM_FOUNTAIN:
-            capacity = &(obj->v.fountain.capacity);
-            filled   = &(obj->v.fountain.filled);
-            liquid   = obj->v.fountain.liquid;
-            poisoned = obj->v.fountain.poisoned;
-            break;
-
-        case ITEM_DRINK_CON:
-            BAIL_IF (obj->v.drink_con.filled <= 0,
-                "It is already empty.\n\r", ch);
-            capacity = &(obj->v.drink_con.capacity);
-            filled   = &(obj->v.drink_con.filled);
-            liquid   = obj->v.drink_con.liquid;
-            poisoned = obj->v.drink_con.poisoned;
-            break;
-
-        default:
-            send_to_char ("You can't drink from that.\n\r", ch);
-            return;
-    }
-
-    if ((liq = liq_get (liquid)) == NULL) {
-        bug ("do_drink: bad liquid number %d.", liquid);
-        liquid = 0;
-        liq = liq_get (0);
-    }
-
-    switch (obj->item_type) {
-        case ITEM_FOUNTAIN:
-            amount = liq->serving_size * 3;
-            break;
-
-        case ITEM_DRINK_CON:
-            amount = UMIN (liq->serving_size, *filled);
-            break;
-
-        default:
-            bugf ("Unhandled drink amount when drinking item type '%d'.\n",
-                obj->item_type);
-            return;
-    }
+    BAIL_IF (!item_is_drinkable (obj),
+        "You can't drink from that.\n\r", ch);
+    BAIL_IF (!item_has_liquid (obj),
+        "It is already empty.\n\r", ch);
+    BAIL_IF ((liq = item_get_liquid (obj)) == NULL,
+        "It is already empty.\n\r", ch);
 
     act2 ("You drink $T from $p.", "$n drinks $T from $p.",
          ch, obj, liq->name, 0, POS_RESTING);
 
-    /* TODO: these numbers - along with serving size - are so arbitrary... */
-    cond = liq->cond;
-    do_change_conditions (ch,
-        amount * cond[COND_DRUNK]  / 36, amount * cond[COND_FULL]   / 4,
-        amount * cond[COND_THIRST] / 10, amount * cond[COND_HUNGER] / 2);
-
-    if (poisoned != 0) {
-        AFFECT_T af;
-
-        /* The drink was poisoned! */
-        send_to_char ("You choke and gag.\n\r", ch);
-        act ("$n chokes and gags.", ch, NULL, NULL, TO_NOTCHAR);
-
-        affect_init (&af, AFF_TO_AFFECTS, SN(POISON), number_fuzzy (amount),
-            3 * amount, APPLY_NONE, 0, AFF_POISON);
-        affect_join (ch, &af);
-    }
-
-    if (capacity != NULL && filled != NULL && *capacity > 0)
-        *filled = UMAX (*filled - amount, 0);
+    if (!item_drink_effect (obj, ch))
+        send_to_char ("...but nothing happens.\n\r", ch);
 }
 
 DEFINE_DO_FUN (do_eat) {
@@ -833,40 +647,15 @@ DEFINE_DO_FUN (do_eat) {
     BAIL_IF ((obj = find_obj_own_inventory (ch, arg)) == NULL,
         "You do not have that item.\n\r", ch);
     if (!IS_IMMORTAL (ch)) {
-        BAIL_IF (obj->item_type != ITEM_FOOD && obj->item_type != ITEM_PILL,
+        BAIL_IF (!item_is_edible (obj),
             "That's not edible.\n\r", ch);
         BAIL_IF (IS_FULL (ch),
             "You're too full to eat more.\n\r", ch);
     }
 
     act2 ("You eat $p.", "$n eats $p.", ch, obj, NULL, 0, POS_RESTING);
-    switch (obj->item_type) {
-        case ITEM_FOOD:
-            do_change_conditions (ch, 0, obj->v.food.hunger, 0,
-                obj->v.food.fullness);
-            if (obj->v.food.poisoned != 0) {
-                AFFECT_T af;
-
-                /* The food was poisoned! */
-                send_to_char ("You choke and gag.\n\r", ch);
-                act ("$n chokes and gags.", ch, NULL, NULL, TO_NOTCHAR);
-
-                affect_init (&af, AFF_TO_AFFECTS, SN(POISON), number_fuzzy (
-                    obj->v.food.hunger), 2 * obj->v.food.hunger, APPLY_NONE, 0,
-                    AFF_POISON);
-                affect_join (ch, &af);
-            }
-            break;
-
-        case ITEM_PILL: {
-            int i, level = obj->v.pill.level;
-            for (i = 0; i < PILL_SKILL_MAX; i++)
-                obj_cast_spell (obj->v.pill.skill[i], level, ch, ch, NULL);
-            break;
-        }
-    }
-
-    obj_extract (obj);
+    if (!item_eat_effect (obj, ch))
+        send_to_char ("...but nothing happens.\n\r", ch);
 }
 
 DEFINE_DO_FUN (do_wear) {
@@ -929,10 +718,8 @@ DEFINE_DO_FUN (do_sacrifice) {
 
     BAIL_IF ((obj = find_obj_same_room (ch, arg)) == NULL,
         "You can't find it.\n\r", ch);
-    if (obj->item_type == ITEM_CORPSE_PC) {
-        BAIL_IF (obj->contains,
-            "Mota wouldn't like that.\n\r", ch);
-    }
+    BAIL_IF (!item_can_sacrifice (obj),
+        "Mota wouldn't like that.\n\r", ch);
     BAIL_IF_ACT (!obj_can_wear_flag (obj, ITEM_TAKE) ||
                   obj_can_wear_flag (obj, ITEM_NO_SAC),
         "$p is not an acceptable sacrifice.", ch, obj, NULL);
@@ -942,10 +729,7 @@ DEFINE_DO_FUN (do_sacrifice) {
             BAIL_IF_ACT (gch->on == obj,
                 "$N appears to be using $p.", ch, obj, gch);
 
-    silver = UMAX (1, obj->level * 3);
-    if (obj->item_type != ITEM_CORPSE_NPC && obj->item_type != ITEM_CORPSE_PC)
-        silver = UMIN (silver, obj->cost);
-
+    silver = item_get_sacrifice_silver (obj);
 #ifdef BASEMUD_NO_WORTHLESS_SACRIFICES
     BAIL_IF (silver == 0,
         "Mota ignores your paltry offering.\n\r", ch);
@@ -978,12 +762,11 @@ DEFINE_DO_FUN (do_sacrifice) {
 DEFINE_DO_FUN (do_quaff) {
     char arg[MAX_INPUT_LENGTH];
     OBJ_T *obj;
-    int i, level;
 
     DO_REQUIRE_ARG (arg, "Quaff what?\n\r");
     BAIL_IF ((obj = find_obj_own_inventory (ch, arg)) == NULL,
         "You do not have that potion.\n\r", ch);
-    BAIL_IF (obj->item_type != ITEM_POTION,
+    BAIL_IF (!item_can_quaff (obj),
         "You can quaff only potions.\n\r", ch);
     BAIL_IF (ch->level < obj->level,
         "This liquid is too powerful for you to drink.\n\r", ch);
@@ -991,26 +774,22 @@ DEFINE_DO_FUN (do_quaff) {
     act2 ("You quaff $p.", "$n quaffs $p.",
         ch, obj, NULL, 0, POS_RESTING);
 
-    level = obj->v.potion.level;
-    for (i = 0; i < POTION_SKILL_MAX; i++)
-        obj_cast_spell (obj->v.potion.skill[i], level, ch, ch, NULL);
-
-    obj_extract (obj);
+    if (!item_quaff_effect (obj, ch))
+        send_to_char ("...but nothing happens.\n\r", ch);
 }
 
 DEFINE_DO_FUN (do_recite) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     CHAR_T *victim;
-    OBJ_T *scroll;
-    OBJ_T *obj;
+    OBJ_T *scroll, *obj;
 
     DO_REQUIRE_ARG (arg1, "Recite what?\n\r");
     argument = one_argument (argument, arg2);
 
     BAIL_IF ((scroll = find_obj_own_inventory (ch, arg1)) == NULL,
         "You do not have that scroll.\n\r", ch);
-    BAIL_IF (scroll->item_type != ITEM_SCROLL,
+    BAIL_IF (!item_can_recite (scroll),
         "You can recite only scrolls.\n\r", ch);
     BAIL_IF (ch->level < scroll->level,
         "This scroll is too complex for you to comprehend.\n\r", ch);
@@ -1030,86 +809,53 @@ DEFINE_DO_FUN (do_recite) {
     if (number_percent () >= 20 + char_get_skill (ch, SN(SCROLLS)) * 4 / 5) {
         send_to_char ("You mispronounce a syllable.\n\r", ch);
         char_try_skill_improve (ch, SN(SCROLLS), FALSE, 2);
-    }
-    else {
-        int i, level = scroll->v.scroll.level;
-        for (i = 0; i < SCROLL_SKILL_MAX; i++)
-            obj_cast_spell (scroll->v.scroll.skill[i], level, ch, victim, obj);
-        char_try_skill_improve (ch, SN(SCROLLS), TRUE, 2);
+        obj_extract (scroll);
+        return;
     }
 
-    obj_extract (scroll);
+    if (!item_recite_effect (scroll, ch, victim, obj)) {
+        send_to_char ("...but nothing happens.\n\r", ch);
+        return;
+    }
+
+    char_try_skill_improve (ch, SN(SCROLLS), TRUE, 2);
 }
 
 DEFINE_DO_FUN (do_brandish) {
-    CHAR_T *vch;
-    CHAR_T *vch_next;
     OBJ_T *staff;
-    int sn;
+    bool success;
 
     BAIL_IF ((staff = char_get_eq_by_wear_loc (ch, WEAR_LOC_HOLD)) == NULL,
         "You hold nothing in your hand.\n\r", ch);
-    BAIL_IF (staff->item_type != ITEM_STAFF,
+    BAIL_IF (!item_can_brandish (staff),
         "You can brandish only with a staff.\n\r", ch);
 
-    BAIL_IF_BUG ((sn = staff->v.staff.skill) < 0 ||
-                  sn >= SKILL_MAX || skill_table[sn].spell_fun == 0,
-        "do_brandish: bad sn %d.", sn);
-
     WAIT_STATE (ch, 2 * PULSE_VIOLENCE);
-    if (staff->v.staff.charges > 0) {
+
+    if (item_has_charges (staff)) {
         act2 ("You brandish $p.", "$n brandishes $p.",
             ch, staff, NULL, 0, POS_RESTING);
 
-        if (ch->level < staff->level ||
-            number_percent () >= 20 + char_get_skill (ch, SN(STAVES)) * 4 / 5)
-        {
+        success = TRUE;
+        if (ch->level < staff->level)
+            success = FALSE;
+        else if (number_percent () >= 20 + char_get_skill (ch, SN(STAVES)) * 4 / 5)
+            success = FALSE;
+        else if (!item_brandish_effect (staff, ch, TRUE))
+            success = FALSE;
+
+        if (!success) {
             act2 ("You fail to invoke $p.", "...and nothing happens.",
                 ch, staff, NULL, 0, POS_RESTING);
             char_try_skill_improve (ch, SN(STAVES), FALSE, 2);
         }
-        else {
-            for (vch = ch->in_room->people; vch; vch = vch_next) {
-                vch_next = vch->next_in_room;
-                switch (skill_table[sn].target) {
-                    case SKILL_TARGET_IGNORE:
-                        if (vch != ch)
-                            continue;
-                        break;
-
-                    case SKILL_TARGET_CHAR_OFFENSIVE:
-                        if (IS_NPC (ch) ? IS_NPC (vch) : !IS_NPC (vch))
-                            continue;
-                        break;
-
-                    case SKILL_TARGET_CHAR_DEFENSIVE:
-                        if (IS_NPC (ch) ? !IS_NPC (vch) : IS_NPC (vch))
-                            continue;
-                        break;
-
-                    case SKILL_TARGET_CHAR_SELF:
-                        if (vch != ch)
-                            continue;
-                        break;
-
-                    default:
-                        bug ("do_brandish: bad target for sn %d.", sn);
-                        return;
-                }
-                obj_cast_spell (staff->v.staff.skill, staff->v.staff.level,
-                    ch, vch, NULL);
-                char_try_skill_improve (ch, SN(STAVES), TRUE, 2);
-            }
-        }
     }
-    if (--staff->v.staff.charges <= 0) {
-        act ("Your $p blazes bright and is gone.", ch, staff, NULL, TO_CHAR);
-        act ("$n's $p blazes bright and is gone.", ch, staff, NULL, TO_NOTCHAR);
-        obj_extract (staff);
-    }
+
+    item_consume_charge_as (staff, ch);
 }
 
 DEFINE_DO_FUN (do_zap) {
+    bool success;
     char arg[MAX_INPUT_LENGTH];
     CHAR_T *victim;
     OBJ_T *wand;
@@ -1120,7 +866,7 @@ DEFINE_DO_FUN (do_zap) {
         "Zap whom or what?\n\r", ch);
     BAIL_IF ((wand = char_get_eq_by_wear_loc (ch, WEAR_LOC_HOLD)) == NULL,
         "You hold nothing in your hand.\n\r", ch);
-    BAIL_IF (wand->item_type != ITEM_WAND,
+    BAIL_IF (!item_can_zap (wand),
         "You can zap only with a wand.\n\r", ch);
 
     obj = NULL;
@@ -1135,7 +881,8 @@ DEFINE_DO_FUN (do_zap) {
     }
 
     WAIT_STATE (ch, 2 * PULSE_VIOLENCE);
-    if (wand->v.wand.charges > 0) {
+
+    if (item_has_charges (wand)) {
         if (victim != NULL) {
             act3 ("You zap $N with $p.",
                   "$n zaps you with $p.",
@@ -1145,27 +892,27 @@ DEFINE_DO_FUN (do_zap) {
             act2 ("You zap $P with $p.",
                   "$n zaps $P with $p.", ch, wand, obj, 0, POS_RESTING);
         }
-        if (ch->level < wand->level
-            || number_percent () >= 20 + char_get_skill (ch, SN(WANDS)) * 4 / 5)
-        {
+
+        success = TRUE;
+        if (ch->level < wand->level)
+            success = FALSE;
+        else if (number_percent () >= 20 + char_get_skill (ch, SN(WANDS)) * 4 / 5)
+            success = FALSE;
+        else if (!item_zap_effect (wand, ch, victim, obj))
+            success = FALSE;
+
+        if (!success) {
             act ("Your efforts with $p produce only smoke and sparks.",
                  ch, wand, NULL, TO_CHAR);
             act ("$n's efforts with $p produce only smoke and sparks.",
                  ch, wand, NULL, TO_NOTCHAR);
             char_try_skill_improve (ch, SN(WANDS), FALSE, 2);
         }
-        else {
-            obj_cast_spell (wand->v.wand.skill, wand->v.wand.level,
-                ch, victim, obj);
+        else
             char_try_skill_improve (ch, SN(WANDS), TRUE, 2);
-        }
     }
-    if (--wand->v.wand.charges <= 0) {
-        act2 ("Your $p explodes into fragments.",
-              "$n's $p explodes into fragments.",
-            ch, wand, NULL, 0, POS_RESTING);
-        obj_extract (wand);
-    }
+
+    item_consume_charge_as (wand, ch);
 }
 
 DEFINE_DO_FUN (do_steal) {
@@ -1351,101 +1098,11 @@ DEFINE_DO_FUN (do_outfit) {
 
 DEFINE_DO_FUN (do_play) {
     OBJ_T *juke;
-    char *str, arg[MAX_INPUT_LENGTH];
-    int song, i;
-    bool global = FALSE;
 
-    for (juke = ch->in_room->contents; juke != NULL; juke = juke->next_content)
-        if (juke->item_type == ITEM_JUKEBOX && char_can_see_obj (ch, juke))
-            break;
-    BAIL_IF (juke == NULL,
+    BAIL_IF ((juke = room_get_obj_with_condition (ch->in_room, ch,
+            &item_can_play)) == NULL,
         "You see nothing to play.\n\r", ch);
 
-    str = one_argument (argument, arg);
-    BAIL_IF (argument[0] == '\0',
-        "Play what?\n\r", ch);
-
-    if (!str_cmp (arg, "list")) {
-        BUFFER_T *buffer;
-        char buf[MAX_STRING_LENGTH];
-        int col = 0;
-        bool artist = FALSE, match = FALSE;
-
-        buffer = buf_new ();
-        argument = str;
-        argument = one_argument (argument, arg);
-
-        if (!str_cmp (arg, "artist"))
-            artist = TRUE;
-        if (argument[0] != '\0')
-            match = TRUE;
-
-        sprintf (buf, "%s has the following songs available:\n\r",
-                 juke->short_descr);
-        add_buf (buffer, str_capitalized (buf));
-
-        for (i = 0; i < MAX_SONGS; i++) {
-            if (song_table[i].name == NULL)
-                break;
-
-            if (artist && (!match
-                           || !str_prefix (argument, song_table[i].group)))
-                sprintf (buf, "%-39s %-39s\n\r",
-                         song_table[i].group, song_table[i].name);
-            else if (!artist && (!match
-                                 || !str_prefix (argument,
-                                                 song_table[i].name)))
-                sprintf (buf, "%-35s ", song_table[i].name);
-            else
-                continue;
-
-            add_buf (buffer, buf);
-            if (!artist && ++col % 2 == 0)
-                add_buf (buffer, "\n\r");
-        }
-        if (!artist && col % 2 != 0)
-            add_buf (buffer, "\n\r");
-
-        page_to_char (buf_string (buffer), ch);
-        buf_free (buffer);
-        return;
-    }
-
-    if (!str_cmp (arg, "loud")) {
-        argument = str;
-        global = TRUE;
-    }
-    BAIL_IF (argument[0] == '\0',
-        "Play what?\n\r", ch);
-    BAIL_IF ((global && channel_songs[MAX_SONG_GLOBAL] > -1) ||
-             (!global && juke->v.value[4] > -1),
-        "The jukebox is full up right now.\n\r", ch);
-
-    for (song = 0; song < MAX_SONGS && song_table[song].name != NULL; song++)
-        if (!str_prefix (argument, song_table[song].name))
-            break;
-    BAIL_IF (song >= MAX_SONGS,
-        "That song isn't available.\n\r", ch);
-
-    send_to_char ("Coming right up.\n\r", ch);
-    if (global) {
-        for (i = 1; i <= MAX_SONG_GLOBAL; i++) {
-            if (channel_songs[i] >= 0)
-                continue;
-            if (i == 1)
-                channel_songs[0] = -1;
-            channel_songs[i] = song;
-            return;
-        }
-    }
-    else {
-        for (i = 1; i < 5; i++) {
-            if (juke->v.value[i] >= 0)
-                continue;
-            if (i == 1)
-                juke->v.value[0] = -1;
-            juke->v.value[i] = song;
-            return;
-        }
-    }
+    if (!item_play_effect (juke, ch, argument))
+        send_to_char ("Nothing happens.\n\r", ch);
 }

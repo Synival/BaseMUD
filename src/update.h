@@ -35,6 +35,7 @@ int mana_gain (CHAR_T *ch, bool apply_learning);
 int move_gain (CHAR_T *ch, bool apply_learning);
 void gain_condition (CHAR_T *ch, int cond, int value);
 void area_update (void);
+void song_update (void);
 void mobile_update (void);
 void weather_update (void);
 void health_update (void);

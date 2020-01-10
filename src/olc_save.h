@@ -19,7 +19,6 @@
 /* Function prototypes. */
 char *fix_string (const char *str);
 void save_area_list (void);
-char *fwrite_flag (long flags, char buf[]);
 void save_mobprogs (FILE *fp, AREA_T *area);
 void save_mobile (FILE *fp, MOB_INDEX_T *mob_index);
 void save_mobiles (FILE *fp, AREA_T *area);
@@ -34,6 +33,5 @@ void save_shops (FILE *fp, AREA_T *area);
 void save_helps (FILE *fp, HELP_AREA_T *ha);
 int save_other_helps (CHAR_T *ch);
 void save_area (AREA_T *area);
-char *fix_string (const char *str);
 
 #endif

@@ -36,6 +36,7 @@
 #include "affects.h"
 #include "objs.h"
 #include "chars.h"
+#include "items.h"
 
 #include "effects.h"
 
@@ -69,11 +70,16 @@ DEFINE_EFFECT_FUN (effect_acid) {
     if (target == TARGET_OBJ) {
         OBJ_T *obj = (OBJ_T *) vo;
         OBJ_T *t_obj, *n_obj;
+        const char *msg;
         int chance;
-        char *msg;
 
-        if (IS_OBJ_STAT (obj, ITEM_BURN_PROOF)
-            || IS_OBJ_STAT (obj, ITEM_NOPURGE) || number_range (0, 4) == 0)
+        if (IS_OBJ_STAT (obj, ITEM_BURN_PROOF) ||
+            IS_OBJ_STAT (obj, ITEM_NOPURGE)    ||
+            number_range (0, 4) == 0)
+        {
+            return;
+        }
+        if ((msg = item_get_corrode_message (obj)) == NULL)
             return;
 
         chance = level / 4 + dam / 10;
@@ -85,69 +91,23 @@ DEFINE_EFFECT_FUN (effect_acid) {
             chance -= 5;
         chance -= obj->level * 2;
 
-        switch (obj->item_type) {
-            default:
-                return;
-            case ITEM_CONTAINER:
-            case ITEM_CORPSE_PC:
-            case ITEM_CORPSE_NPC:
-                msg = "$p fumes and dissolves.";
-                break;
-            case ITEM_ARMOR:
-                msg = "$p is pitted and etched.";
-                break;
-            case ITEM_CLOTHING:
-                msg = "$p is corroded into scrap.";
-                break;
-            case ITEM_STAFF:
-            case ITEM_WAND:
-                chance -= 10;
-                msg = "$p corrodes and breaks.";
-                break;
-            case ITEM_SCROLL:
-                chance += 10;
-                msg = "$p is burned into waste.";
-                break;
-        }
-
+        chance += item_get_corrode_chance_modifier (obj);
         chance = URANGE (5, chance, 95);
         if (number_percent () > chance)
             return;
 
-        if (obj->carried_by != NULL)
-            act (msg, obj->carried_by, obj, NULL, TO_ALL);
-        else if (obj->in_room != NULL && obj->in_room->people != NULL)
-            act (msg, obj->in_room->people, obj, NULL, TO_ALL);
-        if (obj->item_type == ITEM_ARMOR) { /* etch it */
-            AFFECT_T *paf;
-            bool af_found = FALSE;
-            int i;
-
-            obj_enchant (obj);
-            for (paf = obj->affected; paf != NULL; paf = paf->next) {
-                if (paf->apply == APPLY_AC) {
-                    af_found = TRUE;
-                    paf->type = -1;
-                    paf->modifier += 1;
-                    paf->level = UMAX (paf->level, level);
-                    break;
-                }
-            }
-
-            /* needs a new affect */
-            if (!af_found) {
-                paf = affect_new ();
-                affect_init (paf, AFF_TO_AFFECTS, -1, level, -1, APPLY_AC, 1, 0);
-                LIST_FRONT (paf, next, obj->affected);
-            }
-            if (obj->carried_by != NULL && obj->wear_loc != WEAR_LOC_NONE)
-                for (i = 0; i < 4; i++)
-                    obj->carried_by->armor[i] += 1;
-            SET_BIT (obj->extra_flags, ITEM_CORRODED);
-            return;
+        if (*msg != '\0') {
+            if (obj->carried_by != NULL)
+                act (msg, obj->carried_by, obj, NULL, TO_ALL);
+            else if (obj->in_room != NULL && obj->in_room->people != NULL)
+                act (msg, obj->in_room->people, obj, NULL, TO_ALL);
         }
 
-        /* get rid of the object */
+        /* perform any special corrosion effects. */
+        if (item_corrode_effect (obj, level))
+            return;
+
+        /* no special effect - get rid of the object */
         if (obj->contains) { /* dump contents */
             for (t_obj = obj->contains; t_obj != NULL; t_obj = n_obj) {
                 n_obj = t_obj->next_content;
@@ -163,6 +123,7 @@ DEFINE_EFFECT_FUN (effect_acid) {
                 effect_acid (t_obj, level / 2, dam / 2, TARGET_OBJ);
             }
         }
+
         obj_extract (obj);
         return;
     }
@@ -190,8 +151,9 @@ DEFINE_EFFECT_FUN (effect_cold) {
         if (!saves_spell (level / 4 + dam / 20, victim, DAM_COLD)) {
             AFFECT_T af;
 
-            act ("A chill sinks deep into your bones.", victim, NULL, NULL, TO_CHAR);
-            act ("$n turns blue and shivers.", victim, NULL, NULL, TO_NOTCHAR);
+            act2 ("A chill sinks deep into your bones.",
+                  "$n turns blue and shivers.",
+                  victim, NULL, NULL, 0, POS_RESTING);
 
             affect_init (&af, AFF_TO_AFFECTS, skill_lookup ("chill touch"), level, 6, APPLY_STR, -1, 0);
             affect_join (victim, &af);
@@ -212,11 +174,16 @@ DEFINE_EFFECT_FUN (effect_cold) {
     /* toast an object */
     if (target == TARGET_OBJ) {
         OBJ_T *obj = (OBJ_T *) vo;
+        const char *msg;
         int chance;
-        char *msg;
 
-        if (IS_OBJ_STAT (obj, ITEM_BURN_PROOF)
-            || IS_OBJ_STAT (obj, ITEM_NOPURGE) || number_range (0, 4) == 0)
+        if (IS_OBJ_STAT (obj, ITEM_BURN_PROOF) ||
+            IS_OBJ_STAT (obj, ITEM_NOPURGE)    ||
+            number_range (0, 4) == 0)
+        {
+            return;
+        }
+        if ((msg = item_get_freeze_message (obj)) == NULL)
             return;
 
         chance = level / 4 + dam / 10;
@@ -228,27 +195,21 @@ DEFINE_EFFECT_FUN (effect_cold) {
             chance -= 5;
         chance -= obj->level * 2;
 
-        switch (obj->item_type) {
-            default:
-                return;
-            case ITEM_POTION:
-                msg = "$p freezes and shatters!";
-                chance += 25;
-                break;
-            case ITEM_DRINK_CON:
-                msg = "$p freezes and shatters!";
-                chance += 5;
-                break;
-        }
-
+        chance += item_get_freeze_chance_modifier (obj);
         chance = URANGE (5, chance, 95);
         if (number_percent () > chance)
             return;
 
-        if (obj->carried_by != NULL)
-            act (msg, obj->carried_by, obj, NULL, TO_ALL);
-        else if (obj->in_room != NULL && obj->in_room->people != NULL)
-            act (msg, obj->in_room->people, obj, NULL, TO_ALL);
+        if (*msg != '\0') {
+            if (obj->carried_by != NULL)
+                act (msg, obj->carried_by, obj, NULL, TO_ALL);
+            else if (obj->in_room != NULL && obj->in_room->people != NULL)
+                act (msg, obj->in_room->people, obj, NULL, TO_ALL);
+        }
+
+        /* perform any special freeze effects. */
+        if (item_freeze_effect (obj, level))
+            return;
 
         obj_extract (obj);
         return;
@@ -278,9 +239,9 @@ DEFINE_EFFECT_FUN (effect_fire) {
             && !saves_spell (level / 4 + dam / 20, victim, DAM_FIRE))
         {
             AFFECT_T af;
-            act ("Your eyes tear up from smoke...you can't see a thing!",
-                 victim, NULL, NULL, TO_CHAR);
-            act ("$n is blinded by smoke!", victim, NULL, NULL, TO_NOTCHAR);
+            act2 ("Your eyes tear up from smoke...you can't see a thing!",
+                  "$n is blinded by smoke!",
+                  victim, NULL, NULL, 0, POS_RESTING);
 
             affect_init (&af, AFF_TO_AFFECTS, skill_lookup ("fire breath"), level, number_range (0, level / 10), APPLY_HITROLL, -4, AFF_BLIND);
             affect_to_char (victim, &af);
@@ -302,11 +263,16 @@ DEFINE_EFFECT_FUN (effect_fire) {
     if (target == TARGET_OBJ) {
         OBJ_T *obj = (OBJ_T *) vo;
         OBJ_T *t_obj, *n_obj;
+        const char *msg;
         int chance;
-        char *msg;
 
-        if (IS_OBJ_STAT (obj, ITEM_BURN_PROOF)
-            || IS_OBJ_STAT (obj, ITEM_NOPURGE) || number_range (0, 4) == 0)
+        if (IS_OBJ_STAT (obj, ITEM_BURN_PROOF) ||
+            IS_OBJ_STAT (obj, ITEM_NOPURGE)    ||
+            number_range (0, 4) == 0)
+        {
+            return;
+        }
+        if ((msg = item_get_burn_message (obj)) == NULL)
             return;
 
         chance = level / 4 + dam / 10;
@@ -318,43 +284,21 @@ DEFINE_EFFECT_FUN (effect_fire) {
             chance -= 5;
         chance -= obj->level * 2;
 
-        switch (obj->item_type) {
-            default:
-                return;
-            case ITEM_CONTAINER:
-                msg = "$p ignites and burns!";
-                break;
-            case ITEM_POTION:
-                chance += 25;
-                msg = "$p bubbles and boils!";
-                break;
-            case ITEM_SCROLL:
-                chance += 50;
-                msg = "$p crackles and burns!";
-                break;
-            case ITEM_STAFF:
-                chance += 10;
-                msg = "$p smokes and chars!";
-                break;
-            case ITEM_WAND:
-                msg = "$p sparks and sputters!";
-                break;
-            case ITEM_FOOD:
-                msg = "$p blackens and crisps!";
-                break;
-            case ITEM_PILL:
-                msg = "$p melts and drips!";
-                break;
-        }
-
+        chance += item_get_burn_chance_modifier (obj);
         chance = URANGE (5, chance, 95);
         if (number_percent () > chance)
             return;
 
-        if (obj->carried_by != NULL)
-            act (msg, obj->carried_by, obj, NULL, TO_ALL);
-        else if (obj->in_room != NULL && obj->in_room->people != NULL)
-            act (msg, obj->in_room->people, obj, NULL, TO_ALL);
+        if (*msg != '\0') {
+            if (obj->carried_by != NULL)
+                act (msg, obj->carried_by, obj, NULL, TO_ALL);
+            else if (obj->in_room != NULL && obj->in_room->people != NULL)
+                act (msg, obj->in_room->people, obj, NULL, TO_ALL);
+        }
+
+        /* perform any special burn effects. */
+        if (item_burn_effect (obj, level))
+            return;
 
         /* dump the contents */
         if (obj->contains) {
@@ -372,6 +316,7 @@ DEFINE_EFFECT_FUN (effect_fire) {
                 effect_fire (t_obj, level / 2, dam / 2, TARGET_OBJ);
             }
         }
+
         obj_extract (obj);
         return;
     }
@@ -400,7 +345,9 @@ DEFINE_EFFECT_FUN (effect_poison) {
             AFFECT_T af;
             send_to_char ("You feel poison coursing through your veins.\n\r",
                           victim);
-            act ("$n looks very ill.", victim, NULL, NULL, TO_NOTCHAR);
+            act2 ("You feel poison coursing through your veins.",
+                  "$n looks very ill.",
+                  victim, NULL, NULL, 0, POS_RESTING);
 
             affect_init (&af, AFF_TO_AFFECTS, SN(POISON), level, level / 2, APPLY_STR, -1, AFF_POISON);
             affect_join (victim, &af);
@@ -417,10 +364,16 @@ DEFINE_EFFECT_FUN (effect_poison) {
     if (target == TARGET_OBJ) {
         /* do some poisoning */
         OBJ_T *obj = (OBJ_T *) vo;
+        const char *msg;
         int chance;
 
-        if (IS_OBJ_STAT (obj, ITEM_BURN_PROOF)
-            || IS_OBJ_STAT (obj, ITEM_NOPURGE) || number_range (0, 4) == 0)
+        if (IS_OBJ_STAT (obj, ITEM_BURN_PROOF) ||
+            IS_OBJ_STAT (obj, ITEM_NOPURGE)    ||
+            number_range (0, 4) == 0)
+        {
+            return;
+        }
+        if ((msg = item_get_poison_message (obj)) == NULL)
             return;
 
         chance = level / 4 + dam / 10;
@@ -432,30 +385,22 @@ DEFINE_EFFECT_FUN (effect_poison) {
             chance -= 5;
         chance -= obj->level * 2;
 
-        switch (obj->item_type) {
-            default:
-                return;
-            case ITEM_FOOD:
-                break;
-            case ITEM_DRINK_CON:
-                if (obj->v.drink_con.capacity == obj->v.drink_con.filled)
-                    return;
-                break;
-        }
-
+        chance += item_get_poison_chance_modifier (obj);
         chance = URANGE (5, chance, 95);
         if (number_percent () > chance)
             return;
 
-        switch (obj->item_type) {
-            case ITEM_FOOD:
-                obj->v.food.poisoned = TRUE;
-                break;
-
-            case ITEM_DRINK_CON:
-                obj->v.drink_con.poisoned = TRUE;
-                break;
+        if (*msg != '\0') {
+            if (obj->carried_by != NULL)
+                act (msg, obj->carried_by, obj, NULL, TO_ALL);
+            else if (obj->in_room != NULL && obj->in_room->people != NULL)
+                act (msg, obj->in_room->people, obj, NULL, TO_ALL);
         }
+
+        /* perform any special poison effects. */
+        if (item_poison_effect (obj, level))
+            return;
+
         return;
     }
 }
@@ -494,11 +439,16 @@ DEFINE_EFFECT_FUN (effect_shock) {
 
     if (target == TARGET_OBJ) {
         OBJ_T *obj = (OBJ_T *) vo;
+        const char *msg;
         int chance;
-        char *msg;
 
-        if (IS_OBJ_STAT (obj, ITEM_BURN_PROOF)
-            || IS_OBJ_STAT (obj, ITEM_NOPURGE) || number_range (0, 4) == 0)
+        if (IS_OBJ_STAT (obj, ITEM_BURN_PROOF) ||
+            IS_OBJ_STAT (obj, ITEM_NOPURGE)    ||
+            number_range (0, 4) == 0)
+        {
+            return;
+        }
+        if ((msg = item_get_shock_message (obj)) == NULL)
             return;
 
         chance = level / 4 + dam / 10;
@@ -510,27 +460,21 @@ DEFINE_EFFECT_FUN (effect_shock) {
             chance -= 5;
         chance -= obj->level * 2;
 
-        switch (obj->item_type) {
-            default:
-                return;
-            case ITEM_WAND:
-            case ITEM_STAFF:
-                chance += 10;
-                msg = "$p overloads and explodes!";
-                break;
-            case ITEM_JEWELRY:
-                chance -= 10;
-                msg = "$p is fused into a worthless lump.";
-        }
-
+        chance += item_get_shock_chance_modifier (obj);
         chance = URANGE (5, chance, 95);
         if (number_percent () > chance)
             return;
 
-        if (obj->carried_by != NULL)
-            act (msg, obj->carried_by, obj, NULL, TO_ALL);
-        else if (obj->in_room != NULL && obj->in_room->people != NULL)
-            act (msg, obj->in_room->people, obj, NULL, TO_ALL);
+        if (*msg != '\0') {
+            if (obj->carried_by != NULL)
+                act (msg, obj->carried_by, obj, NULL, TO_ALL);
+            else if (obj->in_room != NULL && obj->in_room->people != NULL)
+                act (msg, obj->in_room->people, obj, NULL, TO_ALL);
+        }
+
+        /* perform any special shock effects. */
+        if (item_shock_effect (obj, level))
+            return;
 
         obj_extract (obj);
         return;

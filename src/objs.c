@@ -38,6 +38,7 @@
 #include "materials.h"
 #include "globals.h"
 #include "memory.h"
+#include "items.h"
 
 #include "objs.h"
 
@@ -80,104 +81,7 @@ OBJ_T *obj_create (OBJ_INDEX_T *obj_index, int level) {
             * number_fuzzy (level) * number_fuzzy (level);
 
     /* Mess with object properties. */
-    switch (obj->item_type) {
-        case ITEM_LIGHT:
-            if (obj->v.light.duration == 999)
-                obj->v.light.duration = -1;
-            break;
-
-        case ITEM_FURNITURE:
-        case ITEM_TRASH:
-        case ITEM_CONTAINER:
-        case ITEM_DRINK_CON:
-        case ITEM_KEY:
-        case ITEM_FOOD:
-        case ITEM_BOAT:
-        case ITEM_CORPSE_NPC:
-        case ITEM_CORPSE_PC:
-        case ITEM_FOUNTAIN:
-        case ITEM_MAP:
-        case ITEM_CLOTHING:
-        case ITEM_PORTAL:
-            if (!obj_index->new_format)
-                obj->cost /= 5;
-            break;
-
-        case ITEM_TREASURE:
-        case ITEM_WARP_STONE:
-        case ITEM_ROOM_KEY:
-        case ITEM_GEM:
-        case ITEM_JEWELRY:
-            break;
-
-        case ITEM_JUKEBOX:
-            for (i = 0; i < OBJ_VALUE_MAX; i++)
-                obj->v.value[i] = -1;
-            break;
-
-        case ITEM_SCROLL:
-            if (level != -1 && !obj_index->new_format)
-                obj->v.scroll.level = number_fuzzy (obj->v.scroll.level);
-            break;
-
-        case ITEM_WAND:
-            if (level != -1 && !obj_index->new_format) {
-                obj->v.wand.level    = number_fuzzy (obj->v.wand.level);
-                obj->v.wand.recharge = number_fuzzy (obj->v.wand.recharge);
-                obj->v.wand.charges  = obj->v.wand.recharge;
-            }
-            if (!obj_index->new_format)
-                obj->cost *= 2;
-            break;
-
-        case ITEM_STAFF:
-            if (level != -1 && !obj_index->new_format) {
-                obj->v.staff.level    = number_fuzzy (obj->v.staff.level);
-                obj->v.staff.recharge = number_fuzzy (obj->v.staff.recharge);
-                obj->v.staff.charges  = obj->v.staff.recharge;
-            }
-            if (!obj_index->new_format)
-                obj->cost *= 2;
-            break;
-
-        case ITEM_WEAPON:
-            if (level != -1 && !obj_index->new_format) {
-                obj->v.weapon.dice_num  = number_fuzzy (number_fuzzy (
-                    1 * level / 4 + 2));
-                obj->v.weapon.dice_size = number_fuzzy (number_fuzzy (
-                    3 * level / 4 + 6));
-            }
-            break;
-
-        case ITEM_ARMOR:
-            if (level != -1 && !obj_index->new_format) {
-                obj->v.armor.vs_pierce = number_fuzzy (level / 5 + 3);
-                obj->v.armor.vs_bash   = number_fuzzy (level / 5 + 3);
-                obj->v.armor.vs_slash  = number_fuzzy (level / 5 + 3);
-            }
-            break;
-
-        case ITEM_POTION:
-            if (level != -1 && !obj_index->new_format)
-                obj->v.potion.level = number_fuzzy (number_fuzzy (
-                    obj->v.potion.level));
-            break;
-
-        case ITEM_PILL:
-            if (level != -1 && !obj_index->new_format)
-                obj->v.pill.level = number_fuzzy (number_fuzzy (
-                    obj->v.pill.level));
-            break;
-
-        case ITEM_MONEY:
-            if (!obj_index->new_format)
-                obj->v.money.silver = obj->cost;
-            break;
-
-        default:
-            bug ("read_object: vnum %d bad type.", obj_index->vnum);
-            break;
-    }
+    item_init (obj, obj_index, level);
 
     for (paf = obj_index->affected; paf != NULL; paf = paf->next)
         if (paf->apply == APPLY_SPELL_AFFECT)
@@ -274,7 +178,7 @@ void obj_give_to_obj (OBJ_T *obj, OBJ_T *obj_to) {
         if (obj_to->carried_by != NULL) {
             obj_to->carried_by->carry_number += obj_get_carry_number (obj);
             obj_to->carried_by->carry_weight += obj_get_weight (obj)
-                * WEIGHT_MULT (obj_to) / 100;
+                * item_get_weight_mult (obj_to) / 100;
         }
     }
 }
@@ -368,7 +272,7 @@ void obj_take_from_obj (OBJ_T *obj) {
         if (obj_from->carried_by != NULL) {
             obj_from->carried_by->carry_number -= obj_get_carry_number (obj);
             obj_from->carried_by->carry_weight -= obj_get_weight (obj)
-                * WEIGHT_MULT (obj_from) / 100;
+                * item_get_weight_mult (obj_from) / 100;
         }
     }
 }
@@ -376,19 +280,10 @@ void obj_take_from_obj (OBJ_T *obj) {
 /* Find the ac value of an obj, including position effect. */
 int obj_get_ac_type (const OBJ_T *obj, int wear_loc, int type) {
     const WEAR_LOC_T *wear_loc_t;
-    flag_t ac_value;
-    if (obj->item_type != ITEM_ARMOR)
+    int ac_value;
+
+    if ((ac_value = item_get_ac (obj, type)) == 0)
         return 0;
-
-    switch (type) {
-        case AC_PIERCE: ac_value = obj->v.armor.vs_pierce; break;
-        case AC_BASH:   ac_value = obj->v.armor.vs_bash;   break;
-        case AC_SLASH:  ac_value = obj->v.armor.vs_slash;  break;
-        case AC_EXOTIC: ac_value = obj->v.armor.vs_magic;  break;
-        default:
-            return 0;
-    }
-
     if ((wear_loc_t = wear_loc_get (wear_loc)) == NULL)
         return 0;
     if (wear_loc_t->ac_bonus == 0)
@@ -476,17 +371,7 @@ OBJ_T *obj_create_money (int gold, int silver) {
 /* Return # of objects which an object counts as.
  * Thanks to Tony Chamberlain for the correct recursive code here. */
 int obj_get_carry_number (const OBJ_T *obj) {
-    int number;
-    switch (obj->item_type) {
-        case ITEM_CONTAINER:
-        case ITEM_MONEY:
-        case ITEM_GEM:
-        case ITEM_JEWELRY:
-            number = 0;
-            break;
-        default:
-            number = 1;
-    }
+    int number = item_get_carry_number (obj);
     for (obj = obj->contains; obj != NULL; obj = obj->next_content)
         number += obj_get_carry_number (obj);
     return number;
@@ -497,7 +382,7 @@ int obj_get_weight (const OBJ_T *obj) {
     int weight, mult;
 
     weight = obj->weight;
-    mult = WEIGHT_MULT (obj);
+    mult = item_get_weight_mult (obj);
     for (obj = obj->contains; obj != NULL; obj = obj->next_content)
         weight += obj_get_weight (obj) * mult / 100;
 
@@ -661,26 +546,11 @@ void obj_list_show_to_char (const OBJ_T *list, CHAR_T *ch, bool is_short,
     mem_free (show_string_counts, count * sizeof (int));
 }
 
-int obj_furn_preposition_type (const OBJ_T *obj, int position) {
-    const FURNITURE_BITS_T *bits;
-    if (obj == NULL)
-        return POS_PREP_NO_OBJECT;
-    if (obj->item_type != ITEM_FURNITURE)
-        return POS_PREP_NOT_FURNITURE;
-    if ((bits = furniture_get (position)) == NULL)
-        return POS_PREP_BAD_POSITION;
-
-         if (obj->v.furniture.flags & bits->bit_at) return POS_PREP_AT;
-    else if (obj->v.furniture.flags & bits->bit_on) return POS_PREP_ON;
-    else if (obj->v.furniture.flags & bits->bit_in) return POS_PREP_IN;
-    else                                            return POS_PREP_BY;
-}
-
 const char *obj_furn_preposition_base (const OBJ_T *obj, int position,
     const char *at, const char *on, const char *in, const char *by)
 {
     int pos_type;
-    pos_type = obj_furn_preposition_type (obj, position);
+    pos_type = item_get_furn_preposition_type (obj, position);
     switch (pos_type) {
         case POS_PREP_NO_OBJECT:     return "(no object)";
         case POS_PREP_NOT_FURNITURE: return "(not furniture)";
@@ -697,28 +567,6 @@ const char *obj_furn_preposition (const OBJ_T *obj, int position) {
     return obj_furn_preposition_base (obj, position, "at", "on", "in", "by");
 }
 
-bool obj_is_container (const OBJ_T *obj) {
-    return obj->item_type == ITEM_CONTAINER ||
-           obj->item_type == ITEM_CORPSE_NPC ||
-           obj->item_type == ITEM_CORPSE_PC;
-}
-
-bool obj_can_fit_in (const OBJ_T *obj, const OBJ_T *container) {
-    int weight;
-    if (!obj_is_container (container))
-        return FALSE;
-    if (container->item_type != ITEM_CONTAINER) /* for corpses */
-        return TRUE;
-
-    weight = obj_get_weight (obj);
-    if (weight + obj_get_true_weight (container) >
-            (container->v.container.capacity * 10))
-        return FALSE;
-    if (weight > (container->v.container.max_weight * 10))
-        return FALSE;
-    return TRUE;
-}
-
 /* Find some object with a given index data.
  * Used by area-reset 'P' command. */
 OBJ_T *obj_get_by_index (const OBJ_INDEX_T *obj_index) {
@@ -727,12 +575,6 @@ OBJ_T *obj_get_by_index (const OBJ_INDEX_T *obj_index) {
         if (obj->index_data == obj_index)
             return obj;
     return NULL;
-}
-
-bool obj_is_furniture (const OBJ_T *obj, flag_t bits) {
-    if (obj->item_type != ITEM_FURNITURE)
-        return FALSE;
-    return ((obj->v.furniture.flags & bits) != 0) ? TRUE : FALSE;
 }
 
 void obj_enchant (OBJ_T *obj) {
@@ -750,69 +592,96 @@ void obj_enchant (OBJ_T *obj) {
     }
 }
 
-flag_t obj_exit_flag_for_container (flag_t exit_flag) {
-    switch (exit_flag) {
-        case EX_ISDOOR:    return CONT_CLOSEABLE;
-        case EX_CLOSED:    return CONT_CLOSED;
-        case EX_LOCKED:    return CONT_LOCKED;
-        case EX_PICKPROOF: return CONT_PICKPROOF;
-        default:           return 0;
-    }
-}
-
-bool obj_set_exit_flag (OBJ_T *obj, flag_t exit_flag) {
-    switch (obj->item_type) {
-        case ITEM_PORTAL:
-            SET_BIT (obj->v.portal.exit_flags, exit_flag);
-            return TRUE;
-        case ITEM_CONTAINER: {
-            flag_t container_flag;
-            if ((container_flag = obj_exit_flag_for_container (exit_flag)) == 0)
-                return FALSE;
-            SET_BIT (obj->v.container.flags, container_flag);
-            return TRUE;
-        }
-        default:
-            return FALSE;
-    }
-}
-
-bool obj_remove_exit_flag (OBJ_T *obj, flag_t exit_flag) {
-    switch (obj->item_type) {
-        case ITEM_PORTAL:
-            REMOVE_BIT (obj->v.portal.exit_flags, exit_flag);
-            return TRUE;
-        case ITEM_CONTAINER: {
-            flag_t container_flag;
-            if ((container_flag = obj_exit_flag_for_container (exit_flag)) == 0)
-                return FALSE;
-            REMOVE_BIT (obj->v.container.flags, container_flag);
-            return TRUE;
-        }
-        default:
-            return FALSE;
-    }
-}
-
 /* Former macros. */
-bool obj_can_wear_flag (const OBJ_T *obj, flag_t flag) {
-    if (IS_SET ((obj)->wear_flags, flag))
+bool obj_can_wear_flag (const OBJ_T *obj, flag_t wear_flag) {
+    if (IS_SET ((obj)->wear_flags, wear_flag))
         return TRUE;
-    else if (obj->item_type == ITEM_LIGHT && flag == ITEM_WEAR_LIGHT)
-        return TRUE;
-    return FALSE;
-}
-
-bool obj_index_can_wear_flag (const OBJ_INDEX_T *obj, flag_t flag) {
-    if (IS_SET ((obj)->wear_flags, flag))
-        return TRUE;
-    else if (obj->item_type == ITEM_LIGHT && flag == ITEM_WEAR_LIGHT)
+    if (item_can_wear_flag (obj, wear_flag))
         return TRUE;
     return FALSE;
 }
 
-int obj_get_weight_mult (const OBJ_T *obj) {
-    return obj->item_type == ITEM_CONTAINER
-        ? obj->v.container.weight_mult
-        : 100;
+bool obj_index_can_wear_flag (const OBJ_INDEX_T *obj, flag_t wear_flag) {
+    if (IS_SET ((obj)->wear_flags, wear_flag))
+        return TRUE;
+    if (item_index_can_wear_flag (obj, wear_flag))
+        return TRUE;
+    return FALSE;
+}
+
+bool obj_should_spill_contents_when_poofed (const OBJ_T *obj) {
+    if (obj->wear_loc == WEAR_LOC_FLOAT)
+        return TRUE;
+    if (item_should_spill_contents_when_poofed (obj))
+        return TRUE;
+    return FALSE;
+}
+
+void obj_poof (OBJ_T *obj) {
+    CHAR_T *rch;
+    const char *message;
+
+    message = item_get_poof_message (obj);
+
+    if (obj->carried_by != NULL) {
+        if (IS_NPC (obj->carried_by)
+                && obj->carried_by->index_data->shop != NULL)
+            obj->carried_by->silver += obj->cost / 5;
+        else {
+            act (message, obj->carried_by, obj, NULL, TO_CHAR);
+            if (obj->wear_loc == WEAR_LOC_FLOAT)
+                act (message, obj->carried_by, obj, NULL, TO_NOTCHAR);
+        }
+    }
+    else if (obj->in_room != NULL && (rch = obj->in_room->people) != NULL) {
+        if (!(obj->in_obj && obj->in_obj->index_data->vnum == OBJ_VNUM_PIT
+              && !obj_can_wear_flag (obj->in_obj, ITEM_TAKE)))
+        {
+            act (message, rch, obj, NULL, TO_CHAR);
+            act (message, rch, obj, NULL, TO_NOTCHAR);
+        }
+    }
+
+    /* save the contents */
+    if (obj->contains && obj_should_spill_contents_when_poofed (obj)) {
+        OBJ_T *t_obj, *next_obj;
+        for (t_obj = obj->contains; t_obj != NULL; t_obj = next_obj) {
+            next_obj = t_obj->next_content;
+            obj_take_from_obj (t_obj);
+
+            /* in another object */
+            if (obj->in_obj)
+                obj_give_to_obj (t_obj, obj->in_obj);
+            /* carried */
+            else if (obj->carried_by) {
+                if (obj->wear_loc == WEAR_LOC_FLOAT) {
+                    if (obj->carried_by->in_room == NULL)
+                        obj_extract (t_obj);
+                    else
+                        obj_give_to_room (t_obj, obj->carried_by->in_room);
+                }
+                else
+                    obj_give_to_char (t_obj, obj->carried_by);
+            }
+            /* to a room */
+            else if (obj->in_room)
+                obj_give_to_room (t_obj, obj->in_room);
+            /* nowhere - destroy it! */
+            else
+                obj_extract (t_obj);
+        }
+    }
+
+    obj_extract (obj);
+}
+
+ROOM_INDEX_T *obj_get_room (const OBJ_T *obj) {
+    const OBJ_T *o;
+    for (o = obj; o != NULL; o = o->in_obj) {
+        if (o->carried_by)
+            return o->carried_by->in_room;
+        if (o->in_room)
+            return o->in_room;
+    }
+    return NULL;
 }

@@ -40,6 +40,10 @@ char room_colour_char (const ROOM_INDEX_T *room);
 EXIT_T *room_get_opposite_exit (const ROOM_INDEX_T *from_room, int dir,
     ROOM_INDEX_T **out_room);
 char *room_get_door_name (const char *keyword, char *out_buf, size_t size);
+OBJ_T *room_get_obj_of_type (const ROOM_INDEX_T *room, const CHAR_T *ch,
+    int type);
+OBJ_T *room_get_obj_with_condition (const ROOM_INDEX_T *room, const CHAR_T *ch,
+    bool (*cond) (const OBJ_T *obj));
 
 /* Action functions. */
 void room_add_money (ROOM_INDEX_T *room, int gold, int silver);

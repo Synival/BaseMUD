@@ -981,12 +981,7 @@ REDIT (redit_oreset) {
         /* Shop-keeper? */
         if (to_mob->index_data->shop) {
             switch (obj_index->item_type) {
-                default:
-                    olevel = 0;
-                    break;
                 case ITEM_PILL:
-                    olevel = number_range (0, 10);
-                    break;
                 case ITEM_POTION:
                     olevel = number_range (0, 10);
                     break;
@@ -1007,6 +1002,9 @@ REDIT (redit_oreset) {
                         olevel = number_range (5, 15);
                     else
                         olevel = number_fuzzy (olevel);
+                    break;
+                default:
+                    olevel = 0;
                     break;
             }
 

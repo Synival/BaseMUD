@@ -32,6 +32,7 @@
 #include "interp.h"
 #include "globals.h"
 #include "olc.h"
+#include "items.h"
 
 #include "olc_save.h"
 
@@ -90,39 +91,6 @@ void save_area_list () {
         fprintf (fp, "$\n");
         fclose (fp);
     }
-}
-
-/*
- * ROM OLC
- * Used in save_mobile and save_object below.  Writes
- * flags on the form fread_flag reads.
- *
- * buf[] must hold at least 32+1 characters.
- *
- * -- Hugin
- */
-char *fwrite_flag (long flags, char buf[]) {
-    char offset;
-    char *cp;
-
-    buf[0] = '\0';
-    if (flags == 0) {
-        strcpy (buf, "0");
-        return buf;
-    }
-
-    /* 32 -- number of bits in a long */
-    for (offset = 0, cp = buf; offset < 32; offset++) {
-        if (flags & ((long) 1 << offset)) {
-            if (offset <= 'Z' - 'A')
-                *(cp++) = 'A' + offset;
-            else
-                *(cp++) = 'a' + offset - ('Z' - 'A' + 1);
-        }
-    }
-
-    *cp = '\0';
-    return buf;
 }
 
 void save_mobprogs (FILE *fp, AREA_T *area) {
@@ -252,72 +220,7 @@ void save_object (FILE *fp, OBJ_INDEX_T *obj_index) {
     fprintf (fp, "%s ", fwrite_flag (obj_index->extra_flags, buf));
     fprintf (fp, "%s\n", fwrite_flag (obj_index->wear_flags, buf));
 
-/*
- *  Using fwrite_flag to write most values gives a strange
- *  looking area file, consider making a case for each
- *  item type later.
- */
-
-    switch (obj_index->item_type) {
-        default:
-            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[0], buf));
-            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[1], buf));
-            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[2], buf));
-            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[3], buf));
-            fprintf (fp, "%s\n", fwrite_flag (obj_index->v.value[4], buf));
-            break;
-
-        case ITEM_DRINK_CON:
-        case ITEM_FOUNTAIN:
-            fprintf (fp, "%ld %ld '%s' %ld %ld\n",
-                     obj_index->v.value[0],
-                     obj_index->v.value[1],
-                     liq_table[obj_index->v.value[2]].name,
-                     obj_index->v.value[3],
-                     obj_index->v.value[4]);
-            break;
-
-        case ITEM_CONTAINER:
-            fprintf (fp, "%ld %s %ld %ld %ld\n",
-                     obj_index->v.value[0],
-                     fwrite_flag (obj_index->v.value[1], buf),
-                     obj_index->v.value[2],
-                     obj_index->v.value[3],
-                     obj_index->v.value[4]);
-            break;
-
-        case ITEM_WEAPON:
-            fprintf (fp, "%s %ld %ld %s %s\n",
-                     weapon_get_name (obj_index->v.value[0]),
-                     obj_index->v.value[1],
-                     obj_index->v.value[2],
-                     attack_table[obj_index->v.value[3]].name,
-                     fwrite_flag (obj_index->v.value[4], buf));
-            break;
-
-        case ITEM_PILL:
-        case ITEM_POTION:
-        case ITEM_SCROLL:
-            /* no negative numbers */
-            fprintf (fp, "%ld '%s' '%s' '%s' '%s'\n",
-                     obj_index->v.value[0]  >  0 ? obj_index->v.value[0] : 0,
-                     obj_index->v.value[1] != -1 ? skill_table[obj_index->v.value[1]].name : "",
-                     obj_index->v.value[2] != -1 ? skill_table[obj_index->v.value[2]].name : "",
-                     obj_index->v.value[3] != -1 ? skill_table[obj_index->v.value[3]].name : "",
-                     obj_index->v.value[4] != -1 ? skill_table[obj_index->v.value[4]].name : "");
-            break;
-
-        case ITEM_STAFF:
-        case ITEM_WAND:
-            fprintf (fp, "%ld %ld %ld '%s' %ld\n",
-                     obj_index->v.value[0],
-                     obj_index->v.value[1],
-                     obj_index->v.value[2],
-                     obj_index->v.value[3] != -1
-                        ? skill_table[obj_index->v.value[3]].name : "",
-                     obj_index->v.value[4]);
-            break;
-    }
+    item_index_write_values_to_file (obj_index, fp);
 
     fprintf (fp, "%d ", obj_index->level);
     fprintf (fp, "%d ", obj_index->weight);

@@ -57,6 +57,9 @@ char *fread_word (FILE *fp);
 void fread_dice (FILE *fp, DICE_T *out);
 bool fread_social_str (FILE *fp, char **str);
 
+/* Writing functions. */
+char *fwrite_flag (long flags, char buf[]);
+
 /* Loading functions. */
 void load_area (FILE *fp);
 void load_area_olc (FILE *fp);
@@ -72,7 +75,7 @@ void load_mobprogs (FILE *fp);
 
 /* Post-loading functions. */
 void db_finalize_mob (MOB_INDEX_T *mob);
-void db_finalize_obj (OBJ_INDEX_T *obj);
+void db_finalize_obj (OBJ_INDEX_T *obj_index);
 void db_register_new_room (ROOM_INDEX_T *room);
 void db_register_new_mob (MOB_INDEX_T *mob);
 void db_register_new_obj (OBJ_INDEX_T *obj);

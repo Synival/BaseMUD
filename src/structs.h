@@ -703,6 +703,12 @@ struct obj_values_portal {
     flag_t key;
 };
 
+struct obj_values_jukebox {
+    flag_t line;
+    flag_t song;
+    flag_t queue[JUKEBOX_QUEUE_MAX];
+};
+
 union obj_value_type {
     flag_t value[OBJ_VALUE_MAX];
     struct obj_values_weapon    weapon;
@@ -721,6 +727,7 @@ union obj_value_type {
     struct obj_values_furniture furniture;
     struct obj_values_light     light;
     struct obj_values_portal    portal;
+    struct obj_values_jukebox   jukebox;
 };
 
 /* Reset values for all reset types. */

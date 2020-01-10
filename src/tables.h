@@ -84,5 +84,6 @@ extern BOARD_T     board_table[BOARD_MAX + 1];
 
 /* Other tables. */
 extern char *const title_table[CLASS_MAX][MAX_LEVEL + 1][2];
+extern SONG_T song_table[MAX_SONGS + 1];
 
 #endif

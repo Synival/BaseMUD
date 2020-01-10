@@ -37,6 +37,7 @@
 #include "objs.h"
 #include "globals.h"
 #include "memory.h"
+#include "items.h"
 
 #include "save.h"
 
@@ -382,14 +383,9 @@ void fwrite_obj (CHAR_T *ch, OBJ_T *obj, FILE *fp, int nest) {
     if (obj->next_content != NULL)
         fwrite_obj (ch, obj->next_content, fp, nest);
 
-    /* Castrate storage characters. */
-    if (ch->level < obj->level - 2 && obj->item_type != ITEM_CONTAINER)
-        return;
 
     /* Don't store non-persistant items. */
-    if (obj->item_type == ITEM_KEY)
-        return;
-    if (obj->item_type == ITEM_MAP && !obj->v.map.persist)
+    if (!item_should_save_for_level (obj, ch->level))
         return;
 
     fprintf (fp, "#O\n");
@@ -436,50 +432,7 @@ void fwrite_obj (CHAR_T *ch, OBJ_T *obj, FILE *fp, int nest) {
                  obj->v.value[3], obj->v.value[4]);
     }
 
-    switch (obj->item_type) {
-        case ITEM_POTION: {
-            int i;
-            for (i = 0; i < POTION_SKILL_MAX; i++) {
-                if (obj->v.potion.skill[i] < 0)
-                    continue;
-                fprintf (fp, "Spell %d '%s'\n", i + 1,
-                    skill_table[obj->v.potion.skill[i]].name);
-            }
-            break;
-        }
-
-        case ITEM_SCROLL: {
-            int i;
-            for (i = 0; i < SCROLL_SKILL_MAX; i++) {
-                if (obj->v.scroll.skill[i] < 0)
-                    continue;
-                fprintf (fp, "Spell %d '%s'\n", i + 1,
-                    skill_table[obj->v.scroll.skill[i]].name);
-            }
-            break;
-        }
-
-        case ITEM_PILL: {
-            int i;
-            for (i = 0; i < PILL_SKILL_MAX; i++) {
-                if (obj->v.pill.skill[i] < 0)
-                    continue;
-                fprintf (fp, "Spell %d '%s'\n", i + 1,
-                    skill_table[obj->v.pill.skill[i]].name);
-            }
-            break;
-        }
-
-        case ITEM_STAFF:
-            if (obj->v.staff.skill > 0)
-                fprintf (fp, "Spell 3 '%s'\n", skill_table[obj->v.staff.skill].name);
-            break;
-
-        case ITEM_WAND:
-            if (obj->v.wand.skill > 0)
-                fprintf (fp, "Spell 3 '%s'\n", skill_table[obj->v.wand.skill].name);
-            break;
-    }
+    item_write_save_data (obj, fp);
 
     for (paf = obj->affected; paf != NULL; paf = paf->next) {
         if (paf->type < 0 || paf->type >= SKILL_MAX)
@@ -1520,9 +1473,9 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                             obj->index_data->count++;
                         }
 
-                        if (!obj->index_data->new_format
-                            && obj->item_type == ITEM_ARMOR
-                            && obj->v.armor.vs_bash == 0)
+                        if (!obj->index_data->new_format &&
+                            item_is_armor (obj) &&
+                            obj->v.armor.vs_bash == 0)
                         {
                             obj->v.armor.vs_bash  = obj->v.armor.vs_pierce;
                             obj->v.armor.vs_slash = obj->v.armor.vs_pierce;
@@ -1609,12 +1562,9 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                     obj->v.value[1] = fread_number (fp);
                     obj->v.value[2] = fread_number (fp);
                     obj->v.value[3] = fread_number (fp);
-                    if (obj->item_type == ITEM_WEAPON &&
-                        obj->v.weapon.weapon_type == 0)
-                    {
+                    if (item_is_weapon (obj) && obj->v.weapon.weapon_type == 0)
                         obj->v.weapon.weapon_type = obj->index_data->
                             v.weapon.weapon_type;
-                    }
                     match = TRUE;
                     break;
                 }

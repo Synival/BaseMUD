@@ -660,7 +660,7 @@ MOB_INDEX_T *json_import_obj_mobile (const JSON_T *json) {
     /* Post-processing on loaded mobs. */
     db_finalize_mob (mob);
 
-    newmobs++;
+    newmob_count++;
     return mob;
 }
 
@@ -740,7 +740,7 @@ OBJ_INDEX_T *json_import_obj_object (const JSON_T *json) {
     /* Post-processing on loaded objs. */
     db_finalize_obj (obj);
 
-    newobjs++;
+    newobj_count++;
     return obj;
 }
 

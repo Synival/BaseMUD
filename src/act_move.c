@@ -45,6 +45,7 @@
 #include "objs.h"
 #include "find.h"
 #include "globals.h"
+#include "items.h"
 
 #include "act_move.h"
 
@@ -81,16 +82,12 @@ bool do_door_filter_is_door (CHAR_T *ch, EXIT_T *pexit,
 
     /* Evaluate flags and flag types for objects. */
     if (obj) {
-        switch (obj->item_type) {
-            case ITEM_PORTAL:
-                flags     = obj->v.portal.exit_flags;
+        switch (item_get_door_flags (obj, &flags, &key)) {
+            case ITEM_DOOR_EXIT:
                 container = FALSE;
-                key       = obj->v.portal.key;
                 break;
-            case ITEM_CONTAINER:
-                flags     = obj->v.container.flags;
+            case ITEM_DOOR_CONTAINER:
                 container = TRUE;
-                key       = obj->v.container.key;
                 break;
             default:
                 send_to_char ("That's not a container.\n\r", ch);
@@ -223,35 +220,35 @@ bool do_door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
 void do_open_object (CHAR_T *ch, OBJ_T *obj) {
     if (do_door_filter_can_open (ch, NULL, obj))
         return;
-    obj_remove_exit_flag (obj, EX_CLOSED);
+    item_remove_exit_flag (obj, EX_CLOSED);
     act2 ("You open $p.", "$n opens $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_close_object (CHAR_T *ch, OBJ_T *obj) {
     if (do_door_filter_can_close (ch, NULL, obj))
         return;
-    obj_set_exit_flag (obj, EX_CLOSED);
+    item_set_exit_flag (obj, EX_CLOSED);
     act2 ("You close $p.", "$n closes $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_unlock_object (CHAR_T *ch, OBJ_T *obj) {
     if (do_door_filter_can_unlock (ch, NULL, obj))
         return;
-    obj_remove_exit_flag (obj, EX_LOCKED);
+    item_remove_exit_flag (obj, EX_LOCKED);
     act2 ("You unlock $p.", "$n unlocks $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_lock_object (CHAR_T *ch, OBJ_T *obj) {
     if (do_door_filter_can_lock (ch, NULL, obj))
         return;
-    obj_set_exit_flag (obj, EX_LOCKED);
+    item_set_exit_flag (obj, EX_LOCKED);
     act2 ("You lock $p.", "$n locks $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_pick_object (CHAR_T *ch, OBJ_T *obj) {
     if (do_door_filter_can_pick (ch, NULL, obj))
         return;
-    obj_remove_exit_flag (obj, EX_LOCKED);
+    item_remove_exit_flag (obj, EX_LOCKED);
     act2 ("You pick the lock on $p.", "$n picks the lock on $p.",
         ch, obj, NULL, 0, POS_RESTING);
     char_try_skill_improve (ch, SN(PICK_LOCK), TRUE, 2);
@@ -444,7 +441,7 @@ DEFINE_DO_FUN (do_stand) {
         obj = find_obj_same_room (ch, argument);
         BAIL_IF (obj == NULL,
             "You don't see that here.\n\r", ch);
-        BAIL_IF (!obj_is_furniture(obj, STAND_BITS),
+        BAIL_IF (!item_can_position_at (obj, POS_STANDING),
             "You can't seem to find a place to stand.\n\r", ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
                 obj->v.furniture.max_people,
@@ -477,7 +474,7 @@ DEFINE_DO_FUN (do_rest) {
         obj = ch->on;
 
     if (obj != NULL) {
-        BAIL_IF (!obj_is_furniture(obj, REST_BITS),
+        BAIL_IF (!item_can_position_at (obj, POS_RESTING),
             "You can't rest on that.\n\r", ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
                 obj->v.furniture.max_people,
@@ -507,7 +504,7 @@ DEFINE_DO_FUN (do_sit) {
         obj = ch->on;
 
     if (obj != NULL) {
-        BAIL_IF (!obj_is_furniture(obj, SIT_BITS),
+        BAIL_IF (!item_can_position_at (obj, POS_SITTING),
             "You can't sit on that.\n\r", ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
                 obj->v.furniture.max_people,
@@ -537,7 +534,7 @@ DEFINE_DO_FUN (do_sleep) {
         obj = ch->on;
 
     if (obj != NULL) {
-        BAIL_IF (!obj_is_furniture(obj, SLEEP_BITS),
+        BAIL_IF (!item_can_position_at (obj, POS_SLEEPING),
             "You can't sleep on that!\n\r", ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
                 obj->v.furniture.max_people,
@@ -665,11 +662,7 @@ DEFINE_DO_FUN (do_recall) {
 
 /* RT Enter portals */
 DEFINE_DO_FUN (do_enter) {
-    ROOM_INDEX_T *location;
-    ROOM_INDEX_T *old_room;
     OBJ_T *portal;
-    CHAR_T *fch, *fch_next;
-    char *msg;
 
     /* Basic character / command checks. */
     BAIL_IF (ch->fighting != NULL,
@@ -681,111 +674,10 @@ DEFINE_DO_FUN (do_enter) {
     portal = find_obj_same_room (ch, argument);
     BAIL_IF (portal == NULL,
         "You don't see that here.\n\r", ch);
-    BAIL_IF (portal->item_type != ITEM_PORTAL ||
-            (IS_SET (portal->v.portal.exit_flags, EX_CLOSED) &&
-             !IS_TRUSTED (ch, ANGEL)),
+    BAIL_IF (!item_can_enter_as (portal, ch),
         "You can't seem to find a way in.\n\r", ch);
-    BAIL_IF (!IS_TRUSTED (ch, ANGEL) &&
-             !IS_SET (portal->v.portal.gate_flags, GATE_NOCURSE) &&
-             (IS_AFFECTED (ch, AFF_CURSE) ||
-              IS_SET (ch->in_room->room_flags, ROOM_NO_RECALL)),
-        "Something prevents you from leaving...\n\r", ch);
 
-    /* Determine the target room. */
-    if (IS_SET (portal->v.portal.gate_flags, GATE_RANDOM) ||
-            portal->v.portal.to_vnum == -1)
-    {
-        location = get_random_room (ch);
-        portal->v.portal.to_vnum = location->vnum; /* for record keeping :) */
-    }
-    else if (IS_SET (portal->v.portal.gate_flags, GATE_BUGGY) &&
-            (number_percent () < 5))
-        location = get_random_room (ch);
-    else
-        location = get_room_index (portal->v.portal.to_vnum);
-
-    /* Check if the target room if valid. */
-    BAIL_IF_ACT (location == NULL || location == ch->in_room ||
-            !char_can_see_room (ch, location) ||
-            (room_is_private (location) && !IS_TRUSTED (ch, IMPLEMENTOR)),
-        "$p doesn't seem to go anywhere.", ch, portal, NULL);
-    BAIL_IF (IS_NPC (ch) && IS_SET (ch->mob, MOB_AGGRESSIVE) &&
-             IS_SET (location->room_flags, ROOM_LAW),
-        "Something prevents you from leaving...\n\r", ch);
-
-    /* We're leaving! Outgoing message. */
-    msg = IS_SET (portal->v.portal.gate_flags, GATE_NORMAL_EXIT)
-        ? "You enter $p."
-        : "You walk through $p and find yourself somewhere else...";
-    act2 (msg, "$n steps into $p.", ch, portal, NULL, 0, POS_RESTING);
-
-    /* Leave, take the portal along if specified. */
-    old_room = ch->in_room;
-    char_from_room (ch);
-    char_to_room (ch, location);
-    if (IS_SET (portal->v.portal.gate_flags, GATE_GOWITH)) {
-        obj_take_from_room (portal);
-        obj_give_to_room (portal, location);
-    }
-
-    /* Arrival messages. */
-    msg = IS_SET (portal->v.portal.gate_flags, GATE_NORMAL_EXIT)
-        ? "$n has arrived."
-        : "$n has arrived through $p.";
-    act (msg, ch, portal, NULL, TO_NOTCHAR);
-    do_function (ch, &do_look, "auto");
-
-    /* Charges. Zero charges = infinite uses. */
-    if (portal->v.portal.charges > 0) {
-        portal->v.portal.charges--;
-        if (portal->v.portal.charges == 0)
-            portal->v.portal.charges = -1;
-    }
-
-    /* Perform follows. */
-    if (old_room != location) {
-        for (fch = old_room->people; fch != NULL; fch = fch_next) {
-            fch_next = fch->next_in_room;
-
-            /* no following through dead portals */
-            if (portal == NULL || portal->v.portal.charges == -1)
-                continue;
-
-            if (fch->master == ch && IS_AFFECTED (fch, AFF_CHARM)
-                && fch->position < POS_STANDING)
-                do_function (fch, &do_stand, "");
-
-            if (fch->master == ch && fch->position == POS_STANDING) {
-                if (IS_SET (ch->in_room->room_flags, ROOM_LAW)
-                    && (IS_NPC (fch) && IS_SET (fch->mob, MOB_AGGRESSIVE)))
-                {
-                    act ("You can't bring $N into the city.",
-                         ch, NULL, fch, TO_CHAR);
-                    act ("You aren't allowed in the city.",
-                         fch, NULL, NULL, TO_CHAR);
-                    continue;
-                }
-
-                act ("You follow $N.", fch, NULL, ch, TO_CHAR);
-                do_function (fch, &do_enter, argument);
-            }
-        }
-    }
-
-    /* If the portal is defunct, destroy it now. */
-    if (portal != NULL && portal->v.portal.charges == -1) {
-        act ("$p fades out of existence.", ch, portal, NULL, TO_CHAR);
-        if (ch->in_room == old_room)
-            act ("$p fades out of existence.", ch, portal, NULL, TO_NOTCHAR);
-        else if (old_room->people != NULL)
-            act ("$p fades out of existence.", old_room->people, portal, NULL, TO_ALL);
-        obj_extract (portal);
-    }
-
-    /* If someone is following the char, these triggers get activated
-     * for the followers before the char, but it's safer this way... */
-    if (IS_NPC (ch) && HAS_TRIGGER (ch, TRIG_ENTRY))
-        mp_percent_trigger (ch, NULL, NULL, NULL, TRIG_ENTRY);
-    if (!IS_NPC (ch))
-        mp_greet_trigger (ch);
+    /* Enter the portal. */
+    if (!item_enter_effect (portal, ch))
+        send_to_char ("You can't enter that.\n\r", ch);
 }

@@ -47,13 +47,27 @@
 #include "objs.h"
 #include "spell_aff.h"
 #include "globals.h"
+#include "rooms.h"
 
 #include "special.h"
+
+static const char *spec_troll_member_message (void) {
+    switch (number_range (0, 6)) {
+        case 0:  return "$n yells 'I've been looking for you, punk!'";
+        case 1:  return "With a scream of rage, $n attacks $N.";
+        case 2:  return "$n says 'What's slimy Ogre trash like you doing around here?'";
+        case 3:  return "$n cracks his knuckles and says 'Do ya feel lucky?'";
+        case 4:  return "$n says 'There's no cops to save you this time!'";
+        case 5:  return "$n says 'Time to join your brother, spud.'";
+        case 6:  return "$n says 'Let's rock.'";
+        default: return NULL;
+    }
+}
 
 bool spec_troll_member (CHAR_T *ch) {
     CHAR_T *vch, *victim = NULL;
     int count = 0;
-    char *message;
+    const char *message;
 
     if (!IS_AWAKE (ch) || IS_AFFECTED (ch, AFF_CALM) || ch->in_room == NULL
         || IS_AFFECTED (ch, AFF_CHARM) || ch->fighting != NULL)
@@ -78,43 +92,29 @@ bool spec_troll_member (CHAR_T *ch) {
         return FALSE;
 
     /* say something, then raise hell */
-    switch (number_range (0, 6)) {
-        default:
-            message = NULL;
-            break;
-        case 0:
-            message = "$n yells 'I've been looking for you, punk!'";
-            break;
-        case 1:
-            message = "With a scream of rage, $n attacks $N.";
-            break;
-        case 2:
-            message = "$n says 'What's slimy Ogre trash like you doing around here?'";
-            break;
-        case 3:
-            message = "$n cracks his knuckles and says 'Do ya feel lucky?'";
-            break;
-        case 4:
-            message = "$n says 'There's no cops to save you this time!'";
-            break;
-        case 5:
-            message = "$n says 'Time to join your brother, spud.'";
-            break;
-        case 6:
-            message = "$n says 'Let's rock.'";
-            break;
-    }
-
-    if (message != NULL)
+    if ((message = spec_troll_member_message ()) != NULL)
         act (message, ch, NULL, victim, TO_ALL);
     multi_hit (ch, victim, ATTACK_DEFAULT);
     return TRUE;
 }
 
+static const char *spec_ogre_member_message (CHAR_T *ch) {
+    switch (number_range (0, 6)) {
+        case 0:  return "$n yells 'I've been looking for you, punk!'";
+        case 1:  return "With a scream of rage, $n attacks $N.";
+        case 2:  return "$n says 'What's Troll filth like you doing around here?'";
+        case 3:  return "$n cracks his knuckles and says 'Do ya feel lucky?'";
+        case 4:  return "$n says 'There's no cops to save you this time!'";
+        case 5:  return "$n says 'Time to join your brother, spud.'";
+        case 6:  return "$n says 'Let's rock.'";
+        default: return NULL;
+    }
+}
+
 bool spec_ogre_member (CHAR_T *ch) {
     CHAR_T *vch, *victim = NULL;
     int count = 0;
-    char *message;
+    const char *message;
 
     if (!IS_AWAKE (ch) || IS_AFFECTED (ch, AFF_CALM) || ch->in_room == NULL
         || IS_AFFECTED (ch, AFF_CHARM) || ch->fighting != NULL)
@@ -139,34 +139,7 @@ bool spec_ogre_member (CHAR_T *ch) {
         return FALSE;
 
     /* say something, then raise hell */
-    switch (number_range (0, 6)) {
-        default:
-            message = NULL;
-            break;
-        case 0:
-            message = "$n yells 'I've been looking for you, punk!'";
-            break;
-        case 1:
-            message = "With a scream of rage, $n attacks $N.";
-            break;
-        case 2:
-            message = "$n says 'What's Troll filth like you doing around here?'";
-            break;
-        case 3:
-            message = "$n cracks his knuckles and says 'Do ya feel lucky?'";
-            break;
-        case 4:
-            message = "$n says 'There's no cops to save you this time!'";
-            break;
-        case 5:
-            message = "$n says 'Time to join your brother, spud.'";
-            break;
-        case 6:
-            message = "$n says 'Let's rock.'";
-            break;
-    }
-
-    if (message != NULL)
+    if ((message = spec_ogre_member_message (ch)) != NULL)
         act (message, ch, NULL, victim, TO_ALL);
     multi_hit (ch, victim, ATTACK_DEFAULT);
     return TRUE;
@@ -619,28 +592,24 @@ bool spec_executioner (CHAR_T *ch) {
 
 bool spec_fido (CHAR_T *ch) {
     OBJ_T *corpse;
-    OBJ_T *c_next;
-    OBJ_T *obj;
-    OBJ_T *obj_next;
+    OBJ_T *obj, *obj_next;
 
     if (!IS_AWAKE (ch))
         return FALSE;
 
-    for (corpse = ch->in_room->contents; corpse != NULL; corpse = c_next) {
-        c_next = corpse->next_content;
-        if (corpse->item_type != ITEM_CORPSE_NPC)
-            continue;
+    if ((corpse = room_get_obj_of_type (ch->in_room, ch, ITEM_CORPSE_NPC))
+            == NULL)
+        return FALSE;
 
-        act ("$n savagely devours a corpse.", ch, NULL, NULL, TO_NOTCHAR);
-        for (obj = corpse->contains; obj; obj = obj_next) {
-            obj_next = obj->next_content;
-            obj_take_from_obj (obj);
-            obj_give_to_room (obj, ch->in_room);
-        }
-        obj_extract (corpse);
-        return TRUE;
+    act ("$n savagely devours a corpse.", ch, NULL, NULL, TO_NOTCHAR);
+    for (obj = corpse->contains; obj; obj = obj_next) {
+        obj_next = obj->next_content;
+        obj_take_from_obj (obj);
+        obj_give_to_room (obj, ch->in_room);
     }
-    return FALSE;
+
+    obj_extract (corpse);
+    return TRUE;
 }
 
 bool spec_guard (CHAR_T *ch) {
@@ -710,8 +679,9 @@ bool spec_janitor (CHAR_T *ch) {
         trash_next = trash->next_content;
         if (!IS_SET (trash->wear_flags, ITEM_TAKE) || !char_can_loot (ch, trash))
             continue;
-        if (trash->item_type == ITEM_DRINK_CON
-            || trash->item_type == ITEM_TRASH || trash->cost < 10)
+        if (trash->item_type == ITEM_DRINK_CON ||
+            trash->item_type == ITEM_TRASH     ||
+            trash->cost < 10)
         {
             act ("$n picks up some trash.", ch, NULL, NULL, TO_NOTCHAR);
             obj_take_from_room (trash);

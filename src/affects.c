@@ -224,9 +224,11 @@ void affect_remove_obj (OBJ_T *obj, AFFECT_T *paf) {
     /* remove flags from the object if needed */
     if (paf->bits) {
         switch (paf->bit_type) {
+            /* apply any object affect bits to the object's extra_flags */
             case AFF_TO_OBJECT:
                 REMOVE_BIT (obj->extra_flags, paf->bits);
                 break;
+            /* apply any weapon affect bits to the weapon-specific flags */
             case AFF_TO_WEAPON:
                 if (obj->item_type == ITEM_WEAPON)
                     REMOVE_BIT (obj->v.weapon.flags, paf->bits);

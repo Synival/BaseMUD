@@ -39,22 +39,18 @@
 #include "affects.h"
 #include "objs.h"
 #include "globals.h"
+#include "items.h"
 
 #include "spell_info.h"
 
 DEFINE_SPELL_FUN (spell_detect_poison) {
-    int poisoned;
+    flag_t *pflag;
     OBJ_T *obj = (OBJ_T *) vo;
 
-    BAIL_IF (!(obj->item_type == ITEM_DRINK_CON || obj->item_type == ITEM_FOOD),
+    BAIL_IF ((pflag = item_get_poison_flag (obj)) == NULL,
         "It doesn't look poisoned.\n\r", ch);
 
-    poisoned =
-        (obj->item_type == ITEM_DRINK_CON) ? obj->v.drink_con.poisoned :
-        (obj->item_type == ITEM_FOOD)      ? obj->v.food.poisoned :
-        0;
-
-    send_to_char ((poisoned != 0)
+    send_to_char ((*pflag != 0)
         ? "You smell poisonous fumes.\n\r"
         : "It looks delicious.\n\r", ch);
 }

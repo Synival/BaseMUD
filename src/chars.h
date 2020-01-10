@@ -118,6 +118,8 @@ bool char_can_loot (const CHAR_T *ch, const OBJ_T *obj);
 bool char_has_key (const CHAR_T *ch, int key);
 bool char_has_available_wear_loc (const CHAR_T *ch, flag_t wear_loc);
 bool char_has_available_wear_flag (const CHAR_T *ch, flag_t wear_flag);
+bool char_has_active_light (const CHAR_T *ch);
+bool char_has_boat (const CHAR_T *ch);
 
 /* Getter functions. */
 int char_get_vnum (const CHAR_T *ch);
@@ -153,6 +155,7 @@ char *char_get_look_short_descr (const CHAR_T *looker, const CHAR_T *ch);
 int char_format_exit_string (const CHAR_T *ch, const ROOM_INDEX_T *room,
     int mode, char *out_buf, size_t out_size);
 int char_get_immunity (CHAR_T *ch, int dam_type);
+OBJ_T *char_get_active_light (const CHAR_T *ch);
 
 /* Stat bonuses. */
 const STR_APP_T *char_get_curr_str_app (const CHAR_T *ch);
@@ -198,5 +201,7 @@ void char_stop_idling (CHAR_T *ch);
 int char_set_max_wait_state (CHAR_T *ch, int npulse);
 int char_set_max_daze_state (CHAR_T *ch, int npulse);
 bool char_change_to_next_board (CHAR_T *ch);
+void char_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
+    int hunger);
 
 #endif

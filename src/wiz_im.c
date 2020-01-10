@@ -361,7 +361,7 @@ DEFINE_DO_FUN (do_rstat) {
     }
     send_to_char (".\n\r", ch);
 
-    for (door = 0; door <= 5; door++) {
+    for (door = 0; door < DIR_MAX; door++) {
         EXIT_T *pexit;
         if ((pexit = location->exit[door]) == NULL)
             continue;

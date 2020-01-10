@@ -37,6 +37,7 @@
 #include "chars.h"
 #include "objs.h"
 #include "globals.h"
+#include "items.h"
 
 #include "spell_off.h"
 
@@ -418,7 +419,7 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
     OBJ_T *obj_lose, *obj_next;
     int dam = 0;
     bool success = FALSE;
-    bool is_weapon, is_worn, can_drop;
+    bool is_weapon, is_armor, is_worn, can_drop;
     bool fumbled, drop_item;
 
     if (saves_spell (level + 2, victim, DAM_FIRE)
@@ -441,13 +442,13 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
             continue;
 
         /* Only heat weapons and armor. */
-        if (obj_lose->item_type != ITEM_ARMOR &&
-            obj_lose->item_type != ITEM_WEAPON)
+        is_weapon = item_is_weapon (obj_lose);
+        is_armor  = item_is_armor  (obj_lose);
+        if (!(is_weapon || is_armor))
             continue;
 
         /* Flaming weapons being wielded are ignored. */
-        is_weapon = (obj_lose->item_type == ITEM_WEAPON);
-        is_worn   = (obj_lose->wear_loc != -1);
+        is_worn   = (obj_lose->wear_loc != WEAR_LOC_NONE);
         if (is_worn && is_weapon && IS_WEAPON_STAT (obj_lose, WEAPON_FLAMING))
             continue;
 

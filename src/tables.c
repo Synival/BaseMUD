@@ -250,7 +250,7 @@ const ITEM_T item_table[ITEM_MAX + 1] = {
     {ITEM_GEM,        "gem"},
     {ITEM_JEWELRY,    "jewelry"},
     {ITEM_JUKEBOX,    "jukebox"},
-    {-1, NULL}
+    {0}
 };
 
 /* weapon selection table */
@@ -1837,3 +1837,5 @@ const POSE_T pose_table[] = {
     }},
     {0}
 };
+
+SONG_T song_table[MAX_SONGS + 1];

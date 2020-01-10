@@ -24,6 +24,7 @@
 #include "act_info.h"
 #include "chars.h"
 #include "globals.h"
+#include "items.h"
 
 #include "olc_aedit.h"
 #include "olc_hedit.h"
@@ -582,8 +583,7 @@ DEFINE_DO_FUN (do_resets) {
                     OBJ_INDEX_T *temp;
 
                     temp = get_obj_index (is_number (arg5) ? atoi (arg5) : 1);
-                    BAIL_IF ((temp->item_type != ITEM_CONTAINER) &&
-                             (temp->item_type != ITEM_CORPSE_NPC),
+                    BAIL_IF (!item_index_is_container (temp),
                         "Object 2 is not a container.\n\r", ch);
                     reset->command = 'P';
                     v->put.obj_vnum     = atoi (arg3);

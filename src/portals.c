@@ -154,7 +154,7 @@ void portal_create_missing (void) {
     for (room_from = room_index_get_first(); room_from != NULL;
          room_from = room_index_get_next (room_from))
     {
-        for (dir = 0; dir <= 5; dir++) {
+        for (dir = 0; dir < DIR_MAX; dir++) {
             if ((exit_from = room_from->exit[dir]) == NULL)
                 continue;
             if (exit_from->portal)

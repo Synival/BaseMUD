@@ -35,6 +35,7 @@
 #include "interp.h"
 #include "chars.h"
 #include "globals.h"
+#include "items.h"
 
 #include "spell_misc.h"
 
@@ -160,24 +161,8 @@ DEFINE_SPELL_FUN (spell_recharge) {
     int chance, percent;
     flag_t wlevel, *recharge_ptr, *charges_ptr;
 
-    switch (obj->item_type) {
-        case ITEM_WAND:
-            wlevel       = obj->v.wand.level;
-            recharge_ptr = &(obj->v.wand.recharge);
-            charges_ptr  = &(obj->v.wand.charges);
-            break;
-
-        case ITEM_STAFF:
-            wlevel       = obj->v.staff.level;
-            recharge_ptr = &(obj->v.staff.recharge);
-            charges_ptr  = &(obj->v.staff.charges);
-            break;
-
-        default:
-            send_to_char ("That item does not carry charges.\n\r", ch);
-            return;
-    }
-
+    BAIL_IF (!item_get_recharge_values (obj, &wlevel, &recharge_ptr, &charges_ptr),
+        "That item does not carry charges.\n\r", ch);
     BAIL_IF (wlevel >= 3 * level / 2,
         "Your skills are not great enough for that.\n\r", ch);
     BAIL_IF (*recharge_ptr == 0,

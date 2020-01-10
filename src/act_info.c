@@ -54,6 +54,7 @@
 #include "spell_info.h"
 #include "globals.h"
 #include "memory.h"
+#include "items.h"
 
 #include "act_info.h"
 
@@ -184,47 +185,8 @@ void do_look_in (CHAR_T *ch, char *argument) {
         "Look in what?\n\r", ch);
     BAIL_IF ((obj = find_obj_here (ch, argument)) == NULL,
         "You do not see that here.\n\r", ch);
-
-    switch (obj->item_type) {
-        case ITEM_DRINK_CON:
-            if (obj->v.drink_con.filled <= 0)
-                send_to_char ("It is empty.\n\r", ch);
-            else if (obj->v.drink_con.filled >= obj->v.drink_con.capacity) {
-                printf_to_char (ch,
-                    "It's completely filled with a %s liquid.\n\r",
-                    liq_table[obj->v.drink_con.liquid].color);
-            }
-            else {
-                int percent;
-                char *fullness;
-
-                percent = (obj->v.drink_con.filled * 100)
-                    / obj->v.drink_con.capacity;
-
-                     if (percent >= 66) fullness = "more than half-filled";
-                else if (percent >= 33) fullness = "about half-filled";
-                else                    fullness = "less than half-filled";
-
-                printf_to_char (ch, "It's %s with a %s liquid.\n\r",
-                    fullness, liq_table[obj->v.drink_con.liquid].color);
-            }
-            break;
-
-        case ITEM_CONTAINER:
-        case ITEM_CORPSE_NPC:
-        case ITEM_CORPSE_PC:
-            if (IS_SET (obj->v.container.flags, CONT_CLOSED))
-                send_to_char ("It is closed.\n\r", ch);
-            else {
-                act ("$p holds:", ch, obj, NULL, TO_CHAR);
-                obj_list_show_to_char (obj->contains, ch, TRUE, TRUE);
-            }
-            break;
-
-        default:
-            send_to_char ("That is not a container.\n\r", ch);
-            break;
-    }
+    BAIL_IF (!item_look_in (obj, ch),
+        "That is not a container.\n\r", ch);
 }
 
 void do_look_direction (CHAR_T *ch, int door) {
@@ -437,53 +399,16 @@ DEFINE_DO_FUN (do_read)
     { do_function (ch, &do_look, argument); }
 
 DEFINE_DO_FUN (do_examine) {
-    char *full_arg;
-    char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     OBJ_T *obj;
 
-    full_arg = argument;
     DO_REQUIRE_ARG (arg, "Examine what?\n\r");
 
     do_function (ch, &do_look, arg);
     if ((obj = find_obj_here (ch, arg)) == NULL)
         return;
 
-    switch (obj->item_type) {
-        case ITEM_JUKEBOX:
-            do_function (ch, &do_play, "list");
-            break;
-
-        case ITEM_MONEY:
-            if (obj->v.money.silver == 0) {
-                if (obj->v.money.gold == 0)
-                    sprintf (buf, "Odd...there's no coins in the pile.\n\r");
-                else if (obj->v.money.gold == 1)
-                    sprintf (buf, "Wow. One gold coin.\n\r");
-                else
-                    sprintf (buf, "There are %ld gold coins in the pile.\n\r",
-                        obj->v.money.gold);
-            }
-            else if (obj->v.money.gold == 0) {
-                if (obj->v.money.silver == 1)
-                    sprintf (buf, "Wow. One silver coin.\n\r");
-                else
-                    sprintf (buf, "There are %ld silver coins in the pile.\n\r",
-                        obj->v.money.silver);
-            }
-            else
-                sprintf (buf, "There are %ld gold and %ld silver coins in the pile.\n\r",
-                    obj->v.money.gold, obj->v.money.silver);
-            send_to_char (buf, ch);
-            break;
-
-        case ITEM_DRINK_CON:
-        case ITEM_CONTAINER:
-        case ITEM_CORPSE_NPC:
-        case ITEM_CORPSE_PC:
-            sprintf (buf, "in %s", full_arg);
-            do_function (ch, &do_look, buf);
-    }
+    item_examine (obj, ch);
 }
 
 DEFINE_DO_FUN (do_lore) {
@@ -1026,32 +951,11 @@ DEFINE_DO_FUN (do_compare) {
         msg = "You compare $p to itself.  It looks about the same.";
     else if (obj1->item_type != obj2->item_type)
         msg = "You can't compare $p and $P.";
+    else if (!item_is_comparable (obj1))
+        msg = "You can't compare $p and $P.";
     else {
-        switch (obj1->item_type) {
-            default:
-                msg = "You can't compare $p and $P.";
-                break;
-
-            case ITEM_ARMOR:
-                value1 = obj1->v.armor.vs_pierce +
-                         obj1->v.armor.vs_bash +
-                         obj1->v.armor.vs_slash;
-                value2 = obj2->v.armor.vs_pierce +
-                         obj2->v.armor.vs_bash +
-                         obj2->v.armor.vs_slash;
-                break;
-
-            case ITEM_WEAPON:
-                if (obj1->index_data->new_format) {
-                    value1 = (1 + obj1->v.weapon.dice_size) * obj1->v.weapon.dice_num;
-                    value2 = (1 + obj2->v.weapon.dice_size) * obj2->v.weapon.dice_num;
-                }
-                else {
-                    value1 = (obj1->v.weapon.dice_size) * obj1->v.weapon.dice_num;
-                    value2 = (obj2->v.weapon.dice_size) * obj2->v.weapon.dice_num;
-                }
-                break;
-        }
+        value1 = item_get_compare_value (obj1);
+        value2 = item_get_compare_value (obj2);
     }
 
     if (msg == NULL) {

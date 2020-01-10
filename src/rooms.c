@@ -30,6 +30,7 @@
 #include "utils.h"
 #include "objs.h"
 #include "interp.h"
+#include "chars.h"
 
 #include "rooms.h"
 
@@ -172,4 +173,24 @@ void room_take_reset (ROOM_INDEX_T *room, RESET_T *reset) {
         return;
     reset->area = room->area;
     LISTB_BACK (reset, next, room->reset_first, room->reset_last);
+}
+
+OBJ_T *room_get_obj_of_type (const ROOM_INDEX_T *room, const CHAR_T *ch,
+    int type)
+{
+    OBJ_T *obj;
+    for (obj = room->contents; obj != NULL; obj = obj->next_content)
+        if (obj->item_type == type && (!ch || char_can_see_obj (ch, obj)))
+            return obj;
+    return NULL;
+}
+
+OBJ_T *room_get_obj_with_condition (const ROOM_INDEX_T *room, const CHAR_T *ch,
+    bool (*cond) (const OBJ_T *obj))
+{
+    OBJ_T *obj;
+    for (obj = room->contents; obj != NULL; obj = obj->next_content)
+        if ((!ch || char_can_see_obj (ch, obj)) && cond (obj))
+            return obj;
+    return NULL;
 }

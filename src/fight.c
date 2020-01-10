@@ -49,6 +49,7 @@
 #include "find.h"
 #include "globals.h"
 #include "memory.h"
+#include "items.h"
 
 #include "fight.h"
 
@@ -839,7 +840,7 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
             mp_percent_trigger (victim, ch, NULL, NULL, TRIG_DEATH);
         }
 
-        raw_kill (victim);
+        corpse = raw_kill (victim);
 
         /* dump the flags */
         if (ch != victim && !IS_NPC (ch) && !char_in_same_clan (ch, victim)) {
@@ -850,10 +851,10 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
         }
 
         /* RT new auto commands */
-        if (!IS_NPC (ch)
-            && (corpse = find_obj_same_room (ch, "corpse")) != NULL
-            && corpse->item_type == ITEM_CORPSE_NPC
-            && char_can_see_obj (ch, corpse))
+        if (!IS_NPC (ch) && corpse != NULL &&
+             item_can_loot_as (corpse, ch) &&
+             corpse->item_type != ITEM_CORPSE_PC &&
+             char_can_see_obj (ch, corpse))
         {
             OBJ_T *coins;
 
@@ -1233,11 +1234,10 @@ void stop_fighting (CHAR_T *ch, bool both) {
 }
 
 /* Make a corpse out of a character. */
-void make_corpse (CHAR_T *ch) {
+OBJ_T *make_corpse (CHAR_T *ch) {
     char buf[MAX_STRING_LENGTH];
     OBJ_T *corpse;
-    OBJ_T *obj;
-    OBJ_T *obj_next;
+    OBJ_T *obj, *obj_next;
     char *name;
 
     if (IS_NPC (ch)) {
@@ -1280,15 +1280,15 @@ void make_corpse (CHAR_T *ch) {
 
     for (obj = ch->carrying; obj != NULL; obj = obj_next) {
         bool floating = FALSE;
+        int timer_min, timer_max;
 
         obj_next = obj->next_content;
         if (obj->wear_loc == WEAR_LOC_FLOAT)
             floating = TRUE;
         obj_take_from_char (obj);
-        if (obj->item_type == ITEM_POTION)
-            obj->timer = number_range (500, 1000);
-        if (obj->item_type == ITEM_SCROLL)
-            obj->timer = number_range (1000, 2500);
+
+        if (item_get_corpse_timer_range (obj, &timer_min, &timer_max))
+            obj->timer = number_range (timer_min, timer_max);
         if (IS_SET (obj->extra_flags, ITEM_ROT_DEATH) && !floating) {
             obj->timer = number_range (5, 10);
             REMOVE_BIT (obj->extra_flags, ITEM_ROT_DEATH);
@@ -1324,6 +1324,7 @@ void make_corpse (CHAR_T *ch) {
     }
 
     obj_give_to_room (corpse, ch->in_room);
+    return corpse;
 }
 
 /* Improved Death_cry contributed by Diavolo. */
@@ -1398,12 +1399,14 @@ void death_cry (CHAR_T *ch) {
         sprintf (buf, obj->description, name);
         str_replace_dup (&(obj->description), buf);
 
+        /* Convert food to poison or trash. */
         if (obj->item_type == ITEM_FOOD) {
             if (IS_SET (ch->form, FORM_POISON))
                 obj->v.food.poisoned = TRUE;
             else if (!IS_SET (ch->form, FORM_EDIBLE))
                 obj->item_type = ITEM_TRASH;
         }
+
         obj_give_to_room (obj, ch->in_room);
     }
 
@@ -1413,7 +1416,7 @@ void death_cry (CHAR_T *ch) {
         msg = "You hear someone's death cry.";
 
     was_in_room = ch->in_room;
-    for (door = 0; door <= 5; door++) {
+    for (door = 0; door < DIR_MAX; door++) {
         EXIT_T *pexit;
 
         if ((pexit = was_in_room->exit[door]) != NULL
@@ -1426,19 +1429,20 @@ void death_cry (CHAR_T *ch) {
     ch->in_room = was_in_room;
 }
 
-void raw_kill (CHAR_T *victim) {
+OBJ_T *raw_kill (CHAR_T *victim) {
+    OBJ_T *corpse;
     const RACE_T *race;
     int i;
 
     stop_fighting (victim, TRUE);
     death_cry (victim);
-    make_corpse (victim);
+    corpse = make_corpse (victim);
 
     if (IS_NPC (victim)) {
         victim->index_data->killed++;
         kill_table[URANGE (0, victim->level, MAX_LEVEL - 1)].killed++;
         char_extract (victim, TRUE);
-        return;
+        return corpse;
     }
 
     char_extract (victim, FALSE);
@@ -1457,6 +1461,8 @@ void raw_kill (CHAR_T *victim) {
 
     /* we're stable enough to not need this :) */
     /* save_char_obj (victim); */
+
+    return corpse;
 }
 
 void group_gain (CHAR_T *ch, CHAR_T *victim) {

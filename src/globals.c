@@ -37,8 +37,8 @@ MPROG_CODE_T *mprog_list;
 OBJ_T        *object_list;
 CHAR_T       *char_list;
 
-int newmobs = 0;
-int newobjs = 0;
+int newmob_count = 0;
+int newobj_count = 0;
 int mobile_count = 0;
 
 char *help_greeting;
@@ -105,8 +105,9 @@ int top_vnum_mob  = 0;
 int top_vnum_obj  = 0;
 
 /* Music stuff. */
-int channel_songs[MAX_SONG_GLOBAL + 1];
-SONG_T song_table[20];
+flag_t music_line = -1;
+flag_t music_song = -1;
+flag_t music_queue[MAX_SONG_GLOBAL];
 
 /* Memory stuff. */
 char str_empty[1];

@@ -50,6 +50,8 @@
 #include "globals.h"
 #include "memory.h"
 #include "board.h"
+#include "update.h"
+#include "items.h"
 
 #include "chars.h"
 
@@ -313,7 +315,7 @@ OBJ_T *char_get_weapon (const CHAR_T *ch) {
     OBJ_T *wield;
 
     wield = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD);
-    if (wield == NULL || wield->item_type != ITEM_WEAPON)
+    if (wield == NULL || !item_can_wield (wield))
         return NULL;
     return wield;
 }
@@ -527,22 +529,27 @@ long int char_get_max_carry_weight (const CHAR_T *ch) {
     return char_str_carry_bonus (ch) * 10 + ch->level * 25;
 }
 
+OBJ_T *char_get_active_light (const CHAR_T *ch) {
+    OBJ_T *obj;
+    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) == NULL)
+        return NULL;
+    if (!item_is_lit (obj))
+        return NULL;
+    return obj;
+}
+
+bool char_has_active_light (const CHAR_T *ch)
+    { return char_get_active_light (ch) ? TRUE : FALSE; }
+
 /* Move a char out of a room. */
 void char_from_room (CHAR_T *ch) {
-    OBJ_T *obj;
-
     BAIL_IF_BUG (ch->in_room == NULL,
         "char_from_room: NULL.", 0);
 
     if (!IS_NPC (ch))
         --ch->in_room->area->nplayer;
-
-    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) != NULL
-        && obj->item_type == ITEM_LIGHT && obj->v.light.duration != 0
-        && ch->in_room->light > 0)
-    {
+    if (char_has_active_light (ch) && ch->in_room->light > 0)
         --ch->in_room->light;
-    }
 
     LIST_REMOVE (ch, next_in_room, ch->in_room->people, CHAR_T, NO_FAIL);
     ch->in_room = NULL;
@@ -580,8 +587,6 @@ void char_to_room_apply_plague (CHAR_T *ch) {
 
 /* Move a char into a room. */
 void char_to_room (CHAR_T *ch, ROOM_INDEX_T *room_index) {
-    OBJ_T *obj;
-
     if (room_index == NULL) {
         ROOM_INDEX_T *room;
         bug ("char_to_room: NULL.", 0);
@@ -601,11 +606,8 @@ void char_to_room (CHAR_T *ch, ROOM_INDEX_T *room_index) {
         ++ch->in_room->area->nplayer;
     }
 
-    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) != NULL
-        && obj->item_type == ITEM_LIGHT && obj->v.light.duration != 0)
-    {
+    if (char_has_active_light (ch))
         ++ch->in_room->light;
-    }
 
     if (IS_AFFECTED (ch, AFF_PLAGUE))
         char_to_room_apply_plague (ch);
@@ -658,11 +660,8 @@ bool char_equip_obj (CHAR_T *ch, OBJ_T *obj, flag_t wear_loc) {
             affect_modify (ch, paf, TRUE);
     }
 
-    if (obj->item_type == ITEM_LIGHT && obj->v.light.duration != 0 &&
-        ch->in_room != NULL)
-    {
+    if (item_is_lit (obj) && ch->in_room != NULL)
         ++ch->in_room->light;
-    }
 
     return TRUE;
 }
@@ -724,11 +723,8 @@ bool char_unequip_obj (CHAR_T *ch, OBJ_T *obj) {
         }
     }
 
-    if (obj->item_type == ITEM_LIGHT && obj->v.light.duration != 0 &&
-        ch->in_room != NULL && ch->in_room->light > 0)
-    {
+    if (item_is_lit (obj) && ch->in_room != NULL && ch->in_room->light > 0)
         --ch->in_room->light;
-    }
 
     return TRUE;
 }
@@ -867,9 +863,9 @@ bool char_can_see_obj (const CHAR_T *ch, const OBJ_T *obj) {
         return TRUE;
     if (IS_SET (obj->extra_flags, ITEM_VIS_DEATH))
         return FALSE;
-    if (IS_AFFECTED (ch, AFF_BLIND) && obj->item_type != ITEM_POTION)
+    if (IS_AFFECTED (ch, AFF_BLIND) && !item_is_visible_when_blind (obj))
         return FALSE;
-    if (obj->item_type == ITEM_LIGHT && obj->v.light.duration != 0)
+    if (item_is_lit (obj))
         return TRUE;
     if (IS_SET (obj->extra_flags, ITEM_INVIS)
         && !IS_AFFECTED (ch, AFF_DETECT_INVIS))
@@ -897,6 +893,14 @@ void char_reset_colour (CHAR_T *ch) {
         return;
     for (i = 0; i < COLOUR_MAX; i++)
         ch->pcdata->colour[i] = colour_setting_table[i].default_colour;
+}
+
+bool char_has_boat (const CHAR_T *ch) {
+    OBJ_T *boat;
+    for (boat = ch->carrying; boat != NULL; boat = boat->next_content)
+        if (item_is_boat (boat))
+            return TRUE;
+    return FALSE;
 }
 
 void char_move (CHAR_T *ch, int door, bool follow) {
@@ -968,11 +972,7 @@ void char_move (CHAR_T *ch, int door, bool follow) {
              !flying)
         {
             /* Look for a boat. */
-            OBJ_T *boat;
-            for (boat = ch->carrying; boat != NULL; boat = boat->next_content)
-                if (boat->item_type == ITEM_BOAT)
-                    break;
-            BAIL_IF (boat == NULL,
+            BAIL_IF (!char_has_boat (ch),
                 "You need a boat to go there.\n\r", ch);
         }
 
@@ -1431,43 +1431,17 @@ void char_take_obj (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
             && !obj_can_wear_flag (container, ITEM_TAKE)
             && !IS_OBJ_STAT (obj, ITEM_HAD_TIMER))
             obj->timer = 0;
-        act ("You get $p from $P.", ch, obj, container, TO_CHAR);
-        act ("$n gets $p from $P.", ch, obj, container, TO_NOTCHAR);
+        act2 ("You get $p from $P.", "$n gets $p from $P.",
+            ch, obj, container, 0, POS_RESTING);
         REMOVE_BIT (obj->extra_flags, ITEM_HAD_TIMER);
-        obj_take_from_obj (obj);
     }
     else {
-        act ("You get $p.", ch, obj, container, TO_CHAR);
-        act ("$n gets $p.", ch, obj, container, TO_NOTCHAR);
-        obj_take_from_room (obj);
+        act2 ("You get $p.", "$n gets $p.",
+            ch, obj, container, 0, POS_RESTING);
     }
 
-    if (obj->item_type == ITEM_MONEY) {
-        ch->silver += obj->v.money.silver;
-        ch->gold   += obj->v.money.gold;
-
-        if (IS_SET (ch->plr, PLR_AUTOSPLIT)) {
-            int members;
-            char buf[100];
-
-            /* Count the number of members to split. */
-            members = 0;
-            for (gch = ch->in_room->people; gch; gch = gch->next_in_room)
-                if (!IS_AFFECTED (gch, AFF_CHARM) && is_same_group (gch, ch))
-                    members++;
-
-            /* Only split money if there's enough money to split. */
-            if (members > 1 && (obj->v.money.silver > 1 ||
-                                obj->v.money.gold   > 0)) {
-                sprintf (buf, "%ld %ld", obj->v.money.silver, obj->v.money.gold);
-                do_function (ch, &do_split, buf);
-            }
-        }
-
-        obj_extract (obj);
-    }
-    else
-        obj_give_to_char (obj, ch);
+    if (!item_take_effect (obj, ch))
+        act ("...but it refuses to budge.", ch, obj, container, TO_ALL);
 }
 
 /* Remove an object. */
@@ -1738,22 +1712,7 @@ int char_get_obj_cost (const CHAR_T *ch, const OBJ_T *obj, bool buy) {
         }
     }
 
-    switch (obj->item_type) {
-        case ITEM_STAFF:
-            if (obj->v.staff.recharge == 0)
-                cost /= 4;
-            else
-                cost = cost * obj->v.staff.charges / obj->v.staff.recharge;
-            break;
-
-        case ITEM_WAND:
-            if (obj->v.wand.recharge == 0)
-                cost /= 4;
-            else
-                cost = cost * obj->v.wand.charges / obj->v.wand.recharge;
-            break;
-    }
-
+    cost = item_get_modified_cost (obj, cost);
     return cost;
 }
 
@@ -1806,7 +1765,7 @@ int char_format_exit_string (const CHAR_T *ch, const ROOM_INDEX_T *room,
     len = 0;
     count = 0;
 
-    for (door = 0; door <= 5; door++) {
+    for (door = 0; door < DIR_MAX; door++) {
         pexit = room->exit[door];
         if (pexit == NULL)
             continue;
@@ -2175,4 +2134,52 @@ bool char_change_to_next_board (CHAR_T *ch) {
 
     ch->pcdata->board = &board_table[i];
     return TRUE;
+}
+
+void char_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
+    int hunger)
+{
+    if (IS_NPC (ch))
+        return;
+
+    if (drunk != 0) {
+        int was_sober = IS_SOBER (ch);
+        int was_drunk = IS_DRUNK (ch);
+        gain_condition (ch, COND_DRUNK, drunk);
+
+        if (!was_drunk && IS_DRUNK (ch))
+            send_to_char ("You feel drunk.\n\r", ch);
+        else if (was_sober && !IS_SOBER (ch))
+            send_to_char ("You feel a little tispy...\n\r", ch);
+    }
+
+    if (thirst != 0) {
+        int was_thirsty  = IS_THIRSTY (ch);
+        int was_quenched = IS_QUENCHED (ch);
+        gain_condition (ch, COND_THIRST, thirst);
+
+        if (!was_quenched && IS_QUENCHED (ch))
+            send_to_char ("Your thirst is quenched.\n\r", ch);
+        else if (was_thirsty && !IS_THIRSTY (ch))
+            send_to_char ("You are no longer thirsty.\n\r", ch);
+    }
+
+    if (hunger != 0) {
+        int was_hungry = IS_HUNGRY (ch);
+        int was_fed    = IS_FED (ch);
+        gain_condition (ch, COND_HUNGER, hunger);
+
+        if (!was_fed && IS_FED (ch))
+            send_to_char ("You feel well-fed.\n\r", ch);
+        else if (was_hungry && !IS_HUNGRY (ch))
+            send_to_char ("You are no longer hungry.\n\r", ch);
+    }
+
+    if (full != 0) {
+        int was_full = IS_FULL (ch);
+        gain_condition (ch, COND_FULL, full);
+
+        if (!was_full && IS_FULL (ch))
+            send_to_char ("You are full.\n\r", ch);
+    }
 }

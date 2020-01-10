@@ -43,6 +43,7 @@
 #include "objs.h"
 #include "lookup.h"
 #include "globals.h"
+#include "items.h"
 
 #include "update.h"
 
@@ -94,7 +95,7 @@ int hit_gain (CHAR_T *ch, bool apply_learning) {
     }
 
     gain = gain * ch->in_room->heal_rate / 100;
-    if (ch->on != NULL && ch->on->item_type == ITEM_FURNITURE)
+    if (ch->on != NULL && item_can_position_at (ch->on, ch->position))
         gain = gain * ch->on->v.furniture.heal_rate / 100;
 
     if (IS_AFFECTED (ch, AFF_HASTE) || IS_AFFECTED (ch, AFF_SLOW))
@@ -155,7 +156,7 @@ int mana_gain (CHAR_T *ch, bool apply_learning) {
     }
 
     gain = gain * ch->in_room->mana_rate / 100;
-    if (ch->on != NULL && ch->on->item_type == ITEM_FURNITURE)
+    if (ch->on != NULL && item_can_position_at (ch->on, ch->position))
         gain = gain * ch->on->v.furniture.mana_rate / 100;
 
     if (IS_AFFECTED (ch, AFF_HASTE) || IS_AFFECTED (ch, AFF_SLOW))
@@ -187,7 +188,7 @@ int move_gain (CHAR_T *ch, bool apply_learning) {
     }
 
     gain = gain * ch->in_room->heal_rate / 100;
-    if (ch->on != NULL && ch->on->item_type == ITEM_FURNITURE)
+    if (ch->on != NULL && item_can_position_at (ch->on, ch->position))
         gain = gain * ch->on->v.furniture.heal_rate / 100;
 
     if (IS_AFFECTED (ch, AFF_HASTE) || IS_AFFECTED (ch, AFF_SLOW))
@@ -253,6 +254,21 @@ void area_update (void) {
             else if (area->nplayer == 0)
                 area->empty = TRUE;
         }
+    }
+}
+
+void song_update (void) {
+    OBJ_T *obj, *obj_next;
+
+    /* Update global songs, if there are any */
+    music_update_global ();
+
+    /* Update all jukeboxes */
+    for (obj = object_list; obj != NULL; obj = obj_next) {
+        obj_next = obj->next;
+        if (!item_is_playing (obj))
+            continue;
+        item_play_continue (obj);
     }
 }
 
@@ -334,7 +350,7 @@ void mobile_update (void) {
         /* Wander */
         if (!IS_SET (ch->mob, MOB_SENTINEL)
             && number_bits (3) == 0
-            && (door = number_bits (5)) <= 5
+            && (door = number_bits (5)) < DIR_MAX
             && (pexit = ch->in_room->exit[door]) != NULL
             && pexit->to_room != NULL
             && !IS_SET (pexit->exit_flags, EX_CLOSED)
@@ -597,17 +613,10 @@ void char_update (void) {
         if (!IS_NPC (ch) && ch->level < LEVEL_IMMORTAL) {
             OBJ_T *obj;
 
-            if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) != NULL
-                && obj->item_type == ITEM_LIGHT && obj->v.light.duration > 0)
+            if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) != NULL &&
+                    item_is_lit (obj))
             {
-                if (--obj->v.light.duration == 0 && ch->in_room != NULL) {
-                    --ch->in_room->light;
-                    act ("$p flickers and goes out.", ch, obj, NULL, TO_CHAR);
-                    act ("$p goes out.", ch, obj, NULL, TO_NOTCHAR);
-                    obj_extract (obj);
-                }
-                else if (obj->v.light.duration <= 5 && ch->in_room != NULL)
-                    act ("$p flickers.", ch, obj, NULL, TO_CHAR);
+                item_light_fade (obj);
             }
 
             if (IS_IMMORTAL (ch))
@@ -747,8 +756,6 @@ void obj_update (void) {
 
     for (obj = object_list; obj != NULL; obj = obj_next) {
         CHAR_T *rch;
-        char *message;
-
         obj_next = obj->next;
 
         /* go through affects and decrement */
@@ -784,92 +791,9 @@ void obj_update (void) {
             }
         }
 
-        if (obj->timer <= 0 || --obj->timer > 0)
-            continue;
-
-        switch (obj->item_type) {
-            default:
-                message = "$p crumbles into dust.";
-                break;
-            case ITEM_FOUNTAIN:
-                message = "$p dries up.";
-                break;
-            case ITEM_CORPSE_NPC:
-            case ITEM_CORPSE_PC:
-                message = "$p decays into dust.";
-                break;
-            case ITEM_FOOD:
-                message = "$p decomposes.";
-                break;
-            case ITEM_POTION:
-                message = "$p has evaporated from disuse.";
-                break;
-            case ITEM_PORTAL:
-                message = "$p fades out of existence.";
-                break;
-            case ITEM_CONTAINER:
-                if (obj_can_wear_flag (obj, ITEM_WEAR_FLOAT))
-                    if (obj->contains)
-                        message =
-                            "$p flickers and vanishes, spilling its contents on the floor.";
-                    else
-                        message = "$p flickers and vanishes.";
-                else
-                    message = "$p crumbles into dust.";
-                break;
-        }
-
-        if (obj->carried_by != NULL) {
-            if (IS_NPC (obj->carried_by)
-                    && obj->carried_by->index_data->shop != NULL)
-                obj->carried_by->silver += obj->cost / 5;
-            else {
-                act (message, obj->carried_by, obj, NULL, TO_CHAR);
-                if (obj->wear_loc == WEAR_LOC_FLOAT)
-                    act (message, obj->carried_by, obj, NULL, TO_NOTCHAR);
-            }
-        }
-        else if (obj->in_room != NULL && (rch = obj->in_room->people) != NULL) {
-            if (!(obj->in_obj && obj->in_obj->index_data->vnum == OBJ_VNUM_PIT
-                  && !obj_can_wear_flag (obj->in_obj, ITEM_TAKE)))
-            {
-                act (message, rch, obj, NULL, TO_CHAR);
-                act (message, rch, obj, NULL, TO_NOTCHAR);
-            }
-        }
-
-        /* save the contents */
-        if ((obj->item_type == ITEM_CORPSE_PC || obj->wear_loc == WEAR_LOC_FLOAT)
-            && obj->contains)
-        {
-            OBJ_T *t_obj, *next_obj;
-            for (t_obj = obj->contains; t_obj != NULL; t_obj = next_obj) {
-                next_obj = t_obj->next_content;
-                obj_take_from_obj (t_obj);
-
-                /* in another object */
-                if (obj->in_obj)
-                    obj_give_to_obj (t_obj, obj->in_obj);
-                /* carried */
-                else if (obj->carried_by) {
-                    if (obj->wear_loc == WEAR_LOC_FLOAT) {
-                        if (obj->carried_by->in_room == NULL)
-                            obj_extract (t_obj);
-                        else
-                            obj_give_to_room (t_obj, obj->carried_by->in_room);
-                    }
-                    else
-                        obj_give_to_char (t_obj, obj->carried_by);
-                }
-                /* to a room */
-                else if (obj->in_room)
-                    obj_give_to_room (t_obj, obj->in_room);
-                /* nowhere - destroy it! */
-                else
-                    obj_extract (t_obj);
-            }
-        }
-        obj_extract (obj);
+        /* Extract objects when their timer has expired. */
+        if (obj->timer > 0 && --obj->timer <= 0)
+            obj_poof (obj);
     }
 }
 

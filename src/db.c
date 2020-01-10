@@ -53,6 +53,7 @@
 #include "globals.h"
 #include "memory.h"
 #include "skills.h"
+#include "items.h"
 
 #include "db.h"
 
@@ -438,13 +439,13 @@ void boot_db (void) {
     in_boot_db = FALSE;
     convert_objects (); /* ROM OLC */
 
-    db_export_json (TRUE, NULL);
+ // db_export_json (TRUE, NULL);
 
     area_update ();
     board_load_all ();
     board_save_all ();
     ban_load_all ();
-    load_songs ();
+    music_load_songs ();
 }
 
 void init_time_weather (void) {
@@ -718,68 +719,6 @@ void load_helps (FILE *fp, char *fname) {
 
         LISTB_BACK (help, next, help_first, help_last);
         LISTB_BACK (help, next_area, had->first, had->last);
-    }
-}
-
-void db_finalize_obj (OBJ_INDEX_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_FURNITURE: {
-            int min_occupants = 0;
-            int min_hit       = 100;
-            int min_mana      = 100;
-
-            if (str_in_namelist ("tent", obj->name) ||
-                str_in_namelist ("cabin", obj->name))
-            {
-                SET_BIT (obj->v.furniture.flags, REST_IN);
-                SET_BIT (obj->v.furniture.flags, SIT_IN);
-                SET_BIT (obj->v.furniture.flags, SLEEP_IN);
-                SET_BIT (obj->v.furniture.flags, STAND_IN);
-                min_occupants = 1;
-                min_hit = 250;
-            }
-            if (str_in_namelist ("bed", obj->name)) {
-                SET_BIT (obj->v.furniture.flags, REST_ON);
-                SET_BIT (obj->v.furniture.flags, SIT_ON);
-                SET_BIT (obj->v.furniture.flags, SLEEP_IN);
-                min_occupants = 1;
-                min_hit = 200;
-            }
-            if (str_in_namelist ("sofa", obj->name) ||
-                str_in_namelist ("couch", obj->name))
-            {
-                SET_BIT (obj->v.furniture.flags, REST_ON);
-                SET_BIT (obj->v.furniture.flags, SIT_ON);
-                SET_BIT (obj->v.furniture.flags, SLEEP_ON);
-                min_occupants = 1;
-                min_hit = 150;
-            }
-            if (str_in_namelist ("bench", obj->name)) {
-                SET_BIT (obj->v.furniture.flags, REST_ON);
-                SET_BIT (obj->v.furniture.flags, SIT_ON);
-                SET_BIT (obj->v.furniture.flags, SLEEP_ON);
-                min_occupants = 1;
-                min_hit = 125;
-            }
-            if (str_in_namelist ("chair", obj->name) ||
-                str_in_namelist ("stool", obj->name))
-            {
-                SET_BIT (obj->v.furniture.flags, STAND_ON);
-                SET_BIT (obj->v.furniture.flags, REST_ON);
-                SET_BIT (obj->v.furniture.flags, SIT_ON);
-                SET_BIT (obj->v.furniture.flags, SLEEP_ON);
-                min_occupants = 1;
-                min_hit = 125;
-            }
-
-            if (obj->v.furniture.max_people < min_occupants)
-                obj->v.furniture.max_people = min_occupants;
-            if (obj->v.furniture.heal_rate < min_hit)
-                obj->v.furniture.heal_rate = min_hit;
-            if (obj->v.furniture.mana_rate < min_mana)
-                obj->v.furniture.mana_rate = min_mana;
-            break;
-        }
     }
 }
 
@@ -1410,65 +1349,6 @@ static CHAR_T *reset_last_mob = NULL;
 static OBJ_T  *reset_last_obj = NULL;
 static bool    reset_last_created = FALSE;
 
-int reset_room_reset_shop_obj_level (OBJ_INDEX_T *obj_index) {
-    if (obj_index->new_format)
-        return 0;
-
-    switch (obj_index->item_type) {
-        case ITEM_PILL:
-        case ITEM_POTION:
-        case ITEM_SCROLL: {
-            int olevel = 53, skill_max, i, j;
-            flag_t *skill = NULL;
-
-            switch (obj_index->item_type) {
-                case ITEM_PILL:
-                    skill = obj_index->v.pill.skill;
-                    skill_max = PILL_SKILL_MAX;
-                    break;
-                case ITEM_POTION:
-                    skill = obj_index->v.potion.skill;
-                    skill_max = POTION_SKILL_MAX;
-                    break;
-                case ITEM_SCROLL:
-                    skill = obj_index->v.scroll.skill;
-                    skill_max = SCROLL_SKILL_MAX;
-                    break;
-                default:
-                    return 0;
-            }
-
-            for (i = 0; i < skill_max; i++) {
-                int sk = skill[i];
-                if (sk <= 0 || sk >= SKILL_MAX)
-                    continue;
-                for (j = 0; class_get (j) != NULL; j++)
-                    olevel = UMIN (olevel, skill_table[sk].classes[j].level);
-            }
-            return UMAX (0, (olevel * 3 / 4) - 2);
-        }
-
-        case ITEM_WAND:     return number_range (10, 20);
-        case ITEM_STAFF:    return number_range (15, 25);
-        case ITEM_ARMOR:    return number_range (5, 15);
-
-        /* ROM patch weapon, treasure */
-        case ITEM_WEAPON:   return number_range (5, 15);
-        case ITEM_TREASURE: return number_range (10, 20);
-
-#if 0 /* envy version */
-        case ITEM_WEAPON:
-            if (reset->command == 'G')
-                olevel = number_range (5, 15);
-            else
-                olevel = number_fuzzy (level);
-#endif /* envy version */
-
-        default:
-            return 0;
-    }
-}
-
 void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
     MOB_INDEX_T *mob_index;
     OBJ_INDEX_T *obj_index;
@@ -1483,9 +1363,9 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
     switch (reset->command) {
         case 'M':
             BAIL_IF_BUG (!(mob_index = get_mob_index (reset->v.mob.mob_vnum)),
-                "reset_room: 'M': bad mob_vnum %d.", reset->v.mob.mob_vnum);
+                "reset_room_reset: 'M': bad mob_vnum %d.", reset->v.mob.mob_vnum);
             BAIL_IF_BUG (!(room_index = get_room_index (reset->v.mob.room_vnum)),
-                "reset_room: 'M': bad room_vnum %d.", reset->v.mob.room_vnum);
+                "reset_room_reset: 'M': bad room_vnum %d.", reset->v.mob.room_vnum);
 
             if (mob_index->count >= reset->v.mob.global_limit) {
                 reset_last_created = FALSE;
@@ -1514,8 +1394,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
 
             /* Pet shop mobiles get ACT_PET set. */
             room_indexPrev = get_room_index (room_index->vnum - 1);
-            if (room_indexPrev
-                && IS_SET (room_indexPrev->room_flags, ROOM_PET_SHOP))
+            if (room_indexPrev && IS_SET (room_indexPrev->room_flags, ROOM_PET_SHOP))
                 SET_BIT (mob->mob, MOB_PET);
 
             char_to_room (mob, room_index);
@@ -1528,14 +1407,14 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
             int obj_count = UMAX(1, reset->v.obj.room_limit);
 
             if (!(obj_index = get_obj_index (reset->v.obj.obj_vnum))) {
-                bug ("reset_room: 'O': bad obj_vnum %d.", reset->v.obj.obj_vnum);
+                bug ("reset_room_reset: 'O': bad obj_vnum %d.", reset->v.obj.obj_vnum);
                 bugf ("%d %d %d %d",
                     reset->v.value[1], reset->v.value[2],
                     reset->v.value[3], reset->v.value[4]);
                 return;
             }
             if (!(room_index = get_room_index (reset->v.obj.room_vnum))) {
-                bug ("reset_room: 'O': bad room_vnum %d.", reset->v.obj.room_vnum);
+                bug ("reset_room_reset: 'O': bad room_vnum %d.", reset->v.obj.room_vnum);
                 bugf ("%d %d %d %d",
                     reset->v.value[1], reset->v.value[2],
                     reset->v.value[3], reset->v.value[4]);
@@ -1552,7 +1431,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
 
             obj = obj_create (obj_index,    /* UMIN - ROM OLC */
                UMIN (number_fuzzy (level), LEVEL_HERO - 1));
-            if (obj->item_type != ITEM_TREASURE)
+            if (!item_has_worth_as_room_reset (obj))
                 obj->cost = 0;
             obj_give_to_room (obj, room_index);
             reset_last_created = TRUE;
@@ -1561,13 +1440,11 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
 
         case 'P':
             BAIL_IF_BUG (!(obj_index = get_obj_index (reset->v.put.obj_vnum)),
-                "reset_room: 'P': bad obj_vnum %d.", reset->v.put.obj_vnum);
+                "reset_room_reset: 'P': bad obj_vnum %d.", reset->v.put.obj_vnum);
             BAIL_IF_BUG (!(obj_to_index = get_obj_index (reset->v.put.into_vnum)),
-                "reset_room: 'P': bad into_vnum %d.", reset->v.put.into_vnum);
-            BAIL_IF_BUG (!(obj_to_index->item_type == ITEM_CONTAINER ||
-                           obj_to_index->item_type == ITEM_CORPSE_NPC ||
-                           obj_to_index->item_type == ITEM_CORPSE_PC),
-                "reset_room: 'P': to object %d is not a container.",
+                "reset_room_reset: 'P': bad into_vnum %d.", reset->v.put.into_vnum);
+            BAIL_IF_BUG (!item_index_is_container (obj_to_index),
+                "reset_room_reset: 'P': to object %d is not a container.",
                     reset->v.put.into_vnum);
 
             if (reset->v.put.global_limit > 50) /* old format */
@@ -1613,7 +1490,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
             global_limit = (cmd == 'G') ? gv->global_limit : eq->global_limit;
 
             BAIL_IF_BUG (!(obj_index = get_obj_index (obj_vnum)),
-                "reset_room: 'E' or 'G': bad obj_vnum %d.", obj_vnum);
+                "reset_room_reset: 'E' or 'G': bad obj_vnum %d.", obj_vnum);
 
             /* If we haven't instantiated the previous mob (at least we
              * ASSUME the command was 'M'), don't give or equip. */
@@ -1622,7 +1499,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
 
             if (!reset_last_mob) {
                 reset_last_created = FALSE;
-                bug ("reset_room: 'E' or 'G': null mob for vnum %d.",
+                bug ("reset_room_reset: 'E' or 'G': null mob for vnum %d.",
                     obj_vnum);
                 return;
             }
@@ -1647,7 +1524,8 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
 
             /* Shop-keeper? */
             if (reset_last_mob->index_data->shop) {
-                int olevel = reset_room_reset_shop_obj_level (obj_index);
+                int olevel = (obj_index->new_format)
+                    ? 0 : item_index_get_old_reset_shop_level (obj_index);
                 obj = obj_create (obj_index, olevel);
                 SET_BIT (obj->extra_flags, ITEM_INVENTORY); /* ROM OLC */
 
@@ -1679,8 +1557,8 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
                 if (obj->level > reset_last_mob->level + 3)
                     warn_type = "too strong";
                 else if (
-                    obj->item_type == ITEM_WEAPON   &&
-                    reset->command == 'E'           &&
+                    item_is_weapon (obj)  &&
+                    reset->command == 'E' &&
                     obj->level < reset_last_mob->level - 5 &&
                     obj->level < 45)
                 {
@@ -1719,7 +1597,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
             int d1, d2;
 
             BAIL_IF_BUG (!(room_index = get_room_index (reset->v.randomize.room_vnum)),
-                "reset_room: 'R': bad vnum %d.", reset->v.randomize.room_vnum);
+                "reset_room_reset: 'R': bad vnum %d.", reset->v.randomize.room_vnum);
 
             for (d1 = 0; d1 < reset->v.randomize.dir_count - 1; d1++) {
                 d2 = number_range (d1, reset->v.randomize.dir_count - 1);
@@ -1731,7 +1609,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
         }
 
         default:
-            bug ("reset_room: bad command %c.", reset->command);
+            bug ("reset_room_reset: bad command %c.", reset->command);
             break;
     }
 }
@@ -1956,6 +1834,39 @@ flag_t fread_flag (FILE *fp) {
         ungetc (c, fp);
 
     return negative ? -1 * number : number;
+}
+
+/*
+ * ROM OLC
+ * Used in save_mobile and save_object below.  Writes
+ * flags on the form fread_flag reads.
+ *
+ * buf[] must hold at least 32+1 characters.
+ *
+ * -- Hugin
+ */
+char *fwrite_flag (long flags, char buf[]) {
+    char offset;
+    char *cp;
+
+    buf[0] = '\0';
+    if (flags == 0) {
+        strcpy (buf, "0");
+        return buf;
+    }
+
+    /* 32 -- number of bits in a long */
+    for (offset = 0, cp = buf; offset < 32; offset++) {
+        if (flags & ((long) 1 << offset)) {
+            if (offset <= 'Z' - 'A')
+                *(cp++) = 'A' + offset;
+            else
+                *(cp++) = 'a' + offset - ('Z' - 'A' + 1);
+        }
+    }
+
+    *cp = '\0';
+    return buf;
 }
 
 flag_t flag_convert (char letter) {
@@ -2235,7 +2146,7 @@ void load_mobiles (FILE *fp) {
         mob_index->vnum = vnum;
         mob_index->anum = vnum - area_last->min_vnum;
         mob_index->new_format = TRUE;
-        newmobs++;
+        newmob_count++;
 
         /* For some reason, 'oldstyle' is in front of a lot of the names.
          * If this is the case, we're going to ignore it completely. */
@@ -2421,6 +2332,10 @@ void db_finalize_mob (MOB_INDEX_T *mob) {
     REMOVE_BIT (mob->parts_final,       mob->parts_minus);
 }
 
+void db_finalize_obj (OBJ_INDEX_T *obj_index) {
+    item_index_finalize (obj_index);
+}
+
 /* Snarf an obj section. new style */
 void load_objects (FILE *fp) {
     OBJ_INDEX_T *obj_index;
@@ -2454,7 +2369,7 @@ void load_objects (FILE *fp) {
         obj_index->anum = vnum - area_last->min_vnum;
         obj_index->new_format = TRUE;
         obj_index->reset_num = 0;
-        newobjs++;
+        newobj_count++;
         str_replace_dup (&obj_index->name,          fread_string (fp));
         str_replace_dup (&obj_index->short_descr,   fread_string (fp));
         str_replace_dup (&obj_index->description,   fread_string (fp));
@@ -2473,90 +2388,8 @@ void load_objects (FILE *fp) {
         obj_index->extra_flags = fread_flag (fp);
         obj_index->wear_flags = fread_flag (fp);
 
-        switch (obj_index->item_type) {
-            case ITEM_WEAPON:
-                obj_index->v.weapon.weapon_type = weapon_lookup_exact (fread_word (fp));
-                obj_index->v.weapon.dice_num    = fread_number (fp);
-                obj_index->v.weapon.dice_size   = fread_number (fp);
-                obj_index->v.weapon.attack_type = attack_lookup_exact (fread_word (fp));
-                obj_index->v.weapon.flags       = fread_flag (fp);
-                break;
+        item_index_read_values_from_file (obj_index, fp);
 
-            case ITEM_CONTAINER:
-                obj_index->v.container.capacity    = fread_number (fp);
-                obj_index->v.container.flags       = fread_flag (fp);
-                obj_index->v.container.key         = fread_number (fp);
-                obj_index->v.container.max_weight  = fread_number (fp);
-                obj_index->v.container.weight_mult = fread_number (fp);
-                break;
-
-            case ITEM_DRINK_CON:
-                obj_index->v.drink_con.capacity = fread_number (fp);
-                obj_index->v.drink_con.filled   = fread_number (fp);
-                obj_index->v.drink_con.liquid   = lookup_func_backup (liq_lookup_exact,
-                    fread_word (fp), "Unknown liquid type '%s'", 0);
-                obj_index->v.drink_con.poisoned = fread_number (fp);
-                obj_index->v.drink_con._value5  = fread_number (fp);
-                break;
-
-            case ITEM_FOUNTAIN:
-                obj_index->v.fountain.capacity = fread_number (fp);
-                obj_index->v.fountain.filled   = fread_number (fp);
-                obj_index->v.fountain.liquid   = lookup_func_backup (liq_lookup_exact,
-                    fread_word (fp), "Unknown liquid type '%s'", 0);
-                obj_index->v.fountain.poisoned = fread_number (fp);
-                obj_index->v.fountain._value5  = fread_number (fp);
-                break;
-
-            case ITEM_WAND:
-                obj_index->v.wand.level    = fread_number (fp);
-                obj_index->v.wand.recharge = fread_number (fp);
-                obj_index->v.wand.charges  = fread_number (fp);
-                obj_index->v.wand.skill    = skill_lookup_exact (fread_word (fp));
-                obj_index->v.wand._value5  = fread_number (fp);
-                break;
-
-            case ITEM_STAFF:
-                obj_index->v.staff.level    = fread_number (fp);
-                obj_index->v.staff.recharge = fread_number (fp);
-                obj_index->v.staff.charges  = fread_number (fp);
-                obj_index->v.staff.skill    = skill_lookup_exact (fread_word (fp));
-                obj_index->v.staff._value5  = fread_number (fp);
-                break;
-
-            case ITEM_POTION: {
-                obj_index->v.potion.level  = fread_number (fp);
-                obj_index->v.potion.skill[0] = skill_lookup_exact (fread_word (fp));
-                obj_index->v.potion.skill[1] = skill_lookup_exact (fread_word (fp));
-                obj_index->v.potion.skill[2] = skill_lookup_exact (fread_word (fp));
-                obj_index->v.potion.skill[3] = skill_lookup_exact (fread_word (fp));
-                break;
-            }
-
-            case ITEM_PILL:
-                obj_index->v.pill.level  = fread_number (fp);
-                obj_index->v.pill.skill[0] = skill_lookup_exact (fread_word (fp));
-                obj_index->v.pill.skill[1] = skill_lookup_exact (fread_word (fp));
-                obj_index->v.pill.skill[2] = skill_lookup_exact (fread_word (fp));
-                obj_index->v.pill.skill[3] = skill_lookup_exact (fread_word (fp));
-                break;
-
-            case ITEM_SCROLL:
-                obj_index->v.scroll.level  = fread_number (fp);
-                obj_index->v.scroll.skill[0] = skill_lookup_exact (fread_word (fp));
-                obj_index->v.scroll.skill[1] = skill_lookup_exact (fread_word (fp));
-                obj_index->v.scroll.skill[2] = skill_lookup_exact (fread_word (fp));
-                obj_index->v.scroll.skill[3] = skill_lookup_exact (fread_word (fp));
-                break;
-
-            default:
-                obj_index->v.value[0] = fread_flag (fp);
-                obj_index->v.value[1] = fread_flag (fp);
-                obj_index->v.value[2] = fread_flag (fp);
-                obj_index->v.value[3] = fread_flag (fp);
-                obj_index->v.value[4] = fread_flag (fp);
-                break;
-        }
         obj_index->level  = fread_number (fp);
         obj_index->weight = fread_number (fp);
         obj_index->cost   = fread_number (fp);

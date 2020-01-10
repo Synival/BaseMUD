@@ -36,6 +36,7 @@
 #include "objs.h"
 #include "recycle.h"
 #include "lookup.h"
+#include "items.h"
 
 #include "spell_aff.h"
 
@@ -410,7 +411,7 @@ DEFINE_SPELL_FUN (spell_enchant_armor) {
     int ac_bonus, added;
     bool ac_found = FALSE;
 
-    BAIL_IF (obj->item_type != ITEM_ARMOR,
+    BAIL_IF (obj->item_type != item_is_armor (obj),
         "That isn't armor.\n\r", ch);
     BAIL_IF (obj->wear_loc != -1,
         "The item must be carried to be enchanted.\n\r", ch);
@@ -525,7 +526,7 @@ DEFINE_SPELL_FUN (spell_enchant_weapon) {
     int hit_bonus, dam_bonus, added;
     bool hit_found = FALSE, dam_found = FALSE;
 
-    BAIL_IF (obj->item_type != ITEM_WEAPON,
+    BAIL_IF (!item_is_weapon (obj),
         "That isn't a weapon.\n\r", ch);
     BAIL_IF (obj->wear_loc != -1,
         "The item must be carried to be enchanted.\n\r", ch);
@@ -927,49 +928,8 @@ DEFINE_SPELL_FUN (spell_plague) {
 
 DEFINE_SPELL_FUN (spell_poison_object) {
     OBJ_T *obj = (OBJ_T *) vo;
-    AFFECT_T af;
-
-    if (obj->item_type == ITEM_FOOD || obj->item_type == ITEM_DRINK_CON) {
-        BAIL_IF_ACT (IS_OBJ_STAT (obj, ITEM_BLESS) ||
-                     IS_OBJ_STAT (obj, ITEM_BURN_PROOF),
-            "Your spell fails to corrupt $p.", ch, obj, NULL);
-
-        if (obj->item_type == ITEM_FOOD) {
-            BAIL_IF_ACT (obj->v.food.poisoned != 0,
-                "$p is already poisoned.", ch, obj, NULL);
-            obj->v.food.poisoned = TRUE;
-        }
-        else if (obj->item_type == ITEM_DRINK_CON) {
-            BAIL_IF_ACT (obj->v.drink_con.poisoned != 0,
-                "$p is already poisoned.", ch, obj, NULL);
-            obj->v.drink_con.poisoned = TRUE;
-        }
-
-        act ("$p is infused with poisonous vapors.", ch, obj, NULL, TO_ALL);
-        return;
-    }
-
-    if (obj->item_type == ITEM_WEAPON) {
-        BAIL_IF_ACT (IS_WEAPON_STAT (obj, WEAPON_FLAMING) ||
-                     IS_WEAPON_STAT (obj, WEAPON_FROST) ||
-                     IS_WEAPON_STAT (obj, WEAPON_VAMPIRIC) ||
-                     IS_WEAPON_STAT (obj, WEAPON_SHARP) ||
-                     IS_WEAPON_STAT (obj, WEAPON_VORPAL) ||
-                     IS_WEAPON_STAT (obj, WEAPON_SHOCKING) ||
-                     IS_OBJ_STAT (obj, ITEM_BLESS) ||
-                     IS_OBJ_STAT (obj, ITEM_BURN_PROOF),
-            "You can't seem to envenom $p.", ch, obj, NULL);
-        BAIL_IF_ACT (IS_WEAPON_STAT (obj, WEAPON_POISON),
-            "$p is already envenomed.", ch, obj, NULL);
-
-        affect_init (&af, AFF_TO_WEAPON, sn, level / 2, level / 8, 0, 0, WEAPON_POISON);
-        affect_to_obj (obj, &af);
-
-        act ("$p is coated with deadly venom.", ch, obj, NULL, TO_ALL);
-        return;
-    }
-
-    act ("You can't poison $p.", ch, obj, NULL, TO_CHAR);
+    if (!item_envenom_effect (obj, ch, level, sn, TRUE))
+        act ("You can't poison $p.", ch, obj, NULL, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_poison_char) {

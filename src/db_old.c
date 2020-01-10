@@ -37,6 +37,7 @@
 #include "affects.h"
 #include "globals.h"
 #include "memory.h"
+#include "items.h"
 
 #include "db_old.h"
 
@@ -218,15 +219,6 @@ void load_old_obj (FILE *fp) {
         obj_index->cost = fread_number (fp);
         fread_number (fp); /* Cost per day? Unused? */
 
-        if (obj_index->item_type == ITEM_WEAPON) {
-            if (str_in_namelist ("two",        obj_index->name) ||
-                str_in_namelist ("two-handed", obj_index->name) ||
-                str_in_namelist ("claymore",   obj_index->name))
-            {
-                SET_BIT (obj_index->v.weapon.flags, WEAPON_TWO_HANDS);
-            }
-        }
-
         while (1) {
             char letter = fread_letter (fp);
             if (letter == 'A') {
@@ -250,49 +242,8 @@ void load_old_obj (FILE *fp) {
             }
         }
 
-        /* fix armors */
-        if (obj_index->item_type == ITEM_ARMOR) {
-            obj_index->v.armor.vs_pierce = obj_index->v.value[0];
-            obj_index->v.armor.vs_bash   = obj_index->v.value[0];
-            obj_index->v.armor.vs_slash  = obj_index->v.value[0];
-        }
-
-        /* Translate spell "slot numbers" to internal "skill numbers." */
-        switch (obj_index->item_type) {
-            case ITEM_PILL: {
-                int i;
-                for (i = 0; i < PILL_SKILL_MAX; i++)
-                    obj_index->v.pill.skill[i] = skill_get_index_by_slot (
-                        obj_index->v.value[i + 1]);
-                break;
-            }
-
-            case ITEM_POTION: {
-                int i;
-                for (i = 0; i < POTION_SKILL_MAX; i++)
-                    obj_index->v.potion.skill[i] = skill_get_index_by_slot (
-                        obj_index->v.value[i + 1]);
-                break;
-            }
-
-            case ITEM_SCROLL: {
-                int i;
-                for (i = 0; i < SCROLL_SKILL_MAX; i++)
-                    obj_index->v.scroll.skill[i] = skill_get_index_by_slot (
-                        obj_index->v.scroll.skill[i + 1]);
-                break;
-            }
-
-            case ITEM_STAFF:
-                obj_index->v.staff.skill = skill_get_index_by_slot (
-                    obj_index->v.value[3]);
-                break;
-
-            case ITEM_WAND:
-                obj_index->v.wand.skill = skill_get_index_by_slot (
-                    obj_index->v.value[3]);
-                break;
-        }
+        /* make corrections based on item type. */
+        item_index_fix_old (obj_index);
 
         /* Post-processing for loaded objects. */
         db_finalize_obj (obj_index);
@@ -355,32 +306,11 @@ int convert_object_reset (RESET_T *reset) {
             if (OBJ->new_format)
                 return 1;
 
-            if (MOB->shop) {
-                switch (OBJ->item_type) {
-                    default:
-                        OBJ->level = UMAX (0, OBJ->level);
-                        break;
-                    case ITEM_PILL:
-                    case ITEM_POTION:
-                        OBJ->level = UMAX (5, OBJ->level);
-                        break;
-                    case ITEM_SCROLL:
-                    case ITEM_ARMOR:
-                    case ITEM_WEAPON:
-                        OBJ->level = UMAX (10, OBJ->level);
-                        break;
-                    case ITEM_WAND:
-                    case ITEM_TREASURE:
-                        OBJ->level = UMAX (15, OBJ->level);
-                        break;
-                    case ITEM_STAFF:
-                        OBJ->level = UMAX (20, OBJ->level);
-                        break;
-                }
-            }
+            if (MOB->shop)
+                OBJ->level = item_index_get_old_convert_shop_level (OBJ);
             else
-                OBJ->level = OBJ->level < 1 ? MOB->level
-                    : UMIN (OBJ->level, MOB->level);
+                OBJ->level = (OBJ->level < 1)
+                    ? MOB->level : UMIN (OBJ->level, MOB->level);
             break;
         }
 
@@ -413,7 +343,7 @@ void convert_objects (void) {
     RESET_T *reset;
     OBJ_INDEX_T *obj;
 
-    if (newobjs == TOP (RECYCLE_OBJ_INDEX_T))
+    if (newobj_count == TOP (RECYCLE_OBJ_INDEX_T))
         return; /* all objects in new format */
 
     convert_object_reset_mob = NULL;
@@ -431,108 +361,7 @@ void convert_objects (void) {
     /* do the conversion: */
     for (obj = obj_index_get_first(); obj; obj = obj_index_get_next (obj))
         if (!obj->new_format)
-            convert_object (obj);
-}
-
-/*****************************************************************************
- Name:       convert_object
- Purpose:    Converts an old_format obj to new_format
- Called by:  convert_objects (db_old.c).
- Note:       Dug out of create_obj (db.c)
- Author:     Hugin
- ****************************************************************************/
-void convert_object (OBJ_INDEX_T *obj_index) {
-    int level;
-    int number, type;            /* for dice-conversion */
-
-    if (!obj_index || obj_index->new_format)
-        return;
-
-    level = obj_index->level;
-
-    obj_index->level = UMAX (0, obj_index->level);    /* just to be sure */
-    obj_index->cost = 10 * level;
-
-    switch (obj_index->item_type) {
-        default:
-            bug ("obj_convert: vnum %d bad type.", obj_index->item_type);
-            break;
-
-        case ITEM_LIGHT:
-        case ITEM_TREASURE:
-        case ITEM_FURNITURE:
-        case ITEM_TRASH:
-        case ITEM_CONTAINER:
-        case ITEM_DRINK_CON:
-        case ITEM_KEY:
-        case ITEM_FOOD:
-        case ITEM_BOAT:
-        case ITEM_CORPSE_NPC:
-        case ITEM_CORPSE_PC:
-        case ITEM_FOUNTAIN:
-        case ITEM_MAP:
-        case ITEM_CLOTHING:
-        case ITEM_SCROLL:
-            break;
-
-        case ITEM_WAND:
-            obj_index->v.wand.charges = obj_index->v.value[1];
-            break;
-
-        case ITEM_STAFF:
-            obj_index->v.staff.charges = obj_index->v.value[1];
-            break;
-
-        case ITEM_WEAPON:
-            /*
-             * The conversion below is based on the values generated
-             * in one_hit() (fight.c).  Since I don't want a lvl 50
-             * weapon to do 15d3 damage, the min value will be below
-             * the one in one_hit, and to make up for it, I've made
-             * the max value higher.
-             * (I don't want 15d2 because this will hardly ever roll
-             * 15 or 30, it will only roll damage close to 23.
-             * I can't do 4d8+11, because one_hit there is no dice-
-             * bounus value to set...)
-             *
-             * The conversion below gives:
-
-             level:   dice      min      max      mean
-              1:     1d8      1( 2)    8( 7)     5( 5)
-              2:     2d5      2( 3)   10( 8)     6( 6)
-              3:     2d5      2( 3)   10( 8)     6( 6)
-              5:     2d6      2( 3)   12(10)     7( 7)
-             10:     4d5      4( 5)   20(14)    12(10)
-             20:     5d5      5( 7)   25(21)    15(14)
-             30:     5d7      5(10)   35(29)    20(20)
-             50:     5d11     5(15)   55(44)    30(30)
-
-             */
-
-            number = UMIN (level / 4 + 1, 5);
-            type = (level + 7) / number;
-
-            obj_index->v.weapon.dice_num  = number;
-            obj_index->v.weapon.dice_size = type;
-            break;
-
-        case ITEM_ARMOR:
-            obj_index->v.armor.vs_pierce = level / 5 + 3;
-            obj_index->v.armor.vs_bash   = obj_index->v.value[0];
-            obj_index->v.armor.vs_slash  = obj_index->v.value[0];
-            break;
-
-        case ITEM_POTION:
-        case ITEM_PILL:
-            break;
-
-        case ITEM_MONEY:
-            obj_index->v.money.silver = obj_index->cost;
-            break;
-    }
-
-    obj_index->new_format = TRUE;
-    ++newobjs;
+            item_index_convert_old (obj);
 }
 
 /*****************************************************************************
@@ -619,5 +448,5 @@ void convert_mobile (MOB_INDEX_T *mob_index) {
     mob_index->material = MATERIAL_GENERIC;
     mob_index->new_format = TRUE;
 
-    ++newmobs;
+    ++newmob_count;
 }

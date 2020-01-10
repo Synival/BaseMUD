@@ -38,7 +38,6 @@
     } while (0)
 
 /* Sub-routines and filters. */
-void oedit_show_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj);
 bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj,
     int value_num, char *argument);
 bool oedit_set_value (CHAR_T *ch, OBJ_INDEX_T *obj, char *argument,

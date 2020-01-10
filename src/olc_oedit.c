@@ -27,209 +27,11 @@
 #include "globals.h"
 #include "olc.h"
 #include "memory.h"
+#include "items.h"
 
 #include "olc_oedit.h"
 
-/* Object Editor Functions. */
-void oedit_show_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj) {
-    switch (obj->item_type) {
-        case ITEM_LIGHT:
-            if (obj->v.light.duration == -1 ||
-                obj->v.light.duration == 999)
-            {
-                send_to_char ("[v2] Light:  Infinite[-1]\n\r", ch);
-            }
-            else
-                printf_to_char (ch, "[v2] Light:  [%ld]\n\r",
-                    obj->v.light.duration);
-            break;
-
-        case ITEM_WAND:
-            printf_to_char (ch,
-                "[v0] Level:         [%ld]\n\r"
-                "[v1] Charges Total: [%ld]\n\r"
-                "[v2] Charges Left:  [%ld]\n\r"
-                "[v3] Spell:         %s\n\r",
-                 obj->v.wand.level,
-                 obj->v.wand.recharge,
-                 obj->v.wand.charges,
-                 obj->v.wand.skill > 0
-                    ? skill_table[obj->v.wand.skill].name : "none");
-            break;
-
-        case ITEM_STAFF:
-            printf_to_char (ch,
-                "[v0] Level:         [%ld]\n\r"
-                "[v1] Charges Total: [%ld]\n\r"
-                "[v2] Charges Left:  [%ld]\n\r"
-                "[v3] Spell:         %s\n\r",
-                 obj->v.staff.level,
-                 obj->v.staff.recharge,
-                 obj->v.staff.charges,
-                 obj->v.staff.skill > 0
-                    ? skill_table[obj->v.staff.skill].name : "none");
-            break;
-
-        case ITEM_PORTAL:
-            printf_to_char (ch,
-                "[v0] Charges:        [%ld]\n\r"
-                "[v1] Exit Flags:     %s\n\r"
-                "[v2] Portal Flags:   %s\n\r"
-                "[v3] Goes to (vnum): [%ld]\n\r",
-                obj->v.portal.charges,
-                flags_to_string (exit_flags, obj->v.portal.exit_flags),
-                flags_to_string (gate_flags, obj->v.portal.gate_flags),
-                obj->v.portal.to_vnum);
-            break;
-
-        case ITEM_FURNITURE:
-            printf_to_char (ch,
-                "[v0] Max People:      [%ld]\n\r"
-                "[v1] Max Weight:      [%ld]\n\r"
-                "[v2] Furniture Flags: %s\n\r"
-                "[v3] Heal bonus:      [%ld]\n\r"
-                "[v4] Mana bonus:      [%ld]\n\r",
-                obj->v.furniture.max_people,
-                obj->v.furniture.max_weight,
-                flags_to_string (furniture_flags, obj->v.furniture.flags),
-                obj->v.furniture.heal_rate,
-                obj->v.furniture.mana_rate);
-            break;
-
-        case ITEM_SCROLL: {
-            int i;
-            printf_to_char (ch, "[v0] Level: [%ld]\n\r", obj->v.scroll.level);
-            for (i = 0; i < SCROLL_SKILL_MAX; i++) {
-                printf_to_char (ch, "[v%d] Spell: %s\n\r", i + 1,
-                    obj->v.scroll.skill[i] > 0
-                        ? skill_table[obj->v.scroll.skill[i]].name : "none");
-            }
-            break;
-        }
-
-        case ITEM_POTION: {
-            int i;
-            printf_to_char (ch, "[v0] Level: [%ld]\n\r", obj->v.potion.level);
-            for (i = 0; i < POTION_SKILL_MAX; i++) {
-                printf_to_char (ch, "[v%d] Spell: %s\n\r", i + 1,
-                    obj->v.potion.skill[i] > 0
-                        ? skill_table[obj->v.potion.skill[i]].name : "none");
-            }
-            break;
-        }
-
-        case ITEM_PILL: {
-            int i;
-            printf_to_char (ch, "[v0] Level: [%ld]\n\r", obj->v.pill.level);
-            for (i = 0; i < PILL_SKILL_MAX; i++) {
-                printf_to_char (ch, "[v%d] Spell: %s\n\r", i + 1,
-                    obj->v.pill.skill[i] > 0
-                        ? skill_table[obj->v.pill.skill[i]].name : "none");
-            }
-            break;
-        }
-
-        /* ARMOR for ROM */
-        case ITEM_ARMOR:
-            printf_to_char (ch,
-                "[v0] Ac Pierce: [%ld]\n\r"
-                "[v1] Ac Bash:   [%ld]\n\r"
-                "[v2] Ac Slash:  [%ld]\n\r"
-                "[v3] Ac Magic:  [%ld]\n\r",
-                obj->v.armor.vs_pierce,
-                obj->v.armor.vs_bash,
-                obj->v.armor.vs_slash,
-                obj->v.armor.vs_magic);
-            break;
-
-        /* WEAPON changed in ROM: */
-        /* I had to split the output here, I have no idea why, but it helped -- Hugin */
-        /* It somehow fixed a bug in showing scroll/pill/potions too ?! */
-
-        /* ^^^ flag_string() uses a static char[], which must be copied to at
-         *     least one separate buffer. -- Synival */
-
-        case ITEM_WEAPON: {
-            char wtype[MAX_STRING_LENGTH];
-            char wflags[MAX_STRING_LENGTH];
-            strcpy (wtype,  type_get_name (weapon_types, obj->v.weapon.weapon_type));
-            strcpy (wflags, flags_to_string (weapon_flags, obj->v.weapon.flags));
-
-            printf_to_char (ch,
-                "[v0] Weapon Class:   %s\n\r"
-                "[v1] Number of Dice: [%ld]\n\r"
-                "[v2] Type of Dice:   [%ld]\n\r"
-                "[v3] Type:           %s\n\r"
-                "[v4] Special Type:   %s\n\r",
-                wtype,
-                obj->v.weapon.dice_num,
-                obj->v.weapon.dice_size,
-                attack_table[obj->v.weapon.attack_type].name,
-                wflags);
-            break;
-        }
-
-        case ITEM_CONTAINER: {
-            OBJ_INDEX_T *key = get_obj_index (obj->v.container.key);
-            printf_to_char (ch,
-                "[v0] Weight:     [%ld kg]\n\r"
-                "[v1] Flags:      [%s]\n\r"
-                "[v2] Key:        %s [%ld]\n\r"
-                "[v3] Capacity    [%ld]\n\r"
-                "[v4] Weight Mult [%ld]\n\r",
-                obj->v.container.capacity,
-                flags_to_string (container_flags, obj->v.container.flags),
-                key ? key->short_descr : "none",
-                obj->v.container.key,
-                obj->v.container.max_weight,
-                obj->v.container.weight_mult);
-            break;
-        }
-
-        case ITEM_DRINK_CON:
-            printf_to_char (ch,
-                "[v0] Liquid Total: [%ld]\n\r"
-                "[v1] Liquid Left:  [%ld]\n\r"
-                "[v2] Liquid:       %s\n\r"
-                "[v3] Poisoned:     %s\n\r",
-                obj->v.drink_con.capacity,
-                obj->v.drink_con.filled,
-                liq_table[obj->v.drink_con.liquid].name,
-                obj->v.drink_con.poisoned != 0 ? "Yes" : "No");
-            break;
-
-        case ITEM_FOUNTAIN:
-            printf_to_char (ch,
-                "[v0] Liquid Total: [%ld]\n\r"
-                "[v1] Liquid Left:  [%ld]\n\r"
-                "[v2] Liquid:        %s\n\r"
-                "[v3] Poisoned:      %s\n\r",
-                obj->v.fountain.capacity,
-                obj->v.fountain.filled,
-                liq_table[obj->v.fountain.liquid].name,
-                obj->v.fountain.poisoned != 0 ? "Yes" : "No");
-            break;
-
-        case ITEM_FOOD:
-            printf_to_char (ch,
-                "[v0] Food hours: [%ld]\n\r"
-                "[v1] Full hours: [%ld]\n\r"
-                "[v3] Poisoned:   %s\n\r",
-                obj->v.food.hunger,
-                obj->v.food.fullness,
-                obj->v.food.poisoned != 0 ? "Yes" : "No");
-            break;
-
-        case ITEM_MONEY:
-            printf_to_char (ch,
-                "[v0] Silver: [%ld]\n\r",
-                "[v1] Gold:   [%ld]\n\r",
-                obj->v.money.silver,
-                obj->v.money.gold);
-            break;
-    }
-}
-
+/* (from OLC) */
 bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj,
     int value_num, char *argument)
 {
@@ -540,7 +342,8 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj,
             }
             break;
     }
-    oedit_show_obj_values (ch, obj);
+
+    item_index_show_values (obj, ch);
     return TRUE;
 }
 
@@ -621,7 +424,7 @@ OEDIT (oedit_show) {
         cnt++;
     }
 
-    oedit_show_obj_values (ch, obj);
+    item_index_show_values (obj, ch);
     return FALSE;
 }
 
