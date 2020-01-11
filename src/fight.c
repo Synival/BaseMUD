@@ -50,77 +50,10 @@
 #include "globals.h"
 #include "memory.h"
 #include "items.h"
+#include "players.h"
+#include "mobiles.h"
 
 #include "fight.h"
-
-/* Advancement stuff. */
-void advance_level (CHAR_T *ch, bool hide) {
-    char buf[MAX_STRING_LENGTH];
-    int add_hp, add_mana, add_move, add_prac;
-
-    if (IS_NPC (ch))
-        return;
-
-    ch->pcdata->last_level =
-        (ch->played + (int) (current_time - ch->logon)) / 3600;
-
-    sprintf (buf, "the %s",
-        title_table[ch->class][ch->level][ch->sex == SEX_FEMALE ? 1 : 0]);
-    char_set_title (ch, buf);
-
-    add_hp = char_con_level_hp (ch) +
-        number_range (class_table[ch->class].hp_min,
-                      class_table[ch->class].hp_max);
-    add_mana = number_range (2, (2 * char_get_curr_stat (ch, STAT_INT)
-                                 + char_get_curr_stat (ch, STAT_WIS)) / 5);
-    if (!class_table[ch->class].gains_mana)
-        add_mana /= 2;
-    add_move = number_range (1, (char_get_curr_stat (ch, STAT_CON)
-                                 + char_get_curr_stat (ch, STAT_DEX)) / 6);
-    add_prac = char_wis_level_practices (ch);
-
-    add_hp   = add_hp   * 9 / 10;
-    add_mana = add_mana * 9 / 10;
-    add_move = add_move * 9 / 10;
-
-    add_hp   = UMAX (2, add_hp);
-    add_mana = UMAX (2, add_mana);
-    add_move = UMAX (6, add_move);
-
-    ch->max_hit  += add_hp;
-    ch->max_mana += add_mana;
-    ch->max_move += add_move;
-    ch->practice += add_prac;
-    ch->train += 1;
-
-    ch->pcdata->perm_hit += add_hp;
-    ch->pcdata->perm_mana += add_mana;
-    ch->pcdata->perm_move += add_move;
-
-    if (!hide) {
-        printf_to_char (ch, "You gain %d hit point%s, %d mana, %d move, and "
-            "%d practice%s.\n\r", add_hp, add_hp == 1 ? "" : "s", add_mana,
-            add_move, add_prac, add_prac == 1 ? "" : "s");
-    }
-}
-
-void gain_exp (CHAR_T *ch, int gain) {
-    if (IS_NPC (ch) || ch->level >= LEVEL_HERO)
-        return;
-
-    ch->exp = UMAX (exp_per_level (ch), ch->exp + gain);
-    while (ch->level < LEVEL_HERO && ch->exp >=
-           exp_per_level (ch) * (ch->level + 1))
-    {
-        send_to_char ("{GYou raise a level!!  {x", ch);
-        ch->level += 1;
-        log_f ("%s gained level %d", ch->name, ch->level);
-        wiznetf (ch, NULL, WIZ_LEVELS, 0, 0,
-            "$N has attained level %d!", ch->level);
-        advance_level (ch, FALSE);
-        save_char_obj (ch);
-    }
-}
 
 int should_assist_group (CHAR_T *bystander, CHAR_T *attacker, CHAR_T *victim) {
     if (!is_same_group (bystander, attacker))
@@ -134,50 +67,6 @@ int should_assist_group (CHAR_T *bystander, CHAR_T *attacker, CHAR_T *victim) {
     if (IS_AFFECTED (bystander, AFF_CHARM))
         return 1;
     return 0;
-}
-
-int npc_should_assist_player (CHAR_T *bystander, CHAR_T *player,
-    CHAR_T *victim)
-{
-    if (!IS_NPC (bystander))
-        return 0;
-    if (IS_NPC (player))
-        return 0;
-    if (!IS_SET (bystander->off_flags, ASSIST_PLAYERS))
-        return 0;
-
-    /* bystander shouldn't assist any players fighting
-     * something more than 5 levels above it. */
-    if (bystander->level + 5 < victim->level)
-        return 0;
-
-    return 1;
-}
-
-bool npc_should_assist_attacker (CHAR_T *bystander, CHAR_T *attacker,
-    CHAR_T *victim)
-{
-    if (!IS_NPC (bystander))
-        return FALSE;
-
-    /* assist group, everyone, race, or like-aligned. */
-    if (bystander->group && bystander->group == attacker->group)
-        return TRUE;
-    if (IS_SET (bystander->off_flags, ASSIST_ALL))
-        return TRUE;
-    if (IS_SET (bystander->off_flags, ASSIST_RACE) &&
-            bystander->race == attacker->race)
-        return TRUE;
-    if (IS_SET (bystander->off_flags, ASSIST_ALIGN) &&
-            IS_SAME_ALIGN (bystander, attacker))
-        return TRUE;
-
-    /* programmed to assist a specific vnum? */
-    if (bystander->index_data == attacker->index_data &&
-            IS_SET (bystander->off_flags, ASSIST_VNUM))
-        return TRUE;
-
-    return FALSE;
 }
 
 CHAR_T *random_group_target_in_room (CHAR_T *bystander, CHAR_T *ch) {
@@ -222,7 +111,7 @@ void check_assist (CHAR_T *ch, CHAR_T *victim) {
         }
 
         /* quick check for ASSIST_PLAYER */
-        if (npc_should_assist_player (rch, ch, victim)) {
+        if (mobile_should_assist_player (rch, ch, victim)) {
             do_function (rch, &do_emote, "screams and attacks!");
             multi_hit (rch, victim, ATTACK_DEFAULT);
             continue;
@@ -230,7 +119,7 @@ void check_assist (CHAR_T *ch, CHAR_T *victim) {
 
         /* 25% chance to randomly assist attackers. */
         if (number_percent() < 25 &&
-            npc_should_assist_attacker (rch, ch, victim))
+            mobile_should_assist_attacker (rch, ch, victim))
         {
             CHAR_T *target = random_group_target_in_room (rch, victim);
             if (target == NULL)
@@ -253,7 +142,7 @@ void multi_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
         return;
 
     if (IS_NPC (ch)) {
-        mob_hit (ch, victim, dt);
+        mobile_hit (ch, victim, dt);
         return;
     }
 
@@ -286,110 +175,6 @@ void multi_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
         char_try_skill_improve (ch, SN(THIRD_ATTACK), TRUE, 6);
         if (ch->fighting != victim)
             return;
-    }
-}
-
-/* procedure for all mobile attacks */
-void mob_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
-    int chance, number;
-    CHAR_T *vch, *vch_next;
-
-    one_hit (ch, victim, dt);
-    if (ch->fighting != victim)
-        return;
-
-    /* Area attack -- BALLS nasty! */
-    if (IS_SET (ch->off_flags, OFF_AREA_ATTACK)) {
-        for (vch = ch->in_room->people; vch != NULL; vch = vch_next) {
-            vch_next = vch->next;
-            if ((vch != victim && vch->fighting == ch))
-                one_hit (ch, vch, dt);
-        }
-    }
-
-    if (IS_AFFECTED (ch, AFF_HASTE) ||
-        (IS_SET (ch->off_flags, OFF_FAST) && !IS_AFFECTED (ch, AFF_SLOW)))
-    {
-        one_hit (ch, victim, dt);
-    }
-    if (ch->fighting != victim || dt == SN(BACKSTAB))
-        return;
-
-    chance = char_get_skill (ch, SN(SECOND_ATTACK)) / 2;
-    if (IS_AFFECTED (ch, AFF_SLOW) && !IS_SET (ch->off_flags, OFF_FAST))
-        chance /= 2;
-
-    if (number_percent () < chance) {
-        one_hit (ch, victim, dt);
-        if (ch->fighting != victim)
-            return;
-    }
-
-    chance = char_get_skill (ch, SN(THIRD_ATTACK)) / 4;
-    if (IS_AFFECTED (ch, AFF_SLOW) && !IS_SET (ch->off_flags, OFF_FAST))
-        chance = 0;
-
-    if (number_percent () < chance) {
-        one_hit (ch, victim, dt);
-        if (ch->fighting != victim)
-            return;
-    }
-
-    /* oh boy!  Fun stuff! */
-    if (ch->wait > 0 || ch->position < POS_FIGHTING)
-        return;
-
-    /* now for the skills */
-    number = number_range (0, 8);
-    switch (number) {
-        case 0:
-            if (IS_SET (ch->off_flags, OFF_BASH))
-                do_function (ch, &do_bash, "");
-            break;
-
-        case 1:
-            if (IS_SET (ch->off_flags, OFF_BERSERK)
-                && !IS_AFFECTED (ch, AFF_BERSERK))
-                do_function (ch, &do_berserk, "");
-            break;
-
-        case 2:
-            if (IS_SET (ch->off_flags, OFF_DISARM) ||
-                (char_get_weapon_sn (ch) != SN(HAND_TO_HAND) &&
-                 (IS_SET (ch->mob, MOB_WARRIOR) ||
-                  IS_SET (ch->mob, MOB_THIEF))))
-                do_function (ch, &do_disarm, "");
-            break;
-
-        case 3:
-            if (IS_SET (ch->off_flags, OFF_KICK))
-                do_function (ch, &do_kick, "");
-            break;
-
-        case 4:
-            if (IS_SET (ch->off_flags, OFF_KICK_DIRT))
-                do_function (ch, &do_dirt, "");
-            break;
-
-        case 5:
-            if (IS_SET (ch->off_flags, OFF_TAIL))
-                ; /* do_function(ch, &do_tail, "") */
-            break;
-
-        case 6:
-            if (IS_SET (ch->off_flags, OFF_TRIP))
-                do_function (ch, &do_trip, "");
-            break;
-
-        case 7:
-            if (IS_SET (ch->off_flags, OFF_CRUSH))
-                ; /* do_function(ch, &do_crush, "") */
-            break;
-
-        case 8:
-            if (IS_SET (ch->off_flags, OFF_BACKSTAB))
-                do_function (ch, &do_backstab, "");
-            break;
     }
 }
 
@@ -819,13 +604,15 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
         stop_fighting (victim, TRUE);
         group_gain (ch, victim);
         if (!IS_NPC (victim)) {
+            int exp;
             log_f ("%s killed by %s at %d",
                 victim->name, PERS (ch), ch->in_room->vnum);
 
             /* Dying penalty: 2/3 way back to previous level. */
-            if (victim->exp > exp_per_level (victim) * victim->level) {
-                gain_exp (victim, (2 * (exp_per_level (victim) *
-                    victim->level - victim->exp) / 3) + 50);
+            exp = player_get_exp_per_level (victim);
+            if (victim->exp > exp * victim->level) {
+                player_gain_exp (victim, (2 *
+                    (exp * victim->level - victim->exp) / 3) + 50);
             }
         }
 
@@ -843,7 +630,7 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
         corpse = raw_kill (victim);
 
         /* dump the flags */
-        if (ch != victim && !IS_NPC (ch) && !char_in_same_clan (ch, victim)) {
+        if (ch != victim && !IS_NPC (ch) && !player_in_same_clan (ch, victim)) {
             if (IS_SET (victim->plr, PLR_KILLER))
                 REMOVE_BIT (victim->plr, PLR_KILLER);
             else
@@ -1008,7 +795,7 @@ bool do_filter_can_attack_real (CHAR_T *ch, CHAR_T *victim, bool area,
         }
         /* player doing the killing */
         else {
-            FILTER (!char_has_clan (ch),
+            FILTER (!player_has_clan (ch),
                 QU("Join a clan if you want to kill players.\n\r"), ch);
 
             /* Killing undesirables is allowed. */
@@ -1016,7 +803,7 @@ bool do_filter_can_attack_real (CHAR_T *ch, CHAR_T *victim, bool area,
                 IS_SET (victim->plr, PLR_THIEF))
                 return FALSE;
 
-            FILTER (!char_has_clan (victim),
+            FILTER (!player_has_clan (victim),
                 QU("They aren't in a clan, leave them alone.\n\r"), ch);
             FILTER (ch->level > victim->level + 8,
                 QU("Pick on someone your own size.\n\r"), ch);
@@ -1064,7 +851,7 @@ void check_killer (CHAR_T *ch, CHAR_T *victim) {
      * So is being immortal (Alander's idea).
      * And current killers stay as they are. */
     if (IS_NPC (ch)
-        || ch == victim || ch->level >= LEVEL_IMMORTAL || !char_has_clan (ch)
+        || ch == victim || ch->level >= LEVEL_IMMORTAL || !player_has_clan (ch)
         || IS_SET (ch->plr, PLR_KILLER) || ch->fighting == victim)
         return;
 
@@ -1256,7 +1043,7 @@ OBJ_T *make_corpse (CHAR_T *ch) {
         corpse = obj_create (get_obj_index (OBJ_VNUM_CORPSE_PC), 0);
         corpse->timer = number_range (25, 40);
         REMOVE_BIT (ch->plr, PLR_CANLOOT);
-        if (!char_has_clan (ch))
+        if (!player_has_clan (ch))
             corpse->owner = str_dup (ch->name);
         else {
             corpse->owner = NULL;
@@ -1513,9 +1300,9 @@ void group_gain (CHAR_T *ch, CHAR_T *victim) {
         }
 #endif
 
-        xp = xp_compute (gch, victim, group_levels);
+        xp = compute_exp (gch, victim, group_levels);
         printf_to_char (gch, "You receive %d experience points.\n\r", xp);
-        gain_exp (gch, xp);
+        player_gain_exp (gch, xp);
 
         for (obj = ch->carrying; obj != NULL; obj = obj_next) {
             obj_next = obj->next_content;
@@ -1538,7 +1325,7 @@ void group_gain (CHAR_T *ch, CHAR_T *victim) {
 /* Compute xp for a kill.
  * Also adjust alignment of killer.
  * Edit this function to change xp computations. */
-int xp_compute (CHAR_T *gch, CHAR_T *victim, int total_levels) {
+int compute_exp (CHAR_T *gch, CHAR_T *victim, int total_levels) {
     int xp, base_exp;
     int align, level_range;
     int change;
@@ -1853,45 +1640,4 @@ void disarm (CHAR_T *ch, CHAR_T *victim) {
         if (IS_NPC (victim) && victim->wait == 0 && char_can_see_obj (victim, obj))
             char_take_obj (victim, obj, NULL);
     }
-}
-
-int exp_to_next_level (const CHAR_T *ch) {
-    if (IS_NPC (ch) || ch->level >= LEVEL_HERO)
-        return 1000;
-    return (ch->level + 1) * exp_per_level (ch) - ch->exp;
-}
-
-int exp_per_level (const CHAR_T *ch)
-    { return exp_per_level_with_points (ch, ch->pcdata->creation_points); }
-
-int exp_per_level_with_points (const CHAR_T *ch, int points) {
-    const PC_RACE_T *race;
-    int expl, inc, mult;
-
-    if (IS_NPC (ch))
-        return 1000;
-
-    expl = 1000;
-    inc = 500;
-
-    race = pc_race_get_by_race (ch->race);
-    mult = race->class_mult[ch->class];
-
-    if (points < 40)
-        return 1000 * (mult ? mult / 100 : 1);
-
-    /* processing */
-    points -= 40;
-    while (points > 9) {
-        expl += inc;
-        points -= 10;
-        if (points > 9) {
-            expl += inc;
-            inc *= 2;
-            points -= 10;
-        }
-    }
-
-    expl += points * inc / 10;
-    return expl * mult / 100;
 }

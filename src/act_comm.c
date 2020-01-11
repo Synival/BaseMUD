@@ -43,6 +43,7 @@
 #include "find.h"
 #include "chars.h"
 #include "globals.h"
+#include "players.h"
 
 #include "act_comm.h"
 
@@ -340,7 +341,7 @@ DEFINE_DO_FUN (do_music) {
 DEFINE_DO_FUN (do_clantalk) {
     DESCRIPTOR_T *d;
 
-    BAIL_IF (!char_has_clan (ch) || clan_table[ch->clan].independent,
+    BAIL_IF (player_is_independent (ch),
         "You aren't in a clan.\n\r", ch);
     if (do_comm_toggle_channel_if_blank (ch, argument, COMM_NOCLAN,
             "Clan channel is now ON\n\r",
@@ -357,7 +358,7 @@ DEFINE_DO_FUN (do_clantalk) {
             continue;
         if (IS_SET (victim->comm, COMM_NOCLAN) || IS_SET (victim->comm, COMM_QUIET))
             continue;
-        if (!char_in_same_clan (ch, d->character))
+        if (!player_in_same_clan (ch, d->character))
             continue;
         act_new ("$n clans '$t'{x", ch, argument, victim, TO_VICT, POS_DEAD);
     }

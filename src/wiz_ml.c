@@ -44,6 +44,7 @@
 #include "memory.h"
 #include "globals.h"
 #include "find.h"
+#include "players.h"
 
 #include "wiz_ml.h"
 
@@ -80,7 +81,7 @@ DEFINE_DO_FUN (do_advance) {
         send_to_char ("**** OOOOHHHHHHHHHH  NNNNOOOO ****\n\r", victim);
         temp_prac = victim->practice;
         victim->level = 1;
-        victim->exp = exp_per_level (victim);
+        victim->exp = player_get_exp_per_level (victim);
         victim->max_hit = 10;
         victim->max_mana = 100;
         victim->max_move = 100;
@@ -88,7 +89,7 @@ DEFINE_DO_FUN (do_advance) {
         victim->hit = victim->max_hit;
         victim->mana = victim->max_mana;
         victim->move = victim->max_move;
-        advance_level (victim, TRUE);
+        player_advance_level (victim, TRUE);
         victim->practice = temp_prac;
     }
     else {
@@ -97,10 +98,10 @@ DEFINE_DO_FUN (do_advance) {
     }
     for (i = victim->level; i < level; i++) {
         victim->level += 1;
-        advance_level (victim, TRUE);
+        player_advance_level (victim, TRUE);
     }
     printf_to_char (victim, "You are now level %d.\n\r", victim->level);
-    victim->exp = exp_per_level (victim) * UMAX (1, victim->level);
+    victim->exp = player_get_exp_per_level (victim) * UMAX (1, victim->level);
     victim->trust = 0;
     save_char_obj (victim);
 }

@@ -46,6 +46,7 @@
 #include "find.h"
 #include "globals.h"
 #include "items.h"
+#include "players.h"
 
 #include "act_move.h"
 
@@ -642,7 +643,7 @@ DEFINE_DO_FUN (do_recall) {
         }
 
         lose = (ch->desc != NULL) ? 25 : 50;
-        gain_exp (ch, 0 - lose);
+        player_gain_exp (ch, 0 - lose);
         char_try_skill_improve (ch, SN(RECALL), TRUE, 4);
         printf_to_char (ch, "You recall from combat!  You lose %d exps.\n\r",
             lose);

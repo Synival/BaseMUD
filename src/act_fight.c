@@ -40,6 +40,7 @@
 #include "act_comm.h"
 #include "chars.h"
 #include "find.h"
+#include "players.h"
 
 #include "act_fight.h"
 
@@ -566,7 +567,7 @@ DEFINE_DO_FUN (do_flee) {
                 send_to_char ("You snuck away safely.\n\r", ch);
             else {
                 send_to_char ("You lost 10 exp.\n\r", ch);
-                gain_exp (ch, -10);
+                player_gain_exp (ch, -10);
             }
         }
 

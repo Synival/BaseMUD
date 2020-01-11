@@ -46,6 +46,8 @@
 #include "find.h"
 #include "memory.h"
 #include "globals.h"
+#include "mobiles.h"
+#include "players.h"
 
 #include "wiz_l5.h"
 
@@ -362,7 +364,7 @@ DEFINE_DO_FUN (do_string) {
         if (!str_prefix (arg2, "title")) {
             BAIL_IF (IS_NPC (victim),
                 "Not on NPC's.\n\r", ch);
-            char_set_title (victim, arg3);
+            player_set_title (victim, arg3);
             return;
         }
         if (!str_prefix (arg2, "spec")) {
@@ -476,8 +478,8 @@ DEFINE_DO_FUN (do_clone) {
                  !IS_TRUSTED (ch, AVATAR),
             "Your powers are not great enough for such a task.\n\r", ch);
 
-        clone = char_create_mobile (mob->index_data);
-        char_clone_mobile (mob, clone);
+        clone = mobile_create (mob->index_data);
+        mobile_clone (mob, clone);
         for (obj = mob->carrying; obj != NULL; obj = obj->next_content) {
             if (do_obj_load_check (ch, obj)) {
                 new_obj = obj_create (obj->index_data, 0);

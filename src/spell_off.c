@@ -38,6 +38,7 @@
 #include "objs.h"
 #include "globals.h"
 #include "items.h"
+#include "players.h"
 
 #include "spell_off.h"
 
@@ -361,7 +362,7 @@ DEFINE_SPELL_FUN (spell_energy_drain) {
     if (victim->level <= 2)
         dam = ch->hit + 1;
     else {
-        gain_exp (victim, 0 - number_range (level / 2, 3 * level / 2));
+        player_gain_exp (victim, 0 - number_range (level / 2, 3 * level / 2));
         victim->mana /= 2;
         victim->move /= 2;
         dam = dice (1, level);

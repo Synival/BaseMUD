@@ -49,6 +49,7 @@
 #include "find.h"
 #include "act_info.h"
 #include "globals.h"
+#include "mobiles.h"
 
 #include "mob_cmds.h"
 
@@ -332,7 +333,7 @@ DEFINE_DO_FUN (do_mpmload) {
     BAIL_IF_BUGF ((mob_index = get_mob_index (vnum)) == NULL,
         "Mpmload: bad mob index (%d) from mob %d", vnum, CH_VNUM (ch));
 
-    victim = char_create_mobile (mob_index);
+    victim = mobile_create (mob_index);
     char_to_room (victim, ch->in_room);
 }
 

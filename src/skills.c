@@ -39,6 +39,7 @@
 #include "act_info.h"
 #include "act_skills.h"
 #include "chars.h"
+#include "players.h"
 
 #include "skills.h"
 
@@ -216,7 +217,8 @@ void char_list_skills_and_groups (CHAR_T *ch, bool chosen) {
         send_to_char ("\n\r", ch);
         printf_to_char (ch, "Creation points: %d\n\r",
             ch->pcdata->creation_points);
-        printf_to_char (ch, "Experience per level: %d\n\r", exp_per_level (ch));
+        printf_to_char (ch, "Experience per level: %d\n\r",
+            player_get_exp_per_level (ch));
     }
 }
 
@@ -251,7 +253,7 @@ void char_try_skill_improve (CHAR_T *ch, int sn, bool success, int multiplier) {
             printf_to_char (ch, "{5You have become better at %s!{x\n\r",
                 skill_table[sn].name);
             ch->pcdata->learned[sn]++;
-            gain_exp (ch, 2 * skill_table[sn].classes[ch->class].effort);
+            player_gain_exp (ch, 2 * skill_table[sn].classes[ch->class].effort);
         }
     }
     else {
@@ -262,7 +264,7 @@ void char_try_skill_improve (CHAR_T *ch, int sn, bool success, int multiplier) {
                 skill_table[sn].name);
             ch->pcdata->learned[sn] += number_range (1, 3);
             ch->pcdata->learned[sn] = UMIN (ch->pcdata->learned[sn], 100);
-            gain_exp (ch, 2 * skill_table[sn].classes[ch->class].effort);
+            player_gain_exp (ch, 2 * skill_table[sn].classes[ch->class].effort);
         }
     }
 }

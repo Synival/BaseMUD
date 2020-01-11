@@ -40,6 +40,7 @@
 #include "act_comm.h"
 #include "chars.h"
 #include "find.h"
+#include "players.h"
 
 #include "act_skills.h"
 
@@ -223,7 +224,7 @@ DEFINE_DO_FUN (do_gain) {
              ch, NULL, trainer, TO_CHAR);
         ch->train -= 2;
         ch->pcdata->creation_points -= 1;
-        ch->exp = exp_per_level (ch) * ch->level;
+        ch->exp = player_get_exp_per_level (ch) * ch->level;
         return;
     }
 

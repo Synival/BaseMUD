@@ -368,7 +368,7 @@ void convert_objects (void) {
  Name:       convert_mobile
  Purpose:    Converts an old_format mob into new_format
  Called by:  load_old_mob (db.c).
- Note:       Dug out of char_create_mobile (db.c)
+ Note:       Dug out of mobile_create (db.c)
  Author:     Hugin
  ****************************************************************************/
 void convert_mobile (MOB_INDEX_T *mob_index) {
@@ -384,7 +384,7 @@ void convert_mobile (MOB_INDEX_T *mob_index) {
 
     /*
      * Calculate hit dice.  Gives close to the hitpoints
-     * of old format mobs created with char_create_mobile() (chars.c)
+     * of old format mobs created with mobile_create() (chars.c)
      * A high number of dice makes for less variance in mobiles
      * hitpoints.
      * (might be a good idea to reduce the max number of dice)
@@ -401,7 +401,7 @@ void convert_mobile (MOB_INDEX_T *mob_index) {
      30:    10d61+416    426(419)  1026(1026)   600( 607)   726(    )
      50:    10d169+920   930(923)  2610(2610)  1680(1688)  1770(    )
 
-     The values in parenthesis give the values generated in char_create_mobile.
+     The values in parenthesis give the values generated in mobile_create.
      Diff = max - min.  Mean is the arithmetic mean.
      (hmm.. must be some roundoff error in my calculations.. smurfette got
      1d6+23 hp at level 3 ? -- anyway.. the values above should be

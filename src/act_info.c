@@ -55,6 +55,7 @@
 #include "globals.h"
 #include "memory.h"
 #include "items.h"
+#include "players.h"
 
 #include "act_info.h"
 
@@ -458,7 +459,7 @@ DEFINE_DO_FUN (do_worth) {
     }
     printf_to_char (ch,
         "You have %ld gold, %ld silver, and %d experience (%d exp to level).\n\r",
-        ch->gold, ch->silver, ch->exp, exp_to_next_level(ch));
+        ch->gold, ch->silver, ch->exp, player_get_exp_to_next_level(ch));
 }
 
 DEFINE_DO_FUN (do_score) {
@@ -503,7 +504,7 @@ DEFINE_DO_FUN (do_score) {
     /* RT shows exp to level */
     if (!IS_NPC (ch) && ch->level < LEVEL_HERO)
         printf_to_char (ch, "You need %d exp to level.\n\r",
-            exp_to_next_level (ch));
+            player_get_exp_to_next_level (ch));
 
     printf_to_char (ch, "Wimpy set to %d hit points.\n\r", ch->wimpy);
 
@@ -836,7 +837,7 @@ DEFINE_DO_FUN (do_who) {
             continue;
         if (restrict_race && !show_race[wch->race])
             continue;
-        if (only_clan && !char_has_clan (wch))
+        if (only_clan && !player_has_clan (wch))
             continue;
         if (restrict_clan && !show_clan[wch->clan])
             continue;
@@ -1039,7 +1040,7 @@ DEFINE_DO_FUN (do_title) {
         "Change your title to what?\n\r", ch);
 
     str_smash_tilde (argument);
-    char_set_title (ch, argument);
+    player_set_title (ch, argument);
     send_to_char ("Ok.\n\r", ch);
 }
 

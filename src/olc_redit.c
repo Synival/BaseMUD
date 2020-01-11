@@ -30,6 +30,7 @@
 #include "olc_medit.h"
 #include "olc_oedit.h"
 #include "memory.h"
+#include "mobiles.h"
 
 #include "olc_redit.h"
 
@@ -862,7 +863,7 @@ REDIT (redit_mreset) {
     redit_add_reset (room, reset, 0 /* Last slot */ );
 
     /* Create the mobile. */
-    newmob = char_create_mobile (mob_index);
+    newmob = mobile_create (mob_index);
     char_to_room (newmob, room);
 
     printf_to_char (ch,

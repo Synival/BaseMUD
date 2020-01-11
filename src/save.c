@@ -38,6 +38,8 @@
 #include "globals.h"
 #include "memory.h"
 #include "items.h"
+#include "mobiles.h"
+#include "players.h"
 
 #include "save.h"
 
@@ -483,7 +485,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
     ch->pcdata->condition[COND_FULL] = 48;
     ch->pcdata->condition[COND_HUNGER] = 48;
     ch->pcdata->security = 0; /* OLC */
-    char_reset_colour (ch);
+    player_reset_colour (ch);
 
 #ifdef IMC
     imc_initchar( ch );
@@ -1129,14 +1131,14 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
         vnum = fread_number (fp);
         if (get_mob_index (vnum) == NULL) {
             bug ("fread_pet: bad vnum %d.", vnum);
-            pet = char_create_mobile (get_mob_index (MOB_VNUM_FIDO));
+            pet = mobile_create (get_mob_index (MOB_VNUM_FIDO));
         }
         else
-            pet = char_create_mobile (get_mob_index (vnum));
+            pet = mobile_create (get_mob_index (vnum));
     }
     else {
         bug ("fread_pet: no vnum in file.", 0);
-        pet = char_create_mobile (get_mob_index (MOB_VNUM_FIDO));
+        pet = mobile_create (get_mob_index (MOB_VNUM_FIDO));
     }
 
     while (1) {

@@ -71,7 +71,8 @@
 
 /* Thanks Dingo for making life a bit easier ;) */
 #define CH(d)       ((d)->original ? (d)->original : (d)->character)
-#define REAL_CH(ch) (((ch)->desc) ? CH((ch)->desc) : (ch))
+#define REAL_CH(ch) (((ch)->desc && (ch)->desc->original) \
+    ? (ch)->desc->original : (ch))
 
 /* Unused functions... */
 #if 0
@@ -79,8 +80,6 @@ bool char_is_friend (CHAR_T *ch, CHAR_T *victim);
 #endif
 
 /* Creation / destruction. */
-CHAR_T *char_create_mobile (MOB_INDEX_T *mob_index);
-void char_clone_mobile (CHAR_T *parent, CHAR_T *clone);
 void char_extract (CHAR_T *ch, bool pull);
 
 /* "Is" / "Can" functions. */
@@ -107,8 +106,6 @@ bool char_is_awake (const CHAR_T *ch);
 bool char_is_same_align (const CHAR_T *ch1, const CHAR_T *ch2);
 bool char_is_switched (const CHAR_T *ch);
 bool char_is_builder (const CHAR_T *ch, const AREA_T *area);
-bool char_has_clan (const CHAR_T *ch);
-bool char_in_same_clan (const CHAR_T *ch, const CHAR_T *victim);
 bool char_can_see_room (const CHAR_T *ch, const ROOM_INDEX_T *room_index);
 bool char_can_see_anywhere (const CHAR_T *ch, const CHAR_T *victim);
 bool char_can_see_in_room (const CHAR_T *ch, const CHAR_T *victim);
@@ -174,13 +171,11 @@ int char_con_level_hp (const CHAR_T *ch);
 int char_con_shock (const CHAR_T *ch);
 
 /* Action functions. */
-void char_reset (CHAR_T *ch);
 void char_from_room (CHAR_T *ch);
 void char_to_room_apply_plague (CHAR_T *ch);
 void char_to_room (CHAR_T *ch, ROOM_INDEX_T *room_index);
 bool char_equip_obj (CHAR_T *ch, OBJ_T *obj, flag_t wear_loc);
 bool char_unequip_obj (CHAR_T *ch, OBJ_T *obj);
-void char_reset_colour (CHAR_T *ch);
 void char_move (CHAR_T *ch, int door, bool follow);
 char *char_format_to_char (const CHAR_T *victim, const CHAR_T *ch);
 size_t char_format_condition_or_pos_msg (char *buf, size_t size,
@@ -194,7 +189,6 @@ void char_list_show_to_char (const CHAR_T *list, CHAR_T *ch);
 void char_take_obj (CHAR_T *ch, OBJ_T *obj, OBJ_T *container);
 bool char_remove_obj (CHAR_T *ch, flag_t wear_loc, bool replace, bool quiet);
 bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool replace);
-void char_set_title (CHAR_T *ch, char *title);
 bool char_drop_weapon_if_too_heavy (CHAR_T *ch);
 void char_reduce_money (CHAR_T *ch, int cost);
 void char_stop_idling (CHAR_T *ch);

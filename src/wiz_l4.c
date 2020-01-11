@@ -43,6 +43,7 @@
 #include "recycle.h"
 #include "descs.h"
 #include "globals.h"
+#include "mobiles.h"
 
 #include "wiz_l4.h"
 
@@ -321,7 +322,7 @@ DEFINE_DO_FUN (do_mload) {
     BAIL_IF ((mob_index = get_mob_index (atoi (arg))) == NULL,
         "No mob has that vnum.\n\r", ch);
 
-    victim = char_create_mobile (mob_index);
+    victim = mobile_create (mob_index);
     char_to_room (victim, ch->in_room);
     act ("$n has created $N!", ch, NULL, victim, TO_NOTCHAR);
     wiznetf (ch, NULL, WIZ_LOAD, WIZ_SECURE, char_get_trust (ch),

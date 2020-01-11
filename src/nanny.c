@@ -56,6 +56,7 @@
 #include "globals.h"
 #include "memory.h"
 #include "magic.h"
+#include "players.h"
 
 #include "nanny.h"
 
@@ -836,7 +837,8 @@ DEFINE_NANNY_FUN (nanny_gen_groups_done) {
 
     printf_to_char (ch, "Creation points: %d\n\r",
         ch->pcdata->creation_points);
-    printf_to_char (ch, "Experience per level: %d\n\r", exp_per_level (ch));
+    printf_to_char (ch, "Experience per level: %d\n\r",
+        player_get_exp_per_level (ch));
 
     if (ch->pcdata->creation_points < 40)
         ch->train = (40 - ch->pcdata->creation_points + 1) / 2;
@@ -884,7 +886,7 @@ DEFINE_NANNY_FUN (nanny_read_motd) {
     LIST_FRONT (ch, next, char_list);
 
     d->connected = CON_PLAYING;
-    char_reset (ch);
+    player_reset (ch);
 
     if (ch->level == 0) {
         if(mud_ansicolor)
@@ -895,7 +897,7 @@ DEFINE_NANNY_FUN (nanny_read_motd) {
         ch->perm_stat[class_table[ch->class].attr_prime] += 3;
 
         ch->level = 1;
-        ch->exp   = exp_per_level (ch);
+        ch->exp   = player_get_exp_per_level (ch);
         ch->hit   = ch->max_hit;
         ch->mana  = ch->max_mana;
         ch->move  = ch->max_move;
@@ -903,7 +905,7 @@ DEFINE_NANNY_FUN (nanny_read_motd) {
         ch->practice = 5;
         sprintf (buf, "the %s", title_table[ch->class][ch->level]
                  [ch->sex == SEX_FEMALE ? 1 : 0]);
-        char_set_title (ch, buf);
+        player_set_title (ch, buf);
 
         do_function (ch, &do_outfit, "");
         obj_give_to_char (obj_create (get_obj_index (OBJ_VNUM_MAP), 0), ch);

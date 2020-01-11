@@ -12,9 +12,9 @@ O_FILES = \
     affects.o ban.o board.o boot.o chars.o colour.o comm.o db_old.o db.o \
     descs.o do_sub.o effects.o fight.o find.o flags.o globals.o groups.o interp.o \
     items.o json.o json_import.o json_obj.o json_read.o json_write.o json_tbl.o \
-    lookup.o magic.o materials.o memory.o mob_cmds.o mob_prog.o music.o nanny.o objs.o \
+    lookup.o magic.o materials.o memory.o mob_cmds.o mob_prog.o mobiles.o music.o nanny.o objs.o \
     olc.o olc_aedit.o olc_hedit.o olc_medit.o olc_mpedit.o olc_oedit.o \
-    olc_redit.o olc_save.o portals.o recycle.o rooms.o save.o signal.o \
+    olc_redit.o olc_save.o players.o portals.o recycle.o rooms.o save.o signal.o \
     skills.o special.o spell_aff.o spell_create.o spell_cure.o spell_info.o \
     spell_misc.o spell_move.o spell_npc.o spell_off.o string.o tables.o \
     types.o update.o utils.o wiz_im.o wiz_l1.o wiz_l2.o wiz_l3.o wiz_l4.o \

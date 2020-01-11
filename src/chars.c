@@ -55,262 +55,6 @@
 
 #include "chars.h"
 
-/* Create an instance of a mobile. */
-CHAR_T *char_create_mobile (MOB_INDEX_T *mob_index) {
-    CHAR_T *mob;
-    int i;
-    AFFECT_T af;
-
-    mobile_count++;
-    EXIT_IF_BUG (mob_index == NULL,
-        "char_create_mobile: NULL mob_index.", 0);
-
-    mob = char_new ();
-
-    mob->index_data = mob_index;
-    str_replace_dup (&mob->name,        mob_index->name);        /* OLC */
-    str_replace_dup (&mob->short_descr, mob_index->short_descr); /* OLC */
-    str_replace_dup (&mob->long_descr,  mob_index->long_descr);  /* OLC */
-    str_replace_dup (&mob->description, mob_index->description); /* OLC */
-    mob->id           = get_mob_id ();
-    mob->spec_fun     = mob_index->spec_fun;
-    mob->prompt       = NULL;
-    mob->mprog_target = NULL;
-    mob->class        = CLASS_NONE;
-
-    if (mob_index->wealth == 0) {
-        mob->silver = 0;
-        mob->gold = 0;
-    }
-    else {
-        long wealth;
-        wealth = number_range (mob_index->wealth / 2, 3 * mob_index->wealth / 2);
-        mob->gold = number_range (wealth / 200, wealth / 100);
-        mob->silver = wealth - (mob->gold * 100);
-    }
-
-    /* load in new style */
-    if (mob_index->new_format) {
-        /* read from prototype */
-        mob->group    = mob_index->group;
-        mob->mob      = mob_index->mob_final;
-        mob->plr      = 0;
-        mob->comm     = COMM_NOCHANNELS | COMM_NOSHOUT | COMM_NOTELL;
-        mob->affected_by = mob_index->affected_by_final;
-        mob->alignment = mob_index->alignment;
-        mob->level    = mob_index->level;
-        mob->hitroll  = mob_index->hitroll;
-        mob->damroll  = mob_index->damage.bonus;
-        mob->max_hit  = dice (mob_index->hit.number, mob_index->hit.size)
-            + mob_index->hit.bonus;
-        mob->hit      = mob->max_hit;
-        mob->max_mana = dice (mob_index->mana.number, mob_index->mana.size)
-            + mob_index->mana.bonus;
-        mob->mana     = mob->max_mana;
-        mob->damage   = mob_index->damage;
-        mob->damage.bonus = 0;
-        mob->attack_type = mob_index->attack_type;
-
-        if (mob->attack_type == 0) {
-            switch (number_range (1, 3)) {
-                case 1: mob->attack_type = ATTACK_SLASH;  break;
-                case 2: mob->attack_type = ATTACK_POUND;  break;
-                case 3: mob->attack_type = ATTACK_PIERCE; break;
-            }
-        }
-        for (i = 0; i < 4; i++)
-            mob->armor[i] = mob_index->ac[i];
-        mob->off_flags   = mob_index->off_flags_final;
-        mob->imm_flags   = mob_index->imm_flags_final;
-        mob->res_flags   = mob_index->res_flags_final;
-        mob->vuln_flags  = mob_index->vuln_flags_final;
-        mob->start_pos   = mob_index->start_pos;
-        mob->default_pos = mob_index->default_pos;
-
-        mob->sex = mob_index->sex;
-        if (mob->sex == 3) /* random sex */
-            mob->sex = number_range (1, 2);
-        mob->race     = mob_index->race;
-        mob->form     = mob_index->form_final;
-        mob->parts    = mob_index->parts_final;
-        mob->size     = mob_index->size;
-        mob->material = mob_index->material;
-
-        /* computed on the spot */
-        for (i = 0; i < STAT_MAX; i++)
-            mob->perm_stat[i] = UMIN (25, 11 + mob->level / 4);
-
-        if (IS_SET (mob->mob, MOB_WARRIOR)) {
-            mob->perm_stat[STAT_STR] += 3;
-            mob->perm_stat[STAT_INT] -= 1;
-            mob->perm_stat[STAT_CON] += 2;
-        }
-        if (IS_SET (mob->mob, MOB_THIEF)) {
-            mob->perm_stat[STAT_DEX] += 3;
-            mob->perm_stat[STAT_INT] += 1;
-            mob->perm_stat[STAT_WIS] -= 1;
-        }
-        if (IS_SET (mob->mob, MOB_CLERIC)) {
-            mob->perm_stat[STAT_WIS] += 3;
-            mob->perm_stat[STAT_DEX] -= 1;
-            mob->perm_stat[STAT_STR] += 1;
-        }
-        if (IS_SET (mob->mob, MOB_MAGE)) {
-            mob->perm_stat[STAT_INT] += 3;
-            mob->perm_stat[STAT_STR] -= 1;
-            mob->perm_stat[STAT_DEX] += 1;
-        }
-        if (IS_SET (mob->off_flags, OFF_FAST))
-            mob->perm_stat[STAT_DEX] += 2;
-
-        mob->perm_stat[STAT_STR] += mob->size - SIZE_MEDIUM;
-        mob->perm_stat[STAT_CON] += (mob->size - SIZE_MEDIUM) / 2;
-
-        /* let's get some spell action */
-        if (IS_AFFECTED (mob, AFF_SANCTUARY)) {
-            affect_init (&af, AFF_TO_AFFECTS, skill_lookup_exact ("sanctuary"), mob->level, -1, APPLY_NONE, 0, AFF_SANCTUARY);
-            affect_to_char (mob, &af);
-        }
-        if (IS_AFFECTED (mob, AFF_HASTE)) {
-            affect_init (&af, AFF_TO_AFFECTS, skill_lookup_exact ("haste"), mob->level, -1, APPLY_DEX, 1 + (mob->level >= 18) + (mob->level >= 25) + (mob->level >= 32), AFF_HASTE);
-            affect_to_char (mob, &af);
-        }
-        if (IS_AFFECTED (mob, AFF_PROTECT_EVIL)) {
-            affect_init (&af, AFF_TO_AFFECTS, skill_lookup_exact ("protection evil"), mob->level, -1, APPLY_SAVES, -1, AFF_PROTECT_EVIL);
-            affect_to_char (mob, &af);
-        }
-        if (IS_AFFECTED (mob, AFF_PROTECT_GOOD)) {
-            affect_init (&af, AFF_TO_AFFECTS, skill_lookup_exact ("protection good"), mob->level, -1, APPLY_SAVES, -1, AFF_PROTECT_GOOD);
-            affect_to_char (mob, &af);
-        }
-    }
-    /* read in old format and convert */
-    else {
-        mob->mob         = mob_index->mob_final;
-        mob->plr         = 0;
-        mob->affected_by = mob_index->affected_by_final;
-        mob->alignment   = mob_index->alignment;
-        mob->level       = mob_index->level;
-        mob->hitroll     = mob_index->hitroll;
-        mob->damroll     = 0;
-        mob->max_hit     = (mob->level * 8 + number_range
-            (mob->level * mob->level / 4, mob->level * mob->level)) * 9 / 10;
-        mob->hit         = mob->max_hit;
-        mob->max_mana    = 100 + dice (mob->level, 10);
-        mob->mana        = mob->max_mana;
-        switch (number_range (1, 3)) {
-            case 1: mob->attack_type = ATTACK_SLASH;  break;
-            case 2: mob->attack_type = ATTACK_POUND;  break;
-            case 3: mob->attack_type = ATTACK_PIERCE; break;
-        }
-        for (i = 0; i < 3; i++)
-            mob->armor[i] = int_interpolate (mob->level, 100, -100);
-        mob->armor[3]    = int_interpolate (mob->level, 100, 0);
-        mob->race        = mob_index->race;
-        mob->off_flags   = mob_index->off_flags_final;
-        mob->imm_flags   = mob_index->imm_flags_final;
-        mob->res_flags   = mob_index->res_flags_final;
-        mob->vuln_flags  = mob_index->vuln_flags_final;
-        mob->start_pos   = mob_index->start_pos;
-        mob->default_pos = mob_index->default_pos;
-        mob->sex         = mob_index->sex;
-        mob->form        = mob_index->form_final;
-        mob->parts       = mob_index->parts_final;
-        mob->size        = SIZE_MEDIUM;
-
-        for (i = 0; i < STAT_MAX; i++)
-            mob->perm_stat[i] = 11 + mob->level / 4;
-    }
-    mob->position = mob->start_pos;
-
-    /* link the mob to the world list */
-    LIST_FRONT (mob, next, char_list);
-    mob_index->count++;
-    return mob;
-}
-
-/* duplicate a mobile exactly -- except inventory */
-void char_clone_mobile (CHAR_T *parent, CHAR_T *clone) {
-    int i;
-    AFFECT_T *paf;
-
-    if (parent == NULL || clone == NULL || !IS_NPC (parent))
-        return;
-
-    /* start fixing values */
-    str_replace_dup (&clone->name, parent->name);
-    clone->version     = parent->version;
-    str_replace_dup (&clone->short_descr, parent->short_descr);
-    str_replace_dup (&clone->long_descr,  parent->long_descr);
-    str_replace_dup (&clone->description, parent->description);
-    clone->group       = parent->group;
-    clone->sex         = parent->sex;
-    clone->class       = parent->class;
-    clone->race        = parent->race;
-    clone->level       = parent->level;
-    clone->trust       = 0;
-    clone->timer       = parent->timer;
-    clone->wait        = parent->wait;
-    clone->hit         = parent->hit;
-    clone->max_hit     = parent->max_hit;
-    clone->mana        = parent->mana;
-    clone->max_mana    = parent->max_mana;
-    clone->move        = parent->move;
-    clone->max_move    = parent->max_move;
-    clone->gold        = parent->gold;
-    clone->silver      = parent->silver;
-    clone->exp         = parent->exp;
-    clone->mob         = parent->mob;
-    clone->plr         = parent->plr;
-    clone->comm        = parent->comm;
-    clone->imm_flags   = parent->imm_flags;
-    clone->res_flags   = parent->res_flags;
-    clone->vuln_flags  = parent->vuln_flags;
-    clone->invis_level = parent->invis_level;
-    clone->affected_by = parent->affected_by;
-    clone->position    = parent->position;
-    clone->practice    = parent->practice;
-    clone->train       = parent->train;
-    clone->saving_throw = parent->saving_throw;
-    clone->alignment   = parent->alignment;
-    clone->hitroll     = parent->hitroll;
-    clone->damroll     = parent->damroll;
-    clone->wimpy       = parent->wimpy;
-    clone->form        = parent->form;
-    clone->parts       = parent->parts;
-    clone->size        = parent->size;
-    clone->material    = parent->material;
-    clone->off_flags   = parent->off_flags;
-    clone->attack_type = parent->attack_type;
-    clone->start_pos   = parent->start_pos;
-    clone->default_pos = parent->default_pos;
-    clone->spec_fun    = parent->spec_fun;
-    clone->damage      = parent->damage;
-
-    for (i = 0; i < 4; i++)
-        clone->armor[i] = parent->armor[i];
-
-    for (i = 0; i < STAT_MAX; i++) {
-        clone->perm_stat[i] = parent->perm_stat[i];
-        clone->mod_stat[i]  = parent->mod_stat[i];
-    }
-
-    /* now add the affects */
-    for (paf = parent->affected; paf != NULL; paf = paf->next)
-        affect_to_char (clone, paf);
-}
-
-bool char_has_clan (const CHAR_T *ch) {
-    return ch->clan;
-}
-
-bool char_in_same_clan (const CHAR_T *ch, const CHAR_T *victim) {
-    if (clan_table[ch->clan].independent)
-        return FALSE;
-    else
-        return (ch->clan == victim->clan);
-}
-
 OBJ_T *char_get_weapon (const CHAR_T *ch) {
     OBJ_T *wield;
 
@@ -357,115 +101,9 @@ int char_get_weapon_skill (const CHAR_T *ch, int sn) {
     return URANGE (0, skill, 100);
 }
 
-/* used to de-screw characters */
-void char_reset (CHAR_T *ch) {
-    int loc, mod, stat;
-    OBJ_T *obj;
-    AFFECT_T *af;
-    int i;
-
-    if (IS_NPC (ch))
-        return;
-
-    if (ch->pcdata->perm_hit   == 0 ||
-        ch->pcdata->perm_mana  == 0 ||
-        ch->pcdata->perm_move  == 0 ||
-        ch->pcdata->last_level == 0)
-    {
-        /* do a FULL reset */
-        for (loc = 0; loc < WEAR_LOC_MAX; loc++) {
-            obj = char_get_eq_by_wear_loc (ch, loc);
-            if (obj == NULL)
-                continue;
-            if (!obj->enchanted) {
-                for (af = obj->index_data->affected; af != NULL;
-                     af = af->next)
-                {
-                    mod = af->modifier;
-                    switch (af->apply) {
-                        case APPLY_SEX:
-                            ch->sex -= mod;
-                            if (ch->sex < 0 || ch->sex > 2)
-                                ch->sex = IS_NPC (ch) ? 0 : ch->pcdata->true_sex;
-                            break;
-                        case APPLY_MANA: ch->max_mana -= mod; break;
-                        case APPLY_HIT:  ch->max_hit  -= mod; break;
-                        case APPLY_MOVE: ch->max_move -= mod; break;
-                    }
-                }
-            }
-
-            for (af = obj->affected; af != NULL; af = af->next) {
-                mod = af->modifier;
-                switch (af->apply) {
-                    case APPLY_SEX:  ch->sex      -= mod; break;
-                    case APPLY_MANA: ch->max_mana -= mod; break;
-                    case APPLY_HIT:  ch->max_hit  -= mod; break;
-                    case APPLY_MOVE: ch->max_move -= mod; break;
-                }
-            }
-        }
-
-        /* now reset the permanent stats */
-        ch->pcdata->perm_hit = ch->max_hit;
-        ch->pcdata->perm_mana = ch->max_mana;
-        ch->pcdata->perm_move = ch->max_move;
-        ch->pcdata->last_level = ch->played / 3600;
-
-        if (ch->pcdata->true_sex < 0 || ch->pcdata->true_sex > 2) {
-            if (ch->sex > 0 && ch->sex < 3)
-                ch->pcdata->true_sex = ch->sex;
-            else
-                ch->pcdata->true_sex = 0;
-        }
-    }
-
-    /* now restore the character to his/her true condition */
-    for (stat = 0; stat < STAT_MAX; stat++)
-        ch->mod_stat[stat] = 0;
-
-    if (ch->pcdata->true_sex < 0 || ch->pcdata->true_sex > 2)
-        ch->pcdata->true_sex = 0;
-    ch->sex      = ch->pcdata->true_sex;
-    ch->max_hit  = ch->pcdata->perm_hit;
-    ch->max_mana = ch->pcdata->perm_mana;
-    ch->max_move = ch->pcdata->perm_move;
-
-    for (i = 0; i < 4; i++)
-        ch->armor[i] = 100;
-
-    ch->hitroll = 0;
-    ch->damroll = 0;
-    ch->saving_throw = 0;
-
-    /* now start adding back the effects */
-    for (loc = 0; loc < WEAR_LOC_MAX; loc++) {
-        obj = char_get_eq_by_wear_loc (ch, loc);
-        if (obj == NULL)
-            continue;
-        for (i = 0; i < 4; i++)
-            ch->armor[i] -= obj_get_ac_type (obj, loc, i);
-        if (obj->enchanted)
-            continue;
-        for (af = obj->index_data->affected; af != NULL; af = af->next)
-            affect_modify_apply (ch, af, TRUE);
-        for (af = obj->affected; af != NULL; af = af->next)
-            affect_modify_apply (ch, af, TRUE);
-    }
-
-    /* now add back spell effects */
-    for (af = ch->affected; af != NULL; af = af->next)
-        affect_modify_apply (ch, af, TRUE);
-
-    /* make sure sex is RIGHT!!!! */
-    if (ch->sex < 0 || ch->sex > 2)
-        ch->sex = ch->pcdata->true_sex;
-}
-
 /* Retrieve a character's trusted level for permission checking. */
 int char_get_trust (const CHAR_T *ch) {
-    if (ch->desc != NULL && ch->desc->original != NULL)
-        ch = ch->desc->original;
+    ch = REAL_CH (ch);
     if (ch->trust)
         return ch->trust;
     if (IS_NPC (ch) && ch->level >= LEVEL_HERO)
@@ -732,8 +370,7 @@ bool char_unequip_obj (CHAR_T *ch, OBJ_T *obj) {
 /* Extract a char from the world. */
 void char_extract (CHAR_T *ch, bool pull) {
     CHAR_T *wch;
-    OBJ_T *obj;
-    OBJ_T *obj_next;
+    OBJ_T *obj, *obj_next;
 
     /* doesn't seem to be necessary */
 #if 0
@@ -886,15 +523,6 @@ bool char_can_drop_obj (const CHAR_T *ch, const OBJ_T *obj) {
     return FALSE;
 }
 
-/* Config Colour stuff */
-void char_reset_colour (CHAR_T *ch) {
-    int i;
-    if (ch == NULL || ch->pcdata == NULL)
-        return;
-    for (i = 0; i < COLOUR_MAX; i++)
-        ch->pcdata->colour[i] = colour_setting_table[i].default_colour;
-}
-
 bool char_has_boat (const CHAR_T *ch) {
     OBJ_T *boat;
     for (boat = ch->carrying; boat != NULL; boat = boat->next_content)
@@ -911,7 +539,7 @@ void char_move (CHAR_T *ch, int door, bool follow) {
     EXIT_T *pexit;
     bool pass_door;
 
-    BAIL_IF_BUG (door < 0 || door > 5,
+    BAIL_IF_BUG (door < 0 || door >= DIR_MAX,
         "char_move: bad door %d.", door);
 
     BAIL_IF (ch->daze > 0,
@@ -1077,6 +705,7 @@ void char_move (CHAR_T *ch, int door, bool follow) {
 }
 
 char *char_format_to_char (const CHAR_T *victim, const CHAR_T *ch) {
+    const CHAR_T *real_ch;
     static char buf[MAX_STRING_LENGTH];
     buf[0] = '\0';
 
@@ -1160,7 +789,8 @@ char *char_format_to_char (const CHAR_T *victim, const CHAR_T *ch) {
         strcat (buf, "(THIEF) ");
 #endif
 
-    if (IS_SET (ch->comm, COMM_MATERIALS))
+    real_ch = REAL_CH (ch);
+    if (IS_SET (real_ch->comm, COMM_MATERIALS))
         material_strcat (buf, material_get (victim->material));
 
     if (victim->position == victim->start_pos && victim->long_descr[0] != '\0')
@@ -1485,8 +1115,7 @@ bool char_has_available_wear_flag (const CHAR_T *ch, flag_t wear_flag) {
 }
 
 /* Wear one object.
- * Optional replacement of existing objects.
- * Big repetitive code, ick. */
+ * Optional replacement of existing objects. */
 bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool replace) {
     const WEAR_LOC_T *wear_loc, *wear_locs[WEAR_LOC_MAX];
     int i, loc, locs;
@@ -1606,22 +1235,6 @@ void char_get_who_string (const CHAR_T *ch, const CHAR_T *wch, char *buf,
         IS_SET (wch->plr, PLR_THIEF) ? "(THIEF) " : "",
         wch->name,
         IS_NPC (wch) ? "" : wch->pcdata->title);
-}
-
-void char_set_title (CHAR_T *ch, char *title) {
-    char buf[MAX_STRING_LENGTH];
-
-    BAIL_IF_BUG (IS_NPC (ch),
-        "char_set_title: NPC.", 0);
-
-    if (title[0] != '.' && title[0] != ',' && title[0] != '!' && title[0] != '?') {
-        buf[0] = ' ';
-        strcpy (buf + 1, title);
-    }
-    else
-        strcpy (buf, title);
-
-    str_replace_dup (&(ch->pcdata->title), buf);
 }
 
 bool char_has_key (const CHAR_T *ch, int key) {
@@ -1848,11 +1461,11 @@ int char_format_exit_string (const CHAR_T *ch, const ROOM_INDEX_T *room,
 }
 
 void char_stop_idling (CHAR_T *ch) {
-    if (ch == NULL
-        || ch->desc == NULL
-        || ch->desc->connected != CON_PLAYING
-        || ch->was_in_room == NULL
-        || ch->in_room != get_room_index (ROOM_VNUM_LIMBO)
+    if (ch == NULL                         ||
+        ch->desc == NULL                   ||
+        ch->desc->connected != CON_PLAYING ||
+        ch->was_in_room == NULL            ||
+        ch->in_room != get_room_index (ROOM_VNUM_LIMBO)
     )
         return;
 
@@ -1864,7 +1477,7 @@ void char_stop_idling (CHAR_T *ch) {
 }
 
 const char *char_get_class_name (const CHAR_T *ch)
-    { return (IS_NPC (ch)) ? "mobile" : class_table[ch->class].name; }
+    { return (IS_NPC (ch)) ? "mobile" : class_get (ch->class)->name; }
 
 const char *char_get_position_str (const CHAR_T *ch, int position,
     const OBJ_T *on, int with_punct)
@@ -2008,15 +1621,13 @@ bool char_is_builder (const CHAR_T *ch, const AREA_T *area) {
 int char_get_vnum (const CHAR_T *ch)
     { return IS_NPC(ch) ? (ch)->index_data->vnum : 0; }
 
-int char_set_max_wait_state (CHAR_T *ch, int npulse)
-{
+int char_set_max_wait_state (CHAR_T *ch, int npulse) {
     if (!char_is_trusted (ch, IMPLEMENTOR) && npulse > ch->wait)
         ch->wait = npulse;
     return ch->wait;
 }
 
-int char_set_max_daze_state (CHAR_T *ch, int npulse)
-{
+int char_set_max_daze_state (CHAR_T *ch, int npulse) {
     if (!char_is_trusted (ch, IMPLEMENTOR) && npulse > ch->daze)
         ch->daze = npulse;
     return ch->daze;

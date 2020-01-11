@@ -35,6 +35,7 @@
 #include "fight.h"
 #include "objs.h"
 #include "items.h"
+#include "players.h"
 
 #include "spell_move.h"
 
@@ -84,7 +85,7 @@ bool spell_filter_can_go_to (CHAR_T *ch, CHAR_T *victim,
         "You failed.\n\r", ch);
     FILTER (IS_SET (ch->in_room->room_flags, ROOM_NO_RECALL),
         "You failed.\n\r", ch);
-    FILTER (char_has_clan (victim) && !char_in_same_clan (ch, victim),
+    FILTER (player_has_clan (victim) && !player_in_same_clan (ch, victim),
         "You failed.\n\r", ch);
     return FALSE;
 }

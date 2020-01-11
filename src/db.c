@@ -54,6 +54,7 @@
 #include "memory.h"
 #include "skills.h"
 #include "items.h"
+#include "mobiles.h"
 
 #include "db.h"
 
@@ -1386,7 +1387,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
                 return;
             }
 
-            mob = char_create_mobile (mob_index);
+            mob = mobile_create (mob_index);
 
             /* Some more hard coding. */
             if (room_is_dark (room_index))

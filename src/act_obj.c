@@ -51,6 +51,7 @@
 #include "globals.h"
 #include "lookup.h"
 #include "items.h"
+#include "players.h"
 
 #include "act_obj.h"
 
@@ -949,7 +950,7 @@ DEFINE_DO_FUN (do_steal) {
     if (((ch->level + 7 < victim->level || ch->level - 7 > victim->level)
          && !IS_NPC (victim) && !IS_NPC (ch))
         || (!IS_NPC (ch) && percent > char_get_skill (ch, SN(STEAL)))
-        || (!IS_NPC (ch) && !char_has_clan (ch)))
+        || (!IS_NPC (ch) && !player_has_clan (ch)))
     {
         /* Failure. */
         send_to_char ("Oops.\n\r", ch);

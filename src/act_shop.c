@@ -42,6 +42,7 @@
 #include "globals.h"
 #include "memory.h"
 #include "items.h"
+#include "mobiles.h"
 
 #include "act_shop.h"
 
@@ -138,7 +139,7 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
     }
 
     char_reduce_money (ch, cost);
-    pet = char_create_mobile (pet->index_data);
+    pet = mobile_create (pet->index_data);
     SET_BIT (pet->mob, MOB_PET);
     SET_BIT (pet->affected_by, AFF_CHARM);
     pet->comm = COMM_NOTELL | COMM_NOSHOUT | COMM_NOCHANNELS;
