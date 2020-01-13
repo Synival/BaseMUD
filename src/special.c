@@ -38,7 +38,6 @@
 #include "interp.h"
 #include "magic.h"
 #include "lookup.h"
-#include "skills.h"
 #include "db.h"
 #include "act_fight.h"
 #include "act_comm.h"

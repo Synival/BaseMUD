@@ -42,5 +42,16 @@ void player_gain_exp (CHAR_T *ch, int gain);
 int player_get_exp_to_next_level (const CHAR_T *ch);
 int player_get_exp_per_level (const CHAR_T *ch);
 int player_get_exp_per_level_with_points (const CHAR_T *ch, int points);
+void player_set_default_skills (CHAR_T *ch);
+int player_get_skill_learned (const CHAR_T *ch, int sn);
+void player_list_skills_and_groups (CHAR_T *ch, bool chosen);
+void player_try_skill_improve (CHAR_T *ch, int sn, bool success,
+    int multiplier);
+void player_add_skill (CHAR_T *ch, int sn, bool deduct);
+void player_remove_skill (CHAR_T *ch, int sn, bool refund);
+void player_add_skill_group (CHAR_T *ch, int gn, bool deduct);
+void player_remove_skill_group (CHAR_T *ch, int gn, bool refund);
+void player_add_skill_or_group (CHAR_T *ch, const char *name, bool deduct);
+void player_remove_skill_or_group (CHAR_T *ch, const char *name, bool refund);
 
 #endif

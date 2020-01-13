@@ -44,7 +44,6 @@ bool check_dispel_quick (int dis_level, CHAR_T *victim, char *skill,
 int mana_cost (CHAR_T *ch, int min_mana, int level);
 bool spell_fight_back_if_possible (CHAR_T *ch, CHAR_T *victim, int sn,
     int target);
-void do_cast (CHAR_T *ch, char *argument);
 void obj_cast_spell (int sn, int level, CHAR_T *ch, CHAR_T *victim,
     OBJ_T *obj);
 int is_affected_with_act (CHAR_T *victim, int sn, flag_t flag, CHAR_T *ch,

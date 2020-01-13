@@ -39,7 +39,6 @@
 #include "interp.h"
 #include "recycle.h"
 #include "lookup.h"
-#include "skills.h"
 #include "utils.h"
 #include "comm.h"
 #include "db.h"
@@ -500,7 +499,7 @@ DEFINE_NANNY_FUN (nanny_get_new_race) {
     for (i = 0; i < PC_RACE_SKILL_MAX; i++) {
         if (pc_race->skills[i] == NULL)
             break;
-        char_add_skill_or_group (ch, pc_race->skills[i], FALSE);
+        player_add_skill_or_group (ch, pc_race->skills[i], FALSE);
     }
 
     /* add cost */
@@ -578,11 +577,11 @@ DEFINE_NANNY_FUN (nanny_get_alignment) {
 
     write_to_buffer (d, "\n\r", 0);
 
-    char_add_skill_or_group (ch, "rom basics", FALSE);
+    player_add_skill_or_group (ch, "rom basics", FALSE);
     if (class_table[ch->class].base_group != NULL)
-        char_add_skill_or_group (ch, class_table[ch->class].base_group, FALSE);
+        player_add_skill_or_group (ch, class_table[ch->class].base_group, FALSE);
 
-    char_set_default_skills (ch);
+    player_set_default_skills (ch);
 
     send_to_desc ("Do you wish to customize this character?\n\r", d);
     send_to_desc
@@ -603,7 +602,7 @@ DEFINE_NANNY_FUN (nanny_default_choice) {
             ch->gen_data = gen_data_new ();
             do_function (ch, &do_help, "group header");
             write_to_buffer (d, "\n\r", 0);
-            char_list_skills_and_groups (ch, FALSE);
+            player_list_skills_and_groups (ch, FALSE);
 
             write_to_buffer (d,
                 "\n\rYou already have the following skills and spells:\n\r", 0);
@@ -615,7 +614,7 @@ DEFINE_NANNY_FUN (nanny_default_choice) {
 
         case 'N':
             if (class_table[ch->class].default_group != NULL)
-                char_add_skill_or_group (ch, class_table[ch->class].default_group, TRUE);
+                player_add_skill_or_group (ch, class_table[ch->class].default_group, TRUE);
             write_to_buffer (d, "\n\r", 2);
             write_to_buffer (d,
                 "Please pick a weapon from the following choices:\n\r", 0);
@@ -727,7 +726,7 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
             }
 
             printf_to_char (ch, "Group '%s' added.\n\r", group->name);
-            char_add_skill_group (ch, num, TRUE);
+            player_add_skill_group (ch, num, TRUE);
             ch->gen_data->group_chosen[num] = TRUE;
             return TRUE;
         }
@@ -753,7 +752,7 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
             }
 
             printf_to_char (ch, "Skill '%s' added.\n\r", skill->name);
-            char_add_skill (ch, num, TRUE);
+            player_add_skill (ch, num, TRUE);
             ch->gen_data->skill_chosen[num] = TRUE;
             return TRUE;
         }
@@ -772,7 +771,7 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
         if (num != -1 && ch->gen_data->group_chosen[num]) {
             group = skill_group_get (num);
             printf_to_char (ch, "Group '%s' dropped.\n\r", group->name);
-            char_remove_skill_group (ch, num, TRUE);
+            player_remove_skill_group (ch, num, TRUE);
             ch->gen_data->group_chosen[num] = FALSE;
             return TRUE;
         }
@@ -781,7 +780,7 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
         if (num != -1 && ch->gen_data->skill_chosen[num]) {
             skill = skill_get (num);
             printf_to_char (ch, "Skill '%s' dropped.\n\r", skill->name);
-            char_remove_skill (ch, num, TRUE);
+            player_remove_skill (ch, num, TRUE);
             ch->gen_data->skill_chosen[num] = FALSE;
             return TRUE;
         }
@@ -795,11 +794,11 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
         return TRUE;
     }
     if (!str_prefix (arg, "list")) {
-        char_list_skills_and_groups (ch, FALSE);
+        player_list_skills_and_groups (ch, FALSE);
         return TRUE;
     }
     if (!str_prefix (arg, "learned")) {
-        char_list_skills_and_groups (ch, TRUE);
+        player_list_skills_and_groups (ch, TRUE);
         return TRUE;
     }
     if (!str_prefix (arg, "abilities")) {

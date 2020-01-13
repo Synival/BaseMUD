@@ -32,7 +32,6 @@
 #include "comm.h"
 #include "affects.h"
 #include "utils.h"
-#include "skills.h"
 #include "mob_prog.h"
 #include "fight.h"
 #include "save.h"
@@ -44,6 +43,7 @@
 #include "lookup.h"
 #include "globals.h"
 #include "items.h"
+#include "players.h"
 
 #include "update.h"
 
@@ -73,7 +73,7 @@ int hit_gain (CHAR_T *ch, bool apply_learning) {
         gain = 5 + ch->level;
         if (IS_AFFECTED (ch, AFF_REGENERATION))
             gain *= 2;
-        gain = recovery_in_position(gain, ch->position);
+        gain = recovery_in_position (gain, ch->position);
     }
     else {
         gain = UMAX (3, char_get_curr_stat (ch, STAT_CON) - 3 + ch->level / 2);
@@ -83,7 +83,7 @@ int hit_gain (CHAR_T *ch, bool apply_learning) {
             number = char_get_skill (ch, SN(FAST_HEALING));
             gain += number * gain / 100;
             if (apply_learning && ch->hit < ch->max_hit && number_percent() < number)
-                char_try_skill_improve (ch, SN(FAST_HEALING), TRUE,
+                player_try_skill_improve (ch, SN(FAST_HEALING), TRUE,
                     8 * PULSE_DIVISOR);
         }
 
@@ -141,7 +141,7 @@ int mana_gain (CHAR_T *ch, bool apply_learning) {
             number = char_get_skill (ch, SN(MEDITATION));
             gain += (number * gain) / 100;
             if (apply_learning && ch->hit < ch->max_hit && number_percent() < number)
-                char_try_skill_improve (ch, SN(MEDITATION), TRUE,
+                player_try_skill_improve (ch, SN(MEDITATION), TRUE,
                     8 * PULSE_DIVISOR);
         }
 
@@ -511,11 +511,11 @@ void health_update(void) {
 }
 
 void health_update_ch(CHAR_T *ch) {
-    health_update_ch_stat(ch, &(ch->hit), &(ch->max_hit),
+    health_update_ch_stat (ch, &(ch->hit), &(ch->max_hit),
         &(ch->gain_hit_remainder), hit_gain);
-    health_update_ch_stat(ch, &(ch->mana), &(ch->max_mana),
+    health_update_ch_stat (ch, &(ch->mana), &(ch->max_mana),
         &(ch->gain_mana_remainder), mana_gain);
-    health_update_ch_stat(ch, &(ch->move), &(ch->max_move),
+    health_update_ch_stat (ch, &(ch->move), &(ch->max_move),
         &(ch->gain_move_remainder), move_gain);
 }
 

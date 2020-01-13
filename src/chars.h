@@ -153,6 +153,7 @@ int char_format_exit_string (const CHAR_T *ch, const ROOM_INDEX_T *room,
     int mode, char *out_buf, size_t out_size);
 int char_get_immunity (CHAR_T *ch, int dam_type);
 OBJ_T *char_get_active_light (const CHAR_T *ch);
+int char_get_skill (const CHAR_T *ch, int sn);
 
 /* Stat bonuses. */
 const STR_APP_T *char_get_curr_str_app (const CHAR_T *ch);

@@ -35,9 +35,9 @@
 #include "affects.h"
 #include "lookup.h"
 #include "fight.h"
-#include "skills.h"
 #include "interp.h"
 #include "act_fight.h"
+#include "magic.h"
 
 #include "mobiles.h"
 
@@ -432,4 +432,52 @@ void mobile_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
                 do_function (ch, &do_backstab, "");
             break;
     }
+}
+
+int mobile_get_skill_learned (const CHAR_T *ch, int sn) {
+    const SKILL_T *skill = skill_get (sn);
+    if (skill == NULL)
+        return -1;
+
+    /* TODO: this should probably be a table of some sort... */
+    if (skill->spell_fun != spell_null)
+        return 40 + 2 * ch->level;
+    else if (sn == SN(SNEAK) || sn == SN(HIDE))
+        return ch->level * 2 + 20;
+    else if ((sn == SN(DODGE) && IS_SET (ch->off_flags, OFF_DODGE)) ||
+             (sn == SN(PARRY) && IS_SET (ch->off_flags, OFF_PARRY)))
+        return ch->level * 2;
+    else if (sn == SN(SHIELD_BLOCK))
+        return 10 + 2 * ch->level;
+    else if (sn == SN(SECOND_ATTACK) && (IS_SET (ch->mob, MOB_WARRIOR) ||
+                                         IS_SET (ch->mob, MOB_THIEF)))
+        return 10 + 3 * ch->level;
+    else if (sn == SN(THIRD_ATTACK) && IS_SET (ch->mob, MOB_WARRIOR))
+        return 4 * ch->level - 40;
+    else if (sn == SN(HAND_TO_HAND))
+        return 40 + 2 * ch->level;
+    else if (sn == SN(TRIP) && IS_SET (ch->off_flags, OFF_TRIP))
+        return 10 + 3 * ch->level;
+    else if (sn == SN(BASH) && IS_SET (ch->off_flags, OFF_BASH))
+        return 10 + 3 * ch->level;
+    else if (sn == SN(DISARM) && (IS_SET (ch->off_flags, OFF_DISARM) ||
+                                  IS_SET (ch->mob, MOB_WARRIOR)      ||
+                                  IS_SET (ch->mob, MOB_THIEF)))
+        return 20 + 3 * ch->level;
+    else if (sn == SN(BERSERK) && IS_SET (ch->off_flags, OFF_BERSERK))
+        return 3 * ch->level;
+    else if (sn == SN(KICK))
+        return 10 + 3 * ch->level;
+    else if (sn == SN(BACKSTAB) && IS_SET (ch->mob, MOB_THIEF))
+        return 20 + 2 * ch->level;
+    else if (sn == SN(RESCUE))
+        return 40 + ch->level;
+    else if (sn == SN(RECALL))
+        return 40 + ch->level;
+    else if (sn == SN(SWORD) || sn == SN(DAGGER) || sn == SN(SPEAR) ||
+             sn == SN(MACE)  || sn == SN(AXE)    || sn == SN(FLAIL) ||
+             sn == SN(WHIP)  || sn == SN(POLEARM))
+        return 40 + 5 * ch->level / 2;
+    else
+        return 0;
 }

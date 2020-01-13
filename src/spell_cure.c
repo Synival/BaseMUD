@@ -26,7 +26,6 @@
  ***************************************************************************/
 
 #include "magic.h"
-#include "skills.h"
 #include "comm.h"
 #include "utils.h"
 #include "lookup.h"

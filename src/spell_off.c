@@ -33,7 +33,6 @@
 #include "lookup.h"
 #include "db.h"
 #include "spell_aff.h"
-#include "skills.h"
 #include "chars.h"
 #include "objs.h"
 #include "globals.h"

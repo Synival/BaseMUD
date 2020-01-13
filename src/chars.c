@@ -29,7 +29,6 @@
 #include <stdlib.h>
 
 #include "utils.h"
-#include "skills.h"
 #include "comm.h"
 #include "objs.h"
 #include "affects.h"
@@ -52,6 +51,8 @@
 #include "board.h"
 #include "update.h"
 #include "items.h"
+#include "players.h"
+#include "mobiles.h"
 
 #include "chars.h"
 
@@ -950,11 +951,11 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
             wear_loc->look_msg, obj_format_to_char (obj, ch, TRUE));
     }
 
-    if (victim != ch && !IS_NPC (ch)
-        && number_percent () < char_get_skill (ch, SN(PEEK)))
+    if (victim != ch && !IS_NPC (ch) &&
+        number_percent () < char_get_skill (ch, SN(PEEK)))
     {
         send_to_char ("\n\rYou peek at the inventory:\n\r", ch);
-        char_try_skill_improve (ch, SN(PEEK), TRUE, 4);
+        player_try_skill_improve (ch, SN(PEEK), TRUE, 4);
         obj_list_show_to_char (victim->carrying, ch, TRUE, TRUE);
     }
 }
@@ -1793,4 +1794,42 @@ void char_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
         if (!was_full && IS_FULL (ch))
             send_to_char ("You are full.\n\r", ch);
     }
+}
+
+/* for returning skill information */
+int char_get_skill (const CHAR_T *ch, int sn) {
+    const SKILL_T *skill;
+    int ch_skill;
+
+    /* shorthand for level based skills */
+    if (sn == -1) {
+        skill = NULL;
+        ch_skill = ch->level * 5 / 2;
+    }
+    /* ignore invalid skills. */
+    else if (sn < -1 || sn >= SKILL_MAX || (skill = skill_get (sn)) == NULL) {
+        bug ("char_get_skill: Bad sn %d.", sn);
+        return 0;
+    }
+
+    /* get the skill rating. */
+    if (skill != NULL) {
+        ch_skill = IS_NPC (ch)
+            ? mobile_get_skill_learned (ch, sn)
+            : player_get_skill_learned (ch, sn);
+    }
+
+    /* dazed characters have bad skills. */
+    if (ch->daze > 0) {
+        if (skill == NULL || skill->spell_fun == spell_null)
+            ch_skill = 2 * ch_skill / 3;
+        else
+            ch_skill /= 2;
+    }
+
+    /* drunks are bad at things. */
+    if (IS_DRUNK (ch))
+        ch_skill = 9 * ch_skill / 10;
+
+    return URANGE (0, ch_skill, 100);
 }

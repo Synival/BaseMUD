@@ -31,7 +31,6 @@
 #include "interp.h"
 #include "utils.h"
 #include "db.h"
-#include "skills.h"
 #include "groups.h"
 #include "chars.h"
 #include "objs.h"
@@ -43,6 +42,7 @@
 #include "memory.h"
 #include "items.h"
 #include "mobiles.h"
+#include "players.h"
 
 #include "act_shop.h"
 
@@ -135,7 +135,7 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
     if (roll < char_get_skill (ch, SN(HAGGLE))) {
         cost -= cost / 2 * roll / 100;
         printf_to_char (ch, "You haggle the price down to %d coins.\n\r", cost);
-        char_try_skill_improve (ch, SN(HAGGLE), TRUE, 4);
+        player_try_skill_improve (ch, SN(HAGGLE), TRUE, 4);
     }
 
     char_reduce_money (ch, cost);
@@ -218,7 +218,7 @@ void do_buy_item (CHAR_T *ch, char *argument) {
     {
         cost -= obj->cost / 2 * roll / 100;
         act ("You haggle with $N.", ch, NULL, keeper, TO_CHAR);
-        char_try_skill_improve (ch, SN(HAGGLE), TRUE, 4);
+        player_try_skill_improve (ch, SN(HAGGLE), TRUE, 4);
     }
     if (number > 1) {
         sprintf (buf, "You buy $p[%d] for %d silver.", number, cost * number);
@@ -393,7 +393,7 @@ DEFINE_DO_FUN (do_sell) {
         cost += obj->cost / 2 * roll / 100;
         cost = UMIN (cost, 95 * char_get_obj_cost (keeper, obj, TRUE) / 100);
         cost = UMIN (cost, (keeper->silver + 100 * keeper->gold));
-        char_try_skill_improve (ch, SN(HAGGLE), TRUE, 4);
+        player_try_skill_improve (ch, SN(HAGGLE), TRUE, 4);
     }
 
     sprintf (buf, "You sell $p for %d silver and %d gold piece%s.",

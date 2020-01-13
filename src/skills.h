@@ -31,17 +31,6 @@
 #include "merc.h"
 
 /* Function prototypes. */
-void char_set_default_skills (CHAR_T *ch);
-int char_get_skill (const CHAR_T *ch, int sn);
-int char_get_mobile_skill (const CHAR_T *ch, int sn);
-void char_list_skills_and_groups (CHAR_T *ch, bool chosen);
-void char_try_skill_improve (CHAR_T *ch, int sn, bool success, int multiplier);
-void char_add_skill (CHAR_T *ch, int sn, bool deduct);
-void char_remove_skill (CHAR_T *ch, int sn, bool refund);
-void char_add_skill_group (CHAR_T *ch, int gn, bool deduct);
-void char_remove_skill_group (CHAR_T *ch, int gn, bool refund);
-void char_add_skill_or_group (CHAR_T *ch, const char *name, bool deduct);
-void char_remove_skill_or_group (CHAR_T *ch, const char *name, bool refund);
 void skill_clear_mapping (void);
 void skill_init_mapping (void);
 

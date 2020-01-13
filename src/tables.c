@@ -27,7 +27,6 @@
 
 #include <stddef.h>
 
-#include "skills.h"
 #include "nanny.h"
 #include "lookup.h"
 #include "recycle.h"

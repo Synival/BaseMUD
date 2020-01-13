@@ -31,7 +31,6 @@
 #include "db.h"
 #include "utils.h"
 #include "recycle.h"
-#include "skills.h"
 #include "board.h"
 #include "chars.h"
 #include "objs.h"
@@ -556,7 +555,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
         for (i = 0; i < PC_RACE_SKILL_MAX; i++) {
             if (pc_race->skills[i] == NULL)
                 break;
-            char_add_skill_or_group (ch, pc_race->skills[i], FALSE);
+            player_add_skill_or_group (ch, pc_race->skills[i], FALSE);
         }
 
         race = race_get (ch->race);
@@ -570,11 +569,11 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
 
     /* RT initialize skills */
     if (found && ch->version < 2) { /* need to add the new skills */
-        char_add_skill_or_group (ch, "rom basics", FALSE);
+        player_add_skill_or_group (ch, "rom basics", FALSE);
         if (class_table[ch->class].base_group != NULL)
-            char_add_skill_or_group (ch, class_table[ch->class].base_group, FALSE);
+            player_add_skill_or_group (ch, class_table[ch->class].base_group, FALSE);
         if (class_table[ch->class].default_group != NULL)
-            char_add_skill_or_group (ch, class_table[ch->class].default_group, TRUE);
+            player_add_skill_or_group (ch, class_table[ch->class].default_group, TRUE);
         ch->pcdata->learned[SN(RECALL)] = 50;
     }
 
@@ -948,7 +947,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                         bug ("fread_char: unknown group. ", 0);
                     }
                     else
-                        char_add_skill_group (ch, gn, FALSE);
+                        player_add_skill_group (ch, gn, FALSE);
                     match = TRUE;
                 }
                 break;

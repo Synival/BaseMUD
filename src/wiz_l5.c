@@ -35,7 +35,6 @@
 #include "fight.h"
 #include "utils.h"
 #include "lookup.h"
-#include "skills.h"
 #include "affects.h"
 #include "do_sub.h"
 #include "recycle.h"

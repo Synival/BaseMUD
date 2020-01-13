@@ -34,7 +34,6 @@
 #include "utils.h"
 #include "comm.h"
 #include "db.h"
-#include "skills.h"
 #include "fight.h"
 #include "groups.h"
 #include "mob_prog.h"
@@ -809,7 +808,7 @@ DEFINE_DO_FUN (do_recite) {
 
     if (number_percent () >= 20 + char_get_skill (ch, SN(SCROLLS)) * 4 / 5) {
         send_to_char ("You mispronounce a syllable.\n\r", ch);
-        char_try_skill_improve (ch, SN(SCROLLS), FALSE, 2);
+        player_try_skill_improve (ch, SN(SCROLLS), FALSE, 2);
         obj_extract (scroll);
         return;
     }
@@ -819,7 +818,7 @@ DEFINE_DO_FUN (do_recite) {
         return;
     }
 
-    char_try_skill_improve (ch, SN(SCROLLS), TRUE, 2);
+    player_try_skill_improve (ch, SN(SCROLLS), TRUE, 2);
 }
 
 DEFINE_DO_FUN (do_brandish) {
@@ -848,7 +847,7 @@ DEFINE_DO_FUN (do_brandish) {
         if (!success) {
             act2 ("You fail to invoke $p.", "...and nothing happens.",
                 ch, staff, NULL, 0, POS_RESTING);
-            char_try_skill_improve (ch, SN(STAVES), FALSE, 2);
+            player_try_skill_improve (ch, SN(STAVES), FALSE, 2);
         }
     }
 
@@ -907,10 +906,10 @@ DEFINE_DO_FUN (do_zap) {
                  ch, wand, NULL, TO_CHAR);
             act ("$n's efforts with $p produce only smoke and sparks.",
                  ch, wand, NULL, TO_NOTCHAR);
-            char_try_skill_improve (ch, SN(WANDS), FALSE, 2);
+            player_try_skill_improve (ch, SN(WANDS), FALSE, 2);
         }
         else
-            char_try_skill_improve (ch, SN(WANDS), TRUE, 2);
+            player_try_skill_improve (ch, SN(WANDS), TRUE, 2);
     }
 
     item_consume_charge_as (wand, ch);
@@ -980,7 +979,7 @@ DEFINE_DO_FUN (do_steal) {
             do_function (victim, &do_yell, buf);
         if (!IS_NPC (ch)) {
             if (IS_NPC (victim)) {
-                char_try_skill_improve (ch, SN(STEAL), FALSE, 2);
+                player_try_skill_improve (ch, SN(STEAL), FALSE, 2);
                 multi_hit (victim, ch, ATTACK_DEFAULT);
             }
             else {
@@ -1019,7 +1018,7 @@ DEFINE_DO_FUN (do_steal) {
                      silver, gold);
 
         send_to_char (buf, ch);
-        char_try_skill_improve (ch, SN(STEAL), TRUE, 2);
+        player_try_skill_improve (ch, SN(STEAL), TRUE, 2);
         return;
     }
 
@@ -1039,7 +1038,7 @@ DEFINE_DO_FUN (do_steal) {
     obj_take_from_char (obj);
     obj_give_to_char (obj, ch);
     act ("You pocket $p.", ch, obj, NULL, TO_CHAR);
-    char_try_skill_improve (ch, SN(STEAL), TRUE, 2);
+    player_try_skill_improve (ch, SN(STEAL), TRUE, 2);
     send_to_char ("Got it!\n\r", ch);
 }
 

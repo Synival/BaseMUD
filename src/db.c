@@ -52,9 +52,9 @@
 #include "update.h"
 #include "globals.h"
 #include "memory.h"
-#include "skills.h"
 #include "items.h"
 #include "mobiles.h"
+#include "skills.h"
 
 #include "db.h"
 

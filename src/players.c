@@ -36,6 +36,7 @@
 #include "globals.h"
 #include "comm.h"
 #include "save.h"
+#include "magic.h"
 
 #include "players.h"
 
@@ -311,4 +312,283 @@ int player_get_exp_per_level_with_points (const CHAR_T *ch, int points) {
 
     expl += points * inc / 10;
     return expl * mult / 100;
+}
+
+void player_set_default_skills (CHAR_T *ch) {
+    sh_int *learned = ch->pcdata->learned;
+    if (learned[SN(RECALL)] < 50)
+        learned[SN(RECALL)] = 50;
+}
+
+int player_get_skill_learned (const CHAR_T *ch, int sn) {
+    const SKILL_T *skill = skill_get (sn);
+    if (skill == NULL)
+        return -1;
+    return (ch->level < skill->classes[ch->class].level)
+        ? 0 : ch->pcdata->learned[sn];
+}
+
+void player_list_skills_and_groups (CHAR_T *ch, bool chosen) {
+    const SKILL_GROUP_T *group;
+    const SKILL_T *skill;
+    int num, col;
+
+    chosen = (!!chosen);
+
+    if (IS_NPC (ch))
+        return;
+
+#ifdef BASEMUD_DOTTED_LINES_IN_SKILLS
+    #define LINE_CHAR '.'
+#else
+    #define LINE_CHAR ' '
+#endif
+
+    col = 0;
+    printf_to_char (ch, "Groups:\n\r");
+    for (num = 0; num < SKILL_GROUP_MAX; num++) {
+        if ((group = skill_group_get (num)) == NULL || group->name == NULL)
+            break;
+        if (group->classes[ch->class].cost <= 0)
+            continue;
+        if (!!ch->pcdata->group_known[num] != chosen)
+            continue;
+        if (ch->gen_data && !!ch->gen_data->group_chosen[num] != chosen)
+            continue;
+
+        if (col % 3 == 0)
+            send_to_char ("   ", ch);
+        printf_to_char (ch, "%s%s%d  ", group->name,
+            str_line (LINE_CHAR, 19 - strlen (group->name) +
+                (3 - int_str_len (group->classes[ch->class].cost))),
+            group->classes[ch->class].cost);
+        if (++col % 3 == 0)
+            send_to_char ("\n\r", ch);
+    }
+    if (col == 0)
+        send_to_char ("   None.\n\r", ch);
+    if (col % 3 != 0)
+        send_to_char ("\n\r", ch);
+    send_to_char ("\n\r", ch);
+
+    col = 0;
+    printf_to_char (ch, "Skills:\n\r");
+    for (num = 0; num < SKILL_MAX; num++) {
+        if ((skill = skill_get (num)) == NULL || skill->name == NULL)
+            break;
+        if (skill->classes[ch->class].effort <= 0)
+            continue;
+        if (skill->spell_fun != spell_null)
+            continue;
+        if (!!ch->pcdata->skill_known[num] != chosen)
+            continue;
+        if (ch->gen_data && !!ch->gen_data->skill_chosen[num] != chosen)
+            continue;
+        if ((ch->pcdata->learned[num] > 0) != chosen)
+            continue;
+
+        if (col % 3 == 0)
+            send_to_char ("   ", ch);
+
+        printf_to_char (ch, "%s%s%d  ", skill->name,
+            str_line (LINE_CHAR, 19 - strlen (skill->name) +
+                (3 - int_str_len (skill->classes[ch->class].effort))),
+            skill->classes[ch->class].effort);
+        if (++col % 3 == 0)
+            send_to_char ("\n\r", ch);
+    }
+    if (col == 0)
+        send_to_char ("   None.\n\r", ch);
+    if (col % 3 != 0)
+        send_to_char ("\n\r", ch);
+
+    /* only show generation points during character generation. */
+    if (ch->gen_data) {
+        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "Creation points: %d\n\r",
+            ch->pcdata->creation_points);
+        printf_to_char (ch, "Experience per level: %d\n\r",
+            player_get_exp_per_level (ch));
+    }
+}
+
+/* checks for skill improvement */
+void player_try_skill_improve (CHAR_T *ch, int sn, bool success,
+    int multiplier)
+{
+    const SKILL_T *skill;
+    int chance;
+
+    if (IS_NPC (ch))
+        return;
+
+    /* skill is not known or already mastered */
+    BAIL_IF_BUG ((skill = skill_get (sn)) == NULL,
+        "player_try_skill_improve: Invalid skill %d", sn);
+    if (ch->level < skill->classes[ch->class].level ||
+        skill->classes[ch->class].effort == 0 ||
+        ch->pcdata->learned[sn] == 0 ||
+        ch->pcdata->learned[sn] == 100)
+        return;
+
+    /* check to see if the character has a chance to learn */
+    chance = 10 * char_int_learn_rate (ch);
+    chance /= (multiplier * skill->classes[ch->class].effort * 4);
+    chance += ch->level;
+
+    if (number_range (1, 1000) > chance)
+        return;
+
+    /* now that the character has a CHANCE to learn, see if they really have */
+    if (success) {
+        chance = URANGE (5, 100 - ch->pcdata->learned[sn], 95);
+        if (number_percent () < chance) {
+            printf_to_char (ch, "{5You have become better at %s!{x\n\r",
+                skill->name);
+            ch->pcdata->learned[sn]++;
+            player_gain_exp (ch, 2 * skill->classes[ch->class].effort);
+        }
+    }
+    else {
+        chance = URANGE (5, ch->pcdata->learned[sn] / 2, 30);
+        if (number_percent () < chance) {
+            printf_to_char (ch,
+                "{5You learn from your mistakes, and your %s skill improves.{x\n\r",
+                skill->name);
+            ch->pcdata->learned[sn] += number_range (1, 3);
+            ch->pcdata->learned[sn] = UMIN (ch->pcdata->learned[sn], 100);
+            player_gain_exp (ch, 2 * skill->classes[ch->class].effort);
+        }
+    }
+}
+
+void player_add_skill (CHAR_T *ch, int sn, bool deduct) {
+    const SKILL_T *skill;
+
+    if (IS_NPC (ch) || !ch->pcdata)
+        return;
+    if ((skill = skill_get (sn)) == NULL) {
+        bugf ("player_add_skill: Unknown skill number %d", sn);
+        return;
+    }
+
+    if (!ch->pcdata->skill_known[sn] && deduct)
+        ch->pcdata->creation_points += skill->classes[ch->class].effort;
+    ch->pcdata->skill_known[sn]++;
+    if (ch->pcdata->learned[sn] == 0)
+        ch->pcdata->learned[sn] = 1;
+}
+
+void player_remove_skill (CHAR_T *ch, int sn, bool refund) {
+    const SKILL_T *skill;
+
+    if (IS_NPC (ch) || !ch->pcdata)
+        return;
+    if ((skill = skill_get (sn)) == NULL) {
+        bugf ("player_remove_skill: Unknown skill number %d", sn);
+        return;
+    }
+
+    if (ch->pcdata->skill_known[sn] <= 0)
+        return;
+    if (refund)
+        ch->pcdata->creation_points -= skill->classes[ch->class].effort;
+    ch->pcdata->skill_known[sn]--;
+    if (ch->pcdata->skill_known[sn] == 0)
+        ch->pcdata->learned[sn] = 0;
+}
+
+/* recursively adds a group given its number -- uses skill_group_add */
+void player_add_skill_group (CHAR_T *ch, int gn, bool deduct) {
+    const SKILL_GROUP_T *group;
+    int i;
+
+    if (IS_NPC (ch) || !ch->pcdata)
+        return;
+    if ((group = skill_group_get (gn)) == NULL) {
+        bugf ("player_add_skill_group: Unknown group number %d", gn);
+        return;
+    }
+
+    if (!ch->pcdata->group_known[gn] && deduct)
+        ch->pcdata->creation_points += group->classes[ch->class].cost;
+    ch->pcdata->group_known[gn]++;
+
+    for (i = 0; i < MAX_IN_GROUP; i++) {
+        if (group->spells[i] == NULL)
+            break;
+        player_add_skill_or_group (ch, group->spells[i], FALSE);
+    }
+}
+
+/* recusively removes a group given its number -- uses skill_group_remove */
+void player_remove_skill_group (CHAR_T *ch, int gn, bool refund) {
+    const SKILL_GROUP_T *group;
+    int i;
+
+    if (IS_NPC (ch) || !ch->pcdata)
+        return;
+    if ((group = skill_group_get (gn)) == NULL) {
+        bugf ("player_remove_skill_group: Unknown group number %d", gn);
+        return;
+    }
+
+    if (ch->pcdata->group_known[gn] <= 0)
+        return;
+    if (refund)
+        ch->pcdata->creation_points -= group->classes[ch->class].cost;
+    ch->pcdata->group_known[gn]--;
+
+    for (i = 0; i < MAX_IN_GROUP; i++) {
+        if (group->spells[i] == NULL)
+            break;
+        player_remove_skill_or_group (ch, group->spells[i], FALSE);
+    }
+}
+
+/* use for processing a skill or group for addition  */
+void player_add_skill_or_group (CHAR_T *ch, const char *name, bool deduct) {
+    int num;
+
+    if (IS_NPC (ch) || !ch->pcdata)
+        return;
+
+    /* first, check for skills. */
+    num = skill_lookup_exact (name);
+    if (num != -1) {
+        player_add_skill (ch, num, deduct);
+        return;
+    }
+
+    num = skill_group_lookup_exact (name);
+    if (num != -1) {
+        player_add_skill_group (ch, num, deduct);
+        return;
+    }
+
+    bugf ("player_add_skill_or_group: Unknown skill or group '%s'", name);
+}
+
+/* used for processing a skill or group for deletion */
+void player_remove_skill_or_group (CHAR_T *ch, const char *name, bool refund) {
+    int num;
+
+    if (IS_NPC (ch) || !ch->pcdata)
+        return;
+
+    /* first, check for skills. */
+    num = skill_lookup_exact (name);
+    if (num != -1) {
+        player_remove_skill (ch, num, refund);
+        return;
+    }
+
+    /* now check groups */
+    num = skill_group_lookup_exact (name);
+    if (num != -1) {
+        player_remove_skill_group (ch, num, refund);
+        return;
+    }
+
+    bugf ("player_remove_skill_or_group: Unknown skill or group '%s'", name);
 }

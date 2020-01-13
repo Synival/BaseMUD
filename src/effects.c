@@ -30,7 +30,6 @@
 #include "db.h"
 #include "utils.h"
 #include "comm.h"
-#include "skills.h"
 #include "magic.h"
 #include "update.h"
 #include "affects.h"

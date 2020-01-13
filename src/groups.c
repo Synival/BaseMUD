@@ -28,7 +28,6 @@
 #include "utils.h"
 #include "affects.h"
 #include "comm.h"
-#include "skills.h"
 #include "db.h"
 #include "chars.h"
 #include "globals.h"

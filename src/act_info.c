@@ -37,7 +37,6 @@
 #include "recycle.h"
 #include "lookup.h"
 #include "utils.h"
-#include "skills.h"
 #include "groups.h"
 #include "db.h"
 #include "fight.h"

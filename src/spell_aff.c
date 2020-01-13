@@ -32,7 +32,6 @@
 #include "chars.h"
 #include "fight.h"
 #include "groups.h"
-#include "skills.h"
 #include "objs.h"
 #include "recycle.h"
 #include "lookup.h"

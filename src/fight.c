@@ -34,7 +34,6 @@
 #include "db.h"
 #include "effects.h"
 #include "mob_prog.h"
-#include "skills.h"
 #include "comm.h"
 #include "save.h"
 #include "groups.h"
@@ -161,7 +160,7 @@ void multi_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
 
     if (number_percent () < chance) {
         one_hit (ch, victim, dt);
-        char_try_skill_improve (ch, SN(SECOND_ATTACK), TRUE, 5);
+        player_try_skill_improve (ch, SN(SECOND_ATTACK), TRUE, 5);
         if (ch->fighting != victim)
             return;
     }
@@ -172,7 +171,7 @@ void multi_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
 
     if (number_percent () < chance) {
         one_hit (ch, victim, dt);
-        char_try_skill_improve (ch, SN(THIRD_ATTACK), TRUE, 6);
+        player_try_skill_improve (ch, SN(THIRD_ATTACK), TRUE, 6);
         if (ch->fighting != victim)
             return;
     }
@@ -300,7 +299,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
     }
     else {
         if (sn != -1)
-            char_try_skill_improve (ch, sn, TRUE, 5);
+            player_try_skill_improve (ch, sn, TRUE, 5);
         if (wield != NULL) {
             if (wield->index_data->new_format)
                 dam = dice (wield->v.weapon.dice_num,
@@ -330,7 +329,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
 #ifdef BASEMUD_SHOW_ENHANCED_DAMAGE
         damage_adj = "heavy";
 #endif
-        char_try_skill_improve (ch, SN(ENHANCED_DAMAGE), TRUE, 6);
+        player_try_skill_improve (ch, SN(ENHANCED_DAMAGE), TRUE, 6);
         dam += (dam * 3) / 4;
     }
 
@@ -884,7 +883,7 @@ bool check_parry (CHAR_T *ch, CHAR_T *victim) {
     /* TODO: act2 */
     act ("You parry $n's attack.", ch, NULL, victim, TO_VICT);
     act ("$N parries your attack.", ch, NULL, victim, TO_CHAR);
-    char_try_skill_improve (victim, SN(PARRY), TRUE, 6);
+    player_try_skill_improve (victim, SN(PARRY), TRUE, 6);
     return TRUE;
 }
 
@@ -904,7 +903,7 @@ bool check_shield_block (CHAR_T *ch, CHAR_T *victim) {
     /* TODO: act2 */
     act ("You block $n's attack with your shield.", ch, NULL, victim, TO_VICT);
     act ("$N blocks your attack with a shield.", ch, NULL, victim, TO_CHAR);
-    char_try_skill_improve (victim, SN(SHIELD_BLOCK), TRUE, 6);
+    player_try_skill_improve (victim, SN(SHIELD_BLOCK), TRUE, 6);
     return TRUE;
 }
 
@@ -923,7 +922,7 @@ bool check_dodge (CHAR_T *ch, CHAR_T *victim) {
     /* TODO: act2 */
     act ("You dodge $n's attack.", ch, NULL, victim, TO_VICT);
     act ("$N dodges your attack.", ch, NULL, victim, TO_CHAR);
-    char_try_skill_improve (victim, SN(DODGE), TRUE, 6);
+    player_try_skill_improve (victim, SN(DODGE), TRUE, 6);
     return TRUE;
 }
 

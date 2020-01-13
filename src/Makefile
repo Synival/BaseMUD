@@ -40,34 +40,34 @@ act_board.o: globals.h act_board.h
 act_comm.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_comm.o: json.h structs.h types.h flags.h tables.h interp.h recycle.h
 act_comm.o: lookup.h comm.h utils.h mob_prog.h db.h do_sub.h chars.h find.h
-act_comm.o: globals.h act_comm.h
+act_comm.o: globals.h players.h act_comm.h
 act_conf.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_conf.o: json.h structs.h types.h flags.h tables.h db.h interp.h colour.h
 act_conf.o: groups.h comm.h utils.h lookup.h do_sub.h chars.h memory.h
 act_conf.o: act_conf.h
-act_fight.o: skills.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
-act_fight.o: json.h structs.h types.h flags.h tables.h affects.h utils.h
-act_fight.o: comm.h lookup.h interp.h groups.h mob_prog.h recycle.h fight.h
-act_fight.o: act_comm.h chars.h find.h act_fight.h
+act_fight.o: affects.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
+act_fight.o: json.h structs.h types.h flags.h tables.h utils.h comm.h
+act_fight.o: lookup.h interp.h groups.h mob_prog.h recycle.h fight.h
+act_fight.o: act_comm.h chars.h find.h players.h act_fight.h
 act_group.o: interp.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_group.o: json.h structs.h types.h flags.h tables.h groups.h utils.h
 act_group.o: comm.h db.h chars.h find.h globals.h act_group.h
 act_info.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_info.o: json.h structs.h types.h flags.h tables.h interp.h magic.h
-act_info.o: recycle.h lookup.h utils.h skills.h groups.h db.h fight.h
-act_info.o: update.h comm.h save.h do_sub.h act_comm.h act_obj.h chars.h
-act_info.o: rooms.h objs.h find.h spell_info.h globals.h memory.h items.h
+act_info.o: recycle.h lookup.h utils.h groups.h db.h fight.h update.h comm.h
+act_info.o: save.h do_sub.h act_comm.h act_obj.h chars.h rooms.h objs.h
+act_info.o: find.h spell_info.h globals.h memory.h items.h players.h
 act_info.o: act_info.h
 act_move.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_move.o: json.h structs.h types.h flags.h tables.h interp.h lookup.h
-act_move.o: utils.h comm.h mob_prog.h affects.h skills.h db.h fight.h
-act_move.o: groups.h act_info.h chars.h rooms.h objs.h find.h globals.h
-act_move.o: items.h act_move.h
+act_move.o: utils.h comm.h mob_prog.h affects.h db.h fight.h groups.h
+act_move.o: act_info.h chars.h rooms.h objs.h find.h globals.h items.h
+act_move.o: players.h act_move.h
 act_obj.o: interp.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_obj.o: json.h structs.h types.h flags.h tables.h affects.h utils.h comm.h
-act_obj.o: db.h skills.h fight.h groups.h mob_prog.h save.h magic.h
-act_obj.o: act_group.h act_comm.h act_move.h recycle.h chars.h objs.h rooms.h
-act_obj.o: find.h globals.h lookup.h items.h act_obj.h
+act_obj.o: db.h fight.h groups.h mob_prog.h save.h magic.h act_group.h
+act_obj.o: act_comm.h act_move.h recycle.h chars.h objs.h rooms.h find.h
+act_obj.o: globals.h lookup.h items.h players.h act_obj.h
 act_olc.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_olc.o: json.h structs.h types.h flags.h tables.h recycle.h lookup.h
 act_olc.o: interp.h utils.h db.h comm.h olc_save.h act_info.h chars.h
@@ -79,13 +79,13 @@ act_player.o: utils.h fight.h interp.h recycle.h chars.h descs.h memory.h
 act_player.o: globals.h act_player.h
 act_shop.o: magic.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_shop.o: json.h structs.h types.h flags.h tables.h lookup.h comm.h
-act_shop.o: interp.h utils.h db.h skills.h groups.h chars.h objs.h find.h
-act_shop.o: act_comm.h spell_cure.h materials.h globals.h memory.h items.h
-act_shop.o: act_shop.h
+act_shop.o: interp.h utils.h db.h groups.h chars.h objs.h find.h act_comm.h
+act_shop.o: spell_cure.h materials.h globals.h memory.h items.h mobiles.h
+act_shop.o: players.h act_shop.h
 act_skills.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_skills.o: json.h structs.h types.h flags.h tables.h db.h utils.h comm.h
-act_skills.o: interp.h magic.h fight.h lookup.h skills.h recycle.h act_comm.h
-act_skills.o: chars.h find.h act_skills.h
+act_skills.o: interp.h magic.h fight.h lookup.h recycle.h act_comm.h chars.h
+act_skills.o: find.h players.h act_skills.h
 affects.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 affects.o: json.h structs.h types.h flags.h tables.h recycle.h utils.h
 affects.o: lookup.h chars.h affects.h
@@ -100,22 +100,22 @@ boot.o: json.h structs.h types.h flags.h tables.h interp.h comm.h db.h
 boot.o: utils.h signal.h descs.h save.h olc.h nanny.h update.h chars.h
 boot.o: recycle.h act_info.h globals.h memory.h boot.h
 chars.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
-chars.o: json.h structs.h types.h flags.h tables.h utils.h skills.h comm.h
-chars.o: objs.h affects.h lookup.h magic.h db.h groups.h fight.h interp.h
-chars.o: recycle.h rooms.h mob_prog.h act_move.h act_info.h act_group.h
-chars.o: wiz_l6.h materials.h globals.h memory.h board.h update.h items.h
-chars.o: chars.h
+chars.o: json.h structs.h types.h flags.h tables.h utils.h comm.h objs.h
+chars.o: affects.h lookup.h magic.h db.h groups.h fight.h interp.h recycle.h
+chars.o: rooms.h mob_prog.h act_move.h act_info.h act_group.h wiz_l6.h
+chars.o: materials.h globals.h memory.h board.h update.h items.h players.h
+chars.o: mobiles.h chars.h
 colour.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 colour.o: json.h structs.h types.h flags.h tables.h lookup.h chars.h colour.h
 comm.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 comm.o: json.h structs.h types.h flags.h tables.h colour.h recycle.h utils.h
 comm.o: fight.h interp.h db.h olc.h save.h mob_prog.h lookup.h act_info.h
-comm.o: chars.h rooms.h objs.h descs.h globals.h comm.h
+comm.o: chars.h rooms.h objs.h descs.h globals.h players.h comm.h
 db.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 db.o: structs.h types.h flags.h tables.h utils.h recycle.h affects.h lookup.h
 db.o: json_obj.h json_write.h json_read.h json_import.h music.h ban.h board.h
 db.o: olc.h portals.h chars.h rooms.h objs.h db_old.h update.h globals.h
-db.o: memory.h skills.h items.h db.h
+db.o: memory.h items.h mobiles.h skills.h db.h
 db_old.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 db_old.o: json.h structs.h types.h flags.h tables.h db.h recycle.h utils.h
 db_old.o: interp.h lookup.h olc.h affects.h globals.h memory.h items.h
@@ -128,13 +128,12 @@ do_sub.o: comm.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 do_sub.o: structs.h types.h flags.h tables.h chars.h do_sub.h
 effects.o: recycle.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 effects.o: json.h structs.h types.h flags.h tables.h lookup.h db.h utils.h
-effects.o: comm.h skills.h magic.h update.h affects.h objs.h chars.h items.h
-effects.o: effects.h
+effects.o: comm.h magic.h update.h affects.h objs.h chars.h items.h effects.h
 fight.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 fight.o: json.h structs.h types.h flags.h tables.h interp.h lookup.h update.h
-fight.o: utils.h db.h effects.h mob_prog.h skills.h comm.h save.h groups.h
-fight.o: magic.h affects.h act_fight.h act_obj.h act_comm.h act_move.h
-fight.o: chars.h objs.h find.h globals.h memory.h items.h fight.h
+fight.o: utils.h db.h effects.h mob_prog.h comm.h save.h groups.h magic.h
+fight.o: affects.h act_fight.h act_obj.h act_comm.h act_move.h chars.h objs.h
+fight.o: find.h globals.h memory.h items.h players.h mobiles.h fight.h
 find.o: interp.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 find.o: structs.h types.h flags.h tables.h utils.h chars.h db.h globals.h
 find.o: find.h
@@ -143,8 +142,8 @@ flags.o: json.h structs.h types.h flags.h tables.h interp.h lookup.h utils.h
 globals.o: globals.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 globals.o: json.h structs.h types.h flags.h tables.h
 groups.o: utils.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
-groups.o: structs.h types.h flags.h tables.h affects.h comm.h skills.h db.h
-groups.o: chars.h globals.h groups.h
+groups.o: structs.h types.h flags.h tables.h affects.h comm.h db.h chars.h
+groups.o: globals.h groups.h
 interp.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 interp.o: json.h structs.h types.h flags.h tables.h utils.h comm.h db.h
 interp.o: recycle.h chars.h find.h descs.h globals.h memory.h act_board.h
@@ -154,9 +153,9 @@ interp.o: wiz_l1.h wiz_l2.h wiz_l3.h wiz_l4.h wiz_l5.h wiz_l6.h wiz_l7.h
 interp.o: wiz_l8.h wiz_ml.h olc.h mob_cmds.h interp.h
 items.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 items.o: json.h structs.h types.h flags.h tables.h utils.h comm.h interp.h
-items.o: objs.h lookup.h chars.h affects.h magic.h skills.h db.h recycle.h
-items.o: rooms.h mob_prog.h groups.h globals.h music.h act_info.h act_move.h
-items.o: act_group.h items.h
+items.o: objs.h lookup.h chars.h affects.h magic.h db.h recycle.h rooms.h
+items.o: mob_prog.h groups.h globals.h music.h players.h act_info.h
+items.o: act_move.h act_group.h items.h
 json.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 json.o: json.h structs.h types.h flags.h tables.h utils.h memory.h
 json_import.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h
@@ -178,7 +177,7 @@ lookup.o: json.h structs.h types.h flags.h tables.h utils.h interp.h db.h
 lookup.o: recycle.h globals.h lookup.h
 magic.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 magic.o: json.h structs.h types.h flags.h tables.h lookup.h affects.h comm.h
-magic.o: skills.h fight.h utils.h chars.h magic.h
+magic.o: fight.h utils.h chars.h magic.h
 materials.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 materials.o: json.h structs.h types.h flags.h tables.h materials.h
 memory.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
@@ -187,19 +186,23 @@ memory.o: memory.h
 mob_cmds.o: lookup.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 mob_cmds.o: json.h structs.h types.h flags.h tables.h interp.h groups.h
 mob_cmds.o: utils.h comm.h fight.h mob_prog.h db.h chars.h objs.h rooms.h
-mob_cmds.o: find.h act_info.h globals.h mob_cmds.h
+mob_cmds.o: find.h act_info.h globals.h mobiles.h mob_cmds.h
 mob_prog.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 mob_prog.o: json.h structs.h types.h flags.h tables.h lookup.h utils.h
 mob_prog.o: groups.h interp.h mob_cmds.h db.h chars.h objs.h find.h globals.h
 mob_prog.o: mob_prog.h
+mobiles.o: globals.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
+mobiles.o: json.h structs.h types.h flags.h tables.h utils.h recycle.h
+mobiles.o: memory.h chars.h affects.h lookup.h fight.h interp.h act_fight.h
+mobiles.o: magic.h mobiles.h
 music.o: recycle.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 music.o: json.h structs.h types.h flags.h tables.h utils.h comm.h db.h
 music.o: interp.h globals.h lookup.h chars.h objs.h music.h
 nanny.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 nanny.o: json.h structs.h types.h flags.h tables.h interp.h recycle.h
-nanny.o: lookup.h skills.h utils.h comm.h db.h save.h ban.h fight.h
-nanny.o: act_info.h act_skills.h act_board.h act_obj.h chars.h objs.h descs.h
-nanny.o: globals.h memory.h magic.h nanny.h
+nanny.o: lookup.h utils.h comm.h db.h save.h ban.h fight.h act_info.h
+nanny.o: act_skills.h act_board.h act_obj.h chars.h objs.h descs.h globals.h
+nanny.o: memory.h magic.h players.h nanny.h
 objs.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 objs.o: json.h structs.h types.h flags.h tables.h affects.h utils.h chars.h
 objs.o: db.h recycle.h comm.h lookup.h materials.h globals.h memory.h items.h
@@ -228,10 +231,15 @@ olc_oedit.o: globals.h olc.h memory.h items.h olc_oedit.h
 olc_redit.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 olc_redit.o: json.h structs.h types.h flags.h tables.h comm.h lookup.h db.h
 olc_redit.o: recycle.h utils.h interp.h act_info.h chars.h objs.h find.h
-olc_redit.o: globals.h olc.h olc_medit.h olc_oedit.h memory.h olc_redit.h
+olc_redit.o: globals.h olc.h olc_medit.h olc_oedit.h memory.h mobiles.h
+olc_redit.o: olc_redit.h
 olc_save.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 olc_save.o: json.h structs.h types.h flags.h tables.h lookup.h utils.h db.h
 olc_save.o: mob_cmds.h comm.h interp.h globals.h olc.h items.h olc_save.h
+players.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
+players.o: json.h structs.h types.h flags.h tables.h chars.h lookup.h objs.h
+players.o: affects.h memory.h utils.h globals.h comm.h save.h magic.h
+players.o: players.h
 portals.o: lookup.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 portals.o: json.h structs.h types.h flags.h tables.h recycle.h utils.h
 portals.o: memory.h portals.h
@@ -243,30 +251,29 @@ rooms.o: structs.h types.h flags.h tables.h lookup.h utils.h objs.h interp.h
 rooms.o: chars.h rooms.h
 save.o: recycle.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 save.o: structs.h types.h flags.h tables.h lookup.h colour.h db.h utils.h
-save.o: skills.h board.h chars.h objs.h globals.h memory.h items.h save.h
+save.o: board.h chars.h objs.h globals.h memory.h items.h mobiles.h players.h
+save.o: save.h
 sha256.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 sha256.o: json.h structs.h types.h flags.h tables.h sha256.h
 signal.o: signal.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 signal.o: json.h structs.h types.h flags.h tables.h
 skills.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
-skills.o: json.h structs.h types.h flags.h tables.h interp.h magic.h
-skills.o: recycle.h lookup.h affects.h comm.h utils.h fight.h act_info.h
-skills.o: act_skills.h chars.h skills.h
+skills.o: json.h structs.h types.h flags.h tables.h lookup.h utils.h skills.h
 special.o: utils.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 special.o: json.h structs.h types.h flags.h tables.h fight.h comm.h interp.h
-special.o: magic.h lookup.h skills.h db.h act_fight.h act_comm.h act_move.h
-special.o: chars.h objs.h spell_aff.h globals.h rooms.h special.h
+special.o: magic.h lookup.h db.h act_fight.h act_comm.h act_move.h chars.h
+special.o: objs.h spell_aff.h globals.h rooms.h special.h
 spell_aff.o: magic.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 spell_aff.o: json.h structs.h types.h flags.h tables.h utils.h affects.h
-spell_aff.o: comm.h chars.h fight.h groups.h skills.h objs.h recycle.h
-spell_aff.o: lookup.h items.h spell_aff.h
+spell_aff.o: comm.h chars.h fight.h groups.h objs.h recycle.h lookup.h
+spell_aff.o: items.h spell_aff.h
 spell_create.o: magic.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 spell_create.o: json.h structs.h types.h flags.h tables.h find.h comm.h db.h
 spell_create.o: objs.h utils.h chars.h globals.h memory.h items.h
 spell_create.o: spell_create.h
 spell_cure.o: magic.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
-spell_cure.o: json.h structs.h types.h flags.h tables.h skills.h comm.h
-spell_cure.o: utils.h lookup.h fight.h chars.h objs.h spell_cure.h
+spell_cure.o: json.h structs.h types.h flags.h tables.h comm.h utils.h
+spell_cure.o: lookup.h fight.h chars.h objs.h spell_cure.h
 spell_info.o: magic.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 spell_info.o: json.h structs.h types.h flags.h tables.h comm.h utils.h
 spell_info.o: lookup.h chars.h recycle.h db.h interp.h act_info.h affects.h
@@ -277,28 +284,30 @@ spell_misc.o: lookup.h db.h affects.h objs.h interp.h chars.h globals.h
 spell_misc.o: items.h spell_misc.h
 spell_move.o: magic.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 spell_move.o: json.h structs.h types.h flags.h tables.h find.h chars.h comm.h
-spell_move.o: interp.h act_info.h db.h fight.h objs.h items.h spell_move.h
+spell_move.o: interp.h act_info.h db.h fight.h objs.h items.h players.h
+spell_move.o: spell_move.h
 spell_npc.o: magic.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 spell_npc.o: json.h structs.h types.h flags.h tables.h utils.h lookup.h
 spell_npc.o: effects.h fight.h comm.h chars.h spell_npc.h
 spell_off.o: magic.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 spell_off.o: json.h structs.h types.h flags.h tables.h utils.h fight.h comm.h
-spell_off.o: affects.h lookup.h db.h spell_aff.h skills.h chars.h objs.h
-spell_off.o: globals.h items.h spell_off.h
+spell_off.o: affects.h lookup.h db.h spell_aff.h chars.h objs.h globals.h
+spell_off.o: items.h players.h spell_off.h
 string.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 string.o: json.h structs.h types.h flags.h tables.h comm.h utils.h interp.h
 string.o: olc.h db.h olc_mpedit.h globals.h memory.h
-tables.o: skills.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
-tables.o: json.h structs.h types.h flags.h tables.h nanny.h lookup.h
-tables.o: recycle.h colour.h board.h special.h effects.h json_tbl.h magic.h
-tables.o: spell_aff.h spell_create.h spell_cure.h spell_info.h spell_misc.h
-tables.o: spell_move.h spell_npc.h spell_off.h
+tables.o: nanny.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
+tables.o: structs.h types.h flags.h tables.h lookup.h recycle.h colour.h
+tables.o: board.h special.h effects.h json_tbl.h magic.h spell_aff.h
+tables.o: spell_create.h spell_cure.h spell_info.h spell_misc.h spell_move.h
+tables.o: spell_npc.h spell_off.h
 types.o: merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 types.o: structs.h types.h flags.h tables.h lookup.h utils.h
 update.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 update.o: json.h structs.h types.h flags.h tables.h interp.h music.h comm.h
-update.o: affects.h utils.h skills.h mob_prog.h fight.h save.h magic.h db.h
-update.o: act_player.h chars.h objs.h lookup.h globals.h items.h update.h
+update.o: affects.h utils.h mob_prog.h fight.h save.h magic.h db.h
+update.o: act_player.h chars.h objs.h lookup.h globals.h items.h players.h
+update.o: update.h
 utils.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 utils.o: json.h structs.h types.h flags.h tables.h comm.h db.h interp.h
 utils.o: chars.h globals.h utils.h
@@ -319,13 +328,13 @@ wiz_l3.o: structs.h types.h flags.h tables.h comm.h interp.h fight.h utils.h
 wiz_l3.o: chars.h find.h descs.h globals.h wiz_l3.h
 wiz_l4.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 wiz_l4.o: json.h structs.h types.h flags.h tables.h db.h comm.h interp.h
-wiz_l4.o: save.h fight.h utils.h lookup.h skills.h affects.h chars.h objs.h
-wiz_l4.o: find.h recycle.h descs.h globals.h wiz_l4.h
+wiz_l4.o: save.h fight.h utils.h lookup.h affects.h chars.h objs.h find.h
+wiz_l4.o: recycle.h descs.h globals.h mobiles.h wiz_l4.h
 wiz_l5.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 wiz_l5.o: json.h structs.h types.h flags.h tables.h db.h comm.h interp.h
-wiz_l5.o: save.h fight.h utils.h lookup.h skills.h affects.h do_sub.h
-wiz_l5.o: recycle.h act_info.h chars.h objs.h rooms.h find.h memory.h
-wiz_l5.o: globals.h wiz_l5.h
+wiz_l5.o: save.h fight.h utils.h lookup.h affects.h do_sub.h recycle.h
+wiz_l5.o: act_info.h chars.h objs.h rooms.h find.h memory.h globals.h
+wiz_l5.o: mobiles.h players.h wiz_l5.h
 wiz_l6.o: db.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 wiz_l6.o: structs.h types.h flags.h tables.h comm.h interp.h chars.h rooms.h
 wiz_l6.o: find.h globals.h memory.h wiz_l6.h
@@ -338,4 +347,4 @@ wiz_l8.o: fight.h utils.h act_info.h chars.h rooms.h find.h memory.h wiz_l8.h
 wiz_ml.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 wiz_ml.o: json.h structs.h types.h flags.h tables.h db.h comm.h interp.h
 wiz_ml.o: save.h fight.h utils.h act_info.h chars.h rooms.h find.h descs.h
-wiz_ml.o: boot.h memory.h globals.h wiz_ml.h
+wiz_ml.o: boot.h memory.h globals.h players.h wiz_ml.h

@@ -35,7 +35,6 @@
 #include "chars.h"
 #include "affects.h"
 #include "magic.h"
-#include "skills.h"
 #include "db.h"
 #include "recycle.h"
 #include "rooms.h"
@@ -43,6 +42,7 @@
 #include "groups.h"
 #include "globals.h"
 #include "music.h"
+#include "players.h"
 
 #include "act_info.h"
 #include "act_move.h"
@@ -1119,7 +1119,7 @@ bool item_brandish_effect (OBJ_T *obj, CHAR_T *ch, bool try_improve) {
                 obj_cast_spell (obj->v.staff.skill, obj->v.staff.level,
                     ch, vch, NULL);
                 if (try_improve)
-                    char_try_skill_improve (ch, SN(STAVES), TRUE, 2);
+                    player_try_skill_improve (ch, SN(STAVES), TRUE, 2);
             }
             return TRUE;
         }
@@ -1353,12 +1353,12 @@ void item_envenom_effect_food (OBJ_T *obj, CHAR_T *ch, int skill, int sn,
         if (number_percent () >= skill) {
             act ("You fail to poison $p.", ch, obj, NULL, TO_CHAR);
             if (*pflag == 0)
-                char_try_skill_improve (ch, sn, FALSE, 4);
+                player_try_skill_improve (ch, sn, FALSE, 4);
             return;
         }
         act2 ("You treat $p with deadly poison.",
               "$n treats $p with deadly poison.", ch, obj, NULL, 0, POS_RESTING);
-        char_try_skill_improve (ch, sn, TRUE, 4);
+        player_try_skill_improve (ch, sn, TRUE, 4);
     }
 }
 
@@ -1398,7 +1398,7 @@ void item_envenom_effect_weapon (OBJ_T *obj, CHAR_T *ch, int skill, int sn,
         percent = number_percent ();
         if (skill < 100 && percent >= skill) {
             act ("You fail to envenom $p.", ch, obj, NULL, TO_CHAR);
-            char_try_skill_improve (ch, sn, FALSE, 3);
+            player_try_skill_improve (ch, sn, FALSE, 3);
             return;
         }
 
@@ -1407,7 +1407,7 @@ void item_envenom_effect_weapon (OBJ_T *obj, CHAR_T *ch, int skill, int sn,
 
         act2 ("You coat $p with venom.",
               "$n coats $p with deadly venom.", ch, obj, NULL, 0, POS_RESTING);
-        char_try_skill_improve (ch, sn, TRUE, 3);
+        player_try_skill_improve (ch, sn, TRUE, 3);
     }
 
 }

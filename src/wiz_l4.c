@@ -35,7 +35,6 @@
 #include "fight.h"
 #include "utils.h"
 #include "lookup.h"
-#include "skills.h"
 #include "affects.h"
 #include "chars.h"
 #include "objs.h"

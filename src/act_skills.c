@@ -35,7 +35,6 @@
 #include "magic.h"
 #include "fight.h"
 #include "lookup.h"
-#include "skills.h"
 #include "recycle.h"
 #include "act_comm.h"
 #include "chars.h"
@@ -199,7 +198,7 @@ DEFINE_DO_FUN (do_gain) {
         "$N tells you 'Pardon me?'", ch, NULL, trainer);
 
     if (!str_prefix (arg, "list")) {
-        char_list_skills_and_groups (ch, FALSE);
+        player_list_skills_and_groups (ch, FALSE);
         return;
     }
 
@@ -240,7 +239,7 @@ DEFINE_DO_FUN (do_gain) {
             "$N tells you 'You are not yet ready for that group.'", ch, NULL, trainer);
 
         /* add the group */
-        char_add_skill_group (ch, num, FALSE);
+        player_add_skill_group (ch, num, FALSE);
         act ("$N trains you in the art of $t.", ch, group->name, trainer, TO_CHAR);
         ch->train -= group->classes[ch->class].cost;
         return;
@@ -694,7 +693,7 @@ DEFINE_DO_FUN (do_cast) {
 
     if (number_percent () > char_get_skill (ch, sn)) {
         send_to_char ("You lost your concentration.\n\r", ch);
-        char_try_skill_improve (ch, sn, FALSE, 1);
+        player_try_skill_improve (ch, sn, FALSE, 1);
         ch->mana -= mana / 2;
     }
     else {
@@ -708,7 +707,7 @@ DEFINE_DO_FUN (do_cast) {
             (*skill_table[sn].spell_fun) (sn, ch->level * 3 / 4, ch, vo, target,
                 target_name);
         }
-        char_try_skill_improve (ch, sn, TRUE, 1);
+        player_try_skill_improve (ch, sn, TRUE, 1);
     }
 
     spell_fight_back_if_possible (ch, victim, sn, target);
