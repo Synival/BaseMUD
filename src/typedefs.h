@@ -139,7 +139,8 @@ typedef void SPELL_FUN  (int sn, int level, CHAR_T *ch, void *vo, int target,
                          const char *target_name);
 typedef void EFFECT_FUN (void *vo, int level, int dam, int target);
 typedef void NANNY_FUN  (DESCRIPTOR_T *d, char *argument);
-typedef JSON_T *TABLE_JSON_FUN (const void *obj, const char *obj_name);
+typedef void *JSON_READ_FUN (const JSON_T *json, const char *obj_name);
+typedef JSON_T *JSON_WRITE_FUN (const void *obj, const char *obj_name);
 typedef bool OLC_FUN    (CHAR_T *ch, char *argument);
 typedef int LOOKUP_FUN  (const char *name);
 
@@ -156,7 +157,8 @@ typedef void RECYCLE_DISPOSE_FUN (void *obj);
     #define DECLARE_EFFECT_FUN(fun) void fun()
     #define DECLARE_NANNY_FUN(fun)  void fun()
     #define DECLARE_OLC_FUN(fun)    bool fun()
-    #define DECLARE_TABLE_JSON_FUN(fun) JSON_T *fun()
+    #define DECLARE_JSON_READ_FUN(fun) void *fun()
+    #define DECLARE_JSON_WRITE_FUN(fun) JSON_T *fun()
     #define DECLARE_LOOKUP_FUN(fun) int fun()
 #else
     #define args(list)              list
@@ -166,7 +168,8 @@ typedef void RECYCLE_DISPOSE_FUN (void *obj);
     #define DECLARE_EFFECT_FUN(fun) EFFECT_FUN fun
     #define DECLARE_NANNY_FUN(fun)  NANNY_FUN  fun
     #define DECLARE_OLC_FUN(fun)    OLC_FUN    fun
-    #define DECLARE_TABLE_JSON_FUN(fun) TABLE_JSON_FUN fun
+    #define DECLARE_JSON_READ_FUN(fun)  JSON_READ_FUN  fun
+    #define DECLARE_JSON_WRITE_FUN(fun) JSON_WRITE_FUN fun
     #define DECLARE_LOOKUP_FUN(fun) LOOKUP_FUN fun
 #endif
 

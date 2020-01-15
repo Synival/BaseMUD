@@ -313,7 +313,7 @@ void db_export_json (bool write_indiv, const char *everything) {
     }
 
     /* Write json that doesn't need subdirectories. */
-    #define ADD_CONFIG_JSON(oname, fname, btype, vtype, func, check) \
+    #define ADD_RECYCLEABLE_JSON(oname, fname, btype, vtype, func, check) \
         jarea = json_root_area (fname); \
         if (write_indiv) \
             log_f("Exporting JSON: %s%s.json", JSON_DIR, fname); \
@@ -337,7 +337,7 @@ void db_export_json (bool write_indiv, const char *everything) {
         } while (0)
 
     /* Write json that doesn't need subdirectories. */
-    #define ADD_META_JSON(oname, fname, btype, vtype, func, check) \
+    #define ADD_TABLE_JSON(oname, fname, btype, vtype, func, check) \
         jarea = json_root_area (fname); \
         do { \
             const vtype *obj; \
@@ -348,32 +348,32 @@ void db_export_json (bool write_indiv, const char *everything) {
                 if (!(check)) \
                     continue; \
                 if (write_indiv) \
-                    log_f("Exporting JSON: %s%s/%s.json", JSON_DIR, fname, \
-                        obj->name); \
+                    log_f("Exporting JSON: %s%s/%s.json", JSON_DIR, \
+                        obj->json_path, obj->name); \
                 json = func (NULL, obj); \
                 if (json->type != JSON_ARRAY) \
                     json = json_wrap_obj (json, oname); \
                 json_attach_under (json, jarea); \
                 \
                 if (write_indiv) { \
-                    snprintf (buf, sizeof (buf), "%s" fname "/%s.json", \
-                        JSON_DIR, obj->name); \
+                    snprintf (buf, sizeof (buf), "%s%s/%s.json", \
+                        JSON_DIR, obj->json_path, obj->name); \
                     json_mkdir_to (buf); \
                     json_write_to_file (json, buf); \
                 } \
             } \
         } while (0)
 
-    ADD_CONFIG_JSON ("social", "config/socials", social, SOCIAL_T,
+    ADD_RECYCLEABLE_JSON ("social", "config/socials", social, SOCIAL_T,
         json_new_obj_social, 1);
-    ADD_CONFIG_JSON ("portal", "config/portals", portal, PORTAL_T,
+    ADD_RECYCLEABLE_JSON ("portal", "config/portals", portal, PORTAL_T,
         json_new_obj_portal, (obj->generated == FALSE));
-    ADD_META_JSON ("table", "unsupported", master, TABLE_T,
-        json_new_obj_table, obj->type == TABLE_UNIQUE && obj->json_write_func);
 
-    ADD_META_JSON ("table", "meta/flags", master, TABLE_T,
+    ADD_TABLE_JSON ("table", "tables", master, TABLE_T,
+        json_new_obj_table, obj->type == TABLE_UNIQUE && obj->json_write_func);
+    ADD_TABLE_JSON ("table", "flags", master, TABLE_T,
         json_new_obj_table, obj->type == TABLE_FLAGS);
-    ADD_META_JSON ("table", "meta/types", master, TABLE_T,
+    ADD_TABLE_JSON ("table", "types", master, TABLE_T,
         json_new_obj_table, obj->type == TABLE_TYPES);
 
     /* Add help areas. */
@@ -440,13 +440,14 @@ void boot_db (void) {
     in_boot_db = FALSE;
     convert_objects (); /* ROM OLC */
 
- // db_export_json (TRUE, NULL);
+    music_load_songs ();
+
+    db_export_json (TRUE, NULL);
 
     area_update ();
     board_load_all ();
     board_save_all ();
     ban_load_all ();
-    music_load_songs ();
 }
 
 void init_time_weather (void) {

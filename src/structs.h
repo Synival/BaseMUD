@@ -1031,6 +1031,7 @@ struct social_type {
     char *char_not_found;
     char *char_auto;
     char *others_auto;
+    int min_pos;
     OBJ_RECYCLE_T rec_data;
 };
 
@@ -1082,8 +1083,9 @@ struct table_type {
 
     size_t type_size;
     const char *obj_name;
-    TABLE_JSON_FUN *json_write_func;
-    TABLE_JSON_FUN *json_read_func;
+    const char *json_path;
+    JSON_WRITE_FUN *json_write_func;
+    JSON_READ_FUN  *json_read_func;
 };
 
 struct portal_exit_type {

@@ -560,6 +560,11 @@ void note_dispose (void *obj) {
     str_free (&(note->text));
 }
 
+void social_init (void *obj) {
+    SOCIAL_T *social = obj;
+    social->min_pos = POS_RESTING;
+}
+
 void social_dispose (void *obj) {
     SOCIAL_T *soc = obj;
     str_free (&(soc->char_no_arg));

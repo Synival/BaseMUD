@@ -11,7 +11,7 @@ O_FILES = \
     act_move.o act_obj.o act_olc.o act_player.o act_shop.o act_skills.o \
     affects.o ban.o board.o boot.o chars.o colour.o comm.o db_old.o db.o \
     descs.o do_sub.o effects.o fight.o find.o flags.o globals.o groups.o interp.o \
-    items.o json.o json_import.o json_obj.o json_read.o json_write.o json_tbl.o \
+    items.o json.o json_import.o json_obj.o json_read.o json_write.o json_tblr.o json_tblw.o \
     lookup.o magic.o materials.o memory.o mob_cmds.o mob_prog.o mobiles.o music.o nanny.o objs.o \
     olc.o olc_aedit.o olc_hedit.o olc_medit.o olc_mpedit.o olc_oedit.o \
     olc_redit.o olc_save.o players.o portals.o recycle.o rooms.o save.o signal.o \
@@ -167,9 +167,12 @@ json_obj.o: json.h structs.h types.h flags.h tables.h db.h lookup.h utils.h
 json_obj.o: json_obj.h
 json_read.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 json_read.o: json.h structs.h types.h flags.h tables.h utils.h json_read.h
-json_tbl.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
-json_tbl.o: json.h structs.h types.h flags.h tables.h json_obj.h lookup.h
-json_tbl.o: colour.h json_tbl.h
+json_tblr.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
+json_tblr.o: json.h structs.h types.h flags.h tables.h json_obj.h lookup.h
+json_tblr.o: colour.h json_tblr.h
+json_tblw.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
+json_tblw.o: json.h structs.h types.h flags.h tables.h json_obj.h lookup.h
+json_tblw.o: colour.h json_tblw.h
 json_write.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 json_write.o: json.h structs.h types.h flags.h tables.h utils.h json_write.h
 lookup.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
@@ -298,9 +301,9 @@ string.o: json.h structs.h types.h flags.h tables.h comm.h utils.h interp.h
 string.o: olc.h db.h olc_mpedit.h globals.h memory.h
 tables.o: nanny.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 tables.o: structs.h types.h flags.h tables.h lookup.h recycle.h colour.h
-tables.o: board.h special.h effects.h json_tbl.h magic.h spell_aff.h
-tables.o: spell_create.h spell_cure.h spell_info.h spell_misc.h spell_move.h
-tables.o: spell_npc.h spell_off.h
+tables.o: board.h special.h effects.h json_tblr.h json_tblw.h magic.h
+tables.o: spell_aff.h spell_create.h spell_cure.h spell_info.h spell_misc.h
+tables.o: spell_move.h spell_npc.h spell_off.h
 types.o: merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 types.o: structs.h types.h flags.h tables.h lookup.h utils.h
 update.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h

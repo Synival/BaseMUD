@@ -124,6 +124,7 @@ void mpcode_init (void *obj);
 void mpcode_dispose (void *obj);
 void buf_init (void *obj);
 void note_dispose (void *obj);
+void social_init (void *obj);
 void social_dispose (void *obj);
 void portal_exit_dispose (void *obj);
 void portal_dispose (void *obj);

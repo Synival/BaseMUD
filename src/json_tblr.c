@@ -25,21 +25,54 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#ifndef __ROM_INTERP_H
-#define __ROM_INTERP_H
+#include <string.h>
 
-#include "merc.h"
+#include "json_obj.h"
+#include "lookup.h"
+#include "colour.h"
+#include "memory.h"
+#include "json_import.h"
 
-extern const CMD_T cmd_table[];
+#include "json_tblr.h"
 
-/* Function prototpyes. */
-void interpret (CHAR_T *ch, char *argument);
-const char *interpret_pos_message (int pos);
-void do_function (CHAR_T *ch, DO_FUN *do_fun, char *argument);
-bool check_social (CHAR_T *ch, char *command, char *argument);
-bool is_number (const char *arg);
-int number_argument (const char *arg_in, char *arg_out);
-int mult_argument (const char *arg_in, char *arg_out);
-char *one_argument (const char *argument, char *arg_first);
+#define JSON_TBLR_START(vtype, var, max, null_check) \
+    vtype *var; \
+    \
+    int index = 0; \
+    for (index = 0; index < max; index++) { \
+        var = &(var ## _table[index]); \
+        if (null_check) \
+            break; \
+    } \
+    if (index == max) { \
+        printf ("Too many %s objects!\n", obj_name); \
+        return NULL; \
+    } \
+    var = &(var ## _table[index]);
 
-#endif
+DEFINE_JSON_READ_FUN (json_tblr_song) {
+    char buf[256];
+    JSON_T *array, *sub;
+
+    JSON_TBLR_START (SONG_T, song, MAX_SONGS, song->name == NULL);
+
+    if (!json_import_expect ("song", json,
+            "name", "group", "lyrics", NULL))
+        return NULL;
+
+    song->name = str_dup (buf);
+    READ_PROP_STRP (song->name,  "name");
+    READ_PROP_STRP (song->group, "group");
+
+    if ((array = json_get (json, "lyrics")) != NULL) {
+        for (sub = array->first_child; sub != NULL; sub = sub->next) {
+            if (song->lines == MAX_SONG_LINES)
+                break;
+            json_value_as_string (sub, buf, sizeof (buf));
+            song->lyrics[song->lines] = str_dup (buf);
+            song->lines++;
+        }
+    }
+
+    return song;
+}

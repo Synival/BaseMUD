@@ -59,6 +59,7 @@ int json_import_objects (JSON_T *json) {
             return 0;
 
         /* import! */
+        /* TODO: this should be a table as well! */
         if (strcmp (json->name, "room") == 0)
             return json_import_obj_room (json) ? 1 : 0;
         if (strcmp (json->name, "mobile") == 0)
@@ -78,8 +79,10 @@ int json_import_objects (JSON_T *json) {
             return 1 + help_area_count_pages (had);
         }
         if ((table = master_table_get_by_obj_name (json->name)) != NULL) {
-            /* TODO: actually read handled objects. */
-            return 0;
+            if (table->json_read_func)
+                return (table->json_read_func (json, json->name)) ? 1 : 0;
+            else
+                return 0;
         }
 
         json_logf (json, "json_import_objects(): Unknown object type '%s'.",
@@ -96,17 +99,12 @@ int json_import_objects (JSON_T *json) {
     return count;
 }
 
-struct json_eprop {
-    char *name;
-    bool required;
-    struct json_eprop *prev, *next;
-};
-
-void json_import_expect (const char *type, const JSON_T *json, ...) {
+bool json_import_expect (const char *type, const JSON_T *json, ...) {
     char *prop;
     va_list vargs;
     struct json_eprop *eprops = NULL, *eprops_back = NULL;
     struct json_eprop *eprop;
+    bool success;
     JSON_T *jprop;
 
     /* get all of our supplied arguments. */
@@ -114,6 +112,7 @@ void json_import_expect (const char *type, const JSON_T *json, ...) {
     eprops = NULL;
     eprops_back = NULL;
 
+    success = TRUE;
     while (1) {
         if ((prop = va_arg (vargs, char *)) == NULL)
             break;
@@ -138,18 +137,22 @@ void json_import_expect (const char *type, const JSON_T *json, ...) {
         for (jprop = json->first_child; jprop != NULL; jprop = jprop->next)
             if (strcmp (jprop->name, eprop->name) == 0)
                 break;
-        if (jprop == NULL && eprop->required)
+        if (jprop == NULL && eprop->required) {
             json_logf (json, "json_import_expect(): Didn't find required "
                 "property '%s' in object '%s'.\n", eprop->name, type);
+            success = FALSE;
+        }
     }
 
     for (jprop = json->first_child; jprop != NULL; jprop = jprop->next) {
         for (eprop = eprops; eprop != NULL; eprop = eprop->next)
             if (strcmp (jprop->name, eprop->name) == 0)
                 break;
-        if (eprop == NULL)
+        if (eprop == NULL) {
             json_logf (json, "json_import_expect(): Found unexpected property "
                 "'%s' in object '%s'.\n", jprop->name, type);
+            success = FALSE;
+        }
     }
 
     /* free allocated data. */
@@ -160,6 +163,8 @@ void json_import_expect (const char *type, const JSON_T *json, ...) {
         free (eprop->name);
         free (eprop);
     }
+
+    return success;
 }
 
 char *json_string_append_newline (char *buf, size_t size) {
@@ -175,33 +180,6 @@ char *json_string_append_newline (char *buf, size_t size) {
     buf[len + 2] = '\0';
     return buf;
 }
-
-#define JGI(prop) JSON_GET_INT(json, prop)
-#define JGS(prop) JSON_GET_STR(json, prop, buf)
-#define JGB(prop) JSON_GET_BOOL(json, prop)
-
-#define JGS_NL(prop) \
-    (json_string_append_newline (JGS(prop), sizeof (buf)))
-
-#define READ_PROP_STR(obj_prop, json_prop) \
-    (JSON_GET_STR(json, (json_prop), (obj_prop)))
-#define READ_PROP_STRP(obj_prop, json_prop) \
-    (str_replace_dup (&(obj_prop), JGS (json_prop)))
-#define READ_PROP_STRP_NL(obj_prop, json_prop) \
-    (str_replace_dup (&(obj_prop), JGS_NL (json_prop)))
-#define READ_PROP_INT(obj_prop, json_prop) \
-    ((obj_prop) = JGI (json_prop))
-#define READ_PROP_BOOL(obj_prop, json_prop) \
-    ((obj_prop) = JGB (json_prop))
-#define READ_PROP_FLAGS(obj_prop, json_prop, table) \
-    ((obj_prop) = flags_from_string_exact (table, (JGS (json_prop), buf)))
-#define READ_PROP_TYPE(obj_prop, json_prop, table) \
-    ((obj_prop) = type_lookup_exact (table, (JGS (json_prop), buf)))
-
-#define NO_NULL_STR(obj_prop) \
-    do { \
-        if ((obj_prop) == NULL) str_replace_dup (&(obj_prop), ""); \
-    } while (0)
 
 ROOM_INDEX_T *json_import_obj_room (const JSON_T *json) {
     JSON_T *array, *sub;
@@ -526,10 +504,10 @@ SHOP_T *json_import_obj_shop (const JSON_T *json, const char *backup_area) {
         }
     }
 
-    READ_PROP_INT  (shop->profit_buy,  "profit_buy");
-    READ_PROP_INT  (shop->profit_sell, "profit_sell");
-    READ_PROP_INT  (shop->open_hour,   "open_hour");
-    READ_PROP_INT  (shop->close_hour,  "close_hour");
+    READ_PROP_INT (shop->profit_buy,  "profit_buy");
+    READ_PROP_INT (shop->profit_sell, "profit_sell");
+    READ_PROP_INT (shop->open_hour,   "open_hour");
+    READ_PROP_INT (shop->close_hour,  "close_hour");
 
     LISTB_BACK (shop, next, shop_first, shop_last);
     return shop;

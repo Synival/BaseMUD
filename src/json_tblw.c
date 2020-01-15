@@ -31,7 +31,7 @@
 #include "lookup.h"
 #include "colour.h"
 
-#include "json_tbl.h"
+#include "json_tblw.h"
 
 #define JSON_TBLW_START(vtype, var, null_check) \
     const vtype *var = obj; \
@@ -42,7 +42,7 @@
         new = json_new_object (obj_name, JSON_OBJ_ANY); \
     } while (0)
 
-DEFINE_TABLE_JSON_FUN (json_tblw_flag) {
+DEFINE_JSON_WRITE_FUN (json_tblw_flag) {
     JSON_TBLW_START (FLAG_T, flag, flag->name == NULL);
     json_prop_string  (new, "name",     flag->name);
     json_prop_integer (new, "bit",      flag->bit);
@@ -50,7 +50,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_flag) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_type) {
+DEFINE_JSON_WRITE_FUN (json_tblw_type) {
     JSON_TBLW_START (TYPE_T, type, type->name == NULL);
     json_prop_string  (new, "name",     type->name);
     json_prop_integer (new, "type",     type->type);
@@ -58,7 +58,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_type) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_clan) {
+DEFINE_JSON_WRITE_FUN (json_tblw_clan) {
     JSON_TBLW_START (CLAN_T, clan, clan->name == NULL);
     json_prop_string  (new, "name",        JSTR (clan->name));
     json_prop_string  (new, "who_name",    JSTR (clan->who_name));
@@ -67,7 +67,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_clan) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_position) {
+DEFINE_JSON_WRITE_FUN (json_tblw_position) {
     JSON_TBLW_START (POSITION_T, pos, pos->name == NULL);
     json_prop_integer (new, "position",   pos->pos);
     json_prop_string  (new, "name",       JSTR (pos->name));
@@ -80,28 +80,28 @@ DEFINE_TABLE_JSON_FUN (json_tblw_position) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_sex) {
+DEFINE_JSON_WRITE_FUN (json_tblw_sex) {
     JSON_TBLW_START (SEX_T, sex, sex->name == NULL);
     json_prop_integer (new, "sex",  sex->sex);
     json_prop_string  (new, "name", JSTR (sex->name));
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_size) {
+DEFINE_JSON_WRITE_FUN (json_tblw_size) {
     JSON_TBLW_START (SIZE_T, size, size->name == NULL);
     json_prop_integer (new, "size", size->size);
     json_prop_string  (new, "name", JSTR (size->name));
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_item) {
+DEFINE_JSON_WRITE_FUN (json_tblw_item) {
     JSON_TBLW_START (ITEM_T, item, item->name == NULL);
     json_prop_integer (new, "type", item->type);
     json_prop_string  (new, "name", JSTR (item->name));
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_weapon) {
+DEFINE_JSON_WRITE_FUN (json_tblw_weapon) {
     JSON_TBLW_START (WEAPON_T, weapon, weapon->name == NULL);
     json_prop_integer (new, "type",        weapon->type);
     json_prop_string  (new, "name",        JSTR (weapon->name));
@@ -110,7 +110,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_weapon) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_dam) {
+DEFINE_JSON_WRITE_FUN (json_tblw_dam) {
     JSON_TBLW_START (DAM_T, dam, dam->name == NULL);
 
     json_prop_integer (new, "type", dam->type);
@@ -126,7 +126,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_dam) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_attack) {
+DEFINE_JSON_WRITE_FUN (json_tblw_attack) {
     const DAM_T *dam;
     JSON_TBLW_START (ATTACK_T, attack, attack->name == NULL);
 
@@ -137,7 +137,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_attack) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_race) {
+DEFINE_JSON_WRITE_FUN (json_tblw_race) {
     JSON_TBLW_START (RACE_T, race, race->name == NULL);
     json_prop_string  (new, "name", JSTR (race->name));
 
@@ -161,7 +161,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_race) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_pc_race) {
+DEFINE_JSON_WRITE_FUN (json_tblw_pc_race) {
     const CLASS_T *class;
     JSON_T *sub;
     int i;
@@ -202,7 +202,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_pc_race) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_class) {
+DEFINE_JSON_WRITE_FUN (json_tblw_class) {
     JSON_TBLW_START (CLASS_T, class, class->name == NULL);
 
     json_prop_string  (new, "name", JSTR (class->name));
@@ -221,7 +221,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_class) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_str_app) {
+DEFINE_JSON_WRITE_FUN (json_tblw_str_app) {
     JSON_TBLW_START (STR_APP_T, str_app, str_app->stat < 0);
     json_prop_integer (new, "stat", str_app->stat);
     json_prop_integer (new, "hitroll_bonus", str_app->tohit);
@@ -231,28 +231,28 @@ DEFINE_TABLE_JSON_FUN (json_tblw_str_app) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_int_app) {
+DEFINE_JSON_WRITE_FUN (json_tblw_int_app) {
     JSON_TBLW_START (INT_APP_T, int_app, int_app->stat < 0);
     json_prop_integer (new, "stat", int_app->stat);
     json_prop_integer (new, "learn_rate", int_app->learn);
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_wis_app) {
+DEFINE_JSON_WRITE_FUN (json_tblw_wis_app) {
     JSON_TBLW_START (WIS_APP_T, wis_app, wis_app->stat < 0);
     json_prop_integer (new, "stat", wis_app->stat);
     json_prop_integer (new, "practices", wis_app->practice);
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_dex_app) {
+DEFINE_JSON_WRITE_FUN (json_tblw_dex_app) {
     JSON_TBLW_START (DEX_APP_T, dex_app, dex_app->stat < 0);
     json_prop_integer (new, "stat", dex_app->stat);
     json_prop_integer (new, "defense_bonus", dex_app->defensive);
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_con_app) {
+DEFINE_JSON_WRITE_FUN (json_tblw_con_app) {
     JSON_TBLW_START (CON_APP_T, con_app, con_app->stat < 0);
     json_prop_integer (new, "stat", con_app->stat);
     json_prop_integer (new, "level_hp", con_app->hitp);
@@ -260,7 +260,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_con_app) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_liq) {
+DEFINE_JSON_WRITE_FUN (json_tblw_liq) {
     JSON_T *sub;
     int i;
     JSON_TBLW_START (LIQ_T, liq, liq->name == NULL);
@@ -276,7 +276,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_liq) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_skill) {
+DEFINE_JSON_WRITE_FUN (json_tblw_skill) {
     const CLASS_T *class;
     JSON_T *sub, *sub2;
     int i;
@@ -315,7 +315,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_skill) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_skill_group) {
+DEFINE_JSON_WRITE_FUN (json_tblw_skill_group) {
     const CLASS_T *class;
     JSON_T *sub, *sub2;
     int i;
@@ -339,7 +339,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_skill_group) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_sector) {
+DEFINE_JSON_WRITE_FUN (json_tblw_sector) {
     char color_buf[2];
     JSON_TBLW_START (SECTOR_T, sector, sector->name == NULL);
 
@@ -354,7 +354,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_sector) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_door) {
+DEFINE_JSON_WRITE_FUN (json_tblw_door) {
     JSON_TBLW_START (DOOR_T, door, door->name == NULL);
     json_prop_integer (new, "dir",         door->dir);
     json_prop_integer (new, "reverse",     door->reverse);
@@ -365,13 +365,13 @@ DEFINE_TABLE_JSON_FUN (json_tblw_door) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_spec) {
+DEFINE_JSON_WRITE_FUN (json_tblw_spec) {
     JSON_TBLW_START (SPEC_T, spec, spec->name == NULL);
     json_prop_string (new, "name", spec->name);
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_furniture) {
+DEFINE_JSON_WRITE_FUN (json_tblw_furniture) {
     JSON_TBLW_START (FURNITURE_BITS_T, furniture, furniture->name == NULL);
     json_prop_string (new, "name", JSTR (furniture->name));
     json_prop_string (new, "position", type_get_name (position_types,
@@ -385,7 +385,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_furniture) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_wear_loc) {
+DEFINE_JSON_WRITE_FUN (json_tblw_wear_loc) {
     JSON_TBLW_START (WEAR_LOC_T, wear_loc, wear_loc->name == NULL);
     json_prop_integer (new, "type",          wear_loc->type);
     json_prop_string  (new, "name",          JSTR (wear_loc->name));
@@ -399,7 +399,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_wear_loc) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_material) {
+DEFINE_JSON_WRITE_FUN (json_tblw_material) {
     char color_buf[2];
     JSON_TBLW_START (MATERIAL_T, material, material->name == NULL);
 
@@ -413,7 +413,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_material) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_colour_setting) {
+DEFINE_JSON_WRITE_FUN (json_tblw_colour_setting) {
     char color_buf[256];
     JSON_TBLW_START (COLOUR_SETTING_T, colour_setting, colour_setting->name == NULL);
 
@@ -431,7 +431,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_colour_setting) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_colour) {
+DEFINE_JSON_WRITE_FUN (json_tblw_colour) {
     JSON_TBLW_START (COLOUR_T, colour, colour->name == NULL);
     json_prop_string  (new, "name", JSTR (colour->name));
     json_prop_integer (new, "group_mask", colour->mask);
@@ -439,7 +439,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_colour) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_board) {
+DEFINE_JSON_WRITE_FUN (json_tblw_board) {
     JSON_TBLW_START (BOARD_T, board, board->name == NULL);
     json_prop_string  (new, "name", JSTR (board->name));
     json_prop_string  (new, "full_name", JSTR (board->long_name));
@@ -452,21 +452,21 @@ DEFINE_TABLE_JSON_FUN (json_tblw_board) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_day) {
+DEFINE_JSON_WRITE_FUN (json_tblw_day) {
     JSON_TBLW_START (DAY_T, day, day->name == NULL);
     json_prop_integer (new, "index", day->type);
     json_prop_string  (new, "name",  JSTR (day->name));
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_month) {
+DEFINE_JSON_WRITE_FUN (json_tblw_month) {
     JSON_TBLW_START (MONTH_T, month, month->name == NULL);
     json_prop_integer (new, "index", month->type);
     json_prop_string  (new, "name",  JSTR (month->name));
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_sky) {
+DEFINE_JSON_WRITE_FUN (json_tblw_sky) {
     JSON_TBLW_START (SKY_T, sky, sky->name == NULL);
     json_prop_integer (new, "index",       sky->type);
     json_prop_string  (new, "name",        JSTR (sky->name));
@@ -476,7 +476,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_sky) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_sun) {
+DEFINE_JSON_WRITE_FUN (json_tblw_sun) {
     JSON_TBLW_START (SUN_T, sun, sun->name == NULL);
     json_prop_integer (new, "index",      sun->type);
     json_prop_string  (new, "name",       JSTR (sun->name));
@@ -487,7 +487,7 @@ DEFINE_TABLE_JSON_FUN (json_tblw_sun) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_pose) {
+DEFINE_JSON_WRITE_FUN (json_tblw_pose) {
     JSON_T *sub, *sub2;
     int i;
     JSON_TBLW_START (POSE_T, pose, pose->class_name == NULL);
@@ -504,9 +504,24 @@ DEFINE_TABLE_JSON_FUN (json_tblw_pose) {
     return new;
 }
 
-DEFINE_TABLE_JSON_FUN (json_tblw_condition) {
+DEFINE_JSON_WRITE_FUN (json_tblw_condition) {
     JSON_TBLW_START (CONDITION_T, condition, condition->hp_percent <= -999);
     json_prop_integer (new, "hp_percent", condition->hp_percent);
     json_prop_string  (new, "message", JSTR (condition->message));
+    return new;
+}
+
+DEFINE_JSON_WRITE_FUN (json_tblw_song) {
+    JSON_T *sub;
+    int i;
+    JSON_TBLW_START (SONG_T, song, song->name == NULL);
+
+    json_prop_string (new, "name",  JSTR (song->name));
+    json_prop_string (new, "group", JSTR (song->group));
+
+    sub = json_prop_array (new, "lyrics");
+    for (i = 0; i < song->lines; i++)
+        json_prop_string (sub, NULL, song->lyrics[i]);
+
     return new;
 }

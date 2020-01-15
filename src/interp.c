@@ -379,6 +379,7 @@ const CMD_T cmd_table[] = {
 /* The main entry point for executing commands.
  * Can be recursively called from 'at', 'order', 'force'. */
 void interpret (CHAR_T *ch, char *argument) {
+    const char *msg;
     char command[MAX_INPUT_LENGTH];
     char logline[MAX_INPUT_LENGTH];
     int cmd;
@@ -477,30 +478,9 @@ void interpret (CHAR_T *ch, char *argument) {
 
     /* Character not in position for command?  */
     if (ch->position < cmd_table[cmd].position) {
-        switch (ch->position) {
-            case POS_DEAD:
-                send_to_char ("Lie still; you are DEAD.\n\r", ch);
-                break;
-            case POS_MORTAL:
-            case POS_INCAP:
-                send_to_char ("You are hurt far too bad for that.\n\r", ch);
-                break;
-            case POS_STUNNED:
-                send_to_char ("You are too stunned to do that.\n\r", ch);
-                break;
-            case POS_SLEEPING:
-                send_to_char ("In your dreams, or what?\n\r", ch);
-                break;
-            case POS_RESTING:
-                send_to_char ("Nah... You feel too relaxed...\n\r", ch);
-                break;
-            case POS_SITTING:
-                send_to_char ("Better stand up first.\n\r", ch);
-                break;
-            case POS_FIGHTING:
-                send_to_char ("No way!  You are still fighting!\n\r", ch);
-                break;
-        }
+        msg = interpret_pos_message (ch->position);
+        if (msg != NULL)
+            send_to_char (msg, ch);
         return;
     }
 
@@ -508,6 +488,20 @@ void interpret (CHAR_T *ch, char *argument) {
     (*cmd_table[cmd].do_fun) (ch, argument);
 
     tail_chain ();
+}
+
+const char *interpret_pos_message (int pos) {
+    switch (pos) {
+        case POS_DEAD:     return "Lie still; you are DEAD.\n\r";
+        case POS_MORTAL:   return "You are hurt far too bad for that.\n\r";
+        case POS_INCAP:    return "You are hurt far too bad for that.\n\r";
+        case POS_STUNNED:  return "You are too stunned to do that.\n\r";
+        case POS_SLEEPING: return "In your dreams, or what?\n\r";
+        case POS_RESTING:  return "Nah... You feel too relaxed...\n\r";
+        case POS_SITTING:  return "Better stand up first.\n\r";
+        case POS_FIGHTING: return "No way!  You are still fighting!\n\r";
+        default:           return NULL;
+    }
 }
 
 /* function to keep argument safe in all commands -- no static strings */
@@ -545,44 +539,30 @@ bool check_social (CHAR_T *ch, char *command, char *argument) {
         return TRUE;
     }
 
-    switch (ch->position) {
-        case POS_DEAD:
-            send_to_char ("Lie still; you are DEAD.\n\r", ch);
-            return TRUE;
-
-        case POS_INCAP:
-        case POS_MORTAL:
-            send_to_char ("You are hurt far too bad for that.\n\r", ch);
-            return TRUE;
-
-        case POS_STUNNED:
-            send_to_char ("You are too stunned to do that.\n\r", ch);
-            return TRUE;
-
-        case POS_SLEEPING:
-            /* I just know this is the path to a 12" 'if' statement.  :(
-             * But two players asked for it already!  -- Furey */
-            if (!str_cmp (soc->name, "snore"))
-                break;
-            send_to_char ("In your dreams, or what?\n\r", ch);
-            return TRUE;
-
+    /* TODO: allow a minimum position for socials? */
+    while (ch->position <= POS_SLEEPING) {
+        /* I just know this is the path to a 12" 'if' statement.  :(
+         * But two players asked for it already!  -- Furey */
+        if (ch->position == POS_SLEEPING && !str_cmp (soc->name, "snore"))
+            break;
+        send_to_char (interpret_pos_message (ch->position), ch);
+        return TRUE;
     }
 
     one_argument (argument, arg);
     victim = NULL;
     if (arg[0] == '\0') {
-        act (soc->char_no_arg,   ch, NULL, victim, TO_CHAR);
+        act_new (soc->char_no_arg,   ch, NULL, victim, TO_CHAR, POS_DEAD);
         act (soc->others_no_arg, ch, NULL, victim, TO_NOTCHAR);
     }
     else if ((victim = find_char_same_room (ch, arg)) == NULL)
         send_to_char ("They aren't here.\n\r", ch);
     else if (victim == ch) {
-        act (soc->char_auto,   ch, NULL, victim, TO_CHAR);
+        act_new (soc->char_auto,   ch, NULL, victim, TO_CHAR, POS_DEAD);
         act (soc->others_auto, ch, NULL, victim, TO_NOTCHAR);
     }
     else {
-        act (soc->char_found,   ch, NULL, victim, TO_CHAR);
+        act_new (soc->char_found,   ch, NULL, victim, TO_CHAR, POS_DEAD);
         act (soc->vict_found,   ch, NULL, victim, TO_VICT);
         act (soc->others_found, ch, NULL, victim, TO_OTHERS);
 
@@ -600,10 +580,10 @@ bool check_social (CHAR_T *ch, char *command, char *argument) {
                 case 6:
                 case 7:
                 case 8:
+                    act_new (soc->char_found, victim, NULL, ch,
+                         TO_CHAR, POS_DEAD);
                     act (soc->others_found,
                          victim, NULL, ch, TO_OTHERS);
-                    act (soc->char_found, victim, NULL, ch,
-                         TO_CHAR);
                     act (soc->vict_found, victim, NULL, ch,
                          TO_VICT);
                     break;
@@ -612,8 +592,9 @@ bool check_social (CHAR_T *ch, char *command, char *argument) {
                 case 10:
                 case 11:
                 case 12:
+                    act_new ("You slap $N.", victim, NULL, ch, TO_CHAR,
+                        POS_DEAD);
                     act ("$n slaps $N.", victim, NULL, ch, TO_OTHERS);
-                    act ("You slap $N.", victim, NULL, ch, TO_CHAR);
                     act ("$n slaps you.", victim, NULL, ch, TO_VICT);
                     break;
             }

@@ -34,6 +34,7 @@
 #include "lookup.h"
 #include "chars.h"
 #include "objs.h"
+#include "memory.h"
 
 #include "music.h"
 
@@ -153,6 +154,7 @@ void music_update_object (OBJ_T *obj) {
 
 void music_load_songs (void) {
     FILE *fp;
+    SONG_T *song;
     int count = 0, lines, i;
     char letter;
 
@@ -169,17 +171,20 @@ void music_load_songs (void) {
     }
 
     for (count = 0; count < MAX_SONGS; count++) {
+        song = &(song_table[count]);
+        if (song->name != NULL)
+            continue;
+
         letter = fread_letter (fp);
-        if (letter == '#' || count == MAX_SONGS) {
-            song_table[count].name = NULL;
+        if (letter == '#') {
             fclose (fp);
             return;
         }
         else
             ungetc (letter, fp);
 
-        song_table[count].group = fread_string (fp);
-        song_table[count].name = fread_string (fp);
+        song->group = fread_string (fp);
+        song->name = fread_string (fp);
 
         /* read lyrics */
         lines = 0;
@@ -187,7 +192,7 @@ void music_load_songs (void) {
         while (1) {
             letter = fread_letter (fp);
             if (letter == '~') {
-                song_table[count].lines = lines;
+                song->lines = lines;
                 break;
             }
             else
@@ -197,8 +202,18 @@ void music_load_songs (void) {
                     MAX_SONG_LINES);
                 break;
             }
-            song_table[count].lyrics[lines] = fread_string_eol (fp);
+            song->lyrics[lines] = fread_string_eol (fp);
             lines++;
+        }
+
+        /* make sure this song doesn't already exist. */
+        if (song_lookup_exact (song->name) != count) {
+            str_replace_dup (&(song->name), NULL);
+            str_replace_dup (&(song->group), NULL);
+            for (i = 0; i < song->lines; i++)
+                str_replace_dup (&(song->lyrics[i]), NULL);
+            song->lines = 0;
+            count--;
         }
     }
 }

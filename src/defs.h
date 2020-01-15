@@ -42,8 +42,11 @@
 #define DEFINE_NANNY_FUN(fun) \
     void fun (DESCRIPTOR_T *d, char *argument)
 
-#define DEFINE_TABLE_JSON_FUN(fun) \
+#define DEFINE_JSON_WRITE_FUN(fun) \
     JSON_T *fun (const void *obj, const char *obj_name)
+
+#define DEFINE_JSON_READ_FUN(fun) \
+    void *fun (const JSON_T *json, const char *obj_name)
 
 /* Short scalar types.
  * Diavolo reports AIX compiler has bugs with short types. */
@@ -617,7 +620,7 @@
 #define LOG_NEVER   2
 
 /* Music stuff. */
-#define MAX_SONGS       20
+#define MAX_SONGS       50
 #define MAX_SONG_LINES  100 /* this boils down to about 1k per song */
 #define MAX_SONG_GLOBAL 10  /* max songs the global jukebox can hold */
 
