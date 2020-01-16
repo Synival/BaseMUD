@@ -27,7 +27,6 @@
 
 #include <string.h>
 
-#include "json_obj.h"
 #include "lookup.h"
 #include "colour.h"
 #include "memory.h"
@@ -45,7 +44,7 @@
             break; \
     } \
     if (index == max) { \
-        printf ("Too many %s objects!\n", obj_name); \
+        json_logf (json, "Too many '%s' objects.\n", obj_name); \
         return NULL; \
     } \
     var = &(var ## _table[index]);

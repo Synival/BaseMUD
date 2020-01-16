@@ -83,6 +83,15 @@
         return new; \
     }
 
+#define JSON_PROP_FUN_OF(vname, fname, vptype) \
+    JSON_T *json_prop_ ## vname (JSON_T *parent, const char *name, \
+        vptype arg) \
+    { \
+        JSON_T *new = fname (name, arg); \
+        json_attach_under (new, parent); \
+        return new; \
+    }
+
 #define JSON_SIMPLE(jtype, ctype) \
     JSON_T *new; \
     ctype *ptr = calloc (1, sizeof (ctype)); \
@@ -95,6 +104,13 @@
     (json_value_as_string (json_get ((json), (prop)), (buf), sizeof (buf)))
 #define JSON_GET_BOOL(json, prop) \
     (json_value_as_bool (json_get ((json), (prop))))
+
+#define JBITS(val) \
+    json_not_none(val)
+#define JBITSF(array, bits) \
+    JBITS (flags_to_string ((array), (bits)))
+#define JSTR(val) \
+    json_not_blank(val)
 
 /* data structures */
 struct json_t {
@@ -141,6 +157,8 @@ JSON_T *json_prop_object (JSON_T *parent, const char *name, int value);
 JSON_T *json_prop_array (JSON_T *parent, const char *name);
 JSON_T *json_prop_dice (JSON_T *parent, const char *name,
     const DICE_T *dice);
+JSON_T *json_prop_string_without_last_newline (JSON_T *json, const char *prop,
+    const char *obj_name, const char *value);
 
 /* data retrieval. */
 bool     json_expand_newlines (char *buf_in, size_t len);
@@ -148,5 +166,11 @@ char    *json_value_as_string (const JSON_T *json, char *buf, size_t size);
 json_int json_value_as_int (const JSON_T *json);
 bool     json_value_as_bool (const JSON_T *json);
 struct dice_type json_value_as_dice (const JSON_T *json);
+
+/* utility functions. */
+const char *json_not_none (const char *value);
+const char *json_not_blank (const char *value);
+char *json_string_without_last_newline (const char *name, const char *prop,
+    const char *value);
 
 #endif

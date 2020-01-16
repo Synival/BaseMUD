@@ -11,7 +11,7 @@ O_FILES = \
     act_move.o act_obj.o act_olc.o act_player.o act_shop.o act_skills.o \
     affects.o ban.o board.o boot.o chars.o colour.o comm.o db_old.o db.o \
     descs.o do_sub.o effects.o fight.o find.o flags.o globals.o groups.o interp.o \
-    items.o json.o json_import.o json_obj.o json_read.o json_write.o json_tblr.o json_tblw.o \
+    items.o json.o json_import.o json_objr.o json_objw.o json_read.o json_write.o json_tblr.o json_tblw.o \
     lookup.o magic.o materials.o memory.o mob_cmds.o mob_prog.o mobiles.o music.o nanny.o objs.o \
     olc.o olc_aedit.o olc_hedit.o olc_medit.o olc_mpedit.o olc_oedit.o \
     olc_redit.o olc_save.o players.o portals.o recycle.o rooms.o save.o signal.o \
@@ -113,9 +113,9 @@ comm.o: fight.h interp.h db.h olc.h save.h mob_prog.h lookup.h act_info.h
 comm.o: chars.h rooms.h objs.h descs.h globals.h players.h comm.h
 db.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 db.o: structs.h types.h flags.h tables.h utils.h recycle.h affects.h lookup.h
-db.o: json_obj.h json_write.h json_read.h json_import.h music.h ban.h board.h
-db.o: olc.h portals.h chars.h rooms.h objs.h db_old.h update.h globals.h
-db.o: memory.h items.h mobiles.h skills.h db.h
+db.o: json_objw.h json_write.h json_read.h json_import.h music.h ban.h
+db.o: board.h olc.h portals.h chars.h rooms.h objs.h db_old.h update.h
+db.o: globals.h memory.h items.h mobiles.h skills.h db.h
 db_old.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 db_old.o: json.h structs.h types.h flags.h tables.h db.h recycle.h utils.h
 db_old.o: interp.h lookup.h olc.h affects.h globals.h memory.h items.h
@@ -161,18 +161,21 @@ json.o: json.h structs.h types.h flags.h tables.h utils.h memory.h
 json_import.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h
 json_import.o: macros.h json.h structs.h types.h flags.h tables.h utils.h
 json_import.o: recycle.h db.h lookup.h portals.h globals.h memory.h
-json_import.o: json_import.h
-json_obj.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
-json_obj.o: json.h structs.h types.h flags.h tables.h db.h lookup.h utils.h
-json_obj.o: json_obj.h
+json_import.o: json_objr.h json_import.h
+json_objr.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
+json_objr.o: json.h structs.h types.h flags.h tables.h json_import.h
+json_objr.o: recycle.h memory.h lookup.h portals.h db.h globals.h json_objr.h
+json_objw.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
+json_objw.o: json.h structs.h types.h flags.h tables.h lookup.h utils.h
+json_objw.o: json_objw.h
 json_read.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 json_read.o: json.h structs.h types.h flags.h tables.h utils.h json_read.h
 json_tblr.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
-json_tblr.o: json.h structs.h types.h flags.h tables.h json_obj.h lookup.h
-json_tblr.o: colour.h json_tblr.h
+json_tblr.o: json.h structs.h types.h flags.h tables.h lookup.h colour.h
+json_tblr.o: memory.h json_import.h json_tblr.h
 json_tblw.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
-json_tblw.o: json.h structs.h types.h flags.h tables.h json_obj.h lookup.h
-json_tblw.o: colour.h json_tblw.h
+json_tblw.o: json.h structs.h types.h flags.h tables.h lookup.h colour.h
+json_tblw.o: json_tblw.h
 json_write.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 json_write.o: json.h structs.h types.h flags.h tables.h utils.h json_write.h
 lookup.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
@@ -200,7 +203,7 @@ mobiles.o: memory.h chars.h affects.h lookup.h fight.h interp.h act_fight.h
 mobiles.o: magic.h mobiles.h
 music.o: recycle.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 music.o: json.h structs.h types.h flags.h tables.h utils.h comm.h db.h
-music.o: interp.h globals.h lookup.h chars.h objs.h music.h
+music.o: interp.h globals.h lookup.h chars.h objs.h memory.h music.h
 nanny.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 nanny.o: json.h structs.h types.h flags.h tables.h interp.h recycle.h
 nanny.o: lookup.h utils.h comm.h db.h save.h ban.h fight.h act_info.h

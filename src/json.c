@@ -418,3 +418,45 @@ void json_logf (const JSON_T *json, const char *format, ...) {
     log_f ("%s, line %d, col %d: %s", json->filename,
         json->line, json->col, buf);
 }
+
+const char *json_not_none (const char *value) {
+    return (value == NULL || !strcmp (value, "none"))
+        ? NULL : value;
+}
+
+const char *json_not_blank (const char *value) {
+    return (value == NULL || value[0] == '\0')
+        ? NULL : value;
+}
+
+char *json_string_without_last_newline (const char *name, const char *prop,
+    const char *value)
+{
+    static char buf[MAX_STRING_LENGTH];
+    int len;
+
+    if (value == NULL)
+        return NULL;
+
+    len = strlen (value);
+    while (len > 0 && value[len - 1] == '\r')
+        len--;
+    if (len < 1 || value[len - 1] != '\n') {
+        bugf ("json_string_without_last_newline(): %s, %s\n"
+            "    String should end with \\n, but doesn't:\n"
+            "    \"%s\"", name, prop, value);
+    }
+    else
+        len--;
+
+    strncpy (buf, value, len);
+    buf[len] = '\0';
+    return buf;
+}
+
+JSON_T *json_prop_string_without_last_newline (JSON_T *json, const char *prop,
+    const char *obj_name, const char *value)
+{
+    return json_prop_string (json, prop, json_string_without_last_newline (
+        obj_name, prop, JSTR (value)));
+}

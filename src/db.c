@@ -36,7 +36,7 @@
 #include "affects.h"
 #include "lookup.h"
 #include "json.h"
-#include "json_obj.h"
+#include "json_objw.h"
 #include "json_write.h"
 #include "json_read.h"
 #include "json_import.h"
@@ -272,7 +272,7 @@ void db_export_json (bool write_indiv, const char *everything) {
         if (write_indiv)
             log_f("Exporting JSON: %s%s*", JSON_AREAS_DIR, fbuf);
 
-        json = json_wrap_obj (json_new_obj_area (NULL, area), "area");
+        json = json_wrap_obj (json_objw_area (NULL, area), "area");
         json_attach_under (json, jgrp);
 
         if (write_indiv) {
@@ -307,9 +307,9 @@ void db_export_json (bool write_indiv, const char *everything) {
                 } \
             } while (0)
 
-        ADD_AREA_JSON ("room",   "rooms.json",   room_index, ROOM_INDEX_T, json_new_obj_room);
-        ADD_AREA_JSON ("object", "objects.json", obj_index,  OBJ_INDEX_T,  json_new_obj_object);
-        ADD_AREA_JSON ("mobile", "mobiles.json", mob_index,  MOB_INDEX_T,  json_new_obj_mobile);
+        ADD_AREA_JSON ("room",   "rooms.json",   room_index, ROOM_INDEX_T, json_objw_room);
+        ADD_AREA_JSON ("object", "objects.json", obj_index,  OBJ_INDEX_T,  json_objw_object);
+        ADD_AREA_JSON ("mobile", "mobiles.json", mob_index,  MOB_INDEX_T,  json_objw_mobile);
     }
 
     /* Write json that doesn't need subdirectories. */
@@ -365,16 +365,16 @@ void db_export_json (bool write_indiv, const char *everything) {
         } while (0)
 
     ADD_RECYCLEABLE_JSON ("social", "config/socials", social, SOCIAL_T,
-        json_new_obj_social, 1);
+        json_objw_social, 1);
     ADD_RECYCLEABLE_JSON ("portal", "config/portals", portal, PORTAL_T,
-        json_new_obj_portal, (obj->generated == FALSE));
+        json_objw_portal, (obj->generated == FALSE));
 
     ADD_TABLE_JSON ("table", "tables", master, TABLE_T,
-        json_new_obj_table, obj->type == TABLE_UNIQUE && obj->json_write_func);
+        json_objw_table, obj->type == TABLE_UNIQUE && obj->json_write_func);
     ADD_TABLE_JSON ("table", "flags", master, TABLE_T,
-        json_new_obj_table, obj->type == TABLE_FLAGS);
+        json_objw_table, obj->type == TABLE_FLAGS);
     ADD_TABLE_JSON ("table", "types", master, TABLE_T,
-        json_new_obj_table, obj->type == TABLE_TYPES);
+        json_objw_table, obj->type == TABLE_TYPES);
 
     /* Add help areas. */
     do {
@@ -387,7 +387,7 @@ void db_export_json (bool write_indiv, const char *everything) {
             if (write_indiv)
                 log_f("Exporting JSON: %s", fbuf);
 
-            json = json_wrap_obj (json_new_obj_help_area (NULL, had), "help");
+            json = json_wrap_obj (json_objw_help_area (NULL, had), "help");
             json_attach_under (json, jarea);
 
             if (write_indiv) {

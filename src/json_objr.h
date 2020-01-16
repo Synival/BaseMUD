@@ -25,48 +25,29 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#ifndef __ROM_JSON_IMPORT_H
-#define __ROM_JSON_IMPORT_H
+#ifndef __ROM_JSON_OBJR_H
+#define __ROM_JSON_OBJR_H
 
 #include "merc.h"
 
-struct json_eprop {
-    char *name;
-    bool required;
-    struct json_eprop *prev, *next;
-};
-
-/* some useful(?) macros */
-#define JGI(prop) JSON_GET_INT(json, prop)
-#define JGS(prop) JSON_GET_STR(json, prop, buf)
-#define JGB(prop) JSON_GET_BOOL(json, prop)
-
-#define JGS_NL(prop) \
-    (json_string_append_newline (JGS(prop), sizeof (buf)))
-
-#define READ_PROP_STR(obj_prop, json_prop) \
-    (JSON_GET_STR(json, (json_prop), (obj_prop)))
-#define READ_PROP_STRP(obj_prop, json_prop) \
-    (str_replace_dup (&(obj_prop), JGS (json_prop)))
-#define READ_PROP_STRP_NL(obj_prop, json_prop) \
-    (str_replace_dup (&(obj_prop), JGS_NL (json_prop)))
-#define READ_PROP_INT(obj_prop, json_prop) \
-    ((obj_prop) = JGI (json_prop))
-#define READ_PROP_BOOL(obj_prop, json_prop) \
-    ((obj_prop) = JGB (json_prop))
-#define READ_PROP_FLAGS(obj_prop, json_prop, table) \
-    ((obj_prop) = flags_from_string_exact (table, (JGS (json_prop), buf)))
-#define READ_PROP_TYPE(obj_prop, json_prop, table) \
-    ((obj_prop) = type_lookup_exact (table, (JGS (json_prop), buf)))
-
-#define NO_NULL_STR(obj_prop) \
-    do { \
-        if ((obj_prop) == NULL) str_replace_dup (&(obj_prop), ""); \
-    } while (0)
-
-/* general import functions. */
-int json_import_objects (JSON_T *json);
-bool json_import_expect (const char *type, const JSON_T *json, ...);
-char *json_string_append_newline (char *buf, size_t size);
+/* creating world objects from JSON objects. */
+ROOM_INDEX_T *json_objr_room (const JSON_T *json);
+EXTRA_DESCR_T *json_objr_extra_descr (const JSON_T *json);
+EXIT_T *json_objr_exit (const JSON_T *json, ROOM_INDEX_T *room, int *dir_out);
+RESET_T *json_objr_reset (const JSON_T *json, ROOM_INDEX_T *room);
+void json_objr_reset_values (const JSON_T *json, RESET_VALUE_T *v,
+    char command, ROOM_INDEX_T *room);
+SHOP_T *json_objr_shop (const JSON_T *json, const char *backup_area);
+MOB_INDEX_T *json_objr_mobile (const JSON_T *json);
+OBJ_INDEX_T *json_objr_object (const JSON_T *json);
+void json_objr_object_values (const JSON_T *json, OBJ_INDEX_T *obj);
+AREA_T *json_objr_area (const JSON_T *json);
+SOCIAL_T *json_objr_social (const JSON_T *json);
+PORTAL_T *json_objr_portal (const JSON_T *json);
+HELP_AREA_T *json_objr_help_area (const JSON_T *json);
+HELP_T *json_objr_help (const JSON_T *json);
+AFFECT_T *json_objr_affect (JSON_T *json);
+ANUM_T *json_objr_anum (const JSON_T *json, int type, sh_int *vnum_ptr,
+    const char *backup_area);
 
 #endif
