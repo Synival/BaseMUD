@@ -709,6 +709,7 @@ SOCIAL_T *json_objr_social (const JSON_T *json) {
 
         "*char_no_arg", "*others_no_arg",  "*char_found", "*others_found",
         "*vict_found",  "*char_not_found", "*char_auto",  "*others_auto",
+        "*min_pos",
 
         NULL
     ))
@@ -717,7 +718,7 @@ SOCIAL_T *json_objr_social (const JSON_T *json) {
     /* TODO: check for duplicates! */
     social = social_new ();
 
-    READ_PROP_STR  (social->name,           "name");
+    READ_PROP_STRP (social->name,           "name");
     READ_PROP_STRP (social->char_no_arg,    "char_no_arg");
     READ_PROP_STRP (social->others_no_arg,  "others_no_arg");
     READ_PROP_STRP (social->char_found,     "char_found");
@@ -726,6 +727,11 @@ SOCIAL_T *json_objr_social (const JSON_T *json) {
     READ_PROP_STRP (social->char_not_found, "char_not_found");
     READ_PROP_STRP (social->char_auto,      "char_auto");
     READ_PROP_STRP (social->others_auto,    "others_auto");
+
+    READ_PROP_STR (buf, "min_pos");
+    if (buf[0] != '\0')
+        social->min_pos = lookup_func_backup (position_lookup_exact,
+            buf, "Unknown start position '%s'", POS_RESTING);
 
     return social;
 }

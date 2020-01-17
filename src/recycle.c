@@ -567,6 +567,7 @@ void social_init (void *obj) {
 
 void social_dispose (void *obj) {
     SOCIAL_T *soc = obj;
+    str_free (&(soc->name));
     str_free (&(soc->char_no_arg));
     str_free (&(soc->others_no_arg));
     str_free (&(soc->char_found));

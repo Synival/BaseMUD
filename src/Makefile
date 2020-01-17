@@ -146,11 +146,12 @@ groups.o: structs.h types.h flags.h tables.h affects.h comm.h db.h chars.h
 groups.o: globals.h groups.h
 interp.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 interp.o: json.h structs.h types.h flags.h tables.h utils.h comm.h db.h
-interp.o: recycle.h chars.h find.h descs.h globals.h memory.h act_board.h
-interp.o: act_comm.h act_conf.h act_fight.h act_group.h act_info.h act_move.h
-interp.o: act_obj.h act_player.h act_shop.h act_skills.h act_olc.h wiz_im.h
-interp.o: wiz_l1.h wiz_l2.h wiz_l3.h wiz_l4.h wiz_l5.h wiz_l6.h wiz_l7.h
-interp.o: wiz_l8.h wiz_ml.h olc.h mob_cmds.h interp.h
+interp.o: recycle.h chars.h find.h descs.h globals.h memory.h lookup.h
+interp.o: act_board.h act_comm.h act_conf.h act_fight.h act_group.h
+interp.o: act_info.h act_move.h act_obj.h act_player.h act_shop.h
+interp.o: act_skills.h act_olc.h wiz_im.h wiz_l1.h wiz_l2.h wiz_l3.h wiz_l4.h
+interp.o: wiz_l5.h wiz_l6.h wiz_l7.h wiz_l8.h wiz_ml.h olc.h mob_cmds.h
+interp.o: interp.h
 items.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 items.o: json.h structs.h types.h flags.h tables.h utils.h comm.h interp.h
 items.o: objs.h lookup.h chars.h affects.h magic.h db.h recycle.h rooms.h

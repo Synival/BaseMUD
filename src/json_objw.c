@@ -588,6 +588,9 @@ JSON_T *json_objw_social (const char *name, const SOCIAL_T *soc) {
         json_prop_string (new, "char_auto",      soc->char_auto);
     if (soc->others_auto)
         json_prop_string (new, "others_auto",    soc->others_auto);
+    if (soc->min_pos != POS_RESTING)
+        json_prop_string (new, "min_pos",
+            JSTR (position_get_name (soc->min_pos)));
 
     return new;
 }

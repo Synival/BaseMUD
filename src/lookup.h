@@ -169,6 +169,25 @@
         return (orec == NULL) ? NULL : (vtype *) orec->obj;                \
     }                                                                      \
     const OBJ_RECYCLE_T *btype ## _get_rec_by_name (const char *name) {    \
+        const char *oname;                                                 \
+        const RECYCLE_T *rec;                                              \
+        OBJ_RECYCLE_T *orec;                                               \
+        rec = recycle_get (rtype);                                         \
+        if (rec->obj_name_off < 0)                                         \
+            return NULL;                                                   \
+        for (orec = rec->list_front; orec != NULL; orec = orec->next) {    \
+            oname = DEREF_OFFSET (char *, orec->obj, rec->obj_name_off);   \
+            if (oname[0] == name[0] && !str_prefix (name, oname))          \
+                return orec;                                               \
+        }                                                                  \
+        return NULL;                                                       \
+    }                                                                      \
+                                                                           \
+    vtype * btype ## _get_by_name_exact (const char *name) {               \
+        const OBJ_RECYCLE_T *orec = btype ## _get_rec_by_name_exact (name);\
+        return (orec == NULL) ? NULL : (vtype *) orec->obj;                \
+    }                                                                      \
+    const OBJ_RECYCLE_T *btype ## _get_rec_by_name_exact (const char *name) {\
         const RECYCLE_T *rec;                                              \
         OBJ_RECYCLE_T *orec;                                               \
         rec = recycle_get (rtype);                                         \
@@ -197,9 +216,11 @@
     const vtype * btype ## _get          (int type);         \
     const char *btype ## _get_name     (int type)
 
-#define DEC_SIMPLE_REC_BUNDLE(btype, vtype)                             \
-    vtype *               btype ## _get_by_name     (const char *name); \
-    const OBJ_RECYCLE_T *btype ## _get_rec_by_name (const char *name)
+#define DEC_SIMPLE_REC_BUNDLE(btype, vtype)                                  \
+    vtype *              btype ## _get_by_name           (const char *name); \
+    const OBJ_RECYCLE_T *btype ## _get_rec_by_name       (const char *name); \
+    vtype *              btype ## _get_by_name_exact     (const char *name); \
+    const OBJ_RECYCLE_T *btype ## _get_rec_by_name_exact (const char *name)
 
 /* Lookup bundles. */
 DEC_SIMPLE_INDEX_BUNDLE (master,   TABLE_T);

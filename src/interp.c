@@ -38,6 +38,7 @@
 #include "descs.h"
 #include "globals.h"
 #include "memory.h"
+#include "lookup.h"
 
 #include "act_board.h"
 #include "act_comm.h"
@@ -522,17 +523,8 @@ bool check_social (CHAR_T *ch, char *command, char *argument) {
     CHAR_T *victim;
     SOCIAL_T *soc;
     char arg[MAX_INPUT_LENGTH];
-    bool found;
 
-    found = FALSE;
-    for (soc = social_get_first(); soc != NULL; soc = social_get_next(soc)) {
-        if (command[0] == soc->name[0] && !str_prefix (command, soc->name)) {
-            found = TRUE;
-            break;
-        }
-    }
-
-    if (!found)
+    if ((soc = social_get_by_name (command)) == NULL)
         return FALSE;
     if (!IS_NPC (ch) && IS_SET (ch->comm, COMM_NOEMOTE)) {
         send_to_char ("You are anti-social!\n\r", ch);
@@ -540,11 +532,7 @@ bool check_social (CHAR_T *ch, char *command, char *argument) {
     }
 
     /* TODO: allow a minimum position for socials? */
-    while (ch->position <= POS_SLEEPING) {
-        /* I just know this is the path to a 12" 'if' statement.  :(
-         * But two players asked for it already!  -- Furey */
-        if (ch->position == POS_SLEEPING && !str_cmp (soc->name, "snore"))
-            break;
+    while (ch->position < soc->min_pos) {
         send_to_char (interpret_pos_message (ch->position), ch);
         return TRUE;
     }

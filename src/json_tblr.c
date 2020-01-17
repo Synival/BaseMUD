@@ -59,7 +59,6 @@ DEFINE_JSON_READ_FUN (json_tblr_song) {
             "name", "group", "lyrics", NULL))
         return NULL;
 
-    song->name = str_dup (buf);
     READ_PROP_STRP (song->name,  "name");
     READ_PROP_STRP (song->group, "group");
 

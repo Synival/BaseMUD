@@ -84,11 +84,11 @@ HEDIT (hedit_new) {
     strcpy (fullarg, argument);
     argument = one_argument (argument, arg);
 
-    if (!(had = had_get_by_name (arg))) {
+    if (!(had = had_get_by_name_exact (arg))) {
         had = ch->in_room->area->helps;
         argument = fullarg;
     }
-    RETURN_IF (help_get_by_name (argument),
+    RETURN_IF (help_get_by_name_exact (argument),
         "HEdit: Help already exists.\n\r", ch, FALSE);
 
     /* the area has no helps */

@@ -1022,7 +1022,7 @@ struct furniture_bits {
 
 /* Structure for a social in the socials table. */
 struct social_type {
-    char name[20];
+    char *name;
     char *char_no_arg;
     char *others_no_arg;
     char *char_found;

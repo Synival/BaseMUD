@@ -194,7 +194,7 @@ DEFINE_DO_FUN (do_socials) {
     int col;
 
     col = 0;
-    for (soc = social_get_first(); soc != NULL; soc = social_get_next(soc)) {
+    for (soc = social_get_first(); soc != NULL; soc = social_get_next (soc)) {
         printf_to_char (ch, "%-12s", soc->name);
         if (++col % 6 == 0)
             send_to_char ("\n\r", ch);

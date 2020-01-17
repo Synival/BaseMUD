@@ -86,7 +86,7 @@ AREA_T *db_link_areas_get_area (char **name) {
     if (*name == NULL)
         return NULL;
 
-    area = area_get_by_name (*name);
+    area = area_get_by_name_exact (*name);
     if (area == NULL)
         bugf ("db_link_areas_get_area(): area '%s' not found.", *name);
     str_free (&(*name));
@@ -427,7 +427,7 @@ void boot_db (void) {
 #endif
     init_areas ();
 
-    EXIT_IF_BUGF ((help = help_get_by_name ("greeting")) == NULL,
+    EXIT_IF_BUGF ((help = help_get_by_name_exact ("greeting")) == NULL,
         "boot_db(): Cannot find help entry 'greeting'.");
     help_greeting = help->text;
 
@@ -2097,8 +2097,7 @@ void load_socials (FILE *fp) {
 
         /* initialize our new social. */
         new = social_new ();
-        strncpy (new->name, temp, sizeof (new->name) - 1);
-        new->name[sizeof (new->name) - 1] = '\0';
+        str_replace_dup (&(new->name), temp);
         fread_to_eol (fp);
 
         do {
@@ -2111,6 +2110,11 @@ void load_socials (FILE *fp) {
             if (!fread_social_str (fp, &(new->char_auto)))      break;
             if (!fread_social_str (fp, &(new->others_auto)))    break;
         } while (0);
+
+        /* I just know this is the path to a 12" 'if' statement.  :(
+         * But two players asked for it already!  -- Furey */
+        if (!str_cmp (new->name, "snore"))
+            new->min_pos = POS_SLEEPING;
 
         /* if this social already exists, don't load it. */
         if (social_lookup_exact (new->name) != new)
