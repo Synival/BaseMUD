@@ -442,7 +442,7 @@ void boot_db (void) {
 
     music_load_songs ();
 
-    db_export_json (TRUE, NULL);
+ // db_export_json (TRUE, NULL);
 
     area_update ();
     board_load_all ();
