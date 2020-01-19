@@ -176,7 +176,7 @@ DEFINE_DO_FUN (do_mwhere) {
                     victim->name, victim->in_room->name,
                     victim->in_room->vnum);
 
-            add_buf (buffer, buf);
+            buf_cat (buffer, buf);
         }
 
         page_to_char (buf_string (buffer), ch);
@@ -197,7 +197,7 @@ DEFINE_DO_FUN (do_mwhere) {
         sprintf (buf, "%3d) [%5d] %-28s [%5d] %s\n\r", count,
             IS_NPC (victim) ? victim->index_data->vnum : 0,
             PERS (victim), victim->in_room->vnum, victim->in_room->name);
-        add_buf (buffer, buf);
+        buf_cat (buffer, buf);
     }
 
     if (!found)
@@ -251,7 +251,7 @@ DEFINE_DO_FUN (do_owhere) {
                 obj->short_descr);
 
         buf[0] = UPPER (buf[0]);
-        add_buf (buffer, buf);
+        buf_cat (buffer, buf);
 
         if (number >= max_found)
             break;

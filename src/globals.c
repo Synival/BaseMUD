@@ -74,7 +74,7 @@ DESCRIPTOR_T *descriptor_list; /* All open descriptors     */
 DESCRIPTOR_T *d_next;          /* Next descriptor in loop  */
 FILE *reserve_file;            /* Reserved file handle     */
 bool god;                      /* All new chars are gods!  */
-bool merc_down;                /* Shutdown                 */
+bool merc_down = TRUE;         /* Shutdown                 */
 bool wizlock;                  /* Game is wizlocked        */
 bool newlock;                  /* Game is newlocked        */
 char str_boot_time[MAX_INPUT_LENGTH];
@@ -111,3 +111,4 @@ flag_t music_queue[MAX_SONG_GLOBAL];
 
 /* Memory stuff. */
 char str_empty[1];
+size_t new_buf_size = BASE_BUF;

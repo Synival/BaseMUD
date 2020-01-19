@@ -174,11 +174,11 @@ HEDIT (hedit_list) {
         for (help = help_first; help; help = help->next) {
             sprintf (buf, "%3d. %-14.14s%s", cnt, help->keyword,
                      cnt % 4 == 3 ? "\n\r" : " ");
-            add_buf (buffer, buf);
+            buf_cat (buffer, buf);
             cnt++;
         }
         if (cnt % 4)
-            add_buf (buffer, "\n\r");
+            buf_cat (buffer, "\n\r");
 
         page_to_char (buf_string (buffer), ch);
         return FALSE;
@@ -194,12 +194,12 @@ HEDIT (hedit_list) {
         {
             sprintf (buf, "%3d. %-14.14s%s", cnt, help->keyword,
                      cnt % 4 == 3 ? "\n\r" : " ");
-            add_buf (buffer, buf);
+            buf_cat (buffer, buf);
             cnt++;
         }
 
         if (cnt % 4)
-            add_buf (buffer, "\n\r");
+            buf_cat (buffer, "\n\r");
 
         page_to_char (buf_string (buffer), ch);
         return FALSE;

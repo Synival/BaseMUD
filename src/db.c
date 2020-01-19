@@ -223,23 +223,22 @@ void db_import_json (void) {
     /* read all files instead simple JSON objects. */
     imported = 0;
     log_f ("Loading configuration from '%s'...", JSON_CONFIG_DIR);
-    json = json_read_directory_recursive (JSON_CONFIG_DIR,
-        json_import_objects, &imported);
+    if ((json = json_read_directory_recursive (JSON_CONFIG_DIR,
+            json_import_objects, &imported)) != NULL)
+        json_free (json);
 
     log_f ("Loading help from '%s'...", JSON_HELP_DIR);
-    json = json_read_directory_recursive (JSON_HELP_DIR,
-        json_import_objects, &imported);
+    if ((json = json_read_directory_recursive (JSON_HELP_DIR,
+            json_import_objects, &imported)) != NULL)
+        json_free (json);
 
     log_f ("Loading areas from '%s'...", JSON_AREAS_DIR);
-    json = json_read_directory_recursive (JSON_AREAS_DIR,
-        json_import_objects, &imported);
+    if ((json = json_read_directory_recursive (JSON_AREAS_DIR,
+            json_import_objects, &imported)) != NULL)
+        json_free (json);
 
     /* reconstruct the world based on the JSON read. */
     log_f ("%d object(s) loaded successfully.", imported);
-
-    /* free any leftover generated json. */
-    if (json != NULL)
-        json_free (json);
 
     /* link any objects with 'area_str' to their respective objects. */
     log_f ("Linking everything together...");
@@ -491,7 +490,8 @@ void init_areas (void) {
     }
 
     while (1) {
-        strcpy (current_area_filename, fread_word (file_list));
+        fread_word (file_list, current_area_filename,
+            sizeof (current_area_filename));
         if (current_area_filename[0] == '$')
             break;
         if (current_area_filename[0] == '#')
@@ -524,7 +524,7 @@ void init_areas (void) {
             EXIT_IF_BUG (fread_letter (current_area_file) != '#',
                 "boot_db: # not found.", 0);
 
-            word = fread_word (current_area_file);
+            word = fread_word_static (current_area_file);
             if (word[0] == '$')
                 break;
 
@@ -562,7 +562,7 @@ void load_area (FILE *fp) {
     AREA_T *area, *old_area_last;
 
     area = area_new ();
-    str_replace_dup (&area->filename, fread_string (fp));
+    fread_string_replace (fp, &area->filename);
     str_replace_dup (&area->name, str_without_extension (area->filename));
 
     /* Pretty up the log a little */
@@ -573,8 +573,8 @@ void load_area (FILE *fp) {
     str_replace_dup (&area->builders, "None"); /* OLC */
     area->vnum = TOP (RECYCLE_AREA_T);         /* OLC */
 
-    str_replace_dup (&area->title,   fread_string (fp));
-    str_replace_dup (&area->credits, fread_string (fp));
+    fread_string_replace (fp, &area->title);
+    fread_string_replace (fp, &area->credits);
     area->min_vnum = fread_number (fp);
     area->max_vnum = fread_number (fp);
     area->age = 15;
@@ -604,8 +604,7 @@ void load_area (FILE *fp) {
 
 #define SKEY(string, field)          \
     if (!str_cmp (word, (string))) { \
-        str_free (&(field));         \
-        (field) = fread_string (fp); \
+        fread_string_replace (fp, &(field)); \
         break;                       \
     }
 
@@ -639,7 +638,7 @@ void load_area_olc (FILE *fp) {
     log_f("Loading area %s", area->filename);
 
     while (1) {
-        word = feof (fp) ? "End" : fread_word (fp);
+        word = feof (fp) ? "End" : fread_word_static (fp);
         switch (UPPER (word[0])) {
             case 'N':
                 SKEY ("Name", area->title);
@@ -697,7 +696,7 @@ void load_helps (FILE *fp, char *fname) {
         HELP_AREA_T *had;
 
         level = fread_number (fp);
-        keyword = fread_string (fp);
+        keyword = fread_string_static (fp);
 
         if (keyword[0] == '$')
             break;
@@ -717,7 +716,7 @@ void load_helps (FILE *fp, char *fname) {
         help = help_new ();
         help->level = level;
         str_replace_dup (&help->keyword, keyword);
-        str_replace_dup (&help->text, fread_string (fp));
+        fread_string_replace (fp, &help->text);
 
         LISTB_BACK (help, next, help_first, help_last);
         LISTB_BACK (help, next_area, had->first, had->last);
@@ -927,8 +926,8 @@ void load_rooms (FILE *fp) {
         room_index->vnum        = vnum;
         room_index->anum        = vnum - area_last->min_vnum;
 
-        str_replace_dup (&room_index->name, fread_string (fp));
-        str_replace_dup (&room_index->description, fread_string (fp));
+        fread_string_replace (fp, &room_index->name);
+        fread_string_replace (fp, &room_index->description);
         /* Area number */ fread_number (fp);
         room_index->room_flags = fread_flag (fp);
         /* horrible hack */
@@ -952,7 +951,7 @@ void load_rooms (FILE *fp) {
             else if (letter == 'M') /* mana room */
                 room_index->mana_rate = fread_number (fp);
             else if (letter == 'C') { /* clan */
-                char *clan_str = fread_string (fp);
+                char *clan_str = fread_string_static (fp);
                 EXIT_IF_BUG (room_index->clan != 0,
                     "load_rooms: duplicate clan fields.", 0);
                 room_index->clan = lookup_func_backup (clan_lookup_exact, clan_str,
@@ -967,8 +966,8 @@ void load_rooms (FILE *fp) {
                     "load_rooms: vnum %d has bad door number.", vnum);
 
                 pexit = exit_new ();
-                str_replace_dup (&pexit->description, fread_string (fp));
-                str_replace_dup (&pexit->keyword,     fread_string (fp));
+                fread_string_replace (fp, &pexit->description);
+                fread_string_replace (fp, &pexit->keyword);
                 locks = fread_number (fp);
                 pexit->key = fread_number (fp);
                 pexit->vnum = fread_number (fp);
@@ -1006,14 +1005,14 @@ void load_rooms (FILE *fp) {
             }
             else if (letter == 'E') {
                 EXTRA_DESCR_T *ed = extra_descr_new ();
-                str_replace_dup (&ed->keyword,     fread_string (fp));
-                str_replace_dup (&ed->description, fread_string (fp));
+                fread_string_replace (fp, &ed->keyword);
+                fread_string_replace (fp, &ed->description);
                 LIST_BACK (ed, next, room_index->extra_descr, EXTRA_DESCR_T);
             }
             else if (letter == 'O') {
                 EXIT_IF_BUG (room_index->owner[0] != '\0',
                     "load_rooms: duplicate owner.", 0);
-                str_replace_dup (&room_index->owner, fread_string (fp));
+                fread_string_replace (fp, &room_index->owner);
             }
             else {
                 EXIT_IF_BUG (TRUE,
@@ -1075,7 +1074,7 @@ void load_specials (FILE *fp) {
 
             case 'M':
                 mob_index = get_mob_index (fread_number (fp));
-                func_name = fread_word (fp);
+                func_name = fread_word_static (fp);
                 mob_index->spec_fun = spec_lookup_function (func_name);
                 EXIT_IF_BUGF (mob_index->spec_fun == NULL,
                     "Unknown special function '%s'", func_name);
@@ -1320,7 +1319,7 @@ void load_mobprogs (FILE *fp) {
         mprog->area = area_last;
         mprog->vnum = vnum;
         mprog->anum = vnum - area_last->min_vnum;
-        str_replace_dup (&mprog->code, fread_string (fp));
+        fread_string_replace (fp, &mprog->code);
         LIST_FRONT (mprog, next, mprog_list);
     }
 }
@@ -1895,17 +1894,31 @@ flag_t flag_convert (char letter) {
  *   each string prepended with hash pointer to prev string,
  *   hash code is simply the string length.
  *   this function takes 40% to 50% of boot-up time. */
-char *fread_string (FILE *fp) {
-    char *str, *plast;
+char *fread_string_replace (FILE *fp, char **value) {
+    const char *str = fread_string_static (fp);
+    str_replace_dup (value, str);
+    return *value;
+}
+
+char *fread_string_dup (FILE *fp) {
+    return str_dup (fread_string_static (fp));
+}
+
+char *fread_string_static (FILE *fp) {
+    static char buf[MAX_STRING_LENGTH * 4];
+    return fread_string (fp, buf, sizeof (buf));
+}
+
+char *fread_string (FILE *fp, char *buf, size_t size) {
+    char *plast;
     char c;
 
-    str = string_space_next ();
-    plast = str;
-
-    c = fread_letter(fp);
+    plast = buf;
+    c = fread_letter (fp);
     if ((*plast++ = c) == '~')
         return str_empty;
 
+    /* TODO: mind 'size'. */
     while (1) {
         /* Back off the char type lookup,
          * it was too dirty for portability.
@@ -1927,7 +1940,7 @@ char *fread_string (FILE *fp) {
 
             case '~':
                 *plast = '\0';
-                return str_dup (str);
+                return buf;
 
             default:
                 plast++;
@@ -1936,9 +1949,24 @@ char *fread_string (FILE *fp) {
     }
 }
 
-char *fread_string_eol (FILE *fp) {
+char *fread_string_eol_replace (FILE *fp, char **value) {
+    const char *str = fread_string_eol_static (fp);
+    str_replace_dup (value, str);
+    return *value;
+}
+
+char *fread_string_eol_dup (FILE *fp) {
+    return str_dup (fread_string_eol_static (fp));
+}
+
+char *fread_string_eol_static (FILE *fp) {
+    static char buf[MAX_STRING_LENGTH * 4];
+    return fread_string_eol (fp, buf, sizeof (buf));
+}
+
+char *fread_string_eol (FILE *fp, char *buf, size_t size) {
     static bool char_special[256 - EOF];
-    char *str, *plast;
+    char *plast;
 
     if (char_special[EOF - EOF] != TRUE) {
         char_special[EOF - EOF]  = TRUE;
@@ -1946,10 +1974,8 @@ char *fread_string_eol (FILE *fp) {
         char_special['\r' - EOF] = TRUE;
     }
 
-    str = string_space_next ();
-    plast = str;
-
-    *plast++ = fread_letter(fp);
+    plast = buf;
+    *plast++ = fread_letter (fp);
     if (plast[-1] == '\n' || plast[-1] == '\r')
         return str_empty;
 
@@ -1967,7 +1993,7 @@ char *fread_string_eol (FILE *fp) {
             case '\r':
                 plast--;
                 *plast = '\0';
-                return str_dup (str);
+                return buf;
 
             default:
                 break;
@@ -1991,27 +2017,41 @@ void fread_to_eol (FILE *fp) {
 }
 
 /* Read one word (into static buffer). */
-char *fread_word (FILE *fp) {
+char *fread_word_replace (FILE *fp, char **value) {
+    const char *str = fread_word_static (fp);
+    str_replace_dup (value, str);
+    return *value;
+}
+
+char *fread_word_dup (FILE *fp) {
+    return str_dup (fread_word_static (fp));
+}
+
+char *fread_word_static (FILE *fp) {
     static char word[MAX_INPUT_LENGTH];
+    return fread_word (fp, word, sizeof (word));
+}
+
+char *fread_word (FILE *fp, char *buf, size_t size) {
     char *pword;
     char end_ch;
 
     end_ch = fread_letter (fp);
     if (end_ch == '\'' || end_ch == '"')
-        pword = word;
+        pword = buf;
     else {
-        word[0] = end_ch;
-        pword = word + 1;
+        buf[0] = end_ch;
+        pword = buf + 1;
         end_ch = ' ';
     }
 
-    for (; pword < word + MAX_INPUT_LENGTH; pword++) {
+    for (; pword < buf + size; pword++) {
         *pword = getc (fp);
         if (end_ch == ' ' ? isspace (*pword) : *pword == end_ch) {
             if (end_ch == ' ')
                 ungetc (*pword, fp);
             *pword = '\0';
-            return word;
+            return buf;
         }
     }
 
@@ -2071,13 +2111,13 @@ ROOM_INDEX_T *get_random_room (CHAR_T *ch) {
 }
 
 bool fread_social_str (FILE *fp, char **str) {
-    char *temp = fread_string_eol (fp);
+    char *temp = fread_string_eol_static (fp);
     if (!strcmp (temp, "$"))
         *str = NULL;
     else if (!strcmp (temp, "#"))
         return FALSE;
     else
-        *str = temp;
+        *str = str_dup (temp);
     return TRUE;
 }
 
@@ -2087,7 +2127,7 @@ void load_socials (FILE *fp) {
         SOCIAL_T *new;
         char *temp;
 
-        temp = fread_word (fp);
+        temp = fread_word_static (fp);
         if (!strcmp (temp, "#0"))
             return; /* done */
 #if defined(social_debug)
@@ -2156,7 +2196,7 @@ void load_mobiles (FILE *fp) {
 
         /* For some reason, 'oldstyle' is in front of a lot of the names.
          * If this is the case, we're going to ignore it completely. */
-        name = fread_string (fp);
+        name = fread_string_static (fp);
         if (!str_prefix ("oldstyle", name)) {
             name += 8;
             while (*name == ' ')
@@ -2164,11 +2204,11 @@ void load_mobiles (FILE *fp) {
         }
         str_replace_dup (&mob_index->name, name);
 
-        str_replace_dup (&mob_index->short_descr, fread_string (fp));
-        str_replace_dup (&mob_index->long_descr,  fread_string (fp));
-        str_replace_dup (&mob_index->description, fread_string (fp));
+        fread_string_replace (fp, &mob_index->short_descr);
+        fread_string_replace (fp, &mob_index->long_descr);
+        fread_string_replace (fp, &mob_index->description);
 
-        str = fread_string (fp);
+        str = fread_string_static (fp);
         mob_index->race = lookup_func_backup (race_lookup_exact,
             str, "Unknown race '%s'", 0);
 
@@ -2190,7 +2230,7 @@ void load_mobiles (FILE *fp) {
         fread_dice (fp, &(mob_index->mana));
         fread_dice (fp, &(mob_index->damage));
 
-        str = fread_word (fp);
+        str = fread_word_static (fp);
         mob_index->attack_type = lookup_func_backup (attack_lookup_exact,
             str, "Unknown damage type '%s'", 0);
 
@@ -2207,17 +2247,17 @@ void load_mobiles (FILE *fp) {
         mob_index->vuln_flags_plus = fread_flag (fp);
 
         /* vital statistics */
-        str = fread_word (fp);
+        str = fread_word_static (fp);
         mob_index->start_pos = lookup_func_backup (position_lookup_exact,
             str, "Unknown start position '%s'", POS_STANDING);
 
-        str = fread_word (fp);
+        str = fread_word_static (fp);
         mob_index->default_pos = lookup_func_backup (position_lookup_exact,
             str, "Unknown default position '%s'", POS_STANDING);
 
         /* read sex. 'none' has been replaced with 'neutral' to avoid confusion
          * between 'sexless' and 'sex is missing'. */
-        str = fread_word (fp);
+        str = fread_word_static (fp);
         if (!str_cmp (str, "none"))
             str = "neutral";
         mob_index->sex = lookup_func_backup (sex_lookup_exact,
@@ -2228,13 +2268,13 @@ void load_mobiles (FILE *fp) {
         mob_index->parts_plus = fread_flag (fp);
 
         /* Size. */
-        str = fread_word (fp);
+        str = fread_word_static (fp);
         mob_index->size = lookup_func_backup (size_lookup_exact, str,
             "Unknown size '%s'", SIZE_MEDIUM);
 
         /* Material. Sometimes this is '0', in which case, just replace it
          * with the default material's keyword. */
-        str = fread_word (fp);
+        str = fread_word_static (fp);
         if (!str_cmp (str, "0") || str[0] == '\0')
             str = (char *) material_get_name (MATERIAL_GENERIC);
         mob_index->material = lookup_func_backup (material_lookup_exact,
@@ -2246,7 +2286,7 @@ void load_mobiles (FILE *fp) {
                 char *word;
                 long vector;
 
-                word = fread_word (fp);
+                word = fread_word_static (fp);
                 vector = fread_flag (fp);
 
                 if (!str_prefix (word, "act") || !str_prefix (word, "mob"))
@@ -2276,7 +2316,7 @@ void load_mobiles (FILE *fp) {
                 int trigger = 0;
 
                 mprog = mprog_new ();
-                word = fread_word (fp);
+                word = fread_word_static (fp);
                 EXIT_IF_BUG (
                     (trigger = flag_lookup_exact (mprog_flags, word)) == FLAG_NONE,
                     "load_mobiles: invalid mob prog trigger.", 0);
@@ -2285,7 +2325,7 @@ void load_mobiles (FILE *fp) {
                 mprog->area = area_last;
                 mprog->vnum = fread_number (fp);
                 mprog->anum = mprog->vnum - area_last->min_vnum;
-                str_replace_dup (&mprog->trig_phrase, fread_string (fp));
+                fread_string_replace (fp, &mprog->trig_phrase);
 
                 LIST_BACK (mprog, next, mob_index->mprogs, MPROG_LIST_T);
             }
@@ -2376,18 +2416,18 @@ void load_objects (FILE *fp) {
         obj_index->new_format = TRUE;
         obj_index->reset_num = 0;
         newobj_count++;
-        str_replace_dup (&obj_index->name,          fread_string (fp));
-        str_replace_dup (&obj_index->short_descr,   fread_string (fp));
-        str_replace_dup (&obj_index->description,   fread_string (fp));
+        fread_string_replace (fp, &obj_index->name);
+        fread_string_replace (fp, &obj_index->short_descr);
+        fread_string_replace (fp, &obj_index->description);
 
         /* Read material, and replace 'oldstyle' (???) or 'blank' with 'generic'. */
-        str = fread_string (fp);
+        str = fread_string_static (fp);
         if (!str_cmp (str, "oldstyle") || str[0] == '\0')
-            str_replace_dup (&str, material_get_name (MATERIAL_GENERIC));
+            str = (char *) material_get_name (MATERIAL_GENERIC);
         obj_index->material = lookup_func_backup (material_lookup_exact,
             str, "Unknown material '%s'", MATERIAL_GENERIC);
 
-        str = fread_word (fp);
+        str = fread_word_static (fp);
         obj_index->item_type = lookup_func_backup (item_lookup_exact,
             str, "Unknown item type '%s'", 0);
 
@@ -2448,8 +2488,8 @@ void load_objects (FILE *fp) {
             }
             else if (letter == 'E') {
                 EXTRA_DESCR_T *ed = extra_descr_new ();
-                str_replace_dup (&ed->keyword,     fread_string (fp));
-                str_replace_dup (&ed->description, fread_string (fp));
+                fread_string_replace (fp, &ed->keyword);
+                fread_string_replace (fp, &ed->description);
                 LIST_BACK (ed, next, obj_index->extra_descr, EXTRA_DESCR_T);
             }
             else {

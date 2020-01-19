@@ -523,13 +523,13 @@ void obj_list_show_to_char (const OBJ_T *list, CHAR_T *ch, bool is_short,
         if (IS_NPC (ch) || IS_SET (ch->comm, COMM_COMBINE)) {
             if (show_string_counts[i] != 1) {
                 sprintf (buf, "(%2d) ", show_string_counts[i]);
-                add_buf (output, buf);
+                buf_cat (output, buf);
             }
             else
-                add_buf (output, "     ");
+                buf_cat (output, "     ");
         }
-        add_buf (output, show_strings[i]);
-        add_buf (output, "\n\r");
+        buf_cat (output, show_strings[i]);
+        buf_cat (output, "\n\r");
         str_free (&(show_strings[i]));
     }
 

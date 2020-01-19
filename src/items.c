@@ -2010,10 +2010,12 @@ int item_index_get_old_reset_shop_level (const OBJ_INDEX_T *obj_index) {
 bool item_index_read_values_from_file (OBJ_INDEX_T *obj_index, FILE *fp) {
     switch (obj_index->item_type) {
         case ITEM_WEAPON:
-            obj_index->v.weapon.weapon_type = weapon_lookup_exact (fread_word (fp));
+            obj_index->v.weapon.weapon_type = weapon_lookup_exact (
+                fread_word_static (fp));
             obj_index->v.weapon.dice_num    = fread_number (fp);
             obj_index->v.weapon.dice_size   = fread_number (fp);
-            obj_index->v.weapon.attack_type = attack_lookup_exact (fread_word (fp));
+            obj_index->v.weapon.attack_type = attack_lookup_exact (
+                fread_word_static (fp));
             obj_index->v.weapon.flags       = fread_flag (fp);
             return TRUE;
 
@@ -2029,7 +2031,7 @@ bool item_index_read_values_from_file (OBJ_INDEX_T *obj_index, FILE *fp) {
             obj_index->v.drink_con.capacity = fread_number (fp);
             obj_index->v.drink_con.filled   = fread_number (fp);
             obj_index->v.drink_con.liquid   = lookup_func_backup (liq_lookup_exact,
-                fread_word (fp), "Unknown liquid type '%s'", 0);
+                fread_word_static (fp), "Unknown liquid type '%s'", 0);
             obj_index->v.drink_con.poisoned = fread_number (fp);
             obj_index->v.drink_con._value5  = fread_number (fp);
             return TRUE;
@@ -2038,7 +2040,7 @@ bool item_index_read_values_from_file (OBJ_INDEX_T *obj_index, FILE *fp) {
             obj_index->v.fountain.capacity = fread_number (fp);
             obj_index->v.fountain.filled   = fread_number (fp);
             obj_index->v.fountain.liquid   = lookup_func_backup (liq_lookup_exact,
-                fread_word (fp), "Unknown liquid type '%s'", 0);
+                fread_word_static (fp), "Unknown liquid type '%s'", 0);
             obj_index->v.fountain.poisoned = fread_number (fp);
             obj_index->v.fountain._value5  = fread_number (fp);
             return TRUE;
@@ -2047,7 +2049,8 @@ bool item_index_read_values_from_file (OBJ_INDEX_T *obj_index, FILE *fp) {
             obj_index->v.wand.level    = fread_number (fp);
             obj_index->v.wand.recharge = fread_number (fp);
             obj_index->v.wand.charges  = fread_number (fp);
-            obj_index->v.wand.skill    = skill_lookup_exact (fread_word (fp));
+            obj_index->v.wand.skill    = skill_lookup_exact (
+                fread_word_static (fp));
             obj_index->v.wand._value5  = fread_number (fp);
             return TRUE;
 
@@ -2055,32 +2058,33 @@ bool item_index_read_values_from_file (OBJ_INDEX_T *obj_index, FILE *fp) {
             obj_index->v.staff.level    = fread_number (fp);
             obj_index->v.staff.recharge = fread_number (fp);
             obj_index->v.staff.charges  = fread_number (fp);
-            obj_index->v.staff.skill    = skill_lookup_exact (fread_word (fp));
+            obj_index->v.staff.skill    = skill_lookup_exact (
+                fread_word_static (fp));
             obj_index->v.staff._value5  = fread_number (fp);
             return TRUE;
 
         case ITEM_POTION:
             obj_index->v.potion.level  = fread_number (fp);
-            obj_index->v.potion.skill[0] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.potion.skill[1] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.potion.skill[2] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.potion.skill[3] = skill_lookup_exact (fread_word (fp));
+            obj_index->v.potion.skill[0] = skill_lookup_exact (fread_word_static (fp));
+            obj_index->v.potion.skill[1] = skill_lookup_exact (fread_word_static (fp));
+            obj_index->v.potion.skill[2] = skill_lookup_exact (fread_word_static (fp));
+            obj_index->v.potion.skill[3] = skill_lookup_exact (fread_word_static (fp));
             return TRUE;
 
         case ITEM_PILL:
             obj_index->v.pill.level  = fread_number (fp);
-            obj_index->v.pill.skill[0] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.pill.skill[1] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.pill.skill[2] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.pill.skill[3] = skill_lookup_exact (fread_word (fp));
+            obj_index->v.pill.skill[0] = skill_lookup_exact (fread_word_static (fp));
+            obj_index->v.pill.skill[1] = skill_lookup_exact (fread_word_static (fp));
+            obj_index->v.pill.skill[2] = skill_lookup_exact (fread_word_static (fp));
+            obj_index->v.pill.skill[3] = skill_lookup_exact (fread_word_static (fp));
             return TRUE;
 
         case ITEM_SCROLL:
             obj_index->v.scroll.level  = fread_number (fp);
-            obj_index->v.scroll.skill[0] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.scroll.skill[1] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.scroll.skill[2] = skill_lookup_exact (fread_word (fp));
-            obj_index->v.scroll.skill[3] = skill_lookup_exact (fread_word (fp));
+            obj_index->v.scroll.skill[0] = skill_lookup_exact (fread_word_static (fp));
+            obj_index->v.scroll.skill[1] = skill_lookup_exact (fread_word_static (fp));
+            obj_index->v.scroll.skill[2] = skill_lookup_exact (fread_word_static (fp));
+            obj_index->v.scroll.skill[3] = skill_lookup_exact (fread_word_static (fp));
             return TRUE;
 
         default:

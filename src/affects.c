@@ -297,7 +297,6 @@ void affect_join (CHAR_T *ch, AFFECT_T *paf) {
 void affect_init (AFFECT_T *af, sh_int bit_type, sh_int type, sh_int level,
     sh_int duration, sh_int apply, sh_int modifier, flag_t bits)
 {
-    memset (af, 0, sizeof (AFFECT_T));
     af->bit_type  = bit_type;
     af->type      = type;
     af->level     = level;

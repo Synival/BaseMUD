@@ -99,7 +99,6 @@ DEFINE_DO_FUN (do_reboo) {
 
 DEFINE_DO_FUN (do_reboot) {
     char buf[MAX_STRING_LENGTH];
-    extern bool merc_down;
     DESCRIPTOR_T *d, *d_next;
     CHAR_T *vch;
 
@@ -124,7 +123,6 @@ DEFINE_DO_FUN (do_shutdow) {
 
 DEFINE_DO_FUN (do_shutdown) {
     char buf[MAX_STRING_LENGTH];
-    extern bool merc_down;
     DESCRIPTOR_T *d, *d_next;
     CHAR_T *vch;
 

@@ -67,4 +67,7 @@
 #define BASEMUD_READ_EXTENDED_JSON
 #define BASEMUD_WRITE_EXTENDED_JSON
 
+/* Debugging features. */
+// #define BASEMUD_DEBUG_DISABLE_MEMORY_MANAGEMENT
+
 #endif

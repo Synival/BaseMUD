@@ -649,18 +649,18 @@ DEFINE_DO_FUN (do_help) {
         if (str_in_namelist (argall, help->keyword)) {
             /* add seperator if found */
             if (found)
-                add_buf (output,
+                buf_cat (output,
                     "\n\r============================================================\n\r\n\r");
             if (help->level >= 0 && str_cmp (argall, "imotd")) {
-                add_buf (output, help->keyword);
-                add_buf (output, "\n\r");
+                buf_cat (output, help->keyword);
+                buf_cat (output, "\n\r");
             }
 
             /* Strip leading '.' to allow initial blanks. */
             if (help->text[0] == '.')
-                add_buf (output, help->text + 1);
+                buf_cat (output, help->text + 1);
             else
-                add_buf (output, help->text);
+                buf_cat (output, help->text);
             found = TRUE;
 
             /* small hack :) */
@@ -714,7 +714,7 @@ DEFINE_DO_FUN (do_whois) {
 
         found = TRUE;
         char_get_who_string (ch, wch, buf, sizeof(buf));
-        add_buf (output, buf);
+        buf_cat (output, buf);
     }
 
     BAIL_IF (!found,
@@ -843,11 +843,11 @@ DEFINE_DO_FUN (do_who) {
 
         matches++;
         char_get_who_string (ch, wch, buf, sizeof(buf));
-        add_buf (output, buf);
+        buf_cat (output, buf);
     }
 
     sprintf (buf2, "\n\rPlayers found: %d\n\r", matches);
-    add_buf (output, buf2);
+    buf_cat (output, buf2);
     page_to_char (buf_string (output), ch);
     buf_free (output);
 }

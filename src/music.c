@@ -183,8 +183,8 @@ void music_load_songs (void) {
         else
             ungetc (letter, fp);
 
-        song->group = fread_string (fp);
-        song->name = fread_string (fp);
+        fread_string_replace (fp, &song->group);
+        fread_string_replace (fp, &song->name);
 
         /* read lyrics */
         lines = 0;
@@ -202,16 +202,16 @@ void music_load_songs (void) {
                     MAX_SONG_LINES);
                 break;
             }
-            song->lyrics[lines] = fread_string_eol (fp);
+            fread_string_eol_replace (fp, &(song->lyrics[lines]));
             lines++;
         }
 
         /* make sure this song doesn't already exist. */
         if (song_lookup_exact (song->name) != count) {
-            str_replace_dup (&(song->name), NULL);
-            str_replace_dup (&(song->group), NULL);
+            str_free (&(song->name));
+            str_free (&(song->group));
             for (i = 0; i < song->lines; i++)
-                str_replace_dup (&(song->lyrics[i]), NULL);
+                str_free (&(song->lyrics[i]));
             song->lines = 0;
             count--;
         }
@@ -237,7 +237,7 @@ void music_list_jukebox_songs (const OBJ_T *obj, CHAR_T *ch,
 
     sprintf (buf, "%s has the following songs available:\n\r",
              obj->short_descr);
-    add_buf (buffer, str_capitalized (buf));
+    buf_cat (buffer, str_capitalized (buf));
 
     for (i = 0; i < MAX_SONGS; i++) {
         if ((song = &(song_table[i]))->name == NULL)
@@ -250,12 +250,12 @@ void music_list_jukebox_songs (const OBJ_T *obj, CHAR_T *ch,
         else
             continue;
 
-        add_buf (buffer, buf);
+        buf_cat (buffer, buf);
         if (!artist && ++col % 2 == 0)
-            add_buf (buffer, "\n\r");
+            buf_cat (buffer, "\n\r");
     }
     if (!artist && col % 2 != 0)
-        add_buf (buffer, "\n\r");
+        buf_cat (buffer, "\n\r");
 
     page_to_char (buf_string (buffer), ch);
     buf_free (buffer);

@@ -76,7 +76,7 @@ void ban_load_all (void) {
         }
 
         pban = ban_new ();
-        str_replace_dup (&pban->name, fread_word (fp));
+        str_replace_dup (&pban->name, fread_word_static (fp));
         pban->level = fread_number (fp);
         pban->ban_flags = fread_flag (fp);
         fread_to_eol (fp);
@@ -130,7 +130,7 @@ void ban_site (CHAR_T *ch, char *argument, bool perm) {
             "No sites banned at this time.\n\r", ch);
         buffer = buf_new ();
 
-        add_buf (buffer, "Banned sites  level  type     status\n\r");
+        buf_cat (buffer, "Banned sites  level  type     status\n\r");
         for (pban = ban_first; pban != NULL; pban = pban->next) {
             sprintf (buf2, "%s%s%s",
                      IS_SET (pban->ban_flags, BAN_PREFIX) ? "*" : "",
@@ -143,7 +143,7 @@ void ban_site (CHAR_T *ch, char *argument, bool perm) {
                      IS_SET (pban->ban_flags, BAN_ALL) ? "all" : "",
                      IS_SET (pban->ban_flags,
                              BAN_PERMANENT) ? "perm" : "temp");
-            add_buf (buffer, buf);
+            buf_cat (buffer, buf);
         }
 
         page_to_char (buf_string (buffer), ch);

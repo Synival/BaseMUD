@@ -23,6 +23,7 @@
 #include "chars.h"
 #include "globals.h"
 #include "olc.h"
+#include "memory.h"
 
 #include "olc_mpedit.h"
 
@@ -101,16 +102,16 @@ MPEDIT (mpedit_list) {
                 chr = ' ';
 
             sprintf (buf, "[%3d] (%c) %5d\n\r", count, chr, mprg->vnum);
-            add_buf (buffer, buf);
+            buf_cat (buffer, buf);
             count++;
         }
     }
 
     if (count == 1) {
         if (all)
-            add_buf (buffer, "MobPrograms do not exist!\n\r");
+            buf_cat (buffer, "MobPrograms do not exist!\n\r");
         else
-            add_buf (buffer, "MobPrograms do not exist in this area.\n\r");
+            buf_cat (buffer, "MobPrograms do not exist in this area.\n\r");
     }
 
     page_to_char (buf_string (buffer), ch);

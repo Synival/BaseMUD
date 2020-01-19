@@ -44,6 +44,7 @@
 #include "chars.h"
 #include "globals.h"
 #include "players.h"
+#include "memory.h"
 
 #include "act_comm.h"
 
@@ -114,7 +115,7 @@ void do_comm_tell_to_buffer (CHAR_T *ch, CHAR_T *victim, char *msg) {
     char buf[MAX_STRING_LENGTH];
     sprintf (buf, "{k%s tells you '{K%s{k'{x\n\r", PERS_AW (ch, victim), msg);
     buf[2] = UPPER (buf[2]);
-    add_buf (victim->pcdata->buffer, buf);
+    buf_cat (victim->pcdata->buffer, buf);
 }
 
 bool do_comm_filter_tell_target_can_receive_tells(CHAR_T *ch,
@@ -274,7 +275,7 @@ DEFINE_DO_FUN (do_replay) {
     BAIL_IF (buf_string (ch->pcdata->buffer)[0] == '\0',
         "You have no tells to replay.\n\r", ch);
     page_to_char (buf_string (ch->pcdata->buffer), ch);
-    clear_buf (ch->pcdata->buffer);
+    buf_clear (ch->pcdata->buffer);
 }
 
 DEFINE_DO_FUN (do_auction) {

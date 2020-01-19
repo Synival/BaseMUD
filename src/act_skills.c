@@ -40,6 +40,7 @@
 #include "chars.h"
 #include "find.h"
 #include "players.h"
+#include "memory.h"
 
 #include "act_skills.h"
 
@@ -114,7 +115,7 @@ void do_skills_or_spells (CHAR_T *ch, char *argument, int spells) {
     }
     if (prefix)
         printf_to_buf (buffer, " that begin with '%s'", prefix);
-    add_buf (buffer, ":\n\r");
+    buf_cat (buffer, ":\n\r");
 
     /* initialize data */
     for (level = min_lev; level <= max_lev; level++) {
@@ -170,8 +171,8 @@ void do_skills_or_spells (CHAR_T *ch, char *argument, int spells) {
     else {
         for (level = min_lev; level <= max_lev; level++) {
             if (skill_list[level][0] != '\0') {
-                add_buf (buffer, skill_list[level]);
-                add_buf (buffer, "\n\r");
+                buf_cat (buffer, skill_list[level]);
+                buf_cat (buffer, "\n\r");
             }
         }
     }

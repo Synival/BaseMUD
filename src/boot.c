@@ -31,6 +31,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <errno.h>
 
 #if defined(unix)
     #include <signal.h>
@@ -118,15 +119,16 @@ int main (int argc, char **argv) {
     }
 
     /* Run the game. */
+    qmconfig_read(); /* Here because it fits, no conflicts with Linux placement -- JR 05/06/01 */
+                     /* Here so we can set the IP adress. -- JR 05/06/01 */
+
     #if defined(macintosh) || defined(MSDOS)
-        qmconfig_read(); /* Here because it fits, no conflicts with Linux placement -- JR 05/06/01 */
         boot_db ();
         log_string ("Merc is ready to rock.");
         game_loop_mac_msdos ();
     #endif
 
     #if defined(unix)
-        qmconfig_read(); /* Here so we can set the IP adress. -- JR 05/06/01 */
         if (!copyover)
             control = init_socket (port);
         boot_db ();
@@ -210,6 +212,7 @@ void game_loop_mac_msdos (void) {
         write_to_buffer (&dcon, "Do you want ANSI? (Y/n) ", 0);
 
     /* Main loop */
+    merc_down = FALSE;
     while (!merc_down) {
         DESCRIPTOR_T *d;
 
@@ -325,6 +328,7 @@ void game_loop_unix (int control) {
     current_time = (time_t) last_time.tv_sec;
 
     /* Main loop */
+    merc_down = FALSE;
     while (!merc_down) {
         fd_set in_set;
         fd_set out_set;
@@ -471,8 +475,10 @@ void game_loop_unix (int control) {
                 stall_time.tv_usec = usecDelta;
                 stall_time.tv_sec = secDelta;
                 if (select (0, NULL, NULL, NULL, &stall_time) < 0) {
-                    perror ("Game_loop: select: stall");
-                    exit (1);
+                    if (errno != EINTR) {
+                        perror ("Game_loop: select: stall");
+                        exit (1);
+                    }
                 }
             }
         }
@@ -574,7 +580,7 @@ void qmconfig_read (void) {
 
     reading = TRUE;
     while (reading) {
-        word = feof (fp) ? "END" : fread_word(fp);
+        word = feof (fp) ? "END" : fread_word_static (fp);
         match = FALSE;
 
         switch (UPPER(word[0])) {

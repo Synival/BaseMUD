@@ -889,7 +889,7 @@ MEDIT (medit_group) {
             if (mob_temp && (mob_temp->group == atoi (argument))) {
                 found = TRUE;
                 sprintf (buf, "[%5d] %s\n\r", mob_temp->vnum, mob_temp->name);
-                add_buf (buffer, buf);
+                buf_cat (buffer, buf);
             }
         }
 

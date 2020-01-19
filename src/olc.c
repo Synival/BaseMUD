@@ -618,7 +618,7 @@ void show_liqlist (CHAR_T *ch) {
 
     for (liq = 0; liq_table[liq].name != NULL; liq++) {
         if ((liq % 21) == 0)
-            add_buf (buffer,
+            buf_cat (buffer,
                      "Name                 Color          Proof Full Thirst Food Ssize\n\r");
 
         sprintf (buf, "%-20s %-14s %5d %4d %6d %4d %5d\n\r",
@@ -626,7 +626,7 @@ void show_liqlist (CHAR_T *ch) {
             liq_table[liq].cond[COND_DRUNK],  liq_table[liq].cond[COND_FULL],
             liq_table[liq].cond[COND_THIRST], liq_table[liq].cond[COND_HUNGER],
             liq_table[liq].serving_size);
-        add_buf (buffer, buf);
+        buf_cat (buffer, buf);
     }
 
     page_to_char (buf_string (buffer), ch);
@@ -642,10 +642,10 @@ void show_damlist (CHAR_T *ch) {
 
     for (att = 0; attack_table[att].name != NULL; att++) {
         if ((att % 21) == 0)
-            add_buf (buffer, "Name                 Noun\n\r");
+            buf_cat (buffer, "Name                 Noun\n\r");
         sprintf (buf, "%-20s %-20s\n\r",
                  attack_table[att].name, attack_table[att].noun);
-        add_buf (buffer, buf);
+        buf_cat (buffer, buf);
     }
 
     page_to_char (buf_string (buffer), ch);

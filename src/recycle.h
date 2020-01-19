@@ -30,16 +30,6 @@
 
 #include "merc.h"
 
-/* Stuff for providing a crash-proof buffer */
-#define MAX_BUF          16384
-#define MAX_BUF_LIST     10
-#define BASE_BUF         1024
-
-/* valid states */
-#define BUFFER_SAFE      0
-#define BUFFER_OVERFLOW  1
-#define BUFFER_FREED     2
-
 /* Some handy macros. */
 #define RECYCLE_BUNDLE(type, name, vtype)   \
     vtype * name ## _get_first (void)        \
@@ -130,14 +120,7 @@ void portal_exit_dispose (void *obj);
 void portal_dispose (void *obj);
 
 /* Functions related to specific recycleable objects. */
-int       get_size      (int val);
-BUFFER_T *new_buf_size  (int size);
-bool      add_buf       (BUFFER_T *buffer, char *string);
-void      clear_buf     (BUFFER_T *buffer);
-char     *buf_string    (BUFFER_T *buffer);
-void      printf_to_buf (BUFFER_T *buffer, const char *fmt, ...);
-MEM_T    *find_memory   (MEM_T *memory, long id);
-long      get_pc_id     (void);
-long      get_mob_id    (void);
+long get_pc_id (void);
+long get_mob_id (void);
 
 #endif

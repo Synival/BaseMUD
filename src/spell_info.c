@@ -40,6 +40,7 @@
 #include "objs.h"
 #include "globals.h"
 #include "items.h"
+#include "memory.h"
 
 #include "spell_info.h"
 
@@ -366,7 +367,7 @@ DEFINE_SPELL_FUN (spell_locate_object) {
         }
 
         buf[0] = UPPER (buf[0]);
-        add_buf (buffer, buf);
+        buf_cat (buffer, buf);
 
         if (number >= max_found)
             break;

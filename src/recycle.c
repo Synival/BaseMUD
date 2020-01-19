@@ -120,13 +120,13 @@ void recycle_free (int type, void *obj) {
     /* This function is cool enough to disregard const.
      * It's BAD, but... This can be fixed in a later refactoring.
      * -- Synival */
-    BAIL_IF_BUG  ((rec = (RECYCLE_T *) recycle_get (type)) == NULL,
-        "free_recycle: Unknown type '%d'", type);
+    BAIL_IF_BUG ((rec = (RECYCLE_T *) recycle_get (type)) == NULL,
+        "recycle_free: Unknown type '%d'", type);
 
     /* Don't free objects that are already invalidated. */
     data = APPLY_OFFSET (OBJ_RECYCLE_T, obj, rec->obj_data_off);
     BAIL_IF_BUGF (!data->valid,
-        "free_recycle: Attempted to free invalidated %s", rec->name);
+        "recycle_free: Attempted to free invalidated %s", rec->name);
 
     /* Use a disposal function if we have one. */
     if (rec->dispose_fun) {
@@ -141,6 +141,12 @@ void recycle_free (int type, void *obj) {
     rec->free_count++;
 
     /* 'Invalidate' our object so we know it's no longer in use. */
+    if (data->obj == NULL) {
+        bugf ("recycle_free: Warning - recycle data of entity with type '%s' "
+            "lost its 'rec->obj' reference at some point! Was it accidentally "
+            "zeroed-out somewhere?", rec->name);
+        data->obj = obj;
+    }
     data->valid = FALSE;
 }
 
@@ -166,16 +172,31 @@ int recycle_free_all (void) {
 
 int recycle_free_all_type (int type) {
     RECYCLE_T *rec;
-    int count = 0;
+    OBJ_RECYCLE_T *data;
+    void *obj;
+    int count = 0, free_count = 0;
 
     rec = &(recycle_table[type]);
-    if (rec->list_count == 0 && !rec->list_front)
+    if ((rec->list_count == 0 || !rec->list_front) &&
+        (rec->free_count == 0 || !rec->free_front))
         return 0;
 
-    log_f ("Freeing %d recyclable '%s(s)'...", rec->list_count, rec->name);
-    while (rec->list_count > 0 || rec->list_front) {
-        recycle_free (type, rec->list_front->obj);
-        count++;
+    if (rec->list_count > 0 || rec->list_front) {
+        log_f ("Freeing %d recyclable '%s(s)'...", rec->list_count, rec->name);
+        while (rec->list_count > 0 || rec->list_front) {
+            recycle_free (type, rec->list_front->obj);
+            count++;
+        }
+    }
+    while (rec->free_count > 0 || rec->free_front) {
+        obj = rec->free_front->obj;
+        data = APPLY_OFFSET (OBJ_RECYCLE_T, obj, rec->obj_data_off);
+        LIST2_REMOVE (data, prev, next, rec->free_front, rec->free_back);
+#ifdef BASEMUD_DEBUG_DISABLE_MEMORY_MANAGEMENT
+        mem_free (obj, rec->size);
+#endif
+        rec->free_count--;
+        free_count++;
     }
 
     return count;
@@ -236,7 +257,7 @@ void obj_dispose (void *vobj) {
 
     for (paf = obj->affected; paf != NULL; paf = paf_next) {
         paf_next = paf->next;
-        affect_free (paf);
+        affect_remove_obj (obj, paf);
     }
     obj->affected = NULL;
 
@@ -538,14 +559,13 @@ void mpcode_dispose (void *obj) {
     str_free (&(mpcode->code));
 }
 
-static size_t new_buf_current_size = BASE_BUF;
 void buf_init (void *obj) {
     BUFFER_T *buffer = obj;
     buffer->state = BUFFER_SAFE;
 
-    buffer->size  = get_size (new_buf_current_size);
+    buffer->size = buf_get_size (new_buf_size);
     EXIT_IF_BUG (buffer->size == -1,
-        "new_buf: buffer size %d too large.", new_buf_current_size);
+        "new_buf: buffer size %d too large.", new_buf_size);
 
     buffer->string = mem_alloc (buffer->size);
     buffer->string[0] = '\0';
@@ -601,79 +621,4 @@ static long last_mob_id = 0;
 long get_mob_id (void) {
     last_mob_id++;
     return last_mob_id;
-}
-
-/* buffer sizes */
-static const int buf_size[MAX_BUF_LIST] = {
-    16, 32, 64, 128, 256, 1024, 2048, 4096, 8192, 16384
-};
-
-/* local procedure for finding the next acceptable size */
-/* -1 indicates out-of-boundary error */
-int get_size (int val) {
-    int i;
-    for (i = 0; i < MAX_BUF_LIST; i++)
-        if (buf_size[i] >= val)
-            return buf_size[i];
-    return -1;
-}
-
-BUFFER_T *new_buf_size (int size) {
-    BUFFER_T *buf;
-    new_buf_current_size = size;
-    buf = buf_new ();
-    new_buf_current_size = BASE_BUF;
-    return buf;
-}
-
-bool add_buf (BUFFER_T *buffer, char *string) {
-    int len;
-    char *oldstr;
-    int oldsize;
-
-    oldstr = buffer->string;
-    oldsize = buffer->size;
-
-    if (buffer->state == BUFFER_OVERFLOW)    /* don't waste time on bad strings! */
-        return FALSE;
-
-    len = strlen (buffer->string) + strlen (string) + 1;
-    while (len >= buffer->size) { /* increase the buffer size */
-        buffer->size = get_size (buffer->size + 1); {
-            if (buffer->size == -1) { /* overflow */
-                buffer->size = oldsize;
-                buffer->state = BUFFER_OVERFLOW;
-                bug ("buffer overflow past size %d", buffer->size);
-                return FALSE;
-            }
-        }
-    }
-
-    if (buffer->size != oldsize) {
-        buffer->string = mem_alloc (buffer->size);
-        strcpy (buffer->string, oldstr);
-        mem_free (oldstr, oldsize);
-    }
-
-    strcat (buffer->string, string);
-    return TRUE;
-}
-
-void clear_buf (BUFFER_T *buffer) {
-    buffer->string[0] = '\0';
-    buffer->state = BUFFER_SAFE;
-}
-
-char *buf_string (BUFFER_T *buffer) {
-    return buffer->string;
-}
-
-void printf_to_buf (BUFFER_T *buffer, const char *fmt, ...) {
-    char buf[MAX_STRING_LENGTH];
-    va_list args;
-    va_start (args, fmt);
-    vsnprintf (buf, sizeof(buf), fmt, args);
-    va_end (args);
-
-    add_buf (buffer, buf);
 }

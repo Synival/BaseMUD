@@ -207,27 +207,27 @@ void board_load (BOARD_T *board) {
         ungetc (letter, fp);
 
         pnote = note_new ();
-        if (str_cmp(fread_word(fp), "sender"))
+        if (str_cmp (fread_word_static (fp), "sender"))
             break;
-        pnote->sender = fread_string(fp);
-        if (str_cmp(fread_word(fp), "date"))
+        fread_string_replace (fp, &(pnote->sender));
+        if (str_cmp (fread_word_static (fp), "date"))
             break;
-        pnote->date = fread_string(fp);
-        if (str_cmp(fread_word(fp), "stamp"))
+        fread_string_replace (fp, &(pnote->date));
+        if (str_cmp (fread_word_static (fp), "stamp"))
             break;
-        pnote->date_stamp = fread_number(fp);
-        if (str_cmp(fread_word(fp), "expire"))
+        pnote->date_stamp = fread_number (fp);
+        if (str_cmp (fread_word_static (fp), "expire"))
             break;
-        pnote->expire = fread_number(fp);
-        if (str_cmp(fread_word(fp), "to"))
+        pnote->expire = fread_number (fp);
+        if (str_cmp (fread_word_static (fp), "to"))
             break;
-        pnote->to_list = fread_string(fp);
-        if (str_cmp(fread_word(fp), "subject"))
+        fread_string_replace (fp, &(pnote->to_list));
+        if (str_cmp (fread_word_static (fp), "subject"))
             break;
-        pnote->subject = fread_string(fp);
-        if (str_cmp(fread_word(fp), "text"))
+        fread_string_replace (fp, &(pnote->subject));
+        if (str_cmp (fread_word_static (fp), "text"))
             break;
-        pnote->text = fread_string(fp);
+        fread_string_replace (fp, &(pnote->text));
 
         /* Should this note be archived right now ? */
         if (pnote->expire < current_time) {

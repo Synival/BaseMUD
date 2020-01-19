@@ -74,10 +74,10 @@ void load_old_mob (FILE *fp) {
         mob_index->vnum = vnum;
         mob_index->anum = vnum - area_last->min_vnum;
         mob_index->new_format = FALSE;
-        str_replace_dup (&mob_index->name,        fread_string (fp));
-        str_replace_dup (&mob_index->short_descr, fread_string (fp));
-        str_replace_dup (&mob_index->long_descr,  fread_string (fp));
-        str_replace_dup (&mob_index->description, fread_string (fp));
+        fread_string_replace (fp, &mob_index->name);
+        fread_string_replace (fp, &mob_index->short_descr);
+        fread_string_replace (fp, &mob_index->long_descr);
+        fread_string_replace (fp, &mob_index->description);
 
         mob_index->long_descr[0]  = UPPER (mob_index->long_descr[0]);
         mob_index->description[0] = UPPER (mob_index->description[0]);
@@ -197,10 +197,10 @@ void load_old_obj (FILE *fp) {
         obj_index->anum = vnum - area_last->min_vnum;
         obj_index->new_format = FALSE;
         obj_index->reset_num = 0;
-        str_replace_dup (&obj_index->name,        fread_string (fp));
-        str_replace_dup (&obj_index->short_descr, fread_string (fp));
-        str_replace_dup (&obj_index->description, fread_string (fp));
-        /* Action description */ fread_string (fp);
+        fread_string_replace (fp, &obj_index->name);
+        fread_string_replace (fp, &obj_index->short_descr);
+        fread_string_replace (fp, &obj_index->description);
+        /* Action description */ fread_string_static (fp);
 
         obj_index->short_descr[0] = LOWER (obj_index->short_descr[0]);
         obj_index->description[0] = UPPER (obj_index->description[0]);
@@ -232,8 +232,8 @@ void load_old_obj (FILE *fp) {
             }
             else if (letter == 'E') {
                 EXTRA_DESCR_T *ed = extra_descr_new ();
-                str_replace_dup (&ed->keyword, fread_string (fp));
-                str_replace_dup (&ed->description, fread_string (fp));
+                fread_string_replace (fp, &ed->keyword);
+                fread_string_replace (fp, &ed->description);
                 LIST_BACK (ed, next, obj_index->extra_descr, EXTRA_DESCR_T);
             }
             else {

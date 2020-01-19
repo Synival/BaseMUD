@@ -523,7 +523,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
                 break;
             }
 
-            word = fread_word (fp);
+            word = fread_word_static (fp);
                  if (!str_cmp (word, "PLAYER")) fread_char (ch, fp);
             else if (!str_cmp (word, "OBJECT")) fread_obj (ch, fp);
             else if (!str_cmp (word, "O"))      fread_obj (ch, fp);
@@ -651,7 +651,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
     log_f ("Loading %s.", ch->name);
 
     while (1) {
-        word = feof (fp) ? "End" : fread_word (fp);
+        word = feof (fp) ? "End" : fread_word_static (fp);
         match = FALSE;
 
         switch (UPPER (word[0])) {
@@ -682,8 +682,8 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                         break;
                     }
 
-                    ch->pcdata->alias[count] = str_dup (fread_word (fp));
-                    ch->pcdata->alias_sub[count] = str_dup (fread_word (fp));
+                    fread_word_replace (fp, &ch->pcdata->alias[count]);
+                    fread_word_replace (fp, &ch->pcdata->alias_sub[count]);
                     count++;
                     match = TRUE;
                     break;
@@ -696,8 +696,8 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                         break;
                     }
 
-                    ch->pcdata->alias[count] = str_dup (fread_word (fp));
-                    ch->pcdata->alias_sub[count] = fread_string (fp);
+                    fread_word_replace (fp, &ch->pcdata->alias[count]);
+                    fread_word_replace (fp, &ch->pcdata->alias_sub[count]);
                     count++;
                     match = TRUE;
                     break;
@@ -722,7 +722,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                     int sn;
 
                     paf = affect_new ();
-                    sn = skill_lookup (fread_word (fp));
+                    sn = skill_lookup (fread_word_static (fp));
                     if (sn < 0)
                         bug ("fread_char: unknown skill.", 0);
                     else
@@ -743,7 +743,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                     int sn;
 
                     paf = affect_new ();
-                    sn = skill_lookup (fread_word (fp));
+                    sn = skill_lookup (fread_word_static (fp));
                     if (sn < 0)
                         bug ("fread_char: unknown skill.", 0);
                     else
@@ -779,10 +779,10 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'B':
-                KEY ("Bamfin",  ch->pcdata->bamfin,  fread_string (fp));
-                KEY ("Bamfout", ch->pcdata->bamfout, fread_string (fp));
-                KEY ("Bin",     ch->pcdata->bamfin,  fread_string (fp));
-                KEY ("Bout",    ch->pcdata->bamfout, fread_string (fp));
+                KEYS ("Bamfin",  ch->pcdata->bamfin,  fread_string_static (fp));
+                KEYS ("Bamfout", ch->pcdata->bamfout, fread_string_static (fp));
+                KEYS ("Bin",     ch->pcdata->bamfin,  fread_string_static (fp));
+                KEYS ("Bout",    ch->pcdata->bamfout, fread_string_static (fp));
 
                 /* Read in board status */
                 if (!str_cmp(word, "Boards" )) {
@@ -790,7 +790,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                     char *boardname;
 
                     for (; num ; num-- ) { /* for each of the board saved */
-                        boardname = fread_word (fp);
+                        boardname = fread_word_static (fp);
                         i = board_lookup (boardname); /* find board number */
 
                         if (i == BOARD_NOTFOUND) { /* Does board still exist ? */
@@ -807,10 +807,10 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'C':
-                KEY ("ClassName", ch->class, class_lookup_exact (fread_string (fp)));
+                KEY ("ClassName", ch->class, class_lookup_exact (fread_string_static (fp)));
                 KEY ("Class", ch->class, fread_number (fp));
                 KEY ("Cla",   ch->class, fread_number (fp));
-                KEY ("Clan",  ch->clan, clan_lookup_exact (fread_string (fp)));
+                KEY ("Clan",  ch->clan, clan_lookup_exact (fread_string_static (fp)));
                 KEY ("Comm",  ch->comm, fread_flag (fp));
 
                 if (!str_cmp (word, "Condition") || !str_cmp (word, "Cond")) {
@@ -907,10 +907,10 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'D':
-                KEY ("Damroll", ch->damroll, fread_number (fp));
-                KEY ("Dam", ch->damroll, fread_number (fp));
-                KEY ("Description", ch->description, fread_string (fp));
-                KEY ("Desc", ch->description, fread_string (fp));
+                KEY ("Damroll",     ch->damroll, fread_number (fp));
+                KEY ("Dam",         ch->damroll, fread_number (fp));
+                KEYS("Description", ch->description, fread_string_dup (fp));
+                KEYS("Desc",        ch->description, fread_string_dup (fp));
                 break;
 
             case 'E':
@@ -939,7 +939,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                     int gn;
                     char *temp;
 
-                    temp = fread_word (fp);
+                    temp = fread_word_static (fp);
                     gn = skill_group_lookup (temp);
                  /* gn = group_lookup (fread_word (fp)); */
                     if (gn < 0) {
@@ -997,8 +997,8 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 KEY ("Lev", ch->level, fread_number (fp));
                 KEY ("Levl", ch->level, fread_number (fp));
                 KEY ("LogO", lastlogoff, fread_number (fp));
-                KEY ("LongDescr", ch->long_descr, fread_string (fp));
-                KEY ("LnD", ch->long_descr, fread_string (fp));
+                KEYS ("LongDescr", ch->long_descr, fread_string_static (fp));
+                KEYS ("LnD", ch->long_descr, fread_string_static (fp));
                 break;
 
             case 'M':
@@ -1006,27 +1006,27 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'N':
-                KEYS ("Name", ch->name, fread_string (fp));
+                KEYS ("Name", ch->name, fread_string_dup (fp));
                 break;
 
             case 'P':
-                KEY ("Password", ch->pcdata->pwd, fread_string (fp));
-                KEY ("Pass", ch->pcdata->pwd, fread_string (fp));
-                KEY ("Played", ch->played, fread_number (fp));
-                KEY ("Plyd", ch->played, fread_number (fp));
-                KEY ("Plr", ch->plr, fread_flag (fp));
-                KEY ("Points", ch->pcdata->creation_points, fread_number (fp));
-                KEY ("Pnts", ch->pcdata->creation_points, fread_number (fp));
+                KEYS("Password", ch->pcdata->pwd, fread_string_dup (fp));
+                KEYS("Pass",     ch->pcdata->pwd, fread_string_dup (fp));
+                KEY ("Played",   ch->played, fread_number (fp));
+                KEY ("Plyd",     ch->played, fread_number (fp));
+                KEY ("Plr",      ch->plr, fread_flag (fp));
+                KEY ("Points",   ch->pcdata->creation_points, fread_number (fp));
+                KEY ("Pnts",     ch->pcdata->creation_points, fread_number (fp));
                 KEY ("Position", ch->position, fread_number (fp));
-                KEY ("Pos", ch->position, fread_number (fp));
+                KEY ("Pos",      ch->position, fread_number (fp));
                 KEY ("Practice", ch->practice, fread_number (fp));
-                KEY ("Prac", ch->practice, fread_number (fp));
-                KEYS ("Prompt", ch->prompt, fread_string (fp));
-                KEY ("Prom", ch->prompt, fread_string (fp));
+                KEY ("Prac",     ch->practice, fread_number (fp));
+                KEYS("Prompt",   ch->prompt, fread_string_dup (fp));
+                KEYS("Prom",     ch->prompt, fread_string_dup (fp));
                 break;
 
             case 'R':
-                KEY ("Race", ch->race, race_lookup (fread_string (fp)));
+                KEY ("Race", ch->race, race_lookup (fread_string_static (fp)));
 
                 if (!str_cmp (word, "Room")) {
                     ch->in_room = get_room_index (fread_number (fp));
@@ -1040,13 +1040,13 @@ void fread_char (CHAR_T *ch, FILE *fp) {
 
             case 'S':
                 KEY ("SavingThrow", ch->saving_throw, fread_number (fp));
-                KEY ("Save", ch->saving_throw, fread_number (fp));
-                KEY ("Scro", ch->lines, fread_number (fp));
-                KEY ("Sex", ch->sex, fread_number (fp));
-                KEY ("ShortDescr", ch->short_descr, fread_string (fp));
-                KEY ("ShD", ch->short_descr, fread_string (fp));
-                KEY ("Sec", ch->pcdata->security, fread_number (fp));    /* OLC */
-                KEY ("Silv", ch->silver, fread_number (fp));
+                KEY ("Save",        ch->saving_throw, fread_number (fp));
+                KEY ("Scro",        ch->lines, fread_number (fp));
+                KEY ("Sex",         ch->sex, fread_number (fp));
+                KEYS("ShortDescr",  ch->short_descr, fread_string_dup (fp));
+                KEYS("ShD",         ch->short_descr, fread_string_dup (fp));
+                KEY ("Sec",         ch->pcdata->security, fread_number (fp));    /* OLC */
+                KEY ("Silv",        ch->silver, fread_number (fp));
 
                 if (!str_cmp (word, "Skill") || !str_cmp (word, "Sk")) {
                     int sn;
@@ -1054,7 +1054,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                     char *temp;
 
                     value = fread_number (fp);
-                    temp = fread_word (fp);
+                    temp = fread_word_static (fp);
                     sn = skill_lookup (temp);
                  /* sn = skill_lookup (fread_word (fp)); */
                     if (sn < 0) {
@@ -1075,7 +1075,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 KEY ("Tru", ch->trust, fread_number (fp));
 
                 if (!str_cmp (word, "Title") || !str_cmp (word, "Titl")) {
-                    ch->pcdata->title = fread_string (fp);
+                    fread_string_replace (fp, &ch->pcdata->title);
                     if (ch->pcdata->title[0] != '.'
                         && ch->pcdata->title[0] != ','
                         && ch->pcdata->title[0] != '!'
@@ -1125,7 +1125,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
     int vnum = 0;
 
     /* first entry had BETTER be the vnum or we barf */
-    word = feof (fp) ? "END" : fread_word (fp);
+    word = feof (fp) ? "END" : fread_word_static (fp);
     if (!str_cmp (word, "Vnum")) {
         vnum = fread_number (fp);
         if (get_mob_index (vnum) == NULL) {
@@ -1141,7 +1141,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
     }
 
     while (1) {
-        word = feof (fp) ? "END" : fread_word (fp);
+        word = feof (fp) ? "END" : fread_word_static (fp);
         match = FALSE;
 
         switch (UPPER (word[0])) {
@@ -1176,7 +1176,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                     int sn;
 
                     paf = affect_new ();
-                    sn = skill_lookup (fread_word (fp));
+                    sn = skill_lookup (fread_word_static (fp));
                     if (sn < 0)
                         bug ("fread_char: unknown skill.", 0);
                     else
@@ -1197,7 +1197,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                     int sn;
 
                     paf = affect_new ();
-                    sn = skill_lookup (fread_word (fp));
+                    sn = skill_lookup (fread_word_static (fp));
                     if (sn < 0)
                         bug ("fread_char: unknown skill.", 0);
                     else
@@ -1239,13 +1239,13 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'C':
-                KEY ("Clan", pet->clan, clan_lookup (fread_string (fp)));
+                KEY ("Clan", pet->clan, clan_lookup (fread_string_static (fp)));
                 KEY ("Comm", pet->comm, fread_flag (fp));
                 break;
 
             case 'D':
                 KEY ("Dam",  pet->damroll, fread_number (fp));
-                KEY ("Desc", pet->description, fread_string (fp));
+                KEYS("Desc", pet->description, fread_string_dup (fp));
                 break;
 
             case 'E':
@@ -1292,7 +1292,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
 
             case 'L':
                 KEY ("Levl", pet->level, fread_number (fp));
-                KEY ("LnD",  pet->long_descr, fread_string (fp));
+                KEYS("LnD",  pet->long_descr, fread_string_dup (fp));
                 KEY ("LogO", lastlogoff, fread_number (fp));
                 break;
 
@@ -1301,7 +1301,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'N':
-                KEY ("Name", pet->name, fread_string (fp));
+                KEYS("Name", pet->name, fread_string_dup (fp));
                 break;
 
             case 'P':
@@ -1310,13 +1310,13 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'R':
-                KEY ("Race", pet->race, race_lookup (fread_string (fp)));
+                KEY ("Race", pet->race, race_lookup (fread_string_static (fp)));
                 break;
 
             case 'S':
                 KEY ("Save", pet->saving_throw, fread_number (fp));
-                KEY ("Sex", pet->sex, fread_number (fp));
-                KEY ("ShD", pet->short_descr, fread_string (fp));
+                KEY ("Sex",  pet->sex, fread_number (fp));
+                KEYS("ShD",  pet->short_descr, fread_string_dup (fp));
                 KEY ("Silv", pet->silver, fread_number (fp));
                 break;
         }
@@ -1345,7 +1345,7 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
     new_format = FALSE;
     make_new = FALSE;
 
-    word = feof (fp) ? "End" : fread_word (fp);
+    word = feof (fp) ? "End" : fread_word_static (fp);
     if (!str_cmp (word, "Vnum")) {
         int vnum;
         first = FALSE; /* fp will be in right place */
@@ -1374,7 +1374,7 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
         if (first)
             first = FALSE;
         else
-            word = feof (fp) ? "End" : fread_word (fp);
+            word = feof (fp) ? "End" : fread_word_static (fp);
         match = FALSE;
 
         switch (UPPER (word[0])) {
@@ -1389,7 +1389,7 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                     int sn;
 
                     paf = affect_new ();
-                    sn = skill_lookup (fread_word (fp));
+                    sn = skill_lookup (fread_word_static (fp));
                     if (sn < 0)
                         bug ("fread_obj: unknown skill.", 0);
                     else
@@ -1410,7 +1410,7 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                     int sn;
 
                     paf = affect_new ();
-                    sn = skill_lookup (fread_word (fp));
+                    sn = skill_lookup (fread_word_static (fp));
                     if (sn < 0)
                         bug ("fread_obj: unknown skill.", 0);
                     else
@@ -1430,12 +1430,12 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
 
             case 'C':
                 KEY ("Cond", obj->condition, fread_number (fp));
-                KEY ("Cost", obj->cost, fread_number (fp));
+                KEY ("Cost", obj->cost,      fread_number (fp));
                 break;
 
             case 'D':
-                KEY ("Description", obj->description, fread_string (fp));
-                KEY ("Desc", obj->description, fread_string (fp));
+                KEYS("Description", obj->description, fread_string_dup (fp));
+                KEYS("Desc",        obj->description, fread_string_dup (fp));
                 break;
 
             case 'E':
@@ -1452,8 +1452,8 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                     EXTRA_DESCR_T *ed;
 
                     ed = extra_descr_new ();
-                    ed->keyword = fread_string (fp);
-                    ed->description = fread_string (fp);
+                    fread_string_replace (fp, &ed->keyword);
+                    fread_string_replace (fp, &ed->description);
                     LIST_BACK (ed, next, obj->extra_descr, EXTRA_DESCR_T);
                     match = TRUE;
                 }
@@ -1510,7 +1510,7 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'N':
-                KEY ("Name", obj->name, fread_string (fp));
+                KEYS("Name", obj->name, fread_string_dup (fp));
 
                 if (!str_cmp (word, "Nest")) {
                     nest = fread_number (fp);
@@ -1534,13 +1534,13 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'S':
-                KEY ("ShortDescr", obj->short_descr, fread_string (fp));
-                KEY ("ShD", obj->short_descr, fread_string (fp));
+                KEYS("ShortDescr", obj->short_descr, fread_string_dup (fp));
+                KEYS("ShD",        obj->short_descr, fread_string_dup (fp));
 
                 if (!str_cmp (word, "Spell")) {
                     int value, sn;
                     value = fread_number (fp);
-                    sn = skill_lookup (fread_word (fp));
+                    sn = skill_lookup (fread_word_static (fp));
 
                     if (value < 0 || value >= OBJ_VALUE_MAX)
                         bug ("fread_obj: bad value %d.", value);

@@ -92,5 +92,6 @@ extern flag_t music_song;
 extern flag_t music_queue[MAX_SONG_GLOBAL];
 
 extern char str_empty[1];
+extern size_t new_buf_size;
 
 #endif

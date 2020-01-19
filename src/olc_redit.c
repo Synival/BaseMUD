@@ -299,9 +299,9 @@ REDIT (redit_rlist) {
             found = TRUE;
             sprintf (buf, "[%5d] %-17.16s",
                      vnum, str_capitalized (room_index->name));
-            add_buf (buf1, buf);
+            buf_cat (buf1, buf);
             if (++col % 3 == 0)
-                add_buf (buf1, "\n\r");
+                buf_cat (buf1, "\n\r");
         }
     }
 
@@ -311,7 +311,7 @@ REDIT (redit_rlist) {
     }
 
     if (col % 3 != 0)
-        add_buf (buf1, "\n\r");
+        buf_cat (buf1, "\n\r");
 
     page_to_char (buf_string (buf1), ch);
     buf_free (buf1);
@@ -347,9 +347,9 @@ REDIT (redit_mlist) {
                 sprintf (buf, "[%5d] %-17.16s",
                          mob_index->vnum,
                          str_capitalized (mob_index->short_descr));
-                add_buf (buf1, buf);
+                buf_cat (buf1, buf);
                 if (++col % 3 == 0)
-                    add_buf (buf1, "\n\r");
+                    buf_cat (buf1, "\n\r");
             }
         }
     }
@@ -360,7 +360,7 @@ REDIT (redit_mlist) {
     }
 
     if (col % 3 != 0)
-        add_buf (buf1, "\n\r");
+        buf_cat (buf1, "\n\r");
 
     page_to_char (buf_string (buf1), ch);
     buf_free (buf1);
@@ -399,9 +399,9 @@ REDIT (redit_olist) {
                 sprintf (buf, "[%5d] %-17.16s",
                          obj_index->vnum,
                          str_capitalized (obj_index->short_descr));
-                add_buf (buf1, buf);
+                buf_cat (buf1, buf);
                 if (++col % 3 == 0)
-                    add_buf (buf1, "\n\r");
+                    buf_cat (buf1, "\n\r");
             }
         }
     }
@@ -410,7 +410,7 @@ REDIT (redit_olist) {
         return FALSE;
     }
     if (col % 3 != 0)
-        add_buf (buf1, "\n\r");
+        buf_cat (buf1, "\n\r");
 
     page_to_char (buf_string (buf1), ch);
     buf_free (buf1);

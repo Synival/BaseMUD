@@ -684,4 +684,14 @@
 #define SKILL_MAP_FRENZY           47
 #define SKILL_MAP_MAX              48
 
+/* Stuff for providing a crash-proof buffer */
+#define MAX_BUF          16384
+#define MAX_BUF_LIST     10
+#define BASE_BUF         1024
+
+/* valid states */
+#define BUFFER_SAFE      0
+#define BUFFER_OVERFLOW  1
+#define BUFFER_FREED     2
+
 #endif
