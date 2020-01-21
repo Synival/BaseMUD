@@ -94,7 +94,9 @@ void json_read_directory_real (JSON_T *obj, const char *path, bool recurse,
             }
         }
         else if (json_read_filename_is_json_file (fbuf)) {
+#ifdef BASEMUD_LOG_FILES_LOADED
             log_f ("Loading '%s'", fbuf);
+#endif
             json = json_read_file (fbuf);
             if (json != NULL) {
                 if (load_func != NULL) {

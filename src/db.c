@@ -503,11 +503,15 @@ void init_areas (void) {
             snprintf (fname, sizeof (fname), "%s%s", AREA_DIR,
                 current_area_filename);
             if (area_get_by_filename (current_area_filename) != NULL) {
+#ifdef BASEMUD_LOG_FILES_LOADED
                 log_f ("Ignoring loaded area '%s'", fname);
+#endif
                 continue;
             }
             if (help_area_get_by_filename (current_area_filename) != NULL) {
+#ifdef BASEMUD_LOG_FILES_LOADED
                 log_f ("Ignoring loaded help area '%s'", fname);
+#endif
                 continue;
             }
 
