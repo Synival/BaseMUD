@@ -33,6 +33,11 @@
 #include "globals.h"
 #include "olc.h"
 #include "items.h"
+#include "fread.h"
+#include "fwrite.h"
+#include "objs.h"
+#include "mobiles.h"
+#include "rooms.h"
 
 #include "olc_save.h"
 
@@ -193,7 +198,7 @@ void save_mobiles (FILE *fp, AREA_T *area) {
 
     fprintf (fp, "#MOBILES\n");
     for (i = area->min_vnum; i <= area->max_vnum; i++)
-        if ((mob = get_mob_index (i)))
+        if ((mob = mobile_get_index (i)))
             save_mobile (fp, mob);
     fprintf (fp, "#0\n\n");
 }
@@ -275,7 +280,7 @@ void save_objects (FILE *fp, AREA_T *area) {
 
     fprintf (fp, "#OBJECTS\n");
     for (i = area->min_vnum; i <= area->max_vnum; i++)
-        if ((obj = get_obj_index (i)))
+        if ((obj = obj_get_index (i)))
             save_object (fp, obj);
     fprintf (fp, "#0\n\n");
 }
@@ -368,7 +373,7 @@ void save_rooms (FILE *fp, AREA_T *area) {
 
     fprintf (fp, "#ROOMS\n");
     for (i = area->min_vnum; i <= area->max_vnum; i++)
-        if ((room_index = get_room_index (i)))
+        if ((room_index = room_get_index (i)))
             save_room (fp, room_index);
     fprintf (fp, "#0\n\n");
 }
@@ -471,15 +476,15 @@ void save_resets (FILE *fp, AREA_T *area) {
             for (r = room->reset_first; r; r = r->next) {
                 switch (r->command) {
                     case 'M':
-                        last_mob = get_mob_index (r->v.value[1]);
+                        last_mob = mobile_get_index (r->v.value[1]);
                         fprintf (fp, "M %d %5d %3d %5d %2d * load %s\n",
                             r->v.value[0], r->v.value[1], r->v.value[2],
                             r->v.value[3], r->v.value[4], last_mob->short_descr);
                         break;
 
                     case 'O':
-                        last_obj = get_obj_index (r->v.value[1]);
-                        room = get_room_index (r->v.value[3]);
+                        last_obj = obj_get_index (r->v.value[1]);
+                        room = room_get_index (r->v.value[3]);
                         fprintf (fp,
                             "O %d %5d %3d %5d    * %s loaded to %s\n",
                             r->v.value[0], r->v.value[1], r->v.value[2],
@@ -488,12 +493,12 @@ void save_resets (FILE *fp, AREA_T *area) {
                         break;
 
                     case 'P':
-                        last_obj = get_obj_index (r->v.value[1]);
+                        last_obj = obj_get_index (r->v.value[1]);
                         fprintf (fp,
                             "P %d %5d %3d %5d %2d %s * put inside %s\n",
                             r->v.value[0], r->v.value[1], r->v.value[2],
                             r->v.value[3], r->v.value[4],
-                            str_capitalized (get_obj_index (r->v.value[1])->short_descr),
+                            str_capitalized (obj_get_index (r->v.value[1])->short_descr),
                             last_obj->short_descr);
                         break;
 
@@ -501,7 +506,7 @@ void save_resets (FILE *fp, AREA_T *area) {
                         fprintf (fp,
                             "G %d %5d %3d          * %s is given to %s\n",
                             r->v.value[0], r->v.value[1], r->v.value[2],
-                            str_capitalized (get_obj_index (r->v.value[1])->short_descr),
+                            str_capitalized (obj_get_index (r->v.value[1])->short_descr),
                             last_mob ? last_mob->short_descr : "!NO_MOB!");
 
                         if (!last_mob)
@@ -514,7 +519,7 @@ void save_resets (FILE *fp, AREA_T *area) {
                             "E %d %5d %3d %5d    * %s is loaded %s of %s\n",
                             r->v.value[0], r->v.value[1], r->v.value[2],
                             r->v.value[3],
-                            str_capitalized (get_obj_index (r->v.value[1])->short_descr),
+                            str_capitalized (obj_get_index (r->v.value[1])->short_descr),
                             wear_loc ? wear_loc->phrase : "none",
                             last_mob ? last_mob->short_descr : "!NO_MOB!");
 
@@ -527,7 +532,7 @@ void save_resets (FILE *fp, AREA_T *area) {
                         break;
 
                     case 'R':
-                        room = get_room_index (r->v.value[1]);
+                        room = room_get_index (r->v.value[1]);
                         fprintf (fp, "R %d %5d %3d          * randomize %s\n",
                             r->v.value[0], r->v.value[1], r->v.value[2],
                             room->name);

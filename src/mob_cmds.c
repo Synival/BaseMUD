@@ -330,7 +330,7 @@ DEFINE_DO_FUN (do_mpmload) {
         return;
 
     vnum = atoi (arg);
-    BAIL_IF_BUGF ((mob_index = get_mob_index (vnum)) == NULL,
+    BAIL_IF_BUGF ((mob_index = mobile_get_index (vnum)) == NULL,
         "Mpmload: bad mob index (%d) from mob %d", vnum, CH_VNUM (ch));
 
     victim = mobile_create (mob_index);
@@ -376,7 +376,7 @@ DEFINE_DO_FUN (do_mpoload) {
     else if (arg3[0] == 'W' || arg3[0] == 'w')
         wear = TRUE;
 
-    BAIL_IF_BUG ((obj_index = get_obj_index (atoi (arg1))) == NULL,
+    BAIL_IF_BUG ((obj_index = obj_get_index (atoi (arg1))) == NULL,
         "Mpoload - Bad vnum arg from vnum %d.", CH_VNUM (ch));
 
     obj = obj_create (obj_index, level);

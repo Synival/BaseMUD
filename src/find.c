@@ -32,6 +32,7 @@
 #include "chars.h"
 #include "db.h"
 #include "globals.h"
+#include "rooms.h"
 
 #include "find.h"
 
@@ -56,7 +57,7 @@ ROOM_INDEX_T *find_location (CHAR_T *ch, const char *arg) {
     OBJ_T *obj;
 
     if (is_number (arg))
-        return get_room_index (atoi (arg));
+        return room_get_index (atoi (arg));
 
     if ((victim = find_char_world (ch, arg)) != NULL)
         return victim->in_room;

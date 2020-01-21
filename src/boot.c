@@ -28,34 +28,33 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <stdlib.h>
-#include <time.h>
 #include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <errno.h>
 
 #if defined(unix)
     #include <signal.h>
 #endif
 
-#include "interp.h"
-#include "comm.h"
-#include "db.h"
+#include "signal.h"
+#include "globals.h"
 #include "utils.h"
-#include "signal.h"
+#include "interp.h"
+#include "db.h"
 #include "descs.h"
-#include "signal.h"
-#include "string.h"
+#include "recycle.h"
+#include "memory.h"
 #include "save.h"
+#include "chars.h"
+#include "string.h"
 #include "olc.h"
 #include "nanny.h"
 #include "update.h"
-#include "chars.h"
-#include "descs.h"
+#include "comm.h"
+#include "rooms.h"
 
-#include "recycle.h"
 #include "act_info.h"
-#include "globals.h"
-#include "memory.h"
 
 #include "boot.h"
 
@@ -546,7 +545,7 @@ void copyover_recover (void) {
 
         /* Just In Case */
         if (!d->character->in_room)
-            d->character->in_room = get_room_index (ROOM_VNUM_TEMPLE);
+            d->character->in_room = room_get_index (ROOM_VNUM_TEMPLE);
 
         /* Insert in the char_list */
         LIST_FRONT (d->character, next, char_list);
@@ -562,61 +561,5 @@ void copyover_recover (void) {
                  TO_NOTCHAR);
         }
     }
-    fclose (fp);
-}
-
-void qmconfig_read (void) {
-    FILE *fp;
-    bool match, reading;
-    char *word;
-    extern int mud_ansiprompt, mud_ansicolor, mud_telnetga;
-
-    log_f ("Loading configuration settings from %s.", QMCONFIG_FILE);
-    fp = fopen (QMCONFIG_FILE, "r");
-    if (!fp) {
-        log_f ("%s not found. Using compiled-in defaults.", QMCONFIG_FILE);
-        return;
-    }
-
-    reading = TRUE;
-    while (reading) {
-        word = feof (fp) ? "END" : fread_word_static (fp);
-        match = FALSE;
-
-        switch (UPPER(word[0])) {
-            case '#':
-                /* This is a comment line! */
-                match = TRUE;
-                fread_to_eol (fp);
-                break;
-
-            case '*':
-                match = TRUE;
-                fread_to_eol (fp);
-                break;
-
-            case 'A':
-                KEY ("Ansicolor", mud_ansicolor, fread_number(fp));
-                KEY ("Ansiprompt", mud_ansiprompt, fread_number(fp));
-                break;
-
-            case 'E':
-                if (!str_cmp (word, "END")) {
-                    reading = FALSE;
-                    match = TRUE;
-                }
-                break;
-
-            case 'T':
-                KEY ("Telnetga", mud_telnetga, fread_number(fp));
-                break;
-        }
-        if (!match) {
-            log_f ("qmconfig_read: no match for %s!", word);
-            fread_to_eol(fp);
-        }
-    }
-
- // log_f ("Settings have been read from %s", QMCONFIG_FILE);
     fclose (fp);
 }

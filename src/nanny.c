@@ -56,6 +56,7 @@
 #include "memory.h"
 #include "magic.h"
 #include "players.h"
+#include "rooms.h"
 
 #include "nanny.h"
 
@@ -907,9 +908,9 @@ DEFINE_NANNY_FUN (nanny_read_motd) {
         player_set_title (ch, buf);
 
         do_function (ch, &do_outfit, "");
-        obj_give_to_char (obj_create (get_obj_index (OBJ_VNUM_MAP), 0), ch);
+        obj_give_to_char (obj_create (obj_get_index (OBJ_VNUM_MAP), 0), ch);
 
-        char_to_room (ch, get_room_index (ROOM_VNUM_SCHOOL));
+        char_to_room (ch, room_get_index (ROOM_VNUM_SCHOOL));
         send_to_char ("\n\r", ch);
         do_function (ch, &do_help, "newbie info");
         send_to_char ("\n\r", ch);
@@ -917,9 +918,9 @@ DEFINE_NANNY_FUN (nanny_read_motd) {
     else if (ch->in_room != NULL)
         char_to_room (ch, ch->in_room);
     else if (IS_IMMORTAL (ch))
-        char_to_room (ch, get_room_index (ROOM_VNUM_CHAT));
+        char_to_room (ch, room_get_index (ROOM_VNUM_CHAT));
     else
-        char_to_room (ch, get_room_index (ROOM_VNUM_TEMPLE));
+        char_to_room (ch, room_get_index (ROOM_VNUM_TEMPLE));
 
     act ("$n has entered the game.", ch, NULL, NULL, TO_NOTCHAR);
     do_function (ch, &do_look, "auto");

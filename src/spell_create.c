@@ -54,7 +54,7 @@ DEFINE_SPELL_FUN (spell_continual_light) {
         return;
     }
 
-    light = obj_create (get_obj_index (OBJ_VNUM_LIGHT_BALL), 0);
+    light = obj_create (obj_get_index (OBJ_VNUM_LIGHT_BALL), 0);
     obj_give_to_room (light, ch->in_room);
     act ("You twiddle your thumbs and $p appears.", ch, light, NULL, TO_CHAR);
     act ("$n twiddles $s thumbs and $p appears.", ch, light, NULL, TO_NOTCHAR);
@@ -62,7 +62,7 @@ DEFINE_SPELL_FUN (spell_continual_light) {
 
 DEFINE_SPELL_FUN (spell_create_food) {
     OBJ_T *mushroom;
-    mushroom = obj_create (get_obj_index (OBJ_VNUM_MUSHROOM), 0);
+    mushroom = obj_create (obj_get_index (OBJ_VNUM_MUSHROOM), 0);
     mushroom->v.food.hunger   = level / 2;
     mushroom->v.food.fullness = level;
     obj_give_to_room (mushroom, ch->in_room);
@@ -71,7 +71,7 @@ DEFINE_SPELL_FUN (spell_create_food) {
 
 DEFINE_SPELL_FUN (spell_create_rose) {
     OBJ_T *rose;
-    rose = obj_create (get_obj_index (OBJ_VNUM_ROSE), 0);
+    rose = obj_create (obj_get_index (OBJ_VNUM_ROSE), 0);
     obj_give_to_char (rose, ch);
     send_to_char ("You create a beautiful red rose.\n\r", ch);
     act ("$n has created a beautiful red rose.", ch, rose, NULL, TO_NOTCHAR);
@@ -79,7 +79,7 @@ DEFINE_SPELL_FUN (spell_create_rose) {
 
 DEFINE_SPELL_FUN (spell_create_spring) {
     OBJ_T *spring;
-    spring = obj_create (get_obj_index (OBJ_VNUM_SPRING), 0);
+    spring = obj_create (obj_get_index (OBJ_VNUM_SPRING), 0);
     spring->timer = level;
     obj_give_to_room (spring, ch->in_room);
     act ("$p flows from the ground.", ch, spring, NULL, TO_ALL);
@@ -119,7 +119,7 @@ DEFINE_SPELL_FUN (spell_floating_disc) {
     BAIL_IF_ACT (floating != NULL && IS_OBJ_STAT (floating, ITEM_NOREMOVE),
         "You can't remove $p.", ch, floating, NULL);
 
-    disc = obj_create (get_obj_index (OBJ_VNUM_DISC), 0);
+    disc = obj_create (obj_get_index (OBJ_VNUM_DISC), 0);
     disc->v.container.capacity   = ch->level * 10; /* 10 pounds/level */
     disc->v.container.max_weight = ch->level *  5;  /* 5 pounds/level */
     disc->timer = ch->level * 2 - number_range (0, level / 2);

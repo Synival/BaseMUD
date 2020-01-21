@@ -75,5 +75,6 @@ void obj_poof (OBJ_T *obj);
 
 /* Look-up functions. */
 OBJ_T *obj_get_by_index (const OBJ_INDEX_T *obj_index);
+OBJ_INDEX_T *obj_get_index (int vnum);
 
 #endif

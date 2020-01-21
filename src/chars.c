@@ -229,7 +229,7 @@ void char_to_room (CHAR_T *ch, ROOM_INDEX_T *room_index) {
     if (room_index == NULL) {
         ROOM_INDEX_T *room;
         bug ("char_to_room: NULL.", 0);
-        if ((room = get_room_index (ROOM_VNUM_TEMPLE)) != NULL)
+        if ((room = room_get_index (ROOM_VNUM_TEMPLE)) != NULL)
             char_to_room (ch, room);
         return;
     }
@@ -396,7 +396,7 @@ void char_extract (CHAR_T *ch, bool pull) {
 
     /* Death room is set in the clan table now */
     if (!pull) {
-        char_to_room (ch, get_room_index (clan_table[ch->clan].hall));
+        char_to_room (ch, room_get_index (clan_table[ch->clan].hall));
         return;
     }
 
@@ -1466,7 +1466,7 @@ void char_stop_idling (CHAR_T *ch) {
         ch->desc == NULL                   ||
         ch->desc->connected != CON_PLAYING ||
         ch->was_in_room == NULL            ||
-        ch->in_room != get_room_index (ROOM_VNUM_LIMBO)
+        ch->in_room != room_get_index (ROOM_VNUM_LIMBO)
     )
         return;
 

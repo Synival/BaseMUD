@@ -29,7 +29,7 @@
 
 #include "recycle.h"
 #include "utils.h"
-#include "db.h"
+#include "fread.h"
 #include "save.h"
 #include "interp.h"
 #include "comm.h"

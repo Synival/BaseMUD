@@ -44,6 +44,8 @@ OBJ_T *room_get_obj_of_type (const ROOM_INDEX_T *room, const CHAR_T *ch,
     int type);
 OBJ_T *room_get_obj_with_condition (const ROOM_INDEX_T *room, const CHAR_T *ch,
     bool (*cond) (const OBJ_T *obj));
+ROOM_INDEX_T *room_get_index (int vnum);
+ROOM_INDEX_T *room_get_random_index (CHAR_T *ch);
 
 /* Action functions. */
 void room_add_money (ROOM_INDEX_T *room, int gold, int silver);

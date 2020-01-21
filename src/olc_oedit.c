@@ -28,6 +28,7 @@
 #include "olc.h"
 #include "memory.h"
 #include "items.h"
+#include "objs.h"
 
 #include "olc_oedit.h"
 
@@ -235,11 +236,11 @@ bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj,
                     break;
                 case 2:
                     if (atoi (argument) != 0) {
-                        if (!get_obj_index (atoi (argument))) {
+                        if (!obj_get_index (atoi (argument))) {
                             send_to_char ("THERE IS NO SUCH ITEM.\n\r\n\r", ch);
                             return FALSE;
                         }
-                        if (get_obj_index (atoi (argument))->item_type != ITEM_KEY) {
+                        if (obj_get_index (atoi (argument))->item_type != ITEM_KEY) {
                             send_to_char ("THAT ITEM IS NOT A KEY.\n\r\n\r", ch);
                             return FALSE;
                         }
@@ -658,7 +659,7 @@ OEDIT (oedit_create) {
         send_to_char ("OEdit: Vnum in an area you cannot build in.\n\r", ch);
         return FALSE;
     }
-    if (get_obj_index (value)) {
+    if (obj_get_index (value)) {
         send_to_char ("OEdit: Object vnum already exists.\n\r", ch);
         return FALSE;
     }

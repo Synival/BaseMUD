@@ -51,7 +51,7 @@
 #include <time.h>
 
 #include "interp.h"
-#include "db.h"
+#include "fread.h"
 #include "utils.h"
 #include "comm.h"
 #include "recycle.h"

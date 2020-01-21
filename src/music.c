@@ -28,13 +28,13 @@
 #include "recycle.h"
 #include "utils.h"
 #include "comm.h"
-#include "db.h"
 #include "interp.h"
 #include "globals.h"
 #include "lookup.h"
 #include "chars.h"
 #include "objs.h"
 #include "memory.h"
+#include "fread.h"
 
 #include "music.h"
 

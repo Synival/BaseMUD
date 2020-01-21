@@ -34,7 +34,6 @@
 #define GET_UNSET(flag1,flag2)    (~(flag1)&((flag1)|(flag2)))
 
 /* Helper functions. */
-flag_t flag_convert (char letter);
 void assign_area_vnum (int vnum, AREA_T *area);
 bool check_pet_affected (int vnum, AFFECT_T *paf);
 void db_dump_world (const char *filename);
@@ -45,29 +44,7 @@ void init_time_weather (void);
 void db_link_areas (void);
 void db_import_json (void);
 void init_areas (void);
-
-/* Reading functions. */
-char fread_letter (FILE *fp);
-int fread_number (FILE *fp);
-flag_t fread_flag (FILE *fp);
-char *fread_string_replace (FILE *fp, char **value);
-char *fread_string_dup (FILE *fp);
-char *fread_string_static (FILE *fp);
-char *fread_string (FILE *fp, char *buf, size_t size);
-char *fread_string_eol_replace (FILE *fp, char **value);
-char *fread_string_eol_dup (FILE *fp);
-char *fread_string_eol_static (FILE *fp);
-char *fread_string_eol (FILE *fp, char *buf, size_t size);
-void fread_to_eol (FILE *fp);
-char *fread_word_replace (FILE *fp, char **value);
-char *fread_word_dup (FILE *fp);
-char *fread_word_static (FILE *fp);
-char *fread_word (FILE *fp, char *buf, size_t size);
-void fread_dice (FILE *fp, DICE_T *out);
-bool fread_social_str (FILE *fp, char **str);
-
-/* Writing functions. */
-char *fwrite_flag (long flags, char buf[]);
+void qmconfig_read (void);
 
 /* Loading functions. */
 void load_area (FILE *fp);
@@ -77,6 +54,7 @@ void load_rooms (FILE *fp);
 void load_shops (FILE *fp);
 void load_specials (FILE *fp);
 void load_socials (FILE *fp);
+bool load_socials_string (FILE *fp, char **str);
 void load_mobiles (FILE *fp);
 void load_objects (FILE *fp);
 void load_helps (FILE *fp, char *fname);
@@ -102,10 +80,6 @@ void clear_char (CHAR_T *ch);
 
 /* Getter functions. */
 char *get_extra_descr (const char *name, EXTRA_DESCR_T *ed);
-MOB_INDEX_T *get_mob_index (int vnum);
-OBJ_INDEX_T *get_obj_index (int vnum);
-ROOM_INDEX_T *get_room_index (int vnum);
-ROOM_INDEX_T *get_random_room (CHAR_T *ch);
 MPROG_CODE_T *get_mprog_index (int vnum);
 int help_area_count_pages (HELP_AREA_T *had);
 

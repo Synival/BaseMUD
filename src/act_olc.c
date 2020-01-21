@@ -25,6 +25,9 @@
 #include "chars.h"
 #include "globals.h"
 #include "items.h"
+#include "mobiles.h"
+#include "rooms.h"
+#include "objs.h"
 
 #include "olc_aedit.h"
 #include "olc_hedit.h"
@@ -70,13 +73,13 @@ void do_resets_display (CHAR_T *ch) {
             case 'M': {
                 ROOM_INDEX_T *room_index_prev;
 
-                if (!(mob_index = get_mob_index (v->mob.mob_vnum))) {
+                if (!(mob_index = mobile_get_index (v->mob.mob_vnum))) {
                     sprintf (buf, "Load Mobile - Bad Mob %d\n\r", v->mob.mob_vnum);
                     strcat (final, buf);
                     continue;
                 }
 
-                if (!(room_index = get_room_index (v->mob.room_vnum))) {
+                if (!(room_index = room_get_index (v->mob.room_vnum))) {
                     sprintf (buf, "Load Mobile - Bad Room %d\n\r", v->mob.room_vnum);
                     strcat (final, buf);
                     continue;
@@ -91,7 +94,7 @@ void do_resets_display (CHAR_T *ch) {
                 strcat (final, buf);
 
                 /* Check for pet shop. */
-                room_index_prev = get_room_index (room_index->vnum - 1);
+                room_index_prev = room_get_index (room_index->vnum - 1);
                 if (room_index_prev
                     && IS_SET (room_index_prev->room_flags, ROOM_PET_SHOP))
                     final[5] = 'P';
@@ -99,14 +102,14 @@ void do_resets_display (CHAR_T *ch) {
             }
 
             case 'O':
-                if (!(obj_index = get_obj_index (v->obj.obj_vnum))) {
+                if (!(obj_index = obj_get_index (v->obj.obj_vnum))) {
                     sprintf (buf, "Load Object - Bad Object %d\n\r", v->obj.obj_vnum);
                     strcat (final, buf);
                     continue;
                 }
 
                 obj = obj_index;
-                if (!(room_index = get_room_index (v->obj.room_vnum))) {
+                if (!(room_index = room_get_index (v->obj.room_vnum))) {
                     sprintf (buf, "Load Object - Bad Room %d\n\r", v->obj.room_vnum);
                     strcat (final, buf);
                     continue;
@@ -121,14 +124,14 @@ void do_resets_display (CHAR_T *ch) {
                 break;
 
             case 'P':
-                if (!(obj_index = get_obj_index (v->put.obj_vnum))) {
+                if (!(obj_index = obj_get_index (v->put.obj_vnum))) {
                     sprintf (buf, "Put Object - Bad Object %d\n\r", v->put.obj_vnum);
                     strcat (final, buf);
                     continue;
                 }
 
                 obj = obj_index;
-                if (!(obj_to_index = get_obj_index (v->put.into_vnum))) {
+                if (!(obj_to_index = obj_get_index (v->put.into_vnum))) {
                     sprintf (buf, "Put Object - Bad To Object %d\n\r", v->put.into_vnum);
                     strcat (final, buf);
                     continue;
@@ -149,7 +152,7 @@ void do_resets_display (CHAR_T *ch) {
                 const char *cmdName = (cmd == 'G') ? "Give" : "Equip";
                 int obj_vnum = (cmd == 'G') ? v->give.obj_vnum : v->equip.obj_vnum;
 
-                if (!(obj_index = get_obj_index (obj_vnum))) {
+                if (!(obj_index = obj_get_index (obj_vnum))) {
                     sprintf (buf, "%s Object - Bad Object %d\n\r",
                         cmdName, obj_vnum);
                     strcat (final, buf);
@@ -187,7 +190,7 @@ void do_resets_display (CHAR_T *ch) {
              * line in the case 'D' in load_resets in db.c and here. */
             /* ^^^ new_reset() is now room_take_reset(). -- Synival */
             case 'D':
-                room_index = get_room_index (v->door.room_vnum);
+                room_index = room_get_index (v->door.room_vnum);
                 sprintf (buf, "R[%5d] %s door of %-19.19s reset to %s\n\r",
                     v->door.room_vnum,
                     str_capitalized (door_table[v->door.dir].name),
@@ -198,7 +201,7 @@ void do_resets_display (CHAR_T *ch) {
                 break;
 
             case 'R':
-                if (!(room_index = get_room_index (v->randomize.room_vnum))) {
+                if (!(room_index = room_get_index (v->randomize.room_vnum))) {
                     sprintf (buf, "Randomize Exits - Bad Room %d\n\r", v->randomize.room_vnum);
                     strcat (final, buf);
                     continue;
@@ -328,7 +331,7 @@ DEFINE_DO_FUN (do_medit) {
 
     if (is_number (arg1)) {
         value = atoi (arg1);
-        BAIL_IF (!(mob = get_mob_index (value)),
+        BAIL_IF (!(mob = mobile_get_index (value)),
             "MEdit: That vnum does not exist.\n\r", ch);
         BAIL_IF (!IS_BUILDER (ch, mob->area),
             "MEdit: Insufficient security to modify mobs.\n\r", ch);
@@ -403,7 +406,7 @@ DEFINE_DO_FUN (do_oedit) {
 
     if (is_number (arg1)) {
         value = atoi (arg1);
-        BAIL_IF (!(obj = get_obj_index (value)),
+        BAIL_IF (!(obj = obj_get_index (value)),
             "OEdit: That vnum does not exist.\n\r", ch);
         BAIL_IF (!IS_BUILDER (ch, obj->area),
             "OEdit: Insufficient security to modify objects.\n\r", ch);
@@ -446,7 +449,7 @@ DEFINE_DO_FUN (do_redit) {
 
     /* redit <vnum> */
     if (is_number (arg1)) {
-        room = get_room_index (atoi (arg1));
+        room = room_get_index (atoi (arg1));
         BAIL_IF (!room,
             "REdit: That vnum does not exist.\n\r", ch);
         BAIL_IF (!IS_BUILDER (ch, room->area),
@@ -562,7 +565,7 @@ DEFINE_DO_FUN (do_resets) {
         {
             /* Check for Mobile reset. */
             if (!str_cmp (arg2, "mob")) {
-                BAIL_IF (get_mob_index (is_number (arg3) ? atoi (arg3) : 1) == NULL,
+                BAIL_IF (mobile_get_index (is_number (arg3) ? atoi (arg3) : 1) == NULL,
                     "Mob doesn't exist.\n\r", ch);
                 reset = reset_data_new ();
                 reset->command = 'M';
@@ -582,7 +585,7 @@ DEFINE_DO_FUN (do_resets) {
                 if (!str_prefix (arg4, "inside")) {
                     OBJ_INDEX_T *temp;
 
-                    temp = get_obj_index (is_number (arg5) ? atoi (arg5) : 1);
+                    temp = obj_get_index (is_number (arg5) ? atoi (arg5) : 1);
                     BAIL_IF (!item_index_is_container (temp),
                         "Object 2 is not a container.\n\r", ch);
                     reset->command = 'P';
@@ -593,7 +596,7 @@ DEFINE_DO_FUN (do_resets) {
                 }
                 /* Inside the room. */
                 else if (!str_cmp (arg4, "room")) {
-                    BAIL_IF (get_obj_index (atoi (arg3)) == NULL,
+                    BAIL_IF (obj_get_index (atoi (arg3)) == NULL,
                         "Vnum doesn't exist.\n\r", ch);
                     reset->command = 'O';
                     v->obj.obj_vnum     = atoi (arg3);
@@ -606,7 +609,7 @@ DEFINE_DO_FUN (do_resets) {
 
                     BAIL_IF ((wear_loc = wear_loc_get_by_name (arg4)) == NULL,
                         "Resets: '? wear-loc'\n\r", ch);
-                    BAIL_IF (get_obj_index (atoi (arg3)) == NULL,
+                    BAIL_IF (obj_get_index (atoi (arg3)) == NULL,
                         "Vnum doesn't exist.\n\r", ch);
 
                     if (wear_loc->type WEAR_LOC_NONE) {

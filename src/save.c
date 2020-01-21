@@ -39,6 +39,9 @@
 #include "items.h"
 #include "mobiles.h"
 #include "players.h"
+#include "fread.h"
+#include "fwrite.h"
+#include "rooms.h"
 
 #include "save.h"
 
@@ -168,7 +171,7 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
     fprintf (fp, "Sec  %d\n", ch->pcdata->security);    /* OLC */
     fprintf (fp, "Plyd %d\n", ch->played + (int) (current_time - ch->logon));
     fprintf (fp, "Scro %d\n", ch->lines);
-    fprintf (fp, "Room %d\n", (ch->in_room == get_room_index (ROOM_VNUM_LIMBO)
+    fprintf (fp, "Room %d\n", (ch->in_room == room_get_index (ROOM_VNUM_LIMBO)
                                && ch->was_in_room != NULL)
              ? ch->was_in_room->vnum
              : ch->in_room == NULL ? ROOM_VNUM_TEMPLE : ch->in_room->vnum);
@@ -1029,9 +1032,9 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 KEY ("Race", ch->race, race_lookup (fread_string_static (fp)));
 
                 if (!str_cmp (word, "Room")) {
-                    ch->in_room = get_room_index (fread_number (fp));
+                    ch->in_room = room_get_index (fread_number (fp));
                     if (ch->in_room == NULL)
-                        ch->in_room = get_room_index (ROOM_VNUM_LIMBO);
+                        ch->in_room = room_get_index (ROOM_VNUM_LIMBO);
                     match = TRUE;
                     break;
                 }
@@ -1094,7 +1097,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 KEY ("Version", ch->version, fread_number (fp));
                 KEY ("Vers", ch->version, fread_number (fp));
                 if (!str_cmp (word, "Vnum")) {
-                    ch->index_data = get_mob_index (fread_number (fp));
+                    ch->index_data = mobile_get_index (fread_number (fp));
                     match = TRUE;
                     break;
                 }
@@ -1128,16 +1131,16 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
     word = feof (fp) ? "END" : fread_word_static (fp);
     if (!str_cmp (word, "Vnum")) {
         vnum = fread_number (fp);
-        if (get_mob_index (vnum) == NULL) {
+        if (mobile_get_index (vnum) == NULL) {
             bug ("fread_pet: bad vnum %d.", vnum);
-            pet = mobile_create (get_mob_index (MOB_VNUM_FIDO));
+            pet = mobile_create (mobile_get_index (MOB_VNUM_FIDO));
         }
         else
-            pet = mobile_create (get_mob_index (vnum));
+            pet = mobile_create (mobile_get_index (vnum));
     }
     else {
         bug ("fread_pet: no vnum in file.", 0);
-        pet = mobile_create (get_mob_index (MOB_VNUM_FIDO));
+        pet = mobile_create (mobile_get_index (MOB_VNUM_FIDO));
     }
 
     while (1) {
@@ -1351,10 +1354,10 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
         first = FALSE; /* fp will be in right place */
 
         vnum = fread_number (fp);
-        if (get_obj_index (vnum) == NULL)
+        if (obj_get_index (vnum) == NULL)
             bug ("fread_obj: bad vnum %d.", vnum);
         else {
-            obj = obj_create (get_obj_index (vnum), -1);
+            obj = obj_create (obj_get_index (vnum), -1);
             new_format = TRUE;
         }
     }
@@ -1467,7 +1470,7 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                     else {
                         if (!vnum) {
                             obj_free (obj);
-                            obj = obj_create (get_obj_index (OBJ_VNUM_DUMMY), 0);
+                            obj = obj_create (obj_get_index (OBJ_VNUM_DUMMY), 0);
                         }
                         if (!new_format) {
                             LIST_FRONT (obj, next, object_list);
@@ -1584,7 +1587,7 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                     int vnum;
 
                     vnum = fread_number (fp);
-                    if ((obj->index_data = get_obj_index (vnum)) == NULL)
+                    if ((obj->index_data = obj_get_index (vnum)) == NULL)
                         bug ("fread_obj: bad vnum %d.", vnum);
                     else
                         vnum = TRUE;

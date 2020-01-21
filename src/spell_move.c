@@ -36,6 +36,7 @@
 #include "objs.h"
 #include "items.h"
 #include "players.h"
+#include "rooms.h"
 
 #include "spell_move.h"
 
@@ -112,7 +113,7 @@ bool spell_filter_use_warp_stone (CHAR_T *ch) {
 OBJ_T *spell_sub_create_portal (ROOM_INDEX_T *from_room,
     ROOM_INDEX_T *to_room, int duration)
 {
-    OBJ_T *portal = obj_create (get_obj_index (OBJ_VNUM_PORTAL), 0);
+    OBJ_T *portal = obj_create (obj_get_index (OBJ_VNUM_PORTAL), 0);
     portal->timer = duration;
     portal->v.portal.to_vnum = to_room->vnum;
     obj_give_to_room (portal, from_room);
@@ -194,7 +195,7 @@ DEFINE_SPELL_FUN (spell_teleport) {
     BAIL_IF (victim != ch && (saves_spell (level - 5, victim, DAM_OTHER)),
         "You failed.\n\r", ch);
 
-    room_index = get_random_room (victim);
+    room_index = room_get_random_index (victim);
     if (victim != ch)
         send_to_char ("You have been teleported!\n\r", victim);
 
@@ -212,7 +213,7 @@ DEFINE_SPELL_FUN (spell_word_of_recall) {
 
     BAIL_IF_ACT (IS_NPC (victim),
         "Your spell ignores $N.", ch, NULL, victim);
-    BAIL_IF ((location = get_room_index (ROOM_VNUM_TEMPLE)) == NULL,
+    BAIL_IF ((location = room_get_index (ROOM_VNUM_TEMPLE)) == NULL,
         "You are completely lost.\n\r", victim);
     BAIL_IF (IS_SET (victim->in_room->room_flags, ROOM_NO_RECALL) ||
              IS_AFFECTED (victim, AFF_CURSE),

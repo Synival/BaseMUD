@@ -31,6 +31,7 @@
 #include "merc.h"
 
 /* Function prototypes. */
+MOB_INDEX_T *mobile_get_index (int vnum);
 CHAR_T *mobile_create (MOB_INDEX_T *mob_index);
 void mobile_clone (CHAR_T *parent, CHAR_T *clone);
 int mobile_should_assist_player (CHAR_T *bystander, CHAR_T *player,

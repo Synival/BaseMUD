@@ -318,7 +318,7 @@ DEFINE_DO_FUN (do_mload) {
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0' || !is_number (arg),
         "Syntax: load mob <vnum>.\n\r", ch);
-    BAIL_IF ((mob_index = get_mob_index (atoi (arg))) == NULL,
+    BAIL_IF ((mob_index = mobile_get_index (atoi (arg))) == NULL,
         "No mob has that vnum.\n\r", ch);
 
     victim = mobile_create (mob_index);
@@ -351,7 +351,7 @@ DEFINE_DO_FUN (do_oload) {
             "Level must be be between 0 and your level.\n\r", ch);
     }
 
-    BAIL_IF ((obj_index = get_obj_index (atoi (arg1))) == NULL,
+    BAIL_IF ((obj_index = obj_get_index (atoi (arg1))) == NULL,
         "No object has that vnum.\n\r", ch);
 
     obj = obj_create (obj_index, level);

@@ -1051,14 +1051,14 @@ DEFINE_DO_FUN (do_outfit) {
         "Find it yourself!\n\r", ch);
 
     if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) == NULL) {
-        obj = obj_create (get_obj_index (OBJ_VNUM_SCHOOL_BANNER), 0);
+        obj = obj_create (obj_get_index (OBJ_VNUM_SCHOOL_BANNER), 0);
         obj->cost = 0;
         obj_give_to_char (obj, ch);
         char_equip_obj (ch, obj, WEAR_LOC_LIGHT);
     }
 
     if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_BODY)) == NULL) {
-        obj = obj_create (get_obj_index (OBJ_VNUM_SCHOOL_VEST), 0);
+        obj = obj_create (obj_get_index (OBJ_VNUM_SCHOOL_VEST), 0);
         obj->cost = 0;
         obj_give_to_char (obj, ch);
         char_equip_obj (ch, obj, WEAR_LOC_BODY);
@@ -1078,7 +1078,7 @@ DEFINE_DO_FUN (do_outfit) {
             }
         }
 
-        obj = obj_create (get_obj_index (vnum), 0);
+        obj = obj_create (obj_get_index (vnum), 0);
         obj_give_to_char (obj, ch);
         char_equip_obj (ch, obj, WEAR_LOC_WIELD);
     }
@@ -1087,7 +1087,7 @@ DEFINE_DO_FUN (do_outfit) {
          || !IS_WEAPON_STAT (obj, WEAPON_TWO_HANDS))
         && (obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_SHIELD)) == NULL)
     {
-        obj = obj_create (get_obj_index (OBJ_VNUM_SCHOOL_SHIELD), 0);
+        obj = obj_create (obj_get_index (OBJ_VNUM_SCHOOL_SHIELD), 0);
         obj->cost = 0;
         obj_give_to_char (obj, ch);
         char_equip_obj (ch, obj, WEAR_LOC_SHIELD);

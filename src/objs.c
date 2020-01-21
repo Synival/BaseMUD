@@ -42,6 +42,27 @@
 
 #include "objs.h"
 
+/* Translates mob virtual number to its obj index struct.
+ * Hash table lookup. */
+OBJ_INDEX_T *obj_get_index (int vnum) {
+    OBJ_INDEX_T *obj_index;
+
+    for (obj_index = obj_index_hash[vnum % MAX_KEY_HASH];
+         obj_index != NULL; obj_index = obj_index->next)
+        if (obj_index->vnum == vnum)
+            return obj_index;
+
+    /* NOTE: This did cause the server not to boot, but that seems a bit
+     *       extreme. So we just return NULL instead, and keep on booting.
+     *       -- Synival */
+    if (in_boot_db) {
+        bug ("obj_get_index: bad vnum %d.", vnum);
+     // exit (1);
+    }
+
+    return NULL;
+}
+
 /* Create an instance of an object. */
 OBJ_T *obj_create (OBJ_INDEX_T *obj_index, int level) {
     AFFECT_T *paf;
@@ -337,11 +358,11 @@ OBJ_T *obj_create_money (int gold, int silver) {
     }
 
     if (gold == 0 && silver == 1)
-        obj = obj_create (get_obj_index (OBJ_VNUM_SILVER_ONE), 0);
+        obj = obj_create (obj_get_index (OBJ_VNUM_SILVER_ONE), 0);
     else if (gold == 1 && silver == 0)
-        obj = obj_create (get_obj_index (OBJ_VNUM_GOLD_ONE), 0);
+        obj = obj_create (obj_get_index (OBJ_VNUM_GOLD_ONE), 0);
     else if (silver == 0) {
-        obj = obj_create (get_obj_index (OBJ_VNUM_GOLD_SOME), 0);
+        obj = obj_create (obj_get_index (OBJ_VNUM_GOLD_SOME), 0);
         sprintf (buf, obj->short_descr, gold);
         str_replace_dup (&(obj->short_descr), buf);
         obj->v.money.gold = gold;
@@ -349,7 +370,7 @@ OBJ_T *obj_create_money (int gold, int silver) {
         obj->weight = gold / 5;
     }
     else if (gold == 0) {
-        obj = obj_create (get_obj_index (OBJ_VNUM_SILVER_SOME), 0);
+        obj = obj_create (obj_get_index (OBJ_VNUM_SILVER_SOME), 0);
         sprintf (buf, obj->short_descr, silver);
         str_replace_dup (&(obj->short_descr), buf);
         obj->v.money.silver = silver;
@@ -357,7 +378,7 @@ OBJ_T *obj_create_money (int gold, int silver) {
         obj->weight = silver / 20;
     }
     else {
-        obj = obj_create (get_obj_index (OBJ_VNUM_COINS), 0);
+        obj = obj_create (obj_get_index (OBJ_VNUM_COINS), 0);
         sprintf (buf, obj->short_descr, silver, gold);
         str_replace_dup (&(obj->short_descr), buf);
         obj->v.money.silver = silver;

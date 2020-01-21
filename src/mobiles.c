@@ -41,6 +41,27 @@
 
 #include "mobiles.h"
 
+/* Translates mob virtual number to its mob index struct.
+ * Hash table lookup. */
+MOB_INDEX_T *mobile_get_index (int vnum) {
+    MOB_INDEX_T *mob_index;
+
+    for (mob_index = mob_index_hash[vnum % MAX_KEY_HASH];
+         mob_index != NULL; mob_index = mob_index->next)
+        if (mob_index->vnum == vnum)
+            return mob_index;
+
+    /* NOTE: This did cause the server not to boot, but that seems a bit
+     *       extreme. So we just return NULL instead, and keep on booting.
+     *       -- Synival */
+    if (in_boot_db) {
+        bug ("mobile_get_index: bad vnum %d.", vnum);
+     // exit (1);
+    }
+
+    return NULL;
+}
+
 /* Create an instance of a mobile. */
 CHAR_T *mobile_create (MOB_INDEX_T *mob_index) {
     CHAR_T *mob;

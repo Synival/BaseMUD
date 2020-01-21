@@ -31,8 +31,55 @@
 #include "objs.h"
 #include "interp.h"
 #include "chars.h"
+#include "globals.h"
 
 #include "rooms.h"
+
+/* Translates mob virtual number to its room index struct.
+ * Hash table lookup. */
+ROOM_INDEX_T *room_get_index (int vnum) {
+    ROOM_INDEX_T *room_index;
+
+    for (room_index = room_index_hash[vnum % MAX_KEY_HASH];
+         room_index != NULL; room_index = room_index->next)
+        if (room_index->vnum == vnum)
+            return room_index;
+
+    /* NOTE: This did cause the server not to boot, but that seems a bit
+     *       extreme. So we just return NULL instead, and keep on booting.
+     *       -- Synival */
+    if (in_boot_db) {
+        bug ("room_get_index: bad vnum %d.", vnum);
+     // exit (1);
+    }
+
+    return NULL;
+}
+
+/* random room generation procedure */
+ROOM_INDEX_T *room_get_random_index (CHAR_T *ch) {
+    ROOM_INDEX_T *room;
+
+    while (1) {
+        room = room_get_index (number_range (0, 65535));
+        if (room == NULL)
+            continue;
+        if (!char_can_see_room (ch, room))
+            continue;
+        if (room_is_private (room))
+            continue;
+        if (IS_SET (room->room_flags, ROOM_PRIVATE))
+            continue;
+        if (IS_SET (room->room_flags, ROOM_SOLITARY))
+            continue;
+        if (IS_SET (room->room_flags, ROOM_SAFE))
+            continue;
+        if (IS_NPC (ch) || !IS_SET (room->room_flags, ROOM_LAW))
+            break;
+    }
+
+    return room;
+}
 
 /* True if room is dark. */
 bool room_is_dark (const ROOM_INDEX_T *room_index) {

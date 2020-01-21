@@ -38,6 +38,10 @@
 #include "globals.h"
 #include "memory.h"
 #include "items.h"
+#include "fread.h"
+#include "mobiles.h"
+#include "objs.h"
+#include "rooms.h"
 
 #include "db_old.h"
 
@@ -65,7 +69,7 @@ void load_old_mob (FILE *fp) {
             break;
 
         in_boot_db = FALSE;
-        EXIT_IF_BUG (get_mob_index (vnum) != NULL,
+        EXIT_IF_BUG (mobile_get_index (vnum) != NULL,
             "load_mobiles: vnum %d duplicated.", vnum);
         in_boot_db = TRUE;
 
@@ -187,7 +191,7 @@ void load_old_obj (FILE *fp) {
             break;
 
         in_boot_db = FALSE;
-        EXIT_IF_BUG (get_obj_index (vnum) != NULL,
+        EXIT_IF_BUG (obj_get_index (vnum) != NULL,
             "load_objects: vnum %d duplicated.", vnum);
         in_boot_db = TRUE;
 
@@ -264,12 +268,12 @@ int convert_object_reset (RESET_T *reset) {
 
     switch (reset->command) {
         case 'M':
-            RETURN_IF_BUG (!(MOB = get_mob_index (v->mob.mob_vnum)),
+            RETURN_IF_BUG (!(MOB = mobile_get_index (v->mob.mob_vnum)),
                 "convert_object_reset: 'M': bad vnum %d.", v->mob.mob_vnum, 0);
             break;
 
         case 'O':
-            RETURN_IF_BUG (!(OBJ = get_obj_index (v->obj.obj_vnum)),
+            RETURN_IF_BUG (!(OBJ = obj_get_index (v->obj.obj_vnum)),
                 "convert_object_reset: 'O': bad vnum %d.", v->obj.obj_vnum, 0);
             if (OBJ->new_format)
                 return 1;
@@ -282,12 +286,12 @@ int convert_object_reset (RESET_T *reset) {
 
         case 'P': {
             OBJ_INDEX_T *OBJ, *OBJTo;
-            RETURN_IF_BUG (!(OBJ = get_obj_index (v->put.obj_vnum)),
+            RETURN_IF_BUG (!(OBJ = obj_get_index (v->put.obj_vnum)),
                 "convert_object_reset: 'P': bad vnum %d.", v->put.obj_vnum, 0);
             if (OBJ->new_format)
                 return 1;
 
-            RETURN_IF_BUG (!(OBJTo = get_obj_index (v->put.into_vnum)),
+            RETURN_IF_BUG (!(OBJTo = obj_get_index (v->put.into_vnum)),
                 "convert_object_reset: 'P': bad vnum %d.", v->put.into_vnum, 0);
             OBJ->level = OBJ->level < 1 ? OBJTo->level
                 : UMIN (OBJ->level, OBJTo->level);
@@ -299,7 +303,7 @@ int convert_object_reset (RESET_T *reset) {
             int obj_vnum = (reset->command == 'G')
                 ? v->give.obj_vnum : v->equip.obj_vnum;
 
-            RETURN_IF_BUG (!(OBJ = get_obj_index (obj_vnum)),
+            RETURN_IF_BUG (!(OBJ = obj_get_index (obj_vnum)),
                 "convert_object_reset: 'E' or 'G': bad vnum %d.", obj_vnum, 0);
             RETURN_IF_BUG (!MOB,
                 "convert_object_reset: 'E' or 'G': null mob for vnum %d.", obj_vnum, 0);
@@ -351,7 +355,7 @@ void convert_objects (void) {
 
     for (area = area_first; area; area = area->next) {
         for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++) {
-            if (!(room = get_room_index (vnum)))
+            if (!(room = room_get_index (vnum)))
                 continue;
             for (reset = room->reset_first; reset; reset = reset->next)
                 convert_object_reset (reset);

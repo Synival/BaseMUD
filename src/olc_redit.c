@@ -31,6 +31,7 @@
 #include "olc_oedit.h"
 #include "memory.h"
 #include "mobiles.h"
+#include "rooms.h"
 
 #include "olc_redit.h"
 
@@ -148,7 +149,7 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
         }
 
         value = atoi (arg);
-        if (!(toRoom = get_room_index (value))) {
+        if (!(toRoom = room_get_index (value))) {
             send_to_char ("REdit: Cannot link to non-existant room.\n\r", ch);
             return FALSE;
         }
@@ -199,7 +200,7 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
         }
 
         value = atoi (arg);
-        if (!(toRoom = get_room_index (value))) {
+        if (!(toRoom = room_get_index (value))) {
             send_to_char ("REdit: Cannot link to non-existant room.\n\r", ch);
             return FALSE;
         }
@@ -226,7 +227,7 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
         }
 
         value = atoi (arg);
-        if (!(key = get_obj_index (value))) {
+        if (!(key = obj_get_index (value))) {
             send_to_char ("REdit: Key doesn't exist.\n\r", ch);
             return FALSE;
         }
@@ -295,7 +296,7 @@ REDIT (redit_rlist) {
     found = FALSE;
 
     for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++) {
-        if ((room_index = get_room_index (vnum))) {
+        if ((room_index = room_get_index (vnum))) {
             found = TRUE;
             sprintf (buf, "[%5d] %-17.16s",
                      vnum, str_capitalized (room_index->name));
@@ -341,7 +342,7 @@ REDIT (redit_mlist) {
     found = FALSE;
 
     for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++) {
-        if ((mob_index = get_mob_index (vnum)) != NULL) {
+        if ((mob_index = mobile_get_index (vnum)) != NULL) {
             if (all || str_in_namelist (arg, mob_index->name)) {
                 found = TRUE;
                 sprintf (buf, "[%5d] %-17.16s",
@@ -391,7 +392,7 @@ REDIT (redit_olist) {
 
     item_type = item_lookup (arg);
     for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++) {
-        if ((obj_index = get_obj_index (vnum))) {
+        if ((obj_index = obj_get_index (vnum))) {
             if (all || str_in_namelist (arg, obj_index->name) ||
                 item_type == obj_index->item_type)
             {
@@ -432,7 +433,7 @@ REDIT (redit_mshow) {
 
     if (is_number (argument)) {
         value = atoi (argument);
-        if (!(mob = get_mob_index (value))) {
+        if (!(mob = mobile_get_index (value))) {
             send_to_char ("REdit: That mobile does not exist.\n\r", ch);
             return FALSE;
         }
@@ -458,7 +459,7 @@ REDIT (redit_oshow) {
     }
     if (is_number (argument)) {
         value = atoi (argument);
-        if (!(obj = get_obj_index (value))) {
+        if (!(obj = obj_get_index (value))) {
             send_to_char ("REdit: That object does not exist.\n\r", ch);
             return FALSE;
         }
@@ -730,7 +731,7 @@ REDIT (redit_create) {
         send_to_char ("REdit: Vnum in an area you cannot build in.\n\r", ch);
         return FALSE;
     }
-    if (get_room_index (value)) {
+    if (room_get_index (value)) {
         send_to_char ("REdit: Room vnum already exists.\n\r", ch);
         return FALSE;
     }
@@ -844,7 +845,7 @@ REDIT (redit_mreset) {
         send_to_char ("Syntax: mreset <vnum> <max #x> <mix #x>\n\r", ch);
         return FALSE;
     }
-    if (!(mob_index = get_mob_index (atoi (arg)))) {
+    if (!(mob_index = mobile_get_index (atoi (arg)))) {
         send_to_char ("REdit: No mobile has that vnum.\n\r", ch);
         return FALSE;
     }
@@ -897,7 +898,7 @@ REDIT (redit_oreset) {
         send_to_char ("        -<mob_name> <wear_loc> = into mob\n\r", ch);
         return FALSE;
     }
-    if (!(obj_index = get_obj_index (atoi (arg1)))) {
+    if (!(obj_index = obj_get_index (atoi (arg1)))) {
         send_to_char ("REdit: No object has that vnum.\n\r", ch);
         return FALSE;
     }

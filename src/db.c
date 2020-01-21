@@ -55,6 +55,7 @@
 #include "items.h"
 #include "mobiles.h"
 #include "skills.h"
+#include "fread.h"
 
 #include "db.h"
 
@@ -143,7 +144,7 @@ void db_link_areas (void) {
                 continue;
 
             exit->vnum = exit->room_anum + room->area->min_vnum;
-            if ((to_room = get_room_index (exit->vnum)) == NULL) {
+            if ((to_room = room_get_index (exit->vnum)) == NULL) {
                 bugf ("db_link_areas(): Room '%s' (%d) exit '%d' cannot find "
                     "room with vnum %d.\n", room->name, room->vnum, i,
                     exit->vnum);
@@ -434,12 +435,11 @@ void boot_db (void) {
     fix_exits ();
     portal_create_missing ();
     fix_mobprogs ();
+    music_load_songs ();
 
     /* Boot process is over(?) */
     in_boot_db = FALSE;
     convert_objects (); /* ROM OLC */
-
-    music_load_songs ();
 
  // db_export_json (TRUE, NULL);
 
@@ -836,7 +836,7 @@ void fix_resets (void) {
 
         switch (reset->command) {
             case 'D':
-                room_index = get_room_index (v->door.room_vnum);
+                room_index = room_get_index (v->door.room_vnum);
                 if (v->door.dir < 0 ||
                     v->door.dir >= DIR_MAX ||
                     !room_index ||
@@ -880,7 +880,7 @@ void fix_resets (void) {
         }
 
         /* Complain if resets don't belong to any particular room. */
-        if ((room_index = get_room_index (reset->room_vnum)) == NULL) {
+        if ((room_index = room_get_index (reset->room_vnum)) == NULL) {
             bugf ("fix_resets: '%c': room %d does not exist.",
                 reset->command, reset->room_vnum);
             reset_data_free (reset);
@@ -913,7 +913,7 @@ void load_rooms (FILE *fp) {
             break;
 
         in_boot_db = FALSE;
-        EXIT_IF_BUG (get_room_index (vnum) != NULL,
+        EXIT_IF_BUG (room_get_index (vnum) != NULL,
             "load_rooms: vnum %d duplicated.", vnum);
         in_boot_db = TRUE;
 
@@ -1051,7 +1051,7 @@ void load_shops (FILE *fp) {
         shop->open_hour   = fread_number(fp);
         shop->close_hour  = fread_number(fp);
         fread_to_eol(fp);
-        mob_index = get_mob_index(shop->keeper);
+        mob_index = mobile_get_index(shop->keeper);
         mob_index->shop = shop;
 
         LISTB_BACK (shop, next, shop_first, shop_last);
@@ -1073,7 +1073,7 @@ void load_specials (FILE *fp) {
                 break;
 
             case 'M':
-                mob_index = get_mob_index (fread_number (fp));
+                mob_index = mobile_get_index (fread_number (fp));
                 func_name = fread_word_static (fp);
                 mob_index->spec_fun = spec_lookup_function (func_name);
                 EXIT_IF_BUGF (mob_index->spec_fun == NULL,
@@ -1172,24 +1172,24 @@ void fix_exits (void) {
                 v = &(reset->v);
                 switch (reset->command) {
                     case 'M':
-                        get_mob_index (v->mob.mob_vnum);
-                        last_room = get_room_index (v->mob.room_vnum);
+                        mobile_get_index (v->mob.mob_vnum);
+                        last_room = room_get_index (v->mob.room_vnum);
                         break;
 
                     case 'O':
-                        get_obj_index (v->obj.obj_vnum);
-                        last_obj_room = get_room_index (v->obj.room_vnum);
+                        obj_get_index (v->obj.obj_vnum);
+                        last_obj_room = room_get_index (v->obj.room_vnum);
                         break;
 
                     case 'P':
-                        get_obj_index (v->obj.obj_vnum);
+                        obj_get_index (v->obj.obj_vnum);
                         EXIT_IF_BUG (last_obj_room == NULL,
                             "fix_exits: reset 'P' in room %d with last_obj_room NULL",
                             room_index->vnum);
                         break;
 
                     case 'G':
-                        get_obj_index (v->give.obj_vnum);
+                        obj_get_index (v->give.obj_vnum);
                         EXIT_IF_BUG (last_room == NULL,
                             "fix_exits: reset 'G' in room %d with last_room NULL",
                             room_index->vnum);
@@ -1197,7 +1197,7 @@ void fix_exits (void) {
                         break;
 
                     case 'E':
-                        get_obj_index (v->equip.obj_vnum);
+                        obj_get_index (v->equip.obj_vnum);
                         EXIT_IF_BUG (last_room == NULL,
                             "fix_exits: reset 'E' in room %d with last_room NULL",
                             room_index->vnum);
@@ -1209,7 +1209,7 @@ void fix_exits (void) {
                         break;
 
                     case 'R': {
-                        get_room_index (v->randomize.room_vnum);
+                        room_get_index (v->randomize.room_vnum);
                         int dir_count = v->randomize.dir_count;
                         EXIT_IF_BUGF (dir_count < 0,
                             "fix_exits: reset 'R' in room %d with dir_count %d < 0",
@@ -1232,11 +1232,11 @@ void fix_exits (void) {
             for (door = 0; door < DIR_MAX; door++) {
                 if ((pexit = room_index->exit[door]) == NULL)
                     continue;
-                if (pexit->vnum <= 0 || get_room_index (pexit->vnum) == NULL)
+                if (pexit->vnum <= 0 || room_get_index (pexit->vnum) == NULL)
                     pexit->to_room = NULL;
                 else {
                     fexit = TRUE;
-                    pexit->to_room = get_room_index (pexit->vnum);
+                    pexit->to_room = room_get_index (pexit->vnum);
                     pexit->area_vnum = pexit->to_room->area->vnum;
                     pexit->room_anum = pexit->to_room->anum;
                 }
@@ -1244,7 +1244,7 @@ void fix_exits (void) {
                 old_boot_db = in_boot_db;
                 in_boot_db = FALSE;
                 if (pexit->key >= KEY_VALID &&
-                    !(key = get_obj_index (pexit->key)))
+                    !(key = obj_get_index (pexit->key)))
                 {
                     bugf ("Warning: Cannot find key %d for room %d exit %d",
                         pexit->key, room_index->vnum, door);
@@ -1363,9 +1363,9 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
 
     switch (reset->command) {
         case 'M':
-            BAIL_IF_BUG (!(mob_index = get_mob_index (reset->v.mob.mob_vnum)),
+            BAIL_IF_BUG (!(mob_index = mobile_get_index (reset->v.mob.mob_vnum)),
                 "reset_room_reset: 'M': bad mob_vnum %d.", reset->v.mob.mob_vnum);
-            BAIL_IF_BUG (!(room_index = get_room_index (reset->v.mob.room_vnum)),
+            BAIL_IF_BUG (!(room_index = room_get_index (reset->v.mob.room_vnum)),
                 "reset_room_reset: 'M': bad room_vnum %d.", reset->v.mob.room_vnum);
 
             if (mob_index->count >= reset->v.mob.global_limit) {
@@ -1394,7 +1394,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
                 SET_BIT (mob->affected_by, AFF_INFRARED);
 
             /* Pet shop mobiles get ACT_PET set. */
-            room_indexPrev = get_room_index (room_index->vnum - 1);
+            room_indexPrev = room_get_index (room_index->vnum - 1);
             if (room_indexPrev && IS_SET (room_indexPrev->room_flags, ROOM_PET_SHOP))
                 SET_BIT (mob->mob, MOB_PET);
 
@@ -1407,14 +1407,14 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
         case 'O': {
             int obj_count = UMAX(1, reset->v.obj.room_limit);
 
-            if (!(obj_index = get_obj_index (reset->v.obj.obj_vnum))) {
+            if (!(obj_index = obj_get_index (reset->v.obj.obj_vnum))) {
                 bug ("reset_room_reset: 'O': bad obj_vnum %d.", reset->v.obj.obj_vnum);
                 bugf ("%d %d %d %d",
                     reset->v.value[1], reset->v.value[2],
                     reset->v.value[3], reset->v.value[4]);
                 return;
             }
-            if (!(room_index = get_room_index (reset->v.obj.room_vnum))) {
+            if (!(room_index = room_get_index (reset->v.obj.room_vnum))) {
                 bug ("reset_room_reset: 'O': bad room_vnum %d.", reset->v.obj.room_vnum);
                 bugf ("%d %d %d %d",
                     reset->v.value[1], reset->v.value[2],
@@ -1440,9 +1440,9 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
         }
 
         case 'P':
-            BAIL_IF_BUG (!(obj_index = get_obj_index (reset->v.put.obj_vnum)),
+            BAIL_IF_BUG (!(obj_index = obj_get_index (reset->v.put.obj_vnum)),
                 "reset_room_reset: 'P': bad obj_vnum %d.", reset->v.put.obj_vnum);
-            BAIL_IF_BUG (!(obj_to_index = get_obj_index (reset->v.put.into_vnum)),
+            BAIL_IF_BUG (!(obj_to_index = obj_get_index (reset->v.put.into_vnum)),
                 "reset_room_reset: 'P': bad into_vnum %d.", reset->v.put.into_vnum);
             BAIL_IF_BUG (!item_index_is_container (obj_to_index),
                 "reset_room_reset: 'P': to object %d is not a container.",
@@ -1490,7 +1490,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
             obj_vnum     = (cmd == 'G') ? gv->obj_vnum     : eq->obj_vnum;
             global_limit = (cmd == 'G') ? gv->global_limit : eq->global_limit;
 
-            BAIL_IF_BUG (!(obj_index = get_obj_index (obj_vnum)),
+            BAIL_IF_BUG (!(obj_index = obj_get_index (obj_vnum)),
                 "reset_room_reset: 'E' or 'G': bad obj_vnum %d.", obj_vnum);
 
             /* If we haven't instantiated the previous mob (at least we
@@ -1597,7 +1597,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
             EXIT_T *exit_obj;
             int d1, d2;
 
-            BAIL_IF_BUG (!(room_index = get_room_index (reset->v.randomize.room_vnum)),
+            BAIL_IF_BUG (!(room_index = room_get_index (reset->v.randomize.room_vnum)),
                 "reset_room_reset: 'R': bad vnum %d.", reset->v.randomize.room_vnum);
 
             for (d1 = 0; d1 < reset->v.randomize.dir_count - 1; d1++) {
@@ -1654,7 +1654,7 @@ void reset_area (AREA_T *area) {
     ROOM_INDEX_T *room;
     int vnum;
     for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++)
-        if ((room = get_room_index (vnum)))
+        if ((room = room_get_index (vnum)))
             reset_room (room);
 }
 
@@ -1695,69 +1695,6 @@ char *get_extra_descr (const char *name, EXTRA_DESCR_T *ed) {
     return NULL;
 }
 
-/* Translates mob virtual number to its mob index struct.
- * Hash table lookup. */
-MOB_INDEX_T *get_mob_index (int vnum) {
-    MOB_INDEX_T *mob_index;
-
-    for (mob_index = mob_index_hash[vnum % MAX_KEY_HASH];
-         mob_index != NULL; mob_index = mob_index->next)
-        if (mob_index->vnum == vnum)
-            return mob_index;
-
-    /* NOTE: This did cause the server not to boot, but that seems a bit
-     *       extreme. So we just return NULL instead, and keep on booting.
-     *       -- Synival */
-    if (in_boot_db) {
-        bug ("get_mob_index: bad vnum %d.", vnum);
-     // exit (1);
-    }
-
-    return NULL;
-}
-
-/* Translates mob virtual number to its obj index struct.
- * Hash table lookup. */
-OBJ_INDEX_T *get_obj_index (int vnum) {
-    OBJ_INDEX_T *obj_index;
-
-    for (obj_index = obj_index_hash[vnum % MAX_KEY_HASH];
-         obj_index != NULL; obj_index = obj_index->next)
-        if (obj_index->vnum == vnum)
-            return obj_index;
-
-    /* NOTE: This did cause the server not to boot, but that seems a bit
-     *       extreme. So we just return NULL instead, and keep on booting.
-     *       -- Synival */
-    if (in_boot_db) {
-        bug ("get_obj_index: bad vnum %d.", vnum);
-     // exit (1);
-    }
-
-    return NULL;
-}
-
-/* Translates mob virtual number to its room index struct.
- * Hash table lookup. */
-ROOM_INDEX_T *get_room_index (int vnum) {
-    ROOM_INDEX_T *room_index;
-
-    for (room_index = room_index_hash[vnum % MAX_KEY_HASH];
-         room_index != NULL; room_index = room_index->next)
-        if (room_index->vnum == vnum)
-            return room_index;
-
-    /* NOTE: This did cause the server not to boot, but that seems a bit
-     *       extreme. So we just return NULL instead, and keep on booting.
-     *       -- Synival */
-    if (in_boot_db) {
-        bug ("get_room_index: bad vnum %d.", vnum);
-     // exit (1);
-    }
-
-    return NULL;
-}
-
 MPROG_CODE_T *get_mprog_index (int vnum) {
     MPROG_CODE_T *prg;
     for (prg = mprog_list; prg; prg = prg->next)
@@ -1766,315 +1703,13 @@ MPROG_CODE_T *get_mprog_index (int vnum) {
     return NULL;
 }
 
-/* Read a letter from a file.  */
-char fread_letter (FILE *fp) {
-    char c;
-    do {
-        c = getc (fp);
-    } while (isspace (c));
-    return c;
-}
-
-/* Read a number from a file. */
-int fread_number (FILE *fp) {
-    int number = 0;
-    bool sign = FALSE;
-    char c = fread_letter(fp);
-
-    if (c == '+')
-        c = getc (fp);
-    else if (c == '-') {
-        sign = TRUE;
-        c = getc (fp);
-    }
-
-    EXIT_IF_BUG (!isdigit (c),
-        "fread_number: bad format.", 0);
-
-    while (isdigit (c)) {
-        number = number * 10 + c - '0';
-        c = getc (fp);
-    }
-
-    if (sign)
-        number = 0 - number;
-
-    if (c == '|')
-        number += fread_number (fp);
-    else if (c != ' ')
-        ungetc (c, fp);
-
-    return number;
-}
-
-flag_t fread_flag (FILE *fp) {
-    int number = 0;
-    bool negative = FALSE;
-    char c = fread_letter(fp);
-
-    if (c == '-') {
-        negative = TRUE;
-        c = getc (fp);
-    }
-
-    if (!isdigit (c)) {
-        while (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')) {
-            number += flag_convert (c);
-            c = getc (fp);
-        }
-    }
-
-    while (isdigit (c)) {
-        number = number * 10 + c - '0';
-        c = getc (fp);
-    }
-
-    if (c == '|')
-        number += fread_flag (fp);
-    else if (c != ' ')
-        ungetc (c, fp);
-
-    return negative ? -1 * number : number;
-}
-
-/*
- * ROM OLC
- * Used in save_mobile and save_object below.  Writes
- * flags on the form fread_flag reads.
- *
- * buf[] must hold at least 32+1 characters.
- *
- * -- Hugin
- */
-char *fwrite_flag (long flags, char buf[]) {
-    char offset;
-    char *cp;
-
-    buf[0] = '\0';
-    if (flags == 0) {
-        strcpy (buf, "0");
-        return buf;
-    }
-
-    /* 32 -- number of bits in a long */
-    for (offset = 0, cp = buf; offset < 32; offset++) {
-        if (flags & ((long) 1 << offset)) {
-            if (offset <= 'Z' - 'A')
-                *(cp++) = 'A' + offset;
-            else
-                *(cp++) = 'a' + offset - ('Z' - 'A' + 1);
-        }
-    }
-
-    *cp = '\0';
-    return buf;
-}
-
-flag_t flag_convert (char letter) {
-    flag_t bitsum = 0;
-    char i;
-
-    if ('A' <= letter && letter <= 'Z') {
-        bitsum = 1;
-        for (i = letter; i > 'A'; i--)
-            bitsum *= 2;
-    }
-    else if ('a' <= letter && letter <= 'z') {
-        bitsum = 67108864;        /* 2^26 */
-        for (i = letter; i > 'a'; i--)
-            bitsum *= 2;
-    }
-
-    return bitsum;
-}
-
-/* Read and allocate space for a string from a file.
- * These strings are read-only and shared.
- * Strings are hashed:
- *   each string prepended with hash pointer to prev string,
- *   hash code is simply the string length.
- *   this function takes 40% to 50% of boot-up time. */
-char *fread_string_replace (FILE *fp, char **value) {
-    const char *str = fread_string_static (fp);
-    str_replace_dup (value, str);
-    return *value;
-}
-
-char *fread_string_dup (FILE *fp) {
-    return str_dup (fread_string_static (fp));
-}
-
-char *fread_string_static (FILE *fp) {
-    static char buf[MAX_STRING_LENGTH * 4];
-    return fread_string (fp, buf, sizeof (buf));
-}
-
-char *fread_string (FILE *fp, char *buf, size_t size) {
-    char *plast;
-    char c;
-
-    plast = buf;
-    c = fread_letter (fp);
-    if ((*plast++ = c) == '~')
-        return str_empty;
-
-    /* TODO: mind 'size'. */
-    while (1) {
-        /* Back off the char type lookup,
-         * it was too dirty for portability.
-         *   -- Furey */
-
-        switch (*plast = getc (fp)) {
-            case EOF:
-                /* temp fix */
-                bug ("fread_string: EOF", 0);
-                return NULL;
-
-            case '\n':
-                plast++;
-                *plast++ = '\r';
-                break;
-
-            case '\r':
-                break;
-
-            case '~':
-                *plast = '\0';
-                return buf;
-
-            default:
-                plast++;
-                break;
-        }
-    }
-}
-
-char *fread_string_eol_replace (FILE *fp, char **value) {
-    const char *str = fread_string_eol_static (fp);
-    str_replace_dup (value, str);
-    return *value;
-}
-
-char *fread_string_eol_dup (FILE *fp) {
-    return str_dup (fread_string_eol_static (fp));
-}
-
-char *fread_string_eol_static (FILE *fp) {
-    static char buf[MAX_STRING_LENGTH * 4];
-    return fread_string_eol (fp, buf, sizeof (buf));
-}
-
-char *fread_string_eol (FILE *fp, char *buf, size_t size) {
-    static bool char_special[256 - EOF];
-    char *plast;
-
-    if (char_special[EOF - EOF] != TRUE) {
-        char_special[EOF - EOF]  = TRUE;
-        char_special['\n' - EOF] = TRUE;
-        char_special['\r' - EOF] = TRUE;
-    }
-
-    plast = buf;
-    *plast++ = fread_letter (fp);
-    if (plast[-1] == '\n' || plast[-1] == '\r')
-        return str_empty;
-
-    while (1) {
-        if (!char_special[(*plast++ = getc (fp)) - EOF])
-            continue;
-
-        switch (plast[-1]) {
-            case EOF:
-                bug ("fread_string_eol: EOF", 0);
-                exit (1);
-                break;
-
-            case '\n':
-            case '\r':
-                plast--;
-                *plast = '\0';
-                return buf;
-
-            default:
-                break;
-        }
-    }
-}
-
-/* Read to end of line (for comments). */
-void fread_to_eol (FILE *fp) {
-    char c;
-
-    do {
-        c = getc (fp);
-    } while (c != '\n' && c != '\r');
-
-    do {
-        c = getc (fp);
-    } while (c == '\n' || c == '\r');
-
-    ungetc (c, fp);
-}
-
-/* Read one word (into static buffer). */
-char *fread_word_replace (FILE *fp, char **value) {
-    const char *str = fread_word_static (fp);
-    str_replace_dup (value, str);
-    return *value;
-}
-
-char *fread_word_dup (FILE *fp) {
-    return str_dup (fread_word_static (fp));
-}
-
-char *fread_word_static (FILE *fp) {
-    static char word[MAX_INPUT_LENGTH];
-    return fread_word (fp, word, sizeof (word));
-}
-
-char *fread_word (FILE *fp, char *buf, size_t size) {
-    char *pword;
-    char end_ch;
-
-    end_ch = fread_letter (fp);
-    if (end_ch == '\'' || end_ch == '"')
-        pword = buf;
-    else {
-        buf[0] = end_ch;
-        pword = buf + 1;
-        end_ch = ' ';
-    }
-
-    for (; pword < buf + size; pword++) {
-        *pword = getc (fp);
-        if (end_ch == ' ' ? isspace (*pword) : *pword == end_ch) {
-            if (end_ch == ' ')
-                ungetc (*pword, fp);
-            *pword = '\0';
-            return buf;
-        }
-    }
-
-    EXIT_IF_BUG (TRUE,
-        "fread_word: word too long.", 0);
-    return NULL;
-}
-
-void fread_dice (FILE *fp, DICE_T *out) {
-    out->number = fread_number (fp);
-    /* 'd'     */ fread_letter (fp);
-    out->size   = fread_number (fp);
-    /* '+'     */ fread_letter (fp);
-    out->bonus  = fread_number (fp);
-}
-
 /* Added this as part of a bugfix suggested by Chris Litchfield (of
  * "The Mage's Lair" fame). Pets were being loaded with any saved
  * affects, then having those affects loaded again. -- JR 2002/01/31 */
-bool check_pet_affected(int vnum, AFFECT_T *paf) {
+bool check_pet_affected (int vnum, AFFECT_T *paf) {
     MOB_INDEX_T *petIndex;
 
-    petIndex = get_mob_index(vnum);
+    petIndex = mobile_get_index(vnum);
     if (petIndex == NULL)
         return FALSE;
     if (paf->bit_type == AFF_TO_AFFECTS &&
@@ -2083,42 +1718,6 @@ bool check_pet_affected(int vnum, AFFECT_T *paf) {
         return TRUE;
     }
     return FALSE;
-}
-
-/* random room generation procedure */
-ROOM_INDEX_T *get_random_room (CHAR_T *ch) {
-    ROOM_INDEX_T *room;
-
-    while (1) {
-        room = get_room_index (number_range (0, 65535));
-        if (room == NULL)
-            continue;
-        if (!char_can_see_room (ch, room))
-            continue;
-        if (room_is_private (room))
-            continue;
-        if (IS_SET (room->room_flags, ROOM_PRIVATE))
-            continue;
-        if (IS_SET (room->room_flags, ROOM_SOLITARY))
-            continue;
-        if (IS_SET (room->room_flags, ROOM_SAFE))
-            continue;
-        if (IS_NPC (ch) || !IS_SET (room->room_flags, ROOM_LAW))
-            break;
-    }
-
-    return room;
-}
-
-bool fread_social_str (FILE *fp, char **str) {
-    char *temp = fread_string_eol_static (fp);
-    if (!strcmp (temp, "$"))
-        *str = NULL;
-    else if (!strcmp (temp, "#"))
-        return FALSE;
-    else
-        *str = str_dup (temp);
-    return TRUE;
 }
 
 /* snarf a socials file */
@@ -2141,14 +1740,14 @@ void load_socials (FILE *fp) {
         fread_to_eol (fp);
 
         do {
-            if (!fread_social_str (fp, &(new->char_no_arg)))    break;
-            if (!fread_social_str (fp, &(new->others_no_arg)))  break;
-            if (!fread_social_str (fp, &(new->char_found)))     break;
-            if (!fread_social_str (fp, &(new->others_found)))   break;
-            if (!fread_social_str (fp, &(new->vict_found)))     break;
-            if (!fread_social_str (fp, &(new->char_not_found))) break;
-            if (!fread_social_str (fp, &(new->char_auto)))      break;
-            if (!fread_social_str (fp, &(new->others_auto)))    break;
+            if (!load_socials_string (fp, &(new->char_no_arg)))    break;
+            if (!load_socials_string (fp, &(new->others_no_arg)))  break;
+            if (!load_socials_string (fp, &(new->char_found)))     break;
+            if (!load_socials_string (fp, &(new->others_found)))   break;
+            if (!load_socials_string (fp, &(new->vict_found)))     break;
+            if (!load_socials_string (fp, &(new->char_not_found))) break;
+            if (!load_socials_string (fp, &(new->char_auto)))      break;
+            if (!load_socials_string (fp, &(new->others_auto)))    break;
         } while (0);
 
         /* I just know this is the path to a 12" 'if' statement.  :(
@@ -2160,6 +1759,17 @@ void load_socials (FILE *fp) {
         if (social_lookup_exact (new->name) != new)
             social_free (new);
     }
+}
+
+bool load_socials_string (FILE *fp, char **str) {
+    char *temp = fread_string_eol_static (fp);
+    if (!strcmp (temp, "$"))
+        *str = NULL;
+    else if (!strcmp (temp, "#"))
+        return FALSE;
+    else
+        *str = str_dup (temp);
+    return TRUE;
 }
 
 /* Snarf a mob section.  new style */
@@ -2183,7 +1793,7 @@ void load_mobiles (FILE *fp) {
             break;
 
         in_boot_db = FALSE;
-        EXIT_IF_BUG (get_mob_index (vnum) != NULL,
+        EXIT_IF_BUG (mobile_get_index (vnum) != NULL,
             "load_mobiles: vnum %d duplicated.", vnum);
         in_boot_db = TRUE;
 
@@ -2405,7 +2015,7 @@ void load_objects (FILE *fp) {
             break;
 
         in_boot_db = FALSE;
-        EXIT_IF_BUG (get_obj_index (vnum) != NULL,
+        EXIT_IF_BUG (obj_get_index (vnum) != NULL,
             "load_objects: vnum %d duplicated.", vnum);
         in_boot_db = TRUE;
 
@@ -2794,4 +2404,60 @@ void anum_free (ANUM_T *anum) {
     str_free (&(anum->area_str));
     LIST2_REMOVE (anum, prev, next, anum_first, anum_last);
     free (anum);
+}
+
+void qmconfig_read (void) {
+    FILE *fp;
+    bool match, reading;
+    char *word;
+    extern int mud_ansiprompt, mud_ansicolor, mud_telnetga;
+
+    log_f ("Loading configuration settings from %s.", QMCONFIG_FILE);
+    fp = fopen (QMCONFIG_FILE, "r");
+    if (!fp) {
+        log_f ("%s not found. Using compiled-in defaults.", QMCONFIG_FILE);
+        return;
+    }
+
+    reading = TRUE;
+    while (reading) {
+        word = feof (fp) ? "END" : fread_word_static (fp);
+        match = FALSE;
+
+        switch (UPPER(word[0])) {
+            case '#':
+                /* This is a comment line! */
+                match = TRUE;
+                fread_to_eol (fp);
+                break;
+
+            case '*':
+                match = TRUE;
+                fread_to_eol (fp);
+                break;
+
+            case 'A':
+                KEY ("Ansicolor", mud_ansicolor, fread_number(fp));
+                KEY ("Ansiprompt", mud_ansiprompt, fread_number(fp));
+                break;
+
+            case 'E':
+                if (!str_cmp (word, "END")) {
+                    reading = FALSE;
+                    match = TRUE;
+                }
+                break;
+
+            case 'T':
+                KEY ("Telnetga", mud_telnetga, fread_number(fp));
+                break;
+        }
+        if (!match) {
+            log_f ("qmconfig_read: no match for %s!", word);
+            fread_to_eol(fp);
+        }
+    }
+
+ // log_f ("Settings have been read from %s", QMCONFIG_FILE);
+    fclose (fp);
 }

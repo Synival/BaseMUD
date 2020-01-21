@@ -43,6 +43,7 @@
 #include "items.h"
 #include "mobiles.h"
 #include "players.h"
+#include "rooms.h"
 
 #include "act_shop.h"
 
@@ -105,9 +106,9 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
 
     /* hack to make new thalos pets work */
     if (ch->in_room->vnum == 9621)
-        room_index_next = get_room_index (9706);
+        room_index_next = room_get_index (9706);
     else
-        room_index_next = get_room_index (ch->in_room->vnum + 1);
+        room_index_next = room_get_index (ch->in_room->vnum + 1);
     if (room_index_next == NULL) {
         bug ("do_buy: bad pet shop at vnum %d.", ch->in_room->vnum);
         send_to_char ("Sorry, you can't buy that here.\n\r", ch);
@@ -270,9 +271,9 @@ void do_list_pets (CHAR_T *ch, char *argument) {
 
     /* hack to make new thalos pets work */
     if (ch->in_room->vnum == 9621)
-        room_index_next = get_room_index (9706);
+        room_index_next = room_get_index (9706);
     else
-        room_index_next = get_room_index (ch->in_room->vnum + 1);
+        room_index_next = room_get_index (ch->in_room->vnum + 1);
     if (room_index_next == NULL) {
         bug ("do_list: bad pet shop at vnum %d.", ch->in_room->vnum);
         send_to_char ("You can't do that here.\n\r", ch);

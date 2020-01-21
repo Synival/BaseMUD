@@ -57,7 +57,7 @@ AEDIT (aedit_show) {
 
 #if 0                            /* ROM OLC */
     printf_to_char (ch, "Recall:   [%5d] %s\n\r", area->recall,
-        get_room_index (area->recall) ? get_room_index (area->recall)->name
+        room_get_index (area->recall) ? room_get_index (area->recall)->name
                                        : "none");
 #endif /* ROM */
 
@@ -160,7 +160,7 @@ AEDIT (aedit_recall) {
     }
 
     value = atoi (room);
-    if (!get_room_index (value)) {
+    if (!room_get_index (value)) {
         send_to_char ("AEdit:  Room vnum does not exist.\n\r", ch);
         return FALSE;
     }

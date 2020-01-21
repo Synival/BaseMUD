@@ -620,7 +620,7 @@ DEFINE_DO_FUN (do_recall) {
         "Only players can recall.\n\r", ch);
 
     act ("$n prays for transportation!", ch, NULL, NULL, TO_NOTCHAR);
-    BAIL_IF ((location = get_room_index (ROOM_VNUM_TEMPLE)) == NULL,
+    BAIL_IF ((location = room_get_index (ROOM_VNUM_TEMPLE)) == NULL,
         "You are completely lost.\n\r", ch);
 #ifdef BASEMUD_NO_RECALL_TO_SAME_ROOM
     BAIL_IF (ch->in_room == location,

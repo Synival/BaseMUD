@@ -10,9 +10,6 @@
  *  license in 'license.txt'.  In particular, you may not remove either of *
  *  these copyright notices.                                               *
  *                                                                         *
- *  Thanks to abaddon for proof-reading our comm.c and pointing out bugs.  *
- *  Any remaining bugs are, of course, our work, not his.  :)              *
- *                                                                         *
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
@@ -28,21 +25,12 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#ifndef __ROM_BOOT_H
-#define __ROM_BOOT_H
+#ifndef __ROM_FWRITE_H
+#define __ROM_FWRITE_H
 
 #include "merc.h"
 
-/* Platform-specific function prototypes. */
-#if defined(macintosh) || defined(MSDOS)
-    void game_loop_mac_msdos (void);
-#endif
-
-#if defined(unix)
-    void game_loop_unix (int control);
-#endif
-
-/* Function prototypes. */
-void copyover_recover (void);
+/* Writing functions. */
+char *fwrite_flag (long flags, char buf[]);
 
 #endif

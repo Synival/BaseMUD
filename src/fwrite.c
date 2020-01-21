@@ -10,9 +10,6 @@
  *  license in 'license.txt'.  In particular, you may not remove either of *
  *  these copyright notices.                                               *
  *                                                                         *
- *  Thanks to abaddon for proof-reading our comm.c and pointing out bugs.  *
- *  Any remaining bugs are, of course, our work, not his.  :)              *
- *                                                                         *
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
@@ -28,21 +25,39 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#ifndef __ROM_BOOT_H
-#define __ROM_BOOT_H
+#include <string.h>
 
-#include "merc.h"
+#include "fwrite.h"
 
-/* Platform-specific function prototypes. */
-#if defined(macintosh) || defined(MSDOS)
-    void game_loop_mac_msdos (void);
-#endif
+/*
+ * ROM OLC
+ * Used in save_mobile and save_object below.  Writes
+ * flags on the form fread_flag reads.
+ *
+ * buf[] must hold at least 32+1 characters.
+ *
+ * -- Hugin
+ */
+char *fwrite_flag (long flags, char buf[]) {
+    char offset;
+    char *cp;
 
-#if defined(unix)
-    void game_loop_unix (int control);
-#endif
+    buf[0] = '\0';
+    if (flags == 0) {
+        strcpy (buf, "0");
+        return buf;
+    }
 
-/* Function prototypes. */
-void copyover_recover (void);
+    /* 32 -- number of bits in a long */
+    for (offset = 0, cp = buf; offset < 32; offset++) {
+        if (flags & ((long) 1 << offset)) {
+            if (offset <= 'Z' - 'A')
+                *(cp++) = 'A' + offset;
+            else
+                *(cp++) = 'a' + offset - ('Z' - 'A' + 1);
+        }
+    }
 
-#endif
+    *cp = '\0';
+    return buf;
+}

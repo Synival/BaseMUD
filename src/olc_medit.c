@@ -27,6 +27,7 @@
 #include "globals.h"
 #include "olc.h"
 #include "memory.h"
+#include "mobiles.h"
 
 #include "olc_medit.h"
 
@@ -156,7 +157,7 @@ MEDIT (medit_create) {
         "MEdit: That vnum is not assigned an area.\n\r", ch, FALSE);
     RETURN_IF (!IS_BUILDER (ch, area),
         "MEdit: Vnum in an area you cannot build in.\n\r", ch, FALSE);
-    RETURN_IF (get_mob_index (value),
+    RETURN_IF (mobile_get_index (value),
         "MEdit: Mobile vnum already exists.\n\r", ch, FALSE);
 
     mob = mob_index_new ();
@@ -885,7 +886,7 @@ MEDIT (medit_group) {
 
         buffer = buf_new ();
         for (temp = 0; temp < 65536; temp++) {
-            mob_temp = get_mob_index (temp);
+            mob_temp = mobile_get_index (temp);
             if (mob_temp && (mob_temp->group == atoi (argument))) {
                 found = TRUE;
                 sprintf (buf, "[%5d] %s\n\r", mob_temp->vnum, mob_temp->name);

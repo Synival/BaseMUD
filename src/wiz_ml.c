@@ -45,6 +45,8 @@
 #include "globals.h"
 #include "find.h"
 #include "players.h"
+#include "mobiles.h"
+#include "objs.h"
 
 #include "wiz_ml.h"
 
@@ -273,7 +275,7 @@ void do_dump_stats (CHAR_T *ch) {
     fprintf (fp, "---------------\n");
     matches = 0;
     for (vnum = 0; matches < TOP(RECYCLE_MOB_INDEX_T); vnum++) {
-        if ((mob_index = get_mob_index (vnum)) != NULL) {
+        if ((mob_index = mobile_get_index (vnum)) != NULL) {
             matches++;
             fprintf (fp, "#%-4d %3d active %3d killed     %s\n",
                      mob_index->vnum, mob_index->count,
@@ -290,7 +292,7 @@ void do_dump_stats (CHAR_T *ch) {
     fprintf (fp, "---------------\n");
     matches = 0;
     for (vnum = 0; matches < TOP(RECYCLE_OBJ_INDEX_T); vnum++) {
-        if ((obj_index = get_obj_index (vnum)) != NULL) {
+        if ((obj_index = obj_get_index (vnum)) != NULL) {
             matches++;
             fprintf (fp, "#%-4d %3d active %3d reset      %s\n",
                      obj_index->vnum, obj_index->count,

@@ -43,6 +43,8 @@
 #include "globals.h"
 #include "music.h"
 #include "players.h"
+#include "fread.h"
+#include "fwrite.h"
 
 #include "act_info.h"
 #include "act_move.h"
@@ -1456,14 +1458,14 @@ bool item_enter_effect (OBJ_T *obj, CHAR_T *ch) {
             if (IS_SET (obj->v.portal.gate_flags, GATE_RANDOM) ||
                     obj->v.portal.to_vnum == -1)
             {
-                location = get_random_room (ch);
+                location = room_get_random_index (ch);
                 obj->v.portal.to_vnum = location->vnum; /* for record keeping :) */
             }
             else if (IS_SET (obj->v.portal.gate_flags, GATE_BUGGY) &&
                     (number_percent () < 5))
-                location = get_random_room (ch);
+                location = room_get_random_index (ch);
             else
-                location = get_room_index (obj->v.portal.to_vnum);
+                location = room_get_index (obj->v.portal.to_vnum);
 
             /* Check if the target room if valid. */
             RETURN_IF_ACT (location == NULL || location == ch->in_room ||
@@ -2304,7 +2306,7 @@ bool item_index_show_values (const OBJ_INDEX_T *obj, CHAR_T *ch) {
         }
 
         case ITEM_CONTAINER: {
-            OBJ_INDEX_T *key = get_obj_index (obj->v.container.key);
+            OBJ_INDEX_T *key = obj_get_index (obj->v.container.key);
             printf_to_char (ch,
                 "[v0] Weight:     [%ld kg]\n\r"
                 "[v1] Flags:      [%s]\n\r"

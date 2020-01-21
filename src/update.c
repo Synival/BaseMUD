@@ -44,6 +44,7 @@
 #include "globals.h"
 #include "items.h"
 #include "players.h"
+#include "rooms.h"
 
 #include "update.h"
 
@@ -248,7 +249,7 @@ void area_update (void) {
                 "%s has just been reset.", area->title);
 
             area->age = number_range (0, 3);
-            room_index = get_room_index (ROOM_VNUM_SCHOOL);
+            room_index = room_get_index (ROOM_VNUM_SCHOOL);
             if (room_index != NULL && area == room_index->area)
                 area->age = 15 - 2;
             else if (area->nplayer == 0)
@@ -633,7 +634,7 @@ void char_update (void) {
                     if (ch->level > 1)
                         save_char_obj (ch);
                     char_from_room (ch);
-                    char_to_room (ch, get_room_index (ROOM_VNUM_LIMBO));
+                    char_to_room (ch, room_get_index (ROOM_VNUM_LIMBO));
                 }
             }
 
