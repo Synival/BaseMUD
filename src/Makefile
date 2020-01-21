@@ -15,11 +15,12 @@ O_FILES = \
     json_objw.o json_read.o json_write.o json_tblr.o json_tblw.o lookup.o \
     magic.o materials.o memory.o mob_cmds.o mob_prog.o mobiles.o music.o \
     nanny.o objs.o olc.o olc_aedit.o olc_hedit.o olc_medit.o olc_mpedit.o \
-    olc_oedit.o olc_redit.o olc_save.o players.o portals.o recycle.o rooms.o \
-    save.o signal.o skills.o special.o spell_aff.o spell_create.o spell_cure.o \
-    spell_info.o spell_misc.o spell_move.o spell_npc.o spell_off.o string.o \
-    tables.o types.o update.o utils.o wiz_im.o wiz_l1.o wiz_l2.o wiz_l3.o \
-    wiz_l4.o wiz_l5.o wiz_l6.o wiz_l7.o wiz_l8.o wiz_ml.o
+    olc_oedit.o olc_redit.o olc_save.o players.o portals.o quickmud.o \
+    recycle.o rooms.o save.o signal.o skills.o special.o spell_aff.o \
+    spell_create.o spell_cure.o spell_info.o spell_misc.o spell_move.o \
+    spell_npc.o spell_off.o string.o tables.o types.o update.o utils.o \
+    wiz_im.o wiz_l1.o wiz_l2.o wiz_l3.o wiz_l4.o wiz_l5.o wiz_l6.o wiz_l7.o \
+    wiz_l8.o wiz_ml.o
 
 rom: $(O_FILES)
 	$(CC) $(L_FLAGS) -o $(EXE) $(O_FILES) $(LIBS)
@@ -99,7 +100,7 @@ board.o: comm.h recycle.h lookup.h chars.h descs.h memory.h globals.h board.h
 boot.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 boot.o: json.h structs.h types.h flags.h tables.h signal.h globals.h utils.h
 boot.o: interp.h db.h descs.h recycle.h memory.h save.h chars.h olc.h nanny.h
-boot.o: update.h comm.h rooms.h act_info.h boot.h
+boot.o: update.h comm.h rooms.h quickmud.h act_info.h boot.h
 chars.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 chars.o: json.h structs.h types.h flags.h tables.h utils.h comm.h objs.h
 chars.o: affects.h lookup.h magic.h db.h groups.h fight.h interp.h recycle.h
@@ -256,6 +257,8 @@ players.o: players.h
 portals.o: lookup.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 portals.o: json.h structs.h types.h flags.h tables.h recycle.h utils.h
 portals.o: memory.h portals.h
+quickmud.o: utils.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
+quickmud.o: json.h structs.h types.h flags.h tables.h fread.h quickmud.h
 recycle.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 recycle.o: json.h structs.h types.h flags.h tables.h utils.h lookup.h db.h
 recycle.o: affects.h objs.h chars.h globals.h memory.h recycle.h
@@ -360,4 +363,5 @@ wiz_l8.o: fight.h utils.h act_info.h chars.h rooms.h find.h memory.h wiz_l8.h
 wiz_ml.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 wiz_ml.o: json.h structs.h types.h flags.h tables.h db.h comm.h interp.h
 wiz_ml.o: save.h fight.h utils.h act_info.h chars.h rooms.h find.h descs.h
-wiz_ml.o: boot.h memory.h globals.h players.h mobiles.h objs.h wiz_ml.h
+wiz_ml.o: boot.h memory.h globals.h players.h mobiles.h objs.h quickmud.h
+wiz_ml.o: wiz_ml.h

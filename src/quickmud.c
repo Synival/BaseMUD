@@ -25,65 +25,63 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#ifndef __ROM_DB_H
-#define __ROM_DB_H
+#include "utils.h"
+#include "fread.h"
 
-#include "merc.h"
+#include "quickmud.h"
 
-/* macro for flag swapping */
-#define GET_UNSET(flag1,flag2)    (~(flag1)&((flag1)|(flag2)))
+void qmconfig_read (void) {
+    FILE *fp;
+    bool match, reading;
+    char *word;
+    extern int mud_ansiprompt, mud_ansicolor, mud_telnetga;
 
-/* Helper functions. */
-void assign_area_vnum (int vnum, AREA_T *area);
-bool check_pet_affected (int vnum, AFFECT_T *paf);
-void db_dump_world (const char *filename);
+    log_f ("Loading configuration settings from %s.", QMCONFIG_FILE);
+    fp = fopen (QMCONFIG_FILE, "r");
+    if (!fp) {
+        log_f ("%s not found. Using compiled-in defaults.", QMCONFIG_FILE);
+        return;
+    }
 
-/* World init functions. */
-void boot_db (void);
-void init_time_weather (void);
-void db_link_areas (void);
-void db_import_json (void);
-void init_areas (void);
+    reading = TRUE;
+    while (reading) {
+        word = feof (fp) ? "END" : fread_word_static (fp);
+        match = FALSE;
 
-/* Loading functions. */
-void load_area (FILE *fp);
-void load_area_olc (FILE *fp);
-void load_resets (FILE *fp);
-void load_rooms (FILE *fp);
-void load_shops (FILE *fp);
-void load_specials (FILE *fp);
-void load_socials (FILE *fp);
-bool load_socials_string (FILE *fp, char **str);
-void load_mobiles (FILE *fp);
-void load_objects (FILE *fp);
-void load_helps (FILE *fp, char *fname);
-void load_mobprogs (FILE *fp);
+        switch (UPPER(word[0])) {
+            case '#':
+                /* This is a comment line! */
+                match = TRUE;
+                fread_to_eol (fp);
+                break;
 
-/* Post-loading functions. */
-void db_finalize_mob (MOB_INDEX_T *mob);
-void db_finalize_obj (OBJ_INDEX_T *obj_index);
-void db_register_new_room (ROOM_INDEX_T *room);
-void db_register_new_mob (MOB_INDEX_T *mob);
-void db_register_new_obj (OBJ_INDEX_T *obj);
-void fix_exit_doors (ROOM_INDEX_T *room_from, int dir_from,
-                     ROOM_INDEX_T *room_to,   int dir_to);
-void fix_resets (void);
-void fix_exits (void);
-void fix_mobprogs (void);
-void db_export_json (bool write_indiv, const char *everything);
+            case '*':
+                match = TRUE;
+                fread_to_eol (fp);
+                break;
 
-/* Reset / destruction functions. */
-void reset_room (ROOM_INDEX_T *room);
-void reset_area (AREA_T *area);
-void clear_char (CHAR_T *ch);
+            case 'A':
+                KEY ("Ansicolor",  mud_ansicolor,  fread_number(fp));
+                KEY ("Ansiprompt", mud_ansiprompt, fread_number(fp));
+                break;
 
-/* Getter functions. */
-char *get_extra_descr (const char *name, EXTRA_DESCR_T *ed);
-MPROG_CODE_T *get_mprog_index (int vnum);
-int help_area_count_pages (HELP_AREA_T *had);
+            case 'E':
+                if (!str_cmp (word, "END")) {
+                    reading = FALSE;
+                    match = TRUE;
+                }
+                break;
 
-/* Temporary objects used during loading. */
-ANUM_T *anum_new (void);
-void anum_free (ANUM_T *anum);
+            case 'T':
+                KEY ("Telnetga", mud_telnetga, fread_number(fp));
+                break;
+        }
+        if (!match) {
+            log_f ("qmconfig_read: no match for %s!", word);
+            fread_to_eol(fp);
+        }
+    }
 
-#endif
+ // log_f ("Settings have been read from %s", QMCONFIG_FILE);
+    fclose (fp);
+}

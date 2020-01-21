@@ -53,6 +53,7 @@
 #include "update.h"
 #include "comm.h"
 #include "rooms.h"
+#include "quickmud.h"
 
 #include "act_info.h"
 

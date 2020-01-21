@@ -980,9 +980,11 @@ void load_rooms (FILE *fp) {
                         /* Some exits without doors are stored with key 0
                          * (no key) when it should be -1 (no keyhole). Fix
                          * that. */
+#ifdef BASEMUD_LOG_KEY_WARNINGS
                         if (pexit->key >= KEY_VALID)
                             bugf ("Warning: Room %d with non-door exit %d has "
                                   "key %d", room_index->vnum, door, pexit->key);
+#endif
                         pexit->key = KEY_NOKEYHOLE;
                         break;
                     case 1:
@@ -1103,9 +1105,11 @@ void fix_exit_doors (ROOM_INDEX_T *room_from, int dir_from,
         return;
 
     if (IS_SET(flags_from, EX_ISDOOR) && !IS_SET(flags_to, EX_ISDOOR)) {
+#ifdef BASEMUD_LOG_EXIT_WARNINGS
         bugf ("Warning: Exit %d[%s, %s] is a door but %d[%s, %s] is not.",
             room_from->vnum, door_get_name (dir_from), exit_from->keyword,
             room_to  ->vnum, door_get_name (dir_to),   exit_to  ->keyword);
+#endif
         return;
     }
 
@@ -1134,11 +1138,13 @@ void fix_exit_doors (ROOM_INDEX_T *room_from, int dir_from,
         exit_from->key != KEY_NOKEYHOLE &&
         exit_to->key   != KEY_NOKEYHOLE)
     {
+#ifdef BASEMUD_LOG_KEY_WARNINGS
         bugf ("Warning: Exits %d[%s] and %d[%s] have "
             "different keys [%d, %d]",
             room_from->vnum, door_get_name (dir_from),
             room_to  ->vnum, door_get_name (dir_to),
             exit_from->key, exit_to->key);
+#endif
     }
 }
 
@@ -1153,7 +1159,6 @@ void fix_exits (void) {
     RESET_T *reset;
     RESET_VALUE_T *v;
     ROOM_INDEX_T *last_room, *last_obj_room;
-    OBJ_INDEX_T *key;
     int hash;
     int door, old_boot_db;
 
@@ -1243,12 +1248,17 @@ void fix_exits (void) {
 
                 old_boot_db = in_boot_db;
                 in_boot_db = FALSE;
+#ifdef BASEMUD_LOG_KEY_WARNINGS
+                {
+                OBJ_INDEX_T *key;
                 if (pexit->key >= KEY_VALID &&
                     !(key = obj_get_index (pexit->key)))
                 {
                     bugf ("Warning: Cannot find key %d for room %d exit %d",
                         pexit->key, room_index->vnum, door);
                 }
+                }
+#endif
                 in_boot_db = old_boot_db;
             }
             if (!fexit)
@@ -1275,6 +1285,7 @@ void fix_exits (void) {
                 /* If the reverse exit does not lead to the same exception,
                  * print a warning. Make an exception for the 'immort.are'
                  * zone. */
+#ifdef BASEMUD_LOG_EXIT_WARNINGS
                 if (pexit_rev->to_room != room_index &&
                     (room_index->vnum < 1200 || room_index->vnum > 1299))
                 {
@@ -1286,6 +1297,7 @@ void fix_exits (void) {
                              ? 0 : pexit_rev->to_room->vnum
                     );
                 }
+#endif
             }
         }
     }
@@ -1505,6 +1517,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
                 return;
             }
 
+#ifdef BASEMUD_LOG_EQUIP_WARNINGS
             /* Show warnings for items in bad slots. */
             if (cmd == 'E') {
                 flag_t wear_flag = wear_loc_get_flag (eq->wear_loc);
@@ -1522,6 +1535,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
                         wear_loc_get_name (eq->wear_loc));
                 }
             }
+#endif
 
             /* Shop-keeper? */
             if (reset_last_mob->index_data->shop) {
@@ -1538,8 +1552,6 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
             /* ROM OLC else version */
             else {
                 int limit;
-                const char *warn_type;
-
                 if (global_limit > 50) /* old format */
                     limit = 6;
                 else if (global_limit == -1 || global_limit == 0) /* no limit */
@@ -1555,6 +1567,9 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
                     UMIN (number_fuzzy (level), LEVEL_HERO - 1));
 
                 /* Warnings for various bad ideas. */
+#ifdef BASEMUD_LOG_EQUIP_WARNINGS
+                {
+                const char *warn_type;
                 if (obj->level > reset_last_mob->level + 3)
                     warn_type = "too strong";
                 else if (
@@ -1581,6 +1596,8 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
                         reset_last_mob->level,
                         reset_last_mob->short_descr);
                 }
+                }
+#endif
             }
 
             obj_give_to_char (obj, reset_last_mob);
@@ -2404,60 +2421,4 @@ void anum_free (ANUM_T *anum) {
     str_free (&(anum->area_str));
     LIST2_REMOVE (anum, prev, next, anum_first, anum_last);
     free (anum);
-}
-
-void qmconfig_read (void) {
-    FILE *fp;
-    bool match, reading;
-    char *word;
-    extern int mud_ansiprompt, mud_ansicolor, mud_telnetga;
-
-    log_f ("Loading configuration settings from %s.", QMCONFIG_FILE);
-    fp = fopen (QMCONFIG_FILE, "r");
-    if (!fp) {
-        log_f ("%s not found. Using compiled-in defaults.", QMCONFIG_FILE);
-        return;
-    }
-
-    reading = TRUE;
-    while (reading) {
-        word = feof (fp) ? "END" : fread_word_static (fp);
-        match = FALSE;
-
-        switch (UPPER(word[0])) {
-            case '#':
-                /* This is a comment line! */
-                match = TRUE;
-                fread_to_eol (fp);
-                break;
-
-            case '*':
-                match = TRUE;
-                fread_to_eol (fp);
-                break;
-
-            case 'A':
-                KEY ("Ansicolor", mud_ansicolor, fread_number(fp));
-                KEY ("Ansiprompt", mud_ansiprompt, fread_number(fp));
-                break;
-
-            case 'E':
-                if (!str_cmp (word, "END")) {
-                    reading = FALSE;
-                    match = TRUE;
-                }
-                break;
-
-            case 'T':
-                KEY ("Telnetga", mud_telnetga, fread_number(fp));
-                break;
-        }
-        if (!match) {
-            log_f ("qmconfig_read: no match for %s!", word);
-            fread_to_eol(fp);
-        }
-    }
-
- // log_f ("Settings have been read from %s", QMCONFIG_FILE);
-    fclose (fp);
 }

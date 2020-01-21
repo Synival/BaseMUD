@@ -47,6 +47,7 @@
 #include "players.h"
 #include "mobiles.h"
 #include "objs.h"
+#include "quickmud.h"
 
 #include "wiz_ml.h"
 

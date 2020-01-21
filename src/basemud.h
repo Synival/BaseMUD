@@ -67,6 +67,11 @@
 #define BASEMUD_READ_EXTENDED_JSON
 #define BASEMUD_WRITE_EXTENDED_JSON
 
+/* Logging options. */
+// #define BASEMUD_LOG_EQUIP_WARNINGS
+// #define BASEMUD_LOG_KEY_WARNINGS
+// #define BASEMUD_LOG_EXIT_WARNINGS
+
 /* Debugging features. */
 // #define BASEMUD_DEBUG_DISABLE_MEMORY_MANAGEMENT
 
