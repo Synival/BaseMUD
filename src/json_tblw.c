@@ -41,10 +41,19 @@
         new = json_new_object (obj_name, JSON_OBJ_ANY); \
     } while (0)
 
+int json_tblw_flag_unshift (flag_t bit) {
+    int value = 0;
+    while (bit > 1) {
+        bit >>= 1;
+        value++;
+    }
+    return value;
+}
+
 DEFINE_JSON_WRITE_FUN (json_tblw_flag) {
     JSON_TBLW_START (FLAG_T, flag, flag->name == NULL);
     json_prop_string  (new, "name",     flag->name);
-    json_prop_integer (new, "bit",      flag->bit);
+    json_prop_integer (new, "value",    json_tblw_flag_unshift (flag->bit));
     json_prop_boolean (new, "settable", flag->settable);
     return new;
 }
@@ -52,7 +61,7 @@ DEFINE_JSON_WRITE_FUN (json_tblw_flag) {
 DEFINE_JSON_WRITE_FUN (json_tblw_type) {
     JSON_TBLW_START (TYPE_T, type, type->name == NULL);
     json_prop_string  (new, "name",     type->name);
-    json_prop_integer (new, "type",     type->type);
+    json_prop_integer (new, "value",    type->type);
     json_prop_boolean (new, "settable", type->settable);
     return new;
 }

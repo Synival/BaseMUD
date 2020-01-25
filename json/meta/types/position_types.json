@@ -1,51 +1,50 @@
-{"table": {
+{"types": {
   "name": "position_types",
   "description": "Mobile positions.",
-  "type": "types",
   "values": [
     {
       "name": "dead",
-      "type": 0,
+      "value": 0,
       "settable": false
     },
     {
       "name": "mortal",
-      "type": 1,
+      "value": 1,
       "settable": false
     },
     {
       "name": "incap",
-      "type": 2,
+      "value": 2,
       "settable": false
     },
     {
       "name": "stunned",
-      "type": 3,
+      "value": 3,
       "settable": false
     },
     {
       "name": "sleeping",
-      "type": 4,
+      "value": 4,
       "settable": true
     },
     {
       "name": "resting",
-      "type": 5,
+      "value": 5,
       "settable": true
     },
     {
       "name": "sitting",
-      "type": 6,
+      "value": 6,
       "settable": true
     },
     {
       "name": "fighting",
-      "type": 7,
+      "value": 7,
       "settable": false
     },
     {
       "name": "standing",
-      "type": 8,
+      "value": 8,
       "settable": true
     }
   ]

@@ -1,31 +1,30 @@
-{"table": {
+{"flags": {
   "name": "container_flags",
   "description": "Container status.",
-  "type": "flags",
   "values": [
     {
       "name": "closeable",
-      "bit": 1,
+      "value": 0,
       "settable": true
     },
     {
       "name": "pickproof",
-      "bit": 2,
+      "value": 1,
       "settable": true
     },
     {
       "name": "closed",
-      "bit": 4,
+      "value": 2,
       "settable": true
     },
     {
       "name": "locked",
-      "bit": 8,
+      "value": 3,
       "settable": true
     },
     {
       "name": "puton",
-      "bit": 16,
+      "value": 4,
       "settable": true
     }
   ]

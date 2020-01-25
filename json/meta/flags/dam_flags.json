@@ -1,10 +1,9 @@
-{"table": {
+{"flags": {
   "name": "dam_flags",
   "description": "Attributes for damage types.",
-  "type": "flags",
   "values": [{
     "name": "magical",
-    "bit": 1,
+    "value": 0,
     "settable": true
   }]
 }}

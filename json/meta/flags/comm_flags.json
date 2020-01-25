@@ -1,136 +1,135 @@
-{"table": {
+{"flags": {
   "name": "comm_flags",
   "description": "Communication channel flags.",
-  "type": "flags",
   "values": [
     {
       "name": "quiet",
-      "bit": 1,
+      "value": 0,
       "settable": true
     },
     {
       "name": "deaf",
-      "bit": 2,
+      "value": 1,
       "settable": true
     },
     {
       "name": "nowiz",
-      "bit": 4,
+      "value": 2,
       "settable": true
     },
     {
       "name": "noclangossip",
-      "bit": 8,
+      "value": 3,
       "settable": true
     },
     {
       "name": "nogossip",
-      "bit": 16,
+      "value": 4,
       "settable": true
     },
     {
       "name": "noquestion",
-      "bit": 32,
+      "value": 5,
       "settable": true
     },
     {
       "name": "nomusic",
-      "bit": 64,
+      "value": 6,
       "settable": true
     },
     {
       "name": "noclan",
-      "bit": 128,
+      "value": 7,
       "settable": true
     },
     {
       "name": "noquote",
-      "bit": 256,
+      "value": 8,
       "settable": true
     },
     {
       "name": "shoutsoff",
-      "bit": 512,
+      "value": 9,
       "settable": true
     },
     {
       "name": "unused_comm_1",
-      "bit": 1024,
+      "value": 10,
       "settable": false
     },
     {
       "name": "compact",
-      "bit": 2048,
+      "value": 11,
       "settable": true
     },
     {
       "name": "brief",
-      "bit": 4096,
+      "value": 12,
       "settable": true
     },
     {
       "name": "prompt",
-      "bit": 8192,
+      "value": 13,
       "settable": true
     },
     {
       "name": "combine",
-      "bit": 16384,
+      "value": 14,
       "settable": true
     },
     {
       "name": "telnet_ga",
-      "bit": 32768,
+      "value": 15,
       "settable": true
     },
     {
       "name": "show_affects",
-      "bit": 65536,
+      "value": 16,
       "settable": true
     },
     {
       "name": "nograts",
-      "bit": 131072,
+      "value": 17,
       "settable": true
     },
     {
       "name": "unused_comm_2",
-      "bit": 262144,
+      "value": 18,
       "settable": false
     },
     {
       "name": "noemote",
-      "bit": 524288,
+      "value": 19,
       "settable": false
     },
     {
       "name": "noshout",
-      "bit": 1048576,
+      "value": 20,
       "settable": false
     },
     {
       "name": "notell",
-      "bit": 2097152,
+      "value": 21,
       "settable": false
     },
     {
       "name": "nochannels",
-      "bit": 4194304,
+      "value": 22,
       "settable": false
     },
     {
       "name": "unused_comm_3",
-      "bit": 8388608,
+      "value": 23,
       "settable": false
     },
     {
       "name": "snoop_proof",
-      "bit": 16777216,
+      "value": 24,
       "settable": false
     },
     {
       "name": "afk",
-      "bit": 33554432,
+      "value": 25,
       "settable": true
     }
   ]

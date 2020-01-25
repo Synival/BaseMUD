@@ -1,136 +1,135 @@
-{"table": {
+{"types": {
   "name": "affect_apply_types",
   "description": "Affect apply types.",
-  "type": "types",
   "values": [
     {
       "name": "none",
-      "type": 0,
+      "value": 0,
       "settable": true
     },
     {
       "name": "strength",
-      "type": 1,
+      "value": 1,
       "settable": true
     },
     {
       "name": "dexterity",
-      "type": 2,
+      "value": 2,
       "settable": true
     },
     {
       "name": "intelligence",
-      "type": 3,
+      "value": 3,
       "settable": true
     },
     {
       "name": "wisdom",
-      "type": 4,
+      "value": 4,
       "settable": true
     },
     {
       "name": "constitution",
-      "type": 5,
+      "value": 5,
       "settable": true
     },
     {
       "name": "sex",
-      "type": 6,
+      "value": 6,
       "settable": true
     },
     {
       "name": "class",
-      "type": 7,
+      "value": 7,
       "settable": true
     },
     {
       "name": "level",
-      "type": 8,
+      "value": 8,
       "settable": true
     },
     {
       "name": "age",
-      "type": 9,
+      "value": 9,
       "settable": true
     },
     {
       "name": "height",
-      "type": 10,
+      "value": 10,
       "settable": true
     },
     {
       "name": "weight",
-      "type": 11,
+      "value": 11,
       "settable": true
     },
     {
       "name": "mana",
-      "type": 12,
+      "value": 12,
       "settable": true
     },
     {
       "name": "hp",
-      "type": 13,
+      "value": 13,
       "settable": true
     },
     {
       "name": "moves",
-      "type": 14,
+      "value": 14,
       "settable": true
     },
     {
       "name": "gold",
-      "type": 15,
+      "value": 15,
       "settable": true
     },
     {
       "name": "experience",
-      "type": 16,
+      "value": 16,
       "settable": true
     },
     {
       "name": "armor class",
-      "type": 17,
+      "value": 17,
       "settable": true
     },
     {
       "name": "hit roll",
-      "type": 18,
+      "value": 18,
       "settable": true
     },
     {
       "name": "damage roll",
-      "type": 19,
+      "value": 19,
       "settable": true
     },
     {
       "name": "saves",
-      "type": 20,
+      "value": 20,
       "settable": true
     },
     {
       "name": "save vs rod",
-      "type": 21,
+      "value": 21,
       "settable": true
     },
     {
       "name": "save vs petrification",
-      "type": 22,
+      "value": 22,
       "settable": true
     },
     {
       "name": "save vs breath",
-      "type": 23,
+      "value": 23,
       "settable": true
     },
     {
       "name": "save vs spell",
-      "type": 24,
+      "value": 24,
       "settable": true
     },
     {
       "name": "spell affect",
-      "type": 25,
+      "value": 25,
       "settable": false
     }
   ]

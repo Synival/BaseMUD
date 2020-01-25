@@ -1,181 +1,180 @@
-{"table": {
+{"types": {
   "name": "item_types",
   "description": "Types of objects.",
-  "type": "types",
   "values": [
     {
       "name": "none",
-      "type": 0,
+      "value": 0,
       "settable": false
     },
     {
       "name": "light",
-      "type": 1,
+      "value": 1,
       "settable": true
     },
     {
       "name": "scroll",
-      "type": 2,
+      "value": 2,
       "settable": true
     },
     {
       "name": "wand",
-      "type": 3,
+      "value": 3,
       "settable": true
     },
     {
       "name": "staff",
-      "type": 4,
+      "value": 4,
       "settable": true
     },
     {
       "name": "weapon",
-      "type": 5,
+      "value": 5,
       "settable": true
     },
     {
       "name": "unused_item_1",
-      "type": 6,
+      "value": 6,
       "settable": false
     },
     {
       "name": "unused_item_2",
-      "type": 7,
+      "value": 7,
       "settable": false
     },
     {
       "name": "treasure",
-      "type": 8,
+      "value": 8,
       "settable": true
     },
     {
       "name": "armor",
-      "type": 9,
+      "value": 9,
       "settable": true
     },
     {
       "name": "potion",
-      "type": 10,
+      "value": 10,
       "settable": true
     },
     {
       "name": "clothing",
-      "type": 11,
+      "value": 11,
       "settable": true
     },
     {
       "name": "furniture",
-      "type": 12,
+      "value": 12,
       "settable": true
     },
     {
       "name": "trash",
-      "type": 13,
+      "value": 13,
       "settable": true
     },
     {
       "name": "unused_item_3",
-      "type": 14,
+      "value": 14,
       "settable": false
     },
     {
       "name": "container",
-      "type": 15,
+      "value": 15,
       "settable": true
     },
     {
       "name": "unused_item_4",
-      "type": 16,
+      "value": 16,
       "settable": false
     },
     {
       "name": "drink",
-      "type": 17,
+      "value": 17,
       "settable": true
     },
     {
       "name": "key",
-      "type": 18,
+      "value": 18,
       "settable": true
     },
     {
       "name": "food",
-      "type": 19,
+      "value": 19,
       "settable": true
     },
     {
       "name": "money",
-      "type": 20,
+      "value": 20,
       "settable": true
     },
     {
       "name": "unused_item_5",
-      "type": 21,
+      "value": 21,
       "settable": false
     },
     {
       "name": "boat",
-      "type": 22,
+      "value": 22,
       "settable": true
     },
     {
       "name": "npc_corpse",
-      "type": 23,
+      "value": 23,
       "settable": true
     },
     {
       "name": "pc_corpse",
-      "type": 24,
+      "value": 24,
       "settable": true
     },
     {
       "name": "fountain",
-      "type": 25,
+      "value": 25,
       "settable": true
     },
     {
       "name": "pill",
-      "type": 26,
+      "value": 26,
       "settable": true
     },
     {
       "name": "protect",
-      "type": 27,
+      "value": 27,
       "settable": true
     },
     {
       "name": "map",
-      "type": 28,
+      "value": 28,
       "settable": true
     },
     {
       "name": "portal",
-      "type": 29,
+      "value": 29,
       "settable": true
     },
     {
       "name": "warp_stone",
-      "type": 30,
+      "value": 30,
       "settable": true
     },
     {
       "name": "room_key",
-      "type": 31,
+      "value": 31,
       "settable": true
     },
     {
       "name": "gem",
-      "type": 32,
+      "value": 32,
       "settable": true
     },
     {
       "name": "jewelry",
-      "type": 33,
+      "value": 33,
       "settable": true
     },
     {
       "name": "jukebox",
-      "type": 34,
+      "value": 34,
       "settable": true
     }
   ]

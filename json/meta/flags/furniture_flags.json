@@ -1,86 +1,85 @@
-{"table": {
+{"flags": {
   "name": "furniture_flags",
   "description": "Flags for furniture.",
-  "type": "flags",
   "values": [
     {
       "name": "stand_at",
-      "bit": 1,
+      "value": 0,
       "settable": true
     },
     {
       "name": "stand_on",
-      "bit": 2,
+      "value": 1,
       "settable": true
     },
     {
       "name": "stand_in",
-      "bit": 4,
+      "value": 2,
       "settable": true
     },
     {
       "name": "sit_at",
-      "bit": 8,
+      "value": 3,
       "settable": true
     },
     {
       "name": "sit_on",
-      "bit": 16,
+      "value": 4,
       "settable": true
     },
     {
       "name": "sit_in",
-      "bit": 32,
+      "value": 5,
       "settable": true
     },
     {
       "name": "rest_at",
-      "bit": 64,
+      "value": 6,
       "settable": true
     },
     {
       "name": "rest_on",
-      "bit": 128,
+      "value": 7,
       "settable": true
     },
     {
       "name": "rest_in",
-      "bit": 256,
+      "value": 8,
       "settable": true
     },
     {
       "name": "sleep_at",
-      "bit": 512,
+      "value": 9,
       "settable": true
     },
     {
       "name": "sleep_on",
-      "bit": 1024,
+      "value": 10,
       "settable": true
     },
     {
       "name": "sleep_in",
-      "bit": 2048,
+      "value": 11,
       "settable": true
     },
     {
       "name": "put_at",
-      "bit": 4096,
+      "value": 12,
       "settable": true
     },
     {
       "name": "put_on",
-      "bit": 8192,
+      "value": 13,
       "settable": true
     },
     {
       "name": "put_in",
-      "bit": 16384,
+      "value": 14,
       "settable": true
     },
     {
       "name": "put_inside",
-      "bit": 32768,
+      "value": 15,
       "settable": true
     }
   ]

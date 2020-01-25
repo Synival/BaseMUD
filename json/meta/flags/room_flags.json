@@ -1,106 +1,105 @@
-{"table": {
+{"flags": {
   "name": "room_flags",
   "description": "Room attributes.",
-  "type": "flags",
   "values": [
     {
       "name": "dark",
-      "bit": 1,
+      "value": 0,
       "settable": true
     },
     {
       "name": "unused_room_1",
-      "bit": 2,
+      "value": 1,
       "settable": false
     },
     {
       "name": "no_mob",
-      "bit": 4,
+      "value": 2,
       "settable": true
     },
     {
       "name": "indoors",
-      "bit": 8,
+      "value": 3,
       "settable": true
     },
     {
       "name": "unused_room_2",
-      "bit": 16,
+      "value": 4,
       "settable": false
     },
     {
       "name": "unused_room_3",
-      "bit": 32,
+      "value": 5,
       "settable": false
     },
     {
       "name": "unused_room_4",
-      "bit": 64,
+      "value": 6,
       "settable": false
     },
     {
       "name": "unused_room_5",
-      "bit": 128,
+      "value": 7,
       "settable": false
     },
     {
       "name": "unused_room_6",
-      "bit": 256,
+      "value": 8,
       "settable": false
     },
     {
       "name": "private",
-      "bit": 512,
+      "value": 9,
       "settable": true
     },
     {
       "name": "safe",
-      "bit": 1024,
+      "value": 10,
       "settable": true
     },
     {
       "name": "solitary",
-      "bit": 2048,
+      "value": 11,
       "settable": true
     },
     {
       "name": "pet_shop",
-      "bit": 4096,
+      "value": 12,
       "settable": true
     },
     {
       "name": "no_recall",
-      "bit": 8192,
+      "value": 13,
       "settable": true
     },
     {
       "name": "imp_only",
-      "bit": 16384,
+      "value": 14,
       "settable": true
     },
     {
       "name": "gods_only",
-      "bit": 32768,
+      "value": 15,
       "settable": true
     },
     {
       "name": "heroes_only",
-      "bit": 65536,
+      "value": 16,
       "settable": true
     },
     {
       "name": "newbies_only",
-      "bit": 131072,
+      "value": 17,
       "settable": true
     },
     {
       "name": "law",
-      "bit": 262144,
+      "value": 18,
       "settable": true
     },
     {
       "name": "nowhere",
-      "bit": 524288,
+      "value": 19,
       "settable": true
     }
   ]

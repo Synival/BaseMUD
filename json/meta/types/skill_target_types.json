@@ -1,41 +1,40 @@
-{"table": {
+{"types": {
   "name": "skill_target_types",
   "description": "Targets for skills and spells.",
-  "type": "types",
   "values": [
     {
       "name": "ignore",
-      "type": 0,
+      "value": 0,
       "settable": true
     },
     {
       "name": "char_offensive",
-      "type": 1,
+      "value": 1,
       "settable": true
     },
     {
       "name": "char_defensive",
-      "type": 2,
+      "value": 2,
       "settable": true
     },
     {
       "name": "char_self",
-      "type": 3,
+      "value": 3,
       "settable": true
     },
     {
       "name": "obj_inventory",
-      "type": 4,
+      "value": 4,
       "settable": true
     },
     {
       "name": "obj_char_defensive",
-      "type": 5,
+      "value": 5,
       "settable": true
     },
     {
       "name": "obj_char_offensive",
-      "type": 6,
+      "value": 6,
       "settable": true
     }
   ]

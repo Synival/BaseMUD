@@ -1,111 +1,110 @@
-{"table": {
+{"flags": {
   "name": "off_flags",
   "description": "Mobile offensive behaviour.",
-  "type": "flags",
   "values": [
     {
       "name": "area_attack",
-      "bit": 1,
+      "value": 0,
       "settable": true
     },
     {
       "name": "backstab",
-      "bit": 2,
+      "value": 1,
       "settable": true
     },
     {
       "name": "bash",
-      "bit": 4,
+      "value": 2,
       "settable": true
     },
     {
       "name": "berserk",
-      "bit": 8,
+      "value": 3,
       "settable": true
     },
     {
       "name": "disarm",
-      "bit": 16,
+      "value": 4,
       "settable": true
     },
     {
       "name": "dodge",
-      "bit": 32,
+      "value": 5,
       "settable": true
     },
     {
       "name": "fade",
-      "bit": 64,
+      "value": 6,
       "settable": true
     },
     {
       "name": "fast",
-      "bit": 128,
+      "value": 7,
       "settable": true
     },
     {
       "name": "kick",
-      "bit": 256,
+      "value": 8,
       "settable": true
     },
     {
       "name": "dirt_kick",
-      "bit": 512,
+      "value": 9,
       "settable": true
     },
     {
       "name": "parry",
-      "bit": 1024,
+      "value": 10,
       "settable": true
     },
     {
       "name": "rescue",
-      "bit": 2048,
+      "value": 11,
       "settable": true
     },
     {
       "name": "tail",
-      "bit": 4096,
+      "value": 12,
       "settable": true
     },
     {
       "name": "trip",
-      "bit": 8192,
+      "value": 13,
       "settable": true
     },
     {
       "name": "crush",
-      "bit": 16384,
+      "value": 14,
       "settable": true
     },
     {
       "name": "assist_all",
-      "bit": 32768,
+      "value": 15,
       "settable": true
     },
     {
       "name": "assist_align",
-      "bit": 65536,
+      "value": 16,
       "settable": true
     },
     {
       "name": "assist_race",
-      "bit": 131072,
+      "value": 17,
       "settable": true
     },
     {
       "name": "assist_players",
-      "bit": 262144,
+      "value": 18,
       "settable": true
     },
     {
       "name": "assist_guard",
-      "bit": 524288,
+      "value": 19,
       "settable": true
     },
     {
       "name": "assist_vnum",
-      "bit": 1048576,
+      "value": 20,
       "settable": true
     }
   ]

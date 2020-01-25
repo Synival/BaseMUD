@@ -1,31 +1,30 @@
-{"table": {
+{"types": {
   "name": "stat_types",
   "description": "Available stats for characters.",
-  "type": "types",
   "values": [
     {
       "name": "str",
-      "type": 0,
+      "value": 0,
       "settable": true
     },
     {
       "name": "int",
-      "type": 1,
+      "value": 1,
       "settable": true
     },
     {
       "name": "wis",
-      "type": 2,
+      "value": 2,
       "settable": true
     },
     {
       "name": "dex",
-      "type": 3,
+      "value": 3,
       "settable": true
     },
     {
       "name": "con",
-      "type": 4,
+      "value": 4,
       "settable": true
     }
   ]

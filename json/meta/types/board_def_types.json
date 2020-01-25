@@ -1,21 +1,20 @@
-{"table": {
+{"types": {
   "name": "board_def_types",
   "description": "Types of boards.",
-  "type": "types",
   "values": [
     {
       "name": "normal",
-      "type": 0,
+      "value": 0,
       "settable": true
     },
     {
       "name": "include",
-      "type": 1,
+      "value": 1,
       "settable": true
     },
     {
       "name": "exclude",
-      "type": 2,
+      "value": 2,
       "settable": true
     }
   ]

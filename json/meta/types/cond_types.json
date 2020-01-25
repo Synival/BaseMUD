@@ -1,26 +1,25 @@
-{"table": {
+{"types": {
   "name": "cond_types",
   "description": "Conditions like thirst/hunger.",
-  "type": "types",
   "values": [
     {
       "name": "drunk",
-      "type": 0,
+      "value": 0,
       "settable": true
     },
     {
       "name": "full",
-      "type": 1,
+      "value": 1,
       "settable": true
     },
     {
       "name": "thirst",
-      "type": 2,
+      "value": 2,
       "settable": true
     },
     {
       "name": "hunger",
-      "type": 3,
+      "value": 3,
       "settable": true
     }
   ]

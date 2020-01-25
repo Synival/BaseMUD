@@ -56,7 +56,9 @@ int json_import_objects (JSON_T *json) {
         json->parent->type == JSON_OBJECT && json->name != NULL)
     {
         /* skip certain objects. */
-        if (strcmp (json->name, "table") == 0)
+        if (strcmp (json->name, "flags") == 0)
+            return 0;
+        if (strcmp (json->name, "types") == 0)
             return 0;
 
         /* import! */

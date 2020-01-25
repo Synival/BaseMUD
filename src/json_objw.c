@@ -618,7 +618,6 @@ JSON_T *json_objw_table (const char *name, const TABLE_T *table) {
         new = json_new_object (name, JSON_OBJ_TABLE);
         json_prop_string (new, "name",        table->name);
         json_prop_string (new, "description", table->description);
-        json_prop_string (new, "type",        type_str);
         sub = json_prop_array (new, "values");
     }
     else {

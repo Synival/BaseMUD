@@ -1,36 +1,35 @@
-{"table": {
+{"types": {
   "name": "size_types",
   "description": "Mobile sizes.",
-  "type": "types",
   "values": [
     {
       "name": "tiny",
-      "type": 0,
+      "value": 0,
       "settable": true
     },
     {
       "name": "small",
-      "type": 1,
+      "value": 1,
       "settable": true
     },
     {
       "name": "medium",
-      "type": 2,
+      "value": 2,
       "settable": true
     },
     {
       "name": "large",
-      "type": 3,
+      "value": 3,
       "settable": true
     },
     {
       "name": "huge",
-      "type": 4,
+      "value": 4,
       "settable": true
     },
     {
       "name": "giant",
-      "type": 5,
+      "value": 5,
       "settable": true
     }
   ]

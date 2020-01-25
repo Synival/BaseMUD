@@ -1,66 +1,65 @@
-{"table": {
+{"flags": {
   "name": "exit_flags",
   "description": "Exit types.",
-  "type": "flags",
   "values": [
     {
       "name": "door",
-      "bit": 1,
+      "value": 0,
       "settable": true
     },
     {
       "name": "closed",
-      "bit": 2,
+      "value": 1,
       "settable": true
     },
     {
       "name": "locked",
-      "bit": 4,
+      "value": 2,
       "settable": true
     },
     {
       "name": "unused_exit_1",
-      "bit": 8,
+      "value": 3,
       "settable": false
     },
     {
       "name": "unused_exit_2",
-      "bit": 16,
+      "value": 4,
       "settable": false
     },
     {
       "name": "pickproof",
-      "bit": 32,
+      "value": 5,
       "settable": true
     },
     {
       "name": "nopass",
-      "bit": 64,
+      "value": 6,
       "settable": true
     },
     {
       "name": "easy",
-      "bit": 128,
+      "value": 7,
       "settable": true
     },
     {
       "name": "hard",
-      "bit": 256,
+      "value": 8,
       "settable": true
     },
     {
       "name": "infuriating",
-      "bit": 512,
+      "value": 9,
       "settable": true
     },
     {
       "name": "noclose",
-      "bit": 1024,
+      "value": 10,
       "settable": true
     },
     {
       "name": "nolock",
-      "bit": 2048,
+      "value": 11,
       "settable": true
     }
   ]

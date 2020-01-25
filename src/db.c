@@ -371,9 +371,9 @@ void db_export_json (bool write_indiv, const char *everything) {
 
     ADD_TABLE_JSON ("table", "tables", master, TABLE_T,
         json_objw_table, obj->type == TABLE_UNIQUE && obj->json_write_func);
-    ADD_TABLE_JSON ("table", "flags", master, TABLE_T,
+    ADD_TABLE_JSON ("flags", "flags", master, TABLE_T,
         json_objw_table, obj->type == TABLE_FLAGS);
-    ADD_TABLE_JSON ("table", "types", master, TABLE_T,
+    ADD_TABLE_JSON ("types", "types", master, TABLE_T,
         json_objw_table, obj->type == TABLE_TYPES);
 
     /* Add help areas. */

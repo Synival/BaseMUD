@@ -1,61 +1,60 @@
-{"table": {
+{"types": {
   "name": "sector_types",
   "description": "Sector types, terrain.",
-  "type": "types",
   "values": [
     {
       "name": "inside",
-      "type": 0,
+      "value": 0,
       "settable": true
     },
     {
       "name": "city",
-      "type": 1,
+      "value": 1,
       "settable": true
     },
     {
       "name": "field",
-      "type": 2,
+      "value": 2,
       "settable": true
     },
     {
       "name": "forest",
-      "type": 3,
+      "value": 3,
       "settable": true
     },
     {
       "name": "hills",
-      "type": 4,
+      "value": 4,
       "settable": true
     },
     {
       "name": "mountain",
-      "type": 5,
+      "value": 5,
       "settable": true
     },
     {
       "name": "swim",
-      "type": 6,
+      "value": 6,
       "settable": true
     },
     {
       "name": "noswim",
-      "type": 7,
+      "value": 7,
       "settable": true
     },
     {
       "name": "unused",
-      "type": 8,
+      "value": 8,
       "settable": false
     },
     {
       "name": "air",
-      "type": 9,
+      "value": 9,
       "settable": true
     },
     {
       "name": "desert",
-      "type": 10,
+      "value": 10,
       "settable": true
     }
   ]

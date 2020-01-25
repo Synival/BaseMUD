@@ -1,26 +1,25 @@
-{"table": {
+{"types": {
   "name": "ac_types",
   "description": "AC for different attacks.",
-  "type": "types",
   "values": [
     {
       "name": "pierce",
-      "type": 0,
+      "value": 0,
       "settable": true
     },
     {
       "name": "bash",
-      "type": 1,
+      "value": 1,
       "settable": true
     },
     {
       "name": "slash",
-      "type": 2,
+      "value": 2,
       "settable": true
     },
     {
       "name": "magic",
-      "type": 3,
+      "value": 3,
       "settable": true
     }
   ]
