@@ -1299,7 +1299,7 @@ void group_gain (CHAR_T *ch, CHAR_T *victim) {
         }
 #endif
 
-        xp = compute_exp (gch, victim, group_levels);
+        xp = fight_compute_kill_exp (gch, victim, group_levels);
         printf_to_char (gch, "You receive %d experience points.\n\r", xp);
         player_gain_exp (gch, xp);
 
@@ -1324,7 +1324,7 @@ void group_gain (CHAR_T *ch, CHAR_T *victim) {
 /* Compute xp for a kill.
  * Also adjust alignment of killer.
  * Edit this function to change xp computations. */
-int compute_exp (CHAR_T *gch, CHAR_T *victim, int total_levels) {
+int fight_compute_kill_exp (CHAR_T *gch, CHAR_T *victim, int total_levels) {
     int xp, base_exp;
     int align, level_range;
     int change;

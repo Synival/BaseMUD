@@ -686,7 +686,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                     }
 
                     fread_word_replace (fp, &ch->pcdata->alias[count]);
-                    fread_word_replace (fp, &ch->pcdata->alias_sub[count]);
+                    fread_string_replace (fp, &ch->pcdata->alias_sub[count]);
                     count++;
                     match = TRUE;
                     break;
@@ -700,7 +700,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                     }
 
                     fread_word_replace (fp, &ch->pcdata->alias[count]);
-                    fread_word_replace (fp, &ch->pcdata->alias_sub[count]);
+                    fread_string_replace (fp, &ch->pcdata->alias_sub[count]);
                     count++;
                     match = TRUE;
                     break;
