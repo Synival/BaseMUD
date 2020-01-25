@@ -35,6 +35,18 @@
 
 #include "flags.h"
 
+#define EF_INDEX(_flag) ((flag) / 8)
+#define EF_BIT(_flag)   (1 << ((flag) % 8))
+
+bool ext_flags_is_set (EXT_FLAGS_T *var, int flag)
+    { return (var->bits[EF_INDEX(flag)] & EF_BIT(flag)) ? TRUE : FALSE; }
+void ext_flags_set_bit (EXT_FLAGS_T *var, int flag)
+    { var->bits[EF_INDEX(flag)] |= EF_BIT(flag); }
+void ext_flags_remove_bit (EXT_FLAGS_T *var, int flag)
+    { var->bits[EF_INDEX(flag)] &= ~EF_BIT(flag); }
+void ext_flags_toggle_bit (EXT_FLAGS_T *var, int flag)
+    { var->bits[EF_INDEX(flag)] ^= EF_BIT(flag); }
+
 flag_t flag_lookup (const FLAG_T *flag_table, const char *name)
     { SIMPLE_LOOKUP_PROP (flag_table, bit, name, FLAG_NONE, 0); }
 flag_t flag_lookup_exact (const FLAG_T *flag_table, const char *name)

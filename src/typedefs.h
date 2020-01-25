@@ -121,6 +121,7 @@ typedef struct olc_cmd_type     OLC_CMD_T;
 typedef struct editor_cmd_type  EDITOR_CMD_T;
 typedef struct pose_type        POSE_T;
 typedef struct song_type        SONG_T;
+typedef struct ext_flags_type   EXT_FLAGS_T;
 
 /* JSON typedefs. */
 typedef struct json_t JSON_T;

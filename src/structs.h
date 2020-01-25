@@ -1185,4 +1185,12 @@ struct song_type {
     int lines;
 };
 
+/* Extended flags. */
+/* NOTE: the type used should be determined by EXT_FLAGS_ELEMENT_SIZE,
+ *       defined in 'defs.h'. If you want to use anything other than
+ *       8-bit unsigned chars, please upgrade! */
+struct ext_flags_type {
+    unsigned char bits[EXT_FLAGS_ARRAY_LENGTH];
+};
+
 #endif

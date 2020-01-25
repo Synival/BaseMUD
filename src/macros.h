@@ -39,13 +39,18 @@
 #define ENTRE(min, num, max) (((min) < (num)) && ((num) < (max)))
 
 /* Bit macros. */
-#define IS_SET(flag, bit)      ((flag) & (bit))
-#define SET_BIT(var, bit)      ((var) |= (bit))
-#define REMOVE_BIT(var, bit)   ((var) &= ~(bit))
-#define TOGGLE_BIT(var, bit)   ((var) ^= (bit))
-#define MISSING_BITS(var, bit) (~((~var) | (bit)))
-#define ARE_SET(flag, bit)     (((flag) & (bit)) == (bit))
-#define NONE_SET(flag, bit)    (((flag) & (bit)) == 0)
+#define IS_SET(_var, _bit)       ((_var) & (_bit))
+#define SET_BIT(_var, _bit)      ((_var) |= (_bit))
+#define REMOVE_BIT(_var, _bit)   ((_var) &= ~(_bit))
+#define TOGGLE_BIT(_var, _bit)   ((_var) ^= (_bit))
+#define MISSING_BITS(_var, _bit) (~((~_var) | (_bit)))
+#define ARE_SET(_var, _bit)      (((_var) & (_bit)) == (_bit))
+#define NONE_SET(_var, _bit)     (((_var) & (_bit)) == 0)
+
+#define EXT_IS_SET(_var, _flag)     (ext_flags_is_set     (&(_var), (_flag)))
+#define EXT_SET_BIT(_var, _flag)    (ext_flags_set_bit    (&(_var), (_flag)))
+#define EXT_REMOVE_BIT(_var, _flag) (ext_flags_remove_bit (&(_var), (_flag)))
+#define EXT_TOGGLE_BIT(_var, _flag) (ext_flags_toggle_bit (&(_var), (_flag)))
 
 /* Skill macros. */
 #define SN(map)      (skill_map_table[SKILL_MAP_ ## map].skill_index)

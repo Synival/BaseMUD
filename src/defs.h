@@ -204,16 +204,6 @@
 #define DAM_SOUND          19
 #define DAM_MAX            20
 
-/* Damage flags. */
-#define DAM_MAGICAL     A
-
-/* TO types for act. */
-#define TO_CHAR    (A) /* 'ch' only */
-#define TO_VICT    (B) /* 'vch' only */
-#define TO_OTHERS  (C) /* everyone else */
-#define TO_NOTCHAR (TO_VICT | TO_OTHERS)
-#define TO_ALL     (TO_CHAR | TO_VICT | TO_OTHERS)
-
 /* Shop types. */
 #define MAX_TRADE 5
 
@@ -693,5 +683,10 @@
 #define BUFFER_SAFE      0
 #define BUFFER_OVERFLOW  1
 #define BUFFER_FREED     2
+
+/* extended flag limits */
+#define EXT_FLAGS_ARRAY_LENGTH   8
+#define EXT_FLAGS_ELEMENT_SIZE   8
+#define EXT_FLAGS_LIMIT (EXT_FLAGS_ARRAY_LENGTH * EXT_FLAGS_ELEMENT_SIZE)
 
 #endif
