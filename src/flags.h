@@ -71,43 +71,6 @@
 #define BAN_PERMIT     (BIT_05)
 #define BAN_PERMANENT  (BIT_06)
 
-/* ACT bits for mobs.
- * Used in #MOBILES. */
-#define MOB_IS_NPC         (BIT_01)  /* Auto set for mobs  */
-#define MOB_SENTINEL       (BIT_02)  /* Stays in one room  */
-#define MOB_SCAVENGER      (BIT_03)  /* Picks up objects   */
-#define MOB_UNUSED_FLAG_1  (BIT_04)  /* old: isnpc */
-#define MOB_UNUSED_FLAG_2  (BIT_05)  /* old: nice_thief */
-#define MOB_AGGRESSIVE     (BIT_06)  /* Attacks PC's       */
-#define MOB_STAY_AREA      (BIT_07)  /* Won't leave area   */
-#define MOB_WIMPY          (BIT_08)
-#define MOB_PET            (BIT_09)  /* Auto set for pets  */
-#define MOB_TRAIN          (BIT_10)  /* Can train PC's     */
-#define MOB_PRACTICE       (BIT_11)  /* Can practice PC's  */
-#define MOB_UNUSED_FLAG_3  (BIT_12)
-#define MOB_UNUSED_FLAG_4  (BIT_13)
-#define MOB_UNUSED_FLAG_5  (BIT_14)
-#define MOB_UNDEAD         (BIT_15)
-#define MOB_UNUSED_FLAG_6  (BIT_16)
-#define MOB_CLERIC         (BIT_17)
-#define MOB_MAGE           (BIT_18)
-#define MOB_THIEF          (BIT_19)
-#define MOB_WARRIOR        (BIT_20)
-#define MOB_NOALIGN        (BIT_21)
-#define MOB_NOPURGE        (BIT_22)
-#define MOB_OUTDOORS       (BIT_23)
-#define MOB_UNUSED_FLAG_7  (BIT_24)
-#define MOB_INDOORS        (BIT_25)
-#define MOB_UNUSED_FLAG_8  (BIT_26)
-#define MOB_IS_HEALER      (BIT_27)
-#define MOB_GAIN           (BIT_28)
-#define MOB_UPDATE_ALWAYS  (BIT_29)
-#define MOB_IS_CHANGER     (BIT_30)
-
-/* Groups of bits. */
-#define MOB_FRIENDLY_BITS (MOB_TRAIN | MOB_PRACTICE | \
-                           MOB_IS_HEALER | MOB_IS_CHANGER)
-
 /* OFF bits for mobiles */
 #define OFF_AREA_ATTACK    (BIT_01)
 #define OFF_BACKSTAB       (BIT_02)
@@ -526,7 +489,6 @@
 #define TO_ALL     (TO_CHAR | TO_VICT | TO_OTHERS)
 
 /* Flag tables. */
-extern const FLAG_T mob_flags[];
 extern const FLAG_T plr_flags[];
 extern const FLAG_T affect_flags[];
 extern const FLAG_T off_flags[];
@@ -545,12 +507,6 @@ extern const FLAG_T res_flags[];
 extern const FLAG_T gate_flags[];
 extern const FLAG_T furniture_flags[];
 extern const FLAG_T dam_flags[];
-
-/* Extended flag functions. */
-bool ext_flags_is_set (EXT_FLAGS_T *var, int flag);
-void ext_flags_set_bit (EXT_FLAGS_T *var, int flag);
-void ext_flags_remove_bit (EXT_FLAGS_T *var, int flag);
-void ext_flags_toggle_bit (EXT_FLAGS_T *var, int flag);
 
 /* Function prototypes for flag management. */
 flag_t flag_lookup (const FLAG_T *flag_table, const char *name);

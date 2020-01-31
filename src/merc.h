@@ -40,5 +40,6 @@
 #include "types.h"
 #include "flags.h"
 #include "tables.h"
+#include "ext_flags.h"
 
 #endif

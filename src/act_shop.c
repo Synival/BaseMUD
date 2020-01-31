@@ -141,7 +141,7 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
 
     char_reduce_money (ch, cost);
     pet = mobile_create (pet->index_data);
-    SET_BIT (pet->mob, MOB_PET);
+    EXT_SET (pet->ext_mob, MOB_PET);
     SET_BIT (pet->affected_by, AFF_CHARM);
     pet->comm = COMM_NOTELL | COMM_NOSHOUT | COMM_NOCHANNELS;
 
@@ -456,7 +456,7 @@ DEFINE_DO_FUN (do_heal) {
 
     /* check for healer */
     for (mob = ch->in_room->people; mob; mob = mob->next_in_room)
-        if (IS_NPC (mob) && IS_SET (mob->mob, MOB_IS_HEALER))
+        if (IS_NPC (mob) && EXT_IS_SET (mob->ext_mob, MOB_IS_HEALER))
             break;
     BAIL_IF (mob == NULL,
         "You can't do that here.\n\r", ch);

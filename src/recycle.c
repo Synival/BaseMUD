@@ -527,7 +527,7 @@ void mob_index_init (void *obj) {
     mob->short_descr  = str_dup ("(no short description)");
     mob->long_descr   = str_dup ("(no long description)\n\r");
     mob->description  = &str_empty[0];
-    mob->mob_plus     = MOB_IS_NPC;
+    mob->ext_mob_plus = EXT_BITS (MOB_IS_NPC);
     mob->race         = race_lookup_exact ("human"); /* -- Hugin */
     mob->size         = SIZE_MEDIUM;  /* ROM patch -- Hugin */
     mob->start_pos    = POS_STANDING; /* -- Hugin */

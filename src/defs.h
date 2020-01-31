@@ -383,8 +383,9 @@
  * Used in save.c to load objects that don't exist. */
 #define OBJ_VNUM_DUMMY    30
 
-#define FLAG_NONE   0
-#define TYPE_NONE   -999
+#define FLAG_NONE       0
+#define TYPE_NONE       -999
+#define EXT_FLAG_NONE   -999
 
 /* Includes for board system */
 /* This is version 2 of the board system, (c) 1995-96 erwin@pip.dknet.dk */
@@ -534,6 +535,7 @@
 #define TABLE_FLAGS     0
 #define TABLE_TYPES     1
 #define TABLE_UNIQUE    2
+#define TABLE_EXT_FLAGS 3
 
 #define TABLE_MAX   76
 

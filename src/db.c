@@ -373,6 +373,8 @@ void db_export_json (bool write_indiv, const char *everything) {
         json_objw_table, obj->type == TABLE_UNIQUE && obj->json_write_func);
     ADD_TABLE_JSON ("flags", "flags", master, TABLE_T,
         json_objw_table, obj->type == TABLE_FLAGS);
+    ADD_TABLE_JSON ("ext_flags", "ext_flags", master, TABLE_T,
+        json_objw_table, obj->type == TABLE_EXT_FLAGS);
     ADD_TABLE_JSON ("types", "types", master, TABLE_T,
         json_objw_table, obj->type == TABLE_TYPES);
 
@@ -1412,7 +1414,7 @@ void reset_room_reset (ROOM_INDEX_T *room, RESET_T *reset) {
             /* Pet shop mobiles get ACT_PET set. */
             room_indexPrev = room_get_index (room_index->vnum - 1);
             if (room_indexPrev && IS_SET (room_indexPrev->room_flags, ROOM_PET_SHOP))
-                SET_BIT (mob->mob, MOB_PET);
+                EXT_SET (mob->ext_mob, MOB_PET);
 
             char_to_room (mob, room_index);
             reset_last_mob = mob;
@@ -1846,7 +1848,9 @@ void load_mobiles (FILE *fp) {
         mob_index->long_descr[0] = UPPER (mob_index->long_descr[0]);
         mob_index->description[0] = UPPER (mob_index->description[0]);
 
-        mob_index->mob_plus = fread_flag (fp) & ~MOB_IS_NPC;
+        mob_index->ext_mob_plus = fread_ext_flag (fp);
+        EXT_UNSET (mob_index->ext_mob_plus, MOB_IS_NPC);
+
         mob_index->affected_by_plus = fread_flag (fp);
 
         mob_index->shop = NULL;
@@ -1921,7 +1925,7 @@ void load_mobiles (FILE *fp) {
                 vector = fread_flag (fp);
 
                 if (!str_prefix (word, "act") || !str_prefix (word, "mob"))
-                    mob_index->mob_minus = vector;
+                    mob_index->ext_mob_minus = EXT_FROM_FLAG_T (vector);
                 else if (!str_prefix (word, "aff"))
                     mob_index->affected_by_minus = vector;
                 else if (!str_prefix (word, "off"))
@@ -1979,7 +1983,10 @@ void db_finalize_mob (MOB_INDEX_T *mob) {
         const RACE_T *race;
         race = race_get(mob->race);
 
-        mob->mob_final         = mob->mob_plus | MOB_IS_NPC | race->mob;
+        mob->ext_mob_final     = mob->ext_mob_plus;
+        EXT_SET  (mob->ext_mob_final, MOB_IS_NPC);
+        EXT_SET_MANY (mob->ext_mob_final, EXT_FROM_INIT (race->ext_mob));
+
         mob->affected_by_final = mob->affected_by_plus | race->aff;
         mob->off_flags_final   = mob->off_flags_plus   | race->off;
         mob->imm_flags_final   = mob->imm_flags_plus   | race->imm;
@@ -1989,7 +1996,9 @@ void db_finalize_mob (MOB_INDEX_T *mob) {
         mob->parts_final       = mob->parts_plus       | race->parts;
     }
     else {
-        mob->mob_final         = mob->mob_plus | MOB_IS_NPC;
+        mob->ext_mob_final     = mob->ext_mob_plus;
+        EXT_SET  (mob->ext_mob_final, MOB_IS_NPC);
+
         mob->affected_by_final = mob->affected_by_plus;
         mob->off_flags_final   = mob->off_flags_plus;
         mob->imm_flags_final   = mob->imm_flags_plus;
@@ -1999,7 +2008,7 @@ void db_finalize_mob (MOB_INDEX_T *mob) {
         mob->parts_final       = mob->parts_plus;
     }
 
-    REMOVE_BIT (mob->mob_final,         mob->mob_minus);
+    EXT_UNSET_MANY (mob->ext_mob_final, mob->ext_mob_minus);
     REMOVE_BIT (mob->affected_by_final, mob->affected_by_minus);
     REMOVE_BIT (mob->off_flags_final,   mob->off_flags_minus);
     REMOVE_BIT (mob->imm_flags_final,   mob->imm_flags_minus);
@@ -2290,9 +2299,9 @@ void db_dump_world (const char *filename) {
         fprintf (file, "size:               %d\n",  mob->size);
         fprintf (file, "material:           %d\n",  mob->material);
         fprintf (file, "mprog_flags:        %ld\n", mob->mprog_flags);
-        fprintf (file, "mob_plus:           %ld\n", mob->mob_plus);
-        fprintf (file, "mob_final:          %ld\n", mob->mob_final);
-        fprintf (file, "mob_minus:          %ld\n", mob->mob_minus);
+        fprintf (file, "mob_plus:           %ld\n", EXT_TO_FLAG_T (mob->ext_mob_plus));
+        fprintf (file, "mob_final:          %ld\n", EXT_TO_FLAG_T (mob->ext_mob_final));
+        fprintf (file, "mob_minus:          %ld\n", EXT_TO_FLAG_T (mob->ext_mob_minus));
         fprintf (file, "affected_by_plus:   %ld\n", mob->affected_by_plus);
         fprintf (file, "affected_by_final:  %ld\n", mob->affected_by_final);
         fprintf (file, "affected_by_minus:  %ld\n", mob->affected_by_minus);

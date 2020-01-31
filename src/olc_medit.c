@@ -41,7 +41,7 @@ MEDIT (medit_show) {
         !mob->area ? "No Area" : mob->area->title);
 
     printf_to_char (ch, "Mob:         [%s]\n\r",
-        flags_to_string (mob_flags, mob->mob_final));
+        ext_flags_to_string (mob_flags, mob->ext_mob_final));
 
     printf_to_char (ch, "Vnum:        [%5d] Sex:   [%s]   Race: [%s]\n\r",
          mob->vnum,
@@ -168,7 +168,7 @@ MEDIT (medit_create) {
     if (value > top_vnum_mob)
         top_vnum_mob = value;
 
-    mob->mob_plus = MOB_IS_NPC;
+    mob->ext_mob_plus = EXT_BITS (MOB_IS_NPC);
     hash = value % MAX_KEY_HASH;
     LIST_FRONT (mob, next, mob_index_hash[hash]);
     ch->desc->olc_edit = (void *) mob;
@@ -383,11 +383,18 @@ MEDIT (medit_sex) {
     return FALSE;
 }
 
-void medit_update_flags (flag_t final, flag_t race_flags, flag_t *plus,
+static void medit_update_flags (flag_t final, flag_t race_flags, flag_t *plus,
     flag_t *minus)
 {
-    *plus  = MISSING_BITS (final, race_flags);
-    *minus = MISSING_BITS (race_flags, final);
+    *plus  = final & ~race_flags;
+    *minus = race_flags & ~final;
+}
+
+static void medit_update_ext_flags (EXT_FLAGS_T final, EXT_FLAGS_T race_flags,
+    EXT_FLAGS_T *plus, EXT_FLAGS_T *minus)
+{
+    *plus  = EXT_WITHOUT_MANY (final, race_flags);
+    *minus = EXT_WITHOUT_MANY (race_flags, final);
 }
 
 #define UPDATE_FLAGS(m, f, rf) \
@@ -396,17 +403,24 @@ void medit_update_flags (flag_t final, flag_t race_flags, flag_t *plus,
         &((m)->f ## _plus), \
         &((m)->f ## _minus))
 
+#define UPDATE_EXT_FLAGS(m, f, rf) \
+    medit_update_ext_flags ((m)->f ## _final, \
+        EXT_FROM_INIT (race_get ((m)->race)->rf), \
+        &((m)->f ## _plus), \
+        &((m)->f ## _minus))
+
 /* Moved out of medit() due to naming conflicts -- Hugin */
 MEDIT (medit_act) {
     MOB_INDEX_T *mob;
-    int value;
+    EXT_FLAGS_T flags;
 
     if (argument[0] != '\0') {
         EDIT_MOB (ch, mob);
-        if ((value = flags_from_string (mob_flags, argument)) != FLAG_NONE) {
-            TOGGLE_BIT (mob->mob_final, value);
-            SET_BIT (mob->mob_final, MOB_IS_NPC);
-            UPDATE_FLAGS (mob, mob, mob);
+        flags = ext_flags_from_string (mob_flags, argument);
+        if (EXT_IS_NONZERO (flags)) {
+            EXT_TOGGLE_MANY (mob->ext_mob_final, flags);
+            EXT_SET (mob->ext_mob_final, MOB_IS_NPC);
+            UPDATE_EXT_FLAGS (mob, ext_mob, ext_mob);
 
             send_to_char ("Mob flag toggled.\n\r", ch);
             return TRUE;

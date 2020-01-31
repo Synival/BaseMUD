@@ -86,7 +86,7 @@ void load_old_mob (FILE *fp) {
         mob_index->long_descr[0]  = UPPER (mob_index->long_descr[0]);
         mob_index->description[0] = UPPER (mob_index->description[0]);
 
-        mob_index->mob_plus         = fread_flag (fp);
+        mob_index->ext_mob_plus     = fread_ext_flag (fp);
         mob_index->affected_by_plus = fread_flag (fp);
         mob_index->shop             = NULL;
         mob_index->alignment        = fread_number (fp);
@@ -384,7 +384,7 @@ void convert_mobile (MOB_INDEX_T *mob_index) {
         return;
 
     level = mob_index->level;
-    mob_index->mob_plus |= MOB_WARRIOR;
+    EXT_SET (mob_index->ext_mob_plus, MOB_WARRIOR);
 
     /*
      * Calculate hit dice.  Gives close to the hitpoints

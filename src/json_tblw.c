@@ -58,6 +58,14 @@ DEFINE_JSON_WRITE_FUN (json_tblw_flag) {
     return new;
 }
 
+DEFINE_JSON_WRITE_FUN (json_tblw_ext_flag) {
+    JSON_TBLW_START (EXT_FLAG_DEF_T, flag, flag->name == NULL);
+    json_prop_string  (new, "name",     flag->name);
+    json_prop_integer (new, "value",    flag->bit);
+    json_prop_boolean (new, "settable", flag->settable);
+    return new;
+}
+
 DEFINE_JSON_WRITE_FUN (json_tblw_type) {
     JSON_TBLW_START (TYPE_T, type, type->name == NULL);
     json_prop_string  (new, "name",     type->name);
@@ -146,11 +154,13 @@ DEFINE_JSON_WRITE_FUN (json_tblw_attack) {
 }
 
 DEFINE_JSON_WRITE_FUN (json_tblw_race) {
+    EXT_FLAGS_T flags;
     JSON_TBLW_START (RACE_T, race, race->name == NULL);
     json_prop_string  (new, "name", JSTR (race->name));
 
-    if (race->mob > 0)
-        json_prop_string (new, "mob_flags", JBITSF (mob_flags, race->mob));
+    flags = EXT_FROM_INIT (race->ext_mob);
+    if (EXT_IS_NONZERO (flags))
+        json_prop_string (new, "mob_flags", JBITSXF (mob_flags, flags));
     if (race->aff > 0)
         json_prop_string (new, "affect_flags", JBITSF (affect_flags, race->aff));
     if (race->off > 0)

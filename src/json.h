@@ -109,6 +109,8 @@
     json_not_none(val)
 #define JBITSF(array, bits) \
     JBITS (flags_to_string ((array), (bits)))
+#define JBITSXF(array, bits) \
+    JBITS (ext_flags_to_string ((array), (bits)))
 #define JSTR(val) \
     json_not_blank(val)
 

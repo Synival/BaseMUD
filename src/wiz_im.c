@@ -622,7 +622,7 @@ DEFINE_DO_FUN (do_mstat) {
             victim->pcdata->last_level, victim->timer);
     }
 
-    printf_to_char (ch, "Mob: %s\n\r", mob_bit_name (victim->mob));
+    printf_to_char (ch, "Mob: %s\n\r", mob_bit_name (victim->ext_mob));
     printf_to_char (ch, "Plr: %s\n\r", plr_bit_name (victim->plr));
 
     if (victim->comm)

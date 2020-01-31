@@ -32,6 +32,7 @@
 
 /* dead-simple functions for creating JSON objects. */
 DECLARE_JSON_WRITE_FUN (json_tblw_flag);
+DECLARE_JSON_WRITE_FUN (json_tblw_ext_flag);
 DECLARE_JSON_WRITE_FUN (json_tblw_type);
 DECLARE_JSON_WRITE_FUN (json_tblw_clan);
 DECLARE_JSON_WRITE_FUN (json_tblw_sex);

@@ -465,7 +465,7 @@ MOB_INDEX_T *json_objr_mobile (const JSON_T *json) {
 
     READ_PROP_INT  (mob->wealth,          "wealth");
 
-    READ_PROP_FLAGS (mob->mob_plus,         "mob_flags",   mob_flags);
+    READ_PROP_EXT_FLAGS (mob->ext_mob_plus, "mob_flags",   mob_flags);
     READ_PROP_FLAGS (mob->affected_by_plus, "affected_by", affect_flags);
     READ_PROP_FLAGS (mob->off_flags_plus,   "offense",     off_flags);
     READ_PROP_FLAGS (mob->imm_flags_plus,   "immune",      res_flags);
@@ -474,7 +474,7 @@ MOB_INDEX_T *json_objr_mobile (const JSON_T *json) {
     READ_PROP_FLAGS (mob->form_plus,        "form",        form_flags);
     READ_PROP_FLAGS (mob->parts_plus,       "parts",       part_flags);
 
-    READ_PROP_FLAGS (mob->mob_minus,         "mob_flags_minus",   mob_flags);
+    READ_PROP_EXT_FLAGS (mob->ext_mob_minus, "mob_flags_minus",   mob_flags);
     READ_PROP_FLAGS (mob->affected_by_minus, "affected_by_minus", affect_flags);
     READ_PROP_FLAGS (mob->off_flags_minus,   "offense_minus",     off_flags);
     READ_PROP_FLAGS (mob->imm_flags_minus,   "immune_minus",      res_flags);

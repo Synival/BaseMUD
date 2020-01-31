@@ -49,8 +49,6 @@
     extern int _filbuf args ((FILE *));
 #endif
 
-/* int rename(const char *oldfname, const char *newfname); viene en stdio.h */
-
 char *print_flags (flag_t flags) {
     int count, pos = 0;
     static char buf[52];
@@ -72,6 +70,12 @@ char *print_flags (flag_t flags) {
     buf[pos] = '\0';
 
     return buf;
+}
+
+char *print_ext_flags (EXT_FLAGS_T *flags) {
+    /* TODO: actually support saving this!! */
+    flag_t old_flags = EXT_TO_FLAG_T (*flags);
+    return print_flags (old_flags);
 }
 
 /* Array of containers read for proper re-nesting of objects. */
@@ -191,8 +195,8 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
         fprintf (fp, "Silv 0\n");
 
     fprintf (fp, "Exp  %d\n", ch->exp);
-    if (ch->mob != 0)
-        fprintf (fp, "Mob  %s\n", print_flags (ch->mob));
+    if (EXT_IS_NONZERO (ch->ext_mob))
+        fprintf (fp, "Mob  %s\n", print_ext_flags (&ch->ext_mob));
     if (ch->plr != 0)
         fprintf (fp, "Plr  %s\n", print_flags (ch->plr));
     if (ch->affected_by != 0)
@@ -337,8 +341,8 @@ void fwrite_pet (CHAR_T *pet, FILE *fp) {
         fprintf (fp, "Silv %ld\n", pet->silver);
     if (pet->exp > 0)
         fprintf (fp, "Exp  %d\n", pet->exp);
-    if (pet->mob != pet->index_data->mob_final)
-        fprintf (fp, "Mob  %s\n", print_flags (pet->mob));
+    if (!EXT_EQUALS (pet->ext_mob, pet->index_data->ext_mob_final))
+        fprintf (fp, "Mob  %s\n", print_ext_flags (&pet->ext_mob));
     if (pet->plr != 0)
         fprintf (fp, "Plr  %s\n", print_flags (pet->plr));
     if (pet->affected_by != pet->index_data->affected_by_final)
@@ -666,11 +670,11 @@ void fread_char (CHAR_T *ch, FILE *fp) {
             case 'A':
                 if (!str_cmp (word, "Act")) {
                     match = TRUE;
-                    flag_t flags = fread_flag (fp);
-                    if (IS_SET (flags, MOB_IS_NPC))
-                        ch->mob = flags;
+                    EXT_FLAGS_T flags = fread_ext_flag (fp);
+                    if (EXT_IS_SET (flags, MOB_IS_NPC))
+                        ch->ext_mob = flags;
                     else
-                        ch->plr = flags;
+                        ch->plr = EXT_TO_FLAG_T (flags);
                 }
 
                 KEY ("AffectedBy", ch->affected_by, fread_flag (fp));
@@ -1005,7 +1009,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'M':
-                KEY ("Mob", ch->mob, fread_flag (fp));
+                KEY ("Mob", ch->ext_mob, fread_ext_flag (fp));
                 break;
 
             case 'N':
@@ -1156,11 +1160,11 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
             case 'A':
                 if (!str_cmp (word, "Act")) {
                     match = TRUE;
-                    flag_t flags = fread_flag (fp);
-                    if (IS_SET (flags, MOB_IS_NPC))
-                        pet->mob = flags;
+                    EXT_FLAGS_T flags = fread_ext_flag (fp);
+                    if (EXT_IS_SET (flags, MOB_IS_NPC))
+                        pet->ext_mob = flags;
                     else
-                        pet->plr = flags;
+                        pet->plr = EXT_TO_FLAG_T (flags);
                 }
 
                 KEY ("AfBy", pet->affected_by, fread_flag (fp));
@@ -1300,7 +1304,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'M':
-                KEY ("Mob", pet->mob, fread_flag (fp));
+                KEY ("Mob", pet->ext_mob, fread_ext_flag (fp));
                 break;
 
             case 'N':

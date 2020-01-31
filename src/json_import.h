@@ -56,6 +56,8 @@ struct json_eprop {
     ((obj_prop) = JGB (json_prop))
 #define READ_PROP_FLAGS(obj_prop, json_prop, table) \
     ((obj_prop) = flags_from_string_exact (table, (JGS (json_prop), buf)))
+#define READ_PROP_EXT_FLAGS(obj_prop, json_prop, table) \
+    ((obj_prop) = ext_flags_from_string_exact (table, (JGS (json_prop), buf)))
 #define READ_PROP_TYPE(obj_prop, json_prop, table) \
     ((obj_prop) = type_lookup_exact (table, (JGS (json_prop), buf)))
 

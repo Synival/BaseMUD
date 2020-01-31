@@ -1472,7 +1472,7 @@ bool item_enter_effect (OBJ_T *obj, CHAR_T *ch) {
                     !char_can_see_room (ch, location) ||
                     (room_is_private (location) && !IS_TRUSTED (ch, IMPLEMENTOR)),
                 "$p doesn't seem to go anywhere.", ch, obj, NULL, TRUE);
-            RETURN_IF (IS_NPC (ch) && IS_SET (ch->mob, MOB_AGGRESSIVE) &&
+            RETURN_IF (IS_NPC (ch) && EXT_IS_SET (ch->ext_mob, MOB_AGGRESSIVE) &&
                      IS_SET (location->room_flags, ROOM_LAW),
                 "Something prevents you from leaving...\n\r", ch, TRUE);
 
@@ -1522,7 +1522,7 @@ bool item_enter_effect (OBJ_T *obj, CHAR_T *ch) {
 
                     if (fch->master == ch && fch->position == POS_STANDING) {
                         if (IS_SET (ch->in_room->room_flags, ROOM_LAW)
-                            && (IS_NPC (fch) && IS_SET (fch->mob, MOB_AGGRESSIVE)))
+                            && (IS_NPC (fch) && EXT_IS_SET (fch->ext_mob, MOB_AGGRESSIVE)))
                         {
                             act ("You can't bring $N into the city.",
                                  ch, NULL, fch, TO_CHAR);

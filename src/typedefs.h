@@ -91,6 +91,7 @@ typedef struct class_type       CLASS_T;
 typedef struct skill_type       SKILL_T;
 typedef struct spec_type        SPEC_T;
 typedef struct flag_type        FLAG_T;
+typedef struct ext_flag_def_type EXT_FLAG_DEF_T;
 typedef struct type_type        TYPE_T;
 typedef struct door_type        DOOR_T;
 typedef struct str_app_type     STR_APP_T;
@@ -122,6 +123,7 @@ typedef struct editor_cmd_type  EDITOR_CMD_T;
 typedef struct pose_type        POSE_T;
 typedef struct song_type        SONG_T;
 typedef struct ext_flags_type   EXT_FLAGS_T;
+typedef struct ext_init_flags_type EXT_INIT_FLAGS_T;
 
 /* JSON typedefs. */
 typedef struct json_t JSON_T;

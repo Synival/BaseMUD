@@ -32,6 +32,7 @@
 
 /* Function prototypes. */
 char *print_flags (flag_t flags);
+char *print_ext_flags (EXT_FLAGS_T *flags);
 void save_char_obj (CHAR_T *ch);
 bool load_char_obj (DESCRIPTOR_T *d, char *name);
 void load_old_colour (CHAR_T *ch, FILE *fp, char *name);

@@ -426,7 +426,7 @@ int cmd_eval (sh_int vnum, char *line, int check,
                                flag_lookup (affect_flags, buf)));
         case CHK_ACT:
             return (lval_char != NULL
-                    && IS_SET (lval_char->mob, flag_lookup (mob_flags, buf)));
+                    && EXT_IS_SET (lval_char->ext_mob, ext_flag_lookup (mob_flags, buf)));
         case CHK_IMM:
             return (lval_char != NULL
                     && IS_SET (lval_char->imm_flags, flag_lookup (res_flags, buf)));

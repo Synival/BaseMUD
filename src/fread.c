@@ -123,6 +123,11 @@ flag_t fread_flag_convert (char letter) {
     return bitsum;
 }
 
+EXT_FLAGS_T fread_ext_flag (FILE *fp) {
+    flag_t flags = fread_flag (fp);
+    return EXT_FROM_FLAG_T (flags);
+}
+
 /* Read and allocate space for a string from a file.
  * These strings are read-only and shared.
  * Strings are hashed:

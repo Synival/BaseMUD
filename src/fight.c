@@ -229,14 +229,10 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
     if (IS_NPC (ch)) {
         thac0_00 = 20;
         thac0_32 = -4; /* as good as a thief */
-        if (IS_SET (ch->mob, MOB_WARRIOR))
-            thac0_32 = -10;
-        else if (IS_SET (ch->mob, MOB_THIEF))
-            thac0_32 = -4;
-        else if (IS_SET (ch->mob, MOB_CLERIC))
-            thac0_32 = 2;
-        else if (IS_SET (ch->mob, MOB_MAGE))
-            thac0_32 = 6;
+             if (EXT_IS_SET (ch->ext_mob, MOB_WARRIOR)) thac0_32 = -10;
+        else if (EXT_IS_SET (ch->ext_mob, MOB_THIEF))   thac0_32 =  -4;
+        else if (EXT_IS_SET (ch->ext_mob, MOB_CLERIC))  thac0_32 =   2;
+        else if (EXT_IS_SET (ch->ext_mob, MOB_MAGE))    thac0_32 =   6;
     }
     else {
         thac0_00 = class_table[ch->class].thac0_00;
@@ -681,7 +677,7 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
 
     /* Wimp out? */
     if (IS_NPC (victim) && dam > 0 && victim->wait < PULSE_VIOLENCE / 2) {
-        if ((IS_SET (victim->mob, MOB_WIMPY) && number_bits (2) == 0
+        if ((EXT_IS_SET (victim->ext_mob, MOB_WIMPY) && number_bits (2) == 0
              && victim->hit < victim->max_hit / 5)
             || (IS_AFFECTED (victim, AFF_CHARM) && victim->master != NULL
                 && victim->master->in_room != victim->in_room))
@@ -749,7 +745,7 @@ bool do_filter_can_attack_real (CHAR_T *ch, CHAR_T *victim, bool area,
         /* no killing shopkeepers or healers, trainers, etc */
         FILTER (victim->index_data->shop != NULL,
             QU("The shopkeeper wouldn't like that.\n\r"), ch);
-        FILTER ((victim->mob & MOB_FRIENDLY_BITS) != 0,
+        FILTER (mobile_is_friendly (victim),
             QU("I don't think Mota would approve.\n\r"), ch);
 
         if (!IS_NPC (ch)) {
@@ -1352,7 +1348,7 @@ int fight_compute_kill_exp (CHAR_T *gch, CHAR_T *victim, int total_levels) {
     align = victim->alignment - gch->alignment;
 
     /* no change */
-    if (IS_SET (victim->mob, MOB_NOALIGN))
+    if (EXT_IS_SET (victim->ext_mob, MOB_NOALIGN))
         ;
     /* monster is more good than slayer */
     else if (align > 500) {
@@ -1373,7 +1369,7 @@ int fight_compute_kill_exp (CHAR_T *gch, CHAR_T *victim, int total_levels) {
     }
 
     /* calculate exp multiplier */
-    if (IS_SET (victim->mob, MOB_NOALIGN))
+    if (EXT_IS_SET (victim->ext_mob, MOB_NOALIGN))
         xp = base_exp;
     /* for goodie two shoes */
     else if (gch->alignment > 500) {

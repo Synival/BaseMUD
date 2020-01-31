@@ -40,5 +40,6 @@ bool mobile_should_assist_attacker (CHAR_T *bystander, CHAR_T *attacker,
     CHAR_T *victim);
 void mobile_hit (CHAR_T *ch, CHAR_T *victim, int dt);
 int mobile_get_skill_learned (const CHAR_T *ch, int sn);
+bool mobile_is_friendly (const CHAR_T *ch);
 
 #endif

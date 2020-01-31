@@ -256,8 +256,8 @@ DEFINE_DO_FUN (do_peace) {
     for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
         if (rch->fighting != NULL)
             stop_fighting (rch, TRUE);
-        if (IS_NPC (rch) && IS_SET (rch->mob, MOB_AGGRESSIVE))
-            REMOVE_BIT (rch->mob, MOB_AGGRESSIVE);
+        if (IS_NPC (rch) && EXT_IS_SET (rch->ext_mob, MOB_AGGRESSIVE))
+            EXT_UNSET (rch->ext_mob, MOB_AGGRESSIVE);
     }
     send_to_char ("Ok.\n\r", ch);
 }

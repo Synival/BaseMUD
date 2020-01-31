@@ -100,7 +100,7 @@ CHAR_T *mobile_create (MOB_INDEX_T *mob_index) {
     if (mob_index->new_format) {
         /* read from prototype */
         mob->group    = mob_index->group;
-        mob->mob      = mob_index->mob_final;
+        mob->ext_mob  = mob_index->ext_mob_final;
         mob->plr      = 0;
         mob->comm     = COMM_NOCHANNELS | COMM_NOSHOUT | COMM_NOTELL;
         mob->affected_by = mob_index->affected_by_final;
@@ -147,22 +147,22 @@ CHAR_T *mobile_create (MOB_INDEX_T *mob_index) {
         for (i = 0; i < STAT_MAX; i++)
             mob->perm_stat[i] = UMIN (25, 11 + mob->level / 4);
 
-        if (IS_SET (mob->mob, MOB_WARRIOR)) {
+        if (EXT_IS_SET (mob->ext_mob, MOB_WARRIOR)) {
             mob->perm_stat[STAT_STR] += 3;
             mob->perm_stat[STAT_INT] -= 1;
             mob->perm_stat[STAT_CON] += 2;
         }
-        if (IS_SET (mob->mob, MOB_THIEF)) {
+        if (EXT_IS_SET (mob->ext_mob, MOB_THIEF)) {
             mob->perm_stat[STAT_DEX] += 3;
             mob->perm_stat[STAT_INT] += 1;
             mob->perm_stat[STAT_WIS] -= 1;
         }
-        if (IS_SET (mob->mob, MOB_CLERIC)) {
+        if (EXT_IS_SET (mob->ext_mob, MOB_CLERIC)) {
             mob->perm_stat[STAT_WIS] += 3;
             mob->perm_stat[STAT_DEX] -= 1;
             mob->perm_stat[STAT_STR] += 1;
         }
-        if (IS_SET (mob->mob, MOB_MAGE)) {
+        if (EXT_IS_SET (mob->ext_mob, MOB_MAGE)) {
             mob->perm_stat[STAT_INT] += 3;
             mob->perm_stat[STAT_STR] -= 1;
             mob->perm_stat[STAT_DEX] += 1;
@@ -193,7 +193,7 @@ CHAR_T *mobile_create (MOB_INDEX_T *mob_index) {
     }
     /* read in old format and convert */
     else {
-        mob->mob         = mob_index->mob_final;
+        mob->ext_mob     = mob_index->ext_mob_final;
         mob->plr         = 0;
         mob->affected_by = mob_index->affected_by_final;
         mob->alignment   = mob_index->alignment;
@@ -267,7 +267,7 @@ void mobile_clone (CHAR_T *parent, CHAR_T *clone) {
     clone->gold        = parent->gold;
     clone->silver      = parent->silver;
     clone->exp         = parent->exp;
-    clone->mob         = parent->mob;
+    clone->ext_mob     = parent->ext_mob;
     clone->plr         = parent->plr;
     clone->comm        = parent->comm;
     clone->imm_flags   = parent->imm_flags;
@@ -418,8 +418,8 @@ void mobile_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
         case 2:
             if (IS_SET (ch->off_flags, OFF_DISARM) ||
                 (char_get_weapon_sn (ch) != SN(HAND_TO_HAND) &&
-                 (IS_SET (ch->mob, MOB_WARRIOR) ||
-                  IS_SET (ch->mob, MOB_THIEF))))
+                 (EXT_IS_SET (ch->ext_mob, MOB_WARRIOR) ||
+                  EXT_IS_SET (ch->ext_mob, MOB_THIEF))))
                 do_function (ch, &do_disarm, "");
             break;
 
@@ -470,10 +470,10 @@ int mobile_get_skill_learned (const CHAR_T *ch, int sn) {
         return ch->level * 2;
     else if (sn == SN(SHIELD_BLOCK))
         return 10 + 2 * ch->level;
-    else if (sn == SN(SECOND_ATTACK) && (IS_SET (ch->mob, MOB_WARRIOR) ||
-                                         IS_SET (ch->mob, MOB_THIEF)))
+    else if (sn == SN(SECOND_ATTACK) && (EXT_IS_SET (ch->ext_mob, MOB_WARRIOR) ||
+                                         EXT_IS_SET (ch->ext_mob, MOB_THIEF)))
         return 10 + 3 * ch->level;
-    else if (sn == SN(THIRD_ATTACK) && IS_SET (ch->mob, MOB_WARRIOR))
+    else if (sn == SN(THIRD_ATTACK) && EXT_IS_SET (ch->ext_mob, MOB_WARRIOR))
         return 4 * ch->level - 40;
     else if (sn == SN(HAND_TO_HAND))
         return 40 + 2 * ch->level;
@@ -482,14 +482,14 @@ int mobile_get_skill_learned (const CHAR_T *ch, int sn) {
     else if (sn == SN(BASH) && IS_SET (ch->off_flags, OFF_BASH))
         return 10 + 3 * ch->level;
     else if (sn == SN(DISARM) && (IS_SET (ch->off_flags, OFF_DISARM) ||
-                                  IS_SET (ch->mob, MOB_WARRIOR)      ||
-                                  IS_SET (ch->mob, MOB_THIEF)))
+                                  EXT_IS_SET (ch->ext_mob, MOB_WARRIOR) ||
+                                  EXT_IS_SET (ch->ext_mob, MOB_THIEF)))
         return 20 + 3 * ch->level;
     else if (sn == SN(BERSERK) && IS_SET (ch->off_flags, OFF_BERSERK))
         return 3 * ch->level;
     else if (sn == SN(KICK))
         return 10 + 3 * ch->level;
-    else if (sn == SN(BACKSTAB) && IS_SET (ch->mob, MOB_THIEF))
+    else if (sn == SN(BACKSTAB) && EXT_IS_SET (ch->ext_mob, MOB_THIEF))
         return 20 + 2 * ch->level;
     else if (sn == SN(RESCUE))
         return 40 + ch->level;
@@ -501,4 +501,13 @@ int mobile_get_skill_learned (const CHAR_T *ch, int sn) {
         return 40 + 5 * ch->level / 2;
     else
         return 0;
+}
+
+bool mobile_is_friendly (const CHAR_T *ch) {
+    return IS_NPC (ch) && (
+        EXT_IS_SET (ch->ext_mob, MOB_TRAIN)     ||
+        EXT_IS_SET (ch->ext_mob, MOB_PRACTICE)  ||
+        EXT_IS_SET (ch->ext_mob, MOB_IS_HEALER) ||
+        EXT_IS_SET (ch->ext_mob, MOB_IS_CHANGER)
+    );
 }

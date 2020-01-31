@@ -124,9 +124,12 @@ DEFINE_DO_FUN (do_flag) {
         arg3[MAX_INPUT_LENGTH];
     char word[MAX_INPUT_LENGTH];
     CHAR_T *victim;
-    flag_t *flag, old = 0, new = 0, marked = 0, pos;
+    flag_t *flags;
     char type;
     const FLAG_T *flag_table;
+    EXT_FLAGS_T *ext_flags;
+    const EXT_FLAG_DEF_T *ext_flag_table;
+    bool set_ext;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -165,47 +168,48 @@ DEFINE_DO_FUN (do_flag) {
     if (!str_prefix (arg3, "mob")) {
         BAIL_IF (!IS_NPC (victim),
             "Use plr for PCs.\n\r", ch);
-        flag = &victim->mob;
-        flag_table = mob_flags;
+        ext_flags = &victim->ext_mob;
+        ext_flag_table = mob_flags;
+        set_ext = TRUE;
     }
     else if (!str_prefix (arg3, "plr")) {
         BAIL_IF (IS_NPC (victim),
             "Use act for NPCs.\n\r", ch);
-        flag = &victim->plr;
+        flags = &victim->plr;
         flag_table = plr_flags;
     }
     else if (!str_prefix (arg3, "aff")) {
-        flag = &victim->affected_by;
+        flags = &victim->affected_by;
         flag_table = affect_flags;
     }
     else if (!str_prefix (arg3, "immunity")) {
-        flag = &victim->imm_flags;
+        flags = &victim->imm_flags;
         flag_table = res_flags;
     }
     else if (!str_prefix (arg3, "resist")) {
-        flag = &victim->res_flags;
+        flags = &victim->res_flags;
         flag_table = res_flags;
     }
     else if (!str_prefix (arg3, "vuln")) {
-        flag = &victim->vuln_flags;
+        flags = &victim->vuln_flags;
         flag_table = res_flags;
     }
     else if (!str_prefix (arg3, "form")) {
         BAIL_IF (!IS_NPC (victim),
             "Form can't be set on PCs.\n\r", ch);
-        flag = &victim->form;
+        flags = &victim->form;
         flag_table = form_flags;
     }
     else if (!str_prefix (arg3, "parts")) {
         BAIL_IF (!IS_NPC (victim),
             "Parts can't be set on PCs.\n\r", ch);
-        flag = &victim->parts;
+        flags = &victim->parts;
         flag_table = part_flags;
     }
     else if (!str_prefix (arg3, "comm")) {
         BAIL_IF (IS_NPC (victim),
             "Comm can't be set on NPCs.\n\r", ch);
-        flag = &victim->comm;
+        flags = &victim->comm;
         flag_table = comm_flags;
     }
     else {
@@ -213,7 +217,25 @@ DEFINE_DO_FUN (do_flag) {
         return;
     }
 
-    old = *flag;
+    if (set_ext)
+        do_flag_ext (ch, victim, type, ext_flag_table, ext_flags, argument);
+    else
+        do_flag_simple (ch, victim, type, flag_table, flags, argument);
+}
+
+void do_flag_ext (CHAR_T *ch, CHAR_T *victim, char type,
+    const EXT_FLAG_DEF_T *flag_table, EXT_FLAGS_T *flags, char *argument)
+{
+    /* TODO: everything */
+}
+
+void do_flag_simple (CHAR_T *ch, CHAR_T *victim, char type,
+    const FLAG_T *flag_table, flag_t *flags, char *argument)
+{
+    flag_t old = 0, new = 0, marked = 0, pos;
+    char word[MAX_INPUT_LENGTH];
+
+    old = *flags;
     victim->zone = NULL;
 
     if (type != '=')
@@ -256,7 +278,7 @@ DEFINE_DO_FUN (do_flag) {
             }
         }
     }
-    *flag = new;
+    *flags = new;
 }
 
 DEFINE_DO_FUN (do_freeze) {
@@ -397,7 +419,7 @@ DEFINE_DO_FUN (do_purge) {
 
         for (victim = ch->in_room->people; victim != NULL; victim = vnext) {
             vnext = victim->next_in_room;
-            if (IS_NPC (victim) && !IS_SET (victim->mob, MOB_NOPURGE)
+            if (IS_NPC (victim) && !EXT_IS_SET (victim->ext_mob, MOB_NOPURGE)
                 && victim != ch /* safety precaution */ )
                 char_extract (victim, TRUE);
         }

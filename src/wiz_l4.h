@@ -32,6 +32,10 @@
 
 /* Sub-routines and filters. */
 void do_restore_single (CHAR_T *ch, CHAR_T *vch);
+void do_flag_ext (CHAR_T *ch, CHAR_T *victim, char type,
+    const EXT_FLAG_DEF_T *flag_table, EXT_FLAGS_T *flags, char *argument);
+void do_flag_simple (CHAR_T *ch, CHAR_T *victim, char type,
+    const FLAG_T *flag_table, flag_t *flags, char *argument);
 
 /* Commands. */
 DECLARE_DO_FUN (do_guild);

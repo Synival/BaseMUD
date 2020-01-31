@@ -174,7 +174,7 @@ DEFINE_SPELL_FUN (spell_calm) {
         if (!(vch->fighting || vch->position == POS_FIGHTING))
             continue;
         if (IS_NPC (vch) && (IS_SET (vch->imm_flags, RES_MAGIC) ||
-                             IS_SET (vch->mob, MOB_UNDEAD)))
+                             EXT_IS_SET (vch->ext_mob, MOB_UNDEAD)))
             continue;
         if (IS_AFFECTED (vch, AFF_CALM) || IS_AFFECTED (vch, AFF_BERSERK) ||
                 is_affected (vch, skill_lookup ("frenzy")))
@@ -906,7 +906,7 @@ DEFINE_SPELL_FUN (spell_plague) {
     AFFECT_T af;
 
     if (saves_spell (level, victim, DAM_DISEASE) ||
-        (IS_NPC (victim) && IS_SET (victim->mob, MOB_UNDEAD)))
+        (IS_NPC (victim) && EXT_IS_SET (victim->ext_mob, MOB_UNDEAD)))
     {
         if (ch == victim)
             send_to_char ("You feel momentarily ill, but it passes.\n\r", ch);
@@ -1039,7 +1039,7 @@ DEFINE_SPELL_FUN (spell_sleep) {
     BAIL_IF_ACT (saves_spell (level - 4, victim, DAM_CHARM),
         "$e resists your spell!", ch, NULL, NULL);
     BAIL_IF (IS_AFFECTED (victim, AFF_SLEEP) ||
-            (IS_NPC (victim) && IS_SET (victim->mob, MOB_UNDEAD)) ||
+            (IS_NPC (victim) && EXT_IS_SET (victim->ext_mob, MOB_UNDEAD)) ||
             (level + 2) < victim->level,
         "Nothing happens.\n\r", ch);
 

@@ -242,8 +242,8 @@ JSON_T *json_objw_mobile (const char *name, const MOB_INDEX_T *mob) {
     if (mob->shop)
         json_prop_obj_shop (new, "shop", mob->shop);
 
-    if (mob->mob_plus != 0)
-        json_prop_string (new, "mob_flags",   JBITSF (mob_flags, mob->mob_plus & ~MOB_IS_NPC));
+    if (EXT_IS_NONZERO (mob->ext_mob_plus))
+        json_prop_string (new, "mob_flags",   JBITSXF (mob_flags, EXT_WITHOUT (mob->ext_mob_plus, MOB_IS_NPC)));
     if (mob->affected_by_plus != 0)
         json_prop_string (new, "affected_by", JBITSF (affect_flags, mob->affected_by_plus));
     if (mob->off_flags_plus != 0)
@@ -259,8 +259,8 @@ JSON_T *json_objw_mobile (const char *name, const MOB_INDEX_T *mob) {
     if (mob->parts_plus != 0)
         json_prop_string (new, "parts",       JBITSF (part_flags, mob->parts_plus));
 
-    if (mob->mob_minus != 0)
-        json_prop_string (new, "mob_flags_minus",   JBITSF (mob_flags, mob->mob_minus));
+    if (EXT_IS_NONZERO (mob->ext_mob_minus))
+        json_prop_string (new, "mob_flags_minus",   JBITSXF (mob_flags, mob->ext_mob_minus));
     if (mob->affected_by_minus != 0)
         json_prop_string (new, "affected_by_minus", JBITSF (affect_flags, mob->affected_by_minus));
     if (mob->off_flags_minus != 0)
@@ -605,9 +605,10 @@ JSON_T *json_objw_table (const char *name, const TABLE_T *table) {
 
     type_str = NULL;
     switch (table->type) {
-        case TABLE_FLAGS:  type_str = "flags"; break;
-        case TABLE_TYPES:  type_str = "types"; break;
-        case TABLE_UNIQUE: type_str = "table"; break;
+        case TABLE_FLAGS:     type_str = "flags";     break;
+        case TABLE_EXT_FLAGS: type_str = "ext_flags"; break;
+        case TABLE_TYPES:     type_str = "types";     break;
+        case TABLE_UNIQUE:    type_str = "table";     break;
         default:
             bugf ("json_objw_table: Error: table '%s' is of unhandled "
                 "type %d", table->name, table->type);
@@ -646,11 +647,23 @@ JSON_T *json_objw_table (const char *name, const TABLE_T *table) {
                 }
                 expected_flag <<= 1;
             }
+            else if (table->type == TABLE_EXT_FLAGS) {
+                const EXT_FLAG_DEF_T *ext_flag = obj;
+                if (expected_type == -999)
+                    expected_type = ext_flag->bit;
+                else if (ext_flag->bit != expected_type) {
+                    bugf ("json_objw_table: Warning: %s table '%s' row "
+                        "'%s' should be %ld, but it's %ld", type_str,
+                        table->name, ext_flag->name, expected_type,
+                        ext_flag->bit);
+                }
+                ++expected_type;
+            }
             else if (table->type == TABLE_TYPES) {
                 const TYPE_T *type = obj;
                 if (expected_type == -999)
                     expected_type = type->type;
-                if (type->type != expected_type) {
+                else if (type->type != expected_type) {
                     bugf ("json_objw_table: Warning: %s table '%s' row "
                         "'%s' should be %ld, but it's %ld", type_str,
                         table->name, type->name, expected_type, type->type);

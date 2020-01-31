@@ -384,8 +384,8 @@ const char *affect_bit_name (flag_t flags)
     { return flags_to_string (affect_flags, flags); }
 const char *extra_bit_name (flag_t flags)
     { return flags_to_string (extra_flags, flags); }
-const char *mob_bit_name (flag_t flags)
-    { return flags_to_string (mob_flags, flags); }
+const char *mob_bit_name (EXT_FLAGS_T flags)
+    { return ext_flags_to_string (mob_flags, flags); }
 const char *plr_bit_name (flag_t flags)
     { return flags_to_string (plr_flags, flags); }
 const char *comm_bit_name (flag_t flags)

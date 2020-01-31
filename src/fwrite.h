@@ -32,5 +32,6 @@
 
 /* Writing functions. */
 char *fwrite_flag (long flags, char buf[]);
+char *fwrite_ext_flag (EXT_FLAGS_T flags, char buf[]);
 
 #endif

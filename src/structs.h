@@ -30,6 +30,18 @@
 
 #include "merc.h"
 
+/* Extended flags. */
+/* NOTE: the type used should be determined by EXT_FLAGS_ELEMENT_SIZE,
+ *       defined in 'defs.h'. If you want to use anything other than
+ *       8-bit unsigned chars, please upgrade! */
+struct ext_flags_type {
+    unsigned char bits[EXT_FLAGS_ARRAY_LENGTH];
+};
+
+struct ext_init_flags_type {
+    int *bits;
+};
+
 /* Objects that can be instantiated, freed, recycled, and catalogued. */
 struct recycle_type {
     int type;
@@ -231,7 +243,7 @@ struct attack_type {
 
 struct race_type {
     char *name;   /* call name of the race          */
-    flag_t mob;   /* act bits for the race          */
+    EXT_INIT_FLAGS_T ext_mob; /* act bits for the race          */
     flag_t aff;   /* aff bits for the race          */
     flag_t off;   /* off bits for the race          */
     flag_t imm;   /* imm bits for the race          */
@@ -294,6 +306,12 @@ struct kill_data {
 struct flag_type {
     char *name;
     flag_t bit;
+    bool settable;
+};
+
+struct ext_flag_def_type {
+    char *name;
+    int bit;
     bool settable;
 };
 
@@ -389,7 +407,7 @@ struct mob_index_data {
     sh_int size;
     sh_int material;
     flag_t mprog_flags;
-    flag_t mob_plus,         mob_final,         mob_minus;
+    EXT_FLAGS_T ext_mob_plus, ext_mob_final, ext_mob_minus;
     flag_t affected_by_plus, affected_by_final, affected_by_minus;
     flag_t off_flags_plus,   off_flags_final,   off_flags_minus;
     flag_t imm_flags_plus,   imm_flags_final,   imm_flags_minus;
@@ -460,7 +478,7 @@ struct char_data {
     long gold;
     long silver;
     int exp;
-    flag_t mob;
+    EXT_FLAGS_T ext_mob;
     flag_t plr;
     flag_t comm;   /* RT added to pad the vector */
     flag_t wiznet; /* wiz stuff */
@@ -1183,14 +1201,6 @@ struct song_type {
     char *name;
     char *lyrics[MAX_SONG_LINES];
     int lines;
-};
-
-/* Extended flags. */
-/* NOTE: the type used should be determined by EXT_FLAGS_ELEMENT_SIZE,
- *       defined in 'defs.h'. If you want to use anything other than
- *       8-bit unsigned chars, please upgrade! */
-struct ext_flags_type {
-    unsigned char bits[EXT_FLAGS_ARRAY_LENGTH];
 };
 
 #endif

@@ -130,7 +130,7 @@ void save_mobile (FILE *fp, MOB_INDEX_T *mob_index)
     fprintf (fp, "%s~\n", fix_string (mob_index->long_descr));
     fprintf (fp, "%s~\n", fix_string (mob_index->description));
     fprintf (fp, "%s~\n", race->name);
-    fprintf (fp, "%s ", fwrite_flag (mob_index->mob_plus, buf));
+    fprintf (fp, "%s ", fwrite_ext_flag (mob_index->ext_mob_plus, buf));
     fprintf (fp, "%s ", fwrite_flag (mob_index->affected_by_plus, buf));
     fprintf (fp, "%d %d\n", mob_index->alignment, mob_index->group);
     fprintf (fp, "%d ", mob_index->level);
@@ -161,8 +161,8 @@ void save_mobile (FILE *fp, MOB_INDEX_T *mob_index)
     fprintf (fp, "%s\n", str_if_null (
         (char *) material_get_name (mob_index->material), "unknown"));
 
-    if (mob_index->mob_minus != 0)
-        fprintf (fp, "F act %s\n", fwrite_flag (mob_index->mob_minus, buf));
+    if (EXT_IS_NONZERO (mob_index->ext_mob_minus))
+        fprintf (fp, "F act %s\n", fwrite_ext_flag (mob_index->ext_mob_minus, buf));
     if (mob_index->affected_by_minus != 0)
         fprintf (fp, "F aff %s\n", fwrite_flag (mob_index->affected_by_minus, buf));
     if (mob_index->off_flags_minus != 0)

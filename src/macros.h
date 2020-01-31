@@ -43,14 +43,35 @@
 #define SET_BIT(_var, _bit)      ((_var) |= (_bit))
 #define REMOVE_BIT(_var, _bit)   ((_var) &= ~(_bit))
 #define TOGGLE_BIT(_var, _bit)   ((_var) ^= (_bit))
-#define MISSING_BITS(_var, _bit) (~((~_var) | (_bit)))
+
 #define ARE_SET(_var, _bit)      (((_var) & (_bit)) == (_bit))
 #define NONE_SET(_var, _bit)     (((_var) & (_bit)) == 0)
 
-#define EXT_IS_SET(_var, _flag)     (ext_flags_is_set     (&(_var), (_flag)))
-#define EXT_SET_BIT(_var, _flag)    (ext_flags_set_bit    (&(_var), (_flag)))
-#define EXT_REMOVE_BIT(_var, _flag) (ext_flags_remove_bit (&(_var), (_flag)))
-#define EXT_TOGGLE_BIT(_var, _flag) (ext_flags_toggle_bit (&(_var), (_flag)))
+/* Extended bit macros. */
+#define EXT_ZERO                     ((EXT_FLAGS_T) {{ 0 }})
+#define EXT_IS_ZERO(_bits)           (ext_flags_is_zero(_bits))
+#define EXT_IS_NONZERO(_bits)        (!EXT_IS_ZERO(_bits))
+#define EXT_BITS(...)                (ext_flags_build(__VA_ARGS__, -1))
+#define EXT_IS_SET(_var, _flag)      (ext_flags_is_set     ((_var), (_flag)))
+#define EXT_EQUALS(_bits1, _bits2)   (ext_flags_equals     ((_bits1), (_bits2)))
+#define EXT_SET(_var, _flag)         (ext_flags_set        (&(_var), (_flag)))
+#define EXT_SET_MANY(_var, _var2)    (ext_flags_set_many   (&(_var), (_var2)))
+#define EXT_UNSET(_var, _flag)       (ext_flags_unset      (&(_var), (_flag)))
+#define EXT_UNSET_MANY(_var, _var2)  (ext_flags_unset_many (&(_var), (_var2)))
+#define EXT_TOGGLE(_var, _flag)      (ext_flags_toggle     (&(_var), (_flag)))
+#define EXT_TOGGLE_MANY(_var, _var2) (ext_flags_toggle_many(&(_var), (_var2)))
+
+#define EXT_TO_FLAG_T(_bits)         (ext_flags_to_flag_t(_bits))
+
+#define EXT_INIT_ZERO                ((EXT_INIT_FLAGS_T) {(int[]) { -1 }})
+#define EXT_INIT_BITS(...)           ((EXT_INIT_FLAGS_T) {(int[]) { __VA_ARGS__, -1 }})
+#define EXT_FROM_FLAG_T(_flags)      (ext_flags_from_flag_t(_flags))
+#define EXT_FROM_INIT(_bits)         (ext_flags_from_init(&(_bits)))
+
+#define EXT_WITH(_bits, _flag)           (ext_flags_with (_bits, _flag))
+#define EXT_WITHOUT(_bits, _flag)        (ext_flags_without (_bits, _flag))
+#define EXT_WITH_MANY(_bits1, _bits2)    (ext_flags_with_many (_bits1, _bits2))
+#define EXT_WITHOUT_MANY(_bits1, _bits2) (ext_flags_without_many (_bits1, _bits2))
 
 /* Skill macros. */
 #define SN(map)      (skill_map_table[SKILL_MAP_ ## map].skill_index)

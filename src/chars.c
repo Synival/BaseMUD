@@ -683,7 +683,7 @@ void char_move (CHAR_T *ch, int door, bool follow) {
         {
 
             if (IS_SET (ch->in_room->room_flags, ROOM_LAW)
-                && (IS_NPC (fch) && IS_SET (fch->mob, MOB_AGGRESSIVE)))
+                && (IS_NPC (fch) && EXT_IS_SET (fch->ext_mob, MOB_AGGRESSIVE)))
             {
                 act ("You can't bring $N into the city.",
                      ch, NULL, fch, TO_CHAR);
@@ -1347,7 +1347,7 @@ CHAR_T *char_get_keeper_room (const CHAR_T *ch) {
 CHAR_T *char_get_trainer_room (const CHAR_T *ch) {
     CHAR_T *t;
     for (t = ch->in_room->people; t; t = t->next_in_room)
-        if (IS_NPC (t) && IS_SET (t->mob, MOB_TRAIN))
+        if (IS_NPC (t) && EXT_IS_SET (t->ext_mob, MOB_TRAIN))
             return t;
     return NULL;
 }
@@ -1355,7 +1355,7 @@ CHAR_T *char_get_trainer_room (const CHAR_T *ch) {
 CHAR_T *char_get_practicer_room (const CHAR_T *ch) {
     CHAR_T *p;
     for (p = ch->in_room->people; p; p = p->next_in_room)
-        if (IS_NPC (p) && IS_SET (p->mob, MOB_PRACTICE))
+        if (IS_NPC (p) && EXT_IS_SET (p->ext_mob, MOB_PRACTICE))
             return p;
     return NULL;
 }
@@ -1363,7 +1363,7 @@ CHAR_T *char_get_practicer_room (const CHAR_T *ch) {
 CHAR_T *char_get_gainer_room (const CHAR_T *ch) {
     CHAR_T *g;
     for (g = ch->in_room->people; g; g = g->next_in_room)
-        if (IS_NPC (g) && IS_SET (g->mob, MOB_GAIN))
+        if (IS_NPC (g) && EXT_IS_SET (g->ext_mob, MOB_GAIN))
             return g;
     return NULL;
 }
@@ -1504,7 +1504,7 @@ bool char_is_trusted (const CHAR_T *ch, int level)
     { return char_get_trust (ch) >= level ? TRUE : FALSE; }
 
 bool char_is_npc (const CHAR_T *ch)
-    { return IS_SET((ch)->mob, MOB_IS_NPC) ? TRUE : FALSE; }
+    { return EXT_IS_SET(ch->ext_mob, MOB_IS_NPC) ? TRUE : FALSE; }
 bool char_is_immortal (const CHAR_T *ch)
     { return (char_is_trusted (ch, LEVEL_IMMORTAL)) ? TRUE : FALSE; }
 bool char_is_hero (const CHAR_T *ch)
@@ -1555,7 +1555,7 @@ bool char_is_full (const CHAR_T *ch) {
 }
 
 bool char_is_pet (const CHAR_T *ch)
-    { return (char_is_npc (ch) && IS_SET ((ch)->mob, MOB_PET)) ? TRUE : FALSE; }
+    { return (char_is_npc (ch) && EXT_IS_SET (ch->ext_mob, MOB_PET)) ? TRUE : FALSE; }
 
 bool char_is_good (const CHAR_T *ch)
     { return (ch->alignment >=  350) ? TRUE : FALSE; }
@@ -1583,7 +1583,9 @@ int char_get_age (const CHAR_T *ch) {
 }
 
 bool char_is_same_align (const CHAR_T *ch1, const CHAR_T *ch2) {
-    if (IS_SET (ch1->mob, MOB_NOALIGN || IS_SET (ch2->mob, MOB_NOALIGN)))
+    if (EXT_IS_SET (ch1->ext_mob, MOB_NOALIGN))
+        return FALSE;
+    if (EXT_IS_SET (ch2->ext_mob, MOB_NOALIGN))
         return FALSE;
     if (char_is_good (ch1) && char_is_good (ch2))
         return TRUE;

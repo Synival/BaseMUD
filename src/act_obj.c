@@ -389,7 +389,7 @@ void do_give_money (CHAR_T *ch, char *arg1, char *arg2, char *argument) {
     if (IS_NPC (victim) && HAS_TRIGGER (victim, TRIG_BRIBE))
         mp_bribe_trigger (victim, ch, is_silver ? amount : amount * 100);
 
-    if (IS_NPC (victim) && IS_SET (victim->mob, MOB_IS_CHANGER)) {
+    if (IS_NPC (victim) && EXT_IS_SET (victim->ext_mob, MOB_IS_CHANGER)) {
         int change;
         int can_see;
 

@@ -35,18 +35,6 @@
 
 #include "flags.h"
 
-#define EF_INDEX(_flag) ((flag) / 8)
-#define EF_BIT(_flag)   (1 << ((flag) % 8))
-
-bool ext_flags_is_set (EXT_FLAGS_T *var, int flag)
-    { return (var->bits[EF_INDEX(flag)] & EF_BIT(flag)) ? TRUE : FALSE; }
-void ext_flags_set_bit (EXT_FLAGS_T *var, int flag)
-    { var->bits[EF_INDEX(flag)] |= EF_BIT(flag); }
-void ext_flags_remove_bit (EXT_FLAGS_T *var, int flag)
-    { var->bits[EF_INDEX(flag)] &= ~EF_BIT(flag); }
-void ext_flags_toggle_bit (EXT_FLAGS_T *var, int flag)
-    { var->bits[EF_INDEX(flag)] ^= EF_BIT(flag); }
-
 flag_t flag_lookup (const FLAG_T *flag_table, const char *name)
     { SIMPLE_LOOKUP_PROP (flag_table, bit, name, FLAG_NONE, 0); }
 flag_t flag_lookup_exact (const FLAG_T *flag_table, const char *name)
@@ -112,41 +100,6 @@ const char *flags_to_string_real (const FLAG_T *flag_table, flag_t bits,
     }
     return (buf[cnt][0] == '\0') ? none_str : buf[cnt];
 }
-
-/* various flag tables */
-const FLAG_T mob_flags[] = {
-    {"npc",           MOB_IS_NPC,        FALSE},
-    {"sentinel",      MOB_SENTINEL,      TRUE},
-    {"scavenger",     MOB_SCAVENGER,     TRUE},
-    {"unused_act_1",  MOB_UNUSED_FLAG_1, FALSE},
-    {"unused_act_2",  MOB_UNUSED_FLAG_2, FALSE},
-    {"aggressive",    MOB_AGGRESSIVE,    TRUE},
-    {"stay_area",     MOB_STAY_AREA,     TRUE},
-    {"wimpy",         MOB_WIMPY,         TRUE},
-    {"pet",           MOB_PET,           TRUE},
-    {"train",         MOB_TRAIN,         TRUE},
-    {"practice",      MOB_PRACTICE,      TRUE},
-    {"unused_act_3",  MOB_UNUSED_FLAG_3, FALSE},
-    {"unused_act_4",  MOB_UNUSED_FLAG_4, FALSE},
-    {"unused_act_5",  MOB_UNUSED_FLAG_5, FALSE},
-    {"undead",        MOB_UNDEAD,        TRUE},
-    {"unused_act_6",  MOB_UNUSED_FLAG_6, FALSE},
-    {"cleric",        MOB_CLERIC,        TRUE},
-    {"mage",          MOB_MAGE,          TRUE},
-    {"thief",         MOB_THIEF,         TRUE},
-    {"warrior",       MOB_WARRIOR,       TRUE},
-    {"noalign",       MOB_NOALIGN,       TRUE},
-    {"nopurge",       MOB_NOPURGE,       TRUE},
-    {"outdoors",      MOB_OUTDOORS,      TRUE},
-    {"unused_act_7",  MOB_UNUSED_FLAG_7, FALSE},
-    {"indoors",       MOB_INDOORS,       TRUE},
-    {"unused_act_8",  MOB_UNUSED_FLAG_8, FALSE},
-    {"healer",        MOB_IS_HEALER,     TRUE},
-    {"gain",          MOB_GAIN,          TRUE},
-    {"update_always", MOB_UPDATE_ALWAYS, TRUE},
-    {"changer",       MOB_IS_CHANGER,    TRUE},
-    {0}
-};
 
 const FLAG_T plr_flags[] = {
     {"!npc!",         PLR_IS_NPC,        FALSE},

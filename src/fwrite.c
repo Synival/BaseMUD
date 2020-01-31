@@ -61,3 +61,8 @@ char *fwrite_flag (long flags, char buf[]) {
     *cp = '\0';
     return buf;
 }
+
+char *fwrite_ext_flag (EXT_FLAGS_T flags, char buf[]) {
+    /* TODO: write me for reals! */
+    return fwrite_flag (EXT_TO_FLAG_T (flags), buf);
+}

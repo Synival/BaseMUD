@@ -162,7 +162,7 @@ DEFINE_SPELL_FUN (spell_summon) {
         "You failed.\n\r", ch);
     BAIL_IF (!IS_NPC (victim) && victim->level >= LEVEL_IMMORTAL,
         "You failed.\n\r", ch);
-    BAIL_IF (IS_NPC (victim) && IS_SET (victim->mob, MOB_AGGRESSIVE),
+    BAIL_IF (IS_NPC (victim) && EXT_IS_SET (victim->ext_mob, MOB_AGGRESSIVE),
         "You failed.\n\r", ch);
     BAIL_IF (IS_NPC (victim) && victim->index_data->shop != NULL,
         "You failed.\n\r", ch);

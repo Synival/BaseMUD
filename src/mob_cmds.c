@@ -408,7 +408,7 @@ DEFINE_DO_FUN (do_mppurge) {
         for (victim = ch->in_room->people; victim != NULL; victim = vnext) {
             vnext = victim->next_in_room;
             if (IS_NPC (victim) && victim != ch
-                && !IS_SET (victim->mob, MOB_NOPURGE))
+                && !EXT_IS_SET (victim->ext_mob, MOB_NOPURGE))
                 char_extract (victim, TRUE);
         }
         for (obj = ch->in_room->contents; obj != NULL; obj = obj_next) {
