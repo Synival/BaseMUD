@@ -82,13 +82,13 @@ int colour_to_ansi (flag_t colour, char *buf_out, size_t size) {
         flag_str, fg_str, bg_str, beep_str);
 }
 
-int colour_code_to_ansi (CHAR_T *ch, int use_colour,
+int colour_code_to_ansi (CHAR_T *ch, bool use_colour,
     char type, char *buf_out, size_t size)
 {
     char code[32];
     if (ch != NULL) {
         ch = REAL_CH (ch);
-        use_colour = IS_SET(ch->plr, PLR_COLOUR) ? 1 : 0;
+        use_colour = EXT_IS_SET (ch->ext_plr, PLR_COLOUR) ? TRUE : FALSE;
     }
 
     /* Look for a hard-coded colour code. */
@@ -148,7 +148,7 @@ int colour_puts (CHAR_T *ch, bool use_colour, const char *buf_in,
         return 0;
     if (ch != NULL) {
         ch = REAL_CH (ch);
-        use_colour = IS_SET(ch->plr, PLR_COLOUR) ? 1 : 0;
+        use_colour = EXT_IS_SET (ch->ext_plr, PLR_COLOUR) ? TRUE : FALSE;
     }
 
     buf_start = buf_out;

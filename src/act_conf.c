@@ -72,7 +72,7 @@ void do_colour_one (CHAR_T *ch, const COLOUR_SETTING_T *setting,
     }
 
     /* Show us the colour... /in colour!/ */
-    if (IS_SET (ch->plr, PLR_COLOUR))
+    if (EXT_IS_SET (ch->ext_plr, PLR_COLOUR))
         colour_to_ansi (*col_flag, buf + strlen(buf), MAX_STRING_LENGTH);
 
     /* Arrange the color nicely. */
@@ -82,7 +82,7 @@ void do_colour_one (CHAR_T *ch, const COLOUR_SETTING_T *setting,
         sprintf (buf + strlen(buf), " %-15s", arg);
     }
 
-    if (IS_SET (ch->plr, PLR_COLOUR))
+    if (EXT_IS_SET (ch->ext_plr, PLR_COLOUR))
         colour_to_ansi (CC_CLEAR, buf + strlen(buf), MAX_STRING_LENGTH);
 
     /* Done! */
@@ -173,17 +173,17 @@ DEFINE_DO_FUN (do_colour) {
             "    colour <field>|all default\n\r"
             "    colour <field>|all <colour>\n\r"
             "    colour <field>|all beep|nobeep\n\r",
-            IS_SET (ch->plr, PLR_COLOUR) ? "ON" : "OFF");
+            EXT_IS_SET (ch->ext_plr, PLR_COLOUR) ? "ON" : "OFF");
         return;
     }
 
     if (!str_cmp (arg1, "on")) {
-        SET_BIT (ch->plr, PLR_COLOUR);
+        EXT_SET (ch->ext_plr, PLR_COLOUR);
         send_to_char("{RCo{ylor {Yis {Gno{gw {cON{b. A{Bma{Mzi{mng{r!!{x\n\r", ch);
         return;
     }
     if (!str_cmp (arg1, "off")) {
-        REMOVE_BIT (ch->plr, PLR_COLOUR);
+        EXT_UNSET (ch->ext_plr, PLR_COLOUR);
         send_to_char("Color is now OFF. Lame!\n\r", ch);
         return;
     }
@@ -245,12 +245,12 @@ DEFINE_DO_FUN (do_autolist) {
     send_to_char ("   action         status\n\r", ch);
     send_to_char ("---------------------------\n\r", ch);
 
-    do_autolist_flag ("autoassist",   ch, ch->plr,  PLR_AUTOASSIST);
-    do_autolist_flag ("autoexit",     ch, ch->plr,  PLR_AUTOEXIT);
-    do_autolist_flag ("autogold",     ch, ch->plr,  PLR_AUTOGOLD);
-    do_autolist_flag ("autoloot",     ch, ch->plr,  PLR_AUTOLOOT);
-    do_autolist_flag ("autosac",      ch, ch->plr,  PLR_AUTOSAC);
-    do_autolist_flag ("autosplit",    ch, ch->plr,  PLR_AUTOSPLIT);
+    do_autolist_ext_flag ("autoassist",   ch, ch->ext_plr,  PLR_AUTOASSIST);
+    do_autolist_ext_flag ("autoexit",     ch, ch->ext_plr,  PLR_AUTOEXIT);
+    do_autolist_ext_flag ("autogold",     ch, ch->ext_plr,  PLR_AUTOGOLD);
+    do_autolist_ext_flag ("autoloot",     ch, ch->ext_plr,  PLR_AUTOLOOT);
+    do_autolist_ext_flag ("autosac",      ch, ch->ext_plr,  PLR_AUTOSAC);
+    do_autolist_ext_flag ("autosplit",    ch, ch->ext_plr,  PLR_AUTOSPLIT);
 
     send_to_char ("---------------------------\n\r", ch);
     do_autolist_flag ("telnetga",     ch, ch->comm, COMM_TELNET_GA);
@@ -264,58 +264,58 @@ DEFINE_DO_FUN (do_autolist) {
 #endif
 
     send_to_char ("---------------------------\n\r", ch);
-    do_autolist_flag ("noloot",       ch, ~ch->plr, PLR_CANLOOT);
-    do_autolist_flag ("nosummon",     ch, ch->plr,  PLR_NOSUMMON);
-    do_autolist_flag ("nofollow",     ch, ch->plr,  PLR_NOFOLLOW);
+    do_autolist_ext_flag ("noloot",       ch, EXT_INVERTED (ch->ext_plr), PLR_CANLOOT);
+    do_autolist_ext_flag ("nosummon",     ch, ch->ext_plr,  PLR_NOSUMMON);
+    do_autolist_ext_flag ("nofollow",     ch, ch->ext_plr,  PLR_NOFOLLOW);
 }
 
 DEFINE_DO_FUN (do_autoassist) {
-    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOASSIST,
+    do_ext_flag_toggle (ch, TRUE, &(ch->ext_plr), PLR_AUTOASSIST,
         "Autoassist removed.\n\r",
         "You will now assist when needed.\n\r");
 }
 
 DEFINE_DO_FUN (do_autoexit) {
-    do_flag_toggle (ch, FALSE, &(ch->plr), PLR_AUTOEXIT,
+    do_ext_flag_toggle (ch, FALSE, &(ch->ext_plr), PLR_AUTOEXIT,
         "Exits will no longer be displayed.\n\r",
         "Exits will now be displayed.\n\r");
 }
 
 DEFINE_DO_FUN (do_autogold) {
-    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOGOLD,
+    do_ext_flag_toggle (ch, TRUE, &(ch->ext_plr), PLR_AUTOGOLD,
         "Autogold removed.\n\r",
         "Automatic gold looting set.\n\r");
 }
 
 DEFINE_DO_FUN (do_autoloot) {
-    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOLOOT,
+    do_ext_flag_toggle (ch, TRUE, &(ch->ext_plr), PLR_AUTOLOOT,
         "Autolooting removed.\n\r",
         "Automatic corpse looting set.\n\r");
 }
 
 DEFINE_DO_FUN (do_autosac) {
-    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOSAC,
+    do_ext_flag_toggle (ch, TRUE, &(ch->ext_plr), PLR_AUTOSAC,
         "Autosacrificing removed.\n\r",
         "Automatic corpse sacrificing set.\n\r");
 }
 
 DEFINE_DO_FUN (do_autosplit) {
-    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_AUTOSPLIT,
+    do_ext_flag_toggle (ch, TRUE, &(ch->ext_plr), PLR_AUTOSPLIT,
         "Autosplitting removed.\n\r",
         "Automatic gold splitting set.\n\r");
 }
 
 DEFINE_DO_FUN (do_noloot) {
-    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_CANLOOT,
+    do_ext_flag_toggle (ch, TRUE, &(ch->ext_plr), PLR_CANLOOT,
         "Your corpse is now safe from thieves.\n\r",
         "Your corpse may now be looted.\n\r");
 }
 
 DEFINE_DO_FUN (do_nofollow) {
-    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_NOFOLLOW,
+    do_ext_flag_toggle (ch, TRUE, &(ch->ext_plr), PLR_NOFOLLOW,
         "You now accept followers.\n\r",
         "You no longer accept followers.\n\r");
-    if (IS_SET (ch->plr, PLR_NOFOLLOW))
+    if (EXT_IS_SET (ch->ext_plr, PLR_NOFOLLOW))
         die_follower (ch);
 }
 
@@ -362,7 +362,7 @@ DEFINE_DO_FUN (do_nosummon) {
             "You are now immune to summoning.\n\r");
     }
     else {
-        do_flag_toggle (ch, FALSE, &(ch->plr), PLR_NOSUMMON,
+        do_ext_flag_toggle (ch, FALSE, &(ch->ext_plr), PLR_NOSUMMON,
             "You are no longer immune to summon.\n\r",
             "You are now immune to summoning.\n\r");
     }
@@ -373,25 +373,25 @@ DEFINE_DO_FUN (do_autoall) {
         "NPCs can't use player flags.\n\r", ch);
 
     if (!strcmp (argument, "on")) {
-        SET_BIT(ch->plr, PLR_AUTOASSIST);
-        SET_BIT(ch->plr, PLR_AUTOEXIT);
-        SET_BIT(ch->plr, PLR_AUTOGOLD);
-        SET_BIT(ch->plr, PLR_AUTOLOOT);
-        SET_BIT(ch->plr, PLR_AUTOSAC);
-        SET_BIT(ch->plr, PLR_AUTOSPLIT);
-        send_to_char("All autos turned on.\n\r",ch);
+        EXT_SET (ch->ext_plr, PLR_AUTOASSIST);
+        EXT_SET (ch->ext_plr, PLR_AUTOEXIT);
+        EXT_SET (ch->ext_plr, PLR_AUTOGOLD);
+        EXT_SET (ch->ext_plr, PLR_AUTOLOOT);
+        EXT_SET (ch->ext_plr, PLR_AUTOSAC);
+        EXT_SET (ch->ext_plr, PLR_AUTOSPLIT);
+        send_to_char ("All autos turned on.\n\r", ch);
     }
     else if (!strcmp (argument, "off")) {
-        REMOVE_BIT (ch->plr, PLR_AUTOASSIST);
-        REMOVE_BIT (ch->plr, PLR_AUTOEXIT);
-        REMOVE_BIT (ch->plr, PLR_AUTOGOLD);
-        REMOVE_BIT (ch->plr, PLR_AUTOLOOT);
-        REMOVE_BIT (ch->plr, PLR_AUTOSAC);
-        REMOVE_BIT (ch->plr, PLR_AUTOSPLIT);
-        send_to_char("All autos turned off.\n\r", ch);
+        EXT_UNSET (ch->ext_plr, PLR_AUTOASSIST);
+        EXT_UNSET (ch->ext_plr, PLR_AUTOEXIT);
+        EXT_UNSET (ch->ext_plr, PLR_AUTOGOLD);
+        EXT_UNSET (ch->ext_plr, PLR_AUTOLOOT);
+        EXT_UNSET (ch->ext_plr, PLR_AUTOSAC);
+        EXT_UNSET (ch->ext_plr, PLR_AUTOSPLIT);
+        send_to_char ("All autos turned off.\n\r", ch);
     }
     else
-        send_to_char("Usage: autoall [on|off]\n\r", ch);
+        send_to_char ("Usage: autoall [on|off]\n\r", ch);
 }
 
 DEFINE_DO_FUN (do_prompt) {

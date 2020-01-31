@@ -449,7 +449,7 @@ bool char_can_see_anywhere (const CHAR_T *ch, const CHAR_T *victim) {
     if (char_get_trust (ch) < victim->incog_level &&
         ch->in_room != victim->in_room)
         return FALSE;
-    if (  (!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT))
+    if (  (!IS_NPC (ch) && EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT))
         || (IS_NPC (ch) && IS_IMMORTAL (ch)))
         return TRUE;
     if (IS_AFFECTED (ch, AFF_BLIND))
@@ -497,7 +497,7 @@ bool char_can_see_in_room (const CHAR_T *ch, const CHAR_T *victim) {
 
 /* True if char can see obj. */
 bool char_can_see_obj (const CHAR_T *ch, const OBJ_T *obj) {
-    if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT))
+    if (!IS_NPC (ch) && EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT))
         return TRUE;
     if (IS_SET (obj->extra_flags, ITEM_VIS_DEATH))
         return FALSE;
@@ -745,9 +745,9 @@ char *char_format_to_char (const CHAR_T *victim, const CHAR_T *ch) {
     }
     if (IS_AFFECTED (victim, AFF_SANCTUARY))
         strcat (buf, "({WWhite Aura{x) ");
-    if (!IS_NPC (victim) && IS_SET (victim->plr, PLR_KILLER))
+    if (!IS_NPC (victim) && EXT_IS_SET (victim->ext_plr, PLR_KILLER))
         strcat (buf, "({RKILLER{k) ");
-    if (!IS_NPC (victim) && IS_SET (victim->plr, PLR_THIEF))
+    if (!IS_NPC (victim) && EXT_IS_SET (victim->ext_plr, PLR_THIEF))
         strcat (buf, "({RTHIEF{k) ");
 #else
     if (IS_SET (victim->comm, COMM_AFK))
@@ -1026,7 +1026,7 @@ bool char_can_loot (const CHAR_T *ch, const OBJ_T *obj) {
         return TRUE;
     if (!str_cmp (ch->name, owner->name))
         return TRUE;
-    if (!IS_NPC (owner) && IS_SET (owner->plr, PLR_CANLOOT))
+    if (!IS_NPC (owner) && EXT_IS_SET (owner->ext_plr, PLR_CANLOOT))
         return TRUE;
     if (is_same_group (ch, owner))
         return TRUE;
@@ -1229,11 +1229,11 @@ void char_get_who_string (const CHAR_T *ch, const CHAR_T *wch, char *buf,
         (pc_race) ? pc_race->who_name : "     ",
         class_name,
         (wch->incog_level >= LEVEL_HERO) ? "(Incog) " : "",
-        (wch->invis_level >= LEVEL_HERO) ? "(Wizi) " : "",
+        (wch->invis_level >= LEVEL_HERO) ? "(Wizi) "  : "",
         (clan) ? clan->who_name : "",
         IS_SET (wch->comm, COMM_AFK) ? "[AFK] " : "",
-        IS_SET (wch->plr, PLR_KILLER) ? "(KILLER) " : "",
-        IS_SET (wch->plr, PLR_THIEF) ? "(THIEF) " : "",
+        EXT_IS_SET (wch->ext_plr, PLR_KILLER) ? "(KILLER) " : "",
+        EXT_IS_SET (wch->ext_plr, PLR_THIEF)  ? "(THIEF) "  : "",
         wch->name,
         IS_NPC (wch) ? "" : wch->pcdata->title);
 }

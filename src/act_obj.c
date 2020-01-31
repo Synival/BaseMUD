@@ -743,7 +743,7 @@ DEFINE_DO_FUN (do_sacrifice) {
     }
 
     ch->silver += silver;
-    if (IS_SET (ch->plr, PLR_AUTOSPLIT)) { /* AUTOSPLIT code */
+    if (EXT_IS_SET (ch->ext_plr, PLR_AUTOSPLIT)) { /* AUTOSPLIT code */
         members = 0;
         for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room)
             if (is_same_group (gch, ch))
@@ -985,8 +985,8 @@ DEFINE_DO_FUN (do_steal) {
             else {
                 wiznetf (ch, NULL, WIZ_FLAGS, 0, 0,
                     "$N tried to steal from %s.", victim->name);
-                if (!IS_SET (ch->plr, PLR_THIEF)) {
-                    SET_BIT (ch->plr, PLR_THIEF);
+                if (!EXT_IS_SET (ch->ext_plr, PLR_THIEF)) {
+                    EXT_SET (ch->ext_plr, PLR_THIEF);
                     send_to_char ("*** You are now a THIEF!! ***\n\r", ch);
                     save_char_obj (ch);
                 }

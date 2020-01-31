@@ -63,8 +63,45 @@
 #define MOB_UPDATE_ALWAYS  28
 #define MOB_IS_CHANGER     29
 
+/* ACT bits for players. */
+#define PLR_IS_NPC        0 /* Don't EVER set.    */
+
+/* RT auto flags */
+#define PLR_UNUSED_FLAG_1 1 /* old: bought_pet */
+#define PLR_AUTOASSIST    2
+#define PLR_AUTOEXIT      3
+#define PLR_AUTOLOOT      4
+#define PLR_AUTOSAC       5
+#define PLR_AUTOGOLD      6
+#define PLR_AUTOSPLIT     7
+
+#define PLR_UNUSED_FLAG_2 8
+#define PLR_UNUSED_FLAG_3 9
+#define PLR_UNUSED_FLAG_4 10
+#define PLR_UNUSED_FLAG_5 11
+#define PLR_UNUSED_FLAG_6 12
+
+/* RT personal flags */
+#define PLR_HOLYLIGHT     13
+#define PLR_UNUSED_FLAG_7 14
+#define PLR_CANLOOT       15
+#define PLR_NOSUMMON      16
+#define PLR_NOFOLLOW      17
+#define PLR_UNUSED_FLAG_8 18 /* reserved */
+#define PLR_COLOUR        19
+
+/* penalty flags */
+#define PLR_PERMIT        20
+#define PLR_UNUSED_FLAG_9 21
+#define PLR_LOG           22
+#define PLR_DENY          23
+#define PLR_FREEZE        24
+#define PLR_THIEF         25
+#define PLR_KILLER        26
+
 /* Flag tables. */
 extern const EXT_FLAG_DEF_T mob_flags[];
+extern const EXT_FLAG_DEF_T plr_flags[];
 
 /* Special constants. */
 extern const EXT_FLAGS_T ext_flags_zero;
@@ -80,6 +117,7 @@ EXT_FLAGS_T ext_flags_with (EXT_FLAGS_T bits, int flag);
 EXT_FLAGS_T ext_flags_without (EXT_FLAGS_T bits, int flag);
 EXT_FLAGS_T ext_flags_with_many (EXT_FLAGS_T bits1, EXT_FLAGS_T bits2);
 EXT_FLAGS_T ext_flags_without_many (EXT_FLAGS_T bits1, EXT_FLAGS_T bits2);
+EXT_FLAGS_T ext_flags_inverted (EXT_FLAGS_T bits);
 
 /* Comparison functions. */
 bool ext_flags_is_set (EXT_FLAGS_T var, int flag);

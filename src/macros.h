@@ -72,6 +72,7 @@
 #define EXT_WITHOUT(_bits, _flag)        (ext_flags_without (_bits, _flag))
 #define EXT_WITH_MANY(_bits1, _bits2)    (ext_flags_with_many (_bits1, _bits2))
 #define EXT_WITHOUT_MANY(_bits1, _bits2) (ext_flags_without_many (_bits1, _bits2))
+#define EXT_INVERTED(_bits)              (ext_flags_inverted (_bits))
 
 /* Skill macros. */
 #define SN(map)      (skill_map_table[SKILL_MAP_ ## map].skill_index)

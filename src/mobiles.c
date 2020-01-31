@@ -101,7 +101,7 @@ CHAR_T *mobile_create (MOB_INDEX_T *mob_index) {
         /* read from prototype */
         mob->group    = mob_index->group;
         mob->ext_mob  = mob_index->ext_mob_final;
-        mob->plr      = 0;
+        mob->ext_plr  = EXT_ZERO;
         mob->comm     = COMM_NOCHANNELS | COMM_NOSHOUT | COMM_NOTELL;
         mob->affected_by = mob_index->affected_by_final;
         mob->alignment = mob_index->alignment;
@@ -194,7 +194,7 @@ CHAR_T *mobile_create (MOB_INDEX_T *mob_index) {
     /* read in old format and convert */
     else {
         mob->ext_mob     = mob_index->ext_mob_final;
-        mob->plr         = 0;
+        mob->ext_plr     = EXT_ZERO;
         mob->affected_by = mob_index->affected_by_final;
         mob->alignment   = mob_index->alignment;
         mob->level       = mob_index->level;
@@ -268,7 +268,7 @@ void mobile_clone (CHAR_T *parent, CHAR_T *clone) {
     clone->silver      = parent->silver;
     clone->exp         = parent->exp;
     clone->ext_mob     = parent->ext_mob;
-    clone->plr         = parent->plr;
+    clone->ext_plr     = parent->ext_plr;
     clone->comm        = parent->comm;
     clone->imm_flags   = parent->imm_flags;
     clone->res_flags   = parent->res_flags;

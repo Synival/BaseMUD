@@ -329,7 +329,7 @@ const char *room_bit_name (flag_t flags);
 const char *affect_bit_name (flag_t flags);
 const char *extra_bit_name (flag_t flags);
 const char *mob_bit_name (EXT_FLAGS_T flags);
-const char *plr_bit_name (flag_t flags);
+const char *plr_bit_name (EXT_FLAGS_T flags);
 const char *comm_bit_name (flag_t flags);
 const char *res_bit_name (flag_t flags);
 const char *wear_flag_name (flag_t flags);

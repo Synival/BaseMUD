@@ -157,7 +157,7 @@ void bust_a_prompt (CHAR_T *ch) {
             case 'r':
                 if (ch->in_room != NULL) {
                     sprintf (buf2, "%s",
-                        ((!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT)) ||
+                        ((!IS_NPC (ch) && EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT)) ||
                          (!IS_AFFECTED (ch, AFF_BLIND) &&
                              !room_is_dark (ch->in_room))
                         ) ? ch->in_room-> name : "darkness"

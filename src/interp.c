@@ -397,7 +397,7 @@ void interpret (CHAR_T *ch, char *argument) {
     REMOVE_BIT (ch->affected_by, AFF_HIDE);
 
     /* Implement freeze command. */
-    BAIL_IF (!IS_NPC (ch) && IS_SET (ch->plr, PLR_FREEZE),
+    BAIL_IF (!IS_NPC (ch) && EXT_IS_SET (ch->ext_plr, PLR_FREEZE),
         "You're totally frozen!\n\r", ch);
 
     /* Grab the command word.
@@ -437,7 +437,7 @@ void interpret (CHAR_T *ch, char *argument) {
      * to prevent crashes due to dollar signs in logstrings.
      * I threw in the above call to smash_dollar() just for
      * the sake of overkill :) JR -- 10/15/00 */
-    if ((!IS_NPC(ch) && IS_SET(ch->plr, PLR_LOG))
+    if ((!IS_NPC(ch) && EXT_IS_SET (ch->ext_plr, PLR_LOG))
         || log_all_commands
         || cmd_table[cmd].log == LOG_ALWAYS)
     {

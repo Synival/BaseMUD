@@ -94,16 +94,16 @@ DEFINE_DO_FUN (do_pardon) {
         "Not on NPC's.\n\r", ch);
 
     if (!str_cmp (arg2, "killer")) {
-        if (IS_SET (victim->plr, PLR_KILLER)) {
-            REMOVE_BIT (victim->plr, PLR_KILLER);
+        if (EXT_IS_SET (victim->ext_plr, PLR_KILLER)) {
+            EXT_UNSET (victim->ext_plr, PLR_KILLER);
             send_to_char ("Killer flag removed.\n\r", ch);
             send_to_char ("You are no longer a KILLER.\n\r", victim);
         }
         return;
     }
     if (!str_cmp (arg2, "thief")) {
-        if (IS_SET (victim->plr, PLR_THIEF)) {
-            REMOVE_BIT (victim->plr, PLR_THIEF);
+        if (EXT_IS_SET (victim->ext_plr, PLR_THIEF)) {
+            EXT_UNSET (victim->ext_plr, PLR_THIEF);
             send_to_char ("Thief flag removed.\n\r", ch);
             send_to_char ("You are no longer a THIEF.\n\r", victim);
         }

@@ -57,7 +57,7 @@ DEFINE_DO_FUN (do_deny) {
     BAIL_IF (char_get_trust (victim) >= char_get_trust (ch),
         "You failed.\n\r", ch);
 
-    SET_BIT (victim->plr, PLR_DENY);
+    EXT_SET (victim->ext_plr, PLR_DENY);
     send_to_char ("You are denied access!\n\r", victim);
     wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
         "$N denies access to %s", victim->name);
@@ -168,12 +168,12 @@ DEFINE_DO_FUN (do_log) {
         "Not on NPC's.\n\r", ch);
 
     /* No level check, gods can log anyone. */
-    if (IS_SET (victim->plr, PLR_LOG)) {
-        REMOVE_BIT (victim->plr, PLR_LOG);
+    if (EXT_IS_SET (victim->ext_plr, PLR_LOG)) {
+        EXT_UNSET (victim->ext_plr, PLR_LOG);
         send_to_char ("LOG removed.\n\r", ch);
     }
     else {
-        SET_BIT (victim->plr, PLR_LOG);
+        EXT_SET (victim->ext_plr, PLR_LOG);
         send_to_char ("LOG set.\n\r", ch);
     }
 }

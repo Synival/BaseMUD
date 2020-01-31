@@ -61,7 +61,7 @@
 #define SCAN_ALL_DIRS -2
 
 bool do_filter_blind (CHAR_T *ch) {
-    if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT))
+    if (!IS_NPC (ch) && EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT))
         return FALSE;
     FILTER (IS_AFFECTED (ch, AFF_BLIND),
         "You can't see a thing!\n\r", ch);
@@ -163,7 +163,7 @@ void do_look_room (CHAR_T *ch, int is_auto) {
     char sect_char = room_colour_char (ch->in_room);
     printf_to_char (ch, "{%c%s{x", sect_char, ch->in_room->name);
 
-    if ((IS_IMMORTAL (ch) && (IS_NPC (ch) || IS_SET (ch->plr, PLR_HOLYLIGHT)))
+    if ((IS_IMMORTAL (ch) && (IS_NPC (ch) || EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT)))
         || IS_BUILDER (ch, ch->in_room->area))
         printf_to_char (ch, "{r [{RRoom %d{r]{x", ch->in_room->vnum);
     send_to_char ("\n\r", ch);
@@ -171,7 +171,7 @@ void do_look_room (CHAR_T *ch, int is_auto) {
     if (!is_auto || (!IS_NPC (ch) && !IS_SET (ch->comm, COMM_BRIEF)))
         printf_to_char(ch, "  {S%s{x", ch->in_room->description);
 
-    if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_AUTOEXIT))
+    if (!IS_NPC (ch) && EXT_IS_SET (ch->ext_plr, PLR_AUTOEXIT))
         do_function (ch, &do_exits, "auto");
 
     obj_list_show_to_char (ch->in_room->contents, ch, FALSE, FALSE);
@@ -308,7 +308,7 @@ DEFINE_DO_FUN (do_look) {
     if (do_filter_blind (ch))
         return;
 
-    if (!IS_NPC (ch) && !IS_SET (ch->plr, PLR_HOLYLIGHT) &&
+    if (!IS_NPC (ch) && !EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT) &&
         room_is_dark (ch->in_room))
     {
         send_to_char ("{DIt is pitch black ... {x\n\r", ch);
@@ -539,7 +539,7 @@ DEFINE_DO_FUN (do_score) {
     /* wizinvis and holy light */
     if (IS_IMMORTAL (ch)) {
         printf_to_char (ch, "Holy Light: %s",
-            IS_SET (ch->plr, PLR_HOLYLIGHT) ? "ON" : "OFF");
+            EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT) ? "ON" : "OFF");
         if (ch->invis_level)
             printf_to_char (ch, "  Invisible: level %d", ch->invis_level);
         if (ch->incog_level)

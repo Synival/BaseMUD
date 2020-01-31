@@ -479,7 +479,7 @@ struct char_data {
     long silver;
     int exp;
     EXT_FLAGS_T ext_mob;
-    flag_t plr;
+    EXT_FLAGS_T ext_plr;
     flag_t comm;   /* RT added to pad the vector */
     flag_t wiznet; /* wiz stuff */
     flag_t imm_flags;

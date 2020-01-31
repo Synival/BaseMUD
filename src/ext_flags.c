@@ -71,6 +71,37 @@ const EXT_FLAG_DEF_T mob_flags[] = {
     {0}
 };
 
+const EXT_FLAG_DEF_T plr_flags[] = {
+    {"!npc!",         PLR_IS_NPC,        FALSE},
+    {"unused_plr_1",  PLR_UNUSED_FLAG_1, FALSE},
+    {"autoassist",    PLR_AUTOASSIST,    FALSE},
+    {"autoexit",      PLR_AUTOEXIT,      FALSE},
+    {"autoloot",      PLR_AUTOLOOT,      FALSE},
+    {"autosac",       PLR_AUTOSAC,       FALSE},
+    {"autogold",      PLR_AUTOGOLD,      FALSE},
+    {"autosplit",     PLR_AUTOSPLIT,     FALSE},
+    {"unused_plr_2",  PLR_UNUSED_FLAG_2, FALSE},
+    {"unused_plr_3",  PLR_UNUSED_FLAG_3, FALSE},
+    {"unused_plr_4",  PLR_UNUSED_FLAG_4, FALSE},
+    {"unused_plr_5",  PLR_UNUSED_FLAG_5, FALSE},
+    {"unused_plr_6",  PLR_UNUSED_FLAG_6, FALSE},
+    {"holylight",     PLR_HOLYLIGHT,     FALSE},
+    {"unused_plr_7",  PLR_UNUSED_FLAG_7, FALSE},
+    {"can_loot",      PLR_CANLOOT,       FALSE},
+    {"nosummon",      PLR_NOSUMMON,      FALSE},
+    {"nofollow",      PLR_NOFOLLOW,      FALSE},
+    {"unused_plr_8",  PLR_UNUSED_FLAG_8, FALSE},
+    {"colour",        PLR_COLOUR,        FALSE},
+    {"permit",        PLR_PERMIT,        TRUE},
+    {"unused_plr_9",  PLR_UNUSED_FLAG_9, FALSE},
+    {"log",           PLR_LOG,           FALSE},
+    {"deny",          PLR_DENY,          FALSE},
+    {"freeze",        PLR_FREEZE,        FALSE},
+    {"thief",         PLR_THIEF,         FALSE},
+    {"killer",        PLR_KILLER,        FALSE},
+    {0}
+};
+
 #define EF_INDEX(_flag) ((flag) / 8)
 #define EF_BIT(_flag)   (1 << ((flag) % 8))
 
@@ -180,6 +211,13 @@ EXT_FLAGS_T ext_flags_without_many (EXT_FLAGS_T bits1, EXT_FLAGS_T bits2) {
     for (i = 0; i < EXT_FLAGS_ARRAY_LENGTH; i++)
         bits1.bits[i] &= ~bits2.bits[i];
     return bits1;
+}
+
+EXT_FLAGS_T ext_flags_inverted (EXT_FLAGS_T bits) {
+    int i;
+    for (i = 0; i < EXT_FLAGS_ARRAY_LENGTH; i++)
+        bits.bits[i] = ~(bits.bits[i]);
+    return bits;
 }
 
 int ext_flag_lookup (const EXT_FLAG_DEF_T *flag_table, const char *name)

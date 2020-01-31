@@ -260,11 +260,11 @@ DEFINE_DO_FUN (do_follow) {
         return;
     }
 
-    BAIL_IF_ACT (!IS_NPC (victim) && IS_SET (victim->plr, PLR_NOFOLLOW) &&
+    BAIL_IF_ACT (!IS_NPC (victim) && EXT_IS_SET (victim->ext_plr, PLR_NOFOLLOW) &&
                  !IS_IMMORTAL (ch),
         "$N doesn't seem to want any followers.\n\r", ch, NULL, victim);
 
-    REMOVE_BIT (ch->plr, PLR_NOFOLLOW);
+    EXT_UNSET (ch->ext_plr, PLR_NOFOLLOW);
     if (ch->master != NULL)
         stop_follower (ch);
 

@@ -227,14 +227,14 @@ DEFINE_NANNY_FUN (nanny_get_player_name) {
     old = load_char_obj (d, argument);
     ch = d->character;
 
-    if (IS_SET (ch->plr, PLR_DENY)) {
+    if (EXT_IS_SET (ch->ext_plr, PLR_DENY)) {
         log_f ("Denying access to %s@%s.", argument, d->host);
         send_to_desc ("You are denied access.\n\r", d);
         close_socket (d);
         return;
     }
 
-    if (ban_check (d->host, BAN_PERMIT) && !IS_SET (ch->plr, PLR_PERMIT)) {
+    if (ban_check (d->host, BAN_PERMIT) && !EXT_IS_SET (ch->ext_plr, PLR_PERMIT)) {
         send_to_desc ("Your site has been banned from this mud.\n\r", d);
         close_socket (d);
         return;
@@ -302,9 +302,9 @@ DEFINE_NANNY_FUN (nanny_get_old_password) {
     wiznet (log_buf, NULL, NULL, WIZ_SITES, 0, char_get_trust (ch));
 
     if (ch->desc->ansi)
-        SET_BIT (ch->plr, PLR_COLOUR);
+        EXT_SET (ch->ext_plr, PLR_COLOUR);
     else
-        REMOVE_BIT (ch->plr, PLR_COLOUR);
+        EXT_UNSET (ch->ext_plr, PLR_COLOUR);
 
     if (IS_IMMORTAL (ch)) {
         do_function (ch, &do_help, "imotd");
@@ -372,7 +372,7 @@ DEFINE_NANNY_FUN (nanny_confirm_new_name) {
                 "Give me a password for %s: %s", ch->name, echo_off_str);
             d->connected = CON_GET_NEW_PASSWORD;
             if (ch->desc->ansi)
-                SET_BIT (ch->plr, PLR_COLOUR);
+                EXT_SET (ch->ext_plr, PLR_COLOUR);
             break;
 
         case 'N':
@@ -890,7 +890,7 @@ DEFINE_NANNY_FUN (nanny_read_motd) {
 
     if (ch->level == 0) {
         if(mud_ansicolor)
-            SET_BIT (ch->plr, PLR_COLOUR);
+            EXT_SET (ch->ext_plr, PLR_COLOUR);
         if(mud_telnetga)
             SET_BIT (ch->comm, COMM_TELNET_GA);
 

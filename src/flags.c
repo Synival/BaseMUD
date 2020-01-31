@@ -101,37 +101,6 @@ const char *flags_to_string_real (const FLAG_T *flag_table, flag_t bits,
     return (buf[cnt][0] == '\0') ? none_str : buf[cnt];
 }
 
-const FLAG_T plr_flags[] = {
-    {"!npc!",         PLR_IS_NPC,        FALSE},
-    {"unused_plr_1",  PLR_UNUSED_FLAG_1, FALSE},
-    {"autoassist",    PLR_AUTOASSIST,    FALSE},
-    {"autoexit",      PLR_AUTOEXIT,      FALSE},
-    {"autoloot",      PLR_AUTOLOOT,      FALSE},
-    {"autosac",       PLR_AUTOSAC,       FALSE},
-    {"autogold",      PLR_AUTOGOLD,      FALSE},
-    {"autosplit",     PLR_AUTOSPLIT,     FALSE},
-    {"unused_plr_2",  PLR_UNUSED_FLAG_2, FALSE},
-    {"unused_plr_3",  PLR_UNUSED_FLAG_3, FALSE},
-    {"unused_plr_4",  PLR_UNUSED_FLAG_4, FALSE},
-    {"unused_plr_5",  PLR_UNUSED_FLAG_5, FALSE},
-    {"unused_plr_6",  PLR_UNUSED_FLAG_6, FALSE},
-    {"holylight",     PLR_HOLYLIGHT,     FALSE},
-    {"unused_plr_7",  PLR_UNUSED_FLAG_7, FALSE},
-    {"can_loot",      PLR_CANLOOT,       FALSE},
-    {"nosummon",      PLR_NOSUMMON,      FALSE},
-    {"nofollow",      PLR_NOFOLLOW,      FALSE},
-    {"unused_plr_8",  PLR_UNUSED_FLAG_8, FALSE},
-    {"colour",        PLR_COLOUR,        FALSE},
-    {"permit",        PLR_PERMIT,        TRUE},
-    {"unused_plr_9",  PLR_UNUSED_FLAG_9, FALSE},
-    {"log",           PLR_LOG,           FALSE},
-    {"deny",          PLR_DENY,          FALSE},
-    {"freeze",        PLR_FREEZE,        FALSE},
-    {"thief",         PLR_THIEF,         FALSE},
-    {"killer",        PLR_KILLER,        FALSE},
-    {0}
-};
-
 const FLAG_T affect_flags[] = {
     {"blind",         AFF_BLIND,         TRUE},
     {"invisible",     AFF_INVISIBLE,     TRUE},

@@ -61,7 +61,7 @@ int should_assist_group (CHAR_T *bystander, CHAR_T *attacker, CHAR_T *victim) {
         return 0;
     if (do_filter_can_attack (bystander, victim))
         return 0;
-    if (!IS_NPC (bystander) && IS_SET (bystander->plr, PLR_AUTOASSIST))
+    if (!IS_NPC (bystander) && EXT_IS_SET (bystander->ext_plr, PLR_AUTOASSIST))
         return 1;
     if (IS_AFFECTED (bystander, AFF_CHARM))
         return 1;
@@ -626,10 +626,10 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
 
         /* dump the flags */
         if (ch != victim && !IS_NPC (ch) && !player_in_same_clan (ch, victim)) {
-            if (IS_SET (victim->plr, PLR_KILLER))
-                REMOVE_BIT (victim->plr, PLR_KILLER);
+            if (EXT_IS_SET (victim->ext_plr, PLR_KILLER))
+                EXT_UNSET (victim->ext_plr, PLR_KILLER);
             else
-                REMOVE_BIT (victim->plr, PLR_THIEF);
+                EXT_UNSET (victim->ext_plr, PLR_THIEF);
         }
 
         /* RT new auto commands */
@@ -640,24 +640,18 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
         {
             OBJ_T *coins;
 
-            corpse = find_obj_same_room (ch, "corpse");
-
-            /* exists and not empty */
-            if (IS_SET (ch->plr, PLR_AUTOLOOT) && corpse && corpse->contains)
-                do_function (ch, &do_get, "all corpse");
-
-            /* exists and not empty */
-            if (IS_SET (ch->plr, PLR_AUTOGOLD) && corpse && corpse->contains &&
-                !IS_SET (ch->plr, PLR_AUTOLOOT))
-            {
-                if ((coins = find_obj_container (ch, corpse, "gcash")) != NULL)
-                    do_function (ch, &do_get, "all.gcash corpse");
+            if (corpse->contains) {
+                if (EXT_IS_SET (ch->ext_plr, PLR_AUTOLOOT))
+                    do_function (ch, &do_get, "all corpse");
+                else if (EXT_IS_SET (ch->ext_plr, PLR_AUTOGOLD)) {
+                    if ((coins = find_obj_container (ch, corpse, "gcash")) != NULL)
+                        do_function (ch, &do_get, "all.gcash corpse");
+                }
             }
 
-            if (IS_SET (ch->plr, PLR_AUTOSAC)) {
-                if (IS_SET (ch->plr, PLR_AUTOLOOT) && corpse && corpse->contains)
-                    return TRUE; /* leave if corpse has treasure */
-                else
+            if (EXT_IS_SET (ch->ext_plr, PLR_AUTOSAC)) {
+                /* don't sacrifice if we intend to loot but could not. */
+                if (!(EXT_IS_SET (ch->ext_plr, PLR_AUTOLOOT) && corpse->contains))
                     do_function (ch, &do_sacrifice, "corpse");
             }
         }
@@ -794,8 +788,7 @@ bool do_filter_can_attack_real (CHAR_T *ch, CHAR_T *victim, bool area,
                 QU("Join a clan if you want to kill players.\n\r"), ch);
 
             /* Killing undesirables is allowed. */
-            if (IS_SET (victim->plr, PLR_KILLER) ||
-                IS_SET (victim->plr, PLR_THIEF))
+            if (player_is_undesirable (victim))
                 return FALSE;
 
             FILTER (!player_has_clan (victim),
@@ -819,9 +812,7 @@ void check_killer (CHAR_T *ch, CHAR_T *victim) {
 
     /* NPC's are fair game.
      * So are killers and thieves. */
-    if (IS_NPC (victim)
-        || IS_SET (victim->plr, PLR_KILLER)
-        || IS_SET (victim->plr, PLR_THIEF))
+    if (IS_NPC (victim) || player_is_undesirable (victim))
         return;
 
     /* Charm-o-rama. */
@@ -845,13 +836,17 @@ void check_killer (CHAR_T *ch, CHAR_T *victim) {
      * Hitting yourself is cool too (bleeding).
      * So is being immortal (Alander's idea).
      * And current killers stay as they are. */
-    if (IS_NPC (ch)
-        || ch == victim || ch->level >= LEVEL_IMMORTAL || !player_has_clan (ch)
-        || IS_SET (ch->plr, PLR_KILLER) || ch->fighting == victim)
+    if (IS_NPC (ch))
+        return;
+    if (ch == victim || ch->fighting == victim)
+        return;
+    if (ch->level >= LEVEL_IMMORTAL || !player_has_clan (ch))
+        return;
+    if (EXT_IS_SET (ch->ext_plr, PLR_KILLER))
         return;
 
     send_to_char ("*** You are now a KILLER!! ***\n\r", ch);
-    SET_BIT (ch->plr, PLR_KILLER);
+    EXT_SET (ch->ext_plr, PLR_KILLER);
     wiznetf (ch, NULL, WIZ_FLAGS, 0, 0,
         "$N is attempting to murder %s", victim->name);
     save_char_obj (ch);
@@ -1037,7 +1032,7 @@ OBJ_T *make_corpse (CHAR_T *ch) {
         name = ch->name;
         corpse = obj_create (obj_get_index (OBJ_VNUM_CORPSE_PC), 0);
         corpse->timer = number_range (25, 40);
-        REMOVE_BIT (ch->plr, PLR_CANLOOT);
+        EXT_UNSET (ch->ext_plr, PLR_CANLOOT);
         if (!player_has_clan (ch))
             corpse->owner = str_dup (ch->name);
         else {

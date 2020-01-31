@@ -1570,7 +1570,7 @@ bool item_take_effect (OBJ_T *obj, CHAR_T *ch) {
             ch->silver += obj->v.money.silver;
             ch->gold   += obj->v.money.gold;
 
-            if (IS_SET (ch->plr, PLR_AUTOSPLIT)) {
+            if (EXT_IS_SET (ch->ext_plr, PLR_AUTOSPLIT)) {
                 CHAR_T *gch;
                 int members;
                 char buf[100];

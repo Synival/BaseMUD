@@ -65,7 +65,7 @@ DEFINE_DO_FUN (do_wizhelp) {
 }
 
 DEFINE_DO_FUN (do_holylight) {
-    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_HOLYLIGHT,
+    do_ext_flag_toggle (ch, TRUE, &(ch->ext_plr), PLR_HOLYLIGHT,
         "Holy light mode off.\n\r",
         "Holy light mode on.\n\r");
 }
@@ -623,7 +623,7 @@ DEFINE_DO_FUN (do_mstat) {
     }
 
     printf_to_char (ch, "Mob: %s\n\r", mob_bit_name (victim->ext_mob));
-    printf_to_char (ch, "Plr: %s\n\r", plr_bit_name (victim->plr));
+    printf_to_char (ch, "Plr: %s\n\r", plr_bit_name (victim->ext_plr));
 
     if (victim->comm)
         printf_to_char (ch, "Comm: %s\n\r",

@@ -197,8 +197,8 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
     fprintf (fp, "Exp  %d\n", ch->exp);
     if (EXT_IS_NONZERO (ch->ext_mob))
         fprintf (fp, "Mob  %s\n", print_ext_flags (&ch->ext_mob));
-    if (ch->plr != 0)
-        fprintf (fp, "Plr  %s\n", print_flags (ch->plr));
+    if (EXT_IS_NONZERO (ch->ext_plr))
+        fprintf (fp, "Plr  %s\n", print_ext_flags (&ch->ext_plr));
     if (ch->affected_by != 0)
         fprintf (fp, "AfBy %s\n", print_flags (ch->affected_by));
     fprintf (fp, "Comm %s\n", print_flags (ch->comm));
@@ -343,8 +343,8 @@ void fwrite_pet (CHAR_T *pet, FILE *fp) {
         fprintf (fp, "Exp  %d\n", pet->exp);
     if (!EXT_EQUALS (pet->ext_mob, pet->index_data->ext_mob_final))
         fprintf (fp, "Mob  %s\n", print_ext_flags (&pet->ext_mob));
-    if (pet->plr != 0)
-        fprintf (fp, "Plr  %s\n", print_flags (pet->plr));
+    if (EXT_IS_NONZERO (pet->ext_plr))
+        fprintf (fp, "Plr  %s\n", print_ext_flags (&pet->ext_plr));
     if (pet->affected_by != pet->index_data->affected_by_final)
         fprintf (fp, "AfBy %s\n", print_flags (pet->affected_by));
     if (pet->comm != 0)
@@ -471,24 +471,24 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
     ch = char_new ();
     ch->pcdata = pcdata_new ();
 
-    d->character = ch;
-    ch->desc = d;
-    ch->name = str_dup (name);
-    ch->id = get_pc_id ();
-    ch->race = race_lookup_exact ("human");
-    ch->plr = PLR_NOSUMMON;
-    ch->comm = COMM_COMBINE | COMM_PROMPT;
-    ch->prompt = str_dup ("<%hhp %mm %vmv> ");
+    d->character        = ch;
+    ch->desc            = d;
+    ch->name            = str_dup (name);
+    ch->id              = get_pc_id ();
+    ch->race            = race_lookup_exact ("human");
+    ch->ext_plr         = EXT_BITS (PLR_NOSUMMON);
+    ch->comm            = COMM_COMBINE | COMM_PROMPT;
+    ch->prompt          = str_dup ("<%hhp %mm %vmv> ");
     ch->pcdata->confirm_delete = FALSE;
-    ch->pcdata->board = &board_table[DEFAULT_BOARD];
-    ch->pcdata->pwd = str_dup ("");
-    ch->pcdata->bamfin = str_dup ("");
+    ch->pcdata->board   = &board_table[DEFAULT_BOARD];
+    ch->pcdata->pwd     = str_dup ("");
+    ch->pcdata->bamfin  = str_dup ("");
     ch->pcdata->bamfout = str_dup ("");
-    ch->pcdata->title = str_dup ("");
+    ch->pcdata->title   = str_dup ("");
     for (stat = 0; stat < STAT_MAX; stat++)
         ch->perm_stat[stat] = 13;
     ch->pcdata->condition[COND_THIRST] = 48;
-    ch->pcdata->condition[COND_FULL] = 48;
+    ch->pcdata->condition[COND_FULL]   = 48;
     ch->pcdata->condition[COND_HUNGER] = 48;
     ch->pcdata->security = 0; /* OLC */
     player_reset_colour (ch);
@@ -674,7 +674,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                     if (EXT_IS_SET (flags, MOB_IS_NPC))
                         ch->ext_mob = flags;
                     else
-                        ch->plr = EXT_TO_FLAG_T (flags);
+                        ch->ext_plr = flags;
                 }
 
                 KEY ("AffectedBy", ch->affected_by, fread_flag (fp));
@@ -1021,7 +1021,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 KEYS("Pass",     ch->pcdata->pwd, fread_string_dup (fp));
                 KEY ("Played",   ch->played, fread_number (fp));
                 KEY ("Plyd",     ch->played, fread_number (fp));
-                KEY ("Plr",      ch->plr, fread_flag (fp));
+                KEY ("Plr",      ch->ext_plr, fread_ext_flag (fp));
                 KEY ("Points",   ch->pcdata->creation_points, fread_number (fp));
                 KEY ("Pnts",     ch->pcdata->creation_points, fread_number (fp));
                 KEY ("Position", ch->position, fread_number (fp));
@@ -1164,7 +1164,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                     if (EXT_IS_SET (flags, MOB_IS_NPC))
                         pet->ext_mob = flags;
                     else
-                        pet->plr = EXT_TO_FLAG_T (flags);
+                        pet->ext_plr = flags;
                 }
 
                 KEY ("AfBy", pet->affected_by, fread_flag (fp));
@@ -1312,7 +1312,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'P':
-                KEY ("Plr", pet->plr,      fread_flag (fp));
+                KEY ("Plr", pet->ext_plr,  fread_ext_flag (fp));
                 KEY ("Pos", pet->position, fread_number (fp));
                 break;
 

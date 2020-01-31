@@ -592,3 +592,8 @@ void player_remove_skill_or_group (CHAR_T *ch, const char *name, bool refund) {
 
     bugf ("player_remove_skill_or_group: Unknown skill or group '%s'", name);
 }
+
+bool player_is_undesirable (const CHAR_T *ch) {
+    return EXT_IS_SET (ch->ext_plr, PLR_KILLER) ||
+           EXT_IS_SET (ch->ext_plr, PLR_THIEF);
+}

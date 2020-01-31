@@ -89,7 +89,7 @@
 
 /* functions */
 int colour_to_full_name (flag_t colour, char *buf_out, size_t size);
-int colour_code_to_ansi (CHAR_T *ch, int use_colour, char type, char *buf_out,
+int colour_code_to_ansi (CHAR_T *ch, bool use_colour, char type, char *buf_out,
     size_t size);
 int colour_puts (CHAR_T *ch, bool use_colour, const char *buf_in, char *buf_out,
     size_t size);

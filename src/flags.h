@@ -356,42 +356,6 @@
 #define EX_NOCLOSE          (BIT_11)
 #define EX_NOLOCK           (BIT_12)
 
-/* ACT bits for players. */
-#define PLR_IS_NPC        (BIT_01) /* Don't EVER set.    */
-
-/* RT auto flags */
-#define PLR_UNUSED_FLAG_1 (BIT_02) /* old: bought_pet */
-#define PLR_AUTOASSIST    (BIT_03)
-#define PLR_AUTOEXIT      (BIT_04)
-#define PLR_AUTOLOOT      (BIT_05)
-#define PLR_AUTOSAC       (BIT_06)
-#define PLR_AUTOGOLD      (BIT_07)
-#define PLR_AUTOSPLIT     (BIT_08)
-
-#define PLR_UNUSED_FLAG_2 (BIT_09)
-#define PLR_UNUSED_FLAG_3 (BIT_10)
-#define PLR_UNUSED_FLAG_4 (BIT_11)
-#define PLR_UNUSED_FLAG_5 (BIT_12)
-#define PLR_UNUSED_FLAG_6 (BIT_13)
-
-/* RT personal flags */
-#define PLR_HOLYLIGHT     (BIT_14)
-#define PLR_UNUSED_FLAG_7 (BIT_15)
-#define PLR_CANLOOT       (BIT_16)
-#define PLR_NOSUMMON      (BIT_17)
-#define PLR_NOFOLLOW      (BIT_18)
-#define PLR_UNUSED_FLAG_8 (BIT_19) /* reserved */
-#define PLR_COLOUR        (BIT_20)
-
-/* penalty flags */
-#define PLR_PERMIT        (BIT_21)
-#define PLR_UNUSED_FLAG_9 (BIT_22)
-#define PLR_LOG           (BIT_23)
-#define PLR_DENY          (BIT_24)
-#define PLR_FREEZE        (BIT_25)
-#define PLR_THIEF         (BIT_26)
-#define PLR_KILLER        (BIT_27)
-
 /* RT comm flags -- may be used on both mobs and chars */
 #define COMM_QUIET              (BIT_01)
 #define COMM_DEAF               (BIT_02)
@@ -489,7 +453,6 @@
 #define TO_ALL     (TO_CHAR | TO_VICT | TO_OTHERS)
 
 /* Flag tables. */
-extern const FLAG_T plr_flags[];
 extern const FLAG_T affect_flags[];
 extern const FLAG_T off_flags[];
 extern const FLAG_T form_flags[];

@@ -76,14 +76,14 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
     TFLAGS (mprog_flags,      "MobProgram flags."),
     TFLAGS (off_flags,        "Mobile offensive behaviour."),
     TFLAGS (part_flags,       "Mobile body parts."),
-    TFLAGS (plr_flags,        "Player flags."),
     TFLAGS (res_flags,        "Mobile immunity."),
     TFLAGS (room_flags,       "Room attributes."),
     TFLAGS (weapon_flags,     "Special weapon type."),
     TFLAGS (wear_flags,       "Types of wear locations."),
 
     /* from ext_flags.h */
-    TXFLAGS (mob_flags,        "Mobile flags."),
+    TXFLAGS (mob_flags,       "Mobile flags."),
+    TXFLAGS (plr_flags,       "Player flags."),
 
     /* from types.h */
     TTYPES (ac_types,         "AC for different attacks."),

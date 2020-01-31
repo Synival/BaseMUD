@@ -129,7 +129,7 @@ DEFINE_DO_FUN (do_flag) {
     const FLAG_T *flag_table;
     EXT_FLAGS_T *ext_flags;
     const EXT_FLAG_DEF_T *ext_flag_table;
-    bool set_ext;
+    bool set_ext = FALSE;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -175,8 +175,9 @@ DEFINE_DO_FUN (do_flag) {
     else if (!str_prefix (arg3, "plr")) {
         BAIL_IF (IS_NPC (victim),
             "Use act for NPCs.\n\r", ch);
-        flags = &victim->plr;
-        flag_table = plr_flags;
+        ext_flags = &victim->ext_plr;
+        ext_flag_table = plr_flags;
+        set_ext = TRUE;
     }
     else if (!str_prefix (arg3, "aff")) {
         flags = &victim->affected_by;
@@ -294,15 +295,15 @@ DEFINE_DO_FUN (do_freeze) {
         "Not on NPC's.\n\r", ch);
     BAIL_IF (char_get_trust (victim) >= char_get_trust (ch),
         "You failed.\n\r", ch);
-    if (IS_SET (victim->plr, PLR_FREEZE)) {
-        REMOVE_BIT (victim->plr, PLR_FREEZE);
+    if (EXT_IS_SET (victim->ext_plr, PLR_FREEZE)) {
+        EXT_UNSET (victim->ext_plr, PLR_FREEZE);
         send_to_char ("You can play again.\n\r", victim);
         send_to_char ("FREEZE removed.\n\r", ch);
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
             "$N thaws %s.", victim->name);
     }
     else {
-        SET_BIT (victim->plr, PLR_FREEZE);
+        EXT_SET (victim->ext_plr, PLR_FREEZE);
         send_to_char ("You can't do ANYthing!\n\r", victim);
         send_to_char ("FREEZE set.\n\r", ch);
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
