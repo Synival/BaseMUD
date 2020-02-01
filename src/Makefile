@@ -339,8 +339,8 @@ string.o: utils.h interp.h olc.h db.h olc_mpedit.h globals.h memory.h
 tables.o: nanny.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 tables.o: structs.h types.h flags.h tables.h ext_flags.h lookup.h recycle.h
 tables.o: colour.h board.h special.h effects.h json_tblr.h json_tblw.h
-tables.o: magic.h spell_aff.h spell_create.h spell_cure.h spell_info.h
-tables.o: spell_misc.h spell_move.h spell_npc.h spell_off.h
+tables.o: magic.h memory.h utils.h spell_aff.h spell_create.h spell_cure.h
+tables.o: spell_info.h spell_misc.h spell_move.h spell_npc.h spell_off.h
 types.o: merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 types.o: structs.h types.h flags.h tables.h ext_flags.h lookup.h utils.h
 update.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h

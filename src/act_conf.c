@@ -216,7 +216,7 @@ DEFINE_DO_FUN (do_colour) {
     buf[0] = '\0';
     if (!str_cmp (arg1, "all")) {
         int i;
-        for (i = 0; i < COLOUR_MAX; i++)
+        for (i = 0; i < COLOUR_SETTING_MAX; i++)
             do_colour_one (ch, &(colour_setting_table[i]),
                 colour, use_default, buf);
         page_to_char (buf, ch);

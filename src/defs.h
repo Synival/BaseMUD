@@ -48,6 +48,12 @@
 #define DEFINE_JSON_READ_FUN(fun) \
     void *fun (const JSON_T *json, const char *obj_name)
 
+#define DEFINE_INIT_FUN(fun) \
+    void fun (void *obj)
+
+#define DEFINE_DISPOSE_FUN(fun) \
+    void fun (void *obj)
+
 /* Short scalar types.
  * Diavolo reports AIX compiler has bugs with short types. */
 #if !defined(FALSE)
@@ -450,6 +456,9 @@
 #define ATTRIBUTE_HIGHEST   25
 #define ATTACK_MAX          40
 #define BOARD_MAX           5
+#define CONDITION_MAX       32
+#define MAP_LOOKUP_MAX      16
+#define COLOUR_MAX          32
 
 /* Colour setting codes */
 #define COLOUR_TEXT            0
@@ -487,7 +496,7 @@
 #define COLOUR_FIGHT_OHIT     32
 #define COLOUR_FIGHT_THIT     33
 #define COLOUR_FIGHT_SKILL    34
-#define COLOUR_MAX            35
+#define COLOUR_SETTING_MAX    35
 
 /* This file holds the copyover data */
 #define COPYOVER_FILE "copyover.data"
@@ -537,7 +546,8 @@
 #define TABLE_UNIQUE    2
 #define TABLE_EXT_FLAGS 3
 
-#define TABLE_MAX   76
+#define TABLE_MAX               76
+#define TABLE_LENGTH_DYNAMIC    -1
 
 /* Types of portals. */
 #define PORTAL_TO_ROOM  0

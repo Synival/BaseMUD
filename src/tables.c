@@ -37,6 +37,8 @@
 #include "json_tblr.h"
 #include "json_tblw.h"
 #include "magic.h"
+#include "memory.h"
+#include "utils.h"
 
 #include "spell_aff.h"
 #include "spell_create.h"
@@ -50,16 +52,21 @@
 /* Useful macros for defining rows in our master table. */
 #define TFLAGS(table, desc) \
     { table, #table, TABLE_FLAGS, desc, \
-      sizeof (FLAG_T), NULL, "meta/flags", json_tblw_flag }
+      sizeof (FLAG_T), TABLE_LENGTH_DYNAMIC, \
+      NULL, "meta/flags", json_tblw_flag }
 #define TXFLAGS(table, desc) \
     { table, #table, TABLE_EXT_FLAGS, desc, \
-      sizeof (EXT_FLAG_DEF_T), NULL, "meta/ext_flags", json_tblw_ext_flag }
+      sizeof (EXT_FLAG_DEF_T), TABLE_LENGTH_DYNAMIC, \
+      NULL, "meta/ext_flags", json_tblw_ext_flag }
 #define TTYPES(table, desc) \
     { table, #table, TABLE_TYPES, desc, \
-      sizeof (TYPE_T), NULL, "meta/types", json_tblw_type }
-#define TTABLE(table, name, desc, obj_name, json_path, jwrite, jread) \
-    { table, name, TABLE_UNIQUE, desc, sizeof(table[0]), obj_name, \
-      json_path, jwrite, jread }
+      sizeof (TYPE_T), TABLE_LENGTH_DYNAMIC, \
+      NULL, "meta/types", json_tblw_type }
+#define TTABLE(table, name, desc, obj_name, json_path, jwrite, jread, \
+               dispose) \
+    { table, name, TABLE_UNIQUE, desc, \
+      sizeof(table[0]), sizeof(table) / sizeof(table[0]), \
+      obj_name, json_path, jwrite, jread, dispose }
 
 const TABLE_T master_table[TABLE_MAX + 1] = {
     /* from flags.h */
@@ -102,53 +109,80 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
 
     /* from tables.h */
     /* TODO: read all of these! */
-    TTABLE (attack_table,     "attacks",      "Attack types and properties.", "attack",        "unsupported", json_tblw_attack,         NULL),
-    TTABLE (board_table,      "boards",       "Discussion boards.",           "board",         "unsupported", json_tblw_board,          NULL),
-    TTABLE (clan_table,       "clans",        "Player clans.",                "clan",          "unsupported", json_tblw_clan,           NULL),
-    TTABLE (class_table,      "classes",      "Classes and statistics.",      "class",         "unsupported", json_tblw_class,          NULL),
-    TTABLE (colour_setting_table, "color_settings", "Configurable colours.",  "color_setting", "unsupported", json_tblw_colour_setting, NULL),
-    TTABLE (colour_table,     "colors",       "Colour values.",               "color",         "unsupported", json_tblw_colour,         NULL),
-    TTABLE (con_app_table,    "con_app",      "Con apply table.",             "con_app",       "unsupported", json_tblw_con_app,        NULL),
-    TTABLE (condition_table,  "conditions",   "Messages based on % of hp.",   "condition",     "unsupported", json_tblw_condition,      NULL),
-    TTABLE (dam_table,        "dam_types",    "Damage types and properties.", "dam_type",      "unsupported", json_tblw_dam,            NULL),
-    TTABLE (day_table,        "days",         "Days of the week.",            "day",           "unsupported", json_tblw_day,            NULL),
-    TTABLE (dex_app_table,    "dex_app",      "Dex apply table.",             "dex_app",       "unsupported", json_tblw_dex_app,        NULL),
-    TTABLE (door_table,       "doors",        "Exit names.",                  "door",          "unsupported", json_tblw_door,           NULL),
-    TTABLE (int_app_table,    "int_app",      "Int apply table.",             "int_app",       "unsupported", json_tblw_int_app,        NULL),
-    TTABLE (item_table,       "items",        "Item types and properties.",   "item",          "unsupported", json_tblw_item,           NULL),
-    TTABLE (liq_table,        "liquids",      "Liquid types.",                "liquid",        "unsupported", json_tblw_liq,            NULL),
-    TTABLE (material_table,   "materials",    "Material properties",          "material",      "unsupported", json_tblw_material,       NULL),
-    TTABLE (month_table,      "months",       "Months of the year.",          "month",         "unsupported", json_tblw_month,          NULL),
-    TTABLE (pc_race_table,    "pc_races",     "Playable race data.",          "player_race",   "unsupported", json_tblw_pc_race,        NULL),
-    TTABLE (pose_table,       "pose",         "Poses based on class and level", "pose",        "unsupported", json_tblw_pose,           NULL),
-    TTABLE (position_table,   "positions",    "Character positions.",         "position",      "unsupported", json_tblw_position,       NULL),
-    TTABLE (race_table,       "races",        "Races and statistics.",        "race",          "unsupported", json_tblw_race,           NULL),
-    TTABLE (sector_table,     "sectors",      "Sector/terrain properties.",   "sector",        "unsupported", json_tblw_sector,         NULL),
-    TTABLE (sex_table,        "sexes",        "Gender settings.",             "sex",           "unsupported", json_tblw_sex,            NULL),
-    TTABLE (size_table,       "sizes",        "Character sizes.",             "size",          "unsupported", json_tblw_size,           NULL),
-    TTABLE (skill_group_table,"skill_groups", "Groups of skills table.",      "skill_group",   "unsupported", json_tblw_skill_group,    NULL),
-    TTABLE (skill_table,      "skills",       "Master skill table.",          "skill",         "unsupported", json_tblw_skill,          NULL),
-    TTABLE (sky_table,        "skies",        "Skies based on the weather.",  "sky",           "unsupported", json_tblw_sky,            NULL),
-    TTABLE (spec_table,       "specs",        "Specialized mobile behavior.", "spec",          "unsupported", json_tblw_spec,           NULL),
-    TTABLE (str_app_table,    "str_app",      "Str apply table.",             "str_app",       "unsupported", json_tblw_str_app,        NULL),
-    TTABLE (sun_table,        "suns",         "Positions of the sun.",        "sun",           "unsupported", json_tblw_sun,            NULL),
-    TTABLE (weapon_table,     "weapons",      "Weapon types and properties.", "weapon",        "unsupported", json_tblw_weapon,         NULL),
-    TTABLE (wear_loc_table,   "wear_locs",    "Wearable item table.",         "wear_loc",      "unsupported", json_tblw_wear_loc,       NULL),
-    TTABLE (wis_app_table,    "wis_app",      "Wis apply table.",             "wis_app",       "unsupported", json_tblw_wis_app,        NULL),
-    TTABLE (song_table,       "songs",        "Songs for jukeboxes.",         "song",          "config",      json_tblw_song,           json_tblr_song),
+    TTABLE (attack_table,     "attacks",      "Attack types and properties.", "attack",        "unsupported", json_tblw_attack,         NULL, NULL),
+    TTABLE (board_table,      "boards",       "Discussion boards.",           "board",         "unsupported", json_tblw_board,          NULL, NULL),
+    TTABLE (clan_table,       "clans",        "Player clans.",                "clan",          "unsupported", json_tblw_clan,           NULL, NULL),
+    TTABLE (class_table,      "classes",      "Classes and statistics.",      "class",         "unsupported", json_tblw_class,          NULL, NULL),
+    TTABLE (colour_setting_table, "color_settings", "Configurable colours.",  "color_setting", "unsupported", json_tblw_colour_setting, NULL, NULL),
+    TTABLE (colour_table,     "colors",       "Colour values.",               "color",         "unsupported", json_tblw_colour,         NULL, NULL),
+    TTABLE (con_app_table,    "con_app",      "Con apply table.",             "con_app",       "unsupported", json_tblw_con_app,        NULL, NULL),
+    TTABLE (condition_table,  "conditions",   "Messages based on % of hp.",   "condition",     "unsupported", json_tblw_condition,      NULL, NULL),
+    TTABLE (dam_table,        "dam_types",    "Damage types and properties.", "dam_type",      "unsupported", json_tblw_dam,            NULL, NULL),
+    TTABLE (day_table,        "days",         "Days of the week.",            "day",           "unsupported", json_tblw_day,            NULL, NULL),
+    TTABLE (dex_app_table,    "dex_app",      "Dex apply table.",             "dex_app",       "unsupported", json_tblw_dex_app,        NULL, NULL),
+    TTABLE (door_table,       "doors",        "Exit names.",                  "door",          "unsupported", json_tblw_door,           NULL, NULL),
+    TTABLE (int_app_table,    "int_app",      "Int apply table.",             "int_app",       "unsupported", json_tblw_int_app,        NULL, NULL),
+    TTABLE (item_table,       "items",        "Item types and properties.",   "item",          "unsupported", json_tblw_item,           NULL, NULL),
+    TTABLE (liq_table,        "liquids",      "Liquid types.",                "liquid",        "unsupported", json_tblw_liq,            NULL, NULL),
+    TTABLE (material_table,   "materials",    "Material properties",          "material",      "unsupported", json_tblw_material,       NULL, NULL),
+    TTABLE (month_table,      "months",       "Months of the year.",          "month",         "unsupported", json_tblw_month,          NULL, NULL),
+    TTABLE (pc_race_table,    "pc_races",     "Playable race data.",          "player_race",   "unsupported", json_tblw_pc_race,        NULL, NULL),
+    TTABLE (pose_table,       "pose",         "Poses based on class and level", "pose",        "unsupported", json_tblw_pose,           NULL, NULL),
+    TTABLE (position_table,   "positions",    "Character positions.",         "position",      "unsupported", json_tblw_position,       NULL, NULL),
+    TTABLE (race_table,       "races",        "Races and statistics.",        "race",          "unsupported", json_tblw_race,           NULL, NULL),
+    TTABLE (sector_table,     "sectors",      "Sector/terrain properties.",   "sector",        "unsupported", json_tblw_sector,         NULL, NULL),
+    TTABLE (sex_table,        "sexes",        "Gender settings.",             "sex",           "unsupported", json_tblw_sex,            NULL, NULL),
+    TTABLE (size_table,       "sizes",        "Character sizes.",             "size",          "unsupported", json_tblw_size,           NULL, NULL),
+    TTABLE (skill_group_table,"skill_groups", "Groups of skills table.",      "skill_group",   "unsupported", json_tblw_skill_group,    NULL, NULL),
+    TTABLE (skill_table,      "skills",       "Master skill table.",          "skill",         "unsupported", json_tblw_skill,          NULL, NULL),
+    TTABLE (sky_table,        "skies",        "Skies based on the weather.",  "sky",           "unsupported", json_tblw_sky,            NULL, NULL),
+    TTABLE (spec_table,       "specs",        "Specialized mobile behavior.", "spec",          "unsupported", json_tblw_spec,           NULL, NULL),
+    TTABLE (str_app_table,    "str_app",      "Str apply table.",             "str_app",       "unsupported", json_tblw_str_app,        NULL, NULL),
+    TTABLE (sun_table,        "suns",         "Positions of the sun.",        "sun",           "unsupported", json_tblw_sun,            NULL, NULL),
+    TTABLE (weapon_table,     "weapons",      "Weapon types and properties.", "weapon",        "unsupported", json_tblw_weapon,         NULL, NULL),
+    TTABLE (wear_loc_table,   "wear_locs",    "Wearable item table.",         "wear_loc",      "unsupported", json_tblw_wear_loc,       NULL, NULL),
+    TTABLE (wis_app_table,    "wis_app",      "Wis apply table.",             "wis_app",       "unsupported", json_tblw_wis_app,        NULL, NULL),
+    TTABLE (song_table,       "songs",        "Songs for jukeboxes.",         "song",          "config",      json_tblw_song,           json_tblr_song, song_dispose),
 
     /* constant tables that are internal only. */
-    TTABLE (affect_bit_table, "affect_bits",  "Affect bit vector types.",       NULL, NULL, NULL, NULL),
-    TTABLE (effect_table,     "effects",      "Damage effects and breaths.",    NULL, NULL, NULL, NULL),
-    TTABLE (furniture_table,  "furnitures",   "Furniture flags for positions.", NULL, NULL, NULL, NULL),
-    TTABLE (map_flags_table,  "map_flags",    "Flags for object mappings.",     NULL, NULL, NULL, NULL),
-    TTABLE (map_lookup_table, "map_lookups",  "Types for object mappings.",     NULL, NULL, NULL, NULL),
-    TTABLE (nanny_table,      "nannies",      "Descriptor 'Nanny' table.",      NULL, NULL, NULL, NULL),
-    TTABLE (obj_map_table,    "obj_maps",     "Obj type-values[] mappings.",    NULL, NULL, NULL, NULL),
-    TTABLE (skill_map_table,  "skill_maps",   "Internal mappings of skills.",   NULL, NULL, NULL, NULL),
-    TTABLE (recycle_table,    "recyclables",  "Recycleable object types.",      NULL, NULL, NULL, NULL),
-    TTABLE (wiznet_table,     "wiznets",      "Wiznet channels.",               NULL, NULL, NULL, NULL),
+    TTABLE (affect_bit_table, "affect_bits",  "Affect bit vector types.",       NULL, NULL, NULL, NULL, NULL),
+    TTABLE (effect_table,     "effects",      "Damage effects and breaths.",    NULL, NULL, NULL, NULL, NULL),
+    TTABLE (furniture_table,  "furnitures",   "Furniture flags for positions.", NULL, NULL, NULL, NULL, NULL),
+    TTABLE (map_flags_table,  "map_flags",    "Flags for object mappings.",     NULL, NULL, NULL, NULL, NULL),
+    TTABLE (map_lookup_table, "map_lookups",  "Types for object mappings.",     NULL, NULL, NULL, NULL, NULL),
+    TTABLE (nanny_table,      "nannies",      "Descriptor 'Nanny' table.",      NULL, NULL, NULL, NULL, NULL),
+    TTABLE (obj_map_table,    "obj_maps",     "Obj type-values[] mappings.",    NULL, NULL, NULL, NULL, NULL),
+    TTABLE (skill_map_table,  "skill_maps",   "Internal mappings of skills.",   NULL, NULL, NULL, NULL, NULL),
+    TTABLE (recycle_table,    "recyclables",  "Recycleable object types.",      NULL, NULL, NULL, NULL, NULL),
+    TTABLE (wiznet_table,     "wiznets",      "Wiznet channels.",               NULL, NULL, NULL, NULL, NULL),
     {0}
+};
+
+void table_dispose_all (void) {
+    const TABLE_T *table;
+    int i;
+
+    for (i = 0; master_table[i].name != NULL; i++) {
+        table = &(master_table[i]);
+        if (!table->dispose_fun)
+            continue;
+        log_f ("Freeing table '%s'...", table->name);
+        table_dispose (table);
+    }
+}
+
+void table_dispose (const TABLE_T *table) {
+    int i;
+    void *obj;
+
+    if (table->dispose_fun == NULL)
+        return;
+
+    obj = (void *) table->table;
+    for (i = 0; i < table->table_length; i++) {
+        table->dispose_fun (obj);
+        obj += table->type_size;
+    }
 };
 
 /* for clans */
@@ -161,7 +195,7 @@ const CLAN_T clan_table[CLAN_MAX + 1] = {
     {0},
 };
 
-const CONDITION_T condition_table[] = {
+const CONDITION_T condition_table[CONDITION_MAX + 1] = {
 #ifdef BASEMUD_MORE_PRECISE_CONDITIONS
     {  100, "$1 is in excellent condition." },
     {   90, "$1 has a few scratches." },
@@ -1270,7 +1304,7 @@ const NANNY_HANDLER_T nanny_table[NANNY_MAX + 1] = {
     {-1, NULL}
 };
 
-const FURNITURE_BITS_T furniture_table[] = {
+const FURNITURE_BITS_T furniture_table[POS_MAX + 1] = {
     {POS_STANDING, "standing", STAND_AT, STAND_ON, STAND_IN},
     {POS_SITTING,  "sitting",  SIT_AT,   SIT_ON,   SIT_IN},
     {POS_RESTING,  "resting",  REST_AT,  REST_ON,  REST_IN},
@@ -1278,7 +1312,7 @@ const FURNITURE_BITS_T furniture_table[] = {
     {-1, NULL, 0, 0}
 };
 
-const MAP_LOOKUP_TABLE_T map_lookup_table[] = {
+const MAP_LOOKUP_TABLE_T map_lookup_table[MAP_LOOKUP_MAX + 1] = {
     {MAP_LOOKUP_WEAPON_TYPE, "weapon_type", NULL},
     {MAP_LOOKUP_ATTACK_TYPE, "attack_type", NULL},
     {MAP_LOOKUP_LIQUID,      "liquid",      NULL},
@@ -1286,7 +1320,7 @@ const MAP_LOOKUP_TABLE_T map_lookup_table[] = {
     {-1, NULL, NULL},
 };
 
-const MAP_LOOKUP_TABLE_T map_flags_table[] = {
+const MAP_LOOKUP_TABLE_T map_flags_table[MAP_LOOKUP_MAX + 1] = {
     {MAP_FLAGS_WEAPON,    "weapon",    weapon_flags},
     {MAP_FLAGS_CONT,      "container", container_flags},
     {MAP_FLAGS_FURNITURE, "furniture", furniture_flags},
@@ -1295,7 +1329,7 @@ const MAP_LOOKUP_TABLE_T map_flags_table[] = {
     {-1, NULL, NULL},
 };
 
-const OBJ_MAP_T obj_map_table[] = {
+const OBJ_MAP_T obj_map_table[ITEM_MAX + 1] = {
     {ITEM_WEAPON, {
         {0, -1, "weapon_type", MAP_LOOKUP, MAP_LOOKUP_WEAPON_TYPE},
         {1,  0, "dice_num",    MAP_INTEGER, 0},
@@ -1469,7 +1503,7 @@ const SPEC_T spec_table[SPEC_MAX + 1] = {
     {0}
 };
 
-const COLOUR_SETTING_T colour_setting_table[COLOUR_MAX + 1] = {
+const COLOUR_SETTING_T colour_setting_table[COLOUR_SETTING_MAX + 1] = {
     {COLOUR_TEXT,          "text",          't', CC_BACK_DEFAULT | CC_WHITE},
     {COLOUR_AUCTION,       "auction",       'a', CC_BACK_DEFAULT | CC_BRIGHT_YELLOW},
     {COLOUR_AUCTION_TEXT,  "auction_text",  'A', CC_BACK_DEFAULT | CC_BRIGHT_WHITE},
@@ -1768,7 +1802,7 @@ const SUN_T sun_table[SUN_MAX + 1] = {
     { -1, NULL, 0 }
 };
 
-const POSE_T pose_table[] = {
+const POSE_T pose_table[CLASS_MAX + 1] = {
     { "mage", {
         "You sizzle with energy.",                                      "$n sizzles with energy.",
         "You turn into a butterfly, then return to your normal shape.", "$n turns into a butterfly, then returns to $s normal shape.",
@@ -1853,3 +1887,14 @@ const POSE_T pose_table[] = {
 };
 
 SONG_T song_table[MAX_SONGS + 1];
+
+DEFINE_DISPOSE_FUN (song_dispose) {
+    SONG_T *song = obj;
+    int i;
+
+    str_free (&(song->group));
+    str_free (&(song->name));
+    for (i = 0; i < MAX_SONG_LINES; i++)
+        str_free (&(song->lyrics[i]));
+    song->lines = 0;
+}

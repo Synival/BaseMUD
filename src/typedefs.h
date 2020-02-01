@@ -146,9 +146,8 @@ typedef void *JSON_READ_FUN (const JSON_T *json, const char *obj_name);
 typedef JSON_T *JSON_WRITE_FUN (const void *obj, const char *obj_name);
 typedef bool OLC_FUN    (CHAR_T *ch, char *argument);
 typedef int LOOKUP_FUN  (const char *name);
-
-typedef void RECYCLE_INIT_FUN (void *obj);
-typedef void RECYCLE_DISPOSE_FUN (void *obj);
+typedef void INIT_FUN (void *obj);
+typedef void DISPOSE_FUN (void *obj);
 
 /* Accommodate old non-Ansi compilers. */
 #if defined(TRADITIONAL)
@@ -163,6 +162,8 @@ typedef void RECYCLE_DISPOSE_FUN (void *obj);
     #define DECLARE_JSON_READ_FUN(fun) void *fun()
     #define DECLARE_JSON_WRITE_FUN(fun) JSON_T *fun()
     #define DECLARE_LOOKUP_FUN(fun) int fun()
+    #define DECLARE_INIT_FUN(fun)   void fun()
+    #define DECLARE_DISPOSE_FUN(fun) void fun()
 #else
     #define args(list)              list
     #define DECLARE_DO_FUN(fun)     DO_FUN     fun
@@ -174,6 +175,8 @@ typedef void RECYCLE_DISPOSE_FUN (void *obj);
     #define DECLARE_JSON_READ_FUN(fun)  JSON_READ_FUN  fun
     #define DECLARE_JSON_WRITE_FUN(fun) JSON_WRITE_FUN fun
     #define DECLARE_LOOKUP_FUN(fun) LOOKUP_FUN fun
+    #define DECLARE_INIT_FUN(fun)   INIT_FUN fun
+    #define DECLARE_DISPOSE_FUN(fun) DISPOSE_FUN fun
 #endif
 
 #endif

@@ -196,7 +196,7 @@ int colour_to_full_name (flag_t colour, char *buf_out, size_t size) {
 
 const COLOUR_SETTING_T *colour_setting_get_by_char (char ch) {
     int i;
-    for (i = 0; i < COLOUR_MAX; i++)
+    for (i = 0; i < COLOUR_SETTING_MAX; i++)
         if (colour_setting_table[i].act_char == ch)
             return &(colour_setting_table[i]);
     return NULL;

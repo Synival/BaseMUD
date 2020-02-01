@@ -154,6 +154,8 @@ int main (int argc, char **argv) {
     log_string ("Freeing all objects.");
     free_count = recycle_free_all ();
     log_f ("   %d object(s) freed.", free_count);
+    log_string ("Freeing all tables.");
+    table_dispose_all ();
 
     /* Free allocated memory so we can track what was lost due to
      * memory leaks. */

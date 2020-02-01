@@ -182,7 +182,7 @@ void player_reset_colour (CHAR_T *ch) {
     if (ch->pcdata == NULL)
         return;
 
-    for (i = 0; i < COLOUR_MAX; i++)
+    for (i = 0; i < COLOUR_SETTING_MAX; i++)
         ch->pcdata->colour[i] = colour_setting_table[i].default_colour;
 }
 

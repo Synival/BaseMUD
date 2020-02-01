@@ -59,21 +59,19 @@ extern const SPEC_T           spec_table[SPEC_MAX + 1];
 extern const FURNITURE_BITS_T furniture_table[POS_MAX + 1];
 extern const WEAR_LOC_T       wear_loc_table[WEAR_LOC_MAX + 2];
 extern const MATERIAL_T       material_table[MATERIAL_MAX + 1];
-extern const COLOUR_SETTING_T colour_setting_table[COLOUR_MAX + 1];
+extern const COLOUR_SETTING_T colour_setting_table[COLOUR_SETTING_MAX + 1];
 extern const WIZNET_T         wiznet_table[WIZNET_MAX + 1];
 extern const DAY_T            day_table[DAY_MAX + 1];
 extern const MONTH_T          month_table[MONTH_MAX + 1];
 extern const SKY_T            sky_table[SKY_MAX + 1];
 extern const SUN_T            sun_table[SUN_MAX + 1];
 extern const AFFECT_BIT_T     affect_bit_table[AFF_TO_MAX + 1];
-
-/* Tables with flexible sizes. */
-extern const CONDITION_T      condition_table[];
-extern const MAP_LOOKUP_TABLE_T map_lookup_table[];
-extern const MAP_LOOKUP_TABLE_T map_flags_table[];
-extern const OBJ_MAP_T        obj_map_table[];
-extern const COLOUR_T         colour_table[];
-extern const POSE_T           pose_table[];
+extern const CONDITION_T      condition_table[CONDITION_MAX + 1];
+extern const MAP_LOOKUP_TABLE_T map_lookup_table[MAP_LOOKUP_MAX + 1];
+extern const MAP_LOOKUP_TABLE_T map_flags_table[MAP_LOOKUP_MAX + 1];
+extern const OBJ_MAP_T        obj_map_table[ITEM_MAX + 1];
+extern const COLOUR_T         colour_table[COLOUR_MAX + 1];
+extern const POSE_T           pose_table[CLASS_MAX + 1];
 
 /* Non-const types. */
 extern WEAPON_T    weapon_table[WEAPON_MAX + 1];
@@ -85,5 +83,12 @@ extern BOARD_T     board_table[BOARD_MAX + 1];
 /* Other tables. */
 extern char *const title_table[CLASS_MAX][MAX_LEVEL + 1][2];
 extern SONG_T song_table[MAX_SONGS + 1];
+
+/* Table management functions. */
+void table_dispose_all (void);
+void table_dispose (const TABLE_T *table);
+
+/* Init / disposal functions. */
+DECLARE_DISPOSE_FUN (song_dispose);
 
 #endif

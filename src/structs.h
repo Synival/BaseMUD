@@ -49,8 +49,8 @@ struct recycle_type {
     size_t size;
     size_t obj_data_off;
     size_t obj_name_off;
-    RECYCLE_INIT_FUN *const init_fun;
-    RECYCLE_DISPOSE_FUN *const dispose_fun;
+    INIT_FUN *const init_fun;
+    DISPOSE_FUN *const dispose_fun;
 
     /* internal - do not set in definition table! */
     int top, list_count, free_count;
@@ -571,7 +571,7 @@ struct pc_data {
     time_t last_note[BOARD_MAX]; /* last note for the boards */
     NOTE_T *in_progress;
     int security;                /* OLC - Builder security */
-    flag_t colour[COLOUR_MAX];
+    flag_t colour[COLOUR_SETTING_MAX];
 
 #ifdef IMC
     IMC_CHARDATA *imcchardata;
@@ -1099,11 +1099,12 @@ struct table_type {
     int type;
     const char *description;
 
-    size_t type_size;
+    size_t type_size, table_length;
     const char *obj_name;
     const char *json_path;
     JSON_WRITE_FUN *json_write_func;
     JSON_READ_FUN  *json_read_func;
+    DISPOSE_FUN *dispose_fun;
 };
 
 struct portal_exit_type {

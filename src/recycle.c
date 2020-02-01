@@ -104,7 +104,7 @@ void *recycle_new (int type) {
     data->valid = TRUE;
 
     if (rec->init_fun) {
-        RECYCLE_INIT_FUN *func = rec->init_fun;
+        INIT_FUN *func = rec->init_fun;
         func (obj);
     }
     return obj;
@@ -130,7 +130,7 @@ void recycle_free (int type, void *obj) {
 
     /* Use a disposal function if we have one. */
     if (rec->dispose_fun) {
-        RECYCLE_DISPOSE_FUN *func = rec->dispose_fun;
+        DISPOSE_FUN *func = rec->dispose_fun;
         func (obj);
     }
 
@@ -207,17 +207,17 @@ void *recycle_get_first_obj (int type) {
     return (rec->list_front) ? rec->list_front->obj : NULL;
 }
 
-void ban_init (void *obj) {
+DEFINE_INIT_FUN (ban_init) {
     BAN_T *ban = obj;
     ban->name = &str_empty[0];
 }
 
-void ban_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (ban_dispose) {
     BAN_T *ban = obj;
     str_free (&(ban->name));
 }
 
-void descriptor_init (void *obj) {
+DEFINE_INIT_FUN (descriptor_init) {
     DESCRIPTOR_T *d = obj;
     d->connected     = CON_GET_NAME;
     d->showstr_head  = NULL;
@@ -226,48 +226,48 @@ void descriptor_init (void *obj) {
     d->outbuf        = mem_alloc (d->outsize);
 }
 
-void descriptor_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (descriptor_dispose) {
     DESCRIPTOR_T *d = obj;
     str_free (&(d->host));
     mem_free (d->outbuf, d->outsize);
 }
 
-void extra_descr_init (void *obj) {
+DEFINE_INIT_FUN (extra_descr_init) {
     EXTRA_DESCR_T *ed = obj;
     ed->keyword = &str_empty[0];
     ed->description = &str_empty[0];
 }
 
-void extra_descr_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (extra_descr_dispose) {
     EXTRA_DESCR_T *ed = obj;
     str_free (&(ed->keyword));
     str_free (&(ed->description));
 }
 
-void obj_dispose (void *vobj) {
-    OBJ_T *obj = vobj;
+DEFINE_DISPOSE_FUN (obj_dispose) {
+    OBJ_T *o = obj;
     AFFECT_T *paf, *paf_next;
     EXTRA_DESCR_T *ed, *ed_next;
 
-    for (ed = obj->extra_descr; ed != NULL; ed = ed_next) {
+    for (ed = o->extra_descr; ed != NULL; ed = ed_next) {
         ed_next = ed->next;
         extra_descr_free (ed);
     }
-    obj->extra_descr = NULL;
+    o->extra_descr = NULL;
 
-    for (paf = obj->affected; paf != NULL; paf = paf_next) {
+    for (paf = o->affected; paf != NULL; paf = paf_next) {
         paf_next = paf->next;
-        affect_remove_obj (obj, paf);
+        affect_remove_obj (o, paf);
     }
-    obj->affected = NULL;
+    o->affected = NULL;
 
-    str_free (&(obj->name));
-    str_free (&(obj->description));
-    str_free (&(obj->short_descr));
-    str_free (&(obj->owner));
+    str_free (&(o->name));
+    str_free (&(o->description));
+    str_free (&(o->short_descr));
+    str_free (&(o->owner));
 }
 
-void char_init (void *obj) {
+DEFINE_INIT_FUN (char_init) {
     CHAR_T *ch = obj;
     int i;
     ch->name        = &str_empty[0];
@@ -294,19 +294,19 @@ void char_init (void *obj) {
     }
 }
 
-void char_dispose (void *vobj) {
-    CHAR_T *ch = vobj;
-    OBJ_T *obj;
-    OBJ_T *obj_next;
+DEFINE_DISPOSE_FUN (char_dispose) {
+    CHAR_T *ch = obj;
+    OBJ_T *o;
+    OBJ_T *o_next;
     AFFECT_T *paf;
     AFFECT_T *paf_next;
 
     if (IS_NPC (ch))
         mobile_count--;
 
-    for (obj = ch->carrying; obj != NULL; obj = obj_next) {
-        obj_next = obj->next_content;
-        obj_extract (obj);
+    for (o = ch->carrying; o != NULL; o = o_next) {
+        o_next = o->next_content;
+        obj_extract (o);
     }
     ch->carrying = NULL;
 
@@ -330,7 +330,7 @@ void char_dispose (void *vobj) {
     pcdata_free (ch->pcdata);
 }
 
-void pcdata_init (void *obj) {
+DEFINE_INIT_FUN (pcdata_init) {
     PC_T *pcdata = obj;
     int alias;
     for (alias = 0; alias < MAX_ALIAS; alias++) {
@@ -340,7 +340,7 @@ void pcdata_init (void *obj) {
     pcdata->buffer = buf_new ();
 }
 
-void pcdata_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (pcdata_dispose) {
     PC_T *pcdata = obj;
     int alias;
 
@@ -356,7 +356,7 @@ void pcdata_dispose (void *obj) {
     }
 }
 
-void buf_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (buf_dispose) {
     BUFFER_T *buffer = obj;
     mem_free (buffer->string, buffer->size);
     buffer->string = NULL;
@@ -364,17 +364,17 @@ void buf_dispose (void *obj) {
     buffer->state = BUFFER_FREED;
 }
 
-void mprog_init (void *obj) {
+DEFINE_INIT_FUN (mprog_init) {
     MPROG_LIST_T *mp = obj;
     mp->code = str_dup ("");
 }
 
-void mprog_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (mprog_dispose) {
     MPROG_LIST_T *mp = obj;
     str_free (&(mp->code));
 }
 
-void had_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (had_dispose) {
     HELP_AREA_T *had = obj;
     HELP_T *help, *help_next;
 
@@ -390,18 +390,18 @@ void had_dispose (void *obj) {
     had->next = NULL;
 }
 
-void help_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (help_dispose) {
     HELP_T *help = obj;
     str_free (&(help->keyword));
     str_free (&(help->text));
 }
 
-void reset_data_init (void *obj) {
+DEFINE_INIT_FUN (reset_data_init) {
     RESET_T *reset = obj;
     reset->command = 'X';
 }
 
-void area_init (void *obj) {
+DEFINE_INIT_FUN (area_init) {
     AREA_T *area = obj;
     char buf[MAX_INPUT_LENGTH];
     area->title      = str_dup ("New area");
@@ -415,7 +415,7 @@ void area_init (void *obj) {
     area->vnum       = TOP(RECYCLE_AREA_T);
 }
 
-void area_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (area_dispose) {
     AREA_T *area = obj;
     str_free (&(area->title));
     str_free (&(area->name));
@@ -424,7 +424,7 @@ void area_dispose (void *obj) {
     str_free (&(area->credits));
 }
 
-void exit_init (void *obj) {
+DEFINE_INIT_FUN (exit_init) {
     EXIT_T *exit = obj;
     exit->keyword     = &str_empty[0];
     exit->description = &str_empty[0];
@@ -433,13 +433,13 @@ void exit_init (void *obj) {
     exit->key         = KEY_NOKEYHOLE;
 }
 
-void exit_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (exit_dispose) {
     EXIT_T *exit = obj;
     str_free (&(exit->keyword));
     str_free (&(exit->description));
 }
 
-void room_index_init (void *obj) {
+DEFINE_INIT_FUN (room_index_init) {
     ROOM_INDEX_T *room = obj;
     room->name        = &str_empty[0];
     room->description = &str_empty[0];
@@ -448,7 +448,7 @@ void room_index_init (void *obj) {
     room->mana_rate   = 100;
 }
 
-void room_index_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (room_index_dispose) {
     ROOM_INDEX_T *room = obj;
     int door;
     EXTRA_DESCR_T *extra, *extra_next;
@@ -479,7 +479,7 @@ void room_index_dispose (void *obj) {
     room->reset_last = NULL;
 }
 
-void shop_init (void *obj) {
+DEFINE_INIT_FUN (shop_init) {
     SHOP_T *shop = obj;
     shop->profit_buy  = 100;
     shop->profit_sell = 100;
@@ -487,41 +487,41 @@ void shop_init (void *obj) {
     shop->close_hour  = 23;
 }
 
-void obj_index_init (void *vobj) {
-    OBJ_INDEX_T *obj = vobj;
-    obj->name        = str_dup ("no name");
-    obj->short_descr = str_dup ("(no short description)");
-    obj->description = str_dup ("(no description)");
-    obj->item_type   = ITEM_TRASH;
-    obj->condition   = 100;
-    obj->material    = MATERIAL_GENERIC;
-    obj->new_format  = TRUE;
+DEFINE_INIT_FUN (obj_index_init) {
+    OBJ_INDEX_T *o = obj;
+    o->name        = str_dup ("no name");
+    o->short_descr = str_dup ("(no short description)");
+    o->description = str_dup ("(no description)");
+    o->item_type   = ITEM_TRASH;
+    o->condition   = 100;
+    o->material    = MATERIAL_GENERIC;
+    o->new_format  = TRUE;
 }
 
-void obj_index_dispose (void *vobj) {
-    OBJ_INDEX_T *obj = vobj;
+DEFINE_DISPOSE_FUN (obj_index_dispose) {
+    OBJ_INDEX_T *o = obj;
     EXTRA_DESCR_T *extra, *extra_next;
     AFFECT_T *af, *af_next;
 
-    str_free (&(obj->name));
-    str_free (&(obj->short_descr));
-    str_free (&(obj->description));
-    str_free (&(obj->area_str));
+    str_free (&(o->name));
+    str_free (&(o->short_descr));
+    str_free (&(o->description));
+    str_free (&(o->area_str));
 
-    for (extra = obj->extra_descr; extra; extra = extra_next) {
+    for (extra = o->extra_descr; extra; extra = extra_next) {
         extra_next = extra->next;
         extra_descr_free (extra);
     }
-    obj->extra_descr = NULL;
+    o->extra_descr = NULL;
 
-    for (af = obj->affected; af; af = af_next) {
+    for (af = o->affected; af; af = af_next) {
         af_next = af->next;
         affect_free (af);
     }
-    obj->affected = NULL;
+    o->affected = NULL;
 }
 
-void mob_index_init (void *obj) {
+DEFINE_INIT_FUN (mob_index_init) {
     MOB_INDEX_T *mob = obj;
     mob->name         = str_dup ("no name");
     mob->short_descr  = str_dup ("(no short description)");
@@ -538,7 +538,7 @@ void mob_index_init (void *obj) {
     db_finalize_mob (mob);
 }
 
-void mob_index_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (mob_index_dispose) {
     MOB_INDEX_T *mob = obj;
     str_free (&(mob->name));
     str_free (&(mob->short_descr));
@@ -549,17 +549,17 @@ void mob_index_dispose (void *obj) {
     shop_free (mob->shop);
 }
 
-void mpcode_init (void *obj) {
+DEFINE_INIT_FUN (mpcode_init) {
     MPROG_CODE_T *mpcode = obj;
     mpcode->code = str_dup ("");
 }
 
-void mpcode_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (mpcode_dispose) {
     MPROG_CODE_T *mpcode = obj;
     str_free (&(mpcode->code));
 }
 
-void buf_init (void *obj) {
+DEFINE_INIT_FUN (buf_init) {
     BUFFER_T *buffer = obj;
     buffer->state = BUFFER_SAFE;
 
@@ -571,7 +571,7 @@ void buf_init (void *obj) {
     buffer->string[0] = '\0';
 }
 
-void note_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (note_dispose) {
     NOTE_T *note = obj;
     str_free (&(note->sender));
     str_free (&(note->to_list));
@@ -580,12 +580,12 @@ void note_dispose (void *obj) {
     str_free (&(note->text));
 }
 
-void social_init (void *obj) {
+DEFINE_INIT_FUN (social_init) {
     SOCIAL_T *social = obj;
     social->min_pos = POS_RESTING;
 }
 
-void social_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (social_dispose) {
     SOCIAL_T *soc = obj;
     str_free (&(soc->name));
     str_free (&(soc->char_no_arg));
@@ -598,12 +598,12 @@ void social_dispose (void *obj) {
     str_free (&(soc->others_auto));
 }
 
-void portal_exit_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (portal_exit_dispose) {
     PORTAL_EXIT_T *pex = obj;
     str_free (&(pex->name));
 }
 
-void portal_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (portal_dispose) {
     PORTAL_T *portal = obj;
     str_free (&(portal->name_from));
     str_free (&(portal->name_to));

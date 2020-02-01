@@ -208,11 +208,7 @@ void music_load_songs (void) {
 
         /* make sure this song doesn't already exist. */
         if (song_lookup_exact (song->name) != count) {
-            str_free (&(song->name));
-            str_free (&(song->group));
-            for (i = 0; i < song->lines; i++)
-                str_free (&(song->lyrics[i]));
-            song->lines = 0;
+            song_dispose (song);
             count--;
         }
     }

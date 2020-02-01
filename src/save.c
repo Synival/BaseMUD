@@ -255,7 +255,7 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
                  ch->pcdata->condition[0],
                  ch->pcdata->condition[1],
                  ch->pcdata->condition[2], ch->pcdata->condition[3]);
-        for (i = 0; i < COLOUR_MAX; i++)
+        for (i = 0; i < COLOUR_SETTING_MAX; i++)
             fprintf (fp, "Colour %d %ld\n", i, ch->pcdata->colour[i]);
 
         /* write alias */
