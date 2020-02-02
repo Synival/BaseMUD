@@ -129,10 +129,10 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
     TTABLE (liq_table,        "liquids",      "Liquid types.",                "liquid",        "unsupported", json_tblw_liq,            NULL, NULL),
     TTABLE (material_table,   "materials",    "Material properties",          "material",      "unsupported", json_tblw_material,       NULL, NULL),
     TTABLE (month_table,      "months",       "Months of the year.",          "month",         "unsupported", json_tblw_month,          NULL, NULL),
-    TTABLE (pc_race_table,    "pc_races",     "Playable race data.",          "player_race",   "unsupported", json_tblw_pc_race,        NULL, NULL),
+    TTABLE (pc_race_table,    "pc_races",     "Playable race data.",          "player_race",   "config",      json_tblw_pc_race,        json_tblr_pc_race, pc_race_dispose),
     TTABLE (pose_table,       "pose",         "Poses based on class and level", "pose",        "unsupported", json_tblw_pose,           NULL, NULL),
     TTABLE (position_table,   "positions",    "Character positions.",         "position",      "unsupported", json_tblw_position,       NULL, NULL),
-    TTABLE (race_table,       "races",        "Races and statistics.",        "race",          "unsupported", json_tblw_race,           NULL, NULL),
+    TTABLE (race_table,       "races",        "Races and statistics.",        "race",          "config",      json_tblw_race,           json_tblr_race, race_dispose),
     TTABLE (sector_table,     "sectors",      "Sector/terrain properties.",   "sector",        "unsupported", json_tblw_sector,         NULL, NULL),
     TTABLE (sex_table,        "sexes",        "Gender settings.",             "sex",           "unsupported", json_tblw_sex,            NULL, NULL),
     TTABLE (size_table,       "sizes",        "Character sizes.",             "size",          "unsupported", json_tblw_size,           NULL, NULL),
@@ -310,16 +310,6 @@ WEAPON_T weapon_table[WEAPON_MAX + 1] = {
     {-1, NULL, 0}
 };
 
-const EFFECT_T effect_table[EFFECT_MAX + 1] = {
-    {EFFECT_NONE,   "none",   effect_empty},
-    {EFFECT_FIRE,   "fire",   effect_fire},
-    {EFFECT_COLD,   "cold",   effect_cold},
-    {EFFECT_SHOCK,  "shock",  effect_shock},
-    {EFFECT_ACID,   "acid",   effect_acid},
-    {EFFECT_POISON, "poison", effect_poison},
-    {0}
-};
-
 const DAM_T dam_table[DAM_MAX + 1] = {
     /* TODO: reference effects by index, not by function directly. */
     {DAM_NONE,      "none",      0,             EFFECT_NONE,   0},
@@ -390,92 +380,8 @@ const ATTACK_T attack_table[ATTACK_MAX + 1] = {
     {NULL, NULL, -1}
 };
 
-#define FORMS_MONSTER \
-    (FORM_EDIBLE | FORM_BIPED | FORM_MAMMAL)
-#define FORMS_HUMANOID \
-    (FORM_EDIBLE | FORM_BIPED | FORM_MAMMAL | FORM_SENTIENT)
-#define FORMS_MAMMAL \
-    (FORM_EDIBLE | FORM_ANIMAL | FORM_MAMMAL)
-#define FORMS_BIRD \
-    (FORM_EDIBLE | FORM_ANIMAL | FORM_BIRD)
-#define FORMS_BUG \
-    (FORM_EDIBLE | FORM_ANIMAL | FORM_INSECT)
-#define FORMS_LIZARD \
-    (FORM_EDIBLE | FORM_ANIMAL | FORM_REPTILE | FORM_COLD_BLOOD)
-
-#define PARTS_ALIVE \
-    (PART_HEART | PART_BRAINS | PART_GUTS)
-#define PARTS_QUADRUPED \
-    (PART_HEAD | PART_LEGS | PARTS_ALIVE | PART_FEET | PART_EAR | PART_EYE)
-#define PARTS_BIPED \
-    (PART_HEAD | PART_ARMS | PART_LEGS | PARTS_ALIVE | PART_FEET | PART_EAR | PART_EYE)
-#define PARTS_HUMANOID \
-    (PARTS_BIPED | PART_HANDS | PART_FINGERS)
-#define PARTS_FELINE \
-    (PARTS_QUADRUPED | PART_FANGS | PART_TAIL | PART_CLAWS)
-#define PARTS_CANINE \
-    (PARTS_QUADRUPED | PART_FANGS)
-#define PARTS_REPTILE \
-    (PARTS_ALIVE | PART_HEAD | PART_EYE | PART_LONG_TONGUE | PART_TAIL | PART_SCALES)
-#define PARTS_LIZARD \
-    (PARTS_QUADRUPED | PARTS_REPTILE)
-#define PARTS_BIRD \
-    (PARTS_ALIVE | PART_HEAD | PART_LEGS | PART_FEET | PART_EYE | PART_WINGS)
-
-/* race table */
-#define EZ EXT_INIT_ZERO
-#define EB EXT_INIT_BITS
-
-const RACE_T race_table[RACE_MAX + 1] = {
-
- /* {name,          act bits, aff_by bits,                                         off bits,                        imm,                                                    res,                              vuln,                                             form,                          parts} */
-    {"unique",         EZ,    0,                                                   0,                               0,                                                      0,                                0,                                                0,                             0},
-    {"bat",            EZ,    AFF_FLYING | AFF_DARK_VISION,                        OFF_DODGE | OFF_FAST,            0,                                                      0,                                RES_LIGHT,                                        FORMS_MAMMAL,                  PARTS_QUADRUPED | PART_WINGS},
-    {"bear",           EZ,    0,                                              OFF_CRUSH | OFF_DISARM | OFF_BERSERK, 0,                                                      RES_BASH | RES_COLD,              0,                                                FORMS_MAMMAL,                  PARTS_BIPED | PART_CLAWS | PART_FANGS},
-    {"cat",            EZ,    AFF_DARK_VISION,                                     OFF_FAST | OFF_DODGE,            0,                                                      0,                                0,                                                FORMS_MAMMAL,                  PARTS_FELINE},
-    {"centipede",      EZ,    AFF_DARK_VISION,                                     0,                               0,                                                      RES_PIERCE | RES_COLD,            RES_BASH,                                         FORMS_BUG | FORM_POISON,       PART_HEAD | PART_LEGS | PART_EYE},
-    {"dog",            EZ,    0,                                                   OFF_FAST,                        0,                                                      0,                                0,                                                FORMS_MAMMAL,                  PARTS_CANINE | PART_CLAWS},
-    {"doll",           EZ,    0,                                                   0, RES_COLD | RES_POISON | RES_HOLY | RES_NEGATIVE | RES_MENTAL | RES_DISEASE | RES_DROWNING, RES_BASH | RES_LIGHT, RES_SLASH | RES_FIRE | RES_ACID | RES_LIGHTNING | RES_ENERGY, FORM_OTHER | FORM_CONSTRUCT | FORM_BIPED | FORM_COLD_BLOOD, PARTS_HUMANOID & ~(PARTS_ALIVE | PART_EAR)},
-    {"dragon",         EZ,    AFF_INFRARED | AFF_FLYING,                           0,                               0,                                                      RES_FIRE | RES_BASH | RES_CHARM,  RES_PIERCE | RES_COLD,                FORM_EDIBLE | FORM_SENTIENT | FORM_DRAGON, PARTS_LIZARD | PART_FINGERS | PART_CLAWS | PART_FANGS},
-    {"dwarf",          EZ,    AFF_INFRARED,                                        0,                               0,                                                      RES_POISON | RES_DISEASE,         RES_DROWNING,                                     FORMS_HUMANOID,                PARTS_HUMANOID},
-    {"elf",            EZ,    AFF_INFRARED,                                        0,                               0,                                                      RES_CHARM,                        RES_IRON,                                         FORMS_HUMANOID,                PARTS_HUMANOID},
-    {"fido",           EZ,    0,                                                   OFF_DODGE | ASSIST_RACE,         0,                                                      0,                                RES_MAGIC,                                        FORMS_MAMMAL | FORM_POISON,    PARTS_CANINE | PART_TAIL},
-    {"fox",            EZ,    AFF_DARK_VISION,                                     OFF_FAST | OFF_DODGE,            0,                                                      0,                                0,                                                FORMS_MAMMAL,                  PARTS_CANINE | PART_TAIL},
-    {"giant",          EZ,    0,                                                   0,                               0,                                                      RES_FIRE | RES_COLD,              RES_MENTAL | RES_LIGHTNING,                       FORMS_HUMANOID,                PARTS_HUMANOID},
-    {"goblin",         EZ,    AFF_INFRARED,                                        0,                               0,                                                      RES_DISEASE,                      RES_MAGIC,                                        FORMS_HUMANOID,                PARTS_HUMANOID},
-    {"hobgoblin",      EZ,    AFF_INFRARED,                                        0,                               0,                                                      RES_DISEASE | RES_POISON,         0,                                                FORMS_HUMANOID,                PARTS_HUMANOID | PART_TUSKS},
-    {"human",          EZ,    0,                                                   0,                               0,                                                      0,                                0,                                                FORMS_HUMANOID,                PARTS_HUMANOID},
-    {"kobold",         EZ,    AFF_INFRARED,                                        0,                               0,                                                      RES_POISON,                       RES_MAGIC,                                        FORMS_HUMANOID | FORM_POISON,  PARTS_HUMANOID | PART_TAIL},
-    {"lizard",         EZ,    0,                                                   0,                               0,                                                      RES_POISON,                       RES_COLD,                                         FORMS_LIZARD,                  PARTS_LIZARD},
-    {"modron",         EZ,    AFF_INFRARED,                                     ASSIST_RACE | ASSIST_ALIGN, RES_CHARM | RES_DISEASE | RES_MENTAL | RES_HOLY | RES_NEGATIVE, RES_FIRE | RES_COLD | RES_ACID,   0,                                                FORM_SENTIENT,                 PARTS_HUMANOID & ~(PARTS_ALIVE | PART_FINGERS)},
-    {"orc",            EZ,    AFF_INFRARED,                                        0,                               0,                                                      RES_DISEASE,                      RES_LIGHT,                                        FORMS_HUMANOID,                PARTS_HUMANOID},
-    {"pig",            EZ,    0,                                                   0,                               0,                                                      0,                                0,                                                FORMS_MAMMAL,                  PARTS_QUADRUPED},
-    {"pixie",          EZ, AFF_FLYING | AFF_DETECT_GOOD | AFF_DETECT_EVIL | AFF_DETECT_MAGIC, 0,                    0,                                                      0,                                0,                                                FORMS_HUMANOID | FORM_MAGICAL, PARTS_HUMANOID | PART_WINGS},
-    {"rabbit",         EZ,    0,                                                   OFF_DODGE | OFF_FAST,            0,                                                      0,                                0,                                                FORMS_MAMMAL,                  PARTS_QUADRUPED},
-    {"school monster", EB(MOB_NOALIGN), 0,                                         0,                               RES_CHARM | RES_SUMMON,                                 0,                                RES_MAGIC,                                        FORMS_MONSTER,                 PARTS_BIPED | PART_TAIL | PART_CLAWS},
-    {"snake",          EZ,    0,                                                   0,                               0,                                                      RES_POISON,                       RES_COLD,                                         FORMS_LIZARD | FORM_SNAKE,     PARTS_REPTILE | PART_FANGS},
-    {"song bird",      EZ,    AFF_FLYING,                                          OFF_FAST | OFF_DODGE,            0,                                                      0,                                0,                                                FORMS_BIRD,                    PARTS_BIRD},
-    {"troll",          EZ,    AFF_REGENERATION | AFF_INFRARED | AFF_DETECT_HIDDEN, OFF_BERSERK,                     0,                                                      RES_CHARM | RES_BASH,             RES_FIRE | RES_ACID,                              FORMS_HUMANOID | FORM_POISON,  PARTS_HUMANOID | PART_CLAWS | PART_FANGS},
-    {"water fowl",     EZ,    AFF_SWIM | AFF_FLYING,                               0,                               0,                                                      RES_DROWNING,                     0,                                                FORMS_BIRD,                    PARTS_BIRD},
-    {"wolf",           EZ,    AFF_DARK_VISION,                                     OFF_FAST | OFF_DODGE,            0,                                                      0,                                0,                                                FORMS_MAMMAL,                  PARTS_CANINE | PART_CLAWS | PART_TAIL},
-    {"wyvern",         EZ,    AFF_FLYING | AFF_DETECT_INVIS | AFF_DETECT_HIDDEN,   OFF_BASH | OFF_FAST | OFF_DODGE, RES_POISON,                                             0,                                RES_LIGHT,                FORM_EDIBLE | FORM_POISON | FORM_ANIMAL | FORM_DRAGON, PARTS_LIZARD | PART_FANGS},
-    {0}
-};
-
-const PC_RACE_T pc_race_table[PC_RACE_MAX + 1] = {
- /* {"race name", short name, points, { class multipliers }, { bonus skills },  { base stats (str,int,wis,dex,con) }, {max}, size}, */
-    {"human",  "Human", 0, {100, 100, 100, 100}, {NULL},                         {13, 13, 13, 13, 13}, {18, 18, 18, 18, 18}, SIZE_MEDIUM, 1},
-    {"elf",    " Elf ", 5, {100, 125, 100, 125}, {"sneak", "hide", NULL},        {12, 14, 13, 15, 11}, {16, 20, 18, 21, 15}, SIZE_SMALL,  0},
-    {"dwarf",  "Dwarf", 8, {150, 100, 125, 100}, {"berserk", NULL},              {14, 12, 14, 10, 15}, {20, 16, 19, 14, 21}, SIZE_MEDIUM, 0},
-    {"giant",  "Giant", 6, {200, 150, 150, 100}, {"bash", "fast healing", NULL}, {16, 11, 13, 11, 14}, {22, 15, 18, 15, 20}, SIZE_LARGE,  0},
-#ifdef BASEMUD_RACE_ORC
-    {"orc",    " Orc ", 0, {100, 100, 100, 100}, {NULL},                         {13, 13, 13, 13, 13}, {19, 17, 17, 18, 19}, SIZE_MEDIUM, 0},
-#endif
-#ifdef BASEMUD_RACE_PIXIE
-    {"pixie",  "Pixie", 7, {100, 150, 150, 150}, {"dodge", NULL},                {11, 15, 15, 14, 10}, {15, 21, 20, 20, 14}, SIZE_TINY,   0},
-#endif
-    {0}
-};
+RACE_T race_table[RACE_MAX + 1];
+PC_RACE_T pc_race_table[PC_RACE_MAX + 1];
 
 /* Class table.  */
 const CLASS_T class_table[CLASS_MAX + 1] = {
@@ -1203,66 +1109,6 @@ const SKILL_GROUP_T skill_group_table[SKILL_GROUP_MAX + 1] = {
     {0}
 };
 
-/* Globals. */
-SKILL_MAP_T skill_map_table[SKILL_MAP_MAX + 1] = {
-    {SKILL_MAP_BACKSTAB,        "backstab"},
-    {SKILL_MAP_DODGE,           "dodge"},
-    {SKILL_MAP_ENVENOM,         "envenom"},
-    {SKILL_MAP_HIDE,            "hide"},
-    {SKILL_MAP_PEEK,            "peek"},
-    {SKILL_MAP_PICK_LOCK,       "pick lock"},
-    {SKILL_MAP_SNEAK,           "sneak"},
-    {SKILL_MAP_STEAL,           "steal"},
-
-    {SKILL_MAP_DISARM,          "disarm"},
-    {SKILL_MAP_ENHANCED_DAMAGE, "enhanced damage"},
-    {SKILL_MAP_KICK,            "kick"},
-    {SKILL_MAP_PARRY,           "parry"},
-    {SKILL_MAP_RESCUE,          "rescue"},
-    {SKILL_MAP_SECOND_ATTACK,   "second attack"},
-    {SKILL_MAP_THIRD_ATTACK,    "third attack"},
-
-    {SKILL_MAP_BLINDNESS,       "blindness"},
-    {SKILL_MAP_CHARM_PERSON,    "charm person"},
-    {SKILL_MAP_CURSE,           "curse"},
-    {SKILL_MAP_INVIS,           "invisibility"},
-    {SKILL_MAP_MASS_INVIS,      "mass invis"},
-    {SKILL_MAP_POISON,          "poison"},
-    {SKILL_MAP_PLAGUE,          "plague"},
-    {SKILL_MAP_SLEEP,           "sleep"},
-    {SKILL_MAP_SANCTUARY,       "sanctuary"},
-    {SKILL_MAP_FLY,             "fly"},
-
-    {SKILL_MAP_AXE,             "axe"},
-    {SKILL_MAP_DAGGER,          "dagger"},
-    {SKILL_MAP_FLAIL,           "flail"},
-    {SKILL_MAP_MACE,            "mace"},
-    {SKILL_MAP_POLEARM,         "polearm"},
-    {SKILL_MAP_SHIELD_BLOCK,    "shield block"},
-    {SKILL_MAP_SPEAR,           "spear"},
-    {SKILL_MAP_SWORD,           "sword"},
-    {SKILL_MAP_WHIP,            "whip"},
-
-    {SKILL_MAP_BASH,            "bash"},
-    {SKILL_MAP_BERSERK,         "berserk"},
-    {SKILL_MAP_DIRT,            "dirt kicking"},
-    {SKILL_MAP_HAND_TO_HAND,    "hand to hand"},
-    {SKILL_MAP_TRIP,            "trip"},
-
-    {SKILL_MAP_FAST_HEALING,    "fast healing"},
-    {SKILL_MAP_HAGGLE,          "haggle"},
-    {SKILL_MAP_LORE,            "lore"},
-    {SKILL_MAP_MEDITATION,      "meditation"},
-
-    {SKILL_MAP_SCROLLS,         "scrolls"},
-    {SKILL_MAP_STAVES,          "staves"},
-    {SKILL_MAP_WANDS,           "wands"},
-    {SKILL_MAP_RECALL,          "recall"},
-    {SKILL_MAP_FRENZY,          "frenzy"},
-
-    {0}
-};
-
 const SECTOR_T sector_table[SECT_MAX + 1] = {
     {SECT_INSIDE,       "inside",      1, 'C'},
     {SECT_CITY,         "city",        2, 'c'},
@@ -1276,196 +1122,6 @@ const SECTOR_T sector_table[SECT_MAX + 1] = {
     {SECT_AIR,          "air",        10, 'W'},
     {SECT_DESERT,       "desert",      6, 'Y'},
     {0}
-};
-
-const NANNY_HANDLER_T nanny_table[NANNY_MAX + 1] = {
-    {CON_ANSI,             "ansi",                 nanny_ansi},
-    {CON_GET_NAME,         "get_player_name",      nanny_get_player_name},
-    {CON_GET_OLD_PASSWORD, "get_old_password",     nanny_get_old_password},
-    {CON_BREAK_CONNECT,    "break_connect",        nanny_break_connect},
-    {CON_CONFIRM_NEW_NAME, "confirm_new_name",     nanny_confirm_new_name},
-    {CON_GET_NEW_PASSWORD, "get_new_password",     nanny_get_new_password},
-    {CON_CONFIRM_PASSWORD, "confirm_new_password", nanny_confirm_new_password},
-    {CON_GET_NEW_RACE,     "get_new_race",         nanny_get_new_race},
-    {CON_GET_NEW_SEX,      "get_new_sex",          nanny_get_new_sex},
-    {CON_GET_NEW_CLASS,    "get_new_class",        nanny_get_new_class},
-    {CON_GET_ALIGNMENT,    "get_alignment",        nanny_get_alignment},
-    {CON_DEFAULT_CHOICE,   "default_choice",       nanny_default_choice},
-    {CON_PICK_WEAPON,      "pick_weapon",          nanny_pick_weapon},
-    {CON_GEN_GROUPS,       "gen_groups",           nanny_gen_groups},
-    {CON_READ_IMOTD,       "read_imotd",           nanny_read_imotd},
-    {CON_READ_MOTD,        "read_motd",            nanny_read_motd},
-
-    /* states for new note system, (c)1995-96 erwin@pip.dknet.dk */
-    /* ch MUST be PC here; have nwrite check for PC status! */
-    {CON_NOTE_TO,          "note_to",              handle_con_note_to},
-    {CON_NOTE_SUBJECT,     "note_subject",         handle_con_note_subject},
-    {CON_NOTE_EXPIRE,      "note_expire",          handle_con_note_expire},
-    {CON_NOTE_TEXT,        "note_text",            handle_con_note_text},
-    {CON_NOTE_FINISH,      "note_finish",          handle_con_note_finish},
-
-    {-1, NULL}
-};
-
-const FURNITURE_BITS_T furniture_table[POS_MAX + 1] = {
-    {POS_STANDING, "standing", STAND_AT, STAND_ON, STAND_IN},
-    {POS_SITTING,  "sitting",  SIT_AT,   SIT_ON,   SIT_IN},
-    {POS_RESTING,  "resting",  REST_AT,  REST_ON,  REST_IN},
-    {POS_SLEEPING, "sleeping", SLEEP_AT, SLEEP_ON, SLEEP_IN},
-    {-1, NULL, 0, 0}
-};
-
-const MAP_LOOKUP_TABLE_T map_lookup_table[MAP_LOOKUP_MAX + 1] = {
-    {MAP_LOOKUP_WEAPON_TYPE, "weapon_type", NULL},
-    {MAP_LOOKUP_ATTACK_TYPE, "attack_type", NULL},
-    {MAP_LOOKUP_LIQUID,      "liquid",      NULL},
-    {MAP_LOOKUP_SKILL,       "skill",       NULL},
-    {-1, NULL, NULL},
-};
-
-const MAP_LOOKUP_TABLE_T map_flags_table[MAP_LOOKUP_MAX + 1] = {
-    {MAP_FLAGS_WEAPON,    "weapon",    weapon_flags},
-    {MAP_FLAGS_CONT,      "container", container_flags},
-    {MAP_FLAGS_FURNITURE, "furniture", furniture_flags},
-    {MAP_FLAGS_EXIT,      "exit",      exit_flags},
-    {MAP_FLAGS_GATE,      "gate",      gate_flags},
-    {-1, NULL, NULL},
-};
-
-const OBJ_MAP_T obj_map_table[ITEM_MAX + 1] = {
-    {ITEM_WEAPON, {
-        {0, -1, "weapon_type", MAP_LOOKUP, MAP_LOOKUP_WEAPON_TYPE},
-        {1,  0, "dice_num",    MAP_INTEGER, 0},
-        {2,  0, "dice_size",   MAP_INTEGER, 0},
-        {3, -1, "attack_type", MAP_LOOKUP, MAP_LOOKUP_ATTACK_TYPE},
-        {4,  0, "flags",       MAP_FLAGS, MAP_FLAGS_WEAPON},
-    }},
-    {ITEM_CONTAINER, {
-        {0,  0, "capacity",    MAP_INTEGER, 0},
-        {1,  0, "flags",       MAP_FLAGS, MAP_FLAGS_CONT},
-        {2,  0, "key",         MAP_INTEGER, 0},
-        {3,  0, "max_weight",  MAP_INTEGER, 0},
-        {4,  0, "weight_mult", MAP_INTEGER, 0}
-    }},
-    {ITEM_DRINK_CON, {
-        {0,  0, "capacity",    MAP_INTEGER, 0},
-        {1,  0, "filled",      MAP_INTEGER, 0},
-        {2, -1, "liquid",      MAP_LOOKUP, MAP_LOOKUP_LIQUID},
-        {3,  0, "poisoned",    MAP_BOOLEAN, 0},
-        {4,  0, NULL,          MAP_IGNORE, 0}
-    }},
-    {ITEM_FOUNTAIN, {
-        {0,  0, "capacity",    MAP_INTEGER, 0},
-        {1,  0, "filled",      MAP_INTEGER, 0},
-        {2, -1, "liquid",      MAP_LOOKUP, MAP_LOOKUP_LIQUID},
-        {3,  0, "poisoned",    MAP_BOOLEAN, 0},
-        {4,  0, NULL,          MAP_IGNORE, 0}
-    }},
-    {ITEM_WAND, {
-        {0,  0, "level",       MAP_INTEGER, 0},
-        {1,  0, "recharge",    MAP_INTEGER, 0},
-        {2,  0, "charges",     MAP_INTEGER, 0},
-        {3, -1, "skill",       MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {4,  0, NULL,          MAP_IGNORE, 0}
-    }},
-    {ITEM_STAFF, {
-        {0,  0, "level",       MAP_INTEGER, 0},
-        {1,  0, "recharge",    MAP_INTEGER, 0},
-        {2,  0, "charges",     MAP_INTEGER, 0},
-        {3, -1, "skill",       MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {4,  0, NULL,          MAP_IGNORE, 0}
-    }},
-    {ITEM_FOOD, {
-        {0,  0, "hunger",      MAP_INTEGER, 0},
-        {1,  0, "fullness",    MAP_INTEGER, 0},
-        {2,  0, NULL,          MAP_IGNORE, 0},
-        {3,  0, "poisoned",    MAP_BOOLEAN, 0},
-        {4,  0, NULL,          MAP_IGNORE, 0}
-    }},
-    {ITEM_MONEY, {
-        {0,  0, "silver",      MAP_INTEGER, 0},
-        {1,  0, "gold",        MAP_INTEGER, 0},
-        {2,  0, NULL,          MAP_IGNORE, 0},
-        {3,  0, NULL,          MAP_IGNORE, 0},
-        {4,  0, NULL,          MAP_IGNORE, 0}
-    }},
-    {ITEM_ARMOR, {
-        {0,  0, "vs_pierce",   MAP_INTEGER, 0},
-        {1,  0, "vs_bash",     MAP_INTEGER, 0},
-        {2,  0, "vs_slash",    MAP_INTEGER, 0},
-        {3,  0, "vs_magic",    MAP_INTEGER, 0},
-        {4,  0, NULL,          MAP_IGNORE, 0}
-    }},
-    {ITEM_POTION, {
-        {0,  0, "level",       MAP_INTEGER, 0},
-        {1, -1, "skill1",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {2, -1, "skill2",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {3, -1, "skill3",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {4, -1, "skill4",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-    }},
-    {ITEM_PILL, {
-        {0,  0, "level",       MAP_INTEGER, 0},
-        {1, -1, "skill1",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {2, -1, "skill2",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {3, -1, "skill3",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {4, -1, "skill4",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-    }},
-    {ITEM_SCROLL, {
-        {0,  0, "level",       MAP_INTEGER, 0},
-        {1, -1, "skill1",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {2, -1, "skill2",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {3, -1, "skill3",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-        {4, -1, "skill4",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
-    }},
-    {ITEM_MAP, {
-        {0,  0, "persist",     MAP_BOOLEAN, 0},
-        {1,  0, NULL,          MAP_IGNORE, 0},
-        {2,  0, NULL,          MAP_IGNORE, 0},
-        {3,  0, NULL,          MAP_IGNORE, 0},
-        {4,  0, NULL,          MAP_IGNORE, 0},
-    }},
-    {ITEM_FURNITURE, {
-        {0,  0, "max_people",  MAP_INTEGER, 0},
-        {1,  0, "max_weight",  MAP_INTEGER, 0},
-        {2,  0, "flags",       MAP_FLAGS, MAP_FLAGS_FURNITURE},
-        {3,  0, "heal_rate",   MAP_INTEGER, 0},
-        {4,  0, "mana_rate",   MAP_INTEGER, 0},
-    }},
-    {ITEM_LIGHT, {
-        {0,  0, NULL,          MAP_IGNORE, 0},
-        {1,  0, NULL,          MAP_IGNORE, 0},
-        {2,  0, "duration",    MAP_INTEGER, 0},
-        {3,  0, NULL,          MAP_IGNORE, 0},
-        {4,  0, NULL,          MAP_IGNORE, 0},
-    }},
-    {ITEM_PORTAL, {
-        {0,  0, "charges",     MAP_INTEGER, 0},
-        {1,  0, "exit_flags",  MAP_FLAGS, MAP_FLAGS_EXIT},
-        {2,  0, "gate_flags",  MAP_FLAGS, MAP_FLAGS_GATE},
-        {3,  0, "to_vnum",     MAP_INTEGER, 0},
-        {4,  0, "key",         MAP_INTEGER, 0},
-    }},
-
-    #define OBJ_MAP_NO_VALUES(type) \
-        { type, { \
-            { 0, 0, NULL, MAP_IGNORE, 0 }, { 1, 0, NULL, MAP_IGNORE, 0 }, \
-            { 2, 0, NULL, MAP_IGNORE, 0 }, { 3, 0, NULL, MAP_IGNORE, 0 }, \
-            { 4, 0, NULL, MAP_IGNORE, 0 } \
-        }}
-
-    OBJ_MAP_NO_VALUES(ITEM_TRASH),
-    OBJ_MAP_NO_VALUES(ITEM_GEM),
-    OBJ_MAP_NO_VALUES(ITEM_TREASURE),
-    OBJ_MAP_NO_VALUES(ITEM_KEY),
-    OBJ_MAP_NO_VALUES(ITEM_JEWELRY),
-    OBJ_MAP_NO_VALUES(ITEM_CLOTHING),
-    OBJ_MAP_NO_VALUES(ITEM_BOAT),
-    OBJ_MAP_NO_VALUES(ITEM_CORPSE_NPC),
-    OBJ_MAP_NO_VALUES(ITEM_CORPSE_PC),
-    OBJ_MAP_NO_VALUES(ITEM_JUKEBOX),
-    OBJ_MAP_NO_VALUES(ITEM_WARP_STONE),
-
-    OBJ_MAP_NO_VALUES(-1),
 };
 
 /* for doors */
@@ -1663,55 +1319,6 @@ const MATERIAL_T material_table[MATERIAL_MAX + 1] = {
     {0}
 };
 
-#define RE_NULL
-
-#define RECYCLE_REAL_ENTRY(rtype, rname, vtype, name_off, init, dispose) { \
-    rtype, \
-    #rname, \
-    sizeof (vtype), \
-    GET_OFFSET(vtype, rec_data), \
-    name_off, \
-    init, \
-    dispose \
-}
-
-#define RECYCLE_ENTRY(rtype, rname, vtype, init, dispose) \
-    RECYCLE_REAL_ENTRY(rtype, rname, vtype, -1, init, dispose)
-
-#define RECYCLE_N_ENTRY(rtype, rname, vtype, name, init, dispose) \
-    RECYCLE_REAL_ENTRY(rtype, rname, vtype, GET_OFFSET(vtype, name), init, dispose)
-
-#define BLANK -1
-
-RECYCLE_T recycle_table[RECYCLE_MAX + 1] = {
-    RECYCLE_N_ENTRY (RECYCLE_BAN_T,         ban,         BAN_T,         name, ban_init,         ban_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_AREA_T,        area,        AREA_T,        name, area_init,        area_dispose),
-    RECYCLE_ENTRY   (RECYCLE_EXTRA_DESCR_T, extra_descr, EXTRA_DESCR_T,       extra_descr_init, extra_descr_dispose),
-    RECYCLE_ENTRY   (RECYCLE_EXIT_T,        exit,        EXIT_T,              exit_init,        exit_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_ROOM_INDEX_T,  room_index,  ROOM_INDEX_T,  name, room_index_init,  room_index_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_OBJ_INDEX_T,   obj_index,   OBJ_INDEX_T,   name, obj_index_init,   obj_index_dispose),
-    RECYCLE_ENTRY   (RECYCLE_SHOP_T,        shop,        SHOP_T,              shop_init,        NULL),
-    RECYCLE_ENTRY   (RECYCLE_MOB_INDEX_T,   mob_index,   MOB_INDEX_T,         mob_index_init,   mob_index_dispose),
-    RECYCLE_ENTRY   (RECYCLE_RESET_T,       reset_data,  RESET_T,             reset_data_init,  NULL),
-    RECYCLE_N_ENTRY (RECYCLE_HELP_T,        help,        HELP_T,     keyword, NULL,             help_dispose),
-    RECYCLE_ENTRY   (RECYCLE_MPROG_CODE_T,  mpcode,      MPROG_CODE_T,        mpcode_init,      mpcode_dispose),
-    RECYCLE_ENTRY   (RECYCLE_DESCRIPTOR_T,  descriptor,  DESCRIPTOR_T,        descriptor_init,  descriptor_dispose),
-    RECYCLE_ENTRY   (RECYCLE_GEN_T,         gen_data,    GEN_T,               NULL,             NULL),
-    RECYCLE_ENTRY   (RECYCLE_AFFECT_T,      affect,      AFFECT_T,            NULL,             NULL),
-    RECYCLE_ENTRY   (RECYCLE_OBJ_T,         obj,         OBJ_T,               NULL,             obj_dispose),
-    RECYCLE_ENTRY   (RECYCLE_CHAR_T,        char,        CHAR_T,              char_init,        char_dispose),
-    RECYCLE_ENTRY   (RECYCLE_PC_T,          pcdata,      PC_T,                pcdata_init,      pcdata_dispose),
-    RECYCLE_ENTRY   (RECYCLE_MEM_T,         mem_data,    MEM_T,               NULL,             NULL),
-    RECYCLE_ENTRY   (RECYCLE_BUFFER_T,      buf,         BUFFER_T,            buf_init,         buf_dispose),
-    RECYCLE_ENTRY   (RECYCLE_MPROG_LIST_T,  mprog,       MPROG_LIST_T,        mprog_init,       mprog_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_HELP_AREA_T,   had,         HELP_AREA_T, filename, NULL,           had_dispose),
-    RECYCLE_ENTRY   (RECYCLE_NOTE_T,        note,        NOTE_T,              NULL,             note_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_SOCIAL_T,      social,      SOCIAL_T,      name, social_init,      social_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_PORTAL_EXIT_T, portal_exit, PORTAL_EXIT_T, name, NULL,             portal_exit_dispose),
-    RECYCLE_ENTRY   (RECYCLE_PORTAL_T,      portal,      PORTAL_T,            NULL,             portal_dispose),
-    {0}
-};
-
 /* Technically not const, but this is a good place to have it! */
 BOARD_T board_table[BOARD_MAX + 1] = {
     {"General",  "General discussion",           0, 2,     "all", DEF_INCLUDE, 21, NULL, FALSE},
@@ -1720,41 +1327,6 @@ BOARD_T board_table[BOARD_MAX + 1] = {
     {"Bugs",     "Typos, bugs, errors",          0, 1,     "imm", DEF_NORMAL,  60, NULL, FALSE},
     {"Personal", "Personal messages",            0, 1,     "all", DEF_EXCLUDE, 28, NULL, FALSE},
     {0}
-};
-
-/* wiznet table and prototype for future flag setting */
-const WIZNET_T wiznet_table[WIZNET_MAX + 1] = {
-    {WIZ_ON,        "on",        IM},
-    {WIZ_PREFIX,    "prefix",    IM},
-    {WIZ_TICKS,     "ticks",     IM},
-    {WIZ_LOGINS,    "logins",    IM},
-    {WIZ_SITES,     "sites",     L4},
-    {WIZ_LINKS,     "links",     L7},
-    {WIZ_NEWBIE,    "newbies",   IM},
-    {WIZ_SPAM,      "spam",      L5},
-    {WIZ_DEATHS,    "deaths",    IM},
-    {WIZ_RESETS,    "resets",    L4},
-    {WIZ_MOBDEATHS, "mobdeaths", L4},
-    {WIZ_FLAGS,     "flags",     L5},
-    {WIZ_PENALTIES, "penalties", L5},
-    {WIZ_SACCING,   "saccing",   L5},
-    {WIZ_LEVELS,    "levels",    IM},
-    {WIZ_LOAD,      "load",      L2},
-    {WIZ_RESTORE,   "restore",   L2},
-    {WIZ_SNOOPS,    "snoops",    L2},
-    {WIZ_SWITCHES,  "switches",  L2},
-    {WIZ_SECURE,    "secure",    L1},
-    {-1, NULL, 0}
-};
-
-const AFFECT_BIT_T affect_bit_table[AFF_TO_MAX + 1] = {
-    {"affects", AFF_TO_AFFECTS, affect_flags, "affect_flags"},
-    {"object",  AFF_TO_OBJECT,  extra_flags,  "extra_flags"},
-    {"immune",  AFF_TO_IMMUNE,  res_flags,    "res_flags"},
-    {"resist",  AFF_TO_RESIST,  res_flags,    "res_flags"},
-    {"vuln",    AFF_TO_VULN,    res_flags,    "res_flags"},
-    {"weapon",  AFF_TO_WEAPON,  weapon_flags, "weapon_flags"},
-    {NULL,      0,              NULL},
 };
 
 const DAY_T day_table[DAY_MAX + 1] = {
@@ -1891,6 +1463,20 @@ const POSE_T pose_table[CLASS_MAX + 1] = {
 
 SONG_T song_table[MAX_SONGS + 1];
 
+DEFINE_DISPOSE_FUN (pc_race_dispose) {
+    PC_RACE_T *pc_race = obj;
+    int i;
+
+    str_free (&(pc_race->name));
+    for (i = 0; i < PC_RACE_SKILL_MAX; i++)
+        str_free (&(pc_race->skills[i]));
+}
+
+DEFINE_DISPOSE_FUN (race_dispose) {
+    RACE_T *race = obj;
+    str_free (&(race->name));
+}
+
 DEFINE_DISPOSE_FUN (song_dispose) {
     SONG_T *song = obj;
     int i;
@@ -1901,3 +1487,347 @@ DEFINE_DISPOSE_FUN (song_dispose) {
         str_free (&(song->lyrics[i]));
     song->lines = 0;
 }
+
+const AFFECT_BIT_T affect_bit_table[AFF_TO_MAX + 1] = {
+    {"affects", AFF_TO_AFFECTS, affect_flags, "affect_flags"},
+    {"object",  AFF_TO_OBJECT,  extra_flags,  "extra_flags"},
+    {"immune",  AFF_TO_IMMUNE,  res_flags,    "res_flags"},
+    {"resist",  AFF_TO_RESIST,  res_flags,    "res_flags"},
+    {"vuln",    AFF_TO_VULN,    res_flags,    "res_flags"},
+    {"weapon",  AFF_TO_WEAPON,  weapon_flags, "weapon_flags"},
+    {NULL,      0,              NULL},
+};
+
+const EFFECT_T effect_table[EFFECT_MAX + 1] = {
+    {EFFECT_NONE,   "none",   effect_empty},
+    {EFFECT_FIRE,   "fire",   effect_fire},
+    {EFFECT_COLD,   "cold",   effect_cold},
+    {EFFECT_SHOCK,  "shock",  effect_shock},
+    {EFFECT_ACID,   "acid",   effect_acid},
+    {EFFECT_POISON, "poison", effect_poison},
+    {0}
+};
+
+const FURNITURE_BITS_T furniture_table[POS_MAX + 1] = {
+    {POS_STANDING, "standing", STAND_AT, STAND_ON, STAND_IN},
+    {POS_SITTING,  "sitting",  SIT_AT,   SIT_ON,   SIT_IN},
+    {POS_RESTING,  "resting",  REST_AT,  REST_ON,  REST_IN},
+    {POS_SLEEPING, "sleeping", SLEEP_AT, SLEEP_ON, SLEEP_IN},
+    {-1, NULL, 0, 0}
+};
+
+const MAP_LOOKUP_TABLE_T map_flags_table[MAP_LOOKUP_MAX + 1] = {
+    {MAP_FLAGS_WEAPON,    "weapon",    weapon_flags},
+    {MAP_FLAGS_CONT,      "container", container_flags},
+    {MAP_FLAGS_FURNITURE, "furniture", furniture_flags},
+    {MAP_FLAGS_EXIT,      "exit",      exit_flags},
+    {MAP_FLAGS_GATE,      "gate",      gate_flags},
+    {-1, NULL, NULL},
+};
+
+const MAP_LOOKUP_TABLE_T map_lookup_table[MAP_LOOKUP_MAX + 1] = {
+    {MAP_LOOKUP_WEAPON_TYPE, "weapon_type", NULL},
+    {MAP_LOOKUP_ATTACK_TYPE, "attack_type", NULL},
+    {MAP_LOOKUP_LIQUID,      "liquid",      NULL},
+    {MAP_LOOKUP_SKILL,       "skill",       NULL},
+    {-1, NULL, NULL},
+};
+
+const NANNY_HANDLER_T nanny_table[NANNY_MAX + 1] = {
+    {CON_ANSI,             "ansi",                 nanny_ansi},
+    {CON_GET_NAME,         "get_player_name",      nanny_get_player_name},
+    {CON_GET_OLD_PASSWORD, "get_old_password",     nanny_get_old_password},
+    {CON_BREAK_CONNECT,    "break_connect",        nanny_break_connect},
+    {CON_CONFIRM_NEW_NAME, "confirm_new_name",     nanny_confirm_new_name},
+    {CON_GET_NEW_PASSWORD, "get_new_password",     nanny_get_new_password},
+    {CON_CONFIRM_PASSWORD, "confirm_new_password", nanny_confirm_new_password},
+    {CON_GET_NEW_RACE,     "get_new_race",         nanny_get_new_race},
+    {CON_GET_NEW_SEX,      "get_new_sex",          nanny_get_new_sex},
+    {CON_GET_NEW_CLASS,    "get_new_class",        nanny_get_new_class},
+    {CON_GET_ALIGNMENT,    "get_alignment",        nanny_get_alignment},
+    {CON_DEFAULT_CHOICE,   "default_choice",       nanny_default_choice},
+    {CON_PICK_WEAPON,      "pick_weapon",          nanny_pick_weapon},
+    {CON_GEN_GROUPS,       "gen_groups",           nanny_gen_groups},
+    {CON_READ_IMOTD,       "read_imotd",           nanny_read_imotd},
+    {CON_READ_MOTD,        "read_motd",            nanny_read_motd},
+
+    /* states for new note system, (c)1995-96 erwin@pip.dknet.dk */
+    /* ch MUST be PC here; have nwrite check for PC status! */
+    {CON_NOTE_TO,          "note_to",              handle_con_note_to},
+    {CON_NOTE_SUBJECT,     "note_subject",         handle_con_note_subject},
+    {CON_NOTE_EXPIRE,      "note_expire",          handle_con_note_expire},
+    {CON_NOTE_TEXT,        "note_text",            handle_con_note_text},
+    {CON_NOTE_FINISH,      "note_finish",          handle_con_note_finish},
+
+    {-1, NULL}
+};
+
+const OBJ_MAP_T obj_map_table[ITEM_MAX + 1] = {
+    {ITEM_WEAPON, {
+        {0, -1, "weapon_type", MAP_LOOKUP, MAP_LOOKUP_WEAPON_TYPE},
+        {1,  0, "dice_num",    MAP_INTEGER, 0},
+        {2,  0, "dice_size",   MAP_INTEGER, 0},
+        {3, -1, "attack_type", MAP_LOOKUP, MAP_LOOKUP_ATTACK_TYPE},
+        {4,  0, "flags",       MAP_FLAGS, MAP_FLAGS_WEAPON},
+    }},
+    {ITEM_CONTAINER, {
+        {0,  0, "capacity",    MAP_INTEGER, 0},
+        {1,  0, "flags",       MAP_FLAGS, MAP_FLAGS_CONT},
+        {2,  0, "key",         MAP_INTEGER, 0},
+        {3,  0, "max_weight",  MAP_INTEGER, 0},
+        {4,  0, "weight_mult", MAP_INTEGER, 0}
+    }},
+    {ITEM_DRINK_CON, {
+        {0,  0, "capacity",    MAP_INTEGER, 0},
+        {1,  0, "filled",      MAP_INTEGER, 0},
+        {2, -1, "liquid",      MAP_LOOKUP, MAP_LOOKUP_LIQUID},
+        {3,  0, "poisoned",    MAP_BOOLEAN, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0}
+    }},
+    {ITEM_FOUNTAIN, {
+        {0,  0, "capacity",    MAP_INTEGER, 0},
+        {1,  0, "filled",      MAP_INTEGER, 0},
+        {2, -1, "liquid",      MAP_LOOKUP, MAP_LOOKUP_LIQUID},
+        {3,  0, "poisoned",    MAP_BOOLEAN, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0}
+    }},
+    {ITEM_WAND, {
+        {0,  0, "level",       MAP_INTEGER, 0},
+        {1,  0, "recharge",    MAP_INTEGER, 0},
+        {2,  0, "charges",     MAP_INTEGER, 0},
+        {3, -1, "skill",       MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {4,  0, NULL,          MAP_IGNORE, 0}
+    }},
+    {ITEM_STAFF, {
+        {0,  0, "level",       MAP_INTEGER, 0},
+        {1,  0, "recharge",    MAP_INTEGER, 0},
+        {2,  0, "charges",     MAP_INTEGER, 0},
+        {3, -1, "skill",       MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {4,  0, NULL,          MAP_IGNORE, 0}
+    }},
+    {ITEM_FOOD, {
+        {0,  0, "hunger",      MAP_INTEGER, 0},
+        {1,  0, "fullness",    MAP_INTEGER, 0},
+        {2,  0, NULL,          MAP_IGNORE, 0},
+        {3,  0, "poisoned",    MAP_BOOLEAN, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0}
+    }},
+    {ITEM_MONEY, {
+        {0,  0, "silver",      MAP_INTEGER, 0},
+        {1,  0, "gold",        MAP_INTEGER, 0},
+        {2,  0, NULL,          MAP_IGNORE, 0},
+        {3,  0, NULL,          MAP_IGNORE, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0}
+    }},
+    {ITEM_ARMOR, {
+        {0,  0, "vs_pierce",   MAP_INTEGER, 0},
+        {1,  0, "vs_bash",     MAP_INTEGER, 0},
+        {2,  0, "vs_slash",    MAP_INTEGER, 0},
+        {3,  0, "vs_magic",    MAP_INTEGER, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0}
+    }},
+    {ITEM_POTION, {
+        {0,  0, "level",       MAP_INTEGER, 0},
+        {1, -1, "skill1",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {2, -1, "skill2",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {3, -1, "skill3",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {4, -1, "skill4",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+    }},
+    {ITEM_PILL, {
+        {0,  0, "level",       MAP_INTEGER, 0},
+        {1, -1, "skill1",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {2, -1, "skill2",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {3, -1, "skill3",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {4, -1, "skill4",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+    }},
+    {ITEM_SCROLL, {
+        {0,  0, "level",       MAP_INTEGER, 0},
+        {1, -1, "skill1",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {2, -1, "skill2",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {3, -1, "skill3",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+        {4, -1, "skill4",      MAP_LOOKUP, MAP_LOOKUP_SKILL},
+    }},
+    {ITEM_MAP, {
+        {0,  0, "persist",     MAP_BOOLEAN, 0},
+        {1,  0, NULL,          MAP_IGNORE, 0},
+        {2,  0, NULL,          MAP_IGNORE, 0},
+        {3,  0, NULL,          MAP_IGNORE, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0},
+    }},
+    {ITEM_FURNITURE, {
+        {0,  0, "max_people",  MAP_INTEGER, 0},
+        {1,  0, "max_weight",  MAP_INTEGER, 0},
+        {2,  0, "flags",       MAP_FLAGS, MAP_FLAGS_FURNITURE},
+        {3,  0, "heal_rate",   MAP_INTEGER, 0},
+        {4,  0, "mana_rate",   MAP_INTEGER, 0},
+    }},
+    {ITEM_LIGHT, {
+        {0,  0, NULL,          MAP_IGNORE, 0},
+        {1,  0, NULL,          MAP_IGNORE, 0},
+        {2,  0, "duration",    MAP_INTEGER, 0},
+        {3,  0, NULL,          MAP_IGNORE, 0},
+        {4,  0, NULL,          MAP_IGNORE, 0},
+    }},
+    {ITEM_PORTAL, {
+        {0,  0, "charges",     MAP_INTEGER, 0},
+        {1,  0, "exit_flags",  MAP_FLAGS, MAP_FLAGS_EXIT},
+        {2,  0, "gate_flags",  MAP_FLAGS, MAP_FLAGS_GATE},
+        {3,  0, "to_vnum",     MAP_INTEGER, 0},
+        {4,  0, "key",         MAP_INTEGER, 0},
+    }},
+
+    #define OBJ_MAP_NO_VALUES(type) \
+        { type, { \
+            { 0, 0, NULL, MAP_IGNORE, 0 }, { 1, 0, NULL, MAP_IGNORE, 0 }, \
+            { 2, 0, NULL, MAP_IGNORE, 0 }, { 3, 0, NULL, MAP_IGNORE, 0 }, \
+            { 4, 0, NULL, MAP_IGNORE, 0 } \
+        }}
+
+    OBJ_MAP_NO_VALUES(ITEM_TRASH),
+    OBJ_MAP_NO_VALUES(ITEM_GEM),
+    OBJ_MAP_NO_VALUES(ITEM_TREASURE),
+    OBJ_MAP_NO_VALUES(ITEM_KEY),
+    OBJ_MAP_NO_VALUES(ITEM_JEWELRY),
+    OBJ_MAP_NO_VALUES(ITEM_CLOTHING),
+    OBJ_MAP_NO_VALUES(ITEM_BOAT),
+    OBJ_MAP_NO_VALUES(ITEM_CORPSE_NPC),
+    OBJ_MAP_NO_VALUES(ITEM_CORPSE_PC),
+    OBJ_MAP_NO_VALUES(ITEM_JUKEBOX),
+    OBJ_MAP_NO_VALUES(ITEM_WARP_STONE),
+
+    OBJ_MAP_NO_VALUES(-1),
+};
+
+/* Globals. */
+SKILL_MAP_T skill_map_table[SKILL_MAP_MAX + 1] = {
+    {SKILL_MAP_BACKSTAB,        "backstab"},
+    {SKILL_MAP_DODGE,           "dodge"},
+    {SKILL_MAP_ENVENOM,         "envenom"},
+    {SKILL_MAP_HIDE,            "hide"},
+    {SKILL_MAP_PEEK,            "peek"},
+    {SKILL_MAP_PICK_LOCK,       "pick lock"},
+    {SKILL_MAP_SNEAK,           "sneak"},
+    {SKILL_MAP_STEAL,           "steal"},
+
+    {SKILL_MAP_DISARM,          "disarm"},
+    {SKILL_MAP_ENHANCED_DAMAGE, "enhanced damage"},
+    {SKILL_MAP_KICK,            "kick"},
+    {SKILL_MAP_PARRY,           "parry"},
+    {SKILL_MAP_RESCUE,          "rescue"},
+    {SKILL_MAP_SECOND_ATTACK,   "second attack"},
+    {SKILL_MAP_THIRD_ATTACK,    "third attack"},
+
+    {SKILL_MAP_BLINDNESS,       "blindness"},
+    {SKILL_MAP_CHARM_PERSON,    "charm person"},
+    {SKILL_MAP_CURSE,           "curse"},
+    {SKILL_MAP_INVIS,           "invisibility"},
+    {SKILL_MAP_MASS_INVIS,      "mass invis"},
+    {SKILL_MAP_POISON,          "poison"},
+    {SKILL_MAP_PLAGUE,          "plague"},
+    {SKILL_MAP_SLEEP,           "sleep"},
+    {SKILL_MAP_SANCTUARY,       "sanctuary"},
+    {SKILL_MAP_FLY,             "fly"},
+
+    {SKILL_MAP_AXE,             "axe"},
+    {SKILL_MAP_DAGGER,          "dagger"},
+    {SKILL_MAP_FLAIL,           "flail"},
+    {SKILL_MAP_MACE,            "mace"},
+    {SKILL_MAP_POLEARM,         "polearm"},
+    {SKILL_MAP_SHIELD_BLOCK,    "shield block"},
+    {SKILL_MAP_SPEAR,           "spear"},
+    {SKILL_MAP_SWORD,           "sword"},
+    {SKILL_MAP_WHIP,            "whip"},
+
+    {SKILL_MAP_BASH,            "bash"},
+    {SKILL_MAP_BERSERK,         "berserk"},
+    {SKILL_MAP_DIRT,            "dirt kicking"},
+    {SKILL_MAP_HAND_TO_HAND,    "hand to hand"},
+    {SKILL_MAP_TRIP,            "trip"},
+
+    {SKILL_MAP_FAST_HEALING,    "fast healing"},
+    {SKILL_MAP_HAGGLE,          "haggle"},
+    {SKILL_MAP_LORE,            "lore"},
+    {SKILL_MAP_MEDITATION,      "meditation"},
+
+    {SKILL_MAP_SCROLLS,         "scrolls"},
+    {SKILL_MAP_STAVES,          "staves"},
+    {SKILL_MAP_WANDS,           "wands"},
+    {SKILL_MAP_RECALL,          "recall"},
+    {SKILL_MAP_FRENZY,          "frenzy"},
+
+    {0}
+};
+
+#define RE_NULL
+
+#define RECYCLE_REAL_ENTRY(rtype, rname, vtype, name_off, init, dispose) { \
+    rtype, \
+    #rname, \
+    sizeof (vtype), \
+    GET_OFFSET(vtype, rec_data), \
+    name_off, \
+    init, \
+    dispose \
+}
+
+#define RECYCLE_ENTRY(rtype, rname, vtype, init, dispose) \
+    RECYCLE_REAL_ENTRY(rtype, rname, vtype, -1, init, dispose)
+
+#define RECYCLE_N_ENTRY(rtype, rname, vtype, name, init, dispose) \
+    RECYCLE_REAL_ENTRY(rtype, rname, vtype, GET_OFFSET(vtype, name), init, dispose)
+
+#define BLANK -1
+
+RECYCLE_T recycle_table[RECYCLE_MAX + 1] = {
+    RECYCLE_N_ENTRY (RECYCLE_BAN_T,         ban,         BAN_T,         name, ban_init,         ban_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_AREA_T,        area,        AREA_T,        name, area_init,        area_dispose),
+    RECYCLE_ENTRY   (RECYCLE_EXTRA_DESCR_T, extra_descr, EXTRA_DESCR_T,       extra_descr_init, extra_descr_dispose),
+    RECYCLE_ENTRY   (RECYCLE_EXIT_T,        exit,        EXIT_T,              exit_init,        exit_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_ROOM_INDEX_T,  room_index,  ROOM_INDEX_T,  name, room_index_init,  room_index_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_OBJ_INDEX_T,   obj_index,   OBJ_INDEX_T,   name, obj_index_init,   obj_index_dispose),
+    RECYCLE_ENTRY   (RECYCLE_SHOP_T,        shop,        SHOP_T,              shop_init,        NULL),
+    RECYCLE_ENTRY   (RECYCLE_MOB_INDEX_T,   mob_index,   MOB_INDEX_T,         mob_index_init,   mob_index_dispose),
+    RECYCLE_ENTRY   (RECYCLE_RESET_T,       reset_data,  RESET_T,             reset_data_init,  NULL),
+    RECYCLE_N_ENTRY (RECYCLE_HELP_T,        help,        HELP_T,     keyword, NULL,             help_dispose),
+    RECYCLE_ENTRY   (RECYCLE_MPROG_CODE_T,  mpcode,      MPROG_CODE_T,        mpcode_init,      mpcode_dispose),
+    RECYCLE_ENTRY   (RECYCLE_DESCRIPTOR_T,  descriptor,  DESCRIPTOR_T,        descriptor_init,  descriptor_dispose),
+    RECYCLE_ENTRY   (RECYCLE_GEN_T,         gen_data,    GEN_T,               NULL,             NULL),
+    RECYCLE_ENTRY   (RECYCLE_AFFECT_T,      affect,      AFFECT_T,            NULL,             NULL),
+    RECYCLE_ENTRY   (RECYCLE_OBJ_T,         obj,         OBJ_T,               NULL,             obj_dispose),
+    RECYCLE_ENTRY   (RECYCLE_CHAR_T,        char,        CHAR_T,              char_init,        char_dispose),
+    RECYCLE_ENTRY   (RECYCLE_PC_T,          pcdata,      PC_T,                pcdata_init,      pcdata_dispose),
+    RECYCLE_ENTRY   (RECYCLE_MEM_T,         mem_data,    MEM_T,               NULL,             NULL),
+    RECYCLE_ENTRY   (RECYCLE_BUFFER_T,      buf,         BUFFER_T,            buf_init,         buf_dispose),
+    RECYCLE_ENTRY   (RECYCLE_MPROG_LIST_T,  mprog,       MPROG_LIST_T,        mprog_init,       mprog_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_HELP_AREA_T,   had,         HELP_AREA_T, filename, NULL,           had_dispose),
+    RECYCLE_ENTRY   (RECYCLE_NOTE_T,        note,        NOTE_T,              NULL,             note_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_SOCIAL_T,      social,      SOCIAL_T,      name, social_init,      social_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_PORTAL_EXIT_T, portal_exit, PORTAL_EXIT_T, name, NULL,             portal_exit_dispose),
+    RECYCLE_ENTRY   (RECYCLE_PORTAL_T,      portal,      PORTAL_T,            NULL,             portal_dispose),
+    {0}
+};
+
+/* wiznet table and prototype for future flag setting */
+const WIZNET_T wiznet_table[WIZNET_MAX + 1] = {
+    {WIZ_ON,        "on",        IM},
+    {WIZ_PREFIX,    "prefix",    IM},
+    {WIZ_TICKS,     "ticks",     IM},
+    {WIZ_LOGINS,    "logins",    IM},
+    {WIZ_SITES,     "sites",     L4},
+    {WIZ_LINKS,     "links",     L7},
+    {WIZ_NEWBIE,    "newbies",   IM},
+    {WIZ_SPAM,      "spam",      L5},
+    {WIZ_DEATHS,    "deaths",    IM},
+    {WIZ_RESETS,    "resets",    L4},
+    {WIZ_MOBDEATHS, "mobdeaths", L4},
+    {WIZ_FLAGS,     "flags",     L5},
+    {WIZ_PENALTIES, "penalties", L5},
+    {WIZ_SACCING,   "saccing",   L5},
+    {WIZ_LEVELS,    "levels",    IM},
+    {WIZ_LOAD,      "load",      L2},
+    {WIZ_RESTORE,   "restore",   L2},
+    {WIZ_SNOOPS,    "snoops",    L2},
+    {WIZ_SWITCHES,  "switches",  L2},
+    {WIZ_SECURE,    "secure",    L1},
+    {-1, NULL, 0}
+};

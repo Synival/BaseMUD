@@ -244,7 +244,7 @@ struct attack_type {
 
 struct race_type {
     char *name;   /* call name of the race          */
-    EXT_INIT_FLAGS_T ext_mob; /* act bits for the race          */
+    EXT_FLAGS_T ext_mob; /* act bits for the race   */
     flag_t aff;   /* aff bits for the race          */
     flag_t off;   /* off bits for the race          */
     flag_t imm;   /* imm bits for the race          */

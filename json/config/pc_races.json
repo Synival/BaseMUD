@@ -3,12 +3,6 @@
     "name": "human",
     "who_name": "Human",
     "creation_points": 0,
-    "class_exp": {
-      "mage": 100,
-      "cleric": 100,
-      "thief": 100,
-      "warrior": 100
-    },
     "base_stats": {
       "str": 13,
       "int": 13,
@@ -31,9 +25,7 @@
     "who_name": " Elf ",
     "creation_points": 5,
     "class_exp": {
-      "mage": 100,
       "cleric": 125,
-      "thief": 100,
       "warrior": 125
     },
     "skills": [
@@ -61,9 +53,7 @@
     "creation_points": 8,
     "class_exp": {
       "mage": 150,
-      "cleric": 100,
-      "thief": 125,
-      "warrior": 100
+      "thief": 125
     },
     "skills": ["berserk"],
     "base_stats": {
@@ -89,8 +79,7 @@
     "class_exp": {
       "mage": 200,
       "cleric": 150,
-      "thief": 150,
-      "warrior": 100
+      "thief": 150
     },
     "skills": [
       "bash", "fast healing"
@@ -112,37 +101,10 @@
     "size": "large"
   }},
   {"player_race": {
-    "name": "orc",
-    "who_name": " Orc ",
-    "creation_points": 0,
-    "class_exp": {
-      "mage": 100,
-      "cleric": 100,
-      "thief": 100,
-      "warrior": 100
-    },
-    "base_stats": {
-      "str": 13,
-      "int": 13,
-      "wis": 13,
-      "dex": 13,
-      "con": 13
-    },
-    "max_stats": {
-      "str": 19,
-      "int": 17,
-      "wis": 17,
-      "dex": 18,
-      "con": 19
-    },
-    "size": "medium"
-  }},
-  {"player_race": {
     "name": "pixie",
     "who_name": "Pixie",
     "creation_points": 7,
     "class_exp": {
-      "mage": 100,
       "cleric": 150,
       "thief": 150,
       "warrior": 150
@@ -163,5 +125,26 @@
       "con": 14
     },
     "size": "tiny"
+  }},
+  {"player_race": {
+    "name": "dragon",
+    "who_name": "Drago",
+    "creation_points": 10,
+    "skills": ["draconian"],
+    "base_stats": {
+      "str": 13,
+      "int": 13,
+      "wis": 13,
+      "dex": 13,
+      "con": 13
+    },
+    "max_stats": {
+      "str": 18,
+      "int": 18,
+      "wis": 18,
+      "dex": 18,
+      "con": 18
+    },
+    "size": "large"
   }}
 ]

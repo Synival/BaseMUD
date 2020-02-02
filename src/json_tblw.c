@@ -154,13 +154,11 @@ DEFINE_JSON_WRITE_FUN (json_tblw_attack) {
 }
 
 DEFINE_JSON_WRITE_FUN (json_tblw_race) {
-    EXT_FLAGS_T flags;
     JSON_TBLW_START (RACE_T, race, race->name == NULL);
     json_prop_string  (new, "name", JSTR (race->name));
 
-    flags = EXT_FROM_INIT (race->ext_mob);
-    if (EXT_IS_NONZERO (flags))
-        json_prop_string (new, "mob_flags", JBITSXF (mob_flags, flags));
+    if (EXT_IS_NONZERO (race->ext_mob))
+        json_prop_string (new, "mob_flags", JBITSXF (mob_flags, race->ext_mob));
     if (race->aff > 0)
         json_prop_string (new, "affect_flags", JBITSF (affect_flags, race->aff));
     if (race->off > 0)
@@ -190,9 +188,15 @@ DEFINE_JSON_WRITE_FUN (json_tblw_pc_race) {
     json_prop_string  (new, "who_name", JSTR (pc_race->who_name));
     json_prop_integer (new, "creation_points", pc_race->creation_points);
 
-    sub = json_prop_object (new, "class_exp", JSON_OBJ_ANY);
     for (i = 0; (class = class_get (i)) != NULL; i++)
-        json_prop_integer (sub, class->name, pc_race->class_mult[i]);
+        if (pc_race->class_mult[i] != 100)
+            break;
+    if (class != NULL) {
+        sub = json_prop_object (new, "class_exp", JSON_OBJ_ANY);
+        for (i = 0; (class = class_get (i)) != NULL; i++)
+            if (pc_race->class_mult[i] != 100)
+                json_prop_integer (sub, class->name, pc_race->class_mult[i]);
+    }
 
     for (i = 0; i < PC_RACE_SKILL_MAX; i++)
         if (pc_race->skills[i] != NULL && pc_race->skills[i][0] != '\0')

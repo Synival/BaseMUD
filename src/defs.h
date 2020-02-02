@@ -447,8 +447,8 @@
 #define CLAN_MAX            3
 #define WIZNET_MAX          20
 #define RACE_MAX            30
-#define PC_RACE_MAX         6
-#define PC_RACE_SKILL_MAX   5
+#define PC_RACE_MAX         16
+#define PC_RACE_SKILL_MAX   16
 #define SOCIAL_MAX          256
 #define SKILL_MAX           150
 #define SKILL_GROUP_MAX     30

@@ -1975,13 +1975,13 @@ void load_mobiles (FILE *fp) {
 }
 
 void db_finalize_mob (MOB_INDEX_T *mob) {
-    if (mob->race >= 0 || mob->race < RACE_MAX) {
-        const RACE_T *race;
-        race = race_get(mob->race);
-
+    const RACE_T *race;
+    if ((mob->race >= 0 || mob->race < RACE_MAX) &&
+            (race = race_get (mob->race)) != NULL)
+    {
         mob->ext_mob_final     = mob->ext_mob_plus;
-        EXT_SET  (mob->ext_mob_final, MOB_IS_NPC);
-        EXT_SET_MANY (mob->ext_mob_final, EXT_FROM_INIT (race->ext_mob));
+        EXT_SET      (mob->ext_mob_final, MOB_IS_NPC);
+        EXT_SET_MANY (mob->ext_mob_final, race->ext_mob);
 
         mob->affected_by_final = mob->affected_by_plus | race->aff;
         mob->off_flags_final   = mob->off_flags_plus   | race->off;

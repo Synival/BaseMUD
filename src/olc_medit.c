@@ -405,7 +405,7 @@ static void medit_update_ext_flags (EXT_FLAGS_T final, EXT_FLAGS_T race_flags,
 
 #define UPDATE_EXT_FLAGS(m, f, rf) \
     medit_update_ext_flags ((m)->f ## _final, \
-        EXT_FROM_INIT (race_get ((m)->race)->rf), \
+        race_get ((m)->race)->rf, \
         &((m)->f ## _plus), \
         &((m)->f ## _minus))
 

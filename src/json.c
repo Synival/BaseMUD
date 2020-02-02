@@ -279,8 +279,22 @@ char *json_value_as_string (const JSON_T *json, char *buf, size_t size) {
             snprintf (buf, size, "%s", (const char *) json->value);
             json_expand_newlines (buf, size);
             return buf;
+
+        case JSON_NUMBER: {
+            json_num *value = json->value;
+            snprintf (buf, size, "%g", *value);
+            return buf;
+        }
+
+        case JSON_INTEGER: {
+            json_int *value = json->value;
+            snprintf (buf, size, "%ld", *value);
+            return buf;
+        }
+
         case JSON_NULL:
             return NULL;
+
         default:
             json_logf (json, "json_value_as_string(): Unhandled type '%d'.\n",
                 json->type);
