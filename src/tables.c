@@ -428,7 +428,7 @@ const ATTACK_T attack_table[ATTACK_MAX + 1] = {
 
 const RACE_T race_table[RACE_MAX + 1] = {
 
- /* {name,             act bits,    aff_by bits,                                         off bits,                        imm,                                                    res,                              vuln,                                             form,                          parts} */
+ /* {name,          act bits, aff_by bits,                                         off bits,                        imm,                                                    res,                              vuln,                                             form,                          parts} */
     {"unique",         EZ,    0,                                                   0,                               0,                                                      0,                                0,                                                0,                             0},
     {"bat",            EZ,    AFF_FLYING | AFF_DARK_VISION,                        OFF_DODGE | OFF_FAST,            0,                                                      0,                                RES_LIGHT,                                        FORMS_MAMMAL,                  PARTS_QUADRUPED | PART_WINGS},
     {"bear",           EZ,    0,                                              OFF_CRUSH | OFF_DISARM | OFF_BERSERK, 0,                                                      RES_BASH | RES_COLD,              0,                                                FORMS_MAMMAL,                  PARTS_BIPED | PART_CLAWS | PART_FANGS},
@@ -479,10 +479,10 @@ const PC_RACE_T pc_race_table[PC_RACE_MAX + 1] = {
 
 /* Class table.  */
 const CLASS_T class_table[CLASS_MAX + 1] = {
-    {"mage",    "Mag", STAT_INT, OBJ_VNUM_SCHOOL_DAGGER, {3018, 9618}, 75, 20,   6,  6,  8, TRUE,  "mage basics",    "mage default"},
-    {"cleric",  "Cle", STAT_WIS, OBJ_VNUM_SCHOOL_MACE,   {3003, 9619}, 75, 20,   2,  7, 10, TRUE,  "cleric basics",  "cleric default"},
-    {"thief",   "Thi", STAT_DEX, OBJ_VNUM_SCHOOL_DAGGER, {3028, 9639}, 75, 20,  -4,  8, 13, FALSE, "thief basics",   "thief default"},
-    {"warrior", "War", STAT_STR, OBJ_VNUM_SCHOOL_SWORD,  {3022, 9633}, 75, 20, -10, 11, 15, FALSE, "warrior basics", "warrior default"},
+    {"mage",    "Mag", STAT_INT, OBJ_VNUM_SCHOOL_DAGGER, {3018, 9618}, 75, 20,   6,  6,  8, TRUE,  "mage basics",    "mage default",    FALSE},
+    {"cleric",  "Cle", STAT_WIS, OBJ_VNUM_SCHOOL_MACE,   {3003, 9619}, 75, 20,   2,  7, 10, TRUE,  "cleric basics",  "cleric default",  FALSE},
+    {"thief",   "Thi", STAT_DEX, OBJ_VNUM_SCHOOL_DAGGER, {3028, 9639}, 75, 20,  -4,  8, 13, FALSE, "thief basics",   "thief default",   TRUE},
+    {"warrior", "War", STAT_STR, OBJ_VNUM_SCHOOL_SWORD,  {3022, 9633}, 75, 20, -10, 11, 15, FALSE, "warrior basics", "warrior default", FALSE},
     {0}
 };
 

@@ -235,6 +235,7 @@ DEFINE_JSON_WRITE_FUN (json_tblw_class) {
     json_prop_boolean (new, "gains_mana",  class->gains_mana);
     json_prop_string  (new, "base_group", JSTR (class->base_group));
     json_prop_string  (new, "default_group", JSTR (class->default_group));
+    json_prop_boolean (new, "can_sneak_away", class->can_sneak_away);
 
     return new;
 }

@@ -200,6 +200,7 @@ struct class_type {
     bool gains_mana;         /* Class gains mana on level   */
     char *base_group;        /* base skills gained          */
     char *default_group;     /* default skills gained       */
+    bool can_sneak_away;     /* Can sneak away when fleeing */
 };
 
 struct item_type {

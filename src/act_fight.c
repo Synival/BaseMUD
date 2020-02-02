@@ -560,8 +560,11 @@ DEFINE_DO_FUN (do_flee) {
         ch->in_room = now_in;
 
         if (!IS_NPC (ch)) {
+            const CLASS_T *class;
             send_to_char ("You flee from combat!\n\r", ch);
-            if ((ch->class == class_lookup_exact ("thief")) &&
+
+            class = class_get (ch->class);
+            if (class != NULL && class->can_sneak_away &&
                     (number_percent () < 3 * (ch->level / 2)))
                 send_to_char ("You snuck away safely.\n\r", ch);
             else {
