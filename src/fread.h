@@ -35,7 +35,7 @@ char fread_letter (FILE *fp);
 int fread_number (FILE *fp);
 flag_t fread_flag (FILE *fp);
 flag_t fread_flag_convert (char letter);
-EXT_FLAGS_T fread_ext_flag (FILE *fp);
+EXT_FLAGS_T fread_ext_flag (FILE *fp, const EXT_FLAG_DEF_T *table);
 char *fread_string_replace (FILE *fp, char **value);
 char *fread_string_dup (FILE *fp);
 char *fread_string_static (FILE *fp);

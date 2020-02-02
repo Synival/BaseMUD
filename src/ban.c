@@ -30,12 +30,12 @@
 #include "recycle.h"
 #include "utils.h"
 #include "fread.h"
-#include "save.h"
 #include "interp.h"
 #include "comm.h"
 #include "chars.h"
 #include "globals.h"
 #include "memory.h"
+#include "fwrite.h"
 
 #include "ban.h"
 
@@ -52,7 +52,7 @@ void ban_save_all (void) {
         if (IS_SET (pban->ban_flags, BAN_PERMANENT)) {
             found = TRUE;
             fprintf (fp, "%-20s %-2d %s\n", pban->name, pban->level,
-                     print_flags (pban->ban_flags));
+                     fwrite_flags_static (pban->ban_flags));
         }
     }
 

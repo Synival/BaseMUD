@@ -67,6 +67,9 @@
     { table, name, TABLE_UNIQUE, desc, \
       sizeof(table[0]), sizeof(table) / sizeof(table[0]), \
       obj_name, json_path, jwrite, jread, dispose }
+#define TTABLE_INTERNAL(table, name, desc) \
+    { table, name, TABLE_INTERNAL, desc, \
+      sizeof(table[0]), sizeof(table) / sizeof(table[0]) }
 
 const TABLE_T master_table[TABLE_MAX + 1] = {
     /* from flags.h */
@@ -145,16 +148,16 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
     TTABLE (song_table,       "songs",        "Songs for jukeboxes.",         "song",          "config",      json_tblw_song,           json_tblr_song, song_dispose),
 
     /* constant tables that are internal only. */
-    TTABLE (affect_bit_table, "affect_bits",  "Affect bit vector types.",       NULL, NULL, NULL, NULL, NULL),
-    TTABLE (effect_table,     "effects",      "Damage effects and breaths.",    NULL, NULL, NULL, NULL, NULL),
-    TTABLE (furniture_table,  "furnitures",   "Furniture flags for positions.", NULL, NULL, NULL, NULL, NULL),
-    TTABLE (map_flags_table,  "map_flags",    "Flags for object mappings.",     NULL, NULL, NULL, NULL, NULL),
-    TTABLE (map_lookup_table, "map_lookups",  "Types for object mappings.",     NULL, NULL, NULL, NULL, NULL),
-    TTABLE (nanny_table,      "nannies",      "Descriptor 'Nanny' table.",      NULL, NULL, NULL, NULL, NULL),
-    TTABLE (obj_map_table,    "obj_maps",     "Obj type-values[] mappings.",    NULL, NULL, NULL, NULL, NULL),
-    TTABLE (skill_map_table,  "skill_maps",   "Internal mappings of skills.",   NULL, NULL, NULL, NULL, NULL),
-    TTABLE (recycle_table,    "recyclables",  "Recycleable object types.",      NULL, NULL, NULL, NULL, NULL),
-    TTABLE (wiznet_table,     "wiznets",      "Wiznet channels.",               NULL, NULL, NULL, NULL, NULL),
+    TTABLE_INTERNAL (affect_bit_table, "affect_bits",  "Affect bit vector types."),
+    TTABLE_INTERNAL (effect_table,     "effects",      "Damage effects and breaths."),
+    TTABLE_INTERNAL (furniture_table,  "furnitures",   "Furniture flags for positions."),
+    TTABLE_INTERNAL (map_flags_table,  "map_flags",    "Flags for object mappings."),
+    TTABLE_INTERNAL (map_lookup_table, "map_lookups",  "Types for object mappings."),
+    TTABLE_INTERNAL (nanny_table,      "nannies",      "Descriptor 'Nanny' table."),
+    TTABLE_INTERNAL (obj_map_table,    "obj_maps",     "Obj type-values[] mappings."),
+    TTABLE_INTERNAL (skill_map_table,  "skill_maps",   "Internal mappings of skills."),
+    TTABLE_INTERNAL (recycle_table,    "recyclables",  "Recycleable object types."),
+    TTABLE_INTERNAL (wiznet_table,     "wiznets",      "Wiznet channels."),
     {0}
 };
 

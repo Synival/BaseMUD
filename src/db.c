@@ -59,10 +59,6 @@
 
 #include "db.h"
 
-#if !defined(macintosh)
-    extern int _filbuf args ((FILE *));
-#endif
-
 #if !defined(OLD_RAND)
     #if !defined(linux)
         #if !defined(QMFIXES)
@@ -443,7 +439,7 @@ void boot_db (void) {
     in_boot_db = FALSE;
     convert_objects (); /* ROM OLC */
 
-    //db_export_json (TRUE, NULL);
+    db_export_json (TRUE, NULL);
 
     area_update ();
     board_load_all ();
@@ -1848,7 +1844,7 @@ void load_mobiles (FILE *fp) {
         mob_index->long_descr[0] = UPPER (mob_index->long_descr[0]);
         mob_index->description[0] = UPPER (mob_index->description[0]);
 
-        mob_index->ext_mob_plus = fread_ext_flag (fp);
+        mob_index->ext_mob_plus = fread_ext_flag (fp, mob_flags);
         EXT_UNSET (mob_index->ext_mob_plus, MOB_IS_NPC);
 
         mob_index->affected_by_plus = fread_flag (fp);

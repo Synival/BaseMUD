@@ -123,9 +123,43 @@ flag_t fread_flag_convert (char letter) {
     return bitsum;
 }
 
-EXT_FLAGS_T fread_ext_flag (FILE *fp) {
-    flag_t flags = fread_flag (fp);
-    return EXT_FROM_FLAG_T (flags);
+EXT_FLAGS_T fread_ext_flag (FILE *fp, const EXT_FLAG_DEF_T *table) {
+    char c;
+
+    /* if the flag isn't in some sort of array format, read as an old flag. */
+    while ((c = getc (fp)) == ' ')
+        ;
+    if (c != '[') {
+        ungetc (c, fp);
+        return EXT_FROM_FLAG_T (fread_flag (fp));
+    }
+    else {
+        char buf[MAX_STRING_LENGTH];
+        long start, count;
+
+        /* look for a corresponding right bracket. */
+        start = ftell (fp);
+        count = 0;
+        do {
+            if ((c = getc (fp)) == ']')
+                break;
+            EXIT_IF_BUG (++count >= (MAX_STRING_LENGTH - 1),
+                "fread_ext_flag: Extended flag list too long.", 0);
+            EXIT_IF_BUG (feof (fp),
+                "fread_ext_flag: Unterminated extended flag list. "
+                "Expected ']', got EOF.", 0);
+        } while (1);
+
+        fseek (fp, start, SEEK_SET);
+
+        /* Read the flags and the right bracket afterwards. */
+        if (fread (buf, sizeof (char), count, fp) <= 0)
+            perror ("fread");
+        getc (fp);
+
+        /* Build flags from our string. */
+        return ext_flags_from_string (table, buf);
+    }
 }
 
 /* Read and allocate space for a string from a file.

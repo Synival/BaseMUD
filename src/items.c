@@ -2119,7 +2119,7 @@ bool item_index_write_values_to_file (OBJ_INDEX_T *obj_index, FILE *fp) {
         case ITEM_CONTAINER:
             fprintf (fp, "%ld %s %ld %ld %ld\n",
                      obj_index->v.value[0],
-                     fwrite_flag (obj_index->v.value[1], buf),
+                     fwrite_flags_buf (obj_index->v.value[1], buf),
                      obj_index->v.value[2],
                      obj_index->v.value[3],
                      obj_index->v.value[4]);
@@ -2131,7 +2131,7 @@ bool item_index_write_values_to_file (OBJ_INDEX_T *obj_index, FILE *fp) {
                      obj_index->v.value[1],
                      obj_index->v.value[2],
                      attack_table[obj_index->v.value[3]].name,
-                     fwrite_flag (obj_index->v.value[4], buf));
+                     fwrite_flags_buf (obj_index->v.value[4], buf));
             return TRUE;
 
         case ITEM_PILL:
@@ -2158,11 +2158,11 @@ bool item_index_write_values_to_file (OBJ_INDEX_T *obj_index, FILE *fp) {
             return TRUE;
 
         default:
-            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[0], buf));
-            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[1], buf));
-            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[2], buf));
-            fprintf (fp, "%s ",  fwrite_flag (obj_index->v.value[3], buf));
-            fprintf (fp, "%s\n", fwrite_flag (obj_index->v.value[4], buf));
+            fprintf (fp, "%s ",  fwrite_flags_buf (obj_index->v.value[0], buf));
+            fprintf (fp, "%s ",  fwrite_flags_buf (obj_index->v.value[1], buf));
+            fprintf (fp, "%s ",  fwrite_flags_buf (obj_index->v.value[2], buf));
+            fprintf (fp, "%s ",  fwrite_flags_buf (obj_index->v.value[3], buf));
+            fprintf (fp, "%s\n", fwrite_flags_buf (obj_index->v.value[4], buf));
             return TRUE;
     }
 }

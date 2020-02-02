@@ -86,7 +86,7 @@ void load_old_mob (FILE *fp) {
         mob_index->long_descr[0]  = UPPER (mob_index->long_descr[0]);
         mob_index->description[0] = UPPER (mob_index->description[0]);
 
-        mob_index->ext_mob_plus     = fread_ext_flag (fp);
+        mob_index->ext_mob_plus     = fread_ext_flag (fp, mob_flags);
         mob_index->affected_by_plus = fread_flag (fp);
         mob_index->shop             = NULL;
         mob_index->alignment        = fread_number (fp);

@@ -27,6 +27,8 @@
 
 #include <string.h>
 
+#include "save.h"
+
 #include "fwrite.h"
 
 /*
@@ -34,35 +36,46 @@
  * Used in save_mobile and save_object below.  Writes
  * flags on the form fread_flag reads.
  *
- * buf[] must hold at least 32+1 characters.
+ * *buf must hold at least 32+1 characters.
  *
  * -- Hugin
  */
-char *fwrite_flag (long flags, char buf[]) {
-    char offset;
-    char *cp;
 
-    buf[0] = '\0';
-    if (flags == 0) {
-        strcpy (buf, "0");
-        return buf;
-    }
+char *fwrite_flags_static (flag_t flags) {
+    static char buf[52];
+    return fwrite_flags_buf (flags, buf);
+}
 
-    /* 32 -- number of bits in a long */
-    for (offset = 0, cp = buf; offset < 32; offset++) {
-        if (flags & ((long) 1 << offset)) {
-            if (offset <= 'Z' - 'A')
-                *(cp++) = 'A' + offset;
+char *fwrite_flags_buf (flag_t flags, char *buf) {
+    int count, pos = 0;
+
+    for (count = 0; count < 32; count++) {
+        if (IS_SET (flags, 1 << count)) {
+            if (count < 26)
+                buf[pos] = 'A' + count;
             else
-                *(cp++) = 'a' + offset - ('Z' - 'A' + 1);
+                buf[pos] = 'a' + (count - 26);
+            pos++;
         }
     }
 
-    *cp = '\0';
+    if (pos == 0) {
+        buf[pos] = '0';
+        pos++;
+    }
+    buf[pos] = '\0';
+
     return buf;
 }
 
-char *fwrite_ext_flag (EXT_FLAGS_T flags, char buf[]) {
-    /* TODO: write me for reals! */
-    return fwrite_flag (EXT_TO_FLAG_T (flags), buf);
+char *fwrite_ext_flags_static (const EXT_FLAG_DEF_T *table, EXT_FLAGS_T flags) {
+    static char buf[MAX_STRING_LENGTH];
+    return fwrite_ext_flags_buf (table, flags, buf);
+}
+
+char *fwrite_ext_flags_buf (const EXT_FLAG_DEF_T *table, EXT_FLAGS_T flags,
+    char *buf)
+{
+    sprintf (buf, "[%s]", ext_flags_to_string_real (table, flags, ""));
+    return buf;
 }

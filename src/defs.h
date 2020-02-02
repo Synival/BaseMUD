@@ -545,6 +545,7 @@
 #define TABLE_TYPES     1
 #define TABLE_UNIQUE    2
 #define TABLE_EXT_FLAGS 3
+#define TABLE_INTERNAL  4
 
 #define TABLE_MAX               76
 #define TABLE_LENGTH_DYNAMIC    -1

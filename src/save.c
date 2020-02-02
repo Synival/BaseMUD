@@ -45,39 +45,6 @@
 
 #include "save.h"
 
-#if !defined(macintosh)
-    extern int _filbuf args ((FILE *));
-#endif
-
-char *print_flags (flag_t flags) {
-    int count, pos = 0;
-    static char buf[52];
-
-    for (count = 0; count < 32; count++) {
-        if (IS_SET (flags, 1 << count)) {
-            if (count < 26)
-                buf[pos] = 'A' + count;
-            else
-                buf[pos] = 'a' + (count - 26);
-            pos++;
-        }
-    }
-
-    if (pos == 0) {
-        buf[pos] = '0';
-        pos++;
-    }
-    buf[pos] = '\0';
-
-    return buf;
-}
-
-char *print_ext_flags (EXT_FLAGS_T *flags) {
-    /* TODO: actually support saving this!! */
-    flag_t old_flags = EXT_TO_FLAG_T (*flags);
-    return print_flags (old_flags);
-}
-
 /* Array of containers read for proper re-nesting of objects. */
 #define MAX_NEST    100
 static OBJ_T *obj_nest[MAX_NEST];
@@ -196,14 +163,14 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
 
     fprintf (fp, "Exp  %d\n", ch->exp);
     if (EXT_IS_NONZERO (ch->ext_mob))
-        fprintf (fp, "Mob  %s\n", print_ext_flags (&ch->ext_mob));
+        fprintf (fp, "Mob  %s\n", fwrite_ext_flags_static (mob_flags, ch->ext_mob));
     if (EXT_IS_NONZERO (ch->ext_plr))
-        fprintf (fp, "Plr  %s\n", print_ext_flags (&ch->ext_plr));
+        fprintf (fp, "Plr  %s\n", fwrite_ext_flags_static (plr_flags, ch->ext_plr));
     if (ch->affected_by != 0)
-        fprintf (fp, "AfBy %s\n", print_flags (ch->affected_by));
-    fprintf (fp, "Comm %s\n", print_flags (ch->comm));
+        fprintf (fp, "AfBy %s\n", fwrite_flags_static (ch->affected_by));
+    fprintf (fp, "Comm %s\n", fwrite_flags_static (ch->comm));
     if (ch->wiznet)
-        fprintf (fp, "Wizn %s\n", print_flags (ch->wiznet));
+        fprintf (fp, "Wizn %s\n", fwrite_flags_static (ch->wiznet));
     if (ch->invis_level)
         fprintf (fp, "Invi %d\n", ch->invis_level);
     if (ch->incog_level)
@@ -342,13 +309,15 @@ void fwrite_pet (CHAR_T *pet, FILE *fp) {
     if (pet->exp > 0)
         fprintf (fp, "Exp  %d\n", pet->exp);
     if (!EXT_EQUALS (pet->ext_mob, pet->index_data->ext_mob_final))
-        fprintf (fp, "Mob  %s\n", print_ext_flags (&pet->ext_mob));
+        fprintf (fp, "Mob  %s\n", fwrite_ext_flags_static (
+            mob_flags, pet->ext_mob));
     if (EXT_IS_NONZERO (pet->ext_plr))
-        fprintf (fp, "Plr  %s\n", print_ext_flags (&pet->ext_plr));
+        fprintf (fp, "Plr  %s\n", fwrite_ext_flags_static (
+            plr_flags, pet->ext_plr));
     if (pet->affected_by != pet->index_data->affected_by_final)
-        fprintf (fp, "AfBy %s\n", print_flags (pet->affected_by));
+        fprintf (fp, "AfBy %s\n", fwrite_flags_static (pet->affected_by));
     if (pet->comm != 0)
-        fprintf (fp, "Comm %s\n", print_flags (pet->comm));
+        fprintf (fp, "Comm %s\n", fwrite_flags_static (pet->comm));
     fprintf (fp, "Pos  %d\n", pet->position =
              POS_FIGHTING ? POS_STANDING : pet->position);
     if (pet->saving_throw != 0)
@@ -669,12 +638,16 @@ void fread_char (CHAR_T *ch, FILE *fp) {
 
             case 'A':
                 if (!str_cmp (word, "Act")) {
+                    long old_pos = ftell (fp);
                     match = TRUE;
-                    EXT_FLAGS_T flags = fread_ext_flag (fp);
+
+                    EXT_FLAGS_T flags = fread_ext_flag (fp, mob_flags);
                     if (EXT_IS_SET (flags, MOB_IS_NPC))
                         ch->ext_mob = flags;
-                    else
-                        ch->ext_plr = flags;
+                    else {
+                        fseek (fp, old_pos, SEEK_SET);
+                        ch->ext_plr = fread_ext_flag (fp, plr_flags);
+                    }
                 }
 
                 KEY ("AffectedBy", ch->affected_by, fread_flag (fp));
@@ -1009,7 +982,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'M':
-                KEY ("Mob", ch->ext_mob, fread_ext_flag (fp));
+                KEY ("Mob", ch->ext_mob, fread_ext_flag (fp, mob_flags));
                 break;
 
             case 'N':
@@ -1021,7 +994,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 KEYS("Pass",     ch->pcdata->pwd, fread_string_dup (fp));
                 KEY ("Played",   ch->played, fread_number (fp));
                 KEY ("Plyd",     ch->played, fread_number (fp));
-                KEY ("Plr",      ch->ext_plr, fread_ext_flag (fp));
+                KEY ("Plr",      ch->ext_plr, fread_ext_flag (fp, plr_flags));
                 KEY ("Points",   ch->pcdata->creation_points, fread_number (fp));
                 KEY ("Pnts",     ch->pcdata->creation_points, fread_number (fp));
                 KEY ("Position", ch->position, fread_number (fp));
@@ -1159,12 +1132,15 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
 
             case 'A':
                 if (!str_cmp (word, "Act")) {
+                    long old_pos = ftell (fp);
                     match = TRUE;
-                    EXT_FLAGS_T flags = fread_ext_flag (fp);
+                    EXT_FLAGS_T flags = fread_ext_flag (fp, mob_flags);
                     if (EXT_IS_SET (flags, MOB_IS_NPC))
                         pet->ext_mob = flags;
-                    else
-                        pet->ext_plr = flags;
+                    else {
+                        fseek (fp, old_pos, SEEK_SET);
+                        pet->ext_plr = fread_ext_flag (fp, plr_flags);
+                    }
                 }
 
                 KEY ("AfBy", pet->affected_by, fread_flag (fp));
@@ -1304,7 +1280,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'M':
-                KEY ("Mob", pet->ext_mob, fread_ext_flag (fp));
+                KEY ("Mob", pet->ext_mob, fread_ext_flag (fp, mob_flags));
                 break;
 
             case 'N':
@@ -1312,7 +1288,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'P':
-                KEY ("Plr", pet->ext_plr,  fread_ext_flag (fp));
+                KEY ("Plr", pet->ext_plr,  fread_ext_flag (fp, plr_flags));
                 KEY ("Pos", pet->position, fread_number (fp));
                 break;
 

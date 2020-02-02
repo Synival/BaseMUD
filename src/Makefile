@@ -94,7 +94,7 @@ affects.o: json.h structs.h types.h flags.h tables.h ext_flags.h recycle.h
 affects.o: utils.h lookup.h chars.h affects.h
 ban.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 ban.o: structs.h types.h flags.h tables.h ext_flags.h recycle.h utils.h
-ban.o: fread.h save.h interp.h comm.h chars.h globals.h memory.h ban.h
+ban.o: fread.h interp.h comm.h chars.h globals.h memory.h fwrite.h ban.h
 board.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 board.o: json.h structs.h types.h flags.h tables.h ext_flags.h interp.h
 board.o: fread.h utils.h comm.h recycle.h lookup.h chars.h descs.h memory.h
@@ -156,7 +156,8 @@ fread.o: utils.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 fread.o: structs.h types.h flags.h tables.h ext_flags.h memory.h globals.h
 fread.o: fread.h
 fwrite.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
-fwrite.o: json.h structs.h types.h flags.h tables.h ext_flags.h fwrite.h
+fwrite.o: json.h structs.h types.h flags.h tables.h ext_flags.h save.h
+fwrite.o: fwrite.h
 globals.o: globals.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 globals.o: json.h structs.h types.h flags.h tables.h ext_flags.h
 groups.o: utils.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
