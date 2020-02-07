@@ -97,7 +97,7 @@ int init_socket (int port) {
     sa.sin_family = AF_INET;
     sa.sin_port = htons (port);
     sa.sin_addr.s_addr = inet_addr( mud_ipaddress );
-    log_f("Set IP address to %s", mud_ipaddress);
+    log_f("Set IP address to %s on port %d", mud_ipaddress, port);
 
     if (bind (fd, (struct sockaddr *) &sa, sizeof (sa)) < 0) {
         perror ("Init socket: bind");
