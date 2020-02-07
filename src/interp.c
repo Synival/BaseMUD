@@ -309,6 +309,7 @@ const CMD_T cmd_table[] = {
     {"wizlock",     do_wizlock,     POS_DEAD,     L2, LOG_ALWAYS, 1},
 
     {"force",       do_force,       POS_DEAD,     L7, LOG_ALWAYS, 1},
+    {"confiscate",  do_confiscate,  POS_DEAD,     L7, LOG_ALWAYS, 1},
     {"load",        do_load,        POS_DEAD,     L4, LOG_ALWAYS, 1},
     {"newlock",     do_newlock,     POS_DEAD,     L4, LOG_ALWAYS, 1},
     {"nochannels",  do_nochannels,  POS_DEAD,     L5, LOG_ALWAYS, 1},
