@@ -28,6 +28,7 @@
 #include "mobiles.h"
 #include "rooms.h"
 #include "objs.h"
+#include "mob_prog.h"
 
 #include "olc_aedit.h"
 #include "olc_hedit.h"
@@ -58,7 +59,7 @@ void do_resets_display (CHAR_T *ch) {
          "==== ======== ============= =================== ======== ===== ==========="
          "\n\r", ch);
 
-    for (reset = room->reset_first; reset; reset = reset->next) {
+    for (reset = room->reset_first; reset; reset = reset->room_next) {
         OBJ_INDEX_T *obj;
         MOB_INDEX_T *mob_index;
         OBJ_INDEX_T *obj_index;
@@ -188,7 +189,6 @@ void do_resets_display (CHAR_T *ch) {
             /* Doors are set in rs_flags don't need to be displayed.
              * If you want to display them then uncomment the new_reset
              * line in the case 'D' in load_resets in db.c and here. */
-            /* ^^^ new_reset() is now room_take_reset(). -- Synival */
             case 'D':
                 room_index = room_get_index (v->door.room_vnum);
                 sprintf (buf, "R[%5d] %s door of %-19.19s reset to %s\n\r",
@@ -197,7 +197,6 @@ void do_resets_display (CHAR_T *ch) {
                     room_index->name,
                     type_get_name (door_reset_types, v->door.locks));
                 strcat (final, buf);
-
                 break;
 
             case 'R':
@@ -294,7 +293,7 @@ DEFINE_DO_FUN (do_hedit) {
                 strcat (argall, " ");
             strcat (argall, argone);
         }
-        for (help = help_first; help != NULL; help = help->next) {
+        for (help = help_first; help != NULL; help = help->global_next) {
             if (str_in_namelist (argall, help->keyword)) {
                 ch->desc->olc_edit = (void *) help;
                 ch->desc->editor = ED_HELP;
@@ -368,7 +367,7 @@ DEFINE_DO_FUN (do_mpedit) {
         int vnum = atoi (command);
         AREA_T *ad;
 
-        BAIL_IF ((mcode = get_mprog_index (vnum)) == NULL,
+        BAIL_IF ((mcode = mpcode_get_index (vnum)) == NULL,
             "MPEdit: That vnum does not exist.\n\r", ch);
 
         ad = area_get_by_inner_vnum (vnum);
@@ -454,7 +453,6 @@ DEFINE_DO_FUN (do_redit) {
             "REdit: That vnum does not exist.\n\r", ch);
         BAIL_IF (!IS_BUILDER (ch, room->area),
             "REdit: Insufficient security to modify room.\n\r", ch);
-        char_from_room (ch);
         char_to_room (ch, room);
 
         ch->desc->olc_edit = (void *) room;
@@ -466,7 +464,7 @@ DEFINE_DO_FUN (do_redit) {
         BAIL_IF (!IS_BUILDER (ch, room->area),
             "REdit: Insufficient security to modify room.\n\r", ch);
 
-        reset_room (room);
+        room_reset (room);
         send_to_char ("Room reset.\n\r", ch);
         return;
     }
@@ -484,7 +482,6 @@ DEFINE_DO_FUN (do_redit) {
 
         if (redit_create (ch, argument)) {
             ch->desc->editor = ED_ROOM;
-            char_from_room (ch);
             char_to_room (ch, ch->desc->olc_edit);
             SET_BIT (((ROOM_INDEX_T *) ch->desc->olc_edit)->area->area_flags,
                      AREA_CHANGED);
@@ -540,19 +537,17 @@ DEFINE_DO_FUN (do_resets) {
 
             if (insert_loc - 1 <= 0) {
                 reset = room->reset_first;
-                room->reset_first = room->reset_first->next;
+                room->reset_first = room->reset_first->room_next;
                 if (!room->reset_first)
                     room->reset_last = NULL;
             }
             else {
                 int reset_n = 0;
-                RESET_T *prev;
-
-                LIST_FIND_WITH_PREV (++reset_n == insert_loc, next,
-                    room->reset_first, reset, prev);
+                LIST_FIND (++reset_n == insert_loc, room_next,
+                    room->reset_first, reset);
                 BAIL_IF (!reset,
                     "Reset not found.\n\r", ch);
-                LISTB_REMOVE_WITH_PREV (reset, prev, next,
+                LIST2_REMOVE (reset, room_prev, room_next,
                     room->reset_first, room->reset_last);
             }
 
@@ -670,7 +665,7 @@ DEFINE_DO_FUN (do_alist) {
              "Num", "Area Name", "lvnum", "uvnum", "Filename", "Sec",
              "Builders");
 
-    for (area = area_first; area; area = area->next) {
+    for (area = area_first; area; area = area->global_next) {
         sprintf (buf,
                  "[%3d] %-29.29s (%-5d-%5d) %-12.12s [%d] [%-10.10s]\n\r",
                  area->vnum, area->title, area->min_vnum, area->max_vnum,
@@ -726,7 +721,7 @@ DEFINE_DO_FUN (do_asave) {
     /* -------------------------------------- */
     if (!str_cmp ("world", arg1)) {
         save_area_list ();
-        for (area = area_first; area; area = area->next) {
+        for (area = area_first; area; area = area->global_next) {
             /* Builder must be assigned this area. */
             if (ch && !IS_BUILDER (ch, area))
                 continue;
@@ -752,7 +747,7 @@ DEFINE_DO_FUN (do_asave) {
             log_string ("Saved zones:");
         sprintf (buf, "None.\n\r");
 
-        for (area = area_first; area; area = area->next) {
+        for (area = area_first; area; area = area->global_next) {
             /* Builder must be assigned this area. */
             if (ch && !IS_BUILDER (ch, area))
                 continue;

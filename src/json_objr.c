@@ -34,6 +34,11 @@
 #include "portals.h"
 #include "db.h"
 #include "globals.h"
+#include "rooms.h"
+#include "resets.h"
+#include "extra_descrs.h"
+#include "affects.h"
+#include "help.h"
 
 #include "json_objr.h"
 
@@ -102,7 +107,7 @@ ROOM_INDEX_T *json_objr_room (const JSON_T *json) {
         for (sub = array->first_child; sub != NULL; sub = sub->next) {
             if ((reset = json_objr_reset (sub, room)) == NULL)
                 continue;
-            LISTB_BACK (reset, next, room->reset_first, room->reset_last);
+            reset_to_room (reset, room);
         }
     }
 
@@ -111,7 +116,7 @@ ROOM_INDEX_T *json_objr_room (const JSON_T *json) {
         for (sub = array->first_child; sub != NULL; sub = sub->next) {
             if ((ed = json_objr_extra_descr (sub)) == NULL)
                 continue;
-            LIST_BACK (ed, next, room->extra_descr, EXTRA_DESCR_T);
+            extra_descr_to_room_index_back (ed, room);
         }
     }
 
@@ -377,7 +382,7 @@ SHOP_T *json_objr_shop (const JSON_T *json, const char *backup_area) {
     READ_PROP_INT (shop->open_hour,   "open_hour");
     READ_PROP_INT (shop->close_hour,  "close_hour");
 
-    LISTB_BACK (shop, next, shop_first, shop_last);
+    LIST2_BACK (shop, global_prev, global_next, shop_first, shop_last);
     return shop;
 }
 
@@ -568,7 +573,7 @@ OBJ_INDEX_T *json_objr_object (const JSON_T *json) {
         for (sub = array->first_child; sub != NULL; sub = sub->next) {
             if ((ed = json_objr_extra_descr (sub)) == NULL)
                 continue;
-            LIST_BACK (ed, next, obj->extra_descr, EXTRA_DESCR_T);
+            extra_descr_to_obj_index_back (ed, obj);
         }
     }
 
@@ -577,7 +582,7 @@ OBJ_INDEX_T *json_objr_object (const JSON_T *json) {
         for (sub = array->first_child; sub != NULL; sub = sub->next) {
             if ((aff = json_objr_affect (sub)) == NULL)
                 continue;
-            LIST_BACK (aff, next, obj->affected, AFFECT_T);
+            affect_to_obj_index_back (aff, obj);
         }
     }
 
@@ -696,7 +701,7 @@ AREA_T *json_objr_area (const JSON_T *json) {
     NO_NULL_STR (area->credits);
     NO_NULL_STR (area->builders);
 
-    LISTB_BACK (area, next, area_first, area_last);
+    LIST2_BACK (area, global_prev, global_next, area_first, area_last);
     return area;
 }
 
@@ -782,10 +787,10 @@ HELP_AREA_T *json_objr_help_area (const JSON_T *json) {
     for (sub = pages->first_child; sub != NULL; sub = sub->next) {
         if ((help = json_objr_help (sub)) == NULL)
             continue;
-        LISTB_BACK (help, next_area, area->first, area->last);
+        help_to_help_area (help, area);
     }
 
-    LISTB_BACK (area, next, had_first, had_last);
+    LIST2_BACK (area, global_prev, global_next, had_first, had_last);
     return area;
 }
 
@@ -812,7 +817,7 @@ HELP_T *json_objr_help (const JSON_T *json) {
     else if (hide_keywords == 0 && help->level < 0)
         help->level = -1 - help->level;
 
-    LISTB_BACK (help, next, help_first, help_last);
+    LIST2_BACK (help, global_prev, global_next, help_first, help_last);
     return help;
 }
 

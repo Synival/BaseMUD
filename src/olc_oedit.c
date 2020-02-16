@@ -29,6 +29,7 @@
 #include "memory.h"
 #include "items.h"
 #include "objs.h"
+#include "extra_descrs.h"
 
 #include "olc_oedit.h"
 
@@ -401,11 +402,11 @@ OEDIT (oedit_show) {
     printf_to_char (ch, "Weight:      [%5d]\n\rCost:        [%5d]\n\r",
         obj->weight, obj->cost);
 
-    if (obj->extra_descr) {
+    if (obj->extra_descr_first) {
         EXTRA_DESCR_T *ed;
         send_to_char ("Ex desc kwd:", ch);
 
-        for (ed = obj->extra_descr; ed; ed = ed->next)
+        for (ed = obj->extra_descr_first; ed; ed = ed->on_next)
             printf_to_char (ch, " [%s]", ed->keyword);
         send_to_char ("\n\r", ch);
     }
@@ -413,7 +414,7 @@ OEDIT (oedit_show) {
     printf_to_char (ch, "Short desc:  %s\n\rLong desc:\n\r     %s\n\r",
         obj->short_descr, obj->description);
 
-    for (cnt = 0, paf = obj->affected; paf; paf = paf->next) {
+    for (cnt = 0, paf = obj->affect_first; paf; paf = paf->on_next) {
         if (cnt == 0) {
             send_to_char ("Number Modifier Bits, Apply\n\r"
                           "------ -------- -----------------\n\r", ch);
@@ -453,7 +454,7 @@ OEDIT (oedit_addaffect) {
 
     aff = affect_new ();
     affect_init (aff, AFF_TO_OBJECT, -1, obj->level, -1, value, atoi (mod), 0);
-    LIST_FRONT (aff, next, obj->affected);
+    affect_to_obj_index_back (aff, obj);
 
     send_to_char ("Affect added.\n\r", ch);
     return TRUE;
@@ -510,7 +511,7 @@ OEDIT (oedit_addapply) {
 
     aff = affect_new ();
     affect_init (aff, bit_type, -1, obj->level, -1, app, atoi (mod), bit);
-    LIST_FRONT (aff, next, obj->affected);
+    affect_to_obj_index_back (aff, obj);
 
     send_to_char ("Apply added.\n\r", ch);
     return TRUE;
@@ -520,7 +521,7 @@ OEDIT (oedit_addapply) {
  * for really teaching me how to manipulate pointers. */
 OEDIT (oedit_delaffect) {
     OBJ_INDEX_T *obj;
-    AFFECT_T *aff, *aff_prev;
+    AFFECT_T *aff;
     char affect[MAX_STRING_LENGTH];
     int value;
     int cnt = 0;
@@ -539,16 +540,13 @@ OEDIT (oedit_delaffect) {
     }
 
     /* Find the affect and its previous link in the list. */
-    LIST_FIND_WITH_PREV (value >= cnt++, next, obj->affected,
-        aff, aff_prev);
+    LIST_FIND (value >= cnt++, on_next, obj->affect_first, aff);
     if (!aff) {
         send_to_char ("OEdit: Non-existant affect.\n\r", ch);
         return FALSE;
     }
 
-    LIST_REMOVE_WITH_PREV (aff, aff_prev, next, obj->affected);
     affect_free (aff);
-
     send_to_char ("Affect removed.\n\r", ch);
     return TRUE;
 }
@@ -642,7 +640,7 @@ OEDIT (oedit_cost) {
 OEDIT (oedit_create) {
     OBJ_INDEX_T *obj;
     AREA_T *area;
-    int value, hash;
+    int value;
 
     value = atoi (argument);
     if (argument[0] == '\0' || value == 0) {
@@ -672,8 +670,7 @@ OEDIT (oedit_create) {
     if (value > top_vnum_obj)
         top_vnum_obj = value;
 
-    hash = value % MAX_KEY_HASH;
-    LIST_FRONT (obj, next, obj_index_hash[hash]);
+    obj_index_to_hash (obj);
     ch->desc->olc_edit = (void *) obj;
 
     send_to_char ("Object created.\n\r", ch);
@@ -705,7 +702,7 @@ OEDIT (oedit_ed) {
         }
         ed = extra_descr_new ();
         ed->keyword = str_dup (keyword);
-        LIST_FRONT (ed, next, obj->extra_descr);
+        extra_descr_to_obj_index_back (ed, obj);
 
         string_append (ch, &ed->description);
         return TRUE;
@@ -716,8 +713,8 @@ OEDIT (oedit_ed) {
             send_to_char ("Syntax: ed edit [keyword]\n\r", ch);
             return FALSE;
         }
-        LIST_FIND (str_in_namelist (keyword, ed->keyword), next,
-            obj->extra_descr, ed);
+        LIST_FIND (str_in_namelist (keyword, ed->keyword), on_next,
+            obj->extra_descr_first, ed);
         if (!ed) {
             send_to_char ("OEdit: Extra description keyword not found.\n\r", ch);
             return FALSE;
@@ -728,18 +725,16 @@ OEDIT (oedit_ed) {
     }
 
     if (!str_cmp (command, "delete")) {
-        EXTRA_DESCR_T *ped;
         if (keyword[0] == '\0') {
             send_to_char ("Syntax: ed delete [keyword]\n\r", ch);
             return FALSE;
         }
-        LIST_FIND_WITH_PREV (str_in_namelist (keyword, ed->keyword),
-            next, obj->extra_descr, ed, ped);
+        LIST_FIND (str_in_namelist (keyword, ed->keyword), on_next,
+            obj->extra_descr_first, ed);
         if (!ed) {
             send_to_char ("OEdit: Extra description keyword not found.\n\r", ch);
             return FALSE;
         }
-        LIST_REMOVE_WITH_PREV (ed, ped, next, obj->extra_descr);
 
         extra_descr_free (ed);
         send_to_char ("Extra description deleted.\n\r", ch);
@@ -751,8 +746,8 @@ OEDIT (oedit_ed) {
             send_to_char ("Syntax: ed format [keyword]\n\r", ch);
             return FALSE;
         }
-        LIST_FIND (str_in_namelist (keyword, ed->keyword), next,
-            obj->extra_descr, ed);
+        LIST_FIND (str_in_namelist (keyword, ed->keyword), on_next,
+            obj->extra_descr_first, ed);
         if (!ed) {
             send_to_char ("OEdit: Extra description keyword not found.\n\r", ch);
             return FALSE;

@@ -130,5 +130,8 @@ bool mp_exit_trigger (CHAR_T *ch, int dir);
 bool mp_give_trigger (CHAR_T *mob, CHAR_T *ch, OBJ_T *obj);
 bool mp_greet_trigger (CHAR_T *ch);
 bool mp_hprct_trigger (CHAR_T *mob, CHAR_T *ch);
+void mprog_to_area (MPROG_LIST_T *mprog, AREA_T *area);
+void mpcode_to_area (MPROG_CODE_T *mpcode, AREA_T *area);
+MPROG_CODE_T *mpcode_get_index (int vnum);
 
 #endif

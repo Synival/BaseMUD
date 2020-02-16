@@ -31,6 +31,7 @@
 #include "db.h"
 #include "chars.h"
 #include "globals.h"
+#include "recycle.h"
 
 #include "groups.h"
 
@@ -67,12 +68,14 @@ void stop_follower (CHAR_T *ch) {
 
     if (IS_AFFECTED (ch, AFF_CHARM)) {
         REMOVE_BIT (ch->affected_by, AFF_CHARM);
-        affect_strip (ch, SN(CHARM_PERSON));
+        affect_strip_char (ch, SN(CHARM_PERSON));
     }
 
-    if (char_can_see_in_room (ch->master, ch) && ch->in_room != NULL)
-        act ("$n stops following you.", ch, NULL, ch->master, TO_VICT);
-    act ("You stop following $N.", ch, NULL, ch->master, TO_CHAR);
+    if (ch->in_room != NULL) {
+        if (char_can_see_in_room (ch->master, ch))
+            act ("$n stops following you.", ch, NULL, ch->master, TO_VICT);
+        act ("You stop following $N.", ch, NULL, ch->master, TO_CHAR);
+    }
     if (ch->master->pet == ch)
         ch->master->pet = NULL;
 
@@ -86,9 +89,12 @@ void nuke_pets (CHAR_T *ch) {
 
     if ((pet = ch->pet) != NULL) {
         stop_follower (pet);
-        if (pet->in_room != NULL)
+        if (pet->in_room != NULL) {
             act ("$N slowly fades away.", ch, NULL, pet, TO_OTHERS);
-        char_extract (pet, TRUE);
+            char_extract (pet);
+        }
+        else
+            char_free (pet);
     }
     ch->pet = NULL;
 }
@@ -103,7 +109,7 @@ void die_follower (CHAR_T *ch) {
     }
 
     ch->leader = NULL;
-    for (fch = char_list; fch != NULL; fch = fch->next) {
+    for (fch = char_first; fch != NULL; fch = fch->global_next) {
         if (fch->master == ch)
             stop_follower (fch);
         if (fch->leader == ch)

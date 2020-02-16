@@ -218,7 +218,7 @@ bool item_can_put_objs (const OBJ_T *obj) {
 bool item_can_sacrifice (OBJ_T *obj) {
     switch (obj->item_type) {
         case ITEM_CORPSE_PC:
-            return (obj->contains) ? FALSE : TRUE;
+            return (obj->content_first) ? FALSE : TRUE;
         default:
             return TRUE;
     }
@@ -397,7 +397,7 @@ int item_get_compare_value (const OBJ_T *obj) {
                    obj->v.armor.vs_slash;
 
         case ITEM_WEAPON:
-            if (obj->index_data->new_format)
+            if (obj->obj_index->new_format)
                 return (obj->v.weapon.dice_size + 1) * obj->v.weapon.dice_num;
             else
                 return (obj->v.weapon.dice_size + 0) * obj->v.weapon.dice_num;
@@ -741,7 +741,7 @@ const char *item_get_poof_message (const OBJ_T *obj) {
 
         case ITEM_CONTAINER:
             if (obj_can_wear_flag (obj, ITEM_WEAR_FLOAT)) {
-                if (obj->contains)
+                if (obj->content_first)
                     return "$p flickers and vanishes, spilling its contents on the floor.";
                 else
                     return "$p flickers and vanishes.";
@@ -924,7 +924,7 @@ bool item_look_in (const OBJ_T *obj, CHAR_T *ch) {
                 send_to_char ("It is closed.\n\r", ch);
             else {
                 act ("$p holds:", ch, obj, NULL, TO_CHAR);
-                obj_list_show_to_char (obj->contains, ch, TRUE, TRUE);
+                obj_list_show_to_char (obj->content_first, ch, TRUE, TRUE);
             }
             return TRUE;
 
@@ -994,7 +994,7 @@ bool item_eat_effect (OBJ_T *obj, CHAR_T *ch) {
                 affect_init (&af, AFF_TO_AFFECTS, SN(POISON), number_fuzzy (
                     obj->v.food.hunger), 2 * obj->v.food.hunger, APPLY_NONE, 0,
                     AFF_POISON);
-                affect_join (ch, &af);
+                affect_join_char (&af, ch);
             }
             obj_extract (obj);
             return TRUE;
@@ -1039,7 +1039,7 @@ bool item_drink_effect (OBJ_T *obj, CHAR_T *ch) {
 
         affect_init (&af, AFF_TO_AFFECTS, SN(POISON), number_fuzzy (amount),
             3 * amount, APPLY_NONE, 0, AFF_POISON);
-        affect_join (ch, &af);
+        affect_join_char (&af, ch);
     }
 
     if (capacity != NULL && filled != NULL && *capacity > 0)
@@ -1091,8 +1091,8 @@ bool item_brandish_effect (OBJ_T *obj, CHAR_T *ch, bool try_improve) {
                     skill_table[sn].spell_fun == 0,
                 "do_brandish: bad sn %d.", sn, TRUE);
 
-            for (vch = ch->in_room->people; vch; vch = vch_next) {
-                vch_next = vch->next_in_room;
+            for (vch = ch->in_room->people_first; vch; vch = vch_next) {
+                vch_next = vch->room_next;
                 switch (skill_table[sn].target) {
                     case SKILL_TARGET_IGNORE:
                         if (vch != ch)
@@ -1153,7 +1153,7 @@ bool item_corrode_effect (OBJ_T *obj, int level) {
             int i;
 
             obj_enchant (obj);
-            for (paf = obj->affected; paf != NULL; paf = paf->next) {
+            for (paf = obj->affect_first; paf != NULL; paf = paf->on_next) {
                 if (paf->apply == APPLY_AC) {
                     af_found = TRUE;
                     paf->type = -1;
@@ -1165,9 +1165,9 @@ bool item_corrode_effect (OBJ_T *obj, int level) {
 
             /* needs a new affect */
             if (!af_found) {
-                paf = affect_new ();
-                affect_init (paf, AFF_TO_AFFECTS, -1, level, -1, APPLY_AC, 1, 0);
-                LIST_FRONT (paf, next, obj->affected);
+                AFFECT_T paf;
+                affect_init (&paf, AFF_TO_AFFECTS, -1, level, -1, APPLY_AC, 1, 0);
+                affect_copy_to_obj (&paf, obj);
             }
             if (obj->carried_by != NULL && obj->wear_loc != WEAR_LOC_NONE)
                 for (i = 0; i < 4; i++)
@@ -1393,7 +1393,7 @@ void item_envenom_effect_weapon (OBJ_T *obj, CHAR_T *ch, int skill, int sn,
 
     if (as_spell) {
         affect_init (&af, AFF_TO_WEAPON, sn, skill / 2, skill / 8, 0, 0, WEAPON_POISON);
-        affect_to_obj (obj, &af);
+        affect_copy_to_obj (&af, obj);
         act ("$p is coated with deadly venom.", ch, obj, NULL, TO_ALL);
     }
     else {
@@ -1405,7 +1405,7 @@ void item_envenom_effect_weapon (OBJ_T *obj, CHAR_T *ch, int skill, int sn,
         }
 
         affect_init (&af, AFF_TO_WEAPON, sn, ch->level * percent / 100, ch->level / 2 * percent / 100, 0, 0, WEAPON_POISON);
-        affect_to_obj (obj, &af);
+        affect_copy_to_obj (&af, obj);
 
         act2 ("You coat $p with venom.",
               "$n coats $p with deadly venom.", ch, obj, NULL, 0, POS_RESTING);
@@ -1484,12 +1484,9 @@ bool item_enter_effect (OBJ_T *obj, CHAR_T *ch) {
 
             /* Leave, take the portal along if specified. */
             old_room = ch->in_room;
-            char_from_room (ch);
             char_to_room (ch, location);
-            if (IS_SET (obj->v.portal.gate_flags, GATE_GOWITH)) {
-                obj_take_from_room (obj);
+            if (IS_SET (obj->v.portal.gate_flags, GATE_GOWITH))
                 obj_give_to_room (obj, location);
-            }
 
             /* Arrival messages. */
             msg = IS_SET (obj->v.portal.gate_flags, GATE_NORMAL_EXIT)
@@ -1507,8 +1504,8 @@ bool item_enter_effect (OBJ_T *obj, CHAR_T *ch) {
 
             /* Perform follows. */
             if (old_room != location) {
-                for (fch = old_room->people; fch != NULL; fch = fch_next) {
-                    fch_next = fch->next_in_room;
+                for (fch = old_room->people_first; fch != NULL; fch = fch_next) {
+                    fch_next = fch->room_next;
 
                     /* no following through dead portals */
                     if (obj == NULL || obj->v.portal.charges == -1)
@@ -1544,8 +1541,9 @@ bool item_enter_effect (OBJ_T *obj, CHAR_T *ch) {
                 act ("$p fades out of existence.", ch, obj, NULL, TO_CHAR);
                 if (ch->in_room == old_room)
                     act ("$p fades out of existence.", ch, obj, NULL, TO_NOTCHAR);
-                else if (old_room->people != NULL)
-                    act ("$p fades out of existence.", old_room->people, obj, NULL, TO_ALL);
+                else if (old_room->people_first != NULL)
+                    act ("$p fades out of existence.", old_room->people_first,
+                        obj, NULL, TO_ALL);
                 obj_extract (obj);
             }
 
@@ -1577,7 +1575,7 @@ bool item_take_effect (OBJ_T *obj, CHAR_T *ch) {
 
                 /* Count the number of members to split. */
                 members = 0;
-                for (gch = ch->in_room->people; gch; gch = gch->next_in_room)
+                for (gch = ch->in_room->people_first; gch; gch = gch->room_next)
                     if (!IS_AFFECTED (gch, AFF_CHARM) && is_same_group (gch, ch))
                         members++;
 
@@ -1589,11 +1587,10 @@ bool item_take_effect (OBJ_T *obj, CHAR_T *ch) {
                 }
             }
 
-            obj_extract (obj);
+            obj_free (obj);
             return TRUE;
 
         default:
-            obj_take (obj);
             obj_give_to_char (obj, ch);
             return TRUE;
     }

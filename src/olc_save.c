@@ -38,6 +38,7 @@
 #include "objs.h"
 #include "mobiles.h"
 #include "rooms.h"
+#include "mob_prog.h"
 
 #include "olc_save.h"
 
@@ -87,10 +88,10 @@ void save_area_list () {
          * startup to this section. */
         fprintf (fp, "social.are\n");    /* ROM OLC */
 
-        for (ha = had_first; ha; ha = ha->next)
+        for (ha = had_first; ha; ha = ha->global_next)
             if (ha->area == NULL)
                 fprintf (fp, "%s\n", ha->filename);
-        for (area = area_first; area; area = area->next)
+        for (area = area_first; area; area = area->global_next)
             fprintf (fp, "%s\n", area->filename);
 
         fprintf (fp, "$\n");
@@ -104,7 +105,7 @@ void save_mobprogs (FILE *fp, AREA_T *area) {
 
     fprintf (fp, "#MOBPROGS\n");
     for (i = area->min_vnum; i <= area->max_vnum; i++) {
-        if ((mprog = get_mprog_index (i)) != NULL) {
+        if ((mprog = mpcode_get_index (i)) != NULL) {
             fprintf (fp, "#%d\n", i);
             fprintf (fp, "%s~\n", fix_string (mprog->code));
         }
@@ -180,7 +181,7 @@ void save_mobile (FILE *fp, MOB_INDEX_T *mob_index)
     if (mob_index->parts_minus != 0)
         fprintf (fp, "F par %s\n", fwrite_flags_buf (mob_index->parts_minus, buf));
 
-    for (mprog = mob_index->mprogs; mprog; mprog = mprog->next) {
+    for (mprog = mob_index->mprog_first; mprog; mprog = mprog->mob_next) {
         fprintf (fp, "M %s %d %s~\n",
                  mprog_type_to_name (mprog->trig_type), mprog->vnum,
                  mprog->trig_phrase);
@@ -243,7 +244,7 @@ void save_object (FILE *fp, OBJ_INDEX_T *obj_index) {
 
     fprintf (fp, "%c\n", letter);
 
-    for (aff = obj_index->affected; aff; aff = aff->next) {
+    for (aff = obj_index->affect_first; aff; aff = aff->on_next) {
         if (aff->bit_type == AFF_TO_OBJECT || aff->bits == 0)
             fprintf (fp, "A\n%d %d\n", aff->apply, aff->modifier);
         else {
@@ -264,7 +265,7 @@ void save_object (FILE *fp, OBJ_INDEX_T *obj_index) {
         }
     }
 
-    for (ed = obj_index->extra_descr; ed; ed = ed->next) {
+    for (ed = obj_index->extra_descr_first; ed; ed = ed->on_next) {
         fprintf (fp, "E\n%s~\n%s~\n", ed->keyword,
                  fix_string (ed->description));
     }
@@ -348,7 +349,7 @@ void save_room (FILE *fp, ROOM_INDEX_T *room_index) {
             (ex->to_room ? ex->to_room->vnum : -1));
     }
 
-    for (ed = room_index->extra_descr; ed; ed = ed->next) {
+    for (ed = room_index->extra_descr_first; ed; ed = ed->on_next) {
         fprintf (fp, "E\n%s~\n%s~\n", ed->keyword,
                  fix_string (ed->description));
     }
@@ -392,7 +393,7 @@ void save_specials (FILE *fp, AREA_T *area) {
     fprintf (fp, "#SPECIALS\n");
     for (hash = 0; hash < MAX_KEY_HASH; hash++) {
         for (mob_index = mob_index_hash[hash]; mob_index;
-             mob_index = mob_index->next)
+             mob_index = mob_index->hash_next)
         {
             if (mob_index == NULL)
                 continue;
@@ -425,7 +426,7 @@ void save_door_resets (FILE *fp, AREA_T *area) {
     int door;
 
     for (hash = 0; hash < MAX_KEY_HASH; hash++) {
-        for (room = room_index_hash[hash]; room; room = room->next) {
+        for (room = room_index_hash[hash]; room; room = room->hash_next) {
             if (room->area != area)
                 continue;
             for (door = 0; door < DIR_MAX; door++) {
@@ -471,11 +472,11 @@ void save_resets (FILE *fp, AREA_T *area) {
     fprintf (fp, "#RESETS\n");
     save_door_resets (fp, area);
     for (hash = 0; hash < MAX_KEY_HASH; hash++) {
-        for (room = room_index_hash[hash]; room; room = room->next) {
+        for (room = room_index_hash[hash]; room; room = room->hash_next) {
             if (room->area != area)
                 continue;
 
-            for (r = room->reset_first; r; r = r->next) {
+            for (r = room->reset_first; r; r = r->room_next) {
                 switch (r->command) {
                     case 'M':
                         last_mob = mobile_get_index (r->v.value[1]);
@@ -564,7 +565,7 @@ void save_shops (FILE *fp, AREA_T *area) {
     fprintf (fp, "#SHOPS\n");
     for (hash = 0; hash < MAX_KEY_HASH; hash++) {
         for (mob_index = mob_index_hash[hash]; mob_index;
-             mob_index = mob_index->next)
+             mob_index = mob_index->hash_next)
         {
             if (mob_index && mob_index->area == area && mob_index->shop) {
                 shop_index = mob_index->shop;
@@ -587,10 +588,10 @@ void save_shops (FILE *fp, AREA_T *area) {
 }
 
 void save_helps (FILE *fp, HELP_AREA_T *ha) {
-    HELP_T *help = ha->first;
+    HELP_T *help = ha->help_first;
 
     fprintf (fp, "#HELPS\n");
-    for (; help; help = help->next_area) {
+    for (; help; help = help->had_next) {
         fprintf (fp, "%d %s~\n", help->level, help->keyword);
         fprintf (fp, "%s~\n\n", fix_string (help->text));
     }
@@ -603,7 +604,7 @@ int save_other_helps (CHAR_T *ch) {
     FILE *fp;
     int saved = 0;
 
-    for (ha = had_first; ha; ha = ha->next) {
+    for (ha = had_first; ha; ha = ha->global_next) {
         if (ha->changed != TRUE)
             break;
         if (!(fp = fopen (ha->filename, "w"))) {
@@ -653,8 +654,8 @@ void save_area (AREA_T *area) {
     save_specials (fp, area);
     save_mobprogs (fp, area);
 
-    if (area->helps && area->helps->first)
-        save_helps (fp, area->helps);
+    if (area->had_first && area->had_first->help_first)
+        save_helps (fp, area->had_first);
     fprintf (fp, "#$\n");
 
     fclose (fp);

@@ -145,7 +145,7 @@ DEFINE_SPELL_FUN (spell_dispel_magic) {
 
     if (IS_AFFECTED (victim, AFF_SANCTUARY)
         && !saves_dispel (level, victim->level, -1)
-        && !is_affected (victim, skill_lookup ("sanctuary")))
+        && !affect_is_char_affected (victim, skill_lookup ("sanctuary")))
     {
         REMOVE_BIT (victim->affected_by, AFF_SANCTUARY);
         act ("The white aura around $n's body vanishes.",
@@ -218,7 +218,7 @@ DEFINE_SPELL_FUN (spell_ventriloquate) {
     sprintf (buf2, "Someone makes %s say '%s'.\n\r", speaker, target_name);
     buf1[0] = UPPER (buf1[0]);
 
-    for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room)
+    for (vch = ch->in_room->people_first; vch != NULL; vch = vch->room_next)
         if (!str_in_namelist_exact (speaker, vch->name) && IS_AWAKE (vch))
             send_to_char (saves_spell (level, vch, DAM_OTHER) ? buf2 : buf1, vch);
 }

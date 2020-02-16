@@ -37,7 +37,10 @@ char *string_space_next (void);
 void str_replace_dup (char **old, const char *str);
 char *str_dup (const char *str);
 void str_free (char **pstr);
-char *str_register (const char *str, int len);
+char *str_register (const char *str);
+char *str_get_registered (const char *str, unsigned int hash_index,
+    unsigned int hash_value);
+int str_get_strings_allocated (void);
 
 /* Buffer functions. */
 int buf_get_size (int val);

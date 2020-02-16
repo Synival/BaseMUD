@@ -52,7 +52,7 @@ DEFINE_DO_FUN (do_disconnect) {
         int desc;
 
         desc = atoi (arg);
-        for (d = descriptor_list; d != NULL; d = d->next) {
+        for (d = descriptor_first; d != NULL; d = d->global_next) {
             if (d->descriptor == desc) {
                 close_socket (d);
                 send_to_char ("Ok.\n\r", ch);
@@ -66,7 +66,7 @@ DEFINE_DO_FUN (do_disconnect) {
     BAIL_IF_ACT (victim->desc == NULL,
         "$N doesn't have a descriptor.", ch, NULL, victim);
 
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         if (d == victim->desc) {
             close_socket (d);
             send_to_char ("Ok.\n\r", ch);
@@ -133,5 +133,5 @@ DEFINE_DO_FUN (do_slay) {
     act3 ("{1You slay $M in cold blood!{x",
           "{1$n slays you in cold blood!{x",
           "{1$n slays $N in cold blood!{x", ch, NULL, victim, 0, POS_RESTING);
-    raw_kill (victim);
+    char_die (victim);
 }

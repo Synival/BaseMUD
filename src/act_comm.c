@@ -91,7 +91,7 @@ void do_comm_channel_global (CHAR_T *ch, char *argument, flag_t channel,
     REMOVE_BIT (ch->comm, channel);
 
     printf_to_char (ch, act_self, argument);
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
@@ -353,7 +353,7 @@ DEFINE_DO_FUN (do_clantalk) {
     REMOVE_BIT (ch->comm, COMM_NOCLAN);
 
     printf_to_char (ch, "You clan '%s'{x\n\r", argument);
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
@@ -375,10 +375,10 @@ DEFINE_DO_FUN (do_say) {
 
     if (!IS_NPC (ch)) {
         CHAR_T *mob, *mob_next;
-        for (mob = ch->in_room->people; mob != NULL; mob = mob_next) {
-            mob_next = mob->next_in_room;
-            if (IS_NPC (mob) && HAS_TRIGGER (mob, TRIG_SPEECH)
-                && mob->position == mob->index_data->default_pos)
+        for (mob = ch->in_room->people_first; mob != NULL; mob = mob_next) {
+            mob_next = mob->room_next;
+            if (IS_NPC (mob) && HAS_TRIGGER (mob, TRIG_SPEECH) &&
+                mob->position == mob->mob_index->default_pos)
                 mp_act_trigger (argument, mob, ch, NULL, NULL, TRIG_SPEECH);
         }
     }
@@ -397,7 +397,7 @@ DEFINE_DO_FUN (do_shout) {
     WAIT_STATE (ch, 12);
 
     act ("You shout '$T'", ch, NULL, argument, TO_CHAR);
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
@@ -444,7 +444,7 @@ DEFINE_DO_FUN (do_yell) {
     act ("You yell '$t'", ch, argument, NULL, TO_CHAR);
     WAIT_STATE (ch, 12);
 
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
@@ -478,7 +478,7 @@ DEFINE_DO_FUN (do_pmote) {
         return;
 
     act ("$n $t", ch, argument, NULL, TO_CHAR);
-    for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room) {
+    for (vch = ch->in_room->people_first; vch != NULL; vch = vch->room_next) {
         if (vch->desc == NULL || vch == ch)
             continue;
 

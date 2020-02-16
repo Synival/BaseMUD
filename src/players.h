@@ -54,5 +54,6 @@ void player_remove_skill_group (CHAR_T *ch, int gn, bool refund);
 void player_add_skill_or_group (CHAR_T *ch, const char *name, bool deduct);
 void player_remove_skill_or_group (CHAR_T *ch, const char *name, bool refund);
 bool player_is_undesirable (const CHAR_T *ch);
+void player_die (CHAR_T *ch);
 
 #endif

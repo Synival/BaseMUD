@@ -37,6 +37,7 @@
 #include "globals.h"
 #include "memory.h"
 #include "json_objr.h"
+#include "help.h"
 
 #include "json_import.h"
 

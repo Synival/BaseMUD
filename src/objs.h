@@ -55,16 +55,23 @@ const char *obj_furn_preposition_base (const OBJ_T *obj, int position,
     const char *at, const char *on, const char *in, const char *by);
 const char *obj_furn_preposition (const OBJ_T *obj, int position);
 ROOM_INDEX_T *obj_get_room (const OBJ_T *obj);
+bool obj_is_donation_pit (OBJ_T *obj);
 
 /* Object transfer functions. */
 void obj_give_to_char (OBJ_T *obj, CHAR_T *ch);
 void obj_give_to_room (OBJ_T *obj, ROOM_INDEX_T *room_index);
 void obj_give_to_obj (OBJ_T *obj, OBJ_T *obj_to);
 void obj_give_to_keeper (OBJ_T *obj, CHAR_T *ch);
-void obj_take (OBJ_T *obj);
+bool obj_take (OBJ_T *obj);
 void obj_take_from_char (OBJ_T *obj);
 void obj_take_from_room (OBJ_T *obj);
 void obj_take_from_obj (OBJ_T *obj);
+
+/* Linking functions. */
+void obj_to_obj_index (OBJ_T *obj, OBJ_INDEX_T *obj_index);
+void obj_index_to_area (OBJ_INDEX_T *obj, AREA_T *area);
+void obj_index_to_hash (OBJ_INDEX_T *obj);
+void obj_index_from_hash (OBJ_INDEX_T *obj);
 
 /* Action functions. */
 char *obj_format_to_char (const OBJ_T *obj, const CHAR_T *ch, bool is_short);
@@ -72,9 +79,11 @@ void obj_list_show_to_char (const OBJ_T *list, CHAR_T *ch, bool is_short,
     bool show_nothing);
 void obj_enchant (OBJ_T *obj);
 void obj_poof (OBJ_T *obj);
+void obj_update_all (void);
+void obj_update (OBJ_T *obj);
 
 /* Look-up functions. */
-OBJ_T *obj_get_by_index (const OBJ_INDEX_T *obj_index);
+OBJ_T *obj_get_last_by_index (const OBJ_INDEX_T *obj_index);
 OBJ_INDEX_T *obj_get_index (int vnum);
 
 #endif

@@ -25,31 +25,23 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#ifndef __ROM_MOBILES_H
-#define __ROM_MOBILES_H
+#include "help.h"
 
-#include "merc.h"
+void help_area_to_area (HELP_AREA_T *had, AREA_T *area) {
+    LIST2_REASSIGN_BACK (had, area, area_prev, area_next,
+        area, had_first, had_last);
+}
 
-/* Function prototypes. */
-MOB_INDEX_T *mobile_get_index (int vnum);
-CHAR_T *mobile_create (MOB_INDEX_T *mob_index);
-void mobile_clone (CHAR_T *parent, CHAR_T *clone);
-int mobile_should_assist_player (CHAR_T *bystander, CHAR_T *player,
-    CHAR_T *victim);
-bool mobile_should_assist_attacker (CHAR_T *bystander, CHAR_T *attacker,
-    CHAR_T *victim);
-void mobile_hit (CHAR_T *ch, CHAR_T *victim, int dt);
-int mobile_get_skill_learned (const CHAR_T *ch, int sn);
-bool mobile_is_friendly (const CHAR_T *ch);
-void mobile_to_mob_index (CHAR_T *mob, MOB_INDEX_T *mob_index);
-void mob_index_to_area (MOB_INDEX_T *mob, AREA_T *area);
-void mobile_die (CHAR_T *ch);
-int mobile_get_obj_cost (const CHAR_T *ch, const OBJ_T *obj, bool buy);
-SHOP_T *mobile_get_shop (const CHAR_T *ch);
-void mobile_update_all (void);
-void mobile_update (CHAR_T *ch);
-bool mobile_wander (CHAR_T *ch);
-void mob_index_to_hash (MOB_INDEX_T *mob);
-void mob_index_from_hash (MOB_INDEX_T *mob);
+void help_to_help_area (HELP_T *help, HELP_AREA_T *had) {
+    LIST2_REASSIGN_BACK (help, had, had_prev, had_next,
+        had, help_first, help_last);
+}
 
-#endif
+int help_area_count_pages (HELP_AREA_T *had) {
+    HELP_T *h;
+    int count = 0;
+
+    for (h = had->help_first; h != NULL; h = h->had_next)
+        count++;
+    return count;
+}

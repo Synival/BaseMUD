@@ -53,7 +53,7 @@ bool do_filter_get_keeper (CHAR_T *ch, CHAR_T **out_keeper) {
 
     FILTER ((keeper = char_get_keeper_room (ch)) == NULL,
         "You can't do that here.\n\r", ch);
-    FILTER ((shop = char_get_shop (keeper)) == NULL,
+    FILTER ((shop = mobile_get_shop (keeper)) == NULL,
         "They don't have a shop.\n\r", ch);
 
     /* Undesirables. */
@@ -140,7 +140,7 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
     }
 
     char_reduce_money (ch, cost);
-    pet = mobile_create (pet->index_data);
+    pet = mobile_create (pet->mob_index);
     EXT_SET (pet->ext_mob, MOB_PET);
     SET_BIT (pet->affected_by, AFF_CHARM);
     pet->comm = COMM_NOTELL | COMM_NOSHOUT | COMM_NOCHANNELS;
@@ -151,7 +151,7 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
         str_replace_dup (&(pet->name), buf);
     }
 
-    sprintf (buf, "%sA neck tag says 'I belong to %s'.\n\r",
+    snprintf (buf, sizeof(buf), "%sA neck tag says 'I belong to %s'.\n\r",
         pet->description, ch->name);
     str_replace_dup (&(pet->description), buf);
 
@@ -176,7 +176,7 @@ void do_buy_item (CHAR_T *ch, char *argument) {
 
     number = mult_argument (argument, arg);
     obj = find_obj_keeper (ch, keeper, arg);
-    cost = char_get_obj_cost (keeper, obj, TRUE);
+    cost = mobile_get_obj_cost (keeper, obj, TRUE);
 
     BAIL_IF_ACT (number < 1 || number > 99,
         "$N tells you 'Get real!", ch, NULL, keeper);
@@ -184,11 +184,11 @@ void do_buy_item (CHAR_T *ch, char *argument) {
         "$N tells you 'I don't sell that -- try 'list''.", ch, NULL, keeper);
 
     if (!IS_OBJ_STAT (obj, ITEM_INVENTORY)) {
-        for (t_obj = obj->next_content;
-             count < number && t_obj != NULL; t_obj = t_obj->next_content)
+        for (t_obj = obj->content_next;
+             count < number && t_obj != NULL; t_obj = t_obj->content_next)
         {
-            if (t_obj->index_data == obj->index_data
-                && !str_cmp (t_obj->short_descr, obj->short_descr))
+            if (t_obj->obj_index == obj->obj_index &&
+                    !str_cmp (t_obj->short_descr, obj->short_descr))
                 count++;
             else
                 break;
@@ -238,11 +238,10 @@ void do_buy_item (CHAR_T *ch, char *argument) {
 
     for (count = 0; count < number; count++) {
         if (IS_SET (obj->extra_flags, ITEM_INVENTORY))
-            t_obj = obj_create (obj->index_data, obj->level);
+            t_obj = obj_create (obj->obj_index, obj->level);
         else {
             t_obj = obj;
-            obj = obj->next_content;
-            obj_take_from_char (t_obj);
+            obj = obj->content_next;
         }
 
         if (t_obj->timer > 0 && !IS_OBJ_STAT (t_obj, ITEM_HAD_TIMER))
@@ -281,7 +280,7 @@ void do_list_pets (CHAR_T *ch, char *argument) {
     }
 
     found = FALSE;
-    for (pet = room_index_next->people; pet; pet = pet->next_in_room) {
+    for (pet = room_index_next->people_first; pet; pet = pet->room_next) {
         if (!IS_PET (pet))
             continue;
         if (!found) {
@@ -311,12 +310,12 @@ void do_list_items (CHAR_T *ch, char *argument) {
     one_argument (argument, arg);
 
     found = FALSE;
-    for (obj = keeper->carrying; obj; obj = obj->next_content) {
+    for (obj = keeper->content_first; obj; obj = obj->content_next) {
         if (obj->wear_loc != WEAR_LOC_NONE)
             continue;
         if (!char_can_see_obj (ch, obj))
             continue;
-        if ((cost = char_get_obj_cost (keeper, obj, TRUE)) <= 0)
+        if ((cost = mobile_get_obj_cost (keeper, obj, TRUE)) <= 0)
             continue;
         if (!(arg[0] == '\0' || str_in_namelist (arg, obj->name)))
             continue;
@@ -335,12 +334,12 @@ void do_list_items (CHAR_T *ch, char *argument) {
         }
         else {
             count = 1;
-            while (obj->next_content != NULL
-                   && obj->index_data == obj->next_content->index_data
+            while (obj->content_next != NULL
+                   && obj->obj_index == obj->content_next->obj_index
                    && !str_cmp (obj->short_descr,
-                                obj->next_content->short_descr))
+                                obj->content_next->short_descr))
             {
-                obj = obj->next_content;
+                obj = obj->content_next;
                 count++;
             }
             sprintf (buf, "[%2d %5d %2d ] %s%s\n\r",
@@ -377,7 +376,7 @@ DEFINE_DO_FUN (do_sell) {
         "You can't let go of it.\n\r", ch);
     BAIL_IF_ACT (!char_can_see_obj (keeper, obj),
         "$N doesn't see what you are offering.", ch, NULL, keeper);
-    BAIL_IF_ACT ((cost = char_get_obj_cost (keeper, obj, FALSE)) <= 0,
+    BAIL_IF_ACT ((cost = mobile_get_obj_cost (keeper, obj, FALSE)) <= 0,
         "$N looks uninterested in $p.", ch, obj, keeper);
     BAIL_IF_ACT (cost > (keeper->silver + 100 * keeper->gold),
         "$N tells you 'I'm afraid I don't have enough wealth to buy $p.",
@@ -392,7 +391,7 @@ DEFINE_DO_FUN (do_sell) {
     {
         send_to_char ("You haggle with the shopkeeper.\n\r", ch);
         cost += obj->cost / 2 * roll / 100;
-        cost = UMIN (cost, 95 * char_get_obj_cost (keeper, obj, TRUE) / 100);
+        cost = UMIN (cost, 95 * mobile_get_obj_cost (keeper, obj, TRUE) / 100);
         cost = UMIN (cost, (keeper->silver + 100 * keeper->gold));
         player_try_skill_improve (ch, SN(HAGGLE), TRUE, 4);
     }
@@ -413,7 +412,6 @@ DEFINE_DO_FUN (do_sell) {
     if (!item_can_sell (obj) || IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT))
         obj_extract (obj);
     else {
-        obj_take_from_char (obj);
         if (obj->timer)
             SET_BIT (obj->extra_flags, ITEM_HAD_TIMER);
         else
@@ -439,7 +437,7 @@ DEFINE_DO_FUN (do_value) {
         "$N doesn't see what you are offering.", ch, NULL, keeper);
     BAIL_IF (!char_can_drop_obj (ch, obj),
         "You can't let go of it.\n\r", ch);
-    BAIL_IF_ACT ((cost = char_get_obj_cost (keeper, obj, FALSE)) <= 0,
+    BAIL_IF_ACT ((cost = mobile_get_obj_cost (keeper, obj, FALSE)) <= 0,
         "$N looks uninterested in $p.", ch, obj, keeper);
 
     sprintf (buf, "$N tells you 'I'll give you %d silver and "
@@ -455,7 +453,7 @@ DEFINE_DO_FUN (do_heal) {
     SPELL_FUN *spell;
 
     /* check for healer */
-    for (mob = ch->in_room->people; mob; mob = mob->next_in_room)
+    for (mob = ch->in_room->people_first; mob; mob = mob->room_next)
         if (IS_NPC (mob) && EXT_IS_SET (mob->ext_mob, MOB_IS_HEALER))
             break;
     BAIL_IF (mob == NULL,

@@ -55,6 +55,7 @@
 #include "memory.h"
 #include "items.h"
 #include "players.h"
+#include "extra_descrs.h"
 
 #include "act_info.h"
 
@@ -75,7 +76,7 @@ void do_scan_list (ROOM_INDEX_T *scan_room, CHAR_T *ch,
 
     if (scan_room == NULL)
         return;
-    for (rch = scan_room->people; rch != NULL; rch = rch->next_in_room) {
+    for (rch = scan_room->people_first; rch != NULL; rch = rch->room_next) {
         if (rch == ch)
             continue;
         if (!IS_NPC (rch) && rch->invis_level > char_get_trust (ch))
@@ -174,8 +175,8 @@ void do_look_room (CHAR_T *ch, int is_auto) {
     if (!IS_NPC (ch) && EXT_IS_SET (ch->ext_plr, PLR_AUTOEXIT))
         do_function (ch, &do_exits, "auto");
 
-    obj_list_show_to_char (ch->in_room->contents, ch, FALSE, FALSE);
-    char_list_show_to_char (ch->in_room->people, ch);
+    obj_list_show_to_char (ch->in_room->content_first, ch, FALSE, FALSE);
+    char_list_show_to_char (ch->in_room->people_first, ch);
 }
 
 void do_look_in (CHAR_T *ch, char *argument) {
@@ -312,7 +313,7 @@ DEFINE_DO_FUN (do_look) {
         room_is_dark (ch->in_room))
     {
         send_to_char ("{DIt is pitch black ... {x\n\r", ch);
-        char_list_show_to_char (ch->in_room->people, ch);
+        char_list_show_to_char (ch->in_room->people_first, ch);
         return;
     }
 
@@ -353,15 +354,17 @@ DEFINE_DO_FUN (do_look) {
     /* Looking at any obj extra descriptions? */
     for (i = 0; i < 2; i++) {
         switch (i) {
-            case 0:  obj_list = ch->carrying;          break;
-            case 1:  obj_list = ch->in_room->contents; break;
+            case 0:  obj_list = ch->content_first;          break;
+            case 1:  obj_list = ch->in_room->content_first; break;
             default: obj_list = NULL;
         }
-        for (obj = obj_list; obj != NULL; obj = obj->next_content) {
+        for (obj = obj_list; obj != NULL; obj = obj->content_next) {
             if (!char_can_see_obj (ch, obj))
                 continue;
-            pdesc1 = get_extra_descr (arg3, obj->extra_descr);
-            pdesc2 = get_extra_descr (arg3, obj->index_data->extra_descr);
+            pdesc1 = extra_descr_get_description (
+                obj->extra_descr_first, arg3);
+            pdesc2 = extra_descr_get_description (
+                obj->obj_index->extra_descr_first, arg3);
 
             CHECK_LOOK (pdesc1 != NULL, pdesc1, FALSE);
             CHECK_LOOK (pdesc2 != NULL, pdesc2, FALSE);
@@ -371,7 +374,8 @@ DEFINE_DO_FUN (do_look) {
     }
 
     do {
-        pdesc1 = get_extra_descr (arg3, ch->in_room->extra_descr);
+        pdesc1 = extra_descr_get_description (
+            ch->in_room->extra_descr_first, arg3);
         CHECK_LOOK (pdesc1 != NULL, pdesc1, FALSE);
     } while (0);
 
@@ -554,11 +558,11 @@ DEFINE_DO_FUN (do_score) {
 DEFINE_DO_FUN (do_affects) {
     AFFECT_T *paf, *paf_last = NULL;
 
-    BAIL_IF (ch->affected == NULL,
+    BAIL_IF (ch->affect_first == NULL,
         "You are not affected by any spells.\n\r", ch);
 
     send_to_char ("You are affected by the following spells:\n\r", ch);
-    for (paf = ch->affected; paf != NULL; paf = paf->next) {
+    for (paf = ch->affect_first; paf != NULL; paf = paf->on_next) {
         if (paf_last == NULL || paf->type != paf_last->type)
             printf_to_char (ch, "Spell: %-15s\n\r", skill_table[paf->type].name);
         else if (ch->level < 20)
@@ -641,7 +645,7 @@ DEFINE_DO_FUN (do_help) {
     }
 
     trust = char_get_trust (ch);
-    for (help = help_first; help != NULL; help = help->next) {
+    for (help = help_first; help != NULL; help = help->global_next) {
         level = (help->level < 0) ? -1 * help->level - 1 : help->level;
         if (level > trust)
             continue;
@@ -701,7 +705,7 @@ DEFINE_DO_FUN (do_whois) {
     DO_REQUIRE_ARG (arg, "You must provide a name.\n\r");
 
     output = buf_new ();
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *wch = CH(d);
         if (d->connected != CON_PLAYING)
             continue;
@@ -817,7 +821,7 @@ DEFINE_DO_FUN (do_who) {
     matches = 0;
     buf[0] = '\0';
     output = buf_new ();
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *wch = CH(d);
 
         /* Check for match against restrictions.
@@ -859,7 +863,7 @@ DEFINE_DO_FUN (do_count) {
     DESCRIPTOR_T *d;
 
     count = 0;
-    for (d = descriptor_list; d != NULL; d = d->next)
+    for (d = descriptor_first; d != NULL; d = d->global_next)
         if (d->connected == CON_PLAYING && char_can_see_anywhere (ch, d->character))
             count++;
     max_on = UMAX (count, max_on);
@@ -878,7 +882,7 @@ DEFINE_DO_FUN (do_count) {
 
 DEFINE_DO_FUN (do_inventory) {
     send_to_char ("You are carrying:\n\r", ch);
-    obj_list_show_to_char (ch->carrying, ch, TRUE, TRUE);
+    obj_list_show_to_char (ch->content_first, ch, TRUE, TRUE);
 }
 
 DEFINE_DO_FUN (do_equipment) {
@@ -924,7 +928,7 @@ DEFINE_DO_FUN (do_compare) {
 
     argument = one_argument (argument, arg2);
     if (arg2[0] == '\0') {
-        for (obj2 = ch->carrying; obj2 != NULL; obj2 = obj2->next_content) {
+        for (obj2 = ch->content_first; obj2 != NULL; obj2 = obj2->content_next) {
             if (obj2->wear_loc == WEAR_LOC_NONE)
                 continue;
             if (!char_can_see_obj (ch, obj2))
@@ -978,7 +982,7 @@ DEFINE_DO_FUN (do_where) {
     if (arg[0] == '\0') {
         send_to_char ("Players near you:\n\r", ch);
         found = FALSE;
-        for (d = descriptor_list; d; d = d->next) {
+        for (d = descriptor_first; d; d = d->global_next) {
             if (d->connected == CON_PLAYING
                 && (victim = d->character) != NULL && !IS_NPC (victim)
                 && victim->in_room != NULL
@@ -998,7 +1002,7 @@ DEFINE_DO_FUN (do_where) {
     }
     else {
         found = FALSE;
-        for (victim = char_list; victim != NULL; victim = victim->next) {
+        for (victim = char_first; victim != NULL; victim = victim->global_next) {
             if (victim->in_room != NULL
                 && victim->in_room->area == ch->in_room->area
                 && !IS_AFFECTED (victim, AFF_HIDE)
@@ -1091,15 +1095,15 @@ DEFINE_DO_FUN (do_areas) {
     area1 = area_first;
     area2 = area_first;
     for (i = 0; i < areas_half; i++)
-        area2 = area2->next;
+        area2 = area2->global_next;
 
     for (i = 0; i < areas_half; i++) {
         sprintf (buf, "%-39s%-39s\n\r",
                  area1->credits, (area2 != NULL) ? area2->credits : "");
         send_to_char_bw (buf, ch);
-        area1 = area1->next;
+        area1 = area1->global_next;
         if (area2 != NULL)
-            area2 = area2->next;
+            area2 = area2->global_next;
     }
 }
 

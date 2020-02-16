@@ -28,6 +28,7 @@
 #include "olc.h"
 #include "memory.h"
 #include "mobiles.h"
+#include "mob_prog.h"
 
 #include "olc_medit.h"
 
@@ -124,11 +125,11 @@ MEDIT (medit_show) {
         }
     }
 
-    if (mob->mprogs) {
+    if (mob->mprog_first) {
         int cnt;
 
         printf_to_char (ch, "\n\rMOBPrograms for [%5d]:\n\r", mob->vnum);
-        for (cnt = 0, list = mob->mprogs; list; list = list->next) {
+        for (cnt = 0, list = mob->mprog_first; list; list = list->mob_next) {
             if (cnt == 0) {
                 send_to_char (" Number Vnum Trigger Phrase\n\r", ch);
                 send_to_char (" ------ ---- ------- ------\n\r", ch);
@@ -146,7 +147,7 @@ MEDIT (medit_show) {
 MEDIT (medit_create) {
     MOB_INDEX_T *mob;
     AREA_T *area;
-    int value, hash;
+    int value;
 
     value = atoi (argument);
     RETURN_IF (argument[0] == '\0' || value == 0,
@@ -164,13 +165,12 @@ MEDIT (medit_create) {
     mob->area = area;
     mob->vnum = value;
     mob->anum = value - area->min_vnum;
+    mob->ext_mob_plus = EXT_BITS (MOB_IS_NPC);
 
     if (value > top_vnum_mob)
         top_vnum_mob = value;
 
-    mob->ext_mob_plus = EXT_BITS (MOB_IS_NPC);
-    hash = value % MAX_KEY_HASH;
-    LIST_FRONT (mob, next, mob_index_hash[hash]);
+    mob_index_to_hash (mob);
     ch->desc->olc_edit = (void *) mob;
 
     db_finalize_mob (mob);
@@ -343,7 +343,7 @@ MEDIT (medit_shop) {
             "Mob already has a shop assigned to it.\n\r", ch, FALSE);
 
         mob->shop = shop_new ();
-        LISTB_BACK (mob->shop, next, shop_first, shop_last);
+        LIST2_BACK (mob->shop, global_prev, global_next, shop_first, shop_last);
         mob->shop->keeper = mob->vnum;
 
         send_to_char ("New shop assigned to mobile.\n\r", ch);
@@ -351,8 +351,7 @@ MEDIT (medit_shop) {
     }
 
     if (!str_prefix (command, "remove")) {
-        LISTB_REMOVE (mob->shop, next, shop_first, shop_last,
-            SHOP_T, NO_FAIL);
+        LIST2_REMOVE (mob->shop, global_prev, global_next, shop_first, shop_last);
         shop_free (mob->shop);
         mob->shop = NULL;
 
@@ -947,7 +946,7 @@ MEDIT (medit_addmprog) {
         show_help (ch, "mprog");
         return FALSE;
     }
-    RETURN_IF ((code = get_mprog_index (atoi (num))) == NULL,
+    RETURN_IF ((code = mpcode_get_index (atoi (num))) == NULL,
         "No such mob program.\n\r", ch, FALSE);
 
     list = mprog_new ();
@@ -958,7 +957,7 @@ MEDIT (medit_addmprog) {
     list->trig_phrase = str_dup (phrase);
     list->code = code->code;
     SET_BIT (mob->mprog_flags, value);
-    LIST_FRONT (list, next, mob->mprogs);
+    LIST2_FRONT (list, mob_prev, mob_next, mob->mprog_first, mob->mprog_last);
 
     send_to_char ("Mob program created.\n\r", ch);
     return TRUE;
@@ -966,7 +965,7 @@ MEDIT (medit_addmprog) {
 
 MEDIT (medit_delmprog) {
     MOB_INDEX_T *mob;
-    MPROG_LIST_T *mplist, *mplist_prev;
+    MPROG_LIST_T *mplist;
     char mprog[MAX_STRING_LENGTH];
     int value;
     int cnt = 0;
@@ -982,12 +981,12 @@ MEDIT (medit_delmprog) {
         "Only non-negative mprog-numbers allowed.\n\r", ch, FALSE);
 
     /* Find the affect and its previous link in the list. */
-    LIST_FIND_WITH_PREV (value >= cnt++, next, mob->mprogs,
-        mplist, mplist_prev);
+    LIST_FIND (value >= cnt++, mob_next, mob->mprog_first, mplist);
     RETURN_IF (!mplist,
         "MEdit: Non-existant mob program.\n\r", ch, FALSE);
 
-    LIST_REMOVE_WITH_PREV (mplist, mplist_prev, next, mob->mprogs);
+    LIST2_REMOVE (mplist, mob_prev, mob_next,
+        mob->mprog_first, mob->mprog_last);
     REMOVE_BIT (mob->mprog_flags, mplist->trig_type);
     mprog_free (mplist);
 

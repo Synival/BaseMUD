@@ -54,8 +54,8 @@ struct recycle_type {
 
     /* internal - do not set in definition table! */
     int top, list_count, free_count;
-    OBJ_RECYCLE_T *list_front, *list_back;
-    OBJ_RECYCLE_T *free_front, *free_back;
+    OBJ_RECYCLE_T *list_first, *list_last;
+    OBJ_RECYCLE_T *free_first, *free_last;
 };
 
 /* Data stored in individual objects to make recycling work. */
@@ -67,7 +67,7 @@ struct obj_recycle_data {
 
 /* Structures, ahoy!*/
 struct ban_data {
-    BAN_T *next;
+    BAN_T *global_next, *global_prev;
     flag_t ban_flags;
     sh_int level;
     char *name;
@@ -97,7 +97,7 @@ struct weather_data {
 
 /* Descriptor (channel) structure. */
 struct descriptor_data {
-    DESCRIPTOR_T *next;
+    DESCRIPTOR_T *global_next, *global_prev;
     DESCRIPTOR_T *snoop_by;
     CHAR_T *character;
     CHAR_T *original;
@@ -155,8 +155,9 @@ struct con_app_type {
 
 /* Help table types. */
 struct help_data {
-    HELP_T *next;
-    HELP_T *next_area;
+    HELP_T *global_next, *global_prev;
+    HELP_AREA_T *had;
+    HELP_T *had_next, *had_prev;
     sh_int level;
     char *keyword;
     char *text;
@@ -164,11 +165,11 @@ struct help_data {
 };
 
 struct help_area_data {
-    HELP_AREA_T *next;
-    HELP_T *first;
-    HELP_T *last;
-    char *area_str;
+    HELP_AREA_T *global_next, *global_prev;
     AREA_T *area;
+    HELP_AREA_T *area_next, *area_prev;
+    HELP_T *help_first, *help_last;
+    char *area_str;
     char *filename;
     char *name;
     bool changed;
@@ -176,7 +177,7 @@ struct help_area_data {
 };
 
 struct shop_data {
-    SHOP_T *next;
+    SHOP_T *global_next, *global_prev;
     sh_int keeper;                /* Vnum of shop keeper mob     */
     sh_int buy_type [MAX_TRADE];  /* Item types shop will buy    */
     sh_int profit_buy;            /* Cost multiplier for buying  */
@@ -273,7 +274,8 @@ struct spec_type {
 
 /* Data structure for notes. */
 struct note_data {
-    NOTE_T *next;
+    BOARD_T *board;
+    NOTE_T *board_next, *board_prev;
     sh_int type;
     char *sender;
     char *date;
@@ -287,7 +289,9 @@ struct note_data {
 
 /* An affect.  */
 struct affect_data {
-    AFFECT_T *next;
+    void *parent;
+    int parent_type;
+    AFFECT_T *on_next, *on_prev;
     sh_int bit_type;
     sh_int type;
     sh_int level;
@@ -377,16 +381,18 @@ struct dice_type {
 /* Prototype for a mob.
  * This is the in-memory version of #MOBILES. */
 struct mob_index_data {
-    MOB_INDEX_T *next;
+    MOB_INDEX_T *hash_next, *hash_prev;
+    AREA_T *area; /* OLC */
+    MOB_INDEX_T *area_next, *area_prev;
     SPEC_FUN *spec_fun;
     SHOP_T *shop;
-    MPROG_LIST_T *mprogs;
+    MPROG_LIST_T *mprog_first, *mprog_last;
+    CHAR_T *mob_first, *mob_last;
     char *area_str;
-    AREA_T *area; /* OLC */
     sh_int vnum, anum;
     sh_int group;
     bool new_format;
-    sh_int count;
+    sh_int mob_count;
     sh_int killed;
     char *name;
     char *short_descr;
@@ -429,8 +435,8 @@ struct mem_data {
 
 /* One character (PC or NPC). */
 struct char_data {
-    CHAR_T *next;
-    CHAR_T *next_in_room;
+    CHAR_T *global_next, *global_prev;
+    CHAR_T *room_next, *room_prev;
     CHAR_T *master;
     CHAR_T *leader;
     CHAR_T *fighting;
@@ -439,14 +445,15 @@ struct char_data {
     CHAR_T *mprog_target;
     MEM_T *memory;
     SPEC_FUN *spec_fun;
-    MOB_INDEX_T *index_data;
+    MOB_INDEX_T *mob_index;
+    CHAR_T *mob_index_prev, *mob_index_next;
     DESCRIPTOR_T *desc;
-    AFFECT_T *affected;
-    OBJ_T *carrying;
+    AFFECT_T *affect_first, *affect_last;
+    OBJ_T *content_first, *content_last;
     OBJ_T *on;
     ROOM_INDEX_T *in_room;
     ROOM_INDEX_T *was_in_room;
-    AREA_T *zone;
+    AREA_T *area;
     PC_T *pcdata;
     GEN_T *gen_data;
     char *name;
@@ -596,7 +603,9 @@ struct liq_type {
 
 /* Extra description data for a room or object. */
 struct extra_descr_data {
-    EXTRA_DESCR_T *next;
+    void *parent;
+    int parent_type;
+    EXTRA_DESCR_T *on_next, *on_prev;
     char *keyword;          /* Keyword in look/examine */
     char *description;      /* What to see             */
     OBJ_RECYCLE_T rec_data;
@@ -819,11 +828,13 @@ union reset_value_type {
 
 /* Prototype for an object. */
 struct obj_index_data {
-    OBJ_INDEX_T *next;
-    EXTRA_DESCR_T *extra_descr;
-    AFFECT_T *affected;
-    char *area_str;
+    OBJ_INDEX_T *hash_next, *hash_prev;
     AREA_T *area; /* OLC */
+    OBJ_INDEX_T *area_next, *area_prev;
+    EXTRA_DESCR_T *extra_descr_first, *extra_descr_last;
+    AFFECT_T *affect_first, *affect_last;
+    OBJ_T *obj_first, *obj_last;
+    char *area_str;
     bool new_format;
     char *name;
     char *short_descr;
@@ -836,7 +847,7 @@ struct obj_index_data {
     flag_t wear_flags;
     sh_int level;
     sh_int condition;
-    sh_int count;
+    sh_int obj_count;
     sh_int weight;
     int cost;
     OBJ_RECYCLE_T rec_data;
@@ -858,15 +869,16 @@ struct obj_map {
 
 /* One object. */
 struct obj_data {
-    OBJ_T *next;
-    OBJ_T *next_content;
-    OBJ_T *contains;
-    OBJ_T *in_obj;
-    OBJ_T *on;
+    OBJ_T *global_next, *global_prev;
     CHAR_T *carried_by;
-    EXTRA_DESCR_T *extra_descr;
-    AFFECT_T *affected;
-    OBJ_INDEX_T *index_data;
+    OBJ_T *in_obj;
+    OBJ_T *content_next, *content_prev;
+    OBJ_T *content_first, *content_last;
+    OBJ_T *on;
+    EXTRA_DESCR_T *extra_descr_first, *extra_descr_last;
+    AFFECT_T *affect_first, *affect_last;
+    OBJ_INDEX_T *obj_index;
+    OBJ_T *obj_index_prev, *obj_index_next;
     ROOM_INDEX_T *in_room;
     bool enchanted;
     char *owner;
@@ -914,8 +926,10 @@ struct exit_data {
 
 /* Area-reset definition. */
 struct reset_data {
-    RESET_T *next;
     AREA_T *area;
+    RESET_T *area_next, *area_prev;
+    ROOM_INDEX_T *room;
+    RESET_T *room_next, *room_prev;
     char command;
     int room_vnum;
     RESET_VALUE_T v;
@@ -924,8 +938,14 @@ struct reset_data {
 
 /* Area definition.  */
 struct area_data {
-    AREA_T *next;
-    HELP_AREA_T *helps;
+    AREA_T *global_next, *global_prev;
+    HELP_AREA_T *had_first, *had_last;
+    MOB_INDEX_T *mob_first, *mob_last;
+    OBJ_INDEX_T *obj_first, *obj_last;
+    ROOM_INDEX_T *room_first, *room_last;
+    MPROG_LIST_T *mprog_first, *mprog_last;
+    MPROG_CODE_T *mpcode_first, *mpcode_last;
+    RESET_T *reset_first, *reset_last;
     char *name;
     char *filename;
     char *title;
@@ -946,12 +966,13 @@ struct area_data {
 
 /* Room type. */
 struct room_index_data {
-    ROOM_INDEX_T *next;
-    CHAR_T *people;
-    OBJ_T *contents;
-    EXTRA_DESCR_T *extra_descr;
-    char *area_str;
+    ROOM_INDEX_T *hash_next, *hash_prev;
     AREA_T *area;
+    ROOM_INDEX_T *area_next, *area_prev;
+    CHAR_T *people_first, *people_last;
+    OBJ_T *content_first, *content_last;
+    EXTRA_DESCR_T *extra_descr_first, *extra_descr_last;
+    char *area_str;
     EXIT_T *exit[DIR_MAX];
     RESET_T *reset_first; /* OLC */
     RESET_T *reset_last;  /* OLC */
@@ -1008,18 +1029,20 @@ struct skill_map_type {
 };
 
 struct mprog_list {
-    MPROG_LIST_T *next;
+    AREA_T *area;
+    MPROG_LIST_T *area_next, *area_prev;
+    MPROG_LIST_T *mob_next, *mob_prev;
     int trig_type;
     char *trig_phrase;
-    AREA_T *area;
     sh_int vnum, anum;
     char *code;
     OBJ_RECYCLE_T rec_data;
 };
 
 struct mprog_code {
-    MPROG_CODE_T *next;
     AREA_T *area;
+    MPROG_CODE_T *global_next, *global_prev;
+    MPROG_CODE_T *area_next, *area_prev;
     sh_int vnum, anum;
     char *code;
     OBJ_RECYCLE_T rec_data;
@@ -1065,8 +1088,8 @@ struct board_data {
     int purge_days;  /* Default expiration */
 
     /* Non-constant data */
-    BOARD_T *next;
-    NOTE_T *note_first; /* pointer to board's first note */
+    BOARD_T *global_next, *global_prev;
+    NOTE_T *note_first, *note_last; /* pointer to board's first note */
     bool changed;       /* currently unused */
 
 };
@@ -1166,7 +1189,7 @@ struct anum_type {
     sh_int *vnum_ref;
     char *area_str;
     int anum;
-    ANUM_T *prev, *next;
+    ANUM_T *global_prev, *global_next;
 };
 
 /* Structure for a command in the command lookup table. */

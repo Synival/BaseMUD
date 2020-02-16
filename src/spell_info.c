@@ -74,8 +74,8 @@ long int spell_identify_seed (CHAR_T *ch, OBJ_T *obj) {
         hash = ((hash << 5) + hash) + c;
     while ((c = *name2++) != '\0')
         hash = ((hash << 5) + hash) + c;
-    if (obj->index_data)
-        hash += obj->index_data->vnum;
+    if (obj->obj_index)
+        hash += obj->obj_index->vnum;
 
     srandom (hash);
     return next_seed;
@@ -226,7 +226,7 @@ void spell_identify_perform_seeded (CHAR_T *ch, OBJ_T *obj, int power) {
                     (wtype == NULL) ? "unknown" : wtype->name);
             }
             if (KNOW_CHECK()) {
-                if (obj->index_data->new_format) {
+                if (obj->obj_index->new_format) {
                     printf_to_char (ch, "Damage is %ldd%ld (average %ld).\n\r",
                         obj->v.weapon.dice_num, obj->v.weapon.dice_size,
                        (obj->v.weapon.dice_size + 1) * obj->v.weapon.dice_num / 2);
@@ -271,7 +271,7 @@ void spell_identify_perform_seeded (CHAR_T *ch, OBJ_T *obj, int power) {
     }
 
     if (!obj->enchanted) {
-        for (paf = obj->index_data->affected; paf != NULL; paf = paf->next) {
+        for (paf = obj->obj_index->affect_first; paf; paf = paf->on_next) {
             if (!KNOW_CHECK())
                 continue;
             if (paf->apply == APPLY_NONE || paf->modifier == 0)
@@ -283,7 +283,7 @@ void spell_identify_perform_seeded (CHAR_T *ch, OBJ_T *obj, int power) {
         }
     }
 
-    for (paf = obj->affected; paf != NULL; paf = paf->next) {
+    for (paf = obj->affect_first; paf; paf = paf->on_next) {
         if (!KNOW_CHECK())
             continue;
         if (paf->apply != APPLY_NONE && paf->modifier != 0) {
@@ -334,7 +334,7 @@ DEFINE_SPELL_FUN (spell_locate_object) {
     max_found = IS_IMMORTAL (ch) ? 200 : 2 * level;
 
     buffer = buf_new ();
-    for (obj = object_list; obj != NULL; obj = obj->next) {
+    for (obj = object_first; obj != NULL; obj = obj->global_next) {
         if (!char_can_see_obj (ch, obj))
             continue;
         if (!str_in_namelist (target_name, obj->name))

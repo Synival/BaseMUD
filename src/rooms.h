@@ -49,6 +49,10 @@ ROOM_INDEX_T *room_get_random_index (CHAR_T *ch);
 
 /* Action functions. */
 void room_add_money (ROOM_INDEX_T *room, int gold, int silver);
-void room_take_reset (ROOM_INDEX_T *room, RESET_T *reset);
+void room_reset (ROOM_INDEX_T *room);
+void room_reset_exits (ROOM_INDEX_T *room);
+void room_to_area (ROOM_INDEX_T *room, AREA_T *area);
+void room_index_to_hash (ROOM_INDEX_T *room);
+void room_index_from_hash (ROOM_INDEX_T *room);
 
 #endif

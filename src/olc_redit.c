@@ -32,6 +32,7 @@
 #include "memory.h"
 #include "mobiles.h"
 #include "rooms.h"
+#include "extra_descrs.h"
 
 #include "olc_redit.h"
 
@@ -41,23 +42,23 @@
  Called by:  do_resets(olc.c).
  ****************************************************************************/
 void redit_add_reset (ROOM_INDEX_T *room, RESET_T *reset, int index) {
-    RESET_T *prev;
+    RESET_T *after;
     int reset_n = 0;
 
     /* No resets or first slot (1) selected. */
     index--;
     if (!room->reset_first || index == 0) {
-        LISTB_FRONT (reset, next,
+        LIST2_FRONT (reset, room_prev, room_next,
             room->reset_first, room->reset_last);
         return;
     }
 
     /* If negative slot( <= 0 selected) then this will find the last. */
-    for (prev = room->reset_first; prev->next; prev = prev->next)
+    for (after = room->reset_first; after->room_next; after = after->room_next)
         if (++reset_n == index)
             break;
 
-    LISTB_INSERT_AFTER (reset, prev, next,
+    LIST2_INSERT_AFTER (reset, after, room_prev, room_next,
         room->reset_first, room->reset_last);
 }
 
@@ -514,13 +515,13 @@ REDIT (redit_show) {
         sprintf (buf, "Owner     : [%s]\n\r", room->owner);
         strcat (buf1, buf);
     }
-    if (room->extra_descr) {
+    if (room->extra_descr_first) {
         EXTRA_DESCR_T *ed;
 
         strcat (buf1, "Desc Kwds:  [");
-        for (ed = room->extra_descr; ed; ed = ed->next) {
+        for (ed = room->extra_descr_first; ed; ed = ed->on_next) {
             strcat (buf1, ed->keyword);
-            if (ed->next)
+            if (ed->on_next)
                 strcat (buf1, " ");
         }
         strcat (buf1, "]\n\r");
@@ -528,7 +529,7 @@ REDIT (redit_show) {
 
     strcat (buf1, "Characters: [");
     fcnt = FALSE;
-    for (rch = room->people; rch; rch = rch->next_in_room) {
+    for (rch = room->people_first; rch; rch = rch->room_next) {
         one_argument (rch->name, buf);
         strcat (buf1, buf);
         strcat (buf1, " ");
@@ -544,7 +545,7 @@ REDIT (redit_show) {
 
     strcat (buf1, "Objects:    [");
     fcnt = FALSE;
-    for (obj = room->contents; obj; obj = obj->next_content) {
+    for (obj = room->content_first; obj; obj = obj->content_next) {
         one_argument (obj->name, buf);
         strcat (buf1, buf);
         strcat (buf1, " ");
@@ -649,7 +650,7 @@ REDIT (redit_ed) {
         ed = extra_descr_new ();
         ed->keyword = str_dup (keyword);
         ed->description = str_dup ("");
-        LIST_FRONT (ed, next, room->extra_descr);
+        extra_descr_to_room_index_back (ed, room);
 
         string_append (ch, &ed->description);
         return TRUE;
@@ -660,8 +661,8 @@ REDIT (redit_ed) {
             send_to_char ("Syntax: ed edit [keyword]\n\r", ch);
             return FALSE;
         }
-        LIST_FIND (str_in_namelist (keyword, ed->keyword), next,
-            room->extra_descr, ed);
+        LIST_FIND (str_in_namelist (keyword, ed->keyword), on_next,
+            room->extra_descr_first, ed);
         if (!ed) {
             send_to_char ("REdit: Extra description keyword not found.\n\r", ch);
             return FALSE;
@@ -671,18 +672,16 @@ REDIT (redit_ed) {
     }
 
     if (!str_cmp (command, "delete")) {
-        EXTRA_DESCR_T *ped;
         if (keyword[0] == '\0') {
             send_to_char ("Syntax: ed delete [keyword]\n\r", ch);
             return FALSE;
         }
-        LIST_FIND_WITH_PREV (str_in_namelist (keyword, ed->keyword),
-            next, room->extra_descr, ed, ped);
+        LIST_FIND (str_in_namelist (keyword, ed->keyword), on_next,
+            room->extra_descr_first, ed);
         if (!ed) {
             send_to_char ("REdit: Extra description keyword not found.\n\r", ch);
             return FALSE;
         }
-        LIST_REMOVE_WITH_PREV (ed, ped, next, room->extra_descr);
 
         extra_descr_free (ed);
         send_to_char ("Extra description deleted.\n\r", ch);
@@ -694,8 +693,8 @@ REDIT (redit_ed) {
             send_to_char ("Syntax: ed format [keyword]\n\r", ch);
             return FALSE;
         }
-        LIST_FIND (str_in_namelist (keyword, ed->keyword), next,
-            room->extra_descr, ed);
+        LIST_FIND (str_in_namelist (keyword, ed->keyword), on_next,
+            room->extra_descr_first, ed);
         if (!ed) {
             send_to_char ("REdit: Extra description keyword not found.\n\r", ch);
             return FALSE;
@@ -712,7 +711,7 @@ REDIT (redit_ed) {
 REDIT (redit_create) {
     AREA_T *area;
     ROOM_INDEX_T *room;
-    int value, hash;
+    int value;
 
     EDIT_ROOM (ch, room);
 
@@ -744,8 +743,7 @@ REDIT (redit_create) {
     if (value > top_vnum_room)
         top_vnum_room = value;
 
-    hash = value % MAX_KEY_HASH;
-    LIST_FRONT (room, next, room_index_hash[hash]);
+    room_index_to_hash (room);
     ch->desc->olc_edit = (void *) room;
 
     send_to_char ("Room created.\n\r", ch);
@@ -928,10 +926,10 @@ REDIT (redit_oreset) {
     {
         reset = reset_data_new ();
         reset->command = 'P';
-        reset->v.put.obj_vnum      = obj_index->vnum;
-        reset->v.put.global_limit  = 0;
-        reset->v.put.into_vnum     = to_obj->index_data->vnum;
-        reset->v.put.put_count     = 1;
+        reset->v.put.obj_vnum     = obj_index->vnum;
+        reset->v.put.global_limit = 0;
+        reset->v.put.into_vnum    = to_obj->obj_index->vnum;
+        reset->v.put.put_count    = 1;
         redit_add_reset (room, reset, 0 /* Last slot */ );
 
         newobj = obj_create (obj_index, number_fuzzy (olevel));
@@ -940,8 +938,8 @@ REDIT (redit_oreset) {
 
         printf_to_char (ch, "%s (%d) has been loaded into "
             "%s (%d) and added to resets.\n\r",
-            str_capitalized (newobj->short_descr), newobj->index_data->vnum,
-            to_obj->short_descr, to_obj->index_data->vnum);
+            str_capitalized (newobj->short_descr), newobj->obj_index->vnum,
+            to_obj->short_descr, to_obj->obj_index->vnum);
     }
     /* Load into mobile's inventory. */
     else if ((to_mob = find_char_same_room (ch, arg2)) != NULL) {
@@ -981,7 +979,7 @@ REDIT (redit_oreset) {
         newobj = obj_create (obj_index, number_fuzzy (olevel));
 
         /* Shop-keeper? */
-        if (to_mob->index_data->shop) {
+        if (to_mob->mob_index->shop) {
             switch (obj_index->item_type) {
                 case ITEM_PILL:
                 case ITEM_POTION:
@@ -1025,7 +1023,7 @@ REDIT (redit_oreset) {
             "%s (%d) has been loaded %s of %s (%d) and added to resets.\n\r",
             str_capitalized (obj_index->short_descr),
             obj_index->vnum, wear_loc->phrase,
-            to_mob->short_descr, to_mob->index_data->vnum);
+            to_mob->short_descr, to_mob->mob_index->vnum);
     }
     /* Display Syntax */
     else {

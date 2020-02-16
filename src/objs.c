@@ -39,6 +39,7 @@
 #include "globals.h"
 #include "memory.h"
 #include "items.h"
+#include "extra_descrs.h"
 
 #include "objs.h"
 
@@ -48,7 +49,7 @@ OBJ_INDEX_T *obj_get_index (int vnum) {
     OBJ_INDEX_T *obj_index;
 
     for (obj_index = obj_index_hash[vnum % MAX_KEY_HASH];
-         obj_index != NULL; obj_index = obj_index->next)
+         obj_index != NULL; obj_index = obj_index->hash_next)
         if (obj_index->vnum == vnum)
             return obj_index;
 
@@ -73,8 +74,8 @@ OBJ_T *obj_create (OBJ_INDEX_T *obj_index, int level) {
         "obj_create: NULL obj_index.", 0);
 
     obj = obj_new ();
+    obj_to_obj_index (obj, obj_index);
 
-    obj->index_data = obj_index;
     obj->in_room = NULL;
     obj->enchanted = FALSE;
 
@@ -82,7 +83,7 @@ OBJ_T *obj_create (OBJ_INDEX_T *obj_index, int level) {
         obj->level = obj_index->level;
     else
         obj->level = UMAX (0, level);
-    obj->wear_loc = -1;
+    obj->wear_loc = WEAR_LOC_NONE;
 
     str_replace_dup (&obj->name,        obj_index->name);        /* OLC */
     str_replace_dup (&obj->short_descr, obj_index->short_descr); /* OLC */
@@ -104,12 +105,13 @@ OBJ_T *obj_create (OBJ_INDEX_T *obj_index, int level) {
     /* Mess with object properties. */
     item_init (obj, obj_index, level);
 
-    for (paf = obj_index->affected; paf != NULL; paf = paf->next)
+    /* objects are copied to the FRONT, so copy this list backwards. */
+    for (paf = obj_index->affect_last; paf != NULL; paf = paf->on_prev)
         if (paf->apply == APPLY_SPELL_AFFECT)
-            affect_to_obj (obj, paf);
+            affect_copy_to_obj (paf, obj);
 
-    LIST_FRONT (obj, next, object_list);
-    obj_index->count++;
+    LIST2_FRONT (obj, global_prev, global_next, object_first, object_last);
+
     return obj;
 }
 
@@ -139,17 +141,17 @@ void obj_clone (OBJ_T *parent, OBJ_T *clone) {
     for (i = 0; i < OBJ_VALUE_MAX; i++)
         clone->v.value[i] = parent->v.value[i];
 
-    /* affects */
+    /* affects. they are linked to the FRONT, so copy the list backwards. */
     clone->enchanted = parent->enchanted;
-    for (paf = parent->affected; paf != NULL; paf = paf->next)
-        affect_to_obj (clone, paf);
+    for (paf = parent->affect_last; paf != NULL; paf = paf->on_prev)
+        affect_copy_to_obj (paf, clone);
 
     /* extended desc */
-    for (ed = parent->extra_descr; ed != NULL; ed = ed->next) {
+    for (ed = parent->extra_descr_first; ed != NULL; ed = ed->on_next) {
         ed_new = extra_descr_new ();
         str_replace_dup (&ed_new->keyword, ed->keyword);
         str_replace_dup (&ed_new->description, ed->description);
-        LIST_BACK (ed_new, next, clone->extra_descr, EXTRA_DESCR_T);
+        extra_descr_to_obj_back (ed_new, clone);
     }
 }
 
@@ -160,7 +162,7 @@ int obj_count_users (const OBJ_T *obj) {
 
     if (obj->in_room == NULL)
         return 0;
-    for (fch = obj->in_room->people; fch != NULL; fch = fch->next_in_room)
+    for (fch = obj->in_room->people_first; fch != NULL; fch = fch->room_next)
         if (fch->on == obj)
             count++;
     return count;
@@ -168,7 +170,9 @@ int obj_count_users (const OBJ_T *obj) {
 
 /* Give an obj to a char. */
 void obj_give_to_char (OBJ_T *obj, CHAR_T *ch) {
-    LIST_FRONT (obj, next_content, ch->carrying);
+    obj_take (obj);
+    LIST2_FRONT (obj, content_prev, content_next,
+        ch->content_first, ch->content_last);
     obj->carried_by = ch;
     obj->in_room    = NULL;
     obj->in_obj     = NULL;
@@ -179,7 +183,9 @@ void obj_give_to_char (OBJ_T *obj, CHAR_T *ch) {
 
 /* Move an obj into a room. */
 void obj_give_to_room (OBJ_T *obj, ROOM_INDEX_T *room_index) {
-    LIST_FRONT (obj, next_content, room_index->contents);
+    obj_take (obj);
+    LIST2_FRONT (obj, content_prev, content_next,
+        room_index->content_first, room_index->content_last);
     obj->carried_by = NULL;
     obj->in_room    = room_index;
     obj->in_obj     = NULL;
@@ -187,12 +193,14 @@ void obj_give_to_room (OBJ_T *obj, ROOM_INDEX_T *room_index) {
 
 /* Move an object into an object. */
 void obj_give_to_obj (OBJ_T *obj, OBJ_T *obj_to) {
-    LIST_FRONT (obj, next_content, obj_to->contains);
+    obj_take (obj);
+    LIST2_FRONT (obj, content_prev, content_next,
+        obj_to->content_first, obj_to->content_last);
     obj->carried_by = NULL;
     obj->in_room    = NULL;
     obj->in_obj     = obj_to;
 
-    if (obj_to->index_data->vnum == OBJ_VNUM_PIT)
+    if (obj_is_donation_pit (obj_to))
         obj->cost = 0;
 
     for (; obj_to != NULL; obj_to = obj_to->in_obj) {
@@ -209,9 +217,9 @@ void obj_give_to_keeper (OBJ_T *obj, CHAR_T *ch) {
     OBJ_T *t_obj, *t_obj_next;
 
     /* see if any duplicates are found */
-    for (t_obj = ch->carrying; t_obj != NULL; t_obj = t_obj_next) {
-        t_obj_next = t_obj->next_content;
-        if (obj->index_data != t_obj->index_data)
+    for (t_obj = ch->content_first; t_obj != NULL; t_obj = t_obj_next) {
+        t_obj_next = t_obj->content_next;
+        if (obj->obj_index != t_obj->obj_index)
             continue;
         if (str_cmp (obj->short_descr, t_obj->short_descr) != 0)
             continue;
@@ -224,7 +232,8 @@ void obj_give_to_keeper (OBJ_T *obj, CHAR_T *ch) {
         obj->cost = t_obj->cost; /* keep it standard */
     }
 
-    LIST_INSERT_AFTER (obj, t_obj, next_content, ch->carrying);
+    LIST2_INSERT_AFTER (obj, t_obj, content_prev, content_next,
+        ch->content_first, ch->content_last);
     obj->carried_by = ch;
     obj->in_room    = NULL;
     obj->in_obj     = NULL;
@@ -234,20 +243,21 @@ void obj_give_to_keeper (OBJ_T *obj, CHAR_T *ch) {
 }
 
 /* Take the object from whoever or whatever is holding it. */
-void obj_take (OBJ_T *obj) {
+bool obj_take (OBJ_T *obj) {
     if (obj->carried_by) {
         obj_take_from_char (obj);
-        return;
+        return TRUE;
     }
     else if (obj->in_room) {
         obj_take_from_room (obj);
-        return;
+        return TRUE;
     }
     else if (obj->in_obj) {
         obj_take_from_obj (obj);
-        return;
+        return TRUE;
     }
-    bug ("obj_take: object not carried, in room, or in object.", 0);
+    else
+        return FALSE;
 }
 
 /* Take an obj from its character. */
@@ -259,8 +269,10 @@ void obj_take_from_char (OBJ_T *obj) {
     if (obj->wear_loc != WEAR_LOC_NONE)
         char_unequip_obj (ch, obj);
 
-    LIST_REMOVE (obj, next_content, ch->carrying, OBJ_T, NO_FAIL);
     obj->carried_by = NULL;
+    LIST2_REMOVE (obj, content_prev, content_next,
+        ch->content_first, ch->content_last);
+
     ch->carry_number -= obj_get_carry_number (obj);
     ch->carry_weight -= obj_get_weight (obj);
 }
@@ -272,12 +284,13 @@ void obj_take_from_room (OBJ_T *obj) {
 
     BAIL_IF_BUG ((in_room = obj->in_room) == NULL,
         "obj_take_from_room: NULL.", 0);
-    for (ch = in_room->people; ch != NULL; ch = ch->next_in_room)
+    for (ch = in_room->people_first; ch != NULL; ch = ch->room_next)
         if (ch->on == obj)
             ch->on = NULL;
 
-    LIST_REMOVE (obj, next_content, in_room->contents, OBJ_T, NO_FAIL);
     obj->in_room = NULL;
+    LIST2_REMOVE (obj, content_prev, content_next,
+        in_room->content_first, in_room->content_last);
 }
 
 /* Move an object out of an object. */
@@ -286,7 +299,8 @@ void obj_take_from_obj (OBJ_T *obj) {
     BAIL_IF_BUG ((obj_from = obj->in_obj) == NULL,
         "obj_take_from_obj: null obj_from.", 0);
 
-    LIST_REMOVE (obj, next_content, obj_from->contains, OBJ_T, NO_FAIL);
+    LIST2_REMOVE (obj, content_prev, content_next,
+        obj_from->content_first, obj_from->content_last);
     obj->in_obj = NULL;
 
     for (; obj_from != NULL; obj_from = obj_from->in_obj) {
@@ -318,31 +332,25 @@ int obj_index_count_in_list (const OBJ_INDEX_T *obj_index, const OBJ_T *list) {
     int matches;
 
     matches = 0;
-    for (obj = list; obj != NULL; obj = obj->next_content)
-        if (obj->index_data == obj_index)
+    for (obj = list; obj != NULL; obj = obj->content_next)
+        if (obj->obj_index == obj_index)
             matches++;
     return matches;
 }
 
 /* Extract an obj from the world. */
 void obj_extract (OBJ_T *obj) {
-    OBJ_T *obj_content;
-    OBJ_T *obj_next;
+    bool obj_in_world;
 
-    if (obj->in_room != NULL)
-        obj_take_from_room (obj);
-    else if (obj->carried_by != NULL)
-        obj_take_from_char (obj);
-    else if (obj->in_obj != NULL)
-        obj_take_from_obj (obj);
+    /* obj_extract() should only be used for objects currently in the
+     * playable world. If they're not, obj_free() should be used. */
+    obj_in_world = obj_take (obj);
+    if (!obj_in_world)
+        bugf ("obj_extract: %s is not in the real world.", obj->short_descr);
 
-    for (obj_content = obj->contains; obj_content; obj_content = obj_next) {
-        obj_next = obj_content->next_content;
-        obj_extract (obj_content);
-    }
+    while (obj->content_first)
+        obj_extract (obj->content_first);
 
-    LIST_REMOVE (obj, next, object_list, OBJ_T, return);
-    --obj->index_data->count;
     obj_free (obj);
 }
 
@@ -393,7 +401,7 @@ OBJ_T *obj_create_money (int gold, int silver) {
  * Thanks to Tony Chamberlain for the correct recursive code here. */
 int obj_get_carry_number (const OBJ_T *obj) {
     int number = item_get_carry_number (obj);
-    for (obj = obj->contains; obj != NULL; obj = obj->next_content)
+    for (obj = obj->content_first; obj != NULL; obj = obj->content_next)
         number += obj_get_carry_number (obj);
     return number;
 }
@@ -404,7 +412,7 @@ int obj_get_weight (const OBJ_T *obj) {
 
     weight = obj->weight;
     mult = item_get_weight_mult (obj);
-    for (obj = obj->contains; obj != NULL; obj = obj->next_content)
+    for (obj = obj->content_first; obj != NULL; obj = obj->content_next)
         weight += obj_get_weight (obj) * mult / 100;
 
     return weight;
@@ -414,7 +422,7 @@ int obj_get_true_weight (const OBJ_T *obj) {
     int weight;
 
     weight = obj->weight;
-    for (obj = obj->contains; obj != NULL; obj = obj->next_content)
+    for (obj = obj->content_first; obj != NULL; obj = obj->content_next)
         weight += obj_get_true_weight (obj);
 
     return weight;
@@ -498,14 +506,14 @@ void obj_list_show_to_char (const OBJ_T *list, CHAR_T *ch, bool is_short,
     output = buf_new ();
 
     count = 0;
-    for (obj = list; obj != NULL; obj = obj->next_content)
+    for (obj = list; obj != NULL; obj = obj->content_next)
         count++;
     show_strings = mem_alloc (count * sizeof (char *));
     show_string_counts = mem_alloc (count * sizeof (int));
     show_string_num = 0;
 
     /* Format the list of objects.  */
-    for (obj = list; obj != NULL; obj = obj->next_content) {
+    for (obj = list; obj != NULL; obj = obj->content_next) {
         if (obj->wear_loc != WEAR_LOC_NONE)
             continue;
         if (!char_can_see_obj (ch, obj))
@@ -590,12 +598,8 @@ const char *obj_furn_preposition (const OBJ_T *obj, int position) {
 
 /* Find some object with a given index data.
  * Used by area-reset 'P' command. */
-OBJ_T *obj_get_by_index (const OBJ_INDEX_T *obj_index) {
-    OBJ_T *obj;
-    for (obj = object_list; obj != NULL; obj = obj->next)
-        if (obj->index_data == obj_index)
-            return obj;
-    return NULL;
+OBJ_T *obj_get_last_by_index (const OBJ_INDEX_T *obj_index) {
+    return obj_index->obj_last;
 }
 
 void obj_enchant (OBJ_T *obj) {
@@ -605,11 +609,11 @@ void obj_enchant (OBJ_T *obj) {
         return;
     obj->enchanted = TRUE;
 
-    for (paf = obj->index_data->affected; paf != NULL; paf = paf->next) {
+    for (paf = obj->obj_index->affect_first; paf; paf = paf->on_next) {
         af_new = affect_new ();
         affect_copy (af_new, paf);
         af_new->type = UMAX (0, af_new->type);
-        LIST_FRONT (af_new, next, obj->affected);
+        affect_to_obj_back (af_new, obj);
     }
 }
 
@@ -645,8 +649,7 @@ void obj_poof (OBJ_T *obj) {
     message = item_get_poof_message (obj);
 
     if (obj->carried_by != NULL) {
-        if (IS_NPC (obj->carried_by)
-                && obj->carried_by->index_data->shop != NULL)
+        if (IS_NPC (obj->carried_by) && obj->carried_by->mob_index->shop)
             obj->carried_by->silver += obj->cost / 5;
         else {
             act (message, obj->carried_by, obj, NULL, TO_CHAR);
@@ -654,9 +657,9 @@ void obj_poof (OBJ_T *obj) {
                 act (message, obj->carried_by, obj, NULL, TO_NOTCHAR);
         }
     }
-    else if (obj->in_room != NULL && (rch = obj->in_room->people) != NULL) {
-        if (!(obj->in_obj && obj->in_obj->index_data->vnum == OBJ_VNUM_PIT
-              && !obj_can_wear_flag (obj->in_obj, ITEM_TAKE)))
+    else if (obj->in_room != NULL && (rch = obj->in_room->people_first) != NULL) {
+        if (!(obj->in_obj && obj_is_donation_pit (obj->in_obj) &&
+              !obj_can_wear_flag (obj->in_obj, ITEM_TAKE)))
         {
             act (message, rch, obj, NULL, TO_CHAR);
             act (message, rch, obj, NULL, TO_NOTCHAR);
@@ -664,10 +667,10 @@ void obj_poof (OBJ_T *obj) {
     }
 
     /* save the contents */
-    if (obj->contains && obj_should_spill_contents_when_poofed (obj)) {
+    if (obj->content_first && obj_should_spill_contents_when_poofed (obj)) {
         OBJ_T *t_obj, *next_obj;
-        for (t_obj = obj->contains; t_obj != NULL; t_obj = next_obj) {
-            next_obj = t_obj->next_content;
+        for (t_obj = obj->content_first; t_obj != NULL; t_obj = next_obj) {
+            next_obj = t_obj->content_next;
             obj_take_from_obj (t_obj);
 
             /* in another object */
@@ -689,7 +692,7 @@ void obj_poof (OBJ_T *obj) {
                 obj_give_to_room (t_obj, obj->in_room);
             /* nowhere - destroy it! */
             else
-                obj_extract (t_obj);
+                obj_free (t_obj);
         }
     }
 
@@ -705,4 +708,88 @@ ROOM_INDEX_T *obj_get_room (const OBJ_T *obj) {
             return o->in_room;
     }
     return NULL;
+}
+
+void obj_to_obj_index (OBJ_T *obj, OBJ_INDEX_T *obj_index) {
+    if (obj->obj_index)
+        obj->obj_index->obj_count--;
+    LIST2_REASSIGN_BACK (
+        obj, obj_index, obj_index_prev, obj_index_next,
+        obj_index, obj_first, obj_last);
+    if (obj_index)
+        obj_index->obj_count++;
+}
+
+void obj_index_to_area (OBJ_INDEX_T *obj, AREA_T *area) {
+    LIST2_REASSIGN_BACK (
+        obj, area, area_prev, area_next,
+        area, obj_first, obj_last);
+}
+
+bool obj_is_donation_pit (OBJ_T *obj)
+    { return (obj->obj_index->vnum == OBJ_VNUM_PIT) ? TRUE : FALSE; }
+
+/* Update all objs.
+ * This function is performance sensitive. */
+void obj_update_all (void) {
+    OBJ_T *obj, *obj_next;
+
+    for (obj = object_first; obj != NULL; obj = obj_next) {
+        obj_next = obj->global_next;
+        obj_update (obj);
+    }
+}
+
+void obj_update (OBJ_T *obj) {
+    AFFECT_T *paf, *paf_next;
+    CHAR_T *rch;
+
+    /* go through affects and decrement */
+    for (paf = obj->affect_first; paf != NULL; paf = paf_next) {
+        paf_next = paf->on_next;
+        if (paf->duration > 0) {
+            paf->duration--;
+            if (number_range (0, 4) == 0 && paf->level > 0)
+                paf->level--;    /* spell strength fades with time */
+        }
+        else if (paf->duration < 0)
+            ; /* empty */
+        else {
+            if (paf_next == NULL
+                || paf_next->type != paf->type || paf_next->duration > 0)
+            {
+                if (paf->type > 0 && skill_table[paf->type].msg_obj) {
+                    if (obj->carried_by != NULL) {
+                        rch = obj->carried_by;
+                        act (skill_table[paf->type].msg_obj,
+                             rch, obj, NULL, TO_CHAR);
+                    }
+                    if (obj->in_room != NULL
+                        && obj->in_room->people_first != NULL)
+                    {
+                        rch = obj->in_room->people_first;
+                        act (skill_table[paf->type].msg_obj,
+                             rch, obj, NULL, TO_ALL);
+                    }
+                }
+            }
+            affect_remove (paf);
+        }
+    }
+
+    /* Extract objects when their timer has expired. */
+    if (obj->timer > 0 && --obj->timer <= 0)
+        obj_poof (obj);
+}
+
+void obj_index_to_hash (OBJ_INDEX_T *obj) {
+    int hash = db_hash_from_vnum (obj->vnum);
+    LIST2_FRONT (obj, hash_prev, hash_next,
+        obj_index_hash[hash], obj_index_hash_back[hash]);
+}
+
+void obj_index_from_hash (OBJ_INDEX_T *obj) {
+    int hash = db_hash_from_vnum (obj->vnum);
+    LIST2_REMOVE (obj, hash_prev, hash_next,
+        obj_index_hash[hash], obj_index_hash_back[hash]);
 }

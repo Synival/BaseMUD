@@ -41,9 +41,6 @@
 #include "recycle.h"
 #include "rooms.h"
 #include "mob_prog.h"
-#include "act_move.h"
-#include "act_info.h"
-#include "act_group.h"
 #include "wiz_l6.h"
 #include "materials.h"
 #include "globals.h"
@@ -53,8 +50,17 @@
 #include "items.h"
 #include "players.h"
 #include "mobiles.h"
+#include "save.h"
+
+#include "act_move.h"
+#include "act_info.h"
+#include "act_group.h"
+#include "act_player.h"
 
 #include "chars.h"
+
+/* used for saving */
+static int save_number = 0;
 
 OBJ_T *char_get_weapon (const CHAR_T *ch) {
     OBJ_T *wield;
@@ -190,7 +196,8 @@ void char_from_room (CHAR_T *ch) {
     if (char_has_active_light (ch) && ch->in_room->light > 0)
         --ch->in_room->light;
 
-    LIST_REMOVE (ch, next_in_room, ch->in_room->people, CHAR_T, NO_FAIL);
+    LIST2_REMOVE (ch, room_prev, room_next,
+        ch->in_room->people_first, ch->in_room->people_last);
     ch->in_room = NULL;
     ch->on = NULL; /* sanity check! */
 }
@@ -199,7 +206,7 @@ void char_to_room_apply_plague (CHAR_T *ch) {
     AFFECT_T *af, plague;
     CHAR_T *vch;
 
-    for (af = ch->affected; af != NULL; af = af->next)
+    for (af = ch->affect_first; af != NULL; af = af->on_next)
         if (af->type == SN(PLAGUE))
             break;
     if (af == NULL) {
@@ -211,7 +218,7 @@ void char_to_room_apply_plague (CHAR_T *ch) {
 
     affect_init (&plague, AFF_TO_AFFECTS, SN(PLAGUE), af->level - 1, number_range (1, 2 * (af->level - 1)), APPLY_STR, -5, AFF_PLAGUE);
 
-    for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room) {
+    for (vch = ch->in_room->people_first; vch != NULL; vch = vch->room_next) {
         if (!saves_spell (plague.level - 2, vch, DAM_DISEASE)
             && !IS_IMMORTAL (vch) &&
             !IS_AFFECTED (vch, AFF_PLAGUE) && number_bits (6) == 0)
@@ -219,7 +226,7 @@ void char_to_room_apply_plague (CHAR_T *ch) {
             send_to_char ("You feel hot and feverish.\n\r", vch);
             act ("$n shivers and looks very ill.", vch, NULL, NULL,
                 TO_NOTCHAR);
-            affect_join (vch, &plague);
+            affect_join_char (&plague, vch);
         }
     }
 }
@@ -234,8 +241,11 @@ void char_to_room (CHAR_T *ch, ROOM_INDEX_T *room_index) {
         return;
     }
 
+    if (ch->in_room != NULL)
+        char_from_room (ch);
     ch->in_room = room_index;
-    LIST_FRONT (ch, next_in_room, room_index->people);
+    LIST2_FRONT (ch, room_prev, room_next,
+        room_index->people_first, room_index->people_last);
 
     if (!IS_NPC (ch)) {
         if (ch->in_room->area->empty) {
@@ -257,7 +267,7 @@ OBJ_T *char_get_eq_by_wear_loc (const CHAR_T *ch, flag_t wear_loc) {
     OBJ_T *obj;
     if (ch == NULL)
         return NULL;
-    for (obj = ch->carrying; obj != NULL; obj = obj->next_content)
+    for (obj = ch->content_first; obj != NULL; obj = obj->content_next)
         if (obj->wear_loc == wear_loc)
             return obj;
     return NULL;
@@ -278,7 +288,6 @@ bool char_equip_obj (CHAR_T *ch, OBJ_T *obj, flag_t wear_loc) {
         /* Thanks to Morgenes for the bug fix here! */
         act2 ("You are zapped by $p and drop it.",
               "$n is zapped by $p and drops it.", ch, obj, NULL, 0, POS_RESTING);
-        obj_take_from_char (obj);
         obj_give_to_room (obj, ch->in_room);
         return FALSE;
     }
@@ -288,15 +297,15 @@ bool char_equip_obj (CHAR_T *ch, OBJ_T *obj, flag_t wear_loc) {
     obj->wear_loc = wear_loc;
 
     if (!obj->enchanted) {
-        for (paf = obj->index_data->affected; paf != NULL; paf = paf->next)
+        for (paf = obj->obj_index->affect_first; paf; paf = paf->on_next)
             if (paf->apply != APPLY_SPELL_AFFECT)
-                affect_modify (ch, paf, TRUE);
+                affect_modify_char (paf, ch, TRUE);
     }
-    for (paf = obj->affected; paf != NULL; paf = paf->next) {
+    for (paf = obj->affect_first; paf != NULL; paf = paf->on_next) {
         if (paf->apply == APPLY_SPELL_AFFECT)
-            affect_to_char (ch, paf);
+            affect_copy_to_char (paf, ch);
         else
-            affect_modify (ch, paf, TRUE);
+            affect_modify_char (paf, ch, TRUE);
     }
 
     if (item_is_lit (obj) && ch->in_room != NULL)
@@ -317,48 +326,48 @@ bool char_unequip_obj (CHAR_T *ch, OBJ_T *obj) {
 
     for (i = 0; i < 4; i++)
         ch->armor[i] += obj_get_ac_type (obj, obj->wear_loc, i);
-    obj->wear_loc = -1;
+    obj->wear_loc = WEAR_LOC_NONE;
 
     if (!obj->enchanted) {
-        for (paf = obj->index_data->affected; paf != NULL; paf = paf->next) {
+        for (paf = obj->obj_index->affect_first; paf; paf = paf->on_next) {
             if (paf->apply == APPLY_SPELL_AFFECT) {
-                for (lpaf = ch->affected; lpaf != NULL; lpaf = lpaf_next) {
-                    lpaf_next = lpaf->next;
+                for (lpaf = ch->affect_first; lpaf != NULL; lpaf = lpaf_next) {
+                    lpaf_next = lpaf->on_next;
                     if ((lpaf->type == paf->type) &&
                         (lpaf->level == paf->level) &&
                         (lpaf->apply == APPLY_SPELL_AFFECT))
                     {
-                        affect_remove (ch, lpaf);
+                        affect_remove (lpaf);
                         lpaf_next = NULL;
                     }
                 }
             }
             else {
-                affect_modify (ch, paf, FALSE);
-                affect_check (ch, paf->bit_type, paf->bits);
+                affect_modify_char (paf, ch, FALSE);
+                affect_check_char (ch, paf->bit_type, paf->bits);
             }
         }
     }
 
-    for (paf = obj->affected; paf != NULL; paf = paf->next) {
+    for (paf = obj->affect_first; paf != NULL; paf = paf->on_next) {
         if (paf->apply == APPLY_SPELL_AFFECT) {
             bug ("norm-Apply: %d", 0);
-            for (lpaf = ch->affected; lpaf != NULL; lpaf = lpaf_next) {
-                lpaf_next = lpaf->next;
+            for (lpaf = ch->affect_first; lpaf != NULL; lpaf = lpaf_next) {
+                lpaf_next = lpaf->on_next;
                 if ((lpaf->type == paf->type) &&
                     (lpaf->level == paf->level) &&
                     (lpaf->apply == APPLY_SPELL_AFFECT))
                 {
                     bug ("location = %d", lpaf->apply);
                     bug ("type = %d", lpaf->type);
-                    affect_remove (ch, lpaf);
+                    affect_remove (lpaf);
                     lpaf_next = NULL;
                 }
             }
         }
         else {
-            affect_modify (ch, paf, FALSE);
-            affect_check (ch, paf->bit_type, paf->bits);
+            affect_modify_char (paf, ch, FALSE);
+            affect_check_char (ch, paf->bit_type, paf->bits);
         }
     }
 
@@ -369,55 +378,25 @@ bool char_unequip_obj (CHAR_T *ch, OBJ_T *obj) {
 }
 
 /* Extract a char from the world. */
-void char_extract (CHAR_T *ch, bool pull) {
-    CHAR_T *wch;
-    OBJ_T *obj, *obj_next;
-
-    /* doesn't seem to be necessary */
-#if 0
-    BAIL_IF_BUG (ch->in_room == NULL,
-        "Extract_char: NULL.", 0);
-#endif
+void char_extract (CHAR_T *ch) {
+    /* char_extract() should only be used for characters currently in the
+     * playable world. If they're not, char_free() should be used. */
+    if (ch->in_room == NULL)
+        bugf ("char_extract: %s is not in the real world.", ch->short_descr);
 
     nuke_pets (ch);
-    ch->pet = NULL; /* just in case */
-
-    if (pull)
-        die_follower (ch);
+    die_follower (ch);
 
     stop_fighting (ch, TRUE);
-    for (obj = ch->carrying; obj != NULL; obj = obj_next) {
-        obj_next = obj->next_content;
-        obj_extract (obj);
-    }
-
-    if (ch->in_room != NULL)
-        char_from_room (ch);
-
-    /* Death room is set in the clan table now */
-    if (!pull) {
-        char_to_room (ch, room_get_index (clan_table[ch->clan].hall));
-        return;
-    }
-
-    if (IS_NPC (ch))
-        --ch->index_data->count;
+    while (ch->content_first)
+        obj_extract (ch->content_first);
 
     if (ch->desc != NULL && ch->desc->original != NULL) {
         do_function (ch, &do_return, "");
         ch->desc = NULL;
     }
-
-    for (wch = char_list; wch != NULL; wch = wch->next) {
-        if (wch->reply == ch)
-            wch->reply = NULL;
-        if (ch->mprog_target == wch)
-            wch->mprog_target = NULL;
-    }
-
-    LIST_REMOVE (ch, next, char_list, CHAR_T, return);
-    if (ch->desc != NULL)
-        ch->desc->character = NULL;
+    if (ch->in_room != NULL)
+        char_from_room (ch);
 
     char_free (ch);
 }
@@ -490,7 +469,7 @@ bool char_can_see_in_room (const CHAR_T *ch, const CHAR_T *victim) {
     if (char_get_trust (ch) < victim->incog_level &&
         ch->in_room != victim->in_room)
         return FALSE;
-    if (!char_can_see_anywhere(ch, victim))
+    if (!char_can_see_anywhere (ch, victim))
         return FALSE;
     return TRUE;
 }
@@ -526,7 +505,7 @@ bool char_can_drop_obj (const CHAR_T *ch, const OBJ_T *obj) {
 
 bool char_has_boat (const CHAR_T *ch) {
     OBJ_T *boat;
-    for (boat = ch->carrying; boat != NULL; boat = boat->next_content)
+    for (boat = ch->content_first; boat != NULL; boat = boat->content_next)
         if (item_is_boat (boat))
             return TRUE;
     return FALSE;
@@ -626,8 +605,8 @@ void char_move (CHAR_T *ch, int door, bool follow) {
 
     /* Force pets to stand before leaving the room. */
     if (in_room != to_room) {
-        for (fch = in_room->people; fch != NULL; fch = fch_next) {
-            fch_next = fch->next_in_room;
+        for (fch = in_room->people_first; fch != NULL; fch = fch_next) {
+            fch_next = fch->room_next;
             if (fch->master == ch && IS_AFFECTED (fch, AFF_CHARM)
                     && fch->position < POS_STANDING)
                 do_function (fch, &do_stand, "");
@@ -645,7 +624,6 @@ void char_move (CHAR_T *ch, int door, bool follow) {
             act ("$n leaves $t.", ch, door_table[door].name, NULL, TO_NOTCHAR);
     }
 
-    char_from_room (ch);
     char_to_room (ch, to_room);
 
     if (!IS_AFFECTED (ch, AFF_SNEAK) && ch->invis_level < LEVEL_HERO) {
@@ -675,8 +653,8 @@ void char_move (CHAR_T *ch, int door, bool follow) {
         return;
 
     /* Move pets, but don't allow aggressive pets into lawful rooms. */
-    for (fch = in_room->people; fch != NULL; fch = fch_next) {
-        fch_next = fch->next_in_room;
+    for (fch = in_room->people_first; fch != NULL; fch = fch_next) {
+        fch_next = fch->room_next;
 
         if (fch->master == ch && fch->position == POS_STANDING
             && char_can_see_room (fch, to_room))
@@ -956,14 +934,14 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
     {
         send_to_char ("\n\rYou peek at the inventory:\n\r", ch);
         player_try_skill_improve (ch, SN(PEEK), TRUE, 4);
-        obj_list_show_to_char (victim->carrying, ch, TRUE, TRUE);
+        obj_list_show_to_char (victim->content_first, ch, TRUE, TRUE);
     }
 }
 
 void char_list_show_to_char (const CHAR_T *list, CHAR_T *ch) {
     const CHAR_T *rch;
 
-    for (rch = list; rch != NULL; rch = rch->next_in_room) {
+    for (rch = list; rch != NULL; rch = rch->room_next) {
         if (rch == ch)
             continue;
         if (char_get_trust (ch) < rch->invis_level)
@@ -1018,7 +996,7 @@ bool char_can_loot (const CHAR_T *ch, const OBJ_T *obj) {
         return TRUE;
 
     owner = NULL;
-    for (wch = char_list; wch != NULL; wch = wch->next)
+    for (wch = char_first; wch != NULL; wch = wch->global_next)
         if (!str_cmp (wch->name, obj->owner))
             owner = wch;
 
@@ -1049,19 +1027,21 @@ void char_take_obj (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
         "Corpse looting is not permitted.", ch);
 
     if (obj->in_room != NULL)
-        for (gch = obj->in_room->people; gch != NULL; gch = gch->next_in_room)
+        for (gch = obj->in_room->people_first; gch != NULL; gch = gch->room_next)
             BAIL_IF_ACT (gch->on == obj,
                 "$N appears to be using $p.", ch, obj, gch);
 
     if (container != NULL) {
-        BAIL_IF (container->index_data->vnum == OBJ_VNUM_PIT &&
-                char_get_trust (ch) < obj->level,
+        bool is_pit = obj_is_donation_pit (container);
+        BAIL_IF (is_pit && char_get_trust (ch) < obj->level,
             "You are not powerful enough to use it.\n\r", ch);
 
-        if (container->index_data->vnum == OBJ_VNUM_PIT
-            && !obj_can_wear_flag (container, ITEM_TAKE)
-            && !IS_OBJ_STAT (obj, ITEM_HAD_TIMER))
+        if (is_pit && !obj_can_wear_flag (container, ITEM_TAKE) &&
+            !IS_OBJ_STAT (obj, ITEM_HAD_TIMER))
+        {
             obj->timer = 0;
+        }
+
         act2 ("You get $p from $P.", "$n gets $p from $P.",
             ch, obj, container, 0, POS_RESTING);
         REMOVE_BIT (obj->extra_flags, ITEM_HAD_TIMER);
@@ -1240,8 +1220,8 @@ void char_get_who_string (const CHAR_T *ch, const CHAR_T *wch, char *buf,
 
 bool char_has_key (const CHAR_T *ch, int key) {
     OBJ_T *obj;
-    for (obj = ch->carrying; obj != NULL; obj = obj->next_content)
-        if (obj->index_data->vnum == key)
+    for (obj = ch->content_first; obj != NULL; obj = obj->content_next)
+        if (obj->obj_index->vnum == key)
             return TRUE;
     return FALSE;
 }
@@ -1263,7 +1243,6 @@ bool char_drop_weapon_if_too_heavy (CHAR_T *ch) {
 
     depth++;
     act2 ("You drop $p.", "$n drops $p.", ch, wield, NULL, 0, POS_RESTING);
-    obj_take_from_char (wield);
     obj_give_to_room (wield, ch->in_room);
     depth--;
     return TRUE;
@@ -1291,62 +1270,17 @@ void char_reduce_money (CHAR_T *ch, int cost) {
     }
 }
 
-int char_get_obj_cost (const CHAR_T *ch, const OBJ_T *obj, bool buy) {
-    SHOP_T *shop;
-    int cost;
-
-    if (obj == NULL || (shop = ch->index_data->shop) == NULL)
-        return 0;
-
-    if (buy)
-        cost = obj->cost * shop->profit_buy / 100;
-    else {
-        OBJ_T *obj2;
-        int itype;
-
-        cost = 0;
-        for (itype = 0; itype < MAX_TRADE; itype++) {
-            if (obj->item_type == shop->buy_type[itype]) {
-                cost = obj->cost * shop->profit_sell / 100;
-                break;
-            }
-        }
-
-        if (!IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT)) {
-            for (obj2 = ch->carrying; obj2; obj2 = obj2->next_content) {
-                if (obj->index_data == obj2->index_data
-                    && !str_cmp (obj->short_descr, obj2->short_descr))
-                {
-                    if (IS_OBJ_STAT (obj2, ITEM_INVENTORY))
-                        cost /= 2;
-                    else
-                        cost = cost * 3 / 4;
-                }
-            }
-        }
-    }
-
-    cost = item_get_modified_cost (obj, cost);
-    return cost;
-}
-
-SHOP_T *char_get_shop (const CHAR_T *ch) {
-    if (ch->index_data == NULL)
-        return NULL;
-    return ch->index_data->shop;
-}
-
 CHAR_T *char_get_keeper_room (const CHAR_T *ch) {
     CHAR_T *k;
-    for (k = ch->in_room->people; k; k = k->next_in_room)
-        if (IS_NPC (k) && char_get_shop (k))
+    for (k = ch->in_room->people_first; k; k = k->room_next)
+        if (IS_NPC (k) && mobile_get_shop (k))
             return k;
     return NULL;
 }
 
 CHAR_T *char_get_trainer_room (const CHAR_T *ch) {
     CHAR_T *t;
-    for (t = ch->in_room->people; t; t = t->next_in_room)
+    for (t = ch->in_room->people_first; t; t = t->room_next)
         if (IS_NPC (t) && EXT_IS_SET (t->ext_mob, MOB_TRAIN))
             return t;
     return NULL;
@@ -1354,7 +1288,7 @@ CHAR_T *char_get_trainer_room (const CHAR_T *ch) {
 
 CHAR_T *char_get_practicer_room (const CHAR_T *ch) {
     CHAR_T *p;
-    for (p = ch->in_room->people; p; p = p->next_in_room)
+    for (p = ch->in_room->people_first; p; p = p->room_next)
         if (IS_NPC (p) && EXT_IS_SET (p->ext_mob, MOB_PRACTICE))
             return p;
     return NULL;
@@ -1362,7 +1296,7 @@ CHAR_T *char_get_practicer_room (const CHAR_T *ch) {
 
 CHAR_T *char_get_gainer_room (const CHAR_T *ch) {
     CHAR_T *g;
-    for (g = ch->in_room->people; g; g = g->next_in_room)
+    for (g = ch->in_room->people_first; g; g = g->room_next)
         if (IS_NPC (g) && EXT_IS_SET (g->ext_mob, MOB_GAIN))
             return g;
     return NULL;
@@ -1471,7 +1405,6 @@ void char_stop_idling (CHAR_T *ch) {
         return;
 
     ch->timer = 0;
-    char_from_room (ch);
     char_to_room (ch, ch->was_in_room);
     ch->was_in_room = NULL;
     act ("$n has returned from the void.", ch, NULL, NULL, TO_NOTCHAR);
@@ -1622,7 +1555,7 @@ bool char_is_builder (const CHAR_T *ch, const AREA_T *area) {
 }
 
 int char_get_vnum (const CHAR_T *ch)
-    { return IS_NPC(ch) ? (ch)->index_data->vnum : 0; }
+    { return IS_NPC(ch) ? (ch)->mob_index->vnum : 0; }
 
 int char_set_max_wait_state (CHAR_T *ch, int npulse) {
     if (!char_is_trusted (ch, IMPLEMENTOR) && npulse > ch->wait)
@@ -1834,4 +1767,209 @@ int char_get_skill (const CHAR_T *ch, int sn) {
         ch_skill = 9 * ch_skill / 10;
 
     return URANGE (0, ch_skill, 100);
+}
+
+OBJ_T *char_die (CHAR_T *ch) {
+    OBJ_T *corpse;
+
+    stop_fighting (ch, TRUE);
+    death_cry (ch);
+    corpse = make_corpse (ch);
+
+    if (IS_NPC (ch))
+        mobile_die (ch);
+    else
+        player_die (ch);
+
+    return corpse;
+}
+
+void char_damage_if_wounded (CHAR_T *ch) {
+    CHAR_T *rch;
+    int div = 2;
+
+    if (ch->position > POS_INCAP)
+        return;
+    if (ch->position == POS_INCAP)
+        div *= 2;
+
+    /* NPC's shouldn't get damaged during stun while somebody is
+     * fighting them. Too much kill theft!! */
+    if (IS_NPC (ch)) {
+        for (rch = ch->in_room->people_first; rch; rch = rch->room_next)
+            if (rch->fighting == ch)
+                break;
+        if (rch)
+            return;
+    }
+
+    damage_quiet (ch, ch, (ch->level / div) + 1, ATTACK_DEFAULT, DAM_NONE);
+}
+
+/* Update all chars, including mobs. */
+void char_update_all (void) {
+    CHAR_T *ch, *ch_next, *ch_quit;
+    ch_quit = NULL;
+
+    /* update save counter */
+    save_number++;
+    if (save_number > 29)
+        save_number = 0;
+
+    for (ch = char_first; ch != NULL; ch = ch_next) {
+        ch_next = ch->global_next;
+        char_update (ch);
+        if (ch->timer > 30)
+            ch_quit = ch;
+    }
+
+    /* Autosave and autoquit.
+     * Check that these chars still exist. */
+    for (ch = char_first; ch != NULL; ch = ch_next) {
+        /* Edwin's fix for possible pet-induced problem
+         * JR -- 10/15/00 */
+        BAIL_IF_BUG (!IS_VALID (ch),
+            "update_char: Trying to work with an invalidated character.\n", 0);
+
+        ch_next = ch->global_next;
+        if (ch->desc != NULL && ch->desc->descriptor % 30 == save_number)
+            save_char_obj (ch);
+        if (ch == ch_quit)
+            do_function (ch, &do_quit, "");
+    }
+}
+
+void char_update (CHAR_T *ch) {
+    AFFECT_T *paf, *paf_next;
+
+    if (ch->position >= POS_STUNNED) {
+        /* check to see if we need to go home */
+        if (IS_NPC (ch) && ch->area != NULL
+            && ch->area != ch->in_room->area && ch->desc == NULL
+            && ch->fighting == NULL && !IS_AFFECTED (ch, AFF_CHARM)
+            && number_percent () < 5)
+        {
+            act ("$n wanders on home.", ch, NULL, NULL, TO_NOTCHAR);
+            char_extract (ch);
+            return;
+        }
+    }
+
+    if (ch->position == POS_STUNNED)
+        update_pos (ch);
+
+    if (!IS_NPC (ch) && ch->level < LEVEL_IMMORTAL) {
+        OBJ_T *obj;
+
+        if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) != NULL &&
+                item_is_lit (obj))
+        {
+            item_light_fade (obj);
+        }
+
+        if (IS_IMMORTAL (ch))
+            ch->timer = 0;
+
+        if (++ch->timer >= 12) {
+            if (ch->was_in_room == NULL && ch->in_room != NULL) {
+                ch->was_in_room = ch->in_room;
+                if (ch->fighting != NULL)
+                    stop_fighting (ch, TRUE);
+                send_to_char ("You disappear into the void.\n\r", ch);
+                act ("$n disappears into the void.",
+                     ch, NULL, NULL, TO_NOTCHAR);
+                if (ch->level > 1)
+                    save_char_obj (ch);
+                char_to_room (ch, room_get_index (ROOM_VNUM_LIMBO));
+            }
+        }
+
+        gain_condition (ch, COND_DRUNK,  -1);
+        gain_condition (ch, COND_FULL,   ch->size > SIZE_MEDIUM ? -4 : -2);
+        gain_condition (ch, COND_THIRST, -1);
+        gain_condition (ch, COND_HUNGER, ch->size > SIZE_MEDIUM ? -2 : -1);
+    }
+
+    for (paf = ch->affect_first; paf; paf = paf_next) {
+        paf_next = paf->on_next;
+        if (paf->duration > 0) {
+            paf->duration--;
+            if (number_range (0, 4) == 0 && paf->level > 0)
+                paf->level--;    /* spell strength fades with time */
+        }
+        else if (paf->duration < 0)
+            ;
+        else {
+            if (paf_next == NULL
+                || paf_next->type != paf->type || paf_next->duration > 0)
+            {
+                if (paf->type > 0 && skill_table[paf->type].msg_off) {
+                    send_to_char (skill_table[paf->type].msg_off, ch);
+                    send_to_char ("\n\r", ch);
+                }
+            }
+            affect_remove (paf);
+        }
+    }
+
+    /* Careful with the damages here,
+     * MUST NOT refer to ch after damage taken,
+     * as it may be lethal damage (on NPC). */
+    if (affect_is_char_affected (ch, SN(PLAGUE)) && ch != NULL) {
+        AFFECT_T *af, plague;
+        CHAR_T *vch;
+        int dam;
+
+        if (ch->in_room == NULL)
+            return;
+
+        send_to_char ("You writhe in agony from the plague.\n\r", ch);
+        act ("$n writhes in agony as plague sores erupt from $s skin.",
+             ch, NULL, NULL, TO_NOTCHAR);
+        for (af = ch->affect_first; af; af = af->on_next)
+            if (af->type == SN(PLAGUE))
+                break;
+        if (af == NULL) {
+            REMOVE_BIT (ch->affected_by, AFF_PLAGUE);
+            return;
+        }
+        if (af->level == 1)
+            return;
+
+        affect_init (&plague, AFF_TO_AFFECTS, SN(PLAGUE), af->level - 1, number_range (1, 2 * plague.level), APPLY_STR, -5, AFF_PLAGUE);
+
+        for (vch = ch->in_room->people_first; vch != NULL;
+             vch = vch->room_next)
+        {
+            if (!saves_spell (plague.level - 2, vch, DAM_DISEASE)
+                && !IS_IMMORTAL (vch)
+                && !IS_AFFECTED (vch, AFF_PLAGUE) && number_bits (4) == 0)
+            {
+                send_to_char ("You feel hot and feverish.\n\r", vch);
+                act ("$n shivers and looks very ill.", vch, NULL, NULL,
+                     TO_NOTCHAR);
+                affect_join_char (&plague, vch);
+            }
+        }
+
+        dam = UMIN (ch->level, af->level / 5 + 1);
+        ch->mana -= dam;
+        ch->move -= dam;
+        damage_quiet (ch, ch, dam, SN(PLAGUE), DAM_DISEASE);
+    }
+    else if (IS_AFFECTED (ch, AFF_POISON) && ch != NULL
+             && !IS_AFFECTED (ch, AFF_SLOW))
+    {
+        AFFECT_T *poison;
+        poison = affect_find (ch->affect_first, SN(POISON));
+
+        if (poison != NULL) {
+            send_to_char ("You shiver and suffer.\n\r", ch);
+            act ("$n shivers and suffers.", ch, NULL, NULL, TO_NOTCHAR);
+            damage_quiet (ch, ch, poison->level / 10 + 1, SN(POISON),
+                    DAM_POISON);
+        }
+    }
+    else
+        char_damage_if_wounded (ch);
 }

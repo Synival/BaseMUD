@@ -99,6 +99,7 @@ DECLARE_DISPOSE_FUN (mprog_dispose);
 DECLARE_DISPOSE_FUN (had_dispose);
 DECLARE_DISPOSE_FUN (help_dispose);
 DECLARE_INIT_FUN    (reset_data_init);
+DECLARE_DISPOSE_FUN (reset_data_dispose);
 DECLARE_INIT_FUN    (area_init);
 DECLARE_DISPOSE_FUN (area_dispose);
 DECLARE_INIT_FUN    (exit_init);
@@ -106,6 +107,7 @@ DECLARE_DISPOSE_FUN (exit_dispose);
 DECLARE_INIT_FUN    (room_index_init);
 DECLARE_DISPOSE_FUN (room_index_dispose);
 DECLARE_INIT_FUN    (shop_init);
+DECLARE_DISPOSE_FUN (shop_dispose);
 DECLARE_INIT_FUN    (obj_index_init);
 DECLARE_DISPOSE_FUN (obj_index_dispose);
 DECLARE_INIT_FUN    (mob_index_init);
@@ -118,6 +120,7 @@ DECLARE_INIT_FUN    (social_init);
 DECLARE_DISPOSE_FUN (social_dispose);
 DECLARE_DISPOSE_FUN (portal_exit_dispose);
 DECLARE_INIT_FUN    (portal_dispose);
+DECLARE_DISPOSE_FUN (affect_dispose);
 
 /* Functions related to specific recycleable objects. */
 long get_pc_id (void);

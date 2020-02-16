@@ -123,7 +123,6 @@ OBJ_T *spell_sub_create_portal (ROOM_INDEX_T *from_room,
 void spell_do_gate_teleport (CHAR_T *ch, ROOM_INDEX_T *to_room) {
     send_to_char ("You step through a gate and vanish.\n\r", ch);
     act ("$n steps through a gate and vanishes.", ch, NULL, NULL, TO_NOTCHAR);
-    char_from_room (ch);
     char_to_room (ch, to_room);
     act ("$n has arrived through a gate.", ch, NULL, NULL, TO_NOTCHAR);
     do_function (ch, &do_look, "auto");
@@ -164,7 +163,7 @@ DEFINE_SPELL_FUN (spell_summon) {
         "You failed.\n\r", ch);
     BAIL_IF (IS_NPC (victim) && EXT_IS_SET (victim->ext_mob, MOB_AGGRESSIVE),
         "You failed.\n\r", ch);
-    BAIL_IF (IS_NPC (victim) && victim->index_data->shop != NULL,
+    BAIL_IF (IS_NPC (victim) && victim->mob_index->shop != NULL,
         "You failed.\n\r", ch);
     BAIL_IF (IS_SET (ch->in_room->room_flags, ROOM_SAFE),
         "You failed.\n\r", ch);
@@ -172,7 +171,6 @@ DEFINE_SPELL_FUN (spell_summon) {
         "You failed.\n\r", ch);
 
     act ("$n disappears suddenly.", victim, NULL, NULL, TO_NOTCHAR);
-    char_from_room (victim);
     char_to_room (victim, ch->in_room);
     act ("$n has summoned you!", ch, NULL, victim, TO_VICT);
     act ("$n arrives suddenly.", victim, NULL, NULL, TO_NOTCHAR);
@@ -200,7 +198,6 @@ DEFINE_SPELL_FUN (spell_teleport) {
         send_to_char ("You have been teleported!\n\r", victim);
 
     act ("$n vanishes!", victim, NULL, NULL, TO_NOTCHAR);
-    char_from_room (victim);
     char_to_room (victim, room_index);
     act ("$n slowly fades into existence.", victim, NULL, NULL, TO_NOTCHAR);
     do_function (victim, &do_look, "auto");
@@ -224,7 +221,6 @@ DEFINE_SPELL_FUN (spell_word_of_recall) {
 
     ch->move /= 2;
     act ("$n disappears.", victim, NULL, NULL, TO_NOTCHAR);
-    char_from_room (victim);
     char_to_room (victim, location);
     act ("$n appears in the room.", victim, NULL, NULL, TO_NOTCHAR);
     do_function (victim, &do_look, "auto");
@@ -277,7 +273,7 @@ DEFINE_SPELL_FUN (spell_nexus) {
 
     /* portal two */
     portal = spell_sub_create_portal (to_room, from_room, 1 + level / 10);
-    if (to_room->people != NULL)
-        act ("$p rises up from the ground.", to_room->people, portal, NULL,
-             TO_ALL);
+    if (to_room->people_first != NULL)
+        act ("$p rises up from the ground.", to_room->people_first, portal,
+            NULL, TO_ALL);
 }

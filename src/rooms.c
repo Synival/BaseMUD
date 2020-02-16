@@ -32,6 +32,9 @@
 #include "interp.h"
 #include "chars.h"
 #include "globals.h"
+#include "mobiles.h"
+#include "items.h"
+#include "resets.h"
 
 #include "rooms.h"
 
@@ -41,7 +44,7 @@ ROOM_INDEX_T *room_get_index (int vnum) {
     ROOM_INDEX_T *room_index;
 
     for (room_index = room_index_hash[vnum % MAX_KEY_HASH];
-         room_index != NULL; room_index = room_index->next)
+         room_index != NULL; room_index = room_index->hash_next)
         if (room_index->vnum == vnum)
             return room_index;
 
@@ -86,6 +89,9 @@ bool room_is_dark (const ROOM_INDEX_T *room_index) {
     const SUN_T *sun;
     int sect;
 
+    RETURN_IF_BUG (room_index == NULL,
+        "room_is_dark(): room is NULL.", 0, FALSE);
+
     if (room_index->light > 0)
         return FALSE;
     if (IS_SET (room_index->room_flags, ROOM_DARK))
@@ -116,7 +122,7 @@ bool room_is_private (const ROOM_INDEX_T *room_index) {
         return TRUE;
 
     count = 0;
-    for (rch = room_index->people; rch != NULL; rch = rch->next_in_room)
+    for (rch = room_index->people_first; rch != NULL; rch = rch->room_next)
         count++;
     if (IS_SET (room_index->room_flags, ROOM_PRIVATE) && count >= 2)
         return TRUE;
@@ -180,9 +186,9 @@ char *room_get_door_name (const char *keyword, char *out_buf, size_t size) {
 
 void room_add_money (ROOM_INDEX_T *room, int gold, int silver) {
     OBJ_T *obj, *obj_next;
-    for (obj = room->contents; obj != NULL; obj = obj_next) {
-        obj_next = obj->next_content;
-        switch (obj->index_data->vnum) {
+    for (obj = room->content_first; obj != NULL; obj = obj_next) {
+        obj_next = obj->content_next;
+        switch (obj->obj_index->vnum) {
             case OBJ_VNUM_SILVER_ONE:
                 silver += 1;
                 obj_extract (obj);
@@ -213,20 +219,11 @@ void room_add_money (ROOM_INDEX_T *room, int gold, int silver) {
     obj_give_to_room (obj_create_money (gold, silver), room);
 }
 
-/* Adds a reset to a room.  OLC
- * Similar to add_reset in olc.c */
-void room_take_reset (ROOM_INDEX_T *room, RESET_T *reset) {
-    if (!room || !reset)
-        return;
-    reset->area = room->area;
-    LISTB_BACK (reset, next, room->reset_first, room->reset_last);
-}
-
 OBJ_T *room_get_obj_of_type (const ROOM_INDEX_T *room, const CHAR_T *ch,
     int type)
 {
     OBJ_T *obj;
-    for (obj = room->contents; obj != NULL; obj = obj->next_content)
+    for (obj = room->content_first; obj != NULL; obj = obj->content_next)
         if (obj->item_type == type && (!ch || char_can_see_obj (ch, obj)))
             return obj;
     return NULL;
@@ -236,8 +233,55 @@ OBJ_T *room_get_obj_with_condition (const ROOM_INDEX_T *room, const CHAR_T *ch,
     bool (*cond) (const OBJ_T *obj))
 {
     OBJ_T *obj;
-    for (obj = room->contents; obj != NULL; obj = obj->next_content)
+    for (obj = room->content_first; obj != NULL; obj = obj->content_next)
         if ((!ch || char_can_see_obj (ch, obj)) && cond (obj))
             return obj;
     return NULL;
+}
+
+/* OLC
+ * Reset one room.  Called by reset_area and olc. */
+void room_reset (ROOM_INDEX_T *room) {
+    if (!room)
+        return;
+    room_reset_exits (room);
+    reset_run_all (room);
+}
+
+void room_reset_exits (ROOM_INDEX_T *room) {
+    EXIT_T *exit_obj, *exit_rev;
+    int exit_n;
+
+    for (exit_n = 0; exit_n < DIR_MAX; exit_n++) {
+        if ((exit_obj = room->exit[exit_n]) == NULL)
+            continue;
+     /* if (IS_SET (exit_obj->exit_flags, EX_BASHED))
+            continue; */
+        exit_obj->exit_flags = exit_obj->rs_flags;
+
+        if (exit_obj->to_room == NULL)
+            continue;
+        if ((exit_rev = exit_obj->to_room->exit[door_table[exit_n].reverse])
+                == NULL)
+            continue;
+        exit_rev->exit_flags = exit_rev->rs_flags;
+    }
+}
+
+void room_to_area (ROOM_INDEX_T *room, AREA_T *area) {
+    LIST2_REASSIGN_BACK (
+        room, area, area_prev, area_next,
+        area, room_first, room_last);
+}
+
+void room_index_to_hash (ROOM_INDEX_T *room) {
+    int hash = db_hash_from_vnum (room->vnum);
+    LIST2_FRONT (room, hash_prev, hash_next,
+        room_index_hash[hash], room_index_hash_back[hash]);
+}
+
+void room_index_from_hash (ROOM_INDEX_T *room) {
+    int hash = db_hash_from_vnum (room->vnum);
+    LIST2_REMOVE (room, hash_prev, hash_next,
+        room_index_hash[hash], room_index_hash_back[hash]);
 }

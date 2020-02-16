@@ -124,7 +124,7 @@ int main (int argc, char **argv) {
 
     #if defined(macintosh) || defined(MSDOS)
         boot_db ();
-        log_string ("Merc is ready to rock.");
+        log_f ("ROM is ready to rock on port %d (%s).", port, mud_ipaddress);
         game_loop_mac_msdos ();
     #endif
 
@@ -159,11 +159,13 @@ int main (int argc, char **argv) {
 
     /* Free allocated memory so we can track what was lost due to
      * memory leaks. */
+#ifndef BASEMUD_DEBUG_DISABLE_MEMORY_MANAGEMENT
     log_string ("Freeing all allocated memory.");
     free_count = string_space_dispose ();
     log_f ("   %d bytes of string space freed.", free_count);
     free_count = mem_pages_dispose ();
     log_f ("   %d bytes of paged memory freed.", free_count);
+#endif
 
     /* Close our reserved file. */
     fclose (reserve_file);
@@ -215,6 +217,7 @@ void game_loop_mac_msdos (void) {
 
     /* Main loop */
     merc_down = FALSE;
+    in_game_loop = TRUE;
     while (!merc_down) {
         DESCRIPTOR_T *d;
 
@@ -317,6 +320,7 @@ void game_loop_mac_msdos (void) {
         last_time = now_time;
         current_time = (time_t) last_time.tv_sec;
     }
+    in_game_loop = FALSE;
 }
 #endif
 
@@ -331,6 +335,7 @@ void game_loop_unix (int control) {
 
     /* Main loop */
     merc_down = FALSE;
+    in_game_loop = TRUE;
     while (!merc_down) {
         fd_set in_set;
         fd_set out_set;
@@ -349,7 +354,7 @@ void game_loop_unix (int control) {
         FD_ZERO (&exc_set);
         FD_SET (control, &in_set);
         maxdesc = control;
-        for (d = descriptor_list; d; d = d->next) {
+        for (d = descriptor_first; d; d = d->global_next) {
             maxdesc = UMAX (maxdesc, d->descriptor);
             FD_SET (d->descriptor, &in_set);
             FD_SET (d->descriptor, &out_set);
@@ -366,8 +371,8 @@ void game_loop_unix (int control) {
             init_descriptor (control);
 
         /* Kick out the freaky folks. */
-        for (d = descriptor_list; d != NULL; d = d_next) {
-            d_next = d->next;
+        for (d = descriptor_first; d != NULL; d = d_next) {
+            d_next = d->global_next;
             if (FD_ISSET (d->descriptor, &exc_set)) {
                 FD_CLR (d->descriptor, &in_set);
                 FD_CLR (d->descriptor, &out_set);
@@ -379,8 +384,8 @@ void game_loop_unix (int control) {
         }
 
         /* Process input. */
-        for (d = descriptor_list; d != NULL; d = d_next) {
-            d_next = d->next;
+        for (d = descriptor_first; d != NULL; d = d_next) {
+            d_next = d->global_next;
             d->fcommand = FALSE;
 
             if (FD_ISSET (d->descriptor, &in_set)) {
@@ -434,8 +439,8 @@ void game_loop_unix (int control) {
         update_handler ();
 
         /* Output. */
-        for (d = descriptor_list; d != NULL; d = d_next) {
-            d_next = d->next;
+        for (d = descriptor_first; d != NULL; d = d_next) {
+            d_next = d->global_next;
 
             if ((d->fcommand || d->outtop > 0)
                 && FD_ISSET (d->descriptor, &out_set))
@@ -488,6 +493,7 @@ void game_loop_unix (int control) {
         gettimeofday (&last_time, NULL);
         current_time = (time_t) last_time.tv_sec;
     }
+    in_game_loop = FALSE;
 }
 #endif
 
@@ -529,7 +535,8 @@ void copyover_recover (void) {
         d->descriptor = desc;
 
         d->host = str_dup (host);
-        LIST_FRONT (d, next, descriptor_list);
+        LIST2_FRONT (d, global_prev, global_next,
+            descriptor_first, descriptor_last);
         d->connected = CON_COPYOVER_RECOVER;    /* -15, so close_socket frees the char */
 
         /* Now, find the pfile */
@@ -551,7 +558,8 @@ void copyover_recover (void) {
             d->character->in_room = room_get_index (ROOM_VNUM_TEMPLE);
 
         /* Insert in the char_list */
-        LIST_FRONT (d->character, next, char_list);
+        LIST2_FRONT (d->character, global_prev, global_next,
+            char_first, char_last);
 
         char_to_room (d->character, d->character->in_room);
         do_look (d->character, "auto");

@@ -73,5 +73,6 @@
 
 /* Debugging features. */
 // #define BASEMUD_DEBUG_DISABLE_MEMORY_MANAGEMENT
+// #define BASEMUD_DEBUG_DISABLE_RECYCLE
 
 #endif

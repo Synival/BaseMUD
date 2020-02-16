@@ -38,7 +38,7 @@
 DEFINE_SPELL_FUN (spell_cure_blindness) {
     CHAR_T *victim = (CHAR_T *) vo;
 
-    if (isnt_affected_with_act (victim, SN(BLINDNESS), 0, ch,
+    if (affect_isnt_char_affected_with_act (victim, SN(BLINDNESS), 0, ch,
             "You aren't blind.",
             "$N doesn't appear to be blinded."))
         return;
@@ -66,7 +66,7 @@ DEFINE_SPELL_FUN (spell_cure_critical) {
 DEFINE_SPELL_FUN (spell_cure_disease) {
     CHAR_T *victim = (CHAR_T *) vo;
 
-    if (isnt_affected_with_act (victim, SN(PLAGUE), 0, ch,
+    if (affect_isnt_char_affected_with_act (victim, SN(PLAGUE), 0, ch,
             "You aren't ill.",
             "$N doesn't appear to be diseased."))
         return;
@@ -94,7 +94,7 @@ DEFINE_SPELL_FUN (spell_cure_light) {
 DEFINE_SPELL_FUN (spell_cure_poison) {
     CHAR_T *victim = (CHAR_T *) vo;
 
-    if (isnt_affected_with_act (victim, SN(POISON), 0, ch,
+    if (affect_isnt_char_affected_with_act (victim, SN(POISON), 0, ch,
             "You aren't poisoned.",
             "$N doesn't appear to be poisoned."))
         return;
@@ -135,7 +135,7 @@ DEFINE_SPELL_FUN (spell_mass_healing) {
     heal_num    = skill_lookup ("heal");
     refresh_num = skill_lookup ("refresh");
 
-    for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room) {
+    for (gch = ch->in_room->people_first; gch != NULL; gch = gch->room_next) {
         if ((IS_NPC (ch) && IS_NPC (gch)) || (!IS_NPC (ch) && !IS_NPC (gch))) {
             spell_heal (heal_num, level, ch, (void *) gch, TARGET_CHAR,
                 target_name);
@@ -190,8 +190,8 @@ DEFINE_SPELL_FUN (spell_remove_curse_char) {
         act ("$n looks more relaxed.", victim, NULL, NULL, TO_NOTCHAR);
     }
 
-    for (obj = victim->carrying; (obj != NULL && !found);
-         obj = obj->next_content)
+    for (obj = victim->content_first; (obj != NULL && !found);
+         obj = obj->content_next)
     {
         if (!(IS_OBJ_STAT (obj, ITEM_NODROP) ||
               IS_OBJ_STAT (obj, ITEM_NOREMOVE)))

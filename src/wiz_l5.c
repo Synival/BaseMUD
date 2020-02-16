@@ -47,6 +47,7 @@
 #include "globals.h"
 #include "mobiles.h"
 #include "players.h"
+#include "extra_descrs.h"
 
 #include "wiz_l5.h"
 
@@ -68,11 +69,11 @@ bool do_obj_load_check (CHAR_T *ch, OBJ_T *obj) {
 /* for clone, to insure that cloning goes many levels deep */
 void do_clone_recurse (CHAR_T *ch, OBJ_T *obj, OBJ_T *clone) {
     OBJ_T *c_obj, *t_obj;
-    for (c_obj = obj->contains; c_obj != NULL; c_obj = c_obj->next_content) {
+    for (c_obj = obj->content_first; c_obj; c_obj = c_obj->content_next) {
         if (!do_obj_load_check (ch, c_obj))
             continue;
 
-        t_obj = obj_create (c_obj->index_data, 0);
+        t_obj = obj_create (c_obj->obj_index, 0);
         obj_clone (c_obj, t_obj);
         obj_give_to_obj (t_obj, clone);
         do_clone_recurse (ch, c_obj, t_obj);
@@ -209,7 +210,7 @@ DEFINE_DO_FUN (do_transfer) {
         "Transfer whom (and where)?\n\r", ch);
 
     if (!str_cmp (arg1, "all")) {
-        for (d = descriptor_list; d != NULL; d = d->next) {
+        for (d = descriptor_first; d != NULL; d = d->global_next) {
             if (d->connected == CON_PLAYING
                 && d->character != ch
                 && d->character->in_room != NULL
@@ -241,7 +242,6 @@ DEFINE_DO_FUN (do_transfer) {
     if (victim->fighting != NULL)
         stop_fighting (victim, TRUE);
     act ("$n disappears in a mushroom cloud.", victim, NULL, NULL, TO_NOTCHAR);
-    char_from_room (victim);
     char_to_room (victim, location);
     act ("$n arrives from a puff of smoke.", victim, NULL, NULL, TO_NOTCHAR);
     if (ch != victim)
@@ -253,7 +253,7 @@ DEFINE_DO_FUN (do_transfer) {
 DEFINE_DO_FUN (do_peace) {
     CHAR_T *rch;
 
-    for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
+    for (rch = ch->in_room->people_first; rch; rch = rch->room_next) {
         if (rch->fighting != NULL)
             stop_fighting (rch, TRUE);
         if (IS_NPC (rch) && EXT_IS_SET (rch->ext_mob, MOB_AGGRESSIVE))
@@ -279,7 +279,7 @@ DEFINE_DO_FUN (do_snoop) {
         send_to_char ("Cancelling all snoops.\n\r", ch);
         wiznet ("$N stops being such a snoop.",
                 ch, NULL, WIZ_SNOOPS, WIZ_SECURE, char_get_trust (ch));
-        for (d = descriptor_list; d != NULL; d = d->next)
+        for (d = descriptor_first; d != NULL; d = d->global_next)
             if (d->snoop_by == ch->desc)
                 d->snoop_by = NULL;
         return;
@@ -338,7 +338,7 @@ DEFINE_DO_FUN (do_string) {
             "They aren't here.\n\r", ch);
 
         /* clear zone for mobs */
-        victim->zone = NULL;
+        victim->area = NULL;
 
         /* string something */
         if (!str_prefix (arg2, "name")) {
@@ -405,7 +405,7 @@ DEFINE_DO_FUN (do_string) {
             ed = extra_descr_new ();
             ed->keyword = str_dup (arg3);
             ed->description = str_dup (argument);
-            LIST_FRONT (ed, next, obj->extra_descr);
+            extra_descr_to_obj_back (ed, obj);
             return;
         }
     }
@@ -448,7 +448,7 @@ DEFINE_DO_FUN (do_clone) {
         BAIL_IF (!do_obj_load_check (ch, obj),
             "Your powers are not great enough for such a task.\n\r", ch);
 
-        clone = obj_create (obj->index_data, 0);
+        clone = obj_create (obj->obj_index, 0);
         obj_clone (obj, clone);
         if (obj->carried_by != NULL)
             obj_give_to_char (clone, ch);
@@ -477,11 +477,11 @@ DEFINE_DO_FUN (do_clone) {
                  !IS_TRUSTED (ch, AVATAR),
             "Your powers are not great enough for such a task.\n\r", ch);
 
-        clone = mobile_create (mob->index_data);
+        clone = mobile_create (mob->mob_index);
         mobile_clone (mob, clone);
-        for (obj = mob->carrying; obj != NULL; obj = obj->next_content) {
+        for (obj = mob->content_first; obj; obj = obj->content_next) {
             if (do_obj_load_check (ch, obj)) {
-                new_obj = obj_create (obj->index_data, 0);
+                new_obj = obj_create (obj->obj_index, 0);
                 obj_clone (obj, new_obj );
                 do_clone_recurse (ch, obj, new_obj );
                 obj_give_to_char (new_obj, clone);

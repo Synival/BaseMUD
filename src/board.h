@@ -54,6 +54,7 @@ NOTE_T *note_create_personal (const char *sender, const char *to,
     const char *subject, const int expire_days, const char *text);
 NOTE_T *note_create (const char *board_name, const char *sender, const char *to,
     const char *subject, const int expire_days, const char *text);
+void note_to_board (NOTE_T *note, BOARD_T *board);
 
 /* For nanny */
 DECLARE_NANNY_FUN (handle_con_note_to);

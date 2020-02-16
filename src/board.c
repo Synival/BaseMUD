@@ -98,7 +98,7 @@ void note_finish (NOTE_T *note, BOARD_T *board) {
     }
 
     /* place this note at the end of the note list. */
-    LIST_BACK (note, next, board->note_first, NOTE_T);
+    note_to_board (note, board);
 
     /* append note to note file */
     sprintf (filename, "%s/%s", NOTE_DIR, board->name);
@@ -123,7 +123,7 @@ int board_number (const BOARD_T *board) {
 
 /* Remove list from the list. Do not free note */
 void note_unlink (NOTE_T *note, BOARD_T *board) {
-    LIST_REMOVE (note, next, board->note_first, NOTE_T, NO_FAIL);
+    note_to_board (note, NULL);
 }
 
 /* Find the nth note on a board. Return NULL if ch has no access to that note */
@@ -131,7 +131,7 @@ NOTE_T *board_find_note (BOARD_T *board, CHAR_T *ch, int num) {
     int count = 0;
     NOTE_T *p;
 
-    for (p = board->note_first; p ; p = p->next)
+    for (p = board->note_first; p ; p = p->board_next)
         if (++count == num)
             break;
     if ((count == num) && note_is_for_char (p, ch))
@@ -150,7 +150,7 @@ void board_save (BOARD_T *board) {
     BAIL_IF_BUGF ((fp = fopen (filename, "w")) == NULL,
         "Error writing to: %s", filename);
 
-    for (note = board->note_first; note ; note = note->next)
+    for (note = board->note_first; note ; note = note->board_next)
         note_write (note, fp);
     fclose (fp);
 }
@@ -179,7 +179,6 @@ void board_save_all () {
 /* Load a single board */
 void board_load (BOARD_T *board) {
     FILE *fp, *fp_archive;
-    NOTE_T *last_note;
     char filename[200];
 
     sprintf (filename, "%s/%s", NOTE_DIR, board->name);
@@ -190,8 +189,6 @@ void board_load (BOARD_T *board) {
         return;
 
     /* Start note fetching. copy of db.c:load_notes() */
-    last_note = NULL;
-
     while (1) {
         NOTE_T *pnote;
         char letter;
@@ -245,8 +242,7 @@ void board_load (BOARD_T *board) {
             board->changed = TRUE;
             continue;
         }
-
-        LISTB_BACK (pnote, next, board->note_first, last_note);
+        note_to_board (pnote, board);
     }
 
     bug ("load_notes: bad key word.", 0);
@@ -303,7 +299,7 @@ int board_get_unread_notes_for_char (BOARD_T *board, CHAR_T *ch) {
         return BOARD_NOACCESS;
 
     last_read = ch->pcdata->last_note[board_number(board)];
-    for (note = board->note_first; note; note = note->next)
+    for (note = board->note_first; note; note = note->board_next)
         if (note_is_for_char (note, ch) && ((long)last_read < (long)note->date_stamp))
             count++;
 
@@ -606,4 +602,10 @@ DEFINE_NANNY_FUN (handle_con_note_finish) {
             printf_to_desc (d, "%s", note_finish_prompt);
             write_to_buffer (d, "\n\r",0);
     }
+}
+
+void note_to_board (NOTE_T *note, BOARD_T *board) {
+    LIST2_REASSIGN_BACK (
+        note, board, board_prev, board_next,
+        board, note_first, note_last);
 }

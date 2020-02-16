@@ -44,21 +44,18 @@
 
 DEFINE_DO_FUN (do_allow) {
     char arg[MAX_INPUT_LENGTH];
-    BAN_T *pban, *prev, *pban_next;
+    BAN_T *pban, *pban_next;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
         "Remove which site from the ban list?\n\r", ch);
 
-    prev = NULL;
-    for (pban = ban_first; pban; prev = pban, pban = pban_next) {
-        pban_next = pban->next;
+    for (pban = ban_first; pban; pban = pban_next) {
+        pban_next = pban->global_next;
         if (str_cmp (arg, pban->name))
             continue;
         BAIL_IF (pban->level > char_get_trust (ch),
             "You are not powerful enough to lift that ban.\n\r", ch);
-
-        LISTB_REMOVE_WITH_PREV (pban, prev, next, ban_first, ban_last);
         ban_free (pban);
 
         printf_to_char (ch, "Ban on %s lifted.\n\r", arg);
@@ -179,7 +176,7 @@ DEFINE_DO_FUN (do_mset) {
         "They aren't here.\n\r", ch);
 
     /* clear zones for mobs */
-    victim->zone = NULL;
+    victim->area = NULL;
 
     /* Snarf the value (which need not be numeric). */
     value = is_number (arg3) ? atoi (arg3) : -1;

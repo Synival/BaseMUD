@@ -24,6 +24,7 @@
 #include "globals.h"
 #include "olc.h"
 #include "memory.h"
+#include "areas.h"
 
 #include "olc_aedit.h"
 
@@ -36,7 +37,7 @@ bool aedit_check_range (int lower, int upper) {
     AREA_T *area;
     int cnt = 0;
 
-    for (area = area_first; area; area = area->next) {
+    for (area = area_first; area; area = area->global_next) {
         /* lower < area < upper */
         if ((lower <= area->min_vnum && area->min_vnum <= upper)
             || (lower <= area->max_vnum && area->max_vnum <= upper))
@@ -78,7 +79,7 @@ AEDIT (aedit_reset) {
     AREA_T *area;
     EDIT_AREA (ch, area);
 
-    reset_area (area);
+    area_reset (area);
     send_to_char ("Area reset.\n\r", ch);
     return FALSE;
 }
@@ -87,7 +88,7 @@ AEDIT (aedit_create) {
     AREA_T *area;
 
     area = area_new ();
-    LISTB_BACK (area, next, area_first, area_last);
+    LIST2_BACK (area, global_prev, global_next, area_first, area_last);
     ch->desc->olc_edit = (void *) area;
 
     SET_BIT (area->area_flags, AREA_ADDED);

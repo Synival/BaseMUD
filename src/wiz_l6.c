@@ -54,15 +54,13 @@ DEFINE_DO_FUN (do_at) {
 
     original = ch->in_room;
     on = ch->on;
-    char_from_room (ch);
     char_to_room (ch, location);
     interpret (ch, argument);
 
     /* See if 'ch' still exists before continuing!
      * Handles 'at XXXX quit' case. */
-    for (wch = char_list; wch != NULL; wch = wch->next) {
+    for (wch = char_first; wch; wch = wch->global_next) {
         if (wch == ch) {
-            char_from_room (ch);
             char_to_room (ch, original);
             ch->on = on;
             break;
@@ -76,7 +74,7 @@ DEFINE_DO_FUN (do_recho) {
     BAIL_IF (argument[0] == '\0',
         "Local echo what?\n\r", ch);
 
-    for (d = descriptor_list; d; d = d->next) {
+    for (d = descriptor_first; d; d = d->global_next) {
         if (d->connected != CON_PLAYING)
             continue;
         if (d->character->in_room != ch->in_room)

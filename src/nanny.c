@@ -134,7 +134,7 @@ bool new_player_name_is_valid (char *name) {
 
         for (hash = 0; hash < MAX_KEY_HASH; hash++) {
             for (mob_index = mob_index_hash[hash];
-                 mob_index != NULL; mob_index = mob_index->next)
+                 mob_index != NULL; mob_index = mob_index->hash_next)
             {
                 if (str_in_namelist (name, mob_index->name))
                     return FALSE;
@@ -146,12 +146,12 @@ bool new_player_name_is_valid (char *name) {
      *
      * Check names of people playing. Yes, this is necessary for multiple
      * newbies with the same name (thanks Saro) */
-    if (descriptor_list) {
+    if (descriptor_first) {
         int count = 0;
         DESCRIPTOR_T *d, *dnext;
 
-        for (d = descriptor_list; d != NULL; d = dnext) {
-            dnext=d->next;
+        for (d = descriptor_first; d != NULL; d = dnext) {
+            dnext = d->global_next;
             if (d->connected!=CON_PLAYING&&d->character&&d->character->name
                 && d->character->name[0] && !str_cmp(d->character->name,name))
             {
@@ -325,7 +325,10 @@ DEFINE_NANNY_FUN (nanny_break_connect) {
         case 'N':
             send_to_desc ("Name: ", d);
             if (d->character != NULL) {
-                char_free (d->character);
+                if (d->character->in_room)
+                    char_extract (d->character);
+                else
+                    char_free (d->character);
                 d->character = NULL;
             }
             d->connected = CON_GET_NAME;
@@ -341,8 +344,8 @@ DEFINE_NANNY_FUN (nanny_break_connect_confirm) {
     CHAR_T *ch = d->character;
     DESCRIPTOR_T *d_old, *d_next;
 
-    for (d_old = descriptor_list; d_old != NULL; d_old = d_next) {
-        d_next = d_old->next;
+    for (d_old = descriptor_first; d_old != NULL; d_old = d_next) {
+        d_next = d_old->global_next;
         if (d_old == d || d_old->character == NULL)
             continue;
 
@@ -357,7 +360,10 @@ DEFINE_NANNY_FUN (nanny_break_connect_confirm) {
 
     send_to_desc ("Reconnect attempt failed.\n\rName: ", d);
     if (d->character != NULL) {
-        char_free (d->character);
+        if (d->character->in_room)
+            char_extract (d->character);
+        else
+            char_free (d->character);
         d->character = NULL;
     }
     d->connected = CON_GET_NAME;
@@ -874,16 +880,14 @@ DEFINE_NANNY_FUN (nanny_read_motd) {
     extern int mud_telnetga, mud_ansicolor;
     if (ch->pcdata == NULL || ch->pcdata->pwd[0] == '\0') {
         write_to_buffer (d,
-            "Warning! Null password!\n\r", 0);
-        write_to_buffer (d,
-            "Please report old password with bug.\n\r", 0);
-        write_to_buffer (d,
+            "Warning! Null password!\n\r"
+            "Please report old password with bug.\n\r"
             "Type 'password null <new password>' to fix.\n\r", 0);
     }
 
     write_to_buffer (d,
         "\n\rWelcome to ROM 2.4.  Please don't feed the mobiles!\n\r", 0);
-    LIST_FRONT (ch, next, char_list);
+    LIST2_FRONT (ch, global_prev, global_next, char_first, char_last);
 
     d->connected = CON_PLAYING;
     player_reset (ch);

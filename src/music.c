@@ -116,7 +116,7 @@ void music_update_global (void) {
         sprintf (buf, "{eMusic: '{E%s{e'{x", song->lyrics[line]);
 
     /* play this song for all players. */
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         ch = CH(d);
         if (d->connected == CON_PLAYING &&
             !IS_SET (ch->comm, COMM_NOMUSIC) &&
@@ -142,13 +142,13 @@ void music_update_object (OBJ_T *obj) {
         return;
 
     /* have we started playing the song yet? */
-    if (room->people != NULL) {
+    if (room->people_first != NULL) {
         song = song_get (obj->v.jukebox.song);
         if (line < 0)
             sprintf (buf, "$p starts playing %s, %s.", song->group, song->name);
         else
             sprintf (buf, "{e$p bops: '{E%s{e'{x", song->lyrics[line]);
-        act (buf, room->people, obj, NULL, TO_ALL);
+        act (buf, room->people_first, obj, NULL, TO_ALL);
     }
 }
 

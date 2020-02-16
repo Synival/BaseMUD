@@ -25,31 +25,49 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#ifndef __ROM_MOBILES_H
-#define __ROM_MOBILES_H
+#include "globals.h"
+#include "comm.h"
+#include "rooms.h"
+#include "utils.h"
 
-#include "merc.h"
+#include "areas.h"
 
-/* Function prototypes. */
-MOB_INDEX_T *mobile_get_index (int vnum);
-CHAR_T *mobile_create (MOB_INDEX_T *mob_index);
-void mobile_clone (CHAR_T *parent, CHAR_T *clone);
-int mobile_should_assist_player (CHAR_T *bystander, CHAR_T *player,
-    CHAR_T *victim);
-bool mobile_should_assist_attacker (CHAR_T *bystander, CHAR_T *attacker,
-    CHAR_T *victim);
-void mobile_hit (CHAR_T *ch, CHAR_T *victim, int dt);
-int mobile_get_skill_learned (const CHAR_T *ch, int sn);
-bool mobile_is_friendly (const CHAR_T *ch);
-void mobile_to_mob_index (CHAR_T *mob, MOB_INDEX_T *mob_index);
-void mob_index_to_area (MOB_INDEX_T *mob, AREA_T *area);
-void mobile_die (CHAR_T *ch);
-int mobile_get_obj_cost (const CHAR_T *ch, const OBJ_T *obj, bool buy);
-SHOP_T *mobile_get_shop (const CHAR_T *ch);
-void mobile_update_all (void);
-void mobile_update (CHAR_T *ch);
-bool mobile_wander (CHAR_T *ch);
-void mob_index_to_hash (MOB_INDEX_T *mob);
-void mob_index_from_hash (MOB_INDEX_T *mob);
+void area_update_all (void) {
+    AREA_T *area;
+    for (area = area_first; area != NULL; area = area->global_next)
+        area_update (area);
+}
 
-#endif
+void area_update (AREA_T *area) {
+    if (++area->age < 3)
+        return;
+
+    /* Check age and reset.
+     * Note: Mud School resets every 3 minutes (not 15). */
+    if ((!area->empty && (area->nplayer == 0 || area->age >= 15))
+        || area->age >= 31)
+    {
+        ROOM_INDEX_T *room_index;
+
+        area_reset (area);
+        wiznetf (NULL, NULL, WIZ_RESETS, 0, 0,
+            "%s has just been reset.", area->title);
+
+        area->age = number_range (0, 3);
+        room_index = room_get_index (ROOM_VNUM_SCHOOL);
+        if (room_index != NULL && area == room_index->area)
+            area->age = 15 - 2;
+        else if (area->nplayer == 0)
+            area->empty = TRUE;
+    }
+}
+
+/* OLC
+ * Reset one area. */
+void area_reset (AREA_T *area) {
+    ROOM_INDEX_T *room;
+    int vnum;
+    for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++)
+        if ((room = room_get_index (vnum)))
+            room_reset (room);
+}

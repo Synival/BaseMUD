@@ -86,8 +86,8 @@ DEFINE_SPELL_FUN (spell_call_lightning) {
     act ("$n calls Mota's lightning to strike $s foes!",
          ch, NULL, NULL, TO_NOTCHAR);
 
-    for (vch = char_list; vch != NULL; vch = vch_next) {
-        vch_next = vch->next;
+    for (vch = char_first; vch != NULL; vch = vch_next) {
+        vch_next = vch->global_next;
         if (vch->in_room == NULL)
             continue;
         if (vch->in_room == ch->in_room) {
@@ -141,10 +141,10 @@ DEFINE_SPELL_FUN (spell_chain_lightning) {
     /* new targets */
     while (level > 0) {
         found = FALSE;
-        for (tmp_vict = ch->in_room->people;
+        for (tmp_vict = ch->in_room->people_first;
              tmp_vict != NULL; tmp_vict = next_vict)
         {
-            next_vict = tmp_vict->next_in_room;
+            next_vict = tmp_vict->room_next;
             if (tmp_vict == last_vict || !can_attack_spell (ch, tmp_vict, TRUE))
                 continue;
 
@@ -207,7 +207,7 @@ DEFINE_SPELL_FUN (spell_chill_touch) {
               "$n turns blue and shivers.", victim, NULL, NULL,
             0, POS_RESTING);
         affect_init (&af, AFF_TO_AFFECTS, sn, level, 6, APPLY_STR, -1, 0);
-        affect_join (victim, &af);
+        affect_join_char (&af, victim);
     }
     else
         dam /= 2;
@@ -324,8 +324,8 @@ DEFINE_SPELL_FUN (spell_earthquake) {
     send_to_char ("The earth trembles beneath your feet!\n\r", ch);
     act ("$n makes the earth tremble and shiver.", ch, NULL, NULL, TO_NOTCHAR);
 
-    for (vch = char_list; vch != NULL; vch = vch_next) {
-        vch_next = vch->next;
+    for (vch = char_first; vch != NULL; vch = vch_next) {
+        vch_next = vch->global_next;
         if (vch->in_room == NULL)
             continue;
         if (vch->in_room == ch->in_room) {
@@ -430,8 +430,8 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
         return;
     }
 
-    for (obj_lose = victim->carrying; obj_lose != NULL; obj_lose = obj_next) {
-        obj_next = obj_lose->next_content;
+    for (obj_lose = victim->content_first; obj_lose != NULL; obj_lose = obj_next) {
+        obj_next = obj_lose->content_next;
         if (number_range (1, 2 * level) <= obj_lose->level)
             continue;
         if (saves_spell (level, victim, DAM_FIRE))
@@ -511,10 +511,8 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
         }
 
         /* Checks passed to drop item - so drop it! */
-        if (drop_item) {
-            obj_take_from_char (obj_lose);
+        if (drop_item)
             obj_give_to_room (obj_lose, victim->in_room);
-        }
     }
 
     if (!success) {
@@ -543,8 +541,8 @@ DEFINE_SPELL_FUN (spell_holy_word) {
     send_to_char ("You utter a word of divine power.\n\r", ch);
     act ("$n utters a word of divine power!", ch, NULL, NULL, TO_NOTCHAR);
 
-    for (vch = ch->in_room->people; vch != NULL; vch = vch_next) {
-        vch_next = vch->next_in_room;
+    for (vch = ch->in_room->people_first; vch != NULL; vch = vch_next) {
+        vch_next = vch->room_next;
 
         if (IS_SAME_ALIGN (ch, vch)) {
             send_to_char ("You feel even more powerful.\n\r", vch);

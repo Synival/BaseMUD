@@ -73,12 +73,12 @@ bool spec_troll_member (CHAR_T *ch) {
         return FALSE;
 
     /* find an ogre to beat up */
-    for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room) {
+    for (vch = ch->in_room->people_first; vch != NULL; vch = vch->room_next) {
         if (!IS_NPC (vch) || ch == vch)
             continue;
-        if (vch->index_data->vnum == MOB_VNUM_PATROLMAN)
+        if (vch->mob_index->vnum == MOB_VNUM_PATROLMAN)
             return FALSE;
-        if (vch->index_data->group == GROUP_VNUM_OGRES
+        if (vch->mob_index->group == GROUP_VNUM_OGRES
             && ch->level > vch->level - 2 && !do_filter_can_attack (ch, vch))
         {
             if (number_range (0, count) == 0)
@@ -120,12 +120,12 @@ bool spec_ogre_member (CHAR_T *ch) {
         return FALSE;
 
     /* find an troll to beat up */
-    for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room) {
+    for (vch = ch->in_room->people_first; vch != NULL; vch = vch->room_next) {
         if (!IS_NPC (vch) || ch == vch)
             continue;
-        if (vch->index_data->vnum == MOB_VNUM_PATROLMAN)
+        if (vch->mob_index->vnum == MOB_VNUM_PATROLMAN)
             return FALSE;
-        if (vch->index_data->group == GROUP_VNUM_TROLLS
+        if (vch->mob_index->group == GROUP_VNUM_TROLLS
             && ch->level > vch->level - 2 && !do_filter_can_attack (ch, vch))
         {
             if (number_range (0, count) == 0)
@@ -155,7 +155,7 @@ bool spec_patrolman (CHAR_T *ch) {
         return FALSE;
 
     /* look for a fight in the room */
-    for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room) {
+    for (vch = ch->in_room->people_first; vch != NULL; vch = vch->room_next) {
         if (vch == ch)
             continue;
         if (vch->fighting != NULL) { /* break it up! */
@@ -171,14 +171,14 @@ bool spec_patrolman (CHAR_T *ch) {
         return FALSE;
 
     if (((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_NECK_1)) != NULL
-         && obj->index_data->vnum == OBJ_VNUM_WHISTLE)
+         && obj->obj_index->vnum == OBJ_VNUM_WHISTLE)
         || ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_NECK_2)) != NULL
-            && obj->index_data->vnum == OBJ_VNUM_WHISTLE))
+            && obj->obj_index->vnum == OBJ_VNUM_WHISTLE))
     {
         act ("You blow down hard on $p.", ch, obj, NULL, TO_CHAR);
         act ("$n blows on $p, ***WHEEEEEEEEEEEET***", ch, obj, NULL, TO_NOTCHAR);
 
-        for (vch = char_list; vch != NULL; vch = vch->next) {
+        for (vch = char_first; vch != NULL; vch = vch->global_next) {
             if (vch->in_room == NULL)
                 continue;
 
@@ -232,8 +232,8 @@ bool spec_nasty (CHAR_T *ch) {
         return FALSE;
 
     if (ch->position != POS_FIGHTING) {
-        for (victim = ch->in_room->people; victim != NULL; victim = v_next) {
-            v_next = victim->next_in_room;
+        for (victim = ch->in_room->people_first; victim != NULL; victim = v_next) {
+            v_next = victim->room_next;
             if (!IS_NPC (victim)
                 && (victim->level > ch->level)
                 && (victim->level < ch->level + 10))
@@ -283,8 +283,8 @@ bool dragon (CHAR_T *ch, char *spell_name) {
     if (ch->position != POS_FIGHTING)
         return FALSE;
 
-    for (victim = ch->in_room->people; victim != NULL; victim = v_next) {
-        v_next = victim->next_in_room;
+    for (victim = ch->in_room->people_first; victim != NULL; victim = v_next) {
+        v_next = victim->room_next;
         if (victim->fighting == ch && number_bits (3) == 0)
             break;
     }
@@ -357,8 +357,8 @@ bool spec_cast_adept (CHAR_T *ch) {
     if (!IS_AWAKE (ch))
         return FALSE;
 
-    for (victim = ch->in_room->people; victim != NULL; victim = v_next) {
-        v_next = victim->next_in_room;
+    for (victim = ch->in_room->people_first; victim != NULL; victim = v_next) {
+        v_next = victim->room_next;
         if (victim != ch && char_can_see_in_room (ch, victim) && number_bits (1) == 0
             && !IS_NPC (victim) && victim->level < 11)
             break;
@@ -395,8 +395,8 @@ bool spec_cast_cleric (CHAR_T *ch) {
     if (ch->position != POS_FIGHTING)
         return FALSE;
 
-    for (victim = ch->in_room->people; victim != NULL; victim = v_next) {
-        v_next = victim->next_in_room;
+    for (victim = ch->in_room->people_first; victim != NULL; victim = v_next) {
+        v_next = victim->room_next;
         if (victim->fighting == ch && number_bits (2) == 0)
             break;
     }
@@ -443,8 +443,8 @@ bool spec_cast_judge (CHAR_T *ch) {
     if (ch->position != POS_FIGHTING)
         return FALSE;
 
-    for (victim = ch->in_room->people; victim != NULL; victim = v_next) {
-        v_next = victim->next_in_room;
+    for (victim = ch->in_room->people_first; victim != NULL; victim = v_next) {
+        v_next = victim->room_next;
         if (victim->fighting == ch && number_bits (2) == 0)
             break;
     }
@@ -468,8 +468,8 @@ bool spec_cast_mage (CHAR_T *ch) {
     if (ch->position != POS_FIGHTING)
         return FALSE;
 
-    for (victim = ch->in_room->people; victim != NULL; victim = v_next) {
-        v_next = victim->next_in_room;
+    for (victim = ch->in_room->people_first; victim != NULL; victim = v_next) {
+        v_next = victim->room_next;
         if (victim->fighting == ch && number_bits (2) == 0)
             break;
     }
@@ -515,8 +515,8 @@ bool spec_cast_undead (CHAR_T *ch) {
     if (ch->position != POS_FIGHTING)
         return FALSE;
 
-    for (victim = ch->in_room->people; victim != NULL; victim = v_next) {
-        v_next = victim->next_in_room;
+    for (victim = ch->in_room->people_first; victim != NULL; victim = v_next) {
+        v_next = victim->room_next;
         if (victim->fighting == ch && number_bits (2) == 0)
             break;
     }
@@ -562,8 +562,8 @@ bool spec_executioner (CHAR_T *ch) {
         return FALSE;
 
     crime = "";
-    for (victim = ch->in_room->people; victim != NULL; victim = v_next) {
-        v_next = victim->next_in_room;
+    for (victim = ch->in_room->people_first; victim != NULL; victim = v_next) {
+        v_next = victim->room_next;
         if (IS_NPC (victim))
             continue;
         if (!char_can_see_in_room (ch, victim))
@@ -601,9 +601,8 @@ bool spec_fido (CHAR_T *ch) {
         return FALSE;
 
     act ("$n savagely devours a corpse.", ch, NULL, NULL, TO_NOTCHAR);
-    for (obj = corpse->contains; obj; obj = obj_next) {
-        obj_next = obj->next_content;
-        obj_take_from_obj (obj);
+    for (obj = corpse->content_first; obj; obj = obj_next) {
+        obj_next = obj->content_next;
         obj_give_to_room (obj, ch->in_room);
     }
 
@@ -626,8 +625,8 @@ bool spec_guard (CHAR_T *ch) {
     ech = NULL;
     crime = "";
 
-    for (victim = ch->in_room->people; victim != NULL; victim = v_next) {
-        v_next = victim->next_in_room;
+    for (victim = ch->in_room->people_first; victim != NULL; victim = v_next) {
+        v_next = victim->room_next;
         if (IS_NPC (victim))
             continue;
         if (!char_can_see_in_room (ch, victim))
@@ -674,8 +673,8 @@ bool spec_janitor (CHAR_T *ch) {
     if (!IS_AWAKE (ch))
         return FALSE;
 
-    for (trash = ch->in_room->contents; trash != NULL; trash = trash_next) {
-        trash_next = trash->next_content;
+    for (trash = ch->in_room->content_first; trash != NULL; trash = trash_next) {
+        trash_next = trash->content_next;
         if (!IS_SET (trash->wear_flags, ITEM_TAKE) || !char_can_loot (ch, trash))
             continue;
         if (trash->item_type == ITEM_DRINK_CON ||
@@ -683,7 +682,6 @@ bool spec_janitor (CHAR_T *ch) {
             trash->cost < 10)
         {
             act ("$n picks up some trash.", ch, NULL, NULL, TO_NOTCHAR);
-            obj_take_from_room (trash);
             obj_give_to_char (trash, ch);
             return TRUE;
         }
@@ -809,8 +807,8 @@ bool spec_thief (CHAR_T *ch) {
     if (ch->position != POS_STANDING)
         return FALSE;
 
-    for (victim = ch->in_room->people; victim != NULL; victim = v_next) {
-        v_next = victim->next_in_room;
+    for (victim = ch->in_room->people_first; victim != NULL; victim = v_next) {
+        v_next = victim->room_next;
 
         if (IS_NPC (victim)
             || victim->level >= LEVEL_IMMORTAL

@@ -270,8 +270,8 @@ flag_t wear_loc_get_flag (int wear_loc) {
 HELP_AREA_T *help_area_get_by_help (HELP_T *help) {
     HELP_AREA_T *had;
     HELP_T *h;
-    for (had = had_first; had; had = had->next)
-        for (h = had->first; h; h = h->next_area)
+    for (had = had_first; had; had = had->global_next)
+        for (h = had->help_first; h; h = h->had_next)
             if (h == help)
                 return had;
     return NULL;
@@ -279,7 +279,7 @@ HELP_AREA_T *help_area_get_by_help (HELP_T *help) {
 
 HELP_AREA_T *help_area_get_by_filename (const char *filename) {
     HELP_AREA_T *had;
-    for (had = had_first; had; had = had->next)
+    for (had = had_first; had; had = had->global_next)
         if (strcmp (had->filename, filename) == 0)
             return had;
     return NULL;

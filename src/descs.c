@@ -191,7 +191,8 @@ void init_descriptor (int control) {
     }
 
     /* Init descriptor data. */
-    LIST_FRONT (dnew, next, descriptor_list);
+    LIST2_FRONT (dnew, global_prev, global_next,
+        descriptor_first, descriptor_last);
 
     /* First Contact! */
     if (!mud_ansiprompt) {
@@ -216,7 +217,7 @@ void close_socket (DESCRIPTOR_T *dclose) {
 
     {
         DESCRIPTOR_T *d;
-        for (d = descriptor_list; d != NULL; d = d->next)
+        for (d = descriptor_first; d != NULL; d = d->global_next)
             if (d->snoop_by == dclose)
                 d->snoop_by = NULL;
     }
@@ -234,14 +235,20 @@ void close_socket (DESCRIPTOR_T *dclose) {
             wiznet ("Net death has claimed $N.", ch, NULL, WIZ_LINKS, 0, 0);
             ch->desc = NULL;
         }
-        else
-            char_free (dclose->original ? dclose->original : dclose->character);
+        else {
+            CHAR_T *ch = dclose->original ? dclose->original : dclose->character;
+            if (ch->in_room)
+                char_extract (ch);
+            else
+                char_free (ch);
+        }
     }
 
     if (d_next == dclose)
-        d_next = d_next->next;
+        d_next = d_next->global_next;
 
-    LIST_REMOVE (dclose, next, descriptor_list, DESCRIPTOR_T, NO_FAIL);
+    LIST2_REMOVE (dclose, global_prev, global_next,
+        descriptor_first, descriptor_last);
 
     close (dclose->descriptor);
     descriptor_free (dclose);
@@ -522,7 +529,7 @@ bool write_to_descriptor (int desc, char *txt, int length) {
 bool check_reconnect (DESCRIPTOR_T *d, char *name, bool conn) {
     CHAR_T *ch;
 
-    for (ch = char_list; ch != NULL; ch = ch->next) {
+    for (ch = char_first; ch != NULL; ch = ch->global_next) {
         if (!IS_NPC (ch)
             && (!conn || ch->desc == NULL)
             && !str_cmp (d->character->name, ch->name))
@@ -531,7 +538,11 @@ bool check_reconnect (DESCRIPTOR_T *d, char *name, bool conn) {
                 str_replace_dup (&(d->character->pcdata->pwd), ch->pcdata->pwd);
             }
             else {
-                char_free (d->character);
+                if (d->character->in_room)
+                    char_extract (d->character);
+                else
+                    char_free (d->character);
+
                 d->character = ch;
                 ch->desc = d;
                 ch->timer = 0;
@@ -560,7 +571,7 @@ bool check_playing (DESCRIPTOR_T *d, char *name) {
     DESCRIPTOR_T *dold;
     const char *ch_name;
 
-    for (dold = descriptor_list; dold; dold = dold->next) {
+    for (dold = descriptor_first; dold; dold = dold->global_next) {
         if (dold == d)
             continue;
         if (dold->character == NULL)

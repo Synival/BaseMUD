@@ -79,15 +79,15 @@ JSON_T *json_objw_room (const char *name, const ROOM_INDEX_T *room) {
         }
     }
 
-    if (room->extra_descr) {
+    if (room->extra_descr_first) {
         sub = json_prop_array (new, "extra_description");
-        for (ed = room->extra_descr; ed != NULL; ed = ed->next)
+        for (ed = room->extra_descr_first; ed != NULL; ed = ed->on_next)
             json_prop_obj_extra_descr (sub, NULL, ed);
     }
 
     if (room->reset_first) {
         sub = json_prop_array (new, "resets");
-        for (r = room->reset_first; r != NULL; r = r->next)
+        for (r = room->reset_first; r != NULL; r = r->room_next)
             json_prop_obj_reset (sub, NULL, r);
     }
 
@@ -150,7 +150,7 @@ JSON_T *json_objw_exit (const char *name, const ROOM_INDEX_T *from,
             json_prop_obj_anum (new, "key", from->area, ex->key);
     }
     if (ex->portal && json_not_blank (ex->portal->name))
-        json_prop_string  (new, "portal",     ex->portal->name);
+        json_prop_string (new, "portal", ex->portal->name);
 
     return new;
 }
@@ -276,7 +276,7 @@ JSON_T *json_objw_mobile (const char *name, const MOB_INDEX_T *mob) {
     if (mob->parts_minus != 0)
         json_prop_string (new, "parts_minus",       JBITSF (part_flags, mob->parts_minus));
 
-    if (mob->mprogs)
+    if (mob->mprog_first)
         printf ("*** Ignoring '%s' (#%d) mprogs ***\n", mob->short_descr, mob->vnum);
 
     spec_fun = spec_function_name (mob->spec_fun);
@@ -385,15 +385,15 @@ JSON_T *json_objw_object (const char *name, const OBJ_INDEX_T *obj) {
     if (obj->wear_flags != 0)
         json_prop_string  (new, "wear_flags",  JBITS (wear_flag_name (obj->wear_flags)));
 
-    if (obj->extra_descr) {
+    if (obj->extra_descr_first) {
         sub = json_prop_array (new, "extra_description");
-        for (ed = obj->extra_descr; ed != NULL; ed = ed->next)
+        for (ed = obj->extra_descr_first; ed; ed = ed->on_next)
             json_prop_obj_extra_descr (sub, NULL, ed);
     }
 
-    if (obj->affected) {
+    if (obj->affect_first) {
         sub = json_prop_array (new, "affects");
-        for (aff = obj->affected; aff != NULL; aff = aff->next)
+        for (aff = obj->affect_first; aff; aff = aff->on_next)
             json_prop_obj_affect (sub, NULL, aff);
     }
 
@@ -719,7 +719,7 @@ JSON_T *json_objw_help_area (const char *name, const HELP_AREA_T *had) {
     json_prop_string (new, "filename", JSTR (had->filename));
 
     sub = json_prop_array (new, "pages");
-    for (help = had->first; help; help = help->next_area)
+    for (help = had->help_first; help; help = help->had_next)
         json_prop_obj_help (sub, NULL, help);
 
     return new;

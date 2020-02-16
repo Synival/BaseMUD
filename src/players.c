@@ -37,6 +37,9 @@
 #include "comm.h"
 #include "save.h"
 #include "magic.h"
+#include "groups.h"
+#include "fight.h"
+#include "rooms.h"
 
 #include "players.h"
 
@@ -87,9 +90,7 @@ void player_reset (CHAR_T *ch) {
             if (obj == NULL)
                 continue;
             if (!obj->enchanted) {
-                for (af = obj->index_data->affected; af != NULL;
-                     af = af->next)
-                {
+                for (af = obj->obj_index->affect_first; af; af = af->on_next) {
                     mod = af->modifier;
                     switch (af->apply) {
                         case APPLY_SEX:
@@ -104,7 +105,7 @@ void player_reset (CHAR_T *ch) {
                 }
             }
 
-            for (af = obj->affected; af != NULL; af = af->next) {
+            for (af = obj->affect_first; af; af = af->on_next) {
                 mod = af->modifier;
                 switch (af->apply) {
                     case APPLY_SEX:  ch->sex      -= mod; break;
@@ -156,15 +157,15 @@ void player_reset (CHAR_T *ch) {
             ch->armor[i] -= obj_get_ac_type (obj, loc, i);
         if (obj->enchanted)
             continue;
-        for (af = obj->index_data->affected; af != NULL; af = af->next)
-            affect_modify_apply (ch, af, TRUE);
-        for (af = obj->affected; af != NULL; af = af->next)
-            affect_modify_apply (ch, af, TRUE);
+        for (af = obj->obj_index->affect_first; af; af = af->on_next)
+            affect_modify_char_apply (af, ch, TRUE);
+        for (af = obj->affect_first; af; af = af->on_next)
+            affect_modify_char_apply (af, ch, TRUE);
     }
 
     /* now add back spell effects */
-    for (af = ch->affected; af != NULL; af = af->next)
-        affect_modify_apply (ch, af, TRUE);
+    for (af = ch->affect_first; af; af = af->on_next)
+        affect_modify_char_apply (af, ch, TRUE);
 
     /* make sure sex is RIGHT!!!! */
     if (ch->sex < 0 || ch->sex > 2)
@@ -596,4 +597,31 @@ void player_remove_skill_or_group (CHAR_T *ch, const char *name, bool refund) {
 bool player_is_undesirable (const CHAR_T *ch) {
     return EXT_IS_SET (ch->ext_plr, PLR_KILLER) ||
            EXT_IS_SET (ch->ext_plr, PLR_THIEF);
+}
+
+void player_die (CHAR_T *ch) {
+    const RACE_T *race;
+    int i;
+
+    nuke_pets (ch);
+
+    stop_fighting (ch, TRUE);
+    while (ch->content_first)
+        obj_extract (ch->content_first);
+
+    /* Death room is set in the clan table now */
+    char_to_room (ch, room_get_index (clan_table[ch->clan].hall));
+
+    while (ch->affect_first)
+        affect_remove (ch->affect_first);
+
+    race = race_get (ch->race);
+    ch->affected_by = race->aff;
+    for (i = 0; i < 4; i++)
+        ch->armor[i] = 100;
+
+    ch->position = POS_RESTING;
+    ch->hit  = UMAX (1, ch->hit);
+    ch->mana = UMAX (1, ch->mana);
+    ch->move = UMAX (1, ch->move);
 }

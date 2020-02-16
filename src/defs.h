@@ -532,14 +532,6 @@
 #define RECYCLE_PORTAL_T      24
 #define RECYCLE_MAX           25
 
-/* Memory management.
- * Increase MAX_STRING if you have too.
- * Tune the others only if you understand what you're doing. */
-#define MAX_STRING_SPACE    2097152 /* 2^21 */
-#define MAX_PERM_BLOCK      131072
-#define MAX_MEM_LIST        11
-#define MAX_PERM_BLOCKS     1024
-
 /* Types of tables used for our master reference table. */
 #define TABLE_FLAGS     0
 #define TABLE_TYPES     1
@@ -701,5 +693,17 @@
 #define EXT_FLAGS_ARRAY_LENGTH   8
 #define EXT_FLAGS_ELEMENT_SIZE   8
 #define EXT_FLAGS_LIMIT (EXT_FLAGS_ARRAY_LENGTH * EXT_FLAGS_ELEMENT_SIZE)
+
+/* types of affect attachments */
+#define AFFECT_NONE         0
+#define AFFECT_CHAR         1
+#define AFFECT_OBJ          2
+#define AFFECT_OBJ_INDEX    3
+
+/* types of extra_descr attachments */
+#define EXTRA_DESCR_NONE         0
+#define EXTRA_DESCR_ROOM_INDEX   1
+#define EXTRA_DESCR_OBJ          2
+#define EXTRA_DESCR_OBJ_INDEX    3
 
 #endif

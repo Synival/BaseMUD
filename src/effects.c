@@ -45,8 +45,8 @@ DEFINE_EFFECT_FUN (effect_acid) {
         ROOM_INDEX_T *room = (ROOM_INDEX_T *) vo;
         OBJ_T *obj, *obj_next;
 
-        for (obj = room->contents; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = room->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             effect_acid (obj, level, dam, TARGET_OBJ);
         }
         return;
@@ -58,8 +58,8 @@ DEFINE_EFFECT_FUN (effect_acid) {
         OBJ_T *obj, *obj_next;
 
         /* let's toast some gear */
-        for (obj = victim->carrying; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = victim->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             effect_acid (obj, level, dam, TARGET_OBJ);
         }
         return;
@@ -98,8 +98,8 @@ DEFINE_EFFECT_FUN (effect_acid) {
         if (*msg != '\0') {
             if (obj->carried_by != NULL)
                 act (msg, obj->carried_by, obj, NULL, TO_ALL);
-            else if (obj->in_room != NULL && obj->in_room->people != NULL)
-                act (msg, obj->in_room->people, obj, NULL, TO_ALL);
+            else if (obj->in_room != NULL && obj->in_room->people_first != NULL)
+                act (msg, obj->in_room->people_first, obj, NULL, TO_ALL);
         }
 
         /* perform any special corrosion effects. */
@@ -107,10 +107,9 @@ DEFINE_EFFECT_FUN (effect_acid) {
             return;
 
         /* no special effect - get rid of the object */
-        if (obj->contains) { /* dump contents */
-            for (t_obj = obj->contains; t_obj != NULL; t_obj = n_obj) {
-                n_obj = t_obj->next_content;
-                obj_take_from_obj (t_obj);
+        if (obj->content_first) { /* dump contents */
+            for (t_obj = obj->content_first; t_obj != NULL; t_obj = n_obj) {
+                n_obj = t_obj->content_next;
                 if (obj->in_room != NULL)
                     obj_give_to_room (t_obj, obj->in_room);
                 else if (obj->carried_by != NULL)
@@ -134,8 +133,8 @@ DEFINE_EFFECT_FUN (effect_cold) {
         ROOM_INDEX_T *room = (ROOM_INDEX_T *) vo;
         OBJ_T *obj, *obj_next;
 
-        for (obj = room->contents; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = room->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             effect_cold (obj, level, dam, TARGET_OBJ);
         }
         return;
@@ -155,7 +154,7 @@ DEFINE_EFFECT_FUN (effect_cold) {
                   victim, NULL, NULL, 0, POS_RESTING);
 
             affect_init (&af, AFF_TO_AFFECTS, skill_lookup ("chill touch"), level, 6, APPLY_STR, -1, 0);
-            affect_join (victim, &af);
+            affect_join_char (&af, victim);
         }
 
         /* hunger! (warmth sucked out) */
@@ -163,8 +162,8 @@ DEFINE_EFFECT_FUN (effect_cold) {
             gain_condition (victim, COND_HUNGER, -1 * dam / 20);
 
         /* let's toast some gear */
-        for (obj = victim->carrying; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = victim->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             effect_cold (obj, level, dam, TARGET_OBJ);
         }
         return;
@@ -202,8 +201,8 @@ DEFINE_EFFECT_FUN (effect_cold) {
         if (*msg != '\0') {
             if (obj->carried_by != NULL)
                 act (msg, obj->carried_by, obj, NULL, TO_ALL);
-            else if (obj->in_room != NULL && obj->in_room->people != NULL)
-                act (msg, obj->in_room->people, obj, NULL, TO_ALL);
+            else if (obj->in_room != NULL && obj->in_room->people_first != NULL)
+                act (msg, obj->in_room->people_first, obj, NULL, TO_ALL);
         }
 
         /* perform any special freeze effects. */
@@ -221,8 +220,8 @@ DEFINE_EFFECT_FUN (effect_fire) {
         ROOM_INDEX_T *room = (ROOM_INDEX_T *) vo;
         OBJ_T *obj, *obj_next;
 
-        for (obj = room->contents; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = room->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             effect_fire (obj, level, dam, TARGET_OBJ);
         }
         return;
@@ -243,7 +242,7 @@ DEFINE_EFFECT_FUN (effect_fire) {
                   victim, NULL, NULL, 0, POS_RESTING);
 
             affect_init (&af, AFF_TO_AFFECTS, skill_lookup ("fire breath"), level, number_range (0, level / 10), APPLY_HITROLL, -4, AFF_BLIND);
-            affect_to_char (victim, &af);
+            affect_copy_to_char (&af, victim);
         }
 
         /* getting thirsty */
@@ -251,8 +250,8 @@ DEFINE_EFFECT_FUN (effect_fire) {
             gain_condition (victim, COND_THIRST, -1 * dam / 20);
 
         /* let's toast some gear! */
-        for (obj = victim->carrying; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = victim->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             effect_fire (obj, level, dam, TARGET_OBJ);
         }
         return;
@@ -291,8 +290,8 @@ DEFINE_EFFECT_FUN (effect_fire) {
         if (*msg != '\0') {
             if (obj->carried_by != NULL)
                 act (msg, obj->carried_by, obj, NULL, TO_ALL);
-            else if (obj->in_room != NULL && obj->in_room->people != NULL)
-                act (msg, obj->in_room->people, obj, NULL, TO_ALL);
+            else if (obj->in_room != NULL && obj->in_room->people_first != NULL)
+                act (msg, obj->in_room->people_first, obj, NULL, TO_ALL);
         }
 
         /* perform any special burn effects. */
@@ -300,10 +299,9 @@ DEFINE_EFFECT_FUN (effect_fire) {
             return;
 
         /* dump the contents */
-        if (obj->contains) {
-            for (t_obj = obj->contains; t_obj != NULL; t_obj = n_obj) {
-                n_obj = t_obj->next_content;
-                obj_take_from_obj (t_obj);
+        if (obj->content_first) {
+            for (t_obj = obj->content_first; t_obj != NULL; t_obj = n_obj) {
+                n_obj = t_obj->content_next;
                 if (obj->in_room != NULL)
                     obj_give_to_room (t_obj, obj->in_room);
                 else if (obj->carried_by != NULL)
@@ -327,8 +325,8 @@ DEFINE_EFFECT_FUN (effect_poison) {
         ROOM_INDEX_T *room = (ROOM_INDEX_T *) vo;
         OBJ_T *obj, *obj_next;
 
-        for (obj = room->contents; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = room->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             effect_poison (obj, level, dam, TARGET_OBJ);
         }
         return;
@@ -349,12 +347,12 @@ DEFINE_EFFECT_FUN (effect_poison) {
                   victim, NULL, NULL, 0, POS_RESTING);
 
             affect_init (&af, AFF_TO_AFFECTS, SN(POISON), level, level / 2, APPLY_STR, -1, AFF_POISON);
-            affect_join (victim, &af);
+            affect_join_char (&af, victim);
         }
 
         /* equipment */
-        for (obj = victim->carrying; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = victim->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             effect_poison (obj, level, dam, TARGET_OBJ);
         }
         return;
@@ -392,8 +390,8 @@ DEFINE_EFFECT_FUN (effect_poison) {
         if (*msg != '\0') {
             if (obj->carried_by != NULL)
                 act (msg, obj->carried_by, obj, NULL, TO_ALL);
-            else if (obj->in_room != NULL && obj->in_room->people != NULL)
-                act (msg, obj->in_room->people, obj, NULL, TO_ALL);
+            else if (obj->in_room != NULL && obj->in_room->people_first != NULL)
+                act (msg, obj->in_room->people_first, obj, NULL, TO_ALL);
         }
 
         /* perform any special poison effects. */
@@ -410,8 +408,8 @@ DEFINE_EFFECT_FUN (effect_shock) {
         ROOM_INDEX_T *room = (ROOM_INDEX_T *) vo;
         OBJ_T *obj, *obj_next;
 
-        for (obj = room->contents; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = room->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             effect_shock (obj, level, dam, TARGET_OBJ);
         }
         return;
@@ -429,8 +427,8 @@ DEFINE_EFFECT_FUN (effect_shock) {
         }
 
         /* toast some gear */
-        for (obj = victim->carrying; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = victim->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             effect_shock (obj, level, dam, TARGET_OBJ);
         }
         return;
@@ -467,8 +465,8 @@ DEFINE_EFFECT_FUN (effect_shock) {
         if (*msg != '\0') {
             if (obj->carried_by != NULL)
                 act (msg, obj->carried_by, obj, NULL, TO_ALL);
-            else if (obj->in_room != NULL && obj->in_room->people != NULL)
-                act (msg, obj->in_room->people, obj, NULL, TO_ALL);
+            else if (obj->in_room != NULL && obj->in_room->people_first != NULL)
+                act (msg, obj->in_room->people_first, obj, NULL, TO_ALL);
         }
 
         /* perform any special shock effects. */

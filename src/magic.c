@@ -133,7 +133,7 @@ void say_spell_name (CHAR_T *ch, const char *name, int class) {
     plural = (strchr (words, ' ')) ? "s" : "";
     sprintf (buf2, "{5$n utters the word%s, '%s'.{x", plural, words);
 
-    for (rch = ch->in_room->people; rch; rch = rch->next_in_room)
+    for (rch = ch->in_room->people_first; rch; rch = rch->room_next)
         if (rch != ch)
             act ((!IS_NPC (rch) && rch->class == class) ? buf1 : buf2,
                  ch, NULL, rch, TO_VICT);
@@ -180,13 +180,13 @@ bool check_dispel_act (int dis_level, CHAR_T *victim, int sn,
 {
     AFFECT_T *af;
 
-    if (!is_affected (victim, sn))
+    if (!affect_is_char_affected (victim, sn))
         return FALSE;
-    for (af = victim->affected; af != NULL; af = af->next) {
+    for (af = victim->affect_first; af != NULL; af = af->on_next) {
         if (af->type != sn)
             continue;
         if (!saves_dispel (dis_level, af->level, af->duration)) {
-            affect_strip (victim, sn);
+            affect_strip_char (victim, sn);
             if (skill_table[sn].msg_off)
                 printf_to_char (victim, "%s\n\r", skill_table[sn].msg_off);
             if (act_to_room)
@@ -230,8 +230,8 @@ bool spell_fight_back_if_possible (CHAR_T *ch, CHAR_T *victim,
             target == TARGET_CHAR)))
         return FALSE;
 
-    for (vch = ch->in_room->people; vch; vch = vch_next) {
-        vch_next = vch->next_in_room;
+    for (vch = ch->in_room->people_first; vch; vch = vch_next) {
+        vch_next = vch->room_next;
         if (victim == vch && victim->fighting == NULL) {
             check_killer (victim, ch);
             multi_hit (victim, ch, ATTACK_DEFAULT);
@@ -327,10 +327,10 @@ void obj_cast_spell (int sn, int level, CHAR_T *ch, CHAR_T *victim,
     spell_fight_back_if_possible (ch, victim, sn, target);
 }
 
-int is_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
+int affect_is_char_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
     CHAR_T *ch, char *to_self, char *to_victim)
 {
-    if ((sn   >= 0 && is_affected (victim, sn)) ||
+    if ((sn   >= 0 && affect_is_char_affected (victim, sn)) ||
         (flag >  0 && IS_AFFECTED (victim, flag)))
     {
         act ((victim == ch) ? to_self : to_victim, ch, NULL, victim, TO_CHAR);
@@ -339,10 +339,10 @@ int is_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
     return 0;
 }
 
-int isnt_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
+int affect_isnt_char_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
     CHAR_T *ch, char *to_self, char *to_victim)
 {
-    if (!((sn   >= 0 && is_affected (victim, sn)) ||
+    if (!((sn   >= 0 && affect_is_char_affected (victim, sn)) ||
           (flag >  0 && IS_AFFECTED (victim, flag))))
     {
         act ((victim == ch) ? to_self : to_victim, ch, NULL, victim, TO_CHAR);

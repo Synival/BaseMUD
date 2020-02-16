@@ -42,6 +42,7 @@
 #include "mobiles.h"
 #include "objs.h"
 #include "rooms.h"
+#include "extra_descrs.h"
 
 #include "db_old.h"
 
@@ -74,7 +75,7 @@ void load_old_mob (FILE *fp) {
         in_boot_db = TRUE;
 
         mob_index = mob_index_new ();
-        mob_index->area = area_last;    /* OLC */
+        mob_index_to_area (mob_index, area_last);
         mob_index->vnum = vnum;
         mob_index->anum = vnum - area_last->min_vnum;
         mob_index->new_format = FALSE;
@@ -196,7 +197,7 @@ void load_old_obj (FILE *fp) {
         in_boot_db = TRUE;
 
         obj_index = obj_index_new ();
-        obj_index->area = area_last; /* OLC */
+        obj_index_to_area (obj_index, area_last);
         obj_index->vnum = vnum;
         obj_index->anum = vnum - area_last->min_vnum;
         obj_index->new_format = FALSE;
@@ -232,13 +233,13 @@ void load_old_obj (FILE *fp) {
                 duration = fread_number (fp);
                 modifier = fread_number (fp);
                 affect_init (paf, AFF_TO_OBJECT, -1, 20, -1, duration, modifier, 0);
-                LIST_BACK (paf, next, obj_index->affected, AFFECT_T);
+                affect_to_obj_index_back (paf, obj_index);
             }
             else if (letter == 'E') {
                 EXTRA_DESCR_T *ed = extra_descr_new ();
                 fread_string_replace (fp, &ed->keyword);
                 fread_string_replace (fp, &ed->description);
-                LIST_BACK (ed, next, obj_index->extra_descr, EXTRA_DESCR_T);
+                extra_descr_to_obj_index_back (ed, obj_index);
             }
             else {
                 ungetc (letter, fp);
@@ -353,11 +354,11 @@ void convert_objects (void) {
     convert_object_reset_mob = NULL;
     convert_object_reset_obj = NULL;
 
-    for (area = area_first; area; area = area->next) {
+    for (area = area_first; area; area = area->global_next) {
         for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++) {
             if (!(room = room_get_index (vnum)))
                 continue;
-            for (reset = room->reset_first; reset; reset = reset->next)
+            for (reset = room->reset_first; reset; reset = reset->room_next)
                 convert_object_reset (reset);
         }
     }

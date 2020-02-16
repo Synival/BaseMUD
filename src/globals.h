@@ -30,15 +30,15 @@
 
 #include "merc.h"
 
-extern HELP_T       *help_first, *help_last;
-extern SHOP_T       *shop_first, *shop_last;
-extern AREA_T       *area_first, *area_last;
-extern BAN_T        *ban_first,  *ban_last;
-extern HELP_AREA_T  *had_first,  *had_last;
-extern ANUM_T       *anum_first, *anum_last;
-extern MPROG_CODE_T *mprog_list;
-extern OBJ_T        *object_list;
-extern CHAR_T       *char_list;
+extern HELP_T       *help_first,   *help_last;
+extern SHOP_T       *shop_first,   *shop_last;
+extern AREA_T       *area_first,   *area_last;
+extern BAN_T        *ban_first,    *ban_last;
+extern HELP_AREA_T  *had_first,    *had_last;
+extern ANUM_T       *anum_first,   *anum_last;
+extern MPROG_CODE_T *mpcode_first, *mpcode_last;
+extern OBJ_T        *object_first, *object_last;
+extern CHAR_T       *char_first,   *char_last;
 
 extern int newmob_count;
 extern int newobj_count;
@@ -50,11 +50,15 @@ extern KILL_T kill_table[MAX_LEVEL];
 extern TIME_INFO_T time_info;
 extern WEATHER_T weather_info;
 
-extern MOB_INDEX_T  *mob_index_hash[MAX_KEY_HASH];
-extern OBJ_INDEX_T  *obj_index_hash[MAX_KEY_HASH];
-extern ROOM_INDEX_T *room_index_hash[MAX_KEY_HASH];
+extern MOB_INDEX_T  *mob_index_hash[MAX_KEY_HASH],
+                    *mob_index_hash_back[MAX_KEY_HASH];
+extern OBJ_INDEX_T  *obj_index_hash[MAX_KEY_HASH],
+                    *obj_index_hash_back[MAX_KEY_HASH];
+extern ROOM_INDEX_T *room_index_hash[MAX_KEY_HASH],
+                    *room_index_hash_back[MAX_KEY_HASH];
 
 extern bool in_boot_db;
+extern bool in_game_loop;
 extern FILE *current_area_file;
 extern char current_area_filename[MAX_INPUT_LENGTH];
 
@@ -63,7 +67,7 @@ extern const char echo_off_str[];
 extern const char echo_on_str[];
 extern const char go_ahead_str[];
 
-extern DESCRIPTOR_T *descriptor_list; /* All open descriptors     */
+extern DESCRIPTOR_T *descriptor_first, *descriptor_last; /* All open descriptors */
 extern DESCRIPTOR_T *d_next;          /* Next descriptor in loop  */
 extern FILE *reserve_file;            /* Reserved file handle     */
 extern bool god;                      /* All new chars are gods!  */

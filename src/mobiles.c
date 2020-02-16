@@ -38,6 +38,11 @@
 #include "interp.h"
 #include "act_fight.h"
 #include "magic.h"
+#include "objs.h"
+#include "items.h"
+#include "mob_prog.h"
+#include "comm.h"
+#include "db.h"
 
 #include "mobiles.h"
 
@@ -47,7 +52,7 @@ MOB_INDEX_T *mobile_get_index (int vnum) {
     MOB_INDEX_T *mob_index;
 
     for (mob_index = mob_index_hash[vnum % MAX_KEY_HASH];
-         mob_index != NULL; mob_index = mob_index->next)
+         mob_index != NULL; mob_index = mob_index->hash_next)
         if (mob_index->vnum == vnum)
             return mob_index;
 
@@ -68,13 +73,12 @@ CHAR_T *mobile_create (MOB_INDEX_T *mob_index) {
     int i;
     AFFECT_T af;
 
-    mobile_count++;
     EXIT_IF_BUG (mob_index == NULL,
         "mobile_create: NULL mob_index.", 0);
 
     mob = char_new ();
+    mobile_to_mob_index (mob, mob_index);
 
-    mob->index_data = mob_index;
     str_replace_dup (&mob->name,        mob_index->name);        /* OLC */
     str_replace_dup (&mob->short_descr, mob_index->short_descr); /* OLC */
     str_replace_dup (&mob->long_descr,  mob_index->long_descr);  /* OLC */
@@ -176,19 +180,19 @@ CHAR_T *mobile_create (MOB_INDEX_T *mob_index) {
         /* let's get some spell action */
         if (IS_AFFECTED (mob, AFF_SANCTUARY)) {
             affect_init (&af, AFF_TO_AFFECTS, skill_lookup_exact ("sanctuary"), mob->level, -1, APPLY_NONE, 0, AFF_SANCTUARY);
-            affect_to_char (mob, &af);
+            affect_copy_to_char (&af, mob);
         }
         if (IS_AFFECTED (mob, AFF_HASTE)) {
             affect_init (&af, AFF_TO_AFFECTS, skill_lookup_exact ("haste"), mob->level, -1, APPLY_DEX, 1 + (mob->level >= 18) + (mob->level >= 25) + (mob->level >= 32), AFF_HASTE);
-            affect_to_char (mob, &af);
+            affect_copy_to_char (&af, mob);
         }
         if (IS_AFFECTED (mob, AFF_PROTECT_EVIL)) {
             affect_init (&af, AFF_TO_AFFECTS, skill_lookup_exact ("protection evil"), mob->level, -1, APPLY_SAVES, -1, AFF_PROTECT_EVIL);
-            affect_to_char (mob, &af);
+            affect_copy_to_char (&af, mob);
         }
         if (IS_AFFECTED (mob, AFF_PROTECT_GOOD)) {
             affect_init (&af, AFF_TO_AFFECTS, skill_lookup_exact ("protection good"), mob->level, -1, APPLY_SAVES, -1, AFF_PROTECT_GOOD);
-            affect_to_char (mob, &af);
+            affect_copy_to_char (&af, mob);
         }
     }
     /* read in old format and convert */
@@ -231,8 +235,9 @@ CHAR_T *mobile_create (MOB_INDEX_T *mob_index) {
     mob->position = mob->start_pos;
 
     /* link the mob to the world list */
-    LIST_FRONT (mob, next, char_list);
-    mob_index->count++;
+    LIST2_FRONT (mob, global_prev, global_next, char_first, char_last);
+    mobile_count++;
+
     return mob;
 }
 
@@ -302,9 +307,10 @@ void mobile_clone (CHAR_T *parent, CHAR_T *clone) {
         clone->mod_stat[i]  = parent->mod_stat[i];
     }
 
-    /* now add the affects */
-    for (paf = parent->affected; paf != NULL; paf = paf->next)
-        affect_to_char (clone, paf);
+    /* now add the affects. affects are always added to the front,
+     * so copy the last backwards. */
+    for (paf = parent->affect_last; paf != NULL; paf = paf->on_prev)
+        affect_copy_to_char (paf, clone);
 }
 
 int mobile_should_assist_player (CHAR_T *bystander, CHAR_T *player,
@@ -344,7 +350,7 @@ bool mobile_should_assist_attacker (CHAR_T *bystander, CHAR_T *attacker,
         return TRUE;
 
     /* programmed to assist a specific vnum? */
-    if (bystander->index_data == attacker->index_data &&
+    if (bystander->mob_index == attacker->mob_index &&
             IS_SET (bystander->off_flags, ASSIST_VNUM))
         return TRUE;
 
@@ -362,8 +368,8 @@ void mobile_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
 
     /* Area attack -- BALLS nasty! */
     if (IS_SET (ch->off_flags, OFF_AREA_ATTACK)) {
-        for (vch = ch->in_room->people; vch != NULL; vch = vch_next) {
-            vch_next = vch->next;
+        for (vch = ch->in_room->people_first; vch != NULL; vch = vch_next) {
+            vch_next = vch->room_next;
             if ((vch != victim && vch->fighting == ch))
                 one_hit (ch, vch, dt);
         }
@@ -510,4 +516,189 @@ bool mobile_is_friendly (const CHAR_T *ch) {
         EXT_IS_SET (ch->ext_mob, MOB_IS_HEALER) ||
         EXT_IS_SET (ch->ext_mob, MOB_IS_CHANGER)
     );
+}
+
+void mobile_to_mob_index (CHAR_T *mob, MOB_INDEX_T *mob_index) {
+    if (mob->mob_index)
+        mob->mob_index->mob_count--;
+    LIST2_REASSIGN_BACK (
+        mob, mob_index, mob_index_prev, mob_index_next,
+        mob_index, mob_first, mob_last);
+    if (mob_index)
+        mob_index->mob_count++;
+}
+
+void mob_index_to_area (MOB_INDEX_T *mob, AREA_T *area) {
+    LIST2_REASSIGN_BACK (
+        mob, area, area_prev, area_next,
+        area, mob_first, mob_last);
+}
+
+void mobile_die (CHAR_T *ch) {
+    ch->mob_index->killed++;
+    kill_table[URANGE (0, ch->level, MAX_LEVEL - 1)].killed++;
+    char_extract (ch);
+}
+
+int mobile_get_obj_cost (const CHAR_T *ch, const OBJ_T *obj, bool buy) {
+    SHOP_T *shop;
+    int cost;
+
+    if (!IS_NPC (ch))
+        return 0;
+    if (obj == NULL || (shop = ch->mob_index->shop) == NULL)
+        return 0;
+
+    if (buy)
+        cost = obj->cost * shop->profit_buy / 100;
+    else {
+        OBJ_T *obj2;
+        int itype;
+
+        cost = 0;
+        for (itype = 0; itype < MAX_TRADE; itype++) {
+            if (obj->item_type == shop->buy_type[itype]) {
+                cost = obj->cost * shop->profit_sell / 100;
+                break;
+            }
+        }
+
+        if (!IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT)) {
+            for (obj2 = ch->content_first; obj2; obj2 = obj2->content_next) {
+                if (obj->obj_index == obj2->obj_index &&
+                    !str_cmp (obj->short_descr, obj2->short_descr))
+                {
+                    if (IS_OBJ_STAT (obj2, ITEM_INVENTORY))
+                        cost /= 2;
+                    else
+                        cost = cost * 3 / 4;
+                }
+            }
+        }
+    }
+
+    cost = item_get_modified_cost (obj, cost);
+    return cost;
+}
+
+SHOP_T *mobile_get_shop (const CHAR_T *ch)
+    { return (ch->mob_index == NULL) ? NULL : ch->mob_index->shop; }
+
+/* Mob autonomous action.
+ * This function takes 25% to 35% of ALL Merc cpu time.
+ * -- Furey */
+void mobile_update_all (void) {
+    CHAR_T *ch, *ch_next;
+
+    /* Examine all mobs. */
+    for (ch = char_first; ch != NULL; ch = ch_next) {
+        ch_next = ch->global_next;
+        if (!IS_NPC (ch) || ch->in_room == NULL || IS_AFFECTED (ch, AFF_CHARM))
+            continue;
+        if (ch->in_room->area->empty && !EXT_IS_SET (ch->ext_mob, MOB_UPDATE_ALWAYS))
+            continue;
+        mobile_update (ch);
+    }
+}
+
+void mobile_update (CHAR_T *ch) {
+    if (!IS_NPC (ch))
+        return;
+
+    /* Examine call for special procedure */
+    if (ch->spec_fun != 0)
+        if ((*ch->spec_fun) (ch))
+            return;
+
+    /* give him some gold */
+    if (ch->mob_index->shop != NULL) {
+        if ((ch->gold * 100 + ch->silver) < ch->mob_index->wealth) {
+            ch->gold   += ch->mob_index->wealth * number_range (1, 20) / 5000000;
+            ch->silver += ch->mob_index->wealth * number_range (1, 20) / 50000;
+        }
+    }
+
+    /* Check triggers only if mobile still in default position */
+    if (ch->position == ch->mob_index->default_pos) {
+        /* Delay */
+        if (HAS_TRIGGER (ch, TRIG_DELAY) && ch->mprog_delay > 0) {
+            if (--ch->mprog_delay <= 0) {
+                mp_percent_trigger (ch, NULL, NULL, NULL, TRIG_DELAY);
+                return;
+            }
+        }
+        if (HAS_TRIGGER (ch, TRIG_RANDOM)) {
+            if (mp_percent_trigger (ch, NULL, NULL, NULL, TRIG_RANDOM))
+                return;
+        }
+    }
+
+    /* That's all for sleeping / busy monster, and empty zones */
+    if (ch->position != POS_STANDING)
+        return;
+
+    /* Scavenge */
+    if (EXT_IS_SET (ch->ext_mob, MOB_SCAVENGER)
+        && ch->in_room->content_first != NULL && number_bits (6) == 0)
+    {
+        OBJ_T *obj;
+        OBJ_T *obj_best;
+        int max;
+
+        max = 1;
+        obj_best = 0;
+        for (obj = ch->in_room->content_first; obj; obj = obj->content_next) {
+            if (obj_can_wear_flag (obj, ITEM_TAKE) && char_can_loot (ch, obj)
+                && obj->cost > max && obj->cost > 0)
+            {
+                obj_best = obj;
+                max = obj->cost;
+            }
+        }
+        if (obj_best) {
+            obj_give_to_char (obj_best, ch);
+            act ("$n gets $p.", ch, obj_best, NULL, TO_NOTCHAR);
+        }
+    }
+
+    /* Wander */
+    if (!EXT_IS_SET (ch->ext_mob, MOB_SENTINEL) && number_bits (3) == 0)
+        mobile_wander (ch);
+}
+
+bool mobile_wander (CHAR_T *ch) {
+    int door;
+    EXIT_T *pexit;
+
+    door = number_bits (5);
+
+    if (door < DIR_MAX
+        && (pexit = ch->in_room->exit[door]) != NULL
+        && pexit->to_room != NULL
+        && !IS_SET (pexit->exit_flags, EX_CLOSED)
+        && !IS_SET (pexit->to_room->room_flags, ROOM_NO_MOB)
+        && (!EXT_IS_SET (ch->ext_mob, MOB_STAY_AREA)
+            || pexit->to_room->area == ch->in_room->area)
+        && (!EXT_IS_SET (ch->ext_mob, MOB_OUTDOORS)
+            || !IS_SET (pexit->to_room->room_flags, ROOM_INDOORS))
+        && (!EXT_IS_SET (ch->ext_mob, MOB_INDOORS)
+            || IS_SET (pexit->to_room->room_flags, ROOM_INDOORS)))
+    {
+        char_move (ch, door, FALSE);
+        return TRUE;
+    }
+    else
+        return FALSE;
+}
+
+void mob_index_to_hash (MOB_INDEX_T *mob) {
+    int hash = db_hash_from_vnum (mob->vnum);
+    LIST2_FRONT (mob, hash_prev, hash_next,
+        mob_index_hash[hash], mob_index_hash_back[hash]);
+}
+
+void mob_index_from_hash (MOB_INDEX_T *mob) {
+    int hash = db_hash_from_vnum (mob->vnum);
+    LIST2_REMOVE (mob, hash_prev, hash_next,
+        mob_index_hash[hash], mob_index_hash_back[hash]);
 }

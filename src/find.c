@@ -80,7 +80,7 @@ CHAR_T *find_char_same_room (CHAR_T *ch, const char *argument) {
 
     if (!str_cmp (arg, "self"))
         return ch;
-    for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
+    for (rch = ch->in_room->people_first; rch != NULL; rch = rch->room_next) {
         if (!char_can_see_in_room (ch, rch))
             continue;
         if (!str_in_namelist (arg, rch->name))
@@ -106,7 +106,7 @@ CHAR_T *find_char_world (CHAR_T *ch, const char *argument) {
     count = find_next_count;
     number = find_number_argument (argument, arg);
 
-    for (wch = char_list; wch != NULL; wch = wch->next) {
+    for (wch = char_first; wch != NULL; wch = wch->global_next) {
         /* Skip characters that aren't in the game. */
         if (wch->in_room == NULL)
             continue;
@@ -131,18 +131,18 @@ CHAR_T *find_char_world (CHAR_T *ch, const char *argument) {
 #define WORN_YES     1
 
 OBJ_T *find_obj_room (CHAR_T *ch, ROOM_INDEX_T *room, const char *argument)
-    { return find_obj_list (ch, room->contents, argument, WORN_IGNORE); }
+    { return find_obj_list (ch, room->content_first, argument, WORN_IGNORE); }
 OBJ_T *find_obj_same_room (CHAR_T *ch, const char *argument)
     { return find_obj_room (ch, ch->in_room, argument); }
 OBJ_T *find_obj_container (CHAR_T *ch, OBJ_T *obj, const char *argument)
-    { return find_obj_list (ch, obj->contains, argument, WORN_IGNORE); }
+    { return find_obj_list (ch, obj->content_first, argument, WORN_IGNORE); }
 
 OBJ_T *find_obj_char (CHAR_T *ch, CHAR_T *victim, const char *argument)
-    { return find_obj_list (ch, victim->carrying, argument, WORN_IGNORE); }
+    { return find_obj_list (ch, victim->content_first, argument, WORN_IGNORE); }
 OBJ_T *find_obj_worn (CHAR_T *ch, CHAR_T *victim, const char *argument)
-    { return find_obj_list (ch, victim->carrying, argument, WORN_YES); }
+    { return find_obj_list (ch, victim->content_first, argument, WORN_YES); }
 OBJ_T *find_obj_inventory (CHAR_T *ch, CHAR_T *victim, const char *argument)
-    { return find_obj_list (ch, victim->carrying, argument, WORN_NO); }
+    { return find_obj_list (ch, victim->content_first, argument, WORN_NO); }
 
 OBJ_T *find_obj_own_char (CHAR_T *ch, const char *argument)
     { return find_obj_char (ch, ch, argument); }
@@ -160,7 +160,7 @@ OBJ_T *find_obj_list (CHAR_T *ch, OBJ_T *list, const char *argument, int worn) {
     count = find_next_count;
     number = find_number_argument (argument, arg);
 
-    for (obj = list; obj != NULL; obj = obj->next_content) {
+    for (obj = list; obj != NULL; obj = obj->content_next) {
         if (worn == WORN_NO && obj->wear_loc != WEAR_LOC_NONE)
             continue;
         if (worn == WORN_YES && obj->wear_loc == WEAR_LOC_NONE)
@@ -209,7 +209,7 @@ OBJ_T *find_obj_world (CHAR_T *ch, const char *argument) {
     count = find_next_count;
     number = find_number_argument (argument, arg);
 
-    for (obj = object_list; obj != NULL; obj = obj->next) {
+    for (obj = object_first; obj != NULL; obj = obj->global_next) {
         /* We already checked objects here; skip them! */
         if (obj->carried_by == ch || obj->in_room == ch->in_room)
             continue;
@@ -236,7 +236,7 @@ OBJ_T *find_obj_keeper (CHAR_T *ch, CHAR_T *keeper, const char *argument) {
     count = find_next_count;
     number = find_number_argument (argument, arg);
 
-    for (obj = keeper->carrying; obj != NULL; obj = obj->next_content) {
+    for (obj = keeper->content_first; obj != NULL; obj = obj->content_next) {
         if (obj->wear_loc != WEAR_LOC_NONE)
             continue;
         if (!char_can_see_obj (keeper, obj))
@@ -249,10 +249,10 @@ OBJ_T *find_obj_keeper (CHAR_T *ch, CHAR_T *keeper, const char *argument) {
             break;
 
         /* skip other objects of the same name */
-        while (obj->next_content != NULL
-               && obj->index_data == obj->next_content->index_data
-               && !str_cmp (obj->short_descr, obj->next_content->short_descr))
-            obj = obj->next_content;
+        while (obj->content_next != NULL &&
+                obj->obj_index == obj->content_next->obj_index &&
+                !str_cmp (obj->short_descr, obj->content_next->short_descr))
+            obj = obj->content_next;
     }
 
     find_last_count = count;

@@ -65,7 +65,7 @@ static void json_print_indent (FILE *fp) {
 }
 
 static void json_next_line (FILE *fp) {
-    fwrite ("\n", sizeof(char), 1, fp);
+    fputc ('\n', fp);
     json_indented = 0;
 }
 
@@ -116,7 +116,9 @@ void json_print_real (JSON_T *json, FILE *fp, int new_line) {
     if (json_nest_level > 0 && json->parent->type != JSON_ARRAY) {
         const char *json_name = json->name
             ? json_escaped_string (json->name, newline_pos) : "NULL";
-        fprintf (fp, "\"%s\": ", json_name);
+        fputc ('"', fp);
+        fputs (json_name, fp);
+        fputs ("\": ", fp);
         newline_pos += 4 + strlen (json_name);
     }
 
@@ -124,7 +126,9 @@ void json_print_real (JSON_T *json, FILE *fp, int new_line) {
         case JSON_DICE:
         case JSON_STRING: {
             char *value = (char *) json->value;
-            fprintf (fp, "\"%s\"", json_escaped_string (value, newline_pos));
+            fputc ('"', fp);
+            fputs (json_escaped_string (value, newline_pos), fp);
+            fputc ('"', fp);
             break;
         }
         case JSON_NUMBER: {
@@ -139,11 +143,11 @@ void json_print_real (JSON_T *json, FILE *fp, int new_line) {
         }
         case JSON_BOOLEAN: {
             bool *value = (bool *) json->value;
-            fprintf (fp, "%s", *value ? "true" : "false");
+            fputs (*value ? "true" : "false", fp);
             break;
         }
         case JSON_NULL:
-            fprintf (fp, "null");
+            fputs ("null", fp);
             break;
 
         case JSON_OBJECT:
@@ -152,17 +156,19 @@ void json_print_real (JSON_T *json, FILE *fp, int new_line) {
             char pleft  = (json->type == JSON_OBJECT) ? '{' : '[';
             char pright = (json->type == JSON_OBJECT) ? '}' : ']';
 
-            if (json->first_child == NULL)
-                fprintf (fp, "%c%c", pleft, pright);
+            if (json->first_child == NULL) {
+                fputc (pleft, fp);
+                fputc (pright, fp);
+            }
             else if (json->child_count == 1) {
-                fprintf (fp, "%c", pleft);
+                fputc (pleft, fp);
                 json_nest_level++;
                 json_print_real (json->first_child, fp, 0);
                 json_nest_level--;
-                fprintf (fp, "%c", pright);
+                fputc (pright, fp);
             }
             else {
-                fprintf (fp, "%c", pleft);
+                fputc (pleft, fp);
                 json_next_line (fp);
                 json_indent_level++;
                 json_nest_level++;
@@ -171,18 +177,18 @@ void json_print_real (JSON_T *json, FILE *fp, int new_line) {
                 json_nest_level--;
                 json_indent_level--;
                 json_print_indent (fp);
-                fprintf (fp, "%c", pright);
+                fputc (pright, fp);
             }
             break;
         }
 
         default:
             bugf ("json_print(): Unhandled type %d", json->type);
-            fprintf (fp, "BAD-TYPE");
+            fputs ("BAD-TYPE", fp);
             break;
     }
     if (json->next)
-        fprintf (fp, ",");
+        fputc (',', fp);
 
     #define IS_SIMPLE_TYPE(x) \
         ((x)->type == JSON_NULL || (x)->type == JSON_NUMBER || \
@@ -192,7 +198,7 @@ void json_print_real (JSON_T *json, FILE *fp, int new_line) {
     if (new_line) {
         if (json->parent && json->parent->type == JSON_ARRAY && json->next &&
               IS_SIMPLE_TYPE(json) && IS_SIMPLE_TYPE(json->next))
-            fwrite (" ", sizeof(char), 1, fp);
+            fputc (' ', fp);
         else
             json_next_line (fp);
     }

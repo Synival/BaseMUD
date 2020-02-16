@@ -59,8 +59,8 @@ DEFINE_DO_FUN (do_force) {
         DESCRIPTOR_T *desc,*desc_next;
         BAIL_IF (char_get_trust(ch) < MAX_LEVEL - 3,
             "Not at your level!\n\r", ch);
-        for (desc = descriptor_list; desc != NULL; desc = desc_next) {
-            desc_next = desc->next;
+        for (desc = descriptor_first; desc != NULL; desc = desc_next) {
+            desc_next = desc->global_next;
             if (desc->connected == CON_PLAYING &&
                 char_get_trust (desc->character) < char_get_trust (ch))
             {
@@ -75,8 +75,8 @@ DEFINE_DO_FUN (do_force) {
 
         BAIL_IF (char_get_trust (ch) < MAX_LEVEL - 2,
             "Not at your level!\n\r", ch);
-        for (vch = char_list; vch != NULL; vch = vch_next) {
-            vch_next = vch->next;
+        for (vch = char_first; vch; vch = vch_next) {
+            vch_next = vch->global_next;
             if (!IS_NPC (vch) && char_get_trust (vch) < char_get_trust (ch)
                 && vch->level < LEVEL_HERO)
             {
@@ -91,8 +91,8 @@ DEFINE_DO_FUN (do_force) {
 
         BAIL_IF (char_get_trust (ch) < MAX_LEVEL - 2,
             "Not at your level!\n\r", ch);
-        for (vch = char_list; vch != NULL; vch = vch_next) {
-            vch_next = vch->next;
+        for (vch = char_first; vch; vch = vch_next) {
+            vch_next = vch->global_next;
             if (!IS_NPC (vch) && char_get_trust (vch) < char_get_trust (ch)
                 && vch->level >= LEVEL_HERO)
             {

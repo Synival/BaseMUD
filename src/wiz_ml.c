@@ -135,9 +135,9 @@ DEFINE_DO_FUN (do_copyover) {
         ch->name);
 
     /* For each playing descriptor, save its state */
-    for (d = descriptor_list; d; d = d_next) {
+    for (d = descriptor_first; d; d = d_next) {
         CHAR_T *och = CH (d);
-        d_next = d->next;        /* We delete from the list , so need to save this */
+        d_next = d->global_next; /* We delete from the list , so need to save this */
 
         /* drop those logging on */
         if (!d->character || d->connected < CON_PLAYING) {
@@ -279,7 +279,7 @@ void do_dump_stats (CHAR_T *ch) {
         if ((mob_index = mobile_get_index (vnum)) != NULL) {
             matches++;
             fprintf (fp, "#%-4d %3d active %3d killed     %s\n",
-                     mob_index->vnum, mob_index->count,
+                     mob_index->vnum, mob_index->mob_count,
                      mob_index->killed, mob_index->short_descr);
         }
     }
@@ -296,7 +296,7 @@ void do_dump_stats (CHAR_T *ch) {
         if ((obj_index = obj_get_index (vnum)) != NULL) {
             matches++;
             fprintf (fp, "#%-4d %3d active %3d reset      %s\n",
-                     obj_index->vnum, obj_index->count,
+                     obj_index->vnum, obj_index->obj_count,
                      obj_index->reset_num, obj_index->short_descr);
         }
     }
@@ -345,7 +345,7 @@ DEFINE_DO_FUN (do_violate) {
     if (ch->fighting != NULL)
         stop_fighting (ch, TRUE);
 
-    for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
+    for (rch = ch->in_room->people_first; rch; rch = rch->room_next) {
         if (char_get_trust (rch) >= ch->invis_level) {
             if (ch->pcdata != NULL && ch->pcdata->bamfout[0] != '\0')
                 act ("$t", ch, ch->pcdata->bamfout, rch, TO_VICT);
@@ -354,10 +354,8 @@ DEFINE_DO_FUN (do_violate) {
         }
     }
 
-    char_from_room (ch);
     char_to_room (ch, location);
-
-    for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
+    for (rch = ch->in_room->people_first; rch; rch = rch->room_next) {
         if (char_get_trust (rch) >= ch->invis_level) {
             if (ch->pcdata != NULL && ch->pcdata->bamfin[0] != '\0')
                 act ("$t", ch, ch->pcdata->bamfin, rch, TO_VICT);

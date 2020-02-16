@@ -82,8 +82,8 @@
     act_new((format), (ch), (arg1), (arg2), (flags), POS_RESTING)
 
 /* Mob program macros. */
-#define HAS_TRIGGER(ch, trig) (IS_SET((ch)->index_data->mprog_flags,(trig)))
-#define HAS_ANY_TRIGGER(ch)   ((ch)->index_data->mprog_flags != 0)
+#define HAS_TRIGGER(ch, trig) (IS_SET((ch)->mob_index->mprog_flags,(trig)))
+#define HAS_ANY_TRIGGER(ch)   ((ch)->mob_index->mprog_flags != 0)
 
 /* Read in a char. */
 #if defined(KEY)
@@ -299,6 +299,24 @@
         if (obj->nxt) obj->nxt->prv = obj->prv; \
         obj->prv = NULL; \
         obj->nxt = NULL; \
+    } while (0)
+
+#define LIST2_REASSIGN_BACK(child, child_parent, child_prev, child_next, \
+                            parent, parent_first, parent_last) \
+    do { \
+        if ((child->child_parent) == (parent)) \
+            break; \
+        if ((child->child_parent) != NULL) { \
+            LIST2_REMOVE (child, child_prev, child_next, \
+                child->child_parent->parent_first, \
+                child->child_parent->parent_last); \
+        } \
+        if ((parent) != NULL) { \
+            LIST2_BACK (child, child_prev, child_next, \
+                parent->parent_first, \
+                parent->parent_last); \
+        } \
+        child->child_parent = parent; \
     } while (0)
 
 #define TOP(type) \

@@ -119,18 +119,18 @@ DEFINE_DO_FUN (do_quit) {
 
     id = ch->id;
     d = ch->desc;
-    char_extract (ch, TRUE);
+    char_extract (ch);
     if (d != NULL)
         close_socket (d);
 
     /* toast evil cheating bastards */
-    for (d = descriptor_list; d != NULL; d = d_next) {
+    for (d = descriptor_first; d != NULL; d = d_next) {
         CHAR_T *tch;
-        d_next = d->next;
+        d_next = d->global_next;
 
         tch = d->original ? d->original : d->character;
         if (tch && tch->id == id) {
-            char_extract (tch, TRUE);
+            char_extract (tch);
             close_socket (d);
         }
     }

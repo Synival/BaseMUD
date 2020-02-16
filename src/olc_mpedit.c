@@ -24,6 +24,7 @@
 #include "globals.h"
 #include "olc.h"
 #include "memory.h"
+#include "mob_prog.h"
 
 #include "olc_mpedit.h"
 
@@ -40,14 +41,14 @@ MPEDIT (mpedit_create) {
         "MPEdit: That area vnum does not exist.\n\r", ch, FALSE);
     RETURN_IF (!IS_BUILDER (ch, ad),
         "MPEdit: Vnum in an area you cannot build in.\n\r", ch, FALSE);
-    RETURN_IF (get_mprog_index (value),
+    RETURN_IF (mpcode_get_index (value),
         "MPEdit: Mob program vnum already exists.\n\r", ch, FALSE);
 
     mcode = mpcode_new ();
     mcode->area = ad;
     mcode->vnum = value;
     mcode->anum = value - ad->min_vnum;
-    LIST_FRONT (mcode, next, mprog_list);
+    LIST2_FRONT (mcode, global_prev, global_next, mpcode_first, mpcode_last);
     ch->desc->olc_edit = (void *) mcode;
     ch->desc->editor = ED_MPCODE;
 
@@ -88,7 +89,7 @@ MPEDIT (mpedit_list) {
     AREA_T *ad;
 
     buffer = buf_new ();
-    for (mprg = mprog_list; mprg != NULL; mprg = mprg->next) {
+    for (mprg = mpcode_first; mprg != NULL; mprg = mprg->global_next) {
         if (all || ENTRE (
             ch->in_room->area->min_vnum, mprg->vnum,
             ch->in_room->area->max_vnum))

@@ -108,8 +108,8 @@ DEFINE_DO_FUN (do_reboot) {
     }
 
     merc_down = TRUE;
-    for (d = descriptor_list; d != NULL; d = d_next) {
-        d_next = d->next;
+    for (d = descriptor_first; d != NULL; d = d_next) {
+        d_next = d->global_next;
         vch = d->original ? d->original : d->character;
         if (vch != NULL)
             save_char_obj (vch);
@@ -133,8 +133,9 @@ DEFINE_DO_FUN (do_shutdown) {
     if (ch->invis_level < LEVEL_HERO)
         do_function (ch, &do_echo, buf);
     merc_down = TRUE;
-    for (d = descriptor_list; d != NULL; d = d_next) {
-        d_next = d->next;
+
+    for (d = descriptor_first; d != NULL; d = d_next) {
+        d_next = d->global_next;
         vch = d->original ? d->original : d->character;
         if (vch != NULL)
             save_char_obj (vch);

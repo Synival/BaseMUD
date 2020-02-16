@@ -195,7 +195,7 @@ bool do_door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     /* look for guards, but not if it's ch's own object. */
     if (obj == NULL || obj->carried_by != ch) {
         CHAR_T *gch;
-        for (gch = ch->in_room->people; gch; gch = gch->next_in_room) {
+        for (gch = ch->in_room->people_first; gch; gch = gch->room_next) {
             if (IS_NPC (gch) && IS_AWAKE (gch) && ch->level + 5 < gch->level) {
                 act ("$N is standing too close to the lock.", ch, NULL, gch, TO_CHAR);
                 return TRUE;
@@ -270,7 +270,7 @@ void do_open_door (CHAR_T *ch, int door) {
     if ((pexit_rev = room_get_opposite_exit (ch->in_room, door, NULL)) != NULL) {
         CHAR_T *rch;
         REMOVE_BIT (pexit_rev->exit_flags, EX_CLOSED);
-        for (rch = pexit->to_room->people; rch != NULL; rch = rch->next_in_room)
+        for (rch = pexit->to_room->people_first; rch != NULL; rch = rch->room_next)
             act ("The $d is opened from the other side.", rch, NULL,
                 pexit_rev->keyword, TO_CHAR);
     }
@@ -292,7 +292,7 @@ void do_close_door (CHAR_T *ch, int door) {
     if ((pexit_rev = room_get_opposite_exit (ch->in_room, door, NULL)) != NULL) {
         CHAR_T *rch;
         SET_BIT (pexit_rev->exit_flags, EX_CLOSED);
-        for (rch = pexit->to_room->people; rch != NULL; rch = rch->next_in_room)
+        for (rch = pexit->to_room->people_first; rch != NULL; rch = rch->room_next)
             act ("The $d is closed from the other side.", rch, NULL,
                 pexit_rev->keyword, TO_CHAR);
     }
@@ -575,14 +575,14 @@ DEFINE_DO_FUN (do_sneak) {
     AFFECT_T af;
 
     send_to_char ("You attempt to move silently.\n\r", ch);
-    affect_strip (ch, SN(SNEAK));
+    affect_strip_char (ch, SN(SNEAK));
 
     if (IS_AFFECTED (ch, AFF_SNEAK))
         return;
     if (number_percent () < char_get_skill (ch, SN(SNEAK))) {
         player_try_skill_improve (ch, SN(SNEAK), TRUE, 3);
         affect_init (&af, AFF_TO_AFFECTS, SN(SNEAK), ch->level, ch->level, APPLY_NONE, 0, AFF_SNEAK);
-        affect_to_char (ch, &af);
+        affect_copy_to_char (&af, ch);
     }
     else
         player_try_skill_improve (ch, SN(SNEAK), FALSE, 3);
@@ -603,9 +603,9 @@ DEFINE_DO_FUN (do_hide) {
 
 /* Contributed by Alander. */
 DEFINE_DO_FUN (do_visible) {
-    affect_strip (ch, SN(INVIS));
-    affect_strip (ch, SN(MASS_INVIS));
-    affect_strip (ch, SN(SNEAK));
+    affect_strip_char (ch, SN(INVIS));
+    affect_strip_char (ch, SN(MASS_INVIS));
+    affect_strip_char (ch, SN(SNEAK));
     REMOVE_BIT (ch->affected_by, AFF_HIDE);
     REMOVE_BIT (ch->affected_by, AFF_INVISIBLE);
     REMOVE_BIT (ch->affected_by, AFF_SNEAK);
@@ -651,7 +651,6 @@ DEFINE_DO_FUN (do_recall) {
 
     ch->move /= 2;
     act ("$n disappears.", ch, NULL, NULL, TO_NOTCHAR);
-    char_from_room (ch);
     char_to_room (ch, location);
     act ("$n appears in the room.", ch, NULL, NULL, TO_NOTCHAR);
     do_function (ch, &do_look, "auto");

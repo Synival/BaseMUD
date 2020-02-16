@@ -59,7 +59,6 @@ void stop_fighting_one (CHAR_T *ch);
 void stop_fighting (CHAR_T *ch, bool both);
 OBJ_T *make_corpse (CHAR_T *ch);
 void death_cry (CHAR_T *ch);
-OBJ_T *raw_kill (CHAR_T *victim);
 void group_gain (CHAR_T *ch, CHAR_T *victim);
 int fight_compute_kill_exp (CHAR_T *gch, CHAR_T *victim, int total_levels);
 void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt, bool immune,

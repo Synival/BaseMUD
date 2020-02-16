@@ -51,7 +51,7 @@ DEFINE_DO_FUN (do_goto) {
         "No such location.\n\r", ch);
 
     count = 0;
-    for (rch = location->people; rch != NULL; rch = rch->next_in_room)
+    for (rch = location->people_first; rch; rch = rch->room_next)
         count++;
 
     BAIL_IF (!room_is_owner (location, ch) && room_is_private (location) &&
@@ -61,7 +61,7 @@ DEFINE_DO_FUN (do_goto) {
     if (ch->fighting != NULL)
         stop_fighting (ch, TRUE);
 
-    for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
+    for (rch = ch->in_room->people_first; rch; rch = rch->room_next) {
         if (char_get_trust (rch) >= ch->invis_level) {
             if (ch->pcdata != NULL && ch->pcdata->bamfout[0] != '\0')
                 act ("$t", ch, ch->pcdata->bamfout, rch, TO_VICT);
@@ -70,10 +70,8 @@ DEFINE_DO_FUN (do_goto) {
         }
     }
 
-    char_from_room (ch);
     char_to_room (ch, location);
-
-    for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
+    for (rch = ch->in_room->people_first; rch; rch = rch->room_next) {
         if (char_get_trust (rch) >= ch->invis_level) {
             if (ch->pcdata != NULL && ch->pcdata->bamfin[0] != '\0')
                 act ("$t", ch, ch->pcdata->bamfin, rch, TO_VICT);

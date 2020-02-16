@@ -184,8 +184,8 @@ void string_add (CHAR_T *ch, char *argument) {
 
             if (mpc != NULL)
                 for (hash = 0; hash < MAX_KEY_HASH; hash++)
-                    for (mob = mob_index_hash[hash]; mob; mob = mob->next)
-                        for (mpl = mob->mprogs; mpl; mpl = mpl->next)
+                    for (mob = mob_index_hash[hash]; mob; mob = mob->hash_next)
+                        for (mpl = mob->mprog_first; mpl; mpl = mpl->mob_next)
                             if (mpl->vnum == mpc->vnum) {
                                 printf_to_char (ch, "Editting mob %d.\n\r",
                                     mob->vnum);

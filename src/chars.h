@@ -80,7 +80,7 @@ bool char_is_friend (CHAR_T *ch, CHAR_T *victim);
 #endif
 
 /* Creation / destruction. */
-void char_extract (CHAR_T *ch, bool pull);
+void char_extract (CHAR_T *ch);
 
 /* "Is" / "Can" functions. */
 bool char_is_trusted (const CHAR_T *ch, int level);
@@ -131,9 +131,7 @@ int char_get_max_carry_count (const CHAR_T *ch);
 long int char_get_max_carry_weight (const CHAR_T *ch);
 void char_get_who_string (const CHAR_T *ch, const CHAR_T *wch, char *buf,
     size_t len);
-int char_get_obj_cost (const CHAR_T *ch, const OBJ_T *obj, bool buy);
 OBJ_T *char_get_eq_by_wear_loc (const CHAR_T *ch, flag_t wear_loc);
-SHOP_T *char_get_shop (const CHAR_T *ch);
 CHAR_T *char_get_keeper_room (const CHAR_T *ch);
 CHAR_T *char_get_trainer_room (const CHAR_T *ch);
 CHAR_T *char_get_practicer_room (const CHAR_T *ch);
@@ -198,5 +196,9 @@ int char_set_max_daze_state (CHAR_T *ch, int npulse);
 bool char_change_to_next_board (CHAR_T *ch);
 void char_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
     int hunger);
+OBJ_T *char_die (CHAR_T *ch);
+void char_damage_if_wounded (CHAR_T *ch);
+void char_update_all (void);
+void char_update (CHAR_T *ch);
 
 #endif

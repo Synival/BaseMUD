@@ -45,7 +45,7 @@ void do_group_show (CHAR_T *ch) {
     leader = (ch->leader != NULL) ? ch->leader : ch;
     printf_to_char (ch, "%s's group:\n\r", PERS_AW (leader, ch));
 
-    for (gch = char_list; gch != NULL; gch = gch->next) {
+    for (gch = char_first; gch != NULL; gch = gch->global_next) {
         if (!is_same_group (gch, ch))
             continue;
         printf_to_char (ch,
@@ -93,8 +93,8 @@ DEFINE_DO_FUN (do_order) {
     }
 
     found = FALSE;
-    for (och = ch->in_room->people; och != NULL; och = och_next) {
-        och_next = och->next_in_room;
+    for (och = ch->in_room->people_first; och != NULL; och = och_next) {
+        och_next = och->room_next;
         if (!(IS_AFFECTED (och, AFF_CHARM) &&
               och->master == ch && (all || och == victim)))
             continue;
@@ -174,7 +174,7 @@ DEFINE_DO_FUN (do_split) {
         "You don't have that much to split.\n\r", ch);
 
     members = 0;
-    for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room)
+    for (gch = ch->in_room->people_first; gch != NULL; gch = gch->room_next)
         if (is_same_group (gch, ch) && !IS_AFFECTED (gch, AFF_CHARM))
             members++;
 
@@ -217,7 +217,7 @@ DEFINE_DO_FUN (do_split) {
             amount_silver, amount_gold, share_silver, share_gold);
     }
 
-    for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room) {
+    for (gch = ch->in_room->people_first; gch != NULL; gch = gch->room_next) {
         if (gch != ch && is_same_group (gch, ch)
             && !IS_AFFECTED (gch, AFF_CHARM))
         {
@@ -236,7 +236,7 @@ DEFINE_DO_FUN (do_gtell) {
     BAIL_IF (IS_SET (ch->comm, COMM_NOTELL),
         "Your message didn't get through!\n\r", ch);
 
-    for (gch = char_list; gch != NULL; gch = gch->next)
+    for (gch = char_first; gch != NULL; gch = gch->global_next)
         if (is_same_group (gch, ch))
             act_new ("$n tells the group '$t'",
                      ch, argument, gch, TO_VICT, POS_SLEEPING);

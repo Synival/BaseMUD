@@ -74,14 +74,14 @@ CHAR_T *random_group_target_in_room (CHAR_T *bystander, CHAR_T *ch) {
 
     /* count suitable targets. */
     count = 0;
-    for (vch = ch->in_room->people; vch; vch = vch->next)
+    for (vch = ch->in_room->people_first; vch; vch = vch->room_next)
         if (char_can_see_in_room (bystander, vch) && is_same_group (vch, ch))
             count++;
     if (count == 0)
         return NULL;
 
     number = number_range (0, count);
-    for (vch = ch->in_room->people; vch; vch = vch->next)
+    for (vch = ch->in_room->people_first; vch; vch = vch->room_next)
         if (char_can_see_in_room (bystander, vch) && is_same_group (vch, ch) &&
             number-- == 0)
             return vch;
@@ -95,8 +95,8 @@ void check_assist (CHAR_T *ch, CHAR_T *victim) {
 
     /* check everything in the room to see if it should assist
      * in this fight. */
-    for (rch = ch->in_room->people; rch != NULL; rch = rch_next) {
-        rch_next = rch->next_in_room;
+    for (rch = ch->in_room->people_first; rch != NULL; rch = rch_next) {
+        rch_next = rch->room_next;
         if (!IS_AWAKE (rch))
             continue;
         if (rch->fighting != NULL)
@@ -284,8 +284,8 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
         missed = TRUE;
 
     /* Hit.  Calc damage. */
-    if (IS_NPC (ch) && (!ch->index_data->new_format || wield == NULL)) {
-        if (!ch->index_data->new_format) {
+    if (IS_NPC (ch) && (!ch->mob_index->new_format || wield == NULL)) {
+        if (!ch->mob_index->new_format) {
             dam = number_range (ch->level / 2, ch->level * 3 / 2);
             if (wield != NULL)
                 dam += dam / 2;
@@ -297,7 +297,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
         if (sn != -1)
             player_try_skill_improve (ch, sn, TRUE, 5);
         if (wield != NULL) {
-            if (wield->index_data->new_format)
+            if (wield->obj_index->new_format)
                 dam = dice (wield->v.weapon.dice_num,
                             wield->v.weapon.dice_size) * skill / 100;
             else
@@ -359,7 +359,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
             int level;
             AFFECT_T *poison, af;
 
-            if ((poison = affect_find (wield->affected, SN(POISON))) == NULL)
+            if ((poison = affect_find (wield->affect_first, SN(POISON))) == NULL)
                 level = wield->level;
             else
                 level = poison->level;
@@ -371,7 +371,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
                      victim, wield, NULL, TO_NOTCHAR);
 
                 affect_init (&af, AFF_TO_AFFECTS, SN(POISON), level * 3 / 4, level / 2, APPLY_STR, -1, AFF_POISON);
-                affect_join (victim, &af);
+                affect_join_char (&af, victim);
             }
 
             /* weaken the poison if it's temporary */
@@ -504,8 +504,8 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
 
     /* Inviso attacks ... not. */
     if (IS_AFFECTED (ch, AFF_INVISIBLE)) {
-        affect_strip (ch, SN(INVIS));
-        affect_strip (ch, SN(MASS_INVIS));
+        affect_strip_char (ch, SN(INVIS));
+        affect_strip_char (ch, SN(MASS_INVIS));
         REMOVE_BIT (ch->affected_by, AFF_INVISIBLE);
         act ("$n fades into existence.", ch, NULL, NULL, TO_NOTCHAR);
     }
@@ -622,7 +622,7 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
             mp_percent_trigger (victim, ch, NULL, NULL, TRIG_DEATH);
         }
 
-        corpse = raw_kill (victim);
+        corpse = char_die (victim);
 
         /* dump the flags */
         if (ch != victim && !IS_NPC (ch) && !player_in_same_clan (ch, victim)) {
@@ -640,7 +640,7 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
         {
             OBJ_T *coins;
 
-            if (corpse->contains) {
+            if (corpse->content_first) {
                 if (EXT_IS_SET (ch->ext_plr, PLR_AUTOLOOT))
                     do_function (ch, &do_get, "all corpse");
                 else if (EXT_IS_SET (ch->ext_plr, PLR_AUTOGOLD)) {
@@ -651,7 +651,7 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
 
             if (EXT_IS_SET (ch->ext_plr, PLR_AUTOSAC)) {
                 /* don't sacrifice if we intend to loot but could not. */
-                if (!(EXT_IS_SET (ch->ext_plr, PLR_AUTOLOOT) && corpse->contains))
+                if (!(EXT_IS_SET (ch->ext_plr, PLR_AUTOLOOT) && corpse->content_first))
                     do_function (ch, &do_sacrifice, "corpse");
             }
         }
@@ -737,7 +737,7 @@ bool do_filter_can_attack_real (CHAR_T *ch, CHAR_T *victim, bool area,
             QU("Not in this room.\n\r"), ch);
 
         /* no killing shopkeepers or healers, trainers, etc */
-        FILTER (victim->index_data->shop != NULL,
+        FILTER (victim->mob_index->shop != NULL,
             QU("The shopkeeper wouldn't like that.\n\r"), ch);
         FILTER (mobile_is_friendly (victim),
             QU("I don't think Mota would approve.\n\r"), ch);
@@ -819,7 +819,7 @@ void check_killer (CHAR_T *ch, CHAR_T *victim) {
     if (IS_SET (ch->affected_by, AFF_CHARM)) {
         if (ch->master == NULL) {
             bugf ("Check_killer: %s bad AFF_CHARM", PERS (ch));
-            affect_strip (ch, SN(CHARM_PERSON));
+            affect_strip_char (ch, SN(CHARM_PERSON));
             REMOVE_BIT (ch->affected_by, AFF_CHARM);
             return;
         }
@@ -957,7 +957,7 @@ void set_fighting_one (CHAR_T *ch, CHAR_T *victim) {
         "set_fighting: already fighting", 0);
 
     if (IS_AFFECTED (ch, AFF_SLEEP))
-        affect_strip (ch, SN(SLEEP));
+        affect_strip_char (ch, SN(SLEEP));
 
     if (victim->fighting == NULL && victim->daze == 0 &&
         victim->position < POS_FIGHTING)
@@ -1004,7 +1004,7 @@ void stop_fighting (CHAR_T *ch, bool both) {
         stop_fighting_one(ch);
     else {
         CHAR_T *fch;
-        for (fch = char_list; fch != NULL; fch = fch->next)
+        for (fch = char_first; fch != NULL; fch = fch->global_next)
             if (fch == ch || (both && fch->fighting == ch))
                 stop_fighting_one (fch);
     }
@@ -1055,14 +1055,13 @@ OBJ_T *make_corpse (CHAR_T *ch) {
     sprintf (buf, corpse->description, name);
     str_replace_dup (&(corpse->description), buf);
 
-    for (obj = ch->carrying; obj != NULL; obj = obj_next) {
+    for (obj = ch->content_first; obj != NULL; obj = obj_next) {
         bool floating = FALSE;
         int timer_min, timer_max;
 
-        obj_next = obj->next_content;
+        obj_next = obj->content_next;
         if (obj->wear_loc == WEAR_LOC_FLOAT)
             floating = TRUE;
-        obj_take_from_char (obj);
 
         if (item_get_corpse_timer_range (obj, &timer_min, &timer_max))
             obj->timer = number_range (timer_min, timer_max);
@@ -1072,18 +1071,19 @@ OBJ_T *make_corpse (CHAR_T *ch) {
         }
         REMOVE_BIT (obj->extra_flags, ITEM_VIS_DEATH);
 
-        if (IS_SET (obj->extra_flags, ITEM_INVENTORY))
+        if (IS_SET (obj->extra_flags, ITEM_INVENTORY)) {
             obj_extract (obj);
-        else if (floating) {
+            continue;
+        }
+        if (floating) {
             if (IS_OBJ_STAT (obj, ITEM_ROT_DEATH)) { /* get rid of it! */
-                if (obj->contains != NULL) {
+                if (obj->content_first != NULL) {
                     OBJ_T *in, *in_next;
 
                     act ("$p evaporates, scattering its contents.",
                          ch, obj, NULL, TO_NOTCHAR);
-                    for (in = obj->contains; in != NULL; in = in_next) {
-                        in_next = in->next_content;
-                        obj_take_from_obj (in);
+                    for (in = obj->content_first; in != NULL; in = in_next) {
+                        in_next = in->content_next;
                         obj_give_to_room (in, ch->in_room);
                     }
                 }
@@ -1095,9 +1095,9 @@ OBJ_T *make_corpse (CHAR_T *ch) {
                 act ("$p falls to the floor.", ch, obj, NULL, TO_NOTCHAR);
                 obj_give_to_room (obj, ch->in_room);
             }
+            continue;
         }
-        else
-            obj_give_to_obj (obj, corpse);
+        obj_give_to_obj (obj, corpse);
     }
 
     obj_give_to_room (corpse, ch->in_room);
@@ -1206,42 +1206,6 @@ void death_cry (CHAR_T *ch) {
     ch->in_room = was_in_room;
 }
 
-OBJ_T *raw_kill (CHAR_T *victim) {
-    OBJ_T *corpse;
-    const RACE_T *race;
-    int i;
-
-    stop_fighting (victim, TRUE);
-    death_cry (victim);
-    corpse = make_corpse (victim);
-
-    if (IS_NPC (victim)) {
-        victim->index_data->killed++;
-        kill_table[URANGE (0, victim->level, MAX_LEVEL - 1)].killed++;
-        char_extract (victim, TRUE);
-        return corpse;
-    }
-
-    char_extract (victim, FALSE);
-    while (victim->affected)
-        affect_remove (victim, victim->affected);
-
-    race = race_get (victim->race);
-    victim->affected_by = race->aff;
-    for (i = 0; i < 4; i++)
-        victim->armor[i] = 100;
-
-    victim->position = POS_RESTING;
-    victim->hit  = UMAX (1, victim->hit);
-    victim->mana = UMAX (1, victim->mana);
-    victim->move = UMAX (1, victim->move);
-
-    /* we're stable enough to not need this :) */
-    /* save_char_obj (victim); */
-
-    return corpse;
-}
-
 void group_gain (CHAR_T *ch, CHAR_T *victim) {
     CHAR_T *gch;
  /* CHAR_T *lch; */
@@ -1257,7 +1221,7 @@ void group_gain (CHAR_T *ch, CHAR_T *victim) {
 
     members = 0;
     group_levels = 0;
-    for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room) {
+    for (gch = ch->in_room->people_first; gch != NULL; gch = gch->room_next) {
         if (is_same_group (gch, ch)) {
             members++;
             group_levels += IS_NPC (gch) ? gch->level / 2 : gch->level;
@@ -1271,7 +1235,7 @@ void group_gain (CHAR_T *ch, CHAR_T *victim) {
     }
 
  /* lch = (ch->leader != NULL) ? ch->leader : ch; */
-    for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room) {
+    for (gch = ch->in_room->people_first; gch != NULL; gch = gch->room_next) {
         OBJ_T *obj;
         OBJ_T *obj_next;
         if (!is_same_group (gch, ch) || IS_NPC (gch))
@@ -1294,8 +1258,8 @@ void group_gain (CHAR_T *ch, CHAR_T *victim) {
         printf_to_char (gch, "You receive %d experience points.\n\r", xp);
         player_gain_exp (gch, xp);
 
-        for (obj = ch->carrying; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = ch->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             if (obj->wear_loc == WEAR_LOC_NONE)
                 continue;
 
@@ -1305,7 +1269,6 @@ void group_gain (CHAR_T *ch, CHAR_T *victim) {
             {
                 act ("You are zapped by $p.", ch, obj, NULL, TO_CHAR);
                 act ("$n is zapped by $p.", ch, obj, NULL, TO_NOTCHAR);
-                obj_take_from_char (obj);
                 obj_give_to_room (obj, ch->in_room);
             }
         }
@@ -1622,7 +1585,6 @@ void disarm (CHAR_T *ch, CHAR_T *victim) {
     act ("{5You disarm $N!{x", ch, NULL, victim, TO_CHAR);
     act ("{5$n disarms $N!{x", ch, NULL, victim, TO_OTHERS);
 
-    obj_take_from_char (obj);
     if (IS_OBJ_STAT (obj, ITEM_NODROP) || IS_OBJ_STAT (obj, ITEM_INVENTORY))
         obj_give_to_char (obj, victim);
     else {

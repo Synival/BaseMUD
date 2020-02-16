@@ -97,7 +97,7 @@ DEFINE_DO_FUN (do_sockets) {
     buf[0] = '\0';
 
     one_argument (argument, arg);
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         if (d->character != NULL && char_can_see_anywhere (ch, d->character)
             && (arg[0] == '\0' || str_in_namelist (arg, d->character->name)
                 || (d->original && str_in_namelist (arg, d->original->name))))
@@ -237,7 +237,7 @@ void do_flag_simple (CHAR_T *ch, CHAR_T *victim, char type,
     char word[MAX_INPUT_LENGTH];
 
     old = *flags;
-    victim->zone = NULL;
+    victim->area = NULL;
 
     if (type != '=')
         new = old;
@@ -418,14 +418,14 @@ DEFINE_DO_FUN (do_purge) {
         CHAR_T *vnext;
         OBJ_T *obj_next;
 
-        for (victim = ch->in_room->people; victim != NULL; victim = vnext) {
-            vnext = victim->next_in_room;
+        for (victim = ch->in_room->people_first; victim != NULL; victim = vnext) {
+            vnext = victim->room_next;
             if (IS_NPC (victim) && !EXT_IS_SET (victim->ext_mob, MOB_NOPURGE)
                 && victim != ch /* safety precaution */ )
-                char_extract (victim, TRUE);
+                char_extract (victim);
         }
-        for (obj = ch->in_room->contents; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = ch->in_room->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             if (!IS_OBJ_STAT (obj, ITEM_NOPURGE))
                 obj_extract (obj);
         }
@@ -455,22 +455,22 @@ DEFINE_DO_FUN (do_purge) {
         if (victim->level > 1)
             save_char_obj (victim);
         d = victim->desc;
-        char_extract (victim, TRUE);
+        char_extract (victim);
         if (d != NULL)
             close_socket (d);
     }
 
     act3 ("You purge $N.", "$n purges you.", "$n purges $N.",
         ch, 0, victim, 0, POS_RESTING);
-    char_extract (victim, TRUE);
+    char_extract (victim);
 }
 
 void do_restore_single (CHAR_T *ch, CHAR_T *vch) {
-    affect_strip (vch, SN(PLAGUE));
-    affect_strip (vch, SN(POISON));
-    affect_strip (vch, SN(BLINDNESS));
-    affect_strip (vch, SN(SLEEP));
-    affect_strip (vch, SN(CURSE));
+    affect_strip_char (vch, SN(PLAGUE));
+    affect_strip_char (vch, SN(POISON));
+    affect_strip_char (vch, SN(BLINDNESS));
+    affect_strip_char (vch, SN(SLEEP));
+    affect_strip_char (vch, SN(CURSE));
 
     vch->hit = vch->max_hit;
     vch->mana = vch->max_mana;
@@ -488,7 +488,7 @@ DEFINE_DO_FUN (do_restore) {
     one_argument (argument, arg);
     if (arg[0] == '\0' || !str_cmp (arg, "room")) {
         /* cure room */
-        for (victim = ch->in_room->people; victim != NULL; victim = victim->next_in_room)
+        for (victim = ch->in_room->people_first; victim; victim = victim->room_next)
             do_restore_single (ch, victim);
 
         wiznetf (ch, NULL, WIZ_RESTORE, WIZ_SECURE, char_get_trust (ch),
@@ -499,7 +499,7 @@ DEFINE_DO_FUN (do_restore) {
 
     if (char_get_trust (ch) >= MAX_LEVEL - 1 && !str_cmp (arg, "all")) {
         /* cure all */
-        for (d = descriptor_list; d != NULL; d = d->next) {
+        for (d = descriptor_first; d != NULL; d = d->global_next) {
             victim = d->character;
             if (victim == NULL || IS_NPC (victim))
                 continue;
@@ -528,7 +528,7 @@ DEFINE_DO_FUN (do_echo) {
     BAIL_IF (argument[0] == '\0',
         "Global echo what?\n\r", ch);
 
-    for (d = descriptor_list; d; d = d->next)
+    for (d = descriptor_first; d; d = d->global_next)
         if (d->connected == CON_PLAYING)
             echo_to_char (d->character, ch, "global", argument);
 }
@@ -631,7 +631,7 @@ DEFINE_DO_FUN (do_zecho) {
     BAIL_IF (ch->in_room == NULL,
         "Good idea - if only you were in a zone...\n\r", ch);
 
-    for (d = descriptor_list; d; d = d->next) {
+    for (d = descriptor_first; d; d = d->global_next) {
         if (d->connected != CON_PLAYING)
             continue;
         if ((vch = d->character) == NULL)

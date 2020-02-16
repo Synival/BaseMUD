@@ -155,6 +155,7 @@ EXT_FLAGS_T fread_ext_flag (FILE *fp, const EXT_FLAG_DEF_T *table) {
         /* Read the flags and the right bracket afterwards. */
         if (fread (buf, sizeof (char), count, fp) <= 0)
             perror ("fread");
+        buf[count] = '\0';
         getc (fp);
 
         /* Build flags from our string. */

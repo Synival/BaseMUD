@@ -42,6 +42,8 @@
 #include "fread.h"
 #include "fwrite.h"
 #include "rooms.h"
+#include "affects.h"
+#include "extra_descrs.h"
 
 #include "save.h"
 
@@ -95,8 +97,8 @@ void save_char_obj (CHAR_T *ch) {
     }
     else {
         fwrite_char (ch, fp);
-        if (ch->carrying != NULL)
-            fwrite_obj (ch, ch->carrying, fp, 0);
+        if (ch->content_first != NULL)
+            fwrite_obj (ch, ch->content_first, fp, 0);
         /* save the pets */
         if (ch->pet != NULL && ch->pet->in_room == ch->in_room)
             fwrite_pet (ch->pet, fp);
@@ -205,7 +207,7 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
              ch->mod_stat[STAT_DEX], ch->mod_stat[STAT_CON]);
 
     if (IS_NPC (ch))
-        fprintf (fp, "Vnum %d\n", ch->index_data->vnum);
+        fprintf (fp, "Vnum %d\n", ch->mob_index->vnum);
     else {
         fprintf (fp, "Pass %s~\n", ch->pcdata->pwd);
         if (ch->pcdata->bamfin[0] != '\0')
@@ -258,7 +260,7 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
         }
     }
 
-    for (paf = ch->affected; paf != NULL; paf = paf->next) {
+    for (paf = ch->affect_first; paf != NULL; paf = paf->on_next) {
         if (paf->type < 0 || paf->type >= SKILL_MAX)
             continue;
         fprintf (fp, "Affc '%s' %3d %3d %3d %3d %3d %10ld\n",
@@ -276,28 +278,30 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
 /* write a pet */
 void fwrite_pet (CHAR_T *pet, FILE *fp) {
     const RACE_T *race;
+    const MOB_INDEX_T *mob_index;
     AFFECT_T *paf;
 
+    mob_index = pet->mob_index;
     race = race_get (pet->race);
 
     fprintf (fp, "#PET\n");
 
-    fprintf (fp, "Vnum %d\n", pet->index_data->vnum);
+    fprintf (fp, "Vnum %d\n", mob_index->vnum);
 
     fprintf (fp, "Name %s~\n", pet->name);
     fprintf (fp, "LogO %ld\n", current_time);
-    if (pet->short_descr != pet->index_data->short_descr)
+    if (pet->short_descr != mob_index->short_descr)
         fprintf (fp, "ShD  %s~\n", pet->short_descr);
-    if (pet->long_descr != pet->index_data->long_descr)
+    if (pet->long_descr != mob_index->long_descr)
         fprintf (fp, "LnD  %s~\n", pet->long_descr);
-    if (pet->description != pet->index_data->description)
+    if (pet->description != mob_index->description)
         fprintf (fp, "Desc %s~\n", pet->description);
-    if (pet->race != pet->index_data->race)
+    if (pet->race != mob_index->race)
         fprintf (fp, "Race %s~\n", race->name);
     if (pet->clan)
         fprintf (fp, "Clan %s~\n", clan_table[pet->clan].name);
     fprintf (fp, "Sex  %d\n", pet->sex);
-    if (pet->level != pet->index_data->level)
+    if (pet->level != mob_index->level)
         fprintf (fp, "Levl %d\n", pet->level);
     fprintf (fp, "HMV  %d %d %d %d %d %d\n",
              pet->hit, pet->max_hit, pet->mana, pet->max_mana, pet->move,
@@ -308,13 +312,13 @@ void fwrite_pet (CHAR_T *pet, FILE *fp) {
         fprintf (fp, "Silv %ld\n", pet->silver);
     if (pet->exp > 0)
         fprintf (fp, "Exp  %d\n", pet->exp);
-    if (!EXT_EQUALS (pet->ext_mob, pet->index_data->ext_mob_final))
+    if (!EXT_EQUALS (pet->ext_mob, mob_index->ext_mob_final))
         fprintf (fp, "Mob  %s\n", fwrite_ext_flags_static (
             mob_flags, pet->ext_mob));
     if (EXT_IS_NONZERO (pet->ext_plr))
         fprintf (fp, "Plr  %s\n", fwrite_ext_flags_static (
             plr_flags, pet->ext_plr));
-    if (pet->affected_by != pet->index_data->affected_by_final)
+    if (pet->affected_by != mob_index->affected_by_final)
         fprintf (fp, "AfBy %s\n", fwrite_flags_static (pet->affected_by));
     if (pet->comm != 0)
         fprintf (fp, "Comm %s\n", fwrite_flags_static (pet->comm));
@@ -322,11 +326,11 @@ void fwrite_pet (CHAR_T *pet, FILE *fp) {
              POS_FIGHTING ? POS_STANDING : pet->position);
     if (pet->saving_throw != 0)
         fprintf (fp, "Save %d\n", pet->saving_throw);
-    if (pet->alignment != pet->index_data->alignment)
+    if (pet->alignment != mob_index->alignment)
         fprintf (fp, "Alig %d\n", pet->alignment);
-    if (pet->hitroll != pet->index_data->hitroll)
+    if (pet->hitroll != mob_index->hitroll)
         fprintf (fp, "Hit  %d\n", pet->hitroll);
-    if (pet->damroll != pet->index_data->damage.bonus)
+    if (pet->damroll != mob_index->damage.bonus)
         fprintf (fp, "Dam  %d\n", pet->damroll);
     fprintf (fp, "ACs  %d %d %d %d\n",
              pet->armor[0], pet->armor[1], pet->armor[2], pet->armor[3]);
@@ -339,7 +343,7 @@ void fwrite_pet (CHAR_T *pet, FILE *fp) {
              pet->mod_stat[STAT_WIS], pet->mod_stat[STAT_DEX],
              pet->mod_stat[STAT_CON]);
 
-    for (paf = pet->affected; paf != NULL; paf = paf->next) {
+    for (paf = pet->affect_first; paf != NULL; paf = paf->on_next) {
         if (paf->type < 0 || paf->type >= SKILL_MAX)
             continue;
         fprintf (fp, "Affc '%s' %3d %3d %3d %3d %3d %10ld\n",
@@ -354,55 +358,59 @@ void fwrite_pet (CHAR_T *pet, FILE *fp) {
 void fwrite_obj (CHAR_T *ch, OBJ_T *obj, FILE *fp, int nest) {
     EXTRA_DESCR_T *ed;
     AFFECT_T *paf;
+    OBJ_INDEX_T *obj_index;
 
     /* Slick recursion to write lists backwards,
      * so loading them will load in forwards order. */
-    if (obj->next_content != NULL)
-        fwrite_obj (ch, obj->next_content, fp, nest);
-
+    /* TODO: it may be slick, but fwrite_obj() shouldn't write more than
+     *       one object. put this somewhere else! */
+    if (obj->content_next != NULL)
+        fwrite_obj (ch, obj->content_next, fp, nest);
 
     /* Don't store non-persistant items. */
     if (!item_should_save_for_level (obj, ch->level))
         return;
 
+    obj_index = obj->obj_index;
+
     fprintf (fp, "#O\n");
-    fprintf (fp, "Vnum %d\n", obj->index_data->vnum);
-    if (!obj->index_data->new_format)
+    fprintf (fp, "Vnum %d\n", obj_index->vnum);
+    if (!obj_index->new_format)
         fprintf (fp, "Oldstyle\n");
     if (obj->enchanted)
         fprintf (fp, "Enchanted\n");
     fprintf (fp, "Nest %d\n", nest);
 
     /* These data are only used if they do not match the defaults */
-    if (obj->name != obj->index_data->name)
+    if (obj->name != obj_index->name)
         fprintf (fp, "Name %s~\n", obj->name);
-    if (obj->short_descr != obj->index_data->short_descr)
+    if (obj->short_descr != obj_index->short_descr)
         fprintf (fp, "ShD  %s~\n", obj->short_descr);
-    if (obj->description != obj->index_data->description)
+    if (obj->description != obj_index->description)
         fprintf (fp, "Desc %s~\n", obj->description);
-    if (obj->extra_flags != obj->index_data->extra_flags)
+    if (obj->extra_flags != obj_index->extra_flags)
         fprintf (fp, "ExtF %ld\n", obj->extra_flags);
-    if (obj->wear_flags != obj->index_data->wear_flags)
+    if (obj->wear_flags != obj_index->wear_flags)
         fprintf (fp, "WeaF %ld\n", obj->wear_flags);
-    if (obj->item_type != obj->index_data->item_type)
+    if (obj->item_type != obj_index->item_type)
         fprintf (fp, "Ityp %d\n", obj->item_type);
-    if (obj->weight != obj->index_data->weight)
+    if (obj->weight != obj_index->weight)
         fprintf (fp, "Wt   %d\n", obj->weight);
-    if (obj->condition != obj->index_data->condition)
+    if (obj->condition != obj_index->condition)
         fprintf (fp, "Cond %d\n", obj->condition);
 
     /* Variable data */
     fprintf (fp, "Wear %d\n", obj->wear_loc);
-    if (obj->level != obj->index_data->level)
+    if (obj->level != obj_index->level)
         fprintf (fp, "Lev  %d\n", obj->level);
     if (obj->timer != 0)
         fprintf (fp, "Time %d\n", obj->timer);
     fprintf (fp, "Cost %d\n", obj->cost);
-    if (obj->v.value[0] != obj->index_data->v.value[0] ||
-        obj->v.value[1] != obj->index_data->v.value[1] ||
-        obj->v.value[2] != obj->index_data->v.value[2] ||
-        obj->v.value[3] != obj->index_data->v.value[3] ||
-        obj->v.value[4] != obj->index_data->v.value[4])
+    if (obj->v.value[0] != obj_index->v.value[0] ||
+        obj->v.value[1] != obj_index->v.value[1] ||
+        obj->v.value[2] != obj_index->v.value[2] ||
+        obj->v.value[3] != obj_index->v.value[3] ||
+        obj->v.value[4] != obj_index->v.value[4])
     {
         fprintf (fp, "Val  %ld %ld %ld %ld %ld\n",
                  obj->v.value[0], obj->v.value[1], obj->v.value[2],
@@ -411,7 +419,7 @@ void fwrite_obj (CHAR_T *ch, OBJ_T *obj, FILE *fp, int nest) {
 
     item_write_save_data (obj, fp);
 
-    for (paf = obj->affected; paf != NULL; paf = paf->next) {
+    for (paf = obj->affect_first; paf != NULL; paf = paf->on_next) {
         if (paf->type < 0 || paf->type >= SKILL_MAX)
             continue;
         fprintf (fp, "Affc '%s' %3d %3d %3d %3d %3d %10ld\n",
@@ -420,12 +428,12 @@ void fwrite_obj (CHAR_T *ch, OBJ_T *obj, FILE *fp, int nest) {
                  paf->apply, paf->bits);
     }
 
-    for (ed = obj->extra_descr; ed != NULL; ed = ed->next)
+    for (ed = obj->extra_descr_first; ed != NULL; ed = ed->on_next)
         fprintf (fp, "ExDe %s~ %s~\n", ed->keyword, ed->description);
     fprintf (fp, "End\n\n");
 
-    if (obj->contains != NULL)
-        fwrite_obj (ch, obj->contains, fp, nest + 1);
+    if (obj->content_first != NULL)
+        fwrite_obj (ch, obj->content_first, fp, nest + 1);
 }
 
 /* Load a char and inventory into a new ch structure. */
@@ -713,7 +721,8 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                     paf->modifier = fread_number (fp);
                     paf->apply    = fread_number (fp);
                     paf->bits     = fread_number (fp);
-                    LIST_BACK (paf, next, ch->affected, AFFECT_T);
+
+                    affect_to_char_back (paf, ch);
                     match = TRUE;
                     break;
                 }
@@ -735,7 +744,8 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                     paf->modifier = fread_number (fp);
                     paf->apply    = fread_number (fp);
                     paf->bits     = fread_number (fp);
-                    LIST_BACK (paf, next, ch->affected, AFFECT_T);
+
+                    affect_to_char_back (paf, ch);
                     match = TRUE;
                     break;
                 }
@@ -1074,16 +1084,17 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 KEY ("Version", ch->version, fread_number (fp));
                 KEY ("Vers", ch->version, fread_number (fp));
                 if (!str_cmp (word, "Vnum")) {
-                    ch->index_data = mobile_get_index (fread_number (fp));
+                    mobile_to_mob_index (ch,
+                        mobile_get_index (fread_number (fp)));
                     match = TRUE;
                     break;
                 }
                 break;
 
             case 'W':
-                KEY ("Wimpy", ch->wimpy, fread_number (fp));
-                KEY ("Wimp", ch->wimpy, fread_number (fp));
-                KEY ("Wizn", ch->wiznet, fread_flag (fp));
+                KEY ("Wimpy", ch->wimpy,  fread_number (fp));
+                KEY ("Wimp",  ch->wimpy,  fread_number (fp));
+                KEY ("Wizn",  ch->wiznet, fread_flag (fp));
                 break;
         }
 
@@ -1170,7 +1181,8 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                     paf->modifier = fread_number (fp);
                     paf->apply    = fread_number (fp);
                     paf->bits     = fread_number (fp);
-                    LIST_BACK (paf, next, pet->affected, AFFECT_T);
+
+                    affect_to_char_back (paf, pet);
                     match = TRUE;
                     break;
                 }
@@ -1197,7 +1209,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                      * pointed out a bug with duplicating affects in saved
                      * pets. -- JR 2002/01/31 */
                     if (!check_pet_affected (vnum, paf))
-                        LIST_BACK (paf, next, pet->affected, AFFECT_T);
+                        affect_to_char_back (paf, pet);
                     else
                         affect_free (paf);
                     match = TRUE;
@@ -1313,6 +1325,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
 
 void fread_obj (CHAR_T *ch, FILE *fp) {
     OBJ_T *obj;
+    OBJ_INDEX_T *obj_index;
     char *word;
     int nest;
     bool match;
@@ -1320,13 +1333,14 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
     bool vnum;
     bool first;
     bool new_format; /* to prevent errors */
-    bool make_new; /* update object */
+    bool make_new;   /* update object */
 
-    vnum = FALSE;
-    obj = NULL;
-    first = TRUE; /* used to counter fp offset */
+    vnum       = FALSE;
+    obj        = NULL;
+    obj_index  = NULL;
+    first      = TRUE; /* used to counter fp offset */
     new_format = FALSE;
-    make_new = FALSE;
+    make_new   = FALSE;
 
     word = feof (fp) ? "End" : fread_word_static (fp);
     if (!str_cmp (word, "Vnum")) {
@@ -1334,19 +1348,20 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
         first = FALSE; /* fp will be in right place */
 
         vnum = fread_number (fp);
-        if (obj_get_index (vnum) == NULL)
+        if ((obj_index = obj_get_index (vnum)) == NULL)
             bug ("fread_obj: bad vnum %d.", vnum);
         else {
-            obj = obj_create (obj_get_index (vnum), -1);
+            obj = obj_create (obj_index, -1);
             new_format = TRUE;
         }
     }
 
     if (obj == NULL) { /* either not found or old style */
         obj = obj_new ();
-        obj->name = str_dup ("");
-        obj->short_descr = str_dup ("");
-        obj->description = str_dup ("");
+        obj_to_obj_index (obj, obj_index);
+        str_replace_dup (&obj->name,        "");
+        str_replace_dup (&obj->short_descr, "");
+        str_replace_dup (&obj->description, "");
     }
 
     nested = FALSE;
@@ -1383,7 +1398,8 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                     paf->modifier = fread_number (fp);
                     paf->apply    = fread_number (fp);
                     paf->bits     = fread_number (fp);
-                    LIST_BACK (paf, next, obj->affected, AFFECT_T);
+
+                    affect_to_obj_back (paf, obj);
                     match = TRUE;
                     break;
                 }
@@ -1405,7 +1421,8 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                     paf->modifier = fread_number (fp);
                     paf->apply    = fread_number (fp);
                     paf->bits     = fread_number (fp);
-                    LIST_BACK (paf, next, obj->affected, AFFECT_T);
+
+                    affect_to_obj_back (paf, obj);
                     match = TRUE;
                     break;
                 }
@@ -1437,12 +1454,12 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                     ed = extra_descr_new ();
                     fread_string_replace (fp, &ed->keyword);
                     fread_string_replace (fp, &ed->description);
-                    LIST_BACK (ed, next, obj->extra_descr, EXTRA_DESCR_T);
+                    extra_descr_to_obj_back (ed, obj);
                     match = TRUE;
                 }
 
                 if (!str_cmp (word, "End")) {
-                    if (!nested || (vnum && obj->index_data == NULL)) {
+                    if (!nested || (vnum && obj->obj_index == NULL)) {
                         bug ("fread_obj: incomplete object.", 0);
                         obj_free (obj);
                         return;
@@ -1453,11 +1470,11 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                             obj = obj_create (obj_get_index (OBJ_VNUM_DUMMY), 0);
                         }
                         if (!new_format) {
-                            LIST_FRONT (obj, next, object_list);
-                            obj->index_data->count++;
+                            LIST2_FRONT (obj, global_prev, global_next,
+                                object_first, object_last);
                         }
 
-                        if (!obj->index_data->new_format &&
+                        if (!obj->obj_index->new_format &&
                             item_is_armor (obj) &&
                             obj->v.armor.vs_bash == 0)
                         {
@@ -1470,7 +1487,7 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                             wear = obj->wear_loc;
                             obj_extract (obj);
 
-                            obj = obj_create (obj->index_data, 0);
+                            obj = obj_create (obj->obj_index, 0);
                             obj->wear_loc = wear;
                         }
                         if (nest == 0 || obj_nest[nest] == NULL)
@@ -1509,8 +1526,7 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
 
             case 'O':
                 if (!str_cmp (word, "Oldstyle")) {
-                    if (obj->index_data != NULL
-                        && obj->index_data->new_format)
+                    if (obj->obj_index != NULL && obj->obj_index->new_format)
                         make_new = TRUE;
                     match = TRUE;
                 }
@@ -1547,8 +1563,8 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                     obj->v.value[2] = fread_number (fp);
                     obj->v.value[3] = fread_number (fp);
                     if (item_is_weapon (obj) && obj->v.weapon.weapon_type == 0)
-                        obj->v.weapon.weapon_type = obj->index_data->
-                            v.weapon.weapon_type;
+                        obj->v.weapon.weapon_type =
+                            obj->obj_index->v.weapon.weapon_type;
                     match = TRUE;
                     break;
                 }
@@ -1567,10 +1583,12 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                     int vnum;
 
                     vnum = fread_number (fp);
-                    if ((obj->index_data = obj_get_index (vnum)) == NULL)
+                    if ((obj_index = obj_get_index (vnum)) == NULL)
                         bug ("fread_obj: bad vnum %d.", vnum);
-                    else
+                    else {
+                        obj_to_obj_index (obj, obj_index);
                         vnum = TRUE;
+                    }
                     match = TRUE;
                     break;
                 }

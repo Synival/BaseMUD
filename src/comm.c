@@ -396,16 +396,16 @@ void act_new (const char *format, CHAR_T *ch, const void *arg1,
     if (ch == NULL || ch->in_room == NULL)
         return;
 
-    to = ch->in_room->people;
+    to = ch->in_room->people_first;
     if (flags == TO_VICT) {
         BAIL_IF_BUG (vch == NULL,
             "act: null vch with TO_VICT.", 0);
         if (vch->in_room == NULL)
             return;
-        to = vch->in_room->people;
+        to = vch->in_room->people_first;
     }
 
-    for (; to != NULL; to = to->next_in_room) {
+    for (; to != NULL; to = to->room_next) {
         if (!IS_NPC (to) && to->desc == NULL)
             continue;
         if (IS_NPC (to) && to->desc == NULL && !HAS_TRIGGER (to, TRIG_ACT))
@@ -471,7 +471,7 @@ void wiznet (const char *string, CHAR_T *ch, OBJ_T *obj,
 {
     DESCRIPTOR_T *d;
 
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         if (d->connected == CON_PLAYING && IS_IMMORTAL (d->character)
             && IS_SET (d->character->wiznet, WIZ_ON)
             && (!flag || IS_SET (d->character->wiznet, flag))

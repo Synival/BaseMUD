@@ -116,7 +116,6 @@ void do_drop_single_item (CHAR_T *ch, OBJ_T *obj) {
     BAIL_IF_ACT (!char_can_drop_obj (ch, obj),
         "$p: You can't let go of it.", ch, obj, NULL);
 
-    obj_take_from_char (obj);
     obj_give_to_room (obj, ch->in_room);
     act2 ("You drop $p.",
           "$n drops $p.", ch, obj, NULL, 0, POS_RESTING);
@@ -137,16 +136,13 @@ void do_put_single_item (CHAR_T *ch, OBJ_T *obj, OBJ_T *container) {
     BAIL_IF_ACT (!item_can_fit_obj_in (container, obj),
         "$p: It won't fit.", ch, obj, NULL);
 
-    if (container->index_data->vnum == OBJ_VNUM_PIT &&
-        !obj_can_wear_flag (obj, ITEM_TAKE))
-    {
+    if (obj_is_donation_pit (container) && !obj_can_wear_flag (obj, ITEM_TAKE)) {
         if (obj->timer)
             SET_BIT (obj->extra_flags, ITEM_HAD_TIMER);
         else
             obj->timer = number_range (100, 200);
     }
 
-    obj_take_from_char (obj);
     obj_give_to_obj (obj, container);
 
     put_msgs = item_get_put_messages (container);
@@ -171,14 +167,14 @@ void do_get_container (CHAR_T *ch, char *arg1, char *arg2) {
     BAIL_IF (!item_can_loot_as (container, ch),
         "You can't do that.\n\r", ch);
     BAIL_IF (type != OBJ_SINGLE && !IS_IMMORTAL (ch) &&
-             container->index_data->vnum == OBJ_VNUM_PIT,
+             obj_is_donation_pit (container),
         "Don't be so greedy!\n\r", ch);
 
-    obj_start = (type != OBJ_SINGLE) ? container->contains
+    obj_start = (type != OBJ_SINGLE) ? container->content_first
         : find_obj_container (ch, container, arg1);
 
     for (obj = obj_start; obj != NULL; obj = obj_next) {
-        obj_next = (type == OBJ_SINGLE) ? NULL : obj->next_content;
+        obj_next = (type == OBJ_SINGLE) ? NULL : obj->content_next;
         if (type == OBJ_ALL_OF && !str_in_namelist (arg1, obj->name))
             continue;
         if (!char_can_see_obj (ch, obj))
@@ -200,16 +196,16 @@ void do_get_room (CHAR_T *ch, char *argument) {
     bool found = FALSE, failed = FALSE;
 
     argument = do_obj_parse_arg (argument, &type);
-    obj_start = (type != OBJ_SINGLE) ? ch->in_room->contents
+    obj_start = (type != OBJ_SINGLE) ? ch->in_room->content_first
         : find_obj_same_room (ch, argument);
 
     for (obj = obj_start; obj != NULL; obj = obj_next) {
-        obj_next = (type == OBJ_SINGLE) ? NULL : obj->next_content;
+        obj_next = (type == OBJ_SINGLE) ? NULL : obj->content_next;
         if (type == OBJ_ALL_OF && !str_in_namelist (argument, obj->name))
             continue;
         if (!char_can_see_obj (ch, obj))
             continue;
-       char_take_obj (ch, obj, NULL);
+        char_take_obj (ch, obj, NULL);
         found = TRUE;
     }
     if (!found) {
@@ -254,11 +250,11 @@ DEFINE_DO_FUN (do_put) {
     BAIL_IF (!item_can_put_objs (container),
         "That's not a container.\n\r", ch);
 
-    obj_start = (type != OBJ_SINGLE) ? ch->carrying
+    obj_start = (type != OBJ_SINGLE) ? ch->content_first
         : find_obj_own_inventory (ch, arg);
 
     for (obj = obj_start; obj != NULL; obj = obj_next) {
-        obj_next = (type == OBJ_SINGLE) ? NULL : obj->next_content;
+        obj_next = (type == OBJ_SINGLE) ? NULL : obj->content_next;
         if (type == OBJ_ALL_OF && !str_in_namelist (arg, obj->name))
             continue;
         if (do_filter_can_put_item (ch, obj, container, type == OBJ_SINGLE)) {
@@ -323,11 +319,11 @@ DEFINE_DO_FUN (do_drop) {
     }
 
     arg = do_obj_parse_arg (arg1, &type);
-    obj_start = (type != OBJ_SINGLE) ? ch->carrying
+    obj_start = (type != OBJ_SINGLE) ? ch->content_first
         : find_obj_own_inventory (ch, arg);
 
     for (obj = obj_start; obj != NULL; obj = obj_next) {
-        obj_next = (type == OBJ_SINGLE) ? NULL : obj->next_content;
+        obj_next = (type == OBJ_SINGLE) ? NULL : obj->content_next;
         if (type == OBJ_ALL_OF && !str_in_namelist (arg, obj->name))
             continue;
         if (do_filter_can_drop_item (ch, obj, type == OBJ_SINGLE)) {
@@ -434,13 +430,12 @@ void do_give_single_item (CHAR_T *ch, OBJ_T *obj, CHAR_T *victim) {
     BAIL_IF_ACT (!char_can_see_obj (victim, obj),
         "$N can't see it.", ch, NULL, victim);
 
-    if (IS_NPC (victim) && victim->index_data->shop != NULL) {
+    if (IS_NPC (victim) && victim->mob_index->shop != NULL) {
         act ("$N tells you 'Sorry, you'll have to sell that.'",
              ch, NULL, victim, TO_CHAR);
         return;
     }
 
-    obj_take_from_char (obj);
     obj_give_to_char (obj, victim);
     trigger_mobs = FALSE;
     act3 ("$n gives $p to $N.",
@@ -668,8 +663,8 @@ DEFINE_DO_FUN (do_wear) {
         bool success;
 
         success = FALSE;
-        for (obj = ch->carrying; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = ch->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             if (obj->wear_loc == WEAR_LOC_NONE && char_can_see_obj (ch, obj))
                 if (char_wear_obj (ch, obj, FALSE))
                     success = TRUE;
@@ -725,7 +720,7 @@ DEFINE_DO_FUN (do_sacrifice) {
         "$p is not an acceptable sacrifice.", ch, obj, NULL);
 
     if (obj->in_room != NULL)
-        for (gch = obj->in_room->people; gch; gch = gch->next_in_room)
+        for (gch = obj->in_room->people_first; gch; gch = gch->room_next)
             BAIL_IF_ACT (gch->on == obj,
                 "$N appears to be using $p.", ch, obj, gch);
 
@@ -745,7 +740,7 @@ DEFINE_DO_FUN (do_sacrifice) {
     ch->silver += silver;
     if (EXT_IS_SET (ch->ext_plr, PLR_AUTOSPLIT)) { /* AUTOSPLIT code */
         members = 0;
-        for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room)
+        for (gch = ch->in_room->people_first; gch != NULL; gch = gch->room_next)
             if (is_same_group (gch, ch))
                 members++;
         if (members > 1 && silver > 1) {
@@ -953,7 +948,7 @@ DEFINE_DO_FUN (do_steal) {
     {
         /* Failure. */
         send_to_char ("Oops.\n\r", ch);
-        affect_strip (ch, SN(SNEAK));
+        affect_strip_char (ch, SN(SNEAK));
         REMOVE_BIT (ch->affected_by, AFF_SNEAK);
 
         act ("$n tried to steal from you.\n\r", ch, NULL, victim, TO_VICT);
@@ -1035,7 +1030,6 @@ DEFINE_DO_FUN (do_steal) {
                 char_get_max_carry_weight (ch),
         "You can't carry that much weight.\n\r", ch);
 
-    obj_take_from_char (obj);
     obj_give_to_char (obj, ch);
     act ("You pocket $p.", ch, obj, NULL, TO_CHAR);
     player_try_skill_improve (ch, SN(STEAL), TRUE, 2);

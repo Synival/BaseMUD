@@ -37,6 +37,7 @@
 void assign_area_vnum (int vnum, AREA_T *area);
 bool check_pet_affected (int vnum, AFFECT_T *paf);
 void db_dump_world (const char *filename);
+int db_hash_from_vnum (int vnum);
 
 /* World init functions. */
 void boot_db (void);
@@ -71,16 +72,6 @@ void fix_resets (void);
 void fix_exits (void);
 void fix_mobprogs (void);
 void db_export_json (bool write_indiv, const char *everything);
-
-/* Reset / destruction functions. */
-void reset_room (ROOM_INDEX_T *room);
-void reset_area (AREA_T *area);
-void clear_char (CHAR_T *ch);
-
-/* Getter functions. */
-char *get_extra_descr (const char *name, EXTRA_DESCR_T *ed);
-MPROG_CODE_T *get_mprog_index (int vnum);
-int help_area_count_pages (HELP_AREA_T *had);
 
 /* Temporary objects used during loading. */
 ANUM_T *anum_new (void);

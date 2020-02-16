@@ -35,9 +35,17 @@
 
 #include "memory.h"
 
+/* Memory management.
+ * Increase MAX_STRING if you have too.
+ * Tune the others only if you understand what you're doing. */
+#define MAGIC_NUM           52571214
+#define MAX_STRING_SPACE    2097152 /* 2^21 */
+#define MAX_PERM_BLOCK      131072
+#define MAX_PERM_BLOCKS     1024
+#define MAX_MEM_LIST        11
+
 #ifndef BASEMUD_DEBUG_DISABLE_MEMORY_MANAGEMENT
     /* Magic number for memory allocation */
-    #define MAGIC_NUM 52571214
     typedef int magic_t;
 
     /* Globals for strings. */
@@ -122,7 +130,7 @@ char *str_dup (const char *str) {
     if (str >= string_space && str < top_string)
         return (char *) str;
     if (in_boot_db)
-        return str_register (str, strlen (str));
+        return str_register (str);
 
     str_new = mem_alloc (strlen (str) + 1);
     strcpy (str_new, str);
@@ -154,19 +162,21 @@ void str_free (char **pstr) {
 }
 
 /* Add a string to the global hash of read-only, permanent strings. */
-char *str_register (const char *str, int len) {
+char *str_register (const char *str) {
 #ifdef BASEMUD_DEBUG_DISABLE_MEMORY_MANAGEMENT
     return NULL;
 #else
     union {
         char *pc;
         char rgc[sizeof (char *)];
-    } u1;
+    } hash_ptr;
 
-    int i, hash_index;
-    char *hash, *hash_str, *next_hash;
-    char *new = top_string, *new_str = top_string + sizeof (char *);
+    unsigned int i, hash_index;
+    unsigned int hash_value;
+    char *new, *new_str;
+    unsigned int *new_hash;
     size_t new_len;
+    char *existing_str;
 
     /* Ignore special cases. */
     if (str == NULL)
@@ -174,53 +184,106 @@ char *str_register (const char *str, int len) {
     if (*str == '\0')
         return str_empty;
 
-    /* Check to see if this exact string is already loaded.
-     * Each string is hashed by its length. hash_index[n] points to the
-     * latest string loaded of the same size. Each string is stored in
-     * 'string_space' with the following format:
+    /* Check to see if this exact string is already loaded. Each string
+     * is stored in the following structure:
      * ----------------------------------------------------------------
-     *      (char *)                 (char x len) '\0'
-     *      ^^ pointer to next hash, ^^ data
+     *      (char *)                 (int)           (char x len) '\0'
+     *      ^^ pointer to next hash, ^^ string hash, ^^ data
      * ----------------------------------------------------------------
      * Each hash is traversed back to the first string loaded similar to
-     * traversing through a linked list. */
+     * traversing through a linked list.
+     *
+     * Hashes are generated like so:
+     * 1) Set 'hash_value' to a generated non-unique hash.
+     *    This will be stored in the 'string_hash' table data.
+     * 2) set 'hash_index' to 'hash_value % MAX_KEY_HASH'.
+     *    This is used to divide the hash table into smaller chunks
+     *    to speed up lookup by MAX_KEY_HASH times.
+     * 3) Store each string in 'string_hash[hash_index]'. */
 
-    hash_index = UMIN (MAX_KEY_HASH - 1, len);
-    for (hash = string_hash[hash_index]; hash; hash = next_hash) {
-        for (i = 0; i < sizeof (char *); i++)
-            u1.rgc[i] = hash[i];
-        next_hash = u1.pc;
+    /* Generate a hash VALUE for the string for comparison. */
+    /* Method is 'djb2' by Dan Bernstein, c/o:
+     *    https://stackoverflow.com/a/7666577/7270901 */
+    hash_value = 0;
+    for (i = 0; str[i] != '\0'; i++)
+        hash_value = ((hash_value << 5) + hash_value) + str[i];
+    hash_index = hash_value % MAX_KEY_HASH;
 
-        hash_str = hash + sizeof (char *);
-        if (!strcmp (str, hash_str))
-            return hash_str;
-    }
-    new_len = len + 1 + sizeof (char *);
+    /* See if there's a string already registered. */
+    if ((existing_str = str_get_registered (str, hash_index, hash_value)))
+        return existing_str;
 
     /* No matching string was found - so register it into 'string_space'.
        If this string isn't already loaded into 'string_space', do it now. */
-    if (str != new_str) {
-        EXIT_IF_BUG (string_bytes_allocated + new_len > MAX_STRING_SPACE,
-            "str_register: MAX_STRING_SPACE %d exceeded. Please increase.",
-            MAX_STRING_SPACE);
-        strcpy (new_str, str);
-        str = new_str;
-    }
+    new_len  = strlen (str) + sizeof (char *) + sizeof (unsigned int) + 1;
+    EXIT_IF_BUG (string_bytes_allocated + new_len > MAX_STRING_SPACE,
+        "str_register: MAX_STRING_SPACE %d exceeded. Please increase.",
+        MAX_STRING_SPACE);
+
+    new      = top_string;
+    new_hash = (void *) new + sizeof (char *);
+    new_str  = (void *) new_hash + sizeof (unsigned int);
+
+    /* Set the pointer to the next string in the hash. */
+    hash_ptr.pc = string_hash[hash_index];
+    for (i = 0; i < sizeof (char *); i++)
+        new[i] = hash_ptr.rgc[i];
+    string_hash[hash_index] = new;
+
+    /* Set the hash VALUE. */
+    *new_hash = hash_value;
+
+    /* Finally copy the string. */
+    strcpy (new_str, str);
 
     strings_allocated      += 1;
     top_string             += new_len;
     string_bytes_allocated += new_len;
-
-    u1.pc = string_hash[hash_index];
-    for (i = 0; i < sizeof (char *); i++)
-        new[i] = u1.rgc[i];
-    string_hash[hash_index] = new;
 
     /* Return the string in its 'string_space' location, without the pointer
      * to the next hashed string. */
     return new_str;
 #endif
 }
+
+char *str_get_registered (const char *str, unsigned int hash_index,
+    unsigned int hash_value)
+{
+#ifdef BASEMUD_DEBUG_DISABLE_MEMORY_MANAGEMENT
+    return NULL;
+#else
+    union {
+        char *pc;
+        char rgc[sizeof (char *)];
+    } hash_ptr;
+
+    int i;
+    char *hash, *hash_str, *next_hash;
+    unsigned int *hash_hash; /* This is the stupidest name ever, but...
+                              * it's the hash in the hash. /shrug */
+
+    for (hash = string_hash[hash_index]; hash; hash = next_hash) {
+        /* Get the pointer to the next string. */
+        for (i = 0; i < sizeof (char *); i++)
+            hash_ptr.rgc[i] = hash[i];
+        next_hash = hash_ptr.pc;
+
+        /* Compare hash VALUES between strings. */
+        hash_hash = (void *) hash + sizeof (char *);
+        if (*hash_hash != hash_value)
+            continue;
+
+        /* Compare the string values. If it already exists, we're done. */
+        hash_str = (void *) hash_hash + sizeof (unsigned int);
+        if (!strcmp (str, hash_str))
+            return hash_str;
+    }
+    return NULL;
+#endif
+}
+
+int str_get_strings_allocated (void)
+    { return strings_allocated; }
 
 /* Allocate some ordinary memory,
  * with the expectation of freeing it someday. */

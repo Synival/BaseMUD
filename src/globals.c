@@ -27,15 +27,15 @@
 
 #include "globals.h"
 
-HELP_T       *help_first, *help_last;
-SHOP_T       *shop_first, *shop_last;
-AREA_T       *area_first, *area_last;
-BAN_T        *ban_first,  *ban_last;
-HELP_AREA_T  *had_first,  *had_last;
-ANUM_T       *anum_first, *anum_last;
-MPROG_CODE_T *mprog_list;
-OBJ_T        *object_list;
-CHAR_T       *char_list;
+HELP_T       *help_first,   *help_last;
+SHOP_T       *shop_first,   *shop_last;
+AREA_T       *area_first,   *area_last;
+BAN_T        *ban_first,    *ban_last;
+HELP_AREA_T  *had_first,    *had_last;
+ANUM_T       *anum_first,   *anum_last;
+MPROG_CODE_T *mpcode_first, *mpcode_last;
+OBJ_T        *object_first, *object_last;
+CHAR_T       *char_first,   *char_last;
 
 int newmob_count = 0;
 int newobj_count = 0;
@@ -47,11 +47,15 @@ KILL_T kill_table[MAX_LEVEL];
 TIME_INFO_T time_info;
 WEATHER_T weather_info;
 
-MOB_INDEX_T  *mob_index_hash[MAX_KEY_HASH];
-OBJ_INDEX_T  *obj_index_hash[MAX_KEY_HASH];
-ROOM_INDEX_T *room_index_hash[MAX_KEY_HASH];
+MOB_INDEX_T  *mob_index_hash[MAX_KEY_HASH],
+             *mob_index_hash_back[MAX_KEY_HASH];
+OBJ_INDEX_T  *obj_index_hash[MAX_KEY_HASH],
+             *obj_index_hash_back[MAX_KEY_HASH];
+ROOM_INDEX_T *room_index_hash[MAX_KEY_HASH],
+             *room_index_hash_back[MAX_KEY_HASH];
 
 bool  in_boot_db;
+bool  in_game_loop;
 FILE *current_area_file;
 char  current_area_filename[MAX_INPUT_LENGTH];
 
@@ -70,7 +74,7 @@ char  current_area_filename[MAX_INPUT_LENGTH];
 #endif
 
 /* Global variables. */
-DESCRIPTOR_T *descriptor_list; /* All open descriptors     */
+DESCRIPTOR_T *descriptor_first, *descriptor_last; /* All open descriptors */
 DESCRIPTOR_T *d_next;          /* Next descriptor in loop  */
 FILE *reserve_file;            /* Reserved file handle     */
 bool god;                      /* All new chars are gods!  */

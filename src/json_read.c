@@ -124,9 +124,7 @@ static void json_read_advance (JSON_READ_T *context) {
         context->line++;
         context->col = 1;
     }
-    else if (*(context->pos) == '\r')
-        ;
-    else
+    else if (*(context->pos) != '\r')
         context->col++;
     context->pos++;
 }

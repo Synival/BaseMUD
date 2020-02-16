@@ -175,7 +175,7 @@
         rec = recycle_get (rtype);                                         \
         if (rec->obj_name_off < 0)                                         \
             return NULL;                                                   \
-        for (orec = rec->list_front; orec != NULL; orec = orec->next) {    \
+        for (orec = rec->list_first; orec != NULL; orec = orec->next) {    \
             oname = DEREF_OFFSET (char *, orec->obj, rec->obj_name_off);   \
             if (oname[0] == name[0] && !str_prefix (name, oname))          \
                 return orec;                                               \
@@ -193,7 +193,7 @@
         rec = recycle_get (rtype);                                         \
         if (rec->obj_name_off < 0)                                         \
             return NULL;                                                   \
-        for (orec = rec->list_front; orec != NULL; orec = orec->next)      \
+        for (orec = rec->list_first; orec != NULL; orec = orec->next)      \
             if (!str_cmp (name, DEREF_OFFSET (                             \
                     char *, orec->obj, rec->obj_name_off)))                \
                 return orec;                                               \

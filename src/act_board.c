@@ -53,7 +53,7 @@ void do_nread_next (CHAR_T *ch, char *argument, time_t *last_note) {
     char buf[200];
     int count = 1;
 
-    for (p = ch->pcdata->board->note_first; p ; p = p->next, count++) {
+    for (p = ch->pcdata->board->note_first; p ; p = p->board_next, count++) {
         if ((p->date_stamp > *last_note) && note_is_for_char (p, ch)) {
             note_show_to_char (p, ch, count);
             /* Advance if new note is newer than the currently newest for that char */
@@ -77,7 +77,7 @@ void do_nread_number (CHAR_T *ch, char *argument, time_t *last_note,
     NOTE_T *p;
     number = atoi(argument);
 
-    for (p = ch->pcdata->board->note_first; p; p = p->next)
+    for (p = ch->pcdata->board->note_first; p; p = p->board_next)
         if (++count == number)
             break;
     BAIL_IF (!p || !note_is_for_char (p, ch),
@@ -210,7 +210,7 @@ DEFINE_DO_FUN (do_nlist) {
     /* first, count the number of notes */
     if (is_number(argument)) {
         show = atoi(argument);
-        for (p = ch->pcdata->board->note_first; p; p = p->next)
+        for (p = ch->pcdata->board->note_first; p; p = p->board_next)
             if (note_is_for_char (p, ch))
                 count++;
     }
@@ -219,7 +219,7 @@ DEFINE_DO_FUN (do_nlist) {
                   "{rNum> Author        Subject{x\n\r", ch);
 
     last_note = ch->pcdata->last_note[board_number (ch->pcdata->board)];
-    for (p = ch->pcdata->board->note_first; p; p = p->next) {
+    for (p = ch->pcdata->board->note_first; p; p = p->board_next) {
         num++;
         if (note_is_for_char (p, ch)) {
             has_shown++; /* note that we want to see X VISIBLE note, not just last X */
@@ -237,7 +237,7 @@ DEFINE_DO_FUN (do_ncatchup) {
     NOTE_T *p;
 
     /* Find last note */
-    for (p = ch->pcdata->board->note_first; p && p->next; p = p->next)
+    for (p = ch->pcdata->board->note_first; p && p->board_next; p = p->board_next)
         ; /* empty */
     BAIL_IF (!p,
         "Alas, there are no notes in that board.\n\r", ch);

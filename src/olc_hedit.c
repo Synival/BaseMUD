@@ -24,6 +24,7 @@
 #include "globals.h"
 #include "olc.h"
 #include "memory.h"
+#include "help.h"
 
 #include "olc_hedit.h"
 
@@ -85,7 +86,7 @@ HEDIT (hedit_new) {
     argument = one_argument (argument, arg);
 
     if (!(had = had_get_by_name_exact (arg))) {
-        had = ch->in_room->area->helps;
+        had = ch->in_room->area->had_first;
         argument = fullarg;
     }
     RETURN_IF (help_get_by_name_exact (argument),
@@ -98,8 +99,9 @@ HEDIT (hedit_new) {
         str_replace_dup (&had->name, str_without_extension (had->filename));
         had->area = ch->in_room->area;
         had->changed = TRUE;
-        LISTB_BACK (had, next, had_first, had_last);
-        ch->in_room->area->helps = had;
+        LIST2_BACK (had, global_prev, global_next, had_first, had_last);
+        LIST2_BACK (had, area_prev, area_next,
+            ch->in_room->area->had_first, ch->in_room->area->had_last);
         SET_BIT (ch->in_room->area->area_flags, AREA_CHANGED);
     }
 
@@ -108,8 +110,8 @@ HEDIT (hedit_new) {
     help->keyword = str_dup (argument);
     help->text = str_dup ("");
 
-    LISTB_BACK (help, next, help_first, help_last);
-    LISTB_BACK (help, next_area, had->first, had->last);
+    help_to_help_area (help, had);
+    LIST2_BACK (help, global_prev, global_next, help_first, help_last);
 
     ch->desc->olc_edit = (HELP_T *) help;
     ch->desc->editor = ED_HELP;
@@ -130,25 +132,24 @@ HEDIT (hedit_text) {
 }
 
 HEDIT (hedit_delete) {
-    HELP_T *help, *hlp, *phlp;
+    HELP_T *help, *hlp;
     HELP_AREA_T *had;
     DESCRIPTOR_T *d;
     bool found = FALSE;
 
     EDIT_HELP (ch, help);
-    for (d = descriptor_list; d; d = d->next)
+    for (d = descriptor_first; d; d = d->global_next)
         if (d->editor == ED_HELP && help == (HELP_T *) d->olc_edit)
             edit_done (d->character);
 
-    /* Remove help from the global help list. Bail if this fails. */
-    LISTB_REMOVE (help, next, help_first, help_last, HELP_T, return FALSE);
+    /* Remove help from the global help list. */
+    LIST2_REMOVE (help, global_prev, global_next, help_first, help_last);
 
     /* Find a help area with this help entry. If found, remove it. */
-    for (had = had_first; had; had = had->next) {
-        LIST_FIND_WITH_PREV (hlp == help, next_area, had->first, hlp, phlp);
+    for (had = had_first; had; had = had->global_next) {
+        LIST_FIND (hlp == help, had_next, had->help_first, hlp);
         if (hlp) {
-            LISTB_REMOVE_WITH_PREV (hlp, phlp, next_area,
-                had->first, had->last);
+            help_to_help_area (hlp, NULL);
             found = TRUE;
             break;
         }
@@ -171,7 +172,7 @@ HEDIT (hedit_list) {
 
     if (!str_cmp (argument, "all")) {
         buffer = buf_new ();
-        for (help = help_first; help; help = help->next) {
+        for (help = help_first; help; help = help->global_next) {
             sprintf (buf, "%3d. %-14.14s%s", cnt, help->keyword,
                      cnt % 4 == 3 ? "\n\r" : " ");
             buf_cat (buffer, buf);
@@ -185,12 +186,12 @@ HEDIT (hedit_list) {
     }
 
     if (!str_cmp (argument, "area")) {
-        RETURN_IF (ch->in_room->area->helps == NULL,
+        RETURN_IF (ch->in_room->area->had_first == NULL,
             "No helps in this area.\n\r", ch, FALSE);
 
         buffer = buf_new ();
-        for (help = ch->in_room->area->helps->first; help;
-             help = help->next_area)
+        for (help = ch->in_room->area->had_first->help_first; help;
+             help = help->had_next)
         {
             sprintf (buf, "%3d. %-14.14s%s", cnt, help->keyword,
                      cnt % 4 == 3 ? "\n\r" : " ");

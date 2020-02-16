@@ -108,8 +108,9 @@ DEFINE_DO_FUN (do_berserk) {
         return;
     }
 
-    BAIL_IF (IS_AFFECTED (ch, AFF_BERSERK) || is_affected (ch, SN(BERSERK)) ||
-             is_affected (ch, SN(FRENZY)),
+    BAIL_IF (IS_AFFECTED (ch, AFF_BERSERK)             ||
+             affect_is_char_affected (ch, SN(BERSERK)) ||
+             affect_is_char_affected (ch, SN(FRENZY)),
         "You get a little madder.\n\r", ch);
     BAIL_IF (IS_AFFECTED (ch, AFF_CALM),
         "You're feeling to mellow to berserk.\n\r", ch);
@@ -152,14 +153,14 @@ DEFINE_DO_FUN (do_berserk) {
     affect_init (&af, AFF_TO_AFFECTS, SN(BERSERK), ch->level, number_fuzzy (ch->level / 8), 0, UMAX (1, ch->level / 5), AFF_BERSERK);
 
     af.apply = APPLY_HITROLL;
-    affect_to_char (ch, &af);
+    affect_copy_to_char (&af, ch);
 
     af.apply = APPLY_DAMROLL;
-    affect_to_char (ch, &af);
+    affect_copy_to_char (&af, ch);
 
     af.modifier = UMAX (10, 10 * (ch->level / 5));
     af.apply = APPLY_AC;
-    affect_to_char (ch, &af);
+    affect_copy_to_char (&af, ch);
 }
 
 DEFINE_DO_FUN (do_bash) {
@@ -302,7 +303,7 @@ DEFINE_DO_FUN (do_dirt) {
         WAIT_STATE (ch, skill_table[SN(DIRT)].beats);
 
         affect_init (&af, AFF_TO_AFFECTS, SN(DIRT), ch->level, 0, APPLY_HITROLL, -4, AFF_BLIND);
-        affect_to_char (victim, &af);
+        affect_copy_to_char (&af, victim);
     }
     else {
         damage_visible (ch, victim, 0, SN(DIRT), DAM_NONE, NULL);
@@ -701,7 +702,7 @@ DEFINE_DO_FUN (do_disengage) {
     BAIL_IF (ch->fighting == NULL,
         "You're not fighting anybody.\n\r", ch);
 
-    for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room)
+    for (rch = ch->in_room->people_first; rch != NULL; rch = rch->room_next)
         BAIL_IF (rch->fighting == ch,
             "You can't disengage while someone is fighting you!\n\r", ch);
 
