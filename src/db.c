@@ -253,58 +253,24 @@ void db_import_json (void) {
 }
 
 void db_export_json (bool write_indiv, const char *everything) {
-    JSON_T *jarea, *jgrp, *json;
+    JSON_T *jarea, *json;
     AREA_T *area;
     char buf[256], fbuf[256];
+    int mode;
+
+    /* Make sure we write at least SOMETHING. */
+    if (!write_indiv && !everything)
+        return;
 
     /* Write all areas. */
-    for (area = area_get_first(); area != NULL; area = area_get_next (area)) {
-        snprintf (fbuf, sizeof(fbuf), "%s/", area->name);
+    mode = write_indiv
+        ? (everything ? DB_EXPORT_AREA_SAVE : DB_EXPORT_AREA_SAVE_AND_KEEP)
+        : DB_EXPORT_AREA_ONLY_LOAD;
 
-        snprintf (buf, sizeof(buf), "areas/%s", area->name);
-        jarea = json_root_area (buf);
-        jgrp = json_prop_array (jarea, NULL);
+    for (area = area_get_first(); area != NULL; area = area_get_next (area))
+        db_export_json_area (area, mode);
 
-        if (write_indiv)
-            log_f("Exporting JSON: %s%s*", JSON_AREAS_DIR, fbuf);
-
-        json = json_wrap_obj (json_objw_area (NULL, area), "area");
-        json_attach_under (json, jgrp);
-
-        if (write_indiv) {
-            snprintf (buf, sizeof(buf), "%s%sarea.json", JSON_AREAS_DIR, fbuf);
-            json_mkdir_to (buf);
-            json_write_to_file (jgrp, buf);
-        }
-
-        /* NOTE: This is extremely nasty, but refactoring it into a function
-         * or having copy-pasted code is even nastier. This is the least-worst
-         * solution, IMO. -- Synival */
-        #define ADD_AREA_JSON(oname, fname, atype, btype, vtype, func) \
-            do { \
-                const vtype *obj; \
-                jgrp = json_prop_array (jarea, NULL); \
-                \
-                for (obj = area->atype ## _first; obj; obj = obj->area_next) { \
-                    if (obj->vnum < area->min_vnum || obj->vnum > area->max_vnum) \
-                        bugf ("Warning: " #btype " #%d should be >= %d and <= %d", \
-                            obj->vnum, area->min_vnum, area->max_vnum);\
-                    json = json_wrap_obj (func (NULL, obj), oname); \
-                    json_attach_under (json, jgrp); \
-                } \
-                if (jgrp->first_child && write_indiv) { \
-                    snprintf (buf, sizeof (buf), "%s%s" fname, JSON_AREAS_DIR, fbuf); \
-                    json_mkdir_to (buf); \
-                    json_write_to_file (jgrp, buf); \
-                } \
-            } while (0)
-
-        ADD_AREA_JSON ("room",   "rooms.json",   room, room_index, ROOM_INDEX_T, json_objw_room);
-        ADD_AREA_JSON ("object", "objects.json", obj,  obj_index,  OBJ_INDEX_T,  json_objw_object);
-        ADD_AREA_JSON ("mobile", "mobiles.json", mob,  mob_index,  MOB_INDEX_T,  json_objw_mobile);
-    }
-
-    /* Write json that doesn't need subdirectories. */
+    /* Write internal data represented as recycleable objects. */
     #define ADD_RECYCLEABLE_JSON(oname, fname, btype, vtype, func, check) \
         jarea = json_root_area (fname); \
         if (write_indiv) \
@@ -328,7 +294,12 @@ void db_export_json (bool write_indiv, const char *everything) {
             } \
         } while (0)
 
-    /* Write json that doesn't need subdirectories. */
+    ADD_RECYCLEABLE_JSON ("social", "config/socials", social, SOCIAL_T,
+        json_objw_social, 1);
+    ADD_RECYCLEABLE_JSON ("portal", "areas/portals", portal, PORTAL_T,
+        json_objw_portal, (obj->generated == FALSE));
+
+    /* Write internal data represented as table rows. */
     #define ADD_TABLE_JSON(oname, fname, btype, vtype, func, check) \
         jarea = json_root_area (fname); \
         do { \
@@ -355,11 +326,6 @@ void db_export_json (bool write_indiv, const char *everything) {
                 } \
             } \
         } while (0)
-
-    ADD_RECYCLEABLE_JSON ("social", "config/socials", social, SOCIAL_T,
-        json_objw_social, 1);
-    ADD_RECYCLEABLE_JSON ("portal", "areas/portals", portal, PORTAL_T,
-        json_objw_portal, (obj->generated == FALSE));
 
     ADD_TABLE_JSON ("table", "tables", master, TABLE_T,
         json_objw_table, obj->type == TABLE_UNIQUE && obj->json_write_func);
@@ -399,6 +365,81 @@ void db_export_json (bool write_indiv, const char *everything) {
 
     /* Free all allocated JSON. */
     json_free (json_root());
+}
+
+void db_export_json_area (const AREA_T *area, int mode) {
+    JSON_T *jgrp, *jarea, *json;
+    bool write_indiv, unload;
+    char buf[256], fbuf[256];
+
+    switch (mode) {
+        case DB_EXPORT_AREA_SAVE:
+            write_indiv = TRUE;
+            unload      = TRUE;
+            break;
+
+        case DB_EXPORT_AREA_SAVE_AND_KEEP:
+            write_indiv = TRUE;
+            unload      = FALSE;
+            break;
+
+        case DB_EXPORT_AREA_ONLY_LOAD:
+            write_indiv = FALSE;
+            unload      = FALSE;
+            break;
+
+        default:
+            bugf ("db_export_json_area(): Unknown mode %d", mode);
+            return;
+    }
+
+    snprintf (fbuf, sizeof(fbuf), "%s/", area->name);
+
+    snprintf (buf, sizeof(buf), "areas/%s", area->name);
+    jarea = json_root_area (buf);
+    jgrp = json_prop_array (jarea, NULL);
+
+    if (write_indiv)
+        log_f("Exporting JSON: %s%s*", JSON_AREAS_DIR, fbuf);
+
+    json = json_wrap_obj (json_objw_area (NULL, area), "area");
+    json_attach_under (json, jgrp);
+
+    if (write_indiv) {
+        snprintf (buf, sizeof(buf), "%s%sarea.json", JSON_AREAS_DIR, fbuf);
+        json_mkdir_to (buf);
+        json_write_to_file (jgrp, buf);
+    }
+
+    /* NOTE: This is extremely nasty, but refactoring it into a function
+     * or having copy-pasted code is even nastier. This is the least-worst
+     * solution, IMO. -- Synival */
+    #define ADD_AREA_JSON(oname, fname, atype, btype, vtype, func) \
+        do { \
+            const vtype *obj; \
+            jgrp = json_prop_array (jarea, NULL); \
+            \
+            for (obj = area->atype ## _first; obj; obj = obj->area_next) { \
+                if (obj->vnum < area->min_vnum || obj->vnum > area->max_vnum) \
+                    bugf ("Warning: " #btype " #%d should be >= %d and <= %d", \
+                        obj->vnum, area->min_vnum, area->max_vnum);\
+                json = json_wrap_obj (func (NULL, obj), oname); \
+                json_attach_under (json, jgrp); \
+            } \
+            if (jgrp->first_child && write_indiv) { \
+                snprintf (buf, sizeof (buf), "%s%s" fname, JSON_AREAS_DIR, fbuf); \
+                json_mkdir_to (buf); \
+                json_write_to_file (jgrp, buf); \
+            } \
+        } while (0)
+
+    ADD_AREA_JSON ("room",   "rooms.json",   room, room_index, ROOM_INDEX_T, json_objw_room);
+    ADD_AREA_JSON ("object", "objects.json", obj,  obj_index,  OBJ_INDEX_T,  json_objw_object);
+    ADD_AREA_JSON ("mobile", "mobiles.json", mob,  mob_index,  MOB_INDEX_T,  json_objw_mobile);
+
+    /* Unload all parsed JSON if the mode specifies it. */
+    if (unload)
+        json_free (jarea);
 }
 
 /* Big mama top level function. */
