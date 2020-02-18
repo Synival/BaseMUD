@@ -59,6 +59,7 @@ bool obj_is_donation_pit (OBJ_T *obj);
 
 /* Object transfer functions. */
 void obj_give_to_char (OBJ_T *obj, CHAR_T *ch);
+void obj_give_to_char_post (OBJ_T *obj, CHAR_T *ch);
 void obj_give_to_room (OBJ_T *obj, ROOM_INDEX_T *room_index);
 void obj_give_to_obj (OBJ_T *obj, OBJ_T *obj_to);
 void obj_give_to_keeper (OBJ_T *obj, CHAR_T *ch);

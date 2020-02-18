@@ -177,6 +177,10 @@ void obj_give_to_char (OBJ_T *obj, CHAR_T *ch) {
     obj->in_room    = NULL;
     obj->in_obj     = NULL;
 
+    obj_give_to_char_post (obj, ch);
+}
+
+void obj_give_to_char_post (OBJ_T *obj, CHAR_T *ch) {
     ch->carry_number += obj_get_carry_number (obj);
     ch->carry_weight += obj_get_weight (obj);
 }
@@ -229,17 +233,19 @@ void obj_give_to_keeper (OBJ_T *obj, CHAR_T *ch) {
             obj_extract (obj);
             return;
         }
+
         obj->cost = t_obj->cost; /* keep it standard */
+        break;
     }
 
+    obj_take (obj);
     LIST2_INSERT_AFTER (obj, t_obj, content_prev, content_next,
         ch->content_first, ch->content_last);
     obj->carried_by = ch;
     obj->in_room    = NULL;
     obj->in_obj     = NULL;
 
-    ch->carry_number += obj_get_carry_number (obj);
-    ch->carry_weight += obj_get_weight (obj);
+    obj_give_to_char_post (obj, ch);
 }
 
 /* Take the object from whoever or whatever is holding it. */
