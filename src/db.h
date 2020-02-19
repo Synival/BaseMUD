@@ -31,9 +31,12 @@
 #include "merc.h"
 
 /* Flags and modes for functions. */
-#define DB_EXPORT_AREA_SAVE             0
-#define DB_EXPORT_AREA_SAVE_AND_KEEP    1
-#define DB_EXPORT_AREA_ONLY_LOAD        2
+#define JSON_EXPORT_MODE_SAVE           0
+#define JSON_EXPORT_MODE_SAVE_AND_KEEP  1
+#define JSON_EXPORT_MODE_ONLY_LOAD      2
+
+#define JSON_EXPORT_OPTION_WRITE_INDIV  0x01
+#define JSON_EXPORT_OPTION_UNLOAD       0x02
 
 /* macro for flag swapping */
 #define GET_UNSET(flag1,flag2)    (~(flag1)&((flag1)|(flag2)))
@@ -77,7 +80,9 @@ void fix_resets (void);
 void fix_exits (void);
 void fix_mobprogs (void);
 void db_export_json (bool write_indiv, const char *everything);
+bool db_export_json_interpret_mode (int mode, flag_t *options_out);
 void db_export_json_area (const AREA_T *area, int mode);
+void db_export_json_table (const TABLE_T *table, int mode);
 
 /* Temporary objects used during loading. */
 ANUM_T *anum_new (void);

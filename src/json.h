@@ -136,7 +136,7 @@ void    json_attach_after (JSON_T *json, JSON_T *after, JSON_T *parent);
 void    json_attach_under (JSON_T *json, JSON_T *ref);
 void    json_detach (JSON_T *json);
 void    json_free (JSON_T *json);
-JSON_T *json_wrap_obj (JSON_T *json, char *inner_name);
+JSON_T *json_wrap_obj (JSON_T *json, const char *inner_name);
 void    json_logf (const JSON_T *json, const char *format, ...);
 
 /* node creation. */

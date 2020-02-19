@@ -68,7 +68,7 @@ JSON_T *json_get (const JSON_T *json, const char *name) {
     if (json == NULL || name == NULL || json->type != JSON_OBJECT)
         return NULL;
     for (j = json->first_child; j != NULL; j = j->next)
-        if (!strcmp (j->name, name))
+        if (j->name && !strcmp (j->name, name))
             return j;
     return NULL;
 }
@@ -216,7 +216,7 @@ JSON_T *json_new_dice (const char *name, const DICE_T *dice) {
     return json_new (name, JSON_DICE, strdup (buf), strlen (buf) + 1);
 }
 
-JSON_T *json_wrap_obj (JSON_T *json, char *inner_name) {
+JSON_T *json_wrap_obj (JSON_T *json, const char *inner_name) {
     char *outer_name;
     JSON_T *new;
 
