@@ -35,21 +35,15 @@
 #include "recycle.h"
 #include "affects.h"
 #include "lookup.h"
-#include "json.h"
-#include "json_objw.h"
-#include "json_write.h"
-#include "json_read.h"
 #include "json_import.h"
+#include "json_export.h"
 #include "music.h"
 #include "ban.h"
 #include "board.h"
-#include "olc.h"
 #include "portals.h"
-#include "chars.h"
 #include "rooms.h"
 #include "objs.h"
 #include "db_old.h"
-#include "update.h"
 #include "globals.h"
 #include "memory.h"
 #include "items.h"
@@ -82,116 +76,6 @@
 /* Globals used only during loading. */
 static AREA_T *current_area;
 
-AREA_T *db_link_areas_get_area (char **name) {
-    AREA_T *area;
-
-    if (*name == NULL)
-        return NULL;
-
-    area = area_get_by_name_exact (*name);
-    if (area == NULL)
-        bugf ("db_link_areas_get_area(): area '%s' not found.", *name);
-    str_free (&(*name));
-
-    return area;
-}
-
-void db_link_areas (void) {
-    HELP_AREA_T *had;
-    AREA_T *area;
-    ROOM_INDEX_T *room, *to_room;
-    MOB_INDEX_T *mob;
-    OBJ_INDEX_T *obj;
-    EXIT_T *exit;
-    ANUM_T *anum, *anum_next;
-    RESET_T *reset;
-    int i;
-
-    /* For each 'anum' value, determine the 'vnum'. */
-    for (anum = anum_first; anum != NULL; anum = anum_next) {
-        anum_next = anum->global_next;
-        do {
-            if (anum->vnum_ref == NULL)
-                continue;
-            if ((area = db_link_areas_get_area (&(anum->area_str))) == NULL)
-                continue;
-            *(anum->vnum_ref) = area->min_vnum + anum->anum;
-        } while (0);
-        anum_free (anum);
-    }
-
-    /* Link rooms and their resets to areas and register them. */
-    for (room = room_index_get_first(); room != NULL;
-         room = room_index_get_next(room))
-    {
-        if ((area = db_link_areas_get_area (&(room->area_str))) == NULL)
-            continue;
-        room_to_area (room, area);
-
-        room->vnum = room->anum + area->min_vnum;
-        for (reset = room->reset_first; reset != NULL; reset = reset->room_next)
-            reset->room_vnum = room->vnum;
-        db_register_new_room (room);
-    }
-
-    /* Now that rooms have vnums, link exits. */
-    for (room = room_index_get_first(); room != NULL;
-         room = room_index_get_next(room))
-    {
-        for (i = 0; i < DIR_MAX; i++) {
-            if ((exit = room->exit[i]) == NULL)
-                continue;
-            exit->area_vnum = -1;
-            if (exit->room_anum < 0)
-                continue;
-
-            exit->vnum = exit->room_anum + room->area->min_vnum;
-            if ((to_room = room_get_index (exit->vnum)) == NULL) {
-                bugf ("db_link_areas(): Room '%s' (%d) exit '%d' cannot find "
-                    "room with vnum %d.\n", room->name, room->vnum, i,
-                    exit->vnum);
-                continue;
-            }
-            exit->to_room = to_room;
-            exit->area_vnum = to_room->area->vnum;
-        }
-    }
-
-    /* Link mobs to areas and register them. */
-    for (mob = mob_index_get_first(); mob != NULL;
-         mob = mob_index_get_next(mob))
-    {
-        if ((area = db_link_areas_get_area (&(mob->area_str))) == NULL)
-            continue;
-        mob_index_to_area (mob, area);
-
-        mob->vnum = mob->anum + area->min_vnum;
-        if (mob->shop)
-            mob->shop->keeper = mob->vnum;
-
-        db_register_new_mob (mob);
-    }
-
-    /* Link objs to areas and register them. */
-    for (obj = obj_index_get_first(); obj != NULL;
-         obj = obj_index_get_next(obj))
-    {
-        if ((area = db_link_areas_get_area (&(obj->area_str))) == NULL)
-            continue;
-        obj_index_to_area (obj, area);
-
-        obj->vnum = obj->anum + area->min_vnum;
-        db_register_new_obj (obj);
-    }
-
-    /* Link help groups to areas. */
-    for (had = had_get_first(); had != NULL; had = had_get_next(had)) {
-        if ((area = db_link_areas_get_area (&(had->area_str))) == NULL)
-            continue;
-        help_area_to_area (had, area);
-    }
-}
-
 int db_hash_from_vnum (int vnum)
     { return vnum % MAX_KEY_HASH; }
 
@@ -217,252 +101,6 @@ void db_register_new_obj (OBJ_INDEX_T *obj) {
     assign_area_vnum (vnum, obj->area); /* OLC */
 }
 
-void db_import_json (void) {
-    JSON_T *json;
-    int imported;
-
-    /* read all files instead simple JSON objects. */
-    imported = 0;
-    log_f ("Loading configuration from '%s'...", JSON_CONFIG_DIR);
-    if ((json = json_read_directory_recursive (JSON_CONFIG_DIR,
-            json_import_objects, &imported)) != NULL)
-        json_free (json);
-
-#ifdef BASEMUD_IMPORT_JSON
-    log_f ("Loading help from '%s'...", JSON_HELP_DIR);
-    if ((json = json_read_directory_recursive (JSON_HELP_DIR,
-            json_import_objects, &imported)) != NULL)
-        json_free (json);
-
-    log_f ("Loading areas from '%s'...", JSON_AREAS_DIR);
-    if ((json = json_read_directory_recursive (JSON_AREAS_DIR,
-            json_import_objects, &imported)) != NULL)
-        json_free (json);
-#else
-    log_string ("Ignoring JSON area and help files.");
-    log_string ("Define BASEMUD_IMPORT_JSON in 'basemud.h' to enable.");
-#endif
-
-    /* reconstruct the world based on the JSON read. */
-    log_f ("%d object(s) loaded successfully.", imported);
-
-    /* link any objects with 'area_str' to their respective objects. */
-    log_f ("Linking everything together...");
-    db_link_areas ();
-    portal_link_exits ();
-}
-
-void db_export_json (bool write_indiv, const char *everything) {
-    JSON_T *jarea, *json;
-    const AREA_T *area;
-    const TABLE_T *table;
-    char buf[256], fbuf[256];
-    int mode;
-
-    /* Make sure we write at least SOMETHING. */
-    if (!write_indiv && !everything)
-        return;
-
-    /* Write all areas. Determine the mode based on what we're exporting. */
-    mode = write_indiv
-        ? (everything ? JSON_EXPORT_MODE_SAVE : JSON_EXPORT_MODE_SAVE_AND_KEEP)
-        : JSON_EXPORT_MODE_ONLY_LOAD;
-    for (area = area_get_first(); area; area = area_get_next (area))
-        db_export_json_area (area, mode);
-
-    /* Write internal data represented as recycleable objects. */
-    #define ADD_RECYCLEABLE_JSON(oname, fname, btype, vtype, func, check) \
-        jarea = json_root_area (fname); \
-        if (write_indiv) \
-            log_f("Exporting JSON: %s%s.json", JSON_DIR, fname); \
-        do { \
-            const vtype *obj; \
-            \
-            for (obj = btype ## _get_first(); obj != NULL; \
-                 obj = btype ## _get_next(obj)) \
-            { \
-                if (!(check)) \
-                    continue; \
-                json = json_wrap_obj (func (NULL, obj), oname); \
-                json_attach_under (json, jarea); \
-                \
-            } \
-            if (jarea->first_child && write_indiv) { \
-                snprintf (buf, sizeof (buf), "%s" fname ".json", JSON_DIR); \
-                json_mkdir_to (buf); \
-                json_write_to_file (jarea, buf); \
-            } \
-        } while (0)
-
-    ADD_RECYCLEABLE_JSON ("social", "config/socials", social, SOCIAL_T,
-        json_objw_social, 1);
-    ADD_RECYCLEABLE_JSON ("portal", "areas/portals", portal, PORTAL_T,
-        json_objw_portal, (obj->generated == FALSE));
-
-    /* Write data represented as table rows. Most of this is internal and
-     * exported to 'json/meta', but some can be defined in 'json/config'. */
-    for (table = master_get_first(); table; table = master_get_next(table))
-        db_export_json_table (table, mode);
-
-    /* Add help areas. */
-    do {
-        HELP_AREA_T *had;
-        for (had = had_get_first(); had; had = had_get_next (had)) {
-            snprintf (buf, sizeof(buf), "help/%s", had->name);
-            jarea = json_root_area (buf);
-            snprintf (fbuf, sizeof (fbuf), "%shelp/%s.json", JSON_DIR, had->name);
-
-            if (write_indiv)
-                log_f("Exporting JSON: %s", fbuf);
-
-            json = json_wrap_obj (json_objw_help_area (NULL, had), "help");
-            json_attach_under (json, jarea);
-
-            if (write_indiv) {
-                json_mkdir_to (fbuf);
-                json_write_to_file (jarea, fbuf);
-            }
-        }
-    } while (0);
-
-    /* Write one giant file with everything. */
-    if (everything) {
-        log_f("Exporting JSON: %s", everything);
-        json_write_to_file (json_root(), everything);
-    }
-
-    /* Free all allocated JSON. */
-    json_free (json_root());
-}
-
-bool db_export_json_interpret_mode (int mode, flag_t *options_out) {
-    switch (mode) {
-        case JSON_EXPORT_MODE_SAVE:
-            *options_out = JSON_EXPORT_OPTION_WRITE_INDIV |
-                           JSON_EXPORT_OPTION_UNLOAD;
-            return TRUE;
-
-        case JSON_EXPORT_MODE_SAVE_AND_KEEP:
-            *options_out = JSON_EXPORT_OPTION_WRITE_INDIV;
-            return TRUE;
-
-        case JSON_EXPORT_MODE_ONLY_LOAD:
-            *options_out = 0;
-            return TRUE;
-
-        default:
-            *options_out = 0;
-            return FALSE;
-    }
-}
-
-void db_export_json_area (const AREA_T *area, int mode) {
-    JSON_T *jgrp, *jarea, *json;
-    char buf[256], fbuf[256];
-    flag_t options;
-
-    if (!db_export_json_interpret_mode (mode, &options)) {
-        bugf ("db_export_json_area(): Unknown mode %d", mode);
-        return;
-    }
-
-    snprintf (fbuf, sizeof(fbuf), "%s/", area->name);
-
-    snprintf (buf, sizeof(buf), "areas/%s", area->name);
-    jarea = json_root_area (buf);
-    jgrp = json_prop_array (jarea, NULL);
-
-    if (options & JSON_EXPORT_OPTION_WRITE_INDIV)
-        log_f("Exporting JSON: %s%s*", JSON_AREAS_DIR, fbuf);
-
-    json = json_wrap_obj (json_objw_area (NULL, area), "area");
-    json_attach_under (json, jgrp);
-
-    if (options & JSON_EXPORT_OPTION_WRITE_INDIV) {
-        snprintf (buf, sizeof(buf), "%s%sarea.json", JSON_AREAS_DIR, fbuf);
-        json_mkdir_to (buf);
-        json_write_to_file (jgrp, buf);
-    }
-
-    /* NOTE: This is extremely nasty, but refactoring it into a function
-     * or having copy-pasted code is even nastier. This is the least-worst
-     * solution, IMO. -- Synival */
-    #define ADD_AREA_JSON(oname, fname, alist, otype, objw_func) \
-        do { \
-            const otype *obj; \
-            jgrp = json_prop_array (jarea, NULL); \
-            \
-            for (obj = area->alist; obj; obj = obj->area_next) { \
-                if (obj->vnum < area->min_vnum || obj->vnum > area->max_vnum) \
-                    bugf ("Warning: " #otype " #%d should be >= %d and <= %d", \
-                        obj->vnum, area->min_vnum, area->max_vnum);\
-                json = json_wrap_obj (objw_func (NULL, obj), oname); \
-                json_attach_under (json, jgrp); \
-            } \
-            if (jgrp->first_child && (options & JSON_EXPORT_OPTION_WRITE_INDIV)) { \
-                snprintf (buf, sizeof (buf), "%s%s" fname, JSON_AREAS_DIR, fbuf); \
-                json_mkdir_to (buf); \
-                json_write_to_file (jgrp, buf); \
-            } \
-        } while (0)
-
-    ADD_AREA_JSON ("room",   "rooms.json",   room_first, ROOM_INDEX_T, json_objw_room);
-    ADD_AREA_JSON ("object", "objects.json", obj_first,  OBJ_INDEX_T,  json_objw_object);
-    ADD_AREA_JSON ("mobile", "mobiles.json", mob_first,  MOB_INDEX_T,  json_objw_mobile);
-
-    /* Unload all parsed JSON if the mode specifies it. */
-    if (options & JSON_EXPORT_OPTION_UNLOAD)
-        json_free (jarea);
-}
-
-void db_export_json_table (const TABLE_T *table, int mode) {
-    JSON_T *json;
-    flag_t options;
-    char buf[256];
-    const char *oname;
-
-    if (!db_export_json_interpret_mode (mode, &options)) {
-        bugf ("db_export_json_table(): Unknown mode %d", mode);
-        return;
-    }
-
-    switch (table->type) {
-        case TABLE_UNIQUE:
-            if (table->json_write_func == NULL)
-                return;
-            oname = "table";
-            break;
-
-        case TABLE_FLAGS:     oname = "flags";     break;
-        case TABLE_EXT_FLAGS: oname = "ext_flags"; break;
-        case TABLE_TYPES:     oname = "types";     break;
-
-        default:
-            return;
-    }
-
-    if (options & JSON_EXPORT_OPTION_WRITE_INDIV)
-        log_f("Exporting JSON: %s%s/%s.json", JSON_DIR,
-            table->json_path, table->name);
-
-    json = json_objw_table (NULL, table);
-    if (json->type != JSON_ARRAY)
-        json = json_wrap_obj (json, oname);
-    json_attach_under (json, json_root());
-
-    if (options & JSON_EXPORT_OPTION_WRITE_INDIV) {
-        snprintf (buf, sizeof (buf), "%s%s/%s.json",
-            JSON_DIR, table->json_path, table->name);
-        json_mkdir_to (buf);
-        json_write_to_file (json, buf);
-    }
-
-    /* Unload all parsed JSON if the mode specifies it. */
-    json = NULL;
-    if (options & JSON_EXPORT_OPTION_UNLOAD)
-        json_free (json);
-}
-
 /* Big mama top level function. */
 void boot_db (void) {
     HELP_T *help;
@@ -475,7 +113,7 @@ void boot_db (void) {
     init_time_weather ();
     skill_init_mapping ();
 
-    db_import_json ();
+    json_import_all ();
     init_areas ();
 
     EXIT_IF_BUGF ((help = help_get_by_name_exact ("greeting")) == NULL,
@@ -494,8 +132,6 @@ void boot_db (void) {
         str_get_strings_allocated());
 
     convert_objects (); /* ROM OLC */
-
-    db_export_json (TRUE, NULL);
 
     area_update_all ();
     board_load_all ();
@@ -693,7 +329,7 @@ void load_area_olc (FILE *fp) {
 /*  area->recall       = ROOM_VNUM_TEMPLE;        ROM OLC */
 
     str_replace_dup (&area->name, str_without_extension (area->filename));
-    log_f("Loading area %s", area->filename);
+    log_f ("Loading area '%s'", area->filename);
 
     while (1) {
         word = feof (fp) ? "End" : fread_word_static (fp);

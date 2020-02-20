@@ -70,5 +70,8 @@ struct json_eprop {
 int json_import_objects (JSON_T *json);
 bool json_import_expect (const char *type, const JSON_T *json, ...);
 char *json_string_append_newline (char *buf, size_t size);
+void json_import_all (void);
+AREA_T *json_import_link_areas_get_area (char **name);
+void json_import_link_areas (void);
 
 #endif

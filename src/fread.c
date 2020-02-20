@@ -25,6 +25,7 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 
@@ -127,8 +128,11 @@ EXT_FLAGS_T fread_ext_flag (FILE *fp, const EXT_FLAG_DEF_T *table) {
     char c;
 
     /* if the flag isn't in some sort of array format, read as an old flag. */
-    while ((c = getc (fp)) == ' ')
-        ;
+    while (1) {
+        c = getc (fp);
+        if (!(c == ' ' || c == '\n' || c == '\r'))
+            break;
+    }
     if (c != '[') {
         ungetc (c, fp);
         return EXT_FROM_FLAG_T (fread_flag (fp));
@@ -153,8 +157,14 @@ EXT_FLAGS_T fread_ext_flag (FILE *fp, const EXT_FLAG_DEF_T *table) {
         fseek (fp, start, SEEK_SET);
 
         /* Read the flags and the right bracket afterwards. */
-        if (fread (buf, sizeof (char), count, fp) <= 0)
-            perror ("fread");
+        if (count > 0 && fread (buf, sizeof (char), count, fp) <= 0) {
+            if (feof (fp))
+                bugf ("fread_ext_flag: Premature EOF");
+            else {
+                int error = ferror (fp);
+                bugf ("fread_ext_flag: File error - %s (%d)", strerror (error));
+            }
+        }
         buf[count] = '\0';
         getc (fp);
 

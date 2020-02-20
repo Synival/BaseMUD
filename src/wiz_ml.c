@@ -48,6 +48,7 @@
 #include "mobiles.h"
 #include "objs.h"
 #include "quickmud.h"
+#include "json_export.h"
 
 #include "wiz_ml.h"
 
@@ -325,7 +326,7 @@ void do_dump_world_json (CHAR_T *ch) {
 
     printf_to_char (ch, "Writing '%sworld.json'...\n\r", DUMP_DIR);
     desc_flush_output (ch->desc);
-    db_export_json (FALSE, DUMP_DIR "world.json");
+    json_export_all (FALSE, DUMP_DIR "world.json");
 
     reserve_file = fopen (NULL_FILE, "r");
     send_to_char ("Done.\n\r", ch);

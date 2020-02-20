@@ -29,6 +29,8 @@
 #include "rooms.h"
 #include "objs.h"
 #include "mob_prog.h"
+#include "json_export.h"
+#include "descs.h"
 
 #include "olc_aedit.h"
 #include "olc_hedit.h"
@@ -697,7 +699,6 @@ DEFINE_DO_FUN (do_asave) {
             send_to_char ("  asave area     - saves the area being edited\n\r", ch);
             send_to_char ("  asave changed  - saves all changed zones\n\r", ch);
             send_to_char ("  asave world    - saves the world! (db dump)\n\r", ch);
-            send_to_char ("\n\r", ch);
         }
         return;
     }
@@ -714,19 +715,27 @@ DEFINE_DO_FUN (do_asave) {
             "ASave: You are not a builder for this area.\n\r", ch);
         save_area_list ();
         save_area (area);
+        json_export_area (area, JSON_EXPORT_MODE_SAVE);
         return;
     }
 
     /* Save the world, only authorized areas. */
     /* -------------------------------------- */
     if (!str_cmp ("world", arg1)) {
+        send_to_char ("Saving world...\n\r", ch);
+        desc_flush_output (ch->desc);
         save_area_list ();
+
         for (area = area_first; area; area = area->global_next) {
             /* Builder must be assigned this area. */
             if (ch && !IS_BUILDER (ch, area))
                 continue;
 
+            printf_to_char (ch, "- %s\n\r", area->filename);
+            desc_flush_output (ch->desc);
+
             save_area (area);
+            json_export_area (area, JSON_EXPORT_MODE_SAVE);
             REMOVE_BIT (area->area_flags, AREA_CHANGED);
         }
         if (ch)
@@ -757,6 +766,7 @@ DEFINE_DO_FUN (do_asave) {
                 continue;
 
             save_area (area);
+            json_export_area (area, JSON_EXPORT_MODE_SAVE);
             sprintf (buf, "%24s - '%s'", area->title, area->filename);
             if (ch)
                 printf_to_char (ch, "%s\n\r", buf);
@@ -829,6 +839,7 @@ DEFINE_DO_FUN (do_asave) {
 
         save_area_list ();
         save_area (area);
+        json_export_area (area, JSON_EXPORT_MODE_SAVE);
         REMOVE_BIT (area->area_flags, AREA_CHANGED);
         send_to_char ("Area saved.\n\r", ch);
         return;

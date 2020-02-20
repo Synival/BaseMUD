@@ -17,6 +17,7 @@
 #include "merc.h"
 
 /* Function prototypes. */
+char *olc_save_filename_static (const char *filename);
 char *fix_string (const char *str);
 void save_area_list (void);
 void save_mobprogs (FILE *fp, AREA_T *area);

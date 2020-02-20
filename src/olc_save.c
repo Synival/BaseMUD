@@ -48,9 +48,15 @@
 
 /* #define VERBOSE */
 
+char *olc_save_filename_static (const char *filename) {
+    static char buf[MAX_STRING_LENGTH];
+    snprintf (buf, sizeof (buf), "%s%s", AREA_DIR, filename);
+    return buf;
+}
+
 /*****************************************************************************
- Name:        fix_string
- Purpose:    Returns a string without \r and ~.
+ Name:     fix_string
+ Purpose:  Returns a string without \r and ~.
  ****************************************************************************/
 char *fix_string (const char *str) {
     static char strfix[MAX_STRING_LENGTH * 2];
@@ -79,7 +85,7 @@ void save_area_list () {
     AREA_T *area;
     HELP_AREA_T *ha;
 
-    if ((fp = fopen ("area.lst", "w")) == NULL) {
+    if ((fp = fopen (olc_save_filename_static ("area.lst"), "w")) == NULL) {
         bug ("save_area_list: fopen", 0);
         perror ("area.lst");
     }
@@ -607,7 +613,7 @@ int save_other_helps (CHAR_T *ch) {
     for (ha = had_first; ha; ha = ha->global_next) {
         if (ha->changed != TRUE)
             break;
-        if (!(fp = fopen (ha->filename, "w"))) {
+        if (!(fp = fopen (olc_save_filename_static (ha->filename), "w"))) {
             perror (ha->filename);
             return saved;
         }
@@ -633,7 +639,7 @@ void save_area (AREA_T *area) {
     FILE *fp;
 
     fclose (reserve_file);
-    if (!(fp = fopen (area->filename, "w"))) {
+    if (!(fp = fopen (olc_save_filename_static (area->filename), "w"))) {
         bug ("save_area: fopen", 0);
         perror (area->filename);
     }

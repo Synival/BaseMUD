@@ -38,6 +38,10 @@
 #include "memory.h"
 #include "json_objr.h"
 #include "help.h"
+#include "json_read.h"
+#include "rooms.h"
+#include "mobiles.h"
+#include "objs.h"
 
 #include "json_import.h"
 
@@ -183,4 +187,149 @@ char *json_string_append_newline (char *buf, size_t size) {
     buf[len + 1] = '\r';
     buf[len + 2] = '\0';
     return buf;
+}
+
+void json_import_all (void) {
+    JSON_T *json;
+    int imported;
+
+    /* read all files instead simple JSON objects. */
+    imported = 0;
+    log_f ("Loading configuration from '%s'...", JSON_CONFIG_DIR);
+    if ((json = json_read_directory_recursive (JSON_CONFIG_DIR,
+            json_import_objects, &imported)) != NULL)
+        json_free (json);
+
+#ifdef BASEMUD_IMPORT_JSON
+    log_f ("Loading help from '%s'...", JSON_HELP_DIR);
+    if ((json = json_read_directory_recursive (JSON_HELP_DIR,
+            json_import_objects, &imported)) != NULL)
+        json_free (json);
+
+    log_f ("Loading areas from '%s'...", JSON_AREAS_DIR);
+    if ((json = json_read_directory_recursive (JSON_AREAS_DIR,
+            json_import_objects, &imported)) != NULL)
+        json_free (json);
+#else
+    log_string ("Ignoring JSON area and help files.");
+    log_string ("Define BASEMUD_IMPORT_JSON in 'basemud.h' to enable.");
+#endif
+
+    /* reconstruct the world based on the JSON read. */
+    log_f ("%d object(s) loaded successfully.", imported);
+
+    /* link any objects with 'area_str' to their respective objects. */
+    log_f ("Linking everything together...");
+    json_import_link_areas ();
+    portal_link_exits ();
+}
+
+AREA_T *json_import_link_areas_get_area (char **name) {
+    AREA_T *area;
+
+    if (*name == NULL)
+        return NULL;
+
+    area = area_get_by_name_exact (*name);
+    if (area == NULL)
+        bugf ("json_import_link_areas_get_area(): area '%s' not found.", *name);
+    str_free (&(*name));
+
+    return area;
+}
+
+void json_import_link_areas (void) {
+    HELP_AREA_T *had;
+    AREA_T *area;
+    ROOM_INDEX_T *room, *to_room;
+    MOB_INDEX_T *mob;
+    OBJ_INDEX_T *obj;
+    EXIT_T *exit;
+    ANUM_T *anum, *anum_next;
+    RESET_T *reset;
+    int i;
+
+    /* For each 'anum' value, determine the 'vnum'. */
+    for (anum = anum_first; anum != NULL; anum = anum_next) {
+        anum_next = anum->global_next;
+        do {
+            if (anum->vnum_ref == NULL)
+                continue;
+            if ((area = json_import_link_areas_get_area (&(anum->area_str))) == NULL)
+                continue;
+            *(anum->vnum_ref) = area->min_vnum + anum->anum;
+        } while (0);
+        anum_free (anum);
+    }
+
+    /* Link rooms and their resets to areas and register them. */
+    for (room = room_index_get_first(); room != NULL;
+         room = room_index_get_next(room))
+    {
+        if ((area = json_import_link_areas_get_area (&(room->area_str))) == NULL)
+            continue;
+        room_to_area (room, area);
+
+        room->vnum = room->anum + area->min_vnum;
+        for (reset = room->reset_first; reset != NULL; reset = reset->room_next)
+            reset->room_vnum = room->vnum;
+        db_register_new_room (room);
+    }
+
+    /* Now that rooms have vnums, link exits. */
+    for (room = room_index_get_first(); room != NULL;
+         room = room_index_get_next(room))
+    {
+        for (i = 0; i < DIR_MAX; i++) {
+            if ((exit = room->exit[i]) == NULL)
+                continue;
+            exit->area_vnum = -1;
+            if (exit->room_anum < 0)
+                continue;
+
+            exit->vnum = exit->room_anum + room->area->min_vnum;
+            if ((to_room = room_get_index (exit->vnum)) == NULL) {
+                bugf ("json_import_link_areas(): Room '%s' (%d) exit '%d' cannot find "
+                    "room with vnum %d.\n", room->name, room->vnum, i,
+                    exit->vnum);
+                continue;
+            }
+            exit->to_room = to_room;
+            exit->area_vnum = to_room->area->vnum;
+        }
+    }
+
+    /* Link mobs to areas and register them. */
+    for (mob = mob_index_get_first(); mob != NULL;
+         mob = mob_index_get_next(mob))
+    {
+        if ((area = json_import_link_areas_get_area (&(mob->area_str))) == NULL)
+            continue;
+        mob_index_to_area (mob, area);
+
+        mob->vnum = mob->anum + area->min_vnum;
+        if (mob->shop)
+            mob->shop->keeper = mob->vnum;
+
+        db_register_new_mob (mob);
+    }
+
+    /* Link objs to areas and register them. */
+    for (obj = obj_index_get_first(); obj != NULL;
+         obj = obj_index_get_next(obj))
+    {
+        if ((area = json_import_link_areas_get_area (&(obj->area_str))) == NULL)
+            continue;
+        obj_index_to_area (obj, area);
+
+        obj->vnum = obj->anum + area->min_vnum;
+        db_register_new_obj (obj);
+    }
+
+    /* Link help groups to areas. */
+    for (had = had_get_first(); had != NULL; had = had_get_next(had)) {
+        if ((area = json_import_link_areas_get_area (&(had->area_str))) == NULL)
+            continue;
+        help_area_to_area (had, area);
+    }
 }
