@@ -119,7 +119,7 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
     TTABLE (colour_setting_table, "color_settings", "Configurable colours.",  "color_setting", "unsupported", json_tblw_colour_setting, NULL, NULL),
     TTABLE (colour_table,     "colors",       "Colour values.",               "color",         "unsupported", json_tblw_colour,         NULL, NULL),
     TTABLE (con_app_table,    "con_app",      "Con apply table.",             "con_app",       "unsupported", json_tblw_con_app,        NULL, NULL),
-    TTABLE (condition_table,  "conditions",   "Messages based on % of hp.",   "condition",     "unsupported", json_tblw_condition,      NULL, NULL),
+    TTABLE (hp_condition_table,"hp_conditions","Messages based on % of hp.",  "hp_condition",  "unsupported", json_tblw_hp_condition,   NULL, NULL),
     TTABLE (dam_table,        "dam_types",    "Damage types and properties.", "dam_type",      "unsupported", json_tblw_dam,            NULL, NULL),
     TTABLE (day_table,        "days",         "Days of the week.",            "day",           "unsupported", json_tblw_day,            NULL, NULL),
     TTABLE (dex_app_table,    "dex_app",      "Dex apply table.",             "dex_app",       "unsupported", json_tblw_dex_app,        NULL, NULL),
@@ -198,7 +198,7 @@ const CLAN_T clan_table[CLAN_MAX + 1] = {
     {0},
 };
 
-const CONDITION_T condition_table[CONDITION_MAX + 1] = {
+const HP_CONDITION_T hp_condition_table[HP_CONDITION_MAX + 1] = {
 #ifdef BASEMUD_MORE_PRECISE_CONDITIONS
     {  100, "$1 is in excellent condition." },
     {   90, "$1 has a few scratches." },

@@ -194,33 +194,6 @@ int move_gain (CHAR_T *ch, bool apply_learning) {
     return gain;
 }
 
-void gain_condition (CHAR_T *ch, int cond, int value) {
-    int condition;
-
-    if (value == 0 || IS_NPC (ch) || ch->level >= LEVEL_IMMORTAL)
-        return;
-
-    condition = ch->pcdata->condition[cond];
-    if (condition == -1)
-        return;
-    ch->pcdata->condition[cond] = URANGE (0, condition + value, 48);
-
-    if (ch->pcdata->condition[cond] == 0) {
-        switch (cond) {
-            case COND_HUNGER:
-                send_to_char ("You are hungry.\n\r", ch);
-                break;
-            case COND_THIRST:
-                send_to_char ("You are thirsty.\n\r", ch);
-                break;
-            case COND_DRUNK:
-                if (condition != 0)
-                    send_to_char ("You are sober.\n\r", ch);
-                break;
-        }
-    }
-}
-
 void song_update (void) {
     OBJ_T *obj, *obj_next;
 

@@ -702,3 +702,17 @@ void mob_index_from_hash (MOB_INDEX_T *mob) {
     LIST2_REMOVE (mob, hash_prev, hash_next,
         mob_index_hash[hash], mob_index_hash_back[hash]);
 }
+
+int mobile_get_weapon_skill (const CHAR_T *ch, int sn) {
+    int skill;
+
+    /* -1 is exotic */
+    if (sn == -1)
+        skill = 3 * ch->level;
+    else if (sn == SN(HAND_TO_HAND))
+        skill = 40 + 2 * ch->level;
+    else
+        skill = 40 + 5 * ch->level / 2;
+
+    return URANGE (0, skill, 100);
+}

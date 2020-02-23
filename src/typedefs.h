@@ -80,7 +80,7 @@ typedef struct dam_type         DAM_T;
 typedef struct attack_type      ATTACK_T;
 typedef struct wiznet_type      WIZNET_T;
 typedef struct clan_type        CLAN_T;
-typedef struct condition_type   CONDITION_T;
+typedef struct hp_condition_type HP_CONDITION_T;
 typedef struct position_type    POSITION_T;
 typedef struct sex_type         SEX_T;
 typedef struct size_type        SIZE_T;
@@ -148,6 +148,7 @@ typedef bool OLC_FUN    (CHAR_T *ch, char *argument);
 typedef int LOOKUP_FUN  (const char *name);
 typedef void INIT_FUN (void *obj);
 typedef void DISPOSE_FUN (void *obj);
+typedef bool CONDITION_FUN (const CHAR_T *ch);
 
 /* Accommodate old non-Ansi compilers. */
 #if defined(TRADITIONAL)
@@ -164,6 +165,7 @@ typedef void DISPOSE_FUN (void *obj);
     #define DECLARE_LOOKUP_FUN(fun) int fun()
     #define DECLARE_INIT_FUN(fun)   void fun()
     #define DECLARE_DISPOSE_FUN(fun) void fun()
+    #define DECLARE_CONDITION_FUN(fun) bool fun()
 #else
     #define args(list)              list
     #define DECLARE_DO_FUN(fun)     DO_FUN     fun
@@ -177,6 +179,7 @@ typedef void DISPOSE_FUN (void *obj);
     #define DECLARE_LOOKUP_FUN(fun) LOOKUP_FUN fun
     #define DECLARE_INIT_FUN(fun)   INIT_FUN fun
     #define DECLARE_DISPOSE_FUN(fun) DISPOSE_FUN fun
+    #define DECLARE_CONDITION_FUN(fun) CONDITION_FUN fun
 #endif
 
 #endif

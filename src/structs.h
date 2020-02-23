@@ -340,7 +340,7 @@ struct clan_type {
     bool independent; /* true for loners */
 };
 
-struct condition_type {
+struct hp_condition_type {
     int hp_percent;
     char *message;
 };

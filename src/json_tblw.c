@@ -527,8 +527,8 @@ DEFINE_JSON_WRITE_FUN (json_tblw_pose) {
     return new;
 }
 
-DEFINE_JSON_WRITE_FUN (json_tblw_condition) {
-    JSON_TBLW_START (CONDITION_T, condition, condition->hp_percent <= -999);
+DEFINE_JSON_WRITE_FUN (json_tblw_hp_condition) {
+    JSON_TBLW_START (HP_CONDITION_T, condition, condition->hp_percent <= -999);
     json_prop_integer (new, "hp_percent", condition->hp_percent);
     json_prop_string  (new, "message", JSTR (condition->message));
     return new;

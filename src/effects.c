@@ -36,6 +36,7 @@
 #include "objs.h"
 #include "chars.h"
 #include "items.h"
+#include "players.h"
 
 #include "effects.h"
 
@@ -159,7 +160,7 @@ DEFINE_EFFECT_FUN (effect_cold) {
 
         /* hunger! (warmth sucked out) */
         if (!IS_NPC (victim))
-            gain_condition (victim, COND_HUNGER, -1 * dam / 20);
+            player_change_condition (victim, COND_HUNGER, -1 * dam / 20);
 
         /* let's toast some gear */
         for (obj = victim->content_first; obj != NULL; obj = obj_next) {
@@ -247,7 +248,7 @@ DEFINE_EFFECT_FUN (effect_fire) {
 
         /* getting thirsty */
         if (!IS_NPC (victim))
-            gain_condition (victim, COND_THIRST, -1 * dam / 20);
+            player_change_condition (victim, COND_THIRST, -1 * dam / 20);
 
         /* let's toast some gear! */
         for (obj = victim->content_first; obj != NULL; obj = obj_next) {

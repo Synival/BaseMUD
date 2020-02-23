@@ -982,8 +982,10 @@ bool item_examine (const OBJ_T *obj, CHAR_T *ch) {
 bool item_eat_effect (OBJ_T *obj, CHAR_T *ch) {
     switch (obj->item_type) {
         case ITEM_FOOD:
-            char_change_conditions (ch, 0, obj->v.food.hunger, 0,
-                obj->v.food.fullness);
+            char_change_conditions (ch,
+                0, obj->v.food.fullness,
+                0, obj->v.food.hunger);
+
             if (obj->v.food.poisoned != 0) {
                 AFFECT_T af;
 

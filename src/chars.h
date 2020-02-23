@@ -88,13 +88,6 @@ bool char_is_npc (const CHAR_T *ch);
 bool char_is_immortal (const CHAR_T *ch);
 bool char_is_hero (const CHAR_T *ch);
 bool char_is_affected (const CHAR_T *ch, flag_t sn);
-bool char_is_sober (const CHAR_T *ch);
-bool char_is_drunk (const CHAR_T *ch);
-bool char_is_thirsty (const CHAR_T *ch);
-bool char_is_quenched (const CHAR_T *ch);
-bool char_is_hungry (const CHAR_T *ch);
-bool char_is_fed (const CHAR_T *ch);
-bool char_is_full (const CHAR_T *ch);
 bool char_is_pet (const CHAR_T *ch);
 bool char_is_good (const CHAR_T *ch);
 bool char_is_evil (const CHAR_T *ch);
@@ -117,6 +110,15 @@ bool char_has_available_wear_loc (const CHAR_T *ch, flag_t wear_loc);
 bool char_has_available_wear_flag (const CHAR_T *ch, flag_t wear_flag);
 bool char_has_active_light (const CHAR_T *ch);
 bool char_has_boat (const CHAR_T *ch);
+
+/* Condition checking functions. */
+DECLARE_CONDITION_FUN (char_is_sober);
+DECLARE_CONDITION_FUN (char_is_drunk);
+DECLARE_CONDITION_FUN (char_is_thirsty);
+DECLARE_CONDITION_FUN (char_is_quenched);
+DECLARE_CONDITION_FUN (char_is_hungry);
+DECLARE_CONDITION_FUN (char_is_fed);
+DECLARE_CONDITION_FUN (char_is_full);
 
 /* Getter functions. */
 int char_get_vnum (const CHAR_T *ch);

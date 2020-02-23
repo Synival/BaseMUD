@@ -35,7 +35,6 @@ int recovery_in_position (int gain, int position);
 int hit_gain (CHAR_T *ch, bool apply_learning);
 int mana_gain (CHAR_T *ch, bool apply_learning);
 int move_gain (CHAR_T *ch, bool apply_learning);
-void gain_condition (CHAR_T *ch, int cond, int value);
 void song_update (void);
 void weather_update (void);
 void health_update (void);

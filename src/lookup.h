@@ -318,7 +318,7 @@ const DEX_APP_T *dex_app_get (int attr);
 const CON_APP_T *con_app_get (int attr);
 PORTAL_EXIT_T *portal_exit_lookup_exact (const char *name);
 SOCIAL_T *social_lookup_exact (const char *name);
-const CONDITION_T *condition_get_for_char (const CHAR_T *ch);
+const HP_CONDITION_T *hp_condition_get_for_char (const CHAR_T *ch);
 const PC_RACE_T *pc_race_get_by_race (type_t race);
 
 const char *ac_rating_phrase (int ac);

@@ -51,5 +51,6 @@ void mobile_update (CHAR_T *ch);
 bool mobile_wander (CHAR_T *ch);
 void mob_index_to_hash (MOB_INDEX_T *mob);
 void mob_index_from_hash (MOB_INDEX_T *mob);
+int mobile_get_weapon_skill (const CHAR_T *ch, int sn);
 
 #endif

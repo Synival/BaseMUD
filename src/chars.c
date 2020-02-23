@@ -88,24 +88,10 @@ int char_get_weapon_sn (const CHAR_T *ch) {
 }
 
 int char_get_weapon_skill (const CHAR_T *ch, int sn) {
-    int skill;
-
-    /* -1 is exotic */
-    if (IS_NPC (ch)) {
-        if (sn == -1)
-            skill = 3 * ch->level;
-        else if (sn == SN(HAND_TO_HAND))
-            skill = 40 + 2 * ch->level;
-        else
-            skill = 40 + 5 * ch->level / 2;
-    }
-    else {
-        if (sn == -1)
-            skill = 3 * ch->level;
-        else
-            skill = ch->pcdata->learned[sn];
-    }
-    return URANGE (0, skill, 100);
+    if (IS_NPC (ch))
+        return mobile_get_weapon_skill (ch, sn);
+    else
+        return player_get_weapon_skill (ch, sn);
 }
 
 /* Retrieve a character's trusted level for permission checking. */
@@ -512,10 +498,8 @@ bool char_has_boat (const CHAR_T *ch) {
 }
 
 void char_move (CHAR_T *ch, int door, bool follow) {
-    CHAR_T *fch;
-    CHAR_T *fch_next;
-    ROOM_INDEX_T *in_room;
-    ROOM_INDEX_T *to_room;
+    CHAR_T *fch, *fch_next;
+    ROOM_INDEX_T *in_room, *to_room;
     EXIT_T *pexit;
     bool pass_door;
 
@@ -557,51 +541,8 @@ void char_move (CHAR_T *ch, int door, bool follow) {
         "That room is private right now.\n\r", ch);
 
     /* Special conditions for players. */
-    if (!IS_NPC (ch)) {
-        int i, j;
-        int move, in_sect, to_sect, flying;
-
-        for (i = 0; class_get (i) != NULL; i++) {
-            for (j = 0; j < MAX_GUILD; j++) {
-                BAIL_IF (i != ch->class &&
-                         to_room->vnum == class_table[i].guild[j],
-                    "You aren't allowed in there.\n\r", ch);
-            }
-        }
-
-        in_sect = in_room->sector_type;
-        to_sect = to_room->sector_type;
-        flying = IS_AFFECTED (ch, AFF_FLYING) || IS_IMMORTAL (ch);
-
-        BAIL_IF ((in_sect == SECT_AIR || to_sect == SECT_AIR) && !flying,
-            "You can't fly.\n\r", ch);
-
-        if ((in_sect == SECT_WATER_NOSWIM || to_sect == SECT_WATER_NOSWIM) &&
-             !flying)
-        {
-            /* Look for a boat. */
-            BAIL_IF (!char_has_boat (ch),
-                "You need a boat to go there.\n\r", ch);
-        }
-
-        move = sector_table[UMIN (SECT_MAX - 1, in_room->sector_type)].move_loss
-             + sector_table[UMIN (SECT_MAX - 1, to_room->sector_type)].move_loss;
-        move /= 2; /* the average */
-
-        /* conditional effects */
-        if (IS_AFFECTED (ch, AFF_FLYING) || IS_AFFECTED (ch, AFF_HASTE))
-            move /= 2;
-        if (IS_AFFECTED (ch, AFF_SLOW))
-            move *= 2;
-        if (move < 1)
-            move = 1;
-
-        BAIL_IF (ch->move < move,
-            "You are too exhausted.\n\r", ch);
-
-        WAIT_STATE (ch, 1);
-        ch->move -= move;
-    }
+    if (!IS_NPC (ch) && player_move_filter (ch, in_room, to_room))
+        return;
 
     /* Force pets to stand before leaving the room. */
     if (in_room != to_room) {
@@ -796,7 +737,7 @@ size_t char_format_condition_or_pos_msg (char *buf, size_t size,
 size_t char_format_condition_msg (char *buf, size_t size, const CHAR_T *ch,
     const CHAR_T *victim, bool use_pronoun)
 {
-    const CONDITION_T *cond;
+    const HP_CONDITION_T *cond;
     const char *name;
     size_t written;
 
@@ -804,7 +745,7 @@ size_t char_format_condition_msg (char *buf, size_t size, const CHAR_T *ch,
         ? act_code_pronoun (victim, 'e')
         : PERS_AW (victim, ch);
 
-    cond = condition_get_for_char (victim);
+    cond = hp_condition_get_for_char (victim);
     if (cond == NULL || cond->message == NULL) {
         buf[0] = '\0';
         return 0;
@@ -1226,28 +1167,6 @@ bool char_has_key (const CHAR_T *ch, int key) {
     return FALSE;
 }
 
-bool char_drop_weapon_if_too_heavy (CHAR_T *ch) {
-    OBJ_T *wield;
-    static int depth;
-
-    /* Check for weapon wielding.
-     * Guard against recursion (for weapons with affects). */
-    if (IS_NPC (ch))
-        return FALSE;
-    if ((wield = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD)) == NULL)
-        return FALSE;
-    if (obj_get_weight (wield) <= char_str_max_wield_weight (ch) * 10)
-        return FALSE;
-    if (depth != 0)
-        return FALSE;
-
-    depth++;
-    act2 ("You drop $p.", "$n drops $p.", ch, wield, NULL, 0, POS_RESTING);
-    obj_give_to_room (wield, ch->in_room);
-    depth--;
-    return TRUE;
-}
-
 void char_reduce_money (CHAR_T *ch, int cost) {
     int silver = 0, gold = 0;
 
@@ -1445,46 +1364,49 @@ bool char_is_hero (const CHAR_T *ch)
 bool char_is_affected (const CHAR_T *ch, flag_t sn)
     { return IS_SET((ch)->affected_by, sn) ? TRUE : FALSE; }
 
-bool char_is_sober (const CHAR_T *ch) {
+DEFINE_CONDITION_FUN (char_is_sober) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return TRUE;
     return (ch->pcdata->condition[COND_DRUNK] <= 0) ? TRUE : FALSE;
 }
 
-bool char_is_drunk (const CHAR_T *ch) {
+DEFINE_CONDITION_FUN (char_is_drunk) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return FALSE;
     return (ch->pcdata->condition[COND_DRUNK] > 10) ? TRUE : FALSE;
 }
 
-bool char_is_thirsty (const CHAR_T *ch) {
+DEFINE_CONDITION_FUN (char_is_thirsty) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return FALSE;
     return (ch->pcdata->condition[COND_THIRST] <= 0) ? TRUE : FALSE;
 }
 
-bool char_is_quenched (const CHAR_T *ch) {
+DEFINE_CONDITION_FUN (char_is_quenched) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return TRUE;
-    return (ch->pcdata->condition[COND_THIRST] > 40) ? TRUE : FALSE;
+    return (ch->pcdata->condition[COND_THIRST] > CONDITION_VALUE_STUFFED)
+        ? TRUE : FALSE;
 }
 
-bool char_is_hungry (const CHAR_T *ch) {
+DEFINE_CONDITION_FUN (char_is_hungry) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return FALSE;
     return (ch->pcdata->condition[COND_HUNGER] <= 0) ? TRUE : FALSE;
 }
 
-bool char_is_fed (const CHAR_T *ch) {
+DEFINE_CONDITION_FUN (char_is_fed) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return TRUE;
-    return (ch->pcdata->condition[COND_HUNGER] > 40) ? TRUE : FALSE;
+    return (ch->pcdata->condition[COND_HUNGER] > CONDITION_VALUE_STUFFED)
+        ? TRUE : FALSE;
 }
 
-bool char_is_full (const CHAR_T *ch) {
+DEFINE_CONDITION_FUN (char_is_full) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return FALSE;
-    return (ch->pcdata->condition[COND_FULL] > 40) ? TRUE : FALSE;
+    return (ch->pcdata->condition[COND_FULL] > CONDITION_VALUE_STUFFED)
+        ? TRUE : FALSE;
 }
 
 bool char_is_pet (const CHAR_T *ch)
@@ -1683,54 +1605,6 @@ bool char_change_to_next_board (CHAR_T *ch) {
     return TRUE;
 }
 
-void char_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
-    int hunger)
-{
-    if (IS_NPC (ch))
-        return;
-
-    if (drunk != 0) {
-        int was_sober = IS_SOBER (ch);
-        int was_drunk = IS_DRUNK (ch);
-        gain_condition (ch, COND_DRUNK, drunk);
-
-        if (!was_drunk && IS_DRUNK (ch))
-            send_to_char ("You feel drunk.\n\r", ch);
-        else if (was_sober && !IS_SOBER (ch))
-            send_to_char ("You feel a little tispy...\n\r", ch);
-    }
-
-    if (thirst != 0) {
-        int was_thirsty  = IS_THIRSTY (ch);
-        int was_quenched = IS_QUENCHED (ch);
-        gain_condition (ch, COND_THIRST, thirst);
-
-        if (!was_quenched && IS_QUENCHED (ch))
-            send_to_char ("Your thirst is quenched.\n\r", ch);
-        else if (was_thirsty && !IS_THIRSTY (ch))
-            send_to_char ("You are no longer thirsty.\n\r", ch);
-    }
-
-    if (hunger != 0) {
-        int was_hungry = IS_HUNGRY (ch);
-        int was_fed    = IS_FED (ch);
-        gain_condition (ch, COND_HUNGER, hunger);
-
-        if (!was_fed && IS_FED (ch))
-            send_to_char ("You feel well-fed.\n\r", ch);
-        else if (was_hungry && !IS_HUNGRY (ch))
-            send_to_char ("You are no longer hungry.\n\r", ch);
-    }
-
-    if (full != 0) {
-        int was_full = IS_FULL (ch);
-        gain_condition (ch, COND_FULL, full);
-
-        if (!was_full && IS_FULL (ch))
-            send_to_char ("You are full.\n\r", ch);
-    }
-}
-
 /* for returning skill information */
 int char_get_skill (const CHAR_T *ch, int sn) {
     const SKILL_T *skill;
@@ -1858,37 +1732,8 @@ void char_update (CHAR_T *ch) {
     if (ch->position == POS_STUNNED)
         update_pos (ch);
 
-    if (!IS_NPC (ch) && ch->level < LEVEL_IMMORTAL) {
-        OBJ_T *obj;
-
-        if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) != NULL &&
-                item_is_lit (obj))
-        {
-            item_light_fade (obj);
-        }
-
-        if (IS_IMMORTAL (ch))
-            ch->timer = 0;
-
-        if (++ch->timer >= 12) {
-            if (ch->was_in_room == NULL && ch->in_room != NULL) {
-                ch->was_in_room = ch->in_room;
-                if (ch->fighting != NULL)
-                    stop_fighting (ch, TRUE);
-                send_to_char ("You disappear into the void.\n\r", ch);
-                act ("$n disappears into the void.",
-                     ch, NULL, NULL, TO_NOTCHAR);
-                if (ch->level > 1)
-                    save_char_obj (ch);
-                char_to_room (ch, room_get_index (ROOM_VNUM_LIMBO));
-            }
-        }
-
-        gain_condition (ch, COND_DRUNK,  -1);
-        gain_condition (ch, COND_FULL,   ch->size > SIZE_MEDIUM ? -4 : -2);
-        gain_condition (ch, COND_THIRST, -1);
-        gain_condition (ch, COND_HUNGER, ch->size > SIZE_MEDIUM ? -2 : -1);
-    }
+    if (!IS_NPC (ch))
+        player_update (ch);
 
     for (paf = ch->affect_first; paf; paf = paf_next) {
         paf_next = paf->on_next;
@@ -1972,4 +1817,18 @@ void char_update (CHAR_T *ch) {
     }
     else
         char_damage_if_wounded (ch);
+}
+
+bool char_drop_weapon_if_too_heavy (CHAR_T *ch) {
+    if (IS_NPC (ch))
+        return FALSE;
+    return player_drop_weapon_if_too_heavy (ch);
+}
+
+void char_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
+    int hunger)
+{
+    if (IS_NPC (ch))
+        return;
+    return player_change_conditions (ch, drunk, full, thirst, hunger);
 }

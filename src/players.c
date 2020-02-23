@@ -40,6 +40,7 @@
 #include "groups.h"
 #include "fight.h"
 #include "rooms.h"
+#include "items.h"
 
 #include "players.h"
 
@@ -624,4 +625,239 @@ void player_die (CHAR_T *ch) {
     ch->hit  = UMAX (1, ch->hit);
     ch->mana = UMAX (1, ch->mana);
     ch->move = UMAX (1, ch->move);
+}
+    
+int player_get_weapon_skill (const CHAR_T *ch, int sn) {
+    int skill;
+
+    /* -1 is exotic */
+    if (sn == -1)
+        skill = 3 * ch->level;
+    else
+        skill = ch->pcdata->learned[sn];
+
+    return URANGE (0, skill, 100);
+}
+
+bool player_move_filter (CHAR_T *ch, ROOM_INDEX_T *from_room,
+    ROOM_INDEX_T *to_room)
+{
+    int i, j;
+    int move, in_sect, to_sect, flying;
+
+    for (i = 0; class_get (i) != NULL; i++) {
+        for (j = 0; j < MAX_GUILD; j++) {
+            FILTER (i != ch->class &&
+                     to_room->vnum == class_table[i].guild[j],
+                "You aren't allowed in there.\n\r", ch);
+        }
+    }
+
+    in_sect = from_room->sector_type;
+    to_sect = to_room->sector_type;
+    flying = IS_AFFECTED (ch, AFF_FLYING) || IS_IMMORTAL (ch);
+
+    FILTER ((in_sect == SECT_AIR || to_sect == SECT_AIR) && !flying,
+        "You can't fly.\n\r", ch);
+
+    if ((in_sect == SECT_WATER_NOSWIM || to_sect == SECT_WATER_NOSWIM) &&
+         !flying)
+    {
+        /* Look for a boat. */
+        FILTER (!char_has_boat (ch),
+            "You need a boat to go there.\n\r", ch);
+    }
+
+    move = sector_table[UMIN (SECT_MAX - 1, from_room->sector_type)].move_loss
+         + sector_table[UMIN (SECT_MAX - 1, to_room->sector_type)].move_loss;
+    move /= 2; /* the average */
+
+    /* conditional effects */
+    if (IS_AFFECTED (ch, AFF_FLYING) || IS_AFFECTED (ch, AFF_HASTE))
+        move /= 2;
+    if (IS_AFFECTED (ch, AFF_SLOW))
+        move *= 2;
+    if (move < 1)
+        move = 1;
+
+    FILTER (ch->move < move,
+        "You are too exhausted.\n\r", ch);
+
+    WAIT_STATE (ch, 1);
+    ch->move -= move;
+    return FALSE;
+}
+
+bool player_drop_weapon_if_too_heavy (CHAR_T *ch) {
+    OBJ_T *wield;
+    static int depth;
+
+    /* Check for weapon wielding.
+     * Guard against recursion (for weapons with affects). */
+    if (IS_NPC (ch))
+        return FALSE;
+    if ((wield = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD)) == NULL)
+        return FALSE;
+    if (obj_get_weight (wield) <= char_str_max_wield_weight (ch) * 10)
+        return FALSE;
+    if (depth != 0)
+        return FALSE;
+
+    depth++;
+    act2 ("You drop $p.", "$n drops $p.", ch, wield, NULL, 0, POS_RESTING);
+    obj_give_to_room (wield, ch->in_room);
+    depth--;
+    return TRUE;
+}
+
+void player_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
+    int hunger)
+{
+    if (IS_NPC (ch))
+        return;
+    printf ("[%d, %d]\n", full, hunger);
+    if (drunk != 0)
+        player_change_condition (ch, COND_DRUNK, drunk);
+    if (thirst != 0)
+        player_change_condition (ch, COND_THIRST, thirst);
+    if (hunger != 0)
+        player_change_condition (ch, COND_HUNGER, hunger);
+    if (full != 0)
+        player_change_condition (ch, COND_FULL, full);
+}
+
+void player_change_condition (CHAR_T *ch, int cond, int value) {
+    int last_cond, new_cond;
+    int was_bad, was_good;
+    int is_bad,  is_good;
+    bool send_good, send_bad, send_better, send_worse;
+    const char *msg;
+
+    if (cond < 0 || cond >= COND_MAX)
+        return;
+    if (value == 0 || IS_NPC (ch) || ch->level >= LEVEL_IMMORTAL ||
+            ch->pcdata == NULL)
+        return;
+
+    last_cond = ch->pcdata->condition[cond];
+    if (last_cond == -1)
+        return;
+
+    new_cond = URANGE (0, last_cond + value, CONDITION_VALUE_MAX);
+    if (last_cond == new_cond)
+        return;
+
+    /* TODO: we should move all this to a condition table! */
+    #define SET_WAS(cond, bad, good) \
+        case cond: was_bad = bad; was_good = good; break
+    switch (cond) {
+        SET_WAS (COND_DRUNK,  IS_DRUNK (ch),   IS_SOBER (ch));
+        SET_WAS (COND_THIRST, IS_THIRSTY (ch), IS_QUENCHED (ch));
+        SET_WAS (COND_HUNGER, IS_HUNGRY (ch),  IS_FED (ch));
+        SET_WAS (COND_FULL,   IS_FULL (ch),    -1);
+        default: return;
+    }
+
+    ch->pcdata->condition[cond] = new_cond;
+
+    /* TODO: we should move all this to a condition table! */
+    #define SET_IS(cond, bad, good) \
+        case cond: is_bad = bad; is_good = good; break
+    switch (cond) {
+        SET_IS (COND_DRUNK,  IS_DRUNK (ch),   IS_SOBER (ch));
+        SET_IS (COND_THIRST, IS_THIRSTY (ch), IS_QUENCHED (ch));
+        SET_IS (COND_HUNGER, IS_HUNGRY (ch),  IS_FED (ch));
+        SET_IS (COND_FULL,   IS_FULL (ch),    -1);
+        default: return;
+    }
+
+    send_bad    = ((was_bad  == 0) && (is_bad  >  0));
+    send_better = ((was_bad  >  0) && (is_bad  == 0));
+    send_worse  = ((was_good >  0) && (is_good == 0));
+    send_good   = ((was_good == 0) && (is_good >  0));
+
+    /* TODO: we should move all this to a condition table! */
+    msg = NULL;
+    #define SET_MSG(good, bad, better, worse) \
+        if (msg == NULL && send_good)   msg = good; \
+        if (msg == NULL && send_bad)    msg = bad; \
+        if (msg == NULL && send_better) msg = better; \
+        if (msg == NULL && send_worse)  msg = worse; \
+        break;
+
+    switch (cond) {
+        case COND_HUNGER:
+            SET_MSG (
+                "You feel well-fed.\n\r",
+                "You are hungry.\n\r",
+                "You are no longer hungry.\n\r",
+                NULL
+            );
+            break;
+
+        case COND_THIRST:
+            SET_MSG (
+                "Your thirst is quenched.\n\r",
+                "You are thirsty.\n\r",
+                "You are no longer thirsty.\n\r",
+                NULL
+            );
+            break;
+
+        case COND_DRUNK:
+            SET_MSG (
+                "You are sober.\n\r",
+                "You feel drunk.\n\r",
+                NULL,
+                "You feel a little tispy...\n\r"
+            );
+            break;
+
+        case COND_FULL:
+            SET_MSG (
+                NULL,
+                "You are full.\n\r",
+                NULL,
+                NULL
+            );
+            break;
+    }
+
+    /* if there's a message, send it over. */
+    if (msg)
+        send_to_char (msg, ch);
+}
+
+void player_update (CHAR_T *ch) {
+    OBJ_T *obj;
+    bool is_big;
+
+    if (ch->level >= LEVEL_IMMORTAL)
+        return;
+
+    if ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_LIGHT)) != NULL &&
+            item_is_lit (obj))
+        item_light_fade (obj);
+
+    if (IS_IMMORTAL (ch))
+        ch->timer = 0;
+
+    if (++ch->timer >= 12) {
+        if (ch->was_in_room == NULL && ch->in_room != NULL) {
+            ch->was_in_room = ch->in_room;
+            if (ch->fighting != NULL)
+                stop_fighting (ch, TRUE);
+            send_to_char ("You disappear into the void.\n\r", ch);
+            act ("$n disappears into the void.",
+                 ch, NULL, NULL, TO_NOTCHAR);
+            if (ch->level > 1)
+                save_char_obj (ch);
+            char_to_room (ch, room_get_index (ROOM_VNUM_LIMBO));
+        }
+    }
+
+    is_big = (ch->size > SIZE_MEDIUM);
+    player_change_conditions (ch,
+        -1, is_big ? -4 : -2,
+        -1, is_big ? -2 : -1);
 }

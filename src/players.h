@@ -55,5 +55,13 @@ void player_add_skill_or_group (CHAR_T *ch, const char *name, bool deduct);
 void player_remove_skill_or_group (CHAR_T *ch, const char *name, bool refund);
 bool player_is_undesirable (const CHAR_T *ch);
 void player_die (CHAR_T *ch);
+int player_get_weapon_skill (const CHAR_T *ch, int sn);
+bool player_move_filter (CHAR_T *ch, ROOM_INDEX_T *from_room,
+    ROOM_INDEX_T *to_room);
+bool player_drop_weapon_if_too_heavy (CHAR_T *ch);
+void player_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
+    int hunger);
+void player_change_condition (CHAR_T *ch, int cond, int value);
+void player_update (CHAR_T *ch);
 
 #endif
