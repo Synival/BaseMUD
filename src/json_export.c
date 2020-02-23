@@ -34,11 +34,15 @@
 
 #include "json_export.h"
 
+// static JSON_T *json_export_objw_social (const char *name, const void *obj)
+    // { return json_objw_social (name, obj); }
+static bool json_export_portal_check (const void *obj)
+    { return (((PORTAL_T *) obj)->generated == FALSE); }
+
 void json_export_all (bool write_indiv, const char *everything) {
-    JSON_T *jarea, *json;
+    const HELP_AREA_T *had;
     const AREA_T *area;
     const TABLE_T *table;
-    char buf[256], fbuf[256];
     int mode;
 
     /* Make sure we write at least SOMETHING. */
@@ -52,34 +56,18 @@ void json_export_all (bool write_indiv, const char *everything) {
     for (area = area_get_first(); area; area = area_get_next (area))
         json_export_area (area, mode);
 
-    /* Write internal data represented as recycleable objects. */
-    #define ADD_RECYCLEABLE_JSON(oname, fname, btype, vtype, func, check) \
-        jarea = json_root_area (fname); \
-        if (write_indiv) \
-            log_f("Exporting JSON: %s%s.json", JSON_DIR, fname); \
-        do { \
-            const vtype *obj; \
-            \
-            for (obj = btype ## _get_first(); obj != NULL; \
-                 obj = btype ## _get_next(obj)) \
-            { \
-                if (!(check)) \
-                    continue; \
-                json = json_wrap_obj (func (NULL, obj), oname); \
-                json_attach_under (json, jarea); \
-                \
-            } \
-            if (jarea->first_child && write_indiv) { \
-                snprintf (buf, sizeof (buf), "%s" fname ".json", JSON_DIR); \
-                json_mkdir_to (buf); \
-                json_write_to_file (jarea, buf); \
-            } \
-        } while (0)
-
-    ADD_RECYCLEABLE_JSON ("social", "config/socials", social, SOCIAL_T,
-        json_objw_social, 1);
-    ADD_RECYCLEABLE_JSON ("portal", "areas/portals", portal, PORTAL_T,
-        json_objw_portal, (obj->generated == FALSE));
+    /* Export some specific recycleable objects we use for configuration. */
+    /* NOTE: This looks pretty ugly, but it was originally a big nasty macro.
+     *       It could be better, but using function pointers like this is
+     *       a step in the right direction. -- Synival */
+    json_export_recycleable ("social", "config/socials.json",
+        social_get_first(), (JSON_EXPORT_REC_NEXT_FUNC)  social_get_next,
+        (JSON_EXPORT_REC_WRITE_FUNC) json_objw_social,
+        NULL, mode);
+    json_export_recycleable ("portal", "areas/portals.json",
+        portal_get_first(), (JSON_EXPORT_REC_NEXT_FUNC)  portal_get_next,
+        (JSON_EXPORT_REC_WRITE_FUNC) json_objw_portal,
+        json_export_portal_check, mode);
 
     /* Write data represented as table rows. Most of this is internal and
      * exported to 'json/meta', but some can be defined in 'json/config'. */
@@ -87,25 +75,8 @@ void json_export_all (bool write_indiv, const char *everything) {
         json_export_table (table, mode);
 
     /* Add help areas. */
-    do {
-        HELP_AREA_T *had;
-        for (had = had_get_first(); had; had = had_get_next (had)) {
-            snprintf (buf, sizeof(buf), "help/%s", had->name);
-            jarea = json_root_area (buf);
-            snprintf (fbuf, sizeof (fbuf), "%shelp/%s.json", JSON_DIR, had->name);
-
-            if (write_indiv)
-                log_f("Exporting JSON: %s", fbuf);
-
-            json = json_wrap_obj (json_objw_help_area (NULL, had), "help");
-            json_attach_under (json, jarea);
-
-            if (write_indiv) {
-                json_mkdir_to (fbuf);
-                json_write_to_file (jarea, fbuf);
-            }
-        }
-    } while (0);
+    for (had = had_get_first(); had; had = had_get_next (had))
+        json_export_help_area (had, mode);
 
     /* Write one giant file with everything. */
     if (everything) {
@@ -197,6 +168,46 @@ void json_export_area (const AREA_T *area, int mode) {
         json_free (jarea);
 }
 
+void json_export_recycleable (const char *objname, const char *filename,
+    void *first,
+    JSON_EXPORT_REC_NEXT_FUNC next_func,
+    JSON_EXPORT_REC_WRITE_FUNC write_func,
+    JSON_EXPORT_REC_CHECK_FUNC check_func,
+    int mode)
+{
+    JSON_T *jarea, *json;
+    flag_t options;
+    char fbuf[256];
+    const void *obj;
+
+    if (!json_export_interpret_mode (mode, &options)) {
+        bugf ("json_export_help_area(): Unknown mode %d", mode);
+        return;
+    }
+
+    jarea = json_root_area (filename);
+    snprintf (fbuf, sizeof (fbuf), "%s%s", JSON_DIR, filename);
+
+    if (options & JSON_EXPORT_OPTION_WRITE_INDIV)
+        log_f ("Exporting JSON: %s", fbuf);
+       
+    for (obj = first; obj; obj = next_func (obj)) {
+        if (check_func != NULL && !check_func (obj))
+            continue;
+        json = json_wrap_obj (write_func (NULL, obj), objname);
+        json_attach_under (json, jarea);
+       
+    }
+    if (jarea->first_child && (options & JSON_EXPORT_OPTION_WRITE_INDIV)) {
+        json_mkdir_to (fbuf);
+        json_write_to_file (jarea, fbuf);
+    }
+
+    /* Unload all parsed JSON if the mode specifies it. */
+    if (options & JSON_EXPORT_OPTION_UNLOAD)
+        json_free (jarea);
+}
+
 void json_export_table (const TABLE_T *table, int mode) {
     JSON_T *json;
     flag_t options;
@@ -240,7 +251,36 @@ void json_export_table (const TABLE_T *table, int mode) {
     }
 
     /* Unload all parsed JSON if the mode specifies it. */
-    json = NULL;
     if (options & JSON_EXPORT_OPTION_UNLOAD)
         json_free (json);
+}
+
+void json_export_help_area (const HELP_AREA_T *had, int mode) {
+    JSON_T *jarea, *json;
+    char buf[256], fbuf[256];
+    flag_t options;
+
+    if (!json_export_interpret_mode (mode, &options)) {
+        bugf ("json_export_help_area(): Unknown mode %d", mode);
+        return;
+    }
+
+    snprintf (buf, sizeof(buf), "help/%s", had->name);
+    jarea = json_root_area (buf);
+    snprintf (fbuf, sizeof (fbuf), "%shelp/%s.json", JSON_DIR, had->name);
+
+    if (options & JSON_EXPORT_OPTION_WRITE_INDIV)
+        log_f("Exporting JSON: %s", fbuf);
+
+    json = json_wrap_obj (json_objw_help_area (NULL, had), "help");
+    json_attach_under (json, jarea);
+
+    if (options & JSON_EXPORT_OPTION_WRITE_INDIV) {
+        json_mkdir_to (fbuf);
+        json_write_to_file (jarea, fbuf);
+    }
+
+    /* Unload all parsed JSON if the mode specifies it. */
+    if (options & JSON_EXPORT_OPTION_UNLOAD)
+        json_free (jarea);
 }
