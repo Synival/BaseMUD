@@ -76,9 +76,9 @@ char *fix_string (const char *str) {
 }
 
 /*****************************************************************************
- Name:        save_area_list
+ Name:       save_area_list
  Purpose:    Saves the listing of files to be loaded at startup.
- Called by:    do_asave(olc_save.c).
+ Called by:  do_asave(olc_save.c).
  ****************************************************************************/
 void save_area_list () {
     FILE *fp;
@@ -120,12 +120,11 @@ void save_mobprogs (FILE *fp, AREA_T *area) {
 }
 
 /*****************************************************************************
- Name:        save_mobile
+ Name:       save_mobile
  Purpose:    Save one mobile to file, new format -- Hugin
- Called by:    save_mobiles (below).
+ Called by:  save_mobiles (below).
  ****************************************************************************/
-void save_mobile (FILE *fp, MOB_INDEX_T *mob_index)
-{
+void save_mobile (FILE *fp, MOB_INDEX_T *mob_index) {
     MPROG_LIST_T *mprog;
     const RACE_T *race;
     char buf[MAX_STRING_LENGTH];
@@ -196,10 +195,10 @@ void save_mobile (FILE *fp, MOB_INDEX_T *mob_index)
 
 
 /*****************************************************************************
- Name:        save_mobiles
+ Name:       save_mobiles
  Purpose:    Save #MOBILES secion of an area file.
- Called by:    save_area(olc_save.c).
- Notes:         Changed for ROM OLC.
+ Called by:  save_area(olc_save.c).
+ Notes:      Changed for ROM OLC.
  ****************************************************************************/
 void save_mobiles (FILE *fp, AREA_T *area) {
     int i;
@@ -213,10 +212,10 @@ void save_mobiles (FILE *fp, AREA_T *area) {
 }
 
 /*****************************************************************************
- Name:        save_object
+ Name:       save_object
  Purpose:    Save one object to file.
-                new ROM format saving -- Hugin
- Called by:    save_objects (below).
+             new ROM format saving -- Hugin
+ Called by:  save_objects (below).
  ****************************************************************************/
 void save_object (FILE *fp, OBJ_INDEX_T *obj_index) {
     char letter;
@@ -464,9 +463,9 @@ void save_door_resets (FILE *fp, AREA_T *area) {
 
 
 /*****************************************************************************
- Name:        save_resets
+ Name:       save_resets
  Purpose:    Saves the #RESETS section of an area file.
- Called by:    save_area(olc_save.c)
+ Called by:  save_area(olc_save.c)
  ****************************************************************************/
 void save_resets (FILE *fp, AREA_T *area) {
     RESET_T *r;
@@ -631,9 +630,9 @@ int save_other_helps (CHAR_T *ch) {
 }
 
 /*****************************************************************************
- Name:        save_area
+ Name:       save_area
  Purpose:    Save an area, note that this format is new.
- Called by:    do_asave(olc_save.c).
+ Called by:  do_asave(olc_save.c).
  ****************************************************************************/
 void save_area (AREA_T *area) {
     FILE *fp;

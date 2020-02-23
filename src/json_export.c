@@ -64,7 +64,7 @@ void json_export_all (bool write_indiv, const char *everything) {
         social_get_first(), (JSON_EXPORT_REC_NEXT_FUNC)  social_get_next,
         (JSON_EXPORT_REC_WRITE_FUNC) json_objw_social,
         NULL, mode);
-    json_export_recycleable ("portal", "areas/portals.json",
+    json_export_recycleable ("portal", "config/portals.json",
         portal_get_first(), (JSON_EXPORT_REC_NEXT_FUNC)  portal_get_next,
         (JSON_EXPORT_REC_WRITE_FUNC) json_objw_portal,
         json_export_portal_check, mode);
