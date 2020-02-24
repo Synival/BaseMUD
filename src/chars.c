@@ -737,7 +737,7 @@ size_t char_format_condition_or_pos_msg (char *buf, size_t size,
 size_t char_format_condition_msg (char *buf, size_t size, const CHAR_T *ch,
     const CHAR_T *victim, bool use_pronoun)
 {
-    const HP_CONDITION_T *cond;
+    const HP_COND_T *cond;
     const char *name;
     size_t written;
 
@@ -745,7 +745,7 @@ size_t char_format_condition_msg (char *buf, size_t size, const CHAR_T *ch,
         ? act_code_pronoun (victim, 'e')
         : PERS_AW (victim, ch);
 
-    cond = hp_condition_get_for_char (victim);
+    cond = hp_cond_get_for_char (victim);
     if (cond == NULL || cond->message == NULL) {
         buf[0] = '\0';
         return 0;
@@ -1364,48 +1364,48 @@ bool char_is_hero (const CHAR_T *ch)
 bool char_is_affected (const CHAR_T *ch, flag_t sn)
     { return IS_SET((ch)->affected_by, sn) ? TRUE : FALSE; }
 
-DEFINE_CONDITION_FUN (char_is_sober) {
+DEFINE_COND_FUN (char_is_sober) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return TRUE;
-    return (ch->pcdata->condition[COND_DRUNK] <= 0) ? TRUE : FALSE;
+    return (ch->pcdata->cond_hours[COND_DRUNK] <= 0) ? TRUE : FALSE;
 }
 
-DEFINE_CONDITION_FUN (char_is_drunk) {
+DEFINE_COND_FUN (char_is_drunk) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return FALSE;
-    return (ch->pcdata->condition[COND_DRUNK] > 10) ? TRUE : FALSE;
+    return (ch->pcdata->cond_hours[COND_DRUNK] > 10) ? TRUE : FALSE;
 }
 
-DEFINE_CONDITION_FUN (char_is_thirsty) {
+DEFINE_COND_FUN (char_is_thirsty) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return FALSE;
-    return (ch->pcdata->condition[COND_THIRST] <= 0) ? TRUE : FALSE;
+    return (ch->pcdata->cond_hours[COND_THIRST] <= 0) ? TRUE : FALSE;
 }
 
-DEFINE_CONDITION_FUN (char_is_quenched) {
+DEFINE_COND_FUN (char_is_quenched) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return TRUE;
-    return (ch->pcdata->condition[COND_THIRST] > CONDITION_VALUE_STUFFED)
+    return (ch->pcdata->cond_hours[COND_THIRST] > COND_HOURS_STUFFED)
         ? TRUE : FALSE;
 }
 
-DEFINE_CONDITION_FUN (char_is_hungry) {
+DEFINE_COND_FUN (char_is_hungry) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return FALSE;
-    return (ch->pcdata->condition[COND_HUNGER] <= 0) ? TRUE : FALSE;
+    return (ch->pcdata->cond_hours[COND_HUNGER] <= 0) ? TRUE : FALSE;
 }
 
-DEFINE_CONDITION_FUN (char_is_fed) {
+DEFINE_COND_FUN (char_is_fed) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return TRUE;
-    return (ch->pcdata->condition[COND_HUNGER] > CONDITION_VALUE_STUFFED)
+    return (ch->pcdata->cond_hours[COND_HUNGER] > COND_HOURS_STUFFED)
         ? TRUE : FALSE;
 }
 
-DEFINE_CONDITION_FUN (char_is_full) {
+DEFINE_COND_FUN (char_is_full) {
     if (char_is_npc (ch) || ch->pcdata == NULL)
         return FALSE;
-    return (ch->pcdata->condition[COND_FULL] > CONDITION_VALUE_STUFFED)
+    return (ch->pcdata->cond_hours[COND_FULL] > COND_HOURS_STUFFED)
         ? TRUE : FALSE;
 }
 

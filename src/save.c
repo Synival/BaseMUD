@@ -221,9 +221,8 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
         fprintf (fp, "HMVP %d %d %d\n", ch->pcdata->perm_hit,
                  ch->pcdata->perm_mana, ch->pcdata->perm_move);
         fprintf (fp, "Cnd  %d %d %d %d\n",
-                 ch->pcdata->condition[0],
-                 ch->pcdata->condition[1],
-                 ch->pcdata->condition[2], ch->pcdata->condition[3]);
+                 ch->pcdata->cond_hours[0], ch->pcdata->cond_hours[1],
+                 ch->pcdata->cond_hours[2], ch->pcdata->cond_hours[3]);
         for (i = 0; i < COLOUR_SETTING_MAX; i++)
             fprintf (fp, "Colour %d %ld\n", i, ch->pcdata->colour[i]);
 
@@ -464,9 +463,9 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
     ch->pcdata->title   = str_dup ("");
     for (stat = 0; stat < STAT_MAX; stat++)
         ch->perm_stat[stat] = 13;
-    ch->pcdata->condition[COND_THIRST] = 48;
-    ch->pcdata->condition[COND_FULL]   = 48;
-    ch->pcdata->condition[COND_HUNGER] = 48;
+    ch->pcdata->cond_hours[COND_THIRST] = COND_HOURS_MAX;
+    ch->pcdata->cond_hours[COND_FULL]   = COND_HOURS_MAX;
+    ch->pcdata->cond_hours[COND_HUNGER] = COND_HOURS_MAX;
     ch->pcdata->security = 0; /* OLC */
     player_reset_colour (ch);
 
@@ -804,18 +803,18 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 KEY ("Comm",  ch->comm, fread_flag (fp));
 
                 if (!str_cmp (word, "Condition") || !str_cmp (word, "Cond")) {
-                    ch->pcdata->condition[0] = fread_number (fp);
-                    ch->pcdata->condition[1] = fread_number (fp);
-                    ch->pcdata->condition[2] = fread_number (fp);
+                    ch->pcdata->cond_hours[0] = fread_number (fp);
+                    ch->pcdata->cond_hours[1] = fread_number (fp);
+                    ch->pcdata->cond_hours[2] = fread_number (fp);
                     match = TRUE;
                     break;
                 }
 
                 if (!str_cmp (word, "Cnd")) {
-                    ch->pcdata->condition[0] = fread_number (fp);
-                    ch->pcdata->condition[1] = fread_number (fp);
-                    ch->pcdata->condition[2] = fread_number (fp);
-                    ch->pcdata->condition[3] = fread_number (fp);
+                    ch->pcdata->cond_hours[0] = fread_number (fp);
+                    ch->pcdata->cond_hours[1] = fread_number (fp);
+                    ch->pcdata->cond_hours[2] = fread_number (fp);
+                    ch->pcdata->cond_hours[3] = fread_number (fp);
                     match = TRUE;
                     break;
                 }

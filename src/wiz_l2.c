@@ -353,7 +353,7 @@ DEFINE_DO_FUN (do_mset) {
             "Not on NPC's.\n\r", ch);
         BAIL_IF (value < -1 || value > 100,
             "Thirst range is -1 to 100.\n\r", ch);
-        victim->pcdata->condition[COND_THIRST] = value;
+        victim->pcdata->cond_hours[COND_THIRST] = value;
         return;
     }
 
@@ -362,7 +362,7 @@ DEFINE_DO_FUN (do_mset) {
             "Not on NPC's.\n\r", ch);
         BAIL_IF (value < -1 || value > 100,
             "Drunk range is -1 to 100.\n\r", ch);
-        victim->pcdata->condition[COND_DRUNK] = value;
+        victim->pcdata->cond_hours[COND_DRUNK] = value;
         return;
     }
 
@@ -371,7 +371,7 @@ DEFINE_DO_FUN (do_mset) {
             "Not on NPC's.\n\r", ch);
         BAIL_IF (value < -1 || value > 100,
             "Full range is -1 to 100.\n\r", ch);
-        victim->pcdata->condition[COND_FULL] = value;
+        victim->pcdata->cond_hours[COND_FULL] = value;
         return;
     }
 
@@ -380,7 +380,7 @@ DEFINE_DO_FUN (do_mset) {
             "Not on NPC's.\n\r", ch);
         BAIL_IF (value < -1 || value > 100,
             "Full range is -1 to 100.\n\r", ch);
-        victim->pcdata->condition[COND_HUNGER] = value;
+        victim->pcdata->cond_hours[COND_HUNGER] = value;
         return;
     }
 

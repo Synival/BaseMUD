@@ -60,7 +60,7 @@ extern const DAY_T            day_table[DAY_MAX + 1];
 extern const MONTH_T          month_table[MONTH_MAX + 1];
 extern const SKY_T            sky_table[SKY_MAX + 1];
 extern const SUN_T            sun_table[SUN_MAX + 1];
-extern const HP_CONDITION_T   hp_condition_table[HP_CONDITION_MAX + 1];
+extern const HP_COND_T        hp_cond_table[HP_COND_MAX + 1];
 extern const COLOUR_T         colour_table[COLOUR_MAX + 1];
 extern const POSE_T           pose_table[CLASS_MAX + 1];
 extern WEAPON_T               weapon_table[WEAPON_MAX + 1];
@@ -80,6 +80,7 @@ extern const OBJ_MAP_T        obj_map_table[ITEM_MAX + 1];
 extern SKILL_MAP_T            skill_map_table[SKILL_MAP_MAX + 1];
 extern RECYCLE_T              recycle_table[RECYCLE_MAX + 1];
 extern const WIZNET_T         wiznet_table[WIZNET_MAX + 1];
+extern const COND_T           cond_table[COND_MAX + 1];
 
 /* Other tables. */
 extern char *const title_table[CLASS_MAX][MAX_LEVEL + 1][2];

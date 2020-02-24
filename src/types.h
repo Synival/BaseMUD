@@ -241,7 +241,6 @@ extern const TYPE_T sector_types[SECT_MAX + 1];
 extern const TYPE_T item_types[ITEM_MAX + 1];
 extern const TYPE_T door_reset_types[DOOR_RESET_MAX + 1];
 extern const TYPE_T stat_types[STAT_MAX + 1];
-extern const TYPE_T cond_types[COND_MAX + 1];
 extern const TYPE_T target_types[SKILL_TARGET_MAX + 1];
 extern const TYPE_T skill_target_types[SKILL_TARGET_MAX + 1];
 extern const TYPE_T board_def_types[DEF_MAX + 1];

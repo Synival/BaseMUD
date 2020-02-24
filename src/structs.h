@@ -340,7 +340,7 @@ struct clan_type {
     bool independent; /* true for loners */
 };
 
-struct hp_condition_type {
+struct hp_cond_type {
     int hp_percent;
     char *message;
 };
@@ -567,7 +567,7 @@ struct pc_data {
     sh_int perm_move;
     sh_int true_sex;
     int last_level;
-    sh_int condition[4];
+    sh_int cond_hours[4];
     sh_int learned[SKILL_MAX];
     sh_int skill_known[SKILL_MAX];
     sh_int group_known[SKILL_GROUP_MAX];
@@ -1226,6 +1226,15 @@ struct song_type {
     char *name;
     char *lyrics[MAX_SONG_LINES];
     int lines;
+};
+
+/* Conditions like hunger/thirst. */
+struct cond_type {
+    int type;
+    char *name;
+    COND_FUN *good_fun, *bad_fun;
+    char *msg_good, *msg_bad;
+    char *msg_better, *msg_worse;
 };
 
 #endif

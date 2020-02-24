@@ -80,7 +80,7 @@ typedef struct dam_type         DAM_T;
 typedef struct attack_type      ATTACK_T;
 typedef struct wiznet_type      WIZNET_T;
 typedef struct clan_type        CLAN_T;
-typedef struct hp_condition_type HP_CONDITION_T;
+typedef struct hp_cond_type     HP_COND_T;
 typedef struct position_type    POSITION_T;
 typedef struct sex_type         SEX_T;
 typedef struct size_type        SIZE_T;
@@ -124,6 +124,7 @@ typedef struct pose_type        POSE_T;
 typedef struct song_type        SONG_T;
 typedef struct ext_flags_type   EXT_FLAGS_T;
 typedef struct ext_init_flags_type EXT_INIT_FLAGS_T;
+typedef struct cond_type        COND_T;
 
 /* JSON typedefs. */
 typedef struct json_t JSON_T;
@@ -148,7 +149,7 @@ typedef bool OLC_FUN    (CHAR_T *ch, char *argument);
 typedef int LOOKUP_FUN  (const char *name);
 typedef void INIT_FUN (void *obj);
 typedef void DISPOSE_FUN (void *obj);
-typedef bool CONDITION_FUN (const CHAR_T *ch);
+typedef bool COND_FUN (const CHAR_T *ch);
 
 /* Accommodate old non-Ansi compilers. */
 #if defined(TRADITIONAL)
@@ -165,7 +166,7 @@ typedef bool CONDITION_FUN (const CHAR_T *ch);
     #define DECLARE_LOOKUP_FUN(fun) int fun()
     #define DECLARE_INIT_FUN(fun)   void fun()
     #define DECLARE_DISPOSE_FUN(fun) void fun()
-    #define DECLARE_CONDITION_FUN(fun) bool fun()
+    #define DECLARE_COND_FUN(fun)   bool fun()
 #else
     #define args(list)              list
     #define DECLARE_DO_FUN(fun)     DO_FUN     fun
@@ -179,7 +180,7 @@ typedef bool CONDITION_FUN (const CHAR_T *ch);
     #define DECLARE_LOOKUP_FUN(fun) LOOKUP_FUN fun
     #define DECLARE_INIT_FUN(fun)   INIT_FUN fun
     #define DECLARE_DISPOSE_FUN(fun) DISPOSE_FUN fun
-    #define DECLARE_CONDITION_FUN(fun) CONDITION_FUN fun
+    #define DECLARE_COND_FUN(fun)   COND_FUN fun
 #endif
 
 #endif

@@ -207,14 +207,6 @@ const TYPE_T stat_types[STAT_MAX + 1] = {
     {0}
 };
 
-const TYPE_T cond_types[COND_MAX + 1] = {
-    {"drunk",  COND_DRUNK,  TRUE},
-    {"full",   COND_FULL,   TRUE},
-    {"thirst", COND_THIRST, TRUE},
-    {"hunger", COND_HUNGER, TRUE},
-    {0}
-};
-
 const TYPE_T skill_target_types[SKILL_TARGET_MAX + 1] = {
     {"ignore",             SKILL_TARGET_IGNORE,         TRUE},
     {"char_offensive",     SKILL_TARGET_CHAR_OFFENSIVE, TRUE},

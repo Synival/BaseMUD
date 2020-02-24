@@ -54,6 +54,7 @@ SIMPLE_INDEX_BUNDLE (spec,     SPEC_T,     SPEC_MAX);
 SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_T,       type);
 SIMPLE_HASH_BUNDLE (colour,     COLOUR_T,           code);
 SIMPLE_HASH_BUNDLE (colour_setting, COLOUR_SETTING_T, index);
+SIMPLE_HASH_BUNDLE (cond,       COND_T,             type);
 SIMPLE_HASH_BUNDLE (dam,        DAM_T,              type);
 SIMPLE_HASH_BUNDLE (day,        DAY_T,              type);
 SIMPLE_HASH_BUNDLE (door,       DOOR_T,             dir);
@@ -439,16 +440,16 @@ SOCIAL_T *social_lookup_exact (const char *name) {
     return NULL;
 }
 
-const HP_CONDITION_T *hp_condition_get_for_char (const CHAR_T *ch) {
-    const HP_CONDITION_T *cond;
+const HP_COND_T *hp_cond_get_for_char (const CHAR_T *ch) {
+    const HP_COND_T *cond;
     int i, percent;
 
     percent = (ch->max_hit > 0) ? ((ch->hit * 100) / ch->max_hit) : -1;
     if (ch->hit > 0 && percent == 0)
         percent = 1;
 
-    for (i = 0; hp_condition_table[i].hp_percent != -999; i++) {
-        cond = &(hp_condition_table[i]);
+    for (i = 0; hp_cond_table[i].hp_percent != -999; i++) {
+        cond = &(hp_cond_table[i]);
         if (percent >= cond->hp_percent || cond->hp_percent <= -100)
             return cond;
     }

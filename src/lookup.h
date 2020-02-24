@@ -240,6 +240,7 @@ DEC_SIMPLE_INDEX_BUNDLE (spec,     SPEC_T);
 DEC_SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_T);
 DEC_SIMPLE_HASH_BUNDLE (colour,     COLOUR_T);
 DEC_SIMPLE_HASH_BUNDLE (colour_setting, COLOUR_SETTING_T);
+DEC_SIMPLE_HASH_BUNDLE (cond,       COND_T);
 DEC_SIMPLE_HASH_BUNDLE (dam,        DAM_T);
 DEC_SIMPLE_HASH_BUNDLE (day,        DAY_T);
 DEC_SIMPLE_HASH_BUNDLE (door,       DOOR_T);
@@ -318,7 +319,7 @@ const DEX_APP_T *dex_app_get (int attr);
 const CON_APP_T *con_app_get (int attr);
 PORTAL_EXIT_T *portal_exit_lookup_exact (const char *name);
 SOCIAL_T *social_lookup_exact (const char *name);
-const HP_CONDITION_T *hp_condition_get_for_char (const CHAR_T *ch);
+const HP_COND_T *hp_cond_get_for_char (const CHAR_T *ch);
 const PC_RACE_T *pc_race_get_by_race (type_t race);
 
 const char *ac_rating_phrase (int ac);

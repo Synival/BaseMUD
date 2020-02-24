@@ -54,7 +54,7 @@
 #define DEFINE_DISPOSE_FUN(fun) \
     void fun (void *obj)
 
-#define DEFINE_CONDITION_FUN(fun) \
+#define DEFINE_COND_FUN(fun) \
     bool fun (const CHAR_T *ch)
 
 /* Short scalar types.
@@ -459,11 +459,11 @@
 #define ATTRIBUTE_HIGHEST   25
 #define ATTACK_MAX          40
 #define BOARD_MAX           5
-#define HP_CONDITION_MAX    32
+#define HP_COND_MAX         32
 #define MAP_LOOKUP_MAX      16
 #define COLOUR_MAX          32
-#define CONDITION_VALUE_STUFFED 40
-#define CONDITION_VALUE_MAX     48
+#define COND_HOURS_STUFFED  40
+#define COND_HOURS_MAX      48
 
 /* Colour setting codes */
 #define COLOUR_TEXT            0

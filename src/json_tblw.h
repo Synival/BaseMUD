@@ -67,7 +67,8 @@ DECLARE_JSON_WRITE_FUN (json_tblw_month);
 DECLARE_JSON_WRITE_FUN (json_tblw_sky);
 DECLARE_JSON_WRITE_FUN (json_tblw_sun);
 DECLARE_JSON_WRITE_FUN (json_tblw_pose);
-DECLARE_JSON_WRITE_FUN (json_tblw_hp_condition);
+DECLARE_JSON_WRITE_FUN (json_tblw_hp_cond);
 DECLARE_JSON_WRITE_FUN (json_tblw_song);
+DECLARE_JSON_WRITE_FUN (json_tblw_cond);
 
 #endif

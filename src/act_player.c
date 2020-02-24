@@ -214,3 +214,29 @@ DEFINE_DO_FUN (do_password) {
     save_char_obj (ch);
     send_to_char ("Ok.\n\r", ch);
 }
+
+/* Used for debugging conditions :) */
+#if 0
+DEFINE_DO_FUN (do_cond) {
+    char arg1[MAX_INPUT_LENGTH];
+    char arg2[MAX_INPUT_LENGTH];
+    int cond, value, old_hours, new_hours;
+
+    argument = one_argument (argument, arg1);
+    argument = one_argument (argument, arg2);
+
+    BAIL_IF (arg1[0] == '\0' || arg2 == '\0',
+        "Bad syntax\n\r", ch);
+
+    cond = atoi (arg1);
+    BAIL_IF (cond_get (cond) == NULL,
+        "Bad cond\n\r", ch);
+
+    value = atoi (arg2);
+    old_hours = ch->pcdata->cond_hours[cond];
+    player_change_condition (ch, cond, value);
+    new_hours = ch->pcdata->cond_hours[cond];
+
+    printf_to_char (ch, "%d -> %d\n\r", old_hours, new_hours);
+}
+#endif

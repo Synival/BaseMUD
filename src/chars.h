@@ -112,13 +112,13 @@ bool char_has_active_light (const CHAR_T *ch);
 bool char_has_boat (const CHAR_T *ch);
 
 /* Condition checking functions. */
-DECLARE_CONDITION_FUN (char_is_sober);
-DECLARE_CONDITION_FUN (char_is_drunk);
-DECLARE_CONDITION_FUN (char_is_thirsty);
-DECLARE_CONDITION_FUN (char_is_quenched);
-DECLARE_CONDITION_FUN (char_is_hungry);
-DECLARE_CONDITION_FUN (char_is_fed);
-DECLARE_CONDITION_FUN (char_is_full);
+DECLARE_COND_FUN (char_is_sober);
+DECLARE_COND_FUN (char_is_drunk);
+DECLARE_COND_FUN (char_is_thirsty);
+DECLARE_COND_FUN (char_is_quenched);
+DECLARE_COND_FUN (char_is_hungry);
+DECLARE_COND_FUN (char_is_fed);
+DECLARE_COND_FUN (char_is_full);
 
 /* Getter functions. */
 int char_get_vnum (const CHAR_T *ch);

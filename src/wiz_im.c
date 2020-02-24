@@ -603,10 +603,10 @@ DEFINE_DO_FUN (do_mstat) {
     if (!IS_NPC (victim)) {
         printf_to_char (ch,
             "Thirst: %d  Hunger: %d  Full: %d  Drunk: %d\n\r",
-            victim->pcdata->condition[COND_THIRST],
-            victim->pcdata->condition[COND_HUNGER],
-            victim->pcdata->condition[COND_FULL],
-            victim->pcdata->condition[COND_DRUNK]);
+            victim->pcdata->cond_hours[COND_THIRST],
+            victim->pcdata->cond_hours[COND_HUNGER],
+            victim->pcdata->cond_hours[COND_FULL],
+            victim->pcdata->cond_hours[COND_DRUNK]);
     }
 
     printf_to_char (ch,

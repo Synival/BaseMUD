@@ -293,7 +293,7 @@ DEFINE_JSON_WRITE_FUN (json_tblw_liq) {
 
     sub = json_prop_object (new, "conditions", JSON_OBJ_ANY);
     for (i = 0; i < COND_MAX; i++)
-        json_prop_integer (sub, type_get_name (cond_types, i), liq->cond[i]);
+        json_prop_integer (sub, cond_get_name (i), liq->cond[i]);
 
     json_prop_integer (new, "serving_size", liq->serving_size);
     return new;
@@ -527,10 +527,27 @@ DEFINE_JSON_WRITE_FUN (json_tblw_pose) {
     return new;
 }
 
-DEFINE_JSON_WRITE_FUN (json_tblw_hp_condition) {
-    JSON_TBLW_START (HP_CONDITION_T, condition, condition->hp_percent <= -999);
+DEFINE_JSON_WRITE_FUN (json_tblw_hp_cond) {
+    JSON_TBLW_START (HP_COND_T, condition, condition->hp_percent <= -999);
     json_prop_integer (new, "hp_percent", condition->hp_percent);
     json_prop_string  (new, "message", JSTR (condition->message));
+    return new;
+}
+
+DEFINE_JSON_WRITE_FUN (json_tblw_cond) {
+    JSON_TBLW_START (COND_T, cond, cond->name == NULL);
+    json_prop_integer (new, "type", cond->type);
+    json_prop_string  (new, "name", JSTR (cond->name));
+
+    if (cond->msg_good)
+        json_prop_string (new, "msg_good", JSTR (cond->msg_good));
+    if (cond->msg_bad)
+        json_prop_string (new, "msg_bad", JSTR (cond->msg_bad));
+    if (cond->msg_better)
+        json_prop_string (new, "msg_better", JSTR (cond->msg_better));
+    if (cond->msg_worse)
+        json_prop_string (new, "msg_worse", JSTR (cond->msg_worse));
+
     return new;
 }
 

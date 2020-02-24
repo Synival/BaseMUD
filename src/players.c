@@ -715,7 +715,6 @@ void player_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
 {
     if (IS_NPC (ch))
         return;
-    printf ("[%d, %d]\n", full, hunger);
     if (drunk != 0)
         player_change_condition (ch, COND_DRUNK, drunk);
     if (thirst != 0)
@@ -727,101 +726,54 @@ void player_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
 }
 
 void player_change_condition (CHAR_T *ch, int cond, int value) {
-    int last_cond, new_cond;
+    const COND_T *cond_obj;
+    int old_cond, new_cond;
     int was_bad, was_good;
     int is_bad,  is_good;
     bool send_good, send_bad, send_better, send_worse;
     const char *msg;
 
-    if (cond < 0 || cond >= COND_MAX)
+    if (value == 0)
         return;
-    if (value == 0 || IS_NPC (ch) || ch->level >= LEVEL_IMMORTAL ||
-            ch->pcdata == NULL)
+    if (IS_NPC (ch) || ch->level >= LEVEL_IMMORTAL || ch->pcdata == NULL)
         return;
-
-    last_cond = ch->pcdata->condition[cond];
-    if (last_cond == -1)
+    if ((cond_obj = cond_get (cond)) == NULL)
         return;
 
-    new_cond = URANGE (0, last_cond + value, CONDITION_VALUE_MAX);
-    if (last_cond == new_cond)
+    old_cond = ch->pcdata->cond_hours[cond];
+    if (old_cond == -1)
         return;
 
-    /* TODO: we should move all this to a condition table! */
-    #define SET_WAS(cond, bad, good) \
-        case cond: was_bad = bad; was_good = good; break
-    switch (cond) {
-        SET_WAS (COND_DRUNK,  IS_DRUNK (ch),   IS_SOBER (ch));
-        SET_WAS (COND_THIRST, IS_THIRSTY (ch), IS_QUENCHED (ch));
-        SET_WAS (COND_HUNGER, IS_HUNGRY (ch),  IS_FED (ch));
-        SET_WAS (COND_FULL,   IS_FULL (ch),    -1);
-        default: return;
-    }
+    new_cond = URANGE (0, old_cond + value, COND_HOURS_MAX);
+    if (old_cond == new_cond)
+        return;
 
-    ch->pcdata->condition[cond] = new_cond;
+    /* Get our conditions before adjusting our condition. */
+    was_good = (cond_obj->good_fun == NULL) ? -1 : cond_obj->good_fun (ch);
+    was_bad  = (cond_obj->bad_fun  == NULL) ? -1 : cond_obj->bad_fun (ch);
 
-    /* TODO: we should move all this to a condition table! */
-    #define SET_IS(cond, bad, good) \
-        case cond: is_bad = bad; is_good = good; break
-    switch (cond) {
-        SET_IS (COND_DRUNK,  IS_DRUNK (ch),   IS_SOBER (ch));
-        SET_IS (COND_THIRST, IS_THIRSTY (ch), IS_QUENCHED (ch));
-        SET_IS (COND_HUNGER, IS_HUNGRY (ch),  IS_FED (ch));
-        SET_IS (COND_FULL,   IS_FULL (ch),    -1);
-        default: return;
-    }
+    /* Adjust our condition. */
+    ch->pcdata->cond_hours[cond] = new_cond;
 
+    /* Get our conditions after adjusting our condition. */
+    is_good = (cond_obj->good_fun == NULL) ? -1 : cond_obj->good_fun (ch);
+    is_bad  = (cond_obj->bad_fun  == NULL) ? -1 : cond_obj->bad_fun (ch);
+
+    /* What messages should we send over? */
+    send_good   = ((was_good == 0) && (is_good >  0));
     send_bad    = ((was_bad  == 0) && (is_bad  >  0));
     send_better = ((was_bad  >  0) && (is_bad  == 0));
     send_worse  = ((was_good >  0) && (is_good == 0));
-    send_good   = ((was_good == 0) && (is_good >  0));
 
-    /* TODO: we should move all this to a condition table! */
     msg = NULL;
-    #define SET_MSG(good, bad, better, worse) \
-        if (msg == NULL && send_good)   msg = good; \
-        if (msg == NULL && send_bad)    msg = bad; \
-        if (msg == NULL && send_better) msg = better; \
-        if (msg == NULL && send_worse)  msg = worse; \
-        break;
-
-    switch (cond) {
-        case COND_HUNGER:
-            SET_MSG (
-                "You feel well-fed.\n\r",
-                "You are hungry.\n\r",
-                "You are no longer hungry.\n\r",
-                NULL
-            );
-            break;
-
-        case COND_THIRST:
-            SET_MSG (
-                "Your thirst is quenched.\n\r",
-                "You are thirsty.\n\r",
-                "You are no longer thirsty.\n\r",
-                NULL
-            );
-            break;
-
-        case COND_DRUNK:
-            SET_MSG (
-                "You are sober.\n\r",
-                "You feel drunk.\n\r",
-                NULL,
-                "You feel a little tispy...\n\r"
-            );
-            break;
-
-        case COND_FULL:
-            SET_MSG (
-                NULL,
-                "You are full.\n\r",
-                NULL,
-                NULL
-            );
-            break;
-    }
+    if (msg == NULL && send_good)
+        msg = cond_obj->msg_good;
+    if (msg == NULL && send_bad)
+        msg = cond_obj->msg_bad;
+    if (msg == NULL && send_better)
+        msg = cond_obj->msg_better;
+    if (msg == NULL && send_worse)
+        msg = cond_obj->msg_worse;
 
     /* if there's a message, send it over. */
     if (msg)
