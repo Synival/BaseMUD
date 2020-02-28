@@ -25,6 +25,8 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include <string.h>
+
 #include "lookup.h"
 #include "recycle.h"
 #include "utils.h"
@@ -57,29 +59,25 @@ PORTAL_EXIT_T *portal_exit_new_from_room (ROOM_INDEX_T *room, int dir) {
 }
 
 void portal_assign (PORTAL_T *portal, PORTAL_EXIT_T *pex_from,
-    PORTAL_EXIT_T *pex_to)
+    PORTAL_EXIT_T *pex_to, bool two_way)
 {
     str_replace_dup (&(portal->name_from), pex_from->name);
     str_replace_dup (&(portal->name_to),   pex_to->name);
 
-    portal->from = pex_from;
-    portal->to   = pex_to;
-
-    /* If this new portal has found an opposite, mark it as
-     * 'generated' so we don't save multiple two-way portals. */
-    if (portal_link_opposites (portal))
-        portal->generated = TRUE;
+    portal->from    = pex_from;
+    portal->to      = pex_to;
+    portal->two_way = two_way;
 }
 
-void portal_link_to_assignment (PORTAL_T *portal)
-{
+void portal_link_to_assignment (PORTAL_T *portal) {
     PORTAL_EXIT_T *from, *to;
     EXIT_T *exit_from, *exit_to;
 
-    if (portal->name_from == NULL || portal->name_to == NULL) {
-        printf ("no\n");
-        return;
-    }
+    /* Make sure the portal has labels. */
+    BAIL_IF_BUGF (portal->name_from == NULL,
+        "portal_link_to_assignment(): Portal is missing 'name_from'");
+    BAIL_IF_BUGF (portal->name_to == NULL,
+        "portal_link_to_assignment(): Portal is missing 'name_to'");
 
     /* Make sure both portal points exist. */
     BAIL_IF_BUGF ((from = portal_exit_lookup_exact (portal->name_from)) == NULL,
@@ -89,6 +87,7 @@ void portal_link_to_assignment (PORTAL_T *portal)
         "portal_link_to_assignment(): Cannot find portal exit to '%s'\n",
         portal->name_to);
 
+    /* There must be a "from" room with an exit that exists. */
     BAIL_IF_BUGF (from->dir == DIR_NONE,
         "portal_link_to_assignment(): From '%s' is a room",
         from->room->name, from->name);
@@ -96,7 +95,9 @@ void portal_link_to_assignment (PORTAL_T *portal)
         "portal_link_to_assignment(): Room %d does not have exit %d\n",
         from->room->vnum, from->dir);
 
+    /* Link two-way portals... */
     if (portal->two_way) {
+        /* There must be to "to" room with an exit that exists. */
         BAIL_IF_BUGF (to->dir == DIR_NONE,
             "portal_link_to_assignment(): To '%s' is a room",
             to->room->name, to->name);
@@ -106,41 +107,18 @@ void portal_link_to_assignment (PORTAL_T *portal)
 
         exit_from->to_room = to->room;
         exit_from->vnum    = to->room->vnum;
-        exit_to->to_room = from->room;
-        exit_to->vnum    = from->room->vnum;
+        exit_to->to_room   = from->room;
+        exit_to->vnum      = from->room->vnum;
     }
+    /* ...and one-way portals. */
     else {
         exit_from->to_room = to->room;
         exit_from->vnum    = to->room->vnum;
     }
 
+    /* Track the exits. */
     portal->from = from;
     portal->to   = to;
-}
-
-bool portal_link_opposites (PORTAL_T *portal) {
-    PORTAL_T *p;
-
-    if (portal->from == NULL || portal->to == NULL)
-        return FALSE;
-    if (portal->two_way == TRUE)
-        return FALSE;
-    if (portal->from->dir == DIR_NONE || portal->to->dir == DIR_NONE)
-        return FALSE;
-    if (REV_DIR(portal->from->dir) != portal->to->dir)
-        return FALSE;
-
-    for (p = portal_get_first(); p != NULL; p = portal_get_next(p)) {
-        if (p == portal || p->two_way == TRUE)
-            continue;
-        if (p->to == portal->from && p->from == portal->to) {
-            portal->two_way = TRUE;
-            p->two_way = TRUE;
-            return TRUE;
-        }
-    }
-
-    return FALSE;
 }
 
 void portal_create_missing (void) {
@@ -148,9 +126,15 @@ void portal_create_missing (void) {
     EXIT_T *exit_from, *exit_to;
     PORTAL_EXIT_T *pex_from, *pex_to;
     PORTAL_T *portal;
-    int dir, rev, count;
+    int dir, rev, exit_count, portal_count;
+    int single_count, two_way_count;
+    bool two_way;
 
-    count = 0;
+    exit_count    = 0;
+    portal_count  = 0;
+    single_count  = 0;
+    two_way_count = 0;
+
     for (room_from = room_index_get_first(); room_from != NULL;
          room_from = room_index_get_next (room_from))
     {
@@ -165,6 +149,10 @@ void portal_create_missing (void) {
 
             /* assign our portal. */
             exit_from->portal = portal_exit_new_from_room (room_from, dir);
+            exit_count++;
+
+            /* if the connecting room couldn't be find, don't create a portal
+             * for it - preserve the portal exit, however. */
             if (exit_from->to_room == NULL)
                 continue;
             pex_from = exit_from->portal;
@@ -176,30 +164,75 @@ void portal_create_missing (void) {
             if (exit_to != NULL && exit_to->to_room != room_from)
                 exit_to = NULL;
 
+            /* one-way portals: create a portal exit in the target room. */
             if (exit_to == NULL) {
-                if (room_to->portal == NULL)
+                if (room_to->portal == NULL) {
                     room_to->portal = portal_exit_new_from_room (
                         room_to, DIR_NONE);
+                    exit_count++;
+                }
                 pex_to = room_to->portal;
+                two_way = FALSE;
             }
+            /* two-way portals: create a portal exit on the opposite side. */
             else {
                 if (exit_to->portal == NULL) {
                     exit_to->portal = portal_exit_new_from_room (
                         room_to, rev);
-                    portal = portal_new ();
-                    portal_assign (portal, exit_to->portal, pex_from);
-                    count++;
+                    exit_count++;
                 }
                 pex_to = exit_to->portal;
+                two_way = TRUE;
             }
 
-            portal = portal_new ();
-            portal_assign (portal, pex_from, pex_to);
-            count++;
+            /* TODO: look for an existing portal. */
+            portal = portal_get_by_exits (pex_from->name, pex_to->name,
+                two_way);
+            if (portal == NULL) {
+                portal = portal_new ();
+                portal_count++;
+                if (two_way)
+                    two_way_count++;
+                else
+                    single_count++;
+            }
+            portal_assign (portal, pex_from, pex_to, two_way);
         }
     }
 
-    log_f ("Created %d missing portals", count);
+    if (exit_count > 0 && portal_count > 0) {
+        log_f ("Created %d missing portal exit(s) and %d portal(s)",
+            exit_count, portal_count);
+        log_f ("    (%d one-way portals, %d two-way portals)",
+            single_count, two_way_count);
+    }
+}
+
+PORTAL_T *portal_get_by_exits (const char *from, const char *to, bool two_way)
+{
+    PORTAL_T *p;
+
+    if (from == NULL || to == NULL)
+        return NULL;
+
+    for (p = portal_get_first(); p != NULL; p = portal_get_next (p)) {
+        if (p->two_way != two_way)
+            continue;
+        if (p->name_from == NULL || p->name_to == NULL)
+            return p;
+        if (strcmp (p->name_from, from) == 0 &&
+            strcmp (p->name_to,   to)   == 0)
+        {
+            return p;
+        }
+        if (two_way &&
+            strcmp (p->name_to,   from) == 0 &&
+            strcmp (p->name_from, to)   == 0)
+        {
+            return p;
+        }
+    }
+    return NULL;
 }
 
 #if 0

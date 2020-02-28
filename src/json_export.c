@@ -34,15 +34,7 @@
 
 #include "json_export.h"
 
-// static JSON_T *json_export_objw_social (const char *name, const void *obj)
-    // { return json_objw_social (name, obj); }
-static bool json_export_portal_check (const void *obj)
-    { return (((PORTAL_T *) obj)->generated == FALSE); }
-
 void json_export_all (bool write_indiv, const char *everything) {
-    const HELP_AREA_T *had;
-    const AREA_T *area;
-    const TABLE_T *table;
     int mode;
 
     /* Make sure we write at least SOMETHING. */
@@ -53,30 +45,13 @@ void json_export_all (bool write_indiv, const char *everything) {
     mode = write_indiv
         ? (everything ? JSON_EXPORT_MODE_SAVE : JSON_EXPORT_MODE_SAVE_AND_KEEP)
         : JSON_EXPORT_MODE_ONLY_LOAD;
-    for (area = area_get_first(); area; area = area_get_next (area))
-        json_export_area (area, mode);
 
-    /* Export some specific recycleable objects we use for configuration. */
-    /* NOTE: This looks pretty ugly, but it was originally a big nasty macro.
-     *       It could be better, but using function pointers like this is
-     *       a step in the right direction. -- Synival */
-    json_export_recycleable ("social", "config/socials.json",
-        social_get_first(), (JSON_EXPORT_REC_NEXT_FUNC)  social_get_next,
-        (JSON_EXPORT_REC_WRITE_FUNC) json_objw_social,
-        NULL, mode);
-    json_export_recycleable ("portal", "config/portals.json",
-        portal_get_first(), (JSON_EXPORT_REC_NEXT_FUNC)  portal_get_next,
-        (JSON_EXPORT_REC_WRITE_FUNC) json_objw_portal,
-        json_export_portal_check, mode);
-
-    /* Write data represented as table rows. Most of this is internal and
-     * exported to 'json/meta', but some can be defined in 'json/config'. */
-    for (table = master_get_first(); table; table = master_get_next(table))
-        json_export_table (table, mode);
-
-    /* Add help areas. */
-    for (had = had_get_first(); had; had = had_get_next (had))
-        json_export_help_area (had, mode);
+    /* Write everything! */
+    json_export_areas (mode);
+    json_export_socials (mode);
+    json_export_portals (mode);
+    json_export_tables (mode);
+    json_export_help_areas (mode);
 
     /* Write one giant file with everything. */
     if (everything) {
@@ -86,6 +61,36 @@ void json_export_all (bool write_indiv, const char *everything) {
 
     /* Free all allocated JSON. */
     json_free (json_root());
+}
+
+void json_export_areas (int mode) {
+    const AREA_T *area;
+    for (area = area_get_first(); area; area = area_get_next (area))
+        json_export_area (area, mode);
+}
+
+void json_export_socials (int mode) {
+    json_export_recycleable ("social", "config/socials.json",
+        social_get_first(), (JSON_EXPORT_REC_NEXT_FUNC)  social_get_next,
+        (JSON_EXPORT_REC_WRITE_FUNC) json_objw_social, mode);
+}
+
+void json_export_portals (int mode) {
+    json_export_recycleable ("portal", "config/portals.json",
+        portal_get_first(), (JSON_EXPORT_REC_NEXT_FUNC)  portal_get_next,
+        (JSON_EXPORT_REC_WRITE_FUNC) json_objw_portal, mode);
+}
+
+void json_export_tables (int mode) {
+    const TABLE_T *table;
+    for (table = master_get_first(); table; table = master_get_next(table))
+        json_export_table (table, mode);
+}
+
+void json_export_help_areas (int mode) {
+    const HELP_AREA_T *had;
+    for (had = had_get_first(); had; had = had_get_next (had))
+        json_export_help_area (had, mode);
 }
 
 bool json_export_interpret_mode (int mode, flag_t *options_out) {
@@ -172,7 +177,6 @@ void json_export_recycleable (const char *objname, const char *filename,
     void *first,
     JSON_EXPORT_REC_NEXT_FUNC next_func,
     JSON_EXPORT_REC_WRITE_FUNC write_func,
-    JSON_EXPORT_REC_CHECK_FUNC check_func,
     int mode)
 {
     JSON_T *jarea, *json;
@@ -192,11 +196,8 @@ void json_export_recycleable (const char *objname, const char *filename,
         log_f ("Exporting JSON: %s", fbuf);
        
     for (obj = first; obj; obj = next_func (obj)) {
-        if (check_func != NULL && !check_func (obj))
-            continue;
         json = json_wrap_obj (write_func (NULL, obj), objname);
         json_attach_under (json, jarea);
-       
     }
     if (jarea->first_child && (options & JSON_EXPORT_OPTION_WRITE_INDIV)) {
         json_mkdir_to (fbuf);

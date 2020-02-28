@@ -1140,7 +1140,7 @@ struct portal_exit_type {
 
 struct portal_type {
     char *name_from, *name_to;
-    bool two_way, generated;
+    bool two_way;
     PORTAL_EXIT_T *from, *to;
     OBJ_RECYCLE_T rec_data;
 };

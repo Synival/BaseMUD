@@ -64,8 +64,8 @@ void db_finalize_obj (OBJ_INDEX_T *obj_index);
 void db_register_new_room (ROOM_INDEX_T *room);
 void db_register_new_mob (MOB_INDEX_T *mob);
 void db_register_new_obj (OBJ_INDEX_T *obj);
-void fix_exit_doors (ROOM_INDEX_T *room_from, int dir_from,
-                     ROOM_INDEX_T *room_to,   int dir_to);
+void fix_two_way_exit_doors (ROOM_INDEX_T *room_from, int dir_from,
+                             ROOM_INDEX_T *room_to,   int dir_to);
 void fix_resets (void);
 void fix_exits (void);
 void fix_mobprogs (void);

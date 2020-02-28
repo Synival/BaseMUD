@@ -33,8 +33,7 @@
 /* Function prototypes. */
 PORTAL_EXIT_T *portal_exit_new_from_room (ROOM_INDEX_T *room, int dir);
 void portal_assign (PORTAL_T *portal, PORTAL_EXIT_T *pex_from,
-    PORTAL_EXIT_T *pex_to);
-bool portal_link_opposites (PORTAL_T *portal);
+    PORTAL_EXIT_T *pex_to, bool two_way);
 void portal_create_missing (void);
 #if 0
 void portal_shuffle_all (void);
@@ -43,5 +42,6 @@ void portal_link_to_assignment (PORTAL_T *portal);
 void portal_link_exits (void);
 PORTAL_EXIT_T *portal_exit_create (const char *name, ROOM_INDEX_T *room,
     int dir);
+PORTAL_T *portal_get_by_exits (const char *from, const char *to, bool two_way);
 
 #endif

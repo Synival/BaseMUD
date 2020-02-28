@@ -44,14 +44,10 @@
 * All entities (objects, obj_indexes, rooms, areas, etc) can now be unloaded
     safely from memory without corrupting the world state. This is experimental
     and still somewhat dangerous, but the game should be much more stable.
-
 * JSON reading/writing now has better logging with proper file and location.
 * Pressing Control-C now gracefully triggers a shutdown. Hitting Control-C again will forcefully quit.
 
 **Changes:**
-* Loading the `json/config` directory is now required, so portal definitions
-    have moved from `json/config/portals.json` to `json/areas/portals.json`
-    so it won't be loaded it JSON world loading is disabled.
 * Removed redundant newlines from JSON strings.
 * Made several properties in JSON objects optional.
 * Modified JSON folder structure a bit - `config` is now loaded first, then `areas` then `help`.
@@ -78,6 +74,8 @@
 
 **Internal Changes:**
 * Replaced _all_ linked lists with double listed lists.
+* Moved `db_export_json()` to new file, `json_export.c` and did a lot of
+    refactored. Most of the nasty macros are gone - yay!
 * Modified `affect` and `extra_descr` structures to specify what type of
     parent entities they're attached to.
 * Added links to parent entities to all child entity structures, including
@@ -170,7 +168,7 @@
     corpse.
 * Rearranged `json*.c` for consistency. `json_import()` is now just for general functions. Object/table
     reading/writing functions are now in `json_objr.c`, `json_objw.c`, `json_tlbr.c`, and `json_tblw.c`.
-* Migrated condition messages (excellent, few scratches, etc) to a table called `condition_table[]` in
+* Migrated HP condition messages (excellent, few scratches, etc) to a table called `condition_table[]` in
     `tables.c`.
 * Removed `DAM_PHYSICAL` - this is now the default type, and `DAM_MAGICAL` is a flag rather than a type.
 * Removed `wear_loc_types[]` and `wear_loc_phrases[]` - they're now pear of the `wear_loc_table[]`.
@@ -182,6 +180,11 @@
 * Extracted (some) extra_descr functions to new file `extra_descrs.c`.
 * Extracted (some) help functions to new file `help.c`.
 * Extracted (some) reset functions to new file `resets.c`.
+* Moved timed conditions (hunger, thirst, fullness, drunkness) to a table with
+    good/bad check functions and messages. Message checks were moved to
+    `player_change_condition()`.
+* Renamed `pcdata.conditions` to `pcdata.cond_hours` to better express its
+    function.
 
 ## Version 0.0.5 (2019-12-06)
 

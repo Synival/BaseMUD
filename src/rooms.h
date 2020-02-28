@@ -54,5 +54,13 @@ void room_reset_exits (ROOM_INDEX_T *room);
 void room_to_area (ROOM_INDEX_T *room, AREA_T *area);
 void room_index_to_hash (ROOM_INDEX_T *room);
 void room_index_from_hash (ROOM_INDEX_T *room);
+void room_link_exits_by_vnum_all (void);
+void room_link_exits_by_vnum (ROOM_INDEX_T *room);
+void room_fix_two_way_exits_all (void);
+void room_fix_two_way_exits (ROOM_INDEX_T *room);
+void room_fix_two_way_exit_doors (ROOM_INDEX_T *room_from, int dir_from,
+                                  ROOM_INDEX_T *room_to,   int dir_to);
+int room_check_resets_all (void);
+int room_check_resets (ROOM_INDEX_T *room);
 
 #endif

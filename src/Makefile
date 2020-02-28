@@ -74,7 +74,7 @@ act_olc.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_olc.o: json.h structs.h types.h flags.h tables.h ext_flags.h recycle.h
 act_olc.o: lookup.h interp.h utils.h db.h comm.h olc_save.h act_info.h
 act_olc.o: chars.h globals.h items.h mobiles.h rooms.h objs.h mob_prog.h
-act_olc.o: json_export.h descs.h olc_aedit.h olc_hedit.h olc_medit.h
+act_olc.o: descs.h json_export.h olc_aedit.h olc_hedit.h olc_medit.h
 act_olc.o: olc_mpedit.h olc_oedit.h olc_redit.h olc.h act_olc.h
 act_player.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_player.o: json.h structs.h types.h flags.h tables.h ext_flags.h db.h
@@ -123,9 +123,9 @@ comm.o: lookup.h act_info.h chars.h rooms.h objs.h descs.h globals.h
 comm.o: players.h comm.h
 db.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 db.o: structs.h types.h flags.h tables.h ext_flags.h utils.h recycle.h
-db.o: affects.h lookup.h json_import.h json_export.h music.h ban.h board.h
-db.o: portals.h rooms.h objs.h db_old.h globals.h memory.h items.h mobiles.h
-db.o: skills.h fread.h areas.h mob_prog.h resets.h extra_descrs.h help.h db.h
+db.o: affects.h lookup.h json_import.h music.h ban.h board.h portals.h
+db.o: rooms.h objs.h db_old.h globals.h memory.h items.h mobiles.h skills.h
+db.o: fread.h areas.h mob_prog.h resets.h extra_descrs.h help.h db.h
 db_old.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 db_old.o: json.h structs.h types.h flags.h tables.h ext_flags.h db.h
 db_old.o: recycle.h utils.h interp.h lookup.h olc.h affects.h globals.h
@@ -140,7 +140,7 @@ do_sub.o: structs.h types.h flags.h tables.h ext_flags.h chars.h do_sub.h
 effects.o: recycle.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 effects.o: json.h structs.h types.h flags.h tables.h ext_flags.h lookup.h
 effects.o: db.h utils.h comm.h magic.h update.h affects.h objs.h chars.h
-effects.o: items.h effects.h
+effects.o: items.h players.h effects.h
 ext_flags.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 ext_flags.o: json.h structs.h types.h flags.h tables.h ext_flags.h interp.h
 ext_flags.o: lookup.h utils.h
@@ -287,14 +287,15 @@ olc_redit.o: mobiles.h rooms.h extra_descrs.h olc_redit.h
 olc_save.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 olc_save.o: json.h structs.h types.h flags.h tables.h ext_flags.h lookup.h
 olc_save.o: utils.h db.h mob_cmds.h comm.h interp.h globals.h olc.h items.h
-olc_save.o: fread.h fwrite.h objs.h mobiles.h rooms.h mob_prog.h olc_save.h
+olc_save.o: fread.h fwrite.h objs.h mobiles.h rooms.h mob_prog.h
+olc_save.o: json_export.h olc_save.h
 players.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 players.o: json.h structs.h types.h flags.h tables.h ext_flags.h chars.h
 players.o: lookup.h objs.h affects.h memory.h utils.h globals.h comm.h save.h
-players.o: magic.h groups.h fight.h rooms.h players.h
-portals.o: lookup.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
-portals.o: json.h structs.h types.h flags.h tables.h ext_flags.h recycle.h
-portals.o: utils.h memory.h portals.h
+players.o: magic.h groups.h fight.h rooms.h items.h players.h
+portals.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
+portals.o: json.h structs.h types.h flags.h tables.h ext_flags.h lookup.h
+portals.o: recycle.h utils.h memory.h portals.h
 quickmud.o: utils.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 quickmud.o: json.h structs.h types.h flags.h tables.h ext_flags.h fread.h
 quickmud.o: quickmud.h
@@ -305,10 +306,11 @@ recycle.o: board.h extra_descrs.h mob_prog.h rooms.h mobiles.h help.h
 recycle.o: recycle.h
 resets.o: mobiles.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 resets.o: json.h structs.h types.h flags.h tables.h ext_flags.h utils.h
-resets.o: rooms.h chars.h objs.h items.h resets.h
+resets.o: rooms.h chars.h objs.h items.h recycle.h resets.h
 rooms.o: db.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 rooms.o: structs.h types.h flags.h tables.h ext_flags.h lookup.h utils.h
-rooms.o: objs.h interp.h chars.h globals.h mobiles.h items.h resets.h rooms.h
+rooms.o: objs.h interp.h chars.h globals.h mobiles.h items.h resets.h
+rooms.o: recycle.h rooms.h
 save.o: recycle.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 save.o: structs.h types.h flags.h tables.h ext_flags.h lookup.h colour.h db.h
 save.o: utils.h board.h chars.h objs.h globals.h memory.h items.h mobiles.h
@@ -361,8 +363,9 @@ string.o: utils.h interp.h olc.h db.h olc_mpedit.h globals.h memory.h
 tables.o: nanny.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 tables.o: structs.h types.h flags.h tables.h ext_flags.h lookup.h recycle.h
 tables.o: colour.h board.h special.h effects.h json_tblr.h json_tblw.h
-tables.o: magic.h memory.h utils.h spell_aff.h spell_create.h spell_cure.h
-tables.o: spell_info.h spell_misc.h spell_move.h spell_npc.h spell_off.h
+tables.o: magic.h memory.h utils.h chars.h spell_aff.h spell_create.h
+tables.o: spell_cure.h spell_info.h spell_misc.h spell_move.h spell_npc.h
+tables.o: spell_off.h
 types.o: merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 types.o: structs.h types.h flags.h tables.h ext_flags.h lookup.h utils.h
 update.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h

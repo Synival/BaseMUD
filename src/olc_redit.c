@@ -276,6 +276,7 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
         return FALSE;
     }
 
+    do_help (ch, "EXIT");
     return FALSE;
 }
 
@@ -736,7 +737,7 @@ REDIT (redit_create) {
     }
 
     room = room_index_new ();
-    room->area = area;
+    room_to_area (room, area);
     room->vnum = value;
     room->anum = value - area->min_vnum;
 

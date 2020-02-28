@@ -39,6 +39,7 @@
 #include "mobiles.h"
 #include "rooms.h"
 #include "mob_prog.h"
+#include "json_export.h"
 
 #include "olc_save.h"
 
@@ -665,4 +666,6 @@ void save_area (AREA_T *area) {
 
     fclose (fp);
     reserve_file = fopen (NULL_FILE, "r");
+
+    json_export_area (area, JSON_EXPORT_MODE_SAVE);
 }

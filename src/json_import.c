@@ -219,9 +219,8 @@ void json_import_all (void) {
     log_f ("%d object(s) loaded successfully.", imported);
 
     /* link any objects with 'area_str' to their respective objects. */
-    log_f ("Linking everything together...");
+    log_f ("Linking loaded entities to areas...");
     json_import_link_areas ();
-    portal_link_exits ();
 }
 
 AREA_T *json_import_link_areas_get_area (char **name) {

@@ -31,6 +31,7 @@
 #include "chars.h"
 #include "objs.h"
 #include "items.h"
+#include "recycle.h"
 
 #include "resets.h"
 
@@ -336,4 +337,78 @@ void reset_run (RESET_T *reset) {
             bug ("reset_run: bad command %c.", reset->command);
             break;
     }
+}
+
+void reset_commit_all (void) {
+    RESET_T *reset, *next;
+    for (reset = reset_data_get_first(); reset != NULL; reset = next) {
+        next = reset_data_get_next (reset);
+        reset_commit (reset);
+    }
+}
+
+void reset_commit (RESET_T *reset) {
+    RESET_VALUE_T *v;
+    EXIT_T *pexit;
+    ROOM_INDEX_T *room_index;
+    bool fail;
+
+    v = &(reset->v);
+    fail = FALSE;
+
+    switch (reset->command) {
+        case 'D':
+            room_index = room_get_index (v->door.room_vnum);
+            if (v->door.dir < 0 ||
+                v->door.dir >= DIR_MAX ||
+                !room_index ||
+                !(pexit = room_index->exit[v->door.dir]) ||
+                !IS_SET (pexit->rs_flags, EX_ISDOOR))
+            {
+                bugf ("fix_resets: 'D': exit %d, room %d not door.",
+                      v->door.dir, v->door.room_vnum);
+                fail = TRUE;
+                break;
+            }
+
+            switch (v->door.locks) {
+                case RESET_DOOR_NONE:
+                    break;
+                case RESET_DOOR_CLOSED:
+                    SET_BIT (pexit->exit_flags, EX_CLOSED);
+                    break;
+                case RESET_DOOR_LOCKED:
+                    SET_BIT (pexit->exit_flags, EX_CLOSED | EX_LOCKED);
+                    break;
+                default:
+                    bug ("load_resets: 'D': bad 'locks': %d.",
+                         v->door.locks);
+                    break;
+            }
+            pexit->rs_flags = pexit->exit_flags;
+            break;
+    }
+
+    /* Remove broken resets. */
+    if (fail == TRUE) {
+        reset_data_free (reset);
+        return;
+    }
+
+    /* Door resets are removed - all others belong to their room. */
+    if (reset->command == 'D') {
+        reset_data_free (reset);
+        return;
+    }
+
+    /* Complain if resets don't belong to any particular room. */
+    if ((room_index = room_get_index (reset->room_vnum)) == NULL) {
+        bugf ("fix_resets: '%c': room %d does not exist.",
+            reset->command, reset->room_vnum);
+        reset_data_free (reset);
+        return;
+    }
+
+    /* Assign the reset to the room. */
+    reset_to_room (reset, room_index);
 }

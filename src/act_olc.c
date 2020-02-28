@@ -29,8 +29,8 @@
 #include "rooms.h"
 #include "objs.h"
 #include "mob_prog.h"
-#include "json_export.h"
 #include "descs.h"
+#include "json_export.h"
 
 #include "olc_aedit.h"
 #include "olc_hedit.h"
@@ -257,8 +257,14 @@ DEFINE_DO_FUN (do_aedit) {
     if (IS_NPC (ch))
         return;
 
-    area = ch->in_room->area;
     argument = one_argument (argument, arg1);
+    if (!str_cmp (arg1, "create")) {
+        BAIL_IF (ch->pcdata->security < 9,
+            "AEdit: Insufficient security to create area.\n\r", ch);
+        aedit_create (ch, "");
+        ch->desc->editor = ED_AREA;
+        return;
+    }
 
     if (is_number (arg1)) {
         value = atoi (arg1);
@@ -266,17 +272,15 @@ DEFINE_DO_FUN (do_aedit) {
             "AEdit: That area vnum does not exist.\n\r", ch);
         BAIL_IF (!IS_BUILDER (ch, area),
             "AEdit: Insufficient security to edit areas.\n\r", ch);
-        ch->desc->olc_edit = (void *) area;
-        ch->desc->editor = ED_AREA;
-        return;
     }
-    else if (!str_cmp (arg1, "create")) {
-        BAIL_IF (ch->pcdata->security < 9,
-            "AEdit: Insufficient security to create area.\n\r", ch);
-        aedit_create (ch, "");
-        ch->desc->editor = ED_AREA;
-        return;
-    }
+    else
+        area = ch->in_room->area;
+
+    BAIL_IF (area == NULL,
+        "REdit: There is no default room to edit.\n\r", ch);
+
+    ch->desc->olc_edit = (void *) area;
+    ch->desc->editor = ED_AREA;
 }
 
 DEFINE_DO_FUN (do_hedit) {
@@ -446,23 +450,10 @@ DEFINE_DO_FUN (do_redit) {
         return;
 
     argument = one_argument (argument, arg1);
-    room = ch->in_room;
 
-    /* redit <vnum> */
-    if (is_number (arg1)) {
-        room = room_get_index (atoi (arg1));
-        BAIL_IF (!room,
-            "REdit: That vnum does not exist.\n\r", ch);
-        BAIL_IF (!IS_BUILDER (ch, room->area),
-            "REdit: Insufficient security to modify room.\n\r", ch);
-        char_to_room (ch, room);
-
-        ch->desc->olc_edit = (void *) room;
-        ch->desc->editor = ED_ROOM;
-        return;
-    }
     /* redit reset */
     if (!str_cmp (arg1, "reset")) {
+        room = ch->in_room;
         BAIL_IF (!IS_BUILDER (ch, room->area),
             "REdit: Insufficient security to modify room.\n\r", ch);
 
@@ -491,7 +482,24 @@ DEFINE_DO_FUN (do_redit) {
         return;
     }
 
-    send_to_char ("REdit: There is no default room to edit.\n\r", ch);
+    /* redit <vnum> */
+    if (is_number (arg1)) {
+        room = room_get_index (atoi (arg1));
+        BAIL_IF (!room,
+            "REdit: That vnum does not exist.\n\r", ch);
+        BAIL_IF (!IS_BUILDER (ch, room->area),
+            "REdit: Insufficient security to modify room.\n\r", ch);
+        char_to_room (ch, room);
+        return;
+    }
+    else
+        room = ch->in_room;
+
+    BAIL_IF (room == NULL,
+        "REdit: There is no default room to edit.\n\r", ch);
+
+    ch->desc->olc_edit = (void *) room;
+    ch->desc->editor = ED_ROOM;
 }
 
 DEFINE_DO_FUN (do_resets) {
@@ -696,6 +704,7 @@ DEFINE_DO_FUN (do_asave) {
             send_to_char ("Syntax:\n\r", ch);
             send_to_char ("  asave <vnum>   - saves a particular area\n\r", ch);
             send_to_char ("  asave list     - saves the area.lst file\n\r", ch);
+            send_to_char ("  asave portals  - saves config/portals.json\n\r", ch);
             send_to_char ("  asave area     - saves the area being edited\n\r", ch);
             send_to_char ("  asave changed  - saves all changed zones\n\r", ch);
             send_to_char ("  asave world    - saves the world! (db dump)\n\r", ch);
@@ -714,8 +723,9 @@ DEFINE_DO_FUN (do_asave) {
         BAIL_IF (ch && !IS_BUILDER (ch, area),
             "ASave: You are not a builder for this area.\n\r", ch);
         save_area_list ();
+        json_export_portals (JSON_EXPORT_MODE_SAVE);
         save_area (area);
-        json_export_area (area, JSON_EXPORT_MODE_SAVE);
+        send_to_char ("Area saved.\n\r", ch);
         return;
     }
 
@@ -724,6 +734,7 @@ DEFINE_DO_FUN (do_asave) {
     if (!str_cmp ("world", arg1)) {
         send_to_char ("Saving world...\n\r", ch);
         desc_flush_output (ch->desc);
+        json_export_portals (JSON_EXPORT_MODE_SAVE);
         save_area_list ();
 
         for (area = area_first; area; area = area->global_next) {
@@ -735,7 +746,6 @@ DEFINE_DO_FUN (do_asave) {
             desc_flush_output (ch->desc);
 
             save_area (area);
-            json_export_area (area, JSON_EXPORT_MODE_SAVE);
             REMOVE_BIT (area->area_flags, AREA_CHANGED);
         }
         if (ch)
@@ -749,6 +759,7 @@ DEFINE_DO_FUN (do_asave) {
     if (!str_cmp ("changed", arg1)) {
         char buf[MAX_INPUT_LENGTH];
         save_area_list ();
+        json_export_portals (JSON_EXPORT_MODE_SAVE);
 
         if (ch)
             send_to_char ("Saved zones:\n\r", ch);
@@ -766,7 +777,6 @@ DEFINE_DO_FUN (do_asave) {
                 continue;
 
             save_area (area);
-            json_export_area (area, JSON_EXPORT_MODE_SAVE);
             sprintf (buf, "%24s - '%s'", area->title, area->filename);
             if (ch)
                 printf_to_char (ch, "%s\n\r", buf);
@@ -789,6 +799,15 @@ DEFINE_DO_FUN (do_asave) {
     /* ----------------------- */
     if (!str_cmp (arg1, "list")) {
         save_area_list ();
+        send_to_char ("Area list saved.\n\r", ch);
+        return;
+    }
+
+    /* Save the area.lst file. */
+    /* ----------------------- */
+    if (!str_cmp (arg1, "portals")) {
+        json_export_portals (JSON_EXPORT_MODE_SAVE);
+        send_to_char ("Portals saved.\n\r", ch);
         return;
     }
 
@@ -838,8 +857,8 @@ DEFINE_DO_FUN (do_asave) {
             "ASave: You are not a builder for this area.\n\r", ch);
 
         save_area_list ();
+        json_export_portals (JSON_EXPORT_MODE_SAVE);
         save_area (area);
-        json_export_area (area, JSON_EXPORT_MODE_SAVE);
         REMOVE_BIT (area->area_flags, AREA_CHANGED);
         send_to_char ("Area saved.\n\r", ch);
         return;

@@ -349,7 +349,7 @@ void aedit (CHAR_T *ch, char *argument) {
         aedit_show (ch, argument);
         return;
     }
-    if ((value = flags_from_string (area_flags, command)) != FLAG_NONE) {
+    if ((value = flags_from_string_exact (area_flags, command)) != FLAG_NONE) {
         TOGGLE_BIT (area->area_flags, value);
         send_to_char ("Flag toggled.\n\r", ch);
         return;

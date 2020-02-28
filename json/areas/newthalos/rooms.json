@@ -7995,6 +7995,10 @@
     "sector_type": "noswim",
     "doors": [
       {
+        "dir": "north",
+        "portal": "newthalos-north-2"
+      },
+      {
         "dir": "east",
         "to": 297
       },
@@ -8014,6 +8018,10 @@
                    | see a small dock to the west.",
     "sector_type": "noswim",
     "doors": [
+      {
+        "dir": "north",
+        "to": 297
+      },
       {
         "dir": "south",
         "to": 296

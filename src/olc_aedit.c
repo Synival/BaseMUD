@@ -133,6 +133,7 @@ AEDIT (aedit_file) {
         RETURN_IF (!isalnum (file[i]),
             "Only letters and numbers are valid.\n\r", ch, FALSE);
 
+    str_replace_dup (&(area->name), file);
     strcat (file, ".are");
     str_replace_dup (&(area->filename), file);
     send_to_char ("Filename set.\n\r", ch);
@@ -234,8 +235,8 @@ AEDIT (aedit_builder) {
         str_free (&(area->builders));
         area->builders = string_proper (str_dup (buf));
 
-        send_to_char ("Builder added.\n\r", ch);
-        send_to_char (area->builders, ch);
+        printf_to_char (ch, "Builder added.\n\r"
+                            "%s\n\r", area->builders);
         return TRUE;
     }
     return FALSE;

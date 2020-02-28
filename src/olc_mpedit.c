@@ -45,7 +45,7 @@ MPEDIT (mpedit_create) {
         "MPEdit: Mob program vnum already exists.\n\r", ch, FALSE);
 
     mcode = mpcode_new ();
-    mcode->area = ad;
+    mpcode_to_area (mcode, ad);
     mcode->vnum = value;
     mcode->anum = value - ad->min_vnum;
     LIST2_FRONT (mcode, global_prev, global_next, mpcode_first, mpcode_last);

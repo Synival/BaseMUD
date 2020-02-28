@@ -162,7 +162,7 @@ MEDIT (medit_create) {
         "MEdit: Mobile vnum already exists.\n\r", ch, FALSE);
 
     mob = mob_index_new ();
-    mob->area = area;
+    mob_index_to_area (mob, area);
     mob->vnum = value;
     mob->anum = value - area->min_vnum;
     mob->ext_mob_plus = EXT_BITS (MOB_IS_NPC);
@@ -950,7 +950,7 @@ MEDIT (medit_addmprog) {
         "No such mob program.\n\r", ch, FALSE);
 
     list = mprog_new ();
-    list->area = area;
+    mprog_to_area (list, area);
     list->vnum = vnum;
     list->anum = vnum - area->min_vnum;
     list->trig_type = value;

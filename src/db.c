@@ -114,16 +114,23 @@ void boot_db (void) {
 
     json_import_all ();
     init_areas ();
+    music_load_songs ();
+
+    room_link_exits_by_vnum_all ();
+
+    portal_create_missing ();
+    portal_link_exits ();
 
     EXIT_IF_BUGF ((help = help_get_by_name_exact ("greeting")) == NULL,
         "boot_db(): Cannot find help entry 'greeting'.");
     help_greeting = help->text;
 
-    fix_resets ();
-    fix_exits ();
-    portal_create_missing ();
+    reset_commit_all ();
+    if (room_check_resets_all () > 0)
+        exit (1);
+    room_fix_two_way_exits_all ();
+
     fix_mobprogs ();
-    music_load_songs ();
 
     /* Boot process is over(?) */
     in_boot_db = FALSE;
@@ -514,76 +521,6 @@ void load_resets (FILE *fp) {
     }
 }
 
-void fix_resets (void) {
-    RESET_T *reset, *next;
-    RESET_VALUE_T *v;
-    EXIT_T *pexit;
-    ROOM_INDEX_T *room_index;
-    bool fail;
-
-    for (reset = reset_data_get_first(); reset != NULL; reset = next) {
-        next = reset_data_get_next (reset);
-        v = &(reset->v);
-        fail = FALSE;
-
-        switch (reset->command) {
-            case 'D':
-                room_index = room_get_index (v->door.room_vnum);
-                if (v->door.dir < 0 ||
-                    v->door.dir >= DIR_MAX ||
-                    !room_index ||
-                    !(pexit = room_index->exit[v->door.dir]) ||
-                    !IS_SET (pexit->rs_flags, EX_ISDOOR))
-                {
-                    bugf ("fix_resets: 'D': exit %d, room %d not door.",
-                          v->door.dir, v->door.room_vnum);
-                    fail = TRUE;
-                    break;
-                }
-
-                switch (v->door.locks) {
-                    case RESET_DOOR_NONE:
-                        break;
-                    case RESET_DOOR_CLOSED:
-                        SET_BIT (pexit->exit_flags, EX_CLOSED);
-                        break;
-                    case RESET_DOOR_LOCKED:
-                        SET_BIT (pexit->exit_flags, EX_CLOSED | EX_LOCKED);
-                        break;
-                    default:
-                        bug ("load_resets: 'D': bad 'locks': %d.",
-                             v->door.locks);
-                        break;
-                }
-                pexit->rs_flags = pexit->exit_flags;
-                break;
-        }
-
-        /* Remove broken resets. */
-        if (fail == TRUE) {
-            reset_data_free (reset);
-            continue;
-        }
-
-        /* Door resets are removed - all others belong to their room. */
-        if (reset->command == 'D') {
-            reset_data_free (reset);
-            continue;
-        }
-
-        /* Complain if resets don't belong to any particular room. */
-        if ((room_index = room_get_index (reset->room_vnum)) == NULL) {
-            bugf ("fix_resets: '%c': room %d does not exist.",
-                reset->command, reset->room_vnum);
-            reset_data_free (reset);
-            continue;
-        }
-
-        /* Assign the reset to the room. */
-        reset_to_room (reset, room_index);
-    }
-}
-
 /* Snarf a room section. */
 void load_rooms (FILE *fp) {
     ROOM_INDEX_T *room_index;
@@ -783,218 +720,6 @@ void load_specials (FILE *fp) {
         }
 
         fread_to_eol (fp);
-    }
-}
-
-void fix_exit_doors (ROOM_INDEX_T *room_from, int dir_from,
-                     ROOM_INDEX_T *room_to,   int dir_to)
-{
-    EXIT_T *exit_from = room_from->exit[dir_from];
-    EXIT_T *exit_to   = room_to  ->exit[dir_to];
-    flag_t flags_from = exit_from->exit_flags;
-    flag_t flags_to   = exit_to  ->exit_flags;
-
-    if (dir_to != REV_DIR(dir_from))
-        return;
-    if (exit_from->to_room != room_to || exit_to->to_room != room_from)
-        return;
-
-    if (IS_SET(flags_from, EX_ISDOOR) && !IS_SET(flags_to, EX_ISDOOR)) {
-#ifdef BASEMUD_LOG_EXIT_WARNINGS
-        bugf ("Warning: Exit %d[%s, %s] is a door but %d[%s, %s] is not.",
-            room_from->vnum, door_get_name (dir_from), exit_from->keyword,
-            room_to  ->vnum, door_get_name (dir_to),   exit_to  ->keyword);
-#endif
-        return;
-    }
-
-    /* We only care about doors from now on. */
-    if (!(IS_SET(flags_from, EX_ISDOOR) && IS_SET(flags_to, EX_ISDOOR)))
-        return;
-
-    /* Doors closed or locked on one side should definitely be
-     * on the other. Make sure this is the case. */
-    if (IS_SET (flags_from, EX_CLOSED) || IS_SET (flags_to, EX_CLOSED)) {
-        SET_BIT (exit_from->exit_flags, EX_CLOSED);
-        SET_BIT (exit_from->rs_flags,   EX_CLOSED);
-        SET_BIT (exit_to->exit_flags,   EX_CLOSED);
-        SET_BIT (exit_to->rs_flags,     EX_CLOSED);
-    }
-    if (IS_SET (flags_from, EX_LOCKED) || IS_SET (flags_to, EX_LOCKED)) {
-        SET_BIT (exit_from->exit_flags, EX_LOCKED);
-        SET_BIT (exit_from->rs_flags,   EX_LOCKED);
-        SET_BIT (exit_to->exit_flags,   EX_LOCKED);
-        SET_BIT (exit_to->rs_flags,     EX_LOCKED);
-    }
-
-    /* Different keys is bad! But we don't care if one side is pick-proof
-     * and the other isn't. */
-    if (exit_from->key != exit_to->key &&
-        exit_from->key != KEY_NOKEYHOLE &&
-        exit_to->key   != KEY_NOKEYHOLE)
-    {
-#ifdef BASEMUD_LOG_KEY_WARNINGS
-        bugf ("Warning: Exits %d[%s] and %d[%s] have "
-            "different keys [%d, %d]",
-            room_from->vnum, door_get_name (dir_from),
-            room_to  ->vnum, door_get_name (dir_to),
-            exit_from->key, exit_to->key);
-#endif
-    }
-}
-
-/* Translate all room exits from virtual to real.
- * Has to be done after all rooms are read in.
- * Check for bad reverse exits. */
-void fix_exits (void) {
-    ROOM_INDEX_T *room_index;
-    ROOM_INDEX_T *to_room;
-    EXIT_T *pexit;
-    EXIT_T *pexit_rev;
-    RESET_T *reset;
-    RESET_VALUE_T *v;
-    ROOM_INDEX_T *last_room, *last_obj_room;
-    int hash;
-    int door, old_boot_db;
-
-    for (hash = 0; hash < MAX_KEY_HASH; hash++) {
-        for (room_index = room_index_hash[hash];
-             room_index != NULL; room_index = room_index->hash_next)
-        {
-            bool fexit;
-            last_room = NULL;
-            last_obj_room = NULL;
-
-            /* OLC : new check of resets */
-            for (reset = room_index->reset_first; reset;
-                 reset = reset->room_next)
-            {
-                v = &(reset->v);
-                switch (reset->command) {
-                    case 'M':
-                        mobile_get_index (v->mob.mob_vnum);
-                        last_room = room_get_index (v->mob.room_vnum);
-                        break;
-
-                    case 'O':
-                        obj_get_index (v->obj.obj_vnum);
-                        last_obj_room = room_get_index (v->obj.room_vnum);
-                        break;
-
-                    case 'P':
-                        obj_get_index (v->obj.obj_vnum);
-                        EXIT_IF_BUG (last_obj_room == NULL,
-                            "fix_exits: reset 'P' in room %d with last_obj_room NULL",
-                            room_index->vnum);
-                        break;
-
-                    case 'G':
-                        obj_get_index (v->give.obj_vnum);
-                        EXIT_IF_BUG (last_room == NULL,
-                            "fix_exits: reset 'G' in room %d with last_room NULL",
-                            room_index->vnum);
-                        last_obj_room = last_room;
-                        break;
-
-                    case 'E':
-                        obj_get_index (v->equip.obj_vnum);
-                        EXIT_IF_BUG (last_room == NULL,
-                            "fix_exits: reset 'E' in room %d with last_room NULL",
-                            room_index->vnum);
-                        last_obj_room = last_room;
-                        break;
-
-                    case 'D':
-                        bugf ("???");
-                        break;
-
-                    case 'R': {
-                        room_get_index (v->randomize.room_vnum);
-                        int dir_count = v->randomize.dir_count;
-                        EXIT_IF_BUGF (dir_count < 0,
-                            "fix_exits: reset 'R' in room %d with dir_count %d < 0",
-                            room_index->vnum, dir_count);
-                        EXIT_IF_BUGF (dir_count > DIR_MAX,
-                            "fix_exits: reset 'R' in room %d with dir_count %d > DIR_MAX",
-                            room_index->vnum, dir_count);
-                        break;
-                    }
-
-                    default:
-                        EXIT_IF_BUGF (TRUE,
-                            "fix_exits: room %d with reset cmd %c",
-                            room_index->vnum, reset->command);
-                        break;
-                }
-            }
-
-            fexit = FALSE;
-            for (door = 0; door < DIR_MAX; door++) {
-                if ((pexit = room_index->exit[door]) == NULL)
-                    continue;
-                if (pexit->vnum <= 0 || room_get_index (pexit->vnum) == NULL)
-                    pexit->to_room = NULL;
-                else {
-                    fexit = TRUE;
-                    pexit->to_room = room_get_index (pexit->vnum);
-                    pexit->area_vnum = pexit->to_room->area->vnum;
-                    pexit->room_anum = pexit->to_room->anum;
-                }
-
-                old_boot_db = in_boot_db;
-                in_boot_db = FALSE;
-#ifdef BASEMUD_LOG_KEY_WARNINGS
-                {
-                OBJ_INDEX_T *key;
-                if (pexit->key >= KEY_VALID &&
-                    !(key = obj_get_index (pexit->key)))
-                {
-                    bugf ("Warning: Cannot find key %d for room %d exit %d",
-                        pexit->key, room_index->vnum, door);
-                }
-                }
-#endif
-                in_boot_db = old_boot_db;
-            }
-            if (!fexit)
-                SET_BIT (room_index->room_flags, ROOM_NO_MOB);
-        }
-    }
-
-    for (hash = 0; hash < MAX_KEY_HASH; hash++) {
-        for (room_index = room_index_hash[hash];
-             room_index != NULL; room_index = room_index->hash_next)
-        {
-            for (door = 0; door < DIR_MAX; door++) {
-                int rev_dir;
-                if ((pexit = room_index->exit[door]) == NULL)
-                    continue;
-                if ((to_room = pexit->to_room) == NULL)
-                    continue;
-                rev_dir = REV_DIR(door);
-                if ((pexit_rev = to_room->exit[rev_dir]) == NULL)
-                    continue;
-
-                fix_exit_doors (room_index, door, to_room, rev_dir);
-
-                /* If the reverse exit does not lead to the same exception,
-                 * print a warning. Make an exception for the 'immort.are'
-                 * zone. */
-#ifdef BASEMUD_LOG_EXIT_WARNINGS
-                if (pexit_rev->to_room != room_index &&
-                    (room_index->vnum < 1200 || room_index->vnum > 1299))
-                {
-                    bugf ("Warning: Exit %d[%s] reverse exit %d[%s] "
-                          "leads to wrong room (%d).",
-                        room_index->vnum, door_get_name(door),
-                        to_room->vnum,    door_get_name(rev_dir),
-                        (pexit_rev->to_room == NULL)
-                             ? 0 : pexit_rev->to_room->vnum
-                    );
-                }
-#endif
-            }
-        }
     }
 }
 
@@ -1734,13 +1459,11 @@ void db_dump_world (const char *filename) {
     }
 
     for (portal = portal_get_first(); portal; portal = portal_get_next (portal)) {
-        if (portal->generated)
-            continue;
-            fprintf (file, "name_from: %s\n", portal->name_from);
-            fprintf (file, "name_to:   %s\n", portal->name_to);
-            fprintf (file, "two_way:   %d\n", portal->two_way);
-            fprintf (file, "from:      %s\n", portal->from ? "yes" : "no");
-            fprintf (file, "to:        %s\n", portal->to   ? "yes" : "no");
+        fprintf (file, "name_from: %s\n", portal->name_from);
+        fprintf (file, "name_to:   %s\n", portal->name_to);
+        fprintf (file, "two_way:   %d\n", portal->two_way);
+        fprintf (file, "from:      %s\n", portal->from ? "yes" : "no");
+        fprintf (file, "to:        %s\n", portal->to   ? "yes" : "no");
         count++;
     }
 

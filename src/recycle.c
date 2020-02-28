@@ -451,15 +451,20 @@ DEFINE_DISPOSE_FUN (reset_data_dispose) {
 DEFINE_INIT_FUN (area_init) {
     AREA_T *area = obj;
     char buf[MAX_INPUT_LENGTH];
+
     area->title      = str_dup ("New area");
 /*  area->recall     = ROOM_VNUM_TEMPLE;      ROM OLC */
     area->area_flags = AREA_ADDED;
     area->security   = 1;
     area->builders   = str_dup ("None");
     area->empty      = TRUE;        /* ROM patch */
-    sprintf (buf, "area%d.are", area->vnum);
-    area->filename   = str_dup (buf);
     area->vnum       = TOP(RECYCLE_AREA_T);
+
+    sprintf (buf, "area%d", area->vnum);
+    area->name = str_dup (buf);
+
+    sprintf (buf, "area%d.are", area->vnum);
+    area->filename = str_dup (buf);
 }
 
 DEFINE_DISPOSE_FUN (area_dispose) {

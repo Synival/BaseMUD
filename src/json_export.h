@@ -40,17 +40,20 @@
 
 typedef void *   (*JSON_EXPORT_REC_NEXT_FUNC)  (const void *);
 typedef JSON_T * (*JSON_EXPORT_REC_WRITE_FUNC) (const char *, const void *);
-typedef bool     (*JSON_EXPORT_REC_CHECK_FUNC) (const void *);
 
 /* Function prototypes. */
 void json_export_all (bool write_indiv, const char *everything);
+void json_export_areas (int mode);
+void json_export_socials (int mode);
+void json_export_portals (int mode);
+void json_export_tables (int mode);
+void json_export_help_areas (int mode);
 bool json_export_interpret_mode (int mode, flag_t *options_out);
 void json_export_area (const AREA_T *area, int mode);
 void json_export_recycleable (const char *objname, const char *filename,
     void *first,
     JSON_EXPORT_REC_NEXT_FUNC next_func,
     JSON_EXPORT_REC_WRITE_FUNC write_func,
-    JSON_EXPORT_REC_CHECK_FUNC check_func,
     int mode);
 void json_export_table (const TABLE_T *table, int mode);
 void json_export_help_area (const HELP_AREA_T *had, int mode);

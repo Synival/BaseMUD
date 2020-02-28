@@ -663,7 +663,7 @@ OEDIT (oedit_create) {
     }
 
     obj = obj_index_new ();
-    obj->area = area;
+    obj_index_to_area (obj, area);
     obj->vnum = value;
     obj->anum = value - area->min_vnum;
 
