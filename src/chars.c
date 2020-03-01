@@ -234,8 +234,8 @@ void char_to_room (CHAR_T *ch, ROOM_INDEX_T *room_index) {
         room_index->people_first, room_index->people_last);
 
     if (!IS_NPC (ch)) {
-        if (ch->in_room->area->empty) {
-            ch->in_room->area->empty = FALSE;
+        if (!ch->in_room->area->had_players) {
+            ch->in_room->area->had_players = TRUE;
             ch->in_room->area->age = 0;
         }
         ++ch->in_room->area->nplayer;

@@ -458,7 +458,6 @@ DEFINE_INIT_FUN (area_init) {
     area->area_flags = AREA_ADDED;
     area->security   = 1;
     area->builders   = str_dup ("None");
-    area->empty      = TRUE;        /* ROM patch */
     area->vnum       = TOP(RECYCLE_AREA_T);
 
     sprintf (buf, "area%d", area->vnum);

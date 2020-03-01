@@ -264,32 +264,34 @@ void init_areas (void) {
 
 /* Snarf an 'area' header line. */
 void load_area (FILE *fp) {
-    AREA_T *area, *old_area_last;
+    AREA_T *area;
+    if (area_last)
+        REMOVE_BIT (area_last->area_flags, AREA_LOADING); /* OLC */
 
     area = area_new ();
+    area->vnum     = TOP (RECYCLE_AREA_T); /* OLC */
+    area->age      = AREA_RESET_ALWAYS_AGE;
+    area->security = 9;              /* OLC 9 -- Hugin */
+    area->area_flags = AREA_LOADING; /* OLC */
+
     fread_string_replace (fp, &area->filename);
-    str_replace_dup (&area->name, str_without_extension (area->filename));
 
     /* Pretty up the log a little */
     log_f ("Loading area '%s'", area->filename);
 
-    area->area_flags = AREA_LOADING;           /* OLC */
-    area->security = 9;                        /* OLC 9 -- Hugin */
+    str_replace_dup (&area->name, str_without_extension (area->filename));
     str_replace_dup (&area->builders, "None"); /* OLC */
-    area->vnum = TOP (RECYCLE_AREA_T);         /* OLC */
-
     fread_string_replace (fp, &area->title);
     fread_string_replace (fp, &area->credits);
     area->min_vnum = fread_number (fp);
     area->max_vnum = fread_number (fp);
-    area->age = 15;
-    area->nplayer = 0;
-    area->empty = FALSE;
 
-    old_area_last = area_last;
+    /* Unified finaliziation between load_area() and load_area_olc() */
+    load_area_finish (area);
+}
+
+void load_area_finish (AREA_T *area) {
     LIST2_BACK (area, global_prev, global_next, area_first, area_last);
-    if (old_area_last)
-        REMOVE_BIT (old_area_last->area_flags, AREA_LOADING); /* OLC */
     current_area = area;
 }
 
@@ -325,22 +327,23 @@ void load_area (FILE *fp) {
 void load_area_olc (FILE *fp) {
     AREA_T *area;
     char *word;
+    if (area_last)
+        REMOVE_BIT (area_last->area_flags, AREA_LOADING); /* OLC */
 
     area = area_new ();
-    area->age = 15;
-    area->nplayer = 0;
+    area->vnum       = TOP (RECYCLE_AREA_T);
+    area->age        = AREA_RESET_ALWAYS_AGE;
+    area->security   = 9;  /* 9 -- Hugin */
+    area->area_flags = AREA_LOADING;
+
     str_replace_dup (&area->filename, current_area_filename);
-    area->vnum = TOP (RECYCLE_AREA_T);
-    str_replace_dup (&area->title, "New Area");
-    str_replace_dup (&area->builders, "");
-    area->security = 9;        /* 9 -- Hugin */
-    area->min_vnum = 0;
-    area->max_vnum = 0;
-    area->area_flags = 0;
-/*  area->recall       = ROOM_VNUM_TEMPLE;        ROM OLC */
+    log_f ("Loading area '%s'", area->filename);
 
     str_replace_dup (&area->name, str_without_extension (area->filename));
-    log_f ("Loading area '%s'", area->filename);
+    str_replace_dup (&area->builders, "None"); /* Was blank, now same as load_area() */
+    str_replace_dup (&area->title, "New Area");
+
+/*  area->recall       = ROOM_VNUM_TEMPLE;        ROM OLC */
 
     while (1) {
         word = feof (fp) ? "End" : fread_word_static (fp);
@@ -361,11 +364,9 @@ void load_area_olc (FILE *fp) {
                 break;
 
             case 'E':
-                if (!str_cmp (word, "End")) {
-                    LIST2_BACK (area, global_prev, global_next, area_first, area_last);
-                    current_area = area;
-                    return;
-                }
+                if (!str_cmp (word, "End"))
+                    /* Valid use of 'goto', haters gonna hate. -- Synival */
+                    goto load_area_olc_done;
                 break;
 
             case 'B':
@@ -377,6 +378,10 @@ void load_area_olc (FILE *fp) {
                 break;
         }
     }
+load_area_olc_done:
+
+    /* Unified finaliziation between load_area() and load_area_olc() */
+    load_area_finish (area);
 }
 
 /* Sets vnum range for area using OLC protection features. */
@@ -1258,7 +1263,7 @@ void db_dump_world (const char *filename) {
         fprintf (file, "high_range: %d\n",  area->high_range);
         fprintf (file, "min_vnum:   %d\n",  area->min_vnum);
         fprintf (file, "max_vnum:   %d\n",  area->max_vnum);
-        fprintf (file, "empty:      %d\n",  area->empty);
+        fprintf (file, "had_players:%d\n",  area->had_players);
         fprintf (file, "builders:   %s\n",  area->builders);
         fprintf (file, "vnum:       %d\n",  area->vnum);
         fprintf (file, "area_flags: %ld\n", area->area_flags);

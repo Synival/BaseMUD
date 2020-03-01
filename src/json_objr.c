@@ -691,7 +691,6 @@ AREA_T *json_objr_area (const JSON_T *json) {
 
     area->age     = 15;
     area->nplayer = 0;
-    area->empty   = FALSE;
     area->area_flags = 0;
 
     NO_NULL_STR (area->name);

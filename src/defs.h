@@ -712,4 +712,9 @@
 #define EXTRA_DESCR_OBJ          2
 #define EXTRA_DESCR_OBJ_INDEX    3
 
+/* area reset ages. */
+#define AREA_RESET_MINIMUM_AGE          3
+#define AREA_RESET_AFTER_PLAYERS_AGE    15
+#define AREA_RESET_ALWAYS_AGE           31
+
 #endif

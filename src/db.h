@@ -47,6 +47,7 @@ void init_areas (void);
 /* Loading functions. */
 void load_area (FILE *fp);
 void load_area_olc (FILE *fp);
+void load_area_finish (AREA_T *area);
 void load_resets (FILE *fp);
 void load_rooms (FILE *fp);
 void load_shops (FILE *fp);

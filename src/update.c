@@ -411,9 +411,14 @@ void aggr_update (void) {
 
     for (wch = char_first; wch != NULL; wch = wch_next) {
         wch_next = wch->global_next;
-        if (IS_NPC (wch)
-            || wch->level >= LEVEL_IMMORTAL
-            || wch->in_room == NULL || wch->in_room->area->empty) continue;
+        if (IS_NPC (wch))
+            continue;
+        if (wch->level >= LEVEL_IMMORTAL)
+            continue;
+        if (wch->in_room == NULL)
+            continue;
+        if (!wch->in_room->area->had_players)
+            continue;
 
         for (ch = wch->in_room->people_first; ch != NULL; ch = ch_next) {
             int count;
@@ -518,12 +523,12 @@ void pulse_update(void) {
  * Called once per pulse from game loop.
  * Random times to defeat tick-timing clients and players. */
 void update_handler (void) {
-    static int pulse_area = 0;
-    static int pulse_mobile = 0;
+    static int pulse_area     = PULSE_AREA; /* Already run at boot */
+    static int pulse_mobile   = 0;
     static int pulse_violence = 0;
-    static int pulse_point = 0;
-    static int pulse_music = 0;
-    static int pulse_health = 0;
+    static int pulse_point    = 0;
+    static int pulse_music    = 0;
+    static int pulse_health   = 0;
 
     while (--pulse_area <= 0) {
         pulse_area += PULSE_AREA;

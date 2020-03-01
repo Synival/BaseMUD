@@ -414,4 +414,4 @@ wiz_ml.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 wiz_ml.o: json.h structs.h types.h flags.h tables.h ext_flags.h db.h comm.h
 wiz_ml.o: interp.h save.h fight.h utils.h act_info.h chars.h rooms.h find.h
 wiz_ml.o: descs.h boot.h memory.h globals.h players.h mobiles.h objs.h
-wiz_ml.o: quickmud.h json_export.h wiz_ml.h recycle.h
+wiz_ml.o: quickmud.h json_export.h wiz_ml.h

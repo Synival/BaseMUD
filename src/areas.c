@@ -41,27 +41,50 @@ void area_update_all (void) {
 }
 
 void area_update (AREA_T *area) {
-    if (++area->age < 3)
+    ROOM_INDEX_T *room_index;
+
+    /* Increase area age. If it's less than 3 hours old, do nothing. */
+    area->age++;
+    if (!area_should_update (area))
         return;
 
-    /* Check age and reset.
-     * Note: Mud School resets every 3 minutes (not 15). */
-    if ((!area->empty && (area->nplayer == 0 || area->age >= 15))
-        || area->age >= 31)
-    {
-        ROOM_INDEX_T *room_index;
+    /* Update confirmed! Perform an update. */
+    area_reset (area);
+    wiznetf (NULL, NULL, WIZ_RESETS, 0, 0,
+        "%s has just been reset.", area->title);
 
-        area_reset (area);
-        wiznetf (NULL, NULL, WIZ_RESETS, 0, 0,
-            "%s has just been reset.", area->title);
+    area->age = number_range (0, 3);
+    room_index = room_get_index (ROOM_VNUM_SCHOOL);
 
-        area->age = number_range (0, 3);
-        room_index = room_get_index (ROOM_VNUM_SCHOOL);
-        if (room_index != NULL && area == room_index->area)
-            area->age = 15 - 2;
-        else if (area->nplayer == 0)
-            area->empty = TRUE;
+    /* Note: Mud School resets every 3 minutes (not 15). */
+    /* TODO: This is a pretty stupid hack for the school. There should be a
+     *       specific reset age set for the area as well as a flag to ignore
+     *       whether players have entered or not. The direct lookup to the
+     *       school vnum is also pretty dumb! */
+    if (room_index != NULL && area == room_index->area) {
+        area->age = AREA_RESET_AFTER_PLAYERS_AGE - 3;
+        area->had_players = TRUE;
     }
+    else if (area->nplayer == 0)
+        area->had_players = FALSE;
+}
+
+bool area_should_update (const AREA_T *area) {
+    if (area->age < AREA_RESET_MINIMUM_AGE)
+        return FALSE;
+
+    /* Update if the area is at least 31 hours old... */
+    if (area->age >= AREA_RESET_ALWAYS_AGE)
+        return TRUE;
+    /* ...or if there were/are players but there aren't anymore... */
+    else if (area->had_players && area->nplayer == 0)
+        return TRUE;
+    /* ...or if there were/are players but the area is at least 15 hours old. */
+    else if (area->had_players && area->age >= AREA_RESET_AFTER_PLAYERS_AGE)
+        return TRUE;
+
+    /* No conditions met - this area should not update. */
+    return FALSE;
 }
 
 /* OLC

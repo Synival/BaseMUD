@@ -956,7 +956,7 @@ struct area_data {
     sh_int high_range;
     sh_int min_vnum;
     sh_int max_vnum;
-    bool empty;
+    bool had_players;
     char *builders;    /* OLC - Listing of */
     int vnum;          /* OLC - Area vnum  */
     flag_t area_flags; /* OLC              */

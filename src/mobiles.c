@@ -595,7 +595,7 @@ void mobile_update_all (void) {
         ch_next = ch->global_next;
         if (!IS_NPC (ch) || ch->in_room == NULL || IS_AFFECTED (ch, AFF_CHARM))
             continue;
-        if (ch->in_room->area->empty && !EXT_IS_SET (ch->ext_mob, MOB_UPDATE_ALWAYS))
+        if (!ch->in_room->area->had_players && !EXT_IS_SET (ch->ext_mob, MOB_UPDATE_ALWAYS))
             continue;
         mobile_update (ch);
     }
