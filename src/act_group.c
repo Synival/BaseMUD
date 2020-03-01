@@ -107,7 +107,7 @@ DEFINE_DO_FUN (do_order) {
 
     if (found) {
         WAIT_STATE (ch, PULSE_VIOLENCE);
-        send_to_char ("Ok.\n\r", ch);
+        printf_to_char(ch, "You ordered %s to %s.\n\r", arg, argument);
     }
     else
         send_to_char ("You have no followers here.\n\r", ch);

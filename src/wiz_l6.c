@@ -120,7 +120,7 @@ DEFINE_DO_FUN (do_switch) {
     BAIL_IF ((victim = find_char_world (ch, arg)) == NULL,
         "They aren't here.\n\r", ch);
     BAIL_IF (victim == ch,
-        "Ok.\n\r", ch);
+        "Switch to yourself?\n\r", ch);
     BAIL_IF (!IS_NPC (victim),
         "You can only switch into mobiles.\n\r", ch);
 
@@ -144,5 +144,5 @@ DEFINE_DO_FUN (do_switch) {
         victim->prompt = str_dup (ch->prompt);
     victim->comm = ch->comm;
     victim->lines = ch->lines;
-    send_to_char ("Ok.\n\r", victim);
+    printf_to_char(victim, "Successfully switched into %s.\n\r", victim->short_descr);
 }

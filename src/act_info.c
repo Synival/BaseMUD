@@ -1132,7 +1132,7 @@ DEFINE_DO_FUN (do_title) {
 
     smash_tilde (argument);
     char_set_title (ch, argument);
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char(ch, "Your title is now:%s.\n\r", ch->pcdata->title);
 }
 
 DEFINE_DO_FUN (do_description) {

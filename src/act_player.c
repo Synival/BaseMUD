@@ -212,5 +212,5 @@ DEFINE_DO_FUN (do_password) {
     str_free (&(ch->pcdata->pwd));
     ch->pcdata->pwd = str_dup (pwdnew);
     save_char_obj (ch);
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char(ch, "Password changed successfully.\n\r");
 }
