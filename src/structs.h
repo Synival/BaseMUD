@@ -404,7 +404,7 @@ struct mob_index_data {
     DICE_T hit;
     DICE_T mana;
     DICE_T damage;
-    sh_int ac[4];
+    sh_int ac[AC_MAX];
     sh_int attack_type;
     sh_int start_pos;
     sh_int default_pos;
@@ -901,8 +901,8 @@ struct obj_data {
 
 /* Exit data. */
 struct exit_data {
-    ROOM_INDEX_T *to_room;
-    sh_int vnum, area_vnum, room_anum;
+    ROOM_INDEX_T *from_room, *to_room;
+    sh_int to_vnum, to_anum, to_area_vnum;
     flag_t exit_flags;
     sh_int key;
     char *keyword;
@@ -971,11 +971,10 @@ struct room_index_data {
     ROOM_INDEX_T *area_next, *area_prev;
     CHAR_T *people_first, *people_last;
     OBJ_T *content_first, *content_last;
+    RESET_T *reset_first, *reset_last;
     EXTRA_DESCR_T *extra_descr_first, *extra_descr_last;
-    char *area_str;
     EXIT_T *exit[DIR_MAX];
-    RESET_T *reset_first; /* OLC */
-    RESET_T *reset_last;  /* OLC */
+    char *area_str;
     char *name;
     char *description;
     char *owner;
@@ -1133,8 +1132,8 @@ struct table_type {
 
 struct portal_exit_type {
     ROOM_INDEX_T *room;
+    EXIT_T *exit;
     char *name;
-    int dir;
     OBJ_RECYCLE_T rec_data;
 };
 

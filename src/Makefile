@@ -94,7 +94,7 @@ affects.o: json.h structs.h types.h flags.h tables.h ext_flags.h recycle.h
 affects.o: utils.h lookup.h chars.h affects.h
 areas.o: globals.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 areas.o: json.h structs.h types.h flags.h tables.h ext_flags.h comm.h rooms.h
-areas.o: utils.h areas.h
+areas.o: utils.h recycle.h resets.h areas.h
 ban.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 ban.o: structs.h types.h flags.h tables.h ext_flags.h recycle.h utils.h
 ban.o: fread.h interp.h comm.h chars.h globals.h memory.h fwrite.h ban.h
@@ -295,7 +295,7 @@ players.o: lookup.h objs.h affects.h memory.h utils.h globals.h comm.h save.h
 players.o: magic.h groups.h fight.h rooms.h items.h players.h
 portals.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 portals.o: json.h structs.h types.h flags.h tables.h ext_flags.h lookup.h
-portals.o: recycle.h utils.h memory.h portals.h
+portals.o: recycle.h utils.h memory.h rooms.h portals.h
 quickmud.o: utils.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 quickmud.o: json.h structs.h types.h flags.h tables.h ext_flags.h fread.h
 quickmud.o: quickmud.h
@@ -303,7 +303,7 @@ recycle.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 recycle.o: json.h structs.h types.h flags.h tables.h ext_flags.h utils.h
 recycle.o: lookup.h db.h affects.h objs.h chars.h globals.h memory.h resets.h
 recycle.o: board.h extra_descrs.h mob_prog.h rooms.h mobiles.h help.h
-recycle.o: recycle.h
+recycle.o: portals.h recycle.h
 resets.o: mobiles.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 resets.o: json.h structs.h types.h flags.h tables.h ext_flags.h utils.h
 resets.o: rooms.h chars.h objs.h items.h recycle.h resets.h
@@ -414,4 +414,4 @@ wiz_ml.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 wiz_ml.o: json.h structs.h types.h flags.h tables.h ext_flags.h db.h comm.h
 wiz_ml.o: interp.h save.h fight.h utils.h act_info.h chars.h rooms.h find.h
 wiz_ml.o: descs.h boot.h memory.h globals.h players.h mobiles.h objs.h
-wiz_ml.o: quickmud.h json_export.h wiz_ml.h
+wiz_ml.o: quickmud.h json_export.h wiz_ml.h recycle.h

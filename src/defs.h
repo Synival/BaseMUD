@@ -464,6 +464,7 @@
 #define COLOUR_MAX          32
 #define COND_HOURS_STUFFED  40
 #define COND_HOURS_MAX      48
+#define AC_MAX              4
 
 /* Colour setting codes */
 #define COLOUR_TEXT            0

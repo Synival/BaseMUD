@@ -118,8 +118,8 @@ void boot_db (void) {
 
     room_link_exits_by_vnum_all ();
 
-    portal_create_missing ();
-    portal_link_exits ();
+    portal_create_missing_all ();
+    portal_link_unassigned_by_names ();
 
     EXIT_IF_BUGF ((help = help_get_by_name_exact ("greeting")) == NULL,
         "boot_db(): Cannot find help entry 'greeting'.");
@@ -129,6 +129,11 @@ void boot_db (void) {
     if (room_check_resets_all () > 0)
         exit (1);
     room_fix_two_way_exits_all ();
+
+    /* The purpose of this is to make sure resets are in the same order
+     * during 'db_dump_world()' when the world is loaded via JSON or .are
+     * files. This helps for debugging links when comparing .dump files. */
+    area_reinsert_resets_in_room_order_all ();
 
     fix_mobprogs ();
 
@@ -554,13 +559,14 @@ void load_rooms (FILE *fp) {
         room_index->content_last      = NULL;
         room_index->extra_descr_first = NULL;
         room_index->extra_descr_last  = NULL;
-        room_to_area (room_index, area_last);
-        room_index->vnum        = vnum;
-        room_index->anum        = vnum - area_last->min_vnum;
-
+        room_index->vnum              = vnum;
+        room_index->anum              = vnum - area_last->min_vnum;
         fread_string_replace (fp, &room_index->name);
         fread_string_replace (fp, &room_index->description);
+
         /* Area number */ fread_number (fp);
+        room_to_area (room_index, area_last);
+
         room_index->room_flags = fread_flag (fp);
         /* horrible hack */
         if (3000 <= vnum && vnum < 3400)
@@ -597,15 +603,12 @@ void load_rooms (FILE *fp) {
                 EXIT_IF_BUG (door < 0 || door > 5,
                     "load_rooms: vnum %d has bad door number.", vnum);
 
-                pexit = exit_new ();
+                pexit = room_create_exit (room_index, door);
                 fread_string_replace (fp, &pexit->description);
                 fread_string_replace (fp, &pexit->keyword);
-                locks = fread_number (fp);
-                pexit->key = fread_number (fp);
-                pexit->vnum = fread_number (fp);
-                pexit->area_vnum = -1;
-                pexit->room_anum = -1;
-                pexit->orig_door = door; /* OLC */
+                locks          = fread_number (fp);
+                pexit->key     = fread_number (fp);
+                pexit->to_vnum = fread_number (fp);
 
                 switch (locks) {
                     case 0:
@@ -635,7 +638,6 @@ void load_rooms (FILE *fp) {
                         bug ("fread_rooms: bad lock type '%d'.", locks);
                 }
                 pexit->rs_flags = pexit->exit_flags;
-                room_index->exit[door] = pexit;
             }
             else if (letter == 'E') {
                 EXTRA_DESCR_T *ed = extra_descr_new ();
@@ -759,20 +761,15 @@ void load_mobprogs (FILE *fp) {
 
 /* Translate mobprog vnums pointers to real code */
 void fix_mobprogs (void) {
-    MOB_INDEX_T *mob_index;
+    MOB_INDEX_T *m;
     MPROG_LIST_T *list;
     MPROG_CODE_T *prog;
-    int hash;
 
-    for (hash = 0; hash < MAX_KEY_HASH; hash++) {
-        for (mob_index = mob_index_hash[hash];
-             mob_index != NULL; mob_index = mob_index->hash_next)
-        {
-            for (list = mob_index->mprog_first; list != NULL; list = list->mob_next) {
-                EXIT_IF_BUG ((prog = mpcode_get_index (list->vnum)) == NULL,
-                    "fix_mobprogs: code vnum %d not found.", list->vnum);
-                list->code = prog->code;
-            }
+    for (m = mob_index_get_first(); m; m = mob_index_get_next (m)) {
+        for (list = m->mprog_first; list != NULL; list = list->mob_next) {
+            EXIT_IF_BUG ((prog = mpcode_get_index (list->vnum)) == NULL,
+                "fix_mobprogs: code vnum %d not found.", list->vnum);
+            list->code = prog->code;
         }
     }
 }
@@ -1214,8 +1211,43 @@ void db_dump_world (const char *filename) {
     log_f ("Dumping entire world to '%s'", filename);
 
     for (area = area_get_first(); area; area = area_get_next (area)) {
+        fprintf (file, "global_prev:%s\n",  area->global_prev ? "yes" : "no");
         fprintf (file, "global_next:%s\n",  area->global_next ? "yes" : "no");
+
         fprintf (file, "had_first:  %s\n",  area->had_first   ? "yes" : "no");
+        fprintf (file, "had_last:   %s\n",  area->had_last    ? "yes" : "no");
+        for (had = area->had_first; had; had = had->area_next)
+            fprintf (file, "   %s\n", had->name);
+
+        fprintf (file, "mob_first:  %s\n",  area->mob_first   ? "yes" : "no");
+        fprintf (file, "mob_last:   %s\n",  area->mob_last    ? "yes" : "no");
+        for (mob = area->mob_first; mob; mob = mob->area_next)
+            fprintf (file, "   %5d: %s\n", mob->vnum, mob->name);
+
+        fprintf (file, "obj_first:  %s\n",  area->obj_first   ? "yes" : "no");
+        fprintf (file, "obj_last:   %s\n",  area->obj_last    ? "yes" : "no");
+        for (obj = area->obj_first; obj; obj = obj->area_next)
+            fprintf (file, "   %5d: %s\n", obj->vnum, obj->name);
+
+        fprintf (file, "room_first: %s\n",  area->room_first  ? "yes" : "no");
+        fprintf (file, "room_last:  %s\n",  area->room_last   ? "yes" : "no");
+        for (room = area->room_first; room; room = room->area_next)
+            fprintf (file, "   %5d: %s\n", room->vnum, room->name);
+
+        fprintf (file, "mprog_first:%s\n",  area->mprog_first ? "yes" : "no");
+        fprintf (file, "mprog_last: %s\n",  area->mprog_last  ? "yes" : "no");
+        fprintf (file, "mpcode_first:%s\n", area->mpcode_first ? "yes" : "no");
+        fprintf (file, "mpcode_last: %s\n", area->mpcode_last  ? "yes" : "no");
+
+        fprintf (file, "reset_first:%s\n",  area->reset_first ? "yes" : "no");
+        fprintf (file, "reset_last: %s\n",  area->reset_last  ? "yes" : "no");
+        for (reset = area->reset_first; reset; reset = reset->area_next) {
+            fprintf (file, "   '%c':", reset->command);
+            for (i = 0; i < RESET_VALUE_MAX; i++)
+                fprintf (file, " %d", reset->v.value[i]);
+            fputc ('\n', file);
+        }
+
         fprintf (file, "name:       %s\n",  area->name);
         fprintf (file, "filename:   %s\n",  area->filename);
         fprintf (file, "title:      %s\n",  area->title);
@@ -1238,47 +1270,69 @@ void db_dump_world (const char *filename) {
     for (room = room_index_get_first(); room;
          room = room_index_get_next (room))
     {
+        fprintf (file, "hash_prev:   %s\n", room->hash_prev     ? "yes" : "no");
         fprintf (file, "hash_next:   %s\n", room->hash_next     ? "yes" : "no");
-        fprintf (file, "people:      %s\n", room->people_first  ? "yes" : "no");
-        fprintf (file, "contents:    %s\n", room->content_first ? "yes" : "no");
-        fprintf (file, "extra_descr: %s\n", room->extra_descr_first ? "yes" : "no");
+        fprintf (file, "area:        %s\n", room->area          ? "yes" : "no");
+        fprintf (file, "area_prev:   %s\n", room->area_prev     ? "yes" : "no");
+        fprintf (file, "area_next:   %s\n", room->area_next     ? "yes" : "no");
+        fprintf (file, "people_first:%s\n", room->people_first  ? "yes" : "no");
+        fprintf (file, "people_last: %s\n", room->people_last   ? "yes" : "no");
+        fprintf (file, "content_first:%s\n",room->content_first ? "yes" : "no");
+        fprintf (file, "content_last:%s\n", room->content_last  ? "yes" : "no");
+
+        fprintf (file, "extra_descr_first:%s\n", room->extra_descr_first ? "yes" : "no");
+        fprintf (file, "extra_descr_last: %s\n", room->extra_descr_last  ? "yes" : "no");
         for (ed = room->extra_descr_first; ed != NULL; ed = ed->on_next) {
+            fprintf (file, "   parent:      %s\n", ed->parent ? "yes" : "no");
+            fprintf (file, "   parent_type: %d\n", ed->parent_type);
+            fprintf (file, "   on_prev:     %s\n", ed->on_prev ? "yes" : "no");
+            fprintf (file, "   on_next:     %s\n", ed->on_next ? "yes" : "no");
             fprintf (file, "   keyword:     %s\n", ed->keyword);
             fprintf (file, "   description: %s\n", ed->description);
         }
 
-        fprintf (file, "area_str:    %s\n", room->area_str);
-        fprintf (file, "area:        %s\n", room->area        ? "yes" : "no");
-
-        for (i = 0; i < DIR_MAX; i++) {
-            fprintf (file, "exit[%d]:    %s\n", i, room->exit[i] ? "yes" : "no");
-            if (room->exit[i]) {
-                EXIT_T *exit = room->exit[i];
-                fprintf (file, "   to_room:     %s\n",  exit->to_room ? "yes" : "no");
-                fprintf (file, "   vnum:        %d\n",  exit->vnum);
-                fprintf (file, "   area_vnum:   %d\n",  exit->area_vnum);
-                fprintf (file, "   room_anum:   %d\n",  exit->room_anum);
-                fprintf (file, "   exit_flags:  %ld\n", exit->exit_flags);
-                fprintf (file, "   key:         %d\n",  exit->key);
-                fprintf (file, "   keyword:     %s\n",  exit->keyword);
-                fprintf (file, "   description: %s\n",  exit->description);
-                fprintf (file, "   rs_flags:    %ld\n", exit->rs_flags);
-                fprintf (file, "   orig_door:   %d\n",  exit->orig_door);
-                fprintf (file, "   portal:      %s\n",  exit->portal ? "yes" : "no");
-            }
-        }
-
-        fprintf (file, "reset_first: %s\n",  room->reset_first   ? "yes" : "no");
-        fprintf (file, "reset_last:  %s\n",  room->reset_last    ? "yes" : "no");
+        fprintf (file, "reset_first: %s\n", room->reset_first ? "yes" : "no");
+        fprintf (file, "reset_last:  %s\n", room->reset_last  ? "yes" : "no");
         for (reset = room->reset_first; reset != NULL; reset = reset->room_next) {
+            fprintf (file, "   area:      %s\n",   reset->area      ? "yes" : "no");
+            fprintf (file, "   area_prev: %s\n",   reset->area_prev ? "yes" : "no");
+            fprintf (file, "   area_next: %s\n",   reset->area_next ? "yes" : "no");
+            fprintf (file, "   room:      %s\n",   reset->room      ? "yes" : "no");
+            fprintf (file, "   room_prev: %s\n",   reset->room_prev ? "yes" : "no");
             fprintf (file, "   room_next: %s\n",   reset->room_next ? "yes" : "no");
-            fprintf (file, "   area:      %s\n",   reset->area ? "yes" : "no");
             fprintf (file, "   command:   '%c'\n", reset->command);
             fprintf (file, "   room_vnum: %d\n",   reset->room_vnum);
             for (i = 0; i < RESET_VALUE_MAX; i++)
                 fprintf (file, "   v[%d]:      %d\n", i, reset->v.value[i]);
         }
 
+        for (i = 0; i < DIR_MAX; i++) {
+            EXIT_T *exit = room_get_orig_exit (room, i);
+            fprintf (file, "exit[%d]:    %s\n", i, exit ? "yes" : "no");
+            if (exit) {
+                fprintf (file, "   from_room:   %s\n",  exit->from_room ? "yes" : "no");
+                fprintf (file, "   to_room:     %s\n",  exit->to_room   ? "yes" : "no");
+                fprintf (file, "   to_vnum:     %d\n",  exit->to_vnum);
+                fprintf (file, "   to_anum:     %d\n",  exit->to_anum);
+                fprintf (file, "   to_area_vnum:%d\n",  exit->to_area_vnum);
+                fprintf (file, "   exit_flags:  %ld\n", exit->exit_flags);
+                fprintf (file, "   key:         %d\n",  exit->key);
+                fprintf (file, "   keyword:     %s\n",  exit->keyword);
+                fprintf (file, "   description: %s\n",  exit->description);
+                fprintf (file, "   rs_flags:    %ld\n", exit->rs_flags);
+                fprintf (file, "   orig_door:   %d\n",  exit->orig_door);
+
+                fprintf (file, "   portal:      %s\n",  exit->portal ? "yes" : "no");
+                if (exit->portal) {
+                    PORTAL_EXIT_T *portal = exit->portal;
+                    fprintf (file, "      room: %s\n", portal->room ? "yes" : "no");
+                    fprintf (file, "      exit: %s\n", portal->exit ? "yes" : "no");
+                    fprintf (file, "      name: %s\n", portal->name);
+                }
+            }
+        }
+
+        fprintf (file, "area_str:    %s\n",  room->area_str);
         fprintf (file, "name:        %s\n",  room->name);
         fprintf (file, "description: %s\n",  room->description);
         fprintf (file, "owner:       %s\n",  room->owner);
@@ -1290,18 +1344,32 @@ void db_dump_world (const char *filename) {
         fprintf (file, "heal_rate:   %d\n",  room->heal_rate);
         fprintf (file, "mana_rate:   %d\n",  room->mana_rate);
         fprintf (file, "clan:        %d\n",  room->clan);
+
         fprintf (file, "portal:      %s\n",  room->portal ? "yes" : "no");
+        if (room->portal) {
+            PORTAL_EXIT_T *portal = room->portal;
+            fprintf (file, "   room: %s\n", portal->room ? "yes" : "no");
+            fprintf (file, "   exit: %s\n", portal->exit ? "yes" : "no");
+            fprintf (file, "   name: %s\n", portal->name);
+        }
+
         fprintf (file, "-\n");
         count++;
     }
 
     for (mob = mob_index_get_first(); mob; mob = mob_index_get_next (mob)) {
+        fprintf (file, "hash_prev:          %s\n",  mob->hash_prev ? "yes" : "no");
         fprintf (file, "hash_next:          %s\n",  mob->hash_next ? "yes" : "no");
+        fprintf (file, "area:               %s\n",  mob->area      ? "yes" : "no");
+        fprintf (file, "area_prev:          %s\n",  mob->area_prev ? "yes" : "no");
+        fprintf (file, "area_next:          %s\n",  mob->area_next ? "yes" : "no");
         fprintf (file, "spec_fun:           %s\n",  spec_function_name (mob->spec_fun));
-        fprintf (file, "shop:               %s\n",  mob->shop ? "yes" : "no");
+
+        fprintf (file, "shop:               %s\n",  mob->shop      ? "yes" : "no");
         if (mob->shop) {
             SHOP_T *shop = mob->shop;
-            fprintf (file, "   next:         %s\n", shop->global_next ? "yes" : "no");
+            fprintf (file, "   global_prev:  %s\n", shop->global_prev ? "yes" : "no");
+            fprintf (file, "   global_next:  %s\n", shop->global_next ? "yes" : "no");
             fprintf (file, "   keeper:       %d\n", shop->keeper);
             for (i = 0; i < MAX_TRADE; i++)
                 if (shop->buy_type[i] != 0)
@@ -1311,14 +1379,18 @@ void db_dump_world (const char *filename) {
             fprintf (file, "   open_hour:    %d\n", shop->open_hour);
             fprintf (file, "   close_hour:   %d\n", shop->close_hour);
         }
+
         fprintf (file, "mprog_first:        %s\n",  mob->mprog_first ? "yes" : "no");
+        fprintf (file, "mprog_last:         %s\n",  mob->mprog_last  ? "yes" : "no");
+        fprintf (file, "mob_first:          %s\n",  mob->mob_first   ? "yes" : "no");
+        fprintf (file, "mob_last:           %s\n",  mob->mob_last    ? "yes" : "no");
+
         fprintf (file, "area_str:           %s\n",  mob->area_str);
-        fprintf (file, "area:               %s\n",  mob->area ? "yes" : "no");
         fprintf (file, "vnum:               %d\n",  mob->vnum);
         fprintf (file, "anum:               %d\n",  mob->anum);
         fprintf (file, "group:              %d\n",  mob->group);
         fprintf (file, "new_format:         %d\n",  mob->new_format);
-        fprintf (file, "count:              %d\n",  mob->mob_count);
+        fprintf (file, "mob_count:          %d\n",  mob->mob_count);
         fprintf (file, "killed:             %d\n",  mob->killed);
         fprintf (file, "name:               %s\n",  mob->name);
         fprintf (file, "short_descr:        %s\n",  mob->short_descr);
@@ -1336,10 +1408,10 @@ void db_dump_world (const char *filename) {
         fprintf (file, "damage.number:      %d\n",  mob->damage.number);
         fprintf (file, "damage.size:        %d\n",  mob->damage.size);
         fprintf (file, "damage.bonus:       %d\n",  mob->damage.bonus);
-        fprintf (file, "ac[0]:              %d\n",  mob->ac[0]);
-        fprintf (file, "ac[1]:              %d\n",  mob->ac[1]);
-        fprintf (file, "ac[2]:              %d\n",  mob->ac[2]);
-        fprintf (file, "ac[3]:              %d\n",  mob->ac[3]);
+
+        for (i = 0; i < AC_MAX; i++)
+            fprintf (file, "ac[%d]:              %d\n", i, mob->ac[i]);
+
         fprintf (file, "attack_type:        %d\n",  mob->attack_type);
         fprintf (file, "start_pos:          %d\n",  mob->start_pos);
         fprintf (file, "default_pos:        %d\n",  mob->default_pos);
@@ -1378,16 +1450,30 @@ void db_dump_world (const char *filename) {
     }
 
     for (obj = obj_index_get_first(); obj; obj = obj_index_get_next (obj)) {
+        fprintf (file, "hash_prev:     %s\n",  obj->hash_prev ? "yes" : "no");
         fprintf (file, "hash_next:     %s\n",  obj->hash_next ? "yes" : "no");
-        fprintf (file, "extra_descr:   %s\n",  obj->extra_descr_first ? "yes" : "no");
+        fprintf (file, "area:          %s\n",  obj->area      ? "yes" : "no");
+        fprintf (file, "area_prev:     %s\n",  obj->area_prev ? "yes" : "no");
+        fprintf (file, "area_next:     %s\n",  obj->area_next ? "yes" : "no");
+
+        fprintf (file, "extra_descr_first:%s\n",  obj->extra_descr_first ? "yes" : "no");
+        fprintf (file, "extra_descr_last: %s\n",  obj->extra_descr_last  ? "yes" : "no");
         for (ed = obj->extra_descr_first; ed != NULL; ed = ed->on_next) {
+            fprintf (file, "   parent:      %s\n", ed->parent ? "yes" : "no");
+            fprintf (file, "   parent_type: %d\n", ed->parent_type);
+            fprintf (file, "   on_prev:     %s\n", ed->on_prev ? "yes" : "no");
+            fprintf (file, "   on_next:     %s\n", ed->on_next ? "yes" : "no");
             fprintf (file, "   keyword:     %s\n", ed->keyword);
             fprintf (file, "   description: %s\n", ed->description);
         }
 
-        fprintf (file, "affected:      %s\n",  obj->affect_first ? "yes" : "no");
+        fprintf (file, "affected_first:%s\n",  obj->affect_first ? "yes" : "no");
+        fprintf (file, "affected_last: %s\n",  obj->affect_last  ? "yes" : "no");
         for (aff = obj->affect_first; ed != NULL; ed = ed->on_next) {
-            fprintf (file, "   next:     %s\n",  aff->on_next ? "yes" : "no");
+            fprintf (file, "   parent:   %s\n",  aff->parent  ? "yes" : "no");
+            fprintf (file, "   parent_type:%d\n",aff->parent_type);
+            fprintf (file, "   on_prev:  %s\n",  aff->on_prev ? "yes" : "no");
+            fprintf (file, "   on_next:  %s\n",  aff->on_next ? "yes" : "no");
             fprintf (file, "   bit_type: %d\n",  aff->bit_type);
             fprintf (file, "   type:     %d\n",  aff->type);
             fprintf (file, "   level:    %d\n",  aff->level);
@@ -1398,7 +1484,6 @@ void db_dump_world (const char *filename) {
         }
 
         fprintf (file, "area_str:      %s\n",  obj->area_str);
-        fprintf (file, "area:          %s\n",  obj->area ? "yes" : "no");
         fprintf (file, "new_format:    %d\n",  obj->new_format);
         fprintf (file, "name:          %s\n",  obj->name);
         fprintf (file, "short_descr:   %s\n",  obj->short_descr);
@@ -1422,11 +1507,14 @@ void db_dump_world (const char *filename) {
     }
 
     for (had = had_get_first(); had; had = had_get_next (had)) {
+        fprintf (file, "global_prev: %s\n", had->global_prev  ? "yes" : "no");
         fprintf (file, "global_next: %s\n", had->global_next  ? "yes" : "no");
-        fprintf (file, "area_next:   %s\n", had->area_next ? "yes" : "no");
-        fprintf (file, "help_first:  %s\n", had->help_first ? "yes" : "no");
+        fprintf (file, "area:        %s\n", had->area         ? "yes" : "no");
+        fprintf (file, "area_prev:   %s\n", had->area_prev    ? "yes" : "no");
+        fprintf (file, "area_next:   %s\n", had->area_next    ? "yes" : "no");
+        fprintf (file, "help_first:  %s\n", had->help_first   ? "yes" : "no");
+        fprintf (file, "help_last:   %s\n", had->help_last    ? "yes" : "no");
         fprintf (file, "area_str:    %s\n", had->area_str);
-        fprintf (file, "area:        %s\n", had->area  ? "yes" : "no");
         fprintf (file, "filename:    %s\n", had->filename);
         fprintf (file, "name:        %s\n", had->name);
         fprintf (file, "changed:     %d\n", had->changed);
@@ -1435,8 +1523,11 @@ void db_dump_world (const char *filename) {
     }
 
     for (help = help_get_first(); help; help = help_get_next (help)) {
+        fprintf (file, "global_prev: %s\n", help->global_prev ? "yes" : "no");
         fprintf (file, "global_next: %s\n", help->global_next ? "yes" : "no");
-        fprintf (file, "had_next:    %s\n", help->had_next ? "yes" : "no");
+        fprintf (file, "had:         %s\n", help->had         ? "yes" : "no");
+        fprintf (file, "had_prev:    %s\n", help->had_prev    ? "yes" : "no");
+        fprintf (file, "had_next:    %s\n", help->had_next    ? "yes" : "no");
         fprintf (file, "level:       %d\n", help->level);
         fprintf (file, "keyword:     %s\n", help->keyword);
         fprintf (file, "text:        %s\n", help->text);

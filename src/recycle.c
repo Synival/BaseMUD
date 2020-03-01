@@ -45,6 +45,7 @@
 #include "objs.h"
 #include "mobiles.h"
 #include "help.h"
+#include "portals.h"
 
 #include "recycle.h"
 
@@ -497,17 +498,27 @@ DEFINE_DISPOSE_FUN (area_dispose) {
 
 DEFINE_INIT_FUN (exit_init) {
     EXIT_T *exit = obj;
-    exit->keyword     = &str_empty[0];
-    exit->description = &str_empty[0];
-    exit->vnum        = -1;
-    exit->area_vnum   = -1;
-    exit->key         = KEY_NOKEYHOLE;
+    exit->keyword      = &str_empty[0];
+    exit->description  = &str_empty[0];
+    exit->to_vnum      = -1;
+    exit->to_area_vnum = -1;
+    exit->to_anum      = -1;
+    exit->key          = KEY_NOKEYHOLE;
 }
 
 DEFINE_DISPOSE_FUN (exit_dispose) {
     EXIT_T *exit = obj;
+
     str_free (&(exit->keyword));
     str_free (&(exit->description));
+
+    if (exit->portal) {
+        portal_exit_free (exit->portal);
+        exit->portal = NULL;
+    }
+
+    exit_to_room_index_from (exit, NULL, DIR_NONE);
+    exit_to_room_index_to (exit, NULL);
 }
 
 DEFINE_INIT_FUN (room_index_init) {
@@ -531,7 +542,16 @@ DEFINE_DISPOSE_FUN (room_index_dispose) {
     for (door = 0; door < DIR_MAX; door++) {
         if (room->exit[door])
             exit_free (room->exit[door]);
-        room->exit[door] = NULL;
+        if (room->exit[door]) {
+            bugf ("room_index_dispose: Room '%s' exit %d not "
+                "properly unlinked.", room->name, door);
+            room->exit[door] = NULL;
+        }
+    }
+
+    if (room->portal) {
+        portal_exit_free (room->portal);
+        room->portal = NULL;
     }
 
     while (room->extra_descr_first)
@@ -688,11 +708,16 @@ DEFINE_DISPOSE_FUN (social_dispose) {
 
 DEFINE_DISPOSE_FUN (portal_exit_dispose) {
     PORTAL_EXIT_T *pex = obj;
+
+    portal_free_all_with_portal_exit (pex);
+    portal_exit_to_exit (pex, NULL);
+
     str_free (&(pex->name));
 }
 
 DEFINE_DISPOSE_FUN (portal_dispose) {
     PORTAL_T *portal = obj;
+    portal_to_portal_exits (portal, NULL, NULL, FALSE);
     str_free (&(portal->name_from));
     str_free (&(portal->name_to));
 }

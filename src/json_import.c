@@ -267,9 +267,9 @@ void json_import_link_areas (void) {
     {
         if ((area = json_import_link_areas_get_area (&(room->area_str))) == NULL)
             continue;
+        room->vnum = room->anum + area->min_vnum;
         room_to_area (room, area);
 
-        room->vnum = room->anum + area->min_vnum;
         for (reset = room->reset_first; reset != NULL; reset = reset->room_next)
             reset->room_vnum = room->vnum;
         db_register_new_room (room);
@@ -282,19 +282,19 @@ void json_import_link_areas (void) {
         for (i = 0; i < DIR_MAX; i++) {
             if ((exit = room->exit[i]) == NULL)
                 continue;
-            exit->area_vnum = -1;
-            if (exit->room_anum < 0)
+            exit->to_area_vnum = -1;
+            if (exit->to_anum < 0)
                 continue;
 
-            exit->vnum = exit->room_anum + room->area->min_vnum;
-            if ((to_room = room_get_index (exit->vnum)) == NULL) {
+            exit->to_vnum = exit->to_anum + room->area->min_vnum;
+            if ((to_room = room_get_index (exit->to_vnum)) == NULL) {
                 bugf ("json_import_link_areas(): Room '%s' (%d) exit '%d' cannot find "
                     "room with vnum %d.\n", room->name, room->vnum, i,
-                    exit->vnum);
+                    exit->to_vnum);
                 continue;
             }
-            exit->to_room = to_room;
-            exit->area_vnum = to_room->area->vnum;
+            exit->to_room      = to_room;
+            exit->to_area_vnum = to_room->area->vnum;
         }
     }
 

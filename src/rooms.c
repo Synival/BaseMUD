@@ -306,12 +306,10 @@ void room_link_exits_by_vnum (ROOM_INDEX_T *room_index) {
     for (door = 0; door < DIR_MAX; door++) {
         if ((pexit = room_index->exit[door]) == NULL)
             continue;
-        if (pexit->vnum <= 0 || room_get_index (pexit->vnum) == NULL)
-            pexit->to_room = NULL;
+        if (pexit->to_vnum <= 0 || room_get_index (pexit->to_vnum) == NULL)
+            exit_to_room_index_to (pexit, NULL);
         else {
-            pexit->to_room   = room_get_index (pexit->vnum);
-            pexit->area_vnum = pexit->to_room->area->vnum;
-            pexit->room_anum = pexit->to_room->anum;
+            exit_to_room_index_to (pexit, room_get_index (pexit->to_vnum));
             exit_found = TRUE;
         }
 
@@ -522,4 +520,56 @@ int room_check_resets (ROOM_INDEX_T *room) {
     }
 
     return error_count;
+}
+
+EXIT_T *room_create_exit (ROOM_INDEX_T *room_index, int dir) {
+    EXIT_T *new;
+    new = exit_new ();
+    new->orig_door = dir;
+    exit_to_room_index_from (new, room_index, dir);
+    return new;
+}
+
+void exit_to_room_index_from (EXIT_T *exit, ROOM_INDEX_T *room, int dir) {
+    if (exit->from_room == room)
+        return;
+    BAIL_IF_BUGF (room != NULL && room->exit[dir] != NULL,
+        "exit_to_room_index: Room '%s' already has exit '%d'");
+
+    if (exit->from_room) {
+        int dir;
+        for (dir = 0; dir < DIR_MAX; dir++)
+            if (exit->from_room->exit[dir] == exit)
+                exit->from_room->exit[dir] = NULL;
+        exit->from_room = NULL;
+    }
+
+    exit->from_room = room;
+    if (room != NULL)
+        room->exit[dir] = exit;
+}
+
+EXIT_T *room_get_orig_exit (const ROOM_INDEX_T *room, int dir) {
+    int i;
+    for (i = 0; i < DIR_MAX; i++)
+        if (room->exit[i] && room->exit[i]->orig_door == dir)
+            return room->exit[i];
+    return NULL;
+}
+
+void exit_to_room_index_to (EXIT_T *exit, ROOM_INDEX_T *room) {
+    if (exit->to_room == room)
+        return;
+
+    exit->to_room = room;
+    if (room != NULL) {
+        exit->to_anum = room->anum;
+        exit->to_vnum = room->vnum;
+        exit->to_area_vnum = room->area->vnum;
+    }
+    else {
+        exit->to_anum = -1;
+        exit->to_vnum = -1;
+        exit->to_area_vnum = -1;
+    }
 }

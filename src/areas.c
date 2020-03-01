@@ -29,6 +29,8 @@
 #include "comm.h"
 #include "rooms.h"
 #include "utils.h"
+#include "recycle.h"
+#include "resets.h"
 
 #include "areas.h"
 
@@ -70,4 +72,30 @@ void area_reset (AREA_T *area) {
     for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++)
         if ((room = room_get_index (vnum)))
             room_reset (room);
+}
+
+void area_reinsert_resets_in_room_order_all (void) {
+    AREA_T *area;
+    for (area = area_get_first(); area; area = area_get_next (area))
+        area_reinsert_resets_in_room_order (area);
+}
+
+void area_reinsert_resets_in_room_order (AREA_T *area) {
+    ROOM_INDEX_T *room;
+    RESET_T *reset;
+
+    for (room = area->room_first; room; room = room->area_next) {
+        for (reset = room->reset_first; reset; reset = reset->room_next) {
+            if (reset->area != room->area) {
+                bugf ("area_reinsert_resets_in_room_order: Reset '%c' for room "
+                      "'%s' (%d) does not share the same area (???)",
+                    reset->command, room->name, room->vnum);
+                continue;
+            }
+
+            /* Remove and put back in. */
+            reset_to_area (reset, NULL);
+            reset_to_area (reset, area);
+        }
+    }
 }

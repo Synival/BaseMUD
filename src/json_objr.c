@@ -86,19 +86,22 @@ ROOM_INDEX_T *json_objr_room (const JSON_T *json) {
             buf, "Unknown clan '%s'", 0);
 
     READ_PROP_STR (buf, "portal");
-    if (buf[0] != '\0')
-        room->portal = portal_exit_create (buf, room, DIR_NONE);
+    if (buf[0] != '\0') {
+        PORTAL_EXIT_T *portal = portal_exit_create (buf);
+        portal_exit_to_room (portal, room);
+    }
 
     array = json_get (json, "doors");
     if (array != NULL) {
         for (sub = array->first_child; sub != NULL; sub = sub->next) {
-            if ((exit = json_objr_exit (sub, room, &dir)) == NULL)
+            if ((exit = json_objr_exit (sub, room)) == NULL)
                 continue;
+            dir = exit->orig_door;
             if (dir < 0 || dir >= DIR_MAX) {
                 exit_free (exit);
                 continue;
             }
-            room->exit[dir] = exit;
+            exit_to_room_index_from (exit, room, dir);
         }
     }
 
@@ -148,15 +151,11 @@ EXTRA_DESCR_T *json_objr_extra_descr (const JSON_T *json) {
     return ed;
 }
 
-EXIT_T *json_objr_exit (const JSON_T *json, ROOM_INDEX_T *room,
-    int *dir_out)
-{
+EXIT_T *json_objr_exit (const JSON_T *json, ROOM_INDEX_T *room) {
     EXIT_T *exit;
     JSON_T *sub;
     char buf[MAX_STRING_LENGTH];
 
-    if (dir_out)
-        *dir_out = -1;
     if (!json_import_expect ("exit", json,
         "dir",
 
@@ -170,14 +169,13 @@ EXIT_T *json_objr_exit (const JSON_T *json, ROOM_INDEX_T *room,
     exit = exit_new ();
 
     READ_PROP_STR (buf, "dir");
-    *dir_out = door_lookup (buf);
-    exit->orig_door = *dir_out;
+    exit->orig_door = door_lookup (buf);
 
     sub = json_get (json, "to");
     if (sub != NULL && sub->type != JSON_NULL)
-        READ_PROP_INT (exit->room_anum, "to");
+        READ_PROP_INT (exit->to_anum, "to");
     else
-        exit->room_anum = -1;
+        exit->to_anum = -1;
 
     READ_PROP_STRP    (exit->keyword,     "keyword");
     READ_PROP_STRP_NL (exit->description, "description");
@@ -192,8 +190,9 @@ EXIT_T *json_objr_exit (const JSON_T *json, ROOM_INDEX_T *room,
 
     READ_PROP_STR (buf, "portal");
     if (buf[0] != '\0') {
-        exit->portal = portal_exit_create (buf, room, *dir_out);
-        exit->room_anum = -1;
+        PORTAL_EXIT_T *portal = portal_exit_create (buf);
+        portal_exit_to_exit (portal, exit);
+        exit->to_anum = -1;
     }
 
     NO_NULL_STR (exit->keyword);

@@ -150,7 +150,7 @@
 #define AC_BASH      1
 #define AC_SLASH     2
 #define AC_EXOTIC    3
-#define AC_MAX       4
+/* (AX_MAX declared in 'defs.h' to it can be included in structs.h) */
 
 /* Apply types (for affects).
  * Used in #OBJECTS. */

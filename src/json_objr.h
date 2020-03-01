@@ -33,7 +33,7 @@
 /* creating world objects from JSON objects. */
 ROOM_INDEX_T *json_objr_room (const JSON_T *json);
 EXTRA_DESCR_T *json_objr_extra_descr (const JSON_T *json);
-EXIT_T *json_objr_exit (const JSON_T *json, ROOM_INDEX_T *room, int *dir_out);
+EXIT_T *json_objr_exit (const JSON_T *json, ROOM_INDEX_T *room);
 RESET_T *json_objr_reset (const JSON_T *json, ROOM_INDEX_T *room);
 void json_objr_reset_values (const JSON_T *json, RESET_VALUE_T *v,
     char command, ROOM_INDEX_T *room);
