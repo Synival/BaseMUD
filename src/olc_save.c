@@ -309,7 +309,7 @@ void save_room (FILE *fp, ROOM_INDEX_T *room_index) {
 
     for (door = 0; door < DIR_MAX; door++) {
         int locks = 0;
-        if (!(ex = room_index->exit[door]))
+        if (!(ex = room_get_orig_exit (room_index, door)))
             continue;
 
 #if 0
