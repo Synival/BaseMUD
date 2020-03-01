@@ -306,12 +306,11 @@ void room_link_exits_by_vnum (ROOM_INDEX_T *room_index) {
     for (door = 0; door < DIR_MAX; door++) {
         if ((pexit = room_index->exit[door]) == NULL)
             continue;
+        exit_found = TRUE;
         if (pexit->to_vnum <= 0 || room_get_index (pexit->to_vnum) == NULL)
             exit_to_room_index_to (pexit, NULL);
-        else {
+        else
             exit_to_room_index_to (pexit, room_get_index (pexit->to_vnum));
-            exit_found = TRUE;
-        }
 
         old_boot_db = in_boot_db;
         in_boot_db = FALSE;
