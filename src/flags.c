@@ -249,6 +249,7 @@ const FLAG_T comm_flags[] = {
     {"unused_comm_3", COMM_UNUSED_FLAG_3, FALSE},
     {"snoop_proof",   COMM_SNOOP_PROOF,   FALSE},
     {"afk",           COMM_AFK,           TRUE},
+    {"materials",     COMM_MATERIALS,     TRUE},
     {0}
 };
 
@@ -453,5 +454,39 @@ const FLAG_T furniture_flags[] = {
 
 const FLAG_T dam_flags[] = {
     {"magical", DAM_MAGICAL, TRUE},
+    {0}
+};
+
+const FLAG_T ban_flags[] = {
+    {"suffix",    BAN_SUFFIX,    TRUE},
+    {"prefix",    BAN_PREFIX,    TRUE},
+    {"newbies",   BAN_NEWBIES,   TRUE},
+    {"all",       BAN_ALL,       TRUE},
+    {"permit",    BAN_PERMIT,    TRUE},
+    {"permanent", BAN_PERMANENT, TRUE},
+    {0}
+};
+
+const FLAG_T wiz_flags[] = {
+    {"on",        WIZ_ON,        TRUE},
+    {"ticks",     WIZ_TICKS,     TRUE},
+    {"logins",    WIZ_LOGINS,    TRUE},
+    {"sites",     WIZ_SITES,     TRUE},
+    {"links",     WIZ_LINKS,     TRUE},
+    {"deaths",    WIZ_DEATHS,    TRUE},
+    {"resets",    WIZ_RESETS,    TRUE},
+    {"mobdeaths", WIZ_MOBDEATHS, TRUE},
+    {"flags",     WIZ_FLAGS,     TRUE},
+    {"penalties", WIZ_PENALTIES, TRUE},
+    {"saccing",   WIZ_SACCING,   TRUE},
+    {"levels",    WIZ_LEVELS,    TRUE},
+    {"secure",    WIZ_SECURE,    TRUE},
+    {"switches",  WIZ_SWITCHES,  TRUE},
+    {"snoops",    WIZ_SNOOPS,    TRUE},
+    {"restore",   WIZ_RESTORE,   TRUE},
+    {"load",      WIZ_LOAD,      TRUE},
+    {"newbie",    WIZ_NEWBIE,    TRUE},
+    {"prefix",    WIZ_PREFIX,    TRUE},
+    {"spam",      WIZ_SPAM,      TRUE},
     {0}
 };

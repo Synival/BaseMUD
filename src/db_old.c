@@ -88,7 +88,7 @@ void load_old_mob (FILE *fp) {
         mob_index->description[0] = UPPER (mob_index->description[0]);
 
         mob_index->ext_mob_plus     = fread_ext_flag (fp, mob_flags);
-        mob_index->affected_by_plus = fread_flag (fp);
+        mob_index->affected_by_plus = fread_flag (fp, affect_flags);
         mob_index->shop             = NULL;
         mob_index->alignment        = fread_number (fp);
         letter                      = fread_letter (fp);
@@ -211,8 +211,8 @@ void load_old_obj (FILE *fp) {
         obj_index->description[0] = UPPER (obj_index->description[0]);
 
         obj_index->item_type = fread_number (fp);
-        obj_index->extra_flags = fread_flag (fp);
-        obj_index->wear_flags = fread_flag (fp);
+        obj_index->extra_flags = fread_flag (fp, extra_flags);
+        obj_index->wear_flags = fread_flag (fp, wear_flags);
         obj_index->v.value[0] = fread_number (fp);
         obj_index->v.value[1] = fread_number (fp);
         obj_index->v.value[2] = fread_number (fp);

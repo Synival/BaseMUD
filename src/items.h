@@ -150,7 +150,7 @@ bool item_index_finalize (OBJ_INDEX_T *obj);
 int item_index_get_old_convert_shop_level (const OBJ_INDEX_T *obj_index);
 int item_index_get_old_reset_shop_level (const OBJ_INDEX_T *obj_index);
 bool item_index_read_values_from_file (OBJ_INDEX_T *obj_index, FILE *fp);
-bool item_index_write_values_to_file (OBJ_INDEX_T *obj_index, FILE *fp);
+bool item_index_fwrite_values (OBJ_INDEX_T *obj_index, FILE *fp);
 bool item_index_show_values (const OBJ_INDEX_T *obj, CHAR_T *ch);
 
 /* Misc. utilities. */

@@ -470,6 +470,8 @@ extern const FLAG_T res_flags[];
 extern const FLAG_T gate_flags[];
 extern const FLAG_T furniture_flags[];
 extern const FLAG_T dam_flags[];
+extern const FLAG_T ban_flags[];
+extern const FLAG_T wiz_flags[];
 
 /* Function prototypes for flag management. */
 flag_t flag_lookup (const FLAG_T *flag_table, const char *name);

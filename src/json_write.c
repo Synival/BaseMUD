@@ -210,10 +210,10 @@ void json_print (JSON_T *json, FILE *fp) {
     json_print_real (json, fp, 1);
 }
 
-void json_write_to_file (JSON_T *json, const char *filename) {
+void json_fwrite (JSON_T *json, const char *filename) {
     FILE *fp = fopen (filename, "w");
     BAIL_IF_BUGF (fp == NULL,
-        "json_write_to_file(): Couldn't open '%s' for writing", filename);
+        "json_fwrite(): Couldn't open '%s' for writing", filename);
     json_print (json, fp);
     fclose (fp);
 }

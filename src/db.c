@@ -572,8 +572,9 @@ void load_rooms (FILE *fp) {
         /* Area number */ fread_number (fp);
         room_to_area (room_index, area_last);
 
-        room_index->room_flags = fread_flag (fp);
+        room_index->room_flags = fread_flag (fp, room_flags);
         /* horrible hack */
+        /* TODO: get rid of horrible hack! */
         if (3000 <= vnum && vnum < 3400)
             SET_BIT (room_index->room_flags, ROOM_LAW);
         room_index->sector_type = fread_number (fp);
@@ -904,7 +905,7 @@ void load_mobiles (FILE *fp) {
         mob_index->ext_mob_plus = fread_ext_flag (fp, mob_flags);
         EXT_UNSET (mob_index->ext_mob_plus, MOB_IS_NPC);
 
-        mob_index->affected_by_plus = fread_flag (fp);
+        mob_index->affected_by_plus = fread_flag (fp, affect_flags);
 
         mob_index->shop = NULL;
         mob_index->alignment = fread_number (fp);
@@ -929,10 +930,10 @@ void load_mobiles (FILE *fp) {
         mob_index->ac[AC_EXOTIC] = fread_number (fp) * 10;
 
         /* read flags and add in data from the race table */
-        mob_index->off_flags_plus  = fread_flag (fp);
-        mob_index->imm_flags_plus  = fread_flag (fp);
-        mob_index->res_flags_plus  = fread_flag (fp);
-        mob_index->vuln_flags_plus = fread_flag (fp);
+        mob_index->off_flags_plus  = fread_flag (fp, off_flags);
+        mob_index->imm_flags_plus  = fread_flag (fp, res_flags);
+        mob_index->res_flags_plus  = fread_flag (fp, res_flags);
+        mob_index->vuln_flags_plus = fread_flag (fp, res_flags);
 
         /* vital statistics */
         str = fread_word_static (fp);
@@ -952,8 +953,8 @@ void load_mobiles (FILE *fp) {
             str, "Unknown sex '%s'", SEX_EITHER);
 
         mob_index->wealth     = fread_number (fp);
-        mob_index->form_plus  = fread_flag (fp);
-        mob_index->parts_plus = fread_flag (fp);
+        mob_index->form_plus  = fread_flag (fp, form_flags);
+        mob_index->parts_plus = fread_flag (fp, part_flags);
 
         /* Size. */
         str = fread_word_static (fp);
@@ -972,27 +973,24 @@ void load_mobiles (FILE *fp) {
             letter = fread_letter (fp);
             if (letter == 'F') {
                 char *word;
-                long vector;
 
                 word = fread_word_static (fp);
-                vector = fread_flag (fp);
-
                 if (!str_prefix (word, "act") || !str_prefix (word, "mob"))
-                    mob_index->ext_mob_minus = EXT_FROM_FLAG_T (vector);
+                    mob_index->ext_mob_minus = fread_ext_flag (fp, mob_flags);
                 else if (!str_prefix (word, "aff"))
-                    mob_index->affected_by_minus = vector;
+                    mob_index->affected_by_minus = fread_flag (fp, affect_flags);
                 else if (!str_prefix (word, "off"))
-                    mob_index->off_flags_minus = vector;
+                    mob_index->off_flags_minus = fread_flag (fp, off_flags);
                 else if (!str_prefix (word, "imm"))
-                    mob_index->imm_flags_minus = vector;
+                    mob_index->imm_flags_minus = fread_flag (fp, res_flags);
                 else if (!str_prefix (word, "res"))
-                    mob_index->res_flags_minus = vector;
+                    mob_index->res_flags_minus = fread_flag (fp, res_flags);
                 else if (!str_prefix (word, "vul"))
-                    mob_index->vuln_flags_minus = vector;
+                    mob_index->vuln_flags_minus = fread_flag (fp, res_flags);
                 else if (!str_prefix (word, "for"))
-                    mob_index->form_minus = vector;
+                    mob_index->form_minus = fread_flag (fp, form_flags);
                 else if (!str_prefix (word, "par"))
-                    mob_index->parts_minus = vector;
+                    mob_index->parts_minus = fread_flag (fp, part_flags);
                 else {
                     EXIT_IF_BUG (TRUE,
                         "flag remove: flag not found.", 0);
@@ -1125,8 +1123,8 @@ void load_objects (FILE *fp) {
         obj_index->item_type = lookup_func_backup (item_lookup_exact,
             str, "Unknown item type '%s'", 0);
 
-        obj_index->extra_flags = fread_flag (fp);
-        obj_index->wear_flags = fread_flag (fp);
+        obj_index->extra_flags = fread_flag (fp, extra_flags);
+        obj_index->wear_flags  = fread_flag (fp, wear_flags);
 
         item_index_read_values_from_file (obj_index, fp);
 
@@ -1173,7 +1171,7 @@ void load_objects (FILE *fp) {
 
                 location  = fread_number (fp);
                 modifier  = fread_number (fp);
-                bits = fread_flag (fp);
+                bits = fread_flag (fp, affect_flags);
                 affect_init (paf, paf->bit_type, -1, obj_index->level, -1,
                     location, modifier, bits);
                 affect_to_obj_index_back (paf, obj_index);

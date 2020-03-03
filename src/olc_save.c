@@ -47,7 +47,7 @@
  * section of the resets.  It makes areas considerably larger but
  * may aid in debugging. */
 
-/* #define VERBOSE */
+#define VERBOSE
 
 char *olc_save_filename_static (const char *filename) {
     static char buf[MAX_STRING_LENGTH];
@@ -139,7 +139,8 @@ void save_mobile (FILE *fp, MOB_INDEX_T *mob_index) {
     fprintf (fp, "%s~\n", race->name);
     fprintf (fp, "%s ", fwrite_ext_flags_buf (
         mob_flags, mob_index->ext_mob_plus, buf));
-    fprintf (fp, "%s ", fwrite_flags_buf (mob_index->affected_by_plus, buf));
+    fprintf (fp, "%s ", fwrite_flags_buf (
+        affect_flags, mob_index->affected_by_plus, buf));
     fprintf (fp, "%d %d\n", mob_index->alignment, mob_index->group);
     fprintf (fp, "%d ", mob_index->level);
     fprintf (fp, "%d ", mob_index->hitroll);
@@ -154,16 +155,22 @@ void save_mobile (FILE *fp, MOB_INDEX_T *mob_index) {
              mob_index->ac[AC_PIERCE] / 10,
              mob_index->ac[AC_BASH] / 10,
              mob_index->ac[AC_SLASH] / 10, mob_index->ac[AC_EXOTIC] / 10);
-    fprintf (fp, "%s ", fwrite_flags_buf (mob_index->off_flags_plus, buf));
-    fprintf (fp, "%s ", fwrite_flags_buf (mob_index->imm_flags_plus, buf));
-    fprintf (fp, "%s ", fwrite_flags_buf (mob_index->res_flags_plus, buf));
-    fprintf (fp, "%s\n", fwrite_flags_buf (mob_index->vuln_flags_plus, buf));
+    fprintf (fp, "%s ", fwrite_flags_buf (
+        off_flags, mob_index->off_flags_plus, buf));
+    fprintf (fp, "%s ", fwrite_flags_buf (
+        res_flags, mob_index->imm_flags_plus, buf));
+    fprintf (fp, "%s ", fwrite_flags_buf (
+        res_flags, mob_index->res_flags_plus, buf));
+    fprintf (fp, "%s\n", fwrite_flags_buf (
+        res_flags, mob_index->vuln_flags_plus, buf));
     fprintf (fp, "%s %s %s %ld\n",
              position_table[mob_index->start_pos].name,
              position_table[mob_index->default_pos].name,
              sex_table[mob_index->sex].name, mob_index->wealth);
-    fprintf (fp, "%s ", fwrite_flags_buf (mob_index->form_plus, buf));
-    fprintf (fp, "%s ", fwrite_flags_buf (mob_index->parts_plus, buf));
+    fprintf (fp, "%s ", fwrite_flags_buf (
+        form_flags, mob_index->form_plus, buf));
+    fprintf (fp, "%s ", fwrite_flags_buf (
+        part_flags, mob_index->parts_plus, buf));
 
     fprintf (fp, "%s ", size_table[mob_index->size].name);
     fprintf (fp, "%s\n", str_if_null (
@@ -173,19 +180,26 @@ void save_mobile (FILE *fp, MOB_INDEX_T *mob_index) {
         fprintf (fp, "F act %s\n", fwrite_ext_flags_buf (
             mob_flags, mob_index->ext_mob_minus, buf));
     if (mob_index->affected_by_minus != 0)
-        fprintf (fp, "F aff %s\n", fwrite_flags_buf (mob_index->affected_by_minus, buf));
+        fprintf (fp, "F aff %s\n", fwrite_flags_buf (
+            affect_flags, mob_index->affected_by_minus, buf));
     if (mob_index->off_flags_minus != 0)
-        fprintf (fp, "F off %s\n", fwrite_flags_buf (mob_index->off_flags_minus, buf));
+        fprintf (fp, "F off %s\n", fwrite_flags_buf (
+            off_flags, mob_index->off_flags_minus, buf));
     if (mob_index->imm_flags_minus != 0)
-        fprintf (fp, "F imm %s\n", fwrite_flags_buf (mob_index->imm_flags_minus, buf));
+        fprintf (fp, "F imm %s\n", fwrite_flags_buf (
+            res_flags, mob_index->imm_flags_minus, buf));
     if (mob_index->res_flags_minus != 0)
-        fprintf (fp, "F res %s\n", fwrite_flags_buf (mob_index->res_flags_minus, buf));
+        fprintf (fp, "F res %s\n", fwrite_flags_buf (
+            res_flags, mob_index->res_flags_minus, buf));
     if (mob_index->vuln_flags_minus != 0)
-        fprintf (fp, "F vul %s\n", fwrite_flags_buf (mob_index->vuln_flags_minus, buf));
+        fprintf (fp, "F vul %s\n", fwrite_flags_buf (
+            res_flags, mob_index->vuln_flags_minus, buf));
     if (mob_index->form_minus != 0)
-        fprintf (fp, "F for %s\n", fwrite_flags_buf (mob_index->form_minus, buf));
+        fprintf (fp, "F for %s\n", fwrite_flags_buf (
+            form_flags, mob_index->form_minus, buf));
     if (mob_index->parts_minus != 0)
-        fprintf (fp, "F par %s\n", fwrite_flags_buf (mob_index->parts_minus, buf));
+        fprintf (fp, "F par %s\n", fwrite_flags_buf (
+            part_flags, mob_index->parts_minus, buf));
 
     for (mprog = mob_index->mprog_first; mprog; mprog = mprog->mob_next) {
         fprintf (fp, "M %s %d %s~\n",
@@ -231,10 +245,12 @@ void save_object (FILE *fp, OBJ_INDEX_T *obj_index) {
     fprintf (fp, "%s~\n", str_if_null (
         (char *) material_get_name (obj_index->material), "unknown"));
     fprintf (fp, "%s ", item_get_name (obj_index->item_type));
-    fprintf (fp, "%s ", fwrite_flags_buf (obj_index->extra_flags, buf));
-    fprintf (fp, "%s\n", fwrite_flags_buf (obj_index->wear_flags, buf));
+    fprintf (fp, "%s ", fwrite_flags_buf (
+        extra_flags, obj_index->extra_flags, buf));
+    fprintf (fp, "%s\n", fwrite_flags_buf (
+        wear_flags, obj_index->wear_flags, buf));
 
-    item_index_write_values_to_file (obj_index, fp);
+    item_index_fwrite_values (obj_index, fp);
 
     fprintf (fp, "%d ", obj_index->level);
     fprintf (fp, "%d ", obj_index->weight);
@@ -267,7 +283,7 @@ void save_object (FILE *fp, OBJ_INDEX_T *obj_index) {
             }
 
             fprintf (fp, "%d %d %s\n", aff->apply, aff->modifier,
-                     fwrite_flags_buf (aff->bits, buf));
+                     fwrite_flags_buf (affect_flags, aff->bits, buf));
         }
     }
 
@@ -304,7 +320,8 @@ void save_room (FILE *fp, ROOM_INDEX_T *room_index) {
     fprintf (fp, "%s~\n", room_index->name);
     fprintf (fp, "%s~\n", fix_string (room_index->description));
     fprintf (fp, "0 ");
-    fprintf (fp, "%s ", fwrite_flags_buf (room_index->room_flags, buf));
+    fprintf (fp, "%s ", fwrite_flags_buf (
+        room_flags, room_index->room_flags, buf));
     fprintf (fp, "%d\n", room_index->sector_type);
 
     for (door = 0; door < DIR_MAX; door++) {
@@ -413,7 +430,7 @@ void save_specials (FILE *fp, AREA_T *area) {
                 spec_function_name (mob_index->spec_fun),
                 mob_index->short_descr);
 #else
-            fprintf (fp, "M %5d %-20s\n", mob_index->vnum,
+            fprintf (fp, "M %5d %s\n", mob_index->vnum,
                 spec_function_name (mob_index->spec_fun));
 #endif
         }

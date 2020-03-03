@@ -76,10 +76,22 @@ int fread_number (FILE *fp) {
     return number;
 }
 
-flag_t fread_flag (FILE *fp) {
+flag_t fread_flag (FILE *fp, const FLAG_T *table) {
+    char c = fread_letter(fp);
+
+    /* if the flag isn't in some sort of array format, read as an old flag. */
+    if (c != '[' || table == NULL) {
+        ungetc (c, fp);
+        return fread_flag_simple (fp);
+    }
+    else
+        return fread_flag_brackets (fp, table);
+}
+
+flag_t fread_flag_simple (FILE *fp) {
+    char c = fread_letter(fp);
     int number = 0;
     bool negative = FALSE;
-    char c = fread_letter(fp);
 
     if (c == '-') {
         negative = TRUE;
@@ -99,7 +111,7 @@ flag_t fread_flag (FILE *fp) {
     }
 
     if (c == '|')
-        number += fread_flag (fp);
+        number += fread_flag_simple (fp);
     else if (c != ' ')
         ungetc (c, fp);
 
@@ -124,53 +136,60 @@ flag_t fread_flag_convert (char letter) {
     return bitsum;
 }
 
+flag_t fread_flag_brackets (FILE *fp, const FLAG_T *table) {
+    char buf[MAX_STRING_LENGTH];
+    fread_bracket_value (fp, buf, sizeof (buf));
+    return flags_from_string_exact (table, buf);
+}
+
 EXT_FLAGS_T fread_ext_flag (FILE *fp, const EXT_FLAG_DEF_T *table) {
-    char c;
+    char c = fread_letter (fp);
 
     /* if the flag isn't in some sort of array format, read as an old flag. */
-    while (1) {
-        c = getc (fp);
-        if (!(c == ' ' || c == '\n' || c == '\r'))
-            break;
-    }
-    if (c != '[') {
+    if (c != '[' || table == NULL) {
         ungetc (c, fp);
-        return EXT_FROM_FLAG_T (fread_flag (fp));
+        return EXT_FROM_FLAG_T (fread_flag_simple (fp));
     }
-    else {
-        char buf[MAX_STRING_LENGTH];
-        long start, count;
+    else
+        return fread_ext_flag_brackets (fp, table);
+}
 
-        /* look for a corresponding right bracket. */
-        start = ftell (fp);
-        count = 0;
-        do {
-            if ((c = getc (fp)) == ']')
-                break;
-            EXIT_IF_BUG (++count >= (MAX_STRING_LENGTH - 1),
-                "fread_ext_flag: Extended flag list too long.", 0);
-            EXIT_IF_BUG (feof (fp),
-                "fread_ext_flag: Unterminated extended flag list. "
-                "Expected ']', got EOF.", 0);
-        } while (1);
+EXT_FLAGS_T fread_ext_flag_brackets (FILE *fp, const EXT_FLAG_DEF_T *table) {
+    char buf[MAX_STRING_LENGTH];
+    fread_bracket_value (fp, buf, sizeof (buf));
+    return ext_flags_from_string_exact (table, buf);
+}
 
-        fseek (fp, start, SEEK_SET);
+void fread_bracket_value (FILE *fp, char *buf, size_t size) {
+    char c;
+    long start, count;
 
-        /* Read the flags and the right bracket afterwards. */
-        if (count > 0 && fread (buf, sizeof (char), count, fp) <= 0) {
-            if (feof (fp))
-                bugf ("fread_ext_flag: Premature EOF");
-            else {
-                int error = ferror (fp);
-                bugf ("fread_ext_flag: File error - %s (%d)", strerror (error));
-            }
+    /* look for a corresponding right bracket. */
+    start = ftell (fp);
+    count = 0;
+    do {
+        if ((c = getc (fp)) == ']')
+            break;
+        EXIT_IF_BUG (++count >= (size - 1),
+            "fread_ext_flag: Extended flag list too long.", 0);
+        EXIT_IF_BUG (feof (fp),
+            "fread_ext_flag: Unterminated extended flag list. "
+            "Expected ']', got EOF.", 0);
+    } while (1);
+
+    fseek (fp, start, SEEK_SET);
+
+    /* Read the flags and the right bracket afterwards. */
+    if (count > 0 && fread (buf, sizeof (char), count, fp) <= 0) {
+        if (feof (fp))
+            bugf ("fread_ext_flag: Premature EOF");
+        else {
+            int error = ferror (fp);
+            bugf ("fread_ext_flag: File error - %s (%d)", strerror (error));
         }
-        buf[count] = '\0';
-        getc (fp);
-
-        /* Build flags from our string. */
-        return ext_flags_from_string (table, buf);
     }
+    buf[count] = '\0';
+    getc (fp);
 }
 
 /* Read and allocate space for a string from a file.

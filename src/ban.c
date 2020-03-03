@@ -52,7 +52,7 @@ void ban_save_all (void) {
         if (IS_SET (pban->ban_flags, BAN_PERMANENT)) {
             found = TRUE;
             fprintf (fp, "%-20s %-2d %s\n", pban->name, pban->level,
-                     fwrite_flags_static (pban->ban_flags));
+                     fwrite_flags_static (ban_flags, pban->ban_flags));
         }
     }
 
@@ -78,7 +78,7 @@ void ban_load_all (void) {
         pban = ban_new ();
         str_replace_dup (&pban->name, fread_word_static (fp));
         pban->level = fread_number (fp);
-        pban->ban_flags = fread_flag (fp);
+        pban->ban_flags = fread_flag (fp, ban_flags);
         fread_to_eol (fp);
 
         LIST2_BACK (pban, global_prev, global_next, ban_first, ban_last);

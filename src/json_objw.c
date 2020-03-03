@@ -277,7 +277,7 @@ JSON_T *json_objw_mobile (const char *name, const MOB_INDEX_T *mob) {
         json_prop_string (new, "parts_minus",       JBITSF (part_flags, mob->parts_minus));
 
     if (mob->mprog_first)
-        printf ("*** Ignoring '%s' (#%d) mprogs ***\n", mob->short_descr, mob->vnum);
+        bugf ("*** Ignoring '%s' (#%d) mprogs ***", mob->short_descr, mob->vnum);
 
     spec_fun = spec_function_name (mob->spec_fun);
     if (spec_fun != NULL && spec_fun[0] != '\0')

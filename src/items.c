@@ -2017,12 +2017,12 @@ bool item_index_read_values_from_file (OBJ_INDEX_T *obj_index, FILE *fp) {
             obj_index->v.weapon.dice_size   = fread_number (fp);
             obj_index->v.weapon.attack_type = attack_lookup_exact (
                 fread_word_static (fp));
-            obj_index->v.weapon.flags       = fread_flag (fp);
+            obj_index->v.weapon.flags       = fread_flag (fp, weapon_flags);
             return TRUE;
 
         case ITEM_CONTAINER:
             obj_index->v.container.capacity    = fread_number (fp);
-            obj_index->v.container.flags       = fread_flag (fp);
+            obj_index->v.container.flags       = fread_flag (fp, container_flags);
             obj_index->v.container.key         = fread_number (fp);
             obj_index->v.container.max_weight  = fread_number (fp);
             obj_index->v.container.weight_mult = fread_number (fp);
@@ -2089,16 +2089,16 @@ bool item_index_read_values_from_file (OBJ_INDEX_T *obj_index, FILE *fp) {
             return TRUE;
 
         default:
-            obj_index->v.value[0] = fread_flag (fp);
-            obj_index->v.value[1] = fread_flag (fp);
-            obj_index->v.value[2] = fread_flag (fp);
-            obj_index->v.value[3] = fread_flag (fp);
-            obj_index->v.value[4] = fread_flag (fp);
+            obj_index->v.value[0] = fread_flag (fp, NULL);
+            obj_index->v.value[1] = fread_flag (fp, NULL);
+            obj_index->v.value[2] = fread_flag (fp, NULL);
+            obj_index->v.value[3] = fread_flag (fp, NULL);
+            obj_index->v.value[4] = fread_flag (fp, NULL);
             return TRUE;
     }
 }
 /* TODO: use type-based values, not v.value[] */
-bool item_index_write_values_to_file (OBJ_INDEX_T *obj_index, FILE *fp) {
+bool item_index_fwrite_values (OBJ_INDEX_T *obj_index, FILE *fp) {
     char buf[MAX_STRING_LENGTH];
 
     /* Using fwrite_flag to write most values gives a strange
@@ -2118,7 +2118,8 @@ bool item_index_write_values_to_file (OBJ_INDEX_T *obj_index, FILE *fp) {
         case ITEM_CONTAINER:
             fprintf (fp, "%ld %s %ld %ld %ld\n",
                      obj_index->v.value[0],
-                     fwrite_flags_buf (obj_index->v.value[1], buf),
+                     fwrite_flags_buf (
+                        container_flags, obj_index->v.value[1], buf),
                      obj_index->v.value[2],
                      obj_index->v.value[3],
                      obj_index->v.value[4]);
@@ -2130,7 +2131,8 @@ bool item_index_write_values_to_file (OBJ_INDEX_T *obj_index, FILE *fp) {
                      obj_index->v.value[1],
                      obj_index->v.value[2],
                      attack_table[obj_index->v.value[3]].name,
-                     fwrite_flags_buf (obj_index->v.value[4], buf));
+                     fwrite_flags_buf (
+                        weapon_flags, obj_index->v.value[4], buf));
             return TRUE;
 
         case ITEM_PILL:
@@ -2157,11 +2159,10 @@ bool item_index_write_values_to_file (OBJ_INDEX_T *obj_index, FILE *fp) {
             return TRUE;
 
         default:
-            fprintf (fp, "%s ",  fwrite_flags_buf (obj_index->v.value[0], buf));
-            fprintf (fp, "%s ",  fwrite_flags_buf (obj_index->v.value[1], buf));
-            fprintf (fp, "%s ",  fwrite_flags_buf (obj_index->v.value[2], buf));
-            fprintf (fp, "%s ",  fwrite_flags_buf (obj_index->v.value[3], buf));
-            fprintf (fp, "%s\n", fwrite_flags_buf (obj_index->v.value[4], buf));
+            fprintf (fp, "%ld %ld %ld %ld %ld\n",
+                obj_index->v.value[0], obj_index->v.value[1],
+                obj_index->v.value[2], obj_index->v.value[3],
+                obj_index->v.value[4]);
             return TRUE;
     }
 }

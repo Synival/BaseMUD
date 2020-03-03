@@ -169,10 +169,11 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
     if (EXT_IS_NONZERO (ch->ext_plr))
         fprintf (fp, "Plr  %s\n", fwrite_ext_flags_static (plr_flags, ch->ext_plr));
     if (ch->affected_by != 0)
-        fprintf (fp, "AfBy %s\n", fwrite_flags_static (ch->affected_by));
-    fprintf (fp, "Comm %s\n", fwrite_flags_static (ch->comm));
+        fprintf (fp, "AfBy %s\n", fwrite_flags_static (
+            affect_flags, ch->affected_by));
+    fprintf (fp, "Comm %s\n", fwrite_flags_static (comm_flags, ch->comm));
     if (ch->wiznet)
-        fprintf (fp, "Wizn %s\n", fwrite_flags_static (ch->wiznet));
+        fprintf (fp, "Wizn %s\n", fwrite_flags_static (wiz_flags, ch->wiznet));
     if (ch->invis_level)
         fprintf (fp, "Invi %d\n", ch->invis_level);
     if (ch->incog_level)
@@ -318,9 +319,11 @@ void fwrite_pet (CHAR_T *pet, FILE *fp) {
         fprintf (fp, "Plr  %s\n", fwrite_ext_flags_static (
             plr_flags, pet->ext_plr));
     if (pet->affected_by != mob_index->affected_by_final)
-        fprintf (fp, "AfBy %s\n", fwrite_flags_static (pet->affected_by));
+        fprintf (fp, "AfBy %s\n", fwrite_flags_static (
+            affect_flags, pet->affected_by));
     if (pet->comm != 0)
-        fprintf (fp, "Comm %s\n", fwrite_flags_static (pet->comm));
+        fprintf (fp, "Comm %s\n", fwrite_flags_static (
+            comm_flags, pet->comm));
     fprintf (fp, "Pos  %d\n", pet->position =
              POS_FIGHTING ? POS_STANDING : pet->position);
     if (pet->saving_throw != 0)
@@ -657,10 +660,10 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                     }
                 }
 
-                KEY ("AffectedBy", ch->affected_by, fread_flag (fp));
-                KEY ("AfBy",       ch->affected_by, fread_flag (fp));
-                KEY ("Alignment",  ch->alignment, fread_flag (fp));
-                KEY ("Alig",       ch->alignment, fread_number (fp));
+                KEY ("AffectedBy", ch->affected_by, fread_flag (fp, affect_flags));
+                KEY ("AfBy",       ch->affected_by, fread_flag (fp, affect_flags));
+                KEY ("Alignment",  ch->alignment,   fread_flag (fp, NULL));
+                KEY ("Alig",       ch->alignment,   fread_number (fp));
 
                 if (!str_cmp (word, "Alia")) {
                     if (count >= MAX_ALIAS) {
@@ -799,8 +802,8 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 KEY ("ClassName", ch->class, class_lookup_exact (fread_string_static (fp)));
                 KEY ("Class", ch->class, fread_number (fp));
                 KEY ("Cla",   ch->class, fread_number (fp));
-                KEY ("Clan",  ch->clan, clan_lookup_exact (fread_string_static (fp)));
-                KEY ("Comm",  ch->comm, fread_flag (fp));
+                KEY ("Clan",  ch->clan,  clan_lookup_exact (fread_string_static (fp)));
+                KEY ("Comm",  ch->comm,  fread_flag (fp, comm_flags));
 
                 if (!str_cmp (word, "Condition") || !str_cmp (word, "Cond")) {
                     ch->pcdata->cond_hours[0] = fread_number (fp);
@@ -890,7 +893,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
                 }
 
                 if (!str_cmp (word, "Colour")) {
-                    ch->pcdata->colour[fread_number(fp)] = fread_flag (fp);
+                    ch->pcdata->colour[fread_number(fp)] = fread_flag (fp, NULL);
                     match = TRUE;
                 }
                 break;
@@ -1093,7 +1096,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
             case 'W':
                 KEY ("Wimpy", ch->wimpy,  fread_number (fp));
                 KEY ("Wimp",  ch->wimpy,  fread_number (fp));
-                KEY ("Wizn",  ch->wiznet, fread_flag (fp));
+                KEY ("Wizn",  ch->wiznet, fread_flag (fp, wiz_flags));
                 break;
         }
 
@@ -1153,7 +1156,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
                     }
                 }
 
-                KEY ("AfBy", pet->affected_by, fread_flag (fp));
+                KEY ("AfBy", pet->affected_by, fread_flag (fp, affect_flags));
                 KEY ("Alig", pet->alignment,   fread_number (fp));
 
                 if (!str_cmp (word, "ACs")) {
@@ -1234,7 +1237,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
 
             case 'C':
                 KEY ("Clan", pet->clan, clan_lookup (fread_string_static (fp)));
-                KEY ("Comm", pet->comm, fread_flag (fp));
+                KEY ("Comm", pet->comm, fread_flag (fp, comm_flags));
                 break;
 
             case 'D':
@@ -1444,8 +1447,8 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                     break;
                 }
 
-                KEY ("ExtraFlags", obj->extra_flags, fread_flag (fp));
-                KEY ("ExtF", obj->extra_flags, fread_flag (fp));
+                KEY ("ExtraFlags", obj->extra_flags, fread_flag (fp, extra_flags));
+                KEY ("ExtF",       obj->extra_flags, fread_flag (fp, extra_flags));
 
                 if (!str_cmp (word, "ExtraDescr") || !str_cmp (word, "ExDe")) {
                     EXTRA_DESCR_T *ed;
@@ -1594,12 +1597,12 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
                 break;
 
             case 'W':
-                KEY ("WearFlags", obj->wear_flags, fread_flag (fp));
-                KEY ("WeaF", obj->wear_flags, fread_flag (fp));
-                KEY ("WearLoc", obj->wear_loc, fread_number (fp));
-                KEY ("Wear", obj->wear_loc, fread_number (fp));
-                KEY ("Weight", obj->weight, fread_number (fp));
-                KEY ("Wt", obj->weight, fread_number (fp));
+                KEY ("WearFlags", obj->wear_flags, fread_flag (fp, wear_flags));
+                KEY ("WeaF",      obj->wear_flags, fread_flag (fp, wear_flags));
+                KEY ("WearLoc",   obj->wear_loc,   fread_number (fp));
+                KEY ("Wear",      obj->wear_loc,   fread_number (fp));
+                KEY ("Weight",    obj->weight,     fread_number (fp));
+                KEY ("Wt",        obj->weight,     fread_number (fp));
                 break;
         }
 

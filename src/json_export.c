@@ -56,7 +56,7 @@ void json_export_all (bool write_indiv, const char *everything) {
     /* Write one giant file with everything. */
     if (everything) {
         log_f("Exporting JSON: %s", everything);
-        json_write_to_file (json_root(), everything);
+        json_fwrite (json_root(), everything);
     }
 
     /* Free all allocated JSON. */
@@ -139,7 +139,7 @@ void json_export_area (const AREA_T *area, int mode) {
     if (options & JSON_EXPORT_OPTION_WRITE_INDIV) {
         snprintf (buf, sizeof(buf), "%s%sarea.json", JSON_AREAS_DIR, fbuf);
         json_mkdir_to (buf);
-        json_write_to_file (jgrp, buf);
+        json_fwrite (jgrp, buf);
     }
 
     /* NOTE: This is extremely nasty, but refactoring it into a function
@@ -160,7 +160,7 @@ void json_export_area (const AREA_T *area, int mode) {
             if (jgrp->first_child && (options & JSON_EXPORT_OPTION_WRITE_INDIV)) { \
                 snprintf (buf, sizeof (buf), "%s%s" fname, JSON_AREAS_DIR, fbuf); \
                 json_mkdir_to (buf); \
-                json_write_to_file (jgrp, buf); \
+                json_fwrite (jgrp, buf); \
             } \
         } while (0)
 
@@ -201,7 +201,7 @@ void json_export_recycleable (const char *objname, const char *filename,
     }
     if (jarea->first_child && (options & JSON_EXPORT_OPTION_WRITE_INDIV)) {
         json_mkdir_to (fbuf);
-        json_write_to_file (jarea, fbuf);
+        json_fwrite (jarea, fbuf);
     }
 
     /* Unload all parsed JSON if the mode specifies it. */
@@ -248,7 +248,7 @@ void json_export_table (const TABLE_T *table, int mode) {
         snprintf (buf, sizeof (buf), "%s%s/%s.json",
             JSON_DIR, table->json_path, table->name);
         json_mkdir_to (buf);
-        json_write_to_file (json, buf);
+        json_fwrite (json, buf);
     }
 
     /* Unload all parsed JSON if the mode specifies it. */
@@ -278,7 +278,7 @@ void json_export_help_area (const HELP_AREA_T *had, int mode) {
 
     if (options & JSON_EXPORT_OPTION_WRITE_INDIV) {
         json_mkdir_to (fbuf);
-        json_write_to_file (jarea, fbuf);
+        json_fwrite (jarea, fbuf);
     }
 
     /* Unload all parsed JSON if the mode specifies it. */
