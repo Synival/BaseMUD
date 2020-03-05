@@ -332,7 +332,7 @@ DEFINE_SPELL_FUN (spell_detect_evil) {
 
     printf_to_char(victim, "Your eyes tingle.\n\r");
     if (ch != victim)
-        printf_to_char(ch, "%s's eyes begin to glow.\n\r.", victim->name);
+        act("$N's eyes begin to glow.", ch, NULL, victim, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_detect_good) {
@@ -349,7 +349,7 @@ DEFINE_SPELL_FUN (spell_detect_good) {
 
     printf_to_char(victim, "Your eyes tingle.\n\r");
     if (ch != victim)
-        printf_to_char(ch, "%s's eyes begin to glow.\n\r.", victim->name);
+        act("$N's eyes begin to glow.", ch, NULL, victim, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_detect_hidden) {
@@ -366,7 +366,7 @@ DEFINE_SPELL_FUN (spell_detect_hidden) {
 
     printf_to_char(victim, "Your awareness improves.\n\r");
     if (ch != victim)
-        printf_to_char(ch, "%s's eyes grow dark.\n\r.", victim->name);
+        act("$N's eyes grow dark.", ch, NULL, victim, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_detect_invis) {
@@ -383,7 +383,7 @@ DEFINE_SPELL_FUN (spell_detect_invis) {
 
     printf_to_char(victim, "Your eyes tingle.\n\r");
     if (ch != victim)
-        printf_to_char(ch, "%s's eyes begin to glow.\n\r.", victim->name);
+        act("$N's eyes begin to glow.", ch, NULL, victim, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_detect_magic) {
@@ -400,7 +400,7 @@ DEFINE_SPELL_FUN (spell_detect_magic) {
 
     printf_to_char(victim, "Your eyes tingle.\n\r");
     if (ch != victim)
-        printf_to_char(ch, "%s's eye begin to glow.\n\r.", victim->name);
+        act("$N's eyes begin to glow.", ch, NULL, victim, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_enchant_armor) {

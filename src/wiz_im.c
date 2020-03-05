@@ -55,13 +55,13 @@ DEFINE_DO_FUN (do_wizhelp) {
         if (cmd_table[cmd].level >= LEVEL_HERO &&
             cmd_table[cmd].level <= char_get_trust (ch) && cmd_table[cmd].show)
         {
-            printf_to_char (ch, "(%2d) %-12s", cmd_table[cmd].level, cmd_table[cmd].name);
+            printf_to_char(ch, "(%2d) %-12s", cmd_table[cmd].level, cmd_table[cmd].name);
             if (++col % 6 == 0)
-                printf_to_char (ch , "\n\r");
+                printf_to_char(ch, "\n\r");
         }
     }
     if (col % 6 != 0)
-        printf_to_char (ch , "\n\r");
+        printf_to_char(ch, "\n\r");
 }
 
 DEFINE_DO_FUN (do_holylight) {
