@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "olympus",
+  "filename": "olympus.are",
+  "title": "Olympus",
+  "credits": "{ 5 50} Generic Olympus",
+  "min_vnum": 900,
+  "max_vnum": 999,
+  "builders": "None",
+  "security": 9
+}}]

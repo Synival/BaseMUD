@@ -1,0 +1,142 @@
+[
+  {"object": {
+    "area": "trollden",
+    "anum": 0,
+    "name": "corpse cadaver",
+    "short_descr": "the cadaver-toy",
+    "description": "A half eaten corpse is laying here",
+    "item_type": "container",
+    "values": {
+      "capacity": 30,
+      "max_weight": 30,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 500,
+    "cost": 1,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "trollden",
+    "anum": 1,
+    "name": "pile rotting heap bed",
+    "short_descr": "the heap of carnage",
+    "description": "There is a bed made of carnage here.",
+    "item_type": "container",
+    "values": {
+      "capacity": 30,
+      "max_weight": 30,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0
+  }},
+  {"object": {
+    "area": "trollden",
+    "anum": 2,
+    "name": "trollskin troll skin",
+    "short_descr": "the troll skin",
+    "description": "The filthy hide of a beast is laying here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 5,
+      "vs_slash": 5
+    },
+    "level": 12,
+    "weight": 200,
+    "cost": 1380,
+    "wear_flags": "take about",
+    "extra_description": [{
+      "keyword": "troll skin",
+      "description": "This is the skin from a huge (and dead) beast.  It looks bad, smells bad,
+                     |and feels bad."
+    }],
+    "affects": [{
+      "level": 12,
+      "apply": "strength",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "trollden",
+    "anum": 3,
+    "name": "ring opal",
+    "short_descr": "an opal ring",
+    "description": "A ring of black opal lies here gathering dust.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 20,
+    "weight": 10,
+    "cost": 1150,
+    "extra_flags": "magic",
+    "wear_flags": "take finger",
+    "extra_description": [{
+      "keyword": "ring opal",
+      "description": "It is a full circle of opal, smooth and simple."
+    }],
+    "affects": [{
+      "level": 20,
+      "apply": "damage roll",
+      "modifier": 2
+    }]
+  }},
+  {"object": {
+    "area": "trollden",
+    "anum": 4,
+    "name": "leather belt",
+    "short_descr": "a leather belt",
+    "description": "An old leather belt is left on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 6,
+      "vs_slash": 6
+    },
+    "level": 15,
+    "weight": 50,
+    "cost": 1050,
+    "extra_flags": "magic",
+    "wear_flags": "take waist",
+    "extra_description": [{
+      "keyword": "leather belt",
+      "description": "This old, smelly belt looks like it is barely better than rotting cloth."
+    }]
+  }},
+  {"object": {
+    "area": "trollden",
+    "anum": 5,
+    "name": "bone cracked",
+    "short_descr": "a cracked bone",
+    "description": "A cracked piece of bone lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 3,
+      "dice_size": 3,
+      "attack_type": "pound"
+    },
+    "level": 6,
+    "weight": 30,
+    "cost": 350,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "bone",
+      "description": "This piece of bone looks sturdy enough to be used as a weapon, but you
+                     |wouldn't want to entrust your life to it."
+    }],
+    "affects": [
+      {
+        "level": 6,
+        "apply": "hit roll",
+        "modifier": -1
+      },
+      {
+        "level": 6,
+        "apply": "damage roll",
+        "modifier": -1
+      }
+    ]
+  }}
+]

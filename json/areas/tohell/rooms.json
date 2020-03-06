@@ -1,0 +1,4937 @@
+[
+  {"room": {
+    "area": "tohell",
+    "anum": 1,
+    "name": "Stone Archway",
+    "description": "This is a ancient stone archway. Various faces of demons and other grim
+                   |pictures are painted onto it. Stone gargoyles and demons glare down at
+                   |you from atop the arch.
+                   |There is a bronze plaque above the archway.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "description": "The air seems cleaner to the south.",
+        "portal": "tohell-south-1"
+      },
+      {
+        "dir": "west",
+        "to": 2,
+        "description": "It's too dark to see."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "plaque",
+      "description": "***************
+                     |Descent to Hell
+                     |***************
+                     |
+                     |You just GO TO HELL!!!!
+                     |*chuckle*
+                     |
+                     |Made for levels 30-50
+                     |
+                     |Brought to you by Strahd"
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 2,
+    "name": "Ancient Room",
+    "description": "You are standing in a large stone room - feels like a crypt.  Ancient murals
+                   |of Hell and punishment cover the walls.  In the middle of the room are stairs
+                   |that lead down into the darkness.  From the stairway you can smell brimstone
+                   |and sulfur.
+                   |To the west, there appears to be a shrine.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 1,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 18,
+        "description": "You see an ancient shrine."
+      },
+      {
+        "dir": "down",
+        "to": 3,
+        "description": "You see a dark stairway."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 3,
+    "name": "Dark Stairway",
+    "description": "You are standing at the bottom of long dark stairway.  The smells of brimstone
+                   |and sulfur choke you.  Screams of pain and terror fill the air.
+                   |Stone faces carved into the walls seem to laugh at you.
+                   |Maybe this is not such a good idea after all....",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 4,
+        "description": "It's too dark to see."
+      },
+      {
+        "dir": "up",
+        "to": 2,
+        "description": "You see a dark stairway."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 4,
+    "name": "Landing",
+    "description": "This landing has been scorched as if a large brushfire had swept through it.
+                   |Bits of ash and burnt vegetation cover everything.  The walls and floor are
+                   |flawlessly smooth, and the ceiling is covered with carved faces and ancient
+                   |symbols and runes.
+                   |Large, black iron gates tower over you to the west.
+                   |You see a large gateway to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 3,
+        "description": "It's too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 5,
+        "keyword": "gates",
+        "description": "You see the Gates of Hell",
+        "exit_flags": "door closed"
+      }
+    ],
+    "extra_description": [{
+      "keyword": "gates",
+      "description": "These black iron gates are covered with grotesque faces and other
+                     |creatures in various poses and acts of violence and lust. The gates
+                     |make your blood run cold..."
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 5,
+    "name": "Gateway to Hell",
+    "description": "You stand next to the very gateway of Hell. You are surrounded by 
+                   |the sounds of torture and pain. Screams pierce the air and rattle your
+                   |nerves. Displays of the treats of Hell are in all directions.
+                   |A large black iron gates tower over you to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 16,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "east",
+        "to": 4,
+        "keyword": "gates",
+        "description": "The Gates of Hell",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "south",
+        "to": 26,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "west",
+        "to": 6,
+        "description": "It's too smoky to see."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "gates",
+      "description": "These black iron gates are covered with grotesque faces and other
+                     |creatures in various poses and acts of violence and lust. The gates
+                     |seem to make your blood run cold..."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 1,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 1,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 6,
+    "name": "Hall of the Damned",
+    "description": "This hallway is a monument to the millions of damned souls in Hell.
+                   |The walls are made up of various body parts and other, unidentifiable
+                   |things. Many of the faces that make up the wall scream out to you for
+                   |help. Their arms desperately grasp at your clothing as you pass.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 15,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "east",
+        "to": 5,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "south",
+        "to": 25,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "west",
+        "to": 7,
+        "description": "It's too smoky to see."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 9,
+        "global_limit": 6,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 7,
+    "name": "Hall of the Damned",
+    "description": "This hallway is a monument to the millions of damned souls in Hell.
+                   |The walls are made up of various body parts and other, unidentifiable
+                   |things. Many of the faces that make up the wall scream out to you for
+                   |help. Their arms desperately grasp at your clothing as you pass.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 14,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "east",
+        "to": 6,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "south",
+        "to": 24,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "west",
+        "to": 8,
+        "description": "It's too smoky to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 8,
+    "name": "Hall of the Damned",
+    "description": "This hallway is a monument to the millions of damned souls in Hell.
+                   |The walls are made up of various body parts and other, unidentifiable
+                   |things. Many of the faces that make up the wall scream out to you for
+                   |help. Their arms desperately grasp at your clothing as you pass.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 13,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "east",
+        "to": 7,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "south",
+        "to": 23,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "west",
+        "to": 9,
+        "description": "It's too smoky to see."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 9,
+        "global_limit": 6,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 9,
+    "name": "Hall of the Damned",
+    "description": "This hallway is a monument to the millions of damned souls in Hell.
+                   |The walls are made up of various body parts and other, unidentifiable
+                   |things. Many of the faces that make up the wall scream out to you for
+                   |help. Their arms desperately grasp at your clothing as you pass.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 12,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "east",
+        "to": 8,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "south",
+        "to": 22,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "west",
+        "to": 10,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "down",
+        "to": 21,
+        "keyword": "stairs",
+        "description": "You see a dark stairway leading down."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 10,
+    "name": "Hall of the Damned",
+    "description": "This hallway is a monument to the millions of damned souls in Hell.
+                   |The walls are made up of various body parts and other, unidentifiable
+                   |things. Many of the faces that make up the wall scream out to you for
+                   |help. Their arms desperately grasp at your clothing as you pass.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 11,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "east",
+        "to": 9,
+        "description": "It's too smoky to see."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 9,
+        "global_limit": 6,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 11,
+    "name": "Mural of the Dead",
+    "description": "You stand before a large mural. The mural depicts mountains of dead
+                   |bodies piled up to the sky. The mural covers the whole north wall from
+                   |floor to ceiling. You can smell the stench of decaying flesh.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 12,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "south",
+        "to": 10,
+        "description": "It's too smoky to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 12,
+    "name": "Living Walls",
+    "description": "The walls here actually consist of greying and sinewy flesh - faces, hands,
+                   |broken bones, feet, and toes jutting from the surface. You hear low moans
+                   |of horror, pain, and sorrow issuing from within.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 13,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "south",
+        "to": 9,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "west",
+        "to": 11,
+        "description": "It's too smoky to see."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 5,
+          "global_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 13,
+    "name": "Trapped souls",
+    "description": "There are many souls trapped behind the walls of this room, almost as though 
+                   |they were trapped beneath the surface of a frozen lake. Even the floor and 
+                   |ceiling show the screaming faces behind them.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 14,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "south",
+        "to": 8,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "west",
+        "to": 12,
+        "description": "It's too smoky to see."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 10,
+        "global_limit": 2,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 14,
+    "name": "Tortured Beings",
+    "description": "This room is filled with instruments of torture. Beings of all shapes and
+                   |sizes are being brought to the thresholds of pain and beyond. Some are
+                   |being sliced into thousands of pieces.  Others are being stretched as though
+                   |they were made of rubber.  All are caught in an unending play of agony.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 15,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "south",
+        "to": 7,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "west",
+        "to": 13,
+        "description": "It's too smoky to see."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 11,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 15,
+    "name": "Gluttony",
+    "description": "Before you is a room filled with all sorts of food. The smells of pastries and
+                   |hamburger assault your senses. All sorts of food lay everywhere you look.
+                   |Cookies, twinkies, steak, prime rib, almost anything you can think of, call
+                   |out to you. You suddenly feel VERY hungry.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 16,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "south",
+        "to": 6,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "west",
+        "to": 14,
+        "description": "It's too smoky to see."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 16,
+    "name": "Greed",
+    "description": "What luck! A room full of treasure. Gold, diamonds, riches beyond
+                   |imagination! Wait! You suddenly feel as if it were all slowly disappearing.
+                   |Someone is taking your treasure. They have no right! It is yours! You
+                   |found it first. Let them go get their own treasures!
+                   |You see a door to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 17,
+        "keyword": "door",
+        "description": "You see a bedroom door.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "south",
+        "to": 5,
+        "description": "It's too smoky to see."
+      },
+      {
+        "dir": "west",
+        "to": 15,
+        "description": "It's too smoky to see."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 17,
+    "name": "Bedroom.",
+    "description": "This is a small bedroom. It is well furnished and is a drastic change from
+                   |the room you just stepped out of. A bed stands against the far wall.
+                   |Upon the headboard of the bed are carved two cherub-like figures, with the
+                   |the words 'DEE & DEE' written below them.
+                   |The door to the bedroom is to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 16,
+      "keyword": "door",
+      "description": "You see a bedroom door.",
+      "exit_flags": "door closed"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 3,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 18,
+    "name": "Ancient Shrine",
+    "description": "This is an ancient, abandoned shrine of some unknown god. It has been
+                   |vandalized and torn apart. What used to be the shrine has been reduced to
+                   |a large pile of stone and other debris. Various runes and demonic faces
+                   |have been spray-painted on the walls and floor.  Nailed to the ceiling are
+                   |an assortment of skeletons.  All seem to have been dead for a very long
+                   |time. All surfaces of the room are covered with dried blood and dust. ",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 2,
+      "description": "It is too dark to see."
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 19,
+    "name": "Room full of Body Parts.",
+    "description": "The room is filled with piles of arms, legs, heads, and other, unidentifiable
+                   |parts of many different creatures. The stench is overwhelming. The body
+                   |parts seem to wiggle and scream as you get closer. They are still alive!!",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 20,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "south",
+        "to": 29,
+        "description": "It is too dark to see."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 20,
+    "name": "Fountain of Blood.",
+    "description": "This room is made of a rough black stone. The walls seem to ooze black
+                   |sludge. In the middle of the room stands a stone fountain of a demon spitting
+                   |blood.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 30,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 19,
+        "description": "It is too dark to see."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 17,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 21,
+    "name": "Bloody Stairway.",
+    "description": "You are standing on a very slippy stairway. The walls and stairs are
+                   |covered with blood and gore. Pieces of goo and ooze drip from the
+                   |ceiling overhead. You almost slip a couple times on the stairway.
+                   |The stench here is overwhelming.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 9,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "down",
+        "to": 31,
+        "description": "It is too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 22,
+    "name": "Ancient Room",
+    "description": "This is a very old and dusty room. It looks empty except for a few shards
+                   |or bone and flesh.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 9,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "east",
+        "to": 23,
+        "description": "It is too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 23,
+    "name": "Room of Lost Souls",
+    "description": "This looks like a waiting room or sorts. Dust and cobwebs are everywhere.
+                   |Wooden benches line the walls. A digital number sign is posted on the wall.
+                   |It currently reads, 'Now Serving Number 1'.
+                   |A ticket dispenser is bolted to the wall.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 8,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "east",
+        "to": 24,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 22,
+        "description": "It is too dark to see."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "dispenser",
+      "description": "This is one of those red ticket dispensers that never seem to work right."
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 18,
+        "global_limit": 4,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 24,
+    "name": "Room of Lost Souls",
+    "description": "This looks like a waiting room or sorts. Dust and cobwebs are everywhere.
+                   |Wooden benches line the walls. A digital number sign is posted on the wall.
+                   |It currently reads, 'Now Serving Number 1'.
+                   |A ticket dispenser is bolted to the wall.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 7,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "east",
+        "to": 25,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 23,
+        "description": "It is too dark to see."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "dispenser",
+      "description": "This is one of those red ticket dispensers that never seem to work right."
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 18,
+        "global_limit": 4,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 25,
+    "name": "Pit of Fire",
+    "description": "You enter a plain stone room with a large fire pit in the center of it.
+                   |As you look closer at the pit you realize that hundreds of people are being
+                   |burned inside it. They Scream out to you. The noise is deafening. Several
+                   |minor imps and workers push more people into the pit, whistling while",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 6,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "east",
+        "to": 26,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 24,
+        "description": "It is too dark to see."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 19,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 8,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 26,
+    "name": "Blackened Hallway",
+    "description": "This dark hallway looks as if it was made by a lavaworm...All the surfaces
+                   |in it are melted and burnt. The smell of brimstone and sulfur fill the air.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 5,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "east",
+        "to": 27,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 25,
+        "description": "It is too dark to see."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 13,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 6,
+          "wear_loc": "body",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 7,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 27,
+    "name": "Blackened Hallway",
+    "description": "This dark hallway looks as if it was made by a lavaworm...All the surfaces
+                   |in it are melted and burnt. The smell of brimstone and sulfur fill the air.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 28,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 26,
+        "description": "It is too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 28,
+    "name": "Blood Room",
+    "description": "You enter the room and are immediately assaulted by the smell of rotting
+                   |flesh and blood. The walls are covered with the crimson fluid as it runs
+                   |down from the ceiling.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 29,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 27,
+        "description": "It is too dark to see."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 13,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 6,
+          "wear_loc": "body",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 7,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 29,
+    "name": "Living Walls",
+    "description": "The walls here actually consist of greying and sinewy flesh - faces, hands,
+                   |broken bones, feet, and toes jutting from the surface. You hear low moans
+                   |of horror, pain, and sorrow issuing from the walls.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 19,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "east",
+        "to": 30,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 28,
+        "description": "It is too dark to see."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 4,
+          "global_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 30,
+    "name": "Skeleton Factory",
+    "description": "This is probably where they make all the skeletons for nightmares and
+                   |graveyards. The room is simply littered with bones. A poster on the
+                   |wall reads, \"Remember ....the head bone is connected to the neck bone..\"
+                   |The poster continues on...but it seems to get very technical and boring..",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 20,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 29,
+        "description": "It is too dark to see."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 20,
+        "global_limit": 2,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 31,
+    "name": "Bottom of Stairway",
+    "description": "You are standing at the bottom of a bloody stairway. Or at least you
+                   |thought it was a stairway. It seems to be just a painting the the wall.
+                   |This roughly carved room with evil runes carved  in to the stone floor.
+                   |There is a hallway to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 32,
+      "description": "It is too dark to see."
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 32,
+    "name": "Stone Hall",
+    "description": "This is a roughly carved hallway. The air here is damp and musty. You 
+                   |hear the sound of something dripping in the distance. Your footsteps
+                   |echo down the hall as you walk. There is a strange and deathly silence
+                   |that fills these halls...
+                   |The hall continues to the south and the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 42,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 31,
+        "description": "It is too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 33,
+    "name": "Cell",
+    "description": "The cell is very damp and very musty. The walls are covered with moisture
+                   |and dirt. The smell of urine is very potent here.
+                   |The steel bars to the cell are to the south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 43,
+      "keyword": "bars",
+      "description": "You see bars",
+      "exit_flags": "door closed"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 22,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 34,
+    "name": "Stone Hall",
+    "description": "This is a roughly carved hallway. The air here is damp and musty. You 
+                   |hear the sound of something dripping in the distance. Your footsteps
+                   |echo down the hall as you walk. There is a strange and deathly silence
+                   |that fills these halls...
+                   |The hallway continues to the east and the south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 35,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "south",
+        "to": 44,
+        "description": "It is too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 35,
+    "name": "Stone Hall",
+    "description": "This is a roughly carved hallway. The air here is damp and musty. You 
+                   |hear the sound of something dripping in the distance. Your footsteps
+                   |echo down the hall as you walk. There is a strange and deathly silence
+                   |that fills these halls...
+                   |To the south you see the steel bars of a cell.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 36,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "south",
+        "to": 45,
+        "keyword": "bars",
+        "description": "You see the steel bars of a cell.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "west",
+        "to": 34,
+        "description": "It is too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 36,
+    "name": "Stone Hall",
+    "description": "This is a roughly carved hallway. The air here is damp and musty. You 
+                   |hear the sound of something dripping in the distance. Your footsteps
+                   |echo down the hall as you walk. There is a strange and deathly silence
+                   |that fills these halls...
+                   |The hallway contines to the south and the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 46,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 35,
+        "description": "It is too dark to see."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 25,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 10,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 37,
+    "name": "Cell",
+    "description": "The cell is very damp and very musty. The walls are covered with moisture
+                   |and dirt. The smell of urine is very potent here.
+                   |The steel bars to the cell are to the south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 47,
+      "keyword": "bars",
+      "description": "You see bars",
+      "exit_flags": "door closed"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 23,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 38,
+    "name": "Stone Hall",
+    "description": "This is a roughly carved hallway. The air here is damp and musty. You 
+                   |hear the sound of something dripping in the distance. Your footsteps
+                   |echo down the hall as you walk. There is a strange and deathly silence
+                   |that fills these halls...
+                   |The hallway contines to the west and the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 39,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 48,
+        "description": "It is too dark to see."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 25,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 10,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 39,
+    "name": "Stone Hall",
+    "description": "This is a roughly carved hallway. The air here is damp and musty. You 
+                   |hear the sound of something dripping in the distance. Your footsteps
+                   |echo down the hall as you walk. There is a strange and deathly silence
+                   |that fills these halls...
+                   |The hallway contines to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 40,
+        "keyword": "bars",
+        "description": "You see the steel bars to a cell.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "south",
+        "to": 49,
+        "keyword": "bars",
+        "description": "You see the steel bars to a cell.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "west",
+        "to": 38,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "down",
+        "to": 50,
+        "description": "You see a dark stairway down...."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 40,
+    "name": "Cell",
+    "description": "The cell is very damp and very musty. The walls are covered with moisture
+                   |and dirt. The smell of urine is very potent here.
+                   |The steel bars to the cell are to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 39,
+      "keyword": "bars",
+      "description": "You see bars",
+      "exit_flags": "door closed"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 44,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 41,
+    "name": "Hidden Room",
+    "description": "This is a long forgotten room. Ancient torture equipment stands around
+                   |collecting dust. Most of this stuff was probably replace with modern
+                   |hi tech torture devices and for sentimental reasons wasn't thrown away.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 51,
+      "description": "It's too dark to see."
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 42,
+    "name": "Stone Hall",
+    "description": "This is a roughly carved hallway. The air here is damp and musty. You 
+                   |hear the sound of something dripping in the distance. Your footsteps
+                   |echo down the hall as you walk. There is a strange and deathly silence
+                   |that fills these halls...
+                   |The hallway contines to the north and east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 32,
+        "description": "It's too dark to see."
+      },
+      {
+        "dir": "east",
+        "to": 43,
+        "description": "It's too dark to see."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 25,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "body",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 10,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 43,
+    "name": "Stone Hall",
+    "description": "This is a roughly carved hallway. The air here is damp and musty. You 
+                   |hear the sound of something dripping in the distance. Your footsteps
+                   |echo down the hall as you walk. There is a strange and deathly silence
+                   |that fills these halls...
+                   |The hallway contines to the east and west.
+                   |The bars to a cell are to the north.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 33,
+        "keyword": "bars",
+        "description": "You see bars to a cell.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "east",
+        "to": 44,
+        "description": "It's too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 42,
+        "description": "It's too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 44,
+    "name": "Stone Hall",
+    "description": "This is a roughly carved hallway. The air here is damp and musty. You 
+                   |hear the sound of something dripping in the distance. Your footsteps
+                   |echo down the hall as you walk. There is a strange and deathly silence
+                   |that fills these halls...
+                   |The hallway contines to the north and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 34,
+        "description": "It's too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 43,
+        "description": "It's too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 45,
+    "name": "Cell",
+    "description": "The cell is very damp and very musty. The walls are covered with moisture
+                   |and dirt. The smell of urine is very potent here.
+                   |The steel bars to the cell are to the north.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 35,
+      "keyword": "bars",
+      "description": "You see bars",
+      "exit_flags": "door closed"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 44,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 46,
+    "name": "Stone Hall",
+    "description": "This is a roughly carved hallway. The air here is damp and musty. You 
+                   |hear the sound of something dripping in the distance. Your footsteps
+                   |echo down the hall as you walk. There is a strange and deathly silence
+                   |that fills these halls...
+                   |The hallway contines to the north and east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 36,
+        "description": "It's too dark to see."
+      },
+      {
+        "dir": "east",
+        "to": 47,
+        "description": "It's too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 47,
+    "name": "Stone Hall",
+    "description": "This is a roughly carved hallway. The air here is damp and musty. You 
+                   |hear the sound of something dripping in the distance. Your footsteps
+                   |echo down the hall as you walk. There is a strange and deathly silence
+                   |that fills these halls...
+                   |The hallway contines to the east and west.
+                   |You see bars to a cell to the north.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 37,
+        "keyword": "bars",
+        "description": "You see bars to a cell.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "east",
+        "to": 48,
+        "description": "It's too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 46,
+        "description": "It's too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 48,
+    "name": "Stone Hall",
+    "description": "This is a roughly carved hallway. The air here is damp and musty. You 
+                   |hear the sound of something dripping in the distance. Your footsteps
+                   |echo down the hall as you walk. There is a strange and deathly silence
+                   |that fills these halls...
+                   |The hallway contines to the north and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 38,
+        "description": "It's too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 47,
+        "description": "It's too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 49,
+    "name": "Cell",
+    "description": "The cell is very damp and very musty. The walls are covered with moisture
+                   |and dirt. The smell of urine is very potent here.
+                   |The steel bars to the cell are to the north.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 39,
+      "keyword": "bars",
+      "description": "You see bars",
+      "exit_flags": "door closed"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 24,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 50,
+    "name": "Hot Stairs",
+    "description": "You are standing on a long stairway. The air around you is heavy and hot.
+                   |The stone walls are hot to the touch and your sweat sizzles as it hits the
+                   |ground. Cool air flows out from a crack in the wall to the east.
+                   |The smell of brimstone and smoke is all around you.
+                   |The stairs continue down.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 39,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "down",
+        "to": 61,
+        "description": "It is too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 51,
+    "name": "Crack in Wall",
+    "description": "This is a rather large crack in the wall. On closer inspection it appears to be
+                   |a passageway that was closed off long ago. It was probably reopened by
+                   |an earthquake or something.
+                   |An ancient passageway continues to the north.
+                   |Hot gusts of air come from the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 41,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "west",
+        "to": 50,
+        "description": "It is too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 52,
+    "name": "Stone Arch",
+    "description": "Before you stands the a large stone arch decorated with many runes you
+                   |cannot decifer. It looks as though it has been closed up for a long time.
+                   |To the east is a hallway of fire.
+                   |To the south you see a large metal door with the words, 'FOREMAN'
+                   |written on the door.
+                   |There is a dark stairway down in the corner of the room.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 53,
+        "description": "You see a hall of fire."
+      },
+      {
+        "dir": "south",
+        "to": 62,
+        "description": "You see the Foreman's office.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "down",
+        "to": 63,
+        "description": "You see a dark stairway down."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 53,
+    "name": "Hall of Fire",
+    "description": "You are standing in a hallway made of fire. The walls are ablaze with
+                   |yellow and blue flames. The smell of the hot air and sulfur burn your
+                   |lungs as you inhale, and dry your mouth as you exhale. The stone floor
+                   |burns at your feet and hungrily drinks up every drop of sweat as they
+                   |fall from your body.
+                   |The hall of fire continues to the east.
+                   |You see a stone archway to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 54,
+        "description": "You see a hall of fire."
+      },
+      {
+        "dir": "west",
+        "to": 52,
+        "description": "You see a stone archway."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 54,
+    "name": "Hall of Fire",
+    "description": "You are standing in a hallway made of fire. The walls are ablaze with
+                   |yellow and blue flames. The smell of the hot air and sulfur burn your
+                   |lungs as you inhale, and dry your mouth as you exhale. The stone floor
+                   |burns at your feet and hungrily drinks up every drop of sweat as they
+                   |fall from your body.
+                   |The hall of fire continues to the south and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 64,
+        "description": "You see a hall of fire."
+      },
+      {
+        "dir": "west",
+        "to": 53,
+        "description": "You see a stone archway."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 32,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 17,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 55,
+    "name": "Construction Area",
+    "description": "This part of Hell seems to be under repair. Workers are fixing and replacing
+                   |what look like various gas mains and other pipework. You can see many
+                   |gas lines and electrical conduits within the dismantled walls. Partially
+                   |hidden fire sprinklers are being installed in the ceilings.
+                   |You see more contruction to the east and south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 56,
+        "description": "You see a construction area."
+      },
+      {
+        "dir": "south",
+        "to": 65,
+        "description": "You see a construction area."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 56,
+    "name": "Construction Area",
+    "description": "This part of Hell seems to be under repair. Workers are fixing and replacing
+                   |what look like various gas mains and other pipework. You can see many
+                   |gas lines and electrical conduits within the dismantled walls. Partially
+                   |hidden fire sprinklers are being installed in the ceilings.
+                   |You see more contruction to the east and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 57,
+        "description": "You see a construction area."
+      },
+      {
+        "dir": "south",
+        "to": 55,
+        "description": "You see a construction area."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 27,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 45,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 28,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 12,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 57,
+    "name": "Construction Area",
+    "description": "This part of Hell seems to be under repair. Workers are fixing and replacing
+                   |what look like various gas mains and other pipework. You can see many
+                   |gas lines and electrical conduits within the dismantled walls. Partially
+                   |hidden fire sprinklers are being installed in the ceilings.
+                   |You see more contruction to the south and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 67,
+        "description": "You see a construction area."
+      },
+      {
+        "dir": "west",
+        "to": 56,
+        "description": "You see a construction area."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 58,
+    "name": "Hall of Fire",
+    "description": "You are standing in a hallway made of fire. The walls are ablaze with
+                   |yellow and blue flames. The smell of the hot air and sulfur burn your
+                   |lungs as you inhale, and dry your mouth as you exhale. The stone floor
+                   |burns at your feet and hungrily drinks up every drop of sweat as they
+                   |fall from your body.
+                   |The hall of fire continues to the east and south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 59,
+        "description": "You see a hall of fire."
+      },
+      {
+        "dir": "south",
+        "to": 68,
+        "description": "You see a hall of fire."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 59,
+    "name": "Hall of Fire",
+    "description": "You are standing in a hallway made of fire. The walls are ablaze with
+                   |yellow and blue flames. The smell of the hot air and sulfur burn your
+                   |lungs as you inhale, and dry your mouth as you exhale. The stone floor
+                   |burns at your feet and hungrily drinks up every drop of sweat as they
+                   |fall from your body.
+                   |The hall of fire continues to the west.
+                   |A room full of fire pits lies to the east.
+                   |A wall of fire crackles merrily to the south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 60,
+        "description": "You see a room full of fire pits."
+      },
+      {
+        "dir": "south",
+        "to": 69,
+        "description": "You see a wall of fire."
+      },
+      {
+        "dir": "west",
+        "to": 58,
+        "description": "You see a hall of fire."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 60,
+    "name": "Fire Pits of Hades",
+    "description": "This room is filled with many small fire pits. Countless damned souls are
+                   |being burnt and roasted within the the white flames that erupt from the
+                   |many pits. Wailing and screams of pain chill your bones in this hot room.
+                   |To the south you see a lake of fire.
+                   |A fire hall lies to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 70,
+        "description": "You see a lake of fire."
+      },
+      {
+        "dir": "west",
+        "to": 59,
+        "description": "You see a hall of fire."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 26,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 11,
+          "wear_loc": "arms",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 68,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 16,
+          "global_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 61,
+    "name": "Fire Mural",
+    "description": "Apon all the walls of this room is an enormous mural. Pictures of burning
+                   |bodies and tortured souls seem to be the main theme of the art. Bright reds
+                   |and hot blues are enphasized throughout the mural. As you stare at it the
+                   |characters within it seem to move and struggle in pain. The hot air around
+                   |you smells of sulfur and methane. To the south you see a stone hallway.
+                   |Hot air blows in at you from the doorway. The air stirs up the methane and
+                   |steals your breath. You choke and gag...",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 71,
+      "description": "You see a stone hallway."
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 62,
+    "name": "Foreman's Office",
+    "description": "You stand in a crudly constructed office. Blueprints and change orders are
+                   |scattered everywhere. A metal filing cabinet stands in the corner. Before
+                   |you stands a stone table covered with blueprints. On the wall is a 
+                   |construction plaque that reads, \"4th DEMONsion Contruction\"",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 52,
+      "description": "You see the door to the office.",
+      "exit_flags": "door closed"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 40,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 22,
+          "global_limit": 17
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 63,
+    "name": "Cold Stairway",
+    "description": "You stand apon a cold stone stairway. Hot air blows down on you from
+                   |higher up the stairwell. From below you a freezing gusts bite at your skin
+                   |and make you shiver. Icicles drip slowly from the ceiling onto the frosted
+                   |stone floor.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 52,
+        "description": "It is too dark to see."
+      },
+      {
+        "dir": "down",
+        "to": 72,
+        "description": "It is too dark to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 64,
+    "name": "Hall of Fire",
+    "description": "You are standing in a hallway made of fire. The walls are ablaze with
+                   |yellow and blue flames. The smell of the hot air and sulfur burn your
+                   |lungs as you inhale, and dry your mouth as you exhale. The stone floor
+                   |burns at your feet and hungrily drinks up every drop of sweat as they
+                   |fall from your body.
+                   |The hall of fire continues to the north and east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 54,
+        "description": "You see a hall of fire."
+      },
+      {
+        "dir": "east",
+        "to": 65,
+        "description": "You see a wall of fire."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 65,
+    "name": "Construction Area",
+    "description": "This part of Hell seems to be under repair. Workers are fixing and replacing
+                   |what look like various gas mains and other pipework. You can see many
+                   |gas lines and electrical conduits within the dismantled walls. Partially
+                   |hidden fire sprinklers are being installed in the ceilings.
+                   |You see more contruction to the north and east.
+                   |A hall of fire is to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 55,
+        "description": "You see a construction area."
+      },
+      {
+        "dir": "east",
+        "to": 66,
+        "description": "You see a construction area."
+      },
+      {
+        "dir": "west",
+        "to": 64,
+        "description": "You see a Hall of fire."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 28,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 13,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 27,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 12,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 66,
+    "name": "Construction Area",
+    "description": "This part of Hell seems to be under repair. Workers are fixing and replacing
+                   |what look like various gas mains and other pipework. You can see many
+                   |gas lines and electrical conduits within the dismantled walls. Partially
+                   |hidden fire sprinklers are being installed in the ceilings.
+                   |You see more contruction to the east and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 67,
+        "description": "You see a construction area."
+      },
+      {
+        "dir": "west",
+        "to": 65,
+        "description": "You see a construction area."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 67,
+    "name": "Construction Area",
+    "description": "This part of Hell seems to be under repair. Workers are fixing and replacing
+                   |what look like various gas mains and other pipework. You can see many
+                   |gas lines and electrical conduits within the dismantled walls. Partially
+                   |hidden fire sprinklers are being installed in the ceilings.
+                   |You see more contruction to the north and west.
+                   |A hall of fire lies to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 57,
+        "description": "You see a construction area."
+      },
+      {
+        "dir": "east",
+        "to": 68,
+        "description": "You see a hall of fire."
+      },
+      {
+        "dir": "west",
+        "to": 66,
+        "description": "You see a construction area."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 27,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 45,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 28,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 12,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 68,
+    "name": "Hall of Fire",
+    "description": "You are standing in a hallway made of fire. The walls are ablaze with
+                   |yellow and blue flames. The smell of the hot air and sulfur burn your
+                   |lungs as you inhale, and dry your mouth as you exhale. The stone floor
+                   |burns at your feet and hungrily drinks up every drop of sweat as they
+                   |fall from your body.
+                   |The hall of fire continues to the north.
+                   |There are loud noises of contruction to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 58,
+        "description": "You see a hall of fire."
+      },
+      {
+        "dir": "west",
+        "to": 67,
+        "description": "You see a construction area."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 69,
+    "name": "Wall of Fire",
+    "description": "This large room is cut in into sections by small walls of fire. The walls
+                   |to move slowly changing the layout of the room. As you examine the room
+                   |further you notice various posts around the room to which people are
+                   |chained. The firewalls seem to move in patterns that leave the poor
+                   |people directly in the path of the oncoming fire. The walls seem to creep
+                   |ever so slowly towards them. The people blister and scream as the fire gets
+                   |closer. Their deaths seem like minutes of agony and pain, and even as they
+                   |burst into flames they seem incapable of grasping the merciful attention of
+                   |death...
+                   |To the north you see a hall of fire.
+                   |To the east you see a lake of fire.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 59,
+        "description": "You see a hall of fire."
+      },
+      {
+        "dir": "east",
+        "to": 70,
+        "description": "You see a Lake of fire."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 31,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 70,
+    "name": "Lake of Fire",
+    "description": "You stand one the shore of a large lake of fire. The smoke and heat fill this
+                   |enormous room. You can barely make out shapes of something moving
+                   |withing the dancing flames of blue and gold..",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 60,
+        "description": "It is too smoky to see."
+      },
+      {
+        "dir": "east",
+        "to": 71,
+        "description": "It is too smoky to see."
+      },
+      {
+        "dir": "west",
+        "to": 69,
+        "description": "It is too smoky to see."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 26,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 11,
+          "wear_loc": "arms",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 30,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 14,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 49,
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 71,
+    "name": "Hot Hall",
+    "description": "The stone floor below you heats your feet uncomfortably. The ceiling and
+                   |walls glow a dull red and you sweat uncomfortably under the heat.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 61,
+        "description": "You see a Mural Room."
+      },
+      {
+        "dir": "west",
+        "to": 70,
+        "description": "It is too smoky to see."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 72,
+    "name": "Icy Landing",
+    "description": "This landing is made entirely of ice. Its walls bear carvings of battle and
+                   |hunting scenes in bas-relief. These carved scenes show ice devils slaying
+                   |angels, hunting mortals and other gruesome pictures.
+                   |To the east you see a room of ice.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 141,
+      "description": "You see a room of ice."
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 73,
+    "name": "Ice Room",
+    "description": "You are standing in a room of ice. Icicles of every size hang from the
+                   |ceiling. Some shake with every sound. Your reflection off the ice walls
+                   |seems to dance and wiggle as you move about.
+                   |To the south you see more of the frozen room.
+                   |To the west you see an Icy landing.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 83,
+        "description": "You see a room of ice."
+      },
+      {
+        "dir": "west",
+        "to": 141,
+        "description": "You see a room of ice."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 35,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 74,
+    "name": "Meat Locker",
+    "description": "You are standing in what looks like a meat locker. Rows of beef and other
+                   |meats hang from large steel hooks. You also notice that many of the
+                   |things hanging from the hooks are corpses of people. They reach out to
+                   |you as you pass them as if to plead for help from their frozen mouths. 
+                   |The meat locker continues to the east and south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 75,
+        "description": "You see more of the Meat locker"
+      },
+      {
+        "dir": "south",
+        "to": 84,
+        "description": "You see more of the Meat locker"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 69,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 21,
+          "global_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 75,
+    "name": "Meat Locker",
+    "description": "Rows of beef and other meats hang from large steel hooks. You notice that 
+                   |many of the things hanging from the hooks are corpses of people. They 
+                   |reach out to you as you pass them as if to plead for help from their frozen 
+                   |mouths. 
+                   |The meat locker continues to the south and west.
+                   |There is a freezer door to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 76,
+        "keyword": "freezer",
+        "description": "You see a freezer door.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "south",
+        "to": 85,
+        "description": "You see more of the Meat locker"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 36,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 76,
+    "name": "Penguin Room",
+    "description": "This is what appears to be a replica of an iceberg. Penguins waddle about
+                   |the room pecking at many poor souls half trapped in the icy floor. You
+                   |seem to be outside, as the walls are painted to seem as if you are standing
+                   |on a vast icy slab with nothing but ocean around you. 
+                   |The iceberg continues to the south and east.
+                   |There is a freezer door to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 77,
+        "description": "You see lots and lots of ice."
+      },
+      {
+        "dir": "south",
+        "to": 86,
+        "description": "You see lots and lots of ice."
+      },
+      {
+        "dir": "west",
+        "to": 75,
+        "keyword": "door freezer",
+        "description": "You see a freezer door.",
+        "exit_flags": "door closed"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 37,
+        "global_limit": 4,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 77,
+    "name": "Penguin Room",
+    "description": "This is what appears to be a replica of an iceberg. Penguins waddle about
+                   |the room pecking at many poor souls half trapped in the icy floor. You
+                   |seem to be outside, as the walls are painted to seem as if you are standing
+                   |on a vast icy slab with nothing but ocean around you. 
+                   |The iceberg continues to the south and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 87,
+        "description": "You see lots and lots of ice."
+      },
+      {
+        "dir": "west",
+        "to": 76,
+        "description": "You see lots and lots of ice."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 37,
+        "global_limit": 4,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 78,
+    "name": "Ice Creamery",
+    "description": "You appear to be standing in a ice-creamery. Many ice-cream workers run
+                   |frantically around tending to the various machines.
+                   |The factory continues to the east and south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 79,
+        "description": "You see lots of ice-cream machines."
+      },
+      {
+        "dir": "south",
+        "to": 88,
+        "description": "You see lots of ice-cream machines."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 38,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 79,
+    "name": "Ice Creamery",
+    "description": "You appear to be standing in a ice-creamery. There seems to be a
+                   |group of people here shouting into containers and then quickly covering 
+                   |them. How odd...
+                   |The factory continues to the south and west.
+                   |There is a steel door to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 80,
+        "keyword": "door steel",
+        "description": "You see a steel door.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "south",
+        "to": 89,
+        "description": "You see lots of ice-cream machines."
+      },
+      {
+        "dir": "west",
+        "to": 78,
+        "description": "You see lots of ice-cream machines."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 39,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 80,
+    "name": "White Marble Hall",
+    "description": "You are standing in a white marble hallway. It is dry and clean. Many
+                   |portraits of demons and devils in business suits adorn the walls on either
+                   |side of you.
+                   |The hall continues to the south.
+                   |To the west is a steel door.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 90,
+        "description": "You see a marble hallway."
+      },
+      {
+        "dir": "west",
+        "to": 79,
+        "keyword": "door steel",
+        "description": "You see a steel door.",
+        "exit_flags": "door closed"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 81,
+    "name": "Refrigerator Room",
+    "description": "This room is filled with giant refrigerators. All of them have no doors and
+                   |their contents have spilled onto the floor.
+                   |The only exit is east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 82,
+      "description": "You see a room of ice."
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 82,
+    "name": "Ice Room",
+    "description": "You are standing in a room of ice. Icicles of every size hang from the
+                   |ceiling. Some shake with every sound. Your reflection off the ice walls
+                   |seems to dance and wiggle as you move about.
+                   |To the north and east you see more of the frozen room.
+                   |To the west you see a room full of refrigerators.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 141,
+        "description": "You see a room of ice."
+      },
+      {
+        "dir": "east",
+        "to": 83,
+        "description": "You see a room of ice."
+      },
+      {
+        "dir": "west",
+        "to": 81,
+        "description": "You see a room full of refrigerators."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 83,
+    "name": "Ice Room",
+    "description": "You are standing in a room of ice. Icicles of every size hang from the
+                   |ceiling. Some shake with every sound. Your reflection off the ice walls
+                   |seems to dance and wiggle as you move about.
+                   |To the north and west you see more of the frozen room.
+                   |To the east you see a freezer door.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 73,
+        "description": "You see a room of ice."
+      },
+      {
+        "dir": "east",
+        "to": 84,
+        "keyword": "door freezer",
+        "description": "You see a freezer door.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "west",
+        "to": 82,
+        "description": "You see a room of ice."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 34,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 19,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 84,
+    "name": "Meat Locker",
+    "description": "You stand in a large meat locker. Chunks of meat hang on the wall and 
+                   |larger corpses hang from steel hooks. Frozen blood and other 
+                   |unrecognizable pieces are littered on the floor.
+                   |The meat locker continues to the north and east.
+                   |There is a freezer door to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 74,
+        "description": "You see more of the Meat locker"
+      },
+      {
+        "dir": "east",
+        "to": 85,
+        "description": "You see more of the Meat locker"
+      },
+      {
+        "dir": "west",
+        "to": 83,
+        "keyword": "door freezer",
+        "description": "You see a freezer door.",
+        "exit_flags": "door closed"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 36,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 85,
+    "name": "Meat Locker",
+    "description": "Rows of beef and other meats hang from large steel hooks. 
+                   |The meat locker continues to the north and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 75,
+        "description": "You see more of the Meat locker"
+      },
+      {
+        "dir": "west",
+        "to": 84,
+        "description": "You see more of the Meat locker"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 69,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 21,
+          "global_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 86,
+    "name": "Penguin Room",
+    "description": "This is what appears to be a replica of an iceberg. Penguins waddle about
+                   |the room pecking at many poor souls half trapped in the icy floor. You
+                   |seem to be outside, as the walls are painted to seem as if you are standing
+                   |on a vast icy slab with nothing but ocean around you. 
+                   |The iceberg continues to the north and east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 76,
+        "description": "You see lots and lots of ice."
+      },
+      {
+        "dir": "east",
+        "to": 87,
+        "description": "You see lots and lots of ice."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 37,
+        "global_limit": 4,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 87,
+    "name": "Penguin Room",
+    "description": "This is what appears to be a replica of an iceberg. Penguins waddle about
+                   |the room pecking at many poor souls half trapped in the icy floor. You
+                   |seem to be outside, as the walls are painted to seem as if you are standing
+                   |on a vast icy slab with nothing but ocean around you. 
+                   |The iceberg continues to the north and west.
+                   |You can hear sounds of machinery to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 77,
+        "description": "You see lots and lots of ice."
+      },
+      {
+        "dir": "east",
+        "to": 88,
+        "description": "You see a dark passageway."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 37,
+        "global_limit": 4,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 88,
+    "name": "Ice-Creamery",
+    "description": "You walk into part of an ice-cream factory. Many different types of
+                   |ice-cream and other deserts are made by these machines. Above one
+                   |of the machines a sign reads, 'Eye Spleen I Screamery'.
+                   |The factory continues to the north and east.
+                   |You can hear sounds of penguins to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 78,
+        "description": "You see lots of ice-cream machines."
+      },
+      {
+        "dir": "east",
+        "to": 89,
+        "description": "You see lots of ice-cream machines."
+      },
+      {
+        "dir": "west",
+        "to": 87,
+        "description": "You see a dark passageway."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 38,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 89,
+    "name": "Ice-Creamery",
+    "description": "You stand amidst dozens of ice-cream machines. Workers rush about
+                   |for machine to machine, adjusting dials and checking gauges.
+                   |The factory continues to the north and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 79,
+        "description": "You see lots of ice-cream machines."
+      },
+      {
+        "dir": "west",
+        "to": 88,
+        "description": "You see lots of ice-cream machines."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 90,
+    "name": "Marble Hall",
+    "description": "You are walking down a white marble hallway. Large portraits of demons
+                   |and devils adorn the walls on either side of you. As you look again you
+                   |realize that they aren't demons and devils after all, but lawyers....well ok...
+                   |depends on your point of view...
+                   |The hallway continues to the north.
+                   |There is an office to the south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 80,
+        "description": "You see a white marble hallway."
+      },
+      {
+        "dir": "south",
+        "to": 100,
+        "description": "You see an office."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 91,
+    "name": "Records Hall",
+    "description": "This Hallway is actually an enourmous records library. Millions of records
+                   |are kept here detailing the status of peoples lives. These are confidential
+                   |files and only authorized personnel are allowed to view them.
+                   |The records room continues to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 92,
+      "description": "You see rows and rows of records."
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 43,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 92,
+    "name": "Records Hall",
+    "description": "This Hallway is actually an enourmous records library. Millions of records
+                   |are kept here detailing the status of peoples lives. These are confidential
+                   |files and only authorized personnel are allowed to view them.
+                   |The records room continues to the east and west.
+                   |There is another hallway to the south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 93,
+        "description": "You see rows and rows of records."
+      },
+      {
+        "dir": "south",
+        "to": 102,
+        "description": "You see the Halls of Judgement."
+      },
+      {
+        "dir": "west",
+        "to": 91,
+        "description": "You see rows and rows of records."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 43,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 93,
+    "name": "Records Hall",
+    "description": "This Hallway is actually an enourmous records library. Millions of records
+                   |are kept here detailing the status of peoples lives. These are confidential
+                   |files and only authorized personnel are allowed to view them.
+                   |The records room continues to the east and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 94,
+        "description": "You see rows and rows of records."
+      },
+      {
+        "dir": "west",
+        "to": 92,
+        "description": "You see rows and rows of records."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 43,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 94,
+    "name": "Records Hall",
+    "description": "This Hallway is actually an enourmous records library. Millions of records
+                   |are kept here detailing the status of peoples lives. These are confidential
+                   |files and only authorized personnel are allowed to view them.
+                   |The records room continues to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 93,
+      "description": "You see rows and rows of records."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 44,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 24,
+          "wear_loc": "head",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 95,
+    "name": "Small Altar",
+    "description": "This is the private prayer room of the high priest. a small altar stands
+                   |against the west wall. Evil symbols and pictures are plastered everywhere.
+                   |The new propaganda posters for Hell are posted behind the altar.
+                   |You see a blackened hall to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 96,
+      "description": "You see a blackened hallway."
+    }],
+    "extra_description": [{
+      "keyword": "poster",
+      "description": "Don't go to heaven....They're boring....
+                     |
+                     |***GO TO HELL!!!****
+                     |
+                     |You'll be damned if you don't  ;)"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 46,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 96,
+    "name": "Blackened Hall",
+    "description": "This hall looks as if it was burned out recently. The walls are charred and
+                   |smoking. Ashes and bits of burnt timber crunch under your feet as you 
+                   |walk down the hall. A sign on the wall reads, 'No Non-smoking Please'. 
+                   |The hall continues to the south.
+                   |There is a stone door to the east and a prayer room to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 97,
+        "keyword": "door stone",
+        "description": "You see a stone door.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "south",
+        "to": 106,
+        "description": "You see a blackened hall."
+      },
+      {
+        "dir": "west",
+        "to": 95,
+        "description": "You see a prayer room."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 97,
+    "name": "Office of the High Priest",
+    "description": "This is the office of the High Priest of Hell. A black stone desk stands
+                   |before you. The office is lavishly furnished with gold, gems and many
+                   |antiques. A large portrait of a demons face is on the wall behind his desk.
+                   |You see a stone door to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 96,
+      "keyword": "door stone",
+      "description": "You see a stone door.",
+      "exit_flags": "door closed"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 45,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 25,
+          "wear_loc": "hold",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 26,
+          "wear_loc": "about",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 50,
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 98,
+    "name": "Blackened Hall",
+    "description": "This hall looks as if it was burned out recently. The walls are charred and
+                   |smoking. Ashes and bits of burnt timber crunch under your feet as you 
+                   |walk down the hall. A sign on the wall reads, 'No Non-smoking Please'. 
+                   |The hall continues to the east and south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 99,
+        "description": "You see a blackened hall."
+      },
+      {
+        "dir": "south",
+        "to": 108,
+        "description": "You see a blackened hall."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 42,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 23,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 99,
+    "name": "Blackened Hall",
+    "description": "This hall looks as if it was burned out recently. The walls are charred and
+                   |smoking. Ashes and bits of burnt timber crunch under your feet as you 
+                   |walk down the hall. A sign on the wall reads, 'No Non-smoking Please'.
+                   |The hall continues to the west.
+                   |A glass door is to the east. ",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 100,
+        "keyword": "door glass",
+        "description": "You see a glass door.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "west",
+        "to": 98,
+        "description": "You see a blackened hall."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 100,
+    "name": "Administration of Hell",
+    "description": "This is the entrance to the Administration offices of Hell. The secretaries
+                   |desk sits quietly in the middle of the room. To the south is a metal door
+                   |labeled, 'Authorized Personnel Only'
+                   |To the west is a large glass door.
+                   |There is a stairway down on the opposite side of the room.
+                   |There is a sign posted next to the stairs.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 90,
+        "description": "You see a marble hall."
+      },
+      {
+        "dir": "south",
+        "to": 110,
+        "keyword": "door metal",
+        "description": "You see a metal door.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "west",
+        "to": 99,
+        "keyword": "door glass",
+        "description": "You see a glass door.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "down",
+        "to": 109,
+        "keyword": "stairway",
+        "description": "You see a stairway down."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "****ATTENTION***
+                     |The Abyss is CLOSED for construction.
+                     |
+                     |We will open for your painful pleasures
+                     |
+                     |soon....
+                     |
+                     |-Strahd-"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 41,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 46,
+          "wear_loc": "head",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 101,
+    "name": "Halls of Judgement",
+    "description": "You are standing in the Halls of Judgement. There are many alcoves 
+                   |which contain different methods of torture. Each more grotesque than
+                   |the one before it. On the wall a plaque reads, 'If you are here...You are
+                   |Guilty...You have been judged...sound fair? Too bad..'
+                   |The hall continues to the east.
+                   |The Courtroom is to the south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 102,
+        "description": "You see the Halls of Judgement."
+      },
+      {
+        "dir": "south",
+        "to": 111,
+        "description": "You see the Court of Hell."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 102,
+    "name": "Halls of Judgement",
+    "description": "You are standing in the Halls of Judgement. There are many alcoves 
+                   |which contain different methods of torture. Each more grotesque than
+                   |the one before it. 
+                   |The hall continues to the east and west.
+                   |The hall of records is to the north.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 92,
+        "description": "You see the Hall of Records."
+      },
+      {
+        "dir": "east",
+        "to": 103,
+        "description": "You see the Halls of Judgement."
+      },
+      {
+        "dir": "west",
+        "to": 101,
+        "description": "You see the Halls of Judgement."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 103,
+    "name": "Halls of Judgement",
+    "description": "You are standing in the Halls of Judgement. There are many alcoves 
+                   |which contain different methods of torture. Each more grotesque than
+                   |the one before it. 
+                   |The hall continues to the east and west.
+                   |The Office of Complaints is to the south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 104,
+        "description": "You see the Halls of Judgement."
+      },
+      {
+        "dir": "south",
+        "to": 113,
+        "description": "You see the Office of Complaints."
+      },
+      {
+        "dir": "west",
+        "to": 102,
+        "description": "You see the Halls of Judgement."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 104,
+    "name": "Halls of Judgement",
+    "description": "You are standing in the Halls of Judgement. There are many alcoves 
+                   |which contain different methods of torture. Each more grotesque than
+                   |the one before it. 
+                   |The hall continues to the east and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 105,
+        "description": "You see the Halls of Judgement."
+      },
+      {
+        "dir": "west",
+        "to": 103,
+        "description": "You see the Halls of Judgement."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 105,
+    "name": "Halls of Judgement",
+    "description": "You are standing in the Halls of Judgement. There are many alcoves 
+                   |which contain different methods of torture. Each more grotesque than
+                   |the one before it. 
+                   |The hall continues to the east and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 106,
+        "description": "You see the Halls of Judgement."
+      },
+      {
+        "dir": "west",
+        "to": 104,
+        "description": "You see the Halls of Judgement."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 106,
+    "name": "Blackened Hall",
+    "description": "This hall looks as if it was burned out recently. The walls are charred and
+                   |smoking. Ashes and bits of burnt timber crunch under your feet as you 
+                   |walk down the hall. A sign on the wall reads, 'No Non-smoking Please'.
+                   |There are exits in all directions.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 96,
+        "description": "You see a blackened hall."
+      },
+      {
+        "dir": "east",
+        "to": 107,
+        "description": "You see a blackened hall."
+      },
+      {
+        "dir": "south",
+        "to": 116,
+        "description": "You see the hallway of the Mall from Hell ."
+      },
+      {
+        "dir": "west",
+        "to": 105,
+        "description": "You see the Halls of Judgement."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 42,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 23,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 107,
+    "name": "Blackened Hall",
+    "description": "This hall looks as if it was burned out recently. The walls are charred and
+                   |smoking. Ashes and bits of burnt timber crunch under your feet as you 
+                   |walk down the hall. A sign on the wall reads, 'No Non-smoking Please'.
+                   |The hallway continues to the east and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 108,
+        "description": "You see a blackened hall."
+      },
+      {
+        "dir": "west",
+        "to": 106,
+        "description": "You see a blackened hall."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 108,
+    "name": "Blackened Hall",
+    "description": "This hall looks as if it was burned out recently. The walls are charred and
+                   |smoking. Ashes and bits of burnt timber crunch under your feet as you 
+                   |walk down the hall. A sign on the wall reads, 'No Non-smoking Please'.
+                   |The hallway continues to the north and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 98,
+        "description": "You see a blackened hall."
+      },
+      {
+        "dir": "west",
+        "to": 107,
+        "description": "You see a blackened hall."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 109,
+    "name": "Stairs to the Abyss",
+    "description": "These dark stairs are made out of the bones of the damned. They rattle
+                   |softly as you tread apon them as if to cry out in protest. The air is filled
+                   |with the wailing of lost souls and the blood curdling screams of the
+                   |punished.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "down",
+      "to": 118,
+      "description": "You see the eternal darkness of the Abyss."
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 110,
+    "name": "Maintenance Walkway",
+    "description": "This is a maintence accessway. You walk on a metal catwalk hundreds of 
+                   |feet above the floor. The catwalk sways unsteadily as you walk on it.
+                   |The catwalk continues to the south.
+                   |To the north is a steel door.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 100,
+        "keyword": "door steel",
+        "description": "You see a steel door.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "south",
+        "to": 120,
+        "description": "You see a maintenance walkway."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 111,
+    "name": "Court Room",
+    "description": "This is the Courts of Hell. Here you are convicted, sentenced and punished.
+                   |And no...you don't get a trial. You don't deserve one. The courtroom is
+                   |filled with spectators and jury members. They seem to have no real reason
+                   |to be here since there isn't going to be a trial. They jeer and boo you as you
+                   |stand in the middle of the courtroom.
+                   |To the north is the Halls of Judgement.
+                   |Behind the judges bench is a wooden door.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 101,
+        "description": "You see the Halls of Judgement."
+      },
+      {
+        "dir": "south",
+        "to": 121,
+        "description": "You see a large wooden door."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 47,
+        "global_limit": 6,
+        "room_limit": 6
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 112,
+    "name": "Lawyers Office",
+    "description": "As you look around you, you realize you've entered a lawyers office. Now
+                   |you know you are in Hell....Everything in this office seems to be made of
+                   |snakeskin. This is the only lawyers office in Hell, so if you don't  like them
+                   |you're out of luck. But then again...if you are in Hell...you must've run
+                   |out of luck a while ago.
+                   |To the east is the Office of Complaints.
+                   |To the south you see a courtyard.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 113,
+        "description": "You see the Office of Complaints."
+      },
+      {
+        "dir": "south",
+        "to": 122,
+        "description": "You see a courtyard."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 49,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 27,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 113,
+    "name": "Office of Complaints",
+    "description": "This is a relatively small office. There is a large hole in the wall where a 
+                   |clerk usually sits and takes complaints about Hell. As you peek behind
+                   |the counter you see a large paper shredder and alot of shredded complaints.
+                   |a sign over the clerks desk reads, 'Hours: 12:00am - 12:01am'
+                   |To the west is a lawyers office.
+                   |To the north you see the Halls of Judgement.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 103,
+        "description": "You see the Halls of Judgement."
+      },
+      {
+        "dir": "west",
+        "to": 112,
+        "description": "You see a lawyers office"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 50,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 114,
+    "name": "Pawn Shop",
+    "description": "You are standing in Hiramoto's Buy & Sell. This poor bastard has
+                   |been damned to Hell to serve the public for eternity. He will buy most
+                   |anything you have, since business is slow. Not many people visit
+                   |Hell. The store is filled with worthless junk. Piles of aluminum balls,
+                   |and bottle cap collections fill the corners of the room. Junk of
+                   |all kinds is scattered about the store.
+                   |To the east you see the Mall from Hell.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 115,
+      "description": "You see the Mall from Hell."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 51,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 28,
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 29,
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 30,
+          "global_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 115,
+    "name": "Hallway of The Mall from Hell",
+    "description": "This is definitely the Mall from Hell...there are no stores!
+                   |Only in Hell would they have a mall with no stores.
+                   |To the east you see the Mall from Hell.
+                   |To the west you see Hiramoto's Buy & Sell.
+                   |The hall continues to the east and south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 116,
+        "description": "You see the Mall from Hell."
+      },
+      {
+        "dir": "south",
+        "to": 125,
+        "description": "You see the Mall from Hell."
+      },
+      {
+        "dir": "west",
+        "to": 114,
+        "description": "You see Hiramoto's Buy & Sell."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 63,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 116,
+    "name": "Hallway of The Mall from Hell",
+    "description": "This is definitely the Mall from Hell...there are no stores!
+                   |Only in Hell would they have a mall with no stores.
+                   |To the north you see a blackened hallway.
+                   |To the east you see the office of Big Mouth.
+                   |The hallway continues to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 106,
+        "description": "You see a blackened hall."
+      },
+      {
+        "dir": "east",
+        "to": 117,
+        "description": "You see the office of Big Mouth."
+      },
+      {
+        "dir": "west",
+        "to": 115,
+        "description": "You see the hallways of the Mall from Hell."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 117,
+    "name": "The Office of Big Mouth",
+    "description": "This is the office of Big Mouth, head demon of Hell's Administration.
+                   |The room is decorated posters of naked women and autographed pictures
+                   |of famous tortured souls. Behind a large oaken desk sleeps Big Mouth.
+                   |This mouth looks large enough to step into if it were open. You wonder
+                   |what this guy eats...",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 116,
+        "description": "You see the hallways of the Mall from Hell."
+      },
+      {
+        "dir": "down",
+        "to": 126,
+        "keyword": "mouth big mouth's",
+        "description": "You see Big Mouth's mouth.",
+        "exit_flags": "door"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 118,
+    "name": "Stairs to the Abyss",
+    "description": "These dark stairs are made out of the bones of the damned. They rattle
+                   |softly as you tread apon them as if to cry out in protest. The air is filled
+                   |with the wailing of lost souls and the blood curdling screams of the
+                   |punished.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "down",
+      "to": 127,
+      "description": "You see the eternal darkness of the Abyss."
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 119,
+    "name": "Maintenance Walkway",
+    "description": "This is a maintence accessway. You walk on a metal catwalk hundreds of 
+                   |feet above the floor. The catwalk sways unsteadily as you walk on it.
+                   |The catwalk continues to the east and south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 120,
+        "description": "You see a maintenance walkway."
+      },
+      {
+        "dir": "south",
+        "to": 129,
+        "description": "You see a maintenance walkway."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 52,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 31,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 47,
+          "wear_loc": "body",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 120,
+    "name": "Maintenance Walkway",
+    "description": "This is a maintence accessway. You walk on a metal catwalk hundreds of 
+                   |feet above the floor. The catwalk sways unsteadily as you walk on it.
+                   |The catwalk continues to the north and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 110,
+        "description": "You see a maintenance walkway."
+      },
+      {
+        "dir": "west",
+        "to": 119,
+        "description": "You see a maintenance walkway."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 52,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 31,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 47,
+          "wear_loc": "body",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 121,
+    "name": "Judge's Chambers",
+    "description": "This is the private chambers of the High Judge of Hell. He has a cushy job
+                   |and his office reflects that. Golden torches light the walls with dancing
+                   |blue and yellow flames. The judge's black crystal desk sparkles in the 
+                   |torchlight.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 111,
+      "description": "You see the Courtroom of Hell."
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 48,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 122,
+    "name": "Courtyard",
+    "description": "This courtyard is barren and neglected. Small weeds grow up in between
+                   |the concrete slabs. An old defunct fountain sputters with a grey-brown
+                   |ooze.
+                   |A lawyers office is to the north.
+                   |The courtyard continues to the east and south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 112,
+        "description": "You see a lawyers office."
+      },
+      {
+        "dir": "east",
+        "to": 123,
+        "description": "You see a more of the courtyard."
+      },
+      {
+        "dir": "south",
+        "to": 132,
+        "description": "You see a more of the courtyard."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 53,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 123,
+    "name": "Courtyard",
+    "description": "This courtyard is barren and neglected. Small weeds grow up in between
+                   |the concrete slabs. An old defunct fountain sputters with a grey-brown
+                   |ooze.
+                   |The courtyard continues to the west and south.
+                   |Stanley's Magical Steeds is to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 124,
+        "description": "You see Stanley's Magical Steeds store."
+      },
+      {
+        "dir": "south",
+        "to": 133,
+        "description": "You see a more of the courtyard."
+      },
+      {
+        "dir": "west",
+        "to": 122,
+        "description": "You see a more of the courtyard."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 124,
+    "name": "Stanley's Magical Steeds",
+    "description": "This is the shop of Stanly. He used to be an old mage selling cursed
+                   |trinkets at the town of Solace. He has recently set up shop in Hell selling
+                   |magical figurines. Each figurine is in the shape of some sort of steed.
+                   |Some are recognizable and some are not. Rumor has it that Stanley made
+                   |a deal with a devil....so I guess his lease is up in seven years.....
+                   |A courtyard is to the west.
+                   |To the south you see the Mall from Hell.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 134,
+        "description": "You see a hallway of the Mall from Hell."
+      },
+      {
+        "dir": "west",
+        "to": 123,
+        "description": "You see an abandon courtyard."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 54,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 32,
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 33,
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 34,
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 35,
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 36,
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 37,
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 38,
+          "global_limit": 8
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 39,
+          "global_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 125,
+    "name": "Hallway of The Mall from Hell",
+    "description": "This is definitely the Mall from Hell...there are no stores!
+                   |Only in Hell would they have a mall with no stores.
+                   |The hallway continues to the north and south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 115,
+        "description": "You see a hall of the Mall from Hell."
+      },
+      {
+        "dir": "east",
+        "to": 135,
+        "description": "You see a hall of the Mall from Hell."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 126,
+    "name": "Inside Big Mouth's Stomach",
+    "description": "You are standing inside Big Mouth's stomach. It is roomy in here. Small
+                   |animals and other odds and ends lie about the stomach. Is that a dragon  
+                   |you see? Nah...couldn't be...",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "up",
+      "to": 117,
+      "keyword": "mouth big mouth's throat",
+      "description": "You see Big Mouth's throat.",
+      "exit_flags": "door"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 55,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 56,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 57,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 127,
+    "name": "Stairs to the Abyss",
+    "description": "These dark stairs are made out of the bones of the damned. They rattle
+                   |softly as you tread apon them as if to cry out in protest. The air is filled
+                   |with the wailing of lost souls and the blood curdling screams of the
+                   |punished.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "down",
+      "to": 136,
+      "description": "You see the eternal darkness of the Abyss."
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 128,
+    "name": "Reactor Control Room",
+    "description": "This is the reactor control room of Hell. From here the workers control
+                   |the main reactor and power supply for all of Hell and the abyss. Workers
+                   |stroll back and forth, from station to station monitoring the reactor core.
+                   |A large glass window looks out onto the reactor floor below.
+                   |There are some stairs down to the reactor floor to the south.
+                   |There is a maintenance room to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 129,
+        "description": "You see a maintenance room."
+      },
+      {
+        "dir": "south",
+        "to": 138,
+        "description": "You see stairs down to the reactor floor."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 58,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 40,
+          "wear_loc": "hold",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 42,
+          "wear_loc": "body",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 59,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 41,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 42,
+          "wear_loc": "body",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 129,
+    "name": "Maintenance Room",
+    "description": "You are standing in the primary maintenance room of Hell. Tools of all
+                   |shapes and sizes are neatly hung on the walls, each with its own painted-on
+                   |silhouette behind it.
+                   |To the west is the reactor control room.
+                   |To the east is the break room.
+                   |To the north is a maintenance walkway.
+                   |To the south is the secondary control room.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 119,
+        "description": "You see a maintenance walkway."
+      },
+      {
+        "dir": "east",
+        "to": 130,
+        "description": "You see a break room."
+      },
+      {
+        "dir": "south",
+        "to": 139,
+        "description": "You see the secondary control room."
+      },
+      {
+        "dir": "west",
+        "to": 128,
+        "description": "You see the reactor control room."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 52,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 31,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 47,
+          "wear_loc": "body",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 130,
+    "name": "Break Room",
+    "description": "This is the break room for the maintenance workers. tables are filled with
+                   |donuts and coffee. As a cruel joke, the cheif engineer has posted his guard
+                   |dogs to guard the room so that no one can take a break.
+                   |To the west is the primary maintenance room.
+                   |To the south is the chief engineers office.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 140,
+        "description": "You see the chief engineers office."
+      },
+      {
+        "dir": "west",
+        "to": 129,
+        "description": "You see the primary maintenance room."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 70,
+        "global_limit": 2,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 131,
+    "name": "Hell's Kitchen",
+    "description": "Welcome to Hell's kitchen, where everything is delicious....you just can't
+                   |have any....This is where the many foods of the world of Farside are made.
+                   |The chefs are usually very busy, but they always have extra time to torture
+                   |a guest....
+                   |To the east is a courtyard.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 132,
+      "description": "You see an abandon courtyard."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 71,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 61,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 62,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 48,
+          "wear_loc": "wielded",
+          "global_limit": 80
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 132,
+    "name": "Courtyard",
+    "description": "This courtyard is barren and neglected. Small weeds grow up in between
+                   |the concrete slabs. An old defunct fountain sputters with a grey-brown
+                   |ooze.
+                   |The courtyard continues to the north and east.
+                   |You see a kitchen to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 122,
+        "description": "You see more of the courtyard."
+      },
+      {
+        "dir": "east",
+        "to": 133,
+        "description": "You see a more of the courtyard."
+      },
+      {
+        "dir": "west",
+        "to": 131,
+        "description": "You see a kitchen."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 133,
+    "name": "Courtyard",
+    "description": "This courtyard is barren and neglected. Small weeds grow up in between
+                   |the concrete slabs. An old defunct fountain sputters with a grey-brown
+                   |ooze.
+                   |The courtyard continues to the north and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 123,
+        "description": "You see more of the courtyard."
+      },
+      {
+        "dir": "west",
+        "to": 132,
+        "description": "You see a more of the courtyard."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 53,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 134,
+    "name": "Hallway of The Mall from Hell",
+    "description": "This is definitely the Mall from Hell...there are no stores!
+                   |Only in Hell would they have a mall with no stores.
+                   |The hallway continues to the east.
+                   |Stanley's magic steeds are to the north.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 124,
+        "description": "You see Stanley's Magic Steeds."
+      },
+      {
+        "dir": "east",
+        "to": 135,
+        "description": "You see a hall of the Mall from Hell."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 135,
+    "name": "Hallway of The Mall from Hell",
+    "description": "This is definitely the Mall from Hell...there are no stores!
+                   |Only in Hell would they have a mall with no stores.
+                   |The hallway continues to the north and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 125,
+        "description": "You see a hall of the Mall from Hell."
+      },
+      {
+        "dir": "west",
+        "to": 134,
+        "description": "You see a hall of the Mall from Hell."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 63,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 136,
+    "name": "Stairs to the Abyss",
+    "description": "These dark stairs are made out of the bones of the damned. They rattle
+                   |softly as you tread apon them as if to cry out in protest. The air is filled
+                   |with the wailing of lost souls and the blood curdling screams of the
+                   |punished. You can't seem to find the Abyss...you seem to recall a seeing a
+                   |sign....now what did it say again?......",
+    "sector_type": "inside",
+    "room_flags": "dark no_mob indoors"
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 137,
+    "name": "Inside the Reactor Core",
+    "description": "You are standing on the inside of the reactor core. Actually you seem to
+                   |be floating in the plasma energy of the reactor. You can see the core
+                   |chamber fall off into the distance as it seems to be bottomless. Nuclear
+                   |particles and other strange things whiz by you at blinding speeds.
+                   |You see a maintenance hatch to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 138,
+      "keyword": "hatch maintenance reactor core",
+      "description": "You see a maintenance hatch.",
+      "exit_flags": "door closed"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 65,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 66,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 138,
+    "name": "Reactor Room Floor",
+    "description": "The room is taken up almost entirely by the enormous reactor core. The
+                   |core pulses rhythmically as it generates the heat and power for the entire
+                   |region of Hell. Many workers in orange jumpsuits run frantically around
+                   |with geiger counters and plasma torches fixing breaches in the core.
+                   |You see a reactor core maintenance hatch to the west.
+                   |A stairway to the control room is to the north.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 128,
+        "description": "You see the stairs to the control room."
+      },
+      {
+        "dir": "west",
+        "to": 137,
+        "keyword": "hatch maintenance reactor core",
+        "description": "You see a reactor core maintence hatch.",
+        "exit_flags": "door closed"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 64,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 42,
+          "wear_loc": "body",
+          "global_limit": 80
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 66,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 139,
+    "name": "Secondary Control Room",
+    "description": "This is the secondary control room for the reactor core. It is usually used in
+                   |emergencies when the primary control room is contaminated or damaged.
+                   |It isn't used very often since the primary control room is in perfect 
+                   |working order.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 129,
+      "description": "You see the primary maintenance room."
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 60,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 140,
+    "name": "Office of the Chief Engineer",
+    "description": "This office belongs to the chief engineer of Hell. Blueprints and pencils 
+                   |are scattered about the room. The air is heavy with the smell of ammonia
+                   |and sweat. A display of the reactor core is mounted into the wall.
+                   |One wall is completely filled with monitors, each showing various
+                   |status reports for the reactor core.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 130,
+      "description": "You see the break room."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 67,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 43,
+          "global_limit": 8
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "tohell",
+    "anum": 141,
+    "name": "Ice Room",
+    "description": "You are standing in a room of ice. Icicles of every size hang from the
+                   |ceiling. Some shake with every sound. Your reflection off the ice walls
+                   |seems to dance and wiggle as you move about.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 73,
+        "description": "You see a room of ice."
+      },
+      {
+        "dir": "south",
+        "to": 82,
+        "description": "You see a room of ice."
+      },
+      {
+        "dir": "west",
+        "to": 72,
+        "description": "You see a room of ice."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 33,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 18,
+          "global_limit": 8
+        }
+      }
+    ]
+  }}
+]

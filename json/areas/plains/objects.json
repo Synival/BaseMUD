@@ -1,0 +1,260 @@
+[
+  {"object": {
+    "area": "plains",
+    "anum": 0,
+    "name": "herbs herb timian",
+    "short_descr": "a small dusk of timian herbs",
+    "description": "Some herbs are lying here, small green leaves and tiny pink flowers.",
+    "item_type": "food",
+    "values": {
+      "hunger": 1,
+      "fullness": 1
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 10,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "herbs herb timian",
+      "description": "This herb smells rather spicy; maybe you should try it?"
+    }]
+  }},
+  {"object": {
+    "area": "plains",
+    "anum": 1,
+    "name": "herbs herb gyvel",
+    "short_descr": "a small dusk of black gyvel",
+    "description": "Some black gyvel is lying here, dark green with black leaves and tiny
+                   |blood red flowers.",
+    "item_type": "food",
+    "values": {
+      "hunger": 1,
+      "fullness": 1
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 10,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "herbs herb gyvel",
+      "description": "This herb smells rather special, but is it poisonous?"
+    }]
+  }},
+  {"object": {
+    "area": "plains",
+    "anum": 2,
+    "name": "plant ivy",
+    "short_descr": "a small dusk of poison ivy",
+    "description": "Some poison ivy is growing here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 1,
+      "fullness": 1,
+      "poisoned": true
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "plant ivy",
+      "description": "This plant has dark green juicy leaves.
+                     |You notice some small white thorns on it."
+    }]
+  }},
+  {"object": {
+    "area": "plains",
+    "anum": 3,
+    "name": "blood jar",
+    "short_descr": "a dark red jar",
+    "description": "A small jar in a dark, red colour.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 2,
+      "filled": 2,
+      "liquid": "blood"
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 20,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "blood jar",
+      "description": "The jar is made of dry clay, covered with markings suggesting its
+                     |occult origin."
+    }]
+  }},
+  {"object": {
+    "area": "plains",
+    "anum": 4,
+    "name": "wild flowers",
+    "short_descr": "wild flowers",
+    "description": "A bunch of pretty wild flowers is here.",
+    "item_type": "trash",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "extra_flags": "antievil",
+    "wear_flags": "take head hold",
+    "extra_description": [{
+      "keyword": "wild flowers",
+      "description": "These wild flowers are really pretty.
+                     |Just like the flowers you would wear in your hair."
+    }]
+  }},
+  {"object": {
+    "area": "plains",
+    "anum": 7,
+    "name": "amulet",
+    "short_descr": "a strange amulet",
+    "description": "A strange looking amulet is lying here, half covered with dust.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 1,
+    "extra_flags": "magic nodrop",
+    "wear_flags": "take neck",
+    "extra_description": [{
+      "keyword": "amulet",
+      "description": "Judging from the signs inscripted in the amulet, you gather it must
+                     |have belonged to a druid.  It is weird looking with symbols from nature
+                     |dominating it."
+    }],
+    "affects": [{
+      "level": 0,
+      "apply": "saves",
+      "modifier": 5
+    }]
+  }},
+  {"object": {
+    "area": "plains",
+    "anum": 8,
+    "name": "staff stick",
+    "short_descr": "a druish staff",
+    "description": "A staff with druidic marks have been left here.",
+    "item_type": "trash",
+    "values": {},
+    "level": 0,
+    "weight": 40,
+    "cost": 10,
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "staff stick",
+      "description": "Then staff is about 5 ft long, engraved with mythical signs and figures.
+                     |Otherwise the staff seems of no real interest."
+    }]
+  }},
+  {"object": {
+    "area": "plains",
+    "anum": 9,
+    "name": "rabbit roast wabbit",
+    "short_descr": "a rabbit roast",
+    "description": "You see a deliciously looking rabbit roast.",
+    "item_type": "food",
+    "values": {
+      "hunger": 24,
+      "fullness": 24
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 0,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "roast rabbit wabbit",
+      "description": "Well the rabbit looks rather dead.
+                     |You guess that this once was a ferocious rabbit who's life now has
+                     |changed to that of a tasty wabbit woast."
+    }]
+  }},
+  {"object": {
+    "area": "plains",
+    "anum": 10,
+    "name": "template scroll",
+    "short_descr": "a strange template",
+    "description": "A strange template made of an exotic green metal is placed here",
+    "item_type": "scroll",
+    "values": {
+      "level": 15,
+      "skill1": "sleep",
+      "skill2": "blindness",
+      "skill3": "fireball"
+    },
+    "level": 13,
+    "weight": 10,
+    "cost": 1870,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "template scroll metal",
+      "description": "The template is made of an exotic green metal and looks
+                     |centuries old.
+                     |Inscripted upon is the words 'Ep ep fi'hur G'harne
+                     |                             G'harne fhtagn Shudde-M'ell hyas Negg'h'
+                     |And beneath the inscription you see horrifying death scenes depicted."
+    }]
+  }},
+  {"object": {
+    "area": "plains",
+    "anum": 11,
+    "name": "potion clear",
+    "short_descr": "a clear potion",
+    "description": "A clear potion wrapped in leather is unnoticed placed here.",
+    "item_type": "potion",
+    "values": {
+      "level": 20,
+      "skill1": "detect evil",
+      "skill2": "detect invis",
+      "skill3": "detect magic"
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 300,
+    "extra_flags": "magic",
+    "wear_flags": "take",
+    "extra_description": [
+      {
+        "keyword": "leather",
+        "description": "The leather wrapped around the potion is old and decayed, originating
+                       |from an, to you, unknown creature."
+      },
+      {
+        "keyword": "potion clear",
+        "description": "As you examine the potion more, you notice the oddities of this
+                       |potion. When you look through it you notice strange things...
+                       |The clear potion is certainly not of this world."
+      }
+    ]
+  }},
+  {"object": {
+    "area": "plains",
+    "anum": 12,
+    "name": "scroll jhyfrdow",
+    "short_descr": "a scroll titled 'jhyfrdow'",
+    "description": "An odd looking scroll is here.",
+    "item_type": "scroll",
+    "values": {
+      "level": 18,
+      "skill1": "protection evil"
+    },
+    "level": 2,
+    "weight": 10,
+    "cost": 640,
+    "wear_flags": "take",
+    "extra_description": [
+      {
+        "keyword": "ritual men drawings",
+        "description": "The drawing pictures people gathered round giant stone formations,
+                       |worshipping a giant worm like creature.
+                       |It seems they are sacrificing some of their own species."
+      },
+      {
+        "keyword": "scroll jhyfrdow",
+        "description": "The scroll is titled 'jhyfrdow' and looks very old.
+                       |As you examine it closer you notice primitive drawings of
+                       |men doing some kind of a ritual."
+      }
+    ]
+  }}
+]

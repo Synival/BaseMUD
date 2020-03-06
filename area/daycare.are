@@ -1,10 +1,8 @@
-#AREADATA
-Name Day Care~
-Builders None~
-VNUMs 6600 6699
-Credits { 1  5} Sandman Dwarven Day Care~
-Security 9
-End
+#AREA
+daycare.are~
+Day Care~
+{ 1  5} Sandman Dwarven Day Care~
+6600 6699
 
 #MOBILES
 #6600
@@ -15,12 +13,12 @@ A young dwarf plays with a toy axe.
 This is a young but not totally harmless creature.
 ~
 dwarf~
-[scavenger stay_area warrior] [] -5 0
+ACGT 0 -5 0
 3 0 1d4+30 1d1+99 1d4+2 beating
 7 6 7 10
-[berserk dirt_kick assist_race] [] [] []
+DJR 0 0 0
 sit stand either 10
-[] [] small generic
+0 0 small 0
 #6601
 teddy bear~
 a teddy bear~
@@ -29,12 +27,12 @@ A cute and fuzzy teddy bear stands here.
 This is a tiny little bear with a heart on his chest.
 ~
 doll~
-[scavenger stay_area] [] 500 0
+ACG 0 500 0
 1 0 1d10+10 1d1+99 1d4+0 beating
 8 5 9 10
-[trip assist_race] [] [] []
+NR 0 0 0
 stand stand male 0
-[] [] small cloth
+0 0 small cloth
 #6602
 doll raggedy anne~
 a raggedy anne doll~
@@ -43,12 +41,12 @@ A raggedy anne doll is sitting here.
 You see a small little cute rag doll.
 ~
 doll~
-[scavenger stay_area] [] 300 0
+ACG 0 300 0
 2 0 2d5+19 1d1+99 1d5+0 beating
 7 4 8 10
-[dodge fast assist_race] [] [] []
+FHR 0 0 0
 sit stand female 0
-[] [] small cloth
+0 0 small cloth
 #6603
 soldier toy~
 a toy soldier~
@@ -57,12 +55,12 @@ A toy soldier is standing here.
 The toy is looking for target practice.
 ~
 doll~
-[scavenger stay_area warrior] [] -300 0
+ACGT 0 -300 0
 3 1 3d5+36 1d1+99 1d4+3 punch
 6 7 6 9
-[kick assist_race] [] [slash] [bash]
+IR 0 G E
 stand stand male 0
-[] [] small tin
+0 0 small tin
 #6604
 bear ugly~
 the ugly bear~
@@ -72,12 +70,12 @@ This is obviously a reject from the factory.
 He snarls and growls at you.
 ~
 doll~
-[scavenger aggressive] [] -400 0
+ACF 0 -400 0
 3 0 3d4+29 1d1+99 1d6+1 chomp
 6 3 7 10
-[berserk dirt_kick trip assist_race] [] [] []
+DJNR 0 0 0
 stand stand male 5
-[] [] small cloth
+0 0 small cloth
 #6605
 doll old~
 an old doll~
@@ -86,12 +84,12 @@ An abused and old doll is here.
 This doll has been hugged and played with until there is almost nothing left.
 ~
 doll~
-[scavenger stay_area] [] -2 0
+ACG 0 -2 0
 1 0 1d10+1 1d1+99 1d4+0 beating
 8 5 9 10
-[assist_race] [] [] []
-stand stand neutral 0
-[] [] small cloth
+R 0 0 0
+stand stand none 0
+0 0 small cloth
 #6606
 nanny~
 the nanny~
@@ -101,12 +99,12 @@ You see an old dwarven lady who has been hunched over with age.  However, it
 appears that there is still some fight left in her.
 ~
 dwarf~
-[stay_area] [] 10 0
+AG 0 10 0
 5 1 4d4+50 5d4+100 1d6+1 slap
 5 5 5 10
-[bash berserk assist_race] [] [] []
+CDR 0 0 0
 stand stand female 50
-[] [] medium generic
+0 0 medium 0
 #6607
 guard~
 the armed guard~
@@ -116,12 +114,12 @@ This is a big mean bully who is tired of being lost in this maze.
 You suddenly think that you had better flee.
 ~
 dwarf~
-[sentinel scavenger warrior] [detect_invis] -800 0
+ABCT D -800 0
 8 1 3d10+100 8d4+100 1d7+3 punch
 3 2 3 8
-[bash berserk dirt_kick assist_race] [] [] []
+CDJR 0 0 0
 stand stand male 120
-[] [] medium generic
+0 0 medium 0
 #6608
 brat spoiled~
 the spoiled brat~
@@ -131,12 +129,12 @@ You see a little tyke who has always gotten what he wanted.  You have the
 biggest urge to put him out of his misery.
 ~
 dwarf~
-[sentinel scavenger] [] -400 0
+ABC 0 -400 0
 1 0 2d4+15 1d1+199 2d2+1 beating
 8 8 8 10
-[kick dirt_kick trip] [] [] []
+IJN 0 0 0
 stand stand male 50
-[] [] small generic
+0 0 small 0
 #0
 
 #OBJECTS
@@ -145,8 +143,8 @@ axe toy~
 a toy axe~
 An axe made of wood lies here.~
 wood~
-weapon [] [take wield]
-axe 1 5 chop []
+weapon 0 AN
+axe 1 5 chop 0
 0 30 250 G
 E
 axe toy~
@@ -157,7 +155,7 @@ ring pink ice~
 a pink ice ring~
 A pink ice ring draws your eye.~
 ice~
-treasure [magic] [take finger]
+treasure G AB
 0 0 0 0 0
 3 10 620 G
 A
@@ -174,7 +172,7 @@ robe linen~
 a linen robe~
 A linen robe is crumpled into a ball here.~
 cloth~
-armor [magic] [take about]
+armor G AK
 1 2 1 1 1
 7 50 780 G
 A
@@ -190,8 +188,8 @@ broom~
 a broom~
 A stout straw broom lies on the floor.~
 wood~
-weapon [] [take wield]
-staff 2 3 pound [twohands]
+weapon 0 AN
+staff 2 3 pound F
 4 30 270 W
 A
 18 -1
@@ -206,7 +204,7 @@ meat steak~
 a juicy steak~
 A juicy steak sits on a plate here.~
 meat~
-food [] [take]
+food 0 A
 25 25 0 0 0
 0 20 0 P
 #6645
@@ -214,7 +212,7 @@ steak rotten~
 a rotten steak~
 A dry steak lies on the floor.~
 meat~
-food [] [take]
+food 0 A
 4 4 0 1 0
 0 20 0 W
 #6646
@@ -222,7 +220,7 @@ potion amber~
 an amber potion~
 An amber potion sits in a corner.~
 glass~
-potion [] [take]
+potion 0 A
 5 'cure light' 'armor' '' ''
 0 10 150 G
 E
@@ -235,8 +233,8 @@ gun toy~
 a toy gun~
 A toy gun with a sharp bayonet lies here.~
 wood~
-weapon [] [take wield]
-staff 2 3 stab [twohands]
+weapon 0 AN
+staff 2 3 stab F
 4 20 300 G
 A
 17 -1
@@ -253,12 +251,11 @@ The Dwarven Drop Off~
 This is where the dwarven mommies and daddies come to drop off their
 annoying little brats.  You have the urge to leave.  There is a sign here.
 ~
-0 [no_mob indoors] 0
+0 CD 0
 D0
 ~
 ~
 0 -1 6500
-P daycare-north-1~
 D2
 You see a large room full of noisy brats.
 ~
@@ -274,7 +271,7 @@ Day Care Center~
 You are in the north-east corner of the main part of the center.  Toys and
 toddlers are all over the room.  There is a kitchen to the east.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see the drop off.
 ~
@@ -301,7 +298,7 @@ Day Care Center~
 You are in the north-west corner of the main part of the center.  Toys and
 toddlers are all over the room.  There is a bathroom to the west.
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see a large room full of noisy brats.
 ~
@@ -323,7 +320,7 @@ Day Care Center~
 You are in the south-east corner of the main part of the center.  Toys and
 toddlers are all over the room.  There is a playground to the east.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see a large room full of noisy brats.
 ~
@@ -345,7 +342,7 @@ Day Care Center~
 You are in the south-west corner of the main part of the center.  Toys and
 toddlers are all over the room.  There is a staircase to the west.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see a large room full of noisy brats.
 ~
@@ -367,7 +364,7 @@ The Messy Bathroom~
 You hold your nose as you realize you have made the worst mistake of your
 life.  The air is rancid and the walls are stained.
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see a large room full of noisy brats.
 ~
@@ -379,7 +376,7 @@ The Staircase~
 You stand on top of a staircase leading down, and wonder what mystery could
 lie down under.  Beware!
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see a large room full of noisy brats.
 ~
@@ -395,7 +392,7 @@ S
 The Playground~
 You are in the north-west corner of the playground.
 ~
-0 [] 2
+0 0 2
 D1
 You see the playground.
 ~
@@ -411,7 +408,7 @@ S
 The Playground~
 You are in the north-east corner of the playground.
 ~
-0 [] 2
+0 0 2
 D2
 You see the playground.
 ~
@@ -427,7 +424,7 @@ S
 The Playground~
 You are in the south-west corner of the playground.
 ~
-0 [] 2
+0 0 2
 D0
 You see the playground.
 ~
@@ -448,7 +445,7 @@ S
 The Playground~
 You are in the south-east corner of the playground.
 ~
-0 [] 2
+0 0 2
 D0
 You see the playground.
 ~
@@ -465,7 +462,7 @@ Entrance to the Mini-Maze~
 You stand in the entrance to a small, but confusing maze.  You really hope
 that you don't get lost.
 ~
-0 [dark no_mob indoors] 2
+0 ACD 2
 D1
 ~
 ~
@@ -480,7 +477,7 @@ S
 Mini-Maze~
 You are in a small passage that looks just like every other one.
 ~
-0 [dark indoors] 2
+0 AD 2
 D1
 ~
 ~
@@ -498,7 +495,7 @@ S
 Mini-Maze~
 You are in a small passage that looks just like every other one.
 ~
-0 [dark indoors] 2
+0 AD 2
 D2
 ~
 ~
@@ -512,7 +509,7 @@ S
 Mini-Maze~
 You are in a small passage that looks just like every other one.
 ~
-0 [dark indoors] 2
+0 AD 2
 D0
 ~
 ~
@@ -526,7 +523,7 @@ S
 Mini-Maze~
 You are in a small passage that looks just like every other one.
 ~
-0 [dark indoors] 2
+0 AD 2
 D0
 ~
 ~
@@ -545,7 +542,7 @@ End of the Mini-Maze~
 You stand at the end of your journey.  There is a big sign here and you had
 better read it!
 ~
-0 [dark indoors] 2
+0 AD 2
 D0
 ~
 ~
@@ -565,7 +562,7 @@ Messy Kitchen~
 You stand in the kitchen and eating area of the day care center.  Pots and
 pans are everywhere, while the toddlers continue to create chaos.
 ~
-0 [indoors] 0
+0 D 0
 D3
 You see a large room full of noisy brats.
 ~
@@ -577,7 +574,7 @@ The End?~
 You have reached the final lair.  It is dominated by a huge five headed
 dragon (actually an overgrown brat with a Halloween mask).
 ~
-0 [dark indoors] 2
+0 AD 2
 D0
 ~
 ~
@@ -586,68 +583,65 @@ S
 #0
 
 #RESETS
-M 0  6600   7  6602  1 * load the dwarven youth
-E 1  6600  18    16    * A toy axe is loaded wielded of the dwarven youth
-M 0  6601   2  6602  1 * load a teddy bear
-M 0  6606   2  6602  1 * load the nanny
-G 1  6646  20          * An amber potion is given to the nanny
-G 1  6644  20          * A juicy steak is given to the nanny
-E 1  6621  20    12    * A linen robe is loaded about the body of the nanny
-M 0  6600   7  6603  1 * load the dwarven youth
-E 1  6600  18    16    * A toy axe is loaded wielded of the dwarven youth
-M 0  6600   7  6604  1 * load the dwarven youth
-E 1  6600  18    16    * A toy axe is loaded wielded of the dwarven youth
-M 0  6602   2  6604  1 * load a raggedy anne doll
-M 0  6606   2  6604  1 * load the nanny
-G 1  6646  20          * An amber potion is given to the nanny
-E 1  6622  20    16    * A broom is loaded wielded of the nanny
-M 0  6600   7  6605  1 * load the dwarven youth
-E 1  6600  18    16    * A toy axe is loaded wielded of the dwarven youth
-M 0  6602   2  6605  1 * load a raggedy anne doll
-G 1  6645  20          * A rotten steak is given to a raggedy anne doll
-M 0  6605   3  6605  1 * load an old doll
-E 1  6601  20     1    * A pink ice ring is loaded on the left finger of an old doll
-M 0  6605   3  6606  1 * load an old doll
-M 0  6601   2  6606  1 * load a teddy bear
-M 0  6600   7  6608  1 * load the dwarven youth
-E 1  6600  18    16    * A toy axe is loaded wielded of the dwarven youth
-M 0  6603   4  6608  1 * load a toy soldier
-E 1  6647  -1    16    * A toy gun is loaded wielded of a toy soldier
-M 0  6600   7  6609  1 * load the dwarven youth
-E 1  6600  18    16    * A toy axe is loaded wielded of the dwarven youth
-M 0  6604   2  6609  1 * load the ugly bear
-M 0  6603   3  6609  1 * load a toy soldier
-E 1  6647  10    16    * A toy gun is loaded wielded of a toy soldier
-M 0  6603   4  6609  1 * load a toy soldier
-E 1  6647  -1    16    * A toy gun is loaded wielded of a toy soldier
-M 0  6600   7  6610  1 * load the dwarven youth
-E 1  6600  18    16    * A toy axe is loaded wielded of the dwarven youth
-M 0  6603   4  6610  1 * load a toy soldier
-E 1  6647  -1    16    * A toy gun is loaded wielded of a toy soldier
-M 0  6605   3  6610  1 * load an old doll
-M 0  6604   2  6611  1 * load the ugly bear
-M 0  6603   4  6611  1 * load a toy soldier
-E 1  6647  -1    16    * A toy gun is loaded wielded of a toy soldier
-R 0  6613   4          * randomize Mini-Maze
-R 0  6614   4          * randomize Mini-Maze
-R 0  6615   4          * randomize Mini-Maze
-R 0  6616   4          * randomize Mini-Maze
-M 0  6607   1  6624  1 * load the armed guard
-E 1  3023  -1    16    * A club is loaded wielded of the armed guard
-M 0  6608   1  6631  1 * load the spoiled brat
+R 0 6613   4     	* Mini-Maze
+R 0 6614   4     	* Mini-Maze
+R 0 6615   4     	* Mini-Maze
+R 0 6616   4     	* Mini-Maze
+M 0 6607   1 6624  1	* the armed guard
+E 1 3023  -1   16	*   a club
+M 0 6608   1 6631  1	* the spoiled brat
+M 0 6600   7 6602  1	* the dwarven youth
+E 1 6600  18   16	*   a toy axe
+M 0 6601   2 6602  1	* a teddy bear
+M 0 6606   2 6602  1	* the nanny
+G 1 6646  20     	*   an amber potion
+G 1 6644  20     	*   a juicy steak
+E 1 6621  20   12	*   a linen robe
+M 0 6600   7 6603  1	* the dwarven youth
+E 1 6600  18   16	*   a toy axe
+M 0 6600   7 6604  1	* the dwarven youth
+E 1 6600  18   16	*   a toy axe
+M 0 6602   2 6604  1	* a raggedy anne doll
+M 0 6606   2 6604  1	* the nanny
+G 1 6646  20     	*   an amber potion
+E 1 6622  20   16	*   a broom
+M 0 6600   7 6605  1	* the dwarven youth
+E 1 6600  18   16	*   a toy axe
+M 0 6602   2 6605  1	* a raggedy anne doll
+G 1 6645  20     	*   a rotten steak
+M 0 6605   3 6605  1	* an old doll
+E 1 6601  20    1	*   a pink ice ring
+M 0 6600   7 6608  1	* the dwarven youth
+E 1 6600  18   16	*   a toy axe
+M 0 6603   4 6608  1	* a toy soldier
+E 1 6647  -1   16	*   a toy gun
+M 0 6600   7 6609  1	* the dwarven youth
+E 1 6600  18   16	*   a toy axe
+M 0 6604   2 6609  1	* the ugly bear
+M 0 6603   3 6609  1	* a toy soldier
+E 1 6647  10   16	*   a toy gun
+M 0 6603   4 6609  1	* a toy soldier
+E 1 6647  -1   16	*   a toy gun
+M 0 6600   7 6610  1	* the dwarven youth
+E 1 6600  18   16	*   a toy axe
+M 0 6603   4 6610  1	* a toy soldier
+E 1 6647  -1   16	*   a toy gun
+M 0 6605   3 6610  1	* an old doll
+M 0 6604   2 6611  1	* the ugly bear
+M 0 6603   4 6611  1	* a toy soldier
+E 1 6647  -1   16	*   a toy gun
+M 0 6605   3 6606  1	* an old doll
+M 0 6601   2 6606  1	* a teddy bear
 S
 
 #SHOPS
 0
 
 #SPECIALS
-M  6600 spec_thief           * load to: the dwarven youth
-M  6604 spec_thief           * load to: the ugly bear
-M  6606 spec_cast_cleric     * load to: the nanny
-M  6608 spec_thief           * load to: the spoiled brat
+M 6600 spec_thief          	* the dwarven youth
+M 6604 spec_thief          	* the ugly bear
+M 6606 spec_cast_cleric    	* the nanny
+M 6608 spec_thief          	* the spoiled brat
 S
-
-#MOBPROGS
-#0
 
 #$

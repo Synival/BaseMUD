@@ -1,14 +1,12 @@
-#AREADATA
-Name Troll Den~
-Builders None~
-VNUMs 2800 2899
-Credits {10 15} Merc    Troll Den~
-Security 9
-End
+#AREA
+trollden.are~
+Troll Den~
+{10 15} Merc    Troll Den~
+2800 2899
 
 #MOBILES
 #2800
-guardian beast~
+oldstyle guardian beast~
 the guardian beast~
 A guardian beast stares at you and snarls in rage.
 ~
@@ -17,14 +15,14 @@ count at least 50 teeth on this monster.  You can't tell whether it is blood or
 saliva dripping from the beast's jaw.  The guardian beast snarls again.
 ~
 human~
-[sentinel scavenger aggressive stay_area] [detect_invis sneak hide] -200 0
+ABCFG DPQ -200 0
 7 0 2d6+85 3d9+100 1d8+1 none
 4 4 4 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 0
-[] [] medium generic
+0 0 medium 0
 #2801
-young troll~
+oldstyle young troll~
 the young troll~
 A young troll is sitting down, chewing on a bone.
 ~
@@ -33,14 +31,14 @@ Your eyes lock with his.  He smiles, puts down his bone, and reaches for one
 of yours!!
 ~
 human~
-[scavenger aggressive stay_area] [sneak] -500 0
+ACFG P -500 0
 6 0 2d7+71 3d9+100 1d7+1 none
 4 4 4 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 sit stand male 25
-[] [] medium generic
+0 0 medium 0
 #2802
-medium troll~
+oldstyle medium troll~
 the medium troll~
 A troll is grooming his pet, a guardian beast.
 ~
@@ -49,14 +47,14 @@ He is busy licking the ticks off of his beast.
 His eyes dart toward you, as he realizes you are one third his size.
 ~
 human~
-[sentinel scavenger aggressive stay_area] [sneak] -500 0
+ABCFG P -500 0
 8 0 2d7+96 4d9+100 1d7+2 none
 3 3 3 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 75
-[] [] medium generic
+0 0 medium 0
 #2803
-baby troll~
+oldstyle baby troll~
 a baby troll~
 A baby troll is playing Doctor with a cadaver.
 ~
@@ -65,14 +63,14 @@ He is trying to stuff an arm in a hole in the wall.
 He notices you and gargles "WANNA JOIN?".
 ~
 human~
-[sentinel scavenger aggressive] [sneak] -100 0
+ABCF P -100 0
 5 0 2d6+60 2d9+100 1d6+1 none
 5 5 5 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 sit stand male 12
-[] [] medium generic
+0 0 medium 0
 #2804
-giant troll~
+oldstyle giant troll~
 the giant troll~
 A giant troll is lying on a pile of carnage, pleasing his mistress.
 ~
@@ -81,14 +79,14 @@ He gasps as he notices your intrusion.
 You gasp as you realize you have intruded upon his acts of passion!
 ~
 giant~
-[sentinel scavenger aggressive stay_area] [sneak] -1000 0
+ABCFG P -1000 0
 13 0 2d10+170 6d9+100 2d5+3 none
 -1 -1 -1 8
-[disarm dodge trip assist_race] [] [] []
+EFNR 0 0 0
 rest stand male 150
-[] [] medium generic
+0 0 medium 0
 #2805
-large troll female~
+oldstyle large troll female~
 the large female troll~
 A large female troll is lying on the pile of carnage, blissfully writhing.
 ~
@@ -97,14 +95,14 @@ She moans in passion but gasps as she notices you.
 Her smiles turn into snarls as she screams at you!
 ~
 human~
-[sentinel scavenger aggressive stay_area] [sneak] -800 0
+ABCFG P -800 0
 11 0 2d8+134 5d9+100 1d10+2 none
 1 1 1 8
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 rest stand female 125
-[] [] medium generic
+0 0 medium 0
 #2806
-fat worm~
+oldstyle fat worm~
 a fat worm~
 A fat worm scurries around, looking for food.
 ~
@@ -112,14 +110,14 @@ It is thick and long.  You can't find a head on this thing.
 It moves quickly, from corpse to corpse.
 ~
 human~
-[scavenger aggressive wimpy] [sneak hide] 0 0
+ACFH PQ 0 0
 3 0 2d6+35 1d9+100 1d6+0 none
 7 7 7 10
-[disarm dodge trip assist_vnum] [] [] []
-stand stand neutral 0
-[] [] medium generic
+EFNU 0 0 0
+stand stand none 0
+0 0 medium 0
 #2807
-roving beast~
+oldstyle roving beast~
 the roving beast~
 A roving beast is searching for prey.
 ~
@@ -129,14 +127,14 @@ beast.  You can't tell whether it is blood or saliva dripping from the beast's
 jaw.  The roving beast snarls at you.
 ~
 human~
-[sentinel scavenger aggressive stay_area] [detect_invis sneak] -200 0
+ABCFG DP -200 0
 7 0 2d6+85 3d9+100 1d8+1 none
 4 4 4 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 0
-[] [] medium generic
+0 0 medium 0
 #2808
-medium troll~
+oldstyle medium troll~
 the medium troll~
 A troll is wandering around, attending to his duties.
 ~
@@ -145,12 +143,12 @@ He notices you, and is satisfied to find what he is looking for.
 He advances toward you.
 ~
 human~
-[scavenger aggressive stay_area] [sneak] -500 0
+ACFG P -500 0
 8 0 2d7+96 4d9+100 1d7+2 none
 3 3 3 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 75
-[] [] medium generic
+0 0 medium 0
 #0
 
 #OBJECTS
@@ -158,24 +156,24 @@ stand stand male 75
 corpse cadaver~
 the cadaver-toy~
 A half eaten corpse is laying here~
-generic~
-container [] [take]
-30 [] 0 30 100
+oldstyle~
+container 0 A
+30 0 0 30 100
 0 500 1 P
 #2801
 pile rotting heap bed~
 the heap of carnage~
 There is a bed made of carnage here.~
-generic~
-container [] []
-30 [] 0 30 100
+oldstyle~
+container 0 0
+30 0 0 30 100
 0 0 0 P
 #2802
 trollskin troll skin~
 the troll skin~
 The filthy hide of a beast is laying here.~
-generic~
-armor [] [take about]
+oldstyle~
+armor 0 AK
 5 5 5 0 0
 12 200 1380 P
 A
@@ -189,8 +187,8 @@ and feels bad.
 ring opal~
 an opal ring~
 A ring of black opal lies here gathering dust.~
-generic~
-jewelry [magic] [take finger]
+oldstyle~
+jewelry G AB
 0 0 0 0 0
 20 10 1150 P
 A
@@ -203,8 +201,8 @@ It is a full circle of opal, smooth and simple.
 leather belt~
 a leather belt~
 An old leather belt is left on the floor.~
-generic~
-armor [magic] [take waist]
+oldstyle~
+armor G AL
 6 6 6 0 0
 15 50 1050 P
 E
@@ -215,9 +213,9 @@ This old, smelly belt looks like it is barely better than rotting cloth.
 bone cracked~
 a cracked bone~
 A cracked piece of bone lies here.~
-generic~
-weapon [] [take wield]
-mace 3 3 pound []
+oldstyle~
+weapon 0 AN
+mace 3 3 pound 0
 6 30 350 P
 A
 18 -1
@@ -236,18 +234,17 @@ Wastedump~
 This room is filled with bone shards and fragments.  Something (or things)
 very big lives here.  A small plaque is on the wall.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 You reach civilization again.
 ~
 ~
-0 -1 6124
-P trollden-north-1~
+0 0 6124
 D2
 You find the stench is stronger inside.
 ~
 ~
-0 -1 2803
+0 0 2803
 E
 plaque~
 This zone (trollden) is created by MERC for any MERC Mud.
@@ -261,13 +258,13 @@ insects crawling up them.  The resident is definitely uncivilized.  Half-eaten
 and rotting body parts scatter the floor, each having its own colony of flies,
 worms, and maggots.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 You welcome the fresh breeze coming from the east, but wrinkle your nose when
 the stench bears down on you once more.
 ~
 ~
-0 -1 2803
+0 0 2803
 E
 Half-eaten body rotting corpse~
 YUCK!  You find worms crawling in and out this poor unfortunate former human.
@@ -278,30 +275,30 @@ Troll's Living Room~
 This small cave opens to the north, south, east, and west.  You are
 overcome by the stench and consider turning around.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 There is a trail of bone shards and fragments leading north.
 ~
 ~
-0 -1 2801
+0 0 2801
 D1
 Good God!  You spy corpses all over the floor in there.  It looks like a
 virtual graveyard in there.
 ~
 ~
-0 -1 2804
+0 0 2804
 D2
 Whoa!  You reel back from the stench.  You believe you have found the source
 of this bad smell.
 ~
 ~
-0 -1 2805
+0 0 2805
 D3
 You puke as you watch worms crawl between this room and the room west of here
 as they bore new holes into a corpse laying on the far wall of the west room.
 ~
 ~
-0 -1 2802
+0 0 2802
 S
 #2804
 The Playpen~
@@ -309,13 +306,13 @@ The walls are covered with blood (and body parts!?!?).  Plastered on the far
 wall you see what looks like a human arm.  A half-eaten body lies here with
 its chest ripped out.  The predator seems disinterested in it.
 ~
-0 [dark indoors] 0
+0 AD 0
 D3
 You welcome the fresh breeze coming from the west, but wrinkle your nose when
 the stench bears down on you once more.
 ~
 ~
-0 -1 2803
+0 0 2803
 E
 arm rotting~
 This reminds you of what a baby would do to its formula during dinnertime,
@@ -330,41 +327,41 @@ orcs, (and humans?) strewn across the floor.  There is a larger, more
 prominent pile of rotten parts over in a corner.  It seems to have been
 flattened by something.
 ~
-0 [dark no_mob indoors] 5
+0 ACD 5
 D0
 You welcome the fresh breeze coming from the north, but wrinkle your nose when
 the stench bears down on you once more.
 ~
 ~
-0 -1 2803
+0 0 2803
 S
 #0
 
 #RESETS
-M 0  2800   2  2801  1 * load the guardian beast
-O 0  2805  10  2801    * A cracked bone loaded to Wastedump
-M 0  2801   2  2802  2 * load the young troll
-M 0  2801   2  2802  2 * load the young troll
-M 0  2806  10  2802  4 * load a fat worm
-M 0  2806  10  2802  4 * load a fat worm
-M 0  2807   1  2802  1 * load the roving beast
-M 0  2802   1  2803  1 * load the medium troll
-M 0  2800   2  2803  1 * load the guardian beast
-M 0  2806  10  2803  4 * load a fat worm
-M 0  2806  10  2803  4 * load a fat worm
-M 0  2808   1  2803  1 * load the medium troll
-O 0  2800  10  2804    * The cadaver-toy loaded to The Playpen
-P 1  2804  -1  2800  1 A leather belt * put inside a leather belt
-M 0  2803   4  2804  4 * load a baby troll
-M 0  2803   4  2804  4 * load a baby troll
-M 0  2803   4  2804  4 * load a baby troll
-M 0  2803   4  2804  4 * load a baby troll
-M 0  2806  10  2804  2 * load a fat worm
-M 0  2804   1  2805  1 * load the giant troll
-E 1  2802   5    12    * The troll skin is loaded about the body of the giant troll
-M 0  2805   1  2805  1 * load the large female troll
-O 0  2801  10  2805    * The heap of carnage loaded to Troll's Bedroom
-P 1  2803   5  2801  1 An opal ring * put inside an opal ring
+M 0 2800   2 2801  1	* the guardian beast
+O 0 2805  10 2801	* a cracked bone
+M 0 2801   2 2802  2	* the young troll
+M 0 2801   2 2802  2	* the young troll
+M 0 2802   1 2803  1	* the medium troll
+O 0 2800  10 2804	* the cadaver-toy
+P 1 2804  -1 2800  1	*   a leather belt
+M 0 2800   2 2803  1	* the guardian beast
+M 0 2803   4 2804  4	* a baby troll
+M 0 2803   4 2804  4	* a baby troll
+M 0 2803   4 2804  4	* a baby troll
+M 0 2803   4 2804  4	* a baby troll
+M 0 2804   1 2805  1	* the giant troll
+E 1 2802   5   12	*   the troll skin
+M 0 2805   1 2805  1	* the large female troll
+O 0 2801  10 2805	* the heap of carnage
+P 1 2803   5 2801  1	*   an opal ring
+M 0 2806  10 2803  4	* a fat worm
+M 0 2806  10 2803  4	* a fat worm
+M 0 2806  10 2802  4	* a fat worm
+M 0 2806  10 2802  4	* a fat worm
+M 0 2806  10 2804  2	* a fat worm
+M 0 2807   1 2802  1	* the roving beast
+M 0 2808   1 2803  1	* the medium troll
 S
 
 #SHOPS
@@ -372,8 +369,5 @@ S
 
 #SPECIALS
 S
-
-#MOBPROGS
-#0
 
 #$

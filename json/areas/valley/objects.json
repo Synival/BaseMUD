@@ -1,0 +1,480 @@
+[
+  {"object": {
+    "area": "valley",
+    "anum": 0,
+    "name": "chainmail elven chain mail",
+    "short_descr": "elven chainmail",
+    "description": "A shiny metallic shirt is on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 4,
+      "vs_magic": 2
+    },
+    "level": 5,
+    "weight": 30,
+    "cost": 1080,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 1,
+    "name": "boots elven",
+    "short_descr": "elven boots",
+    "description": "Some soft boots are on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 3,
+      "vs_slash": 3
+    },
+    "level": 7,
+    "weight": 30,
+    "cost": 390,
+    "wear_flags": "take feet",
+    "affects": [{
+      "level": 7,
+      "apply": "moves",
+      "modifier": 5
+    }]
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 2,
+    "name": "longsword elven sword long",
+    "short_descr": "an elven longsword",
+    "description": "A shiny blade is on the floor.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 3,
+      "dice_size": 3,
+      "attack_type": "slash"
+    },
+    "level": 7,
+    "weight": 30,
+    "cost": 670,
+    "extra_flags": "magic",
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 7,
+      "apply": "hit roll",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 3,
+    "name": "cloak brown",
+    "short_descr": "a brown cloak",
+    "description": "A pile of brown cloth is on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 3,
+      "vs_slash": 3
+    },
+    "level": 7,
+    "weight": 30,
+    "cost": 900,
+    "extra_flags": "magic",
+    "wear_flags": "take neck",
+    "affects": [{
+      "level": 7,
+      "apply": "dexterity",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 4,
+    "name": "key",
+    "short_descr": "a key",
+    "description": "A shiny key is on the floor.",
+    "item_type": "key",
+    "values": {"value0": 7846},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 5,
+    "name": "key",
+    "short_descr": "a key",
+    "description": "A shiny key is on the floor.",
+    "item_type": "key",
+    "values": {"value0": 7880},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 6,
+    "name": "ring gold",
+    "short_descr": "a gold ring",
+    "description": "A shiny ring is on the floor.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 5,
+    "weight": 10,
+    "cost": 110,
+    "extra_flags": "magic",
+    "wear_flags": "take finger",
+    "affects": [{
+      "level": 5,
+      "apply": "mana",
+      "modifier": 10
+    }]
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 7,
+    "name": "quarterstaff staff two-handed",
+    "short_descr": "a quarterstaff",
+    "description": "A quarterstaff is on the floor.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "staff",
+      "dice_num": 4,
+      "dice_size": 5,
+      "attack_type": "pound",
+      "flags": "twohands"
+    },
+    "level": 21,
+    "weight": 50,
+    "cost": 670,
+    "extra_flags": "magic",
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 21,
+      "apply": "damage roll",
+      "modifier": 2
+    }]
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 8,
+    "name": "potion",
+    "short_descr": "a potion",
+    "description": "A potion is on the floor.",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "armor",
+      "skill2": "invisibility"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 200,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 9,
+    "name": "potion",
+    "short_descr": "a potion",
+    "description": "A potion is on the floor.",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "energy drain"
+    },
+    "level": 8,
+    "weight": 10,
+    "cost": 580,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 10,
+    "name": "potion",
+    "short_descr": "a potion",
+    "description": "A potion is on the floor.",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "detect hidden",
+      "skill2": "detect magic"
+    },
+    "level": 4,
+    "weight": 10,
+    "cost": 290,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 11,
+    "name": "potion",
+    "short_descr": "a potion",
+    "description": "A potion is on the floor.",
+    "item_type": "potion",
+    "values": {
+      "level": 50,
+      "skill1": "dispel magic",
+      "skill2": "dispel magic",
+      "skill3": "dispel magic"
+    },
+    "level": 6,
+    "weight": 10,
+    "cost": 1380,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 12,
+    "name": "potion",
+    "short_descr": "a potion",
+    "description": "A potion is on the floor.",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "refresh",
+      "skill2": "protection evil"
+    },
+    "level": 2,
+    "weight": 10,
+    "cost": 240,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 13,
+    "name": "potion",
+    "short_descr": "a potion",
+    "description": "A potion is on the floor.",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "sleep"
+    },
+    "level": 1,
+    "weight": 10,
+    "cost": 250,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 14,
+    "name": "potion",
+    "short_descr": "a potion",
+    "description": "A potion is on the floor.",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "bless"
+    },
+    "level": 1,
+    "weight": 10,
+    "cost": 220,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 15,
+    "name": "potion",
+    "short_descr": "a potion",
+    "description": "A potion is on the floor.",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "cure critical"
+    },
+    "level": 5,
+    "weight": 10,
+    "cost": 330,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 16,
+    "name": "potion",
+    "short_descr": "a potion",
+    "description": "A potion is on the floor.",
+    "item_type": "potion",
+    "values": {
+      "level": 14,
+      "skill1": "farsight"
+    },
+    "level": 6,
+    "weight": 10,
+    "cost": 420,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 17,
+    "name": "scroll",
+    "short_descr": "a scroll",
+    "description": "A scroll is on the floor.",
+    "item_type": "scroll",
+    "values": {
+      "level": 10,
+      "skill1": "cure critical"
+    },
+    "level": 5,
+    "weight": 10,
+    "cost": 660,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 18,
+    "name": "scroll",
+    "short_descr": "a scroll",
+    "description": "A scroll is on the floor.",
+    "item_type": "scroll",
+    "values": {
+      "level": 16,
+      "skill1": "enchant armor"
+    },
+    "level": 8,
+    "weight": 10,
+    "cost": 1090,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 19,
+    "name": "scroll",
+    "short_descr": "a scroll",
+    "description": "A scroll is on the floor.",
+    "item_type": "scroll",
+    "values": {
+      "level": 10,
+      "skill1": "detect evil"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 400,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 20,
+    "name": "scroll",
+    "short_descr": "a scroll",
+    "description": "A scroll is on the floor.",
+    "item_type": "scroll",
+    "values": {
+      "level": 10,
+      "skill1": "create water"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 400,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 21,
+    "name": "scroll",
+    "short_descr": "a scroll",
+    "description": "A scroll is on the floor.",
+    "item_type": "scroll",
+    "values": {
+      "level": 10,
+      "skill1": "magic missile"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 400,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 22,
+    "name": "scroll",
+    "short_descr": "a scroll",
+    "description": "A scroll is on the floor.",
+    "item_type": "scroll",
+    "values": {
+      "level": 10,
+      "skill1": "chill touch"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 400,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 23,
+    "name": "scroll",
+    "short_descr": "a scroll",
+    "description": "A scroll is on the floor.",
+    "item_type": "scroll",
+    "values": {
+      "level": 10,
+      "skill1": "heal"
+    },
+    "level": 11,
+    "weight": 10,
+    "cost": 1360,
+    "extra_flags": "magic",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 24,
+    "name": "rod light",
+    "short_descr": "the Rod of Neutrality",
+    "description": "A dull iron shaft is on the floor.",
+    "item_type": "light",
+    "values": {"duration": -1},
+    "level": 20,
+    "weight": 10,
+    "cost": 1150,
+    "extra_flags": "magic antigood antievil",
+    "wear_flags": "take",
+    "affects": [{
+      "level": 20,
+      "apply": "damage roll",
+      "modifier": 2
+    }]
+  }},
+  {"object": {
+    "area": "valley",
+    "anum": 25,
+    "name": "quarterstaff staff two-handed",
+    "short_descr": "a quarterstaff",
+    "description": "A quarterstaff is on the floor.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "staff",
+      "dice_num": 3,
+      "dice_size": 5,
+      "attack_type": "pound",
+      "flags": "twohands"
+    },
+    "level": 14,
+    "weight": 50,
+    "cost": 310,
+    "extra_flags": "magic",
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 14,
+      "apply": "damage roll",
+      "modifier": 1
+    }]
+  }}
+]

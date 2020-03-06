@@ -1,0 +1,201 @@
+[
+  {"mobile": {
+    "area": "dylan",
+    "anum": 1,
+    "name": "harpy",
+    "short_descr": "the screaming, filthy harpy",
+    "long_descr": "The screaming, filthy harpy claws madly at your face!",
+    "description": "The harpy looks at you with blood in her eyes.  Her entire body is
+                   |caked in filth and grime and she stinks to high heaven.  Her razor-
+                   |sharp talons flex as she considers you for her dinner.",
+    "race": "human",
+    "alignment": -500,
+    "level": 20,
+    "hitroll": 0,
+    "hit_dice": "3d9+333",
+    "mana_dice": "10d9+100",
+    "damage_dice": "2d8+5",
+    "ac": {
+      "pierce": -40,
+      "bash": -40,
+      "slash": -40,
+      "magic": 70
+    },
+    "sex": "female",
+    "wealth": 1525,
+    "size": "medium",
+    "mob_flags": "scavenger aggressive",
+    "affected_by": "detect_invis detect_hidden sneak",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "dylan",
+    "anum": 2,
+    "name": "harpy leader",
+    "short_descr": "the screaming harpy leader",
+    "long_descr": "The screaming harpy leader tries to scratch your eyes out!",
+    "description": "The harpy leader looks at you and grins menacingly.  She stretches
+                   |her wings and you see insects crawling around them.  Her hair is
+                   |matted and greasy and you are sickened by the stench that pervades
+                   |her presence.",
+    "race": "human",
+    "alignment": -750,
+    "level": 23,
+    "hitroll": 0,
+    "hit_dice": "5d10+450",
+    "mana_dice": "11d9+100",
+    "damage_dice": "3d6+6",
+    "ac": {
+      "pierce": -60,
+      "bash": -60,
+      "slash": -60,
+      "magic": 60
+    },
+    "sex": "female",
+    "wealth": 2125,
+    "size": "medium",
+    "mob_flags": "sentinel scavenger aggressive",
+    "affected_by": "detect_invis detect_hidden sneak",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "dylan",
+    "anum": 3,
+    "name": "air elemental",
+    "short_descr": "the ghostly air elemental",
+    "long_descr": "The ghostly air elemental.",
+    "description": "The air elemental is hard to see.  You know that it is there
+                   |because objects behind it seem to waver and are slightly blurred.",
+    "race": "human",
+    "alignment": 0,
+    "level": 25,
+    "hitroll": 0,
+    "hit_dice": "5d10+550",
+    "mana_dice": "12d9+100",
+    "damage_dice": "2d10+7",
+    "ac": {
+      "pierce": -70,
+      "bash": -70,
+      "slash": -70,
+      "magic": 60
+    },
+    "sex": "neutral",
+    "wealth": 50,
+    "size": "medium",
+    "mob_flags": "scavenger aggressive",
+    "affected_by": "detect_invis detect_hidden sneak hide",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "dylan",
+    "anum": 4,
+    "name": "mysterious efreeti",
+    "short_descr": "the mysterious efreeti",
+    "long_descr": "The mysterious efreeti grins in delight at its new prey.",
+    "description": "The efreeti towers menacingly over you.  It is dressed in the
+                   |finest ghostly silks and a headdress with an elaborate brooch.",
+    "race": "human",
+    "alignment": -100,
+    "level": 27,
+    "hitroll": 0,
+    "hit_dice": "5d10+650",
+    "mana_dice": "13d9+100",
+    "damage_dice": "5d4+7",
+    "ac": {
+      "pierce": -80,
+      "bash": -80,
+      "slash": -80,
+      "magic": 60
+    },
+    "sex": "neutral",
+    "wealth": 2500,
+    "size": "medium",
+    "mob_flags": "scavenger",
+    "affected_by": "detect_invis sanctuary sneak",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "dylan",
+    "anum": 5,
+    "name": "roc",
+    "short_descr": "the gigantic roc",
+    "long_descr": "The gigantic roc.",
+    "description": "This bird has a wingspan that stretches several spear-lengths.  It
+                   |moves surprisingly fast for something of its size.",
+    "race": "human",
+    "alignment": 50,
+    "level": 24,
+    "hitroll": 0,
+    "hit_dice": "5d10+500",
+    "mana_dice": "12d9+100",
+    "damage_dice": "2d10+6",
+    "ac": {
+      "pierce": -60,
+      "bash": -60,
+      "slash": -60,
+      "magic": 60
+    },
+    "sex": "female",
+    "wealth": 0,
+    "size": "medium",
+    "mob_flags": "stay_area",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "dylan",
+    "anum": 6,
+    "name": "roc",
+    "short_descr": "the gigantic roc",
+    "long_descr": "The gigantic roc stares menacingly at you.",
+    "description": "This bird has a wingspan that stretches several spear-lengths.  It
+                   |moves surprisingly fast for something of its size.",
+    "race": "human",
+    "alignment": 50,
+    "level": 28,
+    "hitroll": 0,
+    "hit_dice": "6d12+703",
+    "mana_dice": "14d9+100",
+    "damage_dice": "5d4+8",
+    "ac": {
+      "pierce": -80,
+      "bash": -80,
+      "slash": -80,
+      "magic": 60
+    },
+    "sex": "male",
+    "wealth": 2000,
+    "size": "medium",
+    "mob_flags": "stay_area",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "dylan",
+    "anum": 7,
+    "name": "wicked witch",
+    "short_descr": "the ugly, wicked witch",
+    "long_descr": "The ugly, wicked witch cackles maniacally.",
+    "description": "The witch has jet black hair and sickly green skin.  She is covered
+                   |with warts and boils.  Her nails are long and sharp and look like
+                   |they would be quite painful.  Her eyes pierce your very soul.",
+    "race": "human",
+    "alignment": -600,
+    "level": 31,
+    "hitroll": 0,
+    "hit_dice": "6d12+928",
+    "mana_dice": "15d9+100",
+    "damage_dice": "4d6+9",
+    "ac": {
+      "pierce": -100,
+      "bash": -100,
+      "slash": -100,
+      "magic": 50
+    },
+    "sex": "female",
+    "wealth": 3000,
+    "size": "medium",
+    "mob_flags": "sentinel scavenger aggressive",
+    "affected_by": "detect_invis sanctuary",
+    "offense": "disarm dodge trip assist_vnum",
+    "spec_fun": "spec_cast_undead"
+  }}
+]

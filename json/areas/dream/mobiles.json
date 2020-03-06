@@ -1,0 +1,25 @@
+[{"mobile": {
+  "area": "dream",
+  "anum": 0,
+  "name": "keeper",
+  "short_descr": "the keeper",
+  "long_descr": "The keeper of the Morris equipment is here.",
+  "description": "Her job is to set the level for this equipment.",
+  "race": "human",
+  "alignment": 1000,
+  "level": 8,
+  "hitroll": 0,
+  "hit_dice": "2d7+96",
+  "mana_dice": "4d9+100",
+  "damage_dice": "1d7+2",
+  "ac": {
+    "pierce": 30,
+    "bash": 30,
+    "slash": 30,
+    "magic": 90
+  },
+  "sex": "female",
+  "wealth": 5,
+  "size": "medium",
+  "offense": "disarm dodge trip assist_vnum"
+}}]

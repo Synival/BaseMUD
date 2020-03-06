@@ -1,0 +1,267 @@
+[
+  {"mobile": {
+    "area": "trollden",
+    "anum": 0,
+    "name": "guardian beast",
+    "short_descr": "the guardian beast",
+    "long_descr": "A guardian beast stares at you and snarls in rage.",
+    "description": "Jet black fur covers this beast.  You stare at his two huge red eyes.  You can
+                   |count at least 50 teeth on this monster.  You can't tell whether it is blood or
+                   |saliva dripping from the beast's jaw.  The guardian beast snarls again.",
+    "race": "human",
+    "alignment": -200,
+    "level": 7,
+    "hitroll": 0,
+    "hit_dice": "2d6+85",
+    "mana_dice": "3d9+100",
+    "damage_dice": "1d8+1",
+    "ac": {
+      "pierce": 40,
+      "bash": 40,
+      "slash": 40,
+      "magic": 90
+    },
+    "sex": "male",
+    "wealth": 0,
+    "size": "medium",
+    "mob_flags": "sentinel scavenger aggressive stay_area",
+    "affected_by": "detect_invis sneak hide",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "trollden",
+    "anum": 1,
+    "name": "young troll",
+    "short_descr": "the young troll",
+    "long_descr": "A young troll is sitting down, chewing on a bone.",
+    "description": "He is a tall, wiry, furry humanoid.
+                   |Your eyes lock with his.  He smiles, puts down his bone, and reaches for one
+                   |of yours!!",
+    "race": "human",
+    "alignment": -500,
+    "level": 6,
+    "hitroll": 0,
+    "hit_dice": "2d7+71",
+    "mana_dice": "3d9+100",
+    "damage_dice": "1d7+1",
+    "ac": {
+      "pierce": 40,
+      "bash": 40,
+      "slash": 40,
+      "magic": 90
+    },
+    "start_pos": "sit",
+    "sex": "male",
+    "wealth": 25,
+    "size": "medium",
+    "mob_flags": "scavenger aggressive stay_area",
+    "affected_by": "sneak",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "trollden",
+    "anum": 2,
+    "name": "medium troll",
+    "short_descr": "the medium troll",
+    "long_descr": "A troll is grooming his pet, a guardian beast.",
+    "description": "He is a tall, lean, furry humanoid.
+                   |He is busy licking the ticks off of his beast.
+                   |His eyes dart toward you, as he realizes you are one third his size.",
+    "race": "human",
+    "alignment": -500,
+    "level": 8,
+    "hitroll": 0,
+    "hit_dice": "2d7+96",
+    "mana_dice": "4d9+100",
+    "damage_dice": "1d7+2",
+    "ac": {
+      "pierce": 30,
+      "bash": 30,
+      "slash": 30,
+      "magic": 90
+    },
+    "sex": "male",
+    "wealth": 75,
+    "size": "medium",
+    "mob_flags": "sentinel scavenger aggressive stay_area",
+    "affected_by": "sneak",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "trollden",
+    "anum": 3,
+    "name": "baby troll",
+    "short_descr": "a baby troll",
+    "long_descr": "A baby troll is playing Doctor with a cadaver.",
+    "description": "He is a large, chubby, furry humanoid.
+                   |He is trying to stuff an arm in a hole in the wall.
+                   |He notices you and gargles \"WANNA JOIN?\".",
+    "race": "human",
+    "alignment": -100,
+    "level": 5,
+    "hitroll": 0,
+    "hit_dice": "2d6+60",
+    "mana_dice": "2d9+100",
+    "damage_dice": "1d6+1",
+    "ac": {
+      "pierce": 50,
+      "bash": 50,
+      "slash": 50,
+      "magic": 90
+    },
+    "start_pos": "sit",
+    "sex": "male",
+    "wealth": 12,
+    "size": "medium",
+    "mob_flags": "sentinel scavenger aggressive",
+    "affected_by": "sneak",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "trollden",
+    "anum": 4,
+    "name": "giant troll",
+    "short_descr": "the giant troll",
+    "long_descr": "A giant troll is lying on a pile of carnage, pleasing his mistress.",
+    "description": "He is a gigantic, muscular, furry humanoid.
+                   |He gasps as he notices your intrusion.
+                   |You gasp as you realize you have intruded upon his acts of passion!",
+    "race": "giant",
+    "alignment": -1000,
+    "level": 13,
+    "hitroll": 0,
+    "hit_dice": "2d10+170",
+    "mana_dice": "6d9+100",
+    "damage_dice": "2d5+3",
+    "ac": {
+      "pierce": -10,
+      "bash": -10,
+      "slash": -10,
+      "magic": 80
+    },
+    "start_pos": "rest",
+    "sex": "male",
+    "wealth": 150,
+    "size": "medium",
+    "mob_flags": "sentinel scavenger aggressive stay_area",
+    "affected_by": "sneak",
+    "offense": "disarm dodge trip assist_race"
+  }},
+  {"mobile": {
+    "area": "trollden",
+    "anum": 5,
+    "name": "large troll female",
+    "short_descr": "the large female troll",
+    "long_descr": "A large female troll is lying on the pile of carnage, blissfully writhing.",
+    "description": "She is a huge, grotesque, furry humanoid.
+                   |She moans in passion but gasps as she notices you.
+                   |Her smiles turn into snarls as she screams at you!",
+    "race": "human",
+    "alignment": -800,
+    "level": 11,
+    "hitroll": 0,
+    "hit_dice": "2d8+134",
+    "mana_dice": "5d9+100",
+    "damage_dice": "1d10+2",
+    "ac": {
+      "pierce": 10,
+      "bash": 10,
+      "slash": 10,
+      "magic": 80
+    },
+    "start_pos": "rest",
+    "sex": "female",
+    "wealth": 125,
+    "size": "medium",
+    "mob_flags": "sentinel scavenger aggressive stay_area",
+    "affected_by": "sneak",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "trollden",
+    "anum": 6,
+    "name": "fat worm",
+    "short_descr": "a fat worm",
+    "long_descr": "A fat worm scurries around, looking for food.",
+    "description": "It is thick and long.  You can't find a head on this thing.
+                   |It moves quickly, from corpse to corpse.",
+    "race": "human",
+    "alignment": 0,
+    "level": 3,
+    "hitroll": 0,
+    "hit_dice": "2d6+35",
+    "mana_dice": "1d9+100",
+    "damage_dice": "1d6+0",
+    "ac": {
+      "pierce": 70,
+      "bash": 70,
+      "slash": 70,
+      "magic": 100
+    },
+    "sex": "neutral",
+    "wealth": 0,
+    "size": "medium",
+    "mob_flags": "scavenger aggressive wimpy",
+    "affected_by": "sneak hide",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "trollden",
+    "anum": 7,
+    "name": "roving beast",
+    "short_descr": "the roving beast",
+    "long_descr": "A roving beast is searching for prey.",
+    "description": "Jet black fur covers this beast.
+                   |You stare at his two huge red eyes.  You can count at least 50 teeth on this
+                   |beast.  You can't tell whether it is blood or saliva dripping from the beast's
+                   |jaw.  The roving beast snarls at you.",
+    "race": "human",
+    "alignment": -200,
+    "level": 7,
+    "hitroll": 0,
+    "hit_dice": "2d6+85",
+    "mana_dice": "3d9+100",
+    "damage_dice": "1d8+1",
+    "ac": {
+      "pierce": 40,
+      "bash": 40,
+      "slash": 40,
+      "magic": 90
+    },
+    "sex": "male",
+    "wealth": 0,
+    "size": "medium",
+    "mob_flags": "sentinel scavenger aggressive stay_area",
+    "affected_by": "detect_invis sneak",
+    "offense": "disarm dodge trip assist_vnum"
+  }},
+  {"mobile": {
+    "area": "trollden",
+    "anum": 8,
+    "name": "medium troll",
+    "short_descr": "the medium troll",
+    "long_descr": "A troll is wandering around, attending to his duties.",
+    "description": "He is a tall, lean, furry humanoid.
+                   |He notices you, and is satisfied to find what he is looking for.
+                   |He advances toward you.",
+    "race": "human",
+    "alignment": -500,
+    "level": 8,
+    "hitroll": 0,
+    "hit_dice": "2d7+96",
+    "mana_dice": "4d9+100",
+    "damage_dice": "1d7+2",
+    "ac": {
+      "pierce": 30,
+      "bash": 30,
+      "slash": 30,
+      "magic": 90
+    },
+    "sex": "male",
+    "wealth": 75,
+    "size": "medium",
+    "mob_flags": "scavenger aggressive stay_area",
+    "affected_by": "sneak",
+    "offense": "disarm dodge trip assist_vnum"
+  }}
+]

@@ -1,14 +1,12 @@
-#AREADATA
-Name New Ofcol~
-Builders None~
-VNUMs 600 699
-Credits { 5 35} Hatchet New Ofcol~
-Security 9
-End
+#AREA
+ofcol2.are~
+New Ofcol~
+{ 5 35} Hatchet New Ofcol~
+600 699
 
 #MOBILES
 #600
-cityguard guard~
+oldstyle cityguard guard~
 the Ofcol cityguard~
 An Ofcol cityguard is standing here, making sure there is no trouble.
 ~
@@ -18,14 +16,14 @@ you, this guard will only use his deadly skills for the good of the citizens of
 Ofcol.
 ~
 human~
-[scavenger warrior] [protect_evil] 1000 0
+ACT N 1000 0
 19 0 3d9+333 9d9+100 2d7+5 none
 -4 -4 -4 7
-[bash berserk disarm kick parry rescue assist_vnum] [] [] []
+CDEIKLU 0 0 0
 stand stand male 50
-[] [] medium generic
+0 0 medium 0
 #601
-marshall diana~
+oldstyle marshall diana~
 Marshall Diana~
 Diana, the Marshall of Ofcol, stands here proudly.
 ~
@@ -36,14 +34,14 @@ is the hardest metal she can find.  She is willing to defend Ofcol to her
 death.
 ~
 human~
-[sentinel cleric] [detect_invis sanctuary protect_evil] 1000 0
+ABQ DHN 1000 0
 33 0 10d10+1100 33d9+100 4d6+10 none
 -11 -11 -11 3
-[disarm kick parry assist_vnum] [] [] []
+EIKU 0 0 0
 stand stand female 250
-[] [] medium generic
+0 0 medium 0
 #602
-derrick captain guard cityguard~
+oldstyle derrick captain guard cityguard~
 Captain Derrick~
 Derrick, Captain of the Guard, is here disciplining his guards.
 ~
@@ -53,14 +51,14 @@ descendent of a surviving cityguard of old Thalos.  He believes that everything
 has to be hard won to be kept, and that laxity is for the weak.
 ~
 human~
-[stay_area cleric] [detect_invis sanctuary protect_evil] 1000 0
+AGQ DHN 1000 0
 27 0 5d10+650 27d9+100 2d10+7 none
 -8 -8 -8 4
-[disarm kick parry assist_vnum] [] [] []
+EIKU 0 0 0
 stand stand male 250
-[] [] medium generic
+0 0 medium 0
 #603
-jacklyn captain guard cityguard~
+oldstyle jacklyn captain guard cityguard~
 Captain Jacklyn~
 Jacklyn, Captain of the Citadel Guard, is here raising morale.
 ~
@@ -71,14 +69,14 @@ or her magic, no one has ever found out.  She isn't very strong physically, but
 she need not be.
 ~
 human~
-[sentinel mage] [detect_invis protect_evil] 1000 0
+ABR DN 1000 0
 27 0 5d10+600 27d9+100 2d10+6 none
 -7 -7 -7 2
-[dodge assist_vnum] [] [] []
+FU 0 0 0
 stand stand female 250
-[] [] medium generic
+0 0 medium 0
 #604
-jim blacksmith~
+oldstyle jim blacksmith~
 Jim the Blacksmith~
 Jim the Blacksmith is here, selling his latest works of metal.
 ~
@@ -87,14 +85,14 @@ smiling a very big smile, as he looks at your coins.  You wonder if he likes
 the metals or the value of the coins.
 ~
 human~
-[sentinel] [protect_evil] 1000 0
+AB N 1000 0
 30 0 6d12+853 15d9+100 4d6+8 none
 -9 -9 -9 6
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 3750
-[] [] medium generic
+0 0 medium 0
 #605
-sam~
+oldstyle sam~
 Sam~
 Sam is here, selling his leather works.
 ~
@@ -102,14 +100,14 @@ Sam is a middle-aged workman.  He looks tired, but never too tired to get that
 last sale from you.  He grins at you slightly.
 ~
 human~
-[sentinel] [protect_evil] 1000 0
+AB N 1000 0
 30 0 6d12+853 15d9+100 4d6+8 none
 -9 -9 -9 6
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 750
-[] [] medium generic
+0 0 medium 0
 #606
-madam tracy~
+oldstyle madam tracy~
 Madam Tracy~
 Madam Tracy is here, selling and buying little treasures.
 ~
@@ -118,14 +116,14 @@ the hard ways of this world and is ready for it.  She spends her time at the
 shop, trading little things (for a wee bit of profit).
 ~
 human~
-[sentinel] [protect_evil] 1000 0
+AB N 1000 0
 20 0 3d9+333 10d9+100 2d8+5 none
 -4 -4 -4 7
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 1250
-[] [] medium generic
+0 0 medium 0
 #607
-marty~
+oldstyle marty~
 Marty~
 Marty the meat store owner is here, selling you his choice meats.
 ~
@@ -134,14 +132,14 @@ son, Jim, raise and slaughter the animals for him.  Marty still knows how to
 kill, though.
 ~
 human~
-[sentinel] [protect_evil] 1000 0
+AB N 1000 0
 30 0 6d12+853 15d9+100 4d6+8 none
 -9 -9 -9 6
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 250
-[] [] medium generic
+0 0 medium 0
 #608
-elizabeth farmer~
+oldstyle elizabeth farmer~
 Farmer Elizabeth~
 Farmer Elizabeth is here, selling the latest crop.
 ~
@@ -151,14 +149,14 @@ Farmer Elizabeth smiles at you nicely, but you bet she is doing that just to
 get a good price off of you!
 ~
 human~
-[sentinel] [protect_evil] 1000 0
+AB N 1000 0
 20 0 3d9+333 10d9+100 2d8+5 none
 -4 -4 -4 7
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 250
-[] [] medium generic
+0 0 medium 0
 #609
-granny jenkins~
+oldstyle granny jenkins~
 Granny Jenkins~
 Granny Jenkins is here, running the still.
 ~
@@ -168,14 +166,14 @@ every time she tastes her whiskey, which is quite often!
 Granny Jenkins cackles again.
 ~
 human~
-[sentinel] [protect_evil] 500 0
+AB N 500 0
 6 0 2d7+71 3d9+100 1d7+1 none
 4 4 4 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 5
-[] [] medium generic
+0 0 medium 0
 #610
-jack~
+oldstyle jack~
 Jack~
 Jack is here slaughtering away at the animals.
 ~
@@ -184,14 +182,14 @@ their shared affinity for slaughtering animals.)  Jack leers at you as you
 enter.  "Came by to watch, eh?", he asks.
 ~
 human~
-[sentinel aggressive wimpy] [] 200 0
+ABFH 0 200 0
 12 0 2d10+150 6d9+100 1d10+3 none
 0 0 0 8
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 5
-[] [] medium generic
+0 0 medium 0
 #611
-Sarah farmer~
+oldstyle Sarah farmer~
 Farmer Sara~
 Farmer Sara is here, milking the cows.
 ~
@@ -200,14 +198,14 @@ that, she doesn't look that bad.  She smiles at you demurely, and goes back to
 her work.
 ~
 human~
-[sentinel wimpy] [] 800 0
+ABH 0 800 0
 5 0 2d6+60 2d9+100 1d6+1 none
 5 5 5 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 5
-[] [] medium generic
+0 0 medium 0
 #612
-chicken hen~
+oldstyle chicken hen~
 a hen~
 A hen is here, squawking at your intrusion.
 ~
@@ -215,42 +213,42 @@ The hen has yellow feathers and small wings.  It looks like a chicken, if
 you've ever seen one.
 ~
 human~
-[wimpy pet] [] 0 0
+AHI 0 0 0
 1 0 2d6+10 0d9+100 1d4+0 none
 9 9 9 10
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 0
-[] [] medium generic
+0 0 medium 0
 #613
-cow~
+oldstyle cow~
 the cow~
 A cow is here, munching on grass.
 ~
 The cow is here happily grazing.  It moos at you and goes back to grazing.
 ~
 human~
-[pet] [] 0 0
+AI 0 0 0
 5 0 2d6+60 2d9+100 1d6+1 none
 5 5 5 9
-[disarm dodge trip assist_vnum] [] [] []
-stand stand neutral 0
-[] [] medium generic
+EFNU 0 0 0
+stand stand none 0
+0 0 medium 0
 #614
-cow~
+oldstyle cow~
 the cow~
 A cow is here, waiting to be milked.
 ~
 The cow is just standing here.  She moos at you and otherwise ignores you.
 ~
 human~
-[sentinel pet] [] 0 0
+ABI 0 0 0
 5 0 2d6+60 2d9+100 1d6+1 none
 5 5 5 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 0
-[] [] medium generic
+0 0 medium 0
 #615
-horse young~
+oldstyle horse young~
 the young horse~
 A young horse is here, grazing.
 ~
@@ -258,28 +256,28 @@ The horse whinnies at you, then runs around you a few times, then just goes
 back to grazing.
 ~
 human~
-[aggressive wimpy pet] [] 0 0
+AFHI 0 0 0
 6 0 2d7+71 3d9+100 1d7+1 none
 4 4 4 9
-[disarm dodge trip assist_vnum] [] [] []
-stand stand neutral 0
-[] [] medium generic
+EFNU 0 0 0
+stand stand none 0
+0 0 medium 0
 #616
-pig~
+oldstyle pig~
 the pig~
 A pig is playing here, getting itself and you dirty.
 ~
 The pig looks dirty.  It snorts and sniffs at you, then goes back to its slop.
 ~
 pig~
-[sentinel pet] [] 0 0
+ABI 0 0 0
 4 0 2d7+46 2d9+100 1d5+1 none
 6 6 6 9
-[disarm dodge trip assist_race] [] [] []
-stand stand neutral 0
-[] [] medium generic
+EFNR 0 0 0
+stand stand none 0
+0 0 medium 0
 #617
-citizen man~
+oldstyle citizen man~
 the citizen~
 A citizen is here, smiling at you.
 ~
@@ -288,14 +286,14 @@ for you.  He looks at you strangely, though, wondering why you are so armed and
 armored.
 ~
 human~
-[wimpy] [] 500 0
+AH 0 500 0
 5 0 2d6+60 2d9+100 1d6+1 none
 5 5 5 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 5
-[] [] medium generic
+0 0 medium 0
 #618
-citizen woman~
+oldstyle citizen woman~
 the citizen~
 A citizen is here, smiling at you.
 ~
@@ -304,14 +302,14 @@ for you.  She looks at you strangely, though, wondering why you are so armed
 and armored.
 ~
 human~
-[wimpy] [] 500 0
+AH 0 500 0
 5 0 2d6+60 2d9+100 1d6+1 none
 5 5 5 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 5
-[] [] medium generic
+0 0 medium 0
 #619
-child boy~
+oldstyle child boy~
 the boy~
 A boy is here, playing tag and other kids' games.
 ~
@@ -319,14 +317,14 @@ The little boy looks up at you and says, 'Hi.  Can I have a piece of candy?'
 He then smiles and runs away, remembering his game.
 ~
 human~
-[wimpy] [] 500 0
+AH 0 500 0
 3 0 2d6+35 1d9+100 1d6+0 none
 7 7 7 10
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 0
-[] [] medium generic
+0 0 medium 0
 #620
-child girl~
+oldstyle child girl~
 the girl~
 A girl is here, playing jump jacks and other kids' games.
 ~
@@ -334,14 +332,14 @@ The little girl looks up at you and says, 'Hi.  Can I have a pretty little
 coin?'  She then smiles and runs away, remembering her game.
 ~
 human~
-[wimpy] [] 500 0
+AH 0 500 0
 3 0 2d6+35 1d9+100 1d6+0 none
 7 7 7 10
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 0
-[] [] medium generic
+0 0 medium 0
 #621
-maid woman~
+oldstyle maid woman~
 the maid~
 A maid is here, cleaning the house and preparing the next meal.
 ~
@@ -350,14 +348,14 @@ Master and Mistress come back.  You will get me in trouble!  Shoo!', she says.
 She hits you with her broom.
 ~
 human~
-[wimpy] [] 500 0
+AH 0 500 0
 5 0 2d6+60 2d9+100 1d6+1 none
 5 5 5 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 2
-[] [] medium generic
+0 0 medium 0
 #622
-Nyles~
+oldstyle Nyles~
 Nyles the Bartender~
 Nyles the Bartender is here, ready to serve you up a good brew.
 ~
@@ -366,14 +364,14 @@ join in.  He keeps an eye on you and his glasses, making sure you don't steal
 any.
 ~
 human~
-[sentinel] [] 1000 0
+AB 0 1000 0
 30 0 6d12+853 15d9+100 4d6+8 none
 -9 -9 -9 6
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 50
-[] [] medium generic
+0 0 medium 0
 #623
-cityguard guard~
+oldstyle cityguard guard~
 the Ofcol cityguard~
 An Ofcol cityguard is posted here to guard the gate.
 ~
@@ -383,14 +381,14 @@ you, this guard will only use his deadly skills for the good of the citizens of
 Ofcol.
 ~
 human~
-[sentinel warrior] [protect_evil] 1000 0
+ABT N 1000 0
 19 0 3d9+333 9d9+100 2d7+5 none
 -4 -4 -4 7
-[bash berserk disarm kick parry rescue assist_vnum] [] [] []
+CDEIKLU 0 0 0
 stand stand male 50
-[] [] medium generic
+0 0 medium 0
 #624
-bard~
+oldstyle bard~
 a bard~
 A bard is here, singing of the glories of Ofcol.
 ~
@@ -399,56 +397,56 @@ peaceful city of Ofcol, and to sing of its unmatched glories.  He smiles at
 you, hinting toward a tip from you in ever a subtle way.
 ~
 human~
-[sentinel] [protect_evil] 800 0
+AB N 800 0
 13 0 2d10+170 6d9+100 2d5+3 none
 -1 -1 -1 8
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 50
-[] [] medium generic
+0 0 medium 0
 #625
-servant~
+oldstyle servant~
 a servant~
 A servant is here, carrying the duties of the Keeper of the Golden Citadel.
 ~
 The servant smiles good-naturedly at you, then goes on his duties.
 ~
 human~
-[stay_area] [protect_evil] 1000 0
+AG N 1000 0
 6 0 2d7+71 3d9+100 1d7+1 none
 4 4 4 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 5
-[] [] medium generic
+0 0 medium 0
 #626
-squire~
+oldstyle squire~
 a squire~
 A squire is here, scurrying from duty to duty.
 ~
 This young man smiles at you, but is too busy to chat.
 ~
 human~
-[stay_area] [protect_evil] 1000 0
+AG N 1000 0
 7 0 2d6+85 3d9+100 1d8+1 none
 4 4 4 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 5
-[] [] medium generic
+0 0 medium 0
 #627
-page~
+oldstyle page~
 a page~
 A page is here, sending a message to his knight.
 ~
 The page smiles for you, asking if he can do you a favor too.
 ~
 human~
-[stay_area] [protect_evil] 1000 0
+AG N 1000 0
 5 0 2d6+60 2d9+100 1d6+1 none
 5 5 5 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 5
-[] [] medium generic
+0 0 medium 0
 #628
-priestess~
+oldstyle priestess~
 the Priestess of Ofcol~
 The Priestess of Ofcol is here, blessing you 
 with her beatific smile.
@@ -458,14 +456,14 @@ with the world.  She devotes all her time to help teach you the ways of her
 god, Bahamut.  The dragon symbol around her neck looks almost alive.
 ~
 human~
-[sentinel] [invisible sanctuary protect_evil] 1000 0
+AB BHN 1000 0
 30 0 6d12+853 15d9+100 4d6+8 none
 -9 -9 -9 6
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 50
-[] [] medium generic
+0 0 medium 0
 #629
-chaplain Jerrold~
+oldstyle chaplain Jerrold~
 Chaplain Jerrold~
 Jerrold, the chaplain of this Citadel, is here 
 directing the activities of the people around here.
@@ -475,14 +473,14 @@ STANDING here, young man?  Go help that other squire there!", he yells.  He
 turns to you and with a consipatory tone, whispers, "Kids!"
 ~
 human~
-[stay_area warrior] [invisible sanctuary protect_evil] 1000 0
+AGT BHN 1000 0
 20 0 4d10+360 10d9+100 2d8+5 none
 -4 -4 -4 7
-[bash berserk disarm kick parry rescue assist_vnum] [] [] []
+CDEIKLU 0 0 0
 stand stand male 50
-[] [] medium generic
+0 0 medium 0
 #630
-dragonlord lord dragon~
+oldstyle dragonlord lord dragon~
 a Dragonlord~
 A knight wearing the scales of a dragon stands here.
 ~
@@ -491,14 +489,14 @@ power.  He smiles at you with a vicious grin.  You're happy that he doesn't
 look upset at your presence. 
 ~
 human~
-[sentinel] [invisible sanctuary protect_evil] 1000 0
+AB BHN 1000 0
 29 0 6d12+778 14d9+100 2d12+8 none
 -9 -9 -9 6
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 50
-[] [] medium generic
+0 0 medium 0
 #631
-dragon gold~
+oldstyle dragon gold~
 The Ancient Gold Dragon~
 An old dragon shimmering with the colors of this 
 cavern peers at you sleepily.
@@ -508,14 +506,14 @@ realizing that you're no danger to him, he ignores you.  He waves to one of
 his attendants to escort you away.
 ~
 dragon~
-[sentinel scavenger] [invisible sanctuary protect_evil] 1000 0
+ABC BHN 1000 0
 42 0 25d10+2250 21d9+100 3d12+14 none
 -14 -14 -14 4
-[disarm dodge trip assist_race] [] [] []
+EFNR 0 0 0
 stand stand male 5000
-[] [] medium generic
+0 0 medium 0
 #632
-attendant~
+oldstyle attendant~
 an attendant of the dragon~
 A person robed in gold is attending to the Keeper of the Citadel.
 ~
@@ -523,14 +521,14 @@ This elder servant to the Gold Dragon is very loyal to him, willing to risk
 his life for his liege.
 ~
 human~
-[sentinel mage] [invisible protect_evil] 1000 0
+ABR BN 1000 0
 21 0 3d9+333 21d9+100 2d7+4 none
 -4 -4 -4 3
-[dodge assist_vnum] [] [] []
+FU 0 0 0
 stand stand male 250
-[] [] medium generic
+0 0 medium 0
 #633
-dragonknight knight dragon~
+oldstyle dragonknight knight dragon~
 a Dragonknight~
 A person dressed in the scales of a gold dragon 
 stands here, guarding the Golden Citadel.
@@ -539,14 +537,14 @@ This person looks like a dragon itself.  His golden scales gleam with power.
 He smiles at you, showing very sharp teeth.
 ~
 human~
-[stay_area] [invisible protect_evil] 1000 0
+AG BN 1000 0
 21 0 4d10+360 10d9+100 4d4+5 none
 -5 -5 -5 7
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 250
-[] [] medium generic
+0 0 medium 0
 #634
-cityguard guard~
+oldstyle cityguard guard~
 the Ofcol cityguard~
 An Ofcol cityguard is posted here to guard the gate.
 ~
@@ -556,12 +554,12 @@ you, this guard will only use his deadly skills for the good of the citizens of
 Ofcol.
 ~
 human~
-[sentinel warrior] [protect_evil] 1000 0
+ABT N 1000 0
 19 0 3d9+333 9d9+100 2d7+5 none
 -4 -4 -4 7
-[bash berserk disarm kick parry rescue assist_vnum] [] [] []
+CDEIKLU 0 0 0
 stand stand male 50
-[] [] medium generic
+0 0 medium 0
 #0
 
 #OBJECTS
@@ -569,9 +567,9 @@ stand stand male 50
 axe hand~
 a hand axe~
 A hand axe is on the floor here.~
-generic~
-weapon [] [take wield]
-axe 1 8 chop []
+oldstyle~
+weapon 0 AN
+axe 1 8 chop 0
 4 100 420 P
 E
 handaxe hand axe~
@@ -582,9 +580,9 @@ withstand years of use.
 meat cleaver~
 a meat cleaver~
 A sharp meat cleaver is just lying on the floor here!~
-generic~
-weapon [] [take wield]
-dagger 2 5 chop []
+oldstyle~
+weapon 0 AN
+dagger 2 5 chop 0
 8 50 530 P
 A
 19 1
@@ -596,48 +594,48 @@ This meat cleaver is made of good steel.
 side meat beef~
 a side of beef~
 A side of beef is here on the floor.~
-generic~
-food [] [take]
+oldstyle~
+food 0 A
 24 24 0 0 0
 0 100 50 P
 #603
 side meat pork~
 a side of pork~
 A side of pork is here on the floor.~
-generic~
-food [] [take]
+oldstyle~
+food 0 A
 23 23 0 0 0
 0 100 42 P
 #604
 side meat horse~
 a side of horse~
 A side of horse is here on the floor.~
-generic~
-food [] [take]
+oldstyle~
+food 0 A
 30 30 0 0 0
 0 120 21 P
 #605
 meat chicken~
 a defeathered chicken~
 A defeathered chicken is here on the floor.~
-generic~
-food [] [take]
+oldstyle~
+food 0 A
 16 16 0 0 0
 0 50 10 P
 #606
 emerald ring~
 an emerald ring~
 An emerald ring is on the floor, gathering dust.~
-generic~
-jewelry [magic] [take finger]
+oldstyle~
+jewelry G AB
 0 0 0 0 0
 0 10 1000 P
 #607
 glass trinket~
 a glass trinket~
 A glass trinket is on the floor, gathering dust.~
-generic~
-gem [] [take hold]
+oldstyle~
+gem 0 AO
 0 0 0 0 0
 0 10 150 P
 A
@@ -646,8 +644,8 @@ A
 golden necklace~
 a golden necklace~
 A golden necklace is on the floor, gathering dust.~
-generic~
-jewelry [] [take neck]
+oldstyle~
+jewelry 0 AC
 0 0 0 0 0
 0 20 500 P
 A
@@ -656,96 +654,96 @@ A
 cabbage~
 a head of cabbage~
 Some fresh cabbage is here, get it while it lasts!~
-generic~
-food [] [take]
+oldstyle~
+food 0 A
 12 12 0 0 0
 0 20 2 P
 #610
 lettuce~
 a head of lettuce~
 Some fresh lettuce is here, get it while it lasts!~
-generic~
-food [] [take]
+oldstyle~
+food 0 A
 12 12 0 0 0
 0 20 2 P
 #611
 milk bottle~
 a bottle of milk~
 A glass bottle of milk is on a shelf here, fresh from the cow.~
-generic~
-drink [] [take]
+oldstyle~
+drink 0 A
 20 20 'milk' 0 0
 0 50 3 P
 #612
 apple~
 an apple~
 An apple is on the ground.~
-generic~
-food [] [take]
+oldstyle~
+food 0 A
 8 8 0 0 0
 0 10 1 P
 #613
 corn~
 an ear of corn~
 An ear of corn is on the ground.~
-generic~
-food [] [take]
+oldstyle~
+food 0 A
 8 8 0 0 0
 0 10 3 P
 #614
 hay pile~
 a pile of hay~
 There is a big pile of hay here.~
-generic~
-trash [] [take]
+oldstyle~
+trash 0 A
 0 0 0 0 0
 0 200 0 P
 #615
 pitchfork fork~
 a pitchfork~
 A pitchfork is on the floor.~
-generic~
-weapon [] [take wield]
-staff 3 3 stab []
+oldstyle~
+weapon 0 AN
+staff 3 3 stab 0
 7 100 122 P
 #616
 vest~
 a leather vest~
 A leather vest is on the floor.~
-generic~
-armor [] [take body]
+oldstyle~
+armor 0 AD
 1 2 2 0 0
 0 100 270 P
 #617
 sleeves~
 some leather sleeves~
 Some leather sleeves are on the floor.~
-generic~
-armor [] [take arms]
+oldstyle~
+armor 0 AI
 1 2 2 0 0
 0 50 136 P
 #618
 leggings~
 some leather leggings~
 Some leather leggings are on the floor.~
-generic~
-armor [] [take legs]
+oldstyle~
+armor 0 AF
 1 2 2 0 0
 0 50 136 P
 #619
 boots~
 some leather boots~
 Some leather boots are on the floor.~
-generic~
-armor [] [take feet]
+oldstyle~
+armor 0 AG
 1 2 2 0 0
 0 50 136 P
 #620
 signet ring~
 an Ofcol signet ring~
 A shiny ring of gold is in the dirt.~
-generic~
-jewelry [magic] [take finger]
+oldstyle~
+jewelry G AB
 0 0 0 0 0
 10 10 730 P
 A
@@ -758,8 +756,8 @@ A
 plate brass~
 brass plate~
 A pile of brass plates is against the wall here.~
-generic~
-armor [magic] [take body]
+oldstyle~
+armor G AD
 6 5 6 1 0
 16 100 2400 P
 A
@@ -770,8 +768,8 @@ A
 helm brass~
 a brass helm~
 A brass helm is against the wall here.~
-generic~
-armor [magic] [take head]
+oldstyle~
+armor G AE
 6 5 6 1 0
 16 100 1280 P
 A
@@ -782,8 +780,8 @@ A
 leggings brass~
 brass leggings~
 A pile of brass plates is against the wall here.~
-generic~
-armor [magic] [take legs]
+oldstyle~
+armor G AF
 6 5 6 1 0
 16 100 1280 P
 A
@@ -794,8 +792,8 @@ A
 boots brass~
 brass boots~
 Some brass boots are against the wall here.~
-generic~
-armor [magic] [take feet]
+oldstyle~
+armor G AG
 6 5 6 1 0
 16 100 1280 P
 A
@@ -806,8 +804,8 @@ A
 gauntlets brass~
 brass gauntlets~
 Some brass gauntlets are against the wall here.~
-generic~
-armor [magic] [take hands]
+oldstyle~
+armor G AH
 6 5 6 1 0
 16 100 1280 P
 A
@@ -818,8 +816,8 @@ A
 sleeves brass~
 brass sleeves~
 A pile of brass plates is against the wall here.~
-generic~
-armor [magic] [take arms]
+oldstyle~
+armor G AI
 6 5 6 1 0
 16 100 1280 P
 A
@@ -830,8 +828,8 @@ A
 shield brass~
 a brass shield~
 A big plate of brass is against the wall here.~
-generic~
-armor [magic] [take shield]
+oldstyle~
+armor G AJ
 6 5 6 2 0
 16 100 1850 P
 A
@@ -842,8 +840,8 @@ A
 girth brass~
 a brass girth~
 A brass girth is against the wall here.~
-generic~
-armor [magic] [take waist]
+oldstyle~
+armor G AL
 6 5 6 1 0
 16 100 1280 P
 A
@@ -854,8 +852,8 @@ A
 bracer brass~
 a brass bracer~
 A brass bracer is against the wall here.~
-generic~
-armor [magic] [take wrist]
+oldstyle~
+armor G AM
 4 5 6 1 0
 12 100 1040 P
 A
@@ -866,9 +864,9 @@ A
 claymore sword~
 a claymore~
 A VERY big sword is against the wall here.~
-generic~
-weapon [magic] [take wield]
-sword 4 4 cleave [twohands]
+oldstyle~
+weapon G AN
+sword 4 4 cleave F
 19 160 3100 P
 A
 19 5
@@ -878,8 +876,8 @@ A
 plate silver~
 silver plate~
 A pile of silver plating and chain is on the floor.~
-generic~
-armor [magic antievil] [take body]
+oldstyle~
+armor GK AD
 8 8 8 2 0
 25 200 5000 P
 A
@@ -890,8 +888,8 @@ A
 helm silver~
 a silver helm~
 A shiny helm is on the floor.~
-generic~
-armor [magic antievil] [take head]
+oldstyle~
+armor GK AE
 8 8 8 2 0
 25 200 2900 P
 A
@@ -902,8 +900,8 @@ A
 leggings silver~
 silver leggings~
 Some shiny leggings are on the floor.~
-generic~
-armor [magic antievil] [take legs]
+oldstyle~
+armor GK AF
 8 8 8 2 0
 25 200 2900 P
 A
@@ -914,8 +912,8 @@ A
 boots silver~
 silver boots~
 Some shiny boots are on the floor.~
-generic~
-armor [magic antievil] [take feet]
+oldstyle~
+armor GK AG
 8 8 8 2 0
 25 200 2900 P
 A
@@ -926,8 +924,8 @@ A
 gauntlets silver~
 silver gauntlets~
 Some shiny gauntlets are on the floor.~
-generic~
-armor [magic antievil] [take hands]
+oldstyle~
+armor GK AH
 8 8 8 2 0
 25 200 2900 P
 A
@@ -938,8 +936,8 @@ A
 sleeves silver~
 silver sleeves~
 Some shiny sleeves are on the floor.~
-generic~
-armor [magic antievil] [take arms]
+oldstyle~
+armor GK AI
 8 8 8 2 0
 25 200 2400 P
 A
@@ -950,8 +948,8 @@ A
 shield silver~
 the silver shield~
 A shiny shield is on the floor.~
-generic~
-armor [magic antievil] [take shield]
+oldstyle~
+armor GK AJ
 8 8 8 3 0
 25 200 4200 P
 A
@@ -962,8 +960,8 @@ A
 girth silver~
 the silver girth~
 A shiny girth is on the floor.~
-generic~
-armor [magic antievil] [take waist]
+oldstyle~
+armor GK AL
 8 8 8 2 0
 25 200 2400 P
 A
@@ -974,8 +972,8 @@ A
 plate platinum~
 platinum plate~
 A pile of silvery metal is on the floor.~
-generic~
-armor [magic antievil] [take body]
+oldstyle~
+armor GK AD
 9 9 9 3 0
 30 500 9200 P
 A
@@ -986,8 +984,8 @@ A
 helmet platinum~
 the platinum helmet~
 A silvery helmet is on the floor.~
-generic~
-armor [magic antievil] [take head]
+oldstyle~
+armor GK AE
 9 9 9 3 0
 30 300 6300 P
 A
@@ -998,8 +996,8 @@ A
 leggings platinum~
 platinum leggings~
 Some silvery leggings are on the floor.~
-generic~
-armor [magic antievil] [take legs]
+oldstyle~
+armor GK AF
 9 9 9 3 0
 30 400 6300 P
 A
@@ -1010,8 +1008,8 @@ A
 boots platinum~
 platinum boots~
 Some silvery boots are on the floor.~
-generic~
-armor [magic antievil] [take feet]
+oldstyle~
+armor GK AG
 9 9 9 3 0
 32 400 4100 P
 A
@@ -1022,8 +1020,8 @@ A
 gauntlets platinum~
 platinum gauntlets~
 A pair of silvery gauntlets are on the floor.~
-generic~
-armor [magic antievil] [take hands]
+oldstyle~
+armor GK AH
 9 9 9 3 0
 31 400 4300 P
 A
@@ -1034,8 +1032,8 @@ A
 sleeves platinum~
 platinum sleeves~
 A pair of silvery sleeves are on the floor.~
-generic~
-armor [magic antievil] [take arms]
+oldstyle~
+armor GK AI
 9 9 9 3 0
 30 400 6300 P
 A
@@ -1046,8 +1044,8 @@ A
 shield spiked platinum~
 the platinum spiked shield~
 A jagged, silvery shield is on the floor.~
-generic~
-armor [magic antievil] [take shield]
+oldstyle~
+armor GK AJ
 9 9 9 5 0
 31 400 6000 P
 A
@@ -1058,8 +1056,8 @@ A
 girth platinum~
 the platinum girth~
 A silvery girth is on the floor.~
-generic~
-armor [magic antievil] [take waist]
+oldstyle~
+armor GK AL
 9 9 9 3 0
 31 400 4000 P
 A
@@ -1070,9 +1068,9 @@ A
 avenger holy sword~
 holy Avenger~
 A glowing silvery sword is hovering here, ready to possess an owner.~
-generic~
-weapon [magic antievil] [take wield]
-sword 4 6 slice []
+oldstyle~
+weapon GK AN
+sword 4 6 slice 0
 32 250 5700 P
 A
 19 6
@@ -1082,40 +1080,40 @@ A
 whiskey shot~
 a shot of whiskey~
 A shot of whiskey is on the table.~
-generic~
-drink [] [take]
+oldstyle~
+drink 0 A
 2 2 'whisky' 0 0
 0 10 12 P
 #649
 ale quart~
 a quart of ale~
 A quart of ale is on the table.~
-generic~
-drink [] [take]
+oldstyle~
+drink 0 A
 32 32 'ale' 0 0
 0 20 10 P
 #650
 port brew quart~
 a quart of port brew~
 A quart of port brew is on the table.~
-generic~
-drink [] [take]
+oldstyle~
+drink 0 A
 32 32 'dark ale' 0 0
 0 20 18 P
 #651
 key citadel~
 the citadel key~
 A key is on the floor.~
-generic~
-key [] [take]
+oldstyle~
+key 0 A
 0 0 0 0 0
 0 10 0 P
 #652
 symbol holy~
 the Holy Symbol of Bahamut~
 A very shiny symbol is on the floor.~
-generic~
-jewelry [magic bless antievil antineutral] [take neck]
+oldstyle~
+jewelry GIKL AC
 0 0 0 0 0
 17 50 3700 P
 A
@@ -1128,9 +1126,9 @@ A
 ranseur polearm~
 a ranseur~
 A heavy polearm is against the wall here, ready to inflict damage.~
-generic~
-weapon [magic antievil] [take wield]
-polearm 4 6 thrust [twohands]
+oldstyle~
+weapon GK AN
+polearm 4 6 thrust F
 24 200 1460 P
 A
 19 -1
@@ -1140,8 +1138,8 @@ A
 torso dragonscale golden~
 a golden dragonscale torso~
 A golden dragonscale torso is on the floor!~
-generic~
-armor [magic antievil] [take body]
+oldstyle~
+armor GK AD
 7 7 7 3 0
 24 250 6200 P
 A
@@ -1152,8 +1150,8 @@ A
 dragonhelm golden~
 a golden dragonhelm~
 A golden dragonhelm is on the floor!~
-generic~
-armor [magic antievil] [take head]
+oldstyle~
+armor GK AE
 7 7 7 3 0
 21 100 2800 P
 A
@@ -1164,8 +1162,8 @@ A
 leggings golden~
 golden dragonscale leggings~
 Some golden dragonscale leggings are on the floor!~
-generic~
-armor [magic antievil] [take legs]
+oldstyle~
+armor GK AF
 7 7 7 3 0
 21 100 2800 P
 A
@@ -1176,8 +1174,8 @@ A
 boots golden~
 golden dragonscale boots~
 Some golden dragonscale boots are on the floor!~
-generic~
-armor [magic antievil] [take feet]
+oldstyle~
+armor GK AG
 7 7 7 3 0
 21 100 2800 P
 A
@@ -1188,8 +1186,8 @@ A
 gauntlets golden~
 golden dragonscale gauntlets~
 Some golden dragonscale gauntlets are on the floor!~
-generic~
-armor [magic antievil] [take hands]
+oldstyle~
+armor GK AH
 7 7 7 3 0
 21 100 2800 P
 A
@@ -1200,8 +1198,8 @@ A
 sleeves golden~
 golden dragonscale sleeves~
 Some golden dragonscale sleeves are on the floor!~
-generic~
-armor [magic antievil] [take arms]
+oldstyle~
+armor GK AI
 7 7 7 3 0
 21 100 2800 P
 A
@@ -1212,8 +1210,8 @@ A
 shield golden~
 a golden dragonscale shield~
 A golden dragonscale shield is on the floor!~
-generic~
-armor [magic antievil] [take shield]
+oldstyle~
+armor GK AJ
 7 7 7 4 0
 21 100 3700 P
 A
@@ -1224,8 +1222,8 @@ A
 girth golden~
 a golden dragonscale girth~
 A golden dragonscale girth is on the floor!~
-generic~
-armor [magic antievil] [take waist]
+oldstyle~
+armor GK AL
 7 7 7 3 0
 21 100 2800 P
 A
@@ -1236,9 +1234,9 @@ A
 claw golden~
 the golden claw~
 A small golden claw is on the floor~
-generic~
-weapon [magic antievil] [take wield]
-unknown 2 10 claw []
+oldstyle~
+weapon GK AN
+exotic 2 10 claw 0
 21 100 2600 P
 A
 19 2
@@ -1246,8 +1244,8 @@ A
 orb dragonorb~
 the Gold Dragon Orb~
 A very large pearl-like sphere is in the center of this room.~
-generic~
-staff [magic antievil antineutral] [take hold]
+oldstyle~
+staff GKL AO
 14 4 4 'heal' 0
 17 300 9000 P
 A
@@ -1258,8 +1256,8 @@ A
 robe golden~
 a golden robe~
 A golden robe is on the floor.~
-generic~
-armor [magic antievil] [take about]
+oldstyle~
+armor GK AK
 6 6 5 2 0
 17 100 3800 P
 A
@@ -1268,17 +1266,17 @@ A
 house key~
 a house key~
 A house key is on the floor.~
-generic~
-key [] [take]
+oldstyle~
+key 0 A
 0 0 0 0 0
 0 10 0 P
 #666
 broom~
 a broom~
 A broom is against the wall here.~
-generic~
-weapon [] [take wield]
-unknown 2 3 beating []
+oldstyle~
+weapon 0 AN
+exotic 2 3 beating 0
 1 80 760 P
 A
 19 -3
@@ -1288,17 +1286,17 @@ A
 chest~
 a chest~
 A chest is on the floor here.~
-generic~
-container [] [take]
-100 [] 0 10 100
+oldstyle~
+container 0 A
+100 0 0 10 100
 0 100 100 P
 #668
 claw golden~
 the Golden Claw~
 A huge golden claw is on the floor~
-generic~
-weapon [magic antievil] [take wield]
-unknown 6 5 claw []
+oldstyle~
+weapon GK AN
+exotic 6 5 claw 0
 39 200 7200 P
 A
 19 4
@@ -1306,9 +1304,9 @@ A
 claw golden~
 the golden claw~
 A large golden claw is on the floor~
-generic~
-weapon [magic antievil] [take wield]
-unknown 3 8 claw []
+oldstyle~
+weapon GK AN
+exotic 3 8 claw 0
 28 150 4100 P
 A
 19 3
@@ -1322,7 +1320,7 @@ the bottles of it on the floor make your mouth water and your mind swirl.  You
 also see a very large still.  So THIS is why there are so many grain fields!
 The exit is to the east.
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see the storage shed.
 ~
@@ -1335,55 +1333,54 @@ You are in the big intersection between Raff Way and Impy Way.  Crowds
 of people walk past you as they go on their daily tasks.  Raff Way continues
 east and west, and Impy Way runs north and south.
 ~
-0 [] 1
+0 0 1
 D0
 Impy Way continues north.
 ~
 ~
-0 -1 625
+0 0 625
 D1
 Raff Way continues east.
 ~
 ~
-0 -1 666
+0 0 666
 D2
 Impy Way continues south.
 ~
 ~
-0 -1 602
+0 0 602
 D3
 Raff Way continues west.
 ~
 ~
-0 -1 5553
-P ofcol2-west-1~
+0 0 5553
 S
 #602
 Impy Way~
 You are on Impy Way.  You can see a leather shop east and a blacksmith
 west.  To the north you see a big intersection, and Impy Way continues south.
 ~
-0 [] 1
+0 0 1
 D0
 You see the big intersection.
 ~
 ~
-0 -1 601
+0 0 601
 D1
 You see the leather shop.
 ~
 ~
-0 -1 604
+0 0 604
 D2
 Impy Way continues south.
 ~
 ~
-0 -1 605
+0 0 605
 D3
 You see the blacksmith.
 ~
 ~
-0 -1 603
+0 0 603
 S
 #603
 The Blacksmith~
@@ -1391,12 +1388,12 @@ You are in a black and smelly room.  Pieces of metal are strewn all over
 the floor, and a wave of heat from a big furnace hits you.  An anvil sits on 
 one side of the room, and on the other side is a workbench.  The exit is east.
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see Impy Way.
 ~
 ~
-0 -1 602
+0 0 602
 S
 #604
 The Leather Shop~
@@ -1405,12 +1402,12 @@ the floor.  The smell of burnt hide assaults your nose.  You can tell by the
 looks that the tanning is done VERY CLOSE to here!   A table is near the
 entrance.  The exit is west.
 ~
-0 [indoors] 0
+0 D 0
 D3
 You see Impy Way.
 ~
 ~
-0 -1 602
+0 0 602
 S
 #605
 Impy Way~
@@ -1418,27 +1415,27 @@ You are on Impy Way.  To the east is a meat store, and to the west is a
 pawn shop.  Impy Way continues north and south.  People are rushing around you
 to go to these stores.
 ~
-0 [] 1
+0 0 1
 D0
 Impy Way continues North.
 ~
 ~
-0 -1 602
+0 0 602
 D1
 You see the Meat Store.
 ~
 ~
-0 -1 607
+0 0 607
 D2
 Impy Way continues south.
 ~
 ~
-0 -1 608
+0 0 608
 D3
 You see the Pawn Shop.
 ~
 ~
-0 -1 606
+0 0 606
 S
 #606
 The Pawn Shop.~
@@ -1446,12 +1443,12 @@ You are in a little shop filled with a lot of knick knacks and semi-
 valuable goods.  There is a display case full of little treasures that you are
 sure that you or any other little kid would like to touch!  The exit is east.
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see Impy Way.
 ~
 ~
-0 -1 605
+0 0 605
 S
 #607
 The Meat Store~
@@ -1459,12 +1456,12 @@ You are in a meat store.  Hanging on hooks are meats of many kinds of
 animals.  In the background, you can hear the sound of blade against flesh.
 It smells like meat here (which is not a good smell).  The exit is west.
 ~
-0 [indoors] 0
+0 D 0
 D3
 You see Impy Way.
 ~
 ~
-0 -1 605
+0 0 605
 S
 #608
 Impy Way~
@@ -1472,27 +1469,27 @@ You are on Impy Way.  To the east is Farmer's Market, and to the west is
 Nyles' House of Ale.  Impy Way runs north and ends south of here.  You can hear
 the sound of housewives gossiping at the market.
 ~
-0 [] 1
+0 0 1
 D0
 Impy Way continues north.
 ~
 ~
-0 -1 605
+0 0 605
 D1
 You see the Farmer's Market.
 ~
 ~
-0 -1 610
+0 0 610
 D2
 You see the end of Impy Way.
 ~
 ~
-0 -1 611
+0 0 611
 D3
 You see Nyles' House of Ale.
 ~
 ~
-0 -1 609
+0 0 609
 S
 #609
 Nyles' House of Ale~
@@ -1500,12 +1497,12 @@ This is a very busy bar, with everyone holding homemade bottles of
 ale.  You see even the more gentile persons here, laughing along with
 Nyles, who offers you a quart of ale too.
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see Impy Way.
 ~
 ~
-0 -1 608
+0 0 608
 S
 #610
 Farmer's Market~
@@ -1513,12 +1510,12 @@ You see many carts filled with fruits and vegetables.  Many farmers are
 all trying to sell you their produce, each saying their's is better.  The exit
 is west.
 ~
-0 [indoors] 0
+0 D 0
 D3
 You see Impy Way.
 ~
 ~
-0 -1 608
+0 0 608
 S
 #611
 The End of Impy Way~
@@ -1526,22 +1523,22 @@ You are at the end of Impy and of the city part of Ofcol.  To the east is
 a dirt road leading toward the farm animals.  West from here are fields.  Impy
 Way continues north.
 ~
-0 [] 1
+0 0 1
 D0
 Impy Way continues north.
 ~
 ~
-0 -1 608
+0 0 608
 D1
 You see the dirt road.
 ~
 ~
-0 -1 668
+0 0 668
 D3
 You see the fields.
 ~
 ~
-0 -1 612
+0 0 612
 S
 #612
 Fields~
@@ -1550,27 +1547,27 @@ taller than you are.  You remember that the end of Impy Way is east of here,
 and you think you see a building to the north.  The field continues south and 
 west.
 ~
-0 [] 2
+0 0 2
 D0
 You think you see a building north of here.
 ~
 ~
-0 -1 616
+0 0 616
 D1
 You remember that the end of Impy Way is east.
 ~
 ~
-0 -1 611
+0 0 611
 D2
 You can make a path to the fields south.
 ~
 ~
-0 -1 613
+0 0 613
 D3
 You can make a path to the fields west.
 ~
 ~
-0 -1 615
+0 0 615
 S
 #613
 Fields~
@@ -1578,17 +1575,17 @@ You are among fruit trees in a field.  You see many apple and orange
 trees.  You can make out the corn fields north and some vegetable patches west.
 The sight of the fruit makes your mouth water.
 ~
-0 [] 2
+0 0 2
 D0
 You see the corn fields.
 ~
 ~
-0 -1 612
+0 0 612
 D3
 You see the vegetable fields.
 ~
 ~
-0 -1 614
+0 0 614
 S
 #614
 Fields~
@@ -1596,17 +1593,17 @@ You are among the vegetable fields.  You see many cabbage and lettuce
 patches, along with tomato bushes and potato plants.  To the east are some
 fruit trees, and north are some wheat fields.
 ~
-0 [] 2
+0 0 2
 D0
 You see the wheat fields.
 ~
 ~
-0 -1 615
+0 0 615
 D1
 You see the fruit trees.
 ~
 ~
-0 -1 613
+0 0 613
 S
 #615
 Fields~
@@ -1615,17 +1612,17 @@ cool shadow from the tall stalks and scarecrow lulls you to sleep and dream
 of a little girl and little dog from a faraway place.  To the east are the corn
 stalks, and south of you are the vegetable patches.
 ~
-0 [] 2
+0 0 2
 D1
 You see the corn fields.
 ~
 ~
-0 -1 612
+0 0 612
 D2
 You see the vegetable patches.
 ~
 ~
-0 -1 614
+0 0 614
 S
 #616
 The Shed~
@@ -1633,12 +1630,12 @@ You are in the storage shed.  Bales of wheat, corn and hay are piled
 against the wall, and some vegetables are in carts.  You see a small door
 to the west.  The main exit is south.
 ~
-0 [indoors] 0
+0 D 0
 D2
 You see the corn fields.
 ~
 ~
-0 -1 612
+0 0 612
 D3
 You see the door.
 ~
@@ -1651,29 +1648,29 @@ You are in the slaughterhouse, where all the animals are slaughtered so
 that they can be sold or their skins be tanned.  The scream of dying animals
 makes your stomach churn.  The exit is to the west.
 ~
-0 [indoors] 0
+0 D 0
 D3
 You see the dirt road.
 ~
 ~
-0 -1 668
+0 0 668
 S
 #618
 Dirt Road~
 You are on a dirt road.  To the east is a barn, and you see a big chicken
 coop south of you.  The dirt road continues north and west.
 ~
-0 [] 2
+0 0 2
 D0
 You see the dirt road.
 ~
 ~
-0 -1 668
+0 0 668
 D1
 You see the barn.
 ~
 ~
-0 -1 620
+0 0 620
 D2
 You see the chicken coop.
 ~
@@ -1683,14 +1680,14 @@ D3
 You see the dirt road.
 ~
 ~
-0 -1 621
+0 0 621
 S
 #619
 Chicken Coop~
 You are in the chicken coop.  The smell of chickens and chicken droppings
 makes you gasp.  The exit is north.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You can sense the fresh air.
 ~
@@ -1702,75 +1699,75 @@ Barn~
 You are in a barn.  There are some cows here, munching on mounds of hay.
 Milk is milked and bottled here.  You see the exit west.
 ~
-0 [indoors] 0
+0 D 0
 D3
 You see the dirt road.
 ~
 ~
-0 -1 618
+0 0 618
 S
 #621
 Dirt Road~
 You are on a dirt road.  To the north and south, you see some grass 
 fields.  There is a pigsty west, and the dirt road continues east.
 ~
-0 [] 2
+0 0 2
 D0
 You see some grass fields.
 ~
 ~
-0 -1 622
+0 0 622
 D1
 You see the dirt road.
 ~
 ~
-0 -1 618
+0 0 618
 D2
 You see some grass fields.
 ~
 ~
-0 -1 623
+0 0 623
 D3
 You see the pigsty.
 ~
 ~
-0 -1 624
+0 0 624
 S
 #622
 Grass Field~
 You are in a grass field.  Fences block the way north, east, and west.
 The dirt road is to the south.
 ~
-0 [] 2
+0 0 2
 D2
 You see the dirt road.
 ~
 ~
-0 -1 621
+0 0 621
 S
 #623
 Grass Field~
 You are in a grass field.  Fences block the way south, east, and west.
 The dirt road is to the north.
 ~
-0 [] 2
+0 0 2
 D0
 You see the dirt road.
 ~
 ~
-0 -1 621
+0 0 621
 S
 #624
 Pig Sty~
 For some reason, you are in a pig sty.  You wonder why you are standing in
 muck.  To realize your senses and notice the dirt road is to the east.
 ~
-0 [] 2
+0 0 2
 D1
 You see the dry dirt road.
 ~
 ~
-0 -1 621
+0 0 621
 S
 #625
 Impy Way~
@@ -1778,12 +1775,12 @@ You are on Impy Way.  East and west of you are big houses.  Impy Way
 continues north and reaches a big intersection south.  Children are running to
 from home to home.
 ~
-0 [] 1
+0 0 1
 D0
 Impy Way continues north.
 ~
 ~
-0 -1 632
+0 0 632
 D1
 You see a big house.
 ~
@@ -1793,7 +1790,7 @@ D2
 You see a big intersection.
 ~
 ~
-0 -1 601
+0 0 601
 D3
 You see a big house.
 ~
@@ -1807,12 +1804,12 @@ than the average citizen, since there is more than one room to this house.  A
 door leads to the kitchen east, and a bedroom is upstairs.  The exit is to the
 west.
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see the kitchen.
 ~
 ~
-0 -1 628
+0 0 628
 D3
 You see Impy Way.
 ~
@@ -1822,31 +1819,31 @@ D4
 You see the bedroom.
 ~
 ~
-0 -1 627
+0 0 627
 S
 #627
 Bedroom~
 You are in the bedroom.  There isn't much of interest except for a bed and
 a closet.  The stairs lead back down.
 ~
-0 [indoors] 0
+0 D 0
 D5
 You see the main room of the house.
 ~
 ~
-0 -1 626
+0 0 626
 S
 #628
 Kitchen~
 You are in a kitchen.  There isn't much of interest here.  The main room
 is west of here.
 ~
-0 [indoors] 0
+0 D 0
 D3
 You see the main room of the house.
 ~
 ~
-0 -1 626
+0 0 626
 S
 #629
 Big House~
@@ -1855,7 +1852,7 @@ than the average citizen, since there is more than one room to this house.  A
 door leads to the kitchen west, and a bedroom is upstairs.  The exit is to the
 east.
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see Impy Way.
 ~
@@ -1865,48 +1862,48 @@ D3
 You see the kitchen.
 ~
 ~
-0 -1 631
+0 0 631
 D4
 You see the bedroom.
 ~
 ~
-0 -1 630
+0 0 630
 S
 #630
 Bedroom~
 You are in the bedroom.  There isn't much of interest except for a bed and
 a closet.  The stairs lead back down.
 ~
-0 [indoors] 0
+0 D 0
 D5
 You see the main room of the house.
 ~
 ~
-0 -1 629
+0 0 629
 S
 #631
 Kitchen~
 You are in a kitchen.  There isn't much of interest here.  The main room
 is east of here.
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see the main room of the house.
 ~
 ~
-0 -1 629
+0 0 629
 S
 #632
 Impy Way~
 You are on Impy Way.  Houses are to the east and west of here.  Impy Way
 continues north and south.  There are many people walking along the streets.
 ~
-0 [] 1
+0 0 1
 D0
 Impy Way continues north.
 ~
 ~
-0 -1 637
+0 0 637
 D1
 You see a house.
 ~
@@ -1916,7 +1913,7 @@ D2
 Impy Way continues south.
 ~
 ~
-0 -1 625
+0 0 625
 D3
 You see a house.
 ~
@@ -1928,12 +1925,12 @@ House~
 You are in a house.  The living room and kitchen are all bundled into
 this room.  There is a bedroom south of here.  The exit is west.
 ~
-0 [indoors] 0
+0 D 0
 D2
 You see the bedroom.
 ~
 ~
-0 -1 634
+0 0 634
 D3
 You see Impy Way.
 ~
@@ -1945,19 +1942,19 @@ Bedroom~
 You are in a bedroom.  There isn't much of interest here except for a bed
 and a dresser.  The main room of the house is north of here.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see the main room of the house.
 ~
 ~
-0 -1 633
+0 0 633
 S
 #635
 House~
 You are in a house.  The living room and kitchen are all bundled into
 this room.  There is a bedroom south of here.  The exit is east.
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see Impy Way.
 ~
@@ -1967,19 +1964,19 @@ D2
 You see the bedroom.
 ~
 ~
-0 -1 636
+0 0 636
 S
 #636
 Bedroom~
 You are in a bedroom.  There isn't much of interest here except for a bed
 and a dresser.  The main room of the house is north of here.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see the main room of the house.
 ~
 ~
-0 -1 635
+0 0 635
 S
 #637
 Impy Way~
@@ -1987,12 +1984,12 @@ You are on Impy Way.  Houses are to the east and west of here.  Impy Way
 continues south.  To the north is a big intersection.  There are many people
 walking along the streets.
 ~
-0 [] 1
+0 0 1
 D0
 You see a big intersection.
 ~
 ~
-0 -1 642
+0 0 642
 D1
 You see a house.
 ~
@@ -2002,7 +1999,7 @@ D2
 Impy Way continues south.
 ~
 ~
-0 -1 632
+0 0 632
 D3
 You see a house.
 ~
@@ -2014,12 +2011,12 @@ House~
 You are in a house.  The living room and kitchen are all bundled into
 this room.  There is a bedroom south of here.  The exit is west.
 ~
-0 [indoors] 0
+0 D 0
 D2
 You see the bedroom.
 ~
 ~
-0 -1 639
+0 0 639
 D3
 You see Impy Way.
 ~
@@ -2031,19 +2028,19 @@ Bedroom~
 You are in a bedroom.  There isn't much of interest here except for a bed
 and a dresser.  The main room of the house is north of here.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see the main room of the house.
 ~
 ~
-0 -1 638
+0 0 638
 S
 #640
 House~
 You are in a house.  The living room and kitchen are all bundled into
 this room.  There is a bedroom south of here.  The exit is east.
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see Impy Way.
 ~
@@ -2053,19 +2050,19 @@ D2
 You see the bedroom.
 ~
 ~
-0 -1 641
+0 0 641
 S
 #641
 Bedroom~
 You are in a bedroom.  There isn't much of interest here except for a bed
 and a dresser.  The main room of the house is north of here.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see the main room of the house.
 ~
 ~
-0 -1 640
+0 0 640
 S
 #642
 The Big Intersection~
@@ -2073,7 +2070,7 @@ You are on the intersection of Impy Way and Swiftest Way.  To the north of
 you is a big house.  Swiftest Way runs east and west, and Impy way continues
 south.  There are quite a few people on this intersection.
 ~
-0 [] 1
+0 0 1
 D0
 You see the big house.
 ~
@@ -2083,17 +2080,17 @@ D1
 Swiftest Way continues east.
 ~
 ~
-0 -1 646
+0 0 646
 D2
 Impy Way continues south.
 ~
 ~
-0 -1 637
+0 0 637
 D3
 Swiftest Way continues west.
 ~
 ~
-0 -1 649
+0 0 649
 S
 #643
 Big House~
@@ -2102,12 +2099,12 @@ than the average citizen, since there is more than one room to this house.  A
 door leads to the kitchen north, and a bedroom is upstairs.  The exit is to 
 the south.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see the kitchen.
 ~
 ~
-0 -1 645
+0 0 645
 D2
 You see Impy Way.
 ~
@@ -2117,31 +2114,31 @@ D4
 You see the bedroom.
 ~
 ~
-0 -1 644
+0 0 644
 S
 #644
 Bedroom~
 You are in the bedroom.  There isn't much of interest except for a bed 
 and a closet.  The stairs lead back down.
 ~
-0 [indoors] 0
+0 D 0
 D5
 You see the main room of the house.
 ~
 ~
-0 -1 643
+0 0 643
 S
 #645
 Kitchen~
 You are in a kitchen.  There isn't much of interest here.  The main room
 is east of here.
 ~
-0 [indoors] 0
+0 D 0
 D2
 You see the main room of the house.
 ~
 ~
-0 -1 643
+0 0 643
 S
 #646
 Swiftest Way~
@@ -2149,81 +2146,81 @@ You are on Swiftest Way, the commoner's residential area.  Small houses
 are north and south of you.  Swiftest Way continues east, and west is a big
 intersection.
 ~
-0 [] 1
+0 0 1
 D0
 You see a small house.
 ~
 ~
-0 -1 652
+0 0 652
 D1
 Swiftest Way continues east.
 ~
 ~
-0 -1 647
+0 0 647
 D2
 You see a small house.
 ~
 ~
-0 -1 653
+0 0 653
 D3
 You see a big intersection.
 ~
 ~
-0 -1 642
+0 0 642
 S
 #647
 Swiftest Way~
 You are on Swiftest Way, the commoner's residential area.  Small houses
 are north and south of you.  Swiftest Way continues east and west.
 ~
-0 [] 1
+0 0 1
 D0
 You see a small house.
 ~
 ~
-0 -1 654
+0 0 654
 D1
 You see the end of Swiftest Way.
 ~
 ~
-0 -1 648
+0 0 648
 D2
 You see a small house.
 ~
 ~
-0 -1 655
+0 0 655
 D3
 Swiftest Way continues west.
 ~
 ~
-0 -1 646
+0 0 646
 S
 #648
 End of Swiftest Way~
 You are on Swiftest Way, the commoner's residential area.  Small houses
 are north, south, and east of you.  Swiftest Way continues west.
 ~
-0 [] 1
+0 0 1
 D0
 You see a small house.
 ~
 ~
-0 -1 656
+0 0 656
 D1
 You see a small house.
 ~
 ~
-0 -1 657
+0 0 657
 D2
 You see a small house.
 ~
 ~
-0 -1 658
+0 0 658
 D3
 Swiftest Way continues west.
 ~
 ~
-0 -1 647
+0 0 647
 S
 #649
 Swiftest Way~
@@ -2231,81 +2228,81 @@ You are on Swiftest Way, the commoner's residential area.  Small houses
 are north and south of you.  Swiftest Way continues west, and to the east you
 see a big intersection.
 ~
-0 [] 1
+0 0 1
 D0
 You see a small house.
 ~
 ~
-0 -1 659
+0 0 659
 D1
 You see the big intersection.
 ~
 ~
-0 -1 642
+0 0 642
 D2
 You see a small house.
 ~
 ~
-0 -1 660
+0 0 660
 D3
 Swiftest Way continues west.
 ~
 ~
-0 -1 650
+0 0 650
 S
 #650
 Swiftest Way~
 You are on Swiftest Way, the commoner's residential area.  Small houses
 are north and south of you.  Swiftest Way continues east and west.
 ~
-0 [] 1
+0 0 1
 D0
 You see a small house.
 ~
 ~
-0 -1 661
+0 0 661
 D1
 Swiftest Way continues east.
 ~
 ~
-0 -1 649
+0 0 649
 D2
 You see a small house.
 ~
 ~
-0 -1 662
+0 0 662
 D3
 You see the end of Swiftest Way.
 ~
 ~
-0 -1 651
+0 0 651
 S
 #651
 The end of Swiftest Way~
 You are on Swiftest Way, the commoner's residential area.  Small houses
 are north, south, and west of you.  Swiftest Way continues east.
 ~
-0 [] 1
+0 0 1
 D0
 You see a small house.
 ~
 ~
-0 -1 663
+0 0 663
 D1
 Swiftest Way continues east.
 ~
 ~
-0 -1 650
+0 0 650
 D2
 You see a small house.
 ~
 ~
-0 -1 664
+0 0 664
 D3
 You see a small house.
 ~
 ~
-0 -1 665
+0 0 665
 S
 #652
 Small House~
@@ -2313,12 +2310,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the south.
 ~
-0 [indoors] 0
+0 D 0
 D2
 You see Swiftest Way.
 ~
 ~
-0 -1 646
+0 0 646
 S
 #653
 Small House~
@@ -2326,12 +2323,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the north.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see Swiftest Way.
 ~
 ~
-0 -1 646
+0 0 646
 S
 #654
 Small House~
@@ -2339,12 +2336,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the south.
 ~
-0 [indoors] 0
+0 D 0
 D2
 You see Swiftest Way.
 ~
 ~
-0 -1 647
+0 0 647
 S
 #655
 Small House~
@@ -2352,12 +2349,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the north.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see Swiftest Way.
 ~
 ~
-0 -1 647
+0 0 647
 S
 #656
 Small House~
@@ -2365,12 +2362,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the south.
 ~
-0 [indoors] 0
+0 D 0
 D2
 You see the end of Swiftest Way.
 ~
 ~
-0 -1 648
+0 0 648
 S
 #657
 Small House~
@@ -2378,12 +2375,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the west.
 ~
-0 [indoors] 0
+0 D 0
 D3
 You see the end of Swiftest Way.
 ~
 ~
-0 -1 648
+0 0 648
 S
 #658
 Small House~
@@ -2391,12 +2388,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the north.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see the end of Swiftest Way.
 ~
 ~
-0 -1 648
+0 0 648
 S
 #659
 Small House~
@@ -2404,12 +2401,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the south.
 ~
-0 [indoors] 0
+0 D 0
 D2
 You see Swiftest Way.
 ~
 ~
-0 -1 649
+0 0 649
 S
 #660
 Small House~
@@ -2417,12 +2414,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the north.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see Swiftest Way.
 ~
 ~
-0 -1 649
+0 0 649
 S
 #661
 Small House~
@@ -2430,12 +2427,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the south.
 ~
-0 [indoors] 0
+0 D 0
 D2
 You see Swiftest Way.
 ~
 ~
-0 -1 650
+0 0 650
 S
 #662
 Small House~
@@ -2443,12 +2440,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the north.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see Swiftest Way.
 ~
 ~
-0 -1 650
+0 0 650
 S
 #663
 Small House~
@@ -2456,12 +2453,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the south.
 ~
-0 [indoors] 0
+0 D 0
 D2
 You see the end of Swiftest Way.
 ~
 ~
-0 -1 651
+0 0 651
 S
 #664
 Small House~
@@ -2469,12 +2466,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the north.
 ~
-0 [indoors] 0
+0 D 0
 D0
 You see the end of Swiftest Way.
 ~
 ~
-0 -1 651
+0 0 651
 S
 #665
 Small House~
@@ -2482,12 +2479,12 @@ You are in a small house, owned by a commoner of Ofcol.  There isn't much
 of value here to you, but you'd bet that the owner really cherishes the pile
 of stuff here.  The exit is to the east.
 ~
-0 [indoors] 0
+0 D 0
 D1
 You see the end of Swiftest Way.
 ~
 ~
-0 -1 651
+0 0 651
 S
 #666
 Raff Way~
@@ -2496,17 +2493,17 @@ the east, you see Raff Way continue toward the Golden Citadel.  There are
 beautiful flowers growing along the road here, making this more of a garden
 than a road.
 ~
-0 [] 1
+0 0 1
 D1
 Raff Way continues east.
 ~
 ~
-0 -1 667
+0 0 667
 D3
 You see the big intersection.
 ~
 ~
-0 -1 601
+0 0 601
 S
 #667
 Raff Way~
@@ -2515,17 +2512,17 @@ the east, you see Raff Way continue toward the Golden Citadel.  There are
 beautiful flowers growing along the road here, making this more of a garden
 than a road.
 ~
-0 [] 1
+0 0 1
 D1
 You see the entrance of the Golden Citadel.
 ~
 ~
-0 -1 699
+0 0 699
 D3
 Raff Way continues west.
 ~
 ~
-0 -1 666
+0 0 666
 S
 #668
 Dirt Road~
@@ -2533,22 +2530,22 @@ You are on a dirt road.  To the east is a large building with a bad smell
 emanating from it.  To the west is the end of Impy Way, and this road continues
 south.
 ~
-0 [] 2
+0 0 2
 D1
 You see the large building with the bad smell.
 ~
 ~
-0 -1 617
+0 0 617
 D2
 The dirt road continues south.
 ~
 ~
-0 -1 618
+0 0 618
 D3
 You see the end of Impy Way.
 ~
 ~
-0 -1 611
+0 0 611
 S
 #669
 The Temple of Ofcol~
@@ -2557,23 +2554,23 @@ gold columns reach the twelve foot ceiling of this vast chamber.  Servants in
 golden livery wander this place, making even the raggiest messenger boy look
 richer than you are.  Exits lead to the anterooms in the cardinal directions.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 670
+0 0 670
 D1
 ~
 ~
-0 -1 672
+0 0 672
 D2
 ~
 ~
-0 -1 673
+0 0 673
 D3
 ~
 ~
-0 -1 671
+0 0 671
 S
 #670
 The Anteroom to the Temple of Ofcol~
@@ -2581,19 +2578,19 @@ You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the
 floor, and servants in golden livery pass you by peaceably.  The temple is to
 the south, and to the north is a hallway.  A stairways leads up.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 675
+0 0 675
 D2
 ~
 ~
-0 -1 669
+0 0 669
 D4
 ~
 ~
-0 -1 686
+0 0 686
 S
 #671
 The Anteroom to the Temple of Ofcol~
@@ -2601,19 +2598,19 @@ You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the
 floor, and servants in golden livery pass you by peaceably.  The temple is to
 the east, and to the west is a hallway.  A stairways leads up.
 ~
-0 [indoors] 0
+0 D 0
 D1
 ~
 ~
-0 -1 669
+0 0 669
 D3
 ~
 ~
-0 -1 679
+0 0 679
 D4
 ~
 ~
-0 -1 687
+0 0 687
 S
 #672
 The Anteroom to the Temple of Ofcol~
@@ -2621,19 +2618,19 @@ You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the
 floor, and servants in golden livery pass you by peaceably.  The temple is to
 the west, and to the east is a hallway.  A stairways leads up.
 ~
-0 [indoors] 0
+0 D 0
 D1
 ~
 ~
-0 -1 680
+0 0 680
 D3
 ~
 ~
-0 -1 669
+0 0 669
 D4
 ~
 ~
-0 -1 689
+0 0 689
 S
 #673
 The Anteroom to the Temple of Ofcol~
@@ -2641,19 +2638,19 @@ You are in an anteroom to the Temple of Ofcol.  Gold tiles cover the
 floor, and servants in golden livery pass you by peaceably.  The temple is to
 the north, and to the south is a hallway.  A stairways leads up.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 669
+0 0 669
 D2
 ~
 ~
-0 -1 684
+0 0 684
 D4
 ~
 ~
-0 -1 690
+0 0 690
 S
 #674
 A Hallway of the Golden Citadel~
@@ -2661,15 +2658,15 @@ You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead east and south.
 ~
-0 [indoors] 0
+0 D 0
 D1
 ~
 ~
-0 -1 675
+0 0 675
 D2
 ~
 ~
-0 -1 677
+0 0 677
 S
 #675
 A Hallway of the Golden Citadel~
@@ -2677,19 +2674,19 @@ You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead east, west, and south.
 ~
-0 [indoors] 0
+0 D 0
 D1
 ~
 ~
-0 -1 676
+0 0 676
 D2
 ~
 ~
-0 -1 670
+0 0 670
 D3
 ~
 ~
-0 -1 674
+0 0 674
 S
 #676
 A Hallway of the Golden Citadel~
@@ -2697,15 +2694,15 @@ You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead west and south.
 ~
-0 [indoors] 0
+0 D 0
 D2
 ~
 ~
-0 -1 678
+0 0 678
 D3
 ~
 ~
-0 -1 675
+0 0 675
 S
 #677
 A Hallway of the Golden Citadel~
@@ -2713,15 +2710,15 @@ You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead north and south.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 674
+0 0 674
 D2
 ~
 ~
-0 -1 679
+0 0 679
 S
 #678
 A Hallway of the Golden Citadel~
@@ -2729,15 +2726,15 @@ You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead north and south.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 676
+0 0 676
 D2
 ~
 ~
-0 -1 680
+0 0 680
 S
 #679
 A Hallway of the Golden Citadel~
@@ -2746,23 +2743,23 @@ and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead to the cardinal directions, with the east leading
 toward the Temple of Ofcol, and west leading toward the City of Ofcol.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 677
+0 0 677
 D1
 ~
 ~
-0 -1 671
+0 0 671
 D2
 ~
 ~
-0 -1 681
+0 0 681
 D3
 ~
 ~
-0 -1 698
+0 0 698
 S
 #680
 A Hallway of the Golden Citadel~
@@ -2770,19 +2767,19 @@ You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead west, north and south.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 678
+0 0 678
 D2
 ~
 ~
-0 -1 682
+0 0 682
 D3
 ~
 ~
-0 -1 672
+0 0 672
 S
 #681
 A Hallway of the Golden Citadel~
@@ -2790,15 +2787,15 @@ You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead north and south.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 679
+0 0 679
 D2
 ~
 ~
-0 -1 683
+0 0 683
 S
 #682
 A Hallway of the Golden Citadel~
@@ -2806,15 +2803,15 @@ You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead north and south.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 680
+0 0 680
 D2
 ~
 ~
-0 -1 685
+0 0 685
 S
 #683
 A Hallway of the Golden Citadel~
@@ -2822,15 +2819,15 @@ You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead north and east.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 681
+0 0 681
 D1
 ~
 ~
-0 -1 684
+0 0 684
 S
 #684
 A Hallway of the Golden Citadel~
@@ -2838,19 +2835,19 @@ You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead east, west, and north.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 673
+0 0 673
 D1
 ~
 ~
-0 -1 685
+0 0 685
 D3
 ~
 ~
-0 -1 683
+0 0 683
 S
 #685
 A Hallway of the Golden Citadel~
@@ -2858,15 +2855,15 @@ You are in a hallway of the Golden Citadel.  Gold tiles cover the floors,
 and rich golden tapestries drape the walls.  Servants in golden livery pass you
 by peaceably.  Exits lead west and north.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 682
+0 0 682
 D3
 ~
 ~
-0 -1 684
+0 0 684
 S
 #686
 An Upper Chamber of the Golden Citadel~
@@ -2876,19 +2873,19 @@ with platinum cover the floor, walls and the ceiling.  The lights from numerous
 torches reflect from these shimmering planes, giving the illusion that you are
 standing in a gem.  Stairways lead up and down, and the hall leads south. 
 ~
-0 [indoors] 0
+0 D 0
 D2
 ~
 ~
-0 -1 688
+0 0 688
 D4
 ~
 ~
-0 -1 691
+0 0 691
 D5
 ~
 ~
-0 -1 670
+0 0 670
 S
 #687
 An Upper Chamber of the Golden Citadel~
@@ -2898,19 +2895,19 @@ with platinum cover the floor, walls and the ceiling.  The lights from numerous
 torches reflect from these shimmering planes, giving the illusion that you are
 standing in a gem.  Stairways lead up and down, and the hall leads east. 
 ~
-0 [indoors] 0
+0 D 0
 D1
 ~
 ~
-0 -1 688
+0 0 688
 D4
 ~
 ~
-0 -1 692
+0 0 692
 D5
 ~
 ~
-0 -1 671
+0 0 671
 S
 #688
 The Hall of the DragonLords~
@@ -2920,23 +2917,23 @@ are mounted on the walls of this meeting hall.  Surrounding a solid gold table
 are four sons of the Keeper of the Golden Citadel.  They smile at you and ask 
 you to join them in lunch.  Exits lead to the cardinal directions. 
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 686
+0 0 686
 D1
 ~
 ~
-0 -1 689
+0 0 689
 D2
 ~
 ~
-0 -1 690
+0 0 690
 D3
 ~
 ~
-0 -1 687
+0 0 687
 S
 #689
 An Upper Chamber of the Golden Citadel~
@@ -2946,19 +2943,19 @@ with platinum cover the floor, walls and the ceiling.  The lights from numerous
 torches reflect from these shimmering planes, giving the illusion that you are
 standing in a gem.  Stairways lead up and down, and the hall leads west. 
 ~
-0 [indoors] 0
+0 D 0
 D3
 ~
 ~
-0 -1 688
+0 0 688
 D4
 ~
 ~
-0 -1 694
+0 0 694
 D5
 ~
 ~
-0 -1 672
+0 0 672
 S
 #690
 An Upper Chamber of the Golden Citadel~
@@ -2968,19 +2965,19 @@ with platinum cover the floor, walls and the ceiling.  The lights from numerous
 torches reflect from these shimmering planes, giving the illusion that you are
 standing in a gem.  Stairways lead up and down, and the hall leads north. 
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 688
+0 0 688
 D4
 ~
 ~
-0 -1 695
+0 0 695
 D5
 ~
 ~
-0 -1 673
+0 0 673
 S
 #691
 A Top Chamber of the Golden Citadel~
@@ -2990,15 +2987,15 @@ gold, and gems of all types glitter from the walls, ceiling, even the floor.
 It is obvious that this room was not meant for you to intrude upon.  A stair-
 case leads back down, and a doorway leads south.
 ~
-0 [indoors] 0
+0 D 0
 D2
 ~
 ~
-0 -1 693
+0 0 693
 D5
 ~
 ~
-0 -1 686
+0 0 686
 S
 #692
 A Top Chamber of the Golden Citadel~
@@ -3008,15 +3005,15 @@ gold, and gems of all types glitter from the walls, ceiling, even the floor.
 It is obvious that this room was not meant for you to intrude upon.  A stair-
 case leads back down, and a doorway leads east.
 ~
-0 [indoors] 0
+0 D 0
 D1
 ~
 ~
-0 -1 693
+0 0 693
 D5
 ~
 ~
-0 -1 687
+0 0 687
 S
 #693
 The Dragon Chamber~
@@ -3027,27 +3024,27 @@ center of this chamber, you see a great wealth of coins, and on top of that
 pile of coins, you see a golden dragon squinting at you.  Exits lead to the
 cardinal directions to the anterooms.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 691
+0 0 691
 D1
 ~
 ~
-0 -1 694
+0 0 694
 D2
 ~
 ~
-0 -1 695
+0 0 695
 D3
 ~
 ~
-0 -1 692
+0 0 692
 D4
 ~
 ~
-0 -1 696
+0 0 696
 S
 #694
 A Top Chamber of the Golden Citadel~
@@ -3057,15 +3054,15 @@ gold, and gems of all types glitter from the walls, ceiling, even the floor.
 It is obvious that this room was not meant for you to intrude upon.  A stair-
 case leads back down, and a doorway leads west.
 ~
-0 [indoors] 0
+0 D 0
 D3
 ~
 ~
-0 -1 693
+0 0 693
 D5
 ~
 ~
-0 -1 689
+0 0 689
 S
 #695
 A Top Chamber of the Golden Citadel~
@@ -3075,15 +3072,15 @@ gold, and gems of all types glitter from the walls, ceiling, even the floor.
 It is obvious that this room was not meant for you to intrude upon.  A stair-
 case leads back down, and a doorway leads north.
 ~
-0 [indoors] 0
+0 D 0
 D0
 ~
 ~
-0 -1 693
+0 0 693
 D5
 ~
 ~
-0 -1 690
+0 0 690
 S
 #696
 Above the Dragon Chamber~
@@ -3091,15 +3088,15 @@ You are above the Dragon Chamber.  You curiously note that this shaft that
 connects the chamber to the sky is wide enough that even a dragon can fit
 through.  This shaft leads up and down.
 ~
-0 [indoors] 0
+0 D 0
 D4
 ~
 ~
-0 -1 697
+0 0 697
 D5
 ~
 ~
-0 -1 693
+0 0 693
 S
 #697
 In the Shaft from the Dragon Chamber~
@@ -3107,11 +3104,11 @@ You are in the shaft leading from the Dragon Chamber.  Below you lies the
 Dragon Chamber of the Golden Citadel.  Above you, you see the sky, but 
 currently, the way out is sealed by a layer of diamond that looks impenetrable.
 ~
-0 [indoors] 0
+0 D 0
 D5
 ~
 ~
-0 -1 696
+0 0 696
 S
 #698
 Inside the Entrance to the Golden Citadel~
@@ -3119,11 +3116,11 @@ You are inside the entrance to the Golden Citadel.  Rich golden tapestries
 line the walls, and golden tiles cover the floors.  The exit to this citadel is
 to the west, while the citadel itself is to the east.
 ~
-0 [indoors] 0
+0 D 0
 D1
 ~
 ~
-0 -1 679
+0 0 679
 D3
 ~
 gate~
@@ -3135,7 +3132,7 @@ You are outside the entrance to the Golden Citadel.  A great gate is to
 to the east, marking the entranceway into the citadel.  The road also leads
 back west to Raff Way.
 ~
-0 [] 2
+0 0 2
 D1
 ~
 ~
@@ -3143,297 +3140,294 @@ D1
 D3
 ~
 ~
-0 -1 667
+0 0 667
 S
 #0
 
 #RESETS
-D 0   600   1     1    * The east door of Granny's Still Room is closed
-D 0   616   3     1    * The west door of The Shed is closed
-D 0   618   2     1    * The south door of Dirt Road is closed
-D 0   619   0     1    * The north door of Chicken Coop is closed
-D 0   625   1     2    * The east door of Impy Way is closed and locked
-D 0   625   3     2    * The west door of Impy Way is closed and locked
-D 0   626   3     2    * The west door of Big House is closed and locked
-D 0   629   1     2    * The east door of Big House is closed and locked
-D 0   632   1     1    * The east door of Impy Way is closed
-D 0   632   3     1    * The west door of Impy Way is closed
-D 0   633   3     1    * The west door of House is closed
-D 0   635   1     1    * The east door of House is closed
-D 0   637   1     1    * The east door of Impy Way is closed
-D 0   637   3     1    * The west door of Impy Way is closed
-D 0   638   3     1    * The west door of House is closed
-D 0   640   1     1    * The east door of House is closed
-D 0   642   0     2    * The north door of The Big Intersection is closed and locked
-D 0   643   2     2    * The south door of Big House is closed and locked
-M 0   609   1   600  1 * load Granny Jenkins
-O 0   649  99   600    * A quart of ale loaded to Granny's Still Room
-M 0   600   8   601  1 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   624  99     8    * Brass boots is loaded on the feet of the Ofcol cityguard
-M 0   601   1   601  1 * load Marshall Diana
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of Marshall Diana
-E 1   639  99     5    * Platinum plate is loaded on the torso of Marshall Diana
-E 1   640  99     6    * The platinum helmet is loaded over the head of Marshall Diana
-E 1   641  99     7    * Platinum leggings is loaded on the legs of Marshall Diana
-E 1   642  99     8    * Platinum boots is loaded on the feet of Marshall Diana
-E 1   643  99     9    * Platinum gauntlets is loaded on the hands of Marshall Diana
-E 1   644  99    10    * Platinum sleeves is loaded on the arms of Marshall Diana
-E 1   645  99    11    * The platinum spiked shield is loaded as a shield of Marshall Diana
-E 1   646  99    13    * The platinum girth is loaded around the waist of Marshall Diana
-E 1   647  99    16    * Holy avenger is loaded wielded of Marshall Diana
-M 0   617   3   601  1 * load the citizen
-M 0   604   1   603  1 * load Jim the Blacksmith
-G 1   600  99          * A hand axe is given to Jim the Blacksmith
-G 1   601  99          * A meat cleaver is given to Jim the Blacksmith
-G 1   615  99          * A pitchfork is given to Jim the Blacksmith
-G 1   667  99          * A chest is given to Jim the Blacksmith
-M 0   600   8   604  1 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   623  99     7    * Brass leggings is loaded on the legs of the Ofcol cityguard
-M 0   605   1   604  1 * load Sam
-G 1   616  99          * A leather vest is given to Sam
-G 1   617  99          * Some leather sleeves is given to Sam
-G 1   618  99          * Some leather leggings is given to Sam
-G 1   619  99          * Some leather boots is given to Sam
-M 0   606   1   606  1 * load Madam Tracy
-G 1   606  99          * An emerald ring is given to Madam Tracy
-G 1   607  99          * A glass trinket is given to Madam Tracy
-G 1   608  99          * A golden necklace is given to Madam Tracy
-M 0   607   1   607  1 * load Marty
-G 1   602  99          * A side of beef is given to Marty
-G 1   603  99          * A side of pork is given to Marty
-G 1   604  99          * A side of horse is given to Marty
-G 1   605  99          * A defeathered chicken is given to Marty
-M 0   600   8   608  1 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   622  99     6    * A brass helm is loaded over the head of the Ofcol cityguard
-M 0   622   1   609  1 * load Nyles the Bartender
-G 1   648  99          * A shot of whiskey is given to Nyles the Bartender
-G 1   649  99          * A quart of ale is given to Nyles the Bartender
-G 1   650  99          * A quart of port brew is given to Nyles the Bartender
-M 0   624   1   609  1 * load a bard
-M 0   608   1   610  1 * load Farmer Elizabeth
-G 1   609  99          * A head of cabbage is given to Farmer Elizabeth
-G 1   610  99          * A head of lettuce is given to Farmer Elizabeth
-G 1   611  99          * A bottle of milk is given to Farmer Elizabeth
-G 1   612  99          * An apple is given to Farmer Elizabeth
-G 1   613  99          * An ear of corn is given to Farmer Elizabeth
-M 0   618   3   611  1 * load the citizen
-M 0   610   1   617  1 * load Jack
-E 1   601  99    16    * A meat cleaver is loaded wielded of Jack
-M 0   612   4   619  4 * load a hen
-M 0   612   4   619  4 * load a hen
-M 0   612   4   619  4 * load a hen
-M 0   612   4   619  4 * load a hen
-M 0   611   1   620  1 * load Farmer Sara
-E 1   615  99    16    * A pitchfork is loaded wielded of Farmer Sara
-O 0   614  99   620    * A pile of hay loaded to Barn
-O 0   611  99   620    * A bottle of milk loaded to Barn
-M 0   614   2   620  2 * load the cow
-M 0   614   2   620  2 * load the cow
-M 0   615   4   622  4 * load the young horse
-M 0   615   4   622  4 * load the young horse
-M 0   615   4   622  4 * load the young horse
-M 0   615   4   622  4 * load the young horse
-M 0   613   3   623  3 * load the cow
-M 0   613   3   623  3 * load the cow
-M 0   613   3   623  3 * load the cow
-M 0   616   4   624  4 * load the pig
-M 0   616   4   624  4 * load the pig
-M 0   616   4   624  4 * load the pig
-M 0   616   4   624  4 * load the pig
-M 0   621   3   627  1 * load the maid
-G 1   665  99          * A house key is given to the maid
-E 1   666  99    16    * A broom is loaded wielded of the maid
-M 0   621   3   629  1 * load the maid
-G 1   665  99          * A house key is given to the maid
-E 1   666  99    16    * A broom is loaded wielded of the maid
-M 0   620   2   635  1 * load the girl
-M 0   600   8   637  1 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   629  99    14    * A brass bracer is loaded on the left wrist of the Ofcol cityguard
-M 0   618   3   637  1 * load the citizen
-M 0   600   8   642  1 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   626  99    10    * Brass sleeves is loaded on the arms of the Ofcol cityguard
-M 0   621   3   643  1 * load the maid
-G 1   665  99          * A house key is given to the maid
-E 1   666  99    16    * A broom is loaded wielded of the maid
-M 0   600   8   647  1 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   627  99    11    * A brass shield is loaded as a shield of the Ofcol cityguard
-M 0   617   3   648  1 * load the citizen
-M 0   600   8   650  1 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   625  99     9    * Brass gauntlets is loaded on the hands of the Ofcol cityguard
-M 0   617   3   650  1 * load the citizen
-M 0   620   2   652  1 * load the girl
-M 0   619   2   655  1 * load the boy
-M 0   619   2   661  1 * load the boy
-M 0   618   3   666  1 * load the citizen
-M 0   600   8   667  1 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   628  99    13    * A brass girth is loaded around the waist of the Ofcol cityguard
-M 0   602   1   669  1 * load Captain Derrick
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of Captain Derrick
-E 1   631  99     5    * Silver plate is loaded on the torso of Captain Derrick
-E 1   653  99    16    * A ranseur is loaded wielded of Captain Derrick
-E 1   632  99     6    * A silver helm is loaded over the head of Captain Derrick
-E 1   633  99     7    * Silver leggings is loaded on the legs of Captain Derrick
-E 1   634  99     8    * Silver boots is loaded on the feet of Captain Derrick
-E 1   635  99     9    * Silver gauntlets is loaded on the hands of Captain Derrick
-E 1   626  99    10    * Brass sleeves is loaded on the arms of Captain Derrick
-E 1   627  99    11    * A brass shield is loaded as a shield of Captain Derrick
-E 1   628  99    13    * A brass girth is loaded around the waist of Captain Derrick
-M 0   628   1   669  1 * load the Priestess of Ofcol
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Priestess of Ofcol
-E 1   664  99    12    * A golden robe is loaded about the body of the Priestess of Ofcol
-E 1   652  99     3    * The holy symbol of bahamut is loaded around the neck (1) of the Priestess of Ofcol
-M 0   625   2   673  1 * load a servant
-M 0   625   2   674  1 * load a servant
-M 0   633   3   676  1 * load a Dragonknight
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of a Dragonknight
-E 1   654  99     5    * A golden dragonscale torso is loaded on the torso of a Dragonknight
-E 1   660  99    11    * A golden dragonscale shield is loaded as a shield of a Dragonknight
-E 1   662  99    16    * The golden claw is loaded wielded of a Dragonknight
-M 0   627   1   678  1 * load a page
-M 0   633   3   681  1 * load a Dragonknight
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of a Dragonknight
-E 1   654  99     5    * A golden dragonscale torso is loaded on the torso of a Dragonknight
-E 1   660  99    11    * A golden dragonscale shield is loaded as a shield of a Dragonknight
-E 1   662  99    16    * The golden claw is loaded wielded of a Dragonknight
-M 0   626   2   682  1 * load a squire
-M 0   626   2   683  1 * load a squire
-M 0   629   1   688  1 * load Chaplain Jerrold
-E 1   664  99    12    * A golden robe is loaded about the body of Chaplain Jerrold
-M 0   630   3   688  3 * load a Dragonlord
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of a Dragonlord
-E 1   654  99     5    * A golden dragonscale torso is loaded on the torso of a Dragonlord
-E 1   660  99    11    * A golden dragonscale shield is loaded as a shield of a Dragonlord
-E 1   669  99    16    * The golden claw is loaded wielded of a Dragonlord
-E 1   656  99     6    * Golden dragonscale leggings is loaded over the head of a Dragonlord
-E 1   657  99     7    * Golden dragonscale boots is loaded on the legs of a Dragonlord
-M 0   630   3   688  3 * load a Dragonlord
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of a Dragonlord
-E 1   654  99     5    * A golden dragonscale torso is loaded on the torso of a Dragonlord
-E 1   660  99    11    * A golden dragonscale shield is loaded as a shield of a Dragonlord
-E 1   669  99    16    * The golden claw is loaded wielded of a Dragonlord
-E 1   657  99     8    * Golden dragonscale boots is loaded on the feet of a Dragonlord
-E 1   658  99     9    * Golden dragonscale gauntlets is loaded on the hands of a Dragonlord
-M 0   630   3   688  3 * load a Dragonlord
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of a Dragonlord
-E 1   654  99     5    * A golden dragonscale torso is loaded on the torso of a Dragonlord
-E 1   660  99    11    * A golden dragonscale shield is loaded as a shield of a Dragonlord
-E 1   669  99    16    * The golden claw is loaded wielded of a Dragonlord
-E 1   659  99    10    * Golden dragonscale sleeves is loaded on the arms of a Dragonlord
-E 1   661  99    13    * A golden dragonscale girth is loaded around the waist of a Dragonlord
-M 0   633   3   690  1 * load a Dragonknight
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of a Dragonknight
-E 1   654  99     5    * A golden dragonscale torso is loaded on the torso of a Dragonknight
-E 1   660  99    11    * A golden dragonscale shield is loaded as a shield of a Dragonknight
-E 1   662  99    16    * The golden claw is loaded wielded of a Dragonknight
-M 0   631   1   693  1 * load The Ancient Gold Dragon
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of The Ancient Gold Dragon
-E 1   668  99    16    * The golden claw is loaded wielded of The Ancient Gold Dragon
-E 1   663  99    17    * The gold dragon orb is loaded held in the hands of The Ancient Gold Dragon
-M 0   632   2   693  2 * load an attendant of the dragon
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of an attendant of the dragon
-E 1   664  99    12    * A golden robe is loaded about the body of an attendant of the dragon
-M 0   632   2   693  2 * load an attendant of the dragon
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of an attendant of the dragon
-E 1   664  99    12    * A golden robe is loaded about the body of an attendant of the dragon
-M 0   634   3   698  3 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   627  99    11    * A brass shield is loaded as a shield of the Ofcol cityguard
-G 1   651  99          * The citadel key is given to the Ofcol cityguard
-M 0   634   3   698  3 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   627  99    11    * A brass shield is loaded as a shield of the Ofcol cityguard
-G 1   651  99          * The citadel key is given to the Ofcol cityguard
-M 0   634   3   698  3 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   627  99    11    * A brass shield is loaded as a shield of the Ofcol cityguard
-G 1   651  99          * The citadel key is given to the Ofcol cityguard
-M 0   603   1   699  1 * load Captain Jacklyn
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of Captain Jacklyn
-E 1   631  99     5    * Silver plate is loaded on the torso of Captain Jacklyn
-E 1   653  99    16    * A ranseur is loaded wielded of Captain Jacklyn
-E 1   632  99     6    * A silver helm is loaded over the head of Captain Jacklyn
-E 1   623  99     7    * Brass leggings is loaded on the legs of Captain Jacklyn
-E 1   624  99     8    * Brass boots is loaded on the feet of Captain Jacklyn
-E 1   625  99     9    * Brass gauntlets is loaded on the hands of Captain Jacklyn
-E 1   636  99    10    * Silver sleeves is loaded on the arms of Captain Jacklyn
-E 1   637  99    11    * The silver shield is loaded as a shield of Captain Jacklyn
-E 1   638  99    13    * The silver girth is loaded around the waist of Captain Jacklyn
-M 0   623   3   699  3 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   627  99    11    * A brass shield is loaded as a shield of the Ofcol cityguard
-G 1   651  99          * The citadel key is given to the Ofcol cityguard
-M 0   623   3   699  3 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   627  99    11    * A brass shield is loaded as a shield of the Ofcol cityguard
-G 1   651  99          * The citadel key is given to the Ofcol cityguard
-M 0   623   3   699  3 * load the Ofcol cityguard
-E 1   620  99     1    * An ofcol signet ring is loaded on the left finger of the Ofcol cityguard
-E 1   621  99     5    * Brass plate is loaded on the torso of the Ofcol cityguard
-E 1   630  99    16    * A claymore is loaded wielded of the Ofcol cityguard
-E 1   627  99    11    * A brass shield is loaded as a shield of the Ofcol cityguard
-G 1   651  99          * The citadel key is given to the Ofcol cityguard
+D 0  618   2    1	* Dirt Road south
+D 0  619   0    1	* Chicken Coop north
+D 0  600   1    1	* Granny's Still Room east
+D 0  616   3    1	* The Shed west
+D 0  625   1    2	* Impy Way east
+D 0  626   3    2	* Big House west
+D 0  625   3    2	* Impy Way west
+D 0  629   1    2	* Big House east
+D 0  642   0    2	* The Big Intersection north
+D 0  643   2    2	* Big House south
+D 0  632   1    1	* Impy Way east
+D 0  632   3    1	* Impy Way west
+D 0  633   3    1	* House west
+D 0  635   1    1	* House east
+D 0  637   1    1	* Impy Way east
+D 0  637   3    1	* Impy Way west
+D 0  638   3    1	* House west
+D 0  640   1    1	* House east
+M 0  600   8  608  1	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  622  99    6	*   a brass helm
+M 0  600   8  604  1	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  623  99    7	*   brass leggings
+M 0  600   8  601  1	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  624  99    8	*   brass boots
+M 0  600   8  650  1	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  625  99    9	*   brass gauntlets
+M 0  600   8  642  1	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  626  99   10	*   brass sleeves
+M 0  600   8  647  1	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  627  99   11	*   a brass shield
+M 0  600   8  667  1	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  628  99   13	*   a brass girth
+M 0  600   8  637  1	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  629  99   14	*   a brass bracer
+M 0  601   1  601  1	* Marshall Diana
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  639  99    5	*   platinum plate
+E 1  640  99    6	*   the platinum helmet
+E 1  641  99    7	*   platinum leggings
+E 1  642  99    8	*   platinum boots
+E 1  643  99    9	*   platinum gauntlets
+E 1  644  99   10	*   platinum sleeves
+E 1  645  99   11	*   the platinum spiked shield
+E 1  646  99   13	*   the platinum girth
+E 1  647  99   16	*   holy Avenger
+M 0  602   1  669  1	* Captain Derrick
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  631  99    5	*   silver plate
+E 1  653  99   16	*   a ranseur
+E 1  632  99    6	*   a silver helm
+E 1  633  99    7	*   silver leggings
+E 1  634  99    8	*   silver boots
+E 1  635  99    9	*   silver gauntlets
+E 1  626  99   10	*   brass sleeves
+E 1  627  99   11	*   a brass shield
+E 1  628  99   13	*   a brass girth
+M 0  603   1  699  1	* Captain Jacklyn
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  631  99    5	*   silver plate
+E 1  653  99   16	*   a ranseur
+E 1  632  99    6	*   a silver helm
+E 1  623  99    7	*   brass leggings
+E 1  624  99    8	*   brass boots
+E 1  625  99    9	*   brass gauntlets
+E 1  636  99   10	*   silver sleeves
+E 1  637  99   11	*   the silver shield
+E 1  638  99   13	*   the silver girth
+M 0  623   3  699  3	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  627  99   11	*   a brass shield
+G 1  651  99     	*   the citadel key
+M 0  623   3  699  3	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  627  99   11	*   a brass shield
+G 1  651  99     	*   the citadel key
+M 0  623   3  699  3	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  627  99   11	*   a brass shield
+G 1  651  99     	*   the citadel key
+M 0  634   3  698  3	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  627  99   11	*   a brass shield
+G 1  651  99     	*   the citadel key
+M 0  634   3  698  3	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  627  99   11	*   a brass shield
+G 1  651  99     	*   the citadel key
+M 0  634   3  698  3	* the Ofcol cityguard
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  621  99    5	*   brass plate
+E 1  630  99   16	*   a claymore
+E 1  627  99   11	*   a brass shield
+G 1  651  99     	*   the citadel key
+M 0  604   1  603  1	* Jim the Blacksmith
+G 1  600  99     	*   a hand axe
+G 1  601  99     	*   a meat cleaver
+G 1  615  99     	*   a pitchfork
+G 1  667  99     	*   a chest
+M 0  605   1  604  1	* Sam
+G 1  616  99     	*   a leather vest
+G 1  617  99     	*   some leather sleeves
+G 1  618  99     	*   some leather leggings
+G 1  619  99     	*   some leather boots
+M 0  606   1  606  1	* Madam Tracy
+G 1  606  99     	*   an emerald ring
+G 1  607  99     	*   a glass trinket
+G 1  608  99     	*   a golden necklace
+M 0  607   1  607  1	* Marty
+G 1  602  99     	*   a side of beef
+G 1  603  99     	*   a side of pork
+G 1  604  99     	*   a side of horse
+G 1  605  99     	*   a defeathered chicken
+M 0  622   1  609  1	* Nyles the Bartender
+G 1  648  99     	*   a shot of whiskey
+G 1  649  99     	*   a quart of ale
+G 1  650  99     	*   a quart of port brew
+M 0  608   1  610  1	* Farmer Elizabeth
+G 1  609  99     	*   a head of cabbage
+G 1  610  99     	*   a head of lettuce
+G 1  611  99     	*   a bottle of milk
+G 1  612  99     	*   an apple
+G 1  613  99     	*   an ear of corn
+M 0  609   1  600  1	* Granny Jenkins
+O 0  649  99  600	* a quart of ale
+M 0  610   1  617  1	* Jack
+E 1  601  99   16	*   a meat cleaver
+M 0  611   1  620  1	* Farmer Sara
+E 1  615  99   16	*   a pitchfork
+O 0  614  99  620	* a pile of hay
+O 0  611  99  620	* a bottle of milk
+M 0  612   4  619  4	* a hen
+M 0  612   4  619  4	* a hen
+M 0  612   4  619  4	* a hen
+M 0  612   4  619  4	* a hen
+M 0  613   3  623  3	* the cow
+M 0  613   3  623  3	* the cow
+M 0  613   3  623  3	* the cow
+M 0  614   2  620  2	* the cow
+M 0  614   2  620  2	* the cow
+M 0  615   4  622  4	* the young horse
+M 0  615   4  622  4	* the young horse
+M 0  615   4  622  4	* the young horse
+M 0  615   4  622  4	* the young horse
+M 0  616   4  624  4	* the pig
+M 0  616   4  624  4	* the pig
+M 0  616   4  624  4	* the pig
+M 0  616   4  624  4	* the pig
+M 0  617   3  601  1	* the citizen
+M 0  617   3  650  1	* the citizen
+M 0  617   3  648  1	* the citizen
+M 0  618   3  611  1	* the citizen
+M 0  618   3  666  1	* the citizen
+M 0  618   3  637  1	* the citizen
+M 0  619   2  661  1	* the boy
+M 0  619   2  655  1	* the boy
+M 0  620   2  635  1	* the girl
+M 0  620   2  652  1	* the girl
+M 0  624   1  609  1	* a bard
+M 0  621   3  627  1	* the maid
+G 1  665  99     	*   a house key
+E 1  666  99   16	*   a broom
+M 0  621   3  629  1	* the maid
+G 1  665  99     	*   a house key
+E 1  666  99   16	*   a broom
+M 0  621   3  643  1	* the maid
+G 1  665  99     	*   a house key
+E 1  666  99   16	*   a broom
+M 0  625   2  674  1	* a servant
+M 0  625   2  673  1	* a servant
+M 0  626   2  682  1	* a squire
+M 0  626   2  683  1	* a squire
+M 0  627   1  678  1	* a page
+M 0  628   1  669  1	* the Priestess of Ofcol
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  664  99   12	*   a golden robe
+E 1  652  99    3	*   the Holy Symbol of Bahamut
+M 0  629   1  688  1	* Chaplain Jerrold
+E 1  664  99   12	*   a golden robe
+M 0  630   3  688  3	* a Dragonlord
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  654  99    5	*   a golden dragonscale torso
+E 1  660  99   11	*   a golden dragonscale shield
+E 1  669  99   16	*   the golden claw
+E 1  656  99    6	*   golden dragonscale leggings
+E 1  657  99    7	*   golden dragonscale boots
+M 0  630   3  688  3	* a Dragonlord
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  654  99    5	*   a golden dragonscale torso
+E 1  660  99   11	*   a golden dragonscale shield
+E 1  669  99   16	*   the golden claw
+E 1  657  99    8	*   golden dragonscale boots
+E 1  658  99    9	*   golden dragonscale gauntlets
+M 0  630   3  688  3	* a Dragonlord
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  654  99    5	*   a golden dragonscale torso
+E 1  660  99   11	*   a golden dragonscale shield
+E 1  669  99   16	*   the golden claw
+E 1  659  99   10	*   golden dragonscale sleeves
+E 1  661  99   13	*   a golden dragonscale girth
+M 0  631   1  693  1	* The Ancient Gold Dragon
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  668  99   16	*   the Golden Claw
+E 1  663  99   17	*   the Gold Dragon Orb
+M 0  632   2  693  2	* an attendant of the dragon
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  664  99   12	*   a golden robe
+M 0  632   2  693  2	* an attendant of the dragon
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  664  99   12	*   a golden robe
+M 0  633   3  690  1	* a Dragonknight
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  654  99    5	*   a golden dragonscale torso
+E 1  660  99   11	*   a golden dragonscale shield
+E 1  662  99   16	*   the golden claw
+M 0  633   3  676  1	* a Dragonknight
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  654  99    5	*   a golden dragonscale torso
+E 1  660  99   11	*   a golden dragonscale shield
+E 1  662  99   16	*   the golden claw
+M 0  633   3  681  1	* a Dragonknight
+E 1  620  99    1	*   an Ofcol signet ring
+E 1  654  99    5	*   a golden dragonscale torso
+E 1  660  99   11	*   a golden dragonscale shield
+E 1  662  99   16	*   the golden claw
 S
 
 #SHOPS
-  604  5  9 15  0  0 120  80  0 23
-  605  9  0  0  0  0 120  80  0 23
-  606  8 12 13  0  0 120  80  0 23
-  607 19  0  0  0  0 120  10  0 23
-  608 17 19  0  0  0 120  10  0 23
-  622 17  0  0  0  0 120  10  0 23
+ 604  5   9 15  0  0  120  80 	 0 23 	* Jim the Blacksmith
+ 605  9   0  0  0  0  120  80 	 0 23 	* Sam
+ 606  8  12 13  0  0  120  80 	 0 23 	* Madam Tracy
+ 607  19  0  0  0  0  120  10 	 0 23 	* Marty
+ 608  17 19  0  0  0  120  10 	 0 23 	* Farmer Elizabeth
+ 622  17  0  0  0  0  120  10 	 0 23 	* Nyles the Bartender
 0
 
 #SPECIALS
-M   600 spec_guard           * load to: the Ofcol cityguard
-M   601 spec_cast_cleric     * load to: Marshall Diana
-M   602 spec_cast_cleric     * load to: Captain Derrick
-M   603 spec_cast_mage       * load to: Captain Jacklyn
-M   621 spec_janitor         * load to: the maid
-M   623 spec_guard           * load to: the Ofcol cityguard
-M   628 spec_cast_adept      * load to: the Priestess of Ofcol
-M   629 spec_guard           * load to: Chaplain Jerrold
-M   630 spec_breath_any      * load to: a Dragonlord
-M   631 spec_breath_any      * load to: The Ancient Gold Dragon
-M   632 spec_cast_mage       * load to: an attendant of the dragon
-M   633 spec_breath_any      * load to: a Dragonknight
-M   634 spec_guard           * load to: the Ofcol cityguard
+M 600 spec_guard          	* the Ofcol cityguard
+M 601 spec_cast_cleric    	* Marshall Diana
+M 602 spec_cast_cleric    	* Captain Derrick
+M 603 spec_cast_mage      	* Captain Jacklyn
+M 621 spec_janitor        	* the maid
+M 623 spec_guard          	* the Ofcol cityguard
+M 628 spec_cast_adept     	* the Priestess of Ofcol
+M 629 spec_guard          	* Chaplain Jerrold
+M 630 spec_breath_any     	* a Dragonlord
+M 631 spec_breath_any     	* The Ancient Gold Dragon
+M 632 spec_cast_mage      	* an attendant of the dragon
+M 633 spec_breath_any     	* a Dragonknight
+M 634 spec_guard          	* the Ofcol cityguard
 S
-
-#MOBPROGS
-#0
 
 #$

@@ -1,180 +1,178 @@
-#AREADATA
-Name Drow City~
-Builders None~
-VNUMs 5100 5199
-Credits {15 25} Drkside Drow City~
-Security 9
-End
+#AREA
+drow.are~
+Drow City~
+{15 25} Drkside Drow City~
+5100 5199
 
 #MOBILES
 #5100
-goblin slave~
+oldstyle goblin slave~
 the goblin slave~
 A goblin slave lies here asleep.
 ~
 The defenseless goblin begs for mercy.
 ~
 goblin~
-[sentinel wimpy] [] -450 0
+ABH 0 -450 0
 1 0 2d6+10 0d9+100 1d4+0 none
 9 9 9 10
-[disarm dodge trip assist_race] [] [] []
+EFNR 0 0 0
 sleep sleep male 0
-[] [] medium generic
+0 0 medium 0
 #5101
-drow commoner~
+oldstyle drow commoner~
 the drow commoner~
 A drow commoner walks on guard duty.
 ~
 I doubt he is the type to give directions.
 ~
 human~
-[unused_act_1 aggressive stay_area] [detect_invis] -1000 0
+ADFG D -1000 0
 10 0 2d7+121 5d9+100 2d4+2 none
 1 1 1 8
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 15
-[] [] medium generic
+0 0 medium 0
 #5102
-drow noble warrior~
+oldstyle drow noble warrior~
 the drow warrior noble~
 The drow warrior noble stands here guarding his home.
 ~
 He looks pissed off!
 ~
 human~
-[sentinel aggressive] [detect_invis] -1000 0
+ABF D -1000 0
 14 0 2d10+190 7d9+100 1d12+3 none
 -1 -1 -1 8
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 50
-[] [] medium generic
+0 0 medium 0
 #5103
-drow noble mage~
+oldstyle drow noble mage~
 the drow mage noble~
 The drow mage noble is here protecting his home.
 ~
 The mage prepares to cast a spell ... at you!!
 ~
 human~
-[sentinel aggressive mage] [detect_invis] -1000 0
+ABFR D -1000 0
 15 0 2d10+190 15d9+100 1d10+3 none
 -1 -1 -1 5
-[dodge assist_vnum] [] [] []
+FU 0 0 0
 stand stand male 100
-[] [] medium generic
+0 0 medium 0
 #5104
-drow priestess~
+oldstyle drow priestess~
 the drow priestess~
 The drow priestess is here shouting orders.
 ~
 I wouldn't want go get on her bad side!
 ~
 human~
-[sentinel aggressive cleric] [detect_invis] -1000 0
+ABFQ D -1000 0
 17 0 3d9+258 17d9+100 2d6+4 none
 -3 -3 -3 6
-[disarm kick parry assist_vnum] [] [] []
+EIKU 0 0 0
 stand stand female 200
-[] [] medium generic
+0 0 medium 0
 #5105
-drow master~
+oldstyle drow master~
 The drow master~
 The drow master stares at you angrily.
 ~
 The drow master is ALWAYS ready for a fight.
 ~
 human~
-[sentinel aggressive] [detect_invis] -1000 0
+ABF D -1000 0
 21 0 4d10+360 10d9+100 4d4+5 none
 -5 -5 -5 7
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 500
-[] [] medium generic
+0 0 medium 0
 #5106
-drow weapons master~
+oldstyle drow weapons master~
 The weapons master~
 The drow weapons master is here shadow boxing.
 ~
 He definitely knows his way around in combat.
 ~
 human~
-[sentinel aggressive] [detect_invis] -1000 0
+ABF D -1000 0
 23 0 5d10+450 11d9+100 3d6+6 none
 -6 -6 -6 6
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 750
-[] [] medium generic
+0 0 medium 0
 #5107
-drow matron mother~
+oldstyle drow matron mother~
 the matron mother~
 The matron mother of the house is standing here.
 ~
 She looks really pissed off!
 ~
 human~
-[sentinel aggressive] [detect_invis] -1000 0
+ABF D -1000 0
 24 0 5d10+500 12d9+100 2d10+6 none
 -6 -6 -6 6
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 1500
-[] [] medium generic
+0 0 medium 0
 #5108
-drow matron mother~
+oldstyle drow matron mother~
 the matron mother~
 The matron mother of the 1st house is waiting for you.
 ~
 She looks like she is about to rip your head off and eat it.
 ~
 human~
-[sentinel aggressive cleric] [detect_invis sanctuary] -1000 0
+ABFQ DH -1000 0
 26 0 5d10+600 26d9+100 2d10+7 none
 -7 -7 -7 5
-[disarm kick parry assist_vnum] [] [] []
+EIKU 0 0 0
 stand stand female 1500
-[] [] medium generic
+0 0 medium 0
 #5109
-yochlol~
+oldstyle yochlol~
 the yochlol~
 A yochlol forms out of a swirling mist.
 ~
 The yochlol is not in a good mood.
 ~
 human~
-[sentinel aggressive] [detect_invis sanctuary] -1000 0
+ABF DH -1000 0
 35 0 10d10+1300 17d9+100 4d7+11 none
 -11 -11 -11 5
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 1500
-[] [] medium generic
+0 0 medium 0
 #5110
-drow guard~
+oldstyle drow guard~
 the drow guard~
 The drow guard is here staring at you ominously.
 ~
 The drow guard blends so well with his environment, you barely see his form.
 ~
 human~
-[sentinel aggressive] [infrared hide] -1000 0
+ABF JQ -1000 0
 12 0 2d10+150 6d9+100 1d10+3 none
 0 0 0 8
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 250
-[] [] medium generic
+0 0 medium 0
 #5111
-drow scout~
+oldstyle drow scout~
 the drow scout~
 The drow scout is here sneaking among the shadows.
 ~
 The drow scout blends so well with her environment, you barely see her form.
 ~
 human~
-[aggressive wimpy] [sneak hide] -1000 0
+AFH PQ -1000 0
 11 0 2d8+134 5d9+100 1d10+2 none
 1 1 1 8
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 50
-[] [] medium generic
+0 0 medium 0
 #0
 
 #OBJECTS
@@ -182,9 +180,9 @@ stand stand female 50
 longsword commoner~
 a commoner's longsword~
 A commoner's longsword made of adamantite has been left here.~
-generic~
-weapon [] [take wield]
-sword 2 6 slash []
+oldstyle~
+weapon 0 AN
+sword 2 6 slash 0
 11 20 910 P
 A
 19 1
@@ -194,9 +192,9 @@ A
 longsword noble~
 a noble's longsword~
 A drow noble's longsword made of adamantite lies here.~
-generic~
-weapon [] [take wield]
-sword 2 7 slash []
+oldstyle~
+weapon 0 AN
+sword 2 7 slash 0
 15 10 1510 P
 A
 19 2
@@ -206,9 +204,9 @@ A
 whip snake two-headed~
 a snake headed whip~
 A whip with two snakes heads lies here.~
-generic~
-weapon [glow magic] [take wield]
-whip 2 6 whip [twohands]
+oldstyle~
+weapon AG AN
+whip 2 6 whip F
 11 10 920 P
 A
 19 2
@@ -218,9 +216,9 @@ A
 whip snake three-headed~
 a snake headed whip~
 A whip with three snake heads has been left here.~
-generic~
-weapon [glow magic] [take wield]
-whip 2 7 whip []
+oldstyle~
+weapon AG AN
+whip 2 7 whip 0
 15 10 1020 P
 A
 19 2
@@ -230,9 +228,9 @@ A
 whip snake four-headed~
 a snake headed whip~
 A whip with four snake heads has been left here.~
-generic~
-weapon [glow magic] [take wield]
-whip 4 5 whip []
+oldstyle~
+weapon AG AN
+whip 4 5 whip 0
 24 10 1530 P
 A
 19 2
@@ -243,8 +241,8 @@ longsword black~
 a black longsword~
 A black longsword has been carelessly left here.~
 adamantite~
-weapon [glow magic] [take wield]
-sword 3 6 slash []
+weapon AG AN
+sword 3 6 slash 0
 21 0 2100 P
 A
 19 2
@@ -254,9 +252,9 @@ A
 whip snake five-headed~
 a snake headed whip~
 A whip with five snake heads is lying here.~
-generic~
-weapon [glow magic antigood] [take wield]
-whip 3 6 whip []
+oldstyle~
+weapon AGJ AN
+whip 3 6 whip 0
 14 0 10 P
 A
 3 -1
@@ -266,9 +264,9 @@ A
 whip snake six-headed~
 a snake headed whip~
 A whip with six snake heads has been dropped here.~
-generic~
-weapon [glow magic antigood] [take wield]
-whip 4 5 whip []
+oldstyle~
+weapon AGJ AN
+whip 4 5 whip 0
 13 0 0 P
 A
 3 -2
@@ -278,16 +276,16 @@ A
 bracer iron~
 an iron bracer~
 An iron bracer has been dropped here.~
-generic~
-armor [glow magic] [take wrist]
+oldstyle~
+armor AG AM
 4 7 7 2 0
 15 30 1150 P
 #5109
 gauntlets iron~
 a pair of gauntlets~
 A pair of gauntlets has been dropped here.~
-generic~
-armor [glow] [take hands]
+oldstyle~
+armor A AH
 5 5 5 0 0
 17 20 3600 P
 A
@@ -296,16 +294,16 @@ A
 wand blue silver~
 a silvery blue wand~
 A silvery blue wand has been dropped in the dirt.~
-generic~
-wand [magic] [take hold]
+oldstyle~
+wand G AO
 10 3 3 'lightning bolt' 0
 9 10 1550 P
 #5111
 helmet helm~
 a small helmet~
 A small helmet lies up against a rock.~
-generic~
-armor [magic] [take head]
+oldstyle~
+armor G AE
 4 4 4 0 0
 16 50 3300 P
 A
@@ -314,8 +312,8 @@ A
 ring ruby~
 a small ruby ring~
 A small ruby ring lies in the dirt.~
-generic~
-jewelry [magic] [take finger]
+oldstyle~
+jewelry G AB
 0 0 0 0 0
 25 10 980 P
 A
@@ -324,9 +322,9 @@ A
 dagger sacrificial~
 a spider shaped dagger~
 A dagger with spider leg shaped blades lies on the ground.~
-generic~
-weapon [magic antigood] [take wield]
-dagger 4 6 stab []
+oldstyle~
+weapon GJ AN
+dagger 4 6 stab 0
 30 20 3300 P
 A
 19 3
@@ -336,8 +334,8 @@ A
 hat green~
 a small bright green hat~
 A small bright green hat lies in the dirt.~
-generic~
-armor [nodrop] [take head]
+oldstyle~
+armor H AE
 4 5 5 0 0
 12 10 1180 P
 A
@@ -350,18 +348,17 @@ City Entrance~
 You are at the entrance to a small underground city. A great adamantite
 gate lies open to the west allowing entrance into the city.
 ~
-0 [dark indoors] 0
+0 AD 0
 D3
 A huge gate opens to the west allowing entrance into the city.
 ~
 gate~
-0 -1 5101
+0 0 5101
 D4
 A small hole in the ceiling leads up into darkness.
 ~
 door~
 1 -1 5270
-P drow-up-1~
 E
 hole~
 A small hole that looks to have been sealed at one time.
@@ -376,56 +373,56 @@ City street~
 You walk along a highly ornate street going north-south. A large gate
 lies to the east while a building lies to the west.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5123
+0 0 5123
 D1
 ~
 ~
-0 -1 5100
+0 0 5100
 D2
 ~
 ~
-0 -1 5102
+0 0 5102
 D3
 ~
 ~
-0 -1 5122
+0 0 5122
 S
 #5102
 City street~
 You walk along a highly ornate city street going north and west.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5101
+0 0 5101
 D3
 ~
 ~
-0 -1 5103
+0 0 5103
 S
 #5103
 City street~
 You walk along a highly ornate city street going east-west. A large house
 stands to the south.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
-0 -1 5102
+0 0 5102
 D2
 ~
 ~
-0 -1 5104
+0 0 5104
 D3
 ~
 ~
-0 -1 5106
+0 0 5106
 S
 #5104
 3rd House~
@@ -433,11 +430,11 @@ You stand inside the 3rd house of the city; it is fairly well decorated
 by drow standards having a few statues, murals and such. A door leads to the
 south.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5103
+0 0 5103
 D2
 ~
 ~
@@ -448,7 +445,7 @@ Throne Room~
 The throne room of the 3rd house is about as decorated as the inner
 courtyard except with a blood covered altar in the center of the room.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
@@ -459,49 +456,49 @@ City street~
 You walk along a highly ornate city street going east-west. To the north
 is a large building.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5118
+0 0 5118
 D1
 ~
 ~
-0 -1 5103
+0 0 5103
 D3
 ~
 ~
-0 -1 5107
+0 0 5107
 S
 #5107
 City street~
 You walk along a highly ornate city street leading north and east. To the
 south is an extremely large house.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5110
+0 0 5110
 D1
 ~
 ~
-0 -1 5106
+0 0 5106
 D2
 ~
 ~
-0 -1 5108
+0 0 5108
 S
 #5108
 2nd House~
 You stand inside the 2nd house of the city. The room is highly decorated
 with statues of spiders and murals everywhere.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5107
+0 0 5107
 D3
 ~
 ~
@@ -512,7 +509,7 @@ Throne Room~
 The throne room of the 2nd house is just a little more decorative than
 the inner courtyard having an altar in the center of the room.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
@@ -523,15 +520,15 @@ Main Gate~
 You are at the entrance to the 1st house of the city. A large gate, almost
 as big and elegant as the one at the entrance to the city, stands here.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5114
+0 0 5114
 D2
 ~
 ~
-0 -1 5107
+0 0 5107
 D3
 A large gate lies to the west.
 ~
@@ -544,7 +541,7 @@ You stand in the inner courtyard of the 1st and largest house in the city.
 The room is extremely large and decorative. Mural and paintings hang on the
 walls depicting some battles and a spider queen.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
@@ -552,14 +549,14 @@ D1
 D3
 ~
 ~
-0 -1 5112
+0 0 5112
 S
 #5112
 Throne Room~
 The throne room of the 1st house is in one word...awesome. It is so
 horrifying it is almost beautiful.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
@@ -574,8 +571,7 @@ Main Chamber~
 This is the council chamber for the Matron Mother herself. A huge table
 and chairs surrounding it sits in the center of the room.
 ~
-0 [dark indoors] 0
-P drow-room-1~
+0 AD 0
 D2
 ~
 ~
@@ -585,30 +581,30 @@ S
 City street~
 You walk along a highly ornate city street leading north-south and east.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5115
+0 0 5115
 D1
 ~
 ~
-0 -1 5117
+0 0 5117
 D2
 ~
 ~
-0 -1 5110
+0 0 5110
 S
 #5115
 City street~
 You walk along a highly ornate city street leading south. A building is
 to the west.
 ~
-0 [dark indoors] 0
+0 AD 0
 D2
 ~
 ~
-0 -1 5114
+0 0 5114
 D3
 ~
 ~
@@ -618,7 +614,7 @@ S
 Cleric Academy~
 This is the most lavish of the academies being that it is for the clerics.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
@@ -629,7 +625,7 @@ City street~
 You walk along a highly ornate city street going east-west. To the north
 is a giant temple.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 The entrance to the temple of Lloth.
 ~
@@ -638,21 +634,21 @@ The entrance to the temple of Lloth.
 D1
 ~
 ~
-0 -1 5121
+0 0 5121
 D3
 ~
 ~
-0 -1 5114
+0 0 5114
 S
 #5118
 Warrior's Academy~
 This looks more like a barracks than a school.
 ~
-0 [dark indoors] 0
+0 AD 0
 D2
 ~
 ~
-0 -1 5106
+0 0 5106
 S
 #5119
 Entrance to the Temple of Lloth~
@@ -660,7 +656,7 @@ The temple is the largest building in the city. Even it's doors are beyond
 imagination. Inside of the temple entrance, the walls are made of gold and
 adamantite.
 ~
-0 [dark indoors] 0
+0 AD 0
 D2
 ~
 ~
@@ -668,14 +664,14 @@ D2
 D5
 ~
 ~
-0 -1 5126
+0 0 5126
 S
 #5120
 Mage's Academy~
 The mages academy is fairly well decorated see that the drow prefer magic
 over physical power greatly.
 ~
-0 [dark indoors] 0
+0 AD 0
 D2
 ~
 ~
@@ -686,7 +682,7 @@ City street~
 You walk along a highly ornate city street going eastward. To the north is
 a building.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
@@ -694,37 +690,37 @@ D0
 D1
 ~
 ~
-0 -1 5123
+0 0 5123
 D2
 ~
 ~
-0 -1 5122
+0 0 5122
 D3
 ~
 ~
-0 -1 5117
+0 0 5117
 S
 #5122
 Slave Chamber~
 The room is in shambles. Straw is strewn all about the room as beds for the
 unfortunate creatures who have fallen prey to drow imperialism.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5121
+0 0 5121
 D1
 ~
 ~
-0 -1 5101
+0 0 5101
 S
 #5123
 City street~
 You walk along a highly ornate city street leading west and south. To the
 north is a relatively small house.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
@@ -732,22 +728,22 @@ D0
 D2
 ~
 ~
-0 -1 5101
+0 0 5101
 D3
 ~
 ~
-0 -1 5121
+0 0 5121
 S
 #5124
 4th house~
 You stand inside the 4th house of the city. Its inner courtyard is rather
 dull by drow standards and rather small as well.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
-0 -1 5125
+0 0 5125
 D2
 ~
 ~
@@ -758,11 +754,11 @@ Throne Room~
 The throne room is basically similar to the inner courtyard in regards
 to decor. there is a small throne behind the altar but that is about it.
 ~
-0 [dark indoors] 0
+0 AD 0
 D3
 ~
 ~
-0 -1 5124
+0 0 5124
 S
 #5126
 Entrance Way~
@@ -770,15 +766,15 @@ You stand in the entrance way to the temple which opens up to the north
 into a large hallway going east and west. Small statues of spiders line the
 entrance way's walls.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5127
+0 0 5127
 D4
 ~
 ~
-0 -1 5119
+0 0 5119
 S
 #5127
 Hallway~
@@ -787,23 +783,23 @@ with pictures of elves and spiders. The hallway continues east and west. As you
 look down the hallway you can make out one or two figures moving away from you.
 To the north is a obsidian stairway.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5135
+0 0 5135
 D1
 ~
 ~
-0 -1 5128
+0 0 5128
 D2
 ~
 ~
-0 -1 5126
+0 0 5126
 D3
 ~
 ~
-0 -1 5131
+0 0 5131
 S
 #5128
 Long Hallway~
@@ -811,15 +807,15 @@ You are in a long hallway lined with adamantite. The walls are engraved
 with pictures of elves and spiders. The hallway continues east and west. As you
 look down the hallway you can make out one or two figures moving away from you.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
-0 -1 5129
+0 0 5129
 D3
 ~
 ~
-0 -1 5127
+0 0 5127
 S
 #5129
 Long Hallway~
@@ -828,7 +824,7 @@ with pictures of elves and spiders. The hallway continues east and west. As you
 look down the hallway you can make out one or two figures moving away from you.
 To the north is a door.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
@@ -836,11 +832,11 @@ D0
 D1
 ~
 ~
-0 -1 5130
+0 0 5130
 D3
 ~
 ~
-0 -1 5128
+0 0 5128
 S
 #5130
 Long Hallway~
@@ -848,15 +844,15 @@ You are in a long hallway lined with adamantite. The walls are engraved
 with pictures of elves and spiders. The hallway continues east and west. As you
 look down the hallway you can make out one or two figures moving away from you.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
-0 -1 5134
+0 0 5134
 D3
 ~
 ~
-0 -1 5129
+0 0 5129
 S
 #5131
 Long Hallway~
@@ -864,15 +860,15 @@ You are in a long hallway lined with adamantite. The walls are engraved
 with pictures of elves and spiders. The hallway continues east and west. As you
 look down the hallway you can make out one or two figures moving away from you.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
-0 -1 5127
+0 0 5127
 D3
 ~
 ~
-0 -1 5132
+0 0 5132
 S
 #5132
 Long Hallway~
@@ -881,11 +877,11 @@ with pictures of elves and spiders. The hallway continues east and west. As you
 look down the hallway you can make out one or two figures moving away from you.
 To the south is a door.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
-0 -1 5131
+0 0 5131
 D2
 ~
 ~
@@ -893,7 +889,7 @@ D2
 D3
 ~
 ~
-0 -1 5134
+0 0 5134
 S
 #5133
 Warrior's Barracks~
@@ -901,7 +897,7 @@ The room is a complete mess. None of the beds are made, clothes and other
 items have been left all about the room. Well drow warriors never were known
 for neatness.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
@@ -913,41 +909,41 @@ You are in a long hallway lined with adamantite. The walls are engraved
 with pictures of elves and spiders. The hallway continues east and west. As you
 look down the hallway you can make out one or two figures moving away from you.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
-0 -1 5132
+0 0 5132
 D3
 ~
 ~
-0 -1 5130
+0 0 5130
 S
 #5135
 Grand Stairway~
 You are standing at the bottom of a giant obsidian and adamantite
 stairway. The edges are trimmed with gold.
 ~
-0 [dark indoors] 0
+0 AD 0
 D2
 ~
 ~
-0 -1 5127
+0 0 5127
 D4
 ~
 ~
-0 -1 5136
+0 0 5136
 S
 #5136
 Grand Hallway~
 You are standing in the middle of a grand hallway. The walls are
 of the purest adamantite with gold trim. Mosaics line the walls.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5138
+0 0 5138
 D1
 ~
 ~
@@ -955,7 +951,7 @@ D1
 D5
 ~
 ~
-0 -1 5135
+0 0 5135
 S
 #5137
 Mage's Barracks~
@@ -963,7 +959,7 @@ The mage's living quarters is rather clean with the exception of a few
 used component containers. It is rather well decorated as well. Cots line the
 floor for the mages to sleep on. the only door is to the west.
 ~
-0 [dark indoors] 0
+0 AD 0
 D3
 ~
 ~
@@ -975,11 +971,11 @@ You are walking down a grand hallway, heavily decorated with adamantite
 and gold. To the north the hall goes down a flight of stairs while a door is
 too the west.
 ~
-0 [dark indoors] 0
+0 AD 0
 D2
 ~
 ~
-0 -1 5136
+0 0 5136
 D3
 ~
 ~
@@ -987,7 +983,7 @@ D3
 D5
 ~
 ~
-0 -1 5140
+0 0 5140
 S
 #5139
 Cleric's Barracks~
@@ -995,7 +991,7 @@ The bed chamber is brightly decorated with spider shaped statues, murals
 and the like. Large beds line the floor making this a comfortable room to live
 in.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
@@ -1006,7 +1002,7 @@ Grand Stairway~
 You are climbing a set of obsidian stairs surrounded by adamantite walls.
 To the north are a set of large golden doors.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
@@ -1014,7 +1010,7 @@ D0
 D4
 ~
 ~
-0 -1 5138
+0 0 5138
 S
 #5141
 Main Chamber~
@@ -1022,11 +1018,11 @@ This is the south side of a large auditorium used for services by the
 drow priestesses. In the center is a large sacrificial pit and beyond that is
 an altar.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
-0 -1 5142
+0 0 5142
 D2
 ~
 ~
@@ -1034,18 +1030,18 @@ D2
 D3
 ~
 ~
-0 -1 5144
+0 0 5144
 S
 #5142
 Eastern side of Chamber~
 You are on the eastern side of the chamber overlooking the pit. To the east
 is a door while to the north is an altar.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5145
+0 0 5145
 D1
 ~
 ~
@@ -1053,7 +1049,7 @@ D1
 D2
 ~
 ~
-0 -1 5141
+0 0 5141
 S
 #5143
 Sacrificial Pit~
@@ -1064,22 +1060,22 @@ Lloth thanks you for your sacrifice.
 
 You've fallen, and you can't get up!!!
 ~
-0 [no_mob indoors] 0
+0 CD 0
 S
 #5144
 Western side of Chamber~
 You are on the western side of the main chamber overlooking a sacrificial
 pit. To the north is an altar.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5145
+0 0 5145
 D2
 ~
 ~
-0 -1 5141
+0 0 5141
 S
 #5145
 The Altar~
@@ -1087,30 +1083,30 @@ You are standing in front of a highly and freshly bloodstained altar.
 Engraved on the top of the altar is a giant spider with a human head. Looking
 down from the altar you see a large sacrificial pit.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
-0 -1 5148
+0 0 5148
 D1
 ~
 ~
-0 -1 5142
+0 0 5142
 D3
 ~
 ~
-0 -1 5144
+0 0 5144
 D5
 ~
 ~
-0 -1 5143
+0 0 5143
 S
 #5146
 Slave Cells~
 This is the main room to the cell chambers for the slaves to be
 sacrificed. You notice there are no guards around.
 ~
-0 [dark indoors] 0
+0 AD 0
 D0
 ~
 ~
@@ -1118,7 +1114,7 @@ D0
 D3
 ~
 ~
-0 -1 5142
+0 0 5142
 S
 #5147
 Slave Pen~
@@ -1126,7 +1122,7 @@ Rotten meat and breads lie about the floor while shackles hang from the
 walls. The room wreaks of death. You almost become nauseous and decide to leave
 the room since you were obviously too late to save the slave.
 ~
-0 [dark indoors] 0
+0 AD 0
 D2
 ~
 ~
@@ -1138,11 +1134,11 @@ You stand upon a dais behind the altar. Above you is a enormous illusion
 of a female drow turning into a giant spider and back again. There is a door
 to the west.
 ~
-0 [dark indoors] 0
+0 AD 0
 D2
 ~
 ~
-0 -1 5145
+0 0 5145
 D3
 ~
 ~
@@ -1153,7 +1149,7 @@ The Treasury~
 This is obviously only a temporary storage place for the collected
 treasure being rather bare.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 ~
 ~
@@ -1164,7 +1160,7 @@ Weaponsmaster's Chamber~
 This one person bedchamber is very elegant. The owner must be held in high
 to get this kind of treatment.
 ~
-0 [dark indoors] 0
+0 AD 0
 D2
 ~
 ~
@@ -1173,77 +1169,74 @@ S
 #0
 
 #RESETS
-D 0  5100   4     1    * The up door of City Entrance is closed
-M 0  5105   3  5120  1 * load The drow master
-E 1  5104   2    16    * A snake headed whip is loaded wielded of The drow master
-E 1  5110   5    17    * A silvery blue wand is loaded held in the hands of The drow master
-M 0  5100  15  5122 15 * load the goblin slave
-M 0  5102   4  5124  1 * load the drow warrior noble
-E 1  5101  12    16    * A noble's longsword is loaded wielded of the drow warrior noble
-M 0  5103   4  5124  1 * load the drow mage noble
-E 1  5102   4    16    * A snake headed whip is loaded wielded of the drow mage noble
-M 0  5104   4  5124  1 * load the drow priestess
-E 1  5103   4    16    * A snake headed whip is loaded wielded of the drow priestess
-M 0  5107   3  5125  1 * load the matron mother
-E 1  5104   3    16    * A snake headed whip is loaded wielded of the matron mother
-G 1  5114   3          * A small bright green hat is given to the matron mother
-M 0  5101  10  5133  5 * load the drow commoner
-E 1  5100  50    16    * A commoner's longsword is loaded wielded of the drow commoner
-M 0  5109   1  5148  1 * load the yochlol
-E 1  5113   1    16    * A spider shaped dagger is loaded wielded of the yochlol
-M 0  5106   2  5150  1 * load The weapons master
-E 1  5105   3    16    * A black longsword is loaded wielded of The weapons master
-E 1  5109   1     9    * A pair of gauntlets is loaded on the hands of The weapons master
-M 0  5106   2  5101  1 * load The weapons master
-E 1  5105   3    16    * A black longsword is loaded wielded of The weapons master
-M 0  5102   4  5104  1 * load the drow warrior noble
-E 1  5101  12    16    * A noble's longsword is loaded wielded of the drow warrior noble
-M 0  5103   4  5104  1 * load the drow mage noble
-E 1  5102   4    16    * A snake headed whip is loaded wielded of the drow mage noble
-M 0  5104   4  5104  1 * load the drow priestess
-E 1  5103   4    16    * A snake headed whip is loaded wielded of the drow priestess
-M 0  5107   3  5105  1 * load the matron mother
-E 1  5104   3    16    * A snake headed whip is loaded wielded of the matron mother
-E 1  5111   2     6    * A small helmet is loaded over the head of the matron mother
-M 0  5102   4  5108  1 * load the drow warrior noble
-E 1  5101  12    16    * A noble's longsword is loaded wielded of the drow warrior noble
-M 0  5103   4  5108  1 * load the drow mage noble
-E 1  5102   4    16    * A snake headed whip is loaded wielded of the drow mage noble
-M 0  5104   4  5108  1 * load the drow priestess
-E 1  5103   4    16    * A snake headed whip is loaded wielded of the drow priestess
-M 0  5107   3  5109  1 * load the matron mother
-E 1  5104   3    16    * A snake headed whip is loaded wielded of the matron mother
-E 1  5108   2    10    * An iron bracer is loaded on the arms of the matron mother
-M 0  5102   4  5111  1 * load the drow warrior noble
-E 1  5101  12    16    * A noble's longsword is loaded wielded of the drow warrior noble
-M 0  5103   4  5111  1 * load the drow mage noble
-E 1  5102   4    16    * A snake headed whip is loaded wielded of the drow mage noble
-M 0  5104   4  5111  1 * load the drow priestess
-E 1  5103   4    16    * A snake headed whip is loaded wielded of the drow priestess
-M 0  5108   1  5113  1 * load the matron mother
-E 1  5104   1    16    * A snake headed whip is loaded wielded of the matron mother
-E 1  5112   1     1    * A small ruby ring is loaded on the left finger of the matron mother
-M 0  5105   3  5116  1 * load The drow master
-E 1  5104   2    16    * A snake headed whip is loaded wielded of The drow master
-E 1  5110   5    17    * A silvery blue wand is loaded held in the hands of The drow master
-M 0  5101  10  5118  5 * load the drow commoner
-E 1  5100  50    16    * A commoner's longsword is loaded wielded of the drow commoner
-M 0  5105   3  5118  1 * load The drow master
-E 1  5105   3    16    * A black longsword is loaded wielded of The drow master
-E 1  5110   5    17    * A silvery blue wand is loaded held in the hands of The drow master
+M 0 5100  15 5122 15	* the goblin slave
+M 0 5101  10 5118  5	* the drow commoner
+E 1 5100  50   16	*   a commoner's longsword
+M 0 5101  10 5133  5	* the drow commoner
+E 1 5100  50   16	*   a commoner's longsword
+M 0 5102   4 5104  1	* the drow warrior noble
+E 1 5101  12   16	*   a noble's longsword
+M 0 5102   4 5124  1	* the drow warrior noble
+E 1 5101  12   16	*   a noble's longsword
+M 0 5102   4 5108  1	* the drow warrior noble
+E 1 5101  12   16	*   a noble's longsword
+M 0 5102   4 5111  1	* the drow warrior noble
+E 1 5101  12   16	*   a noble's longsword
+M 0 5103   4 5104  1	* the drow mage noble
+E 1 5102   4   16	*   a snake headed whip
+M 0 5103   4 5124  1	* the drow mage noble
+E 1 5102   4   16	*   a snake headed whip
+M 0 5103   4 5108  1	* the drow mage noble
+E 1 5102   4   16	*   a snake headed whip
+M 0 5103   4 5111  1	* the drow mage noble
+E 1 5102   4   16	*   a snake headed whip
+M 0 5104   4 5104  1	* the drow priestess
+E 1 5103   4   16	*   a snake headed whip
+M 0 5104   4 5124  1	* the drow priestess
+E 1 5103   4   16	*   a snake headed whip
+M 0 5104   4 5108  1	* the drow priestess
+E 1 5103   4   16	*   a snake headed whip
+M 0 5104   4 5111  1	* the drow priestess
+E 1 5103   4   16	*   a snake headed whip
+M 0 5105   3 5118  1	* The drow master
+E 1 5105   3   16	*   a black longsword
+E 1 5110   5   17	*   a silvery blue wand
+M 0 5105   3 5120  1	* The drow master
+E 1 5104   2   16	*   a snake headed whip
+E 1 5110   5   17	*   a silvery blue wand
+M 0 5105   3 5116  1	* The drow master
+E 1 5104   2   16	*   a snake headed whip
+E 1 5110   5   17	*   a silvery blue wand
+M 0 5106   2 5150  1	* The weapons master
+E 1 5105   3   16	*   a black longsword
+E 1 5109   1    9	*   a pair of gauntlets
+M 0 5106   2 5101  1	* The weapons master
+E 1 5105   3   16	*   a black longsword
+M 0 5107   3 5125  1	* the matron mother
+E 1 5104   3   16	*   a snake headed whip
+G 1 5114   3     	*   a small bright green hat
+M 0 5107   3 5105  1	* the matron mother
+E 1 5104   3   16	*   a snake headed whip
+E 1 5111   2    6	*   a small helmet
+M 0 5107   3 5109  1	* the matron mother
+E 1 5104   3   16	*   a snake headed whip
+E 1 5108   2   10	*   an iron bracer
+M 0 5108   1 5113  1	* the matron mother
+E 1 5104   1   16	*   a snake headed whip
+E 1 5112   1    1	*   a small ruby ring
+M 0 5109   1 5148  1	* the yochlol
+E 1 5113   1   16	*   a spider shaped dagger
+D 0 5100   4    1	* City Entrance up
 S
 
 #SHOPS
 0
 
 #SPECIALS
-M  5103 spec_cast_mage       * load to: the drow mage noble
-M  5104 spec_cast_cleric     * load to: the drow priestess
-M  5108 spec_cast_cleric     * load to: the matron mother
-M  5109 spec_breath_any      * load to: the yochlol
+M 5103 spec_cast_mage      	* the drow mage noble
+M 5104 spec_cast_cleric    	* the drow priestess
+M 5108 spec_cast_cleric    	* the matron mother
+M 5109 spec_breath_any     	* the yochlol
 S
-
-#MOBPROGS
-#0
 
 #$

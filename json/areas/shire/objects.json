@@ -1,0 +1,394 @@
+[
+  {"object": {
+    "area": "shire",
+    "anum": 0,
+    "name": "rainbow staff",
+    "short_descr": "the rainbow staff",
+    "description": "The rainbow staff lies here.",
+    "item_type": "light",
+    "values": {"duration": -1},
+    "level": 5,
+    "weight": 80,
+    "cost": 550,
+    "extra_flags": "magic",
+    "wear_flags": "take",
+    "affects": [{
+      "level": 5,
+      "apply": "wisdom",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 1,
+    "name": "sting",
+    "short_descr": "sting",
+    "description": "Sting lies here.",
+    "material": "mithril",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 2,
+      "dice_size": 7,
+      "attack_type": "bite"
+    },
+    "level": 17,
+    "weight": 10,
+    "cost": 3500,
+    "extra_flags": "glow hum antievil",
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 17,
+      "apply": "dexterity",
+      "modifier": 2
+    }]
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 2,
+    "name": "sign",
+    "short_descr": "a sign",
+    "description": "A sign demands your attention.",
+    "item_type": "furniture",
+    "values": {
+      "heal_rate": 100,
+      "mana_rate": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "Welcome to the Shire.  As you enter the Shire from Haon-Dor you come under
+                     |the jurisdiction of the Thain, the peacekeeper of the Shire.  Consequently,
+                     |by entering these lands you agree to obey our laws.  If you break these laws,
+                     |you will be severely punished.  We do not like riff raff in our peaceful
+                     |town.
+                     |
+                     |\t\t\t\t\tThe Thain
+                     |\t\t\t\t\tPeacekeeper of the Shire
+                     |"
+    }]
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 3,
+    "name": "pipeweed bread",
+    "short_descr": "a pipeweed bread",
+    "description": "A loaf of pipeweed bread arouses your hunger.",
+    "item_type": "food",
+    "values": {
+      "hunger": 30,
+      "fullness": 24
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 15,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 4,
+    "name": "silvery cloak",
+    "short_descr": "a silvery cloak",
+    "description": "A silvery cloak lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 6,
+      "vs_slash": 6,
+      "vs_magic": 2
+    },
+    "level": 15,
+    "weight": 30,
+    "cost": 1320,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take about",
+    "affects": [{
+      "level": 15,
+      "apply": "saves",
+      "modifier": -1
+    }]
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 5,
+    "name": "one ring",
+    "short_descr": "the One Ring",
+    "description": "The One Ring is here.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 20,
+    "weight": 30,
+    "cost": 1660,
+    "extra_flags": "magic",
+    "wear_flags": "take finger",
+    "affects": [
+      {
+        "level": 20,
+        "bit_type": "affects",
+        "bits": "invisible"
+      },
+      {
+        "level": 20,
+        "apply": "strength",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 6,
+    "name": "elven spear",
+    "short_descr": "an elven spear",
+    "description": "An elven spear lies here.",
+    "material": "wood",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "staff",
+      "dice_num": 2,
+      "dice_size": 8,
+      "attack_type": "thrust"
+    },
+    "level": 16,
+    "weight": 50,
+    "cost": 500,
+    "extra_flags": "hum magic antievil",
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 16,
+      "apply": "hit roll",
+      "modifier": 2
+    }]
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 7,
+    "name": "mithril axe",
+    "short_descr": "a mithril axe",
+    "description": "A mithril axe lies here.",
+    "material": "mithril",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "axe",
+      "dice_num": 2,
+      "dice_size": 8,
+      "attack_type": "chop"
+    },
+    "level": 17,
+    "weight": 120,
+    "cost": 1440,
+    "extra_flags": "glow dark noremove nopurge",
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 17,
+      "apply": "damage roll",
+      "modifier": 2
+    }]
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 8,
+    "name": "thain girth",
+    "short_descr": "the thain girth",
+    "description": "The girth of the thain lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 5,
+      "vs_slash": 5
+    },
+    "level": 17,
+    "weight": 40,
+    "cost": 3600,
+    "wear_flags": "take waist",
+    "affects": [{
+      "level": 17,
+      "apply": "wisdom",
+      "modifier": 2
+    }]
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 9,
+    "name": "tiny dagger",
+    "short_descr": "a tiny dagger",
+    "description": "A tiny dagger lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 1,
+      "dice_size": 6,
+      "attack_type": "pierce"
+    },
+    "level": 1,
+    "weight": 30,
+    "cost": 230,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 10,
+    "name": "egg",
+    "short_descr": "an egg",
+    "description": "An egg lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 12,
+      "fullness": 12
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 2,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 11,
+    "name": "bag",
+    "short_descr": "a bag",
+    "description": "A bag is on the floor.",
+    "item_type": "container",
+    "values": {
+      "capacity": 50,
+      "max_weight": 5,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 11,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 12,
+    "name": "lantern",
+    "short_descr": "a lantern",
+    "description": "A lantern is on the floor.",
+    "item_type": "light",
+    "values": {"duration": 200},
+    "level": 0,
+    "weight": 40,
+    "cost": 60,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 13,
+    "name": "bardiche",
+    "short_descr": "a bardiche",
+    "description": "A long weapon with a sharp end is on the floor.",
+    "material": "wood",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "polearm",
+      "dice_num": 2,
+      "dice_size": 11,
+      "attack_type": "cleave",
+      "flags": "twohands"
+    },
+    "level": 21,
+    "weight": 100,
+    "cost": 1810,
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 21,
+      "apply": "hit roll",
+      "modifier": 4
+    }]
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 14,
+    "name": "flail",
+    "short_descr": "a flail",
+    "description": "A flail is on the floor.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "flail",
+      "dice_num": 2,
+      "dice_size": 4,
+      "attack_type": "smash"
+    },
+    "level": 5,
+    "weight": 80,
+    "cost": 390,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 15,
+    "name": "wooden bardiche",
+    "short_descr": "a wooden bardiche",
+    "description": "A long weapon with a wooden blade is on the floor.",
+    "material": "wood",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "polearm",
+      "dice_num": 2,
+      "dice_size": 3,
+      "attack_type": "pound",
+      "flags": "twohands"
+    },
+    "level": 3,
+    "weight": 100,
+    "cost": 980,
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 3,
+      "apply": "hit roll",
+      "modifier": 4
+    }]
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 16,
+    "name": "dagger shiriff",
+    "short_descr": "a shiriff's dagger",
+    "description": "A tiny but very sharp dagger lies here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 2,
+      "dice_size": 4,
+      "attack_type": "pierce"
+    },
+    "level": 6,
+    "weight": 10,
+    "cost": 480,
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 6,
+        "apply": "damage roll",
+        "modifier": 1
+      },
+      {
+        "level": 6,
+        "apply": "hit roll",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "shire",
+    "anum": 17,
+    "name": "club heavy",
+    "short_descr": "the Thain's club",
+    "description": "You see see a heavy club. Looks just right for whomping heads.",
+    "material": "wood",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 7,
+      "attack_type": "pound"
+    },
+    "level": 12,
+    "weight": 30,
+    "cost": 620,
+    "wear_flags": "take wield"
+  }}
+]

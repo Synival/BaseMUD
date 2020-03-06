@@ -1,14 +1,12 @@
-#AREADATA
-Name Haon Dor~
-Builders None~
-VNUMs 6000 6199
-Credits { 5 10} Diku    Haon Dor~
-Security 9
-End
+#AREA
+haon.are~
+Haon Dor~
+{ 5 10} Diku    Haon Dor~
+6000 6199
 
 #MOBILES
 #6000
-john lumberjack~
+oldstyle john lumberjack~
 John the Lumberjack~
 John the Lumberjack is here, looking for some trees to chop down.
 ~
@@ -17,14 +15,14 @@ chequered shirt.  His features are worn with hard work and his expression is
 one of a peaceful man leading a simple life.
 ~
 human~
-[stay_area] [] 350 0
+AG 0 350 0
 6 0 2d7+71 3d9+100 1d7+1 none
 4 4 4 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 2
-[] [] medium generic
+0 0 medium 0
 #6002
-bear~
+oldstyle bear~
 the brown bear~
 A big, brown, angry-looking bear is here.
 ~
@@ -32,14 +30,14 @@ The bear is a big, brown, furry animal with very large claws and very sharp
 teeth.  It doesn't resemble those cute little thingies from toy shops at all.
 ~
 bear~
-[aggressive stay_area] [] -50 0
+AFG 0 -50 0
 8 0 2d7+96 4d9+100 1d7+2 none
 3 3 3 9
-[dodge trip assist_race] [] [] []
-sleep stand neutral 0
-[] [] medium generic
+FNR 0 0 0
+sleep stand none 0
+0 0 medium 0
 #6003
-rabbit~
+oldstyle rabbit~
 the ferocious rabbit~
 A ferocious rabbit is here, glaring hungrily at you.
 ~
@@ -48,14 +46,14 @@ the dreaded rabbit rabies, a horrible disease that turns helpless and innocent
 rabbits into ferocious and bloodthirsty monsters.
 ~
 rabbit~
-[aggressive stay_area] [] -150 0
+AFG 0 -150 0
 3 0 2d6+35 1d9+100 1d6+0 none
 7 7 7 10
-[disarm trip assist_race] [] [] []
-sleep stand neutral 0
-[] [] medium generic
+ENR 0 0 0
+sleep stand none 0
+0 0 medium 0
 #6004
-deer~
+oldstyle deer~
 the fallow deer~
 A fallow deer is grazing peacefully here.
 ~
@@ -63,28 +61,28 @@ She is a graceful creature on long, slender legs, and with large, brown eyes
 looking back at you with an air of watchful interest.
 ~
 human~
-[sentinel unused_act_2 stay_area pet] [detect_invis] 350 0
+ABEGI D 350 0
 2 0 2d7+21 1d9+100 1d5+0 none
 8 8 8 10
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 0
-[] [] medium generic
+0 0 medium 0
 #6005
-fox~
+oldstyle fox~
 the brown fox~
 A brown fox is here, looking for some rabbits to chew up.
 ~
 It is a large fox with beautiful, red-brown fur and a long, thick brush.
 ~
 fox~
-[stay_area] [] -50 0
+AG 0 -50 0
 2 0 2d7+21 1d9+100 1d5+0 none
 8 8 8 10
-[disarm trip assist_race] [] [] []
-stand stand neutral 0
-[] [] medium generic
+ENR 0 0 0
+stand stand none 0
+0 0 medium 0
 #6100
-warg vicious~
+oldstyle warg vicious~
 the vicious warg~
 A vicious warg is here, snarling angrily at you.
 ~
@@ -92,14 +90,14 @@ It is an exceptionally large wolf with thick, black fur.  Saliva is dripping
 quickly from its long, white fangs.  It looks quite dangerous and very angry.
 ~
 human~
-[aggressive stay_area] [] -350 0
+AFG 0 -350 0
 5 0 2d6+60 2d9+100 1d6+1 none
 5 5 5 9
-[disarm dodge trip assist_vnum] [] [] []
-stand stand neutral 0
-[] [] medium generic
+EFNU 0 0 0
+stand stand none 0
+0 0 medium 0
 #6101
-warg ferocious~
+oldstyle warg ferocious~
 the ferocious warg~
 A ferocious warg is here, snarling angrily at you.
 ~
@@ -107,42 +105,42 @@ It is an exceptionally large wolf with thick, black fur.  Saliva is dripping
 quickly from its long, white fangs.  It looks quite dangerous and very angry.
 ~
 human~
-[aggressive stay_area] [] -350 0
+AFG 0 -350 0
 5 0 2d6+60 2d9+100 1d6+1 none
 5 5 5 9
-[disarm dodge trip assist_vnum] [] [] []
-stand stand neutral 0
-[] [] medium generic
+EFNU 0 0 0
+stand stand none 0
+0 0 medium 0
 #6102
-wolf grey~
+oldstyle wolf grey~
 the large, grey wolf~
 A large, grey wolf is here, glaring hungrily at you.
 ~
 The large, grey wolf eyes you with interest while licking its lips.
 ~
 wolf~
-[aggressive stay_area] [] -150 0
+AFG 0 -150 0
 3 0 2d6+35 1d9+100 1d6+0 none
 7 7 7 10
-[disarm trip assist_race] [] [] []
-stand stand neutral 0
-[] [] medium generic
+ENR 0 0 0
+stand stand none 0
+0 0 medium 0
 #6103
-wolf black~
+oldstyle wolf black~
 the large, black wolf~
 A large, black wolf is here, glaring hungrily at you.
 ~
 The large, black wolf eyes you with interest while licking its lips.
 ~
 wolf~
-[aggressive stay_area] [] -150 0
+AFG 0 -150 0
 3 0 2d6+35 1d9+100 1d6+0 none
 7 7 7 10
-[disarm trip assist_race] [] [] []
-stand stand neutral 0
-[] [] medium generic
+ENR 0 0 0
+stand stand none 0
+0 0 medium 0
 #6112
-dragon green~
+oldstyle dragon green~
 the huge, green dragon~
 A huge green dragon is here, its narrow yellow eyes glowing with rage.
 ~
@@ -152,14 +150,14 @@ the nicks in the horns on its head.  It smells as disgusting as only dragons
 do.
 ~
 dragon~
-[sentinel aggressive stay_area] [detect_invis] -1000 0
+ABFG D -1000 0
 25 0 5d10+550 12d9+100 2d10+7 none
 -7 -7 -7 6
-[disarm dodge trip assist_race] [] [] []
-stand stand neutral 2500
-[] [] medium generic
+EFNR 0 0 0
+stand stand none 2500
+0 0 medium 0
 #6115
-shargugh brownie~
+oldstyle shargugh brownie~
 Shargugh~
 Shargugh the Forest Brownie is here, grinning broadly at you.
 ~
@@ -168,14 +166,14 @@ tangled brown beard.  He wears ragged brown and green clothing and looks as if
 he is having great fun.
 ~
 human~
-[scavenger unused_act_2 wimpy] [invisible detect_invis sneak] 1000 0
+ACEH BDP 1000 0
 10 0 2d7+121 5d9+100 2d4+2 none
 1 1 1 8
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 50
-[] [] medium generic
+0 0 medium 0
 #6116
-elder druid~
+oldstyle elder druid~
 the elder druid~
 The elder druid is here ... he looks very upset at your presence in his home.
 ~
@@ -183,12 +181,12 @@ The druid looks quite old.  You would think him venerable, but you know
 he would be a tough foe.
 ~
 human~
-[sentinel scavenger aggressive cleric] [detect_invis] 0 0
+ABCFQ D 0 0
 17 0 3d9+258 17d9+100 2d6+4 none
 -3 -3 -3 6
-[disarm kick parry assist_vnum] [] [] []
+EIKU 0 0 0
 stand stand male 250
-[] [] medium generic
+0 0 medium 0
 #0
 
 #OBJECTS
@@ -196,9 +194,9 @@ stand stand male 250
 axe lumber two-handed~
 a lumber axe~
 A heavy lumber axe lies here.~
-generic~
-weapon [] [take wield]
-axe 2 6 chop [twohands]
+oldstyle~
+weapon 0 AN
+axe 2 6 chop F
 8 100 820 P
 E
 axe lumber~
@@ -208,8 +206,8 @@ It is a heavy axe of the kind lumberjacks use to chop down trees.
 shirt~
 a chequered shirt~
 A chequered shirt lies here.~
-generic~
-armor [] [take body]
+oldstyle~
+armor 0 AD
 3 3 3 0 0
 3 20 610 P
 E
@@ -220,8 +218,8 @@ It is an extra large, chequered shirt made from heavy cloth.
 boots~
 a pair of leather boots~
 A pair of leather boots lies here.~
-generic~
-armor [] [take feet]
+oldstyle~
+armor 0 AG
 3 3 3 0 0
 3 40 310 P
 E
@@ -233,9 +231,9 @@ it stay waterproof.  They look worn but quite functional.
 fireplace~
 a fireplace~
 A fireplace made from stone is set against the east wall.~
-generic~
-container [] []
-200 [] 0 200 100
+oldstyle~
+container 0 0
+200 0 0 200 100
 0 0 0 P
 E
 fireplace~
@@ -247,9 +245,9 @@ leads the smoke out through the low cabin ceiling.
 chest~
 a wooden chest~
 A wooden chest stands in the corner.~
-generic~
-container [] [take]
-100 [closeable closed locked] 6006 20 100
+oldstyle~
+container 0 A
+100 ACD 6006 20 100
 0 400 100 P
 E
 chest~
@@ -260,8 +258,8 @@ together with tenons.  It is equipped with a simple brass lock.
 key~
 a small brass key~
 A small brass key lies here.~
-generic~
-key [] [take]
+oldstyle~
+key 0 A
 6005 0 0 0 0
 0 10 0 P
 E
@@ -272,8 +270,8 @@ It is a small, simple brass key with no inscriptions or marks of any kind.
 coins silver~
 a heap of silver coins~
 Some silver coins lie piled up in a heap on the floor.~
-generic~
-money [] [take]
+oldstyle~
+money 0 A
 89 1 0 0 0
 0 10 0 P
 E
@@ -284,8 +282,8 @@ The coins seem to be gold.  They are obviously valuable.
 blackberries~
 some blackberries~
 Some blackberries grow on a bush nearby.~
-generic~
-food [] [take]
+oldstyle~
+food 0 A
 3 3 0 0 0
 0 10 0 P
 E
@@ -296,8 +294,8 @@ They look very tasty indeed.
 mushroom~
 a mushroom~
 A small mushroom grows nearby.~
-generic~
-food [] [take]
+oldstyle~
+food 0 A
 6 6 0 0 0
 0 10 0 P
 E
@@ -308,17 +306,17 @@ It is a tasty little thing.
 water barrel~
 the barrel~
 A water barrel has been left here.~
-generic~
-drink [] [take]
+oldstyle~
+drink 0 A
 256 256 'water' 0 0
 0 200 20 P
 #6102
 tree opening~
 a colossal tree~
 A colossal tree blocks the way westwards.~
-generic~
-container [] []
-1000 [] 0 400 100
+oldstyle~
+container 0 0
+1000 0 0 400 100
 0 0 0 P
 E
 opening~
@@ -335,17 +333,17 @@ small opening just above ground level.
 branch~
 a long, grey branch~
 A long, grey branch rests heavily on the ground.~
-generic~
-light [] [take hold]
+oldstyle~
+light 0 AO
 0 0 25 0 0
 0 200 0 P
 #6104
 branch~
 a long, grey branch~
 A long, grey branch rests heavily on the ground.~
-generic~
-weapon [] [take wield]
-mace 2 5 pound []
+oldstyle~
+weapon 0 AN
+mace 2 5 pound 0
 6 300 290 P
 A
 18 -2
@@ -353,16 +351,16 @@ A
 branch~
 a long, grey branch~
 A long, grey branch rests heavily on the ground.~
-generic~
-trash [] [take]
+oldstyle~
+trash 0 A
 0 0 0 0 0
 0 400 0 P
 #6106
 toadstool~
 a toadstool~
 A large toadstool grows nearby.~
-generic~
-food [] [take]
+oldstyle~
+food 0 A
 12 12 0 0 0
 0 50 0 P
 E
@@ -375,8 +373,8 @@ musty smell.  Not the most delicious thing you have seen.
 toadstool~
 a toadstool~
 A large toadstool grows nearby.~
-generic~
-food [] [take]
+oldstyle~
+food 0 A
 12 12 0 1 0
 0 50 0 P
 E
@@ -389,8 +387,8 @@ that emits a weak, musty smell.  Not the most delicious thing you have seen.
 potion yellow~
 a yellow potion~
 A yellow potion has been left here.~
-generic~
-potion [magic] [take]
+oldstyle~
+potion G A
 15 'giant strength' '' '' ''
 4 20 350 P
 E
@@ -401,8 +399,8 @@ It has a deep yellow colour and and a strong spicy smell.
 shield large~
 a large round shield~
 A large round shield has been left here.~
-generic~
-armor [] [take shield]
+oldstyle~
+armor 0 AJ
 6 6 6 3 0
 15 150 1760 P
 E
@@ -413,8 +411,8 @@ It is made from hard wood that has been reinforced with heavy iron bands.
 crown iron~
 an iron crown~
 An iron crown rests on the ground.~
-generic~
-armor [magic] [take head]
+oldstyle~
+armor G AE
 6 6 6 0 0
 15 100 1050 P
 E
@@ -425,8 +423,8 @@ It is a heavy human-sized crown made from solid iron.
 ring iron~
 an iron ring~
 An iron ring has been left here.~
-generic~
-jewelry [magic] [take finger]
+oldstyle~
+jewelry G AB
 0 0 0 0 0
 0 10 50 P
 E
@@ -438,9 +436,9 @@ decorations of any kind.
 morning-star star morning~
 the morning star~
 The morning star is here collecting dust while it lies on the ground.~
-generic~
-weapon [magic] [take wield]
-mace 2 8 crush []
+oldstyle~
+weapon G AN
+mace 2 8 crush 0
 15 100 750 P
 #0
 
@@ -451,19 +449,17 @@ You are standing at the eastern edge of a big forest.  To the east is the West
 Gate of Midgaard and to the west is a narrow trail, leading in through the
 forest.  A dimly lit path leads north.
 ~
-0 [no_mob] 2
+0 C 2
 D0
 You see a dimly lit path.
 ~
 ~
-0 -1 1100
-P haon-north-2~
+0 0 1100
 D1
 You see the West Gate of the City of Midgaard.
 ~
 ~
 0 -1 3052
-P haon-east-1~
 D3
 You see the narrow forest trail winding westwards in between the trees.
 ~
@@ -485,7 +481,7 @@ A trail through the light forest~
 You are on a trail leading through the forest.  To the east is the forest edge
 and to the west, the trail leads further into the forest.
 ~
-0 [] 3
+0 0 3
 D1
 The trail continues eastwards out of the forest.
 ~
@@ -516,7 +512,7 @@ You are on a narrow trail leading east and west through the forest.  To the
 west, the forest gradually becomes more dense.  A small forest path leads
 south.
 ~
-0 [] 3
+0 0 3
 D1
 The trail continues eastwards through the young trees.
 ~
@@ -551,7 +547,7 @@ A trail through the dense forest~
 You are on a trail leading east and west through the dense forest.  To the
 east, the forest gradually seems to become lighter.
 ~
-0 [] 3
+0 0 3
 D1
 The trail continues eastwards to the younger part of the forest.
 ~
@@ -578,7 +574,7 @@ You are on a trail leading east and west through the dense forest.  To the
 west, the trees are so huge and their crowns so dense that forest remains in
 total darkness.  A small path leads south through the trees.
 ~
-0 [] 3
+0 0 3
 D1
 The trail continues eastwards through the dense forest.
 ~
@@ -613,7 +609,7 @@ You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The path
 continues north and south.
 ~
-0 [] 3
+0 0 3
 D0
 The small path leads north through the trees.
 ~
@@ -639,7 +635,7 @@ You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The path
 continues north and east.
 ~
-0 [] 3
+0 0 3
 D0
 The small path leads north through the trees.
 ~
@@ -665,7 +661,7 @@ You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The forest
 gradually lightens to the east.  Paths lead east, west and south.
 ~
-0 [] 3
+0 0 3
 D1
 You can barely make out a clearing to the east.
 ~
@@ -696,7 +692,7 @@ You are in a clearing in the forest.  Lots of fresh stumps of varying sizes
 protrude from the ground and heavy logs are stacked neatly in a big pile
 supported by stakes set into the ground.  Paths lead north, east and west.
 ~
-0 [] 3
+0 0 3
 D0
 The small path leads north through the trees.
 ~
@@ -740,7 +736,7 @@ Outside a small cabin in the forest~
 You are outside a small cabin built entirely from heavy logs.  There is a
 wooden door to the north and small paths lead west and south through the trees.
 ~
-0 [] 3
+0 0 3
 D0
 The wooden door is quite sturdy but does not appear to be equipped with a lock.
 ~
@@ -776,7 +772,7 @@ You are inside a small one-room cabin made entirely from heavy logs.  It is
 very sparsely furnished, containing only most basic housekeeping equipment,
 such as a bed, a chair and a table.
 ~
-0 [indoors] 0
+0 D 0
 D2
 The wooden door leads south.
 ~
@@ -800,7 +796,7 @@ A small path through the light forest~
 You are on a small path leading through the forest.  The trees are tall and
 slender.  Paths lead north and south.
 ~
-0 [] 3
+0 0 3
 D0
 The path leads north through the young trees.
 ~
@@ -826,7 +822,7 @@ You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest floor in an unreal twilight illumination.  Paths
 lead north, east and south.
 ~
-0 [] 3
+0 0 3
 D0
 The small path leads north through the trees.
 ~
@@ -857,7 +853,7 @@ You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The path
 continues east and west.
 ~
-0 [] 3
+0 0 3
 D1
 The small path leads east through the trees.
 ~
@@ -882,7 +878,7 @@ An intersection in the dense forest~
 You are on a small path leading through the dense forest.  The forest gradually
 lightens to the north.  Paths lead north, east and west.
 ~
-0 [] 3
+0 0 3
 D0
 The path leads north to a lighter part of the forest.
 ~
@@ -914,7 +910,7 @@ You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The path
 continues south and west.
 ~
-0 [] 3
+0 0 3
 D2
 The small path leads south through the trees.
 ~
@@ -940,7 +936,7 @@ You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The path
 continues north and south.
 ~
-0 [] 3
+0 0 3
 D0
 The small path leads north through the trees.
 ~
@@ -965,7 +961,7 @@ A small path in the dense forest~
 You are on a small path leading through the dense forest.  The forest seems to
 become lighter to the west.  The path continues north and west.
 ~
-0 [] 3
+0 0 3
 D0
 The small path leads north through the trees.
 ~
@@ -991,7 +987,7 @@ An intersection in the light forest~
 You are on a small path leading through the forest.  A path leads north to a
 small field and other paths lead east and west into the dense forest.
 ~
-0 [] 3
+0 0 3
 D0
 The path leads north to a small, grassy field.
 ~
@@ -1021,7 +1017,7 @@ A small path in the dense forest~
 You are on a small path leading through the dense forest.  The forest seems to
 become lighter to the east.  The path continues north and east.
 ~
-0 [] 3
+0 0 3
 D0
 The small path leads north through the trees.
 ~
@@ -1048,7 +1044,7 @@ You are on a small path leading through the dense forest.  The crowns of the
 old trees leave the forest in an unreal twilight illumination.  The path
 continues south and west.
 ~
-0 [] 3
+0 0 3
 D2
 The small path leads south through the trees.
 ~
@@ -1073,7 +1069,7 @@ A small path in the dense forest~
 You are on a small path leading through the dense forest.  To the west there is
 a cave entrance.  The path continues north and east.
 ~
-0 [] 3
+0 0 3
 D0
 The small path leads north through the trees.
 ~
@@ -1110,7 +1106,7 @@ You are in a natural cave.  Various sorts of debris cover the stone floor,
 emitting a rather unpleasant smell that makes the air thick and hard to
 breathe.  The only obvious exit is east.
 ~
-0 [dark indoors] 0
+0 AD 0
 D1
 The cave opening is to the east.
 ~
@@ -1136,7 +1132,7 @@ nearly reaches your waist, and the surrounding oaks and beeches form an almost
 wall-like thicket on all sides of the field.  A small path leads south through
 the trees.
 ~
-0 [] 2
+0 0 2
 D2
 The small path leads south in between the trees.
 ~
@@ -1161,8 +1157,7 @@ You are on a narrow trail winding its way between the enormous, grey trunks.
 The crowns of the trees must be very dense, as they leave the forest floor in
 utter darkness.  The trail leads east and west.
 ~
-0 [dark indoors] 3
-P haon-room-2~
+0 AD 3
 D1
 The narrow trail leads east to a somewhat lighter part of the forest.
 ~
@@ -1190,7 +1185,7 @@ You are on a dusty trail winding its way east-west between huge, ancient trees
 whose grey trunks remind you of ancient pillars in a enormous, deserted hall.
 To the south, a frail path leads away from the trail.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The narrow, dusty trail leads east through the forest.
 ~
@@ -1228,7 +1223,7 @@ You are on a dusty trail winding its way east-west between huge, ancient trees
 that stand close on all sides.  Not a sound is to be heard - everything is
 ominously quiet.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The narrow, dusty trail leads east through the forest.
 ~
@@ -1261,12 +1256,12 @@ You are where the dusty trail bends, as to avoid conflict with a colossal
 trunk to the west.  Not a sound is to be heard - everything is ominously quiet.
 The trail leads east and south.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 You see a dark trail north.
 ~
 ~
-0 -1 6150
+0 0 6150
 D1
 The narrow, dusty trail leads east through the forest.
 ~
@@ -1294,7 +1289,7 @@ You are on a narrow path leading through the deep, dark forest.  You feel as if
 the ancient trees observe you in watchful silence.  The path continues north
 and south.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow path winds its way through the trees to the north.
 ~
@@ -1320,7 +1315,7 @@ A small path in the deep, dark forest~
 You are on a narrow path leading through the deep, dark forest.  Ancient grey
 trees loom all around you.  The path continues north and west.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow path winds its way through the trees to the north.
 ~
@@ -1346,7 +1341,7 @@ A junction in the deep, dark forest~
 You are by a junction where three paths meet.  Ancient grey trees tower above
 you on all sides.  Paths lead east, south and west.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The narrow path winds its way through the trees to the east.
 ~
@@ -1377,7 +1372,7 @@ A small path in the deep, dark forest~
 You are on a narrow path leading through the deep, dark forest.  Ancient grey
 trees loom all around you.  The path continues north and east.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow path winds its way through the trees to the north.
 ~
@@ -1404,7 +1399,7 @@ You are on a dusty trail winding its way between huge, ancient trees
 standing close on all sides.  The trail leads north and west and to the south,
 a frail path leads away from the trail.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow, dusty trail leads north through the forest.
 ~
@@ -1442,7 +1437,7 @@ You are on a dusty trail winding its way east-west between huge, ancient trees
 that stand close on all sides.  Not a sound is to be heard - everything is
 ominously quiet.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The narrow, dusty trail leads east through the forest.
 ~
@@ -1470,7 +1465,7 @@ You are on a dusty trail winding its way between huge, ancient trees that stand
 close on all sides.  The trail leads east and south.  To the north, a narrow
 path leads away from the trail.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow path leads west between the giant trees.
 ~
@@ -1507,7 +1502,7 @@ A narrow trail through the deep, dark forest~
 You are on a dusty trail winding its way north-south between huge, ancient
 trees that loom ominously above you.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow, dusty trail leads north through the forest.
 ~
@@ -1535,7 +1530,7 @@ You are on a dusty trail winding its way between huge, ancient trees
 standing close on all sides.  The trail leads north and west and to the east,
 a frail path leads away from the trail.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow, dusty trail leads north through the forest.
 ~
@@ -1572,7 +1567,7 @@ A small path in the deep, dark forest~
 You are on a narrow path leading through the deep, dark forest.  Ancient grey
 trees loom in all directions.  The path continues south and west.
 ~
-0 [dark indoors] 3
+0 AD 3
 D2
 The narrow path winds its way through the trees to the south.
 ~
@@ -1598,7 +1593,7 @@ A junction in the deep, dark forest~
 You are by a junction where three paths meet.  Ancient grey trees tower above
 you on all sides.  Paths lead north, east and west.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow path winds its way through the trees to the north.
 ~
@@ -1630,7 +1625,7 @@ You are on a narrow path leading through the deep, dark forest.  You feel as
 if the ancient trees observe you in watchful silence.  The path continues north
 and west.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow path winds its way through the trees to the north.
 ~
@@ -1656,7 +1651,7 @@ A small path in the deep, dark forest~
 You are on a narrow path leading through the deep, dark forest.  Giant, grey
 trees loom ominously on all sides.  The path continues east and south.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The narrow path winds its way through the trees to the east.
 ~
@@ -1682,7 +1677,7 @@ A junction in the deep, dark forest~
 You are by a junction where three paths meet.  Ancient, grey trees seem to
 observe you silently you from all sides.  Paths lead north, east and west.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow path winds its way through the trees to the north.
 ~
@@ -1713,7 +1708,7 @@ A small path in the deep, dark forest~
 You are on a narrow path leading through the deep, dark forest.  Ancient,
 grey trees loom everywhere.  The path continues south and west.
 ~
-0 [dark indoors] 3
+0 AD 3
 D2
 The narrow path winds its way through the trees to the south.
 ~
@@ -1739,7 +1734,7 @@ A small path in the deep, dark forest~
 You are on a narrow path leading through the deep, dark forest.  Huge, ancient
 trees are on all sides.  The path continues north and south.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow path winds its way through the trees to the north.
 ~
@@ -1766,7 +1761,7 @@ You are on a narrow path leading through the deep, dark forest.  To the south a
 fast river is flowing westwards through the forest.  Ancient grey trees loom on
 both banks.  The path continues north and west.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow path winds its way through the trees to the north.
 ~
@@ -1798,7 +1793,7 @@ You are on a narrow path leading through the deep, dark forest.  The ancient
 trees stand so close that the path disappears between the dusty roots.  To the
 south a dark river flows from east to west.  The only exit appears to be east.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The narrow path winds its way through the trees to the east.
 ~
@@ -1824,7 +1819,7 @@ A small path in the deep, dark forest~
 You are on a narrow path leading through the deep, dark forest.  Giant, grey
 trees loom ominously all around.  The path continues east and south.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The narrow path winds its way through the trees to the east.
 ~
@@ -1851,7 +1846,7 @@ You are by a junction where three paths meet.  Ancient, grey trees seem to
 observe you silently you from all around.  To the south a dark river flows from
 east to west through the forest.  Paths lead north, east and west. 
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow path winds its way through the trees to the north.
 ~
@@ -1867,7 +1862,6 @@ You see a dark river.
 ~
 ~
 0 -1 9774
-P haon-south-1~
 D3
 The narrow path winds its way through the trees to the west.
 ~
@@ -1894,13 +1888,12 @@ You are on a narrow path leading through the deep, dark forest.  The ancient
 trees stand so close that the path disappears between the dusty roots.  To the
 south a dark river flows from east to west.  The only exit appears to be west.
 ~
-0 [dark indoors] 3
+0 AD 3
 D2
 It stinks in there.
 ~
 ~
 0 -1 2801
-P haon-south-2~
 D3
 The narrow path winds its way through the trees to the west.
 ~
@@ -1927,7 +1920,7 @@ You are on a narrow path leading through the deep, dark forest.  Ancient grey
 trees loom everywhere.  To the south you smell marsh gas.  The path continues
 north and east.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow path winds its way through the trees to the north.
 ~
@@ -1943,7 +1936,6 @@ You smell marsh gas.
 ~
 ~
 0 -1 8301
-P haon-south-3~
 E
 path~
 The path seems all too frail.  One of the giant roots could probably crush it
@@ -1965,7 +1957,7 @@ You are on a dusty trail winding its way between huge, ancient trees standing
 close on all sides.  The trail leads north and west, and to the south a frail
 path leads away from the trail.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The narrow, dusty trail leads north through the forest.
 ~
@@ -2002,7 +1994,7 @@ A narrow trail through the deep, dark forest~
 You are on a dusty trail winding its way between huge, ancient trees
 standing close on all sides.  The trail leads east and south.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The narrow, dusty trail leads east through the forest.
 ~
@@ -2030,7 +2022,7 @@ You are on a dusty trail winding its way east-west between huge, ancient trees
 that stand close on all sides.  Not a sound is to be heard - everything is
 ominously quiet.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The narrow, dusty trail leads east through the forest.
 ~
@@ -2058,7 +2050,7 @@ You are on a dusty trail winding its way east-west between huge, ancient trees
 that stand close on all sides.  Not a sound is to be heard - everything is
 ominously quiet.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The narrow, dusty trail leads east through the forest.
 ~
@@ -2087,7 +2079,7 @@ wires suspended like ropes between the trees.  To the west the path seems to
 be completely covered in a giant web made from huge threads covered with glue.
 This place gives you the creeps.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The narrow, dusty trail leads east through the forest, away from the web.
 ~
@@ -2133,7 +2125,7 @@ The huge, poisonous spider stings you!  You are poisoned!
 >
 You've fallen, and you can't get up!!!!!
 ~
-0 [no_mob indoors] 3
+0 CD 3
 S
 #6132
 Up in the tree~
@@ -2141,7 +2133,7 @@ You are hanging on the outside of a huge tree trunk covered in a sticky
 substance.  Directly to the west is an immense spider web suspended between
 numerous of the giant trees including the one you are hanging on.
 ~
-0 [dark no_mob indoors] 6
+0 ACD 6
 D3
 To the west is the immense spider web.  It seems to move softly.
 ~
@@ -2164,13 +2156,12 @@ You are balancing carefully on the giant sticky threads that holds the giant
 web in place.  To the east is a giant tree trunk and to the west is an entrance
 to a cave-like structure made from many layers of spider web.
 ~
-0 [dark indoors] 6
+0 AD 6
 D0
 The web continues to the north.
 ~
 ~
 0 -1 6200
-P haon-north-1~
 D1
 To the east is the giant tree trunk.
 ~
@@ -2198,8 +2189,7 @@ countless layers of spider web.  Temperature and humidity is very high making
 it hard to breathe the foul air that lingers here.  The walls are covered with
 open cocoons.
 ~
-0 [dark indoors] 6
-P haon-room-1~
+0 AD 6
 D1
 Compared to this place the east exit looks inviting.
 ~
@@ -2220,7 +2210,7 @@ A dusty trail in the deep, dark forest~
 You are on a dusty trail leading through the deep, dark forest.  Ancient grey
 trees loom all around you.  The trail continues north and east.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The dusty trail leads north through the trees.
 ~
@@ -2242,7 +2232,7 @@ You are on a dusty trail leading through the deep, dark forest.  Ancient,
 grey trees loom everywhere.  The trail continues south and west.  A broad
 irregular path leads eastwards away from the trail.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The trees standing on the sides of the path have scratch marks on them.
 ~
@@ -2279,13 +2269,12 @@ You are on a dusty trail leading through the deep, dark forest.  Ancient grey
 trees loom all around you.  You see a dark grove north of you.
 The only other exit is east.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 You see a dark grove north.
 ~
 ~
-0 -1 1300
-P haon-north-3~
+0 0 1300
 D1
 The dusty trail leads east through the trees.
 ~
@@ -2302,7 +2291,7 @@ You are at the end of a broad, irregular path.  To the north is a very large
 ominous-looking cave opening.  The trees here have many marks as if something
 with huge claws has been tearing at them in rage.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 The disgusting smell of a large reptile emanates from the cave opening.
 ~
@@ -2329,7 +2318,7 @@ You are in a big natural cave.  The floor is littered with bones of all sorts
 and the stench is so massive that you could cut it with a knife.  The only exit
 is to the south.
 ~
-0 [dark indoors] 3
+0 AD 3
 D2
 The exit leads out into the forest.
 ~
@@ -2346,7 +2335,7 @@ You are on a narrow path leading through the deep, dark forest.  Ancient,
 grey trees loom everywhere.  The tree trunks here seem to be covered in some
 sticky substance.  The path continues south and west.
 ~
-0 [dark indoors] 3
+0 AD 3
 D2
 The narrow path winds its way through the trees to the south.
 ~
@@ -2378,7 +2367,7 @@ This trail looks much spookier than any other thats you have seen.  The usual
 animal claw marks and bites on the trees are getting far and few between. The
 trail continues north.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 the narrow trail continues north.
 ~
@@ -2396,7 +2385,7 @@ This area of the trail is also very peculiar.  You can see no signs of animal
 life what so ever.  The structure of the surrounding trees forces the path to
 make a sharp turn to the east.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 the trail bends east.
 ~
@@ -2414,7 +2403,7 @@ The trees here seem to form a circle around a HUGE tree that is in the center
 of them.  You notice a wooden door carved into the huge tree to the east.  The
 trail that you followed to get here seems to end at the base of the tree.
 ~
-0 [dark indoors] 3
+0 AD 3
 D1
 The tree door is carved beautifully.
 ~
@@ -2431,7 +2420,7 @@ Inside the great tree.~
 You have stepped inside of this hollowed tree.  From here steps lead down into
 darkness or you can exit the tree by going west.
 ~
-0 [dark indoors] 3
+0 AD 3
 D3
 the door is carved beautifully.
 ~
@@ -2448,7 +2437,7 @@ The underground hallway.~
 This hallway is apparently one of the roots of the tree hollowed out.  The hall
 leads south to a room where you hear strange noises or you can go up the steps.
 ~
-0 [dark indoors] 3
+0 AD 3
 D2
 the hallway looks quite grand.
 ~
@@ -2467,7 +2456,7 @@ to visit but you feel very uncomfortable about spending much time here.
 The wooden altar seems almost to glow as you enter the room.  The only exit is
 the way you came in.
 ~
-0 [dark indoors] 3
+0 AD 3
 D0
 the hallway looks quite grand.
 ~
@@ -2477,75 +2466,65 @@ S
 #0
 
 #RESETS
-D 0  6152   1     1    * The east door of The circle of trees. is closed
-D 0  6153   3     1    * The west door of Inside the great tree. is closed
-D 0  6009   0     1    * The north door of Outside a small cabin in the forest is closed
-D 0  6010   2     1    * The south door of Inside the cabin is closed
-M 0  6116   1  6155  1 * load the elder druid
-E 1  6155   1    16    * The morning star is loaded wielded of the elder druid
-O 0  6011   3  6006    * A mushroom loaded to A small path in the dense forest
-M 0  6000   1  6009  1 * load John the Lumberjack
-E 1  6000  10    16    * A lumber axe is loaded wielded of John the Lumberjack
-E 1  6001  10     5    * A chequered shirt is loaded on the torso of John the Lumberjack
-E 1  6002  10     8    * A pair of leather boots is loaded on the feet of John the Lumberjack
-O 0  6003   1  6010    * A fireplace loaded to Inside the cabin
-O 0  6005   1  6010    * A wooden chest loaded to Inside the cabin
-P 1  6007   1  6005  1 A heap of silver coins * put inside a heap of silver coins
-P 1  6006   1  6003  1 A small brass key * put inside a small brass key
-O 0  6013   3  6010    * The barrel loaded to Inside the cabin
-M 0   309   5  6012  2 * load the cute rabbit
-O 0  6011   3  6013    * A mushroom loaded to A small path in the dense forest
-M 0  6005   2  6014  2 * load the brown fox
-M 0   309   5  6015  1 * load the cute rabbit
-O 0  6011   3  6016    * A mushroom loaded to A small path in the dense forest
-M 0   309   5  6017  1 * load the cute rabbit
-M 0   309   5  6019  1 * load the cute rabbit
-M 0  6002   1  6022  1 * load the brown bear
-M 0  6004   1  6023  1 * load the fallow deer
-O 0  6010   2  6023    * Some blackberries loaded to On a small, grassy field
-M 0  6115   1  6100  1 * load Shargugh
-E 1  6114   3     1    * An iron ring is loaded on the left finger of Shargugh
-O 0  6102   1  6103    * A colossal tree loaded to A narrow trail through the deep, dark forest
-M 0  6102   4  6104  2 * load the large, grey wolf
-M 0  6102   4  6104  2 * load the large, grey wolf
-O 0  6106   4  6104    * A toadstool loaded to A small path in the deep, dark forest
-O 0  6105   1  6105    * A long, grey branch loaded to A small path in the deep, dark forest
-M 0  6102   4  6108  2 * load the large, grey wolf
-M 0  6102   4  6108  2 * load the large, grey wolf
-O 0  6106   4  6111    * A toadstool loaded to A narrow trail through the deep, dark forest
-M 0  6103   4  6112  2 * load the large, black wolf
-M 0  6103   4  6112  2 * load the large, black wolf
-O 0  6103   1  6113    * A long, grey branch loaded to A small path in the deep, dark forest
-M 0  6100   2  6116  2 * load the vicious warg
-M 0  6100   2  6116  2 * load the vicious warg
-M 0  6103   4  6118  2 * load the large, black wolf
-M 0  6103   4  6118  2 * load the large, black wolf
-O 0  6107   4  6119    * A toadstool loaded to A small path in the deep, dark forest
-O 0  6106   4  6122    * A toadstool loaded to A small path in the deep, dark forest
-O 0  6104   1  6125    * A long, grey branch loaded to A small path on the river bank in the deep, dark forest
-M 0  6101   2  6127  2 * load the ferocious warg
-M 0  6101   2  6127  2 * load the ferocious warg
-M 0  6319   1  6134  1 * load the Queen Spider
-G 1  6308   1          * A big pile of coins is given to the Queen Spider
-G 1  6309  -1          * A blue potion is given to the Queen Spider
-M 0  6318   3  6134  3 * load the huge, poisonous spider
-M 0  6318   3  6134  3 * load the huge, poisonous spider
-M 0  6318   3  6134  3 * load the huge, poisonous spider
-M 0  6112   1  6143  1 * load the huge, green dragon
-G 1  6110  -1          * A yellow potion is given to the huge, green dragon
-G 1  6112  10          * An iron crown is given to the huge, green dragon
-G 1  6111  10          * A large round shield is given to the huge, green dragon
+M 0 6000   1 6009  1	* John the Lumberjack
+E 1 6000  10   16	*   a lumber axe
+E 1 6001  10    5	*   a chequered shirt
+E 1 6002  10    8	*   a pair of leather boots
+D 0 6009   0    1	* Outside a small cabin in the forest north
+M 0  309   5 6012  2	* the cute rabbit
+M 0  309   5 6015  1	* the cute rabbit
+M 0  309   5 6017  1	* the cute rabbit
+M 0  309   5 6019  1	* the cute rabbit
+M 0 6002   1 6022  1	* the brown bear
+M 0 6004   1 6023  1	* the fallow deer
+M 0 6005   2 6014  2	* the brown fox
+O 0 6003   1 6010	* a fireplace
+O 0 6005   1 6010	* a wooden chest
+P 1 6007   1 6005  1	*   a heap of silver coins
+P 1 6006   1 6003  1	*   a small brass key
+O 0 6013   3 6010	* the barrel
+O 0 6010   2 6023	* some blackberries
+O 0 6011   3 6006	* a mushroom
+O 0 6011   3 6013	* a mushroom
+O 0 6011   3 6016	* a mushroom
+M 0 6100   2 6116  2	* the vicious warg
+M 0 6100   2 6116  2	* the vicious warg
+M 0 6101   2 6127  2	* the ferocious warg
+M 0 6101   2 6127  2	* the ferocious warg
+M 0 6102   4 6108  2	* the large, grey wolf
+M 0 6102   4 6108  2	* the large, grey wolf
+M 0 6102   4 6104  2	* the large, grey wolf
+M 0 6102   4 6104  2	* the large, grey wolf
+M 0 6103   4 6112  2	* the large, black wolf
+M 0 6103   4 6112  2	* the large, black wolf
+M 0 6103   4 6118  2	* the large, black wolf
+M 0 6103   4 6118  2	* the large, black wolf
+M 0 6112   1 6143  1	* the huge, green dragon
+G 1 6110  -1     	*   a yellow potion
+G 1 6112  10     	*   an iron crown
+G 1 6111  10     	*   a large round shield
+M 0 6115   1 6100  1	* Shargugh
+E 1 6114   3    1	*   an iron ring
+M 0 6116   1 6155  1	* the elder druid
+E 1 6155   1   16	*   the morning star
+D 0 6152   1    1	* The circle of trees. east
+D 0 6153   3    1	* Inside the great tree. west
+O 0 6102   1 6103	* a colossal tree
+O 0 6103   1 6113	* a long, grey branch
+O 0 6104   1 6125	* a long, grey branch
+O 0 6105   1 6105	* a long, grey branch
+O 0 6106   4 6104	* a toadstool
+O 0 6106   4 6111	* a toadstool
+O 0 6106   4 6122	* a toadstool
+O 0 6107   4 6119	* a toadstool
 S
 
 #SHOPS
 0
 
 #SPECIALS
-M  6112 spec_breath_gas      * load to: the huge, green dragon
-M  6116 spec_cast_cleric     * load to: the elder druid
+M 6112 spec_breath_gas     	* the huge, green dragon
+M 6116 spec_cast_cleric    	* the elder druid
 S
-
-#MOBPROGS
-#0
 
 #$

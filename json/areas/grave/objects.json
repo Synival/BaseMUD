@@ -1,0 +1,224 @@
+[
+  {"object": {
+    "area": "grave",
+    "anum": 0,
+    "name": "candlestick",
+    "short_descr": "a candlestick",
+    "description": "A pewter candlestick is standing here.",
+    "item_type": "light",
+    "values": {"duration": 24},
+    "level": 0,
+    "weight": 50,
+    "cost": 10,
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "candlestick",
+      "description": "It is a rather old-looking three-armed candlestick made from pewter.  Its
+                     |candles are a yellowish white colour."
+    }]
+  }},
+  {"object": {
+    "area": "grave",
+    "anum": 1,
+    "name": "brandy bottle",
+    "short_descr": "a brandy bottle",
+    "description": "A brandy bottle is lying here.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 32,
+      "filled": 32,
+      "liquid": "whisky"
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 100,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "brandy bottle",
+      "description": "The bottle is a special 'Dragon Blood' brandy bottle.  Its neck is shaped
+                     |like a small dragon's head.  Bottles like these are often worth a small
+                     |amount money, even when empty."
+    }]
+  }},
+  {"object": {
+    "area": "grave",
+    "anum": 2,
+    "name": "brandy bottle",
+    "short_descr": "a brandy bottle",
+    "description": "A brandy bottle is lying here.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 32,
+      "liquid": "whisky"
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 100,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "brandy bottle",
+      "description": "The bottle is a special 'Dragon Blood' brandy bottle.  Its neck is shaped
+                     |like a small dragon's head.  Bottles like these are often worth some money,
+                     |even when empty."
+    }]
+  }},
+  {"object": {
+    "area": "grave",
+    "anum": 3,
+    "name": "wheelbarrow",
+    "short_descr": "a wheelbarrow",
+    "description": "A green-painted wheelbarrow is standing here.",
+    "item_type": "boat",
+    "values": {},
+    "level": 0,
+    "weight": 1000,
+    "cost": 50,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "wheelbarrow",
+      "description": "It is a heavy wheelbarrow made from solid oaken planks that have been painted
+                     |a dark, green colour."
+    }]
+  }},
+  {"object": {
+    "area": "grave",
+    "anum": 4,
+    "name": "shovel",
+    "short_descr": "a shovel",
+    "description": "A shovel is lying here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 1,
+      "dice_size": 5,
+      "attack_type": "pound"
+    },
+    "level": 0,
+    "weight": 80,
+    "cost": 169,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "shovel",
+      "description": "It is a large metal shovel with a solid wooden handle."
+    }]
+  }},
+  {"object": {
+    "area": "grave",
+    "anum": 5,
+    "name": "rake",
+    "short_descr": "a rake",
+    "description": "A rake is lying here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 1,
+      "dice_size": 4,
+      "attack_type": "claw"
+    },
+    "level": 0,
+    "weight": 80,
+    "cost": 140,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "rake",
+      "description": "It is a large metal rake with a solid wooden handle."
+    }]
+  }},
+  {"object": {
+    "area": "grave",
+    "anum": 10,
+    "name": "skeleton",
+    "short_descr": "a dusty skeleton",
+    "description": "A dusty skeleton lies here.",
+    "item_type": "furniture",
+    "values": {
+      "heal_rate": 100,
+      "mana_rate": 100
+    },
+    "level": 0,
+    "weight": 150,
+    "cost": 0,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "skeleton",
+      "description": "The dusty bones are almost brown.  It must have been buried for a very long
+                     |time.
+                     |A dusty skeleton is in an excellent condition."
+    }]
+  }},
+  {"object": {
+    "area": "grave",
+    "anum": 11,
+    "name": "amethyst gem",
+    "short_descr": "a amethyst",
+    "description": "A large, beautifully polished amethyst has been left here.",
+    "item_type": "warp_stone",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 2500,
+    "extra_flags": "nolocate",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "amethyst",
+      "description": "It has a very deep purple colour."
+    }]
+  }},
+  {"object": {
+    "area": "grave",
+    "anum": 12,
+    "name": "pendant silver",
+    "short_descr": "a silver pendant",
+    "description": "A silver pendant has been left here.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 7,
+    "weight": 10,
+    "cost": 800,
+    "wear_flags": "take neck",
+    "extra_description": [{
+      "keyword": "pendant silver",
+      "description": "It resembles Thor's hammer and appears to be made of solid silver."
+    }],
+    "affects": [
+      {
+        "level": 7,
+        "apply": "strength",
+        "modifier": 1
+      },
+      {
+        "level": 7,
+        "apply": "armor class",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "grave",
+    "anum": 13,
+    "name": "dagger silver",
+    "short_descr": "a silver dagger",
+    "description": "A long silver dagger is lying here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 2,
+      "dice_size": 4,
+      "attack_type": "pierce"
+    },
+    "level": 6,
+    "weight": 10,
+    "cost": 430,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "dagger silver",
+      "description": "It has a long, sharp blade that is made entirely from silver.  A small rune
+                     |has been engraved on the blade next to the hilt."
+    }],
+    "affects": [{
+      "level": 6,
+      "apply": "damage roll",
+      "modifier": 1
+    }]
+  }}
+]

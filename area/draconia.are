@@ -1,14 +1,12 @@
-#AREADATA
-Name Dragon Tower~
-Builders None~
-VNUMs 2200 2299
-Credits { 5 30} Wench   Dragon Tower~
-Security 9
-End
+#AREA
+draconia.are~
+Dragon Tower~
+{ 5 30} Wench   Dragon Tower~
+2200 2299
 
 #MOBILES
 #2200
-hatchling dragon baby~
+oldstyle hatchling dragon baby~
 the dragon hatchling~
 A dragon hatchling is here, chewing on a bone.
 ~
@@ -16,16 +14,16 @@ This small dragon hisses at you as you enter the room.  Although it is only a
 few feet long, its sharp teeth make you think twice about petting it.
 ~
 dragon~
-[sentinel stay_area] [] -900 0
+ABG 0 -900 0
 7 0 2d6+85 3d9+100 1d8+1 none
 4 4 4 9
-[disarm dodge trip assist_vnum] [] [] []
-stand stand neutral 100
-[] [] medium generic
-F res [fire]
-F vul [cold]
+EFNU 0 0 0
+stand stand none 100
+0 0 medium 0
+F res H
+F vul I
 #2201
-draconian~
+oldstyle draconian~
 the Draconian~
 The Draconian is standing here.
 ~
@@ -34,28 +32,28 @@ has black scales and a seven foot wingspan.  He scowls at you and hefts his
 spear as you enter the room.
 ~
 human~
-[sentinel scavenger aggressive] [detect_invis] -900 0
+ABCF D -900 0
 13 0 2d10+170 6d9+100 2d5+3 none
 -1 -1 -1 8
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 100
-[] [] medium generic
+0 0 medium 0
 #2202
-lord crypt master~
+oldstyle lord crypt master~
 the dragon master~
 The lord of this crypt is here.
 ~
 He doesn't look happy to see you.
 ~
 human~
-[sentinel scavenger aggressive] [flying] -1000 0
+ABCF T -1000 0
 27 0 5d10+650 13d9+100 5d4+7 none
 -8 -8 -8 6
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 1750
-[] [] medium generic
+0 0 medium 0
 #2203
-man mage wizard~
+oldstyle man mage wizard~
 a powerful mage~
 A man is here, studying some books.
 ~
@@ -64,14 +62,14 @@ surprised at the fact that he is human, and realize that he must be very
 powerful to have been accepted by the creatures which live here.
 ~
 human~
-[sentinel mage] [invisible detect_invis sanctuary] -900 0
+ABR BDH -900 0
 22 0 4d10+360 22d9+100 2d7+5 none
 -5 -5 -5 3
-[dodge assist_vnum] [] [] []
+FU 0 0 0
 stand stand male 30
-[] [] medium generic
+0 0 medium 0
 #2204
-cleric draconian~
+oldstyle cleric draconian~
 the holy Draconian~
 A Draconian is here, deep in thought.          
 ~
@@ -79,14 +77,14 @@ A Draconian stands here, dressed in simple robes.  Around his neck you
 notice a golden medallion in the shape of a five headed dragon.  
 ~
 human~
-[sentinel scavenger aggressive cleric] [detect_invis sanctuary] -900 0
+ABCFQ DH -900 0
 22 0 5d10+400 22d9+100 2d8+6 none
 -5 -5 -5 5
-[disarm kick parry assist_vnum] [] [] []
+EIKU 0 0 0
 stand stand male 20
-[] [] medium generic
+0 0 medium 0
 #2205
-king draconian~
+oldstyle king draconian~
 the Draconian King~
 A Draconian wearing fine clothes is here, pondering his greatness.          
 ~
@@ -95,14 +93,14 @@ though he could crush your head with a single blow.  Yet you sense that he
 is controlled by a greater power. 
 ~
 human~
-[sentinel scavenger] [detect_invis sanctuary] -900 0
+ABC DH -900 0
 26 0 5d10+600 13d9+100 3d7+7 none
 -7 -7 -7 6
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 40
-[] [] medium generic
+0 0 medium 0
 #2206
-concubine draconian~
+oldstyle concubine draconian~
 a concubine~
 A concubine is resting here. 
 ~
@@ -111,14 +109,14 @@ all.  You find yourself strangely repulsed as she draws a knife and
 prepares to defend herself. 
 ~
 human~
-[sentinel] [] -500 0
+AB 0 -500 0
 6 0 2d7+71 3d9+100 1d7+1 none
 4 4 4 9
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 5
-[] [] medium generic
+0 0 medium 0
 #2207
-bodyguard draconian~
+oldstyle bodyguard draconian~
 A bodyguard~
 A bodyguard is here, staring at you menacingly. 
 ~
@@ -126,14 +124,14 @@ This creature has devoted its life to defending the king.  Your intrusion has
 not pleased it.
 ~
 human~
-[sentinel aggressive] [detect_evil detect_invis detect_hidden] -800 0
+ABF CDF -800 0
 18 0 3d9+283 9d9+100 2d7+4 none
 -3 -3 -3 7
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand male 250
-[] [] medium generic
+0 0 medium 0
 #2220
-tiamat dragon~
+oldstyle tiamat dragon~
 Tiamat~
 A five headed dragon hisses at you as you enter this room.
 ~
@@ -141,14 +139,14 @@ You see before you the master of this Tower, Tiamat.  She frowns at you as she
 prepares to make you pay for your insolence ... with your lives!
 ~
 human~
-[sentinel scavenger aggressive] [detect_invis detect_hidden flying haste] -1000 0
+ABCF DFTV -1000 0
 52 0 50d10+5500 26d9+100 6d7+20 none
 -22 -22 -22 2
-[disarm dodge trip assist_vnum] [summon charm] [magic weapon] []
+EFNU AB CD 0
 stand stand female 2500
-[] [] medium generic
+0 0 medium 0
 #2221
-dragon red~
+oldstyle dragon red~
 the Great Red Dragon~
 A red dragon is here, contemplating your existence. 
 ~
@@ -156,15 +154,15 @@ This huge red dragon dominates the chamber.  As you turn to flee, he grins at
 you and invites you to stay ... forever! 
 ~
 dragon~
-[sentinel scavenger aggressive] [detect_invis detect_hidden] -1000 0
+ABCF DF -1000 0
 45 0 25d10+3000 22d9+100 8d4+16 none
 -15 -15 -15 4
-[disarm dodge trip assist_race] [fire] [] []
+EFNR H 0 0
 stand stand male 500
-[] [] medium generic
-F res [fire]
+0 0 medium 0
+F res H
 #2222
-dragon black~
+oldstyle dragon black~
 the Great Black Dragon~
 A black dragon is here, laughing at your insolence. 
 ~
@@ -172,16 +170,16 @@ This huge black wyrm laughs at your puny weapons.  You realize that he is not
 going to roll over and die for you.
 ~
 dragon~
-[sentinel scavenger aggressive] [detect_invis detect_hidden] -900 0
+ABCF DF -900 0
 39 0 15d10+1700 19d9+100 5d6+13 none
 -13 -13 -13 5
-[disarm dodge trip assist_race] [acid] [] [lightning]
+EFNR K 0 J
 stand stand male 1000
-[] [] medium generic
-F res [fire]
-F vul [cold]
+0 0 medium 0
+F res H
+F vul I
 #2223
-dragon white~
+oldstyle dragon white~
 the Great White Dragon~
 A white dragon is here, waiting for you. 
 ~
@@ -190,16 +188,16 @@ dragons, you are not afraid.  She smiles at you and says 'I think you will find
 me a greater challenge than my offspring.'
 ~
 dragon~
-[sentinel scavenger aggressive] [detect_invis detect_hidden] -1000 0
+ABCF DF -1000 0
 37 0 10d10+1500 18d9+100 3d10+12 none
 -12 -12 -12 5
-[disarm dodge trip assist_race] [cold] [] [fire]
+EFNR I 0 H
 stand stand female 1750
-[] [] medium generic
-F res [fire]
-F vul [cold]
+0 0 medium 0
+F res H
+F vul I
 #2225
-dragon green~
+oldstyle dragon green~
 the Ancient Green Dragon~
 A green dragon is here, looking distraught. 
 ~
@@ -208,16 +206,16 @@ She looks at you with sorrow in her eyes and says 'You have slaughtered my
 children.  Prepare to die.'
 ~
 dragon~
-[sentinel scavenger aggressive] [detect_invis detect_hidden] -1000 0
+ABCF DF -1000 0
 41 0 25d10+2000 20d9+100 4d8+14 none
 -14 -14 -14 4
-[disarm dodge trip assist_race] [poison] [] [mental]
+EFNR L 0 P
 stand stand female 1000
-[] [] medium generic
-F res [fire]
-F vul [cold]
+0 0 medium 0
+F res H
+F vul I
 #2226
-hydra~
+oldstyle hydra~
 a large hydra~
 A hydra is here, blocking the doorway. 
 ~
@@ -225,14 +223,14 @@ A hydra is here, guarding the entrance to a sealed vault.  You have the feeling
 it isn't happy to see you.
 ~
 human~
-[sentinel scavenger aggressive] [detect_invis detect_hidden] -800 0
+ABCF DF -800 0
 18 0 3d9+283 9d9+100 2d7+4 none
 -3 -3 -3 7
-[disarm dodge trip assist_vnum] [] [] []
-stand stand neutral 250
-[] [] medium generic
+EFNU 0 0 0
+stand stand none 250
+0 0 medium 0
 #2227
-slave human~
+oldstyle slave human~
 A human slave~
 A Human slave is here, hard at work.          
 ~
@@ -240,14 +238,14 @@ He looks like he's under a lot of stress.  He would probably like it if you
 left him alone.
 ~
 human~
-[sentinel thief] [detect_invis detect_hidden] 0 0
+ABS DF 0 0
 5 0 2d7+46 2d9+100 1d5+1 none
 6 6 6 9
-[backstab disarm dodge dirt_kick trip assist_vnum] [] [] []
+BEFJNU 0 0 0
 stand stand male 5
-[] [] medium generic
+0 0 medium 0
 #2240
-zombie draconian~
+oldstyle zombie draconian~
 a Draconian zombie~
 A Draconian zombie is here, staring at nothing in particular.
 ~
@@ -255,28 +253,28 @@ This used to be one of the warriors of this tribe.  He was denied his final
 rest, however, and now guards this corridor tirelessly as a zombie.
 ~
 human~
-[sentinel scavenger aggressive] [detect_invis detect_hidden] -400 0
+ABCF DF -400 0
 9 0 2d6+110 4d9+100 1d8+2 none
 2 2 2 8
-[disarm dodge trip assist_vnum] [] [] []
-stand stand neutral 75
-[] [] medium generic
+EFNU 0 0 0
+stand stand none 75
+0 0 medium 0
 #2241
-dragon phase~
+oldstyle dragon phase~
 the phase dragon~
 A Phase Dragon is darting around the room.          
 ~
 This small dragon looks like he's up to no good. 
 ~
 dragon~
-[scavenger aggressive stay_area wimpy] [detect_invis detect_hidden] -300 0
+ACFGH DF -300 0
 10 0 2d7+121 5d9+100 2d4+2 none
 1 1 1 8
-[disarm dodge trip assist_race] [] [] []
+EFNR 0 0 0
 stand stand male 250
-[] [] medium generic
+0 0 medium 0
 #2242
-fool draconian~
+oldstyle fool draconian~
 the draconian fool~
 A Fool is here, making fun of you.          
 ~
@@ -284,14 +282,14 @@ This dragon man looks VERY foolish, dressed in a green and blue striped
 suit.  As you enter the room, he points at you and laughs. 
 ~
 human~
-[stay_area wimpy thief] [detect_invis detect_hidden] 0 0
+AGHS DF 0 0
 5 0 2d7+46 2d9+100 1d5+1 none
 6 6 6 9
-[backstab disarm dodge dirt_kick trip assist_vnum] [] [] []
+BEFJNU 0 0 0
 stand stand male 25
-[] [] medium generic
+0 0 medium 0
 #2243
-queen draconian~
+oldstyle queen draconian~
 the Draconian Queen~
 A Female Draconian sits, here, looking very important.          
 ~
@@ -299,12 +297,12 @@ This draconian looks VERY busy as she orders her slaves around.  You think
 it might be a good idea to leave her alone. 
 ~
 human~
-[sentinel scavenger] [detect_invis detect_hidden sanctuary] -600 0
+ABC DFH -600 0
 20 0 3d9+333 10d9+100 2d8+5 none
 -4 -4 -4 7
-[disarm dodge trip assist_vnum] [] [] []
+EFNU 0 0 0
 stand stand female 500
-[] [] medium generic
+0 0 medium 0
 #0
 
 #OBJECTS
@@ -312,17 +310,17 @@ stand stand female 500
 spear jagged~
 a jagged spear~
 A jagged spear has been left here.~
-generic~
-weapon [] [take wield]
-staff 2 6 thrust []
+oldstyle~
+weapon 0 AN
+staff 2 6 thrust 0
 10 150 153 P
 #2201
 dagger silver~
 a silver dagger~
 A silver dagger is lying here.~
-generic~
-weapon [] [take wield]
-dagger 3 6 pierce []
+oldstyle~
+weapon 0 AN
+dagger 3 6 pierce 0
 22 10 2000 P
 A
 20 -2
@@ -330,9 +328,9 @@ A
 knife tooth dragon~
 a dragon's tooth knife~
 A dangerous looking knife made from a dragon's tooth has been left here.~
-generic~
-weapon [] [take wield]
-dagger 5 5 pierce []
+oldstyle~
+weapon 0 AN
+dagger 5 5 pierce 0
 30 80 3200 P
 A
 19 2
@@ -342,16 +340,16 @@ A
 bracelet dragon~
 a dragon skin bracelet~
 A scaly bracelet lies on the ground.~
-generic~
-armor [] [take wrist]
+oldstyle~
+armor 0 AM
 6 6 6 3 0
 15 100 1170 P
 #2204
 belt silk black~
 a black silk belt~
 A black belt made of the finest silk is hanging here.~
-generic~
-armor [] [take waist]
+oldstyle~
+armor 0 AL
 6 6 6 2 0
 17 250 3900 P
 A
@@ -360,8 +358,8 @@ A
 belt silk white~
 a white silk belt~
 A white belt made of the finest silk is hanging here.~
-generic~
-armor [] [take waist]
+oldstyle~
+armor 0 AL
 6 6 6 2 0
 17 250 3900 P
 A
@@ -370,16 +368,16 @@ A
 bracelet platinum~
 a platinum bracelet.~
 A tarnished platinum bracelet has been dropped here.~
-generic~
-armor [glow] [take wrist]
+oldstyle~
+armor A AM
 7 7 7 0 0
 20 50 1450 P
 #2220
 symbol holy~
 a holy symbol~
 A golden holy symbol is here.~
-generic~
-jewelry [glow] [take neck hold]
+oldstyle~
+jewelry A ACO
 0 0 0 0 0
 10 20 270 P
 A
@@ -388,8 +386,8 @@ A
 robe black~
 a plain black robe~
 A black robe is hanging on a hook on the wall.~
-generic~
-armor [] [take about]
+oldstyle~
+armor 0 AK
 5 5 5 0 0
 21 30 2000 P
 A
@@ -398,24 +396,24 @@ A
 sword emerald~
 an emerald sword~
 An emerald long sword is leaning against the wall.~
-generic~
-weapon [] [take wield]
-sword 4 6 slash [sharp]
+oldstyle~
+weapon 0 AN
+sword 4 6 slash D
 28 240 2300 P
 #2223
 club stone~
 a stone club~
 A heavy looking stone club is here.~
-generic~
-weapon [] [take wield]
-mace 3 6 crush []
+oldstyle~
+weapon 0 AN
+mace 3 6 crush 0
 18 180 940 P
 #2224
 ring diamond~
 a diamond ring~
 A diamond ring lies gleaming on the ground.~
-generic~
-jewelry [] [take finger]
+oldstyle~
+jewelry 0 AB
 0 0 0 0 0
 37 60 6800 P
 A
@@ -426,8 +424,8 @@ A
 ring copper~
 a copper ring~
 A copper ring is here.~
-generic~
-jewelry [] [take finger]
+oldstyle~
+jewelry 0 AB
 0 0 0 0 0
 15 10 2600 P
 A
@@ -436,64 +434,64 @@ A
 key steel~
 a steel key~
 A steel key.~
-generic~
-key [] [take]
+oldstyle~
+key 0 A
 0 0 0 0 0
 0 10 0 P
 #2232
 key ruby~
 a ruby key~
 A ruby key.~
-generic~
-key [] [take]
+oldstyle~
+key 0 A
 0 0 0 0 0
 0 10 0 P
 #2233
 key white~
 a white key~
 A white key.~
-generic~
-key [] [take]
+oldstyle~
+key 0 A
 0 0 0 0 0
 0 10 0 P
 #2234
 key grey~
 a grey key~
 A grey key is resting on the ground here.~
-generic~
-key [] [take]
+oldstyle~
+key 0 A
 0 0 0 0 0
 0 10 0 P
 #2237
 key stone~
 a stone key~
 A stone key.~
-generic~
-key [] [take]
+oldstyle~
+key 0 A
 0 0 0 0 0
 0 10 0 P
 #2240
 key black~
 a black key~
 A black key.~
-generic~
-key [] [take]
+oldstyle~
+key 0 A
 0 0 0 0 0
 0 10 0 P
 #2241
 key platinum~
 a platinum key~
 A platinum key.~
-generic~
-key [] [take]
+oldstyle~
+key 0 A
 0 0 0 0 0
 0 10 0 P
 #2242
 shield crested~
 a crested shield~
 A large crested shield draws your attention.~
-generic~
-armor [] [take shield]
+oldstyle~
+armor 0 AJ
 8 8 8 3 0
 25 200 3900 P
 A
@@ -502,64 +500,64 @@ A
 wand golden~
 a golden wand~
 A golden wand has been dropped here.~
-generic~
-wand [glow] [take hold]
+oldstyle~
+wand A AO
 25 10 10 'dispel magic' 0
 14 50 5500 P
 #2244
 staff silver~
 a silver staff~
 A silver staff.~
-generic~
-staff [glow magic] [take hold]
+oldstyle~
+staff AG AO
 25 20 20 'faerie fog' 0
 14 50 11700 P
 #2245
 staff dragon~
 the staff of the dragon~
 A powerful oak staff has been left here.~
-generic~
-staff [glow magic] [take hold]
+oldstyle~
+staff AG AO
 25 10 10 'call lightning' 0
 15 50 10200 P
 #2246
 mail scale~
 scale mail~
 A set of scale mail has been abandoned here.~
-generic~
-armor [glow] [take body]
+oldstyle~
+armor A AD
 8 8 8 0 0
 25 200 3900 P
 #2250
 staff black~
 a black staff~
 You notice the faint outline of a staff.~
-generic~
-staff [glow antigood] [take hold]
+oldstyle~
+staff AJ AO
 30 3 3 'energy drain' 0
 14 250 5300 P
 #2251
 potion cyan~
 a cyan potion~
 A small cyan potion has been left here.~
-generic~
-potion [] [take]
+oldstyle~
+potion 0 A
 30 'blindness' 'harm' '' ''
 9 10 1060 P
 #2252
 potion magenta~
 a magenta potion~
 A magenta potion.~
-generic~
-potion [nodrop] [take]
+oldstyle~
+potion H A
 30 'cure critical' 'protection evil' '' ''
 7 10 600 P
 #2254
 gauntlets spiked~
 a pair of spiked gauntlets~
 A pair of spiked gauntlets.~
-generic~
-armor [glow magic] [take hands]
+oldstyle~
+armor AG AH
 4 4 4 0 0
 20 100 2500 P
 A
@@ -570,9 +568,9 @@ A
 scimitar golden~
 a golden scimitar~
 A golden scimitar.~
-generic~
-weapon [glow] [take wield]
-sword 3 5 slash []
+oldstyle~
+weapon A AN
+sword 3 5 slash 0
 16 100 2500 P
 A
 4 1
@@ -582,8 +580,8 @@ A
 brooch diamond~
 a diamond brooch~
 A diamond brooch.~
-generic~
-jewelry [magic] [take neck]
+oldstyle~
+jewelry G AC
 0 0 0 0 0
 25 20 980 P
 A
@@ -592,16 +590,16 @@ A
 scroll~
 a runed scroll~
 A runed scroll.~
-generic~
-scroll [magic] [take hold]
+oldstyle~
+scroll G AO
 30 'armor' 'protection evil' 'shield' ''
 12 10 1960 P
 #2271
 gloves dragon~
 a pair of dragon skin gloves~
 A pair of dragon skin gloves are lying on the ground.~
-generic~
-armor [] [take hands]
+oldstyle~
+armor 0 AH
 6 6 6 3 0
 17 50 4000 P
 A
@@ -610,8 +608,8 @@ A
 helm dragon~
 a helm of dragon kind~
 A helm made of a dragon's skull is lying on the ground.~
-generic~
-armor [] [take head]
+oldstyle~
+armor 0 AE
 10 10 10 5 0
 35 150 4100 P
 A
@@ -620,8 +618,8 @@ A
 fur cloak~
 a fur cloak~
 A large mound of fur is lying here.~
-generic~
-armor [] [take about]
+oldstyle~
+armor 0 AK
 6 6 6 1 0
 16 100 1910 P
 A
@@ -632,25 +630,25 @@ A
 leggings dragon scale~
 a pair of dragon scale leggings~
 A pair of dragon scale leggings is lying on the ground.~
-generic~
-armor [] [take legs]
+oldstyle~
+armor 0 AF
 7 7 7 3 0
 20 150 1590 P
 #2281
 sleeves dragon scale~
 a set of dragon scale sleeves~
 A set of dragon scale sleeves is lying on the ground.~
-generic~
-armor [] [take arms]
+oldstyle~
+armor 0 AI
 7 7 7 3 0
 20 120 1590 P
 #2285
 whip dragon tail~
 a dragon tailed whip~
 A dragon tailed whip is lying on the ground.~
-generic~
-weapon [hum antigood] [take wield]
-whip 4 5 whip []
+oldstyle~
+weapon BJ AN
+whip 4 5 whip 0
 24 140 1530 P
 A
 19 2
@@ -660,24 +658,24 @@ A
 hammer copper~
 a copper hammer~
 A copper hammer is lying on the ground.~
-generic~
-weapon [] [take wield]
-mace 3 5 crush []
+oldstyle~
+weapon 0 AN
+mace 3 5 crush 0
 15 120 750 P
 #2287
 dagger silver~
 a silver dagger~
 A silver dagger is lying here.~
-generic~
-weapon [] [take wield]
-dagger 2 4 pierce []
+oldstyle~
+weapon 0 AN
+dagger 2 4 pierce 0
 5 10 360 P
 #2299
 key gold tarnished~
 a tarnished gold key~
 A tarnished gold key lies here.~
-generic~
-key [] [take]
+oldstyle~
+key 0 A
 0 0 0 0 0
 0 10 0 P
 #0
@@ -688,7 +686,7 @@ The Tower Gates~
 You are at the entrance to a tall tower.  Lightning flashes periodically and
 it is raining.  You think it might be a good idea to turn back into the grove.
 ~
-0 [dark] 1
+0 A 1
 D0
 You see a large steel gate.  Beyond is the Foyer of the Tower.
 ~
@@ -698,8 +696,7 @@ D1
 The shadows cloud your vision.
 ~
 ~
-0 -1 1304
-P draconia-east-1~
+0 0 1304
 E
 gate~
 The gate is tall and secure.  Whoever built it values privacy.
@@ -711,7 +708,7 @@ This is the entrance to the Tower.  The hallway continues to the north,
 leading towards a staircase.  You notice a grim painting on the wall,  and 
 quickly look away.
 ~
-0 [no_mob indoors] 0
+0 CD 0
 D0
 You see a long hallway. 
 ~
@@ -733,7 +730,7 @@ Hallway~
 This hallway seems to stretch on forever.  You notice a stairway in  
 the distance. 
 ~
-0 [indoors] 0
+0 D 0
 D0
 The hall continues. 
 ~
@@ -749,7 +746,7 @@ S
 Hallway~
 You trudge down the hallway.  You notice doors to the east and west. 
 ~
-0 [indoors] 0
+0 D 0
 D0
 The hall continues. 
 ~
@@ -784,7 +781,7 @@ Nursery~
 It looks like a tornado has been through here.  Toys are scattered everywhere,
 and a small group of dragon hatchlings are fighting over a bone. 
 ~
-0 [indoors] 1
+0 D 1
 D1
 You see a large stone door.
 ~
@@ -800,7 +797,7 @@ S
 Storage Room~
 This room is covered with dust, it looks as if no one has been here in ages.
 ~
-0 [indoors] 1
+0 D 1
 D1
 You see the hallway. 
 ~
@@ -821,7 +818,7 @@ End of the Hallway~
 You have finally reached the end of the hallway.  A huge staircase leads up.
 You see a sign at the base of the staircase. 
 ~
-0 [indoors] 0
+0 D 0
 D2
 The hall continues. 
 ~
@@ -845,7 +842,7 @@ Guardian's Room~
 You climb down the rickety stairs and find yourself face to face with a 
 gargantuan hydra.  How fast can you climb UP stairs? 
 ~
-0 [indoors] 1
+0 D 1
 D2
 A large grey door.
 ~
@@ -863,7 +860,7 @@ You have made it past the hydra into the vault.  You are astounded by
 the treasure here.  Not only are you now rich, you can probably rest here
 safely.  The west wall seems to have a large door made entirely of ruby.
 ~
-0 [no_mob indoors] 1
+0 CD 1
 D0
 You see nothing special. 
 ~
@@ -880,12 +877,12 @@ The Second Floor~
 You have made it up to the second floor.  You hear hissing and see several
 dragon men rushing you.  You wonder how long you will be staying here.
 ~
-0 [indoors] 1
+0 D 1
 D2
 You see the court.
 ~
 ~
-0 -1 2211
+0 1 2211
 D5
 You see the first floor.
 ~
@@ -897,7 +894,7 @@ The Court~
 You have entered what seems to be a large court.  The people guarding it
 don't seem happy to see you ...
 ~
-0 [indoors] 1
+0 D 1
 D0
 You see nothing special.
 ~
@@ -919,7 +916,7 @@ Hall O' Pleasure~
 You stop dead in your tracks as you enter this ornately decorated room - it
 is populated with the king's harem.  
 ~
-0 [indoors] 1
+0 D 1
 D3
 You see the Court.
 ~
@@ -930,7 +927,7 @@ S
 The Court~
 You are continuing down the hall.  To the east and west you see ornate doors.
 ~
-0 [] 1
+0 0 1
 D0
 You see the court.
 ~
@@ -957,7 +954,7 @@ The Library~
 You have entered a huge room, filled with books.  A peaceful man is
 sitting at a table, studying.
 ~
-0 [indoors] 1
+0 D 1
 D3
 You see the court.
 ~
@@ -969,7 +966,7 @@ The Sanctum~
 This small room is modestly decorated with small dragon icons.  Its sole
 occupant is deep in thought.
 ~
-0 [indoors] 1
+0 D 1
 D1
 You see the Court.
 ~
@@ -982,7 +979,7 @@ You have reached the end of the court.  A huge Draconian is sitting in a
 chair here.  As you enter, he motions with his hand and you are rushed by three
 of his bodyguards.
 ~
-0 [indoors] 1
+0 D 1
 D0
 You see the court.
 ~
@@ -998,7 +995,7 @@ S
 bedroom~
 This is the personal room of the draconian king.  It is not empty.
 ~
-0 [indoors] 1
+0 D 1
 D3
 You see Court.
 ~
@@ -1010,7 +1007,7 @@ Entrance to the Crypt~
 You have entered a large room which smells heavily of reptile.  You wonder
 what awaits you here.
 ~
-0 [indoors] 1
+0 D 1
 D1
 You see the Treasure Vault.
 ~
@@ -1028,7 +1025,7 @@ You are in a large room which continues to the west.  You notice many
 coffins here.  Open coffins reveal remains of something other than man.  
 The smell of reptile is very strong here.
 ~
-0 [indoors] 1
+0 D 1
 D1
 You see the entrance.
 ~
@@ -1045,31 +1042,31 @@ The Lair~
 You have entered a large room dominated by a great white dragon.  It growls
 at you before it attacks.
 ~
-0 [indoors] 1
+0 D 1
 D2
 You the cave opening.
 ~
 ~
-0 -1 2235
+0 0 2235
 S
 #2221
 A Lair~
 You have entered a large room dominated by a great black dragon.  It looks
 as though it is amused by your presence.
 ~
-0 [indoors] 1
+0 D 1
 D0
 You the cave opening.
 ~
 ~
-0 -1 2241
+0 0 2241
 S
 #2222
 The Crypt Ends~
 You have come to the end of the Crypt.  It seems deserted.  There is a 
 strange coffin lying against the wall.
 ~
-0 [indoors] 1
+0 D 1
 D1
 You see the Crypt.
 ~
@@ -1090,7 +1087,7 @@ You have entered a huge hall.  It has been carefully decorated with
 beautiful tapestries depicting a great battle between dragons and men.  The
 dragons appear to be the victors.
 ~
-0 [indoors] 1
+0 D 1
 D1
 The Hall continues.
 ~
@@ -1107,7 +1104,7 @@ The Great Hall~
 You are working your way down the Hall.  To the north, you notice a smaller
 passageway, while the main hall continues to the east.
 ~
-0 [indoors] 1
+0 D 1
 D0
 You see a narrow passageway.
 ~
@@ -1123,7 +1120,7 @@ S
 A Narrow Passageway~
 This Passageway branches off from the main hall and leads somewhere ... where?
 ~
-0 [indoors] 1
+0 D 1
 D0
 You see a large Lair.  It looks dangerous.
 ~
@@ -1141,7 +1138,7 @@ You have entered a large lair with bones strewn about the ground.  You
 notice the source of these as you come face to face with a rather large red
 dragon.  You notice a trap door in the floor.
 ~
-0 [indoors] 1
+0 D 1
 D2
 The narrow passageway.
 ~
@@ -1158,7 +1155,7 @@ Underground Tunnel~
 You have entered an underground tunnel.  It is dark and dirty, and you find
 yourself wishing you were back in Midgaard.
 ~
-0 [dark indoors] 2
+0 AD 2
 D0
 You see the tunnel.
 ~
@@ -1174,7 +1171,7 @@ S
 Underground Tunnel~
 This tunnel has come to a dead end.  You feel nervous about being trapped here.
 ~
-0 [dark no_mob indoors] 2
+0 ACD 2
 D2
 You see the tunnel.
 ~
@@ -1187,7 +1184,7 @@ You have come to the end of the great hall.  You see before you a huge
 golden door, it must be at least twenty feet tall!  It has beautiful etchings
 of dragons.  You see a sign on the door.
 ~
-0 [indoors] 1
+0 D 1
 D1
 You see a great golden door.
 ~
@@ -1208,7 +1205,7 @@ S
 THE Lair~
 You have entered a huge lair.  You feel that something big lives here or at least did.  The golden door lies back to the west.
 ~
-0 [indoors] 2
+0 D 2
 D3
 You see a great golden door.
 ~
@@ -1220,7 +1217,7 @@ The End...~
 You have reached the final lair.  It is dominated by a huge five headed
 dragon.  You suddenly realize that you have SERIOUS problems...
 ~
-0 [indoors] 2
+0 D 2
 D2
 You see the top of the mountain.
 ~
@@ -1232,17 +1229,17 @@ Stairwell~
 This is an old decrepit stairwell that leads to the wine cellar.  It looks
 like it hasn't been used for decades.  Well, at least not by anything living.
 ~
-0 [indoors] 2
+0 D 2
 D1
 The crypt
 ~
 ~
-0 -1 2222
+0 0 2222
 D5
 A wine cellar
 ~
 ~
-0 -1 2233
+0 0 2233
 S
 #2233
 Wine cellar~
@@ -1250,17 +1247,17 @@ This is the old wine cellar of the Dragon Tower.  The shelves are empty.
 Nothing living has been in here for a long time.  You see a tunnel leading
 off to the east and boy does it smell bad.  Kinda of like rotting flesh.
 ~
-0 [dark] 2
+0 A 2
 D1
 A tunnel
 ~
 ~
-0 -1 2234
+0 0 2234
 D4
 The stairwell
 ~
 ~
-0 -1 2232
+0 0 2232
 S
 #2234
 Tunnel~
@@ -1269,22 +1266,22 @@ your eyes soon tire from the strain.  The smell here has increased two fold.
 The tunnel continues to go to the east.  The wine cellar lies back to the 
 west.
 ~
-0 [dark unused_room_6] 2
+0 AI 2
 D0
 A cave opening
 ~
 ~
-0 -1 2235
+0 0 2235
 D1
 A tunnel
 ~
 ~
-0 -1 2236
+0 0 2236
 D3
 A tunnel
 ~
 ~
-0 -1 2233
+0 0 2233
 S
 #2235
 A cave opening~
@@ -1293,17 +1290,17 @@ the room.  Some human, some indistinguishable.  It smells very bad in here.
 You can hear movement in the cave to the north.  The tunnel goes back to the
 south.
 ~
-0 [dark unused_room_6] 2
+0 AI 2
 D0
 The lair
 ~
 ~
-0 -1 2220
+0 0 2220
 D2
 The tunnel
 ~
 ~
-0 -1 2234
+0 0 2234
 S
 #2236
 The End of the tunnel~
@@ -1311,22 +1308,22 @@ You have finally come to the end of the tunnel.  Back to the west lies
 the miles of tunnels you have walked through.  You see the faint outline of
 a trapdoor above you.  A bridge over an underground river lies to the south.
 ~
-0 [dark unused_room_6] 2
+0 AI 2
 D2
 bridge
 ~
 ~
-0 -1 2237
+0 0 2237
 D3
 The tunnel
 ~
 ~
-0 -1 2234
+0 0 2234
 D4
 trapdoor
 ~
 ~
-0 -1 2202
+0 0 2202
 S
 #2237
 The Bridge~
@@ -1334,17 +1331,17 @@ You are walking along an old wooden bridge.  Its not that secure.  You
 might want to hurry along.  To the south, on the other side of the bridge,
 lies a small opening.
 ~
-0 [dark indoors] 2
+0 AD 2
 D0
 The tunnel end
 ~
 ~
-0 -1 2236
+0 0 2236
 D2
 A small opening
 ~
 ~
-0 -1 2238
+0 0 2238
 S
 #2238
 A small opening~
@@ -1352,17 +1349,17 @@ You are standing in a small opening.  To the north lies the old wooden
 bridge.  To your south the you can see a clearing.  You can see sunlight
 again.  What a welcome relief!
 ~
-0 [dark indoors] 2
+0 AD 2
 D0
 bridge
 ~
 ~
-0 -1 2237
+0 0 2237
 D2
 clearing
 ~
 ~
-0 -1 2239
+0 0 2239
 S
 #2239
 Clearing~
@@ -1370,22 +1367,22 @@ You stand out in a clearing.  Mountains are all around you.  There is a
 well in the middle of the clearing.  Lying against the well is a sign.  A
 path leads up the mountain.  The small opening is back to the north.
 ~
-0 [] 2
+0 0 2
 D0
 the small opening
 ~
 ~
-0 -1 2238
+0 0 2238
 D4
 A path
 ~
 ~
-0 -1 2240
+0 0 2240
 D5
 The well
 ~
 ~
-0 -1 2244
+0 0 2244
 E
 sign~
 The sign reads:
@@ -1405,22 +1402,22 @@ A path~
 This path leads up the side of the mountain.  A clearing lies below you.
 There is a cave opening to the west.  The path continues up the mountain.
 ~
-0 [] 2
+0 0 2
 D3
 cave opening
 ~
 ~
-0 -1 2241
+0 0 2241
 D4
 the path continues
 ~
 ~
-0 -1 2242
+0 0 2242
 D5
 clearing
 ~
 ~
-0 -1 2239
+0 0 2239
 S
 #2241
 A cave opening~
@@ -1428,34 +1425,34 @@ You stand before a huge cave opening.  You hearing heavy breathing from
 within the cave.  There are a few skeletons lying about.  The cave lies to 
 the south.  The path is back to the east.
 ~
-0 [] 2
+0 0 2
 D1
 the path
 ~
 ~
-0 -1 2240
+0 0 2240
 D2
 A lair
 ~
 ~
-0 -1 2221
+0 0 2221
 S
 #2242
 The path continues~
 The path continues up the mountain to the top.  The path also goes down.
 Thats it, nothing more to see.
 ~
-0 [] 2
+0 0 2
 D4
 top of the mountain
 ~
 ~
-0 -1 2243
+0 0 2243
 D5
 path
 ~
 ~
-0 -1 2240
+0 0 2240
 S
 #2243
 The top of the mountain~
@@ -1467,7 +1464,7 @@ If you do have the key I would suggest not going in.  Some believe the Five
 Headed dragon Tiamat was imprisoned here by the gods.  But who believes in 
 fairy tales.  Well, if you're scared, you can always go down the mountain.
 ~
-0 [] 2
+0 0 2
 D0
 The platinum door
 ~
@@ -1477,7 +1474,7 @@ D5
 The path continues
 ~
 ~
-0 -1 2242
+0 0 2242
 E
 door platinum~
 A huge platinum door separates you from harm
@@ -1497,143 +1494,139 @@ O
 right before your eyes.  Pretty pathetic isn't it?  Next time you'll know
 to listen to the God of Laughs.
 ~
-0 [unused_room_1 no_mob] 0
+0 BC 0
 S
 #0
 
 #RESETS
-D 0  2201   0     2    * The north door of The Tower Gates is closed and locked
-D 0  2209   3     2    * The west door of The Treasure Room is closed and locked
-D 0  2218   1     2    * The east door of Entrance to the Crypt is closed and locked
-D 0  2222   3     2    * The west door of The Crypt Ends is closed and locked
-D 0  2229   1     2    * The east door of The Great Hall Ends. is closed and locked
-D 0  2230   3     2    * The west door of THE Lair is closed and locked
-D 0  2231   2     2    * The south door of The End... is closed and locked
-D 0  2243   0     2    * The north door of The top of the mountain is closed and locked
-M 0  2200  12  2201  1 * load the dragon hatchling
-G 1  2231  -1          * A steel key is given to the dragon hatchling
-M 0  2200  12  2202  1 * load the dragon hatchling
-M 0  2200  12  2203  2 * load the dragon hatchling
-M 0  2200  12  2203  2 * load the dragon hatchling
-M 0  2201   7  2203  2 * load the Draconian
-E 1  2200  20    16    * A jagged spear is loaded wielded of the Draconian
-M 0  2201   7  2204  3 * load the Draconian
-E 1  2200  20    16    * A jagged spear is loaded wielded of the Draconian
-M 0  2201   7  2204  3 * load the Draconian
-E 1  2200  20    16    * A jagged spear is loaded wielded of the Draconian
-M 0  2201   7  2204  3 * load the Draconian
-E 1  2200  20    16    * A jagged spear is loaded wielded of the Draconian
-M 0  2200  12  2205  4 * load the dragon hatchling
-M 0  2200  12  2205  4 * load the dragon hatchling
-M 0  2200  12  2205  4 * load the dragon hatchling
-M 0  2200  12  2205  4 * load the dragon hatchling
-M 0  2200  12  2206  1 * load the dragon hatchling
-M 0  2200  12  2207  1 * load the dragon hatchling
-M 0  2227   5  2207  2 * load A human slave
-M 0  2226   1  2208  1 * load a large hydra
-G 1  2234   1          * A grey key is given to a large hydra
-G 1  2243   9          * A golden wand is given to a large hydra
-G 1  2223  20          * A stone club is given to a large hydra
-E 1  2244   5    17    * A silver staff is loaded held in the hands of a large hydra
-M 0  2201   7  2210  2 * load the Draconian
-E 1  2200  20    16    * A jagged spear is loaded wielded of the Draconian
-M 0  2207  20  2210  5 * load A bodyguard
-E 1  2286  20    16    * A copper hammer is loaded wielded of A bodyguard
-M 0  2207  20  2211  5 * load A bodyguard
-E 1  2286  -1    16    * A copper hammer is loaded wielded of A bodyguard
-M 0  2207  20  2211  5 * load A bodyguard
-E 1  2260  10    16    * A golden scimitar is loaded wielded of A bodyguard
-M 0  2206   5  2212  5 * load a concubine
-E 1  2287  10    16    * A silver dagger is loaded wielded of a concubine
-M 0  2206   5  2212  5 * load a concubine
-G 1  2233   2          * A white key is given to a concubine
-E 1  2287  10    16    * A silver dagger is loaded wielded of a concubine
-M 0  2206   5  2212  5 * load a concubine
-G 1  2240   2          * A black key is given to a concubine
-E 1  2287  10    16    * A silver dagger is loaded wielded of a concubine
-M 0  2206   5  2212  5 * load a concubine
-E 1  2287  10    16    * A silver dagger is loaded wielded of a concubine
-M 0  2203   1  2214  1 * load a powerful mage
-E 1  2223  10    12    * A stone club is loaded about the body of a powerful mage
-E 1  2250  10    17    * A black staff is loaded held in the hands of a powerful mage
-G 1  2251  10          * A cyan potion is given to a powerful mage
-E 1  2261   3     3    * A diamond brooch is loaded around the neck (1) of a powerful mage
-M 0  2242   5  2214  1 * load the draconian fool
-M 0  2204   1  2214  1 * load the holy Draconian
-E 1  2220  -1     3    * A holy symbol is loaded around the neck (1) of the holy Draconian
-E 1  2211  10    14    * A platinum bracelet. is loaded on the left wrist of the holy Draconian
-E 1  2210  10    13    * A white silk belt is loaded around the waist of the holy Draconian
-G 1  2270  10          * A runed scroll is given to the holy Draconian
-G 1  2252  10          * A magenta potion is given to the holy Draconian
-M 0  2205   1  2216  1 * load the Draconian King
-E 1  2222   8    16    * An emerald sword is loaded wielded of the Draconian King
-E 1  2276  -1    12    * A fur cloak is loaded about the body of the Draconian King
-E 1  2242  -1    11    * A crested shield is loaded as a shield of the Draconian King
-E 1  2254  -1     9    * A pair of spiked gauntlets is loaded on the hands of the Draconian King
-G 1  2232   2          * A ruby key is given to the Draconian King
-M 0  2207  20  2216  5 * load A bodyguard
-M 0  2207  20  2216  5 * load A bodyguard
-M 0  2207  20  2216  5 * load A bodyguard
-M 0  2242   5  2216  4 * load the draconian fool
-M 0  2242   5  2216  4 * load the draconian fool
-M 0  2243   1  2217  1 * load the Draconian Queen
-E 1  2203  -1    14    * A dragon skin bracelet is loaded on the left wrist of the Draconian Queen
-E 1  2204   5    13    * A black silk belt is loaded around the waist of the Draconian Queen
-E 1  2201  -1    16    * A silver dagger is loaded wielded of the Draconian Queen
-M 0  2227   5  2217  4 * load A human slave
-M 0  2227   5  2217  4 * load A human slave
-M 0  2241   2  2217  2 * load the phase dragon
-M 0  2240   8  2218  2 * load a Draconian zombie
-M 0  2240   8  2218  2 * load a Draconian zombie
-M 0  2240   8  2219  2 * load a Draconian zombie
-M 0  2240   8  2219  2 * load a Draconian zombie
-M 0  2223   1  2220  1 * load the Great White Dragon
-E 1  2246  10     5    * Scale mail is loaded on the torso of the Great White Dragon
-M 0  2222   1  2221  1 * load the Great Black Dragon
-E 1  2280  10     7    * A pair of dragon scale leggings is loaded on the legs of the Great Black Dragon
-M 0  2202   1  2222  1 * load the dragon master
-E 1  2202  -1    16    * A dragon's tooth knife is loaded wielded of the dragon master
-E 1  2281  -1    10    * A set of dragon scale sleeves is loaded on the arms of the dragon master
-E 1  2271  -1     9    * A pair of dragon skin gloves is loaded on the hands of the dragon master
-M 0  2221   1  2226  1 * load the Great Red Dragon
-E 1  2275   5     6    * A helm of dragon kind is loaded over the head of the Great Red Dragon
-E 1  2245   5    17    * The staff of the dragon is loaded held in the hands of the Great Red Dragon
-G 1  2299   2          * A tarnished gold key is given to the Great Red Dragon
-M 0  2225   1  2230  1 * load the Ancient Green Dragon
-G 1  2241   2          * A platinum key is given to the Ancient Green Dragon
-G 1  2285   5          * A dragon tailed whip is given to the Ancient Green Dragon
-E 1  2261   3     3    * A diamond brooch is loaded around the neck (1) of the Ancient Green Dragon
-M 0  2220   1  2231  1 * load Tiamat
-M 0  2240   8  2232  1 * load a Draconian zombie
-M 0  2240   8  2233  1 * load a Draconian zombie
-M 0  2240   8  2234  1 * load a Draconian zombie
-M 0  2240   8  2236  1 * load a Draconian zombie
-M 0  2200  12  2239  1 * load the dragon hatchling
-M 0  2200  12  2241  1 * load the dragon hatchling
+M 0 2200  12 2241  1	* the dragon hatchling
+M 0 2200  12 2239  1	* the dragon hatchling
+M 0 2200  12 2201  1	* the dragon hatchling
+G 1 2231  -1     	*   a steel key
+M 0 2200  12 2202  1	* the dragon hatchling
+M 0 2200  12 2203  2	* the dragon hatchling
+M 0 2200  12 2203  2	* the dragon hatchling
+M 0 2200  12 2205  4	* the dragon hatchling
+M 0 2200  12 2205  4	* the dragon hatchling
+M 0 2200  12 2205  4	* the dragon hatchling
+M 0 2200  12 2205  4	* the dragon hatchling
+M 0 2201   7 2203  2	* the Draconian
+E 1 2200  20   16	*   a jagged spear
+M 0 2201   7 2204  3	* the Draconian
+E 1 2200  20   16	*   a jagged spear
+M 0 2201   7 2204  3	* the Draconian
+E 1 2200  20   16	*   a jagged spear
+M 0 2201   7 2204  3	* the Draconian
+E 1 2200  20   16	*   a jagged spear
+M 0 2200  12 2207  1	* the dragon hatchling
+M 0 2227   5 2207  2	* A human slave
+M 0 2200  12 2206  1	* the dragon hatchling
+M 0 2226   1 2208  1	* a large hydra
+G 1 2234   1     	*   a grey key
+G 1 2243   9     	*   a golden wand
+G 1 2223  20     	*   a stone club
+E 1 2244   5   17	*   a silver staff
+D 0 2230   3    2	* THE Lair west
+D 0 2218   1    2	* Entrance to the Crypt east
+D 0 2201   0    2	* The Tower Gates north
+D 0 2229   1    2	* The Great Hall Ends. east
+D 0 2243   0    2	* The top of the mountain north
+D 0 2209   3    2	* The Treasure Room west
+D 0 2222   3    2	* The Crypt Ends west
+M 0 2201   7 2210  2	* the Draconian
+E 1 2200  20   16	*   a jagged spear
+M 0 2207  20 2210  5	* A bodyguard
+E 1 2286  20   16	*   a copper hammer
+M 0 2207  20 2211  5	* A bodyguard
+E 1 2286  -1   16	*   a copper hammer
+M 0 2207  20 2211  5	* A bodyguard
+E 1 2260  10   16	*   a golden scimitar
+M 0 2206   5 2212  5	* a concubine
+E 1 2287  10   16	*   a silver dagger
+M 0 2206   5 2212  5	* a concubine
+G 1 2233   2     	*   a white key
+E 1 2287  10   16	*   a silver dagger
+M 0 2206   5 2212  5	* a concubine
+G 1 2240   2     	*   a black key
+E 1 2287  10   16	*   a silver dagger
+M 0 2206   5 2212  5	* a concubine
+E 1 2287  10   16	*   a silver dagger
+M 0 2203   1 2214  1	* a powerful mage
+E 1 2223  10   12	*   a stone club
+E 1 2250  10   17	*   a black staff
+G 1 2251  10     	*   a cyan potion
+E 1 2261   3    3	*   a diamond brooch
+M 0 2242   5 2214  1	* the draconian fool
+M 0 2204   1 2214  1	* the holy Draconian
+E 1 2220  -1    3	*   a holy symbol
+E 1 2211  10   14	*   a platinum bracelet.
+E 1 2210  10   13	*   a white silk belt
+G 1 2270  10     	*   a runed scroll
+G 1 2252  10     	*   a magenta potion
+M 0 2205   1 2216  1	* the Draconian King
+E 1 2222   8   16	*   an emerald sword
+E 1 2276  -1   12	*   a fur cloak
+E 1 2242  -1   11	*   a crested shield
+E 1 2254  -1    9	*   a pair of spiked gauntlets
+G 1 2232   2     	*   a ruby key
+M 0 2207  20 2216  5	* A bodyguard
+M 0 2207  20 2216  5	* A bodyguard
+M 0 2207  20 2216  5	* A bodyguard
+M 0 2242   5 2216  4	* the draconian fool
+M 0 2242   5 2216  4	* the draconian fool
+M 0 2243   1 2217  1	* the Draconian Queen
+E 1 2203  -1   14	*   a dragon skin bracelet
+E 1 2204   5   13	*   a black silk belt
+E 1 2201  -1   16	*   a silver dagger
+M 0 2227   5 2217  4	* A human slave
+M 0 2227   5 2217  4	* A human slave
+M 0 2241   2 2217  2	* the phase dragon
+M 0 2240   8 2218  2	* a Draconian zombie
+M 0 2240   8 2218  2	* a Draconian zombie
+M 0 2240   8 2219  2	* a Draconian zombie
+M 0 2240   8 2219  2	* a Draconian zombie
+M 0 2240   8 2232  1	* a Draconian zombie
+M 0 2240   8 2233  1	* a Draconian zombie
+M 0 2240   8 2234  1	* a Draconian zombie
+M 0 2240   8 2236  1	* a Draconian zombie
+M 0 2223   1 2220  1	* the Great White Dragon
+E 1 2246  10    5	*   scale mail
+M 0 2222   1 2221  1	* the Great Black Dragon
+E 1 2280  10    7	*   a pair of dragon scale leggings
+M 0 2202   1 2222  1	* the dragon master
+E 1 2202  -1   16	*   a dragon's tooth knife
+E 1 2281  -1   10	*   a set of dragon scale sleeves
+E 1 2271  -1    9	*   a pair of dragon skin gloves
+M 0 2221   1 2226  1	* the Great Red Dragon
+E 1 2275   5    6	*   a helm of dragon kind
+E 1 2245   5   17	*   the staff of the dragon
+G 1 2299   2     	*   a tarnished gold key
+M 0 2225   1 2230  1	* the Ancient Green Dragon
+G 1 2241   2     	*   a platinum key
+G 1 2285   5     	*   a dragon tailed whip
+E 1 2261   3    3	*   a diamond brooch
+M 0 2220   1 2231  1	* Tiamat
 S
 
 #SHOPS
 0
 
 #SPECIALS
-M  2200 spec_breath_any      * load to: the dragon hatchling
-M  2203 spec_cast_mage       * load to: a powerful mage
-M  2204 spec_cast_cleric     * load to: the holy Draconian
-M  2205 spec_breath_any      * load to: the Draconian King
-M  2220 spec_breath_any      * load to: Tiamat
-M  2221 spec_breath_fire     * load to: the Great Red Dragon
-M  2222 spec_breath_acid     * load to: the Great Black Dragon
-M  2223 spec_breath_frost    * load to: the Great White Dragon
-M  2225 spec_breath_gas      * load to: the Ancient Green Dragon
-M  2226 spec_poison          * load to: a large hydra
-M  2227 spec_thief           * load to: A human slave
-M  2240 spec_cast_undead     * load to: a Draconian zombie
-M  2241 spec_breath_gas      * load to: the phase dragon
-M  2242 spec_thief           * load to: the draconian fool
-M  2243 spec_breath_any      * load to: the Draconian Queen
+M 2200 spec_breath_any     	* the dragon hatchling
+M 2203 spec_cast_mage      	* a powerful mage
+M 2204 spec_cast_cleric    	* the holy Draconian
+M 2205 spec_breath_any     	* the Draconian King
+M 2220 spec_breath_any     	* Tiamat
+M 2221 spec_breath_fire    	* the Great Red Dragon
+M 2222 spec_breath_acid    	* the Great Black Dragon
+M 2223 spec_breath_frost   	* the Great White Dragon
+M 2225 spec_breath_gas     	* the Ancient Green Dragon
+M 2226 spec_poison         	* a large hydra
+M 2227 spec_thief          	* A human slave
+M 2240 spec_cast_undead    	* a Draconian zombie
+M 2241 spec_breath_gas     	* the phase dragon
+M 2242 spec_thief          	* the draconian fool
+M 2243 spec_breath_any     	* the Draconian Queen
 S
-
-#MOBPROGS
-#0
 
 #$

@@ -1,0 +1,66 @@
+[
+  {"object": {
+    "area": "redferne",
+    "anum": 9,
+    "name": "treasure coins",
+    "short_descr": "a huge treasure",
+    "description": "A huge treasure is lying here, looking very valuable.",
+    "item_type": "money",
+    "values": {"silver": -100},
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "wear_flags": "take",
+    "extra_description": [
+      {
+        "keyword": "writing letters",
+        "description": "It reads: \"Hi Conan.  No more coins from here, pal. :) Signed, Redferne\"."
+      },
+      {
+        "keyword": "treasure",
+        "description": "Looks like a LOT of coins.  One of them has writing on it."
+      }
+    ]
+  }},
+  {"object": {
+    "area": "redferne",
+    "anum": 10,
+    "name": "chest",
+    "short_descr": "a wooden chest",
+    "description": "A wooden chest stands in the corner.",
+    "item_type": "container",
+    "values": {
+      "capacity": 100,
+      "flags": "closeable pickproof closed locked",
+      "key": 7911,
+      "max_weight": 20,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 4000,
+    "cost": 100,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "chest",
+      "description": "It is a robust chest made from short, heavy planks that have been fastened
+                     |together with tenons.  It is equipped with a simple brass lock."
+    }]
+  }},
+  {"object": {
+    "area": "redferne",
+    "anum": 11,
+    "name": "key",
+    "short_descr": "a small brass key",
+    "description": "A small brass key lies here.",
+    "item_type": "key",
+    "values": {"value0": 7910},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "key",
+      "description": "It is a small, simple brass key with no inscriptions or marks of any kind."
+    }]
+  }}
+]

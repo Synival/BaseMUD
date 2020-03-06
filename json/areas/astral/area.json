@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "astral",
+  "filename": "astral.are",
+  "title": "Astral Plane",
+  "credits": "{10 35} Andersen Astral/Githyanki",
+  "min_vnum": 7700,
+  "max_vnum": 7799,
+  "builders": "None",
+  "security": 9
+}}]

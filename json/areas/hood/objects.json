@@ -1,0 +1,464 @@
+[
+  {"object": {
+    "area": "hood",
+    "anum": 1,
+    "name": "troll jacket",
+    "short_descr": "a Troll gang jacket",
+    "description": "A Troll gang jacket has been carelessly tossed here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 5,
+      "vs_slash": 4
+    },
+    "level": 5,
+    "weight": 20,
+    "cost": 970,
+    "condition": 75,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 2,
+    "name": "ogre jacket",
+    "short_descr": "an Ogre gang jacket",
+    "description": "An Ogre gang jacket has been carelessly tossed here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 4,
+      "vs_slash": 3
+    },
+    "level": 5,
+    "weight": 20,
+    "cost": 970,
+    "condition": 75,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 3,
+    "name": "chain",
+    "short_descr": "a hefty length of chain",
+    "description": "A hefty length of chain lies in a heap here on the floor.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "whip",
+      "dice_num": 2,
+      "dice_size": 6,
+      "attack_type": "whip"
+    },
+    "level": 12,
+    "weight": 100,
+    "cost": 960,
+    "condition": 75,
+    "extra_flags": "glow",
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 12,
+        "apply": "armor class",
+        "modifier": -2
+      },
+      {
+        "level": 12,
+        "apply": "hit roll",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 4,
+    "name": "metal cover shield",
+    "short_descr": "a metal shield",
+    "description": "A garbage can lid has been dropped on the floor.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 3,
+      "vs_slash": 3,
+      "vs_magic": 1
+    },
+    "level": 3,
+    "weight": 30,
+    "cost": 500,
+    "condition": 75,
+    "wear_flags": "take shield"
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 5,
+    "name": "spray paint can",
+    "short_descr": "a spray paint can",
+    "description": "A can of spray paint has been discarded here.",
+    "material": "aluminum",
+    "item_type": "wand",
+    "values": {
+      "level": 11,
+      "recharge": 2,
+      "charges": 2,
+      "skill": "colour spray"
+    },
+    "level": 12,
+    "weight": 10,
+    "cost": 2200,
+    "condition": 90,
+    "extra_flags": "hum",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 6,
+    "name": "stiletto",
+    "short_descr": "a stiletto",
+    "description": "A killer stiletto has been forgotten here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 5,
+      "dice_size": 2,
+      "attack_type": "pierce"
+    },
+    "level": 9,
+    "weight": 20,
+    "cost": 1090,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 9,
+        "apply": "hit roll",
+        "modifier": 4
+      },
+      {
+        "level": 9,
+        "apply": "armor class",
+        "modifier": 2
+      }
+    ]
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 7,
+    "name": "spiked heel boots",
+    "short_descr": "spiked heeled boots",
+    "description": "A pair of black leather boots with 6 inch spikes have been left here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 3,
+      "vs_slash": 3
+    },
+    "level": 5,
+    "weight": 40,
+    "cost": 260,
+    "condition": 90,
+    "wear_flags": "take feet",
+    "affects": [
+      {
+        "level": 5,
+        "apply": "dexterity",
+        "modifier": -1
+      },
+      {
+        "level": 5,
+        "apply": "damage roll",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 8,
+    "name": "mirror",
+    "short_descr": "a mirror",
+    "description": "A small mirror has been left here.",
+    "material": "glass",
+    "item_type": "wand",
+    "values": {
+      "level": 20,
+      "recharge": 10,
+      "charges": 10,
+      "skill": "blindness"
+    },
+    "level": 8,
+    "weight": 10,
+    "cost": 1910,
+    "extra_flags": "glow magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 9,
+    "name": "gloves",
+    "short_descr": "comfortable leather gloves",
+    "description": "A pair of soft lined leather gloves lie here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 3,
+      "vs_slash": 4
+    },
+    "level": 7,
+    "weight": 20,
+    "cost": 1010,
+    "condition": 90,
+    "wear_flags": "take hands",
+    "affects": [{
+      "level": 7,
+      "apply": "strength",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 10,
+    "name": "patrol club",
+    "short_descr": "a patrol club",
+    "description": "A patrolman's club has carelessly been forgotten here.",
+    "material": "wood",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 1,
+      "dice_size": 10,
+      "attack_type": "pound"
+    },
+    "level": 9,
+    "weight": 10,
+    "cost": 980,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 9,
+        "apply": "hit roll",
+        "modifier": 3
+      },
+      {
+        "level": 9,
+        "apply": "moves",
+        "modifier": 5
+      }
+    ]
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 11,
+    "name": "signet ring",
+    "short_descr": "a troll signet ring",
+    "description": "A signet ring bearing the crest of a troll lies in the dust here.",
+    "material": "bronze",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 10,
+    "weight": 10,
+    "cost": 1090,
+    "wear_flags": "take finger",
+    "affects": [
+      {
+        "level": 10,
+        "apply": "armor class",
+        "modifier": -2
+      },
+      {
+        "level": 10,
+        "apply": "strength",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 12,
+    "name": "knuckles brass",
+    "short_descr": "brass knuckles",
+    "description": "A set of brass knuckles left from a fight are here on the ground.",
+    "material": "brass",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 1,
+      "vs_slash": 1
+    },
+    "level": 5,
+    "weight": 10,
+    "cost": 300,
+    "condition": 75,
+    "wear_flags": "take hands",
+    "affects": [{
+      "level": 5,
+      "apply": "hit roll",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 13,
+    "name": "pipe lead length",
+    "short_descr": "a lead pipe",
+    "description": "A length of lead pipe sits here, just right for bashing heads.",
+    "material": "lead",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 6,
+      "attack_type": "pound"
+    },
+    "level": 11,
+    "weight": 60,
+    "cost": 0,
+    "condition": 75,
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 11,
+        "apply": "hit roll",
+        "modifier": -1
+      },
+      {
+        "level": 11,
+        "apply": "damage roll",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 14,
+    "name": "troll jacket studded",
+    "short_descr": "a studded Troll gang jacket",
+    "description": "A Troll gang jacket with sewn-in metal studs waits for an owner.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 6,
+      "vs_slash": 5
+    },
+    "level": 10,
+    "weight": 30,
+    "cost": 1470,
+    "condition": 90,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 15,
+    "name": "ogre jacket studded",
+    "short_descr": "a studded Ogre gang jacket",
+    "description": "An Ogre gang jacket with sewn-in metal studs waits for an owner.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 5,
+      "vs_slash": 4
+    },
+    "level": 10,
+    "weight": 30,
+    "cost": 1470,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 16,
+    "name": "whistle steel police",
+    "short_descr": "a police whistle",
+    "description": "You spot a steel whistle on a fine silver chain here.",
+    "material": "steel",
+    "item_type": "clothing",
+    "values": {},
+    "level": 0,
+    "weight": 2,
+    "cost": 100,
+    "condition": 90,
+    "wear_flags": "take neck"
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 17,
+    "name": "pants black leather",
+    "short_descr": "a pair of black leather pants",
+    "description": "You see some tight-fitting leather pants sitting on the ground.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 4,
+      "vs_slash": 4
+    },
+    "level": 5,
+    "weight": 0,
+    "cost": 420,
+    "condition": 90,
+    "wear_flags": "take legs",
+    "extra_description": [{
+      "keyword": "pants black leather",
+      "description": "They're worn, but they look suprisingly tough."
+    }]
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 18,
+    "name": "switchblade knife",
+    "short_descr": "a switchblade",
+    "description": "A strange looking knife is here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 1,
+      "dice_size": 12,
+      "attack_type": "stab"
+    },
+    "level": 9,
+    "weight": 5,
+    "cost": 760,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 9,
+      "apply": "hit roll",
+      "modifier": 2
+    }]
+  }},
+  {"object": {
+    "area": "hood",
+    "anum": 19,
+    "name": "bottle broken",
+    "short_descr": "a broken bottle",
+    "description": "Yowch! You cut your foot on a broken bottle.",
+    "material": "glass",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 2,
+      "dice_size": 7,
+      "attack_type": "slash"
+    },
+    "level": 11,
+    "weight": 10,
+    "cost": 0,
+    "condition": 50,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "bottle broken",
+      "description": "It appears to be a broken wine bottle, but what do you know about brewing?"
+    }],
+    "affects": [{
+      "level": 11,
+      "apply": "hit roll",
+      "modifier": -2
+    }]
+  }}
+]

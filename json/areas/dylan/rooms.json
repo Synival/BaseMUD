@@ -1,0 +1,2290 @@
+[
+  {"room": {
+    "area": "dylan",
+    "anum": 1,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.
+                   |
+                   |A floating sign says:
+                   |
+                   |\"Scubdu's Area--Tread carefully! Only high levels should attempt
+                   |this place. Leave messages on the board if you have problems.\"",
+    "sector_type": "inside",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "north",
+        "description": "The way back to solid footing, it seems.",
+        "portal": "dylan-north-1"
+      },
+      {
+        "dir": "up",
+        "to": 2,
+        "description": "There is another cloud above you.  If you jump you might make it..."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 2,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 3,
+        "description": "There is another cloud east of you."
+      },
+      {
+        "dir": "down",
+        "to": 1,
+        "description": "There is another cloud below you."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 3,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 28,
+        "description": "You can barely make out a cloud to the north."
+      },
+      {
+        "dir": "south",
+        "to": 4,
+        "description": "You see a cloud somewhere south of you."
+      },
+      {
+        "dir": "west",
+        "to": 2,
+        "description": "You see a cloud somewhere west of you."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 4,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 3,
+        "description": "You can barely make out a cloud to the north."
+      },
+      {
+        "dir": "east",
+        "to": 5,
+        "description": "There is another cloud east of you."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 5,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 6,
+        "description": "There is another cloud east of you."
+      },
+      {
+        "dir": "west",
+        "to": 4,
+        "description": "You spy a tiny cloud."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 6,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 7,
+        "description": "You can barely make out a cloud to the north."
+      },
+      {
+        "dir": "west",
+        "to": 5,
+        "description": "You spy a tiny cloud."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 7,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 8,
+        "description": "There is another cloud east of you."
+      },
+      {
+        "dir": "south",
+        "to": 6,
+        "description": "You see a cloud somewhere south of you."
+      },
+      {
+        "dir": "down",
+        "to": 26,
+        "description": "There is another cloud below you."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 8,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 9,
+        "description": "An ominous storm cloud looms to the east."
+      },
+      {
+        "dir": "west",
+        "to": 7,
+        "description": "You spy a tiny cloud."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 9,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 8,
+        "description": "You spy a tiny cloud."
+      },
+      {
+        "dir": "down",
+        "to": 10,
+        "description": "An ominous storm cloud looms below you."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 5,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 10,
+    "name": "An ominous storm cloud.",
+    "description": "You find yourself in a storm.  Lightning flashes and thunder
+                   |crashes, making you wish you were dry and warm.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 11,
+        "description": "There is a crag, high and rocky."
+      },
+      {
+        "dir": "west",
+        "to": 25,
+        "description": "You spy a tiny cloud."
+      },
+      {
+        "dir": "up",
+        "to": 9,
+        "description": "There is another cloud above you.  If you jump you might make it..."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 11,
+    "name": "High and perilous cliff",
+    "description": "You are on a high and rocky cliff.  To the west you see a huge
+                   |ominous storm cloud moving this way.  You might want to take cover
+                   |before the storm hits.  You think that there is a narrow trail
+                   |leading to the south.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 12
+      },
+      {
+        "dir": "west",
+        "to": 10,
+        "description": "An ominous storm cloud looms to the east."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 12,
+    "name": "Narrow rocky trail.",
+    "description": "A narrow trail leads down towards the mountain and north toward the
+                   |cliff.  It seems to fade in and out as it winds up the hill.
+                   |Obviously, it has not been maintained in years.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 11
+      },
+      {
+        "dir": "down",
+        "to": 13
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 13,
+    "name": "Small valley.",
+    "description": "You are in a lush valley full of trees and other vegetation and the
+                   |odd carcass or two.  The trail leads south and it leads up.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 14
+      },
+      {
+        "dir": "up",
+        "to": 12
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 14,
+    "name": "Small valley.",
+    "description": "You are in a lush valley full of trees and other vegetation and the
+                   |odd carcass or three.  The trail leads north and it leads down into
+                   |a crevasse.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 13
+      },
+      {
+        "dir": "down",
+        "to": 15,
+        "description": "The crevice looks a little slippery."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 15,
+    "name": "Deep, slippery crevice.",
+    "description": "The crevice is deep and a little dim and it is hard to make your
+                   |way around.  A mist makes everything a little damp and slippery.
+                   |Better take your time climbing through here.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 17
+      },
+      {
+        "dir": "west",
+        "to": 16,
+        "description": "The mist looks thicker in this direction."
+      },
+      {
+        "dir": "up",
+        "to": 14
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 16,
+    "name": "Incredibly slippery crevice.",
+    "description": "The crevice is getting more and more slippery.  You are getting
+                   |incredibly nervous and want to turn back.  To the east is the
+                   |crevice and trail you were following.  Below, you can just see the
+                   |edge of a cliff through the mist.  There is no trail leading there,
+                   |just a smooth, flat, dew-covered rock that almost resembles a
+                   |slide ...",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 15,
+        "description": "The way back to safety."
+      },
+      {
+        "dir": "down",
+        "to": 99,
+        "description": "Only fools would dare tread here!"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 17,
+    "name": "Steep mountainside.",
+    "description": "From here, you can see forever.  Clouds, birds, the forest.
+                   |Midgaard is far, far to the west.  What a postcard perfect view!",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 15
+      },
+      {
+        "dir": "up",
+        "to": 18
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 18,
+    "name": "Steep mountainside.",
+    "description": "From here, you can see forever.  Clouds, birds, the forest.
+                   |Midgaard is far, far to the west.  What a postcard perfect view!",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 19
+      },
+      {
+        "dir": "down",
+        "to": 17
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 19,
+    "name": "Treacherous Cliff.",
+    "description": "The cliff is rocky and difficult to negotiate.  One wrong slip and
+                   |you could fall and break a leg or impale yourself or something else
+                   |nasty.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 18
+      },
+      {
+        "dir": "up",
+        "to": 20,
+        "description": "Above you is an almost vertical cliff.  It looks dangerous but
+                       |climbable."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 20,
+    "name": "Cliff Face.",
+    "description": "You are more than a little nervous climbing on this almost vertical
+                   |cliff face.  You miraculously find places to grab onto and little
+                   |ledges to rest on.  You see a small cave here.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 21,
+        "description": "A dank, dark, smelly hole."
+      },
+      {
+        "dir": "up",
+        "to": 22,
+        "description": "A large ledge that looks pretty safe."
+      },
+      {
+        "dir": "down",
+        "to": 19
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 21,
+    "name": "Dank, dark, smelly hole.",
+    "description": "This hole must have been used as a lair or nest.  There are
+                   |feathers and bones everywhere and the floor is covered with
+                   |something disgusting.",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 20
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 22,
+    "name": "Large, sturdy ledge.",
+    "description": "You are on a ledge above a steep cliff face.  You can climb down
+                   |if you want, but be careful!  After viewing the scenery, you notice
+                   |two small caves here, one north and one west.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 24
+      },
+      {
+        "dir": "west",
+        "to": 23
+      },
+      {
+        "dir": "down",
+        "to": 20
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 23,
+    "name": "Absolutely disgusting lair.",
+    "description": "The stench in here is quite foul.  There are feathers, bones and
+                   |rotting carcasses everywhere.  This place is absolutely gross and
+                   |you have to strain yourself not to lose your lunch.",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 22,
+      "description": "Your only hope to keep your lunch down is to head this way..."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 4,
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 24,
+    "name": "Absolutely disgusting lair.",
+    "description": "The stench in here is quite foul.  There are feathers, bones and
+                   |rotting carcasses everywhere.  This place is absolutely gross and
+                   |you have to strain yourself not to lose your lunch.",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 22,
+      "description": "Your only hope to keep your lunch down is to head this way..."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 5,
+          "global_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 25,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 10,
+        "description": "An ominous storm cloud looms to the east."
+      },
+      {
+        "dir": "up",
+        "to": 26,
+        "description": "There is another cloud above you.  If you jump you might make it..."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 26,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 31,
+        "description": "A cirrus cloud hums peacefully to itself."
+      },
+      {
+        "dir": "west",
+        "to": 27,
+        "description": "You spy a tiny cloud."
+      },
+      {
+        "dir": "up",
+        "to": 7,
+        "description": "There is another cloud above you.  If you jump you might make it..."
+      },
+      {
+        "dir": "down",
+        "to": 25,
+        "description": "There is another cloud below you."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 27,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 30,
+        "description": "To the north you see an angry cloud lashing out."
+      },
+      {
+        "dir": "east",
+        "to": 26,
+        "description": "There is another cloud east of you."
+      },
+      {
+        "dir": "up",
+        "to": 28,
+        "description": "There is another cloud above you.  If you jump you might make it..."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 3
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 28,
+    "name": "A fluffy white cloud.",
+    "description": "You find yourself standing on a small cloud.  The cloud feels kind
+                   |of spongy beneath your feet.  You find it hard to see anything in
+                   |the distance as wisps of cloud blow over your face.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 3,
+        "description": "You see a cloud somewhere south of you."
+      },
+      {
+        "dir": "down",
+        "to": 27,
+        "description": "There is another cloud below you."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 29,
+    "name": "Sleepy little cloud.",
+    "description": "This cloud is peacefully snoozing away, enjoying himself.  There
+                   |is grumpy cloud to the east and a rather shy cloud north of here.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 32,
+        "description": "The cloud to the north blushes and tries to hide when you look at
+                       |it."
+      },
+      {
+        "dir": "east",
+        "to": 30,
+        "description": "The cloud to the east mutters and grumbles at you."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 30,
+    "name": "Grumpy little cloud.",
+    "description": "This cloud mutters and grumbles at you.  You have to jump quickly
+                   |to avoid a lightning bolt that passes by your toe.  Your aren't
+                   |sure but you think you hear the cloud snicker.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 31,
+        "description": "A happy little cloud is humming peacefully to itself."
+      },
+      {
+        "dir": "south",
+        "to": 27,
+        "description": "You see a cloud somewhere south of you."
+      },
+      {
+        "dir": "west",
+        "to": 29,
+        "description": "A sleepy little cloud to the west yawns and rolls over.  You hear
+                       |snoring."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 31,
+    "name": "Happy little cloud.",
+    "description": "You hear the cloud humming a little song to itself, but you can't
+                   |figure out the song.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 36,
+        "description": "There is a pure white cloud north of you.  It is snowing!"
+      },
+      {
+        "dir": "south",
+        "to": 26,
+        "description": "You see a cloud somewhere south of you."
+      },
+      {
+        "dir": "west",
+        "to": 30,
+        "description": "You see an angry little cloud muttering and grumbling to itself."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 32,
+    "name": "Bashful little cloud.",
+    "description": "This cloud blushes and tries to avoid your glance as you look at
+                   |your surroundings.  You decide that overall it is a peaceful little
+                   |cloud.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 33,
+        "description": "The cloud to the north sneezes!"
+      },
+      {
+        "dir": "south",
+        "to": 29,
+        "description": "A sleepy little cloud to the south yawns and rolls over.  You hear
+                       |snoring."
+      },
+      {
+        "dir": "west",
+        "to": 42,
+        "description": "An isolated little raincloud."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 33,
+    "name": "Sneezing little cloud.",
+    "description": "The cloud is wracked with sneezes.  At first you thought you were
+                   |in an earthquake before you realize where you are!",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 45
+      },
+      {
+        "dir": "east",
+        "to": 34,
+        "description": "This cloud is, like, totally lost, you know?"
+      },
+      {
+        "dir": "south",
+        "to": 32,
+        "description": "The cloud to the south blushes and tries to hide when you look at
+                       |it."
+      },
+      {
+        "dir": "west",
+        "to": 43,
+        "description": "You see a cirrus maximus cloud."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 34,
+    "name": "Dopey little cloud.",
+    "description": "This cloud is too busy daydreaming to watch where its going.  It
+                   |doesn't even notice you landing on it.  It looks like it couldn't
+                   |figure its way out of an open box.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 35,
+        "description": "You see a very scientific cloud."
+      },
+      {
+        "dir": "west",
+        "to": 33,
+        "description": "The cloud sneezes!  Yuck."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 35,
+    "name": "Doc-like little cloud.",
+    "description": "The cloud looks at you through its Lennon like specs and examines
+                   |you quite scientifically.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 36,
+        "description": "There is a pure white cloud south of you.  It is snowing!"
+      },
+      {
+        "dir": "west",
+        "to": 34,
+        "description": "This cloud is, like, totally lost, you know?"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 36,
+    "name": "Snowy, white cloud.",
+    "description": "You shiver as you stand here.  This beautiful, fluffy, pure white
+                   |cloud is snowing.  The snow is pure and sweet as it melts in your
+                   |mouth.  What a nifty cloud to be on.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 35,
+        "description": "You see a very scientific cloud."
+      },
+      {
+        "dir": "south",
+        "to": 31,
+        "description": "A happy, peaceful little cloud humming to itself."
+      },
+      {
+        "dir": "west",
+        "to": 37
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 37,
+    "name": "Cold, damp cloud.",
+    "description": "Your mood grows grumpy as you find yourself cold and wet from this
+                   |dismal cloud.  You notice a rock outcropping above you.",
+    "sector_type": "inside",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 36,
+        "description": "There is a pure white cloud east of you.  It is snowing!"
+      },
+      {
+        "dir": "up",
+        "to": 38
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 5,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 38,
+    "name": "Mysterious rock outcropping.",
+    "description": "This rock outcropping just seems to hang in midair.  To the north
+                   |you see a house and if you ease yourself down, you can land on a
+                   |rather damp, dismal cloud.  The door to the house is closed.",
+    "sector_type": "inside",
+    "room_flags": "dark no_mob",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 39,
+        "keyword": "door",
+        "description": "Eerie looking house.",
+        "exit_flags": "door"
+      },
+      {
+        "dir": "down",
+        "to": 37
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 39,
+    "name": "Foyer.",
+    "description": "Shadows play tricks on your eyes.  Everytime you think you see
+                   |something in a corner and turn to get a better look, nothing is
+                   |there.  The place is very dark.  Even with a torch, you have
+                   |trouble making out the room to the east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 40
+      },
+      {
+        "dir": "south",
+        "to": 38
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 40,
+    "name": "Tower.",
+    "description": "You are in a musty old tower.  The smell of mold and mildew is
+                   |almost overpowering.  You hear strange creaks and groans ... is it
+                   |the wind or did someone (something?) make that noise.  To the west
+                   |is the house and there is a stairway leading up into the tower.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 39
+      },
+      {
+        "dir": "up",
+        "to": 41
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 41,
+    "name": "Witches Tower",
+    "description": "Here you see strange things of arcane value.  There is a cauldron in the
+                   |corner bubbling madly, belching a foul brew that must have come from hell.
+                   |On shelves lie jars of strange creatures you have never seen before, or
+                   |hope to again.  A picture of a familiar temple hangs on the east wall.",
+    "sector_type": "inside",
+    "room_flags": "dark no_mob indoors no_recall",
+    "portal": "dylan-room-1",
+    "doors": [
+      {
+        "dir": "east",
+        "keyword": "picture",
+        "exit_flags": "door closed",
+        "portal": "dylan-east-1"
+      },
+      {
+        "dir": "down",
+        "to": 40
+      }
+    ],
+    "extra_description": [{
+      "keyword": "picture",
+      "description": "The picture is in on the east wall.  It is very complex in detail, and you
+                     |almost see people walking around the temple in the picture."
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 7,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 42,
+    "name": "Suspicious little raincloud.",
+    "description": "On second glance, this cloud doesn't seem much like a raincloud.
+                   |A balloon sticks out of the top and you think you hear it humming
+                   |something like, 'Tut, tut!  It looks like rain!'",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 43
+      },
+      {
+        "dir": "east",
+        "to": 32,
+        "description": "A bashful little cloud that tries to avoid your notice."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 43,
+    "name": "Cirrus maximus cloud.",
+    "description": "This cloud looks like it is of the cirrus maximus genre of clouds.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 33,
+        "description": "The cloud to the east sneezes!"
+      },
+      {
+        "dir": "south",
+        "to": 42,
+        "description": "A suspicious little raincloud with a balloon."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 44,
+    "name": "Raging hurricane.",
+    "description": "You are buffeted and knocked about by the almost godlike strength
+                   |of the raging hurricane.  It is hard to see and hear anything.
+                   |Your only thought is to seek refuge from the storm.",
+    "sector_type": "mountain",
+    "room_flags": "dark no_recall",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 48
+      },
+      {
+        "dir": "down",
+        "to": 46
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 45,
+    "name": "Raging hurricane.",
+    "description": "You are buffeted and knocked about by the almost godlike strength
+                   |of the raging hurricane.  It is hard to see and hear anything.
+                   |Your only thought is to seek refuge from the storm.",
+    "sector_type": "mountain",
+    "room_flags": "dark no_recall",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 33,
+        "description": "You see a sneezy little cloud."
+      },
+      {
+        "dir": "west",
+        "to": 50
+      },
+      {
+        "dir": "down",
+        "to": 48
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 46,
+    "name": "Raging hurricane.",
+    "description": "You are buffeted and knocked about by the almost godlike strength
+                   |of the raging hurricane.  It is hard to see and hear anything.
+                   |Your only thought is to seek refuge from the storm.",
+    "sector_type": "mountain",
+    "room_flags": "dark no_recall",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 47
+      },
+      {
+        "dir": "east",
+        "to": 44
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 47,
+    "name": "Raging hurricane.",
+    "description": "You are buffeted and knocked about by the almost godlike strength
+                   |of the raging hurricane.  It is hard to see and hear anything.
+                   |Your only thought is to seek refuge from the storm.",
+    "sector_type": "mountain",
+    "room_flags": "dark no_recall",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 48
+      },
+      {
+        "dir": "south",
+        "to": 46
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 48,
+    "name": "Raging hurricane.",
+    "description": "You are buffeted and knocked about by the almost godlike strength
+                   |of the raging hurricane.  It is hard to see and hear anything.
+                   |Your only thought is to seek refuge from the storm.",
+    "sector_type": "mountain",
+    "room_flags": "dark no_recall",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 44
+      },
+      {
+        "dir": "west",
+        "to": 47
+      },
+      {
+        "dir": "up",
+        "to": 45
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 5,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 49,
+    "name": "Raging hurricane.",
+    "description": "You are buffeted and knocked about by the almost godlike strength
+                   |of the raging hurricane.  It is hard to see and hear anything.
+                   |Your only thought is to seek refuge from the storm.",
+    "sector_type": "mountain",
+    "room_flags": "dark no_recall",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 52
+      },
+      {
+        "dir": "east",
+        "to": 50
+      },
+      {
+        "dir": "down",
+        "to": 57,
+        "description": "You see a cumulative nimbus cloud."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 50,
+    "name": "Raging hurricane.",
+    "description": "You are buffeted and knocked about by the almost godlike strength
+                   |of the raging hurricane.  It is hard to see and hear anything.
+                   |Your only thought is to seek refuge from the storm.",
+    "sector_type": "mountain",
+    "room_flags": "dark no_recall",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 51
+      },
+      {
+        "dir": "east",
+        "to": 45
+      },
+      {
+        "dir": "west",
+        "to": 49
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 51,
+    "name": "Raging hurricane.",
+    "description": "You are buffeted and knocked about by the almost godlike strength
+                   |of the raging hurricane.  It is hard to see and hear anything.
+                   |Your only thought is to seek refuge from the storm.",
+    "sector_type": "mountain",
+    "room_flags": "dark no_recall",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 50
+      },
+      {
+        "dir": "west",
+        "to": 52
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 52,
+    "name": "Raging hurricane.",
+    "description": "You are buffeted and knocked about by the almost godlike strength
+                   |of the raging hurricane.  It is hard to see and hear anything.
+                   |Your only thought is to seek refuge from the storm.",
+    "sector_type": "mountain",
+    "room_flags": "dark no_recall",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 51
+      },
+      {
+        "dir": "south",
+        "to": 49
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 35,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 53,
+    "name": "Calm cloud.",
+    "description": "This cloud is just outside the hurricane.  It looks like it might
+                   |get sucked in, but you feel safe for the moment.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 54
+      },
+      {
+        "dir": "up",
+        "to": 52
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 6,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 54,
+    "name": "Mountainside.",
+    "description": "You find yourself on the side of a huge granite mountain.  The air
+                   |is quite thin so you know you are at a very high altitude.  There
+                   |is no plant life beyond moss and lichen in this lonely, barren
+                   |place.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 53
+      },
+      {
+        "dir": "west",
+        "to": 55
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 55,
+    "name": "Mountainside.",
+    "description": "You find yourself on the side of a huge granite mountain.  The air
+                   |is quite thin so you know you are at a very high altitude.  There
+                   |is no plant life beyond moss and lichen in this lonely, barren
+                   |place.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 54
+      },
+      {
+        "dir": "up",
+        "to": 56
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 56,
+    "name": "Roc's Nest.",
+    "description": "You are standing in a nest.  It is huge, at least two spear-lengths
+                   |wide.  You see three eggs in the center.  They are knee high, brown
+                   |and look almost leathery.  Better hope mom isn't around!",
+    "sector_type": "mountain",
+    "doors": [{
+      "dir": "down",
+      "to": 55
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 5,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 57,
+    "name": "Cumulative nimbus cloud.",
+    "description": "This cloud looks like it belongs to the phylum of cumulative nimbus clouds.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 59
+      },
+      {
+        "dir": "west",
+        "to": 58
+      },
+      {
+        "dir": "up",
+        "to": 49
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 58,
+    "name": "Dark hidden cloud.",
+    "description": "This cloud looks like the perfect place to hide.",
+    "sector_type": "inside",
+    "room_flags": "dark",
+    "doors": [{
+      "dir": "east",
+      "to": 57
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 59,
+    "name": "Yet another cloud",
+    "description": "You find yourself in yet another cloud.  Will the madness never
+                   |end?  There is a rope ladder leading up.",
+    "sector_type": "inside",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 57
+      },
+      {
+        "dir": "up",
+        "to": 60
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 60,
+    "name": "Front gate",
+    "description": "There is a gate here.  It is huge, towering over you.  It creaks
+                   |as it sways in the breeze.  To the south you see a huge lawn.
+                   |There is a rope ladder leading down.",
+    "sector_type": "field",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 61,
+        "description": "You see a huge lawn."
+      },
+      {
+        "dir": "down",
+        "to": 59,
+        "description": "There is a rope ladder leading down."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 61,
+    "name": "Lawn",
+    "description": "The lawn seems to stretch and stretch to the south and to the west.
+                   |North of you is a gate.  The grass is emerald green and luscious,
+                   |obviously well cared for.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 60
+      },
+      {
+        "dir": "south",
+        "to": 63
+      },
+      {
+        "dir": "west",
+        "to": 62
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 62,
+    "name": "Croquet game",
+    "description": "A croquet game has been set up and carelessly left out.  Who ever
+                   |was playing blue was in the lead before they quit.  Benches have
+                   |been set up for spectators and players to enjoy themselves.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 61
+      },
+      {
+        "dir": "south",
+        "to": 64
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 35,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 63,
+    "name": "Huge, gorgeous fountain.",
+    "description": "An enormous golden fountain is here.  You see swans, angels,
+                   |gryphons and a host of other creatures in the fountain.  The
+                   |fountain empties into a huge pool that looks quite inviting.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 61
+      },
+      {
+        "dir": "west",
+        "to": 64
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 5,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 64,
+    "name": "Patio.",
+    "description": "A huge patio overlooks the lawn area.  There are enough tables and
+                   |chairs for a party of 100.  The tables and chairs are ornate and
+                   |expensive, tasteful and elegant.  Stairs lead up to the main
+                   |house.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 62
+      },
+      {
+        "dir": "east",
+        "to": 63
+      },
+      {
+        "dir": "up",
+        "to": 65
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 65,
+    "name": "Long stairway.",
+    "description": "This stairway is suspended on clouds.  It leads from the house to
+                   |the front lawn.  The banisters are made of ornate gold and silver
+                   |inlays.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 66
+      },
+      {
+        "dir": "down",
+        "to": 64
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 66,
+    "name": "Front door",
+    "description": "You stand at the front door of an immense, sprawling mansion made
+                   |of granite and marble.  The door is at least 10 feet high and is
+                   |made of oak.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 73
+      },
+      {
+        "dir": "south",
+        "to": 77,
+        "keyword": "oak door",
+        "description": "You see an ornate oak door.",
+        "exit_flags": "door pickproof"
+      },
+      {
+        "dir": "west",
+        "to": 67
+      },
+      {
+        "dir": "down",
+        "to": 65
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 67,
+    "name": "Lawn northwest of house.",
+    "description": "You stand just outside the northwest corner of the house.  You try
+                   |to peek in a window, but it is a little too high to see anything.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 66
+      },
+      {
+        "dir": "south",
+        "to": 68
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 68,
+    "name": "Lawn west of house.",
+    "description": "You stand just outside the west corner of the house.  You try to
+                   |peek in a window, but it is a little too high to see anything.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 67
+      },
+      {
+        "dir": "south",
+        "to": 69
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 69,
+    "name": "Lawn southwest of house.",
+    "description": "You stand just outside the southwest corner of the house.  You try
+                   |to peek in a window, but it is a little too high to see anything.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 68
+      },
+      {
+        "dir": "east",
+        "to": 70
+      },
+      {
+        "dir": "down",
+        "to": 74
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 70,
+    "name": "Lawn south of house.",
+    "description": "You stand just outside the south corner of the house.  You try to
+                   |peek in a window, but it is a little too high to see anything.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 71
+      },
+      {
+        "dir": "west",
+        "to": 69
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 71,
+    "name": "Lawn southeast of house.",
+    "description": "You stand just outside the southeast corner of the house.  You try
+                   |to peek in a window, but it is a little too high to see anything.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 72
+      },
+      {
+        "dir": "west",
+        "to": 70
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 72,
+    "name": "Lawn east of house.",
+    "description": "You stand just outside the east corner of the house.  You try to
+                   |peek in a window, but it is a little too high to see anything.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 73
+      },
+      {
+        "dir": "south",
+        "to": 71
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 73,
+    "name": "Lawn northeast of house.",
+    "description": "You stand just outside the northeast corner of the house.  You try
+                   |to peek in a window, but it is a little too high to see anything.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 72
+      },
+      {
+        "dir": "west",
+        "to": 66
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 74,
+    "name": "Dirty, dusty tunnel.",
+    "description": "This dirty dusty tunnel must lead somewhere.",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 75
+      },
+      {
+        "dir": "up",
+        "to": 69
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 75,
+    "name": "Basement.",
+    "description": "This seems like your average basement.  Old Christmas decorations,
+                   |suitcases, bicycles litter your way.  You hear the squeaking of
+                   |rats in the corners.",
+    "sector_type": "mountain",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 76
+      },
+      {
+        "dir": "west",
+        "to": 74
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 76,
+    "name": "Bottom of the stairs.",
+    "description": "You stand at the bottom of a long staircase leading up to the main
+                   |house.  To the south you can barely make out the accumulated
+                   |clutter gathered throughout the years.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 75
+      },
+      {
+        "dir": "up",
+        "to": 77
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 77,
+    "name": "Foyer.",
+    "description": "\"Magnificent\" does not even begin to describe the foyer.  Lavishly
+                   |decorated, yet elegant, it gives an impression of indescribable
+                   |wealth.  Paintings and tapestries line the walls depicting scenes
+                   |from throughout history.  Antiques furnitures and oriental rugs are
+                   |tastefully placed in ideal spots.  The door is at least 10 feet
+                   |high and is made of oak.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 66,
+        "keyword": "oak door",
+        "description": "You see an ornate oak door.",
+        "exit_flags": "door pickproof"
+      },
+      {
+        "dir": "east",
+        "to": 83
+      },
+      {
+        "dir": "west",
+        "to": 78
+      },
+      {
+        "dir": "down",
+        "to": 76
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 5,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 78,
+    "name": "Elegant hallway.",
+    "description": "You are in a long, sprawling hallway connecting the eastern and
+                   |western wings of the house.  There are several chairs and sofas in
+                   |the hallway and some gorgeous, handwoven drapes.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 77
+      },
+      {
+        "dir": "south",
+        "to": 79
+      },
+      {
+        "dir": "west",
+        "to": 80
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 79,
+    "name": "Library",
+    "description": "You are overwhelmed by the sheer volumes of books here.  The
+                   |shelves stretch all the way to the ceiling and are on every wall,
+                   |even above the doorway.  There are chairs for sitting and reading
+                   |and a desk for more intense studies.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 78
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 80,
+    "name": "Arboretum.",
+    "description": "A small indoor garden so that the residents don't have to go
+                   |outside to enjoy plants and commune with nature.  There are several
+                   |trees, a small pond and flowers of every kind.",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 78
+      },
+      {
+        "dir": "south",
+        "to": 81
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 81,
+    "name": "Western tower.",
+    "description": "You are in the bottom part of a tower.  A draft brings a chill to
+                   |your spine and causes creaks and groans.  Curtains flutter in the
+                   |wind, causing quite a distraction.  When you go to shut the window,
+                   |you see that the window is closed.  An old, wooden staircase leads
+                   |up into darkness.",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 80
+      },
+      {
+        "dir": "up",
+        "to": 82
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 82,
+    "name": "Western tower.",
+    "description": "The tower creaks and groans, almost as if it were muttering to
+                   |itself.  There are windows displaying a full moon, reigning over
+                   |the night sky.  The room is dark and there is almost a musty odor
+                   |to it.  You are surprised that you can't detect any dust or dirt,
+                   |although there are a couple of cobwebs in the corner.",
+    "sector_type": "city",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "down",
+      "to": 81
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 2,
+          "global_limit": 9
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 83,
+    "name": "Elegant hallway.",
+    "description": "You are in a long, sprawling hallway connecting the eastern and
+                   |western wings of the house.  There are several chairs and sofas in
+                   |the hallway and some gorgeous, handwoven drapes.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 85
+      },
+      {
+        "dir": "south",
+        "to": 84
+      },
+      {
+        "dir": "west",
+        "to": 77
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 84,
+    "name": "Conservatory",
+    "description": "Here was the rehearsal and recital room for the residents of the
+                   |estate.  There is a Steinway piano in the corner and various gilded
+                   |instruments are on display in a glass cabinet.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 83
+    }]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 85,
+    "name": "Office",
+    "description": "You find yourself in a lavish office.  The desk is absolutely huge,
+                   |at least ten feet by five feet and made of ebony and inlaid with
+                   |mother of pearl.  A grandfather clock towers over the room,
+                   |mechanically ticking and tocking the hours away.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 86
+      },
+      {
+        "dir": "west",
+        "to": 83
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 86,
+    "name": "Eastern tower.",
+    "description": "You are in the bottom part of a tower.  A draft brings a chill to
+                   |your spine and causes creaks and groans.  Curtains flutter in the
+                   |wind, causing quite a distraction.  When you go to shut the window,
+                   |you see that the window is closed.  An old, wooden staircase leads
+                   |up into darkness.",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 85
+      },
+      {
+        "dir": "up",
+        "to": 87
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 87,
+    "name": "Eastern tower.",
+    "description": "The tower creaks and groans, almost as if it were muttering to
+                   |itself.  There are windows displaying a full moon, reigning over
+                   |the night sky.  The room is dark and there is almost a musty odor
+                   |to it.  You are surprised that you can't detect any dust or dirt,
+                   |although there are a couple of cobwebs in the corner.",
+    "sector_type": "city",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "down",
+      "to": 86
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 3,
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "dylan",
+    "anum": 99,
+    "name": "Mid-Air.",
+    "description": "You slide down the moisture covered rock, gaining speed as you
+                   |approach the cliff.  Realizing your foolish error, you madly claw
+                   |at the rock, vainly trying to get a precious hold and save your
+                   |worthless hide.  Next time, heed your conscience.
+                   |
+                   |You've fallen, and you can't get up!!!",
+    "sector_type": "field",
+    "room_flags": "no_mob"
+  }}
+]

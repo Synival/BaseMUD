@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "chapel",
+  "filename": "chapel.are",
+  "title": "Chapel",
+  "credits": "{15 25} Copper  Chapel Catacombs",
+  "min_vnum": 3400,
+  "max_vnum": 3499,
+  "builders": "None",
+  "security": 9
+}}]

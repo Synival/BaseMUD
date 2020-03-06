@@ -1,0 +1,750 @@
+[
+  {"object": {
+    "area": "canyon",
+    "anum": 1,
+    "name": "ring earth",
+    "short_descr": "the earth ring",
+    "description": "A dark ring which seems to absorb all the light around it lies here.",
+    "item_type": "furniture",
+    "values": {
+      "heal_rate": 100,
+      "mana_rate": 100
+    },
+    "level": 7,
+    "weight": 50,
+    "cost": 1140,
+    "extra_flags": "bless",
+    "wear_flags": "take finger",
+    "affects": [
+      {
+        "level": 7,
+        "apply": "wisdom",
+        "modifier": 1
+      },
+      {
+        "level": 7,
+        "apply": "intelligence",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 2,
+    "name": "breastplate stoney breast plate",
+    "short_descr": "a stoney breastplate",
+    "description": "A breastplate made of the stone from deep within the earth lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 10,
+      "vs_bash": 10,
+      "vs_slash": 10,
+      "vs_magic": 2
+    },
+    "level": 31,
+    "weight": 700,
+    "cost": 5500,
+    "wear_flags": "take body",
+    "affects": [
+      {
+        "level": 31,
+        "apply": "constitution",
+        "modifier": 1
+      },
+      {
+        "level": 31,
+        "apply": "dexterity",
+        "modifier": -2
+      }
+    ]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 3,
+    "name": "dagger fiery",
+    "short_descr": "a fiery dagger",
+    "description": "A dagger made of fire crackles mysteriously here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 5,
+      "dice_size": 4,
+      "attack_type": "pierce",
+      "flags": "flaming"
+    },
+    "level": 29,
+    "weight": 20,
+    "cost": 2800,
+    "extra_flags": "glow",
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 29,
+      "apply": "damage roll",
+      "modifier": 4
+    }]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 4,
+    "name": "cape flame flaming red",
+    "short_descr": "a flame red cape",
+    "description": "A cape made of ethereal red fiber lies neatly folded on the ground here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 3
+    },
+    "level": 30,
+    "weight": 30,
+    "cost": 3100,
+    "extra_flags": "glow",
+    "wear_flags": "take neck",
+    "affects": [{
+      "level": 30,
+      "apply": "damage roll",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 5,
+    "name": "boots wind",
+    "short_descr": "the wind boots",
+    "description": "A pair of boots that look fast standing still are here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 8,
+      "vs_bash": 8,
+      "vs_slash": 8,
+      "vs_magic": 2
+    },
+    "level": 26,
+    "weight": 10,
+    "cost": 5200,
+    "extra_flags": "magic",
+    "wear_flags": "take feet",
+    "affects": [{
+      "level": 26,
+      "apply": "dexterity",
+      "modifier": 2
+    }]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 6,
+    "name": "helmet hurricane",
+    "short_descr": "a hurricane helmet",
+    "description": "A helmet that looks like it has weathered many storms has been set here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 3
+    },
+    "level": 31,
+    "weight": 40,
+    "cost": 3800,
+    "extra_flags": "hum",
+    "wear_flags": "take head",
+    "affects": [{
+      "level": 31,
+      "apply": "saves",
+      "modifier": -2
+    }]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 7,
+    "name": "sword lightning bolt",
+    "short_descr": "a sparking lightning sword",
+    "description": "A lightning bolt fashioned into a sword spits sparks here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 5,
+      "dice_size": 4,
+      "attack_type": "slash",
+      "flags": "poison"
+    },
+    "level": 25,
+    "weight": 100,
+    "cost": 2200,
+    "extra_flags": "glow hum",
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 25,
+        "apply": "damage roll",
+        "modifier": 2
+      },
+      {
+        "level": 25,
+        "apply": "hit roll",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 8,
+    "name": "shield electric",
+    "short_descr": "an electric shield",
+    "description": "A shield made entirely of energy buzzes here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 4
+    },
+    "level": 28,
+    "weight": 80,
+    "cost": 4500,
+    "extra_flags": "hum",
+    "wear_flags": "take shield",
+    "affects": [
+      {
+        "level": 28,
+        "apply": "constitution",
+        "modifier": 1
+      },
+      {
+        "level": 28,
+        "apply": "strength",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 9,
+    "name": "girth icy",
+    "short_descr": "an icy girth",
+    "description": "A girth made of magical ice has been left here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 10,
+      "vs_bash": 10,
+      "vs_slash": 10,
+      "vs_magic": 3
+    },
+    "level": 31,
+    "weight": 100,
+    "cost": 1540,
+    "wear_flags": "take waist",
+    "affects": [{
+      "level": 31,
+      "apply": "constitution",
+      "modifier": -2
+    }]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 10,
+    "name": "cloak waterfall",
+    "short_descr": "a waterfall cloak",
+    "description": "A cloak fashioned from a small magical waterfall is here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 2
+    },
+    "level": 30,
+    "weight": 60,
+    "cost": 3000,
+    "wear_flags": "take about",
+    "affects": [
+      {
+        "level": 30,
+        "apply": "hit roll",
+        "modifier": -2
+      },
+      {
+        "level": 30,
+        "apply": "mana",
+        "modifier": 25
+      }
+    ]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 11,
+    "name": "amulet elemental",
+    "short_descr": "an elemental amulet",
+    "description": "An amulet depicting fire, water, lightning, earth, and air lies here.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 20,
+    "weight": 10,
+    "cost": 860,
+    "extra_flags": "glow",
+    "wear_flags": "take neck",
+    "affects": [{
+      "level": 20,
+      "apply": "saves",
+      "modifier": -2
+    }]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 12,
+    "name": "bracelet elemental",
+    "short_descr": "an elemental bracelet",
+    "description": "A bracelet made of elemental magic lies here.",
+    "item_type": "gem",
+    "values": {},
+    "level": 20,
+    "weight": 40,
+    "cost": 580,
+    "wear_flags": "take wrist",
+    "affects": [{
+      "level": 20,
+      "apply": "hp",
+      "modifier": 20
+    }]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 13,
+    "name": "armband platinum band",
+    "short_descr": "a platinum arm band",
+    "description": "A platinum arm band, once worn by the Cyclops, lie here.",
+    "material": "platinum",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 2
+    },
+    "level": 26,
+    "weight": 40,
+    "cost": 1700,
+    "wear_flags": "take wrist",
+    "affects": [
+      {
+        "level": 26,
+        "apply": "wisdom",
+        "modifier": -2
+      },
+      {
+        "level": 26,
+        "apply": "strength",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 14,
+    "name": "legbands platinum bands",
+    "short_descr": "some platinum leg bands",
+    "description": "A pair of platinum leg bands, once worn by the Cyclops, lie here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 2
+    },
+    "level": 26,
+    "weight": 40,
+    "cost": 1700,
+    "wear_flags": "take legs",
+    "affects": [
+      {
+        "level": 26,
+        "apply": "intelligence",
+        "modifier": -2
+      },
+      {
+        "level": 26,
+        "apply": "dexterity",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 15,
+    "name": "wand",
+    "short_descr": "elemental wand of fire",
+    "description": "A fire wand lies forgotten on the ground.",
+    "item_type": "wand",
+    "values": {
+      "level": 15,
+      "recharge": 3,
+      "charges": 3,
+      "skill": "fireball"
+    },
+    "level": 16,
+    "weight": 70,
+    "cost": 3900,
+    "extra_flags": "glow",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 16,
+    "name": "staff ice",
+    "short_descr": "an ice staff",
+    "description": "An ice staff lies forgotten on the ground.",
+    "item_type": "wand",
+    "values": {
+      "level": 12,
+      "recharge": 3,
+      "charges": 3,
+      "skill": "frost breath"
+    },
+    "level": 25,
+    "weight": 70,
+    "cost": 13700,
+    "extra_flags": "glow",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 17,
+    "name": "rod earthquake",
+    "short_descr": "an elemental rod of earthquake",
+    "description": "An earthquake rod lies forgotten on the ground.",
+    "item_type": "wand",
+    "values": {
+      "level": 7,
+      "recharge": 3,
+      "charges": 3,
+      "skill": "earthquake"
+    },
+    "level": 7,
+    "weight": 70,
+    "cost": 1000,
+    "extra_flags": "glow",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 18,
+    "name": "wand air wind",
+    "short_descr": "elemental wand of wind and air",
+    "description": "An air wand lies forgotten on the ground.",
+    "item_type": "wand",
+    "values": {
+      "level": 11,
+      "recharge": 1,
+      "charges": 1,
+      "skill": "gas breath"
+    },
+    "level": 27,
+    "weight": 70,
+    "cost": 12600,
+    "extra_flags": "glow",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 19,
+    "name": "wand",
+    "short_descr": "elemental wand of lightning",
+    "description": "A lightning wand lies forgotten on the ground.",
+    "item_type": "wand",
+    "values": {
+      "level": 9,
+      "recharge": 1,
+      "charges": 1,
+      "skill": "lightning bolt"
+    },
+    "level": 7,
+    "weight": 70,
+    "cost": 1420,
+    "extra_flags": "glow",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 20,
+    "name": "stone club two-handed",
+    "short_descr": "a stone club",
+    "description": "A large stone club lies on the ground.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 8,
+      "attack_type": "pound",
+      "flags": "twohands"
+    },
+    "level": 13,
+    "weight": 160,
+    "cost": 730,
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 13,
+        "apply": "damage roll",
+        "modifier": 1
+      },
+      {
+        "level": 13,
+        "apply": "hit roll",
+        "modifier": -2
+      }
+    ]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 21,
+    "name": "lode load lodestone loadstone stone",
+    "short_descr": "a lodestone",
+    "description": "A dull red rock lies here amid the weeds.",
+    "item_type": "wand",
+    "values": {
+      "level": 19,
+      "recharge": 2,
+      "charges": 2,
+      "skill": "harm"
+    },
+    "level": 13,
+    "weight": 20,
+    "cost": 2800,
+    "wear_flags": "take hold",
+    "affects": [{
+      "level": 13,
+      "apply": "strength",
+      "modifier": -2
+    }]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 22,
+    "name": "lava lamp",
+    "short_descr": "a lava lamp",
+    "description": "A lantern which glows with a red glowing light has been dumped.",
+    "item_type": "light",
+    "values": {"duration": 1000},
+    "level": 0,
+    "weight": 40,
+    "cost": 250,
+    "extra_flags": "glow",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 23,
+    "name": "energy scroll",
+    "short_descr": "an energy scroll",
+    "description": "A scroll of energy replacement lies here.",
+    "item_type": "scroll",
+    "values": {
+      "level": 19,
+      "skill1": "cure critical",
+      "skill2": "refresh"
+    },
+    "level": 5,
+    "weight": 10,
+    "cost": 860,
+    "extra_flags": "hum",
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 24,
+    "name": "water jug",
+    "short_descr": "a water jug",
+    "description": "A large but surprisingly light jug of water stands here.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 150,
+      "filled": 150,
+      "liquid": "water"
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 200,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 25,
+    "name": "dust",
+    "short_descr": "magic dust",
+    "description": "A pile of dust of appearance has gathered here.",
+    "item_type": "pill",
+    "values": {
+      "level": 20,
+      "skill1": "detect invis"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 300,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 26,
+    "name": "flame lance",
+    "short_descr": "a flame lance",
+    "description": "A lance of blue flame burns the ground around it.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "staff",
+      "dice_num": 2,
+      "dice_size": 15,
+      "attack_type": "thrust",
+      "flags": "flaming"
+    },
+    "level": 29,
+    "weight": 140,
+    "cost": 220,
+    "extra_flags": "glow",
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 29,
+        "apply": "hit roll",
+        "modifier": 2
+      },
+      {
+        "level": 29,
+        "apply": "hp",
+        "modifier": -20
+      }
+    ]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 27,
+    "name": "icicle dagger ice",
+    "short_descr": "an icicle",
+    "description": "A glowing icicle dagger lies here amid a patch of frost.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 7,
+      "dice_size": 3,
+      "attack_type": "pierce",
+      "flags": "frost"
+    },
+    "level": 28,
+    "weight": 10,
+    "cost": 1630,
+    "extra_flags": "glow",
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 28,
+        "apply": "strength",
+        "modifier": -1
+      },
+      {
+        "level": 28,
+        "apply": "damage roll",
+        "modifier": 2
+      }
+    ]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 28,
+    "name": "avalanche",
+    "short_descr": "the avalanche",
+    "description": "An avalanche is about to crush you!",
+    "item_type": "weapon",
+    "values": {
+      "dice_num": 1,
+      "dice_size": 25,
+      "attack_type": "blast"
+    },
+    "level": 24,
+    "weight": 160,
+    "cost": 3000,
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 24,
+      "apply": "hit roll",
+      "modifier": -1
+    }]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 29,
+    "name": "star morning",
+    "short_descr": "the morning star",
+    "description": "A chain with a star on the end lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "flail",
+      "dice_num": 6,
+      "dice_size": 3,
+      "attack_type": "crush"
+    },
+    "level": 23,
+    "weight": 110,
+    "cost": 3300,
+    "extra_flags": "glow",
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 23,
+        "apply": "armor class",
+        "modifier": -3
+      },
+      {
+        "level": 23,
+        "apply": "saves",
+        "modifier": -2
+      }
+    ]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 30,
+    "name": "shock whip",
+    "short_descr": "the Shock Whip",
+    "description": "A whip hums innocently too itself.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "whip",
+      "dice_num": 4,
+      "dice_size": 5,
+      "attack_type": "stab"
+    },
+    "level": 20,
+    "weight": 100,
+    "cost": 64,
+    "extra_flags": "hum",
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 20,
+        "apply": "strength",
+        "modifier": -2
+      },
+      {
+        "level": 20,
+        "apply": "damage roll",
+        "modifier": 3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "canyon",
+    "anum": 31,
+    "name": "elixir anti",
+    "short_descr": "anti-cyclops elixir",
+    "description": "An elixir to ward off cyclopi has been bought then left behind here.",
+    "item_type": "potion",
+    "values": {
+      "level": 15,
+      "skill1": "invisibility"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 250,
+    "wear_flags": "take hold"
+  }}
+]

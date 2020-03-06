@@ -1,0 +1,930 @@
+[
+  {"room": {
+    "area": "marsh",
+    "anum": 1,
+    "name": "Muddy Path",
+    "description": "This section of the path is slowly being drowned by the nearby swamp to the
+                   |south, which is creeping slowly inland.  Several caved-in buildings sprawl
+                   |here, torn apart both by battle and the elements.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "description": "The path looks drier here.",
+        "portal": "marsh-north-1"
+      },
+      {
+        "dir": "south",
+        "to": 2,
+        "description": "A broken road leading southward into the marsh."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "swamp",
+      "description": "The swamp to the south even reaches as far as this point ... it makes the
+                     |ground and air about you moist and fetid."
+    }]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 2,
+    "name": "Swamp's Edge",
+    "description": "Briars and marsh plants stick to your boots and clothes, and clouds cover the
+                   |skies above the murky marsh, leaving the path before you dark and sinister.
+                   |You see some disturbances in the marsh, but after a few strangled screams,
+                   |the sounds stop.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 1
+      },
+      {
+        "dir": "east",
+        "to": 3,
+        "description": "To the east lies a series of bogs and shallows that look rather threatening."
+      },
+      {
+        "dir": "south",
+        "to": 4,
+        "description": "You notice a large hill rising out of the marsh to the south."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 3,
+    "name": "Marshy Forest",
+    "description": "This area is by no means a forest, but for those who dwell in these sparse
+                   |trees it is one.  Occasionally you see a whole humanoid form floating face down
+                   |in the water, but mostly you only find pieces.  You hear a loud bellow in the
+                   |distance.  And feel fear creep into your heart.",
+    "sector_type": "mountain",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 5,
+        "description": "Eastward is the thick bog of ooze..."
+      },
+      {
+        "dir": "west",
+        "to": 2,
+        "description": "Westward lies the remanents of a broken and shattered roadway being swallowed
+                       |by the marsh."
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "pieces",
+        "description": "You see severed limbs and spongy intestines."
+      },
+      {
+        "keyword": "humanoid corpse",
+        "description": "He looks mangled and shredded.  You see one large gash mark that looks
+                       |like it came from the claw of some huge beast."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 6,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 7,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 4,
+    "name": "On a hill.",
+    "description": "You stand atop a hill on the northwestern side of the evil swamp. Dark
+                   |clouds whip around you and the wind raises its voice and assails you.",
+    "sector_type": "hills",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 2,
+        "description": "To the north lies a damp broken roadway."
+      },
+      {
+        "dir": "east",
+        "to": 9,
+        "description": "A dark pool congeals to the east."
+      },
+      {
+        "dir": "south",
+        "to": 10,
+        "description": "A gloomy path leads down the hill into the swamp."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 6,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 7,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 5,
+    "name": "An Oozing Bog",
+    "description": "You stand in an oozing quagmire.  A creaking beat fills the air, 
+                   |accompanied by groans and soughing of the air.  Several large winged
+                   |beasts flap over you and send chilling glares your way.  You feel out
+                   |of place, and feel that the occupants of this realm will soon 
+                   |have you for a feast.",
+    "sector_type": "mountain",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 6,
+        "description": "Eastward lies a horde of disgusting looking monsters."
+      },
+      {
+        "dir": "west",
+        "to": 3,
+        "description": "Westward lies a marshy area."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "beasts",
+      "description": "You see a large creature, possibly a demon, flapping heavily above you."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 6,
+    "name": "An Oozing Bog",
+    "description": "The ground here is soft and oozing.  You feel slimy water seeping into your
+                   |boots.  Better stop and check for leeches when you get out of here.",
+    "sector_type": "mountain",
+    "room_flags": "dark",
+    "doors": [{
+      "dir": "west",
+      "to": 5,
+      "keyword": "limb",
+      "description": "You see a large tree limb that looks easily moved.",
+      "exit_flags": "door"
+    }],
+    "extra_description": [{
+      "keyword": "limb",
+      "description": "The limb looks like it is attached to a trap door in the ground."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 6,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 3,
+          "wear_loc": "body",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 8,
+          "wear_loc": "wielded",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 7,
+    "name": "Swamp Thing's Lair",
+    "description": "A horrible swamp thing resides here.  Mutilated corpses suffuse the air with
+                   |the overwhelming stench of putrid flesh.",
+    "sector_type": "swim",
+    "room_flags": "dark",
+    "doors": [{
+      "dir": "west",
+      "to": 8,
+      "description": "A pool of quick sand lies to the west."
+    }],
+    "extra_description": [{
+      "keyword": "corpses",
+      "description": "You notice a note on one of the corpses reading:  'Best ye forget the temple,
+                     |it is not for the likes of you...'"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 20,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 1,
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 8,
+    "name": "Pool of Quick Sand",
+    "description": "You stand by a large oozing pool of quick sand.  Luckily only a complete
+                   |klutz could not avoid it.  Dancing lights fly about you and one seems to
+                   |be taunting you towards the pool.",
+    "sector_type": "swim",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 7,
+        "description": "The swamp thing's lair."
+      },
+      {
+        "dir": "south",
+        "to": 14,
+        "description": "A murky bog."
+      },
+      {
+        "dir": "west",
+        "to": 9,
+        "description": "A dark pool lies to the west."
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "quicksand",
+        "description": "It looks deadly to the foolish."
+      },
+      {
+        "keyword": "lights ",
+        "description": "From the stories you have heard, you recognize them as will-o-wisps."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 9,
+    "name": "A Dark Pool.",
+    "description": "You stand beside a large dark pond.  The water boils not with heat, but with
+                   |motion, as if it is alive.  A creaking beat pulses through the air, leaving
+                   |you with a cold sweat and fear in your heart.",
+    "sector_type": "swim",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 8,
+        "description": "A large pool of quicksand lies to the east."
+      },
+      {
+        "dir": "south",
+        "to": 11,
+        "description": "You see a cloud of darkness to the south."
+      },
+      {
+        "dir": "west",
+        "to": 4,
+        "description": "A hill rises out of the swamp to the east."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "pond",
+      "description": "It looks ALIVE ..."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 6,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 20,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 1,
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 10,
+    "name": "Gloomy Path Through the Marsh.",
+    "description": "To the north lies a hill, shrouded in dark clouds, and to the south lies
+                   |a huge patch of vegetation.  You sense an evil presence and notice 
+                   |a beast flying overhead to the south east, towards what looks to be a 
+                   |huge fortress, half buried in the marsh.",
+    "sector_type": "swim",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 4,
+        "description": "To the north a hill protrudes from the marshes."
+      },
+      {
+        "dir": "south",
+        "to": 12,
+        "description": "To the south a huge mass of vegetation seems to quiver with life."
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "vegetation",
+        "description": "It looks sentient."
+      },
+      {
+        "keyword": "fortress",
+        "description": "It is surrounded by walls nearly 20 meters high.  In a tall tower on the
+                       |northeast side, a window glows blue with magical energy."
+      },
+      {
+        "keyword": "beast",
+        "description": "It looks to be a demon of some foul breed."
+      },
+      {
+        "keyword": "clouds",
+        "description": "The clouds look dark and foreboding."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 13,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 6,
+          "wear_loc": "wielded",
+          "global_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "head",
+          "global_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 11,
+    "name": "Cloud of Darkness.",
+    "description": "As you travel through this cloud of darkness, a fear such as you have never
+                   |known before assails you.",
+    "sector_type": "swim",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 9,
+        "description": "A dark pool lies to the north."
+      },
+      {
+        "dir": "south",
+        "to": 13,
+        "description": "An obelisk lies to the south."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 20,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 1,
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 12,
+    "name": "Near Vegetation from Hell.",
+    "description": "You stand near some of the strangest plant life you have ever seen, a mixture
+                   |of tumescent vegetables, evil-smelling fruit trees, and malignant ferns.",
+    "sector_type": "swim",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 10,
+        "description": "To the north is a gloomy path through the marsh."
+      },
+      {
+        "dir": "east",
+        "to": 13,
+        "description": "Eastward is a large, black stone monolith."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "plant plants",
+      "description": "They look rather violent, and snap at you when you come near."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 18,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 7,
+          "global_limit": -1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 18,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 7,
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 13,
+    "name": "By the Monolith.",
+    "description": "You are standing near a monolith which protrudes some 20 feet from the
+                   |marsh into the air.  Its black obsidian surface shines darkly in the 
+                   |strange, almost unearthly light that enters through the clouds above.",
+    "sector_type": "mountain",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 11,
+        "description": "To the north is a cloud of darkest evil."
+      },
+      {
+        "dir": "east",
+        "to": 14,
+        "description": "Eastward lies a murky bog."
+      },
+      {
+        "dir": "west",
+        "to": 12,
+        "description": "Near Vegetation from Hell."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "monolith",
+      "description": "This huge monolith resembles nothing you have ever seen before.
+                     |You have a strong feeling not to go within."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 20,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 1,
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 7,
+          "global_limit": -1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 14,
+    "name": "Murky Bog.",
+    "description": "A murky bog surrounds you.  To the east a black monolith juts forth from the
+                   |ground.  Far to the north lies a huge pool of quicksand.  Snarls can be heard
+                   |echoing as if from a great distance.",
+    "sector_type": "mountain",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 8,
+        "description": "To the north lies a huge pool of quicksand."
+      },
+      {
+        "dir": "east",
+        "to": 15,
+        "description": "To the east the marsh turns into a small lake."
+      },
+      {
+        "dir": "west",
+        "to": 13,
+        "description": "Westward a large monolith awaits adventurers."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "monolith",
+      "description": "This is a huge obsidian stone block stuck in the marsh."
+    }]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 15,
+    "name": "Northern Lake Side.",
+    "description": "Floating on this boiling lake is not what you would consider an enjoyable 
+                   |experience.  Many a creature bumps the bottom of your boat, and glares 
+                   |at you through unblinking eyes from the waters below.  The southern 
+                   |portion of the lake looks calm and serene compared to this wild place.",
+    "sector_type": "noswim",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 16,
+        "description": "The southern portion of the lake lies to the south."
+      },
+      {
+        "dir": "west",
+        "to": 14,
+        "description": "To the west lies a murky bog."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 20,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 1,
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "head",
+          "global_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 16,
+    "name": "Southern Lake Side.",
+    "description": "You are floating on a calm section of blue crystal water.  You feel much more
+                   |at ease then you were before in this area.  Then a wave of fear passes over
+                   |you.  You are not alone.",
+    "sector_type": "noswim",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 15,
+        "description": "Northern lake side."
+      },
+      {
+        "dir": "west",
+        "to": 17,
+        "description": "To the west is a beach where your boat can land."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "north",
+      "description": "The way to the north seems to be impassable, due to the rough water and
+                     |strange wild life."
+    }]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 17,
+    "name": "Beach",
+    "description": "You are on a sandy shore.  Marsh life creeps across the surface.  To the west
+                   |lies an evil fortress.  You see figures walking along the battlements.",
+    "sector_type": "mountain",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 16,
+        "description": "To the east lies the southern portion of a small lake."
+      },
+      {
+        "dir": "west",
+        "to": 18,
+        "description": "The great gates."
+      }
+    ],
+    "extra_description": [{
+      "keyword": "fortress",
+      "description": "It is hewn of black stone and heavily fortified."
+    }]
+  }},
+  {"room": {
+    "area": "marsh",
+    "anum": 18,
+    "name": "Before the Great Gates.",
+    "description": "You stand before the gates of a huge fortress.  The drawbridge is up, the
+                   |gates closed, and the portcullis down.  This place looks very dangerous,
+                   |and you decide not to continue onward.",
+    "sector_type": "forest",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 17,
+        "description": "To the east is a marshy beach."
+      },
+      {
+        "dir": "south",
+        "exit_flags": "door",
+        "portal": "marsh-south-1"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      }
+    ]
+  }}
+]
