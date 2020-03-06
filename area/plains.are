@@ -338,7 +338,7 @@ Towards the south you notice the north gate of Midgaard.
 ~
 ~
 0 -1 3904
-Pplains-south-1~
+P plains-south-1~
 D3
 You see the grassy plains.
 ~
@@ -643,7 +643,7 @@ You notice a sign saying : Stranger we welcome you to the
 ~
 ~
 0 -1 5550
-Pplains-north-1~
+P plains-north-1~
 D2
 Here you see the road go towards the intersection.
 ~
@@ -855,7 +855,7 @@ You see a path toward the valley.
 ~
 ~
 0 -1 7800
-Pplains-north-3~
+P plains-north-3~
 D1
 The foothills extend far to the east.
 ~
@@ -879,7 +879,7 @@ The path continues up the mountain.
 ~
 ~
 0 -1 901
-Pplains-north-2~
+P plains-north-2~
 D1
 The foothills extend far to the east.
 ~

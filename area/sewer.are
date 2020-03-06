@@ -1457,7 +1457,7 @@ Midgaard.
 ~
 ~
 0 -1 3030
-Psewer-up-1~
+P sewer-up-1~
 E
 ladder~
 It looks as if it's made of stainless steel, and it would very well function
@@ -2323,7 +2323,7 @@ further.
 ~
 ~
 0 -1 -1
-Psewer-down-1~
+P sewer-down-1~
 E
 bars~
 These look like they're pretty slippery, and not very safe.  You'd better
@@ -2724,7 +2724,7 @@ D1
 ~
 crack wall rock~
 0 -1 -1
-Psewer-east-1~
+P sewer-east-1~
 D3
 ~
 ~
@@ -3669,12 +3669,12 @@ Through the portcullis, you can see a faintly lighted hallway leading east.
 ~
 ~
 1 -1 -1
-Psewer-north-1~
+P sewer-north-1~
 D4
 ~
 ~
 0 -1 -1
-Psewer-up-2~
+P sewer-up-2~
 E
 stairs staircase~
 This looks as if it has been standing here for at least 12 centuries. It's 
@@ -4474,7 +4474,7 @@ yet'.
 ~
 ~
 0 -1 -1
-Psewer-down-2~
+P sewer-down-2~
 S
 #7435
 Dark tunnel~

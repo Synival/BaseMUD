@@ -89,7 +89,7 @@ You see some pretty clouds!
 ~
 ~
 0 -1 9101
-Predferne-south-1~
+P redferne-south-1~
 D5
 You see a Huge Chain that anchors the Mansion of Naris to the ground.
 ~
@@ -221,7 +221,7 @@ You see only the back of a safe's steel door.
 ~
 ~
 0 -1 -1
-Predferne-west-1~
+P redferne-west-1~
 S
 #7904
 The Northern end of the hall~
@@ -346,7 +346,7 @@ D1
 ~
 safe steel~
 0 -1 -1
-Predferne-east-1~
+P redferne-east-1~
 D3
 You see a tall oak door.
 ~
@@ -392,7 +392,7 @@ it's no more than clouds.
 ~
 ~
 0 -1 -1
-Predferne-down-2~
+P redferne-down-2~
 S
 #7913
 The Monster Pen~
@@ -426,7 +426,7 @@ Down below you see the huge chain anchored to the ground in the Road Crossing.
 ~
 ~
 0 -1 3120
-Predferne-down-1~
+P redferne-down-1~
 S
 #7916
 On the Great Chain of Naris~

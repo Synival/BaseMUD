@@ -712,7 +712,7 @@ The dimly lit path leads south through the light forest.
 ~
 ~
 0 -1 6000
-Pshire-south-1~
+P shire-south-1~
 S
 #1101
 A dimly lit path~
@@ -1655,7 +1655,7 @@ You hear the din of adventurers.
 ~
 ~
 0 -1 3001
-Pshire-up-1~
+P shire-up-1~
 S
 #1151
 A dark tunnel~

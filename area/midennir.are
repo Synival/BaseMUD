@@ -221,7 +221,7 @@ D0
 ~
 ~
 0 -1 4000
-Pmidennir-north-2~
+P midennir-north-2~
 D2
 ~
 ~
@@ -267,7 +267,7 @@ A once mighty road leads through the dwarf forest towards ruined Thalos.
 ~
 ~
 0 -1 5261
-Pmidennir-south-2~
+P midennir-south-2~
 D3
 The road leads west towards Midgaard.
 ~
@@ -290,7 +290,7 @@ D3
 ~
 ~
 0 -1 3053
-Pmidennir-west-1~
+P midennir-west-1~
 S
 #3505
 The Trail to Miden'nir~
@@ -304,7 +304,7 @@ To the north, you see the southern gates of Midgaard.
 ~
 ~
 0 -1 3256
-Pmidennir-north-3~
+P midennir-north-3~
 D1
 More light forest.
 ~
@@ -608,7 +608,7 @@ The trees are nearly trunk-to-trunk this way.
 ~
 ~
 0 -1 -1
-Pmidennir-east-1~
+P midennir-east-1~
 D2
 Dark forests.
 ~
@@ -642,7 +642,7 @@ The trees are nearly trunk-to-trunk this way.
 ~
 ~
 0 -1 -1
-Pmidennir-west-2~
+P midennir-west-2~
 S
 #3520
 The Dark Forest~
@@ -748,7 +748,7 @@ You see a faint trail, covered with tiny footprints. The singing grows louder.
 ~
 ~
 0 -1 101
-Pmidennir-north-4~
+P midennir-north-4~
 D1
 The road continues to the east.
 ~
@@ -773,7 +773,7 @@ You see a beautiful, shady grove -- it looks like a peaceful place to relax.
 ~
 ~
 0 -1 8950
-Pmidennir-north-1~
+P midennir-north-1~
 D1
 The road continues west towards a guarded checkpoint.
 ~
@@ -784,7 +784,7 @@ A dirt path leads to the gnome village.
 ~
 ~
 0 -1 1501
-Pmidennir-south-1~
+P midennir-south-1~
 D3
 The road continues west towards midgaard.
 ~
@@ -899,7 +899,7 @@ You see the west gate of New Thalos.
 ~
 ~
 0 -1 9669
-Pmidennir-east-2~
+P midennir-east-2~
 D3
 You see the road to Midgaard, covered with sand.
 ~

@@ -2571,7 +2571,7 @@ D2
 ~
 ~
 0 -1 -1
-Pnewthalos-south-1~
+P newthalos-south-1~
 S
 #9512
 The Southern Bridge~
@@ -4179,7 +4179,7 @@ D2
 ~
 drawbridge draw bridge door~
 2 7901 6100
-Pnewthalos-south-2~
+P newthalos-south-2~
 D3
 ~
 door west~
@@ -5432,7 +5432,7 @@ D1
 ~
 ~
 0 -1 -1
-Pnewthalos-east-2~
+P newthalos-east-2~
 D2
 ~
 ~
@@ -5441,7 +5441,7 @@ D3
 ~
 ~
 0 -1 -1
-Pnewthalos-west-2~
+P newthalos-west-2~
 S
 #9668
 Outside the Eastern Gate of New Thalos~
@@ -5476,7 +5476,7 @@ D3
 ~
 ~
 0 -1 3532
-Pnewthalos-west-1~
+P newthalos-west-1~
 S
 #9670
 Outside the wall~
@@ -6516,7 +6516,7 @@ D1
 ~
 ~
 0 -1 3200
-Pnewthalos-east-1~
+P newthalos-east-1~
 D3
 ~
 ~
@@ -6546,7 +6546,7 @@ D0
 ~
 ~
 0 -1 6123
-Pnewthalos-north-1~
+P newthalos-north-1~
 D1
 ~
 ~
@@ -6727,7 +6727,7 @@ D0
 ~
 ~
 0 -1 11000
-Pnewthalos-north-2~
+P newthalos-north-2~
 D1
 ~
 ~

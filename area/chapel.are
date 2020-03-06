@@ -636,7 +636,7 @@ The chapel door is made of dark wood.
 ~
 door~
 1 -1 3604
-Pchapel-north-1~
+P chapel-north-1~
 D5
 ~
 altar~
@@ -1826,7 +1826,7 @@ The fires of hell grow hotter to the north...
 ~
 ~
 0 -1 10401
-Pchapel-north-2~
+P chapel-north-2~
 S
 #3475
 Inside the coffin~

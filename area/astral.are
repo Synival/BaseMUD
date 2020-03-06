@@ -763,7 +763,7 @@ You can see the Temple of Midgaard below you.
 ~
 ~
 0 -1 1036
-Pastral-down-1~
+P astral-down-1~
 E
 rainbow~
 The rainbow softly glows with beams of light, in colours that defie 
@@ -2241,7 +2241,7 @@ The nexial link has been blocked by the gods for your protection.
 ~
 ~
 0 -1 -1
-Pastral-south-1~
+P astral-south-1~
 D3
 The astral field leads on into the depths.
 ~
@@ -2277,7 +2277,7 @@ The nexial link has been blocked by the gods for your protection.
 ~
 ~
 0 -1 -1
-Pastral-east-1~
+P astral-east-1~
 D2
 The astral field leads on into the depths.
 ~
@@ -2333,7 +2333,7 @@ The nexial link has been blocked by the gods for your protection.
 ~
 ~
 0 -1 -1
-Pastral-up-1~
+P astral-up-1~
 D5
 The astral field leads on into the depths.
 ~
@@ -2369,7 +2369,7 @@ The nexial link has been blocked by the gods for your protection.
 ~
 ~
 0 -1 -1
-Pastral-west-1~
+P astral-west-1~
 D4
 The astral field leads on into the depths.
 ~
@@ -2415,13 +2415,13 @@ The nexial link has been blocked by the gods for your protection.
 ~
 ~
 0 -1 -1
-Pastral-up-2~
+P astral-up-2~
 D5
 The nexial link has been blocked by the gods for your protection.
 ~
 ~
 0 -1 -1
-Pastral-down-2~
+P astral-down-2~
 S
 #7750
 Inside the Githyanki Keep~
@@ -2910,7 +2910,7 @@ The flames blind you and obscure your vision.
 ~
 ~
 0 -1 -1
-Pastral-east-2~
+P astral-east-2~
 D2
 The flames blind you and obscure your vision.
 ~

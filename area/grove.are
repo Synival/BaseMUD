@@ -403,7 +403,7 @@ looks quite a wilderness there!
 ~
 ~
 0 -1 5378
-Pgrove-north-1~
+P grove-north-1~
 D2
 There is a path winding its way south through the tall poplars, disappearing
 out of sight some 100 yds. away.
@@ -489,7 +489,7 @@ upwards...
 ~
 ~
 0 -1 9000
-Pgrove-up-1~
+P grove-up-1~
 S
 #8906
 The holy grove~
@@ -853,7 +853,7 @@ A wide road lies to the south.
 ~
 ~
 0 -1 3526
-Pgrove-south-1~
+P grove-south-1~
 S
 #8951
 Inside the grove~

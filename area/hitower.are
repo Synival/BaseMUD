@@ -1880,7 +1880,7 @@ D2
 ~
 ~
 0 -1 6137
-Phitower-south-1~
+P hitower-south-1~
 S
 #1301
 The Shadow Grove~
@@ -1997,7 +1997,7 @@ Dark gates loom in the mist.
 ~
 ~
 0 -1 2201
-Phitower-west-1~
+P hitower-west-1~
 S
 #1305
 The Shadow Grove~
@@ -2046,7 +2046,7 @@ You see a shadowy tavern.
 ~
 ~
 0 -1 9301
-Phitower-east-1~
+P hitower-east-1~
 D2
 The shadows cloud your vision.
 ~
@@ -3537,27 +3537,27 @@ D1
 ~
 ~
 0 -1 5113
-Phitower-east-2~
+P hitower-east-2~
 D2
 ~
 ~
 0 -1 9141
-Phitower-south-2~
+P hitower-south-2~
 D3
 ~
 ~
 0 -1 7428
-Phitower-west-2~
+P hitower-west-2~
 D4
 ~
 ~
 0 -1 938
-Phitower-up-1~
+P hitower-up-1~
 D5
 ~
 ~
 0 -1 3460
-Phitower-down-1~
+P hitower-down-1~
 S
 #1393
 A hallway~
@@ -3978,7 +3978,7 @@ D0
 ~
 ~
 0 -1 -1
-Phitower-north-1~
+P hitower-north-1~
 D1
 ~
 ~
@@ -3987,12 +3987,12 @@ D2
 ~
 ~
 0 -1 -1
-Phitower-south-3~
+P hitower-south-3~
 D3
 ~
 ~
 0 -1 -1
-Phitower-west-3~
+P hitower-west-3~
 S
 #1419
 A hallway~
@@ -5123,7 +5123,7 @@ D4
 ~
 ~
 0 -1 3001
-Phitower-up-2~
+P hitower-up-2~
 S
 #1499
 Skylar's Hideout~
@@ -5138,7 +5138,7 @@ You can see mortals pitifully begging for help below.
 ~
 ~
 0 -1 -1
-Phitower-down-2~
+P hitower-down-2~
 S
 #0
 

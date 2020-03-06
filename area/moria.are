@@ -955,7 +955,7 @@ The dusty trail leads to outside the west gate of Midgaard.
 ~
 ~
 0 -1 3052
-Pmoria-south-2~
+P moria-south-2~
 S
 #3901
 West trail around Midgaard~
@@ -1023,7 +1023,7 @@ A small path extends into the plains.
 ~
 ~
 0 -1 300
-Pmoria-north-1~
+P moria-north-1~
 D1
 The dusty trail is winding along the north wall of Midgaard. 
 ~
@@ -1034,7 +1034,7 @@ You see the south gate of Midgaard.
 ~
 ~
 0 -1 3268
-Pmoria-south-4~
+P moria-south-4~
 D3
 The dusty trail is winding along the north wall of Midgaard.
 ~
@@ -1111,7 +1111,7 @@ The dusty trail leads to outside the east gate of Midgaard.
 ~
 ~
 0 -1 3053
-Pmoria-south-3~
+P moria-south-3~
 S
 #4000
 The hills~
@@ -1133,12 +1133,12 @@ You see the mountains of the dwarven kingdom.
 ~
 ~
 0 -1 6562
-Pmoria-east-1~
+P moria-east-1~
 D2
 ~
 ~
 0 -1 3500
-Pmoria-south-1~
+P moria-south-1~
 S
 #4001
 The hills~
@@ -1707,7 +1707,7 @@ It doesn't look safe this way.
 ~
 ~
 0 -1 7114
-Pmoria-east-2~
+P moria-east-2~
 D3
 ~
 ~

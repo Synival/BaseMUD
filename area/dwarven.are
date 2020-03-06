@@ -477,7 +477,7 @@ You hear the patter of little feet.
 ~
 ~
 0 -1 6601
-Pdwarven-south-1~
+P dwarven-south-1~
 D3
 A rocky road leads back to Midgaard and the mines of Moria.
 ~
@@ -887,7 +887,7 @@ D5
 ~
 floorboards boards~
 1 -1 2001
-Pdwarven-down-1~
+P dwarven-down-1~
 S
 #6525
 Inside of Castle Strangelove~
@@ -939,7 +939,7 @@ D5
 ~
 floorboards boards~
 1 -1 2065
-Pdwarven-down-2~
+P dwarven-down-2~
 S
 #6528
 Stairs in castle~
@@ -1290,7 +1290,7 @@ You see the foothills of this mighty mountain range.
 ~
 ~
 0 -1 4000
-Pdwarven-west-1~
+P dwarven-west-1~
 S
 #0
 

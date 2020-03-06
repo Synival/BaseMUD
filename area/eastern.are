@@ -550,7 +550,7 @@ D3
 ~
 ~
 0 -1 3205
-Peastern-west-1~
+P eastern-west-1~
 S
 #5002
 A long tunnel~
@@ -1186,7 +1186,7 @@ Waving in the heat over the sand you see a HUGE pyramid.
 ~
 ~
 0 -1 8700
-Peastern-east-1~
+P eastern-east-1~
 D3
 You see the center of the nomad camp.
 ~
@@ -1271,7 +1271,7 @@ You see a futuristic city.
 ~
 ~
 0 -1 8001
-Peastern-south-1~
+P eastern-south-1~
 D3
 Sand as far as the eye can see.
 ~

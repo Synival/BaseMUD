@@ -249,7 +249,7 @@ Through the solid iron bars you see Elm Street.
 ~
 grate~
 1 3121 3124
-Pgrave-north-1~
+P grave-north-1~
 D1
 The gravel path leads eastwards between the dark evergreen trees.
 ~
@@ -339,7 +339,7 @@ The chapel door is made of dark wood.
 ~
 door~
 1 -1 3405
-Pgrave-south-1~
+P grave-south-1~
 D3
 The gravel path leads westwards between the dark evergreen trees.
 ~

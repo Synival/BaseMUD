@@ -457,13 +457,13 @@ You see a dimly lit path.
 ~
 ~
 0 -1 1100
-Phaon-north-2~
+P haon-north-2~
 D1
 You see the West Gate of the City of Midgaard.
 ~
 ~
 0 -1 3052
-Phaon-east-1~
+P haon-east-1~
 D3
 You see the narrow forest trail winding westwards in between the trees.
 ~
@@ -1867,7 +1867,7 @@ You see a dark river.
 ~
 ~
 0 -1 9774
-Phaon-south-1~
+P haon-south-1~
 D3
 The narrow path winds its way through the trees to the west.
 ~
@@ -1900,7 +1900,7 @@ It stinks in there.
 ~
 ~
 0 -1 2801
-Phaon-south-2~
+P haon-south-2~
 D3
 The narrow path winds its way through the trees to the west.
 ~
@@ -1943,7 +1943,7 @@ You smell marsh gas.
 ~
 ~
 0 -1 8301
-Phaon-south-3~
+P haon-south-3~
 E
 path~
 The path seems all too frail.  One of the giant roots could probably crush it
@@ -2170,7 +2170,7 @@ The web continues to the north.
 ~
 ~
 0 -1 6200
-Phaon-north-1~
+P haon-north-1~
 D1
 To the east is the giant tree trunk.
 ~
@@ -2285,7 +2285,7 @@ You see a dark grove north.
 ~
 ~
 0 -1 1300
-Phaon-north-3~
+P haon-north-3~
 D1
 The dusty trail leads east through the trees.
 ~

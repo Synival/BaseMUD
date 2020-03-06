@@ -2898,7 +2898,7 @@ You see the entrance to Mud School.
 ~
 ~
 0 -1 3700
-Pmidgaard-up-4~
+P midgaard-up-4~
 E
 plaque~
 This entire world has been integrated, modified, debugged, and enhanced by
@@ -2926,7 +2926,7 @@ impossible to climb back up.
 ~
 ~
 0 -1 7026
-Pmidgaard-down-1~
+P midgaard-down-1~
 S
 #3003
 Cleric's Bar~
@@ -3347,7 +3347,7 @@ impossible to climb back up.
 ~
 ~
 0 -1 7017
-Pmidgaard-down-2~
+P midgaard-down-2~
 S
 #3020
 The Armoury~
@@ -3427,7 +3427,7 @@ impossible to climb back up.
 ~
 ~
 0 -1 7048
-Pmidgaard-down-3~
+P midgaard-down-3~
 S
 #3024
 Eastern End of Poor Alley~
@@ -3575,7 +3575,7 @@ impossible to climb back up.
 ~
 ~
 0 -1 7043
-Pmidgaard-down-4~
+P midgaard-down-4~
 S
 #3030
 The Dump~
@@ -3601,7 +3601,7 @@ You see the sewers.
 ~
 ~
 0 -1 7030
-Pmidgaard-down-5~
+P midgaard-down-5~
 S
 #3031
 The Pet Shop~
@@ -3989,7 +3989,7 @@ You see the purple-and-orange Mob Factory.  Someone has no taste.
 ~
 ~
 0 -1 9400
-Pmidgaard-east-5~
+P midgaard-east-5~
 D2
 You see the bridge.
 ~
@@ -4048,7 +4048,7 @@ You see machine dreams and taste violet phosphor.
 ~
 ~
 0 -1 8604
-Pmidgaard-up-2~
+P midgaard-up-2~
 S
 #3051
 On the Bridge~
@@ -4095,7 +4095,7 @@ The trail continues around the City of Midgaard.
 ~
 ~
 0 -1 3900
-Pmidgaard-north-1~
+P midgaard-north-1~
 D1
 The city gate is to the east.
 ~
@@ -4106,7 +4106,7 @@ The forest edge is to the west.
 ~
 ~
 0 -1 6000
-Pmidgaard-west-1~
+P midgaard-west-1~
 E
 wall~
 It is built from large grey rocks that have been fastened to each other with
@@ -4142,13 +4142,13 @@ The trail continues around the City of Midgaard.
 ~
 ~
 0 -1 3908
-Pmidgaard-north-2~
+P midgaard-north-2~
 D1
 You see the plains.
 ~
 ~
 0 -1 3503
-Pmidgaard-east-4~
+P midgaard-east-4~
 D3
 You see the city gate.
 ~
@@ -4195,7 +4195,7 @@ Bifrost, the Rainbow Bridge, hangs in the sky above you.
 ~
 ~
 0 -1 1215
-Pmidgaard-up-3~
+P midgaard-up-3~
 E
 statue Mota king god~
 The statue represents the Great God Mota, holding a staff.  He has long, grey
@@ -4232,7 +4232,7 @@ More of the same.
 ~
 ~
 0 -1 1017
-Pmidgaard-up-1~
+P midgaard-up-1~
 D5
 Back down on the earth where you should be!
 ~
@@ -4651,7 +4651,7 @@ You see some dangerous looking slums...just the right place for a gang.
 ~
 ~
 0 -1 2101
-Pmidgaard-east-2~
+P midgaard-east-2~
 D3
 ~
 ~
@@ -4687,7 +4687,7 @@ The chain disappears in the clouds.
 ~
 ~
 0 -1 7914
-Pmidgaard-up-5~
+P midgaard-up-5~
 E
 chain~
 The the chain reaches the clouds high above you.  It must take some really
@@ -4779,7 +4779,7 @@ Through the solid iron bars you see the graveyard.
 ~
 grate~
 1 3121 3600
-Pmidgaard-south-1~
+P midgaard-south-1~
 D3
 ~
 ~
@@ -5131,7 +5131,7 @@ You see a run-down slum neighborood.
 ~
 ~
 0 -1 2160
-Pmidgaard-east-3~
+P midgaard-east-3~
 D2
 Elm street continues towards a graveyard.
 ~
@@ -5171,7 +5171,7 @@ You see the far-off halls of Valhalla.
 ~
 ~
 0 -1 1219
-Pmidgaard-up-6~
+P midgaard-up-6~
 E
 window landing~
 You can see a rickety bridge to your northwest, leading back into
@@ -5233,7 +5233,7 @@ D4
 ~
 ~
 0 -1 1219
-Pmidgaard-up-7~
+P midgaard-up-7~
 E
 chest~
 This chest is firmly locked, and the device by which it opens is beyond your
@@ -5260,7 +5260,7 @@ D4
 ~
 ~
 0 -1 1219
-Pmidgaard-up-8~
+P midgaard-up-8~
 E
 puddle puddles~
 The puddles on the floor are filthy and exude a foul stench.
@@ -5282,7 +5282,7 @@ You see the river flowing west into the Forest of Haon-Dor.
 ~
 ~
 0 -1 9772
-Pmidgaard-west-2~
+P midgaard-west-2~
 E
 wall~
 It is built from large grey rocks that have been fastened to each other with
@@ -5373,7 +5373,7 @@ Beyond the bars you see a dark tunnel.
 ~
 bars~
 0 -1 5001
-Pmidgaard-east-1~
+P midgaard-east-1~
 D3
 ~
 ~
@@ -5529,7 +5529,7 @@ The green forests of the Miden'nir are south, hiding countless goblin warriors.
 ~
 ~
 0 -1 3505
-Pmidgaard-south-2~
+P midgaard-south-2~
 S
 #3257
 Wall Road~
@@ -5761,7 +5761,7 @@ You see a dusty trail leading around the city.
 ~
 ~
 0 -1 3904
-Pmidgaard-north-3~
+P midgaard-north-3~
 D2
 You see the north gate of Midgaard.
 ~
