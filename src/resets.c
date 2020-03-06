@@ -48,6 +48,42 @@ void reset_to_room (RESET_T *reset, ROOM_INDEX_T *room) {
         room, reset_first, reset_last);
 }
 
+/* (originally redit_add_reset() from OLC) */
+void reset_to_room_before (RESET_T *reset, ROOM_INDEX_T *room, int index) {
+    RESET_T *after;
+
+    /* Support assigning to nothing. */
+    if (room == NULL)
+        return reset_to_room (reset, NULL);
+
+    /* Assigning to a negative index assigns to the back, which is the
+     * default behavior. */
+    if (index < 0)
+        return reset_to_room (reset, room);
+
+    /* Assign to the area and the room, but don't insert into the list
+     * just yet. */
+    reset_to_area (reset, room->area);
+    if (reset->room)
+        LIST2_REMOVE (reset, room_prev, room_next,
+            reset->room->reset_first, reset->room->reset_last);
+    reset->room = room;
+
+    /* No resets or first slot (0) selected. */
+    if (!room->reset_first || index == 0) {
+        LIST2_FRONT (reset, room_prev, room_next,
+            room->reset_first, room->reset_last);
+    }
+    else {
+        int reset_n = 1;
+        for (after = room->reset_first; after->room_next; after = after->room_next)
+            if (reset_n++ == index)
+                break;
+        LIST2_INSERT_AFTER (reset, after, room_prev, room_next,
+            room->reset_first, room->reset_last);
+    }
+}
+
 static CHAR_T *reset_last_mob = NULL;
 static OBJ_T  *reset_last_obj = NULL;
 static bool    reset_last_created = FALSE;

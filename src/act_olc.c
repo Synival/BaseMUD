@@ -31,6 +31,8 @@
 #include "mob_prog.h"
 #include "descs.h"
 #include "json_export.h"
+#include "resets.h"
+#include "memory.h"
 
 #include "olc_aedit.h"
 #include "olc_hedit.h"
@@ -502,6 +504,15 @@ DEFINE_DO_FUN (do_redit) {
     ch->desc->editor = ED_ROOM;
 }
 
+#define DO_RESETS_SYNTAX \
+    "Syntax: RESETS\n\r" \
+    "        RESETS <number> OBJ <vnum> <wear_loc>\n\r" \
+    "        RESETS <number> OBJ <vnum> inside <vnum> [limit] [count]\n\r" \
+    "        RESETS <number> OBJ <vnum> room\n\r" \
+    "        RESETS <number> MOB <vnum> [max #x area] [max #x room]\n\r" \
+    "        RESETS <number> DELETE\n\r" \
+    "        RESETS <number> RANDOM [#x exits]\n\r"
+
 DEFINE_DO_FUN (do_resets) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
@@ -512,6 +523,8 @@ DEFINE_DO_FUN (do_resets) {
     char arg7[MAX_INPUT_LENGTH];
     RESET_T *reset = NULL;
     RESET_VALUE_T *v;
+    ROOM_INDEX_T *room;
+    int index;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -526,136 +539,136 @@ DEFINE_DO_FUN (do_resets) {
 
     /* Display resets in current room. */
     if (arg1[0] == '\0') {
-        if (ch->in_room->reset_first) {
-            send_to_char ("Resets: M = mobile, R = room, O = object, "
-                          "P = pet, S = shopkeeper\n\r", ch);
-            do_resets_display (ch);
-        }
-        else
-            send_to_char ("No resets in this room.\n\r", ch);
+        BAIL_IF (!ch->in_room->reset_first,
+            "No resets in this room.\n\r", ch);
+
+        send_to_char ("Resets: M = mobile, R = room, O = object, "
+                      "P = pet, S = shopkeeper\n\r", ch);
+        do_resets_display (ch);
+        return;
     }
+
+    /* Argument 1 must always be a number. */
+    BAIL_IF (!is_number (arg1),
+        DO_RESETS_SYNTAX, ch);
 
     /* Take index number and search for commands. */
-    if (is_number (arg1)) {
-        ROOM_INDEX_T *room = ch->in_room;
+    index = atoi (arg1) - 1;
+    room = ch->in_room;
 
-        /* Delete a reset. */
-        if (!str_cmp (arg2, "delete")) {
-            int insert_loc = atoi (arg1);
-            BAIL_IF (!ch->in_room->reset_first,
-                "No resets in this area.\n\r", ch);
+    /* Delete a reset. */
+    if (!str_cmp (arg2, "delete")) {
+        BAIL_IF (!ch->in_room->reset_first,
+            "No resets in this area.\n\r", ch);
 
-            if (insert_loc - 1 <= 0) {
-                reset = room->reset_first;
-                room->reset_first = room->reset_first->room_next;
-                if (!room->reset_first)
-                    room->reset_last = NULL;
-            }
-            else {
-                int reset_n = 0;
-                LIST_FIND (++reset_n == insert_loc, room_next,
-                    room->reset_first, reset);
-                BAIL_IF (!reset,
-                    "Reset not found.\n\r", ch);
-                LIST2_REMOVE (reset, room_prev, room_next,
-                    room->reset_first, room->reset_last);
-            }
-
-            reset_data_free (reset);
-            send_to_char ("Reset deleted.\n\r", ch);
+        if (index == 0)
+            reset = room->reset_first;
+        else if (index < 0)
+            reset = room->reset_last;
+        else {
+            int reset_n = 0;
+            LIST_FIND (reset_n++ == index, room_next,
+                room->reset_first, reset);
+            BAIL_IF (!reset,
+                "Reset not found.\n\r", ch);
+            LIST2_REMOVE (reset, room_prev, room_next,
+                room->reset_first, room->reset_last);
         }
-        /* Add a reset. */
-        else if ((!str_cmp (arg2, "mob") && is_number (arg3))
-              || (!str_cmp (arg2, "obj") && is_number (arg3)))
-        {
-            /* Check for Mobile reset. */
-            if (!str_cmp (arg2, "mob")) {
-                BAIL_IF (mobile_get_index (is_number (arg3) ? atoi (arg3) : 1) == NULL,
-                    "Mob doesn't exist.\n\r", ch);
-                reset = reset_data_new ();
-                reset->command = 'M';
 
-                v = &(reset->v);
-                v->mob.mob_vnum     = atoi (arg3);
-                v->mob.global_limit = is_number (arg4) ? atoi (arg4) : 1;
-                v->mob.room_vnum    = ch->in_room->vnum;
-                v->mob.room_limit   = is_number (arg5) ? atoi (arg5) : 1;
-            }
-            /* Check for Object reset. */
-            else if (!str_cmp (arg2, "obj")) {
-                reset = reset_data_new ();
-                v = &(reset->v);
+        reset_data_free (reset);
+        send_to_char ("Reset deleted.\n\r", ch);
+        return;
+    }
 
-                /* Inside another object. */
-                if (!str_prefix (arg4, "inside")) {
-                    OBJ_INDEX_T *temp;
-
-                    temp = obj_get_index (is_number (arg5) ? atoi (arg5) : 1);
-                    BAIL_IF (!item_index_is_container (temp),
-                        "Object 2 is not a container.\n\r", ch);
-                    reset->command = 'P';
-                    v->put.obj_vnum     = atoi (arg3);
-                    v->put.global_limit = is_number (arg6) ? atoi (arg6) : 1;
-                    v->put.into_vnum    = is_number (arg5) ? atoi (arg5) : 1;
-                    v->put.put_count    = is_number (arg7) ? atoi (arg7) : 1;
-                }
-                /* Inside the room. */
-                else if (!str_cmp (arg4, "room")) {
-                    BAIL_IF (obj_get_index (atoi (arg3)) == NULL,
-                        "Vnum doesn't exist.\n\r", ch);
-                    reset->command = 'O';
-                    v->obj.obj_vnum     = atoi (arg3);
-                    v->obj.global_limit = 0;
-                    v->obj.room_vnum    = ch->in_room->vnum;
-                }
-                /* Into a Mobile's inventory. */
-                else {
-                    const WEAR_LOC_T *wear_loc;
-
-                    BAIL_IF ((wear_loc = wear_loc_get_by_name (arg4)) == NULL,
-                        "Resets: '? wear-loc'\n\r", ch);
-                    BAIL_IF (obj_get_index (atoi (arg3)) == NULL,
-                        "Vnum doesn't exist.\n\r", ch);
-
-                    if (wear_loc->type WEAR_LOC_NONE) {
-                        reset->command = 'G';
-                        v->give.obj_vnum     = atoi (arg3);
-                        v->give.global_limit = 0;
-                    }
-                    else {
-                        reset->command = 'E';
-                        v->equip.obj_vnum     = atoi (arg3);
-                        v->equip.global_limit = 0;
-                        v->equip.wear_loc     = wear_loc->type;
-                    }
-                }
-            }
-            redit_add_reset (ch->in_room, reset, atoi (arg1));
-            SET_BIT (ch->in_room->area->area_flags, AREA_CHANGED);
-            send_to_char ("Reset added.\n\r", ch);
-        }
-        else if (!str_cmp (arg2, "random") && is_number (arg3)) {
-            BAIL_IF (atoi (arg3) < 1 || atoi (arg3) > 6,
-                "Invalid argument.\n\r", ch);
+    /* Add a reset. */
+    if ((!str_cmp (arg2, "mob") && is_number (arg3)) ||
+        (!str_cmp (arg2, "obj") && is_number (arg3)))
+    {
+        /* Check for Mobile reset. */
+        if (!str_cmp (arg2, "mob")) {
+            BAIL_IF (mobile_get_index (is_number (arg3) ? atoi (arg3) : 1) == NULL,
+                "Mob doesn't exist.\n\r", ch);
             reset = reset_data_new ();
-            reset->command = 'R';
+            reset->command = 'M';
+
+            v = &(reset->v);
+            v->mob.mob_vnum     = atoi (arg3);
+            v->mob.global_limit = is_number (arg4) ? atoi (arg4) : 1;
+            v->mob.room_vnum    = ch->in_room->vnum;
+            v->mob.room_limit   = is_number (arg5) ? atoi (arg5) : 1;
+        }
+        /* Check for Object reset. */
+        else if (!str_cmp (arg2, "obj")) {
+            reset = reset_data_new ();
             v = &(reset->v);
 
-            v->randomize.room_vnum = ch->in_room->vnum;
-            v->randomize.dir_count = atoi (arg3);
-            redit_add_reset (ch->in_room, reset, atoi (arg1));
-            SET_BIT (ch->in_room->area->area_flags, AREA_CHANGED);
-            send_to_char ("Random exits reset added.\n\r", ch);
+            /* Inside another object. */
+            if (!str_prefix (arg4, "inside")) {
+                OBJ_INDEX_T *temp;
+
+                temp = obj_get_index (is_number (arg5) ? atoi (arg5) : 1);
+                BAIL_IF (!item_index_is_container (temp),
+                    "Object 2 is not a container.\n\r", ch);
+                reset->command = 'P';
+                v->put.obj_vnum     = atoi (arg3);
+                v->put.global_limit = is_number (arg6) ? atoi (arg6) : 1;
+                v->put.into_vnum    = is_number (arg5) ? atoi (arg5) : 1;
+                v->put.put_count    = is_number (arg7) ? atoi (arg7) : 1;
+            }
+            /* Inside the room. */
+            else if (!str_cmp (arg4, "room")) {
+                BAIL_IF (obj_get_index (atoi (arg3)) == NULL,
+                    "Vnum doesn't exist.\n\r", ch);
+                reset->command = 'O';
+                v->obj.obj_vnum     = atoi (arg3);
+                v->obj.global_limit = 0;
+                v->obj.room_vnum    = ch->in_room->vnum;
+            }
+            /* Into a Mobile's inventory. */
+            else {
+                const WEAR_LOC_T *wear_loc;
+
+                BAIL_IF ((wear_loc = wear_loc_get_by_name (arg4)) == NULL,
+                    "Resets: '? wear-loc'\n\r", ch);
+                BAIL_IF (obj_get_index (atoi (arg3)) == NULL,
+                    "Vnum doesn't exist.\n\r", ch);
+
+                if (wear_loc->type WEAR_LOC_NONE) {
+                    reset->command = 'G';
+                    v->give.obj_vnum     = atoi (arg3);
+                    v->give.global_limit = 0;
+                }
+                else {
+                    reset->command = 'E';
+                    v->equip.obj_vnum     = atoi (arg3);
+                    v->equip.global_limit = 0;
+                    v->equip.wear_loc     = wear_loc->type;
+                }
+            }
         }
-        else {
-            send_to_char ("Syntax: RESET <number> OBJ <vnum> <wear_loc>\n\r", ch);
-            send_to_char ("        RESET <number> OBJ <vnum> inside <vnum> [limit] [count]\n\r", ch);
-            send_to_char ("        RESET <number> OBJ <vnum> room\n\r", ch);
-            send_to_char ("        RESET <number> MOB <vnum> [max #x area] [max #x room]\n\r", ch);
-            send_to_char ("        RESET <number> DELETE\n\r", ch);
-            send_to_char ("        RESET <number> RANDOM [#x exits]\n\r", ch);
-        }
+        reset_to_room_before (reset, ch->in_room, index);
+        SET_BIT (ch->in_room->area->area_flags, AREA_CHANGED);
+        send_to_char ("Reset added.\n\r", ch);
+        return;
     }
+
+    if (!str_cmp (arg2, "random") && is_number (arg3)) {
+        BAIL_IF (atoi (arg3) < 1 || atoi (arg3) > 6,
+            "Invalid argument.\n\r", ch);
+        reset = reset_data_new ();
+        reset->command = 'R';
+        v = &(reset->v);
+
+        v->randomize.room_vnum = ch->in_room->vnum;
+        v->randomize.dir_count = atoi (arg3);
+        reset_to_room_before (reset, ch->in_room, index);
+        SET_BIT (ch->in_room->area->area_flags, AREA_CHANGED);
+        send_to_char ("Random exits reset added.\n\r", ch);
+        return;
+    }
+
+    /* No valid reset found. */
+    send_to_char (DO_RESETS_SYNTAX, ch);
 }
 
 /*****************************************************************************
@@ -868,4 +881,29 @@ DEFINE_DO_FUN (do_asave) {
     /* -------------------- */
     if (ch)
         do_asave (ch, "");
+}
+
+DEFINE_DO_FUN (do_portals) {
+    BUFFER_T *pagebuf;
+    PORTAL_T *portal;
+    const char *arrow;
+    int index;
+
+    pagebuf = buf_new ();
+    index = 1;
+    for (portal = portal_get_first(); portal; portal = portal_get_next (portal)) {
+        arrow = (portal->two_way) ? "<==>" : "--->";
+        printf_to_buf (pagebuf, "%3d. %20.20s [%s] %s [%s] %-20.20s\n\r",
+            index,
+            portal->name_from,
+            portal->from ? "Connected" : "*MISSING*",
+            arrow,
+            portal->to   ? "Connected" : "*MISSING*",
+            portal->name_to
+        );
+        index++;
+    }
+
+    page_to_char (buf_string (pagebuf), ch);
+    buf_free (pagebuf);
 }

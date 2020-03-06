@@ -223,9 +223,9 @@ void string_add (CHAR_T *ch, char *argument) {
 /* Thanks to Kalgen for the new procedure (no more bug!)
  * Original wordwrap() written by Surreality. */
 /*****************************************************************************
- Name:        format_string
+ Name:       format_string
  Purpose:    Special string formating and word-wrapping.
- Called by:    string_add(string.c) (many)olc_act.c
+ Called by:  string_add(string.c) (many)olc_act.c
  ****************************************************************************/
 char *format_string (char *oldstring /*, bool space */ ) {
     char xbuf[MAX_STRING_LENGTH];

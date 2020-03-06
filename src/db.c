@@ -453,6 +453,7 @@ void load_resets (FILE *fp) {
 
         reset = reset_data_new ();
         reset_to_area (reset, area_last);
+
         reset->command = letter;
         v = &(reset->v);
 
@@ -534,6 +535,7 @@ void load_resets (FILE *fp) {
 /* Snarf a room section. */
 void load_rooms (FILE *fp) {
     ROOM_INDEX_T *room_index;
+    EXIT_T *last_exit;
 
     EXIT_IF_BUG (area_last == NULL,
         "load_resets: no #AREA seen yet.", 0);
@@ -557,20 +559,15 @@ void load_rooms (FILE *fp) {
         in_boot_db = TRUE;
 
         room_index = room_index_new ();
+        room_to_area (room_index, area_last);
+
         str_replace_dup (&room_index->owner, "");
-        room_index->people_first      = NULL;
-        room_index->people_last       = NULL;
-        room_index->content_first     = NULL;
-        room_index->content_last      = NULL;
-        room_index->extra_descr_first = NULL;
-        room_index->extra_descr_last  = NULL;
-        room_index->vnum              = vnum;
-        room_index->anum              = vnum - area_last->min_vnum;
+        room_index->vnum = vnum;
+        room_index->anum = vnum - area_last->min_vnum;
         fread_string_replace (fp, &room_index->name);
         fread_string_replace (fp, &room_index->description);
 
         /* Area number */ fread_number (fp);
-        room_to_area (room_index, area_last);
 
         room_index->room_flags = fread_flag (fp, room_flags);
         /* horrible hack */
@@ -586,81 +583,125 @@ void load_rooms (FILE *fp) {
         room_index->heal_rate = 100;
         room_index->mana_rate = 100;
 
+        last_exit = NULL;
         while (1) {
             letter = fread_letter (fp);
-            if (letter == 'S')
-                break;
-            if (letter == 'H')    /* healing room */
-                room_index->heal_rate = fread_number (fp);
-            else if (letter == 'M') /* mana room */
-                room_index->mana_rate = fread_number (fp);
-            else if (letter == 'C') { /* clan */
-                char *clan_str = fread_string_static (fp);
-                EXIT_IF_BUG (room_index->clan != 0,
-                    "load_rooms: duplicate clan fields.", 0);
-                room_index->clan = lookup_func_backup (clan_lookup_exact, clan_str,
-                    "Unknown clan '%s'", 0);
-            }
-            else if (letter == 'D') {
-                EXIT_T *pexit;
-                int locks;
+            switch (letter) {
+                case 'S':
+                    goto load_rooms_commands_done;
 
-                door = fread_number (fp);
-                EXIT_IF_BUG (door < 0 || door > 5,
-                    "load_rooms: vnum %d has bad door number.", vnum);
+                /* healing room */
+                case 'H':
+                    room_index->heal_rate = fread_number (fp);
+                    break;
 
-                pexit = room_create_exit (room_index, door);
-                fread_string_replace (fp, &pexit->description);
-                fread_string_replace (fp, &pexit->keyword);
-                locks          = fread_number (fp);
-                pexit->key     = fread_number (fp);
-                pexit->to_vnum = fread_number (fp);
+                /* mana room */
+                case 'M':
+                    room_index->mana_rate = fread_number (fp);
+                    break;
 
-                switch (locks) {
-                    case 0:
-                        /* Some exits without doors are stored with key 0
-                         * (no key) when it should be -1 (no keyhole). Fix
-                         * that. */
-#ifdef BASEMUD_LOG_KEY_WARNINGS
-                        if (pexit->key >= KEY_VALID)
-                            bugf ("Warning: Room %d with non-door exit %d has "
-                                  "key %d", room_index->vnum, door, pexit->key);
-#endif
-                        pexit->key = KEY_NOKEYHOLE;
-                        break;
-                    case 1:
-                        pexit->exit_flags = EX_ISDOOR;
-                        break;
-                    case 2:
-                        pexit->exit_flags = EX_ISDOOR | EX_PICKPROOF;
-                        break;
-                    case 3:
-                        pexit->exit_flags = EX_ISDOOR | EX_NOPASS;
-                        break;
-                    case 4:
-                        pexit->exit_flags = EX_ISDOOR | EX_NOPASS | EX_PICKPROOF;
-                        break;
-                    default:
-                        bug ("fread_rooms: bad lock type '%d'.", locks);
+                /* clan */
+                case 'C': {
+                    char *clan_str = fread_string_static (fp);
+                    EXIT_IF_BUG (room_index->clan != 0,
+                        "load_rooms: duplicate clan fields.", 0);
+                    room_index->clan = lookup_func_backup (clan_lookup_exact, clan_str,
+                        "Unknown clan '%s'", 0);
+                    break;
                 }
-                pexit->rs_flags = pexit->exit_flags;
-            }
-            else if (letter == 'E') {
-                EXTRA_DESCR_T *ed = extra_descr_new ();
-                fread_string_replace (fp, &ed->keyword);
-                fread_string_replace (fp, &ed->description);
-                extra_descr_to_room_index_back (ed, room_index);
-            }
-            else if (letter == 'O') {
-                EXIT_IF_BUG (room_index->owner[0] != '\0',
-                    "load_rooms: duplicate owner.", 0);
-                fread_string_replace (fp, &room_index->owner);
-            }
-            else {
-                EXIT_IF_BUG (TRUE,
-                    "load_rooms: vnum %d has flag not 'DES'.", vnum);
+
+                /* door */
+                case 'D': {
+                    EXIT_T *pexit;
+                    int locks;
+
+                    door = fread_number (fp);
+                    EXIT_IF_BUG (door < 0 || door > 5,
+                        "load_rooms: vnum %d has bad door number.", vnum);
+
+                    pexit = room_create_exit (room_index, door);
+                    fread_string_replace (fp, &pexit->description);
+                    fread_string_replace (fp, &pexit->keyword);
+                    locks          = fread_number (fp);
+                    pexit->key     = fread_number (fp);
+                    pexit->to_vnum = fread_number (fp);
+
+                    switch (locks) {
+                        case 0:
+                            /* Some exits without doors are stored with key 0
+                             * (no key) when it should be -1 (no keyhole). Fix
+                             * that. */
+#ifdef BASEMUD_LOG_KEY_WARNINGS
+                            if (pexit->key >= KEY_VALID)
+                                bugf ("Warning: Room %d with non-door exit %d has "
+                                      "key %d", room_index->vnum, door, pexit->key);
+#endif
+                            pexit->key = KEY_NOKEYHOLE;
+                            break;
+                        case 1:
+                            pexit->exit_flags = EX_ISDOOR;
+                            break;
+                        case 2:
+                            pexit->exit_flags = EX_ISDOOR | EX_PICKPROOF;
+                            break;
+                        case 3:
+                            pexit->exit_flags = EX_ISDOOR | EX_NOPASS;
+                            break;
+                        case 4:
+                            pexit->exit_flags = EX_ISDOOR | EX_NOPASS | EX_PICKPROOF;
+                            break;
+                        default:
+                            bug ("fread_rooms: bad lock type '%d'.", locks);
+                    }
+                    pexit->rs_flags = pexit->exit_flags;
+                    last_exit = pexit;
+                    break;
+                }
+
+                /* Extra description */
+                case 'E': {
+                    EXTRA_DESCR_T *ed = extra_descr_new ();
+                    fread_string_replace (fp, &ed->keyword);
+                    fread_string_replace (fp, &ed->description);
+                    extra_descr_to_room_index_back (ed, room_index);
+                    break;
+                }
+
+                /* Owner */
+                case 'O': {
+                    EXIT_IF_BUG (room_index->owner[0] != '\0',
+                        "load_rooms: duplicate owner.", 0);
+                    fread_string_replace (fp, &room_index->owner);
+                    break;
+                }
+
+                case 'P': {
+                    PORTAL_EXIT_T *pex;
+                    char *portal_name = fread_string_static (fp);
+
+                    /* Abort if the portal exit cannot be made.
+                     * This can occur with duplicate portal exit names. */
+                    if ((pex = portal_exit_create (portal_name)) == NULL)
+                        exit (1);
+
+                    /* Link to the last exit... */
+                    if (last_exit) {
+                        last_exit->to_vnum = -1;
+                        portal_exit_to_exit (pex, last_exit);
+                    }
+                    /* ...or to the room. */
+                    else
+                        portal_exit_to_room (pex, room_index);
+                    break;
+                }
+
+                default:
+                    bugf ("load_rooms: vnum %d has unknown command '%c'",
+                        vnum, letter);
+                    exit(1);
             }
         }
+        load_rooms_commands_done:
 
         db_register_new_room (room_index);
     }
@@ -757,6 +798,7 @@ void load_mobprogs (FILE *fp) {
 
         mpcode = mpcode_new ();
         mpcode_to_area (mpcode, area_last);
+
         mpcode->vnum = vnum;
         mpcode->anum = vnum - area_last->min_vnum;
         fread_string_replace (fp, &mpcode->code);
@@ -876,6 +918,7 @@ void load_mobiles (FILE *fp) {
 
         mob_index = mob_index_new ();
         mob_index_to_area (mob_index, area_last);
+
         mob_index->vnum = vnum;
         mob_index->anum = vnum - area_last->min_vnum;
         mob_index->new_format = TRUE;
@@ -1002,13 +1045,14 @@ void load_mobiles (FILE *fp) {
                 int trigger = 0;
 
                 mprog = mprog_new ();
+                mprog_to_area (mprog, area_last);
+
                 word = fread_word_static (fp);
                 EXIT_IF_BUG (
                     (trigger = flag_lookup_exact (mprog_flags, word)) == FLAG_NONE,
                     "load_mobiles: invalid mob prog trigger.", 0);
                 SET_BIT (mob_index->mprog_flags, trigger);
                 mprog->trig_type = trigger;
-                mprog_to_area (mprog, area_last);
                 mprog->vnum = fread_number (fp);
                 mprog->anum = mprog->vnum - area_last->min_vnum;
                 fread_string_replace (fp, &mprog->trig_phrase);
@@ -1103,6 +1147,7 @@ void load_objects (FILE *fp) {
 
         obj_index = obj_index_new ();
         obj_index_to_area (obj_index, area_last);
+
         obj_index->vnum = vnum;
         obj_index->anum = vnum - area_last->min_vnum;
         obj_index->new_format = TRUE;

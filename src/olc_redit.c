@@ -33,34 +33,9 @@
 #include "mobiles.h"
 #include "rooms.h"
 #include "extra_descrs.h"
+#include "resets.h"
 
 #include "olc_redit.h"
-
-/*****************************************************************************
- Name:       redit_add_reset
- Purpose:    Inserts a new reset in the given index slot.
- Called by:  do_resets(olc.c).
- ****************************************************************************/
-void redit_add_reset (ROOM_INDEX_T *room, RESET_T *reset, int index) {
-    RESET_T *after;
-    int reset_n = 0;
-
-    /* No resets or first slot (1) selected. */
-    index--;
-    if (!room->reset_first || index == 0) {
-        LIST2_FRONT (reset, room_prev, room_next,
-            room->reset_first, room->reset_last);
-        return;
-    }
-
-    /* If negative slot( <= 0 selected) then this will find the last. */
-    for (after = room->reset_first; after->room_next; after = after->room_next)
-        if (++reset_n == index)
-            break;
-
-    LIST2_INSERT_AFTER (reset, after, room_prev, room_next,
-        room->reset_first, room->reset_last);
-}
 
 /* Local function. */
 bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
@@ -71,29 +46,28 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
 
     EDIT_ROOM (ch, room);
 
-    /* Set the exit flags, needs full argument.
-     * ---------------------------------------- */
+    /* Set the exit flags, needs full argument. */
     if ((value = flags_from_string (exit_flags, argument)) != FLAG_NONE) {
+        EXIT_T *ex, *rev_ex;
         ROOM_INDEX_T *to_room;
-        sh_int rev;                /* ROM OLC */
+        sh_int rev; /* ROM OLC */
 
-        if (!room->exit[door]) {
-            send_to_char ("Exit doesn't exist.\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (!(ex = room_get_orig_exit (room, door)),
+            "Exit doesn't exist.\n\r", ch, FALSE);
 
         /* This room. */
-        TOGGLE_BIT (room->exit[door]->rs_flags, value);
+        TOGGLE_BIT (ex->rs_flags, value);
+
         /* Don't toggle exit_flags because it can be changed by players. */
-        room->exit[door]->exit_flags = room->exit[door]->rs_flags;
+        ex->exit_flags = ex->rs_flags;
 
         /* Connected room. */
-        to_room = room->exit[door]->to_room;    /* ROM OLC */
+        to_room = ex->to_room; /* ROM OLC */
         rev = door_table[door].reverse;
 
-        if (to_room->exit[rev] != NULL) {
-            to_room->exit[rev]->exit_flags = room->exit[door]->exit_flags;
-            to_room->exit[rev]->rs_flags   = room->exit[door]->rs_flags;
+        if (to_room != NULL && (rev_ex = room_get_orig_exit (to_room, rev))) {
+            rev_ex->exit_flags = ex->exit_flags;
+            rev_ex->rs_flags   = ex->rs_flags;
         }
 
         send_to_char ("Exit flag toggled.\n\r", ch);
@@ -116,64 +90,53 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
 
     if (!str_cmp (command, "delete")) {
         ROOM_INDEX_T *to_room;
+        EXIT_T *ex, *rev_ex;
         sh_int rev; /* ROM OLC */
 
-        if (!room->exit[door]) {
-            send_to_char ("REdit: Cannot delete a null exit.\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (!(ex = room_get_orig_exit (room, door)),
+            "REdit: Cannot delete a null exit.\n\r", ch, FALSE);
 
         /* Remove ToRoom Exit. */
         rev = door_table[door].reverse;
-        to_room = room->exit[door]->to_room; /* ROM OLC */
+        to_room = ex->to_room; /* ROM OLC */
 
-        if (to_room->exit[rev]) {
-            exit_free (to_room->exit[rev]);
-            to_room->exit[rev] = NULL;
-        }
+        if ((rev_ex = room_get_orig_exit (to_room, rev)) != NULL)
+            exit_free (rev_ex);
 
         /* Remove this exit. */
-        exit_free (room->exit[door]);
-        room->exit[door] = NULL;
-
+        exit_free (ex);
         send_to_char ("Exit unlinked.\n\r", ch);
         return TRUE;
     }
 
     if (!str_cmp (command, "link")) {
-        EXIT_T *ex;
-        ROOM_INDEX_T *toRoom;
+        int rev;
+        EXIT_T *ex, *rev_ex;
+        ROOM_INDEX_T *to_room;
 
-        if (arg[0] == '\0' || !is_number (arg)) {
-            send_to_char ("Syntax: [direction] link [vnum]\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (arg[0] == '\0' || !is_number (arg),
+            "Syntax: [direction] link [vnum]\n\r", ch, FALSE);
 
         value = atoi (arg);
-        if (!(toRoom = room_get_index (value))) {
-            send_to_char ("REdit: Cannot link to non-existant room.\n\r", ch);
-            return FALSE;
-        }
-        if (!IS_BUILDER (ch, toRoom->area)) {
-            send_to_char ("REdit: Cannot link to that area.\n\r", ch);
-            return FALSE;
-        }
-        if (toRoom->exit[door_table[door].reverse]) {
-            send_to_char ("REdit: Remote side's exit already exists.\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (!(to_room = room_get_index (value)),
+            "REdit: Cannot link to non-existant room.\n\r", ch, FALSE);
+        RETURN_IF (!IS_BUILDER (ch, to_room->area),
+            "REdit: Cannot link to that area.\n\r", ch, FALSE);
 
-        if (!room->exit[door])
-            room->exit[door] = exit_new ();
+        rev = door_table[door].reverse;
+        rev_ex = room_get_orig_exit (to_room, rev);
+        RETURN_IF (rev_ex != NULL,
+            "REdit: Remote side's exit already exists.\n\r", ch, FALSE);
 
-        room->exit[door]->to_room = toRoom;
-        room->exit[door]->orig_door = door;
+        /* Get (or create) our two-way link. */
+        ex = room_get_orig_exit (room, door);
+        if (ex == NULL)
+            ex = room_create_exit (room, door);
+        rev_ex = room_create_exit (room, door);
 
-        door = door_table[door].reverse;
-        ex = exit_new ();
-        ex->to_room = room;
-        ex->orig_door = door;
-        toRoom->exit[door] = ex;
+        /* Link the two exits together. */
+        exit_to_room_index_to (ex,     to_room);
+        exit_to_room_index_to (rev_ex, room);
 
         send_to_char ("Two-way link established.\n\r", ch);
         return TRUE;
@@ -181,10 +144,8 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
 
     if (!str_cmp (command, "dig")) {
         char buf[MAX_STRING_LENGTH];
-        if (arg[0] == '\0' || !is_number (arg)) {
-            send_to_char ("Syntax: [direction] dig <vnum>\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (arg[0] == '\0' || !is_number (arg),
+            "Syntax: [direction] dig <vnum>\n\r", ch, FALSE);
 
         redit_create (ch, arg);
         sprintf (buf, "link %s", arg);
@@ -193,87 +154,74 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
     }
 
     if (!str_cmp (command, "room")) {
-        ROOM_INDEX_T *toRoom;
+        EXIT_T *ex;
+        ROOM_INDEX_T *to_room;
 
-        if (arg[0] == '\0' || !is_number (arg)) {
-            send_to_char ("Syntax: [direction] room [vnum]\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (arg[0] == '\0' || !is_number (arg),
+            "Syntax: [direction] room [vnum]\n\r", ch, FALSE);
 
         value = atoi (arg);
-        if (!(toRoom = room_get_index (value))) {
-            send_to_char ("REdit: Cannot link to non-existant room.\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (!(to_room = room_get_index (value)),
+            "REdit: Cannot link to non-existant room.\n\r", ch, FALSE);
 
-        if (!room->exit[door])
-            room->exit[door] = exit_new ();
-
-        room->exit[door]->to_room = toRoom;    /* ROM OLC */
-        room->exit[door]->orig_door = door;
+        /* Create or update the existing exit. */
+        ex = room_get_orig_exit (room, door);
+        if (ex == NULL)
+            ex = room_create_exit (room, door);
+        exit_to_room_index_to (ex, to_room);
 
         send_to_char ("One-way link established.\n\r", ch);
         return TRUE;
     }
 
     if (!str_cmp (command, "key")) {
+        EXIT_T *ex;
         OBJ_INDEX_T *key;
-        if (arg[0] == '\0' || !is_number (arg)) {
-            send_to_char ("Syntax: [direction] key [vnum]\n\r", ch);
-            return FALSE;
-        }
-        if (!room->exit[door]) {
-            send_to_char ("Exit doesn't exist.\n\r", ch);
-            return FALSE;
-        }
+
+        RETURN_IF (arg[0] == '\0' || !is_number (arg),
+            "Syntax: [direction] key [vnum]\n\r", ch, FALSE);
+        RETURN_IF (!(ex = room_get_orig_exit (room, door)),
+            "Exit doesn't exist.\n\r", ch, FALSE);
 
         value = atoi (arg);
-        if (!(key = obj_get_index (value))) {
-            send_to_char ("REdit: Key doesn't exist.\n\r", ch);
-            return FALSE;
-        }
-        if (key->item_type != ITEM_KEY) {
-            send_to_char ("REdit: Object is not a key.\n\r", ch);
-            return FALSE;
-        }
-        room->exit[door]->key = value;
+        RETURN_IF (!(key = obj_get_index (value)),
+            "REdit: Key doesn't exist.\n\r", ch, FALSE);
+        RETURN_IF (key->item_type != ITEM_KEY,
+            "REdit: Object is not a key.\n\r", ch, FALSE);
 
+        ex->key = value;
         send_to_char ("Exit key set.\n\r", ch);
         return TRUE;
     }
 
     if (!str_cmp (command, "name")) {
-        if (arg[0] == '\0') {
-            send_to_char ("Syntax: [direction] name [string]\n\r", ch);
-            send_to_char ("        [direction] name none\n\r", ch);
-            return FALSE;
-        }
-        if (!room->exit[door]) {
-            send_to_char ("Exit doesn't exist.\n\r", ch);
-            return FALSE;
-        }
+        EXIT_T *ex;
 
-        str_free (&(room->exit[door]->keyword));
-        if (str_cmp (arg, "none"))
-            room->exit[door]->keyword = str_dup (arg);
+        RETURN_IF (arg[0] == '\0',
+            "Syntax: [direction] name [string]\n\r"
+            "        [direction] name none\n\r", ch, FALSE);
+        RETURN_IF (!(ex = room_get_orig_exit (room, door)),
+            "Exit doesn't exist.\n\r", ch, FALSE);
+
+        if (!str_cmp (arg, "none"))
+            str_replace_dup (&ex->keyword, "");
         else
-            room->exit[door]->keyword = str_dup ("");
+            str_replace_dup (&ex->keyword, arg);
 
         send_to_char ("Exit name set.\n\r", ch);
         return TRUE;
     }
 
     if (!str_prefix (command, "description")) {
-        if (arg[0] == '\0') {
-            if (!room->exit[door]) {
-                send_to_char ("Exit doesn't exist.\n\r", ch);
-                return FALSE;
-            }
-            string_append (ch, &room->exit[door]->description);
-            return TRUE;
-        }
-        send_to_char ("Syntax: [direction] desc\n\r", ch);
-        return FALSE;
+        EXIT_T *ex;
+
+        RETURN_IF (arg[0] != '\0',
+            "Syntax: [direction] desc\n\r", ch, FALSE);
+        RETURN_IF (!(ex = room_get_orig_exit (room, door)),
+            "Exit doesn't exist.\n\r", ch, FALSE);
+
+        string_append (ch, &ex->description);
+        return TRUE;
     }
 
     do_help (ch, "EXIT");
@@ -294,24 +242,21 @@ REDIT (redit_rlist) {
 
     area = ch->in_room->area;
     buf1 = buf_new ();
-/*    buf1[0] = '\0'; */
     found = FALSE;
 
     for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++) {
-        if ((room_index = room_get_index (vnum))) {
-            found = TRUE;
-            sprintf (buf, "[%5d] %-17.16s",
-                     vnum, str_capitalized (room_index->name));
-            buf_cat (buf1, buf);
-            if (++col % 3 == 0)
-                buf_cat (buf1, "\n\r");
-        }
-    }
+        if (!(room_index = room_get_index (vnum)))
+            continue;
 
-    if (!found) {
-        send_to_char ("Room(s) not found in this area.\n\r", ch);
-        return FALSE;
+        sprintf (buf, "[%5d] %-17.16s",
+            vnum, str_capitalized (room_index->name));
+        buf_cat (buf1, buf);
+        if (++col % 3 == 0)
+            buf_cat (buf1, "\n\r");
+        found = TRUE;
     }
+    RETURN_IF (!found,
+        "Room(s) not found in this area.\n\r", ch, FALSE);
 
     if (col % 3 != 0)
         buf_cat (buf1, "\n\r");
@@ -332,35 +277,29 @@ REDIT (redit_mlist) {
     int col = 0;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Syntax: mlist <all/name>\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (arg[0] == '\0',
+        "Syntax: mlist <all/name>\n\r", ch, FALSE);
 
     buf1 = buf_new ();
     area = ch->in_room->area;
-/*    buf1[0] = '\0'; */
     all = !str_cmp (arg, "all");
     found = FALSE;
 
     for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++) {
-        if ((mob_index = mobile_get_index (vnum)) != NULL) {
-            if (all || str_in_namelist (arg, mob_index->name)) {
-                found = TRUE;
-                sprintf (buf, "[%5d] %-17.16s",
-                         mob_index->vnum,
-                         str_capitalized (mob_index->short_descr));
-                buf_cat (buf1, buf);
-                if (++col % 3 == 0)
-                    buf_cat (buf1, "\n\r");
-            }
-        }
-    }
+        if ((mob_index = mobile_get_index (vnum)) == NULL)
+            continue;
+        if (!(all || str_in_namelist (arg, mob_index->name)))
+            continue;
 
-    if (!found) {
-        send_to_char ("Mobile(s) not found in this area.\n\r", ch);
-        return FALSE;
+        sprintf (buf, "[%5d] %-17.16s",
+            mob_index->vnum, str_capitalized (mob_index->short_descr));
+        buf_cat (buf1, buf);
+        if (++col % 3 == 0)
+            buf_cat (buf1, "\n\r");
+        found = TRUE;
     }
+    RETURN_IF (!found,
+        "Mobile(s) not found in this area.\n\r", ch, FALSE);
 
     if (col % 3 != 0)
         buf_cat (buf1, "\n\r");
@@ -381,37 +320,32 @@ REDIT (redit_olist) {
     int col = 0;
 
     one_argument (argument, arg);
-    if (arg[0] == '\0') {
-        send_to_char ("Syntax: olist <all/name/item_type>\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (arg[0] == '\0',
+        "Syntax: olist <all/name/item_type>\n\r", ch, FALSE);
 
     area = ch->in_room->area;
     buf1 = buf_new ();
-/*  buf1[0] = '\0'; */
     all = !str_cmp (arg, "all");
     found = FALSE;
 
     item_type = item_lookup (arg);
     for (vnum = area->min_vnum; vnum <= area->max_vnum; vnum++) {
-        if ((obj_index = obj_get_index (vnum))) {
-            if (all || str_in_namelist (arg, obj_index->name) ||
-                item_type == obj_index->item_type)
-            {
-                found = TRUE;
-                sprintf (buf, "[%5d] %-17.16s",
-                         obj_index->vnum,
-                         str_capitalized (obj_index->short_descr));
-                buf_cat (buf1, buf);
-                if (++col % 3 == 0)
-                    buf_cat (buf1, "\n\r");
-            }
-        }
+        if (!(obj_index = obj_get_index (vnum)))
+            continue;
+        if (!(all || str_in_namelist (arg, obj_index->name) ||
+                item_type == obj_index->item_type))
+            continue;
+
+        sprintf (buf, "[%5d] %-17.16s",
+            obj_index->vnum, str_capitalized (obj_index->short_descr));
+        buf_cat (buf1, buf);
+        if (++col % 3 == 0)
+            buf_cat (buf1, "\n\r");
+        found = TRUE;
     }
-    if (!found) {
-        send_to_char ("Object(s) not found in this area.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (!found,
+        "Object(s) not found in this area.\n\r", ch, FALSE);
+
     if (col % 3 != 0)
         buf_cat (buf1, "\n\r");
 
@@ -424,21 +358,15 @@ REDIT (redit_mshow) {
     MOB_INDEX_T *mob;
     int value;
 
-    if (argument[0] == '\0') {
-        send_to_char ("Syntax: mshow <vnum>\n\r", ch);
-        return FALSE;
-    }
-    if (!is_number (argument)) {
-        send_to_char ("REdit: Must be a number.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (argument[0] == '\0',
+        "Syntax: mshow <vnum>\n\r", ch, FALSE);
+    RETURN_IF (!is_number (argument),
+        "REdit: Must be a number.\n\r", ch, FALSE);
 
     if (is_number (argument)) {
         value = atoi (argument);
-        if (!(mob = mobile_get_index (value))) {
-            send_to_char ("REdit: That mobile does not exist.\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (!(mob = mobile_get_index (value)),
+            "REdit: That mobile does not exist.\n\r", ch, FALSE);
         ch->desc->olc_edit = (void *) mob;
     }
 
@@ -451,20 +379,15 @@ REDIT (redit_oshow) {
     OBJ_INDEX_T *obj;
     int value;
 
-    if (argument[0] == '\0') {
-        send_to_char ("Syntax: oshow <vnum>\n\r", ch);
-        return FALSE;
-    }
-    if (!is_number (argument)) {
-        send_to_char ("REdit: Must be a number.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (argument[0] == '\0',
+        "Syntax: oshow <vnum>\n\r", ch, FALSE);
+    RETURN_IF (!is_number (argument),
+        "REdit: Must be a number.\n\r", ch, FALSE);
+
     if (is_number (argument)) {
         value = atoi (argument);
-        if (!(obj = obj_get_index (value))) {
-            send_to_char ("REdit: That object does not exist.\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (!(obj = obj_get_index (value)),
+            "REdit: That object does not exist.\n\r", ch, FALSE);
         ch->desc->olc_edit = (void *) obj;
     }
 
@@ -480,8 +403,13 @@ REDIT (redit_show) {
     char buf1[2 * MAX_STRING_LENGTH];
     OBJ_T *obj;
     CHAR_T *rch;
-    int door;
+    int orig_door, real_door;
     bool fcnt;
+    EXIT_T *pexit;
+    const char *state;
+    char word[MAX_INPUT_LENGTH];
+    char reset_state[MAX_STRING_LENGTH];
+    int i, length;
 
     EDIT_ROOM (ch, room);
 
@@ -560,50 +488,59 @@ REDIT (redit_show) {
     else
         strcat (buf1, "none]\n\r");
 
-    for (door = 0; door < DIR_MAX; door++) {
-        EXIT_T *pexit;
-        if ((pexit = room->exit[door])) {
-            const char *state;
-            char word[MAX_INPUT_LENGTH];
-            char reset_state[MAX_STRING_LENGTH];
-            int i, length;
+    for (real_door = 0; real_door < DIR_MAX; real_door++) {
+        if (!(pexit = room_get_orig_exit (room, real_door)))
+            continue;
+        orig_door = pexit->orig_door;
 
-            sprintf (buf, "-%-5s to [%5d] Key: [%5d] ",
-                     str_capitalized (door_table[door].name),
-                     pexit->to_room ? pexit->to_room->vnum : 0, /* ROM OLC */
-                     pexit->key);
+        sprintf (buf, "-%-5s to [%5d] Key: [%5d] ",
+                 str_capitalized (door_table[orig_door].name),
+                 pexit->to_room ? pexit->to_room->vnum : 0, /* ROM OLC */
+                 pexit->key);
+        strcat (buf1, buf);
+
+        if (real_door != orig_door) {
+            sprintf (buf, "(Currently randomized to '%s' exit)\n",
+                door_table[real_door].name);
             strcat (buf1, buf);
+        }
 
-            /* Format up the exit info.
-             * Capitalize all flags that are not part of the reset info. */
-            strcpy (reset_state, flags_to_string (exit_flags, pexit->rs_flags));
-            state = flags_to_string (exit_flags, pexit->exit_flags);
-            strcat (buf1, " Exit flags: [");
-            while (1) {
-                state = one_argument (state, word);
-                if (word[0] == '\0') {
-                    int end = strlen (buf1) - 1;
-                    buf1[end] = ']';
-                    strcat (buf1, "\n\r");
-                    break;
-                }
-                if (str_infix (word, reset_state)) {
-                    length = strlen (word);
-                    for (i = 0; i < length; i++)
-                        word[i] = UPPER (word[i]);
-                }
-                strcat (buf1, word);
-                strcat (buf1, " ");
-            }
+        /* Format up the exit info.
+         * Capitalize all flags that are not part of the reset info. */
+        strcpy (reset_state, flags_to_string (exit_flags, pexit->rs_flags));
+        state = flags_to_string (exit_flags, pexit->exit_flags);
+        strcat (buf1, " Exit flags: [");
 
-            if (pexit->keyword && pexit->keyword[0] != '\0') {
-                sprintf (buf, "Kwds: [%s]\n\r", pexit->keyword);
-                strcat (buf1, buf);
+        while (1) {
+            state = one_argument (state, word);
+            if (word[0] == '\0') {
+                int end = strlen (buf1) - 1;
+                buf1[end] = ']';
+                break;
             }
-            if (pexit->description && pexit->description[0] != '\0') {
-                sprintf (buf, "%s", pexit->description);
-                strcat (buf1, buf);
+            if (str_infix (word, reset_state)) {
+                length = strlen (word);
+                for (i = 0; i < length; i++)
+                    word[i] = UPPER (word[i]);
             }
+            strcat (buf1, word);
+            strcat (buf1, " ");
+        }
+
+        if (pexit->portal) {
+            PORTAL_EXIT_T *pex = pexit->portal;
+            sprintf (buf, " Portal: [%s]\n\r", pex->name);
+            strcat (buf1, buf);
+        }
+        strcat (buf1, "\n\r");
+
+        if (pexit->keyword && pexit->keyword[0] != '\0') {
+            sprintf (buf, "Kwds: [%s]\n\r", pexit->keyword);
+            strcat (buf1, buf);
+        }
+        if (pexit->description && pexit->description[0] != '\0') {
+            sprintf (buf, "%s", pexit->description);
+            strcat (buf1, buf);
         }
     }
 
@@ -635,19 +572,16 @@ REDIT (redit_ed) {
     argument = one_argument (argument, command);
     one_argument (argument, keyword);
 
-    if (command[0] == '\0' || keyword[0] == '\0') {
-        send_to_char ("Syntax: ed add [keyword]\n\r", ch);
-        send_to_char ("        ed edit [keyword]\n\r", ch);
-        send_to_char ("        ed delete [keyword]\n\r", ch);
-        send_to_char ("        ed format [keyword]\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (command[0] == '\0' || keyword[0] == '\0',
+        "Syntax: ed add [keyword]\n\r"
+        "        ed edit [keyword]\n\r"
+        "        ed delete [keyword]\n\r"
+        "        ed format [keyword]\n\r", ch, FALSE);
 
     if (!str_cmp (command, "add")) {
-        if (keyword[0] == '\0') {
-            send_to_char ("Syntax: ed add [keyword]\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (keyword[0] == '\0',
+            "Syntax: ed add [keyword]\n\r", ch, FALSE);
+
         ed = extra_descr_new ();
         ed->keyword = str_dup (keyword);
         ed->description = str_dup ("");
@@ -658,31 +592,24 @@ REDIT (redit_ed) {
     }
 
     if (!str_cmp (command, "edit")) {
-        if (keyword[0] == '\0') {
-            send_to_char ("Syntax: ed edit [keyword]\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (keyword[0] == '\0',
+            "Syntax: ed edit [keyword]\n\r", ch, FALSE);
         LIST_FIND (str_in_namelist (keyword, ed->keyword), on_next,
             room->extra_descr_first, ed);
-        if (!ed) {
-            send_to_char ("REdit: Extra description keyword not found.\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (!ed,
+            "REdit: Extra description keyword not found.\n\r", ch, FALSE);
+
         string_append (ch, &ed->description);
         return TRUE;
     }
 
     if (!str_cmp (command, "delete")) {
-        if (keyword[0] == '\0') {
-            send_to_char ("Syntax: ed delete [keyword]\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (keyword[0] == '\0',
+            "Syntax: ed delete [keyword]\n\r", ch, FALSE);
         LIST_FIND (str_in_namelist (keyword, ed->keyword), on_next,
             room->extra_descr_first, ed);
-        if (!ed) {
-            send_to_char ("REdit: Extra description keyword not found.\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (!ed,
+            "REdit: Extra description keyword not found.\n\r", ch, FALSE);
 
         extra_descr_free (ed);
         send_to_char ("Extra description deleted.\n\r", ch);
@@ -690,16 +617,13 @@ REDIT (redit_ed) {
     }
 
     if (!str_cmp (command, "format")) {
-        if (keyword[0] == '\0') {
-            send_to_char ("Syntax: ed format [keyword]\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (keyword[0] == '\0',
+            "Syntax: ed format [keyword]\n\r", ch, FALSE);
         LIST_FIND (str_in_namelist (keyword, ed->keyword), on_next,
             room->extra_descr_first, ed);
-        if (!ed) {
-            send_to_char ("REdit: Extra description keyword not found.\n\r", ch);
-            return FALSE;
-        }
+        RETURN_IF (!ed,
+            "REdit: Extra description keyword not found.\n\r", ch, FALSE);
+
         ed->description = format_string (ed->description);
         send_to_char ("Extra description formatted.\n\r", ch);
         return TRUE;
@@ -717,34 +641,24 @@ REDIT (redit_create) {
     EDIT_ROOM (ch, room);
 
     value = atoi (argument);
-    if (argument[0] == '\0' || value <= 0) {
-        send_to_char ("Syntax: create [vnum > 0]\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (argument[0] == '\0' || value <= 0,
+        "Syntax: create [vnum > 0]\n\r", ch, FALSE);
 
     area = area_get_by_inner_vnum (value);
-    if (!area) {
-        send_to_char ("REdit: That vnum is not assigned an area.\n\r", ch);
-        return FALSE;
-    }
-    if (!IS_BUILDER (ch, area)) {
-        send_to_char ("REdit: Vnum in an area you cannot build in.\n\r", ch);
-        return FALSE;
-    }
-    if (room_get_index (value)) {
-        send_to_char ("REdit: Room vnum already exists.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (!area,
+        "REdit: That vnum is not assigned an area.\n\r", ch, FALSE);
+    RETURN_IF (!IS_BUILDER (ch, area),
+        "REdit: Vnum in an area you cannot build in.\n\r", ch, FALSE);
+    RETURN_IF (room_get_index (value),
+        "REdit: Room vnum already exists.\n\r", ch, FALSE);
 
     room = room_index_new ();
     room_to_area (room, area);
+
     room->vnum = value;
     room->anum = value - area->min_vnum;
+    db_register_new_room (room);
 
-    if (value > top_vnum_room)
-        top_vnum_room = value;
-
-    room_index_to_hash (room);
     ch->desc->olc_edit = (void *) room;
 
     send_to_char ("Room created.\n\r", ch);
@@ -755,13 +669,10 @@ REDIT (redit_name) {
     ROOM_INDEX_T *room;
     EDIT_ROOM (ch, room);
 
-    if (argument[0] == '\0') {
-        send_to_char ("Syntax: name [name]\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (argument[0] == '\0',
+        "Syntax: name [name]\n\r", ch, FALSE);
 
     str_replace_dup (&(room->name), argument);
-
     send_to_char ("Name set.\n\r", ch);
     return TRUE;
 }
@@ -770,59 +681,52 @@ REDIT (redit_desc) {
     ROOM_INDEX_T *room;
     EDIT_ROOM (ch, room);
 
-    if (argument[0] == '\0') {
-        string_append (ch, &room->description);
-        return TRUE;
-    }
+    RETURN_IF (argument[0] != '\0',
+        "Syntax: desc\n\r", ch, FALSE);
 
-    send_to_char ("Syntax: desc\n\r", ch);
-    return FALSE;
+    string_append (ch, &room->description);
+    return TRUE;
 }
 
 REDIT (redit_heal) {
     ROOM_INDEX_T *room;
-
     EDIT_ROOM (ch, room);
-    if (is_number (argument)) {
-        room->heal_rate = atoi (argument);
-        send_to_char ("Heal rate set.\n\r", ch);
-        return TRUE;
-    }
 
-    send_to_char ("Syntax: heal <#xnumber>\n\r", ch);
-    return FALSE;
+    RETURN_IF (!is_number (argument),
+        "Syntax: heal <#xnumber>\n\r", ch, FALSE);
+
+    room->heal_rate = atoi (argument);
+    send_to_char ("Heal rate set.\n\r", ch);
+    return TRUE;
 }
 
 REDIT (redit_mana) {
     ROOM_INDEX_T *room;
-
     EDIT_ROOM (ch, room);
-    if (is_number (argument)) {
-        room->mana_rate = atoi (argument);
-        send_to_char ("Mana rate set.\n\r", ch);
-        return TRUE;
-    }
 
-    send_to_char ("Syntax: mana <#xnumber>\n\r", ch);
-    return FALSE;
+    RETURN_IF (!is_number (argument),
+        "Syntax: mana <#xnumber>\n\r", ch, FALSE);
+
+    room->mana_rate = atoi (argument);
+    send_to_char ("Mana rate set.\n\r", ch);
+    return TRUE;
 }
 
 REDIT (redit_clan) {
     ROOM_INDEX_T *room;
-
     EDIT_ROOM (ch, room);
-    room->clan = clan_lookup (argument);
 
+    /* TODO: Show an error if the clan doesn't exist */
+    room->clan = clan_lookup (argument);
     send_to_char ("Clan set.\n\r", ch);
     return TRUE;
 }
 
 REDIT (redit_format) {
     ROOM_INDEX_T *room;
-
     EDIT_ROOM (ch, room);
-    room->description = format_string (room->description);
 
+    room->description = format_string (room->description);
     send_to_char ("String formatted.\n\r", ch);
     return TRUE;
 }
@@ -840,18 +744,12 @@ REDIT (redit_mreset) {
     argument = one_argument (argument, arg);
     argument = one_argument (argument, arg2);
 
-    if (arg[0] == '\0' || !is_number (arg)) {
-        send_to_char ("Syntax: mreset <vnum> <max #x> <mix #x>\n\r", ch);
-        return FALSE;
-    }
-    if (!(mob_index = mobile_get_index (atoi (arg)))) {
-        send_to_char ("REdit: No mobile has that vnum.\n\r", ch);
-        return FALSE;
-    }
-    if (mob_index->area != room->area) {
-        send_to_char ("REdit: No such mobile in this area.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (arg[0] == '\0' || !is_number (arg),
+        "Syntax: mreset <vnum> <max #x> <mix #x>\n\r", ch, FALSE);
+    RETURN_IF (!(mob_index = mobile_get_index (atoi (arg))),
+        "REdit: No mobile has that vnum.\n\r", ch, FALSE);
+    RETURN_IF (mob_index->area != room->area,
+        "REdit: No such mobile in this area.\n\r", ch, FALSE);
 
     /* Create the mobile reset. */
     reset = reset_data_new ();
@@ -860,7 +758,7 @@ REDIT (redit_mreset) {
     reset->v.mob.global_limit = is_number (arg2) ? atoi (arg2) : MAX_MOB;
     reset->v.mob.room_vnum    = room->vnum;
     reset->v.mob.room_limit   = is_number (argument) ? atoi (argument) : 1;
-    redit_add_reset (room, reset, 0 /* Last slot */ );
+    reset_to_room (reset, room);
 
     /* Create the mobile. */
     newmob = mobile_create (mob_index);
@@ -890,21 +788,16 @@ REDIT (redit_oreset) {
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
 
-    if (arg1[0] == '\0' || !is_number (arg1)) {
-        send_to_char ("Syntax: oreset <vnum> <args>\n\r", ch);
-        send_to_char ("        -no_args               = into room\n\r", ch);
-        send_to_char ("        -<obj_name>            = into obj\n\r", ch);
-        send_to_char ("        -<mob_name> <wear_loc> = into mob\n\r", ch);
-        return FALSE;
-    }
-    if (!(obj_index = obj_get_index (atoi (arg1)))) {
-        send_to_char ("REdit: No object has that vnum.\n\r", ch);
-        return FALSE;
-    }
-    if (obj_index->area != room->area) {
-        send_to_char ("REdit: No such object in this area.\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (arg1[0] == '\0' || !is_number (arg1),
+        "Syntax: oreset <vnum> <args>\n\r"
+        "        -no_args               = into room\n\r"
+        "        -<obj_name>            = into obj\n\r"
+        "        -<mob_name> <wear_loc> = into mob\n\r", ch, FALSE);
+
+    RETURN_IF (!(obj_index = obj_get_index (atoi (arg1))),
+        "REdit: No object has that vnum.\n\r", ch, FALSE);
+    RETURN_IF (obj_index->area != room->area,
+        "REdit: No such object in this area.\n\r", ch, FALSE);
 
     /* Load into room. */
     if (arg2[0] == '\0') {
@@ -913,7 +806,7 @@ REDIT (redit_oreset) {
         reset->v.obj.obj_vnum     = obj_index->vnum;
         reset->v.obj.global_limit = 0;
         reset->v.obj.room_vnum    = room->vnum;
-        redit_add_reset (room, reset, 0 /* Last slot */ );
+        reset_to_room (reset, room);
 
         newobj = obj_create (obj_index, number_fuzzy (olevel));
         obj_give_to_room (newobj, room);
@@ -931,7 +824,7 @@ REDIT (redit_oreset) {
         reset->v.put.global_limit = 0;
         reset->v.put.into_vnum    = to_obj->obj_index->vnum;
         reset->v.put.put_count    = 1;
-        redit_add_reset (room, reset, 0 /* Last slot */ );
+        reset_to_room (reset, room);
 
         newobj = obj_create (obj_index, number_fuzzy (olevel));
         newobj->cost = 0;
@@ -973,14 +866,14 @@ REDIT (redit_oreset) {
             reset->v.equip.global_limit = 0;
             reset->v.equip.wear_loc     = wear_loc->type;
         }
-
-        redit_add_reset (room, reset, 0 /* Last slot */ );
+        reset_to_room (reset, room);
 
         olevel = URANGE (0, to_mob->level - 2, LEVEL_HERO);
         newobj = obj_create (obj_index, number_fuzzy (olevel));
 
         /* Shop-keeper? */
         if (to_mob->mob_index->shop) {
+            /* TODO: migrate this to item_???() */
             switch (obj_index->item_type) {
                 case ITEM_PILL:
                 case ITEM_POTION:
@@ -1040,17 +933,14 @@ REDIT (redit_owner) {
     ROOM_INDEX_T *room;
     EDIT_ROOM (ch, room);
 
-    if (argument[0] == '\0') {
-        send_to_char ("Syntax: owner [owner]\n\r", ch);
-        send_to_char ("        owner none\n\r", ch);
-        return FALSE;
-    }
+    RETURN_IF (argument[0] == '\0',
+        "Syntax: owner [owner]\n\r"
+        "        owner none\n\r", ch, FALSE);
 
-    str_free (&(room->owner));
     if (!str_cmp (argument, "none"))
-        room->owner = str_dup ("");
+        str_replace_dup (&room->owner, "");
     else
-        room->owner = str_dup (argument);
+        str_replace_dup (&room->owner, argument);
 
     send_to_char ("Owner set.\n\r", ch);
     return TRUE;
@@ -1061,10 +951,9 @@ REDIT (redit_room) {
     int value;
 
     EDIT_ROOM (ch, room);
-    if ((value = flags_from_string (room_flags, argument)) == FLAG_NONE) {
-        send_to_char ("Syntax: room [flags]\n\r", ch);
-        return FALSE;
-    }
+
+    RETURN_IF ((value = flags_from_string (room_flags, argument)) == FLAG_NONE,
+        "Syntax: room [flags]\n\r", ch, FALSE);
 
     TOGGLE_BIT (room->room_flags, value);
     send_to_char ("Room flags toggled.\n\r", ch);
@@ -1076,10 +965,9 @@ REDIT (redit_sector) {
     int value;
 
     EDIT_ROOM (ch, room);
-    if ((value = sector_lookup (argument)) < 0) {
-        send_to_char ("Syntax: sector [type]\n\r", ch);
-        return FALSE;
-    }
+
+    RETURN_IF ((value = sector_lookup (argument)) < 0,
+        "Syntax: sector [type]\n\r", ch, FALSE);
 
     room->sector_type = value;
     send_to_char ("Sector type set.\n\r", ch);

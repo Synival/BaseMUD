@@ -30,5 +30,6 @@ DECLARE_DO_FUN (do_redit);
 DECLARE_DO_FUN (do_resets);
 DECLARE_DO_FUN (do_alist);
 DECLARE_DO_FUN (do_asave);
+DECLARE_DO_FUN (do_portals);
 
 #endif

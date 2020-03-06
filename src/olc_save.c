@@ -324,58 +324,18 @@ void save_room (FILE *fp, ROOM_INDEX_T *room_index) {
         room_flags, room_index->room_flags, buf));
     fprintf (fp, "%d\n", room_index->sector_type);
 
-    for (door = 0; door < DIR_MAX; door++) {
-        int locks = 0;
-        if (!(ex = room_get_orig_exit (room_index, door)))
-            continue;
-
-#if 0
-        /* HACK : TO PREVENT EX_LOCKED etc without EX_ISDOOR
-           to stop booting the mud */
-        if (IS_SET (ex->rs_flags, EX_CLOSED)
-            || IS_SET (ex->rs_flags, EX_LOCKED)
-            || IS_SET (ex->rs_flags, EX_PICKPROOF)
-            || IS_SET (ex->rs_flags, EX_NOPASS)
-            || IS_SET (ex->rs_flags, EX_EASY)
-            || IS_SET (ex->rs_flags, EX_HARD)
-            || IS_SET (ex->rs_flags, EX_INFURIATING)
-            || IS_SET (ex->rs_flags, EX_NOCLOSE)
-            || IS_SET (ex->rs_flags, EX_NOLOCK))
-            SET_BIT (ex->rs_flags, EX_ISDOOR);
-        else
-            REMOVE_BIT (ex->rs_flags, EX_ISDOOR);
+#ifdef BASEMUD_WRITE_PORTALS
+    if (room_index->portal)
+        fprintf (fp, "P %s~\n", room_index->portal->name);
 #endif
 
-        /* THIS SUCKS but it's backwards compatible */
-        /* NOTE THAT EX_NOCLOSE NOLOCK etc aren't being saved */
-        if (IS_SET (ex->rs_flags, EX_ISDOOR)
-            && (!IS_SET (ex->rs_flags, EX_PICKPROOF))
-            && (!IS_SET (ex->rs_flags, EX_NOPASS)))
-            locks = 1;
-        if (IS_SET (ex->rs_flags, EX_ISDOOR)
-            && (IS_SET (ex->rs_flags, EX_PICKPROOF))
-            && (!IS_SET (ex->rs_flags, EX_NOPASS)))
-            locks = 2;
-        if (IS_SET (ex->rs_flags, EX_ISDOOR)
-            && (!IS_SET (ex->rs_flags, EX_PICKPROOF))
-            && (IS_SET (ex->rs_flags, EX_NOPASS)))
-            locks = 3;
-        if (IS_SET (ex->rs_flags, EX_ISDOOR)
-            && (IS_SET (ex->rs_flags, EX_PICKPROOF))
-            && (IS_SET (ex->rs_flags, EX_NOPASS)))
-            locks = 4;
+    for (door = 0; door < DIR_MAX; door++)
+        if ((ex = room_get_orig_exit (room_index, door)))
+            save_exit (fp, ex);
 
-        fprintf (fp, "D%d\n", ex->orig_door);
-        fprintf (fp, "%s~\n", fix_string (ex->description));
-        fprintf (fp, "%s~\n", ex->keyword);
-        fprintf (fp, "%d %d %d\n", locks, ex->key,
-            (ex->to_room ? ex->to_room->vnum : -1));
-    }
-
-    for (ed = room_index->extra_descr_first; ed; ed = ed->on_next) {
+    for (ed = room_index->extra_descr_first; ed; ed = ed->on_next)
         fprintf (fp, "E\n%s~\n%s~\n", ed->keyword,
                  fix_string (ed->description));
-    }
 
     if (!IS_NULLSTR (room_index->owner))
         fprintf (fp, "O %s~\n", room_index->owner);
@@ -386,6 +346,57 @@ void save_room (FILE *fp, ROOM_INDEX_T *room_index) {
         fprintf (fp, "C %s~\n", clan_table[room_index->clan].name);
 
     fprintf (fp, "S\n");
+}
+
+void save_exit (FILE *fp, EXIT_T *ex) {
+    int locks = 0;
+
+#if 0
+    /* HACK : TO PREVENT EX_LOCKED etc without EX_ISDOOR
+       to stop booting the mud */
+    if (IS_SET (ex->rs_flags, EX_CLOSED)
+        || IS_SET (ex->rs_flags, EX_LOCKED)
+        || IS_SET (ex->rs_flags, EX_PICKPROOF)
+        || IS_SET (ex->rs_flags, EX_NOPASS)
+        || IS_SET (ex->rs_flags, EX_EASY)
+        || IS_SET (ex->rs_flags, EX_HARD)
+        || IS_SET (ex->rs_flags, EX_INFURIATING)
+        || IS_SET (ex->rs_flags, EX_NOCLOSE)
+        || IS_SET (ex->rs_flags, EX_NOLOCK))
+        SET_BIT (ex->rs_flags, EX_ISDOOR);
+    else
+        REMOVE_BIT (ex->rs_flags, EX_ISDOOR);
+#endif
+
+    /* THIS SUCKS but it's backwards compatible */
+    /* NOTE THAT EX_NOCLOSE NOLOCK etc aren't being saved */
+    if (IS_SET (ex->rs_flags, EX_ISDOOR)
+        && (!IS_SET (ex->rs_flags, EX_PICKPROOF))
+        && (!IS_SET (ex->rs_flags, EX_NOPASS)))
+        locks = 1;
+    if (IS_SET (ex->rs_flags, EX_ISDOOR)
+        && (IS_SET (ex->rs_flags, EX_PICKPROOF))
+        && (!IS_SET (ex->rs_flags, EX_NOPASS)))
+        locks = 2;
+    if (IS_SET (ex->rs_flags, EX_ISDOOR)
+        && (!IS_SET (ex->rs_flags, EX_PICKPROOF))
+        && (IS_SET (ex->rs_flags, EX_NOPASS)))
+        locks = 3;
+    if (IS_SET (ex->rs_flags, EX_ISDOOR)
+        && (IS_SET (ex->rs_flags, EX_PICKPROOF))
+        && (IS_SET (ex->rs_flags, EX_NOPASS)))
+        locks = 4;
+
+    fprintf (fp, "D%d\n", ex->orig_door);
+    fprintf (fp, "%s~\n", fix_string (ex->description));
+    fprintf (fp, "%s~\n", ex->keyword);
+    fprintf (fp, "%d %d %d\n", locks, ex->key,
+        (ex->to_room ? ex->to_room->vnum : -1));
+
+#ifdef BASEMUD_WRITE_PORTALS
+    if (ex->portal)
+        fprintf (fp, "P %s~\n", ex->portal->name);
+#endif
 }
 
 /*****************************************************************************

@@ -26,6 +26,7 @@ void save_mobiles (FILE *fp, AREA_T *area);
 void save_object (FILE *fp, OBJ_INDEX_T *obj_index);
 void save_objects (FILE *fp, AREA_T *area);
 void save_room (FILE *fp, ROOM_INDEX_T *room_index);
+void save_exit (FILE *fp, EXIT_T *ex);
 void save_rooms (FILE *fp, AREA_T *area);
 void save_specials (FILE *fp, AREA_T *area);
 void save_door_resets (FILE *fp, AREA_T *area);

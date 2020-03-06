@@ -372,6 +372,7 @@ const CMD_T cmd_table[] = {
     {"oedit",       do_oedit,       POS_DEAD,     0, LOG_NORMAL,  1},
     {"mpedit",      do_mpedit,      POS_DEAD,     0, LOG_NORMAL,  1},
     {"hedit",       do_hedit,       POS_DEAD,     0, LOG_NORMAL,  1},
+    {"portals",     do_portals,     POS_DEAD,     0, LOG_NORMAL,  1},
 
     /* End of list. */
     {"", 0, POS_DEAD, 0, LOG_NORMAL, 0}
