@@ -1,82 +1,84 @@
-#AREA
-dwarven.are~
-Dwarven Kingdom~
-{10 25} Anon    Dwarven Kingdom~
-6500 6599
+#AREADATA
+Name Dwarven Kingdom~
+Builders None~
+VNUMs 6500 6599
+Credits {10 25} Anon    Dwarven Kingdom~
+Security 9
+End
 
 #MOBILES
 #6500
-oldstyle dwarf guard~
+dwarf guard~
 the dwarven guard~
 A dwarven guard is here.
 ~
 The guard looks very tough and mean.
 ~
 dwarf~
-ABL D 500 0
+[sentinel unused_act_3] [detect_invis] 500 0
 20 0 3d9+333 10d9+100 2d8+5 none
 -4 -4 -4 7
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand male 500
-0 0 medium 0
+[] [] medium generic
 #6501
-oldstyle dwarf worker miner~
+dwarf worker miner~
 the dwarven worker~
 A dwarven mining worker is here.
 ~
 He is very dirty, and looks extremely over-worked.
 ~
 dwarf~
-AGL 0 900 0
+[stay_area unused_act_3] [] 900 0
 12 0 2d10+150 6d9+100 1d10+3 none
 0 0 0 8
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand male 175
-0 0 medium 0
+[] [] medium generic
 #6502
-oldstyle wraith~
+wraith~
 the wraith~
 A wraith is awaiting your first move here.
 ~
 A black, almost transparent wraith.
 ~
 human~
-AB DF -900 0
+[sentinel] [detect_invis detect_hidden] -900 0
 29 0 6d12+778 14d9+100 2d12+8 none
 -9 -9 -9 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 2500
-0 0 medium 0
+[] [] medium generic
 #6503
-oldstyle storekeeper~
+storekeeper~
 the storekeeper~
 There is the Hide & Tooth storekeeper standing here, waiting patiently.
 ~
 The storekeeper is very rotund, but looks like a sharp guy.
 ~
 human~
-ABL 0 900 0
+[sentinel unused_act_3] [] 900 0
 35 0 10d10+1300 17d9+100 4d7+11 none
 -11 -11 -11 5
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 5000
-0 0 medium 0
+[] [] medium generic
 #6504
-oldstyle baker~
+baker~
 the baker~
 Granite Head, the baker, is waiting for a customer here.
 ~
 Granite Head is covered with flour and grains.
 ~
 human~
-ABL 0 900 0
+[sentinel unused_act_3] [] 900 0
 35 0 10d10+1300 17d9+100 4d7+11 none
 -11 -11 -11 5
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 50
-0 0 medium 0
+[] [] medium generic
 #6505
-oldstyle lizard~
+lizard~
 the giant lizard~
 A giant lizard is here.
 ~
@@ -84,173 +86,173 @@ This scaly creature looks like it is well adapted to it's underground
 habitat.  He looks very powerful.
 ~
 lizard~
-AG D 100 0
+[stay_area] [detect_invis] 100 0
 18 0 3d9+283 9d9+100 2d7+4 none
 -3 -3 -3 7
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand male 60
-0 0 medium 0
+[] [] medium generic
 #6506
-oldstyle giant~
+giant~
 the giant~
 A giant is here.
 ~
 The giant is about 8 feet tall, with arms of steel, and looks very strong.
 ~
 giant~
-AG 0 0 0
+[stay_area] [] 0 0
 16 0 3d9+233 8d9+100 2d6+4 none
 -2 -2 -2 7
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand male 100
-0 0 medium 0
+[] [] medium generic
 #6507
-oldstyle dwarf miner~
+dwarf miner~
 the dwarven miner~
 A dwarven miner is here.
 ~
 The mineworker is very tired, and very dirty, and he has bulging muscles.
 ~
 dwarf~
-ABL 0 0 0
+[sentinel unused_act_3] [] 0 0
 8 0 2d7+96 4d9+100 1d7+2 none
 3 3 3 9
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand male 2
-0 0 medium 0
+[] [] medium generic
 #6508
-oldstyle dwarf leader~
+dwarf leader~
 the dwarven mine leader~
 A dwarven mine leader is here.
 ~
 The mine leader is very big and very strong.
 ~
 dwarf~
-ABL 0 0 0
+[sentinel unused_act_3] [] 0 0
 21 0 4d10+360 10d9+100 4d4+5 none
 -5 -5 -5 7
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand male 1000
-0 0 medium 0
+[] [] medium generic
 #6509
-oldstyle dwarf doctor~
+dwarf doctor~
 the dwarven doctor~
 The dwarven doctor is here.
 ~
 He is a very skilled surgeon, with hands of steel.
 ~
 dwarf~
-ABL DH 1000 0
+[sentinel unused_act_3] [detect_invis sanctuary] 1000 0
 9 0 2d6+110 4d9+100 1d8+2 none
 2 2 2 8
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand male 75
-0 0 medium 0
+[] [] medium generic
 #6510
-oldstyle dwarf peon~
+dwarf peon~
 the dwarven peon~
 A dwarven peon is awaiting help here.
 ~
 ~
 dwarf~
-ABL 0 500 0
+[sentinel unused_act_3] [] 500 0
 3 0 2d6+35 1d9+100 1d6+0 none
 7 7 7 10
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand male 3
-0 0 medium 0
+[] [] medium generic
 #6511
-oldstyle dwarf~
+dwarf~
 the dwarf~
 A grinning dwarf is here.
 ~
 ~
 dwarf~
-ABL 0 500 0
+[sentinel unused_act_3] [] 500 0
 9 0 2d6+110 4d9+100 1d8+2 none
 2 2 2 8
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand male 62
-0 0 medium 0
+[] [] medium generic
 #6512
-oldstyle dwarf son~
+dwarf son~
 the unwanted son~
 An unwanted son is here.  You feel sorry for the guy.
 ~
 ~
 dwarf~
-AG 0 250 0
+[stay_area] [] 250 0
 9 0 2d6+110 4d9+100 1d8+2 none
 2 2 2 8
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand male 2
-0 0 medium 0
+[] [] medium generic
 #6513
-oldstyle dwarf daughter~
+dwarf daughter~
 the unwanted daughter~
 An unwanted daughter is here.  You feel sorry for her.
 ~
 ~
 dwarf~
-AG 0 250 0
+[stay_area] [] 250 0
 10 0 2d7+121 5d9+100 2d4+2 none
 1 1 1 8
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand female 2
-0 0 medium 0
+[] [] medium generic
 #6514
-oldstyle dwarf guard~
+dwarf guard~
 the barracks guard~
 A barrack guard is here.
 ~
 ~
 dwarf~
-ABL 0 100 0
+[sentinel unused_act_3] [] 100 0
 16 0 3d9+233 8d9+100 2d6+4 none
 -2 -2 -2 7
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand male 150
-0 0 medium 0
+[] [] medium generic
 #6515
-oldstyle man~
+man~
 the man in waiting~
 A man in waiting is here.  He looks nervous and unsure of himself.
 ~
 ~
 human~
-ABL 0 300 0
+[sentinel unused_act_3] [] 300 0
 15 0 3d9+208 7d9+100 2d6+3 none
 -2 -2 -2 7
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 348
-0 0 medium 0
+[] [] medium generic
 #6516
-oldstyle mazekeeper~
+mazekeeper~
 the mazekeeper~
 A mazekeeper is here.
 ~
 He looks VERY tough.
 ~
 human~
-ABFL H -1000 0
+[sentinel aggressive unused_act_3] [sanctuary] -1000 0
 29 0 6d12+778 14d9+100 2d12+8 none
 -9 -9 -9 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 4000
-0 0 medium 0
+[] [] medium generic
 #6517
-oldstyle snake~
+snake~
 the giant snake~
 There is a giant snake here.
 ~
 ~
 snake~
-ABF 0 -1000 0
+[sentinel aggressive] [] -1000 0
 15 0 3d9+208 7d9+100 2d6+3 none
 -2 -2 -2 7
-EFNR 0 0 0
+[disarm dodge trip assist_race] [] [] []
 stand stand male 150
-0 0 medium 0
+[] [] medium generic
 #0
 
 #OBJECTS
@@ -258,57 +260,57 @@ stand stand male 150
 key green~
 a deep green key~
 A deep green key is on the floor.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 0 0 0 0 0
 0 10 0 P
 #6504
 dwarven hammer~
 a hammer~
 There is a dwarven hammer laying here.~
-oldstyle~
-weapon 0 AN
-mace 4 4 pound 0
+generic~
+weapon [] [take wield]
+mace 4 4 pound []
 17 30 880 P
 #6505
 dwarven plate~
 dwarven plate mail~
 There is dwarven plate mail laying here.~
-oldstyle~
-armor 0 AD
+generic~
+armor [] [take body]
 7 7 7 0 0
 20 40 2900 P
 #6506
 stick~
 long, black stick~
 There is a long, black stick lying here.~
-oldstyle~
-staff 0 AO
+generic~
+staff [] [take hold]
 4 10 10 'cure critical' 0
 11 10 4800 P
 #6507
 stick~
 long, black stick~
 There is a long, black stick here.~
-oldstyle~
-light 0 AO
+generic~
+light [] [take hold]
 0 0 50 0 0
 0 10 0 P
 #6508
 club~
 dwarven club~
 There is a dwarven club laying here.~
-oldstyle~
-weapon 0 AN
-mace 2 6 pound 0
+generic~
+weapon [] [take wield]
+mace 2 6 pound []
 10 10 510 P
 #6509
 two-handed dwarven axe~
 a two-handed dwarven axe~
 A two-handed Dwarven axe is here.~
-oldstyle~
-weapon 0 AN
-axe 2 7 cleave F
+generic~
+weapon [] [take wield]
+axe 2 7 cleave [twohands]
 17 50 4100 P
 A
 1 2
@@ -318,16 +320,16 @@ A
 helmet~
 a dwarven helmet~
 A dwarven helmet is here.~
-oldstyle~
-armor 0 AE
+generic~
+armor [] [take head]
 7 7 7 0 0
 20 40 1450 P
 #6511
 ring golden dwarven~
 a dwarven golden ring~
 A pretty golden ring is here.~
-oldstyle~
-gem G AB
+generic~
+gem [magic] [take finger]
 0 0 0 0 0
 7 10 460 P
 A
@@ -338,8 +340,8 @@ A
 gloves~
 dwarven gloves~
 Thick dwarven gloves lay here.~
-oldstyle~
-armor 0 AH
+generic~
+armor [] [take hands]
 5 5 5 0 0
 13 20 2000 P
 A
@@ -350,9 +352,9 @@ A
 note~
 a note~
 A crumpled note is here.~
-oldstyle~
-furniture 0 A
-0 0 0 0 0
+generic~
+furniture [] [take]
+0 0 0 100 100
 0 0 0 P
 E
 note letter letters~
@@ -363,40 +365,40 @@ it's not suitable for transmission across a public data network.
 castle key~
 a castle key~
 There is a key to Strangelove Castle here.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 0 0 0 0 0
 0 0 0 P
 #6516
 key mine~
 a mine key~
 There is a key to the mines here.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 0 0 0 0 0
 0 0 0 P
 #6517
 coal~
 a chunk of coal~
 There is a chunk of coal here.~
-oldstyle~
-trash T AO
+generic~
+trash [nolocate] [take hold]
 0 0 0 0 0
 0 10 0 P
 #6518
 pick~
 a mining pick~
 There is a mining pick here.~
-oldstyle~
-weapon I AN
-mace 2 3 pierce 0
+generic~
+weapon [bless] [take wield]
+mace 2 3 pierce []
 3 10 240 P
 #6519
 pills~
 a box of birth control pills~
 There is a box of birth control pills here.~
-oldstyle~
-pill 0 A
+generic~
+pill [] [take]
 20 '' '' 'change sex' ''
 0 10 300 P
 E
@@ -409,8 +411,8 @@ used for a while.
 map castle strangelove~
 a map of Castle Strangelove~
 A rolled up map is here.~
-oldstyle~
-map 0 A
+generic~
+map [] [take]
 1 0 0 0 0
 0 10 500 P
 E
@@ -464,7 +466,7 @@ giants.  You can climb back down the mountains to the west and leave these
 realms, or seek riches in the northern mineshafts.  A dirt road leads south, 
 towards a small building.  You can hear crying and shrieking coming from it.
 ~
-0 0 2
+0 [] 2
 D0
 The path continues.
 ~
@@ -475,6 +477,7 @@ You hear the patter of little feet.
 ~
 ~
 0 -1 6601
+Pdwarven-south-1~
 D3
 A rocky road leads back to Midgaard and the mines of Moria.
 ~
@@ -486,7 +489,7 @@ Path, base of mountain~
 Now you are at the bottom of a rugged mountain.  The forest around you is
 very dense, and it seems very dark to the north.
 ~
-0 0 4
+0 [] 4
 D0
 The path continues up the mountain.
 ~
@@ -503,7 +506,7 @@ Path, middle of mountain~
 Standing on the middle of the mountain, you can easily see the turning
 point to the south, and the top of the mountain is very near to the north.
 ~
-0 0 5
+0 [] 5
 D0
 The top of the mountain is easily seen from here.
 ~
@@ -521,7 +524,7 @@ You are now on the top of the mountain.  To the south you see a path
 leading down the mountain.  To the east and west you see entrances to
 what seems like mines.
 ~
-0 0 4
+0 [] 4
 D1
 An entrance to the mountain which seems to lead underground.
 ~
@@ -544,7 +547,7 @@ This is a narrow path leading to the Dwarven Kingdom.  It looks less
 travelled than the others, and it is very creepy.  The path opens up
 to the south, and continues to the north.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -559,7 +562,7 @@ Entrance to Mountain~
 Here is an entrance to the mountain.  The door looks very well built,
 and you can hear noise coming from within.
 ~
-0 0 2
+0 [] 2
 D1
 ~
 ~
@@ -575,7 +578,7 @@ This is a narrow path that bends to the east here.  The trees hang over
 the path, and it is very overgrown.  The narrow path continues to the
 south and to the east.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 ~
@@ -593,7 +596,7 @@ S
 Narrow path~
 This path is very narrow, and it continues to the north and west.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -608,7 +611,7 @@ Narrow north-south path~
 This path leads to the north and south.  To the north you can see a
 door, and to the south the path continues.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -623,7 +626,7 @@ Door to Kingdom~
 Here the path turns to the west.  You can see a door in front of you,
 and the path continues to the west and south.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 door~
@@ -642,7 +645,7 @@ Path to the Castle~
 You are on a path that will eventually lead to the castle.  It
 continues north to the castle, and there is a door on the western wall.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -658,7 +661,7 @@ You are still on the path to the castle, or back to the
 Dwarven village, whichever way you wish to go.  The path
 continues to the north and south.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -679,7 +682,7 @@ standing on end.  A sign says:
               *      Here, celibacy is uninvited       *
               ******************************************
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 door~
@@ -694,7 +697,7 @@ Inside the entrance~
 Everything here is covered in soot and very grimy.  The path continues
 to the east and north, and there is a door to the west.
 ~
-0 D 0
+0 [indoors] 0
 D0
 The little underground path continues to the north.
 ~
@@ -716,7 +719,7 @@ Path~
 You are on a path in the dwarven village which leads north to the shops
 and south to the corner of the area.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -731,7 +734,7 @@ Turn in road~
 You are on a path that leads to a Hide & Tooth shop to the west, and the
 path continues to the south.
 ~
-0 D 0
+0 [indoors] 0
 D2
 ~
 ~
@@ -747,7 +750,7 @@ Hide & Tooth Shop~
 You are in the Hide & Tooth shop.  Here you may buy the finest in Dwarven
 weapons and armors. The path continues to the north and east.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -762,7 +765,7 @@ Path to the north of shop~
 You are on a path to the north of the Hide & Tooth shop.  The path continues
 to the north, and there is Granite Head's bakery to the west.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -781,7 +784,7 @@ North of Shops~
 Here the path bends to the east towards the barracks. To the
 south you can see the shops.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 ~
@@ -796,7 +799,7 @@ Path by Hospital~
 Here the path passes by the Hospital to the north.  It continues
 to the east to the barracks, and to the west.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -814,7 +817,7 @@ S
 Path next to barracks~
 Here the path continues west, and east to the barracks.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 ~
@@ -829,7 +832,7 @@ Entrance to barracks~
 Here there is an entrance to the barracks to the south, and
 the path continues to the west.
 ~
-0 D 0
+0 [indoors] 0
 D2
 ~
 door~
@@ -844,7 +847,7 @@ Guard House~
 You are in the guard house to the west of the entrance
 to the castle.  There are nude posters covering the walls.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 ~
@@ -860,7 +863,7 @@ Here is the first of two main rooms of barracks.  The
 barracks continue to the south, and you can leave the room
 to the north.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 door~
@@ -875,7 +878,7 @@ Back of Barracks~
 Here is the back of the dwarven barracks.  There are rows
 of beds here, and there is a stench that is unbearable.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -884,6 +887,7 @@ D5
 ~
 floorboards boards~
 1 -1 2001
+Pdwarven-down-1~
 S
 #6525
 Inside of Castle Strangelove~
@@ -891,7 +895,7 @@ You are just inside the castle.  It is very tubular in shape,
 and it is very featureless.  There is a set of stairs that lead
 up, and the door leads out of the castle to the west.
 ~
-0 D 0
+0 [indoors] 0
 D3
 ~
 door~
@@ -906,7 +910,7 @@ A store room~
 There is a layer of dust on the floor at least 3 inches thick!  It is
 probable that not many people have been in here for many months.
 ~
-0 AD 0
+0 [dark indoors] 0
 D1
 A lighted area that looks like a well worn path.
 ~
@@ -926,7 +930,7 @@ Wine cellar~
 This room smells like wine, and you can only assume it used to be
 a wine cellar at one time.
 ~
-0 AD 0
+0 [dark indoors] 0
 D4
 ~
 ~
@@ -935,12 +939,13 @@ D5
 ~
 floorboards boards~
 1 -1 2065
+Pdwarven-down-2~
 S
 #6528
 Stairs in castle~
 The stairs continue to circle up and down here.
 ~
-0 D 0
+0 [indoors] 0
 D4
 ~
 ~
@@ -956,7 +961,7 @@ You are still circling around on the stairs.  You are starting to
 get dizzy from going around and around and around and around and
 around.  The stairs continue up and down.
 ~
-0 D 0
+0 [indoors] 0
 D4
 ~
 ~
@@ -971,7 +976,7 @@ Top of stairs~
 You are at the top of the stairs in the castle.  There is an exit
 to the east, and the stairs lead down.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 ~
@@ -988,7 +993,7 @@ This is the Queen's waiting room.  Here the men literally
 to get to 'know' her people, in the biblical sense.  The queen's
 bedroom is to the north, and you can see stairs to the west.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 door~
@@ -1008,7 +1013,7 @@ A note has been scrawled in lipstick on the mirror:
     I'm out looking for my birth control pills.
     Why don't you slip into something comfortable while you're waiting?
 ~
-0 D 0
+0 [indoors] 0
 D2
 ~
 door~
@@ -1019,7 +1024,7 @@ Hospital~
 You are inside the Dwarven Hospital.  It smells like rubbing
 alcohol, and there is blood all over the walls.
 ~
-0 D 0
+0 [indoors] 0
 D2
 ~
 ~
@@ -1030,7 +1035,7 @@ Granite Head's Bakery~
 The aroma coming from this room is sensuous.  You can almost taste
 the pastries dissolving in your mouth.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 ~
@@ -1041,7 +1046,7 @@ Dark path~
 This path is very well worn, and there is an entrance to the mines to the
 east, while the path continues to the north and west.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -1060,7 +1065,7 @@ Mine entrance~
 The little path here leads down toward the mines, while the worn path
 continues to the west.
 ~
-0 D 0
+0 [indoors] 0
 D3
 ~
 door~
@@ -1076,7 +1081,7 @@ There are holes everywhere from the places that the workers blew
 away the rock to get to whatever they were looking for.  A path leads
 down and up.
 ~
-0 AD 0
+0 [dark indoors] 0
 D4
 ~
 ~
@@ -1091,7 +1096,7 @@ Path in the mine~
 You are deep inside the mine, and you feel very uncomfortable.  The
 path continues to the east, and leads to the mineshaft to the west.
 ~
-0 AD 0
+0 [dark indoors] 0
 D1
 ~
 ~
@@ -1106,7 +1111,7 @@ Mine crossroad~
 You are at a crossroad in the mine.  There is a door to the north,
 and the path continues to the south, east, and west.
 ~
-0 AD 0
+0 [dark indoors] 0
 D0
 ~
 door~
@@ -1130,7 +1135,7 @@ You are inside the storage area for the raw materials
 that are found down here.  The room is very unsturdy as the
 supports are very rickety.
 ~
-0 AD 0
+0 [dark indoors] 0
 D3
 ~
 ~
@@ -1141,7 +1146,7 @@ Mine Maze~
 You have entered the maze of the mines.  To the east you
 can see some inscriptions, and you can exit to the south.
 ~
-0 AD 0
+0 [dark indoors] 0
 D1
 ~
 ~
@@ -1155,7 +1160,7 @@ S
 Maze inscription~
 You are inside the maze, but not far enough in that you could get lost.
 ~
-0 AD 0
+0 [dark indoors] 0
 D0
 ~
 ~
@@ -1169,7 +1174,7 @@ S
 Maze~
 You are in a maze.
 ~
-0 AD 0
+0 [dark indoors] 0
 D0
 ~
 ~
@@ -1183,7 +1188,7 @@ S
 Maze~
 You are in a maze.
 ~
-0 AD 0
+0 [dark indoors] 0
 D0
 ~
 ~
@@ -1197,7 +1202,7 @@ S
 Maze~
 You are in a maze.
 ~
-0 AD 0
+0 [dark indoors] 0
 D2
 ~
 ~
@@ -1213,7 +1218,7 @@ This is the storage room for equipment used by the
 Dwarven miners.  It is very small, and you can tell that
 not many miners actually use any equipment.
 ~
-0 AD 0
+0 [dark indoors] 0
 D0
 ~
 ~
@@ -1229,7 +1234,7 @@ To the north, you see the maze.  There is a sign above the south exit:
     Those who enter, plan on a timely death.
     Especially if you're loyal to the queen.
 ~
-0 AD 0
+0 [dark indoors] 0
 D1
 ~
 ~
@@ -1245,7 +1250,7 @@ You have entered the Mazekeeper's room.  There are pictures of
 the Queen with darts thrown in it.  Spray-painted on the wall are
 things like 'the queen shall suffer' and 'Catholics Rule'.
 ~
-0 AD 0
+0 [dark indoors] 0
 D1
 ~
 ~
@@ -1256,7 +1261,7 @@ Bottom of mineshaft~
 You are at the bottom of the mineshaft.  The air here is very sooty, and
 it is very hard to breath.  The mineshaft leads up and east.
 ~
-0 AD 0
+0 [dark indoors] 0
 D1
 ~
 ~
@@ -1274,7 +1279,7 @@ earth.  Here lies the palace of the dwarven queen, and untold riches.
 But beware, for the mines are said to be haunted by demon and spirit alike.
 The dwarven kingdom lies to the east.
 ~
-0 0 5
+0 [] 5
 D1
 The dwarven kingdom awaits!
 ~
@@ -1285,132 +1290,136 @@ You see the foothills of this mighty mountain range.
 ~
 ~
 0 -1 4000
+Pdwarven-west-1~
 S
 #0
 
 #RESETS
-D 0 6527   5    1	* Wine cellar down
-D 0 6524   5    1	* Back of Barracks down
-D 0 6505   3    2	* Entrance to Mountain west
-D 0 6513   1    2	* Inside the entrance east
-D 0 6509   1    2	* Door to Kingdom east
-D 0 6510   3    2	* Path to the Castle west
-D 0 6512   1    2	* Door to Castle east
-D 0 6525   3    2	* Inside of Castle Strangelove west
-D 0 6521   2    1	* Entrance to barracks south
-D 0 6523   0    1	* First Barrack room north
-D 0 6526   5    1	* A store room down
-D 0 6527   4    1	* Wine cellar up
-D 0 6540   1    2	* Dark path east
-D 0 6541   3    2	* Mine entrance west
-D 0 6544   0    2	* Mine crossroad north
-D 0 6546   2    2	* Mine Maze south
-D 0 6531   0    1	* Queen's waiting room north
-D 0 6532   2    1	* Bedroom south
-M 0 6500  10 6505  2	* the dwarven guard
-E 1 6504  10   16	*   a hammer
-E 1 6505  10    5	*   dwarven plate mail
-G 1 6502  10     	*   a deep green key
-M 0 6500  10 6505  2	* the dwarven guard
-E 1 6504  10   16	*   a hammer
-E 1 6505  10    5	*   dwarven plate mail
-M 0 6500  10 6540  2	* the dwarven guard
-E 1 6504  10   16	*   a hammer
-E 1 6505  10    5	*   dwarven plate mail
-G 1 6502  10     	*   a deep green key
-M 0 6500  10 6540  2	* the dwarven guard
-E 1 6504  10   16	*   a hammer
-E 1 6505  10    5	*   dwarven plate mail
-O 0 6506   1 6534	* long, black stick
-O 0 6507   2 6513	* long, black stick
-O 0 6507   2 6505	* long, black stick
-O 0 6507   2 6503	* long, black stick
-O 0 6507   1 6540	* long, black stick
-M 0 6501   6 6503  2	* the dwarven worker
-M 0 6501   6 6502  2	* the dwarven worker
-M 0 6501   6 6501  2	* the dwarven worker
-M 0 6502   2 6527  1	* the wraith
-G 1 6502  10     	*   a deep green key
-M 0 6503   1 6516  1	* the storekeeper
-G 1 6504  10     	*   a hammer
-G 1 6505  10     	*   dwarven plate mail
-G 1 6510  10     	*   a dwarven helmet
-G 1 6511  10     	*   a dwarven golden ring
-G 1 6512  10     	*   dwarven gloves
-E 1 6504  10   16	*   a hammer
-M 0 6504   1 6535  1	* the baker
-G 1 3000  10     	*   a barrel of beer
-G 1 3003  10     	*   a bottle of firebreather
-G 1 3009  10     	*   a big pot pie
-G 1 3031  10     	*   a hooded brass lantern
-E 1 6504  10   16	*   a hammer
-M 0 6505   2 6515  1	* the giant lizard
-M 0 6506   2 6508  2	* the giant
-M 0 6500  10 6509  2	* the dwarven guard
-E 1 6509  10   16	*   a two-handed dwarven axe
-E 1 6510  10    6	*   a dwarven helmet
-E 1 6511  10    1	*   a dwarven golden ring
-M 0 6500  10 6509  2	* the dwarven guard
-E 1 6512  10    9	*   dwarven gloves
-E 1 6509  10   16	*   a two-handed dwarven axe
-E 1 6505  10    5	*   dwarven plate mail
-M 0 6507   4 6543  3	* the dwarven miner
-E 1 6508  10   16	*   dwarven club
-M 0 6507   4 6543  3	* the dwarven miner
-E 1 6508  10   16	*   dwarven club
-M 0 6507   4 6542  2	* the dwarven miner
-E 1 6508  10   16	*   dwarven club
-M 0 6508   2 6543  2	* the dwarven mine leader
-E 1 6512  10    9	*   dwarven gloves
-E 1 6504  10   16	*   a hammer
-M 0 6510   4 6534  4	* the dwarven peon
-M 0 6510   4 6534  4	* the dwarven peon
-M 0 6514   4 6521  4	* the barracks guard
-E 1 6509  10   16	*   a two-handed dwarven axe
-M 0 6514   4 6521  4	* the barracks guard
-E 1 6509  10   16	*   a two-handed dwarven axe
-M 0 6500  10 6521  2	* the dwarven guard
-M 0 6500  10 6521  2	* the dwarven guard
-M 0 6511   8 6523  6	* the dwarf
-M 0 6511   8 6523  6	* the dwarf
-E 1 6508  10   16	*   dwarven club
-E 1 6514  10   17	*   a castle key
-M 0 6511   8 6523  6	* the dwarf
-M 0 6511   8 6523  6	* the dwarf
-M 0 6511   8 6524  6	* the dwarf
-O 0 6513   1 6524	* a note
-M 0 6502   2 6524  1	* the wraith
-M 0 6511   8 6524  6	* the dwarf
-G 1 6520  10     	*   a map of Castle Strangelove
-M 0 6512   3 6528  2	* the unwanted son
-M 0 6512   3 6529  2	* the unwanted son
-M 0 6513   3 6529  2	* the unwanted daughter
-M 0 6513   3 6530  2	* the unwanted daughter
-M 0 6515   4 6531  4	* the man in waiting
-M 0 6515   4 6531  4	* the man in waiting
-M 0 6509   1 6534  1	* the dwarven doctor
-E 1 6506  10   17	*   long, black stick
-G 1 6519  10     	*   a box of birth control pills
-M 0 6516   1 6553  1	* the mazekeeper
-G 1 6519  10     	*   a box of birth control pills
-M 0 6517   2 6548  1	* the giant snake
-M 0 6517   2 6549  1	* the giant snake
-O 0 6516   1 6532	* a mine key
-O 0 6517   6 6545	* a chunk of coal
-O 0 6518   3 6551	* a mining pick
-M 0 6500  10 6512  2	* the dwarven guard
-E 1 6504  10   16	*   a hammer
-M 0 6500  10 6512  2	* the dwarven guard
-E 1 6504  10   16	*   a hammer
-M 0 6505   2 6520  1	* the giant lizard
+D 0  6505   3     2    * The west door of Entrance to Mountain is closed and locked
+D 0  6509   1     2    * The east door of Door to Kingdom is closed and locked
+D 0  6510   3     2    * The west door of Path to the Castle is closed and locked
+D 0  6512   1     2    * The east door of Door to Castle is closed and locked
+D 0  6513   1     2    * The east door of Inside the entrance is closed and locked
+D 0  6521   2     1    * The south door of Entrance to barracks is closed
+D 0  6523   0     1    * The north door of First Barrack room is closed
+D 0  6524   5     1    * The down door of Back of Barracks is closed
+D 0  6525   3     2    * The west door of Inside of Castle Strangelove is closed and locked
+D 0  6526   5     1    * The down door of A store room is closed
+D 0  6527   4     1    * The up door of Wine cellar is closed
+D 0  6527   5     1    * The down door of Wine cellar is closed
+D 0  6531   0     1    * The north door of Queen's waiting room is closed
+D 0  6532   2     1    * The south door of Bedroom is closed
+D 0  6540   1     2    * The east door of Dark path is closed and locked
+D 0  6541   3     2    * The west door of Mine entrance is closed and locked
+D 0  6544   0     2    * The north door of Mine crossroad is closed and locked
+D 0  6546   2     2    * The south door of Mine Maze is closed and locked
+M 0  6501   6  6501  2 * load the dwarven worker
+M 0  6501   6  6502  2 * load the dwarven worker
+O 0  6507   2  6503    * Long, black stick loaded to Top of mountain
+M 0  6501   6  6503  2 * load the dwarven worker
+M 0  6500  10  6505  2 * load the dwarven guard
+E 1  6504  10    16    * A hammer is loaded wielded of the dwarven guard
+E 1  6505  10     5    * Dwarven plate mail is loaded on the torso of the dwarven guard
+G 1  6502  10          * A deep green key is given to the dwarven guard
+M 0  6500  10  6505  2 * load the dwarven guard
+E 1  6504  10    16    * A hammer is loaded wielded of the dwarven guard
+E 1  6505  10     5    * Dwarven plate mail is loaded on the torso of the dwarven guard
+O 0  6507   2  6505    * Long, black stick loaded to Entrance to Mountain
+M 0  6506   2  6508  2 * load the giant
+M 0  6500  10  6509  2 * load the dwarven guard
+E 1  6509  10    16    * A two-handed dwarven axe is loaded wielded of the dwarven guard
+E 1  6510  10     6    * A dwarven helmet is loaded over the head of the dwarven guard
+E 1  6511  10     1    * A dwarven golden ring is loaded on the left finger of the dwarven guard
+M 0  6500  10  6509  2 * load the dwarven guard
+E 1  6512  10     9    * Dwarven gloves is loaded on the hands of the dwarven guard
+E 1  6509  10    16    * A two-handed dwarven axe is loaded wielded of the dwarven guard
+E 1  6505  10     5    * Dwarven plate mail is loaded on the torso of the dwarven guard
+M 0  6500  10  6512  2 * load the dwarven guard
+E 1  6504  10    16    * A hammer is loaded wielded of the dwarven guard
+M 0  6500  10  6512  2 * load the dwarven guard
+E 1  6504  10    16    * A hammer is loaded wielded of the dwarven guard
+O 0  6507   2  6513    * Long, black stick loaded to Inside the entrance
+M 0  6505   2  6515  1 * load the giant lizard
+M 0  6503   1  6516  1 * load the storekeeper
+G 1  6504  10          * A hammer is given to the storekeeper
+G 1  6505  10          * Dwarven plate mail is given to the storekeeper
+G 1  6510  10          * A dwarven helmet is given to the storekeeper
+G 1  6511  10          * A dwarven golden ring is given to the storekeeper
+G 1  6512  10          * Dwarven gloves is given to the storekeeper
+E 1  6504  10    16    * A hammer is loaded wielded of the storekeeper
+M 0  6505   2  6520  1 * load the giant lizard
+M 0  6514   4  6521  4 * load the barracks guard
+E 1  6509  10    16    * A two-handed dwarven axe is loaded wielded of the barracks guard
+M 0  6514   4  6521  4 * load the barracks guard
+E 1  6509  10    16    * A two-handed dwarven axe is loaded wielded of the barracks guard
+M 0  6500  10  6521  2 * load the dwarven guard
+M 0  6500  10  6521  2 * load the dwarven guard
+M 0  6511   8  6523  6 * load the dwarf
+M 0  6511   8  6523  6 * load the dwarf
+E 1  6508  10    16    * Dwarven club is loaded wielded of the dwarf
+E 1  6514  10    17    * A castle key is loaded held in the hands of the dwarf
+M 0  6511   8  6523  6 * load the dwarf
+M 0  6511   8  6523  6 * load the dwarf
+M 0  6511   8  6524  6 * load the dwarf
+O 0  6513   1  6524    * A note loaded to Back of Barracks
+M 0  6502   2  6524  1 * load the wraith
+M 0  6511   8  6524  6 * load the dwarf
+G 1  6520  10          * A map of castle strangelove is given to the dwarf
+M 0  6502   2  6527  1 * load the wraith
+G 1  6502  10          * A deep green key is given to the wraith
+M 0  6512   3  6528  2 * load the unwanted son
+M 0  6512   3  6529  2 * load the unwanted son
+M 0  6513   3  6529  2 * load the unwanted daughter
+M 0  6513   3  6530  2 * load the unwanted daughter
+M 0  6515   4  6531  4 * load the man in waiting
+M 0  6515   4  6531  4 * load the man in waiting
+O 0  6516   1  6532    * A mine key loaded to Bedroom
+O 0  6506   1  6534    * Long, black stick loaded to Hospital
+M 0  6510   4  6534  4 * load the dwarven peon
+M 0  6510   4  6534  4 * load the dwarven peon
+M 0  6509   1  6534  1 * load the dwarven doctor
+E 1  6506  10    17    * Long, black stick is loaded held in the hands of the dwarven doctor
+G 1  6519  10          * A box of birth control pills is given to the dwarven doctor
+M 0  6504   1  6535  1 * load the baker
+G 1  3000  10          * A barrel of beer is given to the baker
+G 1  3003  10          * A bottle of firebreather is given to the baker
+G 1  3009  10          * A big pot pie is given to the baker
+G 1  3031  10          * A hooded brass lantern is given to the baker
+E 1  6504  10    16    * A hammer is loaded wielded of the baker
+M 0  6500  10  6540  2 * load the dwarven guard
+E 1  6504  10    16    * A hammer is loaded wielded of the dwarven guard
+E 1  6505  10     5    * Dwarven plate mail is loaded on the torso of the dwarven guard
+G 1  6502  10          * A deep green key is given to the dwarven guard
+M 0  6500  10  6540  2 * load the dwarven guard
+E 1  6504  10    16    * A hammer is loaded wielded of the dwarven guard
+E 1  6505  10     5    * Dwarven plate mail is loaded on the torso of the dwarven guard
+O 0  6507   1  6540    * Long, black stick loaded to Dark path
+M 0  6507   4  6542  2 * load the dwarven miner
+E 1  6508  10    16    * Dwarven club is loaded wielded of the dwarven miner
+M 0  6507   4  6543  3 * load the dwarven miner
+E 1  6508  10    16    * Dwarven club is loaded wielded of the dwarven miner
+M 0  6507   4  6543  3 * load the dwarven miner
+E 1  6508  10    16    * Dwarven club is loaded wielded of the dwarven miner
+M 0  6508   2  6543  2 * load the dwarven mine leader
+E 1  6512  10     9    * Dwarven gloves is loaded on the hands of the dwarven mine leader
+E 1  6504  10    16    * A hammer is loaded wielded of the dwarven mine leader
+O 0  6517   6  6545    * A chunk of coal loaded to Coal Room
+M 0  6517   2  6548  1 * load the giant snake
+M 0  6517   2  6549  1 * load the giant snake
+O 0  6518   3  6551    * A mining pick loaded to Mining equipment room
+M 0  6516   1  6553  1 * load the mazekeeper
+G 1  6519  10          * A box of birth control pills is given to the mazekeeper
 S
 
 #SHOPS
-6503  0  0  0  0  0 	 150  50 	 0 23 	* the storekeeper
-6504  0  0  0  0  0 	 150  50 	 0 23 	* the baker
+ 6503  0  0  0  0  0 150  50  0 23
+ 6504  0  0  0  0  0 150  50  0 23
 0
 
 #SPECIALS
 S
+
+#MOBPROGS
+#0
 
 #$

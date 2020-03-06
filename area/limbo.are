@@ -1,8 +1,10 @@
-#AREA
-limbo.are~
-Limbo~
-{None } Diku    Limbo~
-0 99
+#AREADATA
+Name Limbo~
+Builders None~
+VNUMs 0 99
+Credits {None } Diku    Limbo~
+Security 9
+End
 
 #MOBILES
 #0
@@ -13,7 +15,7 @@ coin silver gcash~
 a silver coin~
 One miserable silver coin.~
 silver~
-money 0 A
+money [] [take]
 1 0 0 0 0
 0 10 0 P
 #2
@@ -21,7 +23,7 @@ coin gold gcash~
 a gold coin~
 One valuable gold coin.~
 gold~
-money 0 A
+money [] [take]
 0 1 0 0 0
 0 10 0 P
 #3
@@ -29,7 +31,7 @@ coins gold gcash~
 %d gold coins~
 A pile of gold coins.~
 gold~
-money 0 A
+money [] [take]
 0 0 0 0 0
 0 10 0 P
 #4
@@ -37,7 +39,7 @@ coins silver gcash~
 %d silver coins~
 A pile of silver coins.~
 silver~
-money 0 A
+money [] [take]
 0 0 0 0 0
 0 10 0 P
 #5
@@ -45,7 +47,7 @@ coins silver gold gcash~
 %d silver coins and %d gold coins~
 A pile of coins.~
 gold~
-money 0 A
+money [] [take]
 0 0 0 0 0
 0 10 0 P
 #10
@@ -53,7 +55,7 @@ corpse~
 the corpse of %s~
 The corpse of %s is lying here.~
 meat~
-npc_corpse 0 A
+npc_corpse [] [take]
 0 0 0 1 0
 0 1000 0 D
 #11
@@ -61,7 +63,7 @@ corpse~
 the corpse of %s~
 The corpse of %s is lying here.~
 meat~
-pc_corpse O A
+pc_corpse [nopurge] [take]
 0 0 0 1 0
 0 1000 0 D
 #12
@@ -69,7 +71,7 @@ head~
 the head of %s~
 The severed head of %s is lying here.~
 meat~
-trash 0 A
+trash [] [take]
 0 0 0 0 0
 0 50 0 D
 #13
@@ -77,7 +79,7 @@ heart~
 the heart of %s~
 The torn-out heart of %s is lying here.~
 meat~
-food 0 A
+food [] [take]
 16 16 0 0 0
 0 20 0 D
 #14
@@ -85,7 +87,7 @@ arm~
 the arm of %s~
 The sliced-off arm of %s is lying here.~
 meat~
-food 0 A
+food [] [take]
 20 20 0 0 0
 0 50 0 D
 #15
@@ -93,7 +95,7 @@ leg~
 the leg of %s~
 The sliced-off leg of %s is lying here.~
 meat~
-food 0 A
+food [] [take]
 20 20 0 0 0
 0 50 0 D
 #16
@@ -101,7 +103,7 @@ guts entrails~
 the guts of %s~
 A steaming pile of %s's entrails is lying here.~
 meat~
-food 0 A
+food [] [take]
 5 5 0 1 0
 0 20 0 D
 #17
@@ -109,7 +111,7 @@ brains brain~
 the brains of %s~
 The splattered brains of %s are lying here.~
 meat~
-food 0 A
+food [] [take]
 10 10 0 0 0
 0 20 0 D
 #20
@@ -117,7 +119,7 @@ mushroom~
 a Magic Mushroom~
 A delicious magic mushroom is here.~
 food~
-food 0 A
+food [] [take]
 8 8 0 0 0
 0 10 0 P
 #21
@@ -125,7 +127,7 @@ ball light~
 a bright ball of light~
 A bright ball of light shimmers in the air.~
 energy~
-light A A
+light [glow] [take]
 0 0 -1 0 0
 0 0 0 P
 #22
@@ -133,7 +135,7 @@ spring~
 a magical spring~
 A magical spring flows from the ground here.~
 water~
-fountain G 0
+fountain [magic] []
 100000 100000 'water' 0 0
 0 0 0 P
 #23
@@ -141,25 +143,25 @@ disc disk floating black~
 a floating disc~
 A floating black disc hangs in the air.~
 energy~
-container GMPUYZ AQ
-0 E 0 0 0
+container [magic noremove rotdeath meltdrop burnproof nouncurse] [take wearfloat]
+0 [puton] 0 0 0
 0 0 0 P
 #25
 gate portal~
 a shimmering gate~
 A shimmering black gate rises from the ground, leading to parts unknown.~
 shadow~
-portal GOT 0
+portal [magic nopurge nolocate] []
 0 0 0 0 0
 0 0 0 P
 #30
 dummy object~
 a dummy object~
 Dummy object is used for loading non-existent objects~
-~
-trash 0 0
+generic~
+trash [] []
 0 0 0 0 0
-0 0 0 P        
+0 0 0 P
 #0
 
 #ROOMS
@@ -167,7 +169,8 @@ trash 0 0
 The Void~
 You are floating in nothing.
 ~
-0 CD 1
+0 [no_mob indoors] 1
+P limbo-room-1~
 S
 #2
 Limbo~
@@ -176,11 +179,13 @@ matter, surrounded by swirling glowing light, which fades into the relative
 darkness around you without any trace of edges or shadow.
    There is a "No Tipping" notice pinned to the darkness.
 ~
-0 D 1
+0 [indoors] 1
+P limbo-room-2~
 D4
 ~
 ~
 0 -1 3001
+Plimbo-up-1~
 S
 #0
 
@@ -192,5 +197,8 @@ S
 
 #SPECIALS
 S
+
+#MOBPROGS
+#0
 
 #$

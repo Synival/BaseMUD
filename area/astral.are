@@ -1,12 +1,14 @@
-#AREA
-astral.are~
-Astral Plane~
-{10 35} Andersen Astral/Githyanki~
-7700 7799
+#AREADATA
+Name Astral Plane~
+Builders None~
+VNUMs 7700 7799
+Credits {10 35} Andersen Astral/Githyanki~
+Security 9
+End
 
 #MOBILES
 #7700
-oldstyle astral guardian~
+astral guardian~
 The Astral Guardian~
 A grey figure guards the entrance to the astral plane.
 ~
@@ -14,14 +16,14 @@ You see a slate grey vaguely humanoid shape, devoid of any true features.
 It stands before you with arms folded, seemingly uninterested in you.
 ~
 human~
-ABT DFHN 0 0
+[sentinel warrior] [detect_invis detect_hidden sanctuary protect_evil] 0 0
 37 0 10d10+1500 18d9+100 3d10+12 none
 -12 -12 -12 5
-EFNU 0 0 0
-stand stand none 5000
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 5000
+[] [] medium generic
 #7701
-oldstyle nightmare~
+nightmare~
 A pitch-black nightmare~
 A nightmare is here, kicking at you with its flaming hooves.
 ~
@@ -30,14 +32,14 @@ planes to torment mortals.  It vaguely resembles a horse, with a hide blacker
 than the darkest night, and hooves that burn with unholy fires.
 ~
 human~
-AD DJT -950 0
+[unused_act_1] [detect_invis infrared flying] -950 0
 18 0 3d9+283 9d9+100 2d7+4 none
 -3 -3 -3 7
-EFNU 0 0 0
-stand stand none 300
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 300
+[] [] medium generic
 #7702
-oldstyle night hag~
+night hag~
 An evil night hag~
 A night hag reaches out to steal your soul.
 ~
@@ -46,14 +48,14 @@ purpose is to hunt down and slay mortals in order to obtain souls for her foul
 master to torment.
 ~
 human~
-ADFR DJ -1000 0
+[unused_act_1 aggressive mage] [detect_invis infrared] -1000 0
 24 0 5d10+450 24d9+100 4d4+5 none
 -6 -6 -6 2
-FU 0 0 0
+[dodge assist_vnum] [] [] []
 stand stand female 625
-0 0 medium 0
+[] [] medium generic
 #7703
-oldstyle stalker invisible~
+stalker invisible~
 An invisible stalker~
 You see a wavy distortion in the air.
 ~
@@ -61,14 +63,14 @@ You see only a wavy distortion in the air.  You reach out to touch it, and
 feel nothing, not even the slightest of motions.
 ~
 human~
-AD BT 200 0
+[unused_act_1] [invisible flying] 200 0
 17 0 3d9+258 8d9+100 3d4+4 none
 -3 -3 -3 7
-EFNU 0 0 0
-stand stand none 50
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 50
+[] [] medium generic
 #7704
-oldstyle soulless one~
+soulless one~
 A poor soulless being~
 The soulless one wanders mindlessly.
 ~
@@ -76,14 +78,14 @@ This unfortunate being has had its very soul torn from its body.  It now roams
 mindlessly, unaware of its surroundings.
 ~
 human~
-A 0 0 0
+[] [] 0 0
 10 0 2d7+121 5d9+100 2d4+2 none
 1 1 1 8
-EFNU 0 0 0
-stand stand none 12
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 12
+[] [] medium generic
 #7705
-oldstyle githyanki hunter~
+githyanki hunter~
 A githyanki hunter~
 A githyanki hunter searches for signs of the githzerai.
 ~
@@ -92,14 +94,14 @@ normal man.  Like all githyanki, his teeth are fanged and his eyes hollow
 and sunken.
 ~
 human~
-ACS DFJP -500 0
+[scavenger thief] [detect_invis detect_hidden infrared sneak] -500 0
 11 0 2d7+121 5d9+100 2d4+2 none
 1 1 1 7
-BEFJNU 0 0 0
+[backstab disarm dodge dirt_kick trip assist_vnum] [] [] []
 stand stand male 50
-0 0 medium 0
+[] [] medium generic
 #7706
-oldstyle githyanki warrior~
+githyanki warrior~
 A githyanki warrior~
 You see a humanoid figure clad in splinted armor.
 ~
@@ -109,14 +111,14 @@ He is clad in ornately designed splinted armor, and wields a sword that
 whistles through the air as it slices towards your neck.
 ~
 human~
-A J -500 0
+[] [infrared] -500 0
 15 0 3d9+208 7d9+100 2d6+3 none
 -2 -2 -2 7
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 125
-0 0 medium 0
+[] [] medium generic
 #7707
-oldstyle githyanki guardian~
+githyanki guardian~
 A githyanki guardian~
 A humanoid figure clad in splinted armor blocks your way.
 ~
@@ -126,14 +128,14 @@ He is clad in ornately designed splinted armor, and wields a sword that
 whistles through the air as it slices towards your neck.
 ~
 human~
-ABF J -500 0
+[sentinel aggressive] [infrared] -500 0
 15 0 3d9+208 7d9+100 2d6+3 none
 -2 -2 -2 7
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 300
-0 0 medium 0
+[] [] medium generic
 #7708
-oldstyle githyanki knight~
+githyanki knight~
 A githyanki knight~
 A tall figure armored in black observes you quietly.
 ~
@@ -143,14 +145,14 @@ splinted armor -- you only hear the hissing of his breath and the scraping
 of his sword against its scabbard as it is unsheathed.
 ~
 human~
-A J -500 0
+[] [infrared] -500 0
 25 0 5d10+550 12d9+100 2d10+7 none
 -7 -7 -7 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 500
-0 0 medium 0
+[] [] medium generic
 #7709
-oldstyle githyanki protector~
+githyanki protector~
 A githyanki protector~
 A black knight of the githyanki protects his queen.
 ~
@@ -160,14 +162,14 @@ splinted armor -- you only hear the hissing of his breath and the scraping
 of his sword against its scabbard as it is unsheathed.
 ~
 human~
-ABF J -500 0
+[sentinel aggressive] [infrared] -500 0
 25 0 5d10+550 12d9+100 2d10+7 none
 -7 -7 -7 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 500
-0 0 medium 0
+[] [] medium generic
 #7710
-oldstyle githyanki gish~
+githyanki gish~
 An evil gish~
 A small githyanki laughs at you through fanged teeth.
 ~
@@ -177,14 +179,14 @@ sunken.  The gish are well-versed in the arcane arts, unlike the normal gith
 people.  You notice this from the blast of lightning headed towards you.
 ~
 human~
-AR J -500 0
+[mage] [infrared] -500 0
 11 0 2d7+121 11d9+100 1d7+2 none
 1 1 1 6
-FU 0 0 0
+[dodge assist_vnum] [] [] []
 stand stand male 150
-0 0 medium 0
+[] [] medium generic
 #7711
-oldstyle githyanki gish~
+githyanki gish~
 An evil gish~
 A gish laughs as flame leaps from his hands towards your face.
 ~
@@ -194,14 +196,14 @@ sunken.  The gish are well-versed in the arcane arts, unlike the normal gith
 people.  You notice this from the blast of lightning headed towards you.
 ~
 human~
-ACFR J -500 0
+[scavenger aggressive mage] [infrared] -500 0
 11 0 2d7+121 11d9+100 1d7+2 none
 1 1 1 6
-FU 0 0 0
+[dodge assist_vnum] [] [] []
 stand stand male 150
-0 0 medium 0
+[] [] medium generic
 #7712
-oldstyle githyanki warlock~
+githyanki warlock~
 A warlock of the Gith~
 A humanoid figure stands here, holding a silvery sword.
 ~
@@ -211,14 +213,14 @@ and sunken.  As you turn to flee, you feel the impact of a fireball against
 your back.
 ~
 human~
-AFR DEJ -500 0
+[aggressive mage] [detect_invis detect_magic infrared] -500 0
 20 0 3d9+308 20d9+100 3d4+4 none
 -4 -4 -4 3
-FU 0 0 0
+[dodge assist_vnum] [] [] []
 stand stand male 500
-0 0 medium 0
+[] [] medium generic
 #7713
-oldstyle githyanki lich queen~
+githyanki lich queen~
 The lich-queen~
 The evil lich-queen of the Gith reaches out to destroy you.
 ~
@@ -228,14 +230,14 @@ unholy magic and the powers of this plane of existence.  The cold glare of her
 hollow eyes sends you into paroxysms of fright.
 ~
 human~
-ABF DEFHJ -750 0
+[sentinel aggressive] [detect_invis detect_magic detect_hidden sanctuary infrared] -750 0
 30 0 6d12+853 15d9+100 4d6+8 none
 -9 -9 -9 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand female 5000
-0 0 medium 0
+[] [] medium generic
 #7714
-oldstyle lord gith~
+lord gith~
 Lord Gith~
 Lord Gith suddenly forms from a cloud of blackness.
 He stares right through you with deadly, cold eyes.
@@ -249,14 +251,14 @@ He gestures towards you.  You feel your heart tremble and your throat begin
 to tighten.  You are about to die.
 ~
 human~
-ABF BDFHJ -900 0
+[sentinel aggressive] [invisible detect_invis detect_hidden sanctuary infrared] -900 0
 35 0 10d10+1300 17d9+100 4d7+11 none
 -11 -11 -11 5
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 250
-0 0 medium 0
+[] [] medium generic
 #7715
-oldstyle ghost~
+ghost~
 An insubstantial ghost~
 A ghost wanders here, intent on destroying all life.
 ~
@@ -266,14 +268,14 @@ and destroyed in this torment, and it now envys and intends to destroy all the
 true living beings it encounters, including you.
 ~
 human~
-A JTU -1000 0
+[] [infrared flying pass_door] -1000 0
 16 0 3d9+233 8d9+100 2d6+4 none
 -2 -2 -2 7
-EFNU 0 0 0
-stand stand none 50
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 50
+[] [] medium generic
 #7716
-oldstyle githzerai prisoner~
+githzerai prisoner~
 An imprisoned githzerai~
 A githzerai plots his escape plan.
 ~
@@ -282,14 +284,14 @@ by the mindflayers and related to the githyanki.  Unfortunately, the two races
 are bitter enemies, and this one happened to get caught.  He intends to escape.
 ~
 human~
-A J -250 0
+[] [infrared] -250 0
 10 0 2d7+121 5d9+100 2d4+2 none
 1 1 1 8
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 0
-0 0 medium 0
+[] [] medium generic
 #7717
-oldstyle mindflayer prisoner~
+mindflayer prisoner~
 A tortured mindflayer prisoner~
 A mindflayer lies here, scarred from the torture inflicted by the Gith.
 ~
@@ -298,14 +300,14 @@ middle of its head.  It is hunched over, bent and scarred from torture inflicted
 by the githyanki.  It cringes as you approach.
 ~
 human~
-ABR 0 0 0
+[sentinel mage] [] 0 0
 8 0 2d6+85 8d9+100 1d6+1 none
 4 4 4 7
-FU 0 0 0
-stand stand none 0
-0 0 medium 0
+[dodge assist_vnum] [] [] []
+stand stand neutral 0
+[] [] medium generic
 #7718
-oldstyle dragon red slave~
+dragon red slave~
 The enslaved red dragon~
 A giant red dragon is chained here, his breath heating the furnace.
 ~
@@ -315,26 +317,26 @@ in length with an even more massive wingspan.  He watches you, smoke drifting
 from his open mouth.
 ~
 dragon~
-ABR D -400 0
+[sentinel mage] [detect_invis] -400 0
 28 0 5d10+650 28d9+100 2d10+7 none
 -8 -8 -8 1
-FR 0 0 0
+[dodge assist_race] [] [] []
 stand stand male 250
-0 0 medium 0
+[] [] medium generic
 #7719
-oldstyle fire furnace flame~
+fire furnace flame~
 A massive blast of fire~
 The fires of the furnace burn away at your skin!
 ~
 The fire feeds on your skin like a living being, licking out at your hair.
 ~
 human~
-ABDF J 0 0
+[sentinel unused_act_1 aggressive] [infrared] 0 0
 13 0 2d10+170 6d9+100 2d5+3 none
 -1 -1 -1 8
-EFNU 0 0 0
-stand stand none 250
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 250
+[] [] medium generic
 #0
 
 #OBJECTS
@@ -342,9 +344,9 @@ stand stand none 250
 hammer sledge grey~
 a massive slate-grey sledgehammer~
 The ground cracks under the weight of a grey hammer lying here.~
-oldstyle~
-weapon JK AN
-mace 4 8 crush 0
+generic~
+weapon [antigood antievil] [take wield]
+mace 4 8 crush []
 38 550 5200 P
 A
 19 6
@@ -360,8 +362,8 @@ This massive hammer is incredibly hard, heavy, and utterly grey and featureless.
 scroll violet~
 a violet scroll~
 A rolled piece of violet parchment lies on the floor.~
-oldstyle~
-scroll I A
+generic~
+scroll [bless] [take]
 15 'armor' 'bless' 'shield' ''
 11 10 1510 P
 E
@@ -372,8 +374,8 @@ The scroll is written on soft violet parchment that has a pleasing smell to it.
 tablet scroll black~
 a black etched tablet~
 Lying on the ground is a jet black stone tablet.~
-oldstyle~
-scroll E A
+generic~
+scroll [evil] [take]
 30 'summon' 'charm person' '' ''
 12 50 2100 P
 E
@@ -385,8 +387,8 @@ writings etched deep into its surface.
 scroll githyanki~
 a scroll with githyanki writings on it~
 You see a scroll written in an alien tongue.~
-oldstyle~
-scroll 0 A
+generic~
+scroll [] [take]
 24 'lightning bolt' 'lightning bolt' '' ''
 7 10 1240 P
 E
@@ -397,8 +399,8 @@ The scroll has writings on it that you cannot comprehend.
 amulet demon~
 a small demon's amulet~
 A small amulet lies here in the dirt.~
-oldstyle~
-wand EH AO
+generic~
+wand [evil nodrop] [take hold]
 25 5 5 'energy drain' 0
 11 50 2600 P
 A
@@ -418,8 +420,8 @@ not to utter aloud.
 talisman devilish~
 a devilish talisman~
 On the ground is a small talisman which radiates a tangible evil.~
-oldstyle~
-staff EH AO
+generic~
+staff [evil nodrop] [take hold]
 25 5 5 'flamestrike' 0
 14 50 5300 P
 A
@@ -436,9 +438,9 @@ Engraved in the center is one word.  Merely reading the word induces fright.
 knife silvery~
 a silvery knife~
 A flat-bladed silvery knife lies here.~
-oldstyle~
-weapon 0 AN
-dagger 2 4 stab 0
+generic~
+weapon [] [take wield]
+dagger 2 4 stab []
 6 30 480 P
 A
 19 1
@@ -454,9 +456,9 @@ fluid to the touch.
 dagger silvery~
 a silvery dagger~
 A sharp-looking silvery dagger lies here.~
-oldstyle~
-weapon 0 AN
-dagger 3 4 pierce 0
+generic~
+weapon [] [take wield]
+dagger 3 4 pierce []
 13 30 980 P
 A
 19 1
@@ -472,9 +474,9 @@ fluid to the touch.
 sword thin~
 an extremely sharp and thin sword~
 Light glints off the edge of a razor-sharp sword.~
-oldstyle~
-weapon 0 AN
-sword 4 3 slice 0
+generic~
+weapon [] [take wield]
+sword 4 3 slice []
 16 30 2300 P
 A
 19 3
@@ -492,9 +494,9 @@ could probably cut through stone.
 sword thin two two-handed~
 a thin two-handed sword~
 A heavy yet thinly bladed two-handed sword lies here.~
-oldstyle~
-weapon 0 AN
-sword 2 12 slash F
+generic~
+weapon [] [take wield]
+sword 2 12 slash [twohands]
 24 160 2600 P
 A
 19 2
@@ -510,9 +512,9 @@ could probably cut through stone.
 sword silvery two-handed~
 a silvery sword~
 A silvery sword gleams unnaturally with an alien light.~
-oldstyle~
-weapon A AN
-sword 4 4 slash F
+generic~
+weapon [glow] [take wield]
+sword 4 4 slash [twohands]
 19 130 4600 P
 A
 19 2
@@ -528,9 +530,9 @@ fluid to the touch.
 flail barbed iron~
 an iron barbed flail~
 A rusty iron flail with wicked barbs on it tears at the ground.~
-oldstyle~
-weapon BE AN
-flail 5 5 claw 0
+generic~
+weapon [hum evil] [take wield]
+flail 5 5 claw []
 29 140 2800 P
 A
 18 3
@@ -544,9 +546,9 @@ barbs on it.
 sword gith two-handed~
 the unholy sword of the githyanki~
 You feel tendrils of evil emanating from a wicked blade.~
-oldstyle~
-weapon EHM AN
-sword 9 3 slash F
+generic~
+weapon [evil nodrop noremove] [take wield]
+sword 9 3 slash [twohands]
 31 250 5100 P
 A
 18 4
@@ -567,8 +569,8 @@ Maybe picking it up wasn't such a good idea.
 stone flame~
 a brightly flaming stone~
 The room is lit by a hot blue flame coming from a small stone.~
-oldstyle~
-light 0 AO
+generic~
+light [] [take hold]
 0 0 -1 0 0
 20 10 1440 P
 A
@@ -584,8 +586,8 @@ ease.  The flame creates a light that allows you to see for miles.
 powder astral~
 some astral powder~
 Twinkling powder floats before your eyes.~
-oldstyle~
-treasure 0 A
+generic~
+treasure [] [take]
 0 0 0 0 0
 0 10 100 P
 E
@@ -596,8 +598,8 @@ You see the residue of the astral plane.
 vest splint~
 a splint mail vest~
 An intricately fashioned splint mail vest lies here.~
-oldstyle~
-armor 0 AD
+generic~
+armor [] [take body]
 6 6 6 0 0
 15 450 2100 P
 E
@@ -609,8 +611,8 @@ quality of steels.
 skirt splint~
 a splint mail skirt~
 An intricately fashioned splint mail skirt lies here.~
-oldstyle~
-armor 0 AF
+generic~
+armor [] [take legs]
 7 7 7 0 0
 20 200 1450 P
 E
@@ -622,8 +624,8 @@ quality of steels.
 sleeves splint~
 a pair of splint mail sleeves~
 A pair of intricately fashioned splint mail sleeves lie here.~
-oldstyle~
-armor 0 AI
+generic~
+armor [] [take arms]
 7 7 7 0 0
 20 150 1450 P
 E
@@ -635,8 +637,8 @@ quality of steels.
 gauntlets ornate~
 a pair of ornately designed gauntlets~
 A pair of painstakingly designed ornate gauntlets lie here.~
-oldstyle~
-armor 0 AH
+generic~
+armor [] [take hands]
 7 7 7 0 0
 20 50 2700 P
 A
@@ -654,8 +656,8 @@ quality of steels.
 vest cracked leather~
 a decaying vest made from cracked leather~
 A decaying hunk of cracked leather has been discarded here.~
-oldstyle~
-armor 0 AD
+generic~
+armor [] [take body]
 9 9 9 2 0
 31 50 8500 P
 A
@@ -671,8 +673,8 @@ to a husk.  It is covered with stains, burns, scorch marks, and blood.
 potion violet~
 a violet potion~
 A tall glass flask holds a translucent violet fluid.~
-oldstyle~
-potion 0 A
+generic~
+potion [] [take]
 18 'invisibility' 'protection evil' 'detect evil' ''
 2 20 320 P
 E
@@ -683,8 +685,8 @@ The violet fluid inside shifts and swirls.
 potion vial murky~
 a vial of murky fluid~
 A small vial contains a murky, sludge-like substance.~
-oldstyle~
-potion 0 A
+generic~
+potion [] [take]
 15 'blindness' 'shield' '' ''
 10 10 760 P
 E
@@ -695,8 +697,8 @@ The murky liquid inside this vial looks a lot like sewer water.
 potion silvery~
 a silvery-colored potion~
 An octagonal vial holds a silvery-colored fluid that reflects light.~
-oldstyle~
-potion 0 A
+generic~
+potion [] [take]
 20 'detect invis' 'detect magic' 'detect poison' ''
 1 20 320 P
 E
@@ -707,8 +709,8 @@ The octagonal vial contains a silvery-colored liquid that shimmers in the light.
 mint chocolate~
 a tasty-looking chocolate mint~
 Someone has dropped a delicious-looking chocolate mint here.~
-oldstyle~
-pill 0 A
+generic~
+pill [] [take]
 35 'refresh' 'heal' '' ''
 11 0 990 P
 E
@@ -720,8 +722,8 @@ interior that must be savored, not swallowed.
 pentagram~
 a black pentagram~
 A small black metal pentagram has been left here.~
-oldstyle~
-key F AO
+generic~
+key [invis] [take hold]
 0 0 0 0 0
 0 100 0 P
 E
@@ -733,8 +735,8 @@ Inscribed on its exterior loop are markings in an alien tongue.
 pouch rotting~
 a rotting pouch~
 A small pouch rots away on the floor here.~
-oldstyle~
-money 0 A
+generic~
+money [] [take]
 100 0 0 0 0
 0 10 0 P
 E
@@ -750,7 +752,7 @@ You are standing before a shimmering rainbow arching high up into the
 sky.  You feel somehow separated from the natural world, even though the
 temple spire is only a few meters below you.
 ~
-0 0 1
+0 [] 1
 D4
 The rainbow extends above you, fading out of existence only meters away.
 ~
@@ -761,6 +763,7 @@ You can see the Temple of Midgaard below you.
 ~
 ~
 0 -1 1036
+Pastral-down-1~
 E
 rainbow~
 The rainbow softly glows with beams of light, in colours that defie 
@@ -773,7 +776,7 @@ You are standing on the rainbow, surrounded by many beams of multicoloured
 light.  Through the bottom of the rainbow you can barely make out the Temple
 of Midgaard, which is now quite far away.
 ~
-0 0 5
+0 [] 5
 D4
 The rainbow extends far above you, slowly fading into darkness.
 ~
@@ -796,7 +799,7 @@ You are standing on the rainbow, surrounded by many beams of multicoloured
 light.  Through the bottom of the rainbow you see the City of Midgaard and the 
 land surrounding it.  It seems to be miles below you.
 ~
-0 0 5
+0 [] 5
 D4
 The rainbow extends far above you, slowly fading into darkness.
 ~
@@ -818,7 +821,7 @@ On the Rainbow~
 You are standing on the rainbow, surrounded by many beams of multicoloured
 light.  The rainbow extends above and below you as far as you can see.
 ~
-0 0 5
+0 [] 5
 D4
 The rainbow extends far above you.  You see a glowing white light at the 
 rainbow's end.
@@ -842,7 +845,7 @@ You are nearing the end of the rainbow.  The beams of multicoloured
 light have begun to merge and solidify.  All around you you see glowing
 starlike motes of dust.  Ahead of you is a bridge.
 ~
-0 0 5
+0 [] 5
 D4
 The rainbow extends above you, merging into a brilliant glowing
 bridge.
@@ -877,7 +880,7 @@ colours have twisted and merged into a beautiful glowing bridge that leads
 toward a massive white gate to the north.  All around you is a soft, peaceful 
 glow interrupted only by the passing of starlike dust motes before your eyes.
 ~
-0 0 1
+0 [] 1
 D0
 The bridge leads on to a massive white gate.  You see a large grey figure
 standing there.
@@ -916,7 +919,7 @@ Here the bridge ends before a massive, pearly-coloured gate beyond which
 you can see a field of blackness filled with silvery snake-like tendrils,
 stars, and occasional flashes of of light.
 ~
-0 0 1
+0 [] 1
 D0
 Through the gate you see a massive field of blackness that extends as far
 as you can see.
@@ -955,7 +958,7 @@ of silvery light and insubstantial shining motes of dust.  The weightlessness
 of this environment is very disorienting, although it is not too late to return
 through the gate to the south.
 ~
-0 C 2
+0 [no_mob] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1000,7 +1003,7 @@ of silvery light and insubstantial shining motes of dust.  The weightlessness
 of this environment is very disorienting, and it is difficult to maintain your 
 bearings and sense of direction.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1034,7 +1037,7 @@ of silvery light and insubstantial shining motes of dust.  The weightlessness
 of this environment is very disorienting, and it is difficult to maintain your 
 bearings and sense of direction.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1068,7 +1071,7 @@ of silvery light and insubstantial shining motes of dust.  The weightlessness
 of this environment is very disorienting, and it is difficult to maintain your 
 bearings and sense of direction.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1102,7 +1105,7 @@ of silvery light and insubstantial shining motes of dust.  The weightlessness
 of this environment is very disorienting, and it is difficult to maintain your 
 bearings and sense of direction.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1136,7 +1139,7 @@ of silvery light and insubstantial shining motes of dust.  The weightlessness
 of this environment is very disorienting, and it is difficult to maintain your 
 bearings and sense of direction.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1170,7 +1173,7 @@ of silvery light and insubstantial shining motes of dust.  The weightlessness
 of this environment is somewhat disorienting.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1209,7 +1212,7 @@ of silvery light and insubstantial shining motes of dust.  The weightlessness
 of this environment is somewhat disorienting.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1249,7 +1252,7 @@ of this environment is somewhat disorienting, though your instincts say you are
 close to home.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1289,7 +1292,7 @@ of this environment is somewhat disorienting, though your instincts say you are
 close to home.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1329,7 +1332,7 @@ of this environment is somewhat disorienting, though your instincts say you are
 close to home.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1369,7 +1372,7 @@ of this environment is highly disorienting.  Nearby you see a large silvery
 strand of light.
    Most exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1409,7 +1412,7 @@ of this environment is highly disorienting.  Nearby you see a large silvery
 strand of light.
    Most exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1449,7 +1452,7 @@ of this environment is highly disorienting.  Nearby you see a large silvery
 strand of light.
    Most exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1489,7 +1492,7 @@ of this environment is highly disorienting.  Nearby you see a large silvery
 strand of light.
    Most exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1529,7 +1532,7 @@ of this environment is highly disorienting.  Nearby you see a large silvery
 strand of light.
    Most exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1564,7 +1567,7 @@ of this environment is extremely disorienting.  Nearby you see a large silvery
 strand of light.
    Most exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1604,7 +1607,7 @@ of this environment is extremely disorienting.  Nearby you see a large silvery
 strand of light.
    Most exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1644,7 +1647,7 @@ of this environment is extremely disorienting.  Nearby you see a large silvery
 strand of light.
    Most exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 You see a tangible strand of silvery light.
 ~
@@ -1684,7 +1687,7 @@ of this environment is extremely disorienting.  Nearby you see a large silvery
 strand of light.
    Most exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1724,7 +1727,7 @@ of this environment is extremely disorienting.  Nearby you see a large silvery
 strand of light.
    Most exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1764,7 +1767,7 @@ of this environment is extremely disorienting, and you are having trouble
 keeping your sense of direction.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1804,7 +1807,7 @@ of this environment is extremely disorienting, and you are having trouble
 keeping your sense of direction.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1844,7 +1847,7 @@ of this environment is extremely disorienting, and you are having trouble
 keeping your sense of direction.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into the depths.
 ~
@@ -1884,7 +1887,7 @@ of this environment is extremely disorienting, and you are having trouble
 keeping your sense of direction.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1924,7 +1927,7 @@ of this environment is extremely disorienting, and you are having trouble
 keeping your sense of direction.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into the depths.
 ~
@@ -1964,7 +1967,7 @@ of this environment is incredibly disorienting, and you are having trouble
 keeping your senses straight.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -1999,7 +2002,7 @@ of this environment is incredibly disorienting, and you are having trouble
 keeping your senses straight.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -2034,7 +2037,7 @@ of this environment is incredibly disorienting, and you are having trouble
 keeping your senses straight.
    All exits lead off into the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads off into infinity.
 ~
@@ -2066,7 +2069,7 @@ Walking the Silvery Strand~
 You are standing atop a silvery strand of light that twists and turns
 through the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The strand of light twists and turns out of sight.
 ~
@@ -2083,7 +2086,7 @@ Walking the Silvery Strand~
 You are standing atop a silvery strand of light that twists and turns
 through the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 You see the infinite expanse of the astral field.
 ~
@@ -2100,7 +2103,7 @@ Walking the Silvery Strand~
 You are standing atop a silvery strand of light that twists and turns
 through the astral field.
 ~
-0 0 2
+0 [] 2
 D1
 The strand of light twists and turns out of sight.
 ~
@@ -2117,7 +2120,7 @@ Walking the Silvery Strand~
 You are standing atop a silvery strand of light that twists and turns
 through the astral field.
 ~
-0 0 2
+0 [] 2
 D3
 The strand of light twists and turns out of sight.
 ~
@@ -2134,7 +2137,7 @@ Walking the Silvery Strand~
 You are standing atop a silvery strand of light that twists and turns
 through the astral field.
 ~
-0 0 2
+0 [] 2
 D1
 The strand of light twists and turns out of sight.
 ~
@@ -2151,7 +2154,7 @@ Walking the Silvery Strand~
 You are standing atop a silvery strand of light that twists and turns
 through the astral field.
 ~
-0 0 2
+0 [] 2
 D2
 You see the infinite expanse of the astral field.
 ~
@@ -2168,7 +2171,7 @@ Walking the Silvery Strand~
 You are standing atop a silvery strand of light that twists and turns
 through the astral field.
 ~
-0 0 2
+0 [] 2
 D0
 The strand of light twists and turns out of sight.
 ~
@@ -2185,7 +2188,7 @@ Walking the Silvery Strand~
 You are standing atop a silvery strand of light that twists and turns
 through the astral field.
 ~
-0 0 2
+0 [] 2
 D2
 The strand of light twists and turns out of sight.
 ~
@@ -2202,7 +2205,7 @@ Walking the Silvery Strand~
 You are standing atop a silvery strand of light that twists and turns
 through the astral field.
 ~
-0 0 2
+0 [] 2
 D4
 You see the endless expanse of the astral field.
 ~
@@ -2222,7 +2225,7 @@ existence.  Some of the tendrils of light that line the astral field have been
 warped and twisted into portals to other worlds.
    Take care before you step through one -- you might never return.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads on into the depths.
 ~
@@ -2238,6 +2241,7 @@ The nexial link has been blocked by the gods for your protection.
 ~
 ~
 0 -1 -1
+Pastral-south-1~
 D3
 The astral field leads on into the depths.
 ~
@@ -2262,7 +2266,7 @@ existence.  Some of the tendrils of light that line the astral field have been
 warped and twisted into portals to other worlds.
    Take care before you step through one -- you might never return.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads on into infinity.
 ~
@@ -2273,6 +2277,7 @@ The nexial link has been blocked by the gods for your protection.
 ~
 ~
 0 -1 -1
+Pastral-east-1~
 D2
 The astral field leads on into the depths.
 ~
@@ -2302,7 +2307,7 @@ existence.  Some of the tendrils of light that line the astral field have been
 warped and twisted into portals to other worlds.
    Take care before you step through one -- you might never return.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads on into infinity.
 ~
@@ -2328,6 +2333,7 @@ The nexial link has been blocked by the gods for your protection.
 ~
 ~
 0 -1 -1
+Pastral-up-1~
 D5
 The astral field leads on into the depths.
 ~
@@ -2342,7 +2348,7 @@ existence.  Some of the tendrils of light that line the astral field have been
 warped and twisted into portals to other worlds.
    Take care before you step through one -- you might never return.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads on into infinity.
 ~
@@ -2363,6 +2369,7 @@ The nexial link has been blocked by the gods for your protection.
 ~
 ~
 0 -1 -1
+Pastral-west-1~
 D4
 The astral field leads on into the depths.
 ~
@@ -2382,7 +2389,7 @@ existence.  Some of the tendrils of light that line the astral field have been
 warped and twisted into portals to other worlds.
    Take care before you step through one -- you might never return.
 ~
-0 0 2
+0 [] 2
 D0
 The astral field leads on into the depths.
 ~
@@ -2408,11 +2415,13 @@ The nexial link has been blocked by the gods for your protection.
 ~
 ~
 0 -1 -1
+Pastral-up-2~
 D5
 The nexial link has been blocked by the gods for your protection.
 ~
 ~
 0 -1 -1
+Pastral-down-2~
 S
 #7750
 Inside the Githyanki Keep~
@@ -2421,7 +2430,7 @@ Astral Plane.  It seems that you have found the lair of the Githyanki,
 the once-human followers of Lord Gith.  Ahead of you stands a steel door
 leading into the keep hewn from stone.
 ~
-0 C 0
+0 [no_mob] 0
 D0
 You see a rusty steel door which leads into the keep.
 ~
@@ -2444,7 +2453,7 @@ and west.  Some small weapons hang on hooks on the walls, for use in defense
 of the keep.
    Doors stand in all directions save north.
 ~
-0 D 0
+0 [indoors] 0
 D1
 You see an iron door which leads out onto a grey stone road.
 ~
@@ -2476,7 +2485,7 @@ sun hangs in an orange sky above your head; you hear none of the sounds you
 would commonly associate with a normal city.
    The cobblestone road turns to the north, ending to the east at an iron door.
 ~
-0 0 1
+0 [] 1
 D0
 The grey cobblestones continue.
 ~
@@ -2501,7 +2510,7 @@ would commonly associate with a normal city.
    The cobblestone road continues to the north and south.  Doors to the east
 and west lead into stone buildings.
 ~
-0 0 1
+0 [] 1
 D0
 The grey cobblestones continue.
 ~
@@ -2538,7 +2547,7 @@ sun hangs in an orange sky above your head; you hear none of the sounds you
 would commonly associate with a normal city.
   The cobblestone road turns to the south and continues on to the east.
 ~
-0 0 1
+0 [] 1
 D1
 The grey cobblestones continue.
 ~
@@ -2558,7 +2567,7 @@ would commonly associate with a normal city.
   The cobblestone road continues to the east and west.  To the north you see a 
 massive building and a pair of large doors.
 ~
-0 0 1
+0 [] 1
 D0
 Looming before you is a forbidding pair of metal doors.
 ~
@@ -2589,7 +2598,7 @@ would commonly associate with a normal city.
   The cobblestone road continues to the east and west.  A door to the south
 leads into a tall stone building.
 ~
-0 0 1
+0 [] 1
 D1
 The grey cobblestones continue.
 ~
@@ -2618,7 +2627,7 @@ would commonly associate with a normal city.
    The cobblestone road turns to the west and continues to the south.  A door
 to the north leads into a tall stone building.
 ~
-0 0 1
+0 [] 1
 D0
 You see a tall stone building with a wooden door.
 ~
@@ -2647,7 +2656,7 @@ would commonly associate with a normal city.
    The cobblestone road continues to the north and south.  To the east is a
 door in a large stone building.
 ~
-0 0 1
+0 [] 1
 D0
 The grey cobblestones continue.
 ~
@@ -2675,7 +2684,7 @@ sun hangs in an orange sky above your head; you hear none of the sounds you
 would commonly associate with a normal city.
    The cobblestone road continues to the north and south.
 ~
-0 0 1
+0 [] 1
 D0
 The grey cobblestones continue.
 ~
@@ -2695,7 +2704,7 @@ would commonly associate with a normal city.
    The cobblestone road turns to the north and continues on to the west.  To
 the east is a door in a large stone building.
 ~
-0 0 1
+0 [] 1
 D0
 The grey cobblestones continue.
 ~
@@ -2724,7 +2733,7 @@ would commonly associate with a normal city.
    The cobblestone road goes on to the east, ending to the west at an iron door.
 A door to the north leads into a small stone building.
 ~
-0 0 1
+0 [] 1
 D0
 You see a small stone building with a wooden door.
 ~
@@ -2757,7 +2766,7 @@ living quarters for several githyanki gish.  The walls are heavy stone blocks,
 covered with panels of strangely knotted and twisted wood.  A couple of candles
 burn dimly in sconces here and there.
 ~
-0 D 0
+0 [indoors] 0
 D3
 The wooden door leads back out onto the grey cobblestone road.
 ~
@@ -2775,7 +2784,7 @@ living quarters for several githyanki gish.  The walls are heavy stone blocks,
 covered with panels of strangely knotted and twisted wood.  A couple of candles
 burn dimly in sconces here and there.
 ~
-0 D 0
+0 [indoors] 0
 D2
 The wooden door leads back out onto the grey cobblestone road.
 ~
@@ -2793,7 +2802,7 @@ windows.  The walls are heavy stone blocks that rise tens of feet above your
 head, covered with panels of strangely knotted and twisted wood.  On the floor
 are charcoal stencils of pentagrams and various other ominous sigils.
 ~
-0 D 0
+0 [indoors] 0
 D0
 The wooden door leads back out onto the grey cobblestone road.
 ~
@@ -2812,7 +2821,7 @@ razor-sharp knives, daggers, and swords.
    Sounds of hammering and blasts of heat and strange smells come from the open
 doorway to the north.  An iron door stands to the west.
 ~
-0 D 0
+0 [indoors] 0
 D0
 You see a massive forgeroom, lit by a white-hot furnace.
 ~
@@ -2836,7 +2845,7 @@ by the githyanki.  A large trough of icy water stands to the west, used for
 quenching hot metal.
    Doorways stand to the north and south.  The furnace door lies to the east.
 ~
-0 D 0
+0 [indoors] 0
 D0
 You see the armoury.
 ~
@@ -2866,7 +2875,7 @@ suits of mail.
    Sounds of hammering and blasts of heat and strange smells come from the open
 doorway to the south.  An iron door stands to the west.
 ~
-0 D 0
+0 [indoors] 0
 D2
 You see a massive forgeroom, lit by a white-hot furnace.
 ~
@@ -2890,7 +2899,7 @@ begin to feel faint and dizzy from the heat...
 
 ... you'd better leave before you pass out and burn to a cinder!
 ~
-0 D 0
+0 [indoors] 0
 D0
 The flames blind you and obscure your vision.
 ~
@@ -2901,6 +2910,7 @@ The flames blind you and obscure your vision.
 ~
 ~
 0 -1 -1
+Pastral-east-2~
 D2
 The flames blind you and obscure your vision.
 ~
@@ -2919,7 +2929,7 @@ for the keep.  The building is small because the githyanki do not make a habit
 of taking prisoners, and those that they do capture do not last long.
    The cellblock lies to the west and the grey stone road is to the east.
 ~
-0 D 0
+0 [indoors] 0
 D1
 You see an iron door which leads back out onto the grey cobblestone road.
 ~
@@ -2942,7 +2952,7 @@ dim corridor.  Some whips, manacles, and chains hang on the walls -- they seem
 to have been used recently.
    Cell doors stand to the north and south.  The guard station is to the east.
 ~
-0 D 0
+0 [indoors] 0
 D0
 You see a small cell.
 ~
@@ -2969,7 +2979,7 @@ A cramped cell~
 You are in a tiny, cold, dank cell.
   The only exit is back through the door to the south.
 ~
-0 D 0
+0 [indoors] 0
 D2
 You see the cellblock.
 ~
@@ -2986,7 +2996,7 @@ A tiny cell~
 You are in a cold, dank, cramped cell.
    The only exit is back through the door to the north.
 ~
-0 D 0
+0 [indoors] 0
 D0
 You see the cellblock.
 ~
@@ -3005,7 +3015,7 @@ windows.  The walls are heavy stone blocks that rise tens of feet above your
 head, covered with panels of strangely knotted and twisted wood.  On the floor
 are charcoal stencils of pentagrams and various other ominous sigils.
 ~
-0 D 0
+0 [indoors] 0
 D2
 The wooden door leads back out onto the grey cobblestone road.
 ~
@@ -3024,7 +3034,7 @@ silvery metal.
    The great hall continues to the north and ends in a pair of huge metal doors
 to the south.
 ~
-0 D 0
+0 [indoors] 0
 D0
 The great hall continues to the north.
 ~
@@ -3058,7 +3068,7 @@ silvery metal.
    The great hall continues to the south.  An archway leads into a dimly lit
 room to the north.
 ~
-0 D 0
+0 [indoors] 0
 D0
 You think you can see some steps leading up to an altar...
 ~
@@ -3088,7 +3098,7 @@ Your eyes have trouble adjusting to the dim lighting.  All around you are
 columnar statues of githyanki turned towards the altar standing at the top
 of a series of steps.
 ~
-0 AD 0
+0 [dark indoors] 0
 D0
 The steps lead north and up to a massive sacrificial altar.
 ~
@@ -3111,7 +3121,7 @@ huge altar use to pay tribute to Lord Gish, long-dead ruler of the githyanki.
 The altar is covered in blood and radiates unspeakable power that is absorbed
 by the horrible presence which stands before you.
 ~
-0 AD 0
+0 [dark indoors] 0
 D2
 The steps lie to the south, leading back down to the altar chamber floor.
 ~
@@ -3141,7 +3151,7 @@ You step through the tiny hole in the altar, and stand before a swirling
 field of blackness.  Through the field you can hear the howls of lost souls
 and long-dead beings.
 ~
-0 AD 1
+0 [dark indoors] 1
 D4
 You see the altar chamber.
 ~
@@ -3171,250 +3181,253 @@ It is pitch black...
   You are overwhelmed by the sensation of death and horrible pain as a shape
 begins to coalesce before you.
 ~
-0 AC 9
+0 [dark no_mob] 9
 S
 #0
 
 #RESETS
-R 0 7708   6     	* Exploring the Astral Plane
-R 0 7709   6     	* Exploring the Astral Plane
-R 0 7710   6     	* Exploring the Astral Plane
-R 0 7711   6     	* Exploring the Astral Plane
-R 0 7712   6     	* Exploring the Astral Plane
-R 0 7713   6     	* Roaming the Astral Plane
-R 0 7714   6     	* Roaming the Astral Plane
-R 0 7715   6     	* Roaming the Astral Plane
-R 0 7716   6     	* Roaming the Astral Plane
-R 0 7717   6     	* Roaming the Astral Plane
-R 0 7718   6     	* Wandering the Astral Plane
-R 0 7719   6     	* Wandering the Astral Plane
-R 0 7720   6     	* Wandering the Astral Plane
-R 0 7721   6     	* Wandering the Astral Plane
-R 0 7722   6     	* Wandering the Astral Plane
-R 0 7723   6     	* Travelling the Astral Plane
-R 0 7724   6     	* Travelling the Astral Plane
-R 0 7725   6     	* Travelling the Astral Plane
-R 0 7726   6     	* Travelling the Astral Plane
-R 0 7727   6     	* Travelling the Astral Plane
-R 0 7728   6     	* Traversing the Astral Plane
-R 0 7729   6     	* Traversing the Astral Plane
-R 0 7730   6     	* Traversing the Astral Plane
-R 0 7731   6     	* Traversing the Astral Plane
-R 0 7732   6     	* Traversing the Astral Plane
-R 0 7733   6     	* Lost in the Astral Plane
-R 0 7734   6     	* Lost in the Astral Plane
-R 0 7735   6     	* Lost in the Astral Plane
-R 0 7736   6     	* Walking the Silvery Strand
-R 0 7737   6     	* Walking the Silvery Strand
-R 0 7738   6     	* Walking the Silvery Strand
-R 0 7739   6     	* Walking the Silvery Strand
-R 0 7740   6     	* Walking the Silvery Strand
-R 0 7741   6     	* Walking the Silvery Strand
-R 0 7742   6     	* Walking the Silvery Strand
-R 0 7743   6     	* Walking the Silvery Strand
-R 0 7744   6     	* Walking the Silvery Strand
-M 0 7700   1 7706  1	* The Astral Guardian
-E 1 7700  -1   16	*   a massive slate-grey sledgehammer
-D 0 7706   0    1	* The Astral Gate north
-D 0 7707   2    1	* Into the Astral Plane south
-M 0 7701   2 7733  1	* A pitch-black nightmare
-G 1 7704  -1     	*   a small demon's amulet
-M 0 7701   2 7734  1	* A pitch-black nightmare
-G 1 7704  -1     	*   a small demon's amulet
-M 0 7702   1 7746  1	* An evil night hag
-G 1 7705  -1     	*   a devilish talisman
-M 0 7703   4 7720  1	* An invisible stalker
-G 1 7714  -1     	*   some astral powder
-M 0 7703   4 7724  1	* An invisible stalker
-G 1 7714  -1     	*   some astral powder
-M 0 7703   4 7726  1	* An invisible stalker
-G 1 7714  -1     	*   some astral powder
-M 0 7703   4 7730  1	* An invisible stalker
-G 1 7714  -1     	*   some astral powder
-M 0 7704  10 7713  1	* A poor soulless being
-E 1 3022  -1   16	*   a long sword
-M 0 7704  10 7714  1	* A poor soulless being
-E 1 3022  -1   16	*   a long sword
-M 0 7704  10 7715  1	* A poor soulless being
-E 1 3022  -1   16	*   a long sword
-M 0 7704  10 7716  1	* A poor soulless being
-E 1 3022  -1   16	*   a long sword
-M 0 7704  10 7717  1	* A poor soulless being
-E 1 3022  -1   16	*   a long sword
-M 0 7704  10 7718  1	* A poor soulless being
-E 1 3022  -1   16	*   a long sword
-M 0 7704  10 7719  1	* A poor soulless being
-E 1 3022  -1   16	*   a long sword
-M 0 7704  10 7720  1	* A poor soulless being
-E 1 3022  -1   16	*   a long sword
-M 0 7704  10 7721  1	* A poor soulless being
-E 1 3022  -1   16	*   a long sword
-M 0 7704  10 7722  1	* A poor soulless being
-E 1 3022  -1   16	*   a long sword
-M 0 7705   8 7718  2	* A githyanki hunter
-E 1 7707  -1   16	*   a silvery dagger
-M 0 7705   8 7720  2	* A githyanki hunter
-E 1 7707  -1   16	*   a silvery dagger
-M 0 7705   8 7722  2	* A githyanki hunter
-E 1 7707  -1   16	*   a silvery dagger
-M 0 7705   8 7724  2	* A githyanki hunter
-E 1 7707  -1   16	*   a silvery dagger
-M 0 7706   6 7723  3	* A githyanki warrior
-E 1 7708  -1   16	*   an extremely sharp and thin sword
-E 1 7715  -1    5	*   a splint mail vest
-M 0 7706   6 7727  3	* A githyanki warrior
-E 1 7708  -1   16	*   an extremely sharp and thin sword
-E 1 7715  -1    5	*   a splint mail vest
-M 0 7708   3 7730  2	* A githyanki knight
-E 1 7709  -1   16	*   a thin two-handed sword
-E 1 7715  -1    5	*   a splint mail vest
-E 1 7716  -1    7	*   a splint mail skirt
-E 1 7717  -1   10	*   a pair of splint mail sleeves
-M 0 7710   6 7729  3	* An evil gish
-E 1 7706  -1   16	*   a silvery knife
-M 0 7710   6 7731  3	* An evil gish
-E 1 7706  -1   16	*   a silvery knife
-M 0 7715   3 7745  1	* An insubstantial ghost
-G 1 7721  -1     	*   a vial of murky fluid
-M 0 7715   3 7747  1	* An insubstantial ghost
-G 1 7721  -1     	*   a vial of murky fluid
-M 0 7715   3 7749  1	* An insubstantial ghost
-G 1 7721  -1     	*   a vial of murky fluid
-D 0 7750   0    1	* Inside the Githyanki Keep north
-D 0 7751   2    1	* A guard station south
-D 0 7751   1    1	* A guard station east
-D 0 7751   3    1	* A guard station west
-D 0 7752   1    1	* A grey road east
-D 0 7753   1    1	* A grey road east
-D 0 7753   3    1	* A grey road west
-D 0 7755   0    1	* A grey road north
-D 0 7756   2    1	* A grey road south
-D 0 7757   0    1	* A grey road north
-D 0 7758   1    1	* A grey road east
-D 0 7760   1    1	* A grey road east
-D 0 7761   0    1	* A grey road north
-D 0 7761   3    1	* A grey road west
-D 0 7762   3    1	* A small building west
-D 0 7763   2    1	* A small building south
-D 0 7764   0    1	* A large dwelling north
-D 0 7773   2    1	* A large dwelling south
-D 0 7765   3    1	* The Githyanki Weaponry west
-D 0 7766   1    1	* The Forge east
-D 0 7767   3    1	* The Githyanki Armoury west
-D 0 7768   3    1	* Inside the furnace west
-D 0 7769   1    1	* A guard station east
-D 0 7770   0    1	* The cellblock north
-D 0 7770   2    1	* The cellblock south
-D 0 7771   2    1	* A cramped cell south
-D 0 7772   0    1	* A tiny cell north
-D 0 7774   2    1	* South End of the Hall south
-D 0 7775   0    1	* North End of the Hall north
-D 0 7776   2    1	* The Altar Chamber south
-D 0 7777   5    1	* Before the Altar down
-D 0 7778   4    1	* A Gateway to the Underworld up
-D 0 7778   5    2	* A Gateway to the Underworld down
-M 0 7707   8 7751  1	* A githyanki guardian
-E 1 7708  -1   16	*   an extremely sharp and thin sword
-E 1 7715  -1    5	*   a splint mail vest
-M 0 7707   8 7751  1	* A githyanki guardian
-E 1 7708  -1   16	*   an extremely sharp and thin sword
-E 1 7715  -1    5	*   a splint mail vest
-M 0 7707   8 7765  1	* A githyanki guardian
-E 1 7708  -1   16	*   an extremely sharp and thin sword
-E 1 7715  -1    5	*   a splint mail vest
-M 0 7707   8 7765  1	* A githyanki guardian
-E 1 7708  -1   16	*   an extremely sharp and thin sword
-E 1 7715  -1    5	*   a splint mail vest
-M 0 7707   8 7767  1	* A githyanki guardian
-E 1 7708  -1   16	*   an extremely sharp and thin sword
-E 1 7715  -1    5	*   a splint mail vest
-M 0 7707   8 7767  1	* A githyanki guardian
-E 1 7708  -1   16	*   an extremely sharp and thin sword
-E 1 7715  -1    5	*   a splint mail vest
-M 0 7707   8 7769  1	* A githyanki guardian
-E 1 7708  -1   16	*   an extremely sharp and thin sword
-E 1 7715  -1    5	*   a splint mail vest
-M 0 7707   8 7769  1	* A githyanki guardian
-E 1 7708  -1   16	*   an extremely sharp and thin sword
-E 1 7715  -1    5	*   a splint mail vest
-M 0 7708   3 7755  1	* A githyanki knight
-E 1 7709  -1   16	*   a thin two-handed sword
-E 1 7715  -1    5	*   a splint mail vest
-E 1 7716  -1    7	*   a splint mail skirt
-E 1 7717  -1   10	*   a pair of splint mail sleeves
-M 0 7711   6 7753  1	* An evil gish
-E 1 7706  -1   16	*   a silvery knife
-M 0 7711   6 7759  1	* An evil gish
-E 1 7706  -1   16	*   a silvery knife
-M 0 7711   6 7762  2	* An evil gish
-E 1 7706  -1   16	*   a silvery knife
-M 0 7711   6 7763  2	* An evil gish
-E 1 7706  -1   16	*   a silvery knife
-M 0 7711   6 7762  2	* An evil gish
-E 1 7706  -1   16	*   a silvery knife
-G 1 7722  -1     	*   a silvery-colored potion
-M 0 7711   6 7763  2	* An evil gish
-E 1 7706  -1   16	*   a silvery knife
-G 1 7722  -1     	*   a silvery-colored potion
-M 0 7712   4 7764  1	* A warlock of the Gith
-E 1 7710  -1   16	*   a silvery sword
-G 1 7703  -1     	*   a scroll with githyanki writings on it
-M 0 7712   4 7773  1	* A warlock of the Gith
-E 1 7710  -1   16	*   a silvery sword
-G 1 7703  -1     	*   a scroll with githyanki writings on it
-M 0 7712   4 7774  2	* A warlock of the Gith
-E 1 7710  -1   16	*   a silvery sword
-G 1 7703  -1     	*   a scroll with githyanki writings on it
-M 0 7712   4 7774  2	* A warlock of the Gith
-E 1 7710  -1   16	*   a silvery sword
-G 1 7703  -1     	*   a scroll with githyanki writings on it
-M 0 7716   1 7772  1	* An imprisoned githzerai
-M 0 7717   1 7771  1	* A tortured mindflayer prisoner
-M 0 7718   1 7768  1	* The enslaved red dragon
-E 1 7713  -1    0	*   a brightly flaming stone
-M 0 7719   6 7768  6	* A massive blast of fire
-M 0 7719   6 7768  6	* A massive blast of fire
-M 0 7719   6 7768  6	* A massive blast of fire
-M 0 7719   6 7768  6	* A massive blast of fire
-M 0 7719   6 7768  6	* A massive blast of fire
-M 0 7719   6 7768  6	* A massive blast of fire
-M 0 7709   2 7776  2	* A githyanki protector
-E 1 7709  -1   16	*   a thin two-handed sword
-E 1 7715  -1    5	*   a splint mail vest
-E 1 7716  -1    7	*   a splint mail skirt
-E 1 7717  -1   10	*   a pair of splint mail sleeves
-E 1 7718  -1    9	*   a pair of ornately designed gauntlets
-M 0 7709   2 7776  2	* A githyanki protector
-E 1 7709  -1   16	*   a thin two-handed sword
-E 1 7715  -1    5	*   a splint mail vest
-E 1 7716  -1    7	*   a splint mail skirt
-E 1 7717  -1   10	*   a pair of splint mail sleeves
-E 1 7718  -1    9	*   a pair of ornately designed gauntlets
-M 0 7713   1 7777  1	* The lich-queen
-E 1 7711  -1   16	*   an iron barbed flail
-E 1 7724  -1   17	*   a black pentagram
-G 1 7702  -1     	*   a black etched tablet
-M 0 7714   1 7779  1	* Lord Gith
-E 1 7712  -1   16	*   the unholy sword of the githyanki
-E 1 7719  -1    5	*   a decaying vest made from cracked leather
-G 1 7725  -1     	*   a rotting pouch
+D 0  7706   0     1    * The north door of The Astral Gate is closed
+D 0  7707   2     1    * The south door of Into the Astral Plane is closed
+D 0  7750   0     1    * The north door of Inside the Githyanki Keep is closed
+D 0  7751   1     1    * The east door of A guard station is closed
+D 0  7751   2     1    * The south door of A guard station is closed
+D 0  7751   3     1    * The west door of A guard station is closed
+D 0  7752   1     1    * The east door of A grey road is closed
+D 0  7753   1     1    * The east door of A grey road is closed
+D 0  7753   3     1    * The west door of A grey road is closed
+D 0  7755   0     1    * The north door of A grey road is closed
+D 0  7756   2     1    * The south door of A grey road is closed
+D 0  7757   0     1    * The north door of A grey road is closed
+D 0  7758   1     1    * The east door of A grey road is closed
+D 0  7760   1     1    * The east door of A grey road is closed
+D 0  7761   0     1    * The north door of A grey road is closed
+D 0  7761   3     1    * The west door of A grey road is closed
+D 0  7762   3     1    * The west door of A small building is closed
+D 0  7763   2     1    * The south door of A small building is closed
+D 0  7764   0     1    * The north door of A large dwelling is closed
+D 0  7765   3     1    * The west door of The Githyanki Weaponry is closed
+D 0  7766   1     1    * The east door of The Forge is closed
+D 0  7767   3     1    * The west door of The Githyanki Armoury is closed
+D 0  7768   3     1    * The west door of Inside the furnace is closed
+D 0  7769   1     1    * The east door of A guard station is closed
+D 0  7770   0     1    * The north door of The cellblock is closed
+D 0  7770   2     1    * The south door of The cellblock is closed
+D 0  7771   2     1    * The south door of A cramped cell is closed
+D 0  7772   0     1    * The north door of A tiny cell is closed
+D 0  7773   2     1    * The south door of A large dwelling is closed
+D 0  7774   2     1    * The south door of South End of the Hall is closed
+D 0  7775   0     1    * The north door of North End of the Hall is closed
+D 0  7776   2     1    * The south door of The Altar Chamber is closed
+D 0  7777   5     1    * The down door of Before the Altar is closed
+D 0  7778   4     1    * The up door of A Gateway to the Underworld is closed
+D 0  7778   5     2    * The down door of A Gateway to the Underworld is closed and locked
+M 0  7700   1  7706  1 * load The Astral Guardian
+E 1  7700  -1    16    * A massive slate-grey sledgehammer is loaded wielded of The Astral Guardian
+R 0  7708   6          * randomize Exploring the Astral Plane
+R 0  7709   6          * randomize Exploring the Astral Plane
+R 0  7710   6          * randomize Exploring the Astral Plane
+R 0  7711   6          * randomize Exploring the Astral Plane
+R 0  7712   6          * randomize Exploring the Astral Plane
+R 0  7713   6          * randomize Roaming the Astral Plane
+M 0  7704  10  7713  1 * load A poor soulless being
+E 1  3022  -1    16    * A long sword is loaded wielded of A poor soulless being
+R 0  7714   6          * randomize Roaming the Astral Plane
+M 0  7704  10  7714  1 * load A poor soulless being
+E 1  3022  -1    16    * A long sword is loaded wielded of A poor soulless being
+R 0  7715   6          * randomize Roaming the Astral Plane
+M 0  7704  10  7715  1 * load A poor soulless being
+E 1  3022  -1    16    * A long sword is loaded wielded of A poor soulless being
+R 0  7716   6          * randomize Roaming the Astral Plane
+M 0  7704  10  7716  1 * load A poor soulless being
+E 1  3022  -1    16    * A long sword is loaded wielded of A poor soulless being
+R 0  7717   6          * randomize Roaming the Astral Plane
+M 0  7704  10  7717  1 * load A poor soulless being
+E 1  3022  -1    16    * A long sword is loaded wielded of A poor soulless being
+R 0  7718   6          * randomize Wandering the Astral Plane
+M 0  7704  10  7718  1 * load A poor soulless being
+E 1  3022  -1    16    * A long sword is loaded wielded of A poor soulless being
+M 0  7705   8  7718  2 * load A githyanki hunter
+E 1  7707  -1    16    * A silvery dagger is loaded wielded of A githyanki hunter
+R 0  7719   6          * randomize Wandering the Astral Plane
+M 0  7704  10  7719  1 * load A poor soulless being
+E 1  3022  -1    16    * A long sword is loaded wielded of A poor soulless being
+R 0  7720   6          * randomize Wandering the Astral Plane
+M 0  7703   4  7720  1 * load An invisible stalker
+G 1  7714  -1          * Some astral powder is given to An invisible stalker
+M 0  7704  10  7720  1 * load A poor soulless being
+E 1  3022  -1    16    * A long sword is loaded wielded of A poor soulless being
+M 0  7705   8  7720  2 * load A githyanki hunter
+E 1  7707  -1    16    * A silvery dagger is loaded wielded of A githyanki hunter
+R 0  7721   6          * randomize Wandering the Astral Plane
+M 0  7704  10  7721  1 * load A poor soulless being
+E 1  3022  -1    16    * A long sword is loaded wielded of A poor soulless being
+R 0  7722   6          * randomize Wandering the Astral Plane
+M 0  7704  10  7722  1 * load A poor soulless being
+E 1  3022  -1    16    * A long sword is loaded wielded of A poor soulless being
+M 0  7705   8  7722  2 * load A githyanki hunter
+E 1  7707  -1    16    * A silvery dagger is loaded wielded of A githyanki hunter
+R 0  7723   6          * randomize Travelling the Astral Plane
+M 0  7706   6  7723  3 * load A githyanki warrior
+E 1  7708  -1    16    * An extremely sharp and thin sword is loaded wielded of A githyanki warrior
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki warrior
+R 0  7724   6          * randomize Travelling the Astral Plane
+M 0  7703   4  7724  1 * load An invisible stalker
+G 1  7714  -1          * Some astral powder is given to An invisible stalker
+M 0  7705   8  7724  2 * load A githyanki hunter
+E 1  7707  -1    16    * A silvery dagger is loaded wielded of A githyanki hunter
+R 0  7725   6          * randomize Travelling the Astral Plane
+R 0  7726   6          * randomize Travelling the Astral Plane
+M 0  7703   4  7726  1 * load An invisible stalker
+G 1  7714  -1          * Some astral powder is given to An invisible stalker
+R 0  7727   6          * randomize Travelling the Astral Plane
+M 0  7706   6  7727  3 * load A githyanki warrior
+E 1  7708  -1    16    * An extremely sharp and thin sword is loaded wielded of A githyanki warrior
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki warrior
+R 0  7728   6          * randomize Traversing the Astral Plane
+R 0  7729   6          * randomize Traversing the Astral Plane
+M 0  7710   6  7729  3 * load An evil gish
+E 1  7706  -1    16    * A silvery knife is loaded wielded of An evil gish
+R 0  7730   6          * randomize Traversing the Astral Plane
+M 0  7703   4  7730  1 * load An invisible stalker
+G 1  7714  -1          * Some astral powder is given to An invisible stalker
+M 0  7708   3  7730  2 * load A githyanki knight
+E 1  7709  -1    16    * A thin two-handed sword is loaded wielded of A githyanki knight
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki knight
+E 1  7716  -1     7    * A splint mail skirt is loaded on the legs of A githyanki knight
+E 1  7717  -1    10    * A pair of splint mail sleeves is loaded on the arms of A githyanki knight
+R 0  7731   6          * randomize Traversing the Astral Plane
+M 0  7710   6  7731  3 * load An evil gish
+E 1  7706  -1    16    * A silvery knife is loaded wielded of An evil gish
+R 0  7732   6          * randomize Traversing the Astral Plane
+R 0  7733   6          * randomize Lost in the Astral Plane
+M 0  7701   2  7733  1 * load A pitch-black nightmare
+G 1  7704  -1          * A small demon's amulet is given to A pitch-black nightmare
+R 0  7734   6          * randomize Lost in the Astral Plane
+M 0  7701   2  7734  1 * load A pitch-black nightmare
+G 1  7704  -1          * A small demon's amulet is given to A pitch-black nightmare
+R 0  7735   6          * randomize Lost in the Astral Plane
+R 0  7736   6          * randomize Walking the Silvery Strand
+R 0  7737   6          * randomize Walking the Silvery Strand
+R 0  7738   6          * randomize Walking the Silvery Strand
+R 0  7739   6          * randomize Walking the Silvery Strand
+R 0  7740   6          * randomize Walking the Silvery Strand
+R 0  7741   6          * randomize Walking the Silvery Strand
+R 0  7742   6          * randomize Walking the Silvery Strand
+R 0  7743   6          * randomize Walking the Silvery Strand
+R 0  7744   6          * randomize Walking the Silvery Strand
+M 0  7715   3  7745  1 * load An insubstantial ghost
+G 1  7721  -1          * A vial of murky fluid is given to An insubstantial ghost
+M 0  7702   1  7746  1 * load An evil night hag
+G 1  7705  -1          * A devilish talisman is given to An evil night hag
+M 0  7715   3  7747  1 * load An insubstantial ghost
+G 1  7721  -1          * A vial of murky fluid is given to An insubstantial ghost
+M 0  7715   3  7749  1 * load An insubstantial ghost
+G 1  7721  -1          * A vial of murky fluid is given to An insubstantial ghost
+M 0  7707   8  7751  1 * load A githyanki guardian
+E 1  7708  -1    16    * An extremely sharp and thin sword is loaded wielded of A githyanki guardian
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki guardian
+M 0  7707   8  7751  1 * load A githyanki guardian
+E 1  7708  -1    16    * An extremely sharp and thin sword is loaded wielded of A githyanki guardian
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki guardian
+M 0  7711   6  7753  1 * load An evil gish
+E 1  7706  -1    16    * A silvery knife is loaded wielded of An evil gish
+M 0  7708   3  7755  1 * load A githyanki knight
+E 1  7709  -1    16    * A thin two-handed sword is loaded wielded of A githyanki knight
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki knight
+E 1  7716  -1     7    * A splint mail skirt is loaded on the legs of A githyanki knight
+E 1  7717  -1    10    * A pair of splint mail sleeves is loaded on the arms of A githyanki knight
+M 0  7711   6  7759  1 * load An evil gish
+E 1  7706  -1    16    * A silvery knife is loaded wielded of An evil gish
+M 0  7711   6  7762  2 * load An evil gish
+E 1  7706  -1    16    * A silvery knife is loaded wielded of An evil gish
+M 0  7711   6  7762  2 * load An evil gish
+E 1  7706  -1    16    * A silvery knife is loaded wielded of An evil gish
+G 1  7722  -1          * A silvery-colored potion is given to An evil gish
+M 0  7711   6  7763  2 * load An evil gish
+E 1  7706  -1    16    * A silvery knife is loaded wielded of An evil gish
+M 0  7711   6  7763  2 * load An evil gish
+E 1  7706  -1    16    * A silvery knife is loaded wielded of An evil gish
+G 1  7722  -1          * A silvery-colored potion is given to An evil gish
+M 0  7712   4  7764  1 * load A warlock of the Gith
+E 1  7710  -1    16    * A silvery sword is loaded wielded of A warlock of the Gith
+G 1  7703  -1          * A scroll with githyanki writings on it is given to A warlock of the Gith
+M 0  7707   8  7765  1 * load A githyanki guardian
+E 1  7708  -1    16    * An extremely sharp and thin sword is loaded wielded of A githyanki guardian
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki guardian
+M 0  7707   8  7765  1 * load A githyanki guardian
+E 1  7708  -1    16    * An extremely sharp and thin sword is loaded wielded of A githyanki guardian
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki guardian
+M 0  7707   8  7767  1 * load A githyanki guardian
+E 1  7708  -1    16    * An extremely sharp and thin sword is loaded wielded of A githyanki guardian
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki guardian
+M 0  7707   8  7767  1 * load A githyanki guardian
+E 1  7708  -1    16    * An extremely sharp and thin sword is loaded wielded of A githyanki guardian
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki guardian
+M 0  7718   1  7768  1 * load The enslaved red dragon
+E 1  7713  -1     0    * A brightly flaming stone is loaded as a light of The enslaved red dragon
+M 0  7719   6  7768  6 * load A massive blast of fire
+M 0  7719   6  7768  6 * load A massive blast of fire
+M 0  7719   6  7768  6 * load A massive blast of fire
+M 0  7719   6  7768  6 * load A massive blast of fire
+M 0  7719   6  7768  6 * load A massive blast of fire
+M 0  7719   6  7768  6 * load A massive blast of fire
+M 0  7707   8  7769  1 * load A githyanki guardian
+E 1  7708  -1    16    * An extremely sharp and thin sword is loaded wielded of A githyanki guardian
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki guardian
+M 0  7707   8  7769  1 * load A githyanki guardian
+E 1  7708  -1    16    * An extremely sharp and thin sword is loaded wielded of A githyanki guardian
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki guardian
+M 0  7717   1  7771  1 * load A tortured mindflayer prisoner
+M 0  7716   1  7772  1 * load An imprisoned githzerai
+M 0  7712   4  7773  1 * load A warlock of the Gith
+E 1  7710  -1    16    * A silvery sword is loaded wielded of A warlock of the Gith
+G 1  7703  -1          * A scroll with githyanki writings on it is given to A warlock of the Gith
+M 0  7712   4  7774  2 * load A warlock of the Gith
+E 1  7710  -1    16    * A silvery sword is loaded wielded of A warlock of the Gith
+G 1  7703  -1          * A scroll with githyanki writings on it is given to A warlock of the Gith
+M 0  7712   4  7774  2 * load A warlock of the Gith
+E 1  7710  -1    16    * A silvery sword is loaded wielded of A warlock of the Gith
+G 1  7703  -1          * A scroll with githyanki writings on it is given to A warlock of the Gith
+M 0  7709   2  7776  2 * load A githyanki protector
+E 1  7709  -1    16    * A thin two-handed sword is loaded wielded of A githyanki protector
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki protector
+E 1  7716  -1     7    * A splint mail skirt is loaded on the legs of A githyanki protector
+E 1  7717  -1    10    * A pair of splint mail sleeves is loaded on the arms of A githyanki protector
+E 1  7718  -1     9    * A pair of ornately designed gauntlets is loaded on the hands of A githyanki protector
+M 0  7709   2  7776  2 * load A githyanki protector
+E 1  7709  -1    16    * A thin two-handed sword is loaded wielded of A githyanki protector
+E 1  7715  -1     5    * A splint mail vest is loaded on the torso of A githyanki protector
+E 1  7716  -1     7    * A splint mail skirt is loaded on the legs of A githyanki protector
+E 1  7717  -1    10    * A pair of splint mail sleeves is loaded on the arms of A githyanki protector
+E 1  7718  -1     9    * A pair of ornately designed gauntlets is loaded on the hands of A githyanki protector
+M 0  7713   1  7777  1 * load The lich-queen
+E 1  7711  -1    16    * An iron barbed flail is loaded wielded of The lich-queen
+E 1  7724  -1    17    * A black pentagram is loaded held in the hands of The lich-queen
+G 1  7702  -1          * A black etched tablet is given to The lich-queen
+M 0  7714   1  7779  1 * load Lord Gith
+E 1  7712  -1    16    * The unholy sword of the githyanki is loaded wielded of Lord Gith
+E 1  7719  -1     5    * A decaying vest made from cracked leather is loaded on the torso of Lord Gith
+G 1  7725  -1          * A rotting pouch is given to Lord Gith
 S
 
 #SHOPS
 0
 
 #SPECIALS
-M 7702 spec_cast_mage      	* An evil night hag
-M 7705 spec_thief          	* A githyanki hunter
-M 7710 spec_cast_mage      	* An evil gish
-M 7711 spec_cast_mage      	* An evil gish
-M 7712 spec_cast_mage      	* A warlock of the Gith
-M 7713 spec_cast_undead    	* The lich-queen
-M 7714 spec_cast_undead    	* Lord Gith
-M 7715 spec_cast_undead    	* An insubstantial ghost
-M 7717 spec_cast_mage      	* A tortured mindflayer prisoner
-M 7718 spec_cast_mage      	* The enslaved red dragon
-M 7719 spec_breath_fire    	* A massive blast of fire
+M  7702 spec_cast_mage       * load to: An evil night hag
+M  7705 spec_thief           * load to: A githyanki hunter
+M  7710 spec_cast_mage       * load to: An evil gish
+M  7711 spec_cast_mage       * load to: An evil gish
+M  7712 spec_cast_mage       * load to: A warlock of the Gith
+M  7713 spec_cast_undead     * load to: The lich-queen
+M  7714 spec_cast_undead     * load to: Lord Gith
+M  7715 spec_cast_undead     * load to: An insubstantial ghost
+M  7717 spec_cast_mage       * load to: A tortured mindflayer prisoner
+M  7718 spec_cast_mage       * load to: The enslaved red dragon
+M  7719 spec_breath_fire     * load to: A massive blast of fire
 S
+
+#MOBPROGS
+#0
 
 #$

@@ -1,8 +1,10 @@
-#AREA
-quifael.are~
-Quifael's~
-{31 35} Quifael Quifael's Area~
-6900 6999
+#AREADATA
+Name Quifael's~
+Builders None~
+VNUMs 6900 6999
+Credits {31 35} Quifael Quifael's Area~
+Security 9
+End
 
 #MOBILES
 #0
@@ -16,7 +18,7 @@ Quifael's monster pen~
 You are in a big, subterranean room with heavy massive stone walls and no
 windows whatsoever.  A virtual ladder leads upwards.
 ~
-0 DJ 0
+0 [indoors private] 0
 D4
 The ladder leads to the laboratory.
 ~
@@ -30,7 +32,7 @@ bookcases filled with dusty volumes of all sizes.  In the fireplace burns a
 crackling fire that makes the room warm and cosy, and in front of an oakwood
 reading desk is a large old-fashioned chair.
 ~
-0 CDJ 0
+0 [no_mob indoors private] 0
 D2
 The corridor leads south to the hall.
 ~
@@ -65,7 +67,7 @@ the north wall.  The air smells of rare chemicals and spices.
 A virtual ladder leads downwards.
 A magical portal is hovering in the air just in front of the east wall.
 ~
-0 CDJ 0
+0 [no_mob indoors private] 0
 D1
 To the east is the magical portal.
 ~
@@ -104,7 +106,7 @@ of Haon-Dor.
 A transparent bronze plate has been bolted to the balcony railing.
 A magical portal is hovering in the air to the west.
 ~
-0 DJ 0
+0 [indoors private] 0
 D3
 The magical portal is to the west.
 ~
@@ -144,7 +146,7 @@ You are in sparsely decorated and quite dusty hall.  Old wooden doors lead
 north, east and south and to the west is the front door.
 An old mirror hangs on the wall.
 ~
-0 DJ 0
+0 [indoors private] 0
 D0
 The study is to the north.
 ~
@@ -165,6 +167,7 @@ The front door leads to Park Road.
 ~
 door~
 2 3301 3126
+Pquifael-west-1~
 E
 mirror~
 You see yourself looking back at you.
@@ -174,7 +177,7 @@ S
 Quifael's kitchen~
 You are in an old-fashioned kitchen.
 ~
-0 DJ 0
+0 [indoors private] 0
 D0
 The hall is to the north.
 ~
@@ -191,5 +194,8 @@ S
 
 #SPECIALS
 S
+
+#MOBPROGS
+#0
 
 #$

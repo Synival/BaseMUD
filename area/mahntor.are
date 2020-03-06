@@ -1,12 +1,14 @@
-#AREA
-mahntor.are~
-Mahn-Tor~
-{ 5 35} Chris   The Keep of Mahn-Tor~
-2300 2399
+#AREADATA
+Name Mahn-Tor~
+Builders None~
+VNUMs 2300 2399
+Credits { 5 35} Chris   The Keep of Mahn-Tor~
+Security 9
+End
 
 #MOBILES
 #2300
-oldstyle knight ethereal dark~
+knight ethereal dark~
 the Dark Ethereal Knight~
 A dark ethereal knight hovers over the bloody clearing.
 ~
@@ -15,14 +17,14 @@ was involved in the carnage that occurred here. His soul is trapped here, as
 he waits for release.
 ~
 human~
-AB DH -1000 0
+[sentinel] [detect_invis sanctuary] -1000 0
 25 0 5d10+550 12d9+100 2d10+7 none
 -7 -7 -7 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 1250
-0 0 medium 0
+[] [] medium generic
 #2301
-oldstyle treant tree~
+treant tree~
 the Old Treant~
 A huge, gnarled tree stands here, battered by age and nature.
 ~
@@ -31,14 +33,14 @@ Very few leaves remain. Its limbs are crooked and gnarled. It moans as the
 wind pushes it back and forth.
 ~
 human~
-AB 0 250 0
+[sentinel] [] 250 0
 20 0 3d9+333 10d9+100 2d8+5 none
 -4 -4 -4 7
-EFNU 0 0 0
-stand stand none 250
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 250
+[] [] medium generic
 #2302
-oldstyle dweller cave creature~
+dweller cave creature~
 the Cave Dweller~
 A slimy, gross creature is here munching on a corpse.
 ~
@@ -47,28 +49,28 @@ a bird's beak, huge white eyes, a furry body, and long clawed hands and feet.
 It sees you and snarls.
 ~
 human~
-ABF CEP 0 0
+[sentinel aggressive] [detect_evil detect_magic sneak] 0 0
 15 0 3d9+208 7d9+100 2d6+3 none
 -2 -2 -2 7
-EFNU 0 0 0
-stand stand none 125
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 125
+[] [] medium generic
 #2303
-oldstyle toad rock~
+toad rock~
 the Rock Toad~
 A rather large rock toad sits here, croaking loudly.
 ~
 A grey toad. Its about the size of a cow. Small horns grow all over its body.
 ~
 human~
-AB 0 -250 0
+[sentinel] [] -250 0
 14 0 2d10+190 7d9+100 1d12+3 none
 -1 -1 -1 8
-EFNU 0 0 0
-sit sit none 127
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+sit sit neutral 127
+[] [] medium generic
 #2304
-oldstyle weeping willow tree~
+weeping willow tree~
 the Weeping Willow~
 A large willow tree stands here, weeping.
 ~
@@ -76,28 +78,28 @@ The weeping willow has long thins branches. These branches seem to droop in
 anguish and dismay. You hear a faint sound of crying.
 ~
 human~
-AB DH 1000 0
+[sentinel] [detect_invis sanctuary] 1000 0
 25 0 5d10+550 12d9+100 2d10+7 none
 -7 -7 -7 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand female 1000
-0 0 medium 0
+[] [] medium generic
 #2305
-oldstyle mist mistling~
+mist mistling~
 the Mistling~
 A mistling emerges from the mist surrounding you.
 ~
 It looks like a thin wisp of mist that has gained substance and size.
 ~
 human~
-ABF Q 0 0
+[sentinel aggressive] [hide] 0 0
 15 0 3d9+208 7d9+100 2d6+3 none
 -2 -2 -2 7
-EFNU 0 0 0
-stand stand none 50
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 50
+[] [] medium generic
 #2306
-oldstyle swamp wraith~
+swamp wraith~
 the Swamp Wraith~
 A swamp wraith emerges from the mist here.
 ~
@@ -106,14 +108,14 @@ appears to emerge from the mist. You feel the cold radiating from his form as
 he nears you.
 ~
 human~
-ABCF 0 -1000 0
+[sentinel scavenger aggressive] [] -1000 0
 20 0 3d9+333 10d9+100 2d8+5 none
 -4 -4 -4 7
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 1250
-0 0 medium 0
+[] [] medium generic
 #2307
-oldstyle ogre villager~
+ogre villager~
 the Ogre Villager~
 The ogre villager is here, going about its chores.
 ~
@@ -121,14 +123,14 @@ You see a pitifully overworked ogre. It is dressed in rags and shuffles along
 with its head hung low. It sees you and cringes in mortal terror.
 ~
 human~
-AGH 0 -200 0
+[stay_area wimpy] [] -200 0
 10 0 2d7+121 5d9+100 2d4+2 none
 1 1 1 8
-EFNU 0 0 0
-stand stand none 10
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 10
+[] [] medium generic
 #2308
-oldstyle warrior ogre~
+warrior ogre~
 the Ogre Warrior~
 The ogre warrior stands here, growling fiercely.
 ~
@@ -136,14 +138,14 @@ The ogre warrior is dressed in thick fur armor. He looks quite large and
 formidable.
 ~
 human~
-ACFGH 0 -350 0
+[scavenger aggressive stay_area wimpy] [] -350 0
 15 0 3d9+208 7d9+100 2d6+3 none
 -2 -2 -2 7
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 250
-0 0 medium 0
+[] [] medium generic
 #2309
-oldstyle guard ogre~
+guard ogre~
 the Ogre Guard~
 The ogre guard is here manning his post faithfully.
 ~
@@ -151,14 +153,14 @@ The ogre guard stands here manning his post. It appears as though he would
 fight to the death before abandoning his post.
 ~
 human~
-ABCFG 0 -500 0
+[sentinel scavenger aggressive stay_area] [] -500 0
 19 0 3d9+308 9d9+100 2d7+5 none
 -4 -4 -4 7
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 500
-0 0 medium 0
+[] [] medium generic
 #2310
-oldstyle shaman ogre~
+shaman ogre~
 The Ogre Shaman~
 The ogre shaman is here chanting arcane words and waving his arms.
 ~
@@ -166,14 +168,14 @@ The ogre shaman is draped in thick fur cloaks and pelts. He has all types of
 charms and holy symbols draped about him. He looks at you and snarls.
 ~
 human~
-ABCFGHQ DH -750 0
+[sentinel scavenger aggressive stay_area wimpy cleric] [detect_invis sanctuary] -750 0
 20 0 3d9+333 20d9+100 2d7+5 none
 -4 -4 -4 6
-EIKU 0 0 0
+[disarm kick parry assist_vnum] [] [] []
 stand stand male 2500
-0 0 medium 0
+[] [] medium generic
 #2311
-oldstyle chief chieftain ogre~
+chief chieftain ogre~
 the Ogre Chieftain~
 The ogre chieftain is here, observing his subjects.
 ~
@@ -181,14 +183,14 @@ This is the biggest ogre you have ever seen. He is heavily equipped and looks
 quite formidable. He towers high above you and growls menacingly.
 ~
 human~
-ABCFGH DH -1000 0
+[sentinel scavenger aggressive stay_area wimpy] [detect_invis sanctuary] -1000 0
 25 0 5d10+550 12d9+100 2d10+7 none
 -7 -7 -7 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 2500
-0 0 medium 0
+[] [] medium generic
 #2312
-oldstyle barbarian~
+barbarian~
 the Plains Barbarian~
 A plains barbarian is here, clad in heavy furs.
 ~
@@ -196,14 +198,14 @@ The plains barbarian is clad in heavy furs. He seems used to the chilling cold
 and icy wastes.
 ~
 human~
-ABCFGH 0 0 0
+[sentinel scavenger aggressive stay_area wimpy] [] 0 0
 20 0 3d9+333 10d9+100 2d8+5 none
 -4 -4 -4 7
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 250
-0 0 medium 0
+[] [] medium generic
 #2313
-oldstyle yeti white~
+yeti white~
 the White Yeti~
 The white yeti crouches here snarling.
 ~
@@ -211,14 +213,14 @@ The white yeti looks like a huge white snow ape. Its long arms end in long
 curved talons and its mouth is full of sharp teeth.
 ~
 human~
-ABCFGH 0 -350 0
+[sentinel scavenger aggressive stay_area wimpy] [] -350 0
 16 0 3d9+233 8d9+100 2d6+4 none
 -2 -2 -2 7
-EFNU 0 0 0
-stand stand none 50
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 50
+[] [] medium generic
 #2314
-oldstyle worm ice iceworm~
+worm ice iceworm~
 the Ice Worm~
 A huge ice worm burrows through the ice and snow here. It rears up and
 attacks!
@@ -227,14 +229,14 @@ The huge worm is almost 50 feet long. Its huge gaping mouth spews ice and snow
 as it charges directly at you.
 ~
 human~
-ABCFG 0 0 0
+[sentinel scavenger aggressive stay_area] [] 0 0
 20 0 3d9+333 10d9+100 2d8+5 none
 -4 -4 -4 7
-EFNU 0 0 0
-stand stand none 175
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 175
+[] [] medium generic
 #2315
-oldstyle citizen minotaur~
+citizen minotaur~
 the Minotaur Citizen~
 A minotaur citizen is here, hurrying through the icy streets.
 ~
@@ -242,14 +244,14 @@ You see a rather ragged and cold minotaur. It appears to be looking for a warm
 place to seek refuge from the cold.
 ~
 human~
-ABCGH 0 100 0
+[sentinel scavenger stay_area wimpy] [] 100 0
 15 0 3d9+208 7d9+100 2d6+3 none
 -2 -2 -2 7
-EFNU 0 0 0
-stand stand none 500
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 500
+[] [] medium generic
 #2316
-oldstyle guard minotaur~
+guard minotaur~
 the Minotaur Guard~
 A minotaur guard catches you trespassing and attacks!
 ~
@@ -257,14 +259,14 @@ The minotaur is clad in heavy furs. Beneath these furs, you see the gleam of
 his armor.
 ~
 human~
-ABCFG 0 -330 0
+[sentinel scavenger aggressive stay_area] [] -330 0
 22 0 5d10+400 11d9+100 4d4+6 none
 -5 -5 -5 7
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 1250
-0 0 medium 0
+[] [] medium generic
 #2317
-oldstyle warrior minotaur~
+warrior minotaur~
 the Minotaur Warrior~
 A minotaur warrior is here looking for intruders.
 ~
@@ -272,14 +274,14 @@ You see a huge minotaur that is dressed in thick furs and armor. He has black
 fur and red eyes. He looks quite capable of protecting the city.
 ~
 human~
-ACFG 0 -330 0
+[scavenger aggressive stay_area] [] -330 0
 21 0 4d10+360 10d9+100 4d4+5 none
 -5 -5 -5 7
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 1250
-0 0 medium 0
+[] [] medium generic
 #2318
-oldstyle minotaur gatekeeper~
+minotaur gatekeeper~
 the Minotaur Gatekeeper~
 A minotaur is here guarding the Keep of Mahn-Tor.
 ~
@@ -287,14 +289,14 @@ The minotaur stands rigidly before the gates of the keep. It looks quite
 miserable standing in the driven snow and ice.
 ~
 human~
-ABCG D -330 0
+[sentinel scavenger stay_area] [detect_invis] -330 0
 25 0 5d10+550 12d9+100 2d10+7 none
 -7 -7 -7 6
-EFNU 0 0 0
-stand stand none 1250
-0 0 medium 0
+[disarm dodge trip assist_vnum] [] [] []
+stand stand neutral 1250
+[] [] medium generic
 #2319
-oldstyle minotaur high guard~
+minotaur high guard~
 the High Minotaur Guard~
 The minotaur high guard is here guarding the Keep.
 ~
@@ -302,14 +304,14 @@ The high guard is dressed in blue plate armour. He looks quite dangerous and
 skilled.
 ~
 human~
-ABCFG D -330 0
+[sentinel scavenger aggressive stay_area] [detect_invis] -330 0
 25 0 5d10+550 12d9+100 2d10+7 none
 -7 -7 -7 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 2250
-0 0 medium 0
+[] [] medium generic
 #2320
-oldstyle minotaur royal guard~
+minotaur royal guard~
 the Royal Minotaur Guard~
 The royal minotaur guard considers you an intruder and attacks!
 ~
@@ -317,14 +319,14 @@ The royal guard is quite huge. He is dressed in heavy red armor and wields a
 huge glaive. He looks quite capable of protecting the keep.
 ~
 human~
-ABCFG D -330 0
+[sentinel scavenger aggressive stay_area] [detect_invis] -330 0
 26 0 5d10+600 13d9+100 3d7+7 none
 -7 -7 -7 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 2500
-0 0 medium 0
+[] [] medium generic
 #2321
-oldstyle guard minotaur elite~
+guard minotaur elite~
 the Elite Minotaur Guard~
 The elite minotaur guard sees you and attacks!
 ~
@@ -332,14 +334,14 @@ This minotaur wields a huge morningstar and is clad in heavy crimson plate and
 furs.
 ~
 human~
-ABCFG D -250 0
+[sentinel scavenger aggressive stay_area] [detect_invis] -250 0
 28 0 6d12+703 14d9+100 5d4+8 none
 -8 -8 -8 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 3750
-0 0 medium 0
+[] [] medium generic
 #2322
-oldstyle girl haremgirl harem slave~
+girl haremgirl harem slave~
 the Harem Girl~
 A harem girl cowers here in fear.
 ~
@@ -347,28 +349,28 @@ She looks quite attractive. Her low cut gown reveals why she was chosen to be
 in the harem.
 ~
 human~
-ABCGH 0 1000 0
+[sentinel scavenger stay_area wimpy] [] 1000 0
 2 0 2d7+21 1d9+100 1d5+0 none
 8 8 8 10
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 0
-0 0 medium 0
+[] [] medium generic
 #2323
-oldstyle butler minotaur~
+butler minotaur~
 the Minotaur Butler~
 A minotaur butler stands here rigidly, awaiting orders.
 ~
 He looks quite regal and refined to be a minotaur.
 ~
 human~
-ABCGH 0 250 0
+[sentinel scavenger stay_area wimpy] [] 250 0
 20 0 3d9+333 10d9+100 2d8+5 none
 -4 -4 -4 7
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 250
-0 0 medium 0
+[] [] medium generic
 #2324
-oldstyle keeper minotaur ring-keeper~
+keeper minotaur ring-keeper~
 the Minotaur Ring-Keeper~
 The minotaur ring-keeper stands guarding his post.
 ~
@@ -376,14 +378,14 @@ The ring-keeper is a huge minotaur. You notice a huge ring of multicolored
 keys hanging from his belt. He wears huge, spiked brass knuckles.
 ~
 human~
-ABCGR DH -300 0
+[sentinel scavenger stay_area mage] [detect_invis sanctuary] -300 0
 29 0 6d12+703 29d9+100 3d7+7 none
 -8 -8 -8 1
-FU 0 0 0
+[dodge assist_vnum] [] [] []
 stand stand male 2500
-0 0 medium 0
+[] [] medium generic
 #2325
-oldstyle gorak minotaur warrior master~
+gorak minotaur warrior master~
 Gorak~
 Gorak, the Minotaur Master Warrior, is here practicing his skills.
 ~
@@ -391,14 +393,14 @@ Gorak is HUGE. His bulging muscles are confined beneath heavy armor. He is the
 master of the warrior guild of Mahn-Tor.
 ~
 human~
-ABF DH -300 0
+[sentinel aggressive] [detect_invis sanctuary] -300 0
 30 0 6d12+853 15d9+100 4d6+8 none
 -9 -9 -9 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 5000
-0 0 medium 0
+[] [] medium generic
 #2326
-oldstyle darkoth minotaur anti-paladin master~
+darkoth minotaur anti-paladin master~
 Darkoth~
 Darkoth, the minotaur anti-paladin, stands here grinning wickedly.
 ~
@@ -406,14 +408,14 @@ Darkoth is a living incarnation of evil. He radiates a dark aura, and a cold
 chill runs down your spine. He is the master of the Mahn-Tor anti-paladins.
 ~
 human~
-ABF DH -1000 0
+[sentinel aggressive] [detect_invis sanctuary] -1000 0
 30 0 6d12+853 15d9+100 4d6+8 none
 -9 -9 -9 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 5000
-0 0 medium 0
+[] [] medium generic
 #2327
-oldstyle tyrgoth minotaur paladin master~
+tyrgoth minotaur paladin master~
 Tyrgoth~
 Tyrgoth, the minotaur paladin, is here worshipping silently.
 ~
@@ -421,14 +423,14 @@ Tyrgoth is the minotaur incarnation of good. You feel safe and at ease in his
 presence. He is the leader of the Mahn-Tor paladins.
 ~
 human~
-AB DH 1000 0
+[sentinel] [detect_invis sanctuary] 1000 0
 30 0 6d12+853 15d9+100 4d6+8 none
 -9 -9 -9 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 5000
-0 0 medium 0
+[] [] medium generic
 #2328
-oldstyle amyrok minotaur mage master~
+amyrok minotaur mage master~
 Amyrok~
 Amyrok, the minotaur archmage, is here chanting arcane spells.
 ~
@@ -437,14 +439,14 @@ power. He appears quite dangerous, despite his size. He is the leader of the
 mages of Mahn-Tor.
 ~
 human~
-ABFR DH 300 0
+[sentinel aggressive mage] [detect_invis sanctuary] 300 0
 30 0 6d12+778 30d9+100 5d4+7 none
 -9 -9 -9 1
-FU 0 0 0
+[dodge assist_vnum] [] [] []
 stand stand male 5000
-0 0 medium 0
+[] [] medium generic
 #2329
-oldstyle sumaron minotaur cleric master~
+sumaron minotaur cleric master~
 Sumaron~
 Sumaron, master cleric of Mahn-Tor, is here looking holy.
 ~
@@ -452,14 +454,14 @@ Sumaron is clad in white glowing robes. He is goodness incarnate. He is the
 master of all the clerics of Mahn-Tor.
 ~
 human~
-ABFQ DH 1000 0
+[sentinel aggressive cleric] [detect_invis sanctuary] 1000 0
 30 0 6d12+853 30d9+100 5d4+8 none
 -9 -9 -9 4
-EIKU 0 0 0
+[disarm kick parry assist_vnum] [] [] []
 stand stand male 5000
-0 0 medium 0
+[] [] medium generic
 #2330
-oldstyle nasturn minotaur druid master~
+nasturn minotaur druid master~
 Nasturn~
 Nasturn, the minotaur druid, is here studying the arts of nature.
 ~
@@ -467,14 +469,14 @@ Nasturn is quite a natural looking minotaur. He is dressed in leather and
 wears no metal of any type. He looks at you and smiles.
 ~
 human~
-ABQ DH 500 0
+[sentinel cleric] [detect_invis sanctuary] 500 0
 30 0 6d12+853 30d9+100 5d4+8 none
 -9 -9 -9 4
-EIKU 0 0 0
+[disarm kick parry assist_vnum] [] [] []
 stand stand male 5000
-0 0 medium 0
+[] [] medium generic
 #2331
-oldstyle belrak minotaur ranger master~
+belrak minotaur ranger master~
 Belrak~
 Belrak, the minotaur ranger, looks unhappy about having visitors.
 ~
@@ -482,14 +484,14 @@ Belrak is clad in green and brown leather. He looks quite agile and thin, when
 compared to the normal minotaur. He looks at you with a slight smirk.
 ~
 human~
-ABF DH 500 0
+[sentinel aggressive] [detect_invis sanctuary] 500 0
 30 0 6d12+853 15d9+100 4d6+8 none
 -9 -9 -9 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 5000
-0 0 medium 0
+[] [] medium generic
 #2332
-oldstyle dorgar minotaur thief master~
+dorgar minotaur thief master~
 Dorgar~
 Dorgar, the minotaur thief, is here hiding in the shadows.
 ~
@@ -497,14 +499,14 @@ Dorgar is clad all in black. He is tall and slender, unlike most minotaurs. He
 appears to be quite a skilled thief.
 ~
 human~
-ABCF Q -500 0
+[sentinel scavenger aggressive] [hide] -500 0
 30 0 6d12+853 15d9+100 4d6+8 none
 -9 -9 -9 6
-EFNU 0 0 0
+[disarm dodge trip assist_vnum] [] [] []
 stand stand male 5000
-0 0 medium 0
+[] [] medium generic
 #2333
-oldstyle mahn-tor minotaur grand master~
+mahn-tor minotaur grand master~
 Mahn-Tor~
 Mahn-Tor, the minotaur grand master, is here looking down at you.
 ~
@@ -513,12 +515,12 @@ armor and robes. He wields the largest axe you have ever seen. You can see why
 Mahn-Tor is the leader of the minotaurs. He is awe-inspiring.
 ~
 human~
-ABCR BDHTU -500 0
+[sentinel scavenger mage] [invisible detect_invis sanctuary flying pass_door] -500 0
 33 0 10d10+1000 33d9+100 4d6+8 none
 -10 -10 -10 0
-FU 0 0 0
+[dodge assist_vnum] [] [] []
 stand stand male 5000
-0 0 medium 0
+[] [] medium generic
 #0
 
 #OBJECTS
@@ -526,8 +528,8 @@ stand stand male 5000
 gloves combat~
 a pair of minotaur combat gloves~
 A pair of metal plated gloves lie here.~
-oldstyle~
-armor 0 AH
+generic~
+armor [] [take hands]
 8 8 8 0 0
 25 60 2600 P
 A
@@ -543,8 +545,8 @@ protection.
 spiked armor garde~
 a suit of spiked garde armor~
 A pile of spiked chainmail lies here.~
-oldstyle~
-armor 0 AD
+generic~
+armor [] [take body]
 7 7 7 0 0
 22 80 4200 P
 A
@@ -553,25 +555,25 @@ A
 greaves black~
 a pair of black minotaur greaves~
 Some black metal greaves lie here.~
-oldstyle~
-armor 0 AF
+generic~
+armor [] [take legs]
 9 9 9 0 0
 30 90 2600 P
 #2303
 vambraces black~
 a pair of black minotaur vambraces~
 Some black metal vambraces lie here.~
-oldstyle~
-armor 0 AI
+generic~
+armor [] [take arms]
 9 9 9 0 0
 30 90 2600 P
 #2304
 rod weaponry~
 the rod of weaponry~
 A shiny metal rod lies here.~
-oldstyle~
-weapon AGI AN
-exotic 2 12 blast 0
+generic~
+weapon [glow magic bless] [take wield]
+unknown 2 12 blast []
 28 240 4700 P
 A
 19 3
@@ -581,9 +583,9 @@ A
 cloak pitch black~
 a pitch black cloak~
 A pile of black cloth lies here.~
-oldstyle~
-container G AK
-150 0 0 30 90
+generic~
+container [magic] [take about]
+150 [] 0 30 90
 20 30 860 P
 A
 20 -2
@@ -595,8 +597,8 @@ It appears to have pockets inside it.
 neckguard neck guard black plate~
 a black plate neckguard~
 A black plate collar rests here.~
-oldstyle~
-armor GJL AC
+generic~
+armor [magic antigood antineutral] [take neck]
 9 9 9 0 0
 30 100 3400 P
 A
@@ -605,8 +607,8 @@ A
 spiked gauntlets~
 a pair of spiked gauntlets~
 A pair of spiked gauntlets lies here.~
-oldstyle~
-armor 0 AH
+generic~
+armor [] [take hands]
 3 3 3 0 0
 20 100 1570 P
 A
@@ -619,8 +621,8 @@ They look pretty damaging.
 shield shadow~
 the shadow shield~
 A shadowy shield rests here.~
-oldstyle~
-armor AGJL AJ
+generic~
+armor [glow magic antigood antineutral] [take shield]
 8 8 8 3 0
 27 150 4900 P
 A
@@ -635,9 +637,9 @@ You look into the depths of the shield and shiver at the evil it contains.
 nightbringer short sword shortsword~
 a shortsword named "Nightbringer"~
 A very evil looking shortsword lies here.~
-oldstyle~
-weapon CGJL AN
-sword 5 4 pierce 0
+generic~
+weapon [dark magic antigood antineutral] [take wield]
+sword 5 4 pierce []
 27 90 3500 P
 A
 19 3
@@ -651,8 +653,8 @@ The runes "NiGHtBrINgeR" are scrawled along the blade.
 visor helm golden~
 a golden helm and visor~
 A helm and visor made of pure gold rests here.~
-oldstyle~
-armor AGKL AE
+generic~
+armor [glow magic antievil antineutral] [take head]
 7 7 7 2 0
 20 150 3000 P
 A
@@ -663,8 +665,8 @@ A
 breast plate gilded gold~
 a gilded gold breast plate~
 A large golden breast plate lies here.~
-oldstyle~
-armor AGKL AD
+generic~
+armor [glow magic antievil antineutral] [take body]
 9 9 9 3 0
 32 180 6700 P
 A
@@ -673,16 +675,16 @@ A
 cape white billowing silk~
 a billowing white cape ~
 A pile of white silk lies here.~
-oldstyle~
-armor AG AC
+generic~
+armor [glow magic] [take neck]
 5 5 5 1 0
 10 50 760 P
 #2313
 shield huge tower~
 a huge tower shield~
 A huge shield lies here.~
-oldstyle~
-armor AG AJ
+generic~
+armor [glow magic] [take shield]
 9 9 9 3 0
 30 140 4100 P
 E
@@ -693,9 +695,9 @@ A pure white shield with a gold cross emblazoned across it.
 dawnbringer mace huge two-handed~
 a huge mace named "Dawnbringer"~
 A huge mace lies here. It radiates an aura of power.~
-oldstyle~
-weapon AGKL AN
-mace 4 6 blast F
+generic~
+weapon [glow magic antievil antineutral] [take wield]
+mace 4 6 blast [twohands]
 28 240 3200 P
 A
 19 3
@@ -709,8 +711,8 @@ The runes "DAwNbRIngER" are scrawled along the handle.
 spectacles wire rimmed~
 a pair of wire rimmed spectacles~
 A small pair of wire rimmed spectacles rests here.~
-oldstyle~
-clothing G AE
+generic~
+clothing [magic] [take head]
 0 0 0 0 0
 15 20 2600 P
 A
@@ -723,8 +725,8 @@ They'll make you look smart.
 ring banded~
 a banded ring~
 A small ring made of gold and silver bands lies here.~
-oldstyle~
-jewelry AG AB
+generic~
+jewelry [glow magic] [take finger]
 0 0 0 0 0
 30 20 1520 P
 A
@@ -737,8 +739,8 @@ The ring has entwined bands of gold and silver.
 globe minor~
 a minor globe of invulnerability~
 A small globe rests here. It shimmers and radiates power.~
-oldstyle~
-armor AG AK
+generic~
+armor [glow magic] [take about]
 8 8 8 4 0
 27 10 3200 P
 A
@@ -751,9 +753,9 @@ Shimmering colors move inside the globe.
 staff gnarled magius~
 a gnarled magius staff~
 A gnarled staff lies here.~
-oldstyle~
-weapon G AN
-staff 5 4 pound F
+generic~
+weapon [magic] [take wield]
+staff 5 4 pound [twohands]
 27 100 2900 P
 A
 20 -2
@@ -769,9 +771,9 @@ It appears to be simply a gnarled old limb. It feels powerful though.
 girdle pouches many~
 a girdle of many pouches~
 A girdle lies here.~
-oldstyle~
-container Y AL
-500 0 0 10 25
+generic~
+container [burnproof] [take waist]
+500 [] 0 10 25
 0 50 1000 P
 E
 girdle pouches many~
@@ -781,16 +783,16 @@ It appears to be full of tiny pockets.
 robe heavy woolen~
 a heavy woolen robe~
 A heavy pile of wool lies here.~
-oldstyle~
-armor G AK
+generic~
+armor [magic] [take about]
 8 8 8 0 0
 25 100 1950 P
 #2321
 brooch ivory~
 a brooch of life~
 A small ivory brooch lies here.~
-oldstyle~
-jewelry AGI AC
+generic~
+jewelry [glow magic bless] [take neck]
 0 0 0 0 0
 30 50 1520 P
 A
@@ -799,8 +801,8 @@ A
 manual arts healing book~
 a manual of healing arts~
 A small book lies here.~
-oldstyle~
-scroll 0 AO
+generic~
+scroll [] [take hold]
 30 'cure light' 'cure light' 'cure light' ''
 0 50 800 P
 E
@@ -811,9 +813,9 @@ It appears to be a book of anatomy and medicine.
 mace huge mithril~
 a huge mithril mace~
 A huge mace made of mithril metal lies here.~
-oldstyle~
-weapon AG AN
-mace 5 4 crush 0
+generic~
+weapon [glow magic] [take wield]
+mace 5 4 crush []
 26 130 1960 P
 A
 19 2
@@ -823,8 +825,8 @@ A
 symbol holy golden~
 a golden holy symbol~
 A small holy symbol on a golden chain lies here.~
-oldstyle~
-jewelry G AC
+generic~
+jewelry [magic] [take neck]
 0 0 0 0 0
 5 30 110 P
 A
@@ -833,8 +835,8 @@ A
 ring marble thick~
 a thick marble ring~
 A thick ring made of marble~
-oldstyle~
-jewelry G AB
+generic~
+jewelry [magic] [take finger]
 0 0 0 0 0
 8 50 470 P
 A
@@ -843,8 +845,8 @@ A
 bracelet thick marble~
 a thick marble bracelet~
 A thick bracelet made of marble lies here.~
-oldstyle~
-jewelry G AM
+generic~
+jewelry [magic] [take wrist]
 0 0 0 0 0
 5 80 550 P
 A
@@ -853,8 +855,8 @@ A
 boots striding~
 boots of striding~
 A lithe pair of leather boots have been left here.~
-oldstyle~
-armor G AG
+generic~
+armor [magic] [take feet]
 5 5 5 0 0
 30 50 2500 P
 A
@@ -867,8 +869,8 @@ They look comfortable to walk in.
 cloak icy white~
 an icy white cloak~
 A cold pile of white cloth lies here.~
-oldstyle~
-armor AG AK
+generic~
+armor [glow magic] [take about]
 8 8 8 2 0
 25 50 2000 P
 E
@@ -879,9 +881,9 @@ Smoke rises from it almost like it's made of dry ice.
 staff ice~
 an ice staff~
 A staff made of ice rests here.~
-oldstyle~
-weapon G AN
-staff 7 3 pound BF
+generic~
+weapon [magic] [take wield]
+staff 7 3 pound [frost twohands]
 28 130 1470 P
 A
 12 20
@@ -895,8 +897,8 @@ The runes "FrIgID" are inscribed in the icy staff.
 ring carved wooden~
 a carved wooden ring~
 A wooden ring is on the floor.~
-oldstyle~
-jewelry G AB
+generic~
+jewelry [magic] [take finger]
 0 0 0 0 0
 7 30 460 P
 A
@@ -907,8 +909,8 @@ A
 horn life~
 the horn of life~
 A severed minotaur horn lies here.~
-oldstyle~
-wand G AO
+generic~
+wand [magic] [take hold]
 30 8 8 'cure light' 0
 1 50 930 P
 E
@@ -919,8 +921,8 @@ The horn is capped at both ends with gold. Unreadable runes are scrawled on it.
 belt life~
 the belt of life~
 A strange belt lies here.~
-oldstyle~
-clothing G AL
+generic~
+clothing [magic] [take waist]
 0 0 0 0 0
 30 90 7600 P
 A
@@ -929,8 +931,8 @@ A
 stone blood red~
 a blood red stone~
 A blood red stone lies here collecting dust.~
-oldstyle~
-warp_stone BGT AO
+generic~
+warp_stone [hum magic nolocate] [take hold]
 3 0 0 0 0
 20 20 580 P
 A
@@ -943,9 +945,9 @@ The stone pulses with your own heart beat.
 crossbow huge~
 a huge crossbow~
 A huge crossbow rests here.~
-oldstyle~
-weapon G AN
-exotic 3 9 pierce F
+generic~
+weapon [magic] [take wield]
+unknown 3 9 pierce [twohands]
 27 150 4300 P
 A
 19 1
@@ -955,9 +957,9 @@ A
 pack leather small~
 a small leather pack~
 A small leather pack rests here.~
-oldstyle~
-container GY AK
-200 0 0 20 80
+generic~
+container [magic burnproof] [take about]
+200 [] 0 20 80
 0 90 500 P
 E
 pack leather small~
@@ -967,24 +969,24 @@ It looks pretty big on the inside.
 hood black leather~
 a black leather hood~
 A hood made of black leather rests here.~
-oldstyle~
-armor G AE
+generic~
+armor [magic] [take head]
 5 5 5 0 0
 10 50 730 P
 #2337
 sleeves black leather~
 a pair of black leather sleeves~
 Some leather sleeves lie here.~
-oldstyle~
-armor 0 AI
+generic~
+armor [] [take arms]
 7 7 7 0 0
 20 50 1450 P
 #2338
 pants black leather~
 a pair of black leather pants~
 Some leather pants lie here.~
-oldstyle~
-armor G AF
+generic~
+armor [magic] [take legs]
 7 7 7 0 0
 20 50 1450 P
 E
@@ -995,9 +997,9 @@ They look sneaky.
 sword wicked short shortsword~
 a wicked shortsword~
 A wicked looking shortsword lies here.~
-oldstyle~
-weapon G AN
-sword 3 8 pierce 0
+generic~
+weapon [magic] [take wield]
+sword 3 8 pierce []
 26 110 2300 P
 A
 19 1
@@ -1011,8 +1013,8 @@ It looks just perfect for backstabbing.
 globe major~
 a major globe of invulnerability~
 A large globe rests here, pulsing uneasily.~
-oldstyle~
-armor ABG AK
+generic~
+armor [glow hum magic] [take about]
 9 9 9 6 0
 31 10 4100 P
 A
@@ -1025,8 +1027,8 @@ Shimmering colors move inside the globe.
 chain chainmail black suit~
 a suit of black minotaur chainmail~
 A huge pile of black chainmail rests here.~
-oldstyle~
-armor G AD
+generic~
+armor [magic] [take body]
 9 9 9 2 0
 30 120 7000 P
 A
@@ -1037,8 +1039,8 @@ A
 buckler spiked~
 a spiked buckler~
 A small spiked buckler rests here.~
-oldstyle~
-armor 0 AJ
+generic~
+armor [] [take shield]
 10 10 10 3 0
 35 50 6600 P
 A
@@ -1047,8 +1049,8 @@ A
 ring studded~
 a studded ring~
 A small studded ring lies here.~
-oldstyle~
-jewelry G AB
+generic~
+jewelry [magic] [take finger]
 0 0 0 0 0
 13 10 1020 P
 A
@@ -1059,17 +1061,17 @@ A
 helm horned~
 a horned minotaur helm~
 A small horned helm rests here.~
-oldstyle~
-armor 0 AE
+generic~
+armor [] [take head]
 10 10 10 2 0
 35 80 3400 P
 #2345
 axe great~
 mahn-Tor's Great Axe~
 An extremely huge axe is resting here.~
-oldstyle~
-weapon BG AN
-axe 5 5 slash 0
+generic~
+weapon [hum magic] [take wield]
+axe 5 5 slash []
 31 260 3400 P
 A
 19 2
@@ -1083,8 +1085,8 @@ The runes "DeAtH" are scrawled along the blade.
 plate ethereal suit~
 a suit of ethereal plate~
 A suit of shimmering plate rests here.~
-oldstyle~
-armor AJ AD
+generic~
+armor [glow antigood] [take body]
 8 8 8 4 0
 27 20 5500 P
 A
@@ -1097,8 +1099,8 @@ You can almost see through it.
 helm ethereal~
 an ethereal helm~
 A shimmering helm rests here.~
-oldstyle~
-armor AJ AE
+generic~
+armor [glow antigood] [take head]
 8 8 8 4 0
 25 50 2200 P
 E
@@ -1109,9 +1111,9 @@ You can almost see through it.
 blade ethereal~
 an ethereal blade~
 A shimmering blade lies here.~
-oldstyle~
-weapon AJ AN
-exotic 2 12 slash 0
+generic~
+weapon [glow antigood] [take wield]
+unknown 2 12 slash []
 25 30 3200 P
 A
 19 1
@@ -1125,88 +1127,88 @@ You can almost see through it.
 branch willow~
 a willow branch~
 A small willow branch lies here.~
-oldstyle~
-wand G AO
+generic~
+wand [magic] [take hold]
 20 5 5 'heat metal' 0
 13 30 2600 P
 #2350
 key keep~
 the keep key~
 A small key lies here.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 2 0 0 0 0
 0 10 0 P
 #2351
 key red~
 a red key~
 A small red key lies here.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 2 0 0 0 0
 0 10 0 P
 #2352
 key black~
 a black key~
 A small black key lies here.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 2 0 0 0 0
 0 10 0 P
 #2353
 key white~
 a white key~
 A small white key lies here.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 2 0 0 0 0
 0 10 0 P
 #2354
 key brown~
 a brown key~
 A small brown key lies here.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 2 0 0 0 0
 0 10 0 P
 #2355
 key yellow~
 a yellow key~
 A small yellow key lies here.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 2 0 0 0 0
 0 10 0 P
 #2356
 key maroon~
 a maroon key~
 A small maroon key lies here.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 2 0 0 0 0
 0 10 0 P
 #2357
 key green~
 a green key~
 A small green key lies here.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 2 0 0 0 0
 0 10 0 P
 #2358
 key grey~
 a grey key~
 A small grey key lies here.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 2 0 0 0 0
 0 10 0 P
 #2359
 key runed~
 a runed key~
 A small runed key lies here.~
-oldstyle~
-key 0 A
+generic~
+key [] [take]
 2 0 0 0 0
 0 10 0 P
 E
@@ -1217,8 +1219,8 @@ The key looks like it was made for royalty.
 boots fur lined~
 a pair of fur lined boots~
 A pair of boots are on the floor.~
-oldstyle~
-armor G AG
+generic~
+armor [magic] [take feet]
 3 3 3 1 0
 7 50 470 P
 A
@@ -1227,17 +1229,17 @@ A
 pelt yeti white~
 the white pelt of a yeti~
 A white pelt lies here.~
-oldstyle~
-armor Q AK
+generic~
+armor [visdeath] [take about]
 6 6 6 1 0
 15 90 1080 P
 #2362
 sword kopesh~
 a kopesh sword~
 A sword with a curved blade lies here.~
-oldstyle~
-weapon 0 AN
-sword 5 3 slash 0
+generic~
+weapon [] [take wield]
+sword 5 3 slash []
 17 130 1310 P
 E
 sword kopesh~
@@ -1248,49 +1250,49 @@ forearm of the wielder.
 vambraces steel~
 a pair of steel vambraces~
 A gleaming pair of vambraces lies here.~
-oldstyle~
-armor 0 AI
+generic~
+armor [] [take arms]
 6 6 6 0 0
 15 0 1050 P
 #2364
 greaves steel~
 a pair of steel greaves~
 A gleaming pair of greaves lie here.~
-oldstyle~
-armor 0 AF
+generic~
+armor [] [take legs]
 6 6 6 0 0
 15 70 1050 P
 #2365
 axe battle battleaxe~
 a battle axe~
 A dangerous looking battle axe rests here.~
-oldstyle~
-weapon 0 AN
-axe 4 4 slash 0
+generic~
+weapon [] [take wield]
+axe 4 4 slash []
 17 180 1310 P
 #2366
 plate steel breast~
 a steel breast plate~
 A breast plate of thick steel rests here.~
-oldstyle~
-armor 0 AD
+generic~
+armor [] [take body]
 6 6 6 0 0
 15 100 2100 P
 #2367
 helm steel~
 a steel helm~
 A steel helm has been left here.~
-oldstyle~
-armor 0 AE
+generic~
+armor [] [take head]
 6 6 6 0 0
 15 60 1050 P
 #2368
 halberd huge two-handed~
 a huge halberd~
 A huge halberd has been left here.~
-oldstyle~
-weapon G AN
-polearm 2 10 cleave F
+generic~
+weapon [magic] [take wield]
+polearm 2 10 cleave [twohands]
 18 180 690 P
 A
 19 1
@@ -1300,33 +1302,33 @@ A
 visor blue steel helm~
 a blue steel helm and visor~
 A helm and visor of blue steel rests here.~
-oldstyle~
-armor 0 AE
+generic~
+armor [] [take head]
 8 8 8 0 0
 25 80 1950 P
 #2370
 greaves blue steel~
 a pair of blue steel greaves~
 Some greaves made of blue steel rest here.~
-oldstyle~
-armor 0 AF
+generic~
+armor [] [take legs]
 8 8 8 0 0
 25 80 1950 P
 #2371
 vambraces blue steel~
 a pair of blue steel vambraces~
 Some vambraces made of blue steel rest here.~
-oldstyle~
-armor 0 AI
+generic~
+armor [] [take arms]
 8 8 8 0 0
 25 80 1950 P
 #2372
 sword two two-handed~
 a two-handed sword~
 A large sword lies here.~
-oldstyle~
-weapon G AN
-sword 6 3 slash F
+generic~
+weapon [magic] [take wield]
+sword 6 3 slash [twohands]
 22 180 2500 P
 A
 19 2
@@ -1336,33 +1338,33 @@ A
 visor helm steel red~
 a red steel helm and visor~
 A helm and visor made of red steel rests here.~
-oldstyle~
-armor 0 AE
+generic~
+armor [] [take head]
 7 7 7 0 0
 20 80 1450 P
 #2374
 greaves red steel~
 a pair of red steel greaves~
 Some greaves made of red steel rest here.~
-oldstyle~
-armor 0 AF
+generic~
+armor [] [take legs]
 7 7 7 0 0
 20 80 1450 P
 #2375
 vambraces red steel~
 a pair of red steel vambraces~
 Some vambraces made of red steel rest here.~
-oldstyle~
-armor 0 AI
+generic~
+armor [] [take arms]
 7 7 7 0 0
 20 80 1450 P
 #2376
 glaive~
 a minotaur glaive~
 A very large glaive rests here.~
-oldstyle~
-weapon G AN
-polearm 5 4 slash F
+generic~
+weapon [magic] [take wield]
+polearm 5 4 slash [twohands]
 22 190 830 P
 A
 19 1
@@ -1372,33 +1374,33 @@ A
 visor helm crimson steel~
 a crimson steel helm and visor~
 A helm and visor made of crimson steel rests here.~
-oldstyle~
-armor 0 AE
+generic~
+armor [] [take head]
 8 8 8 0 0
 25 80 1950 P
 #2378
 greaves crimson steel~
 a pair of crimson steel greaves~
 Some greaves made of crimson steel rest here.~
-oldstyle~
-armor 0 AF
+generic~
+armor [] [take legs]
 8 8 8 0 0
 25 80 1950 P
 #2379
 vambraces crimson steel~
 a pair of crimson steel vambraces~
 Some vambraces made of crimson steel rest here.~
-oldstyle~
-armor 0 AI
+generic~
+armor [] [take arms]
 8 8 8 0 0
 25 80 1950 P
 #2380
 star morning morningstar~
 a huge morningstar~
 A huge morningstar rests here.~
-oldstyle~
-weapon G AN
-mace 7 3 pound 0
+generic~
+weapon [magic] [take wield]
+mace 7 3 pound []
 29 200 2300 P
 A
 19 2
@@ -1412,9 +1414,9 @@ It looks damaging.
 spiked brass knuckles~
 some huge spiked brass knuckles~
 A set of spiked brass knuckles lies here.~
-oldstyle~
-weapon 0 AN
-exotic 4 4 punch 0
+generic~
+weapon [] [take wield]
+unknown 4 4 punch []
 17 90 1970 P
 E
 spiked brass knuckles~
@@ -1424,9 +1426,9 @@ A band held in the hand that has spikes on the front side.
 ring key multi colored multi-colored~
 a multi-colored key ring~
 A ring of multi-colored keys rests here.~
-oldstyle~
-container 0 AC
-10 0 0 2 100
+generic~
+container [] [take neck]
+10 [] 0 2 100
 0 30 0 P
 E
 ring key multi colored multi-colored~
@@ -1436,64 +1438,64 @@ It has several keys of different colors on it.
 maul huge wooden~
 a huge wooden maul~
 A huge wooden maul rests here.~
-oldstyle~
-weapon 0 AN
-mace 5 5 blast 0
+generic~
+weapon [] [take wield]
+mace 5 5 blast []
 28 220 1700 P
 #2384
 potion misty~
 a misty potion~
 A small misty potion rests here.~
-oldstyle~
-potion AGN A
+generic~
+potion [glow magic inventory] [take]
 20 'heal' '' '' ''
 11 30 800 P
 #2385
 pouch belt~
 a belt pouch~
 A belt pouch lies here.~
-oldstyle~
-container 0 AL
-15 0 0 2 100
+generic~
+container [] [take waist]
+15 [] 0 2 100
 0 50 20 P
 #2386
 spear ogre~
 an ogre spear~
 A crude spear rests here.~
-oldstyle~
-weapon 0 AN
-staff 2 10 thrust F
+generic~
+weapon [] [take wield]
+staff 2 10 thrust [twohands]
 17 80 320 P
 #2387
 club ogre war~
 an ogre war club~
 A large, crude club rests here.~
-oldstyle~
-weapon 0 AN
-mace 4 4 pound 0
+generic~
+weapon [] [take wield]
+mace 4 4 pound []
 17 100 880 P
 #2388
 cloak bear skin bearskin~
 a bearskin cloak~
 A rough bearskin rests here.~
-oldstyle~
-armor 0 AK
+generic~
+armor [] [take about]
 7 7 7 0 0
 20 120 1450 P
 #2389
 ear ring earring feathered~
 a pair of feathered earrings~
 Some feathered earrings rest here.~
-oldstyle~
-jewelry AG AE
+generic~
+jewelry [glow magic] [take head]
 0 0 0 0 0
 0 20 500 P
 #2390
 gauntlets ogre power~
 gauntlets of ogre power~
 Some heavy gauntlets lie here.~
-oldstyle~
-armor BG AH
+generic~
+armor [hum magic] [take hands]
 7 7 7 0 0
 23 130 5800 P
 A
@@ -1509,23 +1511,23 @@ club massive~
 a massive club~
 A massive club lies here, discarded.~
 wood~
-weapon 0 AN
-mace 3 8 blast F
+weapon [] [take wield]
+mace 3 8 blast [twohands]
 23 190 1520 P
 #2392
 cape thick fur~
 a thick fur cape~
 A thick pile of fur lies here.~
-oldstyle~
-armor 0 AC
+generic~
+armor [] [take neck]
 6 6 6 0 0
 15 50 1050 P
 #2393
 tunic fur lined~
 a fur lined tunic~
 A fur lined tunic rests here.~
-oldstyle~
-armor 0 AD
+generic~
+armor [] [take body]
 6 6 6 0 0
 15 60 2100 P
 #0
@@ -1540,11 +1542,12 @@ very much like turning back and heading for safer areas. The path leads north
 into more open lands while it also leads south into the darkness of the forest.
 A small sign is posted here.
 ~
-0 C 3
+0 [no_mob] 3
 D0
 ~
 ~
-0 0 5280
+0 -1 5280
+Pmahntor-north-1~
 D2
 ~
 ~
@@ -1568,7 +1571,7 @@ down through the gaps in the canopy above and provide small spots of light
 that seem to attract what little foliage can grow on the dark forest floor.
 The path winds north and south into darkness.
 ~
-0 AC 3
+0 [dark no_mob] 3
 D0
 ~
 ~
@@ -1586,19 +1589,19 @@ intersection. It is almost as though you are in a circle of light that
 provides sanctuary in this land of darkness.
 Something has been scrawled in the dirt in blood here.
 ~
-0 0 3
+0 [] 3
 D0
 ~
 ~
-0 0 2301
+0 -1 2301
 D1
 ~
 ~
-0 0 2304
+0 -1 2304
 D2
 ~
 ~
-0 0 2303
+0 -1 2303
 E
 blood dirt scrawl~
 BeWAre tHe SwAmP oGreS......
@@ -1611,7 +1614,7 @@ its deadly darkness and silence. Looking west, you see a path that leads up
 into a foothills region. Standing here on the boundary between light and
 darkness, you feel very vulnerable and alone.
 ~
-0 0 4
+0 [] 4
 D0
 ~
 ~
@@ -1628,15 +1631,15 @@ heard and little light penetrates the canopy of trees above you. The air here
 smells musty and you long for a fresh breath. You see an intersection of paths
 to the west. The path you are on leads south into the darkening woods.
 ~
-0 A 3
+0 [dark] 3
 D2
 ~
 ~
-0 0 2305
+0 -1 2305
 D3
 ~
 ~
-0 0 2302
+0 -1 2302
 S
 #2305
 The dark forest path~
@@ -1645,11 +1648,11 @@ wet quagmire. It is difficult to walk, and you make squishing sounds as you
 move on. Looking east, you see a swampy path. The main path leads north and
 south into darkness.
 ~
-0 A 3
+0 [dark] 3
 D0
 ~
 ~
-0 0 2304
+0 -1 2304
 D1
 ~
 ~
@@ -1657,7 +1660,7 @@ D1
 D2
 ~
 ~
-0 0 2306
+0 -1 2306
 S
 #2306
 A turn in the path~
@@ -1666,15 +1669,15 @@ that the ground has become dank and swampy, while the western path appears
 to be entering a hilly area. You hear sounds of swamp creatures to the north
 east.
 ~
-0 A 3
+0 [dark] 3
 D0
 ~
 ~
-0 0 2305
+0 -1 2305
 D3
 ~
 ~
-0 0 2307
+0 -1 2307
 S
 #2307
 The bloody intersection~
@@ -1685,19 +1688,19 @@ of beaten armour and broken blades lie all around. Examining the tracks here
 lead you to believe that the dead and wounded were dragged off in two 
 directions, south and east.
 ~
-0 A 4
+0 [dark] 4
 D1
 ~
 ~
-0 0 2306
+0 -1 2306
 D2
 ~
 ~
-0 0 2310
+0 -1 2310
 D3
 ~
 ~
-0 0 2308
+0 -1 2308
 S
 #2308
 The rocky path~
@@ -1705,15 +1708,15 @@ The path here winds among the low rocky hills. The long trek up and down the
 hills begins to tire you greatly. Looking east, you see a small clearing. More
 hills are to the north of here.
 ~
-0 0 4
+0 [] 4
 D0
 ~
 ~
-0 0 2309
+0 -1 2309
 D1
 ~
 ~
-0 0 2307
+0 -1 2307
 S
 #2309
 The rocky path~
@@ -1722,15 +1725,15 @@ slip and fall often. Looking south, you see that the path continues into the
 hills. Smoother ground is to the east, but the path seems to lead into a dark
 forest in that direction.
 ~
-0 0 4
+0 [] 4
 D1
 ~
 ~
-0 0 2303
+0 -1 2303
 D2
 ~
 ~
-0 0 2308
+0 -1 2308
 S
 #2310
 Up the rocky hillside~
@@ -1739,23 +1742,23 @@ small boulders bounce and fall down below you. Looking to the east and west,
 you see more stable ground. The hillside itself goes on higher to the south
 and it drops away to the north.
 ~
-0 C 5
+0 [no_mob] 5
 D0
 ~
 ~
-0 0 2307
+0 -1 2307
 D1
 ~
 ~
-0 0 2312
+0 -1 2312
 D2
 ~
 ~
-0 0 2314
+0 -1 2314
 D3
 ~
 ~
-0 0 2311
+0 -1 2311
 S
 #2311
 The sparse foothills~
@@ -1764,15 +1767,15 @@ beaten trees. There are little signs of life here. Only bare rock and dry dirt
 can be seen. Looking east, you see a small pass that will allow you to leave
 the foothills. The foothills themselves extend to the south.
 ~
-0 0 4
+0 [] 4
 D1
 ~
 ~
-0 0 2310
+0 -1 2310
 D2
 ~
 ~
-0 0 2313
+0 -1 2313
 S
 #2312
 Standing on level ground~
@@ -1782,15 +1785,15 @@ Even here, you catch its scent on the winds. From here, you can travel south
 deeper into the foothills or to the west where a small pass will allow you to
 climb down.
 ~
-0 0 4
+0 [] 4
 D2
 ~
 ~
-0 0 2315
+0 -1 2315
 D3
 ~
 ~
-0 0 2310
+0 -1 2310
 S
 #2313
 In the foothills~
@@ -1798,19 +1801,19 @@ You are in a barren set of foothills. Looking around, all you see are dead
 plants and boulders. From the south, you get a whiff of salty air. Barren paths
 lead east, north, and south into more barren hills.
 ~
-0 0 4
+0 [] 4
 D0
 ~
 ~
-0 0 2311
+0 -1 2311
 D1
 ~
 ~
-0 0 2314
+0 -1 2314
 D2
 ~
 ~
-0 0 2317
+0 -1 2317
 S
 #2314
 Before the huge tree~
@@ -1820,23 +1823,23 @@ bushes is a huge gnarled tree. It appears to have been twisted and torn by
 the forces of nature. It sways and moans as a strong wind from the south tears
 through its old feeble branches. The hills themselves lead in all directions.
 ~
-0 0 4
+0 [] 4
 D0
 ~
 ~
-0 0 2310
+0 -1 2310
 D1
 ~
 ~
-0 0 2315
+0 -1 2315
 D2
 ~
 ~
-0 0 2318
+0 -1 2318
 D3
 ~
 ~
-0 0 2313
+0 -1 2313
 S
 #2315
 Before the dark cave~
@@ -1846,23 +1849,23 @@ lie around. An unbearable stench comes from within the cave itself. The dark
 cave entrance looms to the east. The hills themselves lead towards the
 north, south, and west.
 ~
-0 0 4
+0 [] 4
 D0
 ~
 ~
-0 0 2312
+0 -1 2312
 D1
 ~
 ~
-0 0 2316
+0 -1 2316
 D2
 ~
 ~
-0 0 2319
+0 -1 2319
 D3
 ~
 ~
-0 0 2314
+0 -1 2314
 S
 #2316
 Inside the horrid cave~
@@ -1873,11 +1876,11 @@ rotting away slowly in the gloomy darkness. In the back of the cave, you see a
 large pile of rotting cloth, fur, and plant matter. Light and safety is
 towards the west.
 ~
-0 AD 0
+0 [dark indoors] 0
 D3
 ~
 ~
-0 0 2315
+0 -1 2315
 E
 pile~
 It appears to be some sort of nest......
@@ -1892,19 +1895,19 @@ life here. It is possible to climb down to the shore here. The hills
 themselves are to the north. The edge of the hills leads to the east along the
 shoreline.
 ~
-0 0 4
+0 [] 4
 D0
 ~
 ~
-0 0 2313
+0 -1 2313
 D1
 ~
 ~
-0 0 2318
+0 -1 2318
 D5
 ~
 ~
-0 0 2320
+0 -1 2320
 S
 #2318
 The hills overlooking the shoreline~
@@ -1915,23 +1918,23 @@ notice signs of life in the rocky crags here. You can climb down towards the
 shore or head north into the hills themselves. The rocky summit you are
 standing leads east and west along the shoreline.
 ~
-0 0 4
+0 [] 4
 D0
 ~
 ~
-0 0 2314
+0 -1 2314
 D1
 ~
 ~
-0 0 2319
+0 -1 2319
 D3
 ~
 ~
-0 0 2317
+0 -1 2317
 D5
 ~
 ~
-0 0 2321
+0 -1 2321
 S
 #2319
 The hills above the shoreline~
@@ -1941,19 +1944,19 @@ Looking around, you notice that you can safely climb down towards the shore.
 The hills themselves stretch towards the north. The rough summit you stand
 upon leads west along the shoreline.
 ~
-0 0 4
+0 [] 4
 D0
 ~
 ~
-0 0 2315
+0 -1 2315
 D3
 ~
 ~
-0 0 2318
+0 -1 2318
 D5
 ~
 ~
-0 0 2322
+0 -1 2322
 S
 #2320
 The rocky shore~
@@ -1961,19 +1964,19 @@ You are at the base of the rocky hills. Stretching to the south and east, you
 see a rocky shore. To the southeast, you see a small altar of some sorts that
 glows with an eerie blue light. It is possible to climb up into the hills here.
 ~
-0 0 2
+0 [] 2
 D1
 ~
 ~
-0 0 2321
+0 -1 2321
 D2
 ~
 ~
-0 0 2323
+0 -1 2323
 D4
 ~
 ~
-0 0 2317
+0 -1 2317
 S
 #2321
 The rocky shoreline~
@@ -1982,23 +1985,23 @@ whistles among the rocks. You see an altar of some sort built on the shore to
 the south. The shore itself leads east and west. Looking up, you see foothills
 and rocky crags.
 ~
-0 0 2
+0 [] 2
 D1
 ~
 ~
-0 0 2322
+0 -1 2322
 D2
 ~
 ~
-0 0 2324
+0 -1 2324
 D3
 ~
 ~
-0 0 2320
+0 -1 2320
 D4
 ~
 ~
-0 0 2318
+0 -1 2318
 S
 #2322
 The rocky shore~
@@ -2007,19 +2010,19 @@ vast sea is to your south. Looking to the southwest, you see a small altar
 that glows with a eerie blue light. The shore stretches out to the south and
 west. It is possible to climb up into the hills here.
 ~
-0 0 2
+0 [] 2
 D2
 ~
 ~
-0 0 2325
+0 -1 2325
 D3
 ~
 ~
-0 0 2321
+0 -1 2321
 D4
 ~
 ~
-0 0 2319
+0 -1 2319
 S
 #2323
 The edge of the sea~
@@ -2027,15 +2030,15 @@ You walk along the water's edge. The vastness of the ocean is staggering as
 you look out across it. You notice a small altar that glows with blue light
 to the east. The shore itself extends north away from the water's edge.
 ~
-0 0 2
+0 [] 2
 D0
 ~
 ~
-0 0 2320
+0 -1 2320
 D1
 ~
 ~
-0 0 2324
+0 -1 2324
 S
 #2324
 The Blood Sea Portal~
@@ -2046,23 +2049,23 @@ light. It is possible to walk south into the portal. The shore itself extends
 to the north, east, and west.
 There are small inscriptions on the rock at the base of the portal.
 ~
-0 0 2
+0 [] 2
 D0
 ~
 ~
-0 0 2321
+0 -1 2321
 D1
 ~
 ~
-0 0 2325
+0 -1 2325
 D2
 ~
 ~
-0 0 2326
+0 -1 2326
 D3
 ~
 ~
-0 0 2323
+0 -1 2323
 E
 portal blue~
 You see a swirling blue portal of light. You think you can see glimpses of
@@ -2080,15 +2083,15 @@ debris is washed up on shore. You slip and slide as you tread across the
 slippery rocks that make up the shore. To the west you see a small altar that
 radiates blue light. The shore extends north away from the water's edge.
 ~
-0 0 2
+0 [] 2
 D0
 ~
 ~
-0 0 2322
+0 -1 2322
 D3
 ~
 ~
-0 0 2324
+0 -1 2324
 S
 #2326
 Floating in blue light~
@@ -2097,11 +2100,11 @@ finally right yourself. Gaining your bearings, you notice that there are two
 "windows" in the sea of blue here. One to the south shows an image of a snowy
 plain. Another window the the north shows an image of a rocky shore.
 ~
-0 CD 0
+0 [no_mob indoors] 0
 D0
 ~
 ~
-0 0 2324
+0 -1 2324
 D2
 ~
 ~
@@ -2114,15 +2117,15 @@ out all light and stifle the wind. You smell swamp gas and hear damp squashing
 sounds all around you. The path leads east deeper into the swamp. You also see
 a dark forest to the west.
 ~
-0 ACD 3
+0 [dark no_mob indoors] 3
 D1
 ~
 ~
-0 0 2328
+0 -1 2328
 D3
 ~
 ~
-0 0 2305
+0 -1 2305
 S
 #2328
 The swampy path~
@@ -2131,15 +2134,15 @@ quicksand and rotting vegetation. Unlike the forest to the west, the swamp is
 teeming with life. Some of it is harmless, some is not. The path leads east
 and west into more swamp.
 ~
-0 AD 3
+0 [dark indoors] 3
 D1
 ~
 ~
-0 0 2329
+0 -1 2329
 D3
 ~
 ~
-0 0 2327
+0 -1 2327
 S
 #2329
 The swampy path~
@@ -2149,7 +2152,7 @@ carefully picking your way around obstacles. Large, gnarled trees rise above
 you. Their moss covered branches block out all traces of the sun. The path
 here leads east and west.
 ~
-0 AD 3
+0 [dark indoors] 3
 D1
 ~
 ~
@@ -2157,7 +2160,7 @@ D1
 D3
 ~
 ~
-0 0 2328
+0 -1 2328
 S
 #2330
 The turn in the swampy path~
@@ -2165,15 +2168,15 @@ You come upon a bend in the swampy path. The ground here is fairly sturdy,
 as this place is elevated above the rest of the swamp. Looking around, you see
 a dark, mist filled swamp. Small paths lead south and west into the mist.
 ~
-0 AD 3
+0 [dark indoors] 3
 D2
 ~
 ~
-0 0 2331
+0 -1 2331
 D3
 ~
 ~
-0 0 2329
+0 -1 2329
 S
 #2331
 The swampy path~
@@ -2181,15 +2184,15 @@ You tread lightly through the mirky water and sludge that makes up the path
 you follow. To the east, there is a thick wall of mist. You can see nothing
 within it. Harder ground rises to the north.
 ~
-0 AD 3
+0 [dark indoors] 3
 D0
 ~
 ~
-0 0 2330
+0 -1 2330
 D1
 ~
 ~
-0 0 2335
+0 -1 2335
 S
 #2332
 Lost in the Mist~
@@ -2197,23 +2200,23 @@ You wander, hopelessly lost. Swirling mist obscures your vision and clouds
 your mind. You lose all concept of direction. Small, silent giggles can be
 heard all around. You can wander in any direction.
 ~
-0 ADN 4
+0 [dark indoors no_recall] 4
 D0
 ~
 ~
-0 0 2337
+0 -1 2337
 D1
 ~
 ~
-0 0 2334
+0 -1 2334
 D2
 ~
 ~
-0 0 2335
+0 -1 2335
 D3
 ~
 ~
-0 0 2334
+0 -1 2334
 S
 #2333
 Lost in the Mist~
@@ -2222,23 +2225,23 @@ you and dare you to escape. You feel a slight electric charge in the mist. It
 almost caresses your body as it floats about you. You can wander in any
 direction.......
 ~
-0 ADN 3
+0 [dark indoors no_recall] 3
 D0
 ~
 ~
-0 0 2333
+0 -1 2333
 D1
 ~
 ~
-0 0 2336
+0 -1 2336
 D2
 ~
 ~
-0 0 2333
+0 -1 2333
 D3
 ~
 ~
-0 0 2335
+0 -1 2335
 S
 #2334
 Lost in the Mist~
@@ -2246,23 +2249,23 @@ You try to peer through the mist......You see nothing. It swirls about you,
 covering you in a damp sheen. There is no sound, all light is eagerly devoured
 by the mist. You feel totally and hopelessly lost.
 ~
-0 ADN 4
+0 [dark indoors no_recall] 4
 D0
 ~
 ~
-0 0 2338
+0 -1 2338
 D1
 ~
 ~
-0 0 2332
+0 -1 2332
 D2
 ~
 ~
-0 0 2336
+0 -1 2336
 D3
 ~
 ~
-0 0 2332
+0 -1 2332
 S
 #2335
 Lost in the Mist~
@@ -2270,23 +2273,23 @@ You stumble through the marsh here. The swamp seems to have swallowed you up
 and denied you exit. This mist is your jailor. You cannot tell where you are.
 You hear quiet laughter all about you.
 ~
-0 ADN 4
+0 [dark indoors no_recall] 4
 D0
 ~
 ~
-0 0 2332
+0 -1 2332
 D1
 ~
 ~
-0 0 2333
+0 -1 2333
 D2
 ~
 ~
-0 0 2337
+0 -1 2337
 D3
 ~
 ~
-0 0 2331
+0 -1 2331
 S
 #2336
 Lost in the Mist~
@@ -2294,23 +2297,23 @@ You wander, lost, for what seems an eternity. Then....From nowhere....You see
 what appears to be trees and hills to the east. The mist itself thickens to
 the west, while it grows thin to the east.
 ~
-0 ADN 4
+0 [dark indoors no_recall] 4
 D0
 ~
 ~
-0 0 2334
+0 -1 2334
 D1
 ~
 ~
-0 0 2339
+0 -1 2339
 D2
 ~
 ~
-0 0 2338
+0 -1 2338
 D3
 ~
 ~
-0 0 2333
+0 -1 2333
 S
 #2337
 Lost in the Mist~
@@ -2319,23 +2322,23 @@ to breathe. The ground below you makes a soft squishing sound as you trudge
 on, but this noise is absorbed by the mist and does not travel. You can wander
 in any direction.
 ~
-0 ADN 4
+0 [dark indoors no_recall] 4
 D0
 ~
 ~
-0 0 2335
+0 -1 2335
 D1
 ~
 ~
-0 0 2338
+0 -1 2338
 D2
 ~
 ~
-0 0 2332
+0 -1 2332
 D3
 ~
 ~
-0 0 2338
+0 -1 2338
 S
 #2338
 Lost in the Mist~
@@ -2343,23 +2346,23 @@ You wander, lost hopelessly. The mist swirls all about you. You can discern no
 direction. You stumble blindly through the mist, oblivious to your
 surroundings.
 ~
-0 ADN 3
+0 [dark indoors no_recall] 3
 D0
 ~
 ~
-0 0 2336
+0 -1 2336
 D1
 ~
 ~
-0 0 2337
+0 -1 2337
 D2
 ~
 ~
-0 0 2334
+0 -1 2334
 D3
 ~
 ~
-0 0 2337
+0 -1 2337
 S
 #2339
 The solid path~
@@ -2367,15 +2370,15 @@ A solid path rises out of the misty swamp. It leads north, into what appears
 to be a forested area. The trees, above, allow light and air to penetrate and
 you can see the sky above. A thick bank of mist is to your west.
 ~
-0 0 4
+0 [] 4
 D0
 ~
 ~
-0 0 2340
+0 -1 2340
 D3
 ~
 ~
-0 0 2336
+0 -1 2336
 S
 #2340
 A forested path~
@@ -2384,15 +2387,15 @@ undergrowth line both sides of the trail. Looking north, you see a thin line
 of smoke rising up above the tree line. You also notice a crude wooden gate
 farther north on the trail. The trail itself leads south into murky territory.
 ~
-0 C 3
+0 [no_mob] 3
 D0
 ~
 ~
-0 0 2341
+0 -1 2341
 D2
 ~
 ~
-0 0 2339
+0 -1 2339
 S
 #2341
 The gate before the Ogre Village~
@@ -2401,15 +2404,15 @@ Looking inside the gates, you see a crude village. Large humanoid creatures
 are milling to and fro.......Ogres! You can head north through the gate or
 south into the forest.
 ~
-0 0 3
+0 [] 3
 D0
 ~
 ~
-0 0 2343
+0 -1 2343
 D2
 ~
 ~
-0 0 2340
+0 -1 2340
 S
 #2342
 Among the crude huts~
@@ -2417,15 +2420,15 @@ You walk among the huts of the ogre village. The village appears to be cut
 from the heart of the forest itself. The swamp, nearby, provides the ogres
 with a prime hunting ground. Small paths lead north and east.
 ~
-0 0 1
+0 [] 1
 D0
 ~
 ~
-0 0 2345
+0 -1 2345
 D1
 ~
 ~
-0 0 2343
+0 -1 2343
 S
 #2343
 Inside the gates~
@@ -2434,23 +2437,23 @@ crude huts and cooking fires. To the north, you see a huge fire pit. Behind
 it, there appears to be a hut of sorts. Small paths lead east and west among 
 the crude huts. The gates to the south provide an exit from the village.
 ~
-0 0 1
+0 [] 1
 D0
 ~
 ~
-0 0 2346
+0 -1 2346
 D1
 ~
 ~
-0 0 2344
+0 -1 2344
 D2
 ~
 ~
-0 0 2341
+0 -1 2341
 D3
 ~
 ~
-0 0 2342
+0 -1 2342
 S
 #2344
 Among the crude huts~
@@ -2459,15 +2462,15 @@ surround you. Every so often, you can hear grunts and snarls inside the huts.
 The smell here is unbearable. You wonder what type of creature could possibly
 live in such squalor. Small paths lead west and north here.
 ~
-0 0 1
+0 [] 1
 D0
 ~
 ~
-0 0 2347
+0 -1 2347
 D3
 ~
 ~
-0 0 2343
+0 -1 2343
 S
 #2345
 The gathering place~
@@ -2477,15 +2480,15 @@ in front of the throne is quite worn, as if it is sat on quite often. You get
 the impression that this place is a crude sort of auditorium. Small paths lead
 east and south.
 ~
-0 0 1
+0 [] 1
 D1
 ~
 ~
-0 0 2346
+0 -1 2346
 D2
 ~
 ~
-0 0 2342
+0 -1 2342
 S
 #2346
 The firepit before the lodge~
@@ -2495,7 +2498,7 @@ they appear to be quite large enough to hold hapless adventurers. A large
 lodge is towards the north, while paths lead east, west, and south into the
 village itself.
 ~
-0 0 1
+0 [] 1
 D0
 ~
 door~
@@ -2503,15 +2506,15 @@ door~
 D1
 ~
 ~
-0 0 2347
+0 -1 2347
 D2
 ~
 ~
-0 0 2343
+0 -1 2343
 D3
 ~
 ~
-0 0 2345
+0 -1 2345
 S
 #2347
 The village dump~
@@ -2520,15 +2523,15 @@ village's refuse. Partially eaten corpses, rotting food, and other truly
 disgusting things have been discarded here. Paths lead south and west towards
 fresher air.
 ~
-0 0 1
+0 [] 1
 D2
 ~
 ~
-0 0 2344
+0 -1 2344
 D3
 ~
 ~
-0 0 2346
+0 -1 2346
 S
 #2348
 The entryway to the lodge~
@@ -2537,7 +2540,7 @@ line the walls here. Large chests on either side of the door appear to be
 locked. The lodge stretches north, while the doors to the south provide an
 exit into the village.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -2555,15 +2558,15 @@ is against the east wall. A doorway is directly to the north, long strands of
 beads blocking the view of the other side. Crude torches light the hall and 
 smoke clings to the ceiling.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2350
+0 -1 2350
 D2
 ~
 ~
-0 0 2348
+0 -1 2348
 S
 #2350
 The chieftain's room~
@@ -2573,11 +2576,11 @@ locks. The room is filled with trophies of dead enemies. It is quite lavishly
 decorated for such a crude inhabitant as an ogre. A beaded doorway is to the
 south.
 ~
-0 D 0
+0 [indoors] 0
 D2
 ~
 ~
-0 0 2349
+0 -1 2349
 S
 #2351
 The frigid wastelands~
@@ -2585,23 +2588,23 @@ You wander through the frigid wastelands. Your breath is a cloud before you.
 The cold cuts to the bone. Swirling snow and wind make impossible for you to
 discern any directions.
 ~
-0 0 5
+0 [] 5
 D0
 ~
 ~
-0 0 2353
+0 -1 2353
 D1
 ~
 ~
-0 0 2352
+0 -1 2352
 D2
 ~
 ~
-0 0 2355
+0 -1 2355
 D3
 ~
 ~
-0 0 2354
+0 -1 2354
 S
 #2352
 The frigid wastelands~
@@ -2609,7 +2612,7 @@ You wander through the frigid wastelands. Your breath is a cloud before you.
 The cold cuts to the bone. Swirling snow and wind make it impossible to
 discern any directions.
 ~
-0 0 5
+0 [] 5
 D0
 ~
 ~
@@ -2625,7 +2628,7 @@ D2
 D3
 ~
 ~
-0 0 2351
+0 -1 2351
 S
 #2353
 The Glacier Temple~
@@ -2634,15 +2637,15 @@ walls are frosted and are opaque. There is a small blue portal here. You can
 go north, to enter the portal. Looking south, you see a world of white outside
 the open doorway. Swirling snow and bright light obscure your view.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2326
+0 -1 2326
 D2
 ~
 ~
-0 0 2351
+0 -1 2351
 S
 #2354
 The frigid wastelands~
@@ -2650,23 +2653,23 @@ You wander through the frigid wastelands. Your breath is a cloud before you.
 The cold cuts to the bone. Swirling snow and wind make it impossible for you
 to discern any directions.
 ~
-0 0 5
+0 [] 5
 D0
 ~
 ~
-0 0 2359
+0 -1 2359
 D1
 ~
 ~
-0 0 2351
+0 -1 2351
 D2
 ~
 ~
-0 0 2356
+0 -1 2356
 D3
 ~
 ~
-0 0 2352
+0 -1 2352
 S
 #2355
 The frigid wastelands~
@@ -2674,23 +2677,23 @@ You wander through the frigid wastelands. Your breath is a cloud before you.
 The cold cuts to the bone. Swirling snow and wind make it impossible for you
 to discern any directions.
 ~
-0 0 5
+0 [] 5
 D0
 ~
 ~
-0 0 2351
+0 -1 2351
 D1
 ~
 ~
-0 0 2356
+0 -1 2356
 D2
 ~
 ~
-0 0 2357
+0 -1 2357
 D3
 ~
 ~
-0 0 2356
+0 -1 2356
 S
 #2356
 The frigid wastelands~
@@ -2698,23 +2701,23 @@ You wander through the frigid wastelands. Your breath is a cloud before you.
 The cold cuts to the bone. Swirling snow and wind make it impossible for you
 to discern any directions.
 ~
-0 0 5
+0 [] 5
 D0
 ~
 ~
-0 0 2354
+0 -1 2354
 D1
 ~
 ~
-0 0 2355
+0 -1 2355
 D2
 ~
 ~
-0 0 2359
+0 -1 2359
 D3
 ~
 ~
-0 0 2355
+0 -1 2355
 S
 #2357
 The frigid wastelands~
@@ -2722,23 +2725,23 @@ You wander through the frigid wastelands. Your breath is a cloud before you.
 The cold cuts to the bone. Swirling snow and wind make it impossible for you
 to discern any directions.
 ~
-0 0 5
+0 [] 5
 D0
 ~
 ~
-0 0 2355
+0 -1 2355
 D1
 ~
 ~
-0 0 2358
+0 -1 2358
 D2
 ~
 ~
-0 0 2352
+0 -1 2352
 D3
 ~
 ~
-0 0 2359
+0 -1 2359
 S
 #2358
 The frigid wastelands~
@@ -2746,23 +2749,23 @@ You wander through the frigid wastelands. Your breath is a cloud before you.
 The cold cuts to the bone. Swirling snow and wind make it impossible for you
 to discern any direction.
 ~
-0 0 5
+0 [] 5
 D0
 ~
 ~
-0 0 2352
+0 -1 2352
 D1
 ~
 ~
-0 0 2359
+0 -1 2359
 D2
 ~
 ~
-0 0 2360
+0 -1 2360
 D3
 ~
 ~
-0 0 2357
+0 -1 2357
 S
 #2359
 The frigid wastelands~
@@ -2770,23 +2773,23 @@ You wander through the frigid wastelands. Your breath is a cloud before you.
 The cold cuts to the bone. Swirling snow and wind make it impossible for you
 to discern any directions.
 ~
-0 0 5
+0 [] 5
 D0
 ~
 ~
-0 0 2356
+0 -1 2356
 D1
 ~
 ~
-0 0 2357
+0 -1 2357
 D2
 ~
 ~
-0 0 2354
+0 -1 2354
 D3
 ~
 ~
-0 0 2358
+0 -1 2358
 S
 #2360
 The edge of the frigid wastes~
@@ -2795,15 +2798,15 @@ wasteland stretches out. The snow falls lightly here and the wind is not
 very fierce. You can climb up the rocky cliff or head north into the arctic
 wastes.
 ~
-0 C 5
+0 [no_mob] 5
 D0
 ~
 ~
-0 0 2358
+0 -1 2358
 D4
 ~
 ~
-0 0 2361
+0 -1 2361
 S
 #2361
 On the cliffside~
@@ -2812,15 +2815,15 @@ sheer distance to the ground below. You can climb up higher into the cliffs,
 but the area above is obscured by clouds and you cannot tell what lies waiting
 above.
 ~
-0 C 5
+0 [no_mob] 5
 D4
 ~
 ~
-0 0 2362
+0 -1 2362
 D5
 ~
 ~
-0 0 2360
+0 -1 2360
 S
 #2362
 Before the gates of Mahn-Tor~
@@ -2830,7 +2833,7 @@ almost completely out of ice. A huge city and keep appear to be on the other
 side of these gates. There is also a possibility of climbing down the cliff 
 face.
 ~
-0 0 5
+0 [] 5
 D2
 ~
 gate huge gates ice~
@@ -2838,7 +2841,7 @@ gate huge gates ice~
 D5
 ~
 ~
-0 0 2361
+0 -1 2361
 E
 gate gates ice huge~
 The gates to the city are made almost completely of ice. Looking closely, you
@@ -2853,15 +2856,15 @@ closed and only the light from the windows betrays the presence of inhabitants.
 A cold wind blows through here, scattering fine clouds of snow all about. Small
 streets lead south and east.
 ~
-0 0 1
+0 [] 1
 D1
 ~
 ~
-0 0 2364
+0 -1 2364
 D2
 ~
 ~
-0 0 2366
+0 -1 2366
 S
 #2364
 Inside the gates of Mahn-Tor~
@@ -2871,7 +2874,7 @@ made from the very rock of this mountain. Snow falls all around and a fine
 sheet of ice can be seen covering all but the most used walk ways. Small city
 streets lead east and west, while a main road appears to lead south.
 ~
-0 0 1
+0 [] 1
 D0
 ~
 gates gate huge ice~
@@ -2883,7 +2886,7 @@ D1
 D2
 ~
 ~
-0 0 2367
+0 -1 2367
 D3
 ~
 ~
@@ -2896,15 +2899,15 @@ of cobblestone and are quite treacherous. Small homes and businesses along
 the street are closed tight and light from their windows throws eerie shadows
 across the dark street. Small streets lead west and south here.
 ~
-0 0 1
+0 [] 1
 D2
 ~
 ~
-0 0 2368
+0 -1 2368
 D3
 ~
 ~
-0 0 2364
+0 -1 2364
 S
 #2366
 The city streets of Mahn-Tor~
@@ -2914,11 +2917,11 @@ appears to be a small tavern. Bright lights shine through the windows. Small
 streets also lead north and east.
 A small sign hangs outside the tavern.
 ~
-0 0 1
+0 [] 1
 D0
 ~
 ~
-0 0 2363
+0 -1 2363
 D1
 ~
 ~
@@ -2946,23 +2949,23 @@ the square and small streets lead east and west. To the north, you see
 the gates to the city. You also notice a small store to the south.
 A small sign hangs outside the store.
 ~
-0 0 1
+0 [] 1
 D0
 ~
 ~
-0 0 2364
+0 -1 2364
 D1
 ~
 ~
-0 0 2368
+0 -1 2368
 D2
 ~
 ~
-0 0 2370
+0 -1 2370
 D3
 ~
 ~
-0 0 2366
+0 -1 2366
 E
 sign~
 []=========[]
@@ -2979,23 +2982,23 @@ the streets. The wind blows fiercely. Small streets lead in all directions.
 There appears to be a large building to the east, but the snow obscures your
 view.
 ~
-0 0 1
+0 [] 1
 D0
 ~
 ~
-0 0 2365
+0 -1 2365
 D1
 ~
 ~
-0 0 2375
+0 -1 2375
 D2
 ~
 ~
-0 0 2371
+0 -1 2371
 D3
 ~
 ~
-0 0 2367
+0 -1 2367
 S
 #2369
 The Inn of the Broken Horn~
@@ -3005,11 +3008,11 @@ inhabitants of the inn are all minotaurs of varying size and disposition. Most
 seem to regard you with suspicion. Few approach you. A large door leads
 north, out of the bar and back out into the cold.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2366
+0 -1 2366
 S
 #2370
 The Mahn-Tor Equipment Shop~
@@ -3018,11 +3021,11 @@ items that adventurers could use. Large fireplaces light and heat the room.
 A large desk occupies the back of the room. The door to the shop lies to the
 north.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2367
+0 -1 2367
 S
 #2371
 The Mahn-Tor General Store~
@@ -3031,11 +3034,11 @@ walls and snow blows across the dirty stone floor. It is evident that this
 store was once used, but it is no more. A small doorway leads north out into
 the chilling snow and wind.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2368
+0 -1 2368
 S
 #2372
 Gorak's Training Room~
@@ -3044,7 +3047,7 @@ and practice dummies lie all around. The walls are chipped and scored from
 weapon blows. This is obviously the room of an avid warrior. A red door leads
 east.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 red~
@@ -3060,7 +3063,7 @@ This room is dark. It reeks of death and evil. Arcane symbols and a small
 altar fill the room. Blood runs from the altar. It is evident that this room
 is used for unholy purposes. A black door leads east.
 ~
-0 AD 0
+0 [dark indoors] 0
 D1
 ~
 black~
@@ -3076,7 +3079,7 @@ Idols to the gods of good fill the room. White furniture and decorations give
 the room a holy appearance. It is evident that some being of supreme goodness
 lives here. A white door leads east.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 white~
@@ -3093,15 +3096,15 @@ end of this steep road, you see a huge keep. Snow swirls all about you and you
 feel your breath freeze as it leaves your lungs. Blurry lights to the east and
 west are all you can see from here.
 ~
-0 C 5
+0 [no_mob] 5
 D1
 ~
 ~
-0 0 2377
+0 -1 2377
 D3
 ~
 ~
-0 0 2368
+0 -1 2368
 S
 #2376
 A small guard house~
@@ -3111,11 +3114,11 @@ and curtains help insulate the room and the beds themselves look quite warm.
 A table in the center of the room has the remnants of a card game strewn
 across it. A small door leads south.
 ~
-0 D 0
+0 [indoors] 0
 D2
 ~
 ~
-0 0 2377
+0 -1 2377
 S
 #2377
 Before the Keep of Mahn-Tor~
@@ -3125,11 +3128,11 @@ appears as though the cold here has convinced the guards to seek warmth
 inside. You see the lights of the city to the west. You also notice small
 guard houses to the north and south.
 ~
-0 0 1
+0 [] 1
 D0
 ~
 ~
-0 0 2376
+0 -1 2376
 D1
 ~
 gate~
@@ -3137,11 +3140,11 @@ gate~
 D2
 ~
 ~
-0 0 2378
+0 -1 2378
 D3
 ~
 ~
-0 0 2375
+0 -1 2375
 S
 #2378
 A small guard house~
@@ -3149,11 +3152,11 @@ You enter a small, but warm, guard house. Deep rugs and thick curtains
 insulate the room. A huge fireplace lights and warms the room. Outside, you
 hear the roar of the freezing wind. A small door leads north out into the cold.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2377
+0 -1 2377
 S
 #2379
 The entryway to the Keep of Mahn-Tor~
@@ -3163,11 +3166,11 @@ ceiling far above. The architecture appears to be dwarven. A huge pair of
 gates stand to the west, protecting the keep from the harsh cold outside. A
 large hall leads east, deeper into the keep.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 ~
-0 0 2380
+0 -1 2380
 D3
 ~
 gate~
@@ -3180,15 +3183,15 @@ various make and appearance are spread about. The ceiling above supports huge
 candelabras, which light the room. To the east, you see a bright light and
 hear sounds of inhabitation. Looking west, you see the entry gates to the keep.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 ~
-0 0 2381
+0 -1 2381
 D3
 ~
 ~
-0 0 2379
+0 -1 2379
 S
 #2381
 The Grand Hall~
@@ -3198,19 +3201,19 @@ off by the torches that line the walls. To the east, you see what appears to
 be a huge golden throne. The hall itself stretches south and a smaller hall
 leads to the west.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 ~
-0 0 2383
+0 -1 2383
 D2
 ~
 ~
-0 0 2382
+0 -1 2382
 D3
 ~
 ~
-0 0 2380
+0 -1 2380
 S
 #2382
 The Great Hall~
@@ -3219,7 +3222,7 @@ ceiling and torch light glimmers off the marble floor here. You are amazed at
 the sheer size of the hall. The hall itself leads north and east. You notice a
 smaller hall leading south, deeper into the keep.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
@@ -3227,7 +3230,7 @@ D0
 D1
 ~
 ~
-0 0 2384
+0 -1 2384
 D2
 ~
 ~
@@ -3241,7 +3244,7 @@ it, you feel small and feeble. It is evident that this throne is more of a
 decoration than anything else. Only the largest of kings could sit upon it.
 The hall leads south and west into other parts of the keep.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 throne huge golden gold~
@@ -3249,11 +3252,11 @@ throne huge golden gold~
 D2
 ~
 ~
-0 0 2384
+0 -1 2384
 D3
 ~
 ~
-0 0 2381
+0 -1 2381
 E
 throne huge gold golden~
 The golden throne is huge. It takes up the whole wall.........
@@ -3266,22 +3269,22 @@ off the marble floor below you. To the north, you see a huge golden throne.
 Looking up, you grow dizzy at the height to which the vaulted ceiling rises.
 The hall itself leads north and west.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2383
+0 -1 2383
 D3
 ~
 ~
-0 0 2382
+0 -1 2382
 S
 #2385
 The secret hallway~
 You are in a small, torch lit hall. It leads from east to west. A large gold
 door is to the west. To the east, you see a heavy stone door.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 door huge stone~
@@ -3306,15 +3309,15 @@ covers the stone floor. Large candelabras hang from the ceiling, lighting the
 room. A huge fireplace warms the room. Beaded doorways lead south and east. A
 huge stone door stands in the west wall.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 ~
-0 0 2395
+0 -1 2395
 D2
 ~
 ~
-0 0 2393
+0 -1 2393
 D3
 ~
 door huge stone~
@@ -3331,15 +3334,15 @@ it would be quite easy to defend in times of emergency. Obviously, something
 important lies beyond. A small hall leads south, while the main hall can be
 seen to the north.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2382
+0 -1 2382
 D2
 ~
 ~
-0 0 2388
+0 -1 2388
 S
 #2388
 The guarded hall~
@@ -3348,11 +3351,11 @@ very quiet in this hall. You notice rows of colored doors on each wall. To
 your east, you see a yellow door. To your west, you see a red door. The hall
 itself leads south and north.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2387
+0 -1 2387
 D1
 ~
 yellow~
@@ -3360,7 +3363,7 @@ yellow~
 D2
 ~
 ~
-0 0 2389
+0 -1 2389
 D3
 ~
 red~
@@ -3380,11 +3383,11 @@ You walk down a small, quiet, torch lit hallway. Doors of different colors are
 in each wall. To your east, you see a maroon door. To your west, you see a
 black door. The hall itself leads north and south.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2388
+0 -1 2388
 D1
 ~
 maroon~
@@ -3392,7 +3395,7 @@ maroon~
 D2
 ~
 ~
-0 0 2392
+0 -1 2392
 D3
 ~
 black~
@@ -3412,7 +3415,7 @@ You enter a temple of sorts. A small altar is here and relics of many
 religions lie around. It is evident that this is the room of a studying cleric.
 A yellow door leads west.
 ~
-0 D 0
+0 [indoors] 0
 D3
 ~
 yellow~
@@ -3429,7 +3432,7 @@ of the room is occupied by a huge pentagram. The entire room smells of smoke
 and incense. The room is obviously used extensively by a practicing mage. A
 maroon door leads west.
 ~
-0 D 0
+0 [indoors] 0
 D3
 ~
 maroon~
@@ -3446,11 +3449,11 @@ Colored doors can be seen in the walls here. To your east, you see a green
 door. To your west, you see a white door. The hall itself leads north and
 south.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2389
+0 -1 2389
 D1
 ~
 green~
@@ -3458,7 +3461,7 @@ green~
 D2
 ~
 ~
-0 0 2397
+0 -1 2397
 D3
 ~
 white~
@@ -3478,15 +3481,15 @@ This appears to be the harem room of the Keep. Huge piles of furs and beds
 fill the room. The lighting is dim, but the room is very warm. You can hear
 music playing quietly from somewhere. Beaded doorways lead north and east.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2386
+0 -1 2386
 D1
 ~
 ~
-0 0 2396
+0 -1 2396
 S
 #2394
 Nasturn's Humble Abode~
@@ -3494,7 +3497,7 @@ This room is filled with all types of natural items. Trees and plants have
 been lovingly cultivated and grown by hand, in large pots. The room is like an
 indoor garden. A green door leads west.
 ~
-0 D 0
+0 [indoors] 0
 D3
 ~
 green~
@@ -3510,15 +3513,15 @@ This room is decorated with sturdy stone furniture that is carved and gilded.
 Large candles light the room. A thick rug covers the floor. Thick furs and
 tapestries decorate the walls. Beaded doorways lead south and west.
 ~
-0 D 0
+0 [indoors] 0
 D2
 ~
 ~
-0 0 2396
+0 -1 2396
 D3
 ~
 ~
-0 0 2386
+0 -1 2386
 S
 #2396
 The Master Bedroom~
@@ -3527,15 +3530,15 @@ furs and other rich furnishings adorn the room. Candles are everywhere and
 they help a huge fireplace light the room. The lavishness of the room
 overwhelms you. Beaded doorways lead north and west.
 ~
-0 DH 0
+0 [indoors unused_room_5] 0
 D0
 ~
 ~
-0 0 2395
+0 -1 2395
 D3
 ~
 ~
-0 0 2393
+0 -1 2393
 S
 #2397
 The end of the guarded hall~
@@ -3543,11 +3546,11 @@ You are at the end of the hall. Colored doors line the walls to the north. To
 your west, you see a brown door. To your east, you see a grey door. The hall
 itself leads north back along the rows of doors.
 ~
-0 D 0
+0 [indoors] 0
 D0
 ~
 ~
-0 0 2392
+0 -1 2392
 D1
 ~
 grey~
@@ -3571,7 +3574,7 @@ This room is dirty and unkempt. Odds and ends of different items lie all over.
 It is apparent that some type of pack-rat lives here. It appears as though
 nothing has ever entered this room and ever left again. A grey door leads west.
 ~
-0 D 0
+0 [indoors] 0
 D3
 ~
 grey~
@@ -3587,7 +3590,7 @@ This room is full of green. The furniture and all other items show the color
 of nature. The room smells of pine and forest odors. From the items here, it
 appears as though a woodsman of some sorts lives here. A brown door leads east.
 ~
-0 D 0
+0 [indoors] 0
 D1
 ~
 brown~
@@ -3600,251 +3603,262 @@ S
 #0
 
 #RESETS
-M 0 2300   1 2307  1	* the Dark Ethereal Knight
-E 1 2346   5    5	*   a suit of ethereal plate
-E 1 2347   5    6	*   an ethereal helm
-E 1 2348  10   16	*   an ethereal blade
-M 0 2301   1 2314  1	* the Old Treant
-M 0 2302   1 2316  1	* the Cave Dweller
-M 0 2303   4 2311  1	* the Rock Toad
-M 0 2303   4 2312  1	* the Rock Toad
-M 0 2303   4 2313  1	* the Rock Toad
-M 0 2303   4 2319  1	* the Rock Toad
-M 0 2304   1 2330  1	* the Weeping Willow
-G 1 2349  15     	*   a willow branch
-M 0 2305   3 2332  1	* the Mistling
-M 0 2305   3 2337  1	* the Mistling
-M 0 2305   3 2333  1	* the Mistling
-M 0 2306   1 2336  1	* the Swamp Wraith
-G 1 2384  20     	*   a misty potion
-M 0 2307   5 2346  1	* the Ogre Villager
-E 1 2385  25   13	*   a belt pouch
-M 0 2307   5 2343  1	* the Ogre Villager
-E 1 2385  25   13	*   a belt pouch
-M 0 2307   5 2345  1	* the Ogre Villager
-M 0 2307   5 2348  1	* the Ogre Villager
-M 0 2307   5 2344  1	* the Ogre Villager
-M 0 2308   4 2347  1	* the Ogre Warrior
-E 1 2386  25   16	*   an ogre spear
-M 0 2308   4 2342  1	* the Ogre Warrior
-E 1 2386  25   16	*   an ogre spear
-M 0 2308   4 2348  1	* the Ogre Warrior
-E 1 2386  25   16	*   an ogre spear
-M 0 2308   4 2346  1	* the Ogre Warrior
-E 1 2386  25   16	*   an ogre spear
-M 0 2309   4 2348  1	* the Ogre Guard
-E 1 2387  25   16	*   an ogre war club
-M 0 2309   4 2342  1	* the Ogre Guard
-E 1 2387  25   16	*   an ogre war club
-M 0 2309   4 2341  2	* the Ogre Guard
-E 1 2387  25   16	*   an ogre war club
-M 0 2309   4 2341  2	* the Ogre Guard
-E 1 2387  25   16	*   an ogre war club
-M 0 2310   1 2349  1	* The Ogre Shaman
-E 1 2388  20   12	*   a bearskin cloak
-E 1 2389  10    6	*   a pair of feathered earrings
-M 0 2311   1 2350  1	* the Ogre Chieftain
-E 1 2390   5    9	*   gauntlets of ogre power
-E 1 2391  10   16	*   a massive club
-M 0 2312   3 2351  1	* the Plains Barbarian
-E 1 2392  20    4	*   a thick fur cape
-E 1 2393  20    5	*   a fur lined tunic
-E 1 2360  20    8	*   a pair of fur lined boots
-M 0 2312   3 2354  1	* the Plains Barbarian
-E 1 2392  20    4	*   a thick fur cape
-E 1 2393  20    5	*   a fur lined tunic
-E 1 2360  20    8	*   a pair of fur lined boots
-M 0 2312   3 2359  1	* the Plains Barbarian
-E 1 2392  20    4	*   a thick fur cape
-E 1 2393  20    5	*   a fur lined tunic
-E 1 2360  20    8	*   a pair of fur lined boots
-M 0 2313   3 2357  1	* the White Yeti
-E 1 2361  20   12	*   the white pelt of a yeti
-M 0 2313   3 2359  1	* the White Yeti
-E 1 2361  20   12	*   the white pelt of a yeti
-M 0 2313   3 2355  1	* the White Yeti
-E 1 2361  20   12	*   the white pelt of a yeti
-M 0 2314   3 2352  1	* the Ice Worm
-M 0 2314   3 2354  1	* the Ice Worm
-M 0 2314   3 2356  1	* the Ice Worm
-M 0 2315   5 2363  1	* the Minotaur Citizen
-E 1 2362  35   16	*   a kopesh sword
-M 0 2315   5 2367  1	* the Minotaur Citizen
-E 1 2362  35   16	*   a kopesh sword
-M 0 2315   5 2365  1	* the Minotaur Citizen
-E 1 2362  35   16	*   a kopesh sword
-M 0 2315   5 2364  1	* the Minotaur Citizen
-E 1 2362  35   16	*   a kopesh sword
-M 0 2315   5 2370  1	* the Minotaur Citizen
-E 1 2362  35   16	*   a kopesh sword
-M 0 2316   3 2368  1	* the Minotaur Guard
-E 1 2363  15   10	*   a pair of steel vambraces
-E 1 2364  15    7	*   a pair of steel greaves
-E 1 2365  10   16	*   a battle axe
-M 0 2316   3 2366  1	* the Minotaur Guard
-E 1 2363  15   10	*   a pair of steel vambraces
-E 1 2364  15    7	*   a pair of steel greaves
-E 1 2365  10   16	*   a battle axe
-M 0 2316   3 2362  1	* the Minotaur Guard
-E 1 2363  15   10	*   a pair of steel vambraces
-E 1 2364  15    7	*   a pair of steel greaves
-E 1 2365  10   16	*   a battle axe
-M 0 2317   3 2367  1	* the Minotaur Warrior
-E 1 2366  15    5	*   a steel breast plate
-E 1 2367  15    6	*   a steel helm
-E 1 2368  10   16	*   a huge halberd
-M 0 2317   3 2376  1	* the Minotaur Warrior
-E 1 2366  15    5	*   a steel breast plate
-E 1 2367  15    6	*   a steel helm
-E 1 2368  10   16	*   a huge halberd
-M 0 2317   3 2378  1	* the Minotaur Warrior
-E 1 2366  15    5	*   a steel breast plate
-E 1 2367  15    6	*   a steel helm
-E 1 2368  10   16	*   a huge halberd
-M 0 2318   1 2377  1	* the Minotaur Gatekeeper
-G 1 2350   1     	*   the keep key
-M 0 2319   2 2380  1	* the High Minotaur Guard
-E 1 2369  15    6	*   a blue steel helm and visor
-E 1 2370  15    7	*   a pair of blue steel greaves
-E 1 2371  15   10	*   a pair of blue steel vambraces
-E 1 2366  15    5	*   a steel breast plate
-E 1 2372  10   16	*   a two-handed sword
-M 0 2319   2 2379  1	* the High Minotaur Guard
-E 1 2369  15    6	*   a blue steel helm and visor
-E 1 2370  15    7	*   a pair of blue steel greaves
-E 1 2371  15   10	*   a pair of blue steel vambraces
-E 1 2366  15    5	*   a steel breast plate
-E 1 2372  10   16	*   a two-handed sword
-M 0 2320   2 2383  1	* the Royal Minotaur Guard
-E 1 2373  10    6	*   a red steel helm and visor
-E 1 2374  10    7	*   a pair of red steel greaves
-E 1 2375  10   10	*   a pair of red steel vambraces
-E 1 2366  15    5	*   a steel breast plate
-E 1 2376  10   16	*   a minotaur glaive
-M 0 2320   2 2382  1	* the Royal Minotaur Guard
-E 1 2373  10    6	*   a red steel helm and visor
-E 1 2374  10    7	*   a pair of red steel greaves
-E 1 2375  10   10	*   a pair of red steel vambraces
-E 1 2366  15    5	*   a steel breast plate
-E 1 2376  10   16	*   a minotaur glaive
-M 0 2321   2 2385  2	* the Elite Minotaur Guard
-E 1 2377   5    6	*   a crimson steel helm and visor
-E 1 2378   5    7	*   a pair of crimson steel greaves
-E 1 2379   5   10	*   a pair of crimson steel vambraces
-E 1 2366  15    5	*   a steel breast plate
-E 1 2380   5   16	*   a huge morningstar
-M 0 2321   2 2385  2	* the Elite Minotaur Guard
-E 1 2377   5    6	*   a crimson steel helm and visor
-E 1 2378   5    7	*   a pair of crimson steel greaves
-E 1 2379   5   10	*   a pair of crimson steel vambraces
-E 1 2366  15    5	*   a steel breast plate
-E 1 2380   5   16	*   a huge morningstar
-G 1 2359   1     	*   a runed key
-M 0 2322   5 2393  5	* the Harem Girl
-M 0 2322   5 2393  5	* the Harem Girl
-M 0 2322   5 2393  5	* the Harem Girl
-M 0 2322   5 2393  5	* the Harem Girl
-M 0 2322   5 2393  5	* the Harem Girl
-M 0 2323   1 2395  1	* the Minotaur Butler
-M 0 2324   1 2387  1	* the Minotaur Ring-Keeper
-G 1 2381  20     	*   some huge spiked brass knuckles
-E 1 2383   5   16	*   a huge wooden maul
-E 1 2382   1   13	*   a multi-colored key ring
-P 1 2351   1 2382  1	*   a red key
-P 1 2352   1 2382  1	*   a black key
-P 1 2353   1 2382  1	*   a white key
-P 1 2354   1 2382  1	*   a brown key
-P 1 2355   1 2382  1	*   a yellow key
-P 1 2356   1 2382  1	*   a maroon key
-P 1 2357   1 2382  1	*   a green key
-P 1 2358   1 2382  1	*   a grey key
-M 0 2325   1 2372  1	* Gorak
-E 1 2300  10    9	*   a pair of minotaur combat gloves
-E 1 2301   5    5	*   a suit of spiked garde armor
-E 1 2302   5    7	*   a pair of black minotaur greaves
-E 1 2303   5   10	*   a pair of black minotaur vambraces
-E 1 2304   3   16	*   the rod of weaponry
-M 0 2326   1 2373  1	* Darkoth
-E 1 2305  20   12	*   a pitch black cloak
-E 1 2306  15    4	*   a black plate neckguard
-E 1 2307   5    9	*   a pair of spiked gauntlets
-E 1 2308  10   11	*   the shadow shield
-E 1 2309   3   16	*   a shortsword named "Nightbringer"
-M 0 2327   1 2374  1	* Tyrgoth
-E 1 2310  10    6	*   a golden helm and visor
-E 1 2311   5    5	*   a gilded gold breast plate
-E 1 2312  15    4	*   a billowing white cape 
-E 1 2313  20   11	*   a huge tower shield
-E 1 2314   3   16	*   a huge mace named "Dawnbringer"
-M 0 2328   1 2391  1	* Amyrok
-E 1 2315  10    1	*   a pair of wire rimmed spectacles
-E 1 2316   5    2	*   a banded ring
-E 1 2317   5   12	*   a minor globe of invulnerability
-E 1 2318   3   16	*   a gnarled magius staff
-E 1 2319  10   13	*   a girdle of many pouches
-M 0 2329   1 2390  1	* Sumaron
-E 1 2320  15   12	*   a heavy woolen robe
-E 1 2321   5    3	*   a brooch of life
-E 1 2322  20   17	*   a manual of healing arts
-E 1 2323   3   16	*   a huge mithril mace
-E 1 2324  15    4	*   a golden holy symbol
-M 0 2330   1 2394  1	* Nasturn
-E 1 2325  10    1	*   a thick marble ring
-E 1 2326  10   15	*   a thick marble bracelet
-E 1 2327  10    8	*   boots of striding
-E 1 2328  10   12	*   an icy white cloak
-E 1 2329   3   16	*   an ice staff
-M 0 2331   1 2399  1	* Belrak
-E 1 2330  10    2	*   a carved wooden ring
-E 1 2331  20   17	*   the horn of life
-E 1 2332  10   13	*   the belt of life
-G 1 2333   5     	*   a blood red stone
-E 1 2334   3   16	*   a huge crossbow
-M 0 2332   1 2398  1	* Dorgar
-E 1 2335  15   12	*   a small leather pack
-E 1 2336  10    6	*   a black leather hood
-E 1 2337  20   10	*   a pair of black leather sleeves
-E 1 2338  10    7	*   a pair of black leather pants
-E 1 2339  10   16	*   a wicked shortsword
-M 0 2333   1 2396  1	* Mahn-Tor
-E 1 2340   5   12	*   a major globe of invulnerability
-E 1 2341   5    5	*   a suit of black minotaur chainmail
-E 1 2342  15   14	*   a spiked buckler
-E 1 2343  10    2	*   a studded ring
-E 1 2344  10    6	*   a horned minotaur helm
-E 1 2345   1   16	*   mahn-Tor's Great Axe
-D 0 2377   1    2	* Before the Keep of Mahn-Tor east
-D 0 2379   3    2	* The entryway to the Keep of Mahn-Tor west
-D 0 2383   1    1	* Standing before the throne east
-D 0 2385   1    2	* The secret hallway east
-D 0 2386   3    2	* Entry to the Royal Chambers west
-D 0 2388   1    2	* The guarded hall east
-D 0 2388   3    2	* The guarded hall west
-D 0 2389   1    2	* The guarded hall east
-D 0 2389   3    2	* The guarded hall west
-D 0 2392   1    2	* The guarded hall east
-D 0 2392   3    2	* The guarded hall west
-D 0 2397   1    2	* The end of the guarded hall east
-D 0 2398   3    2	* Dorgar's Dismal Domicile west
-D 0 2362   2    1	* Before the gates of Mahn-Tor south
+D 0  2362   2     1    * The south door of Before the gates of Mahn-Tor is closed
+D 0  2364   0     1    * The north door of Inside the gates of Mahn-Tor is closed
+D 0  2372   1     2    * The east door of Gorak's Training Room is closed and locked
+D 0  2373   1     2    * The east door of Darkoth's Dark Study is closed and locked
+D 0  2374   1     2    * The east door of Tyrgoth's Inner Sanctum is closed and locked
+D 0  2377   1     2    * The east door of Before the Keep of Mahn-Tor is closed and locked
+D 0  2379   3     2    * The west door of The entryway to the Keep of Mahn-Tor is closed and locked
+D 0  2383   1     1    * The east door of Standing before the throne is closed
+D 0  2385   1     2    * The east door of The secret hallway is closed and locked
+D 0  2385   3     1    * The west door of The secret hallway is closed
+D 0  2386   3     2    * The west door of Entry to the Royal Chambers is closed and locked
+D 0  2388   1     2    * The east door of The guarded hall is closed and locked
+D 0  2388   3     2    * The west door of The guarded hall is closed and locked
+D 0  2389   1     2    * The east door of The guarded hall is closed and locked
+D 0  2389   3     2    * The west door of The guarded hall is closed and locked
+D 0  2390   3     2    * The west door of Sumaron's Sanctum is closed and locked
+D 0  2391   3     2    * The west door of Amyrok's Arcane Study is closed and locked
+D 0  2392   1     2    * The east door of The guarded hall is closed and locked
+D 0  2392   3     2    * The west door of The guarded hall is closed and locked
+D 0  2394   3     2    * The west door of Nasturn's Humble Abode is closed and locked
+D 0  2397   1     2    * The east door of The end of the guarded hall is closed and locked
+D 0  2398   3     2    * The west door of Dorgar's Dismal Domicile is closed and locked
+M 0  2300   1  2307  1 * load the Dark Ethereal Knight
+E 1  2346   5     5    * A suit of ethereal plate is loaded on the torso of the Dark Ethereal Knight
+E 1  2347   5     6    * An ethereal helm is loaded over the head of the Dark Ethereal Knight
+E 1  2348  10    16    * An ethereal blade is loaded wielded of the Dark Ethereal Knight
+M 0  2303   4  2311  1 * load the Rock Toad
+M 0  2303   4  2312  1 * load the Rock Toad
+M 0  2303   4  2313  1 * load the Rock Toad
+M 0  2301   1  2314  1 * load the Old Treant
+M 0  2302   1  2316  1 * load the Cave Dweller
+M 0  2303   4  2319  1 * load the Rock Toad
+M 0  2304   1  2330  1 * load the Weeping Willow
+G 1  2349  15          * A willow branch is given to the Weeping Willow
+M 0  2305   3  2332  1 * load the Mistling
+M 0  2305   3  2333  1 * load the Mistling
+M 0  2306   1  2336  1 * load the Swamp Wraith
+G 1  2384  20          * A misty potion is given to the Swamp Wraith
+M 0  2305   3  2337  1 * load the Mistling
+M 0  2309   4  2341  2 * load the Ogre Guard
+E 1  2387  25    16    * An ogre war club is loaded wielded of the Ogre Guard
+M 0  2309   4  2341  2 * load the Ogre Guard
+E 1  2387  25    16    * An ogre war club is loaded wielded of the Ogre Guard
+M 0  2308   4  2342  1 * load the Ogre Warrior
+E 1  2386  25    16    * An ogre spear is loaded wielded of the Ogre Warrior
+M 0  2309   4  2342  1 * load the Ogre Guard
+E 1  2387  25    16    * An ogre war club is loaded wielded of the Ogre Guard
+M 0  2307   5  2343  1 * load the Ogre Villager
+E 1  2385  25    13    * A belt pouch is loaded around the waist of the Ogre Villager
+M 0  2307   5  2344  1 * load the Ogre Villager
+M 0  2307   5  2345  1 * load the Ogre Villager
+M 0  2307   5  2346  1 * load the Ogre Villager
+E 1  2385  25    13    * A belt pouch is loaded around the waist of the Ogre Villager
+M 0  2308   4  2346  1 * load the Ogre Warrior
+E 1  2386  25    16    * An ogre spear is loaded wielded of the Ogre Warrior
+M 0  2308   4  2347  1 * load the Ogre Warrior
+E 1  2386  25    16    * An ogre spear is loaded wielded of the Ogre Warrior
+M 0  2307   5  2348  1 * load the Ogre Villager
+M 0  2308   4  2348  1 * load the Ogre Warrior
+E 1  2386  25    16    * An ogre spear is loaded wielded of the Ogre Warrior
+M 0  2309   4  2348  1 * load the Ogre Guard
+E 1  2387  25    16    * An ogre war club is loaded wielded of the Ogre Guard
+M 0  2310   1  2349  1 * load The Ogre Shaman
+E 1  2388  20    12    * A bearskin cloak is loaded about the body of The Ogre Shaman
+E 1  2389  10     6    * A pair of feathered earrings is loaded over the head of The Ogre Shaman
+M 0  2311   1  2350  1 * load the Ogre Chieftain
+E 1  2390   5     9    * Gauntlets of ogre power is loaded on the hands of the Ogre Chieftain
+E 1  2391  10    16    * A massive club is loaded wielded of the Ogre Chieftain
+M 0  2312   3  2351  1 * load the Plains Barbarian
+E 1  2392  20     4    * A thick fur cape is loaded around the neck (2) of the Plains Barbarian
+E 1  2393  20     5    * A fur lined tunic is loaded on the torso of the Plains Barbarian
+E 1  2360  20     8    * A pair of fur lined boots is loaded on the feet of the Plains Barbarian
+M 0  2314   3  2352  1 * load the Ice Worm
+M 0  2312   3  2354  1 * load the Plains Barbarian
+E 1  2392  20     4    * A thick fur cape is loaded around the neck (2) of the Plains Barbarian
+E 1  2393  20     5    * A fur lined tunic is loaded on the torso of the Plains Barbarian
+E 1  2360  20     8    * A pair of fur lined boots is loaded on the feet of the Plains Barbarian
+M 0  2314   3  2354  1 * load the Ice Worm
+M 0  2313   3  2355  1 * load the White Yeti
+E 1  2361  20    12    * The white pelt of a yeti is loaded about the body of the White Yeti
+M 0  2314   3  2356  1 * load the Ice Worm
+M 0  2313   3  2357  1 * load the White Yeti
+E 1  2361  20    12    * The white pelt of a yeti is loaded about the body of the White Yeti
+M 0  2312   3  2359  1 * load the Plains Barbarian
+E 1  2392  20     4    * A thick fur cape is loaded around the neck (2) of the Plains Barbarian
+E 1  2393  20     5    * A fur lined tunic is loaded on the torso of the Plains Barbarian
+E 1  2360  20     8    * A pair of fur lined boots is loaded on the feet of the Plains Barbarian
+M 0  2313   3  2359  1 * load the White Yeti
+E 1  2361  20    12    * The white pelt of a yeti is loaded about the body of the White Yeti
+M 0  2316   3  2362  1 * load the Minotaur Guard
+E 1  2363  15    10    * A pair of steel vambraces is loaded on the arms of the Minotaur Guard
+E 1  2364  15     7    * A pair of steel greaves is loaded on the legs of the Minotaur Guard
+E 1  2365  10    16    * A battle axe is loaded wielded of the Minotaur Guard
+M 0  2315   5  2363  1 * load the Minotaur Citizen
+E 1  2362  35    16    * A kopesh sword is loaded wielded of the Minotaur Citizen
+M 0  2315   5  2364  1 * load the Minotaur Citizen
+E 1  2362  35    16    * A kopesh sword is loaded wielded of the Minotaur Citizen
+M 0  2315   5  2365  1 * load the Minotaur Citizen
+E 1  2362  35    16    * A kopesh sword is loaded wielded of the Minotaur Citizen
+M 0  2316   3  2366  1 * load the Minotaur Guard
+E 1  2363  15    10    * A pair of steel vambraces is loaded on the arms of the Minotaur Guard
+E 1  2364  15     7    * A pair of steel greaves is loaded on the legs of the Minotaur Guard
+E 1  2365  10    16    * A battle axe is loaded wielded of the Minotaur Guard
+M 0  2315   5  2367  1 * load the Minotaur Citizen
+E 1  2362  35    16    * A kopesh sword is loaded wielded of the Minotaur Citizen
+M 0  2317   3  2367  1 * load the Minotaur Warrior
+E 1  2366  15     5    * A steel breast plate is loaded on the torso of the Minotaur Warrior
+E 1  2367  15     6    * A steel helm is loaded over the head of the Minotaur Warrior
+E 1  2368  10    16    * A huge halberd is loaded wielded of the Minotaur Warrior
+M 0  2316   3  2368  1 * load the Minotaur Guard
+E 1  2363  15    10    * A pair of steel vambraces is loaded on the arms of the Minotaur Guard
+E 1  2364  15     7    * A pair of steel greaves is loaded on the legs of the Minotaur Guard
+E 1  2365  10    16    * A battle axe is loaded wielded of the Minotaur Guard
+M 0  2315   5  2370  1 * load the Minotaur Citizen
+E 1  2362  35    16    * A kopesh sword is loaded wielded of the Minotaur Citizen
+M 0  2325   1  2372  1 * load Gorak
+E 1  2300  10     9    * A pair of minotaur combat gloves is loaded on the hands of Gorak
+E 1  2301   5     5    * A suit of spiked garde armor is loaded on the torso of Gorak
+E 1  2302   5     7    * A pair of black minotaur greaves is loaded on the legs of Gorak
+E 1  2303   5    10    * A pair of black minotaur vambraces is loaded on the arms of Gorak
+E 1  2304   3    16    * The rod of weaponry is loaded wielded of Gorak
+M 0  2326   1  2373  1 * load Darkoth
+E 1  2305  20    12    * A pitch black cloak is loaded about the body of Darkoth
+E 1  2306  15     4    * A black plate neckguard is loaded around the neck (2) of Darkoth
+E 1  2307   5     9    * A pair of spiked gauntlets is loaded on the hands of Darkoth
+E 1  2308  10    11    * The shadow shield is loaded as a shield of Darkoth
+E 1  2309   3    16    * A shortsword named "nightbringer" is loaded wielded of Darkoth
+M 0  2327   1  2374  1 * load Tyrgoth
+E 1  2310  10     6    * A golden helm and visor is loaded over the head of Tyrgoth
+E 1  2311   5     5    * A gilded gold breast plate is loaded on the torso of Tyrgoth
+E 1  2312  15     4    * A billowing white cape  is loaded around the neck (2) of Tyrgoth
+E 1  2313  20    11    * A huge tower shield is loaded as a shield of Tyrgoth
+E 1  2314   3    16    * A huge mace named "dawnbringer" is loaded wielded of Tyrgoth
+M 0  2317   3  2376  1 * load the Minotaur Warrior
+E 1  2366  15     5    * A steel breast plate is loaded on the torso of the Minotaur Warrior
+E 1  2367  15     6    * A steel helm is loaded over the head of the Minotaur Warrior
+E 1  2368  10    16    * A huge halberd is loaded wielded of the Minotaur Warrior
+M 0  2318   1  2377  1 * load the Minotaur Gatekeeper
+G 1  2350   1          * The keep key is given to the Minotaur Gatekeeper
+M 0  2317   3  2378  1 * load the Minotaur Warrior
+E 1  2366  15     5    * A steel breast plate is loaded on the torso of the Minotaur Warrior
+E 1  2367  15     6    * A steel helm is loaded over the head of the Minotaur Warrior
+E 1  2368  10    16    * A huge halberd is loaded wielded of the Minotaur Warrior
+M 0  2319   2  2379  1 * load the High Minotaur Guard
+E 1  2369  15     6    * A blue steel helm and visor is loaded over the head of the High Minotaur Guard
+E 1  2370  15     7    * A pair of blue steel greaves is loaded on the legs of the High Minotaur Guard
+E 1  2371  15    10    * A pair of blue steel vambraces is loaded on the arms of the High Minotaur Guard
+E 1  2366  15     5    * A steel breast plate is loaded on the torso of the High Minotaur Guard
+E 1  2372  10    16    * A two-handed sword is loaded wielded of the High Minotaur Guard
+M 0  2319   2  2380  1 * load the High Minotaur Guard
+E 1  2369  15     6    * A blue steel helm and visor is loaded over the head of the High Minotaur Guard
+E 1  2370  15     7    * A pair of blue steel greaves is loaded on the legs of the High Minotaur Guard
+E 1  2371  15    10    * A pair of blue steel vambraces is loaded on the arms of the High Minotaur Guard
+E 1  2366  15     5    * A steel breast plate is loaded on the torso of the High Minotaur Guard
+E 1  2372  10    16    * A two-handed sword is loaded wielded of the High Minotaur Guard
+M 0  2320   2  2382  1 * load the Royal Minotaur Guard
+E 1  2373  10     6    * A red steel helm and visor is loaded over the head of the Royal Minotaur Guard
+E 1  2374  10     7    * A pair of red steel greaves is loaded on the legs of the Royal Minotaur Guard
+E 1  2375  10    10    * A pair of red steel vambraces is loaded on the arms of the Royal Minotaur Guard
+E 1  2366  15     5    * A steel breast plate is loaded on the torso of the Royal Minotaur Guard
+E 1  2376  10    16    * A minotaur glaive is loaded wielded of the Royal Minotaur Guard
+M 0  2320   2  2383  1 * load the Royal Minotaur Guard
+E 1  2373  10     6    * A red steel helm and visor is loaded over the head of the Royal Minotaur Guard
+E 1  2374  10     7    * A pair of red steel greaves is loaded on the legs of the Royal Minotaur Guard
+E 1  2375  10    10    * A pair of red steel vambraces is loaded on the arms of the Royal Minotaur Guard
+E 1  2366  15     5    * A steel breast plate is loaded on the torso of the Royal Minotaur Guard
+E 1  2376  10    16    * A minotaur glaive is loaded wielded of the Royal Minotaur Guard
+M 0  2321   2  2385  2 * load the Elite Minotaur Guard
+E 1  2377   5     6    * A crimson steel helm and visor is loaded over the head of the Elite Minotaur Guard
+E 1  2378   5     7    * A pair of crimson steel greaves is loaded on the legs of the Elite Minotaur Guard
+E 1  2379   5    10    * A pair of crimson steel vambraces is loaded on the arms of the Elite Minotaur Guard
+E 1  2366  15     5    * A steel breast plate is loaded on the torso of the Elite Minotaur Guard
+E 1  2380   5    16    * A huge morningstar is loaded wielded of the Elite Minotaur Guard
+M 0  2321   2  2385  2 * load the Elite Minotaur Guard
+E 1  2377   5     6    * A crimson steel helm and visor is loaded over the head of the Elite Minotaur Guard
+E 1  2378   5     7    * A pair of crimson steel greaves is loaded on the legs of the Elite Minotaur Guard
+E 1  2379   5    10    * A pair of crimson steel vambraces is loaded on the arms of the Elite Minotaur Guard
+E 1  2366  15     5    * A steel breast plate is loaded on the torso of the Elite Minotaur Guard
+E 1  2380   5    16    * A huge morningstar is loaded wielded of the Elite Minotaur Guard
+G 1  2359   1          * A runed key is given to the Elite Minotaur Guard
+M 0  2324   1  2387  1 * load the Minotaur Ring-Keeper
+G 1  2381  20          * Some huge spiked brass knuckles is given to the Minotaur Ring-Keeper
+E 1  2383   5    16    * A huge wooden maul is loaded wielded of the Minotaur Ring-Keeper
+E 1  2382   1    13    * A multi-colored key ring is loaded around the waist of the Minotaur Ring-Keeper
+P 1  2351   1  2382  1 A red key * put inside a red key
+P 1  2352   1  2382  1 A black key * put inside a black key
+P 1  2353   1  2382  1 A white key * put inside a white key
+P 1  2354   1  2382  1 A brown key * put inside a brown key
+P 1  2355   1  2382  1 A yellow key * put inside a yellow key
+P 1  2356   1  2382  1 A maroon key * put inside a maroon key
+P 1  2357   1  2382  1 A green key * put inside a green key
+P 1  2358   1  2382  1 A grey key * put inside a grey key
+M 0  2329   1  2390  1 * load Sumaron
+E 1  2320  15    12    * A heavy woolen robe is loaded about the body of Sumaron
+E 1  2321   5     3    * A brooch of life is loaded around the neck (1) of Sumaron
+E 1  2322  20    17    * A manual of healing arts is loaded held in the hands of Sumaron
+E 1  2323   3    16    * A huge mithril mace is loaded wielded of Sumaron
+E 1  2324  15     4    * A golden holy symbol is loaded around the neck (2) of Sumaron
+M 0  2328   1  2391  1 * load Amyrok
+E 1  2315  10     1    * A pair of wire rimmed spectacles is loaded on the left finger of Amyrok
+E 1  2316   5     2    * A banded ring is loaded on the right finger of Amyrok
+E 1  2317   5    12    * A minor globe of invulnerability is loaded about the body of Amyrok
+E 1  2318   3    16    * A gnarled magius staff is loaded wielded of Amyrok
+E 1  2319  10    13    * A girdle of many pouches is loaded around the waist of Amyrok
+M 0  2322   5  2393  5 * load the Harem Girl
+M 0  2322   5  2393  5 * load the Harem Girl
+M 0  2322   5  2393  5 * load the Harem Girl
+M 0  2322   5  2393  5 * load the Harem Girl
+M 0  2322   5  2393  5 * load the Harem Girl
+M 0  2330   1  2394  1 * load Nasturn
+E 1  2325  10     1    * A thick marble ring is loaded on the left finger of Nasturn
+E 1  2326  10    15    * A thick marble bracelet is loaded on the right wrist of Nasturn
+E 1  2327  10     8    * Boots of striding is loaded on the feet of Nasturn
+E 1  2328  10    12    * An icy white cloak is loaded about the body of Nasturn
+E 1  2329   3    16    * An ice staff is loaded wielded of Nasturn
+M 0  2323   1  2395  1 * load the Minotaur Butler
+M 0  2333   1  2396  1 * load Mahn-Tor
+E 1  2340   5    12    * A major globe of invulnerability is loaded about the body of Mahn-Tor
+E 1  2341   5     5    * A suit of black minotaur chainmail is loaded on the torso of Mahn-Tor
+E 1  2342  15    14    * A spiked buckler is loaded on the left wrist of Mahn-Tor
+E 1  2343  10     2    * A studded ring is loaded on the right finger of Mahn-Tor
+E 1  2344  10     6    * A horned minotaur helm is loaded over the head of Mahn-Tor
+E 1  2345   1    16    * Mahn-tor's great axe is loaded wielded of Mahn-Tor
+M 0  2332   1  2398  1 * load Dorgar
+E 1  2335  15    12    * A small leather pack is loaded about the body of Dorgar
+E 1  2336  10     6    * A black leather hood is loaded over the head of Dorgar
+E 1  2337  20    10    * A pair of black leather sleeves is loaded on the arms of Dorgar
+E 1  2338  10     7    * A pair of black leather pants is loaded on the legs of Dorgar
+E 1  2339  10    16    * A wicked shortsword is loaded wielded of Dorgar
+M 0  2331   1  2399  1 * load Belrak
+E 1  2330  10     2    * A carved wooden ring is loaded on the right finger of Belrak
+E 1  2331  20    17    * The horn of life is loaded held in the hands of Belrak
+E 1  2332  10    13    * The belt of life is loaded around the waist of Belrak
+G 1  2333   5          * A blood red stone is given to Belrak
+E 1  2334   3    16    * A huge crossbow is loaded wielded of Belrak
 S
 
 #SHOPS
 0
 
 #SPECIALS
-M 2300 spec_cast_undead    	* the Dark Ethereal Knight
-M 2302 spec_breath_acid    	* the Cave Dweller
-M 2306 spec_poison         	* the Swamp Wraith
-M 2310 spec_cast_cleric    	* The Ogre Shaman
-M 2313 spec_breath_frost   	* the White Yeti
-M 2314 spec_breath_acid    	* the Ice Worm
-M 2324 spec_cast_mage      	* the Minotaur Ring-Keeper
-M 2326 spec_cast_undead    	* Darkoth
-M 2328 spec_cast_mage      	* Amyrok
-M 2329 spec_cast_cleric    	* Sumaron
-M 2330 spec_cast_cleric    	* Nasturn
-M 2333 spec_cast_mage      	* Mahn-Tor
+M  2300 spec_cast_undead     * load to: the Dark Ethereal Knight
+M  2302 spec_breath_acid     * load to: the Cave Dweller
+M  2306 spec_poison          * load to: the Swamp Wraith
+M  2310 spec_cast_cleric     * load to: The Ogre Shaman
+M  2313 spec_breath_frost    * load to: the White Yeti
+M  2314 spec_breath_acid     * load to: the Ice Worm
+M  2324 spec_cast_mage       * load to: the Minotaur Ring-Keeper
+M  2326 spec_cast_undead     * load to: Darkoth
+M  2328 spec_cast_mage       * load to: Amyrok
+M  2329 spec_cast_cleric     * load to: Sumaron
+M  2330 spec_cast_cleric     * load to: Nasturn
+M  2333 spec_cast_mage       * load to: Mahn-Tor
 S
+
+#MOBPROGS
+#0
 
 #$
