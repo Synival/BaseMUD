@@ -42,7 +42,7 @@
 #define MAX_STRING_SPACE    2097152 /* 2^21 */
 #define MAX_PERM_BLOCK      131072
 #define MAX_PERM_BLOCKS     1024
-#define MAX_MEM_LIST        11
+#define MAX_MEM_LIST        12
 
 #ifndef BASEMUD_DEBUG_DISABLE_MEMORY_MANAGEMENT
     /* Magic number for memory allocation */
@@ -60,7 +60,7 @@
     static int mem_block_bytes_allocated;
     static void *mem_blocks_free[MAX_MEM_LIST];
     static const magic_t mem_block_sizes[MAX_MEM_LIST] = {
-        16, 32, 64, 128, 256, 1024, 2048, 4096, 8192, 16384, 32768 - 64
+        16, 32, 64, 128, 256, 1024, 2048, 4096, 8192, 16384, 32768, 65536
     };
 
     /* Keep track of allocated memory blocks so Valgrind
@@ -439,7 +439,7 @@ char *mem_dump (char *eol) {
 
 /* buffer sizes */
 static const int buf_size[MAX_BUF_LIST] = {
-    16, 32, 64, 128, 256, 1024, 2048, 4096, 8192, 16384
+    16, 32, 64, 128, 256, 1024, 2048, 4096, 8192, 16384, 32768
 };
 
 /* local procedure for finding the next acceptable size */
@@ -472,18 +472,21 @@ bool buf_cat (BUFFER_T *buffer, char *string) {
     oldstr = buffer->string;
     oldsize = buffer->size;
 
-    if (buffer->state == BUFFER_OVERFLOW)    /* don't waste time on bad strings! */
+    /* don't waste time on bad strings! */
+    if (buffer->state == BUFFER_OVERFLOW)
         return FALSE;
 
+    /* increase the buffer size */
     len = strlen (buffer->string) + strlen (string) + 1;
-    while (len >= buffer->size) { /* increase the buffer size */
-        buffer->size = buf_get_size (buffer->size + 1); {
-            if (buffer->size == -1) { /* overflow */
-                buffer->size = oldsize;
-                buffer->state = BUFFER_OVERFLOW;
-                bug ("buffer overflow past size %d", buffer->size);
-                return FALSE;
-            }
+    while (len >= buffer->size) {
+        buffer->size = buf_get_size (buffer->size + 1);
+
+        /* overflow */
+        if (buffer->size < 0) {
+            buffer->size = oldsize;
+            buffer->state = BUFFER_OVERFLOW;
+            bug ("buffer overflow past size %d", buffer->size);
+            return FALSE;
         }
     }
 

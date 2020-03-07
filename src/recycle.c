@@ -716,7 +716,7 @@ DEFINE_DISPOSE_FUN (portal_exit_dispose) {
 
 DEFINE_DISPOSE_FUN (portal_dispose) {
     PORTAL_T *portal = obj;
-    portal_to_portal_exits (portal, NULL, NULL, FALSE);
+
     str_free (&(portal->name_from));
     str_free (&(portal->name_to));
 }

@@ -33,6 +33,7 @@
 #include "json_export.h"
 #include "resets.h"
 #include "memory.h"
+#include "portals.h"
 
 #include "olc_aedit.h"
 #include "olc_hedit.h"
@@ -883,27 +884,126 @@ DEFINE_DO_FUN (do_asave) {
         do_asave (ch, "");
 }
 
+#define DO_PORTALS_SYNTAX \
+    "Syntax: portals exits <area | world>\n\r" \
+    "        portals links <area | world>\n\r"
+
 DEFINE_DO_FUN (do_portals) {
+    char arg1[MAX_STRING_LENGTH];
+    char arg2[MAX_STRING_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     BUFFER_T *pagebuf;
     PORTAL_T *portal;
+    PORTAL_EXIT_T *pex;
+    AREA_T *area;
     const char *arrow;
     int index;
 
-    pagebuf = buf_new ();
-    index = 1;
-    for (portal = portal_get_first(); portal; portal = portal_get_next (portal)) {
-        arrow = (portal->two_way) ? "<==>" : "--->";
-        printf_to_buf (pagebuf, "%3d. %20.20s [%s] %s [%s] %-20.20s\n\r",
-            index,
-            portal->name_from,
-            portal->from ? "Connected" : "*MISSING*",
-            arrow,
-            portal->to   ? "Connected" : "*MISSING*",
-            portal->name_to
-        );
-        index++;
+    argument = one_argument (argument, arg1);
+    argument = one_argument (argument, arg2);
+
+    /* arg2 must be 'area' or 'world'. */
+    if (arg2[0] != '\0' && !str_prefix (arg2, "area")) {
+        BAIL_IF ((area = ch->in_room->area) == NULL,
+            "You aren't in an area!\n\r", ch);
+    }
+    else if (arg2[0] != '\0' && !str_prefix (arg2, "world"))
+        area = NULL;
+    else {
+        send_to_char (DO_PORTALS_SYNTAX, ch);
+        return;
     }
 
-    page_to_char (buf_string (pagebuf), ch);
-    buf_free (pagebuf);
+    /* Check for "portals exits" or "portals links" */
+    if (arg1[0] != '\0' && !str_prefix (arg1, "exits")) {
+        pagebuf = buf_new ();
+        index = 1;
+
+        for (pex = portal_exit_get_first(); pex; pex = portal_exit_get_next (pex)) {
+            /* make sure this exit is somehow connected to this area. */
+            if (area && !portal_exit_is_in_area (pex, area))
+                continue;
+
+            printf_to_buf (pagebuf, "%3d. %20.20s | ", index, pex->name);
+            index++;
+
+            if (pex->room) {
+                snprintf (buf, sizeof (buf), "on room #%d (%s)",
+                    pex->room->vnum, pex->room->name);
+                printf_to_buf (pagebuf, "%-51.51s\n\r", buf);
+            }
+            else if (pex->exit) {
+                snprintf (buf, sizeof (buf), "%s from #%d (%s)",
+                    door_get (pex->exit->orig_door)->name,
+                    pex->exit->from_room->vnum,
+                    pex->exit->from_room->name);
+                printf_to_buf (pagebuf, "%-51.51s\n\r", buf);
+
+                if (pex->exit->to_room) {
+                    snprintf (buf, sizeof (buf), "   to #%d (%s)",
+                        pex->exit->to_room->vnum, pex->exit->to_room->name);
+                    printf_to_buf (pagebuf,
+                        "                          | %-51.51s\n\r", buf);
+                }
+                else {
+                    printf_to_buf (pagebuf,
+                        "                          |    to *NOT CONNECTED*\n\r");
+                }
+            }
+            else
+                printf_to_buf (pagebuf, "*NO LINK*\n\r");
+        }
+
+        page_to_char (buf_string (pagebuf), ch);
+        buf_free (pagebuf);
+        return;
+    }
+
+    if (arg1[0] != '\0' && !str_prefix (arg1, "links")) {
+        pagebuf = buf_new ();
+        index = 1;
+
+        for (portal = portal_get_first(); portal; portal = portal_get_next (portal)) {
+            const char *name_left, *name_right;
+            const PORTAL_EXIT_T *pex_left, *pex_right;
+            bool reverse;
+
+            /* make sure this link is somehow connected to this area. */
+            if (area != NULL) {
+                int in_area_result;
+                in_area_result = portal_is_in_area (portal, area);
+
+                if (in_area_result & PORTAL_IN_AREA_FROM)
+                    reverse = FALSE;
+                else if (in_area_result & PORTAL_IN_AREA_TO)
+                    reverse = TRUE;
+                else
+                    continue;
+            }
+            else
+                reverse = FALSE;
+
+
+            name_left  = reverse ? portal->name_to   : portal->name_from;
+            name_right = reverse ? portal->name_from : portal->name_to;
+            pex_left   = reverse ? portal->to        : portal->from;
+            pex_right  = reverse ? portal->from      : portal->to;
+            arrow = (portal->two_way) ? "<==>" : (reverse ? "<---" : "--->");
+
+            printf_to_buf (pagebuf, "%3d. %20.20s [%s] %s [%s] %-20.20s\n\r",
+                index,
+                name_left, pex_left ? "Connected" : "*MISSING*",
+                arrow,
+                pex_right ? "Connected" : "*MISSING*", name_right
+            );
+            index++;
+        }
+
+        page_to_char (buf_string (pagebuf), ch);
+        buf_free (pagebuf);
+        return;
+    }
+
+    /* no matches - show syntax. */
+    send_to_char (DO_PORTALS_SYNTAX, ch);
 }

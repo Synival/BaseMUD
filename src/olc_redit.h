@@ -20,8 +20,14 @@
 #define EDIT_ROOM(ch, room) (room = ch->in_room)
 
 /* Sub-routines and filters. */
-void redit_add_reset (ROOM_INDEX_T *room, RESET_T *reset, int index);
 bool redit_change_exit (CHAR_T *ch, char *argument, int door);
+void redit_change_exit_free (EXIT_T *ex);
+void redit_change_exit_update_portals (EXIT_T *ex, ROOM_INDEX_T *old_room,
+    ROOM_INDEX_T *old_rev_rev_room, CHAR_T *ch);
+void redit_change_exit_update_portal (EXIT_T *ex, CHAR_T *ch);
+void redit_change_exit_connect_portal_exits (PORTAL_EXIT_T *from,
+    PORTAL_EXIT_T *to, CHAR_T *ch);
+void redit_change_exit_remove_portal (PORTAL_T *portal, CHAR_T *ch);
 
 /* Commands (rooms). */
 REDIT (redit_rlist);
@@ -49,5 +55,6 @@ REDIT (redit_oreset);
 REDIT (redit_owner);
 REDIT (redit_room);
 REDIT (redit_sector);
+REDIT (redit_portal);
 
 #endif

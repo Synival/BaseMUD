@@ -686,8 +686,7 @@
 #define SKILL_MAP_MAX              48
 
 /* Stuff for providing a crash-proof buffer */
-#define MAX_BUF          16384
-#define MAX_BUF_LIST     10
+#define MAX_BUF_LIST     11
 #define BASE_BUF         1024
 
 /* valid states */

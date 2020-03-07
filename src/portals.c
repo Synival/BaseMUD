@@ -115,27 +115,26 @@ bool portal_to_portal_exits_by_name (PORTAL_T *portal) {
         portal->name_to);
 
     /* We found the portal exits - link them. */
-    portal_to_portal_exits (portal, from, to, portal->two_way);
+    portal_to_portal_exits (portal, from, to);
     return TRUE;
 }
 
 void portal_to_portal_exits (PORTAL_T *portal, PORTAL_EXIT_T *pex_from,
-    PORTAL_EXIT_T *pex_to, bool two_way)
+    PORTAL_EXIT_T *pex_to)
 {
     BAIL_IF_BUGF (pex_from == pex_to && pex_from != NULL,
         "portal_to_portal_exits: Portal cannot lead to the same place: '%s'",
         pex_from->name);
 
     portal_to_portal_exit_from (portal, pex_from);
-    portal_to_portal_exit_to (portal, pex_to, two_way);
+    portal_to_portal_exit_to   (portal, pex_to);
 
     if (portal->from && portal->to) {
         if (portal->to->exit) {
             exit_to_room_index_to (portal->from->exit,
                                    portal->to->exit->from_room);
-            if (portal->two_way) /* (not necessary, just for paranoia :) ) */
-                exit_to_room_index_to (portal->to->exit,
-                                       portal->from->exit->from_room);
+            exit_to_room_index_to (portal->to->exit,
+                                   portal->from->exit->from_room);
         }
         else if (portal->to->room) {
             exit_to_room_index_to (portal->from->exit,
@@ -159,24 +158,17 @@ void portal_to_portal_exit_from (PORTAL_T *portal, PORTAL_EXIT_T *pex) {
     portal->from = pex;
 }
 
-void portal_to_portal_exit_to (PORTAL_T *portal, PORTAL_EXIT_T *pex,
-    bool two_way)
-{
+void portal_to_portal_exit_to (PORTAL_T *portal, PORTAL_EXIT_T *pex) {
     if (portal->to) {
-        if (portal->two_way)
+        if (portal->to->exit)
             exit_to_room_index_to (portal->to->exit, NULL);
         portal->to = NULL;
         portal->two_way = FALSE;
     }
 
-    /* The "to" portal in a two-way portal cannot be to a room. */
-    BAIL_IF_BUGF (pex != NULL && pex->exit == NULL && two_way == TRUE,
-        "portal_to_portal_exit_to: To '%s' is a room",
-        pex->room->name);
-
     str_replace_dup (&(portal->name_to), pex ? pex->name : NULL);
     portal->to = pex;
-    portal->two_way = two_way;
+    portal->two_way = (pex && pex->exit) ? TRUE : FALSE;
 }
 
 static int new_exit_count,   new_portal_count;
@@ -279,7 +271,7 @@ void portal_create_missing_exit (EXIT_T *exit_from) {
     }
 
     /* Link the portal to the portal exits. */
-    portal_to_portal_exits (portal, pex_from, pex_to, two_way);
+    portal_to_portal_exits (portal, pex_from, pex_to);
 }
 
 PORTAL_T *portal_get_by_exit_names (const char *from, const char *to,
@@ -425,4 +417,75 @@ void portal_free_all_with_portal_exit (PORTAL_EXIT_T *pex) {
         if (p->from == pex || p->to == pex)
             portal_free (p);
     }
+}
+
+bool portal_exit_is_in_area (const PORTAL_EXIT_T *pex, const AREA_T *area) {
+    const AREA_T *pex_area = pex->room
+        ? pex->room->area
+        : pex->exit->from_room->area;
+    return (pex_area == area);
+}
+
+int portal_is_in_area (const PORTAL_T *portal, const AREA_T *area) {
+    AREA_T *from_area, *to_area;
+    int result;
+
+    from_area = (portal->from == NULL )
+        ? NULL : (portal->from->room)
+            ? portal->from->room->area
+            : portal->from->exit->from_room->area;
+    to_area = (portal->to == NULL )
+        ? NULL : (portal->to->room)
+            ? portal->to->room->area
+            : portal->to->exit->from_room->area;
+
+    result = 0;
+    if (from_area == area)
+        result |= PORTAL_IN_AREA_FROM;
+    if (to_area == area)
+        result |= PORTAL_IN_AREA_TO;
+    return result;
+}
+
+bool portal_can_enter_from_portal_exit (const PORTAL_T *portal,
+    const PORTAL_EXIT_T *pex)
+{
+    return ((portal->from == pex) || (portal->two_way && portal->to == pex))
+        ? TRUE : FALSE;
+}
+
+PORTAL_T *portal_get_with_outgoing_portal_exit (const PORTAL_EXIT_T *pex) {
+    PORTAL_T *p;
+
+    if (!pex->exit)
+        return NULL;
+    for (p = portal_get_first(); p; p = portal_get_next (p))
+        if (portal_can_enter_from_portal_exit (p, pex))
+            return p;
+    return NULL;
+}
+
+bool portal_exit_rename (PORTAL_EXIT_T *pex, const char *new_name) {
+    PORTAL_T *p;
+
+    if (pex == NULL || new_name == NULL)
+        return FALSE;
+
+    /* Just return success if the name is the same. */
+    if (new_name == pex->name || strcmp (new_name, pex->name) == 0)
+        return TRUE;
+
+    /* Don't allow duplicate names. */
+    if (portal_exit_lookup_exact (new_name))
+        return FALSE;
+
+    /* Change the name and any portal that references it. */
+    str_replace_dup (&pex->name, new_name);
+    for (p = portal_get_first(); p; p = portal_get_next (p)) {
+        if (p->to == pex)
+            str_replace_dup (&(p->name_to), new_name);
+        if (p->from == pex)
+            str_replace_dup (&(p->name_from), new_name);
+    }
+    return TRUE;
 }

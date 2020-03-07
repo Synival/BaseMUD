@@ -34,6 +34,7 @@
 #include "rooms.h"
 #include "extra_descrs.h"
 #include "resets.h"
+#include "portals.h"
 
 #include "olc_redit.h"
 
@@ -89,30 +90,50 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
     }
 
     if (!str_cmp (command, "delete")) {
-        ROOM_INDEX_T *to_room;
+        ROOM_INDEX_T *old_room;
         EXIT_T *ex, *rev_ex;
         sh_int rev; /* ROM OLC */
 
         RETURN_IF (!(ex = room_get_orig_exit (room, door)),
             "REdit: Cannot delete a null exit.\n\r", ch, FALSE);
 
-        /* Remove ToRoom Exit. */
+        /* Get an opposite exit and automatically unlink it.
+         * Don't delete it unless it points back to this room. */
         rev = door_table[door].reverse;
-        to_room = ex->to_room; /* ROM OLC */
+        old_room = ex->to_room; /* ROM OLC */
 
-        if ((rev_ex = room_get_orig_exit (to_room, rev)) != NULL)
-            exit_free (rev_ex);
+        if (old_room) {
+            if ((rev_ex = room_get_orig_exit (old_room, rev)) != NULL)
+                if (rev_ex->to_room != room)
+                    rev_ex = NULL;
+        }
+        else
+            rev_ex = NULL;
+
+        /* Unlink our exit. */
+        exit_to_room_index_to (ex, NULL);
+        send_to_char ("Exit unlinked.\n\r", ch);
+        if (rev_ex) {
+            exit_to_room_index_to (rev_ex, NULL);
+            send_to_char ("Reverse exit unlinked.\n\r", ch);
+        }
+
+        /* Update portals if necessary. */
+        redit_change_exit_update_portals (ex, old_room, NULL, ch);
+
+        /* Remove our exit and, if found, the opposite exit. */
+        redit_change_exit_free (ex);
+        if (rev_ex)
+            redit_change_exit_free (rev_ex);
 
         /* Remove this exit. */
-        exit_free (ex);
-        send_to_char ("Exit unlinked.\n\r", ch);
         return TRUE;
     }
 
     if (!str_cmp (command, "link")) {
         int rev;
         EXIT_T *ex, *rev_ex;
-        ROOM_INDEX_T *to_room;
+        ROOM_INDEX_T *old_room, *old_rev_room, *to_room;
 
         RETURN_IF (arg[0] == '\0' || !is_number (arg),
             "Syntax: [direction] link [vnum]\n\r", ch, FALSE);
@@ -125,20 +146,27 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
 
         rev = door_table[door].reverse;
         rev_ex = room_get_orig_exit (to_room, rev);
-        RETURN_IF (rev_ex != NULL,
+        RETURN_IF (rev_ex != NULL && rev_ex->to_room,
             "REdit: Remote side's exit already exists.\n\r", ch, FALSE);
 
-        /* Get (or create) our two-way link. */
-        ex = room_get_orig_exit (room, door);
-        if (ex == NULL)
+        /* Get (or create) the exit on the player side. */
+        if ((ex = room_get_orig_exit (room, door)) == NULL)
             ex = room_create_exit (room, door);
-        rev_ex = room_create_exit (room, door);
+
+        /* Create the opposite exit if necessary. */
+        if (rev_ex == NULL)
+            rev_ex = room_create_exit (to_room, rev);
 
         /* Link the two exits together. */
-        exit_to_room_index_to (ex,     to_room);
+        old_room     = ex->to_room;
+        old_rev_room = rev_ex->to_room;
+        exit_to_room_index_to (ex, to_room);
         exit_to_room_index_to (rev_ex, room);
 
+        /* Update portals if necessary. */
         send_to_char ("Two-way link established.\n\r", ch);
+        redit_change_exit_update_portals (ex, old_room, old_rev_room, ch);
+
         return TRUE;
     }
 
@@ -155,7 +183,7 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
 
     if (!str_cmp (command, "room")) {
         EXIT_T *ex;
-        ROOM_INDEX_T *to_room;
+        ROOM_INDEX_T *old_room, *to_room;
 
         RETURN_IF (arg[0] == '\0' || !is_number (arg),
             "Syntax: [direction] room [vnum]\n\r", ch, FALSE);
@@ -165,12 +193,16 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
             "REdit: Cannot link to non-existant room.\n\r", ch, FALSE);
 
         /* Create or update the existing exit. */
-        ex = room_get_orig_exit (room, door);
-        if (ex == NULL)
+        if ((ex = room_get_orig_exit (room, door)) == NULL)
             ex = room_create_exit (room, door);
-        exit_to_room_index_to (ex, to_room);
 
+        old_room = ex->to_room;
+        exit_to_room_index_to (ex, to_room);
         send_to_char ("One-way link established.\n\r", ch);
+
+        /* Update portals if necessary. */
+        redit_change_exit_update_portals (ex, old_room, NULL, ch);
+
         return TRUE;
     }
 
@@ -224,8 +256,225 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
         return TRUE;
     }
 
+    if (!str_prefix (command, "portal")) {
+        EXIT_T *ex;
+
+        RETURN_IF (arg[0] == '\0',
+            "Syntax: [direction] portal [name]\n\r", ch, FALSE);
+
+        if ((ex = room_get_orig_exit (room, door)) == NULL)
+            ex = room_create_exit (room, door);
+
+        RETURN_IF (ex->portal && strcmp (arg, ex->portal->name) == 0,
+            "The portal exit name provided is the same.\n\r", ch, FALSE);
+        RETURN_IF (portal_exit_lookup_exact (arg),
+            "A portal exit with that name already exists.\n\r", ch, FALSE);
+
+        if (ex->portal) {
+            RETURN_IF (!portal_exit_rename (ex->portal, arg),
+                "The portal exit could not be renamed.\n\r", ch, FALSE);
+            send_to_char ("Portal renamed.\n\r", ch);
+            return TRUE;
+        }
+        else {
+            PORTAL_EXIT_T *pex;
+            pex = portal_exit_create (arg);
+            portal_exit_to_exit (pex, ex);
+            send_to_char ("Portal created.\n\r", ch);
+            return TRUE;
+        }
+    }
+
     do_help (ch, "EXIT");
     return FALSE;
+}
+
+void redit_change_exit_free (EXIT_T *ex) {
+    if (ex->portal)
+        exit_to_room_index_to (ex, NULL);
+    else
+        exit_free (ex);
+}
+
+void redit_change_exit_update_portals (EXIT_T *ex, ROOM_INDEX_T *old_room,
+    ROOM_INDEX_T *old_rev_rev_room, CHAR_T *ch)
+{
+    EXIT_T *new_rev_ex, *old_rev_ex, *old_rev_rev_ex;
+    ROOM_INDEX_T *from_room, *new_room;
+    int dir, rev_dir;
+
+    /* Gather all data we may need to modify. */
+    dir     = ex->orig_door;
+    rev_dir = door_table[dir].reverse;
+    from_room = ex->from_room;
+
+    /* Get the reverse exit, if it exists. It must (now) point back to the exit
+     * we've modified. */
+    new_room   = ex->to_room;
+    new_rev_ex = (new_room) ? room_get_orig_exit (new_room, rev_dir) : NULL;
+    if (new_rev_ex && new_rev_ex->to_room != from_room)
+        new_rev_ex = NULL;
+
+    /* Get the reverse exit of the old room, if it exists. It must (still)
+     * point to the exit we've modified. */
+    old_rev_ex = (old_room) ? room_get_orig_exit (old_room, rev_dir) : NULL;
+    if (old_rev_ex && old_rev_ex->to_room != from_room)
+        old_rev_ex = NULL;
+
+    /* If there's a new reverse exit, its target room has been overridden.
+     * There's a possibility that this was a two-way portal, in which case
+     * we need to fix the old reverse exit OF the reverse exit. */
+    old_rev_rev_ex = (new_rev_ex && old_rev_rev_room) ?
+        room_get_orig_exit (old_rev_rev_room, dir) : NULL;
+    if (old_rev_rev_ex && old_rev_rev_ex->to_room != new_room)
+        old_rev_rev_ex = NULL;
+
+    /* Fix individual exits. */
+    redit_change_exit_update_portal (ex,             ch);
+    redit_change_exit_update_portal (new_rev_ex,     ch);
+    redit_change_exit_update_portal (old_rev_ex,     ch);
+    redit_change_exit_update_portal (old_rev_rev_ex, ch);
+}
+
+void redit_change_exit_update_portal (EXIT_T *ex, CHAR_T *ch) {
+    EXIT_T *rev_ex;
+    PORTAL_T *portal;
+    const char *dir_name;
+    bool needs_portal;
+    int rev_dir;
+
+    if (ex == NULL)
+        return;
+
+    /* See if this exit needs a portal at all. */
+    needs_portal = (ex->to_room != NULL) &&
+                   (ex->to_room->area != ex->from_room->area);
+    dir_name = door_table[ex->orig_door].name;
+
+    /* If not, delete the portal. */
+    if (!needs_portal) {
+        if (ex->portal) {
+            if ((portal = portal_get_with_outgoing_portal_exit (ex->portal)))
+                redit_change_exit_remove_portal (portal, ch);
+
+            if (ex->to_room != NULL) {
+                printf_to_char (ch,
+                    "Removing portal exit '%s' from '%s' on '%s'.\n",
+                    ex->portal->name, dir_name, ex->from_room->name);
+                portal_exit_free (ex->portal);
+                ex->portal = NULL;
+            }
+        }
+        return;
+    }
+
+    /* A portal is required. Create the portal exit if it doesn't exist. */
+    if (ex->portal == NULL) {
+        portal_exit_create_on_exit (ex);
+        printf_to_char (ch,
+            "Created portal exit '%s' on '%s' from '%s'.\n",
+            ex->portal->name, dir_name, ex->from_room->name);
+    }
+
+    /* Get the reverse direction.  It must point back to this same room. */
+    rev_dir = door_table[ex->orig_door].reverse;
+    rev_ex = room_get_orig_exit (ex->to_room, rev_dir);
+    if (rev_ex && rev_ex->to_room != ex->from_room)
+        rev_ex = NULL;
+
+    /* Is this a one-way portal? */
+    if (rev_ex == NULL) {
+        /* Create the portal exit on the room if it doesn't exist. */
+        if (ex->to_room->portal == NULL) {
+            portal_exit_create_on_room (ex->to_room);
+            printf_to_char (ch,
+                "Created portal exit '%s' on room '%s'.\n",
+                ex->to_room->portal->name, ex->to_room->name);
+        }
+
+        /* Make sure we have the correct portal. */
+        redit_change_exit_connect_portal_exits (
+            ex->portal, ex->to_room->portal, ch);
+        return;
+    }
+    /* It's a two-way portal. Create the portal exit on the reverse exit if it
+     * doesn't exist. */
+    else {
+        if (rev_ex->portal == NULL) {
+            portal_exit_create_on_exit (rev_ex);
+            printf_to_char (ch,
+                "Created portal exit '%s' on '%s' from '%s'.\n",
+                rev_ex->portal->name, door_table[rev_dir].name,
+                rev_ex->from_room->name);
+        }
+
+        /* Make sure we have the correct portal. */
+        redit_change_exit_connect_portal_exits (
+            ex->portal, rev_ex->portal, ch);
+    }
+}
+
+void redit_change_exit_connect_portal_exits (PORTAL_EXIT_T *from,
+    PORTAL_EXIT_T *to, CHAR_T *ch)
+{
+    PORTAL_T *portal;
+    bool two_way = (to->exit) ? TRUE : FALSE;
+
+    /* Is there an existing outgoing portal? */
+    portal = portal_get_with_outgoing_portal_exit (from);
+    if (portal) {
+        if (portal->two_way == two_way) {
+            /* If it's one-way, do nothing more if the portal goes to
+             * the same place. */
+            if (!two_way && portal->to == to)
+                return;
+
+            /* If it's two-way, do nothing more if either direction has
+             * our destination. */
+            if (two_way && (portal->from == to || portal->to == to))
+                return;
+        }
+
+        /* Validity checks didn't work - remove this portal. */
+        redit_change_exit_remove_portal (portal, ch);
+    }
+
+    /* Is there a one-way portal from the "from" direction? */
+    if (two_way) {
+        portal = portal_get_with_outgoing_portal_exit (to);
+        if (portal)
+            redit_change_exit_remove_portal (portal, ch);
+    }
+
+    /* We'll need to create a new portal. */
+    portal = portal_new ();
+    portal_to_portal_exit_from (portal, from);
+    portal_to_portal_exit_to   (portal, to);
+
+    if (!two_way) {
+        printf_to_char (ch,
+            "Creating one-way portal from '%s' to '%s'.\n",
+            from->name, to->name);
+    }
+    else {
+        printf_to_char (ch,
+            "Creating two-way portal between '%s' and '%s'.\n",
+            from->name, to->name);
+    }
+}
+
+void redit_change_exit_remove_portal (PORTAL_T *portal, CHAR_T *ch) {
+    if (!portal->two_way) {
+        printf_to_char (ch,
+            "Removing one-way portal link from '%s' to '%s'.\n",
+            portal->name_from, portal->name_to);
+    }
+    else {
+        printf_to_char (ch,
+            "Removing two-way portal link between '%s' and '%s'.\n",
+            portal->name_from, portal->name_to);
+    }
+    portal_free (portal);
 }
 
 REDIT (redit_rlist) {
@@ -488,6 +737,11 @@ REDIT (redit_show) {
     else
         strcat (buf1, "none]\n\r");
 
+    if (room->portal) {
+        sprintf (buf, "Portal:     [%s]\n\r", room->portal->name);
+        strcat (buf1, buf);
+    }
+
     for (real_door = 0; real_door < DIR_MAX; real_door++) {
         if (!(pexit = room_get_orig_exit (room, real_door)))
             continue;
@@ -526,13 +780,13 @@ REDIT (redit_show) {
             strcat (buf1, word);
             strcat (buf1, " ");
         }
+        strcat (buf1, "\n\r");
 
         if (pexit->portal) {
             PORTAL_EXIT_T *pex = pexit->portal;
             sprintf (buf, " Portal: [%s]\n\r", pex->name);
             strcat (buf1, buf);
         }
-        strcat (buf1, "\n\r");
 
         if (pexit->keyword && pexit->keyword[0] != '\0') {
             sprintf (buf, "Kwds: [%s]\n\r", pexit->keyword);
@@ -972,4 +1226,30 @@ REDIT (redit_sector) {
     room->sector_type = value;
     send_to_char ("Sector type set.\n\r", ch);
     return TRUE;
+}
+
+REDIT (redit_portal) {
+    ROOM_INDEX_T *room;
+    EDIT_ROOM (ch, room);
+
+    RETURN_IF (argument[0] == '\0',
+        "Syntax: portal [name]\n\r", ch, FALSE);
+    RETURN_IF (room->portal && strcmp (argument, room->portal->name) == 0,
+        "The portal exit name provided is the same.\n\r", ch, FALSE);
+    RETURN_IF (portal_exit_lookup_exact (argument),
+        "A portal exit with that name already exists.\n\r", ch, FALSE);
+
+    if (room->portal) {
+        RETURN_IF (!portal_exit_rename (room->portal, argument),
+            "The portal exit could not be renamed.\n\r", ch, FALSE);
+        send_to_char ("Portal renamed.\n\r", ch);
+        return TRUE;
+    }
+    else {
+        PORTAL_EXIT_T *pex;
+        pex = portal_exit_create (argument);
+        portal_exit_to_room (pex, room);
+        send_to_char ("Portal created.\n\r", ch);
+        return TRUE;
+    }
 }

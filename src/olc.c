@@ -65,6 +65,14 @@ const OLC_CMD_T aedit_table[] = {
 };
 
 const OLC_CMD_T redit_table[] = {
+    /* We want single-letter navigation to always be possible. */
+    {"n",        redit_north},
+    {"s",        redit_south},
+    {"e",        redit_east},
+    {"w",        redit_west},
+    {"u",        redit_up},
+    {"d",        redit_down},
+
     {"commands", show_commands},
     {"create",   redit_create},
     {"desc",     redit_desc},
@@ -75,6 +83,7 @@ const OLC_CMD_T redit_table[] = {
     {"heal",     redit_heal},
     {"mana",     redit_mana},
     {"clan",     redit_clan},
+    {"portal",   redit_portal},
 
     {"north",    redit_north},
     {"south",    redit_south},

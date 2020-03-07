@@ -75,8 +75,8 @@ struct ban_data {
 };
 
 struct buf_type {
-    sh_int state;  /* error state of the buffer */
-    sh_int size;   /* size in k */
+    sh_int state; /* error state of the buffer */
+    int size;     /* size in bytes */
     char *string; /* buffer's string */
     OBJ_RECYCLE_T rec_data;
 };

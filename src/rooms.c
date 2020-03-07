@@ -533,7 +533,8 @@ void exit_to_room_index_from (EXIT_T *exit, ROOM_INDEX_T *room, int dir) {
     if (exit->from_room == room)
         return;
     BAIL_IF_BUGF (room != NULL && room->exit[dir] != NULL,
-        "exit_to_room_index: Room '%s' already has exit '%d'");
+        "exit_to_room_index: Room '%s' already has exit '%d'",
+        room->name, dir);
 
     if (exit->from_room) {
         int dir;

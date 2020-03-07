@@ -74,8 +74,9 @@ act_olc.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_olc.o: json.h structs.h types.h flags.h tables.h ext_flags.h recycle.h
 act_olc.o: lookup.h interp.h utils.h db.h comm.h olc_save.h act_info.h
 act_olc.o: chars.h globals.h items.h mobiles.h rooms.h objs.h mob_prog.h
-act_olc.o: descs.h json_export.h resets.h memory.h olc_aedit.h olc_hedit.h
-act_olc.o: olc_medit.h olc_mpedit.h olc_oedit.h olc_redit.h olc.h act_olc.h
+act_olc.o: descs.h json_export.h resets.h memory.h portals.h olc_aedit.h
+act_olc.o: olc_hedit.h olc_medit.h olc_mpedit.h olc_oedit.h olc_redit.h olc.h
+act_olc.o: act_olc.h
 act_player.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 act_player.o: json.h structs.h types.h flags.h tables.h ext_flags.h db.h
 act_player.o: comm.h save.h utils.h fight.h interp.h recycle.h chars.h
@@ -283,7 +284,7 @@ olc_redit.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 olc_redit.o: json.h structs.h types.h flags.h tables.h ext_flags.h comm.h
 olc_redit.o: lookup.h db.h recycle.h utils.h interp.h act_info.h chars.h
 olc_redit.o: objs.h find.h globals.h olc.h olc_medit.h olc_oedit.h memory.h
-olc_redit.o: mobiles.h rooms.h extra_descrs.h resets.h olc_redit.h
+olc_redit.o: mobiles.h rooms.h extra_descrs.h resets.h portals.h olc_redit.h
 olc_save.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 olc_save.o: json.h structs.h types.h flags.h tables.h ext_flags.h lookup.h
 olc_save.o: utils.h db.h mob_cmds.h comm.h interp.h globals.h olc.h items.h
