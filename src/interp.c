@@ -326,8 +326,7 @@ const CMD_T cmd_table[] = {
     {"transfer",    do_transfer,    POS_DEAD,     L5, LOG_ALWAYS, 1},
 
 /*  { "at",         do_at,          POS_DEAD,     L6, LOG_NORMAL, 1 }, */
-    {"poofin",      do_bamfin,      POS_DEAD,     L8, LOG_NORMAL, 1},
-    {"poofout",     do_bamfout,     POS_DEAD,     L8, LOG_NORMAL, 1},
+    {"poof",        do_poof,        POS_DEAD,     L8, LOG_NORMAL, 1},
     {"gecho",       do_echo,        POS_DEAD,     L4, LOG_ALWAYS, 1},
 /*  { "goto",       do_goto,        POS_DEAD,     L8, LOG_NORMAL, 1 }, */
     {"holylight",   do_holylight,   POS_DEAD,     IM, LOG_NORMAL, 1},

@@ -1133,8 +1133,7 @@ void fread_char (CHAR_T *ch, FILE *fp) {
         }
 
         if (!fMatch) {
-            bug ("fread_char: no match.", 0);
-            bug (word, 0);
+            bugf("fread_char: no match for %s on %s.", ch->name, word);
             fread_to_eol (fp);
         }
     }
@@ -1347,7 +1346,7 @@ void fread_pet (CHAR_T *ch, FILE *fp) {
         }
 
         if (!fMatch) {
-            bug ("fread_pet: no match.", 0);
+            bugf("fread_char: no match for %s on %s.", pet->name, word);
             fread_to_eol (fp);
         }
     }
@@ -1633,7 +1632,7 @@ void fread_obj (CHAR_T *ch, FILE *fp) {
         }
 
         if (!fMatch) {
-            bug ("fread_obj: no match.", 0);
+            bugf("fread_char: no match for %s on %s.", obj->name, word);
             fread_to_eol (fp);
         }
     }

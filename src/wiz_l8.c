@@ -86,34 +86,40 @@ DEFINE_DO_FUN (do_goto) {
     do_function (ch, &do_look, "auto");
 }
 
-DEFINE_DO_FUN (do_bamfin) {
-    if (IS_NPC (ch))
+DEFINE_DO_FUN (do_poof) {
+     if (IS_NPC (ch))
         return;
 
-    smash_tilde (argument);
-    if (argument[0] == '\0') {
-        printf_to_char (ch, "Your poofin is %s\n\r", ch->pcdata->bamfin);
-        return;
-    }
-    BAIL_IF (strstr (argument, ch->name) == NULL,
-        "You must include your name.\n\r", ch);
+    char arg[MAX_INPUT_LENGTH];
+    argument = one_argument (argument, arg);
 
-    str_replace_dup (&(ch->pcdata->bamfin), argument);
-    printf_to_char (ch, "Your poofin is now %s\n\r", ch->pcdata->bamfin);
-}
-
-DEFINE_DO_FUN (do_bamfout) {
-    if (IS_NPC (ch))
-        return;
-
-    smash_tilde (argument);
-    if (argument[0] == '\0') {
-        printf_to_char (ch, "Your poofout is %s\n\r", ch->pcdata->bamfout);
+    if (arg[0] == '\0') {
+        printf_to_char (ch, "Syntax:\n\r");
+        printf_to_char (ch, "  poof in <value>\n\r");
+        printf_to_char (ch, "  poof out <value>\n\r");
         return;
     }
-    BAIL_IF (strstr (argument, ch->name) == NULL,
+
+    if (!str_cmp (arg, "in")) {
+        if (argument[0] == '\0') {
+            printf_to_char (ch, "Your poofin is %s\n\r", ch->pcdata->bamfin);
+            return;
+        }
+        BAIL_IF (strstr (argument, ch->name) == NULL,
         "You must include your name.\n\r", ch);
 
-    str_replace_dup (&(ch->pcdata->bamfout), argument);
-    printf_to_char (ch, "Your poofout is now %s\n\r", ch->pcdata->bamfout);
+        str_replace_dup (&(ch->pcdata->bamfin), argument);
+        printf_to_char (ch, "Your poofin is now %s\n\r", ch->pcdata->bamfin);
+    }
+    else if (!str_cmp (arg, "out")) {
+        if (argument[0] == '\0') {
+            printf_to_char (ch, "Your poofout is %s\n\r", ch->pcdata->bamfout);
+            return;
+        }
+        BAIL_IF (strstr (argument, ch->name) == NULL,
+        "You must include your name.\n\r", ch);
+
+        str_replace_dup (&(ch->pcdata->bamfout), argument);
+        printf_to_char (ch, "Your poofout is now %s\n\r", ch->pcdata->bamfout);
+    }
 }
