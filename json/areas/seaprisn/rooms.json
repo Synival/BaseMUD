@@ -6,10 +6,8 @@
                  |Dragon Sea, to the north is a bend in this rocky, dangerous river.",
   "sector_type": "noswim",
   "room_flags": "no_mob",
-  "doors": [
-    {
-      "dir": "south",
-      "portal": "seaprisn-south-1"
-    }
-  ]
+  "doors": [{
+    "dir": "south",
+    "portal": "seaprisn-south-1"
+  }]
 }}]
