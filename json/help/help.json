@@ -722,6 +722,11 @@
       "keyword": "'ACID BREATH' 'FIRE BREATH' 'FROST BREATH' 'GAS BREATH' 'LIGHTNING BREATH'",
       "level": 0,
       "text": "Syntax: cast 'acid breath'      <victim>\nSyntax: cast 'fire breath'      <victim>\nSyntax: cast 'frost breath'     <victim>\nSyntax: cast 'gas breath'\nSyntax: cast 'lightning breath' <victim>\n\nThese spells are for the use of dragons.  Acid, fire, frost, and lightning\ndamage one victim, whereas gas damages every PC in the room.  Fire and\nfrost can break objects, and acid can damage armor.\n\nHigh level mages may learn and cast these spells as well.\n"
+    },
+    {
+      "keyword": "CONFISCATE",
+      "level": 58,
+      "text": "Syntax: confiscate <item> <player>\n\nConfiscate will take an item from a player and put it in the\nimmortal's inventory.  If the item is equipped on the player it\nwill be unequipped.\n\nThe player is given notice that this has occured.\n"
     }
   ]
 }}]

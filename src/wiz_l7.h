@@ -35,5 +35,6 @@
 
 /* Commands. */
 DECLARE_DO_FUN (do_force);
+DECLARE_DO_FUN (do_confiscate);
 
 #endif
