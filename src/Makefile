@@ -1,7 +1,7 @@
 CC      = gcc
 PROF    = -g -O
 NOCRYPT =
-C_FLAGS =  -Wall -Wno-trigraphs -Werror $(PROF) $(NOCRYPT)
+C_FLAGS =  -Wall -Wno-trigraphs $(PROF) $(NOCRYPT)
 L_FLAGS =  $(PROF)
 LIBS    = -lcrypt
 EXE     = ../bin/rom
@@ -406,7 +406,7 @@ wiz_l6.o: structs.h types.h flags.h tables.h ext_flags.h comm.h interp.h
 wiz_l6.o: chars.h rooms.h find.h globals.h memory.h wiz_l6.h
 wiz_l7.o: db.h merc.h basemud.h compat.h defs.h typedefs.h macros.h json.h
 wiz_l7.o: structs.h types.h flags.h tables.h ext_flags.h comm.h interp.h
-wiz_l7.o: utils.h chars.h rooms.h find.h globals.h wiz_l7.h
+wiz_l7.o: utils.h chars.h rooms.h find.h globals.h objs.h wiz_l7.h
 wiz_l8.o: ./string.h merc.h basemud.h compat.h defs.h typedefs.h macros.h
 wiz_l8.o: json.h structs.h types.h flags.h tables.h ext_flags.h db.h comm.h
 wiz_l8.o: interp.h fight.h utils.h act_info.h chars.h rooms.h find.h memory.h
