@@ -33,6 +33,8 @@
 #include "rooms.h"
 #include "find.h"
 #include "globals.h"
+#include "chars.h"
+#include "objs.h"
 
 #include "wiz_l7.h"
 
@@ -123,4 +125,55 @@ DEFINE_DO_FUN (do_force) {
         interpret (victim, argument);
     }
     send_to_char ("Ok.\n\r", ch);
+}
+
+/*
+ * Confiscates an object from a player.  The command is useful for cases when
+ * an immortal needs to get a noremove or nodrop item from a player to do
+ * a restring or if they need to confiscate something for really any other
+ * reason.
+ *
+ * Code by Keridan of Benevolent Iniquity, additions and conversions for
+ * BaseMUD by Rhien (Blake Pell).
+ */
+DEFINE_DO_FUN (do_confiscate) {
+    CHAR_T *victim;
+    OBJ_T *obj;
+    char arg1[MAX_INPUT_LENGTH];
+    bool found = FALSE;
+
+    argument = one_argument(argument, arg1);
+
+    BAIL_IF (IS_NPC(ch),
+        "Mobiles can't use confiscate command.\r\n", ch);
+    BAIL_IF (IS_NULLSTR(argument) || IS_NULLSTR(arg1),
+        "Syntax: confiscate <item> <player>\r\n", ch);
+    BAIL_IF ((victim = find_char_world(ch, argument)) == NULL,
+        "They aren't here.\r\n", ch);
+    BAIL_IF (victim->level >= ch->level,
+        "They are too high level for you to do that.\r\n", ch);
+
+    /* Go through the victim's objects and find the first object that matches. */
+    for (obj = victim->content_first; obj != NULL; obj = obj->content_next) {
+        if (str_in_namelist (arg1, obj->name)) {
+            found = TRUE;
+            break;
+        }
+    }
+    BAIL_IF (!found,
+        "They do not have that item.\r\n", ch);
+
+    /* Take the item from the character and give it to the immortal. */
+    obj_take_from_char (obj);
+    obj_give_to_char (obj, ch);
+
+    /* For transparency both the immortal is notified what object was confiscated AND
+     * the player is notified that it happened.  In the future perhaps a silent option
+     * should be built in for cases where the immortal wants to confiscate something in a
+     * quest and not disrupt the ambiance of whatever roleplay is occuring. */
+
+    printf_to_char (ch, "You have confiscated %s from %s.\r\n",
+        obj->short_descr, victim->name);
+    printf_to_char (victim, "%s has confiscated %s from you.\r\n",
+        PERS_AW (ch, victim), obj->short_descr);
 }

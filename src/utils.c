@@ -155,7 +155,7 @@ bool str_in_namelist (const char *str, const char *namelist) {
     if (namelist == NULL || namelist[0] == '\0')
         return FALSE;
 
-    /* fixed to prevent is_name on "" returning TRUE */
+    /* fixed to prevent str_in_namelist on "" returning TRUE */
     if (str == NULL || str[0] == '\0')
         return FALSE;
 

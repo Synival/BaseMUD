@@ -1886,6 +1886,18 @@
               |
               |High level mages may learn and cast these spells as well.
               |"
+    },
+    {
+      "keyword": "CONFISCATE",
+      "level": 58,
+      "text": "Syntax: confiscate <item> <player>
+              |
+              |Confiscate will take an item from a player and put it in the
+              |immortal's inventory.  If the item is equipped on the player it
+              |will be unequipped.
+              |
+              |The player is given notice that this has occured.
+              |"
     }
   ]
 }}]
