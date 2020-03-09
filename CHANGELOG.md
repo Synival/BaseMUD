@@ -1,6 +1,56 @@
 # Changelog for BaseMUD
 
-## Version 0.0.6 (2019-??-??)
+## Version 0.0.6 (2020-03-??)
+
+(REORGANIZE ALL OF THIS)
+* Added `confiscate` command to `wiz_l7.c`. Thanks, [blakepell](https://github.com/blakepell)!
+* Refactored `resets` command to use updated reset creation/linking code.
+* Added `portals` command. This displays all "portal exits" (labels attached
+    to rooms or exits) or "portal links" (connectors between portal exits)
+    for either the area or the world.
+* Doubled maximum page buffer size. In 2020, I think a 32k buffer is an
+    acceptable memory hit ;)
+* Completely rewrote `area_update()` to clean up the logic for when areas
+    should update. The MUD school has some pretty stupid reset rules...
+* Bit flags can now be written and read using the new extended flag bracket
+    notation (ex, `[flag1 flag2 flag3]`). This is on by default but can be
+    disabled in `basemud.h` for backwards compatibility.
+* Portal exits are now written to `.are` files using the `P` command for rooms
+    and resets (following exits). This is on by default but can be
+    disabled in `basemud.h` for backwards compatibility.
+* Fixed inconsistencies in loading behavior between traditional `#AREA`
+    sections and OLC `#AREADATA` sections in `.are` files.
+* `load_rooms()` uses a switch() statement for resets now instead of a big
+    chain of if/else statements.
+* Updated `db_dump_world()` to dump all of the latest changes.
+* Updated `db_dump_world()` to use non-randomized exits when dumping rooms.
+    This should make things much easier when comparing `world.dump` files
+    with another to check for inconsistencies when mucking with the db code.
+* Added missing "materials" flag to `comm_flags[]`. Whoops!
+* Created `ban_flags[]` and `wiz_flags[]`. These are used for reading/writing
+    flags in the ban list and player saves.
+* Renamed `json_write_to_file()` to `json_fwrite()` for consistency (even
+    though it's not quite the same thing... HMM)
+* Lots and lots and LOTS of rewrites to portals to make them work better with
+    OLC. Many dumb things were replaced, many new features were added, and they
+    are (at least comparitively) much easier to work with.
+* Clean-ups to room exit management code. There should be much less
+    mucking-around with `EXIT_T` values internally.
+* Renamed `exit_data` fields to better describe what they do.
+* Added single character `n/e/s/w/u/d` commands to the top of the OLC redit
+    so we don't have to type all the exits out :)
+* Added `redit_portal()` to modify room portal exits.
+* Added "portal" command to `redit_change_exit()` to modify exit portal exits.
+* Replaced `redit_add_reset()` with `reset_to_room_before()`.
+* Lots and lots of rewrites to `redit_change_exit()` to make it work with newer
+    code.
+* Modifying exits via OLC now automatically manages portal exits and portal
+    links. Portal exits/links deleted or created are logged to the player.
+* Some code formatting clean-ups in OLC commands.
+* Separated room exit saving code in OLC from `save_room()` into smaller
+    `save_exit()`.
+* Modified "room", "exit", "portal exit", and "portal link" disposal to properly
+    detatch themselves from one another.
 
 **New Features:**
 * Added "enhanced" JSON format that allows for human-readable line breaks. Because this is
