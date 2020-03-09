@@ -56,7 +56,7 @@ void area_update (AREA_T *area) {
     area->age = number_range (0, 3);
     room_index = room_get_index (ROOM_VNUM_SCHOOL);
 
-    /* Note: Mud School resets every 3 minutes (not 15). */
+    /* Note: Mud School resets every 3 area ticks (not 15). */
     /* TODO: This is a pretty stupid hack for the school. There should be a
      *       specific reset age set for the area as well as a flag to ignore
      *       whether players have entered or not. The direct lookup to the
