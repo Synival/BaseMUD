@@ -55,7 +55,7 @@ DEFINE_DO_FUN (do_disconnect) {
         for (d = descriptor_list; d != NULL; d = d->next) {
             if (d->descriptor == desc) {
                 close_socket (d);
-                printf_to_char(ch, "%s has been disconnected.\n\r", d->descriptor);
+                printf_to_char (ch, "Connection #%d has been disconnected.\n\r", d->descriptor);
                 return;
             }
         }

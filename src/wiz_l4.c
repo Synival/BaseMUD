@@ -359,7 +359,7 @@ DEFINE_DO_FUN (do_oload) {
         obj_give_to_char (obj, ch);
     else
         obj_give_to_room (obj, ch->in_room);
-    printf_to_char(ch, "You created %p!\n\r", obj); 
+    printf_to_char(ch, "You created %s!\n\r", obj->short_descr); 
     act ("$n has created $p!", ch, obj, NULL, TO_NOTCHAR);
     wiznet ("$N loads $p.", ch, obj, WIZ_LOAD, WIZ_SECURE, char_get_trust (ch));
 }

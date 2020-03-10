@@ -61,7 +61,7 @@ DEFINE_DO_FUN (do_deny) {
     printf_to_char(victim, "You have been denied access!\n\r");
     wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
         "$N denies access to %s", victim->name);
-    printf_to_char(ch, "$s has been denied and will be escorted out.\n\r", victim->name);
+    printf_to_char(ch, "%s has been denied and will be escorted out.\n\r", victim->name);
 
     save_char_obj (victim);
     stop_fighting (victim, TRUE);
